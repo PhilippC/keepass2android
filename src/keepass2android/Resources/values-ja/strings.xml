@@ -58,6 +58,7 @@
   <string name="unlock_database_title">データベースのロック解除</string>
   <string name="brackets">括弧</string>
   <string name="cancel">キャンセル</string>
+  <string name="Ok">OK</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
   <string name="clipboard_timeout">クリップボードのタイムアウト</string>
   <string name="clipboard_timeout_summary">コピーされたユーザー名やパスワードがクリップボードから消去されるまでの時間。</string>
@@ -92,8 +93,7 @@
   <string name="fingerprint_reenable">新しいパスワードのための指紋認証によるロック解除を再度有効にしてください。</string>
   <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度指紋認証のロック解除を有効にしてください。</string>
   <string name="FingerprintInitFailed">指紋センサーの初期化に失敗しました。 </string>
-  <string name="enable_fingerprint_unlock_Info">
-マスターパスワードを Android キーストアで暗号化した状態で端末に保存し、指紋認証で保護します。指紋認証のみで、データベースのロックを解除できるようになります</string>
+  <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態で端末に保存し、指紋認証で保護します。指紋認証のみで、データベースのロックを解除できるようになります</string>
   <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに指紋認証を利用するようにします。マスターパスワードに関連する情報を格納する必要はありません。</string>
   <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
@@ -210,6 +210,8 @@
   <string name="edit">編集</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">ルート</string>
+  <string name="AutoReturnFromQuery_title">クエリ画面から自動的に戻る</string>
+  <string name="AutoReturnFromQuery_summary">アプリまたは web サイトのエントリを検索するとき: データベースに 1 つだけ一致するエントリがある場合、クエリ画面から自動的に戻ります。</string>
   <string name="KeyDerivFunc">キー派生関数</string>
   <string name="rounds">暗号化レベル</string>
   <string name="rounds_explaination">暗号化レベルを高く設定するとブルートフォース(総当り)攻撃に強くなりますが、保存や読込に時間が掛かります。</string>
@@ -291,7 +293,7 @@
   <string name="BinaryDirectory_summary">添付ファイルが保存されるディレクトリ。</string>
   <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
   <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください。</string>
-  <string name="SaveAttachmentDialog_save">SDカードに保存</string>
+  <string name="SaveAttachmentDialog_save">ファイルへエクスポート...</string>
   <string name="SaveAttachmentDialog_open">キャッシュに保存して開く</string>
   <string name="ShowAttachedImage">内部の画像ビューアーで表示</string>
   <string name="SaveAttachment_doneMessage">ファイルを%1$sに保存しました。</string>
@@ -318,6 +320,8 @@
   <string name="ClearPasswordOnLeave_summary">データベースのロック解除をせずに画面を離れると、入力済みのマスターパスワードをクリアします。</string>
   <string name="LockWhenNavigateBack_title">アプリから抜けたときにロックする</string>
   <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデータベースをロックします。</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android の内蔵キーボードを使用</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">マスターパスワードの入力またはエントリー編集時に、標準キーボードプロバイダーを信頼しない場合、このオプションをチェックし内蔵キーボードを使用してください。</string>
   <string name="ActivateSearchViewOnStart_title">開始時に検索フィールドを有効にする</string>
   <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
@@ -326,13 +330,17 @@
   <string name="NoDonationReminder_title">絶対に寄付を求めない</string>
   <string name="NoDonationReminder_summary">ダイムを与えないまたはすでに寄付されました。著者の誕生日でさえ、寄付金を求めません。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
+  <string name="UseOfflineCache_summary">アプリのキャッシュディレクトリにデータベースファイルのコピーを保持してください。これにより、データベースファイルにアクセスできない間もデータベースを使用することができます。</string>
   <string name="CreateBackups_title">ローカルバックアップ</string>
   <string name="CreateBackups_summary">データベースを読み込んだ後、ローカルバックアップを作成します。</string>
   <string name="UpdatingBackup">ローカルバックアップを更新しています...</string>
   <string name="LocalBackupOf">%1$s のローカルバックアップ</string>
+  <string name="show_local_backups">ローカルバックアップを表示</string>
   <string name="AcceptAllServerCertificates_title">SSL 証明書</string>
   <string name="AcceptAllServerCertificates_summary">証明書の検証に失敗したときの動作を指定します。注:検証に失敗したときは、デバイスに証明書をインストールすることができます。</string>
   <string name="ClearOfflineCache_title">キャッシュをクリアしますか？</string>
+  <string name="ClearOfflineCache_question">これはすべてのキャッシュされたデータベースファイルを削除します。元のデータベースにアクセスできない間に行ったすべての同期されていない変更は失われます。
+続けますか？</string>
   <string name="CheckForFileChangesOnSave_title">変更をチェック</string>
   <string name="CheckForFileChangesOnSave_summary">変更を保存する前に、ファイルが外部から変更されているか確認します。</string>
   <string name="CheckForDuplicateUuids_title">UUID の重複をチェック</string>
@@ -399,11 +407,26 @@
   <string name="SynchronizingDatabase">変更をマージしています...</string>
   <string name="YesSynchronize">はい、マージします</string>
   <string name="NoOverwrite">いいえ、上書きします</string>
+  <string name="UseOfflineMode">内部キャッシュのみで動作</string>
+  <string name="UseOnlineMode">ソースのキャッシュコピーを同期</string>
+  <string name="UseOfflineMode_Info">データベースは内部キャッシュから読み込まれます。変更は内部キャッシュのみに保存され、ソースとキャッシュコピーを同期を選択時した場合のみ同期されます。</string>
+  <string name="InOfflineMode">内部キャッシュのみで動作</string>
   <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期中…</string>
+  <string name="DownloadingRemoteFile">ソースファイルを読み込んでいます…</string>
+  <string name="UploadingFile">ファイルを保存しています…</string>
+  <string name="RestoringRemoteFile">ソースファイルを復元しています…</string>
   <string name="FilesInSync">ファイルは同期中です。</string>
   <string name="SynchronizedDatabaseSuccessfully">データベースは正常に同期されました。</string>
   <string name="CheckingDatabaseForChanges">データベースの変更を確認しています。</string>
+  <string name="CouldNotSaveToRemote">ソースファイルへ保存できませんでした: %1$s。ファイルへアクセス可能になったら、再度保存するか、同期メニューを使用してください。</string>
+  <string name="CouldNotLoadFromRemote">ソースファイルへアクセスできませんでした: %1$s。内部キャッシュより読み込みました。データベースを変更し、あとで同期することができます。</string>
+  <string name="UpdatedRemoteFileOnLoad">ソースファイルを更新しました。</string>
+  <string name="NotifyOpenFromLocalDueToConflict">ソースファイルの変更とコンフリクトしたため、内部キャッシュを開きました。同期メニューを使ってマージしてください。</string>
+  <string name="LoadedFromRemoteInSync">ソースファイルとキャッシュが同期されます。</string>
+  <string name="UpdatedCachedFileOnLoad">%1$s の内部キャッシュコピーを更新しました。</string>
   <string name="RemoteDatabaseUnchanged">変更は検出されませんでした。</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">キャッシュされた予備のワンタイムパスワードキャッシュを更新しました: ソースカウンターが高いため。</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">予備のワンタイムパスワードファイルソースを更新しました: ローカルカウンターが高いため。</string>
   <string name="SynchronizingOtpAuxFile">OTP 補助ファイルを同期中…</string>
   <string name="database_file">データベースファイル</string>
   <string name="otp_aux_file">OTP 補助ファイル</string>
@@ -421,10 +444,14 @@
   <string name="hint_http_url">フォルダーまたはファイルの URL (例: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloudのログイン情報を入力:</string>
   <string name="hint_owncloud_url">OwnCloudのURL (例: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nextcloud ログイン データを入力:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (例: nextcloud.me.com)</string>
   <string name="hint_sftp_host">ホスト(例: 192.168.0.1)</string>
   <string name="hint_sftp_port">ポート</string>
   <string name="initial_directory">初期ディレクトリ (省略可能):</string>
   <string name="enter_sftp_login_title">SFTP のログイン データを入力してください:</string>
+  <string name="sftp_auth_mode">認証方式</string>
+  <string name="send_public_key">公開鍵を送信</string>
   <string name="enter_ftp_login_title">FTP のログイン データを入力してください:</string>
   <string name="select_storage_type">ストレージタイプの選択</string>
   <string name="filestoragename_file">ローカルファイル</string>
@@ -434,10 +461,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
+  <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH ファイル転送)</string>
   <string name="filestoragename_content">システムファイルピッカー</string>
@@ -456,7 +485,7 @@
   <string name="use_key_file">キーファイルを使用する</string>
   <string name="error_adding_keyfile">キー ファイル追加エラー!</string>
   <string name="init_otp">OTP 補助ファイルの読み込み…</string>
-  <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします。</string>
+  <string name="otp_explanation">次のワンタイム パスワード (OTP) を入力してください。NFC 経由で入力するには、お使いのデバイスの背面にある Yubikey NEO をスワイプします (Yubiclip アプリが必要です)。</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">補助 OTP ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">KeePass 2.x (PC) の OtpKeyProv プラグインを使用して、OTP を使うようにデータベースを構成してください!</string>
@@ -469,6 +498,9 @@
   <string name="OtpKeyError">OTP キーの作成に失敗しました! 正しい OTP を入力したか確認してください。</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイル更新エラー!</string>
   <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中…</string>
+  <string name="NoChallengeApp">チャレンジを扱うことができるアプリが見つかりませんでした。</string>
+  <string name="PleaseInstallApp">Google Play から %1$s をインストールしてください。</string>
+  <string name="AppOutdated">%1$s はサポートされていません。</string>
   <string name="bad_resp">チャレンジ応答が正しくありません。</string>
   <string name="CouldntLoadChalAuxFile">補助チャレンジ ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジ レスポンスを使うようにデータベースを構成してください!</string>
@@ -519,6 +551,7 @@
   <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。この方法は、書き込みをサポートしません。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。可能であれば、いずれかの利用可能なオプションからファイルを開いてください。</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">読み取り専用フラグが設定されます。データベースを変更したい場合は、このフラグを削除してください。</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat で導入された制限のため、書き込みは不可能です。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。その後、システムのファイル選択を使用してファイルを開いてください。</string>
+  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません。データベース設定 - エクスポートデータベースを使用して、このバックアップを開くことができる別の場所へエクスポートすることができます。その後、再び書き込み可能になります。</string>
   <string name="AddCustomIcon">ファイルからアイコンを追加する</string>
   <string name="CopyingFile">ファイルをコピーしています</string>
   <string name="DuplicateTitle">コピー</string>
@@ -551,16 +584,39 @@
 
  • 正しいパスワードを入力したことを確認してください。入力したパスワードを表示するには、目のアイコンを使用してください。\n
  • 正しいパスワードの種類を選択したことを確認してください。データベースを作成するときに使用した種類と一致することを確認してください。\n
- • 正しいデータベースファイルが選択されていることを確認してください。 
-</string>
-  <string name="CorruptDatabaseHelp">
-ファイルが壊れています。\n
+ • 正しいデータベースファイルが選択されていることを確認してください。 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; ヒント: データベースファイルが破損したとみられる場合、または、マスターキー変更後に忘れてしまった場合は、\"%1$s\" をクリックしてローカルバックアップを選択し、最後に開けたバージョンのファイルを試すことができます。</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; ヒント: Keepass2Android は、内部メモリーに最後に開くことができたファイルのバージョン保持しています。\"%1$s\" をクリックして、ローカルバックアップからそれを開くことができます。  </string>
+  <string name="CorruptDatabaseHelp">ファイルが壊れています。\n
 ここに、問題を診断するために役立ついくつかのヒントがあります:\n
 
  • USB (MTP モード) でファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。特定の場合 MTP はファイルが切り捨てられます。\n
  • お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android がファイルを破損すると思われる場合は、サポートにお問い合わせください。\n
  • お使いの PC でファイルを開くことができる場合は、サポートにお問い合わせください。PC で、(解凍してなど) 異なる設定でそれを保存して、Keepass2Android で再度開いてみることも試してください。  </string>
+  <string name="open_other_db">別のデータベースを開く…</string>
+  <string name="select_database">データベースを選択</string>
+  <string name="configure_child_dbs">子データベースを設定…</string>
+  <string name="child_dbs_title">子データベース</string>
+  <string name="unspecified">未指定</string>
+  <string name="child_db_enabled_on_this_device">このデバイスで有効です</string>
+  <string name="child_db_enable_on_this_device">このデバイスで有効にする</string>
+  <string name="child_db_disable_on_this_device">このデバイスで無効にする</string>
+  <string name="child_db_enable_a_copy_for_this_device">このデバイスのコピー</string>
+  <string name="unconfigured_child_dbs">お使いのデータベースの \"AutoOpen\" グループに新しい子データベースが含まれています。このデバイスでこれらの子データベースを使用するかどうか指定してください。</string>
+  <string name="add_child_db">子データベースを追加...</string>
+  <string name="EnableCopyForThisDevice_Info">これにより子データベース設定のコピーを作成して有効にします。このコピーされた設定は、このデバイス用に調整されます。</string>
+  <string name="Visible_title">参照可能</string>
+  <string name="child_db_Enabled_title">自動的に開く</string>
+  <string name="database_file_heading">データベースファイル</string>
+  <string name="if_device_text">%1$s 用に有効にする</string>
+  <string name="DbUnlockedChannel_name">データベースがアンロックされました</string>
+  <string name="DbUnlockedChannel_desc">データベースのアンロックに関する通知</string>
   <string name="DbQuicklockedChannel_name">クイック解除</string>
+  <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
+  <string name="EntryChannel_name">エントリーの通知</string>
+  <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="ErrorReportTitle">Keepass2Android: エラーが発生しました。</string>
   <string name="ErrorReportText">Keepass2Android の実行中に予期しないエラーが発生しました。エラーレポートの送信を有効にし、この問題の解決にご協力ください。</string>
   <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリケーション設定でエラーレポートを無効にできます。</string>
@@ -569,21 +625,31 @@
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
-  <string name="ChangeLog_1_04">
-    バージョン 1.04\n
+  <string name="ChangeLog_1_07">    バージョン 1.07 pre2\n
+    * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
+    * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
+    * pCloud サポートの導入 - gilbsgilbs に感謝!\n
+    * 明示的に Nextcloud サポート\n
+    * エントリ添付ファイルの保存と更新を改善\n
+    * 個人設定の動作を適応させるためのオプションを追加\n
+    * SSL: ユーザー証明書の信頼\n
+    * バグフィックス\n
+  </string>
+  <string name="ChangeLog_1_04b">    バージョン 1.04b\n
+    * Huawei デバイスでオートフィルを有効にしようとするときにクラッシュを回避。\n
+  </string>
+  <string name="ChangeLog_1_04">    バージョン 1.04\n
     * Android 8.0 以降でオートフィルサービスを追加しました。\n
     * ライブラリー、ビルドツール、ターゲット SDK バージョンをアップグレードしました。\n
   </string>
-  <string name="ChangeLog_1_03">
-    バージョン 1.03\n
+  <string name="ChangeLog_1_03">    バージョン 1.03\n
     * Googleからの要請により、オートフィルのためのアクセシビリティサービスを削除しました。パスワードアクセス設定から前の機能を再現するプラグインを見てみて下さい。.\n
     * サードパーティのアプリをストレージオプションとして再び追加\n
     * 他のアプリからでない添付された画像のための画像ビューアを内蔵\n
     * 接続の問題の修正のため、OkHttpをアップグレード\n
     * KeeTrayTOTPをサポート。これによりSteamのエントリーもサポート。\n
   </string>
-  <string name="ChangeLog_1_02">
-バージョン 1.02\n
+  <string name="ChangeLog_1_02">バージョン 1.02\n
  * いくつかのセキュリティの向上。 jean-baptiste.cayrou@thalesgroup.com と vincent.fargues@thalesgroup.com と彼らのコラボレーションによる、たくさんのセキュリティ レポートに感謝します!\n
  * KeyboardSwapPlugin のサポート (パスワードアクセス オプションを参照してください): 非 root 化デバイスで、自動的に入力方式を切り替えることができます。これを可能にしてくれた XDA-開発者から Mishaal Rahman に感謝します。\n
  * 最近の Chrome バージョンでユーザー補助サービスの修正\n
@@ -592,23 +658,19 @@
  * 将来の互換性を確保するため Dropbox SDK の更新\n
  * Xamarin Insights 経由の報告を削除\n
  * ビルドツールを更新\n  </string>
-  <string name="ChangeLog_1_01g">
-バージョン 1.01-g\n
+  <string name="ChangeLog_1_01g">バージョン 1.01-g\n
  * オフラインに操作しようとしたときのクラッシュを修正\n
  * FTP の不適切なエンコーディングの修正\n
  * OneDrive と、古い Android バージョンを使用するときのクラッシュを修正\n
  * エントリ画面で現地時間として時間を表示\n  </string>
-  <string name="ChangeLog_1_01d">
-バージョン 1.01-d\n
+  <string name="ChangeLog_1_01d">バージョン 1.01-d\n
  * OneDrive ファイル一覧表示の修正\n
  * 証明書エラー同様、ホスト名の検証が失敗したのを無視できるようにする (製品としての利用には推奨しません)\n
  * クイック解除が、正しい解除コードにもかかわらず時々失敗するのを修正\n  </string>
-  <string name="ChangeLog_0_9_8c">
-Version 0.9.8c\n
+  <string name="ChangeLog_0_9_8c">Version 0.9.8c\n
  * マイクロソフト Live SDKのSSL脆弱性が修正されました(ファイルをOneDriveでアクセスする際に使用されます)\n
 * バグ修正: 以前のリリースで2つのIMEが含まれていた(一方はクラッシュしていた)  </string>
-  <string name="ChangeLog_1_01">
-Version 1.01\n
+  <string name="ChangeLog_1_01">Version 1.01\n
     * KDBX-4フォーマット(Keepass 2.35と互換)をサポート。 鍵導出アルゴリズムのArgon2と暗号方式のChaCha20が含まれます。\n
     * WebDavファイルストレージを再実装し、ファイルブラウジングと最新の暗号方式をサポート。\n
     * FTPファイルストレージを再実装し、ファイルブラウジングと暗号化通信をサポート (FTPS)。\n
@@ -616,14 +678,12 @@ Version 1.01\n
     * Dropbox SDKバージョン2へ更新(以前に使用していたバージョン1 SDKは非推奨になりました).\n
     * OwnCloudをサポート.\n
     * ローカルファイルを開く前にストレージのアクセス許可を求めるようになりました。  </string>
-  <string name="ChangeLog_1_0_0e">
-バージョン 1.0.0e\n
+  <string name="ChangeLog_1_0_0e">バージョン 1.0.0e\n
 * アンドロイド 6がもつ古いサムスンのデバイスにロックを解除する指紋の修正\n
 * x86 のネイティブ サポートを追加返しました \n 
 * 指紋スキャン中にソフトキーボードを非表示にするを許可す\n
 * システム更新をビルド  </string>
-  <string name="ChangeLog_1_0_0">
-バージョン 1.0.0\n
+  <string name="ChangeLog_1_0_0">バージョン 1.0.0\n
  * 指紋ロック解除 (Android 6.0+ または Samsung のデバイスが必要)\n
  * オートフィル サービスを追加 (Android 5.0+ が必要)\n
  * 登録テンプレートのサポートを追加しました\n
@@ -635,43 +695,36 @@ Version 1.01\n
  * バグ修正 (内蔵のキーボードでアイコンを選択するとき)\n
  * エラーレポートを送信するオプションが含まれました\n
  * 一部の場所にヘルプメッセージを追加しました\n  </string>
-  <string name="ChangeLog_0_9_9">
-Version 0.9.9\n
+  <string name="ChangeLog_0_9_9">Version 0.9.9\n
 * ユーザーインターフェイスを作り直しました。Stefano Pignataro (http://www.spstudio.at) 氏のサポートに感謝します。\n
     * カスタムアイコンを追加できるようになりました\n
     * サムソン製端末のマルチウィンドウモードに対応しました\n    
     * データベース作成時のデフォルト暗号化回数を増やしました\n
 * データ消失防止のため、要素追加時にキーが重複していないかチェックされるようになりました。\n</string>
-  <string name="ChangeLog_0_9_9c">
-バージョン 0.9.9c\n
+  <string name="ChangeLog_0_9_9c">バージョン 0.9.9c\n
  * ダークテーマが復活\n
  * 他のアイコン パックをインストールできます (古い Windows スタイルのアイコンは Play ストアで利用可能です)\n
  * ごみ箱なしに要素を削除するときに確認の質問を追加しました\n
  * バグ修正 (間違った表示のOTP 秘密エンコーディング、一部の場所で間違ったアプリケーション アイコン)\n  </string>
-  <string name="ChangeLog_0_9_8b">
-Version 0.9.8b\n 
-* バグ修正 (一部のデータベース保存に失敗する, ローカル端末へのエクスポートができない, 一部の設定を選択した時にアプリがクラッシュする)\n 	</string>
-  <string name="ChangeLog_0_9_8">
-Version 0.9.8\n
+  <string name="ChangeLog_0_9_8b">Version 0.9.8b\n 
+* バグ修正 (一部のデータベース保存に失敗する, ローカル端末へのエクスポートができない, 一部の設定を選択した時にアプリがクラッシュする)\n </string>
+  <string name="ChangeLog_0_9_8">Version 0.9.8\n
 		* ストレージアクセスフレームワークに対応しました (KP2Aオフライン版でSDカードとGoogleドライブに書込めるようになります)\n
 		* WebDAV URLを (ファイルの代わりに)入力したときに誤入力をチェックするようになりました\n
 		* パスワードのフォントを変更しました\n
 		* Dropboxのアカウントを変更できるようになりました\n
 		* バグ修正: 今のワンタイムパスワードが記録される\n</string>
-  <string name="ChangeLog_0_9_7b">
-バージョン 0.9.7b\n
+  <string name="ChangeLog_0_9_7b">バージョン 0.9.7b\n
 * 翻訳を更新\n
 * バグ修正: 0.9.7、パスワード フォントが見つからない、名前順でグループの並べ替えができない\n</string>
-  <string name="ChangeLog_0_9_7">
-バージョン 0.9.7\n
+  <string name="ChangeLog_0_9_7">バージョン 0.9.7\n
 * Keepass 1 (kdb) データベースの書き込みサポート (ベータ!)\n
 * 以前のキーボードに切り替え (非 root デバイスでも動作します)\n
 * 可変長チャレンジで KeeChallenge のサポート\n
 * クイック解除とパスワード画面で、スクリーン ショットの取得を防止\n
 * 更新日での並べ替え順序を逆にしました (降順になりました)\n
 * バグ修正: メモ画面が変更後に正しく更新されるようになります。(うまく行けば) すべてのデバイスで、パスワード画面のパスワードが正しく非表示になります。エントリを 2 回追加する問題を修正。データベースを修正した後でも、UUID の重複を警告が表示される問題を修正\n</string>
-  <string name="ChangeLog_0_9_6">
-バージョン 0.9.6\n
+  <string name="ChangeLog_0_9_6">バージョン 0.9.6\n
 *キーファイルとデータベースファイルをアプリの内部ディレクトリへインポートできるようになりました(設定を参照して下さい)\n
 *並び替えの方法が追加されました\n
 *キーボード自動切り替えの設定を改良しました\n
@@ -684,8 +737,7 @@ Version 0.9.8\n
 *データベースの破損チェック処理を追加しました(UUIDを複製します)\n
 *データベースの変更を検出した時の自動リロードで、マスターパスワードが流出するセキュリティ上の問題が解決されました\n
 *ポーランド語のスモールキーボードのレイアウトが改良されました。キーボード設定のテーマを修正しました (Wiktor Ławskiさんありがとうございました)\n</string>
-  <string name="ChangeLog_0_9_5">
-<b>バージョン 0.9.5</b>\n
+  <string name="ChangeLog_0_9_5"><b>バージョン 0.9.5</b>\n
  * ファイル閲覧の問題を修正 (特に Android 4.4 上で)\n
  * Android Lollipop の Nexus 5 で .kdb ファイル (Keepass 1) 読み込み時の問題を修正\n
  * 最近使用したアプリ一覧でスクリーン ショットの撮影/アプリの表示できないようにするオプションを追加\n
@@ -694,8 +746,7 @@ Version 0.9.8\n
  * 公式のセキュリティ パッチを含む Dropbox SDK の更新 (正規版)\n
  * ビルド ツール更新 --&gt; apk のサイズが増えました :-(\n
  さらにいくつかの変更を予定しています。これは次のリリースになります - 申し訳ありません。このホットフィックスをできるだけ早く公開したかったので。</string>
-  <string name="ChangeLog_0_9_4">
-<b>バージョン 0.9.4</b>\n
+  <string name="ChangeLog_0_9_4"><b>バージョン 0.9.4</b>\n
  * プラグイン サポートを追加： プラグインの入手方法は設定を参照してください!\n
  * QR プラグインを公開 (パスワードのスキャン、パスワードを QR コードで表示、エントリーを他の KP2A デバイスへ転送)\n
  * InputStick プラグインを公開 (bluetooth 経由で PC に 資格情報を転送 - InputStick USB スティックが必要)\n
@@ -712,19 +763,16 @@ Version 0.9.8\n
  * Google ドライブインターフェースのバグを修正\n
  * \"寄付\" オプションを無効にするオプションを追加\n
  * デフォルトで Android 4.2 + デバイス上は、クイックロック解除アイコンが非表示になりました\n</string>
-  <string name="ChangeLog_0_9_3_r5">
-<b>バージョン 0.9.3 r5</b>\n
+  <string name="ChangeLog_0_9_3_r5"><b>バージョン 0.9.3 r5</b>\n
  * Xamarin から修正プログラムを組み込み: Keepass2Android は Android 4.4.2 の ART に対応しました!\n
  * バグ修正: 同期のバグ (表示リフレッシュ、http での変更の正しいチェック)、Android 2.x デバイスでのバグ、Google ドライブと OneDrive ストレージの実装のバグ、データベースを閉じる時ににクリップボードをクリア、添付ファイルを開く時のバグ、キーボード表示の問題\n</string>
-  <string name="ChangeLog_0_9_3">
-<b>バージョン 0.9.3</b>\n
+  <string name="ChangeLog_0_9_3"><b>バージョン 0.9.3</b>\n
  * 多くの改良を含む新しいキーボード。カスタマイズは設定を参照。\n
  * kdb (Keepass 1 ファイル) の読み取り専用サポート。実験的!\n
  * SFTP サポートを追加\n
  * ART (Android 4.4.2) のバグに対する回避策を追加\n
  * 複数のバグ修正\n</string>
-  <string name="ChangeLog_0_9_2">
-<b>バージョン 0.9.2</b>\n
+  <string name="ChangeLog_0_9_2"><b>バージョン 0.9.2</b>\n
  * OTP サポートを追加 (OtpKeyProv プラグインと互換)\n
  * YubiKey NEO から OTP の統合された NFC サポート \n
  * いくつかの UI を改善\n
@@ -732,35 +780,30 @@ Version 0.9.8\n
  * アプリケーション プロセスを終了するオプションを追加 (設定を参照)\n
  * 改善された SSL 証明書の検証\n
  * 複数のバグ修正\n</string>
-  <string name="ChangeLog_0_9_1">
-<b>バージョン 0.9.1</b>\n
+  <string name="ChangeLog_0_9_1"><b>バージョン 0.9.1</b>\n
  * 統合された SkyDrive サポート (Keepass2Android 正規版のみ)\n
  * Google ドライブ統合の問題を修正\n
  * NTLM サポートを追加</string>
-  <string name="ChangeLog_0_9">
-<b>バージョン 0.9</b>\n
+  <string name="ChangeLog_0_9"><b>バージョン 0.9</b>\n
  * 統合された Dropbox と Google ドライブのサポート (読み取り/書き込みデータベース; Keepass2Android 正規版のみ)\n
  * 統合されたカスタム ファイル ブラウザー (HBA による android-filechooser をベースに)\n
  * 新しいデータベースを作成するための改善されたユーザー インターフェイス\n
  * パスワードを表示するためのカスタム フォント DejaVu San Mono を含めました\n
  * 複数のバグ修正</string>
-  <string name="ChangeLog_0_8_6">
-<b>バージョン 0.8.6</b>\n
+  <string name="ChangeLog_0_8_6"><b>バージョン 0.8.6</b>\n
  * Twofish cipher のサポート\n
  * グループの編集が可能\n
  * エントリーとグループの移動が可能\n
  * クイックロック解除アイコンを透明にすることができます (設定を参照)\n
  * 複数のバグ修正</string>
-  <string name="ChangeLog_0_8_5">
-<b>バージョン 0.8.5</b>\n
+  <string name="ChangeLog_0_8_5"><b>バージョン 0.8.5</b>\n
  * オフライン使用 (編集と以降の同期を含む) できるようにリモート ファイルをローカル アプリケーション キャッシュに格納します。設定を参照してください。\n
  * データベースのロック状態を視覚化する通知アイコン (設定を参照)\n
  * いくつかの状況でロック状態を決定する方法の改善\n
  * 読み込み速度を上げるため、パスワードを入力している間にデータベース ファイルをメモリに読み込みます (設定を参照)\n
  * ルートグループにエントリーを追加することができます\n
  * 複数のバグ修正 (フィールドの参照、中国のデバイスでイタリア語のキーボードの問題を解決)</string>
-  <string name="ChangeLog_0_8_4">
-<b>バージョン 0.8.4</b>\n
+  <string name="ChangeLog_0_8_4"><b>バージョン 0.8.4</b>\n
  * 外部データベースの変更を検出し、保存時にマージされます\n
  * 読み込みパフォーマンスの改善\n
  * 提案を含む検索ツールバーの改善\n
@@ -780,19 +823,16 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   </string>
   <string name="ChangeLog_0_8_2"><b>バージョン 0.8.2</b>\n
  * WebDAV\n でダイジェスト認証をサポート\n
- * 複数のバグ修正 (OI ファイルマネージャー、URL を開く)
-</string>
+ * 複数のバグ修正 (OI ファイルマネージャー、URL を開く)</string>
   <string name="ChangeLog_0_8_1"><b>バージョン 0.8.1</b>\n
  * KP2A オフラインと \"オンライン\" が再度両方ともインストールすることができます\n
- * 新しい翻訳を追加 (すべての貢献者に感謝します!)
-</string>
+ * 新しい翻訳を追加 (すべての貢献者に感謝します!)</string>
   <string name="ChangeLog_0_8"><b>バージョン 0.8</b>\n
  * 特に Android 4.x でユーザーインターフェースの改善\n
  * 既存のファイルを選択するために意図的にファイル マネージャーを使用することができます\n
  * 添付ファイルを開くためのより安全な方法を追加 (キャッシュ ディレクトリ経由)\n
  * 編集アクティビティのバグ修正\n
- * おそらく、新しいバグを追加 :-)
-</string>
+ * おそらく、新しいバグを追加 :-)</string>
   <string name="ChangeLog_keptDonate">ビールまたは他の何かを寄付する可能性を拡張</string>
   <string name="ChangeLog_0_7"><b>バージョン 0.7</b>\n
  * 読み込み速度を高速化： キー変換が 10 倍速くなりました!\n
@@ -854,7 +894,12 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + OTP secret (回復モード)</item>
     <item>パスワード + チャレンジ/レスポンス</item>
     <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
+    <item>KeepassXC のパスワード + チャレンジレスポンス</item>
+    <item>Keepass XC のパスワード + キーファイル + チャレンジレスポンス</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>パスワード</item>
+    <item>秘密/公開鍵</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>証明書検証エラーを無視する</item>
@@ -865,7 +910,21 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="PluginDescription">プラグインによって提供される説明:</string>
   <string name="autofill_hint">Keepass2Android は Android のオートフィル機能をサポートしていますが、まだ有効にしていないようです。</string>
   <string name="autofill_enable">オートフィルを有効にする</string>
+  <string name="autofill_enable_failed">お使いのデバイスでは、アプリから設定を開くことができないようです。システム設定を開いて、オートフィルを有効にしてください。</string>
   <string name="show_autofill_help">オートフィルのヘルプを表示</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
+  <string name="autofill_disable">%1$s の自動入力を無効にする</string>
+  <string name="autofill_enable">%1$s の自動入力を有効にする</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
+  <string name="enable_fingerprint_hint">Keepass2Android は指紋認証ハードウェアを検出しました。指紋認証を有効にして、このデータベースのロックを解除しますか?</string>
+  <string name="understand">理解しました</string>
+  <string name="dont_show_again">二度と表示しない</string>
+  <string name="masterkey_infotext_head">マスターパスワードを思い出せますか？</string>
+  <string name="masterkey_infotext_main">マスターキー無しにデータベースを開くことはできません。マスターパスワードをリセットする方法はありません。</string>
+  <string name="masterkey_infotext_fingerprint_note">また、指紋認証のロック解除は Android のセキュリティで保護されたストレージにマスター鍵を格納することにご注意ください。例えばシステムの設定に新しい指紋を追加する場合など、Android はいつでもこのストレージを削除することができます。そのため、指紋に頼らず、マスターパスワードを覚えておいてください!</string>
+  <string name="backup_infotext_head">データベースはバックアップされていますか？</string>
+  <string name="backup_infotext_main">Keepass2Android は、お好みの場所でファイルにパスワードを格納します。お使いの携帯電話を紛失したり盗難されたとき、またはファイルが破壊されたり削除されたときに、このファイルにアクセスできますか？常に安全な場所に最新のバックアップがあることを確認してください!</string>
+  <string name="backup_infotext_note">バックアップを作成するには、%1$s&gt;%2$s&gt;%3$s へアクセスしてください。</string>
+  <string name="emergency_infotext_head">緊急時の準備はできていますか？</string>
+  <string name="emergency_infotext_main">パスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか？ アクシデントが発生したら？ 緊急事態に備えて、マスター鍵を信頼できる人に渡すことをお勧めします。 そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります。</string>
 </resources>

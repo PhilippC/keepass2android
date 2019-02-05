@@ -87,8 +87,7 @@
   <string name="enable_fingerprint_quickunlock">Включи Отключване с Пръстов Отпечатък при Бързо Отключване</string>
   <string name="fingerprint_unlock_hint">Докоснете сензора за отключване на базата данни</string>
   <string name="fingerprint_reenable">Моля активирайте повторно отключването с пръстов отпечатък за новата главна парола.</string>
-  <string name="enable_fingerprint_unlock_Info">
-Това ще запише вашата главна парола криптирана с Android Keystore и защитена с пръстовия ви отпечатък. Можете да отключите само с вашия отпечатък.  </string>
+  <string name="enable_fingerprint_unlock_Info">Това ще запише вашата главна парола криптирана с Android Keystore и защитена с пръстовия ви отпечатък. Можете да отключите само с вашия отпечатък.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Позволява да използвате пръстов отпечатък вместо QuickUnlock код. Не изисква да запазва каквато и да е информация свързана с вашата главна парола.</string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>
@@ -278,7 +277,6 @@
   <string name="BinaryDirectory_summary">Папка където се записват приложените файлове.</string>
   <string name="SaveAttachmentDialog_title">Запази приложен файл</string>
   <string name="SaveAttachmentDialog_text">Моля изберете къде да се запише приложения файл.</string>
-  <string name="SaveAttachmentDialog_save">Запази в SD картата</string>
   <string name="SaveAttachmentDialog_open">Запази в кеша и отвори</string>
   <string name="SaveAttachment_doneMessage">Файла е запазен в %1$s.</string>
   <string name="SaveAttachment_Failed">Не може да запази приложения файл в %1$s.</string>
@@ -395,5 +393,9 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>Никога</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Парола</item>
+    <item>Private/Public key</item>
   </string-array>
 </resources>

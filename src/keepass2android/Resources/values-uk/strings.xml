@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Розблокувати</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
   <string name="clipboard_timeout">Очищення буфера обміну</string>
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
@@ -92,8 +93,7 @@
   <string name="fingerprint_reenable">Будь ласка, повторно увімкніть розблокування за відбитком пальця для нового головного пароля.</string>
   <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте розблокування відбитком пальця в налаштуваннях бази даних.</string>
   <string name="FingerprintInitFailed">Не вдалося ініціалізувати датчик відбитків пальців. </string>
-  <string name="enable_fingerprint_unlock_Info">
-    Це збереже ваш головний пароль на цьому пристрої,
+  <string name="enable_fingerprint_unlock_Info">    Це збереже ваш головний пароль на цьому пристрої,
     зашифрованому за допомогою Android Keystore і захищеному
     з використанням перевірки за відбитком пальця. Дозволяє розблоковувати базу паролів лише за вашим відбитком пальця.
   </string>
@@ -213,6 +213,8 @@
   <string name="edit">Змінити</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Корінь</string>
+  <string name="AutoReturnFromQuery_title">Автоматично повертати з екрана черги</string>
+  <string name="AutoReturnFromQuery_summary">При пошуку запису для програми чи веб-сайту: автоматично повертати з екрана черги, якщо там лише один відповідний запис бази даних.</string>
   <string name="KeyDerivFunc">Функція походження ключа</string>
   <string name="rounds">Циклів шифрування</string>
   <string name="rounds_explaination">Більша кількість циклів шифрування забезпечує додатковий захист від грубих атак, але може значно сповільнити завантаження та збереження.</string>
@@ -294,7 +296,7 @@
   <string name="BinaryDirectory_summary">Каталог збереження вкладених файлів.</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
-  <string name="SaveAttachmentDialog_save">Зберегти на карту SD</string>
+  <string name="SaveAttachmentDialog_save">Експорт у файл...</string>
   <string name="SaveAttachmentDialog_open">Зберегти до кешу й відкрити</string>
   <string name="ShowAttachedImage">Показати за допомогою вбудованої програми перегляду зображень</string>
   <string name="SaveAttachment_doneMessage">Файл збережено до %1$s.</string>
@@ -321,6 +323,8 @@
   <string name="ClearPasswordOnLeave_summary">Стирати введений головний пароль, якщо база даних не розблокована.</string>
   <string name="LockWhenNavigateBack_title">Блокувати при виході з програми</string>
   <string name="LockWhenNavigateBack_summary">Блокувати базу даних при виході з програми натисканням кнопки \"назад\".</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Використовувати вбудовану клавіатуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Якщо ви не довіряєте провайдеру вашої клавіатури, встановіть цю опцію, щоб використовувати вбудовану клавіатуру для введення головного пароля чи редагування записів.</string>
   <string name="ActivateSearchViewOnStart_title">Активувати поле пошуку при запуску</string>
   <string name="ActivateSearchViewOnStart_summary">Активує поле пошуку в груповому вигляді після розблокування чи пошуку запису</string>
   <string name="NoDonateOption_title">Приховати опцію внеску</string>
@@ -334,6 +338,7 @@
   <string name="CreateBackups_summary">Створювати локальну резервну копію після успішного завантаження бази.</string>
   <string name="UpdatingBackup">Оновлення локальної резервної копії...</string>
   <string name="LocalBackupOf">Локальна резервна копія %1$s</string>
+  <string name="show_local_backups">Показати локальні резервні копії</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертифікати</string>
   <string name="AcceptAllServerCertificates_summary">Визначають поведінку, коли перевірка сертифікату не вдалася. Примітка: ви можете встановити сертифікати на пристрої, якщо перевірка не вдалася!</string>
   <string name="ClearOfflineCache_title">Очистити кеш?</string>
@@ -441,10 +446,14 @@
   <string name="hint_http_url">URL-адреса теки чи файлу (н-д: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Введіть дані входу OwnCloud:</string>
   <string name="hint_owncloud_url">URL-адреса OwnCloud (н-д: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Введіть облікові дані Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL-адреса Nextcloud (наприклад: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (наприклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Початковий каталог (необов\'язково):</string>
   <string name="enter_sftp_login_title">Введіть дані входу SFTP:</string>
+  <string name="sftp_auth_mode">Режим перевірки</string>
+  <string name="send_public_key">Надіслати публічний ключ...</string>
   <string name="enter_ftp_login_title">Введіть дані входу FTP:</string>
   <string name="select_storage_type">Виберіть тип сховища:</string>
   <string name="filestoragename_file">Локальний файл</string>
@@ -454,10 +463,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
@@ -476,7 +487,6 @@
   <string name="use_key_file">Використовувати ключовий файл</string>
   <string name="error_adding_keyfile">Помилка при додаванні ключового файлу!</string>
   <string name="init_otp">Завантажити допоміжний файл одноразових паролів…</string>
-  <string name="otp_explanation">Введіть наступний одноразовий пароль (OTP). Проведіть ваш Yubikey NEO по задній панелі пристрою для введення за допомогою NFC.</string>
   <string name="otp_hint">Одноразовий пароль %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Не вдалося завантажити допоміжний файл одноразових паролів!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Використайте плагін OtpKeyProv в KeePass 2.x (ПК), щоб налаштувати базу даних для використання з одноразовими паролями!</string>
@@ -576,17 +586,13 @@
     • Переконайтеся, що ви ввели правильний пароль. Використайте піктограму ока, щоб відобразити пароль.\n
    • Переконайтеся, що ви обрали правильний тип пароля. Переконайтеся, що він збігається з типом, використаним при створенні бази паролів.\n
    • Переконайтеся, що ви обрали правильний файл бази паролів.
- 
-</string>
-  <string name="HintLocalBackupInvalidCompositeKey">
-    \n
+ </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
    • Підказка: Якщо ви вважаєте, що ваша база даних могла бути пошкоджена, або ви не пам\'ятаєте головний пароль після її зміни, ви можете спробувати відкрити останню версію файлу, торкнувшись \"%1$s\" і обравши локальну резервну копію.</string>
-  <string name="HintLocalBackupOtherError">
-    \n
+  <string name="HintLocalBackupOtherError">    \n
     • Підказка: Keepass2Android зберіг останню робочу версію файлу у внутрішньому сховищі. Ви можете відкрити її, торкнувшись \"%1$s\" і обравши локальну резервну копію.
   </string>
-  <string name="CorruptDatabaseHelp">
-    Файл пошкоджений. \n
+  <string name="CorruptDatabaseHelp">    Файл пошкоджений. \n
     Ось кілька порад, які можуть допомогти виявити проблему:\n
     
     • Якщо ви копіювали файл через USB (MTP-Mode), спробуйте зробити це знову за допомогою інструментів, таких як MyPhoneExplorer. В деяких випадках MTP обрізає файли.\n
@@ -594,6 +600,22 @@
     • Якщо ви можете відкрити цей файл на комп\'ютері, будь ласка, зв\'яжіться з технічною підтримкою. Ви можете спробувати зберегти його з іншими налаштуваннями (наприклад, незапакованим) на комп\'ютері та відкрити в Keepass2Android.
 
   </string>
+  <string name="open_other_db">Відкрити іншу базу даних…</string>
+  <string name="select_database">Обрати базу даних</string>
+  <string name="configure_child_dbs">Налаштувати дочірні бази даних…</string>
+  <string name="child_dbs_title">Дочірні бази даних</string>
+  <string name="unspecified">не вказано</string>
+  <string name="child_db_enabled_on_this_device">Увімкнено на цьому пристрої</string>
+  <string name="child_db_enable_on_this_device">Увімкнути на цьому пристрої</string>
+  <string name="child_db_disable_on_this_device">Вимкнути на цьому пристрої</string>
+  <string name="child_db_enable_a_copy_for_this_device">Копіювати для цього пристрою</string>
+  <string name="unconfigured_child_dbs">Ваша база даних містить нові дочірні бази даних в групі \"AutoOpen\". Будь ласка, визначте, чи ці дочірні бази даних слід використовувати на цьому пристрої.</string>
+  <string name="add_child_db">Додати дочірню базу даних...</string>
+  <string name="EnableCopyForThisDevice_Info">Ця дія створить і увімкне копію налаштувань дочірньої бази даних. Ці скопійовані налаштування потім можуть бути спеціально налаштовані для цього пристрою.</string>
+  <string name="Visible_title">Видимість</string>
+  <string name="child_db_Enabled_title">Відкривати автоматично</string>
+  <string name="database_file_heading">Файл бази даних</string>
+  <string name="if_device_text">Увімкнути для %1$s</string>
   <string name="DbUnlockedChannel_name">База даних розблокована</string>
   <string name="DbUnlockedChannel_desc">Сповіщення про розблокування бази даних</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -608,16 +630,24 @@
   <string name="ErrorReportAsk">Запитати після помилки</string>
   <string name="ErrorReportPrefTitle">Надсилати звіти про помилки</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
-  <string name="ChangeLog_1_06">
-    Версія 1.06\n
+  <string name="ChangeLog_1_07">    Версія 1.07-pre2\n
+    * Можливість відкриття більш, ніж одну базу даних, сумісних з KeeAutoExec\n
+    * SFTP: Дозвіл авторизації публічних ключів, перевірка чи змінився розміщений ключ\n
+    * Впровадження підтримки pCloud - подяка gilbsgilbs!\n
+    * Явна підтримка Nextcloud\n
+    * Вдосконалення збереження та оновлення вкладень записів\n
+    * Більше можливостей налаштування поведінки програми\n
+    * SSL: Довірені користувацькі сертифікати\n
+    * виправлення помилок\n
+  </string>
+  <string name="ChangeLog_1_06">    Версія 1.06\n
     * Перемикання на ykDroid замість YubiChallenge в якості застосунку для Yubikey Challenge-Response.\n
     * Впроваджено підтримку для KeepassXC-style Challenge-Response. Примітка: Формат бази даних повинен бути KDBX4!\n
     * Відхилення завантаження файлів кошика з Google Диска\n
     * Зміна впровадження TLS для FTPS, додано спосіб обходу помилки JSch з серверами, що підтримують gssapi-with-mic\n
     * Виправлення інших помилок\n
   </string>
-  <string name="ChangeLog_1_05">
-    Версія 1.05\n
+  <string name="ChangeLog_1_05">    Версія 1.05\n
     * Використання каналів сповіщень для Android 8 з можливістю керування через системні налаштування\n
     * Показ піктограми запису в області сповіщень\n
     * Використання адаптивних піктограм для Android 8, використання круглої піктограми запуску для Android 7\n
@@ -632,25 +662,21 @@
     * Виправлено витік даних до logcat\n    
     * виправлено інші помилки\n
   </string>
-  <string name="ChangeLog_1_04b">
-Версія 1.04b\n
+  <string name="ChangeLog_1_04b">Версія 1.04b\n
     * Виправлено збій, який виникав при спробі увімкнути автозаповнення на пристроях Huawei.\n
   </string>
-  <string name="ChangeLog_1_04">
-    Версія 1.04\n
+  <string name="ChangeLog_1_04">    Версія 1.04\n
     * Додано службу автозаповнення для Android 8.0 і новіше.\n
     * Оновлено бібліотеки, інструменти створення і версію Target SDK.\n
   </string>
-  <string name="ChangeLog_1_03">
-    Версія 1.03\n
+  <string name="ChangeLog_1_03">    Версія 1.03\n
     * Вилучено службу автозаповнення на запит Google. Дивіться налаштування доступності паролів, щоб знайти плагін, який відтворює попередню функціональність.\n
     * Знову додано можливість сховища для сторонніх програм.\n
     * Вбудований засіб перегляду зображень для перегляду зображень без передавання їх до сторонніх програм.\n
     * Оновлено OkHttp з метою виправлення проблем з деякими з\'єднаннями.\n
     * Підтримка записів KeeTrayTOTP, тепер з підтримкою записів Steam.\n
   </string>
-  <string name="ChangeLog_1_02">
-    Версія 1.02\n
+  <string name="ChangeLog_1_02">    Версія 1.02\n
     * Вдосконалення безпеки. Велика подяка за звіт про безпеку та співпрацю jean-baptiste.cayrou@thalesgroup.com та vincent.fargues@thalesgroup.com!\n
     * Підтримка плагіна KeyboardSwapPlugin (меню Налаштування - Програма - Парольний доступ): дозволяє автоматично змінювати спосіб введення на пристроях без прав root. Подяка за цю функцію Mishaal Rahman з XDA-Developers.\n
     * Виправлення для Служби доступності з останніми версіями Chrome\n
@@ -660,26 +686,22 @@
     * Вилучено звітування про помилки через Xamarin Insights\n
     * Оновлено інструменти створення\n
   </string>
-  <string name="ChangeLog_1_01g">
-    Версія 1.01-g\n
+  <string name="ChangeLog_1_01g">    Версія 1.01-g\n
     * Виправлення збоїв під час роботи поза мережею\n
     * Виправлення неправильного кодування записів FTP(S)\n
     * Виправлення збоїв при роботі з OneDrive та на старіших версіях Android\n
     * Показ локального часу на екрані запису\n
   </string>
-  <string name="ChangeLog_1_01d">
-    Версія 1.01-d\n
+  <string name="ChangeLog_1_01d">    Версія 1.01-d\n
     * Виправлення відображення файлів OneDrive\n
     * Дозвіл ігнорування помилок сертифіката також при невдалому засвідченні назви хоста (не рекомендовано для звичайного використання)\n
     * Виправлення неправильної роботи QuickUnlock при розблокуванні\n
   </string>
-  <string name="ChangeLog_0_9_8c">
-    Версія 0.9.8c\n
+  <string name="ChangeLog_0_9_8c">    Версія 0.9.8c\n
     * Виправлення вразливості SSL в Microsoft Live SDK (використовується при доступі до файлів через OneDrive)\n
     * Виправлення помилок: попередня версія містила два методи введення (один збій)\n
   </string>
-  <string name="ChangeLog_1_01">
-    Версія 1.01\n
+  <string name="ChangeLog_1_01">    Версія 1.01\n
     * додано підтримку для нового формату KDBX-4 (сумісність з Keepass 2.35), включаючи функцію деривації ключа Argon2 і шифрування ChaCha20.\n
     * Перероблено сховище файлів WebDav. Тепер є можливість перегляду файлів і підтримка сучасного шифрування.\n
     * Перероблено сховище файлів FTP. Тепер є можливість перегляду файлів і підтримка шифрування (FTPS).\n
@@ -688,15 +710,13 @@
     * Додано підтримку для OwnCloud.\n
     * Запит дозволу на доступ до сховища перед відкриттям локальних файлів
   </string>
-  <string name="ChangeLog_1_0_0e">
-    Версія 1.0.0e\n
+  <string name="ChangeLog_1_0_0e">    Версія 1.0.0e\n
     * виправлення для розблокування відбитком пальця на старіших пристроях Samsung з системою Android 6\n
     * додано підтримку для пристроїв x86\n
     * дозвіл на приховування клавіатури під час сканування відбитку пальця\n
     * оновлення системного складання
   </string>
-  <string name="ChangeLog_1_0_0">
-Версія 1.0.0\n
+  <string name="ChangeLog_1_0_0">Версія 1.0.0\n
 * Розблокування відбитками пальців (необхідний Android 6.0+ або пристрій Samsung)\n
 * Доданий сервіс Авто-Заповнення (необхідний Android 5.0+)\n
 * Додана підтримка шаблонів записів\n
@@ -708,50 +728,38 @@
 * Виправлення помилок (у вбудованій клавіатурі, коли вибирається значок)\n
 * Додана можливість надсилання повідомлень про помилки\n
  * Додані підказки в деяких місцях\n  </string>
-  <string name="ChangeLog_0_9_9">
-		Версія 0.9.9\n
+  <string name="ChangeLog_0_9_9">Версія 0.9.9\n
 		* Повна зміна інтерфейсу користувача. Велика подяка за підтримку Stefano Pignataro (http://www.spstudio.at)!\n
     * Можливість додавання власних піктограм\n
     * Підтримка багатовіконного режиму на пристроях Samsung\n
     * Збільшена типова кількість циклів шифрування для нових баз даних\n
     * Перевірка дублікатів ключів у додаткових полях для запобігання втрати даних\n
-    
-	</string>
-  <string name="ChangeLog_0_9_9c">
-    Версія 0.9.9c\n
+    </string>
+  <string name="ChangeLog_0_9_9c">    Версія 0.9.9c\n
     * Повернення темної теми\n
     * Можливість встановлення інших пакунків піктограм (піктограми в старому стилі Windows доступні на Google Play)\n
     * Додано запит підтвердження при остаточному видаленні елементів, оминаючи смітник\n
     * Виправлення помилок (неправильний показ секретного кодування OTP, неправильна піктограма програми в деяких місцях)\n
   </string>
-  <string name="ChangeLog_0_9_8b">
-		Версія 0.9.8b\n
-		* Виправлення помилок (Збій збереження деяких баз паролів, не працює експорт до локального пристрою, вибір деяких налаштувань призводить до падіння програми)\n
-	</string>
-  <string name="ChangeLog_0_9_8">
-		Версія 0.9.8\n
+  <string name="ChangeLog_0_9_8b">Версія 0.9.8b\n
+		* Виправлення помилок (Збій збереження деяких баз паролів, не працює експорт до локального пристрою, вибір деяких налаштувань призводить до падіння програми)\n</string>
+  <string name="ChangeLog_0_9_8">Версія 0.9.8\n
 		* Підтримка Storage Access Framework (дозволяє запис на карту пам\'яті та Диск Google в KP2A в автономному режимі)\n
 		* Спроба виявляти помилки введення користувача при введенні WebDAV URL (тека замість файлу)\n
 		* Змінено шрифт паролю\n
 		* Можливість змінювати обліковий запис Dropbox\n
-		* Виправлено помилку: Запам\'ятовування паролю OTP
-	</string>
-  <string name="ChangeLog_0_9_7b">
-		Версія 0.9.7b\n
+		* Виправлено помилку: Запам\'ятовування паролю OTP</string>
+  <string name="ChangeLog_0_9_7b">Версія 0.9.7b\n
 		* оновлені переклади\n
-		* виправлені помилки: Втрачений шрифт пароля в 0.9.7, впорядкування груп за назвами\n
-	</string>
-  <string name="ChangeLog_0_9_7">
-		Версія 0.9.7\n
+		* виправлені помилки: Втрачений шрифт пароля в 0.9.7, впорядкування груп за назвами\n</string>
+  <string name="ChangeLog_0_9_7">Версія 0.9.7\n
 		* підтримка запису для баз даних Keepass 1 (kdb) (beta!)\n
 		* краще перемикання назад до попередньої клавіатури (також працює на пристроях без root)\n
 		* підтримка KeeChallenge зі змінною довжиною ключа\n
 		* запобігання отримання знімків екрану в режимі QuickUnlock і при введенні пароля\n
 		* зворотній порядок сортування за датою зміни (тепер за спаданням)\n
-		* виправлення помилок: Нотатки тепер оновлюються коректно після змін, Паролі тепер приховуються коректно на всіх пристроях, виправлено проблему, яка дозволяла двічі додавати запис, виправлена проблема показу попередження про дублікат UUID, навіть після виправлення бази даних\n
-	</string>
-  <string name="ChangeLog_0_9_6">
-		Версія 0.9.6\n
+		* виправлення помилок: Нотатки тепер оновлюються коректно після змін, Паролі тепер приховуються коректно на всіх пристроях, виправлено проблему, яка дозволяла двічі додавати запис, виправлена проблема показу попередження про дублікат UUID, навіть після виправлення бази даних\n</string>
+  <string name="ChangeLog_0_9_6">Версія 0.9.6\n
 		* можливість імпорту ключового файлу та/або файлу локальної бази даних до внутрішньої теки програми (див. налаштування)\n
 		* можливість різних варіантів сортування\n
 		* покращені налаштування для автоматичного перемикання клавіатури\n
@@ -763,10 +771,8 @@
 		* виправлена проблема автоматичного перемикання клавіатури на рутованих пристроях\n
 		* додано перевірку для пошкоджених баз даних (дублікати UUID)\n
 		* автоматичне перезавантаження бази даних при виявленні змін, вирішення проблеми безпеки, що стосується розкриття головного паролю\n
-		* покращена маленька польська розкладка клавіатури, виправлено оформлення налаштувань клавіатури (подяка Wiktor Ławski)\n
-	</string>
-  <string name="ChangeLog_0_9_5">
-		<b>Версія 0.9.5</b>\n
+		* покращена маленька польська розкладка клавіатури, виправлено оформлення налаштувань клавіатури (подяка Wiktor Ławski)\n</string>
+  <string name="ChangeLog_0_9_5"><b>Версія 0.9.5</b>\n
 		* Виправлено проблеми з переглядом (особливо на Android 4.4)\n
 		* Виправлена проблема завантаження файлів .kdb (Keepass 1) на Nexus 5 з Android Lollipop\n
 		* Додана опція для запобігання отримання знімків екрану/відображення програми в списку останніх програм\n
@@ -774,10 +780,8 @@
 		* Дозвіл ключових файлів у окремих типах сховищ (regular edition)\n
 		* Оновлено Dropbox SDK для включення офіційного виправлення безпеки (regular edition)\n
 		* Оновлено інструменти складання --&gt; збільшився розмір apk :-(\n
-		Я обіцяв деякі інші зміни. Вибачте, але вони будуть впроваджені з наступним випуском. Я хотів опублікувати дані критичні виправлення якнайшвидше.
-	</string>
-  <string name="ChangeLog_0_9_4">
-		<b>Версія 0.9.4</b>\n
+		Я обіцяв деякі інші зміни. Вибачте, але вони будуть впроваджені з наступним випуском. Я хотів опублікувати дані критичні виправлення якнайшвидше.</string>
+  <string name="ChangeLog_0_9_4"><b>Версія 0.9.4</b>\n
 		* додано підтримку плагінів: Для отримання плагінів дивіться налаштування!\n
 		*  опубліковано QR-плагін (сканує паролі, показує паролі у вигляді QR-коду, переносить записи на інші пристрої з KP2A)\n
 		*  опубліковано плагін InputStick (передавання даних на ПК через bluetooth - потрібен InputStick USB-носій)\n
@@ -793,64 +797,48 @@
 		* вдосконалено інтерфейс користувача\n
 		* виправлено помилку в інтерфейсі Google Drive\n
 		* додано можливість вимкнення опції \"зробити внесок\"\n
-		* піктограма QuickUnlock тепер типово прихована на пристроях Android 4.2+\n 
-	</string>
-  <string name="ChangeLog_0_9_3_r5">
-		<b>Версія 0.9.3 r5</b>\n
+		* піктограма QuickUnlock тепер типово прихована на пристроях Android 4.2+\n </string>
+  <string name="ChangeLog_0_9_3_r5"><b>Версія 0.9.3 r5</b>\n
 		* Об\'єднані виправлення від Xamarin: Keepass2Android тепер сумісний з ART на Android 4.4.2. Нарешті!\n
-		* Виправлення: помилки синхронізації (оновлення екрану, правильна перевірка змін на http), помилки на пристроях з Android 2.x, помилки зі сховищами Google Drive і OneDrive, очищення буфера обміну при закритті бази даних, помилка з відкриттям вкладень, проблеми з клавіатурою\n
-	</string>
-  <string name="ChangeLog_0_9_3">
-		<b>Версія 0.9.3</b>\n
+		* Виправлення: помилки синхронізації (оновлення екрану, правильна перевірка змін на http), помилки на пристроях з Android 2.x, помилки зі сховищами Google Drive і OneDrive, очищення буфера обміну при закритті бази даних, помилка з відкриттям вкладень, проблеми з клавіатурою\n</string>
+  <string name="ChangeLog_0_9_3"><b>Версія 0.9.3</b>\n
 		* Нова клавіатура з багатьма вдосконаленнями. Дивіться налаштування.\n
 		* Експериментальна підтримка режиму Лише читання для kdb (файли Keepass версії 1).\n
 		* Додано підтримку SFTP (Secure File Transfer Protocol)\n
 		* Додано тимчасове рішення для помилки з ART (Android 4.4.2)\n
-		* Виправлення помилок\n
-	</string>
-  <string name="ChangeLog_0_9_2">
-		<b>Версія 0.9.2</b>\n
+		* Виправлення помилок\n</string>
+  <string name="ChangeLog_0_9_2"><b>Версія 0.9.2</b>\n
 		* Додано підтримку OTP (сумісність з плагіном OtpKeyProv)\n
 		* Інтегрована підтримка NFC для OTP з YubiKey NEO \n
 		* Декілька вдосконалень інтерфейсу\n
 		* Інтегрована бібліотека Keepass 2.24\n
 		* Додано можливість завершення процесу програми (див. налаштування)\n
 		* Вдосконалена перевірка сертифікатів SSL\n
-		* Виправлено помилки\n
-	</string>
-  <string name="ChangeLog_0_9_1">
-		<b>Версія 0.9.1</b>\n
+		* Виправлено помилки\n</string>
+  <string name="ChangeLog_0_9_1"><b>Версія 0.9.1</b>\n
 		* Інтегрована підтримка SkyDrive (лише звичайна версія Keepass2Android)\n
 		* Виправлено помилки інтеграції з Google Drive\n
-		* Додано підтримку NTLM
-	</string>
-  <string name="ChangeLog_0_9">
-		<b>Версія 0.9</b>\n
+		* Додано підтримку NTLM</string>
+  <string name="ChangeLog_0_9"><b>Версія 0.9</b>\n
 		* Інтегрована підтримка Dropbox і Google Drive (читання/запис баз даних; лише звичайна версія Keepass2Android)\n
 		* Інтегрований власний браузер файлів (на основі android-filechooser від HBA)\n
 		* Вдосконалено інтерфейс для створення нової бази даних\n
 		* Включено шрифт DejaVu Sans Mono для показу паролів\n
-		* Виправлено помилки
-	</string>
-  <string name="ChangeLog_0_8_6">
-		<b>Версія 0.8.6</b>\n
+		* Виправлено помилки</string>
+  <string name="ChangeLog_0_8_6"><b>Версія 0.8.6</b>\n
 		* Підтримка шифрування Twofish\n
 		* Можливість редагування груп\n
 		* Можливість переміщення записів і груп\n
 		* Можливість зробити піктограму QuickUnlock прозорою (див. налаштування)\n
-		* Виправлення помилок
-	</string>
-  <string name="ChangeLog_0_8_5">
-		<b>Версія 0.8.5</b>\n
+		* Виправлення помилок</string>
+  <string name="ChangeLog_0_8_5"><b>Версія 0.8.5</b>\n
 		* Можливість зберігання віддалених файлів в локальному кеші програми для автономного використання (включаючи редагування й подальшу синхронізацію змін). Див. налаштування. \n
 		* Піктограма в області сповіщень для показу стану бази даних (див. налаштування)\n
 		* Вдосконалено визначення стану блокування в деяких ситуаціях\n
 		* Файли бази даних завантажуються в пам\'ять під час введення пароля для підвищення швидкості доступу (див. налаштування)\n
 		* Можливість додавання записів до кореневої групи\n
-		* Виправлення помилок (проблеми з пов\'язаними полями, проблеми з клавіатурою для італійських і китайських пристроях)
-	</string>
-  <string name="ChangeLog_0_8_4">
-		<b>Version 0.8.4</b>\n
+		* Виправлення помилок (проблеми з пов\'язаними полями, проблеми з клавіатурою для італійських і китайських пристроях)</string>
+  <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* External database changes are detected and merged when saving\n
 		* Improved loading performance\n
 		* Improved search toolbar with suggestions\n
@@ -858,8 +846,7 @@
 		* Added support for .kdbp format for faster loading/saving\n
 		* Improved editing of extra strings and hidden display when protected\n
 		Thanks to Alex Vallat for his code contributions!\n
-		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n
-	</string>
+		Thanks to Niki Hüttner (www.close-cut.de) for the new logo!\n</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * Username/TAN index displayed in entry list (see settings)\n
 * Entries can be created if search from browser doesn\'t return results\n
@@ -871,19 +858,16 @@
   </string>
   <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
 * Support for Digest Authentication in WebDAV\n
-* Bugfixes (OI File manager, Open URL)
-</string>
+* Bugfixes (OI File manager, Open URL)</string>
   <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
 * KP2A Offline and \"Online\" can be installed both again\n
-* Added new translations (thanks to all contributors!)
-</string>
+* Added new translations (thanks to all contributors!)</string>
   <string name="ChangeLog_0_8"><b>Version 0.8</b>\n
 * Improved user interface especially for Android 4.x devices\n
 * Allow using deliberate file managers for selecting existing files\n
 * Added safer way for opening attachments (through cache directory)\n
 * fixed bugs in Edit activity\n
-* probably introduced new bugs :-)
-</string>
+* probably introduced new bugs :-)</string>
   <string name="ChangeLog_keptDonate">Розширена можливість зробити внесок на пиво чи щось інше</string>
   <string name="ChangeLog_0_7"><b>Версія 0.7</b>\n
 * Покращена швидкість завантаження: передавання ключа тепер до 10 разів швидше!\n
@@ -946,6 +930,11 @@ Initial public release
     <item>Пароль + Виклик-Відповідь</item>
     <item>Пароль + секрет Виклику-Відповіді (режим відновлення)</item>
     <item>Password + Challenge-Response для Keepass XC</item>
+    <item>Пароль + Ключовий файл + Challenge-Response для Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Пароль</item>
+    <item>Приватний/Публічний ключ</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ігнорувати помилки перевірки сертифіката</item>

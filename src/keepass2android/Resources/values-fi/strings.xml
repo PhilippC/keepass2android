@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Avaa tietokanta</string>
   <string name="brackets">Hakasulkeet</string>
   <string name="cancel">Peruuta</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
   <string name="clipboard_timeout">Leikepöydän aikakatkaisu</string>
   <string name="clipboard_timeout_summary">Viive ennen kopioidun käyttäjänimen tai salasanan poistamista leikepöydältä</string>
@@ -92,8 +93,7 @@
   <string name="fingerprint_reenable">Ole hyvä ja ota sormenjälkitunnistus käyttöön uudelle pääsalasanalle.</string>
   <string name="fingerprint_reenable2">Ole hyvä ja avaa tietokanta salasanaasi käyttäen ja ota sitten sormenjälkiavaus uudelleen käyttöön tietokannan asetuksista.</string>
   <string name="FingerprintInitFailed">Sormenjälkitunnistimen alustaminen ei onnistunut. </string>
-  <string name="enable_fingerprint_unlock_Info">
-    Tämä tallentaa pääsalasanasi laitteeseen,
+  <string name="enable_fingerprint_unlock_Info">    Tämä tallentaa pääsalasanasi laitteeseen,
     salattuna Android Keystorea käyttäen ja suojattuna sormenjälkitunnistautumisella.
     Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä.
   </string>
@@ -213,6 +213,8 @@
   <string name="edit">Muokkaa</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Juurihakemisto</string>
+  <string name="AutoReturnFromQuery_title">Palaa automaattisesti kyselyikkunasta</string>
+  <string name="AutoReturnFromQuery_summary">Haettaessa merkintää sovellukselle tai sivustolle: palaa automaattisesti kyselyikkunasta jos tietokannasta löytyy vain yksi osuma.</string>
   <string name="KeyDerivFunc">Avaimenjohtamisfunktio</string>
   <string name="rounds">Salauskierrokset</string>
   <string name="rounds_explaination">Suurempi salauskierrosten määrä antaa paremman suojauksen, mutta se voi merkittävästi hidastaa lataamista ja tallentamista.</string>
@@ -294,7 +296,7 @@
   <string name="BinaryDirectory_summary">Liitetiedostojen tallennushakemisto.</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
-  <string name="SaveAttachmentDialog_save">Tallenna SD-kortille</string>
+  <string name="SaveAttachmentDialog_save">Vie tiedostoon...</string>
   <string name="SaveAttachmentDialog_open">Tallenna välimuistiin ja avaa</string>
   <string name="ShowAttachedImage">Näytä sisäisellä kuvankatselusovelluksella</string>
   <string name="SaveAttachment_doneMessage">Tiedosto tallennettiin kohteeseen %1$s.</string>
@@ -321,6 +323,8 @@
   <string name="ClearPasswordOnLeave_summary">Tyhjennä syötetty pääsalasana, kun näkymästä poistutaan tietokantaa avaamatta.</string>
   <string name="LockWhenNavigateBack_title">Lukitse, kun sovellus suljetaan</string>
   <string name="LockWhenNavigateBack_summary">Lukitse tietokanta kun sovelluksesta poistutaan painamalla Takaisin-painiketta.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Käytä sisäänrakennettua näppäimistöä Keepass2Androidissa</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Jos et luota vakionäppäimistön tarjoajaan, valitse tämä asetus jotta voit käyttää sisäänrakennettua näppäimistöä kun kirjoitat pääsalasanaa tai muokkaat merkintöjä.</string>
   <string name="ActivateSearchViewOnStart_title">Aktivoi hakukenttä käynnistäessä</string>
   <string name="ActivateSearchViewOnStart_summary">Aktivoi hakukentän ryhmänäkymässä, kun avaa tietotakannan tai etsit merkintää</string>
   <string name="NoDonateOption_title">Piilota lahjoituspyynnöt</string>
@@ -334,6 +338,7 @@
   <string name="CreateBackups_summary">Luo paikallinen varmuuskopio sen jälkeen, kun tietokanta on onnistuneesti ladattu.</string>
   <string name="UpdatingBackup">Päivitetään paikallinen varmuuskopio...</string>
   <string name="LocalBackupOf">Paikallinen varmuuskopio %1$s</string>
+  <string name="show_local_backups">Näytä paikalliset varmuuskopiot</string>
   <string name="AcceptAllServerCertificates_title">SSL-varmenteet</string>
   <string name="AcceptAllServerCertificates_summary">Määrittää toiminnon kun varmenteen vahvistaminen epäonnistuu. Huomautus: Voit asentaa varmenteita laitteeseen jos vahvistus epäonnistuu!</string>
   <string name="ClearOfflineCache_title">Tyhjennetäänkö välimuisti?</string>
@@ -356,8 +361,7 @@
   <string name="kp2a_switch_rooted_summary">Ota automaattisesti KP2A näppäimistö käyttöön, kun merkintä avataan. Edellyttää oikein asennettua KeyboardSwap Pluginiä tai rootattua laitetta ja Secure settings ja System + sovellusta. </string>
   <string name="get_keyboardswap">Asenna KeyboardSwap Plugin</string>
   <string name="get_keyboardswap_summary">Tämän laajennuksen avulla voit vaihtaa KP2A näppäimistöön ilman root-oikeuksia. Edellyttää ADB:tä. </string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automaattivaihto vain haun jälkeen
-</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automaattivaihto vain haun jälkeen</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Vaihda automaattisesti KP2A-näppäimistöön vain kun käytetään Share URL -toimintoa (mutta ei avatessa merkintää muilla tavoin)</string>
   <string name="AutoSwitchBackKeyboard_title">Näppäimistön vaihto takaisin</string>
   <string name="AutoSwitchBackKeyboard_summary">Vaihda takaisin edelliseen näppäimistöön, kun mitään merkintää ei ole avattu.</string>
@@ -442,10 +446,14 @@
   <string name="hint_http_url">Kansion tai tiedoston URL (esim. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Syötä OwnCloudin kirjautumistiedot:</string>
   <string name="hint_owncloud_url">OwnCloud-osoite (URL, esim. owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Syötä NextCloudin kirjautumistiedot:</string>
+  <string name="hint_nextcloud_url">Nextcloud-osoite (URL, esim: nextcloud.me.com)</string>
   <string name="hint_sftp_host">palvelimen osoite (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">Portti</string>
   <string name="initial_directory">Aloitushakemisto (valinnainen):</string>
   <string name="enter_sftp_login_title">Syötä SFTP:n kirjautumistiedot:</string>
+  <string name="sftp_auth_mode">Todentamistapa</string>
+  <string name="send_public_key">Lähetä julkinen avain...</string>
   <string name="enter_ftp_login_title">Syötä FTP:n kirjautumistiedot:</string>
   <string name="select_storage_type">Valitse tallennustyyppi:</string>
   <string name="filestoragename_file">Paikallinen tiedosto</string>
@@ -455,10 +463,12 @@
   <string name="filestoragename_http">HTTP (WebDAV)</string>
   <string name="filestoragename_https">HTTPS (WebDAV)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A kansio)</string>
   <string name="filestoragehelp_dropboxKP2A">Jos et halua antaa KP2A:lle pääsyä koko Dropboxiisi, voit valita tämän vaihtoehdon. Se pyytää käyttöoikeuksia vain \"Apps/Keepass2Android\" kansioon. Tämä soveltuu erityisesti tilanteeseen jossa luodaan uusi tietokanta. Jos sinulla on jo tietokanta, valitse tämä vaihtoehto luodaksesi kansion, ja sijoita sen jälkeen tietokantatiedosto kansioon (tietokoneestasi). Valitse sitten tämä vaihtoehto uudestaan avataksesi tietokannan.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
@@ -477,7 +487,7 @@
   <string name="use_key_file">Käytä avaintiedostoa</string>
   <string name="error_adding_keyfile">Virhe avaintiedoston lisäämisessä!</string>
   <string name="init_otp">Lataa OTP-aputiedosto…</string>
-  <string name="otp_explanation">Syötä seuraava kertakäyttösalasana (OTP). Pyyhkäise Yubikey NEO:asi laitteesi selkämystä vasten syöttääksesi salasanasi NFC:n kautta.</string>
+  <string name="otp_explanation">Syötä seuraavat kertakäyttösalasanat (OTP). Pyyhkäise Yubikey NEO:asi laitteesi takaosaa vasten syöttääksesi salasanasi lähiluvun (NFC) avulla.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP-aputiedostoa ei voitu ladata!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Käytä OtpKeyProv-laajennusta KeePass 2.x:n PC-versiossa, ja määritä tietokanta käyttämään OTP-kertakäyttösalasanoja!</string>
@@ -576,22 +586,34 @@
 
 • Varmista, että olet syöttänyt oikean salasanan. Käytä silmä-kuvaketta nähdäksesi syöttämäsi salasanan.\n
 • Varmista, että olet valinnut oikean tyypin salasanalle. Varmista, että tämä täsmää salasanan tyyppiin, jota käytit luodessasi tietokannan.\n
-• Varmista, että olet valinnut oikean tietokantatiedoston.\n.
-</string>
-  <string name="HintLocalBackupInvalidCompositeKey">
-    \n
+• Varmista, että olet valinnut oikean tietokantatiedoston.\n.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
    • Vihje: Jos tietokantatiedosto on mielestäsi vioittunut tai et muista pääavainta sen muuttamisen jälkeen, voit kokeilla käyttää viimeisintä onnistuneesti avattua versiota valitsemalla ”%1$s” ja valitsemalla paikallisen varmuuskopion.</string>
-  <string name="HintLocalBackupOtherError">
-    \n 
+  <string name="HintLocalBackupOtherError">    \n 
     • Vinkki: Keepass2Android on tallentanut viimeisimmän onnistuneesti avatun tiedostoversio sisäiseen muistiin. Voit avata sen napsauttamalla ”%1$s” ja valitsemalla paikallisen varmuuskopion.
   </string>
-  <string name="CorruptDatabaseHelp">
-Tiedosto on vioittunut.\n
+  <string name="CorruptDatabaseHelp">Tiedosto on vioittunut.\n
 Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
 
 • Jos kopioit tiedoston USB:n yli (MTP-tilassa), kokeile uudelleen käyttämällä työkaluja kuten MyPhoneExplorer. MTP rikkoo tiedostoja joissain tapauksissa.\n
 • Jos et voi avata tiedostoa edes samasta sijainnista PC:lläsi, on hyvin todennäköistä, että tiedosto on oikeasti vioittunut. Tässä tilanteessa, käytä tietokannan varmuuskopiota. Jos epäilet Keepass2Androidin rikkoneen tietokantatiedostosi, ota yhteyttä tukeen.\n
 • Jos saat vielä tiedoston auki PC:lläsi, ota yhteyttä tukeen. Voit kokeilla tallentaa sen eri asetuksilla (esim. purettuna) PC:llä ja kokeilla sitten avata se uudelleen Keepass2Androidilla.  </string>
+  <string name="open_other_db">Avaa toinen tietokanta…</string>
+  <string name="select_database">Valitse tietokanta</string>
+  <string name="configure_child_dbs">Määritä lapsitietokantoja…</string>
+  <string name="child_dbs_title">Lapsi tietokannat</string>
+  <string name="unspecified">määrittämätön</string>
+  <string name="child_db_enabled_on_this_device">Käytössä tällä laitteella</string>
+  <string name="child_db_enable_on_this_device">Ota käyttöön tällä laitteella</string>
+  <string name="child_db_disable_on_this_device">Poista käytöstä tällä laitteella</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopioi tälle laitteelle</string>
+  <string name="unconfigured_child_dbs">Tietokanta sisältää uusia lapsitietokantoja ”AutoOpen”-ryhmässä. Määritä, käytetäänkö lapsitietokantoja tässä laitteessa.</string>
+  <string name="add_child_db">Lisää lapsitietokanta...</string>
+  <string name="EnableCopyForThisDevice_Info">Tämä luo ja ottaa käyttöön kopion lapsitietokanta-asetuksista. Kopioidut asetukset voi sitten mukauttaa tälle laitteelle.</string>
+  <string name="Visible_title">Näkyvissä</string>
+  <string name="child_db_Enabled_title">Avaa automaattisesti</string>
+  <string name="database_file_heading">Tietokantatiedosto</string>
+  <string name="if_device_text">Ota käyttöön %1$s:lle</string>
   <string name="DbUnlockedChannel_name">Tietokanta avattu</string>
   <string name="DbUnlockedChannel_desc">Ilmoitus, että tietokannan on auki</string>
   <string name="DbQuicklockedChannel_name">Pika-avaus</string>
@@ -606,8 +628,17 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="ErrorReportAsk">Kysy virheen jälkeen</string>
   <string name="ErrorReportPrefTitle">Lähetä virheraportit</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkilukijan ollessa käytössä.</string>
-  <string name="ChangeLog_1_05">
-    Versio 1.05\n
+  <string name="ChangeLog_1_07">    Versio 1.07-pre2\n
+    * Useiden tietokantojen avaaminen, yhteensopiva KeeAutoExec:n kanssa\n
+    * SFTP: Julkisen avaimen todennus, isäntä avaimen muutoksen tarkistus\n
+    * pCloud tuki - Kiitos gilbsgilbs!\n
+    * Nextcloud tuen virallistaminen\n
+    * Merkintöjen liitetiedostojen tallentamisen ja päivittämisen parannuksia\n
+    * Enemmän vaihtoehtoja mukauttaa käyttäytymistä\n
+    * SSL: Luotto käyttäjäsertifikaatteihin\n
+    * bugi korjauksia\n
+  </string>
+  <string name="ChangeLog_1_05">    Versio 1.05\n
     * Käyttä Android 8:n tarjoamia ilmoituskanavia (notification channels), jotka ovat muokattavissa järjestelmäasetusten kautta\n
     * Näytä merkintäkuvake sovellusilmoituksessa\n
     * Käytä adaptiivisia kuvakkeita Android 8:ssa, ja pyöreitä kuvakkeita Android 7:ssä\n
@@ -621,24 +652,20 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
     * Automaattisen täytön voi nyt halutessaan kytkeä pois päältä\n
     * Korjattu tietojen vuotaminen logcatiin\n    
     * Bugikorjauksia\n  </string>
-  <string name="ChangeLog_1_04b">
-Versio 1.04b\n
+  <string name="ChangeLog_1_04b">Versio 1.04b\n
     * Korjaa sovelluksen kaatumisen kun käyttäjä yrittää ottaa käyttöön automaattisen täytön Huaewin laitteilla.\n
   </string>
-  <string name="ChangeLog_1_04">
-    Versio 1.04\n 
+  <string name="ChangeLog_1_04">    Versio 1.04\n 
 * lisätty Automaattinen täyttö palvelu Android 8.0: saan ja myöhempiin versioihin. \n 
 * Päivitetyt-kirjastot, työkaluja ja Target SDK versio. \n
   </string>
-  <string name="ChangeLog_1_03">
-Versio 1.03\n 
+  <string name="ChangeLog_1_03">Versio 1.03\n 
 * Poistettu helppokäyttötoimintojen automaattinen täyttö Googlen pyytämänä. Lisätietoja salasanan käyttö asetuksista löytää plugin jolla edellinen toiminto nyt toteutetaan. \n 
 * Lisätty kolmannen osapuolen sovellus varastointivaihtoehdoksi takaisin\n 
 * Integroitu kuvankatseluohjelma liitettyjen kuvien katselua varten tarvitsematta siirtää niitä muihin sovelluksiin\n 
 * Päivitetty OkHttp korjataksemme joitakin yhteysongelmia\n 
 * Tuki KeeTrayTOTP merkinnöille, tukee nyt Steam merkintöjä\n  </string>
-  <string name="ChangeLog_1_02">
-Versio 1.02\n 
+  <string name="ChangeLog_1_02">Versio 1.02\n 
     * Useita parannuksia tietoturvaan. Kiitos paljon jean-baptiste.cayrou@thalesgroup.com ja vincent.fargues@thalesgroup.com turvallisuus mietinnöstä ja yhteistyöstä! \n 
     * Tuki KeyboardSwapPlugin (ks. salasana Accessin asetukset): voit vaihtaa syöttötavan automaattisesti edelleen ei rootatulla laitteella. Kiitos Mishaal Rahman  XDA-Developersista joka mahdollisti tämän. \n 
     * Korjaus Helppokäyttöisyys palveluihin uusimmassa Chrome versiossa\n 
@@ -647,24 +674,20 @@ Versio 1.02\n
     * Päivitetty Dropbox SDK varmistaaksemme yhteensopivuus myös tulevaisuudessa \n 
     * Poistimme virheiden raportoimisen Xamarin Insights kautta\n 
     * Päivitetty build työkalut\n  </string>
-  <string name="ChangeLog_1_01g">
-Versio 1.01-g\n 
+  <string name="ChangeLog_1_01g">Versio 1.01-g\n 
 * Korjaus ongelmaan kaatuu kun yrittää työskennellä offline tilassa\n 
 * Korjaus väärään FTP (S) valtuutuskoodaukseen\n 
 * Korjaus ongelmaan kaatuu käytettäessä OneDrivea vanhemmissa Android versioissa\n 
 * Näyttää aikaa paikallista aikaa merkintänä aloitusnäytössä\n  </string>
-  <string name="ChangeLog_1_01d">
-Versio 1.01-d\n 
+  <string name="ChangeLog_1_01d">Versio 1.01-d\n 
 * Korjattu OneDrive tiedostojen listaus\n 
 * Salli ohittamaan sertifikaatti virheitä myös kun isäntä nimen todentaminen epäonnistuu (ei suositella tuotantokäyttöön) \n 
 * Korjaus QuickUnlock omituisesti epäonnistuu huolimatta oikeasta koodista\n  </string>
-  <string name="ChangeLog_0_9_8c">
-    Versio 0.9.8c\n
+  <string name="ChangeLog_0_9_8c">    Versio 0.9.8c\n
 * Korjattu SSL-haavoittuvuus Microsoft Live SDK:ssa (käytössä kun avataan tiedostoja OneDriven kautta)\n
 * Korjattu: Edellinen julkaisu sisälsi kaksi syöttömenetelmää (toinen kaatui)\n
   </string>
-  <string name="ChangeLog_1_01">
-Versio 1.01\n
+  <string name="ChangeLog_1_01">Versio 1.01\n
      * lisätty tuki uudelle KDBX-4-tiedostomuodolle (Keepass 2.35 yhteensopiva) sisältäen Argon2 avaintenjohtaminen ja ChaCha20 salaus.\n
      * Uusittu WebDav tallennus mahdollistaa tiedostojen selailun ja tukee ajantasaista salausta.\n
      * Uusittu FTP tallennus mahdollistaa tiedostojen selailun ja tukee salausta (FTPS).\n
@@ -672,14 +695,12 @@ Versio 1.01\n
      * Päivitetty Dropbox SDK versioon 2 (aiemmin käytetty versio 1 SDK poistuu käytöstä).\n
      * Lisätty OwnCloud tuki.\n
      * Lupapyyntö ennen paikallisten tiedostojen avausta  </string>
-  <string name="ChangeLog_1_0_0e">
-Versio 1.0.0e\n
+  <string name="ChangeLog_1_0_0e">Versio 1.0.0e\n
      * korjattu lukituksen avaus sormenjäljellä vanhemmilla Samsung Android 6 -laitteilla\n
      * lisätty natiivituki x86 laitteille\n
      * salli näppäimistön piilotus sormenjälkeä luettaessa\n
      * koontijärjestelmän päivitys  </string>
-  <string name="ChangeLog_1_0_0">
-Versio 1.0.0 - ennakkojulkaisu 7\n
+  <string name="ChangeLog_1_0_0">Versio 1.0.0 - ennakkojulkaisu 7\n
 * Sormenjälkiavaus (vaatii Android 6.0+ tai Samsung-laitteen)\n
 * Lisätty automaattitäyttö-palvelu (vaatii Android 5.0+)\n
 * Lisätty tuki merkintäpohjiin\n
@@ -691,44 +712,36 @@ Versio 1.0.0 - ennakkojulkaisu 7\n
 * Virheenkorjauksia (sisäänrakennetussa näppäimistössä, kun valitsee ikoneja)\n
 * Lisätty asetus virheraporttien lähettämiseksi\n
 * Lisätty apuviestejä useisiin kohtiin  \n  </string>
-  <string name="ChangeLog_0_9_9">
-Versio 0.9.9\n
+  <string name="ChangeLog_0_9_9">Versio 0.9.9\n
 * Täysi käyttöliittymän uudelleensuunnittelu. Suuri kiitos Stefano Pignatarolle (http://www.spstudio.at) avusta!\n
 * Mahdollisuus mukautettuihin kuvakkeisiin\n
 * Tuki Multi Window -tilaan Samsungin laitteilla\n
 * Lisätty oletuksena käytettyjen salauskierrosten määrää uusilla tietokannoilla\n
 * Duplikaattiavainten tarkistus lisäkentissä tietojen kadottamisen välttämiseksi\n</string>
-  <string name="ChangeLog_0_9_9c">
-Versio 0.9.9c\n
+  <string name="ChangeLog_0_9_9c">Versio 0.9.9c\n
 * Tumma teema on taas saatavilla\n
 * Voit asentaa uusia kuvaketeemoja (muinaiset Windows-tyylin kuvakkeet ovat saatavilla Play kaupasta)\n
 * Lisätty varmistuskysymys poistaessa tietoja ilman roskakoria\n
 * Virheenkorjauksia (Väärin näytetty OTP salaus, väärä sovelluksen kuvake joissain paikoissa)\n  </string>
-  <string name="ChangeLog_0_9_8b">
-Versio 0.9.8b\n
+  <string name="ChangeLog_0_9_8b">Versio 0.9.8b\n
 * Ohjelmointivirheiden korjauksia (Tallennus epäonnistui joillain tietokannoilla, paikalliseen laitteeseen vieminen ei toimi, joidenkin ominaisuuksien valitseminen asetuksista kaataa sovelluksen)\n</string>
-  <string name="ChangeLog_0_9_8">
-Versio 0.9.8\n
+  <string name="ChangeLog_0_9_8">Versio 0.9.8\n
 		* Tuki Storage Access Framework (Sallii tallennuksen sd-kortille ja Google Drive palveluun KP2A Offline)\n
 		* Yriittää tunnistaa virheitä kun annetaan WebDAV osoitteita (hakemisto tiedoston sijasta)\n
 		* Muutettu salasanan fonttia\n
 		* Pystyy muokkaamaan Dropbox tiliä\n
 		* Korjattu Bugi: Muistaa nyt OTP salasanan</string>
-  <string name="ChangeLog_0_9_7b">
-Versio 0.9.7b\n
+  <string name="ChangeLog_0_9_7b">Versio 0.9.7b\n
 		* päivitetyt käännökset\n
-		* korjattu bugi: Salasanan fontti puuttui versiossa 0.9.7, järjestä nimen mukaan ei järjestänyt ryhmiä\n
-	</string>
-  <string name="ChangeLog_0_9_7">
-Versio 0.9.7\n
+		* korjattu bugi: Salasanan fontti puuttui versiossa 0.9.7, järjestä nimen mukaan ei järjestänyt ryhmiä\n</string>
+  <string name="ChangeLog_0_9_7">Versio 0.9.7\n
 * kirjoitustuki Keepass 1 (kdb) tietokannoille (beta!)\n
 * parempi takaisinvaihto edelliseen näppäimistöön (toimii myös ei-rootatuilla laitteilla)\n
 * tuki KeeChallengelle vaihtelevan mittaisille haasteille\n
 * estä ruutukaappausten ottaminen pika-avauksesta ja salasanaruudusta\n
 * päinvastainen järjestystapa Järjestä muokkauspäivän mukaan -toiminnolle (nyt laskeva)\n
 * bugikorjauksia: Muistiinpanonäkymä päivittyy nyt oikein muutosten jälkeen, salasananäkymät piilottavat salasanat oikein (toivottavasti) kaikilla laitteilla, korjattu tapaus, jossa sallittiin merkinnän lisääminen kahdesti, korjattu tapaus, jossa näytettiin varoitus tuplaantuneista UUID:istä tietokannan korjaamisen jälkeenkin\n</string>
-  <string name="ChangeLog_0_9_6">
-Versio 0.9.6\n
+  <string name="ChangeLog_0_9_6">Versio 0.9.6\n
 * sallii avaintiedoston ja/tai paikallisen tietokantatiedoston tuomisen ohjelman sisäiseen hakemistoon (ks. asetukset)\n
 * sallii erilaiset järjestysasetukset\n
 * parannettu automaattisen näppäimistönvaihdon asetuksia\n
@@ -741,8 +754,7 @@ Versio 0.9.6\n
 * lisätty korruptoituneen tietokannan tarkistus (tuplaantuneet UUID:t)\n
 * uudelleenlataa tietokannan automaattisesti, kun muutos havaitaan. Ratkaisee tietoturvahuolen pääsalasanan paljastumisesta\n
 * parannettu puolalaista pientä näppäimistöasettelua, korjattu näppäimistön asetusten teema (kiitokset Wiktor Ławski:lle)\n</string>
-  <string name="ChangeLog_0_9_5">
-<b>Versio 0.9.5</b>\n
+  <string name="ChangeLog_0_9_5"><b>Versio 0.9.5</b>\n
 		* Korjattu ongelma tiedostojen selauksessa (erityisesti Android 4.4:ssä)\n
 		* Korjattu ongelma ladataan .kdb tiedostoja (Keepass 1) Nexus 5 jossa on Android Lollipop\n
 		* Lisättiin vaihtoehto kuvakaappauksen kieltämiseen/sovelluksen näkyminen viimeaikaisissa sovelluksissa\n
@@ -750,10 +762,8 @@ Versio 0.9.6\n
 		* Salli avaintiedoston tallennustyyppi (perusversio)\n
 		* Päivitetty Dropbox SDK sisältämään virallinen turvallisuuspäivitys (perusversio)\n
 		* Päivitetyt sovellustyökalut --&gt; apk:n kokoa kasvatettu :-(\n
-		Olen luvannnut muutaman lisämuutoksen. Ne tulevat seuraavassa päivityksessä - anteeksi. Halusin julkaista nämä tärkeät korjaukset mahdollisimman pian.
-	</string>
-  <string name="ChangeLog_0_9_4">
-<b>Versio 0.9.4</b> \n 
+		Olen luvannnut muutaman lisämuutoksen. Ne tulevat seuraavassa päivityksessä - anteeksi. Halusin julkaista nämä tärkeät korjaukset mahdollisimman pian.</string>
+  <string name="ChangeLog_0_9_4"><b>Versio 0.9.4</b> \n 
 * Lisätty plug-in tuki: Katso asetukset Miten saada laajennuksia! \n 
 * Julkaistu QR plug-in (scannaa salasanat, näytä salasanoja QR code, siirrä merkintöjä muille KP2A laitteille) \n 
 * Julkaistu InputStick plugin (siirtää tunnistetiedot PC: lle bluetoothilla - vaatii InputStick USB-tikun) \n 
@@ -771,19 +781,16 @@ Oletko kehittäjä? Lisätkää tämä sovellukseenne jos soveltuvat! \n
 * Korjattiin bugi Google Drive näkymässä\n 
 * Lisätty mahdollisuus poistaa ”lahjoittaa” vaihtoehto\n 
 * QuickUnlock ikoni nyt piilotettu Android 4.2 + laitteissa oletuksena\n</string>
-  <string name="ChangeLog_0_9_3_r5">
-<b>Käännös 0.9.3 r5</b> \n 
+  <string name="ChangeLog_0_9_3_r5"><b>Käännös 0.9.3 r5</b> \n 
 * Sisältyviä korjauksia Xamarilta: Keepass2Android nyt yhteensopiva ART:in kanssa Android 4.4.2:ssa. Lopultakin! \n 
 * Korjauksia: Vikoja synkronoinnissa (Päivitä näyttö, Tarkista muutokset http) bugeja Android 2.x laitteissa, bugit Google Drive ja OneDrive tallennus osioissa, leikepöydän tyhjennys tietokantaa suljettaessa, bugi liitteiden avaaminen, näppäimistön näyttö ongelmia\n</string>
-  <string name="ChangeLog_0_9_3">
-<b>Käännös 0.9.3</b> \n 
+  <string name="ChangeLog_0_9_3"><b>Käännös 0.9.3</b> \n 
 * Uusi näppäimistö jossa monia parannuksia. Katso asetusten mukauttaminen. \n 
 * Vain luku-tuki kdb (Keepass 1-tiedostot). Kokeellinen versio! \n 
 * Lisätty SFTP tuki\n 
 * Lisätty kiertotie bugiin ART: issa (Android 4.4.2)\n 
 * Bugi korjauksia\n</string>
-  <string name="ChangeLog_0_9_2">
-<b>Versio 0.9.2</b> \n 
+  <string name="ChangeLog_0_9_2"><b>Versio 0.9.2</b> \n 
 * Lisätty OTP tuki (yhteensopiva OtpKeyProv laajennuksen kanssa) \n 
 * Integroitu NFC tukea OTP: lle YubiKey NEO: lta \n 
 * Useita käyttöliittymän parannuksia\n 
@@ -791,35 +798,30 @@ Oletko kehittäjä? Lisätkää tämä sovellukseenne jos soveltuvat! \n
 * Lisätty mahdollisuus tappaa sovelluksen prosessi (Katso asetukset) \n 
 * Parannettu SSL sertifikaatin varmistus\n 
 * Bugi korjauksia\n</string>
-  <string name="ChangeLog_0_9_1">
-<b>Versio 0.9.1</b> \n 
+  <string name="ChangeLog_0_9_1"><b>Versio 0.9.1</b> \n 
 * Integroitu SkyDrive tuki (Keepass2Android vain tavallinen versio) \n 
 * Korjattu ongelmia Google Drive integroinnissa\n 
 * Lisätty NTLM-tuki</string>
-  <string name="ChangeLog_0_9">
-<b>Käännös 0.9</b> \n 
+  <string name="ChangeLog_0_9"><b>Käännös 0.9</b> \n 
 * Integroitu Dropbox ja Google Drive tuki (lue/kirjoita tietokantoja. Keepass2Android vain tavallinen versio) \n 
 * Integroitu oletustiedostoselain (perustuu android-filechooseriin HBA: lta) \n 
 * Parannettu käyttöliittymää uusien tietokantojen luomisessa\n 
 * Mukana mukautettu fontti DejaVu Sans Mono salasanojen näyttämiseen\n 
 * Bugi korjauksia</string>
-  <string name="ChangeLog_0_8_6">
-<b>Versio 0.8.6</b> \n 
+  <string name="ChangeLog_0_8_6"><b>Versio 0.8.6</b> \n 
 * Tuki Twofish cipher: ille\n 
 * Ryhmien muokkaamisen salliminen\n 
 * Salli tietueiden ja ryhmien siirtäminen\n 
 * QuickUnlock kuvake voidaan tehdä läpinäkyväksi (Katso asetukset) \n 
 * Bugi korjauksia</string>
-  <string name="ChangeLog_0_8_5">
-<b>Versio 0.8.5</b> \n 
+  <string name="ChangeLog_0_8_5"><b>Versio 0.8.5</b> \n 
 * Etätiedostoja tallennetaan paikallisen sovelluksen välimuistiin offline-käyttön onnistumiseksi (mukaan lukien editointi ja myöhempi synkronointi). Katso asetukset. \n 
 * Ilmoituskuvake havainnollistaa tietokannan lukitustilaa (Katso asetukset) \n 
 * Parantaa lock-tilasta poistumista joissakin tilanteissa\n 
 * Tietokannan tiedostot ladataan muistiin, kun kirjoitat salasanaasi lisätäksemme lastausnopeutta (Katso asetukset) \n 
 * Tietueita voi lisätä ryhmän juureen\n 
 * Bugi korjauksia (ratkaistaan näppäimistön ongelmat Italian ja Kiinan laitteissa)</string>
-  <string name="ChangeLog_0_8_4">
-<b>Versio 0.8.4</b> \n 
+  <string name="ChangeLog_0_8_4"><b>Versio 0.8.4</b> \n 
 * Ulkoisen tietokannan muutokset havaitaan ja yhdistetään kun tallennetaan\n 
 * Parantaa latausnopeutta\n 
 * Parannettu search-työkalurivin ehdotuksia\n 
@@ -838,19 +840,16 @@ Kiitos Niki Hüttner (www.close-cut.de) uudesta logosta! \n</string>
 * Pieniä bugi korjauksia  </string>
   <string name="ChangeLog_0_8_2"><b>Versio 0.8.2</b> \n 
 * Tuki Digest-varmistus WebDAV\n 
-* Bugikorjauksia (OI Tiedostonhallinta, Avaa URL)
-</string>
+* Bugikorjauksia (OI Tiedostonhallinta, Avaa URL)</string>
   <string name="ChangeLog_0_8_1"><b>Versio 0.8.1</b> \n 
 * KP2A offline-tilassa ja ”Online” voidaan asentaa uudelleen\n 
-* Lisätty uusia käännöksiä (Kiitos kaikille osallistujille!)
-</string>
+* Lisätty uusia käännöksiä (Kiitos kaikille osallistujille!)</string>
   <string name="ChangeLog_0_8"><b>Versio 0.8</b> \n 
 * Parannettu käyttöliittymää erityisesti Android 4.x laitteilla\n 
 * Salli käyttäen normaaleja tiedostonhallintaohjelmia olemassa olevien tiedostojen valitsemiseen\n 
 * Lisätty turvallisempi tapa avata liitteitä (välimuistikansion kautta) \n 
 * Korjattu bugeja Muokkaa aktiviteettia osiossa\n 
-* Luultavasti uusia vikoja :-)
-</string>
+* Luultavasti uusia vikoja :-)</string>
   <string name="ChangeLog_keptDonate">Laajennettu mahdollisuus lahjoittaa olutta tai jotain muuta</string>
   <string name="ChangeLog_0_7"><b>Versio 0.7</b> \n 
 * Lisätään lastausnopeutta: avain muutokset nyt 10 kertaa nopeampia! \n 
@@ -913,6 +912,11 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
     <item>Salasana + Haastemenetelmä</item>
     <item>Salasana + Haastemenetelmä (palautustila)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Salasana + Avaintiedosto + Haastemenetelmä Keepass XC:n kanssa</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Salasana</item>
+    <item>Yksityinen/Julkinen avain</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ohita varmenteiden virheet</item>
@@ -926,6 +930,8 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="autofill_enable_failed">Olemme pahoillamme, näyttää siltä, että laitteesi ei tue asetusten avaamista sovelluksesta käsin. Ole hyvä ja ota palvelu käyttöön järjestelmän AutoFill -asetuksista.</string>
   <string name="show_autofill_help">Automaattisen täytön apu</string>
   <string name="autofill_sign_in_prompt">Täytä Keepass2Androidilla</string>
+  <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
+  <string name="autofill_enable">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
   <string name="understand">Minä ymmärrän</string>
   <string name="dont_show_again">Älä näytä uudestaan</string>

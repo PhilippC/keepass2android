@@ -87,8 +87,7 @@
   <string name="enable_fingerprint_quickunlock">تفعيل \"فتح القفل بالبصمة\" لـ \"فتح القفل السريع\"</string>
   <string name="fingerprint_unlock_hint">إلمس الحساس لفتح قاعدة البيانات</string>
   <string name="fingerprint_reenable">الرجاء إعادة تفعيل \"فتح القفل بالبصمة\" لكلمة المرور الرئيسية الجديدة.</string>
-  <string name="enable_fingerprint_unlock_Info">
-هذا سيقوم بتخزين كلمة السر الرئيسية على هذا الجهاز،
+  <string name="enable_fingerprint_unlock_Info">هذا سيقوم بتخزين كلمة السر الرئيسية على هذا الجهاز،
 مشفرة بـ Android Keystore و محمية
 ببصمة الاصبع. يسمح لك هذا بفتح
 قاعدة بياناتك فقط ببصمة إصبعك.  </string>
@@ -286,7 +285,6 @@
   <string name="BinaryDirectory_summary">المجلد حيث يتم حفظ المرفقات.</string>
   <string name="SaveAttachmentDialog_title">حفظ المرفقات</string>
   <string name="SaveAttachmentDialog_text">الرجاء تحديد مكان حفظ المرفقات.</string>
-  <string name="SaveAttachmentDialog_save">حفظ في كرت الذاكرة SD</string>
   <string name="SaveAttachmentDialog_open">حفظ في ذاكرة التخزين المؤقت، ثم فتح المرفق</string>
   <string name="SaveAttachment_doneMessage">حفظ الملف في %1$s.</string>
   <string name="SaveAttachment_Failed">لا يمكن حفظ المرفق في %1$s.</string>
@@ -435,7 +433,6 @@
   <string name="use_key_file">استخدم ملف المفتاح</string>
   <string name="error_adding_keyfile">حدث خطأ أثناء إضافة ملف المفتاح!</string>
   <string name="init_otp">تحميل الملف الخارجي الخاص بكلمة المرور لمرة واحدة OTP…</string>
-  <string name="otp_explanation">(12345) emad.</string>
   <string name="otp_hint">كلمة مرور مؤقتة %1$d</string>
   <string name="CouldntLoadOtpAuxFile">تعذر تحميل الملف الخارجي الخاص ب \"كلمة المرور لمرة واحدة\"  OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">الرجاء استخدام ألأضافة \"أوتبكييبروف\" OtpKeyProv في  KeePass 2.x (نسخة PC) لتمكين قاعدة بياناتك مناستخدام \"كلمة المرور لمرة واحدة\" OTP !</string>
@@ -524,10 +521,8 @@
   •تأكد من ادخالك لكلمة مرورك بصحة. ايقونة العين تكشف الكلمة.\n
    •تأكد من تحديدك لنوع كلمة المرور الصحيح. هذا عليه ان يطابق النوع الذي أستخدم عند تأليف القاعدة لأول مرة.\n
    •تأكد انك اخترت ملف قاعدة البيانات الصحيح.
- 
-</string>
-  <string name="CorruptDatabaseHelp">
-الملف معطوب.\n
+ </string>
+  <string name="CorruptDatabaseHelp">الملف معطوب.\n
 هنا هي بعض التلميحات التي قد تساعد على تشخيص المسألة: \n إن قمت بنسخ الملف عبر USB (وضع الخطة المتوسطة الأجل)، الرجاء المحاولة مرة أخرى باستخدام أدوات مثل MyPhoneExplorer. الخطة المتوسطة الأجل تقتطع الملفات في بعض الحالات. \n • إذا تعذر عليك فتح الملف من نفس الموقع على جهاز الكمبيوتر الخاص بك، فمن المحتمل جداً أن الملف معطوب فعلا. الرجاء استخدام نسخة احتياطية من قاعدة البيانات. إذا كنت تفترض أن Keepass2Android قد أتلف الملف، الرجاء الاتصال بالمساعدة. \n • إذا تمكنت من فتح الملف على جهاز الكمبيوتر الخاص بك، الرجاء الاتصال بالمساعدة. يمكنك محاولة حفظه باستخدام إعدادات مختلفة (مثلا، غير مضغوط) على جهاز الكمبيوتر وإعادة محاولة فتحه في Keepass2Android.  </string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ErrorReportTitle">Keepass2Android : حدث خطأ.</string>
@@ -538,12 +533,10 @@
   <string name="ErrorReportAsk">اسأل بعد الخطأ</string>
   <string name="ErrorReportPrefTitle">إرسال تقارير الأخطاء</string>
   <string name="ShowKeyboardDuringFingerprintAuth">إظهار لوحة المفاتيح على الشاشة لإدخال كلمة السر عند استعمال ماسح بصمات الأصابع.</string>
-  <string name="ChangeLog_0_9_8c">
-الإصدار 0.9.8c
+  <string name="ChangeLog_0_9_8c">الإصدار 0.9.8c
 * إصلاح مشكلة ضعف طبقة المقابس الآمنة (SSL) في Microsoft Live SDK (تستخدم عند الوصول إلى الملفات عبر OneDrive)
 * إصلاح بعض الأخطاء: الإصدار السابق يحتوي على طرقتين للإدخال (واحدة تحطمت)  </string>
-  <string name="ChangeLog_1_01">
-الإصدار 1.01
+  <string name="ChangeLog_1_01">الإصدار 1.01
     * إضافة دعم لصيغة KDBX-4 الجديدة (متوافق مع Keepass 2.35) ومتضمن اشتقاق مفتاح Argon2 و تشفير ChaCha20.
     * إعادة تنفيذ لتخزين ملفات WebDav, الآن يسمح بتصفح الملفات ويدعم التشفير الجديد.
     * إعادة تنفيذ لتخزين ملفات FTP, يسمح الآن بتصفح الملفات ويدعم تشفير (FTPS).
@@ -552,20 +545,17 @@
     *إضافة دعم ل OwnCloud.
     * طلب إذن للتخزين قبل فتح الملفات المحلية
     </string>
-  <string name="ChangeLog_0_9_1">
-الإصدار 0.9.1
+  <string name="ChangeLog_0_9_1">الإصدار 0.9.1
 *دعم متكامل ل SkyDrive (النسخة النظامية فقط منKeepass2Android)
 *حل مشاكل التكامل مع Google Drive.
 *إضافة دعم لميزة NTLM</string>
-  <string name="ChangeLog_0_8_6">
-الإصدار 0.8.6
+  <string name="ChangeLog_0_8_6">الإصدار 0.8.6
 *دعم ميزة Twofish cipher.
 *السماح بتعديل المجموعات.
 *السماح بنقل القيود والمجموعات.
 *يمكن جعل أيقونة(فتح القفل السريع) QuickUnlock شفافة (راجع الإعدادات).
 *إصلاحات أخرى</string>
-  <string name="ChangeLog_0_8_4">
-<b>الإصدار 0.8.4</b>\n
+  <string name="ChangeLog_0_8_4"><b>الإصدار 0.8.4</b>\n
 * يتم الكشف عن تغييرات قاعدة البيانات الخارجية ودمجها عند الحفظ\n 
 * تحسين أداء التحميل\n
 * تحسين البحث في شريط الأدوات مع تقديم الاقتراحات\n
@@ -584,19 +574,16 @@
 * إصلاحات لبعض الأخطاء البسيطة  </string>
   <string name="ChangeLog_0_8_2"><b>الإصدار 0.8.2</b>\n
 * دعم \"مصادقة الملخص\" في WebDAV\n
-* إصلاح أخطاء برمجية (مدير الملفات، فتح رابط)
-</string>
+* إصلاح أخطاء برمجية (مدير الملفات، فتح رابط)</string>
   <string name="ChangeLog_0_8_1"><b>الإصدار 0.8.1</b>\n
 * يمكن تثبيت KP2A Offline و Online معًا مرة أخرى\n
-* تمت إضافة ترجمات جديدة (شكرًا لجميع المساهمين!)
-</string>
+* تمت إضافة ترجمات جديدة (شكرًا لجميع المساهمين!)</string>
   <string name="ChangeLog_0_8"><b>الإصدار 0.8</b>\n
 * تحسين واجهة المستخدم خاصة على أجهزة Android 4.x\n
 * السماح باستخدام مدير ملفات متعمّد لتحديد ملفات متواجدة حاليا\n
 * إضافة طريقة أكثر أمانًا لفتح المرفقات (من خلال مجلد التخزين المؤقت)\n
 * إصلاح أخطاء في نافذة \"تعديل\"\n
-* ربما أوجدنا أخطاء أكثر :-)
-</string>
+* ربما أوجدنا أخطاء أكثر :-)</string>
   <string name="ChangeLog_keptDonate">تمديد إمكانية التبرع ببيرة أو أي شيء آخر</string>
   <string name="ChangeLog_0_7"><b>الإصدار 0.7</b>\n
 * زيادة سرعة التحميل: التحويلات الأساسية الآن ×10 مرات أسرع!\n
@@ -658,6 +645,11 @@
     <item>كلمة السر + إجابة السؤال الشخصي</item>
     <item>كلمة السر + سر إجابة السؤال الشخصي (وضع الاسترجاع)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>كلمة السر</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>تجاهل فشل التحقق من صحة الشهادة</item>
