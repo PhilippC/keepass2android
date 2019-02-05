@@ -207,7 +207,7 @@
   <string name="no_keys">No entries in the database or group.</string>
   <string name="no_results">No search results</string>
   <string name="no_url_handler">No handler for this url.</string>
-  <string name="open_recent">Open recent database (click to open)</string>
+  <string name="open_recent">Open recent database (tap to open)</string>
   <string name="omitbackup_title">Don\'t search backup and recycle bin entries</string>
   <string name="omitbackup_summary">Omit \'Backup\' and Recycle Bin group from search results</string>
   <string name="pass_filename">KeePass database filename</string>
@@ -366,7 +366,7 @@
 
   
   <string name="UseOfflineCache_title">Database caching</string>
-	<string name="UseOfflineCache_summary">Keep a copy of the database files in the app's cache directory. This allows to use databases even while the database file is not accessible.</string>
+	<string name="UseOfflineCache_summary">Keep a copy of the database files in the app\'s cache directory. This allows to use databases even while the database file is not accessible.</string>
 
   <string name="CreateBackups_title">Local backups</string>
   <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
@@ -541,7 +541,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
-	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, click this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
+	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, tap this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -562,7 +562,7 @@
 	<string name="hint_master_password">Select a master password to protect your database:</string>
 
 	<string name="key_file">Key file</string>
-	<string name="help_key_file">A key file is basically a password stored in a file. Key files are typically stronger than master passwords, because the key can be a lot more complicated; however it\'s also harder to keep them secret. If you store your database in the cloud, don\'t store the key file there as well! This would make it completely useless! Important: Do not change the contents of the key file after creating the database!</string>
+	<string name="help_key_file">A key file is basically a password stored in a file. Key files are typically stronger than master passwords, because the key can be a lot more complex; however it\'s also harder to keep them secret. If you store your database in the cloud, don\'t store the key file there as well! This would make it completely useless! Important: Do not change the contents of the key file after creating the database!</string>
 	<string name="hint_key_file">Choose if you want to use a key file in addition to your master password:</string>
 	<string name="use_key_file">Use key file</string>
 
@@ -656,7 +656,7 @@
 	<string name="FileIsReadOnlyOnKitkat">The file you selected is read-only for Keepass2Android due to restrictions on Android 4.4+.</string>
 	<string name="CopyFileRequired">To use it, you must copy it to another location.</string>
 	<string name="CopyFileRequiredForEditing">To edit it, you must copy the file to another location.</string>
-	<string name="ClickOkToSelectLocation">Click OK to select a location where the file should be copied.</string>
+	<string name="ClickOkToSelectLocation">Tap OK to select a location where the file should be copied.</string>
   
   <string name="FileReadOnlyTitle">Database is read-only</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android has opened the current database in read-only mode.</string>
@@ -717,11 +717,11 @@
 
   <string name="HintLocalBackupInvalidCompositeKey">
     \n
-   &#8226; Hint: If you think your database file might be corrupt or you do not remember the master key after modifying it, you can try with the last successfully opened file version by clicking "%1$s" and selecting the local backup.</string>
+   &#8226; Hint: If you think your database file might be corrupt or you do not remember the master key after modifying it, you can try with the last successfully opened file version by tapping "%1$s" and selecting the local backup.</string>
 
   <string name="HintLocalBackupOtherError">
     \n
-    &#8226; Hint: Keepass2Android has stored the last successfully opened file version in internal memory. You can open it by clicking "%1$s" and selecting the local backup.
+    &#8226; Hint: Keepass2Android has stored the last successfully opened file version in internal memory. You can open it by tapping "%1$s" and selecting the local backup.
   </string>
   
   <string name="CorruptDatabaseHelp">
@@ -957,7 +957,7 @@
 		* updated app logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n
 		* password generator remembers last settings\n
 		* set notification visibility for Android 5 lock screen\n
-		* now clearing master password field when leaving the app without clicking OK\n
+		* now clearing master password field when leaving the app without tapping OK\n
 		* fixed issue with missing input languages in keyboard setting on some devices\n
 		* fixed issue with automatic keyboard switching on rooted devices\n
 		* added check for corrupt databases (duplicate UUIDs)\n
