@@ -194,7 +194,12 @@ namespace keepass2android
 				return;
 
 			Kp2aLog.Log("FP: StartListening ");
-			_cancellationSignal = new CancellationSignal();
+		    var thisSignal = new CancellationSignal();
+            _cancellationSignal = thisSignal;
+		    _cancellationSignal.CancelEvent += (sender, args) =>
+		    {
+		        if (_cancellationSignal == thisSignal) _cancellationSignal = null;
+		    };
 			_selfCancelled = false;
 			_callback = callback;
 			_fingerprintManager.Authenticate(_cryptoObject, _cancellationSignal, 0 /* flags */, this, null);
@@ -205,18 +210,18 @@ namespace keepass2android
 		{
 			if (_cancellationSignal != null)
 			{
-				Kp2aLog.Log("FP: StopListening ");
-				_selfCancelled = true;
+			    Kp2aLog.Log("FP: StopListening ");
+			    _selfCancelled = true;
 			    try
 			    {
 			        _cancellationSignal.Cancel();
-                }
+			    }
 			    catch (System.ObjectDisposedException e)
 			    {
 			        Kp2aLog.LogUnexpectedError(e);
 			    }
-				_cancellationSignal = null;
-			}
+			    _cancellationSignal = null;
+            }
 		}
 
 		public string Encrypt(string textToEncrypt)
