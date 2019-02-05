@@ -871,7 +871,7 @@ namespace keepass2android
             inflater.Inflate(Resource.Menu.group, menu);
             var searchManager = (SearchManager)GetSystemService(Context.SearchService);
             IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
-            var view = MenuItemCompat.GetActionView(searchItem);
+            var view = searchItem.ActionView;
 
             searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
 
