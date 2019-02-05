@@ -19,12 +19,14 @@ using System;
 using System.IO;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 using KeePassLib;
 using KeePassLib.Utility;
 using FileNotFoundException = Java.IO.FileNotFoundException;
@@ -32,11 +34,11 @@ using IOException = Java.IO.IOException;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class IconPickerActivity : LockCloseActivity
 	{
-		public const String KeyIconId = "icon_id";
-		public const String KeyCustomIconId = "custom_icon_id";
+		public const string KeyIconId = "icon_id";
+		public const string KeyCustomIconId = "custom_icon_id";
 		
 		public static void Launch(Activity act)
 		{
@@ -51,7 +53,7 @@ namespace keepass2android
 			SetContentView(Resource.Layout.icon_picker);
 			
 			GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);
-			currIconGridView.Adapter = new ImageAdapter(this, App.Kp2a.GetDb().KpDatabase);
+			currIconGridView.Adapter = new ImageAdapter(this, App.Kp2a.CurrentDb.KpDatabase);
 			
 			currIconGridView.ItemClick += (sender, e) =>
 			{
@@ -120,7 +122,7 @@ namespace keepass2android
 					{
 						if ((bitmap.Width > maxSize) || (bitmap.Height > maxSize))
 						{
-							float scale = Math.Min(maxSize / bitmap.Width, maxSize / bitmap.Height);
+							float scale = System.Math.Min(maxSize / bitmap.Width, maxSize / bitmap.Height);
 							var scaleWidth = (int)(bitmap.Width * scale);
 							var scaleHeight = (int)(bitmap.Height * scale);
 							var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, scaleWidth, scaleHeight, true);
@@ -134,7 +136,7 @@ namespace keepass2android
 						bitmap.Compress(Bitmap.CompressFormat.Png, 90, ms);
 						PwCustomIcon pwci = new PwCustomIcon(new PwUuid(true), ms.ToArray());
 
-						App.Kp2a.GetDb().KpDatabase.CustomIcons.Add(pwci);
+						App.Kp2a.CurrentDb.KpDatabase.CustomIcons.Add(pwci);
 						
 					}
 					var gridView = ((GridView)FindViewById(Resource.Id.IconGridView));
@@ -198,8 +200,7 @@ namespace keepass2android
 				if (position < (int)PwIcon.Count)
 				{
 					tv.Text = "" + position;
-					var drawable = App.Kp2a.GetDb()
-						.DrawableFactory.GetIconDrawable(_act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
+					var drawable = App.Kp2a.CurrentDb						.DrawableFactory.GetIconDrawable(_act, App.Kp2a.CurrentDb.KpDatabase, (KeePassLib.PwIcon) position, null, false);
 					drawable = new BitmapDrawable(Util.DrawableToBitmap(drawable));
 					iv.SetImageDrawable(drawable);
 					//App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);

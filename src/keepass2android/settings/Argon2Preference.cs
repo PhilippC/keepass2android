@@ -18,8 +18,8 @@ namespace keepass2android.settings
 		{
 			get
 			{
-				var kdfparams = App.Kp2a.GetDb().KpDatabase.KdfParameters;
-				var kdf = KdfPool.Get(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid);
+				var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
+				var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
 				if (!(kdf is Argon2Kdf))
 				{
 					new Argon2Kdf().GetDefaultParameters();
@@ -29,7 +29,7 @@ namespace keepass2android.settings
 			}
 			set
 			{
-				App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamIterations, value);
+				App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamIterations, value);
 			}
 		}
 	}
@@ -50,8 +50,8 @@ namespace keepass2android.settings
 		{
 			get
 			{
-				var kdfparams = App.Kp2a.GetDb().KpDatabase.KdfParameters;
-				var kdf = KdfPool.Get(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid);
+				var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
+				var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
 				if (!(kdf is Argon2Kdf))
 				{
 					new Argon2Kdf().GetDefaultParameters();
@@ -61,7 +61,7 @@ namespace keepass2android.settings
 			}
 			set
 			{
-				App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt32(Argon2Kdf.ParamParallelism, (uint) value);
+				App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt32(Argon2Kdf.ParamParallelism, (uint) value);
 			}
 		}
 	}
@@ -82,8 +82,8 @@ namespace keepass2android.settings
 		{
 			get
 			{
-				var kdfparams = App.Kp2a.GetDb().KpDatabase.KdfParameters;
-				var kdf = KdfPool.Get(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid);
+				var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
+				var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
 				if (!(kdf is Argon2Kdf))
 				{
 					new Argon2Kdf().GetDefaultParameters();
@@ -93,7 +93,7 @@ namespace keepass2android.settings
 			}
 			set
 			{
-				App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamMemory, value);
+				App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamMemory, value);
 			}
 		}
 	}

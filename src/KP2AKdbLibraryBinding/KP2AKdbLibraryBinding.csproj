@@ -65,9 +65,9 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\java\KP2AKdbLibrary\bin\kp2akdblibrary.jar">
+    <InputJar Include="..\java\KP2AKdbLibrary\bin\kp2akdblibrary.jar">
       <Link>Jars\kp2akdblibrary.jar</Link>
-    </EmbeddedJar>
+    </InputJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

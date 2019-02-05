@@ -25,11 +25,13 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Preferences;
+using KeePassLib;
 using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
+    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else
@@ -54,16 +56,13 @@ namespace keepass2android
 		{
 		}
 
-		public static void Launch(Activity act, SearchUrlTask task)
+		public static void Launch(Activity act, SearchUrlTask task, ActivityLaunchMode launchMode)
 		{
 			Intent i = new Intent(act, typeof(ShareUrlResults));
 			task.ToIntent(i);
-			act.StartActivityForResult(i, 0);
+		    launchMode.Launch(act, i);
 		}
 
-
-		private Database _db;
-        
 
         public override bool IsSearchResult
         {
@@ -76,9 +75,7 @@ namespace keepass2android
 
 			//if user presses back to leave this activity:
 			SetResult(Result.Canceled);
-
-			_db = App.Kp2a.GetDb();
-
+            
 
 		    UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
 		    UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
@@ -106,24 +103,41 @@ namespace keepass2android
 		{	
 			try
 			{
-				//first: search for exact url
-				Group = _db.SearchForExactUrl(url);
-				if (!url.StartsWith("androidapp://"))
-				{
-					//if no results, search for host (e.g. "accounts.google.com")
-					if (!Group.Entries.Any())
-						Group = _db.SearchForHost(url, false);
-					//if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
-					if (!Group.Entries.Any())
-						Group = _db.SearchForHost(url, true);
-					
-				}
-				//if no results returned up to now, try to search through other fields as well:
-				if (!Group.Entries.Any())
-					Group = _db.SearchForText(url);
-				//search for host as text
-				if (!Group.Entries.Any())
-					Group = _db.SearchForText(UrlUtil.GetHost(url.Trim()));
+			    foreach (var db in App.Kp2a.OpenDatabases)
+			    {
+			        PwGroup resultsForThisDb;
+			        //first: search for exact url
+			        resultsForThisDb = db.SearchForExactUrl(url);
+			        if (!url.StartsWith("androidapp://"))
+			        {
+			            //if no results, search for host (e.g. "accounts.google.com")
+			            if (!resultsForThisDb.Entries.Any())
+			                resultsForThisDb = db.SearchForHost(url, false);
+			            //if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
+			            if (!resultsForThisDb.Entries.Any())
+			                resultsForThisDb = db.SearchForHost(url, true);
+
+			        }
+			        //if no results returned up to now, try to search through other fields as well:
+			        if (!resultsForThisDb.Entries.Any())
+			            resultsForThisDb = db.SearchForText(url);
+			        //search for host as text
+			        if (!resultsForThisDb.Entries.Any())
+			            resultsForThisDb = db.SearchForText(UrlUtil.GetHost(url.Trim()));
+
+			        if (Group == null)
+			        {
+			            Group = resultsForThisDb;
+			        }
+			        else
+                    {
+                        foreach (var entry in resultsForThisDb.Entries)
+                        {
+                            Group.AddEntry(entry, false,false);
+                        }
+                    }
+                    
+			    }
 
 			} catch (Exception e)
 			{
@@ -134,7 +148,7 @@ namespace keepass2android
 			}
 			
 			//if there is exactly one match: open the entry
-			if ((Group.Entries.Count() == 1) && autoReturnFromQuery)
+			if ((Group.Entries.Count() == 1) && autoReturnFromQuery && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.AutoReturnFromQuery_key),true))
 			{
 				LaunchActivityForEntry(Group.Entries.Single(),0);
 				return;
@@ -157,18 +171,19 @@ namespace keepass2android
 		        newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
             
             selectOtherEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, newTask);
+				GroupActivity.Launch (this, newTask, new ActivityLaunchModeRequestCode(0));
+
 			};
 
 			
 			View createUrlEntry = FindViewById (Resource.Id.add_url_entry);
 
-			if (App.Kp2a.GetDb().CanWrite)
+			if (App.Kp2a.OpenDatabases.Any(db => db.CanWrite))
 			{
 				createUrlEntry.Visibility = ViewStates.Visible;
 				createUrlEntry.Click += (sender, e) =>
 				{
-					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true });
+					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true }, new ActivityLaunchModeRequestCode(0));
 					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
 				};
 			}
@@ -192,6 +207,16 @@ namespace keepass2android
 	    protected override int ContentResourceId
 	    {
 			get { return Resource.Layout.searchurlresults; }
+	    }
+
+	    public override bool EntriesBelongToCurrentDatabaseOnly
+	    {
+	        get { return false; }
+	    }
+
+	    public override ElementAndDatabaseId FullGroupId
+	    {
+	        get { return null; }
 	    }
 	}}
 

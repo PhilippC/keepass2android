@@ -33,9 +33,9 @@ namespace keepass2android.services
 
         protected override FilledAutofillFieldCollection GetSuggestedEntry(string query)
         {
-            if (App.Kp2a.GetDb()?.LastOpenedEntry?.SearchUrl == query)
+            if (App.Kp2a.LastOpenedEntry?.SearchUrl == query)
                 return ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(
-                    App.Kp2a.GetDb()?.LastOpenedEntry, this);
+                    App.Kp2a.LastOpenedEntry, this);
             return null;
         }
 
@@ -43,7 +43,7 @@ namespace keepass2android.services
         {
             
 
-            var intent = new Intent(this, typeof(FileSelectActivity));
+            var intent = new Intent(this, typeof(SelectCurrentDbActivity));
 
             Dictionary<string, string> outputFields = new Dictionary<string, string>();
             foreach (var p in parser.ClientFormData.HintMap)

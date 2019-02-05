@@ -86,7 +86,7 @@ namespace keepass2android
 
 		protected override void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent data)
 		{
-			PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+			Util.SetIoConnectionFromIntent(ioc, data);
 		}
 
 		protected override Result ExitFileStorageSelectionOk
@@ -96,7 +96,7 @@ namespace keepass2android
 
 		protected override void StartSelectFile( bool isForSave, int browseRequestCode, string protocolId)
 		{
-			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, browseRequestCode);
+			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, true, browseRequestCode);
 			fileSelectHelper.OnOpen += (sender, ioc) =>
 			{
 				IocSelected(ioc,browseRequestCode);
@@ -148,7 +148,7 @@ namespace keepass2android
 		protected override void ReturnOk(IOConnectionInfo ioc)
 		{
 			Intent intent = new Intent();
-			PasswordActivity.PutIoConnectionToIntent(ioc, intent);
+			Util.PutIoConnectionToIntent(ioc, intent);
 			SetResult(Result.Ok, intent);
 			Finish();
 		}
@@ -197,7 +197,7 @@ namespace keepass2android
 
 		protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
 		{
-			new FileSelectHelper(this, forSave, requestCode).StartFileChooser(defaultPath);
+			new FileSelectHelper(this, forSave, true, requestCode).StartFileChooser(defaultPath);
 		}
 
 

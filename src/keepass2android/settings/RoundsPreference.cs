@@ -77,7 +77,7 @@ namespace keepass2android.settings
 					paramValue = 1;
 				}
 
-				Database db = App.Kp2a.GetDb();
+				Database db = App.Kp2a.CurrentDb;
 
 				ulong oldValue = ParamValue;
 
@@ -89,7 +89,7 @@ namespace keepass2android.settings
 				ParamValue = paramValue;
 
 				Handler handler = new Handler();
-				SaveDb save = new SaveDb((Activity)Context, App.Kp2a, new KdfNumberParamPreference.AfterSave((Activity)Context, handler, oldValue, this));
+				SaveDb save = new SaveDb((Activity)Context, App.Kp2a, App.Kp2a.CurrentDb, new KdfNumberParamPreference.AfterSave((Activity)Context, handler, oldValue, this));
 				ProgressTask pt = new ProgressTask(App.Kp2a, (Activity)Context, save);
 				pt.Run();
 				
@@ -118,7 +118,7 @@ namespace keepass2android.settings
 				} else {
 					DisplayMessage(_ctx);
 
-					App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, _oldRounds);
+					App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, _oldRounds);
 				}
 				
 				base.Run();
@@ -140,18 +140,18 @@ namespace keepass2android.settings
 			get
 			{
 				AesKdf kdf = new AesKdf();
-				if (!kdf.Uuid.Equals(App.Kp2a.GetDb().KpDatabase.KdfParameters.KdfUuid))
+				if (!kdf.Uuid.Equals(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid))
 					return (uint) PwDefs.DefaultKeyEncryptionRounds;
 				else
 				{
-					ulong uRounds = App.Kp2a.GetDb().KpDatabase.KdfParameters.GetUInt64(
+					ulong uRounds = App.Kp2a.CurrentDb.KpDatabase.KdfParameters.GetUInt64(
 						AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
 					uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
 
 					return (uint) uRounds;
 				}
 			}
-			set { App.Kp2a.GetDb().KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
+			set { App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
 		}
 
 		public RoundsPreference(Context context, IAttributeSet attrs):base(context, attrs)

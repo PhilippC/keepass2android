@@ -1,0 +1,3 @@
+include ':app'
+include ':Keepass2AndroidPluginSDK2'
+project(':Keepass2AndroidPluginSDK2').projectDir = new File(settingsDir,"../Keepass2AndroidPluginSDK2/app")

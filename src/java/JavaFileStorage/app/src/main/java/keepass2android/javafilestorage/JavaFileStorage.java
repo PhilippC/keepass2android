@@ -132,7 +132,7 @@ public class FileEntry {
 	
 	public boolean checkForFileChangeFast(String path, String previousFileVersion) throws Exception;
 	
-	public String getCurrentFileVersionFast(String path);
+	public String getCurrentFileVersionFast(String path) throws Exception;
 	
 	public InputStream openFileForRead(String path) throws Exception;
 	

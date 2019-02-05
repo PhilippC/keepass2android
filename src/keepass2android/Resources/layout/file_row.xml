@@ -27,7 +27,7 @@
     android:id="@+id/group_name_vdots"
     android:layout_width="wrap_content"
     android:layout_height="20dp"
-    android:src="@drawable/vdots"
+    android:src="@drawable/vdots_bright"
     android:gravity="right|bottom"
     android:layout_alignParentRight="true" 
     android:paddingTop="4sp"/>

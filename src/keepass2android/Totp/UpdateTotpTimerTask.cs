@@ -27,10 +27,10 @@ namespace PluginTOTP
 		{
 			try
 			{
-				if (App.Kp2a.GetDb().LastOpenedEntry == null)
+				if (App.Kp2a.LastOpenedEntry == null)
 					return; //DB was locked
 
-				Dictionary<string, string> entryFields = App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
+				Dictionary<string, string> entryFields = App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 				//mute warnings to avoid repeated display of the toasts
 				TotpData totpData = _adapter.GetTotpData(entryFields, _context, true /*mute warnings*/);
 				if (totpData.IsTotpEnry)
@@ -58,10 +58,10 @@ namespace PluginTOTP
 		private void UpdateEntryData(string totp)
 		{
 			//update the Entry output in the App database and notify the CopyToClipboard service
-			App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(_totp, new ProtectedString(true, totp));
+			App.Kp2a.LastOpenedEntry.OutputStrings.Set(_totp, new ProtectedString(true, totp));
 			Intent updateKeyboardIntent = new Intent(_context, typeof(CopyToClipboardService));
 			updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-			updateKeyboardIntent.PutExtra("entry", App.Kp2a.GetDb().LastOpenedEntry.Uuid.ToHexString());
+			updateKeyboardIntent.PutExtra("entry", App.Kp2a.LastOpenedEntry.Uuid.ToHexString());
 			_context.StartService(updateKeyboardIntent);
 
 		}
@@ -73,7 +73,7 @@ namespace PluginTOTP
 			i.SetPackage(_context.PackageName);
 			i.PutExtra(Strings.ExtraSender, _context.PackageName);
 			i.PutExtra(Strings.ExtraFieldValue, totp);
-			i.PutExtra(Strings.ExtraEntryId, App.Kp2a.GetDb().LastOpenedEntry.Entry.Uuid.ToHexString());
+			i.PutExtra(Strings.ExtraEntryId, App.Kp2a.LastOpenedEntry.Entry.Uuid.ToHexString());
 			i.PutExtra(Strings.ExtraFieldId, _totp);
 			i.PutExtra(Strings.ExtraFieldProtected, true);
 			

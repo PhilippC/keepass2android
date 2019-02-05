@@ -91,7 +91,7 @@
     <Compile Include="database\CheckDatabaseForChanges.cs" />
     <Compile Include="database\edit\AddTemplateEntries.cs" />
     <Compile Include="database\edit\CopyEntry.cs" />
-    <Compile Include="database\edit\DeleteMultipleItems.cs" />
+    <Compile Include="database\edit\DeleteMultipleItemsFromOneDatabase.cs" />
     <Compile Include="database\edit\EditGroup.cs" />
     <Compile Include="database\edit\MoveElements.cs" />
     <Compile Include="database\KdbDatabaseFormat.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
     <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
     <Compile Include="DataExchange\PwExportInfo.cs" />
+    <Compile Include="ElementAndDatabaseId.cs" />
     <Compile Include="Io\AndroidContentStorage.cs" />
     <Compile Include="Io\BuiltInFileStorage.cs" />
     <Compile Include="Io\CachingFileStorage.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Io\JavaFileStorage.cs" />
     <Compile Include="Io\NetFtpFileStorage.cs" />
     <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
+    <Compile Include="Io\PCloudFileStorage.cs" />
     <Compile Include="Io\SftpFileStorage.cs" />
     <Compile Include="Io\OneDriveFileStorage.cs" />
     <Compile Include="Io\WebDavFileStorage.cs" />
@@ -128,15 +130,15 @@
     <Compile Include="database\edit\ActionOnFinish.cs" />
     <Compile Include="database\edit\AddEntry.cs" />
     <Compile Include="database\edit\AddGroup.cs" />
-    <Compile Include="database\edit\CreateDb.cs" />
+    <Compile Include="database\edit\CreateDB.cs" />
     <Compile Include="database\edit\DeleteEntry.cs" />
     <Compile Include="database\edit\DeleteGroup.cs" />
     <Compile Include="database\edit\DeleteRunnable.cs" />
     <Compile Include="database\edit\FileOnFinish.cs" />
-    <Compile Include="database\edit\LoadDb.cs" />
+    <Compile Include="database\edit\LoadDB.cs" />
     <Compile Include="database\edit\OnFinish.cs" />
     <Compile Include="database\edit\RunnableOnFinish.cs" />
-    <Compile Include="database\edit\SaveDb.cs" />
+    <Compile Include="database\edit\SaveDB.cs" />
     <Compile Include="database\edit\SetPassword.cs" />
     <Compile Include="database\edit\UpdateEntry.cs" />
     <Compile Include="IKp2aApp.cs" />
@@ -155,6 +157,10 @@
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
+      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
+      <Name>AdalBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
       <Name>JavaFileStorageBindings</Name>

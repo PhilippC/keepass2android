@@ -30,37 +30,88 @@ using Android.Widget;
 using Android.Preferences;
 using Android.Text.Method;
 using System.Globalization;
+using System.IO;
+using System.Net;
 using Android.Content.PM;
 using Android.Webkit;
 using Android.Graphics;
-using Java.IO;
 using keepass2android.EntryActivityClasses;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
+using KeePass.DataExchange;
 using KeePass.Util.Spr;
+using KeePassLib.Interfaces;
+using KeePassLib.Serialization;
+using File = Java.IO.File;
 using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
+    public class ExportBinaryProcessManager : FileSaveProcessManager
+    {
+        private readonly string _binaryToSave;
 
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden,
+        public ExportBinaryProcessManager(int requestCode, Activity activity, string key) : base(requestCode, activity)
+        {
+            _binaryToSave = key;
+        }
+
+        public ExportBinaryProcessManager(int requestCode, EntryActivity activity, Bundle savedInstanceState) : base(requestCode, activity)
+        {
+            _binaryToSave = savedInstanceState.GetString("BinaryToSave", null);
+        }
+
+        protected override void SaveFile(IOConnectionInfo ioc)
+        {
+            var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
+                {
+                    if (!success)
+                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                }
+            ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
+            ProgressTask pt = new ProgressTask(App.Kp2a, _activity, task);
+            pt.Run();
+
+        }
+
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutString("BinaryToSave", _binaryToSave);
+        }
+        
+
+    }
+
+
+	[Activity (Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
         Theme = "@style/MyTheme_ActionBar")]
 	public class EntryActivity : LockCloseActivity 
 	{
 		public const String KeyEntry = "entry";
-		public const String KeyRefreshPos = "refresh_pos";
+        public const String KeyRefreshPos = "refresh_pos";
 		public const String KeyCloseAfterCreate = "close_after_create";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
-		public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
+	    public const int requestCodeBinaryFilename = 42376;
+        public const int requestCodeSelFileStorageForWriteAttachment = 42377;
+	    
+
+
+        public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
 
-			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
+            var db = App.Kp2a.FindDatabaseForElement(pw);
+			i.PutExtra(KeyEntry, new ElementAndDatabaseId(db, pw).FullId);
 			i.PutExtra(KeyRefreshPos, pos);
+
+		    if (App.Kp2a.CurrentDb != db)
+		    {
+		        App.Kp2a.CurrentDb = db;
+		    }
 
 			if (flags != null)
 				i.SetFlags((ActivityFlags) flags);
@@ -83,9 +134,9 @@ namespace keepass2android
 			_activityDesign = new ActivityDesign(this);
 		}
 
-		protected PwEntry Entry;
+	    public PwEntry Entry;
 
-		private static Typeface _passwordFont;
+		private PasswordFont _passwordFont = new PasswordFont();
 
 		internal bool _showPassword;
 		private int _pos;
@@ -112,16 +163,17 @@ namespace keepass2android
 		private PluginActionReceiver _pluginActionReceiver;
 		private PluginFieldReceiver _pluginFieldReceiver;
 		private ActivityDesign _activityDesign;
+	    
 
 
-		protected void SetEntryView()
+	    protected void SetEntryView()
 		{
 			SetContentView(Resource.Layout.entry_view);
 		}
 
 		protected void SetupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
-			if (App.Kp2a.GetDb().CanWrite)
+			if (App.Kp2a.CurrentDb.CanWrite)
 			{
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
@@ -219,12 +271,12 @@ namespace keepass2android
 
 			//update the Entry output in the App database and notify the CopyToClipboard service
 
-		    if (App.Kp2a.GetDb()?.LastOpenedEntry != null)
+		    if (App.Kp2a.LastOpenedEntry != null)
 		    {
-		        App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
+		        App.Kp2a.LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
 		        Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
 		        updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-		        updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+		        updateKeyboardIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 		        StartService(updateKeyboardIntent);
 
 		        //notify plugins
@@ -277,7 +329,7 @@ namespace keepass2android
 				i.SetPackage(pluginPackage);
 				i.PutExtra(Strings.ExtraActionData, bundleExtra);
 				i.PutExtra(Strings.ExtraSender, PackageName);
-				PluginHost.AddEntryToIntent(i, App.Kp2a.GetDb().LastOpenedEntry);
+				PluginHost.AddEntryToIntent(i, App.Kp2a.LastOpenedEntry);
 
 				var menuOption = new PluginMenuOption()
 					{
@@ -315,8 +367,14 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
+		    if (savedInstanceState != null)
+		    {
+		        _exportBinaryProcessManager =
+		            new ExportBinaryProcessManager(requestCodeSelFileStorageForWriteAttachment, this, savedInstanceState);
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+		    }
+
+		    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
 			long usageCount = prefs.GetLong(GetString(Resource.String.UsageCount_key), 0);
 
@@ -337,9 +395,9 @@ namespace keepass2android
 
 			SetEntryView();
 
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			// Likely the app has been killed exit the activity 
-			if (!db.Loaded || (App.Kp2a.QuickLocked))
+			if (db == null || (App.Kp2a.QuickLocked))
 			{
 				Finish();
 				return;
@@ -348,12 +406,13 @@ namespace keepass2android
 			SetResult(KeePass.ExitNormal);
 
 			Intent i = Intent;
-			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(i.GetStringExtra(KeyEntry)));
+            ElementAndDatabaseId dbAndElementId = new ElementAndDatabaseId(i.GetStringExtra(KeyEntry));
+			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(dbAndElementId.ElementIdString));
 			_pos = i.GetIntExtra(KeyRefreshPos, -1);
 
 			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
-			Entry = db.Entries[uuid];
+			Entry = db.EntriesById[uuid];
 			
 			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
@@ -376,7 +435,7 @@ namespace keepass2android
 
 			SetupEditButtons();
 			
-			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
+			App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
 			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction));
@@ -425,7 +484,7 @@ namespace keepass2android
 		{
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
-			showNotIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
 			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
 
@@ -455,9 +514,9 @@ namespace keepass2android
 		{
 			ViewGroup extraGroup = (ViewGroup) FindViewById(Resource.Id.extra_strings);
 		    bool hasExtras = false;
-			IEditMode editMode = new DefaultEdit();
-			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.GetDb(), this.Entry))
-				editMode = new KpEntryTemplatedEdit(App.Kp2a.GetDb(), this.Entry);
+			EditModeBase editMode = new DefaultEdit();
+			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.CurrentDb, this.Entry))
+				editMode = new KpEntryTemplatedEdit(App.Kp2a.CurrentDb, this.Entry);
 			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key))))
 			{
 				if (editMode.IsVisible(key))
@@ -526,71 +585,83 @@ namespace keepass2android
 			_popupMenuItems[popupKey] = new List<IPopupMenuItem>();
 			return _popupMenuItems[popupKey];
 		}
-				internal Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
-		{
-			ProtectedBinary pb = Entry.Binaries.Get(key);
-			System.Diagnostics.Debug.Assert(pb != null);
-			if (pb == null)
-				throw new ArgumentException();
+
+	    internal Uri WriteBinaryToFile(string key, bool writeToCacheDirectory)
+	    {
+	        ProtectedBinary pb = Entry.Binaries.Get(key);
+	        System.Diagnostics.Debug.Assert(pb != null);
+	        if (pb == null)
+	            throw new ArgumentException();
 
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-			string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key), GetString(Resource.String.BinaryDirectory_default));
-			if (writeToCacheDirectory)
-				binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+	        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+	        string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),
+	            GetString(Resource.String.BinaryDirectory_default));
+	        if (writeToCacheDirectory)
+	        {
+	            binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
-			string filepart = key;
-			if (writeToCacheDirectory)
-				filepart = filepart.Replace(" ", "");
-			var targetFile = new File(binaryDirectory, filepart);
+	            string filepart = key;
+	            Java.Lang.String javaFilename = new Java.Lang.String(filepart);
+	            filepart = javaFilename.ReplaceAll("[^a-zA-Z0-9.-]", "_");
 
-			File parent = targetFile.ParentFile;
+	            var targetFile = new File(binaryDirectory, filepart);
 
-			if (parent == null || (parent.Exists() && !parent.IsDirectory))
-			{
-				Toast.MakeText(this,
-							   Resource.String.error_invalid_path,
-							   ToastLength.Long).Show();
-				return null;
-			}
+	            File parent = targetFile.ParentFile;
 
-			if (!parent.Exists())
-			{
-				// Create parent directory
-				if (!parent.Mkdirs())
-				{
-					Toast.MakeText(this,
-								   Resource.String.error_could_not_create_parent,
-								   ToastLength.Long).Show();
-					return null;
+	            if (parent == null || (parent.Exists() && !parent.IsDirectory))
+	            {
+	                Toast.MakeText(this,
+	                    Resource.String.error_invalid_path,
+	                    ToastLength.Long).Show();
+	                return null;
+	            }
 
-				}
-			}
-			string filename = targetFile.AbsolutePath;
-			Uri fileUri = Uri.FromFile(targetFile);
+	            if (!parent.Exists())
+	            {
+	                // Create parent directory
+	                if (!parent.Mkdirs())
+	                {
+	                    Toast.MakeText(this,
+	                        Resource.String.error_could_not_create_parent,
+	                        ToastLength.Long).Show();
+	                    return null;
 
-			byte[] pbData = pb.ReadData();
-			try
-			{
-				System.IO.File.WriteAllBytes(filename, pbData);
-			}
-			catch (Exception exWrite)
-			{
-				Toast.MakeText(this, GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] { filename })
-					+ exWrite.Message, ToastLength.Long).Show();
-				return null;
-			}
-			finally
-			{
-				MemUtil.ZeroByteArray(pbData);
-			}
-			Toast.MakeText(this, GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] { filename }), ToastLength.Short).Show();
-			if (writeToCacheDirectory)
-			{
-				return Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
-											  + filename);
-			}
-			return fileUri;
+	                }
+	            }
+	            string filename = targetFile.AbsolutePath;
+
+	            byte[] pbData = pb.ReadData();
+	            try
+	            {
+	                System.IO.File.WriteAllBytes(filename, pbData);
+	            }
+	            catch (Exception exWrite)
+	            {
+	                Toast.MakeText(this,
+	                    GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] {filename})
+	                    + exWrite.Message, ToastLength.Long).Show();
+	                return null;
+	            }
+	            finally
+	            {
+	                MemUtil.ZeroByteArray(pbData);
+	            }
+	            Toast.MakeText(this,
+	                GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] {filename}),
+	                ToastLength.Short).Show();
+	            return Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
+	                             + filename);
+	        }
+	        else
+	        {
+	            _exportBinaryProcessManager =
+	                new ExportBinaryProcessManager(requestCodeSelFileStorageForWriteAttachment, this, key);
+                _exportBinaryProcessManager.StartProcess();
+	            return null;
+	        }
+	    
+    	    
 		}
 
 		internal void OpenBinaryFile(Android.Net.Uri uri)
@@ -835,11 +906,7 @@ namespace keepass2android
 		
 		private void SetPasswordTypeface(TextView textView)
 		{
-			if (_passwordFont == null)
-			{
-				_passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-			}
-			textView.Typeface = _passwordFont;	
+			_passwordFont.ApplyTo(textView);	
 		}
 
 	    private void PopulateText(int viewId, int containerViewId, String text)
@@ -876,7 +943,7 @@ namespace keepass2android
         private void PopulateStandardText(List<int> viewIds, int containerViewId, String key)
 		{
 			String value = Entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
+			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
 			PopulateText(viewIds, containerViewId, value);
 			_stringViews.Add(key, new StandardStringView(viewIds, containerViewId, this));
 		}
@@ -900,10 +967,16 @@ namespace keepass2android
 			_appTask.ToIntent(ret);
 			SetResult(KeePass.ExitRefresh, ret);
 		}
-
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
+        
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
 			base.OnActivityResult(requestCode, resultCode, data);
-			if (AppTask.TryGetFromActivityResult(data, ref _appTask))
+
+            if (_exportBinaryProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
+            {
+                return;
+            }
+
+            if (AppTask.TryGetFromActivityResult(data, ref _appTask))
 			{
 				//make sure app task is passed to calling activity.
 				//the result code might be modified later.
@@ -923,7 +996,71 @@ namespace keepass2android
 			}
 		}
 
-		public override bool OnCreateOptionsMenu(IMenu menu)
+
+	    public class WriteBinaryTask : RunnableOnFinish
+	    {
+	        private readonly IKp2aApp _app;
+	        private readonly ProtectedBinary _data;
+	        private IOConnectionInfo _targetIoc;
+
+	        public WriteBinaryTask(Activity activity, IKp2aApp app, OnFinish onFinish, ProtectedBinary data, IOConnectionInfo targetIoc) : base(activity, onFinish)
+	        {
+	            _app = app;
+	            _data = data;
+	            _targetIoc = targetIoc;
+	        }
+
+	        public override void Run()
+	        {
+	            try
+	            {
+	                var fileStorage = _app.GetFileStorage(_targetIoc);
+	                if (fileStorage is IOfflineSwitchable)
+	                {
+	                    ((IOfflineSwitchable)fileStorage).IsOffline = false;
+	                }
+	                using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+	                {
+	                    Stream sOut = writeTransaction.OpenFile();
+
+	                    byte[] byteArray = _data.ReadData();
+	                    sOut.Write(byteArray, 0, byteArray.Length);
+
+                        sOut.Close();
+
+	                    writeTransaction.CommitWrite();
+
+	                }
+	                if (fileStorage is IOfflineSwitchable)
+	                {
+	                    ((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+	                }
+
+	                Finish(true);
+
+
+	            }
+	            catch (Exception ex)
+	            {
+	                Finish(false, ex.Message);
+	            }
+
+
+	        }
+	    }
+        
+	    private ExportBinaryProcessManager _exportBinaryProcessManager;
+
+	    protected override void OnSaveInstanceState(Bundle outState)
+	    {
+	        
+	        
+	        _exportBinaryProcessManager?.OnSaveInstanceState(outState);
+	        
+	        base.OnSaveInstanceState(outState);
+	    }
+
+	    public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			_menu = menu;
 			base.OnCreateOptionsMenu(menu);
@@ -1022,7 +1159,12 @@ namespace keepass2android
 			{
 				case Resource.Id.menu_donate:
 					return Util.GotoDonateUrl(this);
-				case Resource.Id.menu_toggle_pass:
+                case Resource.Id.menu_delete:
+                    DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
+                        new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
+                    task.Start();
+                    break;
+                case Resource.Id.menu_toggle_pass:
 					if (_showPassword)
 					{
 						item.SetTitle(Resource.String.show_password);
@@ -1038,7 +1180,7 @@ namespace keepass2android
 					return true;
 
 				case Resource.Id.menu_lock:
-					App.Kp2a.LockDatabase();
+					App.Kp2a.Lock();
 					return true;
 				case Android.Resource.Id.Home:
 					//Currently the action bar only displays the home button when we come from a previous activity.
@@ -1129,7 +1271,7 @@ namespace keepass2android
 
 		public void AddEntryToIntent(Intent intent)
 		{
-			PluginHost.AddEntryToIntent(intent, App.Kp2a.GetDb().LastOpenedEntry);
+			PluginHost.AddEntryToIntent(intent, App.Kp2a.LastOpenedEntry);
 		}
 
 		public void CloseAfterTaskComplete()
@@ -1163,7 +1305,7 @@ namespace keepass2android
 			byte[] pbData = pb.ReadData();		
 
 			Intent imageViewerIntent = new Intent(this, typeof(ImageViewActivity));
-			imageViewerIntent.PutExtra("EntryId", Entry.Uuid.ToHexString());
+			imageViewerIntent.PutExtra("EntryId", new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			imageViewerIntent.PutExtra("EntryKey", key);
 			StartActivity(imageViewerIntent);
 		}

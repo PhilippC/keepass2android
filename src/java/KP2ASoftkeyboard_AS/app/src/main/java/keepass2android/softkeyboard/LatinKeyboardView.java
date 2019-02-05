@@ -43,6 +43,7 @@ public class LatinKeyboardView extends LatinKeyboardBaseView {
     static final int KEYCODE_KP2A_ALPHA = -203;
     static final int KEYCODE_KP2A_SWITCH = -204;
     static final int KEYCODE_KP2A_LOCK = -205;
+    static final int KEYCODE_KP2A_NEXTFIELDS = -206;
 
     private Keyboard mPhoneKeyboard;
 

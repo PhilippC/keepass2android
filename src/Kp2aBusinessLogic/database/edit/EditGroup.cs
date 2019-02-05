@@ -26,9 +26,12 @@ namespace keepass2android
 	public class EditGroup : RunnableOnFinish {
 		internal Database Db
 		{
-			get { return _app.GetDb(); }
+			get { return _app.FindDatabaseForElement(Group); }
 		}
-		private IKp2aApp _app;
+
+        public IKp2aApp App { get => _app; }
+
+        private IKp2aApp _app;
 		private readonly String _name;
 		private readonly PwIcon _iconId;
 		private readonly PwUuid _customIconId;
@@ -57,7 +60,7 @@ namespace keepass2android
 			Group.Touch(true);
 
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, Db, OnFinishToRun);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -76,10 +79,10 @@ namespace keepass2android
 				
 				if ( Success ) {
 					// Mark parent group dirty
-					_editGroup.Db.Dirty.Add(_editGroup.Group.ParentGroup);
+					_editGroup.App.DirtyGroups.Add(_editGroup.Group.ParentGroup);
 				} else
 				{
-					_editGroup._app.LockDatabase(false);
+					_editGroup._app.Lock(false);
 				}
 				
 				base.Run();

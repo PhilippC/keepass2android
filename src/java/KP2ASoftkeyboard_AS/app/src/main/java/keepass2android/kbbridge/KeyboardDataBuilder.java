@@ -1,6 +1,10 @@
 package keepass2android.kbbridge;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import keepass2android.softkeyboard.IKeyboardService;
+import keepass2android.softkeyboard.KP2AKeyboard;
+
 public class KeyboardDataBuilder {
 	 private ArrayList<StringForTyping> availableFields = new ArrayList<StringForTyping>();
 	 
@@ -16,5 +20,8 @@ public class KeyboardDataBuilder {
 	 public void commit()
 	 {
 	 	KeyboardData.availableFields = this.availableFields;
+	 	KeyboardData.kp2aFieldIndex = 0;
+	 	if (KP2AKeyboard.CurrentlyRunningService != null)
+	 		KP2AKeyboard.CurrentlyRunningService.onNewData();
 	 }
 }

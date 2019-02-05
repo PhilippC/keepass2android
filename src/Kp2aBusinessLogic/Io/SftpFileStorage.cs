@@ -5,8 +5,8 @@ namespace keepass2android.Io
 {
 	public class SftpFileStorage: JavaFileStorage
 	{
-		public SftpFileStorage(IKp2aApp app) :
-			base(new Keepass2android.Javafilestorage.SftpStorage(), app)
+		public SftpFileStorage(Context ctx, IKp2aApp app) :
+			base(new Keepass2android.Javafilestorage.SftpStorage(ctx.ApplicationContext), app)
 		{
 		}
 

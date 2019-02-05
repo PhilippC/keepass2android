@@ -385,7 +385,16 @@ namespace keepass2android
                 {
 
                     var intent = new Intent(Settings.ActionRequestSetAutofillService);
-                    intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName));
+                    if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                        .HasEnabledAutofillServices)
+                    {
+                        intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName + "notexisting")); //if we use our package name, the activity won't launch
+                    }
+                    else
+                    {
+                        intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName));
+                    }
+
                     try
                     {
                         Context.StartActivity(intent);
@@ -401,6 +410,10 @@ namespace keepass2android
                             .Show();
 
                     }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
                 };
             }
 
@@ -410,8 +423,8 @@ namespace keepass2android
 
 	        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
             
-            Database db = App.Kp2a.GetDb();
-            if (db.Loaded)
+            Database db = App.Kp2a.CurrentDb;
+            if (db != null)
             {
 	            ListPreference kdfPref = (ListPreference) FindPreference(GetString(Resource.String.kdf_key));
 	            kdfPref.SetEntries(KdfPool.Engines.Select(eng => eng.Name).ToArray());
@@ -444,7 +457,7 @@ namespace keepass2android
 				algorithmPref.SetValueIndex(algoValues.Select((v, i) => new { kdf = v, index = i }).First(el => el.kdf == db.KpDatabase.DataCipherUuid.ToHexString()).index);
 				algorithmPref.PreferenceChange += AlgorithmPrefChange;
 	            algorithmPref.Summary =
-		            CipherPool.GlobalPool.GetCipher(App.Kp2a.GetDb().KpDatabase.DataCipherUuid).DisplayName;
+		            CipherPool.GlobalPool.GetCipher(App.Kp2a.CurrentDb.KpDatabase.DataCipherUuid).DisplayName;
                 UpdateImportDbPref();
                 UpdateImportKeyfilePref();
             }
@@ -491,8 +504,8 @@ namespace keepass2android
 
 			FindPreference("IconSetKey").PreferenceChange += (sender, args) =>
 			{
-				if (App.Kp2a.GetDb() != null)
-					App.Kp2a.GetDb().DrawableFactory.Clear();
+				if (App.Kp2a.CurrentDb!= null)
+					App.Kp2a.CurrentDb.DrawableFactory.Clear();
 
 			};
 
@@ -527,11 +540,6 @@ namespace keepass2android
                 else
                 {
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
-
-
-
-
-
                 }
 
             }
@@ -557,11 +565,11 @@ namespace keepass2android
 
 	    private void AlgorithmPrefChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
 	    {
-			var db = App.Kp2a.GetDb();
+			var db = App.Kp2a.CurrentDb;
 			var previousCipher = db.KpDatabase.DataCipherUuid;
 			db.KpDatabase.DataCipherUuid = new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue));
 
-			SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+			SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
 			{
 				if (!success)
 				{
@@ -578,7 +586,7 @@ namespace keepass2android
 
 	    private void UpdateKdfScreen()
 	    {
-		    var db = App.Kp2a.GetDb();
+		    var db = App.Kp2a.CurrentDb;
 			var kdf = KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid);
 
 			var kdfpref = FindPreference(GetString(Resource.String.kdf_key));
@@ -616,7 +624,7 @@ namespace keepass2android
 
 	    private void OnKdfChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
 	    {
-		    var db = App.Kp2a.GetDb();
+		    var db = App.Kp2a.CurrentDb;
 		    var previousKdfParams = db.KpDatabase.KdfParameters;
 			Kp2aLog.Log("previous kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString() );
 		    db.KpDatabase.KdfParameters =
@@ -626,7 +634,7 @@ namespace keepass2android
 
 			Kp2aLog.Log("--new    kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString());
 		    
-			SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+			SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
 			{
 				if (!success)
 				{
@@ -661,7 +669,7 @@ namespace keepass2android
 	    private void PrepareTemplates(Database db)
 	    {
 			Preference pref = FindPreference("AddTemplates_pref_key");
-		    if ((!db.DatabaseFormat.SupportsTemplates) || (AddTemplateEntries.ContainsAllTemplates(App.Kp2a)))
+		    if ((!db.DatabaseFormat.SupportsTemplates) || (AddTemplateEntries.ContainsAllTemplates(App.Kp2a.CurrentDb)))
 		    {
 			    pref.Enabled = false;
 		    }
@@ -684,7 +692,7 @@ namespace keepass2android
 	    private void PrepareMasterPassword()
         {
             Preference changeMaster = FindPreference(GetString(Resource.String.master_pwd_key));
-            if (App.Kp2a.GetDb().CanWrite)
+            if (App.Kp2a.CurrentDb.CanWrite)
             {
                 changeMaster.Enabled = true;
                 changeMaster.PreferenceClick += delegate { new SetPasswordDialog(Activity).Show(); };
@@ -709,7 +717,7 @@ namespace keepass2android
                     String previousName = db.KpDatabase.Name;
                     db.KpDatabase.Name = e.NewValue.ToString();
 
-                    SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+                    SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
                     {
                         if (!success)
                         {
@@ -747,7 +755,7 @@ namespace keepass2android
                     String previousUsername = db.KpDatabase.DefaultUserName;
                     db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 
-                    SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+                    SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
                     {
                         if (!success)
                         {
@@ -783,8 +791,8 @@ namespace keepass2android
         private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
             //ensure the user gets a matching database
-            if (App.Kp2a.GetDb().Loaded && !App.Kp2a.GetDb().Ioc.IsLocalFile())
-                App.Kp2a.LockDatabase(false);
+            if (App.Kp2a.CurrentDb!= null && !App.Kp2a.CurrentDb.Ioc.IsLocalFile())
+                App.Kp2a.LockSingleDatabase(App.Kp2a.CurrentDb, false);
 
             if (!(bool)e.NewValue)
             {
@@ -834,7 +842,7 @@ namespace keepass2android
                 importDb.Enabled = false;
                 return;
             }
-            CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
+            CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
             if (masterKey.ContainsType(typeof(KcpKeyFile)))
             {
                 IOConnectionInfo iocKeyfile = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
@@ -863,12 +871,12 @@ namespace keepass2android
             {
                 try
                 {
-                    CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
+                    CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
                     var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
                     var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).ResetIoc(newIoc);
                     var keyfileString = IOConnectionInfo.SerializeToString(newIoc);
-                    App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.GetDb().Ioc, keyfileString);
+                    App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.CurrentDb.Ioc, keyfileString, false);
                     return () =>
                     {
                         UpdateImportKeyfilePref();
@@ -906,7 +914,7 @@ namespace keepass2android
             //Import db/key file preferences:
             Preference importDb = FindPreference("import_db_prefs");
             bool isLocalOrContent =
-                App.Kp2a.GetDb().Ioc.IsLocalFile() || App.Kp2a.GetDb().Ioc.Path.StartsWith("content://");
+                App.Kp2a.CurrentDb.Ioc.IsLocalFile() || App.Kp2a.CurrentDb.Ioc.Path.StartsWith("content://");
             if (!isLocalOrContent)
             {
                 importDb.Summary = GetString(Resource.String.OnlyAvailableForLocalFiles);
@@ -914,7 +922,7 @@ namespace keepass2android
             }
             else
             {
-                if (IoUtil.IsInInternalDirectory(App.Kp2a.GetDb().Ioc.Path, Activity))
+                if (IoUtil.IsInInternalDirectory(App.Kp2a.CurrentDb.Ioc.Path, Activity))
                 {
                     importDb.Summary = GetString(Resource.String.FileIsInInternalDirectory);
                     importDb.Enabled = false;
@@ -933,7 +941,7 @@ namespace keepass2android
             {
                 try
                 {
-                    var sourceIoc = App.Kp2a.GetDb().Ioc;
+                    var sourceIoc = App.Kp2a.CurrentDb.Ioc;
                     var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     return () =>
                     {
@@ -941,7 +949,12 @@ namespace keepass2android
                         builder
                             .SetMessage(Resource.String.DatabaseFileMoved);
                         builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
-                                                                              PasswordActivity.Launch(Activity, newIoc, new NullTask()));
+                        {
+                            var key = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
+                            App.Kp2a.CloseDatabase(App.Kp2a.CurrentDb);
+                            PasswordActivity.Launch(Activity, newIoc, key, new ActivityLaunchModeSimple(), false);
+
+                        });
                         builder.Show();
 
                     };
@@ -1008,12 +1021,12 @@ namespace keepass2android
 
         
     }
-    
 
+    
     /// <summary>
 	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class DatabaseSettingsActivity : LockCloseActivity 
 	{
 

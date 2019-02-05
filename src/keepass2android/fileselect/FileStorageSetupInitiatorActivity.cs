@@ -32,11 +32,11 @@ namespace keepass2android
 
 		public void StartSelectFileProcess(IOConnectionInfo ioc, bool isForSave, int requestCode)
 		{
-			Kp2aLog.Log("FSSIA: StartSelectFileProcess "+ioc.Path);
+			Kp2aLog.Log("FSSIA: StartSelectFileProcess ");
 			Intent fileStorageSetupIntent = new Intent(_activity, typeof(FileStorageSetupActivity));
 			fileStorageSetupIntent.PutExtra(FileStorageSetupDefs.ExtraProcessName, FileStorageSetupDefs.ProcessNameSelectfile);
 			fileStorageSetupIntent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, isForSave);
-			PasswordActivity.PutIoConnectionToIntent(ioc, fileStorageSetupIntent);
+			Util.PutIoConnectionToIntent(ioc, fileStorageSetupIntent);
 
 			_activity.StartActivityForResult(fileStorageSetupIntent, requestCode);
 		}
@@ -46,7 +46,7 @@ namespace keepass2android
 			Intent fileStorageSetupIntent = new Intent(_activity, typeof(FileStorageSetupActivity));
 			fileStorageSetupIntent.PutExtra(FileStorageSetupDefs.ExtraProcessName, FileStorageSetupDefs.ProcessNameFileUsageSetup);
 			fileStorageSetupIntent.PutExtra(FileStorageSetupDefs.ExtraAlwaysReturnSuccess, alwaysReturnSuccess);
-			PasswordActivity.PutIoConnectionToIntent(ioc, fileStorageSetupIntent);
+			Util.PutIoConnectionToIntent(ioc, fileStorageSetupIntent);
 
 			_activity.StartActivityForResult(fileStorageSetupIntent, requestCode);
 		}
@@ -62,7 +62,7 @@ namespace keepass2android
 
 		public void IocToIntent(Intent intent, IOConnectionInfo ioc)
 		{
-			PasswordActivity.PutIoConnectionToIntent(ioc, intent);
+			Util.PutIoConnectionToIntent(ioc, intent);
 		}
 
 		public void PerformManualFileSelect(bool isForSave, int requestCode, string protocolId)

@@ -112,6 +112,13 @@
 			<intent android:action="kp2a.action.ExportDatabaseActivity"/>
 		</PreferenceScreen>
 
+    <PreferenceScreen
+      android:key="configure_child_dbs_prefs"
+      android:title="@string/configure_child_dbs"
+    >
+      <intent android:action="kp2a.action.ConfigureChildDatabasesActivity"/>
+    </PreferenceScreen>
+
 		<Preference
 	  android:key="import_db_prefs"
 	  android:title="@string/import_db_prefs"
@@ -199,6 +206,14 @@
 				 android:defaultValue="false"
 				 android:title="@string/ClearPasswordOnLeave_title"
 				 android:key="@string/ClearPasswordOnLeave_key" />
+
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/UseKp2aKeyboardInKp2a_summary"
+		    android:defaultValue="false"
+		    android:title="@string/UseKp2aKeyboardInKp2a_title"
+		    android:key="@string/UseKp2aKeyboardInKp2a_key" />
 
 
 		</PreferenceScreen>
@@ -393,6 +408,14 @@
         android:title="@string/AutoFill_prefs">
         
       </Preference>
+
+		  <CheckBoxPreference
+		    android:enabled="true"
+		    android:persistent="true"
+		    android:summary="@string/AutoReturnFromQuery_summary"
+		    android:defaultValue="true"
+		    android:title="@string/AutoReturnFromQuery_title"
+		    android:key="@string/AutoReturnFromQuery_key" />
 
       </PreferenceScreen>
 		<PreferenceScreen

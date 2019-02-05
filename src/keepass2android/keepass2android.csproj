@@ -173,8 +173,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityLaunchMode.cs" />
+    <Compile Include="addons\CsvStreamReaderEx.cs" />
+    <Compile Include="AutoOpenEdit.cs" />
     <Compile Include="ChallengeXCKey.cs" />
+    <Compile Include="ConfigureChildDatabasesActivity.cs" />
+    <Compile Include="DisableAutofillForQueryActivity.cs" />
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
+    <Compile Include="FileSaveProcessManager.cs" />
+    <Compile Include="fileselect\FilteredCursor.cs" />
     <Compile Include="ImageViewActivity.cs" />
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
     <Compile Include="addons\OtpKeyProv\OathHotpKeyProv.cs" />
@@ -213,11 +220,12 @@
     <Compile Include="ChangeLog.cs" />
     <Compile Include="FingerprintUnlockMode.cs" />
     <Compile Include="icons\DrawableFactory.cs" />
+    <Compile Include="KeeAutoExec.cs" />
     <Compile Include="KeeChallenge.cs" />
     <Compile Include="FixedDrawerLayout.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
-    <Compile Include="NfcOtpActivity.cs" />
+    <Compile Include="PasswordFont.cs" />
     <Compile Include="pluginhost\PluginArrayAdapter.cs" />
     <Compile Include="pluginhost\PluginDatabase.cs" />
     <Compile Include="pluginhost\PluginDetailsActivity.cs" />
@@ -251,6 +259,8 @@
     <Compile Include="settings\Argon2Preference.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
+    <Compile Include="SelectCurrentDbActivity.cs" />
+    <Compile Include="SwitchImeActivity.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
@@ -487,6 +497,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_androidsend.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_content.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_dropbox.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_pcloud.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_dropboxKP2A.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_file.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftp.png" />
@@ -751,6 +762,12 @@
     <AndroidResource Include="Resources\layout\entry_edit_section.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\entry_edit_section_bool.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\entry_edit_section_file.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\values-af\strings.xml" />
     <AndroidResource Include="Resources\values-ar\strings.xml">
       <SubType>Designer</SubType>
@@ -814,7 +831,9 @@
     <AndroidResource Include="Resources\layout\searchurlresults.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\searchurlresults_empty.xml" />
+    <AndroidResource Include="Resources\layout\searchurlresults_empty.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="libs\" />
@@ -826,9 +845,17 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
+      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
+      <Name>AdalBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj">
+      <Project>{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}</Project>
+      <Name>PCloudBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
@@ -1144,6 +1171,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_dropboxKP2A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_pcloud.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_file.png" />
@@ -1853,6 +1883,35 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher_background_green.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\vdots_bright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\vdots_bright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\network_security_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_nextcloud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_nextcloud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\open_db_selection.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\child_db_config_row.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\config_child_db.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\storagetype_button_bg_dark.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

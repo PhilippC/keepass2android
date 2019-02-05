@@ -34,7 +34,8 @@ namespace keepass2android
 
 	public class SaveDb : RunnableOnFinish {
 		private readonly IKp2aApp _app;
-		private readonly bool _dontSave;
+	    private readonly Database _db;
+	    private readonly bool _dontSave;
 
 		/// <summary>
 		/// stream for reading the data from the original file. If this is set to a non-null value, we know we need to sync
@@ -43,9 +44,10 @@ namespace keepass2android
 		private readonly Context _ctx;
 		private Thread _workerThread;
 
-		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish, bool dontSave)
+		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnFinish finish, bool dontSave)
 			: base(ctx, finish)
 		{
+		    _db = db;
 			_ctx = ctx;
 			_app = app;
 			_dontSave = dontSave;
@@ -59,46 +61,55 @@ namespace keepass2android
 		/// <param name="finish"></param>
 		/// <param name="dontSave"></param>
 		/// <param name="streamForOrigFile">Stream for reading the data from the (changed) original location</param>
-		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish, bool dontSave, Stream streamForOrigFile)
+		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish, Database db, bool dontSave, Stream streamForOrigFile)
 			: base(ctx, finish)
 		{
+		    _db = db;
 			_ctx = ctx;
 			_app = app;
 			_dontSave = dontSave;
 			_streamForOrigFile = streamForOrigFile;
 		}
 
-		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish)
+		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnFinish finish)
 			: base(ctx, finish)
 		{
 			_ctx = ctx;
 			_app = app;
-			_dontSave = false;
+		    _db = db;
+		    _dontSave = false;
 		}
-		
-		
-		public override void Run ()
+
+	    public bool ShowDatabaseIocInStatus { get; set; }
+	    
+	    public override void Run ()
 		{
 
 			if (!_dontSave)
 			{
 				try
 				{
-					if (_app.GetDb().CanWrite == false)
+					if (_db.CanWrite == false)
 					{
 						//this should only happen if there is a problem in the UI so that the user sees an edit interface.
 						Finish(false,"Cannot save changes. File is read-only!");
 						return;
 					}
 
-					StatusLogger.UpdateMessage(UiStringKey.saving_database);
-					IOConnectionInfo ioc = _app.GetDb().Ioc;
+				    string message = _app.GetResourceString(UiStringKey.saving_database);
+
+				    if (ShowDatabaseIocInStatus)
+				        message += " (" + _app.GetFileStorage(_db.Ioc).GetDisplayName(_db.Ioc) + ")";
+
+                    StatusLogger.UpdateMessage(message);
+                    
+					IOConnectionInfo ioc = _db.Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);
 
 					if (_streamForOrigFile == null)
 					{
 						if ((!_app.GetBooleanPreference(PreferenceKey.CheckForFileChangesOnSave))
-							|| (_app.GetDb().KpDatabase.HashOfFileOnDisk == null)) //first time saving
+							|| (_db.KpDatabase.HashOfFileOnDisk == null)) //first time saving
 						{
 							PerformSaveWithoutCheck(fileStorage, ioc);
 							Finish(true);
@@ -109,8 +120,8 @@ namespace keepass2android
 
 					if (
 						(_streamForOrigFile != null)
-						|| fileStorage.CheckForFileChangeFast(ioc, _app.GetDb().LastFileVersion)  //first try to use the fast change detection
-						|| (FileHashChanged(ioc, _app.GetDb().KpDatabase.HashOfFileOnDisk) == FileHashChange.Changed) //if that fails, hash the file and compare:
+						|| fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion)  //first try to use the fast change detection
+						|| (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) == FileHashChange.Changed) //if that fails, hash the file and compare:
 						)
 					{
 
@@ -128,6 +139,7 @@ namespace keepass2android
 										//small.
 										MergeIn(fileStorage, ioc);
 										PerformSaveWithoutCheck(fileStorage, ioc);
+                                        _db.UpdateGlobals();
 										Finish(true);
 									};
 								RunInWorkerThread(runHandler);
@@ -217,13 +229,13 @@ namespace keepass2android
 			StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.SynchronizingDatabase));
 
 			PwDatabase pwImp = new PwDatabase();
-			PwDatabase pwDatabase = _app.GetDb().KpDatabase;
+			PwDatabase pwDatabase = _db.KpDatabase;
 			pwImp.New(new IOConnectionInfo(), pwDatabase.MasterKey);
 			pwImp.MemoryProtection = pwDatabase.MemoryProtection.CloneDeep();
 			pwImp.MasterKey = pwDatabase.MasterKey;
 			var stream = GetStreamForBaseFile(fileStorage, ioc);
 
-			_app.GetDb().DatabaseFormat.PopulateDatabaseFromStream(pwImp, stream, null);
+			_db.DatabaseFormat.PopulateDatabaseFromStream(pwImp, stream, null);
 			
 
 			pwDatabase.MergeIn(pwImp, PwMergeMethod.Synchronize, null); 
@@ -249,8 +261,8 @@ namespace keepass2android
 		private void PerformSaveWithoutCheck(IFileStorage fileStorage, IOConnectionInfo ioc)
 		{
 			StatusLogger.UpdateSubMessage("");
-			_app.GetDb().SaveData();
-			_app.GetDb().LastFileVersion = fileStorage.GetCurrentFileVersionFast(ioc);
+			_db.SaveData();
+			_db.LastFileVersion = fileStorage.GetCurrentFileVersionFast(ioc);
 		}
 
 		public byte[] HashOriginalFile(IOConnectionInfo iocFile)

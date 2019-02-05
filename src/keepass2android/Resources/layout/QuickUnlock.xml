@@ -139,7 +139,8 @@ android:paddingRight="16dp"
             android:fontFamily="sans-serif"
             android:textSize="20sp"
             android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"
+            android:importantForAccessibility="no"/>
 
           <ImageButton
                                     android:id="@+id/fingerprintbtn"

@@ -53,6 +53,8 @@ namespace keepass2android
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
             //only use the same id if elements can be shown simultaneously!
+            { Resource.Id.dbreadonly_infotext, 14 },
+            { Resource.Id.child_db_infotext, 13 },
             { Resource.Id.fingerprint_infotext, 12 },
             { Resource.Id.autofill_infotext, 11 },
             { Resource.Id.notification_info_android8_infotext, 10 },
@@ -95,11 +97,11 @@ namespace keepass2android
 
         protected virtual bool AddGroupEnabled
         {
-            get { return App.Kp2a.GetDb().CanWrite; }
+            get { return false; }
         }
         protected virtual bool AddEntryEnabled
         {
-            get { return App.Kp2a.GetDb().CanWrite; }
+            get { return false; }
         }
 
         public void SetNormalButtonVisibility(bool showAddGroup, bool showAddEntry)
@@ -186,7 +188,7 @@ namespace keepass2android
                 else
                 {
                     PwUuid groupUuid = new PwUuid(MemUtil.HexStringToByteArray(strGroupUuid));
-                    task = new EditGroup(this, App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.GetDb().Groups[groupUuid],
+                    task = new EditGroup(this, App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
                                          new RefreshTask(handler, this));
                 }
                 ProgressTask pt = new ProgressTask(App.Kp2a, act, task);
@@ -196,6 +198,12 @@ namespace keepass2android
             if (resultCode == KeePass.ExitCloseAfterTaskComplete)
             {
                 AppTask.SetActivityResult(this, KeePass.ExitCloseAfterTaskComplete);
+                Finish();
+            }
+
+            if (resultCode == KeePass.ExitLoadAnotherDb)
+            {
+                AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);
                 Finish();
             }
 
@@ -240,6 +248,8 @@ namespace keepass2android
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
 
+            UpdateDbReadOnlyInfo();
+            UpdateChildDbInfo();
             UpdateFingerprintInfo();
             UpdateAutofillInfo();
             UpdateAndroid8NotificationInfo();
@@ -258,7 +268,7 @@ namespace keepass2android
             {
 
                 FingerprintUnlockMode um;
-                Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.GetDb().Ioc), ""), out um);
+                Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.CurrentDb.Ioc), ""), out um);
                 bool isFingerprintEnabled = (um == FingerprintUnlockMode.FullUnlock);
 
                 string masterKeyKey = "MasterKey" + isFingerprintEnabled;
@@ -267,11 +277,11 @@ namespace keepass2android
 
                 List<string> applicableInfoTextKeys = new List<string> { masterKeyKey };
 
-                if (App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc).UserShouldBackup)
+                if (App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc).UserShouldBackup)
                 {
                     applicableInfoTextKeys.Add(backupKey);
                 }
-                if (App.Kp2a.GetDb().Entries.Count > 15)
+                if (App.Kp2a.CurrentDb.EntriesById.Count > 15)
                 {
                     applicableInfoTextKeys.Add(emergencyKey);
                 }
@@ -378,10 +388,9 @@ namespace keepass2android
 
         public void RefreshIfDirty()
         {
-            Database db = App.Kp2a.GetDb();
-            if (db.Dirty.Contains(Group))
+            if (App.Kp2a.DirtyGroups.Contains(Group))
             {
-                db.Dirty.Remove(Group);
+                App.Kp2a.DirtyGroups.Remove(Group);
                 ListAdapter.NotifyDataSetChanged();
 
             }
@@ -407,7 +416,7 @@ namespace keepass2android
             AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
             // Likely the app has been killed exit the activity 
-            if (!App.Kp2a.GetDb().Loaded)
+            if (App.Kp2a.CurrentDb== null)
             {
                 Finish();
                 return;
@@ -458,7 +467,7 @@ namespace keepass2android
             {
                 FindViewById(Resource.Id.hide_fingerprint_info).Click += (sender, args) =>
                 {
-                    _prefs.Edit().PutBoolean(fingerprintinfohidden_prefskey + App.Kp2a.GetDb().CurrentFingerprintPrefKey, true).Commit(); 
+                    _prefs.Edit().PutBoolean(fingerprintinfohidden_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, true).Commit(); 
                     UpdateFingerprintInfo();
                 };
             }
@@ -477,6 +486,33 @@ namespace keepass2android
                 {
                     _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, true).Commit();
                     UpdateAutofillInfo();
+                };
+            }
+
+            if (FindViewById(Resource.Id.configure_child_db) != null)
+            {
+                FindViewById(Resource.Id.configure_child_db).Click += (sender, args) =>
+                {
+                    StartActivity(typeof(ConfigureChildDatabasesActivity));
+                };
+            }
+
+            if (FindViewById(Resource.Id.info_dont_show_child_db_again) != null)
+            {
+                FindViewById(Resource.Id.info_dont_show_child_db_again).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(childdb_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, true).Commit();
+                    UpdateAutofillInfo();
+                };
+            }
+
+
+            if (FindViewById(Resource.Id.info_dont_show_dbreadonly_again) != null)
+            {
+                FindViewById(Resource.Id.info_dont_show_dbreadonly_again).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(dbreadonly_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, true).Commit();
+                    UpdateDbReadOnlyInfo();
                 };
             }
 
@@ -592,6 +628,8 @@ namespace keepass2android
             return _prefs.GetBoolean("InfoTextDisabled_" + infoTextKey, false);
         }
 
+        const string dbreadonly_ignore_prefskey = "dbreadonly_ignore_prefskey";
+        const string childdb_ignore_prefskey = "childdb_ignore_prefskey";
         const string autofillservicewasenabled_prefskey = "AutofillServiceWasEnabled";
         const string fingerprintinfohidden_prefskey = "fingerprintinfohidden_prefskey";
 
@@ -627,16 +665,16 @@ namespace keepass2android
         {
             bool canShowFingerprintInfo = false;
 
-            bool disabledForDatabase = _prefs.GetBoolean(fingerprintinfohidden_prefskey + App.Kp2a.GetDb().CurrentFingerprintPrefKey, false);
+            bool disabledForDatabase = _prefs.GetBoolean(fingerprintinfohidden_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, false);
             bool disabledForAll = _prefs.GetBoolean(fingerprintinfohidden_prefskey, false);
-            if (!disabledForAll && !disabledForDatabase)
+            if (!disabledForAll && !disabledForDatabase && !App.Kp2a.IsChildDatabase(App.Kp2a.CurrentDb))
             {
 
                 FingerprintModule fpModule = new FingerprintModule(this);
-                if (fpModule.FingerprintManager.IsHardwareDetected)
+                if (fpModule.FingerprintManager != null && fpModule.FingerprintManager.IsHardwareDetected)
                 {
                     FingerprintUnlockMode um;
-                    Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.GetDb().Ioc), ""), out um);
+                    Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.CurrentDb.Ioc), ""), out um);
                     canShowFingerprintInfo = um == FingerprintUnlockMode.Disabled;
                 }
             }
@@ -649,6 +687,52 @@ namespace keepass2android
             }
             UpdateBottomBarElementVisibility(Resource.Id.fingerprint_infotext, canShowFingerprintInfo);
         }
+
+        private void UpdateChildDbInfo()
+        {
+            bool canShow = Group == App.Kp2a.CurrentDb.Root
+                && KeeAutoExecExt.GetAutoExecItems(App.Kp2a.CurrentDb.KpDatabase).Any(item =>
+            {
+                bool isexplicit;
+                KeeAutoExecExt.IsDeviceEnabled(item, KeeAutoExecExt.ThisDeviceId, out isexplicit);
+                return !isexplicit;
+            });
+
+            bool disabledForDatabase = _prefs.GetBoolean(childdb_ignore_prefskey+ App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, false);
+
+            if (canShow && !disabledForDatabase)
+            {
+                RegisterInfoTextDisplay("ChildDb"); //this ensures that we don't show the general info texts too soon
+
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.child_db_infotext, canShow);
+        }
+
+        private void UpdateDbReadOnlyInfo()
+        {
+            bool disabledForDatabase = _prefs.GetBoolean(dbreadonly_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, false);
+
+            bool canShow = false;
+
+            if (!disabledForDatabase)
+            {
+                var ioc = App.Kp2a.CurrentDb.Ioc;
+                OptionalOut<UiStringKey> reason = new OptionalOut<UiStringKey>();
+
+                if (App.Kp2a.GetFileStorage(ioc).IsReadOnly(ioc, reason))
+                {
+                    canShow = true;
+                    RegisterInfoTextDisplay(
+                        "DbReadOnly"); //this ensures that we don't show the general info texts too soon
+
+                    FindViewById<TextView>(Resource.Id.dbreadonly_infotext_text).Text =
+                    (GetString(Resource.String.FileReadOnlyMessagePre) + " " +
+                     App.Kp2a.GetResourceString(reason.Result));
+                }
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.dbreadonly_infotext, canShow);
+        }
+
 
         protected void UpdateBottomBarElementVisibility(int resourceId, bool canShow)
         {
@@ -667,8 +751,7 @@ namespace keepass2android
         private void InsertElements()
         {
             MoveElementsTask moveElementsTask = (MoveElementsTask)AppTask;
-            IEnumerable<IStructureItem> elementsToMove =
-                moveElementsTask.Uuids.Select(uuid => App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(uuid, true, null));
+            IEnumerable<IStructureItem> elementsToMove = moveElementsTask.Uuids.Select(uuid => App.Kp2a.FindStructureItem(uuid));
 
 
 
@@ -690,7 +773,7 @@ namespace keepass2android
         {
             String name = Group.Name;
             String titleText;
-            bool clickable = (Group != null) && (Group.IsVirtual == false) && (Group.ParentGroup != null);
+            bool clickable = (Group != null) && (Group.IsVirtual == false) && ((Group.ParentGroup != null) || App.Kp2a.OpenDatabases.Count() > 1);
             if (!String.IsNullOrEmpty(name))
             {
                 titleText = name;
@@ -715,9 +798,7 @@ namespace keepass2android
         {
             if (Group != null)
             {
-                Drawable drawable = App.Kp2a.GetDb().DrawableFactory.GetIconDrawable(this, App.Kp2a.GetDb().KpDatabase, Group.IconId, Group.CustomIconUuid, true);
                 SupportActionBar.SetDisplayShowHomeEnabled(true);
-                //SupportActionBar.SetIcon(drawable);
             }
         }
 
@@ -739,8 +820,10 @@ namespace keepass2android
             {
                 var cursor = _suggestionsAdapter.Cursor;
                 cursor.MoveToPosition(position);
-                string entryIdAsHexString = cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId));
-                EntryActivity.Launch(_activity, App.Kp2a.GetDb().Entries[new PwUuid(MemUtil.HexStringToByteArray(entryIdAsHexString))], -1, _activity.AppTask);
+                
+                ElementAndDatabaseId fullId = new ElementAndDatabaseId(cursor.GetString(cursor.GetColumnIndexOrThrow(SearchManager.SuggestColumnIntentDataId)));
+                var entryId = fullId.ElementId;
+                EntryActivity.Launch(_activity, App.Kp2a.GetDatabase(fullId.DatabaseId).EntriesById[entryId], -1, _activity.AppTask);
                 return true;
             }
 
@@ -830,34 +913,35 @@ namespace keepass2android
             {
                 if (_syncItem != null)
                 {
-                    if (App.Kp2a.GetDb().Ioc.IsLocalFile())
+                    if (((App.Kp2a.OpenDatabases.Count() == 1)  || (EntriesBelongToCurrentDatabaseOnly))
+                        && App.Kp2a.CurrentDb.Ioc.IsLocalFile())
                         _syncItem.SetVisible(false);
                     else
                         _syncItem.SetVisible(!App.Kp2a.OfflineMode);
                 }
 
-                if (App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc) is IOfflineSwitchable)
+                if (((App.Kp2a.OpenDatabases.Count() == 1) || (EntriesBelongToCurrentDatabaseOnly))
+                    &&  (App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc) is IOfflineSwitchable))
                 {
-                    if (_offlineItem != null)
-                        _offlineItem.SetVisible(App.Kp2a.OfflineMode == false);
-                    if (_onlineItem != null)
-                        _onlineItem.SetVisible(App.Kp2a.OfflineMode);
+                    _offlineItem?.SetVisible(App.Kp2a.OfflineMode == false);
+                    _onlineItem?.SetVisible(App.Kp2a.OfflineMode);
                 }
                 else
                 {
-                    if (_offlineItem != null)
-                        _offlineItem.SetVisible(false);
-                    if (_onlineItem != null)
-                        _onlineItem.SetVisible(false);
-
+                    _offlineItem?.SetVisible(false);
+                    _onlineItem?.SetVisible(false);
                 }
             }
             catch (Exception e)
             {
-                Kp2aLog.LogUnexpectedError(new Exception("Cannot UpdateOfflineModeMenu " + (App.Kp2a == null) + " " + ((App.Kp2a == null) || (App.Kp2a.GetDb() == null)) + " " + (((App.Kp2a == null) || (App.Kp2a.GetDb() == null) || (App.Kp2a.GetDb().Ioc == null)) + " " + (_syncItem != null) + " " + (_offlineItem != null) + " " + (_onlineItem != null))));
+                Kp2aLog.LogUnexpectedError(new Exception("Cannot UpdateOfflineModeMenu " + (App.Kp2a == null) + " " + ((App.Kp2a == null) || (App.Kp2a.CurrentDb== null)) + " " + (((App.Kp2a == null) || (App.Kp2a.CurrentDb== null) || (App.Kp2a.CurrentDb.Ioc == null)) + " " + (_syncItem != null) + " " + (_offlineItem != null) + " " + (_onlineItem != null))));
             }
 
         }
+
+        public abstract bool EntriesBelongToCurrentDatabaseOnly { get; }
+
+        public abstract ElementAndDatabaseId FullGroupId { get; }
 
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -880,7 +964,7 @@ namespace keepass2android
                 case Resource.Id.menu_donate:
                     return Util.GotoDonateUrl(this);
                 case Resource.Id.menu_lock:
-                    App.Kp2a.LockDatabase();
+                    App.Kp2a.Lock();
                     return true;
 
                 case Resource.Id.menu_search:
@@ -906,8 +990,10 @@ namespace keepass2android
                     UpdateOfflineModeMenu();
                     Synchronize();
                     return true;
-
-
+                case Resource.Id.menu_open_other_db:
+                    AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);
+                    Finish();
+                    return true;
                 case Resource.Id.menu_sort:
                     ChangeSort();
                     return true;
@@ -960,7 +1046,7 @@ namespace keepass2android
 
         private void Synchronize()
         {
-            var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc);
+            var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
             RunnableOnFinish task;
             OnFinish onFinish = new ActionOnFinish(this, (success, message, activity) =>
             {
@@ -971,9 +1057,9 @@ namespace keepass2android
                 BaseAdapter adapter = (BaseAdapter)((GroupBaseActivity)activity)?.ListAdapter;
                 adapter?.NotifyDataSetChanged();
 
-                if (App.Kp2a.GetDb().OtpAuxFileIoc != null)
+                if (App.Kp2a.CurrentDb.OtpAuxFileIoc != null)
                 {
-                    var task2 = new SyncOtpAuxFile(this, App.Kp2a.GetDb().OtpAuxFileIoc);
+                    var task2 = new SyncOtpAuxFile(this, App.Kp2a.CurrentDb.OtpAuxFileIoc);
                     new ProgressTask(App.Kp2a, activity, task2).Run(true);
                 }
             });
@@ -1022,10 +1108,10 @@ namespace keepass2android
                         ActivityCompat.InvalidateOptionsMenu(this);
 
                         // Mark all groups as dirty now to refresh them on load
-                        Database db = App.Kp2a.GetDb();
-                        db.MarkAllGroupsAsDirty();
+                        
+                        App.Kp2a.MarkAllGroupsAsDirty();
                         // We'll manually refresh this group so we can remove it
-                        db.Dirty.Remove(Group);
+                        App.Kp2a.DirtyGroups.Remove(Group);
 
                         // Tell the adapter to refresh it's list
 
@@ -1082,7 +1168,7 @@ namespace keepass2android
                         Toast.MakeText(ActiveActivity, "Unrecoverable error: " + Message, ToastLength.Long).Show();
                     });
 
-                    App.Kp2a.LockDatabase(false);
+                    App.Kp2a.Lock(false);
                 }
             }
 
@@ -1133,9 +1219,9 @@ namespace keepass2android
                 MoveElementsTask moveElementsTask = (MoveElementsTask)AppTask;
                 foreach (var uuid in moveElementsTask.Uuids)
                 {
-                    IStructureItem elementToMove = App.Kp2a.GetDb().KpDatabase.RootGroup.FindObject(uuid, true, null);
+                    IStructureItem elementToMove = App.Kp2a.FindStructureItem(uuid);
                     if (elementToMove.ParentGroup != Group)
-                        App.Kp2a.GetDb().Dirty.Add(elementToMove.ParentGroup);
+                        App.Kp2a.DirtyGroups.Add(elementToMove.ParentGroup);
                 }
             }
             catch (Exception e)
@@ -1167,7 +1253,7 @@ namespace keepass2android
             base.OnActivityCreated(savedInstanceState);
 
             ListView.SetMultiChoiceModeListener(this);
-            if (App.Kp2a.GetDb().CanWrite)
+            if (App.Kp2a.OpenDatabases.Any(db => db.CanWrite))
             {
                 ListView.ChoiceMode = ChoiceMode.MultipleModal;
 
@@ -1221,13 +1307,10 @@ namespace keepass2android
             {
 
                 case Resource.Id.menu_delete:
-
-                    DeleteMultipleItems task = new DeleteMultipleItems((GroupBaseActivity)Activity, App.Kp2a.GetDb(), checkedItems,
-                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a);
-                    task.Start();
+                    DeleteMultipleItems((GroupBaseActivity)Activity, checkedItems, new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a);
                     break;
                 case Resource.Id.menu_move:
-                    var navMove = new NavigateToFolderAndLaunchMoveElementTask(checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
+                    var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
                     ((GroupBaseActivity)Activity).StartTask(navMove);
                     break;
                 case Resource.Id.menu_copy:
@@ -1240,7 +1323,7 @@ namespace keepass2android
                     break;
 
                 case Resource.Id.menu_navigate:
-                    NavigateToFolder navNavigate = new NavigateToFolder(checkedItems.First().ParentGroup, true);
+                    NavigateToFolder navNavigate = new NavigateToFolder(App.Kp2a.CurrentDb, checkedItems.First().ParentGroup, true);
                     ((GroupBaseActivity)Activity).StartTask(navNavigate);
                     break;
                 case Resource.Id.menu_edit:
@@ -1378,6 +1461,66 @@ namespace keepass2android
         {
             return IsOnlyOneItemChecked() && !IsOnlyOneGroupChecked();
         }
+
+
+        public void  DeleteMultipleItems(GroupBaseActivity activity, List<IStructureItem> checkedItems, OnFinish onFinish, Kp2aApp app)
+        {
+            if (checkedItems.Any() == false)
+                return;
+            //sort checkedItems by database
+            List<KeyValuePair<Database, List<IStructureItem>>> itemsForDatabases =
+                new List<KeyValuePair<Database, List<IStructureItem>>>();
+            foreach (var item in checkedItems)
+            {
+                var db = app.FindDatabaseForElement(item);
+                if (db != null)
+                {
+                    bool foundDatabase = false;
+                    foreach (var listEntry in itemsForDatabases)
+                    {
+                        if (listEntry.Key == db)
+                        {
+                            foundDatabase = true;
+                            listEntry.Value.Add(item);
+                            break;
+                        }
+                    }
+                    if (!foundDatabase)
+                    {
+                        itemsForDatabases.Add(new KeyValuePair<Database, List<IStructureItem>>(db, new List<IStructureItem> { item }));
+                    }
+                }
+
+            }
+
+            int dbIndex = 0;
+            Action<bool, string, Activity> action = null;
+            action = (success, message, activeActivity) =>
+            {
+                if (success)
+                {
+                    dbIndex++;
+                    if (dbIndex == itemsForDatabases.Count)
+                    {
+                        onFinish.SetResult(true);
+                        onFinish.Run();
+                        return;
+                    }
+                    new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
+                        itemsForDatabases[dbIndex].Value, new ActionOnFinish(activeActivity, (b, s, activity1) => action(b, s, activity1)), app)
+                        .Start();
+                }
+                else
+                {
+                    onFinish.SetResult(false, message, null);
+                }
+            };
+
+            new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
+                itemsForDatabases[dbIndex].Value, new ActionOnFinish(activity, (b, s, activity1) => action(b, s, activity1)), app)
+                .Start();
+        }
+
     }
 }
 

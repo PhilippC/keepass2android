@@ -86,6 +86,8 @@ namespace keepass2android
 		ReadOnlyReason_PreKitKat,
 		ReadOnlyReason_ReadOnlyFlag,
 		ReadOnlyReason_ReadOnlyKitKat,
-        ReadOnlyReason_LocalBackup
+        ReadOnlyReason_LocalBackup,
+        Ok,
+        cancel
     }
 }

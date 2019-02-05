@@ -23,7 +23,7 @@ namespace keepass2android
 	/// <summary>
 	/// EqualityComparer implementation to compare PwGroups based on their Id
 	/// </summary>
-	class PwGroupEqualityFromIdComparer: IEqualityComparer<PwGroup>
+	public class PwGroupEqualityFromIdComparer: IEqualityComparer<PwGroup>
 	{
 		#region IEqualityComparer implementation			
 		public bool Equals (PwGroup x, PwGroup y)

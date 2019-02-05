@@ -53,8 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\java\Keepass2AndroidPluginSDK2\app\build\outputs\aar\app-release.aar">
-      <Link>Jars\app-release.aar</Link>
+    <LibraryProjectZip Include="..\java\Keepass2AndroidPluginSDK2\app\build\outputs\aar\Keepass2AndroidPluginSDK2-release.aar">
+      <Link>Jars\Keepass2AndroidPluginSDK2-release.aar</Link>
     </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />

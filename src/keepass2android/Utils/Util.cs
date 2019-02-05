@@ -39,8 +39,30 @@ namespace keepass2android
 {
 	
 	public class Util {
-	    
-	    public static Bitmap DrawableToBitmap(Drawable drawable)
+
+	    public const String KeyFilename = "fileName";
+	    public const String KeyServerusername = "serverCredUser";
+	    public const String KeyServerpassword = "serverCredPwd";
+	    public const String KeyServercredmode = "serverCredRememberMode";
+
+
+        public static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i, string prefix="")
+	    {
+	        i.PutExtra(prefix+KeyFilename, ioc.Path);
+	        i.PutExtra(prefix + KeyServerusername, ioc.UserName);
+	        i.PutExtra(prefix + KeyServerpassword, ioc.Password);
+	        i.PutExtra(prefix + KeyServercredmode, (int)ioc.CredSaveMode);
+	    }
+
+	    public static void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent i, string prefix="")
+	    {
+	        ioc.Path = i.GetStringExtra(prefix + KeyFilename);
+	        ioc.UserName = i.GetStringExtra(prefix + KeyServerusername) ?? "";
+	        ioc.Password = i.GetStringExtra(prefix + KeyServerpassword) ?? "";
+	        ioc.CredSaveMode = (IOCredSaveMode)i.GetIntExtra(prefix + KeyServercredmode, (int)IOCredSaveMode.NoSave);
+	    }
+
+        public static Bitmap DrawableToBitmap(Drawable drawable)
 		{
 			Bitmap bitmap = null;
 
@@ -536,6 +558,15 @@ namespace keepass2android
 	        int width = (int)(0.9 * context.Resources.GetDimension(Android.Resource.Dimension.NotificationLargeIconWidth));
 	        return Bitmap.CreateScaledBitmap(unscaled, width, height, true);
         }
+
+	    public static string GetProtocolId(IOConnectionInfo ioc)
+	    {
+	        string displayPath = App.Kp2a.GetFileStorage(ioc).GetDisplayName(ioc);
+	        int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+	        string protocolId = protocolSeparatorPos < 0 ?
+	            "file" : displayPath.Substring(0, protocolSeparatorPos);
+	        return protocolId;
+	    }
 	}
 }
 

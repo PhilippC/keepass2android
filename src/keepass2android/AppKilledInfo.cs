@@ -26,7 +26,7 @@ namespace keepass2android
 			b.SetMessage(Resource.String.killed_by_os);
 			b.SetPositiveButton(Android.Resource.String.Ok, delegate
 			{
-				Intent i = new Intent(this, typeof(FileSelectActivity));
+				Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
 				i.AddFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
 				StartActivity(i);
 

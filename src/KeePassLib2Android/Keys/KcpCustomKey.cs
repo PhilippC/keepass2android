@@ -45,7 +45,12 @@ namespace KeePassLib.Keys
 			get { return m_pbKey; }
 		}
 
-		public KcpCustomKey(string strName, byte[] pbKeyData, bool bPerformHash)
+	    public uint GetMinKdbxVersion()
+	    {
+	        return 0;
+	    }
+
+	    public KcpCustomKey(string strName, byte[] pbKeyData, bool bPerformHash)
 		{
 			Debug.Assert(strName != null); if(strName == null) throw new ArgumentNullException("strName");
 			Debug.Assert(pbKeyData != null); if(pbKeyData == null) throw new ArgumentNullException("pbKeyData");

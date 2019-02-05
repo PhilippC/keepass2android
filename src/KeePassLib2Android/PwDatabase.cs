@@ -485,12 +485,6 @@ namespace KeePassLib
 			set { m_pbHashOfLastIO = value; }
 		}
 
-		public bool UseFileTransactions
-		{
-			get { return m_bUseFileTransactions; }
-			set { m_bUseFileTransactions = value; }
-		}
-
 		public bool UseFileLocks
 		{
 			get { return m_bUseFileLocks; }

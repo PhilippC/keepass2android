@@ -35,6 +35,7 @@
     <integer name="key_kp2a_alpha">-203</integer>
     <integer name="key_kp2a_switch">-204</integer>
     <integer name="key_kp2a_lock">-205</integer>
+    <integer name="key_kp2a_nextfields">-206</integer>
     
     
 </resources>

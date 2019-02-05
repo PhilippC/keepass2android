@@ -38,7 +38,7 @@
     <string name="default_file_path">/keepass/keepass.kdbx</string>
     <string name="donate_url"><![CDATA[https://philipp.crocoll.net/donate.php?lang=%1$s&app=%2$s]]></string>
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>
-	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski</string>
+	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski, gilbsgilbs</string>
 	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
     <string name="issues">https://github.com/PhilippC/keepass2android/issues</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
@@ -48,7 +48,8 @@
   
 
   <!--  Preference settings -->
-    <string name="algorithm_key">algorithm</string>
+  <string name="AutoReturnFromQuery_key">AutoReturnFromQuery_key</string>
+  <string name="algorithm_key">algorithm</string>
     <string name="app_key">app</string>
     <string name="app_timeout_key">app_timeout_key</string>
 	<string name="show_kill_app_key">show_kill_app_key</string>
@@ -114,8 +115,10 @@
 	<string name="UseFileTransactions_key">UseFileTransactions</string>
 	<string name="LockWhenScreenOff_key">LockWhenScreenOff</string>
 	<string name="LockWhenNavigateBack_key">kp2a_switch_rootedLockWhenNavigateBack</string>
+  <string name="UseKp2aKeyboardInKp2a_key">UseKp2aKeyboardInKp2a</string>
+  
 
-	<string name="NoDonateOption_key">NoDonateOption</string>
+  <string name="NoDonateOption_key">NoDonateOption</string>
   <string name="NoDonationReminder_key">NoDonationReminder</string>
 
 	<string name="UseOfflineCache_key">UseOfflineCache</string>

@@ -36,24 +36,20 @@ using String = System.String;
  * ===================================
  * 
  * Keepass2Android comprises quite a number of different activities and entry points: The app can be started 
- * using the launcher icon (-> Activity "Keepass"), or by sending a URL (-> FileSelect), opening a .kdb(x)-file (->Password),
- * swiping a YubikeyNEO (NfcOtpActivity).
- * While the database is closed, there is only one activity on the stack: Keepass -> FileSelect <-> Password.
- * After opening an database (in Password), Password is always the root of the stack (exception: after creating a database, 
- * FileSelect is the root without Password being open). 
- * Another exception: QueryCredentialsActivity is root of the stack if an external app is querying credentials.
- * QueryCredentialsActivity checks the plugin access permissions, then launches FileSelectActivity (which starts
- * the normal stack.)
+ * using the launcher icon (-> Activity "Keepass"), or by sending a URL (-> SelectCurrentDb) or opening a .kdb(x)-file (->SelectCurrentDb)
+ * There is either only the KeePass activity on stack (no db loaded then) or the first activity on Stack is SelectCurrentDb
  * 
  * Some possible stacks:
- * Password -> Group ( -> Group (subgroups) ... ) -> EntryView -> EntryEdit
+ * SelectCurrentDb -> Group ( -> Group (subgroups) ... ) -> EntryView -> EntryEdit
  *                         (AdvancedSearch Menu)  -> Search -> SearchResults -> EntryView -> EntryEdit
  *                         (SearchWidget)         -> SearchResults -> EntryView -> EntryEdit
- * Password -> ShareUrlResults -> EntryView
- * FileSelect -> Group (after Create DB)
+ * SelectCurrentDb -> ShareUrlResults -> EntryView
+ * SelectCurrentDb -> Password / CreateDb
  * 
+ * If the current database changes (e.g. by selecting a search result from another database), the Group/Entry activities of the previously selected database close automatically.
+ * SelectCurrentDb is only noticable by the user if there are actually several databases, otherwises it either closes or starts another activity when it resumes.
  * 
- * In each of these activities, an AppTask may be present and must be passed to started activities and ActivityResults
+ * In each of the activities SelectCurrentDb/Group/Entry (but not Password/CreateDb/FileSelect), an AppTask may be present and must be passed to started activities and ActivityResults
  * must be returned. Therefore, if any Activity calls { StartActivity(newActivity);Finish(); }, it must specify FLAG_ACTIVITY_FORWARD_RESULT.
  * 
  * Further sub-activities may be opened (e.g. Settings -> ExportDb, ...), but these are not necesarrily
@@ -70,7 +66,7 @@ using String = System.String;
 namespace keepass2android
 {
 	/// <summary>
-	/// Launcher activity of Keepass2Android. This activity usually forwards to FileSelect but may show the revision dialog after installation or updates.
+	/// Launcher activity of Keepass2Android. This activity usually forwards to SelectCurrentDb but may show the revision dialog after installation or updates.
 	/// </summary>
 	[Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue")]
 	[IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "android.intent.category.LAUNCHER", "android.intent.category.MULTIWINDOW_LAUNCHER" })]
@@ -86,8 +82,10 @@ namespace keepass2android
 		public const Result ExitClose = Result.FirstUser + 7;
 		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
 		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
+	    public const Result ExitLoadAnotherDb = Result.FirstUser + 10;
+        
 
-		public const string TagsKey = "@tags";
+        public const string TagsKey = "@tags";
 		public const string OverrideUrlKey = "@override";
 		public const string ExpDateKey = "@exp_date";
 
@@ -236,44 +234,10 @@ namespace keepass2android
 			}
 		}
 
-		IOConnectionInfo LoadIoc(string defaultFileName)
-		{
-			return App.Kp2a.FileDbHelper.CursorToIoc(App.Kp2a.FileDbHelper.FetchFileByName(defaultFileName));
-		}
 
 		private void LaunchNextActivity() {
 
-			
-
-			if (!App.Kp2a.GetDb().Loaded)
-			{
-				// Load default database
-				ISharedPreferences prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(this);
-				String defaultFileName = prefs.GetString(PasswordActivity.KeyDefaultFilename, "");
-
-				if (defaultFileName.Length > 0)
-				{
-					try
-					{
-						PasswordActivity.Launch(this, LoadIoc(defaultFileName), _appTask);
-						Finish();
-						return;
-					}
-					catch (Exception e)
-					{
-						Toast.MakeText(this, e.Message, ToastLength.Long);
-						// Ignore exception
-					}
-				}
-			}
-			else
-			{
-				PasswordActivity.Launch(this, App.Kp2a.GetDb().Ioc, _appTask);
-				Finish();
-				return;
-			}
-
-			Intent intent = new Intent(this, typeof(FileSelectActivity));
+            Intent intent = new Intent(this, typeof(SelectCurrentDbActivity));
 			_appTask.ToIntent(intent);
 			intent.AddFlags(ActivityFlags.ForwardResult);
 			StartActivity(intent);

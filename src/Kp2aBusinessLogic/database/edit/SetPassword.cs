@@ -52,7 +52,7 @@ namespace keepass2android
 		public override void Run ()
 		{
 			StatusLogger.UpdateMessage(UiStringKey.SettingPassword);
-			PwDatabase pm = _app.GetDb().KpDatabase;
+			PwDatabase pm = _app.CurrentDb.KpDatabase;
 			CompositeKey newKey = new CompositeKey ();
 			if (String.IsNullOrEmpty (_password) == false) {
 				newKey.AddUserKey (new KcpPassword (_password)); 
@@ -74,7 +74,7 @@ namespace keepass2android
 
 			// Save Database
 			_onFinishToRun = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
+			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}

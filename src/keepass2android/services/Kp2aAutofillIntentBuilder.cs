@@ -24,9 +24,19 @@ namespace keepass2android.services
             return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
         }
 
+        public IntentSender GetDisableIntentSenderForResponse(Context context, string query, bool isManualRequest, bool isDisable)
+        {
+            Intent intent = new Intent(context, typeof(DisableAutofillForQueryActivity));
+            intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
+            intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
+            intent.PutExtra(DisableAutofillForQueryActivity.ExtraIsDisable, isDisable);
+
+            return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
+        }
+
         public Intent GetRestartAppIntent(Context context)
         {
-            var intent = new Intent(context, typeof(FileSelectActivity));
+            var intent = new Intent(context, typeof(SelectCurrentDbActivity));
             intent.AddFlags(ActivityFlags.ForwardResult);
             return intent;
         }

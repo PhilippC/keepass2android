@@ -97,7 +97,7 @@ namespace keepass2android
 			Kp2aLog.Log("OngoingNotificationsService.OnTaskRemoved: " + rootIntent.Action);
 
 			// If the user has closed the task (probably by swiping it out of the recent apps list) then lock the database
-			App.Kp2a.LockDatabase();
+			App.Kp2a.Lock();
 		}
 
 		public override void OnDestroy()
@@ -111,7 +111,7 @@ namespace keepass2android
 			// If the service is killed, then lock the database immediately
 			if (App.Kp2a.DatabaseIsUnlocked)
 			{
-				App.Kp2a.LockDatabase(false);
+				App.Kp2a.Lock(false);
 			}
 
 			UnregisterReceiver(_screenOffReceiver);
@@ -228,16 +228,22 @@ namespace keepass2android
 
 		private static string GetDatabaseName()
 		{
-			
-			var db = App.Kp2a.GetDb().KpDatabase;
-			var name = db.Name;
-			if (String.IsNullOrEmpty(name))
-			{
-				//todo: if paranoid ("don't remember recent files") return "***"
-				name = App.Kp2a.GetFileStorage(db.IOConnectionInfo).GetFilenameWithoutPathAndExt(db.IOConnectionInfo);
-			}
+		    string displayString = "";
+		    foreach (Database db in App.Kp2a.OpenDatabases)
+		    {
+		        var kpDatabase = db.KpDatabase;
+		        var dbname = kpDatabase.Name;
+		        if (String.IsNullOrEmpty(dbname))
+		        {
+		            //todo: if paranoid ("don't remember recent files") return "***"
+		            dbname = App.Kp2a.GetFileStorage(kpDatabase.IOConnectionInfo).GetFilenameWithoutPathAndExt(kpDatabase.IOConnectionInfo);
+		        }
+		        if (displayString != "")
+		            displayString = displayString + ", ";
+		        displayString += dbname;
+		    }
 
-			return name;
+		    return displayString;
 		}
 		#endregion
 
