@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Timeout dell\'applicazione</string>
-  <string name="app_timeout_summary">Periodo di inattività dell\'applicazione che precede il blocco del database.</string>
-  <string name="kill_app_label">Termina il processo dell\'applicazione</string>
   <string name="show_kill_app">Pulsante-Chiudi</string>
-  <string name="show_kill_app_summary">Mostra un pulsante nella schermata password per terminare l\'applicazione (per paranoici)</string>
-  <string name="application">Applicazione</string>
-  <string name="application_settings">Impostazioni applicazione</string>
   <string name="ShowGroupnameInSearchResult_title">Visualizza il nome del gruppo nei risultati di ricerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Visualizza il nome del gruppo sotto i titoli delle voci nei risultati di ricerca. Utile se più voci hanno lo stesso nome.</string>
   <string name="NavigationToGroupCompleted_message">Il gruppo visualizzato ora è: %1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">Nessuna voce nel database o nel gruppo.</string>
   <string name="no_results">Nessun risultato</string>
   <string name="no_url_handler">Nessun gestore per questo url.</string>
-  <string name="open_recent">Apri un database recente (clicca per aprire)</string>
   <string name="omitbackup_title">Non cercare tra le voci di backup e cestino</string>
   <string name="omitbackup_summary">Escludi i gruppi \'Backup\' e Cestino dai risultati di ricerca</string>
   <string name="pass_filename">Nome file del database di KeePass</string>
@@ -330,7 +323,6 @@
   <string name="NoDonationReminder_title">Non chiedere mai di donare</string>
   <string name="NoDonationReminder_summary">Non ti darò un centesimo oppure ho già donato. Non chiedere una donazione, nemmeno al compleanno dell\'autore.</string>
   <string name="UseOfflineCache_title">Cache del database</string>
-  <string name="UseOfflineCache_summary">Conserva una copia dei file del database nella directory della cache dell\'applicazione. Questo consente di utilizzare i database, anche quando il file del database non è accessibile.</string>
   <string name="CreateBackups_title">Backup locali</string>
   <string name="CreateBackups_summary">Creare una copia di backup locale dopo aver caricato correttamente un database.</string>
   <string name="UpdatingBackup">Aggiornamento del backup locale...</string>
@@ -431,7 +423,6 @@
   <string name="otp_aux_file">File OTP ausiliario</string>
   <string name="ErrorOcurred">Si è verificato un errore:</string>
   <string name="DuplicateUuidsError">Il database è corrotto: ho trovato degli ID duplicati. (Hai salvato con Minikeepass?) Reimporta in un nuovo database con Keepass 2 per PC e seleziona \'Crea nuovo ID\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Puoi disattivare questo messaggio d\'errore in Impostazioni/Applicazione/Gestione file/Cerca UUID duplicati. Tieni presente che si potrebbero verificare dei comportamenti imprevisti. E\' consigliato correggere il database.</string>
   <string name="synchronize_database_menu">Sincronizza il database…</string>
   <string name="CannotMoveGroupHere">Non è possibile spostare il gruppo in questo gruppo.</string>
   <string name="donate_question">Oggi è l\'Oktoberfest! Se ti piace Keepass2Android: non sarebbe un buon giorno per offrirmi una birra?</string>
@@ -463,7 +454,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Apps/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,7 +469,6 @@
   <string name="help_master_password">Il database viene cifrato con la password che inserisci qui. Scegli una password complessa per mantenere sicuro il database! Suggerimento: pensa ad una o due frasi ed utilizza le prime lettere delle parole per comporre la password. Includi anche la punteggiatura.</string>
   <string name="hint_master_password">Seleziona una password principale per proteggere il database:</string>
   <string name="key_file">File chiave</string>
-  <string name="help_key_file">Un file chiave è, essenzialmente, una password salvata in un file. I file chiave sono generalmente più sicuri delle password principali perché possono essere molto più complessi; tuttavia è anche più difficile tenerli al sicuro. Se carichi il database nel Cloud, non caricare lì anche il file chiave! Lo renderebbe totalmente inutile! Importante: non cambiare il contenuto del file chiave dopo aver creato il database!</string>
   <string name="hint_key_file">Scegli se vuoi utilizzare un file chiave in aggiunta alla password principale:</string>
   <string name="use_key_file">Usa file chiave</string>
   <string name="error_adding_keyfile">Errore nell\'aggiunta del file chiave!</string>
@@ -531,9 +520,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Dati della voce corrente</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Il plugin riceverà tutti i dati relativi alla voce selezionata e gli sarà permesso di proporre azioni e modificare la sua visualizzazione.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Interroga proprie credenziali</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Il plugin potrà controllare le credenziali associate con il proprio pacchetto applicativo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Interroga credenziali</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Il plugin potrà controllare le credenziali su delega di siti web o applicazioni.</string>
   <string name="get_regular_version">Ottieni altri tipi di archiviazione</string>
   <string name="CertificateWarning">Attenzione: validazione del certificato del server fallita: %1$s. Installa il certificato principale appropriato sul tuo dispositivo o controlla le impostazioni!</string>
   <string name="CertificateFailure">Errore: validazione del certificato del server fallita! Installa il certificato principale appropriato sul tuo dispositivo o controlla le impostazioni!</string>
@@ -544,7 +531,6 @@
   <string name="FileIsReadOnlyOnKitkat">Il file che hai selezionato è in sola lettura per Keepass2Android a causa delle restrizioni di Android 4.4+.</string>
   <string name="CopyFileRequired">Per poterlo usare, devi copiarlo in un\'altra posizione.</string>
   <string name="CopyFileRequiredForEditing">Per modificarlo, devi copiare il file in un\'altra posizione.</string>
-  <string name="ClickOkToSelectLocation">Premi OK per selezionare il percorso dove copiare il file.</string>
   <string name="FileReadOnlyTitle">Il database è in sola lettura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha aperto il database corrente in sola lettura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembra che tu abbia aperto il file da un\'app esterna. In questa modalità non è supportata la scrittura. Se vuoi modificare il database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando una delle opzioni disponibili, se possibile.</string>
@@ -584,11 +570,6 @@
 • assicurati di aver inserito la password corretta. Usa l\'icona che rappresenta un occhio per rivelare la password immessa.\n
 • assicurati di aver selezionato il tipo di password corretto. Assicurati che coincida con il tipo usato quando hai creato il database.\n
 • assicurati di aver selezionato il file del database corretto.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n  
-   • Suggerimento: se pensi che il tuo file di database possa essere danneggiato, oppure non ricordi la password principale dopo averla modificata, puoi provare con l\'ultima versione di file aperta correttamente facendo clic su \"%1$s\" e selezionando il backup locale.</string>
-  <string name="HintLocalBackupOtherError">     \n
-     • Suggerimento: Keepass2Android ha archiviato l\'ultima versione di file aperto correttamente nella memoria interna. È possibile aprirlo facendo clic su \"%1$s\" e selezionando il backup locale.
-  </string>
   <string name="CorruptDatabaseHelp">Il file è corrotto.\n
 Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\n
 
@@ -619,22 +600,11 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="ErrorReportTitle">Keepass2Android: si è verificato un errore.</string>
   <string name="ErrorReportText">Si è verificato un errore imprevisto durante l\'esecuzione di Keepass2Android. Ti preghiamo di aiutarci a risolvere il problema acconsentendo ad inviare le segnalazioni d\'errore.</string>
-  <string name="ErrorReportPromise">Le segnalazioni di errore non conterranno mai alcun contenuto del database o la password principale. È possibile disattivarle nelle impostazioni dell\'applicazione.</string>
   <string name="ErrorReportEnable">Abilita</string>
   <string name="ErrorReportDisable">Disabilita</string>
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
-  <string name="ChangeLog_1_07">Versione 1.07-pre2\n
-     * Permette di aprire più database, compatibile con KeeAutoExec\n
-     * SFTP: Consentire l\'autenticazione della chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
-     * Introduce il supporto pCloud - grazie a gilbsgilbs!\n
-     * Rende esplicito il supporto per Nextcloud\n
-     * Migliora il salvataggio e l\'aggiornamento degli allegati alle voci\n
-     * Altre opzioni per adattare il comportamento alle preferenze personali\n
-     * SSL: Certificati utente di fiducia\n
-     * correzioni di bug\n
-  </string>
   <string name="ChangeLog_1_06">Versione 1.06\n
 * passato a ykDroid al posto di YubiChallenge come app per Yubikey Challenge-Response.\n
 * implementato il supporto per il Challenge-Response di KeepassXC. Nota: Il formato del database deve essere KDBX4!\n
@@ -750,19 +720,6 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * impedisce di prendere screenshot dalle schermate QuickUnlock e delle password\n
 * inverte l\'ordinamento per data di modifica (ora è discendente)\n
 * correzioni di bug: la vista Note ora viene aggiornata correttamente dopo le modifiche, la vista Password ora nasconde correttamente (spero) le password su tutti i dispositivi, risolve il problema che ha permesso l\'inserimento di una voce due volte, risolve il problema che mostrava l\'avviso di UUID duplicati anche dopo la correzione del database\n</string>
-  <string name="ChangeLog_0_9_6">Versione 0.9.6\n
-* permette di importare file chiave e/o file database locali in una cartella interna della app (vedere impostazioni)\n
-* permette diverse opzioni di ordinamentno\n
-* migliorate le preferenze per la commutazione automatica della tastiera\n
-* aggiornato il logo dell\'applicazione e la visualizzazione delle notifiche, design by Stefano Pignataro (http://www.spstudio.at)\n
-* il generatore di password ricorda le ultime impostazioni\n
-* impostazione visibilità notifica per la schermata di blocco di Android 5\n
-* ora il campo della password principale viene cancellato quando si esce dalla app senza premere OK\n
-* sistemato problema con lingua di input mancante nelle impostazioni tastiera di alcuni dispositivi\n
-*  sistemato problema di commutazione automatica della tastiera nei dispositivi rootati\n
-* aggiunto controllo per database corrotti (UUID duplicati)\n
-* ricarica automatica del database qundo vengono rilevate modifiche, risolve preoccupazioni sulla sicurezza riguardo il rivelare la password principale\n
-* migliorato il layout della tastiera piccola polacca, sistemato il tema delle impostazioni tastiera (grazie a Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versione 0.9.5</b>\n
 * corregge i problemi con la navigazione delle cartelle (in particolare su Android 4.4)\n
 * risolve il problema con il caricamento dei file .kdb (Keepass 1) su Nexus 5 con Android Lollipop\n
@@ -822,13 +779,6 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
 * Consentito lo spostamento di voci e gruppi\n
 * L\'icona QuickUnlock può essere resa trasparente (vedi le impostazioni)\n
 * Correzioni di errori</string>
-  <string name="ChangeLog_0_8_5"><b>Versione 0.8.5</b>\n
-* i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi le impostazioni. \n
-* Icona di notifica per visualizzare lo stato del blocco del database (vedi Impostazioni)\n
-* Migliorato il rilevamento dello stato del blocco del database in alcune circostanze \n
-* I file dei database vengono caricati in memoria mentre stai digitando la password per aumentare la velocità di caricamento (vedi Impostazioni) \n
-* Le voci possono essere aggiunte al gruppo principale \n
-* Correzione di errori (risoluzione campi con riferimenti, problemi con la tastiera su dispositivi italiani e cinesi)</string>
   <string name="ChangeLog_0_8_4"><b>Versione 0.8.4</b>\n
 * Le modifiche al database esterno vengono rilevate ed unite durante il salvataggio\n
 * Migliorate le performance durante il caricamento\n
@@ -939,7 +889,6 @@ Prima release pubblica
   <string name="show_autofill_help">Mostra aiuto per Compilazione automatica</string>
   <string name="autofill_sign_in_prompt">Compila con Keepass2Android</string>
   <string name="autofill_disable">Disattiva Compilazione automatica per %1$s</string>
-  <string name="autofill_enable">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha rilevato un lettore di impronte digitali. Desideri attivare lo sblocco con impronta digitale per questo database?</string>
   <string name="understand">Ho capito</string>
