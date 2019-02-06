@@ -5,7 +5,7 @@
   <string name="about_feedback">Feedback</string>
   <string name="about_homepage">Startpagina</string>
   <string name="AboutText">Keepass2Android is een wachtwoordmanager voor Android die KeePass 2.x databases kan lezen en schrijven.</string>
-  <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid, een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van het werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
+  <string name="CreditsText">De gebruikersinterface is gebaseerd op KeepassDroid, een port ontwikkeld door Brian Pellin. Code voor de database operaties is gebaseerd op KeePass door Dominik Reichl. De Android robot is gereproduceerd of aangepast van werk gemaakt en gedeeld door Google en gebruikt in overeenstemming met de voorwaarden beschreven in de Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">SFTP ondersteuning is geïmplementeerd door middel van de JSch-bibliotheek onder BSD-licentie, gemaakt door JCraft, Inc.</string>
   <string name="CreditsIcons">Het hamer-pictogram is gemaakt door John Caserta van het Noun Project. Het pinguïn-pictogram is gemaakt door Adriano Emerick van het Noun Project. Het veer-pictogram is gemaakt door Jon Testa van het Noun Project. Het Apple-pictogram is gemaakt door Ava Rowell van het Noun Project. Het afbeelding-pictogram komt van https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accepteren</string>
@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Toepassing timeout</string>
-  <string name="app_timeout_summary">Tijd tot het vergrendelen van de database bij inactiviteit.</string>
-  <string name="kill_app_label">Applicatieproces beëindigen</string>
   <string name="show_kill_app">Sluiten-Knop</string>
-  <string name="show_kill_app_summary">Laat een knop zien in het wachtwoordscherm om de applicatie te beëindigen (voor paranoïde gebruikers)</string>
-  <string name="application">Applicatie</string>
-  <string name="application_settings">Applicatie-instellingen</string>
   <string name="ShowGroupnameInSearchResult_title">Toon groepsnaam in zoekresultaat</string>
   <string name="ShowGroupnameInSearchResult_resume">Toon groepsnaam onder item namen in zoekresultaten. Handig als verschillende items dezelfde naam hebben.</string>
   <string name="NavigationToGroupCompleted_message">Getoonde groep is nu: %1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">Geen records in de database of groep.</string>
   <string name="no_results">Geen zoekresultaten</string>
   <string name="no_url_handler">Geen afhandeling voor deze url mogelijk.</string>
-  <string name="open_recent">Recente database openen (klik om te openen)</string>
   <string name="omitbackup_title">Niet in back-up en prullenbak zoeken</string>
   <string name="omitbackup_summary">Laat \'Back-up\' en Prullenbak-groep weg uit zoekresultaten</string>
   <string name="pass_filename">KeePass databasebestandsnaam</string>
@@ -330,7 +323,6 @@
   <string name="NoDonationReminder_title">Nooit vragen om een donatie</string>
   <string name="NoDonationReminder_summary">Ik geef je nog geen dubbeltje of ik heb al gedoneerd. Niet vragen om een donatie, zelfs niet op de verjaardag van de auteur.</string>
   <string name="UseOfflineCache_title">Database caching</string>
-  <string name="UseOfflineCache_summary">Houd een kopie van de databasebestanden in de app cache map. Hierdoor kan de database gebruikt worden, zelfs als het databasebestand niet toegankelijk is.</string>
   <string name="CreateBackups_title">Lokale back-ups</string>
   <string name="CreateBackups_summary">Maak een lokale back-up na het goed openen van een database.</string>
   <string name="UpdatingBackup">Lokale back-up bijwerken...</string>
@@ -431,7 +423,6 @@
   <string name="otp_aux_file">OTP hulpbestand</string>
   <string name="ErrorOcurred">Een fout is opgetreden:</string>
   <string name="DuplicateUuidsError">Database is corrupt: dubbele IDs gevonden. (Heb je het opgeslagen met Minikeepass?) Importeer alstublieft opnieuw in een nieuwe database met Keepass 2 voor PC en selecteer \'Nieuwe id\'s maken\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Deze foutmelding kun je uitschakelen in Instellingen/Applicatie-instellingen/Omgang met bestanden/Controleren op dubbele UUIDs. Houd er rekening mee dat onverwacht gedrag kan optreden. Het is aanbevolen om de database te repareren.</string>
   <string name="synchronize_database_menu">Database synchroniseren…</string>
   <string name="CannotMoveGroupHere">Kan de groep niet naar deze groep verplaatsen.</string>
   <string name="donate_question">Vandaag is het Oktoberfeest! Als je Keepass2Android leuk vind: zou het niet de uitgelezen dag zijn om mij te trakteren op een biertje?</string>
@@ -463,7 +454,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A map)</string>
-  <string name="filestoragehelp_dropboxKP2A">Als je KP2A volledige toegang tot dropbox wilt geven, kies je deze optie. Het zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het maken van een nieuwe database. Als je al een database heeft, gebruik deze optie om de map te maken, plaats daarna het bestand in de map (vanaf uw PC) en kies deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,7 +469,6 @@
   <string name="help_master_password">De database is versleuteld met het hier ingevoerde wachtwoord. Kies een sterk wachtwoord om de database te beveiligen! Tip: Bedenk een zin of twee en gebruik de eerste letters van de woorden als wachtwoord. Gebruik ook de leestekens.</string>
   <string name="hint_master_password">Kies een hoofdwachtwoord om jouw database te beschermen:</string>
   <string name="key_file">Sleutelbestand</string>
-  <string name="help_key_file">Een sleutelbestand is feitelijk een wachtwoord opgeslagen in een bestand. Sleutelbestanden zijn doorgaans sterker dan hoofdwachtwoorden omdat de sleutel veel ingewikkelder kan zijn; hoewel het lastiger is om hem geheim te houden. Als je de database in de cloud opslaat, sla dan niet jouw sleutelbestand daar ook op! Dat zou het volledig nutteloos maken! Belangrijk: verander de inhoud van het sleutelbestand niet na het maken van de database!</string>
   <string name="hint_key_file">Kies als je gebruik wilt maken van een sleutelbestand naast het hoofdwachtwoord:</string>
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
@@ -531,9 +520,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Gegevens huidige item</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">De plug-in zal alle data van het huidige database item krijgen en kan acties aanbieden en de weergave van het item wijzigen.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Zoek eigen inloggegevens</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">De plug-in wordt toegestaan om te zoeken naar de inloggegevens die gekoppeld zijn met zijn eigen applicatie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Zoek inloggegevens</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">De plug-in zal worden toegestaan te zoeken naar inloggegevens voor specifieke websites of programma\'s.</string>
   <string name="get_regular_version">Verkrijg meer opslagmethodes</string>
   <string name="CertificateWarning">Waarschuwing: Server certificaat validatie mislukt: %1$s. Installeer een passend root-certificaat op je apparaat of zie instellingen!</string>
   <string name="CertificateFailure">Fout: Server certificaat validatie mislukt! Installeer een passend root-certificaat op je apparaat of zie instellingen!</string>
@@ -544,7 +531,6 @@
   <string name="FileIsReadOnlyOnKitkat">Het geselecteerde bestand is alleen-lezen voor Keepass2Android vanwege beperkingen op Android 4.4 +.</string>
   <string name="CopyFileRequired">Om het te gebruiken moet je het kopiëren naar een andere locatie.</string>
   <string name="CopyFileRequiredForEditing">Om het te bewerken moet je het kopiëren naar een andere locatie.</string>
-  <string name="ClickOkToSelectLocation">Klik op OK om een locatie te kiezen waar het bestand naartoe moet worden gekopieerd.</string>
   <string name="FileReadOnlyTitle">Database is alleen-lezen</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android heeft de huidige database geopend in de modus alleen-lezen.</string>
   <string name="ReadOnlyReason_PreKitKat">Het lijkt alsof je het bestand hebt geopend vanuit een externe app. Dit biedt geen ondersteuning voor schrijven. Als je wijzigingen wilt aanbrengen aan de database: sluit de database en selecteer \'database wijzigen\'. Open vervolgens het bestand indien mogelijk opnieuw vanaf een van de beschikbare opties.</string>
@@ -584,10 +570,6 @@
   • Zorg dat je het correcte wachtwoord hebt ingevuld. Gebruik het oog-pictogram om het ingevoerde wachtwoord te tonen.\n
   • Zorg dat je het correcte wachtwoordtype hebt gekozen. Dit dient overeen te komen met het type dat je gekozen heeft bij het aanmaken van de database.\n
   • Zorg dat je het juiste bestand hebt gekozen.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-• Hint: als je denkt dat je database corrupt kan zijn, of als je het hoofdwachtwoord niet meer weet nadat je hebt gewijzigd, dan kun je proberen de laatst goed geopende versie te openen door \"%1$s\" te klikken en de lokale back-up te kiezen.</string>
-  <string name="HintLocalBackupOtherError">\n
-• Hint: Keepass2Android heeft de laatst goed geopende versie opgeslagen in intern geheugen. Je kunt deze openen door op \"%1$s\" te klikken en de lokale back-up te kiezen.  </string>
   <string name="CorruptDatabaseHelp">Het bestand is beschadigd. \n
   Dit zijn enkele aanwijzingen om het probleem te diagnosticeren:\n
   
@@ -620,22 +602,11 @@
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="ErrorReportTitle">Keepass2Android: Er is een fout opgetreden.</string>
   <string name="ErrorReportText">Een onbekende fout is opgetreden tijdens het uitvoeren van Keepass2Android. Help ons deze fout op te lossen door een foutrapport op te sturen.</string>
-  <string name="ErrorReportPromise">Foutrapporten bevatten nooit de inhoud van je database of het hoofdwachtwoord. Je kunt het sturen van foutrapporten uitschakelen bij de instellingen.</string>
   <string name="ErrorReportEnable">Inschakelen</string>
   <string name="ErrorReportDisable">Uitschakelen</string>
   <string name="ErrorReportAsk">Vragen na het optreden van een fout</string>
   <string name="ErrorReportPrefTitle">Foutrapporten verzenden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
-  <string name="ChangeLog_1_07">    Versie 1.07-pre2\n
-    * toestaan om meer dan één database, compatibel met KeeAutoExec te openen\n
-    * SFTP: Verificatie via openbare sleutels, controle op gewijzigde host-sleutel\n
-    * introductie van pCloud ondersteuning - dankzij gilbsgilbs! \n
-    * Nextcloud-ondersteuning expliciet gemaakt\n
-    * verbeteren van opslaan en bijwerken van bijlagen\n
-    * meer opties voor de aanpassing van gedrag aan persoonlijke voorkeuren\n
-    * SSL: vertrouw gebruikerscertificaten\n
-    * bug opgelost\n
-  </string>
   <string name="ChangeLog_1_06">  Versie 1.06\n
   * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey challenge/response.\n
   * Ondersteuning voor KeepassXC-stijl challenge/response. Merk op: de database-indeling moet KDBX4 zijn!\n
@@ -753,19 +724,6 @@ ChangeLog_1_05  </string>
 		* Voorkomt screenshots van Snel Openen en wachtwoordschermen\n
 		* Omgekeerde sorteervolgorde voor Sorteren op wijzigingsdatum (nu aflopend)\n
 		* Bug fixes: Notitie schermen nu correct vernieuwd na wijzigingen, Wachtwoord schermen verbergen nu het wachtwoord correct op (hopelijk) alle apparaten, probleem opgelost dat het toevoegen van dubbele items toestond, probleem opgelost waarbij de Dubbele UUID melding werd weergegeven na het repareren van de database\n</string>
-  <string name="ChangeLog_0_9_6">Versie 0.9.6\n
-		* mogelijkheid om sleutelbestand en/of database naar het interne geheugen van de app te kopiëren (zie instellingen)\n
-		* verschillende sorteeropties\n
-		* instellingen voor automatisch toetsenbordwisselen verbeterd\n
-		* applicatielogo en ontwerp van notificaties bijgewerkt, ontworpen door Stefano Pignataro (http://www.spstudio.at)\n
-		* wachtwoordgenerator onthoudt instellingen\n
-		* instellen zichtbaarheid notificaties voor vergrendelscherm van Android 5\n
-		* hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op OK te klikken\n
-		* opgelost: probleem met ontbrekende invoertalen in toetsenbordinstellingen op sommige apparaten\n
-		* opgelost: probleem met automatisch toetsenbordwisselen op geroote apparaten\n
-		* check toegevoegd voor corrupte databases (duplicate UUIDS)\n
-		* automatisch herladen van database wanneer wijzigingen worden gedetecteerd, lost beveiligingsvraagstuk over het lekken van het hoofdwachtwoord op\n
-		* verbeterd van Poolse kleine toetsenbord, verbeterd thema van de toetsenbordinstellingen (dank aan Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versie 0.9.5</b>\n
 		* Opgelost: problemen met bestanden selecteren (vooral op Android 4.4)\n
 		* Opgelost: probleem met laden van kdb-bestanden (Keepass 1) op Nexus 5 met Android Lollipop\n
@@ -824,13 +782,6 @@ ChangeLog_1_05  </string>
 		* Mogelijkheid om items en groepen te veranderen\n
 		* Snel Openen pictogram kan transparant gemaakt worden (zie instellingen)\n
 		* Bug fixes</string>
-  <string name="ChangeLog_0_8_5">  <b>Versie 0.8.5</b>\n
- * Externe bestanden worden opgeslagen in de lokale applicatiecache om offline gebruik mogelijk te maken (inclusief wijzigen en latere synchronisatie)\n
- * Notificatie-icoon om de versleutelingsstatus van de database weer te geven (zie instellingen)\n
- * Verbeterde bepaling van versleutelingsstatus in sommige situaties\n
- * Database-bestanden worden in het geheugen geladen terwijl je het wachtwoord aan het typen bent voor betere prestaties (zie instellingen)\n
- * Items kunnen aan de root-groep worden toegevoegd \n
- * Bug fixes (oplossing voor verwijzingen, problemen met toetsenbord op Italiaanse en Chinese toestellen)</string>
   <string name="ChangeLog_0_8_4">  <b>Version 0.8.4</b>\n
  * Veranderingen in externe database worden herkend en samengevoegd bij opslaan\n
  * Verbeterde opstartsnelheid\n
@@ -942,7 +893,6 @@ Eerste publieke publicatie
   <string name="show_autofill_help">Toon help voor automatisch aanvullen</string>
   <string name="autofill_sign_in_prompt">Vullen met Keepass2Android</string>
   <string name="autofill_disable">Automatisch invoeren uitschakelen voor %1$s</string>
-  <string name="autofill_enable">Automatisch invoeren inschakelen voor %1$s</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android heeft vingerafdruk hardware gedetecteerd. Wil je je vingerafdruk gebruiken voor het ontgrendelen van deze database?</string>
   <string name="understand">Ik begrijp het</string>
