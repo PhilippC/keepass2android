@@ -933,7 +933,7 @@ Publicación inicial</string>
   <string name="show_autofill_help">Mostrar ayuda de Autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
   <string name="autofill_disable">Desactivar Autorrelleno para %1$s</string>
-  <string name="autofill_enable">Activar Autorrelleno para %1$s</string>
+  <string name="autofill_enable_for">Activar Autorrelleno para %1$s</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware de huellas dactilares. ¿Desea activar desbloqueo de esta base de datos mediante huella digital?</string>
   <string name="understand">Entiendo</string>

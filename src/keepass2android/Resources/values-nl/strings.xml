@@ -942,7 +942,7 @@ Eerste publieke publicatie
   <string name="show_autofill_help">Toon help voor automatisch aanvullen</string>
   <string name="autofill_sign_in_prompt">Vullen met Keepass2Android</string>
   <string name="autofill_disable">Automatisch invoeren uitschakelen voor %1$s</string>
-  <string name="autofill_enable">Automatisch invoeren inschakelen voor %1$s</string>
+  <string name="autofill_enable_for">Automatisch invoeren inschakelen voor %1$s</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android heeft vingerafdruk hardware gedetecteerd. Wil je je vingerafdruk gebruiken voor het ontgrendelen van deze database?</string>
   <string name="understand">Ik begrijp het</string>

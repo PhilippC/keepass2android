@@ -602,7 +602,7 @@
   <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
   <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
-  <string name="ChangeLog"><b>Version 0.6.2</>
+  <string name="ChangeLog"><b>Version 0.6.2</b>
 * Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
 * Továbbfejlesztett kereső dialógus
 * Továbbfejlesztett keresési eredmények ha a megosztott URL aldomaint tartalmaz

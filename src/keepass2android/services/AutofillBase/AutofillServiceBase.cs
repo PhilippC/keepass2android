@@ -131,7 +131,7 @@ namespace keepass2android.services.AutofillBase
             var sender = IntentBuilder.GetDisableIntentSenderForResponse(this, query, isManual, isForDisable);
             
             RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
-                GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable, new Java.Lang.Object[] { query}), Resource.Drawable.ic_menu_close_grey);
+                GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { query}), Resource.Drawable.ic_menu_close_grey);
 
             var datasetBuilder = new Dataset.Builder(presentation);
             datasetBuilder.SetAuthentication(sender);

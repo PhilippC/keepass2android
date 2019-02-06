@@ -914,7 +914,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="show_autofill_help">オートフィルのヘルプを表示</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
   <string name="autofill_disable">%1$s の自動入力を無効にする</string>
-  <string name="autofill_enable">%1$s の自動入力を有効にする</string>
+  <string name="autofill_enable_for">%1$s の自動入力を有効にする</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
   <string name="enable_fingerprint_hint">Keepass2Android は指紋認証ハードウェアを検出しました。指紋認証を有効にして、このデータベースのロックを解除しますか?</string>
   <string name="understand">理解しました</string>

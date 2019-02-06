@@ -625,15 +625,18 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
   <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
-  <string name="ChangeLog_1_07">Version 1.07-pre2\n
-* Zulassen das mehrere Datenbaneken geöffnet werden, kompatibel mit KeeAutoExec\n
-* SFTP: Erlaube Authentifizierung des öffentlichen Schlüssels, überprüfe, ob Hostschlüssel sich geändert hat\n
-* Vorstellung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
-* Direkte Nextcloud-Unterstützung\n
-* Verbessertes Speichern und Aktualisieren von Eintragsanhängen\n
-* Zusätzliche Optionen, um Verhalten nach persönlichen Vorlieben zu verändern\n
-* SSL: Vertraue Benutzerzertifikaten\n
-* Fehlerbehebungen\n  </string>
+  <string name="ChangeLog_1_07">
+    Version 1.07-pre4\n
+    * Zulassen das mehrere Datenbaneken geöffnet werden, kompatibel mit KeeAutoExec\n
+    * SFTP: Erlaube Authentifizierung des öffentlichen Schlüssels, überprüfe, ob Hostschlüssel sich geändert hat\n
+    * Vorstellung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
+    * Direkte Nextcloud-Unterstützung\n
+    * Verbessertes Speichern und Aktualisieren von Eintragsanhängen\n
+    * Zusätzliche Optionen, um Verhalten nach persönlichen Vorlieben zu verändern\n
+    * SSL: Vertraue Benutzerzertifikaten\n
+    * Verbesserungen an AutoFill (funktioniert nun mit Firefox, Popups können reduziert werden)\n
+    * Fehlerbehebungen\n
+  </string>
   <string name="ChangeLog_1_06">Version 1.06\n     
 * Wechsel zu ykDroid statt YubiChallenge als App für Yubikey Challenge-Response.\n     
 * Unterstützung für KeepassXC-style Challenge-Response implementiert. Hinweis: Datenbankformat muss KDBX4 sein!\n     
@@ -929,7 +932,7 @@ Erstes öffentliches Release</string>
   <string name="show_autofill_help">Autofill-Hilfe anzeigen</string>
   <string name="autofill_sign_in_prompt">Mit Keepass2Android ausfüllen</string>
   <string name="autofill_disable">AutoFill für %1$s deaktivieren</string>
-  <string name="autofill_enable">AutoFill für %1$s aktivieren</string>
+  <string name="autofill_enable_for">AutoFill für %1$s aktivieren</string>
   <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
   <string name="enable_fingerprint_hint">Keepass2Android hat einen Fingerabdrucksensor gefunden. Möchtest du das Entsperren mit Fingerabdruck für diese Datenbank aktivieren?</string>
   <string name="understand">Ich verstehe</string>

@@ -931,7 +931,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="show_autofill_help">Automaattisen täytön apu</string>
   <string name="autofill_sign_in_prompt">Täytä Keepass2Androidilla</string>
   <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
-  <string name="autofill_enable">Ota käyttöön automaattinen täyttö %1$s:lle</string>
+  <string name="autofill_enable_for">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
   <string name="understand">Minä ymmärrän</string>
   <string name="dont_show_again">Älä näytä uudestaan</string>

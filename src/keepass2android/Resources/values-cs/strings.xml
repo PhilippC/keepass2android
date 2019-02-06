@@ -928,7 +928,7 @@ První veřejné vydání
   <string name="show_autofill_help">Ukázat nápovědu automatického doplňování</string>
   <string name="autofill_sign_in_prompt">Doplnit s Keepass2Android</string>
   <string name="autofill_disable">Zakázat Automatické doplnění pro %1$s</string>
-  <string name="autofill_enable">Povolit Automatické doplnění pro %1$s</string>
+  <string name="autofill_enable_for">Povolit Automatické doplnění pro %1$s</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou čtečku otisků prstů. Chcete pro tuto databázi povolit odemykání pomocí otisku prstu?</string>
   <string name="understand">Rozumím</string>

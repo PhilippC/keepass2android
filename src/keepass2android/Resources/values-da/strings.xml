@@ -626,7 +626,7 @@
   <string name="ErrorReportAsk">Spørg efter fejl</string>
   <string name="ErrorReportPrefTitle">Indsend fejlrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre2\n
+  <string name="ChangeLog_1_07">    Version 1.07-pre4\n
     * Tillader at åbne flereend én database, kompatibel med KeeAutoExec\n
     * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
     * Introducerer pCloud-understøttelse - tak til gilbsgilbs!\n
@@ -734,7 +734,7 @@
   <string name="show_autofill_help">Vis Aotoudfyld-hjælp</string>
   <string name="autofill_sign_in_prompt">Udfyld med Keepass2Android</string>
   <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
-  <string name="autofill_enable">Aktivér Auto-udfyld for %1$s</string>
+  <string name="autofill_enable_for">Aktivér Auto-udfyld for %1$s</string>
   <string name="invalid_link_association">Kunne ikke tilknytte webdomæne %1$s med app\'en %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android har registreret fingeraftryk-hardware. Aktivér fingeraftryksoplåsning for denne database?</string>
   <string name="understand">Jeg forstår</string>
