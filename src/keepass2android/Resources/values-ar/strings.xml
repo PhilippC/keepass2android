@@ -21,13 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">مهلة التطبيق</string>
-  <string name="app_timeout_summary">المدة الزمنية قبل تأمين قاعدة البيانات في حال كان التطبيق غير نشط.</string>
-  <string name="kill_app_label">إيقاف معالجة التطبيق</string>
   <string name="show_kill_app">زر الإغلاق</string>
-  <string name="show_kill_app_summary">عرض زر في شاشة كلمة المرور للإقاف معالجة التطبيق (للمستخدمين المتخوفين)</string>
-  <string name="application">تطبيق</string>
-  <string name="application_settings">إعدادات التطبيق</string>
   <string name="ShowGroupnameInSearchResult_title">عرض اسم المجموعة في نتيجة البحث</string>
   <string name="ShowGroupnameInSearchResult_resume">عرض اسم المجموعة تحت عناوين القيود في نتائج البحث. هذا مفيد في حال وجود عدة قيود بنفس الاسم.</string>
   <string name="NavigationToGroupCompleted_message">عرض المجموعة الآن: %1$s</string>
@@ -192,7 +186,6 @@
   <string name="no_keys">لا توجد قيود في قاعدة البيانات أو المجموعة.</string>
   <string name="no_results">لا توجد نتائج للبحث</string>
   <string name="no_url_handler">لا يوجد معالج لهذا العنوان.</string>
-  <string name="open_recent">فتح قاعدة البيانات الأخيرة (انقر للفتح)</string>
   <string name="omitbackup_title">عدم البحث عن القيود في النسخ الاحتياطي وسلة المحذوفات</string>
   <string name="omitbackup_summary">تجاهل \"النسخ الاحتياطية\" و\"مجموعة سلة المحذوفات\" من نتائج البحث</string>
   <string name="pass_filename">اسم ملف قاعدة بيانات KeePass</string>
@@ -384,7 +377,6 @@
   <string name="otp_aux_file">ملف \"كلمة السر أحادية الاستخدام\"</string>
   <string name="ErrorOcurred">حدث خطأ:</string>
   <string name="DuplicateUuidsError">قاعدة البيانات معطوبة: تم العثور على معرفات مكررة. (هل قمت بالحفظ بواسطة Minikeepass؟) يرجى إعادة الاستيراد إلى قاعدة بيانات جديدة مع برنامج Keepass2 الخاص بأجهزة سطح المكتب وحدد \'إنشاء معرفات جديدة\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">يمكنك تعطيل رسالة الخطأ هذه في الإعدادات/إعدادات التطبيق/التعامل مع الملفات/التحقق من المعرفات (UUIDs) المكررة. الرجاء ملاحظة أنه قد يواجهك سلوك غير متوقع. من المستحسن إصلاح قاعدة البيانات.</string>
   <string name="synchronize_database_menu">جاري مزامنة قاعدة البيانات…</string>
   <string name="CannotMoveGroupHere">لا يمكن نقل المجموعة إلى هذه المجموعة.</string>
   <string name="donate_question">اليوم هو مهرجان أكتوبر! إذا أعجبك Keepass2Android ألن يكون اليوم مناسبا لتشتري لي بيرة؟</string>
@@ -411,7 +403,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (مجلد KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">إذا كنت لا تريد منح KP2A حق الوصول إلى Dropbox بالكامل، قم بتحديد هذا الخيار. سوف يتطلب حق الوصول فقط إلى المجلد Apps/Keepass2Android. هذا مناسب بشكل خاص عند إنشاء قاعدة بيانات جديدة. إذا كان بالفعل لديك قاعدة بيانات، انقر فوق هذا الخيار لإنشاء المجلد، ثم ضع الملف داخل المجلد (من جهاز الكمبيوتر الخاص بك) وقم بتحديد هذا الخيار مرة أخرى لفتح الملف.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (نقل ملفات SSH)</string>
@@ -427,8 +418,6 @@
 تلميح: قم بتكوين جملة او جملتين ثم أستخدم الأحرف الأولى من كل كلمة  لتشكيل كلمة المرور ، ضمِّن كلمة المرور هذه علامات الكيبورد مثل @#$%&amp; </string>
   <string name="hint_master_password">إختر كلمة مرور رئيسية لحماية قاعدة بياناتك:</string>
   <string name="key_file">ملف المفتاح</string>
-  <string name="help_key_file">ملف المفتاح بألأساس هو كلمة المرور مخزنة في ملف. عادة تكون ملفات المفاتيح أقوى من كلمات المرور، لأن المفتاح يمكن أن يكون أكثر تعقيداً بكثير من كلمات المرور؛ ولكن من جانب اخر فانه من الصعب حفظ ملفات المفاتيح هذه بصورة تضمن سريتها. إذا قمت بحفظ قاعدة بياناتك في السحابة، فلا تقم بحفظ ملف المفتاح هناك أيضا ! فهذا سيجعل العملية كلها (الحفاظ على السرية) غير مجدية تماما! 
-هام: لا تقم بتغيير محتويات ملف المفتاح بعد إنشاء قاعدة البيانات!</string>
   <string name="hint_key_file">اختر إذا كنت تريد استخدام ملف المفتاح بالإضافة إلى كلمة المرور الرئيسية:</string>
   <string name="use_key_file">استخدم ملف المفتاح</string>
   <string name="error_adding_keyfile">حدث خطأ أثناء إضافة ملف المفتاح!</string>
@@ -471,9 +460,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">بيانات القيد الحالي</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">ستتلقى الإضافة جميع البيانات حول قيد قاعدة البيانات الحالي وسيتم توفير عمليات على القيد وتعديل طريقة عرضه.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">استعلام عن بيانات الدخول الخاصة</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">سيتم السماح لـ\"الإضافة\" بالاستعلام عن بيانات الدخول المقترنة مع حزمة التطبيق الخاص بها.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">الاستعلام عن بيانات الدخول</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">سيتم السماح لـ\"الإضافة\" بالاستعلام عن بيانات الدخول للمواقع أو التطبيقات المتعمدة.</string>
   <string name="get_regular_version">الحصول على المزيد من أنواع التخزين</string>
   <string name="CertificateWarning">تحذير: فشل التحقق من صحة شهادة الخادم: %1$s. قم بتثبيت شهادة الجذر المناسبة على الجهاز الخاص بك أو راجع الإعدادات!</string>
   <string name="CertificateFailure">تحذير: فشل التحقق من صحة شهادة الخادم! قم بتثبيت شهادة الجذر المناسبة على الجهاز الخاص بك أو راجع الإعدادات!</string>
@@ -484,7 +471,6 @@
   <string name="FileIsReadOnlyOnKitkat">الملف المحدد للقراءة فقط لـ Keepass2Android بسبب القيود المفروضة على نظام Android 4.4+.</string>
   <string name="CopyFileRequired">لاستخدامه، يجب أن تقوم بنسخه إلى موقع آخر.</string>
   <string name="CopyFileRequiredForEditing">لتعديله، يجب أن تقوم بنسخه إلى موقع آخر.</string>
-  <string name="ClickOkToSelectLocation">اضغط على \"موافق\" لتحديد موقع نسخ الملف.</string>
   <string name="FileReadOnlyTitle">قاعدة البيانات للقراءة فقط</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android فتح قاعدة البيانات الحالية في وضع للقراءة فقط.</string>
   <string name="ReadOnlyReason_PreKitKat">يبدو أنك قمت بفتح الملف من تطبيق خارجي. هذه الطريقة لا تدعم الكتابة. إذا كنت ترغب في إجراء تغييرات على قاعدة البيانات، الرجاء إغلاق قاعدة البيانات وحدد \"تعديل قاعدة البيانات\". ثم افتح الملف من أحد الخيارات المتاحة إذا كان ذلك ممكناً.</string>
@@ -527,7 +513,6 @@
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ErrorReportTitle">Keepass2Android : حدث خطأ.</string>
   <string name="ErrorReportText">حدث خطأ غير متوقع أثناء تشغيل Keepass2Android. الرجاء مساعدتنا في حل هذه المشكلة بالسماح للتطبيق بإرسال التقارير عن الأخطاء.</string>
-  <string name="ErrorReportPromise">لا تحتوي تقارير الأخطاء أبدا على أي محتويات من قاعدة البيانات الخاصة بك ولا على كلمة السر الرئيسية. يمكنك تعطيلها في إعدادات التطبيق.</string>
   <string name="ErrorReportEnable">تفعيل</string>
   <string name="ErrorReportDisable">تعطيل</string>
   <string name="ErrorReportAsk">اسأل بعد الخطأ</string>
