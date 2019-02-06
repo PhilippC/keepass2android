@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 離線版</string>
   <string name="short_app_name_nonet">KP2A 離線</string>
-  <string name="app_timeout">應用程式超時</string>
-  <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
-  <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app">關閉按鈕</string>
-  <string name="show_kill_app_summary">在密碼螢幕中顯示中止應用程式進程的按鈕 (為偏執的使用者而設)</string>
-  <string name="application">應用程式</string>
-  <string name="application_settings">應用程式設置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜尋結果中顯示群組名稱</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中顯示條目標題下面的群組名稱。如果幾個條目具有相同的名稱有幫助。</string>
   <string name="NavigationToGroupCompleted_message">顯示群組現在是: %1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">資料庫或群組中無輸入項。</string>
   <string name="no_results">沒有搜索結果</string>
   <string name="no_url_handler">此鏈結無處理程式。</string>
-  <string name="open_recent">打開最近資料庫（點擊打開）：</string>
   <string name="omitbackup_title">不要搜索備份和回收桶輸入項</string>
   <string name="omitbackup_summary">搜尋結果省略備份和回收桶群組</string>
   <string name="pass_filename">KeePass資料庫檔案名稱：</string>
@@ -330,7 +323,6 @@
   <string name="NoDonationReminder_title">別再跟我講捐贈的事啦</string>
   <string name="NoDonationReminder_summary">我不會給你一毛錢的，或者我之前就捐贈過了。就算是你生日也一樣，別問我捐贈的問題了。</string>
   <string name="UseOfflineCache_title">資料庫緩存中</string>
-  <string name="UseOfflineCache_summary">在應用程式緩存目錄中保留資料庫檔案副本。即使資料庫檔案不可訪問時亦可使用資料庫。</string>
   <string name="CreateBackups_title">本機備份</string>
   <string name="CreateBackups_summary">在成功載入資料庫後創建一個本機備份副本</string>
   <string name="UpdatingBackup">更新本機備份中...</string>
@@ -431,7 +423,6 @@
   <string name="otp_aux_file">一次性密碼輔助檔</string>
   <string name="ErrorOcurred">發生錯誤：</string>
   <string name="DuplicateUuidsError">資料庫已損壞: 發現重複 ID。(你曾用 Minikeepass 編輯？) 請用電腦版 Keepass 2 重新導入到新的資料庫與並選擇創建新的 ID。</string>
-  <string name="DuplicateUuidsErrorAdditional">您可以在設置/應用程式設定/檔案處理/檢查重複 UUID 禁用此錯誤訊息。請注意，您可能會遇到意外狀況。仍建議對資料庫進行修復。</string>
   <string name="synchronize_database_menu">同步資料庫...</string>
   <string name="CannotMoveGroupHere">不能將群組移動到此群組。</string>
   <string name="donate_question">今天，它是慕尼克啤酒節！如果你喜歡 Keepass2Android: 今天不是個好的日子買一杯啤酒給我嗎?</string>
@@ -463,7 +454,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A 資料夾)</string>
-  <string name="filestoragehelp_dropboxKP2A">如果你不想要給 KP2A 你完整的 Dropbox 訪問權限，您可以選擇此選項。它將請求只訪問應用程式/Keepass2Android 資料夾。這特別適合創建新資料庫時。如果你已經有一個資料庫，請按一下此選項可創建該資料夾，然後 (從您的 PC) 將檔放在資料夾的內部，然後選擇此選項用，再打開檔案。</string>
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
   <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,7 +469,6 @@
   <string name="help_master_password">您的資料庫將以您在此處輸入的密碼進行加密。為了保證資料庫的安全，選擇強式密碼！提示: 自創一兩英文句子，使用句中單詞首字母作為密碼。包括標點符號。</string>
   <string name="hint_master_password">選擇一個主密碼來保護您的資料庫:</string>
   <string name="key_file">金鑰檔</string>
-  <string name="help_key_file">金鑰檔基本上是存儲在一個檔中的密碼。金鑰檔是通常比主密碼更好，因為該金鑰可以是很多更複雜；但是也難保持他們的隱密。如果你在雲端存儲您的資料庫，不要也將金鑰檔存儲在那裡！這將使它完全失效！重要提示：創建資料庫後 不要更改金鑰檔的內容！</string>
   <string name="hint_key_file">選擇你是否想要除了主密碼外，加用金鑰檔:</string>
   <string name="use_key_file">使用金鑰檔</string>
   <string name="error_adding_keyfile">添加金鑰檔案時發生錯誤!</string>
@@ -531,9 +520,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">當前項目資料</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">外掛程式將收到有關在當前資料庫項目的所有資料，並將獲准操作和修改顯示。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">查詢自己的憑證</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">外掛程式將獲准查詢與它自己的應用程式包關聯的憑證。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">查詢憑證</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">外掛程式將能夠查詢指定網站或應用程式的憑證。</string>
   <string name="get_regular_version">獲取更多的存儲類型</string>
   <string name="CertificateWarning">警告: 伺服器憑證驗證失敗: %1$s。在您的設備上安裝適當的根憑證，或請參閱設置!</string>
   <string name="CertificateFailure">錯誤: 伺服器憑證驗證失敗! 在您的設備上安裝適當的根憑證，或請參閱設置!</string>
@@ -544,7 +531,6 @@
   <string name="FileIsReadOnlyOnKitkat">對 Keepass2Android 來說，您選定的檔案是唯讀的，由於 Android 4.4 以上版本的限制。</string>
   <string name="CopyFileRequired">若要使用它，您必須將其複製到另一個位置。</string>
   <string name="CopyFileRequiredForEditing">若要編輯它，必須將該檔案複製到另一個位置。</string>
-  <string name="ClickOkToSelectLocation">按一下確定，選擇要複製檔案的位置。</string>
   <string name="FileReadOnlyTitle">資料庫僅唯獨</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已將目前的資料庫以唯讀方式開啟。</string>
   <string name="ReadOnlyReason_PreKitKat">你似乎是從外部的應用程式開啟本資料庫檔案。這樣的方法不支援存檔。如果你想要存下任何的變更，請關閉本資料庫並選擇變更資料庫。然後再以其他方式開啟本檔案。</string>
@@ -585,11 +571,6 @@
    &#8226; 確保您已選擇正確的密碼類型。 確保這與創建資料庫時使用的類型相匹配。\n
    &#8226; 確保已選擇正確的資料庫檔案。 
  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; 提示：如果你認爲資料庫檔案可能會受損，或你有可能忘記修改後的主金鑰，你可以嘗試點擊「%1$s」開啓最後一個成功開啓的版本並選擇本機備份。</string>
-  <string name="HintLocalBackupOtherError">    \n
-    &#8226; 提示：Keepass2Android已經把最後一個開啓成功的檔案版本存儲在內部儲存裝置中。你可以點擊「%1$s」開啓它並選擇本機備份。 
-  </string>
   <string name="CorruptDatabaseHelp">    資料檔已損壞。\n
     以下是一些有助於診斷問題的提示：\n
     
@@ -622,22 +603,11 @@
   <string name="EntryChannel_desc">簡化訪問已選項目流程的通知</string>
   <string name="ErrorReportTitle">Keepass2Android︰發生錯誤。</string>
   <string name="ErrorReportText">運行 Keepass2Android 時發生意外的錯誤。請允許應用程式傳送錯誤報告來幫助我們解決此問題。</string>
-  <string name="ErrorReportPromise">錯誤報告絕不包含資料檔或主密碼中的任何內容。 您可在「設置」中禁用之。</string>
   <string name="ErrorReportEnable">啟用</string>
   <string name="ErrorReportDisable">關閉</string>
   <string name="ErrorReportAsk">每次詢問</string>
   <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示虛擬鍵盤以輸入密碼。</string>
-  <string name="ChangeLog_1_07">    版本 1.07-pre2\n
-    * 允許打開多於一個資料庫，兼容 KeeAutoExec\n
-    * SFTP: 允許驗證公鑰，檢查主機密鑰是否已更改\n
-    * 加入 pCloud 支援 - 感謝 gilbsgilbs！\n
-    * 使 Nextcloud 支援更明確\n
-    * 改進項目附件的儲存與更新\n
-    * 更多適應個人喜好的設定選項\n
-    * SSL: 信任用戶憑證\n
-    * 錯誤修正\n
-  </string>
   <string name="ChangeLog_1_06">    版本 1.06\n
     * 以 ykDroid 取代 YubiChallenge 作爲處理 Yubikey 質詢-回應的應用。\n
     * 支援  KeepassXC 式的質詢-回應。備註：資料庫格式必須爲 KDBX4！\n
@@ -754,19 +724,6 @@
 * 阻止在快速解鎖和鍵入密碼介面截取熒幕 \n
 * 修改按日期排序的反向順序為降序 \n
 * 錯誤修正：註釋現可正確更新、密碼現可在所有設備上隱藏顯示（但願如此）、修正同一條目可添加兩次的問題、修正即便在修復資料庫後仍然多次彈出 UUID 警示的問題 \n</string>
-  <string name="ChangeLog_0_9_6">版本 0.9.6 \n
-* 允許將金鑰檔或本機資料庫檔案導入到應用程式內部資料夾（參見設定）\n
-* 支援多種排序方法 \n
-* 改進了自動鍵盤切換的偏好 \n
-* 更新了應用程式徽標和通知欄設計，由 Pignataro (http://www.spstudio.at) 提供 \n
-* 密碼產生器記住上次的設定 \n
-* 為 Android 5 熒幕鎖定時的通知消息設定可見性 \n
-* 離開應用程式但未按下「確定」時清除主密碼欄位 \n 
-* 修正部分設備的鍵盤設定中缺少輸入語言的問題 \n
-* 修正已 ROOT 設備上自動鍵盤切換的問題 \n
-* 添加資料庫檢查功能（重複的 UUID）\n
-* 在檢測到更改時自動重新載入資料庫，解決了顯示主密碼的安全隱患 \n
-* 改進了波蘭語小鍵盤布局，修正鍵盤設定佈景（感謝 Wiktor Ławski） \n </string>
   <string name="ChangeLog_0_9_5"><b>版本 0.9.5</b>\n
 * 修正檔案查看（特別是 Android 4.4）中的問題 \n
 * 修正運行 Android Lollipop 的 Nexus 5 載入 .kbd (keepass 1) 檔的問題 \n
@@ -826,13 +783,6 @@
 * 允許移動條目和分組\n
 * 快速解鎖圖示可以變成透明 (見設置)\n
 * 其它問題修正</string>
-  <string name="ChangeLog_0_8_5"><b>版本 0.8.5</b>\n
-* 遠端檔案存儲於程式快取中以允許離線使用 (包括編輯和後續的同步)，詳情參閱設置。\n
-* 通知圖示展現資料庫的鎖定狀態 (見設置)\n
-* 在某些情況下改進了鎖定狀態的確定\n
-* 鍵入密碼時，資料庫會加載到記憶體中以提升解鎖速度 (見設置)\n
-* 條目可添加到根目錄\n
-* 修正錯誤：解析引用欄位、意大利語和漢語設備上的鍵盤問題</string>
   <string name="ChangeLog_0_8_4"><b>版本 0.8.4</b>\n
 * 保存資料庫時會檢測並合併外部更改\n
 * 改進加載性能\n
@@ -944,7 +894,6 @@
   <string name="show_autofill_help">顯示自動填入的說明</string>
   <string name="autofill_sign_in_prompt">以 Keepass2Android 填入</string>
   <string name="autofill_disable">禁用 %1$s 的自動填入</string>
-  <string name="autofill_enable">啟用 %1$s 的自動填入</string>
   <string name="invalid_link_association">無法關聯網域 %1$s 與應用程式 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android 檢測到指紋識別硬件。你想要為這資料庫啟用指紋解鎖嗎？</string>
   <string name="understand">我明白了</string>
