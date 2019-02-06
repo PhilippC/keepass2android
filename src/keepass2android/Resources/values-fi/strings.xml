@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Sovelluksen aikakatkaisu</string>
-  <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
-  <string name="kill_app_label">Lopeta sovelluksen prosessi</string>
   <string name="show_kill_app">Sulje-painike</string>
-  <string name="show_kill_app_summary">Näytä painike \"Tapa prosessi\" (vainoharhaisille käyttäjille)</string>
-  <string name="application">Sovellus</string>
-  <string name="application_settings">Asetukset</string>
   <string name="ShowGroupnameInSearchResult_title">Näytä ryhmien nimet hakutuloksissa</string>
   <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
   <string name="NavigationToGroupCompleted_message">Nyt näytettävä ryhmä on: %1$s</string>
@@ -198,7 +192,6 @@
   <string name="no_keys">Ei merkintöjä tietokannassa tai ryhmissä.</string>
   <string name="no_results">Ei hakutuloksia</string>
   <string name="no_url_handler">Ei URL-käsittelijää tälle osoitteelle.</string>
-  <string name="open_recent">Avaa edellinen tietokanta (klikkaa)</string>
   <string name="omitbackup_title">Älä etsi varmuuskopioista ja roskakorista</string>
   <string name="omitbackup_summary">Jätä varmuuskopiot ja roskakori pois hakutuloksista</string>
   <string name="pass_filename">KeePass-tietokannan tiedostonimi</string>
@@ -333,7 +326,6 @@
   <string name="NoDonationReminder_title">Älä koskaan pyydä lahjoitusta</string>
   <string name="NoDonationReminder_summary">En aio antaa teille penniäkään, tai olen jo lahjoittanut. Älä pyydä lahjoituksia koskaan, ei edes tekijän syntymäpäivänä.</string>
   <string name="UseOfflineCache_title">Tietokannan säilöminen välimuistiin</string>
-  <string name="UseOfflineCache_summary">Pidä kopio tietokannan tiedostoista sovelluksen välimuistissa. Näin voit käyttää tietokantoja silloinkin kun tiedostoon ei pääse.</string>
   <string name="CreateBackups_title">Paikalliset varmuuskopiot</string>
   <string name="CreateBackups_summary">Luo paikallinen varmuuskopio sen jälkeen, kun tietokanta on onnistuneesti ladattu.</string>
   <string name="UpdatingBackup">Päivitetään paikallinen varmuuskopio...</string>
@@ -434,7 +426,6 @@
   <string name="otp_aux_file">OTP-aputiedosto</string>
   <string name="ErrorOcurred">Tapahtui virhe:</string>
   <string name="DuplicateUuidsError">Tietokanta on korruptoitunut: siitä löytyi kahdentuneita tunnisteita. (Tallensitko Minikeepass: lla?) Ole hyvä ja tuo tiedot uuteen tietokantaan KeePass 2: n PC-versiolla ja valitse \'Luo uudet ID-numerot\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Voit poistaa tämän virheilmoitukset valitsemalla Asetukset/Sovellus/Tiedostokäsittely ja \"Tarkista UUID kaksoiskappaleet\". Huomioi, että tämä voi aiheuttaa ongelmia. Tietokannan korjaaminen on suositeltavaa.</string>
   <string name="synchronize_database_menu">Synkronoi tietokanta...</string>
   <string name="CannotMoveGroupHere">Ryhmää ei voi siirtää tähän ryhmään.</string>
   <string name="donate_question">Tänään on Oktoberfest! Jos pidät Keepass2Androidista: eikö tänään olisi hyvä päivä ostaa minulle olut?</string>
@@ -466,7 +457,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A kansio)</string>
-  <string name="filestoragehelp_dropboxKP2A">Jos et halua antaa KP2A:lle pääsyä koko Dropboxiisi, voit valita tämän vaihtoehdon. Se pyytää käyttöoikeuksia vain \"Apps/Keepass2Android\" kansioon. Tämä soveltuu erityisesti tilanteeseen jossa luodaan uusi tietokanta. Jos sinulla on jo tietokanta, valitse tämä vaihtoehto luodaksesi kansion, ja sijoita sen jälkeen tietokantatiedosto kansioon (tietokoneestasi). Valitse sitten tämä vaihtoehto uudestaan avataksesi tietokannan.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -482,7 +472,6 @@
   <string name="help_master_password">Tietokanta suojataan tähän syöttämälläsi sanasanalla. Valitse vahva salasana tietokannan suojaukseen! Vinkki: Muodosta lause tai kaksi jossa on seassa numeroita ja välimerkkejä.</string>
   <string name="hint_master_password">Valitse pääsalasana tietokannan suojaamiseksi:</string>
   <string name="key_file">Avaintiedosto</string>
-  <string name="help_key_file">Avaintiedosto on periaatteessa salasana tallennettuna tiedostoon. Avaintiedostot ovat tyypillisesti tietoturvallisempia kuin pääsalasanat, koska avain voi olla todella paljon muistettavaa salasanaa monimutkaisempi; niiden turvallinen säilyttäminen on kuitenkin vaikeampaa. Jos tallennat tietokantasi pilveen, älä säilytä avaintiedostoasi siellä! Se tekisi siitä täysin hyödyttömän! Tärkeää: Älä vaihda avaintiedoston sisältöä tietokannan luomisen jälkeen!</string>
   <string name="hint_key_file">Valitse haluatko käyttää avaintiedostoa pääsalasanan lisäksi:</string>
   <string name="use_key_file">Käytä avaintiedostoa</string>
   <string name="error_adding_keyfile">Virhe avaintiedoston lisäämisessä!</string>
@@ -534,9 +523,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Nykyisen merkinnän tiedot</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Liitännäiselle lähetetään kaikki merkinnän tiedot ja se saa luvan tarjota toimintoja ja muuttaa merkinnän näkymää.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Pyydä omia tunnuksia</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Liitännäinen saa pyytää omaan sovelluspakettiin liittyviä tunnuksia.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Pyydä tunnuksia</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Liitännäinen voi kysyä tiettyjen web-sivustojen tai sovelluksien tunnuksia.</string>
   <string name="get_regular_version">Hanki lisää tallennusmuotoja</string>
   <string name="CertificateWarning">Varoitus: Palvelimen varmenteen vahvistus epäonnistui: %1$s. Asenna tarvittava juurivarmenne laitteeseen tai katso asetukset!</string>
   <string name="CertificateFailure">Virhe: Palvelimen varmenteen vahvistus epäonnistui: %1$s. Asenna tarvittava juurivarmenne laitteeseen tai tarkista asetukset!</string>
@@ -547,7 +534,6 @@
   <string name="FileIsReadOnlyOnKitkat">Valitsemaasi tiedostoon on Keepass2Androidilla vain lukuoikeudet johtuen Android 4.4+ rajoituksista.</string>
   <string name="CopyFileRequired">Käyttääksesi sitä sinun täytyy kopioida se toiseen paikkaan.</string>
   <string name="CopyFileRequiredForEditing">Muokataksesi sitä sinun täytyy kopioida tiedosto toiseen paikkaan.</string>
-  <string name="ClickOkToSelectLocation">Klikkaa OK valitaksesi sijainnin, johon tiedosto kopioidaan.</string>
   <string name="FileReadOnlyTitle">Tietokanta on \"vain luku\" -tilassa</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android on avannut nykyisen tietokannan \"vain luku\" -tilassa.</string>
   <string name="ReadOnlyReason_PreKitKat">Näyttää siltä, että avasit tiedoston ulkoista sovellusta käyttäen. Tällä tavoin avaaminen ei tue kirjoitusta. Jos haluat tehdä muutoksia tietokantaan, sulje se ja valitse Vaihda tietokanta. Avaa tämän jälkeen tiedosto käyttämällä jotain esitetyistä vaihtoehdoista mikäli mahdollista.</string>
@@ -587,11 +573,6 @@
 • Varmista, että olet syöttänyt oikean salasanan. Käytä silmä-kuvaketta nähdäksesi syöttämäsi salasanan.\n
 • Varmista, että olet valinnut oikean tyypin salasanalle. Varmista, että tämä täsmää salasanan tyyppiin, jota käytit luodessasi tietokannan.\n
 • Varmista, että olet valinnut oikean tietokantatiedoston.\n.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   • Vihje: Jos tietokantatiedosto on mielestäsi vioittunut tai et muista pääavainta sen muuttamisen jälkeen, voit kokeilla käyttää viimeisintä onnistuneesti avattua versiota valitsemalla ”%1$s” ja valitsemalla paikallisen varmuuskopion.</string>
-  <string name="HintLocalBackupOtherError">    \n 
-    • Vinkki: Keepass2Android on tallentanut viimeisimmän onnistuneesti avatun tiedostoversio sisäiseen muistiin. Voit avata sen napsauttamalla ”%1$s” ja valitsemalla paikallisen varmuuskopion.
-  </string>
   <string name="CorruptDatabaseHelp">Tiedosto on vioittunut.\n
 Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
 
@@ -622,22 +603,11 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="EntryChannel_desc">Ilmoitus, jolla pääsee helpommin käsiksi valittuna olevaan merkintään.</string>
   <string name="ErrorReportTitle">Keepass2Android: Tapahtui virhe.</string>
   <string name="ErrorReportText">Odottamaton virhe tapahtui Keepass2Android-sovelluksessa. Auta meitä korjaamaan tämä ongelma antamalla sovelluksen lähettää virheraportteja.</string>
-  <string name="ErrorReportPromise">Virheraportit eivät koskaan sisällä mitään tietoja tietokannastasi tai pääsalasanastasi. Voit poistaa raportit käytöstä sovelluksen asetuksista.</string>
   <string name="ErrorReportEnable">Ota käyttöön</string>
   <string name="ErrorReportDisable">Poista käytöstä</string>
   <string name="ErrorReportAsk">Kysy virheen jälkeen</string>
   <string name="ErrorReportPrefTitle">Lähetä virheraportit</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkilukijan ollessa käytössä.</string>
-  <string name="ChangeLog_1_07">    Versio 1.07-pre2\n
-    * Useiden tietokantojen avaaminen, yhteensopiva KeeAutoExec:n kanssa\n
-    * SFTP: Julkisen avaimen todennus, isäntä avaimen muutoksen tarkistus\n
-    * pCloud tuki - Kiitos gilbsgilbs!\n
-    * Nextcloud tuen virallistaminen\n
-    * Merkintöjen liitetiedostojen tallentamisen ja päivittämisen parannuksia\n
-    * Enemmän vaihtoehtoja mukauttaa käyttäytymistä\n
-    * SSL: Luotto käyttäjäsertifikaatteihin\n
-    * bugi korjauksia\n
-  </string>
   <string name="ChangeLog_1_06">    Versio 1.06\n
     * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
     * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
@@ -748,19 +718,6 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
 * estä ruutukaappausten ottaminen pika-avauksesta ja salasanaruudusta\n
 * päinvastainen järjestystapa Järjestä muokkauspäivän mukaan -toiminnolle (nyt laskeva)\n
 * bugikorjauksia: Muistiinpanonäkymä päivittyy nyt oikein muutosten jälkeen, salasananäkymät piilottavat salasanat oikein (toivottavasti) kaikilla laitteilla, korjattu tapaus, jossa sallittiin merkinnän lisääminen kahdesti, korjattu tapaus, jossa näytettiin varoitus tuplaantuneista UUID:istä tietokannan korjaamisen jälkeenkin\n</string>
-  <string name="ChangeLog_0_9_6">Versio 0.9.6\n
-* sallii avaintiedoston ja/tai paikallisen tietokantatiedoston tuomisen ohjelman sisäiseen hakemistoon (ks. asetukset)\n
-* sallii erilaiset järjestysasetukset\n
-* parannettu automaattisen näppäimistönvaihdon asetuksia\n
-* päivitetty ohjelman logo ja ilmoitusulkoasu, ulkoasun tehnyt Stefano Pignataro (http://www.spstudio.at)\n
-* salasanageneraattori muistaa edelliset asetukset\n
-* ilmoituksen näkyvyyden asettaminen Android 5:n lukitusruudulle\n
-* nyt pääsalasanakenttä tyhjennetään, kun ohjelmasta poistutaan ilman OK:n painamista\n
-* korjattu joidenkin laitteiden osalta tapaus, jossa syötekieliä puuttui näppäimistön asetuksista\n
-* korjattu ongelma automaattisessa näppäimistön vaihtamisessa rootatuilla laitteilla\n
-* lisätty korruptoituneen tietokannan tarkistus (tuplaantuneet UUID:t)\n
-* uudelleenlataa tietokannan automaattisesti, kun muutos havaitaan. Ratkaisee tietoturvahuolen pääsalasanan paljastumisesta\n
-* parannettu puolalaista pientä näppäimistöasettelua, korjattu näppäimistön asetusten teema (kiitokset Wiktor Ławski:lle)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versio 0.9.5</b>\n
 		* Korjattu ongelma tiedostojen selauksessa (erityisesti Android 4.4:ssä)\n
 		* Korjattu ongelma ladataan .kdb tiedostoja (Keepass 1) Nexus 5 jossa on Android Lollipop\n
@@ -821,13 +778,6 @@ Oletko kehittäjä? Lisätkää tämä sovellukseenne jos soveltuvat! \n
 * Salli tietueiden ja ryhmien siirtäminen\n 
 * QuickUnlock kuvake voidaan tehdä läpinäkyväksi (Katso asetukset) \n 
 * Bugi korjauksia</string>
-  <string name="ChangeLog_0_8_5"><b>Versio 0.8.5</b> \n 
-* Etätiedostoja tallennetaan paikallisen sovelluksen välimuistiin offline-käyttön onnistumiseksi (mukaan lukien editointi ja myöhempi synkronointi). Katso asetukset. \n 
-* Ilmoituskuvake havainnollistaa tietokannan lukitustilaa (Katso asetukset) \n 
-* Parantaa lock-tilasta poistumista joissakin tilanteissa\n 
-* Tietokannan tiedostot ladataan muistiin, kun kirjoitat salasanaasi lisätäksemme lastausnopeutta (Katso asetukset) \n 
-* Tietueita voi lisätä ryhmän juureen\n 
-* Bugi korjauksia (ratkaistaan näppäimistön ongelmat Italian ja Kiinan laitteissa)</string>
   <string name="ChangeLog_0_8_4"><b>Versio 0.8.4</b> \n 
 * Ulkoisen tietokannan muutokset havaitaan ja yhdistetään kun tallennetaan\n 
 * Parantaa latausnopeutta\n 
@@ -938,7 +888,6 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="show_autofill_help">Automaattisen täytön apu</string>
   <string name="autofill_sign_in_prompt">Täytä Keepass2Androidilla</string>
   <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
-  <string name="autofill_enable">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android on havainnut sormenjälkitunnistuksen. Haluatko ottaa käyttöön sormenjälkitunnistuksen tämän tietokannan kanssa?</string>
   <string name="understand">Minä ymmärrän</string>
