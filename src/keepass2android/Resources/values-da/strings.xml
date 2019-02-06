@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">App-timeout</string>
-  <string name="app_timeout_summary">Tid før databasen låses, når applikationen er inaktiv.</string>
-  <string name="kill_app_label">Afslut app-proces</string>
   <string name="show_kill_app">Luk-knap</string>
-  <string name="show_kill_app_summary">Vis en \"Dræb app-proces\"-knap på adgangskodeskærmen (til paranoide brugere)</string>
-  <string name="application">App</string>
-  <string name="application_settings">App-indstillinger</string>
   <string name="ShowGroupnameInSearchResult_title">Vis gruppenavn i søgeresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Vis gruppenavn under indtastningstitler i søgeresultater. Nyttigt, hvis flere indtastninger er enslydende.</string>
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nu: %1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">Ingen poster i databasen eller gruppen.</string>
   <string name="no_results">Ingen søgeresultater</string>
   <string name="no_url_handler">Ingen håndtering af denne URL.</string>
-  <string name="open_recent">Åbn seneste database (tryk for at åbne)</string>
   <string name="omitbackup_title">Gennemsøg ikke sikkerhedskopi- og Papirkurv-poster</string>
   <string name="omitbackup_summary">Udelad \'Sikkerhedskopi\'- og Papirkurv-grupper i søgeresultater</string>
   <string name="pass_filename">KeePass-databasefilnavn</string>
@@ -330,7 +323,6 @@
   <string name="NoDonationReminder_title">Bed aldrig om en donation</string>
   <string name="NoDonationReminder_summary">Jeg vil ikke give jer en øre, eller jeg har allerede doneret. Bed ikke om en donation, ikke engang på udviklerens fødselsdag.</string>
   <string name="UseOfflineCache_title">Database-caching</string>
-  <string name="UseOfflineCache_summary">Behold en kopi af databasefilerne i app-cache mappen. Dette gør det muligt at benytte databaser, selv mens databasefilen ikke er tilgængelig.</string>
   <string name="CreateBackups_title">Lokale sikkerhedskopier</string>
   <string name="CreateBackups_summary">Opret en lokal sikkerhedskopi, efter korrekt åbning af en database.</string>
   <string name="UpdatingBackup">Opdaterer lokal sikkerhedskopi…</string>
@@ -431,7 +423,6 @@
   <string name="otp_aux_file">OTP-hjælpefil</string>
   <string name="ErrorOcurred">En fejl opstod:</string>
   <string name="DuplicateUuidsError">Databasen er beskadiget: Dublet-ID\'er fundet (gemte du med Minikeepass?). Genimportér til en ny database med Keepass 2 til PC og vælg \'Opret nye ID\'er\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Du kan deaktivere denne fejlmeddelelse i Indstillinger/App-indstillinger/Filhåndtering/Tjek for UUID-dubletter. Vær opmærksom på, at du kan opleve uventet adfærd. Det anbefales at reparere databasen.</string>
   <string name="synchronize_database_menu">Synkroniserer database…</string>
   <string name="CannotMoveGroupHere">Kan ikke flytte gruppen til denne gruppe.</string>
   <string name="donate_question">Det er Oktoberfest i dag! Hvis du synes om Keypass2Android: Ville dagen ikke være en god dag til at købe mig en øl?</string>
@@ -463,7 +454,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
-  <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Der vil kun anmodes om adgang til mappen Apps/Keepass2Android. Dette er særligt velegnet ved oprettelse af en ny database. Har du allerede en database, så klik på denne indstilling for at oprette mappen, placér dernæst din fil i mappen (fra din PC) og vælge så denne indstilling igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,7 +469,6 @@
   <string name="help_master_password">Din database er krypteret med den adgangskode, du angiver hér. Vælg en stærk adgangskode for at holde databasen sikret! Tip: Opret en sætning eller to og benyt de første bogstaver af ordene som adgangskode. Inkludér tegnsætningstegn.</string>
   <string name="hint_master_password">Vælg en hovedadgangskode for at beskytte din database:</string>
   <string name="key_file">Nøglefil</string>
-  <string name="help_key_file">Grundlæggende er en nøglefil en adgangskode gemt i en fil. Nøglefiler er typisk stærkere end hovedadgangskoder, da nøgler kan være langt mere komplekse. Imidlertid er det også sværere at holde dem hemmelige. Vil du gemmer din database i Sky\'en, så gem ikke også nøglefilen dér! Det ville gøre den komplet værdiløs! Vigtigt: Ændr ikke indholdet af nøglefilen efter oprettelsen af databasen!</string>
   <string name="hint_key_file">Vælg om du vil benytte en nøglefil i tillæg til dit hovedadgangskode:</string>
   <string name="use_key_file">Benyt nøglefil</string>
   <string name="error_adding_keyfile">Fejl under tilføjelse af nøglefilen!</string>
@@ -531,9 +520,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuelle indtastningsdata</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin modtager alle data om den aktuelle databaseindtastning og får lov at tilbyde handlinger og visningsændring heraf.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Forespørg på egne legitimationsoplysninger</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin vil få lov til at forespørge på de akkreditiver, som er knyttet til sin egen app-pakke.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Forespørg på akkreditiver</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin vil få lov til at forespørge på akkreditiver til bevidste websteder eller applikationer.</string>
   <string name="get_regular_version">Hent flere lagringstyper</string>
   <string name="CertificateWarning">Advarsel: Servercertifikatgodkendelse mislykkedes: %1$s. Installér passende rodcertifikat på din enhed eller se indstillinger!</string>
   <string name="CertificateFailure">Fejl: Godkendelse af servercertifikat mislykkedes! Installér passende rodcertifikat på din enhed eller se indstillinger!</string>
@@ -544,7 +531,6 @@
   <string name="FileIsReadOnlyOnKitkat">Den valgte fil er skrivebeskyttet for Keepass2Android grundet restriktioner i Android 4.4+.</string>
   <string name="CopyFileRequired">For at benyttet den, skal den kopieres til en anden placering.</string>
   <string name="CopyFileRequiredForEditing">For at redigere den, skal filen kopieres til en anden placering.</string>
-  <string name="ClickOkToSelectLocation">Tryk på OK for at vælge en placering, hvortil filen skal kopieres.</string>
   <string name="FileReadOnlyTitle">Database er skrivebeskyttet</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android har åbnet den aktuelle database i skrivebeskyttet tilstand.</string>
   <string name="ReadOnlyReason_PreKitKat">Det lader til, at du har åbnet filen fra en ekstern app. Denne fremgangsmåde understøtter ikke skrivning. Vil du foretage ændringer i databasen, så luk den venligst igen og vælg Skift database. Åbn derefter filen fra en af de tilgængelige valgmuligheder, om muligt.</string>
@@ -584,10 +570,6 @@
     • Sørg for, at du har indtastet den korrekte adgangskode. Brug øjenikonet til at afsløre det indtastede kodeord.\n
     • Kontroller, at du har valgt den korrekte adgangskode type. Sørg for, at dette svarer til den type, der blev brugt, da du oprettede databasen.\n
     • Kontroller, at du har valgt den rigtige databasefil.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-   • Tip: Hvis du mener, at din databasefil muligvis er ødelagt, eller du ikke kan huske masternøglen, efterat have ændret den, kan du prøve den sidste vellykkede filversion ved at klikke på \"%1$s\" og vælge den lokale sikkerhedkopi.</string>
-  <string name="HintLocalBackupOtherError">\n
-     • Tip: Keepass2Android har gemt den sidste vellykkede filversion i intern hukommelse. Du kan åbne den ved at klikke på \"%1$s\" og vælge den lokale sikkerhedskopi.  </string>
   <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
     Her er nogle tip, der kan hjælpe med at diagnosticere problemet:\n
     
@@ -620,22 +602,11 @@
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="ErrorReportTitle">Keepass2Android: En fejl opstod.</string>
   <string name="ErrorReportText">En uventet fejl opstod under afviklingen af Keepass2Android. Hjælp os med at løse dette ved at tilllade app\'en at indsende fejlrapporter.</string>
-  <string name="ErrorReportPromise">Fejlrapporter medtager aldrig indhold fra din database eller hovedadgangskode, og de kan deaktivere via app-indstillingerne.</string>
   <string name="ErrorReportEnable">Aktivér</string>
   <string name="ErrorReportDisable">Deaktivér</string>
   <string name="ErrorReportAsk">Spørg efter fejl</string>
   <string name="ErrorReportPrefTitle">Indsend fejlrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre2\n
-    * Tillader at åbne flereend én database, kompatibel med KeeAutoExec\n
-    * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
-    * Introducerer pCloud-understøttelse - tak til gilbsgilbs!\n
-    * Gør Nextcloud-support eksplicit\n
-    * Forbedrer lagring og opdaterng af delpostvedhæftninger\n
-    * Flere muligheder for at tilpasse adfærd til personlige præferencer\n
-    * SSL: Stol på brugercertifikater\n
-    * fejlretninger\n
-  </string>
   <string name="ChangeLog_1_06">    Version 1.06\n
     * Skift til ykDroid i stedet for YubiChallenge som app til Yubikey Udfordring-Svar.\n
     * Implementér understøttelse for KeepassXC-agtig Udfordring-Svar. Bemærk: Databaseformatet skal være KDBX4!\n
@@ -734,7 +705,6 @@
   <string name="show_autofill_help">Vis Aotoudfyld-hjælp</string>
   <string name="autofill_sign_in_prompt">Udfyld med Keepass2Android</string>
   <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
-  <string name="autofill_enable">Aktivér Auto-udfyld for %1$s</string>
   <string name="invalid_link_association">Kunne ikke tilknytte webdomæne %1$s med app\'en %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android har registreret fingeraftryk-hardware. Aktivér fingeraftryksoplåsning for denne database?</string>
   <string name="understand">Jeg forstår</string>
