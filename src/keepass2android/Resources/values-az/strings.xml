@@ -15,10 +15,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Xətdən Kənar</string>
   <string name="short_app_name_nonet">KP2A Xətdən Kənar</string>
-  <string name="app_timeout">Tətbiqetməyə qoyulan vaxt</string>
   <string name="show_kill_app">Bağla düyməsi</string>
-  <string name="application">Tətbiqetmə</string>
-  <string name="application_settings">Tətbiqetmə tənzimləmələri</string>
   <string name="ShowGroupnameInSearchResult_title">Qrup adını axtarış nəticələrində göstər</string>
   <string name="NavigationToGroupCompleted_message">Qrup adı indi: %1$s</string>
   <string name="IconSet_title">Nişan dəsti</string>
