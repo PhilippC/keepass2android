@@ -762,6 +762,19 @@
 		* ochrana pred vytvorením screenshotov z obrazovky pre rýchle odomknutie a heslo\n
 		* opačné poradie zoraďovania pre zoraďovanie podľa dátumu úpravy (teraz zostupné zoraďovanie)\n
 		* opravy chýb: zobrazovanie poznámok sa teraz aktualizuje po vykonaní zmien, zobrazovanie hesiel bude už korektné (dúfajme) na všetkých zariadeniach, opravená chyba, ktorá umožnila pridanie záznamu dvakrát, opravená chyba súvisiaca so zobrazovaním duplicitného varovania pre UUID aj po oprave databázy\n</string>
+  <string name="ChangeLog_0_9_6">Verzia 0.9.6\n
+		* Umožnenie importu súboru s kľúčom a/alebo lokálneho súboru databázy do interného priečinka aplikácie (pozrite si nastavenia)\n
+		* Umožnenie rôznych možností pri zoraďovaní\n
+		* Vylepšené preferencie pre automatické prepínanie klávesnice\n
+		* Aktualizované logo aplikácie a dizajn notifikácie, design by Stefano Pignataro (http://www.spstudio.at)\n
+		* Generátor hesiel si pamätá posledné nastavenia\n
+		* Nastavenie viditeľnosti notifikácie pre obrazovku uzamknutia v Android 5\n
+		* Vyčistenie primárneho hesla, ak aplikáciu opustíte bez stlačenia tlačidla OK\n
+		* Opravená chyba spojená s chýbajúcimi jazykmi vstupu, v nastavení klávesnice na niektorých zariadeniach\n
+		* Opravený problém s automatickým prepínaním klávesnice na zariadeniach s root\n
+		* Pridaná kontrola poškodenia databázy (duplicitné UUID)\n
+		* Automatické opätovné načítanie databázy pri zistení zmeny, rieši problém týkajúce sa odhalenia primárneho hesla\n
+		* Vylepšené rozloženie malej klávesnice pre poľštinu, opravená téma pre nastavenia klávesnice (vďaka, Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Verzia 0.9.5</b>\n
 		* Opravené problémy s prehliadaním (najmä v systéme Android 4.4)\n
 		* Opravený problém s načítavaním súborov .kdb (Keepass 1) na zariadení Nexus 5 so systémom Android Lollipop\n
