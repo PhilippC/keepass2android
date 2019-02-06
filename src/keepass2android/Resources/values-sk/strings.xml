@@ -833,6 +833,13 @@
 		* Umoženie presúvanie záznamov a skupín\n
 		* Ikona pre rýchle odomknutie môže byť priehľadná (pozrite si nastavenia)\n
 		* Opravy chýb</string>
+  <string name="ChangeLog_0_8_5"><b>Verzia 0.8.5</b>\n
+		* Vzdialené súbory sú ukladané v lokálnej vyrovnávacej pamäti aplikácie, aby bolo možné používanie offline (vrátane úpravy a neskoršej synchronizácie). Pozrite si nastavenia. \n
+		* Notifikačná ikona na znázornenie stavu uzamknutia databázy (pozrite si nastavenia)\n
+		* Vylepšené zisťovanie stavu uzamknutia v niektorých situáciách\n
+		* Databázové súbory sú načítavané do pamäte počas písania hesla, kvôli zvýšeniu rýchlosti načítavania (pozrite si nastavenia)\n
+		* Záznamy je možné pridávať do hlavnej skupiny\n
+		* Opravy chýb (rozlíšenie referenčných polí, problémy s klávesnicou na talianskych a čínskych zariadeniach)</string>
   <string name="ChangeLog_0_8_4"><b>Verzia 0.8.4</b>\n
 		* Detegovanie externých zmien v databáze a zlúčenie pri ukladaní\n
 		* Zlepšený výkon pri načítavaní\n
@@ -944,6 +951,7 @@ Prvé verejné vydanie
   <string name="show_autofill_help">Zobraziť pomocníka pre automatické dopĺňanie</string>
   <string name="autofill_sign_in_prompt">Doplniť s Keepass2Android</string>
   <string name="autofill_disable">Vypnúť automatické dopĺňanie pre %1$s</string>
+  <string name="autofill_enable_for">Zapnúť autom. dopĺňanie pre %1$s</string>
   <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android rozpoznal snímač odtlačkov prstov. Chcete zapnúť odomykanie databázy odtlačkom prsta?</string>
   <string name="understand">Rozumiem</string>
