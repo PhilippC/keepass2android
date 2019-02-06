@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android sen conexión</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Tempo de espera da aplicación</string>
-  <string name="app_timeout_summary">Tempo de espera para bloquear a base de datos cando a aplicación está inactiva.</string>
-  <string name="kill_app_label">Rematar o proceso da aplicación</string>
   <string name="show_kill_app">Botón de peche</string>
-  <string name="show_kill_app_summary">Amosar un botón na pantalla do contrasinal para rematar o proceso da aplicación (para usuarios paranoicos)</string>
-  <string name="application">Aplicación</string>
-  <string name="application_settings">Axustes da aplicación</string>
   <string name="ShowGroupnameInSearchResult_title">Amosar nome do grupo nos resultados de busca</string>
   <string name="ShowGroupnameInSearchResult_resume">Amosar nome de grupo debaixo dos títulos das entradas no resultado de busca. Útil se varias entradas teñen o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">O grupo de mostra agora é: %1$s</string>
@@ -194,7 +188,6 @@
   <string name="no_keys">Non hai entradas da base de datos ou grupo.</string>
   <string name="no_results">Sen resultados na busca</string>
   <string name="no_url_handler">Non hai ningún xestor para esta URL.</string>
-  <string name="open_recent">Abrir base de datos recente (click para abrir)</string>
   <string name="omitbackup_title">Non buscar en entradas de copias de seguridade nin papeleiras de reciclaxe</string>
   <string name="omitbackup_summary">Omitir os grupos de \'Copia de seguridade\' e papeleira de reciclaxe nos resultados de busca</string>
   <string name="pass_filename">Nome do arquivo da base de datos KeePass</string>
@@ -324,7 +317,6 @@
   <string name="NoDonationReminder_title">Nunca solicitar doazóns</string>
   <string name="NoDonationReminder_summary">Non che darei un céntimo ou xa doei. Non preguntar por doazóns, nin sequera no aniversario do autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
-  <string name="UseOfflineCache_summary">Manter unha copia dos arquivos da base de datos no directorio da cache da aplicación. Isto permitirá utilizar a base de datos incluso cando esta non é accesible.</string>
   <string name="CreateBackups_title">Copias de seguranza locais</string>
   <string name="CreateBackups_summary">Crea unha copia local despois de cargar correctamente a base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguranza local...</string>
@@ -425,7 +417,6 @@
   <string name="otp_aux_file">Arquivo auxiliar OTP</string>
   <string name="ErrorOcurred">Aconteceu un erro:</string>
   <string name="DuplicateUuidsError">A base de datos está corrupta: atopáronse IDs duplicados (Gardou con Minikeepass?) Por favor, volva a importar a unha nova base de dstos con Keepass 2 para PC e seleccione \'Crear novos IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Pode deshabilitar esta mensaxe de erroen Configuración/Configuración da aplicación/Xestor de arquivos/Comprobar UUIDs duplicados. Teña en conta que se poderían experimentar comportamentos inesperados. Recoméndase arranxar a base de datos.</string>
   <string name="synchronize_database_menu">Sincronizar base de datos…</string>
   <string name="CannotMoveGroupHere">Non se pode mover o grupo a este grupo.</string>
   <string name="donate_question">Hoxe é o Oktoberfest! Se che gusta Keepass2Android, non sería hoxe un bo dia para invitarme a unha cervexa?</string>
@@ -452,7 +443,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (cartafol KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Se non quere dar acceso a KP2A a todo ó seu Dropbox completo, seleccione esta opción. Isto pedirá acceso únicamente ó cartafol Apps/Keepass2Android. Isto está particularmente pensado para a creación dunha nova base de datos. Se xa ten unha base de datos, faga click nesta opción para crear o cartafol, despois meta o arquivo neste cartafol (dende o seu PC) e seleccione esta opción de novo para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de arquivos)</string>
@@ -467,7 +457,6 @@
   <string name="help_master_password">A súa base de datos será encriptada co contrasinal que introduza aquí. Cómpre escoller unha forte para que estea segura! Consello: Faga unha frase ou dúas e utilice as iniciais das palabras como contracinal. Inclúa signos de puntuación.</string>
   <string name="hint_master_password">Escolla un contrasinal mestre para protexer a súa base de datos:</string>
   <string name="key_file">Arquivo chave</string>
-  <string name="help_key_file">Un arquivo chave é basicamente un arquivo gardado. Os arquivos chave adoitan ser máis fortes que contrasinais mestres porque a chave pode ser moito máis complexa; porén tamén é máis difícil gardalas en segredo. Se garda a base de datos na nove, non garde o arquivo chave no mesmo sitio! Isto faríao completamente inútil. Tampouco modifique o contido do arquivo chave despois de crear a base de datos!</string>
   <string name="hint_key_file">Escolla se quere usar o arquivo chave ademais do contrasinal mestre:</string>
   <string name="use_key_file">Usar arquivo chave</string>
   <string name="error_adding_keyfile">Erro ó engadir arquivo chave!</string>
@@ -518,9 +507,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Datos da entrada actual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">O plugin recibirá todos os datos sobre a entrada da base de datos actual e permitiráselle ofrecer accións e modificar a súa visualización.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consultar as propias credenciais</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Permitiráselle ó plugin consultar as credenciais asociadas ó seu propio paquete de app.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Consultar credenciais</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Permitiráselle ó plugin consultar as credenciais para as páxinas web ou apps desexadas.</string>
   <string name="get_regular_version">Consiga máis tipos de almacenamento</string>
   <string name="CertificateWarning">Aviso: a validación do certificado do servidor fallou: %1$s. Instale o certificado raíz apropiado no seu dispositivo ou vexa a configuración!</string>
   <string name="CertificateFailure">Erro: a validación do certificado do servidor fallou. Instale o certificado raíz apropiado no seu dispositivo ou vexa a configuración!</string>
@@ -531,7 +518,6 @@
   <string name="FileIsReadOnlyOnKitkat">O arquivo seleccionado é de só escritura para Keepass2Android debido ás restricións de Android 4.4+.</string>
   <string name="CopyFileRequired">Para usalo, debe copialo a outra localización.</string>
   <string name="CopyFileRequiredForEditing">Para editalo, debe copiar o arquivo a outra localización.</string>
-  <string name="ClickOkToSelectLocation">Clique OK para seleccionar a localización a onde se debería copiar o arquivo.</string>
   <string name="FileReadOnlyTitle">A base de datos é de só lectura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android abriu a base de datos actual en modo só lectura.</string>
   <string name="ReadOnlyReason_PreKitKat">Debeu de abrir o arquivo dende unha app externa. Isto non permite a escritura. Se quere facer modificacións á base de datos, peche a base de datos e seleccione Cambiar base de datos. Despois abra o arquivo dende unha das opcións dispoñibles.</string>
@@ -574,7 +560,6 @@
   <string name="EntryChannel_desc">Notificación para simplificar o acceso á entrada seleccionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: ocorreu un erro.</string>
   <string name="ErrorReportText">Ocorreu un erro inesperado durante a execución de Keepass2Android. Por favor, axúdenos a solucionar estes erros permitindo á app enviar informes de erros.</string>
-  <string name="ErrorReportPromise">Os informes de erros nunca conterán ningún tipo de contido da súa base de datos ou contrasinal mestre. Pode deshabilitalos na configuración da app.</string>
   <string name="ErrorReportEnable">Habilitar</string>
   <string name="ErrorReportDisable">Deshabilitar</string>
   <string name="ErrorReportAsk">Preguntar despois do erro</string>
@@ -699,19 +684,6 @@
 		* evita capturas de pantalla de QuickUnlock ou de contrasinais\n
 		* orde inversa para as datas de modificación (agora descendentes)\n
 		* arranxo de bugs: visualización de notas correcta despois de facer cambios, os contrasinais ocúltanse correctamente en (espero) todos os dispositivos, arranxado bug que permitía escribir unha entrada dúas veces, bug arranxado que amosaba advertencia de UUID duplicada incluso despois de arranxar a base de datos\n</string>
-  <string name="ChangeLog_0_9_6">Versión 0.9.6\n
-		* permite importar o arquivo chave e/ou base de datos local ó directorio interno da app (véxase configuración)\n
-		* permite múltiples opcións de ordenación\n
-		* mellora das preferencias no cambio automático de teclado\n
-		* cambio do logo da app e do deseño de notificación, deseñados por Stefano Pignataro (http://www.spstudio.at)\n
-		* o xerado de contrasinais lembra a última configuración\n
-		* establecida a visibilidade das notificacións para pantalla de bloqueo en Android 5\n
-		* agora baléirase o campo do contrasinal ó saír da app sen premer OK\n
-		* arranxado o erro da falta de linguas de introdución na configuración dalgúns dispositivos\n
-		* arranxado o erro no cambio automático de teclado nos dispositivos root\n
-		* engadida verificación para bases de datos corruptas (UUIDs duplicados)\n
-		* recargar automaticamente a base de datos ó detectar cambios, resolve o problema de seguridade que revelaba o contrasinal mestre\n
-		* mellora do teclado polaco, corrección dos parámetros da temática poara o mesmo (grazas a Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versión 0.9.5</b>\n
 		* Arranxado problema ca navegación de arquivos (especialmente en Android 4.4)\n
 		* Arranxado problema ca carga de arquivos .kdb (Keepass 1) nos Nexus 5 con Android Lollipop\n
@@ -771,13 +743,6 @@
 		* Permite mover entradas e grupos\n
 		* A icona de QuickUnlock xa pode ser transparente (vexa configuración)\n
 		* Arranxo de bugs</string>
-  <string name="ChangeLog_0_8_5"><b>Versión 0.8.5</b>\n
-		* Os arquivos remotos serán gardados no caché local da app para permitir o uso sen conexión (inclúe a edición e posterior sincronización). Vexa configuración. \n
-		* Icona de notificación para ver o estado de bloqueo da base de datos (vexa configuración)\n
-		* Mellora da daterminación do estado de bloqueo nalgunhas situacións\n
-		* Os arquivos da base de datos cárganse na memoria mentres se introduce o contrasinal para aumentar a velocidade de carga (vexa configuración)\n
-		* Pódense engadir entradas ó grupo raíz\n
-		* Arranxo de bugs (resolución de campos de referencia, problemas co teclado en dispositivos italianos e chineses)</string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\n
 		* Cambios na base de datos externa serán detectados e fusionados antes de se gardaren\n
 		* Mellora do rendemento da carga\n
