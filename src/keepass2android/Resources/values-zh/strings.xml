@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 离线版</string>
   <string name="short_app_name_nonet">KP2A 离线</string>
-  <string name="app_timeout">应用程序超时</string>
-  <string name="app_timeout_summary">应用程序处于非活动时锁定数据库。</string>
-  <string name="kill_app_label">结束应用程序进程</string>
   <string name="show_kill_app">关闭按钮</string>
-  <string name="show_kill_app_summary">在密码界面显示一个结束应用程序进程的按钮</string>
-  <string name="application">应用程序</string>
-  <string name="application_settings">应用程序设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
   <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">数据库或群组中无条目</string>
   <string name="no_results">无匹配结果</string>
   <string name="no_url_handler">没有处理这个链接地址的程序。</string>
-  <string name="open_recent">打开最近数据库（点击打开）</string>
   <string name="omitbackup_title">不搜索备份和回收站中的条目</string>
   <string name="omitbackup_summary">从搜索结果中忽略备份和回收站群组</string>
   <string name="pass_filename">KeePass 数据库文件名</string>
@@ -330,7 +323,6 @@
   <string name="NoDonationReminder_title">不再要求捐赠</string>
   <string name="NoDonationReminder_summary">我不打算捐赠或已经捐赠过。即使是在作者生日当天，也不要再向我请求捐赠。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
-  <string name="UseOfflineCache_summary">在应用内部缓存中存放一份数据库文件。当数据库文件源无法访问时，仍可打开数据库。</string>
   <string name="CreateBackups_title">本地备份</string>
   <string name="CreateBackups_summary">在成功进入数据库后创建本地备份。</string>
   <string name="UpdatingBackup">正在更新本地备份...</string>
@@ -431,7 +423,6 @@
   <string name="otp_aux_file">一次性密码辅助文件</string>
   <string name="ErrorOcurred">发生错误：</string>
   <string name="DuplicateUuidsError">数据库损坏：发现重复的ID。（你曾使用Minikeepass编辑？）请用Keepass 2 for PC并选择创建新的ID重新导入到新的数据库。</string>
-  <string name="DuplicateUuidsErrorAdditional">您可以在 设置/应用设置/文件处理/检查重复的 UUID 中关闭此错误消息。请注意您可能碰到意外的情况，建议您立即修复数据库。</string>
   <string name="synchronize_database_menu">同步数据库...</string>
   <string name="CannotMoveGroupHere">不能将群组移动到这。</string>
   <string name="donate_question">今天是慕尼黑啤酒节 ！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
@@ -463,7 +454,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
-  <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,7 +469,6 @@
   <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
   <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
   <string name="key_file">密钥文件</string>
-  <string name="help_key_file">密钥文件简单来说就是保存成文件的密码。密钥文件通常比密码复杂和可靠得多，但是也更难将其隐藏。如果您将数据库保存在云端，千万不要把密钥文件也放上去！这样做会使密钥文件变得毫无意义！重要提示：创建数据库后，不要对密钥文件做出修改。</string>
   <string name="hint_key_file">勾选以在使用主密码之余额外使用一个密钥文件：</string>
   <string name="use_key_file">使用密钥文件</string>
   <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
@@ -531,9 +520,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">当前条目数据</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">插件会获取到当前数据库的所有数据，并允许它提供操作并修改显示。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">查询自己的凭据</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">插件将获准查询与它相关联当应用程序包的证书。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">查询凭据</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">插件将获准查询特定的网站及应用的证书。</string>
   <string name="get_regular_version">获取更多的存储类型</string>
   <string name="CertificateWarning">警告： 服务器证书验证失败: %1$ s。在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
@@ -544,7 +531,6 @@
   <string name="FileIsReadOnlyOnKitkat">在 Keepass2Android中，由于 Android 4.4 + 的限制，您选定的文件是只读的 。</string>
   <string name="CopyFileRequired">若要使用它，您必须将其复制到另一个位置。</string>
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
-  <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
   <string name="FileReadOnlyTitle">数据库时只读的.</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已在只读模式打开当前数据库.</string>
   <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
@@ -584,11 +570,6 @@
  &#8226; 检查密码是否正确。使用眼睛图标查看已输入的密码。\n
  &#8226; 检查密码类型是否正确。密码类型必须与创建数据库时的设置相同。\n
  &#8226; 检查数据库文件是否正确。\n</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-   &#8226; 提示：如果你认为数据库已损坏，或你在更改主密钥后把它忘了，你可以点击“%1$s”并选择本地备份以尝试最后一次成功打开的文件版本。</string>
-  <string name="HintLocalBackupOtherError">    \n
-    &#8226; 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
-  </string>
   <string name="CorruptDatabaseHelp">文件已损坏。\n
     以下是诊断问题的一些提示：\n
     
@@ -621,22 +602,11 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="ErrorReportTitle">Keepass2Android: 出现一个错误。</string>
   <string name="ErrorReportText">运行 Keepass2Android 时出现意外的错误。请通过允许应用程序发送错误报告来帮助我们进行修复。</string>
-  <string name="ErrorReportPromise">错误报告绝对不会包含数据库或主密码的任何内容。您可以在应用程序设置中禁用它们。</string>
   <string name="ErrorReportEnable">启用</string>
   <string name="ErrorReportDisable">禁用</string>
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
-  <string name="ChangeLog_1_07">    版本 1.07-pre2\n
-    * 允许同时打开多个数据库，与 KeeAutoExec 兼容\n
-    * SFTP：允许公钥登录、检查服务器公钥是否发生变化\n
-    * 增加 pCloud 支持 - 感谢 gilbsgilbs！\n
-    * 使 Nextcloud 支持公开化\n
-    * 优化条目附件的保存和更新功能\n
-    * 加入更多个人偏好设置\n
-    * SSL：信任用户证书\n
-    * 错误修复\n
-  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
@@ -751,19 +721,6 @@
 * 阻止在快速解锁和密码界面截屏\n
 * reverse sort order for Sort by Modification Date (now descending)\n
 * bug fixes: Notes view now updated correctly after changes, Password views now hiding password correctly on (hopefully) all devices, fixed issue that allowed to add an entry twice, fixed issue with showing Duplicate UUID warning even after fixing the database\n</string>
-  <string name="ChangeLog_0_9_6">版本 0.9.6\n
-* 允许导入密钥文件和本地的数据库文件到应用内部目录（请看设置）\n
-* 支持不同的排序方式\n
-* 优化自动切换键盘的配置\n
-* 更新图标和界面, 由 Stefano Pignataro (http://www.spstudio.at) 设计\n
-* 密码生成器记录最后的配置\n
-* 为 Android 5 的锁屏界面设置通知可见性\n
-* 当没有点击确认就离开应用时，清除主密码\n
-* 修正部分设备无法设置输入语言的问题\n
-* 修正 Root 设备自动切换键盘的问题\n
-* 添加检查数据库的功能 （重复的 UUID）\n
-* 当检测到数据库修改后自动重新读取, 解决一个关于主密码的安全隐患\n
-* 优化波兰语键盘， 修正键盘设置主题样式（感谢 Wiktor Ławski）\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 *修正了文件浏览问题（尤其是在Android 4.4中）\n
 *修正了在Nexus 5手机的Android Lollipop版本中载入文件扩展名为.kbd（keepass1）的问题\n
@@ -824,13 +781,6 @@
 * 允许移动的条目和群组\n
 * QuickUnlock图标可设透明（参见设置）\n
 * 修复错误</string>
-  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
-* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
-* Notification icon to visualize the lock-state of the database (see settings)\n
-* Improved determination of lock-state in some situations\n
-* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
-* Entries can be added to root group\n
-* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 * External database changes are detected and merged when saving\n
 * Improved loading performance\n
@@ -941,7 +891,6 @@ Initial public release
   <string name="show_autofill_help">显示自动填充帮助</string>
   <string name="autofill_sign_in_prompt">使用 Keepass2Android 填充</string>
   <string name="autofill_disable">对%1$s禁用自动填充</string>
-  <string name="autofill_enable">对%1$s启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>
