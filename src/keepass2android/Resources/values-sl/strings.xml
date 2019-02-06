@@ -21,13 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Časovna omejitev programa</string>
-  <string name="app_timeout_summary">Čas pred zaklenitvijo podatkovne zbirke, ko je program nedejaven.</string>
-  <string name="kill_app_label">Uniči opravilo programa</string>
   <string name="show_kill_app">Gumb Zapri</string>
-  <string name="show_kill_app_summary">Prikaži gumb za uničenje opravila programa na zaslonu gesla (za uporabnike paranoida)</string>
-  <string name="application">Program</string>
-  <string name="application_settings">Nastavitve programa</string>
   <string name="ShowGroupnameInSearchResult_title">Prik. ime sk. v rez. isk.</string>
   <string name="ShowGroupnameInSearchResult_resume">Prikaži ime skupine pod nazivi vnosov v rezultatih iskanja. Uporabno, če ima več vnosov enako ime.</string>
   <string name="NavigationToGroupCompleted_message">Skupina za prikaz je sedaj: %1$s</string>
@@ -192,7 +186,6 @@
   <string name="no_keys">Ni vnosov v podatkovni zbirki ali skupini.</string>
   <string name="no_results">Ni rezultatov iskanja</string>
   <string name="no_url_handler">Ni ročnika za ta url.</string>
-  <string name="open_recent">Odpri nedavno podatkovno zbirko (kliknite za odpiranje)</string>
   <string name="omitbackup_title">Ne išči po vnosih varnostne kopije in Koša</string>
   <string name="omitbackup_summary">Izpusti skupini \'Varnostna kopija\' in Koš iz rezultatov iskanja</string>
   <string name="pass_filename">Ime datoteke podatkovne zbirke KeePass</string>
@@ -383,7 +376,6 @@
   <string name="otp_aux_file">pomožna datoteka OTP</string>
   <string name="ErrorOcurred">Pojavila se je napaka:</string>
   <string name="DuplicateUuidsError">Podatkovna zbirka je pokvarjena: najdeni podvojeni ID-ji. (Ali ste shranili z Minikeepassom?) Ponovno uvozite v novo podatkovno zbirko s KeePassom 2 za PC in izberite \'Ustvari nove ID-je\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">To sporočilo o napaki lahko onemogočite v Nastavitve/Nastavitve programa/Ravnanje z datotekami/Preveri za podvojene UUID-je. Upoštevajte, da lahko naletite na nepričakovano vedenje. Priporočljivo je popraviti podatkovno zbirko.</string>
   <string name="synchronize_database_menu">Uskladi podatkovno zbirko …</string>
   <string name="CannotMoveGroupHere">Skupine ni mogoče premakniti v to skupino.</string>
   <string name="donate_question">Danes je Oktoberfest! Če vam je Keepass2Android všeč: ali ne bi bil današnji dan pravi dan, da mi kupite pivo?</string>
@@ -410,7 +402,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, kliknite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (prenos datotek SSH)</string>
@@ -425,7 +416,6 @@
   <string name="help_master_password">Vaša pod. zbirka je šifrirana z geslom, ki ga vnesete tu. izberite močno geslo, da zagotovite varnost svoje pod. zbirke! Nasvet: sestavite stavek ali dva in za geslo uporabite prve črke besed. Vključite ločila.</string>
   <string name="hint_master_password">Izberite glavno geslo, da zaščitite svojo pod. zbirko:</string>
   <string name="key_file">Datoteka ključa</string>
-  <string name="help_key_file">Datoteka ključa je v bistvu geslo shranjeno v datoteki. Datoteke ključa so značilno močnejše od glavnih gesel, ker so lahko veliko bolj zapletene; vendar jih je težje ohraniti skrivne. če svojo pod. zbirko shranite v oblak, tam ne shranite tudi datoteko ključa! To bi jo naredilo popolnoma neuporabno! Pomembno: ne spremenite vsebine datoteke ključa po ustvarjanju pod. zbirke!</string>
   <string name="hint_key_file">Izberite, ali želite poleg glavnega gesla uporabiti datoteko ključa:</string>
   <string name="use_key_file">Uporabi datoteko ključa</string>
   <string name="error_adding_keyfile">Napaka pri dodajanju datoteke ključa!</string>
@@ -468,9 +458,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Trenutni podatki vnosa</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Vtičnik bo prejel vse podatke o trenutnem vnosu podatkovne zbirke in mu bo omogočeno ponujanje dejanj in spreminjanje svojega prikaza.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Poizvedi po svojih poverilih</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Vtičniku bo dovoljena poizvedba za poverila, ki so povezana s njegovim lastnim programskim paketom.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Poizvedi za poverila</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Vtičniku bo dovoljena poizvedba za poverila za namerne spletne strani ali programe.</string>
   <string name="get_regular_version">Dobi več vrst pomnilniških naprav</string>
   <string name="CertificateWarning">Opozorilo: preverjanje veljavnosti potrdila strežnika je spodletelo: %1$s. Namestite ustrezno korensko potrdilo na svoji napravi ali glejte nastavitve!</string>
   <string name="CertificateFailure">Napaka: preverjanje veljavnosti potrdila strežnika je spodletelo: Namestite ustrezno korensko potrdilo na svoji napravi ali glejte nastavitve!</string>
@@ -481,7 +469,6 @@
   <string name="FileIsReadOnlyOnKitkat">Izbrana datoteka za Keepass2Android je samo za branje zaradi omejitev na Androidu 4.4+.</string>
   <string name="CopyFileRequired">Da jo uporabite, jo morate kopirati na drugo mesto.</string>
   <string name="CopyFileRequiredForEditing">Daj jo uredite, jo morate kopirati na drugo mesto.</string>
-  <string name="ClickOkToSelectLocation">Kliknite V redu, da izberete mesto, kamor je treba kopirati datoteko.</string>
   <string name="FileReadOnlyTitle">Podatkovna zbirka je samo za branje</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android je trenutno podatkovno zbirko odprl samo za branje.</string>
   <string name="ReadOnlyReason_PreKitKat">Videti je, da ste datoteko odprli z zunanjim programom. Ta način en podpira zapisovanja. Če želite v podatkovni zbirki narediti spremembe, jo zaprite in izberite Spremeni podatkovno zbirko. Potem datoteko odprite z eno od razpoložljivih možnosti.</string>
@@ -531,7 +518,6 @@
   <string name="DbQuicklockedChannel_name">Hitro odklepanje</string>
   <string name="ErrorReportTitle">Keepass2Android: pojavila se je napaka.</string>
   <string name="ErrorReportText">Med izvajanjem Keepass2Androida se je pojavila nepričakovana napaka. Pomagajte nam to popraviti z omogočanjem pošiljanja poročil o napakah.</string>
-  <string name="ErrorReportPromise">Poročila o napakah nikoli ne vsebujejo vsebine podatkovne zbirke ali glavnega gesla. Onemogočite jih lahko v nastavitvah programa.</string>
   <string name="ErrorReportEnable">Omogoči</string>
   <string name="ErrorReportDisable">Onemogoči</string>
   <string name="ErrorReportAsk">Vprašaj po napaki</string>
@@ -600,19 +586,6 @@
 		* preprečitev zajema zaslonskih slik iz zaslonov Hitrega odklepanja in gesel\n
 		* obratni vrstni red razvrščanja za razvrščanje po datumu spremembe (sedaj padajoče)\n
 		* popravki hroščev: pogled opomb se sedaj pravilno posodobi po spremembah, pogledi gesel sedaj pravilno skrijejo gesla na vseh napravah, popravljena težava, ki je dovoljevala dvakratno dodajanja vnosa, popravljena težava s prikazovanjem opozorila Podvojeni UUID-ji tudi po popravljanju podatkovne zbirke\n</string>
-  <string name="ChangeLog_0_9_6">Različica 0.9.6\n
-		* omogoči uvažanje datoteke ključa in/ali krajevne podatkovne zbirke v notranjo mapo programa (glejte nastavitve)\n
-		*omogoči različne možnosti razvrščanja\n
-		* izboljšane nastavitve za samodejno preklapljanje tipkovnice\n
-		* posodobljena logotip programa in oblika obvestil, oblikoval Stefano Pignataro (http://www.spstudio.at)\n
-		* ustvarjalnik gesel si zapomni zadnje nastavitve\n
-		* nastavitev vidnosti obvestil zaslona za zaklepanje za Android	5\n
-		* sedaj se polja glavnega gesla počistijo, ko končate program brez klika V redu\n
-		* popravljena težava z manjkajočimi vnosnimi jeziki v nastavitvi tipkovnice na nekaterih napravah\n
-		* popravljena težava s samodejnim preklapljanjem tipkovnice na napravah s skrbniškim\n
-		* dodano preverjanje za pokvarjene podatkovne zbirke (podvojeni UUID-ji)\n
-		* samodejno ponovno naloži podatkovno zbirko, ko je sprememba, reši skrb za varnost glede razkritja glavnega gesla\n
-		* izboljšana razporeditev poljske majhne tipkovnice, popravljena tema nastavitev tipkovnice (zahvale Wiktorju Ławskiju)\n</string>
   <string name="ChangeLog_0_9_5"><b>Različica 0.9.5</b>\n
 		* Popravljene težave z brskanjem po datotekah (posebno na Androidu 4.4)\n
 		* Popravljena težava z nalaganjem datotek .kdb (Keepass 1) na Nexusu 5 z Androidom Lollipop\n
@@ -672,13 +645,6 @@ Obljubil sem več sprememb. Žal se bodo pojavila v naslednji izdaji. Te hitre p
 		* omogoča premikanje vnosov in skupin\n
 		* Ikona Hitrega oklepanja je lahko prosojna (glejte nastavitve)\n
 		* Popravki hroščev</string>
-  <string name="ChangeLog_0_8_5"><b>Različica 0.8.5</b>\n
-		* Oddaljene datoteke so shranjene v krajevnem predpomnilniku programa, da omogočijo nepovezano uporabo (vključno z urejanjem in kasnejšim usklajevanjem). Glejte nastavitve. \n
-		* Ikona obvestila za predočenje stanje zaklepanja podatkovne zbirke (glejte nastavitve)\n
-		* Izboljšano določanje stanja zaklepanja v nekaterih razmerah\n
-		* Datoteke podatkovne zbirke se naložijo v pomnilnik, ko tipkate svoje geslo za povečanje hitrosti nalaganja (glejte nastavitve)\n
-		* Vnose lahko dodate v skrbniško skupino\n
-		* Popravki hroščev (razrešitev sklicnih polj, težav s tipkovnico na italijanskih in kitajskih napravah)</string>
   <string name="ChangeLog_0_8_4"><b>Različica 0.8.4</b>\n
 		* Spremembe zunanjih podatkovnih zbirk se zaznajo in združijo ob shranjevanju\n
 		* Izboljšana zmogljivost nalaganja\n
