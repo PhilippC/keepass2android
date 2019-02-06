@@ -23,11 +23,11 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Časový limit aplikácie</string>
-  <string name="app_timeout_summary">Čas pred uzamknutím databázy, ak je aplikácia neaktívna.</string>
+  <string name="app_timeout_summary">Čas pred uzamknutím databázy, keď je aplikácia neaktívna.</string>
   <string name="kill_app_label">Ukončiť proces aplikácie</string>
   <string name="show_kill_app">Tlačidlo Zatvoriť</string>
-  <string name="show_kill_app_summary">Na obrazovke s heslom zobraziť tlačidlo pre ukončenie procesu (pre paranoidných používateľov)</string>
-  <string name="application">Aplikácia</string>
+  <string name="show_kill_app_summary">Na obrazovke pre heslo zobraziť tlačidlo na ukončenie procesu aplikácie (pre paranoidných používateľov)</string>
+  <string name="application">Apl.</string>
   <string name="application_settings">Nastavenia aplikácie</string>
   <string name="ShowGroupnameInSearchResult_title">Názov skupiny vo výsledku hľadania</string>
   <string name="ShowGroupnameInSearchResult_resume">Zobraziť názov skupiny pod názvami záznamov vo výsledkoch vyhľadávania. Užitočné v prípade, že viaceré záznamy majú rovnaký názov.</string>
@@ -198,7 +198,7 @@
   <string name="no_keys">Žiadne záznamy v databáze alebo skupine.</string>
   <string name="no_results">Žiadne výsledky vyhľadávania</string>
   <string name="no_url_handler">Žiadna asociácia pre túto adresu URL.</string>
-  <string name="open_recent">Otvoriť poslednú databázu (otvoríte kliknutím)</string>
+  <string name="open_recent">Otvoriť poslednú databázu (otvoríte dotykom)</string>
   <string name="omitbackup_title">Neprehľadávať záznamy v zálohách alebo v koši</string>
   <string name="omitbackup_summary">Vynechať skupinu \'Backup\' a kôš z výsledkov vyhľadávania</string>
   <string name="pass_filename">Súbor s databázou KeePass</string>
@@ -333,7 +333,7 @@
   <string name="NoDonationReminder_title">Nikdy sa nepýtať na príspevok</string>
   <string name="NoDonationReminder_summary">Nechcem prispieť ničím alebo som už prispel. Nepýtať sa na príspevok, ani na autorove narodeniny.</string>
   <string name="UseOfflineCache_title">Ukladať do vyr. pamäte</string>
-  <string name="UseOfflineCache_summary">Uchovávať kópiu databáz v priečinku pre vyrov. pamäť aplikácie. Databázy sa budú dať používať aj vtedy, keď nie je možný prístup k databázovému súboru.</string>
+  <string name="UseOfflineCache_summary">Uchovať kópiu databázových súborov v priečinku vyrov. pamäte aplikácie. To umožní používať databázy aj keď nie je databázový súbor prístupný.</string>
   <string name="CreateBackups_title">Lokálne zálohy</string>
   <string name="CreateBackups_summary">Po úspešnom načítaní databázy vytvoriť lokálnu záložnú kópiu.</string>
   <string name="UpdatingBackup">Aktualizovanie lokálnej zálohy...</string>
@@ -434,7 +434,6 @@
   <string name="otp_aux_file">doplnkový súbor OTP</string>
   <string name="ErrorOcurred">Nastala chyba:</string>
   <string name="DuplicateUuidsError">Databáza je poškodená: našli sa duplicitné ID. (Uloženie s použitím Minikeepass?) Vykonajte import do novej databázy programom Keepass 2 pre PC a vyberte voľbu \'Vytvoriť nové ID\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Toto hlásenie o chybe môžete vypnúť v časti Nastavenia/Nastavenia aplikácie/Zaobchádzanie so súborom/Kontrolovať duplicitné UUID. Prosím pamätajte na to, že funkcia nemusí pracovať očakávaným spôsobom. Odporúčame opraviť databázu.</string>
   <string name="synchronize_database_menu">Synchronizácia databázy…</string>
   <string name="CannotMoveGroupHere">Skupinu nemožno presunúť do tejto skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Ak máte radi Keepass2Android: nie je vhodný čas na to, aby ste mi kúpili pivo?</string>
@@ -466,7 +465,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Túto možnosť si môžete vybrať, ak nechcete, aby mal KP2A úplný prístup k úložisku Dropbox. Bude sa vyžadovať iba prístup k priečinku Apps/Keepass2Android. Táto možnosť je vhodná pri vytváraní novej databázy. Ak už máte nejakú databázu, kliknite na túto možnosť pre vytvorenie nového priečinka, potom vložte súbor do priečinka (z PC) a potom znovu vyberte túto možnosť pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -482,7 +480,6 @@
   <string name="help_master_password">Vaša databáza je šifrovaná heslom, ktoré zadáte sem. Vyberte si silné heslo, aby bola databáza dobre zabezpečená! Tip: Vymyslite si jednu či dve vety a prvé písmená slov môžete použiť ako heslo. Zahrňte aj interpunkčné znamienka.</string>
   <string name="hint_master_password">Vyberte si primárne heslo na ochranu databázy:</string>
   <string name="key_file">Súbor s kľúčom</string>
-  <string name="help_key_file">Súbor s kľúčom je v podstate heslo uložené v súbore. Súbory s kľúčom sú zvyčajne silnejšie ako primárne heslá, pretože kľúč môže byť oveľa komplikovanejší; je však aj ťažšie udržať ho v tajnosti. Ak uložíte databázu do úložiska cloud, neukladajte tam aj súbor s kľúčom! Inak by bolo zabezpečenie úplne nefunkčné! Dôležité: obsah súbor s kľúčom po vytvorení databázy už nemeňte!</string>
   <string name="hint_key_file">Vyberte si, či chcete použiť súbor s kľúčom spolu s primárnym heslom:</string>
   <string name="use_key_file">Použiť súbor s kľúčom</string>
   <string name="error_adding_keyfile">Chyba pri pridávaní súboru s kľúčom!</string>
@@ -534,9 +531,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuálne údaje záznamu</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Prídavný modul získa všetky údaje o aktuálnom zázname v databáze a bude môcť ponúknuť akcie a upraviť jeho zobrazenie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Vyžiadať vlastné prihlasovacie údaje</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Prídavný modul si môže vyžiadať prihlasovacie údaje asociované s vlastným balíčkom aplikácie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Vyžiadať prihlasovacie údaje</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Prídavný modul si bude môcť vyžiadať prihlasovacie údaje pre zamýšľané webstránky alebo aplikácie.</string>
   <string name="get_regular_version">Získať viac spôsobov uloženia</string>
   <string name="CertificateWarning">Upozornenie: nepodarilo sa overiť certifikát servera: %1$s. Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
   <string name="CertificateFailure">Chyba: Nepodarilo sa overiť certifikát servera! Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
@@ -547,7 +542,6 @@
   <string name="FileIsReadOnlyOnKitkat">Vybraný súbor je určený len na čítanie aplikáciou Keepass2Android, z dôvodu obmedzení v systéme Android 4.4+.</string>
   <string name="CopyFileRequired">Ak ho chcete použiť, skopíruje ho do iného umiestnenia.</string>
   <string name="CopyFileRequiredForEditing">Ak ho chcete upraviť, musíte súbor skopírovať do iného umiestnenia.</string>
-  <string name="ClickOkToSelectLocation">Pre výber umiestnenia kliknite na tlačidlo OK na mieste, kde sa má súbor skopírovať.</string>
   <string name="FileReadOnlyTitle">Databáza je určená len na čítanie</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otvoril aktuálnu databázu len v režime na čítanie.</string>
   <string name="ReadOnlyReason_PreKitKat">Zdá sa, že ste súbor otvorili z externej aplikácie. Takýmto spôsobom však nie je podporovaný zápis. Ak chcete v databáze niečo zmeniť, prosím zatvorte ju a vyberte možnosť Zmeniť databázu. Potom súbor otvorte pomocou jednej z dostupných možností.</string>
@@ -588,11 +582,6 @@
    • Uistite sa, že ste vybrali správny typ hesla. Uistite sa, že zodpovedá typu použitému pri vytváraní databázy.\n
    • Uistite sa, že je vybraný správny súbor s databázou.
  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   • Pomôcka: Ak si myslíte, že je Vaša databáza poškodená alebo si nepamätáte primárny kľúč po úprave, môžete to skúsiť s naposledy otvorenou verziou súboru, kliknutím na \"%1$s\" a vybraním lokálnej zálohy.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    • Pomôcka: Keepass2Android uložil naposledy otvorenú verziu súboru v internej pamäti. Môžete ju otvoriť kliknutím na \"%1$s\" a výberom lokálnej zálohy.
-  </string>
   <string name="CorruptDatabaseHelp">    Súbor je poškodený. \n
     Tu je niekoľko nápadov, ktoré vám môžu pomôcť odhaliť problém:\n
     
@@ -625,22 +614,11 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="ErrorReportTitle">Keepass2Android: Došlo k nejakej chybe.</string>
   <string name="ErrorReportText">Počas behu aplikácie Keepass2Android došlo k neočakávanej chybe. Prosím pomôžte nám s jej opravou tým, že umožníte aplikácii odosielať záznamy o chybách.</string>
-  <string name="ErrorReportPromise">Záznamy o chybách nikdy nebudú obsahovať nič z vašej databázy a ani primárne heslo. Túto funkciu môžete zablokovať v nastaveniach aplikácie.</string>
   <string name="ErrorReportEnable">Zapnúť</string>
   <string name="ErrorReportDisable">Vypnúť</string>
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
-  <string name="ChangeLog_1_07">    Verzia 1.07-pre2\n
-    * Umožnenie otvorenia viac ako jednej databázy, kompatibilné s KeeAutoExec\n
-    * SFTP: umožnenie overenia verejného kľúča, kontrola zmeny kľúča hostiteľa\n
-    * Zavedenie podpory pre pCloud - vďaka gilbsgilbs!\n
-    * Explicitná podpora Nextcloud\n
-    * Vylepšenie ukladania a aktualizovania príloh záznamu\n
-    * Viac možností pre úpravu správania podľa osobných preferencií\n
-    * SSL: certifikáty dôveryhodného používateľa\n
-    * Opravy chýb\n
-  </string>
   <string name="ChangeLog_1_06">    Verzia 1.06\n
     * Prechod na ykDroid namiesto YubiChallenge ako aplikácie pre odpoveď na výzvu Yubikey.\n
     * Implementovaná podpora odpoveď na výzvu v štýle KeepassXC. Poznámka: Formát databázy musí byť KDBX4!\n
@@ -761,19 +739,6 @@
 		* ochrana pred vytvorením screenshotov z obrazovky pre rýchle odomknutie a heslo\n
 		* opačné poradie zoraďovania pre zoraďovanie podľa dátumu úpravy (teraz zostupné zoraďovanie)\n
 		* opravy chýb: zobrazovanie poznámok sa teraz aktualizuje po vykonaní zmien, zobrazovanie hesiel bude už korektné (dúfajme) na všetkých zariadeniach, opravená chyba, ktorá umožnila pridanie záznamu dvakrát, opravená chyba súvisiaca so zobrazovaním duplicitného varovania pre UUID aj po oprave databázy\n</string>
-  <string name="ChangeLog_0_9_6">Verzia 0.9.6\n
-		* povolenie importovania súboru s kľúčom a/alebo lokálnej databázy do interného priečinka aplikácie (pozrite si nastavenia)\n
-		* umožnenie rôznych nastavení zoraďovania\n
-		* vylepšené nastavenia automatického prepínania klávesnice\n
-		* aktualizované logo aplikácie a dizajn notifikácií, dizajn: Stefano Pignataro (http://www.spstudio.at)\n
-		* generátor hesiel ukladá naposledy použité nastavenia\n
-		* nastavenie viditeľnosti notifikácií pre uzamykaciu obrazovku Android 5\n
-		* vyčistenie políčka s primárnym heslom, pokiaľ opustíte aplikáciu bez kliknutia na OK\n
-		* opravený problém s chýbajúcimi vstupnými jazykmi v nastaveniach klávesnice niektorých zariadení\n
-		* opravený problém s automatickým prepínaním klávesnice na zariadeniach s root-oprávneniami\n
-		* pridaná kontrola poškodenia databáz (duplicitné UUIDs)\n
-		* automatické opätovné načítanie databázy ak bola zistená zmena, vyriešenie bezpečnostného problému týkajúceho sa odhalenia primárneho hesla\n
-		* vylepšené rozloženie malej poľskej klávesnice, opravená téma pre nastavenia klávesnice (ďakujeme používateľovi Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Verzia 0.9.5</b>\n
 		* Opravené problémy s prehliadaním (najmä v systéme Android 4.4)\n
 		* Opravený problém s načítavaním súborov .kdb (Keepass 1) na zariadení Nexus 5 so systémom Android Lollipop\n
@@ -832,13 +797,6 @@
 		* Umoženie presúvanie záznamov a skupín\n
 		* Ikona pre rýchle odomknutie môže byť priehľadná (pozrite si nastavenia)\n
 		* Opravy chýb</string>
-  <string name="ChangeLog_0_8_5"><b>Verzia 0.8.5</b>\n
-		* Vzdialené súbory sú ukladané do lokálnej vyrovnávacej pamäte, aby bolo možné používanie offline (vrátane úprav a neskoršej synchronizácie). Pozrite si nastavenia. \n
-		* Notifikačná ikona pre znázornenie stavu uzamknutia databázy (pozrite si nastavenia)\n
-		* Vylepšené zsiťovanie stavu uzamknutia v niektorých situáciách\n
-		* Kvôli zrýchleniu načítavania je databáza načítavaná do pamäti už počas zadávania heslu (pozrite si nastavenia)\n
-		* Záznamy možno pridávať do hlavnej skupiny\n
-		* Opravy chýb (rozlišovanie referenčných polí, problémy s klávesnicou na talianskych a čínskych zariadeniach)</string>
   <string name="ChangeLog_0_8_4"><b>Verzia 0.8.4</b>\n
 		* Detegovanie externých zmien v databáze a zlúčenie pri ukladaní\n
 		* Zlepšený výkon pri načítavaní\n
@@ -950,7 +908,6 @@ Prvé verejné vydanie
   <string name="show_autofill_help">Zobraziť pomocníka pre automatické dopĺňanie</string>
   <string name="autofill_sign_in_prompt">Doplniť s Keepass2Android</string>
   <string name="autofill_disable">Vypnúť automatické dopĺňanie pre %1$s</string>
-  <string name="autofill_enable">Zapnúť automatické dopĺňanie pre %1$s</string>
   <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android rozpoznal snímač odtlačkov prstov. Chcete zapnúť odomykanie databázy odtlačkom prsta?</string>
   <string name="understand">Rozumiem</string>
