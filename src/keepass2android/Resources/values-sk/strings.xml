@@ -536,6 +536,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Vyžiadať vlastné prihlasovacie údaje</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Prídavný modul si bude môcť vyžiadať prihlasovacie údaje asociované s vlastným balíčkom aplikácie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Vyžiadať prihlasovacie údaje</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Príd. modul si bude môcť vyžiadať prihl. údaje pre zvažovanie webov alebo aplikácií.</string>
   <string name="get_regular_version">Získať viac spôsobov uloženia</string>
   <string name="CertificateWarning">Upozornenie: nepodarilo sa overiť certifikát servera: %1$s. Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
   <string name="CertificateFailure">Chyba: Nepodarilo sa overiť certifikát servera! Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
@@ -546,6 +547,7 @@
   <string name="FileIsReadOnlyOnKitkat">Vybraný súbor je určený len na čítanie aplikáciou Keepass2Android, z dôvodu obmedzení v systéme Android 4.4+.</string>
   <string name="CopyFileRequired">Ak ho chcete použiť, skopíruje ho do iného umiestnenia.</string>
   <string name="CopyFileRequiredForEditing">Ak ho chcete upraviť, musíte súbor skopírovať do iného umiestnenia.</string>
+  <string name="ClickOkToSelectLocation">Kliknutím na OK vyberte umiestnenie, kam sa má súbor skopírovať.</string>
   <string name="FileReadOnlyTitle">Databáza je určená len na čítanie</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otvoril aktuálnu databázu len v režime na čítanie.</string>
   <string name="ReadOnlyReason_PreKitKat">Zdá sa, že ste súbor otvorili z externej aplikácie. Takýmto spôsobom však nie je podporovaný zápis. Ak chcete v databáze niečo zmeniť, prosím zatvorte ju a vyberte možnosť Zmeniť databázu. Potom súbor otvorte pomocou jednej z dostupných možností.</string>
@@ -586,6 +588,11 @@
    • Uistite sa, že ste vybrali správny typ hesla. Uistite sa, že zodpovedá typu použitému pri vytváraní databázy.\n
    • Uistite sa, že je vybraný správny súbor s databázou.
  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Pomôcka: ak sa domnievate, že súbor s databázou môže byť poškodený alebo si nepamätáte primárny kľúč po zmene, môžete to skúsiť s verziou súboru, ktorú ste naposledy úspešne otvorili - kliknutím na \"%1$s\" a výberom lokálnej zálohy.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Pomôcka: Keepass2Android uložil poslednú úspešne otvorenú verziu súboru do internej pamäte. Môžete ju otvoriť kliknutím na \"%1$s\" a výberom lokálnej zálohy.
+  </string>
   <string name="CorruptDatabaseHelp">    Súbor je poškodený. \n
     Tu je niekoľko nápadov, ktoré vám môžu pomôcť odhaliť problém:\n
     
@@ -618,11 +625,23 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="ErrorReportTitle">Keepass2Android: Došlo k nejakej chybe.</string>
   <string name="ErrorReportText">Počas behu aplikácie Keepass2Android došlo k neočakávanej chybe. Prosím pomôžte nám s jej opravou tým, že umožníte aplikácii odosielať záznamy o chybách.</string>
+  <string name="ErrorReportPromise">Záznamy o chybe nikdy neobsahujú žiadny obsah pochádzajúci z databáz a ani primárne heslo. Zablokovanie je možné v nastaveniach aplikácie.</string>
   <string name="ErrorReportEnable">Zapnúť</string>
   <string name="ErrorReportDisable">Vypnúť</string>
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
+  <string name="ChangeLog_1_07">    Verzia 1.07-pre4\n
+    * Umožňuje otvoriť viac ako jednu databázu, kompatibilne s KeeAutoExec\n
+    * SFTP: umožnenie overenia verejného kľúča, kontrola zmeny host. kľúča\n
+    * Zavedenie podpory pre pCloud - vďaka, gilbsgilbs!\n
+    * Explicitná podpora Nextcloud\n
+    * Vylepšenie ukladania a aktualizovania príloh záznamu\n
+    * Viac možností úpravy správania sa, podľa osobných preferencií\n
+    * SSL: dôverovanie používateľským certifikátom\n
+    * Vylepšenie automatického dopĺňania (funguje s Firefox, umožňuje znížiť počet vyskakovací okien)\n
+    * Opravy chýb\n
+  </string>
   <string name="ChangeLog_1_06">    Verzia 1.06\n
     * Prechod na ykDroid namiesto YubiChallenge ako aplikácie pre odpoveď na výzvu Yubikey.\n
     * Implementovaná podpora odpoveď na výzvu v štýle KeepassXC. Poznámka: Formát databázy musí byť KDBX4!\n
