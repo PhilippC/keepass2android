@@ -81,10 +81,6 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
-      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
-      <Name>AdalBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj" />
   </ItemGroup>
   <ItemGroup>

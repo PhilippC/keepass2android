@@ -846,10 +846,6 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
-      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
-      <Name>AdalBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
