@@ -434,6 +434,7 @@
   <string name="otp_aux_file">doplnkový súbor OTP</string>
   <string name="ErrorOcurred">Nastala chyba:</string>
   <string name="DuplicateUuidsError">Databáza je poškodená: našli sa duplicitné ID. (Uloženie s použitím Minikeepass?) Vykonajte import do novej databázy programom Keepass 2 pre PC a vyberte voľbu \'Vytvoriť nové ID\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Túto správu o chybe môžete zablokovať v sekcii Nastavenia/Aplikácia/Zaobchádzanie so súborom/Kontrolovať duplicitné UUID. Prosím pamätajte na to, že môžete zaznamenať neočakávané správanie. Odporúča sa opraviť databázu.</string>
   <string name="synchronize_database_menu">Synchronizácia databázy…</string>
   <string name="CannotMoveGroupHere">Skupinu nemožno presunúť do tejto skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Ak máte radi Keepass2Android: nie je vhodný čas na to, aby ste mi kúpili pivo?</string>
@@ -465,6 +466,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -480,6 +482,7 @@
   <string name="help_master_password">Vaša databáza je šifrovaná heslom, ktoré zadáte sem. Vyberte si silné heslo, aby bola databáza dobre zabezpečená! Tip: Vymyslite si jednu či dve vety a prvé písmená slov môžete použiť ako heslo. Zahrňte aj interpunkčné znamienka.</string>
   <string name="hint_master_password">Vyberte si primárne heslo na ochranu databázy:</string>
   <string name="key_file">Súbor s kľúčom</string>
+  <string name="help_key_file">Súbor s kľúčom je v podstate heslo uložené v súbore. Súbory s kľúčom sú typicky zložitejšie ako primárne heslá, pretože kľúč môže byť oveľa komplexnejší. Je však aj ťažšie udržať ho v tajnosti. Ak ukladáte databázu v cloude, neukladajte tam aj súbor s kľúčom! Tým by ste úplne znefunkčnili zabezpečenie! Dôležité: po vytvorení databázy už nemeňte obsah súboru s kľúčom!</string>
   <string name="hint_key_file">Vyberte si, či chcete použiť súbor s kľúčom spolu s primárnym heslom:</string>
   <string name="use_key_file">Použiť súbor s kľúčom</string>
   <string name="error_adding_keyfile">Chyba pri pridávaní súboru s kľúčom!</string>
@@ -531,6 +534,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuálne údaje záznamu</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Prídavný modul získa všetky údaje o aktuálnom zázname v databáze a bude môcť ponúknuť akcie a upraviť jeho zobrazenie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Vyžiadať vlastné prihlasovacie údaje</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Prídavný modul si bude môcť vyžiadať prihlasovacie údaje asociované s vlastným balíčkom aplikácie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Vyžiadať prihlasovacie údaje</string>
   <string name="get_regular_version">Získať viac spôsobov uloženia</string>
   <string name="CertificateWarning">Upozornenie: nepodarilo sa overiť certifikát servera: %1$s. Nainštalujte správny hlavný certifikát na vaše zariadenie alebo si pozrite nastavenia!</string>
