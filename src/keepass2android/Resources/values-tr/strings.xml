@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Çevrimdışı</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Uygulama zaman aşımı</string>
-  <string name="app_timeout_summary">Uygulama pasif iken veritabanını otomatik kilitleme zaman aşımı.</string>
-  <string name="kill_app_label">Uygulamayı sonlandır</string>
   <string name="show_kill_app">Kapat düğmesi</string>
-  <string name="show_kill_app_summary">(Paranoyak kullanıcılar için) Uygulamayı tamamen kapatmak için şifre ekranda bir düğme göster</string>
-  <string name="application">Uygulama</string>
-  <string name="application_settings">Uygulama ayarları</string>
   <string name="ShowGroupnameInSearchResult_title">Grup adını arama sonuçlarında göster</string>
   <string name="ShowGroupnameInSearchResult_resume">Arama sonuçlarındaki kayıt başlıklarında grup adlarını gösterir. Aynı isimli birden fazla kayıt varsa yararlıdır.</string>
   <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">Veritabanı veya grupta hiçbir kayıt yok.</string>
   <string name="no_results">Arama sonuçsuz</string>
   <string name="no_url_handler">Bu URL için bir işleyici yok.</string>
-  <string name="open_recent">Son veritabanını aç (açmak için tıklayınız)</string>
   <string name="omitbackup_title">Yedek grubundaki ve geri dönüşümdeki kayıtları arama</string>
   <string name="omitbackup_summary">Yedek grubundaki ve geri dönüşümdeki kayıtları arama sonuçlarına eklenmesin</string>
   <string name="pass_filename">KeePass veritabanının dosya adı</string>
@@ -330,7 +323,6 @@
   <string name="NoDonationReminder_title">Asla bağış isteme</string>
   <string name="NoDonationReminder_summary">Sana bir kuruş bile vermeyeceğim ya da zaten bağış yapmıştım. Yazarın doğum gününde bile bağış isteme.</string>
   <string name="UseOfflineCache_title">Veritabanını önbelleğe al</string>
-  <string name="UseOfflineCache_summary">Veritabanı dosyalarının bir kopyasını uygulama önbellek dizininde tutun. Bu seçenek veritabanı dosyasına erişemediğinizde bile veritabanını kullanmanızı sağlar.</string>
   <string name="CreateBackups_title">Yerel yedekler</string>
   <string name="CreateBackups_summary">Bir veritabanı başarıyla yükledikten sonra yerel bir yedek kopyasını oluştur.</string>
   <string name="UpdatingBackup">Yerel yedek güncelleştiriliyor...</string>
@@ -431,7 +423,6 @@
   <string name="otp_aux_file">tek kullanımlık şifre yedek dosyası</string>
   <string name="ErrorOcurred">Bir hata oluştu:</string>
   <string name="DuplicateUuidsError">Veritabanı bozuk: Yinelenen kimlikler bulundu. (Minikeepass ile mi kaydettin?) Lütfen bilgisayarınızdaki Keepass 2 ile veri tabanını içe aktarın ve \"Yeni kimlik oluştur\" seçin.</string>
-  <string name="DuplicateUuidsErrorAdditional">Bu hata mesajını \"ayarlar/uygulama ayarları/dosya işleme/yinelenen kimlikleri kontrol et\" yolundan devre dışı bırakabilirsiniz. Beklenmeyen davranışlarla karşılaşabileceğinizi unutmayın. Veritabanının düzeltilmesi için etkin olması önerilir.</string>
   <string name="synchronize_database_menu">Veritabanı Eşitle…</string>
   <string name="CannotMoveGroupHere">Grubu bu gruba taşınamıyor.</string>
   <string name="donate_question">Bugün Almanya\'da  Oktoberfest! Eğer Keepass2Android\'i sevdiyseniz: Bugün bana bir bira ısmarlamanın tam zamanı değilmidir?</string>
@@ -463,7 +454,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
-  <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,7 +469,6 @@
   <string name="help_master_password">Veritabanınızı buraya girdiğiniz asıl parolayla şifrelenir. Veritabanının güvenli kalması için zor bir asıl parola seçin! İpucu: bir ya da iki cümle kurun ve parolanızı kelimelerin ilk harflerinden oluşturun. Noktalama işaretleri ekleyin.</string>
   <string name="hint_master_password">Veritabanınızı korumak için bir ana parola seçin:</string>
   <string name="key_file">Anahtar dosyası</string>
-  <string name="help_key_file">Anahtar dosyası, temelde bir dosyada saklanan bir paroladır. Anahtar dosyaları genellikle asıl paroladan daha güçlüdür, çünkü bunlar daha yor ve karışıktır. Ancak aynı zamanda onları gizli tutmak zordur. Veritabanınızı bulut içinde saklıyorsanız, anahtar dosyanızı asla orada saklamayın! Bu tamamen anlamsız olur. Önemli: anahtar dosyasının içeriğini veritabanını oluşturduktan sonra değiştirmeyin!</string>
   <string name="hint_key_file">Asıl anahtara ek olarak bir anahtar dosyası kullanmak isterseniz seçin:</string>
   <string name="use_key_file">Anahtar dosyası kullan</string>
   <string name="error_adding_keyfile">Anahtar dosyası ekleme hatası!</string>
@@ -531,9 +520,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Geçerli kayıt verisi</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Eklentiye, mevcut veritabanı kayıtları hakkındaki tüm verileri alıp; eylem sunma ve görüntüsünü değiştirme izni verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Kimlik bilgilerin</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Eklentinin, kendi uygulama paketi ile ilişkili kimlik bilgilerini sorgulamasına izin verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Kimlik bilgileri</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Eklentiye, kasıtlı internet siteleri veya uygulamaların kimlik bilgilerini sorgulama izni verilecek.</string>
   <string name="get_regular_version">Daha fazla depolama türlerini almak</string>
   <string name="CertificateWarning">Hata: Sunucu sertifika doğrulaması başarısız: %1$s. Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
   <string name="CertificateFailure">Hata: Sunucu sertifika doğrulaması başarısız oldu! Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
@@ -544,7 +531,6 @@
   <string name="FileIsReadOnlyOnKitkat">Android 4.4 + deki kısıtlamalar nedeniyle seçilen dosya Keepass2Android için salt okunur.</string>
   <string name="CopyFileRequired">Kullanmak için başka bir konuma kopyalamanız gerekir.</string>
   <string name="CopyFileRequiredForEditing">Düzenlemek için başka bir konuma kopyalamanız gerekir.</string>
-  <string name="ClickOkToSelectLocation">Dosyanın kopyalanacağı konumu seçmek için Tamam\'ı tıklayın.</string>
   <string name="FileReadOnlyTitle">Veritabanı salt okunur</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android geçerli veri tabanını salt okunur modda açtı.</string>
   <string name="ReadOnlyReason_PreKitKat">Görünüşe göre bir dış uygulamadan dosya açıldı. Bu şekilde yazma desteklenmiyor. Veritabanında değişiklik yapmak istiyorsanız, lütfen veritabanını kapatın ve veritabanı değiştiri seçin. Mümkünse kullanılabilir seçeneklerden biriyle dosyayı açın.</string>
@@ -585,10 +571,6 @@
    • Doğru parola tipini seçtiğinizden emin olun. Veri tabanı oluşturulurken kullanılan tipe uyduğundan emin olun.\n
    • Doğru veri tabanı dosyasını seçtiğinizden emin olun.
  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   • İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" tıklayarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    • İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.  </string>
   <string name="CorruptDatabaseHelp">    Dosya bozulmuş. \n
     Sorunu teşhis etmek için size yardımcı olabilecek bazı ipuçları:\n
     
@@ -621,22 +603,11 @@
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="ErrorReportTitle">Keepass2Android: Bir hata oluştu.</string>
   <string name="ErrorReportText">Keepass2Android çalışırken beklenmeyen bir hata oluştu. Lütfen uygulamadan hata raporlarını göndermek için izin vererek düzeltmemize yardımcı olun.</string>
-  <string name="ErrorReportPromise">Hata raporları asla herhangi bir veri tabanı içeriğinizi veya ana parolanızı içermez. Hata raporlarını uygulama ayarlarından devre dışı bırakabilirsiniz.</string>
   <string name="ErrorReportEnable">Etkinleştir</string>
   <string name="ErrorReportDisable">Devre dışı bırak</string>
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
-  <string name="ChangeLog_1_07">    Sürüm 1.07-ön2\n
-    * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n
-    * SFTP: Genel anahtar kimlik doğrulamasına izin ver, sunucu anahtarının değişip değişmediğini kontrol et\n
-    * pCloud desteği - gilbsgilbs\' e teşekkürler!\n
-    * Nextcloud desteği \n
-    * Girdi eklerinin kaydedilmesi ve güncellenmesi geliştirildi\n
-    * Kişiselleştirme için daha fazla seçenek sunuldu\n
-    * SSL: Güvenilir kullanıcı sertifikaları\n
-    * hata düzeltmeleri\n
-  </string>
   <string name="ChangeLog_1_06">    Sürüm 1.06\n
     * Yubikey Challenge-Response için uygulama olarak YubiChallenge yerine ykDroid\'e geçildi.\n
     * KeepassXC-style Challenge-Response desteklendi. Not: Veritabanı türü KDBX4 olmalı!\n
@@ -757,19 +728,6 @@
 		* Hızlı Açma ve parola ekranlarından  ekran görüntüsü alınması engellendi\n
 		* Değişiklik tarihine göre sıralama için ters sıralama düzeni (şimdi azalan)\n
 		* hata düzeltmeleri: değişikliklerden sonra notlar düzgün görüntüleniyor, parola görüntüleyici tüm cihazlarda (umarım) parolayı düzgün gizliyor, bir kaydın iki kez girilme konusu düzeltildi, veri tabanı düzeltilmesine rağmen Yenilenen UUID uyarısı gözükme konusu düzeltildi\n</string>
-  <string name="ChangeLog_0_9_6">Sürüm 0.9.6\n
-		* anahtar dosyası veya yerel veri tabanı dosyasının iç dizine aktarılmasına izin veriliyor (ayarlara bak)\n
-		* farklı sıralama ayarları destekleniyor\n
-		* otomatik klavye geçişi için gelişmiş seçenekler\n
-		* Stefano Pignataro (http://www.spstudio.at) tarafından tasarlanan uygulama logosu ve bildirim simgesi güncellendi\n
-		* parola üretici son ayarları hatırlayabiliyor\n
-		* Android 5 kilit ekranı için bildirim ayarlaması\n
-		* TAMAM tıklanmadan uygulamadan ayrıldığınızda ana parola alanı temizleniyor\n
-		* bazı cihazlarda klavye ayarlarındaki eksik diller nedeniyle oluşan sorun giderildi\n
-		* rootlu cihazlarda otomatik klavye geçişi düzeltildi\n
-		* bozuk veri tabanları için kontrol eklendi (yinelenen UUIDs)\n
-		* artık değişiklik tespit edildiğinde veri tabanı yenileniyor ve ana parolanın gözükmesi engellenir\n
-		* Polonya küçük klavye düzeni, klavye ayarları teması düzeltilerek geliştirildi(Wiktor Ławski\'ye teşekkürler)\n</string>
   <string name="ChangeLog_0_9_5"><b>Sürüm 0.9.5</b>\n
 		* Dosya taraması ile ilgili sorunlar düzeltildi (özellikle Android 4.4 sürümünde)\n
 		* Android Lollipop sürümlü Nexus 5 cihazlardaki .kdb dosya yükleme sorunu düzeltildi\n 
@@ -829,13 +787,6 @@
 		* Kayıtları ve grupları taşıma olanağı\n
 		* ÇabukAç simgesi şeffaf yapılabilir (bkz: ayarlar)\n
 		* Hata düzeltmeleri</string>
-  <string name="ChangeLog_0_8_5"><b>Sürüm 0.8.5</b>\n
-		* Çevrimdışı kullanımda uzak dosyalar yerel uygulama önbelleğinde depolanıyor (düzenleme ve daha sonra senkronizasyon içerir). Ayarlara bakın.\n
-		* Veritabanının kilit durumunu görmek için bildirim simgesi eklendi (ayarlara bakın)\n
-		* Bazı durumlarda kilit durumunun daha iyi belirlenmesi\n
-		* Yükleme hızının artması için parolanızı yazarken veritabanı dosyaları belleğe yüklenir (ayarlara bakın)\n
-		* Kayıtlar kök gurubuna eklenebiliyor\n
-		* Hata düzeltmeleri ( İtalyanca ve Çince cihazlardaki klavye ile ilgili referans alanlarının çözümlenmesi)</string>
   <string name="ChangeLog_0_8_4"><b>Sürüm 0.8.4</b>\n
 		* Harici veritabanı değişiklikleri algılanır ve kaydedilirken birleştirilir\n
 		* Geliştirilmiş yükleme performansı\n
@@ -947,7 +898,6 @@
   <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
   <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
   <string name="autofill_disable">%1$s için otomatik doldurmayı devre dışı bırak</string>
-  <string name="autofill_enable">%1$s için otomatik doldurmayı etkinleştir</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android parmak izi donanımı algıladı. Bu veritabanı için parmak izi kilildini etkinleştirmek istiyor musunuz?</string>
   <string name="understand">Anladım</string>
