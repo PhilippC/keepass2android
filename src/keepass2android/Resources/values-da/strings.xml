@@ -626,7 +626,7 @@
   <string name="ErrorReportAsk">Spørg efter fejl</string>
   <string name="ErrorReportPrefTitle">Indsend fejlrapporter</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre4\n
+  <string name="ChangeLog_1_07">    Version 1.07-pre\n
     * Tillader at åbne flereend én database, kompatibel med KeeAutoExec\n
     * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
     * Introducerer pCloud-understøttelse - tak til gilbsgilbs!\n

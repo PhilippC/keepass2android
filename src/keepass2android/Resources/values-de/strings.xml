@@ -626,7 +626,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
   <string name="ChangeLog_1_07">
-    Version 1.07-pre4\n
+    Version 1.07-pre\n
     * Zulassen das mehrere Datenbaneken geöffnet werden, kompatibel mit KeeAutoExec\n
     * SFTP: Erlaube Authentifizierung des öffentlichen Schlüssels, überprüfe, ob Hostschlüssel sich geändert hat\n
     * Vorstellung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
