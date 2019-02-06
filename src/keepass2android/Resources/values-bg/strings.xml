@@ -21,13 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Офлайн</string>
   <string name="short_app_name_nonet">KP2A Офлайн</string>
-  <string name="app_timeout">Времето за изчакване на приложението изтече</string>
-  <string name="app_timeout_summary">Време за заключване на базата данни, когато приложение е неактивно.</string>
-  <string name="kill_app_label">Спиране на процеса на приложението</string>
   <string name="show_kill_app">Бутон-Затваряне</string>
-  <string name="show_kill_app_summary">Покажи бутон за спиране на приложението в екрана за парола (за параноични потребители)</string>
-  <string name="application">Приложение</string>
-  <string name="application_settings">Настройки на приложението</string>
   <string name="ShowGroupnameInSearchResult_title">Показване на името на групата в резултата от търсенето</string>
   <string name="ShowGroupnameInSearchResult_resume">Показване на името на групата под заглавието  в резултатите от търсенето. Полезно е, ако няколко записа имат едно и също име.</string>
   <string name="NavigationToGroupCompleted_message">Групата за показване е: %1$s</string>
@@ -188,7 +182,6 @@
   <string name="no_keys">Няма въведени записи в базата данни или групата.</string>
   <string name="no_results">Търсенето не даде резултати</string>
   <string name="no_url_handler">Няма доставчик за тази страница.</string>
-  <string name="open_recent">Отвори последната база данни (кликни за да се отвори)</string>
   <string name="omitbackup_title">Не търси в бекъпа и кошчето</string>
   <string name="omitbackup_summary">Пропусни \'Backup\' и Recycle Bin групите от търсенето</string>
   <string name="pass_filename">Име на KeePass файл за базата данни</string>
@@ -350,7 +343,6 @@
   <string name="NoOverwrite">Не, презапиши</string>
   <string name="SynchronizedDatabaseSuccessfully">Базата данни е синхронизирана успешно!</string>
   <string name="DuplicateUuidsError">Базата данни е повредена: дубликат идентификатори намерени. (Знаете запишете с Minikeepass?) Моля да импортирате отново в нова база данни с Keepass 2 за PC и изберете \"Създай нов ИД\".</string>
-  <string name="DuplicateUuidsErrorAdditional">Можете да забраните това съобщение за грешка в приложението настройки/настройки/файл обработка/проверка за дублирани UUID. Моля, обърнете внимание, че е възможно да имате неочаквано поведение. Препоръчително е да се определи на базата данни.</string>
   <string name="synchronize_database_menu">Синхронизиране на базата данни...</string>
   <string name="CannotMoveGroupHere">Може да преместите група към тази група.</string>
   <string name="donate_question">Днес тя е Октоберфест! Ако ви харесва Keepass2Android: днес няма да бъде един добър ден да ми купи една бира?</string>
@@ -371,7 +363,6 @@
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A папка)</string>
-  <string name="filestoragehelp_dropboxKP2A">Ако не искате да дадете KP2A достъп до пълен живея, можете да изберете тази опция. Тя ще поиска достъп само до папката приложения/Keepass2Android. Това е особено подходящ, когато създавате нова база данни. Ако вече имате база данни, щракнете върху тази опция, за да създаде папката, след което поставете вашия файл в папката (от вашия компютър) и след това изберете тази опция отново за отваряне на файла.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_sftp">SFTP (SSH прехвърляне на файлове)</string>
   <string name="filestorage_setup_title">Файла достъп инициализация</string>
