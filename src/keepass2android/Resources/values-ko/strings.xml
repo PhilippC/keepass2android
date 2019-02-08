@@ -23,6 +23,7 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="show_kill_app">종료 버튼</string>
+  <string name="application_settings">앱 설정</string>
   <string name="ShowGroupnameInSearchResult_title">검색결과에 그룹이름 표시하기</string>
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹 이름을 표시 합니다. 여러 항목의 이름이 같은 경우에 유용합니다.</string>
   <string name="NavigationToGroupCompleted_message">표시 그룹은 지금: %1$s</string>
@@ -52,6 +53,7 @@
   <string name="unlock_database_title">데이터베이스 잠금해제</string>
   <string name="brackets">괄호</string>
   <string name="cancel">취소</string>
+  <string name="Ok">확인</string>
   <string name="ClearClipboard">클립보드를 비웠습니다.</string>
   <string name="clipboard_timeout">클립보드 시간 제한</string>
   <string name="clipboard_timeout_summary">계정 또는 비밀번호를 복사한 후 클립보드를 지우기까지의 시간</string>
@@ -188,6 +190,7 @@
   <string name="no_keys">데이터베이스나 그룹에 항목이 없습니다.</string>
   <string name="no_results">검색결과가 없습니다.</string>
   <string name="no_url_handler">이 URL의 작업도구가 없습니다.</string>
+  <string name="open_recent">최근 데이터베이스 열기 (\'열기\'를 클릭하세요)</string>
   <string name="omitbackup_title">백업과 휴지통 항목은 검색하지 않습니다.</string>
   <string name="omitbackup_summary">백업과 휴지통은 검색결과에서 생략합니다.</string>
   <string name="pass_filename">KeePass 데이터베이스 파일 이름</string>
@@ -281,6 +284,7 @@
   <string name="BinaryDirectory_summary">첨부파일이 저장될 폴더</string>
   <string name="SaveAttachmentDialog_title">첨부파일 저장</string>
   <string name="SaveAttachmentDialog_text">첨부파일을 저장할 위치를 선택하세요.</string>
+  <string name="SaveAttachmentDialog_save">파일로 내보내기...</string>
   <string name="SaveAttachmentDialog_open">캐시에 저장하고 열기</string>
   <string name="ShowAttachedImage">내부 이미지 뷰어로 보기</string>
   <string name="SaveAttachment_doneMessage">%1$s에 파일을 저장합니다.</string>
@@ -429,6 +433,7 @@
   <string name="hint_sftp_port">포트</string>
   <string name="initial_directory">초기 디렉터리 (선택사항) :</string>
   <string name="enter_sftp_login_title">SFTP 로그인 데이터 입력:</string>
+  <string name="sftp_auth_mode">인증모드</string>
   <string name="enter_ftp_login_title">FTP 로그인 데이터 입력:</string>
   <string name="select_storage_type">저장소 유형을 선택하세요.</string>
   <string name="filestoragename_file">로컬 파일</string>
@@ -564,6 +569,11 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     • PC에서 파일을 여는 것이 가능한 경우 고객지원에 문의하십시오. PC에 다른 설정 (예: 압축풀기)으로 저장하려고 시도한 후 Keepass2Android에서 다시 시도해보십시오.
 
   </string>
+  <string name="open_other_db">다른 데이터베이스 열기...</string>
+  <string name="child_dbs_title">하위 데이터베이스</string>
+  <string name="unspecified">지정되지 않음</string>
+  <string name="Visible_title">표시</string>
+  <string name="database_file_heading">데이터베이스 파일</string>
   <string name="DbUnlockedChannel_name">데이터베이스 잠금 해제</string>
   <string name="DbUnlockedChannel_desc">데이터베이스 잠금 해제에 대한 알림</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
