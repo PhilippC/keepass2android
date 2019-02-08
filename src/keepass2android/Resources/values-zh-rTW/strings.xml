@@ -479,6 +479,7 @@
   <string name="help_master_password">您的資料庫將以您在此處輸入的密碼進行加密。為了保證資料庫的安全，選擇強式密碼！提示: 自創一兩英文句子，使用句中單詞首字母作為密碼。包括標點符號。</string>
   <string name="hint_master_password">選擇一個主密碼來保護您的資料庫:</string>
   <string name="key_file">金鑰檔</string>
+  <string name="help_key_file">金鑰檔基本上是存儲密碼的檔案。金鑰檔是一般比主密碼更複雜而更安全；但是也難隱密地存儲。請不要同時在雲端存儲您的資料庫和金鑰檔存儲，檔案將不再安全。重要提示：創建資料庫後 不要更改金鑰檔的內容！</string>
   <string name="hint_key_file">選擇你是否想要除了主密碼外，加用金鑰檔:</string>
   <string name="use_key_file">使用金鑰檔</string>
   <string name="error_adding_keyfile">添加金鑰檔案時發生錯誤!</string>
@@ -530,6 +531,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">當前項目資料</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">外掛程式將收到有關在當前資料庫項目的所有資料，並將獲准操作和修改顯示。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">查詢自己的憑證</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">外掛程式將獲准查詢與它自己的應用程式包關聯的憑證。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">查詢憑證</string>
   <string name="get_regular_version">獲取更多的存儲類型</string>
   <string name="CertificateWarning">警告: 伺服器憑證驗證失敗: %1$s。在您的設備上安裝適當的根憑證，或請參閱設置!</string>
