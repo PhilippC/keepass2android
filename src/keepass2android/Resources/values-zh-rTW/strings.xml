@@ -22,6 +22,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 離線版</string>
   <string name="short_app_name_nonet">KP2A 離線</string>
+  <string name="app_timeout">應用程式超時</string>
+  <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
+  <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app">關閉按鈕</string>
   <string name="ShowGroupnameInSearchResult_title">在搜尋結果中顯示群組名稱</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中顯示條目標題下面的群組名稱。如果幾個條目具有相同的名稱有幫助。</string>
