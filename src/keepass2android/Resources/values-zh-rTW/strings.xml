@@ -26,6 +26,9 @@
   <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
   <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app">關閉按鈕</string>
+  <string name="show_kill_app_summary">在密碼螢幕中顯示中止應用程式進程的按鈕 (為偏執的使用者而設)</string>
+  <string name="application">應用程式</string>
+  <string name="application_settings">應用程式設置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜尋結果中顯示群組名稱</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中顯示條目標題下面的群組名稱。如果幾個條目具有相同的名稱有幫助。</string>
   <string name="NavigationToGroupCompleted_message">顯示群組現在是: %1$s</string>
@@ -192,6 +195,7 @@
   <string name="no_keys">資料庫或群組中無輸入項。</string>
   <string name="no_results">沒有搜索結果</string>
   <string name="no_url_handler">此鏈結無處理程式。</string>
+  <string name="open_recent">打開最近資料庫（點擊打開）：</string>
   <string name="omitbackup_title">不要搜索備份和回收桶輸入項</string>
   <string name="omitbackup_summary">搜尋結果省略備份和回收桶群組</string>
   <string name="pass_filename">KeePass資料庫檔案名稱：</string>
@@ -326,6 +330,7 @@
   <string name="NoDonationReminder_title">別再跟我講捐贈的事啦</string>
   <string name="NoDonationReminder_summary">我不會給你一毛錢的，或者我之前就捐贈過了。就算是你生日也一樣，別問我捐贈的問題了。</string>
   <string name="UseOfflineCache_title">資料庫緩存中</string>
+  <string name="UseOfflineCache_summary">在應用程式緩存目錄中保留資料庫檔案副本。即使資料庫檔案不可訪問時亦可使用資料庫。</string>
   <string name="CreateBackups_title">本機備份</string>
   <string name="CreateBackups_summary">在成功載入資料庫後創建一個本機備份副本</string>
   <string name="UpdatingBackup">更新本機備份中...</string>
@@ -426,6 +431,7 @@
   <string name="otp_aux_file">一次性密碼輔助檔</string>
   <string name="ErrorOcurred">發生錯誤：</string>
   <string name="DuplicateUuidsError">資料庫已損壞: 發現重複 ID。(你曾用 Minikeepass 編輯？) 請用電腦版 Keepass 2 重新導入到新的資料庫與並選擇創建新的 ID。</string>
+  <string name="DuplicateUuidsErrorAdditional">您可以在設置/應用程式設定/檔案處理/檢查重複 UUID 禁用此錯誤訊息。請注意，您可能會遇到意外狀況。仍建議對資料庫進行修復。</string>
   <string name="synchronize_database_menu">同步資料庫...</string>
   <string name="CannotMoveGroupHere">不能將群組移動到此群組。</string>
   <string name="donate_question">今天，它是慕尼克啤酒節！如果你喜歡 Keepass2Android: 今天不是個好的日子買一杯啤酒給我嗎?</string>
