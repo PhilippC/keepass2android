@@ -482,6 +482,7 @@
   <string name="help_master_password">La base de dades s\'encripta amb la contrasenya que introduïu aquí. Triar una contrasenya forta per tal de mantenir la base de dades segura! Consell: Forma una frase o dues i utilitzar les primeres lletres de les paraules com a contrasenya. Inclou signes de puntuació.</string>
   <string name="hint_master_password">Seleccioni una contrasenya mestra per protegir la seva base de dades:</string>
   <string name="key_file">Arxiu clau</string>
+  <string name="help_key_file">Un arxiu clau és bàsicament una contrasenya emmagatzemada en un arxiu. Els arxius clau són normalment més forts que les contrasenyes mestres, perquè la clau pot ser molt més complicada; però també és més difícil mantenir el secret. Si emmagatzema la base de dades en el núvol, no emmagatzemi l\'arxiu clau també! Això ho faria completament inútil! Important: No canvieu el contingut del fitxer clau després de crear la base de dades!</string>
   <string name="hint_key_file">Trieu si voleu utilitzar un arxiu clau a més de la contrasenya mestra:</string>
   <string name="use_key_file">Fes servir la clau</string>
   <string name="error_adding_keyfile">Error en afegir l\'arxiu clau!</string>
@@ -535,6 +536,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta credencials pròpies</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Se li permetrà al connector consultar les credencials associades amb el seu propi paquet d\'aplicació.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Consulta les credencials</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Permetrà al connector consultar les credencials per a aplicacions o llocs web.</string>
   <string name="get_regular_version">Aconseguir més tipus d\'emmagatzematge</string>
   <string name="CertificateWarning">Advertència: Ha fallat la validació de certificat de servidor: %1$s. Instal·lar el certificat arrel adequat al vostre dispositiu o consulti els ajustaments!</string>
   <string name="CertificateFailure">Error: Validació de certificat de servidor fracassat! Instal·li el certificat arrel adequat al vostre dispositiu o veure configuració!</string>
@@ -585,6 +587,11 @@
    • Assegureu-vos que ha introduït la contrasenya correcta. Utilitzar la icona d\'ull per mostrar la contrasenya introduïda.\n
    • Assegureu-vos que ha seleccionat el tipus de contrasenya correcta. Assegureu-vos que correspongui el tipus utilitzada en la creació de la base de dades.\n
    • Assegureu-vos que ha seleccionat l\'arxiu de base de dades correcte.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n 
+   &#8226; Suggeriment: si pensa que el seu arxiu de base de dades podria estar corrupte o no recordes la clau mestra després de modificar-lo, pot provar amb l\'última versió d\'arxiu oberta satisfactòriament fent clic \"%1$s\" i seleccionant la còpia de seguretat local.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Suggeriment: Keepass2Android ha emmagatzemat l\'última versió d\'arxiu oberta satisfactòriament a la memòria interna. Podeu obrir-lo fent clic \"%1$s\" i seleccionant la còpia de seguretat local.
+  </string>
   <string name="CorruptDatabaseHelp">Arxiu està corrupte. \n 
     aquí hi ha alguns consells que poden ajudar a diagnosticar el problema: \n
     
@@ -615,11 +622,23 @@
   <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ha ocorregut un error.</string>
   <string name="ErrorReportText">S\'ha produït un error inesperat mentre s\'executava Keepass2Android. Si us plau, ajudeu-nos a arreglar això permetent a l\'aplicació enviar informes d\'errors.</string>
+  <string name="ErrorReportPromise">Els informes d\'error mai contindrà cap contingut de la seva base de dades o la contrasenya mestra. Podeu desactivar-los en la configuració de l\'aplicació.</string>
   <string name="ErrorReportEnable">Habilita</string>
   <string name="ErrorReportDisable">Deshabilita</string>
   <string name="ErrorReportAsk">Preguntar després d\'error</string>
   <string name="ErrorReportPrefTitle">Enviar registre d\'errors</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_07">    Versió 1.07-pre2\n
+    * Permet obrir més d\'una base de dades, compatible amb KeeAutoExec\n
+    * SFTP: permet autenticació de clau pública, comprova si la clau del servidor ha canviat\n
+    * Suport a pCloud - gràcies a gilbsgilbs!\n
+    * Suport a Nextcloud explícit\n
+    * Millora la guarda i actualització d\'adjunts a les entrades\n
+    * Més opcions d\'adaptació del comportament a les preferències personals\n
+    * SSL: confiar en certificat de l\'usuari\n
+    * Millorar autoemplenat (ara funciona amb Firefox, permet disminuir missatges emerfents)\n
+    * Reparació d\'errors\n
+  </string>
   <string name="ChangeLog_1_06">Versió 1.06\n
 * Canvieu a ykDroid en comptes de YubiChallenge com a aplicació de Desafiament-Resposta de Yubikey.\n
 * Implementat suport per a KeepassXC Desafiament-Resposta. Nota: El format de la base de dades ha de ser KDBX4!\n
@@ -736,6 +755,7 @@
 		* evitar prendre captures de pantalla des de les pantalles de DesbloqueigRàpid i contrasenya\n
 		* ordenació inversa per Ordena per data de modificació (ara descendent) \n
 		* errors arreglats: vista de notes ara actualitzada correctament després de canvis, vistes de contrasenyes ara amaga contrasenya correctament en (esperançadament) tots els dispositius, arreglat problema que li permetia afegir una entrada doble , solucionat el problema que mostrava avís de duplicat UUID fins i tot després d\'arreglar la base de dades\n </string>
+  <string name="ChangeLog_0_9_6">Version 0.9.6\n * allow to import key file and/or local database file to app internal directory (see settings)\n * allow different sorting options\n * improved preferences for automatic keyboard switching\n * updated application logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n * password generator remembers last settings\n * set notification visibility for Android 5 lock screen\n * now clearing master password field when leaving the app without clicking OK\n * fixed issue with missing input languages in keyboard setting on some devices\n * fixed issue with automatic keyboard switching on rooted devices\n * added check for corrupt databases (duplicate UUIDs)\n * automatically reload database when change detected, solves security concern about revealing master password\n * improved polish small keyboard layout, fixed keyboard settings theme (thanks to Wiktor Ławski)\n </string>
   <string name="ChangeLog_0_9_5"><b>Versió 0.9.5</b> \n * Arreglat problemes amb arxiu de navegació (especialment en Android 4.4) \n * Solucionat el problema amb la càrrega d\'arxius .kdb (Keepass 1) amb el Nexus 5 amb Android Lollipop\n * afegit l\'opció per evitar prendre screenshots/mostrant app a la llista d\'aplicacions recents\n * Solucionat el problema amb Google Drive arxiu d\'emmagatzematge (edició regular) \n * Permeten arxius clau en emmagatzematge deliberada tipus (edició regular) \n * SDK de Dropbox actualitzat per incloure un pedaç de seguretat oficial (edició regular) \n * Actualitzades eines de construcció--&gt; mida dels apk augmentada:-(\ n He promès alguns canvis més. Vindran amb el pròxim llançament- Ho sentim. Volia publicar aquests destrets calents tan aviat com sigui possible.</string>
   <string name="ChangeLog_0_9_4"><b>Version 0.9.4</b>\n
 		* added plug-in support: See settings for how to get plug-ins!\n
@@ -787,6 +807,13 @@
 		* Allow moving of entries and groups\n
 		* QuickUnlock icon can be made transparent (see settings)\n
 		* Bug fixes</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
+		* Notification icon to visualize the lock-state of the database (see settings)\n
+		* Improved determination of lock-state in some situations\n
+		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
+		* Entries can be added to root group\n
+		* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* External database changes are detected and merged when saving\n
 		* Improved loading performance\n
