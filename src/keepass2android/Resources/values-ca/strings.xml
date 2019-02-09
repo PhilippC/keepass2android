@@ -333,6 +333,7 @@
   <string name="NoDonationReminder_title">No demanar mai donació</string>
   <string name="NoDonationReminder_summary">Jo no li donaria un cèntim o ja he fet donació. No demanar donació, ni tan sols a l\'aniversari de l\'autor.</string>
   <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
+  <string name="UseOfflineCache_summary">Manteniu una còpia dels fitxers de la base de dades al directori de la memòria cau de l\'aplicació. Això permet utilitzar les bases de dades encara que el fitxer de base de dades no sigui accessible.</string>
   <string name="CreateBackups_title">Còpia de seguretat local</string>
   <string name="CreateBackups_summary">Crea una còpia local després de carregar correctament una base de dades.</string>
   <string name="UpdatingBackup">Actualitzar la còpia de seguretat local...</string>
