@@ -22,7 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android fora de línia</string>
   <string name="short_app_name_nonet">KP2A fora de línia</string>
+  <string name="app_timeout">Temps límit de resposta de l\'aplicació</string>
+  <string name="app_timeout_summary">Temps abans de bloquejar la base de dades quan l\'aplicació està inactiva.</string>
+  <string name="kill_app_label">Matar el procés de l\'aplicació</string>
   <string name="show_kill_app">Botó de tancament</string>
+  <string name="show_kill_app_summary">Mostra un botó a la pantalla de contrasenya per matar el procés de l\'aplicació (per a usuaris paranoics)</string>
+  <string name="application">Aplicació</string>
+  <string name="application_settings">Configuració de l\'aplicació</string>
   <string name="ShowGroupnameInSearchResult_title">Mostra el nom de grup en el resultat de la cerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostra el nom del grup sota els títols d\'entrada als resultats de la cerca. Útil diferents entrades tenen el mateix nom.</string>
   <string name="NavigationToGroupCompleted_message">Grup mostrat ara: %1$s</string>
@@ -192,6 +198,7 @@
   <string name="no_keys">Sense entrades a la base de dades o grup.</string>
   <string name="no_results">Cap resultat de cerca</string>
   <string name="no_url_handler">Sense gestor per aquesta url.</string>
+  <string name="open_recent">Obre base de dades recent (clica per obrir)</string>
   <string name="omitbackup_title">No cerquis entrades a còpia de seguretat ni paperera</string>
   <string name="omitbackup_summary">Omet els grups \'Còpia de seguretat\' i paperera dels resultats de cerca</string>
   <string name="pass_filename">Nom de base de dades KeePass</string>
