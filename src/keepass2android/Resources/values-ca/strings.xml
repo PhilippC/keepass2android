@@ -434,6 +434,7 @@
   <string name="otp_aux_file">Arxiu auxiliar OTP</string>
   <string name="ErrorOcurred">S’ha produït un error:</string>
   <string name="DuplicateUuidsError">Base de dades és corrupte: identificadors duplicats trobats. (Vols guardar-ho amb Minikeepass?) Si us plau, torneu a importar a una nova base de dades amb Keepass 2 per a PC i seleccioneu \"Crea un nou ID\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Podeu desactivar aquest missatge d\'error en Configuració/Configuració d\'aplicacions/Gestor d\'arxius/Comprova UUIDS duplicats. Tingueu en compte que es pot experimentar comportaments inesperats. Es recomana arreglar la base de dades.</string>
   <string name="synchronize_database_menu">Sincronitzar la base de dades…</string>
   <string name="CannotMoveGroupHere">No es pot desplaçar el grup a aquest grup.</string>
   <string name="donate_question">Avui és Oktoberfest! Si t\'agrada Keepass2Android: no seria avui un bon dia per comprar-me una cervesa?</string>
@@ -531,6 +532,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Dades d\'entrada actual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">El connector rebrà totes les dades sobre l\'entrada de base de dades actual i se li permetrà oferir accions i modificacions de com es mosta aquesta.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta credencials pròpies</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Se li permetrà al connector consultar les credencials associades amb el seu propi paquet d\'aplicació.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Consulta les credencials</string>
   <string name="get_regular_version">Aconseguir més tipus d\'emmagatzematge</string>
   <string name="CertificateWarning">Advertència: Ha fallat la validació de certificat de servidor: %1$s. Instal·lar el certificat arrel adequat al vostre dispositiu o consulti els ajustaments!</string>
@@ -542,6 +544,7 @@
   <string name="FileIsReadOnlyOnKitkat">El fitxer que heu seleccionat és només de lectura per a Keepass2Android a causa de restriccions en Android 4.4 +.</string>
   <string name="CopyFileRequired">Per utilitzar-lo, haureu de copiar-lo a una altra ubicació.</string>
   <string name="CopyFileRequiredForEditing">Per editar-lo, haureu de copiar el fitxer a una altra ubicació.</string>
+  <string name="ClickOkToSelectLocation">Clic Acceptar per seleccionar una ubicació on l\'arxiu haurà de ser copiat.</string>
   <string name="FileReadOnlyTitle">Base de dades és només de lectura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha obert la base actual en el mode només lectura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembla que vostè ha obert l\'arxiu des d\'una aplicació externa. D\'aquesta manera no s\'admet el suport d\'escriptura. Si voleu fer canvis a la base de dades, tanqueu la base de dades i seleccioneu Canviar base de dades. Llavors obri l\'arxiu des d\'una de les opcions disponibles si és possible.</string>
@@ -894,6 +897,7 @@ Revisió inicial per al públic
   <string name="show_autofill_help">Mostra l\'ajuda de l\'emplenament automàtic</string>
   <string name="autofill_sign_in_prompt">Omplir amb Keepass2Android</string>
   <string name="autofill_disable">Desactiva l\'emplenament automàtic per %1$s</string>
+  <string name="autofill_enable_for">Permet l\'emplenament automàtic per %1$s</string>
   <string name="invalid_link_association">No es pot associar amb el domini web %1$s amb l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectat disponibilitat d\'ús d\'empremtes dactilars. Voleu permetre l\'ús de l\'empremta per obrir aquesta base de dades?</string>
   <string name="understand">Ho entenc</string>
