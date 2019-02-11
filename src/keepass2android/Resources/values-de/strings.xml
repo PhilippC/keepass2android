@@ -580,6 +580,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
    • Stelle sicher, dass du den richtigen Passworttyp ausgewählt hast. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
    • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
  </string>
+  <string name="HintLocalBackupOtherError">\n
+&#8226; Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Du kannst diese öffnen, indem du \"%1$s\" klickst und  \'local backup\' wählst.  </string>
   <string name="CorruptDatabaseHelp">Die Datei ist beschädigt.\n
 Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 
@@ -610,6 +612,8 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ein Fehler ist aufgetreten.</string>
   <string name="ErrorReportText">Ein unerwarteter Fehler ist während der Ausführung von Keepass2Android aufgetreten. Bitte hilf uns indem du erlaubst, einen Fehlerbericht zu senden.</string>
+  <string name="ErrorReportPromise">Fehlerberichte enthalten nie Inhalt deiner Datenbank oder deines Master-Passworts.
+Du kannst sie auch in den Einstellungen komplett deaktivieren.</string>
   <string name="ErrorReportEnable">Aktivieren</string>
   <string name="ErrorReportDisable">Deaktivieren</string>
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
@@ -890,6 +894,7 @@ Erstes öffentliches Release</string>
   <string name="show_autofill_help">Autofill-Hilfe anzeigen</string>
   <string name="autofill_sign_in_prompt">Mit Keepass2Android ausfüllen</string>
   <string name="autofill_disable">AutoFill für %1$s deaktivieren</string>
+  <string name="autofill_enable_for">AutoFill für %1$s aktivieren</string>
   <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
   <string name="enable_fingerprint_hint">Keepass2Android hat einen Fingerabdrucksensor gefunden. Möchtest du das Entsperren mit Fingerabdruck für diese Datenbank aktivieren?</string>
   <string name="understand">Ich verstehe</string>
