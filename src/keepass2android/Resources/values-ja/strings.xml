@@ -23,6 +23,8 @@
   <string name="app_name_nonet">Keepass2Android オフライン版</string>
   <string name="short_app_name_nonet">KP2A オフライン版</string>
   <string name="show_kill_app">終了ボタン</string>
+  <string name="application">アプリ</string>
+  <string name="application_settings">アプリの設定</string>
   <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示する</string>
   <string name="ShowGroupnameInSearchResult_resume">検索結果のエントリータイトルの下にグループ名を表示します。同名のエントリーが複数あるときに便利です。</string>
   <string name="NavigationToGroupCompleted_message">表示中のグループ: %1$s</string>
@@ -189,6 +191,7 @@
   <string name="no_keys">データベース・グループがありません。</string>
   <string name="no_results">検索結果に該当するものはありません。</string>
   <string name="no_url_handler">このuriを処理できません。</string>
+  <string name="open_recent">最近使用したデータベースを開く (タップして開く)</string>
   <string name="omitbackup_title">検索対象から除外</string>
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
   <string name="pass_filename">KeePassデータベースファイル</string>
