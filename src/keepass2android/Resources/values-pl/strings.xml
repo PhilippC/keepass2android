@@ -22,7 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Limit czasu aplikacji</string>
+  <string name="app_timeout_summary">Czas, po którym baza danych zostanie zablokowana, gdy aplikacja jest nieaktywna.</string>
+  <string name="kill_app_label">Zabij proces aplikacji</string>
   <string name="show_kill_app">Przycisk Zamknij</string>
+  <string name="show_kill_app_summary">Pokaż przycisk do zabicia aplikacji na ekranie hasła (dla paranoicznych użytkowników)</string>
+  <string name="application">Aplikacja</string>
+  <string name="application_settings">Ustawienia aplikacji</string>
   <string name="ShowGroupnameInSearchResult_title">Wyświetl nazwę grupy w wynikach wyszukiwania</string>
   <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
   <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
@@ -191,6 +197,7 @@
   <string name="no_keys">Brak wpisów w bazie danych lub grupie.</string>
   <string name="no_results">Brak wyników wyszukiwania</string>
   <string name="no_url_handler">Brak obsługi dla tego URL.</string>
+  <string name="open_recent">Otwórz ostatnią bazę danych (kliknij, aby otworzyć)</string>
   <string name="omitbackup_title">Nie szukaj w kopiach zapasowych i koszu</string>
   <string name="omitbackup_summary">Pomiń \'Backup\' i kosz przy wyszukiwaniu</string>
   <string name="pass_filename">Ścieżka do pliku bazy danych KeePass</string>
@@ -325,6 +332,7 @@
   <string name="NoDonationReminder_title">Nigdy nie proś o darowiznę</string>
   <string name="NoDonationReminder_summary">Nie chcę dać Ci kasy albo już to zrobiłem. Nie pytaj o darowiznę, nawet na urodziny autora.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
+  <string name="UseOfflineCache_summary">Trzymaj kopię plików bazy danych w pamięci podręcznej aplikacji. Dzięki temu można korzystać z baz danych gdy ich pliki nie są dostępne.</string>
   <string name="CreateBackups_title">Lokalne kopie zapasowe</string>
   <string name="CreateBackups_summary">Twórz lokalną kopię zapasową po pomyślnym załadowaniu bazy danych.</string>
   <string name="UpdatingBackup">Aktualizacja lokalnej kopii zapasowej...</string>
@@ -425,6 +433,7 @@
   <string name="otp_aux_file">Pomocniczy plik OTP</string>
   <string name="ErrorOcurred">Wystąpił błąd:</string>
   <string name="DuplicateUuidsError">Baza danych jest uszkodzona: Znaleziono duplikaty identyfikatorów. (Czy może zapisywałeś Minikeepassem?) Proszę ponownie zaimportować do nowej bazy danych z Keepass 2 na PC i wybierz polecenie \"Utwórz nowe identyfikatory\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Możesz wyłączyć ten komunikat o błędzie w Ustawienia/Ustawienia aplikacji/Obsługa plików/Wyszukaj duplikatów UUID. Zauważ, że możesz doświadczyć nieoczekiwanego zachowania. Zaleca się naprawić bazę danych.</string>
   <string name="synchronize_database_menu">Synchronizowanie bazy danych...</string>
   <string name="CannotMoveGroupHere">Nie można przenieść grupy do tej grupy.</string>
   <string name="donate_question">Dzisiaj jest Oktoberfest! Jeśli podoba Ci się Keepass2Android: czemu dzisiaj nie mógłby być dzień, w którym postawiłbyś mi piwo?</string>
@@ -456,6 +465,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję, aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie, aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -605,6 +615,7 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="ErrorReportTitle">Keepass2Android: Wystąpił błąd.</string>
   <string name="ErrorReportText">Wystąpił nieoczekiwany błąd podczas działania Keepass2Android. Proszę, pomóż nam go naprawić, umożliwiając aplikacji wysyłanie raportów o błędach.</string>
+  <string name="ErrorReportPromise">Raporty błędów nie będą zawierały żadnych treści z Twojej bazy danych lub hasła głównego. Możesz je wyłączyć w ustawieniach aplikacji.</string>
   <string name="ErrorReportEnable">Włącz</string>
   <string name="ErrorReportDisable">Wyłącz</string>
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
@@ -881,6 +892,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="show_autofill_help">Pokaż pomoc autouzupełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
   <string name="autofill_disable">Włącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
   <string name="understand">Rozumiem</string>
