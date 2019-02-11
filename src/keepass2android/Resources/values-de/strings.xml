@@ -23,7 +23,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
+  <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Knopf</string>
+  <string name="application">Anwendung</string>
+  <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
   <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit dem selben Namen gibt.</string>
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
@@ -191,6 +195,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="no_keys">Keine Einträge in dieser Datenbank oder Gruppe.</string>
   <string name="no_results">Keine Suchergebnisse</string>
   <string name="no_url_handler">Kein Handler zum Öffnen der URL vorhanden.</string>
+  <string name="open_recent">Zuletzt geöffnete Datenbank (Klicken zum Öffnen)</string>
   <string name="omitbackup_title">Papierkorb und Sicherungen nicht durchsuchen</string>
   <string name="omitbackup_summary">Papierkorb und Sicherungseinträge werden bei der Suche nicht berücksichtigt.</string>
   <string name="pass_filename">KeePass Datenbankdatei</string>
@@ -325,6 +330,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
+  <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Ordner des Anwendungszwischenspeicher auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
   <string name="CreateBackups_title">Lokale Backups</string>
   <string name="CreateBackups_summary">Erstelle eine lokale Sicherungskopie der Datenbank, nachdem diese erfolgreich geladen wurde.</string>
   <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie...</string>
@@ -425,6 +431,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="otp_aux_file">OTP-Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
   <string name="DuplicateUuidsError">Datenbank ist korrupt: IDs kommen mehrfach vor. (Hast du mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und \'Neue IDs erstellen\' auswählen.</string>
+  <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungs-Einstellungen/Umgang mit Dateien/Prüfe auf doppelte UUIDs deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
   <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
   <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
   <string name="donate_question">Heute ist Oktoberfest! Wenn dir Keepass2Android gefällt: Wäre heute nicht ein guter Tag, um mir ein Bier zu spendieren?</string>
