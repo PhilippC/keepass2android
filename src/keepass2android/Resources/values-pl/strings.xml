@@ -481,6 +481,7 @@
   <string name="help_master_password">Tutaj wpisujesz hasło przy pomocy którego jest zaszyfrowana twoja baza danych. Wybierz silne hasło, aby bezpiecznie ją przechowywać! Wskazówka: Wymyśl jakieś zdanie lub dwa i skorzystaj z pierwszych liter słów w nim zawartych jako hasło. Dołącz znaki interpunkcyjne.</string>
   <string name="hint_master_password">Wybierz hasło główne, aby zabezpieczyć bazę danych:</string>
   <string name="key_file">Plik klucza</string>
+  <string name="help_key_file">Plik klucz jest w zasadzie hasłem przechowywanym w pliku. Pliki klucz jest zwykle mocniejszy niż hasło główne, ponieważ klucz może być o wiele bardziej skomplikowany; jednak trudniej go zachować w tajemnicy. Jeśli przechowujesz swoją bazę danych w chmurze, nie przechowuj tam swojego pliku klucza! Byłoby to całkowicie bezcelowe! Ważne: Nie możesz zmieniać zawartość pliku klucza po utworzeniu bazy danych!</string>
   <string name="hint_key_file">Wybierz, jeśli chcesz użyć pliku klucza oprócz hasła głównego:</string>
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
@@ -532,7 +533,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Dane obecnego wpisu</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Wtyczka otrzyma wszystkie dane o bieżącym wpisie bazy danych i będzie miała pozwolenie na oferowanie wykonania akcji i modyfikacji jego wyświetlania.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Zapytaj dowolne poswiadczenia</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Wtyczka będzie mogła odpytywać poświadczenia powiązane z własnym pakietem aplikacji.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Zapytaj poświadczenia</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Wtyczka będzie mogła odpytywać poświadczenia do docelowych stron internetowych lub aplikacji.</string>
   <string name="get_regular_version">Uzyskaj więcej typów przechowywania danych</string>
   <string name="CertificateWarning">Ostrzeżenie: Weryfikacja certyfikatu serwera nie powiodła się: %1$s. Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
   <string name="CertificateFailure">Błąd: Weryfikacja certyfikatu serwera nie powiodła się! Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
@@ -543,6 +546,7 @@
   <string name="FileIsReadOnlyOnKitkat">Wybrany plik jest tylko do odczytu dla Keepass2Android ze względu na ograniczenia na Android 4.4 +.</string>
   <string name="CopyFileRequired">Aby go użyć, należy skopiować go do innej lokalizacji.</string>
   <string name="CopyFileRequiredForEditing">Aby edytować, należy skopiować plik do innej lokalizacji.</string>
+  <string name="ClickOkToSelectLocation">Kliknij przycisk OK, aby wybrać miejsce, gdzie należy skopiować plik.</string>
   <string name="FileReadOnlyTitle">Baza danych jest w trybie tylko do odczytu</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otworzył aktualną bazę danych w trybie tylko do odczytu.</string>
   <string name="ReadOnlyReason_PreKitKat">Wygląda na to, że otworzyłeś plik z zewnętrznej aplikacji. Ta metoda nie wspiera zapisywania. Jeśli chcesz wprowadzić zmiany w bazie danych, zamknij proszę bazę danych i wybierz Zmień bazę danych. Następnie otwórz plik używając jednej z dostępnych opcji, jeżeli to możliwe.</string>
