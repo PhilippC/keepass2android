@@ -587,6 +587,11 @@
    • Upewnij się, że wybrałeś właściwy typ hasła. Upewnij się, że pasuje do typu użytego podczas tworzenia bazy danych.\n
    • Upewnij się, że wybrałeś odpowiedni plik bazy danych.
  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Wskazówka: Jeśli podejrzewasz, że Twoja baza danych mogła zostać uszkodzona lub nie pamiętasz klucza głównego, możesz spróbować z ostatnio pomyślnie otwartą wersją pliku, klikając \"%1$s\" i wybierając lokalną kopię zapasową.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Wskazówka: Keepass2Android zachował ostatnią poprawnie otwartą wersję pliku w swojej wewnętrznej pamięci. Możesz ją otworzyć, klikając w \"%1$s\" i wybierając lokalną kopię zapasową.
+  </string>
   <string name="CorruptDatabaseHelp">    Plik jest uszkodzony. \n
     Tu są wskazówki, które mogą pomóc zdiagnozować usterkę:\n
     
