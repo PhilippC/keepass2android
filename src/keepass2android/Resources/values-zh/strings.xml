@@ -27,6 +27,8 @@
   <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">关闭按钮</string>
   <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（对于偏执的用户）</string>
+  <string name="application">应用</string>
+  <string name="application_settings">应用设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
   <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
@@ -193,6 +195,7 @@
   <string name="no_keys">数据库或群组中无条目</string>
   <string name="no_results">无匹配结果</string>
   <string name="no_url_handler">没有处理这个链接地址的程序。</string>
+  <string name="open_recent">打开最近数据库（触击打开）</string>
   <string name="omitbackup_title">不搜索备份和回收站中的条目</string>
   <string name="omitbackup_summary">从搜索结果中忽略备份和回收站群组</string>
   <string name="pass_filename">KeePass 数据库文件名</string>
@@ -327,6 +330,7 @@
   <string name="NoDonationReminder_title">不再要求捐赠</string>
   <string name="NoDonationReminder_summary">我不打算捐赠或已经捐赠过。即使是在作者生日当天，也不要再向我请求捐赠。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
+  <string name="UseOfflineCache_summary">将数据库文件的副本保留在应用的缓存目录中。这允许在无法访问数据库文件的情况下使用数据库。</string>
   <string name="CreateBackups_title">本地备份</string>
   <string name="CreateBackups_summary">在成功进入数据库后创建本地备份。</string>
   <string name="UpdatingBackup">正在更新本地备份...</string>
@@ -427,6 +431,7 @@
   <string name="otp_aux_file">一次性密码辅助文件</string>
   <string name="ErrorOcurred">发生错误：</string>
   <string name="DuplicateUuidsError">数据库损坏：发现重复的ID。（你曾使用Minikeepass编辑？）请用Keepass 2 for PC并选择创建新的ID重新导入到新的数据库。</string>
+  <string name="DuplicateUuidsErrorAdditional">您可以在 设置/应用设置/文件处理/检查重复的 UUID 中关闭此错误消息。请注意您可能碰到意外的情况，建议您立即修复数据库。</string>
   <string name="synchronize_database_menu">同步数据库...</string>
   <string name="CannotMoveGroupHere">不能将群组移动到这。</string>
   <string name="donate_question">今天是慕尼黑啤酒节 ！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
