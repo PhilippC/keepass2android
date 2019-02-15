@@ -532,7 +532,7 @@
   <string name="Continue">Fortsett</string>
   <string name="NoFilenameWarning">URIen du tastet inn ser ikke ut som et filnavn. Er du sikker på at dette er en gyldig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ugyldig sammensatt nøkkel! Vennligst prøv igjen.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig sammensatt nøkkel! Vennligst forsøk følgende for å låse opp databasen:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">&#8226;Ugyldig sammensatt nøkkel! Vennligst forsøk følgende for å låse opp databasen:\n
  
   • Kontroller at du har skrevet inn korrekt passord. Benytt øyeikonet for å vise passordet i klartekst.\n
   • Kontroller at du har valgt korrekt passordtype. Sjekk at denne stemmer overens med typen som ble valgt når databasen ble opprettet.\n
