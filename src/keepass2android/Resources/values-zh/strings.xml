@@ -752,6 +752,19 @@
 * 阻止在快速解锁和密码界面截屏\n
 * reverse sort order for Sort by Modification Date (now descending)\n
 * bug fixes: Notes view now updated correctly after changes, Password views now hiding password correctly on (hopefully) all devices, fixed issue that allowed to add an entry twice, fixed issue with showing Duplicate UUID warning even after fixing the database\n</string>
+  <string name="ChangeLog_0_9_6">版本 0.9.6\n
+* 允许导入密钥文件和本地的数据库文件到应用内部目录（请看设置）\n
+* 支持不同的排序方式\n
+* 优化自动切换键盘的配置\n
+* 更新图标和界面, 由 Stefano Pignataro (http://www.spstudio.at) 设计\n
+* 密码生成器记录最后的配置\n
+* 为 Android 5 的锁屏界面设置通知可见性\n
+* 当没有点击确认就离开应用时，清除主密码\n
+* 修正部分设备无法设置输入语言的问题\n
+* 修正 Root 设备自动切换键盘的问题\n
+* 添加检查数据库的功能 （重复的 UUID）\n
+* 当检测到数据库修改后自动重新读取, 解决一个关于主密码的安全隐患\n
+* 优化波兰语键盘， 修正键盘设置主题样式（感谢 Wiktor Ławski）\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 *修正了文件浏览问题（尤其是在Android 4.4中）\n
 *修正了在Nexus 5手机的Android Lollipop版本中载入文件扩展名为.kbd（keepass1）的问题\n
