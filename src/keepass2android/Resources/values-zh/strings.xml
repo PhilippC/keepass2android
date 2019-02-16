@@ -479,6 +479,7 @@
   <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
   <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
   <string name="key_file">密钥文件</string>
+  <string name="help_key_file">密钥文件简单来说就是保存成文件的密码。密钥文件通常比密码复杂和可靠得多，但是也更难将其隐藏。如果您将数据库保存在云端，千万不要把密钥文件也放上去！这样做会使密钥文件变得毫无意义！重要提示：创建数据库后，不要对密钥文件做出修改。</string>
   <string name="hint_key_file">勾选以在使用主密码之余额外使用一个密钥文件：</string>
   <string name="use_key_file">使用密钥文件</string>
   <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
@@ -530,7 +531,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">当前条目数据</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">插件会获取到当前数据库的所有数据，并允许它提供操作并修改显示。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">查询自己的凭据</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">插件将获准查询与它相关联当应用程序包的证书。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">查询凭据</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">插件将获准查询特定的网站及应用的证书。</string>
   <string name="get_regular_version">获取更多的存储类型</string>
   <string name="CertificateWarning">警告： 服务器证书验证失败: %1$ s。在您的设备上安装相应的根证书，或请参阅设置 ！</string>
   <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
@@ -541,6 +544,7 @@
   <string name="FileIsReadOnlyOnKitkat">在 Keepass2Android中，由于 Android 4.4 + 的限制，您选定的文件是只读的 。</string>
   <string name="CopyFileRequired">若要使用它，您必须将其复制到另一个位置。</string>
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
+  <string name="ClickOkToSelectLocation">点击确定以选择要复制文件的位置。</string>
   <string name="FileReadOnlyTitle">数据库时只读的.</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已在只读模式打开当前数据库.</string>
   <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
@@ -580,6 +584,11 @@
  &#8226; 检查密码是否正确。使用眼睛图标查看已输入的密码。\n
  &#8226; 检查密码类型是否正确。密码类型必须与创建数据库时的设置相同。\n
  &#8226; 检查数据库文件是否正确。\n</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
+   &#8226; 提示：如果你认为数据库已损坏，或你在更改主密钥后把它忘了，你可以点击“%1$s”并选择本地备份以尝试最后一次成功打开的文件版本。</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
+  </string>
   <string name="CorruptDatabaseHelp">文件已损坏。\n
     以下是诊断问题的一些提示：\n
     
@@ -612,6 +621,7 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="ErrorReportTitle">Keepass2Android: 出现一个错误。</string>
   <string name="ErrorReportText">运行 Keepass2Android 时出现意外的错误。请通过允许应用程序发送错误报告来帮助我们进行修复。</string>
+  <string name="ErrorReportPromise">错误报告绝对不会包含数据库或主密码的任何内容。您可以在应用程序设置中禁用它们。</string>
   <string name="ErrorReportEnable">启用</string>
   <string name="ErrorReportDisable">禁用</string>
   <string name="ErrorReportAsk">出错后询问</string>
@@ -901,6 +911,7 @@ Initial public release
   <string name="show_autofill_help">显示自动填充帮助</string>
   <string name="autofill_sign_in_prompt">使用 Keepass2Android 填充</string>
   <string name="autofill_disable">对%1$s禁用自动填充</string>
+  <string name="autofill_enable_for">对%1$s启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>
