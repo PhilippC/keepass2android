@@ -627,6 +627,17 @@
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ChangeLog_1_07">    版本 1.07-pre\n
+    * 允许同时打开多个数据库，与 KeeAutoExec 兼容\n
+    * SFTP：允许公钥登录、检查服务器公钥是否发生变化\n
+    * 增加 pCloud 支持 - 感谢 gilbsgilbs！\n
+    * 使 Nextcloud 支持公开化\n
+    * 优化条目附件的保存和更新功能\n
+    * 加入更多个人偏好设置\n
+    * SSL：信任用户证书\n
+    * 优化自动填充 (现可在Firefox上使用，减少弹窗)\n
+    * 错误修复\n
+  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
