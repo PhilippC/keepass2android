@@ -587,6 +587,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
    • Stelle sicher, dass du den richtigen Passworttyp ausgewählt hast. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
    • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">   \n
+   &#8226; Hinweis: Wenn du denkst, dass deine Datenbank-Datei beschädigt sein könnte oder du das Passwort nicht mehr weißt, nachdem du es geändert hast, kannst du zur zuletzt erfolgreich geöffneten Datei wechseln. Klicke dazu auf \"%1$s\" und wähle das lokale Backup.</string>
   <string name="HintLocalBackupOtherError">\n
 &#8226; Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Du kannst diese öffnen, indem du \"%1$s\" klickst und  \'local backup\' wählst.  </string>
   <string name="CorruptDatabaseHelp">Die Datei ist beschädigt.\n
