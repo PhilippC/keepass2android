@@ -23,9 +23,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Anwendung reagiert nicht</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Knopf</string>
+  <string name="show_kill_app_summary">Zeige einen Button im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
@@ -463,6 +465,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
+  <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -478,6 +481,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="help_master_password">Deine Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Wähle ein starkes Passwort, um deine Datenbank zu schützen! Tipp: Denke dir ein oder zwei Sätze aus und nutze die Anfangsbuchstaben als Passwort. Übernimm auch die Satzzeichen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
+  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Passwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Passwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wenn du deine Datenbank in der Cloud speicherst, solltest du die Schlüsseldatei keinesfalls auch dort ablegen. Das würde sie nutzlos machen! Wichtig: Ändere die Schlüsseldatei nicht mehr, nachdem du die Datenbank angelegt hast!</string>
   <string name="hint_key_file">Wähle, ob du eine Schlüsseldatei zusätzlich zum Hauptpasswort nutzen möchtest:</string>
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
@@ -529,7 +533,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SCOPE_CURRENT_ENTRY_title">Aktueller Eintrag</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Das Plugin erhält alle Daten über den aktuellen Datenbankeintrag und ist berechtigt, Aktionen anzubieten und die Anzeige zu verändern.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Eigene Anmeldeinformationen abfragen</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin ist berechtigt, Zugangsdaten abzufragen, die mit der Plugin-App verknüpft sind.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Anmeldeinformationen abfragen</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für selbst ausgewählte Websites oder Anwendungen abzufragen.</string>
   <string name="get_regular_version">Weitere Speichertypen bekommen</string>
   <string name="CertificateWarning">Warnung: Server-Zertifikat konnte nicht validiert werden: %1$s. Installiere ein passendes Root-Zertifikat auf deinem Gerät oder s. Einstellungen.</string>
   <string name="CertificateFailure">Fehler: Server-Zertifikat konnte nicht validiert werden! Installiere ein passendes Root-Zertifikat auf deinem Android-Gerät oder s. Einstellungen!</string>
