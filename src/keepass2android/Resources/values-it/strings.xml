@@ -625,6 +625,17 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
+  <string name="ChangeLog_1_07">Versione 1.07-pre\n
+     * Permette di aprire più database, compatibile con KeeAutoExec\n
+     * SFTP: Consentire l\'autenticazione della chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
+     * Introduce il supporto pCloud - grazie a gilbsgilbs!\n
+     * Rende esplicito il supporto per Nextcloud\n
+     * Migliora il salvataggio e l\'aggiornamento degli allegati alle voci\n
+     * Altre opzioni per adattare il comportamento alle preferenze personali\n
+     * SSL: Certificati utente di fiducia\n
+     * Migliorato autocompletamento (adesso funziona con Firefox, permette di ridurre i popup)\n
+     * correzioni di bug\n
+  </string>
   <string name="ChangeLog_1_06">Versione 1.06\n
 * passato a ykDroid al posto di YubiChallenge come app per Yubikey Challenge-Response.\n
 * implementato il supporto per il Challenge-Response di KeepassXC. Nota: Il formato del database deve essere KDBX4!\n
@@ -740,6 +751,19 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * impedisce di prendere screenshot dalle schermate QuickUnlock e delle password\n
 * inverte l\'ordinamento per data di modifica (ora è discendente)\n
 * correzioni di bug: la vista Note ora viene aggiornata correttamente dopo le modifiche, la vista Password ora nasconde correttamente (spero) le password su tutti i dispositivi, risolve il problema che ha permesso l\'inserimento di una voce due volte, risolve il problema che mostrava l\'avviso di UUID duplicati anche dopo la correzione del database\n</string>
+  <string name="ChangeLog_0_9_6">Versione 0.9.6\n
+* permette di importare file chiave e/o file database locali in una cartella interna della app (vedere impostazioni)\n
+* permette diverse opzioni di ordinamentno\n
+* migliorate le preferenze per la commutazione automatica della tastiera\n
+* aggiornato il logo dell\'applicazione e la visualizzazione delle notifiche, design by Stefano Pignataro (http://www.spstudio.at)\n
+* il generatore di password ricorda le ultime impostazioni\n
+* impostazione visibilità notifica per la schermata di blocco di Android 5\n
+* ora il campo della password principale viene cancellato quando si esce dalla app senza premere OK\n
+* sistemato problema con lingua di input mancante nelle impostazioni tastiera di alcuni dispositivi\n
+* sistemato problema di commutazione automatica della tastiera nei dispositivi rootati\n
+* aggiunto controllo per database corrotti (UUID duplicati)\n
+* ricarica automatica del database qundo vengono rilevate modifiche, risolve preoccupazioni sulla sicurezza riguardo il rivelare la password principale\n
+* migliorato il layout della tastiera piccola polacca, sistemato il tema delle impostazioni tastiera (grazie a Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versione 0.9.5</b>\n
 * corregge i problemi con la navigazione delle cartelle (in particolare su Android 4.4)\n
 * risolve il problema con il caricamento dei file .kdb (Keepass 1) su Nexus 5 con Android Lollipop\n
@@ -799,6 +823,13 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
 * Consentito lo spostamento di voci e gruppi\n
 * L\'icona QuickUnlock può essere resa trasparente (vedi le impostazioni)\n
 * Correzioni di errori</string>
+  <string name="ChangeLog_0_8_5"><b>Versione 0.8.5</b>\n
+* i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi le impostazioni. \n
+* Icona di notifica per visualizzare lo stato del blocco del database (vedi Impostazioni)\n
+* Migliorato il rilevamento dello stato del blocco del database in alcune circostanze \n
+* I file dei database vengono caricati in memoria mentre stai digitando la password per aumentare la velocità di caricamento (vedi Impostazioni) \n
+* Le voci possono essere aggiunte al gruppo principale \n
+* Correzione di errori (risoluzione campi con riferimenti, problemi con la tastiera su dispositivi italiani e cinesi)</string>
   <string name="ChangeLog_0_8_4"><b>Versione 0.8.4</b>\n
 * Le modifiche al database esterno vengono rilevate ed unite durante il salvataggio\n
 * Migliorate le performance durante il caricamento\n
