@@ -432,6 +432,7 @@
   <string name="otp_aux_file">OTP 補助ファイル</string>
   <string name="ErrorOcurred">エラーが発生しました</string>
   <string name="DuplicateUuidsError">データベースが破損しています: 重複する ID が見つかりました。(Minikeepass で保存しましたか?) PC 用 Keepass 2 で新しいデータベースに再インポートして、\'新しい ID の作成\' を選択してください。</string>
+  <string name="DuplicateUuidsErrorAdditional">設定/アプリ設定/ファイル処理/UUID の重複をチェック で、このエラーメッセージを無効にできます。予期しない動作が発生する可能性があることにご注意ください。データベースを修正することをお勧めします。</string>
   <string name="synchronize_database_menu">データベースの同期...</string>
   <string name="CannotMoveGroupHere">このグループにグループを移動できません。</string>
   <string name="donate_question">今日はオクトーバーフェスト! Keepass2Android を気に入って頂いたとしたら、今日は私のためにビールを買うのにいい日ではありませんか?</string>
@@ -463,6 +464,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
+  <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
   <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -478,6 +480,7 @@
   <string name="help_master_password">データベースはここで入力したパスワードで暗号化されます。データベースを安全に保つために、強力なパスワードを選択してください! ヒント: 1 つまたは 2 つの文章を作成し、単語の最初の文字をパスワードとして使用します。記号を含めましょう。</string>
   <string name="hint_master_password">データベースを保護するマスター パスワードを選択します。</string>
   <string name="key_file">キー ファイル</string>
+  <string name="help_key_file">キー ファイルは、基本的にファイルに格納されたパスワードです。キーはより複雑にすることができるので、通常、キー ファイルはマスター パスワードよりも強固です。ただし秘密にしておくことは同様に困難です。クラウドにデータベースを格納する場合、そこにキー ファイルを格納しないでください! これは完全に役に立ちません! 重要: データベースの作成後、キー ファイルの内容を変更しないでください!</string>
   <string name="hint_key_file">マスター パスワードに加えてキー ファイルを使用するかを選択してください:</string>
   <string name="use_key_file">キーファイルを使用する</string>
   <string name="error_adding_keyfile">キー ファイル追加エラー!</string>
@@ -529,7 +532,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">現在のエントリーデータ</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">プラグインはデータベースの現在のエントリーに関するすべてのデータを受け取り、アクションの提供と、表示を変更することができます。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">自己資格情報のクエリ</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">プラグインは、アプリ パッケージに関連付けられた資格情報を照会することができます。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">資格情報のクエリ</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">プラグインは、意図した web サイトまたはアプリの資格情報を照会することができます。</string>
   <string name="get_regular_version">追加のストレージタイプを取得</string>
   <string name="CertificateWarning">警告: サーバー証明書の検証に失敗しました: %1$s。お使いのデバイスに適切なルート証明書をインストールするか、設定を確認してください!</string>
   <string name="CertificateFailure">エラー: サーバー証明書の検証に失敗しました! お使いのデバイスに適切なルート証明書をインストールするか、設定を確認してください!</string>
@@ -540,6 +545,7 @@
   <string name="FileIsReadOnlyOnKitkat">選択したファイルは Android 4.4+ の制限上 Keepass2Android で読み取り専用です。</string>
   <string name="CopyFileRequired">これを使用するには、別の場所にコピーする必要があります。</string>
   <string name="CopyFileRequiredForEditing">これを編集するには、別の場所にファイルをコピーする必要があります。</string>
+  <string name="ClickOkToSelectLocation">ファイルのコピー先の場所を選択して、OK をクリックしてください。</string>
   <string name="FileReadOnlyTitle">データベースは読み取り専用</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android は、現在のデータベースを読み取り専用モードで開きました。</string>
   <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。この方法は、書き込みをサポートしません。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。可能であれば、いずれかの利用可能なオプションからファイルを開いてください。</string>
@@ -579,6 +585,10 @@
  • 正しいパスワードを入力したことを確認してください。入力したパスワードを表示するには、目のアイコンを使用してください。\n
  • 正しいパスワードの種類を選択したことを確認してください。データベースを作成するときに使用した種類と一致することを確認してください。\n
  • 正しいデータベースファイルが選択されていることを確認してください。 </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; ヒント: データベースファイルが破損したとみられる場合、または、マスターキー変更後に忘れてしまった場合は、\"%1$s\" をクリックしてローカルバックアップを選択し、最後に開くことができたバージョンのファイルを試すことができます。</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; ヒント: Keepass2Android は、内部メモリーに最後に開くことができたファイルのバージョン保持しています。\"%1$s\" をクリックして、ローカルバックアップからそれを開くことができます。  </string>
   <string name="CorruptDatabaseHelp">ファイルが壊れています。\n
 ここに、問題を診断するために役立ついくつかのヒントがあります:\n
 
@@ -609,11 +619,23 @@
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="ErrorReportTitle">Keepass2Android: エラーが発生しました。</string>
   <string name="ErrorReportText">Keepass2Android の実行中に予期しないエラーが発生しました。エラーレポートの送信を有効にし、この問題の解決にご協力ください。</string>
+  <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリ設定でエラーレポートを無効にできます。</string>
   <string name="ErrorReportEnable">有効にする</string>
   <string name="ErrorReportDisable">無効にする</string>
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
+  <string name="ChangeLog_1_07">    バージョン 1.07 pre\n
+    * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
+    * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
+    * pCloud サポートの導入 - gilbsgilbs に感謝!\n
+    * 明示的に Nextcloud サポート\n
+    * エントリ添付ファイルの保存と更新を改善\n
+    * 個人設定の動作を適応させるためのオプションを追加\n
+    * SSL: ユーザー証明書の信頼\n
+    * 自動入力の改善 (Firefox で動作します。ポップアップを抑えることができます)
+    * バグフィックス\n
+  </string>
   <string name="ChangeLog_1_06">    バージョン 1.06\n
     * Yubikey チャレンジ-レスポンス アプリとして YubiChallenge ではなく ykDroid に切り替え。\n
     * KeepassXC スタイルのチャレンジ-レスポンスのサポートを実装します。注: データベースの形式を KDBX4 にする必要があります!\n
@@ -710,6 +732,19 @@
 * クイック解除とパスワード画面で、スクリーン ショットの取得を防止\n
 * 更新日での並べ替え順序を逆にしました (降順になりました)\n
 * バグ修正: メモ画面が変更後に正しく更新されるようになります。(うまく行けば) すべてのデバイスで、パスワード画面のパスワードが正しく非表示になります。エントリを 2 回追加する問題を修正。データベースを修正した後でも、UUID の重複を警告が表示される問題を修正\n</string>
+  <string name="ChangeLog_0_9_6">バージョン 0.9.6\n
+*キーファイルとデータベースファイルをアプリの内部ディレクトリへインポートできるようになりました(設定を参照して下さい)\n
+*並び替えの方法が追加されました\n
+*キーボード自動切り替えの設定を改良しました\n
+*アプリと通知領域のアイコンを更新しました。アイコンはStefano Pignataro (http://www.spstudio.at)のデザインです\n
+*パスワード自動生成の最後の設定が保存されるようになりました\n
+*Android 5のロックスクリーンの通知表示を設定しました\n
+*アプリを切り替えたときに、OKを押さなくても入力中のマスターパスワードがクリアされるようになりました\n
+*特定の端末で設定のキーボードと入力方法に表示されない問題が修正されました\n
+*root化済み端末の自動キーボード切り替えの問題を修正しました\n
+*データベースの破損チェック処理を追加しました(UUIDを複製します)\n
+*データベースの変更を検出した時の自動リロードで、マスターパスワードが流出するセキュリティ上の問題が解決されました\n
+*ポーランド語のスモールキーボードのレイアウトが改良されました。キーボード設定のテーマを修正しました (Wiktor Ławskiさんありがとうございました)\n</string>
   <string name="ChangeLog_0_9_5"><b>バージョン 0.9.5</b>\n
  * ファイル閲覧の問題を修正 (特に Android 4.4 上で)\n
  * Android Lollipop の Nexus 5 で .kdb ファイル (Keepass 1) 読み込み時の問題を修正\n
