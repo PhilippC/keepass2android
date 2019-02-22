@@ -804,6 +804,13 @@
  * エントリーとグループの移動が可能\n
  * クイックロック解除アイコンを透明にすることができます (設定を参照)\n
  * 複数のバグ修正</string>
+  <string name="ChangeLog_0_8_5"><b>バージョン 0.8.5</b>\n
+ * オフライン使用 (編集と以降の同期を含む) できるようにリモート ファイルをローカル アプリ キャッシュに格納します。設定を参照してください。\n
+ * データベースのロック状態を視覚化する通知アイコン (設定を参照)\n
+ * いくつかの状況でロック状態を決定する方法の改善\n
+ * 読み込み速度を上げるため、パスワードを入力している間にデータベース ファイルをメモリに読み込みます (設定を参照)\n
+ * ルートグループにエントリーを追加することができます\n
+ * 複数のバグ修正 (フィールドの参照、中国のデバイスでイタリア語のキーボードの問題を解決)</string>
   <string name="ChangeLog_0_8_4"><b>バージョン 0.8.4</b>\n
  * 外部データベースの変更を検出し、保存時にマージされます\n
  * 読み込みパフォーマンスの改善\n
@@ -915,6 +922,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="show_autofill_help">オートフィルのヘルプを表示</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
   <string name="autofill_disable">%1$s の自動入力を無効にする</string>
+  <string name="autofill_enable_for">%1$s の自動入力を有効にする</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
   <string name="enable_fingerprint_hint">Keepass2Android は指紋認証ハードウェアを検出しました。指紋認証を有効にして、このデータベースのロックを解除しますか?</string>
   <string name="understand">理解しました</string>
