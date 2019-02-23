@@ -198,6 +198,7 @@
   <string name="no_keys">Žádný záznam v databázi nebo ve skupině.</string>
   <string name="no_results">Nenalezeno</string>
   <string name="no_url_handler">Žádný handler pro toto url.</string>
+  <string name="open_recent">Otevřít poslední databázi (kliknutím)</string>
   <string name="omitbackup_title">Neprohledávat zálohy a koš</string>
   <string name="omitbackup_summary">Vynechat skupiny Záloha a Koš ve výsledcích hledání</string>
   <string name="pass_filename">Název souboru KeePass databáze</string>
@@ -332,6 +333,7 @@
   <string name="NoDonationReminder_title">Nikdy se neptat na darování</string>
   <string name="NoDonationReminder_summary">Nedám ti ani korunu, případně jsem už jsem daroval. Neptej se na darování, ani v den autorových narozenin.</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
+  <string name="UseOfflineCache_summary">Uchovat kopii databáze v dočasném úložišti aplikace. Tato volba umožní použití databáze i v případě že není dostupná.</string>
   <string name="CreateBackups_title">Místní zálohy</string>
   <string name="CreateBackups_summary">Vytvoř místní zálohu po úspěšném načtení databáze.</string>
   <string name="UpdatingBackup">Aktualizuji místní zálohu...</string>
