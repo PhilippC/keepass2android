@@ -22,7 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Vypršel časový limit aplikace</string>
+  <string name="app_timeout_summary">Čas, po který, při neaktivitě aplikace, databáze zůstane odemčená.</string>
+  <string name="kill_app_label">Ukončit proces aplikace</string>
   <string name="show_kill_app">Tlačítko Zavřít</string>
+  <string name="show_kill_app_summary">Zobrazit tlačítko pro ukončení aplikace na obrazovce s heslem (pro paranoidní uživatele)</string>
+  <string name="application">Aplikace</string>
+  <string name="application_settings">Nastavení aplikace</string>
   <string name="ShowGroupnameInSearchResult_title">Zobrazit název skupiny ve výsledku hledání</string>
   <string name="ShowGroupnameInSearchResult_resume">Zobrazovat jméno skupiny pod titulkem záznamu ve výsledcích hledání. Užitečné, máte-li několik záznamů stejného jména.</string>
   <string name="NavigationToGroupCompleted_message">Zobrazení jména kategorií je nyní: %1$s</string>
