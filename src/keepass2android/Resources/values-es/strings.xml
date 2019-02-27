@@ -22,7 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Tiempo de espera de la aplicación</string>
+  <string name="app_timeout_summary">Tiempo antes de bloquear la base de datos cuando la aplicación está inactiva.</string>
+  <string name="kill_app_label">Matar proceso de aplicación</string>
   <string name="show_kill_app">Botón de cerrado</string>
+  <string name="show_kill_app_summary">Mostrar un botón en la pantalla de la contraseña para matar el proceso (para usuarios paranoicos)</string>
+  <string name="application">Aplicación</string>
+  <string name="application_settings">Configuración de la aplicación</string>
   <string name="ShowGroupnameInSearchResult_title">Mostrar nombre del grupo en resultado de búsqueda</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo por debajo de los títulos en resultados de búsqueda. Útil si múltiples entradas tienen el mismo nombre.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
@@ -190,6 +196,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="no_keys">Sin entradas en la base de datos o grupo.</string>
   <string name="no_results">Sin resultado de búsqueda</string>
   <string name="no_url_handler">Sin manejador para esta url.</string>
+  <string name="open_recent">Abrir base de datos reciente (toque para abrir)</string>
   <string name="omitbackup_title">No buscar en las entradas de copia de seguridad o papelera de reciclaje</string>
   <string name="omitbackup_summary">Omitir \'Backup\' y grupo de Papelera de Reciclaje en los resultados de búsqueda</string>
   <string name="pass_filename">Nombre de archivo de base de datos de KeePass</string>
@@ -324,6 +331,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="NoDonationReminder_title">No solicitar nunca una donación</string>
   <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
+  <string name="UseOfflineCache_summary">Mantener una copia de los ficheros de base de datos en el directorio caché de la aplicación. Esto permite usar las bases de datos incluso cuando el fichero no esté accesible.</string>
   <string name="CreateBackups_title">Copias de seguridad locales</string>
   <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
@@ -424,6 +432,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="otp_aux_file">Archivo auxiliar OTP</string>
   <string name="ErrorOcurred">Se ha producido un error:</string>
   <string name="DuplicateUuidsError">Base de datos corupta: Se han encontrado indices duplicados. (Se guardó con Minikeepass?) Por favor, volver a importar en una base de datos nueva con Keepass 2 para PC y elegir \'crear indices nuevos\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Puede deshabilitar este mensaje de error en Configuración/Configuración de la Aplicación/Manejo de archivos/Buscar UUIDs duplicados. Por favor tenga en cuenta que es posible que experimente un comportamiento inesperado. Se recomienda reparar la base de datos.</string>
   <string name="synchronize_database_menu">Sincronizar base de datos…</string>
   <string name="CannotMoveGroupHere">No se puede mover el grupo a este grupo.</string>
   <string name="donate_question">¡Hoy es Oktoberfest! Si te gusta Keepass2Android: ¿no sería un buen día para invitarme a una cerveza?</string>
@@ -608,6 +617,17 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ErrorReportAsk">Preguntar después del error</string>
   <string name="ErrorReportPrefTitle">Enviar informe de errores</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_07">    Version 1.07-pre\n
+    * Permitir abrir mas de una base de datos, compatible con KeeAutoExec\n
+    * SFTP: Permitir autenticación de clave pública, se comprueba si la clave del host ha cambiado\n
+    * Introducido soporte para pCloud - gracias a gilbsgilbs!\n
+    * Hacer el soporte de Nextcloud explicito\n
+    * Mojoras al salvar y actualizar adjuntos a una entrada\n
+    * Más opciones para adaptar el comportamiento a preferencias personales\n
+    * SSL: Confiar en certificados de usuario\n
+    * Mejorado el autorellenado (ahora funciona con Firefox, permite reducir los popups)\n
+    * correción de errores\n
+  </string>
   <string name="ChangeLog_1_06">    Versión 1.06\n
     * Cambio a ykDroid en lugar de YubiChallenge como aplicación para Desafio-Respuesta Yubikey.\n
     * Implementado soporte para Desafio-Respuesta estilo KeepassXC. Nota: Formato de base de datos debe ser KDBX4!\n
@@ -895,6 +915,7 @@ Publicación inicial</string>
   <string name="show_autofill_help">Mostrar ayuda de Autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
   <string name="autofill_disable">Desactivar Autorrelleno para %1$s</string>
+  <string name="autofill_enable_for">Activar Autorrelleno para %1$s</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware de huellas dactilares. ¿Desea activar desbloqueo de esta base de datos mediante huella digital?</string>
   <string name="understand">Entiendo</string>
