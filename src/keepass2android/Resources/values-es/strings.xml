@@ -612,6 +612,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="ErrorReportTitle">Keepass2Android: Se produjo un error.</string>
   <string name="ErrorReportText">Se ha producido un error inesperado durante la ejecución de Keepass2Android. Por favor ayúdenos a solucionar este problema permitiendo que la aplicación envíe informes de errores.</string>
+  <string name="ErrorReportPromise">Los informes de error no tienen contenido de su base de datos o contraseña maestra. Puede desactivarlas en la configuración de la aplicación.</string>
   <string name="ErrorReportEnable">Habilitar</string>
   <string name="ErrorReportDisable">Deshabilitar</string>
   <string name="ErrorReportAsk">Preguntar después del error</string>
