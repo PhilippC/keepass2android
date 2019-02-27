@@ -541,6 +541,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="FileIsReadOnlyOnKitkat">El archivo seleccionado es de sólo lectura para Keepass2Android debido a restricciones en Android 4.4 +.</string>
   <string name="CopyFileRequired">Para usarlo, debe copiarlo a otro lugar.</string>
   <string name="CopyFileRequiredForEditing">Para editarlo, debe copiar el archivo a otra ubicación.</string>
+  <string name="ClickOkToSelectLocation">Pulse OK para seleccionar una ubicación donde el archivo se copiará.</string>
   <string name="FileReadOnlyTitle">La base de datos es de sólo lectura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha abierto la base de datos en modo de sólo lectura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que abrió el archivo desde una aplicación externa. De esta manera no admite escritura. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. Luego, si es posible, abra el archivo desde una de las opciones disponibles.</string>
