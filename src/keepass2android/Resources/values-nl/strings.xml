@@ -479,6 +479,7 @@
   <string name="help_master_password">De database is versleuteld met het hier ingevoerde wachtwoord. Kies een sterk wachtwoord om de database te beveiligen! Tip: Bedenk een zin of twee en gebruik de eerste letters van de woorden als wachtwoord. Gebruik ook de leestekens.</string>
   <string name="hint_master_password">Kies een hoofdwachtwoord om jouw database te beschermen:</string>
   <string name="key_file">Sleutelbestand</string>
+  <string name="help_key_file">Een key file is feitelijk een wachtwoord dat is opgeslagen in een bestand. Key files zijn doorgaans sterker dan hoofdwachtwoorden omdat de versleuteling veel ingewikkelder kan zijn; het is echter moeilijker om ze geheim te houden. Als u uw database opslaat in de cloud, sla uw key file daar dan niet op! Dit zou het volledig nutteloos maken. Belangrijk: wijzig niet de inhoud van de key file na het aanmaken van de database!</string>
   <string name="hint_key_file">Kies als je gebruik wilt maken van een sleutelbestand naast het hoofdwachtwoord:</string>
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
@@ -530,7 +531,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Gegevens huidige item</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">De plug-in zal alle data van het huidige database item krijgen en kan acties aanbieden en de weergave van het item wijzigen.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Zoek eigen inloggegevens</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">De plug-in wordt toegestaan om te zoeken naar de inloggegevens die gekoppeld zijn met zijn eigen applicatie.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Zoek inloggegevens</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">De plug-in zal worden toegestaan te zoeken naar inloggegevens voor specifieke websites of programma\'s.</string>
   <string name="get_regular_version">Verkrijg meer opslagmethodes</string>
   <string name="CertificateWarning">Waarschuwing: Server certificaat validatie mislukt: %1$s. Installeer een passend root-certificaat op je apparaat of zie instellingen!</string>
   <string name="CertificateFailure">Fout: Server certificaat validatie mislukt! Installeer een passend root-certificaat op je apparaat of zie instellingen!</string>
@@ -541,6 +544,7 @@
   <string name="FileIsReadOnlyOnKitkat">Het geselecteerde bestand is alleen-lezen voor Keepass2Android vanwege beperkingen op Android 4.4 +.</string>
   <string name="CopyFileRequired">Om het te gebruiken moet je het kopiëren naar een andere locatie.</string>
   <string name="CopyFileRequiredForEditing">Om het te bewerken moet je het kopiëren naar een andere locatie.</string>
+  <string name="ClickOkToSelectLocation">Klik op OK om een locatie te kiezen waar het bestand naartoe moet worden gekopieerd.</string>
   <string name="FileReadOnlyTitle">Database is alleen-lezen</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android heeft de huidige database geopend in de modus alleen-lezen.</string>
   <string name="ReadOnlyReason_PreKitKat">Het lijkt alsof je het bestand hebt geopend vanuit een externe app. Dit biedt geen ondersteuning voor schrijven. Als je wijzigingen wilt aanbrengen aan de database: sluit de database en selecteer \'database wijzigen\'. Open vervolgens het bestand indien mogelijk opnieuw vanaf een van de beschikbare opties.</string>
