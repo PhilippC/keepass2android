@@ -22,7 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">App timeout</string>
+  <string name="app_timeout_summary">Tijd tot het vergrendelen van de database bij inactiviteit van de app.</string>
+  <string name="kill_app_label">App-proces afsluiten</string>
   <string name="show_kill_app">Sluiten-Knop</string>
+  <string name="show_kill_app_summary">Een knop weergeven in het wachtwoordscherm om de applicatie te beëindigen (voor paranoïde gebruikers)</string>
+  <string name="application">App</string>
+  <string name="application_settings">App-instellingen</string>
   <string name="ShowGroupnameInSearchResult_title">Toon groepsnaam in zoekresultaat</string>
   <string name="ShowGroupnameInSearchResult_resume">Toon groepsnaam onder item namen in zoekresultaten. Handig als verschillende items dezelfde naam hebben.</string>
   <string name="NavigationToGroupCompleted_message">Getoonde groep is nu: %1$s</string>
@@ -189,6 +195,7 @@
   <string name="no_keys">Geen records in de database of groep.</string>
   <string name="no_results">Geen zoekresultaten</string>
   <string name="no_url_handler">Geen afhandeling voor deze url mogelijk.</string>
+  <string name="open_recent">Open recente database (klik om te openen)</string>
   <string name="omitbackup_title">Niet in back-up en prullenbak zoeken</string>
   <string name="omitbackup_summary">Laat \'Back-up\' en Prullenbak-groep weg uit zoekresultaten</string>
   <string name="pass_filename">KeePass databasebestandsnaam</string>
