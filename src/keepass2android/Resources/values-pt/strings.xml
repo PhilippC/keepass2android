@@ -531,7 +531,9 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Dados de entrada atual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">A extensão receberá todos os dados sobre a entrada da base de dados atual e poderão oferecer ações e modificar a exibição do mesmo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta próprias credenciais</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A extensão terá permissão para consultar as credenciais associadas com o seu próprio pacote do app.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Pedir credenciais</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A extensão terá permissão para consultar credenciais para web sites ou apps deliberados.</string>
   <string name="get_regular_version">Obter mais tipos de armazenamento</string>
   <string name="CertificateWarning">Aviso: Falha de validação de certificado de servidor: %1$s. Instalar o certificado raiz apropriado no seu dispositivo ou consulte as definições!</string>
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado no seu dispositivo ou consulte as definições!</string>
@@ -542,6 +544,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="FileIsReadOnlyOnKitkat">O ficheiro selecionado é somente de leitura para Keepass2Android devido a restrições no Android 4.4+.</string>
   <string name="CopyFileRequired">Para poder usá-lo, tem que o copiar para outro destino.</string>
   <string name="CopyFileRequiredForEditing">Para poder alterá-lo, tem que o copiar para outro destino.</string>
+  <string name="ClickOkToSelectLocation">Toque OK para selecionar o local para onde o ficheiro deve ser copiado.</string>
   <string name="FileReadOnlyTitle">Base de dados é apenas de leitura</string>
   <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que abriu o ficheiro a partir de uma aplicação externa. Desta forma não oferece suporte para escrita. Se quiser fazer alterações na base de dados, feche a base de dados e selecione Alterar base de dados. De seguida, abra o ficheiro com uma das opções disponíveis, se possível.</string>
@@ -583,6 +586,10 @@ Muito útil se existirem muitos resultados iguais.</string>
    &#8226; Verifique se seleccioonou o tipo correto de palavra-passe.  Garanta que é igual ao tipo usado na criação da base de dados.\n
    &#8226; Verifique se seleccionou a base de dados correta.
  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n 
+ &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, tocando em \"%1$s\" e seleccionando a cópia de segurança local.</string>
+  <string name="HintLocalBackupOtherError">\n
+    &#8226; Keepass2Android guardou com sucesso a versão do último ficheiro aberto com sucesso na memória interna. Você pode abri-lo tocando em \"%1$s\" e seleccionado a cópia de segurança local.  </string>
   <string name="CorruptDatabaseHelp">    O ficheiro está corrompido.\n
     Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
     &#8226; Se copiou o ficheiro através de USB (MTP-Mode), tente novamente com ferramentas como o MyPhoneExplorer. O MTP por vezes corrompe o ficheiro.\n
@@ -614,6 +621,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ocorreu um erro.</string>
   <string name="ErrorReportText">Ocorreu um erro inesperado durante a execução do Keepass2Android. Por favor ajude-nos a corrigir, permitindo que a aplicação envie relatórios de erros.</string>
+  <string name="ErrorReportPromise">Relatórios de erros nunca irão conter nenhum conteúdo de sua base de dados ou palavra-passe mestra. Pode desativa-los nas definições do app.</string>
   <string name="ErrorReportEnable">Ativar</string>
   <string name="ErrorReportDisable">Desativar</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
@@ -730,6 +738,19 @@ Muito útil se existirem muitos resultados iguais.</string>
 		* evita obter telas cheias do Desbloqueio e telas de palavra-pass\n
 		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
 		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de palavra-pass agora ocultam a palavra-pass corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n</string>
+  <string name="ChangeLog_0_9_6">Versão 0.9.6 \n 
+* Permitir importar o ficheiro-chave e/ou ficheiro de banco de dados local para diretório interno do app (ver definições) \n 
+* Permitir diferentes opções de classificação \n 
+* Melhorado preferências para alteração automática de teclado \n 
+* Logotipo da aplicação atualizado e design das notificações, design por Stefano Pignataro (http://www.spstudio.at) \n 
+* Gerador de palavras-passe lembra-se da última configuração \n 
+* Definir visibilidade de notificação para ecrã de bloqueio do Android 5 \n 
+* Agora limpa o campo de senha mestra quando deixar a aplicação sem clicar OK \n 
+* Corrigido problema com falta de idiomas de entrada nas configuração de teclado em alguns dispositivos \n 
+* Corrigido problema com alteração automática do teclado em dispositivos com root \n 
+* Adicionado verificação de base de dados corruptos (UUIDs duplicados) \n 
+* Recarregar automaticamente a base de dados quando alteração detetada, resolve preocupação de segurança de revelar senha mestre \n 
+* Layout de pequeno teclado polaco melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n</string>
   <string name="ChangeLog_0_9_5"><b>Versão 0.9.5</b> \n 
 * Corrigido problemas com navegação de ficheiros (especialmente no Android 4.4) \n 
 * Corrigido problema com carregamento de ficheiros .kdb (Keepass 1) nos Nexus 5 com Android Lollipop \n 
@@ -789,6 +810,13 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 		* Permitir mover entradas e grupos\n
 		* Ícone do Desbloqueio-Rápido pode ser transparente (veja em definições)\n
 		* Correções de bugs</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+		* Ficheiros remotos são armazenados no cache local do app para permitir uso offline (incluindo edição e sincronização posterior). Veja em definições. \n
+		* Ícone de notificação para visualizar o lock-state da base de dados (veja em definições)\n
+		* Melhorado a determinação de lock-state em algumas situações\n
+		* Base de dados são carregados na memória enquanto escreve a palavra-passe para aumentar a velocidade (veja em definições)\n
+		* Entradas podem ser adicionadas ao grupo raiz\n
+		* Correções de bugs (resolvido campos de referencia, problemas com o teclado em aparelhos em italiano e chinês)</string>
   <string name="ChangeLog_0_8_4"><b>Versão 0.8.4</b>\n
 		* Mudança na base de dados externo são detetadas e inseridas quando está a gravar\n
 		* Melhorado o performance no carregamento\n
@@ -899,6 +927,8 @@ Lançamento público inicial
   <string name="autofill_enable_failed">Lamento, parece que o seu dispositivo não suporta abrir as configurações dentro da aplicação. Por favor vá manualmente às configurações do sistema para auto preenchimento para ativar o serviço.</string>
   <string name="show_autofill_help">Mostrar ajuda para auto preenchimento</string>
   <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
+  <string name="autofill_disable">Ativar auto-preenchimento para %1$s</string>
+  <string name="autofill_enable_for">Desativar auto-preenchimento para %1$s</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android detetou hardware de impressões digitais. Deseja ativar a impressão digital para desbloquear a base de dados?</string>
   <string name="understand">Eu entendo</string>
