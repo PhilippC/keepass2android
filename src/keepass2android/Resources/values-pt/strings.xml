@@ -22,6 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Tempo esgotado do app</string>
   <string name="app_timeout_summary">Tempo que demora a bloquear a base de dados quando o app está inativa.</string>
   <string name="kill_app_label">Matar processo de app</string>
   <string name="show_kill_app">Botão fechar</string>
@@ -627,6 +628,16 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erro</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_07">Versão 1.07-pre2\n
+* Permitir a abertura de mais de uma base de dados, compatíveis com KeeAutoExec\n
+* SFTP: Permitir autenticação de chave pública, verificar se a chave do host foi alterada\n
+* Introduzir suporte para pCloud - graças a gilbsgilbs!\n
+* Tornar o suporte para Nextcloud explícito\n
+* Melhorar armazenamento e atualização de anexos de entradas\n
+* Mais opções para adaptar o comportamento às preferências pessoais\n
+* SSL: Confiar em certificados de utilizador\n
+* Amelhora auto-preenchimento (funciona agora no Firefox, pode reduzir popups)\n
+* correção de bugs\n  </string>
   <string name="ChangeLog_1_06">Versão 1.06\n
     * Alterado para ykDroid em vez de YubiChallenge como aplicação para  Yubikey Challenge-Response.\n
     * Implementado suporte para KeepassXC-style Challenge-Response. Nota: Formato da base de dados tem que ser KDBX4!\n
