@@ -391,6 +391,7 @@
   <string name="otp_aux_file">ملف \"كلمة السر أحادية الاستخدام\"</string>
   <string name="ErrorOcurred">حدث خطأ:</string>
   <string name="DuplicateUuidsError">قاعدة البيانات معطوبة: تم العثور على معرفات مكررة. (هل قمت بالحفظ بواسطة Minikeepass؟) يرجى إعادة الاستيراد إلى قاعدة بيانات جديدة مع برنامج Keepass2 الخاص بأجهزة سطح المكتب وحدد \'إنشاء معرفات جديدة\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">يمكنك تعطيل رسالة الخطأ هذه في الإعدادات/إعدادات التطبيق/التعامل مع الملفات/التحقق من المعرفات (UUIDs) المكررة. الرجاء ملاحظة أنه قد يواجهك سلوك غير متوقع. من المستحسن إصلاح قاعدة البيانات.</string>
   <string name="synchronize_database_menu">جاري مزامنة قاعدة البيانات…</string>
   <string name="CannotMoveGroupHere">لا يمكن نقل المجموعة إلى هذه المجموعة.</string>
   <string name="donate_question">اليوم هو مهرجان أكتوبر! إذا أعجبك Keepass2Android ألن يكون اليوم مناسبا لتشتري لي بيرة؟</string>
@@ -402,10 +403,14 @@
   <string name="hint_http_url">عنوان الملف أو المجلد (مثال: mycloud.me.com/webdav)</string>
   <string name="enter_owncloud_login_title">أدخل بيانات دخول OwnCloud:</string>
   <string name="hint_owncloud_url">رابط OwnCload (مثال: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">أدخل بيانات دخول OwnCloud:</string>
+  <string name="hint_nextcloud_url">رابط Nextcloud (مثال: nextcloud.me.com)</string>
   <string name="hint_sftp_host">المضيف (مثال: 192.168.0.1)</string>
   <string name="hint_sftp_port">المنفذ</string>
   <string name="initial_directory">المجلد الأولي (اختياري):</string>
   <string name="enter_sftp_login_title">أدخل بيانات الدخول لـ SFTP:</string>
+  <string name="sftp_auth_mode">نمط المصادقة</string>
+  <string name="send_public_key">إرسال المفتاح العمومي...</string>
   <string name="enter_ftp_login_title">أدخل بيانات دخول FTP:</string>
   <string name="select_storage_type">حدد نوع التخزين:</string>
   <string name="filestoragename_file">ملف محلي</string>
@@ -415,9 +420,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">نيكستكلود</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (مجلد KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">إذا كنت لا تريد منح KP2A حق الوصول إلى Dropbox بالكامل، قم بتحديد هذا الخيار. سوف يتطلب حق الوصول فقط إلى المجلد Apps/Keepass2Android. هذا مناسب بشكل خاص عند إنشاء قاعدة بيانات جديدة. إذا كان بالفعل لديك قاعدة بيانات، انقر فوق هذا الخيار لإنشاء المجلد، ثم ضع الملف داخل المجلد (من جهاز الكمبيوتر الخاص بك) وقم بتحديد هذا الخيار مرة أخرى لفتح الملف.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (نقل ملفات SSH)</string>
   <string name="filestoragename_content">منتقي ملف النظام</string>
@@ -432,6 +440,8 @@
 تلميح: قم بتكوين جملة او جملتين ثم أستخدم الأحرف الأولى من كل كلمة  لتشكيل كلمة المرور ، ضمِّن كلمة المرور هذه علامات الكيبورد مثل @#$%&amp; </string>
   <string name="hint_master_password">إختر كلمة مرور رئيسية لحماية قاعدة بياناتك:</string>
   <string name="key_file">ملف المفتاح</string>
+  <string name="help_key_file">ملف المفتاح بالأساس هو كلمة مرور مخزنة في ملف. عادة تكون ملفات المفاتيح أقوى من كلمات المرور، لأن المفتاح يمكن أن يكون أكثر تعقيداً بكثير؛ ولكن من جانب اخر فانه من الصعب حفظ ملفات المفاتيح هذه بصورة تضمن سريتها. إذا قمت بحفظ قاعدة بياناتك في السحابة، فلا تقم بحفظ ملف المفتاح هناك أيضا ! فهذا سيجعل العملية كلها (الحفاظ على السرية) غير مجدية تماما! 
+هام: لا تقم بتغيير محتويات ملف المفتاح بعد إنشاء قاعدة البيانات!</string>
   <string name="hint_key_file">اختر إذا كنت تريد استخدام ملف المفتاح بالإضافة إلى كلمة المرور الرئيسية:</string>
   <string name="use_key_file">استخدم ملف المفتاح</string>
   <string name="error_adding_keyfile">حدث خطأ أثناء إضافة ملف المفتاح!</string>
