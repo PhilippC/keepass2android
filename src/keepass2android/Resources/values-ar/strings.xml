@@ -21,7 +21,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">مهلة التطبيق</string>
+  <string name="app_timeout_summary">المدة الزمنية قبل تأمين قاعدة البيانات في حال كان التطبيق غير نشط.</string>
+  <string name="kill_app_label">إنهاء عملية التطبيق</string>
   <string name="show_kill_app">زر الإغلاق</string>
+  <string name="show_kill_app_summary">عرض زر في شاشة كلمة المرور للإقاف معالجة التطبيق (للمستخدمين المتخوفين)</string>
+  <string name="application">التطبيق</string>
+  <string name="application_settings">إعدادات التطبيق</string>
   <string name="ShowGroupnameInSearchResult_title">عرض اسم المجموعة في نتيجة البحث</string>
   <string name="ShowGroupnameInSearchResult_resume">عرض اسم المجموعة تحت عناوين القيود في نتائج البحث. هذا مفيد في حال وجود عدة قيود بنفس الاسم.</string>
   <string name="NavigationToGroupCompleted_message">عرض المجموعة الآن: %1$s</string>
@@ -51,6 +57,7 @@
   <string name="unlock_database_title">فتح قاعدة البيانات</string>
   <string name="brackets">أقواس</string>
   <string name="cancel">إلغاء</string>
+  <string name="Ok">موافق</string>
   <string name="ClearClipboard">مسح حافظة لوحة المفاتيح.</string>
   <string name="clipboard_timeout">مهلة حافظة لوحة المفاتيح</string>
   <string name="clipboard_timeout_summary">المدة الزمنية قبل مسح حافظة لوحة المفاتيح بعد نسخ اسم المستخدم أو كلمة المرور</string>
@@ -186,6 +193,7 @@
   <string name="no_keys">لا توجد قيود في قاعدة البيانات أو المجموعة.</string>
   <string name="no_results">لا توجد نتائج للبحث</string>
   <string name="no_url_handler">لا يوجد معالج لهذا العنوان.</string>
+  <string name="open_recent">فتح قاعدة البيانات الأخيرة (انقر للفتح)</string>
   <string name="omitbackup_title">عدم البحث عن القيود في النسخ الاحتياطي وسلة المحذوفات</string>
   <string name="omitbackup_summary">تجاهل \"النسخ الاحتياطية\" و\"مجموعة سلة المحذوفات\" من نتائج البحث</string>
   <string name="pass_filename">اسم ملف قاعدة بيانات KeePass</string>
@@ -200,6 +208,8 @@
   <string name="edit">تعديل</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">البداية</string>
+  <string name="AutoReturnFromQuery_title">العودة تلقائياً من شاشة الاستعلام</string>
+  <string name="AutoReturnFromQuery_summary">عند البحث عن قيد لتطبيق أو لموقع: العودة تلقائياً من شاشة الاستعلام إذا كان هناك إدخال مطابق واحد فقط في قاعدة البيانات.</string>
   <string name="KeyDerivFunc">طريقة اشتقاق المفتاح</string>
   <string name="rounds">جولات التشفير</string>
   <string name="rounds_explaination">زيادة عدد جولات التشفير يوفر حماية إضافية ضد هجمات التخمين، ولكنها يمكن أن تبطئ التحميل والحفظ بشكل كبير.</string>
@@ -278,6 +288,7 @@
   <string name="BinaryDirectory_summary">المجلد حيث يتم حفظ المرفقات.</string>
   <string name="SaveAttachmentDialog_title">حفظ المرفقات</string>
   <string name="SaveAttachmentDialog_text">الرجاء تحديد مكان حفظ المرفقات.</string>
+  <string name="SaveAttachmentDialog_save">تصدير إلى ملف...</string>
   <string name="SaveAttachmentDialog_open">حفظ في ذاكرة التخزين المؤقت، ثم فتح المرفق</string>
   <string name="SaveAttachment_doneMessage">حفظ الملف في %1$s.</string>
   <string name="SaveAttachment_Failed">لا يمكن حفظ المرفق في %1$s.</string>
@@ -303,12 +314,15 @@
   <string name="ClearPasswordOnLeave_summary">مسح كلمة المرور الرئيسية التي تم إدخالها عند ترك الشاشة دون فتح قفل قاعدة البيانات.</string>
   <string name="LockWhenNavigateBack_title">قفل عند ترك التطبيق</string>
   <string name="LockWhenNavigateBack_summary">تأمين قاعدة البيانات عند ترك التطبيق عن طريق الضغط على زر العودة.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">استخدم لوحة المفاتيح مضمنة داخل Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">إذا كنت لا تثق بموفر لوحة المفاتيح القياسية، اختر هذا الخيار لاستخدام لوحة المفاتيح المدمجة عند إدخال كلمة السر الرئيسية أو تحرير القيود.</string>
   <string name="NoDonateOption_title">إخفاء خيار التبرع</string>
   <string name="NoDonateOption_summary">هذا الإعداد للمتبرعين. يظهر فقط بعد استخدام Keepass2Android لبعض الوقت.</string>
   <string name="NoDonateOption_question">بدون التبرعات، هذا التطبيق لم يكن ليتواجد ولم يكن ليطوّر باستمرار! إذا لم تتبرع بعد، الرجاء أخذه بعين الاعتبار.</string>
   <string name="NoDonationReminder_title">لا تطلب التبرع مطلقاً</string>
   <string name="NoDonationReminder_summary">لن أعطيك قرشاً أو أني تبرعت مسبقاُ. لا تطلب التبرع، ولا حتى في عيد ميلاد المطور.</string>
   <string name="UseOfflineCache_title">التخزين المؤقت لقاعدة بيانات</string>
+  <string name="UseOfflineCache_summary">الاحتفاظ بنسخة من ملفات قاعدة البيانات في دليل التخزين المؤقت للتطبيق. هذا يسمح باستخدام قواعد البيانات حتى حين ملف قاعدة البيانات غير قابل للوصول.</string>
   <string name="AcceptAllServerCertificates_title">شهادات SSL</string>
   <string name="AcceptAllServerCertificates_summary">حدد السلوك عند فشل التحقق من صحة الشهادة. ملاحظة: يمكنك تثبيت شهادات على الجهاز الخاص بك إذا فشل التحقق من صحة الشهادة!</string>
   <string name="ClearOfflineCache_title">مسح ذاكرة التخزين المؤقت؟</string>
