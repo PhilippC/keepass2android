@@ -23,6 +23,8 @@
   <string name="app_name_nonet">Keepass2Android Çevrimdışı</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="show_kill_app">Kapat düğmesi</string>
+  <string name="application">Uygulama</string>
+  <string name="application_settings">Uygulama ayarları</string>
   <string name="ShowGroupnameInSearchResult_title">Grup adını arama sonuçlarında göster</string>
   <string name="ShowGroupnameInSearchResult_resume">Arama sonuçlarındaki kayıt başlıklarında grup adlarını gösterir. Aynı isimli birden fazla kayıt varsa yararlıdır.</string>
   <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
@@ -189,6 +191,7 @@
   <string name="no_keys">Veritabanı veya grupta hiçbir kayıt yok.</string>
   <string name="no_results">Arama sonuçsuz</string>
   <string name="no_url_handler">Bu URL için bir işleyici yok.</string>
+  <string name="open_recent">Son veritabanını aç (açmak için tıklayınız)</string>
   <string name="omitbackup_title">Yedek grubundaki ve geri dönüşümdeki kayıtları arama</string>
   <string name="omitbackup_summary">Yedek grubundaki ve geri dönüşümdeki kayıtları arama sonuçlarına eklenmesin</string>
   <string name="pass_filename">KeePass veritabanının dosya adı</string>
@@ -323,6 +326,7 @@
   <string name="NoDonationReminder_title">Asla bağış isteme</string>
   <string name="NoDonationReminder_summary">Sana bir kuruş bile vermeyeceğim ya da zaten bağış yapmıştım. Yazarın doğum gününde bile bağış isteme.</string>
   <string name="UseOfflineCache_title">Veritabanını önbelleğe al</string>
+  <string name="UseOfflineCache_summary">Veritabanı dosyalarının bir kopyasını uygulama önbellek dizininde tutun. Bu seçenek veritabanı dosyasına erişemediğinizde bile veritabanını kullanmanızı sağlar.</string>
   <string name="CreateBackups_title">Yerel yedekler</string>
   <string name="CreateBackups_summary">Bir veritabanı başarıyla yükledikten sonra yerel bir yedek kopyasını oluştur.</string>
   <string name="UpdatingBackup">Yerel yedek güncelleştiriliyor...</string>
