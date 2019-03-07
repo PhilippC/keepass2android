@@ -427,6 +427,7 @@
   <string name="otp_aux_file">tek kullanımlık şifre yedek dosyası</string>
   <string name="ErrorOcurred">Bir hata oluştu:</string>
   <string name="DuplicateUuidsError">Veritabanı bozuk: Yinelenen kimlikler bulundu. (Minikeepass ile mi kaydettin?) Lütfen bilgisayarınızdaki Keepass 2 ile veri tabanını içe aktarın ve \"Yeni kimlik oluştur\" seçin.</string>
+  <string name="DuplicateUuidsErrorAdditional">Bu hata mesajını \"ayarlar/uygulama ayarları/dosya işleme/yinelenen kimlikleri kontrol et\" yolundan devre dışı bırakabilirsiniz. Beklenmeyen davranışlarla karşılaşabileceğinizi unutmayın. Veritabanının düzeltilmesi için etkin olması önerilir.</string>
   <string name="synchronize_database_menu">Veritabanı Eşitle…</string>
   <string name="CannotMoveGroupHere">Grubu bu gruba taşınamıyor.</string>
   <string name="donate_question">Bugün Almanya\'da  Oktoberfest! Eğer Keepass2Android\'i sevdiyseniz: Bugün bana bir bira ısmarlamanın tam zamanı değilmidir?</string>
@@ -458,6 +459,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
+  <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -607,6 +609,7 @@
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="ErrorReportTitle">Keepass2Android: Bir hata oluştu.</string>
   <string name="ErrorReportText">Keepass2Android çalışırken beklenmeyen bir hata oluştu. Lütfen uygulamadan hata raporlarını göndermek için izin vererek düzeltmemize yardımcı olun.</string>
+  <string name="ErrorReportPromise">Hata raporları asla herhangi bir veri tabanı içeriğinizi veya ana parolanızı içermez. Hata raporlarını uygulama ayarlarından devre dışı bırakabilirsiniz.</string>
   <string name="ErrorReportEnable">Etkinleştir</string>
   <string name="ErrorReportDisable">Devre dışı bırak</string>
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
