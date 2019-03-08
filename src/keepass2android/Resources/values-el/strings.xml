@@ -22,6 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android χωρίς σύνδεση</string>
   <string name="short_app_name_nonet">KP2A χωρίς σύνδεση</string>
+  <string name="app_timeout">Λήξη χρονικού ορίου εφαρμογής</string>
   <string name="show_kill_app">Κουμπί τερματισμού</string>
   <string name="ShowGroupnameInSearchResult_title">Προβολή ονόματος ομάδας στο αποτέλεσμα αναζήτησης</string>
   <string name="ShowGroupnameInSearchResult_resume">Προβάλει το όνομα της ομάδας κάτω από τους τίτλους καταχωρίσεων στα αποτελέσματα αναζήτησης. Χρήσιμο αν πολλές καταχωρίσεις έχουν το ίδιο όνομα.</string>
@@ -52,6 +53,7 @@
   <string name="unlock_database_title">Ξεκλείδωμα βάσης δεδομένων</string>
   <string name="brackets">Παρενθέσεις</string>
   <string name="cancel">Ακύρωση</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Το πρόχειρο ξκαθαρίστηκε.</string>
   <string name="clipboard_timeout">Υπέρβαση χρονικού ορίου πρόχειρου</string>
   <string name="clipboard_timeout_summary">Χρόνος πριν την εκκαθάριση του πρόχειρου μετά την αντιγραφή ονόματος χρήστη ή συνθηματικού</string>
@@ -190,6 +192,7 @@
   <string name="no_keys">Καμιά εγγραφή στη βάση δεδομένων ή ομάδα.</string>
   <string name="no_results">Δεν βρέθηκαν αποτελέσματα</string>
   <string name="no_url_handler">Αυτό το URL δεν έχει χειριστή.</string>
+  <string name="open_recent">Άνοιγμα πρόσφατης βάσης δεδομένων (πατήστε για άνοιγμα)</string>
   <string name="omitbackup_title">Δίχως αναζήτηση σε διαγραμμένες και εφεδρικές εγγραφές</string>
   <string name="omitbackup_summary">Παράλειψη ομάδων \'Backup\' και \'Recycle Bin\' στην αναζήτηση</string>
   <string name="pass_filename">Όνομα αρχείου βάσης δεδομένων KeePass</string>
@@ -567,6 +570,15 @@
 Αν αντιγράψατε το αρχείο μέσω USB (MTP-Mode), παρακαλώ προσπαθήστε ξανά με εργαλεία όπως το MyPhoneExplorer. Το MTP περικόπτει τα αρχεία σε ορισμένες περιπτώσεις. \n
 Αν δεν μπορείτε να ανοίξετε το αρχείο από την ίδια θέση στον υπολογιστή σας, είναι πολύ πιθανό ότι το αρχείο είναι πράγματι κατεστραμμένο. Χρησιμοποιήστε αντίγραφο ασφαλείας της βάσης δεδομένων. Αν ΄πιστεύετε ότι το Keepass2Android καταστρέφει το αρχείο, επικοινωνήστε με την υποστήριξη. \n
 Αν μπορείτε να ανοίξετε το αρχείο στον υπολογιστή σας, επικοινωνήστε με την υποστήριξη. Μπορείτε να δοκιμάσετε να το αποθηκεύσετε με διαφορετικές ρυθμίσεις (π.χ. unzipped) στο PC και προσπαθήστε ξανά να ανοίξετε στο Keepass2Android.  </string>
+  <string name="open_other_db">Ανοίξτε μια άλλη βάση δεδομένων…</string>
+  <string name="select_database">Επιλέξτε τη βάση δεδομένων</string>
+  <string name="unspecified">ακαθόριστο</string>
+  <string name="child_db_enabled_on_this_device">Ενεργοποιημένο σε αυτήν τη συσκευή</string>
+  <string name="child_db_enable_on_this_device">Ενεργοποίηση σε αυτήν τη συσκευή</string>
+  <string name="child_db_disable_on_this_device">Απενεργοποίηση σε αυτήν τη συσκευή</string>
+  <string name="Visible_title">Ορατό</string>
+  <string name="database_file_heading">Αρχείο βάσης δεδομένων</string>
+  <string name="if_device_text">Ενεργοποίηση για %1$s</string>
   <string name="DbUnlockedChannel_name">Βάση δεδομένων ξεκλείδωτη</string>
   <string name="DbUnlockedChannel_desc">Η ειδοποίηση για τη βάση δεδομένων ξεκλειδώνεται</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -575,6 +587,7 @@
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="ErrorReportTitle">Keepass2Android: Παρουσιάστηκε ένα σφάλμα.</string>
   <string name="ErrorReportText">Παρουσιάστηκε απροσδόκητο σφάλμα κατά την εκτέλεση του Keepass2Android. Βοηθήστε να το διορθώσω αυτό, επιτρέποντας την εφαρμογή να στέλνει αναφορές σφαλμάτων.</string>
+  <string name="ErrorReportPromise">Οι αναφορές σφαλμάτων δεν θα περιέχουν οποιαδήποτε περιεχόμενα της βάσης δεδομένων ή το κύριο συνθηματικό σας. Μπορείτε να τις απενεργοποιήσετε στις ρυθμίσεις της εφαρμογής.</string>
   <string name="ErrorReportEnable">Ενεργοποίηση</string>
   <string name="ErrorReportDisable">Απενεργοποίηση</string>
   <string name="ErrorReportAsk">Ερώτηση μετά από σφάλμα</string>
