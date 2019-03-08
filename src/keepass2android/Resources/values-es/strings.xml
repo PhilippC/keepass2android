@@ -480,6 +480,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="help_master_password">Su base de datos está encriptada con la contraseña que introduzca aquí. ¡Elija una contraseña fuerte para mantener la base de datos segura!. Consejos: Hacer una frase o dos y utilizar las primeras letras de las palabras como contraseña. Incluir signos de puntuación.</string>
   <string name="hint_master_password">Seleccione una contraseña maestra para proteger su base de datos:</string>
   <string name="key_file">Archivo llave</string>
+  <string name="help_key_file">Un archivo de clave es basícamente una contraseña almacenada en un archivo. Los archivos de clave son típicamente más fuertes que las contraseñas maestras porque la clave puede ser mucho más compleja; sin embargo, también es más difícil mantenerlos ocultos. Si almacenas tu base de datos en la nube, ¡no guardes el archivo de clave allí también! ¡Esto lo haría completamente inútil! Advertencia: ¡No cambies los contenidos del archivo de clave después de crear la base de datos!</string>
   <string name="hint_key_file">Elija si desea utilizar un archivo llave además su contraseña maestra:</string>
   <string name="use_key_file">Usar el archivo llave</string>
   <string name="error_adding_keyfile">¡Error al añadir el archivo llave!</string>
@@ -531,6 +532,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="SCOPE_CURRENT_ENTRY_title">Datos de entrada actual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin recibirá todos los datos sobre la entrada de la base de datos actual y se permitirá ofrecer acciones y modificar la visualización de él.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consultar las propias credenciales</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">El plugin podrá consultar las credenciales asociadas con su popio paquete de aplicación.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Consulta las credenciales</string>
   <string name="get_regular_version">Consiga más tipos de almacenamiento</string>
   <string name="CertificateWarning">ADVERTENCIA: Error de validación del certificado del servidor: %1$s. ¡Instale el certificado raíz apropiado en su dispositivo o revise la configuración!</string>
@@ -582,6 +584,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
     • Asegúrese que haya introducido la contraseña correcta. Use el ícono de ojo para revelar la contraseña ingresada.\n
    • Asegúrese que haya seleccionado el tipo correcto de contraseña. Asegúrese que este tipo concuerde con el tipo usado al crear la base de datos.\n
    • Asegúrese que haya seleccionado el archivo de base de datos correcto.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">Consejo: Si crees que el archivo de tu base de datos podría estar corrupto o no recuerdas la contraseña maestra después de modificarla, puedes intentar con la última versión del archivo que lograste abrir tocando  y seleccionando la copia de seguridad local.</string>
+  <string name="HintLocalBackupOtherError">Consejo: Keepass2Android ha guardado la última versión de la base de datos que abriste con éxito en la memoria interna. Puedes abrirlo tocando \"\" y seleccionando la copia de seguridad local</string>
   <string name="CorruptDatabaseHelp">El Archivo está dañado. \n
     Estas son algunas sugerencias que pueden ayudarle a diagnosticar el problema:\n
     
