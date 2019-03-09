@@ -22,7 +22,10 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="kill_app_label">Завершити процес програми</string>
   <string name="show_kill_app">Кнопка закриття</string>
+  <string name="application">Програма</string>
+  <string name="application_settings">Налаштування програми</string>
   <string name="ShowGroupnameInSearchResult_title">Назва групи в результаті пошуку</string>
   <string name="ShowGroupnameInSearchResult_resume">Показувати назву групи під заголовками записів у результатах пошуку. Корисно, якщо декілька записів мають однакові назви.</string>
   <string name="NavigationToGroupCompleted_message">Відображення групи зараз: %1$s</string>
@@ -192,6 +195,7 @@
   <string name="no_keys">Немає записів у базі даних чи групі.</string>
   <string name="no_results">Нічого не знайдено</string>
   <string name="no_url_handler">Немає обробника для цього посилання.</string>
+  <string name="open_recent">Відкрити останню базу даних (торкнутися, щоб відкрити)</string>
   <string name="omitbackup_title">Не шукати в записах резервних копій та смітника</string>
   <string name="omitbackup_summary">Не показувати групи Резервна копія і Смітник в результатах пошуку</string>
   <string name="pass_filename">Назва файлу бази даних KeePass</string>
@@ -898,6 +902,8 @@ Initial public release
   <string name="autofill_enable_failed">Шкода, але ваш пристрій не підтримує відкриття налаштувань всередині програми. Перейдіть вручну до системних налаштувань автозаповнення, щоб увімкнути службу.</string>
   <string name="show_autofill_help">Показати довідку з автозаповнення</string>
   <string name="autofill_sign_in_prompt">Заповнити з Keepass2Android</string>
+  <string name="autofill_disable">Вимкнути автозаповнення для %1$s</string>
+  <string name="autofill_enable_for">Увімкнути автозаповнення для %1$s</string>
   <string name="invalid_link_association">Не вдалося асоціювати домен %1$s з програмою %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android виявив пристрій зчитування відбитків пальців. Хочете увімкнути розблокування відбитком пальця для цієї бази паролів?</string>
   <string name="understand">Я розумію</string>
