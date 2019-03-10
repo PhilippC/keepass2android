@@ -537,6 +537,7 @@
   <string name="FileIsReadOnlyOnKitkat">Android 4.4 + deki kısıtlamalar nedeniyle seçilen dosya Keepass2Android için salt okunur.</string>
   <string name="CopyFileRequired">Kullanmak için başka bir konuma kopyalamanız gerekir.</string>
   <string name="CopyFileRequiredForEditing">Düzenlemek için başka bir konuma kopyalamanız gerekir.</string>
+  <string name="ClickOkToSelectLocation">Dosyanın kopyalanacağı konumu seçmek için Tamam\'a dokunun.</string>
   <string name="FileReadOnlyTitle">Veritabanı salt okunur</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android geçerli veri tabanını salt okunur modda açtı.</string>
   <string name="ReadOnlyReason_PreKitKat">Görünüşe göre bir dış uygulamadan dosya açıldı. Bu şekilde yazma desteklenmiyor. Veritabanında değişiklik yapmak istiyorsanız, lütfen veritabanını kapatın ve veritabanı değiştiri seçin. Mümkünse kullanılabilir seçeneklerden biriyle dosyayı açın.</string>
@@ -905,6 +906,7 @@
   <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
   <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
   <string name="autofill_disable">%1$s için otomatik doldurmayı devre dışı bırak</string>
+  <string name="autofill_enable_for">%1$s karşılığında otomatik doldurmayı etkinleştir</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android parmak izi donanımı algıladı. Bu veritabanı için parmak izi kilildini etkinleştirmek istiyor musunuz?</string>
   <string name="understand">Anladım</string>
