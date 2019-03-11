@@ -753,6 +753,19 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
 * evitar tomar capturas de la pantalla de QuickUnlock y de la pantalla de la contraseña\n
 * invertir la forma de ordenación por Fecha de Modificación (ahora descendente)\n
 * bug fixes: visualización de notas ahora actualizada correctamente después de cambios, vistas contraseña ahora ocultando la contraseña correctamente en  todos los dispositivos (esperemos), solucionado el problema que permite agregar una entrada dos veces, solucionado el problema que muestra la advertencia de UUID duplicado incluso después de arreglar la base de datos\n</string>
+  <string name="ChangeLog_0_9_6">Versión 0.9.6\n
+		* permite importar archivo de clave y / o fichero de base de datos logal al directorio interno de aplicación (ver configuración)\n
+		* permite diferentes opciones de ordenación\n
+		* preferencias para cambio automático de teclado mejoradas\n
+		* actualizado logo de aplicación y diseño de notificación, diseñado por Stefano Pignataro (http://www.spstudio.at)\n
+		* generador de claves recuerda última configuración\n
+		* puesta visibilidad de notificación para pantalla de bloqueo de Android 5\n
+		* ahora se limpia el campo de clave maestra cuando se deja la aplicación sin pulsar OK\n
+		* arreglado problema con falta de lenguajes de introducción en configuración de teclado en algunos dispositivos\n
+		* resuelto problema con cambio automático de teclado en dispositivos rooteados\n
+		* añadido chequeo de bases de datos corruptas (UUIDs duplicados)\n
+		* recargar base de datos automáticamente cuando se detecte un cambio, resuelve preocupaciones de seguridad sobre revelar la contraseña maestra\n
+		* mejorada disposición de teclado polaco pequeño, arregladda configuración de tema de teclado (gracias a Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 * Solucionado problemas en el archivador (especialmente en Android 4.4)\n
 * Solucionado problemas en la carga de archivos .kdb (Keepass 1) en Nexus 5 con Android Lollipop\n
