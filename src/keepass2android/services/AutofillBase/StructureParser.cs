@@ -8,6 +8,7 @@ using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
 using Android.Views.InputMethods;
+using DomainNameParser;
 using keepass2android.services.AutofillBase.model;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
 
@@ -24,6 +25,7 @@ namespace keepass2android.services.AutofillBase
 	    public AutofillFieldMetadataCollection AutofillFields { get; set; }
 		AssistStructure Structure;
 	    private List<AssistStructure.ViewNode> _editTextsWithoutHint = new List<AssistStructure.ViewNode>();
+	    private PublicSuffixRuleCache domainSuffixParserCache;
 	    public FilledAutofillFieldCollection ClientFormData { get; set; }
 
 		public StructureParser(Context context, AssistStructure structure)
@@ -31,6 +33,7 @@ namespace keepass2android.services.AutofillBase
 		    mContext = context;
 		    Structure = structure;
 			AutofillFields = new AutofillFieldMetadataCollection();
+		    domainSuffixParserCache = new PublicSuffixRuleCache(context);
 		}
 
 		public string ParseForFill(bool isManual)
@@ -190,10 +193,19 @@ namespace keepass2android.services.AutofillBase
 	            );
 	    }
 
-	    void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
+	    
+
+        void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
 		{
 		    String webDomain = viewNode.WebDomain;
-		    if (webDomain != null)
+
+		    DomainName outDomain;
+		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
+		    {
+		        webDomain = outDomain.RegisterableDomainName;
+		    }
+
+            if (webDomain != null)
 		    {
                 if (!string.IsNullOrEmpty(validWebdomain))
 		        {

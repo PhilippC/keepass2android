@@ -248,6 +248,7 @@
     <Compile Include="services\AutofillBase\AutofillServiceBase.cs" />
     <Compile Include="services\AutofillBase\ChooseForAutofillActivityBase.cs" />
     <Compile Include="services\AutofillBase\CommonUtil.cs" />
+    <Compile Include="services\AutofillBase\DomainParser.cs" />
     <Compile Include="services\AutofillBase\Kp2aDigitalAssetLinksDataSource.cs" />
     <Compile Include="services\AutofillBase\model\FilledAutofillField.cs" />
     <Compile Include="services\AutofillBase\model\FilledAutofillFieldCollection.cs" />
@@ -1909,6 +1910,9 @@
     <AndroidResource Include="Resources\drawable\storagetype_button_bg_dark.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\publicsuffix.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
