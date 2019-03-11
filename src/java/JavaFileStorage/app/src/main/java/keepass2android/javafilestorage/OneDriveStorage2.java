@@ -14,6 +14,7 @@ import com.microsoft.graph.extensions.DriveItem;
 import com.microsoft.graph.extensions.GraphServiceClient;
 import com.microsoft.graph.extensions.IDriveItemCollectionPage;
 import com.microsoft.graph.extensions.IDriveItemCollectionRequestBuilder;
+import com.microsoft.graph.extensions.IDriveItemRequest;
 import com.microsoft.graph.extensions.IDriveItemRequestBuilder;
 import com.microsoft.graph.extensions.IGraphServiceClient;
 import com.microsoft.identity.client.AuthenticationCallback;
@@ -41,7 +42,7 @@ public class OneDriveStorage2 extends JavaFileStorageBase
 
     final HashMap<String /*userid*/, IGraphServiceClient> mClientByUser = new HashMap<String /*userid*/, IGraphServiceClient>();
 
-    private static final String[] scopes = {"offline_access", "https://graph.microsoft.com/Files.ReadWrite","https://graph.microsoft.com/User.Read"};
+    private static final String[] scopes = {"openid","offline_access", "https://graph.microsoft.com/Files.ReadWrite","https://graph.microsoft.com/User.Read"};
 
 
     public OneDriveStorage2(final Activity context, final String clientId) {
@@ -390,9 +391,10 @@ public class OneDriveStorage2 extends JavaFileStorageBase
         try {
 
             ClientAndPath clientAndPath = getOneDriveClientAndPath(filename);
-            DriveItem item = clientAndPath.getPathItem()
-                    .buildRequest()
-                    .get();
+            IDriveItemRequestBuilder pathItem = clientAndPath.getPathItem();
+
+            IDriveItemRequest request = pathItem.buildRequest();
+            DriveItem item = request.get();
             return getFileEntry(filename, item);
         } catch (ClientException e) {
             throw convertException(e);
