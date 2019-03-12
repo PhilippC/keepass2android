@@ -24,7 +24,11 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Tempo limite do app</string>
   <string name="app_timeout_summary">Tempo antes de bloquear o banco de dados quando o aplicativo estiver inativo.</string>
+  <string name="kill_app_label">Matar processo do app</string>
   <string name="show_kill_app">Botão fechar</string>
+  <string name="show_kill_app_summary">Exibir um botão na tela de senha para encerrar o processo do aplicativo (para usuários paranóicos)</string>
+  <string name="application">Aplicativo</string>
+  <string name="application_settings">Configurações do aplicativo</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
@@ -193,6 +197,7 @@
   <string name="no_keys">Nenhuma entrada no grupo.</string>
   <string name="no_results">Sem resultados na busca.</string>
   <string name="no_url_handler">Erro ao tratar url.</string>
+  <string name="open_recent">Abrir banco de dados recente (toque para abrir)</string>
   <string name="omitbackup_title">Não procurar entradas no backup ou na lixeira.</string>
   <string name="omitbackup_summary">Omitir os grupos \'Backup\' e \'Lixeira\' dos resultados da busca</string>
   <string name="pass_filename">Arquivo de banco de dados do KeePass</string>
@@ -327,6 +332,7 @@
   <string name="NoDonationReminder_title">Nunca pedir doações</string>
   <string name="NoDonationReminder_summary">Já doei ou não doarei nenhum centavo. Não me peça doação novamente, nem no aniversário do criador.</string>
   <string name="UseOfflineCache_title">Cache do banco de dados</string>
+  <string name="UseOfflineCache_summary">Manter uma cópia dos arquivos do banco de dados no pasta de cache do app. Isto permite o uso do banco de dados mesmo quando os arquivos dos bancos de dados não estão acessíveis.</string>
   <string name="CreateBackups_title">Cópias de segurança locais</string>
   <string name="CreateBackups_summary">Cria um backup local após carregar com sucesso o banco de dados.</string>
   <string name="UpdatingBackup">Atualizando a cópia de segurança local...</string>
