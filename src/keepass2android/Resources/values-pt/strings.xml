@@ -628,6 +628,16 @@
   <string name="ErrorReportAsk">Perguntar após erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erros</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_07">Versão 1.07-pre\n
+* Permitir a abertura de mais de um banco de dados, compatível com KeeAutoExec\n
+* SFTP: Permitir autenticação de chave pública, verificar se a chave do host foi alterada\n
+* Introduzir suporte para pCloud - obrigado gilbsgilbs!\n
+* Tornar o suporte para Nextcloud explícito\n
+* Melhorar armazenamento e atualização de anexos de entradas\n
+* Mais opções para adaptar o comportamento às preferências pessoais\n
+* SSL: Confiar em certificados de utilizador\n
+* Melhora auto-preenchimento (agora funciona no Firefox, permite reduzir popups)\n
+* correção de bugs\n  </string>
   <string name="ChangeLog_1_06">    Versão 1.06\n
     * Alternar para ykDroid em vez de YubiChallenge como app para Desafio-Resposta Yubikey.\n
     * Implementar suporte para Desafio-resposta estilo KeepassXC. Nota: O formato de banco de dados deve ser KDBX4! \n
@@ -739,6 +749,19 @@
 		* evita obter telas cheias do QuickUnlock e telas de senha\n
 		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
 		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de senha agora ocultam a senha corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n</string>
+  <string name="ChangeLog_0_9_6">Versão 0.9.6 \n 
+* Permitir importar o arquivo-chave e/ou arquivo de banco de dados local para diretório interno do app (ver configurações)\n 
+* Permitir diferentes opções de classificação \n 
+* Configurações melhoradas para alteração automática de teclado \n 
+* Logotipo da aplicação atualizado e design das notificações, design por Stefano Pignataro (http://www.spstudio.at)\n 
+* Gerador de senhas se lembra da última configuração \n 
+* Definir visibilidade de notificação para tela de bloqueio do Android 5 \n 
+* Agora limpa o campo de senha mestra quando deixar a aplicação sem clicar OK \n 
+* Corrigido problema com falta de idiomas de entrada nas configuração de teclado em alguns dispositivos \n 
+* Corrigido problema com alteração automática do teclado em dispositivos com root \n 
+* Adicionado verificação de base de dados corruptos (UUIDs duplicados) \n 
+* Recarregar automaticamente a base de dados quando alteração detectada, resolve preocupação de segurança de revelar senha mestre \n 
+* Layout de pequeno teclado polaco melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n</string>
   <string name="ChangeLog_0_9_5"><b>Versão 0.9.5</b> \n 
 * Corrigido problemas com navegação de arquivos (especialmente no Android 4.4) \n 
 * Corrigido problema com carregamento de arquivos .kdb (Keepass 1) nos Nexus 5 com Android Lollipop \n 
@@ -909,6 +932,7 @@ Lançamento público inicial
   <string name="show_autofill_help">Mostrar ajuda de preenchimento automático</string>
   <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
   <string name="autofill_disable">Desativar Auto-Preenchimento para %1$s</string>
+  <string name="autofill_enable_for">Ativar Auto-Preenchimento para %1$s</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android detectou hardware de impressões digitais. Deseja ativar a impressão digital para desbloquear o banco de dados?</string>
   <string name="understand">Entendido</string>
