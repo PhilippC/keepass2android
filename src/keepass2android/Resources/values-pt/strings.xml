@@ -433,6 +433,7 @@
   <string name="otp_aux_file">Arquivo auxiliar de OTP</string>
   <string name="ErrorOcurred">Ocorreu um erro:</string>
   <string name="DuplicateUuidsError">Base de dados danificada: Há IDs duplicados. (Você salvou com Minikeepass?). Re-importe p/ uma nova base de dados c/ Keepass 2 p/ PC e selec. \'Criar novas IDs\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Você pode desabilitar essa mensagem de erro em Configurações/Configurações de aplicativo/Manipulação de arquivos/Verificar UUIDs duplicados. Por favor, note que você pode experenciar um comportamento inesperado. Recomenda-se corrigir o banco de dados.</string>
   <string name="synchronize_database_menu">Sincronizar banco de dados…</string>
   <string name="CannotMoveGroupHere">Não pode mover o grupo para este grupo.</string>
   <string name="donate_question">Hoje, é a Oktoberfest! Se você gosta de Keepass2Android: hoje não seria um bom dia para me pagar uma cerveja?</string>
@@ -464,6 +465,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso ao KP2A ao seu Dropbox completo, você pode selecionar esta opção. Ele só irá solicitar acesso à pasta Apps/Keepass2Android. Isso é especialmente adequado ao criar um novo banco de dados. Se você já tem um banco de dados, toque nesta opção para criar a pasta, então coloque seu arquivo dentro da pasta (do seu PC) e depois selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -479,6 +481,7 @@
   <string name="help_master_password">Seu banco de dados é criptografado com a senha que você inserir aqui. Escolha uma senha forte para manter o banco de dados a salvo! Dica: Componha uma frase ou duas e usar as primeiras letras das palavras como senha. Inclua marcas de pontuação.</string>
   <string name="hint_master_password">Selecione uma senha mestre para proteger seu banco de dados:</string>
   <string name="key_file">Arquivo de chave</string>
+  <string name="help_key_file">Um arquivo chave é basicamente uma senha armazenada em um arquivo. Os arquivos chave são tipicamente mais fortes do que as senhas mestras, porque a chave pode ser muito mais complexa; mas também é mais difícil mantê-los secretos. Se você armazena seu banco de dados na nuvem, não armazene o arquivo chave lá também! Isso o tornaria completamente inútil! Importante: Não altere o conteúdo do arquivo chave depois de criar o banco de dados!</string>
   <string name="hint_key_file">Escolha se você deseja utilizar um arquivo de chave em adição a sua senha mestra:</string>
   <string name="use_key_file">Usar arquivo de chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o arquivo de chave!</string>
@@ -530,7 +533,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Dados de entrada atual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin receberá todos os dados sobre a entrada do banco de dados atual e poderão oferecer ações e modificar a exibição do mesmo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta próprias credenciais</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">O plugin será autorizado a consultar as credenciais associadas ao seu próprio pacote de aplicativos.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Credenciais de consulta</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">O plugin será autorizado a consultar credenciais para sites ou aplicativos deliberadamente.</string>
   <string name="get_regular_version">Obter mais tipos de armazenamento</string>
   <string name="CertificateWarning">Aviso: Falha de validação de certificado de servidor: %1$s. Instale o certificado de raiz adequado em seu dispositivo ou consulte as configurações!</string>
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado em seu dispositivo ou consulte  as configurações!</string>
@@ -541,6 +546,7 @@
   <string name="FileIsReadOnlyOnKitkat">Arquivo selecionado é só leitura para Keepass2Android devido a restrições no Android 4.4+.</string>
   <string name="CopyFileRequired">Para usá-lo, copie-o em outro local.</string>
   <string name="CopyFileRequiredForEditing">Para editá-lo, copie o arquivo em outro local.</string>
+  <string name="ClickOkToSelectLocation">Toque Ok para selecionar um local onde o arquivo deve ser copiado.</string>
   <string name="FileReadOnlyTitle">Banco de dados é só leitura</string>
   <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que você abriu o arquivo de um aplicativo externo. Esta forma não oferece suporte a gravação. Se você desejar fazer alterações na base de dados, por favor, feche-o e selecione Alterar a base de dados. Depois, se possível, abra o arquivo a partir de uma das opções disponíveis.</string>
@@ -580,6 +586,10 @@
     &#8226; Certifique-se que você digitou a senha correta. Uso o ícone de olho para revelar a senha inserida.\n
    &#8226; Certifique-se de selecionou o tipo de senha correta. Certifique-se que este corresponde o tipo usado ao criar o banco de dados.\n
   &#8226; Certifique-se de ter selecionado o arquivo de banco de dados correto.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, tocando em \"%1$s\" e selecionando a cópia de segurança local.</string>
+  <string name="HintLocalBackupOtherError">    \n
+     &#8226; Keepass2Android guardou a última versão do arquivo aberto com sucesso na memória interna. Você pode abri-lo tocando em \"%1$s\" e selecionado a cópia de segurança local.  </string>
   <string name="CorruptDatabaseHelp">    Arquivo está corrompido.\n
     Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
     
@@ -612,6 +622,7 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: Um erro ocorreu.</string>
   <string name="ErrorReportText">Um erro inesperado ocorreu durante a execução do Keepass2Android. Por favor ajude-nos a consertá-lo permitindo que o aplicativo envie relatórios de erros.</string>
+  <string name="ErrorReportPromise">Relatórios de erros nunca conterão nenhum conteúdo de seu banco de dados ou senha mestre. Você pode desabilitá-los nas configurações da aplicação.</string>
   <string name="ErrorReportEnable">Habilitar</string>
   <string name="ErrorReportDisable">Desabilitar</string>
   <string name="ErrorReportAsk">Perguntar após erro</string>
