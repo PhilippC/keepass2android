@@ -746,6 +746,19 @@ Du kannst sie auch in den Einstellungen komplett deaktivieren.</string>
 		* Screenshots vom QuickUnlock-Bildschirm und Passwort-Eingabe-Bildschirm nicht mehr möglich\n
 		* Sortierreihenfolge bei Sortierung nach Änderungsdatum (jetzt absteigend)\n
 		* Bugfixes: Notiz-Ansicht wird nach Änderung korrekt aktualisiert; Passwortfelder sollten nun auf allen Geräten korrekt versteckt werden; Problem behoben, wegen dem ein Eintrag doppelt angelegt werden konnte; Problem mit Anzeige der Warnung wegen doppelten UUIDs behoben\n</string>
+  <string name="ChangeLog_0_9_6">Version 0.9.6\n
+		* Schlüsseldatei und/oder lokale Datenbank können in ein App-internes Verzeichnis kopiert werden (siehe Einstellungen)\n
+		* verschiedene Sortieroptionen\n
+		* Einstellungen für automatisches Tastatur-Umschalten verbessert\n
+		* App-Logo und Benachrichtigungsdesign aktualisiert, Design von Stefano Pignataro (http://www.spstudio.at)\n
+		* Keepass2Android merkt sich die letzten Einstellungen\n
+		* Sichtbarkeit von Benachrichtigungen unter Android 5 gesetzt \n
+		* Eingegebenes Master-Passwort wird gelöscht, wenn die App verlassen wird, ohne OK zu drücken\n
+		* Problem mit fehlenden Tastatur-Eingabesprachen auf manchen Geräten behoben\n
+		* Problem mit automatischem Tastatur-Umschalten behoben\n
+		* Prüfung auf korrupte Datenbanken mit doppelten UUIDs\n
+		* Datenbank wird automatisch neu geladen, wenn eine Änderung erkannt wird (löst Sicherheitsbedenken bzgl. Möglichkeit, Masterpasswort sehen zu können)\n
+		* Design der Tastatureinstellungen korrigiert (danke an Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 		* Probleme bei Dateiauswahl behoben (bes. auf Android 4.4)\n
 		* Problem beim Laden von .kdb-Dateien (Keepass 1) auf Nexus 5 mit Android Lollipop behoben\n
