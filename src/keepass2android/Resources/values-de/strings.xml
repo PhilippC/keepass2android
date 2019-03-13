@@ -817,6 +817,13 @@ Du kannst sie auch in den Einstellungen komplett deaktivieren.</string>
 * Ermöglich Verschieben von Einträgen und Gruppen\n
 * Das QuickUnlock-Icon kann transparent gemacht werden (s. Einstellungen)\n
 * Bugs behoben</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+		* Remote-Dateien werden im lokalen Cache gespeichert. Das erlaubt Offline-Nutzung (inkl. Bearbeiten und späterem Synchronisieren). S. Einstellungen.\n
+		* Benachrichtigungssymbol zum Visualisieren des Sperr-Zustands (s. Einstellungen)\n
+		* Verbesserungen, um die Datenbank zur richtigen Zeit zu sperren\n
+		* Datenbank-Dateien werden in den Speicher geladen, während du das Passwort eingibst. Dadurch erhöhte Ladegeschwindigkeit.\n
+		* Einträge können zur Root Gruppe hinzugefügt werden.\n
+		* Bug Fixes (Auflösen von von Referenzfeldern, Probleme mit der tastatur auf Italienischen und Chinesischen Geräten)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* Externe Änderungen an der Datenbank werden erkannt und beim Speichern zusammengeführt\n
 		* Verbesserte Geschwindigkeit beim starten\n
