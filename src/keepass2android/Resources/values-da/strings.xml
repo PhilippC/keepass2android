@@ -22,7 +22,10 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout_summary">Tid før databasen låses, når applikationen er inaktiv.</string>
   <string name="show_kill_app">Luk-knap</string>
+  <string name="application">App</string>
+  <string name="application_settings">App-indstillinger</string>
   <string name="ShowGroupnameInSearchResult_title">Vis gruppenavn i søgeresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Vis gruppenavn under indtastningstitler i søgeresultater. Nyttigt, hvis flere indtastninger er enslydende.</string>
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nu: %1$s</string>
@@ -41,7 +44,7 @@
   <string name="export_prefs">Eksportere database...</string>
   <string name="fingerprint_prefs">Fingeraftryksoplåsning</string>
   <string name="import_db_prefs">Importere database til intern mappe</string>
-  <string name="import_keyfile_prefs">Importere nøglefil til intern mappe</string>
+  <string name="import_keyfile_prefs">Importer nøglefilen til intern mappe</string>
   <string name="keyboardswitch_prefs">Tastaturskiftning</string>
   <string name="OnlyAvailableForLocalFiles">Kun tilgængelig for lokale filer.</string>
   <string name="FileIsInInternalDirectory">Fil lagres i den interne mappe.</string>
