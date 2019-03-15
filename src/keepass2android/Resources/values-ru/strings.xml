@@ -533,6 +533,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запрос собственных учетных данных</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Плагин будет иметь доступ к учетным данные, связанные с его собственным пакетом приложений.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Запрос учетных данных</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Плагину будет разрешено запрашивать учетные данные для веб-сайтов или приложений которые он использует.</string>
   <string name="get_regular_version">Больше типов хранилищ</string>
   <string name="CertificateWarning">Предупреждение: Ошибка проверки сертификата сервера: %1$ s. Установите соответствующий корневой сертификат на вашем устройстве или проверьте настройки!</string>
   <string name="CertificateFailure">Ошибка: Проверка сертификата сервера не удалась! Установите соответствующий корневой сертификат или проверьте настройки!</string>
@@ -543,6 +544,7 @@
   <string name="FileIsReadOnlyOnKitkat">Выбранный файл из-за ограничений Android 4.4+ доступен в Keepass2Android только для чтения.</string>
   <string name="CopyFileRequired">Чтобы использовать его, нужно скопировать в другое место.</string>
   <string name="CopyFileRequiredForEditing">Чтобы редактировать его, нужно скопировать в другое место.</string>
+  <string name="ClickOkToSelectLocation">Нажмите OK, чтобы выбрать место для копирования файла.</string>
   <string name="FileReadOnlyTitle">База данных доступна только для чтения</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android открыл текущую базу данных в режиме только для чтения.</string>
   <string name="ReadOnlyReason_PreKitKat">Кажется, вы открыли файл из внешнего приложения. Поэтому запись не поддерживается. Если вы хотите внести изменения в базу данных, пожалуйста, закройте ее и выберите пункт изменить базу данных. Затем откройте файл одним из доступных вариантов, если это возможно.</string>
@@ -582,6 +584,10 @@
    • Убедитесь, что вы вводите правильный пароль. Используйте значок \"глаз\" для проверки вводимого пароля.\n
    • Убедитесь, что вы выбрали правильный тип пароля. Убедитесь, что он совпадает с тем типом, который вы указывали при создании базы данных.\n
    • Убедитесь, что вы выбрали правильный файл с базой данных.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
+ &#8226; подсказка: если вы считаете, что файл базы данных может быть поврежден или не помните главный ключ после его изменения, вы можете попробовать с последней успешно открытой версией файла, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
+  <string name="HintLocalBackupOtherError"> \n
+ &#8226; подсказка: Keepass2Android сохранил последнюю успешно открытую в ерсию файла во внутренней памяти. Его можно открыть, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
   <string name="CorruptDatabaseHelp">    Файл поврежден. \n
     Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
     
@@ -614,6 +620,7 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="ErrorReportTitle">Keepass2Android: Произошла ошибка.</string>
   <string name="ErrorReportText">Непредвиденная ошибка произошла при запуске Keepass2Android. Пожалуйста, помогите нам исправить это, разрешив приложению отправлять отчеты об ошибках.</string>
+  <string name="ErrorReportPromise">Отчеты об ошибках никогда не будут содержать приватной информации или мастер-пароля. Вы можете отключить их в настройках приложения.</string>
   <string name="ErrorReportEnable">Включить</string>
   <string name="ErrorReportDisable">Отключить</string>
   <string name="ErrorReportAsk">Спросить после ошибки</string>
