@@ -26,6 +26,7 @@
   <string name="app_timeout_summary">Время до блокировки базы данных, при не активности.</string>
   <string name="kill_app_label">Принудительное завершение</string>
   <string name="show_kill_app">Кнопка закрытия</string>
+  <string name="show_kill_app_summary">На экране пароля разместить кнопку \"остановить приложение\" (для мнительных пользователей)</string>
   <string name="application">Приложение</string>
   <string name="application_settings">Настройки приложения</string>
   <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
@@ -194,6 +195,7 @@
   <string name="no_keys">Нет записей в базе данных или группе.</string>
   <string name="no_results">Нет результатов поиска</string>
   <string name="no_url_handler">Не удалось открыть ссылку.</string>
+  <string name="open_recent">Открыть последнюю базу данных (тапните, чтобы открыть)</string>
   <string name="omitbackup_title">Не искать в зарезервированных записях и корзине</string>
   <string name="omitbackup_summary">Пропускать \"Зарезервированные\" и \"Корзина\" в результатах поиска</string>
   <string name="pass_filename">Имя файла базы данных KeePass</string>
@@ -328,6 +330,7 @@
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
+  <string name="UseOfflineCache_summary">Держать кешь базы данных на устройстве. Что бы использовать её без интернета.</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
@@ -428,6 +431,7 @@
   <string name="otp_aux_file">Вспомогательный файл одноразовых паролей</string>
   <string name="ErrorOcurred">Произошла ошибка:</string>
   <string name="DuplicateUuidsError">База данных повреждена: найдены дублирующиеся ID. (Сохранялись в Minikeepass?) Пожалуйста импортируйте данные в новую базу данных при помощи Keepass 2 для ПК и выберите \'Создать новые ID\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Вы можете отключить это сообщение об ошибке в настройках / настройках приложения/обработке файлов / проверке дубликатов UUID. Рекомендуется исправить базу данных. Для этого понадобится десктоп версия.</string>
   <string name="synchronize_database_menu">Синхронизировать базу…</string>
   <string name="CannotMoveGroupHere">Не удается переместить группу в эту группу.</string>
   <string name="donate_question">Сегодня Октоберфест! Если вам нравится Keepass2Android, не лучший ли это день, чтобы купить мне пива?</string>
@@ -459,6 +463,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -474,6 +479,7 @@
   <string name="help_master_password">База шифруется паролем, вводимым сюда. Выберите сложный пароль для безопасности базы данных! Совет: придумайте одно-два предложения и используйте первые буквы слов в качестве пароля. Включая знаки препинания.</string>
   <string name="hint_master_password">Выберите мастер-пароль для защиты базы данных:</string>
   <string name="key_file">Файл-ключ</string>
+  <string name="help_key_file">Ключевой файл - это пароль, хранящийся в файле. Файлы ключей, как правило, сильнее, чем мастер-пароли, потому что ключ может быть намного сложнее; однако также сложнее сохранить их в секрете. Если вы храните свою базу данных в облаке, не храните там и ключевой файл! Это сделало бы его совершенно бесполезным! Важно: не изменяйте содержимое ключевого файла после создания базы данных!</string>
   <string name="hint_key_file">Выберите, если вы хотите использовать файл-ключ в дополнение к мастер-паролю:</string>
   <string name="use_key_file">Использовать файл-ключ</string>
   <string name="error_adding_keyfile">Ошибка при добавлении файла-ключа!</string>
@@ -525,6 +531,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Текущая запись данных</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Плагин будет получать всю информацию о текущей записи базы данных и получит разрешение на предложение операций и модификацию внешнего вида этой записи.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запрос собственных учетных данных</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Плагин будет иметь доступ к учетным данные, связанные с его собственным пакетом приложений.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Запрос учетных данных</string>
   <string name="get_regular_version">Больше типов хранилищ</string>
   <string name="CertificateWarning">Предупреждение: Ошибка проверки сертификата сервера: %1$ s. Установите соответствующий корневой сертификат на вашем устройстве или проверьте настройки!</string>
