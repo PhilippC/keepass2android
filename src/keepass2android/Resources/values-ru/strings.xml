@@ -22,6 +22,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android в автономном режиме</string>
   <string name="short_app_name_nonet">KP2A в автономном режиме</string>
+  <string name="app_timeout">Время ожидания приложения вышло</string>
+  <string name="app_timeout_summary">Время до блокировки базы данных, при не активности.</string>
+  <string name="kill_app_label">Принудительное завершение</string>
   <string name="show_kill_app">Кнопка закрытия</string>
   <string name="application">Приложение</string>
   <string name="application_settings">Настройки приложения</string>
