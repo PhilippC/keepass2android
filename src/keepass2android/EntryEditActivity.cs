@@ -491,7 +491,7 @@ namespace keepass2android
 				    activity.Finish();
 				} else
 				{
-				    OnFinish.DisplayMessage(activity, message);
+				    OnFinish.DisplayMessage(activity, message, true);
                     //Re-initialize for editing:
                     State.EditMode.InitializeEntry(State.Entry);
 				}
@@ -543,7 +543,7 @@ namespace keepass2android
 			}
 			else
 			{
-				State.Entry.ExpiryTime = newExpiry;
+				State.Entry.ExpiryTime = newExpiry.ToUniversalTime();
 			}
 
 			// Delete all non standard strings
@@ -1251,7 +1251,7 @@ namespace keepass2android
 				Toast.MakeText(this, Resource.String.error_invalid_expiry_date, ToastLength.Long).Show();
 				return false;
 			}
-			State.Entry.ExpiryTime = newExpiry;
+			State.Entry.ExpiryTime = newExpiry.ToUniversalTime();
 
 
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);

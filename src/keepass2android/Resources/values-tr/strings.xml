@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Veritabanı aç</string>
   <string name="brackets">Köşeli parantezler</string>
   <string name="cancel">İptal</string>
+  <string name="Ok">Tamam</string>
   <string name="ClearClipboard">Pano temizlendi.</string>
   <string name="clipboard_timeout">Pano zaman aşımı</string>
   <string name="clipboard_timeout_summary">Kullanıcı adını yada parolayı panoya kopyaladıktan sonra panoyu temizleme zaman aşımı</string>
@@ -92,8 +93,7 @@
   <string name="fingerprint_reenable">Yeni ana parola için parmak izi kilidini yeniden etkinleştirin.</string>
   <string name="fingerprint_reenable2">Lütfen şifrenizin kilidini açın ve ardından veritabanı ayarlarında Parmak İzi Anahtarı\'nı tekrar etkinleştirin.</string>
   <string name="FingerprintInitFailed">Parmak izi sensörünü başlatamadı. </string>
-  <string name="enable_fingerprint_unlock_Info">
-Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle korunacak şekilde saklar. Veritabanınızı sadece parmak izi ile açmanıza izin verir.  </string>
+  <string name="enable_fingerprint_unlock_Info">Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle korunacak şekilde saklar. Veritabanınızı sadece parmak izi ile açmanıza izin verir.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Çabuk Açma kodu yerine parmak izi doğrulamasına izin verir. Ana parolanız ile ilgili hiçbir verinin depolanmasını gerektirmez.</string>
   <string name="enter_filename">Veritabanı dosya adını girin</string>
   <string name="entry_accessed">kullanım tarihi</string>
@@ -210,6 +210,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="edit">Düzenle</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kök</string>
+  <string name="AutoReturnFromQuery_title">Sorgu ekranından otomatik olarak geri dön</string>
+  <string name="AutoReturnFromQuery_summary">Bir uygulama veya web sitesi için bir girdi ararken: veritabanında yalnızca bir eşleşen girdi varsa sorgu ekranından otomatik olarak geri döner.</string>
   <string name="KeyDerivFunc">Anahtar türetme fonksiyonu</string>
   <string name="rounds">Şifreleme tur sayısı</string>
   <string name="rounds_explaination">Fazla tur sayısı kaba kuvvet saldırılarına karşı ek koruma sağlar, ama yüklemeyi ve kaydetmeyi epeyce yavaşlatır.</string>
@@ -291,7 +293,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="BinaryDirectory_summary">Ek dosyalarının kaydedileceği klasör.</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
-  <string name="SaveAttachmentDialog_save">Ek dosyayı SD karta kaydedin</string>
+  <string name="SaveAttachmentDialog_save">Dosyaya aktar...</string>
   <string name="SaveAttachmentDialog_open">Ek dosyayı önbelleke kaydet ve aç</string>
   <string name="ShowAttachedImage">Dahili resim görüntüleyici ile göster</string>
   <string name="SaveAttachment_doneMessage">Ek dosya %1$s \'e kaydedildi.</string>
@@ -318,6 +320,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ClearPasswordOnLeave_summary">Veri tabanı açılmadan parola ekranından ayrılırsam girilmiş ana parolayı temizle.</string>
   <string name="LockWhenNavigateBack_title">Uygulamadan ayrılınca kilitle</string>
   <string name="LockWhenNavigateBack_summary">Geri düğmesine basarak uygulamadan ayrılırken veri tabanını kilitle.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android içindeki dahili klavyeyi kullan</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Standart klavye sağlayıcınıza güvenmiyorsanız, ana parolanızı girerken veya girdileri düzenlerken yerleşik klavyeyi kullanmak için bu seçeneği kontrol edin.</string>
   <string name="ActivateSearchViewOnStart_title">Başlangıçta arama alanını etkinleştir</string>
   <string name="ActivateSearchViewOnStart_summary">Kilit açıldıktan sonra veya kayıt aranırken grup görünümündeki arama alanını etkinleştirir</string>
   <string name="NoDonateOption_title">Bağış seçeneğini gizle</string>
@@ -331,6 +335,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="CreateBackups_summary">Bir veritabanı başarıyla yükledikten sonra yerel bir yedek kopyasını oluştur.</string>
   <string name="UpdatingBackup">Yerel yedek güncelleştiriliyor...</string>
   <string name="LocalBackupOf">%1$s yerel yedeği</string>
+  <string name="show_local_backups">Yerel yedekleri göster</string>
   <string name="AcceptAllServerCertificates_title">SSL sertifikalar</string>
   <string name="AcceptAllServerCertificates_summary">Sertifika doğrulaması başarısız olduğunda ne yapılacak! Not: Doğrulama başarısız olduğunda sertifikaları aygıtınıza yükleyebilirsiniz. </string>
   <string name="ClearOfflineCache_title">Önbelleği temizle?</string>
@@ -438,10 +443,14 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="hint_http_url">Klasör veya dosyanın URL (örn: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud oturum açma verilerini girin:</string>
   <string name="hint_owncloud_url">OwnCloud URL (örn: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nextcloud oturum açma verilerini girin:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (örn: nextcloud.me.com)</string>
   <string name="hint_sftp_host">sunucu (ör: 192.168.0.1)</string>
   <string name="hint_sftp_port">bağlantı noktası</string>
   <string name="initial_directory">Başlangıç dizini (isteğe bağlı):</string>
   <string name="enter_sftp_login_title">SFTP oturum açma verilerini girin:</string>
+  <string name="sftp_auth_mode">Kimlik doğrulama modu</string>
+  <string name="send_public_key">Ortak anahtar gönder...</string>
   <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
   <string name="filestoragename_file">Yerel dosya</string>
@@ -451,10 +460,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
@@ -473,7 +484,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="use_key_file">Anahtar dosyası kullan</string>
   <string name="error_adding_keyfile">Anahtar dosyası ekleme hatası!</string>
   <string name="init_otp">tek kullanımlık şifre yedek dosyasını yükle…</string>
-  <string name="otp_explanation">Bir sonraki tek kullanımlık şifreyi (OTPs) girin. NFC ile girmek için Yubikey NEO aygıtınızın arkasına dokunun.</string>
+  <string name="otp_explanation">Bir sonraki tek kullanımlık şifreyi (OTPs) girin. NFC ile girmek için Yubikey NEO aygıtınızın arkasına dokunun (Yubiclip uygulaması gerekir).</string>
   <string name="otp_hint">tek kullanımlık şifre %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Yedek tek kullanımlık şifre dosya yüklenemedi!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Veri tabanını tek kullanımlık şifre ile kullanıma ayarlamak için lütfen KeePass 2.x (PC) üzerinde OtpKeyProv eklentisini kullanın!</string>
@@ -573,16 +584,12 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     • Doğru parola girdiğinizden emin olun. Girilen paroladan emin olmak için göz simgesini kullanın.\n
    • Doğru parola tipini seçtiğinizden emin olun. Veri tabanı oluşturulurken kullanılan tipe uyduğundan emin olun.\n
    • Doğru veri tabanı dosyasını seçtiğinizden emin olun.
- 
-</string>
-  <string name="HintLocalBackupInvalidCompositeKey">
-    \n
+ </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
    • İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" tıklayarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
-  <string name="HintLocalBackupOtherError">
-    \n
+  <string name="HintLocalBackupOtherError">    \n
     • İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.  </string>
-  <string name="CorruptDatabaseHelp">
-    Dosya bozulmuş. \n
+  <string name="CorruptDatabaseHelp">    Dosya bozulmuş. \n
     Sorunu teşhis etmek için size yardımcı olabilecek bazı ipuçları:\n
     
     • Dosyayı usb üzerinden (MTP-Modu) yüklediyseniz, MyPhoneExplorer gibi bir araçla yeniden deneyin.\n
@@ -590,6 +597,22 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     • Aynı dosyayı bilgisayaranızda açabiliyorsanız, desteğe başvurun. Dosyayı farklı ayarlarla (örn. zipden çıkarılmış şekilde) kaydedebilir ve Keepass2Android ile yeniden açmayı deneyebilirsiniz.
 
   </string>
+  <string name="open_other_db">Başka bir veritabanı açın…</string>
+  <string name="select_database">Veritabanını seçin</string>
+  <string name="configure_child_dbs">Alt veritabanlarını yapılandır…</string>
+  <string name="child_dbs_title">Alt veritabanları</string>
+  <string name="unspecified">tanımsız</string>
+  <string name="child_db_enabled_on_this_device">Bu cihazda etkinleştirildi</string>
+  <string name="child_db_enable_on_this_device">Bu cihazda etkin</string>
+  <string name="child_db_disable_on_this_device">Bu cihazda devre dışı</string>
+  <string name="child_db_enable_a_copy_for_this_device">Bu cihaz için kopyala</string>
+  <string name="unconfigured_child_dbs">Veritabanınız \"AutoOpen\" grubunda yeni alt veritabanları içeriyor. Lütfen bu alt veritabanlarının cihazda kullanılıp kullanılmayacağını belirtin.</string>
+  <string name="add_child_db">Alt veritabanı ekle...</string>
+  <string name="EnableCopyForThisDevice_Info">Bu seçenek alt veritabanı ayarlarının bir kopyasını oluşturup etkinleştirecek. Bu kopyalanan ayarlar daha sonra bu cihaz için özel olarak ayarlanabilir.</string>
+  <string name="Visible_title">Görünür</string>
+  <string name="child_db_Enabled_title">Otomatik aç</string>
+  <string name="database_file_heading">Veritabanı dosyası</string>
+  <string name="if_device_text">%1$s etkinleştir</string>
   <string name="DbUnlockedChannel_name">Veritabanı açıldı</string>
   <string name="DbUnlockedChannel_desc">Açılan veritabanıyla ilgili bildirim</string>
   <string name="DbQuicklockedChannel_name">Kilidi ÇabukAç</string>
@@ -604,16 +627,24 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
-  <string name="ChangeLog_1_06">
-    Sürüm 1.06\n
+  <string name="ChangeLog_1_07">    Sürüm 1.07-ön2\n
+    * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n
+    * SFTP: Genel anahtar kimlik doğrulamasına izin ver, sunucu anahtarının değişip değişmediğini kontrol et\n
+    * pCloud desteği - gilbsgilbs\' e teşekkürler!\n
+    * Nextcloud desteği \n
+    * Girdi eklerinin kaydedilmesi ve güncellenmesi geliştirildi\n
+    * Kişiselleştirme için daha fazla seçenek sunuldu\n
+    * SSL: Güvenilir kullanıcı sertifikaları\n
+    * hata düzeltmeleri\n
+  </string>
+  <string name="ChangeLog_1_06">    Sürüm 1.06\n
     * Yubikey Challenge-Response için uygulama olarak YubiChallenge yerine ykDroid\'e geçildi.\n
     * KeepassXC-style Challenge-Response desteklendi. Not: Veritabanı türü KDBX4 olmalı!\n
     * Google Drive\'daki silinmiş dosyaların yüklenmesi reddedildi\n
     * FTPS için TLS uygulaması değiştirildi, gssapi-with-mic destekleyen sunuculardaki JSch hatası için geçici çözüm eklendi\n
     * hata düzeltmeleri\n
   </string>
-  <string name="ChangeLog_1_05">
-    Sürüm 1.05\n
+  <string name="ChangeLog_1_05">    Sürüm 1.05\n
     * Android 8 için, sistem ayarlarından yapılandırmaya izin verilen bildirim kanalları kullanıldı\n
     * Bildirimlerde kayıt simgesi gösterildi\n
     * Android 7 için yuvarlak başlatıcı simgeleri, 8 içinse uyarlanabilir simgeler kullanıldı\n
@@ -628,25 +659,21 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     * Logcat veri sızıntısı düzeltildi\n    
     * Hata düzeltmeleri\n
   </string>
-  <string name="ChangeLog_1_04b">
-    Sürüm 1.04b\n
+  <string name="ChangeLog_1_04b">    Sürüm 1.04b\n
     * Kullanıcı otomatik doldurmayı seçtiğinde Huawei cihazlarda oluşan çökme giderildi.\n
   </string>
-  <string name="ChangeLog_1_04">
-    Sürüm 1.04\n
+  <string name="ChangeLog_1_04">    Sürüm 1.04\n
     * Android 8.0 ve sonrası için Otomatik Doldurma hizmeti eklendi.\n
     * Yükseltilmiş kütüphaneler, araçlar ve Target SDK sürümü.\n
   </string>
-  <string name="ChangeLog_1_03">
-    Sürüm 1.03\n
+  <string name="ChangeLog_1_03">    Sürüm 1.03\n
     * Google tarafından istenen şekilde Otomatik Doldurma için erişilebilirlik hizmeti kaldırıldı. Önceki işlevselliği sağlayan bir eklenti bulmak için lütfen şifre erişim ayarlarına bakın.\n
     * Depolama seçeneği olarak tekrar üçüncü taraf uygulamaları eklendi\n
     * Ekli resimleri başka uygulamalara aktarmadan görüntüleyebilmek için tümleşik resim görüntüleyici eklendi\n
     * Bazı bağlantılarla ilgili sorunları düzeltmek için OkHttp yükseltildi\n
     * KeeTrayTOTP kayıt desteği, artık Steam kayıtları destekleniyor\n
   </string>
-  <string name="ChangeLog_1_02">
-    Sürüm 1.02\n
+  <string name="ChangeLog_1_02">    Sürüm 1.02\n
     * Birkaç güvenlik iyileştirmesi. jean-baptiste.cayrou@thalesgroup.com ve vincent.fargues@thalesgroup.com tarafından hazırlanan güvenlik raporu ve işbirliği için teşekkürler!\n
     * KeyboardSwapPlugin desteği (bkz. Şifre erişim seçenekleri): root yetkisi olmayan cihazlarda giriş yöntemini otomatik olarak değiştirmeye olanak tanır. Bunun olmasını sağladığı için XDA-Developers\'tan Mishaal Rahman\'a teşekkürler.\n
     * Son Chrome sürümlerindeki Erişilebilirlik Hizmeti için düzeltme\n
@@ -656,26 +683,22 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     * Xamarin Insights üzerinden hata raporlama kaldırıldı.\n
     * Yapı araçları güncellenmesi\n
   </string>
-  <string name="ChangeLog_1_01g">
-    Sürüm 1.01-g\n
+  <string name="ChangeLog_1_01g">    Sürüm 1.01-g\n
     * Çevrimdışı çalışma denemesindeki kilitlenme düzeltildi\n
     * FTP(S) kimlik bilgilerinin hatalı kodlanması düzeltildi\n
     * Eski Android sürümlerindeki ve OneDrive\'ı kullanırken oluşan çökmeler düzeltildi\n
     * Giriş ekranındaki saat yerel saat olarak gösterildi\n
   </string>
-  <string name="ChangeLog_1_01d">
-    Sürüm 1.01-d\n
+  <string name="ChangeLog_1_01d">    Sürüm 1.01-d\n
     * OneDrive dosya listelemesi düzeltildi\n
     * Ana makine doğrulaması başarısız olduğunda sertifika hatalarını yok saymaya izin verilmesi( üretim için kullanılması önerilmez)\n
     * Hızlı kilit açmada bazen doğru kod girilmesine rağmen hata verme olayı düzeltildi\n
   </string>
-  <string name="ChangeLog_0_9_8c">
-    Sürüm 0.9.8c\n
+  <string name="ChangeLog_0_9_8c">    Sürüm 0.9.8c\n
     * Microsoft Live SDK SSL güvenlik açığına yönelik düzeltme (One Drive üzerinde dosya erişiminde kullanılan)\n
     * Hata düzeltme: İki giriş yöntemi içeren önceki sürüm (birinin çökmesi)\n
   </string>
-  <string name="ChangeLog_1_01">
-    Sürüm 1.01\n
+  <string name="ChangeLog_1_01">    Sürüm 1.01\n
     * Argon2 anahtar türetme ve ChaCha20 şifrelemesini içeren KDBX-4-format desteği eklendi (Keepass 2.35 ile uyumlu).\n
     * WebDav dosya depolama yeniden uygulamaya kondu, şimdi dosyalara gözatma imkanı sağlıyor ve modern şifrelemeyi destekliyor.\n
     * FTP dosya depolama yeniden uygulamaya kondu, şimdi dosyalara gözatma imkanı sağlıyor ve şifrelemeyi destekliyor (FTPS).\n
@@ -684,15 +707,13 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     * OwnCloud desteği eklendi.\n
     * Yerel dosyaları açmadan önce depolama izin istemi
   </string>
-  <string name="ChangeLog_1_0_0e">
-    Sürüm 1.0.0e\n
+  <string name="ChangeLog_1_0_0e">    Sürüm 1.0.0e\n
     * android 6 sürümlü eski Samsung cihazlarda parmak izi açma düzeltildi\n
     * x86 cihazlar desteklendi\n
     * parmak izi tarama sırasında klavyeyi gizlemeye izin verildi\n
     * sistem güncellemesi oluşturuldu
   </string>
-  <string name="ChangeLog_1_0_0">
-    Sürüm 1.0.0 - önizleme 7\n
+  <string name="ChangeLog_1_0_0">    Sürüm 1.0.0 - önizleme 7\n
     * Parmak iziyle açma (Android 6.0+ veya bir Samsung cihaz gerekli)\n
     * Otomatik-Doldur servisi eklendi (Android 5.0+ gerekli)\n
     * Kayıt şablonları desteği eklendi\n
@@ -705,50 +726,38 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     * Hata raporlarını göndermek için seçenek eklendi\n
     * Birkaç noktaya yardım mesajları eklendi\n
   </string>
-  <string name="ChangeLog_0_9_9">
-		Sürüm 0.9.9\n
+  <string name="ChangeLog_0_9_9">Sürüm 0.9.9\n
 		* UI yeniden tasarlama tamamlandı. Bu desteği için Stefano Pignataro\'ya (http://www.spstudio.at) çok teşekkürler!\n
     * Özel simge ekleme izni\n
     * Samsung cihazlarda Çoklu Pencere Desteği\n
     * Yeni veri tabanları için varsayılan şifreleme tur sayısı arttırıldı\n
     * Ek alanlardaki yinelenen anahtarların veri kaybını önlemek için kontrol\n
-    
-	</string>
-  <string name="ChangeLog_0_9_9c">
-    Sürüm 0.9.9c\n
+    </string>
+  <string name="ChangeLog_0_9_9c">    Sürüm 0.9.9c\n
     * Koyu tema geri geldi\n
     * Diğer simge paketlerini yükleyebilirsiniz (Play store\'daki eski Windows tarzı simgeler kullanılabilir)\n
     * Öğeleri silme işlemi için onaylama sorusu eklendi\n
     * Hata düzletmeleri (OTP gizli kodlamada yanlış görüntüleme, bazı yerlerde yanlış uygulama simgesi)\n
   </string>
-  <string name="ChangeLog_0_9_8b">
-		Sürüm 0.9.8b\n
-		* Hata düzeltmeleri (Bazı veri tabanları kayıt sorunu, çalışmayan yerel cihaza aktarma, bazı ayarların seçilmesinin uygulamayı çökertmesi)\n
-	</string>
-  <string name="ChangeLog_0_9_8">
-		Sürüm 0.9.8\n
+  <string name="ChangeLog_0_9_8b">Sürüm 0.9.8b\n
+		* Hata düzeltmeleri (Bazı veri tabanları kayıt sorunu, çalışmayan yerel cihaza aktarma, bazı ayarların seçilmesinin uygulamayı çökertmesi)\n</string>
+  <string name="ChangeLog_0_9_8">Sürüm 0.9.8\n
 		* Depo erişim desteği (KP2A Offline için SD karta ve Google Drive yazma izni)\n
 		* WebDAV URL girerken hatalı kullanıcı girişi tespit edilmesi (dosya yerine dizin)\n
 		* Parola yazı tipi değiştirildi\n
 		* Dropbox hesabı değiştirilebiliyor\n
-		* Düzeltilmiş hata: Artık OTP parolası hatırlanıyor
-	</string>
-  <string name="ChangeLog_0_9_7b">
-		Sürüm 0.9.7b\n
+		* Düzeltilmiş hata: Artık OTP parolası hatırlanıyor</string>
+  <string name="ChangeLog_0_9_7b">Sürüm 0.9.7b\n
 		* çeviriler güncellendi\n
-		* hata düzletmeleri: 0.9.7 içindeki eksik parola yazı tipi nedeniyle, guruplar isme göre sıralanmıyordu\n
-	</string>
-  <string name="ChangeLog_0_9_7">
-		Sürüm 0.9.7\n
+		* hata düzletmeleri: 0.9.7 içindeki eksik parola yazı tipi nedeniyle, guruplar isme göre sıralanmıyordu\n</string>
+  <string name="ChangeLog_0_9_7">Sürüm 0.9.7\n
 		* Keepass 1 (kdb) veritabanı için yazma desteği(beta!)\n
 		* önceki klavyeye daha iyi geçiş (rootlanmamış cihazlarda da çalışıyor)\n
 		* support for KeeChallenge with variable length challenges\n
 		* Hızlı Açma ve parola ekranlarından  ekran görüntüsü alınması engellendi\n
 		* Değişiklik tarihine göre sıralama için ters sıralama düzeni (şimdi azalan)\n
-		* hata düzeltmeleri: değişikliklerden sonra notlar düzgün görüntüleniyor, parola görüntüleyici tüm cihazlarda (umarım) parolayı düzgün gizliyor, bir kaydın iki kez girilme konusu düzeltildi, veri tabanı düzeltilmesine rağmen Yenilenen UUID uyarısı gözükme konusu düzeltildi\n
-	</string>
-  <string name="ChangeLog_0_9_6">
-		Sürüm 0.9.6\n
+		* hata düzeltmeleri: değişikliklerden sonra notlar düzgün görüntüleniyor, parola görüntüleyici tüm cihazlarda (umarım) parolayı düzgün gizliyor, bir kaydın iki kez girilme konusu düzeltildi, veri tabanı düzeltilmesine rağmen Yenilenen UUID uyarısı gözükme konusu düzeltildi\n</string>
+  <string name="ChangeLog_0_9_6">Sürüm 0.9.6\n
 		* anahtar dosyası veya yerel veri tabanı dosyasının iç dizine aktarılmasına izin veriliyor (ayarlara bak)\n
 		* farklı sıralama ayarları destekleniyor\n
 		* otomatik klavye geçişi için gelişmiş seçenekler\n
@@ -760,10 +769,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
 		* rootlu cihazlarda otomatik klavye geçişi düzeltildi\n
 		* bozuk veri tabanları için kontrol eklendi (yinelenen UUIDs)\n
 		* artık değişiklik tespit edildiğinde veri tabanı yenileniyor ve ana parolanın gözükmesi engellenir\n
-		* Polonya küçük klavye düzeni, klavye ayarları teması düzeltilerek geliştirildi(Wiktor Ławski\'ye teşekkürler)\n
-	</string>
-  <string name="ChangeLog_0_9_5">
-		<b>Sürüm 0.9.5</b>\n
+		* Polonya küçük klavye düzeni, klavye ayarları teması düzeltilerek geliştirildi(Wiktor Ławski\'ye teşekkürler)\n</string>
+  <string name="ChangeLog_0_9_5"><b>Sürüm 0.9.5</b>\n
 		* Dosya taraması ile ilgili sorunlar düzeltildi (özellikle Android 4.4 sürümünde)\n
 		* Android Lollipop sürümlü Nexus 5 cihazlardaki .kdb dosya yükleme sorunu düzeltildi\n 
 		* Son uygulamalar listesinden görüntüleme ve ekran görüntüsü almayı engelleme seçeneği eklendi\n
@@ -771,10 +778,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
 		* Güvenli depolama türlerinde anahtar dosyalarına izin verildi (normal sürüm)\n
 		* Resmi güvenlik yamasını içeren Dropbox SDK güncellendi (normal sürüm)\n
 		* --&gt; yapım araçları güncellendi, uygulama boyutu arttırıldı :-(\n
-		Daha fazla değişiklik için söz vermiştim fakat onlar sonraki sürümle gelecekler. Bu sıcak düzeltmeleri en kısa sürede yayınlamak istedim.
-	</string>
-  <string name="ChangeLog_0_9_4">
-		<b>Sürüm 0.9.4</b>\n
+		Daha fazla değişiklik için söz vermiştim fakat onlar sonraki sürümle gelecekler. Bu sıcak düzeltmeleri en kısa sürede yayınlamak istedim.</string>
+  <string name="ChangeLog_0_9_4"><b>Sürüm 0.9.4</b>\n
 		* Eklenti desteği eklendi: Eklentileri nasıl edineceğinize ayarlardan bakın!\n
 		* QR eklentisini yayınladı (şifreleri tarayın, QR kodu olarak şifreleri görüntüleyin, diğer KP2A cihazlarınıza kayıtları aktarın)\n
 		* InputStick eklentisi yayınlandı (Bluetooth üzerinden bilgisayarınıza kimlik bilgilerini transfer edin  -  InputStick USB cihazı gerekir)\n
@@ -790,64 +795,48 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
 		* Geliştirilmiş kullanıcı arayüzü\n
 		* Google Drive arayüzündeki bir hata düzeltildi\n
 		* \"bağış\" seçeneğini devre dışı bırakmak için seçenek eklendi\n
-		* ÇabukAç simgesi Android 4.2+ cihazlarda varsayılan olarak gizlendi\n 
-	</string>
-  <string name="ChangeLog_0_9_3_r5">
-		<b>Sürüm 0.9.3 r5</b>\n
+		* ÇabukAç simgesi Android 4.2+ cihazlarda varsayılan olarak gizlendi\n </string>
+  <string name="ChangeLog_0_9_3_r5"><b>Sürüm 0.9.3 r5</b>\n
 		* Xamarin’den gelen düzeltmeler: Keepass2Android artık Android 4.4.2’de ART ile uyumlu. Nihayet!\n
-		* Hata düzeltmeleri: Senkronizasyondaki hatalar (ekranı yenileme, http değişikliklerini doğru olarak kontrol etme), Android 2.x cihazlarındaki hatalar, Google Drive ve OneDrive depolama uygulamalarındaki hatalar, kapanan veritabanında pano temizlenmesi, ekleri açma hatası, klavye ile ilgili görüntüleme sorunları\n
-	</string>
-  <string name="ChangeLog_0_9_3">
-		<b>Sürüm 0.9.3</b>\n
+		* Hata düzeltmeleri: Senkronizasyondaki hatalar (ekranı yenileme, http değişikliklerini doğru olarak kontrol etme), Android 2.x cihazlarındaki hatalar, Google Drive ve OneDrive depolama uygulamalarındaki hatalar, kapanan veritabanında pano temizlenmesi, ekleri açma hatası, klavye ile ilgili görüntüleme sorunları\n</string>
+  <string name="ChangeLog_0_9_3"><b>Sürüm 0.9.3</b>\n
 		* Bir çok geliştirmeler ile yeni klavye. Özelleştirme ayarlarına bakın\n
 		* Salt okunur kdb desteği (Keepass 1 dosyaları). Deneysel!\n
 		* SFTP desteği eklendi\n
 		* ART (Android 4.4.2) \' deki hata için geçici çözüm eklendi\n
-		* Hata düzeltmeleri\n
-	</string>
-  <string name="ChangeLog_0_9_2">
-		<b>Sürüm 0.9.2</b>\n
+		* Hata düzeltmeleri\n</string>
+  <string name="ChangeLog_0_9_2"><b>Sürüm 0.9.2</b>\n
 		* OTP desteği eklendi (OtpKeyProv eklentisi ile uyumlu)\n
 		* YubiKey NEO dan OTPs için entegre NFC desteği\n
 		* Birkaç UI geliştirmesi\n
 		* Entegre Keepass 2.24 kütüphanesi\n
 		* Uygulamayı sonlandırmak için seçenek eklendi (ayarlara bakın)\n
 		* Geliştirilmiş SSL sertifikası doğrulaması\n
-		* Hata düzeltmeleri\n
-	</string>
-  <string name="ChangeLog_0_9_1">
-		<b>Sürüm 0.9.1</b>\n
+		* Hata düzeltmeleri\n</string>
+  <string name="ChangeLog_0_9_1"><b>Sürüm 0.9.1</b>\n
 		* Entegre SkyDrive desteği (yalnızca Keepass2Android normal sürümü)\n
 		* Google Drive entegrasyonu ile ilgili sorunlar düzeltildi\n
-		* NTLM desteği eklendi
-	</string>
-  <string name="ChangeLog_0_9">
-		<b>Sürüm 0.9</b>\n
+		* NTLM desteği eklendi</string>
+  <string name="ChangeLog_0_9"><b>Sürüm 0.9</b>\n
 		* Dropbox ve Google Drive desteği (veritabanı oku/kaydet; sadece normal Keepass2Android)\n
 		* Entegre özel dosya tarayıcı (based on android-filechooser by HBA)\n
 		* Geliştirilen kullanıcı arabirimi (veritabanı oluştururken) \n
 		* Şifreleri göstermek için eklenen yazı tipi DejaVu Sans Mono\n
-		* Hata düzeltmeler
-	</string>
-  <string name="ChangeLog_0_8_6">
-		<b>Sürüm 0.8.6</b>\n
+		* Hata düzeltmeler</string>
+  <string name="ChangeLog_0_8_6"><b>Sürüm 0.8.6</b>\n
 		* Twofish şifre desteği\n
 		* Grup düzenleme olanağı\n
 		* Kayıtları ve grupları taşıma olanağı\n
 		* ÇabukAç simgesi şeffaf yapılabilir (bkz: ayarlar)\n
-		* Hata düzeltmeleri
-	</string>
-  <string name="ChangeLog_0_8_5">
-		<b>Sürüm 0.8.5</b>\n
+		* Hata düzeltmeleri</string>
+  <string name="ChangeLog_0_8_5"><b>Sürüm 0.8.5</b>\n
 		* Çevrimdışı kullanımda uzak dosyalar yerel uygulama önbelleğinde depolanıyor (düzenleme ve daha sonra senkronizasyon içerir). Ayarlara bakın.\n
 		* Veritabanının kilit durumunu görmek için bildirim simgesi eklendi (ayarlara bakın)\n
 		* Bazı durumlarda kilit durumunun daha iyi belirlenmesi\n
 		* Yükleme hızının artması için parolanızı yazarken veritabanı dosyaları belleğe yüklenir (ayarlara bakın)\n
 		* Kayıtlar kök gurubuna eklenebiliyor\n
-		* Hata düzeltmeleri ( İtalyanca ve Çince cihazlardaki klavye ile ilgili referans alanlarının çözümlenmesi)
-	</string>
-  <string name="ChangeLog_0_8_4">
-		<b>Sürüm 0.8.4</b>\n
+		* Hata düzeltmeleri ( İtalyanca ve Çince cihazlardaki klavye ile ilgili referans alanlarının çözümlenmesi)</string>
+  <string name="ChangeLog_0_8_4"><b>Sürüm 0.8.4</b>\n
 		* Harici veritabanı değişiklikleri algılanır ve kaydedilirken birleştirilir\n
 		* Geliştirilmiş yükleme performansı\n
 		* Önerili arama çubuğu geliştirildi\n
@@ -855,8 +844,7 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
 		* .kdbp formatı için daha hızlı yükleme / kaydetme desteği\n
 		* Korunurken ekstra dizelerde ve gizli ekranda iyileştirmeler\n
 		Kod katkılarından dolayı Alex Vallat\'a teşekkürler!\n
-		Yeni logo için Niki Hüttner\'e (www.close-cut.de) teşekkürler!\n
-	</string>
+		Yeni logo için Niki Hüttner\'e (www.close-cut.de) teşekkürler!\n</string>
   <string name="ChangeLog_0_8_3"><b>Sürüm 0.8.3</b>\n
 * Kayıt listesinde Kullanıcı adı/TAN dizini görüntülenir (ayarlara bakın)\n
 * Tarayıcıdan arama sonuçları dönmezse, kayıtlar oluşturulabilir\n
@@ -868,19 +856,16 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   </string>
   <string name="ChangeLog_0_8_2"><b>Sürüm 0.8.2</b>\n
 * WebDAV\'da Özet Kimlik Doğrulama Desteği\n
-* Hata düzeltmeleri (OI Dosya yöneticisi, Open URL)
-</string>
+* Hata düzeltmeleri (OI Dosya yöneticisi, Open URL)</string>
   <string name="ChangeLog_0_8_1"><b>Sürüm 0.8.1</b>\n
 * KP2A Çevrimdışı ve \"Çevrimiçi\" tekrar yüklenebilir\n
-* Yeni çeviriler eklendi (tüm katkıda bulunanlara teşekkürler!)
-</string>
+* Yeni çeviriler eklendi (tüm katkıda bulunanlara teşekkürler!)</string>
   <string name="ChangeLog_0_8"><b>Sürüm 0.8</b>\n
 * Özellikle Android 4.x cihazlar için geliştirilmiş kullanıcı arayüzü\n
 * Mevcut dosyaları seçmek için güvenli dosya yöneticilerini kullanmaya izin verildi\n
 * Ekleri açmak için daha güvenli bir yol eklendi (önbellek dizini aracılığıyla)\n
 * Düzenle kısmındaki hatalar düzeltildi\n
-* Muhtemelen yeni hatalar gelecek :-)
-</string>
+* Muhtemelen yeni hatalar gelecek :-)</string>
   <string name="ChangeLog_keptDonate">Bir bira veya başka bir bağış için genişletilmiş imkanı</string>
   <string name="ChangeLog_0_7"><b>Sürüm 0.7</b>\n
 * Artan yükleme hızı: anahtar dönüşümleri artık 10 kat daha hızlı!\n
@@ -943,6 +928,11 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
     <item>Şifre + sınama-yanıtlama</item>
     <item>Şifre + sınama-yanıt gizli (kurtarma modu)</item>
     <item>Keepass XC için Parola + Sınama-Yanıt</item>
+    <item>Keepass XC için Parola +Anahtar dosyası + Sınama -Yanıt</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Parola</item>
+    <item>Özel/Ortak anahtar</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Sertifika doğrulama hatalarını yoksay</item>
@@ -956,6 +946,8 @@ Bu seçenek, ana parolanızı Android Keystore ile  şifreler ve parmak iziyle k
   <string name="autofill_enable_failed">Üzgünüz, cihazınız uygulamanın içinden ayarları açmayı desteklemiyor. Otomatik Doldurma hizmetini etkinleştirmek için sistem ayarlarına girin.</string>
   <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
   <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
+  <string name="autofill_disable">%1$s için otomatik doldurmayı devre dışı bırak</string>
+  <string name="autofill_enable_for">%1$s için otomatik doldurmayı etkinleştir</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android parmak izi donanımı algıladı. Bu veritabanı için parmak izi kilildini etkinleştirmek istiyor musunuz?</string>
   <string name="understand">Anladım</string>

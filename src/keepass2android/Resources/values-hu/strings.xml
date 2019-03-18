@@ -58,6 +58,7 @@
   <string name="unlock_database_title">Adatbázis feloldása</string>
   <string name="brackets">Zárójelek</string>
   <string name="cancel">Mégsem</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Vágólap törölve.</string>
   <string name="clipboard_timeout">Vágólap időkorlátja</string>
   <string name="clipboard_timeout_summary">Beállíthatja, mennyi idő után kerüljön törlésre a vágólap</string>
@@ -92,8 +93,7 @@
   <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
   <string name="fingerprint_reenable2">Kérem oldja fel a jelszavával és ezután kapcsolja be újra az Ujjlenyomat Feloldást az adatbázis-beállításokban.</string>
   <string name="FingerprintInitFailed">Nem sikerült az ujjlenyomat olvasó inicializálása. </string>
-  <string name="enable_fingerprint_unlock_Info">
-    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
+  <string name="enable_fingerprint_unlock_Info">    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
     eszközön, az Android Kulcstár által titkosítva, és 
     ujjlenyomat alapú authentikációval védve. Ez lehetővé
     teszi, hogy az adatbázist ujjlenyomat segítségével
@@ -295,7 +295,6 @@
   <string name="BinaryDirectory_summary">A könyvtár, ahová a csatolt fájlok mentésre kerülnek.</string>
   <string name="SaveAttachmentDialog_title">Csatolt fájl mentése</string>
   <string name="SaveAttachmentDialog_text">Adja meg, hová akarja menteni a csatolt fájlt.</string>
-  <string name="SaveAttachmentDialog_save">Mentés SD kártyára</string>
   <string name="SaveAttachmentDialog_open">Átmeneti tárolóra mentés és megnyitás</string>
   <string name="ShowAttachedImage">Megjelenítés a beépített képmegjelenítővel</string>
   <string name="SaveAttachment_doneMessage">A fájl elmentve: %1$s.</string>
@@ -335,6 +334,7 @@
   <string name="CreateBackups_summary">Hozzon létre helyi biztonsági mentés másolatot sikeres adatbázis betöltés után.</string>
   <string name="UpdatingBackup">Helyi biztonsági másolat frissítése...</string>
   <string name="LocalBackupOf">%1$s helyi biztonsági mentése</string>
+  <string name="show_local_backups">Helyi archívok mutatása</string>
   <string name="AcceptAllServerCertificates_title">SSL tanúsítványok</string>
   <string name="AcceptAllServerCertificates_summary">Adja meg, mi történjen, ha a tanúsítvány ellenőrzése nem sikerül.  Megjegyzés: sikertelen ellenőrzés esetén van lehetőség az eszközre a megfelelő tanúsítvány telepítésére!</string>
   <string name="ClearOfflineCache_title">Helyi másolatok törlése?</string>
@@ -478,7 +478,6 @@
   <string name="use_key_file">Kulcsfájl használata</string>
   <string name="error_adding_keyfile">A kulcsfájl hozzáadása közben hiba történt!</string>
   <string name="init_otp">OTP kiegészítő fájl betöltése…</string>
-  <string name="otp_explanation">Adja meg a következő egyszer használatos jelszót/jelszavakat (OTP).  Húzza el a Yubikey NEO eszközt a telefon hátlapja fölött a jelszó/jelszavak NFC-n keresztüli beviteléhez.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP kiegészítő fájl betöltése nem sikerült!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Kérjük, konfigurálja az adatbázist OTP használthoz a KeePass 2.x (PC-s verzió) OtpKeyProv beépülő modulja segítségével.</string>
@@ -577,16 +576,12 @@
   
     • Ellenőrizze, hogy a helyes jelszót adta-e meg.  A szem ikon megérintésével megjelenítheti a beírt jelszót.\n
     • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
-    • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.
-</string>
-  <string name="HintLocalBackupInvalidCompositeKey">
-\n
+    • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
     Útmutatás: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja az utolsó sikeresen megnyitott fájl verziót ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.</string>
-  <string name="HintLocalBackupOtherError">
-\n
+  <string name="HintLocalBackupOtherError">\n
 Útmutatás: Keepass2Android eltárolta az utolsó sikeresen megnyitott fájl verziót a belső memóriában. Megnyithatja ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.  </string>
-  <string name="CorruptDatabaseHelp">
-    A fájl sérült. \n 
+  <string name="CorruptDatabaseHelp">    A fájl sérült. \n 
     Néhány javaslat a probléma felderítésére:\n
     
     • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
@@ -607,6 +602,19 @@
   <string name="ErrorReportPrefTitle">Hibajelentések küldése</string>
   <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
+  <string name="ChangeLog"><b>Version 0.6.2</b>
+* Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
+* Továbbfejlesztett kereső dialógus
+* Továbbfejlesztett keresési eredmények ha a megosztott URL aldomaint tartalmaz
+* Menüelemek hozzáadása: visszajelzéshez, értékeléshez és fordításhoz
+
+<b>Version 0.6.1</b>
+* Háttérben történő adatbázis változások érzékelése (pl szinkronizáló alkalmazás hatására)
+* Továbbfejlesztett URL keresés a böngészőből
+* Változások elvetésekor párbeszéd ablak kér megerősítést
+
+<b>Version 0.6</b>
+Kezdeti közösségi kiadás</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>
@@ -650,6 +658,11 @@
     <item>Jelszó + hitelesítő kérdés-válasz</item>
     <item>Jelszó + hitelesítő kérdés-válasz titkos kód (helyreállítás)</item>
     <item>Jelszó + hitelesítő kérdés-válasz Kepass XC-hez</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Jelszó</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Továbblépés, figyelmeztetés nélkül</item>

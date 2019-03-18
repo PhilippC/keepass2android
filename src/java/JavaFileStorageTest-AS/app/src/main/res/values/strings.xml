@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="msalPrefix">msal8374f801-0f55-407d-80cc-9a04fe86d9b2</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_file_storage_setup">FileStorageSetupActivity</string>

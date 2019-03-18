@@ -89,6 +89,8 @@ extends Activity implements JavaFileStorage.FileStorageSetupActivity {
 	@Override
 	public String getPath() {
 		// TODO Auto-generated method stub
+		if (getState().containsKey(JavaFileStorage.EXTRA_PATH))
+			return getState().getString(JavaFileStorage.EXTRA_PATH);
 		return getIntent().getStringExtra(JavaFileStorage.EXTRA_PATH);
 	}
 

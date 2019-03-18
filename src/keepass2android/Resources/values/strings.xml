@@ -21,13 +21,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Application timeout</string>
-  <string name="app_timeout_summary">Time before locking database when the application is inactive.</string>
-  <string name="kill_app_label">Kill application process</string>
+  <string name="app_timeout">App timeout</string>
+  <string name="app_timeout_summary">Time before locking database when the app is inactive.</string>
+  <string name="kill_app_label">Kill app process</string>
   <string name="show_kill_app">Close-Button</string>
-  <string name="show_kill_app_summary">Show a button in password screen to kill the application process (for paranoid users)</string>
-  <string name="application">Application</string>
-  <string name="application_settings">Application settings</string>
+  <string name="show_kill_app_summary">Show a button in password screen to kill the app process (for paranoid users)</string>
+  <string name="application">App</string>
+  <string name="application_settings">App settings</string>
   <string name="ShowGroupnameInSearchResult_title">Display group name in search result</string>
   <string name="ShowGroupnameInSearchResult_resume">Display group name below entry titles in search results. Useful if several entries have the same name.</string>
   <string name="NavigationToGroupCompleted_message">Display group is now: %1$s</string>
@@ -207,7 +207,7 @@
   <string name="no_keys">No entries in the database or group.</string>
   <string name="no_results">No search results</string>
   <string name="no_url_handler">No handler for this url.</string>
-  <string name="open_recent">Open recent database (click to open)</string>
+  <string name="open_recent">Open recent database (tap to open)</string>
   <string name="omitbackup_title">Don\'t search backup and recycle bin entries</string>
   <string name="omitbackup_summary">Omit \'Backup\' and Recycle Bin group from search results</string>
   <string name="pass_filename">KeePass database filename</string>
@@ -366,7 +366,7 @@
 
   
   <string name="UseOfflineCache_title">Database caching</string>
-	<string name="UseOfflineCache_summary">Keep a copy of the database files in the application cache directory. This allows to use databases even while the database file is not accessible.</string>
+	<string name="UseOfflineCache_summary">Keep a copy of the database files in the app\'s cache directory. This allows to use databases even while the database file is not accessible.</string>
 
   <string name="CreateBackups_title">Local backups</string>
   <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
@@ -496,7 +496,7 @@
 
 	<string name="ErrorOcurred">An error occured:</string>
 	<string name="DuplicateUuidsError">Database is corrupt: Duplicate IDs found. (Did you save with Minikeepass?) Please re-import to a new database with Keepass 2 for PC and select \'Create new IDs\'.</string>
-	<string name="DuplicateUuidsErrorAdditional">You can disable this error message in Settings/Application settings/File handling/Check for duplicate UUIDs. Please note that you might experience unexpected behavior. It is recommended to fix the database.</string>
+	<string name="DuplicateUuidsErrorAdditional">You can disable this error message in Settings/App settings/File handling/Check for duplicate UUIDs. Please note that you might experience unexpected behavior. It is recommended to fix the database.</string>
 
 	<string name="synchronize_database_menu">Synchronize database…</string>
 
@@ -541,7 +541,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
-	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, click this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
+	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, tap this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -562,14 +562,15 @@
 	<string name="hint_master_password">Select a master password to protect your database:</string>
 
 	<string name="key_file">Key file</string>
-	<string name="help_key_file">A key file is basically a password stored in a file. Key files are typically stronger than master passwords, because the key can be a lot more complicated; however it\'s also harder to keep them secret. If you store your database in the cloud, don\'t store the key file there as well! This would make it completely useless! Important: Do not change the contents of the key file after creating the database!</string>
+	<string name="help_key_file">A key file is basically a password stored in a file. Key files are typically stronger than master passwords, because the key can be a lot more complex; however it\'s also harder to keep them secret. If you store your database in the cloud, don\'t store the key file there as well! This would make it completely useless! Important: Do not change the contents of the key file after creating the database!</string>
 	<string name="hint_key_file">Choose if you want to use a key file in addition to your master password:</string>
 	<string name="use_key_file">Use key file</string>
 
 	<string name="error_adding_keyfile">Error while adding the key file!</string>
 
 	<string name="init_otp">Load OTP auxiliary file…</string>
-	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC.</string>
+	<string name="otp_explanation">Enter the next One-time-passwords (OTPs). Swipe your Yubikey NEO at the back of your device to enter via NFC (requires Yubiclip app).</string>
+  
 	<string name="otp_hint">OTP %1$d</string>
 	<string name="CouldntLoadOtpAuxFile">Could not load auxiliary OTP file!</string>
 	<string name="CouldntLoadOtpAuxFile_Hint">Please use the OtpKeyProv plugin in KeePass 2.x (PC) to configure your database for use with OTPs!</string>
@@ -634,10 +635,10 @@
 	<string name="SCOPE_CURRENT_ENTRY_explanation">Plugin will receive all data about the current database entry and will be allowed to offer actions and modify the display of it.</string>
 	
 	<string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Query own credentials</string>
-	<string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin will be allowed to query the credentials associated with its own application package.</string>
+	<string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin will be allowed to query the credentials associated with its own app package.</string>
 	
 	<string name="SCOPE_QUERY_CREDENTIALS_title">Query credentials</string>
-	<string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin will be allowed to query credentials for deliberate web sites or applications.</string>
+	<string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin will be allowed to query credentials for deliberate web sites or apps.</string>
 
 
 	<string name="get_regular_version">Get more storage types</string>
@@ -655,7 +656,7 @@
 	<string name="FileIsReadOnlyOnKitkat">The file you selected is read-only for Keepass2Android due to restrictions on Android 4.4+.</string>
 	<string name="CopyFileRequired">To use it, you must copy it to another location.</string>
 	<string name="CopyFileRequiredForEditing">To edit it, you must copy the file to another location.</string>
-	<string name="ClickOkToSelectLocation">Click OK to select a location where the file should be copied.</string>
+	<string name="ClickOkToSelectLocation">Tap OK to select a location where the file should be copied.</string>
   
   <string name="FileReadOnlyTitle">Database is read-only</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android has opened the current database in read-only mode.</string>
@@ -716,11 +717,11 @@
 
   <string name="HintLocalBackupInvalidCompositeKey">
     \n
-   &#8226; Hint: If you think your database file might be corrupt or you do not remember the master key after modifying it, you can try with the last successfully opened file version by clicking "%1$s" and selecting the local backup.</string>
+   &#8226; Hint: If you think your database file might be corrupt or you do not remember the master key after modifying it, you can try with the last successfully opened file version by tapping "%1$s" and selecting the local backup.</string>
 
   <string name="HintLocalBackupOtherError">
     \n
-    &#8226; Hint: Keepass2Android has stored the last successfully opened file version in internal memory. You can open it by clicking "%1$s" and selecting the local backup.
+    &#8226; Hint: Keepass2Android has stored the last successfully opened file version in internal memory. You can open it by tapping "%1$s" and selecting the local backup.
   </string>
   
   <string name="CorruptDatabaseHelp">
@@ -766,7 +767,7 @@
 
   <string name="ErrorReportTitle">Keepass2Android: An error occurred.</string>
   <string name="ErrorReportText">An unexpected error occurred while running Keepass2Android. Please help us fix this by allowing the app to send error reports.</string>
-  <string name="ErrorReportPromise">Error reports will never contain any contents of your database or master password. You can disable them in the application settings.</string>
+  <string name="ErrorReportPromise">Error reports will never contain any contents of your database or master password. You can disable them in the app settings.</string>
   <string name="ErrorReportEnable">Enable</string>
   <string name="ErrorReportDisable">Disable</string>
   <string name="ErrorReportAsk">Ask after error</string>
@@ -775,7 +776,7 @@
   
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_1_07">
-    Version 1.07-pre3\n
+    Version 1.07-pre\n
     * Allow to open more than one database, compatible to KeeAutoExec\n
     * SFTP: Allow public key authentication, check if host key changed\n
     * Introduce pCloud support - thanks to gilbsgilbs!\n
@@ -783,6 +784,7 @@
     * Improve saving and updating of entry attachments\n
     * More options for adapting behavior to personal preferences\n
     * SSL: Trust user certificates\n
+    * Improve autofill (now works with Firefox, allow to reduce popups)\n
     * bug fixes\n
   </string>
 
@@ -953,10 +955,10 @@
 		* allow to import key file and/or local database file to app internal directory (see settings)\n
 		* allow different sorting options\n
 		* improved preferences for automatic keyboard switching\n
-		* updated application logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n
+		* updated app logo and notification design, design by Stefano Pignataro (http://www.spstudio.at)\n
 		* password generator remembers last settings\n
 		* set notification visibility for Android 5 lock screen\n
-		* now clearing master password field when leaving the app without clicking OK\n
+		* now clearing master password field when leaving the app without tapping OK\n
 		* fixed issue with missing input languages in keyboard setting on some devices\n
 		* fixed issue with automatic keyboard switching on rooted devices\n
 		* added check for corrupt databases (duplicate UUIDs)\n
@@ -1051,7 +1053,7 @@
 
 	<string name="ChangeLog_0_8_5">
 		<b>Version 0.8.5</b>\n
-		* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
+		* Remote files are stored in the local app cache to allow offline usage (including editing and later synchronization). See settings. \n
 		* Notification icon to visualize the lock-state of the database (see settings)\n
 		* Improved determination of lock-state in some situations\n
 		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
@@ -1178,6 +1180,8 @@ Initial public release
   <string name="autofill_enable_failed">Sorry, it looks like your device does not support opening the settings from inside the app. Please go manually to the system settings for AutoFill to enable the service.</string>
   <string name="show_autofill_help">Show Autofill help</string>
   <string name="autofill_sign_in_prompt">Fill with Keepass2Android</string>
+  <string name="autofill_disable">Disable AutoFill for %1$s</string>
+  <string name="autofill_enable_for">Enable AutoFill for %1$s</string>
   <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 
   <string name="enable_fingerprint_hint">Keepass2Android has detected fingerprint hardware. Do you want to enable fingerprint unlock for this database?</string>

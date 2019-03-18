@@ -157,10 +157,6 @@
     <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
-      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
-      <Name>AdalBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
       <Name>JavaFileStorageBindings</Name>

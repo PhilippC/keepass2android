@@ -57,6 +57,7 @@ using Process = Android.OS.Process;
 
 using KeeChallenge;
 using AlertDialog = Android.App.AlertDialog;
+using ClipboardManager = Android.Content.ClipboardManager;
 using Enum = System.Enum;
 using Exception = System.Exception;
 using String = System.String;
@@ -138,6 +139,7 @@ namespace keepass2android
 
 		private bool _performingLoad;
 		private bool _keepPasswordInOnResume;
+	    private DateTime _lastOnPauseTime = DateTime.MinValue;
 	    
 
         private ActionBarDrawerToggle mDrawerToggle;
@@ -1511,7 +1513,9 @@ namespace keepass2android
 		protected override void OnPause()
 		{
 		    _fingerprintDec?.StopListening();
-		    base.OnPause();
+		    _lastOnPauseTime = DateTime.Now;
+
+            base.OnPause();
 		}
 
 	    protected override void OnStart()
@@ -1678,17 +1682,24 @@ namespace keepass2android
 			{
 				killButton.Visibility = ViewStates.Gone;
 			}
-			
-			if (!_keepPasswordInOnResume)
-			{
-				if (
-					PreferenceManager.GetDefaultSharedPreferences(this)
-					                 .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
-				{
-					ClearEnteredPassword();
-				}
-				
-			}
+
+		    TryGetOtpFromClipboard();
+
+		    if (!_keepPasswordInOnResume)
+		    {
+		        if (
+                    _lastOnPauseTime < DateTime.Now - TimeSpan.FromSeconds(5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
+                    && 
+		            PreferenceManager.GetDefaultSharedPreferences(this)
+		                .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
+		        {
+		            ClearEnteredPassword();
+		        }
+
+		    }
+
+
+
 			_keepPasswordInOnResume = false;
 
 			MakePasswordMaskedOrVisible();
@@ -1775,7 +1786,56 @@ namespace keepass2android
 		    }
         }
 
-        private bool InitFingerprintUnlock()
+	    private void TryGetOtpFromClipboard()
+	    {
+	        if (_otpInfo != null)
+	        {
+	            if ((int) Build.VERSION.SdkInt >= 26)
+	            {
+	                Android.Content.ClipboardManager clipboardManager = (ClipboardManager)GetSystemService(Context.ClipboardService);
+	                if (clipboardManager.PrimaryClip.Description.Timestamp <
+	                    Java.Lang.JavaSystem.CurrentTimeMillis() - 5000)
+	                    return; //data older than 5 seconds
+	            }
+	            string clipboardContent = Util.GetClipboard(this);
+	            if (_otpInfo.OtpLength != clipboardContent.Length)
+	            {
+	                return;
+	            }
+	            foreach (char c in clipboardContent)
+	            {
+	                if (c < '0' || c > '9')
+	                    return;
+	            }
+	            string otp = clipboardContent;
+                
+	            EditText lastNonEmptyOtpEdit = null;
+
+                foreach (int otpId in _otpTextViewIds)
+	            {
+	                EditText otpEdit = FindViewById<EditText>(otpId);
+	                if (otpEdit.Visibility == ViewStates.Visible)
+	                {
+	                    if (string.IsNullOrEmpty(otpEdit.Text))
+	                    {
+	                        if ((lastNonEmptyOtpEdit != null) && (lastNonEmptyOtpEdit.Text == otp))
+	                            return; //otp was already set.
+
+                            //otp ok. use it:
+                            otpEdit.Text = otp;
+	                        break;
+                        }
+
+                        lastNonEmptyOtpEdit = otpEdit;
+
+	                }
+	                
+	            }
+	            
+	        }
+        }
+
+	    private bool InitFingerprintUnlock()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try

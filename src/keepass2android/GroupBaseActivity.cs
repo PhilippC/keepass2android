@@ -53,6 +53,7 @@ namespace keepass2android
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
             //only use the same id if elements can be shown simultaneously!
+            { Resource.Id.dbreadonly_infotext, 14 },
             { Resource.Id.child_db_infotext, 13 },
             { Resource.Id.fingerprint_infotext, 12 },
             { Resource.Id.autofill_infotext, 11 },
@@ -247,6 +248,7 @@ namespace keepass2android
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
 
+            UpdateDbReadOnlyInfo();
             UpdateChildDbInfo();
             UpdateFingerprintInfo();
             UpdateAutofillInfo();
@@ -504,6 +506,16 @@ namespace keepass2android
                 };
             }
 
+
+            if (FindViewById(Resource.Id.info_dont_show_dbreadonly_again) != null)
+            {
+                FindViewById(Resource.Id.info_dont_show_dbreadonly_again).Click += (sender, args) =>
+                {
+                    _prefs.Edit().PutBoolean(dbreadonly_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, true).Commit();
+                    UpdateDbReadOnlyInfo();
+                };
+            }
+
             if (FindViewById(Resource.Id.fabCancelAddNew) != null)
             {
                 FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
@@ -616,6 +628,7 @@ namespace keepass2android
             return _prefs.GetBoolean("InfoTextDisabled_" + infoTextKey, false);
         }
 
+        const string dbreadonly_ignore_prefskey = "dbreadonly_ignore_prefskey";
         const string childdb_ignore_prefskey = "childdb_ignore_prefskey";
         const string autofillservicewasenabled_prefskey = "AutofillServiceWasEnabled";
         const string fingerprintinfohidden_prefskey = "fingerprintinfohidden_prefskey";
@@ -693,6 +706,31 @@ namespace keepass2android
 
             }
             UpdateBottomBarElementVisibility(Resource.Id.child_db_infotext, canShow);
+        }
+
+        private void UpdateDbReadOnlyInfo()
+        {
+            bool disabledForDatabase = _prefs.GetBoolean(dbreadonly_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, false);
+
+            bool canShow = false;
+
+            if (!disabledForDatabase)
+            {
+                var ioc = App.Kp2a.CurrentDb.Ioc;
+                OptionalOut<UiStringKey> reason = new OptionalOut<UiStringKey>();
+
+                if (App.Kp2a.GetFileStorage(ioc).IsReadOnly(ioc, reason))
+                {
+                    canShow = true;
+                    RegisterInfoTextDisplay(
+                        "DbReadOnly"); //this ensures that we don't show the general info texts too soon
+
+                    FindViewById<TextView>(Resource.Id.dbreadonly_infotext_text).Text =
+                    (GetString(Resource.String.FileReadOnlyMessagePre) + " " +
+                     App.Kp2a.GetResourceString(reason.Result));
+                }
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.dbreadonly_infotext, canShow);
         }
 
 
@@ -833,7 +871,7 @@ namespace keepass2android
             inflater.Inflate(Resource.Menu.group, menu);
             var searchManager = (SearchManager)GetSystemService(Context.SearchService);
             IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
-            var view = MenuItemCompat.GetActionView(searchItem);
+            var view = searchItem.ActionView;
 
             searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
 
@@ -1474,7 +1512,7 @@ namespace keepass2android
                 }
                 else
                 {
-                    onFinish.SetResult(false, message, null);
+                    onFinish.SetResult(false, message, true, null);
                 }
             };
 

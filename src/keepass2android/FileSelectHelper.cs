@@ -393,7 +393,7 @@ namespace keepass2android
 
 						}
 					}
-					System.IO.File.Create(filename);
+					System.IO.File.Create(filename).Dispose();
 
 				}
 				catch (IOException ex)

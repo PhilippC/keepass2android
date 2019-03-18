@@ -321,7 +321,7 @@ namespace keepass2android
                 }
 
                 //database(s) unlocked
-                if (App.Kp2a.OpenDatabases.Count() == 1)
+                if ((App.Kp2a.OpenDatabases.Count() == 1) || (AppTask is SearchUrlTask))
                 {
                     LaunchingOther = true;
                     AppTask.LaunchFirstGroupActivity(this);

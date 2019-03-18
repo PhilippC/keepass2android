@@ -85,8 +85,8 @@ namespace keepass2android
 		{
 			if (!File.Exists(LogFilename))
 			{
-				File.Create(LogFilename);
-				_logToFile = true;
+				File.Create(LogFilename).Dispose();
+                _logToFile = true;
 			}
 			
 
@@ -100,8 +100,7 @@ namespace keepass2android
 				int count = 0;
 				while (File.Exists(LogFilename + "." + count))
 					count++;
-                if (count > 0)
-				    File.Move(LogFilename, LogFilename + "." + count);
+                File.Move(LogFilename, LogFilename + "." + count);
 				
 			}
 				

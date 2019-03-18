@@ -335,9 +335,18 @@ namespace keepass2android
 
         private static bool CheckFileExsts(IOConnectionInfo ioc)
         {
+
             try
             {
                 var fileStorage = App.Kp2a.GetFileStorage(ioc);
+
+                //we're assuming that remote files always exist (if we have a file storage, i.e. we check after receiving a file storage)
+                //The SkipIfNotExists switch only makes sense for local files, because remote files either exist for all devices or none
+                //(Ok, there are exceptions like files available in a (W)LAN. But then we still have the device switch and caches.)
+                //We cannot use OpenFileForRead on remote storages because this method is called from the main thread.
+                if (!ioc.IsLocalFile())
+                    return true;
+
                 using (var stream = fileStorage.OpenFileForRead(ioc))
                 {
                 }

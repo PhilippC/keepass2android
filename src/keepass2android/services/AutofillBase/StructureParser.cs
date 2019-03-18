@@ -8,6 +8,7 @@ using Android.Util;
 using Android.Views;
 using Android.Views.Autofill;
 using Android.Views.InputMethods;
+using DomainNameParser;
 using keepass2android.services.AutofillBase.model;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
 
@@ -24,6 +25,7 @@ namespace keepass2android.services.AutofillBase
 	    public AutofillFieldMetadataCollection AutofillFields { get; set; }
 		AssistStructure Structure;
 	    private List<AssistStructure.ViewNode> _editTextsWithoutHint = new List<AssistStructure.ViewNode>();
+	    private PublicSuffixRuleCache domainSuffixParserCache;
 	    public FilledAutofillFieldCollection ClientFormData { get; set; }
 
 		public StructureParser(Context context, AssistStructure structure)
@@ -31,6 +33,7 @@ namespace keepass2android.services.AutofillBase
 		    mContext = context;
 		    Structure = structure;
 			AutofillFields = new AutofillFieldMetadataCollection();
+		    domainSuffixParserCache = new PublicSuffixRuleCache(context);
 		}
 
 		public string ParseForFill(bool isManual)
@@ -163,7 +166,11 @@ namespace keepass2android.services.AutofillBase
 	    {
 	        if (!InputTypes.MaskVariation.HasFlag(inputTypeVariation))
 	            throw new Exception("invalid inputTypeVariation");
-            return (((int)inputType) & (int)InputTypes.MaskVariation) == (int)(inputTypeVariation);
+	        bool result = (((int)inputType) & (int)InputTypes.MaskVariation) == (int)(inputTypeVariation);
+	        if (result)
+	            Kp2aLog.Log("found " + ((int)inputTypeVariation).ToString("X") + " in " + ((int)inputType).ToString("X"));
+            return result;
+            
 	    }
 
         private static bool IsPassword(AssistStructure.ViewNode f)
@@ -186,15 +193,23 @@ namespace keepass2android.services.AutofillBase
 	            );
 	    }
 
-	    void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
+	    
+
+        void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
 		{
 		    String webDomain = viewNode.WebDomain;
-		    if (webDomain != null)
+
+		    DomainName outDomain;
+		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
 		    {
-		        CommonUtil.logd($"child web domain: {webDomain}");
-		        if (!string.IsNullOrEmpty(validWebdomain))
+		        webDomain = outDomain.RegisterableDomainName;
+		    }
+
+            if (webDomain != null)
+		    {
+                if (!string.IsNullOrEmpty(validWebdomain))
 		        {
-		            if (webDomain == validWebdomain)
+		            if (webDomain != validWebdomain)
 		            {
 		                throw new Java.Lang.SecurityException($"Found multiple web domains: valid= {validWebdomain}, child={webDomain}");
 		            }

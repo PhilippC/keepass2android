@@ -238,7 +238,6 @@
   <string name="BinaryDirectory_summary">תיקיה בה יישמרו קבצים מצורפים.</string>
   <string name="SaveAttachmentDialog_title">שמירת קובץ מצורף</string>
   <string name="SaveAttachmentDialog_text">בחרו היכן לשמור את הקובץ המצורף.</string>
-  <string name="SaveAttachmentDialog_save">שמירה בכרטיס הזיכרון</string>
   <string name="SaveAttachmentDialog_open">שמירה בזיכרון זמני ופתיחת הקובץ</string>
   <string name="ShowAttachedImage">הצגה במציג התמונות הפנימי</string>
   <string name="SaveAttachment_doneMessage">קובץ נשמר ב-%1$s.</string>
@@ -258,5 +257,9 @@
     <item>30 minutes</item>
     <item>1 hour</item>
     <item>אף פעם</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>סיסמה</item>
+    <item>Private/Public key</item>
   </string-array>
 </resources>

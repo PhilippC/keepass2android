@@ -283,7 +283,6 @@
   <string name="BinaryDirectory_summary">Direktori dimana lampiran file disimpan.</string>
   <string name="SaveAttachmentDialog_title">Simpan lampiran</string>
   <string name="SaveAttachmentDialog_text">Silakan pilih tempat untuk menyimpan lampiran.</string>
-  <string name="SaveAttachmentDialog_save">Simpan ke kartu SD</string>
   <string name="SaveAttachmentDialog_open">Simpan di tembolok dan buka</string>
   <string name="ShowAttachedImage">Tampilan dengan penampilan gambar internal</string>
   <string name="SaveAttachment_doneMessage">Simpan file ke %1$s.</string>
@@ -316,6 +315,7 @@
   <string name="NoDonationReminder_title">Tidak pernah meminta donasi</string>
   <string name="NoDonationReminder_summary">Saya tidak akan memberi sumbangan atau saya telah menyumbang. Jangan meminta donasi lagi, bahkan pada hari ulang tahun pembuat.</string>
   <string name="UseOfflineCache_title">Penyinggahan Database</string>
+  <string name="CreateBackups_title">Cadangan lokal</string>
   <string name="AcceptAllServerCertificates_title">Sertifikat SSL</string>
   <string name="AcceptAllServerCertificates_summary">Menentukan perilaku ketika validasi sertifikat gagal. Catatan: Anda dapat menginstal sertifikat pada perangkat Anda jika validasi gagal!</string>
   <string name="ClearOfflineCache_title">Hapus cache?</string>
@@ -438,7 +438,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="use_key_file">Gunakan berkas kunci</string>
   <string name="error_adding_keyfile">Kesalahan saat menambahkan berkas kunci!</string>
   <string name="init_otp">Memuat berkas bantu OTP…</string>
-  <string name="otp_explanation">Masukkan kata sandi One-time-password berikutnya (OTPs). Gesek NEO Yubikey Anda di bagian belakang perangkat Anda untuk masuk melalui NFC.</string>
   <string name="otp_hint">OTP%1$d</string>
   <string name="CouldntLoadOtpAuxFile">Tidak bisa memuat file OTP tambahan!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Silakan gunakan plugin OtpKeyProv di KeePass 2.x (PC) untuk mengkonfigurasi database Anda untuk digunakan dengan OTPs!</string>
@@ -537,15 +536,13 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="ErrorReportAsk">Tanyakan setelah kesalahan</string>
   <string name="ErrorReportPrefTitle">Kirim laporan kesalahan</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Tampilkan soft keyboard untuk input kata sandi saat pemindaian sidik jari aktif.</string>
-  <string name="ChangeLog_1_03">
-Versi 1.03\n
+  <string name="ChangeLog_1_03">Versi 1.03\n
     * Layanan aksesibilitas yang telah dihapus untuk IsiOtomatis sesuai permintaan Google. Silakan lihat pengaturan akses kata sandi untuk menemukan plugin yang mereplikasi fungsi sebelumnya.\n
     * Menambahkan aplikasi pihak ketiga sebagai opsi penyimpanan lagi\n
     * Penampil gambar terpadu untuk melihat gambar terlampir tanpa mentransfernya ke aplikasi lain\n
     * Upgrade OkHttp untuk memperbaiki masalah dengan beberapa koneksi\n
     * Dukungan untuk entri KeeTrayTOTP, sekarang mendukung entri Uap\n  </string>
-  <string name="ChangeLog_1_02">
-Versi 1.02 \n
+  <string name="ChangeLog_1_02">Versi 1.02 \n
     * Beberapa perbaikan keamanan. Terima kasih banyak atas laporan keamanan oleh jean-baptiste.cayrou@thalesgroup.com dan vincent.fargues@thalesgroup.com dan untuk kolaborasi mereka! \n
     * Dukungan untuk KeyboardSwapPlugin (lihat opsi akses kata sandi): memungkinkan untuk mengubah metode input secara otomatis pada perangkat yang tidak berakar. Berkat Mishaal Rahman dari XDA-Developers untuk membuat ini mungkin. \n
     * Perbaiki untuk Layanan Aksesibilitas dengan versi Chrome terbaru \n
@@ -554,23 +551,19 @@ Versi 1.02 \n
     * Diperbarui Dropbox SDK untuk memastikan kompatibilitas di masa depan \n
     * Laporan kesalahan yang dihapus melalui Wawasan Xamarin \n
     * Alat pembuatan yang diperbarui \n  </string>
-  <string name="ChangeLog_1_01g">
-Versi 1.01-g \n
+  <string name="ChangeLog_1_01g">Versi 1.01-g \n
     * Perbaiki untuk mogok saat mencoba bekerja secara offline \n
     * Perbaiki untuk penyandian yang salah dari kredensial FTP (S) \n
     * Perbaiki untuk mogok saat menggunakan OneDrive dan versi Android yang lebih tua \n
     * Tampilan kali sebagai waktu setempat di layar masuk \n  </string>
-  <string name="ChangeLog_1_01d">
-Versi 1.01-d \n
+  <string name="ChangeLog_1_01d">Versi 1.01-d \n
     Perbaiki untuk daftar file OneDrive \n
     * Izinkan untuk mengabaikan kesalahan sertifikat juga saat verifikasi nama host gagal (tidak disarankan untuk penggunaan produksi) \n
     * Perbaiki untuk QuickUnlock terkadang gagal walaupun benar membuka kode \n  </string>
-  <string name="ChangeLog_0_9_8c">
-Versi 0.9.8c \n
+  <string name="ChangeLog_0_9_8c">Versi 0.9.8c \n
     * Perbaiki kerentanan SSL di Microsoft Live SDK (digunakan saat mengakses file melalui OneDrive) \n
     * Bug fix: Pelepasan sebelumnya berisi dua metode masukan (one crashing) \n  </string>
-  <string name="ChangeLog_1_01">
-Versi 1.01 \n
+  <string name="ChangeLog_1_01">Versi 1.01 \n
     * Dukungan tambahan untuk KDBX-4-format baru (kompatibel dengan Keepass 2.35) termasuk derivasi kunci Argon2 dan enkripsi ChaCha20. \n
     * Mengarsipkan penyimpanan file WebDav, sekarang memungkinkan file browsing dan mendukung enkripsi modern. \n
     * Penyimpanan file FTP yang terisi penuh, sekarang memungkinkan file browsing dan mendukung enkripsi (FTPS). \n
@@ -578,14 +571,12 @@ Versi 1.01 \n
     * Diperbarui ke Dropbox SDK versi 2 (sebelumnya menggunakan versi 1 SDK sudah usang). \n
     * Ditambahkan dukungan untuk OwnCloud. \n
     * Meminta izin penyimpanan sebelum membuka file lokal  </string>
-  <string name="ChangeLog_1_0_0e">
-Versi 1.0.0e \n
+  <string name="ChangeLog_1_0_0e">Versi 1.0.0e \n
     * Perbaiki untuk Unlock Sidik Jari pada perangkat Samsung yang lebih tua dengan Android 6 \n
     * menambahkan dukungan asli untuk perangkat x86 \n
     * Biarkan menyembunyikan softkeyboard selama pemindaian sidik jari \n
     * membangun update sistem  </string>
-  <string name="ChangeLog_1_0_0">
-Versi 1.0.0 \n
+  <string name="ChangeLog_1_0_0">Versi 1.0.0 \n
     * Sidik Jari (memerlukan perangkat Android 6.0+ atau perangkat Samsung) \n
     * Ditambahkan layanan IsiOtomatis (memerlukan Android 5.0 +) \n
     * Ditambahkan dukungan untuk template entri \n
@@ -597,43 +588,36 @@ Versi 1.0.0 \n
     * Perbaikan bug (pada keyboard built-in, saat memilih ikon) \n
     * Termasuk pilihan untuk mengirim laporan kesalahan \n
     * Ditambahkan help messages di beberapa titik \n  </string>
-  <string name="ChangeLog_0_9_9">
-Versi 0.9.9 \n
+  <string name="ChangeLog_0_9_9">Versi 0.9.9 \n
 * Desain ulang UI lengkap. Terima kasih banyak kepada Stefano Pignataro (http://www.spstudio.at) atas dukungannya! \n
     * Izinkan menambahkan ikon khusus \n
     * Dukungan untuk mode Multi Window pada perangkat Samsung \n
     * Menambah jumlah default putaran enkripsi untuk database baru \n
     * Periksa kunci duplikat bidang tambahan agar tidak kehilangan data \n</string>
-  <string name="ChangeLog_0_9_9c">
-Versi 0.9.9c \n
+  <string name="ChangeLog_0_9_9c">Versi 0.9.9c \n
     * Tema gelap sudah kembali \n
     * Anda dapat menginstal paket ikon lainnya (ikon bergaya Windows kuno tersedia di Play Store) \n
     * Ditambahkan konfirmasi pertanyaan saat menghapus elemen tanpa recycle bin \n
     * Perbaikan bug (salah tampilan encoding rahasia OTP, ikon aplikasi yang salah di beberapa tempat) \n  </string>
-  <string name="ChangeLog_0_9_8b">
-Versi 0.9.8b \n
+  <string name="ChangeLog_0_9_8b">Versi 0.9.8b \n
 * Perbaikan bug (Menyimpan gagal untuk beberapa database, mengekspor ke perangkat lokal yang tidak berfungsi, memilih beberapa opsi preferensi yang mogok aplikasi) \n</string>
-  <string name="ChangeLog_0_9_8">
-Versi 0.9.8 \n
+  <string name="ChangeLog_0_9_8">Versi 0.9.8 \n
 * Dukungan untuk Storage Access Framework (memungkinkan menulis ke kartu SD dan Google Drive di KP2A Offline) \n
 * Cobalah untuk mendeteksi masukan pengguna yang salah saat memasukkan URL WebDAV (direktori dan bukan file) \n
 * Berubah font kata kunci \n
 * Izinkan untuk mengubah akun Dropbox \n
 * Fixed bug: Sekarang teringat password OTP</string>
-  <string name="ChangeLog_0_9_7b">
-Versi 0.9.7b \n
+  <string name="ChangeLog_0_9_7b">Versi 0.9.7b \n
 * terjemahan yang diperbarui \n
 * Perbaikan bug: Font kata sandi hilang pada 0.9.7, urutkan menurut nama tidak mengelompokkan kelompok \n</string>
-  <string name="ChangeLog_0_9_7">
-Versi 0.9.7 \n
+  <string name="ChangeLog_0_9_7">Versi 0.9.7 \n
 * tulis dukungan untuk database Keepass 1 (kdb) (beta!) \n
 * Lebih baik beralih kembali ke keyboard sebelumnya (juga bekerja pada perangkat yang tidak berakar) \n
 * Mendukung KeeChallenge dengan tantangan panjang variabel \n
 * mencegah pengambilan tangkapan layar dari layar QuickUnlock dan sandi \n
 * Urutan urutan terbalik untuk Sortir berdasarkan Tanggal Modifikasi (sekarang turun) \n
 * Perbaikan bug: Tampilan catatan sekarang diperbarui dengan benar setelah perubahan, Tampilan kata sandi sekarang menyembunyikan kata sandi dengan benar (semoga) semua perangkat, masalah tetap yang memungkinkan untuk menambahkan entri dua kali, masalah tetap dengan menunjukkan peringatan UUID Duplikat bahkan setelah memperbaiki database \n</string>
-  <string name="ChangeLog_0_9_6">
-Versi 0.9.6 \n
+  <string name="ChangeLog_0_9_6">Versi 0.9.6 \n
 * Mengijinkan untuk mengimpor file utama dan / atau file database lokal ke direktori internal aplikasi (lihat pengaturan) \n
 * memungkinkan pilihan sortir yang berbeda \n
 * Peningkatan preferensi untuk penggantian keyboard otomatis \n
@@ -649,8 +633,7 @@ Versi 0.9.6 \n
 
  
 ChangeLog_0_9_6</string>
-  <string name="ChangeLog_0_9_5">
-<b> Versi 0.9.5 </b> \n
+  <string name="ChangeLog_0_9_5"><b> Versi 0.9.5 </b> \n
 * Masalah tetap dengan file browsing (terutama di Android 4.4) \n
 * Masalah tetap dengan file pemuatan .kdb (Keepass 1) di Nexus 5 dengan Android Lollipop \n
 * Ditambahkan pilihan untuk mencegah pengambilan tangkapan layar / menampilkan aplikasi di daftar aplikasi terbaru \n
@@ -659,8 +642,7 @@ ChangeLog_0_9_6</string>
 * Diperbarui Dropbox SDK untuk menyertakan patch keamanan resmi (regular edition) \n
 * Alat pembuatan yang diperbarui - &amp; gt; ukuran apk meningkat: - (\n
 Saya telah berjanji beberapa perubahan lagi. Mereka akan datang dengan rilis berikutnya - maaf. Saya ingin mempublikasikan perbaikan panas ini sesegera mungkin.</string>
-  <string name="ChangeLog_0_9_4">
-<b> Versi 0.9.4 </b> \n
+  <string name="ChangeLog_0_9_4"><b> Versi 0.9.4 </b> \n
 * Dukungan plug-in yang ditambahkan: Lihat pengaturan cara mendapatkan plug-in! \n
 * Ditampilkan QR plug-in (memindai password, menampilkan password sebagai kode QR, mentransfer entri ke perangkat KP2A lainnya) \n
 * Publikasikan plugin InputStick (mentransfer kredensial ke PC Anda melalui bluetooth - memerlukan stik USB InputStick) \n
@@ -677,19 +659,16 @@ Saya telah berjanji beberapa perubahan lagi. Mereka akan datang dengan rilis ber
 * memperbaiki bug di antarmuka Google Drive \n
 * opsi tambahan untuk menonaktifkan opsi \"donate\" \n
 * Ikon QuickUnlock sekarang disembunyikan di perangkat Android 4.2+ secara default \n</string>
-  <string name="ChangeLog_0_9_3_r5">
-<b> Versi 0.9.3 r5 </b> \n
+  <string name="ChangeLog_0_9_3_r5"><b> Versi 0.9.3 r5 </b> \n
 * Perbaikan yang dilakukan dari Xamarin: Keepass2Android sekarang kompatibel dengan ART di Android 4.4.2. Akhirnya! \n
 * Perbaikan bug: bug dalam sinkronisasi (tampilan refresh, periksa perubahan yang benar pada http), bug pada perangkat Android 2.x, bug pada implementasi penyimpanan Google Drive dan OneDrive, bersihkan clipboard pada database dekat, lampiran pembuka bug, masalah tampilan dengan keyboard \n</string>
-  <string name="ChangeLog_0_9_3">
-<b> Versi 0.9.3 </b> \n
+  <string name="ChangeLog_0_9_3"><b> Versi 0.9.3 </b> \n
 * Keyboard baru dengan banyak perbaikan. Lihat pengaturan untuk disesuaikan. \n
 * Read-only support untuk kdb (Keepass 1 files). Eksperimental! \n
 * Ditambahkan dukungan SFTP \n
 * Solusi tambahan untuk bug dalam ART (Android 4.4.2) \n
 * Perbaikan bug \n</string>
-  <string name="ChangeLog_0_9_2">
-<b> Versi 0.9.2 </b> \n
+  <string name="ChangeLog_0_9_2"><b> Versi 0.9.2 </b> \n
 * Dukungan OTP yang ditambahkan (kompatibel dengan plugin OtpKeyProv) \n
 * Dukungan NFC terintegrasi untuk OTPs dari YubiKey NEO \n
 * Beberapa peningkatan UI \n
@@ -697,35 +676,30 @@ Saya telah berjanji beberapa perubahan lagi. Mereka akan datang dengan rilis ber
 * Ditambahkan pilihan untuk membunuh proses aplikasi (lihat pengaturan) \n
 * Peningkatan validasi sertifikat SSL \n
 * Perbaikan bug \n</string>
-  <string name="ChangeLog_0_9_1">
-<b> Versi 0.9.1 </b> \n
+  <string name="ChangeLog_0_9_1"><b> Versi 0.9.1 </b> \n
 * Dukungan SkyDrive terintegrasi (hanya edisi reguler Keepass2Android) \n
 * Masalah tetap dengan integrasi Google Drive \n
 * Ditambahkan dukungan NTLM</string>
-  <string name="ChangeLog_0_9">
-<b> Versi 0.9 </b> \n
+  <string name="ChangeLog_0_9"><b> Versi 0.9 </b> \n
 * Dukungan Dropbox dan Google Drive terintegrasi (baca / tulis basis data; Keepass2Android edisi reguler saja) \n
 * Browser file kustom terintegrasi (berdasarkan android-filechooser oleh HBA) \n
 * Peningkatan antarmuka pengguna untuk membuat database baru \n
 * Termasuk font kustom DejaVu Sans Mono untuk menampilkan kata sandi \n
 * Perbaikan kerusakan</string>
-  <string name="ChangeLog_0_8_6">
-<b>Versi 0.8.6</b>\n
+  <string name="ChangeLog_0_8_6"><b>Versi 0.8.6</b>\n
 * Dukungan untuk Twofish cipher\n
 * Izinkan pengeditan kelompok\n
 * Izinkan pemindahan entri dan grup\n
 * Ikon QuickUnlock dapat dibuat transparan (lihat pengaturan)\n
 * Perbaikan kerusakan</string>
-  <string name="ChangeLog_0_8_5">
-<b>Versi 0.8.5</b>\n
+  <string name="ChangeLog_0_8_5"><b>Versi 0.8.5</b>\n
 * File jarak jauh disimpan di cache aplikasi lokal untuk memungkinkan penggunaan offline (termasuk pengeditan dan sinkronisasi nanti). Lihat pengaturan\n
 * Ikon notifikasi untuk memvisualisasikan status kunci database (lihat pengaturan)\n
 * Peningkatan penentuan lock-state dalam beberapa situasi\n
 * File database dimuat ke memori saat Anda mengetik kata sandi untuk meningkatkan kecepatan pemuatan (lihat pengaturan)\n
 * Entri dapat ditambahkan ke grup akar\n
 * Perbaikan bug (menyelesaikan bidang referensi, masalah dengan keyboard pada perangkat Cina Italia</string>
-  <string name="ChangeLog_0_8_4">
-<b> Versi 0.8.4 </b> \n
+  <string name="ChangeLog_0_8_4"><b> Versi 0.8.4 </b> \n
 * Perubahan database eksternal terdeteksi dan digabungkan saat menyimpan \n
 * Peningkatan kinerja pemuatan \n
 * Toolbar pencarian yang disempurnakan dengan saran \n
@@ -744,19 +718,16 @@ Terima kasih kepada Niki Hüttner (www.close-cut.de) untuk logo baru! \n</string
 * perbaikan bug kecil  </string>
   <string name="ChangeLog_0_8_2"><b>Versi 0.8.2</b>\n
 * Dukungan untuk Digest Authentication in WebDAV\n
-* Bugfixes (OI File manager, Open URL)
-</string>
+* Bugfixes (OI File manager, Open URL)</string>
   <string name="ChangeLog_0_8_1"><b>Versi 0.8.1</b>\n
 * KP2A Offline dan \"Online\" dapat diinstal lagi\n
-* Ditambahkan terjemahan baru (terima kasih kepada semua kontributor!)
-</string>
+* Ditambahkan terjemahan baru (terima kasih kepada semua kontributor!)</string>
   <string name="ChangeLog_0_8"><b>Versi 0.8 </b>\n
 * Peningkatan antarmuka pengguna terutama untuk perangkat Android 4.x\n
 * Izinkan menggunakan pengelola file yang disengaja untuk memilih file yang ada\n
 * Ditambahkan cara yang lebih aman untuk membuka lampiran (melalui direktori cache)\n
 * bug tetap dalam aktivitas Edit\n
-* Mungkin dikenalkan bug baru :-)
-</string>
+* Mungkin dikenalkan bug baru :-)</string>
   <string name="ChangeLog_keptDonate">Diperluas kemungkinan untuk menyumbangkan bir atau sesuatu yang lain</string>
   <string name="ChangeLog_0_7"><b> Versi 0.7 </b> \n
 * Peningkatan kecepatan pemuatan: transformasi kunci sekarang 10x lebih cepat! \n
@@ -818,6 +789,11 @@ Rilis publik awal  </string>
     <item>Kata sandi + Tantangan-Tanggapan</item>
     <item>Kata sandi + Tantangan-Tanggapan rahasia (mode pemulihan)</item>
     <item>Password + Challenge-Response for Keepass XC</item>
+    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Kata kunci</item>
+    <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Mengabaikan kegagalan validasi sertifikat</item>

@@ -178,6 +178,7 @@
     <Compile Include="AutoOpenEdit.cs" />
     <Compile Include="ChallengeXCKey.cs" />
     <Compile Include="ConfigureChildDatabasesActivity.cs" />
+    <Compile Include="DisableAutofillForQueryActivity.cs" />
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
     <Compile Include="FileSaveProcessManager.cs" />
     <Compile Include="fileselect\FilteredCursor.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="FixedDrawerLayout.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
+    <Compile Include="NfcOtpActivity.cs" />
     <Compile Include="PasswordFont.cs" />
     <Compile Include="pluginhost\PluginArrayAdapter.cs" />
     <Compile Include="pluginhost\PluginDatabase.cs" />
@@ -246,6 +248,7 @@
     <Compile Include="services\AutofillBase\AutofillServiceBase.cs" />
     <Compile Include="services\AutofillBase\ChooseForAutofillActivityBase.cs" />
     <Compile Include="services\AutofillBase\CommonUtil.cs" />
+    <Compile Include="services\AutofillBase\DomainParser.cs" />
     <Compile Include="services\AutofillBase\Kp2aDigitalAssetLinksDataSource.cs" />
     <Compile Include="services\AutofillBase\model\FilledAutofillField.cs" />
     <Compile Include="services\AutofillBase\model\FilledAutofillFieldCollection.cs" />
@@ -259,6 +262,7 @@
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="SelectCurrentDbActivity.cs" />
+    <Compile Include="SwitchImeActivity.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
@@ -843,10 +847,6 @@
     <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
-      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
-      <Name>AdalBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
       <Project>{48574278-4779-4B3A-A9E4-9CF1BC285D0B}</Project>
       <Name>JavaFileStorageBindings</Name>
@@ -1910,6 +1910,9 @@
     <AndroidResource Include="Resources\drawable\storagetype_button_bg_dark.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\publicsuffix.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

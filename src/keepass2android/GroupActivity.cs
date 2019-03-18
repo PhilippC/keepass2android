@@ -251,28 +251,6 @@ namespace keepass2android
 			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 			Log.Warn(Tag, "Finished creating group");
 
-		    var ioc = App.Kp2a.CurrentDb.Ioc;
-		    OptionalOut<UiStringKey> reason = new OptionalOut<UiStringKey>();
-		    
-		    if (App.Kp2a.GetFileStorage(ioc).IsReadOnly(ioc, reason))
-		    {
-				bool hasShownReadOnlyReason =
-					PreferenceManager.GetDefaultSharedPreferences(this)
-						.GetBoolean(App.Kp2a.CurrentDb.IocAsHexString() + "_readonlyreason", false);
-			    if (!hasShownReadOnlyReason)
-			    {
-				    var b = new AlertDialog.Builder(this);
-					b.SetTitle(Resource.String.FileReadOnlyTitle);
-					b.SetMessage(GetString(Resource.String.FileReadOnlyMessagePre) + " " + App.Kp2a.GetResourceString(reason.Result));
-				    b.SetPositiveButton(Android.Resource.String.Ok,
-					    (sender, args) =>
-					    {
-							PreferenceManager.GetDefaultSharedPreferences(this).
-						Edit().PutBoolean(App.Kp2a.CurrentDb.IocAsHexString() + "_readonlyreason", true).Commit();
-					    });
-				    b.Show();
-			    }
-		    }
 			
 		}
 
