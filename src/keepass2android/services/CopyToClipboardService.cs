@@ -761,7 +761,26 @@ namespace keepass2android
                     Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
                     return;
                 }
-                imeManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.None);
+                try
+                {
+                    imeManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.None);
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.LogUnexpectedError(e);
+
+                    try
+                    {
+                        imeManager.ToggleSoftInput(ShowFlags.Implicit, HideSoftInputFlags.ImplicitOnly);
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+                    }
+                    return;
+                }
+                
             }
             else
             {
@@ -785,7 +804,8 @@ namespace keepass2android
                     {
                         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
                         ActivityManager.GetMyMemoryState(appProcessInfo);
-                        mustUseHelperActivity = (appProcessInfo.Importance != Importance.Foreground);
+                        //at least on Samsung devices, we always need the helper activity
+                        mustUseHelperActivity = (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
                     }
                     if (mustUseHelperActivity)
                     {
