@@ -52,9 +52,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <LibraryProjectZip Include="..\java\android-filechooser-AS\app\build\outputs\aar\android-filechooser-release.aar">
+      <Link>Jars\android-filechooser-release.aar</Link>
+    </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <LibraryProjectZip Include="Jars\android-filechooser-debug.aar" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
