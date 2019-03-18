@@ -71,9 +71,18 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         String scheme = filename.substring(0, filename.indexOf("://"));
         filename = filename.substring(scheme.length() + 3);
-        String userPwd = filename.substring(0, filename.indexOf('@'));
-        ci.username = decode(userPwd.substring(0, userPwd.indexOf(":")));
-        ci.password = decode(userPwd.substring(userPwd.indexOf(":") + 1));
+        int idxAt = filename.indexOf('@');
+        if (idxAt >= 0)
+        {
+            String userPwd = filename.substring(0, idxAt);
+            int idxColon = userPwd.indexOf(":");
+            if (idxColon >= 0);
+            {
+                ci.username = decode(userPwd.substring(0, idxColon));
+                ci.password = decode(userPwd.substring(idxColon + 1));
+            }
+        }
+
         ci.URL = scheme + "://" +filename.substring(filename.indexOf('@') + 1);
         return ci;
     }
