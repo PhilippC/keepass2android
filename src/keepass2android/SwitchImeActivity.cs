@@ -14,7 +14,7 @@ using Android.Widget;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, TaskAffinity = "")]
+    [Activity(Label = AppNames.AppName, TaskAffinity = "", NoHistory = true)]
     public class SwitchImeActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
