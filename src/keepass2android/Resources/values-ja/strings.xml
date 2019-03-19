@@ -625,22 +625,26 @@
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
-  <string name="ChangeLog_1_07">    バージョン 1.07 pre\n
-    * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
-    * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
-    * pCloud サポートの導入 - gilbsgilbs に感謝!\n
-    * 明示的に Nextcloud サポート\n
-    * エントリ添付ファイルの保存と更新を改善\n
-    * 個人設定の動作を適応させるためのオプションを追加\n
-    * SSL: ユーザー証明書の信頼\n
-    * 自動入力の改善 (Firefox で動作します。ポップアップを抑えることができます)
-    * バグフィックス\n
-  </string>
   <string name="ChangeLog_1_06">    バージョン 1.06\n
     * Yubikey チャレンジ-レスポンス アプリとして YubiChallenge ではなく ykDroid に切り替え。\n
     * KeepassXC スタイルのチャレンジ-レスポンスのサポートを実装します。注: データベースの形式を KDBX4 にする必要があります!\n
     * Google ドライブからゴミ箱のファイルを読み込むことを拒否\n
     * FTPS の TLS 実装を切り替え。 gssapi-with-mic をサポートするサーバーの JSch バグ回避策を追加\n
+    * バグ修正\n
+  </string>
+  <string name="ChangeLog_1_05">    バージョン 1.05\n
+    * Android 8 の通知チャネルを使用。システム設定から設定できます\n
+    * 通知でエントリーアイコンを表示\n
+    * Android 8 の適応アイコンを使用。Android 7 の丸いランチャー アイコンを使用\n
+    * ロック解除で検索をアクティブにできる (設定を参照)\n
+    * ストレージ アクセス フレームワークを通じてファイルを書き込む方法を変更。システムのファイル選択から開いたファイルで Google ドライブを更新する際の問題を修正\n
+    * いくつかの一般的な誤解を避けるために一部の情報テキストを追加\n
+    * データ損失のリスクを軽減するため、正常に開いたデータベースのローカル バックアップを作成\n
+    * 最近の SSH 暗号をサポートする JSch 更新\n
+    * 接続設定が編集できる。例、WebDav パスワード変更時\n
+    * Yubikey Neo の静的パスワード モードのサポートを追加\n
+    * 自動入力の提案を無効にできる\n
+    * logcat へのデータ漏洩を修正\n 
     * バグ修正\n
   </string>
   <string name="ChangeLog_1_04b">    バージョン 1.04b\n
