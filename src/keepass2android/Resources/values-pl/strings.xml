@@ -630,17 +630,6 @@
   <string name="ErrorReportAsk">Zapytaj po wystąpieniu błędu</string>
   <string name="ErrorReportPrefTitle">Wyślij raporty o błędach</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
-  <string name="ChangeLog_1_07">Wersja 1.07-pre\n
-    * Możliwość otwierania więcej niż jednej bazy danych, kompatybilne z KeeAutoExec\n
-    * SFTP: Możliwość uwierzytelniania kluczem publicznym, sprawdzanie czy klucz hosta został zmieniony\n
-    * Wsparcie dla pCloud - podziękowania dla gilbsgilbs!\n
-    * Wsparcie dla Nextcloud\n
-    * Udoskonalenie zapisu i aktualizacji załączników we wpisach\n
-    * Więcej opcji dostosowania zachowania do osobistych preferencji\n
-    * SSL: Zaufane certyfikaty użytkownika\n
-    * Usprawnienie autouzupełniania (teraz działa w Firefox, pozwolnienie na redukcję popupów)\n
-    * Poprawki błędów\n
-  </string>
   <string name="ChangeLog_1_06">Wersja 1.06\n
     * Zmieniono aplikację do obsługi Yubikey Challenge-Response z YubiChallenge na ykDroid.\n
     * Dodano wsparcie dla Challenge-Response w formacie KeepassXC. Uwaga: Baza danych musi być w formacie KDBX4!\n
