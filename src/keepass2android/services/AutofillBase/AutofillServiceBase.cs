@@ -87,9 +87,7 @@ namespace keepass2android.services.AutofillBase
             }
             else
             {
-                var builder = new FillResponse.Builder();
-                builder.SetClientState(new Bundle());
-                callback.OnSuccess(builder.Build());
+                callback.OnSuccess(null);
             }
         }
 

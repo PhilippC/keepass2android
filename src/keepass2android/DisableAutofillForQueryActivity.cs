@@ -81,19 +81,10 @@ namespace keepass2android
                 return;
             }
 
-            AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
-
-
-            var autofillIds = autofillFields.GetAutofillIds();
-            builder.SetIgnoredIds(autofillIds);
-            Bundle state = new Bundle();
-            state.PutStringArray("AutoFillDisabledQueries", disabledValues.ToArray());
-
-            builder.SetClientState(state);
             try
             {
-                var response = builder.Build();
-                reply.PutExtra(AutofillManager.ExtraAuthenticationResult, response);
+                
+                reply.PutExtra(AutofillManager.ExtraAuthenticationResult, (FillResponse)null);
             }
             catch (Exception e)
             {
