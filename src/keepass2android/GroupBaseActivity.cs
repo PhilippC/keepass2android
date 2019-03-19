@@ -724,7 +724,7 @@ namespace keepass2android
                 RegisterInfoTextDisplay("ChildDb"); //this ensures that we don't show the general info texts too soon
 
             }
-            UpdateBottomBarElementVisibility(Resource.Id.child_db_infotext, canShow);
+            UpdateBottomBarElementVisibility(Resource.Id.child_db_infotext, canShow && !disabledForDatabase);
         }
 
         private void UpdateDbReadOnlyInfo()
@@ -909,9 +909,9 @@ namespace keepass2android
             searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
 
             searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
-            /*searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
+            searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
             searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
-            */
+            
             if (_prefs.GetBoolean("ActivateSearchView", false) && AppTask.CanActivateSearchViewOnStart)
             {
 
