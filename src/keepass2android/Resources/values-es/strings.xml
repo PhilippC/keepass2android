@@ -625,17 +625,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="ErrorReportAsk">Preguntar después del error</string>
   <string name="ErrorReportPrefTitle">Enviar informe de errores</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre\n
-    * Permitir abrir mas de una base de datos, compatible con KeeAutoExec\n
-    * SFTP: Permitir autenticación de clave pública, se comprueba si la clave del host ha cambiado\n
-    * Introducido soporte para pCloud - gracias a gilbsgilbs!\n
-    * Hacer el soporte de Nextcloud explicito\n
-    * Mojoras al salvar y actualizar adjuntos a una entrada\n
-    * Más opciones para adaptar el comportamiento a preferencias personales\n
-    * SSL: Confiar en certificados de usuario\n
-    * Mejorado el autorellenado (ahora funciona con Firefox, permite reducir los popups)\n
-    * correción de errores\n
-  </string>
   <string name="ChangeLog_1_06">    Versión 1.06\n
     * Cambio a ykDroid en lugar de YubiChallenge como aplicación para Desafio-Respuesta Yubikey.\n
     * Implementado soporte para Desafio-Respuesta estilo KeepassXC. Nota: Formato de base de datos debe ser KDBX4!\n
