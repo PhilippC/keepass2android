@@ -48,6 +48,8 @@ namespace keepass2android
         public const String KeyEntry = "entry";
         public const String KeyMode = "mode";
 
+        public const int RequestCodeActivateRealSearch = 12366;
+
         static readonly Dictionary<int /*resource id*/, int /*prio*/> bottomBarElementsPriority = new Dictionary<int, int>()
         {
             { Resource.Id.cancel_insert_element, 20 },
@@ -171,6 +173,13 @@ namespace keepass2android
 
             }
 
+            if (RequestCodeActivateRealSearch == requestCode)
+            {
+                hasCalledOtherActivity = true;
+                SetSearchItemVisibility();
+                ActivateSearchView();
+            }
+
             if ((GroupEditActivity.RequestCodeGroupEdit == requestCode) && (resultCode == Result.Ok))
             {
                 String groupName = data.Extras.GetString(GroupEditActivity.KeyName);
@@ -240,6 +249,9 @@ namespace keepass2android
             }
         }
 
+        private bool hasCalledOtherActivity = false;
+        private IMenuItem searchItem;
+        private IMenuItem searchItemDummy;
 
         protected override void OnResume()
         {
@@ -257,7 +269,7 @@ namespace keepass2android
 
             RefreshIfDirty();
 
-            
+            SetSearchItemVisibility();
         }
 
         private void UpdateInfotexts()
@@ -359,6 +371,12 @@ namespace keepass2android
             }
         }
 
+        protected override void OnStop()
+        {
+            base.OnStop();
+            hasCalledOtherActivity = false;
+        }
+
         private void UpdateAndroid8NotificationInfo(bool hideForever = false)
         {
             const string prefsKey = "DidShowAndroid8NotificationInfo";
@@ -426,6 +444,7 @@ namespace keepass2android
 
 
             SetContentView(ContentResourceId);
+            
 
             if (FindViewById(Resource.Id.enable_autofill) != null)
             {
@@ -502,7 +521,7 @@ namespace keepass2android
                 FindViewById(Resource.Id.info_dont_show_child_db_again).Click += (sender, args) =>
                 {
                     _prefs.Edit().PutBoolean(childdb_ignore_prefskey + App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, true).Commit();
-                    UpdateAutofillInfo();
+                    UpdateChildDbInfo();
                 };
             }
 
@@ -870,23 +889,34 @@ namespace keepass2android
             MenuInflater inflater = MenuInflater;
             inflater.Inflate(Resource.Menu.group, menu);
             var searchManager = (SearchManager)GetSystemService(Context.SearchService);
-            IMenuItem searchItem = menu.FindItem(Resource.Id.menu_search);
+
+            /*This is the start of a pretty hacky workaround to avoid a crash on Samsung devices with Android 9.
+             * The crash stacktrace is pretty unspecific (see https://stackoverflow.com/questions/54530604/app-crash-but-no-app-specific-code-in-stack-trace)
+             * It points to InputMethodService.java which seems to be modified by Samsung. Hard to tell what's going on.
+             * The problem only occurs, if our own keyboard is activated.
+             * Users found that the crash does not appear if another activity was launched and closed before activating search view.
+             * That's what we do as a workaround: We display another search menu option in case a crash would occur. When that search option is clicked,
+             * we launch an activity which immediately finished. In the activity result, we can activate the search view safely.
+             * If anybody reading this has a better idea, please let me know :-)
+             */
+            searchItem = menu.FindItem(Resource.Id.menu_search);
+            searchItemDummy = menu.FindItem(Resource.Id.menu_search_dummy);
+            SetSearchItemVisibility();
+
+
             var view = searchItem.ActionView;
 
             searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
 
             searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
-            searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
+            /*searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
             searchView.SetOnQueryTextListener(new OnQueryTextListener(this));
-
+            */
             if (_prefs.GetBoolean("ActivateSearchView", false) && AppTask.CanActivateSearchViewOnStart)
             {
+
                 //need to use PostDelayed, otherwise the menu_lock item completely disappears
-                searchView.PostDelayed(() =>
-                {
-                    searchView.Iconified = false;
-                    AppTask.CanActivateSearchViewOnStart = false;
-                }, 500);
+                searchView.PostDelayed(ActivateSearchView, 500);
             }
 
             ActionBar.LayoutParams lparams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MatchParent,
@@ -905,6 +935,44 @@ namespace keepass2android
 
             return base.OnCreateOptionsMenu(menu);
 
+        }
+
+        private void SetSearchItemVisibility()
+        {
+            if ((searchItem == null) || (searchItemDummy == null))
+                return;
+            if (Build.Manufacturer.ToLowerInvariant() == "samsung" && ((int) Build.VERSION.SdkInt >= 28) && (IsKp2aKeyboardActive()) && !hasCalledOtherActivity)
+            {
+                searchItem.SetVisible(false);
+                searchItemDummy.SetVisible(true);
+            }
+            else
+            {
+                searchItem.SetVisible(true);
+                searchItemDummy.SetVisible(false);
+            }
+        }
+
+        private string Kp2aInputMethodName
+        {
+            get { return PackageName + "/keepass2android.softkeyboard.KP2AKeyboard"; }
+        }
+        private bool IsKp2aKeyboardActive()
+        {
+            string currentIme = Android.Provider.Settings.Secure.GetString(
+                ContentResolver,
+                Android.Provider.Settings.Secure.DefaultInputMethod);
+            
+            return Kp2aInputMethodName == currentIme;
+
+        }
+
+        private void ActivateSearchView()
+        {
+            
+                searchView.Iconified = false;
+                AppTask.CanActivateSearchViewOnStart = false;
+            
         }
 
         private void UpdateOfflineModeMenu()
@@ -966,7 +1034,13 @@ namespace keepass2android
                 case Resource.Id.menu_lock:
                     App.Kp2a.Lock();
                     return true;
+                case Resource.Id.menu_search_dummy:
+                    StartActivityForResult(typeof(CloseImmediatelyActivity), RequestCodeActivateRealSearch);
+                    OverridePendingTransition(0, 0);
+                    hasCalledOtherActivity = true;
+                    //TODO transition?
 
+                    return true;
                 case Resource.Id.menu_search:
                 case Resource.Id.menu_search_advanced:
                     OnSearchRequested();
