@@ -52,7 +52,8 @@ namespace keepass2android
 
 		public void UpdateMessage (String message)
 		{
-			_message = message;
+		    Kp2aLog.Log("status message: " + message);
+            _message = message;
 			if ( _app!= null && _progressDialog != null && _handler != null ) {
 				_handler.Post(() => {_progressDialog.SetMessage(message); } );
 			}
@@ -60,6 +61,7 @@ namespace keepass2android
 
 		public void UpdateSubMessage(String submessage)
 		{
+		    Kp2aLog.Log("status submessage: " + submessage);
 		    _submessage = submessage;
 			if (_app != null && _progressDialog != null && _handler != null)
 			{
