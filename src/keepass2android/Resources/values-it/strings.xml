@@ -625,17 +625,6 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
-  <string name="ChangeLog_1_07">Versione 1.07-pre\n
-     * Permette di aprire più database, compatibile con KeeAutoExec\n
-     * SFTP: Consentire l\'autenticazione della chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
-     * Introduce il supporto pCloud - grazie a gilbsgilbs!\n
-     * Rende esplicito il supporto per Nextcloud\n
-     * Migliora il salvataggio e l\'aggiornamento degli allegati alle voci\n
-     * Altre opzioni per adattare il comportamento alle preferenze personali\n
-     * SSL: Certificati utente di fiducia\n
-     * Migliorato autocompletamento (adesso funziona con Firefox, permette di ridurre i popup)\n
-     * correzioni di bug\n
-  </string>
   <string name="ChangeLog_1_06">Versione 1.06\n
 * passato a ykDroid al posto di YubiChallenge come app per Yubikey Challenge-Response.\n
 * implementato il supporto per il Challenge-Response di KeepassXC. Nota: Il formato del database deve essere KDBX4!\n
