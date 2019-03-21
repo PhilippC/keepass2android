@@ -23,6 +23,7 @@ using keepass2android.Utils;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
+using Console = System.Console;
 using Object = Java.Lang.Object;
 
 namespace keepass2android
@@ -317,7 +318,16 @@ namespace keepass2android
                 
                 foreach (var db in App.Kp2a.OpenDatabases)
                 {
-                    if (OpenAutoExecEntries(db)) return;
+                    try
+                    {
+                        if (OpenAutoExecEntries(db)) return;
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.MakeText(this, "Failed to open child databases",ToastLength.Long).Show();
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
+                    
                 }
 
                 //database(s) unlocked
@@ -341,26 +351,34 @@ namespace keepass2android
 
         private bool OpenAutoExecEntries(Database db)
         {
-            string thisDevice = KeeAutoExecExt.ThisDeviceId;
-            foreach (var autoOpenItem in KeeAutoExecExt.GetAutoExecItems(db.KpDatabase))
+            try
             {
-                if (!autoOpenItem.Enabled)
-                    continue;
-                if (!KeeAutoExecExt.IsDeviceEnabled(autoOpenItem, thisDevice, out _))
-                    continue;
-                IOConnectionInfo dbIoc;
-                if (KeeAutoExecExt.TryGetDatabaseIoc(autoOpenItem, out dbIoc) &&
-                    App.Kp2a.TryGetDatabase(dbIoc) == null &&
-                    App.Kp2a.AttemptedToOpenBefore(dbIoc) == false
-                    )
+                string thisDevice = KeeAutoExecExt.ThisDeviceId;
+                foreach (var autoOpenItem in KeeAutoExecExt.GetAutoExecItems(db.KpDatabase))
                 {
-                    if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false))
+                    if (!autoOpenItem.Enabled)
+                        continue;
+                    if (!KeeAutoExecExt.IsDeviceEnabled(autoOpenItem, thisDevice, out _))
+                        continue;
+                    IOConnectionInfo dbIoc;
+                    if (KeeAutoExecExt.TryGetDatabaseIoc(autoOpenItem, out dbIoc) &&
+                        App.Kp2a.TryGetDatabase(dbIoc) == null &&
+                        App.Kp2a.AttemptedToOpenBefore(dbIoc) == false
+                    )
                     {
-                        LaunchingOther = true;
-                        return true;
+                        if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false))
+                        {
+                            LaunchingOther = true;
+                            return true;
+                        }
                     }
                 }
             }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+            
             return false;
         }
 
