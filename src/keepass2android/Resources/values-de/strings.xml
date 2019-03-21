@@ -628,16 +628,6 @@ Du kannst sie auch in den Einstellungen komplett deaktivieren.</string>
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
   <string name="ErrorReportPrefTitle">Fehlerbericht senden</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
-  <string name="ChangeLog_1_07">Version 1.07-pre2\n
-* Zulassen, dass mehrere Datenbanken geöffnet werden können. Kompatibel mit KeeAutoExec\n
-* SFTP: Erlaubt Authentifizierung durch das Public-Key Verfahren. Überprüft, ob sich der Hostschlüssel geändert hat\n
-* Einführung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
-* Nextcloud-Unterstützung deutlicher gemacht\n
-* Verbessertes Speichern und Aktualisieren von Eintragsanhängen\n
-* Zusätzliche Optionen, um Verhalten nach persönlichen Vorlieben zu verändern\n
-* SSL: Vertraue Benutzerzertifikaten\n
-* Verbesserung der AutoFill-Funktion (Funktioniert nun mit Firefox, was zu einer geringeren Anzahl an Popups führt)\n
-* Fehlerbehebungen\n  </string>
   <string name="ChangeLog_1_06">Version 1.06\n     
 * Wechsel zu ykDroid statt YubiChallenge als App für Yubikey Challenge-Response.\n     
 * Unterstützung für KeepassXC-style Challenge-Response implementiert. Hinweis: Datenbankformat muss KDBX4 sein!\n     
