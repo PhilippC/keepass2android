@@ -711,8 +711,8 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 * sprječavanje uzimanja slike zaslona kod zaslona brzog otključavanja i zaslona lozinki\n
 * promijenjen redoslijed sortiranja za Datum promjene (sada silazni)\n
 * ispravci grešaka: Pregled bilješki sada ažuriran ispravno nakon izmjena, pogled Lozinki sada kriju lozinku ispravno (nadamo se) na svim uređajima, ispravljena greška koja je omogućavala dodavanje unosa dvaput, ispravljen problem s prikazivanjem upozorenja duplikata UUID čak i nakon popravljanja baze podataka\n</string>
-  <string name="ChangeLog_0_9_5"><b> Verzija 0.9.5 </ b> \ n
-<b>Verzija 0.9.5</b>\n
+  <string name="ChangeLog_0_9_5">&lt;b&gt; Verzija 0.9.5 &lt;/ b&gt; \ n
+&lt;b&gt;Verzija 0.9.5&lt;/b&gt;\n
 * Otklonjeni problemi s pregledavanjem datoteka (osobito na Androidu 4.4)\n
 * Otklonjeni problemi s učitavanjem .kdb datoteka (Keepass 1) na Nexusu 5 s Android Lollipopom\n
 * Dodana opcija za sprječavanje snimanja zaslona/prikazivanja aplikacije na popisu najnovijih aplikacija\n
