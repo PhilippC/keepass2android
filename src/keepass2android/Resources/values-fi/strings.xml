@@ -23,9 +23,12 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="show_kill_app">Sulje-painike</string>
+  <string name="application">Sovellutus</string>
+  <string name="application_settings">Sovellusasetukset</string>
   <string name="ShowGroupnameInSearchResult_title">Näytä ryhmien nimet hakutuloksissa</string>
   <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
   <string name="NavigationToGroupCompleted_message">Nyt näytettävä ryhmä on: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Poista automaattinen täyttö %1$s: ltä</string>
   <string name="ShowGroupInEntry_title">Näytä ryhmän nimi merkinnässä</string>
   <string name="unknown_uri_scheme">Keepass2Android ei voi käsitellä saatua URI-osoitetta %1$s. Ota yhteyttä kehittäjään!</string>
   <string name="Entry_singular">Yksi merkintä</string>
@@ -326,6 +329,7 @@
   <string name="NoDonationReminder_title">Älä koskaan pyydä lahjoitusta</string>
   <string name="NoDonationReminder_summary">En aio antaa teille penniäkään, tai olen jo lahjoittanut. Älä pyydä lahjoituksia koskaan, ei edes tekijän syntymäpäivänä.</string>
   <string name="UseOfflineCache_title">Tietokannan säilöminen välimuistiin</string>
+  <string name="UseOfflineCache_summary">Pidä kopio tietokannan tiedostoista sovelluksen välimuistissa. Näin voit käyttää tietokantoja silloinkin kun tiedostoon ei pääse.</string>
   <string name="CreateBackups_title">Paikalliset varmuuskopiot</string>
   <string name="CreateBackups_summary">Luo paikallinen varmuuskopio sen jälkeen, kun tietokanta on onnistuneesti ladattu.</string>
   <string name="UpdatingBackup">Päivitetään paikallinen varmuuskopio...</string>
@@ -426,6 +430,7 @@
   <string name="otp_aux_file">OTP-aputiedosto</string>
   <string name="ErrorOcurred">Tapahtui virhe:</string>
   <string name="DuplicateUuidsError">Tietokanta on korruptoitunut: siitä löytyi kahdentuneita tunnisteita. (Tallensitko Minikeepass: lla?) Ole hyvä ja tuo tiedot uuteen tietokantaan KeePass 2: n PC-versiolla ja valitse \'Luo uudet ID-numerot\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Voit poistaa tämän virheilmoitukset valitsemalla Asetukset/Sovellus/Tiedostokäsittely ja \"Tarkista UUID kaksoiskappaleet\". Huomioi, että tämä voi aiheuttaa ongelmia. Tietokannan korjaaminen on suositeltavaa.</string>
   <string name="synchronize_database_menu">Synkronoi tietokanta...</string>
   <string name="CannotMoveGroupHere">Ryhmää ei voi siirtää tähän ryhmään.</string>
   <string name="donate_question">Tänään on Oktoberfest! Jos pidät Keepass2Androidista: eikö tänään olisi hyvä päivä ostaa minulle olut?</string>
@@ -534,6 +539,7 @@
   <string name="FileIsReadOnlyOnKitkat">Valitsemaasi tiedostoon on Keepass2Androidilla vain lukuoikeudet johtuen Android 4.4+ rajoituksista.</string>
   <string name="CopyFileRequired">Käyttääksesi sitä sinun täytyy kopioida se toiseen paikkaan.</string>
   <string name="CopyFileRequiredForEditing">Muokataksesi sitä sinun täytyy kopioida tiedosto toiseen paikkaan.</string>
+  <string name="ClickOkToSelectLocation">Klikkaa OK valitaksesi sijainnin, johon tiedosto kopioidaan.</string>
   <string name="FileReadOnlyTitle">Tietokanta on \"vain luku\" -tilassa</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android on avannut nykyisen tietokannan \"vain luku\" -tilassa.</string>
   <string name="ReadOnlyReason_PreKitKat">Näyttää siltä, että avasit tiedoston ulkoista sovellusta käyttäen. Tällä tavoin avaaminen ei tue kirjoitusta. Jos haluat tehdä muutoksia tietokantaan, sulje se ja valitse Vaihda tietokanta. Avaa tämän jälkeen tiedosto käyttämällä jotain esitetyistä vaihtoehdoista mikäli mahdollista.</string>
