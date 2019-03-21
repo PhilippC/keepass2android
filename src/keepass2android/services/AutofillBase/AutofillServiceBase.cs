@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
@@ -80,8 +81,9 @@ namespace keepass2android.services.AutofillBase
 
                 AddQueryDataset(query, isManual, autofillIds, responseBuilder, !hasEntryDataset);
                 AddDisableDataset(query, autofillIds, responseBuilder, isManual);
-                responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
-                    parser.AutofillFields.GetAutofillIds()).Build());
+                if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
+                    responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
+                        parser.AutofillFields.GetAutofillIds()).Build());
 
                 callback.OnSuccess(responseBuilder.Build());
             }
@@ -120,7 +122,35 @@ namespace keepass2android.services.AutofillBase
 
             responseBuilder.AddDataset(datasetBuilder.Build());
         }
-
+        public static string GetDisplayNameForQuery(string str, Context Context)
+        {
+            string displayName = str;
+            try
+            {
+                string appPrefix = "androidapp://";
+                if (str.StartsWith(appPrefix))
+                {
+                    str = str.Substring(appPrefix.Length);
+                    PackageManager pm = Context.PackageManager;
+                    ApplicationInfo ai;
+                    try
+                    {
+                        ai = pm.GetApplicationInfo(str, 0);
+                    }
+                    catch (PackageManager.NameNotFoundException e)
+                    {
+                        ai = null;
+                    }
+                    displayName = ai != null ? pm.GetApplicationLabel(ai) : str;
+                }
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+           
+            return displayName;
+        }
 
         private void AddDisableDataset(string query, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool isManual)
         {
@@ -131,7 +161,7 @@ namespace keepass2android.services.AutofillBase
             var sender = IntentBuilder.GetDisableIntentSenderForResponse(this, query, isManual, isForDisable);
             
             RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
-                GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { query}), Resource.Drawable.ic_menu_close_grey);
+                GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this)}), Resource.Drawable.ic_menu_close_grey);
 
             var datasetBuilder = new Dataset.Builder(presentation);
             datasetBuilder.SetAuthentication(sender);
