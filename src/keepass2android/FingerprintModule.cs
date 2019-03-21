@@ -216,7 +216,7 @@ namespace keepass2android
 			    {
 			        _cancellationSignal.Cancel();
 			    }
-			    catch (System.ObjectDisposedException e)
+			    catch (System.Exception e)
 			    {
 			        Kp2aLog.LogUnexpectedError(e);
 			    }
