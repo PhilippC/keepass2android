@@ -609,11 +609,22 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="EntryChannel_desc">Ilmoitus, jolla pääsee helpommin käsiksi valittuna olevaan merkintään.</string>
   <string name="ErrorReportTitle">Keepass2Android: Tapahtui virhe.</string>
   <string name="ErrorReportText">Odottamaton virhe tapahtui Keepass2Android-sovelluksessa. Auta meitä korjaamaan tämä ongelma antamalla sovelluksen lähettää virheraportteja.</string>
+  <string name="ErrorReportPromise">Virheraportit eivät koskaan sisällä mitään tietoja tietokannastasi tai pääsalasanastasi. Voit poistaa raportit käytöstä sovelluksen asetuksista.</string>
   <string name="ErrorReportEnable">Ota käyttöön</string>
   <string name="ErrorReportDisable">Poista käytöstä</string>
   <string name="ErrorReportAsk">Kysy virheen jälkeen</string>
   <string name="ErrorReportPrefTitle">Lähetä virheraportit</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkilukijan ollessa käytössä.</string>
+  <string name="ChangeLog_1_07">    Versio 1.07-pre2\n
+    * Useiden tietokantojen avaaminen, yhteensopiva KeeAutoExec:n kanssa\n
+    * SFTP: Julkisen avaimen todennus, isäntä avaimen muutoksen tarkistus\n
+    * pCloud tuki - Kiitos gilbsgilbs!\n
+    * Nextcloud tuen virallistaminen\n
+    * Merkintöjen liitetiedostojen tallentamisen ja päivittämisen parannuksia\n
+    * Enemmän vaihtoehtoja mukauttaa käyttäytymistä\n
+    * SSL: Luotto käyttäjäsertifikaatteihin\n
+    * bugi korjauksia\n
+  </string>
   <string name="ChangeLog_1_06">    Versio 1.06\n
     * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
     * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
@@ -784,6 +795,13 @@ Oletko kehittäjä? Lisätkää tämä sovellukseenne jos soveltuvat! \n
 * Salli tietueiden ja ryhmien siirtäminen\n 
 * QuickUnlock kuvake voidaan tehdä läpinäkyväksi (Katso asetukset) \n 
 * Bugi korjauksia</string>
+  <string name="ChangeLog_0_8_5"><b>Versio 0.8.5</b> \n 
+* Etätiedostoja tallennetaan paikallisen sovelluksen välimuistiin offline-käyttön onnistumiseksi (mukaan lukien editointi ja myöhempi synkronointi). Katso asetukset. \n 
+* Ilmoituskuvake havainnollistaa tietokannan lukitustilaa (Katso asetukset) \n 
+* Parantaa lock-tilasta poistumista joissakin tilanteissa\n 
+* Tietokannan tiedostot ladataan muistiin, kun kirjoitat salasanaasi lisätäksemme lastausnopeutta (Katso asetukset) \n 
+* Tietueita voi lisätä ryhmän juureen\n 
+* Bugi korjauksia (ratkaistaan näppäimistön ongelmat Italian ja Kiinan laitteissa)</string>
   <string name="ChangeLog_0_8_4"><b>Versio 0.8.4</b> \n 
 * Ulkoisen tietokannan muutokset havaitaan ja yhdistetään kun tallennetaan\n 
 * Parantaa latausnopeutta\n 
@@ -894,6 +912,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="show_autofill_help">Automaattisen täytön apu</string>
   <string name="autofill_sign_in_prompt">Täytä Keepass2Androidilla</string>
   <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
+  <string name="autofill_enable_for">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android on havainnut sormenjälkitunnistuksen. Haluatko ottaa käyttöön sormenjälkitunnistuksen tämän tietokannan kanssa?</string>
   <string name="understand">Minä ymmärrän</string>
