@@ -148,13 +148,13 @@
   <string name="hint_title">名称</string>
   <string name="hint_url">链接地址</string>
   <string name="hint_override_url">覆盖链接地址</string>
-  <string name="hint_tags">标签1,标签2 </string>
+  <string name="hint_tags">标签1, 标签2</string>
   <string name="hint_username">用户名</string>
   <string name="InvalidPassword">密码或密钥文件无效。</string>
   <string name="invalid_algorithm">无效的算法</string>
   <string name="invalid_db_sig">数据库格式无法识别。</string>
   <string name="keyfile_does_not_exist">密钥文件不存在。</string>
-  <string name="no_keyfile_selected">没有选定的密钥文件。</string>
+  <string name="no_keyfile_selected">未选择密钥文件。</string>
   <string name="keyfile_is_empty">密钥文件是空的。</string>
   <string name="length">长度</string>
   <string name="list_size_title">群组列表大小</string>
@@ -376,12 +376,12 @@
   <string name="AskOverwriteBinary_no">重命名</string>
   <string name="AttachFailed">未能添加附件。</string>
   <string name="RecycleBin">回收站</string>
-  <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消。</string>
+  <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？选否放入回收站。</string>
   <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否将其放入回收站。</string>
-  <string name="AskDeletePermanentlyItems">你想要永久删除选定的元素？选否回到垃圾箱。</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">你想完全的删除这个登陆记录吗?</string>
-  <string name="AskDeletePermanentlyGroupNoRecycle">你想永久的删除这个组吗?</string>
-  <string name="AskDeletePermanentlyItemsNoRecycle">你想永久的删除已选择的元素吗?</string>
+  <string name="AskDeletePermanentlyItems">是否永久删除选定的元素？选否放入回收站。</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">是否永久删除此条目？</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">是否永久删除此群组？</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">是否永久删除所选元素？</string>
   <string name="AskDeletePermanently_title">确定永久删除？</string>
   <string name="AskReloadFile_title">重新载入文件？</string>
   <string name="AskReloadFile">当前所打开的文件已被别的程序所更改，是否要重新载入？</string>
@@ -627,17 +627,6 @@
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
-  <string name="ChangeLog_1_07">    版本 1.07-pre\n
-    * 允许同时打开多个数据库，与 KeeAutoExec 兼容\n
-    * SFTP：允许公钥登录、检查服务器公钥是否发生变化\n
-    * 增加 pCloud 支持 - 感谢 gilbsgilbs！\n
-    * 使 Nextcloud 支持公开化\n
-    * 优化条目附件的保存和更新功能\n
-    * 加入更多个人偏好设置\n
-    * SSL：信任用户证书\n
-    * 优化自动填充 (现可在Firefox上使用，减少弹窗)\n
-    * 错误修复\n
-  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
