@@ -32,6 +32,10 @@
   <string name="ShowGroupnameInSearchResult_title">Afficher le nom du groupe dans le résultat de la recherche</string>
   <string name="ShowGroupnameInSearchResult_resume">Afficher le nom du groupe sous les identifiants dans les résultats de recherches. Utile si plusieurs entrées possèdent le même nom.</string>
   <string name="NavigationToGroupCompleted_message">Le groupe affiché est maintenant : \"%1$s\"</string>
+  <string name="AutofillDisabledQueriesPreference_title">Désactiver les cibles de remplissage automatique</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Affiche une liste d\'applications et de sites web pour lesquels l\'auto-remplissage a été désactivé</string>
+  <string name="OfferSaveCredentials_summary">Si activé, Android vous demandera si vous voulez enregistrer des identifiants après que vous ayez entré manuellement des données dans des champs auto-remplissables.</string>
+  <string name="OfferSaveCredentials_title">Offre la sauvegarde des identifiants</string>
   <string name="ShowGroupInEntry_title">Afficher le nom du groupe dans la vue des entrées</string>
   <string name="unknown_uri_scheme">Désolé ! Keepass2Android ne peut pas gérer l\'URI %1$s retourné. S\'il vous plaît contactez le développeur !</string>
   <string name="Entry_singular">Une seule entrée</string>
