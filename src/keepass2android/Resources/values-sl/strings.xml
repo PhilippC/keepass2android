@@ -22,6 +22,8 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="show_kill_app">Gumb Zapri</string>
+  <string name="application">Aplikacija</string>
+  <string name="application_settings">Nastavitve aplikacije</string>
   <string name="ShowGroupnameInSearchResult_title">Prik. ime sk. v rez. isk.</string>
   <string name="ShowGroupnameInSearchResult_resume">Prikaži ime skupine pod nazivi vnosov v rezultatih iskanja. Uporabno, če ima več vnosov enako ime.</string>
   <string name="NavigationToGroupCompleted_message">Skupina za prikaz je sedaj: %1$s</string>
@@ -51,6 +53,7 @@
   <string name="unlock_database_title">Odkleni podatkovno zbirko</string>
   <string name="brackets">Oklepaji</string>
   <string name="cancel">Prekliči</string>
+  <string name="Ok">V redu</string>
   <string name="ClearClipboard">Odložišče počiščeno.</string>
   <string name="clipboard_timeout">Časovna omejitev odložišča</string>
   <string name="clipboard_timeout_summary">Čas pred čiščenjem odložišča po kopiranju uporabniškega imena ali gesla</string>
