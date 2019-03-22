@@ -7,6 +7,7 @@
   <string name="AboutText">Keepass2Android je upravitelj gesel, ki omogoča branje/pisanje podatkovnih zbirk KeePass 2.x na Androidu.</string>
   <string name="CreditsText">Uporabniški vmesnik temelji na predelavi KeepassDroida, ki ga je razvil Brian Pellin. Koda za opravila podatkovnih zbirk temelji na KeePassu od Dominika Reickla. Robot Android je kopirano ali prirejeno delo izdelka, ki ga ustvarja in deli Google in je uporabljeno v skladu s pogoji opisanimi v licenci za priznanje avtorstva Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">Podpora SFTP je izvedena z uporabo knjižnice JSch pod licenco BSD, ki jo je ustvaril JCraft, Inc.</string>
+  <string name="CreditsIcons">Ikono kladiva je oblikoval John Caserta, ikono pengvina Adriano Emerick, ikono peresa Jon Testa in ikono jabolka Ava Rowell, vsi iz projekta Noun. Ikona slike se nahaja na https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Sprejmi</string>
   <string name="deny">Zavrni</string>
   <string name="add_entry">Dodaj vnos</string>
@@ -264,6 +265,7 @@
   <string name="enter_filename_details_create_import">Datoteka za uvoz bo zbrana v naslednjem koraku.</string>
   <string name="enable_quickunlock">Omogoči Hitro odklepanje</string>
   <string name="QuickUnlock_label">Vnesite zadnje %1$d znake svojega gesla.</string>
+  <string name="QuickUnlock_label_secure">Vnesite kodo Hitrega odklepanja:</string>
   <string name="QuickUnlock_button">Hitro odklepanje!</string>
   <string name="QuickUnlock_lockButton">Zapri podatkovno zbirko</string>
   <string name="QuickUnlockDefaultEnabled_title">Privz. omogoči Hitro odk.</string>
@@ -276,11 +278,13 @@
   <string name="QuickUnlockIconHidden16_summary">Hitro odklepanje za pravilno delovanje zahteva obvestilo. Izberite to možnost, da prikažete obvestila brez ikone.</string>
   <string name="QuickUnlockLength_title">Dolžina ključa Hitrega odk.</string>
   <string name="QuickUnlockLength_summary">Največje število znakov, ki naj se uporabi v geslu Hitrega odklepanja.</string>
+  <string name="QuickUnlockHideLength_title">Skrij dolžino kode Hitrega odklepanja</string>
   <string name="QuickUnlock_fail">Hitro odklepanje je spodletelo: nepravilno geslo!</string>
   <string name="BinaryDirectory_title">Mapa datotečnih priponk</string>
   <string name="BinaryDirectory_summary">Mapa, kamor se shranjujejo datotečne priponke.</string>
   <string name="SaveAttachmentDialog_title">Shrani priponko</string>
   <string name="SaveAttachmentDialog_text">Izberite, kam naj se shranjujejo priponke.</string>
+  <string name="SaveAttachmentDialog_save">Izvozi v datoteko ...</string>
   <string name="SaveAttachmentDialog_open">Shrani v predpomnilnik in odpri</string>
   <string name="SaveAttachment_doneMessage">Datoteka shranjena v %1$s.</string>
   <string name="SaveAttachment_Failed">Datoteke ni bilo mogoče shraniti v %1$s.</string>
@@ -312,6 +316,10 @@
   <string name="NoDonationReminder_title">Nikoli ne vprašaj za darovanje</string>
   <string name="NoDonationReminder_summary">Ne dam vam prebite pare ali pa sem že daroval. Ne sprašuj za darovanje, niti ne na avtorjev rojstni dan.</string>
   <string name="UseOfflineCache_title">Predpom. pod. zbirke</string>
+  <string name="CreateBackups_title">Lokalne varnostne kopije</string>
+  <string name="UpdatingBackup">Posodabljanje lokalne varnostne kopije...</string>
+  <string name="LocalBackupOf">Lokalna varnostna kopija %1$s</string>
+  <string name="show_local_backups">Prikaži lokalne varnostne kopije</string>
   <string name="AcceptAllServerCertificates_title">Potrdila SSL</string>
   <string name="AcceptAllServerCertificates_summary">Določite vedenje, ko preverjanje veljavnosti potrdila spodleti. Opomba: na svojo napravo lahko namestite potrdila, če preverjanje veljavnosti spodleti!</string>
   <string name="ClearOfflineCache_title">Počisti predpomnilnik?</string>
@@ -323,8 +331,13 @@
   <string name="ShowCopyToClipboardNotification_summary">Naredi uporabniško ime in geslo dostopno preko vrstice za obvestila in odložišča. Pazite se vohljačev gesel!</string>
   <string name="ShowSeparateNotifications_title">Loči obvestila</string>
   <string name="ShowSeparateNotifications_summary">Prikaži ločena obvestila za kopiranje uporabniškega imena in gesla na odložišče in omogočanje tipkovnice.</string>
+  <string name="AutoFill_prefs">Storitev samodejnega izpolnjevanja</string>
+  <string name="ShowKp2aKeyboardNotification_title">Obvestilo tipkovnice KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Naredi poln vnos dostopen preko tipkovnice KP2A (priporočljivo).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Preklopi tipkovnico</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Odpri pogovorno okno za izbiro tipkovnice, ko je vnos na voljo preko tipkovnice KP2A po iskanju iz brskalnika.</string>
+  <string name="kp2a_switch_rooted">Samodejno preklopi tipkovnico</string>
+  <string name="get_keyboardswap">Namestite KeyboardSwap vtičnik</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Samodejno preklopi samo po iskanju</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Samodejno preklopi samo na tipkovnico KP2A po uporabi zmožnosti Deli URL (vendar ne ob odpiranju vnosa na drug način)</string>
   <string name="AutoSwitchBackKeyboard_title">Preklapljanje tipk. nazaj</string>
@@ -372,10 +385,13 @@
   <string name="YesSynchronize">Da, združi</string>
   <string name="NoOverwrite">Ne, prepiši</string>
   <string name="SynchronizingCachedDatabase">Usklajevanje predpomnjene podatkovne zbirke …</string>
+  <string name="DownloadingRemoteFile">Nalaganje izvorne datoteke …</string>
   <string name="UploadingFile">Shrani datoteko …</string>
+  <string name="RestoringRemoteFile">Obnavljanje izvorne datoteke …</string>
   <string name="FilesInSync">Datoteke so usklajene.</string>
   <string name="SynchronizedDatabaseSuccessfully">Podatkovna zbirka uspešno usklajena!</string>
   <string name="CheckingDatabaseForChanges">Preverjanje podatkovne zbirke za spremembe …</string>
+  <string name="UpdatedRemoteFileOnLoad">Posodobljena izvorna datoteka.</string>
   <string name="RemoteDatabaseUnchanged">Ni zaznanih sprememb.</string>
   <string name="SynchronizingOtpAuxFile">Usklajevanje pomožne datoteke OTP …</string>
   <string name="database_file">datoteka podatkovne zbirke</string>
@@ -443,6 +459,7 @@
   <string name="OtpKeyError">Ustvarjanje ključa OTP je spodletelo! Prepričajte se, da ste vnesli pravilne OTP-je.</string>
   <string name="ErrorUpdatingOtpAuxFile">Napaka pri posodabljanju pomožne datoteke OTP!</string>
   <string name="SavingOtpAuxFile">Shranjevanje pomožne datoteke OTP …</string>
+  <string name="AppOutdated">%1$s ni več podprt.</string>
   <string name="bad_resp">Odgovor izziva je nepravilen.</string>
   <string name="CouldntLoadChalAuxFile">Nalaganje pomožne datoteke izziva ni bilo mogoče!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Uporabite vtičnik KeeChallenge v KeePassu 2.x (PC), da nastavite svojo podatkovno zbirko za uporabo z odgovorom izziva!</string>
@@ -452,6 +469,7 @@
   <string name="TrayTotp_SettingsField_title">Ime polja nastavitev TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Tu vnesite ime polja nastavitev za TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_title">Uporabi datoteko dnevnika</string>
   <string name="loading">Nalaganje …</string>
   <string name="plugins">Vtičniki</string>
   <string name="plugin_packagename">Ime paketa:</string>
@@ -539,9 +557,13 @@
   <string name="Visible_title">Vidno</string>
   <string name="child_db_Enabled_title">Samodejno odpri</string>
   <string name="database_file_heading">Datoteka podatkovne zbirke</string>
+  <string name="if_device_text">Omogoči za %1$s</string>
   <string name="DbUnlockedChannel_name">Baza odklenjena</string>
+  <string name="DbUnlockedChannel_desc">Obvestilo o odklenjeni bazi podatkov</string>
   <string name="DbQuicklockedChannel_name">Hitro odklepanje</string>
+  <string name="DbQuicklockedChannel_desc">Obvestilo o zaklenjeni bazi podatkov s funkcijo Hitrega odklepanja</string>
   <string name="EntryChannel_name">Vstopna obvestila</string>
+  <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="ErrorReportTitle">Keepass2Android: pojavila se je napaka.</string>
   <string name="ErrorReportText">Med izvajanjem Keepass2Androida se je pojavila nepričakovana napaka. Pomagajte nam to popraviti z omogočanjem pošiljanja poročil o napakah.</string>
   <string name="ErrorReportEnable">Omogoči</string>
@@ -774,4 +796,9 @@ Začetna javna izdaja
     <item>Opozori, ko preverjanje veljavnosti spodleti</item>
     <item>Ne sprejmi neveljavnih potrdil</item>
   </string-array>
+  <string name="autofill_disable">Onemogoči samodejno izpolnjevanje za %1$s</string>
+  <string name="autofill_enable_for">Omogoči samodejno izpolnjevanje za %1$s</string>
+  <string name="understand">Razumem</string>
+  <string name="dont_show_again">Ne prikaži več</string>
+  <string name="backup_infotext_head">Je vaša baza podatkov varnostno kopirana?</string>
 </resources>
