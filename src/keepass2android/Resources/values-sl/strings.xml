@@ -328,6 +328,8 @@
   <string name="AutoSwitchBackKeyboard_summary">Preklopi nazaj na prejšnjo tipkovnico, ko ni odprt noben vnos.</string>
   <string name="ShowUnlockedNotification_title">Ikona obv., ko je odkl.</string>
   <string name="ShowUnlockedNotification_summary">Prikaži ikono obvestila, ko je podatkovna zbirka odklenjena.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Odpri nastavitve</string>
+  <string name="DontCare">Me ne zanima</string>
   <string name="PreloadDatabaseEnabled_title">Predn. dat. pod. zbirke</string>
   <string name="PreloadDatabaseEnabled_summary">Začni z nalaganjem v ozadju ali prejemanjem datoteke podatkovne zbirke med vnosom gesla.</string>
   <string name="AskOverwriteBinary">Ali želite prepisati obstoječo dvojiško datoteko z enakim imenom?</string>
@@ -367,6 +369,7 @@
   <string name="YesSynchronize">Da, združi</string>
   <string name="NoOverwrite">Ne, prepiši</string>
   <string name="SynchronizingCachedDatabase">Usklajevanje predpomnjene podatkovne zbirke …</string>
+  <string name="UploadingFile">Shrani datoteko …</string>
   <string name="FilesInSync">Datoteke so usklajene.</string>
   <string name="SynchronizedDatabaseSuccessfully">Podatkovna zbirka uspešno usklajena!</string>
   <string name="CheckingDatabaseForChanges">Preverjanje podatkovne zbirke za spremembe …</string>
@@ -387,10 +390,13 @@
   <string name="hint_http_url">URL mape ali datoteke (npr.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Vnesite podatke OwnCloud za prijavo:</string>
   <string name="hint_owncloud_url">URL OwnCloud (npr.: owncloud.jaz.com)</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (npr: nextcloud.me.com)</string>
   <string name="hint_sftp_host">gostitelj (npr.: 192.168.0.1)</string>
   <string name="hint_sftp_port">vrata</string>
   <string name="initial_directory">Začetna mapa (izbirno):</string>
   <string name="enter_sftp_login_title">Vnesite podatke za prijavo SFTP:</string>
+  <string name="sftp_auth_mode">Način overitve</string>
+  <string name="send_public_key">Pošlji javni ključ ...</string>
   <string name="enter_ftp_login_title">Vnesite podatke FTP za prijavo:</string>
   <string name="select_storage_type">Izberite mesto za shranjevanje:</string>
   <string name="filestoragename_file">Krajevna datoteka</string>
@@ -400,9 +406,11 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (prenos datotek SSH)</string>
   <string name="filestoragename_content">Sistemski izbirnik datotek</string>
@@ -450,6 +458,7 @@
   <string name="plugin_disabled">onemogočen</string>
   <string name="plugin_web">Najdi vtičnike na spletu</string>
   <string name="plugin_scopes">Področja</string>
+  <string name="not_enabled">ni na voljo</string>
   <string name="query_credentials_for_url">%1$s zahteva poverila za %2$s.</string>
   <string name="query_credentials">%1$s zahteva poverila. Izberite vnos.</string>
   <string name="plugin_enabled_checkbox">Omogočen</string>
@@ -515,7 +524,21 @@
     • Če datoteko lahko še vedno odprete na računalniku, navežite stik s podporo. Lahko jo poizkusite na računalniku shraniti z drugačnimi nastavitvami (npr. nestisnjeno) in jo ponovno odpreti v Keepass2Androidu.
 
   </string>
+  <string name="open_other_db">Odpri drugo bazo podatkov …</string>
+  <string name="select_database">Izberi bazo podatkov</string>
+  <string name="child_dbs_title">Sekundarna baza podatkov</string>
+  <string name="unspecified">nedoločeno</string>
+  <string name="child_db_enabled_on_this_device">Omogočeno na tej napravi</string>
+  <string name="child_db_enable_on_this_device">Omogoči na tej napravi</string>
+  <string name="child_db_disable_on_this_device">Onemogoči na tej napravi</string>
+  <string name="child_db_enable_a_copy_for_this_device">Kopiraj za to napravo</string>
+  <string name="add_child_db">Dodaj sekundarno bazo podatkov ...</string>
+  <string name="Visible_title">Vidno</string>
+  <string name="child_db_Enabled_title">Samodejno odpri</string>
+  <string name="database_file_heading">Datoteka podatkovne zbirke</string>
+  <string name="DbUnlockedChannel_name">Baza odklenjena</string>
   <string name="DbQuicklockedChannel_name">Hitro odklepanje</string>
+  <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="ErrorReportTitle">Keepass2Android: pojavila se je napaka.</string>
   <string name="ErrorReportText">Med izvajanjem Keepass2Androida se je pojavila nepričakovana napaka. Pomagajte nam to popraviti z omogočanjem pošiljanja poročil o napakah.</string>
   <string name="ErrorReportEnable">Omogoči</string>
@@ -741,7 +764,7 @@ Začetna javna izdaja
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Geslo</item>
-    <item>Private/Public key</item>
+    <item>Zasebni/Javni ključ</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Prezri spodletela preverjanja veljavnosti potrdil</item>
