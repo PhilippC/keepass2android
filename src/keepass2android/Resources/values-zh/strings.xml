@@ -35,6 +35,7 @@
   <string name="AutofillDisabledQueriesPreference_title">已禁用自动填充目标</string>
   <string name="AutofillDisabledQueriesPreference_summary">查看已禁用自动填充的应用和网站列表</string>
   <string name="OfferSaveCredentials_summary">如果启用，Android 会在您将数据手动输入自动填充字段后询问是否要保存凭据。</string>
+  <string name="OfferSaveCredentials_title">提供凭据的保存</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
   <string name="Entry_singular">1个项目</string>
@@ -630,6 +631,17 @@
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ChangeLog_1_07">版本1.07-pre\n
+    *修复了三星 Android 9 上的崩溃问题\n
+    *允许打开多个与 KeeAutoExec 兼容的数据库\n
+    * SFTP：允许公钥验证，检查主机密钥是否已更改\n
+    *引入 pCloud 支持 - 感谢 gilbsgilbs！\n
+    *明确指出 Nextcloud 支持\n
+    *改进入口附件的保存和更新\n
+    *更多选择，以适应个人喜好的首选项\n
+    * SSL：信任用户证书\n
+    *改进自动填充功能（现在适用于 Firefox，允许减少弹出窗口）\n
+    *错误修复\n  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
