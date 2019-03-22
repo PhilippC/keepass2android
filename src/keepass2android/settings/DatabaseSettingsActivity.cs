@@ -592,10 +592,6 @@ namespace keepass2android
 
         private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
-            //ensure the user gets a matching database
-            if (App.Kp2a.CurrentDb!= null && !App.Kp2a.CurrentDb.Ioc.IsLocalFile())
-                App.Kp2a.LockSingleDatabase(App.Kp2a.CurrentDb, false);
-
             if (!(bool)e.NewValue)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
