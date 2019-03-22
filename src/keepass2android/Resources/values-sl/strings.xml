@@ -22,7 +22,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout_summary">Čas pred zaklenitvijo podatkovne zbirke, ko je aplikacija nedejavna.</string>
   <string name="show_kill_app">Gumb Zapri</string>
+  <string name="show_kill_app_summary">Prikaži gumb za uničenje opravila aplikacije na zaslonu gesla (za uporabnike paranoida)</string>
   <string name="application">Aplikacija</string>
   <string name="application_settings">Nastavitve aplikacije</string>
   <string name="ShowGroupnameInSearchResult_title">Prik. ime sk. v rez. isk.</string>
@@ -190,6 +192,7 @@
   <string name="no_keys">Ni vnosov v podatkovni zbirki ali skupini.</string>
   <string name="no_results">Ni rezultatov iskanja</string>
   <string name="no_url_handler">Ni ročnika za ta url.</string>
+  <string name="open_recent">Odpri nedavno podatkovno zbirko (tapnite za odpiranje)</string>
   <string name="omitbackup_title">Ne išči po vnosih varnostne kopije in Koša</string>
   <string name="omitbackup_summary">Izpusti skupini \'Varnostna kopija\' in Koš iz rezultatov iskanja</string>
   <string name="pass_filename">Ime datoteke podatkovne zbirke KeePass</string>
@@ -392,12 +395,14 @@
   <string name="SynchronizedDatabaseSuccessfully">Podatkovna zbirka uspešno usklajena!</string>
   <string name="CheckingDatabaseForChanges">Preverjanje podatkovne zbirke za spremembe …</string>
   <string name="UpdatedRemoteFileOnLoad">Posodobljena izvorna datoteka.</string>
+  <string name="LoadedFromRemoteInSync">Izvorna datoteka in predpomnilnik sta usklajena.</string>
   <string name="RemoteDatabaseUnchanged">Ni zaznanih sprememb.</string>
   <string name="SynchronizingOtpAuxFile">Usklajevanje pomožne datoteke OTP …</string>
   <string name="database_file">datoteka podatkovne zbirke</string>
   <string name="otp_aux_file">pomožna datoteka OTP</string>
   <string name="ErrorOcurred">Pojavila se je napaka:</string>
   <string name="DuplicateUuidsError">Podatkovna zbirka je pokvarjena: najdeni podvojeni ID-ji. (Ali ste shranili z Minikeepassom?) Ponovno uvozite v novo podatkovno zbirko s KeePassom 2 za PC in izberite \'Ustvari nove ID-je\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">To sporočilo o napaki lahko onemogočite v Nastavitve/Nastavitve aplikacije/Ravnanje z datotekami/Preveri za podvojene UUID-je. Upoštevajte, da lahko naletite na nepričakovano vedenje. Priporočljivo je popraviti podatkovno zbirko.</string>
   <string name="synchronize_database_menu">Uskladi podatkovno zbirko …</string>
   <string name="CannotMoveGroupHere">Skupine ni mogoče premakniti v to skupino.</string>
   <string name="donate_question">Danes je Oktoberfest! Če vam je Keepass2Android všeč: ali ne bi bil današnji dan pravi dan, da mi kupite pivo?</string>
@@ -409,6 +414,7 @@
   <string name="hint_http_url">URL mape ali datoteke (npr.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Vnesite podatke OwnCloud za prijavo:</string>
   <string name="hint_owncloud_url">URL OwnCloud (npr.: owncloud.jaz.com)</string>
+  <string name="enter_nextcloud_login_title">Vnesite prijavne podatke Nextcloud:</string>
   <string name="hint_nextcloud_url">Nextcloud URL (npr: nextcloud.me.com)</string>
   <string name="hint_sftp_host">gostitelj (npr.: 192.168.0.1)</string>
   <string name="hint_sftp_port">vrata</string>
@@ -428,6 +434,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -443,6 +450,7 @@
   <string name="help_master_password">Vaša pod. zbirka je šifrirana z geslom, ki ga vnesete tu. izberite močno geslo, da zagotovite varnost svoje pod. zbirke! Nasvet: sestavite stavek ali dva in za geslo uporabite prve črke besed. Vključite ločila.</string>
   <string name="hint_master_password">Izberite glavno geslo, da zaščitite svojo pod. zbirko:</string>
   <string name="key_file">Datoteka ključa</string>
+  <string name="help_key_file">Datoteka ključa je v bistvu geslo shranjeno v datoteki. Datoteke ključa so značilno močnejše od glavnih gesel, ker so lahko veliko bolj kompleksne; vendar jih je težje ohraniti skrivne. če svojo pod. zbirko shranite v oblak, tam ne shranite tudi datoteko ključa! To bi jo naredilo popolnoma neuporabno! Pomembno: ne spremenite vsebine datoteke ključa po ustvarjanju pod. zbirke!</string>
   <string name="hint_key_file">Izberite, ali želite poleg glavnega gesla uporabiti datoteko ključa:</string>
   <string name="use_key_file">Uporabi datoteko ključa</string>
   <string name="error_adding_keyfile">Napaka pri dodajanju datoteke ključa!</string>
@@ -459,6 +467,7 @@
   <string name="OtpKeyError">Ustvarjanje ključa OTP je spodletelo! Prepričajte se, da ste vnesli pravilne OTP-je.</string>
   <string name="ErrorUpdatingOtpAuxFile">Napaka pri posodabljanju pomožne datoteke OTP!</string>
   <string name="SavingOtpAuxFile">Shranjevanje pomožne datoteke OTP …</string>
+  <string name="PleaseInstallApp">Prosimo namestite %1$s iz Google Play.</string>
   <string name="AppOutdated">%1$s ni več podprt.</string>
   <string name="bad_resp">Odgovor izziva je nepravilen.</string>
   <string name="CouldntLoadChalAuxFile">Nalaganje pomožne datoteke izziva ni bilo mogoče!</string>
@@ -488,7 +497,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Trenutni podatki vnosa</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Vtičnik bo prejel vse podatke o trenutnem vnosu podatkovne zbirke in mu bo omogočeno ponujanje dejanj in spreminjanje svojega prikaza.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Poizvedi po svojih poverilih</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Vtičniku bo dovoljena poizvedba za poverili, ki so povezana z njegovim lastnim programskim paketom.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Poizvedi za poverila</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Vtičniku bo dovoljena poizvedba za poverili za namerne spletne strani ali aplikacije.</string>
   <string name="get_regular_version">Dobi več vrst pomnilniških naprav</string>
   <string name="CertificateWarning">Opozorilo: preverjanje veljavnosti potrdila strežnika je spodletelo: %1$s. Namestite ustrezno korensko potrdilo na svoji napravi ali glejte nastavitve!</string>
   <string name="CertificateFailure">Napaka: preverjanje veljavnosti potrdila strežnika je spodletelo: Namestite ustrezno korensko potrdilo na svoji napravi ali glejte nastavitve!</string>
@@ -499,6 +510,7 @@
   <string name="FileIsReadOnlyOnKitkat">Izbrana datoteka za Keepass2Android je samo za branje zaradi omejitev na Androidu 4.4+.</string>
   <string name="CopyFileRequired">Da jo uporabite, jo morate kopirati na drugo mesto.</string>
   <string name="CopyFileRequiredForEditing">Daj jo uredite, jo morate kopirati na drugo mesto.</string>
+  <string name="ClickOkToSelectLocation">Tapnite V redu, da izberete mesto, kamor je treba kopirati datoteko.</string>
   <string name="FileReadOnlyTitle">Podatkovna zbirka je samo za branje</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android je trenutno podatkovno zbirko odprl samo za branje.</string>
   <string name="ReadOnlyReason_PreKitKat">Videti je, da ste datoteko odprli z zunanjim programom. Ta način en podpira zapisovanja. Če želite v podatkovni zbirki narediti spremembe, jo zaprite in izberite Spremeni podatkovno zbirko. Potem datoteko odprite z eno od razpoložljivih možnosti.</string>
@@ -566,6 +578,7 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="ErrorReportTitle">Keepass2Android: pojavila se je napaka.</string>
   <string name="ErrorReportText">Med izvajanjem Keepass2Androida se je pojavila nepričakovana napaka. Pomagajte nam to popraviti z omogočanjem pošiljanja poročil o napakah.</string>
+  <string name="ErrorReportPromise">Poročila o napakah nikoli ne vsebujejo vsebine podatkovne zbirke ali glavnega gesla. Onemogočite jih lahko v nastavitvah aplikacije.</string>
   <string name="ErrorReportEnable">Omogoči</string>
   <string name="ErrorReportDisable">Onemogoči</string>
   <string name="ErrorReportAsk">Vprašaj po napaki</string>
@@ -796,9 +809,13 @@ Začetna javna izdaja
     <item>Opozori, ko preverjanje veljavnosti spodleti</item>
     <item>Ne sprejmi neveljavnih potrdil</item>
   </string-array>
+  <string name="autofill_enable">Omogoči Samodejno izpolnjevanje</string>
+  <string name="autofill_sign_in_prompt">Izpolni s Keepass2Android</string>
   <string name="autofill_disable">Onemogoči samodejno izpolnjevanje za %1$s</string>
   <string name="autofill_enable_for">Omogoči samodejno izpolnjevanje za %1$s</string>
   <string name="understand">Razumem</string>
   <string name="dont_show_again">Ne prikaži več</string>
+  <string name="masterkey_infotext_head">Ali se spomnite vašega glavnega gesla?</string>
   <string name="backup_infotext_head">Je vaša baza podatkov varnostno kopirana?</string>
+  <string name="emergency_infotext_head">Ali ste pripravljene na nujne primere?</string>
 </resources>
