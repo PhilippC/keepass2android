@@ -23,6 +23,7 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout_summary">Čas pred zaklenitvijo podatkovne zbirke, ko je aplikacija nedejavna.</string>
+  <string name="kill_app_label">Ustavi proces aplikacije</string>
   <string name="show_kill_app">Gumb Zapri</string>
   <string name="show_kill_app_summary">Prikaži gumb za uničenje opravila aplikacije na zaslonu gesla (za uporabnike paranoida)</string>
   <string name="application">Aplikacija</string>
@@ -30,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_title">Prik. ime sk. v rez. isk.</string>
   <string name="ShowGroupnameInSearchResult_resume">Prikaži ime skupine pod nazivi vnosov v rezultatih iskanja. Uporabno, če ima več vnosov enako ime.</string>
   <string name="NavigationToGroupCompleted_message">Skupina za prikaz je sedaj: %1$s</string>
+  <string name="OfferSaveCredentials_title">Ponudi shranjevanje poverilnic</string>
   <string name="ShowGroupInEntry_title">Prik. ime sk. v pog. vn.</string>
   <string name="unknown_uri_scheme">Žal Keepass2Android ne more obdelati vrnjenega URI-ja %1$s. Navežite stik z razvijalcem!</string>
   <string name="Entry_singular">En vnos</string>
@@ -207,6 +209,7 @@
   <string name="edit">Uredi</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Korenska mapa</string>
+  <string name="AutoReturnFromQuery_title">Samodejno se vrnite iz povpraševalnega dela</string>
   <string name="KeyDerivFunc">Funkcija za izpeljavo ključa</string>
   <string name="rounds">Ponovitve šifriranja</string>
   <string name="rounds_explaination">Večje št. ponovitev šifriranja zagotovi dodatno zaščito pred vdori z grobo silo, vendar lahko zelo upočasnijo nalaganje in shranjevanje.</string>
@@ -313,6 +316,7 @@
   <string name="ClearPasswordOnLeave_summary">Počisti vneseno glavno geslo ob zapuščanju zaslona brez odklepanja podatkovne zbirke.</string>
   <string name="LockWhenNavigateBack_title">Zakleni ob končanju prog.</string>
   <string name="LockWhenNavigateBack_summary">Zakleni podatkovno zbirko ob končanju programa s pritiskom na gumb Nazaj.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Uporabite vgrajeno tipkovnico znotraj Keepass2Android</string>
   <string name="NoDonateOption_title">Skrij mož. za darovanje</string>
   <string name="NoDonateOption_summary">Ta nastavitev je za darovalce. Na voljo je samo, ko uporabite Keepass2Android za nekaj časa.</string>
   <string name="NoDonateOption_question">Brez darovanj ta program ni bi obstajal in ne bi prejel neprestanih izboljšav! Če še niste darovali, razmislite o tem sedaj!</string>
@@ -455,6 +459,7 @@
   <string name="use_key_file">Uporabi datoteko ključa</string>
   <string name="error_adding_keyfile">Napaka pri dodajanju datoteke ključa!</string>
   <string name="init_otp">Naloži pomožno datoteko OTP …</string>
+  <string name="otp_explanation">Vnesite naslednja gesla za enkratno uporabo (OTP-je). Potegnite svoj ključ Yubikey NEO na zadnji strani svoje naprave, da vnesete preko NFC-ja (potrebujete aplikacijo Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Pomožne datoteke OTP ni mogoče naložiti!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Uporabite vtičnik OtpKeyProv v KeePassu 2.x (PC), da nastavite svojo podatkovno zbirko za uporabo z OTP-ji!</string>
@@ -647,6 +652,19 @@
 		* preprečitev zajema zaslonskih slik iz zaslonov Hitrega odklepanja in gesel\n
 		* obratni vrstni red razvrščanja za razvrščanje po datumu spremembe (sedaj padajoče)\n
 		* popravki hroščev: pogled opomb se sedaj pravilno posodobi po spremembah, pogledi gesel sedaj pravilno skrijejo gesla na vseh napravah, popravljena težava, ki je dovoljevala dvakratno dodajanja vnosa, popravljena težava s prikazovanjem opozorila Podvojeni UUID-ji tudi po popravljanju podatkovne zbirke\n</string>
+  <string name="ChangeLog_0_9_6">Različica 0.9.6\n
+		* omogoči uvažanje datoteke ključa in/ali krajevne podatkovne zbirke v notranjo mapo programa (glejte nastavitve)\n
+		*omogoči različne možnosti razvrščanja\n
+		* izboljšane nastavitve za samodejno preklapljanje tipkovnice\n
+		* posodobljen logotip aplikacije in oblika obvestil, oblikoval Stefano Pignataro (http://www.spstudio.at)\n
+		* ustvarjalnik gesel si zapomni zadnje nastavitve\n
+		* nastavitev vidnosti obvestil zaslona za zaklepanje za Android 5\n
+		* sedaj se polja glavnega gesla počistijo, ko končate aplikacijo brez klika V redu\n
+		* popravljena težava z manjkajočimi vnosnimi jeziki v nastavitvi tipkovnice na nekaterih napravah\n
+		* popravljena težava s samodejnim preklapljanjem tipkovnice na napravah s skrbniškim\n
+		* dodano preverjanje za pokvarjene podatkovne zbirke (podvojeni UUID-ji)\n
+		* samodejno ponovno naloži podatkovno zbirko, ko je sprememba, reši skrb za varnost glede razkritja glavnega gesla\n
+		* izboljšana razporeditev poljske majhne tipkovnice, popravljena tema nastavitev tipkovnice (zahvale Wiktorju Ławskiju)\n</string>
   <string name="ChangeLog_0_9_5"><b>Različica 0.9.5</b>\n
 		* Popravljene težave z brskanjem po datotekah (posebno na Androidu 4.4)\n
 		* Popravljena težava z nalaganjem datotek .kdb (Keepass 1) na Nexusu 5 z Androidom Lollipop\n
@@ -706,6 +724,13 @@ Obljubil sem več sprememb. Žal se bodo pojavila v naslednji izdaji. Te hitre p
 		* omogoča premikanje vnosov in skupin\n
 		* Ikona Hitrega oklepanja je lahko prosojna (glejte nastavitve)\n
 		* Popravki hroščev</string>
+  <string name="ChangeLog_0_8_5"><b>Različica 0.8.5</b>\n
+		* Oddaljene datoteke so shranjene v krajevnem predpomnilniku aplikacije, da omogočijo nepovezano uporabo (vključno z urejanjem in kasnejšim usklajevanjem). Glejte nastavitve. \n
+		* Ikona obvestila za predočenje stanje zaklepanja podatkovne zbirke (glejte nastavitve)\n
+		* Izboljšano določanje stanja zaklepanja v nekaterih razmerah\n
+		* Datoteke podatkovne zbirke se naložijo v pomnilnik, ko tipkate svoje geslo za povečanje hitrosti nalaganja (glejte nastavitve)\n
+		* Vnose lahko dodate v skrbniško skupino\n
+		* Popravki hroščev (razrešitev sklicnih polj, težav s tipkovnico na italijanskih in kitajskih napravah)</string>
   <string name="ChangeLog_0_8_4"><b>Različica 0.8.4</b>\n
 		* Spremembe zunanjih podatkovnih zbirk se zaznajo in združijo ob shranjevanju\n
 		* Izboljšana zmogljivost nalaganja\n
