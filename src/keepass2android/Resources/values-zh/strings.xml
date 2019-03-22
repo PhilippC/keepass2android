@@ -32,6 +32,9 @@
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
   <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">已禁用自动填充目标</string>
+  <string name="AutofillDisabledQueriesPreference_summary">查看已禁用自动填充的应用和网站列表</string>
+  <string name="OfferSaveCredentials_summary">如果启用，Android 会在您将数据手动输入自动填充字段后询问是否要保存凭据。</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
   <string name="Entry_singular">1个项目</string>
