@@ -32,6 +32,10 @@
   <string name="ShowGroupnameInSearchResult_title">Mostra el nom de grup en el resultat de la cerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostra el nom del grup sota els títols d\'entrada als resultats de la cerca. Útil diferents entrades tenen el mateix nom.</string>
   <string name="NavigationToGroupCompleted_message">Grup mostrat ara: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Desactivat l\'emplenament automàtic</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Veure una llista d\'aplicacions i llocs web on s\'ha inhabilitat emplenament automàtic</string>
+  <string name="OfferSaveCredentials_summary">Si està activat, Android us demanarà si voleu desar les credencials després que introduït manualment les dades en els camps de format d\'auto.</string>
+  <string name="OfferSaveCredentials_title">Oferir guardar les credencials</string>
   <string name="ShowGroupInEntry_title">Mostra el nom del grup en la vista d\'entrada</string>
   <string name="unknown_uri_scheme">Em sap greu! Keepass2Android no pot gestionar les respostes URI %1$s. Si us plau, contacta amb el desenvolupador!</string>
   <string name="Entry_singular">Una entrada</string>
@@ -628,6 +632,18 @@
   <string name="ErrorReportAsk">Preguntar després d\'error</string>
   <string name="ErrorReportPrefTitle">Enviar registre d\'errors</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_07">    Versió 1.07-pre2\n
+    * Arreglaments de fallades a Android 9 de Samsung\n
+    * Permet obrir més d\'una base de dades, compatible amb KeeAutoExec\n
+    * SFTP: permet autenticació de clau pública, comprova si la clau del servidor ha canviat\n
+    * Suport a pCloud - gràcies a gilbsgilbs!\n
+    * Suport a Nextcloud explícit\n
+    * Millora la guarda i actualització d\'adjunts a les entrades\n
+    * Més opcions d\'adaptació del comportament a les preferències personals\n
+    * SSL: confiar en certificat de l\'usuari\n
+    * Millorar autoemplenat (ara funciona amb Firefox, permet disminuir missatges emerfents)\n
+    * Reparació d\'errors\n
+  </string>
   <string name="ChangeLog_1_06">Versió 1.06\n
 * Canvieu a ykDroid en comptes de YubiChallenge com a aplicació de Desafiament-Resposta de Yubikey.\n
 * Implementat suport per a KeepassXC Desafiament-Resposta. Nota: El format de la base de dades ha de ser KDBX4!\n
