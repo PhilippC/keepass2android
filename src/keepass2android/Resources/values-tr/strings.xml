@@ -632,6 +632,18 @@
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_07">    Sürüm 1.07-ön\n
+    * Samsung Android 9\'daki çökmeler için düzeltmeler\n
+    * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n
+    * SFTP: Genel anahtar kimlik doğrulamasına izin ver, sunucu anahtarının değişip değişmediğini kontrol et\n
+    * pCloud desteği - gilbsgilbs\' e teşekkürler!\n
+    * Nextcloud desteği\n
+    * Girdi eklerinin kaydedilmesi ve güncellenmesi geliştirildi\n
+    * Kişiselleştirme için daha fazla seçenek sunuldu\n
+    * SSL: Güvenilir kullanıcı sertifikaları\n
+    * Otomatik doldurma iyileştirildi (şimdi Firefox ile çalışıyor, açılır pencereler azaltılıyor)\n
+    * hata düzeltmeleri\n
+  </string>
   <string name="ChangeLog_1_06">    Sürüm 1.06\n
     * Yubikey Challenge-Response için uygulama olarak YubiChallenge yerine ykDroid\'e geçildi.\n
     * KeepassXC-style Challenge-Response desteklendi. Not: Veritabanı türü KDBX4 olmalı!\n
