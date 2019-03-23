@@ -34,6 +34,7 @@
   <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Otomatik doldurma devre dışı bırakıldı</string>
   <string name="AutofillDisabledQueriesPreference_summary">Otomatik doldurmanın devre dışı bırakıldığı uygulamaların ve web sitelerinin listesini görüntüler</string>
+  <string name="OfferSaveCredentials_summary">Etkinleştirildiğinde; Android, verileri otomatik olarak doldurulabilir alanlara el ile girdikten sonra kimlik bilgilerini kaydetmek isteyip istemediğinizi soracaktır.</string>
   <string name="OfferSaveCredentials_title">Kimlik bilgilerini kaydetmeyi öner</string>
   <string name="ShowGroupInEntry_title">Kayıt görünümünde grup adı göster</string>
   <string name="unknown_uri_scheme">Üzgünüm! Keepass2Android %1$s adresini işleyemez. Geliştirici ile iletişime geçin!</string>
@@ -536,6 +537,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Kimlik bilgilerin</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Eklentinin, kendi uygulama paketi ile ilişkili kimlik bilgilerini sorgulamasına izin verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Kimlik bilgileri</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Eklentiye, kasıtlı internet siteleri veya uygulamaların kimlik bilgilerini sorgulama izni verilecek.</string>
   <string name="get_regular_version">Daha fazla depolama türlerini almak</string>
   <string name="CertificateWarning">Hata: Sunucu sertifika doğrulaması başarısız: %1$s. Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
   <string name="CertificateFailure">Hata: Sunucu sertifika doğrulaması başarısız oldu! Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
@@ -587,6 +589,11 @@
    • Doğru parola tipini seçtiğinizden emin olun. Veri tabanı oluşturulurken kullanılan tipe uyduğundan emin olun.\n
    • Doğru veri tabanı dosyasını seçtiğinizden emin olun.
  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" tıklayarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.
+  </string>
   <string name="CorruptDatabaseHelp">    Dosya bozulmuş. \n
     Sorunu teşhis etmek için size yardımcı olabilecek bazı ipuçları:\n
     
@@ -745,6 +752,19 @@
 		* Hızlı Açma ve parola ekranlarından  ekran görüntüsü alınması engellendi\n
 		* Değişiklik tarihine göre sıralama için ters sıralama düzeni (şimdi azalan)\n
 		* hata düzeltmeleri: değişikliklerden sonra notlar düzgün görüntüleniyor, parola görüntüleyici tüm cihazlarda (umarım) parolayı düzgün gizliyor, bir kaydın iki kez girilme konusu düzeltildi, veri tabanı düzeltilmesine rağmen Yenilenen UUID uyarısı gözükme konusu düzeltildi\n</string>
+  <string name="ChangeLog_0_9_6">Sürüm 0.9.6\n
+		* anahtar dosyası veya yerel veri tabanı dosyasının iç dizine aktarılmasına izin veriliyor (ayarlara bak)\n
+		* farklı sıralama ayarları destekleniyor\n
+		* otomatik klavye geçişi için gelişmiş seçenekler\n
+		* Stefano Pignataro (http://www.spstudio.at) tarafından tasarlanan uygulama logosu ve bildirim simgesi güncellendi\n
+		* parola üretici son ayarları hatırlayabiliyor\n
+		* Android 5 kilit ekranı için bildirim ayarlaması\n
+		* TAMAM tıklanmadan uygulamadan ayrıldığınızda ana parola alanı temizleniyor\n
+		* bazı cihazlarda klavye ayarlarındaki eksik diller nedeniyle oluşan sorun giderildi\n
+		* rootlu cihazlarda otomatik klavye geçişi düzeltildi\n
+		* bozuk veri tabanları için kontrol eklendi (yinelenen UUIDs)\n
+		* artık değişiklik tespit edildiğinde veri tabanı yenileniyor ve ana parolanın gözükmesi engelleniyor\n
+		* Polonya küçük klavye düzeni, klavye ayarları teması düzeltilerek geliştirildi(Wiktor Ławski\'ye teşekkürler)\n</string>
   <string name="ChangeLog_0_9_5"><b>Sürüm 0.9.5</b>\n
 		* Dosya taraması ile ilgili sorunlar düzeltildi (özellikle Android 4.4 sürümünde)\n
 		* Android Lollipop sürümlü Nexus 5 cihazlardaki .kdb dosya yükleme sorunu düzeltildi\n 
@@ -804,6 +824,13 @@
 		* Kayıtları ve grupları taşıma olanağı\n
 		* ÇabukAç simgesi şeffaf yapılabilir (bkz: ayarlar)\n
 		* Hata düzeltmeleri</string>
+  <string name="ChangeLog_0_8_5"><b>Sürüm 0.8.5</b>\n
+		* Çevrimdışı kullanımda uzak dosyalar yerel uygulama önbelleğinde depolanıyor (düzenleme ve daha sonra senkronizasyon içerir). Ayarlara bakın.\n
+		* Veritabanının kilit durumunu görmek için bildirim simgesi eklendi (ayarlara bakın)\n
+		* Bazı durumlarda kilit durumunun daha iyi belirlenmesi\n
+		* Yükleme hızının artması için parolanızı yazarken veritabanı dosyaları belleğe yüklenir (ayarlara bakın)\n
+		* Kayıtlar kök gurubuna eklenebiliyor\n
+		* Hata düzeltmeleri ( İtalyanca ve Çince cihazlardaki klavye ile ilgili referans alanlarının çözümlenmesi)</string>
   <string name="ChangeLog_0_8_4"><b>Sürüm 0.8.4</b>\n
 		* Harici veritabanı değişiklikleri algılanır ve kaydedilirken birleştirilir\n
 		* Geliştirilmiş yükleme performansı\n
