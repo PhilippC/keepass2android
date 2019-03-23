@@ -635,6 +635,62 @@
   <string name="ErrorReportAsk">Vprašaj po napaki</string>
   <string name="ErrorReportPrefTitle">Pošiljaj poročila o napakah</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Prikaži zaslonsko tipkovnico za vnos gesla, ko je dejavno branje prstnega odtisa.</string>
+  <string name="ChangeLog_1_07">Različica 1.07-pre\n
+     * Popravki za zrušitve na telefonu Android Android 9\n
+     * Dovoli odpiranje več kot ene baze podatkov, združljive s KeeAutoExec\n
+     * SFTP: Dovoli preverjanje pristnosti javnega ključa ali je ključ gostitelja spremenjen\n
+     * Uvedba podpore za pCloud - zahvala gilbsgilbs!\n
+     * Podpora Nextcloud je eksplicitna\n
+     * Izboljšanje shranjevanja in posodabljanja prilog vnosa\n
+     * Več možnosti za prilagajanje osebnim nastavitvam\n
+     * SSL: zaupanja vredni uporabniški certifikati\n
+     * Izboljšanje samodejnega izpolnjevanja (deluje z Firefoxom, manjše število pojavnih oken)\n
+     * Popravki napak\n  </string>
+  <string name="ChangeLog_1_06">Različica 1.06\n
+     * Preklopite na ykDroid namesto na YubiChallenge kot aplikacijo za Yubikey Challenge-Response.\n
+     * Vgradnja podpore za KeepassXC-style Challenge-Response. Opomba: Format baze podatkov mora biti KDBX4!\n
+     * Zavrne nalaganje odpadnih datotek iz storitve Google Drive\n
+     * Preklopite implementacijo TLS-ja za FTPS, izognitev JSch bug-u s strežniki, ki podpirajo gssapi-with-mic\n
+     * Popravki napak\n  </string>
+  <string name="ChangeLog_1_05">Različica 1.05\n
+     * Uporaba obvestilnega kanala za Android 8, ki omogočajo konfiguracijo prek sistemskih nastavitev\n
+     * Prikaži ikono vnosa v obvestilu\n
+     * Uporaba prilagodljive ikone za Android 8, uporabite okrogli zaganjalnik za Android 7\n
+     * Dovoli iskanje odklepanja (glejte nastavitve)\n
+     * Spremenjen način shranjevanja datotek v sistemu s popravljenimi datotekami v storitvi Google Drive, odprtih prek izbirnika sistemskih datotek\n
+     * Dodali smo nekaj informativnih besedil, da bi se izognili nekaterim pogostim nesporazumom\n
+     * Ustvarite lokalne varnostne kopije za primer izgube podatkov\n
+     * Posodobljen JSch za podporo novejših SSH šifri\n
+     * Dovoljene urejanja nastavitev povezave, npr. ko se spremeni geslo WebDav\n
+     * Dodana podpora za statično geslo Yubikey Neo\n
+     * Dovoljenje, da onemogočite predloge za samodejno izpolnjevanje.\n
+     * Popravljeno uhajanje podatkov v logcat\n
+     * Popravki napak\n  </string>
+  <string name="ChangeLog_1_04b">Različica 1.04b\n
+     * Popravek sesutja, ko uporabnik poskuša omogočiti samodejno izpolnjevanje na napravah Huawei\n  </string>
+  <string name="ChangeLog_1_04">Različica 1.04\n
+     * Dodana storitev za samodejno izpolnjevanje za Android 8.0 in novejše različice\n
+     * Nadgrajene knjižnice, orodja za gradnjo in različica Target SDK\n  </string>
+  <string name="ChangeLog_1_03">Različica 1.03\n
+     * Storitev dostopnosti za samodejno izpolnjevanje je odstranjena, kot zahteva Google. Preverite dostop do gesel glede na prejšnjo funkcionalnost.\n
+     * Dodane aplikacije tretjih oseb kot možnost ponovnega shranjevanja\n
+     * Integrirani pregledovalnik slik s priloženimi slikami brez prenosa v druge aplikacije\n
+     * Nadgradnja OkHttp za odpravljanje težav z nekaterimi povezavami\n
+     * Podpora za vnose KeeTrayTOTP, ki zdaj podpirajo vnose Steam\n  </string>
+  <string name="ChangeLog_1_02">Različica 1.02\n
+     * Več varnostnih izboljšav. Najlepša hvala za varnostno poročilo z jean-baptiste.cayrou@thalesgroup.com in vincent.fargues@thalesgroup.com ter za njihovo sodelovanje!\n
+     * Podpora za KeyboardSwapPlugin (glej možnosti dostopa do gesel): omogoča samodejno preklapljanje med vnosnimi metodami na napravah brez korenskega dostopa. Hvala Mishaalu Rahmanu iz XDA Developers, da je to omogočil\n
+     * Popravi za storitev dostopnosti z najnovejšimi različicami Chrome\n
+     * Popravek za nepotrebno brisanje podatkov o prstnih odtisih\n
+     * Popravki manjših sesutij\n
+     * Posodobljen Dropbox SDK za zagotovitev združljivosti v prihodnosti\n
+     * Odstranjeno je poročanje o napakah s pomočjo Xamarin Insights\n
+     * Posodobljena orodja za gradnjo\n  </string>
+  <string name="ChangeLog_1_01g">Različica 1.01-g\n
+     * Popravek za sesutje, ko poskušate delati brez povezave\n
+     * Popravek napačnega kodiranja poverilnic FTP(S)\n
+     * Popravek zrušitve pri uporabi OneDrive in na starejših različicah Androida\n
+     * Prikaz časa kot lokalnega časa na zaslonu za vnos\n  </string>
   <string name="ChangeLog_0_9_8c">    Različica 0.9.8c\n
     * Popravek za ranljivost SSL v Microsoftovem Live SDK (uporabljeno za dostop do datotek preko storitve OneDrive)\n
     * Popravek hrošča: prejšnja izdaja je vsebovala dva načina načina vnosa (en se je sesuval)\n
