@@ -22,7 +22,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Çevrimdışı</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Uygulama zaman aşımı</string>
   <string name="app_timeout_summary">Uygulama pasif iken veritabanını otomatik kilitleme zaman aşımı.</string>
+  <string name="kill_app_label">Uygulamayı sonlandır</string>
   <string name="show_kill_app">Kapat düğmesi</string>
   <string name="show_kill_app_summary">(Paranoyak kullanıcılar için) Uygulamayı tamamen kapatmak için şifre ekranda bir düğme göster</string>
   <string name="application">Uygulama</string>
@@ -31,6 +33,8 @@
   <string name="ShowGroupnameInSearchResult_resume">Arama sonuçlarındaki kayıt başlıklarında grup adlarını gösterir. Aynı isimli birden fazla kayıt varsa yararlıdır.</string>
   <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Otomatik doldurma devre dışı bırakıldı</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Otomatik doldurmanın devre dışı bırakıldığı uygulamaların ve web sitelerinin listesini görüntüler</string>
+  <string name="OfferSaveCredentials_title">Kimlik bilgilerini kaydetmeyi öner</string>
   <string name="ShowGroupInEntry_title">Kayıt görünümünde grup adı göster</string>
   <string name="unknown_uri_scheme">Üzgünüm! Keepass2Android %1$s adresini işleyemez. Geliştirici ile iletişime geçin!</string>
   <string name="Entry_singular">Bir kayıt</string>
@@ -478,6 +482,7 @@
   <string name="help_master_password">Veritabanınızı buraya girdiğiniz asıl parolayla şifrelenir. Veritabanının güvenli kalması için zor bir asıl parola seçin! İpucu: bir ya da iki cümle kurun ve parolanızı kelimelerin ilk harflerinden oluşturun. Noktalama işaretleri ekleyin.</string>
   <string name="hint_master_password">Veritabanınızı korumak için bir ana parola seçin:</string>
   <string name="key_file">Anahtar dosyası</string>
+  <string name="help_key_file">Anahtar dosyası, temelde bir dosyada saklanan bir paroladır. Anahtar dosyaları genellikle asıl paroladan daha güçlüdür, çünkü bunlar daha zor ve karışıktır. Ancak aynı zamanda onları gizli tutmak zordur. Veritabanınızı bulut içinde saklıyorsanız, anahtar dosyanızı asla orada saklamayın! Bu tamamen anlamsız olur. Önemli: anahtar dosyasının içeriğini veritabanını oluşturduktan sonra değiştirmeyin!</string>
   <string name="hint_key_file">Asıl anahtara ek olarak bir anahtar dosyası kullanmak isterseniz seçin:</string>
   <string name="use_key_file">Anahtar dosyası kullan</string>
   <string name="error_adding_keyfile">Anahtar dosyası ekleme hatası!</string>
@@ -529,6 +534,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Geçerli kayıt verisi</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Eklentiye, mevcut veritabanı kayıtları hakkındaki tüm verileri alıp; eylem sunma ve görüntüsünü değiştirme izni verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Kimlik bilgilerin</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Eklentinin, kendi uygulama paketi ile ilişkili kimlik bilgilerini sorgulamasına izin verilecektir.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Kimlik bilgileri</string>
   <string name="get_regular_version">Daha fazla depolama türlerini almak</string>
   <string name="CertificateWarning">Hata: Sunucu sertifika doğrulaması başarısız: %1$s. Aygıtınıza uygun kök sertifikasını yükleyin veya ayarlara bakın!</string>
