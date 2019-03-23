@@ -32,6 +32,10 @@
   <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示する</string>
   <string name="ShowGroupnameInSearchResult_resume">検索結果のエントリータイトルの下にグループ名を表示します。同名のエントリーが複数あるときに便利です。</string>
   <string name="NavigationToGroupCompleted_message">表示中のグループ: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">自動入力が無効の対象</string>
+  <string name="AutofillDisabledQueriesPreference_summary">自動入力が無効になっているアプリと web サイトの一覧を表示します</string>
+  <string name="OfferSaveCredentials_summary">有効な場合、自動入力可能なフィールドに手動でデータを入力した後、Android は資格情報を保存するかどうか確認します。</string>
+  <string name="OfferSaveCredentials_title">資格情報の保存を提案</string>
   <string name="ShowGroupInEntry_title">エントリー表示画面にグループ名を表示する。</string>
   <string name="unknown_uri_scheme">申し訳ありません! Keepass2Android は、返された URI %1$s を処理できません。開発者にお問い合わせください!</string>
   <string name="Entry_singular">単一のエントリー</string>
