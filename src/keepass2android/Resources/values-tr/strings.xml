@@ -22,12 +22,15 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Çevrimdışı</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout_summary">Uygulama pasif iken veritabanını otomatik kilitleme zaman aşımı.</string>
   <string name="show_kill_app">Kapat düğmesi</string>
+  <string name="show_kill_app_summary">(Paranoyak kullanıcılar için) Uygulamayı tamamen kapatmak için şifre ekranda bir düğme göster</string>
   <string name="application">Uygulama</string>
   <string name="application_settings">Uygulama ayarları</string>
   <string name="ShowGroupnameInSearchResult_title">Grup adını arama sonuçlarında göster</string>
   <string name="ShowGroupnameInSearchResult_resume">Arama sonuçlarındaki kayıt başlıklarında grup adlarını gösterir. Aynı isimli birden fazla kayıt varsa yararlıdır.</string>
   <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Otomatik doldurma devre dışı bırakıldı</string>
   <string name="ShowGroupInEntry_title">Kayıt görünümünde grup adı göster</string>
   <string name="unknown_uri_scheme">Üzgünüm! Keepass2Android %1$s adresini işleyemez. Geliştirici ile iletişime geçin!</string>
   <string name="Entry_singular">Bir kayıt</string>
