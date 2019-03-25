@@ -635,18 +635,6 @@
   <string name="ErrorReportAsk">Opýtať sa po výskyte chyby</string>
   <string name="ErrorReportPrefTitle">Odosielanie záznamov o chybe</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
-  <string name="ChangeLog_1_07">    Verzia 1.07-pre\n
-    * Oprava pádov na systéme Android 9, pre Samsung\n
-    * Umožňuje otvoriť viac ako jednu databázu, kompatibilne s KeeAutoExec\n
-    * SFTP: umožnenie overenia verejného kľúča, kontrola zmeny host. kľúča\n
-    * Zavedenie podpory pre pCloud - vďaka, gilbsgilbs!\n
-    * Explicitná podpora Nextcloud\n
-    * Vylepšenie ukladania a aktualizovania príloh záznamu\n
-    * Viac možností úpravy správania sa, podľa osobných preferencií\n
-    * SSL: dôverovanie používateľským certifikátom\n
-    * Vylepšenie automatického dopĺňania (funguje s Firefox, umožňuje znížiť počet vyskakovacích okien)\n
-    * Opravy chýb\n
-  </string>
   <string name="ChangeLog_1_06">    Verzia 1.06\n
     * Prechod na ykDroid namiesto YubiChallenge ako aplikácie pre odpoveď na výzvu Yubikey.\n
     * Implementovaná podpora odpoveď na výzvu v štýle KeepassXC. Poznámka: Formát databázy musí byť KDBX4!\n
