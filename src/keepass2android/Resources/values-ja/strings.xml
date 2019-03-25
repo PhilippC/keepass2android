@@ -97,6 +97,7 @@
   <string name="fingerprint_reenable">新しいパスワードのための指紋認証によるロック解除を再度有効にしてください。</string>
   <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度指紋認証のロック解除を有効にしてください。</string>
   <string name="FingerprintInitFailed">指紋センサーの初期化に失敗しました。 </string>
+  <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態で端末に保存し、指紋認証で保護します。指紋認証のみで、データベースのロックを解除できるようになります</string>
   <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに指紋認証を利用するようにします。マスターパスワードに関連する情報を格納する必要はありません。</string>
   <string name="enter_filename">データベースファイル名の入力</string>
@@ -604,6 +605,7 @@
   <string name="configure_child_dbs">子データベースを設定…</string>
   <string name="child_dbs_title">子データベース</string>
   <string name="unspecified">未指定</string>
+  <string name="child_db_explanation">子データベースは、親データベースを開くときに自動的に開くことができる別のデータベースです。したがって、子のマスターパスワードとファイルの場所は、親に格納されます。この機能は、あなたのパスワードの一部を他の人と共有することができます。実装は KeeAutoExec for PC と互換性があります。</string>
   <string name="child_db_enabled_on_this_device">このデバイスで有効です</string>
   <string name="child_db_enable_on_this_device">このデバイスで有効にする</string>
   <string name="child_db_disable_on_this_device">このデバイスで無効にする</string>
@@ -629,6 +631,18 @@
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
+  <string name="ChangeLog_1_07">    バージョン 1.07-pre\n
+    * Samsung の Android 9 でのクラッシュを修正\n
+    * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
+    * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
+    * pCloud サポートの導入 - gilbsgilbs に感謝!\n
+    * 明示的に Nextcloud サポート\n
+    * エントリ添付ファイルの保存と更新を改善\n
+    * 個人設定の動作を適応させるためのオプションを追加\n
+    * SSL: ユーザー証明書の信頼\n
+    * 自動入力の改善 (Firefox で動作します。ポップアップを抑えることができます)\n
+    * バグフィックス\n
+  </string>
   <string name="ChangeLog_1_06">    バージョン 1.06\n
     * Yubikey チャレンジ-レスポンス アプリとして YubiChallenge ではなく ykDroid に切り替え。\n
     * KeepassXC スタイルのチャレンジ-レスポンスのサポートを実装します。注: データベースの形式を KDBX4 にする必要があります!\n
