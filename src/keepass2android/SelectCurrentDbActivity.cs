@@ -215,15 +215,29 @@ namespace keepass2android
 
             if (!string.IsNullOrEmpty(Intent.GetStringExtra(Util.KeyFilename)))
             {
-                //forward to password activity
-                Intent i = new Intent(this, typeof(PasswordActivity));
                 IOConnectionInfo ioc = new IOConnectionInfo();
                 Util.SetIoConnectionFromIntent(ioc, Intent);
-                Util.PutIoConnectionToIntent(ioc, i);
-                i.PutExtra(PasswordActivity.KeyKeyfile, i.GetStringExtra(PasswordActivity.KeyKeyfile));
-                i.PutExtra(PasswordActivity.KeyPassword, i.GetStringExtra(PasswordActivity.KeyPassword));
-                LaunchingOther = true;
-                StartActivityForResult(i, ReqCodeOpenNewDb);
+
+                if (App.Kp2a.TrySelectCurrentDb(ioc))
+                {
+                    if (!OpenAutoExecEntries(App.Kp2a.CurrentDb))
+                    {
+                        LaunchingOther = true;
+                        AppTask.CanActivateSearchViewOnStart = true;
+                        AppTask.LaunchFirstGroupActivity(this);
+                    }
+                }
+                else
+                {
+                    //forward to password activity
+                    Intent i = new Intent(this, typeof(PasswordActivity));
+                    Util.PutIoConnectionToIntent(ioc, i);
+                    i.PutExtra(PasswordActivity.KeyKeyfile, i.GetStringExtra(PasswordActivity.KeyKeyfile));
+                    i.PutExtra(PasswordActivity.KeyPassword, i.GetStringExtra(PasswordActivity.KeyPassword));
+                    LaunchingOther = true;
+                    StartActivityForResult(i, ReqCodeOpenNewDb);
+                }
+
             }
             else
             {
@@ -282,6 +296,14 @@ namespace keepass2android
 
             }
 
+            if (App.Kp2a.TrySelectCurrentDb(ioc))
+            {
+                if (OpenAutoExecEntries(App.Kp2a.CurrentDb)) return false;
+                LaunchingOther = true;
+                AppTask.CanActivateSearchViewOnStart = true;
+                AppTask.LaunchFirstGroupActivity(this);
+            }
+            else
             {
                 Intent launchIntent = new Intent(this, typeof(PasswordActivity));
                 Util.PutIoConnectionToIntent(ioc, launchIntent);
