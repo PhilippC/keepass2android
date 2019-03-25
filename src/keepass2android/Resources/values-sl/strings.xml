@@ -635,17 +635,6 @@
   <string name="ErrorReportAsk">Vprašaj po napaki</string>
   <string name="ErrorReportPrefTitle">Pošiljaj poročila o napakah</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Prikaži zaslonsko tipkovnico za vnos gesla, ko je dejavno branje prstnega odtisa.</string>
-  <string name="ChangeLog_1_07">Različica 1.07-pre\n
-     * Popravki za zrušitve na telefonu Android Android 9\n
-     * Dovoli odpiranje več kot ene baze podatkov, združljive s KeeAutoExec\n
-     * SFTP: Dovoli preverjanje pristnosti javnega ključa ali je ključ gostitelja spremenjen\n
-     * Uvedba podpore za pCloud - zahvala gilbsgilbs!\n
-     * Podpora Nextcloud je eksplicitna\n
-     * Izboljšanje shranjevanja in posodabljanja prilog vnosa\n
-     * Več možnosti za prilagajanje osebnim nastavitvam\n
-     * SSL: zaupanja vredni uporabniški certifikati\n
-     * Izboljšanje samodejnega izpolnjevanja (deluje z Firefoxom, manjše število pojavnih oken)\n
-     * Popravki napak\n  </string>
   <string name="ChangeLog_1_06">Različica 1.06\n
      * Preklopite na ykDroid namesto na YubiChallenge kot aplikacijo za Yubikey Challenge-Response.\n
      * Vgradnja podpore za KeepassXC-style Challenge-Response. Opomba: Format baze podatkov mora biti KDBX4!\n
