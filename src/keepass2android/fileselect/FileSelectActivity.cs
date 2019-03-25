@@ -450,6 +450,11 @@ namespace keepass2android
 			        {
 			            LaunchPasswordActivityForIoc(ioc);
 			        }
+			        else
+			        {
+			            App.Kp2a.GetFileStorage(ioc)
+			                .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
+                    }
 			    }
 			}
 			
