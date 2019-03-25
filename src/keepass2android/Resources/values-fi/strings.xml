@@ -615,16 +615,6 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="ErrorReportAsk">Kysy virheen jälkeen</string>
   <string name="ErrorReportPrefTitle">Lähetä virheraportit</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkilukijan ollessa käytössä.</string>
-  <string name="ChangeLog_1_07">    Versio 1.07-pre2\n
-    * Useiden tietokantojen avaaminen, yhteensopiva KeeAutoExec:n kanssa\n
-    * SFTP: Julkisen avaimen todennus, isäntä avaimen muutoksen tarkistus\n
-    * pCloud tuki - Kiitos gilbsgilbs!\n
-    * Nextcloud tuen virallistaminen\n
-    * Merkintöjen liitetiedostojen tallentamisen ja päivittämisen parannuksia\n
-    * Enemmän vaihtoehtoja mukauttaa käyttäytymistä\n
-    * SSL: Luotto käyttäjäsertifikaatteihin\n
-    * bugi korjauksia\n
-  </string>
   <string name="ChangeLog_1_06">    Versio 1.06\n
     * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
     * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
