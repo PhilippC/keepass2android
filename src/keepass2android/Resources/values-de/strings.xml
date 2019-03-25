@@ -23,7 +23,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Anwendung reagiert nicht</string>
+  <string name="app_timeout">Zeitsperre für Anwendung</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Knopf</string>
@@ -33,6 +33,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
   <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit dem selben Namen gibt.</string>
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Deaktivierte AutoFill-Ziele</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Zeigt eine Liste von Apps und Webseiten, für die AutoFill deaktiviert ist.</string>
+  <string name="OfferSaveCredentials_summary">Wenn aktiviert fragt Android, ob du die Anmeldedaten speichern möchtest, die du manuell in AutoFill-Felder eingegeben hast.</string>
+  <string name="OfferSaveCredentials_title">Speichern von Zugangsdaten anbieten</string>
   <string name="ShowGroupInEntry_title">Gruppennamen in der Eintragsansicht anzeigen</string>
   <string name="unknown_uri_scheme">Tut mir Leid! Keepass2Android kann die zurückgegebene URI %1$s nicht verarbeiten. Bitte kontaktiere den Entwickler!</string>
   <string name="Entry_singular">Ein Eintrag</string>
@@ -61,7 +65,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="cancel">Abbrechen</string>
   <string name="Ok">Okay</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
-  <string name="clipboard_timeout">Zwischenablagesperre</string>
+  <string name="clipboard_timeout">Zeitsperre für Zwischenablage</string>
   <string name="clipboard_timeout_summary">Zeit bis zum Löschen der Zwischenablage nach dem Kopieren von Benutzername oder Passwort</string>
   <string name="copy_username">Benutzername in die Zwischenablage kopieren</string>
   <string name="copy_password">Kennwort in die Zwischenablage kopieren</string>
@@ -94,6 +98,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="fingerprint_reenable">Bitte Fingerabdruck für das neue Masterpasswort erneut aktivieren.</string>
   <string name="fingerprint_reenable2">Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Entsperren per Fingerabdruck erneut aktivieren.</string>
   <string name="FingerprintInitFailed">Fehler beim Initialisieren des Fingerabdruck-Sensors. </string>
+  <string name="FingerprintSetupFailed">Daten konnten nicht verschlüsselt werden. Dies kann passieren, wenn Fingerabdrücke in den Systemeinstellungen hinzugefügt oder gelöscht wurden, während Keepass2Android auf deinen Fingerabdruck wartet.</string>
   <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Ermöglicht es, die Datenbank per Fingerabdruck zu entsperren.
   </string>
   <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den Fingerabdruck anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
@@ -486,7 +491,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
   <string name="init_otp">OTP-Hilfsdatei laden…</string>
-  <string name="otp_explanation">Geben Sie die nächste One-time-Passwörter (OTPs) an. Bewegen Sie Ihren Yubikey NEO an der Rückseite Ihres Gerätes, um via NFC eingeben (erfordert Yubiclip app).</string>
+  <string name="otp_explanation">Gib die nächsten One-time-Passwörter (OTPs) an. Bewege deinen Yubikey NEO an der Rückseite deines Gerätes, um via NFC einzugeben (erfordert Yubiclip app).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
@@ -602,6 +607,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="configure_child_dbs">Konfiguriere Kinddatenbanken…</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
+  <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Master-Passwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
   <string name="child_db_enabled_on_this_device">Auf diesem Gerät aktiviert</string>
   <string name="child_db_enable_on_this_device">Auf diesem Gerät aktivieren</string>
   <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
