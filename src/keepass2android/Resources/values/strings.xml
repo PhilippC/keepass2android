@@ -771,15 +771,6 @@
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
-  <string name="ErrorReportTitle">Keepass2Android: An error occurred.</string>
-  <string name="ErrorReportText">An unexpected error occurred while running Keepass2Android. Please help us fix this by allowing the app to send error reports.</string>
-  <string name="ErrorReportPromise">Error reports will never contain any contents of your database or master password. You can disable them in the app settings.</string>
-  <string name="ErrorReportEnable">Enable</string>
-  <string name="ErrorReportDisable">Disable</string>
-  <string name="ErrorReportAsk">Ask after error</string>
-  <string name="ErrorReportPrefTitle">Send error reports</string>
-
-  
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
   <string name="ChangeLog_1_07">
     Version 1.07-pre\n
