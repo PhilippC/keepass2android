@@ -97,6 +97,7 @@
   <string name="fingerprint_reenable">Ponovno omogočite odklepanje s prstnim odtisom za novo glavno geslo.</string>
   <string name="fingerprint_reenable2">Odklenite geslo in znova omogočite funkcijo Odklepanje s prstnim odtisom v nastavitvah baze podatkov.</string>
   <string name="FingerprintInitFailed">Ni uspelo inicializirati senzorja za prstni odtis. </string>
+  <string name="FingerprintSetupFailed">Podatkov ni bilo mogoče šifrirati. To se lahko zgodi, če dodate ali odstranite prstne odtise v sistemskih nastavitvah, medtem ko Keepass2Android uporablja vaš prstni odtis.</string>
   <string name="enable_fingerprint_unlock_Info">    To bo shranilo glavno geslo na tej napravi, ki bo
     šifrirano z Androidovo zbirko ključev in zaščiteno
     z uporabo overitve s prstnim odtisom. Omogoča odklepanje podatkovne zbirke samo s prstnim odtisom.
@@ -610,6 +611,7 @@
   <string name="configure_child_dbs">Upravljaj podrejene baze podatkov …</string>
   <string name="child_dbs_title">Sekundarna baza podatkov</string>
   <string name="unspecified">nedoločeno</string>
+  <string name="child_db_explanation">Podrejene podatkovne baze druge podatkovne baze, ki jih je mogoče odpreti samodejno, ko odprete glavno bazo podatkov. Zato sta glavno geslo podrejene baze podatkov in lokacija datoteke shranjeni v glavni podatkovni bazi. Ta funkcija omogoča deljenje nekaterih gesel z drugo osebo. Implementacija je združljiva s KeeAutoExec za PC.</string>
   <string name="child_db_enabled_on_this_device">Omogočeno na tej napravi</string>
   <string name="child_db_enable_on_this_device">Omogoči na tej napravi</string>
   <string name="child_db_disable_on_this_device">Onemogoči na tej napravi</string>
@@ -635,6 +637,17 @@
   <string name="ErrorReportAsk">Vprašaj po napaki</string>
   <string name="ErrorReportPrefTitle">Pošiljaj poročila o napakah</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Prikaži zaslonsko tipkovnico za vnos gesla, ko je dejavno branje prstnega odtisa.</string>
+  <string name="ChangeLog_1_07">Različica 1.07-pre\n
+     * Popravki za zrušitve na telefonu Android Android 9\n
+     * Dovoli odpiranje več kot ene baze podatkov, združljiv s KeeAutoExec\n
+     * SFTP: Dovoli preverjanje pristnosti javnega ključa ali je ključ gostitelja spremenjen\n
+     * Uvedba podpore za pCloud - zahvala gilbsgilbs!\n
+     * Podpora Nextcloud je eksplicitna\n
+     * Izboljšanje shranjevanja in posodabljanja prilog vnosa\n
+     * Več možnosti za prilagajanje osebnim nastavitvam\n
+     * SSL: zaupanja vredni uporabniški certifikati\n
+     * Izboljšanje samodejnega izpolnjevanja (deluje z Firefoxom, manjše število pojavnih oken)\n
+     * Popravki napak\n  </string>
   <string name="ChangeLog_1_06">Različica 1.06\n
      * Preklopite na ykDroid namesto na YubiChallenge kot aplikacijo za Yubikey Challenge-Response.\n
      * Vgradnja podpore za KeepassXC-style Challenge-Response. Opomba: Format baze podatkov mora biti KDBX4!\n
