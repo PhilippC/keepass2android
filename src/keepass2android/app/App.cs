@@ -449,12 +449,7 @@ namespace keepass2android
             }
         }
 
-	    public void LockSingleDatabase(Database databaseToLock, bool allowQuickUnlock)
-	    {
-            //TODO implement
-	        throw new Exception("lock single is not implemented");
-	    }
-
+	    
 	    private void AskForReload(Activity activity)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);

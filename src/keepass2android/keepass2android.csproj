@@ -260,9 +260,11 @@
     <Compile Include="services\Kp2aAutofill\Kp2aAutofillService.cs" />
     <Compile Include="services\OngoingNotificationsService.cs" />
     <Compile Include="settings\Argon2Preference.cs" />
+    <Compile Include="settings\AutofillDisabledQueriesPreference.cs" />
     <Compile Include="settings\DatabaseSettingsActivity.cs" />
     <Compile Include="intents\Intents.cs" />
     <Compile Include="SelectCurrentDbActivity.cs" />
+    <Compile Include="settings\IconSetPreference.cs" />
     <Compile Include="SwitchImeActivity.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
@@ -377,6 +379,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\httpcredentials.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\disabled_queries_preference_row.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="settings\RoundsPreference %28Kopie%29.cs">

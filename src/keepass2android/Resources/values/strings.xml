@@ -31,6 +31,10 @@
   <string name="ShowGroupnameInSearchResult_title">Display group name in search result</string>
   <string name="ShowGroupnameInSearchResult_resume">Display group name below entry titles in search results. Useful if several entries have the same name.</string>
   <string name="NavigationToGroupCompleted_message">Display group is now: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Disabled AutoFill targets</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Views a list of apps and websites for which AutoFill has been disabled</string>
+  <string name="OfferSaveCredentials_summary">If enabled, Android will ask if you want to save credentials after you manually entered data into auto-fillable fields.</string>
+  <string name="OfferSaveCredentials_title">Offer saving of credentials</string>
 
 	<string name="ShowGroupInEntry_title">Show group name in entry view</string>
 

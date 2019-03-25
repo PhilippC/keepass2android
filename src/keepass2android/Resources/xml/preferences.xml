@@ -403,11 +403,35 @@
                 android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
       </Preference>
 
+		  <PreferenceScreen
+		    android:key="@string/AutoFill_prefs_screen_key"
+		    android:title="@string/AutoFill_prefs"
+		  >
+        <keepass2android.ToolbarPreference
+          android:key="@string/AutoFill_prefs_screen_key"
+          android:title="@string/AutoFill_prefs" />
       <Preference 
         android:key="@string/AutoFill_prefs_key"
         android:title="@string/AutoFill_prefs">
         
       </Preference>
+        
+        
+		    <CheckBoxPreference
+		      android:enabled="true"
+		      android:persistent="true"
+		      android:summary="@string/OfferSaveCredentials_summary"
+		      android:defaultValue="true"
+		      android:title="@string/OfferSaveCredentials_title"
+		      android:key="@string/OfferSaveCredentials_key" />
+
+		  <keepass2android.AutofillDisabledQueriesPreference
+		    android:title="@string/AutofillDisabledQueriesPreference_title"
+		    android:summary="@string/AutofillDisabledQueriesPreference_summary"
+		    android:persistent="false"
+		    android:key="AutofillDisabledQueriesPreference_key"/>
+        
+      </PreferenceScreen>
 
 		  <CheckBoxPreference
 		    android:enabled="true"
