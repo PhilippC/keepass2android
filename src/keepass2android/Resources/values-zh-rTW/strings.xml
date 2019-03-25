@@ -32,6 +32,7 @@
   <string name="ShowGroupnameInSearchResult_title">在搜尋結果中顯示群組名稱</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中顯示條目標題下面的群組名稱。如果幾個條目具有相同的名稱有幫助。</string>
   <string name="NavigationToGroupCompleted_message">顯示群組現在是: %1$s</string>
+  <string name="OfferSaveCredentials_summary">啟用後，若在可自動填入欄位手動輸入資料，Android 將會詢問是否保存憑證。</string>
   <string name="ShowGroupInEntry_title">在項目視圖中顯示群組名稱</string>
   <string name="unknown_uri_scheme">抱歉! Keepass2Android 無法處理交回的 URI %1$s。請聯繫開發人員!</string>
   <string name="Entry_singular">一個項目</string>
