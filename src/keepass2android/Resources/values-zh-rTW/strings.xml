@@ -632,17 +632,6 @@
   <string name="ErrorReportAsk">每次詢問</string>
   <string name="ErrorReportPrefTitle">傳送錯誤報告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示虛擬鍵盤以輸入密碼。</string>
-  <string name="ChangeLog_1_07">版本 1.07-pre\n
-* 修正三星 Android 9 上的崩潰\n
-* 允許開啟一個以上的資料庫，與 KeeAutoExec 相容\n
-* SFTP: 允許公開金鑰認證，檢查主機金鑰是否改變\n
-* 導入 pCloud 支援 - 感謝 gilbsgilbs！\n
-* 更嚴格的 Nextcloud 支援\n
-* 改進項目附件的儲存與更新\n
-* 在個人偏好中加入更多適應行為的選項\n
-* SSL: 信任使用者憑證\n
-* 改善自動填入 (現在可以用於 Firefox，允許減少彈出)\n
-* 錯誤修正\n  </string>
   <string name="ChangeLog_1_06">    版本 1.06\n
     * 以 ykDroid 取代 YubiChallenge 作爲處理 Yubikey 質詢-回應的應用。\n
     * 支援  KeepassXC 式的質詢-回應。備註：資料庫格式必須爲 KDBX4！\n
