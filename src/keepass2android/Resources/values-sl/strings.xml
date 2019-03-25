@@ -691,6 +691,10 @@
      * Popravek napačnega kodiranja poverilnic FTP(S)\n
      * Popravek zrušitve pri uporabi OneDrive in na starejših različicah Androida\n
      * Prikaz časa kot lokalnega časa na zaslonu za vnos\n  </string>
+  <string name="ChangeLog_1_01d">Različica 1.01-d\n
+     * Popravki seznama datotek OneDrive\n
+     * Dovoli, da prezrete napake certifikatov tudi, če preverjanje datotek imena gostitelja spodleti (ni priporočljiva za uporabo v proizvodnji)\n
+     * Popravki za Hitro odklepanje, ki kljub pravilni kodi za odklep včasih spodleti, \n  </string>
   <string name="ChangeLog_0_9_8c">    Različica 0.9.8c\n
     * Popravek za ranljivost SSL v Microsoftovem Live SDK (uporabljeno za dostop do datotek preko storitve OneDrive)\n
     * Popravek hrošča: prejšnja izdaja je vsebovala dva načina načina vnosa (en se je sesuval)\n
