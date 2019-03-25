@@ -105,6 +105,7 @@
   <string name="fingerprint_reenable">Please re-enable Fingerprint Unlock for the new master password.</string>
   <string name="fingerprint_reenable2">Please unlock with your password and then re-enable Fingerprint Unlock in the database settings.</string>
   <string name="FingerprintInitFailed">Failed to initialize fingerprint sensor. </string>
+  <string name="FingerprintSetupFailed">Failed to encrypt data. This can happen if you add or remove fingerprints in the system settings while Keepass2Android is listening for your fingerprint.</string>
   
 
   <string name="enable_fingerprint_unlock_Info">This will store your master password on this device, encrypted with the Android Keystore and protected using fingerprint authentication. Allows to unlock your database only with your fingerprint.</string>
@@ -744,6 +745,7 @@
   <string name="configure_child_dbs">Configure child databases…</string>
   <string name="child_dbs_title">Child databases</string>
   <string name="unspecified">unspecified</string>
+  <string name="child_db_explanation">Child databases are other databases which can be opened automatically when you open the parent database. Therefore, the child\'s master password and file location are stored in the parent. This feature allows to share some of your passwords with another person. The implementation is compatible with KeeAutoExec for PC.</string>
 
   <string name="child_db_enabled_on_this_device">Enabled on this device</string>
   <string name="child_db_enable_on_this_device">Enable on this device</string>
@@ -782,7 +784,7 @@
   <string name="ChangeLog_1_07">
     Version 1.07-pre\n
     * Fixes for crashes on Samsung\'s Android 9\n
-    * Allow to open more than one database, compatible to KeeAutoExec\n
+    * Allow to open more than one database, compatible with KeeAutoExec\n
     * SFTP: Allow public key authentication, check if host key changed\n
     * Introduce pCloud support - thanks to gilbsgilbs!\n
     * Make Nextcloud support explicit\n

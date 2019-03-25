@@ -227,7 +227,7 @@ namespace keepass2android
 		public string Encrypt(string textToEncrypt)
 		{
 			Kp2aLog.Log("FP: Encrypting");
-			return Base64.EncodeToString(_cipher.DoFinal(System.Text.Encoding.UTF8.GetBytes(textToEncrypt)), 0);
+            return Base64.EncodeToString(_cipher.DoFinal(System.Text.Encoding.UTF8.GetBytes(textToEncrypt)), 0);
 		}
 
 

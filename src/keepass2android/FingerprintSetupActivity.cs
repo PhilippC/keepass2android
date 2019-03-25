@@ -186,14 +186,28 @@ namespace keepass2android
 			}
 			else
 			{
-				if (_unlockMode == FingerprintUnlockMode.FullUnlock)
-				{
-					var userKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey.GetUserKey<KcpPassword>();
-					_enc.StoreEncrypted(userKey != null ? userKey.Password.ReadString() : "", CurrentPreferenceKey, edit);
-				}
-				else
-					_enc.StoreEncrypted("QuickUnlock" /*some dummy data*/, CurrentPreferenceKey, edit);
-			}
+			    try
+			    {
+			        if (_unlockMode == FingerprintUnlockMode.FullUnlock)
+			        {
+			            var userKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey.GetUserKey<KcpPassword>();
+			            _enc.StoreEncrypted(userKey != null ? userKey.Password.ReadString() : "", CurrentPreferenceKey, edit);
+			        }
+			        else
+			            _enc.StoreEncrypted("QuickUnlock" /*some dummy data*/, CurrentPreferenceKey, edit);
+                }
+			    catch (Exception e)
+			    {
+			        new AlertDialog.Builder(this)
+			            .SetTitle(GetString(Resource.String.ErrorOcurred))
+			            .SetMessage(GetString(Resource.String.FingerprintSetupFailed))
+                        .SetCancelable(false)
+                        .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { })
+                        .Show();
+
+                }
+
+            }
 			edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, _unlockMode.ToString());
 			edit.Commit();
 		}
