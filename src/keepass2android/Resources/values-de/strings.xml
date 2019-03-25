@@ -332,7 +332,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
-  <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Ordner des Anwendungszwischenspeicher auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
+  <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Cache-Ordner der App auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
   <string name="CreateBackups_title">Lokale Backups</string>
   <string name="CreateBackups_summary">Erstelle eine lokale Sicherungskopie der Datenbank, nachdem diese erfolgreich geladen wurde.</string>
   <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie...</string>
@@ -533,7 +533,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SCOPE_CURRENT_ENTRY_title">Aktueller Eintrag</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Das Plugin erhält alle Daten über den aktuellen Datenbankeintrag und ist berechtigt, Aktionen anzubieten und die Anzeige zu verändern.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Eigene Anmeldeinformationen abfragen</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin ist berechtigt, Zugangsdaten abzufragen, die mit der Plugin-App verknüpft sind.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin wird berechtigt, Zugangsdaten abzufragen, die mit der Plugin-App verknüpft sind.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Anmeldeinformationen abfragen</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für selbst ausgewählte Websites oder Anwendungen abzufragen.</string>
   <string name="get_regular_version">Weitere Speichertypen bekommen</string>
