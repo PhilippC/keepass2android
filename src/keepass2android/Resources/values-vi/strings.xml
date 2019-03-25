@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Thời gian chờ ứng dụng</string>
-  <string name="app_timeout_summary">Thời gian trước khi khóa cơ sở dữ liệu khi ứng dụng không hoạt động.</string>
-  <string name="kill_app_label">Tắt tiến trình ứng dụng</string>
   <string name="show_kill_app">Nút đóng</string>
-  <string name="show_kill_app_summary">Hiển thị một nút trong màn hình mật khẩu để tắt tiến trình ứng dụng (đối với người dùng hoang tưởng)</string>
-  <string name="application">Ứng dụng</string>
-  <string name="application_settings">Cài đặt ứng dụng</string>
   <string name="ShowGroupnameInSearchResult_title">Hiển thị tên nhóm trong kết quả tìm kiếm</string>
   <string name="ShowGroupnameInSearchResult_resume">Hiển thị tên nhóm dưới tiêu đề mục trong kết quả tìm kiếm. Tiện dụng nếu một số mục có cùng tên.</string>
   <string name="NavigationToGroupCompleted_message">Hiển thị nhóm: %1$s</string>
@@ -194,7 +188,6 @@
   <string name="no_keys">Không có mục nào trong cơ sở dữ liệu hoặc nhóm.</string>
   <string name="no_results">Không có kết quả tìm kiếm</string>
   <string name="no_url_handler">Không có chương trình xử lý cho liên kết URL này.</string>
-  <string name="open_recent">Mở cơ sở dữ liệu được dùng gần đây (bấm để mở)</string>
   <string name="omitbackup_title">Không tìm kiếm các mục sao lưu và trong thùng rác</string>
   <string name="omitbackup_summary">Bỏ qua nhóm \'Dự phòng\' và thùng rác khỏi kết quả tìm kiếm</string>
   <string name="pass_filename">Tên tập tin cơ sở dữ liệu KeePass</string>
@@ -393,7 +386,6 @@
   <string name="otp_aux_file">Tập tin phụ trợ OTP</string>
   <string name="ErrorOcurred">Một lỗi đã xảy ra:</string>
   <string name="DuplicateUuidsError">Cơ sở dữ liệu hỏng: Tìm thấy ID bị trùng. (Có phải bạn đã lưu tập tin bằng Minikeepass?) Hãy nhập lại cơ sở dữ liệu mới bằng Keepass 2 trên máy tính và chọn \"Tạo ID mới\".</string>
-  <string name="DuplicateUuidsErrorAdditional">Bạn có thể tắt thông báo lỗi này trong phần Cài đặt - Cài đặt ứng dụng - Xử lí tập tin - Kiểm tra UUID trùng. Lưu ý, ứng dụng có thể có các hành vi không kiểm soát. Bạn nên sửa lại cơ sở dữ liệu.</string>
   <string name="synchronize_database_menu">Đang đồng bộ hóa cơ sở dữ liệu…</string>
   <string name="CannotMoveGroupHere">Không thể di chuyển nhóm tới nhóm này.</string>
   <string name="donate_question">Hôm nay là Lễ hội tháng Mười ở nước Đức (Oktoberfest)! Nếu bạn thích Keepass2Android: có lẽ hôm nay là một ngày đẹp trời để mua cho tôi một ly bia?</string>
@@ -420,7 +412,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập đầy đủ vô Dropbox, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vô thư mục Apps/Keepass2Android. Điều này đặc biệt thích hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có một cơ sở dữ liệu, hãy nhấp vào tùy chọn này để tạo thư mục, sau đó đặt tập tin của bạn bên trong thư mục (từ máy tính của bạn) và sau đó chọn tùy chọn này một lần nữa để mở tập tin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
@@ -435,7 +426,6 @@
   <string name="help_master_password">Cơ sở dữ liệu của bạn được mã hóa với mật mã bạn nhập ở đây. Chọn một mật mã mạnh để giữ cho cơ sở dữ liệu an toàn! Mẹo: Nghĩ về một hoặc hai câu và sử dụng các chữ cái đầu tiên của các từ cho mật khẩu. Thêm vô các dấu chấm câu.</string>
   <string name="hint_master_password">Chọn một mật mã chủ để bảo vệ cơ sở dữ liệu của bạn:</string>
   <string name="key_file">Tập tin khóa</string>
-  <string name="help_key_file">Một tập tin khóa về cơ bản là một mật mã được lưu trữ trong một tập tin. Các tập tin khóa thường mạnh hơn mật mã chủ, bởi vì khóa có thể được làm cho phức tạp hơn rất nhiều; tuy nhiên nó cũng khó hơn để giữ chúng bí mật. Nếu bạn lưu trữ cơ sở dữ liệu của bạn trong các dịch vụ điện toán đám mây, không lưu trữ các tập tin khóa ở đó! Điều này sẽ làm chúng hoàn toàn vô ích! Quan trọng: Không thay đổi nội dung của các tập tin khóa sau khi tạo cơ sở dữ liệu!</string>
   <string name="hint_key_file">Chọn nếu bạn muốn sử dụng một tập tin khóa ngoài mật mã chủ của bạn:</string>
   <string name="use_key_file">Sử dụng tập tin khóa</string>
   <string name="error_adding_keyfile">Lỗi trong khi thêm tập tin khoá!</string>
@@ -482,9 +472,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Mục dữ liệu hiện tại</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Công cụ sẽ nhận được tất cả dữ liệu của mục dữ liệu hiện tại và sẽ được cho phép thao tác và sửa đổi cách trình bày của nó.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Truy vấn thông tin đăng nhập</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Công cụ sẽ được cho phép để truy vấn các chứng chỉ liên quan tới gói ứng dụng riêng của nó.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Truy vấn thông tin đăng nhập</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Công cụ sẽ được cho phép truy vấn thông tin đăng nhập cho các trang web hoặc các ứng dụng đã cài đặt trước.</string>
   <string name="get_regular_version">Nhận thêm các kiểu lưu trữ</string>
   <string name="CertificateWarning">Cảnh báo: Chứng chỉ máy chủ xác nhận thất bại: %1$s. Hãy cài đặt giấy chứng nhận gốc thích hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
   <string name="CertificateFailure">Lỗi: Chứng chỉ máy chủ xác nhận không thành công! Hãy cài đặt chứng chỉ gốc phù hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
@@ -495,7 +483,6 @@
   <string name="FileIsReadOnlyOnKitkat">Tập tin bạn chọn đang ở chế độ chỉ đọc cho Keepass2Android do các giới hạn của hệ điều hành Android 4.4 trở lên.</string>
   <string name="CopyFileRequired">Để sử dụng nó, bạn phải sao chép sang vị trí khác.</string>
   <string name="CopyFileRequiredForEditing">Để sửa nó, bạn phải sao chép sang vị trí khác.</string>
-  <string name="ClickOkToSelectLocation">Nhấn OK để chọn nơi sao chép tập tin.</string>
   <string name="FileReadOnlyTitle">Cơ sở dữ liệu chỉ có thể đọc</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android đã mở dữ liệu trong chế độ chỉ đọc.</string>
   <string name="ReadOnlyReason_PreKitKat">Có vẻ như bạn đã mở tệp từ ứng dụng bên ngoài. Bằng cách này không hỗ trợ ghi. Nếu bạn muốn thay đổi cơ sở dữ liệu, vui lòng đóng cơ sở dữ liệu và chọn Thay đổi cơ sở dữ liệu. Sau đó, mở tập tin từ một trong những tuỳ chọn có sẵn nếu có thể.</string>
@@ -534,11 +521,6 @@
     • Đảm bảo bạn đã nhập đúng mật khẩu. Sử dụng biểu tượng mắt để hiển thị mật khẩu đã nhập.\n
    • Đảm bảo bạn đã chọn đúng loại mật khẩu. Đảm bảo khớp với loại được sử dụng khi tạo tập tin dữ liệu.\n
    • Đảm bảo bạn đã chọn đúng tệp tập tin dữ liệu.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; gợi ý: nếu bạn nghĩ rằng tập tin cơ sở dữ liệu của bạn có thể bị hỏng hoặc bạn không nhớ mật khẩu chủ sau khi sửa đổi nó, bạn có thể thử với phiên bản tập tin cuối cùng được mở thành công bằng cách nhấp vào \"%1$s\" và chọn bản sao lưu cục bộ.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    &#8226; Gợi ý: Keepass2Android đã lưu trữ phiên bản tập tin cuối cùng được mở thành công trong bộ nhớ. Bạn có thể mở nó bằng cách nhấp vào \"%1$s\" và chọn bản sao lưu cục bộ.
-  </string>
   <string name="CorruptDatabaseHelp">    Tập tin bị hỏng. \n
     Dưới đây là một số gợi ý có thể giúp chẩn đoán vấn đề:\n
     
@@ -550,7 +532,6 @@
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ErrorReportTitle">Keepass2Android: Đã xảy ra lỗi.</string>
   <string name="ErrorReportText">Đã xảy ra lỗi không mong muốn trong khi chạy Keepass2Android. Vui lòng giúp chúng tôi khắc phục sự cố này bằng cách cho phép ứng dụng gửi báo cáo lỗi.</string>
-  <string name="ErrorReportPromise">Các báo cáo lỗi sẽ không bao giờ chứa bất kỳ nội dung nào của cơ sở dữ liệu hoặc mật khẩu chủ. Bạn có thể tắt chúng trong cài đặt ứng dụng.</string>
   <string name="ErrorReportEnable">Bật</string>
   <string name="ErrorReportDisable">Tắt</string>
   <string name="ErrorReportAsk">Hỏi sau khi gặp lỗi</string>
@@ -622,13 +603,6 @@
 * Cho phép di chuyển các mục và nhóm\n
 * Biểu tượng QuickUnlock có thể làm cho trong suốt (coi cài đặt)\n
 * Sửa một số lỗi</string>
-  <string name="ChangeLog_0_8_5">  <b>Phiên bản 0.8.5</b>\n
-* Tập tin từ xa được lưu trong bộ nhớ đệm cục bộ để cho phép sử dụng ngoại tuyến (bao gồm chỉnh sửa và đồng bộ hóa sau này). Xem cài đặt. \n
-* Thêm biểu tượng thông báo trạng thái khóa của cơ sở dữ liệu (xem cài đặt)\n
-* Cải thiện nhận dạng trạng thái khóa trong một số hoàn cảnh\n
-* Tải tập tin cơ sở dữ liệu vô bộ nhớ khi bạn đang nhập mật mã để tăng tốc độ (xem cài đặt)\n
-* Các mục nhập có thể thêm vô nhóm gốc\n
-* Sửa một số lỗi (giải quyết các mục tham khảo, các vấn đề với bàn phím tiếng Ý và một số thiết bị từ Trung Quốc)</string>
   <string name="ChangeLog_0_8_4">  <b>Phiên bản 0.8.4</b>\n
 * Phát hiện và trộn các thay đổi cơ sở dữ liệu từ bên ngoài khi lưu\n
 * Cải thiện tốc độ tải\n

@@ -22,16 +22,20 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android 离线版</string>
   <string name="short_app_name_nonet">KP2A 离线</string>
-  <string name="app_timeout">应用程序超时</string>
-  <string name="app_timeout_summary">应用程序处于非活动时锁定数据库。</string>
-  <string name="kill_app_label">结束应用程序进程</string>
+  <string name="app_timeout">应用超时</string>
+  <string name="app_timeout_summary">当应用处于非活动状态时锁定数据库之前的时间。</string>
+  <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">关闭按钮</string>
-  <string name="show_kill_app_summary">在密码界面显示一个结束应用程序进程的按钮</string>
-  <string name="application">应用程序</string>
-  <string name="application_settings">应用程序设置</string>
+  <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（对于偏执的用户）</string>
+  <string name="application">应用</string>
+  <string name="application_settings">应用设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜索结果中条目标题下显示群组名。如果几个条目具有相同的名称时会很有用。</string>
   <string name="NavigationToGroupCompleted_message">当前显示群组：%1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">已禁用自动填充目标</string>
+  <string name="AutofillDisabledQueriesPreference_summary">查看已禁用自动填充的应用和网站列表</string>
+  <string name="OfferSaveCredentials_summary">如果启用，Android 会在您将数据手动输入自动填充字段后询问是否要保存凭据。</string>
+  <string name="OfferSaveCredentials_title">提供凭据的保存</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
   <string name="Entry_singular">1个项目</string>
@@ -148,13 +152,13 @@
   <string name="hint_title">名称</string>
   <string name="hint_url">链接地址</string>
   <string name="hint_override_url">覆盖链接地址</string>
-  <string name="hint_tags">标签1,标签2 </string>
+  <string name="hint_tags">标签1, 标签2</string>
   <string name="hint_username">用户名</string>
   <string name="InvalidPassword">密码或密钥文件无效。</string>
   <string name="invalid_algorithm">无效的算法</string>
   <string name="invalid_db_sig">数据库格式无法识别。</string>
   <string name="keyfile_does_not_exist">密钥文件不存在。</string>
-  <string name="no_keyfile_selected">没有选定的密钥文件。</string>
+  <string name="no_keyfile_selected">未选择密钥文件。</string>
   <string name="keyfile_is_empty">密钥文件是空的。</string>
   <string name="length">长度</string>
   <string name="list_size_title">群组列表大小</string>
@@ -195,7 +199,7 @@
   <string name="no_keys">数据库或群组中无条目</string>
   <string name="no_results">无匹配结果</string>
   <string name="no_url_handler">没有处理这个链接地址的程序。</string>
-  <string name="open_recent">打开最近数据库（点击打开）</string>
+  <string name="open_recent">打开最近数据库（触击打开）</string>
   <string name="omitbackup_title">不搜索备份和回收站中的条目</string>
   <string name="omitbackup_summary">从搜索结果中忽略备份和回收站群组</string>
   <string name="pass_filename">KeePass 数据库文件名</string>
@@ -330,7 +334,7 @@
   <string name="NoDonationReminder_title">不再要求捐赠</string>
   <string name="NoDonationReminder_summary">我不打算捐赠或已经捐赠过。即使是在作者生日当天，也不要再向我请求捐赠。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
-  <string name="UseOfflineCache_summary">在应用内部缓存中存放一份数据库文件。当数据库文件源无法访问时，仍可打开数据库。</string>
+  <string name="UseOfflineCache_summary">将数据库文件的副本保留在应用的缓存目录中。这允许在无法访问数据库文件的情况下使用数据库。</string>
   <string name="CreateBackups_title">本地备份</string>
   <string name="CreateBackups_summary">在成功进入数据库后创建本地备份。</string>
   <string name="UpdatingBackup">正在更新本地备份...</string>
@@ -376,12 +380,12 @@
   <string name="AskOverwriteBinary_no">重命名</string>
   <string name="AttachFailed">未能添加附件。</string>
   <string name="RecycleBin">回收站</string>
-  <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？按否取消。</string>
+  <string name="AskDeletePermanentlyEntry">是否要永久删除此条目？选否放入回收站。</string>
   <string name="AskDeletePermanentlyGroup">是否要永久删除此群组？按否将其放入回收站。</string>
-  <string name="AskDeletePermanentlyItems">你想要永久删除选定的元素？选否回到垃圾箱。</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">你想完全的删除这个登陆记录吗?</string>
-  <string name="AskDeletePermanentlyGroupNoRecycle">你想永久的删除这个组吗?</string>
-  <string name="AskDeletePermanentlyItemsNoRecycle">你想永久的删除已选择的元素吗?</string>
+  <string name="AskDeletePermanentlyItems">是否永久删除选定的元素？选否放入回收站。</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">是否永久删除此条目？</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">是否永久删除此群组？</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">是否永久删除所选元素？</string>
   <string name="AskDeletePermanently_title">确定永久删除？</string>
   <string name="AskReloadFile_title">重新载入文件？</string>
   <string name="AskReloadFile">当前所打开的文件已被别的程序所更改，是否要重新载入？</string>
@@ -463,7 +467,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
-  <string name="filestoragehelp_dropboxKP2A">如果你不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 应用/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，点击此选项将创建该新文件夹，然后将你在电脑上的数据库文件放在此文件夹内，然后再选该选项，并以打开该文件。</string>
+  <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -544,7 +548,7 @@
   <string name="FileIsReadOnlyOnKitkat">在 Keepass2Android中，由于 Android 4.4 + 的限制，您选定的文件是只读的 。</string>
   <string name="CopyFileRequired">若要使用它，您必须将其复制到另一个位置。</string>
   <string name="CopyFileRequiredForEditing">若要编辑它，必须将该文件复制到另一个位置。</string>
-  <string name="ClickOkToSelectLocation">单击确定以选择要复制文件的位置。</string>
+  <string name="ClickOkToSelectLocation">点击确定以选择要复制文件的位置。</string>
   <string name="FileReadOnlyTitle">数据库时只读的.</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android 已在只读模式打开当前数据库.</string>
   <string name="ReadOnlyReason_PreKitKat">这看起来像你从一个外部app打开这个文件.这种方式不支持写入.如果你想修改数据库,请先关闭数据库并且选择修改数据库.然后如果可能的话从一个可用的选项打开这个文件.</string>
@@ -627,16 +631,17 @@
   <string name="ErrorReportAsk">出错后询问</string>
   <string name="ErrorReportPrefTitle">发送错误报告</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
-  <string name="ChangeLog_1_07">    版本 1.07-pre2\n
-    * 允许同时打开多个数据库，与 KeeAutoExec 兼容\n
-    * SFTP：允许公钥登录、检查服务器公钥是否发生变化\n
-    * 增加 pCloud 支持 - 感谢 gilbsgilbs！\n
-    * 使 Nextcloud 支持公开化\n
-    * 优化条目附件的保存和更新功能\n
-    * 加入更多个人偏好设置\n
-    * SSL：信任用户证书\n
-    * 错误修复\n
-  </string>
+  <string name="ChangeLog_1_07">版本1.07-pre\n
+    *修复了三星 Android 9 上的崩溃问题\n
+    *允许打开多个与 KeeAutoExec 兼容的数据库\n
+    * SFTP：允许公钥验证，检查主机密钥是否已更改\n
+    *引入 pCloud 支持 - 感谢 gilbsgilbs！\n
+    *明确指出 Nextcloud 支持\n
+    *改进入口附件的保存和更新\n
+    *更多选择，以适应个人喜好的首选项\n
+    * SSL：信任用户证书\n
+    *改进自动填充功能（现在适用于 Firefox，允许减少弹出窗口）\n
+    *错误修复\n  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
@@ -824,13 +829,13 @@
 * 允许移动的条目和群组\n
 * QuickUnlock图标可设透明（参见设置）\n
 * 修复错误</string>
-  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
-* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
-* Notification icon to visualize the lock-state of the database (see settings)\n
-* Improved determination of lock-state in some situations\n
-* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
-* Entries can be added to root group\n
-* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)</string>
+  <string name="ChangeLog_0_8_5"><b>版本 0.8.5</b>\n
+		* 将远端文件缓存至应用缓存，以备离线使用（包括编辑并稍后同步）。详见设置。\n
+		* 通知图标会展现出数据库的锁定状态（详见设置）\n
+		* 改善了某些情况下的锁定决策。\n
+		* 在输入密码时便开始将数据库加载到内存中，提高加载速度（详见设置）\n
+		* 可在根组中添加条目\n
+		* 错误修复（解析引用域、意大利语和中文设备上的键盘问题）</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 * External database changes are detected and merged when saving\n
 * Improved loading performance\n
@@ -941,7 +946,7 @@ Initial public release
   <string name="show_autofill_help">显示自动填充帮助</string>
   <string name="autofill_sign_in_prompt">使用 Keepass2Android 填充</string>
   <string name="autofill_disable">对%1$s禁用自动填充</string>
-  <string name="autofill_enable">对%1$s启用自动填充</string>
+  <string name="autofill_enable_for">对%1$s启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>

@@ -18,13 +18,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Aplikazioaren denbora-muga</string>
-  <string name="app_timeout_summary">Datu-basea desblokeatzeko denbora-muga aplikazioa inaktibo dagoenean.</string>
-  <string name="kill_app_label">Hil aplikazioaren prozesua</string>
   <string name="show_kill_app">Itxi-botoia</string>
-  <string name="show_kill_app_summary">Erakutsi aplikazioa hiltzeko botoi bat pasahitzaren pantailan (erabiltzaile paranoikoentzat)</string>
-  <string name="application">Aplikazioa</string>
-  <string name="application_settings">Aplikazioaren ezarpenak</string>
   <string name="ShowGroupnameInSearchResult_title">Erakutsi taldearen izena bilaketaren emaitzan</string>
   <string name="NavigationToGroupCompleted_message">Bistaratze taldea orain: %1$s</string>
   <string name="ShowGroupInEntry_title">Erakutsi taldearen izena sarrera guztietan</string>
@@ -345,12 +339,9 @@
   <string name="SCOPE_DATABASE_ACTIONS_title">Datu-basearen ekintzen jakinarazpenak</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Uneko sarreraren datuak</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Eskatu norberaren kredentzialak</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Pluginak bere aplikazio-pakete propioarekin zerikusia duten kredentzialak eskatu ahal izango ditu.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Eskatu kredentzialak</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Pluginak kredentzialak eskatu ahal izango ditu webgune edo aplikazio zehatzetarako.</string>
   <string name="get_regular_version">Eskuratu biltegiratze mota gehiago</string>
   <string name="export_fileformats_title">Hautatu fitxategi-formatua</string>
-  <string name="ClickOkToSelectLocation">Sakatu Ados fitxategia kopiatzeko kokalekua aukeratzeko.</string>
   <string name="FileReadOnlyTitle">Datu basea soilik irakurtzeko da</string>
   <string name="AddCustomIcon">Gehitu ikonoa fitxategitik...</string>
   <string name="CopyingFile">Fitxategia kopiatzen...</string>

@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Programtidsavbrudd</string>
-  <string name="app_timeout_summary">Tid før databasen blir låst når programmet ikke er i bruk.</string>
-  <string name="kill_app_label">Drep applikasjons prosessen</string>
   <string name="show_kill_app">Lukk-knapp</string>
-  <string name="show_kill_app_summary">Vis en knapp på passordbildet for å drepe programmets prossess (for paranoide brukere)</string>
-  <string name="application">Program</string>
-  <string name="application_settings">Programinnstillinger</string>
   <string name="ShowGroupnameInSearchResult_title">Viser gruppenavnet i søkeresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Vis gruppenavn under oppføringstitler i søkeresultatene. Nyttig hvis flere oppføringer har samme navn.</string>
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nå: %1$s</string>
@@ -194,7 +188,6 @@
   <string name="no_keys">Ingen oppføringer i databasen eller gruppen.</string>
   <string name="no_results">Ingen søkeresultater</string>
   <string name="no_url_handler">Ingen behandler for denne nettadressen.</string>
-  <string name="open_recent">Åpne nylig brukt database (trykk for å åpne)</string>
   <string name="omitbackup_title">Ikke søk i sikkerhetskopieringer eller papirkurven</string>
   <string name="omitbackup_summary">Søkeresultatet inneholder ikke oppføringer fra \'Backup\' eller papirkurven</string>
   <string name="pass_filename">Filnavnet til KeePass-databasen</string>
@@ -407,7 +400,6 @@
   <string name="otp_aux_file">Tilleggsfil for engangspassord</string>
   <string name="ErrorOcurred">Feil:</string>
   <string name="DuplicateUuidsError">Databasen er korrupt: Duplikate id\'er funnet. (lagret du med Minikeepass?) Vennligst importer på nytt til en ny database med Keepass 2 for PC og velg \'Create new IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Du kan slå av denne feilmeldingen i Innstillinger/Applikasjonsinnstillinger/Filhåndtering/Sjekk for duplikate UUIDer. Merk at du kan oppleve uventet oppførsel. Det anbefales å reparere databasen.</string>
   <string name="synchronize_database_menu">Synkroniser databasen…</string>
   <string name="CannotMoveGroupHere">Kan ikke flytte gruppe til denne gruppen.</string>
   <string name="donate_question">I dag er det Oktoberfest! Dersom du liker Keepass2Android: Ville det ikke være en bra dag å kjøpe meg en øl?</string>
@@ -434,7 +426,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
-  <string name="filestoragehelp_dropboxKP2A">Hvis du ikke vil gi KP2A tilgang til hele Dropbox-mappen din, kan du velge dette alternativet. KP2A vil da bare spørre om tilgang til mappen Apps/Keepass2Android. Dette er spesielt egnet når du oppretter en ny database. Hvis du allerede har en database, trykk på dette alternativet for å opprette mappen, for deretter å plassere filen i mappen (fra en PC) og velge dette alternativet igjen for å åpne filen.</string>
   <string name="filestoragename_gdrive">Google Disk</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
@@ -449,7 +440,6 @@
   <string name="help_master_password">Databasen din er kryptert med passordet du angir her. Velg et sterkt passord for å sikre databasen! Tips: Lag en setning eller to og bruk de første bokstavene til ordene som et passord. Inkluder skilletegn.</string>
   <string name="hint_master_password">Velg et hovedpassord for å beskytte databasen:</string>
   <string name="key_file">Nøkkelfil</string>
-  <string name="help_key_file">En nøkkelfil er egentlig et passord lagret i en fil. Nøkkelfiler er vanligvis sterkere enn hovedpassord på grunn av at disse nøklene kan være mye mer avansert. Men det er også vanskeligere å holde dem hemmelige. Hvis du lagrer databasen i nettskyen, ikke lagre nøkkelfilen der også. Dette kan kompromittere sikkerheten. Viktig: ikke endre nøkkelfilen etter at du har opprettet databasen.</string>
   <string name="hint_key_file">Velg hvis du vil bruke en nøkkelfil i tillegg til hovedpassordet:</string>
   <string name="use_key_file">Bruk nøkkelfil</string>
   <string name="error_adding_keyfile">Feil ved opprettelse av nøkkelfil.</string>
@@ -497,9 +487,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Gjeldende oppføringsdata</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Tillegget vil motta alle data om denne databaseoppføringen, og vil kunne tilby handlinger og endre visningen av den.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Be om egen legitimasjon</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Tillegget vil kunne be om legitimasjonen knyttet til sin egen programpakke.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Be om legitimasjon</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Tillegget vil kunne be om legitimasjon for tilsiktede webområder eller programmer.</string>
   <string name="get_regular_version">Få flere lagringstyper</string>
   <string name="CertificateWarning">Advarsel: Bekreftelse av tjenersertifikatet feilet: %1$s. Installer rotsertifikat på enheten din eller sjekk innstillingene!</string>
   <string name="CertificateFailure">En feil oppsto: Kunne ikke bekrefte tjenersertifikatet! Installer passende rotsertifikat på din enhet eller sjekk innstillingene!</string>
@@ -510,7 +498,6 @@
   <string name="FileIsReadOnlyOnKitkat">Filen du valgte er skrivebeskyttet for Keepass2Android på grunn av restriksjoner på Android 4.4+.</string>
   <string name="CopyFileRequired">For å bruke filen må du kopiere den til en annen plassering.</string>
   <string name="CopyFileRequiredForEditing">For å redigere filen, må du kopiere den til en annen plassering.</string>
-  <string name="ClickOkToSelectLocation">Trykk på OK for å velge en plassering filen skal kopieres til.</string>
   <string name="FileReadOnlyTitle">Databasen er skrivebeskyttet</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android har åpnet gjeldende database i skrivebeskyttet modus.</string>
   <string name="ReadOnlyReason_PreKitKat">Det virker som du åpnet filen fra et eksternt program. Denne måten støtter ikke skriving. Dersom du ønsker å gjøre endringer i databasen, lukk databasen og velg Bytt database. Åpne deretter filen fra en av de tilgjengelige alternativene hvis mulig.</string>
@@ -545,15 +532,11 @@
   <string name="Continue">Fortsett</string>
   <string name="NoFilenameWarning">URIen du tastet inn ser ikke ut som et filnavn. Er du sikker på at dette er en gyldig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ugyldig sammensatt nøkkel! Vennligst prøv igjen.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig sammensatt nøkkel! Vennligst forsøk følgende for å låse opp databasen:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">&#8226;Ugyldig sammensatt nøkkel! Vennligst forsøk følgende for å låse opp databasen:\n
  
   • Kontroller at du har skrevet inn korrekt passord. Benytt øyeikonet for å vise passordet i klartekst.\n
   • Kontroller at du har valgt korrekt passordtype. Sjekk at denne stemmer overens med typen som ble valgt når databasen ble opprettet.\n
   • Kontroller at du har valgt korrekt databasefil.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-  • Tips: Dersom du mistenker at databasefilen kan ha blitt korrupt eller du ikke husker korrekt hovedpassord etter å ha endret det, kan du forsøke den sist fungerende filversjonen ved å klikke \"%1$s\" og velge den lokale sikkerhetskopien.</string>
-  <string name="HintLocalBackupOtherError">\n
-• Tips: Keepass2Android har lagret den sist fungerende filversjonen i internt minne. Du kan åpne den ved å klikke på \"%1$s\" og velge den lokale sikkerhetskopien.  </string>
   <string name="CorruptDatabaseHelp">Filen er korrupt. \n
 Her er noen tips som kan hjelpe med å feilsøke problemet:\n
 
@@ -568,7 +551,6 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   <string name="EntryChannel_desc">Varsel for å forenkle tilgangen til den valgte oppføringen.</string>
   <string name="ErrorReportTitle">Keepass2Android: En feil oppstod.</string>
   <string name="ErrorReportText">En uventet feil oppstod mens Keepass2Android kjørte. Vennligst hjelp oss å rette denne ved å tillate at appen sender feilrapporter.</string>
-  <string name="ErrorReportPromise">Feilrapporter vil aldri inneholde noe innhold fra din database eller hovedpassord. Du kan deaktivere dem i applikasjonsinnstillingene.</string>
   <string name="ErrorReportEnable">Aktiver</string>
   <string name="ErrorReportDisable">Deaktiver</string>
   <string name="ErrorReportAsk">Spør etter feil</string>

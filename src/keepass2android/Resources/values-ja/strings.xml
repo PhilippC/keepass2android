@@ -22,16 +22,20 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android オフライン版</string>
   <string name="short_app_name_nonet">KP2A オフライン版</string>
-  <string name="app_timeout">アプリケーション タイムアウト</string>
+  <string name="app_timeout">アプリのタイムアウト</string>
   <string name="app_timeout_summary">KeePassがこの時間非アクティブだった場合、データベースをロックします。</string>
-  <string name="kill_app_label">アプリのプロセスを終了</string>
+  <string name="kill_app_label">アプリのプロセスを殺す</string>
   <string name="show_kill_app">終了ボタン</string>
-  <string name="show_kill_app_summary">パスワード入力画面にアプリケーションのプロセスを終了するためのボタンを表示します。 (神経質なユーザー向け)</string>
-  <string name="application">アプリケーション</string>
-  <string name="application_settings">アプリケーション設定</string>
+  <string name="show_kill_app_summary">パスワード入力画面にアプリのプロセスを終了するボタンを表示します (神経質なユーザー向け)</string>
+  <string name="application">アプリ</string>
+  <string name="application_settings">アプリの設定</string>
   <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示する</string>
   <string name="ShowGroupnameInSearchResult_resume">検索結果のエントリータイトルの下にグループ名を表示します。同名のエントリーが複数あるときに便利です。</string>
   <string name="NavigationToGroupCompleted_message">表示中のグループ: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">自動入力が無効の対象</string>
+  <string name="AutofillDisabledQueriesPreference_summary">自動入力が無効になっているアプリと web サイトの一覧を表示します</string>
+  <string name="OfferSaveCredentials_summary">有効な場合、自動入力可能なフィールドに手動でデータを入力した後、Android は資格情報を保存するかどうか確認します。</string>
+  <string name="OfferSaveCredentials_title">資格情報の保存を提案</string>
   <string name="ShowGroupInEntry_title">エントリー表示画面にグループ名を表示する。</string>
   <string name="unknown_uri_scheme">申し訳ありません! Keepass2Android は、返された URI %1$s を処理できません。開発者にお問い合わせください!</string>
   <string name="Entry_singular">単一のエントリー</string>
@@ -195,7 +199,7 @@
   <string name="no_keys">データベース・グループがありません。</string>
   <string name="no_results">検索結果に該当するものはありません。</string>
   <string name="no_url_handler">このuriを処理できません。</string>
-  <string name="open_recent">最近使用したデータベースを開く (クリックで開く)</string>
+  <string name="open_recent">最近使用したデータベースを開く (タップして開く)</string>
   <string name="omitbackup_title">検索対象から除外</string>
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
   <string name="pass_filename">KeePassデータベースファイル</string>
@@ -330,7 +334,7 @@
   <string name="NoDonationReminder_title">絶対に寄付を求めない</string>
   <string name="NoDonationReminder_summary">ダイムを与えないまたはすでに寄付されました。著者の誕生日でさえ、寄付金を求めません。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
-  <string name="UseOfflineCache_summary">アプリのキャッシュディレクトリにデータベースファイルのコピーを保持してください。これにより、データベースファイルにアクセスできない間もデータベースを使用することができます。</string>
+  <string name="UseOfflineCache_summary">アプリのキャッシュディレクトリにデータベースファイルのコピーを保存します。これにより、データベースファイルにアクセスできないときもデータベースを使用することができます。</string>
   <string name="CreateBackups_title">ローカルバックアップ</string>
   <string name="CreateBackups_summary">データベースを読み込んだ後、ローカルバックアップを作成します。</string>
   <string name="UpdatingBackup">ローカルバックアップを更新しています...</string>
@@ -432,7 +436,7 @@
   <string name="otp_aux_file">OTP 補助ファイル</string>
   <string name="ErrorOcurred">エラーが発生しました</string>
   <string name="DuplicateUuidsError">データベースが破損しています: 重複する ID が見つかりました。(Minikeepass で保存しましたか?) PC 用 Keepass 2 で新しいデータベースに再インポートして、\'新しい ID の作成\' を選択してください。</string>
-  <string name="DuplicateUuidsErrorAdditional">このエラー メッセージは、設定/アプリケーション設定/ファイル処理/UUID の重複をチェック で無効にできます。予期しない動作が発生する可能性があることにご注意ください。データベースを修正することをお勧めします。</string>
+  <string name="DuplicateUuidsErrorAdditional">設定/アプリ設定/ファイル処理/UUID の重複をチェック で、このエラーメッセージを無効にできます。予期しない動作が発生する可能性があることにご注意ください。データベースを修正することをお勧めします。</string>
   <string name="synchronize_database_menu">データベースの同期...</string>
   <string name="CannotMoveGroupHere">このグループにグループを移動できません。</string>
   <string name="donate_question">今日はオクトーバーフェスト! Keepass2Android を気に入って頂いたとしたら、今日は私のためにビールを買うのにいい日ではありませんか?</string>
@@ -532,9 +536,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">現在のエントリーデータ</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">プラグインはデータベースの現在のエントリーに関するすべてのデータを受け取り、アクションの提供と、表示を変更することができます。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">自己資格情報のクエリ</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">プラグインは、アプリケーション パッケージに関連付けられた資格情報のクエリを行うことができます。</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">プラグインは、アプリ パッケージに関連付けられた資格情報を照会することができます。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">資格情報のクエリ</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">プラグインは、意図的な web サイトまたはアプリケーションに対して資格情報のクエリを行うことができます。</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">プラグインは、意図した web サイトまたはアプリの資格情報を照会することができます。</string>
   <string name="get_regular_version">追加のストレージタイプを取得</string>
   <string name="CertificateWarning">警告: サーバー証明書の検証に失敗しました: %1$s。お使いのデバイスに適切なルート証明書をインストールするか、設定を確認してください!</string>
   <string name="CertificateFailure">エラー: サーバー証明書の検証に失敗しました! お使いのデバイスに適切なルート証明書をインストールするか、設定を確認してください!</string>
@@ -586,7 +590,7 @@
  • 正しいパスワードの種類を選択したことを確認してください。データベースを作成するときに使用した種類と一致することを確認してください。\n
  • 正しいデータベースファイルが選択されていることを確認してください。 </string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; ヒント: データベースファイルが破損したとみられる場合、または、マスターキー変更後に忘れてしまった場合は、\"%1$s\" をクリックしてローカルバックアップを選択し、最後に開けたバージョンのファイルを試すことができます。</string>
+   &#8226; ヒント: データベースファイルが破損したとみられる場合、または、マスターキー変更後に忘れてしまった場合は、\"%1$s\" をクリックしてローカルバックアップを選択し、最後に開くことができたバージョンのファイルを試すことができます。</string>
   <string name="HintLocalBackupOtherError">    \n
     &#8226; ヒント: Keepass2Android は、内部メモリーに最後に開くことができたファイルのバージョン保持しています。\"%1$s\" をクリックして、ローカルバックアップからそれを開くことができます。  </string>
   <string name="CorruptDatabaseHelp">ファイルが壊れています。\n
@@ -619,13 +623,14 @@
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="ErrorReportTitle">Keepass2Android: エラーが発生しました。</string>
   <string name="ErrorReportText">Keepass2Android の実行中に予期しないエラーが発生しました。エラーレポートの送信を有効にし、この問題の解決にご協力ください。</string>
-  <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリケーション設定でエラーレポートを無効にできます。</string>
+  <string name="ErrorReportPromise">エラーレポートにはデータベースやマスターパスワードの内容は一切含まれません。アプリ設定でエラーレポートを無効にできます。</string>
   <string name="ErrorReportEnable">有効にする</string>
   <string name="ErrorReportDisable">無効にする</string>
   <string name="ErrorReportAsk">エラー発生時に確認する</string>
   <string name="ErrorReportPrefTitle">エラーレポートの送信</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
-  <string name="ChangeLog_1_07">    バージョン 1.07 pre2\n
+  <string name="ChangeLog_1_07">    バージョン 1.07-pre\n
+    * Samsung の Android 9 でのクラッシュを修正\n
     * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
     * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
     * pCloud サポートの導入 - gilbsgilbs に感謝!\n
@@ -633,7 +638,30 @@
     * エントリ添付ファイルの保存と更新を改善\n
     * 個人設定の動作を適応させるためのオプションを追加\n
     * SSL: ユーザー証明書の信頼\n
+    * 自動入力の改善 (Firefox で動作します。ポップアップを抑えることができます)\n
     * バグフィックス\n
+  </string>
+  <string name="ChangeLog_1_06">    バージョン 1.06\n
+    * Yubikey チャレンジ-レスポンス アプリとして YubiChallenge ではなく ykDroid に切り替え。\n
+    * KeepassXC スタイルのチャレンジ-レスポンスのサポートを実装します。注: データベースの形式を KDBX4 にする必要があります!\n
+    * Google ドライブからゴミ箱のファイルを読み込むことを拒否\n
+    * FTPS の TLS 実装を切り替え。 gssapi-with-mic をサポートするサーバーの JSch バグ回避策を追加\n
+    * バグ修正\n
+  </string>
+  <string name="ChangeLog_1_05">    バージョン 1.05\n
+    * Android 8 の通知チャネルを使用。システム設定から設定できます\n
+    * 通知でエントリーアイコンを表示\n
+    * Android 8 の適応アイコンを使用。Android 7 の丸いランチャー アイコンを使用\n
+    * ロック解除で検索をアクティブにできる (設定を参照)\n
+    * ストレージ アクセス フレームワークを通じてファイルを書き込む方法を変更。システムのファイル選択から開いたファイルで Google ドライブを更新する際の問題を修正\n
+    * いくつかの一般的な誤解を避けるために一部の情報テキストを追加\n
+    * データ損失のリスクを軽減するため、正常に開いたデータベースのローカル バックアップを作成\n
+    * 最近の SSH 暗号をサポートする JSch 更新\n
+    * 接続設定が編集できる。例、WebDav パスワード変更時\n
+    * Yubikey Neo の静的パスワード モードのサポートを追加\n
+    * 自動入力の提案を無効にできる\n
+    * logcat へのデータ漏洩を修正\n 
+    * バグ修正\n
   </string>
   <string name="ChangeLog_1_04b">    バージョン 1.04b\n
     * Huawei デバイスでオートフィルを有効にしようとするときにクラッシュを回避。\n
@@ -797,7 +825,7 @@
  * クイックロック解除アイコンを透明にすることができます (設定を参照)\n
  * 複数のバグ修正</string>
   <string name="ChangeLog_0_8_5"><b>バージョン 0.8.5</b>\n
- * オフライン使用 (編集と以降の同期を含む) できるようにリモート ファイルをローカル アプリケーション キャッシュに格納します。設定を参照してください。\n
+ * オフライン使用 (編集と以降の同期を含む) できるようにリモート ファイルをローカル アプリ キャッシュに格納します。設定を参照してください。\n
  * データベースのロック状態を視覚化する通知アイコン (設定を参照)\n
  * いくつかの状況でロック状態を決定する方法の改善\n
  * 読み込み速度を上げるため、パスワードを入力している間にデータベース ファイルをメモリに読み込みます (設定を参照)\n

@@ -23,13 +23,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android آفلاین</string>
   <string name="short_app_name_nonet">KP2A آفلاین</string>
-  <string name="app_timeout">مهلت برنامه</string>
-  <string name="app_timeout_summary">اگر با برنامه کار نکنید پس از این مدت‌زمان پایگاه‌داده قفل می‌شود.</string>
-  <string name="kill_app_label">بستن کامل برنامه</string>
   <string name="show_kill_app">دکمهٔ بستن</string>
-  <string name="show_kill_app_summary">در صفحهٔ نمایش گذرواژه دکمه‌ای برای بستن کامل برنامه اضافه می‌کند (برای کاربران بدگمان)</string>
-  <string name="application">برنامه</string>
-  <string name="application_settings">تنظیمات برنامه</string>
   <string name="ShowGroupnameInSearchResult_title">نمایش نام گروه در نتیجهٔ جست‌وجو</string>
   <string name="ShowGroupnameInSearchResult_resume">نام گروه را زیر عنوان مدخل در نتایج جست‌وجو نشان می‌دهد. هنگامی که چندین مدخل همنام وجود دارد سودمند است.</string>
   <string name="NavigationToGroupCompleted_message">در حال دیدن این گروه هستید: %1$s</string>
@@ -198,7 +192,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="no_keys">هیچ مدخلی در پایگاه‌داده یا گروه وجود ندارد.</string>
   <string name="no_results">چیزی پیدا نشد</string>
   <string name="no_url_handler">گرداننده‌ای برای این url وجود ندارد.</string>
-  <string name="open_recent">بازکردن آخرین پایگاه‌داده (لمس کنید تا باز شود)</string>
   <string name="omitbackup_title">در مدخل‌های پشتیبان و سطل بازیافت نگرد</string>
   <string name="omitbackup_summary">چیزی از گروه‌های پشتیبان و سطل بازیافت در نتایج جست‌وجو نباشد</string>
   <string name="pass_filename">نام فایل پایگاه‌دادهٔ KeePass</string>
@@ -333,7 +326,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="NoDonationReminder_title">دیگر هیچ‌وقت درخواست حمایت نکن</string>
   <string name="NoDonationReminder_summary">چندرغاز هم نمی‌دهم یا قبلاً حمایت کرده‌ام. حتی روز تولد سازندهٔ برنامه هم درخواست هدیه نکن.</string>
   <string name="UseOfflineCache_title">پایگاه‌داده در نهانگاه</string>
-  <string name="UseOfflineCache_summary">نسخه‌ای از فایل‌های پایگاه‌داده را در پوشهٔ نهانگاهی برنامه نگه دارید. بدین ترتیب حتی اگر فایل اصلی پایگاه‌داده در دسترس نباشد می‌توانید از آن استفاده کنید.</string>
   <string name="CreateBackups_title">پشتیبان‌های محلی</string>
   <string name="CreateBackups_summary">پس از بارگذاری موفقیت‌آمیز پایگاه‌داده، یک نسخهٔ پشتیبان از آن روی دستگاه ایجاد می‌شود.</string>
   <string name="UpdatingBackup">به‌روزآوری پشتیبان محلی...</string>
@@ -440,7 +432,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="otp_aux_file">فایل کمکی OTP</string>
   <string name="ErrorOcurred">خطایی رخ داد:</string>
   <string name="DuplicateUuidsError">پایگاه‌داده خراب است: شناسه‌های تکراری پیدا شد. (با Minikeepass ذخیره کردید؟) لطفاً مجدداً با استفاده از نسخهٔ کامپیوتری Keepass 2 آن را در پایگاه‌دادهٔ جدیدی وارد کنید و سپس گزینهٔ «ساخت شناسه‌های جدید» را برگزینید.</string>
-  <string name="DuplicateUuidsErrorAdditional">این پیغام خطا از طریق تنظیمات/تنظیمات برنامه/فایل‌گردانی/بررسی UUIDهای تکراری غیرفعال می‌شود. لطفاً توجه کنید که با این کار ممکن است رفتار غیرمنتظره‌ای از برنامه سر بزند. بهتر است مشکل پایگاه‌داده را حل کنید.</string>
   <string name="synchronize_database_menu">در حال همگام‌سازی پایگاه‌داده…</string>
   <string name="CannotMoveGroupHere">نمی‌توان گروه را در این گروه قرار داد.</string>
   <string name="donate_question">از Keepass2Android راضی هستید؟ مرا به یک فنجان قهوه مهمان کنید.</string>
@@ -472,7 +463,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (پوشه KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">اگر می‌خواهید DropBoxتان به‌طور کامل در دسترس KP2A نباشد، این گزینه را انتخاب کنید. با این کار فقط دسترسی به پوشهٔ Apps/Keepass2Android را درخواست می‌کند. این گزینه مخصوصاً مناسب زمانی است که پایگاه‌دادهٔ جدیدی می‌سازید. اگر هم‌اکنون یک پایگاه‌داده دارید، این گزینه را انتخاب کنید تا پوشه را بسازید، سپس فایل را درون آن پوشه قرار دهید (از کامپیوترتان) و سپس دوباره این گزینه را انتخاب کنید تا فایل باز شود.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -488,7 +478,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="help_master_password">پایگاه‌داده با شاه‌رمزی که اینجا می‌نویسید رمزگذاری می‌شود. یک گذرواژهٔ قوی انتخاب کنید تا پایگاه‌داده امن بماند! راهنمایی: یک یا دو جمله بسازید و از حروف اول کلمه‌ها برای ساخت شاه‌رمز استفاده کنید. علائم نگارشی را هم به‌کار ببرید.</string>
   <string name="hint_master_password">یک شاه‌رمز برای محافظت از پایگاه‌داده انتخاب کنید:</string>
   <string name="key_file">فایل کلید</string>
-  <string name="help_key_file">فایل کلید در اصل گذرواژه‌ای است که در یک فایل ذخیره شده. فایل‌های کلید معمولاً قوی‌تر از شاه‌رمز هستند؛ زیرا کلید می‌تواند بسیار پیچیده‌تر باشد، هرچند محفوظ نگه‌داشتن آن هم دشوارتر است. اگر پایگاه‌داده‌تان را روی ابر ذخیره می‌کنید، فایل کلید را هم آنجا کنارش نگذارید! اگر این کار را بکنید کاملاً بی‌استفاده می‌شود! مهم: بعد از اینکه پایگاه‌داده ساخته شد، محتوای فایل کلید را تغییر ندهید!</string>
   <string name="hint_key_file">در صورتی انتخاب کنید که بخواهید علاوه بر شاه‌رمزتان از یک فایل کلید هم استفاده کنید:</string>
   <string name="use_key_file">استفاده از فایل کلید</string>
   <string name="error_adding_keyfile">هنگام افزودن فایل کلید خطایی رخ داد!</string>
@@ -541,9 +530,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="SCOPE_CURRENT_ENTRY_title">دادگان مدخل جاری</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">افزونه همهٔ دادگان مربوط به مدخل جاری را دریافت می‌کند و می‌تواند پیشنهاد انجام کاری را بدهد و ظاهر آن را تغییر دهد.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">یافتن اعتبارنامهٔ خود</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">افزونه اجازه دارد اعتبارنامهٔ متناظر با بستهٔ نرم‌افزاری خودش را بیابد.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">یافتن اعتبارنامه</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">افزونه اجازه دارد اعتبارنامهٔ وب‌سایت‌ها یا برنامه‌های درخواستی شما را بیابد.</string>
   <string name="get_regular_version">انواع بیشتری از ذخیره‌گاه‌ها را دریافت کنید</string>
   <string name="CertificateWarning">هشدار: اعتبارسنجی گواهینامهٔ میزبان ناموفق بود: %1$s. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
   <string name="CertificateFailure">هشدار: اعتبارسنجی گواهینامهٔ میزبان ناموفق بود. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
@@ -554,7 +541,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="FileIsReadOnlyOnKitkat">به‌سبب محدودیت‌هایی که اندروید ۴٫۴‎+‎ دارد، Keepass2Android فقط می‌تواند این فایل را بخواند.</string>
   <string name="CopyFileRequired">برای استفاده از آن، باید آن را به مکان دیگری کپی کنید.</string>
   <string name="CopyFileRequiredForEditing">برای ویرایش آن، باید آن را به مکان دیگری کپی کنید.</string>
-  <string name="ClickOkToSelectLocation">خُب را انتخاب کنید تا محل کپی‌کردن فایل را برگزینید.</string>
   <string name="FileReadOnlyTitle">پایگاه‌داده فقط-خواندنی است</string>
   <string name="FileReadOnlyMessagePre">برنامهٔ Keepass2Android پایگاه‌دادهٔ جاری را در حالت فقط-خواندنی باز کرده است.</string>
   <string name="ReadOnlyReason_PreKitKat">ظاهراً فایل را در یک برنامهٔ خارجی باز کرده‌اید. با این کار نوشتن در فایل ممکن نیست. اگر قصد دارید در پایگاه‌داده تغییرات بدهید، لطفاً پایگاه‌داده را ببندید و تغییردادن پایگاه‌داده را انتخاب کنید. سپس در صورت امکان به‌کمک یکی از گزینه‌های موجود فایل را باز کنید.</string>
@@ -594,11 +580,6 @@ mycloud.me.com/webdav/‎ )</string>
     &#8226; اطمینان حاصل کنید که گذرواژه را درست نوشته باشید. روی نماد چشم بزنید تا گذرواژه نمایان شود.\n
    &#8226; اطمینان حاصل کنید که نوع گذرواژه را درست انتخاب کرده باشید. مطمئن شوید همانی باشد که هنگام ساختن پایگاه‌داده انتخاب کرده بودید.\n
    &#8226; اطمینان حاصل کنید پایگاه‌دادهٔ درست را انتخاب کرده باشید.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; راهنما: اگر گمان می‌کنید فایل پایگاه‌داده خراب شده باشد یا اگر پس از ویرایش، شاه‌کلید آن را فراموش کرده‌اید می‌توانید آخرین نسخه‌ای که با موفقیت باز کرده‌اید را امتحان کنید. برای این منظور روی «%1$s» بزنید و فایل پشتیبان محلی را انتخاب کنید.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    • راهنما: Keepass2Android آخرین نسخه‌ای از فایل که باموفقیت باز کرده بودید را در حافظهٔ داخلی ذخیره کرده است. با زدن روی «%1$s» و انتخاب فایل پشتیبان محلی می‌توانید آن را باز کنید.
-  </string>
   <string name="CorruptDatabaseHelp">    فایل خراب شده است.\n
     چند راهنمایی که کمکتان می‌کند مشکل را تشخیص دهید:\n
     
@@ -615,7 +596,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="EntryChannel_desc">اعلان برای سهولت دسترسی به مدخلی که اکنون انتخاب شده است.</string>
   <string name="ErrorReportTitle">‫Keepass2Android‬: خطایی رخ داد.</string>
   <string name="ErrorReportText">هنگام اجرای Keepass2Android خطای غیرمنتظره‌ای رخ داد. با اجازه‌دادن به برنامه برای ارسال گزارش‌های خطا کمک کنید تا این عیب را برطرف کنیم.</string>
-  <string name="ErrorReportPromise">گزارش‌های خطا هرگز شامل محتویات پایگاه‌دادهٔ شما یا شاه‌رمز نیست. از طریق تنظیمات برنامه می‌توانید آن‌ها را غیرفعال کنید.</string>
   <string name="ErrorReportEnable">فعال‌کردن</string>
   <string name="ErrorReportDisable">غیرفعال کردن</string>
   <string name="ErrorReportAsk">پرسش بعد از خطا</string>

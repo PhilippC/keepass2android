@@ -23,10 +23,10 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">مهلة التطبيق</string>
   <string name="app_timeout_summary">المدة الزمنية قبل تأمين قاعدة البيانات في حال كان التطبيق غير نشط.</string>
-  <string name="kill_app_label">إيقاف معالجة التطبيق</string>
+  <string name="kill_app_label">إنهاء عملية التطبيق</string>
   <string name="show_kill_app">زر الإغلاق</string>
   <string name="show_kill_app_summary">عرض زر في شاشة كلمة المرور للإقاف معالجة التطبيق (للمستخدمين المتخوفين)</string>
-  <string name="application">تطبيق</string>
+  <string name="application">التطبيق</string>
   <string name="application_settings">إعدادات التطبيق</string>
   <string name="ShowGroupnameInSearchResult_title">عرض اسم المجموعة في نتيجة البحث</string>
   <string name="ShowGroupnameInSearchResult_resume">عرض اسم المجموعة تحت عناوين القيود في نتائج البحث. هذا مفيد في حال وجود عدة قيود بنفس الاسم.</string>
@@ -57,6 +57,7 @@
   <string name="unlock_database_title">فتح قاعدة البيانات</string>
   <string name="brackets">أقواس</string>
   <string name="cancel">إلغاء</string>
+  <string name="Ok">موافق</string>
   <string name="ClearClipboard">مسح حافظة لوحة المفاتيح.</string>
   <string name="clipboard_timeout">مهلة حافظة لوحة المفاتيح</string>
   <string name="clipboard_timeout_summary">المدة الزمنية قبل مسح حافظة لوحة المفاتيح بعد نسخ اسم المستخدم أو كلمة المرور</string>
@@ -207,6 +208,8 @@
   <string name="edit">تعديل</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">البداية</string>
+  <string name="AutoReturnFromQuery_title">العودة تلقائياً من شاشة الاستعلام</string>
+  <string name="AutoReturnFromQuery_summary">عند البحث عن قيد لتطبيق أو لموقع: العودة تلقائياً من شاشة الاستعلام إذا كان هناك إدخال مطابق واحد فقط في قاعدة البيانات.</string>
   <string name="KeyDerivFunc">طريقة اشتقاق المفتاح</string>
   <string name="rounds">جولات التشفير</string>
   <string name="rounds_explaination">زيادة عدد جولات التشفير يوفر حماية إضافية ضد هجمات التخمين، ولكنها يمكن أن تبطئ التحميل والحفظ بشكل كبير.</string>
@@ -285,6 +288,7 @@
   <string name="BinaryDirectory_summary">المجلد حيث يتم حفظ المرفقات.</string>
   <string name="SaveAttachmentDialog_title">حفظ المرفقات</string>
   <string name="SaveAttachmentDialog_text">الرجاء تحديد مكان حفظ المرفقات.</string>
+  <string name="SaveAttachmentDialog_save">تصدير إلى ملف...</string>
   <string name="SaveAttachmentDialog_open">حفظ في ذاكرة التخزين المؤقت، ثم فتح المرفق</string>
   <string name="SaveAttachment_doneMessage">حفظ الملف في %1$s.</string>
   <string name="SaveAttachment_Failed">لا يمكن حفظ المرفق في %1$s.</string>
@@ -310,12 +314,15 @@
   <string name="ClearPasswordOnLeave_summary">مسح كلمة المرور الرئيسية التي تم إدخالها عند ترك الشاشة دون فتح قفل قاعدة البيانات.</string>
   <string name="LockWhenNavigateBack_title">قفل عند ترك التطبيق</string>
   <string name="LockWhenNavigateBack_summary">تأمين قاعدة البيانات عند ترك التطبيق عن طريق الضغط على زر العودة.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">استخدم لوحة المفاتيح مضمنة داخل Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">إذا كنت لا تثق بموفر لوحة المفاتيح القياسية، اختر هذا الخيار لاستخدام لوحة المفاتيح المدمجة عند إدخال كلمة السر الرئيسية أو تحرير القيود.</string>
   <string name="NoDonateOption_title">إخفاء خيار التبرع</string>
   <string name="NoDonateOption_summary">هذا الإعداد للمتبرعين. يظهر فقط بعد استخدام Keepass2Android لبعض الوقت.</string>
   <string name="NoDonateOption_question">بدون التبرعات، هذا التطبيق لم يكن ليتواجد ولم يكن ليطوّر باستمرار! إذا لم تتبرع بعد، الرجاء أخذه بعين الاعتبار.</string>
   <string name="NoDonationReminder_title">لا تطلب التبرع مطلقاً</string>
   <string name="NoDonationReminder_summary">لن أعطيك قرشاً أو أني تبرعت مسبقاُ. لا تطلب التبرع، ولا حتى في عيد ميلاد المطور.</string>
   <string name="UseOfflineCache_title">التخزين المؤقت لقاعدة بيانات</string>
+  <string name="UseOfflineCache_summary">الاحتفاظ بنسخة من ملفات قاعدة البيانات في دليل التخزين المؤقت للتطبيق. هذا يسمح باستخدام قواعد البيانات حتى حين ملف قاعدة البيانات غير قابل للوصول.</string>
   <string name="AcceptAllServerCertificates_title">شهادات SSL</string>
   <string name="AcceptAllServerCertificates_summary">حدد السلوك عند فشل التحقق من صحة الشهادة. ملاحظة: يمكنك تثبيت شهادات على الجهاز الخاص بك إذا فشل التحقق من صحة الشهادة!</string>
   <string name="ClearOfflineCache_title">مسح ذاكرة التخزين المؤقت؟</string>
@@ -396,10 +403,14 @@
   <string name="hint_http_url">عنوان الملف أو المجلد (مثال: mycloud.me.com/webdav)</string>
   <string name="enter_owncloud_login_title">أدخل بيانات دخول OwnCloud:</string>
   <string name="hint_owncloud_url">رابط OwnCload (مثال: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">أدخل بيانات دخول OwnCloud:</string>
+  <string name="hint_nextcloud_url">رابط Nextcloud (مثال: nextcloud.me.com)</string>
   <string name="hint_sftp_host">المضيف (مثال: 192.168.0.1)</string>
   <string name="hint_sftp_port">المنفذ</string>
   <string name="initial_directory">المجلد الأولي (اختياري):</string>
   <string name="enter_sftp_login_title">أدخل بيانات الدخول لـ SFTP:</string>
+  <string name="sftp_auth_mode">نمط المصادقة</string>
+  <string name="send_public_key">إرسال المفتاح العمومي...</string>
   <string name="enter_ftp_login_title">أدخل بيانات دخول FTP:</string>
   <string name="select_storage_type">حدد نوع التخزين:</string>
   <string name="filestoragename_file">ملف محلي</string>
@@ -409,10 +420,12 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">نيكستكلود</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (مجلد KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">إذا كنت لا تريد منح KP2A حق الوصول إلى Dropbox بالكامل، قم بتحديد هذا الخيار. سوف يتطلب حق الوصول فقط إلى المجلد Apps/Keepass2Android. هذا مناسب بشكل خاص عند إنشاء قاعدة بيانات جديدة. إذا كان بالفعل لديك قاعدة بيانات، انقر فوق هذا الخيار لإنشاء المجلد، ثم ضع الملف داخل المجلد (من جهاز الكمبيوتر الخاص بك) وقم بتحديد هذا الخيار مرة أخرى لفتح الملف.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (نقل ملفات SSH)</string>
   <string name="filestoragename_content">منتقي ملف النظام</string>
@@ -427,7 +440,7 @@
 تلميح: قم بتكوين جملة او جملتين ثم أستخدم الأحرف الأولى من كل كلمة  لتشكيل كلمة المرور ، ضمِّن كلمة المرور هذه علامات الكيبورد مثل @#$%&amp; </string>
   <string name="hint_master_password">إختر كلمة مرور رئيسية لحماية قاعدة بياناتك:</string>
   <string name="key_file">ملف المفتاح</string>
-  <string name="help_key_file">ملف المفتاح بألأساس هو كلمة المرور مخزنة في ملف. عادة تكون ملفات المفاتيح أقوى من كلمات المرور، لأن المفتاح يمكن أن يكون أكثر تعقيداً بكثير من كلمات المرور؛ ولكن من جانب اخر فانه من الصعب حفظ ملفات المفاتيح هذه بصورة تضمن سريتها. إذا قمت بحفظ قاعدة بياناتك في السحابة، فلا تقم بحفظ ملف المفتاح هناك أيضا ! فهذا سيجعل العملية كلها (الحفاظ على السرية) غير مجدية تماما! 
+  <string name="help_key_file">ملف المفتاح بالأساس هو كلمة مرور مخزنة في ملف. عادة تكون ملفات المفاتيح أقوى من كلمات المرور، لأن المفتاح يمكن أن يكون أكثر تعقيداً بكثير؛ ولكن من جانب اخر فانه من الصعب حفظ ملفات المفاتيح هذه بصورة تضمن سريتها. إذا قمت بحفظ قاعدة بياناتك في السحابة، فلا تقم بحفظ ملف المفتاح هناك أيضا ! فهذا سيجعل العملية كلها (الحفاظ على السرية) غير مجدية تماما! 
 هام: لا تقم بتغيير محتويات ملف المفتاح بعد إنشاء قاعدة البيانات!</string>
   <string name="hint_key_file">اختر إذا كنت تريد استخدام ملف المفتاح بالإضافة إلى كلمة المرور الرئيسية:</string>
   <string name="use_key_file">استخدم ملف المفتاح</string>
@@ -471,9 +484,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">بيانات القيد الحالي</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">ستتلقى الإضافة جميع البيانات حول قيد قاعدة البيانات الحالي وسيتم توفير عمليات على القيد وتعديل طريقة عرضه.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">استعلام عن بيانات الدخول الخاصة</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">سيتم السماح لـ\"الإضافة\" بالاستعلام عن بيانات الدخول المقترنة مع حزمة التطبيق الخاص بها.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">الاستعلام عن بيانات الدخول</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">سيتم السماح لـ\"الإضافة\" بالاستعلام عن بيانات الدخول للمواقع أو التطبيقات المتعمدة.</string>
   <string name="get_regular_version">الحصول على المزيد من أنواع التخزين</string>
   <string name="CertificateWarning">تحذير: فشل التحقق من صحة شهادة الخادم: %1$s. قم بتثبيت شهادة الجذر المناسبة على الجهاز الخاص بك أو راجع الإعدادات!</string>
   <string name="CertificateFailure">تحذير: فشل التحقق من صحة شهادة الخادم! قم بتثبيت شهادة الجذر المناسبة على الجهاز الخاص بك أو راجع الإعدادات!</string>
@@ -484,7 +495,6 @@
   <string name="FileIsReadOnlyOnKitkat">الملف المحدد للقراءة فقط لـ Keepass2Android بسبب القيود المفروضة على نظام Android 4.4+.</string>
   <string name="CopyFileRequired">لاستخدامه، يجب أن تقوم بنسخه إلى موقع آخر.</string>
   <string name="CopyFileRequiredForEditing">لتعديله، يجب أن تقوم بنسخه إلى موقع آخر.</string>
-  <string name="ClickOkToSelectLocation">اضغط على \"موافق\" لتحديد موقع نسخ الملف.</string>
   <string name="FileReadOnlyTitle">قاعدة البيانات للقراءة فقط</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android فتح قاعدة البيانات الحالية في وضع للقراءة فقط.</string>
   <string name="ReadOnlyReason_PreKitKat">يبدو أنك قمت بفتح الملف من تطبيق خارجي. هذه الطريقة لا تدعم الكتابة. إذا كنت ترغب في إجراء تغييرات على قاعدة البيانات، الرجاء إغلاق قاعدة البيانات وحدد \"تعديل قاعدة البيانات\". ثم افتح الملف من أحد الخيارات المتاحة إذا كان ذلك ممكناً.</string>
@@ -527,7 +537,6 @@
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ErrorReportTitle">Keepass2Android : حدث خطأ.</string>
   <string name="ErrorReportText">حدث خطأ غير متوقع أثناء تشغيل Keepass2Android. الرجاء مساعدتنا في حل هذه المشكلة بالسماح للتطبيق بإرسال التقارير عن الأخطاء.</string>
-  <string name="ErrorReportPromise">لا تحتوي تقارير الأخطاء أبدا على أي محتويات من قاعدة البيانات الخاصة بك ولا على كلمة السر الرئيسية. يمكنك تعطيلها في إعدادات التطبيق.</string>
   <string name="ErrorReportEnable">تفعيل</string>
   <string name="ErrorReportDisable">تعطيل</string>
   <string name="ErrorReportAsk">اسأل بعد الخطأ</string>

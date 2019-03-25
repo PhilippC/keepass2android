@@ -23,13 +23,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Anwendungs-Timeout</string>
+  <string name="app_timeout">Anwendung reagiert nicht</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Knopf</string>
   <string name="show_kill_app_summary">Zeige einen Button im Passwort-Bildschirm um den App-Prozess zu beenden (für paranoide User)</string>
   <string name="application">Anwendung</string>
-  <string name="application_settings">Anwendungs-Einstellungen</string>
+  <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
   <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit dem selben Namen gibt.</string>
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
@@ -465,7 +465,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
-  <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, kannst du diese Option wählen um den Ordner anzulegen, und dann die Datei (vom PC aus) in den neuen Ordner kopieren. Wähle die Option dann nochmal zum Laden der Datei.</string>
+  <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -535,7 +535,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Eigene Anmeldeinformationen abfragen</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Das Plugin ist berechtigt, Zugangsdaten abzufragen, die mit der Plugin-App verknüpft sind.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Anmeldeinformationen abfragen</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für bewusst ausgewählte Websites oder Anwendungen abzufragen.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für selbst ausgewählte Websites oder Anwendungen abzufragen.</string>
   <string name="get_regular_version">Weitere Speichertypen bekommen</string>
   <string name="CertificateWarning">Warnung: Server-Zertifikat konnte nicht validiert werden: %1$s. Installiere ein passendes Root-Zertifikat auf deinem Gerät oder s. Einstellungen.</string>
   <string name="CertificateFailure">Fehler: Server-Zertifikat konnte nicht validiert werden! Installiere ein passendes Root-Zertifikat auf deinem Android-Gerät oder s. Einstellungen!</string>
@@ -546,7 +546,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileIsReadOnlyOnKitkat">The gewählte Datei kann aufgrund von Beschränkungen in Android 4.4+ von Keepass2Android nicht geändert werden.</string>
   <string name="CopyFileRequired">Um sie zu benutzen, musst sie an einen anderen Speicherort kopiert werden.</string>
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
-  <string name="ClickOkToSelectLocation">Wähle OK, um einen Zielort zum Kopieren zu wählen.</string>
+  <string name="ClickOkToSelectLocation">Klicke auf OK, um einen Speicherort zu wählen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android hat die Datenbank im Lese-Modus geöffnet.</string>
   <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>
@@ -587,8 +587,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
    • Stelle sicher, dass du den richtigen Passworttyp ausgewählt hast. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
    • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n    • Hinweis: Wenn du denkst dass deine Datenbank-Datei beschädigt sein könnte oder du das Passwort nicht mehr weißt, nachdem du es geändert hast, kannst du zur zuletzt erfolgreich geöffnete Datei wechseln. Klicke dazu auf \"%1$s\" und wähle das lokale Backup.</string>
-  <string name="HintLocalBackupOtherError">\n     • Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Diese kannst du öffnen, indem du \"%1$s\" klickst und das lokale Backup wählst.  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">   \n
+   &#8226; Hinweis: Wenn du denkst, dass deine Datenbank-Datei beschädigt sein könnte oder du das Passwort nicht mehr weißt, nachdem du es geändert hast, kannst du zur zuletzt erfolgreich geöffneten Datei wechseln. Klicke dazu auf \"%1$s\" und wähle das lokale Backup.</string>
+  <string name="HintLocalBackupOtherError">\n
+&#8226; Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Du kannst diese öffnen, indem du \"%1$s\" klickst und  \'local backup\' wählst.  </string>
   <string name="CorruptDatabaseHelp">Die Datei ist beschädigt.\n
 Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 
@@ -597,7 +599,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 • Wenn du die Datei auf dem PC noch öffnen kannst, nimm Sie bitte Kontakt mit dem Suppot auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
   <string name="open_other_db">Öffne weitere Datenbank…</string>
   <string name="select_database">Datenbank auswählen</string>
-  <string name="configure_child_dbs">Konfiguriere Kinddatenbank…</string>
+  <string name="configure_child_dbs">Konfiguriere Kinddatenbanken…</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
   <string name="child_db_enabled_on_this_device">Auf diesem Gerät aktiviert</string>
@@ -619,7 +621,8 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ein Fehler ist aufgetreten.</string>
   <string name="ErrorReportText">Ein unerwarteter Fehler ist während der Ausführung von Keepass2Android aufgetreten. Bitte hilf uns indem du erlaubst, einen Fehlerbericht zu senden.</string>
-  <string name="ErrorReportPromise">Fehlerberichte werden nie den Inhalt deiner Datenbank oder des Master-Passworts enthalten. Du kannst sie in den Anwendungseinstellungen deaktivieren.</string>
+  <string name="ErrorReportPromise">Fehlerberichte enthalten nie Inhalt deiner Datenbank oder deines Master-Passworts.
+Du kannst sie auch in den Einstellungen komplett deaktivieren.</string>
   <string name="ErrorReportEnable">Aktivieren</string>
   <string name="ErrorReportDisable">Deaktivieren</string>
   <string name="ErrorReportAsk">Nach Fehler fragen</string>
@@ -746,13 +749,13 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 		* Sortierreihenfolge bei Sortierung nach Änderungsdatum (jetzt absteigend)\n
 		* Bugfixes: Notiz-Ansicht wird nach Änderung korrekt aktualisiert; Passwortfelder sollten nun auf allen Geräten korrekt versteckt werden; Problem behoben, wegen dem ein Eintrag doppelt angelegt werden konnte; Problem mit Anzeige der Warnung wegen doppelten UUIDs behoben\n</string>
   <string name="ChangeLog_0_9_6">Version 0.9.6\n
-		* Schlüsseldatei und/oder lokale Datenbank können in ein App-internes Verzeichnis kopiert werden (s. Einstellungen)\n
+		* Schlüsseldatei und/oder lokale Datenbank können in ein App-internes Verzeichnis kopiert werden (siehe Einstellungen)\n
 		* verschiedene Sortieroptionen\n
 		* Einstellungen für automatisches Tastatur-Umschalten verbessert\n
 		* App-Logo und Benachrichtigungsdesign aktualisiert, Design von Stefano Pignataro (http://www.spstudio.at)\n
-		* Passwort-Generator merkt sich die letzten Einstellungen\n
+		* Keepass2Android merkt sich die letzten Einstellungen\n
 		* Sichtbarkeit von Benachrichtigungen unter Android 5 gesetzt \n
-		* Eingegebenes Master-Passwort wird gelöscht, wenn App verlassen wird, ohne OK zu drücken\n
+		* Eingegebenes Master-Passwort wird gelöscht, wenn die App verlassen wird, ohne OK zu drücken\n
 		* Problem mit fehlenden Tastatur-Eingabesprachen auf manchen Geräten behoben\n
 		* Problem mit automatischem Tastatur-Umschalten behoben\n
 		* Prüfung auf korrupte Datenbanken mit doppelten UUIDs\n
@@ -821,8 +824,8 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 		* Benachrichtigungssymbol zum Visualisieren des Sperr-Zustands (s. Einstellungen)\n
 		* Verbesserungen, um die Datenbank zur richtigen Zeit zu sperren\n
 		* Datenbank-Dateien werden in den Speicher geladen, während du das Passwort eingibst. Dadurch erhöhte Ladegeschwindigkeit.\n
-		* Einträge können zur obersten Gruppe hinzugefügt werden.\n
-		* Bug Fixes (Auflösen von von Referenzfeldern u.a.)</string>
+		* Einträge können zur Root Gruppe hinzugefügt werden.\n
+		* Bug Fixes (Auflösen von von Referenzfeldern, Probleme mit der tastatur auf Italienischen und Chinesischen Geräten)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* Externe Änderungen an der Datenbank werden erkannt und beim Speichern zusammengeführt\n
 		* Verbesserte Geschwindigkeit beim starten\n

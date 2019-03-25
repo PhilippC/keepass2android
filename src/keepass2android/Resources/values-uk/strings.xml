@@ -22,11 +22,8 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Блокування бази даних</string>
-  <string name="app_timeout_summary">Час блокування бази паролів при неактивній програмі.</string>
   <string name="kill_app_label">Завершити процес програми</string>
   <string name="show_kill_app">Кнопка закриття</string>
-  <string name="show_kill_app_summary">Показувати на екрані з паролем кнопку завершення процесу програми (для параноїдальних користувачів)</string>
   <string name="application">Програма</string>
   <string name="application_settings">Налаштування програми</string>
   <string name="ShowGroupnameInSearchResult_title">Назва групи в результаті пошуку</string>
@@ -198,7 +195,7 @@
   <string name="no_keys">Немає записів у базі даних чи групі.</string>
   <string name="no_results">Нічого не знайдено</string>
   <string name="no_url_handler">Немає обробника для цього посилання.</string>
-  <string name="open_recent">Відкрити останню базу даних</string>
+  <string name="open_recent">Відкрити останню базу даних (торкнутися, щоб відкрити)</string>
   <string name="omitbackup_title">Не шукати в записах резервних копій та смітника</string>
   <string name="omitbackup_summary">Не показувати групи Резервна копія і Смітник в результатах пошуку</string>
   <string name="pass_filename">Назва файлу бази даних KeePass</string>
@@ -333,7 +330,6 @@
   <string name="NoDonationReminder_title">Ніколи не запитувати про внесок</string>
   <string name="NoDonationReminder_summary">Я не дам вам ані копійки, або я вже зробив внесок. Не питати про внесок, навіть в день народження автора.</string>
   <string name="UseOfflineCache_title">Кешування бази даних</string>
-  <string name="UseOfflineCache_summary">Зберігати копію файлів бази даних у каталозі кешу додатків. Це дозволяє використовувати базу даних навіть у той час, коли файл бази даних недоступний.</string>
   <string name="CreateBackups_title">Локальні резервні копії</string>
   <string name="CreateBackups_summary">Створювати локальну резервну копію після успішного завантаження бази.</string>
   <string name="UpdatingBackup">Оновлення локальної резервної копії...</string>
@@ -434,7 +430,6 @@
   <string name="otp_aux_file">Допоміжний файл одноразових паролів</string>
   <string name="ErrorOcurred">Виникла помилка:</string>
   <string name="DuplicateUuidsError">База даних пошкоджена: знайдено однакові ID. (Ви зберігали базу за допомогою Minikeepass?) Зробіть повторний імпорт у нову базу за допомогою Keepass 2 для ПК та оберіть \'Створити нові ID\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Ви можете вимкнути це повідомлення про помилку в Налаштування/Програма/Обробка файлів/Перевірка дублікатів UUID. Майте на увазі, що це може спричинити несподівані результати. Рекомендується виправлення бази даних.</string>
   <string name="synchronize_database_menu">Синхронізувати базу даних…</string>
   <string name="CannotMoveGroupHere">Неможливо перемістити групу до цієї групи.</string>
   <string name="donate_question">Сьогодні Октоберфест! Якщо вам подобається Keepass2Android: чи не хороший сьогодні день, щоб купити мені пива?</string>
@@ -466,7 +461,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -482,7 +476,6 @@
   <string name="help_master_password">Базу даних шифрується за допомогою введеного тут пароля. Оберіть надійний пароль для захисту бази даних! Порада: вигадайте одне чи два речення і використовуйте перші літери слів як пароль. Додайте знаки пунктуації.</string>
   <string name="hint_master_password">Виберіть головний пароль для захисту вашої бази даних:</string>
   <string name="key_file">Ключовий файл</string>
-  <string name="help_key_file">Ключовий файл загалом є паролем, що зберігається у файлі. Ключові файли зазвичай сильніші від головних паролів, оскільки ключ може бути набагато складнішим; однак їх важче тримати в секреті. Якщо ви зберігаєте базу даних у хмарному сховищі, не зберігайте там також і ключовий файл! Це зробить його даремним! Важливо: не змінюйте вміст ключового файлу після створення бази даних!</string>
   <string name="hint_key_file">Виберіть, якщо ви хочете використовувати ключовий файл на додаток до головного пароля:</string>
   <string name="use_key_file">Використовувати ключовий файл</string>
   <string name="error_adding_keyfile">Помилка при додаванні ключового файлу!</string>
@@ -533,9 +526,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Дані поточного запису</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Плагін буде отримувати всі дані про поточний запис бази даних і отримає дозвіл запропонувати дії або змінювати відображення запису.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запит власних облікових даних</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Плагін отримає дозвіл на запит облікових даних, пов\'язаних із його власним пакетом програми.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Запит облікових даних</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Плагін отримає дозвіл на запит облікових даних для обраних веб-сайтів чи програм.</string>
   <string name="get_regular_version">Отримати більше типів сховищ</string>
   <string name="CertificateWarning">Увага: Не вдалося перевірити сертифікат сервера: %1$s. Встановіть відповідний кореневий сертифікат на ваш пристрій або перегляньте налаштування!</string>
   <string name="CertificateFailure">Помилка: Не вдалося перевірити сертифікат сервера! Встановіть відповідний кореневий сертифікат на ваш пристрій або перегляньте налаштування!</string>
@@ -546,7 +537,6 @@
   <string name="FileIsReadOnlyOnKitkat">У зв\'язку з обмеженнями на Android 4.4+, вибраний вами файл доступний в Keepass2Android лише для читання.</string>
   <string name="CopyFileRequired">Для можливості використання, вам потрібно копіювати його до іншого розташування.</string>
   <string name="CopyFileRequiredForEditing">Для можливості редагування, вам потрібно копіювати файл до іншого розташування.</string>
-  <string name="ClickOkToSelectLocation">Натисніть OK, щоб обрати місце, куди слід скопіювати файл.</string>
   <string name="FileReadOnlyTitle">База даних доступна тільки для читання</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android відкрив поточну базу даних у режимі тільки для читання.</string>
   <string name="ReadOnlyReason_PreKitKat">Схоже, що ви відкрили файл із зовнішньої програми. Цей спосіб не підтримує запис. Якщо ви хочете внести зміни в базу паролів, закрийте її та виберіть Змінити базу паролів. Після чого відкрийте файл за допомогою одного з доступних варіантів.</string>
@@ -587,11 +577,6 @@
    • Переконайтеся, що ви обрали правильний тип пароля. Переконайтеся, що він збігається з типом, використаним при створенні бази паролів.\n
    • Переконайтеся, що ви обрали правильний файл бази паролів.
  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   • Підказка: Якщо ви вважаєте, що ваша база даних могла бути пошкоджена, або ви не пам\'ятаєте головний пароль після її зміни, ви можете спробувати відкрити останню версію файлу, торкнувшись \"%1$s\" і обравши локальну резервну копію.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    • Підказка: Keepass2Android зберіг останню робочу версію файлу у внутрішньому сховищі. Ви можете відкрити її, торкнувшись \"%1$s\" і обравши локальну резервну копію.
-  </string>
   <string name="CorruptDatabaseHelp">    Файл пошкоджений. \n
     Ось кілька порад, які можуть допомогти виявити проблему:\n
     
@@ -624,22 +609,11 @@
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="ErrorReportTitle">Keepass2Android: Сталася помилка.</string>
   <string name="ErrorReportText">Під час роботи Keepass2Android сталася непередбачувана помилка. Допоможіть нам її виправити, дозволивши програмі надсилати звіти про помилки.</string>
-  <string name="ErrorReportPromise">Звіти про помилки ніколи не будуть містити будь-якої інформації з вашої бази паролів чи головний пароль. Ви можете вимкнути їх в налаштуваннях програми.</string>
   <string name="ErrorReportEnable">Увімкнути</string>
   <string name="ErrorReportDisable">Вимкнути</string>
   <string name="ErrorReportAsk">Запитати після помилки</string>
   <string name="ErrorReportPrefTitle">Надсилати звіти про помилки</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
-  <string name="ChangeLog_1_07">    Версія 1.07-pre2\n
-    * Можливість відкриття більш, ніж одну базу даних, сумісних з KeeAutoExec\n
-    * SFTP: Дозвіл авторизації публічних ключів, перевірка чи змінився розміщений ключ\n
-    * Впровадження підтримки pCloud - подяка gilbsgilbs!\n
-    * Явна підтримка Nextcloud\n
-    * Вдосконалення збереження та оновлення вкладень записів\n
-    * Більше можливостей налаштування поведінки програми\n
-    * SSL: Довірені користувацькі сертифікати\n
-    * виправлення помилок\n
-  </string>
   <string name="ChangeLog_1_06">    Версія 1.06\n
     * Перемикання на ykDroid замість YubiChallenge в якості застосунку для Yubikey Challenge-Response.\n
     * Впроваджено підтримку для KeepassXC-style Challenge-Response. Примітка: Формат бази даних повинен бути KDBX4!\n
@@ -759,19 +733,6 @@
 		* запобігання отримання знімків екрану в режимі QuickUnlock і при введенні пароля\n
 		* зворотній порядок сортування за датою зміни (тепер за спаданням)\n
 		* виправлення помилок: Нотатки тепер оновлюються коректно після змін, Паролі тепер приховуються коректно на всіх пристроях, виправлено проблему, яка дозволяла двічі додавати запис, виправлена проблема показу попередження про дублікат UUID, навіть після виправлення бази даних\n</string>
-  <string name="ChangeLog_0_9_6">Версія 0.9.6\n
-		* можливість імпорту ключового файлу та/або файлу локальної бази даних до внутрішньої теки програми (див. налаштування)\n
-		* можливість різних варіантів сортування\n
-		* покращені налаштування для автоматичного перемикання клавіатури\n
-		* оновлено логотип програми та дизайн сповіщення, дизайн від Stefano Pignataro (http://www.spstudio.at)\n
-		* генератор пароля запам\'ятовує останні налаштування\n
-		* встановлення видимості сповіщення для екрану блокування в Android 5\n
-		* тепер поле головного пароля очищується при виході з програми без натискання OK\n
-		* виправлена проблема втрачених мов у налаштуваннях клавіатури на деяких пристроях\n
-		* виправлена проблема автоматичного перемикання клавіатури на рутованих пристроях\n
-		* додано перевірку для пошкоджених баз даних (дублікати UUID)\n
-		* автоматичне перезавантаження бази даних при виявленні змін, вирішення проблеми безпеки, що стосується розкриття головного паролю\n
-		* покращена маленька польська розкладка клавіатури, виправлено оформлення налаштувань клавіатури (подяка Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Версія 0.9.5</b>\n
 		* Виправлено проблеми з переглядом (особливо на Android 4.4)\n
 		* Виправлена проблема завантаження файлів .kdb (Keepass 1) на Nexus 5 з Android Lollipop\n
@@ -831,13 +792,6 @@
 		* Можливість переміщення записів і груп\n
 		* Можливість зробити піктограму QuickUnlock прозорою (див. налаштування)\n
 		* Виправлення помилок</string>
-  <string name="ChangeLog_0_8_5"><b>Версія 0.8.5</b>\n
-		* Можливість зберігання віддалених файлів в локальному кеші програми для автономного використання (включаючи редагування й подальшу синхронізацію змін). Див. налаштування. \n
-		* Піктограма в області сповіщень для показу стану бази даних (див. налаштування)\n
-		* Вдосконалено визначення стану блокування в деяких ситуаціях\n
-		* Файли бази даних завантажуються в пам\'ять під час введення пароля для підвищення швидкості доступу (див. налаштування)\n
-		* Можливість додавання записів до кореневої групи\n
-		* Виправлення помилок (проблеми з пов\'язаними полями, проблеми з клавіатурою для італійських і китайських пристроях)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* External database changes are detected and merged when saving\n
 		* Improved loading performance\n
@@ -948,6 +902,8 @@ Initial public release
   <string name="autofill_enable_failed">Шкода, але ваш пристрій не підтримує відкриття налаштувань всередині програми. Перейдіть вручну до системних налаштувань автозаповнення, щоб увімкнути службу.</string>
   <string name="show_autofill_help">Показати довідку з автозаповнення</string>
   <string name="autofill_sign_in_prompt">Заповнити з Keepass2Android</string>
+  <string name="autofill_disable">Вимкнути автозаповнення для %1$s</string>
+  <string name="autofill_enable_for">Увімкнути автозаповнення для %1$s</string>
   <string name="invalid_link_association">Не вдалося асоціювати домен %1$s з програмою %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android виявив пристрій зчитування відбитків пальців. Хочете увімкнути розблокування відбитком пальця для цієї бази паролів?</string>
   <string name="understand">Я розумію</string>

@@ -21,13 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Прекорачење времена апликације</string>
-  <string name="app_timeout_summary">Време пре закључавања базе кад је апликација неактивна.</string>
-  <string name="kill_app_label">Прекини процес апликације</string>
   <string name="show_kill_app">Дугме за излаз</string>
-  <string name="show_kill_app_summary">Покажи дугме на екрану шифре за прекид процеса апликације (за параноичне кориснике)</string>
-  <string name="application">Апликација</string>
-  <string name="application_settings">Поставке апликације</string>
   <string name="ShowGroupnameInSearchResult_title">Прикажи име групе у резултату претраге</string>
   <string name="ShowGroupnameInSearchResult_resume">Прикажи име групе испод унешених назива у резултату претраге. Корисно уколико неколико уноса имају исто име.</string>
   <string name="NavigationToGroupCompleted_message">Приказ групе је сада: %1$s</string>
@@ -188,7 +182,6 @@
   <string name="no_keys">Нема уноса у бази података или групи.</string>
   <string name="no_results">Нема резултата претраге</string>
   <string name="no_url_handler">Без handler-а за ову url.</string>
-  <string name="open_recent">Отварање новије базе података (кликните да бисте отворили)</string>
   <string name="omitbackup_title">Не претражуј реззервне копије и уносе корпе за отпатке</string>
   <string name="omitbackup_summary">Изоставите резервну копију и групу Корпе за Отпатке из резултата претраге</string>
   <string name="pass_filename">Име датотеке базе података KeePass</string>

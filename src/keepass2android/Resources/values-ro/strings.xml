@@ -21,13 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Expirare aplicație</string>
-  <string name="app_timeout_summary">Timp înainte de blocarea bazei de date atunci când aplicația este inactivă.</string>
-  <string name="kill_app_label">Oprește aplicația</string>
   <string name="show_kill_app">Buton de închidere</string>
-  <string name="show_kill_app_summary">Afișează un buton pentru închiderea aplicației în ecranul cu parole (pentru useri paranoici)</string>
-  <string name="application">Aplicația</string>
-  <string name="application_settings">Setări aplicație</string>
   <string name="ShowGroupnameInSearchResult_title">Arată numele grupului în rezultatele căutării</string>
   <string name="ShowGroupnameInSearchResult_resume">Arată numele grupului sub titlul înregistrărilor în rezultatele căutării. Folositor dacă mai multe înregistrări au același nume.</string>
   <string name="NavigationToGroupCompleted_message">Grupul afișat este acum: %1$s</string>
@@ -189,7 +183,6 @@
   <string name="no_keys">Nu sunt înregistrări în baza de date sau grup.</string>
   <string name="no_results">Nici un rezultat de căutare</string>
   <string name="no_url_handler">Nici o rutină de tratare a acestui url.</string>
-  <string name="open_recent">Deschideţi baza de date recentă (click pentru a deschide)</string>
   <string name="omitbackup_title">Nu căuta înregistrări în backup şi coşul de gunoi</string>
   <string name="omitbackup_summary">Omite grupurile \'Backup\' şi \'Coş de gunoi\' din toate căutările</string>
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
@@ -380,7 +373,6 @@
   <string name="otp_aux_file">Fişier auxiliar OTP</string>
   <string name="ErrorOcurred">A apărut o eroare:</string>
   <string name="DuplicateUuidsError">Baza de date este coruptă: ID-uri duplicate au fost găsite. (Ai salvat cu Minikeepass?) Te rog să reimporți o bază de date nouă cu Keepass 2 pentru PC selectând \'Create new IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Poți dezactiva acest mesaj în Setări/Setări aplicație/Utilizare fişiere/Verifică dubluri UUID. Reține că este posibil ca aplicația să se comporte neașteptat. Este recomandat pentru a repara baza de date.</string>
   <string name="synchronize_database_menu">Sincronizează baza de date…</string>
   <string name="CannotMoveGroupHere">Nu se poate muta grupul în acest grup.</string>
   <string name="donate_question">Astăzi este Oktoberfest! Dacă vă place Keepass2Android: nu ar fi azi o zi potrivită să-mi cumpăraţi o bere?</string>
@@ -407,7 +399,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Dacă nu doriți să oferiți KP2A acces la tot Dropbox-ul, poți selecta această opțiune. Aceasta va solicita acces doar la folderul Apps/Keepass2Android. Acest lucru este ideal când creați o bază de date nouă. Dacă ai deja o bază de date, apasă această opțiune pentru a crea folderul, puneți baza de date în folder (de pe PC) apoi selectați opțiunea aceasta din nou pentru a deschide fișierul.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
@@ -421,7 +412,6 @@
   <string name="help_master_password">Baza de date este criptata cu parola ce o introduceţi aici. Alegeţi o parolă puternică pentru a păstra datele în siguranţă! Sfat: Inventaţi o propoziţie sau două si folosiţi prima literă a cuvintelor. Includeţi şi semnele de punctuaţie.</string>
   <string name="hint_master_password">Alegeţi o parolă principală pentru a proteja baza de date:</string>
   <string name="key_file">Fişier cheie</string>
-  <string name="help_key_file">Un fişier cheie este în esenţă o parolă stocată într-un fişier. Fişierele cheie sunt de obicei mai puternice decât parola principală, deoarece cheia poate fi mult mai complicată; cu toate acestea este, de asemenea, mai greu să o ţineţi secretă. Dacă stocați baza de date în cloud, nu păstraţi şi cheia tot acolo! Acest lucru ar fi complet inutil! Important: Nu modificaţi conţinutul fişierului cheie după crearea bazei de date!</string>
   <string name="hint_key_file">Alegeţi dacă doriţi să utilizaţi un fişier cheie pe lângă parola principală:</string>
   <string name="use_key_file">Foloseşte fişier cheie</string>
   <string name="error_adding_keyfile">Eroare la adăugarea fişierului cheie!</string>
@@ -464,9 +454,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Date înregistrare curentă</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin-ul va primi toate datele despre înregistrarea curentă din baza de date şi va putea oferii acţiuni şi modifica afişarea acesteia.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Interoghează propriile date de login</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin-ul va putea interoga datele de login asociate cu propriul său pachet de aplicație.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Interoghează datele de login</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin-ul va putea interoga datele de login pentru site-uri sau aplicații deliberate.</string>
   <string name="get_regular_version">Obțineți mai multe tipuri de stocare</string>
   <string name="CertificateWarning">Atenție: Validarea certificatului de server a eșuat: %1$s. Instalați pe aparat certificatul root corespunzător sau vedeți setările!</string>
   <string name="CertificateFailure">Eroare: Validarea certificatului de server a eșuat! Instalați pe aparat certificatul root corespunzător sau vedeți setările!</string>
@@ -477,7 +465,6 @@
   <string name="FileIsReadOnlyOnKitkat">Fișierul selectat este read-only pentru Keepass2Android din cauza restricțiilor pe Android 4.4+.</string>
   <string name="CopyFileRequired">Pentru a-l folosi, trebuie copiat într-o altă locație.</string>
   <string name="CopyFileRequiredForEditing">Pentru a-l edita, trebuie copiat fișierul într-o altă locație.</string>
-  <string name="ClickOkToSelectLocation">Apasă pe OK pentru a selecta locația în care se va copia fișierul.</string>
   <string name="FileReadOnlyTitle">Baza de date permite doar citirea</string>
   <string name="ReadOnlyReason_PreKitKat">Se pare ca ai deschis fişierul dintr-o aplicaţie externă. În acest fel nu se acceptă modificări. Dacă doriţi să faceţi modificări în baza de date, închideţi baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind una dintre opţiunile disponibile.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Modificarea nu este posibilă din cauza restricţiilor introduse în Android KitKat. Dacă doriţi să faceţi modificări în baza de date, închideți baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind selectorul de fisiere al sistemului.</string>
@@ -523,19 +510,6 @@
 * împiedică screenshot-urile la QuickUnlock si parolă\n
 * s-a inversat ordinea de sortare pentru Sortează după data modificării (acum descrescătoare)\n
 * bug rezolvat: Notele se actualizează acum corect după modificări, parola se ascunde corect pe (sperăm) toate dispozitivele, rezolvat problema care a permis să se adauge o înregistrare de două ori, rezolvat problema cu afișarea avertizării pentru UUID-uri duplicate chiar după corectarea bazei de date\n</string>
-  <string name="ChangeLog_0_9_6">Versiunea 0.9.6\n
-* permite să se importe fișierul cheie și/sau fişierul bazei de date în folderul intern (a se vedea setările)\n
-* permite diferite opțiuni de sortare\n
-* îmbunătăţit preferinţele pentru comutarea automată a tastaturii\n
-* actualizat  logo-ul aplicației şi design-ul notificării, design de Stefano Pignataro (http://www.spstudio.at)\n
-* generatorul de parola reține ultimele setări\n
-* setaţi vizibilitatea notificării pentru ecranul de blocare Android 5\n
-* acum se șterge câmpul cu parola principală când se părăsește aplicația fără a apăsa OK\n
-* rezolvat problemă cu lipsa unor limbi în setările tastaturii pe unele aparate\n
-* rezolvat problemă la comutarea automată a tastaturii pe aparate cu root\n
-* adăugat verificare pentru baze de date corupte (UUID-uri duplicate)\n
-* reîncarcă automat baza de date atunci când au fost detectate schimbări, rezolvă o problemă de securitate privind dezvăluirea parolei principale\n
-* îmbunătăţit schema tastaturii mici, rezolvat tema setărilor tastaturii (mulțumită lui Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versiunea 0.9.5</b>\n
 * Rezolvat probleme cu navigarea fisierelor (mai ales pe Android 4.4)\n
 * Rezolvat problemă cu încărcarea fişierelor .kdb (Keepass 1) pe Nexus 5 cu Android Lollipop\n
@@ -595,13 +569,6 @@ Am promis mai multe modificări. Vor veni cu următoarea versiune - scuze. Am vr
 * Permite mutarea de intrări şi grupuri\n
 * Icoana QuickUnlock poate fi făcută transparentă (setări)\n
 * Bug-uri rezolvate</string>
-  <string name="ChangeLog_0_8_5"><b>Versiunea 0.8.5</b>\n
-* Fişierele remote sunt stocate local în cache-ul aplicaţiei pentru a permite utilizare offline (inclusiv editare şi sincronizare ulterioară). Verificaţi setările.\n
-* Icoană de notificare pentru a vizualiza starea de blocare a bazei de date (verificaţi setările)\n
-* Determinare îmbunătăţită a stării de blocare în unele situaţii\n
-* Bazele de date sunt încărcate în memorie în timpul introducerii parolei pentru scurtarea timpului de încărcare (verificaţi setările)\n
-* Se pot adăuga înregistrări în grupul rădăcină\n
-* Bug-uri rezolvate (se rezolvă câmpurile referinţă, probleme cu tastatura pe aparatele italiene şi chineze)</string>
   <string name="ChangeLog_0_8_4"><b>Versiunea 0.8.4</b>\n 
 * Modificările externe ale bazei de date sunt detectate şi îmbinate la salvare\n 
 * S-a îmbunătăţit performanţa la încărcare\n 

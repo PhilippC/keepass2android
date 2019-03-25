@@ -22,13 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Tempo limite da aplicação</string>
-  <string name="app_timeout_summary">Tempo que demora a bloquear a base de dados quando a aplicação está inativa.</string>
-  <string name="kill_app_label">Mata o processo da aplicação</string>
+  <string name="app_timeout">Tempo esgotado do app</string>
+  <string name="app_timeout_summary">Tempo que demora a bloquear a base de dados quando o app está inativa.</string>
+  <string name="kill_app_label">Matar processo de app</string>
   <string name="show_kill_app">Botão fechar</string>
   <string name="show_kill_app_summary">Mostrar um botão no ecrã de palavra-passe para matar o processo de aplicação (para utilizadores paranoicos)</string>
-  <string name="application">Aplicação</string>
-  <string name="application_settings">Definições da aplicação</string>
+  <string name="application">App</string>
+  <string name="application_settings">Configurações do app</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo por baixo dos resultados nas procuras.
 Muito útil se existirem muitos resultados iguais.</string>
@@ -196,7 +196,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="no_keys">Não há registos na base de dados ou grupo.</string>
   <string name="no_results">Não há resultados de pesquisa</string>
   <string name="no_url_handler">Nenhum programa compatível com esta url.</string>
-  <string name="open_recent">Abrir a base de dados recente (clique para abrir)</string>
+  <string name="open_recent">Abrir banco de dados recente (toque para abrir)</string>
   <string name="omitbackup_title">Não pesquisar registos nas cópias de segurança e na reciclagem</string>
   <string name="omitbackup_summary">Omitir o grupo \'Backup\' e \' Reciclagem \' dos resultados de pesquisa</string>
   <string name="pass_filename">Nome do ficheiro de base de dados do KeePass</string>
@@ -331,7 +331,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="NoDonationReminder_title">Nunca pedir doações</string>
   <string name="NoDonationReminder_summary">Não vou doar um cêntimo ou já doei. Não voltar a pedir uma doação, nem no aniversário do autor.</string>
   <string name="UseOfflineCache_title">Cache da base de dados</string>
-  <string name="UseOfflineCache_summary">Manter uma cópia dos ficheiros da base de dados no diretório de cache da aplicação. Isto permite o uso das base de dados mesmo quando os ficheiros das base de dados não estão acessíveis.</string>
+  <string name="UseOfflineCache_summary">Manter uma cópia dos ficheiros da base de dados no diretório de cache do app. Isto permite o uso das base de dados mesmo quando os ficheiros das base de dados não estão acessíveis.</string>
   <string name="CreateBackups_title">Cópias de segurança local</string>
   <string name="CreateBackups_summary">Cria uma cópia de segurança local após carregar com sucesso a base de dados.</string>
   <string name="UpdatingBackup">Atualizando a cópia de segurança local...</string>
@@ -432,7 +432,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="otp_aux_file">Ficheiro auxiliar do OTP</string>
   <string name="ErrorOcurred">Ocorreu um erro:</string>
   <string name="DuplicateUuidsError">Base de dados está corrupta: Foram encontrado IDs duplicados. (Será que foram gravados com o Minikeepass?) Por favor importe novamente os dados para uma nova base de dados com o Keepass 2 para PC e selecione \'Criar novos IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Desative esta mensagem de erro em Definições/Definições da Aplicação/Manipular ficheiro/Verificar UUIDs duplicadas. Note que poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
+  <string name="DuplicateUuidsErrorAdditional">Desative esta mensagem de erro em Definições/Definições do App/Manipular ficheiro/Verificar UUIDs duplicadas. Note que poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
   <string name="synchronize_database_menu">Sincronizar base de dados…</string>
   <string name="CannotMoveGroupHere">Não pode mover o grupo para este grupo.</string>
   <string name="donate_question">Hoje, é a Oktoberfest! Se gosta do Keepass2Android: hoje seria um bom dia para me pagar uma cerveja?</string>
@@ -464,7 +464,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, clique nesta opção para criar a pasta, em seguida, colocar o ficheiro dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
+  <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, toque nesta opção para criar a pasta, em seguida, pôr o ficheiro dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -480,11 +480,12 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="help_master_password">A sua base de dados é encriptada com a palavra-passe que inserir aqui. Escolha uma palavra-passe forte para manter a sua de dados a salvo! Dica: Componha uma frase ou duas e usar as primeiras letras das palavras como palavra-passe. Inclua marcas de pontuação.</string>
   <string name="hint_master_password">Selecione uma palavra-passe mestra para proteger a sua base de dados:</string>
   <string name="key_file">Ficheiro-chave</string>
-  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada em num ficheiro. Ficheiros-chave são tipicamente mais fortes que palavras-passe mestras, pois a palavra-passe pode ser muito mais complicada; contudo, também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto o faria completamente inútil! Importante: não modifique o conteúdo do ficheiro-chave após a criação da base de dados!</string>
+  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada em num ficheiro. Ficheiros-chave são tipicamente mais fortes que palavras-passe mestras, pois a palavra-passe pode ser muito mais complexa; contudo, também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto o faria completamente inútil! Importante: não modifique o conteúdo do ficheiro-chave após a criação da base de dados!</string>
   <string name="hint_key_file">Escolha se deseja utilizar um ficheiro-chave em adição a sua palavra-passe mestra:</string>
   <string name="use_key_file">Utilizar ficheiro-chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o ficheiro-chave!</string>
   <string name="init_otp">Carregar o ficheiro auxiliar OTP…</string>
+  <string name="otp_explanation">Introduza o One-time-passwords (OTPs) seguinte. Passe o seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC (requer o app Yubiclip).</string>
   <string name="otp_hint">%1$d OTP</string>
   <string name="CouldntLoadOtpAuxFile">Não foi possível carregar o ficheiro auxiliar OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use a extensão OtpKeyProv no KeePass 2.x (PC) para configurar a sua base de dados para uso com as OTPs!</string>
@@ -531,9 +532,9 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Dados de entrada atual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">A extensão receberá todos os dados sobre a entrada da base de dados atual e poderão oferecer ações e modificar a exibição do mesmo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta próprias credenciais</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A extensão terá permissão para consultar as credenciais associadas com o seu próprio pacote de aplicação.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A extensão terá permissão para consultar as credenciais associadas com o seu próprio pacote do app.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Pedir credenciais</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A extensão terá permissão para consultar credenciais para web sites ou aplicações deliberadas.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A extensão terá permissão para consultar credenciais para web sites ou apps deliberados.</string>
   <string name="get_regular_version">Obter mais tipos de armazenamento</string>
   <string name="CertificateWarning">Aviso: Falha de validação de certificado de servidor: %1$s. Instalar o certificado raiz apropriado no seu dispositivo ou consulte as definições!</string>
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado no seu dispositivo ou consulte as definições!</string>
@@ -544,7 +545,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="FileIsReadOnlyOnKitkat">O ficheiro selecionado é somente de leitura para Keepass2Android devido a restrições no Android 4.4+.</string>
   <string name="CopyFileRequired">Para poder usá-lo, tem que o copiar para outro destino.</string>
   <string name="CopyFileRequiredForEditing">Para poder alterá-lo, tem que o copiar para outro destino.</string>
-  <string name="ClickOkToSelectLocation">Clique OK para selecionar o local para onde o ficheiro deve ser copiado.</string>
+  <string name="ClickOkToSelectLocation">Toque OK para selecionar o local para onde o ficheiro deve ser copiado.</string>
   <string name="FileReadOnlyTitle">Base de dados é apenas de leitura</string>
   <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que abriu o ficheiro a partir de uma aplicação externa. Desta forma não oferece suporte para escrita. Se quiser fazer alterações na base de dados, feche a base de dados e selecione Alterar base de dados. De seguida, abra o ficheiro com uma das opções disponíveis, se possível.</string>
@@ -587,9 +588,9 @@ Muito útil se existirem muitos resultados iguais.</string>
    &#8226; Verifique se seleccionou a base de dados correta.
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">\n 
- &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, clicando em \"%1$s\" e seleccionando a cópia de segurança local.</string>
+ &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, tocando em \"%1$s\" e seleccionando a cópia de segurança local.</string>
   <string name="HintLocalBackupOtherError">\n
-    &#8226; Keepass2Android guardou com sucesso a versão do último ficheiro aberto com sucesso na memória interna. Você pode abri-lo clicando em \"%1$s\" e seleccionado a cópia de segurança local.  </string>
+    &#8226; Keepass2Android guardou com sucesso a versão do último ficheiro aberto com sucesso na memória interna. Você pode abri-lo tocando em \"%1$s\" e seleccionado a cópia de segurança local.  </string>
   <string name="CorruptDatabaseHelp">    O ficheiro está corrompido.\n
     Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
     &#8226; Se copiou o ficheiro através de USB (MTP-Mode), tente novamente com ferramentas como o MyPhoneExplorer. O MTP por vezes corrompe o ficheiro.\n
@@ -621,21 +622,12 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ocorreu um erro.</string>
   <string name="ErrorReportText">Ocorreu um erro inesperado durante a execução do Keepass2Android. Por favor ajude-nos a corrigir, permitindo que a aplicação envie relatórios de erros.</string>
-  <string name="ErrorReportPromise">Relatórios de erros nunca irão conter nenhum conteúdo de sua base de dados ou palavra-passe mestra. Pode desativa-los nas definições da aplicação.</string>
+  <string name="ErrorReportPromise">Relatórios de erros nunca irão conter nenhum conteúdo de sua base de dados ou palavra-passe mestra. Pode desativa-los nas definições do app.</string>
   <string name="ErrorReportEnable">Ativar</string>
   <string name="ErrorReportDisable">Desativar</string>
   <string name="ErrorReportAsk">Perguntar depois do erro</string>
   <string name="ErrorReportPrefTitle">Enviar relatórios de erro</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
-  <string name="ChangeLog_1_07">Versão 1.07-pre2\n
-* Permitir a abertura de mais de uma base de dados, compatíveis com KeeAutoExec\n
-* SFTP: Permitir autenticação de chave pública, verificar se a chave do host foi alterada\n
-* Introduzir suporte para pCloud - graças a gilbsgilbs!\n
-* Tornar o suporte para Nextcloud explícito\n
-* Melhorar armazenamento e atualização de anexos de entradas\n
-* Mais opções para adaptar o comportamento às preferências pessoais\n
-* SSL: Confiar em certificados de utilizador\n
-* correção de bugs\n  </string>
   <string name="ChangeLog_1_06">Versão 1.06\n
     * Alterado para ykDroid em vez de YubiChallenge como aplicação para  Yubikey Challenge-Response.\n
     * Implementado suporte para KeepassXC-style Challenge-Response. Nota: Formato da base de dados tem que ser KDBX4!\n
@@ -748,7 +740,7 @@ Muito útil se existirem muitos resultados iguais.</string>
 		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
 		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de palavra-pass agora ocultam a palavra-pass corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n</string>
   <string name="ChangeLog_0_9_6">Versão 0.9.6 \n 
-* Permitir importar o ficheiro-chave e/ou ficheiro de banco de dados local para diretório interno da aplicação (ver definições) \n 
+* Permitir importar o ficheiro-chave e/ou ficheiro de banco de dados local para diretório interno do app (ver definições) \n 
 * Permitir diferentes opções de classificação \n 
 * Melhorado preferências para alteração automática de teclado \n 
 * Logotipo da aplicação atualizado e design das notificações, design por Stefano Pignataro (http://www.spstudio.at) \n 
@@ -820,7 +812,7 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 		* Ícone do Desbloqueio-Rápido pode ser transparente (veja em definições)\n
 		* Correções de bugs</string>
   <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
-		* Ficheiros remotos são armazenados no cache local da aplicação para permitir uso offline (incluindo edição e sincronização posterior). Veja em definições. \n
+		* Ficheiros remotos são armazenados no cache local do app para permitir uso offline (incluindo edição e sincronização posterior). Veja em definições. \n
 		* Ícone de notificação para visualizar o lock-state da base de dados (veja em definições)\n
 		* Melhorado a determinação de lock-state em algumas situações\n
 		* Base de dados são carregados na memória enquanto escreve a palavra-passe para aumentar a velocidade (veja em definições)\n
@@ -936,6 +928,8 @@ Lançamento público inicial
   <string name="autofill_enable_failed">Lamento, parece que o seu dispositivo não suporta abrir as configurações dentro da aplicação. Por favor vá manualmente às configurações do sistema para auto preenchimento para ativar o serviço.</string>
   <string name="show_autofill_help">Mostrar ajuda para auto preenchimento</string>
   <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
+  <string name="autofill_disable">Ativar auto-preenchimento para %1$s</string>
+  <string name="autofill_enable_for">Desativar auto-preenchimento para %1$s</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android detetou hardware de impressões digitais. Deseja ativar a impressão digital para desbloquear a base de dados?</string>
   <string name="understand">Eu entendo</string>

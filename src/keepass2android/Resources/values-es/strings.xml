@@ -22,9 +22,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Tiempo de espera de aplicación</string>
-  <string name="app_timeout_summary">Tiempo hasta bloquear la base de datos cuando la aplicación está inactiva.</string>
-  <string name="kill_app_label">Matar el proceso de aplicación</string>
+  <string name="app_timeout">Tiempo de espera de la aplicación</string>
+  <string name="app_timeout_summary">Tiempo antes de bloquear la base de datos cuando la aplicación está inactiva.</string>
+  <string name="kill_app_label">Matar proceso de aplicación</string>
   <string name="show_kill_app">Botón de cerrado</string>
   <string name="show_kill_app_summary">Mostrar un botón en la pantalla de la contraseña para matar el proceso (para usuarios paranoicos)</string>
   <string name="application">Aplicación</string>
@@ -196,7 +196,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="no_keys">Sin entradas en la base de datos o grupo.</string>
   <string name="no_results">Sin resultado de búsqueda</string>
   <string name="no_url_handler">Sin manejador para esta url.</string>
-  <string name="open_recent">Abrir base de datos reciente (clic para abrir)</string>
+  <string name="open_recent">Abrir base de datos reciente (toque para abrir)</string>
   <string name="omitbackup_title">No buscar en las entradas de copia de seguridad o papelera de reciclaje</string>
   <string name="omitbackup_summary">Omitir \'Backup\' y grupo de Papelera de Reciclaje en los resultados de búsqueda</string>
   <string name="pass_filename">Nombre de archivo de base de datos de KeePass</string>
@@ -464,7 +464,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Si no quieres que KP2A acceda a todo tu contenido en Dropbox, selecciona esta opción. Solicitará acceso sólo a la carpeta Apps/Keepass2Android. Esta opción esta especialmente pensada para cuándo se crea una nueva base de datos. Si tienes una base de datos pre-existente, haz click en esta opción para crear la carpeta. Luego mueve el archivo hasta esta carpeta (desde tu computador) y finalmente selecciona esta opción nuevamente para abrir el archivo.</string>
+  <string name="filestoragehelp_dropboxKP2A">Si no quieres darle a KP2A acceso completo a tu Dropbox, deberías seleccionar esta opción. Sólo pedirá acceso a la carpeta Apps/Keepass2Android. Esto es especialmente adecuado cuando creas una nueva base de datos. Si ya tienes una base de datos, chequea esta opción para crear la carpeta, luego pon el archivo dentro de esta (Desde tu PC) y después selecciona otra vez esta opción para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -480,7 +480,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="help_master_password">Su base de datos está encriptada con la contraseña que introduzca aquí. ¡Elija una contraseña fuerte para mantener la base de datos segura!. Consejos: Hacer una frase o dos y utilizar las primeras letras de las palabras como contraseña. Incluir signos de puntuación.</string>
   <string name="hint_master_password">Seleccione una contraseña maestra para proteger su base de datos:</string>
   <string name="key_file">Archivo llave</string>
-  <string name="help_key_file">Un archivo llave es básicamente una contraseña almacenada en un archivo. Los archivos llave son típicamente más fuertes que las contraseñas maestras, porque la llave puede ser mucho más complicada; sin embargo también es más difícil mantenerlas en secreto. ¡Si se guarda la base de datos en la nube, no almacenar allí también el archivo llave! Esto sería totalmente inútil. Importante: ¡No cambie el contenido del archivo llave después de crear la base de datos!</string>
+  <string name="help_key_file">Un archivo de clave es basícamente una contraseña almacenada en un archivo. Los archivos de clave son típicamente más fuertes que las contraseñas maestras porque la clave puede ser mucho más compleja; sin embargo, también es más difícil mantenerlos ocultos. Si almacenas tu base de datos en la nube, ¡no guardes el archivo de clave allí también! ¡Esto lo haría completamente inútil! Advertencia: ¡No cambies los contenidos del archivo de clave después de crear la base de datos!</string>
   <string name="hint_key_file">Elija si desea utilizar un archivo llave además su contraseña maestra:</string>
   <string name="use_key_file">Usar el archivo llave</string>
   <string name="error_adding_keyfile">¡Error al añadir el archivo llave!</string>
@@ -532,9 +532,9 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="SCOPE_CURRENT_ENTRY_title">Datos de entrada actual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin recibirá todos los datos sobre la entrada de la base de datos actual y se permitirá ofrecer acciones y modificar la visualización de él.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consultar las propias credenciales</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin podrá consultar las credenciales asociadas con su propio paquete de la aplicación.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">El plug-in podrá consultar las credenciales asociadas con su popio paquete de aplicación.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Consulta las credenciales</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin podrá consultar las credenciales para deliberadas páginas web o aplicaciones.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">El plug-in podrá consultar los credenciales para algunos sitios y aplicaciones predeterminados.</string>
   <string name="get_regular_version">Consiga más tipos de almacenamiento</string>
   <string name="CertificateWarning">ADVERTENCIA: Error de validación del certificado del servidor: %1$s. ¡Instale el certificado raíz apropiado en su dispositivo o revise la configuración!</string>
   <string name="CertificateFailure">Error: ¡Error de validación del certificado de servidor! ¡Instale el certificado raíz apropiado en su dispositivo o revise la configuración!</string>
@@ -545,7 +545,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="FileIsReadOnlyOnKitkat">El archivo seleccionado es de sólo lectura para Keepass2Android debido a restricciones en Android 4.4 +.</string>
   <string name="CopyFileRequired">Para usarlo, debe copiarlo a otro lugar.</string>
   <string name="CopyFileRequiredForEditing">Para editarlo, debe copiar el archivo a otra ubicación.</string>
-  <string name="ClickOkToSelectLocation">Haga clic en OK para seleccionar una ubicación donde se debe copiar el archivo.</string>
+  <string name="ClickOkToSelectLocation">Pulse OK para seleccionar una ubicación donde el archivo se copiará.</string>
   <string name="FileReadOnlyTitle">La base de datos es de sólo lectura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha abierto la base de datos en modo de sólo lectura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que abrió el archivo desde una aplicación externa. De esta manera no admite escritura. Si desea realizar cambios en la base de datos, cierre la base de datos y seleccione Cambiar Base de Datos. Luego, si es posible, abra el archivo desde una de las opciones disponibles.</string>
@@ -585,9 +585,8 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
     • Asegúrese que haya introducido la contraseña correcta. Use el ícono de ojo para revelar la contraseña ingresada.\n
    • Asegúrese que haya seleccionado el tipo correcto de contraseña. Asegúrese que este tipo concuerde con el tipo usado al crear la base de datos.\n
    • Asegúrese que haya seleccionado el archivo de base de datos correcto.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n • Sugerencia: Si crees que el archivo de base de datos puede estar corrupto o no recuerdas la contraseña maestra después de modificarla, puedes probar con la última versión del fichero abierto con éxito haciendo clic en \"%1$s\" y seleccionando la copia de seguridad local.</string>
-  <string name="HintLocalBackupOtherError">    \n • Sugerencia: Keepass2Android ha almacenado la última versión del fichero abierto con éxito en la memoria interna. Puedes abrirlo haciendo clic en \"%1$s\" y seleccionando  la copia de seguridad local.
-  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">Consejo: Si crees que el archivo de tu base de datos podría estar corrupto o no recuerdas la contraseña maestra después de modificarla, puedes intentar con la última versión del archivo que lograste abrir tocando  y seleccionando la copia de seguridad local.</string>
+  <string name="HintLocalBackupOtherError">Consejo: Keepass2Android ha guardado la última versión de la base de datos que abriste con éxito en la memoria interna. Puedes abrirlo tocando \"\" y seleccionando la copia de seguridad local</string>
   <string name="CorruptDatabaseHelp">El Archivo está dañado. \n
     Estas son algunas sugerencias que pueden ayudarle a diagnosticar el problema:\n
     
@@ -744,18 +743,18 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
 * invertir la forma de ordenación por Fecha de Modificación (ahora descendente)\n
 * bug fixes: visualización de notas ahora actualizada correctamente después de cambios, vistas contraseña ahora ocultando la contraseña correctamente en  todos los dispositivos (esperemos), solucionado el problema que permite agregar una entrada dos veces, solucionado el problema que muestra la advertencia de UUID duplicado incluso después de arreglar la base de datos\n</string>
   <string name="ChangeLog_0_9_6">Versión 0.9.6\n
-  * permite la importación del archivo de la clave y/o del archivo de la base de datos local a la carpeta interna de la aplicación (ver configuración)\n
-  * permite diferentes opciones de clasificación\n
-  * mejoradas preferencias de cambiar automáticamente el teclado\n
-  * actualizado logotipo de la aplicación y del diseño de las notificaciones, diseño por Stefano Pignataro (http://www.spstudio.at)\n
-  * generador de contraseñas recuerda última configuración\n
-  * configurar visibilidad de las notificaciones para la pantalla de bloque en Android\n
-  * ahora despeja el campo de la contraseña maestra al salir de la aplicación sin hacer clic en OK\n
-  * solucionado el problema con la falta de idiomas de entrada en la configuración en algunos aparatos\n
-  * solucionado el problema con el cambio automático del teclado en algunos aparatos rooteados\n
-  * añadido comprobación para bases de datos corruptas (UUIDs duplicado)\n
-  * recargar automáticamente la base de datos cuando detecta un cambio, resuelve la preocupación de revelar contraseña maestro\n
-  * mejorado teclado polaco pequeño, arreglado el theme de la configuración (gracias a Wiktor Ławski) \n</string>
+		* permite importar archivo de clave y / o fichero de base de datos logal al directorio interno de aplicación (ver configuración)\n
+		* permite diferentes opciones de ordenación\n
+		* preferencias para cambio automático de teclado mejoradas\n
+		* actualizado logo de aplicación y diseño de notificación, diseñado por Stefano Pignataro (http://www.spstudio.at)\n
+		* generador de claves recuerda última configuración\n
+		* puesta visibilidad de notificación para pantalla de bloqueo de Android 5\n
+		* ahora se limpia el campo de clave maestra cuando se deja la aplicación sin pulsar OK\n
+		* arreglado problema con falta de lenguajes de introducción en configuración de teclado en algunos dispositivos\n
+		* resuelto problema con cambio automático de teclado en dispositivos rooteados\n
+		* añadido chequeo de bases de datos corruptas (UUIDs duplicados)\n
+		* recargar base de datos automáticamente cuando se detecte un cambio, resuelve preocupaciones de seguridad sobre revelar la contraseña maestra\n
+		* mejorada disposición de teclado polaco pequeño, arregladda configuración de tema de teclado (gracias a Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 * Solucionado problemas en el archivador (especialmente en Android 4.4)\n
 * Solucionado problemas en la carga de archivos .kdb (Keepass 1) en Nexus 5 con Android Lollipop\n
@@ -816,13 +815,13 @@ support KeeChallenge (with Yubikey NEO). Thanks to Ben Rush for implementar el c
 		* Permite mover entradas y grupos\n
 		* El icono QuickUnlock (desbloqueo rápido) se puede hacer transparente (ver configuración)\n
 		* Corrección de errores</string>
-  <string name="ChangeLog_0_8_5"><b>Versión 0.8.5</b>\n
-		* Los archivos remotos se almacenan en la caché local de la aplicación para uso fuera de línea (incluyendo edición y sincronización posterior). Ver la configuración. \n
-		* Icono de notificación para visualizar el estado de bloqueo de la base de datos (Ver la configuración)\n
-		* Mejorada la determinación del estado de bloqueo en algunas situaciones\n
-		* Los archivos de base de datos son cargados a memoria mientras estás escribiendo la contraseña para mayor velocidad de carga (ver la configuración)\n
-		* Las entradas se pueden agregar al grupo raíz\n
-		* Errores corregidos (resolviendo campos de referencia, problemas con el teclado en dispositivos italianos y chinos)</string>
+  <string name="ChangeLog_0_8_5">Versión 0.8.5
+* Los archivos remotos ahora se guardan en el caché de aplicación local para permitir el acceso sin conexión (incluyendo edición y sincronización posterior). Consulta las opciones.
+* Se añadió una notificación para visualizar el estado de acceso actual de la base de datos. (Consulta las opciones)
+* Se mejoró la determinación del estado de bloqueo en algunas situaciones
+* Los archivos de base de datos se cargarán en la memoria mientras escribes tu contraseña para incrementar la velocidad de carga (Consulta las opciones).
+* Ahora podrás añadir entradas en el grupo base
+* Se corrigieron algunos bugs (Se arreglaron los campos de referencia y problemas con el teclado en dispositivos italianos y chinos&lt;b&gt;</string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\n
 		* Los cambios externos a la base de datos son detectados y añadidos al guardar\n
 		* Mejorada la performance de carga\n

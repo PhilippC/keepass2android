@@ -32,6 +32,10 @@
   <string name="ShowGroupnameInSearchResult_title">Grup adını arama sonuçlarında göster</string>
   <string name="ShowGroupnameInSearchResult_resume">Arama sonuçlarındaki kayıt başlıklarında grup adlarını gösterir. Aynı isimli birden fazla kayıt varsa yararlıdır.</string>
   <string name="NavigationToGroupCompleted_message">Grup adı şimdi : %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Otomatik doldurma devre dışı bırakıldı</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Otomatik doldurmanın devre dışı bırakıldığı uygulamaların ve web sitelerinin listesini görüntüler</string>
+  <string name="OfferSaveCredentials_summary">Etkinleştirildiğinde; Android, verileri otomatik olarak doldurulabilir alanlara el ile girdikten sonra kimlik bilgilerini kaydetmek isteyip istemediğinizi soracaktır.</string>
+  <string name="OfferSaveCredentials_title">Kimlik bilgilerini kaydetmeyi öner</string>
   <string name="ShowGroupInEntry_title">Kayıt görünümünde grup adı göster</string>
   <string name="unknown_uri_scheme">Üzgünüm! Keepass2Android %1$s adresini işleyemez. Geliştirici ile iletişime geçin!</string>
   <string name="Entry_singular">Bir kayıt</string>
@@ -479,7 +483,7 @@
   <string name="help_master_password">Veritabanınızı buraya girdiğiniz asıl parolayla şifrelenir. Veritabanının güvenli kalması için zor bir asıl parola seçin! İpucu: bir ya da iki cümle kurun ve parolanızı kelimelerin ilk harflerinden oluşturun. Noktalama işaretleri ekleyin.</string>
   <string name="hint_master_password">Veritabanınızı korumak için bir ana parola seçin:</string>
   <string name="key_file">Anahtar dosyası</string>
-  <string name="help_key_file">Anahtar dosyası, temelde bir dosyada saklanan bir paroladır. Anahtar dosyaları genellikle asıl paroladan daha güçlüdür, çünkü bunlar daha yor ve karışıktır. Ancak aynı zamanda onları gizli tutmak zordur. Veritabanınızı bulut içinde saklıyorsanız, anahtar dosyanızı asla orada saklamayın! Bu tamamen anlamsız olur. Önemli: anahtar dosyasının içeriğini veritabanını oluşturduktan sonra değiştirmeyin!</string>
+  <string name="help_key_file">Anahtar dosyası, temelde bir dosyada saklanan bir paroladır. Anahtar dosyaları genellikle asıl paroladan daha güçlüdür, çünkü bunlar daha zor ve karışıktır. Ancak aynı zamanda onları gizli tutmak zordur. Veritabanınızı bulut içinde saklıyorsanız, anahtar dosyanızı asla orada saklamayın! Bu tamamen anlamsız olur. Önemli: anahtar dosyasının içeriğini veritabanını oluşturduktan sonra değiştirmeyin!</string>
   <string name="hint_key_file">Asıl anahtara ek olarak bir anahtar dosyası kullanmak isterseniz seçin:</string>
   <string name="use_key_file">Anahtar dosyası kullan</string>
   <string name="error_adding_keyfile">Anahtar dosyası ekleme hatası!</string>
@@ -544,7 +548,7 @@
   <string name="FileIsReadOnlyOnKitkat">Android 4.4 + deki kısıtlamalar nedeniyle seçilen dosya Keepass2Android için salt okunur.</string>
   <string name="CopyFileRequired">Kullanmak için başka bir konuma kopyalamanız gerekir.</string>
   <string name="CopyFileRequiredForEditing">Düzenlemek için başka bir konuma kopyalamanız gerekir.</string>
-  <string name="ClickOkToSelectLocation">Dosyanın kopyalanacağı konumu seçmek için Tamam\'ı tıklayın.</string>
+  <string name="ClickOkToSelectLocation">Dosyanın kopyalanacağı konumu seçmek için Tamam\'a dokunun.</string>
   <string name="FileReadOnlyTitle">Veritabanı salt okunur</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android geçerli veri tabanını salt okunur modda açtı.</string>
   <string name="ReadOnlyReason_PreKitKat">Görünüşe göre bir dış uygulamadan dosya açıldı. Bu şekilde yazma desteklenmiyor. Veritabanında değişiklik yapmak istiyorsanız, lütfen veritabanını kapatın ve veritabanı değiştiri seçin. Mümkünse kullanılabilir seçeneklerden biriyle dosyayı açın.</string>
@@ -586,9 +590,10 @@
    • Doğru veri tabanı dosyasını seçtiğinizden emin olun.
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
-   • İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" tıklayarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
+   &#8226; İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" tıklayarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
   <string name="HintLocalBackupOtherError">    \n
-    • İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.  </string>
+    &#8226; İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.
+  </string>
   <string name="CorruptDatabaseHelp">    Dosya bozulmuş. \n
     Sorunu teşhis etmek için size yardımcı olabilecek bazı ipuçları:\n
     
@@ -627,7 +632,8 @@
   <string name="ErrorReportAsk">Hatadan sonra sor</string>
   <string name="ErrorReportPrefTitle">Hata raporlarını gönder</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
-  <string name="ChangeLog_1_07">    Sürüm 1.07-ön2\n
+  <string name="ChangeLog_1_07">    Sürüm 1.07-ön\n
+    * Samsung Android 9\'daki çökmeler için düzeltmeler\n
     * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n
     * SFTP: Genel anahtar kimlik doğrulamasına izin ver, sunucu anahtarının değişip değişmediğini kontrol et\n
     * pCloud desteği - gilbsgilbs\' e teşekkürler!\n
@@ -635,6 +641,7 @@
     * Girdi eklerinin kaydedilmesi ve güncellenmesi geliştirildi\n
     * Kişiselleştirme için daha fazla seçenek sunuldu\n
     * SSL: Güvenilir kullanıcı sertifikaları\n
+    * Otomatik doldurma iyileştirildi (şimdi Firefox ile çalışıyor, açılır pencereler azaltılıyor)\n
     * hata düzeltmeleri\n
   </string>
   <string name="ChangeLog_1_06">    Sürüm 1.06\n
@@ -768,7 +775,7 @@
 		* bazı cihazlarda klavye ayarlarındaki eksik diller nedeniyle oluşan sorun giderildi\n
 		* rootlu cihazlarda otomatik klavye geçişi düzeltildi\n
 		* bozuk veri tabanları için kontrol eklendi (yinelenen UUIDs)\n
-		* artık değişiklik tespit edildiğinde veri tabanı yenileniyor ve ana parolanın gözükmesi engellenir\n
+		* artık değişiklik tespit edildiğinde veri tabanı yenileniyor ve ana parolanın gözükmesi engelleniyor\n
 		* Polonya küçük klavye düzeni, klavye ayarları teması düzeltilerek geliştirildi(Wiktor Ławski\'ye teşekkürler)\n</string>
   <string name="ChangeLog_0_9_5"><b>Sürüm 0.9.5</b>\n
 		* Dosya taraması ile ilgili sorunlar düzeltildi (özellikle Android 4.4 sürümünde)\n
@@ -947,7 +954,7 @@
   <string name="show_autofill_help">Otomatik doldurma yardımını göster</string>
   <string name="autofill_sign_in_prompt">Keepass2Android ile doldurun</string>
   <string name="autofill_disable">%1$s için otomatik doldurmayı devre dışı bırak</string>
-  <string name="autofill_enable_for">%1$s için otomatik doldurmayı etkinleştir</string>
+  <string name="autofill_enable_for">%1$s karşılığında otomatik doldurmayı etkinleştir</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android parmak izi donanımı algıladı. Bu veritabanı için parmak izi kilildini etkinleştirmek istiyor musunuz?</string>
   <string name="understand">Anladım</string>

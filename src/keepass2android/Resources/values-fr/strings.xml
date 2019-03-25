@@ -22,16 +22,20 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
-  <string name="app_timeout">Délai de verrouillage de l\'application</string>
+  <string name="app_timeout">Délai dépassé</string>
   <string name="app_timeout_summary">Délai avant de verrouiller la base de donnée lorsque l\'application est inactive.</string>
-  <string name="kill_app_label">Arrêter le processus</string>
+  <string name="kill_app_label">Tuer le processus d\'application</string>
   <string name="show_kill_app">Fermer</string>
-  <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour arrêter le processus de l\'application (pour les utilisateurs paranoïaques)</string>
-  <string name="application">Application</string>
-  <string name="application_settings">Paramètres de l\'application</string>
+  <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour kill le processus de l\'application (pour les utilisateurs paranoïaques)</string>
+  <string name="application">Appli</string>
+  <string name="application_settings">\"Paramètres de l\'application\"</string>
   <string name="ShowGroupnameInSearchResult_title">Afficher le nom du groupe dans le résultat de la recherche</string>
   <string name="ShowGroupnameInSearchResult_resume">Afficher le nom du groupe sous les identifiants dans les résultats de recherches. Utile si plusieurs entrées possèdent le même nom.</string>
   <string name="NavigationToGroupCompleted_message">Le groupe affiché est maintenant : \"%1$s\"</string>
+  <string name="AutofillDisabledQueriesPreference_title">Désactiver les cibles de remplissage automatique</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Affiche une liste d\'applications et de sites web pour lesquels l\'auto-remplissage a été désactivé</string>
+  <string name="OfferSaveCredentials_summary">Si activé, Android vous demandera si vous voulez enregistrer des identifiants après que vous ayez entré manuellement des données dans des champs auto-remplissables.</string>
+  <string name="OfferSaveCredentials_title">Offre la sauvegarde des identifiants</string>
   <string name="ShowGroupInEntry_title">Afficher le nom du groupe dans la vue des entrées</string>
   <string name="unknown_uri_scheme">Désolé ! Keepass2Android ne peut pas gérer l\'URI %1$s retourné. S\'il vous plaît contactez le développeur !</string>
   <string name="Entry_singular">Une seule entrée</string>
@@ -195,7 +199,7 @@
   <string name="no_keys">Aucune entrée dans la base de données ou le groupe.</string>
   <string name="no_results">Aucun résultat pour cette recherche</string>
   <string name="no_url_handler">Aucun gestionnaire pour cette url.</string>
-  <string name="open_recent">bases de données récemment ouvertes (cliquez pour ouvrir) </string>
+  <string name="open_recent">Bases de données récemment ouvertes (cliquez pour ouvrir)</string>
   <string name="omitbackup_title">Ne pas chercher dans les sauvegardes et la corbeille</string>
   <string name="omitbackup_summary">Omettre les groupes \"Sauvegarde\" et \"Corbeille\" des résultats de recherche</string>
   <string name="pass_filename">Base de données KeePass</string>
@@ -479,7 +483,7 @@
   <string name="help_master_password">Votre base de données est chiffrée avec le mot de passe que vous entrez ici. Choisissez un mot de passe robuste pour préserver la sûreté de la base de données ! Astuce : Formez une phrase ou deux et utilisez les premières lettres des mots comme mot de passe. Utilisez les marques de ponctuation.</string>
   <string name="hint_master_password">Choisir un mot de passe principal pour protéger votre base de données :</string>
   <string name="key_file">Fichier de clé</string>
-  <string name="help_key_file">Un fichier de clé est en fait un mot de passe stocké dans un fichier. Les fichiers de clés sont généralement plus forts que les mots de passe maîtres, parce que la clé peut être beaucoup plus compliquée ; cependant il est également plus difficile de les garder secret. Si vous stockez votre base de données dans le cloud, ne stockez pas le fichier de clé ici également ! Cela le rendrait complètement inutile ! Important : Ne modifiez pas le contenu du fichier clé après avoir créé la base de données !</string>
+  <string name="help_key_file">Un fichier de clé est un mot de passe stocké dans un fichier. Les fichiers de clés sont généralement plus forts que les mots de passe maîtres, parce que la clé peut être beaucoup plus compliquée ; cependant il est également plus difficile de les garder secret. Si vous stockez votre base de données dans le cloud, ne stockez pas le fichier de clé ici également ! Cela le rendrait complètement inutile ! Important : Ne modifiez pas le contenu du fichier clé après avoir créé la base de données !</string>
   <string name="hint_key_file">Souhaitez-vous utiliser un fichier de clé en plus de la clé principal :</string>
   <string name="use_key_file">Utiliser le fichier de clé</string>
   <string name="error_adding_keyfile">Erreur lors de l\'ajout du fichier de clé !</string>
@@ -544,7 +548,7 @@
   <string name="FileIsReadOnlyOnKitkat">Le fichier sélectionné est en lecture seule pour Keepass2Android en raison de restrictions sur Android 4.4 +.</string>
   <string name="CopyFileRequired">Pour l\'utiliser, vous devez le copier vers un autre emplacement.</string>
   <string name="CopyFileRequiredForEditing">Pour le modifier, vous devez copier le fichier vers un autre emplacement.</string>
-  <string name="ClickOkToSelectLocation">Cliquez sur OK pour sélectionner un emplacement où le fichier doit être copié.</string>
+  <string name="ClickOkToSelectLocation">Appuyez sur OK pour sélectionner un emplacement où le fichier doit être copié.</string>
   <string name="FileReadOnlyTitle">La base de données est en lecture seule</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android a ouvert la base de données active en mode lecture seule.</string>
   <string name="ReadOnlyReason_PreKitKat">Il semble que vous avez ouvert le fichier depuis une application externe. Cette utilisation ne supporte pas l\'écriture. Si vous souhaitez apporter des modifications à la base de données, fermez la base de données et sélectionnez Changer de base de données. Ensuite, si possible, ouvrez le fichier en utilisant une des options disponibles.</string>
@@ -585,8 +589,9 @@
    &#8226; Assurez-vous que vous avez sélectionné le type de mot de passe correct. Assurez-vous que ce type est le même que celui utilisé lors de la création de la base de données.\n
    &#8226; Assurez-vous que vous avez sélectionné le bon fichier de base de données.</string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
-  • Conseil : si vous pensez que votre base de données est probablement corrompue ou que vous ne vous souvenez plus du mot de passe maître après l\'avoir modifié, vous pouvez essayer la dernière version avec succès d\'ouverture en cliquant \"%1$s\" et en sélectionnant la sauvegarde locale.</string>
-  <string name="HintLocalBackupOtherError">    \n • Astuce : Keepass2Android a placé la dernière version du fichier ouvert avec succès en mémoire interne. Vous pouvez l’ouvrir en cliquant sur «%1$s» et en sélectionnant la sauvegarde locale.
+   &#8226; Astuce : si vous pensez que votre base de données est probablement corrompue ou que vous ne vous souvenez plus du mot de passe maître après l\'avoir modifié, vous pouvez essayer la dernière version avec succès d\'ouverture en cliquant \"%1$s\" et en sélectionnant la sauvegarde locale.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Astuce : Keepass2Android a placé la dernière version du fichier ouvert avec succès en mémoire interne. Vous pouvez l’ouvrir en cliquant sur «%1$s» et en sélectionnant la sauvegarde locale.
   </string>
   <string name="CorruptDatabaseHelp">Le fichier est corrompu. \n
 Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
@@ -624,16 +629,6 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="ErrorReportAsk">Demander après une erreur</string>
   <string name="ErrorReportPrefTitle">Envoyer des rapports d\'erreurs</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre1\n
-    * Autorise l\'ouverture de plusieurs bases de données, compatible avec KeeAutoExec\n
-    * SFTP : permettre l’authentification par clé publique, vérifie si la clé d\'hébergement a changé\n
-    * Ajoute le support de pCloud - Merci à gilbsgilbs ! \n
-    * Ajoute le support de Nextcloud\n
-    * Améliore l\'enregistrement et la mise à jour des pièces jointes de l\'entrée\n
-    * Plus d\'options pour adapter le comportement aux préférences personnelles\n
-    * SSL : Fais confiance aux certificats de l\'utilisateur\n
-    * bug fixes\n
-  </string>
   <string name="ChangeLog_1_06">Version 1.06\n
 * Changement vers ykDroid au lieu de YubiChallenge comme application pour le défi-réponse de Yubikey.\n
 * implémentation du support de défi-réponse compatible KeepassXC. Note : Le format de base de données doit être KDBX4 !\n
@@ -703,8 +698,8 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
 		* Inverse le tri par date de modification (maintenant descendant)\n
 		* Diverses corrections de bogues\n</string>
   <string name="ChangeLog_0_9_6">Version 0.9.6\n
-* possibilité d\'importer un fichier de clé ou un fichier de base de données locale vers une application d\'annuaire interne (voir réglages)\n
-* possibilité de trier selon différentes options\n
+* Autorise d\'importer un fichier de clé ou un fichier de base de données locale vers une application d\'annuaire interne (voir réglages)\n
+* Autorise de trier selon différentes options\n
 * amélioration des préférences pour le basculement du clavier en automatique\n
 * logo de l\'application et design des notifications mis à jour, par Stefano Pignataro (http://www.spstudio.at)\n
 * le générateur de mot de passe se souvient des dernières préférences\n
@@ -753,7 +748,13 @@ J\'avais promis plus de changements. Ils viendront avec la prochaine version - d
   <string name="ChangeLog_0_9_1">  <b>Version 0.9.1</b> \n * Intégration de SkyDrive (Keepass2Android regular edition seulement) \n * Correction de problèmes avec l\'intégration Google Drive\n * Ajout du support NTLM</string>
   <string name="ChangeLog_0_9">  <b>Version 0.9</b> \n * Intégration de Dropbox et Google Drive (bases de données en lecture/écriture ; Keepass2Android regular edition seulement) \n * Intégration d\'un navigateur de fichier personnalisé (basé sur android-filechooser par HBA) \n * Amélioration de l\'interface utilisateur pour la création de nouvelles bases de données\n * Ajout de la police personnalisée DejaVu Sans Mono pour l\'affichage des mots de passe\n * Corrections de bugs</string>
   <string name="ChangeLog_0_8_6">  <b>Version 0.8.6</b> \n * Support de Twofish cipher\n * Fonction d\'édition des groupes ajoutée\n * Fonction de déplacement des entrées et des groupes ajoutée\n * L\'icône QuickUnlock peut être rendue transparente (voir réglages) \n * Corrections de bugs</string>
-  <string name="ChangeLog_0_8_5">  <b>Version 0.8.5</b> \n * Les fichiers distants sont stockés dans le cache locale de l\'application pour permettre l\'utilisation en mode hors connexion (y compris l\'édition et la synchronisation ultérieure). Voir les paramètres. \n * Icône de notification pour visualiser l\'état du verrou de la base de données (voir réglages) \n * Amélioration de la détermination de l\'état du verrou dans certains situations\n * Les fichiers de base de données sont chargées dans la mémoire pendant que vous tapez votre mot de passe pour augmenté la vitesse de chargement (voir réglages) \n * Les entrées peuvent être ajoutées au groupe racine\n * Corrections de bugs (champs de référence, des problèmes avec le clavier des appareils italien et chinois)</string>
+  <string name="ChangeLog_0_8_5">  <b>Version 0.8.5</b> \n 
+* Les fichiers distants sont stockés dans le cache locale de l\'application pour permettre l\'utilisation en mode hors connexion (y compris l\'édition et la synchronisation ultérieure). Voir les paramètres. \n 
+* Icône de notification pour visualiser l\'état du verrou de la base de données (voir réglages) \n 
+* Amélioration de la détermination de l\'état du verrou dans certains situations\n 
+* Les fichiers de base de données sont chargées dans la mémoire pendant que vous tapez votre mot de passe pour augmenté la vitesse de chargement (voir réglages) \n 
+* Les entrées peuvent être ajoutées au groupe racine\n 
+* Corrections de bugs (champs de référence, des problèmes avec le clavier des appareils italien et chinois)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* Modifications tierces de la base de données détectées et fusionnées à la sauvegarde\n
 		* Chargement optimisé\n

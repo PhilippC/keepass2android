@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Luring</string>
   <string name="short_app_name_nonet">KP2A Luring</string>
-  <string name="app_timeout">Batas waktu aplikasi</string>
-  <string name="app_timeout_summary">Waktu sebelum penguncian database ketika aplikasi tidak aktif.</string>
-  <string name="kill_app_label">Membunuh proses aplikasi</string>
   <string name="show_kill_app">Tombol tutup</string>
-  <string name="show_kill_app_summary">Tampilkan tombol di layar password untuk membunuh proses aplikasi (untuk pengguna yang paranoid)</string>
-  <string name="application">Aplikasi</string>
-  <string name="application_settings">Pengaturan aplikasi</string>
   <string name="ShowGroupnameInSearchResult_title">Menampilkan nama grup dalam hasil pencarian</string>
   <string name="ShowGroupnameInSearchResult_resume">Tampilan nama grup di bawah judul entri dalam hasil pencarian. Berguna jika beberapa entri memiliki nama yang sama.</string>
   <string name="NavigationToGroupCompleted_message">Grup yang tampil adalah: %1$s</string>
@@ -190,7 +184,6 @@
   <string name="no_keys">Tidak ada entri dalam database atau grup.</string>
   <string name="no_results">Tidak ada hasil pencarian</string>
   <string name="no_url_handler">Tidak ada handler untuk url ini.</string>
-  <string name="open_recent">Membuka database baru-baru ini (klik untuk membuka)</string>
   <string name="omitbackup_title">Jangan Cari backup dan recycle bin entri</string>
   <string name="omitbackup_summary">Menghilangkan grup \'Backup\' dan Recycle Bin dari hasil pencarian</string>
   <string name="pass_filename">Nama berkas KeePass basis data</string>
@@ -391,7 +384,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="otp_aux_file">berkas auxiliary OTP</string>
   <string name="ErrorOcurred">Terjadi sebuah kesalahan:</string>
   <string name="DuplicateUuidsError">Database korup: ditemukan ID duplikat. (Apakah anda menyimpan dengan Minikeepass?) Mohon impor ulang ke database baru dengan Keepass 2 untuk PC dan pilih \'Create new IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Anda bisa menonaktifkan pesan kesalahan ini pada Pengaturan/Pengaturan aplikasi/Penanganan Berkas/Periksa UUID duplikat. Harap dicatat bahwa anda mungkin mengalami kejadian tidak terduga. Disarankan untuk memperbaiki database.</string>
   <string name="synchronize_database_menu">Menyelaraskan database…</string>
   <string name="CannotMoveGroupHere">Tidak bisa memindah grup ke dalam grup ini.</string>
   <string name="donate_question">Hari ini adalah Oktoberfest! Jika anda menyukai Keepass2Android: bukankah hari ini hari yang baik untuk membelikan saya sebotol bir?</string>
@@ -418,7 +410,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Jika anda tidak menginginkan KP2A hak akses penuh terhadapa Dropbox anda, anda bisa memilih pilihan ini. KP2A hanya akan meminta akses ke folder Apps/Keepass2Android. hal ini cocok terutama saat dilakukan pembuatan basis data baru. jika anda sudah memiliki basis data, klik opsi ini untuk menciptakan folder, lalu letakan file anda ke dalam folder tersebut (dari komputer anda) dan pilih opsi ini lagi untuk membukan file tersebut.</string>
   <string name="filestoragename_gdrive">Penyimpanan Google</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">TFS (Transfer File SSH)</string>
@@ -433,7 +424,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="help_master_password">Database anda dienkripsi dengan password yang anda masukkan disini. pilih sebuah pasword yang kuat untuk menjaga Database tetap aman! Tip: memuat naik sebuah atau dua buah kalimat dan gunakan huruf pertama dari kata-kata sebagai kata sandi. Sertakan tanda baca.</string>
   <string name="hint_master_password">Pilih kata sandi utama untuk melindungi database Anda:</string>
   <string name="key_file">Berkas kunci</string>
-  <string name="help_key_file">Berkas kunci pada dasarnya adalah kata sandi yang tersimpan dalam sebuah berkas. berkas kunci adalah lebih kuat daripada kata sandi utama, karena kuncinya dapat menjadi jauh lebih rumit; namun itu juga sulit untuk menjaga rahasia mereka. jika anda menyimpan database anda di cloud, jangan menyimpan berkas kunci disana juga! ini akan membuat itu sama sekali tidak berguna! penting: jangan mengubah isi dari berkas kunci setelah membuat database!</string>
   <string name="hint_key_file">Pilih apakah Anda ingin menggunakan berkas kunci selain kata sandi utama Anda:</string>
   <string name="use_key_file">Gunakan berkas kunci</string>
   <string name="error_adding_keyfile">Kesalahan saat menambahkan berkas kunci!</string>
@@ -480,9 +470,7 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Data entri saat ini</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin akan menerima semua data tentang entri database saat ini dan akan diizinkan untuk menawarkan tindakan dan memodifikasi tampilan itu.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Permintaan kredensial sendiri</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin akan diizinkan untuk menanyakan kredensial yang terkait dengan paket aplikasinya sendiri.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Kredensial permintaan</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin akan diizinkan untuk meminta kredensial untuk situs web atau aplikasi yang disengaja.</string>
   <string name="get_regular_version">Dapatkan lebih banyak jenis penyimpanan</string>
   <string name="CertificateWarning">Peringatan: validasi sertifikat server gagal:%1$s. Instal sertifikat root yang sesuai pada perangkat Anda atau lihat pengaturan!</string>
   <string name="CertificateFailure">Kesalahan: validasi sertifikat server gagal! Instal sertifikat root yang sesuai pada perangkat Anda atau lihat pengaturan!</string>
@@ -493,7 +481,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="FileIsReadOnlyOnKitkat">Berkas yang Anda pilih hanya bisa dibaca untuk Keepass2Android karena pembatasan pada Android 4.4+.</string>
   <string name="CopyFileRequired">Untuk menggunakannya, Anda harus menyalinnya ke lokasi lain.</string>
   <string name="CopyFileRequiredForEditing">Untuk mengeditnya, Anda harus menyalin berkas ke lokasi lain.</string>
-  <string name="ClickOkToSelectLocation">Klik OK untuk memilih lokasi dimana berkas tersebut harus disalin.</string>
   <string name="FileReadOnlyTitle">Database hanya bisa dibaca</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android telah membuka database saat ini dalam mode read-only.</string>
   <string name="ReadOnlyReason_PreKitKat">Sepertinya Anda membuka file dari aplikasi eksternal. Dengan cara ini tidak mendukung penulisan. Jika Anda ingin membuat perubahan pada database, tutup database dan pilih Change database. Kemudian buka file dari salah satu pilihan yang tersedia jika memungkinkan.</string>
@@ -530,7 +517,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ErrorReportTitle">Keepass2Android: Terjadi kesalahan.</string>
   <string name="ErrorReportText">Terjadi kesalahan tak terduga saat menjalankan Keepass2Android. Tolong bantu kami memperbaikinya dengan mengizinkan aplikasi mengirim laporan kesalahan.</string>
-  <string name="ErrorReportPromise">Laporan kesalahan tidak akan berisi isi database atau kata sandi utama Anda. Anda bisa menonaktifkannya di setting aplikasi.</string>
   <string name="ErrorReportEnable">Memungkinkan</string>
   <string name="ErrorReportDisable">Nonaktifkan</string>
   <string name="ErrorReportAsk">Tanyakan setelah kesalahan</string>
@@ -617,22 +603,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
 * mencegah pengambilan tangkapan layar dari layar QuickUnlock dan sandi \n
 * Urutan urutan terbalik untuk Sortir berdasarkan Tanggal Modifikasi (sekarang turun) \n
 * Perbaikan bug: Tampilan catatan sekarang diperbarui dengan benar setelah perubahan, Tampilan kata sandi sekarang menyembunyikan kata sandi dengan benar (semoga) semua perangkat, masalah tetap yang memungkinkan untuk menambahkan entri dua kali, masalah tetap dengan menunjukkan peringatan UUID Duplikat bahkan setelah memperbaiki database \n</string>
-  <string name="ChangeLog_0_9_6">Versi 0.9.6 \n
-* Mengijinkan untuk mengimpor file utama dan / atau file database lokal ke direktori internal aplikasi (lihat pengaturan) \n
-* memungkinkan pilihan sortir yang berbeda \n
-* Peningkatan preferensi untuk penggantian keyboard otomatis \n
-* Logo aplikasi dan desain notifikasi yang diperbarui, disain oleh Stefano Pignataro (http://www.spstudio.at) \n
-* Generator kata sandi ingat pengaturan terakhir \n
-* menetapkan keterlihatan pemberitahuan untuk layar kunci Android 5 \n
-* Sekarang kliring field master password saat meninggalkan aplikasi tanpa mengklik OK \n
-* masalah tetap dengan bahasa input yang hilang dalam pengaturan keyboard pada beberapa perangkat \n
-* masalah tetap dengan keyboard otomatis yang beralih pada perangkat yang di-root \n
-* tambah cek untuk database yang korup (duplicate UUIDs) \n
-* Secara otomatis memuat ulang database saat perubahan terdeteksi, memecahkan kekhawatiran keamanan tentang mengungkapkan kata kunci utama \n
-* Perbaikan tata letak keyboard poles yang bagus, tema pengaturan keyboard tetap (berkat Wiktor Ławski) \n
-
- 
-ChangeLog_0_9_6</string>
   <string name="ChangeLog_0_9_5"><b> Versi 0.9.5 </b> \n
 * Masalah tetap dengan file browsing (terutama di Android 4.4) \n
 * Masalah tetap dengan file pemuatan .kdb (Keepass 1) di Nexus 5 dengan Android Lollipop \n
@@ -692,13 +662,6 @@ Saya telah berjanji beberapa perubahan lagi. Mereka akan datang dengan rilis ber
 * Izinkan pemindahan entri dan grup\n
 * Ikon QuickUnlock dapat dibuat transparan (lihat pengaturan)\n
 * Perbaikan kerusakan</string>
-  <string name="ChangeLog_0_8_5"><b>Versi 0.8.5</b>\n
-* File jarak jauh disimpan di cache aplikasi lokal untuk memungkinkan penggunaan offline (termasuk pengeditan dan sinkronisasi nanti). Lihat pengaturan\n
-* Ikon notifikasi untuk memvisualisasikan status kunci database (lihat pengaturan)\n
-* Peningkatan penentuan lock-state dalam beberapa situasi\n
-* File database dimuat ke memori saat Anda mengetik kata sandi untuk meningkatkan kecepatan pemuatan (lihat pengaturan)\n
-* Entri dapat ditambahkan ke grup akar\n
-* Perbaikan bug (menyelesaikan bidang referensi, masalah dengan keyboard pada perangkat Cina Italia</string>
   <string name="ChangeLog_0_8_4"><b> Versi 0.8.4 </b> \n
 * Perubahan database eksternal terdeteksi dan digabungkan saat menyimpan \n
 * Peningkatan kinerja pemuatan \n

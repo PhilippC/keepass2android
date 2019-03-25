@@ -22,8 +22,8 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Časový limit aplikace</string>
-  <string name="app_timeout_summary">Doba nečinnosti aplikace, po které je databáze uzamčena.</string>
+  <string name="app_timeout">Vypršel časový limit aplikace</string>
+  <string name="app_timeout_summary">Čas, po který, při neaktivitě aplikace, databáze zůstane odemčená.</string>
   <string name="kill_app_label">Ukončit proces aplikace</string>
   <string name="show_kill_app">Tlačítko Zavřít</string>
   <string name="show_kill_app_summary">Zobrazit tlačítko pro ukončení aplikace na obrazovce s heslem (pro paranoidní uživatele)</string>
@@ -198,7 +198,7 @@
   <string name="no_keys">Žádný záznam v databázi nebo ve skupině.</string>
   <string name="no_results">Nenalezeno</string>
   <string name="no_url_handler">Žádný handler pro toto url.</string>
-  <string name="open_recent">Otevřít poslední databázi (kliknout pro otevření)</string>
+  <string name="open_recent">Otevřít poslední databázi (kliknutím)</string>
   <string name="omitbackup_title">Neprohledávat zálohy a koš</string>
   <string name="omitbackup_summary">Vynechat skupiny Záloha a Koš ve výsledcích hledání</string>
   <string name="pass_filename">Název souboru KeePass databáze</string>
@@ -333,7 +333,7 @@
   <string name="NoDonationReminder_title">Nikdy se neptat na darování</string>
   <string name="NoDonationReminder_summary">Nedám ti ani korunu, případně jsem už jsem daroval. Neptej se na darování, ani v den autorových narozenin.</string>
   <string name="UseOfflineCache_title">Ukládání databáze do mezipaměti</string>
-  <string name="UseOfflineCache_summary">Uchovat kopii databázových souborů v dočasném úložišti aplikace. To umožňuje používat databáze, i když databázový soubor není dostupný.</string>
+  <string name="UseOfflineCache_summary">Uchovat kopii databáze v dočasném úložišti aplikace. Tato volba umožní použití databáze i v případě že není dostupná.</string>
   <string name="CreateBackups_title">Místní zálohy</string>
   <string name="CreateBackups_summary">Vytvoř místní zálohu po úspěšném načtení databáze.</string>
   <string name="UpdatingBackup">Aktualizuji místní zálohu...</string>
@@ -434,7 +434,6 @@
   <string name="otp_aux_file">Pomocný OTP soubor</string>
   <string name="ErrorOcurred">Došlo k chybě:</string>
   <string name="DuplicateUuidsError">Databáze je poškozena: duplicitní ID nalezeny. (Provedli jste uložení pomocí Minikeepass?) Importujte databázi do nového souboru pomocí  Keepass 2 na PC a zvolte možnost \'Vytvořit nové ID\' \".</string>
-  <string name="DuplicateUuidsErrorAdditional">Tuto chybovou zprávu můžete vypnout v Nastavení/Aplikace/Zpracování souborů/Kontrolovat duplikátní UUID. Při tomto můžete zaznamenat neočekávané chování aplikace. Je doporučeno   provést opravu databáze.</string>
   <string name="synchronize_database_menu">Synchronizovat databázi…</string>
   <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Pokud se vám líbí Keepass2Android, nebyl by dnes dobrý den koupit mi pivo?</string>
@@ -466,7 +465,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
-  <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -482,7 +480,6 @@
   <string name="help_master_password">Databáze bude zašifrována heslem, které zde nastavíte. Pro zabezpečení databáze zvolte silné heslo! Tip: Vytvořte jednu nebo dvě věty a použijte první písmena jednotlivých slov jako heslo. Využívejte interpunkční znaménka.</string>
   <string name="hint_master_password">Nastavte hlavní heslo pro ochranu databáze:</string>
   <string name="key_file">Klíčový soubor</string>
-  <string name="help_key_file">Klíčový soubor je v podstatě heslo uložené v souboru. Klíčové soubory jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet klíčový soubor v tajnosti. Je-li vaše databáze umístěna na vzdáleném úložišti, neukládejte klíčový soubor do stejného místa! Tím by bylo zašifrování souboru zcela zbytečné. Důležité upozornění: Po vytvoření databáze již nelze změnit obsah klíčového souboru!</string>
   <string name="hint_key_file">Zvolte, pokud chcete použít klíčový soubor spolu s hlavním heslem:</string>
   <string name="use_key_file">Použít klíčový soubor</string>
   <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
@@ -534,9 +531,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuální vstupní data</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Zásuvný modul bude přijímat všechna data o aktuálním záznamu databáze, bude moci nabízet akce a upravovat jejich zobrazení.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Dotaz na vlastní pověření</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Zásuvnému modulu bude umožněno zjistit pověření spojené s balíčkem jeho vlastní aplikace.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Dotaz pověření</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Zásuvnému modulu bude dovoleno dotazovat se na pověření pro webové stránky nebo aplikace.</string>
   <string name="get_regular_version">Získat více typů úložišť</string>
   <string name="CertificateWarning">Upozornění: Ověření certifikátu serveru se nezdařilo: %1$s. Nainstalujte příslušný kořenový certifikát do vašeho zařízení nebo upravte Nastavení!</string>
   <string name="CertificateFailure">Chyba: Ověření certifikátu serveru se nezdařilo: %1$s. Nainstalujte příslušný kořenový certifikát do vašeho zařízení nebo upravte Nastavení!</string>
@@ -547,7 +542,6 @@
   <string name="FileIsReadOnlyOnKitkat">Vybraný soubor je pro Keepass2Android pouze pro čtení z důvodu omezení Android 4.4+.</string>
   <string name="CopyFileRequired">Chcete-li soubor použít, musíte jej zkopírovat do jiného umístění.</string>
   <string name="CopyFileRequiredForEditing">Chcete-li soubor upravit, musíte jej soubor do jiného umístění.</string>
-  <string name="ClickOkToSelectLocation">Klepněte na tlačítko OK a vyberte místo, kam by měl být soubor zkopírován.</string>
   <string name="FileReadOnlyTitle">Databáze je určena jen pro čtení</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otevřel aktuální databázi v režimu pouze pro čtení.</string>
   <string name="ReadOnlyReason_PreKitKat">Vypadá to, že jste otevřeli soubor z externí aplikace. Tento způsob nepodporuje zapisování. Pokud chcete provést změny v databázi, zavřete databázi a vyberte možnost Změnit databázi. Potom otevřete soubor jednou z dostupných možností, pokud je to možné.</string>
@@ -587,11 +581,6 @@
     • Ujistěte se, že jste zadali správné heslo. Použitím ikonky s okem odkryjete vložené heslo.\n
    • Ujistěte se, že jste použili správný typ hesla. Ujistěte se, že tento typ odpovídá typu použitému při vytváření databáze.\n
    • Ujistěte se, že jste použili správný databázový soubor.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   • Nápověda: Pokud si myslíte že by databáze mohla být porušena, nebo si nepamatujete hlavní klíč, můžete zkusit poslední úspěšně otevřenou verzi kliknutím \"%1$s\" a zvolením místní zálohy.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    • Nápověda: Keepass2Android uložil poslední úspěšně otevřenou verzi souboru v místní paměti. Můžete jí otevřít zmáčknutím \"%1$s\" a výběrem místní zálohy.
-  </string>
   <string name="CorruptDatabaseHelp">    Soubor je poškozený. \n
     Zde je několik rad, které vám mohou pomoci zjistit příčinu problému:\n
     
@@ -624,22 +613,11 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="ErrorReportTitle">Keepass2Android: Došlo k chybě.</string>
   <string name="ErrorReportText">Došlo k neočekávané chybě při běhu Keepass2Android. Prosím, pomozte nám to vyřešit tím, že aplikaci umožníte odesílání zpráv o chybách.</string>
-  <string name="ErrorReportPromise">Zprávy o chybách nikdy nebudou obsahovat jakýkoliv obsah databáze nebo hlavní heslo. Odesílání zpráv o chybách můžete zakázat v nastavení aplikace.</string>
   <string name="ErrorReportEnable">Povolit</string>
   <string name="ErrorReportDisable">Zakázat</string>
   <string name="ErrorReportAsk">Dotázat se po chybě</string>
   <string name="ErrorReportPrefTitle">Odeslat zprávu o chybách</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
-  <string name="ChangeLog_1_07">    Verze 1.07-pre2\n
-    * Možnost otevření více databází najednou, kompatibilita s KeeAutoExec\n
-    * SFTP: Možnost autentizace pomocí veřejného klíče, kontrola změny klíče hosta\n
-    * Nová podpora pCloud - díky gilbsgilbs!\n
-    * Explicitní podpora Nextcloud\n
-    * Vylepšení ukládání a aktualizace příloh položek\n
-    * Více možností pro úpravu chování dle preferencí\n
-    * SSL: uživatelské certifikáty\n
-    * oprava chyb\n
-  </string>
   <string name="ChangeLog_1_06">    Verze 1.06\n
     * Změna na ykDroid místo YubiChallenge pro Yubikey Výzva-Odpověď.\n
     * Implementována podpora pro Výzva-Odpověď typu KeepassXC. Poznámka: Databáze musí být ve formátu KDBX4!\n
@@ -758,8 +736,6 @@
 		* zabránění snímání obrazovky na obrazovce Rychlého odemknutí a obrazovkách s hesly\n
 		* obrácení směru řazení při řazení podle data změny (nyní sestupně)\n
 		* opravy chyb: Zobrazení poznámek se nyní korektně aktualizuje po provedení změn, Obrazovky s hesly nyní správně skrývají hesla na (snad) všech zařízeních, Opraven problém, který umožňoval přidat záznam dvakrát, Opraven problém se zobrazováním varování na duplicitní UUID i po opravení databáze\n</string>
-  <string name="ChangeLog_0_9_6">   
-Verze 0.9.6\n * Povolen import souboru s klíčem nebo místního databázového souboru do vnitřního adresáře aplikace (viz nastavení) \n * povoleny různé volby řazení\n * lepší předvolby pro automatické přepínání klávesnice\n * aktualizováno logo a design oznámení, díky Stefano Pignataro (http://www.spstudio.at) \n * generátor hesel si pamatuje poslední nastavení\n * nastavení viditelnosti oznámení pro zamykací obrazovku Android 5\n * vymazání pole hlavního při odchodu z aplikace bez klepnutím na OK\n * opraven problém s chybějícími vstupními jazyky v nastavení klávesnice na některých zařízeních\n  * opraven problém s automatickým přepínáním klávesnice na zařízeních s rootem\n * přidána kontrola poškozené databáze (duplicitní UUID) \n * automaticky znovu načíst databázi při zjištění změny, řeší bezpečnostní obavy z odhalení hlavního hesla\n * zlepšení rozložení malé polské klávesnice,  opravy motivů klávesnice  (díky Wiktor Ławski) \n  </string>
   <string name="ChangeLog_0_9_5">   <b>Verze 0.9.5</b> \n * opraveny problémy s procházením souborů (zejména pokud jde o Android 4.4) \n * opraven problém s načítáním souborů .kdb (Keepass 1) na 5 Nexus s Android Lollipop\n * přidána možnost zabránit sejmutí screenshotu nebo zobrazení aplikace v seznamu posledních aplikací\n * opraven problém s Google Drive úložištěm (obyčejná edice) \n * povoleno uložení souborů s klíči na zvoleném úložišti (obyčejná edice) \n * aktualizováno Dropbox SDK obsahující oficiální bezpečnostní opravy (obyčejná edice) \n * aktualizovány vývojové nástroje--&gt; velikost apk se zvýšila:-(\nSlíbil jsem nějaké další změny, ty budou v dalším vydání, omlouvám se, chtěl jsem co nejrychleji zveřejnit tyto opravy.</string>
   <string name="ChangeLog_0_9_4"><b>Verze 0.9.4</b>\n
 		* doplněna podpora zásuvných modulů. Prohlédněte Nastavení pro jejich získání\n
@@ -810,13 +786,6 @@ Verze 0.9.6\n * Povolen import souboru s klíčem nebo místního databázového
 * možnost přesunu položek a skupin\n 
 * Ikona Rychlého odemknutí může být zprůhledněna (viz nastavení)\n 
 * opravy chyb</string>
-  <string name="ChangeLog_0_8_5">  <b>Verze 0.8.5</b> \n
-* Vzdálené soubory jsou uloženy v mezipaměti místní aplikace, umožňující používání off-line (včetně úprav a pozdější synchronizace). Viz nastavení.\n
-* Oznamovací ikona zbrazujíce stav uzamčení databáze (viz nastavení) \n
-* Lepší stanovení uzamčení v některých situacích\n
-* Databázové soubory jsou načteny do paměti při jeho zadávání hesla pro zvýšení rychlosti načítání (viz nastavení) \n
-* Loložky lze přidat do kořenové skupiny\n
-* Opravy chyb (řešení referenčních pole, problémy s italskou klávesnicí na čínských zařízeních)</string>
   <string name="ChangeLog_0_8_4"><b>Verze 0.8.4</b> \n
 		* Detekce a uložení změn v externích databázích při ukládání \n
 		* Zrychlení načítání \n

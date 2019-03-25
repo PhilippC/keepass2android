@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Alkalmazás időkorlátja</string>
-  <string name="app_timeout_summary">Beállíthatja, mennyi idő után kerüljön zárolásra az adatbázis.</string>
-  <string name="kill_app_label">Alkalmazás-folyamat leállítása</string>
   <string name="show_kill_app">Bezárás gomb</string>
-  <string name="show_kill_app_summary">Egy gomb elhelyezése a jelszóképernyőn az alkalmazás leállítására (paranoiás felhasználóknak).</string>
-  <string name="application">Alkalmazás</string>
-  <string name="application_settings">Alkalmazásbeállítások</string>
   <string name="ShowGroupnameInSearchResult_title">A csoportnevek megjelenítése a keresési eredményeknél</string>
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
@@ -199,7 +193,6 @@
   <string name="no_keys">Nincs bejegyzés az adatbázisban vagy csoportban.</string>
   <string name="no_results">Nincs találat</string>
   <string name="no_url_handler">Nem található kezelő ehhez az url-hez.</string>
-  <string name="open_recent">Korábbi adatbázis megnyitása (kattintson rá a megnyitásra)</string>
   <string name="omitbackup_title">Keresési kivételek</string>
   <string name="omitbackup_summary">A Backup és Lomtár csoportok kihagyása a keresésből</string>
   <string name="pass_filename">KeePass adatbázisfájl</string>
@@ -329,7 +322,6 @@
   <string name="NoDonationReminder_title">Soha ne kérjen adományt</string>
   <string name="NoDonationReminder_summary">Nem adok egy fillér hozzájárulást se vagy pedig már adtam. Nem kérek emlékeztetőt a hozzájárulásról, még a szerző születésnapján se.</string>
   <string name="UseOfflineCache_title">Helyi másolatok</string>
-  <string name="UseOfflineCache_summary">Készüljön másolat az adatbázis fájlokról az alkalmazás átmeneti tárolójában. Így az adatbázis akkor is használható, ha az adatbázis fájl nem elérhető.</string>
   <string name="CreateBackups_title">Helyi biztonsági mentések</string>
   <string name="CreateBackups_summary">Hozzon létre helyi biztonsági mentés másolatot sikeres adatbázis betöltés után.</string>
   <string name="UpdatingBackup">Helyi biztonsági másolat frissítése...</string>
@@ -430,7 +422,6 @@
   <string name="otp_aux_file">OTP kiegészítő fájl</string>
   <string name="ErrorOcurred">Hiba történt:</string>
   <string name="DuplicateUuidsError">Az adatbázis sérült: ütköző egyedi azonosítókat tartalmaz.  (Minikeepass alkalmazással lett elmentve?)  Importálja az adatbázist a Keepass 2 PC alkalmazásba és használja annak \"Új azonosítók létrehozása\" funkcióját.</string>
-  <string name="DuplicateUuidsErrorAdditional">Ez a hibaüzenet kikapcsolható a Beállítások/Alkalmazás/Fájlkezelés/Ütköző egyedi azonosítók keresése opció segítségével.  Az ütköző egyedi azonosítók azonban nem várt viselkedést okozhatnak, ezért javasoljuk inkább az adatbázis javítását.</string>
   <string name="synchronize_database_menu">Az adatbázis szinkronizálása…</string>
   <string name="CannotMoveGroupHere">A csoportot nem lehet ebbe a csoportba mozgatni.</string>
   <string name="donate_question">Ma kezdődik az Oktoberfest!  Ha kedveli ezt az alkalmazást, nem lenne ez egy jó alkalom, hogy fizessen nekem egy sört?</string>
@@ -457,7 +448,6 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KPA2 mappa)</string>
-  <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen.  A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni.  Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
@@ -473,7 +463,6 @@
   <string name="help_master_password">Az adatbázis az itt megadott jelszóval lesz titkosítva.  Az adatbázis biztonsága érdekében válasszon erős jelszót!  Javaslat: találjon ki egy vagy két mondatot, és használja a szavak első betűit.  Ne hagyja ki az írásjeleket se.</string>
   <string name="hint_master_password">Válasszon egy jelszót, amely, mint a főkulcs, az egész adatbázist védi:</string>
   <string name="key_file">Kulcsfájl</string>
-  <string name="help_key_file">A kulcsfájl lényegében egy fájlban eltárolt jelszó.  A kulcsfájlok tipikusan erősebbek mint a mesterjelszavak, mert lényegesen bonyolultabbak lehetnek, ugyanakkor nehezebb őket titokban tartani.  Ha az adatbázist a felhőben tárolja, ne tárolja a kulcsfájlt az adatbázissal együtt, mert akkor a kulcsnak nem lenne semmi haszna!  Fontos: az adatbázis létrehozása után nem módosítsa a kulcsfájl tartalmát!</string>
   <string name="hint_key_file">Adja meg, kíván-e a mesterjelszó mellett kulcsfájlt is használni:</string>
   <string name="use_key_file">Kulcsfájl használata</string>
   <string name="error_adding_keyfile">A kulcsfájl hozzáadása közben hiba történt!</string>
@@ -524,9 +513,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuális bejegyzés adatai</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">A beépülő modul az aktuális bejegyzés minden adatát megkapja, és lehetősége lesz ennek megfelelő műveletek felajánlására és megjelenésének módosítására.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Saját alkalmazáscsomag hitelesítő adatai</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A beépülő modulnak lesz lehetősége a saját alkalmazáscsomagjához kötődő hitelesítő adatok lekérdezésére.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Hitelesítő adatok</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A beépülő modulnak lesz lehetősége a web-oldalak vagy alkalmazások hitelesítő adatainak lekérdezésére.</string>
   <string name="get_regular_version">További tárolási típus beszerzése</string>
   <string name="CertificateWarning">Figyelmeztetés: a szerver tanúsítványának ellenőrzése nem sikerült: %1$s.  Telepítse a szükséges hitelesítő tanúsítványt az eszközre vagy módosítsa a beállításokat!</string>
   <string name="CertificateFailure">Hiba: a szerver tanúsítványának ellenőrzése nem sikerült: %1$s.  Telepítse a szükséges hitelesítő tanúsítványt az eszközre vagy módosítsa a beállításokat!</string>
@@ -537,7 +524,6 @@
   <string name="FileIsReadOnlyOnKitkat">A kijelölt fájl nem írható a Keepass2Android számára az Android 4.4 + korlátozásai miatt.</string>
   <string name="CopyFileRequired">Használathoz egy más helyre kell másolnia.</string>
   <string name="CopyFileRequiredForEditing">Módosításhoz egy más helyre kell másolnia.</string>
-  <string name="ClickOkToSelectLocation">Kattintson az OK gombra a másolási hely kiválasztásához.</string>
   <string name="FileReadOnlyTitle">Az adatbázis csak olvasható</string>
   <string name="FileReadOnlyMessagePre">A Keepass2Android a jelenlegi adatbázist csak olvasható módban nyitotta meg.</string>
   <string name="ReadOnlyReason_PreKitKat">Úgy tűnik, hogy a fájlt egy külső alkalmazásból nyitotta meg. Ily módon történő megnyitás esetén a fájl módosítása nem lehetséges. Ha módosítani szeretné az adatbázist, először zárja azt be, majd az Adatbázis-váltás funkció valamelyik opciója segítségével nyissa meg újra az adatbázist.</string>
@@ -577,10 +563,6 @@
     • Ellenőrizze, hogy a helyes jelszót adta-e meg.  A szem ikon megérintésével megjelenítheti a beírt jelszót.\n
     • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
     • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-    Útmutatás: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja az utolsó sikeresen megnyitott fájl verziót ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.</string>
-  <string name="HintLocalBackupOtherError">\n
-Útmutatás: Keepass2Android eltárolta az utolsó sikeresen megnyitott fájl verziót a belső memóriában. Megnyithatja ide klikkelve \"%1$s\" és kiválasztva a helyi biztonsági másolatot.  </string>
   <string name="CorruptDatabaseHelp">    A fájl sérült. \n 
     Néhány javaslat a probléma felderítésére:\n
     
@@ -595,7 +577,6 @@
   <string name="EntryChannel_desc">Értesítés a jelenleg kiválasztott bejegyzés egyszerűsített eléréséhez.</string>
   <string name="ErrorReportTitle">Keepass2Android: Hiba történt.</string>
   <string name="ErrorReportText">Váratlan hiba történt a Keepass2Android futtatása közben. Kérjük, engedélyezze a hibajelentés küldését, segítve ezzel a hiba kijavítását.</string>
-  <string name="ErrorReportPromise">A hibajelentések soha nem tartalmaznak az adatbázisból származó információt vagy a főkulcsot (jelszót). Az alkalmazásbeállítások segítségével tilthatók.</string>
   <string name="ErrorReportEnable">Engedélyezés</string>
   <string name="ErrorReportDisable">Letiltás</string>
   <string name="ErrorReportAsk">Hiba esetén rákérdez</string>
@@ -608,12 +589,12 @@
 * Továbbfejlesztett keresési eredmények ha a megosztott URL aldomaint tartalmaz
 * Menüelemek hozzáadása: visszajelzéshez, értékeléshez és fordításhoz
 
-<b>Version 0.6.1</b>
+&lt;b&gt;Version 0.6.1&lt;/b&gt;
 * Háttérben történő adatbázis változások érzékelése (pl szinkronizáló alkalmazás hatására)
 * Továbbfejlesztett URL keresés a böngészőből
 * Változások elvetésekor párbeszéd ablak kér megerősítést
 
-<b>Version 0.6</b>
+&lt;b&gt;Version 0.6&lt;/b&gt;
 Kezdeti közösségi kiadás</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>

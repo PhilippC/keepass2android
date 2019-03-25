@@ -22,13 +22,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Timeout dell\'applicazione</string>
-  <string name="app_timeout_summary">Periodo di inattività dell\'applicazione che precede il blocco del database.</string>
-  <string name="kill_app_label">Termina il processo dell\'applicazione</string>
+  <string name="app_timeout">Timeout app</string>
+  <string name="app_timeout_summary">Periodo prima che il database venga bloccato quando l\'app è inattiva.</string>
+  <string name="kill_app_label">Termina processo app</string>
   <string name="show_kill_app">Pulsante-Chiudi</string>
   <string name="show_kill_app_summary">Mostra un pulsante nella schermata password per terminare l\'applicazione (per paranoici)</string>
-  <string name="application">Applicazione</string>
-  <string name="application_settings">Impostazioni applicazione</string>
+  <string name="application">App</string>
+  <string name="application_settings">Impostazioni app</string>
   <string name="ShowGroupnameInSearchResult_title">Visualizza il nome del gruppo nei risultati di ricerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Visualizza il nome del gruppo sotto i titoli delle voci nei risultati di ricerca. Utile se più voci hanno lo stesso nome.</string>
   <string name="NavigationToGroupCompleted_message">Il gruppo visualizzato ora è: %1$s</string>
@@ -195,7 +195,7 @@
   <string name="no_keys">Nessuna voce nel database o nel gruppo.</string>
   <string name="no_results">Nessun risultato</string>
   <string name="no_url_handler">Nessun gestore per questo url.</string>
-  <string name="open_recent">Apri un database recente (clicca per aprire)</string>
+  <string name="open_recent">Apri database recente ( clicca per aprire)</string>
   <string name="omitbackup_title">Non cercare tra le voci di backup e cestino</string>
   <string name="omitbackup_summary">Escludi i gruppi \'Backup\' e Cestino dai risultati di ricerca</string>
   <string name="pass_filename">Nome file del database di KeePass</string>
@@ -585,9 +585,9 @@
 • assicurati di aver selezionato il tipo di password corretto. Assicurati che coincida con il tipo usato quando hai creato il database.\n
 • assicurati di aver selezionato il file del database corretto.</string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n  
-   • Suggerimento: se pensi che il tuo file di database possa essere danneggiato, oppure non ricordi la password principale dopo averla modificata, puoi provare con l\'ultima versione di file aperta correttamente facendo clic su \"%1$s\" e selezionando il backup locale.</string>
+   &#8226;  Suggerimento: se pensi che il tuo file di database possa essere danneggiato, oppure non ricordi la password principale dopo averla modificata, puoi provare con l\'ultima versione di file aperta correttamente facendo clic su \"%1$s\" e selezionando il backup locale.</string>
   <string name="HintLocalBackupOtherError">     \n
-     • Suggerimento: Keepass2Android ha archiviato l\'ultima versione di file aperto correttamente nella memoria interna. È possibile aprirlo facendo clic su \"%1$s\" e selezionando il backup locale.
+     &#8226; Suggerimento: Keepass2Android ha archiviato l\'ultima versione di file aperto correttamente nella memoria interna. È possibile aprirlo facendo clic su \"%1$s\" e selezionando il backup locale.
   </string>
   <string name="CorruptDatabaseHelp">Il file è corrotto.\n
 Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\n
@@ -625,16 +625,6 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ErrorReportAsk">Chiedi dopo un errore</string>
   <string name="ErrorReportPrefTitle">Segnalazione errori</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
-  <string name="ChangeLog_1_07">Versione 1.07-pre2\n
-     * Permette di aprire più database, compatibile con KeeAutoExec\n
-     * SFTP: Consentire l\'autenticazione della chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
-     * Introduce il supporto pCloud - grazie a gilbsgilbs!\n
-     * Rende esplicito il supporto per Nextcloud\n
-     * Migliora il salvataggio e l\'aggiornamento degli allegati alle voci\n
-     * Altre opzioni per adattare il comportamento alle preferenze personali\n
-     * SSL: Certificati utente di fiducia\n
-     * correzioni di bug\n
-  </string>
   <string name="ChangeLog_1_06">Versione 1.06\n
 * passato a ykDroid al posto di YubiChallenge come app per Yubikey Challenge-Response.\n
 * implementato il supporto per il Challenge-Response di KeepassXC. Nota: Il formato del database deve essere KDBX4!\n
@@ -759,7 +749,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * impostazione visibilità notifica per la schermata di blocco di Android 5\n
 * ora il campo della password principale viene cancellato quando si esce dalla app senza premere OK\n
 * sistemato problema con lingua di input mancante nelle impostazioni tastiera di alcuni dispositivi\n
-*  sistemato problema di commutazione automatica della tastiera nei dispositivi rootati\n
+* sistemato problema di commutazione automatica della tastiera nei dispositivi rootati\n
 * aggiunto controllo per database corrotti (UUID duplicati)\n
 * ricarica automatica del database qundo vengono rilevate modifiche, risolve preoccupazioni sulla sicurezza riguardo il rivelare la password principale\n
 * migliorato il layout della tastiera piccola polacca, sistemato il tema delle impostazioni tastiera (grazie a Wiktor Ławski)\n</string>
@@ -939,7 +929,7 @@ Prima release pubblica
   <string name="show_autofill_help">Mostra aiuto per Compilazione automatica</string>
   <string name="autofill_sign_in_prompt">Compila con Keepass2Android</string>
   <string name="autofill_disable">Disattiva Compilazione automatica per %1$s</string>
-  <string name="autofill_enable">Attiva Compilazione automatica per %1$s</string>
+  <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha rilevato un lettore di impronte digitali. Desideri attivare lo sblocco con impronta digitale per questo database?</string>
   <string name="understand">Ho capito</string>

@@ -22,13 +22,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Tidsgräns för programmet</string>
-  <string name="app_timeout_summary">Tid innan databasen låses när programmet är inaktivt.</string>
-  <string name="kill_app_label">Avsluta programmet</string>
   <string name="show_kill_app">Stängknapp</string>
-  <string name="show_kill_app_summary">Visa en knapp i lösenordsskärmen för att avsluta programmet (för paranoida användare)</string>
-  <string name="application">Program</string>
-  <string name="application_settings">Programinställningar</string>
   <string name="ShowGroupnameInSearchResult_title">Visa gruppnamn i sökresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Visa gruppnamnet under post-titlar i sökresultat. Användbart om flera poster har samma namn.</string>
   <string name="NavigationToGroupCompleted_message">Visad grupp är: %1$s</string>
@@ -195,7 +189,6 @@
   <string name="no_keys">Inga poster i databas eller grupp.</string>
   <string name="no_results">Inga sökresultat</string>
   <string name="no_url_handler">Ingen hanterare för denna url.</string>
-  <string name="open_recent">Öppna nyligen använd databas (Klicka för att öppna)</string>
   <string name="omitbackup_title">Sök ej backup- eller papperskorgs-poster</string>
   <string name="omitbackup_summary">Utelämna \'backup\' och papperskorgs-grupp från sökresultaten</string>
   <string name="pass_filename">KeePass-databasens filnamn</string>
@@ -329,7 +322,6 @@
   <string name="NoDonationReminder_title">Be aldrig om donation</string>
   <string name="NoDonationReminder_summary">Jag kommer inte ge dig ett öre eller jag har redan donerat. Be inte om en donation, inte ens på utvecklarens födelsedag.</string>
   <string name="UseOfflineCache_title">Databascachning</string>
-  <string name="UseOfflineCache_summary">Håll en kopia av databasfilerna i programmets cachekatalog. Detta möjliggör att använda databaser även när databasfilen inte är tillgänglig.</string>
   <string name="CreateBackups_title">Lokala säkerhetskopior</string>
   <string name="CreateBackups_summary">Skapa en lokal säkerhetskopia efter framgångsrikt ha laddat en databas.</string>
   <string name="UpdatingBackup">Uppdatera lokal säkerhetskopia...</string>
@@ -429,7 +421,6 @@
   <string name="otp_aux_file">Engångslösenordsfil</string>
   <string name="ErrorOcurred">Ett fel uppstod:</string>
   <string name="DuplicateUuidsError">Databasen är skadad: dublett-IDn hittade. (Sparade du med Minikeepass?) Vänligen åter-importera till en ny databas med Keepass 2 för PC och välj \'Skapa nya IDn\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Du kan inaktivera detta felmeddelande i Inställningar/Programinställningar/Filhantering/Sök efter dubbletter UUIDs. Observera att du kan uppleva oväntat beteende. Det rekommenderas att fixa databasen.</string>
   <string name="synchronize_database_menu">Synkronisera databas…</string>
   <string name="CannotMoveGroupHere">Kan inte flytta grupp till denna grupp.</string>
   <string name="donate_question">Idag är det Oktoberfest! Om du gillar Keepass2Android: skulle det väl vara en bra dag att köpa mig en öl?</string>
@@ -461,7 +452,6 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mapp)</string>
-  <string name="filestoragehelp_dropboxKP2A">Om du inte vill ge KP2A tillgång till din hela Dropbox, kan du välja detta alternativ. Den kommer då endast att begära tillgång till mappen Apps/Keepass2Android. Detta är särskilt lämpligt när du skapar en ny databas. Om du redan har en databas, klicka på detta alternativ för att skapa mappen, placera sedan filen i mappen (från datorn) och välj därefter alternativet igen för att öppna filen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -477,7 +467,6 @@
   <string name="help_master_password">Din databas är krypterad med det lösenord som du anger här. Välj ett starkt lösenord för att skydda databasen! Tips: Gör upp en mening eller två och använder de första bokstäverna i orden som lösenord. Inkludera skiljetecken.</string>
   <string name="hint_master_password">Välj ett huvudlösenord för att skydda din databas:</string>
   <string name="key_file">Nyckelfil</string>
-  <string name="help_key_file">En nyckelfil är i grunden ett lösenord som lagras i en fil. Nyckelfiler är vanligtvis starkare än master-lösenord, eftersom nyckeln kan vara mycket mer komplicerad; men det är också svårare att hålla dessa hemliga. Om du lagrar din databas i molnet, lagra då inte nyckelfilen där också! Detta skulle göra den helt värdelös! Viktigt: Ändra inte innehållet i nyckelfilen efter skapandet av databasen!</string>
   <string name="hint_key_file">Välj om du vill använda en nyckelfil förutom ditt huvudlösenord:</string>
   <string name="use_key_file">Använd nyckelfil</string>
   <string name="error_adding_keyfile">Fel vid skapandet av nyckelfilen!</string>
@@ -528,9 +517,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuell postdata</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin kommer att få alla data om den aktuella databasposten och kommer att tillåtas att erbjuda åtgärder och ändra visningen av den.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Efterfråga egna autentiseringsuppgifter</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin kommer att tillåtas att efterfråga de autentiseringsuppgifter som är associerade med det egna programpaketet.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Efterfråga autentiseringsuppgifter</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin kommer att tillåtas att efterfråga autentiseringsuppgifter för avsedda webbplatser eller program.</string>
   <string name="get_regular_version">Få mer lagringstyper</string>
   <string name="CertificateWarning">Varning: Verifiering av servercertifikat misslyckades: %1$s. Installera lämpliga rotcertifikat på enheten eller se inställningar!</string>
   <string name="CertificateFailure">Fel: Verifiering av servercertifikat misslyckades! Installera lämpliga rotcertifikat på enheten eller se inställningar!</string>
@@ -541,7 +528,6 @@
   <string name="FileIsReadOnlyOnKitkat">Den markerade filen är skrivskyddad för Keepass2Android på grund av restriktioner på Android 4.4 +.</string>
   <string name="CopyFileRequired">För att använda den, måste du kopiera den till en annan plats.</string>
   <string name="CopyFileRequiredForEditing">För att redigera den, måste du kopiera filen till en annan plats.</string>
-  <string name="ClickOkToSelectLocation">Klicka på OK för att välja en plats där filen ska kopieras.</string>
   <string name="FileReadOnlyTitle">Databasen är skrivskyddad</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android har öppnat den aktuella databasen i skrivskyddat läge.</string>
   <string name="ReadOnlyReason_PreKitKat">Det verkar som du öppnade filen från en extern app. Detta sätt har inte stöd för skrivning. Om du vill göra ändringar i databasen, var god stäng databasen och välj ändra databas. Öppna sedan filen från en av de tillgängliga alternativen om möjligt.</string>
@@ -577,10 +563,6 @@
   <string name="NoFilenameWarning">Den URI som du har angett ser inte ut som ett filnamn. Är du säker på att detta är en giltig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ogiltig sammansatt nyckel! Vänligen försök igen.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">Ogiltig sammansatt nyckel! Vänligen prova följande steg för att låsa upp din databas:\n\n &#8226; Se till att du har angett rätt lösenord. Använd ögonikonen för att visa det inmatade lösenordet.\n &#8226; Se till att du har valt rätt lösenordstyp. Kontrollera att den matchar den typ som användes när databasen skapades. &#8226; Se till att du har valt rätt databasfil.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-   • Tips: om du tror att din databasfil kan vara skadad eller om du inte kommer ihåg huvudnyckeln efter att ha ändrat den, så kan du försöka med den senast lyckade öppnade filversionen genom att klicka \"%1$s\" och välj lokal säkerhetskopia.</string>
-  <string name="HintLocalBackupOtherError">\n
-    • Tips: Keepass2Androi har sparat den senast lyckade öppnade filversionen i internminnet. Du kan öppna den genom att klicka \"%1$s\" och välja lokal säkerhetskopia.  </string>
   <string name="CorruptDatabaseHelp">Filen är skadad. \n Här är några tips som kan hjälpa till att diagnostisera ärendet: \n-• Om du har kopierat filen via USB (MTP-läge), var god försök igen med verktyg som MyPhoneExplorer. MTP trunkerar filer i vissa fall. \n-• Om du inte kan öppna filen från samma plats på din dator, är det mycket troligt att filen faktiskt är skadad. Använd en säkerhetskopia av databasen. Om du antar att Keepass2Android har skadat filen, vänligen kontakta support. \n • Om du fortfarande kan öppna filen på din dator, vänligen kontakta support. Du kan försöka spara den med olika inställningar (t.ex. uppzippad) på datorn och försöka att öppna den i Keepass2Android igen.  </string>
   <string name="select_database">Välj databas</string>
   <string name="DbUnlockedChannel_name">Databas upplåst</string>
@@ -591,7 +573,6 @@
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="ErrorReportTitle">Keepass2Android: Ett fel uppstod.</string>
   <string name="ErrorReportText">Ett oväntat fel uppstod när du körde Keepass2Android. Snälla hjälp oss fixa detta genom att tillåta appen att skicka felrapporter.</string>
-  <string name="ErrorReportPromise">Felrapporter innehåller aldrig något innehåll från din databas eller huvudlösenord. Du kan inaktivera dem i programinställningarna.</string>
   <string name="ErrorReportEnable">Aktivera</string>
   <string name="ErrorReportDisable">Inaktivera</string>
   <string name="ErrorReportAsk">Fråga efter fel</string>
@@ -650,7 +631,6 @@
   <string name="ChangeLog_0_9_8">Version 0.9.8\n * Stöd för Storage Access Framework (kan skriva till SD-kortet och Google Drive i KP2A Offline) \n * Försök till att detektera felaktig användarindata när du anger WebDAV webbadresser (katalog i stället för fil) \n * Ändrad lösenordsfont\n * Tillåt ändra Dropbox-konto\n * Fixad bugg: Kommer nu ihåg engångslösenord</string>
   <string name="ChangeLog_0_9_7b">Version 0.9.7b\n * Uppdaterade översättningar\n * Buggfixar: lösenordsteckensnitt saknades i 0.9.7, sortera på namn sorterade inte grupper\n</string>
   <string name="ChangeLog_0_9_7">Version 0.9.7\n * skrivstöd för Keepass 1 (kdb) databaser (beta!) \n * bättre byte till föregående tangentbord (fungerar även på icke-rotade enheter) \n * stöd för KeeChallenge med variabel utmanings-längd\n * förhindrar att ta skärmdumpar från snabbupplåsning- och lösenords-skärmar\n * omvänd sorteringsordning för Sortera efter modifieringsdatum (fallande nu) \n * buggfixar: Anteckningar-vyn visas nu korrekt uppdaterat efter ändringar, lösenords-vyer döljer nu lösenord korrekt på (förhoppningsvis) alla enheter, åtgärdade problem som tillät en post lades till två gånger, löste problem där duplicerad UUID varning visas även efter fix av databasen\n</string>
-  <string name="ChangeLog_0_9_6">Version 0.9.6\n * Tillåt att importera nyckelfil och/eller lokala databasfil till intern programkatalog (se inställningar) \n * Tillåta olika sorteringsinställningar\n * Förbättrade inställningar för automatiskt tangentbordsbyte\n * Uppdaterad logotyp och aviseringsdesign, design av Stefano Pignataro (http://www.spstudio.at) \n * Lösenordsgenerator minns senaste inställningarna\n * Ange aviseringssynlighet för Android 5s låsskärm\n * Rensar nu huvudlösenordsfältet när programmet lämnas utan att klicka på OK\n * Fixade problem med saknat inmatningsspråk i tangentbordsinställningar på vissa enheter\n * Fixat problem med automatiskt tangentbordetsbtye på rotade enheter\n * Lagt till check för skadade databaser (dubbla UUID) \n * Automatiskt ladda databas när förändring upptäcks, löser säkerhetsoro över att avslöja huvudlösenord\n * Förbättrad polsk litentangentbordslayout, Fixat tema för tangentbordsinställningar (tack vare Wiktor Ławski) \n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b> \n * Fixat problem med filväljning (särskilt på Android 4.4) \n * Fixat problem med att ladda .kdb filer (Keepass 1) på Nexus 5 med Android Lollipop\n * Lagt till möjlighet att förhindra att ta skärmdumpar/Visa appen i senaste apps-lista\n * Fixat problem med Google Drive fillagring (standardutgåva) \n * Tillåta nyckelfiler på avsedda lagringstyper (standardutgåva) \n * Uppdaterad Dropbox SDK att inkludera en officiell säkerhetspatch (standardutgåva) \n * Uppdaterade byggverktyg--&gt; ökad apk-storlek:-(\n Jag har låvat några ytterligare ändringar. Dessa kommer i nästa version - tyvärr. Jag ville publicera dessa hotfixar så snart som möjligt.</string>
   <string name="ChangeLog_0_9_4"><b>Version 0.9.4</b> \n * Lade till plug-in stöd: se Inställningar för hur du får plug-ins! \n * publicerade QR plug-in (scan lösenord, visa lösenord som QR-kod, överför poster till andra KP2A enheter) \n * publicerade InputStick plugin (överför autentiseringsuppgifter till din PC via bluetooth - kräver InputStick USB stick) \n * appar från tredje part kan nu enkelt implementera efterfråga KP2A autentiseringsuppgifter. Är du en utvecklare? Lägg till detta till din app om lämpligt! \n * lagt till tidsbaserat engångslösenordsstöd (kompatibel med KeeOTP och TrayTotp) \n * app borde inte längre bli dödad av Android när databasen är öppen\n * databas är inte längre låst när du lämnar appen med den tillbaka-knappen (se inställningar) \n * visa gruppnamn i sökresultatvyn (*) \n * Ladde till kontextmeny i sölresultatvyn inklusive ”navigera till förälder”-alternativ (*) \n * lagt till möjlighet att visa gruppnamn i postvyn(*) \n * (*) tack till Matthieu för att implementera dessa funktioner! \n * stöd för KeeChallenge (med Yubikey NEO). Tack till Ben Rush för att implementera kopplingen! \n * förbättrat användarinterface\n * fixade a bug i Google Drive-interface\n * lagt till möjlighet att inaktivera ”donera”-valet\n * snabbupplåsnings-ikonen nu dold på Android 4.2 + enheter\n</string>
   <string name="ChangeLog_0_9_3_r5"><b>Version 0.9.3 r5</b> \n * Inkluderat fixar från Xamarin: Keepass2Android nu kompatibel med ART på Android 4.4.2. Äntligen! \n * Buggfixar: buggar i synkronisering (uppdatera visning, korrigerat ändringskontroll på http), buggar på Android 2.x enheter, buggar i lagringsimplementationer för Google Drive och OneDrive, rensa urklipp vid stängning av databas, bugg vid öppnande av bifogade filer, visningsproblem med tangentbord\n</string>
@@ -659,7 +639,6 @@
   <string name="ChangeLog_0_9_1"><b>Version 0.9.1</b> \n * integrerad SkyDrive-stöd (endast Keepass2Android standardversion) \n * Löst problem med Google Drive-integration\n * Lagt till NTLM-stöd</string>
   <string name="ChangeLog_0_9"><b>Version 0.9</b> \n * integrerat stöd för Dropbox och Google Drive (läsa och skriva databaser; endast Keepass2Android standardversion) \n * Integrerad anpassad filväljare (baserat på android-filväljare av HBA) \n * Förbättrat användargränssnitt för att skapa nya databaser\n * Inkluderat anpassad teckensnitt DejaVu Sans Mono för att visa lösenord\n * Buggfixar</string>
   <string name="ChangeLog_0_8_6"><b>Version 0.8.6</b> \n * Stöd för Twofish-kryptering\n * Tillåt redigera grupper\n * Tillåt flyttning av poster och grupper\n * Snabbupplåsningsikonen kan göras transparent (se inställningar) \n * Buggfixar</string>
-  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b> \n * Fjärr-filer lagras i lokala programcachen att tillåta offlineanvändning (inklusive redigering och senare synkronisering). Se inställningar. \n * Aviseringsikon för att visualisera upplåsnings-tillståndet i databasen (se inställningar) \n * Förbättrad bestämning av upplåsnings-tillståndet i vissa situationer\n * Databasfiler laddas till minne medan du skriver ditt lösenord för ökad laddningshastighet (se inställningar) \n * Poster kan läggas till rotgruppen\n * Buggfixar (fastställa referensfält, problem med tangentbordet på italienska och kinesiska enheter)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b> \n * Extern databasförändringar upptäcks och sammanfogas vid sparning\n * Förbättrad laddprestanda\n * Förbättrad sökverktygsfält med föreslag\n * Ny App-logotype! \n * Lagt till stöd för .kdbp-format för snabbare laddning/sparning\n * Förbättrad editering av extra strängar och dolda visning när skyddad\n tack till Alex Vallat för hans kodbidrag! \n tack till Niki Hüttner (www.close-cut.de) för den nya logotypen! \n</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b> \n * användarnamn/TAN index visas i postlistan (se inställningar) \n * poster kan skapas om söknings från webbläsare inte returnerar result\n * KP2A tangentbord ger möjlighet att söka efter autentiseringsuppgifter för nuvarande app\n * App stängs automatiskt efter att val av post för användning i tangentbordet\n * tangentbord dialogrutan öppnas automatiskt efter URL-sökningar (se inställningar) \n * platshållare i inmatningsfält ersätts innan kopiering (de flesta platshållare stöds) \n * mindre buggfixar  </string>
   <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b> \n * Stöd för Digest Authentication i WebDAV\n * Buggfixar (OI File manager, öppna URL)</string>
