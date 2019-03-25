@@ -97,6 +97,7 @@
   <string name="fingerprint_reenable">請重新為新的主密碼啟用指紋解鎖</string>
   <string name="fingerprint_reenable2">請使用你的密碼解鎖並於資料庫設置中重新啟用指紋解鎖。</string>
   <string name="FingerprintInitFailed">初始化指紋感測器失敗。 </string>
+  <string name="FingerprintSetupFailed">資料加密失敗。若你在系統設置中添加或刪除指紋時，Keepass2Android 正在監聽您的指紋，有可能會發生這種情況。</string>
   <string name="enable_fingerprint_unlock_Info">這將把主密碼存儲在此裝置上，並透過 Android Keystore 加密且將被指紋驗證保護。此後你將可透過你的指紋解鎖資料庫。</string>
   <string name="enable_fingerprint_quickunlock_Info">將以指紋驗證取代 QuickUnlock 代碼。這並不會在裝置上存儲與主密碼相關的任何資料。</string>
   <string name="enter_filename">輸入資料庫名：</string>
