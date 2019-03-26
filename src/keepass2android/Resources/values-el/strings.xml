@@ -24,6 +24,7 @@
   <string name="short_app_name_nonet">KP2A χωρίς σύνδεση</string>
   <string name="app_timeout">Λήξη χρονικού ορίου εφαρμογής</string>
   <string name="app_timeout_summary">Χρόνος πριν το κλείδωμα της βάσης δεδομένων όταν η εφαρμογή είναι ανενεργή.</string>
+  <string name="kill_app_label">Τερματισμός διεργασίας</string>
   <string name="show_kill_app">Κουμπί τερματισμού</string>
   <string name="show_kill_app_summary">Προβάλει κουμπί στην οθόνη συνθηματικού που τερματίζει τη διεργασία της εφαρμογής (για παρανοϊκούς χρήστες)</string>
   <string name="application">Εφαρμογή</string>
@@ -32,6 +33,8 @@
   <string name="ShowGroupnameInSearchResult_resume">Προβάλει το όνομα της ομάδας κάτω από τους τίτλους καταχωρίσεων στα αποτελέσματα αναζήτησης. Χρήσιμο αν πολλές καταχωρίσεις έχουν το ίδιο όνομα.</string>
   <string name="NavigationToGroupCompleted_message">Τώρα προβάλλεται η ομάδα %1$s</string>
   <string name="AutofillDisabledQueriesPreference_summary">Προβάλει λίστα εφαρμογών και ιστοτόπων για τα οποία έχει απενεργοποιηθεί το AutoFill</string>
+  <string name="OfferSaveCredentials_summary">Αν ενεργοποιηθεί, το Android θα ρωτήσει αν θέλεις να αποθηκεύσεις πιστοποιητικά αφού εισάγει δεδομένα σε προσυμπληρωνόμενα πεδία.</string>
+  <string name="OfferSaveCredentials_title">Προσφέρει αποθήκευση των πιστοποιητικών</string>
   <string name="ShowGroupInEntry_title">Εμφάνιση ονόματος ομάδας σε προβολή καταχώρισης</string>
   <string name="unknown_uri_scheme">Το Keepass2Android δεν μπορεί να χειριστεί το URI %1$s. Επικοινωνήστε με τον προγραμματιστή!</string>
   <string name="Entry_singular">Μία καταχώριση</string>
@@ -93,6 +96,7 @@
   <string name="fingerprint_reenable">Επενενεργοποιήστε το ξεκλείδωμα με δακτυλικό αποτύπωμα για το νέο βασικό συνθηματικό.</string>
   <string name="fingerprint_reenable2">Ξεκλειδώστε με το συνθηματικό σας και έπειτα ενεργοποιήστε το ξεκλείδωμα με δακτυλικό αποτύπωμα στις ρυθμίσεις της βάσης δεδομένων.</string>
   <string name="FingerprintInitFailed">Αποτυχία αρχικοποίησης του αισθητήρα δακτυλικού αποτυπώματος </string>
+  <string name="FingerprintSetupFailed">Αποτυχία κρυπτογράφησης δεδομένων. Μπορεί να συμβεί αν προσθέσεις ή αφαιρέσεις δακτυλικά αποτυπώματα στις ρυθμίσεις συστήματος ενώ το Keypass2Android περιμένει το δακτυλικό σου αποτύπωμα.</string>
   <string name="enable_fingerprint_unlock_Info">Το βασικό συνθηματικό θα αποθηκευτεί σε αυτή τη συσκευή,
 κρυπτογραφημένο στην αποθήκη κλειδιών του Android και προστατευμένο 
 με αυθεντικοποίηση δακτυλικού αποτυπώματος. Επιτρέπει ξεκλείδωμα της βάσης δεδομένων μόνον με δακτυλικό αποτύπωμα.  </string>
@@ -212,6 +216,8 @@
   <string name="edit">Επεξεργασία</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Ρίζα</string>
+  <string name="AutoReturnFromQuery_title">Αυτόματη επιστροφή από την οθόνη ερωτημάτων</string>
+  <string name="AutoReturnFromQuery_summary">Ενώ αναζητείς εγγραφή για μια εφαρμογή ή ιστότοπο: επιστρέφει αυτόματα από την οθόνη ερωτημάτων αν υπάρχει μόνον μία εγγραφή που ταιριάζει.</string>
   <string name="KeyDerivFunc">Συνάρτηση παραγωγής κλειδιού</string>
   <string name="rounds">Κύκλοι κρυπτογράφησης</string>
   <string name="rounds_explaination">Περισσότερες κύκλοι κρυπτογράφησης παρέχουν πρόσθετη προστασία ενάντια σε επιθέσεις ωμής βίας, αλλά μπορεί να επιβραδύνουν σημαντικά τη φόρτωση και την αποθήκευση.</string>
@@ -320,6 +326,8 @@
   <string name="ClearPasswordOnLeave_summary">Κατά την έξοδο από την οθόνη καθαρίζει το κύριο συνθηματικό που εισάγατε χωρίς να ξεκλειδώνει τη βάση δεδομένων.</string>
   <string name="LockWhenNavigateBack_title">Κλείδωμα με την έξοδο από την εφαρμογή</string>
   <string name="LockWhenNavigateBack_summary">Κλειδώνει τη βάση δεδομένων όταν βγείτε από την εφαρμογή με το πλήκτρο επιστροφής.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Χρήση του ενσωματωμένου στο Keepass2Android πληκτρολογίου</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Αν δεν εμπιστεύεσαι το τυπικό πληκτρολόγιο, με αυτή την επιλογή χρησιμοποιείς το ενσωματωμένο πληκτρολόγιο όταν εισάγεις το συνθηματικό ή διορθώνεις εγγραφές. </string>
   <string name="ActivateSearchViewOnStart_title">Ενεργοποίηση του πεδίου αναζήτησης στην αρχή</string>
   <string name="ActivateSearchViewOnStart_summary">Ενεργοποιεί το πεδίο αναζήτησης για τις ομάδες μετά το ξεκλείδωμα ή κατά την αναζήτηση</string>
   <string name="NoDonateOption_title">Απόκρυψη της επιλογής Δωρεά</string>
@@ -328,6 +336,7 @@
   <string name="NoDonationReminder_title">Μην ζητάς προσφορά</string>
   <string name="NoDonationReminder_summary">Δε δίνω δυάρα ή έχω ήδη κάνει προσφορά. Μη ζητάς προσφορά, ούτε καν στα γενέθλια του κατασκευαστή.</string>
   <string name="UseOfflineCache_title">Προσωρινή αποθήκευση βάσης δεδομένων</string>
+  <string name="UseOfflineCache_summary">Διατηρεί ένα αντίγραφο των αρχείων βάσεων δεδομένων στο φάκελο cache της εφαρμογής. Αυτό επιτρέπει να χρησιμοποιούνται οι βάσεις δεδομένων ακόμη και όταν τα αρχεία τους δεν είναι διαθέσιμα.</string>
   <string name="CreateBackups_title">Τοπικά αντίγραφα</string>
   <string name="CreateBackups_summary">Δημιουργία τοπικού αντιγράφου μετά την επιτυχή φόρτωση της βάσης δεδομένων</string>
   <string name="UpdatingBackup">Ενημέρωση τοπικού αντιγράφου...</string>
