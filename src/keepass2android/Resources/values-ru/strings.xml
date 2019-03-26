@@ -32,6 +32,7 @@
   <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
   <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы ниже заголовка записей в результатах поиска. Полезно, если некоторые записи имеют одинаковые имена.</string>
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Просмотр списка приложений и сайтов, для которых автозаполнение было отключено</string>
   <string name="OfferSaveCredentials_summary">Если этот параметр включен, Android спросит, хотите ли вы сохранить учетные данные после того, как вы вручную ввели данные в автозаполняемые поля.</string>
   <string name="OfferSaveCredentials_title">Предлагать сохранять учетные данные</string>
   <string name="ShowGroupInEntry_title">Показывать имя группы при просмотре записи</string>
@@ -630,6 +631,18 @@
   <string name="ErrorReportAsk">Спросить после ошибки</string>
   <string name="ErrorReportPrefTitle">Отправить отчёт об ошибке</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показывать клавиатуру для ввода пароля, если сканер отпечатка пальца включен.</string>
+  <string name="ChangeLog_1_07">Версия 1.07-pre2\n
+* Исправлены падения приложения на устройствах Samsung с Android 9\n
+* Разрешено одновременное открытие нескольких баз данных, совместимо с KeeAutoExec\n
+* SFTP: Разрешена аутентификация по открытому ключу, добавлена проверка на изменение ключа хоста\n
+* Внедрена поддержка pCloud - спасибо gilbsgilbs!\n
+* Добавлена поддержка Nextcloud\n
+* Улучшено сохранение и обновление вложений в записях\n
+* Появилось больше настроек для личных предпочтений\n
+* SSL: возможно доверять сертификатам пользователя\n
+* Улучшено автозаполнение (теперь работает с Firefox, может уменьшить количество всплывающих окон)\n
+* исправления ошибок\n
+  </string>
   <string name="ChangeLog_1_06">    Версия 1.06\n * Переключиться на ykDroid вместо YubiChallenge как приложение для Yubikey вызов-ответ. \n *, Реализуют поддержку для стиля KeepassXC вызов-ответ. Примечание: Формат базы данных должен быть KDBX4! \n * Отказ от загрузки файлов корзины из Google Drive\n * Реализация переключателя TLS для FTPS, добавлен обход ошибки JSch с серверов, поддерживающих gssapi с mic\n * Исправление ошибок\n
   </string>
   <string name="ChangeLog_1_05">    Версия 1.05\n
