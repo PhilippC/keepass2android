@@ -32,6 +32,8 @@
   <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
   <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы ниже заголовка записей в результатах поиска. Полезно, если некоторые записи имеют одинаковые имена.</string>
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
+  <string name="OfferSaveCredentials_summary">Если этот параметр включен, Android спросит, хотите ли вы сохранить учетные данные после того, как вы вручную ввели данные в автозаполняемые поля.</string>
+  <string name="OfferSaveCredentials_title">Предлагать сохранять учетные данные</string>
   <string name="ShowGroupInEntry_title">Показывать имя группы при просмотре записи</string>
   <string name="unknown_uri_scheme">Извините! Keepass2Android не может обработать возвращаемый URI %1$s. Свяжитесь с разработчиком!</string>
   <string name="Entry_singular">Одна запись</string>
@@ -601,6 +603,7 @@
   <string name="configure_child_dbs">Настройка дочерних баз данных…</string>
   <string name="child_dbs_title">Дочерняя база данных</string>
   <string name="unspecified">не определено</string>
+  <string name="child_db_explanation">Дочерние базы данных являются другими базами данных, которые могут быть открыты автоматически при открытии родительской базы данных. Поэтому основной пароль и расположение файла дочерней базы хранятся в родительской базе данных. Эта функция позволяет делиться паролями с другими людьми. Совместимо с KeeAutoExec для ПК.</string>
   <string name="child_db_enabled_on_this_device">Включен на этом устройстве</string>
   <string name="child_db_enable_on_this_device">Включить на этом устройстве</string>
   <string name="child_db_disable_on_this_device">Выключить на этом устройстве</string>
@@ -902,6 +905,7 @@
   <string name="show_autofill_help">Показать помощь по автозаполнению</string>
   <string name="autofill_sign_in_prompt">Автозаполнить при помощи Keepass2Android</string>
   <string name="autofill_disable">Не использовать для %1$s</string>
+  <string name="autofill_enable_for">Включить автозаполнение для %1$s</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android обнаружил сканер отпечатка пальцев. Вы хотите включить разблокировку отпечатком пальца для этой базы данных?</string>
   <string name="understand">Я понял</string>
