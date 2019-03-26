@@ -470,6 +470,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (φάκελος KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -546,6 +547,7 @@
   <string name="FileIsReadOnlyOnKitkat">Το αρχείο που επιλέξατε είναι μόνο για ανάγνωση από το Keepass2Android εξαιτίας περιορισμών του Android 4.4+.</string>
   <string name="CopyFileRequired">Για να το χρησιμοποιήσετε, πρέπει να το αντιγράψετε σε άλλη θέση.</string>
   <string name="CopyFileRequiredForEditing">Για να το επεξεργαστείτε, πρέπει να αντιγράψετε το αρχείο σε άλλη θέση.</string>
+  <string name="ClickOkToSelectLocation">Πατήστε OK για να διαλέξετε τοποθεσία όπου θα αντιγραφεί το αρχείο.</string>
   <string name="FileReadOnlyTitle">Η βάση δεδομένων είναι μόνο για ανάγνωση</string>
   <string name="FileReadOnlyMessagePre">Το Keepass2Android έχει ανοίξει την τρέχουσα βάση δεδομένων μόνο για ανάγνωση.</string>
   <string name="ReadOnlyReason_PreKitKat">Φαίνεται πως ανοίξατε το αρχείο από μια εξωτερική εφαρμογή. Γι αυτό δεν υποστηρίζεται η τροποποίηση. Αν θέλετε να κάνετε αλλαγές στη βάση δεδομένων, κλείστε τη βάση δεδομένων και επιλέξτε Αλλαγή βάσης δεδομένων. Στη συνέχεια ανοίξτε το αρχείο με μια από τις διαθέσιμες επιλογές αν είναι δυνατόν.</string>
@@ -597,6 +599,7 @@
   <string name="child_db_enabled_on_this_device">Ενεργοποιημένο σε αυτήν τη συσκευή</string>
   <string name="child_db_enable_on_this_device">Ενεργοποίηση σε αυτήν τη συσκευή</string>
   <string name="child_db_disable_on_this_device">Απενεργοποίηση σε αυτήν τη συσκευή</string>
+  <string name="child_db_enable_a_copy_for_this_device">Αντίγραφο για αυτή τη συσκευή</string>
   <string name="Visible_title">Ορατό</string>
   <string name="child_db_Enabled_title">Αυτόματο άνοιγμα</string>
   <string name="database_file_heading">Αρχείο βάσης δεδομένων</string>
@@ -872,7 +875,7 @@ Initial public release
     <item>Συνθηματικό + Πρόκληση-Απόκριση</item>
     <item>Συνθηματικό + μυστική Πρόκληση-Απόκριση (λειτουργία ανάκτησης)</item>
     <item>Συνθηματικό + Πρόκληση-Απόκριση για το Keypass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Συνθηματικό + Αρχείο κλειδιού + Δοκιμασία για Keypass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Συνθηματικό</item>
