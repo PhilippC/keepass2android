@@ -32,6 +32,7 @@
   <string name="ShowGroupnameInSearchResult_title">Προβολή ονόματος ομάδας στο αποτέλεσμα αναζήτησης</string>
   <string name="ShowGroupnameInSearchResult_resume">Προβάλει το όνομα της ομάδας κάτω από τους τίτλους καταχωρίσεων στα αποτελέσματα αναζήτησης. Χρήσιμο αν πολλές καταχωρίσεις έχουν το ίδιο όνομα.</string>
   <string name="NavigationToGroupCompleted_message">Τώρα προβάλλεται η ομάδα %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Απενεργοποίηση στόχων AutoFill</string>
   <string name="AutofillDisabledQueriesPreference_summary">Προβάλει λίστα εφαρμογών και ιστοτόπων για τα οποία έχει απενεργοποιηθεί το AutoFill</string>
   <string name="OfferSaveCredentials_summary">Αν ενεργοποιηθεί, το Android θα ρωτήσει αν θέλεις να αποθηκεύσεις πιστοποιητικά αφού εισάγει δεδομένα σε προσυμπληρωνόμενα πεδία.</string>
   <string name="OfferSaveCredentials_title">Προσφέρει αποθήκευση των πιστοποιητικών</string>
@@ -437,6 +438,7 @@
   <string name="otp_aux_file">Βοηθητικό αρχείο OTP</string>
   <string name="ErrorOcurred">Προέκυψε ένα σφάλμα:</string>
   <string name="DuplicateUuidsError">Κατεστραμμένη βάση δεδομένων: βρέθηκαν διπλότυπα αναγνωριστικά. (Μήπως αποθηκεύσατε με Minikeepass;) Εισάγετε ξανά σε νέα βάση δεδομένων με Keepass 2 για PC και επιλέξτε \'Δημιουργία νέων αναγνωριστικών\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Μπορείς να απενεργοπιήσεις αυτό το μήνυμα σφάλματος στις Ρυθμίσεις/Ρυθμίσεις εφαρμογής/Χειρισμός αρχείων/Έλεγχος για διπλότυπα αναγνωριστικά. Ίσως προκληθεί μη αναμενόμενη συμπεριφορά. Προτείνεται επιδιόρθωση της βάσης δεδομένων.</string>
   <string name="synchronize_database_menu">Συγχρονισμός βάσης δεδομένων…</string>
   <string name="CannotMoveGroupHere">Δεν είναι δυνατό να μετακινήσετε την ομάδα σε αυτήν την ομάδα.</string>
   <string name="donate_question">Σήμερα, είναι Oktoberfest! Αν σας αρέσει το Keepass2Android σήμερα θα ήταν μια καλή μέρα για να μου αγοράσετε μια μπύρα!</string>
@@ -448,10 +450,14 @@
   <string name="hint_http_url">Διεύθυνση φακέλου ή αρχείο (πχ mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Σύνδεση με OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (πχ: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Εισάγετε δεδομένα πρόσβασης στο Nextcloud:</string>
+  <string name="hint_nextcloud_url">OwnCloud URL (πχ: owncloud.me.com)</string>
   <string name="hint_sftp_host">κόμβος (πχ 192.168.0.1)</string>
   <string name="hint_sftp_port">θύρα</string>
   <string name="initial_directory">Αρχικός κατάλογος (προαιρετικό):</string>
   <string name="enter_sftp_login_title">Εισάγετε στοιχεία σύνδεσης SFTP:</string>
+  <string name="sftp_auth_mode">Τρόπος αυθεντικοποίησης</string>
+  <string name="send_public_key">Αποστολή δημόσιου κλειδιού...</string>
   <string name="enter_ftp_login_title">Εισαγωγή δεδομένων εισόδου FTP:</string>
   <string name="select_storage_type">Επιλέξτε τύπο αποθήκευσης:</string>
   <string name="filestoragename_file">Τοπικό αρχείο</string>
@@ -461,6 +467,7 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (φάκελος KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
@@ -591,6 +598,7 @@
   <string name="child_db_enable_on_this_device">Ενεργοποίηση σε αυτήν τη συσκευή</string>
   <string name="child_db_disable_on_this_device">Απενεργοποίηση σε αυτήν τη συσκευή</string>
   <string name="Visible_title">Ορατό</string>
+  <string name="child_db_Enabled_title">Αυτόματο άνοιγμα</string>
   <string name="database_file_heading">Αρχείο βάσης δεδομένων</string>
   <string name="if_device_text">Ενεργοποίηση για %1$s</string>
   <string name="DbUnlockedChannel_name">Βάση δεδομένων ξεκλείδωτη</string>
@@ -882,6 +890,8 @@ Initial public release
   <string name="autofill_enable_failed">Λυπάμαι, αλλά η συσκευή σας δεν υποστηρίζει άνοιγμα των ρυθμίσεων μέσα από την εφαρμογή. Παρακαλώ ενεργοποιήστε την υπηρεσία από τις ρυθμίσεις συστήματος.</string>
   <string name="show_autofill_help">Εμφάνιση βοήθειας Αυτόματης συμπλήρωσης</string>
   <string name="autofill_sign_in_prompt">Συμπλήρωση με Keepass2Android</string>
+  <string name="autofill_disable">Απενεργοποίηση AutoFill για %1$s</string>
+  <string name="autofill_enable_for">Ενεργοποίηση AutoFill για %1$s</string>
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
   <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε εξοπλισμό δακτυλικού αποτυπώματος. Θέλετε να ενεργοποιήσετε το ξεκλείδωμα με δακτυλικό αποτύπωμα για αυτή τη βάση δεδομένων;</string>
   <string name="understand">Καταλαβαίνω</string>
