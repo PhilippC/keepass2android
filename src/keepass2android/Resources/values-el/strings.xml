@@ -538,6 +538,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Δεδομένα τρέχουσας καταχώρισης</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Το πρόσθετο θα λαμβάνει όλα τα δεδομένα σχετικά με την τρέχουσα καταχώριση στη βάση δεδομένων και θα επιτρέπεται να προτείνει ενέργειες και να τροποποιεί την εμφάνισή του.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Ερώτημα προσωπικών πιστοποιητικών</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Το πρόσθετο θα επιτραπεί να ζητήσει διαπιστευτήρια σχετιζόμενα με το πακέτο της δικής του εφαρμογής.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Ερώτημα πιστοποιήσεων</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">Το πρόσθετο θα επιτραπεί να ζητήσει διαπιστευτήρια για προσεκτικούς ιστοτόπους και εφαρμογές.</string>
   <string name="get_regular_version">Αποκτήστε περισσότερους τύπους αποθήκευσης</string>
