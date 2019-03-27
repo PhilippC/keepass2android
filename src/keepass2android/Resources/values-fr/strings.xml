@@ -97,6 +97,7 @@
   <string name="fingerprint_reenable">Veuillez ré-activer le déverrouillage d\'empreintes digitales pour le nouveau mot de passe maître.</string>
   <string name="fingerprint_reenable2">Merci de déverrouiller avec votre mot de passe et ensuite de réactiver le déverrouillage par empreinte digitale dans les paramètres de la base de données.</string>
   <string name="FingerprintInitFailed">Échec lors de l\'initialisation du capteur d\'empreinte digitale. </string>
+  <string name="FingerprintSetupFailed">Échec du chiffrement des données. Cela peut se produire si vous ajoutez ou supprimez des empreintes digitales dans les paramètres du système alors que Keepass2Android est en attente de votre empreinte digitale.</string>
   <string name="enable_fingerprint_unlock_Info">Cela va stocker votre mot de passe maître sur cet appareil, chiffré avec Android Keystore et protégé à l\'aide de l\'authentification d\'empreintes digitales. Cela permet de déverrouiller votre base de données uniquement avec vos empreintes digitales.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Permet d\'utiliser l\'authentification par empreinte au lieu du code QuickUnlock. Ne nécessite pas de stocker des informations liées à votre mot de passe principal.</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
@@ -604,6 +605,7 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="configure_child_dbs">Configurer les bases de données filles…</string>
   <string name="child_dbs_title">Bases de données filles</string>
   <string name="unspecified">non spécifié</string>
+  <string name="child_db_explanation">Les bases de données enfants sont d\'autres bases de données qui peuvent être ouvertes automatiquement lorsque vous ouvrez la base de données parent. Par conséquent, le mot de passe principal et l\'emplacement du fichier de l\'enfant sont stockés dans le parent. Cette fonctionnalité permet de partager certains de vos mots de passe avec une autre personne. L\'implémentation est compatible avec KeeAutoExec pour PC.</string>
   <string name="child_db_enabled_on_this_device">Activé sur cet appareil</string>
   <string name="child_db_enable_on_this_device">Activer sur cet appareil</string>
   <string name="child_db_disable_on_this_device">Désactiver sur cet appareil</string>
