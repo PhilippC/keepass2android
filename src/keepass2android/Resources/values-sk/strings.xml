@@ -96,6 +96,7 @@
   <string name="fingerprint_reenable">Prosím zapnite Odomknutie odtlačkom pre nové primárne heslo.</string>
   <string name="fingerprint_reenable2">Prosím vykonajte odomknutie pomocou hesla a potom v nastaveniach databázy opäť aktivujte odomykanie odtlačkom prsta.</string>
   <string name="FingerprintInitFailed">Inicializácia snímača odtlačkov prsta bola neúspešná. </string>
+  <string name="FingerprintSetupFailed">Nepodarilo sa zašifrovať údaje. To sa môže stať v prípade, že pridáte alebo odstránite odtlačky prstov v nastaveniach systému v čase, keď Keepass2Android sleduje váš odtlačok prsta.</string>
   <string name="enable_fingerprint_unlock_Info">    Týmto uložíte vaše primárne heslo na tomto zariadení,
     v šifrovanej podobe, s použitím Android Keystore a s ochranou
     pomocou autentifikácie odtlačkom. Umožní vám to odomknúť databázu len pomocou odtlačku.
@@ -609,6 +610,7 @@
   <string name="configure_child_dbs">Konfigurovať sekundárne databázy…</string>
   <string name="child_dbs_title">Sekundárne databázy</string>
   <string name="unspecified">nešpecifikované</string>
+  <string name="child_db_explanation">Dcérske databázy sú iné databázy, ktoré sa môžu automaticky otvoriť po otvorení rodičovskej databázy. Preto je primárne heslo a umiestnenie súboru s dcérskou databázou uložené v rodičovskej databáze. Táto vlastnosť umožňuje zdieľať niektoré vaše heslá aj s inou osobou. Implementácia je kompatibilná s KeeAutoExec pre PC.</string>
   <string name="child_db_enabled_on_this_device">Zapnuté na tomto zariadení</string>
   <string name="child_db_enable_on_this_device">Zapnúť na tomto zariadení</string>
   <string name="child_db_disable_on_this_device">Vypnúť na tomto zariadení</string>
