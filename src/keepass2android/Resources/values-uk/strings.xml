@@ -610,6 +610,7 @@
   <string name="configure_child_dbs">Налаштувати дочірні бази даних…</string>
   <string name="child_dbs_title">Дочірні бази даних</string>
   <string name="unspecified">не вказано</string>
+  <string name="child_db_explanation">Дитячі бази даних - це інші бази даних, які можна відкрити автоматично при відкритті батьківської бази даних. Таким чином, головний пароль дитини та місце розташування файлу зберігаються у батьківському. Ця функція дозволяє поділитися деякими паролями з іншою особою. Реалізація сумісна з KeeAutoExec для ПК.</string>
   <string name="child_db_enabled_on_this_device">Увімкнено на цьому пристрої</string>
   <string name="child_db_enable_on_this_device">Увімкнути на цьому пристрої</string>
   <string name="child_db_disable_on_this_device">Вимкнути на цьому пристрої</string>
