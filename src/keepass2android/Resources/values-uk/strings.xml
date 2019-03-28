@@ -21,13 +21,20 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Час очікування програми</string>
+  <string name="app_timeout_summary">Час блокування бази паролів при неактивній програмі.</string>
   <string name="kill_app_label">Завершити процес програми</string>
   <string name="show_kill_app">Кнопка закриття</string>
+  <string name="show_kill_app_summary">Показувати на екрані з паролем кнопку завершення процесу програми (для параноїдальних користувачів)</string>
   <string name="application">Програма</string>
   <string name="application_settings">Налаштування програми</string>
   <string name="ShowGroupnameInSearchResult_title">Назва групи в результаті пошуку</string>
   <string name="ShowGroupnameInSearchResult_resume">Показувати назву групи під заголовками записів у результатах пошуку. Корисно, якщо декілька записів мають однакові назви.</string>
   <string name="NavigationToGroupCompleted_message">Відображення групи зараз: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Вимкнено цілі автозаповнення</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Переглядає список додатків і веб-сайти, для яких було вимкнуто автозаповнення</string>
+  <string name="OfferSaveCredentials_summary">Якщо цей параметр увімкнено, Android запитає, чи потрібно зберігати облікові дані після того, як дані були введені вручну в поля для автоматичного заповнення.</string>
+  <string name="OfferSaveCredentials_title">Пропозиція збереження облікових даних</string>
   <string name="ShowGroupInEntry_title">Назва групи при перегляді запису</string>
   <string name="unknown_uri_scheme">Вибачте! Keepass2Android не може обробити повернутий URI %1$s. Зв\'яжіться з розробником!</string>
   <string name="Entry_singular">Один запис</string>
@@ -89,6 +96,7 @@
   <string name="fingerprint_reenable">Будь ласка, повторно увімкніть розблокування за відбитком пальця для нового головного пароля.</string>
   <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте розблокування відбитком пальця в налаштуваннях бази даних.</string>
   <string name="FingerprintInitFailed">Не вдалося ініціалізувати датчик відбитків пальців. </string>
+  <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це може статися, якщо ви додаєте або видаляєте відбитки пальців у системних настройках, тоді як Keepass2Android переглядає ваш відбиток пальця.</string>
   <string name="enable_fingerprint_unlock_Info">    Це збереже ваш головний пароль на цьому пристрої,
     зашифрованому за допомогою Android Keystore і захищеному
     з використанням перевірки за відбитком пальця. Дозволяє розблоковувати базу паролів лише за вашим відбитком пальця.
