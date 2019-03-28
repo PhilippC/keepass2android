@@ -136,6 +136,7 @@
   <string name="error_rounds_not_number">I cicli devono essere un numero.</string>
   <string name="error_param_not_number">Il parametro deve essere un numero.</string>
   <string name="error_title_required">Devi specificare un titolo.</string>
+  <string name="error_wrong_length">Inserisci un intero positivo nel campo lunghezza</string>
   <string name="FileNotFound">File non trovato.</string>
   <string name="file_browser">Sfoglia file</string>
   <string name="generate_password">Genera password</string>
@@ -150,6 +151,7 @@
   <string name="hint_login_pass">Password</string>
   <string name="hint_title">nome</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">sovrascrivere l\'URL</string>
   <string name="hint_tags">etichetta1, etichetta2</string>
   <string name="hint_username">nome utente</string>
   <string name="InvalidPassword">Password o file chiave non validi.</string>
@@ -196,6 +198,7 @@
   <string name="no">No</string>
   <string name="no_keys">Nessuna voce nel database o nel gruppo.</string>
   <string name="no_results">Nessun risultato</string>
+  <string name="no_url_handler">Nessun gestore per questo URL.</string>
   <string name="open_recent">Apri database recente ( clicca per aprire)</string>
   <string name="omitbackup_title">Non cercare tra le voci di backup e cestino</string>
   <string name="omitbackup_summary">Escludi i gruppi \'Backup\' e Cestino dai risultati di ricerca</string>
@@ -240,7 +243,9 @@
   <string name="select_group_then_add">Apri il gruppo desiderato, poi premi \"%1$s\"!</string>
   <string name="insert_element_here">Inserisci qui</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Sottolineato</string>
   <string name="unsupported_db_version">Versione del database non supportata.</string>
+  <string name="uppercase">Maiuscole</string>
   <string name="warning_read_only">La tua scheda SD è, attualmente, in sola lettura. Potresti non essere in grado di salvare le modifiche nel database.</string>
   <string name="warning_unmounted">La tua scheda SD non è attualmente montata. Non sarai in grado di caricare o creare nessun database.</string>
   <string name="version_label">Versione</string>
@@ -254,6 +259,7 @@
   <string name="please_note">Attenzione</string>
   <string name="contributors">Collaboratori</string>
   <string name="regular_expression">Espressione regolare</string>
+  <string name="TanExpiresOnUse_title">Il TAN scade con l\'uso</string>
   <string name="TanExpiresOnUse_summary">Segna i TAN come scaduti una volta utilizzati</string>
   <string name="ShowUsernameInList_title">Visualizza il nome utente nella lista</string>
   <string name="ShowUsernameInList_summary">Visualizza il nome utente sotto i titoli delle voci. Utile per account multipli o TAN multipli.</string>
@@ -324,6 +330,7 @@
   <string name="ActivateSearchViewOnStart_summary">Attiva il campo di ricerca nella vista gruppo, dopo lo sblocco o durante la ricerca di una voce</string>
   <string name="NoDonateOption_title">Nascondi l\'opzione della donazione</string>
   <string name="NoDonateOption_summary">Questa impostazione è per i donatori. E\' disponibile solo dopo aver usato Keepass2Android per un po\'.</string>
+  <string name="NoDonateOption_question">Senza donazioni, questa app non esisterebbe e non sarebbe continuamente migliorata! Se non hai ancora donato, per favore considera di farlo adesso</string>
   <string name="NoDonationReminder_title">Non chiedere mai di donare</string>
   <string name="NoDonationReminder_summary">Non ti darò un centesimo oppure ho già donato. Non chiedere una donazione, nemmeno al compleanno dell\'autore.</string>
   <string name="UseOfflineCache_title">Cache del database</string>
