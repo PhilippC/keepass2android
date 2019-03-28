@@ -607,6 +607,7 @@
   <string name="configure_child_dbs">Configurar bancos de dados filhos…</string>
   <string name="child_dbs_title">Bancos de dados filhos</string>
   <string name="unspecified">não especificado</string>
+  <string name="child_db_explanation">Os bancos de dados filhos são outros bancos de dados que podem ser abertos automaticamente quando você abrir o banco de dados pai. Portanto, a senha mestra do filho e o local do arquivo são armazenados no pai. Este recurso permite compartilhar algumas das suas senhas com outra pessoa. A implementação é compatível com KeeAutoExec para PC.</string>
   <string name="child_db_enabled_on_this_device">Habilitado neste dispositivo</string>
   <string name="child_db_enable_on_this_device">Habilitar neste dispositivo</string>
   <string name="child_db_disable_on_this_device">Desativar neste dispositivo</string>
