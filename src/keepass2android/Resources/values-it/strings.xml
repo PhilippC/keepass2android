@@ -604,6 +604,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="configure_child_dbs">Configurare i database figlio…</string>
   <string name="child_dbs_title">Database figlio</string>
   <string name="unspecified">non specificato</string>
+  <string name="child_db_explanation">I database figli sono altri database che possono essere aperti automaticamente quando si apre il database padre. Pertanto la password principale e la posizione del file del figlio sono memorizzati nel padre. Questa funzione permette di condividere alcune delle tue password con un\'altra persona. L\'implementazione è compatibile con KeeAutoExec per PC.</string>
   <string name="child_db_enabled_on_this_device">Abilitato su questo dispositivo</string>
   <string name="child_db_enable_on_this_device">Abilita su questo dispositivo</string>
   <string name="child_db_disable_on_this_device">Disabilita su questo dispositivo</string>
