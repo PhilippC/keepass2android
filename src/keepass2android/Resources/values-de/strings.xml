@@ -626,16 +626,17 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
   <string name="ChangeLog_1_07">Version 1.07\n
-* Abstürze unter Samsung\'s Android 9 behoben\n
-* Zulassen, dass mehrere Datenbanken geöffnet werden können. Kompatibel mit KeeAutoExec\n
-* SFTP: Erlaubt Authentifizierung durch das Public-Key Verfahren. Überprüft, ob sich der Hostschlüssel geändert hat\n
-* Einführung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
-* Direkte Nextcloud-Unterstützung\n
-* Verbessertes Speichern und Aktualisieren von Eintragsanhängen\n
-* Zusätzliche Optionen, um Verhalten nach persönlichen Vorlieben zu verändern\n
-* SSL: Vertraue Benutzerzertifikaten\n
-* Verbesserung der AutoFill-Funktion (Funktioniert nun mit Firefox, was zu einer geringeren Anzahl an Popups führt)\n
-* Fehlerbehebungen\n  </string>
+    • Behebt Abstürze auf Samsung\'s Android 9\n
+    • Erlaubt das Öffnen von mehr als einer Datenbank, die mit KeeAutoExec kompatibel ist.\n
+    • SFTP: Erlaubt die Authentifizierung des öffentlichen Schlüssels, prüft, ob sich der Hostschlüssel geändert hat\n
+    • Einführung von pCloud-Support - Danke an gilbsgilbs!\n
+    • Macht den Nextcloud-Support explizit.\n
+    • Verbesserte Speicherung und Aktualisierung von Eintragungsanhängen\n
+    • Mehr Möglichkeiten, das Verhalten an die persönlichen Vorlieben anzupassen\n
+    • SSL: Vertraut den Benutzerzertifikaten\n
+    • Verbessert das automatische Ausfüllen (funktioniert jetzt mit Firefox, was zu einer geringeren Anzahl an Popups führt)\n
+    • Fehlerbehebung\n
+  </string>
   <string name="ChangeLog_1_06">Version 1.06\n     
 * Wechsel zu ykDroid statt YubiChallenge als App für Yubikey Challenge-Response.\n     
 * Unterstützung für KeepassXC-style Challenge-Response implementiert. Hinweis: Datenbankformat muss KDBX4 sein!\n     
