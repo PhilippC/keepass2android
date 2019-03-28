@@ -551,7 +551,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileIsReadOnlyOnKitkat">The gewählte Datei kann aufgrund von Beschränkungen in Android 4.4+ von Keepass2Android nicht geändert werden.</string>
   <string name="CopyFileRequired">Um sie zu benutzen, musst sie an einen anderen Speicherort kopiert werden.</string>
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
-  <string name="ClickOkToSelectLocation">Klicke auf OK, um einen Speicherort zu wählen.</string>
+  <string name="ClickOkToSelectLocation">Tippe auf OK, um einen Speicherort zu wählen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android hat die Datenbank im Lese-Modus geöffnet.</string>
   <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>
@@ -604,7 +604,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 • Wenn du die Datei auf dem PC noch öffnen kannst, nimm Sie bitte Kontakt mit dem Suppot auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
   <string name="open_other_db">Öffne weitere Datenbank…</string>
   <string name="select_database">Datenbank auswählen</string>
-  <string name="configure_child_dbs">Konfiguriere Kinddatenbanken…</string>
+  <string name="configure_child_dbs">Kinddatenbanken konfigurieren…</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
   <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Master-Passwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
