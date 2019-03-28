@@ -243,7 +243,9 @@
   <string name="select_group_then_add">打開所需的群組，然後按 \"%1$s\"!</string>
   <string name="insert_element_here">在此處插入</string>
   <string name="twofish">Twofish演算法</string>
+  <string name="underline">底線</string>
   <string name="unsupported_db_version">不支援的資料庫版本。</string>
+  <string name="uppercase">大寫</string>
   <string name="warning_read_only">你的SD卡目前是唯讀狀態。您可能無法將更改保存到資料庫。</string>
   <string name="warning_unmounted">你的SD卡目前尚未安裝在您的設備上。你將無法載入或創建您的資料庫。</string>
   <string name="version_label">版本</string>
@@ -257,6 +259,7 @@
   <string name="please_note">請注意</string>
   <string name="contributors">貢獻者</string>
   <string name="regular_expression">正規表示式</string>
+  <string name="TanExpiresOnUse_title">TAN 使用到期</string>
   <string name="TanExpiresOnUse_summary">當使用它們時標記 TAN 項目過期</string>
   <string name="ShowUsernameInList_title">在清單中顯示使用者名稱</string>
   <string name="ShowUsernameInList_summary">項目標題下面顯示使用者名稱。用於多個帳戶或者 TAN。</string>
@@ -327,6 +330,7 @@
   <string name="ActivateSearchViewOnStart_summary">解鎖或搜尋項目後，在群組視圖中開啟搜索欄</string>
   <string name="NoDonateOption_title">隱藏捐贈選項</string>
   <string name="NoDonateOption_summary">此設置是為捐贈者設立。使用 Keepass2Android 一段時間後才可使用。</string>
+  <string name="NoDonateOption_question">若缺乏捐款，這個應用程式將無法存在，並持續改進！若您還沒有捐款，請考慮現在這麼做</string>
   <string name="NoDonationReminder_title">別再跟我講捐贈的事啦</string>
   <string name="NoDonationReminder_summary">我不會給你一毛錢的，或者我之前就捐贈過了。就算是你生日也一樣，別問我捐贈的問題了。</string>
   <string name="UseOfflineCache_title">資料庫緩存中</string>
