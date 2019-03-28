@@ -119,6 +119,7 @@
   <string name="entry_user_name">用戶名：</string>
   <string name="entry_extra_strings">額外的字串欄位</string>
   <string name="entry_binaries">檔案附件</string>
+  <string name="error_can_not_handle_uri">Keepass2Android無法處理此URI。</string>
   <string name="error_could_not_create_group">創建群組錯誤。</string>
   <string name="error_could_not_create_parent">無法創建上級目錄。</string>
   <string name="error_database_exists">文件已存在。</string>
@@ -135,6 +136,7 @@
   <string name="error_rounds_not_number">次數必須是數位。</string>
   <string name="error_param_not_number">參數必須是數字。</string>
   <string name="error_title_required">標題是必填項。</string>
+  <string name="error_wrong_length">在長度欄位輸入一個正整數</string>
   <string name="FileNotFound">文件未找到。</string>
   <string name="file_browser">檔流覽</string>
   <string name="generate_password">生成密碼</string>
@@ -149,6 +151,7 @@
   <string name="hint_login_pass">密碼：</string>
   <string name="hint_title">名稱</string>
   <string name="hint_url">網址：</string>
+  <string name="hint_override_url">URL 覆蓋</string>
   <string name="hint_tags">標籤1，標籤2</string>
   <string name="hint_username">使用者名稱</string>
   <string name="InvalidPassword">不正確密碼或金鑰檔。</string>
@@ -195,6 +198,7 @@
   <string name="no">否</string>
   <string name="no_keys">資料庫或群組中無輸入項。</string>
   <string name="no_results">沒有搜索結果</string>
+  <string name="no_url_handler">此 URL 無處理程式。</string>
   <string name="open_recent">打開最近資料庫（點擊打開）：</string>
   <string name="omitbackup_title">不要搜索備份和回收桶輸入項</string>
   <string name="omitbackup_summary">搜尋結果省略備份和回收桶群組</string>
@@ -618,6 +622,17 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化訪問已選項目流程的通知</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋掃描處於活動狀態時顯示虛擬鍵盤以輸入密碼。</string>
+  <string name="ChangeLog_1_07">版本 1.07\n
+* 修正三星 Android 9 上的崩潰\n
+* 允許開啟一個以上的資料庫，與 KeeAutoExec 相容\n
+* SFTP: 允許公開金鑰認證，檢查主機金鑰是否改變\n
+* 導入 pCloud 支援 - 感謝 gilbsgilbs！\n
+* 更明確的 Nextcloud 支援\n
+* 改進項目附件的儲存與更新\n
+* 更多適應個人喜好的選項\n
+* SSL: 信任使用者憑證\n
+* 改善自動填入 (現在可以用於 Firefox，允許減少彈窗)\n
+* 錯誤修正\n  </string>
   <string name="ChangeLog_1_06">    版本 1.06\n
     * 以 ykDroid 取代 YubiChallenge 作爲處理 Yubikey 質詢-回應的應用。\n
     * 支援  KeepassXC 式的質詢-回應。備註：資料庫格式必須爲 KDBX4！\n
