@@ -31,6 +31,8 @@
   <string name="ShowGroupnameInSearchResult_title">Toon groepsnaam in zoekresultaat</string>
   <string name="ShowGroupnameInSearchResult_resume">Toon groepsnaam onder item namen in zoekresultaten. Handig als verschillende items dezelfde naam hebben.</string>
   <string name="NavigationToGroupCompleted_message">Getoonde groep is nu: %1$s</string>
+  <string name="OfferSaveCredentials_summary">Indien ingeschakeld, zal Android vragen of u de gegevens wilt opslaan nadat u handmatig gegevens hebt ingevoerd in auto-vulbare velden.</string>
+  <string name="OfferSaveCredentials_title">Bied het opslaan van wachtwoordgegevens aan</string>
   <string name="ShowGroupInEntry_title">Toon groepsnaam in item venster</string>
   <string name="unknown_uri_scheme">Sorry! Keepass2Android kan niet overweg met de ontvangen URI %1$s. Neem contact op met de ontwikkelaar!</string>
   <string name="Entry_singular">Eén item</string>
@@ -92,6 +94,7 @@
   <string name="fingerprint_reenable">Schakel alsjeblieft vingerafdruk-ontgrendelen opnieuw in voor het nieuwe hoofdwachtwoord.</string>
   <string name="fingerprint_reenable2">Ontgrendel alsjeblieft met jouw wachtwoord en schakel dan vingerafdruk-ontgrendeling weer in via de instellingen van de database.</string>
   <string name="FingerprintInitFailed">Niet gelukt om de vingerafdruk-sensor te initialiseren. </string>
+  <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
   <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met jouw vingerafdruk te ontgrendelen.</string>
   <string name="enable_fingerprint_quickunlock_Info">Gebruik authenticatie d.m.v. vingerafdruk in plaats van de Snel Openen code. Dit slaat geen informatie op die gerelateerd is aan jouw hoofdwachtwoord.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
@@ -114,6 +117,7 @@
   <string name="entry_user_name">Gebruikersnaam</string>
   <string name="entry_extra_strings">Extra tekst velden</string>
   <string name="entry_binaries">Bijlagen</string>
+  <string name="error_can_not_handle_uri">Keepass2Android kan deze URI niet verwerken.</string>
   <string name="error_could_not_create_group">Fout bij het aanmaken van de groep.</string>
   <string name="error_could_not_create_parent">Kan de bovenliggende map niet aanmaken.</string>
   <string name="error_database_exists">Dit bestand bestaat reeds.</string>
@@ -144,6 +148,7 @@
   <string name="hint_login_pass">Wachtwoord</string>
   <string name="hint_title">naam</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">URL overschrijven</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">gebruikersnaam</string>
   <string name="InvalidPassword">Ongeldig wachtwoord of sleutelbestand.</string>
@@ -235,6 +240,7 @@
   <string name="insert_element_here">Hier invoegen</string>
   <string name="twofish">Twofish</string>
   <string name="unsupported_db_version">Niet-ondersteunde databaseversie.</string>
+  <string name="uppercase">Hoofdletters</string>
   <string name="warning_read_only">De sd-kaart is momenteel ingesteld als alleen-lezen. Je zult mogelijk wijzigingen in de database niet kunnen opslaan.</string>
   <string name="warning_unmounted">De sd-kaart is momenteel ontkoppeld. Je kunt geen database openen of aanmaken.</string>
   <string name="version_label">Versie</string>
@@ -318,6 +324,7 @@
   <string name="ActivateSearchViewOnStart_summary">Activeert het zoekveld in de groepsweergave na ontgrendelen of bij het zoeken voor een item</string>
   <string name="NoDonateOption_title">Verberg donatie-optie</string>
   <string name="NoDonateOption_summary">Deze instelling komt beschikbaar als je donateur bent geworden en Keepass2Android een tijdje hebt gebruikt.</string>
+  <string name="NoDonateOption_question">Zonder donaties zou deze app niet bestaan en voortdurend worden verbeterd! Als u nog niet gedoneerd hebt, kunt u overwegen dit nu te doen</string>
   <string name="NoDonationReminder_title">Nooit vragen om een donatie</string>
   <string name="NoDonationReminder_summary">Ik geef je nog geen dubbeltje of ik heb al gedoneerd. Niet vragen om een donatie, zelfs niet op de verjaardag van de auteur.</string>
   <string name="UseOfflineCache_title">Database caching</string>
