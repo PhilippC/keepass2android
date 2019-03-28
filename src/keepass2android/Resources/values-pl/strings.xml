@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_title">Wyświetl nazwę grupy w wynikach wyszukiwania</string>
   <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
   <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Wyłącz autouzupełnianie</string>
   <string name="ShowGroupInEntry_title">Pokaż nazwę grupy w widoku wpisów</string>
   <string name="unknown_uri_scheme">Przepraszam! Keepass2Android nie może obsłużyć tego URI %1$s. Prosimy o kontakt z autorem!</string>
   <string name="Entry_singular">Jeden wpis</string>
@@ -192,6 +193,7 @@
   <string name="no">Nie</string>
   <string name="no_keys">Brak wpisów w bazie danych lub grupie.</string>
   <string name="no_results">Brak wyników wyszukiwania</string>
+  <string name="no_url_handler">Brak obsługi dla tego URL.</string>
   <string name="open_recent">Otwórz ostatnią bazę danych (kliknij, aby otworzyć)</string>
   <string name="omitbackup_title">Nie szukaj w kopiach zapasowych i koszu</string>
   <string name="omitbackup_summary">Pomiń \'Backup\' i kosz przy wyszukiwaniu</string>
@@ -236,7 +238,9 @@
   <string name="select_group_then_add">Otwórz żądaną grupę, a następnie naciśnij \"%1$s\"!</string>
   <string name="insert_element_here">Wstaw tutaj</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Podkreślenie</string>
   <string name="unsupported_db_version">Nieobsługiwana wersja bazy danych.</string>
+  <string name="uppercase">Duże litery</string>
   <string name="warning_read_only">Karta SD jest obecnie w trybie tylko do odczytu. Możesz nie być w stanie zapisać zmian w bazie danych.</string>
   <string name="warning_unmounted">Karta SD nie jest obecnie zamontowana/widoczna w urządzeniu. Możesz nie być w stanie wczytać lub utworzyć bazy danych.</string>
   <string name="version_label">Wersja</string>
@@ -250,6 +254,7 @@
   <string name="please_note">Uwaga:</string>
   <string name="contributors">Współpracownicy</string>
   <string name="regular_expression">Wyrażenie regularne</string>
+  <string name="TanExpiresOnUse_title">TAN wygasają po ich wykorzystaniu</string>
   <string name="TanExpiresOnUse_summary">Zaznacz wpisy TAN (hasła jednorazowe) jako wygasłe po ich wykorzystaniu</string>
   <string name="ShowUsernameInList_title">Wyświetl nazwę użytkownika na liście</string>
   <string name="ShowUsernameInList_summary">Wyświetla nazwy użytkowników poniżej tytułów. Przydatne przy wielu kontach lub TAN (hasłach jednorazowych).</string>
