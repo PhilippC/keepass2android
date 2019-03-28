@@ -332,7 +332,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
   <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
-  <string name="NoDonateOption_question">Ohne Spenden würde diese App nicht existieren und ständig verbessert werden! Wenn du noch nicht gespendet hast, erwäge bitte, dies jetzt zu tun</string>
+  <string name="NoDonateOption_question">Ohne Spenden gäbe es diese App nicht und sie könnte nicht ständig verbessert werden! Wenn Sie noch nicht gespendet haben, sollten Sie dies jetzt in Betracht ziehen.</string>
   <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
