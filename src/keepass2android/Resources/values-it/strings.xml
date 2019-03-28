@@ -626,12 +626,12 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ChangeLog_1_07">Versione 1.07\n
      * Sistema i crash su Android 9 di Samsung\n
      * Permette di aprire più database, compatibile con KeeAutoExec\n
-     * SFTP: Consente l\'autenticazione della chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
-     * Introduce il supporto pCloud - grazie a gilbsgilbs!\n
+     * SFTP: Consente l\'autenticazione con chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
+     * Introduce il supporto a pCloud - grazie a gilbsgilbs!\n
      * Rende esplicito il supporto per Nextcloud\n
      * Migliora il salvataggio e l\'aggiornamento degli allegati alle voci\n
      * Altre opzioni per adattare il comportamento alle preferenze personali\n
-     * SSL: Certificati di fiducia     utente\n
+     * SSL: Fiducia ai certificati utente\n
      * Migliorato autocompletamento (adesso funziona con Firefox, permette di ridurre i popup)\n
      * correzioni di bug\n
   </string>
