@@ -603,6 +603,18 @@
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
+  <string name="ChangeLog_1_07">    Version 1.07-pre2\n
+    * Løser nedbrud på Samsungs Android 9\n
+    * Tillader åbning af flere end én database, kompatibel med KeeAutoExec\n
+    * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
+    * Introducerer pCloud-understøttelse - tak til gilbsgilbs!\n
+    * Gør Nextcloud-support eksplicit\n
+    * Forbedrer lagring og opdaterng af delpostvedhæftninger\n
+    * Flere muligheder for at tilpasse adfærd til personlige præferencer\n
+    * SSL: Stol på brugercertifikater\n
+* Forbedring af Autoudfylding (fungerer nu med Firefox, reducerer mængden af pop-opper)\n
+    * Fejlretninger\n
+  </string>
   <string name="ChangeLog_1_06">    Version 1.06\n
     * Skift til ykDroid i stedet for YubiChallenge som app til Yubikey Udfordring-Svar.\n
     * Implementér understøttelse for KeepassXC-agtig Udfordring-Svar. Bemærk: Databaseformatet skal være KDBX4!\n
