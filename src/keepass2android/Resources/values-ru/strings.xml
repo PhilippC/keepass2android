@@ -330,7 +330,7 @@
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
   <string name="NoDonateOption_summary">Эта настройка предназначена для тех, кто пожертвовал. Она доступна только после использования Keepass2Android какое-то время.</string>
-  <string name="NoDonateOption_question">Без пожертвований это приложение не существовало бы и постоянно улучшалось! Если вы еще не пожертвовали, рассмотрите возможность сделать это сейчас</string>
+  <string name="NoDonateOption_question">Без пожертвований это приложение не существовало бы и не улучшалось постоянно! Если вы еще не пожертвовали, самое время подумать об этом сейчас</string>
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
