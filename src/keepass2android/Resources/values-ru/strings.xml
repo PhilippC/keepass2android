@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
   <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы ниже заголовка записей в результатах поиска. Полезно, если некоторые записи имеют одинаковые имена.</string>
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Отключенные цели автозаполнения</string>
   <string name="AutofillDisabledQueriesPreference_summary">Просмотр списка приложений и сайтов, для которых автозаполнение было отключено</string>
   <string name="OfferSaveCredentials_summary">Если этот параметр включен, Android спросит, хотите ли вы сохранить учетные данные после того, как вы вручную ввели данные в автозаполняемые поля.</string>
   <string name="OfferSaveCredentials_title">Предлагать сохранять учетные данные</string>
@@ -118,6 +119,7 @@
   <string name="entry_user_name">Имя пользователя</string>
   <string name="entry_extra_strings">Дополнительные строковые поля</string>
   <string name="entry_binaries">Вложенные файлы</string>
+  <string name="error_can_not_handle_uri">Keepass2Android не может обработать этот адрес URL.</string>
   <string name="error_could_not_create_group">Не удалось создать группу.</string>
   <string name="error_could_not_create_parent">Не удалось создать родительскую папку</string>
   <string name="error_database_exists">Такой файл уже существует.</string>
@@ -134,6 +136,7 @@
   <string name="error_rounds_not_number">Этот параметр должен быть числом.</string>
   <string name="error_param_not_number">Этот параметр должен быть числом.</string>
   <string name="error_title_required">Введите название</string>
+  <string name="error_wrong_length">Введите положительное целое число в поле длины</string>
   <string name="FileNotFound">Файл не найден.</string>
   <string name="file_browser">Обзор файлов</string>
   <string name="generate_password">Создать пароль</string>
@@ -148,6 +151,7 @@
   <string name="hint_login_pass">Пароль</string>
   <string name="hint_title">имя</string>
   <string name="hint_url">Ссылка</string>
+  <string name="hint_override_url">переопределить URL</string>
   <string name="hint_tags">тег1, тег2</string>
   <string name="hint_username">логин</string>
   <string name="InvalidPassword">Неверный пароль или файл-ключ.</string>
@@ -194,6 +198,7 @@
   <string name="no">Нет</string>
   <string name="no_keys">Нет записей в базе данных или группе.</string>
   <string name="no_results">Нет результатов поиска</string>
+  <string name="no_url_handler">Не удалось открыть ссылку.</string>
   <string name="open_recent">Открыть последнюю базу данных (тапните, чтобы открыть)</string>
   <string name="omitbackup_title">Не искать в зарезервированных записях и корзине</string>
   <string name="omitbackup_summary">Пропускать \"Зарезервированные\" и \"Корзина\" в результатах поиска</string>
@@ -238,7 +243,9 @@
   <string name="select_group_then_add">Откройте требуемую группу, а затем нажмите \"%1$s\"!</string>
   <string name="insert_element_here">Вставить сюда</string>
   <string name="twofish">Алгоритм шифрования Twofish</string>
+  <string name="underline">Подчёркивание</string>
   <string name="unsupported_db_version">Неподдерживаемая версия базы данных.</string>
+  <string name="uppercase">Верхний регистр</string>
   <string name="warning_read_only">Запись на карту памяти невозможна. Изменения не будут сохранены.</string>
   <string name="warning_unmounted">Карта памяти не подключена. Работа с базой невозможна.</string>
   <string name="version_label">Версия</string>
@@ -252,6 +259,7 @@
   <string name="please_note">Обратите внимание</string>
   <string name="contributors">Участники</string>
   <string name="regular_expression">Регулярное выражение</string>
+  <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
   <string name="ShowUsernameInList_title">Отображать имя пользователя в списке</string>
   <string name="ShowUsernameInList_summary">Отображать имена пользователей под заголовками. Полезно для множественных аккаунтов или TAN.</string>
@@ -322,6 +330,7 @@
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
   <string name="NoDonateOption_summary">Эта настройка предназначена для тех, кто пожертвовал. Она доступна только после использования Keepass2Android какое-то время.</string>
+  <string name="NoDonateOption_question">Без пожертвований это приложение не существовало бы и постоянно улучшалось! Если вы еще не пожертвовали, рассмотрите возможность сделать это сейчас</string>
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
