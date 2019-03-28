@@ -138,7 +138,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="error_rounds_not_number">Anzahl der Wiederholungen muss eine Zahl sein.</string>
   <string name="error_param_not_number">Der Parameter muss eine Zahl sein.</string>
   <string name="error_title_required">Ein Titel ist erforderlich.</string>
-  <string name="error_wrong_length">Bitte eine positive Ziffer für die Länge eingeben</string>
+  <string name="error_wrong_length">Bitte eine positive Ganzzahl für die Feldlänge eingeben</string>
   <string name="FileNotFound">Datei nicht gefunden.</string>
   <string name="file_browser">Dateimanager</string>
   <string name="generate_password">Passwort erzeugen</string>
@@ -153,7 +153,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_login_pass">Kennwort</string>
   <string name="hint_title">Name</string>
   <string name="hint_url">URL</string>
-  <string name="hint_override_url">Überschreibe URL</string>
+  <string name="hint_override_url">URL überschreiben</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">Benutzername</string>
   <string name="InvalidPassword">Kennwort oder Schlüsseldatei ist falsch.</string>
