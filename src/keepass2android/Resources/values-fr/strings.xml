@@ -259,6 +259,7 @@
   <string name="please_note">Notez s\'il vous plaît</string>
   <string name="contributors">Contributeurs</string>
   <string name="regular_expression">Expression régulière</string>
+  <string name="TanExpiresOnUse_title">Le TAN expire lors de son utilisation</string>
   <string name="TanExpiresOnUse_summary">Marquer les entrées TAN expirées lors de leur utilisation</string>
   <string name="ShowUsernameInList_title">Afficher le nom d\'utilisateur dans la liste</string>
   <string name="ShowUsernameInList_summary">Afficher les noms d\'utilisateurs sous les titres des entrées. Utile si vous avez plusieurs comptes ou des TANs.</string>
@@ -329,6 +330,7 @@
   <string name="ActivateSearchViewOnStart_summary">Active le champ de recherche dans la vue groupée après le déverrouillage ou lors de la recherche d\'une entrée</string>
   <string name="NoDonateOption_title">Masquer l\'option de donation</string>
   <string name="NoDonateOption_summary">Ce réglage est réservé aux donateurs. Il n\'est disponible qu\'après une durée minimale d\'utilisation de Keepass2Android .</string>
+  <string name="NoDonateOption_question">Sans dons, cette application n\'existerait pas et ne serait pas continuellement améliorée ! Si vous n\'avez pas encore donné, veuillez envisager de le faire maintenant</string>
   <string name="NoDonationReminder_title">Ne jamais demander de donation</string>
   <string name="NoDonationReminder_summary">Je ne donnerai pas un sou, ou j’ai déjà donné. Ne demandez rien, même pas à l’anniversaire de l’auteur.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
