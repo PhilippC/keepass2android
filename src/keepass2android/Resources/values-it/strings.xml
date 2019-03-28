@@ -136,7 +136,7 @@
   <string name="error_rounds_not_number">I cicli devono essere un numero.</string>
   <string name="error_param_not_number">Il parametro deve essere un numero.</string>
   <string name="error_title_required">Devi specificare un titolo.</string>
-  <string name="error_wrong_length">Inserisci un intero positivo nel campo lunghezza</string>
+  <string name="error_wrong_length">Inserisci un numero positivo nel campo lunghezza</string>
   <string name="FileNotFound">File non trovato.</string>
   <string name="file_browser">Sfoglia file</string>
   <string name="generate_password">Genera password</string>
