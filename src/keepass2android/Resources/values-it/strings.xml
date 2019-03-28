@@ -31,6 +31,10 @@
   <string name="ShowGroupnameInSearchResult_title">Visualizza il nome del gruppo nei risultati di ricerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Visualizza il nome del gruppo sotto i titoli delle voci nei risultati di ricerca. Utile se più voci hanno lo stesso nome.</string>
   <string name="NavigationToGroupCompleted_message">Il gruppo visualizzato ora è: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Obiettivi AutoFill disabilitati</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Visualizza una lista di app e siti web per i quali AutoFill è stato disabilitato</string>
+  <string name="OfferSaveCredentials_summary">Se abilitato, Android chiederà se vuoi salvare le credenziali dopo che hai inserito manualmente i dati nei campi di compilazione automatica.</string>
+  <string name="OfferSaveCredentials_title">Offri il salvataggio delle credenziali</string>
   <string name="ShowGroupInEntry_title">Mostra il nome del gruppo della voce</string>
   <string name="unknown_uri_scheme">Spiacente! Keepass2Android non può gestire l\'URI %1$s. Per favore, contatta lo sviluppatore!</string>
   <string name="Entry_singular">Una voce</string>
@@ -92,6 +96,7 @@
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco con Impronta per la nuova password principale.</string>
   <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo sblocco con Impronta nelle impostazioni del database.</string>
   <string name="FingerprintInitFailed">Impossibile inizializzare il sensore di impronte. </string>
+  <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa dellla tua impronta digitale.</string>
   <string name="enable_fingerprint_unlock_Info">Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione con impronta digitale. Permette di sbloccare il database solo con l\'impronta digitale.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione tramite impronta digitale anziché il codice di QuickUnlock. Non necessita di memorizzare alcuna informazione relativa alla tua password principale.</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
@@ -114,6 +119,7 @@
   <string name="entry_user_name">Nome utente</string>
   <string name="entry_extra_strings">Campi di testo extra</string>
   <string name="entry_binaries">File allegati</string>
+  <string name="error_can_not_handle_uri">Keepass2Android non può gestire questo URI.</string>
   <string name="error_could_not_create_group">Errore di creazione del gruppo.</string>
   <string name="error_could_not_create_parent">Impossibile creare la cartella principale.</string>
   <string name="error_database_exists">File già esistente.</string>
