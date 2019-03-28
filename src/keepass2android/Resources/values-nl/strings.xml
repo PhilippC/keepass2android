@@ -781,6 +781,13 @@ ChangeLog_1_05  </string>
 		* Mogelijkheid om items en groepen te veranderen\n
 		* Snel Openen pictogram kan transparant gemaakt worden (zie instellingen)\n
 		* Bug fixes</string>
+  <string name="ChangeLog_0_8_5"><b>Versie 0.8.5</b>\n
+		* Online bestanden worden bewaard in de lokale appcache om offline gebruik mogelijk te maken (inclusief bewerken en later synchronisatie). Zie instellingen. \n
+		* Meldingsicoon om de vergrendelingsstaat van de database weer te geven. (Zie instellingen)\n
+		* Verbeterde vaststelling van de vergrendelingsstaat in sommige situaties\n
+		* Databasebestanden worden in het geheugen geladen terwijl je jouw wachtwoord intypt voor snellere laadtijd (zie instellingen)\n
+		* Items kunnen worden toegevoegd aan de hoofdgroep\n
+		* Fouten verholpen (opzoeken referentievelden, problemen met toetsenbord op Italiaanse en Chinese apparaten)</string>
   <string name="ChangeLog_0_8_4">  <b>Version 0.8.4</b>\n
  * Veranderingen in externe database worden herkend en samengevoegd bij opslaan\n
  * Verbeterde opstartsnelheid\n
