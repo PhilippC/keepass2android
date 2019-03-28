@@ -630,7 +630,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 * Zulassen, dass mehrere Datenbanken geöffnet werden können. Kompatibel mit KeeAutoExec\n
 * SFTP: Erlaubt Authentifizierung durch das Public-Key Verfahren. Überprüft, ob sich der Hostschlüssel geändert hat\n
 * Einführung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
-* Nextcloud-Unterstützung deutlicher gemacht\n
+* Direkte Nextcloud-Unterstützung\n
 * Verbessertes Speichern und Aktualisieren von Eintragsanhängen\n
 * Zusätzliche Optionen, um Verhalten nach persönlichen Vorlieben zu verändern\n
 * SSL: Vertraue Benutzerzertifikaten\n
