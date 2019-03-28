@@ -119,6 +119,7 @@
   <string name="entry_user_name">Nom d\'utilisateur </string>
   <string name="entry_extra_strings">Champs chaines de caractères supplémentaire</string>
   <string name="entry_binaries">Pièces jointes</string>
+  <string name="error_can_not_handle_uri">Keepass2Android ne peut pas gérer cette URI.</string>
   <string name="error_could_not_create_group">Erreur de création de groupe.</string>
   <string name="error_could_not_create_parent">Création du répertoire parent impossible.</string>
   <string name="error_database_exists">Ce fichier existe déjà.</string>
@@ -135,6 +136,7 @@
   <string name="error_rounds_not_number">La série doit être un nombre.</string>
   <string name="error_param_not_number">Le paramètre doit être un nombre.</string>
   <string name="error_title_required">Le titre est obligatoire.</string>
+  <string name="error_wrong_length">Entrez un entier positif dans le champ \"longueur\"</string>
   <string name="FileNotFound">Fichier non trouvé.</string>
   <string name="file_browser">Gestionnaire de fichiers</string>
   <string name="generate_password">Générer un mot de passe</string>
@@ -149,6 +151,7 @@
   <string name="hint_login_pass">Mot de passe</string>
   <string name="hint_title">nom</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">remplacer l\'URL</string>
   <string name="hint_tags">étiquette1, étiquette2</string>
   <string name="hint_username">Nom d\'utilisateur</string>
   <string name="InvalidPassword">Mot de passe ou clé de fichier incorrect.</string>
@@ -195,6 +198,7 @@
   <string name="no">Non</string>
   <string name="no_keys">Aucune entrée dans la base de données ou le groupe.</string>
   <string name="no_results">Aucun résultat pour cette recherche</string>
+  <string name="no_url_handler">Aucun gestionnaire pour cette URL.</string>
   <string name="open_recent">Bases de données récemment ouvertes (cliquez pour ouvrir)</string>
   <string name="omitbackup_title">Ne pas chercher dans les sauvegardes et la corbeille</string>
   <string name="omitbackup_summary">Omettre les groupes \"Sauvegarde\" et \"Corbeille\" des résultats de recherche</string>
@@ -239,7 +243,9 @@
   <string name="select_group_then_add">Ouvrez le groupe désiré, puis appuyez sur \"%1$s\" !</string>
   <string name="insert_element_here">Insérer ici</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Souligné</string>
   <string name="unsupported_db_version">Version de base de données non pris en charge.</string>
+  <string name="uppercase">Majuscule</string>
   <string name="warning_read_only">Votre carte SD est en lecture seule. Vous serez sans doute dans l\'impossibilité de sauvegarder les modifications de votre base de données.</string>
   <string name="warning_unmounted">Votre carte SD n\'est pas montée. Vous ne pourrez pas créer ou charger votre base de données.</string>
   <string name="version_label">Version</string>
