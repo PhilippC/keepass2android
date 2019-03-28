@@ -626,6 +626,18 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_07">    Versão 1.07\n
+    * Correções de falhas no Android 9 para Samsung\n
+    * Permite abrir mais de um banco de dados, compatível com KeeAutoExec\n
+    * SFTP: Permite autenticação de chave pública, verifique se a chave do host foi alterada\n
+    * Introduz suporte a pCloud - obrigado, gilbsgilbs!\n
+    * Torna o suporte a Nextcloud explícito\n
+    * Melhora o salvamento e atualização de anexos de entrada\n
+    * Mais opções para adaptar o comportamento às preferências pessoais\n
+    * SSL: Confia em certificados de usuários\n
+    * Melhorias no preenchimento automático (agora funciona com Firefox, permite a reduzir popups)\n
+    * Correções de erros\n
+  </string>
   <string name="ChangeLog_1_06">    Versão 1.06\n
     * Alternar para ykDroid em vez de YubiChallenge como app para Desafio-Resposta Yubikey.\n
     * Implementar suporte para Desafio-resposta estilo KeepassXC. Nota: O formato de banco de dados deve ser KDBX4! \n
@@ -809,6 +821,13 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 		* Permitir mover entradas e grupos\n
 		* Ícone do QuickUnlock pode ser transparente (veja em configurações)\n
 		* Correções de bugs</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+		* Arquivos remotos são armazenados no cache local do aplicativo para permitir uso offline (incluindo edição e sincronização posterior). Veja em configurações. \n
+		* Ícone de notificação para visualizar o lock-state do banco de dados (veja em configurações)\n
+		* Determinação de lock-state melhorada em algumas situações\n
+		* Banco de dados são carregados na memória enquanto você digita sua senha para aumentar a velocidade (veja em configurações)\n
+		* Entradas podem ser adicionadas ao grupo raiz\n
+		* Correções de bugs (resolvido campos de referencia, problemas com o teclado em aparelhos em italiano e chinês)</string>
   <string name="ChangeLog_0_8_4"><b>Versão 0.8.4</b>\n
 		* Mudança no banco de dados externo são detectadas e inseridas quando está salvando\n
 		* Melhorado o performance no carregamento\n
