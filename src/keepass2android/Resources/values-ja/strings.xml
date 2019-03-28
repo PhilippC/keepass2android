@@ -119,6 +119,7 @@
   <string name="entry_user_name">ユーザー名</string>
   <string name="entry_extra_strings">その他の文字列フィールド</string>
   <string name="entry_binaries">添付ファイル</string>
+  <string name="error_can_not_handle_uri">Keepass2AndroidはこのURLを処理できません。</string>
   <string name="error_could_not_create_group">グループ追加エラー</string>
   <string name="error_could_not_create_parent">親ディレクトリを作成できませんでした。</string>
   <string name="error_database_exists">ファイルが既に存在します。</string>
@@ -135,6 +136,7 @@
   <string name="error_rounds_not_number">数値を入力してください。</string>
   <string name="error_param_not_number">パラメーターが数値でなければなりません。</string>
   <string name="error_title_required">タイトルは必須入力です。</string>
+  <string name="error_wrong_length">\"長さ\"欄には正の整数を入力してください</string>
   <string name="FileNotFound">ファイルが見つかりません。</string>
   <string name="file_browser">ファイルブラウザ</string>
   <string name="generate_password">パスワードを生成する</string>
@@ -149,6 +151,7 @@
   <string name="hint_login_pass">パスワード</string>
   <string name="hint_title">タイトル</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">URL を上書きする</string>
   <string name="hint_tags">タグ1, タグ2</string>
   <string name="hint_username">ユーザー名</string>
   <string name="InvalidPassword">パスワード/キーファイルが違います。</string>
@@ -195,6 +198,7 @@
   <string name="no">いいえ</string>
   <string name="no_keys">データベース・グループがありません。</string>
   <string name="no_results">検索結果に該当するものはありません。</string>
+  <string name="no_url_handler">このURLを処理できません。</string>
   <string name="open_recent">最近使用したデータベースを開く (タップして開く)</string>
   <string name="omitbackup_title">検索対象から除外</string>
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
@@ -239,7 +243,9 @@
   <string name="select_group_then_add">目的のグループを開き、\"%1$s\"キーを押してください!</string>
   <string name="insert_element_here">ここに挿入</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">下線</string>
   <string name="unsupported_db_version">このバージョンのデータベースはサポートされていません。</string>
+  <string name="uppercase">大文字</string>
   <string name="warning_read_only">お使いのSDカードは読取専用になっているようです。 データベースへの更新を保存することはできないでしょう。</string>
   <string name="warning_unmounted">SDカードがマウントされていません。データベースの読込や作成ができません。</string>
   <string name="version_label">バージョン</string>
@@ -253,6 +259,7 @@
   <string name="please_note">ご確認ください：</string>
   <string name="contributors">貢献者</string>
   <string name="regular_expression">正規表現</string>
+  <string name="TanExpiresOnUse_title">トランザクション認証番号の使用期限</string>
   <string name="TanExpiresOnUse_summary">使用期限が切れたトランザクション認証番号に印をつける</string>
   <string name="ShowUsernameInList_title">リスト内のユーザー名を表示</string>
   <string name="ShowUsernameInList_summary">エントリのタイトルの下にユーザー名を表示します。複数のアカウントやTANに役立ちます。</string>
