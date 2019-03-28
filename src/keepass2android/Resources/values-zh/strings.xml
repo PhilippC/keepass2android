@@ -198,6 +198,7 @@
   <string name="no">否</string>
   <string name="no_keys">数据库或群组中无条目</string>
   <string name="no_results">无匹配结果</string>
+  <string name="no_url_handler">没有此URL的处理程序。</string>
   <string name="open_recent">打开最近数据库（触击打开）</string>
   <string name="omitbackup_title">不搜索备份和回收站中的条目</string>
   <string name="omitbackup_summary">从搜索结果中忽略备份和回收站群组</string>
@@ -242,7 +243,9 @@
   <string name="select_group_then_add">打开所需的组，然后按\"%1$s\"</string>
   <string name="insert_element_here">在此处插入</string>
   <string name="twofish">双鱼算法</string>
+  <string name="underline">下划线</string>
   <string name="unsupported_db_version">不支持的数据库版本。</string>
+  <string name="uppercase">大写</string>
   <string name="warning_read_only">你的 SD 卡目前是只读状态。您可能无法将更改保存到数据库。</string>
   <string name="warning_unmounted">你的 SD 卡目前尚未挂载到您的设备上。你将无法加载或创建您的数据库。</string>
   <string name="version_label">版本</string>
