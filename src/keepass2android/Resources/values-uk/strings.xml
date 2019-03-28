@@ -122,6 +122,7 @@
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
   <string name="entry_binaries">Вкладені файли</string>
+  <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю адресу (URL).</string>
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити теку верхнього рівня.</string>
   <string name="error_database_exists">Цей файл вже існує.</string>
@@ -138,6 +139,7 @@
   <string name="error_rounds_not_number">Кількість циклів повинна бути числом.</string>
   <string name="error_param_not_number">Параметр має бути числом.</string>
   <string name="error_title_required">Необхідно ввести назву.</string>
+  <string name="error_wrong_length">Введіть ціле число на всю довжину поля</string>
   <string name="FileNotFound">Файл не знайдено.</string>
   <string name="file_browser">Перегляд файлів</string>
   <string name="generate_password">Згенерувати пароль</string>
@@ -152,6 +154,7 @@
   <string name="hint_login_pass">Пароль</string>
   <string name="hint_title">назва</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">перевизначити URL</string>
   <string name="hint_tags">мітка1, мітка2</string>
   <string name="hint_username">ім’я користувача</string>
   <string name="InvalidPassword">Неправильний пароль або ключовий файл.</string>
@@ -198,6 +201,7 @@
   <string name="no">Ні</string>
   <string name="no_keys">Немає записів у базі даних чи групі.</string>
   <string name="no_results">Нічого не знайдено</string>
+  <string name="no_url_handler">Немає обробника для цієї URL-адреси.</string>
   <string name="open_recent">Відкрити останню базу даних (торкнутися, щоб відкрити)</string>
   <string name="omitbackup_title">Не шукати в записах резервних копій та смітника</string>
   <string name="omitbackup_summary">Не показувати групи Резервна копія і Смітник в результатах пошуку</string>
@@ -242,7 +246,9 @@
   <string name="select_group_then_add">Відкрийте потрібну групу, а потім натисніть \"%1$s\"!</string>
   <string name="insert_element_here">Вставити тут</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Підкреслення</string>
   <string name="unsupported_db_version">Непідтримувана версія бази даних.</string>
+  <string name="uppercase">Верхній регістр</string>
   <string name="warning_read_only">Ваша карта пам’яті зараз в режимі лише для читання. Ви не зможете зберегти зміни до вашої бази даних.</string>
   <string name="warning_unmounted">Карта пам’яті зараз не підключена. Ви не зможете завантажити чи створити базу даних.</string>
   <string name="version_label">Версія</string>
@@ -256,6 +262,7 @@
   <string name="please_note">Зверніть увагу</string>
   <string name="contributors">Учасники</string>
   <string name="regular_expression">Звичайний вираз</string>
+  <string name="TanExpiresOnUse_title">TAN недійсний після використання</string>
   <string name="TanExpiresOnUse_summary">Позначати використані записи TAN, як недійсні</string>
   <string name="ShowUsernameInList_title">Ім\'я користувача в списку записів</string>
   <string name="ShowUsernameInList_summary">Показувати ім\'я користувача під назвою запису в списку. Корисно для декількох облікових записів або TAN.</string>
@@ -326,9 +333,11 @@
   <string name="ActivateSearchViewOnStart_summary">Активує поле пошуку в груповому вигляді після розблокування чи пошуку запису</string>
   <string name="NoDonateOption_title">Приховати опцію внеску</string>
   <string name="NoDonateOption_summary">Це опція для можливості внеску. Вона стає доступна лише через деякий час використання Keepass2Android.</string>
+  <string name="NoDonateOption_question">Без пожертвувань ця програма не існувала б і постійно вдосконалювалася! Якщо ви ще не пожертвували, будь ласка, подумайте про це зараз</string>
   <string name="NoDonationReminder_title">Ніколи не запитувати про внесок</string>
   <string name="NoDonationReminder_summary">Я не дам вам ані копійки, або я вже зробив внесок. Не питати про внесок, навіть в день народження автора.</string>
   <string name="UseOfflineCache_title">Кешування бази даних</string>
+  <string name="UseOfflineCache_summary">Зберігати копію файлів бази даних у каталозі кешу додатків. Це дозволяє використовувати базу даних навіть у той час, коли файл бази даних недоступний.</string>
   <string name="CreateBackups_title">Локальні резервні копії</string>
   <string name="CreateBackups_summary">Створювати локальну резервну копію після успішного завантаження бази.</string>
   <string name="UpdatingBackup">Оновлення локальної резервної копії...</string>
@@ -429,6 +438,7 @@
   <string name="otp_aux_file">Допоміжний файл одноразових паролів</string>
   <string name="ErrorOcurred">Виникла помилка:</string>
   <string name="DuplicateUuidsError">База даних пошкоджена: знайдено однакові ID. (Ви зберігали базу за допомогою Minikeepass?) Зробіть повторний імпорт у нову базу за допомогою Keepass 2 для ПК та оберіть \'Створити нові ID\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Ви можете вимкнути це повідомлення про помилку в Налаштування/Установки програми/Обробка файлів/Перевірка дублікатів UUID. Майте на увазі, що це може спричинити несподівані результати. Рекомендується виправлення бази даних.</string>
   <string name="synchronize_database_menu">Синхронізувати базу даних…</string>
   <string name="CannotMoveGroupHere">Неможливо перемістити групу до цієї групи.</string>
   <string name="donate_question">Сьогодні Октоберфест! Якщо вам подобається Keepass2Android: чи не хороший сьогодні день, щоб купити мені пива?</string>
@@ -460,6 +470,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -475,10 +486,12 @@
   <string name="help_master_password">Базу даних шифрується за допомогою введеного тут пароля. Оберіть надійний пароль для захисту бази даних! Порада: вигадайте одне чи два речення і використовуйте перші літери слів як пароль. Додайте знаки пунктуації.</string>
   <string name="hint_master_password">Виберіть головний пароль для захисту вашої бази даних:</string>
   <string name="key_file">Ключовий файл</string>
+  <string name="help_key_file">Ключовий файл загалом є паролем, що зберігається у файлі. Ключові файли зазвичай сильніші від головних паролів, оскільки ключ може бути набагато складнішим; однак їх важче тримати в секреті. Якщо ви зберігаєте базу даних у хмарному сховищі, не зберігайте там також і ключовий файл! Це зробить його даремним! Важливо: не змінюйте вміст ключового файлу після створення бази даних!</string>
   <string name="hint_key_file">Виберіть, якщо ви хочете використовувати ключовий файл на додаток до головного пароля:</string>
   <string name="use_key_file">Використовувати ключовий файл</string>
   <string name="error_adding_keyfile">Помилка при додаванні ключового файлу!</string>
   <string name="init_otp">Завантажити допоміжний файл одноразових паролів…</string>
+  <string name="otp_explanation">Введіть наступний одноразовий пароль (OTP). Проведіть ваш Yubikey NEO по задній панелі пристрою для введення за допомогою NFC (потрібен додаток Yubiclip).</string>
   <string name="otp_hint">Одноразовий пароль %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Не вдалося завантажити допоміжний файл одноразових паролів!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Використайте плагін OtpKeyProv в KeePass 2.x (ПК), щоб налаштувати базу даних для використання з одноразовими паролями!</string>
