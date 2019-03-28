@@ -189,13 +189,12 @@ namespace keepass2android
 			PwUuid id = RetrieveGroupId (intent);
 			
 			Database db = App.Kp2a.CurrentDb;
-			if (id == null) {
-				Group = db.Root;
-			} else {
-				Group = db.GroupsById[id];
-			}
-			
-			Log.Warn (Tag, "Retrieved group");
+		    if (db != null)
+		    {
+		        Group = id == null ? db.Root : db.GroupsById[id];
+		    }
+
+		    Log.Warn (Tag, "Retrieved group");
 			if (Group == null) {
 				Log.Warn (Tag, "Group was null");
 				return;
