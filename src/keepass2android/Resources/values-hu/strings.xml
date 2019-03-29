@@ -31,6 +31,8 @@
   <string name="ShowGroupnameInSearchResult_title">A csoportnevek megjelenítése a keresési eredményeknél</string>
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
+  <string name="OfferSaveCredentials_summary">Ha aktiválva van, az automatikusan kitölthető mezők kézzel történő kitöltése után a rendszer rá fog kérdezni, hogy kívánja-e az azonosítókat menteni.</string>
+  <string name="OfferSaveCredentials_title">Azonosítók mentésének felajánlása</string>
   <string name="ShowGroupInEntry_title">A csoportnév megjelenítése a bejegyzések adatlapján.</string>
   <string name="unknown_uri_scheme">Elnézést, a Keepass2Android nem tudja kezelni a visszaadott URI-t: %1$s. Kérjük, lépjen kapcsolatba a fejlesztővel!</string>
   <string name="Entry_singular">Egy bejegyzés</string>
