@@ -21,6 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout_summary">Beállíthatja, mennyi idő után kerüljön zárolásra az adatbázis, ha nincs használatban.</string>
   <string name="show_kill_app">Bezárás gomb</string>
   <string name="ShowGroupnameInSearchResult_title">A csoportnevek megjelenítése a keresési eredményeknél</string>
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
@@ -554,6 +555,8 @@
     • Ellenőrizze, hogy a helyes jelszót adta-e meg.  A szem ikon megérintésével megjelenítheti a beírt jelszót.\n
     • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
     • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
+   &#8226; Tipp: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja megnyitni az utolsó sikeresen megnyitott verziót, a(z) \"%1$s\" opció segítségével, kiválasztva a megfelelő helyi biztonsági másolatot.</string>
   <string name="CorruptDatabaseHelp">    A fájl sérült. \n 
     Néhány javaslat a probléma felderítésére:\n
     
