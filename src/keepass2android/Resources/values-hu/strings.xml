@@ -31,6 +31,8 @@
   <string name="ShowGroupnameInSearchResult_title">A csoportnevek megjelenítése a keresési eredményeknél</string>
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Tiltott AutoFill célpontok</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Azoknak az alkalmazások és weboldalak listája, amelyek számára az AutoFill szolgáltatás nem engedélyezett</string>
   <string name="OfferSaveCredentials_summary">Ha aktiválva van, az automatikusan kitölthető mezők kézzel történő kitöltése után a rendszer rá fog kérdezni, hogy kívánja-e az azonosítókat menteni.</string>
   <string name="OfferSaveCredentials_title">Azonosítók mentésének felajánlása</string>
   <string name="ShowGroupInEntry_title">A csoportnév megjelenítése a bejegyzések adatlapján.</string>
@@ -687,6 +689,8 @@ Kezdeti közösségi kiadás</string>
   <string name="autofill_enable_failed">Elnézést, úgy tűnik az ön készüléke nem támogatja a rendszer beállítások megnyitását az app-ból. Kérjük indítsa el a rendszer beállításokat és engedélyezze az Automatikus kitöltés szolgáltatást.</string>
   <string name="show_autofill_help">Automatikus kitöltés segítség megjelenítése</string>
   <string name="autofill_sign_in_prompt">Kitöltés Keepass2Androiddal</string>
+  <string name="autofill_disable">Az AutoFill engedélyezése %1$s számára</string>
+  <string name="autofill_enable_for">Az AutoFill tiltása %1$s számára</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
   <string name="enable_fingerprint_hint">Ujjlenyomatleolvasó eszköz detektálva. Szeretné engedélyezni az adatbázis ujjlenyomattal való feloldását?</string>
   <string name="understand">Értem</string>
