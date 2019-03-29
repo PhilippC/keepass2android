@@ -566,8 +566,14 @@
   <string name="configure_child_dbs">Csatolt adatbázisok konfigurálása…</string>
   <string name="child_dbs_title">Csatolt adatbázisok</string>
   <string name="child_db_explanation">A csatolt adatbázisok olyan különálló adatbázisok, amelyek a fő adatbázis megnyitásakor automatikusan megnyithatók. E miatt a fő adatbázis tartalmazza a csatolt adatbázisokat tartalmazó fájl elérési útvonalát, valamint a megnyitáshoz szükséges jelszót. Ez a megoldás lehetővé teszi, hogy a jelszavak egy részét, de ne minden jelszót megosszon másokkal. A megoldás kompatibilis a PC-s KeeAutoExec modullal.</string>
+  <string name="child_db_enabled_on_this_device">Elérhető ezen az eszközön</string>
+  <string name="child_db_enable_on_this_device">Legyen elérhető ezen az eszközön</string>
+  <string name="child_db_disable_on_this_device">Ne legyen elérhető ezen az eszközön</string>
+  <string name="child_db_enable_a_copy_for_this_device">Egy másolat legyen elérhető ezen az eszközön</string>
   <string name="unconfigured_child_dbs">Az adatbázis AutoOpen csoportja új csatolt adatbázisokat tartalmaz. Kérlek, add meg, hogy használni kívánod-e ezeket ezen az eszközön.</string>
   <string name="add_child_db">Csatolt adatbázis hozzáadása...</string>
+  <string name="Visible_title">Látható</string>
+  <string name="child_db_Enabled_title">Automatikus megnyitás</string>
   <string name="DbUnlockedChannel_name">Adatbázis feloldva</string>
   <string name="DbUnlockedChannel_desc">Értesítés az adatbázis feloldásáról</string>
   <string name="DbQuicklockedChannel_name">GyorsFeloldás</string>
