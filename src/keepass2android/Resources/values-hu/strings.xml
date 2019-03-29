@@ -329,6 +329,7 @@
   <string name="LockWhenNavigateBack_title">Zárolás kilépéskor</string>
   <string name="LockWhenNavigateBack_summary">Zárolódjon az adatbázis, ha az alkalmazásból a vissza gomb segítségével kilép.</string>
   <string name="UseKp2aKeyboardInKp2a_title">A beépített billentyűzet használata Keepass2Android-on belül</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Ha nem bízik a szabványos billentyűzetben, válassza ki ezt az opciót a beépített billentyűzet használatához a mesterjelszó beírásakor, illetve a kulcsok szerkesztésekor.</string>
   <string name="ActivateSearchViewOnStart_title">Aktiválja a kereső mezőt indításkor</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiválja a keresőmezőt a csoport nézetben feloldás után, vagy bejegyzés keresésekor</string>
   <string name="NoDonateOption_title">Támogatás-opció elrejtése</string>
@@ -618,6 +619,7 @@
   <string name="Visible_title">Látható</string>
   <string name="child_db_Enabled_title">Automatikus megnyitás</string>
   <string name="database_file_heading">Adatbázis fájl</string>
+  <string name="if_device_text">Engedélyezés a(z) %1$s számára</string>
   <string name="DbUnlockedChannel_name">Adatbázis feloldva</string>
   <string name="DbUnlockedChannel_desc">Értesítés az adatbázis feloldásáról</string>
   <string name="DbQuicklockedChannel_name">GyorsFeloldás</string>
