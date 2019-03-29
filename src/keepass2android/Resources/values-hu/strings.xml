@@ -539,7 +539,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuális bejegyzés adatai</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">A beépülő modul az aktuális bejegyzés minden adatát megkapja, és lehetősége lesz ennek megfelelő műveletek felajánlására és megjelenésének módosítására.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Saját alkalmazáscsomag hitelesítő adatai</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A beépülő modulnak lesz lehetősége a saját alkalmazáscsomagjához kötődő hitelesítő adatok lekérdezésére.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Hitelesítő adatok</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A beépülő modulnak lesz lehetősége a web-oldalak vagy alkalmazások hitelesítő adatainak lekérdezésére.</string>
   <string name="get_regular_version">További tárolási típus beszerzése</string>
   <string name="CertificateWarning">Figyelmeztetés: a szerver tanúsítványának ellenőrzése nem sikerült: %1$s.  Telepítse a szükséges hitelesítő tanúsítványt az eszközre vagy módosítsa a beállításokat!</string>
   <string name="CertificateFailure">Hiba: a szerver tanúsítványának ellenőrzése nem sikerült: %1$s.  Telepítse a szükséges hitelesítő tanúsítványt az eszközre vagy módosítsa a beállításokat!</string>
@@ -592,6 +594,8 @@
     • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.</string>
   <string name="HintLocalBackupInvalidCompositeKey">\n
    &#8226; Tipp: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja megnyitni az utolsó sikeresen megnyitott verziót, a(z) \"%1$s\" opció segítségével, kiválasztva a megfelelő helyi biztonsági másolatot.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Tipp: Keepass2Android eltárolta az utolsó sikeresen megnyitott fájlverziót a belső memóriában. Megnyithatja ezt a verziót a(z) \"%1$s\" opció segítségével, kiválasztva a megfelelő helyi biztonsági másolatot.  </string>
   <string name="CorruptDatabaseHelp">    A fájl sérült. \n 
     Néhány javaslat a probléma felderítésére:\n
     
@@ -602,6 +606,7 @@
   <string name="select_database">Adatbázis kiválasztása</string>
   <string name="configure_child_dbs">Csatolt adatbázisok konfigurálása…</string>
   <string name="child_dbs_title">Csatolt adatbázisok</string>
+  <string name="unspecified">nincs megadva</string>
   <string name="child_db_explanation">A csatolt adatbázisok olyan különálló adatbázisok, amelyek a fő adatbázis megnyitásakor automatikusan megnyithatók. E miatt a fő adatbázis tartalmazza a csatolt adatbázisokat tartalmazó fájl elérési útvonalát, valamint a megnyitáshoz szükséges jelszót. Ez a megoldás lehetővé teszi, hogy a jelszavak egy részét, de ne minden jelszót megosszon másokkal. A megoldás kompatibilis a PC-s KeeAutoExec modullal.</string>
   <string name="child_db_enabled_on_this_device">Elérhető ezen az eszközön</string>
   <string name="child_db_enable_on_this_device">Legyen elérhető ezen az eszközön</string>
