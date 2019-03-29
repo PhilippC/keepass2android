@@ -96,6 +96,7 @@
   <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
   <string name="fingerprint_reenable2">Kérem oldja fel a jelszavával és ezután kapcsolja be újra az Ujjlenyomat Feloldást az adatbázis-beállításokban.</string>
   <string name="FingerprintInitFailed">Nem sikerült az ujjlenyomat olvasó inicializálása. </string>
+  <string name="FingerprintSetupFailed">Az adatok titkosítása nem sikerült. Ez előfordulhat, amennyiben a rendszerbeállításoknál hozzáadott vagy törölt egy ujjlenyomatot, miközben a Keepass2Android ujjlenyomatot próbált beolvasni.</string>
   <string name="enable_fingerprint_unlock_Info">    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
     eszközön, az Android Kulcstár által titkosítva, és 
     ujjlenyomat alapú authentikációval védve. Ez lehetővé
@@ -325,6 +326,7 @@
   <string name="ClearPasswordOnLeave_summary">A beírt főkulcs (jelszó) törlése, ha az adatbázis-feloldó képernyőt az adatbázis feloldása nélkül hagyja el.</string>
   <string name="LockWhenNavigateBack_title">Zárolás kilépéskor</string>
   <string name="LockWhenNavigateBack_summary">Zárolódjon az adatbázis, ha az alkalmazásból a vissza gomb segítségével kilép.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">A beépített billentyűzet használata Keepass2Android-on belül</string>
   <string name="ActivateSearchViewOnStart_title">Aktiválja a kereső mezőt indításkor</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiválja a keresőmezőt a csoport nézetben feloldás után, vagy bejegyzés keresésekor</string>
   <string name="NoDonateOption_title">Támogatás-opció elrejtése</string>
