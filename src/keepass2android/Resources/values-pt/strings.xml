@@ -607,6 +607,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="configure_child_dbs">Configurar bases de dados filhas…</string>
   <string name="child_dbs_title">Bases de dados filhas</string>
   <string name="unspecified">não especificado</string>
+  <string name="child_db_explanation">Os bancos de dados filhos são outros bancos de dados que podem ser abertos automaticamente quando você abrir o banco de dados pai. Por conseguinte, a palavra-passe mestra da criança e o local do ficheiro são armazenados no pai. Este recurso permite compartilhar algumas das suas palavras-passe com uma outra pessoa. A implementação é compatível com KeeAutoExec para PC.</string>
   <string name="child_db_enabled_on_this_device">Ativado neste dispositivo</string>
   <string name="child_db_enable_on_this_device">Ativar neste dispositivo</string>
   <string name="child_db_disable_on_this_device">Desativar neste dispositivo</string>
@@ -625,6 +626,17 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="EntryChannel_name">Entrada de notificações</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para inserção de palavra-passe quando a verificação de impressão digital estiver ativa.</string>
+  <string name="ChangeLog_1_07">Versão 1.07\n
+* Corrigir quedas no Android 9 de Samsung\n
+* Permitir a abertura de mais de uma base de dados, compatíveis com KeeAutoExec\n
+* SFTP: Permitir autenticação de chave pública, verificar se a chave do host foi alterada\n
+* Introduzir suporte para pCloud - graças a gilbsgilbs!\n
+* Tornar o suporte para Nextcloud explícito\n
+* Melhorar armazenamento e atualização de anexos de entradas\n
+* Mais opções para adaptar o comportamento às preferências pessoais\n
+* SSL: Confiar em certificados de utilizador\n
+* Amelhora auto-preenchimento (funciona agora no Firefox, pode reduzir popups)\n
+* correção de bugs\n  </string>
   <string name="ChangeLog_1_06">Versão 1.06\n
     * Alterado para ykDroid em vez de YubiChallenge como aplicação para  Yubikey Challenge-Response.\n
     * Implementado suporte para KeepassXC-style Challenge-Response. Nota: Formato da base de dados tem que ser KDBX4!\n
