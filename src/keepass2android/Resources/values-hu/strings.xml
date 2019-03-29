@@ -118,6 +118,7 @@
   <string name="entry_user_name">Felhasználónév</string>
   <string name="entry_extra_strings">Kiegészítő szövegmezők</string>
   <string name="entry_binaries">Csatolt fájlok</string>
+  <string name="error_can_not_handle_uri">Nem található kezelő ehhez az URI-hez.</string>
   <string name="error_could_not_create_group">Hiba a csoport létrehozásakor.</string>
   <string name="error_could_not_create_parent">Nem sikerült létrehozni szülő könyvtárat.</string>
   <string name="error_database_exists">A fájl már létezik.</string>
@@ -239,6 +240,7 @@
   <string name="select_group_then_add">Nyissa meg a kívánt csoportot, majd nyomja meg a \"%1$s\" gombot!</string>
   <string name="insert_element_here">Beillesztés ide</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Aláhúzás</string>
   <string name="unsupported_db_version">Nem támogatott adatbázis.</string>
   <string name="uppercase">Nagybetűs</string>
   <string name="warning_read_only">A memóriakártya jelenleg csak olvasható. Lehet, hogy nem tudja menteni a módosításokat az adatbázisban.</string>
