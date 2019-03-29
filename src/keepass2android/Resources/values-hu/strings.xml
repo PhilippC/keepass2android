@@ -563,6 +563,10 @@
     • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
     • Ha a fájlt a korábbi helyről asztali számítógépről sem tudja megnyitni, nagyon valószínű, hogy a fájl ténylegesen megsérült.  Próbálja meg az adatbázist mentésből visszaállítani.  Ha úgy gondolja, hogy a fájl sérülését a Keepass2Android okozta, kérjük, értesítse a fejlesztőket.\n
     •  Ha a fájlt a korábbi helyről asztali számítógépről meg tudja megnyitni, kérjük, értesítse a fejlesztőket.  Átmeneti megoldásként megpróbálhatja az asztali számítógépen a fájlt más formátumban kimenteni (például tömörítés nélkül), hátha talál olyan formátumot, amit a Keepass2Android meg tud nyitni.  </string>
+  <string name="configure_child_dbs">Csatolt adatbázisok konfigurálása…</string>
+  <string name="child_dbs_title">Csatolt adatbázisok</string>
+  <string name="child_db_explanation">A csatolt adatbázisok olyan különálló adatbázisok, amelyek a fő adatbázis megnyitásakor automatikusan megnyithatók. E miatt a fő adatbázis tartalmazza a csatolt adatbázisokat tartalmazó fájl elérési útvonalát, valamint a megnyitáshoz szükséges jelszót. Ez a megoldás lehetővé teszi, hogy a jelszavak egy részét, de ne minden jelszót megosszon másokkal. A megoldás kompatibilis a PC-s KeeAutoExec modullal.</string>
+  <string name="unconfigured_child_dbs">Az adatbázis AutoOpen csoportja új csatolt adatbázisokat tartalmaz. Kérlek, add meg, hogy használni kívánod-e ezeket ezen az eszközön.</string>
   <string name="DbUnlockedChannel_name">Adatbázis feloldva</string>
   <string name="DbUnlockedChannel_desc">Értesítés az adatbázis feloldásáról</string>
   <string name="DbQuicklockedChannel_name">GyorsFeloldás</string>
