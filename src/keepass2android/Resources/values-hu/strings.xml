@@ -134,6 +134,7 @@
   <string name="error_rounds_not_number">A menetek csak számokat tartalmazhatnak.</string>
   <string name="error_param_not_number">A paraméternek egy számnak kell lennie.</string>
   <string name="error_title_required">Cím szükséges.</string>
+  <string name="error_wrong_length">Írjon be egy pozitív egész számot a hosszúság mezőbe</string>
   <string name="FileNotFound">A fájl nem található.</string>
   <string name="file_browser">Fájlkezelő</string>
   <string name="generate_password">Jelszógenerálás</string>
@@ -148,6 +149,7 @@
   <string name="hint_login_pass">Jelszó</string>
   <string name="hint_title">név</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">URL felülírása</string>
   <string name="hint_tags">címke1, címke2</string>
   <string name="hint_username">felhasználónév</string>
   <string name="InvalidPassword">Érvénytelen jelszó vagy kulcsfájl.</string>
@@ -194,7 +196,8 @@
   <string name="no">Nem</string>
   <string name="no_keys">Nincs bejegyzés az adatbázisban vagy csoportban.</string>
   <string name="no_results">Nincs találat</string>
-  <string name="open_recent">Korábbi adatbázis megnyitása (a megnyitásra nyomja meg)</string>
+  <string name="no_url_handler">Nem található kezelő ehhez az URL-hez.</string>
+  <string name="open_recent">Korábbi adatbázis megnyitása (a megnyitáshoz érintse meg)</string>
   <string name="omitbackup_title">Keresési kivételek</string>
   <string name="omitbackup_summary">A Backup és Lomtár csoportok kihagyása a keresésből</string>
   <string name="pass_filename">KeePass adatbázisfájl</string>
@@ -583,6 +586,7 @@
     • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
     • Ha a fájlt a korábbi helyről asztali számítógépről sem tudja megnyitni, nagyon valószínű, hogy a fájl ténylegesen megsérült.  Próbálja meg az adatbázist mentésből visszaállítani.  Ha úgy gondolja, hogy a fájl sérülését a Keepass2Android okozta, kérjük, értesítse a fejlesztőket.\n
     •  Ha a fájlt a korábbi helyről asztali számítógépről meg tudja megnyitni, kérjük, értesítse a fejlesztőket.  Átmeneti megoldásként megpróbálhatja az asztali számítógépen a fájlt más formátumban kimenteni (például tömörítés nélkül), hátha talál olyan formátumot, amit a Keepass2Android meg tud nyitni.  </string>
+  <string name="open_other_db">Egy másik adatbázis megnyitása…</string>
   <string name="select_database">Adatbázis kiválasztása</string>
   <string name="configure_child_dbs">Csatolt adatbázisok konfigurálása…</string>
   <string name="child_dbs_title">Csatolt adatbázisok</string>
