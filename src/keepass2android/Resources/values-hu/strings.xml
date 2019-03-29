@@ -32,7 +32,7 @@
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Tiltott AutoFill célpontok</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Azoknak az alkalmazások és weboldalak listája, amelyek számára az AutoFill szolgáltatás nem engedélyezett</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Azoknak az alkalmazások és weboldalak listája, amelyek esetén az AutoFill szolgáltatás nem engedélyezett</string>
   <string name="OfferSaveCredentials_summary">Ha aktiválva van, az automatikusan kitölthető mezők kézzel történő kitöltése után a rendszer rá fog kérdezni, hogy kívánja-e az azonosítókat menteni.</string>
   <string name="OfferSaveCredentials_title">Azonosítók mentésének felajánlása</string>
   <string name="ShowGroupInEntry_title">A csoportnév megjelenítése a bejegyzések adatlapján.</string>
@@ -218,6 +218,8 @@
   <string name="edit">Szerkesztés</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Gyökérkönyvár</string>
+  <string name="AutoReturnFromQuery_title">Automatikus visszatérés a keresés képernyőről</string>
+  <string name="AutoReturnFromQuery_summary">Egy alkalmazáshoz vagy weboldalhoz tartozó kulcs keresése után visszatérés az alkalmazáshoz vagy weboldalhoz, ha a keresésnek az adatbázis egy kulcsa felelt csak meg.</string>
   <string name="KeyDerivFunc">Kulcsszármaztatási függvény</string>
   <string name="rounds">Titkosítási menetek száma</string>
   <string name="rounds_explaination">A titkosítási menetek számának növelésével extra védelmet kaphat a brute force támadások ellen, ugyanakkor jelentősen lassíthatja az adatbázis betöltését vagy mentését.</string>
@@ -331,6 +333,7 @@
   <string name="ActivateSearchViewOnStart_summary">Aktiválja a keresőmezőt a csoport nézetben feloldás után, vagy bejegyzés keresésekor</string>
   <string name="NoDonateOption_title">Támogatás-opció elrejtése</string>
   <string name="NoDonateOption_summary">Ez a beállítás a támogatók számára készült, és csak akkor érhető el, ha a Keepass2Android-ot már egy ideje használja.</string>
+  <string name="NoDonateOption_question">Adományok nélkül ez az alkalmazás nem létezne és nem lehetne folyamatosan fejleszteni. Ha még nem adományozott, kérem, gondolja meg, hogy most megtegye</string>
   <string name="NoDonationReminder_title">Soha ne kérjen adományt</string>
   <string name="NoDonationReminder_summary">Nem adok egy fillér hozzájárulást se vagy pedig már adtam. Nem kérek emlékeztetőt a hozzájárulásról, még a szerző születésnapján se.</string>
   <string name="UseOfflineCache_title">Helyi másolatok</string>
@@ -454,6 +457,7 @@
   <string name="initial_directory">Kezdőkönyvtár (opcionális):</string>
   <string name="enter_sftp_login_title">SFTP tárhely adatai:</string>
   <string name="sftp_auth_mode">Hitelesítési mód</string>
+  <string name="send_public_key">A nyilvános kulcs küldése...</string>
   <string name="enter_ftp_login_title">Adja meg az FTP bejelentkezési adatait:</string>
   <string name="select_storage_type">Tárolási típus kiválasztása:</string>
   <string name="filestoragename_file">A készüléken tárolt fájl</string>
@@ -691,8 +695,8 @@ Kezdeti közösségi kiadás</string>
   <string name="autofill_enable_failed">Elnézést, úgy tűnik az ön készüléke nem támogatja a rendszer beállítások megnyitását az app-ból. Kérjük indítsa el a rendszer beállításokat és engedélyezze az Automatikus kitöltés szolgáltatást.</string>
   <string name="show_autofill_help">Automatikus kitöltés segítség megjelenítése</string>
   <string name="autofill_sign_in_prompt">Kitöltés Keepass2Androiddal</string>
-  <string name="autofill_disable">Az AutoFill engedélyezése %1$s számára</string>
-  <string name="autofill_enable_for">Az AutoFill tiltása %1$s számára</string>
+  <string name="autofill_disable">Az AutoFill tiltása %1$s esetén</string>
+  <string name="autofill_enable_for">Az AutoFill engedélyezése %1$s esetén</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
   <string name="enable_fingerprint_hint">Ujjlenyomatleolvasó eszköz detektálva. Szeretné engedélyezni az adatbázis ujjlenyomattal való feloldását?</string>
   <string name="understand">Értem</string>
