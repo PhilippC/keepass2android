@@ -163,7 +163,7 @@
   <string name="menu_about">Om</string>
   <string name="menu_change_key">Skift Hovedadgangskode</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
-  <string name="menu_copy_user">Kopiér brugernavn</string>
+  <string name="menu_copy_user">Kopiér Bruger</string>
   <string name="menu_create">Opret</string>
   <string name="menu_app_settings">Indstillinger</string>
   <string name="menu_db_settings">Databaseindstillinger</string>
@@ -191,6 +191,7 @@
   <string name="no_keys">Ingen poster i databasen eller gruppen.</string>
   <string name="no_results">Ingen søgeresultater</string>
   <string name="no_url_handler">Denne URL kan ikke håndteres.</string>
+  <string name="open_recent">Åbn seneste database (tryk for at åbne)</string>
   <string name="omitbackup_title">Søg ikke efter sikkerhedskopier og Papirkurvindhold</string>
   <string name="omitbackup_summary">Udelad \'Sikkerhedskopi\'- og Papirkurv-grupper i søgeresultater</string>
   <string name="pass_filename">KeePass-databasefilnavn</string>
@@ -313,7 +314,7 @@
   <string name="LockWhenScreenOff_summary">Lås databasen, når skærmen slukker.</string>
   <string name="ClearPasswordOnLeave_title">Ryd angivne Hovedadgangskode</string>
   <string name="ClearPasswordOnLeave_summary">Ryd den angivne Hovedadgangskode, når skærmen forlades uden at oplåse databasen.</string>
-  <string name="LockWhenNavigateBack_title">Lås, når app\'en forlades</string>
+  <string name="LockWhenNavigateBack_title">Lås, når app forlades</string>
   <string name="LockWhenNavigateBack_summary">Når app\'en forlades, lås databasen ved at trykke på Tilbage-knappen.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Benyt indbygget tastatur i Keepass2Android</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Stoler du ikke på din standardtastaturudbyder, så afkryds denne indstilling for at benytte det indbyggede tastatur, når du angiver dit hovedadgangskode eller redigerer poster.</string>
