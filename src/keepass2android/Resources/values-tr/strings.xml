@@ -151,6 +151,7 @@
   <string name="hint_login_pass">Parola</string>
   <string name="hint_title">Başlık</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">uRL geçersiz kıl</string>
   <string name="hint_tags">etiket1, etiket2</string>
   <string name="hint_username">Kullanıcı adı</string>
   <string name="InvalidPassword">Geçersiz parola veya anahtar dosyası.</string>
@@ -258,6 +259,7 @@
   <string name="please_note">Lütfen unutmayın</string>
   <string name="contributors">Katkıda bulunanlar</string>
   <string name="regular_expression">Kurallı ifade</string>
+  <string name="TanExpiresOnUse_title">TAN kullanım süresi</string>
   <string name="TanExpiresOnUse_summary">TAN kayıtları kullanıldıktan sonra süresi geçmiş olarak işaretlensin</string>
   <string name="ShowUsernameInList_title">Kullanıcının adını listede göster</string>
   <string name="ShowUsernameInList_summary">Kullanıcı adını kayıtların altında gösterir. Birden fazla hesaplar yada TAN için uygundur.</string>
@@ -605,6 +607,7 @@
   <string name="configure_child_dbs">Alt veritabanlarını yapılandır…</string>
   <string name="child_dbs_title">Alt veritabanları</string>
   <string name="unspecified">tanımsız</string>
+  <string name="child_db_explanation">Alt veritabanları, üst veritabanını açtığınızda otomatik olarak açılabilen diğer veritabanlarıdır. Bu nedenle, alt veritabanının ana şifresi ve dosya konumu üst veritabanında saklanır. Bu özellik, şifrelerinizin bir ksımını başka biriyle paylaşmanıza izin verir. Uygulama bilgisayar için olan KeeAutoExec ile uyumludur.</string>
   <string name="child_db_enabled_on_this_device">Bu cihazda etkinleştirildi</string>
   <string name="child_db_enable_on_this_device">Bu cihazda etkin</string>
   <string name="child_db_disable_on_this_device">Bu cihazda devre dışı</string>
