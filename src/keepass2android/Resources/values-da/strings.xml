@@ -590,6 +590,9 @@
     &#8226; Tjek, at du har valgt den rigtige databasefil.</string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
    &#8226; Tip: Mener du, at din databasefil kan være beskadiget, eller kan du ikke huske hovedadgangskoden efter at have skifteet den, kan du prøve den senest åbnede filversion ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Tip: Keepass2Android har gemt den senest åbnede filversion på den interne lagerplads. Du kan åbne den ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.
+  </string>
   <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
     Her er nogle tip, der kan hjælpe med at diagnosticere problemet:\n
     
