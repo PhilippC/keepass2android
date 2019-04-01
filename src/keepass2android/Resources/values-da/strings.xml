@@ -594,11 +594,11 @@
     &#8226; Tip: Keepass2Android har gemt den senest åbnede filversion på den interne lagerplads. Du kan åbne den ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.
   </string>
   <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
-    Her er nogle tip, der kan hjælpe med at diagnosticere problemet:\n
+    Her er nogle tip til hjælp for diagnosticeringen af problemet:\n
     
-    • Hvis du kopierede filen over USB (MTP-tilstand), skal du prøve igen med værktøjer som MyPhoneExplorer. MTP afkorter filer i visse tilfælde.\n
-    • Hvis du ikke kan åbne filen fra samme sted på din pc, er det meget sandsynligt, at filen faktisk er beskadiget. Brug da venligst en database sikkerhedskopi. Hvis du antager, at Keepass2Android har ødelagt filen,så  kontakt venligst support.\n
-    • Hvis du stadig kan åbne filen på din pc, så kontakt venligst support. Du kan eventuelt forsøge at gemme den med forskellige indstillinger (fx unzipped) på pc\'en og forsøg igen at åbne den i KP2A.
+    &#8226; Kopierede du filen via USB (MTP-tilstand), så prøv igen med et værktøjer såsom MyPhoneExplorer. MTP trunkerer i visse tilfælde filer.\n
+    &#8226; Kan du ikke åbne filen fra samme placering på din PC, er det meget sandsynligt, at filen faktisk er beskadiget. Benyt da en databasesikkerhedskopi. Mener du, at Keepass2Android har ødelagt filen, så kontakt venligst supporten.\n
+    &#8226; Kan du stadig åbne filen på din PC, så kontakt venligst supporten. Du kan evt. forsøge at gemme den med andre indstillinger (f.eks. ikke-zippet) på PC\'en og igen forsøge at åbne den i Keepass2Android.
 
   </string>
   <string name="open_other_db">Åbn en anden database…</string>
