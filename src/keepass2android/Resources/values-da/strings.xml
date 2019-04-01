@@ -606,6 +606,7 @@
   <string name="configure_child_dbs">Opsæt underordnet databases…</string>
   <string name="child_dbs_title">Underordnede databaser</string>
   <string name="unspecified">uspecificeret</string>
+  <string name="child_db_explanation">Underordnede databaser er andre databaser, som kan åbnes automatisk, når du åbner den overordnede database. Derfor gemmes underordnede databasers hovedadgangskode og filplacering i den overordnede database. Funktion muliggør at dele nogle af dine adgangskoder med en anden person. Implementeringen er kompatibel med KeeAutoExec til PC.</string>
   <string name="child_db_enabled_on_this_device">Aktivér på denne enhed</string>
   <string name="child_db_enable_on_this_device">Aktivér på denne enhed</string>
   <string name="child_db_disable_on_this_device">Deaktivér på denne enhed</string>
