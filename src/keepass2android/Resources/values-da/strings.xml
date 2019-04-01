@@ -96,6 +96,7 @@
   <string name="fingerprint_reenable">Genaktivér Fingeraftryksoplåsning for den nye hovedadgangskode.</string>
   <string name="fingerprint_reenable2">Oplås med din adgangskode og genaktivér så Fingeraftryksoplåsning i databaseindstillingerne.</string>
   <string name="FingerprintInitFailed">Mislykkedes at initialisere fingeraftrykssensor. </string>
+  <string name="FingerprintSetupFailed">Mislykkedes at kryptere data. Dette kan ske, hvis du tilføjer eller fjerner fingeraftryk i systemindstillingerne, mens Keepass2Android moniterer for brug af fingeraftryk.</string>
   <string name="enable_fingerprint_unlock_Info">Dette gemmer din hovedadgangskode på denne enhed, krypteret med Android Keystore og beskyttet vha. fingeraftryksgodkendelse. Tillader dig at oplåse din database alene via dit fingeraftryk.</string>
   <string name="enable_fingerprint_quickunlock_Info">Tillader brug af fingeraftryksgodkendelse i stedet for Hurtigoplåsningskoden. Gemmer ingen information relateret til din hovedadgangskode.</string>
   <string name="enter_filename">Angiv databasefilnavn</string>
@@ -197,7 +198,7 @@
   <string name="no">Nej</string>
   <string name="no_keys">Ingen poster i databasen eller gruppen.</string>
   <string name="no_results">Ingen søgeresultater</string>
-  <string name="no_url_handler">Denne URL kan ikke håndteres.</string>
+  <string name="no_url_handler">Ingen håndteringsprocess til denne URI.</string>
   <string name="open_recent">Åbn seneste database (tryk for at åbne)</string>
   <string name="omitbackup_title">Søg ikke efter sikkerhedskopier og Papirkurvindhold</string>
   <string name="omitbackup_summary">Udelad \'Sikkerhedskopi\'- og Papirkurv-grupper i søgeresultater</string>
@@ -214,7 +215,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="AutoReturnFromQuery_title">Returnér automatisk fra forespørgselsskærmen</string>
-  <string name="AutoReturnFromQuery_summary">Når man slår en post til en app eller et websted op: Returnér automatisk fra forespørgselsskærmen, hvis der kun er én matchende post i databasen.</string>
+  <string name="AutoReturnFromQuery_summary">Ved opslag af en post til en app eller et websted: Returnér automatisk fra forespørgselsskærmen, hvis der kun er én matchende post i databasen.</string>
   <string name="KeyDerivFunc">Nøgleafledningsfunktion</string>
   <string name="rounds">Krypteringsgentagelser</string>
   <string name="rounds_explaination">Flere krypteringsgentagelser giver øget beskyttelse imod brute force-angreb, men kan reduceredownload- og lagringstigheden mærkbart.</string>
@@ -244,7 +245,7 @@
   <string name="twofish">Twofish</string>
   <string name="underline">Understregningstegn</string>
   <string name="unsupported_db_version">Uunderstøttet databaseversion.</string>
-  <string name="uppercase">Store bogstaver</string>
+  <string name="uppercase">Versal</string>
   <string name="warning_read_only">Dit SD-kort er pt. skrivebeskyttet. Du kan muligvis ikke gemme ændringer til din database.</string>
   <string name="warning_unmounted">Dit SD-kort er ikke indlæst i din enhed. Du vil ikke kunne indlæse eller oprette din database.</string>
   <string name="version_label">Version</string>
@@ -258,7 +259,7 @@
   <string name="please_note">Bemærk venligst</string>
   <string name="contributors">Bidragsydere</string>
   <string name="regular_expression">Regulært udtryk</string>
-  <string name="TanExpiresOnUse_title">TAN (engangskode) udløber efter brug</string>
+  <string name="TanExpiresOnUse_title">TAN udløber efter brug</string>
   <string name="TanExpiresOnUse_summary">Markér TAN\'er som udløbet efter brug</string>
   <string name="ShowUsernameInList_title">Vis brugernavn på liste</string>
   <string name="ShowUsernameInList_summary">Vis brugernavne under posttitlerne. Nyttigt ved flere konti eller TAN\'er.</string>
