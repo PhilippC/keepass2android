@@ -63,7 +63,7 @@ namespace keepass2android
 			}
 			
 
-			_ioc = App.Kp2a.CurrentDb.Ioc;
+			_ioc = App.Kp2a.CurrentDb?.Ioc;
 
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;

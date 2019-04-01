@@ -65,7 +65,7 @@ namespace keepass2android
 				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
 			}
 
-			_ioc = App.Kp2a.GetDbForQuickUnlock().Ioc;
+			_ioc = App.Kp2a.GetDbForQuickUnlock()?.Ioc;
 
 			if (_ioc == null)
 			{
