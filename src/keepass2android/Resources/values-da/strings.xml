@@ -483,6 +483,7 @@
   <string name="help_master_password">Din database er krypteret med den adgangskode, du angiver hér. Vælg en stærk adgangskode for at gøre databasen sikker! Tip: Opret en sætning eller to og benyt de første bogstaver af ordene som adgangskode. Inkludér tegnsætningstegn.</string>
   <string name="hint_master_password">Vælg en hovedadgangskode for at beskytte din database:</string>
   <string name="key_file">Nøglefil</string>
+  <string name="help_key_file">Grundlæggende er en nøglefil et adgangskode, der er gemt i en fil. Nøglefiler er typisk stærkere end hovedadgangskoder, da nøglen kan være langt mere kompleks, men de er også sværere at holde hemmelige. Lagrer du din database i Sky\'en, så gem ikke også nøglefilen dér, da det vil gøre komplet ubrugelig! Vigtigt: SKIFT IKKE nøglefilindholdet, når først databasen er oprettet!</string>
   <string name="hint_key_file">Vælg om du vil benytte en nøglefil i tillæg til dit hovedadgangskode:</string>
   <string name="use_key_file">Benyt nøglefil</string>
   <string name="error_adding_keyfile">Fejl under tilføjelse af nøglefilen!</string>
@@ -534,7 +535,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuelle indtastningsdata</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin modtager alle data om den aktuelle databaseindtastning og får lov at tilbyde handlinger og visningsændring heraf.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Forespørg på egne legitimationsoplysninger</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin\'et tillades at forespørge på de akkreditiver, som er tilknyttet sin egen app-pakke.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Forespørg på akkreditiver</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin\'et tillades at forespørge på akkreditiver til bevidste websteder eller apps.</string>
   <string name="get_regular_version">Hent flere lagringstyper</string>
   <string name="CertificateWarning">Advarsel: Servercertifikatgodkendelse mislykkedes: %1$s. Installér passende rodcertifikat på din enhed eller se indstillinger!</string>
   <string name="CertificateFailure">Fejl: Godkendelse af servercertifikat mislykkedes! Installér passende rodcertifikat på din enhed eller se indstillinger!</string>
@@ -545,6 +548,7 @@
   <string name="FileIsReadOnlyOnKitkat">Den valgte fil er skrivebeskyttet for Keepass2Android grundet restriktioner i Android 4.4+.</string>
   <string name="CopyFileRequired">For at benyttet den, skal den kopieres til en anden placering.</string>
   <string name="CopyFileRequiredForEditing">For at redigere den, skal filen kopieres til en anden placering.</string>
+  <string name="ClickOkToSelectLocation">Tryk på OK for at vælge placeringer, hvortil filen skal kopieres.</string>
   <string name="FileReadOnlyTitle">Database er skrivebeskyttet</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android har åbnet den aktuelle database i skrivebeskyttet tilstand.</string>
   <string name="ReadOnlyReason_PreKitKat">Det lader til, at du har åbnet filen fra en ekstern app. Denne fremgangsmåde understøtter ikke skrivning. Vil du foretage ændringer i databasen, så luk den venligst igen og vælg Skift database. Åbn derefter filen fra en af de tilgængelige valgmuligheder, om muligt.</string>
