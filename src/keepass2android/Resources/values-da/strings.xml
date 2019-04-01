@@ -33,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nu: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deaktivér Autoudfyldmål</string>
   <string name="AutofillDisabledQueriesPreference_summary">Viser en liste over apps og websteder, hvor Autoudfyld er blevet deaktiveret</string>
+  <string name="OfferSaveCredentials_summary">Hvis aktiveret, spørger Android, om du vil gemme akkreditiver, når du manuelt har angivet data i autofyldbare felter.</string>
+  <string name="OfferSaveCredentials_title">Tilbyd at gemme akkreditiver</string>
   <string name="ShowGroupInEntry_title">Vis gruppenavn i indtastningsvisning</string>
   <string name="unknown_uri_scheme">Beklager! Keepass2Android kan ikke håndtere den returnerede URI %1$s. Kontakt udvikleren!</string>
   <string name="Entry_singular">Én indtastning</string>
