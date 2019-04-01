@@ -545,7 +545,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
-	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, tap this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
+	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, select this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -725,16 +725,16 @@
 
   <string name="HintLocalBackupOtherError">
     \n
-    &#8226; Hint: Keepass2Android has stored the last successfully opened file version in internal memory. You can open it by tapping "%1$s" and selecting the local backup.
+    &#8226; Hint: Keepass2Android has stored the last successfully opened file version on internal storage. You can open it by tapping "%1$s" and selecting the local backup.
   </string>
   
   <string name="CorruptDatabaseHelp">
     File is corrupted. \n
     Here are some hints which might help to diagnose the issue:\n
     
-    &#8226; If you copied the file over USB (MTP-Mode), please try again with tools like MyPhoneExplorer. MTP truncates files in certain cases.\n
-    &#8226; If you cannot open the file from the same location on your PC, it is very likely that the file is actually corrupted. Please use a database backup then. If you assume that Keepass2Android has corrupted the file, please contact support.\n
-    &#8226; If you can still open the file on your PC, please contact support. You might try to save it with different settings (e.g. unzipped) on the PC and retry to open in Keepass2Android.
+    &#8226; If you copied the file over USB (MTP-Mode), please try again using a tool like MyPhoneExplorer. MTP truncates files in certain cases.\n
+    &#8226; If you cannot open the file from the same location on your PC, it is very likely that the file is actually corrupted. Please use a database backup then. If you assume that Keepass2Android has corrupted the file, please contact the support team.\n
+    &#8226; If you can still open the file on your PC, please contact the support team. You might try to save it with different settings (e.g. unzipped) on the PC and retry to open in Keepass2Android.
 
   </string>
 
