@@ -330,10 +330,11 @@
   <string name="ActivateSearchViewOnStart_summary">Aktiverer søgefelt i gruppevisningen efter oplåsning, eller når du søger efter en post</string>
   <string name="NoDonateOption_title">Skjul donationsopfordring</string>
   <string name="NoDonateOption_summary">Denne indstilling er til donatorer. Bliver tilgængelig efter brug af Keepass2Android i et stykke tid.</string>
-  <string name="NoDonateOption_question">Uden donationer ville denne app ikke eksistere og løbende blive forbedret! Hvis du endnu ikke har doneret, er du meget velkommen til at gøre det nu.</string>
+  <string name="NoDonateOption_question">Uden donationer ville denne app ikke findes og løbende blive forbedret! Har du endnu ikke doneret, kunne du overveje at gøre det nu</string>
   <string name="NoDonationReminder_title">Bed aldrig om en donation</string>
   <string name="NoDonationReminder_summary">Jeg vil ikke give dig en øre, eller jeg har allerede doneret. Bed ikke om en donation, ikke engang på udviklerens fødselsdag.</string>
   <string name="UseOfflineCache_title">Database-caching</string>
+  <string name="UseOfflineCache_summary">Behold en kopi af databasefilerne i app\'ens cachemappen. Dette gør det muligt at benytte databaser, selv mens databasefilen ikke er tilgængelig.</string>
   <string name="CreateBackups_title">Lokale sikkerhedskopier</string>
   <string name="CreateBackups_summary">Opret en lokal sikkerhedskopi efter korrekt åbning af en database.</string>
   <string name="UpdatingBackup">Opdaterer lokal sikkerhedskopi…</string>
@@ -434,6 +435,7 @@
   <string name="otp_aux_file">OTP-hjælpefil</string>
   <string name="ErrorOcurred">En fejl opstod:</string>
   <string name="DuplicateUuidsError">Database er lorruperet: Dublet-ID\'er fundet (gemte du med Minikeepass?). Genimportér til en ny database med Keepass 2 til PC og vælg \'Opret nye ID\'er\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Du kan deaktivere denne fejlmeddelelse i Indstillinger/App-indstillinger/Filhåndtering/Tjek for UUID-dubletter. Bemærk dog, at du måske vil opleve uventet adfærd. Det anbefales at reparere databasen.</string>
   <string name="synchronize_database_menu">Synkroniserer database…</string>
   <string name="CannotMoveGroupHere">Kan ikke flytte gruppen til denne gruppe.</string>
   <string name="donate_question">Det er Oktoberfest i dag! Synes du om Keypass2Android: Ville dagen ikke være en god dag til at købe mig en øl?</string>
