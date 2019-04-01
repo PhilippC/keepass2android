@@ -583,11 +583,13 @@
   <string name="Continue">Fortsæt</string>
   <string name="NoFilenameWarning">Den angivne URI ligner ikke et filnavn. Sikker på, at dette er en gyldig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ugyldig kombinøgle! Forsøg igen.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig kombinøgle! Prøv følgende trin for at låse din database op:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig kombinøgle! Prøv flg. trin for at oplåse din database:\n
   
-    • Sørg for, at du har indtastet den korrekte adgangskode. Brug øjenikonet til at afsløre det indtastede kodeord.\n
-    • Kontroller, at du har valgt den korrekte adgangskode type. Sørg for, at dette svarer til den type, der blev brugt, da du oprettede databasen.\n
-    • Kontroller, at du har valgt den rigtige databasefil.</string>
+    &#8226; Tjek, at du har angivet den korrekte adgangskode. Benyt øjenikonet til at vise den angivne adgangskode.\n
+    &#8226; Tjek, at du har valgt den korrekte adgangskodetype. Tjek, at denne modsvarer typen, der blev benyttet ved databaseoprettelsen.\n
+    &#8226; Tjek, at du har valgt den rigtige databasefil.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Tip: Mener du, at din databasefil kan være beskadiget, eller kan du ikke huske hovedadgangskoden efter at have skifteet den, kan du prøve den senest åbnede filversion ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.</string>
   <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
     Her er nogle tip, der kan hjælpe med at diagnosticere problemet:\n
     
