@@ -25,14 +25,14 @@
   <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
   <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app">關閉按鈕</string>
-  <string name="show_kill_app_summary">在密碼螢幕中顯示中止應用程式進程的按鈕 (為偏執的使用者而設)</string>
+  <string name="show_kill_app_summary">在密碼螢幕中顯示中止應用程式進程的按鈕 (供偏執的用戶使用)</string>
   <string name="application">應用程式</string>
   <string name="application_settings">應用程式設置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜尋結果中顯示群組名稱</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中顯示條目標題下面的群組名稱。如果幾個條目具有相同的名稱有幫助。</string>
   <string name="NavigationToGroupCompleted_message">顯示群組現在是: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">已禁用自動填入的對象</string>
-  <string name="AutofillDisabledQueriesPreference_summary">顯示自動填入已被禁用的應用程式及網站清單</string>
+  <string name="AutofillDisabledQueriesPreference_summary">顯示已禁用自動填入的應用程式及網站清單</string>
   <string name="OfferSaveCredentials_summary">啟用後，若在可自動填入欄位手動輸入資料，Android 將會詢問是否保存憑證。</string>
   <string name="OfferSaveCredentials_title">提示保存憑證</string>
   <string name="ShowGroupInEntry_title">在項目視圖中顯示群組名稱</string>
