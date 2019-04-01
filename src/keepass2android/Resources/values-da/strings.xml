@@ -467,6 +467,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
+  <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Den vil kun anmode om at tilgå mappen Apps/Keepass2Android. Dette er især egnet til oprettelse af en ny database. Har du allerede en database, så tryk på denne valgmulighed for at oprette mappen, dernæst placere din fil inde i mappen (fra din PC) og så vælge denne muilghed igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
