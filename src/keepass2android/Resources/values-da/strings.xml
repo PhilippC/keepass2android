@@ -768,8 +768,8 @@
     <item>Stor</item>
   </string-array>
   <string-array name="design_options">
-    <item>Lyst</item>
-    <item>Mørkt</item>
+    <item>Lys</item>
+    <item>Mørk</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
@@ -801,22 +801,22 @@
     <item>Advar, når godkendelse fejler</item>
     <item>Acceptér ikke ugyldige certifikater</item>
   </string-array>
-  <string name="ClearClipboardWarning">Tjek, at dette fungerer på dit system og overvej at benytte det indbyggede tastatur, hvis det ikke er tilfældet.</string>
+  <string name="ClearClipboardWarning">Tjek, at dette fungerer på dit system, og hvis ikke, så overvej brug af det indbyggede tastatur.</string>
   <string name="PluginDescription">Beskrvelse givet af plugin\'et:</string>
-  <string name="autofill_hint">Keepass2Android understøtter Androids Autoudfyld-funktion, men det ser ud til, at du ikke har aktiveret den endnu.</string>
+  <string name="autofill_hint">Keepass2Android understøtter Android-funktionen Autoudfyld, der dog ikke ser ud til at være aktiveret endnu.</string>
   <string name="autofill_enable">Aktivér Autoudfyld</string>
-  <string name="autofill_enable_failed">Beklager, din enhed synes ikke at understøtter åbning af indstillingerne inde fra app\'en. Gå manuelt til systemindstillingerne, så Autoudfyld kan aktivere tjenesten.</string>
+  <string name="autofill_enable_failed">Beklager, din enhed synes ikke at understøtter åbning af indstillingerne inde fra app\'en. Gå til systemindstillingerne for manuelt at aktivere Autoudfyld-tjenesten.</string>
   <string name="show_autofill_help">Vis Aotoudfyld-hjælp</string>
   <string name="autofill_sign_in_prompt">Udfyld med Keepass2Android</string>
   <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
   <string name="autofill_enable_for">Aktivér Auto-udfyld for %1$s</string>
   <string name="invalid_link_association">Kunne ikke tilknytte webdomæne %1$s med app\'en %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android har registreret fingeraftryk-hardware. Aktivér fingeraftryksoplåsning for denne database?</string>
-  <string name="understand">Jeg forstår</string>
+  <string name="understand">Forstået</string>
   <string name="dont_show_again">Vis ikke igen</string>
   <string name="masterkey_infotext_head">Kan du huske din hovedadgangskode?</string>
-  <string name="masterkey_infotext_main">Bemærk, at du ikke vil kunne åbne din database uden hovednøglen. Der er ingen måde, hvormed hovedadgangskoden kan \"nulstilles\".</string>
-  <string name="masterkey_infotext_fingerprint_note">Bemærk ligeledes, at fingeraftryksoplåsning virker ved at gemme din hovednøgle i Android\'s sikre lager. Denne opbevaring kan til enhver tid slettes af Android, f.eks. hvis du tilføjer et nyt fingeraftryk via systemindstillingerne. Så stol ikke på dit fingeraftryk, men husk din hovedadgangskode!</string>
+  <string name="masterkey_infotext_main">Bemærk, at du ikke vil kunne åbne din database uden hovednøglen. Der er ingen måde, hvorpå hovedadgangskoden kan \"nulstilles\".</string>
+  <string name="masterkey_infotext_fingerprint_note">Bemærk også, at fingeraftryksoplåsning fungerer ved at gemme din hovednøgle i Androids sikre lager. Lageret kan til enhver tid slettes af Android f.eks. ved tilføjelse af et nyt fingeraftryk via systemindstillingerne. Stol derfor ikke kun på dit fingeraftryk, husk også din hovedadgangskode!</string>
   <string name="backup_infotext_head">Er din database sikkerhedskopieret?</string>
   <string name="backup_infotext_main">Keepass2Android lagrer dine adgangskoder i en fil på en placering efter eget valg. Er du sikker på, at du stadig kan tilgå denne fil, hvis din mobil går tabt eller stjæles, eller filen ødelægges eller slettes? Sørg altid for at opbevare en opdateret sikkerhedskopi på et sikkert sted!</string>
   <string name="backup_infotext_note">For at oprette en sikkerhedskopi nu, så gå til %1$s &gt; %2$s &gt; %3$s.</string>
