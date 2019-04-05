@@ -21,6 +21,8 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">App-paus</string>
+  <string name="app_timeout_summary">Tid innan databasen låses när programmet är inaktivt.</string>
   <string name="show_kill_app">Stängknapp</string>
   <string name="application">App</string>
   <string name="application_settings">Appinställningar</string>
@@ -127,6 +129,7 @@
   <string name="error_rounds_not_number">Antalet rundor måste vara en siffra.</string>
   <string name="error_param_not_number">Parametern måste vara ett tal.</string>
   <string name="error_title_required">Titel krävs.</string>
+  <string name="error_wrong_length">Ange ett positivt heltal i längdfältet</string>
   <string name="FileNotFound">Hittar inte filen.</string>
   <string name="file_browser">Filbläddrare</string>
   <string name="generate_password">Generera lösenord</string>
@@ -231,6 +234,7 @@
   <string name="twofish">Twofish</string>
   <string name="underline">Understreck</string>
   <string name="unsupported_db_version">Databasversionen stöds ej.</string>
+  <string name="uppercase">Versaler</string>
   <string name="warning_read_only">Ditt sd-kort är för närvarande skrivskyddat. Du kan inte spara ändringar till databasen.</string>
   <string name="warning_unmounted">Ditt sd-kort är för närvarande inte monterat i din enhet. Du kommer inte att kunna läsa in eller skapa databas.</string>
   <string name="version_label">Version</string>
