@@ -483,7 +483,7 @@
   <string name="help_master_password">您的数据库是使用您在此处输入的密码进行加密的。为了保证数据库的安全请选择强密码 ！建议：同时使用大小写英文字母、数字及特殊字符。</string>
   <string name="hint_master_password">请选择一个主密码来保护您的数据库：</string>
   <string name="key_file">密钥文件</string>
-  <string name="help_key_file">密钥文件简单来说就是保存成文件的密码。密钥文件通常比密码复杂和可靠得多，但是也更难将其隐藏。如果您将数据库保存在云端，千万不要把密钥文件也放上去！这样做会使密钥文件变得毫无意义！重要提示：创建数据库后，不要对密钥文件做出修改。</string>
+  <string name="help_key_file">密钥文件，简单来说，就是保存为文件的密码。密钥文件通常比密码复杂和可靠得多，但是也更加难以隐藏。如果您将数据库保存在云端，千万不要把密钥文件也放上去！这样做会使密钥文件变得毫无意义！重要提示：创建数据库后，不要修改密钥文件。</string>
   <string name="hint_key_file">勾选以在使用主密码之余额外使用一个密钥文件：</string>
   <string name="use_key_file">使用密钥文件</string>
   <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
@@ -591,14 +591,14 @@
   <string name="HintLocalBackupInvalidCompositeKey">\n
    &#8226; 提示：如果你认为数据库已损坏，或你在更改主密钥后把它忘了，你可以点击“%1$s”并选择本地备份以尝试最后一次成功打开的文件版本。</string>
   <string name="HintLocalBackupOtherError">    \n
-    &#8226; 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
+    &#8226; 提示：Keepass2Android 已将最后一次成功打开版本作为备份保存到了内部存储之中。点击“%1$s”并选择本地备份以打开它。
   </string>
   <string name="CorruptDatabaseHelp">文件已损坏。\n
     以下是诊断问题的一些提示：\n
     
-    &#8226; 如果使用USB（MTP模式）传输文件，请使用诸如MyPhoneExplorer的工具再试一次。MTP在特定情况下会截断文件。\n
-    &#8226; 如果你打开的是PC上的同一个文件，那么文件可能真的损坏了。请使用数据库备份。如果你认为是Keepass2Android损坏了文件，请联系技术支持。\n
-    &#8226;如果你可以在PC上打开这个文件，请联系技术支持。你也可以尝试在PC上使用不同参数（如不压缩）另存一份文件，再尝试在Keepass2Android上打开。
+    &#8226; 如果使用 USB（MTP模式）传输文件，请使用诸如 MyPhoneExplorer 的工具再试一次。MTP 在特定情况下会截断文件。\n
+    &#8226; 如果你确定你打开的是与 PC 上相同的文件，那么这个文件可能真的损坏了。请使用数据库备份。如果你认为是 Keepass2Android 损坏了文件，请联系技术支持。\n
+    &#8226; 如果你可以在 PC 上打开这个文件，请联系技术支持。你也可以尝试在 PC 上使用不同参数（如不压缩）另存一份文件，再尝试在 Keepass2Android 上打开。
 
   </string>
   <string name="open_other_db">打开另一个数据库...</string>
