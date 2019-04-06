@@ -606,7 +606,7 @@
   <string name="configure_child_dbs">配置子数据库...</string>
   <string name="child_dbs_title">子数据库</string>
   <string name="unspecified">未指定</string>
-  <string name="child_db_explanation">子数据库是其他数据库，可以在打开父数据库时自动打开。 因此，孩子的主密码和文件位置存储在父母中。 此功能允许与其他人共享您的一些密码。 该实现与用于PC的KeeAutoExec兼容。</string>
+  <string name="child_db_explanation">子数据库是可以在打开父数据库时自动打开的其他数据库。 因此，子数据库的主密码和文件位置存储在父数据库中。 此功能允许与其他人共享您的一些密码。 该实现与 PC 端的 KeeAutoExec 兼容。</string>
   <string name="child_db_enabled_on_this_device">在此设备上启用</string>
   <string name="child_db_enable_on_this_device">在此设备上启用</string>
   <string name="child_db_disable_on_this_device">在此设备上禁用</string>
@@ -939,8 +939,8 @@ Initial public release
   <string name="autofill_enable_failed">抱歉，你的设备貌似不支持直接在应用内唤出系统设置。请亲自前往系统设置，启动自动填充服务。</string>
   <string name="show_autofill_help">显示自动填充帮助</string>
   <string name="autofill_sign_in_prompt">使用 Keepass2Android 填充</string>
-  <string name="autofill_disable">对%1$s禁用自动填充</string>
-  <string name="autofill_enable_for">对%1$s启用自动填充</string>
+  <string name="autofill_disable">对 %1$s 禁用自动填充</string>
+  <string name="autofill_enable_for">对 %1$s 启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>
