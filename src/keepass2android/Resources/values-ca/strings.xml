@@ -96,6 +96,7 @@
   <string name="fingerprint_reenable">Si us plau, torneu a activar Desblocatge amb empremta per la nova contrasenya mestra.</string>
   <string name="fingerprint_reenable2">Si us plau, desbloqueja amb la contrasenya i llavors re activa el desblocatge amb empremta en la configuració de base de dades.</string>
   <string name="FingerprintInitFailed">No s\'ha pogut inicialitzar el sensor d\'empremta digital. </string>
+  <string name="FingerprintSetupFailed">Error al xifrar dades. Això pot passar si afegiu o suprimiu empremtes dactilars a la configuració del sistema mentre Keepass2Android està esperant l\'empremta digital.</string>
   <string name="enable_fingerprint_unlock_Info">Això emmagatzemarà la contrasenya mestra d\'aquest 
     dispositiu, xifrat amb el magatzem de claus d\'Android i 
     protegit utilitzant l\'autenticació d\'empremta dactilar. Permet desblocar la seva base de dades només amb l\'empremta dactilar.
@@ -121,6 +122,7 @@
   <string name="entry_user_name">Usuari</string>
   <string name="entry_extra_strings">Camps de cadena addicionals</string>
   <string name="entry_binaries">Arxius adjunts</string>
+  <string name="error_can_not_handle_uri">Keepass2Android no pot manegar aquesta URI.</string>
   <string name="error_could_not_create_group">Error creant grup.</string>
   <string name="error_could_not_create_parent">No s\'ha pogut crear el directori pare.</string>
   <string name="error_database_exists">Aquest arxiu ja existeix.</string>
@@ -137,6 +139,7 @@
   <string name="error_rounds_not_number">Les passades han de ser un número.</string>
   <string name="error_param_not_number">El paràmetre ha de ser un nombre.</string>
   <string name="error_title_required">És necessari un títol.</string>
+  <string name="error_wrong_length">Introdueix un enter positiu al camp longitud</string>
   <string name="FileNotFound">Arxiu no trobat.</string>
   <string name="file_browser">Explorador d\'arxius</string>
   <string name="generate_password">Generar contrasenya</string>
@@ -151,6 +154,7 @@
   <string name="hint_login_pass">Contrasenya</string>
   <string name="hint_title">nom</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">substituir URL</string>
   <string name="hint_tags">etiqueta1, etiqueta2</string>
   <string name="hint_username">usuari</string>
   <string name="InvalidPassword">Contrasenya o arxiu clau invàlids.</string>
@@ -197,6 +201,7 @@
   <string name="no">No</string>
   <string name="no_keys">Sense entrades a la base de dades o grup.</string>
   <string name="no_results">Cap resultat de cerca</string>
+  <string name="no_url_handler">Sense gestor per aquesta url.</string>
   <string name="open_recent">Obre base de dades recent (clica per obrir)</string>
   <string name="omitbackup_title">No cerquis entrades a còpia de seguretat ni paperera</string>
   <string name="omitbackup_summary">Omet els grups \'Còpia de seguretat\' i paperera dels resultats de cerca</string>
@@ -241,7 +246,9 @@
   <string name="select_group_then_add">Obrir el grup desitjat i prémer \"%1$s\"!</string>
   <string name="insert_element_here">Inserir aquí</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Subratllat</string>
   <string name="unsupported_db_version">Versió de la base de dades no suportada.</string>
+  <string name="uppercase">Majúscules</string>
   <string name="warning_read_only">La teva tarja SD és de només lectura. No podràs guardar canvis a la teva base de dades.</string>
   <string name="warning_unmounted">La teva tarja SD no està muntada al teu dispositiu. No podràs carregar ni guardar una base de dades.</string>
   <string name="version_label">Versió</string>
@@ -255,6 +262,7 @@
   <string name="please_note">Tingueu en compte</string>
   <string name="contributors">Contribuïdors</string>
   <string name="regular_expression">Expressió regular</string>
+  <string name="TanExpiresOnUse_title">TAN expira en ús</string>
   <string name="TanExpiresOnUse_summary">Marca entrades TAN caducades quan siguin utilitzades</string>
   <string name="ShowUsernameInList_title">Mostra nom d\'usuari en llista</string>
   <string name="ShowUsernameInList_summary">Mostrar noms d\'usuari sota títols d\'entrada. Útil per a comptes múltiples o TANs.</string>
@@ -325,6 +333,7 @@
   <string name="ActivateSearchViewOnStart_summary">Activa el camp de cerca a la visualització de grup després de desbloquejar o en buscar una entrada</string>
   <string name="NoDonateOption_title">Amagar l\'opció de donació</string>
   <string name="NoDonateOption_summary">Aquesta configuració és pels donants. Està disponible després d\'utilitzar Keepass2Android durant un temps només.</string>
+  <string name="NoDonateOption_question">Sense les donacions, aquest app no existiria ni milloraria contínuament! Si encara no ha donat, si us plau consideri fer-ho ara</string>
   <string name="NoDonationReminder_title">No demanar mai donació</string>
   <string name="NoDonationReminder_summary">Jo no li donaria un cèntim o ja he fet donació. No demanar donació, ni tan sols a l\'aniversari de l\'autor.</string>
   <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
