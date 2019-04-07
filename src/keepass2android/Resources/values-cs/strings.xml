@@ -31,6 +31,7 @@
   <string name="ShowGroupnameInSearchResult_title">Zobrazit název skupiny ve výsledku hledání</string>
   <string name="ShowGroupnameInSearchResult_resume">Zobrazovat jméno skupiny pod titulkem záznamu ve výsledcích hledání. Užitečné, máte-li několik záznamů stejného jména.</string>
   <string name="NavigationToGroupCompleted_message">Zobrazení jména kategorií je nyní: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Zakázat Automatické doplnění pro cíle</string>
   <string name="ShowGroupInEntry_title">Zobrazit jméno skupiny v detailu záznamu</string>
   <string name="unknown_uri_scheme">Keepass2Android nemůže zpracovat adresu URI %1$s. Obraťte se na vývojáře!</string>
   <string name="Entry_singular">Jedna položka</string>
