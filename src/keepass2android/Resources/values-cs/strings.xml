@@ -438,6 +438,7 @@
   <string name="otp_aux_file">Pomocný OTP soubor</string>
   <string name="ErrorOcurred">Došlo k chybě:</string>
   <string name="DuplicateUuidsError">Databáze je poškozena: duplicitní ID nalezeny. (Provedli jste uložení pomocí Minikeepass?) Importujte databázi do nového souboru pomocí  Keepass 2 na PC a zvolte možnost \'Vytvořit nové ID\' \".</string>
+  <string name="DuplicateUuidsErrorAdditional">Tuto chybovou zprávu můžete vypnout v Nastavení/Aplikace/Zpracování souborů/Kontrolovat duplikátní UUID. Toto ovšem může způsobovat neočekávané chování aplikace. Nejlepší bude provést opravu databáze.</string>
   <string name="synchronize_database_menu">Synchronizovat databázi…</string>
   <string name="CannotMoveGroupHere">Skupinu nelze přesunout do této skupiny.</string>
   <string name="donate_question">Dnes je Oktoberfest! Pokud se vám líbí Keepass2Android, nebyl by dnes dobrý den koupit mi pivo?</string>
@@ -469,6 +470,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
+  <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -484,6 +486,7 @@
   <string name="help_master_password">Databáze bude zašifrována heslem, které zde nastavíte. Pro zabezpečení databáze zvolte silné heslo! Tip: Vytvořte jednu nebo dvě věty a použijte první písmena jednotlivých slov jako heslo. Využívejte interpunkční znaménka.</string>
   <string name="hint_master_password">Nastavte hlavní heslo pro ochranu databáze:</string>
   <string name="key_file">Klíčový soubor</string>
+  <string name="help_key_file">Klíčový soubor je v podstatě heslo uložené v souboru. Klíčové soubory jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet klíčový soubor v tajnosti. Je-li vaše databáze umístěna na vzdáleném úložišti, neukládejte klíčový soubor do stejného místa! Tím by bylo zašifrování souboru zcela zbytečné. Důležité upozornění: Po vytvoření databáze již nelze změnit obsah klíčového souboru!</string>
   <string name="hint_key_file">Zvolte, pokud chcete použít klíčový soubor spolu s hlavním heslem:</string>
   <string name="use_key_file">Použít klíčový soubor</string>
   <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
@@ -535,6 +538,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuální vstupní data</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Zásuvný modul bude přijímat všechna data o aktuálním záznamu databáze, bude moci nabízet akce a upravovat jejich zobrazení.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Dotaz na vlastní pověření</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Zásuvnému modulu bude umožněno dotazovat pověření spojené s balíčkem jeho vlastní aplikace.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Dotaz pověření</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">Zásuvnému modulu bude dovoleno dotazovat se na pověření pro webové stránky nebo aplikace.</string>
   <string name="get_regular_version">Získat více typů úložišť</string>
@@ -587,6 +591,11 @@
     • Ujistěte se, že jste zadali správné heslo. Použitím ikonky s okem odkryjete vložené heslo.\n
    • Ujistěte se, že jste použili správný typ hesla. Ujistěte se, že tento typ odpovídá typu použitému při vytváření databáze.\n
    • Ujistěte se, že jste použili správný databázový soubor.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Nápověda: Pokud si myslíte že by databáze mohla být porušena, nebo si nepamatujete hlavní klíč, můžete zkusit poslední úspěšně otevřenou verzi kliknutím \"%1$s\" a zvolením místní zálohy.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Nápověda: Keepass2Android uložil poslední úspěšně otevřenou verzi souboru v místní paměti. Můžete jí otevřít zmáčknutím \"%1$s\" a výběrem místní zálohy.
+  </string>
   <string name="CorruptDatabaseHelp">    Soubor je poškozený. \n
     Zde je několik rad, které vám mohou pomoci zjistit příčinu problému:\n
     
@@ -600,6 +609,7 @@
   <string name="configure_child_dbs">Konfigurace dceřiné databáze…</string>
   <string name="child_dbs_title">Dceřiná databáze</string>
   <string name="unspecified">nespecifikováno</string>
+  <string name="child_db_explanation">Podřízené databáze jsou dalšími databázemi, které můžete otevřít automaticky při otevření hlavní databáze. Z tohoto důvodu jsou hesla a cesty k podřízeným databázím uloženy v hlavní databázi. Tato funkce umožňuje sdílení volitelných hesel s jinými osobami. Tato implementace je kompatibilní s KeeAutoExec na PC.</string>
   <string name="child_db_enabled_on_this_device">Povoleno na tomto zařízení</string>
   <string name="child_db_enable_on_this_device">Povolit na tomto zařízení</string>
   <string name="child_db_disable_on_this_device">Zakázat na tomto zařízení</string>
