@@ -32,6 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
   <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Wyłącz autouzupełnianie</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Pokazuje listę aplikacji i stron internetowych dla których autouzupełnianie zostało wyłączone</string>
+  <string name="OfferSaveCredentials_summary">Jeśli włączone, Android zapyta czy chcesz zapisać dane po ręcznym wpisaniu ich w pola z możliwością autouzupełnienia.</string>
+  <string name="OfferSaveCredentials_title">Zaoferuj zapisywanie danych logowania</string>
   <string name="ShowGroupInEntry_title">Pokaż nazwę grupy w widoku wpisów</string>
   <string name="unknown_uri_scheme">Przepraszam! Keepass2Android nie może obsłużyć tego URI %1$s. Prosimy o kontakt z autorem!</string>
   <string name="Entry_singular">Jeden wpis</string>
@@ -93,6 +96,7 @@
   <string name="fingerprint_reenable">Proszę ponownie aktywować odblokowywanie przy pomocy odcisku palca dla nowego hasła głównego.</string>
   <string name="fingerprint_reenable2">Proszę odblokować używając twojego hasła, następnie restart Skanera Odcisków pałcow w bazie ustawień.</string>
   <string name="FingerprintInitFailed">Nie udało się zainicować czytnika linii papilarnych. </string>
+  <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
   <string name="enable_fingerprint_unlock_Info">To zachowa twoje hasła główne na tym urządzeniu.
     zaszyfrowane przy pomocy zestawu kluczy Androida i chronione
     używając autoryzacji odciskiem palca. Umożliwia odblokowywanie twojej bazy danych tylko przy pomocy odcisku palca.  </string>
