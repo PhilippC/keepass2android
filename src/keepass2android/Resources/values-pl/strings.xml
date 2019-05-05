@@ -31,7 +31,7 @@
   <string name="ShowGroupnameInSearchResult_title">Wyświetl nazwę grupy w wynikach wyszukiwania</string>
   <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
   <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Wyłącz autouzupełnianie</string>
+  <string name="AutofillDisabledQueriesPreference_title">Wyłączone cele autouzupełniania</string>
   <string name="AutofillDisabledQueriesPreference_summary">Pokazuje listę aplikacji i stron internetowych dla których autouzupełnianie zostało wyłączone</string>
   <string name="OfferSaveCredentials_summary">Jeśli włączone, Android zapyta czy chcesz zapisać dane po ręcznym wpisaniu ich w pola z możliwością autouzupełnienia.</string>
   <string name="OfferSaveCredentials_title">Zaoferuj zapisywanie danych logowania</string>
@@ -121,6 +121,7 @@
   <string name="entry_user_name">Nazwa użytkownika</string>
   <string name="entry_extra_strings">Dodatkowe pola</string>
   <string name="entry_binaries">Załączniki</string>
+  <string name="error_can_not_handle_uri">Keepass2Android nie obsługuje tego URI.</string>
   <string name="error_could_not_create_group">Błąd podczas tworzenia grupy.</string>
   <string name="error_could_not_create_parent">Nie można utworzyć folderu nadrzędnego.</string>
   <string name="error_database_exists">Taki plik już istnieje.</string>
@@ -137,6 +138,7 @@
   <string name="error_rounds_not_number">Wartość musi być liczbą.</string>
   <string name="error_param_not_number">Parametr portu musi być liczbą.</string>
   <string name="error_title_required">Wymagany tytuł.</string>
+  <string name="error_wrong_length">Wprowadź dodatnią liczbę całkowitą w polu długość</string>
   <string name="FileNotFound">Plik nie istnieje.</string>
   <string name="file_browser">Przeglądarka plików</string>
   <string name="generate_password">Generuj hasło</string>
@@ -330,6 +332,7 @@
   <string name="ActivateSearchViewOnStart_summary">Aktywuje pole wyszukiwania w widoku grupy po odblokowaniu lub w trakcie przeglądania wpisu</string>
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
   <string name="NoDonateOption_summary">Ta opcja jest dla ludzi którzy złożyli dotację.</string>
+  <string name="NoDonateOption_question">Bez darowizn ta aplikacja by nie istniała i nie byłaby stałe ulepszana. Jeśli jeszcze nie złożyłeś darowizny, proszę pomyśl nad tym</string>
   <string name="NoDonationReminder_title">Nigdy nie proś o darowiznę</string>
   <string name="NoDonationReminder_summary">Nie chcę dać Ci kasy albo już to zrobiłem. Nie pytaj o darowiznę, nawet na urodziny autora.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
@@ -606,6 +609,7 @@
   <string name="configure_child_dbs">Skonfiguruj podrzędną bazę danych…</string>
   <string name="child_dbs_title">Podrzędna baza danych</string>
   <string name="unspecified">nieokreślony</string>
+  <string name="child_db_explanation">Podrzędne bazy danych to bazy danych które mogą być otwarte automatycznie, kiedy nadrzędna baza danych zostaje otwarta. Z tego powodu hasło i lokacja bazy podrzędnej są składowane w bazie nadrzędnej. Ta funkcja pozwala dzielić się niektórymi swoimi hasłami z innymi osobami. Ta implementacja jest kompatybilna z KeeAutoExec dla komputerów stacjonarnych.</string>
   <string name="child_db_enabled_on_this_device">Włączone na tym urządzeniu</string>
   <string name="child_db_enable_on_this_device">Włącz na tym urządzeniu</string>
   <string name="child_db_disable_on_this_device">Wyłącz na tym urządzeniu</string>
