@@ -32,9 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Показувати назву групи під заголовками записів у результатах пошуку. Корисно, якщо декілька записів мають однакові назви.</string>
   <string name="NavigationToGroupCompleted_message">Відображення групи зараз: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Вимкнено цілі автозаповнення</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Переглядає список додатків і веб-сайти, для яких було вимкнуто автозаповнення</string>
-  <string name="OfferSaveCredentials_summary">Якщо цей параметр увімкнено, Android запитає, чи потрібно зберігати облікові дані після того, як дані були введені вручну в поля для автоматичного заповнення.</string>
-  <string name="OfferSaveCredentials_title">Пропозиція збереження облікових даних</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Перегляд списку додатків і веб-сайтів, для яких було вимкнуто автозаповнення</string>
+  <string name="OfferSaveCredentials_summary">Якщо увімкнено, Android запитуватиме, чи потрібно зберігати облікові дані після їх ручного введення в поля для автозаповнення.</string>
+  <string name="OfferSaveCredentials_title">Пропонувати зберігати облікові дані</string>
   <string name="ShowGroupInEntry_title">Назва групи при перегляді запису</string>
   <string name="unknown_uri_scheme">Вибачте! Keepass2Android не може обробити повернутий URI %1$s. Зв\'яжіться з розробником!</string>
   <string name="Entry_singular">Один запис</string>
@@ -96,7 +96,7 @@
   <string name="fingerprint_reenable">Будь ласка, повторно увімкніть розблокування за відбитком пальця для нового головного пароля.</string>
   <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте розблокування відбитком пальця в налаштуваннях бази даних.</string>
   <string name="FingerprintInitFailed">Не вдалося ініціалізувати датчик відбитків пальців. </string>
-  <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це може статися, якщо ви додаєте або видаляєте відбитки пальців у системних настройках, тоді як Keepass2Android переглядає ваш відбиток пальця.</string>
+  <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
   <string name="enable_fingerprint_unlock_Info">    Це збереже ваш головний пароль на цьому пристрої,
     зашифрованому за допомогою Android Keystore і захищеному
     з використанням перевірки за відбитком пальця. Дозволяє розблоковувати базу паролів лише за вашим відбитком пальця.
@@ -122,7 +122,7 @@
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
   <string name="entry_binaries">Вкладені файли</string>
-  <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю адресу (URL).</string>
+  <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю URL-адресу.</string>
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити теку верхнього рівня.</string>
   <string name="error_database_exists">Цей файл вже існує.</string>
