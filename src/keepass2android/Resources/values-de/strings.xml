@@ -923,7 +923,7 @@ Erstes öffentliches Release</string>
     <item>Warnen, wenn die Validierung fehlschlägt</item>
     <item>Ungültige Zertifikate nicht akzeptieren</item>
   </string-array>
-  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die standard Tastatur.</string>
+  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die Standard-Tastatur.</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
   <string name="autofill_hint">Keepass2Android unterstützt das Autofill-Feature von Android, aber du hast es anscheinend noch nicht aktiviert.</string>
   <string name="autofill_enable">Autofill aktivieren</string>
