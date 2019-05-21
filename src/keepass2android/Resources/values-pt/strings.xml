@@ -97,9 +97,10 @@
   <string name="fingerprint_reenable2">Por favor desbloqueie com sua senha e reative o desbloqueio por impressão digital nas configurações da base de dados.</string>
   <string name="FingerprintInitFailed">Falha ao inicializar o sensor de impressão digital. </string>
   <string name="FingerprintSetupFailed">Falha ao criptografar os dados. Isso pode acontecer caso adicione ou remova impressões digitais nas configurações de sistema, enquanto o Keepass2Android está monitorando suas impressões digitais.</string>
-  <string name="enable_fingerprint_unlock_Info">    Isto armazenará a sua senha mestre neste dispositivo, criptografada com a Armazenagem
+  <string name="enable_fingerprint_unlock_Info">"
+    Isto armazenará a sua senha mestre neste dispositivo, criptografada com a Armazenagem
     de Chaves do Android e protegida usando a autenticação com impressão digital. Permite desblo-
-    quear a sua base de dados somente com a sua impressão digital.  </string>
+    quear a sua base de dados somente com a sua impressão digital.  "</string>
   <string name="enable_fingerprint_quickunlock_Info">Permite usar a autenticação de impressão digital em vez do código de Desbloqueio Rápido. Não exige armazenar qualquer informação relacionada com a sua senha mestre.</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
@@ -585,23 +586,27 @@
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">A URI digitada não parece ser um nome de arquivo. Tem certeza que este é um arquivo válido?</string>
   <string name="FirstInvalidCompositeKeyError">Chave composta inválida! Por favor, tente novamente.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Chave composta inválida! Por favor, tente as etapas a seguir para desbloquear o seu banco de dados:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">"Chave composta inválida! Por favor, tente as etapas a seguir para desbloquear o seu banco de dados:\n
   
     &#8226; Certifique-se que você digitou a senha correta. Uso o ícone de olho para revelar a senha inserida.\n
    &#8226; Certifique-se de selecionou o tipo de senha correta. Certifique-se que este corresponde o tipo usado ao criar o banco de dados.\n
-  &#8226; Certifique-se de ter selecionado o arquivo de banco de dados correto.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-    &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, tocando em \"%1$s\" e selecionando a cópia de segurança local.</string>
-  <string name="HintLocalBackupOtherError">    \n
-     &#8226; Keepass2Android guardou a última versão do arquivo aberto com sucesso na memória interna. Você pode abri-lo tocando em \"%1$s\" e selecionado a cópia de segurança local.  </string>
-  <string name="CorruptDatabaseHelp">    Arquivo está corrompido.\n
+  &#8226; Certifique-se de ter selecionado o arquivo de banco de dados correto.
+"</string>
+  <string name="HintLocalBackupInvalidCompositeKey">"
+    \n
+    &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, tocando em \"%1$s\" e selecionando a cópia de segurança local."</string>
+  <string name="HintLocalBackupOtherError">"
+    \n
+     &#8226; Keepass2Android guardou a última versão do arquivo aberto com sucesso na memória interna. Você pode abri-lo tocando em \"%1$s\" e selecionado a cópia de segurança local.  "</string>
+  <string name="CorruptDatabaseHelp">"
+    Arquivo está corrompido.\n
     Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
     
     &#8226; Se você copiou o arquivo pelo USB (modo MTP), por favor tente novamente com ferramentas como o MyPhoneExplorer. MTP trunca arquivos em alguns casos.\n
     &#8226; Se você não pode abrir o arquivo no mesmo local em seu PC, é muito provável que o arquivo está corrompido. Por favor use um backup de banco de dados. Se você suspeitar que o Keepass2Android tenha corrompido o arquivo, por favor contate o suporte.\n
     &#8226; Se você ainda pode abrir o arquivo no seu PC, por favor, contate o suporte. Você pode tentar salvá-lo com configurações diferentes (por exemplo, descompactadas) no PC e tentar abrir novamente em Keepass2Android.
 
-  </string>
+  "</string>
   <string name="open_other_db">Abrir outro banco de senhas…</string>
   <string name="select_database">Selecionar banco de dados</string>
   <string name="configure_child_dbs">Configurar bancos de dados filhos…</string>
@@ -626,7 +631,8 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
-  <string name="ChangeLog_1_07">    Versão 1.07\n
+  <string name="ChangeLog_1_07">"
+    Versão 1.07\n
     * Correções de falhas no Android 9 para Samsung\n
     * Permite abrir mais de um banco de dados, compatível com KeeAutoExec\n
     * SFTP: Permite autenticação de chave pública, verifique se a chave do host foi alterada\n
@@ -637,15 +643,17 @@
     * SSL: Confia em certificados de usuários\n
     * Melhorias no preenchimento automático (agora funciona com Firefox, permite a reduzir popups)\n
     * Correções de erros\n
-  </string>
-  <string name="ChangeLog_1_06">    Versão 1.06\n
+  "</string>
+  <string name="ChangeLog_1_06">"
+    Versão 1.06\n
     * Alternar para ykDroid em vez de YubiChallenge como app para Desafio-Resposta Yubikey.\n
     * Implementar suporte para Desafio-resposta estilo KeepassXC. Nota: O formato de banco de dados deve ser KDBX4! \n
     * Recusa a carregar arquivos da lixeira do Google Drive\n
     * Alternar implementação TLS para FTPS, adicionar solução para bug de JSch com servidores de suportando gssapi-with-mic\n
     * correção de bugs\n
-  </string>
-  <string name="ChangeLog_1_05">Versão 1.05\n
+  "</string>
+  <string name="ChangeLog_1_05">"
+Versão 1.05\n
 * Usa o canal de notificações para o Android 8, permitindo configuração através das configurações do sistema\n
 * Mostra o ícone nas notificações\n
 * Uso de ícones adaptativos para Android 8, usa ícone redondo no launcher para Android 7\n
@@ -658,20 +666,24 @@
 * Adicionado suporte para mode de senha estática do YubiKey Neo\n
 * Permite desligar a sugestão de Auto preenchimento\n
 * Corrigido o vazamento de dados para o logcat\n
-* Correção de bugs\n  </string>
-  <string name="ChangeLog_1_04b">Versão 1.04b\n
-* Evita a falha da aplicação quando o usuário tenta ativar o auto preenchimento em equipamentos Huawei.\n  </string>
-  <string name="ChangeLog_1_04">Versão 1.04\n
+* Correção de bugs\n  "</string>
+  <string name="ChangeLog_1_04b">"
+Versão 1.04b\n
+* Evita a falha da aplicação quando o usuário tenta ativar o auto preenchimento em equipamentos Huawei.\n  "</string>
+  <string name="ChangeLog_1_04">"
+Versão 1.04\n
     * Adicionado serviço de auto preenchimento para android 8.0 e posterior.\n
-    * Atualizadas bibliotecas, ferramentas de construção e versão de SDK.\n  </string>
-  <string name="ChangeLog_1_03">    Versão 1.03\n
+    * Atualizadas bibliotecas, ferramentas de construção e versão de SDK.\n  "</string>
+  <string name="ChangeLog_1_03">"
+    Versão 1.03\n
     * Remoção do Serviço de Acessibilidade para Preenchimento Automático conforme requisitado pelo Google. Favor consultar as Configuraçãoes de acesso à senha para encontrar um plugin que replica a funcionalidade anterior\n
     * Adição de Apps de terceiros como opção de armazenamento novamente\n
     * Visualizador de imagens integrado para visualização de imagens anexadas sem transferí-las para outros Apps\n
     * Atualização da biblioteca OkHttp para correção de problemas com algumas conexões\n
     * Suporte para entradas KeeTrayTOTP, agora com suporte a entradas Steam\n
-  </string>
-  <string name="ChangeLog_1_02">Versão 1.02\n
+  "</string>
+  <string name="ChangeLog_1_02">"
+Versão 1.02\n
   * Diversas melhorias de segurança. Muito obrigado pelo informe de segurança de jean-baptiste.cayrou@thalesgroup.com e  vincent.fargues@thalesgroup.com e sua colaboração!\n
   * Suporte ao Plugin KeyboardSwap (veja as opções de acesso à senha): permite trocar o teclado automaticamente em dispositivos sem root. Obrigado a Mishaal Rahman do XDA-Developers por tornar isso possível.\n
   * Correção para o Serviço de Acessibilidade com versões recentes do Chrome\n
@@ -680,20 +692,24 @@
   * Atualização do SDK Dropbox para garantir compatibilidate futura\n
   * Remoção de relatório de erro através de Xamarin Insights\n
   * Atualização de ferramentas de build\n
-  </string>
-  <string name="ChangeLog_1_01g">Versão 1.01-g\n
+  "</string>
+  <string name="ChangeLog_1_01g">"
+Versão 1.01-g\n
 * Correção do crash ao tentar funcionar offline\n
 * Correção da codificação incorreta de credenciais FPT(S)\n
 * Correção de crashes ao usar OneDrive em versões antigas de Android\n
-* Exibição de horas no formato local na tela de registro\n  </string>
-  <string name="ChangeLog_1_01d">Versão 1.01-d\n
+* Exibição de horas no formato local na tela de registro\n  "</string>
+  <string name="ChangeLog_1_01d">"
+Versão 1.01-d\n
 * Correção da listagem de arquivos para OneDrive\n
 * Permite ignorar erros de certificado quando a verificação de hostname falha (não recomendado para uso em produção)\n
-* Correção para quando o QuickUnlock às vezes falha apesar de o código estar correto\n  </string>
-  <string name="ChangeLog_0_9_8c">Versão 0.9.8c\n 
+* Correção para quando o QuickUnlock às vezes falha apesar de o código estar correto\n  "</string>
+  <string name="ChangeLog_0_9_8c">"
+Versão 0.9.8c\n 
      * Correção para a vulnerabilidade SSL no SDK do Microsoft Live (usado ao acessar arquivos via       OneDrive)\n 
-     * Correção de Bug: A versão anterior continha dois métodos de entrada (uma danificada)\n  </string>
-  <string name="ChangeLog_1_01">Versão 1.01\n
+     * Correção de Bug: A versão anterior continha dois métodos de entrada (uma danificada)\n  "</string>
+  <string name="ChangeLog_1_01">"
+Versão 1.01\n
     * adicionado suporte para o novo KDBX-4-formato (compatível com Keepass 2,35) incluindo derivação de chave Argon2 e criptografia de ChaCha20.\n
     * Reimplementado armazenamento de arquivos WebDav, agora permite a navegação de arquivo e suporta criptografia moderna.\n
     * Reimplementado armazenamento de arquivo de FTP, agora permite a navegação de arquivo e suporta criptografia (FTPS).\n
@@ -701,13 +717,15 @@
     * Atualizado para Dropbox SDK versão 2 (versão utilizada anteriormente 1 SDK foi depreciada).\n
     * adicionado suporte para OwnCloud.\n
     * Prompt para permissão de armazenamento antes de abrir arquivos locais
-  </string>
-  <string name="ChangeLog_1_0_0e">    Versão 1.0.0e\n
+  "</string>
+  <string name="ChangeLog_1_0_0e">"
+    Versão 1.0.0e\n
     * correção para desbloqueio de impressão digital em dispositivos mais antigos da Samsung com Android 6\n
     * adiciona suporte nativo para dispositivos x86\n
     * permissão para esconder softkeyboard durante leitura de impressão digital\n
-    * Sistema de build atualizado  </string>
-  <string name="ChangeLog_1_0_0">    Versão 1.0.0 - preview 7\n 
+    * Sistema de build atualizado  "</string>
+  <string name="ChangeLog_1_0_0">"
+    Versão 1.0.0 - preview 7\n 
 * Desbloquear por impressão digital (requer Android 6.0 + ou um dispositivo Samsung) \n 
 * Serviço de Auto-preenchimento adicionado (requer Android 5.0+) \n
 * Adicionado suporte para templates\n 
@@ -719,37 +737,45 @@
 * Correções (no teclado embutido ao selecionar ícones)\n 
 * Incluída opção de Enviar erro reports\n 
 * Acrescentadas mensagens de ajuda em vários pontos\n
-  </string>
-  <string name="ChangeLog_0_9_9">Versão 0.9.9\n 
+  "</string>
+  <string name="ChangeLog_0_9_9">"
+Versão 0.9.9\n 
    * Interface do usuário completamente redesenhada. Muito obrigado à Stefano Pignataro ( http://www.spstudio.at) pela sua ajuda!\n 
    * Permitir adicionar ícones personalizados\n 
    * Suporte para o modo Multi Janelas em dispositivos Samsung\n 
    * O número padrão de etapas para criptografia de novas bases de dados aumentou\n
-   * Verificar chaves duplicadas de campos adicionais para evitar a perda de dados\n</string>
-  <string name="ChangeLog_0_9_9c">Versão 0.9.9c \n
+   * Verificar chaves duplicadas de campos adicionais para evitar a perda de dados\n"</string>
+  <string name="ChangeLog_0_9_9c">"
+Versão 0.9.9c \n
 * tema escuro está de volta \n
 * você pode instalar outros pacotes de ícone (antigo estilo Windows ícones estão disponíveis na Play Store) \n
 * acrescentado pergunta de confirmação quando excluir elementos sem envio para lixeira \n
 * correções (exibição incorreta da codificação de senha OTP, ícone do app errado em alguns lugares) \n
-  </string>
-  <string name="ChangeLog_0_9_8b">Versão 0.9.8b\n* Falhas corrigidas (a operação de salvar estava falhando em alguns bancos de dados, a exportação para o dispositivo local estava falhando, a seleção de algumas opções de preferência encerrava o aplicativo)\n</string>
-  <string name="ChangeLog_0_9_8">   Versão 0.9.8\n
+  "</string>
+  <string name="ChangeLog_0_9_8b">"
+Versão 0.9.8b\n* Falhas corrigidas (a operação de salvar estava falhando em alguns bancos de dados, a exportação para o dispositivo local estava falhando, a seleção de algumas opções de preferência encerrava o aplicativo)\n"</string>
+  <string name="ChangeLog_0_9_8">"
+   Versão 0.9.8\n
 * suporte para \"Storage Access Framework\" (permite a gravação para cartão SD e Google Drive pelo KP2A Offline) \n
 * Tenta detectar a entrada do usuário errônea ao inserir URLs WebDAV (Diretório em vez de arquivo) \n
 * Alterada a fonte de senha \n
 * Permitir mudar a conta Dropbox \n
-* Corrigido um bug: agora lembrar senha OTP</string>
-  <string name="ChangeLog_0_9_7b">Versão 0.9.7b\n
+* Corrigido um bug: agora lembrar senha OTP"</string>
+  <string name="ChangeLog_0_9_7b">"
+Versão 0.9.7b\n
 * Traduções atualizadas\n 
-* Correções: Fonte de senha estava faltando em 0.9.7, ordenar por nome não classificava grupos\n</string>
-  <string name="ChangeLog_0_9_7">Versão 0.9.7\n
+* Correções: Fonte de senha estava faltando em 0.9.7, ordenar por nome não classificava grupos\n"</string>
+  <string name="ChangeLog_0_9_7">"
+		Versão 0.9.7\n
 		* gravar suporte p/ bases de dados do Keepass 1 (kdb) (beta!)\n
 		* retorno ao teclado anterior aprimorado (funciona também em dispositivos sem root)\n
 		* suporte p/ KeeChallenge c/ comprimento de challenges variável\n
 		* evita obter telas cheias do QuickUnlock e telas de senha\n
 		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
-		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de senha agora ocultam a senha corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n</string>
-  <string name="ChangeLog_0_9_6">Versão 0.9.6 \n 
+		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de senha agora ocultam a senha corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n
+	"</string>
+  <string name="ChangeLog_0_9_6">"
+Versão 0.9.6 \n 
 * Permitir importar o arquivo-chave e/ou arquivo de banco de dados local para diretório interno do app (ver configurações)\n 
 * Permitir diferentes opções de classificação \n 
 * Configurações melhoradas para alteração automática de teclado \n 
@@ -761,8 +787,9 @@
 * Corrigido problema com alteração automática do teclado em dispositivos com root \n 
 * Adicionado verificação de base de dados corruptos (UUIDs duplicados) \n 
 * Recarregar automaticamente a base de dados quando alteração detectada, resolve preocupação de segurança de revelar senha mestre \n 
-* Layout de pequeno teclado polaco melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n</string>
-  <string name="ChangeLog_0_9_5"><b>Versão 0.9.5</b> \n 
+* Layout de pequeno teclado polaco melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n"</string>
+  <string name="ChangeLog_0_9_5">"
+<b>Versão 0.9.5</b> \n 
 * Corrigido problemas com navegação de arquivos (especialmente no Android 4.4) \n 
 * Corrigido problema com carregamento de arquivos .kdb (Keepass 1) nos Nexus 5 com Android Lollipop \n 
 * Adicionada opção para evitar tirar screenshots/exibir app em lista de apps recentes \n 
@@ -770,8 +797,9 @@
 * Permitir que arquivos de chave em tipos de armazenamentos deliberado (edição normal) \n 
 * Atualizado Dropbox SDK para incluir um patch oficial de segurança (edição normal) \n 
 * Atualizado ferramentas de compilação --&gt; maior tamanho do apk :-( \n
-Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculpa. Eu queria publicar essas correções quão logo possível.</string>
-  <string name="ChangeLog_0_9_4"><b>Versão 0.9.4</b>\n
+Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculpa. Eu queria publicar essas correções quão logo possível."</string>
+  <string name="ChangeLog_0_9_4">"
+		<b>Versão 0.9.4</b>\n
 		*  adicionado suporte a plug-int: Veja em configurações como obter plug-ins!\n
 		*  publicado QR plug-in (escanear senhas, mostrar senhas como QR code, transferir entradas para outros dispositivos KP2A)\n
 		*  publicado o plugin InputStick (transferir credenciais para seu pc via bluetooth - requer o equipamento InputStick USB)\n
@@ -787,48 +815,64 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 		* melhorado a interface do usuário\n
 		* corrigido o bug na interface do Google Drive\n
 		* adicionado a opção para desativar a \"doação\"\n
-		* Agora o ícone do QuickUnlock está oculto nos equipamentos com Android 4.2+ por padrão\n </string>
-  <string name="ChangeLog_0_9_3_r5"><b>Versão 0.9.3 r5</b>\n
+		* Agora o ícone do QuickUnlock está oculto nos equipamentos com Android 4.2+ por padrão\n 
+	"</string>
+  <string name="ChangeLog_0_9_3_r5">"
+		<b>Versão 0.9.3 r5</b>\n
 		* incorporadas correções do Xamarin: Keepass2Android é agora compatível com ART no Android 4.4.2. Finalmente!\n
-		* Bugs corrigidos: erros de sincronização (atualização de tela, seleção correta para alterações em http), bugs em dispositivos Android 2.x, bugs no armazenamento e implementação Google Drive e SkyDrive, limpar área de transferência ao fechar o banco de dados, bug na abertura de anexos, problemas de tela com teclado\n</string>
-  <string name="ChangeLog_0_9_3"><b>Versão 0.9.3</b>\n
+		* Bugs corrigidos: erros de sincronização (atualização de tela, seleção correta para alterações em http), bugs em dispositivos Android 2.x, bugs no armazenamento e implementação Google Drive e SkyDrive, limpar área de transferência ao fechar o banco de dados, bug na abertura de anexos, problemas de tela com teclado\n
+	"</string>
+  <string name="ChangeLog_0_9_3">"
+		<b>Versão 0.9.3</b>\n
 		* Novo teclado com muitas melhorias. Veja as configurações e customize.\n
 		* Suporte somente leitura para kdb (Keepass 1 arquivo). Experimental!\n
 		* Adicionado suporte a SFTP\n
 		* Adicionado uma solução alternativa para o bug em ART (Android 4.4.2)\n
-		* Correção de bugs \n</string>
-  <string name="ChangeLog_0_9_2"><b>Versão 0.9.2</b>\n
+		* Correção de bugs \n
+	"</string>
+  <string name="ChangeLog_0_9_2">"
+		<b>Versão 0.9.2</b>\n
 		* Adicionado suporte a OTP (compatível com o plugin OtpKeyProv)\n
 		* Integrado o suporte ao NFC para OTPs do YubiKey NEO \n
 		* Muitas melhorias de interface\n
 		* Integrado a biblioteca Keepass 2.24\n
 		* Adicionado a opção de finalizar o processo do app (veja em configurações)\n
 		* Melhorado a validação do certificado SSL\n
-		* Correções de bugs\n</string>
-  <string name="ChangeLog_0_9_1"><b>Versão 0.9.1</b>\n
+		* Correções de bugs\n
+	"</string>
+  <string name="ChangeLog_0_9_1">"
+		<b>Versão 0.9.1</b>\n
 		* Integrado o suporte ao SkyDrive (Keepass2Android edição comum somente)\n
 		* Corrigido o problema com a integração com o Google Drive\n
-		* Adicionado suporte ao NTLM</string>
-  <string name="ChangeLog_0_9"><b>Versão 0.9</b>\n
+		* Adicionado suporte ao NTLM
+	"</string>
+  <string name="ChangeLog_0_9">"
+		<b>Versão 0.9</b>\n
 		* Integrado suporte ao Dropbox e Google Drive (ler/escrever banco de dados; Keepass2Android edição comum somente)\n
 		* Integrado navegador de arquivos customizado (baseado no android-filechooser do HBA)\n
 		* Melhorado a interface do usuário para criação de novo banco de dados\n
 		* Incluído fonte customizada DejaVu Sans Mono para mostrar as senhas\n
-		* Correções de bugs</string>
-  <string name="ChangeLog_0_8_6"><b>Versão 0.8.6</b>\n
+		* Correções de bugs
+	"</string>
+  <string name="ChangeLog_0_8_6">"
+		<b>Versão 0.8.6</b>\n
 		* Suporte ao Twofish cipher\n
 		* Permitir edição de grupos\n
 		* Permitir mover entradas e grupos\n
 		* Ícone do QuickUnlock pode ser transparente (veja em configurações)\n
-		* Correções de bugs</string>
-  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
+		* Correções de bugs
+	"</string>
+  <string name="ChangeLog_0_8_5">"
+		<b>Version 0.8.5</b>\n
 		* Arquivos remotos são armazenados no cache local do aplicativo para permitir uso offline (incluindo edição e sincronização posterior). Veja em configurações. \n
 		* Ícone de notificação para visualizar o lock-state do banco de dados (veja em configurações)\n
 		* Determinação de lock-state melhorada em algumas situações\n
 		* Banco de dados são carregados na memória enquanto você digita sua senha para aumentar a velocidade (veja em configurações)\n
 		* Entradas podem ser adicionadas ao grupo raiz\n
-		* Correções de bugs (resolvido campos de referencia, problemas com o teclado em aparelhos em italiano e chinês)</string>
-  <string name="ChangeLog_0_8_4"><b>Versão 0.8.4</b>\n
+		* Correções de bugs (resolvido campos de referencia, problemas com o teclado em aparelhos em italiano e chinês)
+	"</string>
+  <string name="ChangeLog_0_8_4">"
+		<b>Versão 0.8.4</b>\n
 		* Mudança no banco de dados externo são detectadas e inseridas quando está salvando\n
 		* Melhorado o performance no carregamento\n
 		* Melhorado a barra de pesquisa com sugestões\n
@@ -836,8 +880,9 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 		* Adicionado suporte para o formato .kdbp para rápido carregar e salvar\n
 		* Melhorado a edição de palavras extras e ocultas quando a tela está protegida\n
 		Obrigado a Alex Vallat por sua contribuição no código!\n
-		Obrigado a Niki Hüttner (www.close-cut.de) pelo novo logo!\n</string>
-  <string name="ChangeLog_0_8_3"><b>Versão 0.8.3</b>\n
+		Obrigado a Niki Hüttner (www.close-cut.de) pelo novo logo!\n
+	"</string>
+  <string name="ChangeLog_0_8_3">"<b>Versão 0.8.3</b>\n
 * Usuário/TAN índice mostrado na lista de entradas (veja em configurações)\n
 * Entradas podem ser criadas se a pesquisa pelo navegador não retornar resultados\n
 * Teclado KP2A prove a possibilidade de pesquisar por credenciais no app corrente\n
@@ -845,25 +890,28 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 * Janela de seleção do teclado abri-rá automaticamente depois de pesquisar por uma URL (veja em configurações)\n
 * Espaço reservado para campos de entrada são substituídos depois de copiar (suportado a maioria dos espaços resevados)\n
 * Correção de bugs menores
-  </string>
-  <string name="ChangeLog_0_8_2"><b>Versão 0.8.2</b>\n
+  "</string>
+  <string name="ChangeLog_0_8_2">"<b>Versão 0.8.2</b>\n
 * Suporte a Digest Authentication no WebDAV\n
-* Correção de bugs (IO navegador de arquivos, Abrir URL)</string>
-  <string name="ChangeLog_0_8_1"><b>Versão 0.8.1</b>\n
+* Correção de bugs (IO navegador de arquivos, Abrir URL)
+"</string>
+  <string name="ChangeLog_0_8_1">"<b>Versão 0.8.1</b>\n
 * KP2A Offline e \"Online\" pode ser instalado os dois novamente\n
-* Adicionado novas traduções (Obrigado por todos os contribuidores!)</string>
-  <string name="ChangeLog_0_8"><b>Versão 0.8</b>\n
+* Adicionado novas traduções (Obrigado por todos os contribuidores!)
+"</string>
+  <string name="ChangeLog_0_8">"<b>Versão 0.8</b>\n
 * Melhorado a interface de usuário especialmente para aparelhos Android 4.x\n
 * Permitir usar gerenciadores de arquivos deliberada para selecionar arquivos existentes\n
 * Adicionado o caminho mais seguro para a abertura de anexos (através do diretório de cache)\n
 * corrigido bugs em Editar activity\n
-* provavelmente introduzido novos bugs :-)</string>
+* provavelmente introduzido novos bugs :-)
+"</string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
-  <string name="ChangeLog_0_7"><b>Versão 0.7</b>\n
+  <string name="ChangeLog_0_7">"<b>Versão 0.7</b>\n
 * Aumentada a velocidade de carregamento: principais transformações agora 10x mais rápido!\n
 * Adicionado Keepass2Android teclado virtual: mudar para este teclado para inserir credenciais. Protege você da área de transferência com base em senha sniffers (disative velha prancheta notificações nas opções)\n
-* Adicionada opção para doar uma cerveja ou outra coisa (ver menu)</string>
-  <string name="ChangeLog"><b>Versão 0.6.2</b>\n
+* Adicionada opção para doar uma cerveja ou outra coisa (ver menu)"</string>
+  <string name="ChangeLog">"<b>Versão 0.6.2</b>\n
 * O Google Drive/Dropbox /... integração: Use o App oficial Google Drive ou Dropbox para abrir qualquer arquivo kdbx.. Isto irá agora abrir no KP2A.\n
 * Melhor Janela de Pesquisa \n
 * Resultados de pesquisa melhoradas para URL com subdomínios\n
@@ -876,7 +924,7 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 \n
 <b>Versão 0.6</b>\n
 Lançamento público inicial
-  </string>
+  "</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>
