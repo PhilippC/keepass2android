@@ -556,17 +556,19 @@
   <string name="Continue">Nastavi</string>
   <string name="NoFilenameWarning">URI koji ste unijeli ne izgleda kao naziv datoteke. Jeste li sigurni da je to važeća datoteka?</string>
   <string name="FirstInvalidCompositeKeyError">Nevažeći kompozitni ključ! Molim te pokušaj ponovno.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Nevažeći kompozitni ključ! Pokušajte sljedeće korake da biste otključali bazu podataka:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">"Nevažeći kompozitni ključ! Pokušajte sljedeće korake da biste otključali bazu podataka:\n
 
 &#8226; Provjerite jeste li unijeli ispravnu lozinku. Upotrijebite ikonu oka kako biste otkrili unesenu zaporku.\n
 &#8226; Provjerite jeste li odabrali ispravnu vrstu zaporke. Provjerite odgovara li tipu koji se koristio prilikom izrade baze podataka.\n
-&#8226; Provjerite jeste li odabrali ispravnu datoteku baze podataka.</string>
-  <string name="CorruptDatabaseHelp">Datoteka je oštećena. \n
+&#8226; Provjerite jeste li odabrali ispravnu datoteku baze podataka.
+"</string>
+  <string name="CorruptDatabaseHelp">"
+Datoteka je oštećena. \n
 Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 
 &#8226; Ako ste kopirali datoteku preko USB-a (MTP-način rada), pokušajte ponovno pomoću alata poput MyPhoneExplorer. MTP skraćuje datoteke u određenim slučajevima.\n
 &#8226; Ako ne možete otvoriti datoteku s istog mjesta na računalu, vrlo je vjerojatno da je datoteka doista oštećena. Upotrijebite sigurnosnu kopiju baze podataka. Ako pretpostavite da je Keepass2Android oštetio datoteku, kontaktirajte podršku.\n
-&#8226; Ako još uvijek možete otvoriti datoteku na računalu, obratite se službi za korisnike. Možete je pokušati spremiti s različitim postavkama (npr. nearhiviranu) na računalu i pokušajte ponovno otvoriti pomoću aplikacije Keepass2Android.  </string>
+&#8226; Ako još uvijek možete otvoriti datoteku na računalu, obratite se službi za korisnike. Možete je pokušati spremiti s različitim postavkama (npr. nearhiviranu) na računalu i pokušajte ponovno otvoriti pomoću aplikacije Keepass2Android.  "</string>
   <string name="open_other_db">Otvori drugu bazu podataka…</string>
   <string name="select_database">Odaberi bazu podataka</string>
   <string name="configure_child_dbs">Postavljanje sekundarnih baza podataka…</string>
@@ -590,13 +592,15 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
   <string name="EntryChannel_name">Obavijesti o prijavama</string>
   <string name="EntryChannel_desc">Obavijest za pojednostavljenje pristupa trenutno odabranom unosu.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Prikaži softversku tipkovnicu za unos lozinke kada je skeniranje otiska prsta aktivno.</string>
-  <string name="ChangeLog_1_06">Verzija 1.06\n
+  <string name="ChangeLog_1_06">"
+Verzija 1.06\n
      * Prelazak na ykDroid umjesto YubiChallenge kao aplikacije za Yubikey Challenge-Response.\n
      * Implementacija podrške za Challenge-Response u stilu \"KeepassXC\". Napomena: Format baze podataka mora biti KDBX4!\n
      * Odbijanje učitavanja šifriranih datoteka s Google diska\n
      * Promjena TLS implementacije za FTPS, dodano zaobilazno rješenje JSch bugu s poslužiteljima koji podržavaju gssapi-with-mic\n
-     * ispravci grešaka\n  </string>
-  <string name="ChangeLog_1_05">Verzija 1.05\n
+     * ispravci grešaka\n  "</string>
+  <string name="ChangeLog_1_05">"
+Verzija 1.05\n
      * Korištenje kanale za obavijesti za Android 8, omogućavajući konfiguraciju putem postavki sustava\n
      * Prikaz ikona unosa u obavijestima\n
      * Korištenje prilagodljivih ikona za Android 8, upotrijebite ikonu kružnog pokretača za Android 7\n
@@ -609,19 +613,23 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
      * Dodana je podrška za statički način zaporke Yubikey Neo\n
      * Dopusti onemogućiti prijedlog Automatskog popunjavanja\n
      * Popravljen gubitak podataka u logcatu\n
-     * ispravci grešaka\n  </string>
-  <string name="ChangeLog_1_04b">Verzija 1.04b\n
-     * Izbjegavanje pada aplikacije kada korisnik pokuša omogućiti automatsko popunjavanje na Huawei uređajima.\n  </string>
-  <string name="ChangeLog_1_04">Verzija 1.04\n
+     * ispravci grešaka\n  "</string>
+  <string name="ChangeLog_1_04b">"
+Verzija 1.04b\n
+     * Izbjegavanje pada aplikacije kada korisnik pokuša omogućiti automatsko popunjavanje na Huawei uređajima.\n  "</string>
+  <string name="ChangeLog_1_04">"
+Verzija 1.04\n
 * Dodana je usluga automatskog popunjavanja za Android 8.0 i novije.\n
-* Nadograđene biblioteke, alati za izradu alata i verzija ciljnog paketa SDK.\n  </string>
-  <string name="ChangeLog_1_03">Verzija 1.03\n
+* Nadograđene biblioteke, alati za izradu alata i verzija ciljnog paketa SDK.\n  "</string>
+  <string name="ChangeLog_1_03">"
+Verzija 1.03\n
 * Uklonjena je usluga pristupačnosti za automatsko popunjavanje, na zahtjev Googlea. Pogledajte postavke pristupa zaporkama kako biste pronašli dodatak koji replicira prethodnu funkcionalnost.\n
 * Ponovo dodane aplikacije trećih strana kao opcije za pohranu\n
 * Integrirani preglednik slika za pregledavanje privitaka bez premještanja u druge aplikacije\n
 * Nadograđeni OkHttp za rješavanje problema s nekim vezama\n
-* Podrška za KeeTrayTOTP unose, sada podupiru Steam unose\n  </string>
-  <string name="ChangeLog_1_02">Verzija 1.02\n
+* Podrška za KeeTrayTOTP unose, sada podupiru Steam unose\n  "</string>
+  <string name="ChangeLog_1_02">"
+Verzija 1.02\n
 * Nekoliko sigurnosnih poboljšanja. Hvala puno za sigurnosno izvješće jean-baptiste.cayrou@thalesgroup.com i vincent.fargues@thalesgroup.com i za njihovu suradnju!\n
 * Podrška za KeyboardSwapPlugin (vidi opcije pristupa lozinki): omogućuje automatski prebacivanje načina unosa ne rootanim uređajima. Hvala Mishaal Rahmanu iz XDA-Developersa za omogućavanje navedenog.\n
 * Popravak usluge pristupačnosti s nedavnim verzijama Chromea\n
@@ -629,33 +637,39 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 * Popravak manjih rušenja aplikacije\n
 * Ažuriran SDK Dropboxa kako bi se osigurala buduća kompatibilnost\n
 * Uklonjeno je izvješćivanje o pogreškama kroz Xamarin Insights\n
-* Ažurirani alati za izgradnju\n  </string>
-  <string name="ChangeLog_1_01g">Verzija  1.01-g\n
+* Ažurirani alati za izgradnju\n  "</string>
+  <string name="ChangeLog_1_01g">"
+Verzija  1.01-g\n
 * Popravak rušenja aplikacije prilikom pokušaja izvanmrežnog rada\n
 * Popravak za neispravno kodiranje FTP(S) vjerodajnica\n
 * Popravak rušenja prilikom korištenja OneDrive na starijim Android verzijama\n
-* Prikaz trenutnog vremena na zaslonu unosa\n  </string>
-  <string name="ChangeLog_1_01d">Verzija 1.01-d\n
+* Prikaz trenutnog vremena na zaslonu unosa\n  "</string>
+  <string name="ChangeLog_1_01d">"
+Verzija 1.01-d\n
 * Popravak za prikaz OneDrive datoteka\n
 * Dopuštenje za zanemarivanje pogreški certifikata i kada ne uspije provjeru naziva glavnog računala (nije preporučljivo za upotrebu na produkcijskom okruženju)\n
-* Popravak za QuickUnlock kada ponekad ne uspije unatoč ispravnom kodu otključavanja\n  </string>
-  <string name="ChangeLog_0_9_8c">Verzija 0.9.8c\n
+* Popravak za QuickUnlock kada ponekad ne uspije unatoč ispravnom kodu otključavanja\n  "</string>
+  <string name="ChangeLog_0_9_8c">"
+Verzija 0.9.8c\n
 * Popravak za SSL ranjivost u usluzi Microsoft Live SDK (koristi se prilikom pristupa datotekama putem OneDrive-a)\n
-* Popravak bugova: prethodno izdanje sadrži dvije metode unosa (jedna uzrokuje pad sustava)\n  </string>
-  <string name="ChangeLog_1_01">Verzija 1.01\n
+* Popravak bugova: prethodno izdanje sadrži dvije metode unosa (jedna uzrokuje pad sustava)\n  "</string>
+  <string name="ChangeLog_1_01">"
+Verzija 1.01\n
 * dodana je podrška za novi KDBX-4 format (kompatibilan s Keepassom 2.35), uključujući  Argon2 deriviranje i ChaCha20 šifriranje.\n
 * Ponovno implementiran WebDav način pohrane datoteka, sada omogućuje pregled datoteka i podržava suvremenu enkripciju.\n
 * Ponovo implementiran FTP način pohrane datoteka, sada omogućava pregledavanje datoteka i podržava šifriranje (FTPS).\n
 * Ažuriran OneDrive SDK (prethodno upotrijebljeni Live SDK više nije ažuriran)\n
 * Ažurirana verzija Dropbox SDK-a na verziju 2 (prethodno korišten SDK verzije 1 je obustavljen).\n
 * Dodana je podrška za OwnCloud.\n
-* Zahtjev za dopuštenje za pohranu prije otvaranja lokalnih datoteka  </string>
-  <string name="ChangeLog_1_0_0e">Verzija 1.0.0e\n
+* Zahtjev za dopuštenje za pohranu prije otvaranja lokalnih datoteka  "</string>
+  <string name="ChangeLog_1_0_0e">"
+Verzija 1.0.0e\n
 * ispravak otključavanja otiskom prsta na starijim Samsung uređajima s Androidom 6\n
 * dodavanje izvorne podrške za x86 uređaje\n
 * omogućeno sakrivanje softverske tipkovnice tijekom skeniranja otiska prsta\n
-* definirano ažuriranje sustava  </string>
-  <string name="ChangeLog_1_0_0">Verzija 1.0.0\n
+* definirano ažuriranje sustava  "</string>
+  <string name="ChangeLog_1_0_0">"
+Verzija 1.0.0\n
 * Otključavanje otiskom prsta (zahtijeva Android 6.0+ ili Samsung uređaj)\n
 * Dodana je usluga automatskog popunjavanja (zahtijeva Android 5.0 +)\n
 * Dodana je podrška za predloške za unos\n
@@ -666,37 +680,44 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 * Zahtijevanje dozvola kod izvođenja u Androidu 6.0\n
 * Popravci programskih pogrešaka (u ugrađenoj tipkovnicu pri odabiru ikona)\n
 * Uključena opcija za slanje izvješća o pogreškama\n
-* Dodane poruke pomoći na nekoliko točaka\n  </string>
-  <string name="ChangeLog_0_9_9">Verzija 0.9.9\n
+* Dodane poruke pomoći na nekoliko točaka\n  "</string>
+  <string name="ChangeLog_0_9_9">"
+Verzija 0.9.9\n
 * Dovršen redizajn korisničkog sučelja. Zahvaljujemo Stefanu Pignatarou (http://www.spstudio.at) za njegovu podršku!\n
 * Omogućeno dodavanje prilagođenih ikona\n
 * Podrška za način rada s više prozora na Samsungovim uređajima\n
 * Povećan zadani broj šifriranja za nove baze podataka\n
-* Provjerite duple ključeve dodatnih polja kako biste izbjegli gubitak podataka\n</string>
-  <string name="ChangeLog_0_9_9c">Verzija 0.9.9c\n
+* Provjerite duple ključeve dodatnih polja kako biste izbjegli gubitak podataka\n"</string>
+  <string name="ChangeLog_0_9_9c">"
+Verzija 0.9.9c\n
 * Tamna tema je vraćena\n
 * Možete instalirati druge pakete ikona (drevne ikone sustava Windows dostupne su u trgovini Play)\n
 * Dodano je pitanje potvrde prilikom brisanja elemenata bez koša za smeće\n
-* Popravci programskih pogrešaka(pogrešno prikazivanje OTP tajne, pogrešna ikona aplikacije na nekim mjestima)\n  </string>
-  <string name="ChangeLog_0_9_8b">Verzija 0.9.8b\n
-* Ispravci programskih pogrešaka (spremanje nije uspjelo za neke baze podataka, izvoz na lokalni uređaj koji ne funkcionira, odabir nekih opcija postavljen je u sklopu aplikacije)\n</string>
-  <string name="ChangeLog_0_9_8">Verzija 0.9.8\n
+* Popravci programskih pogrešaka(pogrešno prikazivanje OTP tajne, pogrešna ikona aplikacije na nekim mjestima)\n  "</string>
+  <string name="ChangeLog_0_9_8b">"
+Verzija 0.9.8b\n
+* Ispravci programskih pogrešaka (spremanje nije uspjelo za neke baze podataka, izvoz na lokalni uređaj koji ne funkcionira, odabir nekih opcija postavljen je u sklopu aplikacije)\n"</string>
+  <string name="ChangeLog_0_9_8">"
+Verzija 0.9.8\n
 * Podrška za Storage Access Framework (omogućava pisanje na SD karticu i Google disk u KP2A Offline)\n
 * Pokušajte otkriti pogrešan unos korisnika prilikom unosa WebDAV URL-ova (direktorij umjesto datoteke)\n
 * Promijenjen font zaporke\n
 * Dopuštenje za promjenu Dropbox računa\n
-* Ispravljena pogreška: Sada pamti OTP lozinku</string>
-  <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
+* Ispravljena pogreška: Sada pamti OTP lozinku"</string>
+  <string name="ChangeLog_0_9_7b">"
+Version 0.9.7b\n
 * ažurirani prijevodi\n
-* ispravci grešaka: Font lozinke nedostaje u 0.9.7, sortiranje po imenu nije sortiralo grupe\n</string>
-  <string name="ChangeLog_0_9_7">Verzija 0.9.7\n
+* ispravci grešaka: Font lozinke nedostaje u 0.9.7, sortiranje po imenu nije sortiralo grupe\n"</string>
+  <string name="ChangeLog_0_9_7">"
+Verzija 0.9.7\n
 * podrška za baze podataka Keepass 1 (kdb) (beta!)\n
 * bolje prebacivanje na prethodnu tipkovnicu (također radi na uređajima koji nisu rootani)\n
 * podrška za KeeChallenge s promjenjivom dužinom izazova\n
 * sprječavanje uzimanja slike zaslona kod zaslona brzog otključavanja i zaslona lozinki\n
 * promijenjen redoslijed sortiranja za Datum promjene (sada silazni)\n
-* ispravci grešaka: Pregled bilješki sada ažuriran ispravno nakon izmjena, pogled Lozinki sada kriju lozinku ispravno (nadamo se) na svim uređajima, ispravljena greška koja je omogućavala dodavanje unosa dvaput, ispravljen problem s prikazivanjem upozorenja duplikata UUID čak i nakon popravljanja baze podataka\n</string>
-  <string name="ChangeLog_0_9_5">&lt;b&gt; Verzija 0.9.5 &lt;/ b&gt; \ n
+* ispravci grešaka: Pregled bilješki sada ažuriran ispravno nakon izmjena, pogled Lozinki sada kriju lozinku ispravno (nadamo se) na svim uređajima, ispravljena greška koja je omogućavala dodavanje unosa dvaput, ispravljen problem s prikazivanjem upozorenja duplikata UUID čak i nakon popravljanja baze podataka\n"</string>
+  <string name="ChangeLog_0_9_5">"
+&lt;b&gt; Verzija 0.9.5 &lt;/ b&gt; \ n
 &lt;b&gt;Verzija 0.9.5&lt;/b&gt;\n
 * Otklonjeni problemi s pregledavanjem datoteka (osobito na Androidu 4.4)\n
 * Otklonjeni problemi s učitavanjem .kdb datoteka (Keepass 1) na Nexusu 5 s Android Lollipopom\n
@@ -705,8 +726,9 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 * Dopusti ključne datoteke namjernog tipa pohrane (redovito izdanje)\n
 * Ažuriran Dropbox SDK za uključivanje službene sigurnosne zakrpe (redovito izdanje)\n
 * Ažurirani alati za izgradnju --&gt; povećana veličina apk:-(\n
-Obećao sam neke promjene. Doći će s sljedećim izdanjem - ispričavam se. Htio sam objaviti ove bitne ispravke što je prije moguće.</string>
-  <string name="ChangeLog_0_9_4"><b>Verzija 0.9.4</b>\n
+Obećao sam neke promjene. Doći će s sljedećim izdanjem - ispričavam se. Htio sam objaviti ove bitne ispravke što je prije moguće."</string>
+  <string name="ChangeLog_0_9_4">"
+<b>Verzija 0.9.4</b>\n
 * dodana podrška za dodatke: Pogledajte postavke za dobivanje dodataka!\n
 * objavljeni QR dodaci (skeniranje lozinki, prikaz lozinke kao QR kod, prijenos unosa na druge KP2A uređaje)\n
 * objavljeni InputStick dodatak (prijenos vjerodajnica na računalo putem Bluetooth veze - zahtijeva InputStick USB stick)\n 
@@ -722,73 +744,84 @@ Obećao sam neke promjene. Doći će s sljedećim izdanjem - ispričavam se. Hti
 * poboljšano korisničko sučelje\n
 * ispravljena greška u sučelju Google diska\n
 * dodana opcija za onemogućavanje opcije \"doniraj\"\n
-* ikona QuickUnlock sada je skrivena na uređajima Android 4.2+ po zadanim postavkama\n</string>
-  <string name="ChangeLog_0_9_3_r5"><b>Verzija 0.9.3 r5</b>\n
+* ikona QuickUnlock sada je skrivena na uređajima Android 4.2+ po zadanim postavkama\n
+	"</string>
+  <string name="ChangeLog_0_9_3_r5">"
+<b>Verzija 0.9.3 r5</b>\n
 * Uključeni popravci iz Xamarina: Keepass2Android sada je kompatibilan s ART-om na Androidu 4.4.2. Konačno!\n
-* Ispravci programskih pogrešaka: bugovi u sinkronizaciji (prikaz osvježavanja, ispravna provjera promjena na HTTP-u), bugovi na uređajima Android 2.x, bugovi u implementacijama Google diska i OneDrive pohrane, jasan međuspremnik na bliskoj bazi podataka, problemi s prikazom tipkovnice\n</string>
-  <string name="ChangeLog_0_9_3"><b>Verzija 0.9.3</b>\n
+* Ispravci programskih pogrešaka: bugovi u sinkronizaciji (prikaz osvježavanja, ispravna provjera promjena na HTTP-u), bugovi na uređajima Android 2.x, bugovi u implementacijama Google diska i OneDrive pohrane, jasan međuspremnik na bliskoj bazi podataka, problemi s prikazom tipkovnice\n"</string>
+  <string name="ChangeLog_0_9_3">"
+<b>Verzija 0.9.3</b>\n
 * Nova tipkovnica s brojnim poboljšanjima. Pogledajte postavke za prilagodbu.\n
 * Podrška za samo čitanje kdb (Keepass 1 datoteke). Eksperimentalno!\n
 * Dodana SFTP podrška\n
 * Dodano je zaobilazno rješenje za bug u ART-u (Android 4.4.2)\n
-* Ispravci programskih pogrešaka\n</string>
-  <string name="ChangeLog_0_9_2"><b>Verzija 0.9.2</b>\n
+* Ispravci programskih pogrešaka\n"</string>
+  <string name="ChangeLog_0_9_2">"
+<b>Verzija 0.9.2</b>\n
 * Dodana OTP podrška (kompatibilna s OtpKeyProv dodatkom)\n
 * Integrirana NFC podrška za OTP-ove od YubiKey NEO\n
 * Nekoliko poboljšanja korisničkog sučelja\n
 * Integrirana Keepass 2.24 knjižnica\n
 * Dodana je opcija za ubijanje postupka aplikacije (pogledajte postavke)\n
 * Poboljšana potvrda SSL certifikata\n
-* Popravci programskih pogrešaka\n</string>
-  <string name="ChangeLog_0_9_1"><b>Verzija 0.9.1</b>\n
+* Popravci programskih pogrešaka\n"</string>
+  <string name="ChangeLog_0_9_1">"
+<b>Verzija 0.9.1</b>\n
 * Integrirana podrška za SkyDrive (samo za regularno izdanje Keepass2Android)\n
 * Otklonjeni problemi s integracijom Google diska\n
-* Dodana NTLM podrška</string>
-  <string name="ChangeLog_0_9"><b>Verzija 0.9</b>\n
+* Dodana NTLM podrška"</string>
+  <string name="ChangeLog_0_9">"
+<b>Verzija 0.9</b>\n
 * Integrirana podrška za Dropbox i Google disk (čitanje / pisanje baze podataka samo za regularno izdanje Keepass2Android)\n
 * Integrirani prilagođeni preglednik datoteka (temeljen na Androidovom pregledniku datoteka od strane HBA-a)\n
 * Poboljšano sučelje za kreiranje novih baza podataka\n
 * Priloženi prilagođeni font DejaVu Sans Mono za prikazivanje lozinke\n
-* Ispravke programskih pogrešaka</string>
-  <string name="ChangeLog_0_8_6"><b>Verzija 0.8.6</b>\n
+* Ispravke programskih pogrešaka"</string>
+  <string name="ChangeLog_0_8_6">"
+<b>Verzija 0.8.6</b>\n
 * Podrška za Twofish šifru\n
 * Dopuštanje za uređivanja grupa\n
 * Dopusti pomicanje unosa i grupa\n
 * Ikona QuickUnlock može biti transparentna (vidi postavke)\n
-* Ispravke programskih pogrešaka</string>
-  <string name="ChangeLog_0_8_4"><b>Verzija 0.8.4</b>\n
+* Ispravke programskih pogrešaka"</string>
+  <string name="ChangeLog_0_8_4">"
+<b>Verzija 0.8.4</b>\n
 * Vanjske izmjene baza podataka otkrivene su i spojene prilikom spremanja\n
 * Poboljšana izvedba učitavanja\n
 * Poboljšana traka s alatima za pretraživanje s prijedlozima\n
 * Novi logo aplikacije!\n
 * Podrška za .kdbp format za brže učitavanje/spremanje\n
-* Poboljšano uređivanje dodatnih nizova i skrivenog prikaza kada je zaštićeno\nHvala Alex Valatu za doprinose kodiranjem!\nHvala Niki Hüttneru (www.close-cut.de) za novi logo\n</string>
-  <string name="ChangeLog_0_8_3"><b>Verzija 0.8.3</b>\n
+* Poboljšano uređivanje dodatnih nizova i skrivenog prikaza kada je zaštićeno\nHvala Alex Valatu za doprinose kodiranjem!\nHvala Niki Hüttneru (www.close-cut.de) za novi logo\n"</string>
+  <string name="ChangeLog_0_8_3">"<b>Verzija 0.8.3</b>\n
 * Korisničko ime/TAN indeks prikazan na popisu unosa (vidi postavke)\n
 * Unosi se mogu stvoriti ako pretraživanje iz preglednika ne vrati rezultate\n
 * KP2A tipkovnica pruža mogućnost traženja vjerodajnica za trenutnu aplikaciju\n
 * Aplikacija se automatski zatvori nakon odabira zapisa za upotrebu na tipkovnici\n
 * Dijaloški odabir tipkovnice automatski se otvara nakon traženja URL-a (vidi postavke)\n
 * Znakovi rezervnih polja zamjenjuju se prije kopiranja (podržana je većina rezerviranih mjesta)\n
-* manji popravci bugova  </string>
-  <string name="ChangeLog_0_8_2"><b>Verzija 0.8.2</b>\n
+* manji popravci bugova  "</string>
+  <string name="ChangeLog_0_8_2">"<b>Verzija 0.8.2</b>\n
 * Podrška za Digest autentifikaciju u WebDAV-u\n
-* Ispravke pogrešaka (upravitelj datotekama, otvoreni URL)</string>
-  <string name="ChangeLog_0_8_1"><b>Verzija 0.8.1</b>\n
+* Ispravke pogrešaka (upravitelj datotekama, otvoreni URL)
+"</string>
+  <string name="ChangeLog_0_8_1">"<b>Verzija 0.8.1</b>\n
 * KP2A Offline i \"Online\" mogu se ponovno instalirati\n
-* Dodani novi prijevodi (hvala svim suradnicima!)</string>
-  <string name="ChangeLog_0_8"><b>Verzija 0.8</b>\n
+* Dodani novi prijevodi (hvala svim suradnicima!)
+"</string>
+  <string name="ChangeLog_0_8">"<b>Verzija 0.8</b>\n
 * Poboljšano korisničko sučelje posebno za Android 4.x uređaje\n
 * Dopusti određenim upraviteljima datoteka odabir postojećih datoteka\n
 * Dodan sigurniji način otvaranja privitaka (putem direktorija u predmemoriji)\n
 * fiksne greške u aktivnosti za uređivanje\n
-* vjerojatno pojava novih grešaka :-)</string>
+* vjerojatno pojava novih grešaka :-)
+"</string>
   <string name="ChangeLog_keptDonate">Proširena mogućnost za doniranje pive ili nešto drugo</string>
-  <string name="ChangeLog_0_7"><b>Verzija 0.7</b>\n
+  <string name="ChangeLog_0_7">"<b>Verzija 0.7</b>\n
 * Povećana brzina učitavanja: ključne transformacije sada 10x brže!\n
 * Dodana softverska tipkovnica Keepass2Android: prebacite na ovu tipkovnicu za unos vjerodajnica. Štiti Vas od skeniranja zaporki temeljenih na međuspremnicima (onemogućite stare obavijesti međuspremnika u opcijama)\n
-* Dodana je opcija za darivanje piva ili nešto drugo (vidi izbornik)</string>
-  <string name="ChangeLog"><b>Verzija 0.6.2</b>\n
+* Dodana je opcija za darivanje piva ili nešto drugo (vidi izbornik)"</string>
+  <string name="ChangeLog">"<b>Verzija 0.6.2</b>\n
 * Integracija s uslugom Google Drive/Dropbox/...: upotrebljavajte službenu aplikaciju Google Drive ili Dropbox i otvorite bilo koju datoteku .kdbx. Ovo će sada otvoriti KP2A.\n
 * Poboljšan dijalog pretraživanja\n
 * Poboljšani rezultati pretraživanja za dijeljenje URL-a s poddomenama\n
@@ -800,7 +833,7 @@ Obećao sam neke promjene. Doći će s sljedećim izdanjem - ispričavam se. Hti
 * Dijalog potvrde prilikom odbacivanja promjena\n
 \n
 <b>Verzija 0.6 </b>\n
-Prvotna javna verzija  </string>
+Prvotna javna verzija  "</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekundi</item>
     <item>1 minuta</item>
