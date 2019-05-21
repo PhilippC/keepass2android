@@ -80,7 +80,8 @@
   <string name="enable_fingerprint_quickunlock">Омогући Откључавање Отисака прстију за Брзо откључавање</string>
   <string name="fingerprint_unlock_hint">Додирни сензор за откључавање базе података</string>
   <string name="fingerprint_reenable">Молимо омогућите поново Откључавање Отисцима прстију за нову главну лозинку.</string>
-  <string name="enable_fingerprint_unlock_Info">Ово ће ускладиштити вашу главну лозинку на овом уређају, шифровано са Android Keystore и заштићено провером отиском прста, Дозвољава откључавање ваше базе података само са отиском вашег прста.  </string>
+  <string name="enable_fingerprint_unlock_Info">"
+Ово ће ускладиштити вашу главну лозинку на овом уређају, шифровано са Android Keystore и заштићено провером отиском прста, Дозвољава откључавање ваше базе података само са отиском вашег прста.  "</string>
   <string name="enable_fingerprint_quickunlock_Info">Омогућава да користите проверу отиска прста уместо кода за Брзо откључавање. Не захтева да складишти никакву информацију везану за главну лозинку.</string>
   <string name="enter_filename">Унесите име базе података</string>
   <string name="entry_accessed">Приступано</string>
