@@ -363,14 +363,17 @@
   <string name="AskAddTemplatesMessage">Keepass2Androidek E-posta kontuen, Haririk gabeko sareen pasahitzen, ohar seguruen eta abarren txantiloiak ditu. Zure datu-basera gehitu nahi dituzu? Ezetz aukeratzen baduzu geroago ere gehitu ditzakezu datu-basearen ezarpenetan.</string>
   <string name="Continue">Jarraitu</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ChangeLog_0_9_7">0.9.7 bertsioa\n
+  <string name="ChangeLog_0_9_7">"
+		0.9.7 bertsioa\n
 		* Keepass 1 (kdb) datu-baseak idazteko gaitasuna (beta!)\n
 		* aurreko teklatua itzultze hobetua (root baimenik gabeko telefonoetan ere badabil)\n
 		* luzera ezberdinetako KeeChallenge demetarako euskarria\n
 		* Eragotzi QuickUnlock eta pasahitzen ataletan pantaila-argazkiak egitea\n
 		* aldaketa dataren araberako orden alderantzikatua (orain behera)\n
-		* arazketa: Oharren ikuspoegia ongi eguneratzen da aldaketak eta gero, pasahitzen pantailak ongi ezkutatzen ditu pasahitzak gailu guztietan (espero), sarrera bat bitan sartzea baimentzen zuen arazo bat konponduta, datu-basea konpondu eta gero ere UUID bikoiztu batez ohartarazten zuen arazoa konponduta\n</string>
-  <string name="ChangeLog_0_9_4"><b>0.9.4 bertsioa</b>\n
+		* arazketa: Oharren ikuspoegia ongi eguneratzen da aldaketak eta gero, pasahitzen pantailak ongi ezkutatzen ditu pasahitzak gailu guztietan (espero), sarrera bat bitan sartzea baimentzen zuen arazo bat konponduta, datu-basea konpondu eta gero ere UUID bikoiztu batez ohartarazten zuen arazoa konponduta\n
+	"</string>
+  <string name="ChangeLog_0_9_4">"
+		<b>0.9.4 bertsioa</b>\n
 		* gehigarrietarako euskarria: Begiratu ezarpenetan nola eskuratu gehigarriak!\n
 		*  QR gehigarria argitaratuta (antzeman pasahitzak, bistaratu pasahitzak QR kode gisa, igorri sarrerak beste KP2A gailuetara)\n
 		*  InputStick gehigarria artitaratuta (igorri egiaztagiriak zure PCra bluetooth bidez - InputStick USB gailua behar da)\n
@@ -386,13 +389,16 @@
 		* erabiltzailearen interfaze hobetua\n
 		* Google Drive interfazeko errorea konponduta\n
 		* dohaintza egiteko aukera ezkutatzeko aukera gehituta\n
-		* QuickUnlock ikonoa orain lehenetsita ezkutatzen da Android 4.2+ gailuetan\n </string>
-  <string name="ChangeLog_0_8_6"><b>0.8.6 bertsioa</b>\n
+		* QuickUnlock ikonoa orain lehenetsita ezkutatzen da Android 4.2+ gailuetan\n 
+	"</string>
+  <string name="ChangeLog_0_8_6">"
+		<b>0.8.6 bertsioa</b>\n
 		* Twofish zifratze euskarria\n
 		* Taldeen ediziorako eukera\n
 		* Sarrerak eta taldeak lekuz aldatzeko aukera\n
 		* QuickUnlock ikonoa gardena egin daiteke (ikusi ezarpenak)\n
-		* Arazketa</string>
+		* Arazketa
+	"</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundo</item>
     <item>minutu 1</item>
