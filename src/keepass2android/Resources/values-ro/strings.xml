@@ -80,7 +80,8 @@
   <string name="enable_fingerprint_quickunlock">Activeaza deblocarea cu amprentă pentru Deblocare rapida</string>
   <string name="fingerprint_unlock_hint">Atinge sensorul pentru a debloca baza de date</string>
   <string name="fingerprint_reenable">Vă rugăm să re-activati deblocarea cu amprenta pentru noua parola principala.</string>
-  <string name="enable_fingerprint_unlock_Info">Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore şi protejata utilizând autentificarea cu amprentă. Permite deblocarea bazei de date numai cu amprenta dvs.  </string>
+  <string name="enable_fingerprint_unlock_Info">"
+Aceasta va stoca parola principala pe acest aparat, criptata cu Android Keystore şi protejata utilizând autentificarea cu amprentă. Permite deblocarea bazei de date numai cu amprenta dvs.  "</string>
   <string name="enable_fingerprint_quickunlock_Info">Permite autentificarea cu amprentă în locul codului QuickUnlock. Nu are nevoie de a stoca informaţii legate de parola master.</string>
   <string name="enter_filename">Alegeți numele bazei de date</string>
   <string name="entry_accessed">Accesat</string>
@@ -249,7 +250,8 @@
   <string name="enter_filename_details_url">Trebuie specificat URL-ul complet inclusiv protocolul, de exemplu http://.</string>
   <string name="enter_filename_details_create_import">Fişierul de importat va fi selectat la pasul următor.</string>
   <string name="enable_quickunlock">Activare QuickUnlock</string>
-  <string name="QuickUnlock_label">Introduceţi ultimele %1$d caractere ale parolei dvs.:</string>
+  <string name="QuickUnlock_label">"Introduceţi ultimele %1$d caractere ale parolei dvs.:
+"</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Închide baza de date</string>
   <string name="QuickUnlockDefaultEnabled_title">Activează QuickUnlock implicit</string>
@@ -485,18 +487,23 @@
   <string name="Continue">Continuare</string>
   <string name="NoFilenameWarning">URI introdus nu arata ca un nume de file. Sunteţi sigur că acesta este un file valid?</string>
   <string name="FirstInvalidCompositeKeyError">Cheie compusă invalidă! Vă rugăm să încercaţi din nou.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Cheie compusă invalida! Vă rugăm să încercaţi următorii paşi pentru a debloca baza dumneavoastră de date: \n • asiguraţi-vă că aţi introdus parola corectă. Utilizati pictograma in forma de ochi să dezvăluiti parola introdusă. \n • asiguraţi-vă că aţi selectat tipul de parola corectă. Asiguraţi-vă că aceasta este de acelasi fel cu tipul utilizat la crearea bazei de date. \n • asiguraţi-vă că aţi selectat fişierul bazei de date corecte.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">"Cheie compusă invalida! Vă rugăm să încercaţi următorii paşi pentru a debloca baza dumneavoastră de date: \n • asiguraţi-vă că aţi introdus parola corectă. Utilizati pictograma in forma de ochi să dezvăluiti parola introdusă. \n • asiguraţi-vă că aţi selectat tipul de parola corectă. Asiguraţi-vă că aceasta este de acelasi fel cu tipul utilizat la crearea bazei de date. \n • asiguraţi-vă că aţi selectat fişierul bazei de date corecte.
+"</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ChangeLog_0_9_8c">Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  </string>
-  <string name="ChangeLog_0_9_9">Versiunea 0.9.9\n * UI complet reproiectat. Multumesc mult lui Stefano Pignataro (http://www.spstudio.at) pentru sprijinul lui! \n * Adaugarea personalizata a iconitelor\n * Suport pentru Multi Window mode pe telefoanele Samsung\n * Crescut implicit numărul de runde de criptare pentru baze de date noi\n * Verificarea cheilor duplicate a câmpurilor suplimentare pentru a evita pierderea de date\n</string>
-  <string name="ChangeLog_0_9_7">Versiunea 0.9.7\n
+  <string name="ChangeLog_0_9_8c">"
+Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  "</string>
+  <string name="ChangeLog_0_9_9">"
+Versiunea 0.9.9\n * UI complet reproiectat. Multumesc mult lui Stefano Pignataro (http://www.spstudio.at) pentru sprijinul lui! \n * Adaugarea personalizata a iconitelor\n * Suport pentru Multi Window mode pe telefoanele Samsung\n * Crescut implicit numărul de runde de criptare pentru baze de date noi\n * Verificarea cheilor duplicate a câmpurilor suplimentare pentru a evita pierderea de date\n"</string>
+  <string name="ChangeLog_0_9_7">"
+Versiunea 0.9.7\n
 * suport pentru scrierea bazelor de date Keepass 1 (kdb) (beta)!\n
 * trecerea la tastatura anterioară mai bună (de asemenea, funcţionează pe dispozitivele fără root)\n
 * suport pentru KeeChallenge cu provocări de lungime variabilă\n
 * împiedică screenshot-urile la QuickUnlock si parolă\n
 * s-a inversat ordinea de sortare pentru Sortează după data modificării (acum descrescătoare)\n
-* bug rezolvat: Notele se actualizează acum corect după modificări, parola se ascunde corect pe (sperăm) toate dispozitivele, rezolvat problema care a permis să se adauge o înregistrare de două ori, rezolvat problema cu afișarea avertizării pentru UUID-uri duplicate chiar după corectarea bazei de date\n</string>
-  <string name="ChangeLog_0_9_5"><b>Versiunea 0.9.5</b>\n
+* bug rezolvat: Notele se actualizează acum corect după modificări, parola se ascunde corect pe (sperăm) toate dispozitivele, rezolvat problema care a permis să se adauge o înregistrare de două ori, rezolvat problema cu afișarea avertizării pentru UUID-uri duplicate chiar după corectarea bazei de date\n"</string>
+  <string name="ChangeLog_0_9_5">"
+<b>Versiunea 0.9.5</b>\n
 * Rezolvat probleme cu navigarea fisierelor (mai ales pe Android 4.4)\n
 * Rezolvat problemă cu încărcarea fişierelor .kdb (Keepass 1) pe Nexus 5 cu Android Lollipop\n
 * Adăugat opţiunea de a preveni screenshot-uri/afişarea în lista cu aplicații recente\n
@@ -504,8 +511,9 @@
 * Permite fişierele cheie pe tipuri de stocare deliberate (ediția obișnuită)\n
 * Actualizat Dropbox SDK pentru a include un patch oficial de securitate (ediția obișnuită)\n
 * Actualizat utilitarele --&gt; dimensiunea apk-ului a crescut :-(\n
-Am promis mai multe modificări. Vor veni cu următoarea versiune - scuze. Am vrut să public aceste remedieri cât mai repede posibil.</string>
-  <string name="ChangeLog_0_9_4"><b>Versiunea 0.9.4</b>\n
+Am promis mai multe modificări. Vor veni cu următoarea versiune - scuze. Am vrut să public aceste remedieri cât mai repede posibil."</string>
+  <string name="ChangeLog_0_9_4">"
+<b>Versiunea 0.9.4</b>\n
 * adăugat suport pentru plug-in: consultaţi setările pentru a obţine plug-in-uri!\n
 * publicat plug-in QR (scanează parole, afişează parole ca un cod QR, transferă înregistrările la alte dispozitive cu KP2A)\n
 * publicat plugin-ul InputStick (transferă date de login la PC prin bluetooth - necesită stick USB InputStick)\n
@@ -521,41 +529,48 @@ Am promis mai multe modificări. Vor veni cu următoarea versiune - scuze. Am vr
 * îmbunătăţit interfața utilizatorului\n
 * rezolvat un bug în interfața Google Drive\n
 * adăugat posibilitatea de a dezactiva opțiunea \"donează\"\n
-* icoana de la QuickUnlock este acum ascunsă implicit pe dispozitive cu Android 4.2+\n</string>
-  <string name="ChangeLog_0_9_3_r5"><b>Versiunea 0.9.3 r5</b>\n
+* icoana de la QuickUnlock este acum ascunsă implicit pe dispozitive cu Android 4.2+\n"</string>
+  <string name="ChangeLog_0_9_3_r5">"
+<b>Versiunea 0.9.3 r5</b>\n
 * fixări încorporate de la Xamarin: Keepass2Android este acum compatibil cu ART pe Android 4.4.2. În sfârșit!\n
-* Rezolvat bug-uri: bug-uri în sincronizare (reîmprospătează display-ul, verificări corecte pentru modificările la http), bug-uri pe dispozitive Android 2.x, bug-uri în implementări de stocare Google Drive şi OneDrive, golește clipboard la închiderea bazei de date, bug cu deschiderea ataşamentelor, probleme cu afișarea tastaturii\n</string>
-  <string name="ChangeLog_0_9_3"><b>Versiunea 0.9.3</b>\n
+* Rezolvat bug-uri: bug-uri în sincronizare (reîmprospătează display-ul, verificări corecte pentru modificările la http), bug-uri pe dispozitive Android 2.x, bug-uri în implementări de stocare Google Drive şi OneDrive, golește clipboard la închiderea bazei de date, bug cu deschiderea ataşamentelor, probleme cu afișarea tastaturii\n"</string>
+  <string name="ChangeLog_0_9_3">"
+<b>Versiunea 0.9.3</b>\n
 * Tastatură nouă cu multe îmbunătățiri. Vedeți setările pentru a o personaliza.\n
 * suport read-only pentru kdb (fișiere Keepass 1). Experimental!\n
 * adăugat suport SFTP\n
 * adăugată soluție pentru bug-ul în ART (Android 4.4.2)\n
-* Bug-uri rezolvate\n</string>
-  <string name="ChangeLog_0_9_2"><b>Versiunea 0.9.2</b>\n
+* Bug-uri rezolvate\n"</string>
+  <string name="ChangeLog_0_9_2">"
+<b>Versiunea 0.9.2</b>\n
 * Adăugat suport OTP (compatibil cu plugin-ul OtpKeyProv)\n
 * Integrat suport NFC pentru OTP-uri din YubiKey NEO \n
 * Câteva îmbunătățiri interfață\n
 * Integrat librărie Keepass 2.24\n
 * Adăugat opţiunea de a opri procesul aplicației (a se vedea setările)\n
 * Îmbunătăţit validarea certificatelor SSL\n
-* Bug-uri rezolvate\n</string>
-  <string name="ChangeLog_0_9_1"><b>Versiunea 0.9.1</b>\n
+* Bug-uri rezolvate\n"</string>
+  <string name="ChangeLog_0_9_1">"
+<b>Versiunea 0.9.1</b>\n
 * Suport pentru SkyDrive (doar pentru ediția obișnuită Keepass2Android)\n
 * probleme cu integrarea Google Drive rezolvate\n
-* adăugat suport NTLM</string>
-  <string name="ChangeLog_0_9"><b>Versiunea 0.9</b>\n
+* adăugat suport NTLM"</string>
+  <string name="ChangeLog_0_9">"
+<b>Versiunea 0.9</b>\n
 * Suport integrat pentru Dropbox şi Google Drive (citire/scriere baze de date; doar ediţia normală Keepass2Android)\n
 * Browser fişiere integrat (bazat pe android-filechooser de HBA)\n
 * Interfaţă îmbunătăţită pentru crearea de noi baze de date\n
 * Include font personalizat DejaVu Sans Mono pentru afişarea parolelor\n
-* Bug-uri rezolvate</string>
-  <string name="ChangeLog_0_8_6"><b>Versiunea 0.8.6</b>\n
+* Bug-uri rezolvate"</string>
+  <string name="ChangeLog_0_8_6">"
+<b>Versiunea 0.8.6</b>\n
 * Suport pentru cifrul Twofish\n
 * Permite editarea de grupuri\n
 * Permite mutarea de intrări şi grupuri\n
 * Icoana QuickUnlock poate fi făcută transparentă (setări)\n
-* Bug-uri rezolvate</string>
-  <string name="ChangeLog_0_8_4"><b>Versiunea 0.8.4</b>\n 
+* Bug-uri rezolvate"</string>
+  <string name="ChangeLog_0_8_4">"
+<b>Versiunea 0.8.4</b>\n 
 * Modificările externe ale bazei de date sunt detectate şi îmbinate la salvare\n 
 * S-a îmbunătăţit performanţa la încărcare\n 
 * Bară de căutare îmbunătăţită cu sugestii\n 
@@ -563,8 +578,8 @@ Am promis mai multe modificări. Vor veni cu următoarea versiune - scuze. Am vr
 * Adăugat suport pentru formatul .kdbp pentru încărcare/salvare rapidă\n 
 * S-a îmbunătăţit editarea câmpurilor extra şi s-a ascuns afişarea dacă sunt protejate\n 
 Mulţumiri lui Alex Vallat pentru contribuţiile sale la cod!\n 
-Mulţumiri lui Niki Hüttner (www.close-cut.de) pentru noul logo!\n</string>
-  <string name="ChangeLog_0_8_3"><b>Versiunea 0.8.3</b>\n
+Mulţumiri lui Niki Hüttner (www.close-cut.de) pentru noul logo!\n"</string>
+  <string name="ChangeLog_0_8_3">"<b>Versiunea 0.8.3</b>\n
 * Index utilizator/TAN afişat în lista de înregistrări (vezi setări)\n
 * Înregistrările pot fi create dacă o căutare din browser nu găseşte rezultate\n
 * Tastatura KP2A oferă posibilitatea de a căuta date de logare pentru aplicaţia curentă\n
@@ -572,25 +587,28 @@ Mulţumiri lui Niki Hüttner (www.close-cut.de) pentru noul logo!\n</string>
 * Dialogul de selecţie a tastaturii se deschide automat după căutarea după URL (vezi setări)\n
 * Substituenţii din câmpuri sunt înlocuiţi înainte de copiere (majoritatea sunt suportaţi)\n
 * Bug-uri minore rezolvate
-  </string>
-  <string name="ChangeLog_0_8_2"><b>Versiunea 0.8.2</b>\n
+  "</string>
+  <string name="ChangeLog_0_8_2">"<b>Versiunea 0.8.2</b>\n
 * suport pentru autentificare Digest în WebDAV\n
-* bugfix-uri (OI File manager, Deschide URL)</string>
-  <string name="ChangeLog_0_8_1"><b>Versiunea 0.8.1</b>\n
+* bugfix-uri (OI File manager, Deschide URL)
+"</string>
+  <string name="ChangeLog_0_8_1">"<b>Versiunea 0.8.1</b>\n
 * KP2A Offline şi \"Online\" pot fi instalate din nou simultan\n
-* Noi traduceri adăugate (mulţumiri contribuitorilor!)</string>
-  <string name="ChangeLog_0_8"><b>Versiunea 0.8</b>\n
+* Noi traduceri adăugate (mulţumiri contribuitorilor!)
+"</string>
+  <string name="ChangeLog_0_8">"<b>Versiunea 0.8</b>\n
 * Îmbunătăţiri pentru interfaţa cu utilizatorul mai ales pentru Android 4.x\n
 * Permite folosirea unor managere de fişiere în mod deliberat pentru selectarea fişierelor\n
 * S-a adăugat un mod mai sigur pentru deschiderea de ataşamente (folosind un director cache)\n
 * Reparat erori la Editare activitate\n
-* probabil s-au introdus bug-uri noi :-)</string>
+* probabil s-au introdus bug-uri noi :-)
+"</string>
   <string name="ChangeLog_keptDonate">Posibilitate extinsă de a dona o bere sau altceva</string>
-  <string name="ChangeLog_0_7"><b>Versiunea 0,7</b>\n
+  <string name="ChangeLog_0_7">"<b>Versiunea 0,7</b>\n
 * a crescut viteza de încărcare: transformarea cheii este acum de 10x mai rapidă!\n
 * adăugat tastatura Keepass2Android: comută la aceasta tastatura pentru a introduce detaliile. Vă protejează de programe ce scanează clipboard-ul după parole (dezactivează vechile notificări clipboard din opţiuni)\n
-* Adăugat opţiunea de a dona o bere sau altceva (vezi meniul)</string>
-  <string name="ChangeLog"><b>Versiunea 0.6.2</b>\n
+* Adăugat opţiunea de a dona o bere sau altceva (vezi meniul)"</string>
+  <string name="ChangeLog">"<b>Versiunea 0.6.2</b>\n
 * Integrare Google Drive/Dropbox /...: utilizaţi aplicaţiile oficiale Google Drive sau Dropbox şi deschide orice fişier .kdbx. Acest lucru va deschide acum KP2A.\n
 * Dialog de căutare îmbunătăţit \n
 * Îmbunătăţit rezultate căutare pentru URL-uri împreună cu subdomenii\n
@@ -603,7 +621,7 @@ Mulţumiri lui Niki Hüttner (www.close-cut.de) pentru noul logo!\n</string>
 \n
 <b>Versiunea 0.6</b>\n
 Versiunea publică iniţială
-  </string>
+  "</string>
   <string-array name="clipboard_timeout_options">
     <item>30 de secunde</item>
     <item>1 minut</item>
