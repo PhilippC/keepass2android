@@ -5,8 +5,8 @@
   <string name="about_feedback">ﺑﺎﺯﺧﻮﺭﺩ</string>
   <string name="AboutText">برنامهٔ Keepass2Android یک برنامهٔ مدیریت گذرواژه است که دسترسی خواندنی/نوشتنی به پایگاه‌داده‌های KeePass 2.x را در اندروید فراهم می‌کند.</string>
   <string name="CreditsText">این رابط کاربری بر اساس نسخه‌ای از KeepassDroid ساختهٔ پِلین بِرِین ایجاد شده است. کدهای لازم برای کار با پایگاه‌داده بر اساس کدهای KeePass ساختهٔ دامینیک رایکل ایجاد شده است. ربات اندروید بازتولید یا تغییریافتهٔ کاری است که گوگل ساخته و به‌اشتراک گذاشته است و ما بر اساس بندهای اجازه‌نامهٔ Creative Commons 3.0 از آن استفاده کرده‌ایم.</string>
-  <string name="CreditsTextSFTP">"پشتیبانی از SFTP با استفاده از کتابخانهٔ JSch ساختهٔ شرکت 
-JCraft ایجاد شده است. تحت مجوز BSD."</string>
+  <string name="CreditsTextSFTP">پشتیبانی از SFTP با استفاده از کتابخانهٔ JSch ساختهٔ شرکت 
+JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="CreditsIcons">نماد چکش را جان کَزِرتا ساخته است (از Noun Project). نماد پنگوئن را آدریانو اِمِریک ساخته است (از Noun Project). نماد پر را جُون تِستا ساخته است (از Noun Project). نماد سیب را اِیوا رَوئل ساخته است (از Noun Project). نماد تصویر از اینجاست https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">قبول</string>
   <string name="deny">رد کن</string>
@@ -27,9 +27,9 @@ JCraft ایجاد شده است. تحت مجوز BSD."</string>
   <string name="ShowGroupnameInSearchResult_resume">نام گروه را زیر عنوان مدخل در نتایج جست‌وجو نشان می‌دهد. هنگامی که چندین مدخل همنام وجود دارد سودمند است.</string>
   <string name="NavigationToGroupCompleted_message">در حال دیدن این گروه هستید: %1$s</string>
   <string name="ShowGroupInEntry_title">نمایش نام گروه در نمای مدخل‌ها</string>
-  <string name="unknown_uri_scheme">"متأسفم! Keepass2Android در کار با این URI ناموفق بود:\n
+  <string name="unknown_uri_scheme">متأسفم! Keepass2Android در کار با این URI ناموفق بود:\n
 %1$s\n
-لطفاً با توسعه‌دهنده تماس بگیرید!"</string>
+لطفاً با توسعه‌دهنده تماس بگیرید!</string>
   <string name="Entry_singular">یک مدخل</string>
   <string name="Entry_plural">%1$d مدخل</string>
   <string name="IconSet_title">مجموعه آیکون</string>
@@ -281,12 +281,11 @@ JCraft ایجاد شده است. تحت مجوز BSD."</string>
   <string name="SaveAttachmentDialog_text">لطفاً محل ذخیره‌سازی پیوست را انتخاب کنید.</string>
   <string name="SaveAttachmentDialog_open">در نهانگاه ذخیره و سپس باز شود</string>
   <string name="ShowAttachedImage">عکس را با نمایشگر داخلی نشان بده</string>
-  <string name="SaveAttachment_doneMessage">"فایل ذخیره شد. در:\n
-%1$s
-"</string>
-  <string name="SaveAttachment_Failed">"ذخیره‌سازی فایل در\n
+  <string name="SaveAttachment_doneMessage">فایل ذخیره شد. در:\n
+%1$s</string>
+  <string name="SaveAttachment_Failed">ذخیره‌سازی فایل در\n
 %1$s\n
-ناموفق بود."</string>
+ناموفق بود.</string>
   <string name="AddUrlToEntryDialog_title">متن جست‌وجو ذخیره شود؟</string>
   <string name="AddUrlToEntryDialog_text">مایلید عبارت جست‌وجوی «%1$s» را در این مدخل ذخیره کنید تا در دفعات بعدی به‌صورت خودکار پیدا شود؟</string>
   <string name="error_invalid_expiry_date">قالب تاریخ/ساعت برای تاریخ انقضا نامعتبر است!</string>
@@ -362,12 +361,12 @@ JCraft ایجاد شده است. تحت مجوز BSD."</string>
   <string name="AskOverwriteBinary_no">تغییر نام</string>
   <string name="AttachFailed">افزودن فایل پیوست ناموفق بود.</string>
   <string name="RecycleBin">سطل بازیافت</string>
-  <string name="AskDeletePermanentlyEntry">"این مدخل را برای همیشه حذف می‌کنید؟
-خیر را انتخاب کنید تا برگشت‌پذیر باشد."</string>
-  <string name="AskDeletePermanentlyGroup">"این گروه را برای همیشه حذف می‌کنید؟
-خیر را انتخاب کنید تا برگشت‌پذیر باشد."</string>
-  <string name="AskDeletePermanentlyItems">"موارد انتخاب‌شده را برای همیشه حذف می‌کنید؟
-خیر را انتخاب کنید تا برگشت‌پذیر باشد."</string>
+  <string name="AskDeletePermanentlyEntry">این مدخل را برای همیشه حذف می‌کنید؟
+خیر را انتخاب کنید تا برگشت‌پذیر باشد.</string>
+  <string name="AskDeletePermanentlyGroup">این گروه را برای همیشه حذف می‌کنید؟
+خیر را انتخاب کنید تا برگشت‌پذیر باشد.</string>
+  <string name="AskDeletePermanentlyItems">موارد انتخاب‌شده را برای همیشه حذف می‌کنید؟
+خیر را انتخاب کنید تا برگشت‌پذیر باشد.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">این مدخل را برای همیشه حذف می‌کنید؟</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">این گروه را برای همیشه حذف می‌کنید؟</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">موارد انتخاب‌شده را برای همیشه حذف می‌کنید؟</string>
@@ -406,12 +405,12 @@ JCraft ایجاد شده است. تحت مجوز BSD."</string>
   <string name="FilesInSync">فایل‌ها همگام هستند.</string>
   <string name="SynchronizedDatabaseSuccessfully">پایگاه‌داده با موفقیت همگام شد!</string>
   <string name="CheckingDatabaseForChanges">در حال بررسی تغییرات پایگاه‌داده…</string>
-  <string name="CouldNotSaveToRemote">"ذخیره‌سازی در فایل اصلی انجام نشد:
+  <string name="CouldNotSaveToRemote">ذخیره‌سازی در فایل اصلی انجام نشد:
 %1$s
-مجدداً ذخیره کنید یا وقتی به فایل اصلی دسترسی داشتید از منوی همگام‌سازی استفاده کنید."</string>
-  <string name="CouldNotLoadFromRemote">"دسترسی به فایل اصلی ممکن نیست:
+مجدداً ذخیره کنید یا وقتی به فایل اصلی دسترسی داشتید از منوی همگام‌سازی استفاده کنید.</string>
+  <string name="CouldNotLoadFromRemote">دسترسی به فایل اصلی ممکن نیست:
 %1$s
-فایل موجود در نهانگاه داخلی باز شد. هنوز هم می‌توانید در پایگاه‌داده تغییراتی بدهید و بعداً فایل اصلی را با آن همگام کنید."</string>
+فایل موجود در نهانگاه داخلی باز شد. هنوز هم می‌توانید در پایگاه‌داده تغییراتی بدهید و بعداً فایل اصلی را با آن همگام کنید.</string>
   <string name="UpdatedRemoteFileOnLoad">فایل اصلی به‌روز شد.</string>
   <string name="NotifyOpenFromLocalDueToConflict">به‌سبب تعارض تغییرات با فایل اصلی، فایلی که در نهانگاه داخلی موجود بود باز شد. برای ادغام تغییرات از منوی همگام‌سازی استفاده کنید.</string>
   <string name="LoadedFromRemoteInSync">فایل اصلی و نسخهٔ نهانگاهی همگام شدند.</string>
@@ -427,14 +426,14 @@ JCraft ایجاد شده است. تحت مجوز BSD."</string>
   <string name="synchronize_database_menu">در حال همگام‌سازی پایگاه‌داده…</string>
   <string name="CannotMoveGroupHere">نمی‌توان گروه را در این گروه قرار داد.</string>
   <string name="donate_question">از Keepass2Android راضی هستید؟ مرا به یک فنجان قهوه مهمان کنید.</string>
-  <string name="donate_bday_question">"دهم ماه می؟ امروز تولدم است!
-اگر از این برنامه راضی هستید دست‌به‌کار شوید و پیام تبریکتان را با هدیه‌ای کوچک برایم بفرستید. خیلی خوشحال می‌شوم، باور کنید! :)"</string>
+  <string name="donate_bday_question">دهم ماه می؟ امروز تولدم است!
+اگر از این برنامه راضی هستید دست‌به‌کار شوید و پیام تبریکتان را با هدیه‌ای کوچک برایم بفرستید. خیلی خوشحال می‌شوم، باور کنید! :)</string>
   <string name="donate_missedbday_question">تولدم دهم ماه می بود، از دستش دادید! ولی اگر از این برنامه راضی هستید، هنوز هم می‌توانید تبریک خودتان را با هدیه‌ای برایم بفرستید. برای خوشحال‌کردنم دیر نشده! :)</string>
   <string name="ok_donate">بیشتر توضیح بده!</string>
   <string name="no_thanks">نه، خیلی خوشم نمی‌آید</string>
   <string name="enter_http_login_title">اطلاعات ورود به WebDav را وارد کنید:</string>
-  <string name="hint_http_url">"نشانی اینترنتی پوشه یا فایل ( مثال:
-mycloud.me.com/webdav/‎ )"</string>
+  <string name="hint_http_url">نشانی اینترنتی پوشه یا فایل ( مثال:
+mycloud.me.com/webdav/‎ )</string>
   <string name="enter_owncloud_login_title">اطلاعات ورود به OwnCloud را وارد کنید:</string>
   <string name="hint_owncloud_url">نشانی اینترنتی OwnCloud (مثال: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">اطلاعات ورود به Nextcloud را وارد کنید:</string>
@@ -512,9 +511,9 @@ mycloud.me.com/webdav/‎ )"</string>
   <string name="plugin_web">یافتن افزونه در اینترنت</string>
   <string name="plugin_scopes">آزادی عمل</string>
   <string name="not_enabled">فعال نیست</string>
-  <string name="query_credentials_for_url">"درخواست اعتبارنامه از سوی %1$s\n
+  <string name="query_credentials_for_url">درخواست اعتبارنامه از سوی %1$s\n
 برای\n
-%2$s"</string>
+%2$s</string>
   <string name="query_credentials">درخواست اعتبارنامه از سوی ‏%1$s. لطفاً یک مدخل را انتخاب کنید.</string>
   <string name="plugin_enabled_checkbox">فعال</string>
   <string name="SCOPE_DATABASE_ACTIONS_title">اعلانات کار با پایگاه‌داده</string>
@@ -567,21 +566,19 @@ mycloud.me.com/webdav/‎ )"</string>
   <string name="Continue">ادامه</string>
   <string name="NoFilenameWarning">‫URI‬ واردشده شبیه به نام فایل نیست. مطمئنید که یک فایل معتبر است؟</string>
   <string name="FirstInvalidCompositeKeyError">کلید ترکیبی نامعتبر! لطفا مجدداً تلاش کنید.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">"کلید ترکیبی نامعتبر! لطفاً گام‌های زیر را امتحان کنید تا پایگاه‌داده قفل‌گشایی شود:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">کلید ترکیبی نامعتبر! لطفاً گام‌های زیر را امتحان کنید تا پایگاه‌داده قفل‌گشایی شود:\n
   
     &#8226; اطمینان حاصل کنید که گذرواژه را درست نوشته باشید. روی نماد چشم بزنید تا گذرواژه نمایان شود.\n
    &#8226; اطمینان حاصل کنید که نوع گذرواژه را درست انتخاب کرده باشید. مطمئن شوید همانی باشد که هنگام ساختن پایگاه‌داده انتخاب کرده بودید.\n
-   &#8226; اطمینان حاصل کنید پایگاه‌دادهٔ درست را انتخاب کرده باشید.
-"</string>
-  <string name="CorruptDatabaseHelp">"
-    فایل خراب شده است.\n
+   &#8226; اطمینان حاصل کنید پایگاه‌دادهٔ درست را انتخاب کرده باشید.</string>
+  <string name="CorruptDatabaseHelp">    فایل خراب شده است.\n
     چند راهنمایی که کمکتان می‌کند مشکل را تشخیص دهید:\n
     
     • اگر فایل را از طریق اتصال USB منتقل کرده‌اید (حالت MTP) لطفاً مجدداً با ابزارهایی مانند MyPhoneExplorer امتحان کنید. حالت MTP در شرایط خاصی فایل‌ها را ناقص می‌کند.\n
     • اگر از همان پوشه روی کامپیوتر نمی‌توانید فایل را باز کنید، به‌احتمال زیاد فایل واقعاً خراب شده است. در این صورت لطفاً از فایل پشتیبان پایگاه‌داده استفاده کنید. اگر فکر می‌کنید که Keepass2Android فایل را خراب کرده، با بخش پشتیبانی تماس بگیرید.\n
     • اگر هنوز می‌توانید فایل را روی کامپیوتر باز کنید، لطفاً با بخش پشتیبانی تماس بگیرید. همچنین می‌توانید فایل را با تنظیمات مختلف روی کامپیوتر ذخیره کنید (مثلا زیپ‌نشده) و سپس ببینید آیا در Keepass2Android باز می‌شود.
 
-  "</string>
+  </string>
   <string name="DbUnlockedChannel_name">پایگاه‌داده قفل‌گشایی شد</string>
   <string name="DbUnlockedChannel_desc">اعلان دربارهٔ بازشدن قفل پایگاه‌داده</string>
   <string name="DbQuicklockedChannel_name">زودگشایی</string>
@@ -589,16 +586,14 @@ mycloud.me.com/webdav/‎ )"</string>
   <string name="EntryChannel_name">اعلانات مدخل</string>
   <string name="EntryChannel_desc">اعلان برای سهولت دسترسی به مدخلی که اکنون انتخاب شده است.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">اگر اسکن اثرانگشت فعال بود، برای واردکردن گذرواژه صفحه‌کلید نرم‌افزاری را نشان بده.</string>
-  <string name="ChangeLog_1_06">"
-    نسخهٔ ۱٫۰۶\n
+  <string name="ChangeLog_1_06">    نسخهٔ ۱٫۰۶\n
     *استفاده از برنامهٔ ykDroid به‌جای YubiChallenge برای چالش-پاسخ یوبی‌کی.\n
     *پشتیبانی از چالش-پاسخ به‌سبک KeepassXC. توجه: قالب پایگاه‌داده باید KDBX4 باشد!\n
     *فایل‌های زباله‌دان گوگل‌درایو بارگیری نمی‌شود.\n
     *تعویض پیاده‌سازی TLS برای FTPS و افزودن راهکاری برای باگ JSch با میزبان‌های پشتیبانی‌کننده از gssapi-with-mic\n
     *رفع اشکال‌ها\n
-  "</string>
-  <string name="ChangeLog_1_05">"
-    نسخهٔ ۱٫۰۵\n
+  </string>
+  <string name="ChangeLog_1_05">    نسخهٔ ۱٫۰۵\n
     * به‌کارگیری کانال‌های اعلان برای اندروید ۸ که پیکربندی از طریق تنظیمات سیستم را میسر می‌کند\n
     * نمایش آیکون مدخل در اعلان\n
     * استفاده از آیکون‌های سازگار با اندروید ۸، آیکون گرد برنامه برای اندروید ۷\n
@@ -612,26 +607,22 @@ mycloud.me.com/webdav/‎ )"</string>
     * امکان غیرفعال‌سازی پیشنهاد تکمیل خودکار\n
     * رفع نشت اطلاعات به logcat\n    
     * رفع باگ‌ها\n
-  "</string>
-  <string name="ChangeLog_1_04b">"
-    نسخهٔ ۱٫۰۴b\n
+  </string>
+  <string name="ChangeLog_1_04b">    نسخهٔ ۱٫۰۴b\n
     * رفع مشکل از کار افتادن برنامه هنگامی که کاربر تکمیل خودکار را روی دستگاه‌های هوآوی فعال می‌کند.\n
-  "</string>
-  <string name="ChangeLog_1_04">"
-    نسخهٔ ۱٫۰۴\n
+  </string>
+  <string name="ChangeLog_1_04">    نسخهٔ ۱٫۰۴\n
     * افزودن سرویس تکمیل خودکار برای اندروید ۸٫۰ و بالاتر.\n
     * ارتقاء کتابخانه‌ها، ابزارهای ساخت و نسخهٔ SDK هدف.\n
-  "</string>
-  <string name="ChangeLog_1_03">"
-    نسخهٔ ۱٫۰۳\n
+  </string>
+  <string name="ChangeLog_1_03">    نسخهٔ ۱٫۰۳\n
     * بنا به درخواست گوگل قابلیت دسترسی برای تکمیل خودکار از برنامه حذف شد. لطفاً تنظیمات «دسترسی به گذرواژه» را ببینید تا از یک افزونه که همان کار را می‌کند استفاده کنید.\n
     * اضافه‌شدن برنامه‌های شخص ثالث برای ذخیره‌گاه\n
     * افزودن نمایشگر داخلی برای تصاویر پیوست که نیاز نباشد تصویر به برنامهٔ دیگری فرستاده شود\n
     * ارتقاء OkHttp برای رفع برخی مشکلات اتصال\n
     * پشتیبانی از مدخل‌های KeeTrayTOTP، اکنون مدخل‌های Steam پشتیبانی می‌شود.\n
-  "</string>
-  <string name="ChangeLog_1_02">"
-    نسخهٔ ۱٫۰۲\n
+  </string>
+  <string name="ChangeLog_1_02">    نسخهٔ ۱٫۰۲\n
     * بهبودهای امنیتی متعدد. از jean-baptiste.cayrou@thalesgroup.com و vincent.fargues@thalesgroup.com بابت ارسال گزارش‌ها و همکاری‌شان صمیمانه سپاسگزارم!\n
     * پشتیبانی از افزونهٔ KeyboardSwapPlugin (تنظیمات دسترسی به گذرواژه را ببینید): امکان تعویض خودکار شیوهٔ ورودی روی دستگاه‌های روت‌نشده. با سپاس از میشال رحمان که این کار را انجام داد (از توسعه‌دهندگان XDA).\n
     * رفع مشکلاتی که قابلیت دسترسی با نسخه‌های جدید کروم داشت\n
@@ -640,20 +631,18 @@ mycloud.me.com/webdav/‎ )"</string>
     * به‌روزآوری Dropbox SDK برای اطمینان از سازگاری در آینده\n
     * برداشت امکان گزارش خطا از طریق Xamarin Insights\n
     * به‌روزآوری ابزارهای ساخت\n
-  "</string>
-  <string name="ChangeLog_1_01g">"
-    نسخهٔ ۱٫۰۱‎-g\n
+  </string>
+  <string name="ChangeLog_1_01g">    نسخهٔ ۱٫۰۱‎-g\n
     * رفع مشکل توقف ناخواستهٔ برنامه با فعال‌کردن حالت آفلاین\n
     * رفع مشکل کدگذاری نادرست اعتبارنامه‌های FTP(S)\n
     * رفع مشکل توقف ناخواستهٔ برنامه هنگام استفاده از OneDrive روی نسخه‌های قدیمی‌تر اندروید\n
     * نمایش زمان در صفحهٔ نمایش مدخل به ساعت محلی\n
-  "</string>
-  <string name="ChangeLog_1_01d">"
-    نسخهٔ ۱٫۰۱‎-d\n
+  </string>
+  <string name="ChangeLog_1_01d">    نسخهٔ ۱٫۰۱‎-d\n
     * رفع مشکل برای نمایش لیست فایل‌های OneDrive\n
     * امکان نادیده‌گرفتن خطاهای گواهینامه هنگامی که تأیید نام میزبان ناموفق است (برای کاربرد در محصول توصیه نمی‌شود)\n
     * رفع مشکل بازنشدن قفل به‌روش زودگشایی با واردکردن رمز درست\n
-  "</string>
+  </string>
   <string name="ChangeLog_keptDonate">یادآوری بیشتر برای حمایت</string>
   <string-array name="clipboard_timeout_options">
     <item>۳۰ ثانیه</item>
@@ -716,11 +705,11 @@ mycloud.me.com/webdav/‎ )"</string>
   <string name="autofill_enable_failed">شوربختانه دستگاه شما نمی‌تواند تنظیمات را مستقیماً از داخل برنامه باز کند. لطفاً خودتان به تنظیمات سیستم برای تکمیل خودکار بروید و سرویس آن را فعال کنید.</string>
   <string name="show_autofill_help">نمایش راهنمای تکمیل خودکار</string>
   <string name="autofill_sign_in_prompt">تکمیل با Keepass2Android</string>
-  <string name="invalid_link_association">"پیونددادن دامنهٔ اینترنتی\n
+  <string name="invalid_link_association">پیونددادن دامنهٔ اینترنتی\n
 %1$s\n
 با برنامهٔ\n
 %2$s\n
-ناموفق بود"</string>
+ناموفق بود</string>
   <string name="enable_fingerprint_hint">‏Keepass2Android سخت‌افزار اثرانگشت را شناسایی کرد. آیا مایلید قفل‌گشایی با اثرانگشت را برای این پایگاه فعال کنید؟</string>
   <string name="understand">فهمیدم</string>
   <string name="dont_show_again">دوباره نشان نده</string>
