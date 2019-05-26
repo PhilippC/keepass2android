@@ -80,8 +80,7 @@
   <string name="enable_fingerprint_quickunlock">Включи Отключване с Пръстов Отпечатък при Бързо Отключване</string>
   <string name="fingerprint_unlock_hint">Докоснете сензора за отключване на базата данни</string>
   <string name="fingerprint_reenable">Моля активирайте повторно отключването с пръстов отпечатък за новата главна парола.</string>
-  <string name="enable_fingerprint_unlock_Info">"
-Това ще запише вашата главна парола криптирана с Android Keystore и защитена с пръстовия ви отпечатък. Можете да отключите само с вашия отпечатък.  "</string>
+  <string name="enable_fingerprint_unlock_Info">Това ще запише вашата главна парола криптирана с Android Keystore и защитена с пръстовия ви отпечатък. Можете да отключите само с вашия отпечатък.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Позволява да използвате пръстов отпечатък вместо QuickUnlock код. Не изисква да запазва каквато и да е информация свързана с вашата главна парола.</string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>
