@@ -583,28 +583,24 @@
   <string name="Continue">Fortsæt</string>
   <string name="NoFilenameWarning">Den angivne URI ligner ikke et filnavn. Sikker på, at dette er en gyldig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ugyldig kombinøgle! Forsøg igen.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">"Ugyldig kombinøgle! Prøv flg. trin for at oplåse din database:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig kombinøgle! Prøv flg. trin for at oplåse din database:\n
   
     &#8226; Tjek, at du har angivet den korrekte adgangskode. Benyt øjenikonet til at vise den angivne adgangskode.\n
     &#8226; Tjek, at du har valgt den korrekte adgangskodetype. Tjek, at denne modsvarer typen, der blev benyttet ved databaseoprettelsen.\n
-    &#8226; Tjek, at du har valgt den rigtige databasefil.
-"</string>
-  <string name="HintLocalBackupInvalidCompositeKey">"
-    \n
-   &#8226; Tip: Mener du, at din databasefil kan være beskadiget, eller kan du ikke huske hovedadgangskoden efter at have skifteet den, kan du prøve den senest åbnede filversion ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi."</string>
-  <string name="HintLocalBackupOtherError">"
-    \n
+    &#8226; Tjek, at du har valgt den rigtige databasefil.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Tip: Mener du, at din databasefil kan være beskadiget, eller kan du ikke huske hovedadgangskoden efter at have skifteet den, kan du prøve den senest åbnede filversion ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.</string>
+  <string name="HintLocalBackupOtherError">    \n
     &#8226; Tip: Keepass2Android har gemt den senest åbnede filversion på den interne lagerplads. Du kan åbne den ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.
-  "</string>
-  <string name="CorruptDatabaseHelp">"
-Filen er beskadiget.\n
+  </string>
+  <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
     Her er nogle tip til hjælp for diagnosticeringen af problemet:\n
     
     &#8226; Kopierede du filen via USB (MTP-tilstand), så prøv igen med et værktøjer såsom MyPhoneExplorer. MTP trunkerer i visse tilfælde filer.\n
     &#8226; Kan du ikke åbne filen fra samme placering på din PC, er det meget sandsynligt, at filen faktisk er beskadiget. Benyt da en databasesikkerhedskopi. Mener du, at Keepass2Android har ødelagt filen, så kontakt venligst supporten.\n
-    &#8226; Kan du stadig åbne filen på din PC, så kontakt venligst supporten. Du kan evt. forsøge at gemme den med andre indstillinger (f.eks. ikke-zippet) på PC'en og igen forsøge at åbne den i Keepass2Android.
+    &#8226; Kan du stadig åbne filen på din PC, så kontakt venligst supporten. Du kan evt. forsøge at gemme den med andre indstillinger (f.eks. ikke-zippet) på PC\'en og igen forsøge at åbne den i Keepass2Android.
 
-  "</string>
+  </string>
   <string name="open_other_db">Åbn en anden database…</string>
   <string name="select_database">Vælg database</string>
   <string name="configure_child_dbs">Opsæt underordnet databases…</string>
@@ -629,8 +625,7 @@ Filen er beskadiget.\n
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
-  <string name="ChangeLog_1_07">"
-    Version 1.07\n
+  <string name="ChangeLog_1_07">    Version 1.07\n
     * Løser nedbrud på Samsungs Android 9\n
     * Tillader åbning af flere end én database, kompatibel med KeeAutoExec\n
     * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
@@ -641,17 +636,15 @@ Filen er beskadiget.\n
     * SSL: Stol på brugercertifikater\n
 * Forbedring af Autoudfylding (fungerer nu med Firefox, reducerer mængden af pop-opper)\n
     * Fejlretninger\n
-  "</string>
-  <string name="ChangeLog_1_06">"
-    Version 1.06\n
+  </string>
+  <string name="ChangeLog_1_06">    Version 1.06\n
     * Skift til ykDroid i stedet for YubiChallenge som app til Yubikey Udfordring-Svar.\n
     * Implementér understøttelse for KeepassXC-agtig Udfordring-Svar. Bemærk: Databaseformatet skal være KDBX4!\n
     * Nægt at indlæse/åbne kasserede filer fra Google Drev\n
     * Skift TLS-implementering for FTPS, tilføj workaround til JSch-fejl med servere, som understøtter gssapi-with-mic\n
     * fejlretninger\n
-  "</string>
-  <string name="ChangeLog_1_05">"
-Version 1.05\n
+  </string>
+  <string name="ChangeLog_1_05">Version 1.05\n
      * Bruger notifikationsskanaler til Android 8, som tillader opsætning via systemindstillinger\n
      * Viser indtastningsikon i notifikation\n
      * Bruger Adaptive Ikoner til Android 8, bruger rundt startikon til Android 7\n
@@ -664,26 +657,22 @@ Version 1.05\n
      * Tilføjet support for Yubikey Neos statiske adgangskodetilstand\n
      * Tillader deaktivering af Autoudfyld-forslag\n
      * Rettet datalækage til logcat\n
-     * fejlrettelser\n  "</string>
-  <string name="ChangeLog_1_04b">"
-    Version 1.04b\n
+     * fejlrettelser\n  </string>
+  <string name="ChangeLog_1_04b">    Version 1.04b\n
     * Forhindrer nedbrud, når bruger forsøger at aktivere Autoudfyld på Huawei-enheder.\n
-  "</string>
-  <string name="ChangeLog_1_04">"
-    Version 1.04\n
+  </string>
+  <string name="ChangeLog_1_04">    Version 1.04\n
     * Added Autoudfyld-tjeneste til Android 8.0 og senere.\n
     * Opgradede biblioteker, implementeringsværktøjer og Target SDK-version.\n
-  "</string>
-  <string name="ChangeLog_1_03">"
-    Version 1.03\n
+  </string>
+  <string name="ChangeLog_1_03">    Version 1.03\n
     * Fjernet tilgængelighedstjeneste til Autoudfyld som anmodet af Google. Se adgangskodetilgangsindstillinger for at finde et plugin, der replikerer ttidligere funktionalitet.\n
     * Tilføjet tredjeparts-apps som lagringsmulighed igen\n
     * Integreret billedfremviser til visning af vedhæftede billeder uden at overføre dem til andre apps\n
     * Opgradet OkHttp for at løse problemer med visse tilslutninger\n
     * Understøttelse af KeeTrayTOTP-angivelser, understøtter nu Steam-angivelser\n
-  "</string>
-  <string name="ChangeLog_1_02">"
-    Version 1.02\n
+  </string>
+  <string name="ChangeLog_1_02">    Version 1.02\n
     * Several security improvements. Thanks a lot for the security report by jean-baptiste.cayrou@thalesgroup.com and vincent.fargues@thalesgroup.com and for their collaboration!\n
     * Support for KeyboardSwapPlugin (see password access options): allows to switch input method automatically on non-rooted devices. Thanks to Mishaal Rahman from XDA-Developers to make this possible.\n
     * Fix for Accessibility Service with recent Chrome versions\n
@@ -692,27 +681,23 @@ Version 1.05\n
     * Updated Dropbox SDK to ensure future compatibility\n
     * Removed error reporting through Xamarin Insights\n
     * Updated build tools\n
-  "</string>
-  <string name="ChangeLog_1_01g">"
-    Version 1.01-g\n
+  </string>
+  <string name="ChangeLog_1_01g">    Version 1.01-g\n
     * Rettelse til nedbrud under forsøg på at arbejde offline\n
     * Rettelse af ukorrekt encoding af FTP(S)-akkreditivers\n
     * Rettelse til nedbrud under brug af OneDrive og på ældre Android-versioner\n
     * Visning af klokkeslæt som lokalt ditto på indtastningsskærmen\n
-  "</string>
-  <string name="ChangeLog_1_01d">"
-    Version 1.01-d\n
+  </string>
+  <string name="ChangeLog_1_01d">    Version 1.01-d\n
     * Rettelse af OneDrive-filoversigt\n
     * Tillader også at ignorere certifikatfejl, når værtsnavnsgodkendelse fejler (ikke anbefalet til produktionsbrug)\n
     * Rettelse af Hurtigoplåsnings periodiske afvisning trods korrekt oplåsningskode\n
-  "</string>
-  <string name="ChangeLog_0_9_8c">"
-    Version 0.9.8c\n
+  </string>
+  <string name="ChangeLog_0_9_8c">    Version 0.9.8c\n
     * Rettelse af SSL-sårbarhed i Microsoft Live-SDK (bruges under filtilgang via OneDrive)\n
     * Fejlrettelse: Foregående udgivelse indeholdt to inputmetoder (én oplevede nedbrud)\n
-  "</string>
-  <string name="ChangeLog_1_01">"
-    Version 1.01\n
+  </string>
+  <string name="ChangeLog_1_01">    Version 1.01\n
     * Tilføjet understøttelse af det nye KDBX-4 format (kompatibelt med Keepass 2.35) inkl. Argon2- nøgleafledninger og ChaCha20-kryptering.\n
     * Genimplementeret WebDav-fillagring, tillader nu filgennemsyn samt understøtter moderne kryptering.\n
     * Genimpleenterede FTP-fillagring, tillader nu filgennemsyn samt understøtter kryptering (FTPS).\n
@@ -720,16 +705,14 @@ Version 1.05\n
     * Opdaterede til Dropbox-SDK version 2 (tidligere benyttede version 1-SDK er forældet).\n
     * Tilføjet understøttelse af OwnCloud.\n
     * Prompt om lagerpladsrettigheder inden lokale filer åbnes
-  "</string>
-  <string name="ChangeLog_1_0_0e">"
-    Version 1.0.0e\n
+  </string>
+  <string name="ChangeLog_1_0_0e">    Version 1.0.0e\n
     * Rettelse til Fingeraftryksoplåsning på ældre Samsung-enheder med Android 6\n
     * Tilføjet indbygget understøttelse af x86-enheder\n
     * Tillader skjulning af softtastatur under fingeaftryksaflæsning\n
     * Build-systemopdatering
-  "</string>
-  <string name="ChangeLog_1_0_0">"
-    Version 1.0.0\n
+  </string>
+  <string name="ChangeLog_1_0_0">    Version 1.0.0\n
     * Fingeraftryksoplåsning (kræver Android 6.0+ eller a Samsung-enheder)\n
     * Tilføjet Autoudfyldningstjeneste (kræver Android 5.0+)\n
     * Tilføjet understøttelse af postskabeloner\n
@@ -741,35 +724,28 @@ Version 1.05\n
     * Fejlrettelse (i indbygget tastatur under valg af ikoner)\n
     * Medtaget mulighed for indsendelse af fejlrapporter\n
     * Tilføjet hjælpemeddelelser på flere steder\n
-  "</string>
-  <string name="ChangeLog_0_9_9">"
-		Version 0.9.9\n
+  </string>
+  <string name="ChangeLog_0_9_9">Version 0.9.9\n
 		* Komplet UI-redesign. Tak til Stefano Pignataro (http://www.spstudio.at) for hans støtte!\n
     * Tillader at tilføjelse af tilpassede ikoner\n
     * Understøttelse for Multivinduetilstand på Samsung-enheder\n
     * Forøget standardantallet af krypteringegennemløb på nye databaser\n
     * Tjek af dubletnøgler i ekstrafelter for at undgå datatab\n
-    
-	"</string>
-  <string name="ChangeLog_0_9_9c">"
-    Version 0.9.9c\n
+    </string>
+  <string name="ChangeLog_0_9_9c">    Version 0.9.9c\n
     * Mørkt tema er tilbage\n
     * Du kan installere andre ikonpakker (gammeldags Windows-stil ikoner er tilgængelige fra Play Butik)\n
     * Tilføjet bekræftelsesspørgsmål, når elementer slettes udenom Papirkurv\n
     * Fejlrettelser (forkert visning af OTP-hemmelighedskoding, forkert appikon på visse steder)\n
-  "</string>
-  <string name="ChangeLog_0_9_8b">"
-		Version 0.9.8b\n
-		* Fejlrettelser (Gem fejlede for visse databaser, eksport til lokal enhed fejlede, valg af visse præferenceindstillinger fik app'en til at gå ned)\n
-	"</string>
-  <string name="ChangeLog_0_9_8">"
-		Version 0.9.8\n
+  </string>
+  <string name="ChangeLog_0_9_8b">Version 0.9.8b\n
+		* Fejlrettelser (Gem fejlede for visse databaser, eksport til lokal enhed fejlede, valg af visse præferenceindstillinger fik app\'en til at gå ned)\n</string>
+  <string name="ChangeLog_0_9_8">Version 0.9.8\n
 		* Undrstøttelse af Storage Access Framework (tillader skribning til SD-kort og Google Drev i KP2A-offline)\n
-		* Forsøger at detektere forket brugerinput, når WebDAV URL'er angives (mappe i stedet for fil)\n
+		* Forsøger at detektere forket brugerinput, når WebDAV URL\'er angives (mappe i stedet for fil)\n
 		* Ændret adgangskodeskrifttype\n
 		* Tilladerændring af Dropbox-konto\n
-		* Rettet fejl: Husker nu OTP-adgangskode
-	"</string>
+		* Rettet fejl: Husker nu OTP-adgangskode</string>
   <string name="ChangeLog_keptDonate">Udvidet mulighed for donation af en øl eller noget andet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
