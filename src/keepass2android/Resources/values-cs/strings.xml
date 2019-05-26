@@ -97,11 +97,10 @@
   <string name="fingerprint_reenable2">Prosím odemkněte svým heslem a poté obnovte odemčení otiskem prstu v nastavení databáze.</string>
   <string name="FingerprintInitFailed">Nepodařilo se spustit senzor otisku prstu. </string>
   <string name="FingerprintSetupFailed">Šifrování dat se nezdařilo. K tomu může dojít, pokud přidáte nebo odstraníte otisky prstů v nastavení systému, zatímco Keepass2Android naslouchá otisku prstu.</string>
-  <string name="enable_fingerprint_unlock_Info">"
-    Toto uloží vaše hlavní heslo na toto zařízení,
+  <string name="enable_fingerprint_unlock_Info">    Toto uloží vaše hlavní heslo na toto zařízení,
     zašifrované pomocí úložiště klíčů Android a chráněné
     použitím ověření identity pomocí otisku prstu. Toto umožní odemčení databáze pouze pomocí vašeho otisku prstu.
-  "</string>
+  </string>
   <string name="enable_fingerprint_quickunlock_Info">Umožní používat ověření identity pomocí otisku prstu namísto rychlého odemčení. Nevyžaduje uložení jakékoliv informace vztahující se k vašemu hlavnímu heslu.</string>
   <string name="enter_filename">Zadejte název souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
@@ -587,28 +586,24 @@
   <string name="Continue">Pokračovat</string>
   <string name="NoFilenameWarning">Adresa URI, kterou jste zadali, nevypadá jako název souboru. Jste si jistí, že je to platný soubor?</string>
   <string name="FirstInvalidCompositeKeyError">Neplatný složený klíč! Zkuste to znovu.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">"Neplatný složený klíč! Prosím, vyzkoušejte následující kroky k odemknutí databáze:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">Neplatný složený klíč! Prosím, vyzkoušejte následující kroky k odemknutí databáze:\n
   
     • Ujistěte se, že jste zadali správné heslo. Použitím ikonky s okem odkryjete vložené heslo.\n
    • Ujistěte se, že jste použili správný typ hesla. Ujistěte se, že tento typ odpovídá typu použitému při vytváření databáze.\n
-   • Ujistěte se, že jste použili správný databázový soubor.
-"</string>
-  <string name="HintLocalBackupInvalidCompositeKey">"
-    \n
-    &#8226; Nápověda: Pokud si myslíte že by databáze mohla být porušena, nebo si nepamatujete hlavní klíč, můžete zkusit poslední úspěšně otevřenou verzi kliknutím \"%1$s\" a zvolením místní zálohy."</string>
-  <string name="HintLocalBackupOtherError">"
-    \n
+   • Ujistěte se, že jste použili správný databázový soubor.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Nápověda: Pokud si myslíte že by databáze mohla být porušena, nebo si nepamatujete hlavní klíč, můžete zkusit poslední úspěšně otevřenou verzi kliknutím \"%1$s\" a zvolením místní zálohy.</string>
+  <string name="HintLocalBackupOtherError">    \n
     &#8226; Nápověda: Keepass2Android uložil poslední úspěšně otevřenou verzi souboru v místní paměti. Můžete jí otevřít zmáčknutím \"%1$s\" a výběrem místní zálohy.
-  "</string>
-  <string name="CorruptDatabaseHelp">"
-    Soubor je poškozený. \n
+  </string>
+  <string name="CorruptDatabaseHelp">    Soubor je poškozený. \n
     Zde je několik rad, které vám mohou pomoci zjistit příčinu problému:\n
     
     • Pokud jste soubor kopírovali přes USB (v MTP módu), zkuste to, prosím, znovu pomocí nástroje jako například MyPhoneExplorer. MTP v některý případech soubory ořezává.\n
     • Pokud nemůžete ten samý soubor otevřít ani ve svém PC, je velmi pravděpodobné, že je soubor doopravdy poškozený. V tom případě použijte záložní soubor. Pokud předpokládáte, že soubor byl poškozen v Keepass2Android, kontaktujte, prosím, podporu.\n
     • Jestliže můžete otevřít soubor na vašem PC, kontaktujte, prosím, podporu. Můžete se pokusit na vašem PC uložit soubor s rozdílným nastavením (např. nezazipovaný) a znovu se jej pokusit otevřít v Keepass2Android.
 
-  "</string>
+  </string>
   <string name="open_other_db">Otevřít další databázi…</string>
   <string name="select_database">Vybrat databázi</string>
   <string name="configure_child_dbs">Konfigurace dceřiné databáze…</string>
@@ -633,8 +628,7 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
-  <string name="ChangeLog_1_07">"
-    Version 1.07\n
+  <string name="ChangeLog_1_07">    Version 1.07\n
     * Opravuje padání aplikace na Samsung Android 9\n
     * Umožňuje otevření více než jednoho souboru databáze, kompatibilní s KeeAutoExec\n
     * SFTP: Povolit ověření veřejným klíčem při změně klíče na hostiteli\n
@@ -645,17 +639,15 @@
     * SSL: Důvěřovat uživatelským certifikátům\n
     * Vylepšení Automatického doplňování (nyní funguje ve Firefoxu, umožňuje omezení vyskakovacích oken)\n
     * Opravy chyb\n
-  "</string>
-  <string name="ChangeLog_1_06">"
-    Verze 1.06\n
+  </string>
+  <string name="ChangeLog_1_06">    Verze 1.06\n
     * Změna na ykDroid místo YubiChallenge pro Yubikey Výzva-Odpověď.\n
     * Implementována podpora pro Výzva-Odpověď typu KeepassXC. Poznámka: Databáze musí být ve formátu KDBX4!\n
     * Odmítání načtení souborů z Google Drive přesunutých do koše\n
     * Změna implementace TLS pro FTPS, přidán workaround pro JSch bug pro servery podporující gssapi-with-mic\n
     * Opravy chyb\n
-  "</string>
-  <string name="ChangeLog_1_05">"
-    Verze 1.05\n
+  </string>
+  <string name="ChangeLog_1_05">    Verze 1.05\n
     * Použití kanálů upozornění pro Android 8. Toto umožní nastavení skrz nastavení systému.\n
     * Ukazuje ikonu vstupu v upozornění.\n
     * Použití Adaptivních ikon pro Android 8 a kulatých ikon pro Android 7.\n
@@ -669,26 +661,22 @@
     * Možnost zákazu návrhů pro automatické vyplňování.\n
     * Oprava úniku dat do logu. (záznam výkon)\n    
     * Oprava chyb.\n
-  "</string>
-  <string name="ChangeLog_1_04b">"
-    Verze 1.04b\n
+  </string>
+  <string name="ChangeLog_1_04b">    Verze 1.04b\n
     * Oprava pádů při aktivaci automatického vyplňování na zařízeních Huawei.\n
-  "</string>
-  <string name="ChangeLog_1_04">"
-    Verze 1.04\n
+  </string>
+  <string name="ChangeLog_1_04">    Verze 1.04\n
     * Přidána funkce automatického doplňování pro Android 8.0 a novější.\n
     * Aktualizovány knihovny, nástroje pro sestavení a cílová verze SDK.\n
-  "</string>
-  <string name="ChangeLog_1_03">"
-Verze 1.03\n
+  </string>
+  <string name="ChangeLog_1_03">Verze 1.03\n
 * Odstraněny služby zpřístupnění pro AutoFill dle požadavku Googlu. Podívejte se do nastavení přistupu hesel k nalezení doplňku poskytujícího předchozí funkci.\n
 * Znovu povoleny aplikace třetích stran pro ukládání\n
 * Vestavěný prohlížeč obrázků pro prohlížení připojených obrázku bez přenosu do jiných aplikací\n
 * Aktualizované OkHttp pro opravu problémů s některými spojeními\n
 * Podpora pro KeeTrayTOTP položky, nyní podporuje i Stream\n
-  "</string>
-  <string name="ChangeLog_1_02">"
-    Verze 1.02\n
+  </string>
+  <string name="ChangeLog_1_02">    Verze 1.02\n
     * Různá bezpečnostní vylepšení. Děkuji za bezpečnostní hlášení od jean-baptiste.cayrou@thalesgroup.com a vincent.fargues@thalesgroup.com a za jejich spolupráci!\n
     * Podpora zásuvného modulu KeyboardSwap (viz nastavení přístupového hesla): umožňuje automaticky přepnout metodu zadávání na zařízeních bez rootu. Děkuji Mishaalu Rahmanovi z XDA-Developers za spolupráci.\n
     * Oprava pro službu dostupnosti s posledními verzemi Chrome\n
@@ -697,26 +685,22 @@ Verze 1.03\n
     * Aktualizované Dropbox SDK pro zajištění budoucí kompaktibility\n
     * Odstraněno hlášení chyb pomocí Xamarin Insights\n
     * Aktualizované nástroje pro překlad\n
-  "</string>
-  <string name="ChangeLog_1_01g">"
-    Verze 1.01-g\n
+  </string>
+  <string name="ChangeLog_1_01g">    Verze 1.01-g\n
     * Oprava pádu při pokusu o práci offline\n
     * Oprava nesprávného kódování přihlašovacích údajů pro FTP(S)\n
     * Oprava pádů při používání OneDrive na starších verzích Androidu\n
     * Zobrazení času coby lokálního času na zadávacích obrazovkách\n
-  "</string>
-  <string name="ChangeLog_1_01d">"
-    Verze 1.01-d\n
+  </string>
+  <string name="ChangeLog_1_01d">    Verze 1.01-d\n
     * Oprava výpisu souborů na OneDrive\n
     * Umožnění ignorování chyb certifikátu pokud současně selže i ověření názvu hosta (nedoporučuje se pro produkční využití)\n
     * Oprava občasného selhání Rychlého Odemknutí při zadání správného kódu\n
-  "</string>
-  <string name="ChangeLog_0_9_8c">"
-Verze 0.9.8c\n 
+  </string>
+  <string name="ChangeLog_0_9_8c">Verze 0.9.8c\n 
 * Oprava chyby zabezpečení SSL v Microsoft Live SDK (používá se při přístupu k souborům přes OneDrive) \n 
-* Oprava: Předchozí vydání obsahovalo dvě vstupní metody (jedna padala) \n  "</string>
-  <string name="ChangeLog_1_01">"
-    Verze 1.01\n
+* Oprava: Předchozí vydání obsahovalo dvě vstupní metody (jedna padala) \n  </string>
+  <string name="ChangeLog_1_01">    Verze 1.01\n
     * přidána podpora pro nový formát KDBX-4 (kompaktuibilní s Keepass 2.35) včetně odvozování klíčů Argon2 key a ChaCha20 šifrování.\n
     * Nová implementace WebDav úložiště, nyní umožňuje procházení souborů a podporuje moderní šifrování.\n
     * Nová implementace FTP úložiště, nyní umožňuje procházení souborů a podporuje šifrování (FTPS).\n
@@ -724,16 +708,14 @@ Verze 0.9.8c\n
     * Aktualizace na Dropbox SDK verze 2 (dříve používaná verze 1 je zastarallá).\n
     * Přidána podpora pro OwnCloud.\n
     * Dotaz na práva k úložišti před otevíráním lokáních souborů
-  "</string>
-  <string name="ChangeLog_1_0_0e">"
-    Verze 1.0.0e\n
+  </string>
+  <string name="ChangeLog_1_0_0e">    Verze 1.0.0e\n
     * oprava odemykání otiskem prstu na starších zařízeních Samsung s Android 6\n
     * přidána nativní podpora pro x86 zařízení\n
     * umožnění skrytí softwarové klávesnice během skenování otisku prstu\n
     * aktualizace build systému
-  "</string>
-  <string name="ChangeLog_1_0_0">"
-    Verze 1.0.0\n
+  </string>
+  <string name="ChangeLog_1_0_0">    Verze 1.0.0\n
     * Odemknutí dotykem prstu (vyžaduje Android 6.0+ nebo zařízení Samsung)\n
     * Přidána služba automatického doplňování (vyžaduje Android 5.0+)\n
     * Přidána podpora šablon\n
@@ -745,46 +727,38 @@ Verze 0.9.8c\n
     * Opravy chyb (ve vestavěné klávesnici, při výběru ikon)\n
     * Doplněna možnost odeslání chybového hlášení\n
     * Na různých místech doplněna nápověda\n
-  "</string>
-  <string name="ChangeLog_0_9_9">"
-Verze 0.9.9\n 
+  </string>
+  <string name="ChangeLog_0_9_9">Verze 0.9.9\n 
 * Kompletní přepracování vzhledu aplikace. Velké díky Stefanu Pignatarovi (http://www.spstudio.at) za jeho podporu! \n 
 * Možnost přidávat vlastní ikony\n
 * Přidání podpory režimu více oken na zařízeních Samsung\n 
 * Navýšení výchozího počtu šifrovacích cyklů pro nové databáze\n
-* Zjišťování duplicitních klíčů dodatečných polí, aby nedocházelo ke ztrátě dat\n"</string>
-  <string name="ChangeLog_0_9_9c">"
-    Verze 0.9.9c\n
+* Zjišťování duplicitních klíčů dodatečných polí, aby nedocházelo ke ztrátě dat\n</string>
+  <string name="ChangeLog_0_9_9c">    Verze 0.9.9c\n
     * Tmavý vzhled je zpátky\n
     * Můžete nainstalovat další balíčky ikon (staré ikony ve stylu Windowsjsou dostupné v obchodu Play)\n
     * Doplněno potvrzení při mazání položek bez použití odpadkového koše.\n
     * Opravy chyb (chybné zobrazení OTP tajného kódování, na několika místech špatná ikona aplikace)\n
-  "</string>
-  <string name="ChangeLog_0_9_8b">"
-Verze 0.9.8b\n 
-* Opravy chyb (uložení selhávalo pro některé databáze, nefungoval export do místního zařízení, výběr některých možností v nastavení shazoval aplikaci) \n"</string>
-  <string name="ChangeLog_0_9_8">"
-Verze 0.9.8\n
+  </string>
+  <string name="ChangeLog_0_9_8b">Verze 0.9.8b\n 
+* Opravy chyb (uložení selhávalo pro některé databáze, nefungoval export do místního zařízení, výběr některých možností v nastavení shazoval aplikaci) \n</string>
+  <string name="ChangeLog_0_9_8">Verze 0.9.8\n
 * Podpora Storage Access Frameworku (umožňuje zápis na SD kartu a na Google Drive z KP2A Offline) \n 
 * Pokus o detekci chybného uživatelského vstupu při zadávání URL adresy WebDAV (adresář místo souboru) \n 
 * Změna fontu pro hesla\n 
 * Umožnění změny účtu Dropbox\n 
-* Oprava chyby: Pamatování OTP hesla nyní funguje\n"</string>
-  <string name="ChangeLog_0_9_7b">"
-Verze 0.9.7b\n
+* Oprava chyby: Pamatování OTP hesla nyní funguje\n</string>
+  <string name="ChangeLog_0_9_7b">Verze 0.9.7b\n
 * aktualizovány překlady\n
-* opravy chyb: Chybějící font pro hesla ve verzi 0.9.7, řazení podle názvu neřadilo skupiny\n"</string>
-  <string name="ChangeLog_0_9_7">"
-		Verze 0.9.7\n
+* opravy chyb: Chybějící font pro hesla ve verzi 0.9.7, řazení podle názvu neřadilo skupiny\n</string>
+  <string name="ChangeLog_0_9_7">Verze 0.9.7\n
 		* podpora zápisu pro databáze Keepass 1 (kdb) (beta!)\n
 		* lepší přepínání zpět na předešlou klávesnici (funguje i na zařízeních bez rootu)\n
 		* podpora pro KeeChallenge s proměnnou délkou výzev\n
 		* zabránění snímání obrazovky na obrazovce Rychlého odemknutí a obrazovkách s hesly\n
 		* obrácení směru řazení při řazení podle data změny (nyní sestupně)\n
-		* opravy chyb: Zobrazení poznámek se nyní korektně aktualizuje po provedení změn, Obrazovky s hesly nyní správně skrývají hesla na (snad) všech zařízeních, Opraven problém, který umožňoval přidat záznam dvakrát, Opraven problém se zobrazováním varování na duplicitní UUID i po opravení databáze\n
-	"</string>
-  <string name="ChangeLog_0_9_6">"
-		Version 0.9.6\n
+		* opravy chyb: Zobrazení poznámek se nyní korektně aktualizuje po provedení změn, Obrazovky s hesly nyní správně skrývají hesla na (snad) všech zařízeních, Opraven problém, který umožňoval přidat záznam dvakrát, Opraven problém se zobrazováním varování na duplicitní UUID i po opravení databáze\n</string>
+  <string name="ChangeLog_0_9_6">Version 0.9.6\n
 		* allow to import key file and/or local database file to app internal directory (see settings)\n
 		* allow different sorting options\n
 		* improved preferences for automatic keyboard switching\n
@@ -796,12 +770,9 @@ Verze 0.9.7b\n
 		* fixed issue with automatic keyboard switching on rooted devices\n
 		* added check for corrupt databases (duplicate UUIDs)\n
 		* automatically reload database when change detected, solves security concern about revealing master password\n
-		* improved polish small keyboard layout, fixed keyboard settings theme (thanks to Wiktor Ławski)\n
-	"</string>
-  <string name="ChangeLog_0_9_5">"
-   <b>Verze 0.9.5</b> \n * opraveny problémy s procházením souborů (zejména pokud jde o Android 4.4) \n * opraven problém s načítáním souborů .kdb (Keepass 1) na 5 Nexus s Android Lollipop\n * přidána možnost zabránit sejmutí screenshotu nebo zobrazení aplikace v seznamu posledních aplikací\n * opraven problém s Google Drive úložištěm (obyčejná edice) \n * povoleno uložení souborů s klíči na zvoleném úložišti (obyčejná edice) \n * aktualizováno Dropbox SDK obsahující oficiální bezpečnostní opravy (obyčejná edice) \n * aktualizovány vývojové nástroje--&gt; velikost apk se zvýšila:-(\nSlíbil jsem nějaké další změny, ty budou v dalším vydání, omlouvám se, chtěl jsem co nejrychleji zveřejnit tyto opravy."</string>
-  <string name="ChangeLog_0_9_4">"
-		<b>Verze 0.9.4</b>\n
+		* improved polish small keyboard layout, fixed keyboard settings theme (thanks to Wiktor Ławski)\n</string>
+  <string name="ChangeLog_0_9_5">   <b>Verze 0.9.5</b> \n * opraveny problémy s procházením souborů (zejména pokud jde o Android 4.4) \n * opraven problém s načítáním souborů .kdb (Keepass 1) na 5 Nexus s Android Lollipop\n * přidána možnost zabránit sejmutí screenshotu nebo zobrazení aplikace v seznamu posledních aplikací\n * opraven problém s Google Drive úložištěm (obyčejná edice) \n * povoleno uložení souborů s klíči na zvoleném úložišti (obyčejná edice) \n * aktualizováno Dropbox SDK obsahující oficiální bezpečnostní opravy (obyčejná edice) \n * aktualizovány vývojové nástroje--&gt; velikost apk se zvýšila:-(\nSlíbil jsem nějaké další změny, ty budou v dalším vydání, omlouvám se, chtěl jsem co nejrychleji zveřejnit tyto opravy.</string>
+  <string name="ChangeLog_0_9_4"><b>Verze 0.9.4</b>\n
 		* doplněna podpora zásuvných modulů. Prohlédněte Nastavení pro jejich získání\n
 		*  uvolněn modul pro QR kód (načítání hesel, zobrazení hesel jako QR kód, přenos záznamů mezi zařízeními)\n
 		*  uvolněn modul InputStick  (přenost pověření do PC pomocí  bluetooth - vyžaduje InputStick USB)\n
@@ -817,60 +788,47 @@ Verze 0.9.7b\n
 		* zlepšení uživatelského rozhraní\n
 		* opravena chyba v rozhraní ke Google Drive\n
 		* doplněna možnost ke skrytí tlačítka pro příspěvek\n
-		* Ikona QuickUnlock icon je nyní na zařízeních s Android 4.2+ standardně skryta\n 
-	"</string>
-  <string name="ChangeLog_0_9_3_r5">"
-  <b>Verze 0.9.3 r5</b>\n
+		* Ikona QuickUnlock icon je nyní na zařízeních s Android 4.2+ standardně skryta\n </string>
+  <string name="ChangeLog_0_9_3_r5">  <b>Verze 0.9.3 r5</b>\n
   * Integrované opravy od uživatele Xamarin: Keepass2Android je nyní kompatibilní s ART na Android 4.4.2. Konečně!\n
-  * Opravy chyb: chyby v synchronizaci (obnovování obrazovky, správna kontrola změn přes http), chyby na zařízeních Android 2.x, chyby v implementacích úložišť Google Drive a SkyDrive, vyčištění schránky při zavření databáze, chyba při otvírání příloh, problémy při zobrazení s klávesnicí\n
-	"</string>
-  <string name="ChangeLog_0_9_3">"
-		<b>Verze 0.9.3</b>\n
+  * Opravy chyb: chyby v synchronizaci (obnovování obrazovky, správna kontrola změn přes http), chyby na zařízeních Android 2.x, chyby v implementacích úložišť Google Drive a SkyDrive, vyčištění schránky při zavření databáze, chyba při otvírání příloh, problémy při zobrazení s klávesnicí\n</string>
+  <string name="ChangeLog_0_9_3"><b>Verze 0.9.3</b>\n
 		* Nová klávesnice s mnoha vylepšeními. Viz nastavení.\n
 		* Podpora pro čtení souborů kdb (Keepass 1). Experimentální!\n
 		* Doplněna podpora SFTP\n
 		* Doplněn trik pro obejití chyby při využití ART (Android 4.4.2)\n
-		* Opravy chyb\n
-	"</string>
-  <string name="ChangeLog_0_9_2">"
-  <b>Verze 0.9.2</b>  \n 
+		* Opravy chyb\n</string>
+  <string name="ChangeLog_0_9_2">  <b>Verze 0.9.2</b>  \n 
 * Přidána podpora OTP (kompatibilní s OtpKeyProv pluginem)  \n 
 * Integrována podpora NFC pro OTP z YubiKey NEO  \n 
 * Několik vylepšení uživatelského rozhraní  \n 
 * Integrována knihovna KeePass 2.24  \n 
 * Přidána možnost zabít proces aplikace (viz Nastavení)  \n 
-* Opravy chyb  \n"</string>
-  <string name="ChangeLog_0_9_1">"
-		<b>Verze 0.9.1</b>\n
+* Opravy chyb  \n</string>
+  <string name="ChangeLog_0_9_1"><b>Verze 0.9.1</b>\n
 		* Přidána podpora SkyDrive (pouze Keepass2Android normální edice)\n
 		* Oprava problémů s integrací Google Drive\n
-		* Přidána podpora NTLM
-	"</string>
-  <string name="ChangeLog_0_9">"
-  <b>Verze 0.9</b> \n 
+		* Přidána podpora NTLM</string>
+  <string name="ChangeLog_0_9">  <b>Verze 0.9</b> \n 
 * integrace podpory Dropbox a Google Drive (čtení/zápis databáze; Keepass2Android pouze normální verze) \n 
 * podpora vlastního prohlížeče souborů (založen na android-filechooser HBA) \n 
 * vylepšené uživatelské rozhraní pro vytváření nových databází\n 
 * zahrnuto vlastní písmo DejaVu Sans Mono pro zobrazování hesel\n 
-* opravy chyb"</string>
-  <string name="ChangeLog_0_8_6">"
-  <b>Verze 0.8.6</b> \n 
+* opravy chyb</string>
+  <string name="ChangeLog_0_8_6">  <b>Verze 0.8.6</b> \n 
 * podpora Twofish šifry\n 
 * možnost editace skupin\n 
 * možnost přesunu položek a skupin\n 
 * Ikona Rychlého odemknutí může být zprůhledněna (viz nastavení)\n 
-* opravy chyb"</string>
-  <string name="ChangeLog_0_8_5">"
-		<b>Version 0.8.5</b>\n
+* opravy chyb</string>
+  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
 		* Remote files are stored in the local app cache to allow offline usage (including editing and later synchronization). See settings. \n
 		* Notification icon to visualize the lock-state of the database (see settings)\n
 		* Improved determination of lock-state in some situations\n
 		* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
 		* Entries can be added to root group\n
-		* Bug fixes (resolving reference fields, problems with keyboard on Italian and Chinese devices)
-	"</string>
-  <string name="ChangeLog_0_8_4">"
-		<b>Verze 0.8.4</b> \n
+		* Bug fixes (resolving reference fields, problems with keyboard on Italian and Chinese devices)</string>
+  <string name="ChangeLog_0_8_4"><b>Verze 0.8.4</b> \n
 		* Detekce a uložení změn v externích databázích při ukládání \n
 		* Zrychlení načítání \n
 		* Vylepšený nástroj hledání s doporučeními \n
@@ -878,9 +836,8 @@ Verze 0.9.7b\n
 		* Přidána podpora pro formát .kdbp pro rychlejší otvírání/ukládání \n
 		* Vylepšená editace doplňujících textů  a skrytý disple v chráněném móodu \n 
 		Díky Alex Vallat za příspěvky v kódu! \n
-		Díky Niki Hüttner (www.close-cut.de) za nové logo! \n
-	"</string>
-  <string name="ChangeLog_0_8_3">"<b>Verze 0.8.3</b>\n
+		Díky Niki Hüttner (www.close-cut.de) za nové logo! \n</string>
+  <string name="ChangeLog_0_8_3"><b>Verze 0.8.3</b>\n
 * Uživatelské jméno/TAN index je zobrazen v seznamu položek (viz nastavení)\n
 * Pokud hledání z prohlížeče nenalezne žádný záznam, je možno vytvořit nové polžky\n
 * KP2A klávesnice nabízí možnost hledání jména/hesla pro aktuálně používanou aplikaci\n
@@ -888,28 +845,25 @@ Verze 0.9.7b\n
 * Dialog výběru klávesnice se automaticky otevírá po hledání adresy URL (viz nastavení)\n
 * Zástupné a popisné položky ve vstupních polích  jsou nahrazeny před kopírováním (většina popisků podporována)\n
 * opravy drobných chyb
-  "</string>
-  <string name="ChangeLog_0_8_2">"<b>Verze 0.8.2</b>\n
+  </string>
+  <string name="ChangeLog_0_8_2"><b>Verze 0.8.2</b>\n
 * podpora pro ověřování algoritmem Digest Authentication pro WebDAV\n
-* Opravy chyb (správce souborů, otevřít adresu URL)
-"</string>
-  <string name="ChangeLog_0_8_1">"<b>Verze 0.8.1</b>\n
+* Opravy chyb (správce souborů, otevřít adresu URL)</string>
+  <string name="ChangeLog_0_8_1"><b>Verze 0.8.1</b>\n
 * KP2A Offline a \"Online\" mohou opět být nainstalovány společně\n
-* Přidány nové překlady (díky všem přispěvatelům!)
-"</string>
-  <string name="ChangeLog_0_8">"<b>Verze 0.8</b>\n
+* Přidány nové překlady (díky všem přispěvatelům!)</string>
+  <string name="ChangeLog_0_8"><b>Verze 0.8</b>\n
 * Vylepšené uživatelské rozhraní, obzvláště pro  zařízení s Android 4.x\n
 * Volitelná volba správce souborů pro výběr existujících souborů\n
 * Přidán bezpečnější způsob otevírání příloh (za pomocí adresáře mezipaměti)\n
 * opraveny chyby v Editaci aktivit\n
-* pravděpodobně zaneseny nové chyby  :-)
-"</string>
+* pravděpodobně zaneseny nové chyby  :-)</string>
   <string name="ChangeLog_keptDonate">Rozšířené možnosti přispět na pivo nebo něco jiného</string>
-  <string name="ChangeLog_0_7">"<b>Verze 0.7</b>\n
+  <string name="ChangeLog_0_7"><b>Verze 0.7</b>\n
 * Zrychlení načítání: klíčové transformace jsou nyní 10x rychlejší!\n
 * Přidán Keepass2Android soft-keyboard: Přepněte se na tuto klávesnici pro vložení údajů pověření. Ochraňuje před útoky založenými na skenování schránky (vypněte starý systém upozornění  v nastavení)\n
-* Doplněna položka menu Přispět na pivo nebo na něco jiného"</string>
-  <string name="ChangeLog">"<b>Verze 0.6.2</b>\n
+* Doplněna položka menu Přispět na pivo nebo na něco jiného</string>
+  <string name="ChangeLog"><b>Verze 0.6.2</b>\n
 * Integrace Google Drive/Dropbox/... : Využívá oficiální Google Drive nebo Dropbox aplikace k otevření .kdbx-soubor, poté spustí KP2A.\n
 * Vylepšení Vyhledávací dialog \n
 * Vylepšené výsledky hledání pro Sdílené adresy Share URL s pod-doménami\n
@@ -922,7 +876,7 @@ Verze 0.9.7b\n
 \n
 <b>Verze 0.6</b>\n
 První veřejné vydání
-  "</string>
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
