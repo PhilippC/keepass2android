@@ -545,6 +545,7 @@
   <string name="FileIsReadOnlyOnKitkat">Den markerade filen är skrivskyddad för Keepass2Android på grund av restriktioner på Android 4.4 +.</string>
   <string name="CopyFileRequired">För att använda den, måste du kopiera den till en annan plats.</string>
   <string name="CopyFileRequiredForEditing">För att redigera den, måste du kopiera filen till en annan plats.</string>
+  <string name="ClickOkToSelectLocation">Klicka på OK för att välja plats dit filen ska kopieras.</string>
   <string name="FileReadOnlyTitle">Databasen är skrivskyddad</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android har öppnat den aktuella databasen i skrivskyddat läge.</string>
   <string name="ReadOnlyReason_PreKitKat">Det verkar som du öppnade filen från en extern app. Detta sätt har inte stöd för skrivning. Om du vill göra ändringar i databasen, var god stäng databasen och välj ändra databas. Öppna sedan filen från en av de tillgängliga alternativen om möjligt.</string>
