@@ -215,6 +215,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="AutoReturnFromQuery_title">Återgå automatiskt från söksida</string>
+  <string name="AutoReturnFromQuery_summary">Återvänd automatiskt från frågeskärm, vid sökning efter app eller webbsajt, om det bara finns en matchande post i databasen.</string>
   <string name="KeyDerivFunc">Nyckelhärledningsfunktion</string>
   <string name="rounds">Krypteringsomgångar</string>
   <string name="rounds_explaination">Fler krypteringsomgångar ger ytterligare skydd mot råstyrke-attacker, men kan verkligen sakta ned laddning och sparning.</string>
@@ -258,6 +259,7 @@
   <string name="please_note">Observera</string>
   <string name="contributors">Medhjälpare</string>
   <string name="regular_expression">Reguljärt uttryck</string>
+  <string name="TanExpiresOnUse_title">Engångskod upphör efter användning</string>
   <string name="TanExpiresOnUse_summary">Markera engångskoder som använda när du använder dem</string>
   <string name="ShowUsernameInList_title">Visa användarnamn i listan</string>
   <string name="ShowUsernameInList_summary">Visa användarnamn under posttitlar. Användbart för multipla konton eller engångskoder.</string>
@@ -328,9 +330,11 @@
   <string name="ActivateSearchViewOnStart_summary">Aktiverar sökfältet i gruppvyn efter upplåsning eller vid sökning efter en post</string>
   <string name="NoDonateOption_title">Dölja donationsalternativ</string>
   <string name="NoDonateOption_summary">Denna inställning är för donatorer. Den blir tillgänglig efter ett tags användade av Keepass2Android.</string>
+  <string name="NoDonateOption_question">Utan donationer skulle inte denna app existera eller kunna utvecklas löpande! Om du inte har donerat ännu, var snäll och överväg det nu</string>
   <string name="NoDonationReminder_title">Be aldrig om donation</string>
   <string name="NoDonationReminder_summary">Jag kommer inte ge dig ett öre eller jag har redan donerat. Be inte om en donation, inte ens på utvecklarens födelsedag.</string>
   <string name="UseOfflineCache_title">Databascachning</string>
+  <string name="UseOfflineCache_summary">Behåll en kopia av databasfilen i appens arbetsmapp. Det möjliggör användning av databaser även när databasfilerna inte är nåbara.</string>
   <string name="CreateBackups_title">Lokala säkerhetskopior</string>
   <string name="CreateBackups_summary">Skapa en lokal säkerhetskopia efter framgångsrikt ha laddat en databas.</string>
   <string name="UpdatingBackup">Uppdatera lokal säkerhetskopia...</string>
