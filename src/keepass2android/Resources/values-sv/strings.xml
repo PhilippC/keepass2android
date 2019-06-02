@@ -435,6 +435,7 @@
   <string name="otp_aux_file">Engångslösenordsfil</string>
   <string name="ErrorOcurred">Ett fel uppstod:</string>
   <string name="DuplicateUuidsError">Databasen är skadad: dublett-IDn hittade. (Sparade du med Minikeepass?) Vänligen åter-importera till en ny databas med Keepass 2 för PC och välj \'Skapa nya IDn\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Du kan blockera det här felmeddelandet under Inställningar/App inställningar/Filhantering/Leta efter dubblett UUIDs. Obs att du kan uppleva oväntat beteende. Det rekommenderas att reparera databasfilen.</string>
   <string name="synchronize_database_menu">Synkronisera databas…</string>
   <string name="CannotMoveGroupHere">Kan inte flytta grupp till denna grupp.</string>
   <string name="donate_question">Idag är det Oktoberfest! Om du gillar Keepass2Android: skulle det väl vara en bra dag att köpa mig en öl?</string>
@@ -485,6 +486,7 @@
   <string name="use_key_file">Använd nyckelfil</string>
   <string name="error_adding_keyfile">Fel vid skapandet av nyckelfilen!</string>
   <string name="init_otp">Ladda engångslösenordsfil…</string>
+  <string name="otp_explanation">Mata in nästa engångslösen (OTP). Håll din Yubikey NEO mot baksidan av enheten för att läsa in OTP via NFC (kräver Yubiclip appen).</string>
   <string name="otp_hint">Engångslåsenord %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Kunde inte ladda engångslösenordsfil!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Vänligen använd OtpKeyProv plugin i KeePass 2.x (PC) för att konfigurera din databas för användning med engångslåsenord!</string>
@@ -531,6 +533,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Aktuell postdata</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin kommer att få alla data om den aktuella databasposten och kommer att tillåtas att erbjuda åtgärder och ändra visningen av den.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Efterfråga egna autentiseringsuppgifter</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin tillåts efterfråga de inloggningsuppgifter som hör ihop med det egna programpaketet.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Efterfråga autentiseringsuppgifter</string>
   <string name="get_regular_version">Få mer lagringstyper</string>
   <string name="CertificateWarning">Varning: Verifiering av servercertifikat misslyckades: %1$s. Installera lämpliga rotcertifikat på enheten eller se inställningar!</string>
