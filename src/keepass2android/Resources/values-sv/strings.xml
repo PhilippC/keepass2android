@@ -61,7 +61,7 @@
   <string name="unlock_database_title">Lås upp databas</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Avbryt</string>
-  <string name="Ok">Okej</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Urklippshanteraren rensad.</string>
   <string name="clipboard_timeout">Tidsgräns för urklipp</string>
   <string name="clipboard_timeout_summary">Tid innan urklipp rensas efter att användarnamn eller lösenord har kopierats</string>
