@@ -33,6 +33,8 @@
   <string name="NavigationToGroupCompleted_message">Visad grupp är: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Blockerade AutoFyll-mål</string>
   <string name="AutofillDisabledQueriesPreference_summary">Lista appar och webbsidor, för vilka AutoFyll har blockerats</string>
+  <string name="OfferSaveCredentials_summary">Aktivera om du vill att Android frågar dig om du vill spara inloggningsuppgifter, när du har matat in data manuellt i AutoFyll-bara fält.</string>
+  <string name="OfferSaveCredentials_title">Erbjud att spara inloggningsuppgifter</string>
   <string name="ShowGroupInEntry_title">Visa gruppnamnet i inmatningsvyn</string>
   <string name="unknown_uri_scheme">Förlåt! Keepass2Android kan inte hantera den returnerade URI %1$s. Kontakta utvecklaren!</string>
   <string name="Entry_singular">En post</string>
@@ -94,6 +96,7 @@
   <string name="fingerprint_reenable">Vänligen återaktivera fingeravtrycksupplåsning för det nya huvudlösenordet.</string>
   <string name="fingerprint_reenable2">Vänligen lås upp med ditt lösenord och återaktivera sedan fingeravtrycksupplåsning i databasinställningarna.</string>
   <string name="FingerprintInitFailed">Misslyckades att initiera fingeravtrycksavläsare. </string>
+  <string name="FingerprintSetupFailed">Misslyckades att kryptera data. Det kan hända om du lägger till eller tar bort registrerade fingeravtryck i systeminställningarna när Keepass2Android efterfrågar ditt fingeravtryck.</string>
   <string name="enable_fingerprint_unlock_Info">Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androids nyckelförvaring och skyddat med fingeravtrycksautenticering. Gör det möjligt att låsa upp din databas endast med ditt fingeravtryck.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Tillåter att använda fingeravtrycksautenticering istället för snabbupplåsningskod. Lagrar inte någon information relaterat till ditt huvudlösenord.</string>
   <string name="enter_filename">Ange databasnamn</string>
@@ -148,6 +151,7 @@
   <string name="hint_login_pass">Lösenord</string>
   <string name="hint_title">namn</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">åsidosätt URL</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">användarnamn</string>
   <string name="InvalidPassword">Ogiltigt lösenord eller nyckelfil.</string>
@@ -194,6 +198,8 @@
   <string name="no">Nej</string>
   <string name="no_keys">Inga poster i databas eller grupp.</string>
   <string name="no_results">Inga sökresultat</string>
+  <string name="no_url_handler">Ingen hanterare för denna URL.</string>
+  <string name="open_recent">Öppna nyligen använd databas (Klicka för att öppna)</string>
   <string name="omitbackup_title">Sök ej backup- eller papperskorgs-poster</string>
   <string name="omitbackup_summary">Utelämna \'backup\' och papperskorgs-grupp från sökresultaten</string>
   <string name="pass_filename">KeePass-databasens filnamn</string>
