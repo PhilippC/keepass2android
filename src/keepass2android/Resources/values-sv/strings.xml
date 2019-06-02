@@ -23,12 +23,16 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">App-paus</string>
   <string name="app_timeout_summary">Tid innan databasen låses när programmet är inaktivt.</string>
+  <string name="kill_app_label">Avsluta appens process</string>
   <string name="show_kill_app">Stängknapp</string>
+  <string name="show_kill_app_summary">Visa en knapp i lösenordsskärmen för att avsluta programmet (för paranoida användare)</string>
   <string name="application">App</string>
   <string name="application_settings">Appinställningar</string>
   <string name="ShowGroupnameInSearchResult_title">Visa gruppnamn i sökresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Visa gruppnamnet under post-titlar i sökresultat. Användbart om flera poster har samma namn.</string>
   <string name="NavigationToGroupCompleted_message">Visad grupp är: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Blockerade AutoFyll-mål</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Lista appar och webbsidor, för vilka AutoFyll har blockerats</string>
   <string name="ShowGroupInEntry_title">Visa gruppnamnet i inmatningsvyn</string>
   <string name="unknown_uri_scheme">Förlåt! Keepass2Android kan inte hantera den returnerade URI %1$s. Kontakta utvecklaren!</string>
   <string name="Entry_singular">En post</string>
