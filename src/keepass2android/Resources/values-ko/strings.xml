@@ -21,7 +21,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="kill_app_label">앱 프로세스 종료</string>
   <string name="show_kill_app">종료 버튼</string>
+  <string name="application">앱</string>
   <string name="application_settings">앱 설정</string>
   <string name="ShowGroupnameInSearchResult_title">검색결과에 그룹이름 표시하기</string>
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹 이름을 표시 합니다. 여러 항목의 이름이 같은 경우에 유용합니다.</string>
