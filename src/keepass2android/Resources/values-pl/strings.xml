@@ -456,7 +456,7 @@
   <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
   <string name="enter_sftp_login_title">Wpisz dane loginu SFTP:</string>
   <string name="sftp_auth_mode">Tryb uwierzytelniania</string>
-  <string name="send_public_key">Wyślij klucz publiczny...</string>
+  <string name="send_public_key">Wyślij klucz publiczny…</string>
   <string name="enter_ftp_login_title">Wpisz dane logowania FTP:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
   <string name="filestoragename_file">Plik lokalny</string>
