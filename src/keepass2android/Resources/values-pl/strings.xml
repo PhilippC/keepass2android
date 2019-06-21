@@ -32,9 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Wyświetl nazwę grupy poniżej tytułów wpisów w wykonach wyszukiwania. Przydatne jeśli masz kilka wpisów z tą samą nazwą.</string>
   <string name="NavigationToGroupCompleted_message">Wyświetlana grupa to: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Wyłączone cele autouzupełniania</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Pokazuje listę aplikacji i stron internetowych dla których autouzupełnianie zostało wyłączone</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Pokazuje listę aplikacji i stron internetowych, dla których automatyczne uzupełnianie zostało wyłączone</string>
   <string name="OfferSaveCredentials_summary">Jeśli włączone, Android zapyta czy chcesz zapisać dane po ręcznym wpisaniu ich w pola z możliwością autouzupełnienia.</string>
-  <string name="OfferSaveCredentials_title">Zaoferuj zapisywanie danych logowania</string>
+  <string name="OfferSaveCredentials_title">Proponuj zapis poświadczeń</string>
   <string name="ShowGroupInEntry_title">Pokaż nazwę grupy w widoku wpisów</string>
   <string name="unknown_uri_scheme">Przepraszam! Keepass2Android nie może obsłużyć tego URI %1$s. Prosimy o kontakt z autorem!</string>
   <string name="Entry_singular">Jeden wpis</string>
@@ -326,8 +326,8 @@
   <string name="ClearPasswordOnLeave_summary">Wyczyść wpisane hasło główne podczas opuszczania aplikacji bez odblokowywania bazy danych.</string>
   <string name="LockWhenNavigateBack_title">Zablokuj po opuszczeniu aplikacji</string>
   <string name="LockWhenNavigateBack_summary">Zablokuj bazę danych kiedy opuścisz aplikację poprzez naciśnięcie przycisku wstecz.</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Używaj wbudowanej klawiatury w aplikacji Keepass2Android</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Jeśli nie ufasz standardowemu dostawcy klawiatury, zaznacz tę opcję, aby użyć wbudowanej klawiatury podczas wprowadzania hasła głównego lub edytowania wpisów.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Używaj klawiatury wbudowanej w aplikację Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Zaznacz tę opcję, jeśli nie ufasz standardowemu dostawcy klawiatury i chcesz użyć klawiatury wbudowanej do wprowadzania hasła głównego lub edytowania wpisów.</string>
   <string name="ActivateSearchViewOnStart_title">Aktywuj wyszukiwanie przy starcie</string>
   <string name="ActivateSearchViewOnStart_summary">Aktywuje pole wyszukiwania w widoku grupy po odblokowaniu lub w trakcie przeglądania wpisu</string>
   <string name="NoDonateOption_title">Ukryj opcję dotacji</string>
@@ -628,6 +628,18 @@
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string name="ChangeLog_1_07">Wersja 1.07\n
+    * Poprawki do awarii Androida 9 na urządzeniach Samsung\n
+    * Możliwość otwarcia więcej niż jednej bazy danych, zgodnej z KeeAutoExec\n
+    * SFTP: możliwość uwierzytelnienia kluczem publicznym, sprawdzenie zmiany klucza hosta\n
+    * Wprowadzenie obsługi pCloud – podziękowania dla gilbsgilbs!\n
+    * Jawna obsługa Nextcloud\n
+    * Poprawienie zapisywania i aktualizacji załączników do wpisów\n
+    * Więcej opcji przystosowania zachowania do osobistych preferencji\n
+    * SSL: Ufanie certyfikatom użytkownika\n
+    * Ulepszenie automatycznego uzupełniania (działa również z Firefoxem, możliwość zmniejszenia liczby okienek)\n
+    * poprawki błędów\n
+  </string>
   <string name="ChangeLog_1_06">Wersja 1.06\n
     * Zmieniono aplikację do obsługi Yubikey Challenge-Response z YubiChallenge na ykDroid.\n
     * Dodano wsparcie dla Challenge-Response w formacie KeepassXC. Uwaga: Baza danych musi być w formacie KDBX4!\n
