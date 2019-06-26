@@ -33,7 +33,7 @@
   <string name="NavigationToGroupCompleted_message">Getoonde groep is nu: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Automatisch invoeren is uitgeschakeld voor</string>
   <string name="AutofillDisabledQueriesPreference_summary">Toont een lijst van apps en websites waarvoor AutoFill is uitgeschakeld</string>
-  <string name="OfferSaveCredentials_summary">Indien ingeschakeld, zal Android vragen of u de gegevens wilt opslaan nadat u handmatig gegevens hebt ingevoerd in auto-vulbare velden.</string>
+  <string name="OfferSaveCredentials_summary">Indien ingeschakeld, zal Android vragen of je de gegevens wilt opslaan nadat je handmatig gegevens hebt aangepast in auto-vulbare velden.</string>
   <string name="OfferSaveCredentials_title">Bied het opslaan van wachtwoordgegevens aan</string>
   <string name="ShowGroupInEntry_title">Toon groepsnaam in item venster</string>
   <string name="unknown_uri_scheme">Sorry! Keepass2Android kan niet overweg met de ontvangen URI %1$s. Neem contact op met de ontwikkelaar!</string>
@@ -54,14 +54,14 @@
   <string name="keyboardswitch_prefs">Toetsenbord wisselen</string>
   <string name="OnlyAvailableForLocalFiles">Alleen beschikbaar voor lokale bestanden.</string>
   <string name="FileIsInInternalDirectory">Bestand is opgeslagen in interne map.</string>
-  <string name="DatabaseFileMoved">De database is geïmporteerd. Druk op Ok om de database te openen van de nieuwe locatie. Let op: Vergeet niet om regelmatig de database te exporteren!</string>
+  <string name="DatabaseFileMoved">De database is geïmporteerd. Druk op Oké om de database te openen van de nieuwe locatie. Let op: Vergeet niet om regelmatig de database te exporteren!</string>
   <string name="KeyfileMoved">Sleutelbestand geïmporteerd. Zorg voor een back-up voordat je het bestand verwijdert!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Om de interne map te gebruiken moet de locatie van het sleutelbestand bewaard blijven. Pas uw beveiligingsinstellingen aan.</string>
   <string name="unlock_database_button">Openen</string>
   <string name="unlock_database_title">Database openen</string>
   <string name="brackets">Haakjes</string>
   <string name="cancel">Annuleren</string>
-  <string name="Ok">Ok</string>
+  <string name="Ok">Oké</string>
   <string name="ClearClipboard">Klembord gewist.</string>
   <string name="clipboard_timeout">Klembordtimeout</string>
   <string name="clipboard_timeout_summary">Tijd tussen het kopiëren van gebruikersnaam of wachtwoord en het wissen van het klembord</string>
@@ -325,12 +325,12 @@
   <string name="LockWhenNavigateBack_title">Vergrendel zodra app wordt verlaten</string>
   <string name="LockWhenNavigateBack_summary">Vergrendel de database wanneer de app via de knop \'vorige\' verlaten wordt.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Gebruik ingebouwde toetsenbord binnen Keepass2Android</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Als u het standaard toetsenbord niet vertrouwt, check deze optie om het ingebouwde toetsenbord te gebruiken wanneer u het hoofdwachtwoord invoert of items bewerkt.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Als je het standaard toetsenbord niet vertrouwt, check deze optie om het ingebouwde toetsenbord te gebruiken wanneer je het hoofdwachtwoord invoert of items bewerkt.</string>
   <string name="ActivateSearchViewOnStart_title">Activeer zoekveld vanaf start</string>
   <string name="ActivateSearchViewOnStart_summary">Activeert het zoekveld in de groepsweergave na ontgrendelen of bij het zoeken voor een item</string>
   <string name="NoDonateOption_title">Verberg donatie-optie</string>
   <string name="NoDonateOption_summary">Deze instelling komt beschikbaar als je donateur bent geworden en Keepass2Android een tijdje hebt gebruikt.</string>
-  <string name="NoDonateOption_question">Zonder donaties zou deze app niet bestaan en voortdurend worden verbeterd! Als u nog niet gedoneerd hebt, kunt u overwegen dit nu te doen</string>
+  <string name="NoDonateOption_question">Zonder donaties zou deze app niet bestaan en voortdurend worden verbeterd! Als je nog niet hebt gedoneerd, kun je nu overwegen dit te doen</string>
   <string name="NoDonationReminder_title">Nooit vragen om een donatie</string>
   <string name="NoDonationReminder_summary">Ik geef je nog geen dubbeltje of ik heb al gedoneerd. Niet vragen om een donatie, zelfs niet op de verjaardag van de auteur.</string>
   <string name="UseOfflineCache_title">Database caching</string>
@@ -435,7 +435,7 @@
   <string name="otp_aux_file">OTP hulpbestand</string>
   <string name="ErrorOcurred">Een fout is opgetreden:</string>
   <string name="DuplicateUuidsError">Database is corrupt: dubbele IDs gevonden. (Heb je het opgeslagen met Minikeepass?) Importeer alstublieft opnieuw in een nieuwe database met Keepass 2 voor PC en selecteer \'Nieuwe id\'s maken\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">U kunt deze foutmelding uitschakelen in Instellingen/Applicatie-instellingen/Bestandsafhandeling/Controle op dubbele UUID\'s. Houd er rekening mee dat onverwacht gedrag kan optreden. Het wordt aanbevolen om de database te herstellen.</string>
+  <string name="DuplicateUuidsErrorAdditional">Je kunt deze foutmelding uitschakelen in Instellingen/Applicatie-instellingen/Bestandsafhandeling/Controle op dubbele UUID\'s. Houd er rekening mee dat onverwacht gedrag kan optreden. Het wordt aanbevolen om de database te herstellen.</string>
   <string name="synchronize_database_menu">Database synchroniseren…</string>
   <string name="CannotMoveGroupHere">Kan de groep niet naar deze groep verplaatsen.</string>
   <string name="donate_question">Vandaag is het Oktoberfeest! Als je Keepass2Android leuk vind: zou het niet de uitgelezen dag zijn om mij te trakteren op een biertje?</string>
@@ -467,7 +467,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A map)</string>
-  <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als u KP2A geen toegang wilt geven tot uw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als u al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
+  <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -483,7 +483,7 @@
   <string name="help_master_password">De database is versleuteld met het hier ingevoerde wachtwoord. Kies een sterk wachtwoord om de database te beveiligen! Tip: Bedenk een zin of twee en gebruik de eerste letters van de woorden als wachtwoord. Gebruik ook de leestekens.</string>
   <string name="hint_master_password">Kies een hoofdwachtwoord om jouw database te beschermen:</string>
   <string name="key_file">Sleutelbestand</string>
-  <string name="help_key_file">Een key file is feitelijk een wachtwoord dat is opgeslagen in een bestand. Key files zijn doorgaans sterker dan hoofdwachtwoorden omdat de versleuteling veel ingewikkelder kan zijn; het is echter moeilijker om ze geheim te houden. Als u uw database opslaat in de cloud, sla uw key file daar dan niet op! Dit zou het volledig nutteloos maken. Belangrijk: wijzig niet de inhoud van de key file na het aanmaken van de database!</string>
+  <string name="help_key_file">Een key file is feitelijk een wachtwoord dat is opgeslagen in een bestand. Key files zijn doorgaans sterker dan hoofdwachtwoorden omdat de versleuteling veel ingewikkelder kan zijn; het is echter moeilijker om ze geheim te houden. Als je jouw database opslaat in de cloud, sla de key file daar dan niet op! Dit zou het volledig nutteloos maken. Belangrijk: wijzig niet de inhoud van de key file na het aanmaken van de database!</string>
   <string name="hint_key_file">Kies als je gebruik wilt maken van een sleutelbestand naast het hoofdwachtwoord:</string>
   <string name="use_key_file">Gebruik sleutelbestand</string>
   <string name="error_adding_keyfile">Fout tijdens het toevoegen van het sleutelbestand!</string>
@@ -548,7 +548,7 @@
   <string name="FileIsReadOnlyOnKitkat">Het geselecteerde bestand is alleen-lezen voor Keepass2Android vanwege beperkingen op Android 4.4 +.</string>
   <string name="CopyFileRequired">Om het te gebruiken moet je het kopiëren naar een andere locatie.</string>
   <string name="CopyFileRequiredForEditing">Om het te bewerken moet je het kopiëren naar een andere locatie.</string>
-  <string name="ClickOkToSelectLocation">Klik op OK om een locatie te kiezen waar het bestand naartoe moet worden gekopieerd.</string>
+  <string name="ClickOkToSelectLocation">Klik op Oké om een locatie te kiezen waar het bestand naartoe moet worden gekopieerd.</string>
   <string name="FileReadOnlyTitle">Database is alleen-lezen</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android heeft de huidige database geopend in de modus alleen-lezen.</string>
   <string name="ReadOnlyReason_PreKitKat">Het lijkt alsof je het bestand hebt geopend vanuit een externe app. Dit biedt geen ondersteuning voor schrijven. Als je wijzigingen wilt aanbrengen aan de database: sluit de database en selecteer \'database wijzigen\'. Open vervolgens het bestand indien mogelijk opnieuw vanaf een van de beschikbare opties.</string>
@@ -610,7 +610,7 @@
   <string name="child_db_enable_on_this_device">Inschakelen op dit apparaat</string>
   <string name="child_db_disable_on_this_device">Uitschakelen op dit apparaat</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopiëren voor dit apparaat</string>
-  <string name="unconfigured_child_dbs">Uw database bevat nieuwe kind-databases in de groep \"AutoOpen\". Geef aan of deze kind-databases op dit apparaat gebruikt moeten worden.</string>
+  <string name="unconfigured_child_dbs">Jouw database bevat nieuwe kind-databases in de groep \"AutoOpen\". Geef aan of deze kind-databases op dit apparaat gebruikt moeten worden.</string>
   <string name="add_child_db">Kind-database toevoegen...</string>
   <string name="EnableCopyForThisDevice_Info">Dit creëert een kopie van de kind-database-instellingen en schakelt deze in. Deze gekopieerde instellingen kunnen vervolgens voor dit apparaat worden aangepast.</string>
   <string name="Visible_title">Zichtbaar</string>
@@ -757,9 +757,9 @@ ChangeLog_1_05  </string>
 		* verschillende sorteeropties\n
 		* instellingen voor automatisch toetsenbordwisselen verbeterd\n
 		* applicatielogo en ontwerp van notificaties bijgewerkt, ontworpen door Stefano Pignataro (http://www.spstudio.at)\n
-		* wachtwoordgenerator onthoudt instellingen\n
+		* wachtwoordgenerator onthoudt laatste instellingen\n
 		* instellen zichtbaarheid notificaties voor vergrendelscherm van Android 5\n
-		* hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op OK te klikken\n
+		* hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op Oké te klikken\n
 		* opgelost: probleem met ontbrekende invoertalen in toetsenbordinstellingen op sommige apparaten\n
 		* opgelost: probleem met automatisch toetsenbordwisselen op geroote apparaten\n
 		* check toegevoegd voor corrupte databases (duplicate UUIDS)\n
