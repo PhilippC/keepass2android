@@ -31,6 +31,8 @@
   <string name="ShowGroupnameInSearchResult_title">Toon groepsnaam in zoekresultaat</string>
   <string name="ShowGroupnameInSearchResult_resume">Toon groepsnaam onder item namen in zoekresultaten. Handig als verschillende items dezelfde naam hebben.</string>
   <string name="NavigationToGroupCompleted_message">Getoonde groep is nu: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Automatisch invoeren is uitgeschakeld voor</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Toont een lijst van apps en websites waarvoor AutoFill is uitgeschakeld</string>
   <string name="OfferSaveCredentials_summary">Indien ingeschakeld, zal Android vragen of u de gegevens wilt opslaan nadat u handmatig gegevens hebt ingevoerd in auto-vulbare velden.</string>
   <string name="OfferSaveCredentials_title">Bied het opslaan van wachtwoordgegevens aan</string>
   <string name="ShowGroupInEntry_title">Toon groepsnaam in item venster</string>
