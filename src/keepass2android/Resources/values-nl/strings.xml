@@ -136,6 +136,7 @@
   <string name="error_rounds_not_number">Cycli-waarde moet een getal zijn.</string>
   <string name="error_param_not_number">De parameter moet een getal zijn.</string>
   <string name="error_title_required">Een titel ontbreekt.</string>
+  <string name="error_wrong_length">Geef een positief getal in het lengte veld</string>
   <string name="FileNotFound">Bestand niet gevonden.</string>
   <string name="file_browser">Verkenner</string>
   <string name="generate_password">Genereer wachtwoord</string>
@@ -197,6 +198,7 @@
   <string name="no">Nee</string>
   <string name="no_keys">Geen records in de database of groep.</string>
   <string name="no_results">Geen zoekresultaten</string>
+  <string name="no_url_handler">Geen afhandeling voor deze URL.</string>
   <string name="open_recent">Open recente database (klik om te openen)</string>
   <string name="omitbackup_title">Niet in back-up en prullenbak zoeken</string>
   <string name="omitbackup_summary">Laat \'Back-up\' en Prullenbak-groep weg uit zoekresultaten</string>
@@ -241,6 +243,7 @@
   <string name="select_group_then_add">Open de gewenste groep en druk op \"%1$s\"!</string>
   <string name="insert_element_here">Hier invoegen</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Lage streep</string>
   <string name="unsupported_db_version">Niet-ondersteunde databaseversie.</string>
   <string name="uppercase">Hoofdletters</string>
   <string name="warning_read_only">De sd-kaart is momenteel ingesteld als alleen-lezen. Je zult mogelijk wijzigingen in de database niet kunnen opslaan.</string>
@@ -256,6 +259,7 @@
   <string name="please_note">Merk op</string>
   <string name="contributors">Bijdragers</string>
   <string name="regular_expression">Reguliere expressie</string>
+  <string name="TanExpiresOnUse_title">TAN vervalt na gebruik</string>
   <string name="TanExpiresOnUse_summary">TAN-items markeren als vervallen na gebruik</string>
   <string name="ShowUsernameInList_title">Geef gebruikersnaam weer in lijst</string>
   <string name="ShowUsernameInList_summary">Gebruikersnamen onder item titels weergeven. Handig voor meerdere accounts of TANs.</string>
@@ -584,6 +588,10 @@
   • Zorg dat je het correcte wachtwoord hebt ingevuld. Gebruik het oog-pictogram om het ingevoerde wachtwoord te tonen.\n
   • Zorg dat je het correcte wachtwoordtype hebt gekozen. Dit dient overeen te komen met het type dat je gekozen heeft bij het aanmaken van de database.\n
   • Zorg dat je het juiste bestand hebt gekozen.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
+&#8226; Hint: als je denkt dat je database corrupt kan zijn, of als je het hoofdwachtwoord niet meer weet nadat je hebt gewijzigd, dan kun je proberen de laatst goed geopende versie te openen door \"%1$s\" te klikken en de lokale back-up te kiezen.</string>
+  <string name="HintLocalBackupOtherError">\n
+&#8226; Hint: Keepass2Android heeft de laatst goed geopende versie opgeslagen in intern geheugen. Je kunt deze openen door op \"%1$s\" te klikken en de lokale back-up te kiezen.  </string>
   <string name="CorruptDatabaseHelp">Het bestand is beschadigd. \n
   Dit zijn enkele aanwijzingen om het probleem te diagnosticeren:\n
   
@@ -597,6 +605,7 @@
   <string name="configure_child_dbs">Kind-databases configureren…</string>
   <string name="child_dbs_title">Kind-databases</string>
   <string name="unspecified">niet gespecificeerd</string>
+  <string name="child_db_explanation">Kinderdatabases zijn andere databases die automatisch geopend worden wanneer je de bovenliggende database opent. Daarom worden het hoofdwachtwoord en bestandslocatie van de kinddatabase opgeslagen in de bovenliggende. Deze functie maakt het mogelijk om sommige wachtwoorden te delen met een andere persoon. De implementatie is compatibel met KeeAutoExec voor PC.</string>
   <string name="child_db_enabled_on_this_device">Ingeschakeld op dit apparaat</string>
   <string name="child_db_enable_on_this_device">Inschakelen op dit apparaat</string>
   <string name="child_db_disable_on_this_device">Uitschakelen op dit apparaat</string>
@@ -615,6 +624,17 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_07">    Versie 1.07\n
+    * Oplossing voor crashes op Samsung\'s Android 9\n
+    * Je kunt nu meer dan 1 database openen, compatibel met KeeAutoExec\n
+    * SFTP: public key authenticatie, controle op verandering van server sleutel\n
+    * Introductie van pCloud ondersteuning - dank aan gilbsgilbs!\n
+    * NextCloud ondersteuning expliciet gemaakt\n
+    * Opslaan en veranderen van item bijlagen verbeterd\n
+    * Meer opties voor het aanpassen van app gedrag in persoonlijke voorkeuren\n
+    * SSL: vertrouw gebruiker certicaten\n
+    * Autofill verbeterd (werkt nu met Firefox, minder popups)\n
+    * Fout oplossingen\n  </string>
   <string name="ChangeLog_1_06">  Versie 1.06\n
   * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey challenge/response.\n
   * Ondersteuning voor KeepassXC-stijl challenge/response. Merk op: de database-indeling moet KDBX4 zijn!\n
@@ -732,6 +752,19 @@ ChangeLog_1_05  </string>
 		* Voorkomt screenshots van Snel Openen en wachtwoordschermen\n
 		* Omgekeerde sorteervolgorde voor Sorteren op wijzigingsdatum (nu aflopend)\n
 		* Bug fixes: Notitie schermen nu correct vernieuwd na wijzigingen, Wachtwoord schermen verbergen nu het wachtwoord correct op (hopelijk) alle apparaten, probleem opgelost dat het toevoegen van dubbele items toestond, probleem opgelost waarbij de Dubbele UUID melding werd weergegeven na het repareren van de database\n</string>
+  <string name="ChangeLog_0_9_6">Versie 0.9.6\n
+		* mogelijkheid om sleutelbestand en/of database naar het interne geheugen van de app te kopiëren (zie instellingen)\n
+		* verschillende sorteeropties\n
+		* instellingen voor automatisch toetsenbordwisselen verbeterd\n
+		* applicatielogo en ontwerp van notificaties bijgewerkt, ontworpen door Stefano Pignataro (http://www.spstudio.at)\n
+		* wachtwoordgenerator onthoudt instellingen\n
+		* instellen zichtbaarheid notificaties voor vergrendelscherm van Android 5\n
+		* hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op OK te klikken\n
+		* opgelost: probleem met ontbrekende invoertalen in toetsenbordinstellingen op sommige apparaten\n
+		* opgelost: probleem met automatisch toetsenbordwisselen op geroote apparaten\n
+		* check toegevoegd voor corrupte databases (duplicate UUIDS)\n
+		* automatisch herladen van database wanneer wijzigingen worden gedetecteerd, lost beveiligingsvraagstuk over het lekken van het hoofdwachtwoord op\n
+		* verbeterd van Poolse kleine toetsenbord, verbeterd thema van de toetsenbordinstellingen (dank aan Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Versie 0.9.5</b>\n
 		* Opgelost: problemen met bestanden selecteren (vooral op Android 4.4)\n
 		* Opgelost: probleem met laden van kdb-bestanden (Keepass 1) op Nexus 5 met Android Lollipop\n
