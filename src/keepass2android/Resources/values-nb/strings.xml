@@ -51,6 +51,7 @@
   <string name="unlock_database_title">Lås opp databasen</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Avbryt</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Utklippstavlen er tømt.</string>
   <string name="clipboard_timeout">Tidsavbrudd på utklippstavlen</string>
   <string name="clipboard_timeout_summary">Tid før utklippstavlen blir tømt etter at brukarnavnet eller passordet er kopiert</string>
