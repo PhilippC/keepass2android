@@ -40,7 +40,7 @@
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <BundleAssemblies>false</BundleAssemblies>
@@ -58,7 +58,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <ConsolePause>False</ConsolePause>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86,x86_64</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a,x86,x86_64</AndroidSupportedAbis>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="UseManifestNet.bat" />
@@ -93,7 +93,7 @@
         <Command type="BeforeBuild" command="UseManifestNoNet.bat" workingdir="" />
       </CustomCommands>
     </CustomCommands>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
     <DeployExternal>True</DeployExternal>
     <JavaOptions>
     </JavaOptions>
