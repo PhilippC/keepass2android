@@ -40,7 +40,7 @@
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <BundleAssemblies>false</BundleAssemblies>
@@ -58,7 +58,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <ConsolePause>False</ConsolePause>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86,x86_64</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a,x86,x86_64</AndroidSupportedAbis>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="UseManifestNet.bat" />
@@ -93,7 +93,7 @@
         <Command type="BeforeBuild" command="UseManifestNoNet.bat" workingdir="" />
       </CustomCommands>
     </CustomCommands>
-    <AndroidSupportedAbis>armeabi,armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
     <DeployExternal>True</DeployExternal>
     <JavaOptions>
     </JavaOptions>
@@ -1919,6 +1919,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\publicsuffix.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidNativeLibrary Include="..\java\argon2\libs\armeabi-v7a\libargon2.so" />
+    <AndroidNativeLibrary Include="..\java\argon2\libs\arm64-v8a\libargon2.so" />
+    <AndroidNativeLibrary Include="..\java\argon2\libs\x86\libargon2.so" />
+    <AndroidNativeLibrary Include="..\java\argon2\libs\x86_64\libargon2.so" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
