@@ -28,6 +28,7 @@ import com.pcloud.sdk.PCloudSdk;
 import com.pcloud.sdk.RemoteEntry;
 import com.pcloud.sdk.RemoteFile;
 import com.pcloud.sdk.RemoteFolder;
+import com.pcloud.sdk.UploadOptions;
 
 /**
  * FileStorage implementation for PCloud provider.
@@ -136,10 +137,10 @@ public class PCloudFileStorage extends JavaFileStorageBase
         String filePath = path.substring(0, path.lastIndexOf("/") + 1);
         RemoteFolder remoteFolder = this.getRemoteFolderByPath(filePath);
 
-        String tempName = "." + UUID.randomUUID().toString();
         try {
-            RemoteFile remoteFile = this.apiClient.createFile(remoteFolder, tempName, dataSource).execute();
-            this.apiClient.rename(remoteFile, filename).execute();
+            RemoteFile remoteFile = this.apiClient.createFile(
+                remoteFolder, filename, dataSource, null, null, UploadOptions.OVERRIDE_FILE
+            ).execute();
         } catch (ApiError e) {
             throw convertApiError(e);
         }
