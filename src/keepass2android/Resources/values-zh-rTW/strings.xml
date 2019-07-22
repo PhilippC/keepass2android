@@ -470,6 +470,7 @@
   <string name="filestoragehelp_dropboxKP2A">使用此選項只請求訪問「應用程式/Keepass2Android」 資料夾的權限，而非授予 KP2A 訪問 Dropbox 全部空間的權限。創建新資料庫時，使用這選項最為適合。如果你需要訪問已有資料庫，按一下此選項創建該資料夾，然後 (從您的 PC) 將資料庫檔案放在資料夾內，然後再點擊此選項，再打開檔案。</string>
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
   <string name="filestoragename_pcloud">pCloud</string>
+  <string name="filestoragehelp_pcloud">這個儲存類型只會請求訪問「Applications/Keepass2Android」資料夾。要使用已有的資料庫，請確保其檔案置於該資料夾。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
   <string name="filestoragename_content">系統檔選擇器</string>
