@@ -1498,6 +1498,7 @@ namespace keepass2android
 		private void MakePasswordMaskedOrVisible()
 		{
 			TextView password = (TextView) FindViewById(Resource.Id.password_edit);
+			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
@@ -1507,7 +1508,7 @@ namespace keepass2android
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 			}
-            
+			password.SetSelection(selStart, selEnd);
 		}
 
 		protected override void OnPause()
