@@ -1793,12 +1793,12 @@ namespace keepass2android
 	            if ((int) Build.VERSION.SdkInt >= 26)
 	            {
 	                Android.Content.ClipboardManager clipboardManager = (ClipboardManager)GetSystemService(Context.ClipboardService);
-	                if (clipboardManager.PrimaryClip.Description.Timestamp <
-	                    Java.Lang.JavaSystem.CurrentTimeMillis() - 5000)
+	                if (clipboardManager?.PrimaryClip?.Description == null || (clipboardManager.PrimaryClip.Description.Timestamp <
+	                    Java.Lang.JavaSystem.CurrentTimeMillis() - 5000))
 	                    return; //data older than 5 seconds
 	            }
 	            string clipboardContent = Util.GetClipboard(this);
-	            if (_otpInfo.OtpLength != clipboardContent.Length)
+	            if (clipboardContent == null || (_otpInfo.OtpLength != clipboardContent.Length))
 	            {
 	                return;
 	            }
@@ -1814,7 +1814,7 @@ namespace keepass2android
                 foreach (int otpId in _otpTextViewIds)
 	            {
 	                EditText otpEdit = FindViewById<EditText>(otpId);
-	                if (otpEdit.Visibility == ViewStates.Visible)
+	                if (otpEdit?.Visibility == ViewStates.Visible)
 	                {
 	                    if (string.IsNullOrEmpty(otpEdit.Text))
 	                    {
