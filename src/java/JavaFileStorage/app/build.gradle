@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
@@ -35,8 +35,8 @@ dependencies {
     compile('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
     }
-    compile 'com.pcloud.sdk:java-core:1.0.1'
-    compile 'com.pcloud.sdk:android:1.0.1'
+    compile 'com.pcloud.sdk:java-core:1.1.0'
+    compile 'com.pcloud.sdk:android:1.1.0'
     compile('com.microsoft.graph:msgraph-sdk-android:1.2.+')
     compile ('com.microsoft.identity.client:msal:0.1.+') {
         exclude group: 'com.android.support', module: 'appcompat-v7'

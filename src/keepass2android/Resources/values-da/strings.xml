@@ -625,7 +625,7 @@
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
-  <string name="ChangeLog_1_07">    Version 1.07-pre2\n
+  <string name="ChangeLog_1_07">    Version 1.07\n
     * Løser nedbrud på Samsungs Android 9\n
     * Tillader åbning af flere end én database, kompatibel med KeeAutoExec\n
     * SFTP: Tillader offentlig nøglegodkendelse, tjekker om værtsnøgle er ændret\n
