@@ -67,10 +67,12 @@
 	<string name="brackets">Brackets</string>
   <string name="cancel">Cancel</string>
   <string name="Ok">Ok</string>
+    <string name="disable_sensor">Disable sensor</string>
+    <string name="enable_sensor">Enable sensor</string>
   <string name="ClearClipboard">Clipboard cleared.</string>
     
   
-  
+
   <string name="clipboard_timeout">Clipboard timeout</string>
   <string name="clipboard_timeout_summary">Time before clearing clipboard after copying username or password</string>
   <string name="copy_username">Select to copy username to clipboard</string>

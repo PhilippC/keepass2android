@@ -904,10 +904,28 @@ namespace keepass2android
 					AlertDialog.Builder b = new AlertDialog.Builder(this);
 					b.SetTitle(Resource.String.fingerprint_prefs);
 					b.SetMessage(btn.Tag.ToString());
-					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+
+					if (_fingerprintDec != null)
+					{
+                        b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+                        b.SetNegativeButton(Resource.String.disable_sensor, (senderAlert, alertArgs) =>
+                        {
+                            btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+                            _fingerprintDec?.StopListening();
+                            _fingerprintDec = null;
+                        });
+                    }
+                    else
+                    {
+                        b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+                        b.SetNegativeButton(Resource.String.enable_sensor, (senderAlert, alertArgs) =>
+                        {
+                            InitFingerprintUnlock();
+                        });
+                    }
 					b.Show();
 				};
-				_fingerprintPermissionGranted = true;
+                _fingerprintPermissionGranted = true;
 			}
 		}
 
@@ -919,7 +937,7 @@ namespace keepass2android
 			edit.Commit();
 		}
 
-		
+
 		public void OnFingerprintError(string message)
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
@@ -999,7 +1017,7 @@ namespace keepass2android
 					
 				if (_appnameclickCount == 7)
 				{
-					throw new Exception("this is an easter egg crash (to test uncaught exceptions.");
+					throw new Exception("this is an easter egg crash (to test uncaught exceptions.)");
 				}
 					
 
@@ -1112,7 +1130,7 @@ namespace keepass2android
 
 			var changeDbButton = FindViewById<Button>(Resource.Id.change_db);
 			string label = changeDbButton.Text;
-			if (label.EndsWith("…"))
+			if (label.EndsWith("ï¿½"))
 				changeDbButton.Text = label.Substring(0, label.Length - 1);
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
