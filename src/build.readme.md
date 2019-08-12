@@ -43,6 +43,7 @@ build-java.bat will call gradlew for several Java modules. build-xamarin.bat wil
 - Install [libzip](https://libzip.org/) for your distribution.
   - Note: Xamarin seems to require `libzip4`, yet most distributions only ships `libzip5`. As a dirty workaround, it's possible to symlink `libzip.so.5` to `libzip.so.4`. Luckily, it appears to be working.
   - `sudo ln -s /usr/lib/libzip.so.5 /usr/lib/libzip.so.4`
+  - or `sudo ln -s /usr/lib64/libzip.so.5 /usr/lib/libzip.so.4`
 - Install NuGet dependencies:
   - `cd src/ && nuget restore KeePass.sln`
 - Build:
