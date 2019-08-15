@@ -3,7 +3,7 @@ using Android.Content;
 
 namespace keepass2android.services.AutofillBase
 {
-    
+
     internal class Kp2aDigitalAssetLinksDataSource
     {
         private static Kp2aDigitalAssetLinksDataSource instance;
@@ -30,7 +30,8 @@ namespace keepass2android.services.AutofillBase
 
         static readonly HashSet<string> _trustedBrowsers = new HashSet<string>
         {
-            "org.mozilla.firefox","org.mozilla.firefox_beta","org.mozilla.fenix","org.mozilla.klar","org.mozilla.focus",
+            "org.mozilla.firefox","org.mozilla.firefox_beta","org.mozilla.klar","org.mozilla.focus",
+            "org.mozilla.fenix","org.mozilla.fenix.nightly","org.mozilla.reference.browser",
             "com.android.browser","com.android.chrome","com.chrome.beta","com.chrome.dev","com.chrome.canary",
             "com.google.android.apps.chrome","com.google.android.apps.chrome_dev",
             "com.opera.browser","com.opera.browser.beta","com.opera.mini.native",
