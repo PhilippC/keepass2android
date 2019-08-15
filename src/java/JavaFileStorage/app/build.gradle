@@ -30,7 +30,7 @@ dependencies {
         exclude group: 'com.google.android.google-play-services'
     }
     compile 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
-    compile 'com.dropbox.core:dropbox-core-sdk:3.0.3'
+    compile 'com.dropbox.core:dropbox-core-sdk:3.1.1'
     //onedrive:
     compile('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
