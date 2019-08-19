@@ -36,7 +36,8 @@ namespace keepass2android.services.AutofillBase
             "com.google.android.apps.chrome","com.google.android.apps.chrome_dev",
             "com.opera.browser","com.opera.browser.beta","com.opera.mini.native",
             "com.brave.browser","com.yandex.browser","com.microsoft.emmx","com.amazon.cloud9",
-            "com.sec.android.app.sbrowser","com.sec.android.app.sbrowser.beta","org.codeaurora.swe.browser"
+            "com.sec.android.app.sbrowser","com.sec.android.app.sbrowser.beta","org.codeaurora.swe.browser",
+            "mark.via.gp"
         };
 
         private bool IsTrustedBrowser(string packageName)
