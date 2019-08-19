@@ -186,7 +186,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				return displayName;
 			
 			String[] parts = mAccountLocalPath.split("/");
-			
+			if (parts.length == 0)
+				return "";
 			String part = parts[parts.length-1];
 			logDebug("parsing part " + part);
 			int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
