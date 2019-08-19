@@ -62,6 +62,8 @@
   <string name="brackets">Parentesi</string>
   <string name="cancel">Annulla</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Disabilita sensore</string>
+  <string name="enable_sensor">Abilita sensore</string>
   <string name="ClearClipboard">Appunti eliminati.</string>
   <string name="clipboard_timeout">Scadenza appunti</string>
   <string name="clipboard_timeout_summary">Durata degli appunti dopo la copia di nome utente o password</string>

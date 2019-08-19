@@ -1036,7 +1036,7 @@ namespace keepass2android
 	            if (IoUtil.IocAsHexString(db.Ioc) == databaseId)
 	                return db;
 	        }
-	        throw new Exception("Database not found for databaseId!");
+	        throw new Exception("Database not found for databaseId " + databaseId + "!");
         }
 
         public PwGroup FindGroup(PwUuid uuid)

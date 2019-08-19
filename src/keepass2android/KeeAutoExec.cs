@@ -138,6 +138,8 @@ namespace keepass2android
                 TrimFields = true
             };
 
+            bool hasEnabledDevices = devices.Any(kvp => kvp.Value);
+
             string result = "";
             foreach (var deviceWithEnabled in devices)
             {
@@ -145,6 +147,9 @@ namespace keepass2android
                 {
                     result += opt.FieldSeparator;
                 }
+                //if the list of devices has enabled devices, we do not need to include a negated expression
+                if (hasEnabledDevices && !deviceWithEnabled.Value)
+                    continue;
                 string deviceValue = (deviceWithEnabled.Value ? "" : "!") + deviceWithEnabled.Key;
                 if (deviceValue.Contains(opt.FieldSeparator) || deviceValue.Contains("\\") ||
                     deviceValue.Contains("\""))

@@ -61,7 +61,7 @@ namespace PluginTOTP
 			App.Kp2a.LastOpenedEntry.OutputStrings.Set(_totp, new ProtectedString(true, totp));
 			Intent updateKeyboardIntent = new Intent(_context, typeof(CopyToClipboardService));
 			updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-			updateKeyboardIntent.PutExtra("entry", App.Kp2a.LastOpenedEntry.Uuid.ToHexString());
+			updateKeyboardIntent.PutExtra(EntryActivity.KeyEntry, new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(App.Kp2a.LastOpenedEntry.Entry), App.Kp2a.LastOpenedEntry.Entry).FullId);
 			_context.StartService(updateKeyboardIntent);
 
 		}

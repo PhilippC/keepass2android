@@ -182,6 +182,22 @@ namespace keepass2android
 					b.SetTitle(Resource.String.fingerprint_prefs);
 					b.SetMessage(btn.Tag.ToString());
 					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+					if (_fingerprintIdentifier != null)
+					{
+						b.SetNegativeButton(Resource.String.disable_sensor, (senderAlert, alertArgs) =>
+						{
+							btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+							_fingerprintIdentifier?.StopListening();
+							_fingerprintIdentifier = null;
+						});
+					}
+					else
+					{
+						b.SetNegativeButton(Resource.String.enable_sensor, (senderAlert, alertArgs) =>
+						{
+							InitFingerprintUnlock();
+						});
+					}
 					b.Show();
 				};
 				_fingerprintPermissionGranted = true;

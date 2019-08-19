@@ -391,8 +391,9 @@ namespace keepass2android
 
 		private void MakePasswordVisibleOrHidden()
 		{
-			TextView password = (TextView) FindViewById(Resource.Id.entry_password);
+		    EditText password = (EditText) FindViewById(Resource.Id.entry_password);
 			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
+			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
 			if (State.ShowPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
@@ -403,6 +404,7 @@ namespace keepass2android
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 				confpassword.Visibility = ViewStates.Visible;
 			}
+			password.SetSelection(selStart, selEnd);
 		}
 
 		void SaveEntry()

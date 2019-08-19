@@ -905,6 +905,22 @@ namespace keepass2android
 					b.SetTitle(Resource.String.fingerprint_prefs);
 					b.SetMessage(btn.Tag.ToString());
 					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+					if (_fingerprintDec != null)
+					{
+						b.SetNegativeButton(Resource.String.disable_sensor, (senderAlert, alertArgs) =>
+						{
+							btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+							_fingerprintDec?.StopListening();
+							_fingerprintDec = null;
+						});
+					}
+					else
+					{
+						b.SetNegativeButton(Resource.String.enable_sensor, (senderAlert, alertArgs) =>
+						{
+							InitFingerprintUnlock();
+						});
+					}
 					b.Show();
 				};
 				_fingerprintPermissionGranted = true;
@@ -919,7 +935,6 @@ namespace keepass2android
 			edit.Commit();
 		}
 
-		
 		public void OnFingerprintError(string message)
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
@@ -999,7 +1014,7 @@ namespace keepass2android
 					
 				if (_appnameclickCount == 7)
 				{
-					throw new Exception("this is an easter egg crash (to test uncaught exceptions.");
+					throw new Exception("this is an easter egg crash (to test uncaught exceptions.)");
 				}
 					
 
@@ -1112,7 +1127,7 @@ namespace keepass2android
 
 			var changeDbButton = FindViewById<Button>(Resource.Id.change_db);
 			string label = changeDbButton.Text;
-			if (label.EndsWith("…"))
+			if (label.EndsWith(""))
 				changeDbButton.Text = label.Substring(0, label.Length - 1);
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
@@ -1497,7 +1512,8 @@ namespace keepass2android
 
 		private void MakePasswordMaskedOrVisible()
 		{
-			TextView password = (TextView) FindViewById(Resource.Id.password_edit);
+		    EditText password = (EditText) FindViewById(Resource.Id.password_edit);
+			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
@@ -1507,7 +1523,7 @@ namespace keepass2android
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 			}
-            
+			password.SetSelection(selStart, selEnd);
 		}
 
 		protected override void OnPause()
@@ -1793,12 +1809,12 @@ namespace keepass2android
 	            if ((int) Build.VERSION.SdkInt >= 26)
 	            {
 	                Android.Content.ClipboardManager clipboardManager = (ClipboardManager)GetSystemService(Context.ClipboardService);
-	                if (clipboardManager.PrimaryClip.Description.Timestamp <
-	                    Java.Lang.JavaSystem.CurrentTimeMillis() - 5000)
+	                if (clipboardManager?.PrimaryClip?.Description == null || (clipboardManager.PrimaryClip.Description.Timestamp <
+	                    Java.Lang.JavaSystem.CurrentTimeMillis() - 5000))
 	                    return; //data older than 5 seconds
 	            }
 	            string clipboardContent = Util.GetClipboard(this);
-	            if (_otpInfo.OtpLength != clipboardContent.Length)
+	            if (clipboardContent == null || (_otpInfo.OtpLength != clipboardContent.Length))
 	            {
 	                return;
 	            }
@@ -1814,7 +1830,7 @@ namespace keepass2android
                 foreach (int otpId in _otpTextViewIds)
 	            {
 	                EditText otpEdit = FindViewById<EditText>(otpId);
-	                if (otpEdit.Visibility == ViewStates.Visible)
+	                if (otpEdit?.Visibility == ViewStates.Visible)
 	                {
 	                    if (string.IsNullOrEmpty(otpEdit.Text))
 	                    {
