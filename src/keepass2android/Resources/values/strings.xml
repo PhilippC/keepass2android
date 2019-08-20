@@ -774,7 +774,16 @@
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_07">
+  <string name="ChangeLog_1_07b">
+    Version 1.07b-pre\n
+    * Improve Argon2 performance by using native implementation (Thanks to Chih-Hsuan Yen!)\n
+    * Allow to disable fingerprint by clicking on the fingerprint icon (avoids issue with underscreen fingerprint readers, thanks to marcoDallas!)\n
+    * Restore cursor position when toggling visibility of password (thanks to DDoSolitary!)\n
+    * Improvements to pCloud implementation (thanks to gilbsgilbs again!)\n
+    * Add AutoFill support for several more browsers \n
+    * Bug fixes
+  </string>
+    <string name="ChangeLog_1_07">
     Version 1.07\n
     * Fixes for crashes on Samsung\'s Android 9\n
     * Allow to open more than one database, compatible with KeeAutoExec\n
