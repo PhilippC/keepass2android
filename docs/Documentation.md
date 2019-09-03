@@ -70,28 +70,28 @@ Please see the [Advanced usage of the Keepass2Android keyboard](Advanced-usage-o
 
 # FAQ
 
-* Should I use the KP2A keyboard for entering passwords? 
+## Should I use the KP2A keyboard for entering passwords?
 The KP2A keyboard is meant to quickly "paste" or "type" values from your database to any text fields by using the KP2A icon. The QUERTY keyboard is just for convenience (if you just have the KP2A keyboard activated and need to enter a few letters). However, every other (trustworthy) keyboard is ok as well to enter sensitive information: Keyboard's aren't unsafe in Android. Only the clipboard is. Thus, the KP2A keyboard allows to get information out of the database without using the clipboard.
 **You can use any keyboard when you enter the main database password**
 
-* Is it safe to store my kdbx file in the cloud?
+## Is it safe to store my kdbx file in the cloud?
 While it may happen that someone gets access to your kdbx file in the cloud, there is still no need to worry: the purpose of encryption is to protect the data even in case someone gets the kdbx file! As long as you are using a safe master key, you're safe! [Key files](https://keepass.info/help/base/keys.html#keyfiles) can help with securing the database even more. 
 
-* How do I backup the database?
+## How do I backup the database?
 If you have stored your database on the cloud, you might rely on your cloud storage providers backups. Make sure they allow you to revert to older revisions in case the file gets corrupted for some reason.
 If you are working with a local database file, make sure you create regular backups. I suggest you have an aumotated mechanism, e.g. with FolderSync (Lite) which can copy local files from your device to other locations, e.g. your PC in a local network. You can also use USB or tools like MyPhoneExploror to transfer data to your PC. Or, you use a removable storage like an SD card which you keep in a safe place after making the backup. 
 In all cases, you need to verify that your backup is readable! It's even best to test this on another device (e.g. a PC), so you simulate the case that you may lose your phone.
 
-* I can open my database with fingerprint, but don't remember my master password!
+## I can open my database with fingerprint, but don't remember my master password!
 It's time for action! As soon as possible, select Settings - Database - Export and choose unencrypted XML (don't put this on the cloud but on a local file). Transfer this file to a PC and import it to a new kdbx file, e.g. with Keepass2. Choose a new master password and make sure you don't forget this password! 
 
-* How can I transfer data from one device to another?
+## How can I transfer data from one device to another?
   * If you are about to get a new Android device, you should make sure you're not losing your passwords in the transition! The first thing you need to make sure is that you can access your .kdbx file (which stores the passwords) on the new device. If it is already stored in the cloud, you only need to make sure you know how to setup the cloud storage on the new device (it might require a password, so make sure you have access to that!). 
   * If the .kdbx-file is stored locally on the old device, make sure you have an up-to-date backup (see above). You can then transfer that backup copy to the new device. (Note: transferring via USB causes data corruption in some cases, use MyPhoneExplorer or similar tools to be sure this does not happen.)
   * If you are securing your password database with a keyfile, also transfer this key file to the new device.
   * If you are opening your database with a fingerprint, make sure you also know the master password because fingerprint will not be available immediately on the new device.
 
-* Why is Keepass2Android's apk so big?
+## Why is Keepass2Android's apk so big?
 Please see [Keepass2Android Apk](Keepass2Android-Apk.md) for more information.
 
 # For developers
