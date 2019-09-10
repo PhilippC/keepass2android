@@ -1127,7 +1127,7 @@ namespace keepass2android
 
 			var changeDbButton = FindViewById<Button>(Resource.Id.change_db);
 			string label = changeDbButton.Text;
-			if (label.EndsWith(""))
+			if (label.EndsWith("\u2026"))
 				changeDbButton.Text = label.Substring(0, label.Length - 1);
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
