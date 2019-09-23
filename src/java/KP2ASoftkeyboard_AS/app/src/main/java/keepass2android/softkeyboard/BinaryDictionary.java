@@ -48,7 +48,7 @@ public class BinaryDictionary extends Dictionary {
     private static final boolean ENABLE_MISSED_CHARACTERS = true;
 
     private int mDicTypeId;
-    private int mNativeDict;
+    private long mNativeDict;
     private int mDictLength;
     private int[] mInputCodes = new int[MAX_WORD_LENGTH * MAX_ALTERNATIVES];
     private char[] mOutputChars = new char[MAX_WORD_LENGTH * MAX_WORDS];
@@ -85,6 +85,7 @@ public class BinaryDictionary extends Dictionary {
      * @param streams the resource streams containing the raw binary dictionary
      */
     public BinaryDictionary(Context context, InputStream[] streams, int dicTypeId) {
+
         if (streams != null && streams.length > 0) {
             loadDictionary(context, streams);
         }
@@ -107,22 +108,29 @@ public class BinaryDictionary extends Dictionary {
                 mNativeDictDirectBuffer.put(byteBuffer);
             }
             mDictLength = byteBuffer.capacity();
+
+
             mNativeDict = openNative(mNativeDictDirectBuffer,
-                    TYPED_LETTER_MULTIPLIER, FULL_WORD_FREQ_MULTIPLIER);
+                    TYPED_LETTER_MULTIPLIER, FULL_WORD_FREQ_MULTIPLIER, mDictLength);
         }
         mDicTypeId = dicTypeId;
     }
 
     private native int openNative(ByteBuffer bb, int typedLetterMultiplier,
-            int fullWordMultiplier);
-    private native void closeNative(int dict);
-    private native boolean isValidWordNative(int nativeData, char[] word, int wordLength);
-    private native int getSuggestionsNative(int dict, int[] inputCodes, int codesSize, 
+                                  int fullWordMultiplier, int size);
+
+
+
+
+
+    private native void closeNative(long dict);
+    private native boolean isValidWordNative(long dict, char[] word, int wordLength);
+    private native int getSuggestionsNative(long dict, int[] inputCodes, int codesSize,
             char[] outputChars, int[] frequencies, int maxWordLength, int maxWords,
             int maxAlternatives, int skipPos, int[] nextLettersFrequencies, int nextLettersSize);
-    private native int getBigramsNative(int dict, char[] prevWord, int prevWordLength,
-            int[] inputCodes, int inputCodesLength, char[] outputChars, int[] frequencies,
-            int maxWordLength, int maxBigrams, int maxAlternatives);
+    private native int getBigramsNative(long dict, char[] prevWord, int prevWordLength,
+                                        int[] inputCodes, int inputCodesLength, char[] outputChars, int[] frequencies,
+                                        int maxWordLength, int maxBigrams, int maxAlternatives);
 
     private final void loadDictionary(Context context, int[] resId) {
         InputStream[] is = null;
@@ -163,11 +171,12 @@ public class BinaryDictionary extends Dictionary {
 	        for (int i = 0; i < is.length; i++) {
 	             got += Channels.newChannel(is[i]).read(mNativeDictDirectBuffer);
 	        }
+
 	        if (got != total) {
 	            Log.e(TAG, "Read " + got + " bytes, expected " + total);
 	        } else {
 	            mNativeDict = openNative(mNativeDictDirectBuffer,
-	                    TYPED_LETTER_MULTIPLIER, FULL_WORD_FREQ_MULTIPLIER);
+	                    TYPED_LETTER_MULTIPLIER, FULL_WORD_FREQ_MULTIPLIER, total);
 	            mDictLength = total;
 	        }	
 	 
@@ -286,6 +295,7 @@ public class BinaryDictionary extends Dictionary {
 
     @Override
     public synchronized void close() {
+
         if (mNativeDict != 0) {
             closeNative(mNativeDict);
             mNativeDict = 0;
