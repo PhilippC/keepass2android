@@ -50,7 +50,7 @@ public class OneDriveStorage2 extends JavaFileStorageBase
     private static final String[] scopes = {"openid","offline_access", "https://graph.microsoft.com/Files.ReadWrite","https://graph.microsoft.com/User.Read"};
 
 
-    public OneDriveStorage2(final Activity context, final String clientId) {
+    public OneDriveStorage2(final Context context, final String clientId) {
 
         mPublicClientApp = new PublicClientApplication(context, clientId);
 

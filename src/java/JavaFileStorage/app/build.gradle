@@ -21,6 +21,10 @@ android {
     }
 }
 
+/*
+NOTE: If you change dependencies here, don't forget to update the jar files in JavaFileStorageBindings as well!
+ */
+
 dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.burgstaller:okhttp-digest:1.7'

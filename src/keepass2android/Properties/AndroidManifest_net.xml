@@ -14,6 +14,11 @@
 	android:networkSecurityConfig="@xml/network_security_config"
 
 	>
+	
+		<uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+			
 		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
