@@ -19,6 +19,14 @@
             android:name="org.apache.http.legacy"
             android:required="false"/>
 			
+			<activity android:name="microsoft.identity.client.BrowserTabActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="msal8374f801-0f55-407d-80cc-9a04fe86d9b2" android:host="auth" />
+			</intent-filter>
+		</activity>
 		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />

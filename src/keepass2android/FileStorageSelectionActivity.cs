@@ -54,9 +54,14 @@ namespace keepass2android
 				
 				//this is there for legacy reasons, new protocol is onedrive
 				_displayedProtocolIds.Remove("skydrive");
-					
-				//special handling for local files:
-				if (!Util.IsKitKatOrLater)
+
+                //onedrive was replaced by onedrive2 in a later implementation, but we still have the previous implementation to open existing connections (without the need to re-authenticate etc.)
+                _displayedProtocolIds.Remove("onedrive");
+
+
+
+                //special handling for local files:
+                if (!Util.IsKitKatOrLater)
 				{
 					//put file:// to the top
 					_displayedProtocolIds.Remove("file");
