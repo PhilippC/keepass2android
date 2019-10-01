@@ -88,11 +88,13 @@ namespace keepass2android.Io
 		IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction);
 
 		string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc);
-		
-		/// <summary>
-		/// Returns true if the the given ioc must be filled with username/password
-		/// </summary>
-		bool RequiresCredentials(IOConnectionInfo ioc);
+
+	    string GetFileExtension(IOConnectionInfo ioc);
+
+        /// <summary>
+        /// Returns true if the the given ioc must be filled with username/password
+        /// </summary>
+        bool RequiresCredentials(IOConnectionInfo ioc);
 
 		/// <summary>
 		/// Creates the directory described by ioc

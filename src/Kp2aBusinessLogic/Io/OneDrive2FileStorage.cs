@@ -491,6 +491,11 @@ namespace keepass2android.Io
                 GetFilename(IocToPath(ioc)));
         }
 
+        public string GetFileExtension(IOConnectionInfo ioc)
+        {
+            return UrlUtil.GetExtension(OneDrive2ItemLocation.FromString(ioc.Path).LocalPathString);
+        }
+
         private string GetFilename(string path)
         {
             string localPath = "/"+OneDrive2ItemLocation.FromString(path).LocalPath;

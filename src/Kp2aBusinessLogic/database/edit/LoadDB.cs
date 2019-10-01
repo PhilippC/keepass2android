@@ -82,7 +82,7 @@ namespace keepass2android
 					}
 
 					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-					_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_ioc));
+					_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_app.GetFileStorage(_ioc).GetFileExtension(_ioc)));
 					TryLoad(databaseStream);
 
 

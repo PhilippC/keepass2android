@@ -201,7 +201,12 @@ namespace keepass2android.Io
 
 		}
 
-		public bool RequiresCredentials(IOConnectionInfo ioc)
+	    public string GetFileExtension(IOConnectionInfo ioc)
+	    {
+	        return UrlUtil.GetExtension(ioc.Path);
+        }
+
+	    public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return (!ioc.IsLocalFile()) && (ioc.CredSaveMode != IOCredSaveMode.SaveCred);
 		}

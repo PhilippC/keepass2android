@@ -1552,7 +1552,7 @@ namespace keepass2android
 
 		private MemoryStream PreloadDbFile()
 		{
-			if (KdbpFile.GetFormatToUse(_ioConnection) == KdbxFormat.ProtocolBuffers)
+			if (KdbpFile.GetFormatToUse(App.Kp2a.GetFileStorage(_ioConnection).GetFileExtension(_ioConnection)) == KdbxFormat.ProtocolBuffers)
 			{
 				Kp2aLog.Log("Preparing kdbp serializer");				
 				KdbpFile.PrepareSerializer();
