@@ -112,7 +112,7 @@ namespace keepass2android
                 if (position < _displayedDatabases.Count)
                 {
                     var db = _displayedDatabases[position];
-                    drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + Util.GetProtocolId(db.Ioc));
+                    drawable = App.Kp2a.GetStorageIcon(Util.GetProtocolId(db.Ioc));
                     displayName = db.KpDatabase.Name;
                     displayName += "\n" + App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc);
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);

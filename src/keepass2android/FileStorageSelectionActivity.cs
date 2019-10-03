@@ -86,6 +86,9 @@ namespace keepass2android
 #if NoNet
 				_displayedProtocolIds.Add("kp2a");
 #endif
+			    _displayedProtocolIds = _displayedProtocolIds.GroupBy(p => App.Kp2a.GetStorageMainTypeDisplayName(p))
+			        .Select(g => string.Join(",", g)).ToList();
+
 			}
 
 			public override Object GetItem(int position)
@@ -135,14 +138,15 @@ namespace keepass2android
 			    var protocolId = _displayedProtocolIds[position];
                 btn.Tag = protocolId;
 
+			    string firstProtocolInList = protocolId.Split(",").First();
 
 
-                Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
+                Drawable drawable = App.Kp2a.GetStorageIcon(firstProtocolInList);
 
 				String title =
 					protocolId == "kp2a" ? App.Kp2a.GetResourceString("get_regular_version")
 						:
-						App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+						App.Kp2a.GetStorageMainTypeDisplayName(firstProtocolInList);
                 var str = new SpannableString(title);
 
 			    btn.TextFormatted = str;
@@ -167,13 +171,28 @@ namespace keepass2android
 				return;
 			}
 
+		    if (protocolId.Contains(","))
+		    {
+                //bring up a selection dialog to select the variant of the file storage
+		        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		        
+		        builder.SetItems(protocolId.Split(",").Select(singleProtocolId => App.Kp2a.GetStorageDisplayName(singleProtocolId)).ToArray(), 
+		            delegate(object sender, DialogClickEventArgs args)
+		            {
+		                string[] singleProtocolIds = protocolId.Split(",");
+                        OnItemSelected(singleProtocolIds[args.Which]);
+		            });
+		        builder.Show();
+		        return;
+		    }
+
 			var field = typeof(Resource.String).GetField("filestoragehelp_" + protocolId);
 			if (field == null)
 			{
 				//no help available
 				ReturnProtocol(protocolId);
 			}
-			else
+            else
 			{
 				//set help:
 				string help = GetString((int)field.GetValue(null));

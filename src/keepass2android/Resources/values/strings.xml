@@ -553,6 +553,9 @@
 	<string name="filestoragehelp_pcloud">This storage type will only request access to the "Applications/Keepass2Android" folder. If you want to use an existing database from your PCloud account, please make sure the file is placed in this folder.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">All files and shared files</string>
+  <string name="filestoragename_onedrive2_myfiles">My files</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Android App folder</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
 	<string name="filestoragename_content">System file picker</string>
 
