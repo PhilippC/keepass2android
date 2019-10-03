@@ -177,7 +177,12 @@ namespace keepass2android.Io
 					_jfs.GetFilename(IocToPath(ioc)));
 		}
 
-		public bool RequiresCredentials(IOConnectionInfo ioc)
+	    public string GetFileExtension(IOConnectionInfo ioc)
+	    {
+	        return UrlUtil.GetExtension(ioc.Path);
+        }
+
+	    public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return false;
 		}

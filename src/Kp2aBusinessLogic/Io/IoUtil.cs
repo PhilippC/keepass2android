@@ -128,10 +128,12 @@ namespace keepass2android.Io
 		}
 
         //creates a local ioc where the sourceIoc can be stored to
-	    public static IOConnectionInfo GetInternalIoc(IOConnectionInfo sourceIoc, Context ctx)
+	    public static IOConnectionInfo GetInternalIoc(IOConnectionInfo sourceIoc, Context ctx, IKp2aApp app)
 	    {
 	        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(ctx);
-	        string targetPath = UrlUtil.GetFileName(sourceIoc.Path);
+	        var filestorage = app.GetFileStorage(sourceIoc);
+
+	        string targetPath = filestorage.GetFilenameWithoutPathAndExt(sourceIoc);
 	        targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
 	        if (targetPath == "")
 	            targetPath = "internal";
@@ -153,7 +155,7 @@ namespace keepass2android.Io
 
 	    public static IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc, Context ctx, IKp2aApp app)
 	    {
-	        var targetIoc = GetInternalIoc(sourceIoc, ctx);
+	        var targetIoc = GetInternalIoc(sourceIoc, ctx, app);
 
 
             IoUtil.Copy(targetIoc, sourceIoc, app);

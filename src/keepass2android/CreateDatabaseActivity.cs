@@ -253,10 +253,10 @@ namespace keepass2android
 			int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
 			string protocolId = protocolSeparatorPos < 0 ?
 				"file" : displayPath.Substring(0, protocolSeparatorPos);
-			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
+			Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
 			FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
 
-			String title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+			String title = App.Kp2a.GetStorageDisplayName(protocolId);
 			FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
 
 			FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?

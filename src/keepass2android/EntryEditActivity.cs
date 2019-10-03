@@ -968,10 +968,10 @@ namespace keepass2android
 				int protocolSeparatorPos = ioc.Path.IndexOf("://", StringComparison.Ordinal);
 				string protocolId = protocolSeparatorPos < 0 ?
 					"file" : ioc.Path.Substring(0, protocolSeparatorPos);
-				Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
+				Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
 				ees.FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
 
-				String fs_title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+				String fs_title = App.Kp2a.GetStorageDisplayName(protocolId);
 				ees.FindViewById<TextView>(Resource.Id.filestorage_label).Text = fs_title;
 
 			    string displayPath = fileStorage.GetDisplayName(ioc);

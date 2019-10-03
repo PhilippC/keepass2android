@@ -430,11 +430,11 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 						&& (e.canWrite == file.canWrite)
 						&& (e.isDirectory == file.isDirectory)
 						&& (e.displayName.equals(file.displayName))
-						&& (e.sizeInBytes == file.sizeInBytes ))
+						&& (file.isDirectory || (e.sizeInBytes == file.sizeInBytes )))
 					return;
 			}
 				
-			throw new Exception("didn't find file " + file.path + " in file list!");
+			throw new Exception("didn't find file " + file.path + " (" + file.displayName + ") in file list!");
 		
 		}
 	}

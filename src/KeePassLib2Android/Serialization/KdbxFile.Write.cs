@@ -1048,7 +1048,7 @@ namespace KeePassLib.Serialization
 			return true; */
 
 			PwDatabase pd = new PwDatabase();
-			pd.New(new IOConnectionInfo(), new CompositeKey());
+			pd.New(new IOConnectionInfo(), new CompositeKey(), "");
 
 			PwGroup pg = pd.RootGroup;
 			if (pg == null) { Debug.Assert(false); return false; }

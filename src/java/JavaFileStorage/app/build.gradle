@@ -21,6 +21,10 @@ android {
     }
 }
 
+/*
+NOTE: If you change dependencies here, don't forget to update the jar files in JavaFileStorageBindings as well!
+ */
+
 dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.burgstaller:okhttp-digest:1.7'
@@ -37,7 +41,7 @@ dependencies {
     }
     compile 'com.pcloud.sdk:java-core:1.1.0'
     compile 'com.pcloud.sdk:android:1.1.0'
-    compile('com.microsoft.graph:msgraph-sdk-android:1.2.+')
+    compile('com.microsoft.graph:msgraph-sdk-android:1.7.0')
     compile ('com.microsoft.identity.client:msal:0.1.+') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }

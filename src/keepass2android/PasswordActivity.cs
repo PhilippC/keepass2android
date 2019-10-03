@@ -346,12 +346,12 @@ namespace keepass2android
 			int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
 			string protocolId = protocolSeparatorPos < 0 ?
 				"file" : displayPath.Substring(0, protocolSeparatorPos);
-			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
+			Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
 			FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
 			FindViewById<ImageView>(Resource.Id.filestorage_logo).Visibility = ViewStates.Visible;
 			
 
-			String title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+			String title = App.Kp2a.GetStorageDisplayName(protocolId);
 			FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
 			FindViewById<TextView>(Resource.Id.filestorage_label).Visibility = ViewStates.Visible;
 
@@ -1127,7 +1127,7 @@ namespace keepass2android
 
 			var changeDbButton = FindViewById<Button>(Resource.Id.change_db);
 			string label = changeDbButton.Text;
-			if (label.EndsWith(""))
+			if (label.EndsWith("\u2026"))
 				changeDbButton.Text = label.Substring(0, label.Length - 1);
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
@@ -1552,7 +1552,7 @@ namespace keepass2android
 
 		private MemoryStream PreloadDbFile()
 		{
-			if (KdbpFile.GetFormatToUse(_ioConnection) == KdbxFormat.ProtocolBuffers)
+			if (KdbpFile.GetFormatToUse(App.Kp2a.GetFileStorage(_ioConnection).GetFileExtension(_ioConnection)) == KdbxFormat.ProtocolBuffers)
 			{
 				Kp2aLog.Log("Preparing kdbp serializer");				
 				KdbpFile.PrepareSerializer();

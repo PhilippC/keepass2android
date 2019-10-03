@@ -25,9 +25,7 @@ using KeePass.Util.Spr;
 
 using KeePassLib;
 using KeePassLib.Collections;
-using KeePassLib.Cryptography;
 using KeePassLib.Delegates;
-using KeePassLib.Security;
 using KeePassLib.Utility;
 
 namespace KeePass.Util
@@ -89,41 +87,8 @@ namespace KeePass.Util
 			return str;
 		}
 */
-		private static string ReplaceHmacOtpPlaceholder(string strText,
-			SprContext ctx)
-		{
-			PwEntry pe = ctx.Entry;
-			PwDatabase pd = ctx.Database;
-			if((pe == null) || (pd == null)) return strText;
 
-			string str = strText;
-
-			const string strHmacOtpPlh = @"{HMACOTP}";
-			if(str.IndexOf(strHmacOtpPlh, StrUtil.CaseIgnoreCmp) >= 0)
-			{
-				const string strKeyField = "HmacOtp-Secret";
-				const string strCounterField = "HmacOtp-Counter";
-
-				byte[] pbSecret = StrUtil.Utf8.GetBytes(pe.Strings.ReadSafe(
-					strKeyField));
-
-				string strCounter = pe.Strings.ReadSafe(strCounterField);
-				ulong uCounter;
-				ulong.TryParse(strCounter, out uCounter);
-
-				string strValue = HmacOtp.Generate(pbSecret, uCounter, 6, false, -1);
-
-				pe.Strings.Set(strCounterField, new ProtectedString(false,
-					(uCounter + 1).ToString()));
-				pd.Modified = true;
-
-				str = StrUtil.ReplaceCaseInsensitive(str, strHmacOtpPlh, strValue);
-			}
-
-			return str;
-		}
-
-		public static bool EntriesHaveSameParent(PwObjectList<PwEntry> v)
+	    public static bool EntriesHaveSameParent(PwObjectList<PwEntry> v)
 		{
 			if(v == null) { Debug.Assert(false); return true; }
 			if(v.UCount == 0) return true;

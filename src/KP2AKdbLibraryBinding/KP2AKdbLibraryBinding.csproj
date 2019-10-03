@@ -52,10 +52,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <LibraryProjectZip Include="..\java\KP2AKdbLibrary\app\build\outputs\aar\app-debug.aar">
+      <Link>Jars\app-debug.aar</Link>
+    </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <EmbeddedNativeLibrary Include="libs\armeabi-v7a\libfinal-key.so" />
-    <EmbeddedNativeLibrary Include="libs\armeabi\libfinal-key.so" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml">
@@ -65,9 +66,7 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\java\KP2AKdbLibrary\bin\kp2akdblibrary.jar">
-      <Link>Jars\kp2akdblibrary.jar</Link>
-    </EmbeddedJar>
+    <Folder Include="libs\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

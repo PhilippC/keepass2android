@@ -65,7 +65,7 @@ namespace keepass2android
 				_key = new CompositeKey(); //use a temporary key which should be changed after creation
 			}
 			
-			db.KpDatabase.New(_ioc, _key);
+			db.KpDatabase.New(_ioc, _key, _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc));
 
 			db.KpDatabase.KdfParameters = (new AesKdf()).GetDefaultParameters();
 			db.KpDatabase.Name = "Keepass2Android Password Database";

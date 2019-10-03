@@ -230,7 +230,7 @@ namespace keepass2android
 
 			PwDatabase pwImp = new PwDatabase();
 			PwDatabase pwDatabase = _db.KpDatabase;
-			pwImp.New(new IOConnectionInfo(), pwDatabase.MasterKey);
+			pwImp.New(new IOConnectionInfo(), pwDatabase.MasterKey, _app.GetFileStorage(ioc).GetFilenameWithoutPathAndExt(ioc));
 			pwImp.MemoryProtection = pwDatabase.MemoryProtection.CloneDeep();
 			pwImp.MasterKey = pwDatabase.MasterKey;
 			var stream = GetStreamForBaseFile(fileStorage, ioc);

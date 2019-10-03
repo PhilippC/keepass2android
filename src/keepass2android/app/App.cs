@@ -492,7 +492,17 @@ namespace keepass2android
 				throw new Exception("Invalid key " + key);
 			return Application.Context.GetString((int)field.GetValue(null));
 		}
-		public Drawable GetResourceDrawable(string key)
+
+	    public Drawable GetStorageIcon(string protocolId)
+	    {
+            //storages can provide variants but still use the same icon for all
+	        if (protocolId.Contains("_"))
+	            protocolId = protocolId.Split("_").First();
+	        return GetResourceDrawable("ic_storage_" + protocolId);
+	    }
+
+
+        public Drawable GetResourceDrawable(string key)
 		{
 			if (key == "ic_storage_skydrive")
 				key = "ic_storage_onedrive"; //resource was renamed. do this to avoid crashes with legacy file entries.
@@ -688,12 +698,15 @@ namespace keepass2android
 							new DropboxAppFolderFileStorage(Application.Context, this),
 							new GoogleDriveFileStorage(Application.Context, this),
 							new OneDriveFileStorage(Application.Context, this),
-							new SftpFileStorage(Application.Context, this),
+						    new OneDrive2FullFileStorage(),
+						    new OneDrive2MyFilesFileStorage(),
+						    new OneDrive2AppFolderFileStorage(),
+                            new SftpFileStorage(Application.Context, this),
 							new NetFtpFileStorage(Application.Context, this),
 							new WebDavFileStorage(this),
 							new PCloudFileStorage(Application.Context, this),
 							//new LegacyWebDavStorage(this),
-							//new LegacyFtpStorage(this),
+                            //new LegacyFtpStorage(this),
 #endif
 #endif
 							new LocalFileStorage(this)
@@ -1102,6 +1115,27 @@ namespace keepass2android
 	    public bool IsChildDatabase(Database db)
 	    {
 	        return _childDatabases.Any(ioc => ioc.IsSameFileAs(db.Ioc));
+	    }
+
+	    public string GetStorageMainTypeDisplayName(string protocolId)
+	    {
+	        var parts = protocolId.Split("_");
+	        return GetResourceString("filestoragename_" + parts[0]);
+
+	    }
+
+	    public string GetStorageDisplayName(string protocolId)
+	    {
+	        if (protocolId.Contains("_"))
+	        {
+	            var parts = protocolId.Split("_");
+	            return GetResourceString("filestoragename_" + parts[0]) + " (" +
+	                   GetResourceString("filestoragename_" + protocolId) + ")";
+
+	        }
+            else
+	        return GetResourceString("filestoragename_" + protocolId);
+
 	    }
 	}
 
