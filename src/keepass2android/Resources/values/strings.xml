@@ -785,6 +785,7 @@
     * Restore cursor position when toggling visibility of password (thanks to DDoSolitary!)\n
     * Improvements to pCloud implementation (thanks to gilbsgilbs again!)\n
     * Add AutoFill support for several more browsers \n
+    * New implementation for OneDrive: Includes support for OneDrive for Business, shared files, selectable access scopes, multiple accounts and fixes issues with offline access\n
     * Bug fixes
   </string>
     <string name="ChangeLog_1_07">
