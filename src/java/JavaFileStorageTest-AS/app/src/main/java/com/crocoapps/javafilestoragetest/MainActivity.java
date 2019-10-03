@@ -147,7 +147,6 @@ import java.util.List;
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
-import keepass2android.javafilestorage.OneDriveStorage2;
 import keepass2android.javafilestorage.SftpStorage;
 import keepass2android.javafilestorage.UserInteractionRequiredException;
 import keepass2android.javafilestorage.WebDavStorage;
@@ -535,9 +534,8 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		//storageToTest = new SftpStorage(ctx.getApplicationContext());
+		storageToTest = new SftpStorage(ctx.getApplicationContext());
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
-		storageToTest = new OneDriveStorage2((Activity) ctx, "8374f801-0f55-407d-80cc-9a04fe86d9b2");
 
 
 		//storageToTest = new GoogleDriveFileStorage();
