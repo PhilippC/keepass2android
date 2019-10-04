@@ -116,7 +116,7 @@ public class BinaryDictionary extends Dictionary {
         mDicTypeId = dicTypeId;
     }
 
-    private native int openNative(ByteBuffer bb, int typedLetterMultiplier,
+    private native long openNative(ByteBuffer bb, int typedLetterMultiplier,
                                   int fullWordMultiplier, int size);
 
 
