@@ -470,7 +470,9 @@
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">此存储类型仅请求访问“Applications / Keepass2Android”文件夹。 如果要使用PCloud帐户中的现有数据库，请确保将文件放在此文件夹中。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
   <string name="filestoragename_content">系统文件选择器</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
@@ -591,14 +593,14 @@
   <string name="HintLocalBackupInvalidCompositeKey">\n
    &#8226; 提示：如果你认为数据库已损坏，或你在更改主密钥后把它忘了，你可以点击“%1$s”并选择本地备份以尝试最后一次成功打开的文件版本。</string>
   <string name="HintLocalBackupOtherError">    \n
-    &#8226; 提示：Keepass2Android 已将最后一次成功打开版本作为备份保存到了内部存储之中。点击“%1$s”并选择本地备份以打开它。
+    &#8226; 提示：Keepass2Android已将最后一次成功打开版本保存到内部存储中。点击“%1$s”并选择本地备份以打开它。
   </string>
   <string name="CorruptDatabaseHelp">文件已损坏。\n
     以下是诊断问题的一些提示：\n
     
-    &#8226; 如果使用 USB（MTP模式）传输文件，请使用诸如 MyPhoneExplorer 的工具再试一次。MTP 在特定情况下会截断文件。\n
-    &#8226; 如果你确定你打开的是与 PC 上相同的文件，那么这个文件可能真的损坏了。请使用数据库备份。如果你认为是 Keepass2Android 损坏了文件，请联系技术支持。\n
-    &#8226; 如果你可以在 PC 上打开这个文件，请联系技术支持。你也可以尝试在 PC 上使用不同参数（如不压缩）另存一份文件，再尝试在 Keepass2Android 上打开。
+    &#8226; 如果使用USB（MTP模式）传输文件，请使用诸如MyPhoneExplorer的工具再试一次。MTP在特定情况下会截断文件。\n
+    &#8226; 如果你打开的是PC上的同一个文件，那么文件可能真的损坏了。请使用数据库备份。如果你认为是Keepass2Android损坏了文件，请联系技术支持。\n
+    &#8226;如果你可以在PC上打开这个文件，请联系技术支持。你也可以尝试在PC上使用不同参数（如不压缩）另存一份文件，再尝试在Keepass2Android上打开。
 
   </string>
   <string name="open_other_db">打开另一个数据库...</string>
