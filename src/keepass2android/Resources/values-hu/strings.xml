@@ -62,6 +62,8 @@
   <string name="brackets">Zárójelek</string>
   <string name="cancel">Mégsem</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Leolvasó tiltása</string>
+  <string name="enable_sensor">Leolvasó engedélyezése</string>
   <string name="ClearClipboard">Vágólap törölve.</string>
   <string name="clipboard_timeout">Vágólap időkorlátja</string>
   <string name="clipboard_timeout_summary">Beállíthatja, mennyi idő után kerüljön törlésre a vágólap</string>
@@ -477,6 +479,9 @@
   <string name="filestoragehelp_pcloud">Ez a tárhelytípus csak az \"Applications/Keepass2Android\" mappához igényel hozzáférést. Ahhoz, hogy a PCloud tárhelyed egy meglévő adatbázisát használd, azt ebben az mappában kell elhelyezned.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Az összes fájl és a megosztott fájlok</string>
+  <string name="filestoragename_onedrive2_myfiles">A saját fájljaim</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Android alkalmazás mappája</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Alapértelmezett fájlválasztó</string>
   <string name="filestorage_setup_title">A fájlhozzáférés inicializálása</string>
