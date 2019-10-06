@@ -472,7 +472,9 @@
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję, aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie, aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Ten typ magazynowania wymaga tylko dostępu do folderu „Applications/Keepass2Android”. Jeśli chcesz używać istniejącej bazy danych z twojego konta PCloud, upewnij się, że plik jest umieszczony w tym folderze.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
@@ -485,12 +487,12 @@
   <string name="help_master_password">Tutaj wpisujesz hasło przy pomocy którego jest zaszyfrowana twoja baza danych. Wybierz silne hasło, aby bezpiecznie ją przechowywać! Wskazówka: Wymyśl jakieś zdanie lub dwa i skorzystaj z pierwszych liter słów w nim zawartych jako hasło. Dołącz znaki interpunkcyjne.</string>
   <string name="hint_master_password">Wybierz hasło główne, aby zabezpieczyć bazę danych:</string>
   <string name="key_file">Plik klucza</string>
-  <string name="help_key_file">Plik klucz jest w zasadzie hasłem przechowywanym w pliku. Pliki klucz jest zwykle mocniejszy niż hasło główne, ponieważ klucz może być o wiele bardziej skomplikowany; jednak trudniej go zachować w tajemnicy. Jeśli przechowujesz swoją bazę danych w chmurze, nie przechowuj tam swojego pliku klucza! Byłoby to całkowicie bezcelowe! Ważne: Nie możesz zmieniać zawartość pliku klucza po utworzeniu bazy danych!</string>
+  <string name="help_key_file">Plik klucza jest w zasadzie hasłem przechowywanym w pliku. Ponieważ pliki kluczy mogą być dużo bardziej skomplikowane, są zwykle silniejsze niż hasła główne; trudniej je jednak zachować w tajemnicy. Jeśli składujesz swoją bazę danych w chmurze, nie przechowuj wraz z nią jej pliku klucza! Użycie mechanizmu kluczy mijało by się zupełnie z celem! Ważne: nie zmieniaj zawartości pliku klucza po utworzeniu bazy danych!</string>
   <string name="hint_key_file">Wybierz, jeśli chcesz użyć pliku klucza oprócz hasła głównego:</string>
   <string name="use_key_file">Użyj pliku klucza</string>
   <string name="error_adding_keyfile">Wystąpił błąd podczas dodawania pliku klucza!</string>
   <string name="init_otp">Ładowanie pomocniczego pliku OTP…</string>
-  <string name="otp_explanation">Wpisz kolejne hasła jednorazowe (OTP). Zbliż YubiKey NEO do tylnej części swojego urządzenia, aby wprowadzić hasło przez NFC.</string>
+  <string name="otp_explanation">Wprowadź kolejne hasła jednorazowe (OTP). Zbliż YubiKey NEO do tylnej części swojego urządzenia, aby wprowadzić za pomocą NFC (wymaga aplikacji Yubiclip).</string>
   <string name="otp_hint">Hasło jednorazowe (OTP) %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Nie można załadować pomocniczego pliku OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Proszę użyć wtyczki OtpKeyProv w KeePass 2.x (PC) aby skonfigurować swoją bazę danych do korzystania z haseł jednorazowych (OTP)!</string>
@@ -539,7 +541,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Zapytaj dowolne poswiadczenia</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Wtyczka będzie mogła odpytywać poświadczenia powiązane z własnym pakietem aplikacji.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Zapytaj poświadczenia</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Wtyczka będzie mogła odpytywać poświadczenia do docelowych stron internetowych lub aplikacji.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Wtyczka będzie mogła odpytywać o poświadczenia do poszczególnych stron internetowych lub aplikacji.</string>
   <string name="get_regular_version">Uzyskaj więcej typów przechowywania danych</string>
   <string name="CertificateWarning">Ostrzeżenie: Weryfikacja certyfikatu serwera nie powiodła się: %1$s. Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
   <string name="CertificateFailure">Błąd: Weryfikacja certyfikatu serwera nie powiodła się! Zainstaluj odpowiedni certyfikat root na swoim urządzeniu lub sprawdź ustawienia!</string>
@@ -550,7 +552,7 @@
   <string name="FileIsReadOnlyOnKitkat">Wybrany plik jest tylko do odczytu dla Keepass2Android ze względu na ograniczenia na Android 4.4 +.</string>
   <string name="CopyFileRequired">Aby go użyć, należy skopiować go do innej lokalizacji.</string>
   <string name="CopyFileRequiredForEditing">Aby edytować, należy skopiować plik do innej lokalizacji.</string>
-  <string name="ClickOkToSelectLocation">Kliknij przycisk OK, aby wybrać miejsce, gdzie należy skopiować plik.</string>
+  <string name="ClickOkToSelectLocation">Naciśnij „OK”, by wybrać położenie docelowe kopiowanego pliku.</string>
   <string name="FileReadOnlyTitle">Baza danych jest w trybie tylko do odczytu</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otworzył aktualną bazę danych w trybie tylko do odczytu.</string>
   <string name="ReadOnlyReason_PreKitKat">Wygląda na to, że otworzyłeś plik z zewnętrznej aplikacji. Ta metoda nie wspiera zapisywania. Jeśli chcesz wprowadzić zmiany w bazie danych, zamknij proszę bazę danych i wybierz Zmień bazę danych. Następnie otwórz plik używając jednej z dostępnych opcji, jeżeli to możliwe.</string>
@@ -609,13 +611,13 @@
   <string name="configure_child_dbs">Skonfiguruj podrzędną bazę danych…</string>
   <string name="child_dbs_title">Podrzędna baza danych</string>
   <string name="unspecified">nieokreślony</string>
-  <string name="child_db_explanation">Podrzędne bazy danych to bazy danych które mogą być otwarte automatycznie, kiedy nadrzędna baza danych zostaje otwarta. Z tego powodu hasło i lokacja bazy podrzędnej są składowane w bazie nadrzędnej. Ta funkcja pozwala dzielić się niektórymi swoimi hasłami z innymi osobami. Ta implementacja jest kompatybilna z KeeAutoExec dla komputerów stacjonarnych.</string>
+  <string name="child_db_explanation">Podrzędne bazy danych to osobne bazy danych, które mogą być otwarte automatycznie podczas otwierania nadrzędnej bazy danych. Z tego powodu hasło główne i położenie bazy podrzędnej są składowane w bazie nadrzędnej. Można to wykorzystać do współdzielenia części swoich haseł z innymi osobami. Realizacja tej funkcji jest zgodna z KeeAutoExec dla komputerów stacjonarnych.</string>
   <string name="child_db_enabled_on_this_device">Włączone na tym urządzeniu</string>
   <string name="child_db_enable_on_this_device">Włącz na tym urządzeniu</string>
   <string name="child_db_disable_on_this_device">Wyłącz na tym urządzeniu</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopiuj na to urządzenie</string>
   <string name="unconfigured_child_dbs">Twoja baza danych zawiera nową podrzędną bazę danych w grupie \"AutoOpen\". Określ, czy ta podrzędna baza danych powinna być używana na tym urządzeniu.</string>
-  <string name="add_child_db">Dodaj podrzędną bazę danych...</string>
+  <string name="add_child_db">Dodaj podrzędną bazę danych…</string>
   <string name="EnableCopyForThisDevice_Info">Spowoduje to utworzenie i włączenie kopii ustawień podrzędnej bazy danych. Te skopiowane ustawienia można następnie dostosować specjalnie dla tego urządzenia.</string>
   <string name="Visible_title">Widoczny</string>
   <string name="child_db_Enabled_title">Otwórz automatycznie</string>
@@ -757,6 +759,19 @@
 		* zabezpieczono przed możliwością zrobienia zrzutów ekranu dla ekranów QuickUnlock i hasła\n
 		* odwrócono kolejność sortowania dla Sortuj według daty modyfikacji (teraz malejąco)\n
 		* poprawki błędów: Widok notatek jest teraz poprawnie aktualizowany po zmianach. Widoki haseł teraz chowają hasła poprawnie na (miejmy nadzieję) wszystkich urządzeniach; naprawiono błąd, który powodował, że można było dwukrotnie dodać ten sam wpis; naprawiono problem z pokazywaniem ostrzeżenia o zduplikowanych UUID nawet po naprawieniu bazy danych\n</string>
+  <string name="ChangeLog_0_9_6">Wersja 0.9.6\n
+		* umożliwienie importowania pliku klucza i/lub pliku lokalnej bazy danych do wewnętrznego katalogu aplikacji (patrz Ustawienia)\n
+		* udostępnienie różnych opcji sortowania\n
+		* ulepszenie preferencji automatycznego przełączania klawiatury\n
+		* aktualizacja loga aplikacji i wyglądu powiadomień zgodnie z projektem Stefano Pignataro (http://www.spstudio.at)\n
+		* generator haseł pamięta ostatnie ustawienia\n
+		* ustawienie widoczności powiadomień na ekranie blokady w systemie Android 5\n
+		* czyszczenie pola hasła głównego po opuszczeniu aplikacji nie wymaga naciśnięcia „OK”\n
+		* naprawienie brakujących języków wprowadzania w ustawieniach klawiatury na niektórych urządzeniach\n
+		* naprawienie automatycznego przełączania klawiatury na urządzeniach z uwolnionym dostępem\n
+		* dodanie kontroli uszkodzenia bazy danych (powielone UUIDy)\n
+		* automatyczne przeładowanie bazy danych po wykryciu zmian; zapobiega ujawnieniu hasła głównego\n
+		* ulepszenie polskiego układu małej klawiatury, naprawienie motywu ustawień klawiatury (podziękowania dla Wiktora Ławskiego)\n</string>
   <string name="ChangeLog_0_9_5"><b>Wersja 0.9.5</b>\n
 		* Naprawiono problemy z przeglądaniem plików (szczególnie Android 4.4)\n
 		* Naprawiono problem z ładowaniem plików .kdb (Keepass 1) na Nexus 5 z Android Lollipop\n
@@ -816,6 +831,13 @@
 * Możliwość przenoszenia wpisów i grup\n
 * Ikona SzybkiegoOdblokowania może być przezroczysta (patrz Ustawienia)\n
 * Poprawki błędów</string>
+  <string name="ChangeLog_0_8_5"><b>Wersja 0.8.5</b>\n 
+* Pliki zdalne przechowywane są w pamięci lokalnym aplikacji umożliwiając jej użycie w trybie offline (łącznie z edycją i późniejszą synchronizacją). Zobacz Ustawienia.\n 
+* Ikona w obszarze powiadomień pokazująca stan blokady bazy danych (patrz Ustawienia)\n 
+* Ulepszone rozpoznawanie stanu blokady w niektórych sytuacjach\n 
+* Pliki bazy danych są wczytywane do pamięci podczas wprowadzania hasła w celu zwiększenia prędkości wczytywania (patrz Ustawienia)\n 
+* Wpisy mogą być dodawane do głównego katalogu grup\n 
+* Poprawki błędów (rozwiązywanie pól odnośników, problemy z klawiaturą na włoskich i chińskich urządzeniach)</string>
   <string name="ChangeLog_0_8_4"><b>Wersja 0.8.4</b>\n
 * Wykrywane zmian w zewnętrznych bazach danych i dołączanie ich podczas zapisu\n
 * Zwiększenie szybkości ładowania\n
@@ -892,11 +914,11 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
     <item>Hasło + Challenge-Response</item>
     <item>Hasło + sekret Challenge-Response (tryb odzyskiwania)</item>
     <item>Hasło + Challenge-Response dla Keepass XC</item>
-    <item>Hasło + Plik klucza + Challenge-Response dla Keepass XC</item>
+    <item>Hasło + plik klucza + wyzwanie-odpowiedź dla Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Hasło</item>
-    <item>Klucz Prywatny/Publiczny</item>
+    <item>Klucz prywatny/publiczny</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
@@ -911,7 +933,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="show_autofill_help">Pokaż pomoc autouzupełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
   <string name="autofill_disable">Włącz autouzupełnianie dla %1$s</string>
-  <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_enable_for">Wyłącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
   <string name="understand">Rozumiem</string>
