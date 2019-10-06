@@ -470,7 +470,9 @@
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Этот тип хранения будет запрашивать доступ только к папке \"Приложения/Keepass2Android\". Если вы хотите использовать существующую базу данных из вашей учетной записи PCloud, пожалуйста, убедитесь, что файл помещен в эту папку.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
   <string name="filestoragename_content">Системное средство выбора файлов</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
@@ -588,9 +590,9 @@
    • Убедитесь, что вы вводите правильный пароль. Используйте значок \"глаз\" для проверки вводимого пароля.\n
    • Убедитесь, что вы выбрали правильный тип пароля. Убедитесь, что он совпадает с тем типом, который вы указывали при создании базы данных.\n
    • Убедитесь, что вы выбрали правильный файл с базой данных.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
  &#8226; подсказка: если вы считаете, что файл базы данных может быть поврежден или не помните главный ключ после его изменения, вы можете попробовать с последней успешно открытой версией файла, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
-  <string name="HintLocalBackupOtherError"> \n
+  <string name="HintLocalBackupOtherError">    \n
  &#8226; подсказка: Keepass2Android сохранил последнюю успешно открытую в ерсию файла во внутренней памяти. Его можно открыть, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
   <string name="CorruptDatabaseHelp">    Файл поврежден. \n
     Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
