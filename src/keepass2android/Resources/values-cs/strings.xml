@@ -62,6 +62,8 @@
   <string name="brackets">Závorky</string>
   <string name="cancel">Storno</string>
   <string name="Ok">OK</string>
+  <string name="disable_sensor">Zakázat sensor</string>
+  <string name="enable_sensor">Povolit sensor</string>
   <string name="ClearClipboard">Schránka vyčištěna.</string>
   <string name="clipboard_timeout">Časový limit schránky</string>
   <string name="clipboard_timeout_summary">Čas před vyčištěním schránky po zkopírování jména nebo hesla</string>
@@ -476,6 +478,9 @@
   <string name="filestoragehelp_pcloud">Tento druh úložiště si vyžádá pouze přístup do složky \"Applications/Keepass2Android\". Chcete-li použít existující databázi vašeho PCloud účtu, ujistěte se, že soubor je uložen v této složce.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Všechny soubory a sdílené soubory</string>
+  <string name="filestoragename_onedrive2_myfiles">Mé soubory</string>
+  <string name="filestoragename_onedrive2_appfolder">Složka aplikace Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
   <string name="filestoragename_content">Výběr systému souborů</string>
   <string name="filestorage_setup_title">Inicializace přístupu k souboru</string>
