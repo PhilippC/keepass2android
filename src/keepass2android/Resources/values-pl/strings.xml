@@ -95,7 +95,7 @@
   <string name="fingerprint_disabled_wrong_masterkey">Odblokowywanie bazy danych nie powiodło się: nieprawidłowy klucz złożony. Linii papilarnych Unlock została wyłączona, ponieważ najwyraźniej zapisane hasła głównego nie jest już prawidłowy. </string>
   <string name="fingerprint_reenable">Proszę ponownie aktywować odblokowywanie przy pomocy odcisku palca dla nowego hasła głównego.</string>
   <string name="fingerprint_reenable2">Proszę odblokować używając twojego hasła, następnie restart Skanera Odcisków pałcow w bazie ustawień.</string>
-  <string name="FingerprintInitFailed">Nie udało się zainicować czytnika linii papilarnych. </string>
+  <string name="FingerprintInitFailed">Nie udało się zainicjować czytnika linii papilarnych. </string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
   <string name="enable_fingerprint_unlock_Info">To zachowa twoje hasła główne na tym urządzeniu.
     zaszyfrowane przy pomocy zestawu kluczy Androida i chronione
@@ -475,6 +475,7 @@
   <string name="filestoragehelp_pcloud">Ten typ magazynowania wymaga tylko dostępu do folderu „Applications/Keepass2Android”. Jeśli chcesz używać istniejącej bazy danych z twojego konta PCloud, upewnij się, że plik jest umieszczony w tym folderze.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_myfiles">Moje pliki</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
