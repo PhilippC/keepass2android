@@ -418,6 +418,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (نقل ملفات SSH)</string>
   <string name="filestoragename_content">منتقي ملف النظام</string>
   <string name="filestorage_setup_title">تهيئة الوصول إلى الملفات</string>
