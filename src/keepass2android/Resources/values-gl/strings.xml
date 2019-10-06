@@ -22,6 +22,8 @@
   <string name="app_name_nonet">Keepass2Android sen conexión</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="show_kill_app">Botón de peche</string>
+  <string name="show_kill_app_summary">Amosar un botón na pantalla do contrasinal para rematar o proceso da aplicación (para usuarios paranoicos)</string>
+  <string name="application_settings">Axustes da aplicación</string>
   <string name="ShowGroupnameInSearchResult_title">Amosar nome do grupo nos resultados de busca</string>
   <string name="ShowGroupnameInSearchResult_resume">Amosar nome de grupo debaixo dos títulos das entradas no resultado de busca. Útil se varias entradas teñen o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">O grupo de mostra agora é: %1$s</string>
@@ -51,6 +53,7 @@
   <string name="unlock_database_title">Desbloquear a base de datos</string>
   <string name="brackets">Parénteses</string>
   <string name="cancel">Cancelar</string>
+  <string name="Ok">Aceptar</string>
   <string name="ClearClipboard">Portapapeis baleirado.</string>
   <string name="clipboard_timeout">Tempo para baleirar o portapapeis</string>
   <string name="clipboard_timeout_summary">Tempo para baleirar o portapapeis despois de copiar o nome de usuario ou contrasinal</string>
@@ -224,6 +227,7 @@
   <string name="select_group_then_add">Abra o grupo desexado e despois prema \"%1$s\"!</string>
   <string name="insert_element_here">Insira aquí</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Subliñado</string>
   <string name="unsupported_db_version">Versión de base de datos non soportada.</string>
   <string name="warning_read_only">A súa tarxeta SD é actualmente de só lectura. Polo que non poderá gardar cambios na súa base de datos.</string>
   <string name="warning_unmounted">Non ten ningúnha tarxeta SD montada no dispositivo. Non vai poder cargar ou crear unha base de datos.</string>
@@ -423,6 +427,7 @@
   <string name="hint_sftp_port">porto</string>
   <string name="initial_directory">Directorio inicial (opcional):</string>
   <string name="enter_sftp_login_title">Introduza os datos de acceso a SFTP:</string>
+  <string name="sftp_auth_mode">Modo de autenticación</string>
   <string name="enter_ftp_login_title">Introduza os datos de acceso a FTP:</string>
   <string name="select_storage_type">Seleccione o tipo de almacenamento:</string>
   <string name="filestoragename_file">Arquivo local</string>
@@ -436,6 +441,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (cartafol KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de arquivos)</string>
   <string name="filestoragename_content">Selector de arquivos do sistema</string>
   <string name="filestorage_setup_title">Inicialización do acceso a arquivos</string>
