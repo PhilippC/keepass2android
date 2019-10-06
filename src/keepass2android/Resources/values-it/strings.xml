@@ -31,8 +31,8 @@
   <string name="ShowGroupnameInSearchResult_title">Visualizza il nome del gruppo nei risultati di ricerca</string>
   <string name="ShowGroupnameInSearchResult_resume">Visualizza il nome del gruppo sotto i titoli delle voci nei risultati di ricerca. Utile se più voci hanno lo stesso nome.</string>
   <string name="NavigationToGroupCompleted_message">Il gruppo visualizzato ora è: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Obiettivi AutoFill disabilitati</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Visualizza una lista di app e siti web per i quali AutoFill è stato disabilitato</string>
+  <string name="AutofillDisabledQueriesPreference_title">Elenco Compilazione automatica disabilitata</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Visualizza una lista di app e siti web in cui la Compilazione automatica è stata disabilitata</string>
   <string name="OfferSaveCredentials_summary">Se abilitato, Android chiederà se vuoi salvare le credenziali dopo che hai inserito manualmente i dati nei campi di compilazione automatica.</string>
   <string name="OfferSaveCredentials_title">Offri il salvataggio delle credenziali</string>
   <string name="ShowGroupInEntry_title">Mostra il nome del gruppo della voce</string>
@@ -62,6 +62,8 @@
   <string name="brackets">Parentesi</string>
   <string name="cancel">Annulla</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Disabilita sensore</string>
+  <string name="enable_sensor">Abilita sensore</string>
   <string name="ClearClipboard">Appunti eliminati.</string>
   <string name="clipboard_timeout">Scadenza appunti</string>
   <string name="clipboard_timeout_summary">Durata degli appunti dopo la copia di nome utente o password</string>
@@ -96,7 +98,7 @@
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco con Impronta per la nuova password principale.</string>
   <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo sblocco con Impronta nelle impostazioni del database.</string>
   <string name="FingerprintInitFailed">Impossibile inizializzare il sensore di impronte. </string>
-  <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa dellla tua impronta digitale.</string>
+  <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa della tua impronta digitale.</string>
   <string name="enable_fingerprint_unlock_Info">Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione con impronta digitale. Permette di sbloccare il database solo con l\'impronta digitale.  </string>
   <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione tramite impronta digitale anziché il codice di QuickUnlock. Non necessita di memorizzare alcuna informazione relativa alla tua password principale.</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
@@ -190,7 +192,7 @@
   <string name="menu_search">Cerca</string>
   <string name="menu_search_advanced">Ricerca avanzata</string>
   <string name="menu_url">Vai all\'URL</string>
-  <string name="menu_change_db">Cambia il database</string>
+  <string name="menu_change_db">Cambia database</string>
   <string name="menu_show_all">Mostra tutti i campi</string>
   <string name="minus">Meno</string>
   <string name="never">Mai</string>
@@ -199,7 +201,7 @@
   <string name="no_keys">Nessuna voce nel database o nel gruppo.</string>
   <string name="no_results">Nessun risultato</string>
   <string name="no_url_handler">Nessun gestore per questo URL.</string>
-  <string name="open_recent">Apri database recente ( clicca per aprire)</string>
+  <string name="open_recent">Apri database recente (tocca per aprire)</string>
   <string name="omitbackup_title">Non cercare tra le voci di backup e cestino</string>
   <string name="omitbackup_summary">Escludi i gruppi \'Backup\' e Cestino dai risultati di ricerca</string>
   <string name="pass_filename">Nome file del database di KeePass</string>
@@ -214,8 +216,8 @@
   <string name="edit">Modifica</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Radice</string>
-  <string name="AutoReturnFromQuery_title">Ritorna automaticamente dalla schermata della query</string>
-  <string name="AutoReturnFromQuery_summary">Quando cerchi una voce per un\'app o un sito web: ritorna automaticamente dalla schermata della query se c\'è una sola voce corrispondente nel database.</string>
+  <string name="AutoReturnFromQuery_title">Ritorna automaticamente dalla schermata di ricerca</string>
+  <string name="AutoReturnFromQuery_summary">Quando cerchi una voce per un\'app o un sito web: ritorna automaticamente dalla schermata di ricerca se c\'è una sola voce corrispondente nel database.</string>
   <string name="KeyDerivFunc">Funzione di derivazione chiave</string>
   <string name="rounds">Cicli di cifratura</string>
   <string name="rounds_explaination">Un livello di cifratura elevato fornisce una protezione maggiore contro attacchi di tipo \"forza bruta\", ma può rallentare di molto sia il caricamento che il salvataggio.</string>
@@ -334,7 +336,7 @@
   <string name="NoDonationReminder_title">Non chiedere mai di donare</string>
   <string name="NoDonationReminder_summary">Non ti darò un centesimo oppure ho già donato. Non chiedere una donazione, nemmeno al compleanno dell\'autore.</string>
   <string name="UseOfflineCache_title">Cache del database</string>
-  <string name="UseOfflineCache_summary">Conserva una copia dei file del database nella directory della cache dell\'applicazione. Questo consente di utilizzare i database, anche quando il file del database non è accessibile.</string>
+  <string name="UseOfflineCache_summary">Conserva una copia dei database nella cache dell\'applicazione. Questo consente di utilizzare i database anche quando il file non è accessibile.</string>
   <string name="CreateBackups_title">Backup locali</string>
   <string name="CreateBackups_summary">Creare una copia di backup locale dopo aver caricato correttamente un database.</string>
   <string name="UpdatingBackup">Aggiornamento del backup locale...</string>
@@ -467,11 +469,12 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Apps/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
+  <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Applicazioni/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Questo storage richiederà accesso solamente alla cartella \"Applicazioni/Keepass2Android\". Se vuoi usare un database dal tuo account PCloud, assicurati che sia in questa cartella.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selettore file di sistema</string>
   <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>
@@ -538,7 +541,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Interroga proprie credenziali</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Il plugin potrà controllare le credenziali associate con il proprio pacchetto applicativo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Interroga credenziali</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Il plugin potrà controllare le credenziali su delega di siti web o applicazioni.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Il plugin potrà controllare le credenziali di specifici siti web o applicazioni.</string>
   <string name="get_regular_version">Ottieni altri tipi di archiviazione</string>
   <string name="CertificateWarning">Attenzione: validazione del certificato del server fallita: %1$s. Installa il certificato principale appropriato sul tuo dispositivo o controlla le impostazioni!</string>
   <string name="CertificateFailure">Errore: validazione del certificato del server fallita! Installa il certificato principale appropriato sul tuo dispositivo o controlla le impostazioni!</string>
@@ -549,7 +552,7 @@
   <string name="FileIsReadOnlyOnKitkat">Il file che hai selezionato è in sola lettura per Keepass2Android a causa delle restrizioni di Android 4.4+.</string>
   <string name="CopyFileRequired">Per poterlo usare, devi copiarlo in un\'altra posizione.</string>
   <string name="CopyFileRequiredForEditing">Per modificarlo, devi copiare il file in un\'altra posizione.</string>
-  <string name="ClickOkToSelectLocation">Premi OK per selezionare il percorso dove copiare il file.</string>
+  <string name="ClickOkToSelectLocation">Tocca OK per selezionare il percorso dove copiare il file.</string>
   <string name="FileReadOnlyTitle">Il database è in sola lettura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha aperto il database corrente in sola lettura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembra che tu abbia aperto il file da un\'app esterna. In questa modalità non è supportata la scrittura. Se vuoi modificare il database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando una delle opzioni disponibili, se possibile.</string>
@@ -601,21 +604,21 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 • se non puoi aprire il file dallo stesso percorso sul tuo PC, è molto probabile che il file sia effettivamente danneggiato. Per favore usa un backup del database. Se credi che Keepass2Android abbia corrotto il file, contatta il supporto.\n
 • se puoi ancora aprire il file sul tuo PC, contatta il supporto. Puoi provare a salvarlo con impostazioni differenti (es: non compresso) sul PC e, poi, riprovare ad aprirlo in Keepass2Android.  </string>
   <string name="open_other_db">Apri un altro database…</string>
-  <string name="select_database">Seleziona database</string>
-  <string name="configure_child_dbs">Configurare i database figlio…</string>
-  <string name="child_dbs_title">Database figlio</string>
+  <string name="select_database">Seleziona il database</string>
+  <string name="configure_child_dbs">Configura i database figli…</string>
+  <string name="child_dbs_title">Database figli</string>
   <string name="unspecified">non specificato</string>
   <string name="child_db_explanation">I database figli sono altri database che possono essere aperti automaticamente quando si apre il database padre. Pertanto la password principale e la posizione del file del figlio sono memorizzati nel padre. Questa funzione permette di condividere alcune delle tue password con un\'altra persona. L\'implementazione è compatibile con KeeAutoExec per PC.</string>
   <string name="child_db_enabled_on_this_device">Abilitato su questo dispositivo</string>
   <string name="child_db_enable_on_this_device">Abilita su questo dispositivo</string>
   <string name="child_db_disable_on_this_device">Disabilita su questo dispositivo</string>
   <string name="child_db_enable_a_copy_for_this_device">Copia per questo dispositivo</string>
-  <string name="unconfigured_child_dbs">Il database contiene nuovi database figlio nel gruppo \"AutoOpen\". Si prega di specificare se questi database figlio devono essere utilizzati su questo dispositivo.</string>
-  <string name="add_child_db">Aggiungere database figlio...</string>
-  <string name="EnableCopyForThisDevice_Info">Questo creerà e abiliterà una copia delle impostazioni del database figlio. Queste impostazioni copiate possono quindi essere regolate specificamente per questo dispositivo.</string>
+  <string name="unconfigured_child_dbs">Il database contiene nuovi database figli nel gruppo \"AutoOpen\". Si prega di specificare se questi database figli devono essere utilizzati su questo dispositivo.</string>
+  <string name="add_child_db">Aggiungi database figlio...</string>
+  <string name="EnableCopyForThisDevice_Info">Questo creerà e abiliterà una copia delle impostazioni del database figlio. Queste impostazioni copiate possono quindi essere modificate specificamente per questo dispositivo.</string>
   <string name="Visible_title">Visibile</string>
   <string name="child_db_Enabled_title">Apri automaticamente</string>
-  <string name="database_file_heading">File Database</string>
+  <string name="database_file_heading">File del database</string>
   <string name="if_device_text">Abilita per %1$s</string>
   <string name="DbUnlockedChannel_name">Database sbloccato</string>
   <string name="DbUnlockedChannel_desc">Notifica dello sblocco del database</string>
