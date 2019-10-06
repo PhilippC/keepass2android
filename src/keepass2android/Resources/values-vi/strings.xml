@@ -405,6 +405,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
   <string name="filestoragename_content">Hộp thoại chọn tập tin của hệ thống</string>
   <string name="filestorage_setup_title">Khởi tạo truy cập tập tin</string>
