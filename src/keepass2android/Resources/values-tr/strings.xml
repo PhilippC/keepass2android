@@ -472,6 +472,7 @@
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Bu depolama türü yalnızca \"Uygulamalar/Keepass2Android\" klasörüne erişim ister. PCloud hesabınızdan mevcut bir veritabanını kullanmak istiyorsanız, lütfen dosyanın bu klasörde olduğundan emin olun.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
   <string name="filestorage_setup_title">Dosya erişimi başlatma</string>
@@ -632,7 +633,7 @@
     * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n
     * SFTP: Genel anahtar kimlik doğrulamasına izin ver, sunucu anahtarının değişip değişmediğini kontrol et\n
     * pCloud desteği - gilbsgilbs\' e teşekkürler!\n
-    * Nextcloud desteği\n
+    * Nextcloud desteği \n
     * Girdi eklerinin kaydedilmesi ve güncellenmesi geliştirildi\n
     * Kişiselleştirme için daha fazla seçenek sunuldu\n
     * SSL: Güvenilir kullanıcı sertifikaları\n
