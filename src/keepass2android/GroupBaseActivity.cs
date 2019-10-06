@@ -1390,7 +1390,7 @@ namespace keepass2android
                 case Resource.Id.menu_copy:
 
                     var copyTask = new CopyEntry((GroupBaseActivity)Activity, App.Kp2a, (PwEntry)checkedItems.First(),
-                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)));
+                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a.CurrentDb);
 
                     ProgressTask pt = new ProgressTask(App.Kp2a, Activity, copyTask);
                     pt.Run();
