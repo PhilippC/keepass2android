@@ -632,6 +632,15 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Verbesserung der Leistung von Argon2 durch die Verwendung einer nativen Implementierung (Danke an Chih-Hsuan Yen!)\n
+    * Der Fingerabdruck-Leser kann durch anklicken des Fingerabdruck-Symbols deaktiviert werden (das vermeidet Probleme mit Lesern unter der Displayoberfläche, Danke an marcoDallas!)\n
+    * Cursor-Position wird nach Änderung der Sichtbarkeit von Passwörtern wiederhergestellt (Danke an DDoSolitary!)\n
+    * Verbesserungen bei der pCloud-Implementierung (noch einmal Danke an gilbsgilbs!)\n
+    * AutoFill-Unterstützung für verschiedene weitere Browser hinzugefügt \n
+    * Neue Implementierung für OneDrive: einschließlich Unterstützung für OneDrive for Business, geteilte Dateien, auswählbare Zugriffsbereiche, mehrere Konten und Behebung von Problemen mit Offline-Zugriff\n
+    * Fehlerkorrekturen
+  </string>
   <string name="ChangeLog_1_07">Version 1.07\n
 * Abstürze unter Samsung\'s Android 9 behoben\n
 * Zulassen, dass mehrere Datenbanken geöffnet werden können. Kompatibel mit KeeAutoExec\n
