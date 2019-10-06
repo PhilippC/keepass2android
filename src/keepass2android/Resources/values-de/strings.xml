@@ -63,6 +63,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="brackets">Klammern</string>
   <string name="cancel">Abbrechen</string>
   <string name="Ok">Okay</string>
+  <string name="disable_sensor">Sensor deaktivieren</string>
+  <string name="enable_sensor">Sensor aktivieren</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zeitsperre für Zwischenablage</string>
   <string name="clipboard_timeout_summary">Zeit bis zum Löschen der Zwischenablage nach dem Kopieren von Benutzername oder Passwort</string>
@@ -475,6 +477,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragehelp_pcloud">Dieser Speichertyp fordert nur den Zugriff auf den Ordner „Applicationss/Keepass2Android” an. Wenn Sie eine bestehende Datenbank aus Ihrem PCloud-Konto verwenden möchten, stellen Sie bitte sicher, dass sich die Datei in diesem Ordner befindet.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Alle Dateien und freigegebene Dateien</string>
+  <string name="filestoragename_onedrive2_myfiles">Meine Dateien</string>
+  <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
