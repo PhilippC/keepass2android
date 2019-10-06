@@ -477,6 +477,7 @@
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle filer og delte filer</string>
   <string name="filestoragename_onedrive2_myfiles">Mine filer</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Androids datamappe</string>
   <string name="filestoragename_sftp">SFTP (SSH-filoverførsel)</string>
   <string name="filestoragename_content">Systemfilvælger</string>
   <string name="filestorage_setup_title">Filtilgangsinitialisering</string>
