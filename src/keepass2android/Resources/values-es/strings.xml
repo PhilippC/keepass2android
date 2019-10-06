@@ -23,18 +23,18 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Tiempo de espera de la aplicación</string>
   <string name="app_timeout_summary">Tiempo antes de bloquear la base de datos cuando la aplicación está inactiva.</string>
-  <string name="kill_app_label">Matar proceso de aplicación</string>
+  <string name="kill_app_label">Cerrar el proceso de la aplicación</string>
   <string name="show_kill_app">Botón de cerrado</string>
-  <string name="show_kill_app_summary">Mostrar un botón en la pantalla de la contraseña para matar el proceso (para usuarios paranoicos)</string>
+  <string name="show_kill_app_summary">Mostrar un botón en la pantalla de contraseña para cerrar el proceso (para usuarios paranoicos)</string>
   <string name="application">Aplicación</string>
   <string name="application_settings">Configuración de la aplicación</string>
   <string name="ShowGroupnameInSearchResult_title">Mostrar nombre del grupo en resultado de búsqueda</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo por debajo de los títulos en resultados de búsqueda. Útil si múltiples entradas tienen el mismo nombre.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deshabilitar objetivos de autocompletado</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Visualiza una lista de aplicaciones y sitios web para los que AutoFill ha sido desactivado</string>
-  <string name="OfferSaveCredentials_summary">Si está habilitado, Android preguntará si desea guardar las credenciales después de que haya introducido manualmente datos en campos de auto-relleno.</string>
-  <string name="OfferSaveCredentials_title">Oferta guardado de credenciales</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Visualiza una lista de aplicaciones y sitios web para los que el autocompletado ha sido desactivado</string>
+  <string name="OfferSaveCredentials_summary">Si está habilitado, Android preguntará si desea guardar las credenciales después de que haya introducido manualmente datos en campos autorellenables.</string>
+  <string name="OfferSaveCredentials_title">Ofrecer guardado de credenciales</string>
   <string name="ShowGroupInEntry_title">Mostrar el nombre del grupo en vista de entrada</string>
   <string name="unknown_uri_scheme">¡Lo sentimos! Keepass2Android no puede manejar la URI devuelta %1$s. ¡Póngase en contacto con el desarrollador!</string>
   <string name="Entry_singular">Una entrada</string>
@@ -96,7 +96,7 @@
   <string name="fingerprint_reenable">Por favor, vuelve a activar el desbloqueo con la huella dactilar para la nueva contraseña maestra.</string>
   <string name="fingerprint_reenable2">Por favor, desbloquée con contraseña y luego vuelva a activar Desbloquear con huella en la configuración de la base de datos.</string>
   <string name="FingerprintInitFailed">Error al inicializar el sensor de huellas dactilares. </string>
-  <string name="FingerprintSetupFailed">No se pudo cifrar datos. Esto puede suceder si se añaden o eliminan las huellas dactilares en la configuración del sistema mientras Keepass2Android está escuchando su huella digital.</string>
+  <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
   <string name="enable_fingerprint_unlock_Info">Esto almacenará tu contraseña maestra en este dispositivo, cifrada con las claves de Android Keystore y protegidos
 mediante la autenticación de huellas dactilares. Esto permite desbloquear la base de datos solamente con la huella dactilar.</string>
   <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella dactilar en lugar del código de QuickUnlock. No requiere almacenar ninguna información relacionada con la contraseña maestra.</string>
@@ -335,7 +335,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="NoDonationReminder_title">No solicitar nunca una donación</string>
   <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
-  <string name="UseOfflineCache_summary">Mantener una copia de los ficheros de base de datos en el directorio caché de la aplicación. Esto permite usar las bases de datos incluso cuando el fichero no esté accesible.</string>
+  <string name="UseOfflineCache_summary">Mantener una copia de los archivos de base de datos en el directorio caché de la aplicación. Esto permite usar las bases de datos incluso cuando el archivo no esté accesible.</string>
   <string name="CreateBackups_title">Copias de seguridad locales</string>
   <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
@@ -473,6 +473,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente desde su cuenta PCloud, asegúrese de que el archivo se coloca en esta carpeta.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
   <string name="filestoragename_content">Selector de archivo del sistema</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>
