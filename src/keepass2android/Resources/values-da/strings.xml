@@ -470,7 +470,9 @@
   <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Den vil kun anmode om at tilgå mappen Apps/Keepass2Android. Dette er især egnet til oprettelse af en ny database. Har du allerede en database, så tryk på denne valgmulighed for at oprette mappen, dernæst placere din fil inde i mappen (fra din PC) og så vælge denne muilghed igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Denne lagringstype vil kun anmode om adgang til mappen \"Applications / Keepass2Android\". Hvis du vil benytte en eksisterende database fra din PCloud-konto, så sørg for, at filen er placeret i denne mappe.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH-filoverførsel)</string>
   <string name="filestoragename_content">Systemfilvælger</string>
   <string name="filestorage_setup_title">Filtilgangsinitialisering</string>
@@ -746,6 +748,9 @@
 		* Ændret adgangskodeskrifttype\n
 		* Tilladerændring af Dropbox-konto\n
 		* Rettet fejl: Husker nu OTP-adgangskode</string>
+  <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
+		* Opdaterede oversættelser\n
+		* Fejlrettelser: Adgangskodeskrifttype manglede i 0.9.7, sortering efter navn sorterede ikke grupper\n</string>
   <string name="ChangeLog_keptDonate">Udvidet mulighed for donation af en øl eller noget andet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
