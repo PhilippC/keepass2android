@@ -457,6 +457,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (انتقال فایل به‌روش SSH)</string>
   <string name="filestoragename_content">گزینشگر فایل سیستم</string>
   <string name="filestorage_setup_title">راه‌اندازی دسترسی به فایل</string>
