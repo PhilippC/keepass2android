@@ -473,6 +473,7 @@
   <string name="filestoragehelp_pcloud">Bu depolama türü yalnızca \"Uygulamalar/Keepass2Android\" klasörüne erişim ister. PCloud hesabınızdan mevcut bir veritabanını kullanmak istiyorsanız, lütfen dosyanın bu klasörde olduğundan emin olun.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_myfiles">Dosyalarım</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
   <string name="filestorage_setup_title">Dosya erişimi başlatma</string>
