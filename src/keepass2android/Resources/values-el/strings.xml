@@ -465,6 +465,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (μεταφορά αρχείων SSH)</string>
   <string name="filestoragename_content">Επιλογέας αρχείων συστήματος</string>
   <string name="filestorage_setup_title">Προετοιμασία προσπέλασης του αρχείου</string>
