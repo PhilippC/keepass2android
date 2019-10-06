@@ -304,6 +304,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A karpeta)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH fitxategi transmisioa)</string>
   <string name="filestoragename_content">Sistemako fitxategi hartzailea</string>
   <string name="database_location">Datu-basearen kokalekua</string>
