@@ -84,11 +84,24 @@ namespace keepass2android.search
 			if (intent.Action == Intent.ActionView)
 			{
 				var entryIntent = new Intent(this, typeof(EntryActivity));
-				entryIntent.PutExtra(EntryActivity.KeyEntry, intent.Data.LastPathSegment);
-                entryIntent.AddFlags(ActivityFlags.ForwardResult);
-				Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
-				StartActivity(entryIntent);
-			}
+			    ElementAndDatabaseId id;
+			    try
+			    {
+			        id = new ElementAndDatabaseId(intent.Data.LastPathSegment);
+                }
+			    catch (Exception e)
+			    {
+			        Kp2aLog.Log("Failed to transform " + intent.Data.LastPathSegment + " to an ElementAndDatabaseId object. ");
+			        Toast.MakeText(this, "Bad path passed. Please provide database and element ID.", ToastLength.Long).Show();
+                    Finish();
+			        return;
+			    }
+			    entryIntent.PutExtra(EntryActivity.KeyEntry, id.FullId);
+			    entryIntent.AddFlags(ActivityFlags.ForwardResult);
+			    Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
+			    StartActivity(entryIntent);
+
+            }
 			else
 			{
 				// Action may either by ActionSearch (from search widget) or null (if called from SearchActivity directly)
