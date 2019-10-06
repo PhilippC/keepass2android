@@ -475,6 +475,9 @@
   <string name="filestoragehelp_pcloud">Questo storage richiederà accesso solamente alla cartella \"Applicazioni/Keepass2Android\". Se vuoi usare un database dal tuo account PCloud, assicurati che sia in questa cartella.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Tutti i file e file condivisi</string>
+  <string name="filestoragename_onedrive2_myfiles">Miei file</string>
+  <string name="filestoragename_onedrive2_appfolder">Cartella app Keepass2Andriod</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selettore file di sistema</string>
   <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>
