@@ -635,6 +635,15 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
+  <string name="ChangeLog_1_07b">    Verze 1.07b-pre\n
+    * Vylepšení výkonu Argon2 pomocí vlastní implementace (Díky Chih-Hsuan Yen!)\n
+    * Možnost zakázání čtečky otisků poklepáním na ikonu otisku. Umožňuje obejít problémy při používání pod-displejového snímače. (Díky marcoDallas!)\n
+    * Vrácení pozice ukazatele při přepínání viditelnosti hesla (Díky DDoSolitary!)\n
+    * Vylepšení implementace pCloud (Znovu díky gilbsgilbs!)\n
+    * Přidána podpora AutoFill pro více prohlížečů \n
+    * Nová implementace OneDrive: Podpora OneDrive pro firmy, sdílené soubory, volitelné rozsahy přístupu, více účtů a opravy problémů při offline přístupu\n
+    * Oprava chyb
+  </string>
   <string name="ChangeLog_1_07">    Version 1.07\n
     * Opravuje padání aplikace na Samsung Android 9\n
     * Umožňuje otevření více než jednoho souboru databáze, kompatibilní s KeeAutoExec\n
