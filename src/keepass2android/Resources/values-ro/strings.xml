@@ -20,6 +20,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Suspendarea aplicației</string>
   <string name="show_kill_app">Buton de închidere</string>
   <string name="ShowGroupnameInSearchResult_title">Arată numele grupului în rezultatele căutării</string>
   <string name="ShowGroupnameInSearchResult_resume">Arată numele grupului sub titlul înregistrărilor în rezultatele căutării. Folositor dacă mai multe înregistrări au același nume.</string>
@@ -392,6 +393,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
