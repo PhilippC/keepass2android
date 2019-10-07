@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Tiempo hasta que el portapapeles se vacía después de copiar el usuario o la contraseña</string>
   <string name="copy_username">Seleccionar para copiar el usuario al portapapeles</string>
   <string name="copy_password">Seleccionar para copiar la contraseña al portapapeles</string>
+  <string name="copy_totp">Seleccionar para copiar el TOTP al portapapeles</string>
   <string name="available_through_keyboard">La entrada está disponible a través del teclado KP2A</string>
   <string name="entry_is_available">está disponible</string>
   <string name="not_possible_im_picker">No se puede abrir el cuadro de diálogo para seleccionar el método de entrada. Por favor, active el teclado manualmente.</string>
@@ -175,6 +176,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="menu_change_key">Cambiar Contraseña Maestra</string>
   <string name="menu_copy_pass">Copiar Contraseña</string>
   <string name="menu_copy_user">Copiar Usuario</string>
+  <string name="menu_copy_totp">Copiar TOTP</string>
   <string name="menu_create">Crear</string>
   <string name="menu_app_settings">Configuración</string>
   <string name="menu_db_settings">Configuración de Base de datos</string>
