@@ -476,6 +476,7 @@
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_myfiles">我的檔案</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Android 應用程式資料夾</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
   <string name="filestoragename_content">系統檔選擇器</string>
   <string name="filestorage_setup_title">檔案存取權限初始化</string>
