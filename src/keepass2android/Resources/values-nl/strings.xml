@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Tijd tussen het kopiëren van gebruikersnaam of wachtwoord en het wissen van het klembord</string>
   <string name="copy_username">Selecteer om gebruikersnaam naar klembord te kopiëren</string>
   <string name="copy_password">Selecteer om wachtwoord naar klembord te kopiëren</string>
+  <string name="copy_totp">Selecteer om TOTP naar klembord te kopiëren</string>
   <string name="available_through_keyboard">Invoer is mogelijk via KP2A-toetsenbord</string>
   <string name="entry_is_available">is beschikbaar</string>
   <string name="not_possible_im_picker">Kan venster om invoermethode te selecteren niet openen. Activeer toetsenbord handmatig.</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">Wijzig hoofdsleutel</string>
   <string name="menu_copy_pass">Kopieer wachtwoord</string>
   <string name="menu_copy_user">Kopieer gebruikersnaam</string>
+  <string name="menu_copy_totp">TOTP kopiëren</string>
   <string name="menu_create">Aanmaken</string>
   <string name="menu_app_settings">Instellingen</string>
   <string name="menu_db_settings">Database-instellingen</string>
@@ -970,4 +972,5 @@ Eerste publieke publicatie
   <string name="backup_infotext_note">Om nu een back-up te maken, ga naar %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Ben je voorbereid op nood situaties?</string>
   <string name="emergency_infotext_main">Heb je ooit nagedacht over wat er gebeurd als je niet meer in staat bent om je wachtwoorden database te gebruiken? Wat als je een ongeluk krijgt? Veel mensen geven voor noodgevallen hun hoofdwachtwoord aan een persoon die ze vertrouwen. Anders heeft niemand meer toegang tot jouw wachtwoorden.</string>
+  <string name="no_secure_display">Het huidige scherm is niet als veilig gemarkeerd. Dit betekent dat een schermafbeelding kan worden genomen door andere apps. Keepass2Android is ingesteld om gevoelige informatie alleen op beveiligde displays te tonen. Verander naar een beveiligde weergave (bijvoorbeeld door een HDMI monitor te koppelen) of verander de app instellingen.</string>
 </resources>
