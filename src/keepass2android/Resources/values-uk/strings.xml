@@ -67,6 +67,7 @@
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
   <string name="copy_username">Копіювати ім’я користувача до буфера обміну</string>
   <string name="copy_password">Копіювати пароль до буфера обміну</string>
+  <string name="copy_totp">Оберіть для копії TOTP в буфер обміну</string>
   <string name="available_through_keyboard">Вхід доступний за допомогою клавіатури KP2A</string>
   <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не вдалося відкрити діалогове вікно для вибору методу введення. Активуйте клавіатуру вручну.</string>
@@ -175,6 +176,7 @@
   <string name="menu_change_key">Змінити головний ключ</string>
   <string name="menu_copy_pass">Копіювати пароль</string>
   <string name="menu_copy_user">Копіювати користувача</string>
+  <string name="menu_copy_totp">Копіювати TOTP</string>
   <string name="menu_create">Створити</string>
   <string name="menu_app_settings">Налаштування</string>
   <string name="menu_db_settings">Налаштування бази даних</string>
@@ -965,4 +967,5 @@ Initial public release
   <string name="backup_infotext_note">Щоб створити резервну копію зараз, перейдіть до %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Ви готові до непередбачуваних випадків?</string>
   <string name="emergency_infotext_main">Ви коли-небудь думали про те, що станеться, якщо ви втратите доступ до вашої бази паролів? Що, як сталась непередбачувана подія? Завжди добре, щоб довірена людина мала доступ до вашого головного пароля. Інакше, ніхто не зможе отримати доступ до вашої бази паролів в надзвичайній ситуації.</string>
+  <string name="no_secure_display">Поточний екран не вважається безпечним. Це означає, що інші додатки можуть робити знімки екрану. Keepass2Android налаштований показувати вразливу інформацію лише на безпечних екранах. Будь ласка, перемкніться на безпечний екран (наприклад, вимкнувши HDMI-монітор), або змініть налаштування додатка.</string>
 </resources>
