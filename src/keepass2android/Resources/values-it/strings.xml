@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Durata degli appunti dopo la copia di nome utente o password</string>
   <string name="copy_username">Copia nome utente negli appunti</string>
   <string name="copy_password">Copia password negli appunti</string>
+  <string name="copy_totp">Copia password temporanea negli appunti</string>
   <string name="available_through_keyboard">La voce è disponibile tramite la tastiera KP2A</string>
   <string name="entry_is_available">è disponibile</string>
   <string name="not_possible_im_picker">Impossibile aprire la finestra di selezione del metodo di input. Per favore, attiva la tastiera manualmente.</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">Modifica la Chiave Principale</string>
   <string name="menu_copy_pass">Copia Password</string>
   <string name="menu_copy_user">Copia Utente</string>
+  <string name="menu_copy_totp">Copia password temporanea</string>
   <string name="menu_create">Crea</string>
   <string name="menu_app_settings">Impostazioni</string>
   <string name="menu_db_settings">Impostazioni Database</string>
@@ -968,4 +970,5 @@ Prima release pubblica
   <string name="backup_infotext_note">Per creare un backup ora, vai a %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Sei preparato per i casi d\'emergenza?</string>
   <string name="emergency_infotext_main">Hai mai pensato cosa succederebbe se tu non fosti più in grado di accedere al database delle tue password? Cosa succederebbe se hai un incidente? È buona norma passare la password principale a qualche persona di fiducia per casi di emergenza. Altrimenti nessuno potrà accedere alle tue password.</string>
+  <string name="no_secure_display">Il display attualmente valido non è segnato come sicuro. Questo significa che altri possono effettuare degli screenshot. Keepass2Android è configurato per mostrare le informazioni sensibili solamente in caso di utilizzo di un display sicuro. Si prega di cambiare in un display sicuro (ad esempio collegando un monitor HDMI) oppure modificare le impostazioni dell\'applicazione.</string>
 </resources>
