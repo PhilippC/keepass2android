@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">複製使用者名稱或密碼後清除剪貼簿的時間</string>
   <string name="copy_username">複製用戶名到剪貼簿</string>
   <string name="copy_password">複製密碼到剪貼簿</string>
+  <string name="copy_totp">複製 TOTP 到剪貼簿</string>
   <string name="available_through_keyboard">可通過 KP2A 鍵盤取得項目</string>
   <string name="entry_is_available">可用</string>
   <string name="not_possible_im_picker">無法打開選擇輸入法對話方塊。請手動啟動鍵盤。</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">變更主金鑰</string>
   <string name="menu_copy_pass">複製密碼</string>
   <string name="menu_copy_user">複製使用者</string>
+  <string name="menu_copy_totp">複製 TOTP</string>
   <string name="menu_create">新增</string>
   <string name="menu_app_settings">設定</string>
   <string name="menu_db_settings">資料庫設定</string>
