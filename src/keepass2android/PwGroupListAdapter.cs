@@ -120,7 +120,7 @@ namespace keepass2android
 			String nameX = x.Strings.ReadSafe(PwDefs.TitleField);
 											String nameY = y.Strings.ReadSafe(PwDefs.TitleField);
 			if (nameX.ToLower() != nameY.ToLower())
-				return String.Compare(nameX, nameY, StringComparison.OrdinalIgnoreCase);
+				return String.Compare(nameX, nameY, StringComparison.CurrentCultureIgnoreCase);
 			else
 			{
 				if (PwDefs.IsTanEntry(x) && PwDefs.IsTanEntry(y))
@@ -138,7 +138,7 @@ namespace keepass2android
 						{
 							//ignore
 						}
-						return String.Compare(userX, userY, StringComparison.OrdinalIgnoreCase);
+						return String.Compare(userX, userY, StringComparison.CurrentCultureIgnoreCase);
 					}
 				}
 
@@ -150,7 +150,7 @@ namespace keepass2android
 
 		public int CompareGroups(PwGroup a, PwGroup b)
 		{
-			return String.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase);
+			return String.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase);
 		}
 	}
 
