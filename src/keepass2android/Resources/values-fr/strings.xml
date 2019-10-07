@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Délai avant d\'effacer le presse-papiers lorsque des identifiants ont été copiés</string>
   <string name="copy_username">Cliquez pour copier le nom d\'utilisateur</string>
   <string name="copy_password">Cliquez pour copier le mot de passe</string>
+  <string name="copy_totp">Sélectionner pour copier le code TOTP vers le presse-papiers</string>
   <string name="available_through_keyboard">L\'entrée est disponible via le clavier KP2A</string>
   <string name="entry_is_available">est disponible</string>
   <string name="not_possible_im_picker">L\'ouverture de la fenêtre de sélection de la méthode de saisie a échoué. Merci de choisir votre clavier manuellement.</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">Modifier la clé maître</string>
   <string name="menu_copy_pass">Copier Mot de passe</string>
   <string name="menu_copy_user">Copier Utilisateur</string>
+  <string name="menu_copy_totp">Copier le TOTP</string>
   <string name="menu_create">Créer</string>
   <string name="menu_app_settings">Paramètres</string>
   <string name="menu_db_settings">Préférences de base de données</string>
@@ -900,4 +902,5 @@ Première version publique</string>
   <string name="backup_infotext_note">Pour créer une sauvegarde maintenant, allez dans %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Êtes-vous prêt pour les cas d’urgence ?</string>
   <string name="emergency_infotext_main">Avez-vous déjà envisagé ce qui se passerait si vous ne pouviez plus accéder à votre base de données de mots de passe ? Et si vous avez un accident ? Il est recommandé de transmettre votre clé principale à une personne de confiance pour les cas d\'urgence. Sinon, personne n\'aura accès à vos mots de passe.</string>
+  <string name="no_secure_display">L\'écran actuellement valide n\'est pas marqué comme sécurisé. Cela signifie que des captures d\'écran peuvent être prises par d\'autres applications. Keepass2Android est configuré pour afficher des informations sensibles sur les écrans sécurisés uniquement. Veuillez changer pour un écran sécurisé (par exemple en détachant un moniteur HDMI) ou modifier les paramètres de l\'application.</string>
 </resources>
