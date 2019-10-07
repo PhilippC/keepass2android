@@ -175,7 +175,7 @@
   <string name="menu_change_key">Skift Hovedadgangskode</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
   <string name="menu_copy_user">Kopiér Bruger</string>
-  <string name="menu_copy_totp">Kopier TOTP</string>
+  <string name="menu_copy_totp">Kopiér TOTP</string>
   <string name="menu_create">Opret</string>
   <string name="menu_app_settings">Indstillinger</string>
   <string name="menu_db_settings">Databaseindstillinger</string>
@@ -858,5 +858,5 @@
   <string name="backup_infotext_note">For at oprette en sikkerhedskopi nu, så gå til %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Forberedt på nødsituationer?</string>
   <string name="emergency_infotext_main">Har du nogensinde overvejet, hvad der sker, hvis du ikke længere kan tilgå din adgangskodedatabase? Hvis du kommer ud for en ulykke? Det er god praksis at videregive din hovednøgle til en betroet person for nødstilfælde. Ingen vil ellers kunne tilgå dine adgangskoder.</string>
-  <string name="no_secure_display">Det aktuelt gyldige display er ikke markeret som sikkert. Dette betyder, at andre apps kan tage skærmbilleder. Keepass2Android er konfigureret til kun at vise følsomme oplysninger på sikre skærme. Skift til et sikkert display (f.eks. ved at fjerne en HDMI-skærm) eller ændre appindstillingerne.</string>
+  <string name="no_secure_display">Den aktuelt anvendte skærm er ikke markeret som sikker. Dette betyder, at andre apps kan tage skærmfotos. Keepass2Android er opsat til kun at vise følsomme oplysninger på sikre skærme. Skift til en sikker skærm (f.eks. ved at frakoble en HDMI-skærm) eller ændre app-indstillingerne.</string>
 </resources>
