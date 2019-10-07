@@ -646,16 +646,12 @@ namespace keepass2android
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
 			RegisterReceiver(_intentReceiver, filter);
-			
-			
-			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
-			}
 
-			Intent i = Intent;
+
+            //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
+		    Util.MakeSecureDisplay(this);
+
+            Intent i = Intent;
 
 
 			String action = i.Action;

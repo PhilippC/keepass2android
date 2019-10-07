@@ -54,13 +54,9 @@ namespace keepass2android
 		{
 			_design.ApplyTheme();
 			base.OnCreate(savedInstanceState);
-			
 
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);	
-			}
+
+		    Util.MakeSecureDisplay(this);
 			
 
 			_ioc = App.Kp2a.CurrentDb?.Ioc;

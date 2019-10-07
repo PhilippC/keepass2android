@@ -19,6 +19,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -31,6 +32,7 @@ using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Hardware.Display;
 using Android.Util;
 using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
@@ -151,6 +153,17 @@ namespace keepass2android
 
 
         }
+
+	    private static readonly Regex ARC_DEVICE_PATTERN = new Regex(".+_cheets|cheets_.+");
+
+	    public static bool IsChromeOS(Context context)
+	    {
+	        return
+	            context.PackageManager.HasSystemFeature(
+	                "org.chromium.arc.device_management") // https://stackoverflow.com/a/39843396/292233
+	            || (Build.Device != null && ARC_DEVICE_PATTERN.IsMatch(Build.Device))
+                ;
+	    }
 
         public static void GotoUrl(Context context, String url) {
 			if ( !string.IsNullOrEmpty(url) ) {
@@ -583,6 +596,43 @@ namespace keepass2android
 	        string protocolId = protocolSeparatorPos < 0 ?
 	            "file" : displayPath.Substring(0, protocolSeparatorPos);
 	        return protocolId;
+	    }
+
+	    public static void MakeSecureDisplay(Activity context)
+	    {
+	        if (SecureDisplayConfigured(context))
+	        {
+	            var hasUnsecureDisplay = HasUnsecureDisplay(context);
+	            if (hasUnsecureDisplay)
+	            {
+	                var intent = new Intent(context, typeof(NoSecureDisplayActivity));
+	                intent.AddFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
+	                context.StartActivityForResult(intent,9999);
+	            }
+	            context.Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
+	        }
+        }
+
+	    public static bool SecureDisplayConfigured(Activity context)
+	    {
+	        return PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean(
+	            context.GetString(Resource.String.ViewDatabaseSecure_key), true);
+	    }
+
+	    public static bool HasUnsecureDisplay(Activity context)
+	    {
+	        bool hasUnsecureDisplay = false;
+	        if ((int) Build.VERSION.SdkInt >= 17)
+	        {
+	            foreach (var display in ((DisplayManager) context.GetSystemService(Context.DisplayService)).GetDisplays())
+	            {
+	                if ((display.Flags & DisplayFlags.Secure) == 0)
+	                {
+	                    hasUnsecureDisplay = true;
+	                }
+	            }
+	        }
+	        return hasUnsecureDisplay;
 	    }
 	}
 }
