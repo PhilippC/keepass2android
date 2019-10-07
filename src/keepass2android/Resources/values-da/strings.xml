@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Tid inden rydning af Udklipsholder efter kopiering af brugernavn/adgangskode</string>
   <string name="copy_username">Vælg for at kopiere brugernavn til udklipsholderen</string>
   <string name="copy_password">Vælg for at kopiere adgangskode til udklipsholderen</string>
+  <string name="copy_totp">Vælg for at kopiere TOTP til udklipsholder</string>
   <string name="available_through_keyboard">Post er tilgængelig via KP2A-tastaturet</string>
   <string name="entry_is_available">er tilgængelig</string>
   <string name="not_possible_im_picker">Kunne ikke åbne dialogboksen til valg af inputmetode. Aktivér tastaturet manuelt.</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">Skift Hovedadgangskode</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
   <string name="menu_copy_user">Kopiér Bruger</string>
+  <string name="menu_copy_totp">Kopier TOTP</string>
   <string name="menu_create">Opret</string>
   <string name="menu_app_settings">Indstillinger</string>
   <string name="menu_db_settings">Databaseindstillinger</string>
