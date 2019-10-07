@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Čas pred čiščenjem odložišča po kopiranju uporabniškega imena ali gesla</string>
   <string name="copy_username">Izberite, da kopirate uporabniško ime na odložišče</string>
   <string name="copy_password">Izberite, da kopirate geslo na odložišče</string>
+  <string name="copy_totp">Izberite, da kopirate enkratno geslo na odložišče</string>
   <string name="available_through_keyboard">Vnos je na voljo preko tipkovnice K2PA</string>
   <string name="entry_is_available">je na voljo</string>
   <string name="not_possible_im_picker">Pogovornega okna za izbiranje metode vnosa ni bilo mogoče odpreti. Ročno omogočite tipkovnico.</string>
@@ -177,6 +178,7 @@
   <string name="menu_change_key">Spremeni glavni ključ</string>
   <string name="menu_copy_pass">Kopiraj geslo</string>
   <string name="menu_copy_user">Kopiraj uporabnika</string>
+  <string name="menu_copy_totp">Kopiraj enkratno geslo</string>
   <string name="menu_create">Ustavri</string>
   <string name="menu_app_settings">Nastavitve</string>
   <string name="menu_db_settings">Nastavitve podatkovne zbirke</string>
@@ -970,4 +972,5 @@ Začetna javna izdaja
   <string name="backup_infotext_note">Če želite ustvariti varnostno kopijo, pojdite na %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Ali ste pripravljene na nujne primere?</string>
   <string name="emergency_infotext_main">Ste kdaj razmislili, kaj se zgodi, če ne morete več dostopati do baze podatkov z geslih? Kaj če imaš nesrečo? To je dobra praksa, da predate vaše glavno geslo zaupanja vredni osebi za nujne primere. V nasprotnem primeru nihče ne bo imel dostopa do vaših gesel.</string>
+  <string name="no_secure_display">Trenutno veljavni pogled ni označen kot varen. To pomeni, da bi lahko posnetke zaslona posnele tudi druge aplikacije. Keepass2Android je konfiguriran za prikaz občutljivih informacij samo na varnih zaslonih. Preklopite na varen zaslon (npr. Izvlecite monitor HDMI) ali spremenite nastavitve aplikacije.</string>
 </resources>
