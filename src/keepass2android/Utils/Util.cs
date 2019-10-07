@@ -129,13 +129,30 @@ namespace keepass2android
 		
 		public static void CopyToClipboard(Context context, String text) {
             Android.Content.ClipboardManager clipboardManager = (ClipboardManager)context.GetSystemService(Context.ClipboardService);
-		    if (text == "")
-		        text = "***";
             ClipData clipData = Android.Content.ClipData.NewPlainText("KP2A", text);
             clipboardManager.PrimaryClip = clipData;
-		}
-		
-		public static void GotoUrl(Context context, String url) {
+		    if (text == "")
+		    {
+                //on some devices, adding empty text does not seem to work. Try again with some garbage.
+		        clipData = Android.Content.ClipData.NewPlainText("KP2A", "***");
+		        clipboardManager.PrimaryClip = clipData;
+                //seems to work better on some devices:
+		        try
+		        {
+		            clipboardManager.Text = text;
+                }
+		        catch (Exception exception)
+		        {
+		            Kp2aLog.LogUnexpectedError(exception);
+
+		        }
+		        
+            }
+
+
+        }
+
+        public static void GotoUrl(Context context, String url) {
 			if ( !string.IsNullOrEmpty(url) ) {
 
 				if (url.StartsWith("androidapp://"))
