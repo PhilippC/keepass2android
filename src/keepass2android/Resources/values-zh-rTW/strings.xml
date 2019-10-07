@@ -62,6 +62,8 @@
   <string name="brackets">括弧</string>
   <string name="cancel">取消</string>
   <string name="Ok">確定</string>
+  <string name="disable_sensor">停用感應器</string>
+  <string name="enable_sensor">啟用感應器</string>
   <string name="ClearClipboard">已清除剪貼簿。</string>
   <string name="clipboard_timeout">剪貼簿超時</string>
   <string name="clipboard_timeout_summary">複製使用者名稱或密碼後清除剪貼簿的時間</string>
@@ -473,6 +475,7 @@
   <string name="filestoragehelp_pcloud">這個儲存類型只會請求存取「Applications/Keepass2Android」資料夾。要使用現有資料庫，請確保其檔案置於該資料夾。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_myfiles">我的檔案</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
   <string name="filestoragename_content">系統檔選擇器</string>
   <string name="filestorage_setup_title">檔案存取權限初始化</string>
