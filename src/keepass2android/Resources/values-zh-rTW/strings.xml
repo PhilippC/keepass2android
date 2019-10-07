@@ -475,6 +475,7 @@
   <string name="filestoragehelp_pcloud">這個儲存類型只會請求存取「Applications/Keepass2Android」資料夾。要使用現有資料庫，請確保其檔案置於該資料夾。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">所有檔案與已共用檔案</string>
   <string name="filestoragename_onedrive2_myfiles">我的檔案</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android 應用程式資料夾</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
@@ -632,6 +633,15 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="ShowKeyboardDuringFingerprintAuth">識別指紋時顯示虛擬鍵盤以輸入密碼。</string>
+  <string name="ChangeLog_1_07b">    版本 1.07b\n
+    * 以原生方式實現 Argon2 演算改進性能（感謝 Chih-Hsuan Yen！）\n
+    * 可停用指紋，點擊指紋圖示即可，以避免屏下指紋識別產生的問題（感謝 marcoDallas！）\n
+    * 在開關密碼顯示時，還原滑鼠指標位置（感謝 DDoSolitary！）\n
+    * 改進 pCloud 雲端實現（再次感謝 gilbsgilbs！）\n
+    * 新增對數個瀏覽器的自動填入支持\n
+    * 全新的 OneDrive 雲端實現：涵蓋商務用 OneDrive，已共用檔案，可選訪問範圍，多個賬戶，還修正了離線訪問的問題\n
+    * 錯誤修正
+  </string>
   <string name="ChangeLog_1_07">版本 1.07\n
 * 修正三星 Android 9 上的崩潰\n
 * 允許開啟一個以上的資料庫，與 KeeAutoExec 相容\n
