@@ -13,7 +13,7 @@
   <string name="edit_entry">Redigér post</string>
   <string name="add_url_entry">Opret indtastning for URL</string>
   <string name="add_group">Tilføj gruppe</string>
-  <string name="add_group_title">Tilføj gruppe</string>
+  <string name="add_group_title">Tilføj Gruppe</string>
   <string name="edit_group_title">Redigér gruppe</string>
   <string name="algorithm">Algoritme</string>
   <string name="algorithm_colon">Algoritme</string>
@@ -66,7 +66,7 @@
   <string name="enable_sensor">Aktivér til</string>
   <string name="ClearClipboard">Udklipsholder ryddet.</string>
   <string name="clipboard_timeout">Udklipsholder-timeout</string>
-  <string name="clipboard_timeout_summary">Tid før udklipsholderen bliver ryddet efter kopiering af brugernavn eller adgangskode</string>
+  <string name="clipboard_timeout_summary">Tid inden rydning af Udklipsholder efter kopiering af brugernavn/adgangskode</string>
   <string name="copy_username">Vælg for at kopiere brugernavn til udklipsholderen</string>
   <string name="copy_password">Vælg for at kopiere adgangskode til udklipsholderen</string>
   <string name="available_through_keyboard">Post er tilgængelig via KP2A-tastaturet</string>
@@ -74,7 +74,7 @@
   <string name="not_possible_im_picker">Kunne ikke åbne dialogboksen til valg af inputmetode. Aktivér tastaturet manuelt.</string>
   <string name="please_activate_keyboard">Aktivér Keepass2Android-tastaturet i systemindstillingerne.</string>
   <string name="creating_db_key">Opretter databasenøgle…</string>
-  <string name="current_group">Aktuel gruppe</string>
+  <string name="current_group">Aktuel Gruppe</string>
   <string name="current_group_root">Aktuel gruppe: Root</string>
   <string name="database">Database</string>
   <string name="digits">Cifre</string>
@@ -756,6 +756,13 @@
   <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
 		* Opdaterede oversættelser\n
 		* Fejlrettelser: Adgangskodeskrifttype manglede i 0.9.7, sortering efter navn sorterede ikke grupper\n</string>
+  <string name="ChangeLog_0_9_7">Version 0.9.7\n
+		* skriveunderstøttelse til Keepass 1-databaser (kdb) (beta!)\n
+		* bedre skift tilbage til foregående tastatur (fungerer også på ikke-root enheder)\n
+* understøttelse af KeeChallenge med med variabel udfordringslængde\n
+* forhindrer optagelse af skærmfotos på Hurtig Oplåsnings- og Adgangskodeskærme\n
+* omvendt sorteringsrækkefølge for Sortér efter ændringsdato (nu faldende)\n
+* fejlrettelser: Notatvisninger opdateres nu korrekt efter ændringer, Adgangskodevisninger skjuler nu adgangskode korrekt på (forhåbentlig) alle enheder, rettet problem, der gjorde det muligt at tilføje en post to gange, rettet problem med visning af Dublet UUID-advarsel, selv efter at databasen var rettet\n</string>
   <string name="ChangeLog_keptDonate">Udvidet mulighed for donation af en øl eller noget andet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
