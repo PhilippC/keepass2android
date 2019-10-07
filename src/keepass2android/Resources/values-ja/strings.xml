@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">コピーされたユーザー名やパスワードがクリップボードから消去されるまでの時間。</string>
   <string name="copy_username">ここをタップするとユーザー名をクリップボードにコピーします</string>
   <string name="copy_password">ここをタップするとパスワードをクリップボードにコピーします</string>
+  <string name="copy_totp">ここをタップするとTOTPをクリップボードにコピーします</string>
   <string name="available_through_keyboard">KP2A キーボードで入力できます</string>
   <string name="entry_is_available">使用可能</string>
   <string name="not_possible_im_picker">「入力方法の選択」ダイアログを開けません。手動でキーボードを有効にしてください。</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">マスターキーを変更</string>
   <string name="menu_copy_pass">パスワードをコピー</string>
   <string name="menu_copy_user">ユーザー名をコピー</string>
+  <string name="menu_copy_totp">TOTP をコピー</string>
   <string name="menu_create">作成</string>
   <string name="menu_app_settings">設定</string>
   <string name="menu_db_settings">データベース設定</string>
@@ -963,4 +965,5 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="backup_infotext_note">バックアップを作成するには、%1$s&gt;%2$s&gt;%3$s へアクセスしてください。</string>
   <string name="emergency_infotext_head">緊急時の準備はできていますか?</string>
   <string name="emergency_infotext_main">パスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか? アクシデントが発生したら? 緊急事態に備えて、マスター鍵を信頼できる人に渡すことをお勧めします。 そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります。</string>
+  <string name="no_secure_display">現在有効なディスプレイはセキュアとしてマークされていません。 これは、他のアプリによってスクリーンショットが撮られる可能性があることを意味します。 Keepass2Androidは、安全なディスプレイのみに機密情報を表示するように構成されています。 安全なディスプレイに変更する (HDMIモニターを取り外すなど) か、アプリの設定を変更してください。</string>
 </resources>
