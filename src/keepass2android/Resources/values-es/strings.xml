@@ -635,9 +635,9 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
     * Permite inhabilitar huella dactilar pulsando en el icono de huella dactilar (evita el problema con los lectores de huella dactilar bajo la pantalla, gracias a marcoDallas!)\n
     * Recuperar la posición del cursor cuando se alterna la visibilidad de las contraseña (gracias a DDoSolitary!)\n
     * Mejoras en la implementación de pCloud (gracias a gilbsgilbsotra vez!)\n
-    * Add AutoFill support for several more browsers \n
-    * New implementation for OneDrive: Includes support for OneDrive for Business, shared files, selectable access scopes, multiple accounts and fixes issues with offline access\n
-    * Bug fixes
+    * Añadir soporte para AutoFill para varios navegadores \n
+    * Nueva implementación para OneDrive: Incluye soporte de OneDrive for Business, archivos compartidos, alcance de acceso seleccionable, multiples cuentas y arreglos con acceso offline\n
+    * Corrección de errores
   </string>
   <string name="ChangeLog_1_07">    Versión 1.07\n
     * Arreglos para crashes en dispositivos Android 9 de Samsung\n
