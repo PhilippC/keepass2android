@@ -962,4 +962,5 @@ Erstes öffentliches Release</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
   <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
+  <string name="no_secure_display">Der aktuell gültige Bildschirm wird als unsicher gekennzeichnet. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden können. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte wechseln Sie zu einem sicheren Bildschirm (z.B. durch Abtrennen eines HDMI-Monitors) oder ändern Sie die App-Einstellungen.</string>
 </resources>
