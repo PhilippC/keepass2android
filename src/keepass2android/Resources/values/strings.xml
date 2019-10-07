@@ -77,6 +77,7 @@
   <string name="clipboard_timeout_summary">Time before clearing clipboard after copying username or password</string>
   <string name="copy_username">Select to copy username to clipboard</string>
   <string name="copy_password">Select to copy password to clipboard</string>
+  <string name="copy_totp">Select to copy TOTP to clipboard</string>
   <string name="available_through_keyboard">Entry is available through KP2A Keyboard</string>
 	<string name="entry_is_available">is available</string>
   <string name="not_possible_im_picker">Could not open dialog to select input method. Please activate keyboard manually.</string>
@@ -186,6 +187,7 @@
   <string name="menu_change_key">Change Master Key</string>
   <string name="menu_copy_pass">Copy Password</string>
   <string name="menu_copy_user">Copy User</string>
+  <string name="menu_copy_totp">Copy TOTP</string>
   <string name="menu_create">Create</string>
   <string name="menu_app_settings">Settings</string>
   <string name="menu_db_settings">Database settings</string>

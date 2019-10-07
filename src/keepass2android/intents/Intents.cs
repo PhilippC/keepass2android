@@ -39,7 +39,8 @@ namespace keepass2android
 
 		public const String CopyUsername = "keepass2android.copy_username";
 		public const String CopyPassword = "keepass2android.copy_password";
-		public const String CheckKeyboard = "keepass2android.check_keyboard";
+	    public const String CopyTotp = "keepass2android.copy_totp";
+        public const String CheckKeyboard = "keepass2android.check_keyboard";
 
 		public const String StartWithOtp = "keepass2android.startWithOtp";
 		public const String OtpExtraKey = "keepass2android.Otp";

@@ -36,6 +36,7 @@ using KeePassLib.Utility;
 using Android.Views.InputMethods;
 using KeePass.Util.Spr;
 using KeePassLib.Serialization;
+using PluginTOTP;
 
 namespace keepass2android
 {
@@ -61,6 +62,7 @@ namespace keepass2android
 
             private bool _hasPassword;
             private bool _hasUsername;
+            private bool _hasTotp;
             private bool _hasKeyboard;
 
             public void AddPasswordAccess()
@@ -71,6 +73,10 @@ namespace keepass2android
             public void AddUsernameAccess()
             {
                 _hasUsername = true;
+            }
+            public void AddTotpAccess()
+            {
+                _hasTotp = true;
             }
 
             public void AddKeyboardAccess()
@@ -96,7 +102,7 @@ namespace keepass2android
 
             private int CreateCombinedNotification(string entryName, Bitmap entryIcon)
             {
-                if ((!_hasUsername) && (!_hasPassword) && (!_hasKeyboard))
+                if ((!_hasUsername) && (!_hasPassword) && (!_hasKeyboard) && (!_hasTotp))
                     return 0;
 
                 NotificationCompat.Builder notificationBuilder;
@@ -121,6 +127,10 @@ namespace keepass2android
                     notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password,
                         _ctx.GetString(Resource.String.menu_copy_pass),
                         GetPendingIntent(Intents.CopyPassword, Resource.String.menu_copy_pass)));
+                if (_hasTotp)
+                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password,
+                        _ctx.GetString(Resource.String.menu_copy_totp),
+                        GetPendingIntent(Intents.CopyTotp, Resource.String.menu_copy_totp)));
 
                 notificationBuilder.SetPriority((int)Android.App.NotificationPriority.Max);
                 var notification = notificationBuilder.Build();
@@ -149,6 +159,15 @@ namespace keepass2android
                                                             Resource.Drawable.ic_action_username, entryName, entryIcon);
                     username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
                     _notificationManager.Notify(NotifyUsername, username);
+                    numNotifications++;
+                }
+                if (_hasTotp)
+                {
+                    // only show notification if totp is available
+                    Notification totp = GetNotification(Intents.CopyTotp, Resource.String.copy_totp,
+                        Resource.Drawable.ic_action_password, entryName, entryIcon);
+                    totp.DeleteIntent = CreateDeleteIntent(NotifyTotp);
+                    _notificationManager.Notify(NotifyTotp, totp);
                     numNotifications++;
                 }
                 if (_hasKeyboard)
@@ -222,6 +241,8 @@ namespace keepass2android
                 pending = PendingIntent.GetBroadcast(_ctx, descResId, intent, PendingIntentFlags.CancelCurrent);
                 return pending;
             }
+
+            
         }
 
         public const int NotifyUsername = 1;
@@ -229,6 +250,7 @@ namespace keepass2android
         public const int NotifyKeyboard = 3;
         public const int ClearClipboard = 4;
         public const int NotifyCombined = 5;
+        public const int NotifyTotp = 6;
 
         static public void CopyValueToClipboardWithTimeout(Context ctx, string text)
         {
@@ -441,6 +463,10 @@ namespace keepass2android
                 if (entry.OutputStrings.ReadSafe(PwDefs.UserNameField).Length > 0)
                 {
                     notBuilder.AddUsernameAccess();
+                }
+                if (entry.OutputStrings.ReadSafe(UpdateTotpTimerTask.TotpKey).Length > 0)
+                {
+                    notBuilder.AddTotpAccess();
                 }
             }
 
@@ -881,6 +907,15 @@ namespace keepass2android
                 if (password.Length > 0)
                 {
                     CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password);
+                }
+                context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
+            }
+            else if (action.Equals(Intents.CopyTotp))
+            {
+                String totp = App.Kp2a.LastOpenedEntry.OutputStrings.ReadSafe(UpdateTotpTimerTask.TotpKey);
+                if (totp.Length > 0)
+                {
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, totp);
                 }
                 context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
             }
