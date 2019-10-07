@@ -635,6 +635,14 @@
   <string name="EntryChannel_name">Notificacions de les entrades</string>
   <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostra el teclat per introduir la contrasenya quan l\'escàner d\'empremta digital és actiu.</string>
+  <string name="ChangeLog_1_07b">Versió 1.07b \n
+     * Millora el rendiment Argon2 mitjançant la implementació nativa (Gràcies al Chih-Hsuan Yen!) \n
+     * Permet desactivar l’empremta digital fent clic a la icona d’empremtes dactilars (evita la incidència en lectors d’empremtes sota la pantalla, gràcies a marcoDallas!) \n
+     * Restaura la posició del cursor quan commuteu la visibilitat de la contrasenya (gràcies a DDoSolitary!) \n
+     * Millores en la implementació de pCloud (gràcies a gilbsgilbs de nou!) \n
+     * Afegit suport per omplir automàticament per diversos navegadors \n
+     * Nova implementació per a OneDrive: inclou suport per a OneDrive per a empreses, fitxers compartits, àmbits d\'accés seleccionables, diversos comptes i soluciona problemes en l\'accés fora de línia \n
+     * Reparació d\'errors  </string>
   <string name="ChangeLog_1_07">    Versió 1.07-pre2\n
     * Arreglaments de fallades a Android 9 de Samsung\n
     * Permet obrir més d\'una base de dades, compatible amb KeeAutoExec\n
