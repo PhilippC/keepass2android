@@ -62,6 +62,8 @@
   <string name="brackets">Parèntesis</string>
   <string name="cancel">Cancel·la</string>
   <string name="Ok">D\'acord</string>
+  <string name="disable_sensor">Deshabilitar sensor</string>
+  <string name="enable_sensor">Habilitar sensor</string>
   <string name="ClearClipboard">Porta-retalls netejat.</string>
   <string name="clipboard_timeout">Temps actiu del porta-retalls</string>
   <string name="clipboard_timeout_summary">Temps disponible abans de netejar el porta-retalls després de copiar un usuari o contrasenya</string>
@@ -476,6 +478,9 @@
   <string name="filestoragehelp_pcloud">Aquest tipus d’emmagatzematge només sol·licitarà accés a la carpeta \"Applications/Keepass2Android\". Si voleu utilitzar una base de dades existent del vostre compte de PCloud, assegureu-vos que el fitxer es col·loca en aquesta carpeta.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Tots els fitxers i fitxers compartits</string>
+  <string name="filestoragename_onedrive2_myfiles">Els meus fitxers</string>
+  <string name="filestoragename_onedrive2_appfolder">Carpeta de l\'aplicació Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
   <string name="filestoragename_content">Selector d\'arxiu de sistema</string>
   <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>
@@ -939,4 +944,5 @@ Revisió inicial per al públic
   <string name="backup_infotext_note">Per crear una còpia de seguretat ara, ves a %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Esteu preparat per a casos d\'emergència?</string>
   <string name="emergency_infotext_main">Alguna vegada vau considerar què passaria si ja no podeu accedir a la vostra base de dades de contrasenyes? Què passaria si tens un accident? És convenient donar la vostra clau mestra a una persona de confiança en casos d\'emergència. Ningú tindrà accés a les contrasenyes d\'una altra manera.</string>
+  <string name="no_secure_display">La visualització actualment vàlida no està marcada com segura. Això significa que altres aplicacions poden prendre captures de pantalla. Keepass2Android està configurat per mostrar informació sensible només a pantalles segures. Canvieu a una pantalla segura (per exemple, desconnectant un monitor HDMI) o canvieu la configuració de l\'aplicació.</string>
 </resources>
