@@ -2147,7 +2147,7 @@ namespace keepass2android
 					KeyProviderQueryContext ctx = new KeyProviderQueryContext(_act._ioConnection, false, false);
 					
 					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, _act._otpAuxIoc))
-						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
+						ShowError(_act.GetString(Resource.String.ErrorUpdatingOtpAuxFile));
 
 					
 				}
@@ -2155,8 +2155,7 @@ namespace keepass2android
 				{
 					Kp2aLog.LogUnexpectedError(e);
 
-					Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message,
-								   ToastLength.Long).Show();
+					ShowError( _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message);
 				}
 
 
@@ -2169,7 +2168,11 @@ namespace keepass2android
 
                 
             }
-            
+
+		    private void ShowError(string message)
+		    {
+		        App.Kp2a.ShowToast(message);
+		    }
 		}
 		private class PasswordActivityBroadcastReceiver : BroadcastReceiver
 		{
