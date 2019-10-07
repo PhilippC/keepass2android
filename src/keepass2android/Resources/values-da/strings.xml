@@ -765,6 +765,23 @@
 * forhindrer optagelse af skærmfotos på Hurtig Oplåsnings- og Adgangskodeskærme\n
 * omvendt sorteringsrækkefølge for Sortér efter ændringsdato (nu faldende)\n
 * fejlrettelser: Notatvisninger opdateres nu korrekt efter ændringer, Adgangskodevisninger skjuler nu adgangskode korrekt på (forhåbentlig) alle enheder, rettet problem, der gjorde det muligt at tilføje en post to gange, rettet problem med visning af Dublet UUID-advarsel, selv efter at databasen var rettet\n</string>
+  <string name="ChangeLog_0_9_4"><b>Version 0.9.4</b>\n
+* Tilføjet plugin-support: Se indstillinger for, hvordan du henter plugins!\n
+* Offentliggjort QR-plugin (scan adgangskoder, vis adgangskoder som QR-kode, overfør poster til andre KP2A-enheder)\n
+* Publiceret InputStick-plugin (overfør legitimationsoplysninger til din pc via bluetooth - kræver InputStick-USB-stick)\n
+* Apps fra tredjepart kan nu blot implementere forespørgsel til KP2A for legitimationsoplysninger. Er du udvikler? Føj dette til din app, hvis det er passende!\n
+* Tilføjet TOTP-understøttelse (kompatibel med KeeOTP og TrayTotp)\n
+* App bør ikke længere blive slået ihjel af Android, når databasen er åben\n
+* Databasen er ikke længere låst, når du forlader appen med tilbage-knappen (se indstillinger)\n
+* Vis gruppenavne i søgeresultatvisningen (*)\n
+* Tilføjet kontekstmenu i søgeresultatvisningen, inklusive \"Navigér til overordnet\"-mulighed (*)\n
+* Tilføjet mulighed for at vise gruppenavn i postvisning (*)\n
+* (*) Tak til Matthieu for implementeringen af ​​disse funktioner!\n
+* Understøtter KeeChallenge (med Yubikey NEO). Tak til Ben Rush for implementering af forbindelsesleddet!\n
+* Forbedret brugergrænseflade\n
+* Rettet en fejl i Google Drev-grænseflade\n
+* Tilføjet mulighed for at deaktivere \"Donér\"-funktionen\n
+* QuickUnlock-ikonet er nu skjult på enheder med Android 4.2+ som standard\n</string>
   <string name="ChangeLog_keptDonate">Udvidet mulighed for donation af en øl eller noget andet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
@@ -841,4 +858,5 @@
   <string name="backup_infotext_note">For at oprette en sikkerhedskopi nu, så gå til %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Forberedt på nødsituationer?</string>
   <string name="emergency_infotext_main">Har du nogensinde overvejet, hvad der sker, hvis du ikke længere kan tilgå din adgangskodedatabase? Hvis du kommer ud for en ulykke? Det er god praksis at videregive din hovednøgle til en betroet person for nødstilfælde. Ingen vil ellers kunne tilgå dine adgangskoder.</string>
+  <string name="no_secure_display">Det aktuelt gyldige display er ikke markeret som sikkert. Dette betyder, at andre apps kan tage skærmbilleder. Keepass2Android er konfigureret til kun at vise følsomme oplysninger på sikre skærme. Skift til et sikkert display (f.eks. ved at fjerne en HDMI-skærm) eller ændre appindstillingerne.</string>
 </resources>
