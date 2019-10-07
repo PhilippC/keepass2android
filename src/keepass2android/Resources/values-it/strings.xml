@@ -477,9 +477,9 @@
   <string name="filestoragehelp_pcloud">Questo storage richiederà accesso solamente alla cartella \"Applicazioni/Keepass2Android\". Se vuoi usare un database dal tuo account PCloud, assicurati che sia in questa cartella.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
-  <string name="filestoragename_onedrive2_full">Tutti i file e file condivisi</string>
+  <string name="filestoragename_onedrive2_full">Tutti i file e gli elementi condivisi</string>
   <string name="filestoragename_onedrive2_myfiles">Miei file</string>
-  <string name="filestoragename_onedrive2_appfolder">Cartella app Keepass2Andriod</string>
+  <string name="filestoragename_onedrive2_appfolder">Cartella app Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selettore file di sistema</string>
   <string name="filestorage_setup_title">Inizializzazione dell\'accesso al file</string>
@@ -637,8 +637,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     * Consentita la disabilitazione dell\'impronta digitale cliccando sull\'icona dell\'impronta (evita problemi con i lettori d\'impronte sottoschermo, grazie a marcoDallas!)\n
     * Ripristino della posizione del cursore quando si attiva/disattiva la visibilità della password (grazie a DDoSolitary!)\n
     * Miglioramenti nell\'implementazione di pCloud (grazie ancora a gilbsgilbs!)\n
-    * Aggiunto il supporto ad AutoFill per diversi altri browser \n
-    * Nuova implementazione per OneDrive: Include il supporto per OneDrive for Business, file condivisi, ambiti d\'accesso selezionabili, account multipli e risolve problemi con l\'accesso offline\n
+    * Aggiunto il supporto della Compilazione automatica per molti altri browser \n
+    * Nuova implementazione per OneDrive: Include il supporto per OneDrive for Business, elementi condivisi, ambiti d\'accesso selezionabili, account multipli e risolve problemi con l\'accesso offline\n
     * Correzione d\'errori
   </string>
   <string name="ChangeLog_1_07">Versione 1.07\n
