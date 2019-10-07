@@ -70,6 +70,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="clipboard_timeout_summary">Zeit bis zum Löschen der Zwischenablage nach dem Kopieren von Benutzername oder Passwort</string>
   <string name="copy_username">Benutzername in die Zwischenablage kopieren</string>
   <string name="copy_password">Kennwort in die Zwischenablage kopieren</string>
+  <string name="copy_totp">TOTP in die Zwischenablage zu kopieren</string>
   <string name="available_through_keyboard">Eintrag ist über die KP2A-Tastatur verfügbar</string>
   <string name="entry_is_available">ist verfügbar</string>
   <string name="not_possible_im_picker">Der Dialog zum Auswählen der Eingabemethode konnte nicht geöffnet werden. Bitte die Tastatur manuell aktivieren.</string>
@@ -176,6 +177,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_change_key">Datenbank-Kennwort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
+  <string name="menu_copy_totp">TOTP kopieren</string>
   <string name="menu_create">Erstellen</string>
   <string name="menu_app_settings">Einstellungen</string>
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
