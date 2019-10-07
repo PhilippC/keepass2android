@@ -630,6 +630,15 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string name="ChangeLog_1_07b">    Versión 1.07b\n
+    * Mejores de rendimiento Argon2 usando implementación nativa (Gracias a Chih-Hsuan Yen!)\n
+    * Permite inhabilitar huella dactilar pulsando en el icono de huella dactilar (evita el problema con los lectores de huella dactilar bajo la pantalla, gracias a marcoDallas!)\n
+    * Recuperar la posición del cursor cuando se alterna la visibilidad de las contraseña (gracias a DDoSolitary!)\n
+    * Mejoras en la implementación de pCloud (gracias a gilbsgilbsotra vez!)\n
+    * Add AutoFill support for several more browsers \n
+    * New implementation for OneDrive: Includes support for OneDrive for Business, shared files, selectable access scopes, multiple accounts and fixes issues with offline access\n
+    * Bug fixes
+  </string>
   <string name="ChangeLog_1_07">    Versión 1.07\n
     * Arreglos para crashes en dispositivos Android 9 de Samsung\n
     * Permite abrir más de una base de datos, compatible con KeeAutoExec\n
