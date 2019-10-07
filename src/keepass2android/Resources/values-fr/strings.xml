@@ -630,6 +630,15 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Amélioration des performances Argon2 en utilisant l\'implémentation native (Merci à to Chih-Hsuan Yen !)\n
+    * Possibilité de désactiver l\'empreinte digitale en cliquant sur l\'icône de l\'empreinte (évite un problème avec les lecteurs d\'empreinte placés sous l\'écran, merci à marcoDallas !)\n
+    * Rétablissement de la position du curseur lors du changement de la visibilité du mot de passe (merci à DDoSolitary !)\n
+    * Améliorations de l\'implémentation de pCloud (merci encore à gilbsgilbs !)\n
+    * Ajout du remplissage automatique pour plusieurs autres navigateurs \n
+    * Nouvelle implémentation pour OneDrive : support de OneDrive for Business, fichiers partagés, périmètres d\'accès sélectionnables, comptes multiples et correction de problèmes avec l\'accès hors-ligne\n
+    * Résolution de bugs
+  </string>
   <string name="ChangeLog_1_07">    Version 1.07\n
     * Corrige les crashs sur les Samsung avec Android 9\n
     * Permet d\'ouvrir plus d\'une base de données, compatible avec KeeAutoExec\n
