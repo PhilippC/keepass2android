@@ -62,8 +62,8 @@
   <string name="brackets">Parenteser</string>
   <string name="cancel">Annullér</string>
   <string name="Ok">OK</string>
-  <string name="disable_sensor">Deaktivér sensor</string>
-  <string name="enable_sensor">Aktivér til</string>
+  <string name="disable_sensor">Deaktivér fingeraftrykslæser</string>
+  <string name="enable_sensor">Aktivér fingeraftrykslæser</string>
   <string name="ClearClipboard">Udklipsholder ryddet.</string>
   <string name="clipboard_timeout">Udklipsholder-timeout</string>
   <string name="clipboard_timeout_summary">Tid inden rydning af Udklipsholder efter kopiering af brugernavn/adgangskode</string>
