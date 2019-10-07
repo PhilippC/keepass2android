@@ -631,6 +631,15 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string name="ChangeLog_1_07b">Versie 1.07b-pre\n
+    * Verbeterde Argon2 prestaties door gebruik van orginele implentatie (Met dank aan Chih-Hsuan Yen!)\n
+    * Sta het uitschakelen van de vingerafdruk toe door het klikken op de vingerafdruk icoon (vermijdt probleem met vingerafdruklezer onder het scherm, met dank aan marcoDallas!)\n
+    * Herstel aanwijzer locatie bij wisselen van de wachtwoordzichtbaarheid (met dank aan DDoSolitary!)\n
+    * Verbeteringen aan pCloud implementatie (met opnieuw dank aan gilbsgilbs!)\n
+    * Toevoegen van AutoFill ondersteuning voor aantal meer browsers\n
+    * Nieuwe implementatie voor OneDrive: Inclusief ondersteuning voor Onedrive voor Bedrijven, gedeelde bestanden, selecteerbare toegang scopes, meerdere accounts en opgeloste problemen met offline toegang\n
+    * Fout verbeteringen
+  </string>
   <string name="ChangeLog_1_07">    Versie 1.07\n
     * Oplossing voor crashes op Samsung\'s Android 9\n
     * Je kunt nu meer dan 1 database openen, compatibel met KeeAutoExec\n
