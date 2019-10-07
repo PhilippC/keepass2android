@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Temps disponible abans de netejar el porta-retalls després de copiar un usuari o contrasenya</string>
   <string name="copy_username">Selecciona per copiar l\'usuari al porta-retalls</string>
   <string name="copy_password">Selecciona per copiar la contrasenya al porta-retalls</string>
+  <string name="copy_totp">Seleccioneu per copiar TOTP al porta-retalls</string>
   <string name="available_through_keyboard">Entrada disponible a través de teclat KP2A</string>
   <string name="entry_is_available">està disponible</string>
   <string name="not_possible_im_picker">No s\'ha pogut obrir el quadre de diàleg per seleccionar el mètode d\'entrada. Si us plau activi teclat manualment.</string>
@@ -177,6 +178,7 @@
   <string name="menu_change_key">Canvia Clau Mestra</string>
   <string name="menu_copy_pass">Copia contrasenya</string>
   <string name="menu_copy_user">Copia usuari</string>
+  <string name="menu_copy_totp">Copiar TOTP</string>
   <string name="menu_create">Crear</string>
   <string name="menu_app_settings">Paràmetres</string>
   <string name="menu_db_settings">Paràmetres de la base de dades</string>
