@@ -329,6 +329,7 @@ namespace keepass2android
                 //database loaded
                 if (App.Kp2a.QuickLocked)
                 {
+                    AppTask.CanActivateSearchViewOnStart = true;
                     var i = new Intent(this, typeof(QuickUnlock));
                     Util.PutIoConnectionToIntent(App.Kp2a.GetDbForQuickUnlock().Ioc, i);
                     Kp2aLog.Log("Starting QuickUnlock");
