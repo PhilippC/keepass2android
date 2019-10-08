@@ -177,6 +177,7 @@
   <string name="menu_change_key">Změnit hlavní klíč</string>
   <string name="menu_copy_pass">Kopírovat heslo</string>
   <string name="menu_copy_user">Kopírovat uživatelské jméno</string>
+  <string name="menu_copy_totp">Zkopírovat TOTP</string>
   <string name="menu_create">Vytvořit</string>
   <string name="menu_app_settings">Nastavení</string>
   <string name="menu_db_settings">Nastavení databáze</string>
