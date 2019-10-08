@@ -103,6 +103,9 @@
     </AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentFTP, Version=27.1.3.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.27.1.3\lib\netstandard1.6\FluentFTP.dll</HintPath>
+    </Reference>
     <Reference Include="Java.Interop" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Graph, Version=1.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -966,10 +969,6 @@
     <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
       <Project>{A8779D4D-7C49-4C2F-82BD-2CDC448391DA}</Project>
       <Name>Kp2aKeyboardBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\netftpandroid\System.Net.FtpClient\System.Net.FtpClient.Android.csproj">
-      <Project>{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}</Project>
-      <Name>System.Net.FtpClient.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
       <Project>{3DA3911E-36DE-465E-8F15-F1991B6437E5}</Project>

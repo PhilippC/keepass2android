@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 #if !NoNet
-using System.Net.FtpClient;
+using FluentFTP;
 #endif
 using System.Text;
 
@@ -12,6 +12,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+
 using Java.IO;
 using keepass2android.Io;
 using Keepass2android.Javafilestorage;

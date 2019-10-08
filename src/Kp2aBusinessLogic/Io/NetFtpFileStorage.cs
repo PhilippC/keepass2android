@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.FtpClient;
 using System.Reflection;
 using System.Threading;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
+using FluentFTP;
 using KeePassLib;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -17,73 +17,6 @@ namespace keepass2android.Io
 {
 	public class NetFtpFileStorage: IFileStorage
 	{
-		class RetryConnectFtpClient : FtpClient
-		{
-			protected override FtpClient CloneConnection()
-			{
-				RetryConnectFtpClient conn = new RetryConnectFtpClient();
-
-				conn.m_isClone = true;
-
-				foreach (PropertyInfo prop in GetType().GetProperties())
-				{
-					object[] attributes = prop.GetCustomAttributes(typeof(FtpControlConnectionClone), true);
-
-					if (attributes != null && attributes.Length > 0)
-					{
-						prop.SetValue(conn, prop.GetValue(this, null), null);
-					}
-				}
-
-				// always accept certficate no matter what because if code execution ever
-				// gets here it means the certificate on the control connection object being
-				// cloned was already accepted.
-				conn.ValidateCertificate += new FtpSslValidation(
-					delegate(FtpClient obj, FtpSslValidationEventArgs e)
-					{
-						e.Accept = true;
-					});
-
-				return conn;
-			}
-
-			private static T DoInRetryLoop<T>(Func<T> func)
-			{
-				double timeout = 30.0;
-				double timePerRequest = 1.0;
-				var startTime = DateTime.Now;
-				while (true)
-				{
-					var attemptStartTime = DateTime.Now;
-					try
-					{
-						return func();
-					}
-					catch (System.Net.Sockets.SocketException e)
-					{
-						if ((e.ErrorCode != 10061) || (DateTime.Now > startTime.AddSeconds(timeout)))
-						{
-							throw;
-						}
-						double secondsSinceAttemptStart = (DateTime.Now - attemptStartTime).TotalSeconds;
-						if (secondsSinceAttemptStart < timePerRequest)
-						{
-							Thread.Sleep(TimeSpan.FromSeconds(timePerRequest - secondsSinceAttemptStart));
-						}
-					}
-				}
-			}
-			public override void Connect()
-			{
-				DoInRetryLoop(() =>
-				{
-					base.Connect();
-					return true;
-				}
-				);
-			}
-		}
-
 		public struct ConnectionSettings
 		{
 			public FtpEncryptionMode EncryptionMode {get; set; }
@@ -149,7 +82,6 @@ namespace keepass2android.Io
 		{
 			_app = app;
 			traceStream = new MemoryStream();
-			FtpTrace.AddListener(new System.Diagnostics.TextWriterTraceListener(traceStream));
 			
 		}
 
@@ -174,7 +106,7 @@ namespace keepass2android.Io
 				{
 					string localPath = IocToUri(ioc).PathAndQuery;
 					if (client.DirectoryExists(localPath))
-						client.DeleteDirectory(localPath, true);
+						client.DeleteDirectory(localPath);
 					else
 						client.DeleteFile(localPath);
 				}
@@ -205,7 +137,8 @@ namespace keepass2android.Io
 		{
 			var settings = ConnectionSettings.FromIoc(ioc);
 			
-			FtpClient client = new RetryConnectFtpClient();
+			FtpClient client = new FtpClient();
+		    client.RetryAttempts = 3;
 			if ((settings.Username.Length > 0) || (settings.Password.Length > 0))
 				client.Credentials = new NetworkCredential(settings.Username, settings.Password);
 			else
