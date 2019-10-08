@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Čas před vyčištěním schránky po zkopírování jména nebo hesla</string>
   <string name="copy_username">Kopírovat uživatelské jméno do schránky</string>
   <string name="copy_password">Kopírovat heslo do schránky</string>
+  <string name="copy_totp">Zvolte pro kopírování TOTP do schránky</string>
   <string name="available_through_keyboard">K dispozici je klávesnice KP2A</string>
   <string name="entry_is_available">je k dispozici</string>
   <string name="not_possible_im_picker">Nepodařilo se otevřít dialog pro výběr metody zadávání dat. Aktivujte klávesnici ručně.</string>
@@ -969,4 +970,5 @@ První veřejné vydání
   <string name="backup_infotext_note">Pro tvorbu zálohy navštivte %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Jste připraven/a na nouzové situace?</string>
   <string name="emergency_infotext_main">Uvažoval/a jste co se stane v případě že již nebude schopen/a přístupu k Vaší databázi hesel? Co se stane v případě nehody? Dobrý způsob je, pro případ mimořádných okolností, sdělit hlavní klíč osobě které věříte. V opačném případě nikdo nebude schopen otevřít Vaši databázi hesel.</string>
+  <string name="no_secure_display">Aktuální displej není nastavený jako zabezpečený. Toto znamená že jiné aplikace mohou pořizovat snímky obrazovky. Nastavení Keepass2Android povoluje zobrazování soukromých informací pouze na zabezpečených displejích. Prosím přepněte na zabezpečený displej (např. odpojením HDMI monitoru) nebo změňte nastavení aplikace.</string>
 </resources>
