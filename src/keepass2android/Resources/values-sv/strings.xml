@@ -622,6 +622,15 @@
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Visa skärmtangentbordet för lösenordsindata när fingeravtrycksläsning är aktiv.</string>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Förbättrat Argon2-prestandan genom att använda inbyggd funktionalitet (Tack till Chih-Hsuan Yen!)\n
+    * Medger att avaktivera fingeravtrycksläsaren genom att klicka på fingeravtrycks-ikonen (undviker problem med fingeravtrycksläsare under skärmen, tack till marcoDallas!)\n
+    * Återställ markörposition efter att ha växlat visning av lösenordet (tack till DDoSolitary!)\n
+    * Förbättringar på pCloud-implementationen (Tack till gilbsgilbs igen!)\n
+    * Lagt till AutoFyll-stöd för flera nya webbläsare \n
+    * Ny implementation för OneDrive: Includerar stöd för \"OneDrive for Business\", delade filer, valbar omfattning för åtkomst, multipla konton och fixar problem med nedkopplad åtkomst\n
+    * Felrättningar
+  </string>
   <string name="ChangeLog_1_07">    Version 1.07\n
     * Fixar för krasher på Samsung\'s Android 9\n
     * Tillåt öppnande av mer än en databas, Kompatibel med KeeAutoExec\n
