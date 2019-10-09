@@ -6,7 +6,7 @@
   <string name="AboutText">Keepass2Android är en lösenordshanterare för Android som kan läsa och skriva KeePass 2.x datafiler.</string>
   <string name="CreditsText">Användargränssnittet är baserat på en portning av KeepassDroid utvecklad av Brian Pellin. Kod för databasoperationer är baserad på KeePass av Dominik Reichl. Android roboten är reproducerad eller modifierad utifrån arbete skapat och delat av Google och används enligt villkoren som beskrivs i licensen Creative Commons 3.0 Attribution.</string>
   <string name="CreditsTextSFTP">Stöd för SFTP implementeras med hjälp av JSch biblioteket under BSD-licens, skapad av JCraft, Inc.</string>
-  <string name="CreditsIcons">Hammar-ikonen är skapad av John Caserta från The Noun Project. Pingvin-ikonen är skapad av Adriano Emerick från The Noun Project. Fjäder-ikonen är skapad av Jon Testa från The Noun Project. Apple-ikonen är skapad av Ava Rowell från The Noun Project.</string>
+  <string name="CreditsIcons">Hammar-ikonen är skapad av John Caserta från The Noun Project. Pingvin-ikonen är skapad av Adriano Emerick från The Noun Project. Fjäder-ikonen är skapad av Jon Testa från The Noun Project. Apple-ikonen är skapad av Ava Rowell från The Noun Project. Bildikonen är från https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Acceptera</string>
   <string name="deny">Neka</string>
   <string name="add_entry">Ny post</string>
@@ -40,7 +40,7 @@
   <string name="Entry_singular">En post</string>
   <string name="Entry_plural">%1$d poster</string>
   <string name="IconSet_title">Ikonuppsättning</string>
-  <string name="IconSet_install">Hitta ytterligare...</string>
+  <string name="IconSet_install">Hitta mer...</string>
   <string name="security_prefs">Säkerhet</string>
   <string name="display_prefs">Bildskärm</string>
   <string name="password_access_prefs">Lösenordstillgänglighet</string>
@@ -100,8 +100,8 @@
   <string name="fingerprint_reenable2">Vänligen lås upp med ditt lösenord och återaktivera sedan fingeravtrycksupplåsning i databasinställningarna.</string>
   <string name="FingerprintInitFailed">Misslyckades att initiera fingeravtrycksavläsare. </string>
   <string name="FingerprintSetupFailed">Misslyckades att kryptera data. Det kan hända om du lägger till eller tar bort registrerade fingeravtryck i systeminställningarna när Keepass2Android efterfrågar ditt fingeravtryck.</string>
-  <string name="enable_fingerprint_unlock_Info">Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androids nyckelförvaring och skyddat med fingeravtrycksautenticering. Gör det möjligt att låsa upp din databas endast med ditt fingeravtryck.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Tillåter att använda fingeravtrycksautenticering istället för snabbupplåsningskod. Lagrar inte någon information relaterat till ditt huvudlösenord.</string>
+  <string name="enable_fingerprint_unlock_Info">Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androids nyckelförvaring och skyddat med fingeravtrycksautentisering. Detta gör det möjligt att låsa upp din databas endast med ditt fingeravtryck.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Tillåter att använda fingeravtrycksautentisering istället för snabbupplåsningskod. Lagrar inte någon information relaterat till ditt huvudlösenord.</string>
   <string name="enter_filename">Ange databasnamn</string>
   <string name="entry_accessed">Senast använd</string>
   <string name="entry_cancel">Avbryt</string>
@@ -794,4 +794,5 @@
   <string name="backup_infotext_note">För att skapa en backup nu, gå till %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Är du förberedd för nödfall?</string>
   <string name="emergency_infotext_main">Övervägde du någonsin vad som händer om du inte längre har tillgång till din lösenordsdatabas? Ifall du råkar ut för en olycka? Det är god sed att lämna över ditt huvudlösenord till någon person du litar på för nödfall. Annars kommer ingen ha tillgång till dina lösenord.</string>
+  <string name="no_secure_display">Den valda skärmen är inte markerad som säker, eftersom skärmavbildningar kan tas av andra appar. Keepass2Android är inställd på att endast visa känsliga uppgifter på säkra skärmar. Vänligen byt till en säker skärm (t.ex. genom att koppla bort en HDMI-skärm) eller ändra appens inställningar.</string>
 </resources>
