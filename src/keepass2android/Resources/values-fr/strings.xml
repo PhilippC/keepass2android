@@ -462,7 +462,7 @@
   <string name="enter_ftp_login_title">Saisir les données de connexion FTP :</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
-  <string name="filestoragename_androidget">Recevoir depuis une application tierce</string>
+  <string name="filestoragename_androidget">Obtenir depuis une application tierce</string>
   <string name="filestoragename_androidsend">Envoyer à une application tierce</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
