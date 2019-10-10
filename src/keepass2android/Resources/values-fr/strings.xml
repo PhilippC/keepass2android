@@ -44,7 +44,7 @@
   <string name="security_prefs">Sécurité</string>
   <string name="display_prefs">Affichage</string>
   <string name="password_access_prefs">Accès aux mots de passe</string>
-  <string name="QuickUnlock_prefs">QuickUnlock</string>
+  <string name="QuickUnlock_prefs">Déverrouillage rapide</string>
   <string name="FileHandling_prefs">Gestion des fichiers</string>
   <string name="keyboard_prefs">Clavier</string>
   <string name="export_prefs">Exporter la base de données...</string>
@@ -62,11 +62,14 @@
   <string name="brackets">Parenthèses, accolades et crochets</string>
   <string name="cancel">Annuler</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Désactiver le capteur</string>
+  <string name="enable_sensor">Activer le capteur</string>
   <string name="ClearClipboard">Presse-papier nettoyé.</string>
   <string name="clipboard_timeout">Délai de purge du presse-papiers</string>
   <string name="clipboard_timeout_summary">Délai avant d\'effacer le presse-papiers lorsque des identifiants ont été copiés</string>
   <string name="copy_username">Cliquez pour copier le nom d\'utilisateur</string>
   <string name="copy_password">Cliquez pour copier le mot de passe</string>
+  <string name="copy_totp">Sélectionner pour copier le code TOTP vers le presse-papiers</string>
   <string name="available_through_keyboard">L\'entrée est disponible via le clavier KP2A</string>
   <string name="entry_is_available">est disponible</string>
   <string name="not_possible_im_picker">L\'ouverture de la fenêtre de sélection de la méthode de saisie a échoué. Merci de choisir votre clavier manuellement.</string>
@@ -79,9 +82,9 @@
   <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE ; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copier dans le Presse-papier</string>
-  <string name="fingerprint_hint">Capteur tactile</string>
+  <string name="fingerprint_hint">Touchez le capteur</string>
   <string name="fingerprint_description">Confirmer l\'empreinte digitale pour continuer</string>
-  <string name="fingerprint_fatal">Configuration du déverouillage par empreinte digitale impossible:</string>
+  <string name="fingerprint_fatal">Impossible de configurer le déverrouillage par empreinte digitale :</string>
   <string name="fingerprint_not_recognized">Empreinte digitale non reconnue. Réessayez</string>
   <string name="fingerprint_success">Empreinte digitale reconnue</string>
   <string name="fingerprint_os_error">Le déverrouillage par empreinte digitale requiert Android version 6.0 ou ultérieure.</string>
@@ -90,7 +93,7 @@
   <string name="disable_fingerprint_unlock">Désactiver le déverrouillage par empreinte digitale</string>
   <string name="enable_fingerprint_unlock">Activer le déverrouillage par empreinte digitale</string>
   <string name="enable_fingerprint_quickunlock">Activer le déverrouillage par empreinte digitale pour QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Capteur tactile pour déverrouiller la base de données</string>
+  <string name="fingerprint_unlock_hint">Touchez le capteur pour déverrouiller la base de données</string>
   <string name="fingerprint_unlock_failed">Le déverrouillage par empreinte digitale a échoué. La clé de décryptage a été invalidée par l\'OS Android. Ceci se produit généralement quand une nouvelle empreinte a été enregistrée ou quand les paramètres de sécurité ont changés. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Le déverrouillage de la base de données a échoué: la clé composite est invalide. Le déverrouillage par empreinte digitale a été désactivé car apparemment le mot de passe maître stocké n\'est plus valide. </string>
   <string name="fingerprint_reenable">Veuillez ré-activer le déverrouillage d\'empreintes digitales pour le nouveau mot de passe maître.</string>
@@ -172,6 +175,7 @@
   <string name="menu_change_key">Modifier la clé maître</string>
   <string name="menu_copy_pass">Copier Mot de passe</string>
   <string name="menu_copy_user">Copier Utilisateur</string>
+  <string name="menu_copy_totp">Copier le TOTP</string>
   <string name="menu_create">Créer</string>
   <string name="menu_app_settings">Paramètres</string>
   <string name="menu_db_settings">Préférences de base de données</string>
@@ -458,7 +462,7 @@
   <string name="enter_ftp_login_title">Saisir les données de connexion FTP :</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
-  <string name="filestoragename_androidget">Recevoir depuis une application tierce</string>
+  <string name="filestoragename_androidget">Obtenir depuis une application tierce</string>
   <string name="filestoragename_androidsend">Envoyer à une application tierce</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
@@ -470,7 +474,12 @@
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Ce type de stockage ne demandera l\'accès qu\'au dossier \"Applications/Keepass2Android\". Si vous souhaitez utiliser une base de données existante à partir de votre compte PCloud, assurez-vous que le fichier soit placé dans ce dossier.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Tous les fichiers et fichiers partagés</string>
+  <string name="filestoragename_onedrive2_myfiles">Mes fichiers</string>
+  <string name="filestoragename_onedrive2_appfolder">Dossier de l\'application Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Sélecteur de fichier système</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
@@ -618,11 +627,20 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="if_device_text">Activer pour %1$s</string>
   <string name="DbUnlockedChannel_name">Base de données déverrouillée</string>
   <string name="DbUnlockedChannel_desc">Notification à propos de la base de données en train d\'être déverrouillée</string>
-  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_name">Déverrouillage rapide</string>
   <string name="DbQuicklockedChannel_desc">Notification à propos de la base de données en cours de verrouillage avec QuickUnlock</string>
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Amélioration des performances Argon2 en utilisant l\'implémentation native (Merci à to Chih-Hsuan Yen !)\n
+    * Possibilité de désactiver l\'empreinte digitale en cliquant sur l\'icône de l\'empreinte (évite un problème avec les lecteurs d\'empreinte placés sous l\'écran, merci à marcoDallas !)\n
+    * Rétablissement de la position du curseur lors du changement de la visibilité du mot de passe (merci à DDoSolitary !)\n
+    * Améliorations de l\'implémentation de pCloud (merci encore à gilbsgilbs !)\n
+    * Ajout du remplissage automatique pour plusieurs autres navigateurs \n
+    * Nouvelle implémentation pour OneDrive : support de OneDrive for Business, fichiers partagés, périmètres d\'accès sélectionnables, comptes multiples et correction de problèmes avec l\'accès hors-ligne\n
+    * Résolution de bugs
+  </string>
   <string name="ChangeLog_1_07">    Version 1.07\n
     * Corrige les crashs sur les Samsung avec Android 9\n
     * Permet d\'ouvrir plus d\'une base de données, compatible avec KeeAutoExec\n
@@ -884,4 +902,5 @@ Première version publique</string>
   <string name="backup_infotext_note">Pour créer une sauvegarde maintenant, allez dans %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Êtes-vous prêt pour les cas d’urgence ?</string>
   <string name="emergency_infotext_main">Avez-vous déjà envisagé ce qui se passerait si vous ne pouviez plus accéder à votre base de données de mots de passe ? Et si vous avez un accident ? Il est recommandé de transmettre votre clé principale à une personne de confiance pour les cas d\'urgence. Sinon, personne n\'aura accès à vos mots de passe.</string>
+  <string name="no_secure_display">L\'écran actuellement valide n\'est pas marqué comme sécurisé. Cela signifie que des captures d\'écran peuvent être prises par d\'autres applications. Keepass2Android est configuré pour afficher des informations sensibles sur les écrans sécurisés uniquement. Veuillez changer pour un écran sécurisé (par exemple en détachant un moniteur HDMI) ou modifier les paramètres de l\'application.</string>
 </resources>

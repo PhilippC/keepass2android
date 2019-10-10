@@ -21,11 +21,20 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">앱 시간제한</string>
+  <string name="app_timeout_summary">앱이 비활성화 될 때 데이터베이스를 잠그는 시간</string>
+  <string name="kill_app_label">앱 프로세스 종료</string>
   <string name="show_kill_app">종료 버튼</string>
+  <string name="show_kill_app_summary">비밀번호 화면에 앱 종료 버튼 보이기 (편집증적인 사용자용)</string>
+  <string name="application">앱</string>
   <string name="application_settings">앱 설정</string>
   <string name="ShowGroupnameInSearchResult_title">검색결과에 그룹이름 표시하기</string>
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹 이름을 표시 합니다. 여러 항목의 이름이 같은 경우에 유용합니다.</string>
   <string name="NavigationToGroupCompleted_message">표시 그룹은 지금: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">자동입력 비활성 대상</string>
+  <string name="AutofillDisabledQueriesPreference_summary">자동입력이 비활성화된 앱과 웹사이트의 리스트를 보여줍니다</string>
+  <string name="OfferSaveCredentials_summary">활성화되면, 자동입력 가능한 필드에 수동으로 데이터를 입력 후, 자격 증명을 저장하려 할 때, 안드로이드가 물어봅니다</string>
+  <string name="OfferSaveCredentials_title">자격 증명 저장 제공</string>
   <string name="ShowGroupInEntry_title">항목 보기에서 그룹 이름 표시</string>
   <string name="unknown_uri_scheme">죄송 합니다! Keepass2Android는 반환된 URI %1$s을 처리할 수 없습니다. 개발자에게 연락 하십시오!</string>
   <string name="Entry_singular">한개의 항목</string>
@@ -87,6 +96,7 @@
   <string name="fingerprint_reenable">새로운 마스터 비밀번호에 대해 지문 잠금 해제를 다시 설정해주세요.</string>
   <string name="fingerprint_reenable2">비밀번호로 잠금을 해제한 후 데이터베이스 설정에서 지문 잠금 해제를 다시 설정해 주세요.</string>
   <string name="FingerprintInitFailed">지문 센서를 초기화 하는데 실패했습니다. </string>
+  <string name="FingerprintSetupFailed">데이터 암호화에 실패했습니다. 이런 문제는 Keepass2Android가 지문을 인식하는 도중에 시스템 설정에 지문을 추가 또는 제거할 시에 발생할수 있습니다.</string>
   <string name="enable_fingerprint_unlock_Info">이 기기에 마스터 비밀번호가 저장되고 Android Keystore로 암호화되며 지문 인증을 사용하여 보호됩니다. 지문만으로 데이터베이스를 잠금 해제 할 수 있습니다.</string>
   <string name="enable_fingerprint_quickunlock_Info">QuickUnlock 코드 대신 지문 인증을 사용할 수 있습니다. 마스터 비밀번호와 관련된 정보는 저장하지 않습니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
@@ -109,6 +119,7 @@
   <string name="entry_user_name">계정</string>
   <string name="entry_extra_strings">추가 문자열 필드</string>
   <string name="entry_binaries">첨부 파일</string>
+  <string name="error_can_not_handle_uri">Keepass2Android가 이 URI를 처리할 수 없습니다.</string>
   <string name="error_could_not_create_group">그룹생성 오류</string>
   <string name="error_could_not_create_parent">부모 디렉터리를 만들 수 없습니다.</string>
   <string name="error_database_exists">이 파일이 이미 존재 합니다.</string>
@@ -125,6 +136,7 @@
   <string name="error_rounds_not_number">정수는 숫자여야 합니다.</string>
   <string name="error_param_not_number">매개 변수는 숫자여야 합니다.</string>
   <string name="error_title_required">제목이 필요합니다.</string>
+  <string name="error_wrong_length">길이 필드에 양수를 입력하세요.</string>
   <string name="FileNotFound">파일을 찾을 수 없습니다.</string>
   <string name="file_browser">파일탐색기</string>
   <string name="generate_password">비밀번호 생성</string>
@@ -139,6 +151,7 @@
   <string name="hint_login_pass">비밀번호</string>
   <string name="hint_title">이름</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">URL 덮어쓰기</string>
   <string name="hint_tags">태그1, 태그2</string>
   <string name="hint_username">계정</string>
   <string name="InvalidPassword">잘못된 비밀번호 또는 키 파일입니다.</string>
@@ -185,6 +198,7 @@
   <string name="no">아니요</string>
   <string name="no_keys">데이터베이스나 그룹에 항목이 없습니다.</string>
   <string name="no_results">검색결과가 없습니다.</string>
+  <string name="no_url_handler">이 URL의 핸들러가 없습니다.</string>
   <string name="open_recent">최근 데이터베이스 열기 (\'열기\'를 클릭하세요)</string>
   <string name="omitbackup_title">백업과 휴지통 항목은 검색하지 않습니다.</string>
   <string name="omitbackup_summary">백업과 휴지통은 검색결과에서 생략합니다.</string>
@@ -200,10 +214,15 @@
   <string name="edit">수정</string>
   <string name="rijndael">레인달 (AES)</string>
   <string name="root">경로</string>
+  <string name="AutoReturnFromQuery_title">요청 화면에서 자동으로 돌아오기</string>
+  <string name="AutoReturnFromQuery_summary">앱이나 웹사이트의 항목을 찾고 있을때: 
+만약 단 하나의 일치하는 항목이 있는 경우, 자동으로 쿼리 화면으로 돌아옵니다</string>
   <string name="KeyDerivFunc">키 유도 함수</string>
   <string name="rounds">암호화 정수</string>
   <string name="rounds_explaination">더 높은 암호화 정수는 해킹으로부터 보다 안전하지만, 가져오기나 저장하기 시 많이 느려질 수 있습니다.</string>
   <string name="rounds_hint">정수</string>
+  <string name="argon2memory">Argon 2 용 메모리 (바이트)</string>
+  <string name="argon2parallelism">Argon 2 용 병렬계산</string>
   <string name="database_name">데이터베이스 이름</string>
   <string name="default_username">새 항목 추가 시 기본 계정명 설정</string>
   <string name="saving_database">데이터베이스 저장...</string>
@@ -225,7 +244,9 @@
   <string name="select_group_then_add">원하는 그룹을 연 다음, \"%1$s\"!</string>
   <string name="insert_element_here">여기에 넣으세요.</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">밑줄</string>
   <string name="unsupported_db_version">지원되지 않는 데이터베이스 버전입니다.</string>
+  <string name="uppercase">대문자</string>
   <string name="warning_read_only">현재 SD 카드 속성이 read-only 입니다. 변경사항을 데이터베이스에 저장할 수 없습니다.</string>
   <string name="warning_unmounted">SD 카드가 장착되지 않았습니다. 데이터베이스를 가져오거나 생성할 수 없습니다.</string>
   <string name="version_label">버전</string>
@@ -239,6 +260,7 @@
   <string name="please_note">알아두세요.</string>
   <string name="contributors">도와준 사람들</string>
   <string name="regular_expression">정규 표현식</string>
+  <string name="TanExpiresOnUse_title">TAN 사용이 만료되었습니다</string>
   <string name="TanExpiresOnUse_summary">TAN 사용 시 만료된 항목 표시하기</string>
   <string name="ShowUsernameInList_title">목록에 계정 표시하기</string>
   <string name="ShowUsernameInList_summary">제목 아래에 계정 표시하기. 다중계정이나 TANs에 유용합니다.</string>
@@ -303,14 +325,18 @@
   <string name="ClearPasswordOnLeave_summary">데이터베이스를 잠금해제 하지 않고 화면을 떠날 경우 입력된 마스터 패스워드를 지웁니다.</string>
   <string name="LockWhenNavigateBack_title">앱을 닫을 때 잠금</string>
   <string name="LockWhenNavigateBack_summary">뒤로 버튼을 눌러 앱을 닫을 때 데이터베이스를 잠급니다.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android의 내장 키보드 사용</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">기본 키보드 제공자를 신뢰할 수 없다면, 이 옵션을 체크해 마스터 키를 입력할 때나 항목을 편집할 때 내장 키보드를 사용하십시오.</string>
   <string name="ActivateSearchViewOnStart_title">시작시 검색 필드 활성화</string>
   <string name="ActivateSearchViewOnStart_summary">잠금 해제 또는 항목 검색시 그룹보기에서 검색 필드 활성화</string>
   <string name="NoDonateOption_title">기부 버튼 숨기기</string>
   <string name="NoDonateOption_summary">기부자를 위한 옵션입니다.
 이 앱을 한동안 사용한 후에만 설정이 가능합니다.</string>
+  <string name="NoDonateOption_question">이 앱은 기부 없이는 존재하거나 지속적으로 발전할 수 없습니다! 아직 기부를 하지 않으셨다면, 지금 기부에 대해 고려해 주세요</string>
   <string name="NoDonationReminder_title">기부에 대해 다시는 묻지 않기</string>
   <string name="NoDonationReminder_summary">나는 한 푼도 주지 않을 것이거나 이미 기증 했다. 제작자 생일에도 기부에 대한 요청 하지마라.</string>
   <string name="UseOfflineCache_title">데이터베이스 캐싱</string>
+  <string name="UseOfflineCache_summary">응용 프로그램 캐시 디렉토리에 데이터베이스 파일의 사본을 보관하십시오. 이렇게하면 데이터베이스 파일에 접근 할 수 없는 동안에도 데이터베이스를 사용할 수 있습니다.</string>
   <string name="CreateBackups_title">기기 내부 백업</string>
   <string name="CreateBackups_summary">성공적으로 데이터베이스를 불러온 후 기기 내부 백업의 복사본을 만듭니다.</string>
   <string name="UpdatingBackup">기기 내부 백업을 업데이트중...</string>
@@ -404,11 +430,14 @@
   <string name="LoadedFromRemoteInSync">소스 파일과 캐시가 동기화됨.</string>
   <string name="UpdatedCachedFileOnLoad">%1$s의 내부 캐시 사본이 업데이트 되었습니다.</string>
   <string name="RemoteDatabaseUnchanged">변경사항이 없습니다.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">원본 카운트가 더 높아서 캐시된 OTP 보조 파일이 갱신되었습니다.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">로컬 카운트가 더 높아서 원본 OTP 보조 파일이 갱신되었습니다.</string>
   <string name="SynchronizingOtpAuxFile">OTP 보조 파일 동기화...</string>
   <string name="database_file">데이터베이스 파일</string>
   <string name="otp_aux_file">OTP 보조 파일</string>
   <string name="ErrorOcurred">에러가 발생했습니다. : </string>
   <string name="DuplicateUuidsError">데이터베이스가 손상됨: 중복 ID가 발견되었습니다. (Minikeepass로 저장 했습니까?) PC 용 Keepass 2를 사용하여 새 데이터베이스를 다시 가져 와서 \'새 ID 만들기\' 를 선택하십시오.</string>
+  <string name="DuplicateUuidsErrorAdditional">설정 / 응용 프로그램 설정 / 파일 처리 / 중복된 UUID 확인 에서 이 오류 메시지를 비활성화 할 수 있습니다. 예기치 않은 동작이 발생할 수 있으므로 데이터베이스를 수정하는 것이 좋습니다.</string>
   <string name="synchronize_database_menu">데이터베이스 동기화...</string>
   <string name="CannotMoveGroupHere">이 그룹에 그룹을 이동할 수 없습니다.</string>
   <string name="donate_question">오늘이 맥주 축제날이네요!  Keepass2Android가 마음에 드셨다면 오늘이 제게 맥주 한 번 사기 좋은 날 아닐까요?</string>
@@ -420,11 +449,14 @@
   <string name="hint_http_url">폴더 또는 파일의 주소 (예: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud 로그인 데이터 입력:</string>
   <string name="hint_owncloud_url">OwnCloud 주소 (예: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nextcloud 로그인 데이터 입력:</string>
+  <string name="hint_nextcloud_url">Nextcloud 주소 (예: nextcloud.me.com)</string>
   <string name="hint_sftp_host">호스트 (예: 192.168.0.1)</string>
   <string name="hint_sftp_port">포트</string>
   <string name="initial_directory">초기 디렉터리 (선택사항) :</string>
   <string name="enter_sftp_login_title">SFTP 로그인 데이터 입력:</string>
   <string name="sftp_auth_mode">인증모드</string>
+  <string name="send_public_key">공개 키 보내기...</string>
   <string name="enter_ftp_login_title">FTP 로그인 데이터 입력:</string>
   <string name="select_storage_type">저장소 유형을 선택하세요.</string>
   <string name="filestoragename_file">로컬 파일</string>
@@ -434,10 +466,17 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">드롭박스</string>
   <string name="filestoragename_dropboxKP2A">드롭박스 (KP2A 폴더)</string>
+  <string name="filestoragehelp_dropboxKP2A">KP2A가 당신의 Dropbox 전체 목록에 접근하는 것을 원하지 않는다면 이 옵션을 선택하세요. 그럼 오직 Apps/Keepass2Android 폴더에만 접근을 요청합니다. 이건 새로운 데이터베이스를 생성할 때 특히 적합합니다.
+이미 데이터베이스 파일를 갖고 있다면, 이 옵션을 선택해서 폴더를 생성한 다음, 기존의 데이터베이스 파일을 생성된 폴더에 넣습니다. (PC나 기타의 경로를 통해서)
+그 다음에 이 옵션을 다시 선택하고 데이터베이스 파일을 엽니다.</string>
   <string name="filestoragename_gdrive">구글 드라이브</string>
+  <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주세요.</string>
   <string name="filestoragename_onedrive">원드라이브</string>
+  <string name="filestoragename_onedrive2">원드라이브</string>
   <string name="filestoragename_sftp">SFTP (SSH 파일 전송)</string>
   <string name="filestoragename_content">시스템 파일 탐색기</string>
   <string name="filestorage_setup_title">파일 액세스 초기화</string>
@@ -453,10 +492,13 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="help_master_password">데이터베이스 파일은 여기 입력된 비밀번호로 암호화 됩니다. 데이터베이스의 안전성을 유지하려면 강력한 비밀번호를 선택하세요! >> 팁: 하나 또는 두 가지의 문장을 만들어서 단어들의 첫번째 글자들을 비밀번호로 쓰는 겁니다. 문장부호도 포함해서요.</string>
   <string name="hint_master_password">데이터베이스를 보호하기 위해 마스터 비밀번호를 선택 합니다.</string>
   <string name="key_file">키 파일</string>
+  <string name="help_key_file">키 파일은 기본적으로 파일 안에 저장되는 비밀번호입니다. 키 파일들은 전형적으로 마스터 키보다 더 강력하지요.
+왜냐하면 그 키는 더욱 더 많이 복잡하니까요. 하지만 그것 또한 비밀을 유지하기엔 어렵습니다. 만약 데이터베이스 파일을 클라우드에 저장한다면, 키 파일은 거기 같이 저장하지 마세요! 그럼 전혀 쓸모 없습니다! 중요: 데이터베이스를 생성한 후에는 키 파일의 내용을 수정하지 마세요!</string>
   <string name="hint_key_file">마스터 비밀번호와 더불어 키 파일을 쓰고자 한다면 선택하세요.</string>
   <string name="use_key_file">키 파일 사용</string>
   <string name="error_adding_keyfile">키 파일을 추가하는 동안 오류가 발생했습니다!</string>
   <string name="init_otp">OTP 보조 파일 불러오기...</string>
+  <string name="otp_explanation">그 다음의 One-time-passwords (OTPs) 를 입력합니다. NFC를 통해 입력하려면 장치의 뒷면에 Yubikey NEO를 스치세요 (Yubiclip 앱이 필요합니다).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP 보조 파일을 불러올 수 없습니다!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">OTPs를 사용하기 위해 데이터베이스를 설정하려면 KeePass 2.x (PC)에서 OtpKeyProv 플러그인을 사용하세요.</string>
@@ -469,6 +511,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="OtpKeyError">OTP 키 생성에 실패했습니다! 정확한 OTPs를 입력하세요.</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 보조 파일 갱신 오류!</string>
   <string name="SavingOtpAuxFile">보조 OTP 파일 저장...</string>
+  <string name="NoChallengeApp">이 시도를 다룰 수 있는 앱을 찾지 못했습니다.</string>
   <string name="PleaseInstallApp">Google Play에서 %1$s을 설치해 주시기 바랍니다.</string>
   <string name="AppOutdated">%1$s는 더 이상 지원하지 않습니다.</string>
   <string name="bad_resp">시도-응답이 잘못되었습니다.</string>
@@ -502,7 +545,9 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="SCOPE_CURRENT_ENTRY_title">현재 항목 데이터</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">플러그인은 현재 데이터베이스 항목에 대한 모든 데이터를 받아 액션을 제공하고 해당 표시를 수정 하도록 허가 됩니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">자신의 자격증명 요청</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인은 자체 응용 프로그램 패키지와 연관된 자격 증명을 요청 할 수 있습니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">자격 증명 요청</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인은 웹사이트 또는 앱의 인증을 위해 자격 증명을 요청 할 수 있습니다.</string>
   <string name="get_regular_version">더 많은 저장소 종류를 가져오기</string>
   <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
@@ -513,6 +558,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="FileIsReadOnlyOnKitkat">선택한 파일은 Android 4.4 이상에서의 제한으로 인해 Keepass2Android에서는 읽기 전용입니다.</string>
   <string name="CopyFileRequired">이를 사용하려면 다른 위치로 복사 해야 합니다.</string>
   <string name="CopyFileRequiredForEditing">이를 수정 하려면 다른 위치로 복사 해야 합니다.</string>
+  <string name="ClickOkToSelectLocation">확인을 클릭하여 파일을 복사 할 위치를 선택하십시오.</string>
   <string name="FileReadOnlyTitle">데이터베이스가 읽기 전용입니다</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android는 현재 데이터베이스를 읽기 전용 모드로 열었습니다.</string>
   <string name="ReadOnlyReason_PreKitKat">외부 앱에서 파일을 연 것처럼 보입니다. 이 방법은 쓰기권한이 지원되지 않습니다. 데이터베이스를 변경하려면 데이터베이스를 닫고 데이터베이스 변경을 선택하십시오. 가능하다면 사용 가능한 옵션 중 하나에서 파일을 여세요.</string>
@@ -552,6 +598,10 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     • 올바른 암호를 입력했는지 확인하십시오. 눈 아이콘을 사용하여 입력 한 비밀번호를 표시하십시오.\n
    • 올바른 암호 유형을 선택했는지 확인하십시오. 데이터베이스를 만들 때 사용한 유형과 일치하는지 확인하십시오.\n
    • 올바른 데이터베이스 파일을 선택했는지 확인하십시오.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
+    &#8226; 힌트: 데이터베이스 파일이 손상되었거나 마스터 키를 수정 한 후에 기억하지 못한다면 \"%1$s\"를 클릭하고 내부 백업을 선택하여 마지막으로 성공적으로 연 파일 버전을 시도 할 수 있습니다.</string>
+  <string name="HintLocalBackupOtherError">\n
+    &#8226; 힌트: Keepass2Android는 마지막으로 성공적으로 연 파일 버전을 내부 메모리에 저장했습니다. \"%1$s\"를 탭하고 내부 백업을 선택하여 열 수 있습니다.  </string>
   <string name="CorruptDatabaseHelp">파일이 손상되었습니다. \n 
     다음은 문제를 진단하는 데 도움이되는 몇 가지 힌트입니다. \n
     
@@ -561,16 +611,40 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 
   </string>
   <string name="open_other_db">다른 데이터베이스 열기...</string>
+  <string name="select_database">데이터베이스 선택</string>
+  <string name="configure_child_dbs">하위 데이터베이스 설정...</string>
   <string name="child_dbs_title">하위 데이터베이스</string>
   <string name="unspecified">지정되지 않음</string>
+  <string name="child_db_explanation">하위 데이터베이스는 상위 데이터베이스를 열 때 자동으로 열 수 있는 다른 데이터베이스입니다. 그러므로, 하위 데이터베이스의 마스터 키와 파일 위치는 상위 데이터베이스에 저장됩니다. 이 기능은 몇몇 비밀번호를 다른 사람과 공유할 수 있게 합니다. 이 구현사항은 PC용 KeeAutoExec과 호환됩니다.</string>
+  <string name="child_db_enabled_on_this_device">이 장치에서 사용가능함</string>
+  <string name="child_db_enable_on_this_device">이 장치에서 사용하기</string>
+  <string name="child_db_disable_on_this_device">이 장치에서 사용 불가능함</string>
+  <string name="child_db_enable_a_copy_for_this_device">이 장치용으로 복사하기</string>
+  <string name="unconfigured_child_dbs">데이터베이스가 새 하위 데이터베이스들을 \"AutoOpen\" 그룹에 포함하고 있습니다. 이 하위 데이터베이스들이 이 장치에서 사용되어야한다면 지정해 주십시오.</string>
+  <string name="add_child_db">하위 데이터베이스 추가...</string>
+  <string name="EnableCopyForThisDevice_Info">하위 데이터베이스 설정의 복사본을 만들고 활성화합니다. 복사된 설정은 이 장치를 위해 특별히 추가됩니다.</string>
   <string name="Visible_title">표시</string>
+  <string name="child_db_Enabled_title">자동으로 열기</string>
   <string name="database_file_heading">데이터베이스 파일</string>
+  <string name="if_device_text">%1$s용으로 허용</string>
   <string name="DbUnlockedChannel_name">데이터베이스 잠금 해제</string>
   <string name="DbUnlockedChannel_desc">데이터베이스 잠금 해제에 대한 알림</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="DbQuicklockedChannel_desc">QuickUnlock으로 잠긴 데이터베이스에 대한 알림</string>
   <string name="EntryChannel_name">항목 알림</string>
+  <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">지문 인증이 활성화되면 암호 입력을 위한 소프트 키보드를 표시합니다.</string>
+  <string name="ChangeLog_1_07">버전 1.07\n
+    * 삼성 Android 9 장치에서 발생한 문제를 수정했습니다.\n
+    * 한 개 이상의 데이터베이스 열람을 허용했습니다. KeeAutoExec과 호환됩니다.\n
+    * SFTP: 공개 키 접근을 허용합니다. 호스트 키가 변경되었는지 확인해보세요.\n
+    * pCloud를 지원합니다 - gilbsgilbs님께 감사드립니다!\n
+    * Nextcloud 지원을 명시화했습니다.\n
+    * 항목 첨부의 저장과 업데이트 기능을 향상했습니다.\n
+    * 개인 설정의 작동 조정에 대한 더 많은 설정을 추가했습니다.\n
+    * SSL: 유저 증명서를 신뢰하는 기능을 추가했습니다.\n
+    * 자동입력 기능을 향상했습니다. (이제 Firefox가 지원됩니다. 관련 팝업을 줄일 수 있습니다.)\n
+    * 버그 수정\n  </string>
   <string name="ChangeLog_1_06">    버전 1.06\n
     * Yubikey 시도-응답 지원을 위한 앱을 YubiChallenge에서 ykDroid로 교체.\n
     * KeepassXC-스타일 시도-응답 지원 추가. 노트: 데이터 베이스 포멧은 반드시 KDBX4 이어야 합니다!\n
@@ -692,6 +766,19 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 		* QuickUnlock 및 암호 화면에서 스크린 샷 방지\n
 		* 수정 날짜 별 정렬의 역순 정렬 순서 (현재 내림차순)\n
 		* 버그 수정: 변경 후 Notes 보기가 올바르게 업데이트되었습니다. 암호 보기는 이제 모든 장치에서 암호를 올바르게 숨깁니다, 항목을 두 번 추가 할 수있는 고정 문제 수정, 데이터베이스 수정 후에도 중복 UUID 경고 표시 문제 해결\n</string>
+  <string name="ChangeLog_0_9_6">버전 0.9.6\n
+		* 키 파일 및/또는 내부 데이터베이스 파일을 앱 내부 디렉토리로 가져올 수 있습니다 (설정 참조).\n
+		* 다양한 정렬 옵션 허용\n
+		* 자동 키보드 전환을 위한 향상된 기본 설정\n
+		* 업데이트 된 응용 프로그램 로고 및 알림 디자인, 디자인 Stefano Pignataro (http://www.spstudio.at)\n
+		* 암호 생성기는 마지막 설정을 기억합니다.\n
+		* Android 5를 위한 잠금 화면 알림 표시 설정\n
+		* 확인을 클릭하지 않고 앱을 종료 해도 마스터 비밀번호 입력란이 삭제됩니다.\n
+		* 일부 장치의 키보드 설정에서 입력 언어 누락 문제 해결\n
+		* 루팅 된 기기의 자동 키보드 전환 문제 해결\n
+		* 손상된 데이터베이스에 대한 검사 추가 (중복 된 UUID)\n
+		* 변경이 감지되면 자동으로 데이터베이스를 다시 로드하고 마스터 비밀번호 공개에 대한 보안 문제를 해결합니다.\n
+		* 폴란드어의 소형 키보드 레이아웃 개선, 키보드 설정의 테마 수정 (Wiktor Ławski에 감사드립니다)\n</string>
   <string name="ChangeLog_0_9_5"><b>버전 0.9.5</b>\n
 		* 파일 탐색 관련 문제 수정 (특히 안드로이드 4.4버전)\n
 		* Nexus 5의 Android Lollipop에서 .kdb 파일 (Keepass 1)을로드 할 때 발생하는 문제가 해결되었습니다.\n
@@ -751,6 +838,13 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 		* 그룹과 항목 이동 허가\n
 		* QuickUnlock 아이콘을 투명하게 만들 수 있습니다 (설정 참조).\n
 		* 버그 수정</string>
+  <string name="ChangeLog_0_8_5"><b>버전 0.8.5</b>\n
+		* 원격 파일은 내부 응용 프로그램 캐시에 저장되어 오프라인 사용이 가능합니다 (편집 및 이후 동기화 포함). 설정을 참조하십시오. \n
+		* 데이터베이스의 잠금 상태를 시각화하는 알림 아이콘 (설정 참조)\n
+		* 일부 상황에서 잠금 상태의 개선\n
+		* 로딩 속도를 높이기 위해 암호를 입력하는 동안 데이터베이스 파일이 메모리에 로드됩니다 (설정 참조).\n
+		* 루트 그룹에 항목을 추가 할 수 있습니다.\n
+		* 버그 수정 (참조 필드 중국과 이탈리아 기기의 키보드 문제)</string>
   <string name="ChangeLog_0_8_4"><b>버전 0.8.4</b>\n
 		* 저장 시 외부 데이터베이스 변경 사항이 감지되고 병합됩니다.\n
 		* 향상된 로딩 성능\n
@@ -843,11 +937,11 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>비밀번호 + 시도-응답 인증</item>
     <item>비밀번호 + 시도-응답 (복구 모드)</item>
     <item>Keepass XC를 위한 비밀번호 + 시도-응답 인증</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Keepass XC를 위한 비밀번호 + 시도-응답 인증</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>비밀번호</item>
-    <item>Private/Public key</item>
+    <item>비공개/공개 키</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>인증서 유효성 검사 오류를 무시</item>
@@ -861,6 +955,8 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="autofill_enable_failed">죄송합니다. 기기가 앱 내부에서 설정을 열 수 있도록 지원 하지 않는 것 같습니다. 서비스를 사용하려면 시스템 설정으로 직접 이동하여 자동 완성을 활성화 하십시오.</string>
   <string name="show_autofill_help">자동 완성 도움말 보기</string>
   <string name="autofill_sign_in_prompt">Keepass2Android로 입력</string>
+  <string name="autofill_disable">%1$s에 대해 자동완성 비활성화</string>
+  <string name="autofill_enable_for">%1$s에 대해 자동완성 활성화</string>
   <string name="invalid_link_association">웹 도메인 %1$s를 앱 %2$s에 연결 할 수 없습니다.</string>
   <string name="enable_fingerprint_hint">Keepass2Android가 지문인식장치를 발견했습니다. 데이터베이스를 지문인식으로 잠금 해제하시겠습니까?</string>
   <string name="understand">이해했습니다.</string>

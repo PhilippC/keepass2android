@@ -32,9 +32,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Показувати назву групи під заголовками записів у результатах пошуку. Корисно, якщо декілька записів мають однакові назви.</string>
   <string name="NavigationToGroupCompleted_message">Відображення групи зараз: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Вимкнено цілі автозаповнення</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Переглядає список додатків і веб-сайти, для яких було вимкнуто автозаповнення</string>
-  <string name="OfferSaveCredentials_summary">Якщо цей параметр увімкнено, Android запитає, чи потрібно зберігати облікові дані після того, як дані були введені вручну в поля для автоматичного заповнення.</string>
-  <string name="OfferSaveCredentials_title">Пропозиція збереження облікових даних</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Перегляд списку додатків і веб-сайтів, для яких було вимкнуто автозаповнення</string>
+  <string name="OfferSaveCredentials_summary">Якщо увімкнено, Android запитуватиме, чи потрібно зберігати облікові дані після їх ручного введення в поля для автозаповнення.</string>
+  <string name="OfferSaveCredentials_title">Пропонувати зберігати облікові дані</string>
   <string name="ShowGroupInEntry_title">Назва групи при перегляді запису</string>
   <string name="unknown_uri_scheme">Вибачте! Keepass2Android не може обробити повернутий URI %1$s. Зв\'яжіться з розробником!</string>
   <string name="Entry_singular">Один запис</string>
@@ -67,6 +67,7 @@
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
   <string name="copy_username">Копіювати ім’я користувача до буфера обміну</string>
   <string name="copy_password">Копіювати пароль до буфера обміну</string>
+  <string name="copy_totp">Оберіть для копії TOTP в буфер обміну</string>
   <string name="available_through_keyboard">Вхід доступний за допомогою клавіатури KP2A</string>
   <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не вдалося відкрити діалогове вікно для вибору методу введення. Активуйте клавіатуру вручну.</string>
@@ -96,7 +97,7 @@
   <string name="fingerprint_reenable">Будь ласка, повторно увімкніть розблокування за відбитком пальця для нового головного пароля.</string>
   <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте розблокування відбитком пальця в налаштуваннях бази даних.</string>
   <string name="FingerprintInitFailed">Не вдалося ініціалізувати датчик відбитків пальців. </string>
-  <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це може статися, якщо ви додаєте або видаляєте відбитки пальців у системних настройках, тоді як Keepass2Android переглядає ваш відбиток пальця.</string>
+  <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
   <string name="enable_fingerprint_unlock_Info">    Це збереже ваш головний пароль на цьому пристрої,
     зашифрованому за допомогою Android Keystore і захищеному
     з використанням перевірки за відбитком пальця. Дозволяє розблоковувати базу паролів лише за вашим відбитком пальця.
@@ -122,7 +123,7 @@
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
   <string name="entry_binaries">Вкладені файли</string>
-  <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю адресу (URL).</string>
+  <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю URL-адресу.</string>
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити теку верхнього рівня.</string>
   <string name="error_database_exists">Цей файл вже існує.</string>
@@ -175,6 +176,7 @@
   <string name="menu_change_key">Змінити головний ключ</string>
   <string name="menu_copy_pass">Копіювати пароль</string>
   <string name="menu_copy_user">Копіювати користувача</string>
+  <string name="menu_copy_totp">Копіювати TOTP</string>
   <string name="menu_create">Створити</string>
   <string name="menu_app_settings">Налаштування</string>
   <string name="menu_db_settings">Налаштування бази даних</string>
@@ -333,7 +335,7 @@
   <string name="ActivateSearchViewOnStart_summary">Активує поле пошуку в груповому вигляді після розблокування чи пошуку запису</string>
   <string name="NoDonateOption_title">Приховати опцію внеску</string>
   <string name="NoDonateOption_summary">Це опція для можливості внеску. Вона стає доступна лише через деякий час використання Keepass2Android.</string>
-  <string name="NoDonateOption_question">Без пожертвувань ця програма не існувала б і постійно вдосконалювалася! Якщо ви ще не пожертвували, будь ласка, подумайте про це зараз</string>
+  <string name="NoDonateOption_question">Без внесків цей додаток не зміг би існувати і постійно вдосконалюватися! Якщо ви ще не зробили внесок, будь ласка, подумайте про це зараз</string>
   <string name="NoDonationReminder_title">Ніколи не запитувати про внесок</string>
   <string name="NoDonationReminder_summary">Я не дам вам ані копійки, або я вже зробив внесок. Не питати про внесок, навіть в день народження автора.</string>
   <string name="UseOfflineCache_title">Кешування бази даних</string>
@@ -473,7 +475,9 @@
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Цей тип зберігання вимагатиме доступу лише до теки \"Applications/Keepass2Android\". Якщо ви хочете використовувати наявну базу даних з вашого облікового запису PCloud, переконайтеся, що файл розміщений у цій теці.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
@@ -486,12 +490,12 @@
   <string name="help_master_password">Базу даних шифрується за допомогою введеного тут пароля. Оберіть надійний пароль для захисту бази даних! Порада: вигадайте одне чи два речення і використовуйте перші літери слів як пароль. Додайте знаки пунктуації.</string>
   <string name="hint_master_password">Виберіть головний пароль для захисту вашої бази даних:</string>
   <string name="key_file">Ключовий файл</string>
-  <string name="help_key_file">Ключовий файл загалом є паролем, що зберігається у файлі. Ключові файли зазвичай сильніші від головних паролів, оскільки ключ може бути набагато складнішим; однак їх важче тримати в секреті. Якщо ви зберігаєте базу даних у хмарному сховищі, не зберігайте там також і ключовий файл! Це зробить його даремним! Важливо: не змінюйте вміст ключового файлу після створення бази даних!</string>
+  <string name="help_key_file">Ключовий файл загалом є паролем, що зберігається у файлі. Ключові файли зазвичай надійніші, ніж головні паролі, оскільки ключ може бути набагато складнішим; однак їх важче тримати в секреті. Якщо ви зберігаєте базу даних у хмарному сховищі, не зберігайте там також і ключовий файл! В цьому випадку він стане цілком ненадійним! Важливо: не змінюйте вміст ключового файлу після створення бази даних!</string>
   <string name="hint_key_file">Виберіть, якщо ви хочете використовувати ключовий файл на додаток до головного пароля:</string>
   <string name="use_key_file">Використовувати ключовий файл</string>
   <string name="error_adding_keyfile">Помилка при додаванні ключового файлу!</string>
   <string name="init_otp">Завантажити допоміжний файл одноразових паролів…</string>
-  <string name="otp_explanation">Введіть наступний одноразовий пароль (OTP). Проведіть ваш Yubikey NEO по задній панелі пристрою для введення за допомогою NFC (потрібен додаток Yubiclip).</string>
+  <string name="otp_explanation">Введіть наступний одноразовий пароль (OTP). Проведіть ваш Yubikey NEO по задній панелі пристрою для введення з використанням NFC (необхідний додаток Yubiclip).</string>
   <string name="otp_hint">Одноразовий пароль %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Не вдалося завантажити допоміжний файл одноразових паролів!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Використайте плагін OtpKeyProv в KeePass 2.x (ПК), щоб налаштувати базу даних для використання з одноразовими паролями!</string>
@@ -538,9 +542,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Дані поточного запису</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Плагін буде отримувати всі дані про поточний запис бази даних і отримає дозвіл запропонувати дії або змінювати відображення запису.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запит власних облікових даних</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Плагін отримає дозвіл на запит облікових даних, пов\'язаних із його власним пакетом програми.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Плагін отримає дозвіл на запит облікових даних, пов\'язаних із його власним пакунком додатка.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Запит облікових даних</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Плагін отримає дозвіл на запит облікових даних для обраних веб-сайтів чи програм.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Плагін отримає дозвіл на запит облікових даних для обраних веб-сайтів чи додатків.</string>
   <string name="get_regular_version">Отримати більше типів сховищ</string>
   <string name="CertificateWarning">Увага: Не вдалося перевірити сертифікат сервера: %1$s. Встановіть відповідний кореневий сертифікат на ваш пристрій або перегляньте налаштування!</string>
   <string name="CertificateFailure">Помилка: Не вдалося перевірити сертифікат сервера! Встановіть відповідний кореневий сертифікат на ваш пристрій або перегляньте налаштування!</string>
@@ -551,7 +555,7 @@
   <string name="FileIsReadOnlyOnKitkat">У зв\'язку з обмеженнями на Android 4.4+, вибраний вами файл доступний в Keepass2Android лише для читання.</string>
   <string name="CopyFileRequired">Для можливості використання, вам потрібно копіювати його до іншого розташування.</string>
   <string name="CopyFileRequiredForEditing">Для можливості редагування, вам потрібно копіювати файл до іншого розташування.</string>
-  <string name="ClickOkToSelectLocation">Натисніть OK, щоб обрати місце, куди слід скопіювати файл.</string>
+  <string name="ClickOkToSelectLocation">Оберіть OK, щоб обрати місце, куди слід скопіювати файл.</string>
   <string name="FileReadOnlyTitle">База даних доступна тільки для читання</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android відкрив поточну базу даних у режимі тільки для читання.</string>
   <string name="ReadOnlyReason_PreKitKat">Схоже, що ви відкрили файл із зовнішньої програми. Цей спосіб не підтримує запис. Якщо ви хочете внести зміни в базу паролів, закрийте її та виберіть Змінити базу паролів. Після чого відкрийте файл за допомогою одного з доступних варіантів.</string>
@@ -593,7 +597,7 @@
    • Переконайтеся, що ви обрали правильний файл бази паролів.
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
-  &#8226; Підказка: Якщо ви вважаєте, що ваша база даних могла бути пошкоджена, або ви не пам\'ятаєте головний пароль після її зміни, ви можете спробувати відкрити останню версію файлу, натиснувши \"%1$s\" і обравши локальну резервну копію.</string>
+   &#8226; Підказка: Якщо ви вважаєте, що ваша база даних могла бути пошкоджена, або ви не пам\'ятаєте головний пароль після її зміни, ви можете спробувати відкрити останню версію файлу, торкнувшись \"%1$s\" і обравши локальну резервну копію.</string>
   <string name="HintLocalBackupOtherError">    \n
     &#8226; Підказка: Keepass2Android зберіг останню робочу версію файлу у внутрішньому сховищі. Ви можете відкрити її, торкнувшись \"%1$s\" і обравши локальну резервну копію.
   </string>
@@ -610,7 +614,7 @@
   <string name="configure_child_dbs">Налаштувати дочірні бази даних…</string>
   <string name="child_dbs_title">Дочірні бази даних</string>
   <string name="unspecified">не вказано</string>
-  <string name="child_db_explanation">Дитячі бази даних - це інші бази даних, які можна відкрити автоматично при відкритті батьківської бази даних. Таким чином, головний пароль дитини та місце розташування файлу зберігаються у батьківському. Ця функція дозволяє поділитися деякими паролями з іншою особою. Реалізація сумісна з KeeAutoExec для ПК.</string>
+  <string name="child_db_explanation">Дочірні бази даних - це інші бази даних, які можуть відкриватися автоматично при відкритті бази даних вищого рівня. Таким чином, головний пароль і розташування файлу дочірньої бази зберігаються в базі вищого рівня. Ця функція дозволяє поділитися деякими паролями з іншою особою. Реалізація сумісна з KeeAutoExec для ПК.</string>
   <string name="child_db_enabled_on_this_device">Увімкнено на цьому пристрої</string>
   <string name="child_db_enable_on_this_device">Увімкнути на цьому пристрої</string>
   <string name="child_db_disable_on_this_device">Вимкнути на цьому пристрої</string>
@@ -630,13 +634,15 @@
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
   <string name="ChangeLog_1_07">    Версія 1.07\n
-    * Можливість відкриття більш, ніж одну базу даних, сумісних з KeeAutoExec\n
-    * SFTP: Дозвіл авторизації публічних ключів, перевірка чи змінився розміщений ключ\n
+    * Виправлення збоїв на Samsung з Android 9\n
+    * Можливість відкриття більш, ніж однієї бази даних, сумісних з KeeAutoExec\n
+    * SFTP: Дозвіл авторизації публічних ключів, перевірка зміни розміщення ключа\n
     * Впровадження підтримки pCloud - подяка gilbsgilbs!\n
     * Явна підтримка Nextcloud\n
     * Вдосконалення збереження та оновлення вкладень записів\n
     * Більше можливостей налаштування поведінки програми\n
     * SSL: Довірені користувацькі сертифікати\n
+    * Вдосконалення функції автозаповнення (тепер працює з Firefox, можливість зменшення діалогових вікон)\n
     * виправлення помилок\n
   </string>
   <string name="ChangeLog_1_06">    Версія 1.06\n
@@ -961,4 +967,5 @@ Initial public release
   <string name="backup_infotext_note">Щоб створити резервну копію зараз, перейдіть до %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Ви готові до непередбачуваних випадків?</string>
   <string name="emergency_infotext_main">Ви коли-небудь думали про те, що станеться, якщо ви втратите доступ до вашої бази паролів? Що, як сталась непередбачувана подія? Завжди добре, щоб довірена людина мала доступ до вашого головного пароля. Інакше, ніхто не зможе отримати доступ до вашої бази паролів в надзвичайній ситуації.</string>
+  <string name="no_secure_display">Поточний екран не вважається безпечним. Це означає, що інші додатки можуть робити знімки екрану. Keepass2Android налаштований показувати вразливу інформацію лише на безпечних екранах. Будь ласка, перемкніться на безпечний екран (наприклад, вимкнувши HDMI-монітор), або змініть налаштування додатка.</string>
 </resources>

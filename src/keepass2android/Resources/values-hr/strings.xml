@@ -448,6 +448,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH prijenos datoteka)</string>
   <string name="filestoragename_content">Birač datoteka sustava</string>
   <string name="filestorage_setup_title">Inicijalizacija pristupa datotekama</string>

@@ -62,6 +62,8 @@
   <string name="brackets">Köşeli parantezler</string>
   <string name="cancel">İptal</string>
   <string name="Ok">Tamam</string>
+  <string name="disable_sensor">Sensörü devre dışı bırak</string>
+  <string name="enable_sensor">Sensörü etkinleştir</string>
   <string name="ClearClipboard">Pano temizlendi.</string>
   <string name="clipboard_timeout">Pano zaman aşımı</string>
   <string name="clipboard_timeout_summary">Kullanıcı adını yada parolayı panoya kopyaladıktan sonra panoyu temizleme zaman aşımı</string>
@@ -151,7 +153,7 @@
   <string name="hint_login_pass">Parola</string>
   <string name="hint_title">Başlık</string>
   <string name="hint_url">URL</string>
-  <string name="hint_override_url">uRL geçersiz kıl</string>
+  <string name="hint_override_url">URL\'yi geçersiz kıl</string>
   <string name="hint_tags">etiket1, etiket2</string>
   <string name="hint_username">Kullanıcı adı</string>
   <string name="InvalidPassword">Geçersiz parola veya anahtar dosyası.</string>
@@ -470,7 +472,12 @@
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Bu depolama türü yalnızca \"Uygulamalar/Keepass2Android\" klasörüne erişim ister. PCloud hesabınızdan mevcut bir veritabanını kullanmak istiyorsanız, lütfen dosyanın bu klasörde olduğundan emin olun.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Tüm dosyalar ve paylaşılan dosyalar</string>
+  <string name="filestoragename_onedrive2_myfiles">Dosyalarım</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Android Uygulama klasörü</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
   <string name="filestorage_setup_title">Dosya erişimi başlatma</string>
@@ -626,6 +633,15 @@
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string name="ChangeLog_1_07b">    Sürüm 1.07b-ön\n
+    * Yerel uygulama kullanılarak Argon2 performansı artırıldı (Chih-Hsuan Yen\'e teşekkürler!)\n
+    * Parmak izi simgesine basılarak parmak izini devre dışı bırakmaya izin verildi (marcoDallas sayesinde ekran altı parmak izi okuyucularında sorun yaşanmıyor!)\n
+    * Parola görünürlüğü değiştirilirken imleç konumu düzenlendi (DDoSolitary\'e teşekkürler!)\n
+    * PCloud uygulamasında iyileştirmeler (gilbsgilbs\'e tekrar teşşekürler!)\n
+    * Birkaç tarayıcı için daha otomatik doldurma desteği eklendi \n
+    * OneDrive için yeni uygulamalar: OneDrive iş desteği, paylaşılan dosyalar, seçilebilir erişim kapsamları, çoklu hesaplar ve çevrimdışı erişimle ilgili sorunları içerir\n
+    * Hata düzeltmeleri
+  </string>
   <string name="ChangeLog_1_07">    Sürüm 1.07\n
     * Samsung Android 9\'daki çökmeler için düzeltmeler\n
     * KeeAutoExec ile uyumlu birden fazla veritabanı açmanıza izin verildi\n

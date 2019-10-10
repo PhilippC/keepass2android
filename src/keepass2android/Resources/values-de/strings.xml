@@ -63,11 +63,14 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="brackets">Klammern</string>
   <string name="cancel">Abbrechen</string>
   <string name="Ok">Okay</string>
+  <string name="disable_sensor">Sensor deaktivieren</string>
+  <string name="enable_sensor">Sensor aktivieren</string>
   <string name="ClearClipboard">Zwischenablage geleert.</string>
   <string name="clipboard_timeout">Zeitsperre für Zwischenablage</string>
   <string name="clipboard_timeout_summary">Zeit bis zum Löschen der Zwischenablage nach dem Kopieren von Benutzername oder Passwort</string>
   <string name="copy_username">Benutzername in die Zwischenablage kopieren</string>
   <string name="copy_password">Kennwort in die Zwischenablage kopieren</string>
+  <string name="copy_totp">TOTP in die Zwischenablage zu kopieren</string>
   <string name="available_through_keyboard">Eintrag ist über die KP2A-Tastatur verfügbar</string>
   <string name="entry_is_available">ist verfügbar</string>
   <string name="not_possible_im_picker">Der Dialog zum Auswählen der Eingabemethode konnte nicht geöffnet werden. Bitte die Tastatur manuell aktivieren.</string>
@@ -174,6 +177,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_change_key">Datenbank-Kennwort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
+  <string name="menu_copy_totp">TOTP kopieren</string>
   <string name="menu_create">Erstellen</string>
   <string name="menu_app_settings">Einstellungen</string>
   <string name="menu_db_settings">Datenbank-Einstellungen</string>
@@ -472,7 +476,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Dieser Speichertyp fordert nur den Zugriff auf den Ordner „Applicationss/Keepass2Android” an. Wenn Sie eine bestehende Datenbank aus Ihrem PCloud-Konto verwenden möchten, stellen Sie bitte sicher, dass sich die Datei in diesem Ordner befindet.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Alle Dateien und freigegebene Dateien</string>
+  <string name="filestoragename_onedrive2_myfiles">Meine Dateien</string>
+  <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
@@ -625,6 +634,15 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Verbesserung der Leistung von Argon2 durch die Verwendung einer nativen Implementierung (Danke an Chih-Hsuan Yen!)\n
+    * Der Fingerabdruck-Leser kann durch anklicken des Fingerabdruck-Symbols deaktiviert werden (das vermeidet Probleme mit Lesern unter der Displayoberfläche, Danke an marcoDallas!)\n
+    * Cursor-Position wird nach Änderung der Sichtbarkeit von Passwörtern wiederhergestellt (Danke an DDoSolitary!)\n
+    * Verbesserungen bei der pCloud-Implementierung (noch einmal Danke an gilbsgilbs!)\n
+    * AutoFill-Unterstützung für verschiedene weitere Browser hinzugefügt \n
+    * Neue Implementierung für OneDrive: einschließlich Unterstützung für OneDrive for Business, geteilte Dateien, auswählbare Zugriffsbereiche, mehrere Konten und Behebung von Problemen mit Offline-Zugriff\n
+    * Fehlerkorrekturen
+  </string>
   <string name="ChangeLog_1_07">Version 1.07\n
 * Abstürze unter Samsung\'s Android 9 behoben\n
 * Zulassen, dass mehrere Datenbanken geöffnet werden können. Kompatibel mit KeeAutoExec\n
@@ -923,7 +941,7 @@ Erstes öffentliches Release</string>
     <item>Warnen, wenn die Validierung fehlschlägt</item>
     <item>Ungültige Zertifikate nicht akzeptieren</item>
   </string-array>
-  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die standard Tastatur.</string>
+  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die Standard-Tastatur.</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
   <string name="autofill_hint">Keepass2Android unterstützt das Autofill-Feature von Android, aber du hast es anscheinend noch nicht aktiviert.</string>
   <string name="autofill_enable">Autofill aktivieren</string>
@@ -944,4 +962,5 @@ Erstes öffentliches Release</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
   <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
+  <string name="no_secure_display">Der aktuell gültige Bildschirm ist als unsicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte wechsle zu einem sicheren Bildschirm (z.B. durch Abtrennen eines HDMI-Monitors) oder ändere die App-Einstellungen.</string>
 </resources>
