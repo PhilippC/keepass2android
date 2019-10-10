@@ -222,7 +222,7 @@
   <string name="AutoReturnFromQuery_summary">Återvänd automatiskt från frågeskärm, vid sökning efter app eller webbsajt, om det bara finns en matchande post i databasen.</string>
   <string name="KeyDerivFunc">Nyckelhärledningsfunktion</string>
   <string name="rounds">Krypteringsomgångar</string>
-  <string name="rounds_explaination">Fler krypteringsomgångar ger ytterligare skydd mot råstyrke-attacker, men kan verkligen sakta ned laddning och sparning.</string>
+  <string name="rounds_explaination">Fler krypteringsomgångar ger ytterligare skydd mot råstyrke-attacker, men kan sakta ned laddning och sparande.</string>
   <string name="rounds_hint">rundor</string>
   <string name="argon2memory">Minne för Argon 2 (bytes)</string>
   <string name="argon2parallelism">Parallellism för Argon 2</string>
@@ -333,7 +333,7 @@
   <string name="ActivateSearchViewOnStart_title">Aktiva sökfält vid start</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiverar sökfältet i gruppvyn efter upplåsning eller vid sökning efter en post</string>
   <string name="NoDonateOption_title">Dölja donationsalternativ</string>
-  <string name="NoDonateOption_summary">Denna inställning är för donatorer. Den blir tillgänglig efter ett tags användade av Keepass2Android.</string>
+  <string name="NoDonateOption_summary">Denna inställning är för donatorer. Den blir tillgänglig efter ett tags användande av Keepass2Android.</string>
   <string name="NoDonateOption_question">Utan donationer skulle inte denna app existera eller kunna utvecklas löpande! Om du inte har donerat ännu, var snäll och överväg det nu</string>
   <string name="NoDonationReminder_title">Be aldrig om donation</string>
   <string name="NoDonationReminder_summary">Jag kommer inte ge dig ett öre eller jag har redan donerat. Be inte om en donation, inte ens på utvecklarens födelsedag.</string>
