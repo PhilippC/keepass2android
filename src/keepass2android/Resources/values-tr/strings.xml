@@ -979,4 +979,5 @@
   <string name="backup_infotext_note">Şimdi bir yedek oluşturmak için %1$s &gt; %2$s &gt; %3$s \'e gidin.</string>
   <string name="emergency_infotext_head">Acil durumlar için hazır mısın?</string>
   <string name="emergency_infotext_main">Şifre veritabanınıza erişmediğinizde ne olacağını hiç düşündünüz mü? Ya bir kaza geçirirsen? Acil durumlar için ana anahtarınızı güvenilir bir kişiye iletmek iyi bir yöntemdir. Aksi halde şifrelerinize kimse erişemez.</string>
+  <string name="no_secure_display">Şu anki ekran güvenli olarak işaretlenmemiş. Bu, ekran görüntülerinin diğer uygulamalar tarafından alınabileceği anlamına geliyor. Keepass2Android, hassas bilgileri yalnızca güvenli ekranlarda gösterecek şekilde yapılandırılmıştır. Lütfen güvenli bir ekrana geçin (örneğin bir HDMI monitörünü sökerek) veya uygulama ayarlarını değiştirin.</string>
 </resources>
