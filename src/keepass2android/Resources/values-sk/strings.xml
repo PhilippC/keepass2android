@@ -62,11 +62,14 @@
   <string name="brackets">Zátvorky</string>
   <string name="cancel">Zrušiť</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Vypnúť snímač</string>
+  <string name="enable_sensor">Zapnúť snímač</string>
   <string name="ClearClipboard">Schránka vyčistená.</string>
   <string name="clipboard_timeout">Časový limit schránky</string>
   <string name="clipboard_timeout_summary">Čas pred vyčistením schránky po skopírovaní mena alebo hesla</string>
   <string name="copy_username">Meno používateľa skopírované do schránky</string>
   <string name="copy_password">Heslo skopírované do schránky</string>
+  <string name="copy_totp">Vyberte na skopírovanie jednorazového hesla do schránky</string>
   <string name="available_through_keyboard">Záznam je dostupný cez klávesnicu KP2A</string>
   <string name="entry_is_available">je dostupný</string>
   <string name="not_possible_im_picker">Nemožno otvoriť dialóg pre výber metódy vstupu. Prosím aktivujte klávesnicu manuálne.</string>
@@ -175,6 +178,7 @@
   <string name="menu_change_key">Zmeniť primárny kľúč</string>
   <string name="menu_copy_pass">Kopírovať heslo</string>
   <string name="menu_copy_user">Kopírovať používateľa</string>
+  <string name="menu_copy_totp">Kopírovať jednorazové heslo TOTP</string>
   <string name="menu_create">Vytvoriť</string>
   <string name="menu_app_settings">Nastavenia</string>
   <string name="menu_db_settings">Nastavenia databázy</string>
@@ -473,7 +477,12 @@
   <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Tento typ úložiska vyžaduje len prístup do priečinka \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z vášho konta PCloud, prosím uistite sa, že súbor je umiestnený v tomto priečinku.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Všetky súbory a zdieľané súbory</string>
+  <string name="filestoragename_onedrive2_myfiles">Moje súbory</string>
+  <string name="filestoragename_onedrive2_appfolder">Priečinok aplikácie Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Systémový prehliadač súborov</string>
   <string name="filestorage_setup_title">Inicializácia prístupu k súboru</string>
@@ -629,6 +638,15 @@
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
+  <string name="ChangeLog_1_07b">    Verzia 1.07b\n
+    * Vylepšený výkon Argon2 použitím natívnej implementácie (ďakujeme používateľovi Chih-Hsuan Yen!)\n
+    * Umožnenie zablokovania odtlačkov prstov, kliknutím na ikonu pre odtlačok prsta (zabraňuje problémom s čítačkami odtlačku prsta pod obrazovkou, ďakujeme používateľovi marcoDallas!)\n
+    * Obnovenie pozície kurzora pri prepnutí viditeľnosti hesla (ďakujeme používateľovi DDoSolitary!)\n
+    * Vylepšenia implementácie pCloud (opäť ďakujeme používateľovi gilbsgilbs!)\n
+    * Pridanie podpory automatického dopĺňania pre viacero ďalších prehliadačov\n
+    * Nová implementácia pre OneDrive: zahŕňa podporu pre OneDrive for Business, zdieľané súbory, voliteľný rozsah prístupu, viaceré kontá a opravuje problémy s prístupom offline\n
+    * Opravy chýb
+  </string>
   <string name="ChangeLog_1_07">    Verzia 1.07\n
     * Oprava pádov na systéme Android 9, pre Samsung\n
     * Umožňuje otvoriť viac ako jednu databázu, kompatibilne s KeeAutoExec\n
@@ -963,4 +981,5 @@ Prvé verejné vydanie
   <string name="backup_infotext_note">Zálohu vytvoríte prejdením na %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Ste pripravení na núdzové prípady?</string>
   <string name="emergency_infotext_main">Premýšľali ste niekedy nad tým, čo sa stane, keby ste nemali prístup ku svojej databáze hesiel? Čo keď sa niečo stane? Je dobré poskytnúť svoj primárny kľúč nejakej dôveryhodnej osobe, pre núdzové prípady. V opačnom prípade by nikto nemal prístup k Vaším heslám.</string>
+  <string name="no_secure_display">Aktuálne platný displej nie je označený ako zabezpečený. Znamená to, že ostatné aplikácie si môžu vytvárať snímky obrazovky. Keepass2Android je nakonfigurovaný na zobrazovanie citlivých informácií len na zabezpečených displejoch. Prosím prepnite na zabezpečený displej (napríklad odpojením monitora HDMI) alebo zmeňte nastavenia aplikácie.</string>
 </resources>

@@ -67,6 +67,7 @@
   <string name="clipboard_timeout_summary">Задержка очистки после копирования в буфер обмена логина или пароля</string>
   <string name="copy_username">Скопировать имя пользователя в буфер обмена</string>
   <string name="copy_password">Скопировать пароль в буфер обмена</string>
+  <string name="copy_totp">Скопировать одноразовый пароль в буфер обмена</string>
   <string name="available_through_keyboard">Вход доступен с помощью клавиатуры KP2A</string>
   <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не удалось открыть диалоговое окно для выбора метода ввода. Пожалуйста, активируйте клавиатуру вручную.</string>
@@ -172,6 +173,7 @@
   <string name="menu_change_key">Изменить мастер-ключ</string>
   <string name="menu_copy_pass">Скопировать пароль</string>
   <string name="menu_copy_user">Скопировать пользователя</string>
+  <string name="menu_copy_totp">Скопировать одноразовый пароль</string>
   <string name="menu_create">Создать</string>
   <string name="menu_app_settings">Настройки</string>
   <string name="menu_db_settings">Настройки базы данных</string>
@@ -470,7 +472,9 @@
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Этот тип хранения будет запрашивать доступ только к папке \"Приложения/Keepass2Android\". Если вы хотите использовать существующую базу данных из вашей учетной записи PCloud, пожалуйста, убедитесь, что файл помещен в эту папку.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
   <string name="filestoragename_content">Системное средство выбора файлов</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
@@ -945,4 +949,5 @@
   <string name="backup_infotext_note">Для создания резервной копии, перейдите %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">А Вы готовы к чрезвычайным ситуациям?</string>
   <string name="emergency_infotext_main">Вы когда-нибудь задумывались, что произойдет, если Вы больше не сможете получить доступ к БД с паролями? Что делать, если это произойдет? Хорошим способом будет передача Вашего мастер-ключа нескольким доверенным лицам как раз для таких чрезвычайных ситуаций. В противном случае никто не будет иметь доступ к Вашим паролям.</string>
+  <string name="no_secure_display">Текущий дисплей не отмечен как безопасный. Это значит, что другие приложения могут сделать снимок экрана. Keepass2Android настроен отображать чувствительную информацию только на безопасных дисплеях. Пожалуйста, переключитесь на безопасный дисплей (пр. отсоедините монитор, подключенный по HDMI) или измените настройки приложения.</string>
 </resources>

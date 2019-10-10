@@ -289,6 +289,7 @@
   <string name="NoDonateOption_title">Скрий опцията за дарения</string>
   <string name="NoDonateOption_summary">Тази настройка е за дарители. Тя е достъпна след използване на Keepass2Android за известно време.</string>
   <string name="UseOfflineCache_title">Кеширане на базатаданни</string>
+  <string name="CreateBackups_title">Локални архиви</string>
   <string name="AcceptAllServerCertificates_title">SSL сертификати</string>
   <string name="AcceptAllServerCertificates_summary">Дефинирайте поведението когато сертифицирането пропадне. Бел.: вие можете да инсталирате сертификати ако валидирането пропадне!</string>
   <string name="ClearOfflineCache_title">Изчисване на кеша?</string>

@@ -51,6 +51,7 @@
   <string name="unlock_database_title">Lås opp databasen</string>
   <string name="brackets">Parenteser</string>
   <string name="cancel">Avbryt</string>
+  <string name="Ok">Ok</string>
   <string name="ClearClipboard">Utklippstavlen er tømt.</string>
   <string name="clipboard_timeout">Tidsavbrudd på utklippstavlen</string>
   <string name="clipboard_timeout_summary">Tid før utklippstavlen blir tømt etter at brukarnavnet eller passordet er kopiert</string>
@@ -419,6 +420,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragename_gdrive">Google Disk</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Systemfilvelger</string>
   <string name="filestorage_setup_title">Filtilgang initialiseres</string>

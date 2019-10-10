@@ -403,6 +403,7 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragename_gdrive">Penyimpanan Google</string>
   <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">TFS (Transfer File SSH)</string>
   <string name="filestoragename_content">Pemilih file sistem</string>
   <string name="filestorage_setup_title">Inisialisasi akses file</string>
