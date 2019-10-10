@@ -100,9 +100,9 @@
   <string name="fingerprint_reenable2">Por favor, desbloquée con contraseña y luego vuelva a activar Desbloquear con huella en la configuración de la base de datos.</string>
   <string name="FingerprintInitFailed">Error al inicializar el sensor de huellas dactilares. </string>
   <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
-  <string name="enable_fingerprint_unlock_Info">Esto almacenará tu contraseña maestra en este dispositivo, cifrada con las claves de Android Keystore y protegidos
+  <string name="enable_fingerprint_unlock_Info">Esto almacenará tu contraseña maestra en este dispositivo, cifrada con las claves del almacén de claves de Android y protegidos
 mediante la autenticación de huellas dactilares. Esto permite desbloquear la base de datos solamente con la huella dactilar.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella dactilar en lugar del código de QuickUnlock. No requiere almacenar ninguna información relacionada con la contraseña maestra.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella dactilar en lugar del código de QuickUnlock. No se almacena ninguna información relacionada con la contraseña maestra.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
@@ -288,7 +288,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
   <string name="QuickUnlockDefaultEnabled_summary">Determina si QuickUnlock está habilitado de forma predeterminada o no.</string>
   <string name="ViewDatabaseSecure_title">Evitar visualización de la base de datos</string>
-  <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar tomas de plantallas y no se muestra el thumbnail de la app en la lista de applicaciones recientes.</string>
+  <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar capturas de pantalla y no se muestra la miniatura de la app en la lista de aplicaciones recientes.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar el icono de QuickUnlock</string>
@@ -301,7 +301,7 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="BinaryDirectory_title">Ubicación de archivos adjuntos</string>
   <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
-  <string name="SaveAttachmentDialog_text">Por favor selecciona la ubicacíon donde guardar el archivo adjunto.</string>
+  <string name="SaveAttachmentDialog_text">Por favor, seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Exportar a archivo...</string>
   <string name="SaveAttachmentDialog_open">Guardar en la caché y abrir</string>
   <string name="ShowAttachedImage">Mostrar con visor de imágenes interno</string>
@@ -309,15 +309,15 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="SaveAttachment_Failed">No se puede guardar el archivo adjunto en %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Recordar el texto de búsqueda?</string>
   <string name="AddUrlToEntryDialog_text">¿Quiere guardar el texto de buqueda \"%1$s\" en la entrada seleccionada para encontrarlo automáticamente la próxima vez?</string>
-  <string name="error_invalid_expiry_date">¡Formato de fecha/hora inválida para establecer fecha de caducidad!</string>
-  <string name="error_string_key">Se requiere un nombre por cada entrada.</string>
+  <string name="error_invalid_expiry_date">¡Formato de fecha/hora inválido para establecer fecha de caducidad!</string>
+  <string name="error_string_key">Se requiere un nombre de campo para cada cadena.</string>
   <string name="error_string_duplicate_key">Un nombre de campo no puede utilizarse dos veces (%1$s).</string>
   <string name="field_name">Nombre del campo</string>
   <string name="field_value">Valor del campo</string>
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Agregar archivo adjunto...</string>
-  <string name="add_extra_string">Agregar campo adicional</string>
-  <string name="delete_extra_string">Eliminar campo adicional</string>
+  <string name="add_extra_string">Añadir cadena adicional</string>
+  <string name="delete_extra_string">Eliminar cadena adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloqueado. QuickUnlock habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
   <string name="credentials_dialog_title">Escriba las credenciales de servidor</string>
