@@ -725,4 +725,5 @@ Kezdeti közösségi kiadás</string>
   <string name="backup_infotext_note">Biztonsági másolat készítéséhez menjen ide %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Felkészült vészhelyzeti esetekre?</string>
   <string name="emergency_infotext_main">Gondolkozott már azon, hogy mi történne, ha nem tudna többé a jelszó adatbázisához hozzáférni? Mi történik, ha baleset éri? Hasznos lehet vészhelyzet esetére a főkulcsot (jelszó) megosztani egy olyan személlyel, akiben megbízik. Különben senki sem fog tudni hozzáférni a jelszavaihoz.</string>
+  <string name="no_secure_display">A jelenleg használt kijelző nincs biztonságosként megjelölve, ami azt jelenti, hogy más alkalmazások képernyőképeket készíthetnek. A Keepass2Android jelenlegi beállítása csak biztonságos képernyőkön engedélyezi érzékeny információ megjelenítését. Kérjük, váltson át egy biztonságos kijelzőre (például válassza le a HDMI monitort) vagy módosítsa az alkalmazás-beállításokat.</string>
 </resources>
