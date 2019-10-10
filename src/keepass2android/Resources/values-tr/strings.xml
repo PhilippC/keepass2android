@@ -69,6 +69,7 @@
   <string name="clipboard_timeout_summary">Kullanıcı adını yada parolayı panoya kopyaladıktan sonra panoyu temizleme zaman aşımı</string>
   <string name="copy_username">Kullanıcı adını panoya kopyalamak için seçin</string>
   <string name="copy_password">Parolayı panoya kopyalamak için seçin</string>
+  <string name="copy_totp">Parolayı panoya kopyalamak için seçin</string>
   <string name="available_through_keyboard">Kayıt KP2A klavyesi ile kullanılabilir</string>
   <string name="entry_is_available">kullanılabilir</string>
   <string name="not_possible_im_picker">Giriş metodunu seçmek için pencereyi açamadı. Lütfen klavyeyi elden etkinleştirin.</string>
@@ -174,6 +175,7 @@
   <string name="menu_change_key">Asıl anahtarı değiştir</string>
   <string name="menu_copy_pass">Parolayı kopyala</string>
   <string name="menu_copy_user">Kullanıcı adını kopyala</string>
+  <string name="menu_copy_totp">Parolayı kopyala</string>
   <string name="menu_create">Yeni</string>
   <string name="menu_app_settings">Ayarlar</string>
   <string name="menu_db_settings">Veritabanı ayarları</string>
