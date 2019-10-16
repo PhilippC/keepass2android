@@ -62,11 +62,14 @@
   <string name="brackets">Nawiasy</string>
   <string name="cancel">Anuluj</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Wyłącz czujnik</string>
+  <string name="enable_sensor">Włącz czujnikl</string>
   <string name="ClearClipboard">Schowek wyczyszczony.</string>
   <string name="clipboard_timeout">Czas wygaśnięcia schowka</string>
   <string name="clipboard_timeout_summary">Czas po skopiowaniu nazwy użytkownika lub hasła, po którym zostaną one usunięte ze schowka</string>
   <string name="copy_username">Kopiuj nazwę użytkownika do schowka</string>
   <string name="copy_password">Kopiuj hasło do schowka</string>
+  <string name="copy_totp">Zaznacz, aby skopiować TOTP do schoweka</string>
   <string name="available_through_keyboard">Wpis jest dostępny za pośrednictwem klawiatury KP2A</string>
   <string name="entry_is_available">jest dostępny</string>
   <string name="not_possible_im_picker">Nie można otworzyć okna dialogowego wyboru metody wprowadzania. Aktywuj klawiaturę ręcznie w ustawieniach systemu.</string>
@@ -476,7 +479,9 @@
   <string name="filestoragehelp_pcloud">Ten typ magazynowania wymaga tylko dostępu do folderu „Applications/Keepass2Android”. Jeśli chcesz używać istniejącej bazy danych z twojego konta PCloud, upewnij się, że plik jest umieszczony w tym folderze.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Wszystkie pliki i współdzielone pliki</string>
   <string name="filestoragename_onedrive2_myfiles">Moje pliki</string>
+  <string name="filestoragename_onedrive2_appfolder">Katalog KeePass2Android</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
