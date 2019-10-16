@@ -953,4 +953,5 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="backup_infotext_note">Aby stworzyć kopię zapasową, przejdź do %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Czy jesteś gotowy/a na sytuacje awaryjne?</string>
   <string name="emergency_infotext_main">Czy zastanawiałeś/aś się co się stanie, jeśli nie będziesz w stanie uzyskać dostępu do bazy haseł? Co zrobić, jeśli masz wypadek? Dobrą praktyką jest przekazanie swojego klucza głównego do niektórych zaufanych osób na wypadek sytuacji nadzwyczajnych. Inaczej nikt nie będzie mieć dostępu do haseł.</string>
+  <string name="no_secure_display">Aktualny wyświetlacz nie jest oznaczony jako bezpieczny. To oznacza, że zrzuty ekranu mogą być przechwycone przez inne aplikacje. Keepass2Android jest skonfigurowany, aby wyświetlać wrażliwe informacje tylko na bezpiecznym ekranie. Proszę przełącz się na bezpieczny ekran (np. przez odłączenie monitora HDMI) lub zmień ustawienia aplikacji.</string>
 </resources>
