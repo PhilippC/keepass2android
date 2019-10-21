@@ -79,7 +79,8 @@ namespace keepass2android
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppSend, false))
 					_displayedProtocolIds.Add("androidsend");
 #if NoNet
-				_displayedProtocolIds.Add("kp2a");
+                //don't display "get regular version", is classified as deceptive ad by Google. Haha.
+				//_displayedProtocolIds.Add("kp2a");
 #endif
 			}
 

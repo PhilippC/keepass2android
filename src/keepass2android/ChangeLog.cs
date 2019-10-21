@@ -9,6 +9,7 @@ using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Text;
 using Android.Text.Method;
@@ -147,17 +148,32 @@ namespace keepass2android
 				bool title = true;
 				if (isFirst)
 				{
-					if (versionLog2.EndsWith("\n") == false)
-						versionLog2 += "\n";
-					string donateUrl = ctx.GetString(Resource.String.donate_url,
-														 new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
-						ctx.PackageName
-					});
-					versionLog2 += " * <a href=\"" + donateUrl
-						+ "\">" +
-						ctx.GetString(Resource.String.ChangeLog_keptDonate)
-							+ "<a/>";
-					isFirst = false;
+					
+				    bool showDonateOption = true;
+				    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+				    if (prefs.GetBoolean(ctx.GetString(Resource.String.NoDonationReminder_key), false))
+				        showDonateOption = false;
+
+				    long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
+
+				    if (usageCount <= 5)
+				        showDonateOption = false;
+
+				    if (showDonateOption)
+				    {
+				        if (versionLog2.EndsWith("\n") == false)
+				            versionLog2 += "\n";
+				        string donateUrl = ctx.GetString(Resource.String.donate_url,
+				            new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
+				                ctx.PackageName
+				            });
+
+                        versionLog2 += " * <a href=\"" + donateUrl
+				                       + "\">" +
+				                       ctx.GetString(Resource.String.ChangeLog_keptDonate)
+				                       + "<a/>";
+				    }
+				    isFirst = false;
 				}
 				foreach (string line in versionLog2.Split('\n'))
 				{
