@@ -26,6 +26,7 @@ using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 using Exception = System.Exception;
 using String = System.String;
@@ -33,26 +34,22 @@ using String = System.String;
 namespace keepass2android
 {
 
-	public class Database {
-		
-
-		public Dictionary<PwUuid, PwGroup> Groups = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
-		public Dictionary<PwUuid, PwEntry> Entries = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
-		public HashSet<PwGroup> Dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
+	public class Database
+	{
+	    public HashSet<IStructureItem> Elements = new HashSet<IStructureItem>();
+		public Dictionary<PwUuid, PwGroup> GroupsById = new Dictionary<PwUuid, PwGroup>(new PwUuidEqualityComparer());
+		public Dictionary<PwUuid, PwEntry> EntriesById = new Dictionary<PwUuid, PwEntry>(new PwUuidEqualityComparer());
 		public PwGroup Root;
 		public PwDatabase KpDatabase;
 		public IOConnectionInfo Ioc 
 		{
 			get
 			{
-				return KpDatabase == null ? null : KpDatabase.IOConnectionInfo;
+                
+                return KpDatabase?.IOConnectionInfo;
+                
 			}
 		}
-
-		/// <summary>
-		/// Information about the last opened entry. Includes the entry but also transformed fields.
-		/// </summary>
-		public PwEntryOutput LastOpenedEntry { get; set; }
 
 		/// <summary>
 		/// if an OTP key was used, this property tells the location of the OTP auxiliary file.
@@ -73,31 +70,14 @@ namespace keepass2android
             _app = app;
 			CanWrite = true; //default
         }
-		
-		private bool _loaded;
 
-        private bool _reloadRequested;
-		private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
+	    private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
 
-		public bool ReloadRequested
-        {
-            get { return _reloadRequested; }
-            set { _reloadRequested = value; }
-        }
+		public bool ReloadRequested { get; set; }
 
-		public bool Loaded {
-			get { return _loaded;}
-			set { _loaded = value; }
-		}
-
-		public bool DidOpenFileChange()
+	    public bool DidOpenFileChange()
 		{
-			if (Loaded == false)
-			{
-				return false;
-			}
 			return _app.GetFileStorage(Ioc).CheckForFileChangeFast(Ioc, LastFileVersion);
-			
 		}
 
 
@@ -112,32 +92,20 @@ namespace keepass2android
 			Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
 			var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
 			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseFormat);
-			try
-			{
-				LastFileVersion = fileVersion;
+		    LastFileVersion = fileVersion;
 
-				status.UpdateSubMessage("");
+		    status.UpdateSubMessage("");
 
-				Root = pwDatabase.RootGroup;
-				PopulateGlobals(Root);
+		    Root = pwDatabase.RootGroup;
+		    PopulateGlobals(Root);
 
 				
-				KpDatabase = pwDatabase;
-				SearchHelper = new SearchDbHelper(app);
+		    KpDatabase = pwDatabase;
+		    SearchHelper = new SearchDbHelper(app);
 
-				_databaseFormat = databaseFormat;
+		    _databaseFormat = databaseFormat;
 
-				CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
-				Loaded = true;
-			}
-			catch (Exception)
-			{
-				Clear();				
-				throw;
-			}
-			
-
-			
+		    CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
 		}
 
 		/// <summary>
@@ -219,8 +187,7 @@ namespace keepass2android
 
 		public void SaveData()  {
             
-			KpDatabase.UseFileTransactions = _app.GetBooleanPreference(PreferenceKey.UseFileTransactions);
-			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, KpDatabase.UseFileTransactions))
+			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 			{
 				DatabaseFormat.Save(KpDatabase, trans.OpenFile());
 				
@@ -239,14 +206,18 @@ namespace keepass2android
 			{
 				if (checkForDuplicateUuids)
 				{
-					if (Entries.ContainsKey(e.Uuid))
+					if (EntriesById.ContainsKey(e.Uuid))
 					{
-						throw new DuplicateUuidsException("Same UUID for entries '"+Entries[e.Uuid].Strings.ReadSafe(PwDefs.TitleField)+"' and '"+e.Strings.ReadSafe(PwDefs.TitleField)+"'.");
+						throw new DuplicateUuidsException("Same UUID for entries '"+EntriesById[e.Uuid].Strings.ReadSafe(PwDefs.TitleField)+"' and '"+e.Strings.ReadSafe(PwDefs.TitleField)+"'.");
 					}
 					
 				}
-				Entries [e.Uuid] = e;
+				EntriesById [e.Uuid] = e;
+			    Elements.Add(e);
 			}
+
+		    GroupsById[currentGroup.Uuid] = currentGroup;
+		    Elements.Add(currentGroup);
 			foreach (PwGroup g in childGroups) 
 			{
 				if (checkForDuplicateUuids)
@@ -258,7 +229,6 @@ namespace keepass2android
 					}
 					 * */
 				}
-				Groups[g.Uuid] = g;
 				PopulateGlobals(g);
 			}
 		}
@@ -266,33 +236,15 @@ namespace keepass2android
 		{
 			PopulateGlobals(currentGroup, _app.CheckForDuplicateUuids);
 		}
-		
-		public void Clear() {
-			_loaded = false; 
-			
-			Groups.Clear();
-			Entries.Clear();
-			Dirty.Clear();
-			DrawableFactory.Clear();
-			
-			Root = null;
-			KpDatabase = null;
-			
-			CanWrite = true;
-			_reloadRequested = false;
-			OtpAuxFileIoc = null;
-		    LastOpenedEntry = null;
-		}
-		
-		public void MarkAllGroupsAsDirty() {
-			foreach ( PwGroup group in Groups.Values ) {
-				Dirty.Add(group);
-			}
-			
 
-		}
-		
-		
+
+	    public void UpdateGlobals()
+	    {
+	        EntriesById.Clear();
+	        GroupsById.Clear();
+	        Elements.Clear();
+            PopulateGlobals(Root);
+	    }
 	}
 
 	[Serializable]

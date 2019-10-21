@@ -15,6 +15,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 using System;
+using System.Linq;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -71,8 +72,9 @@ namespace keepass2android.view
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
 			
-			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = App.Kp2a.GetDb().DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
+			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
 
 			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
 			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
@@ -106,15 +108,16 @@ namespace keepass2android.view
 		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
+		    Database db = App.Kp2a.FindDatabaseForElement(_entry);
 
             ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Context, App.Kp2a.GetDb().KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
+				db.DrawableFactory.AssignDrawableTo(iv, Context, db.KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
 			} else
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, Context, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, false);
+				db.DrawableFactory.AssignDrawableTo(iv, Context, db.KpDatabase, pw.IconId, pw.CustomIconUuid, false);
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);
@@ -138,7 +141,7 @@ namespace keepass2android.view
 				_textView.SetTextColor(new Color((int)_defaultTextColor));
 
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
-			detail = SprEngine.Compile(detail, new SprContext(_entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
+			detail = SprEngine.Compile(detail, new SprContext(_entry, db.KpDatabase, SprCompileFlags.All));
 
 			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
 			{
@@ -163,6 +166,10 @@ namespace keepass2android.view
 
 			else {
 				String groupDetail = pw.ParentGroup.GetFullPath();
+			    if (App.Kp2a.OpenDatabases.Count() > 1)
+			    {
+			        groupDetail += "(" + App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc) + ")";
+			    }
 
 				var strGroupDetail = new SpannableString (groupDetail);
 

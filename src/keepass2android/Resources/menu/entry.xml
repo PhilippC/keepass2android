@@ -27,6 +27,11 @@
         android:icon="@drawable/ic_menu_view"
         app:showAsAction="ifRoom"
     />
+  <item android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:title="@string/menu_delete"
+        app:showAsAction="ifRoom"
+  />
     <item android:id="@+id/menu_donate"
         android:title="@string/menu_donate"
         app:showAsAction="ifRoom"

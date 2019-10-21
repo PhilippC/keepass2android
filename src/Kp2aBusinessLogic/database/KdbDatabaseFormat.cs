@@ -216,9 +216,16 @@ namespace keepass2android
 
 		private DateTime JavaTimeToCSharp(long javatime)
 		{
+		    try
+		    {
+		        var utcTime = new DateTime(1970, 1, 1).AddMilliseconds(javatime);
+		        return TimeZoneInfo.ConvertTimeFromUtc(utcTime, TimeZoneInfo.Local);
+		    }
+		    catch (ArgumentOutOfRangeException)
+		    {
+		        return DateTime.MinValue;
+		    }
 			
-			var utcTime = new DateTime(1970, 1, 1).AddMilliseconds(javatime);
-			return TimeZoneInfo.ConvertTimeFromUtc(utcTime, TimeZoneInfo.Local);
 
 		}
 #endif

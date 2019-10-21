@@ -2,7 +2,7 @@ Keepass2Android's apk is pretty big, e.g. when comparing to Keepassdroid. The ma
 
 Here's a list of what is contained in the Keepass2Android 0.9.1 application package:
 
-{{
+```
 Mono for Android		
 			.net dlls			5.0 MB
 			Runtime				2.5 MB				
@@ -22,4 +22,4 @@ Java/Mono bindings					0.5 MB
 rest							0.3 MB		
 
 TOTAL							13 MB
-}}
+```

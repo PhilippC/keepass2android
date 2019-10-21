@@ -10,8 +10,9 @@
     <RootNamespace>JavaFileStorageBindings</RootNamespace>
     <AssemblyName>JavaFileStorageBindings</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,7 +61,6 @@
     </LibraryProjectZip>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <LibraryProjectZip Include="Jars\adal-1.14.0.aar" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
@@ -82,10 +82,10 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-digest-1.7.jar" />
+    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\gson-2.3.1.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp-digest-1.7.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\msa-auth-0.8.6\classes-msa-auth.jar" />
@@ -142,12 +142,15 @@
     <EmbeddedReferenceJar Include="Jars\jackson-core-2.7.4.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="Jars\dropbox-core-sdk-3.0.3.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\okhttp-3.9.0.jar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\okio-1.13.0.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="Jars\dropbox-core-sdk-3.1.1.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\gson-2.8.1.jar" />
   </ItemGroup>
 </Project>

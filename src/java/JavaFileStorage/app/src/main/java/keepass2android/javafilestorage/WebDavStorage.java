@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -70,9 +71,18 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         String scheme = filename.substring(0, filename.indexOf("://"));
         filename = filename.substring(scheme.length() + 3);
-        String userPwd = filename.substring(0, filename.indexOf('@'));
-        ci.username = decode(userPwd.substring(0, userPwd.indexOf(":")));
-        ci.password = decode(userPwd.substring(userPwd.indexOf(":") + 1));
+        int idxAt = filename.indexOf('@');
+        if (idxAt >= 0)
+        {
+            String userPwd = filename.substring(0, idxAt);
+            int idxColon = userPwd.indexOf(":");
+            if (idxColon >= 0);
+            {
+                ci.username = decode(userPwd.substring(0, idxColon));
+                ci.password = decode(userPwd.substring(idxColon + 1));
+            }
+        }
+
         ci.URL = scheme + "://" +filename.substring(filename.indexOf('@') + 1);
         return ci;
     }
@@ -149,13 +159,19 @@ public class WebDavStorage extends JavaFileStorageBase {
             sslContext.init(null, new TrustManager[] { trustManager }, null);
             SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
+
             builder = builder.sslSocketFactory(sslSocketFactory, trustManager)
                              .hostnameVerifier(new DecoratedHostnameVerifier(OkHostnameVerifier.INSTANCE, mCertificateErrorHandler));
 
 
+            builder.connectTimeout(25, TimeUnit.SECONDS);
+            builder.readTimeout(25, TimeUnit.SECONDS);
+            builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
         OkHttpClient client =  builder.build();
+
+
         return client;
     }
 

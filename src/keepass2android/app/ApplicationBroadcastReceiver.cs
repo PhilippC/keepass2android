@@ -17,10 +17,10 @@ namespace keepass2android
 			switch (intent.Action)
 			{
 				case Intents.LockDatabase:
-					App.Kp2a.LockDatabase();
+					App.Kp2a.Lock();
 					break;
 				case Intents.CloseDatabase:
-					App.Kp2a.LockDatabase(false /*no quick unlock*/);
+					App.Kp2a.Lock(false /*no quick unlock*/);
 					break;
 			}
 		}

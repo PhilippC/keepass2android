@@ -7,16 +7,18 @@
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="26" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher_offline" android:label="KP2A entry search" android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher_offline" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_nonet.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
-	<application android:label="keepass2android" android:icon="@mipmap/ic_launcher_offline">
+	<application 
+		android:label="keepass2android" 
+		android:icon="@mipmap/ic_launcher_offline"
+		android:networkSecurityConfig="@xml/network_security_config"
+	>
+		<uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+	
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.localfile" android:exported="false" />
 		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android_nonet.android-filechooser.history" android:exported="false" />
 		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
-			<intent-filter>
-				<action android:name="android.intent.action.GET_CONTENT" />
-				<data android:mimeType="*/*" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.OPENABLE" />
-			</intent-filter>
 		</activity>
 
 		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
@@ -42,7 +44,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.PasswordActivity" android:windowSoftInputMode="adjustResize">
+		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.SelectCurrentDbActivity" android:windowSoftInputMode="adjustResize">
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -53,7 +55,7 @@
       </intent-filter>
 	  
 	  <intent-filter>
-        <action android:name="kp2a.action.PasswordActivity" />
+        <action android:name="kp2a.action.SelectCurrentDbActivity" />
         <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
 	  
@@ -114,8 +116,18 @@
           android:host="my.yubico.com"
           android:pathPrefix="/neo"/>
       </intent-filter>
+	  
+			<intent-filter android:label="@string/kp2a_findUrl">
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="keepass2android.ACTION_START_WITH_TASK" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 		</activity>
-		<uses-library required="false" name="com.sec.android.app.multiwindow" />
+		<uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
 		<meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
 		<meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
 		<meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />

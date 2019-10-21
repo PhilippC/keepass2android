@@ -160,3 +160,12 @@ src/java/Keepass2AndroidPluginSDK2/build/generated/mockable-Google-Inc.-Google-A
 /src/.vs
 /src/JavaFileStorageBindings/Jars/JavaFileStorage-release.aar
 /src/PluginSdkBinding/Jars/app-debug.aar
+/src/java/KP2AKdbLibrary/libs/arm64-v8a/libfinal-key.so
+/src/java/KP2AKdbLibrary/libs/x86_64/libfinal-key.so
+/src/java/KP2ASoftkeyboard_AS/app/src/main/libs/arm64-v8a/libkp2akeyboard_jni.so
+/src/java/KP2ASoftkeyboard_AS/app/src/main/libs/armeabi-v7a/libkp2akeyboard_jni.so
+/src/java/KP2ASoftkeyboard_AS/app/src/main/libs/x86/libkp2akeyboard_jni.so
+/src/java/KP2ASoftkeyboard_AS/app/src/main/libs/x86_64/libkp2akeyboard_jni.so
+/src/java/KP2AKdbLibrary/app/build
+/src/java/KP2ASoftkeyboard_AS/app/.cxx
+/src/java/KP2ASoftkeyboard_AS/app/src/main/libs

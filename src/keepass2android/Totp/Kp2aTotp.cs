@@ -13,10 +13,12 @@ namespace keepass2android
 		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[] { new TrayTotpPluginAdapter(), new KeeOtpPluginAdapter(), new KeeWebOtpPluginAdapter() };
 
 		public void OnOpenEntry()
-		{
-			foreach (ITotpPluginAdapter adapter in _pluginAdapters)
+        {
+            if (App.Kp2a.LastOpenedEntry == null)
+                return;
+            foreach (ITotpPluginAdapter adapter in _pluginAdapters)
 			{
-				TotpData totpData = adapter.GetTotpData(App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
+				TotpData totpData = adapter.GetTotpData(App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
 				if (totpData.IsTotpEnry)
 				{
 					new UpdateTotpTimerTask(Application.Context, adapter).Run();

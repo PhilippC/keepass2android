@@ -293,7 +293,7 @@ namespace keepass2android
 			return 0;
 		}
 	}
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		Theme = "@style/MyTheme_ActionBar")]
 	public class ImageViewActivity : LockCloseActivity
 	{
@@ -315,9 +315,12 @@ namespace keepass2android
 			_activityDesign.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.ImageViewActivity);
-			var uuid = new PwUuid(MemUtil.HexStringToByteArray(Intent.GetStringExtra("EntryId")));
+
+		    ElementAndDatabaseId fullId = new ElementAndDatabaseId(Intent.GetStringExtra("EntryId"));
+
+            var uuid = new PwUuid(MemUtil.HexStringToByteArray(fullId.ElementIdString));
 			string key = Intent.GetStringExtra("EntryKey");
-			var binary = App.Kp2a.GetDb().Entries[uuid].Binaries.Get(key);
+			var binary = App.Kp2a.GetDatabase(fullId.DatabaseId).EntriesById[uuid].Binaries.Get(key);
 			SupportActionBar.Title = key;
 			byte[] pbdata = binary.ReadData();
 

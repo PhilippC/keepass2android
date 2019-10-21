@@ -135,7 +135,75 @@
           android:text="@string/dont_show_again"
           style="@style/BottomBarButton" />
       </LinearLayout>
-      
+
+
+      <LinearLayout
+        android:id="@+id/dbreadonly_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <TextView android:id="@+id/dbreadonly_infotext_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <Button
+          android:id="@+id/info_dont_show_dbreadonly_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/child_db_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <TextView android:id="@+id/myinfotext" android:text="@string/unconfigured_child_dbs"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <RelativeLayout
+          android:id="@+id/child_db_buttons"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:baselineAligned="false">
+
+          <Button
+            android:id="@+id/configure_child_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="4dp"
+            android:text="@string/configure_child_dbs"
+            style="@style/BottomBarButton" />
+        </RelativeLayout>
+
+        <Button
+          android:id="@+id/info_dont_show_child_db_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
+      </LinearLayout>
+
       <LinearLayout
         android:id="@+id/notification_info_android8_infotext"
         android:layout_width="match_parent"

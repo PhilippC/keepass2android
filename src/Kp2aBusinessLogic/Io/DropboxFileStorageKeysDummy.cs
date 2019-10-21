@@ -2,12 +2,12 @@ namespace keepass2android.Io
 {
 	public partial class DropboxFileStorage
 	{
-		private const string AppKey = "";
-		private const string AppSecret = "";
+		private const string AppKey = "dummy";
+		private const string AppSecret = "dummy";
 	}
 	public partial class DropboxAppFolderFileStorage
 	{
-		private const string AppKey = "";
-		private const string AppSecret = "";
+		private const string AppKey = "dummy";
+		private const string AppSecret = "dummy";
 	}
 }

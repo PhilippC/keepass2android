@@ -31,7 +31,7 @@ namespace keepass2android
 
 	    public DeleteEntry(Activity activiy, IKp2aApp app, PwEntry entry, OnFinish finish):base(activiy, finish, app) {
 			Ctx = activiy;
-			Db = app.GetDb();
+			Db = app.FindDatabaseForElement(entry);
 			_entry = entry;
 			
 		}
@@ -40,7 +40,7 @@ namespace keepass2android
 		{
 			get
 			{
-				return App.GetDb().DatabaseFormat.CanRecycle && CanRecycleGroup(_entry.ParentGroup);
+				return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_entry.ParentGroup);
 			}
 		}
 

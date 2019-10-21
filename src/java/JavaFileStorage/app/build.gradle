@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
@@ -21,6 +21,10 @@ android {
     }
 }
 
+/*
+NOTE: If you change dependencies here, don't forget to update the jar files in JavaFileStorageBindings as well!
+ */
+
 dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.burgstaller:okhttp-digest:1.7'
@@ -30,11 +34,13 @@ dependencies {
         exclude group: 'com.google.android.google-play-services'
     }
     compile 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
-    compile 'com.dropbox.core:dropbox-core-sdk:3.0.3'
+    compile 'com.dropbox.core:dropbox-core-sdk:3.1.1'
     //onedrive:
     compile('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
     }
+    compile 'com.pcloud.sdk:java-core:1.1.0'
+    compile 'com.pcloud.sdk:android:1.1.0'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.microsoft.services.msa:msa-auth:0.8.6'
     compile 'com.microsoft.aad:adal:1.14.0'

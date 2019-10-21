@@ -147,7 +147,7 @@ namespace keepass2android
 			yield return new Reminder
 			{
 				From = new DateTime(thisYear, 05, 11),
-				To = new DateTime(thisYear, 05, 16),
+				To = new DateTime(thisYear, 05, 18),
 				Key = "DonationBirthday" + thisYear,
 				ResourceToShow = Resource.Layout.donate_bdaymissed
 			};

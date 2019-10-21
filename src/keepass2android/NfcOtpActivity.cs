@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -8,6 +9,7 @@ using Android.Widget;
 using Java.Util;
 using Java.Util.Regex;
 using Keepass2android.Yubiclip.Scancode;
+using Pattern = Java.Util.Regex.Pattern;
 
 namespace keepass2android
 {
@@ -23,12 +25,53 @@ namespace keepass2android
 		DataHost = "my.yubico.com",
 		DataPathPrefix = "/neo",
 		DataScheme = "https")]
-	public class NfcOtpActivity : Activity
+	[IntentFilter(new[] { "android.nfc.action.NDEF_DISCOVERED", Android.Content.Intent.ActionView },
+	    Label = "@string/app_name",
+	    Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable },
+	    DataHost = "keepass2android.crocoll.net",
+	    DataPathPrefix = "/neo",
+	    DataScheme = "https",
+        AutoVerify=true)]
+    public class NfcOtpActivity : Activity
 	{
 		private String GetOtpFromIntent(Intent intent)
 		{
-			String data = intent.DataString;
-			Matcher matcher = OtpPattern.Matcher(data);
+		    var patterns = new List<Pattern>{OTP_PATTERN, OTP_PATTERN2};
+			foreach (var pattern in patterns)
+		    {
+
+		        Matcher matcher = pattern.Matcher(intent.DataString);
+		        if (matcher.Matches())
+		        {
+		            String otp = matcher.Group(1);
+		            return otp;
+		        }
+		        else
+		        {
+		            IParcelable[] raw = intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
+		            byte[] bytes = ((NdefMessage)raw[0]).ToByteArray();
+		            if (bytes[0] == URL_NDEF_RECORD && Arrays.Equals(URL_PREFIX_BYTES, Arrays.CopyOfRange(bytes, 3, 3 + URL_PREFIX_BYTES.Length)))
+		            {
+		                if (Arrays.Equals(new Java.Lang.String("/neo/").GetBytes(), Arrays.CopyOfRange(bytes, 18, 18 + 5)))
+		                {
+		                    bytes[22] = (byte)'#';
+		                }
+		                for (int i = 0; i < bytes.Length; i++)
+		                {
+		                    if (bytes[i] == '#')
+		                    {
+		                        bytes = Arrays.CopyOfRange(bytes, i + 1, bytes.Length);
+		                        String layout = "US";
+		                        KeyboardLayout kbd = KeyboardLayout.ForName(layout);
+		                        String otp = kbd.FromScanCodes(bytes);
+		                        return otp;
+		                    }
+		                }
+		            }
+		        }
+            }
+            /*
+            Matcher matcher = OtpPattern.Matcher(data);
 			if (matcher.Matches())
 			{
 				String otp = matcher.Group(1);
@@ -44,16 +87,29 @@ namespace keepass2android
 				KeyboardLayout kbd = KeyboardLayout.ForName(layout);
 				String otp = kbd.FromScanCodes(bytes);
 				return otp;
-			}
+			}*/
 			return null;
 		}
 
 
-		//private static readonly Java.Util.Regex.Pattern OtpPattern = Java.Util.Regex.Pattern.Compile("^https://my\\.yubico\\.com/neo/(.+)$");
-		private static readonly Java.Util.Regex.Pattern OtpPattern = Java.Util.Regex.Pattern.Compile("^https://my\\.yubico\\.com/neo/([a-zA-Z0-9!]+)$");
-		private const int DATA_OFFSET = 23;
+	    private static String URL_PREFIX = "https://my.yubico.com/";
+	    private static byte URL_NDEF_RECORD = (byte)0xd1;
+	    private static byte[] URL_PREFIX_BYTES = new byte[URL_PREFIX.Length + 2 - 8];
 
-		private ActivityDesign _design;
+	    private static Pattern OTP_PATTERN = Pattern.Compile("^https://my\\.yubico\\.com/[a-z]+/#?([a-zA-Z0-9!]+)$");
+	    private static Pattern OTP_PATTERN2 = Pattern.Compile("^https://keepass2android\\.crocoll\\.net/[a-z]+/#?([a-zA-Z0-9!]+)$");
+
+        static NfcOtpActivity()
+	    {
+	        URL_PREFIX_BYTES[0] = 85;
+	        URL_PREFIX_BYTES[1] = 4;
+	        Java.Lang.JavaSystem.Arraycopy(new Java.Lang.String(URL_PREFIX.Substring(8)).GetBytes(), 0, URL_PREFIX_BYTES, 2, URL_PREFIX_BYTES.Length - 2);
+        }
+
+	    
+	    
+
+    private ActivityDesign _design;
 
 		public NfcOtpActivity()
 		{
@@ -93,15 +149,7 @@ namespace keepass2android
 				return;
 			}
 
-			if (App.Kp2a.GetDb().Loaded)
-			{
-				Toast.MakeText(this, GetString(Resource.String.otp_discarded_because_db_open), ToastLength.Long).Show();
-			}
-			else
-			{
-				StartActivity(i);				
-			}
-
+			StartActivity(i);				
 			Finish();
 
 		}
@@ -110,6 +158,7 @@ namespace keepass2android
 		{
 			base.OnResume();
 			_design.ReapplyTheme();
-		}
+		}
+
 	}
 }

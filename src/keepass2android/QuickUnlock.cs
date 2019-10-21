@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
+using System.Linq;
 using Android;
 using Android.App;
 using Android.Content;
@@ -64,7 +65,7 @@ namespace keepass2android
 				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
 			}
 
-			_ioc = App.Kp2a.GetDb().Ioc;
+			_ioc = App.Kp2a.GetDbForQuickUnlock()?.Ioc;
 
 			if (_ioc == null)
 			{
@@ -81,10 +82,10 @@ namespace keepass2android
 			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
 
-			if (App.Kp2a.GetDb().KpDatabase.Name != "")
+			if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
 			{
 				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
-				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDb().KpDatabase.Name;
+				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name;
 			}
 			else
 			{
@@ -134,7 +135,7 @@ namespace keepass2android
 			btnLock.Text = btnLock.Text.Replace("ß", "ss");
 			btnLock.Click += (object sender, EventArgs e) =>
 				{
-					App.Kp2a.LockDatabase(false);
+					App.Kp2a.Lock(false);
 					Finish();
 				};
 			pwd.EditorAction += (sender, args) =>
@@ -181,6 +182,22 @@ namespace keepass2android
 					b.SetTitle(Resource.String.fingerprint_prefs);
 					b.SetMessage(btn.Tag.ToString());
 					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+					if (_fingerprintIdentifier != null)
+					{
+						b.SetNegativeButton(Resource.String.disable_sensor, (senderAlert, alertArgs) =>
+						{
+							btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+							_fingerprintIdentifier?.StopListening();
+							_fingerprintIdentifier = null;
+						});
+					}
+					else
+					{
+						b.SetNegativeButton(Resource.String.enable_sensor, (senderAlert, alertArgs) =>
+						{
+							InitFingerprintUnlock();
+						});
+					}
 					b.Show();
 				};
 				_fingerprintPermissionGranted = true;
@@ -244,7 +261,7 @@ namespace keepass2android
 			try
 			{
 				FingerprintUnlockMode um;
-				Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, ""), out um);
+				Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintModePrefKey, ""), out um);
 				btn.Visibility = (um != FingerprintUnlockMode.Disabled) ? ViewStates.Visible : ViewStates.Gone;
 
 				if (um == FingerprintUnlockMode.Disabled)
@@ -258,10 +275,10 @@ namespace keepass2android
 					FingerprintModule fpModule = new FingerprintModule(this);
 					Kp2aLog.Log("fpModule.FingerprintManager.IsHardwareDetected=" + fpModule.FingerprintManager.IsHardwareDetected);
 					if (fpModule.FingerprintManager.IsHardwareDetected) //see FingerprintSetupActivity
-						_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDb().CurrentFingerprintPrefKey, this,
-							App.Kp2a.GetDb().CurrentFingerprintPrefKey);
+						_fingerprintIdentifier = new FingerprintDecryption(fpModule, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey, this,
+							App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey);
 				}
-				if ((_fingerprintIdentifier == null) && (!FingerprintDecryption.IsSetUp(this, App.Kp2a.GetDb().CurrentFingerprintPrefKey)))
+				if ((_fingerprintIdentifier == null) && (!FingerprintDecryption.IsSetUp(this, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey)))
 				{
 					try
 					{
@@ -321,15 +338,7 @@ namespace keepass2android
             _fingerprintIdentifier = null;
 		}
 
-		private void ClearFingerprintUnlockData()
-		{
-			ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
-			edit.PutString(App.Kp2a.GetDb().CurrentFingerprintPrefKey, "");
-			edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
-			edit.Commit();
-		}
-
-		private void OnUnlock(int quickUnlockLength, EditText pwd)
+	    private void OnUnlock(int quickUnlockLength, EditText pwd)
 		{
 			var expectedPasswordPart = ExpectedPasswordPart;
 			if (pwd.Text == expectedPasswordPart)
@@ -340,7 +349,7 @@ namespace keepass2android
 			else
 			{
 				Kp2aLog.Log("QuickUnlock not successful!");
-				App.Kp2a.LockDatabase(false);
+				App.Kp2a.Lock(false);
 				Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
 			}
 			Finish();
@@ -350,7 +359,7 @@ namespace keepass2android
 		{
 			get
 			{
-				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
+				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
 				String password = kcpPassword.Password.ReadString();
 
 			    var passwordStringInfo = new System.Globalization.StringInfo(password);
@@ -427,7 +436,7 @@ namespace keepass2android
 
 		private void CheckIfUnloaded()
 		{
-			if ((App.Kp2a.GetDb() == null) || (App.Kp2a.GetDb().Loaded == false))
+			if (App.Kp2a.OpenDatabases.Any() == false)
 			{
 				Finish();
 			}

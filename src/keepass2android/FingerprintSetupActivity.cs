@@ -21,7 +21,7 @@ using Exception = System.Exception;
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		Theme = "@style/MyTheme_ActionBar", MainLauncher = false)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class FingerprintSetupActivity : LockCloseActivity, IFingerprintAuthCallback
@@ -64,7 +64,7 @@ namespace keepass2android
 			SetContentView(Resource.Layout.fingerprint_setup);
 
 			Enum.TryParse(
-				PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, ""),
+				PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, ""),
 				out _unlockMode);
 
 			_fpIcon = FindViewById<ImageView>(Resource.Id.fingerprint_icon);
@@ -174,7 +174,7 @@ namespace keepass2android
 
 		string CurrentPreferenceKey
 		{
-			get { return App.Kp2a.GetDb().CurrentFingerprintPrefKey; }
+			get { return App.Kp2a.CurrentDb.CurrentFingerprintPrefKey; }
 		}
 
 		private void StoreUnlockMode()
@@ -186,15 +186,29 @@ namespace keepass2android
 			}
 			else
 			{
-				if (_unlockMode == FingerprintUnlockMode.FullUnlock)
-				{
-					var userKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<KcpPassword>();
-					_enc.StoreEncrypted(userKey != null ? userKey.Password.ReadString() : "", CurrentPreferenceKey, edit);
-				}
-				else
-					_enc.StoreEncrypted("QuickUnlock" /*some dummy data*/, CurrentPreferenceKey, edit);
-			}
-			edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, _unlockMode.ToString());
+			    try
+			    {
+			        if (_unlockMode == FingerprintUnlockMode.FullUnlock)
+			        {
+			            var userKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey.GetUserKey<KcpPassword>();
+			            _enc.StoreEncrypted(userKey != null ? userKey.Password.ReadString() : "", CurrentPreferenceKey, edit);
+			        }
+			        else
+			            _enc.StoreEncrypted("QuickUnlock" /*some dummy data*/, CurrentPreferenceKey, edit);
+                }
+			    catch (Exception e)
+			    {
+			        new AlertDialog.Builder(this)
+			            .SetTitle(GetString(Resource.String.ErrorOcurred))
+			            .SetMessage(GetString(Resource.String.FingerprintSetupFailed))
+                        .SetCancelable(false)
+                        .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { })
+                        .Show();
+
+                }
+
+            }
+			edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, _unlockMode.ToString());
 			edit.Commit();
 		}
 
@@ -261,7 +275,7 @@ namespace keepass2android
 				UpdateKeyboardCheckboxVisibility();
 			
 				ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
-				edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, _unlockMode.ToString());
+				edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, _unlockMode.ToString());
 				edit.Commit();
 				return;
 			}

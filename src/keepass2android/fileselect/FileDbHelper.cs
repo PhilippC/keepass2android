@@ -36,7 +36,7 @@ namespace keepass2android
 		private const String FileTable = "files";
 		private const int DatabaseVersion = 2;
 		
-		private const int MaxFiles = 15;
+		private const int MaxFiles = 1000;
 		
 		public const String KeyFileId = "_id";
 		public const String KeyFileFilename = "fileName";
@@ -101,7 +101,7 @@ namespace keepass2android
 			mDb.Close();
 		}
 		
-		public long CreateFile(IOConnectionInfo ioc, string keyFile, string displayName = "") {
+		public long CreateFile(IOConnectionInfo ioc, string keyFile, bool updateLastUsageTimestamp, string displayName = "") {
 			
 			// Check to see if this filename is already used
 			ICursor cursor;
@@ -128,7 +128,8 @@ namespace keepass2android
 				
 				var vals = new ContentValues();
 				vals.Put(KeyFileKeyfile, keyFile);
-				vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
+                if (updateLastUsageTimestamp)
+				    vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
 
 				vals.Put(KeyFileUsername, iocToStore.UserName);
 				vals.Put(KeyFilePassword, iocToStore.Password);
@@ -145,7 +146,7 @@ namespace keepass2android
 				vals.Put(KeyFileUsername, iocToStore.UserName);
 				vals.Put(KeyFilePassword, iocToStore.Password);
 				vals.Put(KeyFileCredsavemode, (int)iocToStore.CredSaveMode);
-				vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
+				vals.Put(KeyFileUpdated, updateLastUsageTimestamp ? Java.Lang.JavaSystem.CurrentTimeMillis(): 0);
 			    vals.Put(KeyFileDisplayname, displayName);
 
                 result = mDb.Insert(FileTable, null, vals);

@@ -4,3 +4,6 @@
 [submodule "src/netftpandroid"]
 	path = src/netftpandroid
 	url = https://github.com/PhilippC/netftpandroid.git
+[submodule "src/java/argon2/phc-winner-argon2"]
+	path = src/java/argon2/phc-winner-argon2
+	url = https://github.com/P-H-C/phc-winner-argon2

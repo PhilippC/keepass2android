@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 using KeePassLib;
@@ -28,7 +29,7 @@ namespace keepass2android
 	/// <summary>
 	/// Activity to display search options
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class SearchActivity : LockCloseActivity
 	{
 		bool GetCheckBoxValue(int resId)

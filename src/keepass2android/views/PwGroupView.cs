@@ -63,7 +63,9 @@ namespace keepass2android.view
 			_label = (TextView) gv.FindViewById(Resource.Id.group_label);
 			_label.TextSize = size-8;
 
-			gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = App.Kp2a.GetDb().DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
+
+            gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
 
 		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
@@ -79,7 +81,8 @@ namespace keepass2android.view
 			_pwGroup = pw;
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, App.Kp2a.GetDb().KpDatabase, pw.IconId, pw.CustomIconUuid, true);
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
+            db.DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, db.KpDatabase, pw.IconId, pw.CustomIconUuid, true);
 		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
@@ -127,7 +130,7 @@ namespace keepass2android.view
 		
 		
 		private void LaunchGroup() {
-			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask);
+			GroupActivity.Launch(_groupBaseActivity, _pwGroup, _groupBaseActivity.AppTask, new ActivityLaunchModeRequestCode(0));
 			//_groupBaseActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
 
 		}

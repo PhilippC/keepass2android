@@ -26,7 +26,7 @@ namespace keepass2android
 		{
 			try
 			{
-				IOConnectionInfo ioc = _app.GetDb().Ioc;
+				IOConnectionInfo ioc = _app.CurrentDb.Ioc;
 				IFileStorage fileStorage = _app.GetFileStorage(ioc);
 				if (!(fileStorage is CachingFileStorage))
 				{
@@ -70,10 +70,12 @@ namespace keepass2android
 									Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
 								}
 								_saveDb = null;
-							}), false, remoteData);
+							}), _app.CurrentDb, false, remoteData);
 						_saveDb.Run();
 
-						_app.GetDb().MarkAllGroupsAsDirty();
+                        _app.CurrentDb.UpdateGlobals();
+
+						_app.MarkAllGroupsAsDirty();
 					}
 					else
 					{
@@ -103,6 +105,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
+                Kp2aLog.LogUnexpectedError(e);
 				Finish(false, e.Message);
 			}
 			

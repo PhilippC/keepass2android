@@ -24,7 +24,7 @@ namespace keepass2android
 	public class AddEntry : RunnableOnFinish {
 		protected Database Db
 		{
-			get { return _app.GetDb(); }
+			get { return _app.CurrentDb; }
 		}
 
 		private readonly IKp2aApp _app;
@@ -37,13 +37,13 @@ namespace keepass2android
 			return new AddEntry(ctx, app, entry, parentGroup, finish);
 		}
 		
-		protected AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
+		public AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
 			_ctx = ctx;
 			_parentGroup = parentGroup;
 			_app = app;
 			_entry = entry;
 			
-			_onFinishToRun = new AfterAdd(ctx, app.GetDb(), entry, OnFinishToRun);
+			_onFinishToRun = new AfterAdd(ctx, app.CurrentDb, entry, app,OnFinishToRun);
 		}
 		
 		
@@ -60,7 +60,7 @@ namespace keepass2android
 			
 			
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -68,12 +68,13 @@ namespace keepass2android
 		private class AfterAdd : OnFinish {
 			private readonly Database _db;
 			private readonly PwEntry _entry;
+		    private readonly IKp2aApp _app;
 
-			public AfterAdd(Activity activity, Database db, PwEntry entry, OnFinish finish):base(activity, finish) {
+		    public AfterAdd(Activity activity, Database db, PwEntry entry, IKp2aApp app, OnFinish finish):base(activity, finish) {
 				_db = db;
 				_entry = entry;
-
-			}
+		        _app = app;
+		    }
 			
 
 
@@ -83,11 +84,12 @@ namespace keepass2android
 					PwGroup parent = _entry.ParentGroup; 
 					
 					// Mark parent group dirty
-					_db.Dirty.Add(parent);
+					_app.DirtyGroups.Add(parent);
 					
 					// Add entry to global
-					_db.Entries[_entry.Uuid] = _entry;
-					
+					_db.EntriesById[_entry.Uuid] = _entry;
+				    _db.Elements.Add(_entry);
+
 				} else
 				{
 					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);

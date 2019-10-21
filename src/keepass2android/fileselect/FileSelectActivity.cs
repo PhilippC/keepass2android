@@ -16,6 +16,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -43,12 +44,6 @@ namespace keepass2android
 	           ConfigurationChanges=ConfigChanges.Orientation|
 	           ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_Blue")]
-	[IntentFilter(new [] { Intent.ActionSend }, 
-		Label = "@string/kp2a_findUrl", 
-		Categories=new[]{Intent.CategoryDefault}, 
-		DataMimeType="text/plain")]
-	[IntentFilter(new[] { Strings.ActionStartWithTask },
-		Categories = new[] { Intent.CategoryDefault })]
 	public class FileSelectActivity : AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
@@ -71,7 +66,7 @@ namespace keepass2android
 
 		private bool _recentMode;
 		
-		internal AppTask AppTask;
+		
 		private const int RequestCodeSelectIoc = 456;
 	    private const int RequestCodeEditIoc = 457;
 
@@ -84,24 +79,7 @@ namespace keepass2android
 			
 
 			Kp2aLog.Log("FileSelect.OnCreate");
-			Kp2aLog.Log("FileSelect:apptask="+Intent.GetStringExtra("KP2A_APPTASK"));
-
-			if (Intent.Action == Intent.ActionSend)
-			{
-				AppTask = new SearchUrlTask { UrlToSearchFor = Intent.GetStringExtra(Intent.ExtraText) };
-			}
-			else
-			{
-				//see PasswordActivity for an explanation
-				if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
-				{
-					AppTask = new NullTask();
-				}
-				else
-				{
-					AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
-				}
-			}
+			
 
 
 			_dbHelper = App.Kp2a.FileDbHelper;
@@ -139,8 +117,7 @@ namespace keepass2android
 				intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
 				intent.PutExtra(SelectStorageLocationActivity.ExtraKeyWritableRequirements, (int) SelectStorageLocationActivity.WritableRequirements.WriteDesired);
 				intent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, false);
-				StartActivityForResult(intent, RequestCodeSelectIoc);	
-				                   
+				StartActivityForResult(intent, RequestCodeSelectIoc);
 			};
 			openFileButton.Click += openFileButtonClick;
 			
@@ -150,8 +127,11 @@ namespace keepass2android
 				{
 					//ShowFilenameDialog(false, true, true, Android.OS.Environment.ExternalStorageDirectory + GetString(Resource.String.default_file_path), "", Intents.RequestCodeFileBrowseForCreate)
 					Intent i = new Intent(this, typeof (CreateDatabaseActivity));
-					this.AppTask.ToIntent(i);
-					StartActivityForResult(i, 0);
+				    i.PutExtra("MakeCurrent", Intent.GetBooleanExtra("MakeCurrent", true));
+					
+				    i.SetFlags(ActivityFlags.ForwardResult);
+					StartActivity(i);
+				    Finish();
 				};
 			createNewButton.Click += createNewButtonClick;
 
@@ -175,7 +155,6 @@ namespace keepass2android
 			
 			if (savedInstanceState != null)
 			{
-				AppTask = AppTask.CreateFromBundle(savedInstanceState);
 				_recentMode = savedInstanceState.GetBoolean(BundleKeyRecentMode, _recentMode);
 			}
 
@@ -200,7 +179,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			AppTask.ToBundle(outState);
+		
 			outState.PutBoolean(BundleKeyRecentMode, _recentMode);
 			
 		}
@@ -302,7 +281,7 @@ namespace keepass2android
 	                        }
 	                        if (args2.Item.ItemId == edit)
 	                        {
-	                            var fsh = new FileSelectHelper(_activity, false, RequestCodeEditIoc);
+	                            var fsh = new FileSelectHelper(_activity, false, false, RequestCodeEditIoc);
 	                            fsh.OnOpen += (o, newConnectionInfo) =>
 	                            {
 	                                _activity.EditFileEntry(filename, newConnectionInfo);
@@ -323,7 +302,7 @@ namespace keepass2android
 
 	    private void EditFileEntry(string filename, IOConnectionInfo newConnectionInfo)
 	    {
-            _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename));
+            _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename), false);
 	        _dbHelper.DeleteFile(filename);
 
             LaunchPasswordActivityForIoc(newConnectionInfo);
@@ -364,7 +343,7 @@ namespace keepass2android
 			{
 				try
 				{
-					PasswordActivity.Launch(this, ioc, AppTask);
+					PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward(), Intent.GetBooleanExtra("MakeCurrent",true));
 					Finish();
 				} catch (Java.IO.FileNotFoundException)
 				{
@@ -377,7 +356,7 @@ namespace keepass2android
 
 		private void AfterQueryCredentials(IOConnectionInfo ioc)
 		{
-			PasswordActivity.Launch(this, ioc, AppTask);
+			PasswordActivity.Launch(this, ioc, new ActivityLaunchModeForward(), Intent.GetBooleanExtra("MakeCurrent", true));
 			Finish();
 		}
 
@@ -397,11 +376,6 @@ namespace keepass2android
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			//update app task.
-			//this is important even if we're about to close, because then we should get a NullTask here 
-			//in order not to do the same task next time again!
-			AppTask.TryGetFromActivityResult(data, ref AppTask);
-
 			if (resultCode == KeePass.ExitCloseAfterTaskComplete)
 			{
 				//no need to set the result ExitCloseAfterTaskComplete here, there's no parent Activity on the stack
@@ -415,14 +389,14 @@ namespace keepass2android
 			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
-				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+				Util.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
 
 			if ((resultCode == Result.Ok) && (requestCode == RequestCodeSelectIoc))
 			{
 				IOConnectionInfo ioc = new IOConnectionInfo();
-				PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+				Util.SetIoConnectionFromIntent(ioc, data);
 				LaunchPasswordActivityForIoc(ioc);
 			}
 		    
@@ -460,26 +434,30 @@ namespace keepass2android
 			base.OnStart();
 			Kp2aLog.Log("FileSelect.OnStart");
 
-			var db = App.Kp2a.GetDb();
-			if (db.Loaded)
+			
+			//if no database is loaded: load the most recent database
+			if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _dbHelper.HasRecentFiles() && !App.Kp2a.OpenDatabases.Any())
 			{
-				LaunchPasswordActivityForIoc(db.Ioc);
+			    var fileStorage = new LocalFileStorage(App.Kp2a);
+                ICursor filesCursor = _dbHelper.FetchAllFiles();
+                filesCursor = new FilteredCursor(filesCursor, cursor => !fileStorage.IsLocalBackup(IOConnectionInfo.FromPath(cursor.GetString(1))));
+		        StartManagingCursor(filesCursor);
+			    if (filesCursor.Count > 0)
+			    {
+                    filesCursor.MoveToFirst();
+			        IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
+			        if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
+			        {
+			            LaunchPasswordActivityForIoc(ioc);
+			        }
+			        else
+			        {
+			            App.Kp2a.GetFileStorage(ioc)
+			                .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
+                    }
+			    }
 			}
-			else
-			{
-				//if no database is loaded: load the most recent database
-				if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _dbHelper.HasRecentFiles())
-				{
-					ICursor filesCursor = _dbHelper.FetchAllFiles();
-					StartManagingCursor(filesCursor);
-					filesCursor.MoveToFirst();
-					IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
-					if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
-					{
-						LaunchPasswordActivityForIoc(ioc);
-					}
-				}
-			}
+			
 
 			
 		}

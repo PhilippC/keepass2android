@@ -186,16 +186,19 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				return displayName;
 			
 			String[] parts = mAccountLocalPath.split("/");
-			
+			if (parts.length == 0)
+				return "";
 			String part = parts[parts.length-1];
 			logDebug("parsing part " + part);
 			int indexOfSeparator = part.lastIndexOf(NAME_ID_SEP);
+			String name = "";
 			if (indexOfSeparator < 0)
 			{
 				//seems invalid, but we're very generous here
 				displayName += "/"+part;
 			}
-			String name = part.substring(0, indexOfSeparator);
+			else
+				name = part.substring(0, indexOfSeparator);
 			try {
 				name = decode(name);
 			} catch (UnsupportedEncodingException e) {

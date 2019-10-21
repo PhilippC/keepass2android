@@ -103,7 +103,7 @@ namespace keepass2android
 			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
 			if (String.IsNullOrWhiteSpace(host))
 				return pgResults;
-			foreach (PwEntry entry in database.Entries.Values)
+			foreach (PwEntry entry in database.EntriesById.Values)
 			{
 				string otherUrl = entry.Strings.ReadSafe(PwDefs.UrlField);
 				otherUrl = SprEngine.Compile(otherUrl, new SprContext(entry, database.KpDatabase, SprCompileFlags.References));

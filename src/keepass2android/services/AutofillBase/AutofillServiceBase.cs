@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Service.Autofill;
 using Android.Util;
@@ -14,6 +17,7 @@ namespace keepass2android.services.AutofillBase
     public interface IAutofillIntentBuilder
     {
         IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest, bool autoReturnFromQuery);
+        IntentSender GetDisableIntentSenderForResponse(Context context, string query, bool isManualRequest, bool isDisable);
         Intent GetRestartAppIntent(Context context);
 
         int AppIconResource { get; }
@@ -66,7 +70,7 @@ namespace keepass2android.services.AutofillBase
             
             
             var autofillIds = autofillFields.GetAutofillIds();
-            if (autofillIds.Length != 0 && CanAutofill(query))
+            if (autofillIds.Length != 0 && CanAutofill(query, isManual))
             {
                 var responseBuilder = new FillResponse.Builder();
 
@@ -76,8 +80,10 @@ namespace keepass2android.services.AutofillBase
                     responseBuilder.AddDataset(entryDataset);
 
                 AddQueryDataset(query, isManual, autofillIds, responseBuilder, !hasEntryDataset);
-                responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
-                    parser.AutofillFields.GetAutofillIds()).Build());
+                AddDisableDataset(query, autofillIds, responseBuilder, isManual);
+                if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
+                    responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
+                        parser.AutofillFields.GetAutofillIds()).Build());
 
                 callback.OnSuccess(responseBuilder.Build());
             }
@@ -116,10 +122,78 @@ namespace keepass2android.services.AutofillBase
 
             responseBuilder.AddDataset(datasetBuilder.Build());
         }
-
-        private bool CanAutofill(string query)
+        public static string GetDisplayNameForQuery(string str, Context Context)
         {
-            return !(query == "androidapp://android" || query == "androidapp://"+this.PackageName);
+            string displayName = str;
+            try
+            {
+                string appPrefix = "androidapp://";
+                if (str.StartsWith(appPrefix))
+                {
+                    str = str.Substring(appPrefix.Length);
+                    PackageManager pm = Context.PackageManager;
+                    ApplicationInfo ai;
+                    try
+                    {
+                        ai = pm.GetApplicationInfo(str, 0);
+                    }
+                    catch (PackageManager.NameNotFoundException e)
+                    {
+                        ai = null;
+                    }
+                    displayName = ai != null ? pm.GetApplicationLabel(ai) : str;
+                }
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+           
+            return displayName;
+        }
+
+        private void AddDisableDataset(string query, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool isManual)
+        {
+            bool isQueryDisabled = IsQueryDisabled(query);
+            if (isQueryDisabled && !isManual)
+                return;
+            bool isForDisable = !isQueryDisabled;
+            var sender = IntentBuilder.GetDisableIntentSenderForResponse(this, query, isManual, isForDisable);
+            
+            RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
+                GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this)}), Resource.Drawable.ic_menu_close_grey);
+
+            var datasetBuilder = new Dataset.Builder(presentation);
+            datasetBuilder.SetAuthentication(sender);
+
+            foreach (var autofillId in autofillIds)
+            {
+                datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
+            }
+
+            responseBuilder.AddDataset(datasetBuilder.Build());
+        }
+
+        private bool CanAutofill(string query, bool isManual)
+        {
+            if (query == "androidapp://android" || query == "androidapp://" + this.PackageName)
+                return false;
+            if (!isManual)
+            {
+                var isQueryDisabled = IsQueryDisabled(query);
+                if (isQueryDisabled)
+                    return false;
+            }
+            return true;
+        }
+
+        private bool IsQueryDisabled(string query)
+        {
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+            var disabledValues = prefs.GetStringSet("AutoFillDisabledQueries", new List<string>());
+
+            bool isQueryDisabled = disabledValues.Contains(query);
+            return isQueryDisabled;
         }
 
         public override void OnSaveRequest(SaveRequest request, SaveCallback callback)

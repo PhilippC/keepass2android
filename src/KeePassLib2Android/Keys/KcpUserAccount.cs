@@ -21,7 +21,6 @@
 
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Security;
 
 #if !KeePassUAP
@@ -60,7 +59,12 @@ namespace KeePassLib.Keys
 			get { return m_pbKeyData; }
 		}
 
-		/// <summary>
+	    public uint GetMinKdbxVersion()
+	    {
+	        return 0;
+	    }
+
+	    /// <summary>
 		/// Construct a user account key.
 		/// </summary>
 		public KcpUserAccount()
@@ -73,26 +77,7 @@ namespace KeePassLib.Keys
 		//	m_pbKeyData = null;
 		// }
 
-		private static string GetUserKeyFilePath(bool bCreate)
-		{
-#if KeePassRT
-			string strUserDir = Windows.Storage.ApplicationData.Current.RoamingFolder.Path;
-#else
-			string strUserDir = Environment.GetFolderPath(
-				Environment.SpecialFolder.ApplicationData);
-#endif
-
-			strUserDir = UrlUtil.EnsureTerminatingSeparator(strUserDir, false);
-			strUserDir += PwDefs.ShortProductName;
-
-			if (bCreate && !Directory.Exists(strUserDir))
-				Directory.CreateDirectory(strUserDir);
-
-			strUserDir = UrlUtil.EnsureTerminatingSeparator(strUserDir, false);
-			return strUserDir + UserKeyFileName;
-		}
-
-		private static byte[] LoadUserKey(bool bShowWarning)
+	    private static byte[] LoadUserKey(bool bShowWarning)
 		{
 			byte[] pbKey = null;
 

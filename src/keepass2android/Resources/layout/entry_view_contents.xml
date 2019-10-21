@@ -75,7 +75,7 @@
           android:clickable="true"
           android:background="?android:attr/selectableItemBackground">
         <ImageView
-            android:id="@+id/username_vdots"
+            android:id="@+id/username_vdots"  
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:src="@drawable/vdots"

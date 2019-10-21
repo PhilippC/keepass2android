@@ -23,6 +23,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Security;
 using System.Text;
 using System.Xml;
@@ -126,8 +127,8 @@ namespace KeePassLib.Serialization
 		/// </summary>
 		private const uint FileVersion32 = 0x00040000;
 
-		internal const uint FileVersion32_4 = 0x00040000; // First of 4.x series
-		internal const uint FileVersion32_3 = 0x00030001; // Old format 3.1
+		public const uint FileVersion32_4 = 0x00040000; // First of 4.x series
+		public const uint FileVersion32_3 = 0x00030001; // Old format 3.1
 
 		private const uint FileVersionCriticalMask = 0xFFFF0000;
 
@@ -372,16 +373,19 @@ namespace KeePassLib.Serialization
 		{
 			if(m_uForceVersion != 0) return m_uForceVersion;
 
-			// See also KeePassKdb2x3.Export (KDBX 3.1 export module)
-
-			AesKdf kdfAes = new AesKdf();
+            // See also KeePassKdb2x3.Export (KDBX 3.1 export module)
+		    uint minVersionForKeys = m_pwDatabase.MasterKey.UserKeys.Select(key => key.GetMinKdbxVersion()).Max();
+		    
+            AesKdf kdfAes = new AesKdf();
 			if(!kdfAes.Uuid.Equals(m_pwDatabase.KdfParameters.KdfUuid))
-				return FileVersion32;
+				return Math.Max(FileVersion32, minVersionForKeys);
 
 			if(m_pwDatabase.PublicCustomData.Count > 0)
-				return FileVersion32;
+			    return Math.Max(FileVersion32, minVersionForKeys);
 
-			bool bCustomData = false;
+
+
+            bool bCustomData = false;
 			GroupHandler gh = delegate(PwGroup pg)
 			{
 				if(pg == null) { Debug.Assert(false); return true; }
@@ -396,9 +400,10 @@ namespace KeePassLib.Serialization
 			};
 			gh(m_pwDatabase.RootGroup);
 			m_pwDatabase.RootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh);
-			if(bCustomData) return FileVersion32;
+			if(bCustomData)
+			    return Math.Max(FileVersion32, minVersionForKeys);
 
-			return FileVersion32_3; // KDBX 3.1 is sufficient
+            return Math.Max(FileVersion32_3, minVersionForKeys); ; // KDBX 3.1 is sufficient
 		}
 
 		private void ComputeKeys(out byte[] pbCipherKey, int cbCipherKey,

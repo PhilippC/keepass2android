@@ -28,7 +28,7 @@ namespace keepass2android.services.Kp2aAutofill
         {
             //launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
             //will return the results later
-            Intent i = new Intent(this, typeof(FileSelectActivity));
+            Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
             //don't show user notifications when an entry is opened.
             var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = false, AutoReturnFromQuery = autoReturnFromQuery };
             task.ToIntent(i);
@@ -39,9 +39,9 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override FilledAutofillFieldCollection GetDataset(Intent data)
         {
-            if (!App.Kp2a.GetDb().Loaded || (App.Kp2a.QuickLocked))
+            if (App.Kp2a.CurrentDb==null || (App.Kp2a.QuickLocked))
                 return null;
-            var entryOutput = App.Kp2a.GetDb().LastOpenedEntry;
+            var entryOutput = App.Kp2a.LastOpenedEntry;
 
             return GetFilledAutofillFieldCollectionFromEntry(entryOutput, this);
         }
@@ -55,13 +55,15 @@ namespace keepass2android.services.Kp2aAutofill
 
             foreach (string key in pwEntryOutput.OutputStrings.GetKeys())
             {
+                
                 FilledAutofillField field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] {GetCanonicalHintFromKp2aField(key)},
+                        AutofillHints = GetCanonicalHintsFromKp2aField(key).ToArray(),
                         TextValue = pwEntryOutput.OutputStrings.ReadSafe(key)
                     };
                 fieldCollection.Add(field);
+                
             }
             if (IsCreditCard(pwEntry, context) && pwEntry.Expires)
             {
@@ -112,42 +114,47 @@ namespace keepass2android.services.Kp2aAutofill
                 || pwEntry.Strings.Exists(context.GetString(Resource.String.TemplateField_CreditCard_CVV));
         }
 
-        private static readonly Dictionary<string, string> keyToHint = BuildKeyToHint();
+        private static readonly Dictionary<string, List<string>> keyToHint = BuildKeyToHints();
 
         public static string GetKp2aKeyFromHint(string canonicalHint)
         {
-            var key = keyToHint.FirstOrDefault(p => p.Value.Equals(canonicalHint, StringComparison.OrdinalIgnoreCase)).Key;
+            var key = keyToHint.FirstOrDefault(p => p.Value.Contains(canonicalHint)).Key;
             if (string.IsNullOrWhiteSpace(key))
                 return canonicalHint;
             return key;
         }
 
-        private static Dictionary<string, string> BuildKeyToHint()
+        private static Dictionary<string, List<string>> BuildKeyToHints()
         {
-            var result = new Dictionary<string, string>
+            var result = new Dictionary<string, List<string>>
             {
-                {PwDefs.UserNameField, View.AutofillHintUsername},
-                {PwDefs.PasswordField, View.AutofillHintPassword},
-                {PwDefs.UrlField, W3cHints.URL},
+                {PwDefs.UserNameField, new List<string>{View.AutofillHintUsername, View.AutofillHintEmailAddress}},
+                {PwDefs.PasswordField, new List<string>{View.AutofillHintPassword}},
+                {PwDefs.UrlField, new List<string>{W3cHints.URL}},
                 {
                     Application.Context.GetString(Resource.String.TemplateField_CreditCard_CVV),
-                    View.AutofillHintCreditCardSecurityCode
+                    new List<string>{View.AutofillHintCreditCardSecurityCode}
                 },
                 {
                     Application.Context.GetString(Resource.String.TemplateField_CreditCard_Owner),
-                    W3cHints.CC_NAME
+                    new List<string>{W3cHints.CC_NAME}
                 },
-                {Application.Context.GetString(Resource.String.TemplateField_Number), View.AutofillHintCreditCardNumber},
-                {Application.Context.GetString(Resource.String.TemplateField_IdCard_Name), View.AutofillHintName},
+                {Application.Context.GetString(Resource.String.TemplateField_Number), new List<string>{View.AutofillHintCreditCardNumber}},
+                {Application.Context.GetString(Resource.String.TemplateField_IdCard_Name), new List<string>{View.AutofillHintName}},
             };
             return result;
         }
 
-        private static string GetCanonicalHintFromKp2aField(string key)
+        private static List<string> GetCanonicalHintsFromKp2aField(string key)
         {
-            if (!keyToHint.TryGetValue(key, out string result))
-                result = key;
-            result = result.ToLower();
+            List<string> result = new List<string>() {key};
+            List<string> hints;
+            if (keyToHint.TryGetValue(key, out hints))
+                result = hints;
+            for (int i = 0; i < result.Count; i++)
+            {
+                result[i] = result[i].ToLower();
+            }
             return result;
         }
 

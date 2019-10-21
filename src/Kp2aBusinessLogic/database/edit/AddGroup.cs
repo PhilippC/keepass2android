@@ -26,13 +26,16 @@ namespace keepass2android
 	public class AddGroup : RunnableOnFinish {
 		internal Database Db
 		{
-			get { return _app.GetDb(); }
+			get { return _app.CurrentDb; }
 		}
-		private IKp2aApp _app;
+
+        public IKp2aApp App { get => _app; }
+
+        private IKp2aApp _app;
 		private readonly String _name;
 		private readonly int _iconId;
 		private readonly PwUuid _groupCustomIconId;
-		internal PwGroup Group;
+	    public PwGroup Group;
 		internal PwGroup Parent;
 		protected bool DontSave;
 		readonly Activity _ctx;
@@ -67,9 +70,11 @@ namespace keepass2android
 				Group.CustomIconUuid = _groupCustomIconId;
 			}
 			Parent.AddGroup(Group, true);
+		    _app.CurrentDb.GroupsById[Group.Uuid] = Group;
+		    _app.CurrentDb.Elements.Add(Group);
 
-			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, DontSave);
+            // Commit to disk
+            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, DontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -86,13 +91,15 @@ namespace keepass2android
 				
 				if ( Success ) {
 					// Mark parent group dirty
-					_addGroup.Db.Dirty.Add(_addGroup.Parent);
+					_addGroup.App.DirtyGroups.Add(_addGroup.Parent);
 					
 					// Add group to global list
-					_addGroup.Db.Groups[_addGroup.Group.Uuid] = _addGroup.Group;
+					_addGroup.Db.GroupsById[_addGroup.Group.Uuid] = _addGroup.Group;
+				    _addGroup.Db.Elements.Add(_addGroup.Group);
 				} else {
 					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
 					_addGroup.Parent.Groups.Remove(_addGroup.Group);
+
 				}
 				
 				base.Run();

@@ -36,7 +36,7 @@ namespace keepass2android
 		
 		public override void Run() {
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -59,7 +59,7 @@ namespace keepass2android
 					if ( parent != null ) {
 
 						// Mark parent group dirty
-						_app.GetDb().Dirty.Add(parent);
+						_app.DirtyGroups.Add(parent);
 							
 					}
 					

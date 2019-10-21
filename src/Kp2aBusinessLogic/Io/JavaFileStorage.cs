@@ -177,7 +177,12 @@ namespace keepass2android.Io
 					_jfs.GetFilename(IocToPath(ioc)));
 		}
 
-		public bool RequiresCredentials(IOConnectionInfo ioc)
+	    public string GetFileExtension(IOConnectionInfo ioc)
+	    {
+	        return UrlUtil.GetExtension(ioc.Path);
+        }
+
+	    public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return false;
 		}
@@ -233,7 +238,6 @@ namespace keepass2android.Io
 
 		public FileDescription GetFileDescription(IOConnectionInfo ioc)
 		{
-			Kp2aLog.Log("GetFileDescription "+ioc.Path);
 			try
 			{
 				return ConvertToFileDescription(Jfs.GetFileEntry(IocToPath(ioc)));
@@ -302,7 +306,9 @@ namespace keepass2android.Io
 
 		public void OnResume(IFileStorageSetupActivity activity)
 		{
+#if DEBUG
 			Kp2aLog.Log("JFS/OnResume Ioc.Path=" +activity.Ioc.Path+". Path="+((IJavaFileStorageFileStorageSetupActivity)activity).Path);
+#endif
 			_jfs.OnResume(((IJavaFileStorageFileStorageSetupActivity) activity));
 		}
 
@@ -366,4 +372,4 @@ namespace keepass2android.Io
 		}
 	}
 #endif
-}
+        }

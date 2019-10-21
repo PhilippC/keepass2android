@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Security;
 using Android.App;
 using Android.Content;
@@ -40,11 +41,13 @@ using TwofishCipher;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
+using keepass2android.database.edit;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 #if !NoNet
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
+using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 #endif
 namespace keepass2android
 {
@@ -99,21 +102,20 @@ namespace keepass2android
 	/// </summary>
     public class Kp2aApp: IKp2aApp, ICacheSupervisor
 	{
-		public void LockDatabase(bool allowQuickUnlock = true)
-		{
-			if (GetDb().Loaded)
+	    public void Lock(bool allowQuickUnlock = true)
+	    {
+			if (OpenDatabases.Any())
 			{
 				if (QuickUnlockEnabled && allowQuickUnlock &&
-					_db.KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
-					!((KcpPassword)App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
+					GetDbForQuickUnlock().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
+					!((KcpPassword)App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
 				{
 					if (!QuickLocked)
 					{
 						Kp2aLog.Log("QuickLocking database");
-						BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
-
-						QuickLocked = true;
-						_db.LastOpenedEntry = null;
+					    QuickLocked = true;
+					    LastOpenedEntry = null;
+                        BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
 					}
 					else
 					{
@@ -126,8 +128,11 @@ namespace keepass2android
 
 					BroadcastDatabaseAction(Application.Context, Strings.ActionCloseDatabase);
 
-					// Couldn't quick-lock, so unload database instead
-					_db.Clear();
+                    // Couldn't quick-lock, so unload database(s) instead
+                    _openAttempts.Clear();
+				    _openDatabases.Clear();
+				    _currentDatabase = null;
+				    LastOpenedEntry = null;
 					QuickLocked = false;
 				}
 			}
@@ -135,6 +140,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("Database not loaded, couldn't lock");
 			}
+	        _currentlyWaitingXcKey = null;
 
 			UpdateOngoingNotification();
 			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
@@ -143,28 +149,24 @@ namespace keepass2android
 
 		public void BroadcastDatabaseAction(Context ctx, string action)
 		{
-			Intent i = new Intent(action);
+		    foreach (Database db in OpenDatabases)
+		    {
+		        Intent i = new Intent(action);
 
-			//seems like this can happen. This code is for debugging.
-			if (App.Kp2a.GetDb().Ioc == null)
-			{
-				Kp2aLog.LogUnexpectedError(new Exception("App.Kp2a.GetDb().Ioc is null"));
-				return;
-			}
-
-			i.PutExtra(Strings.ExtraDatabaseFileDisplayname, App.Kp2a.GetFileStorage(App.Kp2a.GetDb().Ioc).GetDisplayName(App.Kp2a.GetDb().Ioc));
-			i.PutExtra(Strings.ExtraDatabaseFilepath, App.Kp2a.GetDb().Ioc.Path);
-			foreach (var plugin in new PluginDatabase(ctx).GetPluginsWithAcceptedScope(Strings.ScopeDatabaseActions))
-			{
-				i.SetPackage(plugin);
-				ctx.SendBroadcast(i);
-			}
+		        i.PutExtra(Strings.ExtraDatabaseFileDisplayname, GetFileStorage(db.Ioc).GetDisplayName(db.Ioc));
+		        i.PutExtra(Strings.ExtraDatabaseFilepath, db.Ioc.Path);
+		        foreach (var plugin in new PluginDatabase(ctx).GetPluginsWithAcceptedScope(Strings.ScopeDatabaseActions))
+		        {
+		            i.SetPackage(plugin);
+		            ctx.SendBroadcast(i);
+		        }
+            }
+			
 		}
 
 
 
-	    public void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey,
-	        ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat)
+	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent)
 	    {
 	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
 	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true)
@@ -180,10 +182,29 @@ namespace keepass2android
 	            memoryStream.Seek(0, SeekOrigin.Begin);
 	        }
 
+            foreach (Database openDb in _openDatabases)
+	        {
+	            if (openDb.Ioc.IsSameFileAs(ioConnectionInfo))
+	            {
+                    //TODO check this earlier and simply open the database's root group
+	                throw new Exception("Database already loaded!");
+	            }
+	            
+	        }
 
-	        _db.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
+	        _openAttempts.Add(ioConnectionInfo);
+	        var newDb = new Database(new DrawableFactory(), this);
+            newDb.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
-		    if (createBackup)
+
+
+            if ((_currentDatabase == null) || makeCurrent)
+                _currentDatabase = newDb;
+	        _openDatabases.Add(newDb);
+
+
+
+            if (createBackup)
             { 
 		        statusLogger.UpdateMessage(Application.Context.GetString(Resource.String.UpdatingBackup));
 		        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Application.Context);
@@ -201,15 +222,18 @@ namespace keepass2android
 
                 using (var transaction = new LocalFileStorage(App.Kp2a).OpenWriteTransaction(targetIoc, false))
 		        {
-		            var file = transaction.OpenFile();
-		            backupCopy.CopyTo(file);
-		            transaction.CommitWrite();
+		            using (var file = transaction.OpenFile())
+		            {
+		                backupCopy.CopyTo(file);
+		                transaction.CommitWrite();
+                    }
+
 		        }
                 Java.Lang.Object baseIocDisplayName = baseDisplayName;
 
                 string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(ioConnectionInfo.Path);
-		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, Application.Context.
-                    GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
+		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, false, Application.Context.
+		            GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
 
                 prefs.Edit()
                     .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), true)
@@ -226,9 +250,35 @@ namespace keepass2android
             }
 
             UpdateOngoingNotification();
-		}
 
-		internal void UnlockDatabase()
+	        return newDb;
+	    }
+
+	    
+
+	    public void CloseDatabase(Database db)
+	    {
+	        if (!_openDatabases.Contains(db))
+	            throw new Exception("Cannot close database which is not open!");
+	        if (_openDatabases.Count == 1)
+	        {
+	            Lock(false);
+                return;
+	        }
+	        if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
+	        {
+	            LastOpenedEntry = null;
+	        }
+            
+	        _openDatabases.Remove(db);
+	        if (_currentDatabase == db)
+	            _currentDatabase = _openDatabases.First();
+            UpdateOngoingNotification();
+            //TODO broadcast event so affected activities can close/update? 
+	    }
+
+	    
+        internal void UnlockDatabase()
 		{
 			QuickLocked = false;
 
@@ -258,7 +308,7 @@ namespace keepass2android
         
 		public bool DatabaseIsUnlocked
 		{
-			get { return _db.Loaded && !QuickLocked; }
+			get { return OpenDatabases.Any() && !QuickLocked; }
 		}
 
 		#region QuickUnlock
@@ -287,8 +337,6 @@ namespace keepass2android
 		
 		#endregion
 
-		private Database _db;
-        
         /// <summary>
         /// See comments to EntryEditActivityState.
         /// </summary>
@@ -297,15 +345,71 @@ namespace keepass2android
         public FileDbHelper FileDbHelper;
 		private List<IFileStorage> _fileStorages;
 
-		public Database GetDb()
-        {
-            if (_db == null)
-            {
-                _db = CreateNewDatabase();
-            }
+        private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
+	    private readonly List<Database> _openDatabases = new List<Database>();
+	    private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
+        private Database _currentDatabase;
 
-            return _db;
-        }
+	    public IEnumerable<Database> OpenDatabases
+	    {
+	        get { return _openDatabases; }
+	    }
+
+	    internal ChallengeXCKey _currentlyWaitingXcKey;
+
+	    public readonly HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
+	    
+	    public HashSet<PwGroup> DirtyGroups {  get { return dirty; } }
+
+	    public void RegisterOpenAttempt(IOConnectionInfo ioc)
+	    {
+	        _openAttempts.Add(ioc);
+	    }
+
+
+        public bool AttemptedToOpenBefore(IOConnectionInfo ioc)
+	    {
+	        foreach (var attemptedIoc in _openAttempts)
+	        {
+                if (attemptedIoc.IsSameFileAs(ioc))
+                    return true;
+	        }
+	        return false;
+	    }
+
+
+        public void MarkAllGroupsAsDirty()
+	    {
+            foreach (var db in OpenDatabases)
+	        foreach (PwGroup group in db.GroupsById.Values)
+	        {
+	            DirtyGroups.Add(group);
+	        }
+
+
+	    }
+
+
+        /// <summary>
+        /// Information about the last opened entry. Includes the entry but also transformed fields.
+        /// </summary>
+        public PwEntryOutput LastOpenedEntry { get; set; }
+
+	    public Database CurrentDb
+	    {
+	      get { return _currentDatabase; }
+	        set
+	        {
+	            if (!OpenDatabases.Contains(value))
+	                throw new Exception("Cannot set database as current. Not in list of opened databases!");
+	            _currentDatabase = value;
+	        }
+	    } 
+
+        public Database GetDbForQuickUnlock()
+	    {
+	        return OpenDatabases.FirstOrDefault();
+	    }
 
 
 
@@ -330,20 +434,23 @@ namespace keepass2android
 
         public void CheckForOpenFileChanged(Activity activity)
         {
-            if (_db.DidOpenFileChange())
+            if (CurrentDb?.DidOpenFileChange() == true)
             {
-                if (_db.ReloadRequested)
+                if (CurrentDb.ReloadRequested)
                 {
-	                LockDatabase(false);
                     activity.SetResult(KeePass.ExitReloadDb);
                     activity.Finish();
-					//todo: return?
                 }
-	            AskForReload(activity);
+                else
+                {
+                    AskForReload(activity);
+                }
+                
             }
         }
 
-		private void AskForReload(Activity activity)
+	    
+	    private void AskForReload(Activity activity)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
@@ -353,7 +460,7 @@ namespace keepass2android
 			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
 				(dlgSender, dlgEvt) =>
 				{
-					_db.ReloadRequested = true;
+				    CurrentDb.ReloadRequested = true;
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
 
@@ -369,9 +476,9 @@ namespace keepass2android
 			dialog.Show();
 		}
 
-		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "")
+		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "")
         {
-            FileDbHelper.CreateFile(ioc, keyfile, displayName);
+            FileDbHelper.CreateFile(ioc, keyfile, updateTimestamp, displayName);
         }
 
         public string GetResourceString(UiStringKey key)
@@ -385,7 +492,17 @@ namespace keepass2android
 				throw new Exception("Invalid key " + key);
 			return Application.Context.GetString((int)field.GetValue(null));
 		}
-		public Drawable GetResourceDrawable(string key)
+
+	    public Drawable GetStorageIcon(string protocolId)
+	    {
+            //storages can provide variants but still use the same icon for all
+	        if (protocolId.Contains("_"))
+	            protocolId = protocolId.Split("_").First();
+	        return GetResourceDrawable("ic_storage_" + protocolId);
+	    }
+
+
+        public Drawable GetResourceDrawable(string key)
 		{
 			if (key == "ic_storage_skydrive")
 				key = "ic_storage_onedrive"; //resource was renamed. do this to avoid crashes with legacy file entries.
@@ -395,14 +512,10 @@ namespace keepass2android
 			return Application.Context.Resources.GetDrawable((int)field.GetValue(null));
 		}
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-			EventHandler<DialogClickEventArgs> yesHandler,
-			EventHandler<DialogClickEventArgs> noHandler,
-			EventHandler<DialogClickEventArgs> cancelHandler,
-			Context ctx)
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler, Context ctx, string messageSuffix)
 		{
 			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
-				yesHandler, noHandler, cancelHandler, ctx);
+				yesHandler, noHandler, cancelHandler, ctx, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
@@ -410,9 +523,9 @@ namespace keepass2android
 			EventHandler<DialogClickEventArgs> yesHandler,
 			EventHandler<DialogClickEventArgs> noHandler,
 			EventHandler<DialogClickEventArgs> cancelHandler,
-			Context ctx)
+			Context ctx, string messageSuffix = "")
 		{
-			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx);
+			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
@@ -421,7 +534,7 @@ namespace keepass2android
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
 			EventHandler dismissHandler,
-            Context ctx)
+            Context ctx, string messageSuffix = "")
         {
 	        Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
@@ -429,7 +542,7 @@ namespace keepass2android
 					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 					builder.SetTitle(GetResourceString(titleKey));
 
-					builder.SetMessage(GetResourceString(messageKey));
+					builder.SetMessage(GetResourceString(messageKey)+(messageSuffix != "" ? " " + messageSuffix: ""));
 
 					string yesText = GetResourceString(yesString);
 					builder.SetPositiveButton(yesText, yesHandler);
@@ -540,7 +653,7 @@ namespace keepass2android
 
 				if (DatabaseCacheEnabled && allowCache)
 				{
-					fileStorage = new CachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, this);
+					fileStorage = new CachingFileStorage(innerFileStorage, Application.Context, this);
 				}
 				else
 				{
@@ -585,11 +698,15 @@ namespace keepass2android
 							new DropboxAppFolderFileStorage(Application.Context, this),
 							new GoogleDriveFileStorage(Application.Context, this),
 							new OneDriveFileStorage(Application.Context, this),
-							new SftpFileStorage(this),
+						    new OneDrive2FullFileStorage(),
+						    new OneDrive2MyFilesFileStorage(),
+						    new OneDrive2AppFolderFileStorage(),
+                            new SftpFileStorage(Application.Context, this),
 							new NetFtpFileStorage(Application.Context, this),
 							new WebDavFileStorage(this),
+							new PCloudFileStorage(Application.Context, this),
 							//new LegacyWebDavStorage(this),
-							//new LegacyFtpStorage(this),
+                            //new LegacyFtpStorage(this),
 #endif
 #endif
 							new LocalFileStorage(this)
@@ -681,6 +798,7 @@ namespace keepass2android
 		}
 	    
 
+
 	    public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
 		{
 			private readonly Kp2aApp _app;
@@ -728,15 +846,15 @@ namespace keepass2android
 
 		internal void OnTerminate()
         {
-            if (_db != null)
-            {
-                _db.Clear();
-            }
 
+            _openDatabases.Clear();
+            _currentDatabase = null;
+            
             if (FileDbHelper != null && FileDbHelper.IsOpen())
             {
                 FileDbHelper.Close();
             }
+            GC.Collect();
         }
 
         internal void OnCreate(Application app)
@@ -756,10 +874,13 @@ namespace keepass2android
         }
 
         
-        public Database CreateNewDatabase()
+        public Database CreateNewDatabase(bool makeCurrent)
         {
-            _db = new Database(new DrawableFactory(), this);
-            return _db;
+            Database newDatabase = new Database(new DrawableFactory(), this);
+            if ((_currentDatabase == null) || makeCurrent)
+                _currentDatabase = newDatabase;
+            _openDatabases.Add(newDatabase);
+            return newDatabase;
         }
 
 		internal void ShowToast(string message)
@@ -818,7 +939,7 @@ namespace keepass2android
 
 		public void ClearOfflineCache()
 		{
-			new CachingFileStorage(new LocalFileStorage(this), Application.Context.CacheDir.Path, this).ClearCache();
+			new CachingFileStorage(new LocalFileStorage(this), Application.Context, this).ClearCache();
 		}
 
 		public IFileStorage GetFileStorage(string protocolId)
@@ -842,7 +963,7 @@ namespace keepass2android
 				
 				if (DatabaseCacheEnabled)
 				{
-					return new OtpAuxCachingFileStorage(innerFileStorage, Application.Context.CacheDir.Path, new OtpAuxCacheSupervisor(this));
+					return new OtpAuxCachingFileStorage(innerFileStorage, Application.Context, new OtpAuxCacheSupervisor(this));
 				}
 				else
 				{
@@ -899,9 +1020,123 @@ namespace keepass2android
 												Application.Context.GetString(Resource.String.LockWhenScreenOff_key),
 												false))
 			{
-				App.Kp2a.LockDatabase();
+				App.Kp2a.Lock();
 			}
 		}
+
+	    public Database TryGetDatabase(IOConnectionInfo dbIoc)
+	    {
+	        foreach (Database db in OpenDatabases)
+	        {
+	            if (db.Ioc.IsSameFileAs(dbIoc))
+	                return db;
+	        }
+	        return null;
+	    }
+
+	    public Database GetDatabase(IOConnectionInfo dbIoc)
+	    {
+	        Database result = TryGetDatabase(dbIoc);
+            if (result == null)
+	            throw new Exception("Database not found for dbIoc!");
+	        return result;
+	    }
+
+	    public Database GetDatabase(string databaseId)
+	    {
+	        foreach (Database db in OpenDatabases)
+	        {
+	            if (IoUtil.IocAsHexString(db.Ioc) == databaseId)
+	                return db;
+	        }
+	        throw new Exception("Database not found for databaseId " + databaseId + "!");
+        }
+
+        public PwGroup FindGroup(PwUuid uuid)
+	    {
+	        foreach (Database db in OpenDatabases)
+	        {
+	            PwGroup result;
+	            if (db.GroupsById.TryGetValue(uuid, out result))
+	                return result;
+	        }
+	        return null;
+	    }
+	    public IStructureItem FindStructureItem(PwUuid uuid)
+	    {
+	        
+	        foreach (Database db in OpenDatabases)
+	        {
+	            PwGroup resultGroup;
+                if (db.GroupsById.TryGetValue(uuid, out resultGroup))
+	                return resultGroup;
+	            PwEntry resultEntry;
+	            if (db.EntriesById.TryGetValue(uuid, out resultEntry))
+	                return resultEntry;
+            }
+	        return null;
+	    }
+
+	    public bool TrySelectCurrentDb(IOConnectionInfo ioConnection)
+	    {
+	        var matchingOpenDb = App.Kp2a.OpenDatabases.FirstOrDefault(db => db.Ioc.IsSameFileAs(ioConnection));
+	        if (matchingOpenDb != null)
+	        {
+	            CurrentDb = matchingOpenDb;
+	            return true;
+            }
+            return false;
+	        
+	    }
+
+	    public Database FindDatabaseForElement(IStructureItem element)
+	    {
+	        var db = TryFindDatabaseForElement(element);
+            if (db == null)
+                throw new Exception("Database element not found!");
+	        return db;
+	    }
+
+	    public Database TryFindDatabaseForElement(IStructureItem element)
+	    {
+            foreach (var db in OpenDatabases)
+            {
+                if (db.Elements.Contains(element))
+                    return db;
+            }
+	        return null;
+	    }
+
+	    public void RegisterChildDatabase(IOConnectionInfo ioc)
+	    {
+	        _childDatabases.Add(ioc);
+	    }
+
+	    public bool IsChildDatabase(Database db)
+	    {
+	        return _childDatabases.Any(ioc => ioc.IsSameFileAs(db.Ioc));
+	    }
+
+	    public string GetStorageMainTypeDisplayName(string protocolId)
+	    {
+	        var parts = protocolId.Split("_");
+	        return GetResourceString("filestoragename_" + parts[0]);
+
+	    }
+
+	    public string GetStorageDisplayName(string protocolId)
+	    {
+	        if (protocolId.Contains("_"))
+	        {
+	            var parts = protocolId.Split("_");
+	            return GetResourceString("filestoragename_" + parts[0]) + " (" +
+	                   GetResourceString("filestoragename_" + protocolId) + ")";
+
+	        }
+            else
+	        return GetResourceString("filestoragename_" + protocolId);
+
+	    }
 	}
 
 
@@ -975,6 +1210,7 @@ namespace keepass2android
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
 	            mChannel.SetSound(null, null);
+	            mChannel.SetShowBadge(false);
 	            mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
 
@@ -987,6 +1223,7 @@ namespace keepass2android
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
 	            mChannel.SetSound(null, null);
+	            mChannel.SetShowBadge(false);
                 mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
 
@@ -999,6 +1236,7 @@ namespace keepass2android
 	            mChannel.EnableLights(false);
 	            mChannel.EnableVibration(false);
 	            mChannel.SetSound(null, null);
+	            mChannel.SetShowBadge(false);
                 mNotificationManager.CreateNotificationChannel(mChannel);
 	        }
         }

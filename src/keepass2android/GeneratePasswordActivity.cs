@@ -19,6 +19,7 @@ using System;
 using System.Globalization;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Views;
@@ -26,7 +27,7 @@ using Android.Widget;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden)]		    
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]		    
     public class GeneratePasswordActivity : LockCloseActivity {
 		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
 

@@ -32,7 +32,7 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			_ioc = App.Kp2a.GetDb().Ioc;
+			_ioc = App.Kp2a.CurrentDb.Ioc;
 
 
 			_intentReceiver = new LockingClosePreferenceActivityBroadcastReceiver(this);
@@ -43,8 +43,12 @@ namespace keepass2android
 
 		protected override void OnResume() {
 			base.OnResume();
-			
-			TimeoutHelper.CheckShutdown(this, _ioc);
+
+		    if (TimeoutHelper.CheckDbChanged(this, _ioc))
+		    {
+		        Finish();
+		        return;
+		    }
 		}
 
 

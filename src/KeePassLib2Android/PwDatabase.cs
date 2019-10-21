@@ -485,12 +485,6 @@ namespace KeePassLib
 			set { m_pbHashOfLastIO = value; }
 		}
 
-		public bool UseFileTransactions
-		{
-			get { return m_bUseFileTransactions; }
-			set { m_bUseFileTransactions = value; }
-		}
-
 		public bool UseFileLocks
 		{
 			get { return m_bUseFileLocks; }
@@ -593,7 +587,7 @@ namespace KeePassLib
 		/// </summary>
 		/// <param name="ioConnection">IO connection of the new database.</param>
 		/// <param name="pwKey">Key to open the database.</param>
-		public void New(IOConnectionInfo ioConnection, CompositeKey pwKey)
+		public void New(IOConnectionInfo ioConnection, CompositeKey pwKey, string filenameWithoutPathAndExt)
 		{
 			Debug.Assert(ioConnection != null);
 			if(ioConnection == null) throw new ArgumentNullException("ioConnection");
@@ -608,26 +602,11 @@ namespace KeePassLib
 			m_bDatabaseOpened = true;
 			m_bModified = true;
 
-			m_pgRootGroup = new PwGroup(true, true,
-				UrlUtil.StripExtension(UrlUtil.GetFileName(ioConnection.Path)),
+			m_pgRootGroup = new PwGroup(true, true, filenameWithoutPathAndExt,
 				PwIcon.FolderOpen);
 			m_pgRootGroup.IsExpanded = true;
 		}
 
-		/// <summary>
-		/// Open a database. The URL may point to any supported data source.
-		/// </summary>
-		/// <param name="ioSource">IO connection to load the database from.</param>
-		/// <param name="pwKey">Key used to open the specified database.</param>
-		/// <param name="slLogger">Logger, which gets all status messages.</param>
-		public void Open(IOConnectionInfo ioSource, CompositeKey pwKey,
-			IStatusLogger slLogger, IDatabaseFormat format)
-
-		{
-			Open(IOConnection.OpenRead(ioSource), UrlUtil.StripExtension(
-					UrlUtil.GetFileName(ioSource.Path)), ioSource, pwKey, slLogger, format);
-
-		}
 
 		/// <summary>
 		/// Open a database. The URL may point to any supported data source.
@@ -675,37 +654,7 @@ namespace KeePassLib
 				throw;
 			}
 		}
-
-		/// <summary>
-		/// Save the currently opened database. The file is written to the location
-		/// it has been opened from.
-		/// </summary>
-		/// <param name="slLogger">Logger that recieves status information.</param>
-		public void Save(IStatusLogger slLogger)
-		{
-			Debug.Assert(!HasDuplicateUuids());
-
-			FileLock fl = null;
-			if(m_bUseFileLocks) fl = new FileLock(m_ioSource);
-			try
-			{
-				FileTransactionEx ft = new FileTransactionEx(m_ioSource,
-					m_bUseFileTransactions);
-				Stream s = ft.OpenWrite();
-
-				KdbxFile kdb = new KdbxFile(this);
-				kdb.Save(s, null, KdbpFile.GetFormatToUse(m_ioSource), slLogger);
-
-				ft.CommitWrite();
-
-				m_pbHashOfLastIO = kdb.HashOfFileOnDisk;
-				m_pbHashOfFileOnDisk = kdb.HashOfFileOnDisk;
-				Debug.Assert(m_pbHashOfFileOnDisk != null);
-			}
-			finally { if(fl != null) fl.Dispose(); }
-
-			m_bModified = false;
-		}
+        
 
 		/// <summary>
 		/// Save the currently opened database. The file is written to the given stream which is expected to be the original location.
@@ -723,46 +672,6 @@ namespace KeePassLib
 			m_bModified = false;
 		}
 
-		/// <summary>
-		/// Save the currently opened database to a different location. If
-		/// <paramref name="bIsPrimaryNow" /> is <c>true</c>, the specified
-		/// location is made the default location for future saves
-		/// using <c>SaveDatabase</c>.
-		/// </summary>
-		/// <param name="ioConnection">New location to serialize the database to.</param>
-		/// <param name="bIsPrimaryNow">If <c>true</c>, the new location is made the
-		/// standard location for the database. If <c>false</c>, a copy of the currently
-		/// opened database is saved to the specified location, but it isn't
-		/// made the default location (i.e. no lock files will be moved for
-		/// example).</param>
-		/// <param name="slLogger">Logger that recieves status information.</param>
-		public void SaveAs(IOConnectionInfo ioConnection, bool bIsPrimaryNow,
-			IStatusLogger slLogger)
-		{
-			Debug.Assert(ioConnection != null);
-			if(ioConnection == null) throw new ArgumentNullException("ioConnection");
-
-			IOConnectionInfo ioCurrent = m_ioSource; // Remember current
-			m_ioSource = ioConnection;
-
-			byte[] pbHashCopy = m_pbHashOfFileOnDisk;
-
-			try { this.Save(slLogger); }
-			catch(Exception)
-			{
-				m_ioSource = ioCurrent; // Restore
-				m_pbHashOfFileOnDisk = pbHashCopy;
-
-				m_pbHashOfLastIO = null;
-				throw;
-			}
-
-			if(!bIsPrimaryNow)
-			{
-				m_ioSource = ioCurrent; // Restore
-				m_pbHashOfFileOnDisk = pbHashCopy;
-			}
-		}
 
 		/// <summary>
 		/// Closes the currently opened database. No confirmation message is shown

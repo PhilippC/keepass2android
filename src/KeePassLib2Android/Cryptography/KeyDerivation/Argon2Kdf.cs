@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace KeePassLib.Cryptography.KeyDerivation
@@ -127,8 +128,44 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			byte[] pbSecretKey = p.GetByteArray(ParamSecretKey);
 			byte[] pbAssocData = p.GetByteArray(ParamAssocData);
 
+			if (pbSecretKey != null) {
+				throw new ArgumentOutOfRangeException("Unsupported configuration: non-null pbSecretKey");
+			}
+
+			if (pbAssocData != null) {
+				throw new ArgumentOutOfRangeException("Unsupported configuration: non-null pbAssocData");
+			}
+
+			/*
 			byte[] pbRet = Argon2d(pbMsg, pbSalt, uPar, uMem, uIt,
 				32, v, pbSecretKey, pbAssocData);
+			*/
+
+			IntPtr msgPtr = Marshal.AllocHGlobal(pbMsg.Length);
+			IntPtr saltPtr = Marshal.AllocHGlobal(pbSalt.Length);
+			IntPtr retPtr = Marshal.AllocHGlobal(32);
+			Marshal.Copy(pbMsg, 0, msgPtr, pbMsg.Length);
+			Marshal.Copy(pbSalt, 0, saltPtr, pbSalt.Length);
+
+			const UInt32 Argon2_d = 0;
+
+			int ret = argon2_hash(
+					(UInt32)uIt, (UInt32)(uMem / 1024), uPar,
+					msgPtr, (IntPtr)pbMsg.Length,
+					saltPtr, (IntPtr)pbSalt.Length,
+					retPtr, (IntPtr)32,
+					(IntPtr)0, (IntPtr)0, Argon2_d, v);
+
+			if (ret != 0) {
+				throw new Exception("argon2_hash failed with " + ret);
+			}
+
+			byte[] pbRet = new byte[32];
+			Marshal.Copy(retPtr, pbRet, 0, 32);
+
+			Marshal.FreeHGlobal(msgPtr);
+			Marshal.FreeHGlobal(saltPtr);
+			Marshal.FreeHGlobal(retPtr);
 
 			if(uMem > (100UL * 1024UL * 1024UL)) GC.Collect();
 			return pbRet;
@@ -143,5 +180,14 @@ namespace KeePassLib.Cryptography.KeyDerivation
 				MaxIterations, uMilliseconds, true);
 			return p;
 		}
+
+		[DllImport("argon2")]
+		static extern int argon2_hash(
+				UInt32 t_cost, UInt32 m_cost, UInt32 parallelism,
+				IntPtr pwd, IntPtr pwdlen,
+				IntPtr salt, IntPtr saltlen,
+				IntPtr hash, IntPtr hashlen,
+				IntPtr encoded, IntPtr encodedlen,
+				UInt32 type, UInt32 version);
 	}
 }

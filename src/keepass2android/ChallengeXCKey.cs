@@ -2,6 +2,7 @@ using Java.Lang;
 using KeePassLib.Cryptography;
 using KeePassLib.Keys;
 using KeePassLib.Security;
+using KeePassLib.Serialization;
 using Exception = System.Exception;
 
 namespace keepass2android
@@ -60,6 +61,11 @@ namespace keepass2android
                 Response = null;
                 return new ProtectedBinary(true, result);
             }
+        }
+
+        public uint GetMinKdbxVersion()
+        {
+            return KdbxFile.FileVersion32_4;
         }
 
         private byte[] _kdfSeed;

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+
+      android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_container"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+            >
+
+      <ImageView
+          android:id="@+id/child_db_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+          android:layout_alignParentEnd="true"
+          android:layout_centerVertical="true"
+          
+          android:paddingBottom="4sp"
+          android:paddingTop="4sp"
+         />
+
+      <TextView
+          android:id="@+id/child_db_title"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_toLeftOf="@id/child_db_icon"
+          android:textSize="16sp"
+          android:gravity="left|center"
+          android:paddingBottom="8sp"
+          android:paddingTop="8sp"
+
+                />
+    </RelativeLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/child_db_url"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ellipsize="none"
+          android:maxLines="100"
+          android:scrollHorizontally="false"
+          android:textSize="12sp"
+          android:text="@string/entry_url"/>
+      <TextView
+          android:id="@+id/child_db_enabled_here"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:ellipsize="none"
+          android:maxLines="100"
+          android:scrollHorizontally="false"
+          android:textSize="12sp"
+          android:text="@string/child_db_enabled_on_this_device"/>
+
+      <Button
+          android:id="@+id/child_db_enable_on_this_device"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/child_db_enable_on_this_device"/>
+      <Button
+        android:id="@+id/child_db_disable_on_this_device"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/child_db_disable_on_this_device"/>
+      <Button
+        android:id="@+id/child_db_edit"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/edit"/>
+      <Button
+        android:id="@+id/child_db_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_open"/>
+
+      <LinearLayout
+        android:id="@+id/child_db_enable_a_copy_for_this_device_container"
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+        <Button
+          android:id="@+id/child_db_enable_a_copy_for_this_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/child_db_enable_a_copy_for_this_device"/>
+        <keepass2android.views.Kp2aShortHelpView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/TextAppearance_Help_Dense"
+          android:textColor="@color/light_gray"
+          app:help_text="@string/EnableCopyForThisDevice_Info"
+          app:title_text="@string/child_db_enable_a_copy_for_this_device"
+          android:text="@string/EnableCopyForThisDevice_Info"
+          android:background="?android:attr/selectableItemBackground"/>
+      </LinearLayout>
+
+    </LinearLayout>
+  </LinearLayout>

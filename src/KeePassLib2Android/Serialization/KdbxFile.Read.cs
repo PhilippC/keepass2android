@@ -581,7 +581,7 @@ namespace KeePassLib.Serialization
 			return vEntries; */
 
 			PwDatabase pd = new PwDatabase();
-			pd.New(new IOConnectionInfo(), new CompositeKey());
+			pd.New(new IOConnectionInfo(), new CompositeKey(), "");
 
 			KdbxFile f = new KdbxFile(pd);
 			f.Load(msData, KdbxFormat.PlainXml, null);

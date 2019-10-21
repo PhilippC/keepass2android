@@ -63,7 +63,7 @@ namespace keepass2android
 			}
 			
 
-			_ioc = App.Kp2a.GetDb().Ioc;
+			_ioc = App.Kp2a.CurrentDb?.Ioc;
 
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;
@@ -106,10 +106,13 @@ namespace keepass2android
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;
 
-			if (TimeoutHelper.CheckShutdown(this, _ioc))
-				return;
+		    if (TimeoutHelper.CheckDbChanged(this, _ioc))
+		    {
+		        Finish();
+		        return;
+		    }
 
-			//todo: it seems like OnResume can be called after dismissing a dialog, e.g. the Delete-permanently-Dialog.
+		    //todo: it seems like OnResume can be called after dismissing a dialog, e.g. the Delete-permanently-Dialog.
 			//in this case the following check might run in parallel with the check performed during the SaveDb check (triggered after the 
 			//aforementioned dialog is closed) which can cause odd behavior. However, this is a rare case and hard to resolve so this is currently
 			//accepted. (If the user clicks cancel on the reload-dialog, everything will work.)

@@ -51,7 +51,7 @@ namespace keepass2android
 				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
 			}
 
-			_ioc = App.Kp2a.GetDb().Ioc;
+			_ioc = App.Kp2a.CurrentDb.Ioc;
 
 			_intentReceiver = new LockCloseListActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
@@ -72,11 +72,14 @@ namespace keepass2android
 		{
 			base.OnResume();
 			_design.ReapplyTheme();
-			
-			if (TimeoutHelper.CheckShutdown(this, _ioc))
-				return;
-			
-			//todo: see LockCloseActivity.OnResume
+
+		    if (TimeoutHelper.CheckDbChanged(this, _ioc))
+		    {
+		        Finish();
+		        return;
+		    }
+
+		    //todo: see LockCloseActivity.OnResume
 			App.Kp2a.CheckForOpenFileChanged(this);
 		}
 

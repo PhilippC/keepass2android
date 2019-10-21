@@ -22,8 +22,13 @@
         android:title="@string/menu_search"
         app:showAsAction="ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" 
-    />  
-    <item android:id="@+id/menu_search_advanced"
+    />
+  <item android:id="@+id/menu_search_dummy"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom"
+  />
+  <item android:id="@+id/menu_search_advanced"
         android:icon="@drawable/ic_menu_search"
         android:title="@string/menu_search_advanced"
         app:showAsAction="never"
@@ -57,11 +62,16 @@
     app:showAsAction="never"
     />
 
-	<item android:id="@+id/menu_sort"
+  <item android:id="@+id/menu_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/sort_menu"
       app:showAsAction="never"
     />
-    
-    
+  <item android:id="@+id/menu_open_other_db"
+        android:title="@string/open_other_db"
+        app:showAsAction="never"
+  />
+
+
+
 </menu>

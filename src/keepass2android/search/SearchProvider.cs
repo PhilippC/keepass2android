@@ -47,10 +47,9 @@ namespace keepass2android.search
 		private const string GetIconPathQuery = "get_icon";
 		private const string IconIdParameter = "IconId";
 		private const string CustomIconUuidParameter = "CustomIconUuid";
+	    private const string DatabaseIndexParameter = "DatabaseIndex";
 
-		private Database _db;
-
-		private static UriMatcher UriMatcher = BuildUriMatcher();
+        private static UriMatcher UriMatcher = BuildUriMatcher();
 
 		static UriMatcher BuildUriMatcher()
 		{
@@ -65,7 +64,6 @@ namespace keepass2android.search
 
 		public override bool OnCreate()
 		{
-			_db = App.Kp2a.GetDb();
 			return true;
 		}
 
@@ -81,9 +79,24 @@ namespace keepass2android.search
 						{
 							try
 							{
-								var resultsContexts = new Dictionary<PwUuid, KeyValuePair<string, string>>();
-								var result = _db.Search(new SearchParameters { SearchString = searchString }, resultsContexts );
-								return new GroupCursor(result, resultsContexts);
+							    List<EntryListCursor.EntryWithContext> entriesWithContext = new List<EntryListCursor.EntryWithContext>();
+							    int dbIndex = 0;
+							    foreach (var db in App.Kp2a.OpenDatabases)
+							    {
+							        var resultsContexts = new Dictionary<PwUuid, KeyValuePair<string, string>>();
+							        PwGroup group = db.Search(new SearchParameters { SearchString = searchString }, resultsContexts);
+
+							        foreach (var entry in group.Entries)
+							        {
+							            KeyValuePair<string, string> context;
+							            resultsContexts.TryGetValue(entry.Uuid, out context);
+                                        entriesWithContext.Add(new EntryListCursor.EntryWithContext(entry, context, dbIndex));
+                                    }
+							        dbIndex++;
+
+							    }
+								
+								return new EntryListCursor(entriesWithContext);
 							}
 							catch (Exception e)
 							{
@@ -119,9 +132,13 @@ namespace keepass2android.search
 				case UriMatches.GetIcon:
 					var iconId = (PwIcon)Enum.Parse(typeof(PwIcon), uri.GetQueryParameter(IconIdParameter));
 					var customIconUuid = new PwUuid(MemUtil.HexStringToByteArray(uri.GetQueryParameter(CustomIconUuidParameter)));
+				    int databaseIndex = int.Parse(uri.GetQueryParameter(DatabaseIndexParameter));
+				    List<Database> databases = App.Kp2a.OpenDatabases.ToList();
+				    Database database = databases[databaseIndex];
 
-					var iconDrawable = _db.DrawableFactory.GetIconDrawable(App.Context, _db.KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
-					if ((iconDrawable != null) && (iconDrawable.Bitmap != null))
+
+                    var iconDrawable = database.DrawableFactory.GetIconDrawable(App.Context, database.KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
+					if (iconDrawable?.Bitmap != null)
 
                     {
 						var pipe = ParcelFileDescriptor.CreatePipe();
@@ -189,29 +206,41 @@ namespace keepass2android.search
 		#endregion
 
 
-		private class GroupCursor : AbstractCursor
+		private class EntryListCursor : AbstractCursor
 		{
-			private static readonly string[] ColumnNames = new[] { Android.Provider.BaseColumns.Id, 
+		    private readonly List<EntryWithContext> _entriesWithContexts;
+
+		    private static readonly string[] ColumnNames = new[] { Android.Provider.BaseColumns.Id, 
 																	SearchManager.SuggestColumnText1, 
 																	SearchManager.SuggestColumnText2, 
 																	SearchManager.SuggestColumnIcon1,
 																	SearchManager.SuggestColumnIntentDataId,
 			};
 
-			private readonly PwGroup mGroup;
-			private readonly IDictionary<PwUuid, KeyValuePair<string, string>> mResultContexts;
+			
 
-			public GroupCursor(PwGroup group, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
+		    public struct EntryWithContext
+		    {
+		        public readonly PwEntry entry;
+		        public readonly KeyValuePair<string, string> resultContext;
+		        public readonly int DatabaseIndex;
+
+		        public EntryWithContext(PwEntry entry, KeyValuePair<string, string> mResultContext, int databaseIndex)
+		        {
+		            this.entry = entry;
+		            this.resultContext = mResultContext;
+		            DatabaseIndex = databaseIndex;
+		        }
+		    }
+
+			public EntryListCursor(List<EntryWithContext> entriesWithContexts)
 			{
-				System.Diagnostics.Debug.Assert(!group.Groups.Any(), "Expecting a flat list of groups");
-
-				mGroup = group;
-				mResultContexts = resultContexts;
+			    _entriesWithContexts = entriesWithContexts;
 			}
 
 			public override int Count
 			{
-				get { return (int)Math.Min(mGroup.GetEntriesCount(false), int.MaxValue); }
+				get { return _entriesWithContexts.Count; }
 			}
 
 			public override string[] GetColumnNames()
@@ -234,7 +263,10 @@ namespace keepass2android.search
 			{
 				get
 				{
-					return mGroup.Entries.GetAt((uint)MPos);
+                    if (MPos < _entriesWithContexts.Count)
+					    return _entriesWithContexts[MPos].entry;
+                    return null;
+                    
 				}
 			}
 
@@ -258,12 +290,9 @@ namespace keepass2android.search
 					case 1: // SuggestColumnText1
 						return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField);
 					case 2: // SuggestColumnText2
-						KeyValuePair<string, string> context;
-						if (mResultContexts.TryGetValue(CurrentEntry.Uuid, out context))
-						{
-							return Internationalise(context);
-						}
-						return null;
+                        if (MPos < _entriesWithContexts.Count)
+                            return Internationalise(_entriesWithContexts[MPos].resultContext);
+					    return "";
 					case 3: // SuggestColumnIcon1
 						var builder = new Android.Net.Uri.Builder();
 						builder.Scheme(ContentResolver.SchemeContent);
@@ -271,9 +300,10 @@ namespace keepass2android.search
 						builder.Path(GetIconPathQuery);
 						builder.AppendQueryParameter(IconIdParameter, CurrentEntry.IconId.ToString());
 						builder.AppendQueryParameter(CustomIconUuidParameter, CurrentEntry.CustomIconUuid.ToHexString());
-						return builder.Build().ToString();
+					    builder.AppendQueryParameter(DatabaseIndexParameter, _entriesWithContexts[MPos].DatabaseIndex.ToString());
+                        return builder.Build().ToString();
 					case 4: // SuggestColumnIntentDataId
-						return CurrentEntry.Uuid.ToHexString();
+						return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(CurrentEntry),CurrentEntry).FullId;
 					default:
 						return null;
 				}
