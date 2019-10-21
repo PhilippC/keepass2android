@@ -506,7 +506,7 @@ namespace keepass2android
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
-				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry);
+				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry, db);
 			} else {
 				runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}

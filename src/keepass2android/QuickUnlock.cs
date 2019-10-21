@@ -59,11 +59,7 @@ namespace keepass2android
 			base.OnCreate(bundle);
 			
 			//use FlagSecure to make sure the last (revealed) character of the password is not visible in recent apps
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
-			}
+		    Util.MakeSecureDisplay(this);
 
 			_ioc = App.Kp2a.GetDbForQuickUnlock()?.Ioc;
 

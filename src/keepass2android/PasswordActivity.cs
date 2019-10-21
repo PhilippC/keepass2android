@@ -646,16 +646,12 @@ namespace keepass2android
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
 			RegisterReceiver(_intentReceiver, filter);
-			
-			
-			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
-			}
 
-			Intent i = Intent;
+
+            //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
+		    Util.MakeSecureDisplay(this);
+
+            Intent i = Intent;
 
 
 			String action = i.Action;
@@ -2147,7 +2143,7 @@ namespace keepass2android
 					KeyProviderQueryContext ctx = new KeyProviderQueryContext(_act._ioConnection, false, false);
 					
 					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, _act._otpAuxIoc))
-						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
+						ShowError(_act.GetString(Resource.String.ErrorUpdatingOtpAuxFile));
 
 					
 				}
@@ -2155,8 +2151,7 @@ namespace keepass2android
 				{
 					Kp2aLog.LogUnexpectedError(e);
 
-					Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message,
-								   ToastLength.Long).Show();
+					ShowError( _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message);
 				}
 
 
@@ -2169,7 +2164,11 @@ namespace keepass2android
 
                 
             }
-            
+
+		    private void ShowError(string message)
+		    {
+		        App.Kp2a.ShowToast(message);
+		    }
 		}
 		private class PasswordActivityBroadcastReceiver : BroadcastReceiver
 		{

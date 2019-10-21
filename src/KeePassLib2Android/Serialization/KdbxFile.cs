@@ -375,13 +375,16 @@ namespace KeePassLib.Serialization
 
             // See also KeePassKdb2x3.Export (KDBX 3.1 export module)
 		    uint minVersionForKeys = m_pwDatabase.MasterKey.UserKeys.Select(key => key.GetMinKdbxVersion()).Max();
-		    
+
+		    uint minRequiredVersion = Math.Max(minVersionForKeys, m_uFileVersion); //don't save a version lower than what we read
+
+
             AesKdf kdfAes = new AesKdf();
 			if(!kdfAes.Uuid.Equals(m_pwDatabase.KdfParameters.KdfUuid))
-				return Math.Max(FileVersion32, minVersionForKeys);
+				return Math.Max(FileVersion32, minRequiredVersion);
 
 			if(m_pwDatabase.PublicCustomData.Count > 0)
-			    return Math.Max(FileVersion32, minVersionForKeys);
+			    return Math.Max(FileVersion32, minRequiredVersion);
 
 
 
@@ -401,9 +404,9 @@ namespace KeePassLib.Serialization
 			gh(m_pwDatabase.RootGroup);
 			m_pwDatabase.RootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh);
 			if(bCustomData)
-			    return Math.Max(FileVersion32, minVersionForKeys);
+			    return Math.Max(FileVersion32, minRequiredVersion);
 
-            return Math.Max(FileVersion32_3, minVersionForKeys); ; // KDBX 3.1 is sufficient
+            return Math.Max(FileVersion32_3, minRequiredVersion); ; // KDBX 3.1 is sufficient
 		}
 
 		private void ComputeKeys(out byte[] pbCipherKey, int cbCipherKey,
