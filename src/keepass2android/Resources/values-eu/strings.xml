@@ -32,6 +32,7 @@
   <string name="keyboard_prefs">Teklatua</string>
   <string name="export_prefs">Esportatu datu-basea...</string>
   <string name="fingerprint_prefs">Hatz-marka bidezko desblokeoa</string>
+  <string name="import_db_prefs">Inportatu datu-basea barne karpetara</string>
   <string name="import_keyfile_prefs">Inportatu gakoa barne karpetara</string>
   <string name="keyboardswitch_prefs">Teklatu aldaketa</string>
   <string name="OnlyAvailableForLocalFiles">Tokiko fitxategientzat besterik ez.</string>
@@ -43,6 +44,7 @@
   <string name="ClearClipboard">Arbela garbituta.</string>
   <string name="clipboard_timeout">Arbelaren dembora-muga</string>
   <string name="clipboard_timeout_summary">Erabiltzaile-izena edo pasahitza kopiatu eta gero arbela garbitzeko denbora-muga</string>
+  <string name="copy_password">Hautatu pasahitza arbelera kopiatzeko</string>
   <string name="entry_is_available">eskuragarri dago</string>
   <string name="creating_db_key">Datu-basearen gakoa sortzen…</string>
   <string name="current_group">Uneko taldea</string>
