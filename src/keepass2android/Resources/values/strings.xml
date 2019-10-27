@@ -781,7 +781,15 @@
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
   <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
-  <string name="ChangeLog_1_07b">
+
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Bug fixes</item>
+  </string-array>
+
+
+    <string name="ChangeLog_1_07b">
     Version 1.07b\n
     * Improve Argon2 performance by using native implementation (Thanks to Chih-Hsuan Yen!)\n
     * Allow to disable fingerprint by clicking on the fingerprint icon (avoids issue with underscreen fingerprint readers, thanks to marcoDallas!)\n

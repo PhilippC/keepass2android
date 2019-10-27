@@ -27,6 +27,7 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
+                BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08, "1.08-pre"),
 			    ctx.GetString(Resource.String.ChangeLog_1_07b),
                 ctx.GetString(Resource.String.ChangeLog_1_07),
                 ctx.GetString(Resource.String.ChangeLog_1_06),
@@ -111,7 +112,18 @@ namespace keepass2android
 
 		}
 
-		private const string HtmlStart = @"<html>
+	    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
+	    {
+	        string result = "Version " + version + "\n";
+	        foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
+	        {
+	            result += " * " + item + "\n";
+	        }
+	        return result;
+
+	    }
+
+	    private const string HtmlStart = @"<html>
   <head>
     <style type='text/css'>
       a            { color:#000000 }
