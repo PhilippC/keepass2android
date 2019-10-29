@@ -634,6 +634,15 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string name="ChangeLog_1_07b">    版本 1.07b\n
+    * 采用原生实现改进 Argon2 性能（感谢 Chih-Hsuan Yen!）\n
+    * 允许点按指纹图标来禁用指纹（避免屏下指纹识别的问题，感谢 marcoDallas!）\n
+    * 切换密码可见性时恢复光标位置（感谢 DDoSolitary!）\n
+    * 改进 pCloud 实现（再次感谢 gilbsgilbs again!）\n
+    * 为更多的数个浏览器增加自动填写支持 \n
+    * 新的 OneDrive 实现：支持 OneDrive for Business、共享文件、可选权限范围、多账户，以及修复离线访问问题\n
+    * 其他问题修复
+  </string>
   <string name="ChangeLog_1_07">版本1.07 \ n
      *修复了三星Android 9上的崩溃问题\ n
      *允许打开多个与KeeAutoExec兼容的数据库\ n
@@ -962,4 +971,5 @@ Initial public release
   <string name="backup_infotext_note">要立即创建备份，前往 %1$s &gt; %2$s &gt; %3$s。</string>
   <string name="emergency_infotext_head">你准备好应对突发情况了吗？</string>
   <string name="emergency_infotext_main">你是否考虑过，当你突然无法打开你的密码数据库时，该怎么办？万一你不幸发生事故，又该怎么办？你应该将主密钥托付给一个值得信任的人，以应对突发情况。除此以外的其他人都无法查看你的密码。</string>
+  <string name="no_secure_display">当前有效的显示器未标记为“安全”。因此其他应用可以屏幕截图。Keepass2Android 已配置为仅在安全的显示器上显示敏感信息。请更换到安全的显示器（如断开 HDMI 监视器）或更改本应用的设置。</string>
 </resources>
