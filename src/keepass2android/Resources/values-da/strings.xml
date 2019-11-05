@@ -634,6 +634,12 @@
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Vis soft-tastatur til adgangskodeinput, når fingeraftrykaflæsning er aktiv.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Fejlrettelser</item>
+  </string-array>
   <string name="ChangeLog_1_07">    Version 1.07\n
     * Løser nedbrud på Samsungs Android 9\n
     * Tillader åbning af flere end én database, kompatibel med KeeAutoExec\n
@@ -858,5 +864,5 @@
   <string name="backup_infotext_note">For at oprette en sikkerhedskopi nu, så gå til %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Forberedt på nødsituationer?</string>
   <string name="emergency_infotext_main">Har du nogensinde overvejet, hvad der sker, hvis du ikke længere kan tilgå din adgangskodedatabase? Hvis du kommer ud for en ulykke? Det er god praksis at videregive din hovednøgle til en betroet person for nødstilfælde. Ingen vil ellers kunne tilgå dine adgangskoder.</string>
-  <string name="no_secure_display">Den aktuelt anvendte skærm er ikke markeret som sikker. Dette betyder, at andre apps kan tage skærmfotos. Keepass2Android er opsat til kun at vise følsomme oplysninger på sikre skærme. Skift til en sikker skærm (f.eks. ved at frakoble en HDMI-skærm) eller ændre app-indstillingerne.</string>
+  <string name="no_secure_display">Den aktuelt anvendte skærm er ikke markeret som sikker. Dette betyder, at andre apps kan tage skærmfotos. Keepass2Android er konfigureret til kun at vise følsomme oplysninger på sikre skærme. Skift til en sikker skærm (f.eks. ved at frakoble en HDMI-skærm) eller ændr app-indstillingerne.</string>
 </resources>
