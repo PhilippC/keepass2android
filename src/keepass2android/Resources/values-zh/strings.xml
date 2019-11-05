@@ -634,6 +634,12 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>添加通知按钮，用于复制TOTP到剪切板</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Bug fixes</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 采用原生实现改进 Argon2 性能（感谢 Chih-Hsuan Yen!）\n
     * 允许点按指纹图标来禁用指纹（避免屏下指纹识别的问题，感谢 marcoDallas!）\n
