@@ -22,8 +22,8 @@
   <string name="app_name_nonet">Keepass2Android 離線版</string>
   <string name="short_app_name_nonet">KP2A 離線</string>
   <string name="app_timeout">應用程式超時</string>
-  <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
-  <string name="kill_app_label">終止應用程式進程</string>
+  <string name="app_timeout_summary">Time before locking database when the app is inactive.</string>
+  <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">關閉按鈕</string>
   <string name="show_kill_app_summary">在密碼螢幕中顯示中止應用程式進程的按鈕 (供偏執的用戶使用)</string>
   <string name="application">應用程式</string>
