@@ -631,6 +631,12 @@
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>バグフィックス</item>
+  </string-array>
   <string name="ChangeLog_1_07b">バージョン 1.07b\n
      * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen に感謝!)\n
      * 指紋アイコンをクリックして指紋を無効にすることができます (画面下の指紋リーダーの問題を回避できます。marcoDallas に感謝!)\n
