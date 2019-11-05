@@ -632,6 +632,12 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en claire dans les champs de saisie texte quand le scan d\'empreinte digital est activé.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Ajoutez d\'un bouton de notification pour copier le TOTP dans le presse-papiers</item>
+    <item>Passez à l\'utilisation de FluentFTP pour assurer le support de TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Bug fixes</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
     * Amélioration des performances Argon2 en utilisant l\'implémentation native (Merci à to Chih-Hsuan Yen !)\n
     * Possibilité de désactiver l\'empreinte digitale en cliquant sur l\'icône de l\'empreinte (évite un problème avec les lecteurs d\'empreinte placés sous l\'écran, merci à marcoDallas !)\n
