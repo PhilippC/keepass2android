@@ -86,8 +86,10 @@ namespace keepass2android
 
 	    public const String KeyKeyfile = "keyFile";
 	    public const String KeyPassword = "password";
+        public const String LaunchImmediately = "launchImmediately";
 
-		private const string ShowpasswordKey = "ShowPassword";
+
+        private const string ShowpasswordKey = "ShowPassword";
 		private const string KeyProviderIdOtp = "KP2A-OTP";
 		private const string KeyProviderIdOtpRecovery = "KP2A-OTPSecret";
 		private const string KeyProviderIdChallenge = "KP2A-Chal";

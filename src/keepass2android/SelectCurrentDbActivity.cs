@@ -232,8 +232,9 @@ namespace keepass2android
                     //forward to password activity
                     Intent i = new Intent(this, typeof(PasswordActivity));
                     Util.PutIoConnectionToIntent(ioc, i);
-                    i.PutExtra(PasswordActivity.KeyKeyfile, i.GetStringExtra(PasswordActivity.KeyKeyfile));
-                    i.PutExtra(PasswordActivity.KeyPassword, i.GetStringExtra(PasswordActivity.KeyPassword));
+                    i.PutExtra(PasswordActivity.KeyKeyfile, Intent.GetStringExtra(PasswordActivity.KeyKeyfile));
+                    i.PutExtra(PasswordActivity.KeyPassword, Intent.GetStringExtra(PasswordActivity.KeyPassword));
+                    i.PutExtra(PasswordActivity.LaunchImmediately, Intent.GetBooleanExtra(PasswordActivity.LaunchImmediately, false));
                     LaunchingOther = true;
                     StartActivityForResult(i, ReqCodeOpenNewDb);
                 }
