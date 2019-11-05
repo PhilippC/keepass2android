@@ -495,7 +495,7 @@ namespace keepass2android
             {
                 FindViewById(Resource.Id.enable_fingerprint).Click += (sender, args) =>
                 {
-                    StartActivity(typeof(FingerprintSetupActivity));
+                    StartActivity(typeof(BiometricSetupActivity));
                 };
             }
 
@@ -689,8 +689,8 @@ namespace keepass2android
             if (!disabledForAll && !disabledForDatabase && !App.Kp2a.IsChildDatabase(App.Kp2a.CurrentDb))
             {
 
-                FingerprintModule fpModule = new FingerprintModule(this);
-                if (fpModule.FingerprintManager != null && fpModule.FingerprintManager.IsHardwareDetected)
+                BiometricModule biometricModule = new BiometricModule(this);
+                if (biometricModule.IsAvailable)
                 {
                     FingerprintUnlockMode um;
                     Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.CurrentDb.Ioc), ""), out um);

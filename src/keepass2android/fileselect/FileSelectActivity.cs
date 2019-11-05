@@ -44,7 +44,7 @@ namespace keepass2android
 	           ConfigurationChanges=ConfigChanges.Orientation|
 	           ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_Blue")]
-	public class FileSelectActivity : AppCompatActivity
+	public class FileSelectActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
 		public FileSelectActivity (IntPtr javaReference, JniHandleOwnership transfer)

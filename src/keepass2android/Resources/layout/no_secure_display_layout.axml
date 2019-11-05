@@ -8,7 +8,7 @@
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:paddingTop="16dp">
-	<android.support.v7.widget.Toolbar  android:id="@+id/mytoolbar"
+	<androidx.appcompat.widget.Toolbar  android:id="@+id/mytoolbar"
   app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
   app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
       app:titleTextStyle="@style/MyTitleTextStyle"

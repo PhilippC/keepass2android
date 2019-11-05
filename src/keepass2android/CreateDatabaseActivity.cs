@@ -21,7 +21,7 @@ namespace keepass2android
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_ActionBar")]
-	public class CreateDatabaseActivity : AppCompatActivity
+	public class CreateDatabaseActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private IOConnectionInfo _ioc;
 		private string _keyfileFilename;

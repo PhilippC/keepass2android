@@ -15,6 +15,7 @@ using Android.Widget;
 using Java.Lang;
 using KeePassLib.Keys;
 using KeePassLib.Utility;
+using Kotlin.Text;
 using Enum = System.Enum;
 using Exception = System.Exception;
 
@@ -24,16 +25,16 @@ namespace keepass2android
 	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		Theme = "@style/MyTheme_ActionBar", MainLauncher = false)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
-	public class FingerprintSetupActivity : LockCloseActivity, IFingerprintAuthCallback
+	public class BiometricSetupActivity : LockCloseActivity, IBiometricAuthCallback
 	{
 		private readonly ActivityDesign _activityDesign;
 
-		public FingerprintSetupActivity(IntPtr javaReference, JniHandleOwnership transfer)
+		public BiometricSetupActivity(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 	    {
 		    _activityDesign = new ActivityDesign(this);
 	    }
-		public FingerprintSetupActivity()
+		public BiometricSetupActivity()
 		{
 			_activityDesign = new ActivityDesign(this);
 		}
@@ -42,7 +43,7 @@ namespace keepass2android
 
 		private FingerprintUnlockMode _unlockMode = FingerprintUnlockMode.Disabled;
 		private FingerprintUnlockMode _desiredUnlockMode;
-		private FingerprintEncryption _enc;
+		private BiometricEncryption _enc;
 		private RadioButton[] _radioButtons;
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
@@ -70,6 +71,7 @@ namespace keepass2android
 			_fpIcon = FindViewById<ImageView>(Resource.Id.fingerprint_icon);
 			_fpTextView = FindViewById<TextView>(Resource.Id.fingerprint_status);
 
+            
 			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 			SupportActionBar.SetHomeButtonEnabled(true);
 
@@ -128,14 +130,8 @@ namespace keepass2android
 					.PutBoolean(GetString(Resource.String.ShowKeyboardWhileFingerprint_key), args.IsChecked)
 					.Commit();
 			};
-			if ((int)Build.VERSION.SdkInt >= 23)
-				RequestPermissions(new[] {Manifest.Permission.UseFingerprint}, FingerprintPermissionRequestCode);
-			else
-			{
-				TrySetupSamsung();
 				
-			}
-
+            
 			UpdateKeyboardCheckboxVisibility();
 			
 			
@@ -143,10 +139,7 @@ namespace keepass2android
 
 		private void UpdateKeyboardCheckboxVisibility()
 		{
-			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = (_unlockMode == FingerprintUnlockMode.Disabled) ||
-			                                                                       (_samsungFingerprint != null)
-				? ViewStates.Gone
-				: ViewStates.Visible;
+			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = ViewStates.Gone;
 		}
 
 		private bool TrySetupSamsung()
@@ -154,20 +147,20 @@ namespace keepass2android
 			try
 			{
 				//try to create a Samsung ID object 
-				_samsungFingerprint = new FingerprintSamsungIdentifier(this);
-				if (!_samsungFingerprint.Init())
+				_samsungBiometry = new BiometrySamsungIdentifier(this);
+				if (!_samsungBiometry.Init())
 				{
 					SetError(Resource.String.fingerprint_no_enrolled);
 				}
 				ShowRadioButtons();
-				FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungFingerprint == null
+				FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungBiometry == null
 					? ViewStates.Visible
 					: ViewStates.Gone;
 				return true;
 			}
 			catch (Exception)
 			{
-				_samsungFingerprint = null;
+				_samsungBiometry = null;
 				return false;
 			}
 		}
@@ -231,30 +224,7 @@ namespace keepass2android
 			tv.Visibility = ViewStates.Visible;
 		}
 
-		const int FingerprintPermissionRequestCode = 0;
-		public override void OnRequestPermissionsResult (int requestCode, string[] permissions, Permission[] grantResults)
-		{
-			if (requestCode == FingerprintPermissionRequestCode && grantResults[0] == Permission.Granted) 
-			{
-				FingerprintModule fpModule = new FingerprintModule(this);
-				if (fpModule.FingerprintManager == null || (!fpModule.FingerprintManager.IsHardwareDetected))
-				{
-					//seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
-					if (!TrySetupSamsung())
-						SetError(Resource.String.fingerprint_hardware_error);
-					UpdateKeyboardCheckboxVisibility();
-					return;
-				}
-				if (!fpModule.FingerprintManager.HasEnrolledFingerprints)
-				{
-					SetError(Resource.String.fingerprint_no_enrolled);
-					return;
-				}
-				ShowRadioButtons();
-				UpdateKeyboardCheckboxVisibility();
-			}
-		}
-
+	
 		private void ShowRadioButtons()
 		{
 			FindViewById<TextView>(Resource.Id.tvFatalError).Visibility = ViewStates.Gone;
@@ -262,14 +232,21 @@ namespace keepass2android
 			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
 		}
 
+        private void HideRadioButtons()
+        {
+            FindViewById<TextView>(Resource.Id.tvFatalError).Visibility = ViewStates.Gone;
+            FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Gone;
+            FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
+        }
 
-		private void ChangeUnlockMode(FingerprintUnlockMode oldMode, FingerprintUnlockMode newMode)
+
+        private void ChangeUnlockMode(FingerprintUnlockMode oldMode, FingerprintUnlockMode newMode)
 		{
 			if (oldMode == newMode)
 				return;
 
 				
-			if (_samsungFingerprint != null)
+			if (_samsungBiometry != null)
 			{
 				_unlockMode = newMode;
 				UpdateKeyboardCheckboxVisibility();
@@ -294,14 +271,15 @@ namespace keepass2android
 			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = ViewStates.Gone;
 
 			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Visible;
-			_enc = new FingerprintEncryption(new FingerprintModule(this), CurrentPreferenceKey);
-			try
+            try
 			{
-				if (!_enc.Init())
+                _enc = new BiometricEncryption(new BiometricModule(this), CurrentPreferenceKey);
+                if (!_enc.Init())
 					throw new Exception("Failed to initialize cipher");
 				ResetErrorTextRunnable();
-				_enc.StartListening(new FingerprintAuthCallbackAdapter(this, this));
-			}
+                
+                _enc.StartListening(new BiometricAuthCallbackAdapter(this, this));
+            }
 			catch (Exception e)
 			{
 				CheckCurrentRadioButton();
@@ -318,9 +296,9 @@ namespace keepass2android
 		private ImageView _fpIcon;
 		private TextView _fpTextView;
 		
-		private FingerprintSamsungIdentifier _samsungFingerprint;
+		private BiometrySamsungIdentifier _samsungBiometry;
 
-		public void OnFingerprintAuthSucceeded()
+		public void OnBiometricAuthSucceeded()
 		{
 			_unlockMode = _desiredUnlockMode;
 
@@ -344,7 +322,7 @@ namespace keepass2android
 
 
 		
-		public void OnFingerprintError(string error)
+		public void OnBiometricError(string error)
 		{
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			_fpTextView.Text = error;
@@ -365,9 +343,26 @@ namespace keepass2android
 		protected override void OnResume()
 		{
 			base.OnResume();
-			if (_enc != null)
-				_enc.StartListening(new FingerprintAuthCallbackAdapter(this, this));
-		}
+
+            BiometricModule fpModule = new BiometricModule(this);
+            HideRadioButtons();
+            if (!fpModule.IsHardwareAvailable)
+            {
+                //seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
+                if (!TrySetupSamsung())
+                    SetError(Resource.String.fingerprint_hardware_error);
+                UpdateKeyboardCheckboxVisibility();
+                return;
+            }
+            if (!fpModule.IsAvailable)
+            {
+                SetError(Resource.String.fingerprint_no_enrolled);
+                return;
+            }
+            ShowRadioButtons();
+            UpdateKeyboardCheckboxVisibility();
+            
+        }
 
 		protected override void OnPause()
 		{

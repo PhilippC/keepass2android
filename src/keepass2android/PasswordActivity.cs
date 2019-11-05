@@ -69,7 +69,7 @@ namespace keepass2android
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		Theme = "@style/MyTheme_Blue")] 
-	public class PasswordActivity : LockingActivity, IFingerprintAuthCallback
+	public class PasswordActivity : LockingActivity, IBiometricAuthCallback
 	{
 
 		enum KeyProviders
@@ -579,7 +579,7 @@ namespace keepass2android
 		private string mDrawerTitle;
 		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
 		private ActivityDesign _activityDesign;
-		private FingerprintDecryption _fingerprintDec;
+		private BiometricDecryption _biometricDec;
 		private bool _fingerprintPermissionGranted;
 		private PasswordActivityBroadcastReceiver _intentReceiver;
 		private int _appnameclickCount;
@@ -759,11 +759,15 @@ namespace keepass2android
 			mDrawerTitle = Title;
 			InitializeToolbarCollapsing();
 
-		    if ((int)Build.VERSION.SdkInt >= 23)
-				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
+            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+            btn.Click += (sender, args) =>
+            {
+                _biometricDec?.StartListening(this);
 
-            
-		    if (App.Kp2a.TrySelectCurrentDb(_ioConnection))
+            };
+
+
+            if (App.Kp2a.TrySelectCurrentDb(_ioConnection))
             { 
                 //database already opened. return the ioc and we're good.
 		        LaunchNextActivity();
@@ -887,41 +891,8 @@ namespace keepass2android
             }
         }
 
-	    const int FingerprintPermissionRequestCode = 99;
 	    
-
-	    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-		{
-			if ((requestCode == FingerprintPermissionRequestCode) && (grantResults.Length > 0) && (grantResults[0] == Permission.Granted))
-			{
-				var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
-				btn.Click += (sender, args) =>
-				{
-					AlertDialog.Builder b = new AlertDialog.Builder(this);
-					b.SetTitle(Resource.String.fingerprint_prefs);
-					b.SetMessage(btn.Tag.ToString());
-					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
-					if (_fingerprintDec != null)
-					{
-						b.SetNegativeButton(Resource.String.disable_sensor, (senderAlert, alertArgs) =>
-						{
-							btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-							_fingerprintDec?.StopListening();
-							_fingerprintDec = null;
-						});
-					}
-					else
-					{
-						b.SetNegativeButton(Resource.String.enable_sensor, (senderAlert, alertArgs) =>
-						{
-							InitFingerprintUnlock();
-						});
-					}
-					b.Show();
-				};
-				_fingerprintPermissionGranted = true;
-			}
-		}
+	    
 
 		private void ClearFingerprintUnlockData()
 		{
@@ -931,7 +902,7 @@ namespace keepass2android
 			edit.Commit();
 		}
 
-		public void OnFingerprintError(string message)
+		public void OnBiometricError(string message)
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
@@ -944,7 +915,7 @@ namespace keepass2android
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
 
-		public void OnFingerprintAuthSucceeded()
+		public void OnBiometricAuthSucceeded()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
@@ -952,7 +923,7 @@ namespace keepass2android
 
 			try
 			{
-				var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
+				var masterPassword = _biometricDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
 				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
 			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
 
@@ -1020,7 +991,7 @@ namespace keepass2android
 
 	    private void InitializeToolbar()
 	    {
-	        var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
+	        var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
 
 	        SetSupportActionBar(toolbar);
 
@@ -1524,7 +1495,7 @@ namespace keepass2android
 
 		protected override void OnPause()
 		{
-		    _fingerprintDec?.StopListening();
+		    _biometricDec?.StopListening();
 		    _lastOnPauseTime = DateTime.Now;
 
             base.OnPause();
@@ -1774,16 +1745,10 @@ namespace keepass2android
 		        bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
 
 
-		        if (_fingerprintPermissionGranted)
-		        {
-		            if (!InitFingerprintUnlock())
-		                showKeyboard = true;
-		        }
-		        else
-		        {
-		            FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+		        if (!InitFingerprintUnlock())
 		            showKeyboard = true;
-		        }
+		    
+		       
 
 
 		        EditText pwd = (EditText) FindViewById(Resource.Id.password_edit);
@@ -1861,16 +1826,16 @@ namespace keepass2android
 					return false;
 				}
 
-				FingerprintModule fpModule = new FingerprintModule(this);
-				_fingerprintDec = new FingerprintDecryption(fpModule, Database.GetFingerprintPrefKey(_ioConnection), this,
+				BiometricModule fpModule = new BiometricModule(this);
+				_biometricDec = new BiometricDecryption(fpModule, Database.GetFingerprintPrefKey(_ioConnection), this,
 					Database.GetFingerprintPrefKey(_ioConnection));
 
 				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
 
-				if (_fingerprintDec.Init())
+				if (_biometricDec.Init())
 				{
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
-					_fingerprintDec.StartListening(new FingerprintAuthCallbackAdapter(this, this));
+					_biometricDec.StartListening(new BiometricAuthCallbackAdapter(this, this));
 					return true;
 				}
 				else
@@ -1891,7 +1856,7 @@ namespace keepass2android
 
 			    Toast.MakeText(this, Resource.String.fingerprint_reenable2, ToastLength.Long).Show();
 
-				_fingerprintDec = null;
+				_biometricDec = null;
 				return false;
 			}
 				
@@ -1904,7 +1869,7 @@ namespace keepass2android
 //key invalidated permanently
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
-			_fingerprintDec = null;
+			_biometricDec = null;
 
 			ClearFingerprintUnlockData();
 		}
@@ -2191,8 +2156,8 @@ namespace keepass2android
 
 		private void OnScreenLocked()
 		{
-			if (_fingerprintDec != null)
-				_fingerprintDec.StopListening();
+			if (_biometricDec != null)
+				_biometricDec.StopListening();
 			
 		}
 

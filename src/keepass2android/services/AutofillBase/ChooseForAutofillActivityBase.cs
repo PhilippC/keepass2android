@@ -16,7 +16,7 @@ using System.Linq;
 namespace keepass2android.services.AutofillBase
 {
 
-    public abstract class ChooseForAutofillActivityBase : AppCompatActivity
+    public abstract class ChooseForAutofillActivityBase : AndroidX.AppCompat.App.AppCompatActivity
     {
         protected Intent ReplyIntent;
 

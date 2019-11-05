@@ -16,7 +16,7 @@ namespace keepass2android
 {
     [Activity(Label = AppNames.AppName, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_Blue",
         LaunchMode = LaunchMode.SingleInstance)]
-    public class NoSecureDisplayActivity : AppCompatActivity
+    public class NoSecureDisplayActivity : AndroidX.AppCompat.App.AppCompatActivity
     {
         private readonly ActivityDesign _design;
 
@@ -35,7 +35,7 @@ namespace keepass2android
                 AppSettingsActivity.Launch(this);
             };
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
+            var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
 
             SetSupportActionBar(toolbar);
 

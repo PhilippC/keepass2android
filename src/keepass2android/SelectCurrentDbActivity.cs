@@ -29,7 +29,7 @@ using Object = Java.Lang.Object;
 namespace keepass2android
 {
     [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
-    public class SelectCurrentDbActivity : AppCompatActivity
+    public class SelectCurrentDbActivity : AndroidX.AppCompat.App.AppCompatActivity
     {
         private int ReqCodeOpenNewDb = 1;
         
@@ -188,7 +188,7 @@ namespace keepass2android
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.open_db_selection);
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
+            var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
 
             SetSupportActionBar(toolbar);
 

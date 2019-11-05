@@ -284,7 +284,7 @@ namespace keepass2android
             var listView = FindViewById<ListView>(Android.Resource.Id.List);
             listView.Adapter = _adapter;
 
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar));
+            SetSupportActionBar(FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar));
 
             FindViewById<Button>(Resource.Id.add_child_db_button).Click += (sender, args) =>
             {
