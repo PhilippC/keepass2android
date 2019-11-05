@@ -637,6 +637,12 @@
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Dodaj do powiadomienia przycisk kopiujący TOTP do schowka</item>
+    <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
+    <item>Przełącz na BiometricPrompt API, aby poprawić wrażenie użytkownika przy odblokowywaniu odciskiem palca i umożliwić odblokowanie twarzy, np. na Pixel 4.</item>
+    <item>Poprawki błędów</item>
+  </string-array>
   <string name="ChangeLog_1_07">Wersja 1.07\n
     * Poprawki do awarii Androida 9 na urządzeniach Samsung\n
     * Możliwość otwarcia więcej niż jednej bazy danych, zgodnej z KeeAutoExec\n
