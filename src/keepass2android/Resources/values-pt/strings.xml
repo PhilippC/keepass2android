@@ -62,11 +62,14 @@
   <string name="brackets">Parênteses</string>
   <string name="cancel">Cancelar</string>
   <string name="Ok">OK</string>
+  <string name="disable_sensor">Desativar sensor de impressão digital</string>
+  <string name="enable_sensor">Ativar sensor de impressão digital</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>
   <string name="clipboard_timeout">Limite de tempo para a área de transferência</string>
   <string name="clipboard_timeout_summary">Tempo até limpar a área de transferência após copiar usuário ou senha</string>
   <string name="copy_username">Copiar usuário para a área de transferência</string>
   <string name="copy_password">Copiar senha para a área de transferência</string>
+  <string name="copy_totp">Selecione para copiar a TOTP para a área de transferência</string>
   <string name="available_through_keyboard">Entrada está disponível através do teclado KP2A</string>
   <string name="entry_is_available">está disponível</string>
   <string name="not_possible_im_picker">Não foi possível abrir a caixa de diálogo para selecionar o método de entrada. Por favor, ative o teclado manualmente.</string>
@@ -174,6 +177,7 @@
   <string name="menu_change_key">Modificar Senha Mestre</string>
   <string name="menu_copy_pass">Copiar Senha</string>
   <string name="menu_copy_user">Copiar Usuário</string>
+  <string name="menu_copy_totp">Copiar TOTP</string>
   <string name="menu_create">Criar</string>
   <string name="menu_app_settings">Configurações</string>
   <string name="menu_db_settings">Configurações do banco de dados</string>
@@ -475,6 +479,9 @@
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só solicitará acesso à pasta \"Aplicativos/Keepass2Android\". Se você deseja usar um banco de dados existente na sua conta PCloud, por favor, certifique-se de que o arquivo está nesta pasta.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Todos os arquivos e arquivos compartilhados</string>
+  <string name="filestoragename_onedrive2_myfiles">Meus arquivos</string>
+  <string name="filestoragename_onedrive2_appfolder">Pasta do App Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH transferência de arquivos)</string>
   <string name="filestoragename_content">Seletor de arquivo de sistema</string>
   <string name="filestorage_setup_title">Inicialização do arquivo de acesso</string>
@@ -630,8 +637,8 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostre o teclado compacto para senhas quando a verificação de impressão digital estiver ativa.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Add notification button for copying TOTP to clipboard</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Adicionar botão de notificação para copiar TOTP à área de transferência</item>
+    <item>Alterne para o uso do FluentFTP para fornecer suporte a TLS 1.2</item>
     <item>Alterne para a API BiometricPrompt para melhorar a experiência do usuário com desbloqueio por impressão digital e permitir o uso do desbloqueio facial, por exemplo, no Pixel 4.</item>
     <item>Correções de erros</item>
   </string-array>
