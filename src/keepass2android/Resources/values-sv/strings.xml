@@ -27,7 +27,7 @@
   <string name="show_kill_app">Stängknapp</string>
   <string name="show_kill_app_summary">Visa en knapp i lösenordsskärmen för att avsluta programmet (för paranoida användare)</string>
   <string name="application">App</string>
-  <string name="application_settings">Appinställningar</string>
+  <string name="application_settings">Inställningar</string>
   <string name="ShowGroupnameInSearchResult_title">Visa gruppnamn i sökresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Visa gruppnamnet under post-titlar i sökresultat. Användbart om flera poster har samma namn.</string>
   <string name="NavigationToGroupCompleted_message">Visad grupp är: %1$s</string>
@@ -174,7 +174,7 @@
   <string name="menu_about">Om</string>
   <string name="menu_change_key">Ändra huvudnyckel</string>
   <string name="menu_copy_pass">Kopiera lösenord</string>
-  <string name="menu_copy_user">Kopiera användarnamn</string>
+  <string name="menu_copy_user">Kopiera användare</string>
   <string name="menu_copy_totp">Kopiera TOTP</string>
   <string name="menu_create">Skapa</string>
   <string name="menu_app_settings">Inställningar</string>
