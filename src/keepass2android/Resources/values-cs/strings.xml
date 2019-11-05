@@ -638,9 +638,9 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Add notification button for copying TOTP to clipboard</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
-    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Přidáno oznamovací tlačítko pro kopírování TOTP do schránky</item>
+    <item>Změna na FluentFTP pro podporu TLS 1.2</item>
+    <item>Změna na BiometricPrompt API pro vylepšení odemykání otiskem prstu, a přidání možnosti odemknutí obličejem (např. na Pixel 4).</item>
     <item>Opravy chyb</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Verze 1.07b-pre\n
