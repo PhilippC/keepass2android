@@ -939,8 +939,8 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="autofill_enable_failed">Niestety wygląda na to, że twoje urządzenie nie wspiera otwierania ustawień z wnętrza aplikacji. Przejdź ręcznie do ustawień systemu dla autouzupełniania, aby włączyć tą usługę.</string>
   <string name="show_autofill_help">Pokaż pomoc autouzupełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
-  <string name="autofill_disable">Włącz autouzupełnianie dla %1$s</string>
-  <string name="autofill_enable_for">Wyłącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_disable">Wyłącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
   <string name="understand">Rozumiem</string>
