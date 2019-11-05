@@ -641,8 +641,8 @@
   <string-array name="ChangeLog_1_08">
     <item>Dodaj gumb za obvestilo ob kopiranju TOTP na odložišče</item>
     <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
-    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
-    <item>Bug fixes</item>
+    <item>Preklop na BiometricPrompt API za izboljšanje uporabniške izkušnje za odpiranje s prstnim odtisom in omogočitev odklepanja z obrazom, npr. na Pixel 4.</item>
+    <item>Popravki hroščev</item>
   </string-array>
   <string name="ChangeLog_1_07b">Različica 1.07b\n
      * Izboljšana zmogljivost Argon2 z uporabo izvorne implementacije (Hvala Chih-Hsuan Yen!)\n
