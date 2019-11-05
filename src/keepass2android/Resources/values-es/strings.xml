@@ -632,6 +632,12 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Añadir botón de notificación para copiar TOTP al portapapeles</item>
+    <item>Cambiar a usar FluentFTP para proporcionar soporte para TLS 1.2</item>
+    <item>Cambiar a API BiometricPrompt para mejorar la experiencia del usuario con el desbloqueo de huellas dactilares y permitir el uso de desbloqueo facial, por ejemplo en Pixel 4.</item>
+    <item>Corrección de errores</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Versión 1.07b\n
     * Mejores de rendimiento Argon2 usando implementación nativa (Gracias a Chih-Hsuan Yen!)\n
     * Permite inhabilitar huella dactilar pulsando en el icono de huella dactilar (evita el problema con los lectores de huella dactilar bajo la pantalla, gracias a marcoDallas!)\n
