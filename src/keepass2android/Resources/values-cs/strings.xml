@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Zpracování souborů</string>
   <string name="keyboard_prefs">Klávesnice</string>
   <string name="export_prefs">Export databáze...</string>
-  <string name="fingerprint_prefs">Odemknutí otiskem prstu</string>
   <string name="import_db_prefs">Import databáze do vnitřní složky</string>
   <string name="import_keyfile_prefs">Importovat soubor s klíčem do vnitřní složky</string>
   <string name="keyboardswitch_prefs">Přepínání klávesnice</string>
@@ -82,29 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android je dodáván BEZ JAKÉKOLIV ZÁRUKY; Toto je svobodný software, můžete jej šířit pod licencí GPL verze 2 nebo novější.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopírovat do schránky</string>
-  <string name="fingerprint_hint">Dotykový snímač</string>
-  <string name="fingerprint_description">Potvrďte otisk prstu pro pokračování</string>
-  <string name="fingerprint_fatal">Nelze nastavit odemknutí otiskem prstu:</string>
-  <string name="fingerprint_not_recognized">Otisk prstu nebyl rozpoznán. Zkuste to znovu</string>
-  <string name="fingerprint_success">Otisk prstu rozpoznán</string>
-  <string name="fingerprint_os_error">Odemknutí otiskem prstu vyžaduje Android 6.0 nebo vyšší.</string>
-  <string name="fingerprint_hardware_error">Nebyl nalezen hardware pro snímání otisků prstů.</string>
-  <string name="fingerprint_no_enrolled">Na tomto zařízení jste nezaregistrovali žádný otisk prstu. Přejděte do nastavení aplikace.</string>
-  <string name="disable_fingerprint_unlock">Zakázat odemknutí otiskem prstu</string>
-  <string name="enable_fingerprint_unlock">Povolit úplné odemknutí otiskem prstu</string>
-  <string name="enable_fingerprint_quickunlock">Povolit odemknutí otiskem prstu pro rychlé odemknutí</string>
-  <string name="fingerprint_unlock_hint">Dotkněte se snímače pro odemknutí databáze</string>
-  <string name="fingerprint_unlock_failed">Odemčení otiskem se nezdařilo. Dešifrovací klíč byl zneplatněn systémem Android. To se obvykle stává, pokud byl přidán nový otisk nebo bylo změněno bezpečnostní nastavení. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odemknutí databáze se nezdařilo: neplatný složený klíč. Odemčení otiskem prstu bylo zakázáno, patrně není hlavní heslo již platné. </string>
-  <string name="fingerprint_reenable">Prosím, povolte znovu odemknutí otiskem prstu pro nové hlavní heslo.</string>
-  <string name="fingerprint_reenable2">Prosím odemkněte svým heslem a poté obnovte odemčení otiskem prstu v nastavení databáze.</string>
-  <string name="FingerprintInitFailed">Nepodařilo se spustit senzor otisku prstu. </string>
   <string name="FingerprintSetupFailed">Šifrování dat se nezdařilo. K tomu může dojít, pokud přidáte nebo odstraníte otisky prstů v nastavení systému, zatímco Keepass2Android naslouchá otisku prstu.</string>
-  <string name="enable_fingerprint_unlock_Info">    Toto uloží vaše hlavní heslo na toto zařízení,
-    zašifrované pomocí úložiště klíčů Android a chráněné
-    použitím ověření identity pomocí otisku prstu. Toto umožní odemčení databáze pouze pomocí vašeho otisku prstu.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Umožní používat ověření identity pomocí otisku prstu namísto rychlého odemčení. Nevyžaduje uložení jakékoliv informace vztahující se k vašemu hlavnímu heslu.</string>
   <string name="enter_filename">Zadejte název souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
   <string name="entry_cancel">Storno</string>
@@ -636,7 +613,6 @@
   <string name="DbQuicklockedChannel_desc">Upozornění že databáze je zamykána s funkcí Rychlého odemknutí</string>
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je čtečka otisků prstů aktivní.</string>
   <string-array name="ChangeLog_1_08">
     <item>Přidáno oznamovací tlačítko pro kopírování TOTP do schránky</item>
     <item>Změna na FluentFTP pro podporu TLS 1.2</item>
@@ -965,12 +941,10 @@ První veřejné vydání
   <string name="autofill_disable">Zakázat Automatické doplnění pro %1$s</string>
   <string name="autofill_enable_for">Povolit Automatické doplnění pro %1$s</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou čtečku otisků prstů. Chcete pro tuto databázi povolit odemykání pomocí otisku prstu?</string>
   <string name="understand">Rozumím</string>
   <string name="dont_show_again">Vícekrát neukazuj</string>
   <string name="masterkey_infotext_head">Pamatujete si Vaše hlavní heslo?</string>
   <string name="masterkey_infotext_main">Pamatujte že bez hlavního klíče není možné databázi otevřít. Možnost \"resetovat\" hlavní heslo NEexistuje.</string>
-  <string name="masterkey_infotext_fingerprint_note">Také pamatujte že odemknutí otiskem prstu funguje na základě uchování hlavního hesla v bezpečném úložišti Androidu. Toto úložiště může být kdykoliv vymazáno Androidem, například přidáním nového otisku v nastavení systému. Nespoléhejte se pouze na otisk prstu, ale pamatujte si prosím i Vaše hlavní heslo!</string>
   <string name="backup_infotext_head">Je Vaše databáze zálohována?</string>
   <string name="backup_infotext_main">Keepass2Android uchovává Vaše hesla v souboru v umístění dle Vašeho výběru. Jste si jistý/á že můžete získat přístup k souboru i v případě ztráty či krádeže mobilního telefonu, nebo v případě poškození či smazání souboru? Ujistěte se prosím, že máte aktuální zálohu, na bezpečném místě!</string>
   <string name="backup_infotext_note">Pro tvorbu zálohy navštivte %1$s &gt; %2$s &gt; %3$s.</string>
