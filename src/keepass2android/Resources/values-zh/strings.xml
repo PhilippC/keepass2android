@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">文件操作</string>
   <string name="keyboard_prefs">键盘</string>
   <string name="export_prefs">导出数据库...</string>
-  <string name="fingerprint_prefs">指纹解锁</string>
   <string name="import_db_prefs">在内部的文件夹中导入数据库</string>
   <string name="import_keyfile_prefs">将密钥文件导入到内部文件夹</string>
   <string name="keyboardswitch_prefs">切换键盘</string>
@@ -82,26 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
-  <string name="fingerprint_hint">触摸传感器</string>
-  <string name="fingerprint_description">确认指纹以继续</string>
-  <string name="fingerprint_fatal">无法设置指纹解锁：</string>
-  <string name="fingerprint_not_recognized">指纹无法识别。请重试</string>
-  <string name="fingerprint_success">指纹识别成功</string>
-  <string name="fingerprint_os_error">指纹识别需要Android 6.0或更新的版本。</string>
-  <string name="fingerprint_hardware_error">未检测到指纹识别硬件。</string>
-  <string name="fingerprint_no_enrolled">你还未在这个设备上录入过指纹。请先前往系统设置。</string>
-  <string name="disable_fingerprint_unlock">禁用指纹解锁</string>
-  <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
-  <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
-  <string name="fingerprint_unlock_hint">触摸感应解锁数据库</string>
-  <string name="fingerprint_unlock_failed">指纹解锁失败。解密密钥已被 Android 操作系统标记为失效。这通常发生在注册了新的指纹或更改了安全设置后。 </string>
-  <string name="fingerprint_disabled_wrong_masterkey">解锁数据库失败：复合密钥无效。由于存储的主密钥不再有效，指纹解锁已被禁用。 </string>
-  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁。</string>
-  <string name="fingerprint_reenable2">请用密码解锁，然后在数据库设置中重新启用指纹解锁。</string>
-  <string name="FingerprintInitFailed">初始化指纹传感器失败。 </string>
   <string name="FingerprintSetupFailed">无法加密数据。 如果在Keepass2Android正在侦听指纹时在系统设置中添加或删除指纹，则会发生这种情况。</string>
-  <string name="enable_fingerprint_unlock_Info">此选项将会把主密码保存在这台设备上，使用Android密钥库加密，并使用指纹授权进行保护。只有你的指纹才能解锁数据库。</string>
-  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码。不再需要保存任何与你的主密码关联的信息。</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
@@ -633,7 +613,6 @@
   <string name="DbQuicklockedChannel_desc">数据库以快速解锁方式锁定通知</string>
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
   <string-array name="ChangeLog_1_08">
     <item>添加通知按钮，用于复制TOTP到剪切板</item>
     <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
@@ -966,12 +945,10 @@ Initial public release
   <string name="autofill_disable">对 %1$s 禁用自动填充</string>
   <string name="autofill_enable_for">对 %1$s 启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再显示</string>
   <string name="masterkey_infotext_head">你还记得你的主密码吗？</string>
   <string name="masterkey_infotext_main">请注意，没有主密钥，你将无法打开数据库。不存在任何“重置”主密钥的方法。</string>
-  <string name="masterkey_infotext_fingerprint_note">另外需要注意的是，指纹解锁是通过将主密钥保存在Android的安全存储中而实现的。安全存储会随时被Android删除，例如当你在系统设置中添加了新指纹时。因此，不要依赖指纹解锁，请千万记住你的主密钥！</string>
   <string name="backup_infotext_head">你的数据库备份过了吗？</string>
   <string name="backup_infotext_main">Keepass2Android将会在指定位置处保存一个密码数据文件。你确定在你手机丢失、失窃，或文件遭到破坏和丢失的情况下，你还能找到这个文件吗？请确保你在安全的地方留有一份及时更新的数据备份！</string>
   <string name="backup_infotext_note">要立即创建备份，前往 %1$s &gt; %2$s &gt; %3$s。</string>
