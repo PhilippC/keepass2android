@@ -1503,7 +1503,10 @@ namespace keepass2android
             base.OnPause();
 		}
 
-	    protected override void OnStart()
+        private bool fingerprintInitialized;
+
+
+        protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
@@ -1515,9 +1518,14 @@ namespace keepass2android
 		    }
 
             DonateReminder.ShowDonateReminderIfAppropriate(this);
-			
-			
-		}
+
+
+            if (compositeKeyForImmediateLoad == null && !fingerprintInitialized)
+            {
+                fingerprintInitialized = InitFingerprintUnlock();
+            }
+
+        }
 
 		private MemoryStream PreloadDbFile()
 		{
@@ -1747,7 +1755,7 @@ namespace keepass2android
 		        bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
 
 
-		        if (!InitFingerprintUnlock())
+		        if (!fingerprintInitialized)
 		            showKeyboard = true;
 		    
 		       
