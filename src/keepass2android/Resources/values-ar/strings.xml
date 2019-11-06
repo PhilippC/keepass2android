@@ -43,7 +43,6 @@
   <string name="FileHandling_prefs">الملفات التي يمكن استخدامها</string>
   <string name="keyboard_prefs">لوحة المفاتيح</string>
   <string name="export_prefs">تصدير قاعدة البيانات...</string>
-  <string name="fingerprint_prefs">فك القفل بالبصمة</string>
   <string name="import_db_prefs">استيراد قاعدة البيانات إلى مجلد داخلي</string>
   <string name="import_keyfile_prefs">استيراد ملف المفتاح إلى المجلد الداخلية</string>
   <string name="keyboardswitch_prefs">تبديل لوحة المفاتيح</string>
@@ -74,24 +73,6 @@
   <string name="disclaimer_formal">Keepass2Android يأتي دون أدنى ضمان، هذا البرنامج مجاني، وإعادة توزيعه مرحب بها تحت شروط GPL الإصدار 2 أو ما بعده.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">نسخ إلى حافظة لوحة المفاتيح</string>
-  <string name="fingerprint_hint">مستشعر اللمس</string>
-  <string name="fingerprint_description">قم بتأكيد بصمتك للمتابعة</string>
-  <string name="fingerprint_fatal">لا يمكن إعداد \"فتح القفل بالبصمة\":</string>
-  <string name="fingerprint_not_recognized">لم يتم التعرف على البصمة. حاول مجددا</string>
-  <string name="fingerprint_success">تم التعرف على البصمة</string>
-  <string name="fingerprint_os_error">\"فتح القفل بالبصمة\" يتطلب Android 6.0 أو أحدث.</string>
-  <string name="fingerprint_hardware_error">لا يوجد حساس البصمة.</string>
-  <string name="fingerprint_no_enrolled">لا يوجد بصمات مسجلة على الجهاز. الرجاء الذهاب لاعدادات الجهاز اولا.</string>
-  <string name="disable_fingerprint_unlock">تعطيل \"فتح القفل بالبصمة\"</string>
-  <string name="enable_fingerprint_unlock">تفعيل \"فتح القفل بالبصمة\" الكامل</string>
-  <string name="enable_fingerprint_quickunlock">تفعيل \"فتح القفل بالبصمة\" لـ \"فتح القفل السريع\"</string>
-  <string name="fingerprint_unlock_hint">إلمس الحساس لفتح قاعدة البيانات</string>
-  <string name="fingerprint_reenable">الرجاء إعادة تفعيل \"فتح القفل بالبصمة\" لكلمة المرور الرئيسية الجديدة.</string>
-  <string name="enable_fingerprint_unlock_Info">هذا سيقوم بتخزين كلمة السر الرئيسية على هذا الجهاز،
-مشفرة بـ Android Keystore و محمية
-ببصمة الاصبع. يسمح لك هذا بفتح
-قاعدة بياناتك فقط ببصمة إصبعك.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">يسمح باستخدام بصمتك للتصديق بدلاً من \"فتح القفل السريع\". لا يتطلب تخزين أي معلومات متعلقة بكلمة السر الرئيسية الخاصة بك.</string>
   <string name="enter_filename">أدخل اسم ملف قاعدة البيانات</string>
   <string name="entry_accessed">تم الوصول</string>
   <string name="entry_cancel">إلغاء</string>
@@ -527,7 +508,6 @@
   <string name="CorruptDatabaseHelp">الملف معطوب.\n
 هنا هي بعض التلميحات التي قد تساعد على تشخيص المسألة: \n إن قمت بنسخ الملف عبر USB (وضع الخطة المتوسطة الأجل)، الرجاء المحاولة مرة أخرى باستخدام أدوات مثل MyPhoneExplorer. الخطة المتوسطة الأجل تقتطع الملفات في بعض الحالات. \n • إذا تعذر عليك فتح الملف من نفس الموقع على جهاز الكمبيوتر الخاص بك، فمن المحتمل جداً أن الملف معطوب فعلا. الرجاء استخدام نسخة احتياطية من قاعدة البيانات. إذا كنت تفترض أن Keepass2Android قد أتلف الملف، الرجاء الاتصال بالمساعدة. \n • إذا تمكنت من فتح الملف على جهاز الكمبيوتر الخاص بك، الرجاء الاتصال بالمساعدة. يمكنك محاولة حفظه باستخدام إعدادات مختلفة (مثلا، غير مضغوط) على جهاز الكمبيوتر وإعادة محاولة فتحه في Keepass2Android.  </string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">إظهار لوحة المفاتيح على الشاشة لإدخال كلمة السر عند استعمال ماسح بصمات الأصابع.</string>
   <string name="ChangeLog_0_9_8c">الإصدار 0.9.8c
 * إصلاح مشكلة ضعف طبقة المقابس الآمنة (SSL) في Microsoft Live SDK (تستخدم عند الوصول إلى الملفات عبر OneDrive)
 * إصلاح بعض الأخطاء: الإصدار السابق يحتوي على طرقتين للإدخال (واحدة تحطمت)  </string>
