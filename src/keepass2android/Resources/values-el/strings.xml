@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Χειρισμός αρχείων</string>
   <string name="keyboard_prefs">Πληκτρολόγιο</string>
   <string name="export_prefs">Εξαγωγή βάσης δεδομένων...</string>
-  <string name="fingerprint_prefs">Ξεκλείδωμα με δακτυλικό αποτύπωμα</string>
   <string name="import_db_prefs">Εισαγωγή βάσης δεδομένων σε εσωτερικό φάκελο</string>
   <string name="import_keyfile_prefs">Εισαγωγή αρχείου κλειδιού σε εσωτερικό φάκελο</string>
   <string name="keyboardswitch_prefs">Εναλλαγή πληκτρολογίου</string>
@@ -79,28 +78,7 @@
   <string name="disclaimer_formal">Το Keepass2Android έρχεται με ΑΠΟΛΥΤΩΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ. Είναι ελεύθερο λογισμικό και μπορείτε να το αναδιανέμετε υπό τους όρους της GPL έκδοση 2 ή νεότερη.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
-  <string name="fingerprint_hint">Αισθητήρας αφής</string>
-  <string name="fingerprint_description">Επιβεβαίωση δακτυλικού αποτυπώματος</string>
-  <string name="fingerprint_fatal">Δεν ενεργοποιήθηκε ξεκλείδωμα με δακτυλικό αποτύπωμα:</string>
-  <string name="fingerprint_not_recognized">Δεν αναγνωρίστηκε το δακτυλικό αποτύπωμα. Ξαναδοκιμάστε</string>
-  <string name="fingerprint_success">Το δακτυλικό αποτύπωμα αναγνωρίστηκε</string>
-  <string name="fingerprint_os_error">Ξεκλείδωμα με δακτυλικό αποτύπωμα απαιτεί Android 6.0 τουλάχιστον.</string>
-  <string name="fingerprint_hardware_error">Δεν ανιχνεύτηκε εξοπλισμός για δακτυλικό αποτύπωμα.</string>
-  <string name="fingerprint_no_enrolled">Δεν έχετε καταχωρήσει δακτυλικά αποτυπώματα σε αυτή τη συσκευή. Πηγαίνετε στις ρυθμίσεις συστήματος.</string>
-  <string name="disable_fingerprint_unlock">Απενεργοποίηση ξεκλειδώματος με δακτυλικό αποτύπωμα</string>
-  <string name="enable_fingerprint_unlock">Ενεργοποίηση ξεκλειδώματος με δακτυλικό αποτύπωμα</string>
-  <string name="enable_fingerprint_quickunlock">Ενεργοποίηση ξεκλειδώματος με δακτυλικό αποτύπωμα για QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Αγγίξτε αισθητήρα αφής για ξεκλείδωμα της βάσης δεδομένων</string>
-  <string name="fingerprint_unlock_failed">Το ξεκλείδωμα με δακτυλικό αποτύπωμα απέτυχε. Το κλειδί αποκρυπτογράφησης ακυρώθηκε από το Android. Αυτό συμβαίνει συνήθως όταν δηλωθεί νέο δακτυλικό αποτύπωμα ή αλλάξουν οι ρυθμίσεςι ασφαλείας. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Το ξεκλείδωμα της βάσης δεδομένων απέτυχε: άκυρο σύνθετο κλειδί. Το ξεκλείδωμα με δακτυλικό αποτύπωμα απενεργοποιήθηκε, προφανώς επειδή το κύριο κλειδί δεν είναι πλέον έγκυρο. </string>
-  <string name="fingerprint_reenable">Επενενεργοποιήστε το ξεκλείδωμα με δακτυλικό αποτύπωμα για το νέο βασικό συνθηματικό.</string>
-  <string name="fingerprint_reenable2">Ξεκλειδώστε με το συνθηματικό σας και έπειτα ενεργοποιήστε το ξεκλείδωμα με δακτυλικό αποτύπωμα στις ρυθμίσεις της βάσης δεδομένων.</string>
-  <string name="FingerprintInitFailed">Αποτυχία αρχικοποίησης του αισθητήρα δακτυλικού αποτυπώματος </string>
   <string name="FingerprintSetupFailed">Αποτυχία κρυπτογράφησης δεδομένων. Μπορεί να συμβεί αν προσθέσεις ή αφαιρέσεις δακτυλικά αποτυπώματα στις ρυθμίσεις συστήματος ενώ το Keypass2Android περιμένει το δακτυλικό σου αποτύπωμα.</string>
-  <string name="enable_fingerprint_unlock_Info">Το βασικό συνθηματικό θα αποθηκευτεί σε αυτή τη συσκευή,
-κρυπτογραφημένο στην αποθήκη κλειδιών του Android και προστατευμένο 
-με αυθεντικοποίηση δακτυλικού αποτυπώματος. Επιτρέπει ξεκλείδωμα της βάσης δεδομένων μόνον με δακτυλικό αποτύπωμα.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Επιτρέπει αυθεντικοποίηση με δακτυλικό αποτύπωμα αντί του κωδικού QuickUnlock. Δεν απαιτεί αποθήκευση πληροφορίας σχετικά με το βασικό συνθηματικό.</string>
   <string name="enter_filename">Δώστε όνομα αρχείου της βάσης δεδομένων</string>
   <string name="entry_accessed">Προσπελάστηκε</string>
   <string name="entry_cancel">Ακύρωση</string>
@@ -616,7 +594,6 @@
   <string name="DbQuicklockedChannel_desc">Ειδοποίηση για τη βάση δεδομένων που κλειδώνεται με QuickUnlock</string>
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η σάρωση δακτυλικού αποτυπώματος.</string>
   <string name="ChangeLog_1_06">Έκδοση 1.06\n
 * Χρήση του ykDroid αντί του YubiChallenge ως εφαρμογή για Yubikey Πρόκληση-Απόκριση.\n
 * Υλοποίηση υποστήριξης για KeepassXC-style Challenge-Response. Σημείωση: Το φορμάτ της βάσης δεδομένων πρέπει να είναι KDBX4!\n     * Άρνηση φόρτωσης πεταμένων αρχείων από το Google Drive\n
@@ -915,12 +892,10 @@ Initial public release
   <string name="autofill_disable">Απενεργοποίηση AutoFill για %1$s</string>
   <string name="autofill_enable_for">Ενεργοποίηση AutoFill για %1$s</string>
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
-  <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε εξοπλισμό δακτυλικού αποτυπώματος. Θέλετε να ενεργοποιήσετε το ξεκλείδωμα με δακτυλικό αποτύπωμα για αυτή τη βάση δεδομένων;</string>
   <string name="understand">Καταλαβαίνω</string>
   <string name="dont_show_again">Να μην εμφανιστεί ξανά</string>
   <string name="masterkey_infotext_head">Θυμάστε το κύριο συνθηματικό σας;</string>
   <string name="masterkey_infotext_main">Είναι αδύνατο να ανοίξετε τη βάση δεδομένων δίχως το κύριο συνθηματικό.</string>
-  <string name="masterkey_infotext_fingerprint_note">Το ξεκλείδωμα δακτυλικού αποτυπώματος λειτουργεί αποθηκεύοντας το κύριο κλειδί στο χώρο ασφαλούς αποθήκευσης του Android. Αυτός μπορεί να διαγραφτεί ανά πάσα στιγμή, πχ όταν προστίθεται νέο δακτυλικό αποτύπωμα στις ρυθμίσεις συστήματος. Γι αυτό μην βασίζεστε στο δακτυλικό αποτύπωμα, αλλά να θυμάστε το κύριο συνθηματικό!</string>
   <string name="backup_infotext_head">Έχετε αντίγραφο ασφαλείας της βάσης δεδομένων;</string>
   <string name="backup_infotext_main">Το Keepass2Android αποθηκεύει τα συνθηματικά σας σε αρχείο σε τοποθεσία επιλογής σας. Είναι σίγουρο ότι μπορείτε να βρείτε αυτό το αρχείο σε περίπτωση απώλειας του κινητού σας; Βεβαιωθείτε ότι έχετε ενημερωμένο αντίγραφο σε ασφαλή τοποθεσία!</string>
   <string name="backup_infotext_note">Για αντίγραφο ασφαλείας, %1$s &gt; %2$s &gt; %3$s.</string>
