@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Manejo de ficheros</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar base de datos...</string>
-  <string name="fingerprint_prefs">Desbloqueo con huella digital</string>
   <string name="import_db_prefs">Importar base de datos a carpeta interna</string>
   <string name="import_keyfile_prefs">Importar archivo de clave a carpeta interna</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
@@ -82,27 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar al portapapeles</string>
-  <string name="fingerprint_hint">Sensor táctil</string>
-  <string name="fingerprint_description">Confirmar huella dactilar para continuar</string>
-  <string name="fingerprint_fatal">No se puede configurar desbloqueo con huella dactilar:</string>
-  <string name="fingerprint_not_recognized">Huella dactilar no reconocida. Vuelve a intentarlo</string>
-  <string name="fingerprint_success">Huella dactilar reconocida</string>
-  <string name="fingerprint_os_error">El desbloqueo con huellas dactilares requiere Android 6.0 o posterior.</string>
-  <string name="fingerprint_hardware_error">Hardware de huellas dactilares no detectado.</string>
-  <string name="fingerprint_no_enrolled">Este dispositivo no tiene huellas dactilares almacenadas. Por favor, ve a configuración de sistema primero.</string>
-  <string name="disable_fingerprint_unlock">Desactivar desbloqueo con huella dactilar</string>
-  <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con huella dactilar</string>
-  <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con huella dactilar para QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Utiliza el sensor táctil para desbloquear la base de datos</string>
-  <string name="fingerprint_unlock_failed">Falló el Desbloqueo con huella dactilar. La clave de descifrado fue invalidada por el SO Android. Esto sucede generalmente si se inscribió una nueva huella o se cambió la configuración de seguridad. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">No se pudo desbloquear la base de datos: clave compuesta no válida. El Desbloqueo con huellas dactilares fue desactivado debido a que al parecer ya no es válida la contraseña maestra almacenada. </string>
-  <string name="fingerprint_reenable">Por favor, vuelve a activar el desbloqueo con la huella dactilar para la nueva contraseña maestra.</string>
-  <string name="fingerprint_reenable2">Por favor, desbloquée con contraseña y luego vuelva a activar Desbloquear con huella en la configuración de la base de datos.</string>
-  <string name="FingerprintInitFailed">Error al inicializar el sensor de huellas dactilares. </string>
   <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
-  <string name="enable_fingerprint_unlock_Info">Esto almacenará tu contraseña maestra en este dispositivo, cifrada con las claves del almacén de claves de Android y protegidos
-mediante la autenticación de huellas dactilares. Esto permite desbloquear la base de datos solamente con la huella dactilar.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación de la huella dactilar en lugar del código de QuickUnlock. No se almacena ninguna información relacionada con la contraseña maestra.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
@@ -631,7 +610,6 @@ mediante la autenticación de huellas dactilares. Esto permite desbloquear la ba
   <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con QuickUnlock</string>
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Mostrar teclado para entrada de contraseña estando activada la exploración de huella digital.</string>
   <string-array name="ChangeLog_1_08">
     <item>Añadir botón de notificación para copiar TOTP al portapapeles</item>
     <item>Cambiar a usar FluentFTP para proporcionar soporte para TLS 1.2</item>
@@ -968,12 +946,10 @@ Publicación inicial</string>
   <string name="autofill_disable">Desactivar Autorrelleno para %1$s</string>
   <string name="autofill_enable_for">Activar Autorrelleno para %1$s</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware de huellas dactilares. ¿Desea activar desbloqueo de esta base de datos mediante huella digital?</string>
   <string name="understand">Entiendo</string>
   <string name="dont_show_again">No volver a mostrar</string>
   <string name="masterkey_infotext_head">¿Recuerda su contraseña maestra?</string>
   <string name="masterkey_infotext_main">Tenga en cuenta que no será capaz de abrir la base de datos sin la contraseña maestra. No hay manera de reiniciar o \"resetear\" la contraseña maestra.</string>
-  <string name="masterkey_infotext_fingerprint_note">También tenga en cuenta que el desbloqueo por huella dactilar funciona almacenando su clave maestra en un almacenamiento seguro de Android. Este almacenamiento puede ser borrado por Android en cualquier momento, por ejemplo, si agrega una nueva huella en la configuración del sistema. Así que no confíe en su huella dactilar ¡pero recuerde su contraseña maestra, por favor!</string>
   <string name="backup_infotext_head">¿Se está haciendo copia de seguridad de su base de datos?</string>
   <string name="backup_infotext_main">Keepass2Android guarda sus contraseñas en un archivo en una ubicación de su elección. ¿Está seguro de que aún puede acceder a este archivo cuando su teléfono se pierde o lo roban, o cuando el archivo es destruido o borrado? ¡Por favor, asegúrese de que siempre tiene una copia de seguridad actualizada en un lugar seguro!</string>
   <string name="backup_infotext_note">Para crear una copia de seguridad ahora, vaya a %1$s &gt; %2$s &gt; %3$s.</string>
