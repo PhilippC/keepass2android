@@ -38,7 +38,6 @@
   <string name="FileHandling_prefs">Filhåndtering</string>
   <string name="keyboard_prefs">Tastatur</string>
   <string name="export_prefs">Eksporter database...</string>
-  <string name="fingerprint_prefs">Fingeravtrykk opplåsing</string>
   <string name="import_db_prefs">Importer databasen til en intern mappe</string>
   <string name="import_keyfile_prefs">Importer nøkkelfil til intern mappe</string>
   <string name="keyboardswitch_prefs">Tastatur veksling</string>
@@ -69,25 +68,6 @@
   <string name="disclaimer_formal">Keepass2Android kommer HELT UTEN NOEN FORM FOR GARANTI; Dette er fri programvare, og du er velkommen til å redistribuere det under vilkårene i GPL versjon 2 eller senere.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopier til utklippstavle</string>
-  <string name="fingerprint_hint">Trykksensor</string>
-  <string name="fingerprint_description">Bekreft fingeravtrykk for å fortsette</string>
-  <string name="fingerprint_fatal">Kan ikke sette opp fingeravtrykksopplåsning:</string>
-  <string name="fingerprint_not_recognized">Fingeravtrykk ikke gjenkjent. Prøv igjen</string>
-  <string name="fingerprint_success">Fingeravtrykk gjenkjent</string>
-  <string name="fingerprint_os_error">Fingeravtrykksopplåsning krever Android 6.0 eller nyere.</string>
-  <string name="fingerprint_hardware_error">Ingen fingeravtrykksleser funnet.</string>
-  <string name="fingerprint_no_enrolled">Du har ingen lagrede fingeravtrykk på denne enheten. Venligst gå til systeminnstillinger først.</string>
-  <string name="disable_fingerprint_unlock">Deaktiver fingeravtrykk opplåsning</string>
-  <string name="enable_fingerprint_unlock">Aktiver fingeravtrykk opplåsning</string>
-  <string name="enable_fingerprint_quickunlock">Slå på fingeravtrykk opplåsning i QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Trykk på sensoren for å låse opp databasen</string>
-  <string name="fingerprint_unlock_failed">Opplåsing med fingeravtrykk mislyktes. Dekrypteringsnøkkelen har blitt trukket tilbake av Android OS. Dette skjer vanligvis dersom et nytt fingeravtrykk har blitt registrert eller sikkerhetsinnstillingene har blitt endret.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Kunne ikke låse opp databasen: Ugyldig sammensatt nøkkel. Opplåsing med fingeravtrykk har blitt deaktivert fordi det lagrede hovedpassordet tilsynelatende ikke er gyldig lenger. </string>
-  <string name="fingerprint_reenable">Vennligst aktiver fingeravtrykk opplåsning for det nye master passordet.</string>
-  <string name="fingerprint_reenable2">Vennligst benytt passord for å låse opp og deretter slå på opplåsing med fingeravtrykk igjen i databaseinnstillingene.</string>
-  <string name="FingerprintInitFailed">Kunne ikke initialisere fingeravtrykksensoren. </string>
-  <string name="enable_fingerprint_unlock_Info">Dette vil lagre hovedpassordet ditt på enheten, kryptert med Android nøkkelring og beskyttet av fingeravtrykksautentisering. Dette gjør det mulig å låse opp databasen din ved bruk av ditt fingeravtrykk.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Tillater opplåsing ved hjelp av fingeravtrykk i stedet for QuickUnlock. Lagrer ingen informasjon relatert til hovedpassordet ditt.</string>
   <string name="enter_filename">Angi filnavnet for databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_cancel">Avbryt</string>
@@ -542,7 +522,6 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   <string name="DbQuicklockedChannel_desc">Varsel om at databasen har blitt låst med QuickUnlock</string>
   <string name="EntryChannel_name">Varsel om oppføring</string>
   <string name="EntryChannel_desc">Varsel for å forenkle tilgangen til den valgte oppføringen.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Vis skjermtastatur for passordinntasting når fingeravtrykkleser er aktiv.</string>
   <string name="ChangeLog_1_05">Versjon 1.05\n
 * Benytter varslingskanaler på Android 8, slik at oppsett kan gjøres i systeminnstillingene\n
 * Viser varsel for oppføring\n
@@ -710,7 +689,6 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   <string name="dont_show_again">Ikke vis dette igjen</string>
   <string name="masterkey_infotext_head">Husker du hovedpassordet?</string>
   <string name="masterkey_infotext_main">Vær oppmerksom på at du ikke vil kunne åpne databasen uten hovednøkkelen. Det finnes ingen måte å \"nullstille\" hovedpassordet på.</string>
-  <string name="masterkey_infotext_fingerprint_note">Vær også oppmerksom på at opplåsing med fingeravtrykk fungerer ved at hovedpassordet lagres i Androids sikre lager. Dette lageret kan slettes av Android når som helst, f.eks. dersom du legger inn nytt fingeravtrykk i systeminnstillingene. Du kan ikke basere deg kun på fingeravtrykket, men vær så snill å sørge for å huske hovedpassordet!</string>
   <string name="backup_infotext_head">Har du sikkerhetskopiert databasen?</string>
   <string name="backup_infotext_main">Keepass2Android lagrer dine passord i en fil på valgfritt sted. Er du sikker på at du fortsatt har tilgang på denne filen dersom du mister telefonene eller den blir stålet, eller dersom filen blir ødelagt eller slettet? Vennligst kontroller at du alltid har en oppdatert sikkerhetskopi på et trygt sted!</string>
   <string name="backup_infotext_note">For å opprette en sikkerhetskopi nå, gå til %1$s &gt; %2$s &gt; %3$s.</string>
