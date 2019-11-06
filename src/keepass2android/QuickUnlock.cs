@@ -167,7 +167,7 @@ namespace keepass2android
 			btn.PostDelayed(() =>
 			{
 				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
-				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
+				
 			}, 1300);
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
@@ -246,7 +246,7 @@ namespace keepass2android
 			        FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
 			        return false;
                 }
-                btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
+                
 
 				if (_biometryIdentifier.Init())
 				{
@@ -345,7 +345,7 @@ namespace keepass2android
             var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
             {
-                if (_biometryIdentifier.HasUserInterface)
+                if (_biometryIdentifier.HasUserInterface|| string.IsNullOrEmpty((string)btn.Tag) )
                 {
                     _biometryIdentifier.StartListening(this);
                 }

@@ -97,7 +97,7 @@
   <string name="fingerprint_success">Biometric authentication succeeded</string>
   <string name="fingerprint_os_error">Biometric Unlock requires Android 6.0 or later.</string>
   <string name="fingerprint_hardware_error">No biometric hardware detected.</string>
-  <string name="fingerprint_no_enrolled">You have not configure biometric authentication on this device. Please go to system settings first.</string>
+  <string name="fingerprint_no_enrolled">You have not configured biometric authentication on this device. Please go to system settings first.</string>
   <string name="disable_fingerprint_unlock">Disable Biometric Unlock</string>
   <string name="enable_fingerprint_unlock">Enable full Biometric Unlock</string>
   <string name="enable_fingerprint_quickunlock">Enable Biometric Unlock for QuickUnlock</string>
