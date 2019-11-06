@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Fájlkezelés</string>
   <string name="keyboard_prefs">Billentyűzet</string>
   <string name="export_prefs">Adatbázis exportálása...</string>
-  <string name="fingerprint_prefs">Feloldás ujjlenyomattal</string>
   <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
   <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
   <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
@@ -82,30 +81,7 @@
   <string name="disclaimer_formal">Ehhez a programhoz SEMMILYEN GARANCIA NEM JÁR. Ez egy szabad szoftver, GNU General Public License v2 vagy későbbi verziójának feltételei mellett terjeszthető, illetve módosítható.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">Másolás vágólapra</string>
-  <string name="fingerprint_hint">Érintse meg az érzékelőt</string>
-  <string name="fingerprint_description">Ujjlenyomat megerősítése a folytatáshoz</string>
-  <string name="fingerprint_fatal">Ujjlenyomattal való feloldás beállítása nem sikerült:</string>
-  <string name="fingerprint_not_recognized">Az ujjlenyomat nem ismerhető fel. Próbálja újra</string>
-  <string name="fingerprint_success">Ujjlenyomat azonosítva</string>
-  <string name="fingerprint_os_error">Az ujjlenyomattal való feloldáshoz Androdi 6.0 vagy újabb szükséges.</string>
-  <string name="fingerprint_hardware_error">Nincs ujjlenyomat-leolvasó észlelve.</string>
-  <string name="fingerprint_no_enrolled">Nincs egyetlen ujjlenyomat sem regisztrálva ezen az eszközön. Kérjük, használja a rendszerbeállításokat.</string>
-  <string name="disable_fingerprint_unlock">Ujjlenyomattal való feloldás letiltása</string>
-  <string name="enable_fingerprint_unlock">Ujjlenyomattal való feloldás engedélyezése</string>
-  <string name="enable_fingerprint_quickunlock">Ujjlenyomat alapú GyorsFeloldás engedélyezése</string>
-  <string name="fingerprint_unlock_hint">Érintse meg az érzékelőt az adatbázis feloldásához</string>
-  <string name="fingerprint_unlock_failed">Ujjlenyomattal való feloldás nem sikerült. A titkosító kulcsot az Android OS érvénytelenítette. Ez általában akkor történik, ha új ujjlenyomat készült vagy a biztonsági beállítások megváltoztak. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Az adatbázis feloldása nem sikerült: Az összetett kulcs érvénytelen. Az ujjlenyomat alapú feloldás le lett tiltva, mert úgy tűnik a tárolt főkulcs (jelszó) már nem érvényes. </string>
-  <string name="fingerprint_reenable">Engedélyezze újra az ujjlenyomat alapú feloldást az új főkulccsal (jelszóval).</string>
-  <string name="fingerprint_reenable2">Kérem oldja fel a jelszavával és ezután kapcsolja be újra az Ujjlenyomat Feloldást az adatbázis-beállításokban.</string>
-  <string name="FingerprintInitFailed">Nem sikerült az ujjlenyomat olvasó inicializálása. </string>
   <string name="FingerprintSetupFailed">Az adatok titkosítása nem sikerült. Ez előfordulhat, amennyiben a rendszerbeállításoknál hozzáadott vagy törölt egy ujjlenyomatot, miközben a Keepass2Android ujjlenyomatot próbált beolvasni.</string>
-  <string name="enable_fingerprint_unlock_Info">    Ez a funkció le fogja tárolni a főkulcsot (jelszót) az 
-    eszközön, az Android Kulcstár által titkosítva, és 
-    ujjlenyomat alapú authentikációval védve. Ez lehetővé
-    teszi, hogy az adatbázist ujjlenyomat segítségével
-    történő feloldását.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Ujjlenyomat alapú GyorsFeloldás engedélyezése a szokásos kód-alapú GyorsFeloldás helyett. Ezzel elkerülhető a főkulcshoz kötődő bármiféle információ tárolása.</string>
   <string name="enter_filename">Adja meg az adatbázis fájlnevét</string>
   <string name="entry_accessed">Utolsó hozzáférés</string>
   <string name="entry_cancel">Mégsem</string>
@@ -635,7 +611,6 @@
   <string name="DbQuicklockedChannel_desc">Értesítés az adatbázis GyorsFeloldással való zárolásáról</string>
   <string name="EntryChannel_name">Bejegyzés értesítések</string>
   <string name="EntryChannel_desc">Értesítés a jelenleg kiválasztott bejegyzés egyszerűsített eléréséhez.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">A billentyűzet megjelenítése a jelszóbeíráshoz ujjlenyomat-leolvasás közben.</string>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
   <string name="ChangeLog">&lt;b&gt;Version 0.6.2&lt;/&gt;
 * Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
@@ -714,12 +689,10 @@ Kezdeti közösségi kiadás</string>
   <string name="autofill_disable">Az AutoFill tiltása %1$s esetén</string>
   <string name="autofill_enable_for">Az AutoFill engedélyezése %1$s esetén</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
-  <string name="enable_fingerprint_hint">Ujjlenyomatleolvasó eszköz detektálva. Szeretné engedélyezni az adatbázis ujjlenyomattal való feloldását?</string>
   <string name="understand">Értem</string>
   <string name="dont_show_again">Ne mutassa többet</string>
   <string name="masterkey_infotext_head">Emlékszik a főkulcsra (jelszó)?</string>
   <string name="masterkey_infotext_main">Vegye figyelembe, hogy nem fogja tudni megnyitni az adatbázisát a főkulcs (jelszó) nélkül. Nincs lehetőség a főkulcs (jelszó) visszaállítására.</string>
-  <string name="masterkey_infotext_fingerprint_note">Azt is vegye figyelembe, hogy az ujjlenyomattal való feloldás úgy működik, hogy a főkulcs (jelszó) az Android biztonsági tárolójában tárolódik. Ezt a tárolót az Android bármikor törölheti. Pl.: amikor hozzáad egy új ujjlenyomatot a rendszer beállításokban. Emiatt, kérjük, ne hagyatkozzon az ujjlenyomattal való feloldásra, hanem jegyezze meg a főkulcsot (jelszó)!</string>
   <string name="backup_infotext_head">Van biztonsági mentése az adatbázisról?</string>
   <string name="backup_infotext_main">Keepass2Android az ön által választott helyen, egy fájlban tárolja az ön jelszavait. Biztos benne, hogy akkor is hozzá tud férni ehhez a fájlhoz ha a telefonját elhagyja, ellopják, vagy a fájl megsemmisül vagy letörlődik? Kérjük gondoskodjon róla, hogy mindig van naprakész biztonsági másolata egy biztonságos helyen!</string>
   <string name="backup_infotext_note">Biztonsági másolat készítéséhez menjen ide %1$s &gt; %2$s &gt; %3$s.</string>
