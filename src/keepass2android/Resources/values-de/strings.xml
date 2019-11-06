@@ -90,7 +90,16 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="fingerprint_os_error">Biometrische Entsperrung erfordert Android 6.0 oder höher.</string>
   <string name="fingerprint_hardware_error">Keine biometrische Hardware erkannt.</string>
   <string name="disable_fingerprint_unlock">Biometrisches Entsperren deaktivieren</string>
+  <string name="enable_fingerprint_unlock">Volles biometrisches Entsperren aktivieren</string>
+  <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Biometrisches Entsperren fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn die Biometrische Authentifizierung oder die Sicherheitseinstellungen geändert wurden. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Biometrisches Entsperren wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist.</string>
+  <string name="fingerprint_reenable">Bitte biometrisches Entsperren für das neue Masterpasswort erneut aktivieren.</string>
+  <string name="fingerprint_reenable2">Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das biometrische Entsperren erneut aktivieren.</string>
+  <string name="FingerprintInitFailed">Initialisierung der biometrischen Authentifizierung fehlgeschlagen. </string>
   <string name="FingerprintSetupFailed">Daten konnten nicht verschlüsselt werden. Dies kann passieren, wenn Fingerabdrücke in den Systemeinstellungen hinzugefügt oder gelöscht wurden, während Keepass2Android auf deinen Fingerabdruck wartet.</string>
+  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Ermöglicht es, die Datenbank per biometrischer Authentifizierung zu entsperren.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den biometrische Authentifizierung anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
   <string name="entry_cancel">Abbrechen</string>
@@ -620,6 +629,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="DbQuicklockedChannel_desc">Benachrichtigung wenn die Datenbank mit QuickUnlock gesperrt ist</string>
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während biometrische Authentifizierung aktiv ist.</string>
   <string-array name="ChangeLog_1_08">
     <item>Benachrichtigungsschalfläche zum „Kopieren des TOTP in die Zwischenablage” hinzufügen</item>
     <item>Zu FluentFTP wechseln, um TLS 1.2 zu unterstützen</item>
@@ -943,6 +953,7 @@ Erstes öffentliches Release</string>
   <string name="autofill_disable">AutoFill für %1$s deaktivieren</string>
   <string name="autofill_enable_for">AutoFill für %1$s aktivieren</string>
   <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
+  <string name="enable_fingerprint_hint">Keepass2Android hat biometrische Hardware erkannt. Möchtest du Biometrisches Entsperren für diese Datenbank aktivieren?</string>
   <string name="understand">Ich verstehe</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
   <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
