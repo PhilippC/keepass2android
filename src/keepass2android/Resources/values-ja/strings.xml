@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">ファイル操作</string>
   <string name="keyboard_prefs">キーボード</string>
   <string name="export_prefs">データベースのエクスポート...</string>
-  <string name="fingerprint_prefs">指紋認証によるロック解除</string>
   <string name="import_db_prefs">データベースを内部のフォルダへインポート</string>
   <string name="import_keyfile_prefs">キーファイルを内部のフォルダへインポート</string>
   <string name="keyboardswitch_prefs">キーボードの切り替え</string>
@@ -82,26 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android によって作られたフリーソフトウェアであり、無保証です。GPLバージョン2以上の条件下でこれを再頒布することができます。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">クリップボードにコピー</string>
-  <string name="fingerprint_hint">タッチセンサー</string>
-  <string name="fingerprint_description">続行するには指紋を確認してください</string>
-  <string name="fingerprint_fatal">指紋認証によるロック解除を設定できません:</string>
-  <string name="fingerprint_not_recognized">指紋が認識できませんでした。もう一度やり直してください</string>
-  <string name="fingerprint_success">指紋が認識されました</string>
-  <string name="fingerprint_os_error">指紋認証によるロック解除には、Android 6.0 以降が必要です</string>
-  <string name="fingerprint_hardware_error">指紋認証のためのハードウェアがありません</string>
-  <string name="fingerprint_no_enrolled">このデバイスに指紋が登録されていません。最初にシステムの設定で登録してください</string>
-  <string name="disable_fingerprint_unlock">指紋認証によるロック解除を無効にする</string>
-  <string name="enable_fingerprint_unlock">指紋認証によるデータベースのロック解除を有効にする</string>
-  <string name="enable_fingerprint_quickunlock">指紋認証によるクイック解除を有効にする</string>
-  <string name="fingerprint_unlock_hint">ロック解除のためにセンターにタッチしてください</string>
-  <string name="fingerprint_unlock_failed">指紋認証のロック解除に失敗しました。Android OS によって復号鍵が無効にされました。これは通常、新しい指紋の登録、またはセキュリティ設定が変更された場合に発生します。 </string>
-  <string name="fingerprint_disabled_wrong_masterkey">データベースのロックに失敗しました: 無効な複合鍵です。マスターパスワードが無効になったため、指紋認証のロック解除が無効にされたようです。 </string>
-  <string name="fingerprint_reenable">新しいパスワードのための指紋認証によるロック解除を再度有効にしてください。</string>
-  <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度指紋認証のロック解除を有効にしてください。</string>
-  <string name="FingerprintInitFailed">指紋センサーの初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
-  <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態で端末に保存し、指紋認証で保護します。指紋認証のみで、データベースのロックを解除できるようになります</string>
-  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに指紋認証を利用するようにします。マスターパスワードに関連する情報を格納する必要はありません。</string>
   <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
   <string name="entry_cancel">キャンセル</string>
@@ -630,7 +610,6 @@
   <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">指紋スキャンが有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
   <string-array name="ChangeLog_1_08">
     <item>TOTP をクリップボードにコピーするための通知ボタンを追加する</item>
     <item>FluentFTP を使用するように切り替えて、TLS 1.2 のサポートを提供</item>
@@ -960,12 +939,10 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="autofill_disable">%1$s の自動入力を無効にする</string>
   <string name="autofill_enable_for">%1$s の自動入力を有効にする</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
-  <string name="enable_fingerprint_hint">Keepass2Android は指紋認証ハードウェアを検出しました。指紋認証を有効にして、このデータベースのロックを解除しますか?</string>
   <string name="understand">理解しました</string>
   <string name="dont_show_again">二度と表示しない</string>
   <string name="masterkey_infotext_head">マスターパスワードを思い出せますか?</string>
   <string name="masterkey_infotext_main">マスターキー無しにデータベースを開くことはできません。マスターパスワードをリセットする方法はありません。</string>
-  <string name="masterkey_infotext_fingerprint_note">また、指紋認証のロック解除は Android のセキュリティで保護されたストレージにマスター鍵を格納することにご注意ください。例えばシステムの設定に新しい指紋を追加する場合など、Android はいつでもこのストレージを削除することができます。そのため、指紋に頼らず、マスターパスワードを覚えておいてください!</string>
   <string name="backup_infotext_head">データベースはバックアップされていますか?</string>
   <string name="backup_infotext_main">Keepass2Android は、お好みの場所でファイルにパスワードを格納します。お使いの携帯電話を紛失したり盗難されたとき、またはファイルが破壊されたり削除されたときに、このファイルにアクセスできますか? 常に安全な場所に最新のバックアップがあることを確認してください!</string>
   <string name="backup_infotext_note">バックアップを作成するには、%1$s&gt;%2$s&gt;%3$s へアクセスしてください。</string>
