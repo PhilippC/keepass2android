@@ -40,7 +40,6 @@
   <string name="FileHandling_prefs">Xestión de ficheiros</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar base de datos...</string>
-  <string name="fingerprint_prefs">Desbloqueo con pegada dixital</string>
   <string name="import_db_prefs">Importar base de datos a cartafol interno</string>
   <string name="import_keyfile_prefs">Importar arquivo de chave a cartafol interno</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
@@ -71,25 +70,6 @@
   <string name="disclaimer_formal">Keepass2Android NON TEN GARANTÍA TOTAL: isto é software ceibe, e pode redistribuilo baixo as condicións da versión 2 de GPL ou posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar ó portapapeis</string>
-  <string name="fingerprint_hint">Sensor táctil</string>
-  <string name="fingerprint_description">Confirme pegada dixital para continuar</string>
-  <string name="fingerprint_fatal">Non se pode configurar desbloqueo por pegada dixital:</string>
-  <string name="fingerprint_not_recognized">Pegada dixital non recoñecida. Ténteo de novo</string>
-  <string name="fingerprint_success">Pegada dixital recoñecida</string>
-  <string name="fingerprint_os_error">O desbloqueo por pegada dixital require Android 6.0 ou posterior.</string>
-  <string name="fingerprint_hardware_error">Non se detectou ningún hardware de pegadas dixitais.</string>
-  <string name="fingerprint_no_enrolled">Non hai ningunha pegada dixital gardada neste dispositivo. Acuda á configuración do dispositivo.</string>
-  <string name="disable_fingerprint_unlock">Deshabilitar desbloqueo por pegada dixital</string>
-  <string name="enable_fingerprint_unlock">Habilitar desbloqueo completo con pegada dixital</string>
-  <string name="enable_fingerprint_quickunlock">Habilitar desbloqueo con pegada dixital para QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Toque o sensor para desbloquear a base de datos</string>
-  <string name="fingerprint_unlock_failed">Fallou o desbloqueo por pegada. O sistema Android OS invalidou a chave descritiva. Isto pasa cando se engadiu unha nova pegada dactilar ou se cambiou a configuración de seguridade. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Fallou o desbloqueo da base de datos: chave composta inválida. Deshabilitouse o desbloqueo por pegada debido a que o contrasinal maestro gardado xa non é válido. </string>
-  <string name="fingerprint_reenable">Volva a habilitar o desbloqueo por pegada dixital para o novo contrasinal mestre.</string>
-  <string name="fingerprint_reenable2">Tente a desbloquear co contrasinal e volver a habilitar o Desbloqueo por Pegada na configuración da base de datos, por favor.</string>
-  <string name="FingerprintInitFailed">Fallou a inicialización do sensor de pegada. </string>
-  <string name="enable_fingerprint_unlock_Info">Isto gardará o seu contrasinal mestre no dispositivo, encriptado co Android Keystore e protexido por autenticación de pegada dixital. Permítelle desbloquear a base de datos tan só ca súa pegada dixital.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite o uso da autenticación con pegada dixital no canto do seu código QuickUnlock. Non require a almacenaxe de ningunha información relacionada co seu contrasinal mestre.</string>
   <string name="enter_filename">Introduza o nome do arquivo da súa base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
@@ -555,7 +535,6 @@
   <string name="DbQuicklockedChannel_desc">Notificacións sobre a base de datos están sendo bloqueadas por QuickUnlock</string>
   <string name="EntryChannel_name">Entrada de notificacións</string>
   <string name="EntryChannel_desc">Notificación para simplificar o acceso á entrada seleccionada.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Amosar teclado para entradas de contrasinal cando o escaneo de pegada dixital está activo.</string>
   <string name="ChangeLog_1_06">    Versión 1.06\n
     * Cambiar a ykDroid en vez de YubiChallenge como app para Yubikey Challenge-Response.\n
     * Implementacióm do soporte para KeepassXC-style Challenge-Response. Nota: o formato da base de datos ten que ser KDBX4!\n
@@ -845,12 +824,10 @@ Lanzamento público inicial
   <string name="show_autofill_help">Amosar axuda do autocompletado</string>
   <string name="autofill_sign_in_prompt">Completar con Keepass2Android</string>
   <string name="invalid_link_association">Non se puido asociar o dominio web %1$s ca app %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android detectou hárdware de impresións dixitais. Queres activar o desbloqueo desta base de datos mediante a túa impresión dixital?</string>
   <string name="understand">Entendo</string>
   <string name="dont_show_again">Non mostrar máis</string>
   <string name="masterkey_infotext_head">Lembras o teu contrasinal mestre?</string>
   <string name="masterkey_infotext_main">Repara en que non hai forma de abrir a túa base de datos sen a chave mestra. Non hai xeito de \"restablecer\" o contrasinal mestre.</string>
-  <string name="masterkey_infotext_fingerprint_note">Repara tamén en que o desbloqueo coa impresión dixital funciona almacenando a chave mestra no almacenamento seguro de Android, o cal podería ser eliminado por Android en calquera momento (ex.: se engade unha nova configuración da impresión dixital). Por tanto, non confíes todo na impresión dixital e lembra o contrasinal mestre!</string>
   <string name="backup_infotext_head">A túa base de datos ten copia de seguranza?</string>
   <string name="backup_infotext_main">Keepass2Android almacena os teus contrasinais nun ficheiro localizado onde elixas. Tes a certeza de permitir que se poida acceder a el en caso de perda ou roubo do teléfono ou cando o ficheiro se destrúa ou elimine? Asegúrate sempre de teres unha copia de seguranza del nun sitio seguro!</string>
   <string name="backup_infotext_note">Para crear unha copia de seguranza, vai a %1$s&gt;%2$s&gt;%3$s.</string>
