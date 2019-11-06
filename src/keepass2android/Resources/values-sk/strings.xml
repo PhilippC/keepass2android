@@ -634,7 +634,7 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zobrazovať SW klávesnicu na zadanie hesla, ak je aktívna biomet. autentifikácia.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Pridať notif. tlačidlo na kopírovanie jednorazových časových hesiel do schránky</item>
+    <item>Pridať notif. tlačidlo na kopírovanie jednorazových hesiel do schránky</item>
     <item>Prepnutie na použitie FluentFTP na poskytovanie podpory pre TLS 1.2</item>
     <item>Prepnutie na BiometricPrompt API na vylepšenie použív. zážitku pri odomykaní odtlačkom prsta a umožnenie odomknutia tvárou, napríklad na zariadeniach Pixel 4.</item>
     <item>Opravy chýb</item>
@@ -976,6 +976,7 @@ Prvé verejné vydanie
   <string name="dont_show_again">Už nezobrazovať</string>
   <string name="masterkey_infotext_head">Pamätáte si svoje primárne heslo?</string>
   <string name="masterkey_infotext_main">Pamätajte na to, že bez svojho primárneho kľúča nebudete môcť otvoriť databázu. Neexistuje žiadny \"reset\" primárneho hesla.</string>
+  <string name="masterkey_infotext_fingerprint_note">Biometrické odomykanie pracuje s uložením primárneho kľúča do bezpečného úložiska systému Android. Android môže úložisko kedykoľvek vymazať, napr. pri pridaní nového odtlačku prsta v nastaveniach systému. Nespoliehajte sa teda na biometrické odomykanie, zapamätajte si primárne heslo!</string>
   <string name="backup_infotext_head">Je Vaša databáza zálohovaná?</string>
   <string name="backup_infotext_main">Keepass2Android ukladá Vaše heslá do súboru vo vybranom umiestnení. Ste si istí, že k tomuto miestu budete mať prístup aj po strate či krádeži telefónu, alebo keď sa súbor zničí či poškodí? Prosím uistite sa, že vždy máte aktuálnu zálohu na bezpečnom mieste!</string>
   <string name="backup_infotext_note">Zálohu vytvoríte prejdením na %1$s &gt; %2$s &gt; %3$s.</string>
