@@ -93,7 +93,13 @@
   <string name="enable_fingerprint_unlock">Zapnúť úplné biometrické odomykanie</string>
   <string name="enable_fingerprint_quickunlock">Zapnúť biometrické odomykanie pre rýchle odomknutie</string>
   <string name="fingerprint_unlock_failed">Biometrické odomykanie zlyhalo. Systém Android zneplatnil dešifrovací kľúč. Stáva sa to vtedy, keď sa zmenia bezpečnostné nastavenia/biometrická autentifikácia. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odomknutie databázy bolo neúspešné: neplatný kompozitný kľúč. Biometrické odomykanie sa vyplo, pretože uložené primárne heslo už nie je zrejme platné. </string>
+  <string name="fingerprint_reenable">Pre nové primárne heslo opäť zapnite biometrické odomykanie.</string>
+  <string name="fingerprint_reenable2">Prosím odomknite pomocou hesla a opäť zapnite biometrické odomykanie v nastaveniach databázy.</string>
+  <string name="FingerprintInitFailed">Nepodarilo sa inicializovať biometrickú autentifikáciu. </string>
   <string name="FingerprintSetupFailed">Nepodarilo sa zašifrovať údaje. To sa môže stať v prípade, že pridáte alebo odstránite odtlačky prstov v nastaveniach systému v čase, keď Keepass2Android sleduje váš odtlačok prsta.</string>
+  <string name="enable_fingerprint_unlock_Info">Týmto sa primárne heslo uloží v tomto zariadení, so zašifrovaním pomocou Android Keystore a ochranou biometrickou autentifikáciou. To umožňuje odomknúť databázu len s využitím biometrie.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Umožňuje použiť biometrickú autentifikáciu namiesto kódu pre rýchle odomknutie. Neukladá žiadnu informáciu týkajúcu sa primárneho hesla.</string>
   <string name="enter_filename">Vložte názov databázy</string>
   <string name="entry_accessed">Prístup</string>
   <string name="entry_cancel">Zrušiť</string>
@@ -626,6 +632,13 @@
   <string name="DbQuicklockedChannel_desc">Notifikácia o uzamknutí databázy pomocou funkcie QuickUnlock</string>
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Zobrazovať SW klávesnicu na zadanie hesla, ak je aktívna biomet. autentifikácia.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Pridať notif. tlačidlo na kopírovanie jednorazových časových hesiel do schránky</item>
+    <item>Prepnutie na použitie FluentFTP na poskytovanie podpory pre TLS 1.2</item>
+    <item>Prepnutie na BiometricPrompt API na vylepšenie použív. zážitku pri odomykaní odtlačkom prsta a umožnenie odomknutia tvárou, napríklad na zariadeniach Pixel 4.</item>
+    <item>Opravy chýb</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Verzia 1.07b\n
     * Vylepšený výkon Argon2 použitím natívnej implementácie (ďakujeme používateľovi Chih-Hsuan Yen!)\n
     * Umožnenie zablokovania odtlačkov prstov, kliknutím na ikonu pre odtlačok prsta (zabraňuje problémom s čítačkami odtlačku prsta pod obrazovkou, ďakujeme používateľovi marcoDallas!)\n
@@ -958,6 +971,7 @@ Prvé verejné vydanie
   <string name="autofill_disable">Vypnúť automatické dopĺňanie pre %1$s</string>
   <string name="autofill_enable_for">Zapnúť autom. dopĺňanie pre %1$s</string>
   <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android detegoval biometrický hardvér. Chcete zapnúť biometrické odomykanie pre túto databázu?</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Už nezobrazovať</string>
   <string name="masterkey_infotext_head">Pamätáte si svoje primárne heslo?</string>
