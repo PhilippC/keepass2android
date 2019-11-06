@@ -635,6 +635,12 @@
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Parmak izi tarama etkin olduğunda parola girişi için yazılım klavyesini göster.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>TLS 1.2 desteği sağlamak için FluentFTP kullanmaya geç</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Hata düzeltmeleri</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Sürüm 1.07b-ön\n
     * Yerel uygulama kullanılarak Argon2 performansı artırıldı (Chih-Hsuan Yen\'e teşekkürler!)\n
     * Parmak izi simgesine basılarak parmak izini devre dışı bırakmaya izin verildi (marcoDallas sayesinde ekran altı parmak izi okuyucularında sorun yaşanmıyor!)\n
