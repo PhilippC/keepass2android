@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Gestione file</string>
   <string name="keyboard_prefs">Tastiera</string>
   <string name="export_prefs">Esporta il database...</string>
-  <string name="fingerprint_prefs">Sblocco con Impronta</string>
   <string name="import_db_prefs">Importa database in cartella interna</string>
   <string name="import_keyfile_prefs">Importa file chiave in cartella interna</string>
   <string name="keyboardswitch_prefs">Cambio tastiera</string>
@@ -82,26 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android viene distribuito ASSOLUTAMENTE SENZA ALCUNA GARANZIA; Si tratta di software libero e sei invitato a distribuirlo sotto le condizioni della licenza GPL versione 2 o superiore.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copia negli appunti</string>
-  <string name="fingerprint_hint">Sensore di tocco</string>
-  <string name="fingerprint_description">Conferma l\'impronta per continuare</string>
-  <string name="fingerprint_fatal">Non posso impostare lo sblocco con Impronta:</string>
-  <string name="fingerprint_not_recognized">Impronta digitale non riconosciuta. Riprova</string>
-  <string name="fingerprint_success">Impronta riconosciuta</string>
-  <string name="fingerprint_os_error">Lo Sblocco con Impronta digitale richiede Android 6.0 o versione successiva.</string>
-  <string name="fingerprint_hardware_error">Nessun lettore di impronta digitale rilevato.</string>
-  <string name="fingerprint_no_enrolled">Non hai nessuna impronta digitale registrata su questo dispositivo. Per prima cosa vai nelle impostazioni di sistema.</string>
-  <string name="disable_fingerprint_unlock">Disabilita lo Sblocco con Impronta</string>
-  <string name="enable_fingerprint_unlock">Abilita lo Sblocco totale con Impronta</string>
-  <string name="enable_fingerprint_quickunlock">Abilita lo sblocco con Impronta per QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Tocca il sensore per sbloccare il database</string>
-  <string name="fingerprint_unlock_failed">Sblocco con impronta fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando viene registrata una nuova impronta o le impostazioni di sicurezza sono state cambiate. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco con impronta è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
-  <string name="fingerprint_reenable">Per favore riattiva lo Sblocco con Impronta per la nuova password principale.</string>
-  <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo sblocco con Impronta nelle impostazioni del database.</string>
-  <string name="FingerprintInitFailed">Impossibile inizializzare il sensore di impronte. </string>
   <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa della tua impronta digitale.</string>
-  <string name="enable_fingerprint_unlock_Info">Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione con impronta digitale. Permette di sbloccare il database solo con l\'impronta digitale.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione tramite impronta digitale anziché il codice di QuickUnlock. Non necessita di memorizzare alcuna informazione relativa alla tua password principale.</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
   <string name="entry_accessed">Ultimo accesso</string>
   <string name="entry_cancel">Annulla</string>
@@ -631,7 +611,6 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="DbQuicklockedChannel_desc">Notifica del blocco del database con QuickUnlock</string>
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando la scansione dell\'impronta è attiva.</string>
   <string-array name="ChangeLog_1_08">
     <item>Aggiungi un pulsante di notifica per la copia di TOTP negli appunti</item>
     <item>Passa all\'uso di FluentFTP per fornire supporto per TLS 1.2</item>
@@ -965,12 +944,10 @@ Prima release pubblica
   <string name="autofill_disable">Disattiva Compilazione automatica per %1$s</string>
   <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android ha rilevato un lettore di impronte digitali. Desideri attivare lo sblocco con impronta digitale per questo database?</string>
   <string name="understand">Ho capito</string>
   <string name="dont_show_again">Non mostrare più</string>
   <string name="masterkey_infotext_head">Ricordi la tua password principale?</string>
   <string name="masterkey_infotext_main">Nota che senza la password principale non sarai in grado di aprire il database. Non c\'è nessun modo di \"ripristinare\" la password principale.</string>
-  <string name="masterkey_infotext_fingerprint_note">Nota inoltre che lo sblocco mediante impronte digitali funziona memorizzando la tua password principale nella memoria sicura di Android. Questa memoria può essere eliminata da Android in qualsiasi momento, ad esempio se aggiungi una nuova impronta nelle impostazioni del sistema. Quindi non fare affidamento sulla tua impronta digitale, ma ricordati la password principale, per favore!</string>
   <string name="backup_infotext_head">Esiste un backup del tuo database?</string>
   <string name="backup_infotext_main">Keepass2Android memorizza le password in un file in una posizione di tua scelta. Sei sicuro di poter accedere a questo file anche quando il telefono viene perso o rubato, o quando il file viene distrutto o cancellato? Assicurati di avere sempre un backup aggiornato in un luogo sicuro!</string>
   <string name="backup_infotext_note">Per creare un backup ora, vai a %1$s &gt; %2$s &gt; %3$s.</string>
