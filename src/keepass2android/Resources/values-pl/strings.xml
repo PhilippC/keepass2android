@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Obsługa plików</string>
   <string name="keyboard_prefs">Klawiatura</string>
   <string name="export_prefs">Eksportuj bazę danych...</string>
-  <string name="fingerprint_prefs">Odblokowywanie odciskiem palca</string>
   <string name="import_db_prefs">Import bazy danych do wewnętrznego folderu</string>
   <string name="import_keyfile_prefs">Import pliku klucza do folderu wewnętrznego</string>
   <string name="keyboardswitch_prefs">Przełączanie klawiatury</string>
@@ -82,28 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android jest udostępniany BEZ JAKIEJKOLWIEK GWARANCJI. Niniejszy program jest wolnym oprogramowaniem: możesz go swobodnie rozpowszechniać na warunkach licencji GNU General Public License w wersji 2 lub późniejszej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiuj do schowka</string>
-  <string name="fingerprint_hint">Dotknij czytnik linii papilarnych</string>
-  <string name="fingerprint_description">Potwierdź odciskiem palca, aby kontynuować</string>
-  <string name="fingerprint_fatal">Nie można ustawić odblokowywania odciskiem palca:</string>
-  <string name="fingerprint_not_recognized">Odcisk palca nie rozpoznany. Spróbuj ponownie</string>
-  <string name="fingerprint_success">Odcisk palca rozpoznany</string>
-  <string name="fingerprint_os_error">Odblokowywanie odciskiem palca wymaga Androida 6.0 lub nowszego.</string>
-  <string name="fingerprint_hardware_error">Nie wykryto czytnika linii papilarnych.</string>
-  <string name="fingerprint_no_enrolled">Nie masz zapisanych odcisków palców na tym urządzeniu. Przejdź najpierw do ustawień systemowych.</string>
-  <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie odciskiem palca</string>
-  <string name="enable_fingerprint_unlock">Włącz odblokowywanie odciskiem palca</string>
-  <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie odciskiem palca dla QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Dotknij czytnika do odblokowania bazy danych</string>
-  <string name="fingerprint_unlock_failed">Odblokowanie linii papilarnych nie powiodło Klucz deszyfrowania został unieważniony przez system operacyjny Android. Zwykle dzieje się tak, gdy zarejestrowano nowy odcisk palca lub zmieniono ustawienia zabezpieczeń. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odblokowywanie bazy danych nie powiodło się: nieprawidłowy klucz złożony. Linii papilarnych Unlock została wyłączona, ponieważ najwyraźniej zapisane hasła głównego nie jest już prawidłowy. </string>
-  <string name="fingerprint_reenable">Proszę ponownie aktywować odblokowywanie przy pomocy odcisku palca dla nowego hasła głównego.</string>
-  <string name="fingerprint_reenable2">Proszę odblokować używając twojego hasła, następnie restart Skanera Odcisków pałcow w bazie ustawień.</string>
-  <string name="FingerprintInitFailed">Nie udało się zainicjować czytnika linii papilarnych. </string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
-  <string name="enable_fingerprint_unlock_Info">To zachowa twoje hasła główne na tym urządzeniu.
-    zaszyfrowane przy pomocy zestawu kluczy Androida i chronione
-    używając autoryzacji odciskiem palca. Umożliwia odblokowywanie twojej bazy danych tylko przy pomocy odcisku palca.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Umożliwia użycie autoryzacji odciskiem palca zamiast kodu SzybkieOdblokowanie. Nie wymaga przechowywania żadnych informacji powiązanych z twoich hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
   <string name="entry_accessed">Ostatni dostęp</string>
   <string name="entry_cancel">Anuluj</string>
@@ -636,7 +614,6 @@
   <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy SzybkiegoOdblokowania</string>
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
   <string-array name="ChangeLog_1_08">
     <item>Dodaj do powiadomienia przycisk kopiujący TOTP do schowka</item>
     <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
@@ -948,12 +925,10 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="autofill_disable">Wyłącz autouzupełnianie dla %1$s</string>
   <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Nie pokazuj ponownie</string>
   <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>
   <string name="masterkey_infotext_main">Pamiętaj, że nie będziesz mógł otworzyć swojej bazy danych bez klucza głównego. Zresetowanie hasła głównego jest niemożliwe.</string>
-  <string name="masterkey_infotext_fingerprint_note">Pamiętaj też, że odblokowywanie przy pomocy odcisku palca działa przechowując klucz główny w bezpiecznej magazynie systemu operacyjnego Android. Ten magazyn może być usunięty przez system w dowolnym momencie, np. jeśli dodasz nowy odcisk palca w ustawieniach systemu. Więc proszę, nie polegaj na odcisku palca, tylko pamiętaj swoje hasło główne!</string>
   <string name="backup_infotext_head">Czy posiadasz kopię zapasową swojej bazy danych?</string>
   <string name="backup_infotext_main">Keepass2Android przechowuje twoje hasło w pliku w wybranej lokacji. Czy masz pewność, że wciąż będziesz mieć dostęp do tego pliku, gdy zgubisz telefon lub zostanie on skradziony albo plik zostanie zniszczony lub usunięty? Upewnij się, że zawsze masz aktualną kopię zapasową w bezpiecznym miejscu!</string>
   <string name="backup_infotext_note">Aby stworzyć kopię zapasową, przejdź do %1$s &gt; %2$s &gt; %3$s.</string>
