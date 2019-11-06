@@ -41,7 +41,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="FileHandling_prefs">فایل‌گردانی</string>
   <string name="keyboard_prefs">صفحه‌کلید</string>
   <string name="export_prefs">صدور پایگاه‌داده...</string>
-  <string name="fingerprint_prefs">قفل‌گشایی با اثرانگشت</string>
   <string name="import_db_prefs">واردکردن پایگاه‌داده به پوشهٔ داخلی</string>
   <string name="import_keyfile_prefs">واردکردن فایل کلید به پوشهٔ داخلی</string>
   <string name="keyboardswitch_prefs">تعویض صفحه‌کلید</string>
@@ -72,25 +71,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="disclaimer_formal">برنامهٔ Keepass2Android هیچ‌گونه ضمانتی ندارد. این نرم‌افزار رایگان است و از لطف شماست که آن را تحت شرایط GPL نسخهٔ ۲ یا بالاتر بازپخش کنید.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">کپی‌کردن در بریده‌دان</string>
-  <string name="fingerprint_hint">حسگر را لمس کنید</string>
-  <string name="fingerprint_description">برای ادامه، اثرانگشت را تایید کنید</string>
-  <string name="fingerprint_fatal">راه‌اندازی قفل‌گشایی با اثرانگشت ناموفق بود:</string>
-  <string name="fingerprint_not_recognized">اثرانگشت شناسایی نشد. دوباره تلاش کنید.</string>
-  <string name="fingerprint_success">اثرانگشت شناخته شد</string>
-  <string name="fingerprint_os_error">قفل‌گشایی با اثرانگشت به اندروید ۶٫۰ یا بالاتر نیاز دارد.</string>
-  <string name="fingerprint_hardware_error">سخت‌افزاری برای شناسایی اثرانگشت پیدا نشد.</string>
-  <string name="fingerprint_no_enrolled">هیچ اثرانگشتی در این دستگاه ثبت نکرده‌اید. لطفاً ابتدا به تنظیمات سیستم بروید.</string>
-  <string name="disable_fingerprint_unlock">غیر‌فعال‌کردن قفل‌گشایی با اثرانگشت</string>
-  <string name="enable_fingerprint_unlock">فعال‌کردن قفل‌گشایی کامل با اثرانگشت</string>
-  <string name="enable_fingerprint_quickunlock">فعال‌کردن قفل‌گشایی با اثرانگشت برای زودگشایی</string>
-  <string name="fingerprint_unlock_hint">برای قفل‌گشایی پایگاه‌داده حسگر را لمس کنید</string>
-  <string name="fingerprint_unlock_failed">قفل‌گشایی با اثرانگشت ناموفق بود. سیستم‌عامل اندروید کلید رمزگشایی را نامعتبر کرده. این مسئله معمولاً وقتی اتفاق می‌افتد که اثرانگشت جدیدی ثبت شده یا تنظیمات امنیتی تغییر کرده باشد. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">قفل‌گشایی پایگاه‌داده ناموفق بود: کلید ترکیبی نامعتبر. قفل‌گشایی با اثرانگشت غیرفعال شد زیرا ظاهراً شاه‌رمز ذخیره‌شده، دیگر معتبر نیست. </string>
-  <string name="fingerprint_reenable">لطفاً قفل‌گشایی با اثرانگشت را برای شاه‌رمز جدید مجدداً فعال کنید.</string>
-  <string name="fingerprint_reenable2">لطفاً ابتدا با گذرواژه‌تان قفل را باز کنید و سپس قفل‌گشایی با اثرانگشت را در تنظیمات پایگاه‌داده فعال کنید.</string>
-  <string name="FingerprintInitFailed">راه‌اندازی حسگر اثرانگشت ناموفق بود. </string>
-  <string name="enable_fingerprint_unlock_Info">شاه‌رمز شما را در این دستگاه ذخیره می‌کند. گذرواژه با استفاده از ذخیره‌گاه کلید اندروید رمزگذاری و با اعتبارسنجی اثرانگشتی محافظت می‌شود.</string>
-  <string name="enable_fingerprint_quickunlock_Info">می‌توانید از احراز هویت اثرانگشتی به‌جای کد زودگشایی استفاده کنید. هیچ‌گونه داده‌ای که مربوط به شاه‌رمزتان باشد، ذخیره نمی‌کند.</string>
   <string name="enter_filename">نام فایل پایگاه‌داده را وارد کنید</string>
   <string name="entry_accessed">تاریخ دسترسی</string>
   <string name="entry_cancel">لغو</string>
@@ -586,7 +566,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="DbQuicklockedChannel_desc">اعلان دربارهٔ بازشدن قفل پایگاه‌داده به‌روش زودگشایی</string>
   <string name="EntryChannel_name">اعلانات مدخل</string>
   <string name="EntryChannel_desc">اعلان برای سهولت دسترسی به مدخلی که اکنون انتخاب شده است.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">اگر اسکن اثرانگشت فعال بود، برای واردکردن گذرواژه صفحه‌کلید نرم‌افزاری را نشان بده.</string>
   <string name="ChangeLog_1_06">    نسخهٔ ۱٫۰۶\n
     *استفاده از برنامهٔ ykDroid به‌جای YubiChallenge برای چالش-پاسخ یوبی‌کی.\n
     *پشتیبانی از چالش-پاسخ به‌سبک KeepassXC. توجه: قالب پایگاه‌داده باید KDBX4 باشد!\n
@@ -711,12 +690,10 @@ mycloud.me.com/webdav/‎ )</string>
 با برنامهٔ\n
 %2$s\n
 ناموفق بود</string>
-  <string name="enable_fingerprint_hint">‏Keepass2Android سخت‌افزار اثرانگشت را شناسایی کرد. آیا مایلید قفل‌گشایی با اثرانگشت را برای این پایگاه فعال کنید؟</string>
   <string name="understand">فهمیدم</string>
   <string name="dont_show_again">دوباره نشان نده</string>
   <string name="masterkey_infotext_head">آیا شاه‌کلیدتان را به خاطر دارید؟</string>
   <string name="masterkey_infotext_main">دقت کنید که بدون شاه‌کلید نمی‌توانید پایگاه‌دادهٔ خود را باز کنید و هیچ راهی هم برای «بازنشانی» شاه‌کلید وجود ندارد.</string>
-  <string name="masterkey_infotext_fingerprint_note">همچنین توجه بفرمایید که قفل‌گشایی با اثرانگشت طوری است که شاه‌کلید شما در ذخیره‌گاه امن اندروید ذخیره می‌شود. این ذخیره‌گاه ممکن است هر آن توسط سیستم‌عامل اندروید پاک‌سازی شود؛ مثلاً زمانی که اثرانگشت جدیدی در تنظیمات سیستم اضافه کنید. بنابراین به اثرانگشتتان اکتفا نکنید، بلکه شاه‌کلیدتان را به یاد بسپارید، لطفاً!</string>
   <string name="backup_infotext_head">آیا از پایگاه‌داده‌تان پشتیبان گرفته شده؟</string>
   <string name="backup_infotext_main">برنامهٔ Keepass2Android گذرواژه‌هایتان را در یک فایل و در مکانی به‌انتخاب شما ذخیره می‌کند. اگر دستگاهتان گم یا دزدیده شود، آیا مطمئن هستید که هنوز به فایل دسترسی خواهید داشت؟ اگر فایل خراب یا پاک شود چطور؟ لطفاً اطمینان حاصل کنید که همیشه یک پشتیبان به‌روز در مکانی امن داشته باشید!</string>
   <string name="backup_infotext_note">برای اینکه هم‌اکنون یک پشتیبان تهیه کنید، به %1$s &gt; %2$s &gt; %3$s بروید.</string>
