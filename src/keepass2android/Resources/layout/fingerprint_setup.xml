@@ -109,7 +109,7 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/fingerprint_icon"
             android:gravity="center_vertical"
-            android:text="@string/fingerprint_hint"
+            android:text=""
             android:textColor="@color/hint_color" />
         <Button
             android:id="@+id/cancel_button"

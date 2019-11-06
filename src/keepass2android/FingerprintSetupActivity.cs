@@ -336,7 +336,7 @@ namespace keepass2android
 		{
 			_fpTextView.SetTextColor(
 				_fpTextView.Resources.GetColor(Resource.Color.hint_color, null));
-			_fpTextView.Text = _fpTextView.Resources.GetString(Resource.String.fingerprint_hint);
+			_fpTextView.Text = "";
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fp_40px);
 		}
 

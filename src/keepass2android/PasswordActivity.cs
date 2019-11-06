@@ -764,7 +764,16 @@ namespace keepass2android
             var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
             {
-                _biometricDec?.StartListening(this);
+                if (!string.IsNullOrEmpty((string)btn.Tag))
+                {
+                    AlertDialog.Builder b = new AlertDialog.Builder(this);
+                    b.SetTitle(Resource.String.fingerprint_prefs);
+                    b.SetMessage(btn.Tag.ToString());
+                    b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+                    b.SetOnDismissListener(new Util.DismissListener(() => _biometricDec?.StartListening(this)));
+                    b.Show();
+                }
+                else _biometricDec?.StartListening(this);
 
             };
 
@@ -912,8 +921,7 @@ namespace keepass2android
 			btn.PostDelayed(() =>
 			{
 				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
-				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
-			}, 1300);
+            }, 1300);
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
 
@@ -1839,8 +1847,6 @@ namespace keepass2android
 				BiometricModule fpModule = new BiometricModule(this);
 				_biometricDec = new BiometricDecryption(fpModule, Database.GetFingerprintPrefKey(_ioConnection), this,
 					Database.GetFingerprintPrefKey(_ioConnection));
-
-				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
 
 				if (_biometricDec.Init())
 				{

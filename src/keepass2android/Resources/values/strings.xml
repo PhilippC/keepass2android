@@ -53,7 +53,7 @@
 	<string name="FileHandling_prefs">File handling</string>
 	<string name="keyboard_prefs">Keyboard</string>
 	<string name="export_prefs">Export database...</string>
-  <string name="fingerprint_prefs">Fingerprint unlock</string>
+  <string name="fingerprint_prefs">Biometric unlock</string>
 	<string name="import_db_prefs">Import database to internal folder</string>
 	<string name="import_keyfile_prefs">Import key file to internal folder</string>
 	<string name="keyboardswitch_prefs">Keyboard switching</string>
@@ -91,28 +91,27 @@
   <string name="disclaimer_formal">Keepass2Android comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 2 or later.</string>
   <string name="ellipsis">\u2026</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
-  <string name="fingerprint_hint">Touch sensor</string>
-  <string name="fingerprint_description">Confirm fingerprint to continue</string>
-  <string name="fingerprint_fatal">Cannot setup Fingerprint Unlock:</string>
-  <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
-  <string name="fingerprint_success">Fingerprint recognized</string>
-  <string name="fingerprint_os_error">Fingerprint Unlock requires Android 6.0 or later.</string>
-  <string name="fingerprint_hardware_error">No fingerprint hardware detected.</string>
-  <string name="fingerprint_no_enrolled">You have no enrolled fingerprints on this device. Please go to system settings first.</string>
-  <string name="disable_fingerprint_unlock">Disable Fingerprint Unlock</string>
-  <string name="enable_fingerprint_unlock">Enable full Fingerprint Unlock</string>
-  <string name="enable_fingerprint_quickunlock">Enable Fingerprint Unlock for QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Touch sensor to unlock database</string>
-  <string name="fingerprint_unlock_failed">Fingerprint Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a new fingerprint was enrolled or security settings were changed. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Fingerprint Unlock was disabled because apparently the stored master password is no longer valid. </string>
-  <string name="fingerprint_reenable">Please re-enable Fingerprint Unlock for the new master password.</string>
-  <string name="fingerprint_reenable2">Please unlock with your password and then re-enable Fingerprint Unlock in the database settings.</string>
-  <string name="FingerprintInitFailed">Failed to initialize fingerprint sensor. </string>
+  <string name="fingerprint_description">Please authenticate to continue</string>
+  <string name="fingerprint_fatal">Cannot setup Biometric Unlock:</string>
+  <string name="fingerprint_not_recognized">Biometric authentication failed. Try again</string>
+  <string name="fingerprint_success">Biometric authentication succeeded</string>
+  <string name="fingerprint_os_error">Biometric Unlock requires Android 6.0 or later.</string>
+  <string name="fingerprint_hardware_error">No biometric hardware detected.</string>
+  <string name="fingerprint_no_enrolled">You have not configure biometric authentication on this device. Please go to system settings first.</string>
+  <string name="disable_fingerprint_unlock">Disable Biometric Unlock</string>
+  <string name="enable_fingerprint_unlock">Enable full Biometric Unlock</string>
+  <string name="enable_fingerprint_quickunlock">Enable Biometric Unlock for QuickUnlock</string>
+  
+  <string name="fingerprint_unlock_failed">Biometric Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a biometric authentication or security settings were changed. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Biometric Unlock was disabled because apparently the stored master password is no longer valid. </string>
+  <string name="fingerprint_reenable">Please re-enable Biometric Unlock for the new master password.</string>
+  <string name="fingerprint_reenable2">Please unlock with your password and then re-enable Biometric Unlock in the database settings.</string>
+  <string name="FingerprintInitFailed">Failed to initialize biometric authentication. </string>
   <string name="FingerprintSetupFailed">Failed to encrypt data. This can happen if you add or remove fingerprints in the system settings while Keepass2Android is listening for your fingerprint.</string>
   
 
-  <string name="enable_fingerprint_unlock_Info">This will store your master password on this device, encrypted with the Android Keystore and protected using fingerprint authentication. Allows to unlock your database only with your fingerprint.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Allows to use fingerprint authentication instead of the QuickUnlock code. Does not store any information related to your master password.</string>
+  <string name="enable_fingerprint_unlock_Info">This will store your master password on this device, encrypted with the Android Keystore and protected using biometric authentication. Allows to unlock your database only using biometry.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Allows to use biometric authentication instead of the QuickUnlock code. Does not store any information related to your master password.</string>
 
   <string name="enter_filename">Enter database filename</string>
   <string name="entry_accessed">Accessed</string>
@@ -780,7 +779,7 @@
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
-  <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when fingerprint scan is active.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when biometric authentication is active.</string>
 
   <string-array name="ChangeLog_1_08">
     <item>Add notification button for copying TOTP to clipboard</item>
@@ -1210,14 +1209,14 @@ Initial public release
   <string name="autofill_enable_for">Enable AutoFill for %1$s</string>
   <string name="invalid_link_association">Could not associate web domain %1$s with app %2$s</string>
 
-  <string name="enable_fingerprint_hint">Keepass2Android has detected fingerprint hardware. Do you want to enable fingerprint unlock for this database?</string>
+  <string name="enable_fingerprint_hint">Keepass2Android has detected biometric hardware. Do you want to enable Biometric Unlock for this database?</string>
 
   <string name="understand">I understand</string>
   <string name="dont_show_again">Do not show again</string>
 
   <string name="masterkey_infotext_head">Do you remember your master password?</string>
   <string name="masterkey_infotext_main">Note that you will not be able to open your database without the master key. There is no way to "reset" the master password.</string>
-  <string name="masterkey_infotext_fingerprint_note">Also note that fingerprint unlock works by storing your master key in Android\'s secure storage. This storage may be deleted by Android at any time, e.g. if you add a new fingerprint in the system settings. So don\'t rely on your fingerprint but remember your master password, please!</string>
+  <string name="masterkey_infotext_fingerprint_note">Also note that Biometric Unlock works by storing your master key in Android\'s secure storage. This storage may be deleted by Android at any time, e.g. if you add a new fingerprint in the system settings. So don\'t rely on Biometric Unlock but remember your master password, please!</string>
 
   <string name="backup_infotext_head">Is your database backed up?</string>
   <string name="backup_infotext_main">Keepass2Android stores your passwords in a file on a location of your choice. Are you sure you can still access this file when your phone gets lost or stolen, or when the file gets destroyed or deleted? Please make sure you always have an up-to-date backup at a safe place!</string>
