@@ -54,7 +54,7 @@ Please also add a few strings in your resource files (e.g. strings.xml) with the
 These strings will be displayed to the user when KP2A asks if access should be granted.
 
 ## Modifying the entry view
-You can add menu options for the full entry or for individual fields of the entry when displayed to the user. This is done, for example, by the QR plugin ([https://play.google.com/store/apps/details?id=keepass2android.plugin.qr](https___play.google.com_store_apps_details_id=keepass2android.plugin.qr)). 
+You can add menu options for the full entry or for individual fields of the entry when displayed to the user. This is done, for example, by the QR plugin ([https://play.google.com/store/apps/details?id=keepass2android.plugin.qr](https://play.google.com/store/apps/details?id=keepass2android.plugin.qr)). 
 In addition, it is even possible to add new fields or modify existing fields. Please see the sample plugin "PluginA" in the KP2A repository for a simple example on how to do this:
 [https://keepass2android.codeplex.com/SourceControl/latest#src/java/PluginA/src/keepass2android/plugina/PluginAActionReceiver.java](https://keepass2android.codeplex.com/SourceControl/latest#src/java/PluginA/src/keepass2android/plugina/PluginAActionReceiver.java)
 
