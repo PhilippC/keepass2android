@@ -38,7 +38,6 @@
   <string name="FileHandling_prefs">Xử lý tập tin</string>
   <string name="keyboard_prefs">Bàn phím</string>
   <string name="export_prefs">Xuất khẩu cơ sở dữ liệu...</string>
-  <string name="fingerprint_prefs">Mở khoá vân tay</string>
   <string name="import_db_prefs">Nhập cơ sở dữ liệu vào thư mục nội bộ</string>
   <string name="import_keyfile_prefs">Nhập tập tin khóa vào thư mục thuộc bộ nhớ trong</string>
   <string name="keyboardswitch_prefs">Đổi bàn phím</string>
@@ -68,25 +67,6 @@
   <string name="disclaimer_formal">Keepass2Android HOÀN TOÀN KHÔNG CÓ BẢO HÀNH; Đây là phần mềm miễn phí, và bạn được chào đón để phát hành lại nó theo các điều kiện của Giấy phép GPL phiên bản 2 hoặc mới hơn.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Sao chép vào clipboard</string>
-  <string name="fingerprint_hint">Hãy chạm vào cảm biến</string>
-  <string name="fingerprint_description">Xác nhận dấu vân tay để tiếp tục</string>
-  <string name="fingerprint_fatal">Không thể cài đặt Mở khoá vân tay:</string>
-  <string name="fingerprint_not_recognized">Không nhận diện được vân tay. Hãy thử lại</string>
-  <string name="fingerprint_success">Đã nhận diện được vân tay</string>
-  <string name="fingerprint_os_error">Mở khoá vân tay yêu cầu Android 6.0 hoặc cao hơn.</string>
-  <string name="fingerprint_hardware_error">Không phát hiện được phần cứng nhận diện vân tay.</string>
-  <string name="fingerprint_no_enrolled">Bạn chưa lưu dấu vân tay nào trên thiết bị này. Hãy vào cài đặt hệ thống trước.</string>
-  <string name="disable_fingerprint_unlock">Tắt Mở khoá vân tay</string>
-  <string name="enable_fingerprint_unlock">Bật Mở khoá vân tay đầy đủ</string>
-  <string name="enable_fingerprint_quickunlock">Bật Mở khoá vân tay cho Mở khoá nhanh</string>
-  <string name="fingerprint_unlock_hint">Chạm vào cảm biến để mở khoá cơ sở dữ liệu</string>
-  <string name="fingerprint_reenable">Xin vui lòng kích hoạt lại mở khóa vân tay cho mật khẩu chủ mới.</string>
-  <string name="FingerprintInitFailed">Khởi động cảm biến vân tay thất bại. </string>
-  <string name="enable_fingerprint_unlock_Info">     Điều này sẽ lưu trữ mật khẩu chủ của bạn trên thiết bị này,
-    được mã hóa với Android Keystore và được bảo vệ
-    bằng cách sử dụng xác thực dấu vân tay. Cho phép để mở khóa dữ liệu của bạn chỉ với dấu vân tay của bạn.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Cho phép sử dụng xác thực vân tay thay cho mã Mở khoá nhanh. Không yêu cầu lưu thông tin liên quan đến mật khẩu chính của bạn.</string>
   <string name="enter_filename">Nhập tên tập tin cơ sở dữ liệu</string>
   <string name="entry_accessed">Đã truy cập</string>
   <string name="entry_cancel">Hủy bỏ</string>
@@ -522,7 +502,6 @@
 
   </string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Hiển thị bàn phím ảo để nhập mật khẩu khi quét vân tay đang hoạt động.</string>
   <string name="ChangeLog_1_03">    Phiên bản1.03\n
     * Đã xóa dịch vụ trợ năng cho Tự động điền theo yêu cầu của Google. Vui lòng xem các cài đặt truy cập mật khẩu để tìm một plugin sao chép các chức năng trước đó.\n
     * Đã thêm ứng dụng của bên thứ ba làm tuỳ chọn lưu trữ một lần nữa\n
