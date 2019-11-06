@@ -634,6 +634,12 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während Fingerabdruckerkennung aktiv ist.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Benachrichtigungsschalfläche zum Kopieren von TOTP in die Zwischenablage hinzufügen</item>
+    <item>Zu FluentFTP wechseln, um TLS 1.2 zu unterstützen</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Fehlerbehebungen</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
     * Verbesserung der Leistung von Argon2 durch die Verwendung einer nativen Implementierung (Danke an Chih-Hsuan Yen!)\n
     * Der Fingerabdruck-Leser kann durch anklicken des Fingerabdruck-Symbols deaktiviert werden (das vermeidet Probleme mit Lesern unter der Displayoberfläche, Danke an marcoDallas!)\n
