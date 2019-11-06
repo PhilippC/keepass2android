@@ -482,7 +482,7 @@
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Усі файли та спільні файли</string>
   <string name="filestoragename_onedrive2_myfiles">Мої файли</string>
-  <string name="filestoragename_onedrive2_appfolder">Папка програми Keepass2Android</string>
+  <string name="filestoragename_onedrive2_appfolder">Тека програми Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
@@ -638,6 +638,12 @@
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Додати кнопку сповіщення для копіювання TOTP в буфер обміну</item>
+    <item>Перемикання на FluentFTP для надання підтримки TLS 1.2</item>
+    <item>Перейти на BiometricPrompt API для покращення роботи користувача за допомогою розблокування відбитком пальця і дозволити використовувати розблокування обличчя, наприклад на Pixel 4.</item>
+    <item>Виправлення помилок</item>
+  </string-array>
   <string name="ChangeLog_1_07b">Версія 1.07b\n
     * Поліпшено продуктивність Argon2 за допомогою рідної реалізації (завдяки Chih-Hsuan Yen!)\n
     * Дозволено вимикати відбиток пальця шляхом натискання на його піктограмі (уникає проблеми з підекранними читачами відбитків пальців, завдяки marcoDallas!)\n
