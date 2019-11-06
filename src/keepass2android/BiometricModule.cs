@@ -288,6 +288,7 @@ namespace keepass2android
                 .SetTitle(_activity.GetString(AppNames.AppNameResource))
                 .SetSubtitle(_activity.GetString(Resource.String.unlock_database_title))
                 .SetNegativeButtonText(_activity.GetString(Android.Resource.String.Cancel))
+                .SetConfirmationRequired(false)
                 .Build();
 
 
