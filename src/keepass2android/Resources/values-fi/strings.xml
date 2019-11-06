@@ -41,7 +41,6 @@
   <string name="FileHandling_prefs">Tiedostojen käsittely</string>
   <string name="keyboard_prefs">Näppäimistö</string>
   <string name="export_prefs">Vie tietokanta...</string>
-  <string name="fingerprint_prefs">Sormenjälkiavaus</string>
   <string name="import_db_prefs">Tuo tietokanta sisäiseen kansioon</string>
   <string name="import_keyfile_prefs">Tuo avaintiedosto sisäiseen kansioon</string>
   <string name="keyboardswitch_prefs">Näppäimistön vaihtaminen</string>
@@ -72,28 +71,6 @@
   <string name="disclaimer_formal">Keepass2Androidilla ei ole takuuta; Tämä on ilmaisohjelmisto ja sitä saa levittää GPL-lisenssin version 2 tai sitä uudemman version lisenssiehtojen mukaisesti.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopioi leikepöydälle</string>
-  <string name="fingerprint_hint">Kosketusanturi</string>
-  <string name="fingerprint_description">Vahvista sormenjälki jatkaaksesi</string>
-  <string name="fingerprint_fatal">Sormenjälkiavauksen käyttöönotto ei onnistunut:</string>
-  <string name="fingerprint_not_recognized">Sormenjälkeä ei tunnistettu. Yritä uudelleen.</string>
-  <string name="fingerprint_success">Sormenjälki tunnistettu</string>
-  <string name="fingerprint_os_error">Sormenjälkiavaus vaatii Android 6.0 tai uudemman käyttöjärjestelmän.</string>
-  <string name="fingerprint_hardware_error">Sormenjälkitunnistuslaitteistoa ei löydetty.</string>
-  <string name="fingerprint_no_enrolled">Et ole rekisteröinyt tunnistettuja sormenjälkiä tälle laitteelle. Ole hyvä ja lisää ne laitteesi asetuksista.</string>
-  <string name="disable_fingerprint_unlock">Poista sormenjälkiavaus käytöstä</string>
-  <string name="enable_fingerprint_unlock">Ota käyttöön täysi sormenjälkiavaus</string>
-  <string name="enable_fingerprint_quickunlock">Ota käyttöön pika-avaus sormenjäljellä</string>
-  <string name="fingerprint_unlock_hint">Kosketa sormenjälkitunnistinta avataksesi tietokannan</string>
-  <string name="fingerprint_unlock_failed">Avaus sormenjäljellä epäonnistui. Android-käyttöjärjestelmä hylkäsi salauksen purkuavaimen. Yleensä näin käy sen jälkeen kun on rekisteröity uusi sormenjälki tai suojausasetuksia muutettu. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Tietokannan avaaminen epäonnistui: Virheellinen yhdistelmäavain. Sormenjälkilukitus poistettiin käytöstä, koska ilmeisesti järjestelmään tallennettu pääsalasana ei ole enää voimassa. </string>
-  <string name="fingerprint_reenable">Ole hyvä ja ota sormenjälkitunnistus käyttöön uudelle pääsalasanalle.</string>
-  <string name="fingerprint_reenable2">Ole hyvä ja avaa tietokanta salasanaasi käyttäen ja ota sitten sormenjälkiavaus uudelleen käyttöön tietokannan asetuksista.</string>
-  <string name="FingerprintInitFailed">Sormenjälkitunnistimen alustaminen ei onnistunut. </string>
-  <string name="enable_fingerprint_unlock_Info">    Tämä tallentaa pääsalasanasi laitteeseen,
-    salattuna Android Keystorea käyttäen ja suojattuna sormenjälkitunnistautumisella.
-    Mahdollistaa tietokannan avauksen sormenjälkitunnistautumista käyttämällä.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Mahdollistaa sormenjälkitunnistautumisen Pika-avauskoodin sijaan. Mitään pääsalasanaan liittyvää tietoa ei tallenneta.</string>
   <string name="enter_filename">Kirjoita tietokannan tiedostonimi</string>
   <string name="entry_accessed">Käytetty</string>
   <string name="entry_cancel">Peruuta</string>
@@ -599,7 +576,6 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="DbQuicklockedChannel_desc">Ilmoitus, että tietokanta on lukittu ja pika-avaus on käytössä</string>
   <string name="EntryChannel_name">Merkintöjen ilmoitukset</string>
   <string name="EntryChannel_desc">Ilmoitus, jolla pääsee helpommin käsiksi valittuna olevaan merkintään.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Näytä näppäimistö salasanan syöttöä varten sormenjälkilukijan ollessa käytössä.</string>
   <string name="ChangeLog_1_06">    Versio 1.06\n
     * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
     * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
@@ -889,12 +865,10 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
   <string name="autofill_enable_for">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android on havainnut sormenjälkitunnistuksen. Haluatko ottaa käyttöön sormenjälkitunnistuksen tämän tietokannan kanssa?</string>
   <string name="understand">Minä ymmärrän</string>
   <string name="dont_show_again">Älä näytä uudestaan</string>
   <string name="masterkey_infotext_head">Muistatko pääsalasanasi?</string>
   <string name="masterkey_infotext_main">Huomaa, että et voi avata tietokantaa ilman pääavainta. Pääavaimen \"nollaamiseen\" ei ole mitään keinoa.</string>
-  <string name="masterkey_infotext_fingerprint_note">Huomaa myös, että sormenjäljellä avaaminen käyttää Androidin turvasäilöön tallennettua pääavainta. Käyttöjärjestelmä voi poistaa turvasäilön milloin tahansa, esimerkiksi silloin kun lisäät uuden sormenjäljen järjestelmään asetuksissa. Joten älä luota pelkkään sormenjälkeen, vaan pidä myös pääsalasanasi tallessa!</string>
   <string name="backup_infotext_head">Oletko ottanut tietokannastasi varmuuskopion?</string>
   <string name="backup_infotext_main">Keepass2Android tallentaa salasanat haluamassasi paikassa sijaitsevaan tiedostoon. Oletko varma, että tiedosto on vielä saatavillasi jos puhelimesi varastetaan, tai tiedosto poistetaan tai tuhoutuu muuten? Pidä huoli, että sinulla tietokantatiedostosta ajantasainen varmuuskopio turvallisessa paikassa!</string>
   <string name="backup_infotext_note">Luodaksesivarmuuskopion nyt, mene %1$s &gt; %2$s &gt; %3$s.</string>
