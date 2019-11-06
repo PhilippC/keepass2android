@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Zaobchádzanie so súborom</string>
   <string name="keyboard_prefs">Klávesnica</string>
   <string name="export_prefs">Export databázy...</string>
-  <string name="fingerprint_prefs">Odomknutie odtlačkom</string>
   <string name="import_db_prefs">Import DB do interného priečinka</string>
   <string name="import_keyfile_prefs">Import súbor. kľúča do interného priečinka</string>
   <string name="keyboardswitch_prefs">Prepínanie klávesnice</string>
@@ -82,29 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android je poskytovaný BEZ AKEJKOĽVEK ZÁRUKY; Toto je voľne dostupný softvér a môžete ho redistribuovať za podmienok licencie GPL verzie 2 alebo novšej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopírovať do schránky</string>
-  <string name="fingerprint_hint">Dotykový senzor</string>
-  <string name="fingerprint_description">Pre pokračovanie potvrďte odtlačok</string>
-  <string name="fingerprint_fatal">Nemožno nastaviť odtlačok pre odomknutie:</string>
-  <string name="fingerprint_not_recognized">Odtlačok nebol rozpoznaný. Skúste to ešte raz</string>
-  <string name="fingerprint_success">Odtlačok bol rozpoznaný</string>
-  <string name="fingerprint_os_error">Odomknutie pomocou odtlačku si vyžaduje systém Android 6.0 alebo novší.</string>
-  <string name="fingerprint_hardware_error">Nebol zistený hardvér na snímanie odtlačkov.</string>
-  <string name="fingerprint_no_enrolled">Na zariadení nemáte zaznamenané žiadne odtlačky. Prosím prejdite najskôr do nastavení systému.</string>
-  <string name="disable_fingerprint_unlock">Zablokovať odomknutie odtlačkom</string>
-  <string name="enable_fingerprint_unlock">Zapnúť úplné odomknutie odtlačkom</string>
-  <string name="enable_fingerprint_quickunlock">Zapnúť odomykanie odtlačkom pre rýchle odomknutie</string>
-  <string name="fingerprint_unlock_hint">Dotykový senzor pre odomknutie databázy</string>
-  <string name="fingerprint_unlock_failed">Odomykanie odtlačkom prsta zlyhalo. OS Android zneplatnil dešifrovací kľúč. Toto sa stáva väčšinou vtedy, keď bol zapísaný nový odtlačok prsta alebo došlo k zmene bezpečnostných nastavení. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odomknutie databázy bolo neúspešné: neplatný kompozitný kľúč. Odomknutie odtlačkom prsta bolo deaktivované, pretože uložené primárne heslo už zjavne nie je platné. </string>
-  <string name="fingerprint_reenable">Prosím zapnite Odomknutie odtlačkom pre nové primárne heslo.</string>
-  <string name="fingerprint_reenable2">Prosím vykonajte odomknutie pomocou hesla a potom v nastaveniach databázy opäť aktivujte odomykanie odtlačkom prsta.</string>
-  <string name="FingerprintInitFailed">Inicializácia snímača odtlačkov prsta bola neúspešná. </string>
   <string name="FingerprintSetupFailed">Nepodarilo sa zašifrovať údaje. To sa môže stať v prípade, že pridáte alebo odstránite odtlačky prstov v nastaveniach systému v čase, keď Keepass2Android sleduje váš odtlačok prsta.</string>
-  <string name="enable_fingerprint_unlock_Info">    Týmto uložíte vaše primárne heslo na tomto zariadení,
-    v šifrovanej podobe, s použitím Android Keystore a s ochranou
-    pomocou autentifikácie odtlačkom. Umožní vám to odomknúť databázu len pomocou odtlačku.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Umožňuje použiť autentifikáciu odtlačkom namiesto kódu pre rýchle odomknutie. Nevyžaduje uloženie informácie týkajúcej sa primárneho hesla.</string>
   <string name="enter_filename">Vložte názov databázy</string>
   <string name="entry_accessed">Prístup</string>
   <string name="entry_cancel">Zrušiť</string>
@@ -637,7 +614,6 @@
   <string name="DbQuicklockedChannel_desc">Notifikácia o uzamknutí databázy pomocou funkcie QuickUnlock</string>
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Zobraziť softvérovú klávesnicu pre zadanie hesla ak je aktívny odtlačok.</string>
   <string name="ChangeLog_1_07b">    Verzia 1.07b\n
     * Vylepšený výkon Argon2 použitím natívnej implementácie (ďakujeme používateľovi Chih-Hsuan Yen!)\n
     * Umožnenie zablokovania odtlačkov prstov, kliknutím na ikonu pre odtlačok prsta (zabraňuje problémom s čítačkami odtlačku prsta pod obrazovkou, ďakujeme používateľovi marcoDallas!)\n
@@ -970,12 +946,10 @@ Prvé verejné vydanie
   <string name="autofill_disable">Vypnúť automatické dopĺňanie pre %1$s</string>
   <string name="autofill_enable_for">Zapnúť autom. dopĺňanie pre %1$s</string>
   <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android rozpoznal snímač odtlačkov prstov. Chcete zapnúť odomykanie databázy odtlačkom prsta?</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Už nezobrazovať</string>
   <string name="masterkey_infotext_head">Pamätáte si svoje primárne heslo?</string>
   <string name="masterkey_infotext_main">Pamätajte na to, že bez svojho primárneho kľúča nebudete môcť otvoriť databázu. Neexistuje žiadny \"reset\" primárneho hesla.</string>
-  <string name="masterkey_infotext_fingerprint_note">Pozn.: odomykanie odtlačkom prsta funguje s uložením prim. kľúča v bezpečnom úložisku pre Android. Toto úložisko môže systém Android kedykoľvek vymazať, napr. ak do nastavení systému pridáte nový odtlačok. Takže sa nespoliehajte na odtlačok prsta, ale zapamätajte si primárne heslo!</string>
   <string name="backup_infotext_head">Je Vaša databáza zálohovaná?</string>
   <string name="backup_infotext_main">Keepass2Android ukladá Vaše heslá do súboru vo vybranom umiestnení. Ste si istí, že k tomuto miestu budete mať prístup aj po strate či krádeži telefónu, alebo keď sa súbor zničí či poškodí? Prosím uistite sa, že vždy máte aktuálnu zálohu na bezpečnom mieste!</string>
   <string name="backup_infotext_note">Zálohu vytvoríte prejdením na %1$s &gt; %2$s &gt; %3$s.</string>
