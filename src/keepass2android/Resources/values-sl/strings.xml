@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Ravnanje z datotekami</string>
   <string name="keyboard_prefs">Tipkovnica</string>
   <string name="export_prefs">Izvozi podatkovno zbirko …</string>
+  <string name="fingerprint_prefs">Biometrično odklepanje</string>
   <string name="import_db_prefs">Uvozi podatkovno zbirko v notranjo mapo</string>
   <string name="import_keyfile_prefs">Uvozi datoteko ključa v notranjo mapo</string>
   <string name="keyboardswitch_prefs">Preklapljanje tipkovnice</string>
