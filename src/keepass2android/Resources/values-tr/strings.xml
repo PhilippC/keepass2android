@@ -94,7 +94,12 @@
   <string name="enable_fingerprint_quickunlock">QuickUnlock için Biyometrik Kilit Açma özelliğini etkinleştir</string>
   <string name="fingerprint_unlock_failed">Biyometrik Kilit Açma başarısız oldu. Şifre çözme anahtarı Android işletim sistemi tarafından geçersiz kılındı. Bu genellikle bir biyometrik kimlik doğrulama veya güvenlik ayarı değiştirilirse olmaktadır. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Veritabanının kilidini açma işlemi başarısız oldu: Geçersiz bileşik anahtar. Biyometrik Kilit Açma devre dışı bırakıldı çünkü görünüşe göre depolanan ana parola artık geçerli değil. </string>
+  <string name="fingerprint_reenable">Lütfen yeni ana parola için Biyometrik Kilit Açmayı tekrar etkinleştirin.</string>
+  <string name="fingerprint_reenable2">Lütfen parolanızla kilidi açın ve ardından veritabanı ayarlarında Biyometrik Kilit Açmayı tekrar etkinleştirin.</string>
+  <string name="FingerprintInitFailed">Biyometrik kimlik doğrulaması başlatılamadı. </string>
   <string name="FingerprintSetupFailed">Veriler şifrelenemedi. Keepass2Android parmak izinizi kullanırken, sistem ayarlarından parmak izi ekler veya kaldırırsanız bu durum oluşabilir.</string>
+  <string name="enable_fingerprint_unlock_Info">Bu, ana parolanızı, Android Keystore ile şifrelenmiş ve biyometrik kimlik doğrulaması kullanılarak korunmuş şekilde bu cihazda saklayacaktır. Veritabanınızı yalnızca biyometri kullanarak açmaya izin verir.</string>
+  <string name="enable_fingerprint_quickunlock_Info">QuickUnlock kodu yerine biyometrik kimlik doğrulamasının kullanılmasına izin verir. Ana parolanızla ilgili hiçbir bilgi saklamaz.</string>
   <string name="enter_filename">Veritabanı dosya adını girin</string>
   <string name="entry_accessed">kullanım tarihi</string>
   <string name="entry_cancel">İptal</string>
@@ -627,6 +632,7 @@
   <string name="DbQuicklockedChannel_desc">Çabuk Aç ile kilitlenen veritabanı hakkında bildirim</string>
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Biyometrik kimlik doğrulama etkin olduğunda şifre girişi için yazılım klavyesini göster.</string>
   <string-array name="ChangeLog_1_08">
     <item>Zaman tabanlı bir kerelik parolayı panoya kopyalamak için bildirim düğmesi ekle</item>
     <item>TLS 1.2 desteği sağlamak için FluentFTP kullanmaya geç</item>
@@ -966,10 +972,12 @@
   <string name="autofill_disable">%1$s için otomatik doldurmayı devre dışı bırak</string>
   <string name="autofill_enable_for">%1$s karşılığında otomatik doldurmayı etkinleştir</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android biyometrik donanım tespit etti. Bu veri tabanı için Biyometrik Kilit Açma özelliğini etkinleştirmek ister misiniz?</string>
   <string name="understand">Anladım</string>
   <string name="dont_show_again">Tekrar gösterme</string>
   <string name="masterkey_infotext_head">Ana parolanızı hatırlıyor musunuz?</string>
   <string name="masterkey_infotext_main">Veritabanınızı ana anahtar olmadan açamayacağınızı unutmayın. Ana şifrenin \"sıfırlanmasının\" bir yolu yoktur.</string>
+  <string name="masterkey_infotext_fingerprint_note">Ayrıca, Biyoretrik Kilit Açmanın ana anahtarınızı Android\'in güvenli deposunda saklayarak çalıştığını unutmayın. Bu depolama Android tarafından istenildiği zaman silinebilir, örn. sistem ayarlarında yeni bir parmak izi eklerseniz. Bu yüzden, Biyometrik Kilit Açmaya güvenmeyin, ana parolanızı unutmayın, lütfen!</string>
   <string name="backup_infotext_head">Veritabanınız yedeklendi mi?</string>
   <string name="backup_infotext_main">Keepass2Android, şifrelerinizi seçtiğiniz konumda bir dosyada saklar. Telefonunuz kaybolduğunda, çalındığında, dosya bozulduğunda veya silindiğinde bu dosyaya hala erişebileceğinizden emin misiniz? Lütfen daima güvenli bir yerde güncel bir yedeğinizin olduğundan emin olun!</string>
   <string name="backup_infotext_note">Şimdi bir yedek oluşturmak için %1$s &gt; %2$s &gt; %3$s \'e gidin.</string>
