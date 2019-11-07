@@ -92,7 +92,13 @@
   <string name="enable_fingerprint_unlock">Ενεργοποίηση πλήρους βιομετρικού ξεκλειδώματος</string>
   <string name="enable_fingerprint_quickunlock">Ενεργοποίηση βιομετρικού ξεκλειδώματος για QuickUnlock</string>
   <string name="fingerprint_unlock_failed">Αποτυχία βιομετρικού ξεκλειδώματος. Το κλειδί αποκρυπτογράφησης ακυρώθηκε από το Android. Αυτό συμβαίνει συνήθως αν αλλάξει η βιομετρική αυθεντικοποίηση ή οι ρυθμίσεις ασφάλειας. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Το ξεκλείδωμα της βάσης δεδομένων απέτυχε: άκυρο σύνθετο κλειδί. Το βιομετρικό ξεκλείδωμα απενεργοποιήθηκε επειδή το αποθηκευμένο πρωτεύον συνθηματικό δεν είναι πλέον έγκυρο. </string>
+  <string name="fingerprint_reenable">Ενεργοποιήστε ξανά το βιομετρικό ξεκλείδωμα για το νέο πρωτεύον συνθηματικό.</string>
+  <string name="fingerprint_reenable2">Ξεκλειδώστε με το συνθηματικό και μετά ενεργοποιήστε εκ νέου το βιομετρικό ξεκλείδωμα στις ρυθμίσεις της βάσης δεδομένων.</string>
+  <string name="FingerprintInitFailed">Αποτυχία αρχικοποίησης βιομετρικής αυθεντικοποίησης. </string>
   <string name="FingerprintSetupFailed">Αποτυχία κρυπτογράφησης δεδομένων. Μπορεί να συμβεί αν προσθέσεις ή αφαιρέσεις δακτυλικά αποτυπώματα στις ρυθμίσεις συστήματος ενώ το Keypass2Android περιμένει το δακτυλικό σου αποτύπωμα.</string>
+  <string name="enable_fingerprint_unlock_Info">Το πρωτεύον συνθηματικό θα αποθηκευτεί σε αυτή τη συσκευή, κρυπτογραφημένο στο Android Keystore και θα προστατεύεται με βιομετρική αυθεντικοποίηση. Επιτρέπει το ξεκλείδωμα της βάσης δεδομένων με χρήση βιομετρίας.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Επιτρέπει τη χρήση βιομετρικής αυθεντικοποίησης αντί του κώδικού QuickUnlock. Δεν αποθηκεύει πληροφορία σχετική με το πρωτεύον συνθηματικό.</string>
   <string name="enter_filename">Δώστε όνομα αρχείου της βάσης δεδομένων</string>
   <string name="entry_accessed">Προσπελάστηκε</string>
   <string name="entry_cancel">Ακύρωση</string>
@@ -113,6 +119,7 @@
   <string name="entry_user_name">Όνομα χρήστη</string>
   <string name="entry_extra_strings">Πρόσθετα πεδία κειμένου</string>
   <string name="entry_binaries">Συνημμένα αρχεία</string>
+  <string name="error_can_not_handle_uri">Το Keepass2Android δεν μπορεί να χειριστεί αυτό το URL.</string>
   <string name="error_could_not_create_group">Σφάλμα στη δημιουργία ομάδας.</string>
   <string name="error_could_not_create_parent">Αδυναμία δημιουργίας γονικού φακέλου.</string>
   <string name="error_database_exists">Το αρχείο υπάρχει ήδη.</string>
@@ -129,6 +136,7 @@
   <string name="error_rounds_not_number">Οι επαναλήψεις πρέπει να είναι αριθμός.</string>
   <string name="error_param_not_number">Η παράμετρος πρέπει να είναι αριθμός.</string>
   <string name="error_title_required">Απαιτείται ένας τίτλος.</string>
+  <string name="error_wrong_length">Εισάγετε θετικό ακέραιο στο πεδίο μήκους</string>
   <string name="FileNotFound">Το αρχείο δεν βρέθηκε.</string>
   <string name="file_browser">Περιηγητής αρχείων</string>
   <string name="generate_password">Παραγωγή τυχαίου συνθηματικού</string>
@@ -143,6 +151,7 @@
   <string name="hint_login_pass">Συνθηματικό</string>
   <string name="hint_title">όνομα</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">παράκαμψη URL</string>
   <string name="hint_tags">ετικέτα1, ετικέτα2</string>
   <string name="hint_username">όνομα χρήστη</string>
   <string name="InvalidPassword">Μη έγκυρο συνθηματικό ή αρχείο κλειδιού.</string>
@@ -251,6 +260,7 @@
   <string name="please_note">Παρακαλώ σημειώστε</string>
   <string name="contributors">Συνεισφορές</string>
   <string name="regular_expression">Κανονική έκφραση</string>
+  <string name="TanExpiresOnUse_title">Το TAN λήγει με τη χρήση του</string>
   <string name="TanExpiresOnUse_summary">Σημείωσε τις εγγραφές TAN ως ληγμένες όταν χρησιμοποιηθούν.</string>
   <string name="ShowUsernameInList_title">Προβολή ονόματος χρήστη σε λίστα</string>
   <string name="ShowUsernameInList_summary">Προβολή ονομάτων χρήστη κάτω από τους τίτλους καταχωρίσεων. Χρήσιμο για πολλαπλούς λογαριασμούς ή TAN.</string>
@@ -321,6 +331,7 @@
   <string name="ActivateSearchViewOnStart_summary">Ενεργοποιεί το πεδίο αναζήτησης για τις ομάδες μετά το ξεκλείδωμα ή κατά την αναζήτηση</string>
   <string name="NoDonateOption_title">Απόκρυψη της επιλογής Δωρεά</string>
   <string name="NoDonateOption_summary">Αυτή η ρύθμιση είναι για δωρητές. Είναι διαθέσιμο μετά τη χρήση του Keepass2Android για λίγο μόνο.</string>
+  <string name="NoDonateOption_question">Δίχως χορηγίες, αυτή η εφαρμογή δεν θα υπήρχε και δεν θα εξελισσόταν! Αν δεν έχετε συνεισφέρει ακόμη, σκεφτείτε το</string>
   <string name="NoDonationReminder_title">Μην ζητάς προσφορά</string>
   <string name="NoDonationReminder_summary">Δε δίνω δυάρα ή έχω ήδη κάνει προσφορά. Μη ζητάς προσφορά, ούτε καν στα γενέθλια του κατασκευαστή.</string>
   <string name="UseOfflineCache_title">Προσωρινή αποθήκευση βάσης δεδομένων</string>
