@@ -88,6 +88,7 @@
   <string name="fingerprint_success">Επιτυχής βιομετρική αυθεντικοποίηση</string>
   <string name="fingerprint_os_error">Η βιομετρική αυθεντικοποίηση απαιτεί Android 6.0 τουλάχιστον.</string>
   <string name="fingerprint_hardware_error">Δεν ανιχνεύτηκε βιομετρική συσκευή.</string>
+  <string name="fingerprint_no_enrolled">Δεν έχει ρυθμιστεί βιομετρική αυθεντικοποίηση σε αυτή τη συσκευή. Πηγαίνετε πρώτα στις ρυθμίσεις συστήματος.</string>
   <string name="disable_fingerprint_unlock">Απενεργοποίηση βιομετρικού ξεκλειδώματος</string>
   <string name="enable_fingerprint_unlock">Ενεργοποίηση πλήρους βιομετρικού ξεκλειδώματος</string>
   <string name="enable_fingerprint_quickunlock">Ενεργοποίηση βιομετρικού ξεκλειδώματος για QuickUnlock</string>
@@ -630,10 +631,18 @@
   <string name="ShowKeyboardDuringFingerprintAuth">Προβάλει το πληκτρολόγιο για εισαγωγή συνθηματικού όταν είναι ενεργή η βιομετρική αυθεντικοποίηση.</string>
   <string-array name="ChangeLog_1_08">
     <item>Προσθήκη πλήκτρου ειδοποίησης για αντιγραφή στο TOTP clipboard</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
-    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Αλλαγή προς FluentFTP για παροχή υποστήριξης TLS 1.2</item>
+    <item>Αλλαγή στo BiometricPrompt API για βελτίωση της εμπειρίας χρήστη με ξεκλείδωμα δακτυλικού αποτυπώματος και χρήση αναγνώρισης προσώπου, πχ στο Pixel 4.</item>
     <item>Διορθώσεις σφαλμάτων</item>
   </string-array>
+  <string name="ChangeLog_1_07b">Έκδοση 1.07b\n
+* Βελτίωση επιδόσεων Argon2 με χρήση εγγενούς υλοποίησης (ευχαριστώ Chih-Hsuan Yen!)\n
+* Επιτρέπει απενεργοποίηση δακτυλικού αποτυπώματος με κλικ στο εικονίδιο (λύνει το ζήτημα με τους αναγνώστες δακτυλικού αποτυπώματος κάτω από την οθόνη, ευχαριστώ marcoDallas!)\n
+* Επαναφέρει τη θέση του δρομέα όταν αλλάζει η ορατότητα του συνθηματικού (ευχαριστώ DDoSolitary!)\n
+* Βελτιώσεις στην υλοποίηση PCloud (ευχαριστώ gilbsgilbs πάλι!)\n
+* Υποστήριξη AutoFill για πολλούς browsers \n
+* Νέα υλοποίηση για OneDrive: περιλαμβάνει υποστήριξη OneDrive for Business, κοινόχρηστα αρχεία, επιλεγόμενα επίπεδα πρόσβασης, πολλαπλούς λογαριασμούς και διορθώνει ζητήματαμε offline πρόσβαση\n
+* Διόρθωση σφαλμάτων  </string>
   <string name="ChangeLog_1_06">Έκδοση 1.06\n
 * Χρήση του ykDroid αντί του YubiChallenge ως εφαρμογή για Yubikey Πρόκληση-Απόκριση.\n
 * Υλοποίηση υποστήριξης για KeepassXC-style Challenge-Response. Σημείωση: Το φορμάτ της βάσης δεδομένων πρέπει να είναι KDBX4!\n     * Άρνηση φόρτωσης πεταμένων αρχείων από το Google Drive\n
@@ -932,10 +941,12 @@ Initial public release
   <string name="autofill_disable">Απενεργοποίηση AutoFill για %1$s</string>
   <string name="autofill_enable_for">Ενεργοποίηση AutoFill για %1$s</string>
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
+  <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε βιομετρικό εξοπλισμό. Θέλετε να ενεργοποιήσετε βιομετρικό ξεκλείδωμα για αυτή τη βάση δεδομένων;</string>
   <string name="understand">Καταλαβαίνω</string>
   <string name="dont_show_again">Να μην εμφανιστεί ξανά</string>
   <string name="masterkey_infotext_head">Θυμάστε το κύριο συνθηματικό σας;</string>
   <string name="masterkey_infotext_main">Είναι αδύνατο να ανοίξετε τη βάση δεδομένων δίχως το κύριο συνθηματικό.</string>
+  <string name="masterkey_infotext_fingerprint_note">Το βιομετρικό ξεκλείδωμα λειτουργεί αποθηκεύοντας το πρωτεύον κλειδί στον ασφαλή χώρο αποθήκευσης του Android. Αυτός ο χώρος μπορεί να διαγραφεί από το Android ανά πάσα στιγμή, πχ αν προσθέσετε νέο δακτυλικό αποτύπωμα στις ρυθμίσεις συστήματος. Μην βασίζεστε στο βιομετρικό ξεκλείδωμα, αλλά να θυμάστε το πρωτεύον συνθηματικό!</string>
   <string name="backup_infotext_head">Έχετε αντίγραφο ασφαλείας της βάσης δεδομένων;</string>
   <string name="backup_infotext_main">Το Keepass2Android αποθηκεύει τα συνθηματικά σας σε αρχείο σε τοποθεσία επιλογής σας. Είναι σίγουρο ότι μπορείτε να βρείτε αυτό το αρχείο σε περίπτωση απώλειας του κινητού σας; Βεβαιωθείτε ότι έχετε ενημερωμένο αντίγραφο σε ασφαλή τοποθεσία!</string>
   <string name="backup_infotext_note">Για αντίγραφο ασφαλείας, %1$s &gt; %2$s &gt; %3$s.</string>
