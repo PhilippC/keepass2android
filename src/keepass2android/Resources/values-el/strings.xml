@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Χειρισμός αρχείων</string>
   <string name="keyboard_prefs">Πληκτρολόγιο</string>
   <string name="export_prefs">Εξαγωγή βάσης δεδομένων...</string>
+  <string name="fingerprint_prefs">Βιομετρικό ξεκλείδωμα</string>
   <string name="import_db_prefs">Εισαγωγή βάσης δεδομένων σε εσωτερικό φάκελο</string>
   <string name="import_keyfile_prefs">Εισαγωγή αρχείου κλειδιού σε εσωτερικό φάκελο</string>
   <string name="keyboardswitch_prefs">Εναλλαγή πληκτρολογίου</string>
@@ -61,11 +62,14 @@
   <string name="brackets">Παρενθέσεις</string>
   <string name="cancel">Ακύρωση</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Απενεργοποίηση αισθητήρα</string>
+  <string name="enable_sensor">Ενεργοποίηση αισθητήρα</string>
   <string name="ClearClipboard">Το πρόχειρο ξκαθαρίστηκε.</string>
   <string name="clipboard_timeout">Υπέρβαση χρονικού ορίου πρόχειρου</string>
   <string name="clipboard_timeout_summary">Χρόνος πριν την εκκαθάριση του πρόχειρου μετά την αντιγραφή ονόματος χρήστη ή συνθηματικού</string>
   <string name="copy_username">Επιλέξτε για αντιγραφή ονόματος χρήστη στο πρόχειρο</string>
   <string name="copy_password">Επιλέξτε για αντιγραφή του συνθηματικού στο πρόχειρο</string>
+  <string name="copy_totp">Επιλογή αντιγραφής TOTP στο clipboard</string>
   <string name="available_through_keyboard">Η καταχώριση είναι διαθέσιμη μέσω πληκτρολογίου KP2A</string>
   <string name="entry_is_available">είναι διαθέσιμο</string>
   <string name="not_possible_im_picker">Αδύνατο το άνοιγμα διαλόγου για επιλογή μεθόδου εισαγωγής. Ενεργοποιήστε το πληκτρολόγιο με μη αυτόματο τρόπο.</string>
@@ -149,6 +153,7 @@
   <string name="menu_change_key">Αλλαγή πρωτεύοντος κλειδιού</string>
   <string name="menu_copy_pass">Αντιγραφή συνθηματικού</string>
   <string name="menu_copy_user">Αντιγραφή χρήστη</string>
+  <string name="menu_copy_totp">Αντιγραφή TOTP</string>
   <string name="menu_create">Δημιουργία</string>
   <string name="menu_app_settings">Ρυθμίσεις</string>
   <string name="menu_db_settings">Ρυθμίσεις βάσης δεδομένων</string>
@@ -175,6 +180,7 @@
   <string name="no">\'Οχι</string>
   <string name="no_keys">Καμιά εγγραφή στη βάση δεδομένων ή ομάδα.</string>
   <string name="no_results">Δεν βρέθηκαν αποτελέσματα</string>
+  <string name="no_url_handler">Αυτό το URL δεν έχει χειριστή.</string>
   <string name="open_recent">Άνοιγμα πρόσφατης βάσης δεδομένων (πατήστε για άνοιγμα)</string>
   <string name="omitbackup_title">Δίχως αναζήτηση σε διαγραμμένες και εφεδρικές εγγραφές</string>
   <string name="omitbackup_summary">Παράλειψη ομάδων \'Backup\' και \'Recycle Bin\' στην αναζήτηση</string>
@@ -219,7 +225,9 @@
   <string name="select_group_then_add">Ανοίξτε την επιθυμητή ομάδα και πιέστε \"%1$s\"!</string>
   <string name="insert_element_here">Εισάγετε εδώ</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Υπογράμμιση</string>
   <string name="unsupported_db_version">Μη υποστηριζόμενη έκδοση βάσης δεδομένων.</string>
+  <string name="uppercase">Κεφαλαία</string>
   <string name="warning_read_only">Η κάρτα SD είναι μόνο για ανάγνωση. Πιθανώς δεν θα μπορούν να αποθηκευτούν αλλαγές στη βάση δεδομένων.</string>
   <string name="warning_unmounted">Η κάρτα SD δεν είναι συνδεδεμένη στη συσκευή. Δεν θα μπορεί να φορτωθεί ή δημιουργηθεί βάση δεδομένων.</string>
   <string name="version_label">Έκδοση</string>
@@ -444,6 +452,7 @@
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_myfiles">Τα αρχεία μου</string>
   <string name="filestoragename_sftp">SFTP (μεταφορά αρχείων SSH)</string>
   <string name="filestoragename_content">Επιλογέας αρχείων συστήματος</string>
   <string name="filestorage_setup_title">Προετοιμασία προσπέλασης του αρχείου</string>
