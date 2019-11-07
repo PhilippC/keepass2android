@@ -88,6 +88,13 @@
   <string name="fingerprint_os_error">Lo Sblocco Biometrico richiede Android 6.0 o successivo.</string>
   <string name="fingerprint_hardware_error">Nessun hardware biometrico rilevato.</string>
   <string name="fingerprint_no_enrolled">Non hai configurato l\'autenticazione biometrica su questo dispositivo. Per prima cosa vai nelle impostazioni di sistema.</string>
+  <string name="disable_fingerprint_unlock">Disabilita lo Sblocco Biometrico</string>
+  <string name="enable_fingerprint_unlock">Abilita lo Sblocco Biometrico completo</string>
+  <string name="enable_fingerprint_quickunlock">Abilita lo Sblocco Biometrico per QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Sblocco con impronta fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
+  <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
+  <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo Sblocco Biometrico nelle impostazioni del database.</string>
   <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa della tua impronta digitale.</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
   <string name="entry_accessed">Ultimo accesso</string>
