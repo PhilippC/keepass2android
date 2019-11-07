@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Dosya işlemleri</string>
   <string name="keyboard_prefs">Klavye</string>
   <string name="export_prefs">Veriyi dışarı aktar...</string>
+  <string name="fingerprint_prefs">Biyometrik kilit açma</string>
   <string name="import_db_prefs">Veri tabanını iç klasöre aktar</string>
   <string name="import_keyfile_prefs">Anahtar dosyasını iç klasöre aktar</string>
   <string name="keyboardswitch_prefs">Klavye değişimi</string>
@@ -81,6 +82,18 @@
   <string name="disclaimer_formal">Keepass2Android kesinlikle GARANTİSİZdir; Bu ücretsiz bir yazılımdır. GPL sürüm 2 (yada daha yeni sürüm) koşulları altında dağıtabilirsiniz.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Panoya kopyala</string>
+  <string name="fingerprint_description">Lütfen devam etmek için doğrulayın</string>
+  <string name="fingerprint_fatal">Biyometrik Kilit Açma kurulamıyor:</string>
+  <string name="fingerprint_not_recognized">Biyometrik doğrulama başarısız oldu. Tekrar deneyin</string>
+  <string name="fingerprint_success">Biyometrik doğrulama başarılı</string>
+  <string name="fingerprint_os_error">Biyometrik Kilit Açma için Android 6.0 veya sonrası gereklidir.</string>
+  <string name="fingerprint_hardware_error">Biyometrik donanımı algılanmadı.</string>
+  <string name="fingerprint_no_enrolled">Bu cihazda biyometrik kimlik doğrulamasını yapılandırmadınız. Lütfen önce sistem ayarlarına gidin.</string>
+  <string name="disable_fingerprint_unlock">Biyometrik Kilit Açmayı devre dışı bırak</string>
+  <string name="enable_fingerprint_unlock">Tam Biyometrik Kilit Açma özelliğini etkinleştir</string>
+  <string name="enable_fingerprint_quickunlock">QuickUnlock için Biyometrik Kilit Açma özelliğini etkinleştir</string>
+  <string name="fingerprint_unlock_failed">Biyometrik Kilit Açma başarısız oldu. Şifre çözme anahtarı Android işletim sistemi tarafından geçersiz kılındı. Bu genellikle bir biyometrik kimlik doğrulama veya güvenlik ayarı değiştirilirse olmaktadır. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Veritabanının kilidini açma işlemi başarısız oldu: Geçersiz bileşik anahtar. Biyometrik Kilit Açma devre dışı bırakıldı çünkü görünüşe göre depolanan ana parola artık geçerli değil. </string>
   <string name="FingerprintSetupFailed">Veriler şifrelenemedi. Keepass2Android parmak izinizi kullanırken, sistem ayarlarından parmak izi ekler veya kaldırırsanız bu durum oluşabilir.</string>
   <string name="enter_filename">Veritabanı dosya adını girin</string>
   <string name="entry_accessed">kullanım tarihi</string>
