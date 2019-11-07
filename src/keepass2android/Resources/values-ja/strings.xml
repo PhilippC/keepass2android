@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">ファイル操作</string>
   <string name="keyboard_prefs">キーボード</string>
   <string name="export_prefs">データベースのエクスポート...</string>
+  <string name="fingerprint_prefs">生体認証ロック解除</string>
   <string name="import_db_prefs">データベースを内部のフォルダへインポート</string>
   <string name="import_keyfile_prefs">キーファイルを内部のフォルダへインポート</string>
   <string name="keyboardswitch_prefs">キーボードの切り替え</string>
@@ -81,6 +82,16 @@
   <string name="disclaimer_formal">Keepass2Android によって作られたフリーソフトウェアであり、無保証です。GPLバージョン2以上の条件下でこれを再頒布することができます。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">クリップボードにコピー</string>
+  <string name="fingerprint_description">続行するには認証してください</string>
+  <string name="fingerprint_fatal">生体認証によるロック解除を設定できません:</string>
+  <string name="fingerprint_not_recognized">生体認証に失敗しました。もう一度やり直してください</string>
+  <string name="fingerprint_success">生体認証に成功しました</string>
+  <string name="fingerprint_os_error">生体認証によるロック解除には、Android 6.0 以降が必要です。</string>
+  <string name="fingerprint_hardware_error">生体認証のハードウェアがありません。</string>
+  <string name="fingerprint_no_enrolled">このデバイスで生体認証が設定されていません。最初にシステムの設定で登録してください。</string>
+  <string name="disable_fingerprint_unlock">生体認証ロック解除を無効にする</string>
+  <string name="enable_fingerprint_unlock">すべての生体認証ロック解除を有効にする</string>
+  <string name="enable_fingerprint_quickunlock">生体認証によるクイック解除を有効にする</string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
