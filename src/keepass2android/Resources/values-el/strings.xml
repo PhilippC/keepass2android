@@ -82,6 +82,16 @@
   <string name="disclaimer_formal">Το Keepass2Android έρχεται με ΑΠΟΛΥΤΩΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ. Είναι ελεύθερο λογισμικό και μπορείτε να το αναδιανέμετε υπό τους όρους της GPL έκδοση 2 ή νεότερη.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
+  <string name="fingerprint_description">Χρειάζεται αυθεντικοποίηση για να συνεχίσετε</string>
+  <string name="fingerprint_fatal">Αποτυχία βιομετρικού ξεκειδώματος:</string>
+  <string name="fingerprint_not_recognized">Η βιομετρική αυθεντικοποίηση απέτυχε. Δοκιμάστε ξανά</string>
+  <string name="fingerprint_success">Επιτυχής βιομετρική αυθεντικοποίηση</string>
+  <string name="fingerprint_os_error">Η βιομετρική αυθεντικοποίηση απαιτεί Android 6.0 τουλάχιστον.</string>
+  <string name="fingerprint_hardware_error">Δεν ανιχνεύτηκε βιομετρική συσκευή.</string>
+  <string name="disable_fingerprint_unlock">Απενεργοποίηση βιομετρικού ξεκλειδώματος</string>
+  <string name="enable_fingerprint_unlock">Ενεργοποίηση πλήρους βιομετρικού ξεκλειδώματος</string>
+  <string name="enable_fingerprint_quickunlock">Ενεργοποίηση βιομετρικού ξεκλειδώματος για QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Αποτυχία βιομετρικού ξεκλειδώματος. Το κλειδί αποκρυπτογράφησης ακυρώθηκε από το Android. Αυτό συμβαίνει συνήθως αν αλλάξει η βιομετρική αυθεντικοποίηση ή οι ρυθμίσεις ασφάλειας. </string>
   <string name="FingerprintSetupFailed">Αποτυχία κρυπτογράφησης δεδομένων. Μπορεί να συμβεί αν προσθέσεις ή αφαιρέσεις δακτυλικά αποτυπώματα στις ρυθμίσεις συστήματος ενώ το Keypass2Android περιμένει το δακτυλικό σου αποτύπωμα.</string>
   <string name="enter_filename">Δώστε όνομα αρχείου της βάσης δεδομένων</string>
   <string name="entry_accessed">Προσπελάστηκε</string>
