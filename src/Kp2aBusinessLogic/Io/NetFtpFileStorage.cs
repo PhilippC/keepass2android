@@ -528,6 +528,7 @@ namespace keepass2android.Io
 			{
 				Android.Util.Log.Debug("NETFTP","connected: " + _client.IsConnected.ToString());
 				_stream.Close();
+                _client.GetReply();
 				Android.Util.Log.Debug("NETFTP", "connected: " + _client.IsConnected.ToString());
 
 				//make sure target file does not exist:
