@@ -92,7 +92,14 @@
   <string name="disable_fingerprint_unlock">生体認証ロック解除を無効にする</string>
   <string name="enable_fingerprint_unlock">すべての生体認証ロック解除を有効にする</string>
   <string name="enable_fingerprint_quickunlock">生体認証によるクイック解除を有効にする</string>
+  <string name="fingerprint_unlock_failed">生体認証のロック解除に失敗しました。Android OS によって復号鍵が無効にされました。これは通常、生体認証、またはセキュリティ設定が変更された場合に発生します。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合鍵です。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
+  <string name="fingerprint_reenable">新しいマスターパスワードの生体認証によるロック解除を再度有効にしてください。</string>
+  <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度生体認証のロック解除を有効にしてください。</string>
+  <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
+  <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみで、データベースのロックを解除できるようになります。</string>
+  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を利用するようにします。マスターパスワードに関連する情報は格納しません。</string>
   <string name="enter_filename">データベースファイル名の入力</string>
   <string name="entry_accessed">最終アクセス日</string>
   <string name="entry_cancel">キャンセル</string>
@@ -621,6 +628,7 @@
   <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">生体認証が有効な場合、パスワード入力用のソフト キーボードを表示します。</string>
   <string-array name="ChangeLog_1_08">
     <item>TOTP をクリップボードにコピーするための通知ボタンを追加する</item>
     <item>FluentFTP を使用するように切り替えて、TLS 1.2 のサポートを提供</item>
@@ -950,10 +958,12 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="autofill_disable">%1$s の自動入力を無効にする</string>
   <string name="autofill_enable_for">%1$s の自動入力を有効にする</string>
   <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
+  <string name="enable_fingerprint_hint">Keepass2Android が生体認証ハードウェアを検出しました。生体認証を有効にして、このデータベースのロックを解除しますか?</string>
   <string name="understand">理解しました</string>
   <string name="dont_show_again">二度と表示しない</string>
   <string name="masterkey_infotext_head">マスターパスワードを思い出せますか?</string>
   <string name="masterkey_infotext_main">マスターキー無しにデータベースを開くことはできません。マスターパスワードをリセットする方法はありません。</string>
+  <string name="masterkey_infotext_fingerprint_note">また、生体認証のロック解除は Android のセキュリティで保護されたストレージにマスター鍵を格納することに注意してください。例えばシステムの設定に新しい指紋を追加する場合など、Android はいつでもこのストレージを削除することがあります。そのため、生体認証に頼らず、マスターパスワードを覚えておいてください!</string>
   <string name="backup_infotext_head">データベースはバックアップされていますか?</string>
   <string name="backup_infotext_main">Keepass2Android は、お好みの場所でファイルにパスワードを格納します。お使いの携帯電話を紛失したり盗難されたとき、またはファイルが破壊されたり削除されたときに、このファイルにアクセスできますか? 常に安全な場所に最新のバックアップがあることを確認してください!</string>
   <string name="backup_infotext_note">バックアップを作成するには、%1$s&gt;%2$s&gt;%3$s へアクセスしてください。</string>
