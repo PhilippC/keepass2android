@@ -968,6 +968,7 @@ Prima release pubblica
   <string name="dont_show_again">Non mostrare più</string>
   <string name="masterkey_infotext_head">Ricordi la tua password principale?</string>
   <string name="masterkey_infotext_main">Nota che senza la password principale non sarai in grado di aprire il database. Non c\'è nessun modo di \"ripristinare\" la password principale.</string>
+  <string name="masterkey_infotext_fingerprint_note">Nota inoltre che lo Sblocco Biometrico funziona memorizzando la tua password principale nella memoria sicura di Android. Questa memoria può essere eliminata da Android in qualsiasi momento, ad esempio se aggiungi una nuova impronta nelle impostazioni del sistema. Quindi non fare affidamento sullo Sblocco Biometrico, ma ricordati la password principale, per favore!</string>
   <string name="backup_infotext_head">Esiste un backup del tuo database?</string>
   <string name="backup_infotext_main">Keepass2Android memorizza le password in un file in una posizione di tua scelta. Sei sicuro di poter accedere a questo file anche quando il telefono viene perso o rubato, o quando il file viene distrutto o cancellato? Assicurati di avere sempre un backup aggiornato in un luogo sicuro!</string>
   <string name="backup_infotext_note">Per creare un backup ora, vai a %1$s &gt; %2$s &gt; %3$s.</string>
