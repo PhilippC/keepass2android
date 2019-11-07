@@ -82,6 +82,7 @@
   <string name="disclaimer_formal">Keepass2Android viene distribuito ASSOLUTAMENTE SENZA ALCUNA GARANZIA; Si tratta di software libero e sei invitato a distribuirlo sotto le condizioni della licenza GPL versione 2 o superiore.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copia negli appunti</string>
+  <string name="fingerprint_description">Autenticati per continuare</string>
   <string name="fingerprint_fatal">Non posso impostare lo Sblocco Biometrico:</string>
   <string name="fingerprint_not_recognized">Autenticazione biometrica non riuscita. Riprova</string>
   <string name="fingerprint_success">Autenticazione biometrica riuscita</string>
@@ -95,7 +96,10 @@
   <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
   <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo Sblocco Biometrico nelle impostazioni del database.</string>
+  <string name="FingerprintInitFailed">Impossibile inizializzare l\'autenticazione biometrica. </string>
   <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa della tua impronta digitale.</string>
+  <string name="enable_fingerprint_unlock_Info">Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione biometrica. Permette di sbloccare il database utilizzando solo la biometria.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione biometrica anziché il codice di QuickUnlock. Non memorizza alcuna informazione relativa alla tua password principale.</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
   <string name="entry_accessed">Ultimo accesso</string>
   <string name="entry_cancel">Annulla</string>
@@ -625,6 +629,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="DbQuicklockedChannel_desc">Notifica del blocco del database con QuickUnlock</string>
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Visualizza la Soft-Keyboard per inserire la password quando l\'autenticazione biometrica è attiva.</string>
   <string-array name="ChangeLog_1_08">
     <item>Aggiungi un pulsante di notifica per la copia di TOTP negli appunti</item>
     <item>Passa all\'uso di FluentFTP per fornire supporto per TLS 1.2</item>
@@ -958,6 +963,7 @@ Prima release pubblica
   <string name="autofill_disable">Disattiva Compilazione automatica per %1$s</string>
   <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android ha rilevato l\'hardware biometrico. Desideri attivare lo sblocco biometrico per questo database?</string>
   <string name="understand">Ho capito</string>
   <string name="dont_show_again">Non mostrare più</string>
   <string name="masterkey_infotext_head">Ricordi la tua password principale?</string>
