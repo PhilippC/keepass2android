@@ -92,6 +92,7 @@
   <string name="disable_fingerprint_unlock">Onemogoči Biometrično odklepanje</string>
   <string name="enable_fingerprint_unlock">Omogoči polno Biometrično odklepanje</string>
   <string name="enable_fingerprint_quickunlock">Omogoči odklepanje z Biometričnim odklepanje za Hitro odklepanje</string>
+  <string name="fingerprint_unlock_failed">Biometrično odklepanje ni uspelo. Android OS je razveljavil ključ za dešifriranje. To se zgodi, ko je dodana nova biometrična avtentikacija ali so bile spremenjene varnostne nastavitve. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Odklepanje baze podatkov ni uspelo: Neveljaven sestavljeni ključ. Biometrično odklepanje je bilo onemogočeno, ker očitno shranjeno glavno geslo ni več veljavno. </string>
   <string name="fingerprint_reenable">Ponovno omogočite Biometrično odklepanje za novo glavno geslo.</string>
   <string name="fingerprint_reenable2">Odklenite geslo in znova omogočite funkcijo Biometrično odklepanje v nastavitvah baze podatkov.</string>
