@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Fájlkezelés</string>
   <string name="keyboard_prefs">Billentyűzet</string>
   <string name="export_prefs">Adatbázis exportálása...</string>
+  <string name="fingerprint_prefs">Biometrikus feloldás</string>
   <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
   <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
   <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
@@ -81,6 +82,11 @@
   <string name="disclaimer_formal">Ehhez a programhoz SEMMILYEN GARANCIA NEM JÁR. Ez egy szabad szoftver, GNU General Public License v2 vagy későbbi verziójának feltételei mellett terjeszthető, illetve módosítható.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">Másolás vágólapra</string>
+  <string name="fingerprint_fatal">A biometrikus feloldás beállítása sikertelen:</string>
+  <string name="fingerprint_not_recognized">A biometrikus azonosítás sikertelen. Próbálja újra</string>
+  <string name="fingerprint_success">A biometrikus azonosítás sikerült</string>
+  <string name="fingerprint_os_error">A biometrikus feloldás Android 6.0 vagy annál újabb operációs rendszert igényel.</string>
+  <string name="fingerprint_hardware_error">Nem találtunk biometrikus eszközt.</string>
   <string name="FingerprintSetupFailed">Az adatok titkosítása nem sikerült. Ez előfordulhat, amennyiben a rendszerbeállításoknál hozzáadott vagy törölt egy ujjlenyomatot, miközben a Keepass2Android ujjlenyomatot próbált beolvasni.</string>
   <string name="enter_filename">Adja meg az adatbázis fájlnevét</string>
   <string name="entry_accessed">Utolsó hozzáférés</string>
