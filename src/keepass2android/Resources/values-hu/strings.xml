@@ -91,6 +91,8 @@
   <string name="disable_fingerprint_unlock">Biometrikus feloldás tiltása</string>
   <string name="enable_fingerprint_unlock">A teljes biometrikus feloldás engedélyezése</string>
   <string name="enable_fingerprint_quickunlock">Biometrikus gyorsfeloldás engedélyezése</string>
+  <string name="fingerprint_unlock_failed">A biometrikus feloldás nem sikerült. A titkosító kulcsot az operációs rendszer érvénytelenítette. Ez általában akkor történik, ha biometriai azonosításra vagy biztonságra vonatkozó beállítások megváltoztak. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Az adatbázis feloldása nem sikerült: Az összetett kulcs érvénytelen. A biometrikus feloldás le lett tiltva, mert úgy tűnik, a tárolt főkulcs (jelszó) már nem érvényes. </string>
   <string name="FingerprintSetupFailed">Az adatok titkosítása nem sikerült. Ez előfordulhat, amennyiben a rendszerbeállításoknál hozzáadott vagy törölt egy ujjlenyomatot, miközben a Keepass2Android ujjlenyomatot próbált beolvasni.</string>
   <string name="enter_filename">Adja meg az adatbázis fájlnevét</string>
   <string name="entry_accessed">Utolsó hozzáférés</string>
@@ -699,6 +701,7 @@ Kezdeti közösségi kiadás</string>
   <string name="autofill_disable">Az AutoFill tiltása %1$s esetén</string>
   <string name="autofill_enable_for">Az AutoFill engedélyezése %1$s esetén</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
+  <string name="enable_fingerprint_hint">Biometrikus eszköz detektálva. Szeretné engedélyezni az adatbázis biometrikus feloldását?</string>
   <string name="understand">Értem</string>
   <string name="dont_show_again">Ne mutassa többet</string>
   <string name="masterkey_infotext_head">Emlékszik a főkulcsra (jelszó)?</string>
