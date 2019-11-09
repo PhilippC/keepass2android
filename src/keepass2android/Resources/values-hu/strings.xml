@@ -713,6 +713,7 @@ Kezdeti közösségi kiadás</string>
   <string name="dont_show_again">Ne mutassa többet</string>
   <string name="masterkey_infotext_head">Emlékszik a főkulcsra (jelszó)?</string>
   <string name="masterkey_infotext_main">Vegye figyelembe, hogy nem fogja tudni megnyitni az adatbázisát a főkulcs (jelszó) nélkül. Nincs lehetőség a főkulcs (jelszó) visszaállítására.</string>
+  <string name="masterkey_infotext_fingerprint_note">Azt is vegye figyelembe, hogy a biometrikus feloldás úgy működik, hogy a főkulcs (jelszó) az Android biztonsági tárolójában tárolódik. Ezt a tárolót az Android bármikor törölheti; például amikor hozzáad egy új ujjlenyomatot a rendszerbeállításokban. Emiatt, kérjük, ne hagyatkozzon kizárólag az ujjlenyomattal való feloldásra, hanem jegyezze meg a főkulcsot (jelszó) is!</string>
   <string name="backup_infotext_head">Van biztonsági mentése az adatbázisról?</string>
   <string name="backup_infotext_main">Keepass2Android az ön által választott helyen, egy fájlban tárolja az ön jelszavait. Biztos benne, hogy akkor is hozzá tud férni ehhez a fájlhoz ha a telefonját elhagyja, ellopják, vagy a fájl megsemmisül vagy letörlődik? Kérjük gondoskodjon róla, hogy mindig van naprakész biztonsági másolata egy biztonságos helyen!</string>
   <string name="backup_infotext_note">Biztonsági másolat készítéséhez menjen ide %1$s &gt; %2$s &gt; %3$s.</string>
