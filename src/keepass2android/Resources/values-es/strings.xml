@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Manejo de ficheros</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar base de datos...</string>
+  <string name="fingerprint_prefs">Desbloqueo biométrico</string>
   <string name="import_db_prefs">Importar base de datos a carpeta interna</string>
   <string name="import_keyfile_prefs">Importar archivo de clave a carpeta interna</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
@@ -81,6 +82,10 @@
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar al portapapeles</string>
+  <string name="fingerprint_description">Por favor autentícate para continuar</string>
+  <string name="fingerprint_fatal">No se puede configurar desbloqueo con huella dactilar:</string>
+  <string name="fingerprint_not_recognized">La autenticación biométrica falló. Inténtalo de nuevo</string>
+  <string name="fingerprint_success">Autenticación biométrica activada</string>
   <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
