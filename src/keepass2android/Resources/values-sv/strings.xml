@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Filhantering</string>
   <string name="keyboard_prefs">Tangentbord</string>
   <string name="export_prefs">Exportera databas...</string>
+  <string name="fingerprint_prefs">Biometrisk upplåsning</string>
   <string name="import_db_prefs">Importera databasen till intern mapp</string>
   <string name="import_keyfile_prefs">Importera nyckelfil till intern mapp</string>
   <string name="keyboardswitch_prefs">Tangentbordsbyte</string>
@@ -81,6 +82,8 @@
   <string name="disclaimer_formal">Keepass2Android kommer HELT UTAN GARANTI; Detta är fri programvara och du är välkommen att distribuera den utifrån villkoren i GPL version 2 eller senare.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiera till urklipp</string>
+  <string name="fingerprint_os_error">Biometrisk upplåsning kräver Android 6.0 eller senare.</string>
+  <string name="fingerprint_hardware_error">Ingen biometrisk hårdvara hittades.</string>
   <string name="FingerprintSetupFailed">Misslyckades att kryptera data. Det kan hända om du lägger till eller tar bort registrerade fingeravtryck i systeminställningarna när Keepass2Android efterfrågar ditt fingeravtryck.</string>
   <string name="enter_filename">Ange databasnamn</string>
   <string name="entry_accessed">Senast använd</string>
