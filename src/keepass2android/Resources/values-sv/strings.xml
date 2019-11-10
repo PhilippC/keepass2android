@@ -82,8 +82,17 @@
   <string name="disclaimer_formal">Keepass2Android kommer HELT UTAN GARANTI; Detta är fri programvara och du är välkommen att distribuera den utifrån villkoren i GPL version 2 eller senare.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiera till urklipp</string>
+  <string name="fingerprint_description">Vänligen autentisera dig för att fortsätta</string>
+  <string name="fingerprint_fatal">Kan inte konfigurera biometrisk upplåsning:</string>
+  <string name="fingerprint_not_recognized">Biometrisk autentisering misslyckades. Försök igen</string>
+  <string name="fingerprint_success">Biometrisk autentisering lyckades</string>
   <string name="fingerprint_os_error">Biometrisk upplåsning kräver Android 6.0 eller senare.</string>
   <string name="fingerprint_hardware_error">Ingen biometrisk hårdvara hittades.</string>
+  <string name="fingerprint_no_enrolled">Du har inga biometriska autentiseringar registrerade på enheten. Vänligen gå till systeminställninga först.</string>
+  <string name="disable_fingerprint_unlock">Inaktivera biometrisk upplåsning</string>
+  <string name="enable_fingerprint_unlock">Aktivera full biometrisk upplåsning</string>
+  <string name="enable_fingerprint_quickunlock">Aktivera biometrisk upplåsning för Snabbupplåsning</string>
+  <string name="fingerprint_unlock_failed">Biometrisk upplåsning misslyckades. Dekrypteringsnyckeln blev ogiltigförklarad av Android. Det händer ofta om ett nytt fingeravtryck har blivit tillagt eller om säkerhetsinställningar har ändrats. </string>
   <string name="FingerprintSetupFailed">Misslyckades att kryptera data. Det kan hända om du lägger till eller tar bort registrerade fingeravtryck i systeminställningarna när Keepass2Android efterfrågar ditt fingeravtryck.</string>
   <string name="enter_filename">Ange databasnamn</string>
   <string name="entry_accessed">Senast använd</string>
@@ -775,6 +784,7 @@
   <string name="dont_show_again">Visa inte igen</string>
   <string name="masterkey_infotext_head">Kommer du ihåg ditt huvudlösenord?</string>
   <string name="masterkey_infotext_main">Observera att du inte kommer ha möjlighet att öppna din databas utan huvudlösenordet. Det finns inget sätt att \"återställa\" huvudlösenordet.</string>
+  <string name="masterkey_infotext_fingerprint_note">Observera också att biometrisk upplåsning fungerar genom att spara ditt huvudlösenord i Androids säkra lagringsutrymme. Detta utrymme kan tas bort av Android när som helst, t.ex. om du lägger till ett nytt fingeravtryck i systeminställnignar. Förlita dig inte på biometrisk upplåsning utan var god kom ihåg ditt huvudlösenord!</string>
   <string name="backup_infotext_head">Är din databas säkerhetskopierad?</string>
   <string name="backup_infotext_main">Keypass2Android sparar dina lösenord i en fil på en plats du väljer. Är du säker på att du fortfarande har åtkomst till denna fil när din telefon tappas bort eller blir stulen eller när filen förstörs eller tas bort? Var god säkerställ att du alltid har en uppdaterad backup på en säker plats!</string>
   <string name="backup_infotext_note">För att skapa en backup nu, gå till %1$s &gt; %2$s &gt; %3$s.</string>
