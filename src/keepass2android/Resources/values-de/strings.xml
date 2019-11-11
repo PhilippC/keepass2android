@@ -89,6 +89,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="fingerprint_success">Biometrische Authentifizierung erfolgreich</string>
   <string name="fingerprint_os_error">Biometrische Entsperrung erfordert Android 6.0 oder höher.</string>
   <string name="fingerprint_hardware_error">Keine biometrische Hardware erkannt.</string>
+  <string name="fingerprint_no_enrolled">Sie haben keine biometrische Authentifizierung auf diesem Gerät konfiguriert. Bitte gehen Sie zuerst zu den Systemeinstellungen.</string>
   <string name="disable_fingerprint_unlock">Biometrisches Entsperren deaktivieren</string>
   <string name="enable_fingerprint_unlock">Volles biometrisches Entsperren aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
