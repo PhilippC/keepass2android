@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Gestion des fichiers</string>
   <string name="keyboard_prefs">Clavier</string>
   <string name="export_prefs">Exporter la base de données...</string>
+  <string name="fingerprint_prefs">Déverrouillage biométrique</string>
   <string name="import_db_prefs">Importer la base de données à partir d\'un dossier local</string>
   <string name="import_keyfile_prefs">Importer le fichier clé à partir d\'un dossier local</string>
   <string name="keyboardswitch_prefs">Changement de clavier</string>
@@ -81,6 +82,10 @@
   <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE ; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copier dans le Presse-papier</string>
+  <string name="fingerprint_description">Veuillez vous authentifier pour continuer</string>
+  <string name="fingerprint_fatal">Impossible de configurer le déverrouillage biométrique :</string>
+  <string name="fingerprint_not_recognized">Échec de l\'authentification biométrique. Essayer à nouveau</string>
+  <string name="fingerprint_success">Authentification biométrique réussie</string>
   <string name="FingerprintSetupFailed">Échec du chiffrement des données. Cela peut se produire si vous ajoutez ou supprimez des empreintes digitales dans les paramètres du système alors que Keepass2Android est en attente de votre empreinte digitale.</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
   <string name="entry_accessed">Accédé</string>
