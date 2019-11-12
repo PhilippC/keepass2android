@@ -86,7 +86,20 @@
   <string name="fingerprint_fatal">Impossible de configurer le déverrouillage biométrique :</string>
   <string name="fingerprint_not_recognized">Échec de l\'authentification biométrique. Essayer à nouveau</string>
   <string name="fingerprint_success">Authentification biométrique réussie</string>
+  <string name="fingerprint_os_error">Le déverrouillage biométrique requiert Android 6.0 ou ultérieure.</string>
+  <string name="fingerprint_hardware_error">Aucun matériel biométrique détecté.</string>
+  <string name="fingerprint_no_enrolled">Vous n\'avez pas configuré l\'authentification biométrique sur cet appareil. Allez dans les paramètres système.</string>
+  <string name="disable_fingerprint_unlock">Désactiver le déverrouillage biométrique</string>
+  <string name="enable_fingerprint_unlock">Activer le déverrouillage biométrique complet</string>
+  <string name="enable_fingerprint_quickunlock">Activer le déverrouillage biométrique pour QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Le déverrouillage biométrique a échoué. La clé de déchiffrement a été invalidée par l\'OS Android. Ceci se produit généralement quand l\'authentification biométrique ou les paramètres de sécurité ont été changés. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Le déverrouillage de la base de données a échoué: la clé composite est invalide. Le déverrouillage biométrique a été désactivé car apparemment le mot de passe maître stocké n\'est plus valide. </string>
+  <string name="fingerprint_reenable">Veuillez réactiver le déverrouillage biométrique pour le nouveau mot de passe maître.</string>
+  <string name="fingerprint_reenable2">Veuillez déverrouiller avec votre mot de passe et ensuite réactiver le déverrouillage biométrique dans les paramètres de la base de données.</string>
+  <string name="FingerprintInitFailed">Impossible d\'initialiser l\'authentification biométrique. </string>
   <string name="FingerprintSetupFailed">Échec du chiffrement des données. Cela peut se produire si vous ajoutez ou supprimez des empreintes digitales dans les paramètres du système alors que Keepass2Android est en attente de votre empreinte digitale.</string>
+  <string name="enable_fingerprint_unlock_Info">Cela permettra de stocker votre mot de passe maître sur cet appareil, chiffré avec Android Keystore et protégé à l\'aide de l\'authentification biométrique. Cela permet de déverrouiller votre base de données uniquement avec la biométrie.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permet d\'utiliser l\'authentification biométrique au lieu du code QuickUnlock. Ne nécessite pas de stocker des informations liées à votre mot de passe principal.</string>
   <string name="enter_filename">Entrez le nom de fichier de la base de données</string>
   <string name="entry_accessed">Accédé</string>
   <string name="entry_cancel">Annuler</string>
@@ -616,6 +629,7 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="DbQuicklockedChannel_desc">Notification à propos de la base de données en cours de verrouillage avec QuickUnlock</string>
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Afficher les caractères en clair dans les champs de saisie texte quand l\'authentification biométrique est activé.</string>
   <string-array name="ChangeLog_1_08">
     <item>Ajout d\'un bouton pour copier le TOTP dans le presse-papiers</item>
     <item>Passage à l\'utilisation de FluentFTP pour assurer le support de TLS 1.2</item>
@@ -881,10 +895,12 @@ Première version publique</string>
   <string name="autofill_disable">Désactiver le remplissage automatique pour %1$s</string>
   <string name="autofill_enable_for">Activer le remplissage automatique pour %1$s</string>
   <string name="invalid_link_association">Impossible d\'associer le domaine web %1$s avec l\'application %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android a détecté un matériel biométrique. Voulez-vous activer le déverrouillage biométrique pour cette base de données ?</string>
   <string name="understand">Je comprends</string>
   <string name="dont_show_again">Ne plus afficher</string>
   <string name="masterkey_infotext_head">Vous rappelez-vous de votre mot de passe principal ?</string>
   <string name="masterkey_infotext_main">Notez que vous ne serez pas en mesure d’ouvrir votre base de données sans la clé principale. Il n’y a aucun moyen de « réinitialiser » le mot de passe.</string>
+  <string name="masterkey_infotext_fingerprint_note">Notez également que pour fonctionner, le déverrouillage biométrique stocke votre clé principale dans le stockage sécurisé d’Android. Ce stockage peut être supprimé par Android à tout moment, par exemple si vous ajoutez une nouvelle empreinte dans les paramètres système. Ne comptez donc pas uniquement sur le déverrouillage biométrique et retenez votre mot de passe principal, s’il vous plaît !</string>
   <string name="backup_infotext_head">Votre base de données est-elle sauvegardée ?</string>
   <string name="backup_infotext_main">Keepass2Android stocke vos mots de passe dans un fichier à l\'emplacement de votre choix. Êtes-vous sûr que vous pourrez toujours accéder à ce fichier si votre téléphone est perdu ou volé, ou quand le fichier est détruit ou supprimé ? S’il vous plaît assurez-vous que vous disposez d’une sauvegarde à jour dans un lieu sûr !</string>
   <string name="backup_infotext_note">Pour créer une sauvegarde maintenant, allez dans %1$s &gt; %2$s &gt; %3$s.</string>
