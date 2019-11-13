@@ -82,6 +82,7 @@
   <string name="disclaimer_formal">Keepass2Android jest udostępniany BEZ JAKIEJKOLWIEK GWARANCJI. Niniejszy program jest wolnym oprogramowaniem: możesz go swobodnie rozpowszechniać na warunkach licencji GNU General Public License w wersji 2 lub późniejszej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiuj do schowka</string>
+  <string name="fingerprint_description">Uwierzytelnij, aby kontynuować</string>
   <string name="fingerprint_fatal">Nie można skonfigurować odblokowywania biometrycznego:</string>
   <string name="fingerprint_not_recognized">Uwierzytelnianie biometryczne nie powiodło się. Spróbuj ponownie</string>
   <string name="fingerprint_success">Uwierzytelnianie biometryczne powiodło się</string>
@@ -89,7 +90,9 @@
   <string name="fingerprint_hardware_error">Nie znaleziono wsparcia sprzętowego dla odblokowania biometrycznego.</string>
   <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie biometryczne</string>
   <string name="enable_fingerprint_unlock">Włącz pełne odblokowywanie biometryczne</string>
+  <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie biometryczne lub SzybkieOdblokowywanie</string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Zezwól na uwierzytelnianie biometryczne, zamiast kodu SzybkiegoOdblokowywania. Funkcja ta nie przechowuje żadnych informacji związanych z hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
   <string name="entry_accessed">Ostatni dostęp</string>
   <string name="entry_cancel">Anuluj</string>
