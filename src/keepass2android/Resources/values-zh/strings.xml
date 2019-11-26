@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">文件操作</string>
   <string name="keyboard_prefs">键盘</string>
   <string name="export_prefs">导出数据库...</string>
+  <string name="fingerprint_prefs">生物识别解锁</string>
   <string name="import_db_prefs">在内部的文件夹中导入数据库</string>
   <string name="import_keyfile_prefs">将密钥文件导入到内部文件夹</string>
   <string name="keyboardswitch_prefs">切换键盘</string>
@@ -81,7 +82,24 @@
   <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
+  <string name="fingerprint_description">请验证以继续</string>
+  <string name="fingerprint_fatal">无法设置指纹解锁：</string>
+  <string name="fingerprint_not_recognized">生物鉴别失败。请重试</string>
+  <string name="fingerprint_success">已启用生物识别认证</string>
+  <string name="fingerprint_os_error">生物解锁需要 Android 6.0 或更高版本。</string>
+  <string name="fingerprint_hardware_error">未检测到指纹识别硬件。</string>
+  <string name="fingerprint_no_enrolled">你还未在这个设备上录入过指纹。请先前往系统设置。</string>
+  <string name="disable_fingerprint_unlock">禁用指纹解锁</string>
+  <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
+  <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
+  <string name="fingerprint_unlock_failed">指纹解锁失败。解密密钥已被 Android 操作系统标记为失效。这通常发生在注册了新的指纹或更改了安全设置后。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">解锁数据库失败：复合密钥无效。由于存储的主密钥不再有效，指纹解锁已被禁用。 </string>
+  <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁。</string>
+  <string name="fingerprint_reenable2">请用密码解锁，然后在数据库设置中重新启用指纹解锁。</string>
+  <string name="FingerprintInitFailed">无法初始化指纹认证。</string>
   <string name="FingerprintSetupFailed">无法加密数据。 如果在Keepass2Android正在侦听指纹时在系统设置中添加或删除指纹，则会发生这种情况。</string>
+  <string name="enable_fingerprint_unlock_Info">此选项将会把主密码保存在这台设备上，使用Android密钥库加密，并使用指纹授权进行保护。只有你的指纹才能解锁数据库。</string>
+  <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码。不再需要保存任何与你的主密码关联的信息。</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
   <string name="entry_cancel">取消</string>
@@ -613,10 +631,11 @@
   <string name="DbQuicklockedChannel_desc">数据库以快速解锁方式锁定通知</string>
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">启用指纹扫描时显示软键盘用于密码输入.</string>
   <string-array name="ChangeLog_1_08">
     <item>添加通知按钮，用于复制TOTP到剪切板</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
-    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>切换到使用 FluentFTP 为 TLS 1.2 提供支持</item>
+    <item>切换到 BiometricPrompt API 以提高用户指纹解锁体验，并允许使用脸解锁，例如在 Pixel 4 上。</item>
     <item>Bug fixes</item>
   </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
