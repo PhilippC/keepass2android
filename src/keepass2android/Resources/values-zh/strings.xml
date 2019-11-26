@@ -636,7 +636,7 @@
     <item>添加通知按钮，用于复制TOTP到剪切板</item>
     <item>切换到使用 FluentFTP 为 TLS 1.2 提供支持</item>
     <item>切换到 BiometricPrompt API 以提高用户指纹解锁体验，并允许使用脸解锁，例如在 Pixel 4 上。</item>
-    <item>Bug fixes</item>
+    <item>BUG修复</item>
   </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 采用原生实现改进 Argon2 性能（感谢 Chih-Hsuan Yen!）\n
@@ -964,10 +964,12 @@ Initial public release
   <string name="autofill_disable">对 %1$s 禁用自动填充</string>
   <string name="autofill_enable_for">对 %1$s 启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再显示</string>
   <string name="masterkey_infotext_head">你还记得你的主密码吗？</string>
   <string name="masterkey_infotext_main">请注意，没有主密钥，你将无法打开数据库。不存在任何“重置”主密钥的方法。</string>
+  <string name="masterkey_infotext_fingerprint_note">另外需要注意的是，指纹解锁是通过将主密钥保存在Android的安全存储中而实现的。安全存储会随时被Android删除，例如当你在系统设置中添加了新指纹时。因此，不要依赖指纹解锁，请千万记住你的主密钥！</string>
   <string name="backup_infotext_head">你的数据库备份过了吗？</string>
   <string name="backup_infotext_main">Keepass2Android将会在指定位置处保存一个密码数据文件。你确定在你手机丢失、失窃，或文件遭到破坏和丢失的情况下，你还能找到这个文件吗？请确保你在安全的地方留有一份及时更新的数据备份！</string>
   <string name="backup_infotext_note">要立即创建备份，前往 %1$s &gt; %2$s &gt; %3$s。</string>
