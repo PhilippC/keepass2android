@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar banco de dados...</string>
+  <string name="fingerprint_prefs">Desbloqueio biométrico</string>
   <string name="import_db_prefs">Importar base de dados para pasta interna</string>
   <string name="import_keyfile_prefs">Importar arquivo chave para pasta interna</string>
   <string name="keyboardswitch_prefs">Alterar teclado</string>
@@ -81,6 +82,12 @@
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar para a área de transferencia</string>
+  <string name="fingerprint_description">Autentique para continuar</string>
+  <string name="fingerprint_fatal">Não é possível configurar Desbloqueio Biométrico:</string>
+  <string name="fingerprint_not_recognized">Falha na autenticação biométrica. Tente novamente</string>
+  <string name="fingerprint_success">Sucesso na autenticação biométrica</string>
+  <string name="fingerprint_os_error">Desbloqueio Biométrico requer Android 6.0 ou posterior.</string>
+  <string name="fingerprint_hardware_error">Nenhum hardware biométrico detectado.</string>
   <string name="FingerprintSetupFailed">Falha ao criptografar dados. Isso pode acontecer se você adicionar ou remover impressões digitais nas configurações do sistema enquanto o Keepass2Android está esperando pela sua impressão digital.</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
