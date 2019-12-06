@@ -22,6 +22,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android آفلاین</string>
   <string name="short_app_name_nonet">KP2A آفلاین</string>
+  <string name="app_timeout_summary">در صورتی که نرم افزار در این مدت فعالیتی نداشته باشد پایگاه داده قفل می شود.</string>
   <string name="show_kill_app">دکمهٔ بستن</string>
   <string name="ShowGroupnameInSearchResult_title">نمایش نام گروه در نتیجهٔ جست‌وجو</string>
   <string name="ShowGroupnameInSearchResult_resume">نام گروه را زیر عنوان مدخل در نتایج جست‌وجو نشان می‌دهد. هنگامی که چندین مدخل همنام وجود دارد سودمند است.</string>
@@ -301,6 +302,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="CreateBackups_summary">پس از بارگذاری موفقیت‌آمیز پایگاه‌داده، یک نسخهٔ پشتیبان از آن روی دستگاه ایجاد می‌شود.</string>
   <string name="UpdatingBackup">به‌روزآوری پشتیبان محلی...</string>
   <string name="LocalBackupOf">پشتیبان محلی از %1$s</string>
+  <string name="show_local_backups">نمایش پشتیبان های داخلی</string>
   <string name="AcceptAllServerCertificates_title">گواهی‌های SSL</string>
   <string name="AcceptAllServerCertificates_summary">در صورتی که اعتبارسنجی گواهی ناموفق بود، برنامه چگونه رفتار کند؟ توجه: اگر اعتبارسنجی ناموفق باشد می‌توانید خودتان گواهی‌ها را روی دستگاه نصب کنید!</string>
   <string name="ClearOfflineCache_title">نهانگاه (cache) پاک شود؟</string>
