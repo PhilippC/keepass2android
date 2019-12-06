@@ -81,7 +81,14 @@
   <string name="disclaimer_formal">Keepass2Android 版權歸 Philipp Crocoll；軟體不帶有絕對擔保；是自由軟體，您可在遵循 GPL 2 或者更高版本的情況下重新發佈。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">複製到剪貼簿</string>
+  <string name="fingerprint_no_enrolled">你還沒有在設備上設置生物認證，請先至系統設定設置。</string>
+  <string name="fingerprint_disabled_wrong_masterkey">解鎖資料庫失敗：無效複合金鑰。由於已儲存的主密碼不再有效，生物解鎖亦無效。 </string>
+  <string name="fingerprint_reenable">請重新為新的主密碼啟用生物解鎖</string>
+  <string name="fingerprint_reenable2">請使用你的密碼解鎖並於資料庫設置中重新啟用生物解鎖。</string>
+  <string name="FingerprintInitFailed">無法初始化生物認證。 </string>
   <string name="FingerprintSetupFailed">資料加密失敗。若在系統設定中新增或刪除指紋時，Keepass2Android 同時監聽您的指紋，就有可能會失敗。</string>
+  <string name="enable_fingerprint_unlock_Info">這將把主密碼儲存在此裝置上，並透過Android 金鑰庫系統加密且將被生物認證保護。此後你將可透過生物認證解鎖資料庫。</string>
+  <string name="enable_fingerprint_quickunlock_Info">將以生物認證取代 QuickUnlock 代碼。這並不會在裝置上儲存與主密碼相關的任何資料。</string>
   <string name="enter_filename">輸入資料庫名：</string>
   <string name="entry_accessed">存取時間</string>
   <string name="entry_cancel">取消</string>
@@ -614,6 +621,7 @@
   <string name="DbQuicklockedChannel_desc">QuickUnlock 啟用，且已鎖定資料庫的通知</string>
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">生物認證時顯示虛擬鍵盤以輸入密碼。</string>
   <string-array name="ChangeLog_1_08">
     <item>加入複製 TOTP 到剪貼簿的通知按鈕</item>
     <item>改用 FluentFTP 以支援 TLS 1.2</item>
@@ -950,10 +958,12 @@
   <string name="autofill_disable">禁用 %1$s 的自動填入</string>
   <string name="autofill_enable_for">啟用 %1$s 的自動填入</string>
   <string name="invalid_link_association">無法關聯網域 %1$s 與應用程式 %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android 偵測到生物認證硬件。要為這資料庫啟用生物解鎖嗎？</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再顯示</string>
   <string name="masterkey_infotext_head">你還記得主密鑰嗎？</string>
   <string name="masterkey_infotext_main">請注意，你必須輸入主密鑰才能開啟資料庫。並沒有任何「重置」主密鑰的方法。</string>
+  <string name="masterkey_infotext_fingerprint_note">請注意生物解鎖功能使用 Android 內建的密鑰庫存儲你的主密鑰。Android 隨時都可能會刪除它，例如在系統設定中新增新指紋的時候。所以煩請牢記你的主密碼並切勿過度依賴生物解鎖！</string>
   <string name="backup_infotext_head">你有好好備份你的資料庫嗎？</string>
   <string name="backup_infotext_main">Keepass2Android 根據你的選擇把你的密碼儲存到指定的地方。在你遺失手機的時候，又或是檔案損壞或遭刪除的時候，你確定仍能存取到這個檔案嗎？煩請確認在安全的地方一律留有最新的備份！</string>
   <string name="backup_infotext_note">請到「%1$s &gt; %2$s &gt; %3$s」建立備份。</string>
