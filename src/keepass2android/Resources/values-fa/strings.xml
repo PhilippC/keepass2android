@@ -23,6 +23,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="app_name_nonet">Keepass2Android آفلاین</string>
   <string name="short_app_name_nonet">KP2A آفلاین</string>
   <string name="app_timeout_summary">در صورتی که نرم افزار در این مدت فعالیتی نداشته باشد پایگاه داده قفل می شود.</string>
+  <string name="kill_app_label">قطع کردن پروسه پردازش نرم افزار</string>
   <string name="show_kill_app">دکمهٔ بستن</string>
   <string name="ShowGroupnameInSearchResult_title">نمایش نام گروه در نتیجهٔ جست‌وجو</string>
   <string name="ShowGroupnameInSearchResult_resume">نام گروه را زیر عنوان مدخل در نتایج جست‌وجو نشان می‌دهد. هنگامی که چندین مدخل همنام وجود دارد سودمند است.</string>
