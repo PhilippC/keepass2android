@@ -915,7 +915,12 @@ namespace keepass2android
 					item.SetVisible(false);
 					foreach (View v in _editModeHiddenViews)
 						v.Visibility = ViewStates.Visible;
-					return true;
+                    State.EditMode.ShowAddAttachments = true;
+                    ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
+                    binariesGroup.Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.entry_binaries_container).Visibility = ViewStates.Visible;
+
+                    return true;
                 case Android.Resource.Id.Home:
                     OnBackPressed();
 			        return true;
