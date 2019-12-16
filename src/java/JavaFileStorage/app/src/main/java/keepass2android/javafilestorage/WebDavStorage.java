@@ -447,10 +447,20 @@ public class WebDavStorage extends JavaFileStorageBase {
         if (href.endsWith("/"))
             href = href.substring(0, href.length()-1);
         int lastIndex = href.lastIndexOf("/");
+
+        String displayName;
+
         if (lastIndex >= 0)
-            return href.substring(lastIndex + 1);
+            displayName = href.substring(lastIndex + 1);
         else
-            return href;
+            displayName = href;
+
+        try {
+            displayName = java.net.URLDecoder.decode(displayName, UTF_8);
+        } catch (UnsupportedEncodingException e) {
+        }
+
+        return displayName;
     }
 
     @Override
