@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 #if !NoNet
 using FluentFTP;
 #endif
@@ -185,7 +186,7 @@ namespace keepass2android
                 string pathAndQuery = uri.PathAndQuery;
 
 		        var host = uri.Host;
-		        var localPath = pathAndQuery;
+		        var localPath = WebUtility.UrlDecode(pathAndQuery);
 
                 
 		        if (!uri.IsDefaultPort)
