@@ -149,7 +149,10 @@ namespace keepass2android
 
         public override bool ShowAddExtras
 		{
-			get { return false; }
+			get {
+                if (manualShowAddExtras != null) return (bool)manualShowAddExtras;
+                return false;
+            }
 		}
 
 	    public override string GetTitle(string key)

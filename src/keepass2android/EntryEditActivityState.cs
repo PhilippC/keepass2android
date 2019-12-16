@@ -29,12 +29,20 @@ namespace keepass2android
             set { manualShowAddAttachments = value; }
         }
 
-        public virtual bool ShowAddExtras
-	    {
-	        get { return true; }
-	    }
 
-	    public virtual string GetTitle(string key)
+        protected bool? manualShowAddExtras = null;
+
+        public virtual bool ShowAddExtras
+        {
+            get
+            {
+                if (manualShowAddExtras != null) return (bool) manualShowAddExtras; 
+                return true;
+            }
+            set { manualShowAddExtras = value; }
+        }
+
+        public virtual string GetTitle(string key)
 	    {
 	        return key;
 	    }

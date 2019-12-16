@@ -916,9 +916,12 @@ namespace keepass2android
 					foreach (View v in _editModeHiddenViews)
 						v.Visibility = ViewStates.Visible;
                     State.EditMode.ShowAddAttachments = true;
+                    State.EditMode.ShowAddExtras = true;
                     ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
                     binariesGroup.Visibility = ViewStates.Visible;
                     FindViewById(Resource.Id.entry_binaries_container).Visibility = ViewStates.Visible;
+                    ((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.entry_extras_container).Visibility = ViewStates.Visible;
 
                     return true;
                 case Android.Resource.Id.Home:
