@@ -6,7 +6,7 @@
   <string name="AboutText">Keepass2Android je správce hesel pro práci se soubory KeePass 2.x. na platformě Android.</string>
   <string name="CreditsText">Uživatelské rozhraní je založeno na portu KeepassDroid (vyvinul Brian Pellin). Kód pro databázové operace vychází z kódu pro KeePass (napsal Dominik Reichl). Logo Android robota vychází z verze sdílené Googlem a je upraveno a použito dle podmínek popsaných v licenci Creative Commons 3.0.</string>
   <string name="CreditsTextSFTP">SFTP podpora je implementována pomocí knihovny JSch pod BSD licencí, vytvořenou JCraft, Inc.</string>
-  <string name="CreditsIcons">Ikona kladiva je vytvořena Johnem Casertou z projektu Noun. Ikona tučňáka je vytvořena Adrianem Emerickem z projektu Noun. Ikona pera je vytvořena Jonem Testou z projektu Noun. Ikona jablka je vytvořena Avou Rowellem z projektu Noun. Ikona obrázku pochází z https://icons8.com/icon/5570/Picture.</string>
+  <string name="CreditsIcons">Ikona kladiva je vytvořena Johnem Casertou z projektu Noun. Ikona tučňáka je vytvořena Adrianem Emerickem z projektu Noun. Ikona ptačího pera je vytvořena Jonem Testou z projektu Noun. Ikona jablka je vytvořena Avou Rowellovou z projektu Noun. Ikona obrázku pochází z https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Přijmout</string>
   <string name="deny">Odmítnout</string>
   <string name="add_entry">Přidat položku</string>
@@ -88,6 +88,7 @@
   <string name="fingerprint_success">Úspěšné biometrické ověření</string>
   <string name="fingerprint_os_error">Biometrické odemknutí vyžaduje Android 6.0 nebo vyšší.</string>
   <string name="fingerprint_hardware_error">Nebyl nalezen hardware pro biometrické ověření.</string>
+  <string name="fingerprint_no_enrolled">Na tomto zařízení není nastaveno žádné biometrické ověření. Nejdříve přejděte do systémového nastavení.</string>
   <string name="disable_fingerprint_unlock">Zakázat Biometrické odemknutí</string>
   <string name="enable_fingerprint_unlock">Povolit plné Biometrické odemknutí</string>
   <string name="enable_fingerprint_quickunlock">Povolit Biometrické odemknutí pro Rychlé odemknutí</string>
