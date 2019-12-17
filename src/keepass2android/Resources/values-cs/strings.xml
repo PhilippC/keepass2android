@@ -91,7 +91,14 @@
   <string name="disable_fingerprint_unlock">Zakázat Biometrické odemknutí</string>
   <string name="enable_fingerprint_unlock">Povolit plné Biometrické odemknutí</string>
   <string name="enable_fingerprint_quickunlock">Povolit Biometrické odemknutí pro Rychlé odemknutí</string>
+  <string name="fingerprint_unlock_failed">Biometrické odemknutí selhalo. Dešifrovací klíč byl zneplatněn systémem Android. To se obvykle stává, pokud došlo ke změně biometrického ověření nebo bylo změněno bezpečnostní nastavení. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odemknutí databáze se nezdařilo: neplatný složený klíč. Biometrické odemknutí bylo zakázáno z důvodu pravděpodobného vypršení platnosti hlavního hesla. </string>
+  <string name="fingerprint_reenable">Prosím, povolte znovu Biometrické odemknutí pro nové hlavní heslo.</string>
+  <string name="fingerprint_reenable2">Prosím odemkněte svým heslem a poté obnovte Biometrické odemknutí v nastavení databáze.</string>
+  <string name="FingerprintInitFailed">Nepodařilo se spustit biometrické ověření. </string>
   <string name="FingerprintSetupFailed">Šifrování dat se nezdařilo. K tomu může dojít, pokud přidáte nebo odstraníte otisky prstů v nastavení systému, zatímco Keepass2Android naslouchá otisku prstu.</string>
+  <string name="enable_fingerprint_unlock_Info">Toto uloží vaše hlavní heslo na toto zařízení, zašifrované pomocí úložiště klíčů Android a chráněné Biometrickým ověřením. Toto umožní odemknutí databáze pouze biometricky.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Umožní používat Biometrické ověření namísto rychlého odemknutí. Nevyžaduje uložení jakékoliv informace vztahující se k vašemu hlavnímu heslu.</string>
   <string name="enter_filename">Zadejte název souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
   <string name="entry_cancel">Storno</string>
@@ -623,6 +630,7 @@
   <string name="DbQuicklockedChannel_desc">Upozornění že databáze je zamykána s funkcí Rychlého odemknutí</string>
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Zobrazit softwarovou klávesnici pro zadávání hesla pokud je Biometrické odemknutí aktivní.</string>
   <string-array name="ChangeLog_1_08">
     <item>Přidáno oznamovací tlačítko pro kopírování TOTP do schránky</item>
     <item>Změna na FluentFTP pro podporu TLS 1.2</item>
@@ -951,10 +959,12 @@ První veřejné vydání
   <string name="autofill_disable">Zakázat Automatické doplnění pro %1$s</string>
   <string name="autofill_enable_for">Povolit Automatické doplnění pro %1$s</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou biometrickou čtečku. Chcete pro tuto databázi povolit Biometrické odemykáni?</string>
   <string name="understand">Rozumím</string>
   <string name="dont_show_again">Vícekrát neukazuj</string>
   <string name="masterkey_infotext_head">Pamatujete si Vaše hlavní heslo?</string>
   <string name="masterkey_infotext_main">Pamatujte že bez hlavního klíče není možné databázi otevřít. Možnost \"resetovat\" hlavní heslo NEexistuje.</string>
+  <string name="masterkey_infotext_fingerprint_note">Také pamatujte že Biometrické odemknutí funguje na základě uchování hlavního hesla v bezpečném úložišti Androidu. Toto úložiště může být kdykoliv vymazáno Androidem, například přidáním nového otisku v nastavení systému. Nespoléhejte se pouze na otisk prstu, ale pamatujte si prosím i Vaše hlavní heslo!</string>
   <string name="backup_infotext_head">Je Vaše databáze zálohována?</string>
   <string name="backup_infotext_main">Keepass2Android uchovává Vaše hesla v souboru v umístění dle Vašeho výběru. Jste si jistý/á že můžete získat přístup k souboru i v případě ztráty či krádeže mobilního telefonu, nebo v případě poškození či smazání souboru? Ujistěte se prosím, že máte aktuální zálohu, na bezpečném místě!</string>
   <string name="backup_infotext_note">Pro tvorbu zálohy navštivte %1$s &gt; %2$s &gt; %3$s.</string>
