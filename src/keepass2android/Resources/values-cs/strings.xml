@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">Zpracování souborů</string>
   <string name="keyboard_prefs">Klávesnice</string>
   <string name="export_prefs">Export databáze...</string>
+  <string name="fingerprint_prefs">Biometrické odemknutí</string>
   <string name="import_db_prefs">Import databáze do vnitřní složky</string>
   <string name="import_keyfile_prefs">Importovat soubor s klíčem do vnitřní složky</string>
   <string name="keyboardswitch_prefs">Přepínání klávesnice</string>
@@ -81,6 +82,15 @@
   <string name="disclaimer_formal">Keepass2Android je dodáván BEZ JAKÉKOLIV ZÁRUKY; Toto je svobodný software, můžete jej šířit pod licencí GPL verze 2 nebo novější.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopírovat do schránky</string>
+  <string name="fingerprint_description">Ověřte se po pokračování</string>
+  <string name="fingerprint_fatal">Nebylo možné nastavit Biometrické odemknutí:</string>
+  <string name="fingerprint_not_recognized">Biometrické ověření selhalo. Zkuste to prosím znovu</string>
+  <string name="fingerprint_success">Úspěšné biometrické ověření</string>
+  <string name="fingerprint_os_error">Biometrické odemknutí vyžaduje Android 6.0 nebo vyšší.</string>
+  <string name="fingerprint_hardware_error">Nebyl nalezen hardware pro biometrické ověření.</string>
+  <string name="disable_fingerprint_unlock">Zakázat Biometrické odemknutí</string>
+  <string name="enable_fingerprint_unlock">Povolit plné Biometrické odemknutí</string>
+  <string name="enable_fingerprint_quickunlock">Povolit Biometrické odemknutí pro Rychlé odemknutí</string>
   <string name="FingerprintSetupFailed">Šifrování dat se nezdařilo. K tomu může dojít, pokud přidáte nebo odstraníte otisky prstů v nastavení systému, zatímco Keepass2Android naslouchá otisku prstu.</string>
   <string name="enter_filename">Zadejte název souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
