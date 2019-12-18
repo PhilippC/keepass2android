@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">Отображать имена пользователей под заголовками. Полезно для множественных аккаунтов или TAN.</string>
   <string name="RememberRecentFiles_title">Запоминать базы данных</string>
   <string name="RememberRecentFiles_summary">Запоминать недавно открытые базы и отображать их на экране открытия базы данных.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Найти пароль</string>
   <string name="excludeExpiredEntries">Исключить просроченные записи</string>
   <string name="search_options">Параметры</string>
   <string name="caseSensitive">С учетом регистра</string>
