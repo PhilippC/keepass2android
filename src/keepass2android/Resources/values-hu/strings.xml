@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">A felhasználónevek megjelenítése a bejegyzések címe alatt. Hasznos, ha több felhasználói fiókkal is rendelkezik, vagy TAN-okat használ.</string>
   <string name="RememberRecentFiles_title">Az adatbázisok megjegyzése</string>
   <string name="RememberRecentFiles_summary">A legutóbb megnyitott adatbázisok megjegyzése és megjelenítése az Adatbázis megnyitása képernyőn.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Jelszó keresése</string>
   <string name="excludeExpiredEntries">Lejárt bejegyzések kizárása</string>
   <string name="search_options">Opciók</string>
   <string name="caseSensitive">Kis- és nagybetűk megkülönböztetése</string>
