@@ -290,7 +290,7 @@
 	<string name="RememberRecentFiles_title">Remember databases</string>
 	<string name="RememberRecentFiles_summary">Remember recently opened databases and show them in the Open database screen.</string>
 	
-	<string name="kp2a_findUrl">Keepass2Android: Find password</string>
+	<string name="kp2a_findUrl">Find password</string>
   <string name="excludeExpiredEntries">Exclude expired entries</string>
   <string name="search_options">Options</string>
   <string name="caseSensitive">Case sensitive</string>
