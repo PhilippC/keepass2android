@@ -226,7 +226,6 @@
   <string name="ShowUsernameInList_summary">Prikaži korisnička imena ispod naslova unosa. Korisno za više računa ili više TAN-ova.</string>
   <string name="RememberRecentFiles_title">Zapamti baze podataka</string>
   <string name="RememberRecentFiles_summary">Zapamti nedavno otvorene baze podataka i prikaži ih na zaslonu \"Otvorite bazu podataka\".</string>
-  <string name="kp2a_findUrl">Keepass2Android: Pronađite lozinku</string>
   <string name="excludeExpiredEntries">Izuzmi istekle stavke</string>
   <string name="search_options">Mogućnosti</string>
   <string name="caseSensitive">Osjetljivo na velika i mala slova</string>
