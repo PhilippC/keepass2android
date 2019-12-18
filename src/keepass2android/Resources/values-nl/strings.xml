@@ -249,7 +249,6 @@
   <string name="ShowUsernameInList_summary">Gebruikersnamen onder item titels weergeven. Handig voor meerdere accounts of TANs.</string>
   <string name="RememberRecentFiles_title">Onthoud databases</string>
   <string name="RememberRecentFiles_summary">Onthoud onlangs geopende databases en deze in het geopende databasescherm weergeven.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
   <string name="search_options">Opties</string>
   <string name="caseSensitive">Hoofdlettergevoelig</string>
