@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">Zobraziť mená používateľov pod záznamami. Užitočné pri viacnásobných účtoch alebo TAN.</string>
   <string name="RememberRecentFiles_title">Zapamätať si databázy</string>
   <string name="RememberRecentFiles_summary">Zapamätať si naposledy otvorené databázy a zobraziť ich na obrazovke pre otvorenie databázy.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Nájsť heslo</string>
   <string name="excludeExpiredEntries">Vylúčiť expirované záznamy</string>
   <string name="search_options">Možnosti</string>
   <string name="caseSensitive">Rozlišovať malé a VEĽKÉ písmená</string>
