@@ -255,7 +255,7 @@
   <string name="author">Keepass2Android vyvíjí Philipp Crocoll.</string>
   <string name="further_authors">Díky za příspěvky kódu %1$s.</string>
   <string name="designers">Díky za pomoc s ikonami a designem rozvržení %1$s.</string>
-  <string name="credit_plugin1">Plugin Twofish šifrování pro Keepass vyvinul Scott Greenberg a je součástí KP2A.</string>
+  <string name="credit_plugin1">Šifrovací modul Twofish pro Keepass vyvinul Scott Greenberg a je součástí KP2A.</string>
   <string name="credit_android_filechooser">Souborový dialog vyvinul Hai Bison</string>
   <string name="credit_keyboard">KP2A klávesnice je založen na Gingerbread klávesnici Android Open Source projektu a využívá kódu z projektu Plugin Manageru klávesnice Hacker\'s Keyboard Klause Weidnera.</string>
   <string name="please_note">Upozornění</string>
@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">Zobrazovat uživatelská jména pod názvy položek. Užitečné pro vícenásobné účty nebo TANy.</string>
   <string name="RememberRecentFiles_title">Zapamatovat databáze</string>
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
   <string name="search_options">Možnosti</string>
   <string name="caseSensitive">Rozlišování malých a velkých písmen</string>
