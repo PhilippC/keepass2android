@@ -249,7 +249,6 @@
   <string name="ShowUsernameInList_summary">Mostrar noms d\'usuari sota títols d\'entrada. Útil per a comptes múltiples o TANs.</string>
   <string name="RememberRecentFiles_title">Recordeu les bases de dades</string>
   <string name="RememberRecentFiles_summary">Recordeu les bases de dades recentment obertes i mostrar-les en la pantalla de d\'obrir base de dades.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Localitzar contrasenya</string>
   <string name="excludeExpiredEntries">Excloure les entrades caducats</string>
   <string name="search_options">Opcions</string>
   <string name="caseSensitive">Majúscules i minúscules</string>
