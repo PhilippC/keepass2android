@@ -260,7 +260,6 @@
   <string name="ShowUsernameInList_summary">Wyświetla nazwy użytkowników poniżej tytułów. Przydatne przy wielu kontach lub TAN (hasłach jednorazowych).</string>
   <string name="RememberRecentFiles_title">Zapamiętaj bazę danych</string>
   <string name="RememberRecentFiles_summary">Zapamiętaj ostatnio otwieraną bazę danych i pokazuj ją na ekranie wyboru.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
   <string name="search_options">Opcje</string>
   <string name="caseSensitive">Wielkość liter ma znaczenie</string>
