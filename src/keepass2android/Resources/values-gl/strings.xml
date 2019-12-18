@@ -227,7 +227,6 @@
   <string name="ShowUsernameInList_summary">Amosar nomes de usuario por debaixo dos títulos. Útil se hai varias contas ou TANs.</string>
   <string name="RememberRecentFiles_title">Lembrar bases de datos</string>
   <string name="RememberRecentFiles_summary">Lembrar bases de datos abertas recentemente e amosalas na pantalla de inicio da base de datos.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Atopar contrasinal</string>
   <string name="excludeExpiredEntries">Exluir entradas expiradas</string>
   <string name="search_options">Opcións</string>
   <string name="caseSensitive">Distinguir maiúsculas de minúsculas</string>
