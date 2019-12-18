@@ -223,7 +223,6 @@
   <string name="ShowUsernameInList_summary">Hiển thị tên người dùng dưới tiêu đề mục. Thuận tiện cho nhiều tài khoản hoặc TANs.</string>
   <string name="RememberRecentFiles_title">Ghi nhớ các cơ sở dữ liệu</string>
   <string name="RememberRecentFiles_summary">Ghi nhớ các cơ sở dữ liệu được mở gần đây và hiển thị chúng trong màn hình mở cơ sở dữ liệu.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Tìm mật mã</string>
   <string name="excludeExpiredEntries">Loại trừ các mục đã hết hạn</string>
   <string name="search_options">Tùy chọn</string>
   <string name="caseSensitive">Phân biệt chữ hoa-thường</string>
