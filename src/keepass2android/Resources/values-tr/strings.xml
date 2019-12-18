@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">Kullanıcı adını kayıtların altında gösterir. Birden fazla hesaplar yada TAN için uygundur.</string>
   <string name="RememberRecentFiles_title">Açılan veritabanlarını hatırla</string>
   <string name="RememberRecentFiles_summary">En son açılan veritabanlarını hatırla ve onları veritabani açma ekranında göster.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Şifreyi bul</string>
   <string name="excludeExpiredEntries">Hızlı aramalara süresi dolmuş kayıtlar katılmasın</string>
   <string name="search_options">Seçenekler</string>
   <string name="caseSensitive">Büyük küçük harf duyarlı</string>
