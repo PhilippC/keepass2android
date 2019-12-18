@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">Visualizza il nome utente sotto i titoli delle voci. Utile per account multipli o TAN multipli.</string>
   <string name="RememberRecentFiles_title">Ricorda i database</string>
   <string name="RememberRecentFiles_summary">Ricorda i database aperti di recente e visualizzali nella schermata Apri database.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Trova una password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
   <string name="search_options">Opzioni</string>
   <string name="caseSensitive">Maiuscole e minuscole</string>
