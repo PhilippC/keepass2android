@@ -223,7 +223,6 @@
   <string name="ShowUsernameInList_summary">Afişează numele utilizatorului sub înregistrări. Util pentru conturi sau TAN-uri multiple.</string>
   <string name="RememberRecentFiles_title">Reţine bazele de date</string>
   <string name="RememberRecentFiles_summary">Reţine baze de date deschise recent si afişează-le în ecranul de deschidere a bazelor de date.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Căutare parolă</string>
   <string name="excludeExpiredEntries">Exclude înregistrările expirate</string>
   <string name="search_options">Opţiuni</string>
   <string name="caseSensitive">Case sensitive</string>
