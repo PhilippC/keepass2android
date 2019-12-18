@@ -232,7 +232,6 @@
   <string name="ShowUsernameInList_summary">عرض أسماء المستخدمين أسفل عناوين القيود.. مفيدة للحسابات أو \"أرقام العمليات\" المتعددة.</string>
   <string name="RememberRecentFiles_title">تذكر قواعد البيانات</string>
   <string name="RememberRecentFiles_summary">تذكر قواعد البيانات المفتوحة حديثا وأظهرها في شاشة \"فتح قاعدة البيانات\".</string>
-  <string name="kp2a_findUrl">Keepass2Android: البحث عن كلمة السر</string>
   <string name="excludeExpiredEntries">استبعاد المدخالات المنتهية الصلاحية</string>
   <string name="search_options">خيارات البحث</string>
   <string name="caseSensitive">حساسية حالة الأحرف</string>
