@@ -249,7 +249,6 @@
   <string name="ShowUsernameInList_summary">Vis brugernavne under posttitlerne. Nyttigt ved flere konti eller TAN\'er.</string>
   <string name="RememberRecentFiles_title">Husk databaser</string>
   <string name="RememberRecentFiles_summary">Husk senest åbnede databaser og vis dem på skærmen Åbn database.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Find adgangskode</string>
   <string name="excludeExpiredEntries">Udelad udløbne poster</string>
   <string name="search_options">Indstillinger</string>
   <string name="caseSensitive">Versal/minuskel sensitiv</string>
