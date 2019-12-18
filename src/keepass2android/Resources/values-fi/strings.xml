@@ -229,7 +229,6 @@
   <string name="ShowUsernameInList_summary">Näytä käyttäjätunnukset merkintöjen otsikoiden alla. Hyödyllinen TAN-merkinnöissä, tai kun käyttäjätunnuksia on useita.</string>
   <string name="RememberRecentFiles_title">Muista tietokannat</string>
   <string name="RememberRecentFiles_summary">Muista edelliset tietokannat, ja näytä ne aloitusnäkymässä.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Etsi salasana</string>
   <string name="excludeExpiredEntries">Sivuuta vanhentuneet merkinnät</string>
   <string name="search_options">Asetukset</string>
   <string name="caseSensitive">Merkkikoosta riippuvat kirjaimet</string>
