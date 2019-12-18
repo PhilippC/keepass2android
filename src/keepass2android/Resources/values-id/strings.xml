@@ -223,7 +223,6 @@
   <string name="ShowUsernameInList_summary">Tampilan nama pengguna di bawah judul entri. Berguna untuk beberapa account atau TANs.</string>
   <string name="RememberRecentFiles_title">Ingat database</string>
   <string name="RememberRecentFiles_summary">Ingat database yang baru dibuka dan tampilkan kepada mereka di layar buka database.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Cari password</string>
   <string name="excludeExpiredEntries">Mengecualikan entri kedaluwarsa</string>
   <string name="search_options">Pilihan</string>
   <string name="caseSensitive">Sensitif-bentuk</string>
