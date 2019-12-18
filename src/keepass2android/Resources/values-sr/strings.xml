@@ -220,7 +220,6 @@
   <string name="ShowUsernameInList_summary">Приказати корисничка имена испод наслова за уносе. Корисно за више рачуна и ТАN-ова.</string>
   <string name="RememberRecentFiles_title">Запамти базе података</string>
   <string name="RememberRecentFiles_summary">Запамти недавно отворене базе података и покажи их на екрану за отворену базу података.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Тражење лозинке</string>
   <string name="excludeExpiredEntries">Изостави истекле уносе</string>
   <string name="search_options">Опције</string>
   <string name="caseSensitive">Разликуј мала/Велика слова</string>
