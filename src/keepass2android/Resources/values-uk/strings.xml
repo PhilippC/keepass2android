@@ -249,7 +249,6 @@
   <string name="ShowUsernameInList_summary">Показувати ім\'я користувача під назвою запису в списку. Корисно для декількох облікових записів або TAN.</string>
   <string name="RememberRecentFiles_title">Пам\'ятати бази даних</string>
   <string name="RememberRecentFiles_summary">Пам\'ятати недавно відкриті бази даних і відображати їх на екрані відкриття бази даних.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
   <string name="search_options">Параметри</string>
   <string name="caseSensitive">З урахуванням регістру</string>
