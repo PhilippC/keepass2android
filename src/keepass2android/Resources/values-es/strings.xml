@@ -256,7 +256,6 @@
   <string name="ShowUsernameInList_summary">Mostrar nombres de usuario por debajo de los títulos de entrada. Útil para múltiples cuentas o TANs.</string>
   <string name="RememberRecentFiles_title">Recordar Bases de Datos</string>
   <string name="RememberRecentFiles_summary">Recuerda la base de datos recientemente abierta y se muestra en la pantalla.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Buscar contraseña</string>
   <string name="excludeExpiredEntries">Excluir las entradas caducadas</string>
   <string name="search_options">Opciones</string>
   <string name="caseSensitive">Distingue mayúsculas</string>
