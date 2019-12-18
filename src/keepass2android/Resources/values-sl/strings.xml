@@ -267,6 +267,7 @@
   <string name="ShowUsernameInList_summary">Prikaži uporniška imena pod nazivi vnosov. Uporabno za več računov ali TAN-e.</string>
   <string name="RememberRecentFiles_title">Zapomni si pod. zbirke</string>
   <string name="RememberRecentFiles_summary">Zapomni si nedavno odprte podatkovne zbirke in jih prikaži na zaslonu Odpri podatkovno zbirko.</string>
+  <string name="kp2a_findUrl">Najdi geslo</string>
   <string name="excludeExpiredEntries">Izključi potekle vnose</string>
   <string name="search_options">Možnosti</string>
   <string name="caseSensitive">Razlikovanje velikosti črk</string>
