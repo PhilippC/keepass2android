@@ -224,7 +224,6 @@
   <string name="ShowUsernameInList_summary">Vis brukernavn under oppføringstitler. Nyttig for flere kontoer eller TANs.</string>
   <string name="RememberRecentFiles_title">Husk databaser</string>
   <string name="RememberRecentFiles_summary">Husk nylig åpnede databaser og vis dem i skjermbildet for åpne databaser.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Finn passord</string>
   <string name="excludeExpiredEntries">Utelukk utløpte oppføringer</string>
   <string name="search_options">Alternativer</string>
   <string name="caseSensitive">Skill mellom små og store bokstaver</string>
