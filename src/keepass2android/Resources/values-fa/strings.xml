@@ -229,7 +229,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ShowUsernameInList_summary">نام‌های کاربری زیر عنوان مدخل نشان داده شود. مواقعی که چند حساب یا چند TAN وجود دارد، سودمند است.</string>
   <string name="RememberRecentFiles_title">پایگاه‌داده‌ها را به خاطر بسپار</string>
   <string name="RememberRecentFiles_summary">پایگاه‌داده‌هایی که به‌تازگی باز شده‌اند را به خاطر بسپار و آن‌ها را در کادر بازکردن پایگاه‌داده نشان بده.</string>
-  <string name="kp2a_findUrl">‏Keepass2Android: یافتن گذرواژه</string>
   <string name="excludeExpiredEntries">مدخل‌های منقضی را شامل نشود</string>
   <string name="search_options">گزینه‌ها</string>
   <string name="caseSensitive">حساس به حالت حروف</string>
