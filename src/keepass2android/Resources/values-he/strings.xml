@@ -178,7 +178,6 @@
   <string name="ShowUsernameInList_summary">הצגת ערכי שם המשתמש מתחת לכותרות הרשומות. שימושי עבור ריבוי חשבונות או קודים חד פעמיים.</string>
   <string name="RememberRecentFiles_title">זכור מסדי נתונים</string>
   <string name="RememberRecentFiles_summary">זכור את מסדי הנתונים שנפתחו לאחרונה והצג אותם במסך פתיחת מסד הנתונים.</string>
-  <string name="kp2a_findUrl">Keepass2Android: חיפוש סיסמא</string>
   <string name="excludeExpiredEntries">אל תציג רשומות שפג תוקפן</string>
   <string name="search_options">אפשרויות</string>
   <string name="caseSensitive">תלוי רישיות</string>
