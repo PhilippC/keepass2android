@@ -267,7 +267,6 @@
   <string name="ShowUsernameInList_summary">Προβολή ονομάτων χρήστη κάτω από τους τίτλους καταχωρίσεων. Χρήσιμο για πολλαπλούς λογαριασμούς ή TAN.</string>
   <string name="RememberRecentFiles_title">Απομνημόνευση βάσεων δεδομένων</string>
   <string name="RememberRecentFiles_summary">Απομνημονεύει τις πρόσφατα ανοιγμένες βάσεις δεδομένων και τις προβάλει στην οθόνη Άνοιγμα βάσης δεδομένων.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Αναζήτηση συνθηματικού</string>
   <string name="excludeExpiredEntries">Εξαίρεση ληγμένων εγγραφών</string>
   <string name="search_options">Επιλογές</string>
   <string name="caseSensitive">Διαφοροποίηση πεζών-κεφαλαίων</string>
