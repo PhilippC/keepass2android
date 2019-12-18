@@ -217,7 +217,6 @@
   <string name="ShowUsernameInList_summary">Показване на потребителските имена под заглавията. Полезно за няколко сметки или TAN-а</string>
   <string name="RememberRecentFiles_title">Запомни базите данни</string>
   <string name="RememberRecentFiles_summary">Запомни последно отваряните бази данни  ги показвай в екрана на отворената база данни.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Намери парола</string>
   <string name="excludeExpiredEntries">Изключи изтеклите записи</string>
   <string name="search_options">Опции</string>
   <string name="caseSensitive">Има разлика за голям-малък шрифт</string>
