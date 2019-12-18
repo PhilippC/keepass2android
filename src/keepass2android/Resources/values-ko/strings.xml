@@ -246,7 +246,6 @@
   <string name="ShowUsernameInList_summary">제목 아래에 계정 표시하기. 다중계정이나 TANs에 유용합니다.</string>
   <string name="RememberRecentFiles_title">데이터베이스 기억하기</string>
   <string name="RememberRecentFiles_summary">최근에 열린 데이터베이스를 기억하고 데이터베이스 열기 화면에 보이기</string>
-  <string name="kp2a_findUrl">Keepass2Android : 비밀번호 찾기</string>
   <string name="excludeExpiredEntries">만료된 항목 제외</string>
   <string name="search_options">옵션</string>
   <string name="caseSensitive">대/소문자 구분</string>
