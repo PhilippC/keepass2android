@@ -645,6 +645,15 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>지문 인식 잠금 해제 사용시의 사용자 환경 개선 및 얼굴 인식 잠금 해제 지원을 위해 BiometricPrompt API로 변경. 예시: Pixel 4 기기 등.</item>
     <item>버그 수정</item>
   </string-array>
+  <string name="ChangeLog_1_07b">버전 1.07b\n
+    * 네이티브 구현을 통해 Argon2 퍼포먼스 향상 (Chih-Hsuan Yen님께 감사를 표합니다!)\n
+    * 지문 아이콘을 클릭해서 지문 인식 비활성화 허용 (이를 통해 스크린 밑으로 나간 지문 인식 리더 문제를 피할 수 있습니다. marcoDallas님께 감사를 표합니다!)\n
+    * 암호 표기 토글 시 커서 위치 복구 (DDoSolitary니께 감사를 표합니다!)\n
+    * pCloud 구현 향상 (gilbsgilbs님께 다시 한번 감사를 표합니다!)\n
+    * 조금 더 많은 브라우저에서 자동 입력 지원 \n
+    * 새 OneDrive 구현: 비즈니스 용 OneDrive, 공유된 파일, 선택 가능한  액세스 범위, 다중 계정 지원 및 오프라인 접근 수정 포함\n
+    * 버그 수정  
+  </string>
   <string name="ChangeLog_1_07">버전 1.07\n
     * 삼성 Android 9 장치에서 발생한 문제를 수정했습니다.\n
     * 한 개 이상의 데이터베이스 열람을 허용했습니다. KeeAutoExec과 호환됩니다.\n
@@ -969,10 +978,12 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="autofill_disable">%1$s에 대해 자동완성 비활성화</string>
   <string name="autofill_enable_for">%1$s에 대해 자동완성 활성화</string>
   <string name="invalid_link_association">웹 도메인 %1$s를 앱 %2$s에 연결 할 수 없습니다.</string>
+  <string name="enable_fingerprint_hint">Keepass2Android가 생체 인식 장치를 발견했습니다. 이 데이터베이스를 생체 인식으로 잠금 해제하시겠습니까?</string>
   <string name="understand">이해했습니다.</string>
   <string name="dont_show_again">다시 보지 않기</string>
   <string name="masterkey_infotext_head">마스터 비밀번호를 기억하고 계십니까?</string>
   <string name="masterkey_infotext_main">마스터 키가 없으면 데이터베이스를 열 수 없습니다. 마스터 비밀번호를 \"재설정\" 할 수 있는 방법은 없습니다.</string>
+  <string name="masterkey_infotext_fingerprint_note">생체 인식 잠금 해제는 마스터 키를 Android의 보안 저장소에 저장하여 작동합니다. 이 저장소는 새로운 지문이 추가되는 등 변경사항이 발생 시 언제든지 Android에 의해 삭제될 수 있습니다. 그러므로 지문에 완전히 의존하지 말고 마스터 비밀번호를 반드시 기억하십시오!</string>
   <string name="backup_infotext_head">데이터베이스가 백업 되어 있습니까?</string>
   <string name="backup_infotext_main">Keepass2Android는 선택한 위치의 파일에 비밀번호를 저장합니다. 휴대폰를 분실하거나 도난 당했을 때나 파일이 파괴되거나 삭제 되었을 때 이 파일에 계속 액세스 할 수 있습니까? 항상 안전한 장소에 최신 백업이 있는지 반드시 확인하십시오!</string>
   <string name="backup_infotext_note">지금 백업을 만드려면, %1$s &gt; %2$s &gt; %3$s로 가세요.</string>
