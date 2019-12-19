@@ -82,6 +82,12 @@
   <string name="disclaimer_formal">Keepass2Android는 절대 보증되지 않습니다. 이 앱은 무료 소프트웨어이며, the GPL 버전 2 또는 그 최근 버전의 조건 하에서 재배포가 가능합니다.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">클립보드에 복사</string>
+  <string name="fingerprint_description">계속하려면 인증을 진행해주십시오</string>
+  <string name="fingerprint_fatal">생체 인식 잠금 해제를 설정할 수 없습니다:</string>
+  <string name="fingerprint_not_recognized">생체 인식에 실패했습니다. 다시 시도해 주십시오</string>
+  <string name="fingerprint_success">생체 인식에 성공했습니다</string>
+  <string name="fingerprint_os_error">생체 인식 잠금 해제는 안드로이드 6.0 이상이 필요합니다.</string>
+  <string name="fingerprint_hardware_error">감지된 생체 인식 하드웨어가 없습니다.</string>
   <string name="FingerprintSetupFailed">데이터 암호화에 실패했습니다. 이런 문제는 Keepass2Android가 지문을 인식하는 도중에 시스템 설정에 지문을 추가 또는 제거할 시에 발생할수 있습니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
