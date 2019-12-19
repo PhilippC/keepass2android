@@ -48,6 +48,7 @@
   <string name="FileHandling_prefs">파일 처리</string>
   <string name="keyboard_prefs">키보드</string>
   <string name="export_prefs">데이터베이스 내보내기...</string>
+  <string name="fingerprint_prefs">생체 인식 잠금 해제</string>
   <string name="import_db_prefs">내부 폴더로 부터 데이터베이스 불러오기</string>
   <string name="import_keyfile_prefs">내부 폴더로 키 파일 불러오기</string>
   <string name="keyboardswitch_prefs">키보드 전환</string>
@@ -61,11 +62,14 @@
   <string name="brackets">괄호</string>
   <string name="cancel">취소</string>
   <string name="Ok">확인</string>
+  <string name="disable_sensor">센서 비활성화</string>
+  <string name="enable_sensor">센서 활성화</string>
   <string name="ClearClipboard">클립보드를 비웠습니다.</string>
   <string name="clipboard_timeout">클립보드 시간 제한</string>
   <string name="clipboard_timeout_summary">계정 또는 비밀번호를 복사한 후 클립보드를 지우기까지의 시간</string>
   <string name="copy_username">계정을 클립보드에 복사합니다.</string>
   <string name="copy_password">비밀번호를 클립보드에 복사합니다.</string>
+  <string name="copy_totp">TOTP를 클립보드에 복사합니다.</string>
   <string name="available_through_keyboard">항목은 KP2A 키보드를 통해 사용 가능합니다.</string>
   <string name="entry_is_available">사용 가능</string>
   <string name="not_possible_im_picker">입력 방법을 선택하는 대화 상자를 열 수 없습니다. 키보드를 수동으로 활성화 하세요.</string>
