@@ -989,4 +989,5 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="backup_infotext_note">지금 백업을 만드려면, %1$s &gt; %2$s &gt; %3$s로 가세요.</string>
   <string name="emergency_infotext_head">긴급 상황에 대비 하고 있습니까?</string>
   <string name="emergency_infotext_main">더 이상 암호 데이터베이스에 접근 할 수 없다면 어떻게 될지 생각해 보셨습니까? 사고가 났다면? 비상 사태의 경우 신뢰 할 수 있는 사람에게 마스터 키를 전달하는 것이 좋습니다. 그렇지 않으면 누구도 귀하의 비밀번호에 액세스 할 수 없습니다.</string>
+  <string name="no_secure_display">현재 유효한 화면이 안전하다고 판단되지 않습니다.이는 다른 앱이 스크린샷을 찍을 수 있다는 것을 의미합니다. Keepass2Android는 민감한 정보를 안전한 화면에서만 표시하도록 설정되어 있습니다. 안전한 화면으로 전환(예시: HDMI 모니터 제거)하거나 앱의 설정을 변경해 주십시오.</string>
 </resources>
