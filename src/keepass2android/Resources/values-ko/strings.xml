@@ -88,6 +88,15 @@
   <string name="fingerprint_success">생체 인식에 성공했습니다</string>
   <string name="fingerprint_os_error">생체 인식 잠금 해제는 안드로이드 6.0 이상이 필요합니다.</string>
   <string name="fingerprint_hardware_error">감지된 생체 인식 하드웨어가 없습니다.</string>
+  <string name="fingerprint_no_enrolled">장치에 생체 인식이 설정되어있지 않습니다. 먼저 시스템 설정을 진행해주세요.</string>
+  <string name="disable_fingerprint_unlock">생체 인식 잠금 해제 사용 안 함</string>
+  <string name="enable_fingerprint_unlock">전체 생체 인식 잠금 해제 사용</string>
+  <string name="enable_fingerprint_quickunlock">빠른 잠금 해제에 생체 인식 잠금 해제를 사용</string>
+  <string name="fingerprint_unlock_failed">생체 인식 잠금 해제에 실패하였습니다. 해독 키가 안드로이드 OS에 의해 무효화 되었습니다. 이는 보통 새로운 생체 인식이 등록되었거나 보안 설정이 변경되었을때 발생합니다. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">데이터베이스 잠금해제 실패: 복합키가 무효합니다. 저장된 마스터 비밀번호가 더 이상 유효하지 않으므로 생체 인식 잠금 해제가 비활성화 되었습니다. </string>
+  <string name="fingerprint_reenable">새로운 마스터 비밀번호에 대해 생체 인식 잠금 해제를 다시 설정해주십시오.</string>
+  <string name="fingerprint_reenable2">비밀번호로 잠금을 해제한 후 데이터베이스 설정에서 생체 인식 잠금 해제를 다시 설정해 주십시오.</string>
+  <string name="FingerprintInitFailed">생체 인식 잠금 해제를 초기화 하는데 실패하였습니다. </string>
   <string name="FingerprintSetupFailed">데이터 암호화에 실패했습니다. 이런 문제는 Keepass2Android가 지문을 인식하는 도중에 시스템 설정에 지문을 추가 또는 제거할 시에 발생할수 있습니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
