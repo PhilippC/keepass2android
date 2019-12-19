@@ -91,13 +91,15 @@
   <string name="fingerprint_no_enrolled">장치에 생체 인식이 설정되어있지 않습니다. 먼저 시스템 설정을 진행해주세요.</string>
   <string name="disable_fingerprint_unlock">생체 인식 잠금 해제 사용 안 함</string>
   <string name="enable_fingerprint_unlock">전체 생체 인식 잠금 해제 사용</string>
-  <string name="enable_fingerprint_quickunlock">빠른 잠금 해제에 생체 인식 잠금 해제를 사용</string>
+  <string name="enable_fingerprint_quickunlock">QuickUnlock에 생체 인식 잠금 해제를 사용</string>
   <string name="fingerprint_unlock_failed">생체 인식 잠금 해제에 실패하였습니다. 해독 키가 안드로이드 OS에 의해 무효화 되었습니다. 이는 보통 새로운 생체 인식이 등록되었거나 보안 설정이 변경되었을때 발생합니다. </string>
   <string name="fingerprint_disabled_wrong_masterkey">데이터베이스 잠금해제 실패: 복합키가 무효합니다. 저장된 마스터 비밀번호가 더 이상 유효하지 않으므로 생체 인식 잠금 해제가 비활성화 되었습니다. </string>
   <string name="fingerprint_reenable">새로운 마스터 비밀번호에 대해 생체 인식 잠금 해제를 다시 설정해주십시오.</string>
   <string name="fingerprint_reenable2">비밀번호로 잠금을 해제한 후 데이터베이스 설정에서 생체 인식 잠금 해제를 다시 설정해 주십시오.</string>
-  <string name="FingerprintInitFailed">생체 인식 잠금 해제를 초기화 하는데 실패하였습니다. </string>
+  <string name="FingerprintInitFailed">생체 인식을 초기화 하는데 실패하였습니다. </string>
   <string name="FingerprintSetupFailed">데이터 암호화에 실패했습니다. 이런 문제는 Keepass2Android가 지문을 인식하는 도중에 시스템 설정에 지문을 추가 또는 제거할 시에 발생할수 있습니다.</string>
+  <string name="enable_fingerprint_unlock_Info">이 기기에 마스터 비밀번호가 저장되고 Android Keystore로 암호화되며 생체 인식을 사용하여 보호됩니다. 생체 인식만으로 데이터베이스를 잠금 해제 할 수 있습니다.</string>
+  <string name="enable_fingerprint_quickunlock_Info">QuickUnlock 코드 대신 생체 인식을 사용하는 것을 허용합니다. 마스터 비밀번호와 관련된 정보는 일절 저장하지 않습니다.</string>
   <string name="enter_filename">데이터베이스 파일 이름을 입력하세요.</string>
   <string name="entry_accessed">접속됨</string>
   <string name="entry_cancel">취소</string>
@@ -171,6 +173,7 @@
   <string name="menu_change_key">마스터 키 변경하기</string>
   <string name="menu_copy_pass">비밀번호 복사</string>
   <string name="menu_copy_user">계정 복사</string>
+  <string name="menu_copy_totp">TOTP 복사</string>
   <string name="menu_create">생성</string>
   <string name="menu_app_settings">설정</string>
   <string name="menu_db_settings">데이터베이스 설정</string>
@@ -265,6 +268,7 @@
   <string name="ShowUsernameInList_summary">제목 아래에 계정 표시하기. 다중계정이나 TANs에 유용합니다.</string>
   <string name="RememberRecentFiles_title">데이터베이스 기억하기</string>
   <string name="RememberRecentFiles_summary">최근에 열린 데이터베이스를 기억하고 데이터베이스 열기 화면에 보이기</string>
+  <string name="kp2a_findUrl">비밀번호 찾기</string>
   <string name="excludeExpiredEntries">만료된 항목 제외</string>
   <string name="search_options">옵션</string>
   <string name="caseSensitive">대/소문자 구분</string>
@@ -475,6 +479,9 @@
   <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주세요.</string>
   <string name="filestoragename_onedrive">원드라이브</string>
   <string name="filestoragename_onedrive2">원드라이브</string>
+  <string name="filestoragename_onedrive2_full">모든 파일 및 공유한 파일</string>
+  <string name="filestoragename_onedrive2_myfiles">내 파일</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Android 앱 폴더</string>
   <string name="filestoragename_sftp">SFTP (SSH 파일 전송)</string>
   <string name="filestoragename_content">시스템 파일 탐색기</string>
   <string name="filestorage_setup_title">파일 액세스 초기화</string>
@@ -631,6 +638,13 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="DbQuicklockedChannel_desc">QuickUnlock으로 잠긴 데이터베이스에 대한 알림</string>
   <string name="EntryChannel_name">항목 알림</string>
   <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">생체 인식이 활성화되면 암호 입력을 위한 소프트 키보드를 표시합니다.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>TOTP 클립보드 복사 알림 버튼 추가</item>
+    <item>TLS 1.2 지원을 위해 FluentFTP로 변경</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Bug fixes</item>
+  </string-array>
   <string name="ChangeLog_1_07">버전 1.07\n
     * 삼성 Android 9 장치에서 발생한 문제를 수정했습니다.\n
     * 한 개 이상의 데이터베이스 열람을 허용했습니다. KeeAutoExec과 호환됩니다.\n
