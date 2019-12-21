@@ -135,7 +135,7 @@
   <string name="error_rounds_not_number">정수는 숫자여야 합니다.</string>
   <string name="error_param_not_number">매개 변수는 숫자여야 합니다.</string>
   <string name="error_title_required">제목이 필요합니다.</string>
-  <string name="error_wrong_length">길이 필드에 양수를 입력하세요.</string>
+  <string name="error_wrong_length">길이 필드에 양수를 입력하십시오.</string>
   <string name="FileNotFound">파일을 찾을 수 없습니다.</string>
   <string name="file_browser">파일 탐색기</string>
   <string name="generate_password">비밀번호 생성</string>
@@ -198,7 +198,7 @@
   <string name="no">아니오</string>
   <string name="no_keys">데이터베이스나 그룹에 항목이 없습니다.</string>
   <string name="no_results">검색결과가 없습니다.</string>
-  <string name="no_url_handler">이 URL의 핸들러가 없습니다.</string>
+  <string name="no_url_handler">이 URL의 작업도구가 없습니다.</string>
   <string name="open_recent">최근 데이터베이스 열기 (탭해서 여십시오)</string>
   <string name="omitbackup_title">검색결과에서 백업 및 휴지통 항목 생략</string>
   <string name="omitbackup_summary">\'백업\'과 휴지통은 검색결과에서 생략합니다.</string>
@@ -493,12 +493,12 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="hint_master_password">데이터베이스 보호를 위해 위해 마스터 비밀번호를 선택 하십시오:</string>
   <string name="key_file">키 파일</string>
   <string name="help_key_file">키 파일은 기본적으로 파일 안에 저장되는 비밀번호입니다. 키 파일들은 전형적으로 마스터 비밀번호보다 더 강력합니다.
-왜냐하면 그 키는 더욱 더 많이 복잡하기 때문입니다. 하지만 그것 또한 비밀을 유지하기엔 어렵습니다. 만약 데이터베이스 파일을 클라우드에 저장한다면, 키 파일은 거기 같이 저장하지 마십시오! 이느 키 파일을 전혀 쓸모 없게 만듭니다! 중요: 데이터베이스를 생성한 후에는 키 파일의 내용을 수정하지 마십시오!</string>
+왜냐하면 그 키는 더욱 더 많이 복잡하기 때문입니다. 하지만 그것 또한 비밀을 유지하기엔 어렵습니다. 만약 데이터베이스 파일을 클라우드에 저장한다면, 키 파일은 거기 같이 저장하지 마십시오! 이는 키 파일을 전혀 쓸모 없게 만듭니다! 중요: 데이터베이스를 생성한 후에는 키 파일의 내용을 수정하지 마십시오!</string>
   <string name="hint_key_file">키 파일을 마스터 비밀번호와 함께 쓰고자 한다면 선택하십시오:</string>
   <string name="use_key_file">키 파일 사용</string>
   <string name="error_adding_keyfile">키 파일을 추가하는 동안 오류가 발생했습니다!</string>
   <string name="init_otp">OTP 보조 파일 불러오기...</string>
-  <string name="otp_explanation">다음 One-time-password (OTP) 를 입력합니다. NFC를 통해 입력하려면 기기의 뒷면에 Yubikey NEO를 스치세요 (Yubiclip 앱이 필요합니다).</string>
+  <string name="otp_explanation">다음 One-time-password (OTP) 를 입력하십시오. NFC를 통해 입력하려면 기기의 뒷면에 Yubikey NEO를 스치십시오 (Yubiclip 앱이 필요합니다).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP 보조 파일을 불러올 수 없습니다!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">OTP를 사용하기 위해 데이터베이스를 설정하려면 KeePass 2.x (PC)에서 OtpKeyProv 플러그인을 사용해 주십시오!</string>
@@ -545,9 +545,9 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="SCOPE_CURRENT_ENTRY_title">현재 항목 데이터</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">플러그인이 현재 데이터베이스 항목에 대한 모든 데이터를 받아 액션을 제공하고 해당 표시를 수정할 수 있도록 허가합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">자신의 자격증명 요청</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인이 자체 앱 패키지와 연관된 자격 증명을 요청 할 수 있도록 허가합니다.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인이 자체 앱 패키지와 연관된 자격 증명을 요청할 수 있도록 허가합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">자격 증명 요청</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인이 웹 사이트 또는 앱의 인증을 위해 자격 증명을 요청 할 수 있도록 허가합니다.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인이 웹 사이트 또는 앱의 인증을 위해 자격 증명을 요청할 수 있도록 허가합니다.</string>
   <string name="get_regular_version">더 많은 저장소 유형 가져오기</string>
   <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 기기에 적절한 루트 인증서를 설치하거나 설정을 확인하십시오!</string>
   <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 기기에 적절한 루트 인증서를 설치하거나 설정을 확인하십시오!</string>
