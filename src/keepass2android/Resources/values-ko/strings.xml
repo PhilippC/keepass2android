@@ -165,7 +165,7 @@
   <string name="loading_database">데이터베이스 불러오는 중...</string>
   <string name="lowercase">소문자</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">비밀번호 숨기기</string>
+  <string name="maskpass_title">비밀번호 가림</string>
   <string name="maskpass_summary">비밀번호 숨기기를 기본으로 설정합니다</string>
   <string name="menu_about">Keepass2Android 정보</string>
   <string name="menu_change_key">마스터 키 변경하기</string>
@@ -182,7 +182,7 @@
   <string name="menu_navigate">상위 그룹으로 이동</string>
   <string name="menu_donate">맥주 기부하기...</string>
   <string name="menu_edit">수정</string>
-  <string name="menu_hide_password">비밀번호 숨기기</string>
+  <string name="menu_hide_password">비밀번호 숨김</string>
   <string name="menu_lock">데이터베이스 잠금</string>
   <string name="menu_open">열기</string>
   <string name="menu_close">닫기</string>
@@ -215,7 +215,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">루트</string>
   <string name="AutoReturnFromQuery_title">요청 화면에서 자동으로 돌아오기</string>
-  <string name="AutoReturnFromQuery_summary">앱이나 웹사이트의 항목을 찾고 있을 때: 데이터베이스에 단 하나의 일치하는 항목이 있는 경우, 자동으로 요청 화면으로 돌아옵니다</string>
+  <string name="AutoReturnFromQuery_summary">앱이나 웹사이트의 항목을 찾고 있을 때: 데이터베이스에 일치하는 항목이 단 하나만 있는 경우, 자동으로 요청 화면으로 돌아옵니다</string>
   <string name="KeyDerivFunc">키 유도 함수</string>
   <string name="rounds">암호화 정수</string>
   <string name="rounds_explaination">더 높은 암호화 정수는 무차별 대입 공격으로부터 보다 안전하지만, 가져오기나 저장하기 시 많이 느려질 수 있습니다.</string>
@@ -284,13 +284,13 @@
   <string name="QuickUnlockDefaultEnabled_summary">QuickUnlock을 기본으로 사용할지 설정합니다.</string>
   <string name="ViewDatabaseSecure_title">데이터베이스 표시 보호</string>
   <string name="ViewDatabaseSecure_summary">이 설정을 사용하면 스크린샷 기능을 막고 최근 앱 리스트에 앱의 썸네일을 표시하지 않습니다.</string>
-  <string name="QuickUnlockIconHidden_title">QuickUnlock 아이콘 숨기기</string>
+  <string name="QuickUnlockIconHidden_title">QuickUnlock 아이콘 숨김</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock은 알림 아이콘 표시 없이는 작동하지 않습니다. 투명한 아이콘을 사용하려면 이 옵션을 선택하십시오.</string>
-  <string name="QuickUnlockIconHidden16_title">QuickUnlock 아이콘 숨기기</string>
+  <string name="QuickUnlockIconHidden16_title">QuickUnlock 아이콘 숨김</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock이 제대로 작동하려면 알림 표시가 필요합니다. 아이콘 없이 알림창을 표시하려면 이 옵션을 선택하십시오.</string>
   <string name="QuickUnlockLength_title">QuickUnlock 키 길이</string>
   <string name="QuickUnlockLength_summary">QuickUnlock 비밀번호로 사용될 최대 문자 수를 설정합니다.</string>
-  <string name="QuickUnlockHideLength_title">QuickUnlock 길이 숨기기</string>
+  <string name="QuickUnlockHideLength_title">QuickUnlock 길이 숨김</string>
   <string name="QuickUnlockHideLength_summary">이 설정을 사용하면 QuickUnlock 코드의 길이가 QuickUnlock 화면에 표시되지 않습니다.</string>
   <string name="QuickUnlock_fail">QuickUnlock 실패 : 잘못된 비밀번호!</string>
   <string name="BinaryDirectory_title">첨부파일 폴더</string>
@@ -318,9 +318,9 @@
   <string name="credentials_dialog_title">서버 자격증명 입력</string>
   <string name="UseFileTransactions_title">파일 트랜젝션</string>
   <string name="UseFileTransactions_summary">데이터베이스 쓰기에 파일 트랜젝션을 사용합니다</string>
-  <string name="LockWhenScreenOff_title">화면 꺼질 때 잠그기</string>
+  <string name="LockWhenScreenOff_title">화면이 꺼질 때 잠금</string>
   <string name="LockWhenScreenOff_summary">화면이 꺼질 때 데이터베이스를 잠급니다.</string>
-  <string name="ClearPasswordOnLeave_title">입력된 마스터 패스워드를 지우기</string>
+  <string name="ClearPasswordOnLeave_title">입력된 마스터 패스워드 지움</string>
   <string name="ClearPasswordOnLeave_summary">데이터베이스를 잠금해제 하지 않고 화면을 떠날 경우 입력된 마스터 패스워드를 지웁니다.</string>
   <string name="LockWhenNavigateBack_title">앱을 닫을 때 잠금</string>
   <string name="LockWhenNavigateBack_summary">뒤로 버튼을 눌러 앱을 닫을 때 데이터베이스를 잠급니다.</string>
@@ -328,7 +328,7 @@
   <string name="UseKp2aKeyboardInKp2a_summary">기본 키보드 제공자를 신뢰할 수 없다면, 이 옵션을 체크해 마스터 키를 입력할 때나 항목을 편집할 때 내장 키보드를 사용하십시오.</string>
   <string name="ActivateSearchViewOnStart_title">시작 시 검색 필드 활성화</string>
   <string name="ActivateSearchViewOnStart_summary">잠금 해제 또는 항목 검색 시 그룹보기에서 검색 필드를 활성화합니다</string>
-  <string name="NoDonateOption_title">기부 버튼 숨기기</string>
+  <string name="NoDonateOption_title">기부 버튼 숨김</string>
   <string name="NoDonateOption_summary">기부자를 위한 옵션입니다. 이 앱을 한동안 사용한 후에만 설정이 가능합니다.</string>
   <string name="NoDonateOption_question">이 앱은 기부 없이는 존재하거나 지속적으로 발전할 수 없습니다! 아직 기부를 하지 않으셨다면, 지금 기부에 대해 고려해 주십시오</string>
   <string name="NoDonationReminder_title">기부에 대해 다시는 묻지 않기</string>
@@ -344,7 +344,7 @@
   <string name="AcceptAllServerCertificates_summary">인증서 유효성 검사 실패 시 동작을 설정합니다. 참고: 유효성 검사가 실패하면 인증서를 기기에 설치할 수 있습니다.</string>
   <string name="ClearOfflineCache_title">캐시를 지울까요?</string>
   <string name="ClearOfflineCache_question">캐시 된 모든 데이터베이스 파일이 삭제됩니다. 원본 데이터베이스에 액세스 하지 않고 아직 동기화되지 않은 상태에서 변경한 내용은 손실 됩니다! 진행 하시겠습니까?</string>
-  <string name="CheckForFileChangesOnSave_title">수정 확인하기</string>
+  <string name="CheckForFileChangesOnSave_title">수정 확인</string>
   <string name="CheckForFileChangesOnSave_summary">파일이 외부에서 수정되었는지 변경사항을 저장하기 전에 확인합니다.</string>
   <string name="CheckForDuplicateUuids_title">중복된 UUID 확인</string>
   <string name="CheckForDuplicateUuids_summary">동일한 ID의 항목이 여러 개 있으면 데이터베이스 파일이 손상되었는지 확인합니다. 예기치 못한 동작이 발생할 수 있습니다.</string>
@@ -356,7 +356,7 @@
   <string name="AutoFill_prefs">자동 입력 서비스</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 키보드 알림</string>
   <string name="ShowKp2aKeyboardNotification_summary">KP2A 키보드를 통해 전체 항목에 접근할 수 있도록 합니다. (권장)</string>
-  <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">키보드 전환</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">브라우저에서 검색 후 KP2A 키보드를 통한 항목 선택이 가능할 때 키보드 선택창을 엽니다.</string>
   <string name="kp2a_switch_rooted">키보드 자동 전환</string>
   <string name="kp2a_switch_rooted_summary">항목을 열면 KP2A 키보드로 자동 전환됩니다. 제대로 설정된 KeyboardSwap 플러그인 또는 루팅 된 기기와 Secure Settings 앱 및 System+ 모듈이 필요합니다. </string>
@@ -959,9 +959,9 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>비공개/공개 키</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>인증서 유효성 검사 오류를 무시</item>
-    <item>유효성 검사가 실패할 경우 알림</item>
-    <item>유효하지 않은 인증서는 허용하지 않습니다</item>
+    <item>인증서 유효성 검사 오류 무시</item>
+    <item>유효성 검사 실패 시 알림</item>
+    <item>유효하지 않은 인증서 허용 안 함</item>
   </string-array>
   <string name="ClearClipboardWarning">이 기능이 시스템에서 작동하는지 확인하고 그렇지 않은 경우 내장 키보드 사용을 고려하십시오.</string>
   <string name="PluginDescription">플러그인에서 제공 한 설명:</string>
