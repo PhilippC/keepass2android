@@ -33,7 +33,7 @@
   <string name="NavigationToGroupCompleted_message">현재 표시된 그룹: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">자동입력 비활성 대상</string>
   <string name="AutofillDisabledQueriesPreference_summary">자동입력이 비활성화된 앱과 웹사이트의 리스트를 보여줍니다</string>
-  <string name="OfferSaveCredentials_summary">활성화되면, 자동입력 가능한 필드에 수동으로 데이터를 입력 후, 자격 증명을 저장하려 할 때, 안드로이드가 물어봅니다</string>
+  <string name="OfferSaveCredentials_summary">이 설정을 사용하면 자동입력 가능한 필드에 수동으로 데이터를 입력 후, 자격 증명을 저장하려 할 때, Android가 물어봅니다</string>
   <string name="OfferSaveCredentials_title">자격 증명 저장 제공</string>
   <string name="ShowGroupInEntry_title">항목 보기에서 그룹 이름 표시</string>
   <string name="unknown_uri_scheme">죄송 합니다! Keepass2Android는 반환된 URI %1$s을 처리할 수 없습니다. 개발자에게 연락 하십시오!</string>
@@ -485,13 +485,12 @@
   <string name="filestoragename_content">시스템 파일 선택기</string>
   <string name="filestorage_setup_title">파일 액세스 초기화</string>
   <string name="database_location">데이터베이스 위치</string>
-  <string name="help_database_location">데이터베이스 파일을 안드로이드 기기나 클라우드에 저장할 수 있습니다. (온라인 버전 앱에서만)
+  <string name="help_database_location">데이터베이스 파일을 안드로이드 기기나 클라우드에 저장할 수 있습니다. (오프라인이 아닌 버전에서만)
 Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 가능합니다. 데이터베이스 파일은 AES 256 비트 암호화로 안전하게 저장되어 있으며, 당신을 제외하고는 그 누구도 당신의 비밀번호에 접근할 수 없습니다.
-우리는 Dropbox를 선택하시길 권장합니다.
-그건 당신이 가진 모든 장치에서 접근이 가능할 뿐더러 이전 파일의 백업도 지원하거든요.</string>
-  <string name="hint_database_location">데이터베이스를 저장할 위치를 선택합니다.</string>
+우리는 드롭박스를 선택하시길 권장합니다: 드롭박스는 당신이 가진 모든 장치에서 접근이 가능할 뿐더러 이전 파일의 백업도 지원하기 때문입니다.</string>
+  <string name="hint_database_location">데이터베이스를 저장할 위치를 선택하십시오:</string>
   <string name="button_change_location">위치 변경</string>
-  <string name="help_quickunlock">사용하도록 설정하면 Keepass2Android가 데이터베이스가 잠겨 있어도 백그라운드에서 계속 실행됩니다. 이렇게 하면 나중에 마스터 비밀번호의 일부만 사용하여 데이터베이스를 잠금 해제 할 수 있습니다.</string>
+  <string name="help_quickunlock">이 설정을 사용하면 Keepass2Android가 데이터베이스가 잠겨 있어도 백그라운드에서 계속 실행됩니다. 이렇게 하면 나중에 마스터 비밀번호의 일부만 사용하여 데이터베이스를 잠금 해제 할 수 있습니다.</string>
   <string name="master_password">마스터 암호</string>
   <string name="help_master_password">데이터베이스 파일은 여기 입력된 비밀번호로 암호화 됩니다. 데이터베이스의 안전성을 유지하려면 강력한 비밀번호를 선택하세요! >> 팁: 하나 또는 두 가지의 문장을 만들어서 단어들의 첫번째 글자들을 비밀번호로 쓰는 겁니다. 문장부호도 포함해서요.</string>
   <string name="hint_master_password">데이터베이스를 보호하기 위해 마스터 비밀번호를 선택 합니다.</string>
@@ -556,18 +555,18 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하세요!</string>
   <string name="export_fileformats_title">파일 형식 선택</string>
-  <string name="killed_by_os">죄송합니다! Keepass2Android는 안드로이드 OS에 의해 강제종료 되었습니다! 보안상의 이유로 Keepass2Android는 선택한 자격 증명을 디스크에 저장하지 않으므로 데이터베이스를 다시 열어야합니다. 참고: 이 상황은 매우 드물게 발생합니다. 그렇다면 crocoapps@gmail.com으로 메시지를 보내주십시오.</string>
+  <string name="killed_by_os">죄송합니다! Keepass2Android는 Android OS에 의해 강제종료 되었습니다! 보안상의 이유로 Keepass2Android는 선택한 자격 증명을 디스크에 저장하지 않으므로 데이터베이스를 다시 열어야합니다. 참고: 이 상황은 매우 드물게 발생합니다. crocoapps@gmail.com 으로 메시지를 보내주십시오.</string>
   <string name="FileIsTemporarilyAvailable">Keepass2Android에서 일시적으로만 사용할 수 있는 파일입니다.</string>
   <string name="FileIsReadOnly">귀하가 선택한 파일은 읽기 전용입니다.</string>
-  <string name="FileIsReadOnlyOnKitkat">선택한 파일은 Android 4.4 이상에서의 제한으로 인해 Keepass2Android에서는 읽기 전용입니다.</string>
+  <string name="FileIsReadOnlyOnKitkat">선택한 파일은 Android 4.4 이상에서의 제한으로 인해 Keepass2Android에서는 읽기 전용으로 열립니다.</string>
   <string name="CopyFileRequired">이를 사용하려면 다른 위치로 복사 해야 합니다.</string>
   <string name="CopyFileRequiredForEditing">이를 수정 하려면 다른 위치로 복사 해야 합니다.</string>
   <string name="ClickOkToSelectLocation">확인을 클릭하여 파일을 복사 할 위치를 선택하십시오.</string>
   <string name="FileReadOnlyTitle">데이터베이스가 읽기 전용입니다</string>
-  <string name="FileReadOnlyMessagePre">Keepass2Android는 현재 데이터베이스를 읽기 전용 모드로 열었습니다.</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android가 현재 데이터베이스를 읽기 전용 모드로 열었습니다.</string>
   <string name="ReadOnlyReason_PreKitKat">외부 앱에서 파일을 연 것처럼 보입니다. 이 방법은 쓰기권한이 지원되지 않습니다. 데이터베이스를 변경하려면 데이터베이스를 닫고 데이터베이스 변경을 선택하십시오. 가능하다면 사용 가능한 옵션 중 하나에서 파일을 여세요.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">읽기 전용 플래그가 설정됩니다. 데이터베이스를 변경하려면 이 플래그를 제거하십시오.</string>
-  <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat에 도입 된 제한사항으로 인해 쓰기 권한이 없습니다. 데이터베이스를 변경하려면 데이터베이스를 닫고 데이터베이스 변경을 선택하십시오. 그런 다음 시스템 파일 선택기를 사용하여 파일을 엽니다.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat에 도입 된 제한사항으로 인해 쓰기 권한이 없습니다. 데이터베이스를 변경하려면 데이터베이스를 닫고 데이터베이스 변경을 선택하십시오. 그런 다음 시스템 파일 선택기를 사용하여 파일을 여십시오.</string>
   <string name="ReadOnlyReason_LocalBackup">내부 백업은 수정할 수 없습니다. 데이터베이스 설정 - 데이터베이스 내보내기를 사용하여 이 백업을 다시 열 수 있는 다른 위치로 내보낼 수 있습니다. 그러면 다시 쓸 수 있습니다.</string>
   <string name="AddCustomIcon">파일에서 아이콘을 추가...</string>
   <string name="CopyingFile">파일 복사 중...</string>
