@@ -444,8 +444,8 @@
   <string name="donate_question">오늘이 맥주 축제날이네요!  Keepass2Android가 마음에 드셨다면 오늘이 제게 맥주 한 번 사기 좋은 날 아닐까요?</string>
   <string name="donate_bday_question">5월 10일? 제 생일이네요! 이 앱이 맘에 드셨다면 제게 작은 생일선물과 함께 축하인사를 보내주시면 안될까요? 그럼 진짜 행복할 것 같은데요! :-)</string>
   <string name="donate_missedbday_question">아, 5월 10일 제 생일을 놓치셨네요! 이 앱이 맘에 드신다면 작은 생일선물과 함께 축하인사를 보내주시면 안될까요? 저를 행복하게 해주시기에 아직 늦지 않았답니다! :-)</string>
-  <string name="ok_donate">제게 좀 더 말해주세요!</string>
-  <string name="no_thanks">아뇨. 그게 그다지 좋진 않습니다.</string>
+  <string name="ok_donate">제게 좀 더 자세히 말해보세요!</string>
+  <string name="no_thanks">아뇨, 그게 그다지 좋진 않습니다</string>
   <string name="enter_http_login_title">WebDav 로그인 데이터 입력:</string>
   <string name="hint_http_url">폴더 또는 파일의 주소 (예: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud 로그인 데이터 입력:</string>
@@ -510,7 +510,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="otp_discarded_no_space">모든 OTPs가 이미 입력되었기 때문에 OTP는 폐기되었습니다.</string>
   <string name="otp_discarded_because_db_open">데이터베이스부터 닫아주세요. OTP는 폐기됩니다.</string>
   <string name="otps_pending">(하나 이상의 OTPs가 이미 사용 가능)</string>
-  <string name="otpsecret_hint">OTP 비밀 (e.g. 01 23 ab cd…)</string>
+  <string name="otpsecret_hint">OTP secret (예시: 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">OTP secret 분석 오류!</string>
   <string name="OtpKeyError">OTP 키 생성에 실패했습니다! 정확한 OTPs를 입력하세요.</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 보조 파일 갱신 오류!</string>
@@ -641,7 +641,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string-array name="ChangeLog_1_08">
     <item>TOTP 클립보드 복사 알림 버튼 추가</item>
     <item>TLS 1.2 지원을 위해 FluentFTP로 변경</item>
-    <item>지문 인식 잠금 해제 사용시의 사용자 환경 개선 및 얼굴 인식 잠금 해제 지원을 위해 BiometricPrompt API로 변경. 예시: Pixel 4 기기 등.</item>
+    <item>지문 인식 잠금 해제 사용시의 사용자 환경 개선 및 얼굴 인식 잠금 해제 지원을 위해 BiometricPrompt API로 변경. 예: Pixel 4 기기 등.</item>
     <item>버그 수정</item>
   </string-array>
   <string name="ChangeLog_1_07b">버전 1.07b\n
