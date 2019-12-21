@@ -459,10 +459,10 @@
   <string name="sftp_auth_mode">인증모드</string>
   <string name="send_public_key">공개 키 보내기...</string>
   <string name="enter_ftp_login_title">FTP 로그인 데이터 입력:</string>
-  <string name="select_storage_type">저장소 유형을 선택하세요.</string>
+  <string name="select_storage_type">저장소 유형을 선택하십시오.</string>
   <string name="filestoragename_file">로컬 파일</string>
-  <string name="filestoragename_androidget">제3의 앱에서 가져오기</string>
-  <string name="filestoragename_androidsend">제3의 앱으로 보내기</string>
+  <string name="filestoragename_androidget">다른 앱에서 가져오기</string>
+  <string name="filestoragename_androidsend">다른 앱으로 보내기</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
@@ -473,7 +473,7 @@
   <string name="filestoragehelp_dropboxKP2A">KP2A가 당신의 Dropbox 전체 목록에 접근하는 것을 원하지 않는다면 이 옵션을 선택하세요. 그럼 오직 Apps/Keepass2Android 폴더에만 접근을 요청합니다. 이건 새로운 데이터베이스를 생성할 때 특히 적합합니다.
 이미 데이터베이스 파일를 갖고 있다면, 이 옵션을 선택해서 폴더를 생성한 다음, 기존의 데이터베이스 파일을 생성된 폴더에 넣습니다. (PC나 기타의 경로를 통해서)
 그 다음에 이 옵션을 다시 선택하고 데이터베이스 파일을 엽니다.</string>
-  <string name="filestoragename_gdrive">구글 드라이브</string>
+  <string name="filestoragename_gdrive">Google 드라이브</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주세요.</string>
   <string name="filestoragename_onedrive">원드라이브</string>
@@ -482,7 +482,7 @@
   <string name="filestoragename_onedrive2_myfiles">내 파일</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android 앱 폴더</string>
   <string name="filestoragename_sftp">SFTP (SSH 파일 전송)</string>
-  <string name="filestoragename_content">시스템 파일 탐색기</string>
+  <string name="filestoragename_content">시스템 파일 선택기</string>
   <string name="filestorage_setup_title">파일 액세스 초기화</string>
   <string name="database_location">데이터베이스 위치</string>
   <string name="help_database_location">데이터베이스 파일을 안드로이드 기기나 클라우드에 저장할 수 있습니다. (온라인 버전 앱에서만)
@@ -645,10 +645,10 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>버그 수정</item>
   </string-array>
   <string name="ChangeLog_1_07b">버전 1.07b\n
-    * 네이티브 구현을 통해 Argon2 퍼포먼스 향상 (Chih-Hsuan Yen님께 감사를 표합니다!)\n
-    * 지문 아이콘을 클릭해서 지문 인식 비활성화 허용 (이를 통해 스크린 밑으로 나간 지문 인식 리더 문제를 피할 수 있습니다. marcoDallas님께 감사를 표합니다!)\n
-    * 암호 표기 토글 시 커서 위치 복구 (DDoSolitary니께 감사를 표합니다!)\n
-    * pCloud 구현 향상 (gilbsgilbs님께 다시 한번 감사를 표합니다!)\n
+    * 네이티브 구현을 통해 Argon2 퍼포먼스 향상 (Chih-Hsuan Yen님께 감사드립니다!)\n
+    * 지문 아이콘을 클릭해서 지문 인식 비활성화 허용 (이를 통해 스크린 밑으로 나간 지문 인식 리더 문제를 피할 수 있습니다. marcoDallas님께 감사드립니다!)\n
+    * 암호 표기 토글 시 커서 위치 복구 (DDoSolitary님께 감사드립니다!)\n
+    * pCloud 구현 향상 (gilbsgilbs님께 다시 한번 감사드립니다!)\n
     * 조금 더 많은 브라우저에서 자동 입력 지원 \n
     * 새 OneDrive 구현: 비즈니스 용 OneDrive, 공유된 파일, 선택 가능한  액세스 범위, 다중 계정 지원 및 오프라인 접근 수정 포함\n
     * 버그 수정  
