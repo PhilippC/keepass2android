@@ -31,8 +31,7 @@
   <string name="ShowGroupnameInSearchResult_title">검색결과에 그룹명 표시하기</string>
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹명을 표시 합니다. 여러 항목의 이름이 같은 경우 유용합니다.</string>
   <string name="NavigationToGroupCompleted_message">현재 표시된 그룹: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">자동입력 비활성 대상</string>
-  <string name="AutofillDisabledQueriesPreference_summary">자동입력이 비활성화된 앱과 웹사이트의 리스트를 보여줍니다</string>
+  <string name="AutofillDisabledQueriesPreference_title">자동 입력 비활성 대상</string>
   <string name="OfferSaveCredentials_summary">이 설정을 사용하면 자동입력 가능한 필드에 수동으로 데이터를 입력 후, 자격 증명을 저장하려 할 때, Android가 물어봅니다</string>
   <string name="OfferSaveCredentials_title">자격 증명 저장 제공</string>
   <string name="ShowGroupInEntry_title">항목 보기에서 그룹명 표시</string>
@@ -353,8 +352,8 @@
   <string name="ShowCopyToClipboardNotification_summary">계정명과 비밀번호를 알림창과 클립보드를 통해 접근할 수 있도록 합니다. 비밀번호 스니퍼를 주의하십시오!</string>
   <string name="ShowSeparateNotifications_title">분리된 알림</string>
   <string name="ShowSeparateNotifications_summary">계정명과 암호를 클립 보드로 복사하기 위한 알림과 키보드를 활성화 하기 위한 알림을 별도로 표시합니다.</string>
-  <string name="AccServiceAutoFill_prefs">자동완성 접근성 서비스</string>
-  <string name="AutoFill_prefs">자동완성 서비스</string>
+  <string name="AccServiceAutoFill_prefs">자동 입력 접근성 서비스</string>
+  <string name="AutoFill_prefs">자동 입력 서비스</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 키보드 알림</string>
   <string name="ShowKp2aKeyboardNotification_summary">KP2A 키보드를 통해 전체 항목에 접근할 수 있도록 합니다. (권장)</string>
   <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
@@ -483,7 +482,7 @@
   <string name="filestoragename_content">시스템 파일 선택기</string>
   <string name="filestorage_setup_title">파일 액세스 초기화</string>
   <string name="database_location">데이터베이스 위치</string>
-  <string name="help_database_location">데이터베이스 파일을 Android 기기나 클라우드에 저장할 수 있습니다. (오프라인이 아닌 버전에서만)
+  <string name="help_database_location">데이터베이스 파일을 Android 기기나 클라우드에 저장할 수 있습니다. (오프라인이 아닌 버전에서만 가능)
 Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 가능합니다. 데이터베이스 파일은 AES 256 비트 암호화로 안전하게 저장되어 있으며, 당신을 제외하고는 그 누구도 당신의 비밀번호에 접근할 수 없습니다.
 우리는 드롭박스를 선택하시길 권장합니다: 드롭박스는 당신이 가진 모든 기기에서 접근이 가능할 뿐더러 이전 파일의 백업도 지원하기 때문입니다.</string>
   <string name="hint_database_location">데이터베이스를 저장할 위치를 선택하십시오:</string>
@@ -588,7 +587,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="TemplateTitle_Membership">멤버십</string>
   <string name="ChangeLog_title">변경 로그</string>
   <string name="AskAddTemplatesTitle">서식을 추가 하시겠습니까?</string>
-  <string name="AskAddTemplatesMessage">Keepass2Android에는 이메일 계정, 무선 LAN 암호, 보안 메모 등을 위한 입력 서식이 포함되어 있습니다. 데이터베이스에 추가 하시겠습니까? 아니요를 선택하면 나중에 데이터베이스 설정에서 추가 할 수 있습니다.</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android에는 이메일 계정, 무선 LAN 암호, 보안 메모 등을 위한 입력 서식이 포함되어 있습니다. 데이터베이스에 추가 하시겠습니까? 아니오를 선택하면 나중에 데이터베이스 설정에서 추가 할 수 있습니다.</string>
   <string name="AddTemplates_pref">데이터베이스에 서식 추가</string>
   <string name="PreviewWarning">주의하십시오! 이것은 프리뷰 릴리즈이며 몇 가지 결함이 있을 수 있습니다! *어떤 결함이든* 예기치 못한 일이 발생한다면 제게 알려주십시오. (Google+ 베타 테스터 그룹 또는 이메일을 통해 알려 주시면 됩니다.)</string>
   <string name="Continue">계속</string>
@@ -966,13 +965,13 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   </string-array>
   <string name="ClearClipboardWarning">이 기능이 시스템에서 작동하는지 확인하고 그렇지 않은 경우 내장 키보드 사용을 고려하십시오.</string>
   <string name="PluginDescription">플러그인에서 제공 한 설명:</string>
-  <string name="autofill_hint">Keepass2Android는 Android의 자동완성 기능을 지원하지만 아직 사용 설정이 되지 않은 것 같습니다.</string>
-  <string name="autofill_enable">자동완성 활성화</string>
-  <string name="autofill_enable_failed">죄송합니다. 기기가 앱 내부에서 설정을 열 수 있도록 지원하지 않는 것 같습니다. 서비스를 사용하려면 시스템 설정으로 직접 이동하여 자동완성을 활성화 하십시오.</string>
-  <string name="show_autofill_help">자동완성 도움말 보기</string>
+  <string name="autofill_hint">Keepass2Android는 Android의 자동 입력 기능을 지원하지만 아직 사용 설정이 되지 않은 것 같습니다.</string>
+  <string name="autofill_enable">자동 입력 활성화</string>
+  <string name="autofill_enable_failed">죄송합니다. 기기가 앱 내부에서 설정을 열 수 있도록 지원하지 않는 것 같습니다. 서비스를 사용하려면 시스템 설정으로 직접 이동하여 자동 입력을 활성화 해주십시오.</string>
+  <string name="show_autofill_help">자동 입력 도움말 보기</string>
   <string name="autofill_sign_in_prompt">Keepass2Android로 입력</string>
-  <string name="autofill_disable">%1$s에 대해 자동완성 비활성화</string>
-  <string name="autofill_enable_for">%1$s에 대해 자동완성 활성화</string>
+  <string name="autofill_disable">%1$s에 대해 자동 입력 비활성화</string>
+  <string name="autofill_enable_for">%1$s에 대해 자동 입력 활성화</string>
   <string name="invalid_link_association">웹 도메인 %1$s를 앱 %2$s에 연결 할 수 없습니다.</string>
   <string name="enable_fingerprint_hint">Keepass2Android가 생체 인식 장치를 발견했습니다. 이 데이터베이스를 생체 인식으로 잠금 해제하시겠습니까?</string>
   <string name="understand">이해했습니다</string>
