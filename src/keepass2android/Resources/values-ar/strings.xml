@@ -30,6 +30,7 @@
   <string name="ShowGroupnameInSearchResult_title">عرض اسم المجموعة في نتيجة البحث</string>
   <string name="ShowGroupnameInSearchResult_resume">عرض اسم المجموعة تحت عناوين القيود في نتائج البحث. هذا مفيد في حال وجود عدة قيود بنفس الاسم.</string>
   <string name="NavigationToGroupCompleted_message">عرض المجموعة الآن: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Deshabilitar objetivos de autocompletado</string>
   <string name="ShowGroupInEntry_title">إظهار اسم المجموعة في عرض القيد</string>
   <string name="unknown_uri_scheme">المعذرة! Keepass2Android لا يمكنه معالجة الرابط %1$s الذي تم الحصول عليه. الرجاء التواصل مع المطور!</string>
   <string name="Entry_singular">إدخال واحد</string>
