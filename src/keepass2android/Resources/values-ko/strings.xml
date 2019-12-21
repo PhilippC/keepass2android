@@ -86,7 +86,7 @@
   <string name="fingerprint_fatal">생체 인식 잠금 해제를 설정할 수 없습니다:</string>
   <string name="fingerprint_not_recognized">생체 인식에 실패했습니다. 다시 시도해 주십시오</string>
   <string name="fingerprint_success">생체 인식에 성공했습니다</string>
-  <string name="fingerprint_os_error">생체 인식 잠금 해제는 안드로이드 6.0 이상이 필요합니다.</string>
+  <string name="fingerprint_os_error">생체 인식 잠금 해제는 Android 6.0 이상이 필요합니다.</string>
   <string name="fingerprint_hardware_error">감지된 생체 인식 하드웨어가 없습니다.</string>
   <string name="fingerprint_no_enrolled">장치에 생체 인식이 설정되어있지 않습니다. 먼저 시스템 설정을 진행해주세요.</string>
   <string name="disable_fingerprint_unlock">생체 인식 잠금 해제 사용 안 함</string>
@@ -470,9 +470,9 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">드롭박스</string>
   <string name="filestoragename_dropboxKP2A">드롭박스 (KP2A 폴더)</string>
-  <string name="filestoragehelp_dropboxKP2A">KP2A가 당신의 Dropbox 전체 목록에 접근하는 것을 원하지 않는다면 이 옵션을 선택하세요. 그럼 오직 Apps/Keepass2Android 폴더에만 접근을 요청합니다. 이건 새로운 데이터베이스를 생성할 때 특히 적합합니다.
-이미 데이터베이스 파일를 갖고 있다면, 이 옵션을 선택해서 폴더를 생성한 다음, 기존의 데이터베이스 파일을 생성된 폴더에 넣습니다. (PC나 기타의 경로를 통해서)
-그 다음에 이 옵션을 다시 선택하고 데이터베이스 파일을 엽니다.</string>
+  <string name="filestoragehelp_dropboxKP2A">KP2A가 당신의 Dropbox 전체 목록에 접근하는 것을 원하지 않는다면 이 옵션을 선택하십시오. Apps/Keepass2Android 폴더에만 접근을 요청합니다. 새로운 데이터베이스를 생성할 때 특히 적합합니다.
+이미 데이터베이스 파일를 갖고 있다면, 이 옵션을 선택해서 폴더를 생성한 다음, 기존의 데이터베이스 파일을 생성된 폴더에 넣으십시오. (PC나 기타 경로를 통해서)
+그 다음 이 옵션을 다시 선택하여 데이터베이스 파일을 여십시오.</string>
   <string name="filestoragename_gdrive">Google 드라이브</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주세요.</string>
@@ -604,7 +604,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="HintLocalBackupInvalidCompositeKey">\n
     &#8226; 힌트: 데이터베이스 파일이 손상되었거나 마스터 키를 수정 한 후에 기억하지 못한다면 \"%1$s\"를 클릭하고 내부 백업을 선택하여 마지막으로 성공적으로 연 파일 버전을 시도 할 수 있습니다.</string>
   <string name="HintLocalBackupOtherError">\n
-    &#8226; 힌트: Keepass2Android는 마지막으로 성공적으로 연 파일 버전을 내부 메모리에 저장했습니다. \"%1$s\"를 탭하고 내부 백업을 선택하여 열 수 있습니다.  </string>
+    &#8226; 힌트: Keepass2Android는 마지막으로 성공적으로 연 파일 버전을 내부 메모리에 저장했습니다. \"%1$s\" 항목을 탭하고 내부 백업을 선택하여 열 수 있습니다.  </string>
   <string name="CorruptDatabaseHelp">파일이 손상되었습니다. \n 
     다음은 문제를 진단하는 데 도움이되는 몇 가지 힌트입니다:\n
     
@@ -713,7 +713,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="ChangeLog_1_01g">    버전 1.01-g\n
     * 오프라인으로 작업 할 때 충돌 문제 수정\n
     * FTP(S) 자격 증명의 잘못된 인코딩 수정\n
-    * OneDrive 및 이전 Android 버전에서 충돌 문제 수정\n
+    * 원드라이브 및 이전 Android 버전에서 충돌 문제 수정\n
     * 입력 화면에서 현지 시간으로 시간 표시\n
   </string>
   <string name="ChangeLog_1_01d">    버전 1.01-d\n
@@ -825,7 +825,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 		* 이제 QuickUnlock 아이콘은 기본적으로 Android 4.2 이상의 기기에 표시되지 않습니다.\n </string>
   <string name="ChangeLog_0_9_3_r5"><b>버전 0.9.3 r5</b>\n
 		* Xamarin의 수정 사항: Keepass2Android가 Android 4.4.2의 ART와 호환됩니다. 드디어!\n
-		* 버그 수정: 동기화 버그 (표시 새로 고침, http 변경 사항 확인), Android 2.x 기기의 버그, Google 드라이브 및 OneDrive 저장소 구현의 버그, 닫기 데이터베이스의 클립 보드 지우기, 첨부 파일 열기 버그, 키보드 문제 표시\n</string>
+		* 버그 수정: 동기화 버그 (표시 새로 고침, http 변경 사항 확인), Android 2.x 기기의 버그, Google 드라이브 및 원드라이브 저장소 구현의 버그, 닫기 데이터베이스의 클립 보드 지우기, 첨부 파일 열기 버그, 키보드 문제 표시\n</string>
   <string name="ChangeLog_0_9_3"><b>버전 0.9.3</b>\n
 		* 수많은 개선사항을 포함한 새 키보드. 맞춤 설정을 참조하십시오.\n
 		* kdb (Keepass 1 파일) 에 대한 읽기 전용 지원. 실험용!\n
@@ -841,8 +841,8 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 		* 향상된 SSL 인증서 유효성 검사\n
 		* 버그 수정\n</string>
   <string name="ChangeLog_0_9_1"><b>버전 0.9.1</b>\n
-		* 통합된 SkyDrive 지원 (Keepass2Android 일반용 버전 전용)\n
-		* 구글 드라이브 통합에서의 문제 해결\n
+		* 통합된 SkyDrive 지원 (Keepass2Android 일반 버전 전용)\n
+		* Google 드라이브 통합에서의 문제 해결\n
 		* NTLM 지원 추가</string>
   <string name="ChangeLog_0_9"><b>버전 0.9</b>\n
 		* 통합된 드롭박스 및 Google 드라이브 지원 (읽기/쓰기 데이터베이스, Keepass2Android 일반 에디션 전용)\n
@@ -968,7 +968,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   </string-array>
   <string name="ClearClipboardWarning">이 기능이 시스템에서 작동하는지 확인하고 그렇지 않은 경우 내장 키보드 사용을 고려하십시오.</string>
   <string name="PluginDescription">플러그인에서 제공 한 설명:</string>
-  <string name="autofill_hint">Keepass2Android는 Android의 자동 완성 기능을 지원하지만 아직 사용 설정을 하지 않은 것 같습니다.</string>
+  <string name="autofill_hint">Keepass2Android는 Android의 자동 완성 기능을 지원하지만 아직 사용 설정이 되지 않은 것 같습니다.</string>
   <string name="autofill_enable">자동 완성 활성화</string>
   <string name="autofill_enable_failed">죄송합니다. 기기가 앱 내부에서 설정을 열 수 있도록 지원 하지 않는 것 같습니다. 서비스를 사용하려면 시스템 설정으로 직접 이동하여 자동 완성을 활성화 하십시오.</string>
   <string name="show_autofill_help">자동 완성 도움말 보기</string>
