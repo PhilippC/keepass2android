@@ -491,35 +491,35 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="hint_database_location">데이터베이스를 저장할 위치를 선택하십시오:</string>
   <string name="button_change_location">위치 변경</string>
   <string name="help_quickunlock">이 설정을 사용하면 Keepass2Android가 데이터베이스가 잠겨 있어도 백그라운드에서 계속 실행됩니다. 이렇게 하면 나중에 마스터 비밀번호의 일부만 사용하여 데이터베이스를 잠금 해제 할 수 있습니다.</string>
-  <string name="master_password">마스터 암호</string>
-  <string name="help_master_password">데이터베이스 파일은 여기 입력된 비밀번호로 암호화 됩니다. 데이터베이스의 안전성을 유지하려면 강력한 비밀번호를 선택하세요! >> 팁: 하나 또는 두 가지의 문장을 만들어서 단어들의 첫번째 글자들을 비밀번호로 쓰는 겁니다. 문장부호도 포함해서요.</string>
-  <string name="hint_master_password">데이터베이스를 보호하기 위해 마스터 비밀번호를 선택 합니다.</string>
+  <string name="master_password">마스터 비밀번호</string>
+  <string name="help_master_password">데이터베이스 파일은 여기에 입력된 비밀번호로 암호화 됩니다. 데이터베이스의 안전성을 유지하려면 강력한 비밀번호를 선택하십시오! 팁: 하나 또는 두 가지의 문장을 만들어서 단어들의 첫번째 글자들을 비밀번호로 쓰는 겁니다. 문장부호도 포함해서요.</string>
+  <string name="hint_master_password">데이터베이스 보호를 위해 위해 마스터 비밀번호를 선택 하십시오:</string>
   <string name="key_file">키 파일</string>
   <string name="help_key_file">키 파일은 기본적으로 파일 안에 저장되는 비밀번호입니다. 키 파일들은 전형적으로 마스터 키보다 더 강력하지요.
 왜냐하면 그 키는 더욱 더 많이 복잡하니까요. 하지만 그것 또한 비밀을 유지하기엔 어렵습니다. 만약 데이터베이스 파일을 클라우드에 저장한다면, 키 파일은 거기 같이 저장하지 마세요! 그럼 전혀 쓸모 없습니다! 중요: 데이터베이스를 생성한 후에는 키 파일의 내용을 수정하지 마세요!</string>
-  <string name="hint_key_file">마스터 비밀번호와 더불어 키 파일을 쓰고자 한다면 선택하세요.</string>
+  <string name="hint_key_file">키 파일을 마스터 비밀번호와 함께 쓰고자 한다면 선택하십시오:</string>
   <string name="use_key_file">키 파일 사용</string>
   <string name="error_adding_keyfile">키 파일을 추가하는 동안 오류가 발생했습니다!</string>
   <string name="init_otp">OTP 보조 파일 불러오기...</string>
-  <string name="otp_explanation">그 다음의 One-time-passwords (OTPs) 를 입력합니다. NFC를 통해 입력하려면 장치의 뒷면에 Yubikey NEO를 스치세요 (Yubiclip 앱이 필요합니다).</string>
+  <string name="otp_explanation">다음 One-time-passwords (OTPs) 를 입력합니다. NFC를 통해 입력하려면 장치의 뒷면에 Yubikey NEO를 스치세요 (Yubiclip 앱이 필요합니다).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP 보조 파일을 불러올 수 없습니다!</string>
-  <string name="CouldntLoadOtpAuxFile_Hint">OTPs를 사용하기 위해 데이터베이스를 설정하려면 KeePass 2.x (PC)에서 OtpKeyProv 플러그인을 사용하세요.</string>
-  <string name="otp_discarded_because_no_db">데이터베이스부터 선택하세요. OTP는 보안상의 이유로 폐기됩니다.</string>
-  <string name="otp_discarded_no_space">모든 OTPs가 이미 입력되었기 때문에 OTP는 폐기되었습니다.</string>
-  <string name="otp_discarded_because_db_open">데이터베이스부터 닫아주세요. OTP는 폐기됩니다.</string>
-  <string name="otps_pending">(하나 이상의 OTPs가 이미 사용 가능)</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">OTPs를 사용하기 위해 데이터베이스를 설정하려면 KeePass 2.x (PC)에서 OtpKeyProv 플러그인을 사용해 주십시오!</string>
+  <string name="otp_discarded_because_no_db">데이터베이스부터 선택해주십시오. OTP는 보안상의 이유로 폐기됩니다.</string>
+  <string name="otp_discarded_no_space">모든 OTPs가 이미 입력되었기 때문에 OTP가 폐기되었습니다!</string>
+  <string name="otp_discarded_because_db_open">데이터베이스부터 닫아주십시오. OTP는 폐기됩니다.</string>
+  <string name="otps_pending">(하나 이상의 OTPs가 이미 사용 가능함)</string>
   <string name="otpsecret_hint">OTP secret (예시: 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">OTP secret 분석 오류!</string>
   <string name="OtpKeyError">OTP 키 생성에 실패했습니다! 정확한 OTPs를 입력하세요.</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 보조 파일 갱신 오류!</string>
   <string name="SavingOtpAuxFile">보조 OTP 파일 저장...</string>
   <string name="NoChallengeApp">이 시도를 다룰 수 있는 앱을 찾지 못했습니다.</string>
-  <string name="PleaseInstallApp">Google Play에서 %1$s을 설치해 주시기 바랍니다.</string>
-  <string name="AppOutdated">%1$s는 더 이상 지원하지 않습니다.</string>
+  <string name="PleaseInstallApp">Google Play에서 %1$s 앱을 설치해 주시기 바랍니다.</string>
+  <string name="AppOutdated">%1$s 앱은 더 이상 지원하지 않습니다.</string>
   <string name="bad_resp">시도-응답이 잘못되었습니다.</string>
   <string name="CouldntLoadChalAuxFile">보조 시도 파일을 불러올 수 없습니다!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">KeeChallenge 플러그인을 KeePass 2.x (PC)에서 사용하여 시도-응답에 사용할 데이터베이스를 구성하십시오!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">KeeChallenge 플러그인을 KeePass 2.x (PC)에서 사용하여 시도-응답에 사용할 데이터베이스를 구성해 주십시어!</string>
   <string name="ErrorUpdatingChalAuxFile">OTP 보조 파일 갱신 오류!</string>
   <string name="TrayTotp_SeedField_title">TOTP 시드 필드 이름</string>
   <string name="TrayTotp_SeedField_summary">기본값이 아닌 설정으로 Keepass 2 플러그인인 \"TrayTotp\" 를 사용하는 경우 PC의 설정에 따라 여기에 시드 필드의 필드 이름을 입력하십시오.</string>
@@ -528,16 +528,16 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">디버깅을 위한 로그 파일</string>
   <string name="DebugLog_title">로그 파일 사용</string>
-  <string name="DebugLog_summary">앱의 출력을 내부 로그 파일에 쓰기</string>
+  <string name="DebugLog_summary">앱의 출력을 내부 로그 파일에 작성합니다</string>
   <string name="DebugLog_send">디버그 로그 보내기...</string>
   <string name="loading">로딩 중…</string>
-  <string name="plugins">플러그 인</string>
+  <string name="plugins">플러그인</string>
   <string name="plugin_packagename">패키지 이름:</string>
   <string name="plugin_description">설명 (확인 되지 않음):</string>
   <string name="plugin_author">저자 (확인 되지 않음):</string>
   <string name="plugin_enabled">활성화됨</string>
   <string name="plugin_disabled">비활성화됨</string>
-  <string name="plugin_web">온라인에서 를러그인 찾기</string>
+  <string name="plugin_web">온라인에서 플러그인 찾기</string>
   <string name="plugin_scopes">범위</string>
   <string name="not_enabled">비활성화됨</string>
   <string name="query_credentials_for_url">%1$s가 %2$s의 계정 정보를 요청하고 있습니다.</string>
@@ -772,7 +772,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 		* 스토리지 액세스 프레임 워크 지원 (KP2A 오프라인에서 SD 카드 및 Google 드라이브에 쓰기 가능)\n
 		* WebDAV URL (파일 대신 디렉토리) 을 입력 할 때 잘못된 사용자 입력을 탐지\n
 		* 비밀번호 글꼴 변경\n
-		* 드롭박스 계쩡 변경 허가\n
+		* 드롭박스 계정 변경 허가\n
 		* 버그 수정: 이제 OTP 비밀번호가 기억됩니다</string>
   <string name="ChangeLog_0_9_7b">버전 0.9.7b\n
 		* 번역 업데이트\n
@@ -951,7 +951,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>비밀번호 인증</item>
     <item>비밀번호 + 키 파일</item>
     <item>비밀번호 + OTP</item>
-    <item>비밀번호 + OTP 비밀 (복구 모드)</item>
+    <item>비밀번호 + OTP secret (복구 모드)</item>
     <item>비밀번호 + 시도-응답 인증</item>
     <item>비밀번호 + 시도-응답 (복구 모드)</item>
     <item>Keepass XC를 위한 비밀번호 + 시도-응답 인증</item>
