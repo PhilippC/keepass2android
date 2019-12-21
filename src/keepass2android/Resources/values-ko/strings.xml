@@ -88,7 +88,7 @@
   <string name="fingerprint_success">생체 인증에 성공했습니다</string>
   <string name="fingerprint_os_error">생체 인식 잠금 해제는 Android 6.0 이상이 필요합니다.</string>
   <string name="fingerprint_hardware_error">감지된 생체 인식 하드웨어가 없습니다.</string>
-  <string name="fingerprint_no_enrolled">장치에 생체 인증이 설정되어있지 않습니다. 먼저 시스템 설정을 진행해주십시오.</string>
+  <string name="fingerprint_no_enrolled">기기에 생체 인증이 설정되어있지 않습니다. 먼저 시스템 설정을 진행해주십시오.</string>
   <string name="disable_fingerprint_unlock">생체 인식 잠금 해제 사용 안 함</string>
   <string name="enable_fingerprint_unlock">전체 생체 인식 잠금 해제 사용</string>
   <string name="enable_fingerprint_quickunlock">QuickUnlock에 생체 인식 잠금 해제 사용</string>
@@ -248,7 +248,7 @@
   <string name="unsupported_db_version">지원되지 않는 데이터베이스 버전입니다.</string>
   <string name="uppercase">대문자</string>
   <string name="warning_read_only">현재 SD 카드 속성이 읽기 전용입니다. 변경사항을 데이터베이스에 저장할 수 없습니다.</string>
-  <string name="warning_unmounted">SD 카드가 마운트 되지 않았습니다. 데이터베이스를 가져오거나 생성할 수 없습니다.</string>
+  <string name="warning_unmounted">SD 카드가 기기에 마운트 되지 않았습니다. 데이터베이스를 가져오거나 생성할 수 없습니다.</string>
   <string name="version_label">버전</string>
   <string name="version_history">버전 이력</string>
   <string name="author">Keepass2Android는 Philipp Crocoll에 의해 개발되었습니다.</string>
@@ -342,7 +342,7 @@
   <string name="LocalBackupOf">%1$s의 기기 내부 백업</string>
   <string name="show_local_backups">내부 백업 보기</string>
   <string name="AcceptAllServerCertificates_title">SSL 인증서</string>
-  <string name="AcceptAllServerCertificates_summary">인증서 유효성 검사 실패 시 동작을 설정합니다. 참고: 유효성 검사가 실패하면 인증서를 장치에 설치할 수 있습니다.</string>
+  <string name="AcceptAllServerCertificates_summary">인증서 유효성 검사 실패 시 동작을 설정합니다. 참고: 유효성 검사가 실패하면 인증서를 기기에 설치할 수 있습니다.</string>
   <string name="ClearOfflineCache_title">캐시를 지울까요?</string>
   <string name="ClearOfflineCache_question">캐시 된 모든 데이터베이스 파일이 삭제됩니다. 원본 데이터베이스에 액세스 하지 않고 아직 동기화되지 않은 상태에서 변경한 내용은 손실 됩니다! 진행 하시겠습니까?</string>
   <string name="CheckForFileChangesOnSave_title">수정 확인하기</string>
@@ -360,7 +360,7 @@
   <string name="OpenKp2aKeyboardAutomatically_title">키보드 바꾸기</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">브라우저에서 검색 후 KP2A 키보드를 통한 항목 선택이 가능할 때 키보드 선택창을 엽니다.</string>
   <string name="kp2a_switch_rooted">키보드 자동 전환</string>
-  <string name="kp2a_switch_rooted_summary">항목을 열면 KP2A 키보드로 자동 전환됩니다. 제대로 설정된 KeyboardSwap 플러그인 또는 루팅 된 장치와 Secure Settings 앱 및 System+ 모듈이 필요합니다. </string>
+  <string name="kp2a_switch_rooted_summary">항목을 열면 KP2A 키보드로 자동 전환됩니다. 제대로 설정된 KeyboardSwap 플러그인 또는 루팅 된 기기와 Secure Settings 앱 및 System+ 모듈이 필요합니다. </string>
   <string name="get_keyboardswap">KeyboardSwap 플러그인 설치</string>
   <string name="get_keyboardswap_summary">이 플러그인을 사용하면 루팅 없이 KP2A 키보드로 전환 할 수 있습니다. ADB가 필요합니다. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">검색 후에만 자동 전환</string>
@@ -483,9 +483,9 @@
   <string name="filestoragename_content">시스템 파일 선택기</string>
   <string name="filestorage_setup_title">파일 액세스 초기화</string>
   <string name="database_location">데이터베이스 위치</string>
-  <string name="help_database_location">데이터베이스 파일을 안드로이드 기기나 클라우드에 저장할 수 있습니다. (오프라인이 아닌 버전에서만)
+  <string name="help_database_location">데이터베이스 파일을 Android 기기나 클라우드에 저장할 수 있습니다. (오프라인이 아닌 버전에서만)
 Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 가능합니다. 데이터베이스 파일은 AES 256 비트 암호화로 안전하게 저장되어 있으며, 당신을 제외하고는 그 누구도 당신의 비밀번호에 접근할 수 없습니다.
-우리는 드롭박스를 선택하시길 권장합니다: 드롭박스는 당신이 가진 모든 장치에서 접근이 가능할 뿐더러 이전 파일의 백업도 지원하기 때문입니다.</string>
+우리는 드롭박스를 선택하시길 권장합니다: 드롭박스는 당신이 가진 모든 기기에서 접근이 가능할 뿐더러 이전 파일의 백업도 지원하기 때문입니다.</string>
   <string name="hint_database_location">데이터베이스를 저장할 위치를 선택하십시오:</string>
   <string name="button_change_location">위치 변경</string>
   <string name="help_quickunlock">이 설정을 사용하면 Keepass2Android가 데이터베이스가 잠겨 있어도 백그라운드에서 계속 실행됩니다. 이렇게 하면 나중에 마스터 비밀번호의 일부만 사용하여 데이터베이스를 잠금 해제 할 수 있습니다.</string>
@@ -499,7 +499,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="use_key_file">키 파일 사용</string>
   <string name="error_adding_keyfile">키 파일을 추가하는 동안 오류가 발생했습니다!</string>
   <string name="init_otp">OTP 보조 파일 불러오기...</string>
-  <string name="otp_explanation">다음 One-time-password (OTP) 를 입력합니다. NFC를 통해 입력하려면 장치의 뒷면에 Yubikey NEO를 스치세요 (Yubiclip 앱이 필요합니다).</string>
+  <string name="otp_explanation">다음 One-time-password (OTP) 를 입력합니다. NFC를 통해 입력하려면 기기의 뒷면에 Yubikey NEO를 스치세요 (Yubiclip 앱이 필요합니다).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">OTP 보조 파일을 불러올 수 없습니다!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">OTP를 사용하기 위해 데이터베이스를 설정하려면 KeePass 2.x (PC)에서 OtpKeyProv 플러그인을 사용해 주십시오!</string>
@@ -546,11 +546,12 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="SCOPE_CURRENT_ENTRY_title">현재 항목 데이터</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">플러그인이 현재 데이터베이스 항목에 대한 모든 데이터를 받아 액션을 제공하고 해당 표시를 수정할 수 있도록 허가합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">자신의 자격증명 요청</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인이 자체 앱 패키지와 연관된 자격 증명을 요청 할 수 있도록 허가합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">자격 증명 요청</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인은 웹사이트 또는 앱의 인증을 위해 자격 증명을 요청 할 수 있습니다.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인이 웹 사이트 또는 앱의 인증을 위해 자격 증명을 요청 할 수 있도록 허가합니다.</string>
   <string name="get_regular_version">더 많은 저장소 유형 가져오기</string>
-  <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하십시오!</string>
-  <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 장치의 적절한 루트에 인증서를 설치하거나 설정을 확인하십시오!</string>
+  <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 기기에 적절한 루트 인증서를 설치하거나 설정을 확인하십시오!</string>
+  <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 기기에 적절한 루트 인증서를 설치하거나 설정을 확인하십시오!</string>
   <string name="export_fileformats_title">파일 형식 선택</string>
   <string name="killed_by_os">죄송합니다! Keepass2Android가 Android OS에 의해 강제종료 되었습니다! 보안상의 이유로 Keepass2Android는 선택한 자격 증명을 디스크에 저장하지 않으므로 데이터베이스를 다시 열어야합니다. 참고: 이 상황은 매우 드물게 발생합니다. crocoapps@gmail.com 으로 메시지를 보내주십시오.</string>
   <string name="FileIsTemporarilyAvailable">Keepass2Android에서 일시적으로만 사용할 수 있는 파일입니다.</string>
@@ -616,8 +617,8 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="child_dbs_title">하위 데이터베이스</string>
   <string name="unspecified">지정되지 않음</string>
   <string name="child_db_explanation">하위 데이터베이스는 상위 데이터베이스를 열 때 자동으로 열 수 있는 다른 데이터베이스입니다. 그러므로, 하위 데이터베이스의 마스터 키와 파일 위치는 상위 데이터베이스에 저장됩니다. 이 기능은 몇몇 비밀번호를 다른 사람과 공유할 수 있게 합니다. 이 구현사항은 PC용 KeeAutoExec과 호환됩니다.</string>
-  <string name="child_db_enabled_on_this_device">이 장치에서 사용가능함</string>
-  <string name="child_db_enable_on_this_device">이 장치에서 사용하기</string>
+  <string name="child_db_enabled_on_this_device">이 기기에서 유효함</string>
+  <string name="child_db_enable_on_this_device">이 장치에서 허용하기</string>
   <string name="child_db_disable_on_this_device">이 장치에서 사용 불가능함</string>
   <string name="child_db_enable_a_copy_for_this_device">이 장치용으로 복사하기</string>
   <string name="unconfigured_child_dbs">데이터베이스가 새 하위 데이터베이스들을 \"AutoOpen\" 그룹에 포함하고 있습니다. 이 하위 데이터베이스들이 이 장치에서 사용되어야한다면 지정해 주십시오.</string>
