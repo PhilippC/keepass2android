@@ -304,7 +304,7 @@
   <string name="SaveAttachment_doneMessage">%1$s에 파일을 저장합니다.</string>
   <string name="SaveAttachment_Failed">%1$s에 첨부파일을 저장하지 못했습니다.</string>
   <string name="AddUrlToEntryDialog_title">검색한 글자를 기억할까요?</string>
-  <string name="AddUrlToEntryDialog_text">다음에 자동으로 찾기 위해 선택된 항목에 있는 검색 문자 \"%1$s\"를 저장할까요?</string>
+  <string name="AddUrlToEntryDialog_text">다음에 자동으로 찾기 위해 선택된 항목에 있는 검색 문자 \"%1$s\"를 저장하시겠습니까?</string>
   <string name="error_invalid_expiry_date">만료 날짜/시간 형식이 잘못 되었습니다!</string>
   <string name="error_string_key">각각의 문자열에 필드명이 필요합니다.</string>
   <string name="error_string_duplicate_key">필드명을 중복되게 사용할 수 없습니다 (%1$s).</string>
@@ -325,17 +325,17 @@
   <string name="ClearPasswordOnLeave_summary">데이터베이스를 잠금해제 하지 않고 화면을 떠날 경우 입력된 마스터 패스워드를 지웁니다.</string>
   <string name="LockWhenNavigateBack_title">앱을 닫을 때 잠금</string>
   <string name="LockWhenNavigateBack_summary">뒤로 버튼을 눌러 앱을 닫을 때 데이터베이스를 잠급니다.</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android의 내장 키보드 사용</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android 내장 키보드 사용</string>
   <string name="UseKp2aKeyboardInKp2a_summary">기본 키보드 제공자를 신뢰할 수 없다면, 이 옵션을 체크해 마스터 키를 입력할 때나 항목을 편집할 때 내장 키보드를 사용하십시오.</string>
   <string name="ActivateSearchViewOnStart_title">시작 시 검색 필드 활성화</string>
   <string name="ActivateSearchViewOnStart_summary">잠금 해제 또는 항목 검색 시 그룹보기에서 검색 필드를 활성화합니다</string>
   <string name="NoDonateOption_title">기부 버튼 숨기기</string>
   <string name="NoDonateOption_summary">기부자를 위한 옵션입니다. 이 앱을 한동안 사용한 후에만 설정이 가능합니다.</string>
-  <string name="NoDonateOption_question">이 앱은 기부 없이는 존재하거나 지속적으로 발전할 수 없습니다! 아직 기부를 하지 않으셨다면, 지금 기부에 대해 고려해 주세요</string>
+  <string name="NoDonateOption_question">이 앱은 기부 없이는 존재하거나 지속적으로 발전할 수 없습니다! 아직 기부를 하지 않으셨다면, 지금 기부에 대해 고려해 주십시오</string>
   <string name="NoDonationReminder_title">기부에 대해 다시는 묻지 않기</string>
   <string name="NoDonationReminder_summary">나는 너에게 한 푼도 주지 않을 것이거나 이미 기증을 했다. 제작자 생일이라도 기부에 대한 요청을 하지마라.</string>
   <string name="UseOfflineCache_title">데이터베이스 캐싱</string>
-  <string name="UseOfflineCache_summary">응용 프로그램 캐시 디렉토리에 데이터베이스 파일의 사본을 보관하십시오. 이렇게하면 데이터베이스 파일에 접근 할 수 없는 동안에도 데이터베이스를 사용할 수 있습니다.</string>
+  <string name="UseOfflineCache_summary">앱의 캐시 디렉토리에 데이터베이스 파일의 사본을 보관합니다. 이렇게하면 데이터베이스 파일에 접근 할 수 없는 동안에도 데이터베이스를 사용할 수 있습니다.</string>
   <string name="CreateBackups_title">기기 내부 백업</string>
   <string name="CreateBackups_summary">성공적으로 데이터베이스를 불러온 후 기기 내부 백업의 복사본을 만듭니다.</string>
   <string name="UpdatingBackup">기기 내부 백업을 업데이트 중...</string>
@@ -388,10 +388,10 @@
   <string name="AskDeletePermanentlyGroupNoRecycle">이 그룹을 영구적으로 삭제 하시겠습니까?</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">선택된 요소를 영구적으로 삭제 하시겠습니까?</string>
   <string name="AskDeletePermanently_title">영구적으로 삭제 하시겠습니까?</string>
-  <string name="AskReloadFile_title">파일을 다시 불러올까요?</string>
-  <string name="AskReloadFile">현재 열려있는 파일이 다른 프로그램에 의해 변경되었습니다. 다시 불러올까요?</string>
+  <string name="AskReloadFile_title">파일을 다시 불러오시겠습니까?</string>
+  <string name="AskReloadFile">현재 열려있는 파일이 다른 프로그램에 의해 변경되었습니다. 다시 불러오시겠습니까?</string>
   <string name="AskDiscardChanges">변경사항을 정말 취소하시겠습니까? (저장 버튼은 상단에 있습니다.)</string>
-  <string name="AskDiscardChanges_title">변경사항을 취소할까요?</string>
+  <string name="AskDiscardChanges_title">변경사항을 취소하시겠습니까?</string>
   <string name="suggest_improvements">개선을 위한 제안이나 투표</string>
   <string name="rate_app">앱 평가하기</string>
   <string name="translate_app">KP2A 번역하기</string>
@@ -406,11 +406,11 @@
   <string name="DecodingDatabase">데이터베이스 디코딩...</string>
   <string name="ParsingDatabase">데이터베이스 분석...</string>
   <string name="CheckingTargetFileForChanges">변경사항을 위한 대상파일 검사...</string>
-  <string name="TitleSyncQuestion">변경사항을 통합할까요?</string>
-  <string name="MessageSyncQuestion">데이터파일이 외부에서 수정되었습니다. 저장하기 전에 변경사항을 통합해서 가져올까요? 외부 변경사항으로 덮어쓰려면 \"아니오\"를 선택하세요.</string>
+  <string name="TitleSyncQuestion">변경사항을 통합하시겠습니까?</string>
+  <string name="MessageSyncQuestion">데이터베이스 파일이 외부에서 수정되었습니다. 저장하기 전에 변경사항을 통합해서 가져오시겠습니까? 외부 변경사항으로 덮어쓰려면 \"아니오\"를 선택하십시오.</string>
   <string name="SynchronizingDatabase">변경사항 통합...</string>
   <string name="YesSynchronize">네</string>
-  <string name="NoOverwrite">아니요</string>
+  <string name="NoOverwrite">아니오, 덮어씁니다</string>
   <string name="UseOfflineMode">내부 캐시로만 작업</string>
   <string name="UseOnlineMode">소스와 캐시 사본 동기화</string>
   <string name="UseOfflineMode_Info">데이터베이스가 내부 캐시에서 로드 되었습니다. 변경 사항은 내부 캐시에만 저장되며 캐시 사본과 소스 동기화를 선택할 때만 동기화됩니다.</string>
@@ -473,7 +473,7 @@
 그 다음 이 옵션을 다시 선택하여 데이터베이스 파일을 여십시오.</string>
   <string name="filestoragename_gdrive">Google 드라이브</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주세요.</string>
+  <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주십시오.</string>
   <string name="filestoragename_onedrive">원드라이브</string>
   <string name="filestoragename_onedrive2">원드라이브</string>
   <string name="filestoragename_onedrive2_full">모든 파일 및 공유한 파일</string>
@@ -493,8 +493,8 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="help_master_password">데이터베이스 파일은 여기에 입력된 비밀번호로 암호화 됩니다. 데이터베이스의 안전성을 유지하려면 강력한 비밀번호를 선택하십시오! 팁: 하나 또는 두 가지의 문장을 만들어서 단어들의 첫번째 글자들을 비밀번호로 쓰는 겁니다. 문장부호도 포함해서요.</string>
   <string name="hint_master_password">데이터베이스 보호를 위해 위해 마스터 비밀번호를 선택 하십시오:</string>
   <string name="key_file">키 파일</string>
-  <string name="help_key_file">키 파일은 기본적으로 파일 안에 저장되는 비밀번호입니다. 키 파일들은 전형적으로 마스터 키보다 더 강력하지요.
-왜냐하면 그 키는 더욱 더 많이 복잡하니까요. 하지만 그것 또한 비밀을 유지하기엔 어렵습니다. 만약 데이터베이스 파일을 클라우드에 저장한다면, 키 파일은 거기 같이 저장하지 마세요! 그럼 전혀 쓸모 없습니다! 중요: 데이터베이스를 생성한 후에는 키 파일의 내용을 수정하지 마세요!</string>
+  <string name="help_key_file">키 파일은 기본적으로 파일 안에 저장되는 비밀번호입니다. 키 파일들은 전형적으로 마스터 비밀번호보다 더 강력합니다.
+왜냐하면 그 키는 더욱 더 많이 복잡하기 때문입니다. 하지만 그것 또한 비밀을 유지하기엔 어렵습니다. 만약 데이터베이스 파일을 클라우드에 저장한다면, 키 파일은 거기 같이 저장하지 마십시오! 이느 키 파일을 전혀 쓸모 없게 만듭니다! 중요: 데이터베이스를 생성한 후에는 키 파일의 내용을 수정하지 마십시오!</string>
   <string name="hint_key_file">키 파일을 마스터 비밀번호와 함께 쓰고자 한다면 선택하십시오:</string>
   <string name="use_key_file">키 파일 사용</string>
   <string name="error_adding_keyfile">키 파일을 추가하는 동안 오류가 발생했습니다!</string>
@@ -546,7 +546,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="SCOPE_CURRENT_ENTRY_title">현재 항목 데이터</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">플러그인이 현재 데이터베이스 항목에 대한 모든 데이터를 받아 액션을 제공하고 해당 표시를 수정할 수 있도록 허가합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">자신의 자격증명 요청</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인은 자체 응용 프로그램 패키지와 연관된 자격 증명을 요청 할 수 있습니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">자격 증명 요청</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인은 웹사이트 또는 앱의 인증을 위해 자격 증명을 요청 할 수 있습니다.</string>
   <string name="get_regular_version">더 많은 저장소 유형 가져오기</string>
