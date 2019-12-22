@@ -267,6 +267,7 @@
   <string name="ShowUsernameInList_summary">エントリのタイトルの下にユーザー名を表示します。複数のアカウントやTANに役立ちます。</string>
   <string name="RememberRecentFiles_title">データベースを記憶する</string>
   <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
+  <string name="kp2a_findUrl">パスワードを見つける</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
   <string name="caseSensitive">大文字と小文字を区別する</string>
