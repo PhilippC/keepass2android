@@ -267,6 +267,7 @@
   <string name="ShowUsernameInList_summary">Visa användarnamn under posttitlar. Användbart för multipla konton eller engångskoder.</string>
   <string name="RememberRecentFiles_title">Kom ihåg databaser</string>
   <string name="RememberRecentFiles_summary">Kom ihåg senast öppnade databaser och visa de på öppna databas-skärmen.</string>
+  <string name="kp2a_findUrl">Hitta lösenord</string>
   <string name="excludeExpiredEntries">Uteslut utgångna poster</string>
   <string name="search_options">Alternativ</string>
   <string name="caseSensitive">Skiftlägeskänslig</string>
