@@ -88,9 +88,10 @@
   <string name="fingerprint_success">Uwierzytelnianie biometryczne powiodło się</string>
   <string name="fingerprint_os_error">Odblokowywanie biometryczne wymaga systemu Android w wersji 6.0 lub nowszej.</string>
   <string name="fingerprint_hardware_error">Nie znaleziono wsparcia sprzętowego dla odblokowania biometrycznego.</string>
+  <string name="fingerprint_no_enrolled">Nie skonfigurowałeś uwierzytelniania biometrycznego na tym urządzeniu. Przejdź najpierw do ustawień systemowych.</string>
   <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie biometryczne</string>
   <string name="enable_fingerprint_unlock">Włącz pełne odblokowywanie biometryczne</string>
-  <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie biometryczne lub SzybkieOdblokowywanie</string>
+  <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie biometryczne dla SzybkiegoOdblokowania</string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
   <string name="enable_fingerprint_quickunlock_Info">Zezwól na uwierzytelnianie biometryczne, zamiast kodu SzybkiegoOdblokowywania. Funkcja ta nie przechowuje żadnych informacji związanych z hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
@@ -260,6 +261,7 @@
   <string name="ShowUsernameInList_summary">Wyświetla nazwy użytkowników poniżej tytułów. Przydatne przy wielu kontach lub TAN (hasłach jednorazowych).</string>
   <string name="RememberRecentFiles_title">Zapamiętaj bazę danych</string>
   <string name="RememberRecentFiles_summary">Zapamiętaj ostatnio otwieraną bazę danych i pokazuj ją na ekranie wyboru.</string>
+  <string name="kp2a_findUrl">Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
   <string name="search_options">Opcje</string>
   <string name="caseSensitive">Wielkość liter ma znaczenie</string>
@@ -271,7 +273,7 @@
   <string name="enter_filename_details_create_import">W następnym kroku zostanie wybrany plik do zaimportowania.</string>
   <string name="enable_quickunlock">Włącz SzybkieOdblokowanie</string>
   <string name="QuickUnlock_label">Wprowadź %1$d ostatnie znaki hasła:</string>
-  <string name="QuickUnlock_label_secure">Wpisz kod QuickUnlock:</string>
+  <string name="QuickUnlock_label_secure">Wpisz kod SzybkieOdblokowanie:</string>
   <string name="QuickUnlock_button">SzybkieOdblokowanie!</string>
   <string name="QuickUnlock_lockButton">Zamknij bazę danych</string>
   <string name="QuickUnlockDefaultEnabled_title">Domyślnie włącz SzybkieOdblokowanie</string>
@@ -284,7 +286,7 @@
   <string name="QuickUnlockIconHidden16_summary">SzybkieOdblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
-  <string name="QuickUnlockHideLength_title">Ukryj długość QuickUnlock</string>
+  <string name="QuickUnlockHideLength_title">Ukryj długość SzybkieOdblokowanie</string>
   <string name="QuickUnlockHideLength_summary">Jeśli zaznaczone, długość kodu SzybkieOdblokowanie nie jest wyświetlana na ekranie SzybkieOdblokowanie.</string>
   <string name="QuickUnlock_fail">Nie powiodło się SzybkieOdblokowanie: niepoprawne hasło!</string>
   <string name="BinaryDirectory_title">Katalog plików załączników</string>
