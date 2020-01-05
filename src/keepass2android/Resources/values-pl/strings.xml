@@ -93,8 +93,12 @@
   <string name="enable_fingerprint_unlock">Włącz pełne odblokowywanie biometryczne</string>
   <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie biometryczne dla SzybkiegoOdblokowania</string>
   <string name="fingerprint_unlock_failed">Odblokowanie biometryczne nie powiodło się. Klucz deszyfrujący został unieważniony przez system operacyjny Android. Zwykle dzieje się tak, jeśli ustawienia uwierzytelniania biometrycznego lub zabezpieczeń zostały zmienione. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odblokowanie bazy danych nie powiodło się: Niepoprawny klucz. Odblokowanie biometryczne zostało wyłączone, ponieważ najwyraźniej zapisane hasło główne nie jest już ważne. </string>
   <string name="fingerprint_reenable">Włącz ponownie odblokowanie biometryczne dla nowego hasła głównego.</string>
+  <string name="fingerprint_reenable2">Odblokuj za pomocą hasła, a następnie ponownie włącz Odblokowywanie biometryczne w ustawieniach bazy danych.</string>
+  <string name="FingerprintInitFailed">Nie udało się zainicjować uwierzytelnienia biometrycznego. </string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
+  <string name="enable_fingerprint_unlock_Info">Spowoduje to zapisanie hasła głównego na tym urządzeniu, zaszyfrowanego za pomocą magazynu kluczy Android i zabezpieczonego przy użyciu uwierzytelniania biometrycznego. Pozwala to odblokować bazę danych tylko przy użyciu biometrii.</string>
   <string name="enable_fingerprint_quickunlock_Info">Zezwól na uwierzytelnianie biometryczne, zamiast kodu SzybkiegoOdblokowywania. Funkcja ta nie przechowuje żadnych informacji związanych z hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
   <string name="entry_accessed">Ostatni dostęp</string>
@@ -628,6 +632,7 @@
   <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy SzybkiegoOdblokowania</string>
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wprowadzania hasła, gdy aktywne jest uwierzytelnianie biometryczne.</string>
   <string-array name="ChangeLog_1_08">
     <item>Dodaj do powiadomienia przycisk kopiujący TOTP do schowka</item>
     <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
@@ -939,10 +944,12 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="autofill_disable">Wyłącz autouzupełnianie dla %1$s</string>
   <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android wykrył sprzęt biometryczny. Czy chcesz włączyć odblokowanie biometryczne dla tej bazy danych?</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Nie pokazuj ponownie</string>
   <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>
   <string name="masterkey_infotext_main">Pamiętaj, że nie będziesz mógł otworzyć swojej bazy danych bez klucza głównego. Zresetowanie hasła głównego jest niemożliwe.</string>
+  <string name="masterkey_infotext_fingerprint_note">Pamiętaj też, że odblokowanie biometryczne polega na przechowywaniu klucza głównego w zabezpieczonym urządzeniu z Androidem. Może to zostać usunięte przez Androida w dowolnym momencie, np. jeśli dodasz nowy odcisk palca w ustawieniach systemu. Nie polegaj więc jedynie na odblokowaniu biometrycznym, ale pamiętaj również swoje hasło główne!</string>
   <string name="backup_infotext_head">Czy posiadasz kopię zapasową swojej bazy danych?</string>
   <string name="backup_infotext_main">Keepass2Android przechowuje twoje hasło w pliku w wybranej lokacji. Czy masz pewność, że wciąż będziesz mieć dostęp do tego pliku, gdy zgubisz telefon lub zostanie on skradziony albo plik zostanie zniszczony lub usunięty? Upewnij się, że zawsze masz aktualną kopię zapasową w bezpiecznym miejscu!</string>
   <string name="backup_infotext_note">Aby stworzyć kopię zapasową, przejdź do %1$s &gt; %2$s &gt; %3$s.</string>
