@@ -92,6 +92,8 @@
   <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie biometryczne</string>
   <string name="enable_fingerprint_unlock">Włącz pełne odblokowywanie biometryczne</string>
   <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie biometryczne dla SzybkiegoOdblokowania</string>
+  <string name="fingerprint_unlock_failed">Odblokowanie biometryczne nie powiodło się. Klucz deszyfrujący został unieważniony przez system operacyjny Android. Zwykle dzieje się tak, jeśli ustawienia uwierzytelniania biometrycznego lub zabezpieczeń zostały zmienione. </string>
+  <string name="fingerprint_reenable">Włącz ponownie odblokowanie biometryczne dla nowego hasła głównego.</string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
   <string name="enable_fingerprint_quickunlock_Info">Zezwól na uwierzytelnianie biometryczne, zamiast kodu SzybkiegoOdblokowywania. Funkcja ta nie przechowuje żadnych informacji związanych z hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
