@@ -99,8 +99,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="fingerprint_reenable2">Bitte mit Kennwort entsperren und anschließend in den Datenbankeinstellungen das biometrische Entsperren erneut aktivieren.</string>
   <string name="FingerprintInitFailed">Initialisierung der biometrischen Authentifizierung fehlgeschlagen. </string>
   <string name="FingerprintSetupFailed">Daten konnten nicht verschlüsselt werden. Dies kann passieren, wenn Fingerabdrücke in den Systemeinstellungen hinzugefügt oder gelöscht wurden, während Keepass2Android auf deinen Fingerabdruck wartet.</string>
-  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Masterpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Ermöglicht es, die Datenbank per biometrischer Authentifizierung zu entsperren.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den biometrische Authentifizierung anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
+  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Masterkennwort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Ermöglicht es, die Datenbank per biometrischer Authentifizierung zu entsperren.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, die biometrische Authentifizierung anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterkennworts.</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
   <string name="entry_cancel">Abbrechen</string>
@@ -328,7 +328,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Benutze Built-In-Tastatur in Keepass2Android</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Wenn Sie ihrer Standardtastatur nicht vertrauen, setzen Sie diese Option, um die Built-In-Tastatur beim Eingeben des Masterpassworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Wenn Sie ihrer Standardtastatur nicht vertrauen, setzen Sie diese Option, um die Built-In-Tastatur beim Eingeben des Masterkennworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
   <string name="ActivateSearchViewOnStart_title">Suchfeld beim Start aktivieren</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
@@ -491,12 +491,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="help_master_password">Deine Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Wähle ein starkes Passwort, um deine Datenbank zu schützen! Tipp: Denke dir ein oder zwei Sätze aus und nutze die Anfangsbuchstaben als Passwort. Übernimm auch die Satzzeichen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
-  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Passwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Passwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wenn du deine Datenbank in der Cloud speicherst, solltest du die Schlüsseldatei keinesfalls auch dort ablegen. Das würde sie nutzlos machen! Wichtig: Ändere die Schlüsseldatei nicht mehr, nachdem du die Datenbank angelegt hast!</string>
+  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wenn du deine Datenbank in der Cloud speicherst, solltest du die Schlüsseldatei keinesfalls auch dort ablegen. Das würde sie nutzlos machen! Wichtig: Ändere die Schlüsseldatei nicht mehr, nachdem du die Datenbank angelegt hast!</string>
   <string name="hint_key_file">Wähle, ob du eine Schlüsseldatei zusätzlich zum Hauptpasswort nutzen möchtest:</string>
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
   <string name="init_otp">OTP-Hilfsdatei laden…</string>
-  <string name="otp_explanation">Gib die nächsten One-time-Passwörter (OTPs) an. Bewege deinen Yubikey NEO an der Rückseite deines Gerätes, um via NFC einzugeben (erfordert Yubiclip app).</string>
+  <string name="otp_explanation">Gib die nächsten Einmalkennwörter (OTPs - One-Time-Passwords) an. Bewege deinen Yubikey NEO an der Rückseite deines Gerätes, für die Eingabe per NFC (erfordert Yubiclip app).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x a PC um deine Datenbank zur Verwendung von One-Time-Passwords einzureichten!</string>
@@ -612,7 +612,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="configure_child_dbs">Kinddatenbanken konfigurieren…</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
-  <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Master-Passwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
+  <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Masterkennwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Kennwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
   <string name="child_db_enabled_on_this_device">Auf diesem Gerät aktiviert</string>
   <string name="child_db_enable_on_this_device">Auf diesem Gerät aktivieren</string>
   <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
@@ -630,7 +630,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="DbQuicklockedChannel_desc">Benachrichtigung wenn die Datenbank mit QuickUnlock gesperrt ist</string>
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Passworteingabe während biometrische Authentifizierung aktiv ist.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Kennworteingabe während biometrische Authentifizierung aktiv ist.</string>
   <string-array name="ChangeLog_1_08">
     <item>Benachrichtigungsschalfläche zum „Kopieren des TOTP in die Zwischenablage” hinzufügen</item>
     <item>Zu FluentFTP wechseln, um TLS 1.2 zu unterstützen</item>
@@ -640,7 +640,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ChangeLog_1_07b">    Version 1.07b\n
     * Verbesserung der Leistung von Argon2 durch die Verwendung einer nativen Implementierung (Danke an Chih-Hsuan Yen!)\n
     * Der Fingerabdruck-Leser kann durch anklicken des Fingerabdruck-Symbols deaktiviert werden (das vermeidet Probleme mit Lesern unter der Displayoberfläche, Danke an marcoDallas!)\n
-    * Cursor-Position wird nach Änderung der Sichtbarkeit von Passwörtern wiederhergestellt (Danke an DDoSolitary!)\n
+    * Cursor-Position wird nach Änderung der Sichtbarkeit von KennwÖrtern wiederhergestellt (Danke an DDoSolitary!)\n
     * Verbesserungen bei der pCloud-Implementierung (noch einmal Danke an gilbsgilbs!)\n
     * AutoFill-Unterstützung für verschiedene weitere Browser hinzugefügt \n
     * Neue Implementierung für OneDrive: einschließlich Unterstützung für OneDrive for Business, geteilte Dateien, auswählbare Zugriffsbereiche, mehrere Konten und Behebung von Problemen mit Offline-Zugriff\n
@@ -959,7 +959,7 @@ Erstes öffentliches Release</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
   <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
   <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank nicht ohne Master-Passwort öffnen kannst. Es gibt keine Möglichkeit, das Passwort zurückzusetzen.</string>
-  <string name="masterkey_infotext_fingerprint_note">Beachte auch, dass für das biometrische Entsperren dein Master-Passwort durch Android in einem gesicherten Speicher abgelegt wird. Dieser Speicher kann aber von Android gelöscht oder ungültig gemacht werden, z.B. wenn du einen Fingerabdruck in den Systemeinstellungen hinterlegst. Verlass dich daher bitte nicht auf das biometrische Entsperren sondern merke dir dein Master-Passwort!</string>
+  <string name="masterkey_infotext_fingerprint_note">Beachte auch, dass für das biometrische Entsperren dein Masterkennwort durch Android in einem gesicherten Speicher abgelegt wird. Dieser Speicher kann aber von Android gelöscht oder ungültig gemacht werden, z.B. wenn du einen Fingerabdruck in den Systemeinstellungen hinterlegst. Verlass dich daher bitte nicht auf das biometrische Entsperren sondern merke dir dein Masterkennwort!</string>
   <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
   <string name="backup_infotext_main">Keepass2Android speichert deine Passwörter in eine Datei an einem Ort deiner Wahl. Bist du sicher, dass du auf diese Datei auch noch Zugriff hast wenn dein Telefon verloren geht oder gestohlen wird? Oder wenn die Datei zerstört oder gelöscht wird? Bitte stelle sicher, dass du immer eine aktuelle Kopie an einem sichern Ort aufbewahrst!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
