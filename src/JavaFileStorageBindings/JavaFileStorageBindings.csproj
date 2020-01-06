@@ -149,9 +149,9 @@
     <EmbeddedReferenceJar Include="Jars\okhttp-4.2.2.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-digest-1.15.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio-2.2.2.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okio-2.2.2.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp-digest-2.0.jar" />
   </ItemGroup>
 </Project>
