@@ -141,8 +141,9 @@ namespace keepass2android
 			Android.Graphics.Color color = new Android.Graphics.Color (224, 224, 224);
 			btnTogglePassword.SetColorFilter (color, mMode);
 
-			
-		}
+            Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.root));
+
+        }
 
 	    readonly PasswordFont _passwordFont = new PasswordFont();
 

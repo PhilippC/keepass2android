@@ -145,9 +145,11 @@ namespace keepass2android
 			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_intentReceiver, filter);
 
-			
+            Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.QuickUnlock_password));
 
-		}
+
+
+        }
 
 		protected override void OnStart()
 		{

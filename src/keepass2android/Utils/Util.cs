@@ -34,6 +34,8 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Hardware.Display;
 using Android.Util;
+using Android.Views.InputMethods;
+using AndroidX.Core.View.InputMethod;
 using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
 
@@ -634,6 +636,32 @@ namespace keepass2android
 	        }
 	        return hasUnsecureDisplay;
 	    }
-	}
+
+        public static void SetNoPersonalizedLearning(EditText editText)
+        {
+            if (editText == null)
+                return;
+            if ((int) Build.VERSION.SdkInt >= 26)
+                editText.ImeOptions = (ImeAction)EditorInfoCompat.ImeFlagNoPersonalizedLearning;
+            ;
+
+        }
+
+        public static void SetNoPersonalizedLearning(View view)
+        {
+            if (view is ViewGroup vg)
+            {
+                for (int i=0;i<vg.ChildCount;i++)
+                {
+                    SetNoPersonalizedLearning(vg.GetChildAt(i));
+                }
+            }
+
+            if (view is EditText editText)
+            {
+                SetNoPersonalizedLearning(editText);
+            }
+        }
+    }
 }
 

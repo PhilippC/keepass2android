@@ -783,10 +783,11 @@ namespace keepass2android
                 //database already opened. return the ioc and we're good.
 		        LaunchNextActivity();
 		    }
-			
-		}
 
-	    private void InitializeToolbarCollapsing()
+            Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.password_edit));
+        }
+
+        private void InitializeToolbarCollapsing()
 	    {
 	        var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
 	        rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>

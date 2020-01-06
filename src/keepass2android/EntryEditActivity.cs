@@ -111,6 +111,8 @@ namespace keepass2android
 			SetContentView(Resource.Layout.entry_edit);
 			_closeForReload = false;
 
+            Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.entry_scroll));
+
 			// Likely the app has been killed exit the activity
 			if (!App.Kp2a.DatabaseIsUnlocked)
 			{
@@ -291,8 +293,10 @@ namespace keepass2android
 				State.EntryModified = true;
 			};
 
+            
 
-		}
+
+        }
 
 	    protected override void OnStart()
 	    {
@@ -1101,7 +1105,8 @@ namespace keepass2android
 			View ees = (View) sender.Parent;
 			dlgView.FindViewById<TextView>(Resource.Id.title).Text = ees.FindViewById<TextView>(Resource.Id.extrakey).Text;
 			dlgView.FindViewById<EditText>(Resource.Id.value).Text = ees.FindViewById<EditText>(Resource.Id.value).Text;
-			dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
+            Util.SetNoPersonalizedLearning(dlgView);
+            dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
 
 			var titleView = ((AutoCompleteTextView)dlgView.FindViewById(Resource.Id.title));
 			titleView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, AdditionalKeys);
