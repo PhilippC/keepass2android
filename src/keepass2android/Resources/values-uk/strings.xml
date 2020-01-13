@@ -83,6 +83,9 @@
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Копіювати в буфер</string>
   <string name="fingerprint_description">Авторизуйтесь, щоб продовжити</string>
+  <string name="fingerprint_fatal">Не вдається встановити біометричне розблокування:</string>
+  <string name="fingerprint_not_recognized">Помилка біометричної автентифікації. Повторіть спробу</string>
+  <string name="fingerprint_success">Вдала біометрична автентифікація</string>
   <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
   <string name="enter_filename">Введіть ім’я бази даних</string>
   <string name="entry_accessed">Доступ</string>
