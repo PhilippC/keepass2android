@@ -436,9 +436,43 @@ namespace keepass2android
 	    {
             if (App.Kp2a.LastOpenedEntry != null)
 	            App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
-	        base.CompleteOnCreateEntryActivity(activity);
-	    }
-	}
+
+
+            //if the database is readonly (or no URL exists), don't offer to modify the URL
+            if ((App.Kp2a.CurrentDb.CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor) || keepass2android.ShareUrlResults.GetSearchResultsForUrl(UrlToSearchFor).Entries.Any(e => e == activity.Entry) ))
+            {
+                base.CompleteOnCreateEntryActivity(activity);
+                return;
+            }
+
+            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
+        }
+
+
+        /// <summary>
+        /// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
+        /// </summary>
+        public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
+
+            builder.SetMessage(activity.GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url }));
+
+            builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
+            {
+                activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
+            });
+
+            builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
+            {
+                base.CompleteOnCreateEntryActivity(activity);
+            });
+
+            Dialog dialog = builder.Create();
+            dialog.Show();
+        }
+    }
 
 	
 	/// <summary>
@@ -508,93 +542,6 @@ namespace keepass2android
 				activity.CloseAfterTaskComplete();	
 			}
 		}
-	}
-
-	/// <summary>
-	/// User is about to select an entry. When selected, ask whether the url he was searching for earlier should be stored 
-	/// in the selected entry for later use.
-	/// </summary>
-	public class SelectEntryForUrlTask: SelectEntryTask
-	{
-		/// <summary>
-		/// default constructor for creating from Bundle
-		/// </summary>
-		public SelectEntryForUrlTask()
-		{
-			
-		}
-
-		public SelectEntryForUrlTask(string url)
-		{
-			UrlToSearchFor = url;
-			ShowUserNotifications = true;
-		}
-
-		public const String UrlToSearchKey = "UrlToSearch";
-		
-		public string UrlToSearchFor
-		{
-			get;
-			set;
-		}
-
-		public override void Setup(Bundle b)
-		{
-			base.Setup(b);
-			UrlToSearchFor = b.GetString(UrlToSearchKey);
-		}
-		public override IEnumerable<IExtra> Extras
-		{
-			get
-			{
-				foreach (IExtra e in base.Extras)
-					yield return e;
-				yield return new StringExtra { Key = UrlToSearchKey, Value = UrlToSearchFor };
-			}
-		}
-
-		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
-		{
-            if (App.Kp2a.LastOpenedEntry != null)
-		        App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
-
-            //if the database is readonly (or no URL exists), don't offer to modify the URL
-            if ((App.Kp2a.CurrentDb.CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
-			{
-				base.CompleteOnCreateEntryActivity(activity);
-				return;
-			}
-		    
-
-
-            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
-
-		}
-
-		/// <summary>
-		/// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
-		/// </summary>
-		public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url)
-		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-			builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
-
-			builder.SetMessage(activity.GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url }));
-
-			builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
-			{
-				activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
-			});
-
-			builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
-			{
-				base.CompleteOnCreateEntryActivity(activity);
-			});
-
-			Dialog dialog = builder.Create();
-			dialog.Show();
-		}
-		
 	}
 
 
