@@ -86,6 +86,12 @@
   <string name="fingerprint_fatal">Не вдається встановити біометричне розблокування:</string>
   <string name="fingerprint_not_recognized">Помилка біометричної автентифікації. Повторіть спробу</string>
   <string name="fingerprint_success">Вдала біометрична автентифікація</string>
+  <string name="fingerprint_os_error">Для біометричного розблокування потрібен Android 6.0 або новіший.</string>
+  <string name="fingerprint_hardware_error">Не виявлено засобів для біометричної автентифікації.</string>
+  <string name="fingerprint_no_enrolled">Ви не налаштували біометричну автентифікацію на цьому пристрої. Будь ласка, спочатку перейдіть до системних налаштувань.</string>
+  <string name="disable_fingerprint_unlock">Вимкнути біометричне розблокування</string>
+  <string name="enable_fingerprint_unlock">Увімкнути повне біометричне розблокування</string>
+  <string name="enable_fingerprint_quickunlock">Увімкнути біометричне розблокування для QuickUnlock</string>
   <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
   <string name="enter_filename">Введіть ім’я бази даних</string>
   <string name="entry_accessed">Доступ</string>
