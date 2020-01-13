@@ -72,8 +72,8 @@ namespace keepass2android
 			SearchParameters sp = SearchParameters.None;
 			sp.SearchInUrls = true;
 			sp.SearchString = url;
-		
-			if(sp.RegularExpression) // Validate regular expression
+
+            if(sp.RegularExpression) // Validate regular expression
 			{
 				new Regex(sp.SearchString); 
 			}
@@ -104,7 +104,9 @@ namespace keepass2android
 			if (String.IsNullOrWhiteSpace(host))
 				return pgResults;
 			foreach (PwEntry entry in database.EntriesById.Values)
-			{
+            {
+                if (!entry.GetSearchingEnabled())
+                    continue;
 				string otherUrl = entry.Strings.ReadSafe(PwDefs.UrlField);
 				otherUrl = SprEngine.Compile(otherUrl, new SprContext(entry, database.KpDatabase, SprCompileFlags.References));
 				String otherHost = ExtractHost(otherUrl);
