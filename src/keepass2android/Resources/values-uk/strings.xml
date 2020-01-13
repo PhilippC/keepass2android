@@ -92,7 +92,14 @@
   <string name="disable_fingerprint_unlock">Вимкнути біометричне розблокування</string>
   <string name="enable_fingerprint_unlock">Увімкнути повне біометричне розблокування</string>
   <string name="enable_fingerprint_quickunlock">Увімкнути біометричне розблокування для QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Не вдалося розблокувати біометрикою. Ключ дешифрування не був схвалений ОС Android. Зазвичай, це трапляється коли було змінено біометричну автентифікацію або налаштування безпеки. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Не вдалося розблокувати базу даних: недійсний композитний ключ. Біометричне розблокування було вимкнено, тому що, схоже, збережений головний пароль більше недійсний. </string>
+  <string name="fingerprint_reenable">Будь ласка, повторно увімкніть біометричне розблокування для нового головного пароля.</string>
+  <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте біометричне розблокування в налаштуваннях бази даних.</string>
+  <string name="FingerprintInitFailed">Не вдалося ініціалізувати біометричну автентифікацію. </string>
   <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
+  <string name="enable_fingerprint_unlock_Info">Це збереже Ваш головний пароль на цьому пристрої, зашифрованому за допомогою Android Keystore і захищеному з використанням біометричної автентифікації. Дозволяє розблоковувати базу паролів лише за Вашою біометрією.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Дозволяє використовувати біометричну автентифікацію замість коду QuickUnlock. Не зберігає жодної інформації, повʼязаної з Вашим головним паролем.</string>
   <string name="enter_filename">Введіть ім’я бази даних</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасувати</string>
@@ -260,6 +267,7 @@
   <string name="ShowUsernameInList_summary">Показувати ім\'я користувача під назвою запису в списку. Корисно для декількох облікових записів або TAN.</string>
   <string name="RememberRecentFiles_title">Пам\'ятати бази даних</string>
   <string name="RememberRecentFiles_summary">Пам\'ятати недавно відкриті бази даних і відображати їх на екрані відкриття бази даних.</string>
+  <string name="kp2a_findUrl">Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
   <string name="search_options">Параметри</string>
   <string name="caseSensitive">З урахуванням регістру</string>
@@ -624,6 +632,7 @@
   <string name="DbQuicklockedChannel_desc">Сповіщення про блокування бази даних з QuickUnlock</string>
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активної біометричної автентифікації.</string>
   <string-array name="ChangeLog_1_08">
     <item>Додати кнопку сповіщення для копіювання TOTP в буфер обміну</item>
     <item>Перемикання на FluentFTP для надання підтримки TLS 1.2</item>
@@ -962,10 +971,12 @@ Initial public release
   <string name="autofill_disable">Вимкнути автозаповнення для %1$s</string>
   <string name="autofill_enable_for">Увімкнути автозаповнення для %1$s</string>
   <string name="invalid_link_association">Не вдалося асоціювати домен %1$s з програмою %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android виявив засіб для біометричної автентифікації. Хочете увімкнути біометричне розблокування для цієї бази паролів?</string>
   <string name="understand">Я розумію</string>
   <string name="dont_show_again">Не показувати знову</string>
   <string name="masterkey_infotext_head">Ви пам\'ятаєте свій головний пароль?</string>
   <string name="masterkey_infotext_main">Зауважте, що ви не зможете відкрити свою базу даних без головного пароля. Відновити головний пароль неможливо.</string>
+  <string name="masterkey_infotext_fingerprint_note">Також памʼятайте, що при біометричному розблокуванні Ваш головний пароль зберігається в захищеному сховищі Android. Це сховище може бути очищене системою в будь-який момент, наприклад, якщо Ви додасте новий відбиток в налаштуваннях системи. Отже, не покладайтеся цілком на біометричне розблокування, а завжди памʼятайте свій головний пароль!</string>
   <string name="backup_infotext_head">Чи створена резервна копія вашої бази даних?</string>
   <string name="backup_infotext_main">Keepass2Android зберігає ваші паролі в файлі у вибраному вами розташуванні. Ви впевнені, що все ще маєте доступ до цього файлу, якщо втратите доступ до свого пристрою, або якщо файл буде пошкоджено чи видалено? Переконайтеся, що у вас завжди є оновлена резервна копія в надійному місці!</string>
   <string name="backup_infotext_note">Щоб створити резервну копію зараз, перейдіть до %1$s &gt; %2$s &gt; %3$s.</string>
