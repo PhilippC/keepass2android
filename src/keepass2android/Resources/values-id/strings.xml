@@ -38,7 +38,6 @@
   <string name="FileHandling_prefs">Penanganan file</string>
   <string name="keyboard_prefs">Papan ketik</string>
   <string name="export_prefs">Ekspor database...</string>
-  <string name="fingerprint_prefs">buka dengan sidik jari</string>
   <string name="import_db_prefs">Impor basis data ke folder internal</string>
   <string name="import_keyfile_prefs">Impor berkas kunci ke folder internal</string>
   <string name="keyboardswitch_prefs">beralih Keyboard</string>
@@ -68,21 +67,6 @@
   <string name="disclaimer_formal">Keepass2Android dilengkapi TANPA GARANSI APAPUN; Ini adalah perangkat lunak bebas, dan Anda dipersilakan untuk mendistribusikan di bawah kondisi versi GPL 2 atau lebih baru.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Salin ke Papan Klip</string>
-  <string name="fingerprint_hint">Sensor sentuh</string>
-  <string name="fingerprint_description">konfirmasi sidik jari untuk melanjutkan</string>
-  <string name="fingerprint_fatal">Tidak bisa memasang sidik jari pembuka:</string>
-  <string name="fingerprint_not_recognized">Sidik jari yang tidak dikenal. Coba lagi</string>
-  <string name="fingerprint_success">Sidik jari dikenal</string>
-  <string name="fingerprint_os_error">pembuka sidik jari memerlukan Android 6.0 atau yang lebih baru.</string>
-  <string name="fingerprint_hardware_error">Tidak ada perangkat keras sidik jari yang terdeteksi.</string>
-  <string name="fingerprint_no_enrolled">Anda tidak memiliki sidik jari yang terdaftar pada perangkat ini. Pertama silakan pergi ke pengaturan sistem.</string>
-  <string name="disable_fingerprint_unlock">Menonaktifkan pembuka sidik jari </string>
-  <string name="enable_fingerprint_unlock">Mengaktifkan penuh pembuka sidik jari</string>
-  <string name="enable_fingerprint_quickunlock">Mengaktifkan pembuka sidik jari untuk PembukaCepat</string>
-  <string name="fingerprint_unlock_hint">Sensor Sentuh untuk membuka basis data</string>
-  <string name="fingerprint_reenable">Silakan aktifkan kembali pembuka sidik jari untuk sandi utama yang baru.</string>
-  <string name="enable_fingerprint_unlock_Info">     Ini akan menyimpan sandi utama Anda pada perangkat ini, dienkripsi dengan Android Keystore dan dilindungi menggunakan otentikasi sidik jari. Memungkinkan untuk membuka basis data Anda hanya dengan sidik jari.   </string>
-  <string name="enable_fingerprint_quickunlock_Info">Memungkinkan untuk menggunakan otentikasi sidik jari dari pada kode PembukaCepat. Tidak membutuhkan untuk menyimpan informasi terkait dengan sandi utama Anda.</string>
   <string name="enter_filename">Masukkan nama berkas basis data</string>
   <string name="entry_accessed">Diakses</string>
   <string name="entry_cancel">Batal</string>
@@ -239,7 +223,6 @@
   <string name="ShowUsernameInList_summary">Tampilan nama pengguna di bawah judul entri. Berguna untuk beberapa account atau TANs.</string>
   <string name="RememberRecentFiles_title">Ingat database</string>
   <string name="RememberRecentFiles_summary">Ingat database yang baru dibuka dan tampilkan kepada mereka di layar buka database.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Cari password</string>
   <string name="excludeExpiredEntries">Mengecualikan entri kedaluwarsa</string>
   <string name="search_options">Pilihan</string>
   <string name="caseSensitive">Sensitif-bentuk</string>
@@ -507,7 +490,6 @@ Hati-hati terhadap pengintip kata sandi!</string>
   <string name="NoFilenameWarning">URI yang Anda masukkan tidak terlihat seperti nama berkas. Apakah Anda yakin ini adalah berkas yang valid?</string>
   <string name="FirstInvalidCompositeKeyError">Kunci komposit tidak lengkap Silahkan coba lagi.</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Tampilkan soft keyboard untuk input kata sandi saat pemindaian sidik jari aktif.</string>
   <string name="ChangeLog_1_03">Versi 1.03\n
     * Layanan aksesibilitas yang telah dihapus untuk IsiOtomatis sesuai permintaan Google. Silakan lihat pengaturan akses kata sandi untuk menemukan plugin yang mereplikasi fungsi sebelumnya.\n
     * Menambahkan aplikasi pihak ketiga sebagai opsi penyimpanan lagi\n
