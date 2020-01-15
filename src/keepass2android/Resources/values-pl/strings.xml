@@ -48,7 +48,7 @@
   <string name="FileHandling_prefs">Obsługa plików</string>
   <string name="keyboard_prefs">Klawiatura</string>
   <string name="export_prefs">Eksportuj bazę danych...</string>
-  <string name="fingerprint_prefs">Odblokowywanie odciskiem palca</string>
+  <string name="fingerprint_prefs">Odblokowywanie biometryczne</string>
   <string name="import_db_prefs">Import bazy danych do wewnętrznego folderu</string>
   <string name="import_keyfile_prefs">Import pliku klucza do folderu wewnętrznego</string>
   <string name="keyboardswitch_prefs">Przełączanie klawiatury</string>
@@ -62,11 +62,14 @@
   <string name="brackets">Nawiasy</string>
   <string name="cancel">Anuluj</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Wyłącz czujnik</string>
+  <string name="enable_sensor">Włącz czujnikl</string>
   <string name="ClearClipboard">Schowek wyczyszczony.</string>
   <string name="clipboard_timeout">Czas wygaśnięcia schowka</string>
   <string name="clipboard_timeout_summary">Czas po skopiowaniu nazwy użytkownika lub hasła, po którym zostaną one usunięte ze schowka</string>
   <string name="copy_username">Kopiuj nazwę użytkownika do schowka</string>
   <string name="copy_password">Kopiuj hasło do schowka</string>
+  <string name="copy_totp">Zaznacz, aby skopiować TOTP do schoweka</string>
   <string name="available_through_keyboard">Wpis jest dostępny za pośrednictwem klawiatury KP2A</string>
   <string name="entry_is_available">jest dostępny</string>
   <string name="not_possible_im_picker">Nie można otworzyć okna dialogowego wyboru metody wprowadzania. Aktywuj klawiaturę ręcznie w ustawieniach systemu.</string>
@@ -79,28 +82,24 @@
   <string name="disclaimer_formal">Keepass2Android jest udostępniany BEZ JAKIEJKOLWIEK GWARANCJI. Niniejszy program jest wolnym oprogramowaniem: możesz go swobodnie rozpowszechniać na warunkach licencji GNU General Public License w wersji 2 lub późniejszej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiuj do schowka</string>
-  <string name="fingerprint_hint">Dotknij czytnik linii papilarnych</string>
-  <string name="fingerprint_description">Potwierdź odciskiem palca, aby kontynuować</string>
-  <string name="fingerprint_fatal">Nie można ustawić odblokowywania odciskiem palca:</string>
-  <string name="fingerprint_not_recognized">Odcisk palca nie rozpoznany. Spróbuj ponownie</string>
-  <string name="fingerprint_success">Odcisk palca rozpoznany</string>
-  <string name="fingerprint_os_error">Odblokowywanie odciskiem palca wymaga Androida 6.0 lub nowszego.</string>
-  <string name="fingerprint_hardware_error">Nie wykryto czytnika linii papilarnych.</string>
-  <string name="fingerprint_no_enrolled">Nie masz zapisanych odcisków palców na tym urządzeniu. Przejdź najpierw do ustawień systemowych.</string>
-  <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie odciskiem palca</string>
-  <string name="enable_fingerprint_unlock">Włącz odblokowywanie odciskiem palca</string>
-  <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie odciskiem palca dla QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Dotknij czytnika do odblokowania bazy danych</string>
-  <string name="fingerprint_unlock_failed">Odblokowanie linii papilarnych nie powiodło Klucz deszyfrowania został unieważniony przez system operacyjny Android. Zwykle dzieje się tak, gdy zarejestrowano nowy odcisk palca lub zmieniono ustawienia zabezpieczeń. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odblokowywanie bazy danych nie powiodło się: nieprawidłowy klucz złożony. Linii papilarnych Unlock została wyłączona, ponieważ najwyraźniej zapisane hasła głównego nie jest już prawidłowy. </string>
-  <string name="fingerprint_reenable">Proszę ponownie aktywować odblokowywanie przy pomocy odcisku palca dla nowego hasła głównego.</string>
-  <string name="fingerprint_reenable2">Proszę odblokować używając twojego hasła, następnie restart Skanera Odcisków pałcow w bazie ustawień.</string>
-  <string name="FingerprintInitFailed">Nie udało się zainicjować czytnika linii papilarnych. </string>
+  <string name="fingerprint_description">Uwierzytelnij, aby kontynuować</string>
+  <string name="fingerprint_fatal">Nie można skonfigurować odblokowywania biometrycznego:</string>
+  <string name="fingerprint_not_recognized">Uwierzytelnianie biometryczne nie powiodło się. Spróbuj ponownie</string>
+  <string name="fingerprint_success">Uwierzytelnianie biometryczne powiodło się</string>
+  <string name="fingerprint_os_error">Odblokowywanie biometryczne wymaga systemu Android w wersji 6.0 lub nowszej.</string>
+  <string name="fingerprint_hardware_error">Nie znaleziono wsparcia sprzętowego dla odblokowania biometrycznego.</string>
+  <string name="fingerprint_no_enrolled">Nie skonfigurowałeś uwierzytelniania biometrycznego na tym urządzeniu. Przejdź najpierw do ustawień systemowych.</string>
+  <string name="disable_fingerprint_unlock">Wyłącz odblokowywanie biometryczne</string>
+  <string name="enable_fingerprint_unlock">Włącz pełne odblokowywanie biometryczne</string>
+  <string name="enable_fingerprint_quickunlock">Włącz odblokowywanie biometryczne dla SzybkiegoOdblokowania</string>
+  <string name="fingerprint_unlock_failed">Odblokowanie biometryczne nie powiodło się. Klucz deszyfrujący został unieważniony przez system operacyjny Android. Zwykle dzieje się tak, jeśli ustawienia uwierzytelniania biometrycznego lub zabezpieczeń zostały zmienione. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odblokowanie bazy danych nie powiodło się: Niepoprawny klucz. Odblokowanie biometryczne zostało wyłączone, ponieważ najwyraźniej zapisane hasło główne nie jest już ważne. </string>
+  <string name="fingerprint_reenable">Włącz ponownie odblokowanie biometryczne dla nowego hasła głównego.</string>
+  <string name="fingerprint_reenable2">Odblokuj za pomocą hasła, a następnie ponownie włącz Odblokowywanie biometryczne w ustawieniach bazy danych.</string>
+  <string name="FingerprintInitFailed">Nie udało się zainicjować uwierzytelnienia biometrycznego. </string>
   <string name="FingerprintSetupFailed">Szyfrowanie danych nie powiodło się. Może do tego dojść kiedy dodajesz lub usuwasz odciski palców w ustawieniach systemu gdy Keepass2Android ich nasłuchuje.</string>
-  <string name="enable_fingerprint_unlock_Info">To zachowa twoje hasła główne na tym urządzeniu.
-    zaszyfrowane przy pomocy zestawu kluczy Androida i chronione
-    używając autoryzacji odciskiem palca. Umożliwia odblokowywanie twojej bazy danych tylko przy pomocy odcisku palca.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Umożliwia użycie autoryzacji odciskiem palca zamiast kodu SzybkieOdblokowanie. Nie wymaga przechowywania żadnych informacji powiązanych z twoich hasłem głównym.</string>
+  <string name="enable_fingerprint_unlock_Info">Spowoduje to zapisanie hasła głównego na tym urządzeniu, zaszyfrowanego za pomocą magazynu kluczy Android i zabezpieczonego przy użyciu uwierzytelniania biometrycznego. Pozwala to odblokować bazę danych tylko przy użyciu biometrii.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Zezwól na uwierzytelnianie biometryczne, zamiast kodu SzybkiegoOdblokowywania. Funkcja ta nie przechowuje żadnych informacji związanych z hasłem głównym.</string>
   <string name="enter_filename">Wprowadź nazwę pliku bazy danych</string>
   <string name="entry_accessed">Ostatni dostęp</string>
   <string name="entry_cancel">Anuluj</string>
@@ -268,7 +267,7 @@
   <string name="ShowUsernameInList_summary">Wyświetla nazwy użytkowników poniżej tytułów. Przydatne przy wielu kontach lub TAN (hasłach jednorazowych).</string>
   <string name="RememberRecentFiles_title">Zapamiętaj bazę danych</string>
   <string name="RememberRecentFiles_summary">Zapamiętaj ostatnio otwieraną bazę danych i pokazuj ją na ekranie wyboru.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Znajdź hasło</string>
+  <string name="kp2a_findUrl">Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
   <string name="search_options">Opcje</string>
   <string name="caseSensitive">Wielkość liter ma znaczenie</string>
@@ -280,7 +279,7 @@
   <string name="enter_filename_details_create_import">W następnym kroku zostanie wybrany plik do zaimportowania.</string>
   <string name="enable_quickunlock">Włącz SzybkieOdblokowanie</string>
   <string name="QuickUnlock_label">Wprowadź %1$d ostatnie znaki hasła:</string>
-  <string name="QuickUnlock_label_secure">Wpisz kod QuickUnlock:</string>
+  <string name="QuickUnlock_label_secure">Wpisz kod SzybkieOdblokowanie:</string>
   <string name="QuickUnlock_button">SzybkieOdblokowanie!</string>
   <string name="QuickUnlock_lockButton">Zamknij bazę danych</string>
   <string name="QuickUnlockDefaultEnabled_title">Domyślnie włącz SzybkieOdblokowanie</string>
@@ -293,7 +292,7 @@
   <string name="QuickUnlockIconHidden16_summary">SzybkieOdblokowanie potrzebuje androidowego powiadomienia aby działało poprawnie. Wybierz tę opcję aby użyć powiadomienia bez ikonki.</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
-  <string name="QuickUnlockHideLength_title">Ukryj długość QuickUnlock</string>
+  <string name="QuickUnlockHideLength_title">Ukryj długość SzybkieOdblokowanie</string>
   <string name="QuickUnlockHideLength_summary">Jeśli zaznaczone, długość kodu SzybkieOdblokowanie nie jest wyświetlana na ekranie SzybkieOdblokowanie.</string>
   <string name="QuickUnlock_fail">Nie powiodło się SzybkieOdblokowanie: niepoprawne hasło!</string>
   <string name="BinaryDirectory_title">Katalog plików załączników</string>
@@ -476,7 +475,9 @@
   <string name="filestoragehelp_pcloud">Ten typ magazynowania wymaga tylko dostępu do folderu „Applications/Keepass2Android”. Jeśli chcesz używać istniejącej bazy danych z twojego konta PCloud, upewnij się, że plik jest umieszczony w tym folderze.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Wszystkie pliki i współdzielone pliki</string>
   <string name="filestoragename_onedrive2_myfiles">Moje pliki</string>
+  <string name="filestoragename_onedrive2_appfolder">Katalog KeePass2Android</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
@@ -631,7 +632,22 @@
   <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy SzybkiegoOdblokowania</string>
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wpisywania hasła podczas skanowania linii papilarnych.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Pokaż klawiaturę ekranową do wprowadzania hasła, gdy aktywne jest uwierzytelnianie biometryczne.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Dodaj do powiadomienia przycisk kopiujący TOTP do schowka</item>
+    <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
+    <item>Przełącz na BiometricPrompt API, aby poprawić wrażenie użytkownika przy odblokowywaniu odciskiem palca i umożliwić odblokowanie twarzy, np. na Pixel 4.</item>
+    <item>Poprawki błędów</item>
+  </string-array>
+  <string name="ChangeLog_1_07b">   Wersja 1. 7b\n
+    * Poprawa wydajności Argon2 dzięki natywnej implementacji (Dzięki Chih-Hsuan Yen!)\n
+    * Istnieje możliwość wyłączenie odcisku palca, klikając ikonę odcisku palca (umożliwiło to uniknięcie problemów z czytnikami odcisków palców pod ekranem, dzięki marcoDallas!)\n
+    * Przywrócenie pozycji kursora podczas przełączania widoczności hasła (dzięki DDoSolitary!)\n
+    * Ulepszenia implementacji pCloud (dzięki gilbsgilb\'om znowu!)\n
+    * Dodano wsparcie autouzupełniania dla większej ilości przeglądarek\n
+    * Nowa implementacja dla OneDrive: zawiera wsparcie dla OneDrive for Business, pliki współdzielone, wybrane zakresy dostępu, wiele kont i naprawa problemów z dostępem offline\n
+    * Poprawki błędów
+  </string>
   <string name="ChangeLog_1_07">Wersja 1.07\n
     * Poprawki do awarii Androida 9 na urządzeniach Samsung\n
     * Możliwość otwarcia więcej niż jednej bazy danych, zgodnej z KeeAutoExec\n
@@ -934,18 +950,19 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="autofill_enable_failed">Niestety wygląda na to, że twoje urządzenie nie wspiera otwierania ustawień z wnętrza aplikacji. Przejdź ręcznie do ustawień systemu dla autouzupełniania, aby włączyć tą usługę.</string>
   <string name="show_autofill_help">Pokaż pomoc autouzupełniania</string>
   <string name="autofill_sign_in_prompt">Wypełnij z Keepass2Android</string>
-  <string name="autofill_disable">Włącz autouzupełnianie dla %1$s</string>
-  <string name="autofill_enable_for">Wyłącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_disable">Wyłącz autouzupełnianie dla %1$s</string>
+  <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android wykrył czytnik odcisków palców. Czy chcesz odblokowywać tę bazę danych odciskiem palca?</string>
+  <string name="enable_fingerprint_hint">Keepass2Android wykrył sprzęt biometryczny. Czy chcesz włączyć odblokowanie biometryczne dla tej bazy danych?</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Nie pokazuj ponownie</string>
   <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>
   <string name="masterkey_infotext_main">Pamiętaj, że nie będziesz mógł otworzyć swojej bazy danych bez klucza głównego. Zresetowanie hasła głównego jest niemożliwe.</string>
-  <string name="masterkey_infotext_fingerprint_note">Pamiętaj też, że odblokowywanie przy pomocy odcisku palca działa przechowując klucz główny w bezpiecznej magazynie systemu operacyjnego Android. Ten magazyn może być usunięty przez system w dowolnym momencie, np. jeśli dodasz nowy odcisk palca w ustawieniach systemu. Więc proszę, nie polegaj na odcisku palca, tylko pamiętaj swoje hasło główne!</string>
+  <string name="masterkey_infotext_fingerprint_note">Pamiętaj też, że odblokowanie biometryczne polega na przechowywaniu klucza głównego w zabezpieczonym urządzeniu z Androidem. Może to zostać usunięte przez Androida w dowolnym momencie, np. jeśli dodasz nowy odcisk palca w ustawieniach systemu. Nie polegaj więc jedynie na odblokowaniu biometrycznym, ale pamiętaj również swoje hasło główne!</string>
   <string name="backup_infotext_head">Czy posiadasz kopię zapasową swojej bazy danych?</string>
   <string name="backup_infotext_main">Keepass2Android przechowuje twoje hasło w pliku w wybranej lokacji. Czy masz pewność, że wciąż będziesz mieć dostęp do tego pliku, gdy zgubisz telefon lub zostanie on skradziony albo plik zostanie zniszczony lub usunięty? Upewnij się, że zawsze masz aktualną kopię zapasową w bezpiecznym miejscu!</string>
   <string name="backup_infotext_note">Aby stworzyć kopię zapasową, przejdź do %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Czy jesteś gotowy/a na sytuacje awaryjne?</string>
   <string name="emergency_infotext_main">Czy zastanawiałeś/aś się co się stanie, jeśli nie będziesz w stanie uzyskać dostępu do bazy haseł? Co zrobić, jeśli masz wypadek? Dobrą praktyką jest przekazanie swojego klucza głównego do niektórych zaufanych osób na wypadek sytuacji nadzwyczajnych. Inaczej nikt nie będzie mieć dostępu do haseł.</string>
+  <string name="no_secure_display">Aktualny wyświetlacz nie jest oznaczony jako bezpieczny. To oznacza, że zrzuty ekranu mogą być przechwycone przez inne aplikacje. Keepass2Android jest skonfigurowany, aby wyświetlać wrażliwe informacje tylko na bezpiecznym ekranie. Proszę przełącz się na bezpieczny ekran (np. przez odłączenie monitora HDMI) lub zmień ustawienia aplikacji.</string>
 </resources>
