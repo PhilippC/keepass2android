@@ -23,11 +23,8 @@
   <string name="display_prefs">Görüntü</string>
   <string name="keyboard_prefs">Klaviatura</string>
   <string name="export_prefs">Verilənlər bazasını ixrac et...</string>
-  <string name="fingerprint_prefs">Barmaq izi ilə kilid açma</string>
   <string name="import_db_prefs">Verilənlər bazasını daxili qovluğa idxal et</string>
   <string name="OnlyAvailableForLocalFiles">Yalnız yerli fayllar üçün mövcuddur.</string>
-  <string name="fingerprint_os_error">Barmaq izi ilə kilid açma üçün Android 6.0 və sonrası lazımdır.</string>
-  <string name="fingerprint_hardware_error">Heç bir barmaq izi avadanlıq təminatı aşkarlanmadı.</string>
   <string name="enter_filename">Verilənlər bazası fayl adını daxil edin</string>
   <string name="entry_tags">Etiketlər</string>
   <string name="entry_confpassword">Şifrəni təsdiqlə</string>
