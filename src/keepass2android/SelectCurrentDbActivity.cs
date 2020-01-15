@@ -259,6 +259,16 @@ namespace keepass2android
 
         }
 
+        protected override void OnStop()
+        {
+            if (_intentReceiver != null)
+            {
+                UnregisterReceiver(_intentReceiver);
+                _intentReceiver = null;
+            }
+            base.OnStop();
+        }
+
         private bool GetIocFromViewIntent(Intent intent)
         {
             IOConnectionInfo ioc = new IOConnectionInfo();
@@ -437,7 +447,8 @@ namespace keepass2android
             //by leaving the app with the back button, the user probably wants to cancel the task
             //The activity might be resumed (through Android's recent tasks list), then use a NullTask:
             AppTask = new NullTask();
-            Finish();
+            if (!IsFinishing)
+                Finish();
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -497,11 +508,13 @@ namespace keepass2android
                 case KeePass.ExitCloseAfterTaskComplete:
                     // Do not lock the database
                     SetResult(KeePass.ExitCloseAfterTaskComplete);
-                    Finish();
+                    if (!IsFinishing)
+                        Finish();
                     break;
                 case KeePass.ExitClose:
                     SetResult(KeePass.ExitClose);
-                    Finish();
+                    if (!IsFinishing)
+                        Finish();
                     break;
                 case KeePass.ExitReloadDb:
 
