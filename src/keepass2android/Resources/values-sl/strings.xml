@@ -48,7 +48,7 @@
   <string name="FileHandling_prefs">Ravnanje z datotekami</string>
   <string name="keyboard_prefs">Tipkovnica</string>
   <string name="export_prefs">Izvozi podatkovno zbirko …</string>
-  <string name="fingerprint_prefs">Odklepanje s prstnim odtisom</string>
+  <string name="fingerprint_prefs">Biometrično odklepanje</string>
   <string name="import_db_prefs">Uvozi podatkovno zbirko v notranjo mapo</string>
   <string name="import_keyfile_prefs">Uvozi datoteko ključa v notranjo mapo</string>
   <string name="keyboardswitch_prefs">Preklapljanje tipkovnice</string>
@@ -82,29 +82,24 @@
   <string name="disclaimer_formal">Keepass2Android je brez VSAKRŠNE GARANCIJE; to je brezplačna programska oprema in lahko jo razširjate pod pogoji GPL-a različice 2 ali kasnejše.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiraj na odložišče</string>
-  <string name="fingerprint_hint">Tipalo dotika</string>
-  <string name="fingerprint_description">Za nadaljevanje potrdite prstni odtis</string>
-  <string name="fingerprint_fatal">Odklepanja s prstnim odtisom ni mogoče nastaviti:</string>
-  <string name="fingerprint_not_recognized">Prstni odtis ni bil prepoznan. Poizkusite znova</string>
-  <string name="fingerprint_success">Prstni odtis je bil prepoznan</string>
-  <string name="fingerprint_os_error">Odklepanje s prstnim odtisom zahteva Android 6.0 ali kasnejšega.</string>
-  <string name="fingerprint_hardware_error">Strojne opreme za prstne odtise ni bilo zaznane.</string>
-  <string name="fingerprint_no_enrolled">Na tej naprave nimate vpisanih prstnih odtisov. Najprej pojdite v sistemske nastavitve.</string>
-  <string name="disable_fingerprint_unlock">Onemogoči odklepanje s prstnim odtisom</string>
-  <string name="enable_fingerprint_unlock">Omogoči popolno odklepanje s prstnim odtisom</string>
-  <string name="enable_fingerprint_quickunlock">Omogoči odklepanje s prstnim odtisom za Hitro odklepanje</string>
-  <string name="fingerprint_unlock_hint">Tipalo dotika za odklepanje podatkovne zbirke</string>
-  <string name="fingerprint_unlock_failed">Odklepanje s prstnim odtisom ni uspelo. Android OS je razveljavil ključ za dešifriranje. To se zgodi, ko je dodan nov prstni odtis ali so bile spremenjene varnostne nastavitve. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Odklepanje baze podatkov ni uspelo: Neveljaven sestavljeni ključ. Odklepanje prstnih odtisov je bilo onemogočeno, ker očitno shranjeno glavno geslo ni več veljavno. </string>
-  <string name="fingerprint_reenable">Ponovno omogočite odklepanje s prstnim odtisom za novo glavno geslo.</string>
-  <string name="fingerprint_reenable2">Odklenite geslo in znova omogočite funkcijo Odklepanje s prstnim odtisom v nastavitvah baze podatkov.</string>
-  <string name="FingerprintInitFailed">Ni uspelo inicializirati senzorja za prstni odtis. </string>
+  <string name="fingerprint_description">Prosimo, če se avtenticirate za nadaljevanje</string>
+  <string name="fingerprint_fatal">Ni mogoče nastaviti Biometričnega odklepanja:</string>
+  <string name="fingerprint_not_recognized">Biometrična avtentikacija je spodletela. Poskusite znova</string>
+  <string name="fingerprint_success">Biometrična avtentikacija je uspela</string>
+  <string name="fingerprint_os_error">Biometrična avtentikacija zahteva Android 6.0 ali novejši.</string>
+  <string name="fingerprint_hardware_error">Biometrična strojna oprema ni zaznana.</string>
+  <string name="fingerprint_no_enrolled">Na tej napravi nimate določene biometrične avtentikacije. Najprej pojdite v sistemske nastavitve.</string>
+  <string name="disable_fingerprint_unlock">Onemogoči Biometrično odklepanje</string>
+  <string name="enable_fingerprint_unlock">Omogoči polno Biometrično odklepanje</string>
+  <string name="enable_fingerprint_quickunlock">Omogoči odklepanje z Biometričnim odklepanje za Hitro odklepanje</string>
+  <string name="fingerprint_unlock_failed">Biometrično odklepanje ni uspelo. Android OS je razveljavil ključ za dešifriranje. To se zgodi, ko je dodana nova biometrična avtentikacija ali so bile spremenjene varnostne nastavitve. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Odklepanje baze podatkov ni uspelo: Neveljaven sestavljeni ključ. Biometrično odklepanje je bilo onemogočeno, ker očitno shranjeno glavno geslo ni več veljavno. </string>
+  <string name="fingerprint_reenable">Ponovno omogočite Biometrično odklepanje za novo glavno geslo.</string>
+  <string name="fingerprint_reenable2">Odklenite geslo in znova omogočite funkcijo Biometrično odklepanje v nastavitvah baze podatkov.</string>
+  <string name="FingerprintInitFailed">Napaka pri inicializaciji biometrične avtentikacije. </string>
   <string name="FingerprintSetupFailed">Podatkov ni bilo mogoče šifrirati. To se lahko zgodi, če dodate ali odstranite prstne odtise v sistemskih nastavitvah, medtem ko Keepass2Android uporablja vaš prstni odtis.</string>
-  <string name="enable_fingerprint_unlock_Info">    To bo shranilo glavno geslo na tej napravi, ki bo
-    šifrirano z Androidovo zbirko ključev in zaščiteno
-    z uporabo overitve s prstnim odtisom. Omogoča odklepanje podatkovne zbirke samo s prstnim odtisom.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Omogoča uporabo overitve s prstnim odtisom namesto s kodo Hitrega odklepanja. Ne zahteva shranjevanje podatkov, ki so povezani z glavnim geslom.</string>
+  <string name="enable_fingerprint_unlock_Info">To bo shranilo glavno geslo na tej napravi, ki bo šifrirano z Androidovo zbirko ključev in zaščiteno z uporabo biometrične avtentikacije. Omogoča odklepanje podatkovne zbirke samo s prstnim odtisom.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Omogoča uporabo Biometrične avtentikacije namesto s kodo Hitrega odklepanja. Ne zahteva shranjevanje podatkov, ki so povezani z glavnim geslom.</string>
   <string name="enter_filename">Vnesite ime datoteke podatkovne zbirke</string>
   <string name="entry_accessed">Dostopano</string>
   <string name="entry_cancel">Prekliči</string>
@@ -272,7 +267,7 @@
   <string name="ShowUsernameInList_summary">Prikaži uporniška imena pod nazivi vnosov. Uporabno za več računov ali TAN-e.</string>
   <string name="RememberRecentFiles_title">Zapomni si pod. zbirke</string>
   <string name="RememberRecentFiles_summary">Zapomni si nedavno odprte podatkovne zbirke in jih prikaži na zaslonu Odpri podatkovno zbirko.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Najdi geslo</string>
+  <string name="kp2a_findUrl">Najdi geslo</string>
   <string name="excludeExpiredEntries">Izključi potekle vnose</string>
   <string name="search_options">Možnosti</string>
   <string name="caseSensitive">Razlikovanje velikosti črk</string>
@@ -637,7 +632,13 @@
   <string name="DbQuicklockedChannel_desc">Obvestilo o zaklenjeni bazi podatkov s funkcijo Hitrega odklepanja</string>
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Prikaži zaslonsko tipkovnico za vnos gesla, ko je dejavno branje prstnega odtisa.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Prikaži zaslonsko tipkovnico za vnos gesla, ko je omogočeno biometrična avtentikacija.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Dodaj gumb za obvestilo ob kopiranju TOTP na odložišče</item>
+    <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
+    <item>Preklop na BiometricPrompt API za izboljšanje uporabniške izkušnje za odpiranje s prstnim odtisom in omogočitev odklepanja z obrazom, npr. na Pixel 4.</item>
+    <item>Popravki hroščev</item>
+  </string-array>
   <string name="ChangeLog_1_07b">Različica 1.07b\n
      * Izboljšana zmogljivost Argon2 z uporabo izvorne implementacije (Hvala Chih-Hsuan Yen!)\n
      * Dovolite, da onemogočite odtis prsta s klikom na ikono prstnega odtisa (izognete se težavam z bralniki prstnih odtisov na spodnjem zaslonu, zahvaljujoč marcoDallas!)\n
@@ -961,12 +962,12 @@ Začetna javna izdaja
   <string name="autofill_disable">Onemogoči samodejno izpolnjevanje za %1$s</string>
   <string name="autofill_enable_for">Omogoči samodejno izpolnjevanje za %1$s</string>
   <string name="invalid_link_association">Spletne domene %1$s ni bilo mogoče povezati z aplikacijo %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android je odkril strojno opremo za prstne odtise. Ali želite omogočiti odpiranje baze podatkov s prstnim odtisom?</string>
+  <string name="enable_fingerprint_hint">Keepass2Android je zaznal biometrično strojno opremo. Ali želite omogočiti Biometrično odklepanje za to bazo?</string>
   <string name="understand">Razumem</string>
   <string name="dont_show_again">Ne prikaži več</string>
   <string name="masterkey_infotext_head">Ali se spomnite vašega glavnega gesla?</string>
   <string name="masterkey_infotext_main">Upoštevajte, da baze podatkov ne boste mogli odpreti brez glavnega ključa. Glavnega gesla ni mogoče ponastaviti.</string>
-  <string name="masterkey_infotext_fingerprint_note">Upoštevajte tudi, da odklepanje prstnih odtisov deluje tako, da shrani vaš glavni ključ v varno shrambo Androida. Kadarkoli, npr. če v sistemske nastavitve dodate nov prstni odtis. Zato se ne zanašajte na vaš prstni odtis, ampak se spomnite svojega glavnega gesla, prosim!</string>
+  <string name="masterkey_infotext_fingerprint_note">Upoštevajte tudi, da Biometrično odklepanje deluje tako, da shrani vaš glavni ključ v varno shrambo Androida. Kadarkoli, npr. če v sistemske nastavitve dodate nov prstni odtis. Zato se ne zanašajte na Biometrično odklepanje, ampak se spomnite svojega glavnega gesla, prosim!</string>
   <string name="backup_infotext_head">Je vaša baza podatkov varnostno kopirana?</string>
   <string name="backup_infotext_main">Keepass2Android shrani vaše geslo v datoteko na vaši izbrani lokaciji. Ali ste prepričani, da lahko to datoteko še vedno dobite, ko bo vaš telefon izgubljen ali ukraden ali bo vaša datoteka uničena ali izbrisana? Poskrbite, da imate na varnem mestu najnovejšo varnostno kopijo!</string>
   <string name="backup_infotext_note">Če želite ustvariti varnostno kopijo, pojdite na %1$s &gt; %2$s &gt; %3$s.</string>
