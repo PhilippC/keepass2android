@@ -31,7 +31,7 @@
   <string name="FileHandling_prefs">Fitxategien trataera</string>
   <string name="keyboard_prefs">Teklatua</string>
   <string name="export_prefs">Esportatu datu-basea...</string>
-  <string name="fingerprint_prefs">Hatz-marka bidezko desblokeoa</string>
+  <string name="import_db_prefs">Inportatu datu-basea barne karpetara</string>
   <string name="import_keyfile_prefs">Inportatu gakoa barne karpetara</string>
   <string name="keyboardswitch_prefs">Teklatu aldaketa</string>
   <string name="OnlyAvailableForLocalFiles">Tokiko fitxategientzat besterik ez.</string>
@@ -43,6 +43,7 @@
   <string name="ClearClipboard">Arbela garbituta.</string>
   <string name="clipboard_timeout">Arbelaren dembora-muga</string>
   <string name="clipboard_timeout_summary">Erabiltzaile-izena edo pasahitza kopiatu eta gero arbela garbitzeko denbora-muga</string>
+  <string name="copy_password">Hautatu pasahitza arbelera kopiatzeko</string>
   <string name="entry_is_available">eskuragarri dago</string>
   <string name="creating_db_key">Datu-basearen gakoa sortzen…</string>
   <string name="current_group">Uneko taldea</string>
@@ -51,19 +52,6 @@
   <string name="digits">Digituak</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiatu arbelean</string>
-  <string name="fingerprint_hint">Ukitze-sentsorea</string>
-  <string name="fingerprint_description">Berretsi hatz-marka jarraitzeko</string>
-  <string name="fingerprint_fatal">Ezin izan da hatz-marka bidezko desblokeoa ezarri:</string>
-  <string name="fingerprint_not_recognized">Ez da hatz-mark ezagutu. Saiatu berriro</string>
-  <string name="fingerprint_success">Hatz-marka ezagutu da</string>
-  <string name="fingerprint_os_error">Hatz-marka bidezko desblokeoak Android 6.0 edo berriagoa behar du.</string>
-  <string name="fingerprint_hardware_error">Ez da hatz-markak irakurtzeko harware-a aurkitu.</string>
-  <string name="fingerprint_no_enrolled">Ez duzu hatz-markarik erregistratu gailu honetan. Zoaz Android sistemaren ezarpenetara aurretik.</string>
-  <string name="disable_fingerprint_unlock">Desgaitu hatz-marka bidezko desblokeatzea</string>
-  <string name="enable_fingerprint_unlock">Gaitu hatz-marka bidezko desblokeo osoa</string>
-  <string name="enable_fingerprint_quickunlock">Gaitu haz-marka bidezko desblokeoa QuickUnlocken</string>
-  <string name="fingerprint_unlock_hint">Ukitu sentsorea datu-basea desblokeatzeko</string>
-  <string name="enable_fingerprint_quickunlock_Info">Quick-Unlock kodearen ordez hatz-marka erabiltzea baimentzen dizu. Ez du zure pasahitz nagusiarekin erlazionatutako informazioa gordetzeko beharrik.</string>
   <string name="enter_filename">Idatzi datu-basearen fitxategi-izena</string>
   <string name="entry_accessed">Atzituta</string>
   <string name="entry_cancel">Utzi</string>
@@ -197,7 +185,6 @@
   <string name="regular_expression">Adierazpen erregularra</string>
   <string name="ShowUsernameInList_title">Bistaratu erabiltzaile-izena zerrendan</string>
   <string name="RememberRecentFiles_title">Gogoratu datu-baseak</string>
-  <string name="kp2a_findUrl">Keepass2Android: Aurkitu pasahitza</string>
   <string name="excludeExpiredEntries">Ezikusi iraungitako sarrerak</string>
   <string name="search_options">Aukerak</string>
   <string name="caseSensitive">Bereizi Maiuskulak/minuskulak</string>
