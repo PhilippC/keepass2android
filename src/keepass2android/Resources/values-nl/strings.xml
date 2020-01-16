@@ -48,7 +48,6 @@
   <string name="FileHandling_prefs">Omgang met bestanden</string>
   <string name="keyboard_prefs">Toetsenbord</string>
   <string name="export_prefs">Database exporteren...</string>
-  <string name="fingerprint_prefs">Ontgrendelen met vingerafdruk</string>
   <string name="import_db_prefs">Database importeren naar interne map</string>
   <string name="import_keyfile_prefs">Sleutelbestand importeren</string>
   <string name="keyboardswitch_prefs">Toetsenbord wisselen</string>
@@ -82,26 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, je mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopieer naar klembord</string>
-  <string name="fingerprint_hint">Raak de sensor aan</string>
-  <string name="fingerprint_description">Bevestig vingerafdruk om verder te gaan</string>
-  <string name="fingerprint_fatal">Vingerafdrukontgrendeling kan niet worden ingesteld:</string>
-  <string name="fingerprint_not_recognized">Vingerafdruk niet herkend. Probeer opnieuw</string>
-  <string name="fingerprint_success">Vingerafdruk herkend</string>
-  <string name="fingerprint_os_error">Vingerafdrukontgrendeling vereist Android 6.0 of hoger.</string>
-  <string name="fingerprint_hardware_error">Geen vingerafdrukhardware gevonden.</string>
-  <string name="fingerprint_no_enrolled">Je hebt nog geen vingerafdrukken geregistreerd op dit apparaat. Ga eerst naar systeeminstellingen.</string>
-  <string name="disable_fingerprint_unlock">Vingerafdrukontgrendeling uitschakelen</string>
-  <string name="enable_fingerprint_unlock">Vingerafdrukontgrendeling inschakelen</string>
-  <string name="enable_fingerprint_quickunlock">Vingerafdrukontgrendeling voor Snel Openen inschakelen</string>
-  <string name="fingerprint_unlock_hint">Raak de sensor aan om database te ontgrendelen</string>
-  <string name="fingerprint_unlock_failed">Ontgrendelen via vingerafdruk mislukt. De sleutel is door Android als ongeldig gemarkeerd. Dit is meestal het geval als er een nieuwe vingerafdruk is ingesteld of als de beveiligingsinstellingen zijn gewijzigd. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutel. Vingerafdruk-ontgrendeling is uitgeschakeld want het opgeslagen hoofdwachtwoord is niet meer geldig. </string>
-  <string name="fingerprint_reenable">Schakel alsjeblieft vingerafdruk-ontgrendelen opnieuw in voor het nieuwe hoofdwachtwoord.</string>
-  <string name="fingerprint_reenable2">Ontgrendel alsjeblieft met jouw wachtwoord en schakel dan vingerafdruk-ontgrendeling weer in via de instellingen van de database.</string>
-  <string name="FingerprintInitFailed">Niet gelukt om de vingerafdruk-sensor te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
-  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met jouw vingerafdruk te ontgrendelen.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Gebruik authenticatie d.m.v. vingerafdruk in plaats van de Snel Openen code. Dit slaat geen informatie op die gerelateerd is aan jouw hoofdwachtwoord.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Geopend op</string>
   <string name="entry_cancel">Annuleren</string>
@@ -269,7 +249,6 @@
   <string name="ShowUsernameInList_summary">Gebruikersnamen onder item titels weergeven. Handig voor meerdere accounts of TANs.</string>
   <string name="RememberRecentFiles_title">Onthoud databases</string>
   <string name="RememberRecentFiles_summary">Onthoud onlangs geopende databases en deze in het geopende databasescherm weergeven.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
   <string name="search_options">Opties</string>
   <string name="caseSensitive">Hoofdlettergevoelig</string>
@@ -632,7 +611,12 @@
   <string name="DbQuicklockedChannel_desc">Meldingen over het openen van de database met Snel Openen</string>
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Toon het toetsenbord voor wachtwoord invoer wanneer vingerafdruk scan actief is.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Voeg een notificatie knop toe voor het kopiëren van TOTP naar klembord</item>
+    <item>Schakel over naar FluentFTP om TLS 1.2 te ondersteunen</item>
+    <item>Schakel over naar de BiometricPrompt API om de gebruikerservaring te verbeteren met vingerafdrukontgrendeling en om gezichtsontgrendeling toe te staan, bijvoorbeeld op de Pixel 4.</item>
+    <item>Bugs opgelost</item>
+  </string-array>
   <string name="ChangeLog_1_07b">Versie 1.07b-pre\n
     * Verbeterde Argon2 prestaties door gebruik van orginele implentatie (Met dank aan Chih-Hsuan Yen!)\n
     * Sta het uitschakelen van de vingerafdruk toe door het klikken op de vingerafdruk icoon (vermijdt probleem met vingerafdruklezer onder het scherm, met dank aan marcoDallas!)\n
@@ -961,12 +945,10 @@ Eerste publieke publicatie
   <string name="autofill_disable">Automatisch invullen uitschakelen voor %1$s</string>
   <string name="autofill_enable_for">Automatisch invullen inschakelen voor %1$s</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android heeft vingerafdruk hardware gedetecteerd. Wil je je vingerafdruk gebruiken voor het ontgrendelen van deze database?</string>
   <string name="understand">Ik begrijp het</string>
   <string name="dont_show_again">Niet meer tonen</string>
   <string name="masterkey_infotext_head">Weet je het hoofdwachtwoord nog?</string>
   <string name="masterkey_infotext_main">Merk op dat zonder hoofdwachtwoord de database niet te openen is. Er is geen manier om het hoofdwachtwoord te \"resetten\".</string>
-  <string name="masterkey_infotext_fingerprint_note">Merk ook op dat een ontgrendelen met vingerafdruk werkt door jouw hoofdwachtwoord op de slaan in Androids veilige opslag. Deze opslag kan op een willekeurig moment door Android gewist worden, bijvoorbeeld als je een nieuwe vingerafdruk toevoegt in de systeem instellingen. Vertrouw dus niet op je vingerafdruk, maar onthoud alsjeblieft het hoofdwachtwoord!</string>
   <string name="backup_infotext_head">Worden er back-ups gemaakt van jouw database?</string>
   <string name="backup_infotext_main">Keepass2Android bewaart je wachtwoorden in een file op een door jou gekozen locatie. Weet je zeker dat je deze file nog steeds hebt als je telefoon verloren raakt, of gestolen, of als de file gewist wordt? Zorg alsjeblieft altijd voor een recente back-up op een veilige plaats!</string>
   <string name="backup_infotext_note">Om nu een back-up te maken, ga naar %1$s &gt; %2$s &gt; %3$s.</string>

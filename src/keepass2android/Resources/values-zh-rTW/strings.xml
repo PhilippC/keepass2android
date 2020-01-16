@@ -48,7 +48,7 @@
   <string name="FileHandling_prefs">檔案處理</string>
   <string name="keyboard_prefs">鍵盤</string>
   <string name="export_prefs">匯出資料庫...</string>
-  <string name="fingerprint_prefs">指紋解鎖</string>
+  <string name="fingerprint_prefs">生物識別解鎖</string>
   <string name="import_db_prefs">導入資料庫到內部資料夾</string>
   <string name="import_keyfile_prefs">將金鑰檔導入到內部資料夾</string>
   <string name="keyboardswitch_prefs">切換鍵盤</string>
@@ -82,26 +82,24 @@
   <string name="disclaimer_formal">Keepass2Android 版權歸 Philipp Crocoll；軟體不帶有絕對擔保；是自由軟體，您可在遵循 GPL 2 或者更高版本的情況下重新發佈。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">複製到剪貼簿</string>
-  <string name="fingerprint_hint">觸控感應器</string>
-  <string name="fingerprint_description">確認指紋以繼續</string>
-  <string name="fingerprint_fatal">無法設定指紋解鎖︰</string>
-  <string name="fingerprint_not_recognized">指紋無法識別。再試一次</string>
-  <string name="fingerprint_success">指紋已被識別</string>
-  <string name="fingerprint_os_error">指紋解鎖需要 Android 6.0 或更高版本。</string>
-  <string name="fingerprint_hardware_error">未偵測到指紋識別硬體。</string>
-  <string name="fingerprint_no_enrolled">在此設備上沒有已登記的指紋。請先到系統設定進行登記。</string>
-  <string name="disable_fingerprint_unlock">禁用指紋解鎖</string>
-  <string name="enable_fingerprint_unlock">啟用完整指紋解鎖</string>
-  <string name="enable_fingerprint_quickunlock">啟用 QuickUnlock 指紋解鎖</string>
-  <string name="fingerprint_unlock_hint">輕觸指紋感應器以解鎖資料庫</string>
-  <string name="fingerprint_unlock_failed">指紋解鎖失敗。系統無法驗證解密金鑰，你可能註冊了新指紋或更改了安全設定。 </string>
-  <string name="fingerprint_disabled_wrong_masterkey">解鎖資料庫失敗：無效的複合金鑰。由於已儲存的主密碼不再有效，指紋解鎖亦無效。 </string>
-  <string name="fingerprint_reenable">請重新為新的主密碼啟用指紋解鎖</string>
-  <string name="fingerprint_reenable2">請使用你的密碼解鎖並於資料庫設置中重新啟用指紋解鎖。</string>
-  <string name="FingerprintInitFailed">初始化指紋感應器失敗。 </string>
+  <string name="fingerprint_description">請驗證以繼續</string>
+  <string name="fingerprint_fatal">無法設定生物識別解鎖︰</string>
+  <string name="fingerprint_not_recognized">生物識別驗證失敗，請重試</string>
+  <string name="fingerprint_success">生物識別驗證成功。</string>
+  <string name="fingerprint_os_error">生物識別解鎖需要 Android 6.0 或更高版本。</string>
+  <string name="fingerprint_hardware_error">未偵測到生物識別硬體。</string>
+  <string name="fingerprint_no_enrolled">你還沒有在設備上設置生物識別驗證，請先至系統設定設置。</string>
+  <string name="disable_fingerprint_unlock">禁用生物識別解鎖</string>
+  <string name="enable_fingerprint_unlock">啟用完整生物識別解鎖</string>
+  <string name="enable_fingerprint_quickunlock">啟用 QuickUnlock 生物識別解鎖</string>
+  <string name="fingerprint_unlock_failed">生物識別解鎖失敗。系統無法驗證解密金鑰，你可能更改了安全設定或生物識別設定。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">解鎖資料庫失敗：無效複合金鑰。由於已儲存的主密碼不再有效，生物識別解鎖亦無效。 </string>
+  <string name="fingerprint_reenable">請重新為新的主密碼啟用生物識別解鎖</string>
+  <string name="fingerprint_reenable2">請使用你的密碼解鎖並於資料庫設置中重新啟用生物識別解鎖。</string>
+  <string name="FingerprintInitFailed">無法初始化生物識別驗證。 </string>
   <string name="FingerprintSetupFailed">資料加密失敗。若在系統設定中新增或刪除指紋時，Keepass2Android 同時監聽您的指紋，就有可能會失敗。</string>
-  <string name="enable_fingerprint_unlock_Info">這將把主密碼儲存在此裝置上，並透過Android 金鑰庫系統加密且將被指紋驗證保護。此後你將可透過你的指紋解鎖資料庫。</string>
-  <string name="enable_fingerprint_quickunlock_Info">將以指紋驗證取代 QuickUnlock 代碼。這並不會在裝置上儲存與主密碼相關的任何資料。</string>
+  <string name="enable_fingerprint_unlock_Info">這將把主密碼儲存在此裝置上，並透過Android 金鑰庫系統加密且將被生物識別驗證保護。此後你將可透過生物識別解鎖資料庫。</string>
+  <string name="enable_fingerprint_quickunlock_Info">將以生物識別認證取代 QuickUnlock 代碼。這並不會在裝置上儲存與主密碼相關的任何資料。</string>
   <string name="enter_filename">輸入資料庫名：</string>
   <string name="entry_accessed">存取時間</string>
   <string name="entry_cancel">取消</string>
@@ -126,7 +124,7 @@
   <string name="error_could_not_create_group">建立群組錯誤。</string>
   <string name="error_could_not_create_parent">無法建立上層目錄。</string>
   <string name="error_database_exists">文件已存在。</string>
-  <string name="error_database_settinoverrgs">無法確定資料庫設置。</string>
+  <string name="error_database_settinoverrgs">無法確定資料庫設定。</string>
   <string name="error_failed_to_launch_link">運行鏈結失敗。</string>
   <string name="error_filename_required">請求一個檔案名：</string>
   <string name="error_file_not_create">無法建立檔案</string>
@@ -269,7 +267,7 @@
   <string name="ShowUsernameInList_summary">項目標題下面顯示使用者名稱。用於多個帳戶或者 TAN。</string>
   <string name="RememberRecentFiles_title">記住資料庫</string>
   <string name="RememberRecentFiles_summary">記得最近打開的資料庫，並顯示在打開資料庫的螢幕中。</string>
-  <string name="kp2a_findUrl">Keepass2Android: 查找密碼</string>
+  <string name="kp2a_findUrl">查找密碼</string>
   <string name="excludeExpiredEntries">排除過期的項目</string>
   <string name="search_options">選項</string>
   <string name="caseSensitive">區分大小寫</string>
@@ -634,7 +632,13 @@
   <string name="DbQuicklockedChannel_desc">QuickUnlock 啟用，且已鎖定資料庫的通知</string>
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">識別指紋時顯示虛擬鍵盤以輸入密碼。</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">生物識別認證時顯示虛擬鍵盤以輸入密碼。</string>
+  <string-array name="ChangeLog_1_08">
+    <item>加入複製 TOTP 到剪貼簿的通知按鈕</item>
+    <item>改用 FluentFTP 以支援 TLS 1.2</item>
+    <item>改用 BiometricPrompt API ，因而改進指紋解鎖的用戶體驗，並支援如 Pixel 4 上的面容解鎖。</item>
+    <item>修正錯誤</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 以原生方式實現 Argon2 演算改進性能（感謝 Chih-Hsuan Yen！）\n
     * 可停用指紋，點擊指紋圖示即可，以避免屏下指紋識別產生的問題（感謝 marcoDallas！）\n
@@ -965,12 +969,12 @@
   <string name="autofill_disable">禁用 %1$s 的自動填入</string>
   <string name="autofill_enable_for">啟用 %1$s 的自動填入</string>
   <string name="invalid_link_association">無法關聯網域 %1$s 與應用程式 %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android 偵測到指紋識別硬件。要為這資料庫啟用指紋解鎖嗎？</string>
+  <string name="enable_fingerprint_hint">Keepass2Android 偵測到生物識別硬件。要為這資料庫啟用生物識別解鎖嗎？</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再顯示</string>
   <string name="masterkey_infotext_head">你還記得主密鑰嗎？</string>
   <string name="masterkey_infotext_main">請注意，你必須輸入主密鑰才能開啟資料庫。並沒有任何「重置」主密鑰的方法。</string>
-  <string name="masterkey_infotext_fingerprint_note">指紋解鎖功能透過 Android 內建的密鑰庫存儲你的主密鑰。Android 隨時都可能會刪除它，例如在系統設定中新增新指紋的時候。所以煩請牢記你的主密碼並切勿過度依賴指紋解鎖！</string>
+  <string name="masterkey_infotext_fingerprint_note">請注意生物識別解鎖功能使用 Android 內建的密鑰庫存儲你的主密鑰。Android 隨時都可能會刪除它，例如在系統設定中新增新指紋的時候。所以煩請牢記你的主密碼並切勿過度依賴生物識別解鎖！</string>
   <string name="backup_infotext_head">你有好好備份你的資料庫嗎？</string>
   <string name="backup_infotext_main">Keepass2Android 根據你的選擇把你的密碼儲存到指定的地方。在你遺失手機的時候，又或是檔案損壞或遭刪除的時候，你確定仍能存取到這個檔案嗎？煩請確認在安全的地方一律留有最新的備份！</string>
   <string name="backup_infotext_note">請到「%1$s &gt; %2$s &gt; %3$s」建立備份。</string>

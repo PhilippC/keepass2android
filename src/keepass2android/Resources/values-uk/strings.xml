@@ -48,7 +48,7 @@
   <string name="FileHandling_prefs">Обробка файлів</string>
   <string name="keyboard_prefs">Клавіатура</string>
   <string name="export_prefs">Експорт бази паролів...</string>
-  <string name="fingerprint_prefs">Розблокування відбитком пальця</string>
+  <string name="fingerprint_prefs">Біометричне розблокування</string>
   <string name="import_db_prefs">Імпорт бази паролів до внутрішньої теки</string>
   <string name="import_keyfile_prefs">Імпорт ключового файлу до внутрішньої теки</string>
   <string name="keyboardswitch_prefs">Перемикання клавіатури</string>
@@ -62,6 +62,8 @@
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Вимкнути датчик</string>
+  <string name="enable_sensor">Увімкнути датчик</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
   <string name="clipboard_timeout">Очищення буфера обміну</string>
   <string name="clipboard_timeout_summary">Час очищення буфера обміну після копіювання імені користувача або пароля</string>
@@ -80,29 +82,24 @@
   <string name="disclaimer_formal">Keepass2Android поставляється БЕЗ ЖОДНИХ ГАРАНТІЙ; Це вільне програмне забезпечення і ви можете розповсюджувати його на умовах ліцензії GPL v2 або новішої.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Копіювати в буфер</string>
-  <string name="fingerprint_hint">Датчик дотику</string>
-  <string name="fingerprint_description">Підтвердіть відбитком пальця, щоб продовжити</string>
-  <string name="fingerprint_fatal">Не вдається встановити розблокування відбитком пальця:</string>
-  <string name="fingerprint_not_recognized">Відбиток пальця не розпізнано. Спробуйте знову</string>
-  <string name="fingerprint_success">Відбиток пальця розпізнано</string>
-  <string name="fingerprint_os_error">Для розблокування відбитком пальця потрібен Android 6.0 або новіший.</string>
-  <string name="fingerprint_hardware_error">Не знайдено пристрій для розпізнавання відбитків пальців.</string>
-  <string name="fingerprint_no_enrolled">У вас не зареєстровані відбитки пальців на цьому пристрої. Будь ласка, спочатку перейдіть до системних налаштувань.</string>
-  <string name="disable_fingerprint_unlock">Вимкнути розблокування відбитками пальців</string>
-  <string name="enable_fingerprint_unlock">Увімкнути повне розблокування відбитками пальців</string>
-  <string name="enable_fingerprint_quickunlock">Увімкнути розблокування відбитками пальців для QuickUnlock</string>
-  <string name="fingerprint_unlock_hint">Торкніться датчика, щоб розблокувати базу даних</string>
-  <string name="fingerprint_unlock_failed">Не вдалося розблокувати відбитком. Ключ дешифрування не був схвалений ОС Android. Зазвичай, це трапляється коли було введено новий відбиток або змінилися налаштування безпеки. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Не вдалося розблокувати базу даних: Недійсний композитний ключ. Розблокування відбитком пальця було вимкнено, тому що, схоже, збережений головний пароль більше недійсний. </string>
-  <string name="fingerprint_reenable">Будь ласка, повторно увімкніть розблокування за відбитком пальця для нового головного пароля.</string>
-  <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте розблокування відбитком пальця в налаштуваннях бази даних.</string>
-  <string name="FingerprintInitFailed">Не вдалося ініціалізувати датчик відбитків пальців. </string>
+  <string name="fingerprint_description">Авторизуйтесь, щоб продовжити</string>
+  <string name="fingerprint_fatal">Не вдається встановити біометричне розблокування:</string>
+  <string name="fingerprint_not_recognized">Помилка біометричної автентифікації. Повторіть спробу</string>
+  <string name="fingerprint_success">Вдала біометрична автентифікація</string>
+  <string name="fingerprint_os_error">Для біометричного розблокування потрібен Android 6.0 або новіший.</string>
+  <string name="fingerprint_hardware_error">Не виявлено засобів для біометричної автентифікації.</string>
+  <string name="fingerprint_no_enrolled">Ви не налаштували біометричну автентифікацію на цьому пристрої. Будь ласка, спочатку перейдіть до системних налаштувань.</string>
+  <string name="disable_fingerprint_unlock">Вимкнути біометричне розблокування</string>
+  <string name="enable_fingerprint_unlock">Увімкнути повне біометричне розблокування</string>
+  <string name="enable_fingerprint_quickunlock">Увімкнути біометричне розблокування для QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Не вдалося розблокувати біометрикою. Ключ дешифрування не був схвалений ОС Android. Зазвичай, це трапляється коли було змінено біометричну автентифікацію або налаштування безпеки. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Не вдалося розблокувати базу даних: недійсний композитний ключ. Біометричне розблокування було вимкнено, тому що, схоже, збережений головний пароль більше недійсний. </string>
+  <string name="fingerprint_reenable">Будь ласка, повторно увімкніть біометричне розблокування для нового головного пароля.</string>
+  <string name="fingerprint_reenable2">Розблокуйте за допомогою пароля, а потім активуйте біометричне розблокування в налаштуваннях бази даних.</string>
+  <string name="FingerprintInitFailed">Не вдалося ініціалізувати біометричну автентифікацію. </string>
   <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
-  <string name="enable_fingerprint_unlock_Info">    Це збереже ваш головний пароль на цьому пристрої,
-    зашифрованому за допомогою Android Keystore і захищеному
-    з використанням перевірки за відбитком пальця. Дозволяє розблоковувати базу паролів лише за вашим відбитком пальця.
-  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Дозволяє використовувати перевірку за відбитком пальця замість коду QuickUnlock. Не вимагає збереження будь-якої інформації, пов\'язаної з вашим головним паролем.</string>
+  <string name="enable_fingerprint_unlock_Info">Це збереже Ваш головний пароль на цьому пристрої, зашифрованому за допомогою Android Keystore і захищеному з використанням біометричної автентифікації. Дозволяє розблоковувати базу паролів лише за Вашою біометрією.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Дозволяє використовувати біометричну автентифікацію замість коду QuickUnlock. Не зберігає жодної інформації, повʼязаної з Вашим головним паролем.</string>
   <string name="enter_filename">Введіть ім’я бази даних</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасувати</string>
@@ -270,7 +267,7 @@
   <string name="ShowUsernameInList_summary">Показувати ім\'я користувача під назвою запису в списку. Корисно для декількох облікових записів або TAN.</string>
   <string name="RememberRecentFiles_title">Пам\'ятати бази даних</string>
   <string name="RememberRecentFiles_summary">Пам\'ятати недавно відкриті бази даних і відображати їх на екрані відкриття бази даних.</string>
-  <string name="kp2a_findUrl">Keepass2Android: Знайти пароль</string>
+  <string name="kp2a_findUrl">Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
   <string name="search_options">Параметри</string>
   <string name="caseSensitive">З урахуванням регістру</string>
@@ -478,6 +475,9 @@
   <string name="filestoragehelp_pcloud">Цей тип зберігання вимагатиме доступу лише до теки \"Applications/Keepass2Android\". Якщо ви хочете використовувати наявну базу даних з вашого облікового запису PCloud, переконайтеся, що файл розміщений у цій теці.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Усі файли та спільні файли</string>
+  <string name="filestoragename_onedrive2_myfiles">Мої файли</string>
+  <string name="filestoragename_onedrive2_appfolder">Тека програми Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
@@ -632,7 +632,22 @@
   <string name="DbQuicklockedChannel_desc">Сповіщення про блокування бази даних з QuickUnlock</string>
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
-  <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активного сканування відбитків пальців.</string>
+  <string name="ShowKeyboardDuringFingerprintAuth">Показувати клавіатуру для вводу пароля під час активної біометричної автентифікації.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Додати кнопку сповіщення для копіювання TOTP в буфер обміну</item>
+    <item>Перемикання на FluentFTP для надання підтримки TLS 1.2</item>
+    <item>Перейти на BiometricPrompt API для покращення роботи користувача за допомогою розблокування відбитком пальця і дозволити використовувати розблокування обличчя, наприклад на Pixel 4.</item>
+    <item>Виправлення помилок</item>
+  </string-array>
+  <string name="ChangeLog_1_07b">Версія 1.07b\n
+    * Поліпшено продуктивність Argon2 за допомогою рідної реалізації (завдяки Chih-Hsuan Yen!)\n
+    * Дозволено вимикати відбиток пальця шляхом натискання на його піктограмі (уникає проблеми з підекранними читачами відбитків пальців, завдяки marcoDallas!)\n
+    * Відновлено позицію курсору під час перемикання видимості паролю (завдяки DDoSolitary!)\n
+    * Поліпшення реалізації pCloud (знову завдяки gilbsgilbs!)\n
+    * Додано підтримку AutoFill для ще кількох браузерів\n
+    * Нова реалізація OneDrive: містить підтримку OneDrive для бізнесу, спільних файлів, вибірних масштабів доступу, багатьох облікових записів і виправляє проблеми з оффлайн-доступом\n
+    * Виправлення помилок
+  </string>
   <string name="ChangeLog_1_07">    Версія 1.07\n
     * Виправлення збоїв на Samsung з Android 9\n
     * Можливість відкриття більш, ніж однієї бази даних, сумісних з KeeAutoExec\n
@@ -956,12 +971,12 @@ Initial public release
   <string name="autofill_disable">Вимкнути автозаповнення для %1$s</string>
   <string name="autofill_enable_for">Увімкнути автозаповнення для %1$s</string>
   <string name="invalid_link_association">Не вдалося асоціювати домен %1$s з програмою %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android виявив пристрій зчитування відбитків пальців. Хочете увімкнути розблокування відбитком пальця для цієї бази паролів?</string>
+  <string name="enable_fingerprint_hint">Keepass2Android виявив засіб для біометричної автентифікації. Хочете увімкнути біометричне розблокування для цієї бази паролів?</string>
   <string name="understand">Я розумію</string>
   <string name="dont_show_again">Не показувати знову</string>
   <string name="masterkey_infotext_head">Ви пам\'ятаєте свій головний пароль?</string>
   <string name="masterkey_infotext_main">Зауважте, що ви не зможете відкрити свою базу даних без головного пароля. Відновити головний пароль неможливо.</string>
-  <string name="masterkey_infotext_fingerprint_note">Також пам\'ятайте, що при розблокуванні відбитком пальця ваш головний пароль зберігається в захищеному сховищі Android. Це сховище може бути очищене системою в будь-який момент, наприклад, якщо ви додасте новий відбиток в налаштуваннях системи. Отже, не покладайтеся цілком на відбитки пальців, а завжди пам\'ятайте свій головний пароль!</string>
+  <string name="masterkey_infotext_fingerprint_note">Також памʼятайте, що при біометричному розблокуванні Ваш головний пароль зберігається в захищеному сховищі Android. Це сховище може бути очищене системою в будь-який момент, наприклад, якщо Ви додасте новий відбиток в налаштуваннях системи. Отже, не покладайтеся цілком на біометричне розблокування, а завжди памʼятайте свій головний пароль!</string>
   <string name="backup_infotext_head">Чи створена резервна копія вашої бази даних?</string>
   <string name="backup_infotext_main">Keepass2Android зберігає ваші паролі в файлі у вибраному вами розташуванні. Ви впевнені, що все ще маєте доступ до цього файлу, якщо втратите доступ до свого пристрою, або якщо файл буде пошкоджено чи видалено? Переконайтеся, що у вас завжди є оновлена резервна копія в надійному місці!</string>
   <string name="backup_infotext_note">Щоб створити резервну копію зараз, перейдіть до %1$s &gt; %2$s &gt; %3$s.</string>
