@@ -17,6 +17,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Aplikazioa denboraz kanpo</string>
   <string name="kill_app_label">Aplikazioaren prozesua hil</string>
   <string name="show_kill_app">Itxi-botoia</string>
   <string name="application">Aplikazioa</string>
@@ -59,6 +60,8 @@
   <string name="digits">Digituak</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiatu arbelean</string>
+  <string name="fingerprint_description">Mesedez autentikatu jarraitzeko</string>
+  <string name="fingerprint_fatal">Ezin da Desblokeo Biometrikoa ezarri:</string>
   <string name="disable_fingerprint_unlock">Desgaitu Desblokeatze Biometrikoa</string>
   <string name="enter_filename">Idatzi datu-basearen fitxategi-izena</string>
   <string name="entry_accessed">Atzituta</string>
@@ -219,6 +222,7 @@
   <string name="QuickUnlock_fail">QuickUnlock errorea: pasahitz okerra!</string>
   <string name="BinaryDirectory_title">Eranskinen karpeta</string>
   <string name="SaveAttachmentDialog_title">Gorde eranskina</string>
+  <string name="SaveAttachmentDialog_save">Fitxategira esportatu...</string>
   <string name="SaveAttachmentDialog_open">Gorde katxean eta ireki</string>
   <string name="SaveAttachment_doneMessage">Gorde fitxategia hemen: %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Gogoratu bilaketaren testua?</string>
