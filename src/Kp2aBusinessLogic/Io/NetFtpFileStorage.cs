@@ -535,22 +535,10 @@ namespace keepass2android.Io
 			{
 				Android.Util.Log.Debug("NETFTP","connected: " + _client.IsConnected.ToString());
 				_stream.Close();
+                _stream.Dispose();
                 _client.GetReply();
-				Android.Util.Log.Debug("NETFTP", "connected: " + _client.IsConnected.ToString());
 
-				//make sure target file does not exist:
-				//try
-				{
-					if (_client.FileExists(NetFtpFileStorage.IocToLocalPath(_ioc)))
-						_client.DeleteFile(NetFtpFileStorage.IocToLocalPath(_ioc));
-
-				}
-				//catch (FtpCommandException)
-				{
-					//TODO get a new clien? might be stale
-				}
-
-				_client.Rename(NetFtpFileStorage.IocToLocalPath(_iocTemp),
+				_client.MoveFile(NetFtpFileStorage.IocToLocalPath(_iocTemp),
 				    NetFtpFileStorage.IocToLocalPath(_ioc));
 				
 			}
