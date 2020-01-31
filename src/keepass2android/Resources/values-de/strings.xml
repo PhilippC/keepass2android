@@ -26,7 +26,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Knopf</string>
-  <string name="show_kill_app_summary">Zeige eine Schaltfläche auf de, Kennwort-Bildschirm, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
+  <string name="show_kill_app_summary">Zeige eine Schaltfläche auf dem Kennwort-Bildschirm, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
@@ -632,8 +632,8 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="ShowKeyboardDuringFingerprintAuth">Zeige Bildschirmtastatur zur Kennworteingabe während biometrische Authentifizierung aktiv ist.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Benachrichtigungsschalfläche zum „Kopieren des TOTP in die Zwischenablage” hinzufügen</item>
-    <item>Zu FluentFTP wechseln, um TLS 1.2 zu unterstützen</item>
+    <item>Benachrichtigungsschalfläche hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
+    <item>Zu FluentFTP gewechselt, um TLS 1.2 zu unterstützen</item>
     <item>Wechseln zur BiometricPrompt API, um Umgang mit Fingerabdrucksensor zu erleichtern und das Entsperren mit FaceUnlock zu ermöglichen, z.B. mit dem Pixel 4.</item>
     <item>Fehlerbehebungen</item>
   </string-array>
