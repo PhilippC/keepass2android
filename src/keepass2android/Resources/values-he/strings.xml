@@ -62,6 +62,7 @@
   <string name="clipboard_timeout_summary">משך הזמן לאחר העתקת שם משתמש או סיסמא ועד לניקוי אוטומטי של לוח ההעתקה</string>
   <string name="copy_username">בחר כדי להעתיק את שם המשתמש ללוח ההעתקה</string>
   <string name="copy_password">בחר כדי להעתיק את הסיסמא ללוח ההעתקה</string>
+  <string name="copy_totp">בחר כדי להעתיק TOTP ללוח ההעתקה</string>
   <string name="available_through_keyboard">רשומה זמינה דרך מקלדת KP2A</string>
   <string name="entry_is_available">זמינה</string>
   <string name="not_possible_im_picker">לא ניתן לפתוח תפריט לבחירת מקלדת. יש להפעיל את המקלדת ידנית.</string>
@@ -74,6 +75,15 @@
   <string name="disclaimer_formal">Keepass2Android מגיעה ללא כל אחריות בנוגע לשימוש; זוהי תוכנה חינמית, והנכם מוזמנים להפיצה במסגרת תנאי ומגבלות GPL מגרסה 2 ואילך.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">העתק ללוח</string>
+  <string name="fingerprint_description">נא אמת על מנת להמשיך</string>
+  <string name="fingerprint_fatal">לא ניתן להגדיר פתיחה באמצעות טביעת אצבע:</string>
+  <string name="fingerprint_not_recognized">אימות בעזרת טביעת אצבע נכשל. נסה שוב</string>
+  <string name="fingerprint_success">אימות טביעת אצבע הצליח</string>
+  <string name="fingerprint_os_error">פתיחה באמצעות טביעת אצבע דורשת גרסת אנדרואיד 6.0 ומעלה.</string>
+  <string name="fingerprint_hardware_error">לא ניתן לזהות סורק טביעות אצבע במכשירך.</string>
+  <string name="fingerprint_no_enrolled">לא קיימות טביעות אצבע שנסרקו במכשיר זה. נא לרשום את טביעות האצבע שלך דרך הגדרות האבטחה של מכשיר האנדרואיד תחילה.</string>
+  <string name="disable_fingerprint_unlock">השבת פתיחה באמצעות טביעת אצבע</string>
+  <string name="enable_fingerprint_unlock">אפשר פתיחה מלאה בעזרת טביעת אצבע</string>
   <string name="enter_filename">הזן את שם הקובץ של מסד הנתונים</string>
   <string name="entry_accessed">גישה אחרונה</string>
   <string name="entry_cancel">ביטול</string>
