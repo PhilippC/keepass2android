@@ -21,7 +21,11 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android במצב לא מקוון</string>
   <string name="short_app_name_nonet">KP2A במצב לא מקוון</string>
+  <string name="app_timeout_summary">פרק זמן לפני נעילת מסד הנתונים כאשר היישום אינו פעיל.</string>
   <string name="show_kill_app">לחצן הסגירה</string>
+  <string name="show_kill_app_summary">הצגת כפתור במסך הסיסמאות לצורך עצירת היישום (עבור משתמשים פרנואידים)</string>
+  <string name="application">יישום</string>
+  <string name="application_settings">הגדרות יישום</string>
   <string name="ShowGroupnameInSearchResult_title">הצגת שם הקבוצה בתוצאות החיפוש</string>
   <string name="ShowGroupnameInSearchResult_resume">הצגת שם הקבוצה מתחת לכותרות הרשומות בתוצאות החיפוש. שימושי במקרה בו קיימות מספר רשומות בעלות שם זהה.</string>
   <string name="NavigationToGroupCompleted_message">הקבוצה המוצגת היא כעת: %1$s</string>
@@ -50,6 +54,9 @@
   <string name="unlock_database_title">פתיחת מסד נתונים</string>
   <string name="brackets">סוגריים</string>
   <string name="cancel">ביטול</string>
+  <string name="Ok">אישור</string>
+  <string name="disable_sensor">השבת החיישן</string>
+  <string name="enable_sensor">איפשור חיישן</string>
   <string name="ClearClipboard">לוח ההעתקה נקי.</string>
   <string name="clipboard_timeout">תוקף של לוח ההעתקה</string>
   <string name="clipboard_timeout_summary">משך הזמן לאחר העתקת שם משתמש או סיסמא ועד לניקוי אוטומטי של לוח ההעתקה</string>
