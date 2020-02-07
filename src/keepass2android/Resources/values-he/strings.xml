@@ -30,6 +30,7 @@
   <string name="ShowGroupnameInSearchResult_title">הצגת שם הקבוצה בתוצאות החיפוש</string>
   <string name="ShowGroupnameInSearchResult_resume">הצגת שם הקבוצה מתחת לכותרות הרשומות בתוצאות החיפוש. שימושי במקרה בו קיימות מספר רשומות בעלות שם זהה.</string>
   <string name="NavigationToGroupCompleted_message">הקבוצה המוצגת היא כעת: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_summary">צפה ברשימת יישומים או אתרים בהם AutoFill הושבת</string>
   <string name="ShowGroupInEntry_title">הצגת שם הקבוצה במסך פרטי הרשומה</string>
   <string name="unknown_uri_scheme">שגיאה! Keepass2Android לא יכול לטפל בפקודת ה-URI שנשלחה %1$s. אנא צרו קשר עם מפתח האפליקציה!</string>
   <string name="Entry_singular">רשומה בודדת</string>
@@ -43,6 +44,7 @@
   <string name="FileHandling_prefs">טיפול בקבצים</string>
   <string name="keyboard_prefs">מקלדת</string>
   <string name="export_prefs">ייצוא מסד הנתונים...</string>
+  <string name="fingerprint_prefs">פתיחה בעזרת טביעת אצבע</string>
   <string name="import_db_prefs">ייבוא מסד הנתונים לתיקיה הפנימית</string>
   <string name="import_keyfile_prefs">ייבוא קובץ המפתח לתיקיה הפנימית</string>
   <string name="keyboardswitch_prefs">החלפת מקלדות</string>
@@ -85,6 +87,7 @@
   <string name="fingerprint_no_enrolled">לא קיימות טביעות אצבע שנסרקו במכשיר זה. נא לרשום את טביעות האצבע שלך דרך הגדרות האבטחה של מכשיר האנדרואיד תחילה.</string>
   <string name="disable_fingerprint_unlock">השבת פתיחה באמצעות טביעת אצבע</string>
   <string name="enable_fingerprint_unlock">אפשר פתיחה מלאה בעזרת טביעת אצבע</string>
+  <string name="enable_fingerprint_quickunlock">הפעלת פתיחה באמצעות טביעת אצבע ל-QuickUnlock</string>
   <string name="enter_filename">הזן את שם הקובץ של מסד הנתונים</string>
   <string name="entry_accessed">גישה אחרונה</string>
   <string name="entry_cancel">ביטול</string>
