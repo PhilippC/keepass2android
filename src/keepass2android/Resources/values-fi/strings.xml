@@ -21,6 +21,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Aika-katkaisu</string>
   <string name="show_kill_app">Sulje-painike</string>
   <string name="application">Sovellutus</string>
   <string name="application_settings">Sovellusasetukset</string>
