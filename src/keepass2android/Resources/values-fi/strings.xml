@@ -171,6 +171,8 @@
   <string name="no">Ei</string>
   <string name="no_keys">Ei merkintöjä tietokannassa tai ryhmissä.</string>
   <string name="no_results">Ei hakutuloksia</string>
+  <string name="no_url_handler">Ei URL-käsittelyä tälle osoitteelle.</string>
+  <string name="open_recent">Avaa edellinen tietokanta (klikkaa)</string>
   <string name="omitbackup_title">Älä etsi varmuuskopioista ja roskakorista</string>
   <string name="omitbackup_summary">Jätä varmuuskopiot ja roskakori pois hakutuloksista</string>
   <string name="pass_filename">KeePass-tietokannan tiedostonimi</string>
@@ -442,6 +444,7 @@
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_myfiles">Omat tiedostot</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
   <string name="filestorage_setup_title">Tiedoston käytön alustaminen</string>
@@ -584,6 +587,12 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="DbQuicklockedChannel_desc">Ilmoitus, että tietokanta on lukittu ja pika-avaus on käytössä</string>
   <string name="EntryChannel_name">Merkintöjen ilmoitukset</string>
   <string name="EntryChannel_desc">Ilmoitus, jolla pääsee helpommin käsiksi valittuna olevaan merkintään.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Bugikorjaukset</item>
+  </string-array>
   <string name="ChangeLog_1_06">    Versio 1.06\n
     * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
     * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
@@ -873,13 +882,16 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="autofill_disable">Poista automaattinen täyttö %1$s:ltä</string>
   <string name="autofill_enable_for">Ota käyttöön automaattinen täyttö %1$s:lle</string>
   <string name="invalid_link_association">Liittäminen ei onnistunut web verkkotunnuksen %1$s kanssa sovelluksessa %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android on havainnut sormenjälkitunnistuksen. Haluatko ottaa käyttöön sormenjälkitunnistuksen tämän tietokannan kanssa?</string>
   <string name="understand">Minä ymmärrän</string>
   <string name="dont_show_again">Älä näytä uudestaan</string>
   <string name="masterkey_infotext_head">Muistatko pääsalasanasi?</string>
   <string name="masterkey_infotext_main">Huomaa, että et voi avata tietokantaa ilman pääavainta. Pääavaimen \"nollaamiseen\" ei ole mitään keinoa.</string>
+  <string name="masterkey_infotext_fingerprint_note">Huomaa myös, että sormenjäljellä avaaminen käyttää Androidin turvasäilöön tallennettua pääavainta. Käyttöjärjestelmä voi poistaa turvasäilön milloin tahansa, esimerkiksi silloin kun lisäät uuden sormenjäljen järjestelmään asetuksissa. Joten älä luota pelkkään sormenjälkeen, vaan pidä myös pääsalasanasi tallessa!</string>
   <string name="backup_infotext_head">Oletko ottanut tietokannastasi varmuuskopion?</string>
   <string name="backup_infotext_main">Keepass2Android tallentaa salasanat haluamassasi paikassa sijaitsevaan tiedostoon. Oletko varma, että tiedosto on vielä saatavillasi jos puhelimesi varastetaan, tai tiedosto poistetaan tai tuhoutuu muuten? Pidä huoli, että sinulla tietokantatiedostosta ajantasainen varmuuskopio turvallisessa paikassa!</string>
   <string name="backup_infotext_note">Luodaksesivarmuuskopion nyt, mene %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Oletko varautunut hätätilanteisiin?</string>
   <string name="emergency_infotext_main">Oletko koskaan miettinyt mitä tapahtuu jos et pääse enää käsiksi salasanatietokantaasi? Mitä jos joudut onnettomuuteen? On hyvä käytäntö antaa pääavaimesi jonkun luotetun henkilön haltuun hätätilanteita varten. Muussa tapauksessa kukaan ei pääse käsiksi salasanoihisi.</string>
+  <string name="no_secure_display">Nykyistä näyttöä ei ole merkitty turvalliseksi. Tämä tarkoittaa sitä että muut sovellukset voivat tehdä kuvankaappauksen. Keepass2Android on näyttää arkaluontoisia tietoja vain suojatuissa näytöissä. Vaihda suojattuun näyttöön (esimerkiksi irrottamalla HDMI-näyttö) tai muuta sovelluksen asetuksia.</string>
 </resources>
