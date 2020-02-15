@@ -30,7 +30,7 @@ namespace keepass2android.services.Kp2aAutofill
             //will return the results later
             Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
             //don't show user notifications when an entry is opened.
-            var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = false, AutoReturnFromQuery = autoReturnFromQuery };
+            var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = ShowUserNotificationsMode.WhenTotp, AutoReturnFromQuery = autoReturnFromQuery };
             task.ToIntent(i);
             return i;
         }

@@ -348,7 +348,28 @@ namespace keepass2android
 		{
 			
 		}
-	}
+
+
+        protected static bool GetBoolFromBundle(Bundle b, string key, bool defaultValue)
+        {
+            bool boolValue;
+            if (!Boolean.TryParse(b.GetString(key), out boolValue))
+            {
+                boolValue = defaultValue;
+            }
+            return boolValue;
+        }
+
+        protected static int GetIntFromBundle(Bundle b, string key, int defaultValue)
+        {
+            int intValue;
+            if (!Int32.TryParse(b.GetString(key), out intValue))
+            {
+                intValue = defaultValue;
+            }
+            return intValue;
+        }
+    }
 
 	/// <summary>
 	/// Implementation of AppTask for "no task currently active" (Null pattern)
@@ -474,21 +495,29 @@ namespace keepass2android
         }
     }
 
-	
-	/// <summary>
-	/// User is about to select an entry for use in another app
-	/// </summary>
-	public class SelectEntryTask: AppTask
+
+    public enum ShowUserNotificationsMode
+    {
+        Never,
+        WhenTotp,
+        Always
+    }
+    /// <summary>
+    /// User is about to select an entry for use in another app
+    /// </summary>
+    public class SelectEntryTask: AppTask
 	{
 		public SelectEntryTask()
 		{
-			ShowUserNotifications = true;
+			ShowUserNotifications = ShowUserNotificationsMode.Always;
 			CloseAfterCreate = true;
 		}
 
 		public const String ShowUserNotificationsKey = "ShowUserNotifications";
 
-		public bool ShowUserNotifications { get; set; }
+
+
+        public ShowUserNotificationsMode ShowUserNotifications { get; set; }
 
 		public const String CloseAfterCreateKey = "CloseAfterCreate";
 
@@ -497,25 +526,16 @@ namespace keepass2android
 
 		public override void Setup(Bundle b)
 		{
-			ShowUserNotifications = GetBoolFromBundle(b, ShowUserNotificationsKey, true);
+			ShowUserNotifications = (ShowUserNotificationsMode) GetIntFromBundle(b, ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
 			CloseAfterCreate = GetBoolFromBundle(b, CloseAfterCreateKey, true);
 		}
 
-		private static bool GetBoolFromBundle(Bundle b, string key, bool defaultValue)
-		{
-			bool boolValue;
-			if (!Boolean.TryParse(b.GetString(key), out boolValue))	
-			{
-				boolValue = defaultValue; 
-			}
-			return boolValue;
-		}
 
-		public override IEnumerable<IExtra> Extras
+        public override IEnumerable<IExtra> Extras
 		{
 			get
 			{
-				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ShowUserNotifications.ToString() };
+				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ((int)ShowUserNotifications).ToString() };
 				yield return new StringExtra { Key = CloseAfterCreateKey, Value = CloseAfterCreate.ToString() };
 			}
 		}
@@ -526,7 +546,8 @@ namespace keepass2android
 		    if (ctx == null)
 		        ctx = Application.Context;
 
-			if (ShowUserNotifications)
+			if ((ShowUserNotifications == ShowUserNotificationsMode.Always)
+                || ((ShowUserNotifications == ShowUserNotificationsMode.WhenTotp) && new Kp2aTotp().TryGetAdapter(new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb)) != null))
 			{
 				//show the notifications
 				activity.StartNotificationsService(CloseAfterCreate);
@@ -604,7 +625,7 @@ namespace keepass2android
 	{
 		public CreateEntryThenCloseTask()
 		{
-			ShowUserNotifications = true;
+			ShowUserNotifications = ShowUserNotificationsMode.Always;
 		}
 
 	    public override bool CanActivateSearchViewOnStart
@@ -644,17 +665,13 @@ namespace keepass2android
 
 		public IList<string> ProtectedFieldsList { get; set; }
 
-		public bool ShowUserNotifications { get; set; }
+		public ShowUserNotificationsMode ShowUserNotifications { get; set; }
 
 
 		public override void Setup(Bundle b)
 		{
-			bool showUserNotification; 
-			if (!Boolean.TryParse(b.GetString(ShowUserNotificationsKey), out showUserNotification))
-			{
-				showUserNotification = true; //default to true
-			}
-			ShowUserNotifications = showUserNotification;
+			
+			ShowUserNotifications = (ShowUserNotificationsMode)GetIntFromBundle(b,ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
 			
 			Url = b.GetString(UrlKey);
 			AllFields = b.GetString(AllFieldsKey);
