@@ -63,7 +63,9 @@ namespace keepass2android
 
 		const string IntentContinueWithEditing = "ContinueWithEditing";
 
-		EntryEditActivityState State
+        private PasswordFont _passwordFont = new PasswordFont();
+
+        EntryEditActivityState State
 		{
 			get { return App.Kp2a.EntryEditActivityState; }
 		}
@@ -401,6 +403,7 @@ namespace keepass2android
 			if (State.ShowPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+                _passwordFont.ApplyTo(password);
 				confpassword.Visibility = ViewStates.Gone;
 			}
 			else
@@ -569,7 +572,9 @@ namespace keepass2android
 					continue;
 
 				TextView valueView = (TextView)view.FindViewById(Resource.Id.value);
-				String value = valueView.Text;
+                
+
+                String value = valueView.Text;
 
 				bool protect = ((CheckBox) view.FindViewById(Resource.Id.protection))?.Checked ?? State.EntryInDatabase.Strings.GetSafe(key).IsProtected;
 				entry.Strings.Set(key, new ProtectedString(protect, value));
@@ -1043,8 +1048,8 @@ namespace keepass2android
 				titleView.Text = title;
 				((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
 				((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
-				
-				((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
+                _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
+                ((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
 				
 				//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
 				ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
@@ -1105,6 +1110,7 @@ namespace keepass2android
 			View ees = (View) sender.Parent;
 			dlgView.FindViewById<TextView>(Resource.Id.title).Text = ees.FindViewById<TextView>(Resource.Id.extrakey).Text;
 			dlgView.FindViewById<EditText>(Resource.Id.value).Text = ees.FindViewById<EditText>(Resource.Id.value).Text;
+            _passwordFont.ApplyTo(dlgView.FindViewById<EditText>(Resource.Id.value));
             Util.SetNoPersonalizedLearning(dlgView);
             dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
 
@@ -1151,6 +1157,10 @@ namespace keepass2android
 			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
 			PopulateText(Resource.Id.entry_password, password);
 			PopulateText(Resource.Id.entry_confpassword, password);
+
+            _passwordFont.ApplyTo(FindViewById<EditText>(Resource.Id.entry_password));
+
+
 			
 			PopulateText(Resource.Id.entry_comment, State.Entry.Strings.ReadSafe (PwDefs.NotesField));
 
