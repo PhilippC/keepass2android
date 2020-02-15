@@ -347,8 +347,8 @@ namespace keepass2android
                 if (intent.Action == Intents.ShowNotification)
                 {
                     //first time opening the entry -> bring up the notifications
-                    bool closeAfterCreate = intent.GetBooleanExtra(EntryActivity.KeyCloseAfterCreate, false);
-                    DisplayAccessNotifications(entry, closeAfterCreate, searchUrl);
+                    bool activateKeyboard = intent.GetBooleanExtra(EntryActivity.KeyActivateKeyboard, false);
+                    DisplayAccessNotifications(entry, activateKeyboard, searchUrl);
                 }
                 else //UpdateKeyboard
                 {
@@ -429,7 +429,7 @@ namespace keepass2android
 
 
 
-        public void DisplayAccessNotifications(PwEntryOutput entry, bool closeAfterCreate, string searchUrl)
+        public void DisplayAccessNotifications(PwEntryOutput entry, bool activateKeyboard, string searchUrl)
         {
             var hadKeyboardData = ClearNotifications();
 
@@ -483,7 +483,7 @@ namespace keepass2android
                     {
                         //switch rooted
                         bool onlySwitchOnSearch = prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
-                        if (closeAfterCreate || (!onlySwitchOnSearch))
+                        if (activateKeyboard || (!onlySwitchOnSearch))
                         {
                             ActivateKp2aKeyboard();
                         }
@@ -492,7 +492,7 @@ namespace keepass2android
                     {
                         //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
                         // automatically bring up the Keyboard selection dialog
-                        if ((closeAfterCreate) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+                        if ((activateKeyboard) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
                         {
                             ActivateKp2aKeyboard();
                         }

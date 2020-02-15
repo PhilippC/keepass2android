@@ -511,7 +511,8 @@ namespace keepass2android
 		{
 			ShowUserNotifications = ShowUserNotificationsMode.Always;
 			CloseAfterCreate = true;
-		}
+            ActivateKeyboard = true;
+        }
 
 		public const String ShowUserNotificationsKey = "ShowUserNotifications";
 
@@ -520,15 +521,18 @@ namespace keepass2android
         public ShowUserNotificationsMode ShowUserNotifications { get; set; }
 
 		public const String CloseAfterCreateKey = "CloseAfterCreate";
+        public const String ActivateKeyboardKey = "ActivateKeyboard";
 
-		public bool CloseAfterCreate { get; set; }
+        public bool CloseAfterCreate { get; set; }
+        public bool ActivateKeyboard { get; set; }
 
 
-		public override void Setup(Bundle b)
+        public override void Setup(Bundle b)
 		{
 			ShowUserNotifications = (ShowUserNotificationsMode) GetIntFromBundle(b, ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
 			CloseAfterCreate = GetBoolFromBundle(b, CloseAfterCreateKey, true);
-		}
+            ActivateKeyboard = GetBoolFromBundle(b, ActivateKeyboardKey, true);
+        }
 
 
         public override IEnumerable<IExtra> Extras
@@ -537,7 +541,8 @@ namespace keepass2android
 			{
 				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ((int)ShowUserNotifications).ToString() };
 				yield return new StringExtra { Key = CloseAfterCreateKey, Value = CloseAfterCreate.ToString() };
-			}
+                yield return new StringExtra { Key = ActivateKeyboardKey, Value = ActivateKeyboard.ToString() };
+            }
 		}
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
@@ -550,7 +555,7 @@ namespace keepass2android
                 || ((ShowUserNotifications == ShowUserNotificationsMode.WhenTotp) && new Kp2aTotp().TryGetAdapter(new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb)) != null))
 			{
 				//show the notifications
-				activity.StartNotificationsService(CloseAfterCreate);
+				activity.StartNotificationsService(ActivateKeyboard);
 			}
 			else
 			{

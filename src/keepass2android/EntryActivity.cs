@@ -92,7 +92,7 @@ namespace keepass2android
 	{
 		public const String KeyEntry = "entry";
         public const String KeyRefreshPos = "refresh_pos";
-		public const String KeyCloseAfterCreate = "close_after_create";
+		public const String KeyActivateKeyboard = "activate_keyboard";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
 	    public const int requestCodeBinaryFilename = 42376;
@@ -480,13 +480,13 @@ namespace keepass2android
 
 		
 
-		internal void StartNotificationsService(bool closeAfterCreate)
+		internal void StartNotificationsService(bool activateKeyboard)
 		{
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
 			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
-			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
+			showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
 
 			StartService(showNotIntent);
 		}
