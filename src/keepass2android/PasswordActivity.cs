@@ -785,6 +785,8 @@ namespace keepass2android
 		    }
 
             Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.password_edit));
+            
+
         }
 
         private void InitializeToolbarCollapsing()
@@ -1774,9 +1776,12 @@ namespace keepass2android
 		        pwd.PostDelayed(() =>
 		        {
 		            InputMethodManager keyboard = (InputMethodManager) GetSystemService(InputMethodService);
-		            if (showKeyboard)
-		                keyboard.ShowSoftInput(pwd, 0);
-		            else
+                    if (showKeyboard)
+                    {
+                        pwd.RequestFocus();
+                        keyboard.ShowSoftInput(pwd, 0);
+                    }
+                    else
 		                keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
 		        }, 50);
 		    }
