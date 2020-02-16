@@ -82,7 +82,7 @@
     <bool name="ShowUsernameInList_default">true</bool>
     <bool name="ShowGroupnameInSearchResult_default">true</bool>
 	<string name="ViewDatabaseSecure_key">ViewDatabaseSecure</string>
-  <string name="ShowKeyboardWhileFingerprint_key">ShowKeyboardWhileFingerprint_key</string>
+  <string name="CloseDatabaseAfterFailedBiometricQuickUnlock_key">CloseDatabaseAfterFailedBiometricQuickUnlock_key</string>
   <bool name="RememberRecentFiles_default">true</bool>
 	<string name="TrayTotp_SettingsField_key">TrayTotp_SettingsField_key</string>
 	<string name="TrayTotp_SeedField_key">TrayTotp_SeedField_key</string>

@@ -541,15 +541,19 @@ namespace keepass2android
             }
         }
 
-		public static bool GetShowKeyboardDuringFingerprintUnlock(Context ctx)
-		{
-				return (PreferenceManager.GetDefaultSharedPreferences(ctx).GetBoolean(
-					ctx.GetString(Resource.String.ShowKeyboardWhileFingerprint_key), true));
-			
-		}
+		
+        public static bool GetCloseDatabaseAfterFailedBiometricQuickUnlock(Context ctx)
+        {
+            return (PreferenceManager.GetDefaultSharedPreferences(ctx).GetBoolean(
+                ctx.GetString(Resource.String.CloseDatabaseAfterFailedBiometricQuickUnlock_key), true));
+
+        }
 
 
-		public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
+        
+
+
+        public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
 		{
 			var btn1 = context.FindViewById<Button>(btn1Id);
 			var btn2 = context.FindViewById<Button>(btn2Id);

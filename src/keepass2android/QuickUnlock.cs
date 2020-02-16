@@ -48,7 +48,10 @@ namespace keepass2android
 		private int _quickUnlockLength;
 		private const int FingerprintPermissionRequestCode = 0;
 
-		public QuickUnlock()
+        private int numFailedAttempts = 0;
+        private int maxNumFailedAttempts = int.MaxValue;
+
+        public QuickUnlock()
 		{
 			_design = new ActivityDesign(this);
 		}
@@ -63,7 +66,9 @@ namespace keepass2android
 
 			_ioc = App.Kp2a.GetDbForQuickUnlock()?.Ioc;
 
-			if (_ioc == null)
+
+
+            if (_ioc == null)
 			{
 				Finish();
 				return;
@@ -147,11 +152,23 @@ namespace keepass2android
 
             Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.QuickUnlock_password));
 
+            if (bundle != null)
+                numFailedAttempts = bundle.GetInt(NumFailedAttemptsKey, 0);
+
 
 
         }
 
-		protected override void OnStart()
+        private const string NumFailedAttemptsKey = "FailedAttempts";
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            outState.PutInt(NumFailedAttemptsKey, numFailedAttempts);
+            
+        }
+
+        protected override void OnStart()
 		{
 			base.OnStart();
 			DonateReminder.ShowDonateReminderIfAppropriate(this);
@@ -174,7 +191,18 @@ namespace keepass2android
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
 
-		public void OnBiometricAuthSucceeded()
+        
+        public void OnBiometricAttemptFailed(string message)
+        {
+            numFailedAttempts++;
+            if (numFailedAttempts >= maxNumFailedAttempts)
+            {
+                FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+                _biometryIdentifier.StopListening();
+            }
+        }
+
+        public void OnBiometricAuthSucceeded()
 		{
 			Kp2aLog.Log("OnFingerprintAuthSucceeded");
 			_biometryIdentifier.StopListening();
@@ -218,7 +246,14 @@ namespace keepass2android
 					return false;
 				}
 
-				BiometricModule fpModule = new BiometricModule(this);
+
+
+                if (um == FingerprintUnlockMode.QuickUnlock && Util.GetCloseDatabaseAfterFailedBiometricQuickUnlock(this))
+                {
+                    maxNumFailedAttempts = 3;
+                }
+
+                BiometricModule fpModule = new BiometricModule(this);
 				Kp2aLog.Log("fpModule.IsHardwareAvailable=" + fpModule.IsHardwareAvailable);
 				if (fpModule.IsHardwareAvailable) //see FingerprintSetupActivity
 					_biometryIdentifier = new BiometricDecryption(fpModule, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey, this,
@@ -232,9 +267,15 @@ namespace keepass2android
 						_biometryIdentifier = new BiometrySamsungIdentifier(this);
 						btn.Click += (sender, args) =>
 						{
-							if (_biometryIdentifier.Init())
-								_biometryIdentifier.StartListening(this);
-						};
+                            if (_biometryIdentifier.Init())
+                            {
+                                if (numFailedAttempts  < maxNumFailedAttempts)
+                                {
+                                    _biometryIdentifier.StartListening(this);
+                                }
+                                
+                            }
+                        };
 						Kp2aLog.Log("trying Samsung Fingerprint API...Seems to work!");
 					}
 					catch (Exception)
@@ -330,8 +371,9 @@ namespace keepass2android
 			
 			CheckIfUnloaded();
 
+            InitFingerprintUnlock();
 
-			bool showKeyboard = ((!InitFingerprintUnlock()) || (Util.GetShowKeyboardDuringFingerprintUnlock(this)));			
+            bool showKeyboard = true;
 
 			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.PostDelayed(() =>
@@ -347,7 +389,7 @@ namespace keepass2android
             var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
             {
-                if (_biometryIdentifier.HasUserInterface|| string.IsNullOrEmpty((string)btn.Tag) )
+                if ((_biometryIdentifier != null) && ((_biometryIdentifier.HasUserInterface)|| string.IsNullOrEmpty((string)btn.Tag) ))
                 {
                     _biometryIdentifier.StartListening(this);
                 }

@@ -119,6 +119,7 @@ namespace keepass2android
     {
         void OnBiometricAuthSucceeded();
         void OnBiometricError(string toString);
+        void OnBiometricAttemptFailed(string message);
     }
 
     public class BiometricModule
@@ -234,6 +235,7 @@ namespace keepass2android
 
         private BiometricPrompt _biometricPrompt;
         private FragmentActivity _activity;
+        private BiometricAuthCallbackAdapter _biometricAuthCallbackAdapter;
 
         public BiometricCrypt(BiometricModule biometric, string keyId)
         {
@@ -261,13 +263,14 @@ namespace keepass2android
 
         public void StartListening(IBiometricAuthCallback callback)
         {
-            
-            StartListening(new BiometricAuthCallbackAdapter(callback, _activity));
+            _biometricAuthCallbackAdapter = new BiometricAuthCallbackAdapter(callback, _activity);
+            StartListening(_biometricAuthCallbackAdapter);
         }
 
         public void StopListening()
         {
-            
+            _biometricAuthCallbackAdapter.IgnoreNextError();
+            _biometricPrompt.CancelAuthentication();
         }
 
         public bool HasUserInterface
@@ -520,6 +523,7 @@ namespace keepass2android
     {
         private readonly IBiometricAuthCallback _callback;
         private readonly Context _context;
+        private bool _ignoreNextError;
 
         public BiometricAuthCallbackAdapter(IBiometricAuthCallback callback, Context context)
         {
@@ -535,16 +539,24 @@ namespace keepass2android
 
         public override void OnAuthenticationError(int errorCode, ICharSequence errString)
         {
-            
+            if (_ignoreNextError)
+            {
+                _ignoreNextError = false;
+                return;
+            }
             new Handler(Looper.MainLooper).Post(() => _callback.OnBiometricError(errString.ToString()));
         }
 
 
         public override void OnAuthenticationFailed()
         {
-            new Handler(Looper.MainLooper).Post(() => _callback.OnBiometricError(_context.Resources.GetString(Resource.String.fingerprint_not_recognized)));
+            new Handler(Looper.MainLooper).Post(() => _callback.OnBiometricAttemptFailed(_context.Resources.GetString(Resource.String.fingerprint_not_recognized)));
         }
 
+        public void IgnoreNextError()
+        {
+            _ignoreNextError = true;
+        }
     }
 
 }

@@ -928,7 +928,12 @@ namespace keepass2android
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
 
-		public void OnBiometricAuthSucceeded()
+        public void OnBiometricAttemptFailed(string message)
+        {
+            //ignore
+        }
+
+        public void OnBiometricAuthSucceeded()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
@@ -1761,17 +1766,9 @@ namespace keepass2android
 		    }
 		    else
 		    {
+		        bool showKeyboard = true;
 
-
-		        bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
-
-
-		        if (!fingerprintInitialized)
-		            showKeyboard = true;
-		    
 		       
-
-
 		        EditText pwd = (EditText) FindViewById(Resource.Id.password_edit);
 		        pwd.PostDelayed(() =>
 		        {
