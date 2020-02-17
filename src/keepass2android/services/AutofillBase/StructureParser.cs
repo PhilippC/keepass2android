@@ -28,6 +28,8 @@ namespace keepass2android.services.AutofillBase
 	    private PublicSuffixRuleCache domainSuffixParserCache;
 	    public FilledAutofillFieldCollection ClientFormData { get; set; }
 
+        public string PackageId { get; set; }
+
 		public StructureParser(Context context, AssistStructure structure)
 		{
 		    mContext = context;
@@ -63,6 +65,7 @@ namespace keepass2android.services.AutofillBase
             for (int i = 0; i < nodes; i++)
 			{
 				var node = Structure.GetWindowNodeAt(i);
+
 				var view = node.RootViewNode;
 				ParseLocked(forFill, isManualRequest, view, ref webDomain);
 			}
@@ -78,23 +81,33 @@ namespace keepass2android.services.AutofillBase
 		        {
 		            passwordFields = _editTextsWithoutHint.Where(HasPasswordHint).ToList();
                 }
-		        
-		        foreach (var passwordField in passwordFields)
-		        {
-                    var usernameField = _editTextsWithoutHint.TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
-		            if (usernameField != null)
-		            {
-		                usernameFields.Add(usernameField);
-		            }
-		        }
-                //for some pages with two-step login, we don't see a password field and don't display the autofill for non-manual requests. But if the user forces autofill, 
-                //let's assume it is a username field:
-		        if (isManualRequest && !passwordFields.Any() && _editTextsWithoutHint.Count == 1)
-		        {
-		            usernameFields.Add(_editTextsWithoutHint.First());
+
+                usernameFields = _editTextsWithoutHint.Where(HasUsernameHint).ToList();
+
+                if (usernameFields.Any() == false)
+                {
+
+                    foreach (var passwordField in passwordFields)
+                    {
+                        var usernameField = _editTextsWithoutHint
+                            .TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
+                        if (usernameField != null)
+                        {
+                            usernameFields.Add(usernameField);
+                        }
+                    }
+                }
+                if (usernameFields.Any() == false)
+                {
+                    //for some pages with two-step login, we don't see a password field and don't display the autofill for non-manual requests. But if the user forces autofill, 
+                    //let's assume it is a username field:
+                    if (isManualRequest && !passwordFields.Any() && _editTextsWithoutHint.Count == 1)
+                    {
+                        usernameFields.Add(_editTextsWithoutHint.First());
+                    }
                 }
 
-                
+
             }
 		    
             //force focused fields to be included in autofill fields when request was triggered manually. This allows to fill fields which are "off" or don't have a hint (in case there are hints)
@@ -149,14 +162,31 @@ namespace keepass2android.services.AutofillBase
 		    }
 		    return webDomain;
 		}
-
-	    private static bool HasPasswordHint(AssistStructure.ViewNode f)
+        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort" };
+        private static bool HasPasswordHint(AssistStructure.ViewNode f)
 	    {
-	        return (f.IdEntry?.ToLowerInvariant().Contains("password") ?? false)
-	               || (f.Hint?.ToLowerInvariant().Contains("password") ?? false);
-	    }
+            return ContainsAny(f.IdEntry, _passwordHints) ||
+                   ContainsAny(f.Hint, _passwordHints);
+        }
 
-	    private static bool IsInputTypeClass(InputTypes inputType, InputTypes inputTypeClass)
+        private static readonly HashSet<string> _usernameHints = new HashSet<string> { "email","e-mail","username" };
+        private static bool HasUsernameHint(AssistStructure.ViewNode f)
+        {
+            return ContainsAny(f.IdEntry, _usernameHints) ||
+                ContainsAny(f.Hint, _usernameHints);
+        }
+
+        private static bool ContainsAny(string value, IEnumerable<string> terms)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+            var lowerValue = value.ToLowerInvariant();
+            return terms.Any(t => lowerValue.Contains(t));
+        }
+
+        private static bool IsInputTypeClass(InputTypes inputType, InputTypes inputTypeClass)
 	    {
             if (!InputTypes.MaskClass.HasFlag(inputTypeClass))
                 throw new Exception("invalid inputTypeClas");
@@ -198,8 +228,13 @@ namespace keepass2android.services.AutofillBase
         void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
 		{
 		    String webDomain = viewNode.WebDomain;
+            if ((PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
+                (viewNode.IdPackage != "android"))
+            {
+                PackageId = viewNode.IdPackage;
+            }
 
-		    DomainName outDomain;
+            DomainName outDomain;
 		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
 		    {
 		        webDomain = outDomain.RegisterableDomainName;
@@ -224,9 +259,13 @@ namespace keepass2android.services.AutofillBase
 		    if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
 		        isManualRequest)
 		        viewHints[0] = "on";
-		    CommonUtil.logd("viewHints=" + viewHints);
-            CommonUtil.logd("class=" + viewNode.ClassName);
-		    CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
+            if (viewHints != null && viewHints.Any())
+            {
+                CommonUtil.logd("viewHints=" + viewHints);
+                CommonUtil.logd("class=" + viewNode.ClassName);
+                CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
+            }
+		    
 		    if (viewNode?.HtmlInfo?.Tag == "input")
 		    {
 		        foreach (var p in viewNode.HtmlInfo.Attributes)
