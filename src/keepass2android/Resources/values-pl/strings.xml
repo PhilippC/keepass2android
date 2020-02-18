@@ -635,7 +635,7 @@
   <string-array name="ChangeLog_1_08">
     <item>Dodaj do powiadomienia przycisk kopiujący TOTP do schowka</item>
     <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
-    <item>Przełącz na BiometricPrompt API, aby poprawić wrażenie użytkownika przy odblokowywaniu odciskiem palca i umożliwić odblokowanie twarzy, np. na Pixel 4.</item>
+    <item>Przełącz na BiometricPrompt API, aby poprawić wrażenia użytkownika przy odblokowywaniu odciskiem palca i umożliwić odblokowanie poprzez skanowanie twarzy, np. na Pixel 4.</item>
     <item>Poprawki błędów</item>
   </string-array>
   <string name="ChangeLog_1_07b">   Wersja 1. 7b\n
