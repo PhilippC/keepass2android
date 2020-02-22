@@ -628,6 +628,7 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="DbQuicklockedChannel_desc">Notification à propos de la base de données en cours de verrouillage avec QuickUnlock</string>
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
+  <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string-array name="ChangeLog_1_08">
     <item>Ajout d\'un bouton pour copier le TOTP dans le presse-papiers</item>
     <item>Passage à l\'utilisation de FluentFTP pour assurer le support de TLS 1.2</item>
