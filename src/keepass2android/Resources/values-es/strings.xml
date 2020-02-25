@@ -87,6 +87,10 @@
   <string name="fingerprint_success">Autenticación biométrica activada</string>
   <string name="fingerprint_os_error">El desbloqueo con huellas dactilares requiere Android 6.0 o posterior.</string>
   <string name="fingerprint_hardware_error">No se ha detectado hardware biométrico.</string>
+  <string name="fingerprint_no_enrolled">No ha configurado la autenticación biométrica en este dispositivo. Diríjase primero a la configuración del sistema.</string>
+  <string name="disable_fingerprint_unlock">Deshabilitar Desbloqueo Biométrico</string>
+  <string name="enable_fingerprint_unlock">Habilitar Desbloqueo Biométrico Completo</string>
+  <string name="enable_fingerprint_quickunlock">Activar Desbloqueo Biométrico para QuickUnlock</string>
   <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
@@ -255,6 +259,7 @@
   <string name="ShowUsernameInList_summary">Mostrar nombres de usuario por debajo de los títulos de entrada. Útil para múltiples cuentas o TANs.</string>
   <string name="RememberRecentFiles_title">Recordar Bases de Datos</string>
   <string name="RememberRecentFiles_summary">Recuerda la base de datos recientemente abierta y se muestra en la pantalla.</string>
+  <string name="kp2a_findUrl">Encuentra una contraseña</string>
   <string name="excludeExpiredEntries">Excluir las entradas caducadas</string>
   <string name="search_options">Opciones</string>
   <string name="caseSensitive">Distingue mayúsculas</string>
@@ -951,10 +956,12 @@ Publicación inicial</string>
   <string name="autofill_disable">Desactivar Autorrelleno para %1$s</string>
   <string name="autofill_enable_for">Activar Autorrelleno para %1$s</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware biométrico. ¿Desea habilitar el Desbloqueo Biométrico para esta base de datos?</string>
   <string name="understand">Entiendo</string>
   <string name="dont_show_again">No volver a mostrar</string>
   <string name="masterkey_infotext_head">¿Recuerda su contraseña maestra?</string>
   <string name="masterkey_infotext_main">Tenga en cuenta que no será capaz de abrir la base de datos sin la contraseña maestra. No hay manera de reiniciar o \"resetear\" la contraseña maestra.</string>
+  <string name="masterkey_infotext_fingerprint_note">También tenga en cuenta que el Desbloqueo Biométrico funciona almacenando su clave maestra en el almacenamiento seguro de Android. Android puede eliminar este almacenamiento en cualquier momento, p. ej. si agrega una nueva huella digital en la configuración del sistema. Así que no confíe en el Desbloqueo Biométrico, pero recuerde su contraseña maestra, ¡por favor!</string>
   <string name="backup_infotext_head">¿Se está haciendo copia de seguridad de su base de datos?</string>
   <string name="backup_infotext_main">Keepass2Android guarda sus contraseñas en un archivo en una ubicación de su elección. ¿Está seguro de que aún puede acceder a este archivo cuando su teléfono se pierde o lo roban, o cuando el archivo es destruido o borrado? ¡Por favor, asegúrese de que siempre tiene una copia de seguridad actualizada en un lugar seguro!</string>
   <string name="backup_infotext_note">Para crear una copia de seguridad ahora, vaya a %1$s &gt; %2$s &gt; %3$s.</string>
