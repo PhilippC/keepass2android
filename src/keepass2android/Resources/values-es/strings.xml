@@ -627,6 +627,7 @@
   <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con QuickUnlock</string>
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
+  <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string-array name="ChangeLog_1_08">
     <item>Añadir botón de notificación para copiar TOTP al portapapeles</item>
     <item>Cambiar a usar FluentFTP para proporcionar soporte para TLS 1.2</item>
