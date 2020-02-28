@@ -116,7 +116,7 @@
   <string name="entry_save">Сохранить</string>
   <string name="entry_title">Название</string>
   <string name="entry_url">Ссылка</string>
-  <string name="entry_user_name">Имя пользователя</string>
+  <string name="entry_user_name">Логин</string>
   <string name="entry_extra_strings">Дополнительные строковые поля</string>
   <string name="entry_binaries">Вложенные файлы</string>
   <string name="error_can_not_handle_uri">Keepass2Android не может обработать этот адрес URL.</string>
@@ -171,7 +171,7 @@
   <string name="menu_about">О программе</string>
   <string name="menu_change_key">Изменить мастер-ключ</string>
   <string name="menu_copy_pass">Скопировать пароль</string>
-  <string name="menu_copy_user">Скопировать пользователя</string>
+  <string name="menu_copy_user">Копировать логин</string>
   <string name="menu_copy_totp">Скопировать одноразовый пароль</string>
   <string name="menu_create">Создать</string>
   <string name="menu_app_settings">Настройки</string>
@@ -312,8 +312,8 @@
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
-  <string name="add_extra_string">Добавить дополнительную строку</string>
-  <string name="delete_extra_string">Удалить дополнительную строку</string>
+  <string name="add_extra_string">Добавить строку</string>
+  <string name="delete_extra_string">Удалить</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
@@ -370,7 +370,7 @@
   <string name="ShowUnlockedNotification_title">Уведомление, когда база разблокирована</string>
   <string name="ShowUnlockedNotification_summary">Показывать уведомление, когда база разблокирована.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 представил нововведение для уведомлений. Если Вы хотите скрыть значок уведомлений Keepass2Android, настройте его с помощью системных настроек. Установите значение категории уведомлений как Минимум.</string>
-  <string name="IconVisibilityInfo_Android8_btnSettings">Открыть настройки</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Настройки</string>
   <string name="DontCare">Мне всё равно</string>
   <string name="DocumentAccessRevoked">Файл больше недоступен для Keepass2Android. Либо он был удален, либо разрешения доступа были отменены. Пожалуйста, откройте файл еще раз, например, используя Изменить БД.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
@@ -411,7 +411,7 @@
   <string name="SynchronizingDatabase">Объединение изменений…</string>
   <string name="YesSynchronize">Да, объединить</string>
   <string name="NoOverwrite">Нет, перезаписать</string>
-  <string name="UseOfflineMode">Работать только с локальной копией базы</string>
+  <string name="UseOfflineMode">Работать с локальной копией базы</string>
   <string name="UseOnlineMode">Синхронизировать кэшированную копию с удалённым файлом</string>
   <string name="UseOfflineMode_Info">База данных загружена из внутреннего кэша. Изменения сохраняются только во внутреннем кэше и будут синхронизироваться только при выборе Синхронизация кэшированной копии с удалённым файлом.</string>
   <string name="InOfflineMode">Работа только с локальной копией базы.</string>
@@ -629,6 +629,7 @@
   <string name="DbQuicklockedChannel_desc">Уведомление о том, что БД будет заблокирована БыстройРазблокировкой</string>
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
+  <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string-array name="ChangeLog_1_08">
     <item>Добавить кнопку уведомления для копирования TOTP в буфер обмена</item>
     <item>Переключиться на FluentFTP для поддержки TLS 1.2</item>
@@ -947,9 +948,9 @@
   <string name="ClearClipboardWarning">Убедитесь, что это работает на вашей системе и используйте встроенную клавиатуру, если нет.</string>
   <string name="PluginDescription">Описание предоставлено плагином:</string>
   <string name="autofill_hint">Keepass2Android поддерживает функцию автоматического ввода, но, вероятно, вы ещё не включили её.</string>
-  <string name="autofill_enable">Включить автозаполнение</string>
+  <string name="autofill_enable">Включить</string>
   <string name="autofill_enable_failed">Извините, похоже, что Ваше устройство не поддерживает открытие настроек внутри приложения. Перейдите в системные настройки и вручную включите службу АвтоЗаполнения.</string>
-  <string name="show_autofill_help">Показать помощь по автозаполнению</string>
+  <string name="show_autofill_help">Помощь</string>
   <string name="autofill_sign_in_prompt">Автозаполнить при помощи Keepass2Android</string>
   <string name="autofill_disable">Не использовать для %1$s</string>
   <string name="autofill_enable_for">Включить автозаполнение для %1$s</string>
