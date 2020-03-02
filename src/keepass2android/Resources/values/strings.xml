@@ -779,7 +779,7 @@
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
-  <string name="ShowKeyboardDuringFingerprintAuth">Show soft keyboard for password input when biometric authentication is active.</string>
+  <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
 
   <string-array name="ChangeLog_1_08">
     <item>Add notification button for copying TOTP to clipboard</item>

@@ -44,8 +44,6 @@ namespace keepass2android.view
             get { return base.Activated; }
             set
             {
-                Log.Debug("KP2A", "Setting activated = " + value);
-
                 if (value)
                 {
                     FindViewById(Resource.Id.icon).Visibility = ViewStates.Invisible;

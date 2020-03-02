@@ -293,7 +293,8 @@ namespace keepass2android.search
                         case 0: // _ID
                             return Position.ToString(CultureInfo.InvariantCulture);
                         case 1: // SuggestColumnText1
-                            return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField);
+                            string username = CurrentEntry.Strings.ReadSafe(PwDefs.UserNameField);
+                            return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField) + (string.IsNullOrWhiteSpace(username) ? "" : " ("+username+")");
                         case 2: // SuggestColumnText2
                                 return Internationalise(_entriesWithContexts[Position].resultContext);
                         case 3: // SuggestColumnIcon1

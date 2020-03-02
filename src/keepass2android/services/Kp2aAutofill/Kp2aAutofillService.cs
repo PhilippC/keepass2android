@@ -15,7 +15,7 @@ using AutofillServiceBase = keepass2android.services.AutofillBase.AutofillServic
 
 namespace keepass2android.services
 {
-    [Service(Label = AppNames.AppName, Permission=Manifest.Permission.BindAutofillService)]
+[Service(Label = AppNames.AppName, Permission=Manifest.Permission.BindAutofillService)]
     [IntentFilter(new [] {"android.service.autofill.AutofillService"})]
     [MetaData("android.autofill", Resource = "@xml/autofillservice")]
     [Register("keepass2android.services.Kp2aAutofillService")]
@@ -41,8 +41,6 @@ namespace keepass2android.services
 
         protected override void HandleSaveRequest(StructureParser parser, string query)
         {
-            
-
             var intent = new Intent(this, typeof(SelectCurrentDbActivity));
 
             Dictionary<string, string> outputFields = new Dictionary<string, string>();

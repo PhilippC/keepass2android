@@ -119,26 +119,27 @@ namespace keepass2android
 
 			FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Gone;
 			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
-			FindViewById<CheckBox>(Resource.Id.show_keyboard_while_fingerprint).Checked =
-				Util.GetShowKeyboardDuringFingerprintUnlock(this);
 
-			FindViewById<CheckBox>(Resource.Id.show_keyboard_while_fingerprint).CheckedChange += (sender, args) =>
-			{
-				PreferenceManager.GetDefaultSharedPreferences(this)
-					.Edit()
-					.PutBoolean(GetString(Resource.String.ShowKeyboardWhileFingerprint_key), args.IsChecked)
-					.Commit();
-			};
-				
-            
-			UpdateKeyboardCheckboxVisibility();
-			
-			
-		}
+            FindViewById<CheckBox>(Resource.Id.close_database_after_failed).Checked =
+                Util.GetCloseDatabaseAfterFailedBiometricQuickUnlock(this);
 
-		private void UpdateKeyboardCheckboxVisibility()
+            FindViewById<CheckBox>(Resource.Id.close_database_after_failed).CheckedChange += (sender, args) =>
+            {
+                PreferenceManager.GetDefaultSharedPreferences(this)
+                    .Edit()
+                    .PutBoolean(GetString(Resource.String.CloseDatabaseAfterFailedBiometricQuickUnlock_key), args.IsChecked)
+                    .Commit();
+            };
+
+
+            UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
+
+
+        }
+
+		private void UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility()
 		{
-			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = ViewStates.Gone;
+			FindViewById(Resource.Id.close_database_after_failed).Visibility = _unlockMode == FingerprintUnlockMode.QuickUnlock ? ViewStates.Visible : ViewStates.Gone;
 		}
 
 		private bool TrySetupSamsung()
@@ -248,7 +249,7 @@ namespace keepass2android
 			if (_samsungBiometry != null)
 			{
 				_unlockMode = newMode;
-				UpdateKeyboardCheckboxVisibility();
+				UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
 			
 				ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
 				edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, _unlockMode.ToString());
@@ -259,17 +260,17 @@ namespace keepass2android
 			if (newMode == FingerprintUnlockMode.Disabled)
 			{
 				_unlockMode = newMode;
-				UpdateKeyboardCheckboxVisibility();
-			
-				StoreUnlockMode();
+                UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
+
+                StoreUnlockMode();
 				return;
 			}
 
 			_desiredUnlockMode = newMode;
 			FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Gone;
-			FindViewById(Resource.Id.show_keyboard_while_fingerprint).Visibility = ViewStates.Gone;
+            UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
 
-			FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Visible;
+            FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Visible;
             try
 			{
                 _enc = new BiometricEncryption(new BiometricModule(this), CurrentPreferenceKey);
@@ -311,7 +312,7 @@ namespace keepass2android
 				FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
 
 				StoreUnlockMode();
-				UpdateKeyboardCheckboxVisibility();
+				UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
 			
 
 			}, SUCCESS_DELAY_MILLIS);
@@ -331,7 +332,12 @@ namespace keepass2android
 			_fpTextView.PostDelayed(ResetErrorTextRunnable, ERROR_TIMEOUT_MILLIS);
 		}
 
-		void ResetErrorTextRunnable()
+        public void OnBiometricAttemptFailed(string message)
+        {
+            //ignore
+        }
+
+        void ResetErrorTextRunnable()
 		{
 			_fpTextView.SetTextColor(
 				_fpTextView.Resources.GetColor(Resource.Color.hint_color, null));
@@ -350,7 +356,7 @@ namespace keepass2android
                 //seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
                 if (!TrySetupSamsung())
                     SetError(Resource.String.fingerprint_hardware_error);
-                UpdateKeyboardCheckboxVisibility();
+                UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
                 return;
             }
             if (!fpModule.IsAvailable)
@@ -359,8 +365,8 @@ namespace keepass2android
                 return;
             }
             ShowRadioButtons();
-            UpdateKeyboardCheckboxVisibility();
-            
+            UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
+
         }
 
 		protected override void OnPause()

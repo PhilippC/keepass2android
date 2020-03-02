@@ -102,6 +102,9 @@ namespace keepass2android
 
             private int CreateCombinedNotification(string entryName, Bitmap entryIcon)
             {
+                Kp2aLog.Log("Create Combined Notifications: " + _hasKeyboard + " " + _hasPassword + " " + _hasUsername +
+                            " " + _hasTotp);
+
                 if ((!_hasUsername) && (!_hasPassword) && (!_hasKeyboard) && (!_hasTotp))
                     return 0;
 
@@ -142,6 +145,8 @@ namespace keepass2android
 
             private int CreateSeparateNotifications(string entryName, Bitmap entryIcon)
             {
+                Kp2aLog.Log("Create Separate Notifications: " + _hasKeyboard + " " + _hasPassword + " " + _hasUsername +
+                            " " + _hasTotp);
                 int numNotifications = 0;
                 if (_hasPassword)
                 {
@@ -510,6 +515,7 @@ namespace keepass2android
 
             if (_numElementsToWaitFor == 0)
             {
+                Kp2aLog.Log("Stopping CopyToClipboardService, created empty notification");
                 StopSelf();
                 return;
             }
@@ -620,9 +626,11 @@ namespace keepass2android
 
         public void OnWaitElementDeleted(int itemId)
         {
+            Kp2aLog.Log("Wait element deleted: " + itemId);
             _numElementsToWaitFor--;
             if (_numElementsToWaitFor <= 0)
             {
+                Kp2aLog.Log("Stopping CopyToClipboardService, no more elements");
                 StopSelf();
             }
             if ((itemId == NotifyKeyboard) || (itemId == NotifyCombined))
