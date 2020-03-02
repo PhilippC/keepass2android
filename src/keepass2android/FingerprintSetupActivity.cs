@@ -15,7 +15,6 @@ using Android.Widget;
 using Java.Lang;
 using KeePassLib.Keys;
 using KeePassLib.Utility;
-using Kotlin.Text;
 using Enum = System.Enum;
 using Exception = System.Exception;
 

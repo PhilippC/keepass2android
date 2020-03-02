@@ -16,7 +16,9 @@ using Android.Widget;
 
 using Java.IO;
 using keepass2android.Io;
+#if !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
+#endif
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
@@ -457,7 +459,7 @@ namespace keepass2android
 			_activity.StartActivityForResult(i, _requestCode);
 
 #else
-			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
+			Toast.MakeText(Application.Context, "File chooser is excluded!", ToastLength.Long).Show();
 #endif
 			return true;
 		}

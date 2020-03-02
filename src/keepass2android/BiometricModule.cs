@@ -10,7 +10,7 @@ using Android.Security.Keystore;
 using Android.Preferences;
 using Android.Util;
 using Android.Widget;
-using Androidx.Biometric;
+using AndroidX.Biometric;
 using AndroidX.Fragment.App;
 using Java.IO;
 using Java.Security.Cert;
@@ -282,7 +282,7 @@ namespace keepass2android
             Kp2aLog.Log("Fingerprint: StartListening ");
 
             var executor = Executors.NewSingleThreadExecutor();
-            _biometricPrompt = new Androidx.Biometric.BiometricPrompt(_activity, executor, callback);
+            _biometricPrompt = new BiometricPrompt(_activity, executor, callback);
 
             BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .SetTitle(_activity.GetString(AppNames.AppNameResource))
