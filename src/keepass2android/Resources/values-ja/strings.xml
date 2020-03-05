@@ -627,6 +627,7 @@
   <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
+  <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
   <string-array name="ChangeLog_1_08">
     <item>TOTP をクリップボードにコピーするための通知ボタンを追加する</item>
     <item>FluentFTP を使用するように切り替えて、TLS 1.2 のサポートを提供</item>
