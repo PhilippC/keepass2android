@@ -291,7 +291,7 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
   <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
-  <string name="QuickUnlockHideLength_title">Скрыть значок БыстройРазблокировки</string>
+  <string name="QuickUnlockHideLength_title">Скрыть длину БыстройРазблокировки</string>
   <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
   <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
   <string name="BinaryDirectory_title">Каталог файлов-вложений</string>
@@ -312,8 +312,8 @@
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
-  <string name="add_extra_string">Добавить строку</string>
-  <string name="delete_extra_string">Удалить</string>
+  <string name="add_extra_string">Добавить дополнительную строку</string>
+  <string name="delete_extra_string">Удалить дополнительную строку</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
@@ -327,7 +327,7 @@
   <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
   <string name="UseKp2aKeyboardInKp2a_title">Использовать встроенную клавиатуру Keepass2Android</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете своей стандартной клавиатуре, установите этот параметр, чтобы использовать встроенную клавиатуру при вводе мастер-пароля или редактирования записей.</string>
-  <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при старте</string>
+  <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при запуске</string>
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
   <string name="NoDonateOption_summary">Эта настройка предназначена для тех, кто пожертвовал. Она доступна только после использования Keepass2Android какое-то время.</string>
