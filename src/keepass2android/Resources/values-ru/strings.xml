@@ -20,7 +20,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android в автономном режиме</string>
   <string name="short_app_name_nonet">KP2A в автономном режиме</string>
-  <string name="app_timeout">Время ожидания приложения вышло</string>
+  <string name="app_timeout">Тайм-аут приложения</string>
   <string name="app_timeout_summary">Время до блокировки базы данных, при не активности.</string>
   <string name="kill_app_label">Принудительное завершение</string>
   <string name="show_kill_app">Кнопка закрытия</string>
@@ -224,7 +224,7 @@
   <string name="argon2memory">Память для Argon 2 (байт)</string>
   <string name="argon2parallelism">Параллелизм для Argon 2</string>
   <string name="database_name">Имя базы данных</string>
-  <string name="default_username">Имя пользователя по-умолчанию для новых записей</string>
+  <string name="default_username">Имя пользователя по умолчанию для новых записей</string>
   <string name="saving_database">Сохранение базы данных…</string>
   <string name="exporting_database">Экспорт базы данных…</string>
   <string name="export_database_successful">База данных успешно экспортирована!</string>
@@ -281,7 +281,7 @@
   <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
   <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
-  <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по-умолчанию</string>
+  <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли БыстраяРазблокировка по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
   <string name="ViewDatabaseSecure_summary">Если включено, то не разрешены скриншоты и приложение не появится в списке Последних Запущенных.</string>
@@ -912,8 +912,8 @@
     <item>Большой</item>
   </string-array>
   <string-array name="design_options">
-    <item>Светлая</item>
-    <item>Темная</item>
+    <item>Светлый</item>
+    <item>Тёмный</item>
   </string-array>
   <string name="design_title">Дизайн</string>
   <string-array name="ftp_encryption_modes">
