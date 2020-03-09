@@ -269,8 +269,8 @@ namespace keepass2android
 
         public void StopListening()
         {
-            _biometricAuthCallbackAdapter.IgnoreNextError();
-            _biometricPrompt.CancelAuthentication();
+            _biometricAuthCallbackAdapter?.IgnoreNextError();
+            _biometricPrompt?.CancelAuthentication();
         }
 
         public bool HasUserInterface
