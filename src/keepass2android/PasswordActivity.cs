@@ -1366,11 +1366,9 @@ namespace keepass2android
 				throw new NullPointerException("cpQuickUnlock");
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
 
-			if (App.Kp2a.OfflineMode != _loadDbTaskOffline)
+            if ((_loadDbFileTask != null) &&  (App.Kp2a.OfflineMode != _loadDbTaskOffline))
 			{
-				if (_loadDbFileTask == null)
-					throw new NullPointerException("_loadDbFileTask");
-				if (App.Kp2a == null)
+                if (App.Kp2a == null)
 					throw new NullPointerException("App.Kp2a");
 				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
 				if (!App.Kp2a.OfflineMode || !_loadDbFileTask.IsCompleted)
