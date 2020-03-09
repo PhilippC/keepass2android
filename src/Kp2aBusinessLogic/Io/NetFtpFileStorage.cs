@@ -216,9 +216,12 @@ namespace keepass2android.Io
 			try
 			{
 				using (var cl = GetClient(ioc))
-				{
-					return cl.OpenRead(IocToLocalPath(ioc), FtpDataType.Binary, 0);
-				}
+                {
+                    var memStream = new MemoryStream();
+                    cl.OpenRead(IocToLocalPath(ioc), FtpDataType.Binary, 0).CopyTo(memStream);
+                    memStream.Seek(0, SeekOrigin.Begin);
+					return memStream;
+                }
 			}
 			catch (FtpCommandException ex)
 			{
