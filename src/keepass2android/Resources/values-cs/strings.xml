@@ -630,6 +630,7 @@
   <string name="DbQuicklockedChannel_desc">Upozornění že databáze je zamykána s funkcí Rychlého odemknutí</string>
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
+  <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string-array name="ChangeLog_1_08">
     <item>Přidáno oznamovací tlačítko pro kopírování TOTP do schránky</item>
     <item>Změna na FluentFTP pro podporu TLS 1.2</item>
