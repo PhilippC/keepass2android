@@ -87,6 +87,7 @@
   <string name="fingerprint_success">Sucesso na autenticação biométrica</string>
   <string name="fingerprint_os_error">Desbloqueio Biométrico requer Android 6.0 ou posterior.</string>
   <string name="fingerprint_hardware_error">Nenhum hardware biométrico detectado.</string>
+  <string name="fingerprint_no_enrolled">You have not configured biometric authentication on this device. Please go to system settings first.</string>
   <string name="FingerprintSetupFailed">Falha ao criptografar dados. Isso pode acontecer se você adicionar ou remover impressões digitais nas configurações do sistema enquanto o Keepass2Android está esperando pela sua impressão digital.</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
