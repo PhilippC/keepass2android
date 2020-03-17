@@ -47,6 +47,7 @@
   <string name="FileHandling_prefs">Omgang met bestanden</string>
   <string name="keyboard_prefs">Toetsenbord</string>
   <string name="export_prefs">Database exporteren...</string>
+  <string name="fingerprint_prefs">Ontgrendelen met biometrie</string>
   <string name="import_db_prefs">Database importeren naar interne map</string>
   <string name="import_keyfile_prefs">Sleutelbestand importeren</string>
   <string name="keyboardswitch_prefs">Toetsenbord wisselen</string>
@@ -80,7 +81,24 @@
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, je mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopieer naar klembord</string>
+  <string name="fingerprint_description">Verifiëren om door te gaan</string>
+  <string name="fingerprint_fatal">Biometrische ontgrendeling kan niet worden ingesteld:</string>
+  <string name="fingerprint_not_recognized">Biometrische authenticatie mislukt. Probeer opnieuw.</string>
+  <string name="fingerprint_success">Biometrische authenticatie geslaagd</string>
+  <string name="fingerprint_os_error">Biometrische ontgrendeling vereist Android 6.0 of hoger.</string>
+  <string name="fingerprint_hardware_error">Geen biometrische hardware gedetecteerd.</string>
+  <string name="fingerprint_no_enrolled">Je hebt biometrische authenticatie nog niet geconfigureerd op dit apparaat. Ga eerst naar de systeeminstellingen.</string>
+  <string name="disable_fingerprint_unlock">Biometrische ontgrendeling uitschakelen</string>
+  <string name="enable_fingerprint_unlock">Volledige Biometrische ontgrendeling inschakelen</string>
+  <string name="enable_fingerprint_quickunlock">Biometrische ontgrendeling voor QuickUnlock inschakelen</string>
+  <string name="fingerprint_unlock_failed">Biometrische Ontgrendel is mislukt. Decryptie sleutel is ongeldig gemaakt door Android OS. Dit gebeurt meestal als biometrische authenticatie of veiligheidsinstellingen zijn gewijzigd. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutel. Biometrische ontgrendelen is uitgeschakeld omdat het hoofdwachtwoord niet meer geldig is. </string>
+  <string name="fingerprint_reenable">Schakel de Biometrische ontgrendeling opnieuw in voor het nieuwe hoofdwachtwoord.</string>
+  <string name="fingerprint_reenable2">Gelieve te ontgrendelen met uw wachtwoord en vervolgens de Biometrische ontgrendeling opnieuw in te schakelen in de instellingen van de database.</string>
+  <string name="FingerprintInitFailed">Mislukt om biometrische authenticatie te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
+  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met jouw vingerafdruk te ontgrendelen.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Gebruik biometrische authenticatie in plaats van de QuickUnlock code. Dit slaat geen informatie op die gerelateerd is aan je hoofdwachtwoord.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Geopend op</string>
   <string name="entry_cancel">Annuleren</string>
@@ -248,6 +266,7 @@
   <string name="ShowUsernameInList_summary">Gebruikersnamen onder item titels weergeven. Handig voor meerdere accounts of TANs.</string>
   <string name="RememberRecentFiles_title">Onthoud databases</string>
   <string name="RememberRecentFiles_summary">Onthoud onlangs geopende databases en deze in het geopende databasescherm weergeven.</string>
+  <string name="kp2a_findUrl">Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
   <string name="search_options">Opties</string>
   <string name="caseSensitive">Hoofdlettergevoelig</string>
@@ -610,6 +629,7 @@
   <string name="DbQuicklockedChannel_desc">Meldingen over het openen van de database met Snel Openen</string>
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
+  <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
   <string-array name="ChangeLog_1_08">
     <item>Voeg een notificatie knop toe voor het kopiëren van TOTP naar klembord</item>
     <item>Schakel over naar FluentFTP om TLS 1.2 te ondersteunen</item>
@@ -944,10 +964,12 @@ Eerste publieke publicatie
   <string name="autofill_disable">Automatisch invullen uitschakelen voor %1$s</string>
   <string name="autofill_enable_for">Automatisch invullen inschakelen voor %1$s</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android heeft biometrische hardware gedetecteerd. Wil je Biometrische ontgrendeling voor deze database inschakelen?</string>
   <string name="understand">Ik begrijp het</string>
   <string name="dont_show_again">Niet meer tonen</string>
   <string name="masterkey_infotext_head">Weet je het hoofdwachtwoord nog?</string>
   <string name="masterkey_infotext_main">Merk op dat zonder hoofdwachtwoord de database niet te openen is. Er is geen manier om het hoofdwachtwoord te \"resetten\".</string>
+  <string name="masterkey_infotext_fingerprint_note">Houd er ook rekening mee dat Biometrische ontgrendeling werkt door uw hoofdsleutel op te slaan in de veilige opslag van Android. Deze opslag kan op elk moment door Android worden verwijderd, bijvoorbeeld wanneer je een nieuwe vingerafdruk toevoegt in de systeeminstellingen. Vertrouw dus niet op Biometrische ontgrendeling maar onthoud a.u.b. je hoofdwachtwoord!</string>
   <string name="backup_infotext_head">Worden er back-ups gemaakt van jouw database?</string>
   <string name="backup_infotext_main">Keepass2Android bewaart je wachtwoorden in een file op een door jou gekozen locatie. Weet je zeker dat je deze file nog steeds hebt als je telefoon verloren raakt, of gestolen, of als de file gewist wordt? Zorg alsjeblieft altijd voor een recente back-up op een veilige plaats!</string>
   <string name="backup_infotext_note">Om nu een back-up te maken, ga naar %1$s &gt; %2$s &gt; %3$s.</string>
