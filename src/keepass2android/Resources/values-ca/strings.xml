@@ -91,6 +91,7 @@
   <string name="disable_fingerprint_unlock">Deshabilitar Desbloqueig Biomètric</string>
   <string name="enable_fingerprint_unlock">Habilitar Desbloqueig total Biomètric</string>
   <string name="enable_fingerprint_quickunlock">Habilitar Desbloqueig Biomètric  per DesbloqueigRàpid</string>
+  <string name="fingerprint_unlock_failed">Ha fallat el Desbloqueig Biomètric. La clau de desxifratge ha estat invalidada per Android OS. Això sol passar si l\'autenticació biomètrica o un paràmetre de seguretat ha canviat.  </string>
   <string name="FingerprintSetupFailed">Error al xifrar dades. Això pot passar si afegiu o suprimiu empremtes dactilars a la configuració del sistema mentre Keepass2Android està esperant l\'empremta digital.</string>
   <string name="enter_filename">Introdueix el nom de la base de dades</string>
   <string name="entry_accessed">Accedida</string>
