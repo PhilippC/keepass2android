@@ -92,7 +92,13 @@
   <string name="enable_fingerprint_unlock">Habilitar Desbloqueig total Biomètric</string>
   <string name="enable_fingerprint_quickunlock">Habilitar Desbloqueig Biomètric  per DesbloqueigRàpid</string>
   <string name="fingerprint_unlock_failed">Ha fallat el Desbloqueig Biomètric. La clau de desxifratge ha estat invalidada per Android OS. Això sol passar si l\'autenticació biomètrica o un paràmetre de seguretat ha canviat.  </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Ha fallat el desbloqueig de la base de dades: clau composta invàlida. El desbloqueig biomètric s\'ha deshabilitat perquè aparentment la contrasenya mestra emmagatzemada ja no és vàlida. </string>
+  <string name="fingerprint_reenable">Si us plau, torneu a activar Desblocatge Biomètric per la nova contrasenya mestra.</string>
+  <string name="fingerprint_reenable2">Si us plau, desbloqueja amb la contrasenya i llavors re activa el desblocatge biomètric a la configuració de base de dades.</string>
+  <string name="FingerprintInitFailed">No s\'ha pogut inicialitzar l\'autenticació biomètrica.</string>
   <string name="FingerprintSetupFailed">Error al xifrar dades. Això pot passar si afegiu o suprimiu empremtes dactilars a la configuració del sistema mentre Keepass2Android està esperant l\'empremta digital.</string>
+  <string name="enable_fingerprint_unlock_Info">Aquesta emmagatzemarà la vostra contrasenya principal en aquest dispositiu, xifrada amb Android Keystore i protegida mitjançant autenticació biomètrica. Permet desbloquejar la vostra base de dades només mitjançant la biometria.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permet utilitzar l\'autenticació biomètrica en lloc del DesbloqueigRàpid. No emmagatzema cap informació relacionada amb la vostra contrasenya principal.</string>
   <string name="enter_filename">Introdueix el nom de la base de dades</string>
   <string name="entry_accessed">Accedida</string>
   <string name="entry_cancel">Cancel·la</string>
@@ -622,6 +628,7 @@
   <string name="DbQuicklockedChannel_desc">Notificació sobre la base de dades bloquejada amb DesbloqueigRàpid</string>
   <string name="EntryChannel_name">Notificacions de les entrades</string>
   <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
+  <string name="CloseDbAfterFailedAttempts">Tanca la base de dades després de tres intents fallits de desbloqueig biomètric.</string>
   <string-array name="ChangeLog_1_08">
     <item>Afegir el botó de notificació per copiar TOTP al porta-retalls</item>
     <item>Canvia a FluentFTP per suport per a TLS 1.2</item>
