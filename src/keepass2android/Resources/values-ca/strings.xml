@@ -943,10 +943,12 @@ Revisió inicial per al públic
   <string name="autofill_disable">Desactiva l\'emplenament automàtic per %1$s</string>
   <string name="autofill_enable_for">Permet l\'emplenament automàtic per %1$s</string>
   <string name="invalid_link_association">No es pot associar amb el domini web %1$s amb l\'app %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android ha detectat maquinari biomètric. Voleu activar el Desbloqueig biomètric per a aquesta base de dades?</string>
   <string name="understand">Ho entenc</string>
   <string name="dont_show_again">No mostrar de nou</string>
   <string name="masterkey_infotext_head">Recordes la teva contrasenya mestra?</string>
   <string name="masterkey_infotext_main">Tingueu en compte que no podreu obrir la vostra base de dades sense la clau mestra. No hi ha manera de \"restablir\" la contrasenya mestra.</string>
+  <string name="masterkey_infotext_fingerprint_note">Tingueu en compte també que el Desbloqueig Biomètric funciona emmagatzemant la vostra clau mestra a l\'emmagatzematge segur d\'Android. Aquest emmagatzematge pot ser eliminat per Android en qualsevol moment, per exemple, si afegiu una nova empremta digital a la configuració del sistema. Així que no confieu en el Desbloqueig Biomètric, recordeu la vostra contrasenya principal, si us plau!</string>
   <string name="backup_infotext_head">Ha fet còpia de seguretat de la vostra base de dades?</string>
   <string name="backup_infotext_main">Keepass2Android emmagatzema les vostres contrasenyes en un fitxer en una ubicació que vulgueu. Estàs segur que pots accedir a aquest fitxer quan el telèfon es perd o el robat, o quan el fitxer es destrueix o s\'elimina? Assegureu-vos que sempre teniu una còpia de seguretat actualitzada en un lloc segur!</string>
   <string name="backup_infotext_note">Per crear una còpia de seguretat ara, ves a %1$s &gt; %2$s &gt; %3$s.</string>
