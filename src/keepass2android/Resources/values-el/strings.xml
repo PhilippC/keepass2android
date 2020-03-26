@@ -39,7 +39,7 @@
   <string name="Entry_singular">Μία καταχώριση</string>
   <string name="Entry_plural">%1$d καταχωρίσεις</string>
   <string name="IconSet_title">Σετ εικονιδίων</string>
-  <string name="IconSet_install">Αναζήτηση περισσότερων...</string>
+  <string name="IconSet_install">Βρείτε περισσότερα...</string>
   <string name="security_prefs">Ασφάλεια</string>
   <string name="display_prefs">Εμφάνιση</string>
   <string name="password_access_prefs">Πρόσβαση στα συνθηματικά</string>
