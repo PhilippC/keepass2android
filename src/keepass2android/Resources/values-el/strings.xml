@@ -99,7 +99,7 @@
   <string name="FingerprintSetupFailed">Αποτυχία κρυπτογράφησης δεδομένων. Μπορεί να συμβεί αν προσθέσεις ή αφαιρέσεις δακτυλικά αποτυπώματα στις ρυθμίσεις συστήματος ενώ το Keypass2Android περιμένει το δακτυλικό σου αποτύπωμα.</string>
   <string name="enable_fingerprint_unlock_Info">Το πρωτεύον συνθηματικό θα αποθηκευτεί σε αυτή τη συσκευή, κρυπτογραφημένο στο Android Keystore και θα προστατεύεται με βιομετρική αυθεντικοποίηση. Επιτρέπει το ξεκλείδωμα της βάσης δεδομένων με χρήση βιομετρίας.</string>
   <string name="enable_fingerprint_quickunlock_Info">Επιτρέπει τη χρήση βιομετρικής αυθεντικοποίησης αντί του κώδικού QuickUnlock. Δεν αποθηκεύει πληροφορία σχετική με το πρωτεύον συνθηματικό.</string>
-  <string name="enter_filename">Δώστε όνομα αρχείου της βάσης δεδομένων</string>
+  <string name="enter_filename">Δώστε όνομα αρχείου της βάσης δεδομένων:</string>
   <string name="entry_accessed">Προσπελάστηκε</string>
   <string name="entry_cancel">Ακύρωση</string>
   <string name="entry_comment">Σημειώσεις</string>
@@ -223,8 +223,8 @@
   <string name="rounds_hint">κύκλοι</string>
   <string name="argon2memory">Μνήμη για Argon 2 (bytes)</string>
   <string name="argon2parallelism">Παραλληλισμός για Argon 2</string>
-  <string name="database_name">Όνομα βάσης δεδομένων</string>
-  <string name="default_username">Προεπιλεγμένο όνομα χρήστη για νέες εγγραφές</string>
+  <string name="database_name">Όνομα βάσης δεδομένων:</string>
+  <string name="default_username">Προεπιλεγμένο όνομα χρήστη για νέες εγγραφές:</string>
   <string name="saving_database">Αποθήκευση βάσης δεδομένων…</string>
   <string name="exporting_database">Εξαγωγή βάσης δεδομένων…</string>
   <string name="export_database_successful">Η βάση δεδομένων εξήχθηκε με επιτυχία!</string>
