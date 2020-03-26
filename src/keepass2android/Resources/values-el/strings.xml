@@ -627,6 +627,7 @@
   <string name="DbQuicklockedChannel_desc">Ειδοποίηση για τη βάση δεδομένων που κλειδώνεται με QuickUnlock</string>
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
+  <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string-array name="ChangeLog_1_08">
     <item>Προσθήκη πλήκτρου ειδοποίησης για αντιγραφή στο TOTP clipboard</item>
     <item>Αλλαγή προς FluentFTP για παροχή υποστήριξης TLS 1.2</item>
