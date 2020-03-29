@@ -182,7 +182,16 @@
   <string name="no">לא</string>
   <string name="no_keys">לא קיימים ערכים במסד הנתונים או בקבוצה שנבחרה.</string>
   <string name="no_results">לא נמצאו תוצאות לחיפוש</string>
+  <string name="pass_filename">קובץ מסד הנתונים של KeePass</string>
+  <string name="password_title">הכנס סיסמת מסד נתונים</string>
+  <string name="master_key_type">בחר סוג מפתח ראשי</string>
+  <string name="progress_create">צור מסד נתונים חדש...</string>
+  <string name="create_database">צור מסד נתונים</string>
+  <string name="progress_title">עובד...</string>
+  <string name="remove_from_filelist">הסר</string>
   <string name="edit">עריכה</string>
+  <string name="rijndael">Rijndael (AES)</string>
+  <string name="root">Root</string>
   <string name="search_label">חיפוש</string>
   <string name="select_other_entry">בחר ערך אחר</string>
   <string name="further_authors">תודה לכותבי הקוד שתרמו: %1$s.</string>
