@@ -192,6 +192,13 @@
   <string name="edit">עריכה</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="KeyDerivFunc">פונקציה לגזירת מפתח</string>
+  <string name="rounds">סיבובי הצפנה</string>
+  <string name="rounds_explaination">יותר סיבובי הצפנה מספקים הגנה נוספת נגד מתקפת כוח-גס, אבל יכולים להאט משמעותית טעינה ושמירה.</string>
+  <string name="rounds_hint">סיבובים</string>
+  <string name="argon2memory">זכרון עבור Argon 2 (בתים)</string>
+  <string name="argon2parallelism">מקביליות עבור Argon 2</string>
+  <string name="database_name">שם מסד הנתונים</string>
   <string name="search_label">חיפוש</string>
   <string name="select_other_entry">בחר ערך אחר</string>
   <string name="further_authors">תודה לכותבי הקוד שתרמו: %1$s.</string>
