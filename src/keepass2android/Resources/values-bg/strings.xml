@@ -48,6 +48,7 @@
   <string name="unlock_database_title">Отключи базата данни</string>
   <string name="brackets">Скоби</string>
   <string name="cancel">Прекъсни</string>
+  <string name="Ok">ОК</string>
   <string name="ClearClipboard">Клиброда е изчистен.</string>
   <string name="clipboard_timeout">Времето за изчакване на клипборда изтече</string>
   <string name="clipboard_timeout_summary">Време за изчистване на клипборда преди копиране на потребителско име или парола</string>
