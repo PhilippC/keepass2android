@@ -293,6 +293,7 @@
   <string name="hint_sftp_port">ataka</string>
   <string name="initial_directory">Hasierako karpeta (aukerazkoa):</string>
   <string name="enter_sftp_login_title">Idatzi SFTP saioaren datuak:</string>
+  <string name="sftp_auth_mode">Autentikazio modua</string>
   <string name="enter_ftp_login_title">Idatzi FTP saioaren datuak:</string>
   <string name="select_storage_type">Hautatu biltegiratze mota:</string>
   <string name="filestoragename_file">Tokiko fitxategia</string>
@@ -302,9 +303,11 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A karpeta)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_sftp">SFTP (SSH fitxategi transmisioa)</string>
@@ -365,6 +368,10 @@
   <string name="AskAddTemplatesTitle">Gehitu txantiloiak?</string>
   <string name="AskAddTemplatesMessage">Keepass2Androidek E-posta kontuen, Haririk gabeko sareen pasahitzen, ohar seguruen eta abarren txantiloiak ditu. Zure datu-basera gehitu nahi dituzu? Ezetz aukeratzen baduzu geroago ere gehitu ditzakezu datu-basearen ezarpenetan.</string>
   <string name="Continue">Jarraitu</string>
+  <string name="open_other_db">Beste datu-base bat iriki...</string>
+  <string name="select_database">Hautatu datu-basea</string>
+  <string name="Visible_title">Ikusgai</string>
+  <string name="database_file_heading">Datu-basearen fitxategia</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="ChangeLog_0_9_7">0.9.7 bertsioa\n
 		* Keepass 1 (kdb) datu-baseak idazteko gaitasuna (beta!)\n
