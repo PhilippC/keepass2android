@@ -30,6 +30,9 @@
   <string name="ShowGroupnameInSearchResult_resume">عرض اسم المجموعة تحت عناوين القيود في نتائج البحث. هذا مفيد في حال وجود عدة قيود بنفس الاسم.</string>
   <string name="NavigationToGroupCompleted_message">عرض المجموعة الآن: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deshabilitar objetivos de autocompletado</string>
+  <string name="AutofillDisabledQueriesPreference_summary">مشاهدة قائمة التطبيقات والمواقع التي تم تعطيل التعبئة التلقائية لها</string>
+  <string name="OfferSaveCredentials_summary">في حالة التمكين، سوف يسأل أندرويد إذا كنت ترغب في حفظ بيانات الاعتماد بعد إدخال البيانات يدويًا في حقول يمكن ملؤها تلقائيًا.</string>
+  <string name="OfferSaveCredentials_title">عرض حفظ وثائق التفويض</string>
   <string name="ShowGroupInEntry_title">إظهار اسم المجموعة في عرض القيد</string>
   <string name="unknown_uri_scheme">المعذرة! Keepass2Android لا يمكنه معالجة الرابط %1$s الذي تم الحصول عليه. الرجاء التواصل مع المطور!</string>
   <string name="Entry_singular">إدخال واحد</string>
@@ -43,6 +46,7 @@
   <string name="FileHandling_prefs">الملفات التي يمكن استخدامها</string>
   <string name="keyboard_prefs">لوحة المفاتيح</string>
   <string name="export_prefs">تصدير قاعدة البيانات...</string>
+  <string name="fingerprint_prefs">فتح القفل الحيوي</string>
   <string name="import_db_prefs">استيراد قاعدة البيانات إلى مجلد داخلي</string>
   <string name="import_keyfile_prefs">استيراد ملف المفتاح إلى المجلد الداخلية</string>
   <string name="keyboardswitch_prefs">تبديل لوحة المفاتيح</string>
@@ -56,11 +60,14 @@
   <string name="brackets">أقواس</string>
   <string name="cancel">إلغاء</string>
   <string name="Ok">موافق</string>
+  <string name="disable_sensor">تعطيل المستشعر</string>
+  <string name="enable_sensor">تمكين المستشعر</string>
   <string name="ClearClipboard">مسح حافظة لوحة المفاتيح.</string>
   <string name="clipboard_timeout">مهلة حافظة لوحة المفاتيح</string>
   <string name="clipboard_timeout_summary">المدة الزمنية قبل مسح حافظة لوحة المفاتيح بعد نسخ اسم المستخدم أو كلمة المرور</string>
   <string name="copy_username">حدد لنسخ اسم المستخدم إلى حافظة لوحة المفاتيح</string>
   <string name="copy_password">حدد لنسخ كلموة المرور إلى حافظة لوحة المفاتيح</string>
+  <string name="copy_totp">حدد لنسخ اسم المستخدم إلى حافظة لوحة المفاتيح</string>
   <string name="available_through_keyboard">القيد متوفر من خلال لوحة مفاتيح KP2A</string>
   <string name="entry_is_available">متوفر</string>
   <string name="not_possible_im_picker">لا يمكن فتح صندوق الحوار لتحديد طريقة الإدخال. يرجى تفعيل لوحة المفاتيح يدويًا.</string>
@@ -73,6 +80,13 @@
   <string name="disclaimer_formal">Keepass2Android يأتي دون أدنى ضمان، هذا البرنامج مجاني، وإعادة توزيعه مرحب بها تحت شروط GPL الإصدار 2 أو ما بعده.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">نسخ إلى حافظة لوحة المفاتيح</string>
+  <string name="fingerprint_description">الرجاء المصادقة للمتابعة</string>
+  <string name="fingerprint_fatal">لا يمكن إعداد \"فتح القفل بالبصمة\":</string>
+  <string name="fingerprint_not_recognized">فشل المصادقة البيومترية. حاول مرة أخرى</string>
+  <string name="fingerprint_success">تمت المصادقة الإحيائية بنجاح</string>
+  <string name="fingerprint_os_error">\"فتح القفل بالبصمة\" يتطلب Android 6.0 أو أحدث.</string>
+  <string name="fingerprint_hardware_error">لا يوجد حساس البصمة.</string>
+  <string name="fingerprint_no_enrolled">لا يوجد بصمات مسجلة على الجهاز. الرجاء الذهاب لاعدادات الجهاز اولا.</string>
   <string name="enter_filename">أدخل اسم ملف قاعدة البيانات</string>
   <string name="entry_accessed">تم الوصول</string>
   <string name="entry_cancel">إلغاء</string>
@@ -439,6 +453,8 @@
   <string name="TrayTotp_SettingsField_title">اسم الحقل \"إعدادات TOTP\"</string>
   <string name="TrayTotp_SettingsField_summary">أدخل اسمًا لحقل \"إعدادات TrayTotp\" هنا.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_title">استخدم ملف المفتاح</string>
+  <string name="DebugLog_summary">كتابة إخراج التطبيق إلى ملف سجل محلي</string>
   <string name="loading">جاري التحميل…</string>
   <string name="plugins">الإضافات</string>
   <string name="plugin_packagename">اسم الحزمة:</string>
@@ -472,6 +488,7 @@
   <string name="ReadOnlyReason_PreKitKat">يبدو أنك قمت بفتح الملف من تطبيق خارجي. هذه الطريقة لا تدعم الكتابة. إذا كنت ترغب في إجراء تغييرات على قاعدة البيانات، الرجاء إغلاق قاعدة البيانات وحدد \"تعديل قاعدة البيانات\". ثم افتح الملف من أحد الخيارات المتاحة إذا كان ذلك ممكناً.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">تم تعيين علامة للقراءة فقط. قم بإزالة هذه العلامة إذا كنت ترغب في إجراء تغييرات على قاعدة البيانات.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">الكتابة غير ممكنة بسبب القيود التي أدخلت في نظام \"Android Kitkat\". إذا كنت ترغب في إجراء تغييرات على قاعدة البيانات، قم بإغلاق قاعدة البيانات وحدد \"تعديل قاعدة البيانات\". ثم قم بفتح الملف باستخدام أحد برامج النظام.</string>
+  <string name="ReadOnlyReason_LocalBackup">لا يمكن تعديل النسخ الاحتياطية المحلية. يمكنك استخدام إعدادات قاعدة البيانات - تصدير قاعدة البيانات لتصدير هذه النسخة الاحتياطية إلى موقع آخر يمكنك إعادة فتحها منه. وعندئذ ستكون قابلة للكتابة مرة أخرى.</string>
   <string name="AddCustomIcon">إضافة أيقونة من ملف...</string>
   <string name="CopyingFile">جاري نسخ الملف...</string>
   <string name="DuplicateTitle">نسخة</string>
@@ -631,4 +648,10 @@
     <item>لا تقبل شهادات غير صالحة</item>
   </string-array>
   <string name="PluginDescription">الوصف المقدم من العنصر الإضافي :</string>
+  <string name="dont_show_again">لا تظهر مرة أخرى</string>
+  <string name="masterkey_infotext_head">هل تذكر كلمة المرور الرئيسية؟</string>
+  <string name="masterkey_infotext_main">لاحظ أنك لن تتمكن من فتح قاعدة البيانات الخاصة بك بدون المفتاح الرئيسي. لا توجد طريقة \"إعادة تعيين\" كلمة المرور الرئيسية.</string>
+  <string name="backup_infotext_head">هل يتم النسخ الاحتياطي لقاعدة البيانات الخاصة بك؟</string>
+  <string name="backup_infotext_main">Keepass2Android يخزن كلمات المرور الخاصة بك في ملف على موقع تختاره. هل أنت متأكد من أنك لا يزال بإمكانك الوصول إلى هذا الملف عند فقدان هاتفك أو سرقته، أو عندما يتم تدمير الملف أو حذفه؟ الرجاء التأكد من أن لديك دائماً نسخة احتياطية حديثة في مكان آمن!</string>
+  <string name="backup_infotext_note">لإنشاء نسخة احتياطية الآن، انتقل إلى %1$s &gt; %2$s &gt; %3$s.</string>
 </resources>
