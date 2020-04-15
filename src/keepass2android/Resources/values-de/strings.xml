@@ -629,6 +629,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="DbQuicklockedChannel_desc">Benachrichtigung wenn die Datenbank mit QuickUnlock gesperrt ist</string>
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
+  <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string-array name="ChangeLog_1_08">
     <item>Benachrichtigungsschalfläche hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
     <item>Zu FluentFTP gewechselt, um TLS 1.2 zu unterstützen</item>
