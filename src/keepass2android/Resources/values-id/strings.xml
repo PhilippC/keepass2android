@@ -54,6 +54,7 @@
   <string name="clipboard_timeout_summary">Waktu sebelum menghapus isi papan klip setelah menyalin nama pengguna atau sandi</string>
   <string name="copy_username">Pilih untuk menyalin nama pengguna ke papan klip</string>
   <string name="copy_password">Pilih untuk menyalin sandi ke papan klip</string>
+  <string name="copy_totp">Pilih untuk menyalin nama pengguna ke papan klip</string>
   <string name="available_through_keyboard">Entri tersedia melalui kibor KP2A</string>
   <string name="entry_is_available">tersedia</string>
   <string name="not_possible_im_picker">Tidak bisa membuka dialog untuk memilih metode masukan. Silakan aktifkan kibor secara manual.</string>
@@ -66,6 +67,9 @@
   <string name="disclaimer_formal">Keepass2Android dibuat TANPA GARANSI APAPUN; Ini adalah perangkat lunak bebas, dan anda bebas untuk mendistribusikannya di bawah lisensi GPL versi 2 atau yang lebih baru.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Salin ke papan klip</string>
+  <string name="fingerprint_description">Harap autentikasi untuk melanjutkan</string>
+  <string name="fingerprint_not_recognized">Otentikasi biometrik gagal. Coba lagi</string>
+  <string name="fingerprint_os_error">Aktifkan Biometrik membutuhkan Android 6.0 atau yang lebih baru</string>
   <string name="enter_filename">Masukkan nama berkas basis data</string>
   <string name="entry_accessed">Diakses</string>
   <string name="entry_cancel">Batal</string>
