@@ -631,6 +631,7 @@
   <string name="DbQuicklockedChannel_desc">Çabuk Aç ile kilitlenen veritabanı hakkında bildirim</string>
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
+  <string name="CloseDbAfterFailedAttempts">Üç başarısız biyometrik kilit açma denemesinden sonra veritabanını kapat</string>
   <string-array name="ChangeLog_1_08">
     <item>Zaman tabanlı bir kerelik parolayı panoya kopyalamak için bildirim düğmesi ekle</item>
     <item>TLS 1.2 desteği sağlamak için FluentFTP kullanmaya geç</item>
