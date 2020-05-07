@@ -618,6 +618,7 @@
   <string name="DbQuicklockedChannel_desc">Avisering om att databasen blivit upplåst med snabbupplåsning</string>
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
+  <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
   <string-array name="ChangeLog_1_08">
     <item>Lägg till aviseringsknapp för att kopiera engångskod till minnet</item>
     <item>Byt till FluentFTP för att få stöd för TLS 1.2</item>
