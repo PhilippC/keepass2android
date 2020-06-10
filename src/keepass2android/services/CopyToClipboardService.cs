@@ -826,8 +826,18 @@ namespace keepass2android
                     //must be enabled in settings first
                     Toast.MakeText(this, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
                     Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
-                    settingsIntent.SetFlags(ActivityFlags.NewTask);
-                    StartActivity(settingsIntent);
+                    try
+                    {
+                        settingsIntent.SetFlags(ActivityFlags.NewTask);
+                        StartActivity(settingsIntent);
+                    }
+                    catch (Exception e)
+                    {
+                        //seems like on Huawei devices this call can fail. 
+                        Kp2aLog.LogUnexpectedError(e);
+                        Toast.MakeText(this, "Failed to switch keyboard.", ToastLength.Long).Show();
+
+                    }
                 }
                 else
                 {
@@ -843,9 +853,20 @@ namespace keepass2android
                     }
                     if (mustUseHelperActivity)
                     {
-                        Intent switchImeIntent = new Intent(this, typeof(SwitchImeActivity));
-                        switchImeIntent.SetFlags(ActivityFlags.NewTask);
-                        StartActivity(switchImeIntent);
+                        try
+                        {
+                            Intent switchImeIntent = new Intent(this, typeof(SwitchImeActivity));
+                            switchImeIntent.SetFlags(ActivityFlags.NewTask);
+                            StartActivity(switchImeIntent);
+                        }
+                        catch (Exception e)
+                        {
+                            //seems like on Huawei devices this call can fail. 
+                            Kp2aLog.LogUnexpectedError(e);
+                            Toast.MakeText(this, "Failed to switch keyboard.", ToastLength.Long).Show();
+
+                        }
+                        
                     }
                     else
                     {
