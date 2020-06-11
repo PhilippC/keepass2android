@@ -828,7 +828,7 @@ namespace keepass2android
                     Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
                     try
                     {
-                        settingsIntent.SetFlags(ActivityFlags.NewTask);
+                        settingsIntent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
                         StartActivity(settingsIntent);
                     }
                     catch (Exception e)
@@ -849,14 +849,14 @@ namespace keepass2android
                         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
                         ActivityManager.GetMyMemoryState(appProcessInfo);
                         //at least on Samsung devices, we always need the helper activity
-                        mustUseHelperActivity = (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
+                        mustUseHelperActivity = true;// TODO enable again (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
                     }
                     if (mustUseHelperActivity)
                     {
                         try
                         {
                             Intent switchImeIntent = new Intent(this, typeof(SwitchImeActivity));
-                            switchImeIntent.SetFlags(ActivityFlags.NewTask);
+                            switchImeIntent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
                             StartActivity(switchImeIntent);
                         }
                         catch (Exception e)
@@ -918,7 +918,7 @@ namespace keepass2android
             if (App.Kp2a.LastOpenedEntry == null)
             {
                 Intent i = new Intent(context, typeof(AppKilledInfo));
-                i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
+                i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
                 context.StartActivity(i);
                 return;
             }
