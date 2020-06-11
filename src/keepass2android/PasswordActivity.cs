@@ -575,15 +575,13 @@ namespace keepass2android
 			}
 		}
 
-		int count = 1;
-
+		
 	    
 		private string mDrawerTitle;
 		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
 		private ActivityDesign _activityDesign;
 		private BiometricDecryption _biometricDec;
-		private bool _fingerprintPermissionGranted;
-		private PasswordActivityBroadcastReceiver _intentReceiver;
+        private PasswordActivityBroadcastReceiver _intentReceiver;
 		private int _appnameclickCount;
 
 
