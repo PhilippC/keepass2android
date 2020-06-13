@@ -33,8 +33,10 @@ public class Kp2aDialog extends Activity {
 
         final ArrayList<StringForTyping> items = new ArrayList<StringForTyping>();
 
-
-
+        List<StringForTyping> availableFields = keepass2android.kbbridge.KeyboardData.availableFields;
+        for (StringForTyping entry : availableFields) {
+            items.add(entry.clone());
+        }
 
         StringForTyping openOrChangeEntry = new StringForTyping();
         if (keepass2android.kbbridge.KeyboardData.entryName == null)
