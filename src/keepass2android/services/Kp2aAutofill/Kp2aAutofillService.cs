@@ -42,6 +42,8 @@ namespace keepass2android.services
         protected override void HandleSaveRequest(StructureParser parser, string query)
         {
             var intent = new Intent(this, typeof(SelectCurrentDbActivity));
+            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+
 
             Dictionary<string, string> outputFields = new Dictionary<string, string>();
             foreach (var p in parser.ClientFormData.HintMap)
