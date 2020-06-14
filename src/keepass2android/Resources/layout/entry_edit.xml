@@ -62,10 +62,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.design.widget.TextInputLayout
+                      android:layout_weight="1"
                         style="@style/EntryEditSingleLine_TextInputLayout">
                         <EditText
                             android:id="@+id/entry_password"
@@ -103,7 +104,7 @@
                             android:src="@drawable/ic_plus_button"
                             android:background="?android:selectableItemBackground" />
                     </LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
                 <EditText
                     android:id="@+id/entry_confpassword"
                     android:layout_width="match_parent"
