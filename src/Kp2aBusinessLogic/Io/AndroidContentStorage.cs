@@ -270,7 +270,7 @@ namespace keepass2android.Io
 					}
 					else return false;
 				}
-				else throw new Exception("couldn't move to first result element: " + (cursor == null) + uri.ToString());
+				else return false;
 			}
 			catch (Exception e)
 			{

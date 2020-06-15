@@ -49,6 +49,11 @@ namespace keepass2android
 	        get { return _activeActivity; }
 	        private set
 	        {
+                if (_activeActivity != null && _activeActivity != _previouslyActiveActivity)
+                {
+                    _previouslyActiveActivity = _activeActivity;
+
+                }
 	            _activeActivity = value;
 	            if (_task != null)
 	                _task.ActiveActivity = _activeActivity;
@@ -60,12 +65,18 @@ namespace keepass2android
 	        }
 	    }
 
-	    private readonly Handler _handler;
+        public Activity PreviouslyActiveActivity
+        {
+            get { return _previouslyActiveActivity; }
+           
+        }
+
+		private readonly Handler _handler;
 		private readonly RunnableOnFinish _task;
 		private IProgressDialog _progressDialog;
         private readonly IKp2aApp _app;
 		private Thread _thread;
-	    private Activity _activeActivity;
+	    private Activity _activeActivity, _previouslyActiveActivity;
 	    private ProgressDialogStatusLogger _progressDialogStatusLogger;
 
 	    public ProgressTask(IKp2aApp app, Activity activity, RunnableOnFinish task)

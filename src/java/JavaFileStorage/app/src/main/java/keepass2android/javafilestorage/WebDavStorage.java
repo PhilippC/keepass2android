@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
@@ -44,6 +45,7 @@ import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -52,6 +54,7 @@ import okhttp3.internal.tls.OkHostnameVerifier;
 public class WebDavStorage extends JavaFileStorageBase {
 
     private final ICertificateErrorHandler mCertificateErrorHandler;
+    private Context appContext;
 
     public WebDavStorage(ICertificateErrorHandler certificateErrorHandler)
     {
@@ -125,9 +128,13 @@ public class WebDavStorage extends JavaFileStorageBase {
         }
     }
 
+    //client to be reused (connection pool/thread pool). We're building a custom client for each ConnectionInfo in getClient for actual usage
+    final OkHttpClient baseClient = new OkHttpClient();
+
     private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        OkHttpClient.Builder builder = baseClient.newBuilder();
         final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
 
         com.burgstaller.okhttp.digest.Credentials credentials = new com.burgstaller.okhttp.digest.Credentials(ci.username, ci.password);
@@ -168,6 +175,12 @@ public class WebDavStorage extends JavaFileStorageBase {
             builder.readTimeout(25, TimeUnit.SECONDS);
             builder.writeTimeout(25, TimeUnit.SECONDS);
         }
+
+        //OkHttp has issues with HTTP/2 (https://github.com/square/okhttp/issues/4964)
+        //An OkHttp developer suggested to use the same workaround as other apps:
+        // (https://github.com/PhilippC/keepass2android/issues/747#issuecomment-622946085)
+        //force HTTP1.1
+        builder.protocols(Arrays.asList(Protocol.HTTP_1_1));
 
         OkHttpClient client =  builder.build();
 
@@ -503,7 +516,7 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     @Override
     public void prepareFileUsage(Context appContext, String path) {
-        //nothing to do
+        this.appContext = appContext;
 
     }
 

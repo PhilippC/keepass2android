@@ -235,8 +235,11 @@ namespace keepass2android
 		        var dbname = kpDatabase.Name;
 		        if (String.IsNullOrEmpty(dbname))
 		        {
-		            //todo: if paranoid ("don't remember recent files") return "***"
-		            dbname = App.Kp2a.GetFileStorage(kpDatabase.IOConnectionInfo).GetFilenameWithoutPathAndExt(kpDatabase.IOConnectionInfo);
+		            //if paranoid ("don't remember recent files")return "***"
+                    if (!App.Kp2a.GetBooleanPreference(PreferenceKey.remember_keyfile))
+                        return "***";
+		            dbname = UrlUtil.StripExtension(
+                        UrlUtil.GetFileName(App.Kp2a.GetFileStorage(kpDatabase.IOConnectionInfo).GetDisplayName(kpDatabase.IOConnectionInfo)));
 		        }
 		        if (displayString != "")
 		            displayString = displayString + ", ";

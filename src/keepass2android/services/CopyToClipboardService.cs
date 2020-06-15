@@ -826,8 +826,18 @@ namespace keepass2android
                     //must be enabled in settings first
                     Toast.MakeText(this, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
                     Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
-                    settingsIntent.SetFlags(ActivityFlags.NewTask);
-                    StartActivity(settingsIntent);
+                    try
+                    {
+                        settingsIntent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
+                        StartActivity(settingsIntent);
+                    }
+                    catch (Exception e)
+                    {
+                        //seems like on Huawei devices this call can fail. 
+                        Kp2aLog.LogUnexpectedError(e);
+                        Toast.MakeText(this, "Failed to switch keyboard.", ToastLength.Long).Show();
+
+                    }
                 }
                 else
                 {
@@ -839,13 +849,24 @@ namespace keepass2android
                         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
                         ActivityManager.GetMyMemoryState(appProcessInfo);
                         //at least on Samsung devices, we always need the helper activity
-                        mustUseHelperActivity = (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
+                        mustUseHelperActivity = true;// TODO enable again (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
                     }
                     if (mustUseHelperActivity)
                     {
-                        Intent switchImeIntent = new Intent(this, typeof(SwitchImeActivity));
-                        switchImeIntent.SetFlags(ActivityFlags.NewTask);
-                        StartActivity(switchImeIntent);
+                        try
+                        {
+                            Intent switchImeIntent = new Intent(this, typeof(SwitchImeActivity));
+                            switchImeIntent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
+                            StartActivity(switchImeIntent);
+                        }
+                        catch (Exception e)
+                        {
+                            //seems like on Huawei devices this call can fail. 
+                            Kp2aLog.LogUnexpectedError(e);
+                            Toast.MakeText(this, "Failed to switch keyboard.", ToastLength.Long).Show();
+
+                        }
+                        
                     }
                     else
                     {
@@ -897,7 +918,7 @@ namespace keepass2android
             if (App.Kp2a.LastOpenedEntry == null)
             {
                 Intent i = new Intent(context, typeof(AppKilledInfo));
-                i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask);
+                i.SetFlags(ActivityFlags.ClearTask | ActivityFlags.NewTask | ActivityFlags.ExcludeFromRecents);
                 context.StartActivity(i);
                 return;
             }

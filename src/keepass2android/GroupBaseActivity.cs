@@ -463,7 +463,7 @@ namespace keepass2android
 		                new AlertDialog.Builder(this)
 		                    .SetTitle(Resource.String.autofill_enable)
 		                    .SetMessage(Resource.String.autofill_enable_failed)
-		                    .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+		                    .SetPositiveButton(Resource.String.Ok, (o, eventArgs) => { })
 		                    .Show();
 		                const string autofillservicewasenabled = "AutofillServiceWasEnabled";
 		                _prefs.Edit().PutBoolean(autofillservicewasenabled, true).Commit();
@@ -1239,7 +1239,7 @@ namespace keepass2android
                 {
                     Handler.Post(() =>
                     {
-                        Toast.MakeText(ActiveActivity, "Unrecoverable error: " + Message, ToastLength.Long).Show();
+                        Toast.MakeText(ActiveActivity ?? Application.Context, "Unrecoverable error: " + Message, ToastLength.Long).Show();
                     });
 
                     App.Kp2a.Lock(false);

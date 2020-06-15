@@ -31,6 +31,7 @@ using Java.IO;
 using KeePassLib.Serialization;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
+using Console = System.Console;
 using Environment = Android.OS.Environment;
 
 namespace keepass2android
@@ -302,6 +303,16 @@ namespace keepass2android
 
 	    private void EditFileEntry(string filename, IOConnectionInfo newConnectionInfo)
 	    {
+            try
+            {
+                App.Kp2a.GetFileStorage(newConnectionInfo);
+            }
+            catch (NoFileStorageFoundException)
+            {
+                Toast.MakeText(this, "Don't know how to handle " + newConnectionInfo.Path, ToastLength.Long).Show();
+                return;
+            }
+
             _dbHelper.CreateFile(newConnectionInfo, _dbHelper.GetKeyFileForFile(filename), false);
 	        _dbHelper.DeleteFile(filename);
 
