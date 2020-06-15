@@ -88,6 +88,7 @@ namespace keepass2android
 		ReadOnlyReason_ReadOnlyKitKat,
         ReadOnlyReason_LocalBackup,
         Ok,
-        cancel
+        cancel,
+        FileNotFound
     }
 }

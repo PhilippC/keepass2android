@@ -123,7 +123,7 @@ namespace keepass2android
 			{
 				if (!(e is InvalidCompositeKeyException))
 					Kp2aLog.LogUnexpectedError(e);
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, false, Exception);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + (e.Message ?? (e is FileNotFoundException ? _app.GetResourceString(UiStringKey.FileNotFound) :  "")), false, Exception);
 				return;
 			}
 			
