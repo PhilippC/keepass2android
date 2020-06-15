@@ -1888,7 +1888,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentFTP">
-      <Version>31.3.1</Version>
+      <Version>32.4.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl">
       <Version>1.1.10</Version>
