@@ -463,7 +463,7 @@ namespace keepass2android
 		                new AlertDialog.Builder(this)
 		                    .SetTitle(Resource.String.autofill_enable)
 		                    .SetMessage(Resource.String.autofill_enable_failed)
-		                    .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+		                    .SetPositiveButton(Resource.String.Ok, (o, eventArgs) => { })
 		                    .Show();
 		                const string autofillservicewasenabled = "AutofillServiceWasEnabled";
 		                _prefs.Edit().PutBoolean(autofillservicewasenabled, true).Commit();
