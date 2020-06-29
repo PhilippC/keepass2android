@@ -46,6 +46,7 @@ using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
+using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
@@ -702,7 +703,7 @@ namespace keepass2android
 #if !NoNet
 							new DropboxFileStorage(Application.Context, this),
 							new DropboxAppFolderFileStorage(Application.Context, this),
-							new GoogleDriveFileStorage(Application.Context, this),
+                            GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(Application.Context)==ConnectionResult.Success ? new GoogleDriveFileStorage(Application.Context, this) : null,
 							new OneDriveFileStorage(Application.Context, this),
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
@@ -716,7 +717,7 @@ namespace keepass2android
 #endif
 #endif
 							new LocalFileStorage(this)
-						};
+						}.Where(fs => fs != null).ToList();
 				}
 				return _fileStorages;
 			}
