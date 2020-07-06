@@ -511,8 +511,8 @@ namespace keepass2android
 
 			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
 			{
-				if (success)
-					_appTask.AfterAddNewEntry((EntryEditActivity)activity, newEntry);
+				if (success && activity is EntryEditActivity entryEditActivity)
+					_appTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
