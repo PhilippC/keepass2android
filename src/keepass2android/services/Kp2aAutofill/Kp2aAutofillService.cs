@@ -39,7 +39,7 @@ namespace keepass2android.services
             return null;
         }
 
-        protected override void HandleSaveRequest(StructureParser parser, string query)
+        protected override void HandleSaveRequest(StructureParser parser, StructureParser.AutofillTargetId query)
         {
             var intent = new Intent(this, typeof(SelectCurrentDbActivity));
             intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTop | ActivityFlags.SingleTop);
@@ -53,7 +53,7 @@ namespace keepass2android.services
 
             }
             if (query != null)
-                outputFields.TryAdd(PwDefs.UrlField, query);
+                outputFields.TryAdd(PwDefs.UrlField, query.WebDomain);
 
             JSONObject jsonOutput = new JSONObject(outputFields);
             var jsonOutputStr = jsonOutput.ToString();

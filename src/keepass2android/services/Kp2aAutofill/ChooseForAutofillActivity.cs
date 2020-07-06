@@ -24,8 +24,12 @@ namespace keepass2android.services.Kp2aAutofill
         Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill")]
     public class ChooseForAutofillActivity : ChooseForAutofillActivityBase
     {
-        protected override Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery)
+        protected override Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery, bool useLastOpenedEntry)
         {
+            if (useLastOpenedEntry && (App.Kp2a.LastOpenedEntry?.SearchUrl == requestedUrl))
+            {
+                return null;
+            }
             //launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
             //will return the results later
             Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
@@ -37,7 +41,7 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override Result ExpectedActivityResult => KeePass.ExitCloseAfterTaskComplete;
 
-        protected override FilledAutofillFieldCollection GetDataset(Intent data)
+        protected override FilledAutofillFieldCollection GetDataset()
         {
             if (App.Kp2a.CurrentDb==null || (App.Kp2a.QuickLocked))
                 return null;
