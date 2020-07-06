@@ -12,6 +12,7 @@ using Java.Util;
 using keepass2android.services.AutofillBase.model;
 using System.Collections.Generic;
 using System.Linq;
+using AlertDialog = Android.App.AlertDialog;
 
 namespace keepass2android.services.AutofillBase
 {
@@ -22,8 +23,12 @@ namespace keepass2android.services.AutofillBase
 
 
         public static string ExtraQueryString => "EXTRA_QUERY_STRING";
+        public static string ExtraQueryPackageString => "EXTRA_QUERY_PACKAGE_STRING";
+        public static string ExtraQueryDomainString => "EXTRA_QUERY_DOMAIN_STRING";
+        public static string ExtraUseLastOpenedEntry => "EXTRA_USE_LAST_OPENED_ENTRY"; //if set to true, no query UI is displayed. Can be used to just show a warning
         public static string ExtraIsManualRequest => "EXTRA_IS_MANUAL_REQUEST";
         public static string ExtraAutoReturnFromQuery => "EXTRA_AUTO_RETURN_FROM_QUERY";
+        public static string ExtraDisplayWarning => "EXTRA_DISPLAY_WARNING";
 
         public int RequestCodeQuery => 6245;
 
@@ -46,12 +51,56 @@ namespace keepass2android.services.AutofillBase
                 RestartApp();
                 return;
             }
+            if (Intent.HasExtra(ExtraDisplayWarning))
+            {
+                AutofillServiceBase.DisplayWarning warning =
+                    (AutofillServiceBase.DisplayWarning)Intent.GetIntExtra(ExtraDisplayWarning, (int)AutofillServiceBase.DisplayWarning.None);
+                if (warning != AutofillServiceBase.DisplayWarning.None)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.SetTitle(this.GetString(Resource.String.AutofillWarning_title));
 
-            var i = GetQueryIntent(requestedUrl, Intent.GetBooleanExtra(ExtraAutoReturnFromQuery, true));
-            StartActivityForResult(i, RequestCodeQuery);
+                    builder.SetMessage(
+                            GetString(Resource.String.AutofillWarning_Intro, new Java.Lang.Object[] { Intent.GetStringExtra(ExtraQueryDomainString), Intent.GetStringExtra(ExtraQueryPackageString) }) 
+                            + " " + 
+                            this.GetString(Resource.String.AutofillWarning_FillDomainInUntrustedApp, new Java.Lang.Object[] { Intent.GetStringExtra(ExtraQueryDomainString), Intent.GetStringExtra(ExtraQueryPackageString) }));
+
+                    builder.SetPositiveButton(this.GetString(Resource.String.Continue),
+                        (dlgSender, dlgEvt) =>
+                        {
+                            Proceed();
+
+                        });
+
+                    builder.SetNegativeButton(this.GetString(Resource.String.cancel), (dlgSender, dlgEvt) =>
+                    {
+                        Finish();
+                    });
+
+                    Dialog dialog = builder.Create();
+                    dialog.Show();
+                    return;
+                }
+
+            }
+            Proceed();
         }
 
-        protected abstract Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery);
+        private void Proceed()
+        {
+            string requestedUrl = Intent.GetStringExtra(ExtraQueryString);
+
+            var i = GetQueryIntent(requestedUrl, Intent.GetBooleanExtra(ExtraAutoReturnFromQuery, true), Intent.GetBooleanExtra(ExtraUseLastOpenedEntry, false));
+            if (i == null)
+            {
+                //GetQueryIntent returns null if no query is required
+                ReturnSuccess();
+            }
+            else
+                StartActivityForResult(i, RequestCodeQuery);
+        }
+
+        protected abstract Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery, bool useLastOpenedEntry);
 
         protected void RestartApp()
         {
@@ -100,13 +149,22 @@ namespace keepass2android.services.AutofillBase
             if (requestCode == RequestCodeQuery)
             {
                 if (resultCode == ExpectedActivityResult)
-                    OnSuccess(GetDataset(data), Intent.GetBooleanExtra(ExtraIsManualRequest, false));
+                    ReturnSuccess();
                 else
-                OnFailure(); 
-                Finish();
+                {
+                    OnFailure();
+                    Finish();
+                }
+
 
             }
 
+        }
+
+        private void ReturnSuccess()
+        {
+            OnSuccess(GetDataset(), Intent.GetBooleanExtra(ExtraIsManualRequest, false));
+            Finish();
         }
 
         protected virtual Result ExpectedActivityResult
@@ -117,7 +175,7 @@ namespace keepass2android.services.AutofillBase
         /// <summary>
         /// Creates the FilledAutofillFieldCollection from the intent returned from the query activity
         /// </summary>
-        protected abstract FilledAutofillFieldCollection GetDataset(Intent data);
+        protected abstract FilledAutofillFieldCollection GetDataset();
 
         public abstract IAutofillIntentBuilder IntentBuilder { get; }
 

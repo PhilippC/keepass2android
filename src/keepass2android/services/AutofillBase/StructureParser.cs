@@ -38,24 +38,52 @@ namespace keepass2android.services.AutofillBase
 		    domainSuffixParserCache = new PublicSuffixRuleCache(context);
 		}
 
-		public string ParseForFill(bool isManual)
+        public class AutofillTargetId
+        {
+			public string PackageName { get; set; }
+
+            public string PackageNameWithPseudoSchema
+            {
+                get { return "androidapp://" + PackageName; }
+            }
+
+            public string WebDomain { get; set; }
+
+			/// <summary>
+			/// If PackageName and WebDomain are not compatible (by DAL or because PackageName is a trusted browser in which case we treat all domains as "compatible"
+			/// we need to issue a warning. If we would fill credentials for the package, a malicious website could try to get credentials for the app.
+			/// If we would fill credentials for the domain, a malicious app could get credentials for the domain.
+			/// </summary>
+            public bool IncompatiblePackageAndDomain { get; set; }
+
+            public string DomainOrPackage
+            {
+                get
+                {
+                    return WebDomain ?? PackageNameWithPseudoSchema;
+                }
+            }
+        }
+
+		public AutofillTargetId ParseForFill(bool isManual)
 		{
 			return Parse(true, isManual);
 		}
 
-		public string ParseForSave()
+		public AutofillTargetId ParseForSave()
 		{
 			return Parse(false, true);
 		}
 
-	    /// <summary>
-	    /// Traverse AssistStructure and add ViewNode metadata to a flat list.
-	    /// </summary>
-	    /// <returns>The parse.</returns>
-	    /// <param name="forFill">If set to <c>true</c> for fill.</param>
-	    /// <param name="isManualRequest"></param>
-	    string Parse(bool forFill, bool isManualRequest)
-		{
+		/// <summary>
+		/// Traverse AssistStructure and add ViewNode metadata to a flat list.
+		/// </summary>
+		/// <returns>The parse.</returns>
+		/// <param name="forFill">If set to <c>true</c> for fill.</param>
+		/// <param name="isManualRequest"></param>
+        AutofillTargetId Parse(bool forFill, bool isManualRequest)
+        {
+            AutofillTargetId result = new AutofillTargetId();
 			CommonUtil.logd("Parsing structure for " + Structure.ActivityComponent);
 			var nodes = Structure.WindowNodeCount;
 			ClientFormData = new FilledAutofillFieldCollection();
@@ -144,23 +172,21 @@ namespace keepass2android.services.AutofillBase
             }
 
 
-
-            String packageName = Structure.ActivityComponent.PackageName;
+            result.WebDomain = webDomain;
+            result.PackageName = Structure.ActivityComponent.PackageName;
             if (!string.IsNullOrEmpty(webDomain))
 		    {
-		        bool valid = Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, packageName);
-		        if (!valid)
-		        {
-		            CommonUtil.loge($"DAL verification failed for {packageName}/{webDomain}");
-		            webDomain = null;
-		        }
+                result.IncompatiblePackageAndDomain = !Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, result.PackageName);
+		        if (result.IncompatiblePackageAndDomain)
+		        {   
+					CommonUtil.loge($"DAL verification failed for {result.PackageName}/{result.WebDomain}");
+                }
 		    }
-		    if (string.IsNullOrEmpty(webDomain))
+            else
             {
-		        webDomain = "androidapp://" + packageName;
-                CommonUtil.logd("no web domain. Using package name.");
-		    }
-		    return webDomain;
+                result.IncompatiblePackageAndDomain = false;
+            }
+            return result;
 		}
         private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort" };
         private static bool HasPasswordHint(AssistStructure.ViewNode f)

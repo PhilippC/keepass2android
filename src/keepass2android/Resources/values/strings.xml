@@ -1236,6 +1236,14 @@ Initial public release
   <string name="emergency_infotext_main">Did you ever consider what happens if you are no longer able to access your password database? What if you have an accident? It is good practice to pass your master key to some trusted person for emergency cases. Nobody will have access to your passwords otherwise.</string>
 
   <string name="no_secure_display">The currently valid display is not marked as secure. This means that screenshots might be taken by other apps. Keepass2Android is configured to display sensitive information on secure displays only. Please change to a secure display (e.g. by detaching an HDMI monitor) or change the app settings.</string>
-  
+
+  <string name="switch_ime_text">Please activate the Keepass2Android keyboard.</string>
+  <string name="switch_ime_reopen">Retry</string>
+
+
+  <string name="AutofillWarning_title">Security Alert: Unrecognized domain/package link</string>
+  <string name="AutofillWarning_Intro">You are about to insert credentials for domain "%1$s" into the app with package name "%2$s".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">If you trust "%2$s" to belong to "%1$s" or you trust the app "%2$s" not to misuse the credentials (e.g. because it is a trusted browser app), it is ok to continue. If not, please cancel.</string>
+  <string name="AutofillWarning_continue">Security Alert: Unrecognized domain/package link</string>
 
 </resources>

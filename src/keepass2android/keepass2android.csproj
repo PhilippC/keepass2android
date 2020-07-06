@@ -2056,6 +2056,11 @@
       <Version>1.3.50.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\switch_ime_activity_layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -849,7 +849,7 @@ namespace keepass2android
                         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
                         ActivityManager.GetMyMemoryState(appProcessInfo);
                         //at least on Samsung devices, we always need the helper activity
-                        mustUseHelperActivity = true;// TODO enable again (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
+                        mustUseHelperActivity = (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
                     }
                     if (mustUseHelperActivity)
                     {
