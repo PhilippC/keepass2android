@@ -629,12 +629,6 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
-  <string-array name="ChangeLog_1_08">
-    <item>Aggiungi un pulsante di notifica per la copia di TOTP negli appunti</item>
-    <item>Passato all\'utilizzo di FluentFTP per fornire supporto a TLS 1.2</item>
-    <item>Passa alle API di BiometricPrompt per migliorare l\'esperienza utente con lo sblocco con impronta e consentire di utilizzare lo sblocco con il volto, ad esempio su Pixel 4.</item>
-    <item>Correzioni di bug</item>
-  </string-array>
   <string name="ChangeLog_1_07b">    Versione 1.07b\n
     * Migliorata la performance di Argon2 usando l\'implementazione nativa (Grazie a Chih-Hsuan Yen!)\n
     * Consentita la disabilitazione dell\'impronta digitale cliccando sull\'icona dell\'impronta (evita problemi con i lettori d\'impronte sottoschermo, grazie a marcoDallas!)\n
