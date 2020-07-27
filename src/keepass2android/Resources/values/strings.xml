@@ -782,6 +782,7 @@
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
 
   <string-array name="ChangeLog_1_08">
+    <item>Improve handling of AutoFill requests for websites in unrecognized apps</item>
     <item>Add notification button for copying TOTP to clipboard</item>
     <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
     <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
