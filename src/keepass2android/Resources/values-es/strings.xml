@@ -30,7 +30,7 @@
   <string name="ShowGroupnameInSearchResult_title">Mostrar nombre del grupo en resultado de búsqueda</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo por debajo de los títulos en resultados de búsqueda. Útil si múltiples entradas tienen el mismo nombre.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Deshabilitar objetivos de autocompletado</string>
+  <string name="AutofillDisabledQueriesPreference_title">Objetivos de autorelleno deshabilitados</string>
   <string name="AutofillDisabledQueriesPreference_summary">Visualiza una lista de aplicaciones y sitios web para los que el autocompletado ha sido desactivado</string>
   <string name="OfferSaveCredentials_summary">Si está habilitado, Android preguntará si desea guardar las credenciales después de que haya introducido manualmente datos en campos autorellenables.</string>
   <string name="OfferSaveCredentials_title">Ofrecer guardado de credenciales</string>
@@ -81,7 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android NO TIENE TOTAL GARANTÍA; Este es software libre, y puedes redristribuirlo bajo las condiciones de la licencia GPL version 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar al portapapeles</string>
-  <string name="fingerprint_description">Por favor autentícate para continuar</string>
+  <string name="fingerprint_description">Por favor, autentifícate para continuar</string>
   <string name="fingerprint_fatal">No se puede configurar desbloqueo con huella dactilar:</string>
   <string name="fingerprint_not_recognized">La autenticación biométrica falló. Inténtalo de nuevo</string>
   <string name="fingerprint_success">Autenticación biométrica activada</string>
@@ -629,10 +629,11 @@
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string-array name="ChangeLog_1_08">
+    <item>Mejorar el manejo de las solicitudes de autorrelleno de sitios web en aplicaciones no reconocidas</item>
     <item>Añadir botón de notificación para copiar TOTP al portapapeles</item>
     <item>Cambiar a usar FluentFTP para proporcionar soporte para TLS 1.2</item>
     <item>Cambiar a API BiometricPrompt para mejorar la experiencia del usuario con el desbloqueo de huellas dactilares y permitir el uso de desbloqueo facial, por ejemplo en Pixel 4.</item>
-    <item>Corrección de errores</item>
+    <item>Correcciones de errores</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Versión 1.07b\n
     * Mejores de rendimiento Argon2 usando implementación nativa (Gracias a Chih-Hsuan Yen!)\n
@@ -976,4 +977,9 @@ Publicación inicial</string>
   <string name="emergency_infotext_head">¿Está preparado para casos de emergencia?</string>
   <string name="emergency_infotext_main">¿Ha considerado alguna vez qué pasa si ya no es capaz de acceder a su base de datos de contraseñas? ¿Qué pasa si tiene un accidente? Es una buena práctica pasar su llave maestra a alguna persona de confianza para casos de emergencia. Nadie tendrá acceso a sus contraseñas de otra manera.</string>
   <string name="no_secure_display">La pantalla válida actualmente no está marcada como segura. Esto significa que otras aplicaciones pueden tomar capturas de pantalla. Keepass2Android está configurado para mostrar información sensible sólo en pantallas seguras. Por favor, cambie a una pantalla segura (por ejemplo, desconectando un monitor HDMI) o cambie la configuración de la aplicación.</string>
+  <string name="switch_ime_text">Por favor, active el teclado Keepass2Android.</string>
+  <string name="switch_ime_reopen">Reintentar</string>
+  <string name="AutofillWarning_title">Alerta de seguridad: enlace de dominio/app no reconocido</string>
+  <string name="AutofillWarning_Intro">Está a punto de insertar credenciales para el dominio \"%1$s\" en la aplicación \"%2$s\".</string>
+  <string name="AutofillWarning_trustAsBrowser">Aceptar siempre en \"%1$s\"</string>
 </resources>
