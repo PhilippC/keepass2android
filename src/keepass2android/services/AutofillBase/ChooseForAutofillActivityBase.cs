@@ -10,13 +10,13 @@ using Android.Views.Autofill;
 using Android.Widget;
 using Java.Util;
 using keepass2android.services.AutofillBase.model;
-using System.Collections.Generic;
 using System.Linq;
+using Android.Content.PM;
+using Com.Dropbox.Core.V2.Teamlog;
 using AlertDialog = Android.App.AlertDialog;
 
 namespace keepass2android.services.AutofillBase
 {
-
     public abstract class ChooseForAutofillActivityBase : AndroidX.AppCompat.App.AppCompatActivity
     {
         protected Intent ReplyIntent;
@@ -51,6 +51,7 @@ namespace keepass2android.services.AutofillBase
                 RestartApp();
                 return;
             }
+            
             if (Intent.HasExtra(ExtraDisplayWarning))
             {
                 AutofillServiceBase.DisplayWarning warning =
@@ -60,22 +61,56 @@ namespace keepass2android.services.AutofillBase
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.SetTitle(this.GetString(Resource.String.AutofillWarning_title));
 
+                    string appName = Intent.GetStringExtra(ExtraQueryPackageString);
+                    string appNameWithPackage = appName;
+                    try
+                    {
+                        var appInfo = PackageManager.GetApplicationInfo(appName, 0);
+                        if (appInfo != null)
+                        {
+                            appName = PackageManager.GetApplicationLabel(appInfo);
+                            appNameWithPackage = appName + " (" + Intent.GetStringExtra(ExtraQueryPackageString) + ")";
+                        }
+
+
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+
                     builder.SetMessage(
-                            GetString(Resource.String.AutofillWarning_Intro, new Java.Lang.Object[] { Intent.GetStringExtra(ExtraQueryDomainString), Intent.GetStringExtra(ExtraQueryPackageString) }) 
+                            GetString(Resource.String.AutofillWarning_Intro, new Java.Lang.Object[]
+                            {
+                                Intent.GetStringExtra(ExtraQueryDomainString), appNameWithPackage
+                            }) 
                             + " " + 
-                            this.GetString(Resource.String.AutofillWarning_FillDomainInUntrustedApp, new Java.Lang.Object[] { Intent.GetStringExtra(ExtraQueryDomainString), Intent.GetStringExtra(ExtraQueryPackageString) }));
+                            this.GetString(Resource.String.AutofillWarning_FillDomainInUntrustedApp, new Java.Lang.Object[]
+                            {
+                                Intent.GetStringExtra(ExtraQueryDomainString), appName
+                            }));
 
                     builder.SetPositiveButton(this.GetString(Resource.String.Continue),
                         (dlgSender, dlgEvt) =>
                         {
+                            new Kp2aDigitalAssetLinksDataSource(this).RememberTrustedLink(Intent.GetStringExtra(ExtraQueryDomainString),
+                                Intent.GetStringExtra(ExtraQueryPackageString));
                             Proceed();
 
+                        });
+                    builder.SetNeutralButton(this.GetString(Resource.String.AutofillWarning_trustAsBrowser, new Java.Lang.Object[]
+                    {appName}),
+                        (sender, args) =>
+                        {
+                            new Kp2aDigitalAssetLinksDataSource(this).RememberAsTrustedApp(Intent.GetStringExtra(ExtraQueryPackageString));
+                            Proceed();
                         });
 
                     builder.SetNegativeButton(this.GetString(Resource.String.cancel), (dlgSender, dlgEvt) =>
                     {
                         Finish();
                     });
+                    
 
                     Dialog dialog = builder.Create();
                     dialog.Show();
@@ -85,6 +120,7 @@ namespace keepass2android.services.AutofillBase
             }
             Proceed();
         }
+
 
         private void Proceed()
         {
