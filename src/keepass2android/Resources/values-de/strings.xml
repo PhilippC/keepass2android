@@ -967,6 +967,7 @@ Erstes öffentliches Release</string>
   <string name="no_secure_display">Der aktuell gültige Bildschirm ist als unsicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte wechsle zu einem sicheren Bildschirm (z.B. durch Abtrennen eines HDMI-Monitors) oder ändere die App-Einstellungen.</string>
   <string name="switch_ime_text">Bitte aktiviere die Keepass2Android-Tastatur.</string>
   <string name="switch_ime_reopen">Erneut versuchen</string>
+  <string name="AutofillWarning_Intro">Du bist dabei, Anmeldedaten für die Domain \"%1$s\" in die App \"%2$s \" einzufügen.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn du \"%2$s\" vertraust, dass  es zu \"%1$s\" gehört oder du der App \"%2$s\" vertraust, dass sie keine Anmeldedaten missbraucht (z.B. da es sich um eine vertrauenswürdige Browser-App handelt) ist es in Ordnung, fortzufahren. Falls nicht,  brich den Vorgang bitte ab.</string>
   <string name="AutofillWarning_trustAsBrowser">Für \"%1$s \" immer akzeptieren</string>
 </resources>
