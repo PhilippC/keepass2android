@@ -631,9 +631,10 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Benachrichtigungsschalfläche hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
-    <item>Zu FluentFTP gewechselt, um TLS 1.2 zu unterstützen</item>
-    <item>Wechseln zur BiometricPrompt API, um Umgang mit Fingerabdrucksensor zu erleichtern und das Entsperren mit FaceUnlock zu ermöglichen, z.B. mit dem Pixel 4.</item>
+    <item>AutoFill-Anfragen für Websites in unbekannten Apps werden besser behandelt</item>
+    <item>Schalfläche in der Benachrichtigung hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
+    <item>Wechsel zu FluentFTP um TLS 1.2 zu unterstützen</item>
+    <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z.B. auf Pixel 4.</item>
     <item>Fehlerbehebungen</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
@@ -967,6 +968,7 @@ Erstes öffentliches Release</string>
   <string name="no_secure_display">Der aktuell gültige Bildschirm ist als unsicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte wechsle zu einem sicheren Bildschirm (z.B. durch Abtrennen eines HDMI-Monitors) oder ändere die App-Einstellungen.</string>
   <string name="switch_ime_text">Bitte aktiviere die Keepass2Android-Tastatur.</string>
   <string name="switch_ime_reopen">Erneut versuchen</string>
+  <string name="AutofillWarning_title">Sicherheitswarnung: Unbekannte Domain/App-Verknüpfung</string>
   <string name="AutofillWarning_Intro">Du bist dabei, Anmeldedaten für die Domain \"%1$s\" in die App \"%2$s \" einzufügen.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn du \"%2$s\" vertraust, dass  es zu \"%1$s\" gehört oder du der App \"%2$s\" vertraust, dass sie keine Anmeldedaten missbraucht (z.B. da es sich um eine vertrauenswürdige Browser-App handelt) ist es in Ordnung, fortzufahren. Falls nicht,  brich den Vorgang bitte ab.</string>
   <string name="AutofillWarning_trustAsBrowser">Für \"%1$s \" immer akzeptieren</string>
