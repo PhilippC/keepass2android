@@ -586,12 +586,6 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="DbQuicklockedChannel_desc">Ilmoitus, että tietokanta on lukittu ja pika-avaus on käytössä</string>
   <string name="EntryChannel_name">Merkintöjen ilmoitukset</string>
   <string name="EntryChannel_desc">Ilmoitus, jolla pääsee helpommin käsiksi valittuna olevaan merkintään.</string>
-  <string-array name="ChangeLog_1_08">
-    <item>Add notification button for copying TOTP to clipboard</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
-    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
-    <item>Bugikorjaukset</item>
-  </string-array>
   <string name="ChangeLog_1_06">    Versio 1.06\n
     * Vaihto ykDroid sovellukseen YubiChallengen sijaan Yubikey haastemenetelmssä.\n
     * Tuki KeepassXC-muotoiselle haastemenetelmälle. Huom!: Tietokannan muoto on oltava KDBX4!\n
