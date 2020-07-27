@@ -632,12 +632,6 @@
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
-  <string-array name="ChangeLog_1_08">
-    <item>Pridať notif. tlačidlo na kopírovanie jednorazových hesiel do schránky</item>
-    <item>Prepnutie na použitie FluentFTP na poskytovanie podpory pre TLS 1.2</item>
-    <item>Prepnutie na BiometricPrompt API na vylepšenie použív. zážitku pri odomykaní odtlačkom prsta a umožnenie odomknutia tvárou, napríklad na zariadeniach Pixel 4.</item>
-    <item>Opravy chýb</item>
-  </string-array>
   <string name="ChangeLog_1_07b">    Verzia 1.07b\n
     * Vylepšený výkon Argon2 použitím natívnej implementácie (ďakujeme používateľovi Chih-Hsuan Yen!)\n
     * Umožnenie zablokovania odtlačkov prstov, kliknutím na ikonu pre odtlačok prsta (zabraňuje problémom s čítačkami odtlačku prsta pod obrazovkou, ďakujeme používateľovi marcoDallas!)\n
