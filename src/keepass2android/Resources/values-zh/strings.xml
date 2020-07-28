@@ -631,6 +631,13 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
+  <string-array name="ChangeLog_1_08">
+    <item>改进对无法识别的应用中的网站自动填充请求的处理</item>
+    <item>添加用于复制TOTP到剪贴板的通知按钮</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Bug fixes</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 采用原生实现改进 Argon2 性能（感谢 Chih-Hsuan Yen!）\n
     * 允许点按指纹图标来禁用指纹（避免屏下指纹识别的问题，感谢 marcoDallas!）\n
