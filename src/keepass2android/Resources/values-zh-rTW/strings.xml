@@ -632,6 +632,13 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
+  <string-array name="ChangeLog_1_08">
+    <item>改進未知應用程式中，網站自動填入請求的處理方式</item>
+    <item>加入複製 TOTP 到剪貼簿的通知按鈕</item>
+    <item>改用 FluentFTP 以支援 TLS 1.2</item>
+    <item>改用 BiometricPrompt API ，而改進指紋解鎖的用戶體驗，並支援如 Pixel 4 上的面容解鎖。</item>
+    <item>錯誤修正</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 以原生方式實現 Argon2 演算改進性能（感謝 Chih-Hsuan Yen！）\n
     * 可停用指紋，點擊指紋圖示即可，以避免屏下指紋識別產生的問題（感謝 marcoDallas！）\n
@@ -848,7 +855,7 @@
 * 在某些情況下改進了鎖定狀態的確定\n
 * 鍵入密碼時，資料庫會加載到記憶體中以提升解鎖速度 (見設置)\n
 * 條目可添加到根目錄\n
-* 修正錯誤：解析引用欄位、意大利語和漢語設備上的鍵盤問題</string>
+* 錯誤修正：解析引用欄位、意大利語和漢語設備上的鍵盤問題</string>
   <string name="ChangeLog_0_8_4"><b>版本 0.8.4</b>\n
 * 保存資料庫時會偵測並合併外部更改\n
 * 改進加載性能\n
@@ -974,4 +981,6 @@
   <string name="emergency_infotext_head">你有爲緊急情況做好準備嗎？</string>
   <string name="emergency_infotext_main">你是否曾考慮過，有一天你會無法再存取你的密碼資料庫呢？如果不幸意外了呢？以防萬一，最佳做法是把你的主密鑰交給你信任的人。否則那時將無人能存取你的密碼。</string>
   <string name="no_secure_display">目前可用顯示器並未標記為安全，其他應用程式將可截取目前畫面。Keepass2Android 只會在安全顯示器上展示敏感資訊。請換到安全的顯示器，如斷開與 HDMI 顯示器的連接，或變更應用設定。</string>
+  <string name="switch_ime_text">請開啓 Keepass2Android 鍵盤。</string>
+  <string name="AutofillWarning_title">安全警示：未知網域或應用城市的鏈結</string>
 </resources>
