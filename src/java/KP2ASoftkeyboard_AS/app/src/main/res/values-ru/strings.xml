@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 /*
 **
 ** Copyright 2008, The Android Open Source Project
@@ -16,125 +16,230 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
- -->
-
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Клавиатура Keepass2Android"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Настройки клавиатуры Keepass2Android"</string>
-    <string name="english_ime_input_options" msgid="3909945612939668554">"Параметры ввода"</string>
-    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Виброотклик клавиш"</string>
-    <string name="sound_on_keypress" msgid="6093592297198243644">"Звук клавиш"</string>
-    <string name="popup_on_keypress" msgid="123894815723512944">"Увеличение нажатых"</string>
-    <string name="hit_correction" msgid="4855351009261318389">"Исправлять опечатки"</string>
-    <string name="hit_correction_summary" msgid="8761701873008070796">"Включить исправление ошибок при вводе"</string>
-    <string name="hit_correction_land" msgid="2567691684825205448">"Ошибки при вводе в горизонтальной ориентации"</string>
-    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Включить исправление ошибок при вводе"</string>
-    <string name="auto_correction" msgid="7911639788808958255">"Предложение слов"</string>
-    <string name="auto_correction_summary" msgid="6881047311475758267">"Автоматически исправлять предыдущее слово"</string>
-    <string name="prediction" msgid="466220283138359837">"Предложение слов"</string>
-    <string name="prediction_category" msgid="7027100625580696660">"Настройки подсказок"</string>
-    <string name="prediction_summary" msgid="459788228830873110">"Включить автоматическое завершение слов при вводе"</string>
-    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Автоматическое завершение"</string>
-    <string name="prediction_landscape" msgid="4874601565593216183">"Увеличить размер текстового поля"</string>
-    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Скрывать предложение слов в горизонтальной ориентации"</string>
-    <string name="auto_cap" msgid="1719746674854628252">"Заглавные автоматически"</string>
-    <string name="auto_cap_summary" msgid="3260681697600786825">"Делать заглавной первую букву предложения"</string>
-    <string name="auto_punctuate" msgid="7276672334264521751">"Автопунктуация"</string>
-    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
-    <string name="quick_fixes" msgid="5353213327680897927">"Быстрое исправление"</string>
-    <string name="quick_fixes_summary" msgid="3405028402510332373">"Исправлять распространенные опечатки"</string>
-    <string name="show_suggestions" msgid="507074425254289133">"Предлагать варианты"</string>
-    <string name="show_suggestions_summary" msgid="1989672863935759654">"Предлагать варианты слов во время ввода"</string>
-    <string name="auto_complete" msgid="1103196318775486023">"Автозавершение"</string>
-    <string name="auto_complete_summary" msgid="6113149638718274624">"При нажатии пробела вставлять предложенное слово"</string>
-    <string name="prefs_settings_key" msgid="4623341240804046498">"Кнопка настроек"</string>
-    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Автоматически"</string>
-    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Всегда показывать"</string>
-    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Всегда скрывать"</string>
-    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
-    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
-    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
-    <string name="bigram_suggestion" msgid="1323347224043514969">"Биграммные подсказки"</string>
-    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Используйте предыдущее слово, чтобы исправить подсказку"</string>
-  <string-array name="prediction_modes">
-    <item msgid="4870266572388153286">"Нет"</item>
-    <item msgid="1669461741568287396">"Основной"</item>
-    <item msgid="4894328801530136615">"Дополнительно"</item>
-  </string-array>
-    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>: сохранено"</string>
-    <string name="tip_long_press" msgid="6101270866284343344">"Удерживайте клавишу, чтобы увидеть варианты с диакритическими знаками (ø, ö и т.д.)"</string>
-    <string name="tip_dismiss" msgid="7585579046862204381">"Нажмите клавишу \"Назад\" ↶, чтобы закрыть клавиатуру в любой момент"</string>
-    <string name="tip_access_symbols" msgid="6344098517525531652">"Открыть цифры и символы"</string>
-    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Нажмите и удерживайте слово слева, чтобы добавить его в словарь"</string>
-    <string name="touch_to_continue" msgid="7869803257948414531">"Чтобы продолжить, нажмите на эту подсказку »"</string>
-    <string name="touch_to_finish" msgid="7990196086480585789">"Нажмите здесь, чтобы закрыть подсказку и начать вводить текст."</string>
-    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Клавиатура появляется автоматически при касании текстового поля"</b></string>
-    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Нажмите и удерживайте клавишу для отображения вариантов с диакритическими знаками "\n"(ø, ö, ô, ó и т. п.)"</b></string>
-    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Для переключения между вводом цифр и символов используйте эту клавишу"</b></string>
-    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Чтобы вернуться к буквенной клавиатуре, снова нажмите на эту клавишу"</b></string>
-    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Чтобы изменить настройки клавиатуры (такие как автозавершение), нажмите и удерживайте эту клавишу"</b></string>
-    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Попробуйте!"</b></string>
-    <string name="label_go_key" msgid="1635148082137219148">"Поиск"</string>
-    <string name="label_next_key" msgid="362972844525672568">"Далее"</string>
-    <string name="label_done_key" msgid="2441578748772529288">"Готово"</string>
-    <string name="label_send_key" msgid="2815056534433717444">"Отправить"</string>
-    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
-    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
-    <string name="label_alpha_key" msgid="8864943487292437456">"АБВ"</string>
-    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
-    <string name="voice_warning_title" msgid="4419354150908395008">"Голосовой ввод"</string>
-    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"В настоящее время функция голосового ввода не поддерживает ваш язык, но вы можете пользоваться ей на английском."</string>
-    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Голосовой ввод – экспериментальная функция на основе технологии сетевого распознавания речи от Google."</string>
-    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Функция голосового ввода отключается в настройках клавиатуры."</string>
-    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Чтобы использовать голосовой ввод, нажмите кнопку микрофона или проведите пальцем по экранной клавиатуре."</string>
-    <string name="voice_listening" msgid="467518160751321844">"Говорите"</string>
-    <string name="voice_working" msgid="6666937792815731889">"Обработка запроса"</string>
-    <string name="voice_initializing" msgid="661962047129906646"></string>
-    <string name="voice_error" msgid="5140896300312186162">"Ошибка. Повторите попытку."</string>
-    <string name="voice_network_error" msgid="6649556447401862563">"Ошибка подключения"</string>
-    <string name="voice_too_much_speech" msgid="5746973620134227376">"Слишком длинная фраза"</string>
-    <string name="voice_audio_error" msgid="5072707727016414454">"Неполадка со звуком"</string>
-    <string name="voice_server_error" msgid="7807129913977261644">"Ошибка сервера"</string>
-    <string name="voice_speech_timeout" msgid="8461817525075498795">"Речи не слышно"</string>
-    <string name="voice_no_match" msgid="4285117547030179174">"Соответствий не найдено"</string>
-    <string name="voice_not_installed" msgid="5552450909753842415">"Голосовой поиск не установлен"</string>
-    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Совет"</b>". Проведите пальцем по клавиатуре для голосового ввода."</string>
-    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Совет"</b>". В следующий раз проговаривайте знаки препинания, например \"точка\", \"запятая\", \"вопросительный знак\"."</string>
-    <string name="cancel" msgid="6830980399865683324">"Отмена"</string>
-    <string name="ok" msgid="7898366843681727667">"ОК"</string>
-    <string name="voice_input" msgid="2466640768843347841">"Голосовой ввод"</string>
-  <string-array name="voice_input_modes">
-    <item msgid="1349082139076086774">"Значок на основной клавиатуре"</item>
-    <item msgid="8529385602829095903">"Значок на клавиатуре символов"</item>
-    <item msgid="7283103513488381103">"Отключить голосовой ввод"</item>
-  </string-array>
-  <string-array name="voice_input_modes_summary">
-    <item msgid="554248625705084903">"Значок на основной клавиатуре"</item>
-    <item msgid="6907837061058876770">"Значок на клавиатуре символов"</item>
-    <item msgid="3664304608587798036">"Голосовой ввод отключен"</item>
-  </string-array>
-    <string name="auto_submit" msgid="9151008027068358518">"Автоматически отправлять по окончании голосового ввода"</string>
-    <string name="auto_submit_summary" msgid="4961875269610384226">"Автоматически нажимать \"Ввод\" при поиске или переходе к следующему полю."</string>
-    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Открытие клавиатуры"\n</b></font><font size="3">\n</font>"Нажмите на любое текстовое поле."</string>
-    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Закрытие клавиатуры"\n</b></font><font size="3">\n</font>"Нажмите клавишу \"Назад\"."</string>
-    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Нажмите и удерживайте клавишу для вызова параметров"\n</b></font><font size="3">\n</font>"Доступ к пунктуационным и диакритическим знакам."</string>
-    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Настройки клавиатуры"\n</b></font><font size="3">\n</font>"Нажмите и удерживайте клавишу "<b>"?123"</b>"."</string>
-    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
-    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
-    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
-    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
-    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
-    <string name="selectInputMethod" msgid="315076553378705821">"Выбрать способ ввода"</string>
-    <string name="language_selection_title" msgid="1651299598555326750">"Языки ввода"</string>
-    <string name="language_selection_summary" msgid="187110938289512256">"Для изменения языка проведите пальцем по пробелу"</string>
-    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Нажмите еще раз, чтобы сохранить"</string>
-    <string name="has_dictionary" msgid="6071847973466625007">"Доступен словарь"</string>
-    <string name="prefs_enable_log" msgid="6620424505072963557">"Включить отправку сведений"</string>
-    <string name="prefs_description_log" msgid="5827825607258246003">"Помогите усовершенствовать редактор способа ввода, разрешив отправку статистики и отчетов о сбоях в Google."</string>
-    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Исправление нажатием"</string>
-    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Нажмите на слово, чтобы исправить его"</string>
-    <string name="keyboard_layout" msgid="437433231038683666">"Вид клавиатуры"</string>
-    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"клавиатура"</string>
-    <string name="subtype_mode_voice" msgid="4394113125441627771">"голосовой"</string>
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Клавиатура Keepass2Android</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Настройки клавиатуры Keepass2Android</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Параметры ввода</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Виброотклик клавиш</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Звук клавиш</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Увеличение нажатых</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Исправлять опечатки</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Включить исправление ошибок при вводе</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Ошибки при вводе в горизонтальной ориентации</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Включить исправление ошибок при вводе</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Предложение слов</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Автоматически исправлять предыдущее слово</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Предложение слов</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Настройки подсказок</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Включить автоматическое завершение слов при вводе</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Автоматическое завершение</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Увеличить размер текстового поля</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Скрывать предложение слов в горизонтальной ориентации</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Заглавные автоматически</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Делать заглавной первую букву предложения</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Автопунктуация</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Быстрое исправление</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Исправлять распространенные опечатки</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Предлагать варианты</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Предлагать варианты слов во время ввода</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Автозавершение</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">При нажатии пробела вставлять предложенное слово</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Кнопка настроек</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Автоматически</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Всегда показывать</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Всегда скрывать</string>
+    <!-- Array of the settings key modes -->
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Биграммные подсказки</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Используйте предыдущее слово, чтобы исправить подсказку</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Ничего</item>
+        <item>Основной</item>
+        <item>Дополнительно</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="WORD">%s</xliff:g>: сохранено</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Удерживайте клавишу, чтобы увидеть варианты с диакритическими знаками (ø, ö и т.д.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Нажмите клавишу \"Назад\" ↶, чтобы закрыть клавиатуру в любой момент</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Открыть цифры и символы</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Нажмите и удерживайте слово слева, чтобы добавить его в словарь</string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Чтобы продолжить, нажмите на эту подсказку »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Нажмите здесь, чтобы закрыть подсказку и начать вводить текст.</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>\"Клавиатура появляется автоматически при касании текстового поля\"</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>\"Нажмите и удерживайте клавишу для отображения вариантов с диакритическими знаками \"\n\"(ø, ö, ô, ó и т. п.)\"</b></string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>\"Для переключения между вводом цифр и символов используйте эту клавишу\"</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>\"Чтобы вернуться к буквенной клавиатуре, снова нажмите на эту клавишу\"</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>\"Чтобы изменить настройки клавиатуры (такие как автозавершение), нажмите и удерживайте эту клавишу\"</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>\"Попробуйте!\"</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Поиск</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Далее</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Выполнено</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Отправить</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">АБВ</string>
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Голосовой ввод</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">В настоящее время функция голосового ввода не поддерживает ваш язык, но вы можете пользоваться ей на английском.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Голосовой ввод – экспериментальная функция на основе технологии сетевого распознавания речи от Google.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Функция голосового ввода отключается в настройках клавиатуры.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Чтобы использовать голосовой ввод, нажмите кнопку микрофона или проведите пальцем по экранной клавиатуре.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Говорите</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Обработка запроса</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Ошибка. Повторите попытку.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Ошибка подключения</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Слишком длинная фраза</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Неполадка со звуком</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Ошибка сервера</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Речи не слышно</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Соответствий не найдено</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Голосовой поиск не установлен</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>\"Совет\"</b>\". Проведите пальцем по клавиатуре для голосового ввода.\"</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>\"Совет\"</b>\". В следующий раз проговаривайте знаки препинания, например \"точка\", \"запятая\", \"вопросительный знак\".\"</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Отмена</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">ОК</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Голосовой ввод</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>Значок на основной клавиатуре</item>
+        <item>Значок на клавиатуре символов</item>
+        <item>Отключить голосовой ввод</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Значок на основной клавиатуре</item>
+        <item>Значок на клавиатуре символов</item>
+        <item>Голосовой ввод отключен</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Автоматически отправлять по окончании голосового ввода</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Автоматически нажимать \"Ввод\" при поиске или переходе к следующему полю.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>\"Открытие клавиатуры\"\n</b></font><font size="3">\n</font>\"Нажмите на любое текстовое поле.\"</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>\"Закрытие клавиатуры\"\n</b></font><font size="3">\n</font>\"Нажмите клавишу \"Назад\".\"</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>\"Нажмите и удерживайте клавишу для вызова параметров\"\n</b></font><font size="3">\n</font>\"Доступ к пунктуационным и диакритическим знакам.\"</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>\"Настройки клавиатуры\"\n</b></font><font size="3">\n</font>\"Нажмите и удерживайте клавишу \"<b>\"?123\"</b>\".\"</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Выбрать способ ввода</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Языки ввода</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Для изменения языка проведите пальцем по пробелу</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">← Нажмите еще раз, чтобы сохранить</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Доступен словарь</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Включить отправку сведений</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Помогите усовершенствовать редактор способа ввода, разрешив отправку статистики и отчетов о сбоях в Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Исправление нажатием</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Нажмите на слово, чтобы исправить его</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Вид клавиатуры</string>
+    <string name="subtype_mode_keyboard">клавиатура</string>
+    <string name="subtype_mode_voice">голосовой</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
 </resources>

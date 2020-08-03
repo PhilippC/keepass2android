@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 /*
 **
 ** Copyright 2008, The Android Open Source Project
@@ -16,125 +16,229 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
- -->
-
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Teclat Keepass2Android"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Configuració del teclat d\'Keepass2Android"</string>
-    <string name="english_ime_input_options" msgid="3909945612939668554">"Opcions d\'entrada"</string>
-    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibra en prémer tecles"</string>
-    <string name="sound_on_keypress" msgid="6093592297198243644">"So en prémer una tecla"</string>
-    <string name="popup_on_keypress" msgid="123894815723512944">"Finestra emergent en prémer un botó"</string>
-    <string name="hit_correction" msgid="4855351009261318389">"Corregeix els errors ortogràfics"</string>
-    <string name="hit_correction_summary" msgid="8761701873008070796">"Activa la correcció d\'errors d\'entrada"</string>
-    <string name="hit_correction_land" msgid="2567691684825205448">"Errors d\'entrada en horitzontal"</string>
-    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Activa la correcció d\'errors d\'entrada"</string>
-    <string name="auto_correction" msgid="7911639788808958255">"Suggeriments de paraules"</string>
-    <string name="auto_correction_summary" msgid="6881047311475758267">"Corregeix automàticament la paraula anterior"</string>
-    <string name="prediction" msgid="466220283138359837">"Suggeriments de paraules"</string>
-    <string name="prediction_category" msgid="7027100625580696660">"Configuració de suggeriment de paraules"</string>
-    <string name="prediction_summary" msgid="459788228830873110">"Activa l\'emplenament automàtic mentre s\'escriu"</string>
-    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Emplenament automàtic"</string>
-    <string name="prediction_landscape" msgid="4874601565593216183">"Augmenta la mida del camp de text"</string>
-    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Amaga els suggeriments de paraules en visualització horitzontal"</string>
-    <string name="auto_cap" msgid="1719746674854628252">"Majúscules automàtiques"</string>
-    <string name="auto_cap_summary" msgid="3260681697600786825">"Posa l\'inici d\'una frase en majúscula"</string>
-    <string name="auto_punctuate" msgid="7276672334264521751">"Puntuació automàtica"</string>
-    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
-    <string name="quick_fixes" msgid="5353213327680897927">"Correccions ràpides"</string>
-    <string name="quick_fixes_summary" msgid="3405028402510332373">"Corregeix els errors d\'ortografia habituals"</string>
-    <string name="show_suggestions" msgid="507074425254289133">"Mostra els suggeriments"</string>
-    <string name="show_suggestions_summary" msgid="1989672863935759654">"Visualitza paraules suggerides mentre s\'escriu"</string>
-    <string name="auto_complete" msgid="1103196318775486023">"Emplenament automàtic"</string>
-    <string name="auto_complete_summary" msgid="6113149638718274624">"La barra espaiadora i la puntuació insereixen automàticament la paraula ressaltada"</string>
-    <string name="prefs_settings_key" msgid="4623341240804046498">"Mostra la tecla de configuració"</string>
-    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automàtic"</string>
-    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Mostra sempre"</string>
-    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Amaga sempre"</string>
-    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
-    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
-    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
-    <string name="bigram_suggestion" msgid="1323347224043514969">"Suggeriments Bigram"</string>
-    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Utilitza la paraula anterior per millorar el suggeriment"</string>
-  <string-array name="prediction_modes">
-    <item msgid="4870266572388153286">"Cap"</item>
-    <item msgid="1669461741568287396">"Bàsic"</item>
-    <item msgid="4894328801530136615">"Avançat"</item>
-  </string-array>
-    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>: desada"</string>
-    <string name="tip_long_press" msgid="6101270866284343344">"Manteniu una tecla premuda per veure\'n les variants (ø, ö, etc.)"</string>
-    <string name="tip_dismiss" msgid="7585579046862204381">"Premeu la tecla Enrere ↶ per tancar el teclat en qualsevol moment"</string>
-    <string name="tip_access_symbols" msgid="6344098517525531652">"Accedeix a números i símbols"</string>
-    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Manteniu premuda la paraula de l\'extrem esquerre per afegir-la al diccionari"</string>
-    <string name="touch_to_continue" msgid="7869803257948414531">"Toqueu aquest suggeriment per continuar »"</string>
-    <string name="touch_to_finish" msgid="7990196086480585789">"Toqueu aquí per tancar aquest suggeriment i començar a escriure."</string>
-    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"S\'obre el teclat cada vegada que toqueu un camp de text"</b></string>
-    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Manteniu premuda una tecla per veure\'n les variants"\n"(ø, ö, ô, ó, etc.)"</b></string>
-    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Toqueu aquesta tecla per canviar als números i als símbols"</b></string>
-    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Torneu a tocar aquesta tecla per tornar a les lletres"</b></string>
-    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Manteniu premuda aquesta tecla per canviar la configuració del teclat, com ara l\'emplenament automàtic"</b></string>
-    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Proveu-ho!"</b></string>
-    <string name="label_go_key" msgid="1635148082137219148">"Vés"</string>
-    <string name="label_next_key" msgid="362972844525672568">"Següent"</string>
-    <string name="label_done_key" msgid="2441578748772529288">"Fet"</string>
-    <string name="label_send_key" msgid="2815056534433717444">"Envia"</string>
-    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
-    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
-    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
-    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
-    <string name="voice_warning_title" msgid="4419354150908395008">"Entrada de veu"</string>
-    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Actualment, l\'entrada de veu no és compatible amb el vostre idioma, però funciona en anglès."</string>
-    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"L\'entrada de veu és una funció experimental que utilitza el reconeixement de la parla en xarxa de Google."</string>
-    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Per desactivar l\'entada de veu, aneu a la configuració del teclat."</string>
-    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Per utilitzar l\'entrada de veu, premeu el botó del micròfon o feu lliscar el dit pel teclat en pantalla."</string>
-    <string name="voice_listening" msgid="467518160751321844">"Parleu ara"</string>
-    <string name="voice_working" msgid="6666937792815731889">"S\'està treballant"</string>
-    <string name="voice_initializing" msgid="661962047129906646"></string>
-    <string name="voice_error" msgid="5140896300312186162">"Error. Torneu-ho a provar."</string>
-    <string name="voice_network_error" msgid="6649556447401862563">"No s\'ha pogut connectar"</string>
-    <string name="voice_too_much_speech" msgid="5746973620134227376">"Error; s\'ha parlat massa."</string>
-    <string name="voice_audio_error" msgid="5072707727016414454">"Problema d\'àudio"</string>
-    <string name="voice_server_error" msgid="7807129913977261644">"Error del servidor"</string>
-    <string name="voice_speech_timeout" msgid="8461817525075498795">"No s\'escolten paraules"</string>
-    <string name="voice_no_match" msgid="4285117547030179174">"No hi ha resultats"</string>
-    <string name="voice_not_installed" msgid="5552450909753842415">"Cerca per veu no instal·lada"</string>
-    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Consell:"</b>" Feu lliscar el dit pel teclat per parlar"</string>
-    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Suggeriment:"</b>" La propera vegada, proveu de dir la puntuació, com ara \"punt\", \"coma\" o \"interrogant\"."</string>
-    <string name="cancel" msgid="6830980399865683324">"Cancel·la"</string>
-    <string name="ok" msgid="7898366843681727667">"D\'acord"</string>
-    <string name="voice_input" msgid="2466640768843347841">"Entrada de veu"</string>
-  <string-array name="voice_input_modes">
-    <item msgid="1349082139076086774">"Al teclat principal"</item>
-    <item msgid="8529385602829095903">"Al teclat de símbols"</item>
-    <item msgid="7283103513488381103">"Desactivat"</item>
-  </string-array>
-  <string-array name="voice_input_modes_summary">
-    <item msgid="554248625705084903">"Micròfon al teclat principal"</item>
-    <item msgid="6907837061058876770">"Micròfon al teclat de símbols"</item>
-    <item msgid="3664304608587798036">"L\'entrada de veu està desactivada"</item>
-  </string-array>
-    <string name="auto_submit" msgid="9151008027068358518">"Enviament automàtic després de la veu"</string>
-    <string name="auto_submit_summary" msgid="4961875269610384226">"Prem automàticament Retorn en cercar o en anar al camp següent."</string>
-    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Obrir el teclat"\n</b></font><font size="3">\n</font>"Toqueu qualsevol camp de text."</string>
-    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Tancar el teclat"\n</b></font><font size="3">\n</font>"Premeu la tecla Enrere."</string>
-    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Manteniu premuda una tecla per veure les opcions"\n</b></font><font size="3">\n</font>"Accediu a la puntuació i als accents."</string>
-    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Configuració del teclat"\n</b></font><font size="3">\n</font>"Manteniu premuda la tecla "<b>"?123"</b>"."</string>
-    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
-    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
-    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
-    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
-    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
-    <string name="selectInputMethod" msgid="315076553378705821">"Selecciona el mètode d\'entrada"</string>
-    <string name="language_selection_title" msgid="1651299598555326750">"Idiomes d\'entrada"</string>
-    <string name="language_selection_summary" msgid="187110938289512256">"Feu lliscar el dit a la barra espaiadora per canviar l\'idioma"</string>
-    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Torna a tocar per desar"</string>
-    <string name="has_dictionary" msgid="6071847973466625007">"Diccionari disponible"</string>
-    <string name="prefs_enable_log" msgid="6620424505072963557">"Activa els comentaris de l\'usuari"</string>
-    <string name="prefs_description_log" msgid="5827825607258246003">"Ajuda a millorar aquest editor de mètodes d\'entrada enviant automàticament estadístiques d\'ús i informes de bloqueigs a Google."</string>
-    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Toca per corregir paraules"</string>
-    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Toca les paraules introduïdes per corregir-les"</string>
-    <string name="keyboard_layout" msgid="437433231038683666">"Tema del teclat"</string>
-    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"teclat"</string>
-    <string name="subtype_mode_voice" msgid="4394113125441627771">"veu"</string>
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Teclat Keepass2Android</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Configuració del teclat d\'Keepass2Android</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Opcions d\'entrada</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Vibra en prémer tecles</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">So en prémer una tecla</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Finestra emergent en prémer un botó</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Corregeix els errors ortogràfics</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Activa la correcció d\'errors d\'entrada</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Errors d\'entrada en horitzontal</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Activa la correcció d\'errors d\'entrada</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Suggeriments de paraules</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Corregeix automàticament la paraula anterior</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Suggeriments de paraules</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Configuració de suggeriment de paraules</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Activa l\'emplenament automàtic mentre s\'escriu</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Emplenament automàtic</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Augmenta la mida del camp de text</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Amaga els suggeriments de paraules en visualització horitzontal</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Majúscules automàtiques</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Posa l\'inici d\'una frase en majúscula</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Puntuació automàtica</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Correccions ràpides</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Corregeix els errors d\'ortografia habituals</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Mostra els suggeriments</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Visualitza paraules suggerides mentre s\'escriu</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Emplenament automàtic</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">La barra espaiadora i la puntuació insereixen automàticament la paraula ressaltada</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Mostra la tecla de configuració</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Automàtic</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Mostra sempre</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Amaga sempre</string>
+    <!-- Array of the settings key modes -->
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Suggeriments Bigram</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Utilitza la paraula anterior per millorar el suggeriment</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Cap</item>
+        <item>Bàsic</item>
+        <item>Avançat</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="WORD">%s</xliff:g>: desada</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Manteniu una tecla premuda per veure\'n les variants (ø, ö, etc.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Premeu la tecla Enrere ↶ per tancar el teclat en qualsevol moment</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Accedeix a números i símbols</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Manteniu premuda la paraula de l\'extrem esquerre per afegir-la al diccionari</string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Toqueu aquest suggeriment per continuar »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Toqueu aquí per tancar aquest suggeriment i començar a escriure.</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>\"S\'obre el teclat cada vegada que toqueu un camp de text\"</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>\"Manteniu premuda una tecla per veure\'n les variants\"\n\"(ø, ö, ô, ó, etc.)\"</b></string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>\"Toqueu aquesta tecla per canviar als números i als símbols\"</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>\"Torneu a tocar aquesta tecla per tornar a les lletres\"</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>\"Manteniu premuda aquesta tecla per canviar la configuració del teclat, com ara l\'emplenament automàtic\"</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>\"Proveu-ho!\"</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Vés</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Següent</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Fet</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Envia</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Entrada de veu</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">Actualment, l\'entrada de veu no és compatible amb el vostre idioma, però funciona en anglès.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">L\'entrada de veu és una funció experimental que utilitza el reconeixement de la parla en xarxa de Google.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Per desactivar l\'entada de veu, aneu a la configuració del teclat.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Per utilitzar l\'entrada de veu, premeu el botó del micròfon o feu lliscar el dit pel teclat en pantalla.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Parleu ara</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">S\'està treballant</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Error. Torneu-ho a provar.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">No s\'ha pogut connectar</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Error; s\'ha parlat massa.</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Problema d\'àudio</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Error del servidor</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">No s\'escolten paraules</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">No hi ha resultats</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Cerca per veu no instal·lada</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>\"Consell:\"</b>\" Feu lliscar el dit pel teclat per parlar\"</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>\"Suggeriment:\"</b>\" La propera vegada, proveu de dir la puntuació, com ara \"punt\", \"coma\" o \"interrogant\".\"</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Cancel·la</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">D\'acord</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Entrada de veu</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>Al teclat principal</item>
+        <item>Al teclat de símbols</item>
+        <item>Desactivat</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Micròfon al teclat principal</item>
+        <item>Micròfon al teclat de símbols</item>
+        <item>L\'entrada de veu està desactivada</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Enviament automàtic després de la veu</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Prem automàticament Retorn en cercar o en anar al camp següent.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>\"Obrir el teclat\"\n</b></font><font size="3">\n</font>\"Toqueu qualsevol camp de text.\"</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>\"Tancar el teclat\"\n</b></font><font size="3">\n</font>\"Premeu la tecla Enrere.\"</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>\"Manteniu premuda una tecla per veure les opcions\"\n</b></font><font size="3">\n</font>\"Accediu a la puntuació i als accents.\"</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>\"Configuració del teclat\"\n</b></font><font size="3">\n</font>\"Manteniu premuda la tecla \"<b>\"?123\"</b>\".\"</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Selecciona el mètode d\'entrada</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Idiomes d\'entrada</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Feu lliscar el dit a la barra espaiadora per canviar l\'idioma</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">← Torna a tocar per desar</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Diccionari disponible</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Activa els comentaris de l\'usuari</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Ajuda a millorar aquest editor de mètodes d\'entrada enviant automàticament estadístiques d\'ús i informes de bloqueigs a Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Toca per corregir paraules</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Toca les paraules introduïdes per corregir-les</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Tema del teclat</string>
+    <string name="subtype_mode_keyboard">teclat</string>
+    <string name="subtype_mode_voice">veu</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
 </resources>
