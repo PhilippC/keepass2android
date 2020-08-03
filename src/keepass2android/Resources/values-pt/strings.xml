@@ -639,9 +639,7 @@ Muito útil se existirem muitos resultados iguais.</string>
     * Melhorar a implementação de pCloud (obrigado de novo ao gilbsgilbs!)\n
     * Adicionar suporte de preenchimento em vários novos Browsers\n
     * Nova implementação de OneDrive: incluindo suporte para OnDrive for Business, ficheiros partilhados, acesso de âmbito seletivo, múltiplas contas e correções no acesso offline. \n
-    * Correção de Bugs
-
-  </string>
+    * Correção de Bugs</string>
   <string name="ChangeLog_1_07">Versão 1.07\n
 * Corrigir quedas no Android 9 de Samsung\n
 * Permitir a abertura de mais de uma base de dados, compatíveis com KeeAutoExec\n
