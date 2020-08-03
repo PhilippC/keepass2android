@@ -31,7 +31,8 @@ namespace keepass2android.services.AutofillBase
         public string PackageId { get; set; }
 
 		public StructureParser(Context context, AssistStructure structure)
-		{
+        {
+            kp2aDigitalAssetLinksDataSource = new Kp2aDigitalAssetLinksDataSource(context);
 		    mContext = context;
 		    Structure = structure;
 			AutofillFields = new AutofillFieldMetadataCollection();
@@ -176,7 +177,7 @@ namespace keepass2android.services.AutofillBase
             result.PackageName = Structure.ActivityComponent.PackageName;
             if (!string.IsNullOrEmpty(webDomain))
 		    {
-                result.IncompatiblePackageAndDomain = !Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, result.PackageName);
+                result.IncompatiblePackageAndDomain = !kp2aDigitalAssetLinksDataSource.IsTrustedLink(webDomain, result.PackageName);
 		        if (result.IncompatiblePackageAndDomain)
 		        {   
 					CommonUtil.loge($"DAL verification failed for {result.PackageName}/{result.WebDomain}");
@@ -196,6 +197,8 @@ namespace keepass2android.services.AutofillBase
         }
 
         private static readonly HashSet<string> _usernameHints = new HashSet<string> { "email","e-mail","username" };
+        private Kp2aDigitalAssetLinksDataSource kp2aDigitalAssetLinksDataSource;
+
         private static bool HasUsernameHint(AssistStructure.ViewNode f)
         {
             return ContainsAny(f.IdEntry, _usernameHints) ||
