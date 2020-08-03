@@ -632,10 +632,10 @@
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Mejorar el manejo de las solicitudes de autorrelleno de sitios web en aplicaciones no reconocidas</item>
     <item>Añadir botón de notificación para copiar TOTP al portapapeles</item>
     <item>Cambiar a usar FluentFTP para proporcionar soporte para TLS 1.2</item>
     <item>Cambiar a API BiometricPrompt para mejorar la experiencia del usuario con el desbloqueo de huellas dactilares y permitir el uso de desbloqueo facial, por ejemplo en Pixel 4.</item>
+    <item>Corrección de errores</item>
     <item>Correcciones de errores</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Versión 1.07b\n
