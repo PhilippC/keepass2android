@@ -632,10 +632,10 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string-array name="ChangeLog_1_08">
-    <item>改进对无法识别的应用中的网站自动填充请求的处理</item>
-    <item>添加用于复制TOTP到剪贴板的通知按钮</item>
-    <item>切换到使用FluentFTP以提供TLS1.2支持</item>
+    <item>添加通知按钮，用于复制TOTP到剪切板</item>
+    <item>切换到使用 FluentFTP 为 TLS 1.2 提供支持</item>
     <item>切换到 BiometricPrompt API 以提高用户指纹解锁体验，并允许使用脸解锁，例如在 Pixel 4 上。</item>
+    <item>BUG修复</item>
     <item>BUG修复</item>
   </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
