@@ -632,6 +632,13 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Dodaj gumb za obvestilo ob kopiranju TOTP na odložišče</item>
+    <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
+    <item>Preklop na BiometricPrompt API za izboljšanje uporabniške izkušnje za odpiranje s prstnim odtisom in omogočitev odklepanja z obrazom, npr. na Pixel 4.</item>
+    <item>Popravki hroščev</item>
+    <item>Popravki hroščev</item>
+  </string-array>
   <string name="ChangeLog_1_07b">Različica 1.07b\n
      * Izboljšana zmogljivost Argon2 z uporabo izvorne implementacije (Hvala Chih-Hsuan Yen!)\n
      * Dovolite, da onemogočite odtis prsta s klikom na ikono prstnega odtisa (izognete se težavam z bralniki prstnih odtisov na spodnjem zaslonu, zahvaljujoč marcoDallas!)\n
@@ -967,4 +974,10 @@ Začetna javna izdaja
   <string name="emergency_infotext_head">Ali ste pripravljene na nujne primere?</string>
   <string name="emergency_infotext_main">Ste kdaj razmislili, kaj se zgodi, če ne morete več dostopati do baze podatkov z geslih? Kaj če imaš nesrečo? To je dobra praksa, da predate vaše glavno geslo zaupanja vredni osebi za nujne primere. V nasprotnem primeru nihče ne bo imel dostopa do vaših gesel.</string>
   <string name="no_secure_display">Trenutno veljavni pogled ni označen kot varen. To pomeni, da bi lahko posnetke zaslona posnele tudi druge aplikacije. Keepass2Android je konfiguriran za prikaz občutljivih informacij samo na varnih zaslonih. Preklopite na varen zaslon (npr. Izvlecite monitor HDMI) ali spremenite nastavitve aplikacije.</string>
+  <string name="switch_ime_text">Prosimo, aktivirajte tipkovnico Keepass2Android</string>
+  <string name="switch_ime_reopen">Poskusi znova</string>
+  <string name="AutofillWarning_title">Varnostno opozorilo: Neznana povezava domene/aplikacije</string>
+  <string name="AutofillWarning_Intro">V aplikacijo \"%2$s\" vstavite poverilnice za domeno \"%1$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Če zaupate, da \"%2$s\" pripada \"%1$s\" ali da zaupate aplikaciji \"%2$s\" in ne boste zlorabljali poverilnic (npr. ker gre za zaupanja vredno aplikacijo brskalnika), je v redu, če nadaljujete . V nasprotnem primeru prekličite postopek.</string>
+  <string name="AutofillWarning_trustAsBrowser">Sprejmi vedno v \"%1$s\"</string>
 </resources>

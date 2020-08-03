@@ -619,6 +619,13 @@
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Lägg till aviseringsknapp för att kopiera engångskod till minnet</item>
+    <item>Byt till FluentFTP för att få stöd för TLS 1.2</item>
+    <item>Byt till BiometricPrompt API för att förbättra användarupplevelsen med upplåsning med fingeravtryck och tillåt användning av ansiktsupplåsning, t ex på Pixel 4.</item>
+    <item>Buggfixar</item>
+    <item>Bug fixes</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
     * Förbättrat Argon2-prestandan genom att använda inbyggd funktionalitet (Tack till Chih-Hsuan Yen!)\n
     * Medger att avaktivera fingeravtrycksläsaren genom att klicka på fingeravtrycks-ikonen (undviker problem med fingeravtrycksläsare under skärmen, tack till marcoDallas!)\n
