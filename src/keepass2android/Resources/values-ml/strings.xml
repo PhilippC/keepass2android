@@ -40,6 +40,17 @@
   <string name="entry_url">URL</string>
   <string name="entry_user_name">ഉപയോക്തൃനാമം</string>
   <string name="entry_binaries">ഫയൽ അറ്റാച്ചുമെന്റുകൾ</string>
+  <string name="error_could_not_create_group">ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിൽ പിശക്</string>
+  <string name="error_database_exists">ഈ ഫയൽ ഇതിനകം നിലവിലുണ്ട്.</string>
+  <string name="error_failed_to_launch_link">ലിങ്ക് തുറക്കാൻ സാധിച്ചില്ല.</string>
+  <string name="error_filename_required">ഫയലിന്റെ പേര് ആവശ്യമാണ്</string>
+  <string name="error_file_not_create">ഫയൽ സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല</string>
+  <string name="error_invalid_db">ഡാറ്റാബേസ് അസാധുവാണ്.</string>
+  <string name="error_no_name">പേര് ആവശ്യമാണ്.</string>
+  <string name="error_nopass">ഒരു പാസ്സ്‌വേഡ് അല്ലെങ്കിൽ ഒരു കീ ഫയൽ നിർബന്ധമാണ്‌.</string>
+  <string name="error_pass_match">പാസ്സ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല.</string>
+  <string name="error_rounds_not_number">റൗണ്ടുകൾ ഒരു നമ്പർ ആയിരിക്കണം.</string>
+  <string name="error_title_required">ഒരു ശീർഷകം ആവശ്യമാണ്.</string>
   <string name="hint_login_pass">പാസ്സ്‌വേർഡ്‌</string>
   <string name="hint_url">URL</string>
   <string name="TemplateField_IdCard_Name">പേര്</string>
