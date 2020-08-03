@@ -786,6 +786,7 @@
     <item>Improve keyboard dialog on Android 9+</item>
     <item>Change file associations of the app to avoid some unnecessary associations</item>
     <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
     <item>Update to FTP library</item>
     <item>Fixes to potential crashes of the app</item>
     <item>Further minor fixes</item>
