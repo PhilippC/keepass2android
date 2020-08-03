@@ -20,13 +20,13 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Tempo esgotado do app</string>
+  <string name="app_timeout">Tempo limite para o aplicativo</string>
   <string name="app_timeout_summary">Tempo até que o banco de dados seja travado quando o aplicativo estiver inativo.</string>
-  <string name="kill_app_label">Matar processo</string>
+  <string name="kill_app_label">Encerrar o processo do aplicativo</string>
   <string name="show_kill_app">Botão fechar</string>
   <string name="show_kill_app_summary">Mostrar um botão no ecrã de palavra-passe para matar o processo de aplicação (para utilizadores paranoicos)</string>
   <string name="application">App</string>
-  <string name="application_settings">Abrir as configurações</string>
+  <string name="application_settings">Configurações</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
@@ -47,7 +47,7 @@
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar banco de dados...</string>
-  <string name="fingerprint_prefs">Desbloqueio biométrico</string>
+  <string name="fingerprint_prefs">Debloqueio por impressão digital</string>
   <string name="import_db_prefs">Importar base de dados para pasta interna</string>
   <string name="import_keyfile_prefs">Importar arquivo chave para pasta interna</string>
   <string name="keyboardswitch_prefs">Alterar teclado</string>
@@ -81,26 +81,26 @@
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar para a área de transferencia</string>
-  <string name="fingerprint_description">Por favor, autentique-se para continuar</string>
-  <string name="fingerprint_fatal">Não é possível configurar Desbloqueio Biométrico:</string>
-  <string name="fingerprint_not_recognized">A Autenticação Biométrica falhou</string>
-  <string name="fingerprint_success">Sucesso na autenticação biométrica</string>
+  <string name="fingerprint_description">Confirme a digital para continuar</string>
+  <string name="fingerprint_fatal">Não consigo configurar Desbloqueio por Digital:</string>
+  <string name="fingerprint_not_recognized">Digital não reconhecida. Tente de novo</string>
+  <string name="fingerprint_success">Digital reconhecida</string>
   <string name="fingerprint_os_error">Desbloqueio por Digital requer Android 6.0 ou posterior.</string>
-  <string name="fingerprint_hardware_error">Nenhum hardware biométrico detectado.</string>
-  <string name="fingerprint_no_enrolled">You have not configured biometric authentication on this device. Please go to system settings first.</string>
-  <string name="disable_fingerprint_unlock">Disable Biometric Unlock</string>
-  <string name="enable_fingerprint_unlock">Ativar Desbloquear Biométrico completo</string>
+  <string name="fingerprint_hardware_error">Nenhum leitor de digital detectado.</string>
+  <string name="fingerprint_no_enrolled">Você não tem digitais registradas neste dispositivo. Por favor vá para configurações do sistema primeiro.</string>
+  <string name="disable_fingerprint_unlock">Desativar o Desbloqueio de Digital</string>
+  <string name="enable_fingerprint_unlock">Ativar por completo o Desbloqueio de Digital</string>
   <string name="enable_fingerprint_quickunlock">Ativar o Desbloqueio de Digital para o QuickUnlock</string>
-  <string name="fingerprint_unlock_failed">Desbloqueio biométrico falhou. A chave de descriptografia foi invalidada pelo sistema operacional Android. Isso geralmente acontece se uma autenticação biométrica ou configurações de segurança foram alteradas. </string>
+  <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: Chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada não é válida. </string>
   <string name="fingerprint_reenable">Por favor, reative o Desbloquear com Impressão Digital para a nova senha mestre.</string>
   <string name="fingerprint_reenable2">Por favor desbloqueie com sua senha e reative o desbloqueio por impressão digital nas configurações da base de dados.</string>
-  <string name="FingerprintInitFailed">Falha ao inicializar a autenticação biométrica. </string>
+  <string name="FingerprintInitFailed">Falha ao inicializar o sensor de impressão digital. </string>
   <string name="FingerprintSetupFailed">Falha ao criptografar dados. Isso pode acontecer se você adicionar ou remover impressões digitais nas configurações do sistema enquanto o Keepass2Android está esperando pela sua impressão digital.</string>
   <string name="enable_fingerprint_unlock_Info">    Isto armazenará a sua senha mestre neste dispositivo, criptografada com a Armazenagem
     de Chaves do Android e protegida usando a autenticação com impressão digital. Permite desblo-
     quear a sua base de dados somente com a sua impressão digital.  </string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite usar a autenticação biométrica em vez do código QuickUnlock. Não armazena nenhuma informação relacionada com a sua senha mestra.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite usar a autenticação de impressão digital em vez do código de Desbloqueio Rápido. Não exige armazenar qualquer informação relacionada com a sua senha mestre.</string>
   <string name="enter_filename">Digite o nome do arquivo de banco de dados</string>
   <string name="entry_accessed">Acessado</string>
   <string name="entry_cancel">Cancelar</string>
@@ -121,7 +121,7 @@
   <string name="entry_user_name">Nome de usuário</string>
   <string name="entry_extra_strings">Campos de texto extra</string>
   <string name="entry_binaries">Anexos</string>
-  <string name="error_can_not_handle_uri">Keepass2Android não consegue resolver este URI.</string>
+  <string name="error_can_not_handle_uri">Keepass2Android não pôde tratar esta uri.</string>
   <string name="error_could_not_create_group">Erro ao criar grupo.</string>
   <string name="error_could_not_create_parent">Não foi possível criar o diretório pai.</string>
   <string name="error_database_exists">Este arquivo já existe.</string>
@@ -138,7 +138,7 @@
   <string name="error_rounds_not_number">Número de rodadas deve ser um número.</string>
   <string name="error_param_not_number">Parâmetro precisa ser um número.</string>
   <string name="error_title_required">É necessário um título.</string>
-  <string name="error_wrong_length">Insira um número inteiro positivo no campo de comprimento</string>
+  <string name="error_wrong_length">Digite um número inteiro positivo no campo de tamanho</string>
   <string name="FileNotFound">Arquivo não encontrado.</string>
   <string name="file_browser">Localizador de Arquivos</string>
   <string name="generate_password">Gerar Senha</string>
@@ -201,8 +201,8 @@
   <string name="no">Não</string>
   <string name="no_keys">Nenhuma entrada no grupo.</string>
   <string name="no_results">Sem resultados na busca.</string>
-  <string name="no_url_handler">Nenhum programa compatível com esta URL.</string>
-  <string name="open_recent">Abrir banco de dados recente (toque para abrir)</string>
+  <string name="no_url_handler">Erro ao tratar url.</string>
+  <string name="open_recent">Abrir banco de dados recente (clique para abrir)</string>
   <string name="omitbackup_title">Não procurar entradas no backup ou na lixeira.</string>
   <string name="omitbackup_summary">Omitir os grupos \'Backup\' e \'Lixeira\' dos resultados da busca</string>
   <string name="pass_filename">Arquivo de banco de dados do KeePass</string>
@@ -248,7 +248,7 @@
   <string name="twofish">Twofish</string>
   <string name="underline">Sublinhado</string>
   <string name="unsupported_db_version">Versão de banco de dados não suportada.</string>
-  <string name="uppercase">Maiúsculas</string>
+  <string name="uppercase">Letras maiúsculas</string>
   <string name="warning_read_only">Seu cartão SD está no modo de somente leitura. Talvez não seja possível salvar modificações ao banco de dados.</string>
   <string name="warning_unmounted">Seu cartão SD não está montado no dispositivo. Não será possível carregar ou criar um banco de dados.</string>
   <string name="version_label">Versão</string>
@@ -262,13 +262,13 @@
   <string name="please_note">Atenção</string>
   <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expressão regular</string>
-  <string name="TanExpiresOnUse_title">TAN expira em uso</string>
+  <string name="TanExpiresOnUse_title">Tan expira em uso</string>
   <string name="TanExpiresOnUse_summary">Marque as entradas TAN como expiradas quando usá-las</string>
   <string name="ShowUsernameInList_title">Mostrar nome de usuário na lista</string>
   <string name="ShowUsernameInList_summary">Mostrar nome de usuário abaixo dos títulos das entradas. Útil para várias contas ou TANs.</string>
   <string name="RememberRecentFiles_title">Lembrar-se dos bancos de dados</string>
   <string name="RememberRecentFiles_summary">Lembrar-se dos bancos de dados abertos recentemente, e mostrá-los na tela Abrir Banco de Dados.</string>
-  <string name="kp2a_findUrl">Encontrar senha</string>
+  <string name="kp2a_findUrl">Keepass2Android: Buscar senha</string>
   <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
   <string name="search_options">Opções</string>
   <string name="caseSensitive">Sensível a maiúsculas e minúsculas</string>
@@ -300,7 +300,7 @@
   <string name="BinaryDirectory_summary">Pasta onde os anexos de arquivos são salvos.</string>
   <string name="SaveAttachmentDialog_title">Salvar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
-  <string name="SaveAttachmentDialog_save">Exportar para ficheiro...</string>
+  <string name="SaveAttachmentDialog_save">Salvar para o cartão SD</string>
   <string name="SaveAttachmentDialog_open">Armazenar em cache e abrir</string>
   <string name="ShowAttachedImage">Mostrar com visualizador de imagens interno</string>
   <string name="SaveAttachment_doneMessage">Salvo o arquivo em %1$s.</string>
@@ -333,7 +333,7 @@
   <string name="ActivateSearchViewOnStart_summary">Ativa o campo de pesquisa no modo de exibição de grupo após o desbloqueio ou quando à procura de um registro</string>
   <string name="NoDonateOption_title">Ocultar a opção de doação</string>
   <string name="NoDonateOption_summary">Esta configuração é para doadores. Está disponível depois de usar o Keepass2Android por um tempo apenas.</string>
-  <string name="NoDonateOption_question">Sem doações, este app não existiria e não seria continuamente melhorado! Se você ainda não doou, por favor considere faze-lo agora</string>
+  <string name="NoDonateOption_question">Sem doações, este app não existiria e não poderia ser melhorado continuamente! Se você ainda não doou, por favor, considere fazer uma doação agora.</string>
   <string name="NoDonationReminder_title">Nunca pedir doações</string>
   <string name="NoDonationReminder_summary">Já doei ou não doarei nenhum centavo. Não me peça doação novamente, nem no aniversário do criador.</string>
   <string name="UseOfflineCache_title">Cache do banco de dados</string>
@@ -438,7 +438,7 @@
   <string name="otp_aux_file">Arquivo auxiliar de OTP</string>
   <string name="ErrorOcurred">Ocorreu um erro:</string>
   <string name="DuplicateUuidsError">Base de dados danificada: Há IDs duplicados. (Você salvou com Minikeepass?). Re-importe p/ uma nova base de dados c/ Keepass 2 p/ PC e selec. \'Criar novas IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Desative esta mensagem de erro em Definições/Definições do App/Manipular ficheiro/Verificar UUIDs duplicadas. Note que poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
+  <string name="DuplicateUuidsErrorAdditional">Desabilite essa mensagem de erro em Configurações/Config. do aplicativo/Manipular arquivo/Verificar UUIDs duplicatas. Note que você poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
   <string name="synchronize_database_menu">Sincronizar banco de dados…</string>
   <string name="CannotMoveGroupHere">Não pode mover o grupo para este grupo.</string>
   <string name="donate_question">Hoje, é a Oktoberfest! Se você gosta de Keepass2Android: hoje não seria um bom dia para me pagar uma cerveja?</string>
@@ -470,7 +470,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, toque nesta opção para criar a pasta, em seguida, pôr o ficheiro dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
+  <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só solicitará acesso à pasta \"Aplicativos/Keepass2Android\". Se você deseja usar um banco de dados existente na sua conta PCloud, por favor, certifique-se de que o arquivo está nesta pasta.</string>
@@ -491,12 +491,12 @@
   <string name="help_master_password">Seu banco de dados é criptografado com a senha que você inserir aqui. Escolha uma senha forte para manter o banco de dados a salvo! Dica: Componha uma frase ou duas e usar as primeiras letras das palavras como senha. Inclua marcas de pontuação.</string>
   <string name="hint_master_password">Selecione uma senha mestre para proteger seu banco de dados:</string>
   <string name="key_file">Arquivo de chave</string>
-  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada em num ficheiro. Ficheiros-chave são tipicamente mais fortes que palavras-passe mestras, pois a palavra-passe pode ser muito mais complexa; contudo, também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto o faria completamente inútil! Importante: não modifique o conteúdo do ficheiro-chave após a criação da base de dados!</string>
+  <string name="help_key_file">Um arquivo de chave é basicamente uma senha armazenada em um arquivo. Arquivos de chave são tipicamente mais fortes que senhas mestras, pois a chave pode ser muito mais complicada; contudo, também é mais difícil mantê-los em segredo. Se você armazenar seu banco de dados na nuvem, não armazene o arquivo de chave lá também! Isto o faria completamente inútil! Importante: não modifique o conteúdo do arquivo de chave após a criação do banco de dados!</string>
   <string name="hint_key_file">Escolha se você deseja utilizar um arquivo de chave em adição a sua senha mestra:</string>
   <string name="use_key_file">Usar arquivo de chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o arquivo de chave!</string>
   <string name="init_otp">Carregar o arquivo auxiliar OTP…</string>
-  <string name="otp_explanation">Introduza o One-time-passwords (OTPs) seguinte. Passe o seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC (requer o app Yubiclip).</string>
+  <string name="otp_explanation">Digite o seguinte One-time-passwords (OTPs). Deslize seu Yubikey NEO na parte traseira de seu dispositivo para entrar através de NFC.</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Não foi possível carregar arquivo OTP auxiliar!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use o plugin OtpKeyProv no KeePass 2.x (PC) para configurar seu banco de dados para uso com as OTPs!</string>
@@ -543,9 +543,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Dados de entrada atual</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Plugin receberá todos os dados sobre a entrada do banco de dados atual e poderão oferecer ações e modificar a exibição do mesmo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consulta próprias credenciais</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A extensão terá permissão para consultar as credenciais associadas com o seu próprio pacote do app.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin poderá consultar as credenciais associadas com o seu próprio pacote de aplicativo.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Credenciais de consulta</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A extensão terá permissão para consultar credenciais para web sites ou apps deliberados.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin permitirá consultar credenciais para web sites ou aplicações deliberadas.</string>
   <string name="get_regular_version">Obter mais tipos de armazenamento</string>
   <string name="CertificateWarning">Aviso: Falha de validação de certificado de servidor: %1$s. Instale o certificado de raiz adequado em seu dispositivo ou consulte as configurações!</string>
   <string name="CertificateFailure">Erro: Falha de validação do certificado do servidor! Instale o certificado raiz apropriado em seu dispositivo ou consulte  as configurações!</string>
@@ -556,7 +556,7 @@
   <string name="FileIsReadOnlyOnKitkat">Arquivo selecionado é só leitura para Keepass2Android devido a restrições no Android 4.4+.</string>
   <string name="CopyFileRequired">Para usá-lo, copie-o em outro local.</string>
   <string name="CopyFileRequiredForEditing">Para editá-lo, copie o arquivo em outro local.</string>
-  <string name="ClickOkToSelectLocation">Toque OK para selecionar o local para onde o ficheiro deve ser copiado.</string>
+  <string name="ClickOkToSelectLocation">Clique em OK p/ selecionar o local onde o arquivo será copiado.</string>
   <string name="FileReadOnlyTitle">Banco de dados é só leitura</string>
   <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
   <string name="ReadOnlyReason_PreKitKat">Parece que você abriu o arquivo de um aplicativo externo. Esta forma não oferece suporte a gravação. Se você desejar fazer alterações na base de dados, por favor, feche-o e selecione Alterar a base de dados. Depois, se possível, abra o arquivo a partir de uma das opções disponíveis.</string>
@@ -591,22 +591,21 @@
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">A URI digitada não parece ser um nome de arquivo. Tem certeza que este é um arquivo válido?</string>
   <string name="FirstInvalidCompositeKeyError">Chave composta inválida! Por favor, tente novamente.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Chave composta errrada! Por favor tome os seguintes passos para tentar desbloquear a sua base de dados.\n
-
-    &#8226; Verifique se introduziu a palavra-passe correta. Utilize o ícone do olho para ver a palavra 
- que introduziu.\n
-   &#8226; Verifique se seleccioonou o tipo correto de palavra-passe.  Garanta que é igual ao tipo usado na criação da base de dados.\n
-   &#8226; Verifique se seleccionou a base de dados correta.
+  <string name="RepeatedInvalidCompositeKeyHelp">Chave composta inválida! Por favor, tente as seguintes etapas para desbloquear a sua base de dados:\n
+  
+    • Assegure-se de ter informado a senha correta. Use o ícone do olho para revelar a senha informada.\n
+   • Assegure-se de ter selecionado o tipo correto da senha. Assegure-se que o tipo coincida com o tipo de senha usada ao criar a base de dados.\n
+   • Assegure-se de ter selecionado o arquivo correto da base de dados.
  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n 
- &#8226; Dica: se você acha que seu ficheiro de base de dados possa estar corrompido ou não se lembra da chave mestra após modificá-la, você pode tentar com a última versão do ficheiro aberto com sucesso, tocando em \"%1$s\" e seleccionando a cópia de segurança local.</string>
-  <string name="HintLocalBackupOtherError">\n
-    &#8226; Keepass2Android guardou com sucesso a versão do último ficheiro aberto com sucesso na memória interna. Você pode abri-lo tocando em \"%1$s\" e seleccionado a cópia de segurança local.  </string>
-  <string name="CorruptDatabaseHelp">    O ficheiro está corrompido.\n
+  <string name="HintLocalBackupInvalidCompositeKey">    \n • Dica: se você acha que seu arquivo de banco de dados pode estar corrompido, ou não se lembra da chave mestra após modificá-lo, você pode tentar com a última versão do arquivo aberto com êxito, clicando em \"%1$s\" e selecionando o backup local.</string>
+  <string name="HintLocalBackupOtherError">    • \n Dica: Keepass2Android tem armazenado a última versão do arquivo aberto com êxito na memória interna. Você pode abri-lo clicando em \"%1$s\" e selecionando o backup local.
+  </string>
+  <string name="CorruptDatabaseHelp">    O arquivo está corrompido.\n
     Aqui estão algumas dicas que podem ajudar a diagnosticar o problema:\n
-    &#8226; Se copiou o ficheiro através de USB (MTP-Mode), tente novamente com ferramentas como o MyPhoneExplorer. O MTP por vezes corrompe o ficheiro.\n
-    &#8226;  Se não é capaz de abrir o ficheiro no seu computador, é muito provável que o ficheiro esteja corrompido. Utilize um backup do ficheiro. Se acredita que foi o Keepass2Android que corrompeu o ficheiro, entre em contacto com o suporte.\n
-    &#8226;  Se consegue abrir o ficheiro no seu computador, entre em contacto com o suporte. Pode tentar gravá-lo com definições diferentes (Ex. descompactado) no computador e tentar abri-lo novamente com o Keepass2Android.
+    
+    • Se você copiou o arquivo através de USB (MTP-Mode), tente novamente com ferramentas como o MyPhoneExplorer. MTP corrompe arquivos em algumas situações.\n
+    • Se você não é capaz de abrir o arquivo no seu computador, é muito provável que o arquivo está corrompido. Utilize um backup do arquivo então. Se você acredita que o Keepass2Android corrompeu o arquivo, entre em contato com o suporte.\n
+    • Se você é capaz de abrir o arquivo no seu computador, entre em contato com o suporte. Você pode tentar salvá-lo com configurações diferentes (p.e. descompactado) no computador e tentar abri-lo novamente com o Keepass2Android.
 
   </string>
   <string name="open_other_db">Abrir outra base de dados…</string>
@@ -772,18 +771,18 @@
 		* ordem de classificação reversa p/ Classificar por Data de Modificação (agora decrescente)\n
 		* bugs corrigidos: Notas exibidas são atualizadas corretamente após as modificações; exibições de senha agora ocultam a senha corretamente em todos dispositivos (espero); corrigido o problema que permitia adicionar uma entrada duas vezes; corrigido o problema ao exibir o aviso UUID Duplicado mesmo após corrigir a base de dados\n</string>
   <string name="ChangeLog_0_9_6">Versão 0.9.6 \n 
-* Permitir importar o ficheiro-chave e/ou ficheiro de banco de dados local para diretório interno do app (ver definições) \n 
+* Permitir importar o arquivo de chave e/ou arquivo de banco de dados local para diretório interno do app (ver configurações) \n 
 * Permitir diferentes opções de classificação \n 
 * Melhorado preferências para alteração automática de teclado \n 
-* Logotipo da aplicação atualizado e design das notificações, design por Stefano Pignataro (http://www.spstudio.at) \n 
-* Gerador de palavras-passe lembra-se da última configuração \n 
-* Definir visibilidade de notificação para ecrã de bloqueio do Android 5 \n 
-* Agora limpa o campo de senha mestra quando deixar a aplicação sem clicar OK \n 
+* Logotipo do aplicativo atualizado e design das notificações, design por Stefano Pignataro (http://www.spstudio.at) \n 
+* Gerador de senha se lembra da última configuração \n 
+* Definir visibilidade de notificação para tela de bloqueio do Android 5 \n 
+* Agora limpa o campo de senha mestra quando deixar o app sem clicar OK \n 
 * Corrigido problema com falta de idiomas de entrada nas configuração de teclado em alguns dispositivos \n 
 * Corrigido problema com alteração automática do teclado em dispositivos com root \n 
-* Adicionado verificação de base de dados corruptos (UUIDs duplicados) \n 
-* Recarregar automaticamente a base de dados quando alteração detetada, resolve preocupação de segurança de revelar senha mestre \n 
-* Layout de pequeno teclado polaco melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n</string>
+* Adicionado verificação de bancos de dados corrompidos (UUIDs duplicados) \n 
+* Recarregar automaticamente o banco de dados quando alteração detectada, resolve preocupação de segurança de revelar senha mestre \n 
+* Layout de pequeno teclado polonês melhorada, fixada configurações de tema de teclado (graças a Wiktor Ławski) \n</string>
   <string name="ChangeLog_0_9_5"><b>Versão 0.9.5</b> \n 
 * Corrigido problemas com navegação de arquivos (especialmente no Android 4.4) \n 
 * Corrigido problema com carregamento de arquivos .kdb (Keepass 1) nos Nexus 5 com Android Lollipop \n 
@@ -844,12 +843,12 @@ Prometi algumas mais mudanças. Eles virão com o próximo lançamento - desculp
 		* Ícone do QuickUnlock pode ser transparente (veja em configurações)\n
 		* Correções de bugs</string>
   <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
-		* Ficheiros remotos são armazenados no cache local do app para permitir uso offline (incluindo edição e sincronização posterior). Veja em definições. \n
-		* Ícone de notificação para visualizar o lock-state da base de dados (veja em definições)\n
+		* Arquivos remotos são armazenados no cache local do aplicativo para permitir uso offline (incluindo edição e sincronização posterior). Veja em configurações. \n
+		* Ícone de notificação para visualizar o lock-state do banco de dados (veja em configurações)\n
 		* Melhorado a determinação de lock-state em algumas situações\n
-		* Base de dados são carregados na memória enquanto escreve a palavra-passe para aumentar a velocidade (veja em definições)\n
+		* Banco de dados são carregados na memória enquanto você digita sua senha para aumentar a velocidade (veja em configurações)\n
 		* Entradas podem ser adicionadas ao grupo raiz\n
-		* Correções de bugs (resolvido campos de referencia, problemas com o teclado em aparelhos em italiano e chinês)</string>
+		* Correções de bugs (resolvido campos de referencia, problemas com o teclado em aparelhos em italiano e chines)</string>
   <string name="ChangeLog_0_8_4"><b>Versão 0.8.4</b>\n
 		* Mudança no banco de dados externo são detectadas e inseridas quando está salvando\n
 		* Melhorado o performance no carregamento\n
