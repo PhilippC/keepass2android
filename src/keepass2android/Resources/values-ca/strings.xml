@@ -629,13 +629,6 @@
   <string name="EntryChannel_name">Notificacions de les entrades</string>
   <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
   <string name="CloseDbAfterFailedAttempts">Tanca la base de dades després de tres intents fallits de desbloqueig biomètric.</string>
-  <string-array name="ChangeLog_1_08">
-    <item>Afegir el botó de notificació per copiar TOTP al porta-retalls</item>
-    <item>Canvia a FluentFTP per suport per a TLS 1.2</item>
-    <item>Canvia a l\'API BiometricPrompt per millorar l\'experiència de l\'usuari amb el desbloqueig d\'empremtes digitals i permetre utilitzar el desbloqueig facial, p. e. al Pixel 4.</item>
-    <item>Correcció d\'errors</item>
-    <item>Bug fixes</item>
-  </string-array>
   <string name="ChangeLog_1_07b">Versió 1.07b \n
      * Millora el rendiment Argon2 mitjançant la implementació nativa (Gràcies al Chih-Hsuan Yen!) \n
      * Permet desactivar l’empremta digital fent clic a la icona d’empremtes dactilars (evita la incidència en lectors d’empremtes sota la pantalla, gràcies a marcoDallas!) \n
