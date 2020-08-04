@@ -630,13 +630,6 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
-  <string-array name="ChangeLog_1_08">
-    <item>Voeg een notificatie knop toe voor het kopiëren van TOTP naar klembord</item>
-    <item>Schakel over naar FluentFTP om TLS 1.2 te ondersteunen</item>
-    <item>Schakel over naar de BiometricPrompt API om de gebruikerservaring te verbeteren met vingerafdrukontgrendeling en om gezichtsontgrendeling toe te staan, bijvoorbeeld op de Pixel 4.</item>
-    <item>Bugs opgelost</item>
-    <item>Bug fixes</item>
-  </string-array>
   <string name="ChangeLog_1_07b">Versie 1.07b-pre\n
     * Verbeterde Argon2 prestaties door gebruik van orginele implentatie (Met dank aan Chih-Hsuan Yen!)\n
     * Sta het uitschakelen van de vingerafdruk toe door het klikken op de vingerafdruk icoon (vermijdt probleem met vingerafdruklezer onder het scherm, met dank aan marcoDallas!)\n
