@@ -628,13 +628,6 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
-  <string-array name="ChangeLog_1_08">
-    <item>Προσθήκη πλήκτρου ειδοποίησης για αντιγραφή στο TOTP clipboard</item>
-    <item>Αλλαγή προς FluentFTP για παροχή υποστήριξης TLS 1.2</item>
-    <item>Αλλαγή στo BiometricPrompt API για βελτίωση της εμπειρίας χρήστη με ξεκλείδωμα δακτυλικού αποτυπώματος και χρήση αναγνώρισης προσώπου, πχ στο Pixel 4.</item>
-    <item>Διορθώσεις σφαλμάτων</item>
-    <item>Bug fixes</item>
-  </string-array>
   <string name="ChangeLog_1_07b">Έκδοση 1.07b\n
 * Βελτίωση επιδόσεων Argon2 με χρήση εγγενούς υλοποίησης (ευχαριστώ Chih-Hsuan Yen!)\n
 * Επιτρέπει απενεργοποίηση δακτυλικού αποτυπώματος με κλικ στο εικονίδιο (λύνει το ζήτημα με τους αναγνώστες δακτυλικού αποτυπώματος κάτω από την οθόνη, ευχαριστώ marcoDallas!)\n
