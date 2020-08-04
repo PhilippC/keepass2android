@@ -632,13 +632,6 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
-  <string-array name="ChangeLog_1_08">
-    <item>加入複製 TOTP 到剪貼簿的通知按鈕</item>
-    <item>改用 FluentFTP 以支援 TLS 1.2</item>
-    <item>改用 BiometricPrompt API ，因而改進指紋解鎖的用戶體驗，並支援如 Pixel 4 上的面容解鎖。</item>
-    <item>修正錯誤</item>
-    <item>錯誤修正</item>
-  </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 以原生方式實現 Argon2 演算改進性能（感謝 Chih-Hsuan Yen！）\n
     * 可停用指紋，點擊指紋圖示即可，以避免屏下指紋識別產生的問題（感謝 marcoDallas！）\n
