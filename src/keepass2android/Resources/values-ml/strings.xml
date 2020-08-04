@@ -15,6 +15,7 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="show_kill_app">ക്ലോസ്-ബട്ടൺ </string>
   <string name="ShowGroupnameInSearchResult_title">തിരയൽ ഫലത്തിൽ ഗ്രൂപ്പ് പ്രദർശിപ്പിക്കുക</string>
   <string name="NavigationToGroupCompleted_message">ഗ്രൂപ്പ് പ്രദര്ശിപ്പിക്കൽ ഇപ്പോൾ: %1$s</string>
   <string name="Entry_singular">ഒരു എൻട്രി </string>
