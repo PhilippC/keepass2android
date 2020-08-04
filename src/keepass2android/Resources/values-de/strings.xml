@@ -630,11 +630,21 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Erzwingen von HTTP/1.1 aufgrund eines Problems mit der HTTP/2-Implementierung von OkHttp </item>
+    <item>Tastaturdialog auf Android 9+ verbessert</item>
+    <item>Dateizuordnungen der App geändert, um unnötige Verknüpfungen zu vermeiden</item>
+    <item>Sicherstellen, dass der Passworttext nicht hinter dem Augensymbol versteckt ist</item>
+    <item>Ändern des Auto-Fill-Verhaltens, um beim Ausfüllen von Anmeldedaten für eine Domain un eine unbekannte App zu warnen</item>
+    <item>FTP-Bibliothek aktualisiert</item>
+    <item>Mögliche Abstürze der App behoben</item>
+    <item>Weitere kleinere Korrekturen</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Benachrichtigungsschalfläche hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
-    <item>Zu FluentFTP gewechselt, um TLS 1.2 zu unterstützen</item>
-    <item>Wechseln zur BiometricPrompt API, um Umgang mit Fingerabdrucksensor zu erleichtern und das Entsperren mit FaceUnlock zu ermöglichen, z.B. mit dem Pixel 4.</item>
-    <item>Fehlerbehebungen</item>
+    <item>Schalfläche in der Benachrichtigung hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
+    <item>Wechsel zu FluentFTP um TLS 1.2 zu unterstützen</item>
+    <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z.B. auf Pixel 4.</item>
     <item>Fehlerbehebungen</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
