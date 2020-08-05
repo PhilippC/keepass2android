@@ -629,6 +629,12 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Passage à l\'utilisation de FluentFTP pour assurer le support de TLS 1.2</item>
+    <item>Passage à l\'API BiometricPrompt pour améliorer l\'expérience utilisateur avec le déverrouillage par empreintes digitales et permettre l\'utilisation du déverrouillage au moyen du visage, par exemple sur Pixel 4.</item>
+    <item>Corrections de bugs</item>
+    <item>Corrections de bugs</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
     * Amélioration des performances Argon2 en utilisant l\'implémentation native (Merci à to Chih-Hsuan Yen !)\n
     * Possibilité de désactiver l\'empreinte digitale en cliquant sur l\'icône de l\'empreinte (évite un problème avec les lecteurs d\'empreinte placés sous l\'écran, merci à marcoDallas !)\n
