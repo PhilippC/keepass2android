@@ -632,6 +632,12 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Alterne para o uso do FluentFTP para fornecer suporte a TLS 1.2</item>
+    <item>Alterne para a API BiometricPrompt para melhorar a experiência do usuário com desbloqueio por impressão digital e permitir o uso do desbloqueio facial, por exemplo, no Pixel 4.</item>
+    <item>Correções de erros</item>
+    <item>Correções de erros</item>
+  </string-array>
   <string name="ChangeLog_1_07b">    Versão 1. 7b\n
     * Melhoria de desempenho do Argon2 usando implementação nativa (Graças a Chih-Hsuan Yen!)\n
     * Permite desativar impressão digital clicando no ícone de impressão digital (evita problemas com leitores de impressões digitais, graças a marcoDallas!)\n
