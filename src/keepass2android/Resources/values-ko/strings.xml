@@ -65,10 +65,10 @@
   <string name="ClearClipboard">클립보드를 비웠습니다.</string>
   <string name="clipboard_timeout">클립보드 시간 제한</string>
   <string name="clipboard_timeout_summary">계정명 또는 비밀번호 복사 후 클립보드 삭제 대기 시간을 설정합니다</string>
-  <string name="copy_username">계정명을 클립보드에 복사합니다.</string>
-  <string name="copy_password">비밀번호를 클립보드에 복사합니다.</string>
+  <string name="copy_username">계정명을 클립보드에 복사합니다</string>
+  <string name="copy_password">비밀번호를 클립보드에 복사합니다</string>
   <string name="copy_totp">TOTP를 클립보드에 복사합니다.</string>
-  <string name="available_through_keyboard">이 항목은 KP2A 키보드를 통해 사용 가능합니다.</string>
+  <string name="available_through_keyboard">이 항목은 KP2A 키보드를 통해 사용 가능합니다</string>
   <string name="entry_is_available">사용 가능</string>
   <string name="not_possible_im_picker">입력 방법을 선택하는 대화 상자를 열 수 없습니다. 키보드를 수동으로 활성화 하십시오.</string>
   <string name="please_activate_keyboard">시스템 설정에서 Keepass2Android 키보드를 활성화 하십시오.</string>
@@ -97,7 +97,7 @@
   <string name="FingerprintInitFailed">생체 인증을 초기화 하는데 실패하였습니다. </string>
   <string name="FingerprintSetupFailed">데이터 암호화에 실패했습니다. 이런 문제는 Keepass2Android가 지문을 인식하는 도중에 시스템 설정에 지문을 추가 또는 제거할 시에 발생할수 있습니다.</string>
   <string name="enable_fingerprint_quickunlock_Info">QuickUnlock 코드 대신 생체 인증을 사용하는 것을 허용합니다. 마스터 비밀번호와 관련된 정보는 일절 저장하지 않습니다.</string>
-  <string name="enter_filename">데이터베이스 파일명을 입력하십시오.</string>
+  <string name="enter_filename">데이터베이스 파일명을 입력하십시오</string>
   <string name="entry_accessed">접속됨</string>
   <string name="entry_cancel">취소</string>
   <string name="entry_comment">노트</string>
@@ -164,8 +164,8 @@
   <string name="loading_database">데이터베이스 불러오는 중...</string>
   <string name="lowercase">소문자</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">비밀번호 가림</string>
-  <string name="maskpass_summary">비밀번호 숨기기를 기본으로 설정합니다</string>
+  <string name="maskpass_title">비밀번호 가리기</string>
+  <string name="maskpass_summary">비밀번호 가리기를 기본으로 설정합니다</string>
   <string name="menu_about">Keepass2Android 정보</string>
   <string name="menu_change_key">마스터 키 변경하기</string>
   <string name="menu_copy_pass">비밀번호 복사</string>
@@ -193,7 +193,7 @@
   <string name="menu_show_all">모든 필드 표시</string>
   <string name="minus">빼기</string>
   <string name="never">없음</string>
-  <string name="yes">네</string>
+  <string name="yes">예</string>
   <string name="no">아니오</string>
   <string name="no_keys">데이터베이스나 그룹에 항목이 없습니다.</string>
   <string name="no_results">검색결과가 없습니다.</string>
@@ -282,7 +282,7 @@
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock을 기본으로 활성화</string>
   <string name="QuickUnlockDefaultEnabled_summary">QuickUnlock을 기본으로 사용할지 설정합니다.</string>
   <string name="ViewDatabaseSecure_title">데이터베이스 표시 보호</string>
-  <string name="ViewDatabaseSecure_summary">이 설정을 사용하면 스크린샷 기능을 막고 최근 앱 리스트에 앱의 썸네일을 표시하지 않습니다.</string>
+  <string name="ViewDatabaseSecure_summary">이 설정이 허용되면 스크린샷 기능이 막히고 최근 앱 리스트에 앱의 썸네일이 표시되지 않습니다.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock 아이콘 숨김</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock은 알림 아이콘 표시 없이는 작동하지 않습니다. 투명한 아이콘을 사용하려면 이 옵션을 선택하십시오.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock 아이콘 숨김</string>
@@ -290,7 +290,7 @@
   <string name="QuickUnlockLength_title">QuickUnlock 키 길이</string>
   <string name="QuickUnlockLength_summary">QuickUnlock 비밀번호로 사용될 최대 문자 수를 설정합니다.</string>
   <string name="QuickUnlockHideLength_title">QuickUnlock 길이 숨김</string>
-  <string name="QuickUnlockHideLength_summary">이 설정을 사용하면 QuickUnlock 코드의 길이가 QuickUnlock 화면에 표시되지 않습니다.</string>
+  <string name="QuickUnlockHideLength_summary">이 설정이 허용되면 QuickUnlock 코드의 길이가 QuickUnlock 화면에 표시되지 않습니다.</string>
   <string name="QuickUnlock_fail">QuickUnlock 실패 : 잘못된 비밀번호!</string>
   <string name="BinaryDirectory_title">첨부파일 폴더</string>
   <string name="BinaryDirectory_summary">첨부파일이 저장될 폴더를 설정합니다.</string>
@@ -313,7 +313,7 @@
   <string name="add_extra_string">추가 문자열 더하기</string>
   <string name="delete_extra_string">추가 문자열 지우기</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: 잠김. QuickUnlock 사용가능.</string>
-  <string name="database_loaded_unlocked">%1$s: 풀림.</string>
+  <string name="database_loaded_unlocked">%1$s: 잠금 해제됨.</string>
   <string name="credentials_dialog_title">서버 자격증명 입력</string>
   <string name="UseFileTransactions_title">파일 트랜젝션</string>
   <string name="UseFileTransactions_summary">데이터베이스 쓰기에 파일 트랜젝션을 사용합니다</string>
@@ -367,7 +367,7 @@
   <string name="AutoSwitchBackKeyboard_summary">열린 항목이 없으면 이전 키보드로 전환 합니다.</string>
   <string name="ShowUnlockedNotification_title">잠금이 해제되어 있는 동안 알림 아이콘 표시</string>
   <string name="ShowUnlockedNotification_summary">데이터베이스가 열려있는 동안 알림창에 열림 상태를 표시합니다.</string>
-  <string name="IconVisibilityInfo_Android8_text">Android 8에서는 알림에 대한 새로운 동작을 도입했습니다. Keepass2Android의 알림 아이콘을 숨기려면 시스템 설정을 통해 변경하십시오. 알림 범주의 중요도를 최소로 설정하십시오.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 에서 알림에 대한 새로운 동작을 도입되었습니다. Keepass2Android의 알림 아이콘을 숨기려면 시스템 설정을 통해 변경하십시오. 알림 범주의 중요도를 최소로 설정하십시오.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">설정 열기</string>
   <string name="DontCare">상관 없음</string>
   <string name="DocumentAccessRevoked">Keepass2Android에서 더 이상 파일에 접근 할 수 없습니다. 파일이 제거 되었거나 접근 권한이 취소되었습니다. 파일을 다시 열어 사용하십시오. 예시: 데이터베이스 변경 사용</string>
@@ -407,12 +407,12 @@
   <string name="TitleSyncQuestion">변경사항을 통합하시겠습니까?</string>
   <string name="MessageSyncQuestion">데이터베이스 파일이 외부에서 수정되었습니다. 저장하기 전에 변경사항을 통합해서 가져오시겠습니까? 외부 변경사항으로 덮어쓰려면 \"아니오\"를 선택하십시오.</string>
   <string name="SynchronizingDatabase">변경사항 통합...</string>
-  <string name="YesSynchronize">네</string>
+  <string name="YesSynchronize">네, 통합합니다</string>
   <string name="NoOverwrite">아니오, 덮어씁니다</string>
   <string name="UseOfflineMode">내부 캐시로만 작업</string>
   <string name="UseOnlineMode">소스와 캐시 사본 동기화</string>
   <string name="UseOfflineMode_Info">데이터베이스가 내부 캐시에서 로드 되었습니다. 변경 사항은 내부 캐시에만 저장되며 캐시 사본과 소스 동기화를 선택할 때만 동기화됩니다.</string>
-  <string name="InOfflineMode">내부 캐시로만 작업.</string>
+  <string name="InOfflineMode">내부 캐시로만 작업합니다.</string>
   <string name="SynchronizingCachedDatabase">캐시된 데이터베이스를 동기화...</string>
   <string name="DownloadingRemoteFile">소스 파일 불러오는중...</string>
   <string name="UploadingFile">파일 저장…</string>
@@ -515,7 +515,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="AppOutdated">%1$s 앱은 더 이상 지원하지 않습니다.</string>
   <string name="bad_resp">시도-응답이 잘못되었습니다.</string>
   <string name="CouldntLoadChalAuxFile">보조 시도 파일을 불러올 수 없습니다!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">KeeChallenge 플러그인을 KeePass 2.x (PC)에서 사용하여 시도-응답에 사용할 데이터베이스를 구성해 주십시어!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">KeeChallenge 플러그인을 KeePass 2.x (PC)에서 사용하여 시도-응답에 사용할 데이터베이스를 구성해 주십시오!</string>
   <string name="ErrorUpdatingChalAuxFile">OTP 보조 파일 갱신 오류!</string>
   <string name="TrayTotp_SeedField_title">TOTP 시드 필드 이름</string>
   <string name="TrayTotp_SeedField_summary">기본값이 아닌 설정으로 Keepass 2 플러그인인 \"TrayTotp\" 를 사용하는 경우 PC의 설정에 따라 여기에 시드 필드의 필드명을 입력하십시오.</string>
@@ -632,6 +632,12 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="DbQuicklockedChannel_desc">QuickUnlock으로 잠긴 데이터베이스에 대한 알림</string>
   <string name="EntryChannel_name">항목 알림</string>
   <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>TLS 1.2 지원을 위해 FluentFTP로 변경</item>
+    <item>사용자 경험과 지문 인식 잠금 해제 향상 및 안면 인식 잠금 해제 지원을 위해 BiometricPrompt API로 전환, 예시: Pixel 4 기기 등.</item>
+    <item>버그 수정</item>
+    <item>버그 수정</item>
+  </string-array>
   <string name="ChangeLog_1_07b">버전 1.07b\n
     * 네이티브 구현을 통해 Argon2 퍼포먼스 향상 (Chih-Hsuan Yen님께 감사드립니다!)\n
     * 지문 아이콘을 클릭해서 지문 인식 비활성화 허용 (이를 통해 스크린 밑으로 나간 지문 인식 리더 문제를 피할 수 있습니다. marcoDallas님께 감사드립니다!)\n
