@@ -631,6 +631,16 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>由于OkHttp的HTTP/2实现有问题，强制使用HTTP/1.1</item>
+    <item>改进安卓9+上的键盘对话框</item>
+    <item>更改应用程序的文件关联以避免一些不必要的关联</item>
+    <item>确保密码文本没有隐藏在眼睛图标后</item>
+    <item>更改自动填充行为以便在将一个域名的凭据填写到一个无法识别的应用时发出警告</item>
+    <item>更新到 FTP 库</item>
+    <item>修复应用程序的潜在崩溃</item>
+    <item>更多的小修小补</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>切换到使用 FluentFTP 为 TLS 1.2 提供支持</item>
     <item>切换到 BiometricPrompt API 以提高用户指纹解锁体验，并允许使用脸解锁，例如在 Pixel 4 上。</item>
