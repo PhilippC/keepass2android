@@ -99,29 +99,29 @@
     <!-- Indicates that a word has been added to the dictionary -->
     <string name="added_word"><xliff:g id="WORD">%s</xliff:g>: 저장됨</string>
     <!-- Tip to long press on keys -->
-    <string name="tip_long_press">키를 길게 누르면 악센트(ø, ö 등)가 표시됩니다.</string>
+    <string name="tip_long_press">키를 길게 누르면 악센트(ø, ö 등)가 표시됩니다</string>
     <!-- Tip to dismiss keyboard -->
-    <string name="tip_dismiss">키보드를 닫으려면 언제든지 뒤로 키(↶)를 누르세요.</string>
+    <string name="tip_dismiss">키보드를 닫으려면 언제든지 뒤로 키(↶)를 누르십시오</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">숫자 및 기호 사용</string>
     <!-- Tip to long press on typed word to add to dictionary -->
-    <string name="tip_add_to_dictionary">맨 왼쪽에 있는 단어를 길게 누르면 사전에 추가됩니다.</string>
+    <string name="tip_add_to_dictionary">맨 왼쪽에 있는 단어를 길게 누르면 사전에 추가됩니다</string>
     <!-- Instruction to touch the bubble to continue -->
-    <string name="touch_to_continue">계속하려면 힌트를 터치하세요. »</string>
+    <string name="touch_to_continue">계속하려면 힌트를 터치하십시오 »</string>
     <!-- Instruction to touch the bubble to start typing -->
-    <string name="touch_to_finish">힌트를 닫고 입력을 시작하려면 여기를 터치하세요.</string>
+    <string name="touch_to_finish">힌트를 닫고 입력을 시작하려면 여기를 터치하십시오!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"언제든지 입력란을 터치하면 키보드가 열립니다.\"</b></string>
+    <string name="tip_to_open_keyboard"><b>입력란을 터치하면 언제든지 키보드가 열립니다</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
-    <string name="tip_to_view_accents"><b>\"키를 길게 터치하면 악센트\"\n\"(ø, ö, ô, ó 등)가 표시됩니다.\"</b></string>
+    <string name="tip_to_view_accents"><b>키를 길게 터치하면 악센트\"\n\"(ø, ö, ô, ó 등)가 표시됩니다</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
-    <string name="tip_to_open_symbols"><b>\"이 키를 터치하면 숫자 및 기호 키보드로 전환됩니다.\"</b></string>
+    <string name="tip_to_open_symbols"><b>이 키를 터치하면 숫자 및 기호 키보드로 전환됩니다</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
-    <string name="tip_to_close_symbols"><b>\"이 키를 다시 터치하면 문자 키보드로 돌아갑니다.\"</b></string>
+    <string name="tip_to_close_symbols"><b>이 키를 다시 터치하면 문자 키보드로 돌아갑니다</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
-    <string name="tip_to_launch_settings"><b>\"자동 완성과 같은 키보드 설정을 변경하려면 이 키를 길게 터치하세요.\"</b></string>
+    <string name="tip_to_launch_settings"><b>자동 완성과 같은 키보드 설정을 변경하려면 이 키를 길게 터치하십시오</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
-    <string name="tip_to_start_typing"><b>\"이제 사용해 보세요.\"</b></string>
+    <string name="tip_to_start_typing"><b>한번 사용해 보세요!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <string name="label_go_key">이동</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
@@ -142,18 +142,18 @@
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
-    <string name="voice_warning_locale_not_supported">음성 입력은 현재 자국어로 지원되지 않으며 영어로 작동됩니다.</string>
+    <string name="voice_warning_locale_not_supported">음성 입력은 현재 자국어 지원이 되지 않으며 영어로 작동됩니다.</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
     <string name="voice_warning_may_not_understand">음성 입력은 Google의 네트워크화된 음성 인식을 사용하는 실험적 기능입니다.</string>
     <!-- An additional part of the warning dialog for voice input that only shows when the user
          actually initiates voice input, rather than just turning it on in settings. -->
-    <string name="voice_warning_how_to_turn_off">음성 입력을 사용하지 않으려면 키보드 설정으로 이동하세요.</string>
+    <string name="voice_warning_how_to_turn_off">음성 입력을 사용하지 않으려면 키보드 설정으로 이동하십시오.</string>
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
-    <string name="voice_hint_dialog_message">음성 입력을 사용하려면 마이크 버튼을 누르거나 터치 키보드 위로 손가락을 미끄러지듯 움직이세요.</string>
+    <string name="voice_hint_dialog_message">음성 입력을 사용하려면 마이크 버튼을 누르거나 터치 키보드 위로 손가락을 미끄러지듯 움직이십시오.</string>
     <!-- Short message to tell the user the system is ready for them to speak. -->
-    <string name="voice_listening">지금 말하세요.</string>
+    <string name="voice_listening">지금 말하세요</string>
     <!-- Short message shown after the user finishes speaking. -->
     <string name="voice_working">인식 중</string>
     <!-- Short message shown before the user should speak. -->
@@ -169,16 +169,16 @@
     <!-- Short message shown for an error with the voice server. -->
     <string name="voice_server_error">서버 오류</string>
     <!-- Short message shown when no speech is heard. -->
-    <string name="voice_speech_timeout">음성이 인식되지 않았습니다.</string>
+    <string name="voice_speech_timeout">음성이 인식되지 않았습니다</string>
     <!-- Short message shown when the server couldn't parse any speech. -->
     <string name="voice_no_match">일치하는 항목 없음</string>
     <!-- Short message shown when the user initiates voice and voice
 	search is not installed. -->
-    <string name="voice_not_installed">음성 검색이 설치되지 않았습니다.</string>
+    <string name="voice_not_installed">음성 검색이 설치되지 않았습니다</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
-    <string name="voice_swipe_hint"><b>\"도움말:\"</b>\" 키보드 위로 손가락을 미끄러지듯 움직이고 나서 말하세요.\"</string>
+    <string name="voice_swipe_hint"><b>도움말:</b>키보드 위로 손가락을 미끄러지듯 움직이고 나서 말하세요.</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
-    <string name="voice_punctuation_hint"><b>\"도움말:\"</b>\" 다음 번에는 \'마침표\', \'쉼표\', \'물음표\'와 같은 구두점을 말해 보세요.\"</string>
+    <string name="voice_punctuation_hint"><b>도움말:</b>다음 번에는 \'마침표\', \'쉼표\', \'물음표\'와 같은 구두점을 말해 보세요.</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">취소</string>
     <!-- Label on button when an error occurs -->
@@ -206,13 +206,13 @@
     <string name="auto_submit_summary">검색하거나 다음 입력란으로 이동할 때 자동으로 Enter 키를 누릅니다.</string>
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
-    <string name="open_the_keyboard"><font size="17"><b>\"키보드 열기\"\n</b></font><font size="3">\n</font>\"아무 텍스트 입력란이나 터치하세요.\"</string>
+    <string name="open_the_keyboard"><font size="17"><b>키보드 열기\n</b></font><font size="3">\n</font>아무 텍스트 입력란이나 터치하십시오</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
-    <string name="close_the_keyboard"><font size="17"><b>\"키보드 닫기\"\n</b></font><font size="3">\n</font>\"\'뒤로\' 키를 누르세요.\"</string>
+    <string name="close_the_keyboard"><font size="17"><b>키보드 닫기\n</b></font><font size="3">\n</font>뒤로가기 키를 누르십시오.</string>
     <!-- appears above image showing how to use touch and hold -->
-    <string name="touch_and_hold"><font size="17"><b>\"키를 길게 눌러 옵션 보기\"\n</b></font><font size="3">\n</font>\"문장 부호 및 악센트 기호 입력창이 열립니다.\"</string>
+    <string name="touch_and_hold"><font size="17"><b>키를 길게 눌러 옵션 보기\n</b></font><font size="3">\n</font>문장 부호 및 악센트 기호 입력창이 열립니다.</string>
     <!-- appears above image showing how to access keyboard settings -->
-    <string name="keyboard_settings"><font size="17"><b>\"키보드 설정\"\n</b></font><font size="3">\n</font><b>\"?123\"</b>\" 키를 길게 누르세요.\"</string>
+    <string name="keyboard_settings"><font size="17"><b>키보드 설정\n</b></font><font size="3">\n</font><b>\?123\</b>키를 길게 누르십시오.</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
@@ -225,7 +225,7 @@
     <!-- Title summary for input language selection screen -->
     <string name="language_selection_summary">손가락을 스페이스바에서 미끄러지듯 움직여 언어 변경</string>
     <!-- Add to dictionary hint -->
-    <string name="hint_add_to_dictionary">← 저장하려면 다시 터치하세요.</string>
+    <string name="hint_add_to_dictionary">← 저장하려면 다시 터치하십시오</string>
     <!-- Inform the user that a particular language has an available dictionary -->
     <string name="has_dictionary">사전 사용 가능</string>
     <!-- Preferences item for enabling to send user statistics to Google -->
