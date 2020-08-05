@@ -632,6 +632,12 @@
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
+  <string-array name="ChangeLog_1_08">
+    <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
+    <item>Przełącz na BiometricPrompt API, aby poprawić wrażenie użytkownika przy odblokowywaniu odciskiem palca i umożliwić odblokowanie twarzy, np. na Pixel 4.</item>
+    <item>Poprawki błędów</item>
+    <item>Poprawki błędów</item>
+  </string-array>
   <string name="ChangeLog_1_07b">   Wersja 1. 7b\n
     * Poprawa wydajności Argon2 dzięki natywnej implementacji (Dzięki Chih-Hsuan Yen!)\n
     * Istnieje możliwość wyłączenie odcisku palca, klikając ikonę odcisku palca (umożliwiło to uniknięcie problemów z czytnikami odcisków palców pod ekranem, dzięki marcoDallas!)\n
