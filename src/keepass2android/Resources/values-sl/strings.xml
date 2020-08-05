@@ -643,7 +643,7 @@
     <item>Ostali manjši popravki</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
-    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
     <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
     <item>Preklop na BiometricPrompt API za izboljšanje uporabniške izkušnje za odpiranje s prstnim odtisom in omogočitev odklepanja z obrazom, npr. na Pixel 4.</item>
     <item>Popravki hroščev</item>
