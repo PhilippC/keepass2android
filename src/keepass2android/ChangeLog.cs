@@ -116,10 +116,14 @@ namespace keepass2android
 	    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
 	    {
 	        string result = "Version " + version + "\n";
+            string previous = "";
 	        foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
-	        {
+            {
+                if (item == previous) //there was some trouble with crowdin translations, remove duplicates
+                    continue;
 	            result += " * " + item + "\n";
-	        }
+                previous = item;
+            }
 	        return result;
 
 	    }
