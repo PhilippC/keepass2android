@@ -636,11 +636,11 @@
     <item>因 Okhttp 的 HTTP/2 實現問題，而強制使用 HTTP/1.1 </item>
     <item>改進 Android 9+ 上的鍵盤對話方塊</item>
     <item>變更檔案關聯而避免開啟無關檔案</item>
-    <item>Make sure password text is not hidden behind eye icon</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
-    <item>Update to FTP library</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>確保密碼不被眼睛圖示掩蓋</item>
+    <item>變更自動填入行為，填入網域憑證到未知程式時警告使用者</item>
+    <item>更新 FTP 庫</item>
+    <item>修正應用程式的潛在崩潰</item>
+    <item>更多補丁</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>改用 FluentFTP 以支援 TLS 1.2</item>
