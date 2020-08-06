@@ -632,6 +632,16 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>因 Okhttp 的 HTTP/2 實現問題，而強制使用 HTTP/1.1 </item>
+    <item>改進 Android 9+ 上的鍵盤對話方塊</item>
+    <item>變更檔案關聯而避免開啟無關檔案</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Update to FTP library</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Further minor fixes</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>改用 FluentFTP 以支援 TLS 1.2</item>
     <item>改用 BiometricPrompt API ，因而改進指紋解鎖的用戶體驗，並支援如 Pixel 4 上的面容解鎖。</item>
