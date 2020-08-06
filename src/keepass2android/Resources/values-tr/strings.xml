@@ -633,11 +633,10 @@
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="CloseDbAfterFailedAttempts">Üç başarısız biyometrik kilit açma denemesinden sonra veritabanını kapat</string>
   <string-array name="ChangeLog_1_08">
-    <item>Zaman tabanlı bir kerelik parolayı panoya kopyalamak için bildirim düğmesi ekle</item>
     <item>TLS 1.2 desteği sağlamak için FluentFTP kullanmaya geç</item>
     <item>Parmak izi kilidi ve yüz kilidini kullanmak için BiometricPrompt API\'ye geç, örn. Piksel 4\'te.</item>
     <item>Hata düzeltmeleri</item>
-    <item>Bug fixes</item>
+    <item>Hata düzeltmeleri</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Sürüm 1.07b-ön\n
     * Yerel uygulama kullanılarak Argon2 performansı artırıldı (Chih-Hsuan Yen\'e teşekkürler!)\n

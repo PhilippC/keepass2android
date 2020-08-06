@@ -629,11 +629,10 @@
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
   <string-array name="ChangeLog_1_08">
-    <item>TOTP をクリップボードにコピーするための通知ボタンを追加する</item>
     <item>FluentFTP を使用するように切り替えて、TLS 1.2 のサポートを提供</item>
     <item>BiometricPrompt API に切り替えて、指紋ロック解除のユーザーエクスペリエンスを改善し、フェイスロック解除を使用できるようにします。 例えば Pixel 4 など。</item>
     <item>バグフィックス</item>
-    <item>Bug fixes</item>
+    <item>バグフィックス</item>
   </string-array>
   <string name="ChangeLog_1_07b">バージョン 1.07b\n
      * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen に感謝!)\n

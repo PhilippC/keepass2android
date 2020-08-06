@@ -632,11 +632,20 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Uporabi HTTP / 1.1 zaradi težave s HTTP/2 implementacijo OkHttp</item>
+    <item>Izboljšajte pogovorno okno tipkovnice v sistemu Android 9+</item>
+    <item>Spremenite povezave datotek v aplikaciji, da se izognete nekaterim nepotrebnim povezavam</item>
+    <item>Prepričajte se, da besedilo gesla ni skrito za ikono oči</item>
+    <item>Spremenite vedenje samodejnega izpolnjevanja in opozorite pri polnjenju poverilnic za domeno v nepoznano aplikacijo</item>
+    <item>Posodobitev v knjižnico FTP</item>
+    <item>Odpravlja morebitne zrušitve aplikacije</item>
+    <item>Ostali manjši popravki</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
-    <item>Dodaj gumb za obvestilo ob kopiranju TOTP na odložišče</item>
+    <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
     <item>Preklop na uporabo FluentFTP za zagotavljanje podpore za TLS 1.2</item>
     <item>Preklop na BiometricPrompt API za izboljšanje uporabniške izkušnje za odpiranje s prstnim odtisom in omogočitev odklepanja z obrazom, npr. na Pixel 4.</item>
-    <item>Popravki hroščev</item>
     <item>Popravki hroščev</item>
   </string-array>
   <string name="ChangeLog_1_07b">Različica 1.07b\n

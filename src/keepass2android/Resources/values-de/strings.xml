@@ -641,7 +641,6 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
     <item>Weitere kleinere Korrekturen</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
-    <item>Benachrichtigungsschalfläche hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
     <item>Schalfläche in der Benachrichtigung hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
     <item>Wechsel zu FluentFTP um TLS 1.2 zu unterstützen</item>
     <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z.B. auf Pixel 4.</item>

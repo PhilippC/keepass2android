@@ -630,7 +630,6 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string-array name="ChangeLog_1_08">
-    <item>Aggiungi un pulsante di notifica per la copia di TOTP negli appunti</item>
     <item>Passato all\'utilizzo di FluentFTP per fornire supporto a TLS 1.2</item>
     <item>Passa alle API di BiometricPrompt per migliorare l\'esperienza utente con lo sblocco con impronta e consentire di utilizzare lo sblocco con il volto, ad esempio su Pixel 4.</item>
     <item>Correzioni di bug</item>

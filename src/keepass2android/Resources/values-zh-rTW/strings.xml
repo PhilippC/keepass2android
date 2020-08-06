@@ -633,7 +633,6 @@
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
   <string-array name="ChangeLog_1_08">
-    <item>加入複製 TOTP 到剪貼簿的通知按鈕</item>
     <item>改用 FluentFTP 以支援 TLS 1.2</item>
     <item>改用 BiometricPrompt API ，因而改進指紋解鎖的用戶體驗，並支援如 Pixel 4 上的面容解鎖。</item>
     <item>修正錯誤</item>
