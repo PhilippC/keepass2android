@@ -64,11 +64,11 @@
     <!-- Option to enable quick fixes -->
     <string name="quick_fixes">빠른 수정</string>
     <!-- Description for quick fixes -->
-    <string name="quick_fixes_summary">자주 발생하는 오타를 수정합니다.</string>
+    <string name="quick_fixes_summary">자주 발생하는 오타를 수정합니다</string>
     <!-- Option to enable showing suggestions -->
     <string name="show_suggestions">추천 단어 표시</string>
     <!-- Description for show suggestions -->
-    <string name="show_suggestions_summary">글자를 입력하는 동안 추천 단어를 표시</string>
+    <string name="show_suggestions_summary">글자를 입력하는 동안 추천 단어를 표시합니다</string>
     <!-- Option to enable auto completion -->
     <string name="auto_complete">자동 완성</string>
     <!-- Description for auto completion -->
