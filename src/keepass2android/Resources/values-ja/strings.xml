@@ -631,12 +631,12 @@
   <string-array name="ChangeLog_1_08b">
     <item>OkHttp の HTTP/2 実装に問題があるため、HTTP/1.1 を強制</item>
     <item>Android 9 以降でキーボードダイアログを改善</item>
-    <item>Change file associations of the app to avoid some unnecessary associations</item>
-    <item>Make sure password text is not hidden behind eye icon</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
-    <item>Update to FTP library</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>不必要な関連付けを避けるためにアプリのファイルの関連付けを変更</item>
+    <item>パスワードの文字列が目のアイコンの後ろに隠れないように</item>
+    <item>ドメインの認証情報を自動入力するときに認識できないアプリで警告するよう自動入力の動作を変更</item>
+    <item>FTP ライブラリに更新</item>
+    <item>アプリの潜在的なクラッシュに対する修正</item>
+    <item>その他のマイナーな修正</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>FluentFTP を使用するように切り替えて、TLS 1.2 のサポートを提供</item>
@@ -979,4 +979,10 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="emergency_infotext_head">緊急時の準備はできていますか?</string>
   <string name="emergency_infotext_main">パスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか? アクシデントが発生したら? 緊急事態に備えて、マスター鍵を信頼できる人に渡すことをお勧めします。 そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります。</string>
   <string name="no_secure_display">現在有効なディスプレイはセキュアとしてマークされていません。 これは、他のアプリによってスクリーンショットが撮られる可能性があることを意味します。 Keepass2Androidは、安全なディスプレイのみに機密情報を表示するように構成されています。 安全なディスプレイに変更する (HDMIモニターを取り外すなど) か、アプリの設定を変更してください。</string>
+  <string name="switch_ime_text">Keepass2Android キーボードを有効にしてください</string>
+  <string name="switch_ime_reopen">再試行</string>
+  <string name="AutofillWarning_title">セキュリティ警告: 認識できないドメイン/アプリリンク</string>
+  <string name="AutofillWarning_Intro">ドメイン \"%1$s\" の資格情報をアプリ \"%2$s\" に挿入しようとしています。</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">\"%1$s\" に属する \"%2$s\" を信頼しているか、アプリ \"%2$s\" を信頼していて、資格情報の誤用ではない場合 (信頼できるブラウザアプリなど) 続行しても構いません。そうでない場合はキャンセルしてください。</string>
+  <string name="AutofillWarning_trustAsBrowser">常に  \"%1$s\" に同意する</string>
 </resources>
