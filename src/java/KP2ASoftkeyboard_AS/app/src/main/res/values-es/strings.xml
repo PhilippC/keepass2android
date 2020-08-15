@@ -83,6 +83,11 @@
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Ocultar siempre</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/modo-de-configuracion-de-clave-siempre-mostrar-nombre</item>
+        <item>@string/modo-de-configuracion-de-clave-siempre-ocultar-nombre</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Sugerencias de bigramas</string>
     <!-- Description for auto completion -->
@@ -133,8 +138,11 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
@@ -214,10 +222,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Ajustes del teclado\"\n</b></font><font size="3">\n</font>\"Mantén pulsada la tecla \"<b>\"?123\"</b>\".\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">Seleccionar método de introducción de texto</string>
     <!-- Title for input language selection screen -->
