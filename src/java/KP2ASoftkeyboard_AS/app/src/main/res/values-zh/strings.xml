@@ -19,10 +19,15 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">键盘</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">键盘设置</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">输入选项</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">按键振动</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">按键声音</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <!-- Description for hit_correction  -->
