@@ -633,11 +633,11 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string-array name="ChangeLog_1_08b">
-    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Vynútenie HTTP/1.1 kvôli problému s implementáciou HTTP/2 v OkHttp</item>
     <item>Vylepšenie dialógu pre klávesnicu na systéme Android 9+</item>
-    <item>Change file associations of the app to avoid some unnecessary associations</item>
-    <item>Make sure password text is not hidden behind eye icon</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Zmena priradení súborov k aplikácii, na zabránenie neželaným priradeniam</item>
+    <item>Zabezpečenie toho, aby nebol text hesla skrytý za ikonou oka</item>
+    <item>Zmena automatického dopĺňania, kvôli upozorneniu pri vypĺňaní prihlasovacích údajov pre doménu v nerozpoznanej aplikácii</item>
     <item>Aktualizácia knižnice FTP</item>
     <item>Opravy potenciálnych pádov aplikácie</item>
     <item>Ďalšie menšie opravy</item>
@@ -996,4 +996,6 @@ Prvé verejné vydanie
   <string name="switch_ime_reopen">Opakovať</string>
   <string name="AutofillWarning_title">Bezpečnostné upozornenie: nerozpoznaná doména/odkaz aplikácie</string>
   <string name="AutofillWarning_Intro">Chcete vložiť prihlas. údaje pre doménu \"%1$s\" do aplikácie \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Ak dôverujete aplikácii \"%2$s\", že patrí \"%1$s\" alebo ak dôverujete, že aplikácia \"%2$s\" nezneužíva prihlasovacie údaje (ak je to napríklad dôveryhodný prehliadač), môžete pokračovať. Ak nie, prosím zrušte túto akciu.</string>
+  <string name="AutofillWarning_trustAsBrowser">Vždy súhlasiť v \"%1$s\"</string>
 </resources>
