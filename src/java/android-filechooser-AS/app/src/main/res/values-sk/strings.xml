@@ -55,4 +55,22 @@
     <string name="afc_title_size">Veľkosť</string>
     <string name="afc_title_sort_by">Zoradiť podľa…</string>
     <string name="afc_yesterday">Včera</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Vyberte priečinok…</item>
+        <item quantity="few">Vyberte priečinky…</item>
+        <item quantity="many">Vyberte priečinky…</item>
+        <item quantity="other">Vyberte priečinky…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Vyberte súbor…</item>
+        <item quantity="few">Vyberte súbory…</item>
+        <item quantity="many">Vyberte súbory…</item>
+        <item quantity="other">Vyberte súbory…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Vyberte súbor/priečinok…</item>
+        <item quantity="few">Vyberte súbory/priečinky…</item>
+        <item quantity="many">Vyberte súbory/priečinky…</item>
+        <item quantity="other">Vyberte súbory/priečinky…</item>
+    </plurals>
 </resources>
