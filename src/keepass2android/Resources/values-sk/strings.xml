@@ -632,6 +632,16 @@
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Vylepšenie dialógu pre klávesnicu na systéme Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Aktualizácia knižnice FTP</item>
+    <item>Opravy potenciálnych pádov aplikácie</item>
+    <item>Ďalšie menšie opravy</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Prepnutie na použitie FluentFTP na poskytovanie podpory pre TLS 1.2</item>
     <item>Prepnutie na BiometricPrompt API na vylepšenie použív. zážitku pri odomykaní odtlačkom prsta a umožnenie odomknutia tvárou, napríklad na zariadeniach Pixel 4.</item>
@@ -982,4 +992,8 @@ Prvé verejné vydanie
   <string name="emergency_infotext_head">Ste pripravení na núdzové prípady?</string>
   <string name="emergency_infotext_main">Premýšľali ste niekedy nad tým, čo sa stane, keby ste nemali prístup ku svojej databáze hesiel? Čo keď sa niečo stane? Je dobré poskytnúť svoj primárny kľúč nejakej dôveryhodnej osobe, pre núdzové prípady. V opačnom prípade by nikto nemal prístup k Vaším heslám.</string>
   <string name="no_secure_display">Aktuálne platný displej nie je označený ako zabezpečený. Znamená to, že ostatné aplikácie si môžu vytvárať snímky obrazovky. Keepass2Android je nakonfigurovaný na zobrazovanie citlivých informácií len na zabezpečených displejoch. Prosím prepnite na zabezpečený displej (napríklad odpojením monitora HDMI) alebo zmeňte nastavenia aplikácie.</string>
+  <string name="switch_ime_text">Prosím aktivujte klávesnicu Keepass2Android.</string>
+  <string name="switch_ime_reopen">Opakovať</string>
+  <string name="AutofillWarning_title">Bezpečnostné upozornenie: nerozpoznaná doména/odkaz aplikácie</string>
+  <string name="AutofillWarning_Intro">Chcete vložiť prihlas. údaje pre doménu \"%1$s\" do aplikácie \"%2$s\".</string>
 </resources>
