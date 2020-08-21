@@ -31,8 +31,10 @@
     <!-- Option to pop up the character with a larger font above soft keyboard -->
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">启用输入错误校正</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">启用输入错误校正</string>
     <!-- Option to automatically correct word on hitting space -->
     <!-- Description for auto_correction -->
     <!-- Option to enable text prediction -->
