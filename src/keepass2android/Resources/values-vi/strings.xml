@@ -182,6 +182,7 @@
   <string name="rounds_explaination">số lần lặp mã hóa cao cung cấp thêm bảo vệ chống lại cuộc tấn công bạo lực, nhưng có thể làm chậm quá trình tải và lưu.</string>
   <string name="rounds_hint">số lần lặp</string>
   <string name="argon2memory">Bộ nhớ cho Argon 2 (bytes)</string>
+  <string name="argon2parallelism">argon2parallelism</string>
   <string name="database_name">Tên cơ sở dữ liệu</string>
   <string name="default_username">Tên người dùng mặc định cho các mục mới</string>
   <string name="saving_database">Đang lưu cơ sở dữ liệu…</string>
@@ -233,6 +234,7 @@
   <string name="enter_filename_details_create_import">Tập tin để nhập sẽ được lựa chọn trong bước tiếp theo.</string>
   <string name="enable_quickunlock">Bật QuickUnlock</string>
   <string name="QuickUnlock_label">Nhập %1$d ký tự cuối của mật khẩu của bạn:</string>
+  <string name="QuickUnlock_label_secure">QuickUnlock_label_secure</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Đóng cơ sở dữ liệu</string>
   <string name="QuickUnlockDefaultEnabled_title">Bật QuickUnlock theo mặc định</string>
@@ -245,6 +247,8 @@
   <string name="QuickUnlockIconHidden16_summary">Mở khóa nhanh yêu cầu một thông báo để hoạt động đúng. Chọn tùy chọn này để hiển thị một thông báo mà không có một biểu tượng đi kèm.</string>
   <string name="QuickUnlockLength_title">Chiều dài của khóa QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Số lượng tối đa của số ký tự được sử dụng cho mật mã QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Dấu biểu tượng mở khóa nhanh</string>
+  <string name="QuickUnlockHideLength_summary">QuickUnlockHideLength_summary</string>
   <string name="QuickUnlock_fail">QuickUnlock thất bại: mật mã không đúng!</string>
   <string name="BinaryDirectory_title">Thư mục của tập tin đính kèm</string>
   <string name="BinaryDirectory_summary">Thư mục nơi tập tin đính kèm được lưu.</string>
@@ -276,14 +280,22 @@
   <string name="ClearPasswordOnLeave_summary">Xóa mật khẩu chủ đã nhập khi rời màn hình mà không mở tập tin dữ liệu.</string>
   <string name="LockWhenNavigateBack_title">Khóa khi thoát ứng dụng</string>
   <string name="LockWhenNavigateBack_summary">Khóa cơ sở dữ liệu khi thoát ứng dụng bằng cách nhấn nút quay lại.</string>
+  <string name="ActivateSearchViewOnStart_title">ActivateSearchViewOnStart_title</string>
+  <string name="ActivateSearchViewOnStart_summary">ActivateSearchViewOnStart_summary</string>
   <string name="NoDonateOption_title">Dấu tùy chọn quyên góp</string>
   <string name="NoDonateOption_summary">Thiết lập này dành cho các nhà tài trợ. Nó được bật lên sau khi sử dụng Keepass2Android trong một thời gian ngắn.</string>
   <string name="NoDonationReminder_title">Không bao giờ yêu cầu quyên góp</string>
   <string name="NoDonationReminder_summary">Tôi sẽ không cho bạn một xu nào hoặc tôi đã tặng. Đừng yêu cầu đóng góp, ngay cả trong ngày sinh nhật của tác giả.</string>
   <string name="UseOfflineCache_title">Bộ nhớ đệm cho cơ sở dữ liệu</string>
+  <string name="CreateBackups_title">CreateBackups_title</string>
+  <string name="CreateBackups_summary">CreateBackups_summary</string>
+  <string name="UpdatingBackup">UpdatingBackup</string>
+  <string name="LocalBackupOf">LocalBackupOf</string>
+  <string name="show_local_backups">show_local_backups</string>
   <string name="AcceptAllServerCertificates_title">Giấy chứng nhận SSL</string>
   <string name="AcceptAllServerCertificates_summary">Xác định cách xử lý khi chứng chỉ xác nhận không thành công. Lưu ý: bạn có thể cài đặt chứng chỉ trên điện thoại nếu xác nhận không thành công!</string>
   <string name="ClearOfflineCache_title">Xóa bộ nhớ đệm?</string>
+  <string name="ClearOfflineCache_question">ClearOfflineCache_question</string>
   <string name="CheckForFileChangesOnSave_title">Kiểm tra những thay đổi</string>
   <string name="CheckForFileChangesOnSave_summary">Kiểm tra xem nếu tập tin đã bị thay đổi bởi ứng dụng bên ngoài trước khi lưu thay đổi.</string>
   <string name="CheckForDuplicateUuids_title">Kiểm tra UUID trùng</string>
@@ -293,6 +305,7 @@
   <string name="ShowSeparateNotifications_title">Thông báo riêng</string>
   <string name="ShowSeparateNotifications_summary">Hiện thông báo riêng cho việc sao chép tên người dùng và mật khẩu vào clipboard và bật bàn phím.</string>
   <string name="AccServiceAutoFill_prefs">Dịch vụ Trợ năng tự động điền</string>
+  <string name="AutoFill_prefs">AutoFill_prefs</string>
   <string name="ShowKp2aKeyboardNotification_title">Thông báo của bàn phím KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Cho phép các mục nhập có thể truy cập hoàn toàn thông qua bàn phím KP2A (khuyến khích).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Chuyển đổi bàn phím</string>
@@ -307,6 +320,7 @@
   <string name="AutoSwitchBackKeyboard_summary">Chuyển lại bàn phím trước đó khi không có mục nào được mở.</string>
   <string name="ShowUnlockedNotification_title">Biểu tượng của thông báo khi mở khóa</string>
   <string name="ShowUnlockedNotification_summary">Hiển thị một thông báo đang diễn ra trong khi cơ sở dữ liệu được mở khóa.</string>
+  <string name="IconVisibilityInfo_Android8_text">IconVisibilityInfo_Android8_text</string>
   <string name="PreloadDatabaseEnabled_title">Tải tập tin cơ sở dữ liệu trước</string>
   <string name="PreloadDatabaseEnabled_summary">Khởi động tiến trình xử lý hoặc tải xuống các tập tin cơ sở dữ liệu trong khi nhập mật mã.</string>
   <string name="AskOverwriteBinary">Bạn có muốn ghi đè lên dữ liệu hiện tại với cùng tên?</string>
