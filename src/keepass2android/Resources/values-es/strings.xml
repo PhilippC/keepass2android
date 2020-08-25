@@ -635,11 +635,11 @@
     <item>Fuerza HTTP/1.1 debido a un problema con la implementación de HTTP/2 de OkHttp</item>
     <item>Mejora el menú del teclado en Android 9+</item>
     <item>Cambios en las asociaciones de archivos de la aplicación para evitar algunas asociaciones innecesarias</item>
-    <item>Make sure password text is not hidden behind eye icon</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
-    <item>Update to FTP library</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>Asegúrate de que el texto de la contraseña no esté oculto detrás del icono del ojo</item>
+    <item>Cambia el comportamiento de autocompletar para avisar cuando se rellenan las credenciales de un dominio a una aplicación no reconocida</item>
+    <item>Actualización de la biblioteca FTP</item>
+    <item>Arreglos a potenciales fallos de la aplicación</item>
+    <item>Otras pequeñas correcciones</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Cambiar a usar FluentFTP para proporcionar soporte para TLS 1.2</item>
