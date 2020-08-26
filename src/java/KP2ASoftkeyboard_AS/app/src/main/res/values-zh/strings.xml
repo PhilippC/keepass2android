@@ -35,7 +35,7 @@
     <!-- Description for hit_correction  -->
     <string name="hit_correction_summary">启用输入错误校正</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
-    <string name="hit_correction_land">纠正邻近按键触摸错误</string>
+    <string name="hit_correction_land">横屏输入错误</string>
     <!-- Description for hit_correction in landscape -->
     <string name="hit_correction_land_summary">启用输入错误校正</string>
     <!-- Option to automatically correct word on hitting space -->
@@ -83,6 +83,11 @@
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">始终隐藏设置按钮</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_auto_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Bigram分词建议</string>
     <!-- Description for auto completion -->
