@@ -283,7 +283,7 @@
   <string name="QuickUnlock_lockButton">Fermer la base de données</string>
   <string name="QuickUnlockDefaultEnabled_title">Activer QuickUnlock par défaut</string>
   <string name="QuickUnlockDefaultEnabled_summary">Définit si QuickUnlock est activé par défaut ou non.</string>
-  <string name="ViewDatabaseSecure_title">Protéger l\'affichage de la base de données</string>
+  <string name="ViewDatabaseSecure_title">Protéger affichage base de données</string>
   <string name="ViewDatabaseSecure_summary">Si activé, aucune copie d\'écran ne sera autorisée et aucune miniature de l\'application ne s\'affichera dans la liste des applications récentes.</string>
   <string name="QuickUnlockIconHidden_title">Masquer l\'icône QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock ne fonctionne malheureusement pas sans afficher une icône de notification. Sélectionnez cette option pour utiliser une icône transparente.</string>
