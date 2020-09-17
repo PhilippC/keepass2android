@@ -321,6 +321,7 @@
   <string name="ShowUnlockedNotification_title">Biểu tượng của thông báo khi mở khóa</string>
   <string name="ShowUnlockedNotification_summary">Hiển thị một thông báo đang diễn ra trong khi cơ sở dữ liệu được mở khóa.</string>
   <string name="IconVisibilityInfo_Android8_text">IconVisibilityInfo_Android8_text</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Open Settings</string>
   <string name="PreloadDatabaseEnabled_title">Tải tập tin cơ sở dữ liệu trước</string>
   <string name="PreloadDatabaseEnabled_summary">Khởi động tiến trình xử lý hoặc tải xuống các tập tin cơ sở dữ liệu trong khi nhập mật mã.</string>
   <string name="AskOverwriteBinary">Bạn có muốn ghi đè lên dữ liệu hiện tại với cùng tên?</string>
