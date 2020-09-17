@@ -631,6 +631,16 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Zlepšit dialogové okno klávesnice na Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Ujistěte se, že text hesla není skrytý za ikonou oka</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Aktualizace FTP knihovny</item>
+    <item>Opravy možných pádů aplikace</item>
+    <item>Další drobné opravy</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Změna na FluentFTP pro podporu TLS 1.2</item>
     <item>Změna na BiometricPrompt API pro vylepšení odemykání otiskem prstu, a přidání možnosti odemknutí obličejem (např. na Pixel 4).</item>
@@ -971,4 +981,7 @@ První veřejné vydání
   <string name="emergency_infotext_head">Jste připraven/a na nouzové situace?</string>
   <string name="emergency_infotext_main">Uvažoval/a jste co se stane v případě že již nebude schopen/a přístupu k Vaší databázi hesel? Co se stane v případě nehody? Dobrý způsob je, pro případ mimořádných okolností, sdělit hlavní klíč osobě které věříte. V opačném případě nikdo nebude schopen otevřít Vaši databázi hesel.</string>
   <string name="no_secure_display">Aktuální displej není nastavený jako zabezpečený. Toto znamená že jiné aplikace mohou pořizovat snímky obrazovky. Nastavení Keepass2Android povoluje zobrazování soukromých informací pouze na zabezpečených displejích. Prosím přepněte na zabezpečený displej (např. odpojením HDMI monitoru) nebo změňte nastavení aplikace.</string>
+  <string name="switch_ime_text">Aktivujte prosím klávesnici Keepass2Android.</string>
+  <string name="switch_ime_reopen">Opakovat</string>
+  <string name="AutofillWarning_Intro">Chystáte se vložit přihlašovací údaje pro doménu \"%1$s\" do aplikace \"%2$s\".</string>
 </resources>
