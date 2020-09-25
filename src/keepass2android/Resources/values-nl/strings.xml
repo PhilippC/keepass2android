@@ -630,6 +630,16 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Forceer HTTP / 1.1 vanwege een probleem met de HTTP / 2-implementatie van OkHttp</item>
+    <item>Verbeter het toetsenborddialoog op Android 9+</item>
+    <item>Wijzig bestandsassociaties van de app, om onnodige associaties te vermijden</item>
+    <item>Zorg ervoor dat de wachtwoordtekst niet verborgen is achter het oogpictogram</item>
+    <item>Wijzig uw gedrag voor automatisch invullen, om geen gegevens door te geven aan malafide apps.</item>
+    <item>Update naar FTP  bibliotheek</item>
+    <item>Oplossingen voor mogelijke crashes van de app</item>
+    <item>Verder kleine herstellingen</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Schakel over naar FluentFTP om TLS 1.2 te ondersteunen</item>
     <item>Schakel over naar de BiometricPrompt API om de gebruikerservaring te verbeteren met vingerafdrukontgrendeling en om gezichtsontgrendeling toe te staan, bijvoorbeeld op de Pixel 4.</item>
@@ -976,4 +986,10 @@ Eerste publieke publicatie
   <string name="emergency_infotext_head">Ben je voorbereid op nood situaties?</string>
   <string name="emergency_infotext_main">Heb je ooit nagedacht over wat er gebeurd als je niet meer in staat bent om je wachtwoorden database te gebruiken? Wat als je een ongeluk krijgt? Veel mensen geven voor noodgevallen hun hoofdwachtwoord aan een persoon die ze vertrouwen. Anders heeft niemand meer toegang tot jouw wachtwoorden.</string>
   <string name="no_secure_display">Het huidige scherm is niet als veilig gemarkeerd. Dit betekent dat een schermafbeelding kan worden genomen door andere apps. Keepass2Android is ingesteld om gevoelige informatie alleen op beveiligde displays te tonen. Verander naar een beveiligde weergave (bijvoorbeeld door een HDMI monitor te koppelen) of verander de app instellingen.</string>
+  <string name="switch_ime_text">activeer de Keepass2 Android toetsenbord aub.</string>
+  <string name="switch_ime_reopen">Probeer opnieuw.</string>
+  <string name="AutofillWarning_title">Beveiligingswaarschuwing: niet-herkende domein / app-link</string>
+  <string name="AutofillWarning_Intro">U staat op het punt, om inloggegevens voor domein \"% 1 $ s\" in te voegen in de app \"% 2 $ s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Als u vertrouwt dat \"% 2 $ s\" tot \"% 1 $ s\" behoort of u vertrouwt erop dat de app \"% 2 $ s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kunt u doorgaan . Indien niet, gelieve te annuleren.</string>
+  <string name="AutofillWarning_trustAsBrowser">Altijd accepteren in \"% 1 $ s\"</string>
 </resources>
