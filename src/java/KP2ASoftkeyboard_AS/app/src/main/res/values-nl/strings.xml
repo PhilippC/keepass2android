@@ -83,6 +83,11 @@
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Altijd verbergen</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>\@ rij- instellingen-sleutel-wijze-automatisch-naam</item>
+        <item>\@ rij- instellingen- sleutel-wijze-altijd-tonen-naam</item>
+        <item>\@rij-instellingen-sleutel-wijze-altijd-verberg-naam</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Digram-suggesties</string>
     <!-- Description for auto completion -->
@@ -133,7 +138,9 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">Ga naar nummer toets</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">Ga naar alfabetische toetsenbord</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
     <string name="label_alt_key">Alt</string>
     <!-- Voice related labels -->
@@ -183,6 +190,7 @@
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Annuleren</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">in orde</string>
     <!-- Preferences item for enabling speech input -->
     <string name="voice_input">Spraakinvoer</string>
     <!-- Array of Voice Input modes -->
@@ -214,10 +222,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Toetsenbordinstellingen\"\n</b></font><font size="3">\n</font>\"Blijf de toets \'\"<b>\"?123\"</b>\"\' aanraken.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">"Ga naar het .com domein"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">"Ga naar het .net domein"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">"Ga naar het .org domein"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">"Ga naar het .gov domein"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">"Ga naar het .edu domein"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">Invoermethode selecteren</string>
     <!-- Title for input language selection screen -->
@@ -241,4 +254,5 @@
     <string name="subtype_mode_keyboard">toetsenbord</string>
     <string name="subtype_mode_voice">spraak</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[Volgende veld]]></string>
 </resources>
