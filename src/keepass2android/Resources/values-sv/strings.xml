@@ -620,14 +620,14 @@
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
   <string-array name="ChangeLog_1_08b">
-    <item>Tvinga HTTP/1.1 på grund av problem med HTTP/2 implementationen av OkHttp</item>
-    <item>Förbättra tangentbordsdialog i Android 9+</item>
-    <item>Ändra fil associeringen för appen för att undvika några onödiga associeringar</item>
-    <item>Kolla upp att lösenords-text inte är gömd bakom ögon-ikon</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
-    <item>Update to FTP library</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>Tvinga HTTP/1.1 på grund av problem med HTTP/2-implementering av OkHttp</item>
+    <item>Förbättra tangentbordsdialogen på Android 9+</item>
+    <item>Ändra filassociationer i appen för att undvika onödiga associationer</item>
+    <item>Se till att lösenordstexten inte är dold bakom ögonikonen</item>
+    <item>Ändra autofyll beteende för att varna när du fyller i autentiseringsuppgifter för en domän till en okänd app</item>
+    <item>Uppdatera till FTP-bibliotek</item>
+    <item>Fixar till potentiella krascher i appen</item>
+    <item>Ytterligare mindre fixar</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Byt till FluentFTP för att få stöd för TLS 1.2</item>
@@ -809,4 +809,10 @@
   <string name="emergency_infotext_head">Är du förberedd för nödfall?</string>
   <string name="emergency_infotext_main">Övervägde du någonsin vad som händer om du inte längre har tillgång till din lösenordsdatabas? Ifall du råkar ut för en olycka? Det är god sed att lämna över ditt huvudlösenord till någon person du litar på för nödfall. Annars kommer ingen ha tillgång till dina lösenord.</string>
   <string name="no_secure_display">Den valda skärmen är inte markerad som säker, eftersom skärmavbildningar kan tas av andra appar. Keepass2Android är inställd på att endast visa känsliga uppgifter på säkra skärmar. Vänligen byt till en säker skärm (t.ex. genom att koppla bort en HDMI-skärm) eller ändra appens inställningar.</string>
+  <string name="switch_ime_text">Vänligen aktivera Keepass2Android-tangentbordet.</string>
+  <string name="switch_ime_reopen">Försök igen</string>
+  <string name="AutofillWarning_title">Säkerhets-varning: Okänd domän/app-länk.</string>
+  <string name="AutofillWarning_Intro">Du är på väg att mata in inloggnings-uppgifter för domänen \"%1$s\" i appen \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Om du litar på \"%2$s\" att tillhöra \"%1$s\" eller du litar på appen \"%2$s\" att inte missbruka autentiseringsuppgifterna (t.ex. om det är en betrodd webbläsarapp) är det okej att fortsätta. Om inte, vänligen avbryt.</string>
+  <string name="AutofillWarning_trustAsBrowser">Acceptera alltid i \"%1$s\"</string>
 </resources>
