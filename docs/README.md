@@ -1,4 +1,4 @@
-<h1 align="center"><img src="/src/keepass2android/Resources/mipmap-xxxhdpi/ic_launcher_online.png" align="center" width="100" alt="Keepass2Android Logo">Keepass2Android</h1>
+<h1 align="center"><img src="/src/keepass2android/Resources/mipmap-xxxhdpi/ic_launcher_online.png" align="center" width="100" alt="Keepass2Android Logo">Keepass2Android-An Amazing Project</h1>
 
 
 # What is Keepass2Android?
