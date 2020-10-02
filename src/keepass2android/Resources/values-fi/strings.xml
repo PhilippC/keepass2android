@@ -23,7 +23,7 @@
   <string name="app_timeout">Aika-katkaisu</string>
   <string name="kill_app_label">Tapa sovellutus</string>
   <string name="show_kill_app">Sulje-painike</string>
-  <string name="application">Sovellutus</string>
+  <string name="application">Sovellus</string>
   <string name="application_settings">Sovellusasetukset</string>
   <string name="ShowGroupnameInSearchResult_title">Näytä ryhmien nimet hakutuloksissa</string>
   <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
