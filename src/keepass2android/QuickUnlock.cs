@@ -43,10 +43,8 @@ namespace keepass2android
 		private IOConnectionInfo _ioc;
 		private QuickUnlockBroadcastReceiver _intentReceiver;
 		private ActivityDesign _design;
-		private bool _fingerprintPermissionGranted;
-		private IBiometricIdentifier _biometryIdentifier;
+        private IBiometricIdentifier _biometryIdentifier;
 		private int _quickUnlockLength;
-		private const int FingerprintPermissionRequestCode = 0;
 
         private int numFailedAttempts = 0;
         private int maxNumFailedAttempts = int.MaxValue;
@@ -127,7 +125,7 @@ namespace keepass2android
 			Button btnUnlock = (Button) FindViewById(Resource.Id.QuickUnlock_button);
 			btnUnlock.Click += (object sender, EventArgs e) =>
 				{
-					OnUnlock(_quickUnlockLength, pwd);
+					OnUnlock(pwd);
 				};
 
 		    
@@ -142,7 +140,7 @@ namespace keepass2android
 			pwd.EditorAction += (sender, args) =>
 				{
 					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
-						OnUnlock(_quickUnlockLength, pwd);
+						OnUnlock(pwd);
 				};
 
 			_intentReceiver = new QuickUnlockBroadcastReceiver(this);
@@ -325,7 +323,7 @@ namespace keepass2android
             _biometryIdentifier = null;
 		}
 
-	    private void OnUnlock(int quickUnlockLength, EditText pwd)
+	    private void OnUnlock(EditText pwd)
 		{
 			var expectedPasswordPart = ExpectedPasswordPart;
 			if (pwd.Text == expectedPasswordPart)
@@ -433,7 +431,7 @@ namespace keepass2android
 
 		protected override void OnPause()
 		{
-			if (_biometryIdentifier != null && !_biometryIdentifier.HasUserInterface)
+			if (_biometryIdentifier != null)
 			{
 				Kp2aLog.Log("FP: Stop listening");
 				_biometryIdentifier.StopListening();
