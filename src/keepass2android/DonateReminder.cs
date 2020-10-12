@@ -135,6 +135,65 @@ namespace keepass2android
 				ResourceToShow = Resource.Layout.donate
 			};
 
+            yield return new Reminder
+            {
+                From = new DateTime(2022, 09, 17),
+                To = new DateTime(2022, 09, 25),
+                Key = "DonationOktoberfest2022"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2022, 09, 25),
+                To = new DateTime(2022, 10, 04),
+                Key = "DonationOktoberfest2022-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+
+            yield return new Reminder
+            {
+                From = new DateTime(2023, 09, 16),
+                To = new DateTime(2023, 09, 25),
+                Key = "DonationOktoberfest2023"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2023, 09, 25),
+                To = new DateTime(2023, 10, 04),
+                Key = "DonationOktoberfest2023-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2024, 09, 21),
+                To = new DateTime(2024, 09, 28),
+                Key = "DonationOktoberfest2024"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2024, 09, 28),
+                To = new DateTime(2024, 10, 08),
+                Key = "DonationOktoberfest2024-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+
+
+
+
 			int thisYear = DateTime.Now.Year;
 			
 			yield return new Reminder
