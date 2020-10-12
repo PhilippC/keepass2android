@@ -325,7 +325,7 @@ namespace keepass2android
 
             return true;
         }
-        
+
         protected override void OnResume()
         {
             base.OnResume();
@@ -503,7 +503,12 @@ namespace keepass2android
                     }
                     break;
                 case KeePass.ExitLock:
-                    // The database has already been locked, and the quick unlock screen will be shown if appropriate
+                    // The database has already been locked. No need to immediately return to quick unlock. Especially as this causes trouble for users with face unlock
+                    // (db immediately unlocked again) and confused some users as the biometric prompt seemed to disable the device back button or at least they didn't understand
+                    // why they should unlock...
+                    SetResult(KeePass.ExitClose);
+                    if (!IsFinishing)
+                        Finish();
                     break;
                 case KeePass.ExitCloseAfterTaskComplete:
                     // Do not lock the database
