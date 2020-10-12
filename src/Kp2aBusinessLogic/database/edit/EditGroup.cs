@@ -82,7 +82,7 @@ namespace keepass2android
 					_editGroup.App.DirtyGroups.Add(_editGroup.Group.ParentGroup);
 				} else
 				{
-					_editGroup._app.Lock(false);
+					_editGroup._app.Lock(false, false);
 				}
 				
 				base.Run();

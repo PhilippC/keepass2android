@@ -510,6 +510,9 @@ namespace keepass2android
                     if (!IsFinishing)
                         Finish();
                     break;
+                case KeePass.ExitLockByTimeout:
+                    //don't finish, bring up QuickUnlock
+                    break;
                 case KeePass.ExitCloseAfterTaskComplete:
                     // Do not lock the database
                     SetResult(KeePass.ExitCloseAfterTaskComplete);

@@ -38,7 +38,7 @@ namespace keepass2android
         /// <summary>
         /// Locks all currently open databases, quicklocking if available (unless false is passed for allowQuickUnlock)
         /// </summary>
-        void Lock(bool allowQuickUnlock);
+        void Lock(bool allowQuickUnlock, bool lockWasTriggeredByTimeout);
 
 
         /// <summary>

@@ -83,9 +83,10 @@ namespace keepass2android
 		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
 		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
 	    public const Result ExitLoadAnotherDb = Result.FirstUser + 10;
-        
+        public const Result ExitLockByTimeout = Result.FirstUser + 11;
 
-        public const string TagsKey = "@tags";
+
+		public const string TagsKey = "@tags";
 		public const string OverrideUrlKey = "@override";
 		public const string ExpDateKey = "@exp_date";
 

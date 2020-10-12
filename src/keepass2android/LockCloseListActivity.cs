@@ -29,7 +29,8 @@ namespace keepass2android
 	/// Base class for list activities displaying sensitive information. 
 	/// </summary>
 	/// Checks in OnResume whether the timeout occured and the database must be locked/closed.
-	public class LockCloseListActivity : LockingListActivity {
+	public class LockCloseListActivity : LockingListActivity, ILockCloseActivity
+    {
 		public LockCloseListActivity()
 		{
 			_design = new ActivityDesign(this);
@@ -49,7 +50,7 @@ namespace keepass2android
 
 			_ioc = App.Kp2a.CurrentDb.Ioc;
 
-			_intentReceiver = new LockCloseListActivityBroadcastReceiver(this);
+			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 
 			filter.AddAction(Intents.DatabaseLocked);
@@ -93,35 +94,11 @@ namespace keepass2android
 			base.OnDestroy();
 		}
 
-		private void OnLockDatabase()
-		{
-			Kp2aLog.Log("Finishing " + ComponentName.ClassName + " due to database lock");
 
-			SetResult(KeePass.ExitLock);
-			Finish();
-		}
-
-		private class LockCloseListActivityBroadcastReceiver : BroadcastReceiver
-		{
-			readonly LockCloseListActivity _activity;
-			public LockCloseListActivityBroadcastReceiver(LockCloseListActivity activity)
-			{
-				_activity = activity;
-			}
-
-			public override void OnReceive(Context context, Intent intent)
-			{
-				switch (intent.Action)
-				{
-					case Intents.DatabaseLocked:
-						_activity.OnLockDatabase();
-						break;
-					case Intent.ActionScreenOff:
-						App.Kp2a.OnScreenOff();
-						break;
-				}
-			}
-		}
-	}
+        public void OnLockDatabase(bool lockedByTimeout)
+        {
+            TimeoutHelper.Lock(this, lockedByTimeout);
+        }
+    }
 }
 

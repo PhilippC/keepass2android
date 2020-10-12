@@ -109,7 +109,7 @@ namespace keepass2android
 	/// </summary>
 	public class Kp2aApp: IKp2aApp, ICacheSupervisor
 	{
-	    public void Lock(bool allowQuickUnlock = true)
+	    public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
 			if (OpenDatabases.Any())
 			{
@@ -150,7 +150,10 @@ namespace keepass2android
 	        _currentlyWaitingXcKey = null;
 
 			UpdateOngoingNotification();
-			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
+            var intent = new Intent(Intents.DatabaseLocked);
+            if (lockWasTriggeredByTimeout)
+                intent.PutExtra("ByTimeout", true);
+            Application.Context.SendBroadcast(intent);
         }
 
 
@@ -256,6 +259,8 @@ namespace keepass2android
 		            .Commit();
             }
 
+			TimeoutHelper.ResumingApp();
+
             UpdateOngoingNotification();
 
 	        return newDb;
@@ -288,6 +293,8 @@ namespace keepass2android
         internal void UnlockDatabase()
 		{
 			QuickLocked = false;
+
+			TimeoutHelper.ResumingApp();
 
 			UpdateOngoingNotification();
 
@@ -1021,7 +1028,12 @@ namespace keepass2android
 			get; set;
 		}
 
-		public void OnScreenOff()
+		/// <summary>
+		/// When opening an activity after this time, we should close the database as it timed out.
+		/// </summary>
+        public DateTime TimeoutTime { get; set; }
+
+        public void OnScreenOff()
 		{
 			if (PreferenceManager.GetDefaultSharedPreferences(Application.Context)
 											 .GetBoolean(
@@ -1195,7 +1207,8 @@ namespace keepass2android
 
 		    IntentFilter intentFilter = new IntentFilter();
 		    intentFilter.AddAction(Intents.LockDatabase);
-		    intentFilter.AddAction(Intents.CloseDatabase);
+            intentFilter.AddAction(Intents.LockDatabaseByTimeout);
+			intentFilter.AddAction(Intents.CloseDatabase);
             Context.RegisterReceiver(broadcastReceiver, intentFilter);
         }
 

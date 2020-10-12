@@ -135,6 +135,7 @@
     <Compile Include="EntryActivityClasses\ViewImagePopupItem.cs" />
     <Compile Include="FileSaveProcessManager.cs" />
     <Compile Include="fileselect\FilteredCursor.cs" />
+    <Compile Include="ILockCloseActivity.cs" />
     <Compile Include="ImageViewActivity.cs" />
     <Compile Include="addons\OtpKeyProv\EncodingUtil.cs" />
     <Compile Include="addons\OtpKeyProv\OathHotpKeyProv.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="KeeChallenge.cs" />
     <Compile Include="FixedDrawerLayout.cs" />
     <Compile Include="KpEntryTemplatedEdit.cs" />
+    <Compile Include="LockCloseActivityBroadcastReceiver.cs" />
     <Compile Include="MeasuringRelativeLayout.cs" />
     <Compile Include="NfcOtpActivity.cs" />
     <Compile Include="NoSecureDisplayActivity.cs" />
