@@ -710,6 +710,56 @@
     <AndroidResource Include="Resources\values\strings.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+	<AndroidResource Include="Resources/values-af/strings.xml" />
+<AndroidResource Include="Resources/values-ar/strings.xml" />
+<AndroidResource Include="Resources/values-az/strings.xml" />
+<AndroidResource Include="Resources/values-bg-rBG/strings.xml" />
+<AndroidResource Include="Resources/values-bg/strings.xml" />
+<AndroidResource Include="Resources/values-ca/strings.xml" />
+<AndroidResource Include="Resources/values-cs/strings.xml" />
+<AndroidResource Include="Resources/values-da/strings.xml" />
+<AndroidResource Include="Resources/values-de/strings.xml" />
+<AndroidResource Include="Resources/values-el/strings.xml" />
+<AndroidResource Include="Resources/values-es/strings.xml" />
+<AndroidResource Include="Resources/values-eu/strings.xml" />
+<AndroidResource Include="Resources/values-fa-rIR/strings.xml" />
+<AndroidResource Include="Resources/values-fa/strings.xml" />
+<AndroidResource Include="Resources/values-fi/strings.xml" />
+<AndroidResource Include="Resources/values-fr/strings.xml" />
+<AndroidResource Include="Resources/values-gl-rES/strings.xml" />
+<AndroidResource Include="Resources/values-gl/strings.xml" />
+<AndroidResource Include="Resources/values-he/strings.xml" />
+<AndroidResource Include="Resources/values-hr-rHR/strings.xml" />
+<AndroidResource Include="Resources/values-hr/strings.xml" />
+<AndroidResource Include="Resources/values-hu/strings.xml" />
+<AndroidResource Include="Resources/values-id/strings.xml" />
+<AndroidResource Include="Resources/values-in/strings.xml" />
+<AndroidResource Include="Resources/values-it/strings.xml" />
+<AndroidResource Include="Resources/values-iw/strings.xml" />
+<AndroidResource Include="Resources/values-ja/strings.xml" />
+<AndroidResource Include="Resources/values-ko/strings.xml" />
+<AndroidResource Include="Resources/values-ml/strings.xml" />
+<AndroidResource Include="Resources/values-nb/strings.xml" />
+<AndroidResource Include="Resources/values-nl/strings.xml" />
+<AndroidResource Include="Resources/values-nn/strings.xml" />
+<AndroidResource Include="Resources/values-no/strings.xml" />
+<AndroidResource Include="Resources/values-pl/strings.xml" />
+<AndroidResource Include="Resources/values-pt-rBR/strings.xml" />
+<AndroidResource Include="Resources/values-pt-rPT/strings.xml" />
+<AndroidResource Include="Resources/values-pt/strings.xml" />
+<AndroidResource Include="Resources/values-ro/strings.xml" />
+<AndroidResource Include="Resources/values-ru/strings.xml" />
+<AndroidResource Include="Resources/values-sk/strings.xml" />
+<AndroidResource Include="Resources/values-sl/strings.xml" />
+<AndroidResource Include="Resources/values-sr/strings.xml" />
+<AndroidResource Include="Resources/values-sv/strings.xml" />
+<AndroidResource Include="Resources/values-tr/strings.xml" />
+<AndroidResource Include="Resources/values-uk/strings.xml" />
+<AndroidResource Include="Resources/values-vi/strings.xml" />
+<AndroidResource Include="Resources/values-zh/strings.xml" />
+<AndroidResource Include="Resources/values-zh-rCN/strings.xml" />
+<AndroidResource Include="Resources/values-zh-rTW/strings.xml" />
+
     <AndroidResource Include="Resources\layout\search.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -731,58 +781,12 @@
     <AndroidResource Include="Resources\layout\entry_edit_section_file.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\values-af\strings.xml" />
-    <AndroidResource Include="Resources\values-ar\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-el\strings.xml" />
-    <AndroidResource Include="Resources\values-fi\strings.xml" />
-    <AndroidResource Include="Resources\values-in\strings.xml" />
-    <AndroidResource Include="Resources\values-ko\strings.xml" />
-    <AndroidResource Include="Resources\values-no\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-pt-rPT\strings.xml" />
-    <AndroidResource Include="Resources\values-ro\strings.xml" />
-    <AndroidResource Include="Resources\values-sl\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-sr\strings.xml" />
-    <AndroidResource Include="Resources\values-sv\strings.xml" />
-    <AndroidResource Include="Resources\values-tr\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-vi\strings.xml" />
-    <AndroidResource Include="Resources\values-de\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-gl-rES\strings.xml" />
-    <AndroidResource Include="Resources\values-ca\strings.xml" />
-    <AndroidResource Include="Resources\values-cs\strings.xml" />
-    <AndroidResource Include="Resources\values-da\strings.xml" />
-    <AndroidResource Include="Resources\values-es\strings.xml" />
-    <AndroidResource Include="Resources\values-fr\strings.xml" />
-    <AndroidResource Include="Resources\values-hu\strings.xml" />
-    <AndroidResource Include="Resources\values-it\strings.xml" />
-    <AndroidResource Include="Resources\values-ja\strings.xml" />
-    <AndroidResource Include="Resources\values-nl\strings.xml" />
-    <AndroidResource Include="Resources\values-nn\strings.xml" />
-    <AndroidResource Include="Resources\values-pl\strings.xml" />
-    <AndroidResource Include="Resources\values-pt-rBR\strings.xml" />
-    <AndroidResource Include="Resources\values-ru\strings.xml" />
-    <AndroidResource Include="Resources\values-sk\strings.xml" />
-    <AndroidResource Include="Resources\values-uk\strings.xml" />
-    <AndroidResource Include="Resources\values-zh-rCN\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\values-zh-rTW\strings.xml" />
     <AndroidResource Include="Resources\layout\InViewButton.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\entry_view_test.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_title.xml" />
     <AndroidResource Include="Resources\layout\entry_extrastring_value.xml" />
-    <AndroidResource Include="Resources\values-nb\strings.xml" />
     <AndroidResource Include="Resources\anim\anim_enter.xml" />
     <AndroidResource Include="Resources\anim\anim_leave.xml">
       <SubType>Designer</SubType>
@@ -900,9 +904,6 @@
     <AndroidResource Include="Resources\values\attrs.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values-bg-rBG\strings.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml">
