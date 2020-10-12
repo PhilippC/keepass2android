@@ -277,6 +277,7 @@
 	<string name="author">Keepass2Android is developed by Philipp Crocoll.</string>
 	<string name="further_authors">Thanks to code contributions by %1$s.</string>
 	<string name="designers">Thanks to icon and layout design contributions by %1$s.</string>
+  <string name="supporters">Thanks to financial support by %1$s.</string>
 	<string name="credit_plugin1">The Twofish Cipher Plugin for Keepass was developed by Scott Greenberg and is included in KP2A.</string>
 	<string name="credit_android_filechooser">android-filechooser was developed by Hai Bison</string>
 	<string name="credit_keyboard">The KP2A keyboard is based on the Gingerbread keyboard by the Android Open Source Project and uses the Plugin Manager code from Hacker\'s Keyboard by Klaus Weidner.</string>
