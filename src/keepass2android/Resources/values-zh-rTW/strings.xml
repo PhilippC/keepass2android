@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android 是由 Philipp Crocoll 開發的。</string>
   <string name="further_authors">感謝 %1$s 的代碼貢獻。</string>
   <string name="designers">感謝 %1$s 的圖示和佈局設計貢獻。</string>
+  <string name="supporters">感謝%1$s的財務支援。</string>
   <string name="credit_plugin1">包含在 KP2A 中的 Twofish Cipher插件是由 Scott Greenberg 為 Keepass 開發的。</string>
   <string name="credit_android_filechooser">檔案選擇器是由 Hai Bison 開發</string>
   <string name="credit_keyboard">KP2A 鍵盤基於 Android 開放原始碼的 Gingerbread 鍵盤，並使用 Klaus Weidner 的 Hacker\'s Keyboard 插件管理器代碼。</string>
