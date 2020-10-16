@@ -176,12 +176,6 @@ public class WebDavStorage extends JavaFileStorageBase {
             builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
-        //OkHttp has issues with HTTP/2 (https://github.com/square/okhttp/issues/4964)
-        //An OkHttp developer suggested to use the same workaround as other apps:
-        // (https://github.com/PhilippC/keepass2android/issues/747#issuecomment-622946085)
-        //force HTTP1.1
-        builder.protocols(Arrays.asList(Protocol.HTTP_1_1));
-
         OkHttpClient client =  builder.build();
 
 
