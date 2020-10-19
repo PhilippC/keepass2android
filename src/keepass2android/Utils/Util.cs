@@ -36,6 +36,8 @@ using Android.Hardware.Display;
 using Android.Util;
 using Android.Views.InputMethods;
 using AndroidX.Core.View.InputMethod;
+using KeePassLib;
+using KeePassLib.Security;
 using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
 
@@ -666,6 +668,18 @@ namespace keepass2android
                 SetNoPersonalizedLearning(editText);
             }
         }
+
+        public static void SetNextFreeUrlField(PwEntry entry, string url)
+        {
+            string prefix = url.StartsWith(KeePass.AndroidAppScheme) ? "AndroidApp" : "KP2A_URL_";
+            int c = 1;
+            while (entry.Strings.Get(prefix + c) != null)
+            {
+                c++;
+            }
+
+            entry.Strings.Set(prefix + c, new ProtectedString(false, url));
+		}
     }
 }
 

@@ -45,7 +45,7 @@ namespace keepass2android.services.AutofillBase
 
             public string PackageNameWithPseudoSchema
             {
-                get { return "androidapp://" + PackageName; }
+                get { return KeePass.AndroidAppScheme + PackageName; }
             }
 
             public string WebDomain { get; set; }

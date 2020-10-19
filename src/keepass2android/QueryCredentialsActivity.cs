@@ -69,7 +69,7 @@ namespace keepass2android
 			if (Intent.Action == Strings.ActionQueryCredentialsForOwnPackage)
 			{
 				_requiredScope = Strings.ScopeQueryCredentialsForOwnPackage;
-				_requestedUrl = "androidapp://" + _pluginPackage;
+				_requestedUrl = KeePass.AndroidAppScheme + _pluginPackage;
 			}
 			else if (Intent.Action == Strings.ActionQueryCredentials)
 			{

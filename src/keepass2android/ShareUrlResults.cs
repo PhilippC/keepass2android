@@ -168,7 +168,7 @@ namespace keepass2android
             {
                 //first: search for exact url
                 var resultsForThisDb = db.SearchForExactUrl(url);
-                if (!url.StartsWith("androidapp://"))
+                if (!url.StartsWith(KeePass.AndroidAppScheme))
                 {
                     //if no results, search for host (e.g. "accounts.google.com")
                     if (!resultsForThisDb.Entries.Any())

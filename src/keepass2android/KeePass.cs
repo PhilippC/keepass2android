@@ -85,6 +85,8 @@ namespace keepass2android
 	    public const Result ExitLoadAnotherDb = Result.FirstUser + 10;
         public const Result ExitLockByTimeout = Result.FirstUser + 11;
 
+        public const string AndroidAppScheme = "androidapp://";
+
 
 		public const string TagsKey = "@tags";
 		public const string OverrideUrlKey = "@override";

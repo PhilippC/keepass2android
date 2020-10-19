@@ -701,9 +701,9 @@ namespace keepass2android
 		public override void PrepareNewEntry(PwEntry newEntry)
 		{
 			if (Url != null)
-			{
-				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, Url));
-			}
+            {
+                Util.SetNextFreeUrlField(newEntry, Url);
+            }
 			if (AllFields != null)
 			{
 				

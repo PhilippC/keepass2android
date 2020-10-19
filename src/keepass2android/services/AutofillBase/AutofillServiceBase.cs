@@ -233,7 +233,7 @@ namespace keepass2android.services.AutofillBase
             string displayName = str;
             try
             {
-                string appPrefix = "androidapp://";
+                string appPrefix = KeePass.AndroidAppScheme;
                 if (str.StartsWith(appPrefix))
                 {
                     str = str.Substring(appPrefix.Length);
@@ -282,7 +282,7 @@ namespace keepass2android.services.AutofillBase
 
         private bool CanAutofill(StructureParser.AutofillTargetId query, bool isManual)
         {
-            if (query.PackageNameWithPseudoSchema == "androidapp://android" || query.PackageNameWithPseudoSchema == "androidapp://" + this.PackageName)
+            if (query.PackageNameWithPseudoSchema == KeePass.AndroidAppScheme+"android" || query.PackageNameWithPseudoSchema == KeePass.AndroidAppScheme + this.PackageName)
                 return false;
             if (!isManual)
             {
