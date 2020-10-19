@@ -45,7 +45,6 @@ import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -175,12 +174,6 @@ public class WebDavStorage extends JavaFileStorageBase {
             builder.readTimeout(25, TimeUnit.SECONDS);
             builder.writeTimeout(25, TimeUnit.SECONDS);
         }
-
-        //OkHttp has issues with HTTP/2 (https://github.com/square/okhttp/issues/4964)
-        //An OkHttp developer suggested to use the same workaround as other apps:
-        // (https://github.com/PhilippC/keepass2android/issues/747#issuecomment-622946085)
-        //force HTTP1.1
-        builder.protocols(Arrays.asList(Protocol.HTTP_1_1));
 
         OkHttpClient client =  builder.build();
 

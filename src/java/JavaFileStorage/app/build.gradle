@@ -27,8 +27,8 @@ NOTE: If you change dependencies here, don't forget to update the jar files in J
 
 dependencies {
     compile 'com.android.support:appcompat-v7:28.0.0'
-    compile 'com.squareup.okhttp3:okhttp:4.2.2'
-    compile 'com.burgstaller:okhttp-digest:2.0'
+    compile 'com.squareup.okhttp3:okhttp:4.10.0-RC1'
+    compile 'com.burgstaller:okhttp-digest:2.5'
     compile 'com.google.android.gms:play-services:4.0.30'
     compile 'com.google.http-client:google-http-client-gson:1.20.0'
     compile('com.google.api-client:google-api-client-android:1.16.0-rc') {
