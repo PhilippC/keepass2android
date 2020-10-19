@@ -633,6 +633,12 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>V polje URL ne shranjuje več imen paketov aplikacij za Android</item>
+    <item>Izboljšanje obnašanja pri zaklepanju - takoj po odklepanju ne bo več prikazan biometrični poziv</item>
+    <item>Posodobi OkHttp za podporo HTTP/2</item>
+    <item>Popravljeni manjkajoči prevodi</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Uporabi HTTP / 1.1 zaradi težave s HTTP/2 implementacijo OkHttp</item>
     <item>Izboljšajte pogovorno okno tipkovnice v sistemu Android 9+</item>
