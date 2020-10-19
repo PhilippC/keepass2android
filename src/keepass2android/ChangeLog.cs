@@ -28,6 +28,7 @@ namespace keepass2android
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
                 BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08b, "1.08b"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08b, "1.08b"),
 				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08, "1.08"),
 			    ctx.GetString(Resource.String.ChangeLog_1_07b),
                 ctx.GetString(Resource.String.ChangeLog_1_07),
