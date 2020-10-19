@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android, Philipp Crocoll tarafından geliştirilmiştir.</string>
   <string name="further_authors">Katkıda bulunanlara teşekkürler: %1$s.</string>
   <string name="designers">Simge ve tasarıma katkıları için %1$s teşekkürler.</string>
+  <string name="supporters">Finansal olarak desteğinden ötürü %1$s \'a teşekkürler.</string>
   <string name="credit_plugin1">Scott Greenberg tarafından geliştirilen Keepass Twofish şifreleme eklentisi  KP2A\'ya  dahildir.</string>
   <string name="credit_android_filechooser">Android file-chooser (Dosya seçici) Hai Bison tarafından geliştirildi</string>
   <string name="credit_keyboard">KP2A klavyesi Gingerbread Android açık kaynak projesine dayanmaktadır ve  Klaus Weidner\'in Hacker\'s klavyesinin eklenti Yöneticisi\'ni kullanır.</string>
@@ -632,6 +633,16 @@
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="CloseDbAfterFailedAttempts">Üç başarısız biyometrik kilit açma denemesinden sonra veritabanını kapat</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Android 9+\'da klavye diyaloğunu geliştir.</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Update to FTP library</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Further minor fixes</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>TLS 1.2 desteği sağlamak için FluentFTP kullanmaya geç</item>
     <item>Parmak izi kilidi ve yüz kilidini kullanmak için BiometricPrompt API\'ye geç, örn. Piksel 4\'te.</item>
@@ -983,4 +994,6 @@
   <string name="emergency_infotext_head">Acil durumlar için hazır mısın?</string>
   <string name="emergency_infotext_main">Şifre veritabanınıza erişmediğinizde ne olacağını hiç düşündünüz mü? Ya bir kaza geçirirsen? Acil durumlar için ana anahtarınızı güvenilir bir kişiye iletmek iyi bir yöntemdir. Aksi halde şifrelerinize kimse erişemez.</string>
   <string name="no_secure_display">Şu anki ekran güvenli olarak işaretlenmemiş. Bu, ekran görüntülerinin diğer uygulamalar tarafından alınabileceği anlamına geliyor. Keepass2Android, hassas bilgileri yalnızca güvenli ekranlarda gösterecek şekilde yapılandırılmıştır. Lütfen güvenli bir ekrana geçin (örneğin bir HDMI monitörünü sökerek) veya uygulama ayarlarını değiştirin.</string>
+  <string name="AutofillWarning_title">Güvenlik Uyarısı: Tanınmayan alan adı/uygulama bağlantısı</string>
+  <string name="AutofillWarning_trustAsBrowser">Her zaman kabul et</string>
 </resources>

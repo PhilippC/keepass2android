@@ -10,7 +10,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="accept">قبول</string>
   <string name="deny">رد کن</string>
   <string name="add_entry">افزودن مدخل</string>
-  <string name="edit_entry">ویرایش مدخل</string>
+  <string name="edit_entry">ویرایش ورودی</string>
   <string name="add_url_entry">ساخت مدخل برای نشانی اینترنتی (URL)</string>
   <string name="add_group">افزودن گروه</string>
   <string name="add_group_title">افزودن گروه</string>

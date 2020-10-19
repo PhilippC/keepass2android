@@ -83,6 +83,11 @@
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Immer ausblenden</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_always_show_name</item>
+        <item>@string/settings_key_mode_always_hide_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Bigramm-Vorschläge</string>
     <!-- Description for auto completion -->
@@ -133,8 +138,11 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">Num</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">Alt</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
@@ -182,6 +190,7 @@
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Abbrechen</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">Ok</string>
     <!-- Preferences item for enabling speech input -->
     <string name="voice_input">Spracheingabe</string>
     <!-- Array of Voice Input modes -->
@@ -213,10 +222,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Tastatureinstellungen\"\n</b></font><font size="3">\n</font>\"Berühren und halten Sie die Taste \"<b>\"?123\"</b>\" gedrückt.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".de"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".net"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".org"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">Eingabemethode auswählen</string>
     <!-- Title for input language selection screen -->
@@ -240,4 +254,5 @@
     <string name="subtype_mode_keyboard">Tastatur</string>
     <string name="subtype_mode_voice">Sprache</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>

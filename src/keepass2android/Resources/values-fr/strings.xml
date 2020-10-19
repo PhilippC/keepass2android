@@ -283,7 +283,7 @@
   <string name="QuickUnlock_lockButton">Fermer la base de données</string>
   <string name="QuickUnlockDefaultEnabled_title">Activer QuickUnlock par défaut</string>
   <string name="QuickUnlockDefaultEnabled_summary">Définit si QuickUnlock est activé par défaut ou non.</string>
-  <string name="ViewDatabaseSecure_title">Protéger l\'affichage de la base de données</string>
+  <string name="ViewDatabaseSecure_title">Protéger affichage base de données</string>
   <string name="ViewDatabaseSecure_summary">Si activé, aucune copie d\'écran ne sera autorisée et aucune miniature de l\'application ne s\'affichera dans la liste des applications récentes.</string>
   <string name="QuickUnlockIconHidden_title">Masquer l\'icône QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock ne fonctionne malheureusement pas sans afficher une icône de notification. Sélectionnez cette option pour utiliser une icône transparente.</string>
@@ -629,6 +629,16 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Forcer HTTP/1.1 en raison d\'un problème avec l\'implémentation HTTP/2 d\'OkHttp</item>
+    <item>Améliorer la boîte de dialogue du clavier sur Android 9+</item>
+    <item>Changer les associations de fichiers de l\'application pour éviter certaines associations inutiles</item>
+    <item>Assurance que le texte du mot de passe n\'est pas caché derrière l\'icône de l’œil</item>
+    <item>Changer le comportement de saisie automatique pour avertir lors du remplissage d\'identifiants d\'un domaine à une application non reconnue</item>
+    <item>Mise à jour vers la bibliothèque FTP</item>
+    <item>Correction de plantages potentiels de l\'application</item>
+    <item>Autres corrections mineures</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Passage à l\'utilisation de FluentFTP pour assurer le support de TLS 1.2</item>
     <item>Passage à l\'API BiometricPrompt pour améliorer l\'expérience utilisateur avec le déverrouillage par empreintes digitales et permettre l\'utilisation du déverrouillage au moyen du visage, par exemple sur Pixel 4.</item>
@@ -911,4 +921,10 @@ Première version publique</string>
   <string name="emergency_infotext_head">Êtes-vous prêt pour les cas d’urgence ?</string>
   <string name="emergency_infotext_main">Avez-vous déjà envisagé ce qui se passerait si vous ne pouviez plus accéder à votre base de données de mots de passe ? Et si vous avez un accident ? Il est recommandé de transmettre votre clé principale à une personne de confiance pour les cas d\'urgence. Sinon, personne n\'aura accès à vos mots de passe.</string>
   <string name="no_secure_display">L\'écran actuellement valide n\'est pas marqué comme sécurisé. Cela signifie que des captures d\'écran peuvent être prises par d\'autres applications. Keepass2Android est configuré pour afficher des informations sensibles sur les écrans sécurisés uniquement. Veuillez changer pour un écran sécurisé (par exemple en détachant un moniteur HDMI) ou modifier les paramètres de l\'application.</string>
+  <string name="switch_ime_text">Veuillez activer le clavier Keepass2Android.</string>
+  <string name="switch_ime_reopen">Réessayer</string>
+  <string name="AutofillWarning_title">Alerte de sécurité : lien de domaine/application non reconnu</string>
+  <string name="AutofillWarning_Intro">Vous êtes sur le point d\'insérer des identifiants pour le domaine \"%1$s\" dans l\'application \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Si vous faites confiance à \"%2$s\" pour appartenir à \"%1$s\" ou que vous faites confiance à l\'application \"%2$s\" pour ne pas abuser des identifiants (ex. parce que c\'est une application de navigateur de confiance), il est possible de continuer. Si ce n\'est pas le cas, veuillez annuler.</string>
+  <string name="AutofillWarning_trustAsBrowser">Accepter toujours dans \"%1$s\"</string>
 </resources>

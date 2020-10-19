@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android 由 Philipp Crocoll 开发。</string>
   <string name="further_authors">感谢 %1$s 贡献的代码。</string>
   <string name="designers">感谢  %1$s 提供的图标和界面设计.</string>
+  <string name="supporters">感谢 %1$s的财政支持。</string>
   <string name="credit_plugin1">包含在 KP2A 中的双鱼算法插件是由 Scott Greenberg 为 Keepass 开发的。</string>
   <string name="credit_android_filechooser">Android 文件选择器是由 Hai Bison 开发的</string>
   <string name="credit_keyboard">KP2A 键盘基于 Android 开放源代码项目的姜饼键盘，并使用 Klaus Weidner 的黑客键盘插件管理器代码。</string>
@@ -405,7 +406,7 @@
   <string name="TransformingKey">变更主密钥...</string>
   <string name="DecodingDatabase">解码数据库...</string>
   <string name="ParsingDatabase">解析数据库...</string>
-  <string name="CheckingTargetFileForChanges">检查目标文件的更改...</string>
+  <string name="CheckingTargetFileForChanges">检查目标文件是否被更改...</string>
   <string name="TitleSyncQuestion">合并更改吗？</string>
   <string name="MessageSyncQuestion">数据库文件被外目修改。你想在保存之前载入并合并已有的更改吗？如果你想覆盖外部更改选择「不」。</string>
   <string name="SynchronizingDatabase">合并更改...</string>

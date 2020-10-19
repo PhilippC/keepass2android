@@ -218,6 +218,7 @@
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">Giriş yöntemini seç</string>
     <!-- Title for input language selection screen -->
@@ -241,4 +242,5 @@
     <string name="subtype_mode_keyboard">klavye</string>
     <string name="subtype_mode_voice">ses</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>

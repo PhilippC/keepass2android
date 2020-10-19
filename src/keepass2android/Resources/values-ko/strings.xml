@@ -313,7 +313,7 @@
   <string name="add_extra_string">추가 문자열 더하기</string>
   <string name="delete_extra_string">추가 문자열 지우기</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: 잠김. QuickUnlock 사용가능.</string>
-  <string name="database_loaded_unlocked">%1$s: 잠금 해제됨.</string>
+  <string name="database_loaded_unlocked">%1$s: 풀림.</string>
   <string name="credentials_dialog_title">서버 자격증명 입력</string>
   <string name="UseFileTransactions_title">파일 트랜젝션</string>
   <string name="UseFileTransactions_summary">데이터베이스 쓰기에 파일 트랜젝션을 사용합니다</string>
@@ -592,7 +592,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="Continue">계속</string>
   <string name="NoFilenameWarning">입력 한 URI가 파일명이 아닌 것 같습니다. 정말로 올바른 파일이 맞습니까?</string>
   <string name="FirstInvalidCompositeKeyError">복합 키가 잘못 되었습니다! 다시 시도 하십시오.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">복합 키가 잘못 되었습니다!  데이터베이스 잠금을 해제하려면 다음 단계를 수행하십시오.:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">복합 키가 잘못 되었습니다!  데이터베이스 잠금을 해제하려면 다음 단계를 수행하십시오:\n
   
     • 올바른 암호를 입력했는지 확인하십시오. 눈 아이콘을 사용하여 입력 한 비밀번호를 표시하십시오.\n
    • 올바른 암호 유형을 선택했는지 확인하십시오. 데이터베이스를 만들 때 사용한 유형과 일치하는지 확인하십시오.\n

@@ -64,15 +64,15 @@
     <!-- Option to enable quick fixes -->
     <string name="quick_fixes">빠른 수정</string>
     <!-- Description for quick fixes -->
-    <string name="quick_fixes_summary">자주 발생하는 오타를 수정합니다.</string>
+    <string name="quick_fixes_summary">자주 발생하는 오타를 수정합니다</string>
     <!-- Option to enable showing suggestions -->
     <string name="show_suggestions">추천 단어 표시</string>
     <!-- Description for show suggestions -->
-    <string name="show_suggestions_summary">글자를 입력하는 동안 추천 단어를 표시</string>
+    <string name="show_suggestions_summary">글자를 입력하는 동안 추천 단어를 표시합니다</string>
     <!-- Option to enable auto completion -->
     <string name="auto_complete">자동 완성</string>
     <!-- Description for auto completion -->
-    <string name="auto_complete_summary">스페이스바와 문장부호 키로 강조 표시된 단어를 자동 삽입</string>
+    <string name="auto_complete_summary">스페이스바와 문장부호 키로 강조 표시된 단어를 자동 삽입합니다</string>
     <!-- Option to show/hide the settings key -->
     <string name="prefs_settings_key">설정 키 표시</string>
     <!-- Array of the settings key mode values -->
@@ -86,7 +86,7 @@
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Bigram 추천</string>
     <!-- Description for auto completion -->
-    <string name="bigram_suggestion_summary">이전 단어를 사용하여 추천 기능 개선</string>
+    <string name="bigram_suggestion_summary">이전 단어를 사용하여 추천 기능을 개선합니다</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>해당 없음</item>
@@ -97,7 +97,7 @@
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
-    <string name="added_word"><xliff:g id="WORD">%s</xliff:g>: 저장됨</string>
+    <string name="added_word"><xliff:g id="WORD">%s</xliff:g> : 저장됨</string>
     <!-- Tip to long press on keys -->
     <string name="tip_long_press">키를 길게 누르면 악센트(ø, ö 등)가 표시됩니다</string>
     <!-- Tip to dismiss keyboard -->

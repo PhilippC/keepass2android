@@ -55,4 +55,13 @@
     <string name="afc_title_size">大小</string>
     <string name="afc_title_sort_by">排序方式</string>
     <string name="afc_yesterday">昨天</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="other">选择文件夹...</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="other">选择文件...</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="other">选择文件/ 文件夹...</item>
+    </plurals>
 </resources>

@@ -55,4 +55,22 @@
     <string name="afc_title_size">Розмір</string>
     <string name="afc_title_sort_by">Сортувати за…</string>
     <string name="afc_yesterday">Вчора</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Оберіть теку…</item>
+        <item quantity="few">Оберіть теки…</item>
+        <item quantity="many">Оберіть теки…</item>
+        <item quantity="other">Оберіть теки…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Оберіть файл…</item>
+        <item quantity="few">Оберіть файли…</item>
+        <item quantity="many">Оберіть файли…</item>
+        <item quantity="other">Оберіть файли…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Оберіть файл/теку…</item>
+        <item quantity="few">Оберіть файли/теки…</item>
+        <item quantity="many">Оберіть файли/теки…</item>
+        <item quantity="other">Оберіть файли/теки…</item>
+    </plurals>
 </resources>

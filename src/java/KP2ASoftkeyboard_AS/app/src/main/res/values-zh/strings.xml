@@ -19,129 +19,242 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">键盘</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">键盘设置</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">输入选项</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">按键振动</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">按键声音</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">按键弹出放大</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">智能纠错</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">启用输入错误校正</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">横屏输入错误</string>
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">启用输入错误校正</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">词语联想</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">自动更正前一个单词</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">词语联想</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category"> 词语建议设置</string>
     <!-- Description for text prediction -->
+    <string name="prediction_summary">在输入时启用自动补全</string>
     <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">自动补全</string>
     <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">增大填写文字</string>
     <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">横屏隐藏输入建议</string>
     <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">自动首字母大写</string>
     <!-- Description for auto cap -->
+    <string name="auto_cap_summary">将句首的首字母大写</string>
     <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">自动加标点符号</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">智能匹配标点符号</string>
     <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">自动纠正常见书写错误</string>
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">显示输入建议</string>
     <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">输入时提示输入建议</string>
     <!-- Option to enable auto completion -->
+    <string name="auto_complete">自动补全</string>
     <!-- Description for auto completion -->
+    <string name="auto_complete_summary">自动插入符号空格至高亮文字</string>
     <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">显示设置按钮</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">智能显示设置按钮</string>
     <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">始终显示设置按钮</string>
     <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">始终隐藏设置按钮</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_auto_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Bigram分词建议</string>
     <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">使用曾经使用过的词语改进建议</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>无</item>
-        <item>Basic</item>
-        <item>Advanced</item>
+        <item>基础模式</item>
+        <item>高级模式</item>
     </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : 已保存</string>
     <!-- Tip to long press on keys -->
+    <string name="tip_long_press">长按按键显示音标 (ø, ö, etc.)</string>
     <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">随时按返回键 \u21B6  来关闭键盘</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">使用数字及符号</string>
     <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">长按最左边的单词，将其添加到字典
+        </string>
     <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">触摸此提示以继续 »</string>
     <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">点击这里关闭此提示并开始输入！</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>只要触摸文本框时就显示键盘</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>长按按键查看音标\n(ø, oIndivid, ox, ox, ox, ox, 等)</b>
+    </string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>触摸此键可切换到数字和符号键盘</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>再次触摸此按键返回字母键盘</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>触摸 &amp; 按住此键以更改键盘设置，比如自动完成</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>快试试吧！</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">开始</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">下一步</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <string name="label_done_key">完成</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">发送</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
+    <string name="voice_warning_title">语音输入</string>
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">语音输入目前不支持您的语言，但确实可以使用英语。</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">语音输入是一项使用Google的网络语音识别功能的实验性功能。</string>
     <!-- An additional part of the warning dialog for voice input that only shows when the user
          actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">如要关闭语音输入，请转到键盘设置。</string>
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">如要使用语音输入，请按下麦克风按钮或在屏幕上滑动您的手指。</string>
     <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">请开始说话</string>
     <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">识别中</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">出错了。请再试一次。</string>
     <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">网络错误，不能连接到服务器。</string>
     <!-- Short message shown for a network error where the utterance was really long,
          in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">语音过长不能识别。</string>
     <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">音频问题导致错误</string>
     <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">服务端错误</string>
     <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">没有听到你说什么</string>
     <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">无法识别当前语音</string>
     <!-- Short message shown when the user initiates voice and voice
 	search is not installed. -->
+    <string name="voice_not_installed">未安装语音搜索</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>提示：</b> 滑动键盘说话。</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>提示：</b> 下一次，试着说一些符号\"句号\",\"逗号\"或者\"问号\"。</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">取消</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">确定</string>
     <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">语音输入</string>
     <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>在主键盘上</item>
+        <item>在符号键盘上</item>
+        <item>关闭</item>
+    </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>麦克风在主键盘上</item>
+        <item>麦克风在符号键盘上</item>
+        <item>禁用语音输入</item>
+    </string-array>
     <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">语音输入后自动提交</string>
     <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">搜索或前往下一个字段时自动按回车键。</string>
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>打开键盘\n</b></font><font size="3">\n</font>触摸任何文本字段。</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>关闭键盘\n</b></font><font size="3">\n</font>按返回键。</string>
     <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>触摸 \u0026 长按选项\n</b></font><font size="3">\n</font>访问标点和重音。</string>
     <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>键盘设置\n</b></font><font size="3">\n</font>触摸 \u0026 按住 <b>\?123\</b> 键。</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">"com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">选择输入方式</string>
     <!-- Title for input language selection screen -->
+    <string name="language_selection_title">输入语言:</string>
     <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">在空格栏上滑动手指以更改语言</string>
     <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">\u2190 再次触摸以保存</string>
     <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">字典可用</string>
     <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">启用用户反馈</string>
     <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">通过自动向Google发送使用情况统计数据和崩溃报告来帮助改进此输入方法编辑器。</string>
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">触摸以改正单词</string>
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">触摸输入的单词来修正这些单词</string>
     <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">键盘主题</string>
+    <string name="subtype_mode_keyboard">键盘</string>
+    <string name="subtype_mode_voice">语音</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>

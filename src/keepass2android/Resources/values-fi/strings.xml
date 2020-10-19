@@ -21,9 +21,11 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Aika-katkaisu</string>
-  <string name="kill_app_label">Tapa sovellutus</string>
+  <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
+  <string name="kill_app_label">Lopeta sovelluksen prosessi</string>
   <string name="show_kill_app">Sulje-painike</string>
-  <string name="application">Sovellutus</string>
+  <string name="show_kill_app_summary">Näytä \"Lopeta sovelluksen prosessi\" painike (vainoharhaisille käyttäjille)</string>
+  <string name="application">Sovellus</string>
   <string name="application_settings">Sovellusasetukset</string>
   <string name="ShowGroupnameInSearchResult_title">Näytä ryhmien nimet hakutuloksissa</string>
   <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
@@ -42,6 +44,7 @@
   <string name="FileHandling_prefs">Tiedostojen käsittely</string>
   <string name="keyboard_prefs">Näppäimistö</string>
   <string name="export_prefs">Vie tietokanta...</string>
+  <string name="fingerprint_prefs">Sormenjälkitunnistus</string>
   <string name="import_db_prefs">Tuo tietokanta sisäiseen kansioon</string>
   <string name="import_keyfile_prefs">Tuo avaintiedosto sisäiseen kansioon</string>
   <string name="keyboardswitch_prefs">Näppäimistön vaihtaminen</string>
@@ -72,6 +75,9 @@
   <string name="disclaimer_formal">Keepass2Androidilla ei ole takuuta; Tämä on ilmaisohjelmisto ja sitä saa levittää GPL-lisenssin version 2 tai sitä uudemman version lisenssiehtojen mukaisesti.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopioi leikepöydälle</string>
+  <string name="disable_fingerprint_unlock">Poista sormenjälkitunnistus käytöstä</string>
+  <string name="enable_fingerprint_unlock">Käytä sormenjälkitunnistusta</string>
+  <string name="enable_fingerprint_quickunlock">Käytä sormenjälkitunnistusta Pika-avauksessa</string>
   <string name="enter_filename">Kirjoita tietokannan tiedostonimi</string>
   <string name="entry_accessed">Käytetty</string>
   <string name="entry_cancel">Peruuta</string>
@@ -451,7 +457,7 @@
   <string name="help_database_location">Voit tallentaa tietokannan Android-laitteeseesi tai pilveen (vain online-versio). Keepass2Android:lla tietokanta on käytettävissä, vaikka olisit offline-tilassa. Tietokanta salataan turvallisesti 256-bittisellä AES-salauksella, joten vain sinä pääset käsiksi salasanoihisi. Suosittelemme valitsemaan Dropboxin: se on käytettävissä kaikilla laitteillasi ja tarjoaa jopa varmuuskopiot edellisistä tiedostojen versioista.</string>
   <string name="hint_database_location">Valitse minne tietokanta tallennetaan:</string>
   <string name="button_change_location">Vaihda sijaintia</string>
-  <string name="help_quickunlock">Jos valittu, Keepass2Android pysyy käynnissä taustalla vaikka tietokanta olisi lukittuna. Tämä mahdollistaa tietokannan avaamisen myöhemmin syöttämällä vain lyhyen osan pääsalasanasta.</string>
+  <string name="help_quickunlock">Jos käytössä, Keepass2Android pysyy käynnissä taustalla vaikka tietokanta olisi lukittuna. Tämä mahdollistaa tietokannan avaamisen myöhemmin syöttämällä vain lyhyen osan pääsalasanasta.</string>
   <string name="master_password">Pääsalasana</string>
   <string name="help_master_password">Tietokanta suojataan tähän syöttämälläsi sanasanalla. Valitse vahva salasana tietokannan suojaukseen! Vinkki: Muodosta lause tai kaksi jossa on seassa numeroita ja välimerkkejä.</string>
   <string name="hint_master_password">Valitse pääsalasana tietokannan suojaamiseksi:</string>
@@ -893,4 +899,5 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="emergency_infotext_head">Oletko varautunut hätätilanteisiin?</string>
   <string name="emergency_infotext_main">Oletko koskaan miettinyt mitä tapahtuu jos et pääse enää käsiksi salasanatietokantaasi? Mitä jos joudut onnettomuuteen? On hyvä käytäntö antaa pääavaimesi jonkun luotetun henkilön haltuun hätätilanteita varten. Muussa tapauksessa kukaan ei pääse käsiksi salasanoihisi.</string>
   <string name="no_secure_display">Nykyistä näyttöä ei ole merkitty turvalliseksi. Tämä tarkoittaa sitä että muut sovellukset voivat tehdä kuvankaappauksen. Keepass2Android on näyttää arkaluontoisia tietoja vain suojatuissa näytöissä. Vaihda suojattuun näyttöön (esimerkiksi irrottamalla HDMI-näyttö) tai muuta sovelluksen asetuksia.</string>
+  <string name="switch_ime_reopen">Yritä uudelleen</string>
 </resources>
