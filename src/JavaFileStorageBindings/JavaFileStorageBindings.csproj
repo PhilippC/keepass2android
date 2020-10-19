@@ -146,12 +146,12 @@
     <EmbeddedReferenceJar Include="Jars\gson-2.8.1.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-4.2.2.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp-digest-2.5.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okio-2.2.2.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio-2.9.0.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-digest-2.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp-4.10.0-RC1.jar" />
   </ItemGroup>
 </Project>
