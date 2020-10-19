@@ -633,6 +633,12 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>不再於網址欄位中儲存 Android 程式包名</item>
+    <item>改進鎖定功能，不再於解鎖時立刻顯示生物識別解鎖</item>
+    <item>升級 OkHttp，而支持 HTTP/2</item>
+    <item>修正缺失的翻譯</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>因 Okhttp 的 HTTP/2 實現問題，而強制使用 HTTP/1.1 </item>
     <item>改進 Android 9+ 上的鍵盤對話方塊</item>
