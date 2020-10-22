@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android est développé par Philipp Crocoll.</string>
   <string name="further_authors">Grâce aux contributions de %1$s.</string>
   <string name="designers">Merci aux contributions de %1$s pour la conception d\'icône et la mise en page.</string>
+  <string name="supporters">Merci au soutien financier de %1$s.</string>
   <string name="credit_plugin1">Le plugin de chiffrement Twofish pour Keepass a été développé par Scott Greenberg et fait partie de KP2A.</string>
   <string name="credit_android_filechooser">Le « FileChooser » a été développé par Hai Bison</string>
   <string name="credit_keyboard">Le clavier KP2A est basé sur le clavier Gingerbread du projet Open Source Android et utilise le code de \"Plugin Manager\" de \"Hacker\'s Keyboard\" par Klaus Weidner.</string>
@@ -629,6 +630,12 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>Arrêt du stockage des noms de paquets des applications Android dans le champ URL</item>
+    <item>Améliorer le comportement de verrouillage - n\'affiche plus l\'invite biométrique immédiatement après le déverrouillage</item>
+    <item>Mise à jour de OkHttp pour supporter HTTP/2</item>
+    <item>Corrections de traductions manquantes</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Forcer HTTP/1.1 en raison d\'un problème avec l\'implémentation HTTP/2 d\'OkHttp</item>
     <item>Améliorer la boîte de dialogue du clavier sur Android 9+</item>
