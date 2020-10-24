@@ -20,6 +20,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using keepass2android.view;
@@ -109,9 +110,21 @@ namespace keepass2android.search
 			}
 		}
 
-		private void Query (SearchParameters searchParams)
-		{
-		    Group = null;
+        private void Query(SearchParameters searchParams)
+        {
+			//kind of an easter egg: if the user types this exact string into the search, it immediately allows to disable the donation options
+            if (searchParams.SearchString == "allow disable donation")
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+                ISharedPreferencesEditor edit = prefs.Edit();
+                edit.PutLong(GetString(Resource.String.UsageCount_key), 1000);
+                edit.PutBoolean("DismissedDonateReminder", true);
+                edit.Commit();
+                Toast.MakeText(this, "Please go to Settings - App - Display to disable donation requests.", ToastLength.Long).Show();
+            }
+        
+
+            Group = null;
             try {
                 foreach (var db in App.Kp2a.OpenDatabases)
                 {

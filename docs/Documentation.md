@@ -98,6 +98,23 @@ It's time for action! As soon as possible, select Settings - Database - Export a
 ## Why is Keepass2Android's apk so big?
 Please see [Keepass2Android Apk](Keepass2Android-Apk.md) for more information.
 
+## I get a message "File is trashed" when reading or writing a file on Google Drive
+This happens because ocaml-fuse (I guess you are on Linux  and use that) moves files to trash and then creates a new one instead of correctly updating the file on Google Drive (each file has a unique ID which Keepass2Android uses). Fortunately, this was fixed: https://github.com/astrada/google-drive-ocamlfuse/issues/494After activating this option, please select "Change database" in KP2A, tap ,"Open file" and browse to the file on Google Drive again. After that, the message should no longer pop up.
+
+## I get a message "The name must not be empty: null" when opening from Google Drive
+Please follow  these steps:
+
+ * select "Change database" on the password screen, then "Open database" and browse to your file again
+ * go to Android app settings and disable all permissions for the KP2A app. Then try again to open the database file.
+ * reboot the device
+
+(Before running the following steps, make sure you don't have local changes in your database which have not been synchronized with Google Drive (this can happen if you worked offline). If you have, please open the database from the local cache and go to settings - database settings - export database and make a backup copy of the data.)
+
+  * clear KP2A's app cache in the Android settings
+  * uninstall & reinstall
+
+One of these has helped all users so far, but unfortunately it's not totally clear to me why different steps are required (or nothing for most users).
+
 # For developers
 If you are interested in adding new features, you have two options:
 Either your features can be implemented as a plug-in. Please see [How to create a plug-in?](How-to-create-a-plug-in_.md) for more information. Or you add the features directly in the source code of the projects and create a pull request.
