@@ -28,9 +28,9 @@ namespace KeePassLib.Serialization
 		/// </summary>
 		public static KdbxFormat GetFormatToUse(string fileExt)
 		{
-			// If the filename ends in .kdbp, use ProtocolBuffers format.
-			return fileExt.Equals(KdbpFile.FileNameExtension, StringComparison.OrdinalIgnoreCase) ? KdbxFormat.ProtocolBuffers : KdbxFormat.Default;
-		}
+            return fileExt.Equals(KdbpFile.FileNameExtension, StringComparison.OrdinalIgnoreCase) ? KdbxFormat.ProtocolBuffers :
+                (fileExt.Equals("xml", StringComparison.OrdinalIgnoreCase) ? KdbxFormat.PlainXml : KdbxFormat.Default);
+        }
 
 		public static void WriteDocument(PwDatabase database, Stream stream, byte[] protectedStreamKey, byte[] hashOfHeader)
 		{
