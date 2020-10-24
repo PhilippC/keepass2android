@@ -632,6 +632,12 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>在 URL字段中不再存储安卓应用程序的软件包名称</item>
+    <item>改善锁定行为- 解锁后不再立即显示生物特征提示</item>
+    <item>更新 OkHttp 以支持 HTTP/2</item>
+    <item>修复缺失的翻译</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>由于OkHttp的HTTP/2实现有问题，强制使用HTTP/1.1</item>
     <item>改进安卓9+上的键盘对话框</item>
