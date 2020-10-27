@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android vyvíjí Philipp Crocoll.</string>
   <string name="further_authors">Díky za příspěvky kódu %1$s.</string>
   <string name="designers">Díky za pomoc s ikonami a designem rozvržení %1$s.</string>
+  <string name="supporters">Děkujeme za finanční podporu od %1$s.</string>
   <string name="credit_plugin1">Šifrovací modul Twofish pro Keepass vyvinul Scott Greenberg a je součástí KP2A.</string>
   <string name="credit_android_filechooser">Souborový dialog vyvinul Hai Bison</string>
   <string name="credit_keyboard">KP2A klávesnice je založen na Gingerbread klávesnici Android Open Source projektu a využívá kódu z projektu Plugin Manageru klávesnice Hacker\'s Keyboard Klause Weidnera.</string>
@@ -631,6 +632,12 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>No longer storing package names of Android apps in the URL field</item>
+    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
+    <item>Update OkHttp to support HTTP/2</item>
+    <item>Oprava chybějících překladů</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
     <item>Zlepšit dialogové okno klávesnice na Android 9+</item>
