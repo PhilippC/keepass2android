@@ -217,9 +217,11 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Nastavení klávesnice\"\n</b></font><font size="3">\n</font>\"Dotkněte se klávesy \"<b>\"?123\"</b>\" a přidržte ji.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
     <string name="popular_domain_1">".cz"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
     <string name="popular_domain_3">".net"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
