@@ -19,8 +19,8 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
-  <string name="app_timeout">Временско прекораченје апликације</string>
-  <string name="app_timeout_summary">Време пре закључаванја базе података када апликација није активна</string>
+  <string name="app_timeout">Временско прекорачење апликације</string>
+  <string name="app_timeout_summary">Време пре закључавања базе података када апликација није активна</string>
   <string name="kill_app_label">Угасите процес апликације</string>
   <string name="show_kill_app">Дугме за излаз</string>
   <string name="application">Апликација</string>
@@ -28,7 +28,7 @@
   <string name="ShowGroupnameInSearchResult_title">Прикажи име групе у резултату претраге</string>
   <string name="ShowGroupnameInSearchResult_resume">Прикажи име групе испод унешених назива у резултату претраге. Корисно уколико неколико уноса имају исто име.</string>
   <string name="AutofillDisabledQueriesPreference_title">Онемогућено аутоматско попуњавање</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Преглед листе апликација и веб страница за које је аутоматско попуњаванје угашено</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Преглед листе апликација и веб страница за које је аутоматско попуњавање угашено</string>
   <string name="OfferSaveCredentials_summary">Ако је омогућено, Андроид ће вас питати да ли желите да сачувате корисничко име и шифру након што сте ручно унели податке у поља са аутоматским попуњавањем.</string>
   <string name="OfferSaveCredentials_title">Понуди чување корисничког имена и шифре</string>
   <string name="NavigationToGroupCompleted_message">Приказ групе је сада: %1$s</string>
