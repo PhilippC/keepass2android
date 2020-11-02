@@ -34,11 +34,13 @@ namespace keepass2android.services.AutofillBase
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Kp2aLog.Log("ChooseForAutofillActivityBase.OnCreate");
             base.OnCreate(savedInstanceState);
             
             //if launched from history, don't re-use the task. Proceed to FileSelect instead.
             if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
+                Kp2aLog.Log("ChooseForAutofillActivityBase: started from history");
                 Kp2aLog.Log("Forwarding to FileSelect. QueryCredentialsActivity started from history.");
                 RestartApp();
                 return;
@@ -47,6 +49,7 @@ namespace keepass2android.services.AutofillBase
             string requestedUrl = Intent.GetStringExtra(ExtraQueryString);
             if (requestedUrl == null)
             {
+                Kp2aLog.Log("ChooseForAutofillActivityBase: no requestedUrl ");
                 Toast.MakeText(this, "Cannot execute query for null.", ToastLength.Long).Show();
                 RestartApp();
                 return;
@@ -54,8 +57,10 @@ namespace keepass2android.services.AutofillBase
             
             if (Intent.HasExtra(ExtraDisplayWarning))
             {
+                
                 AutofillServiceBase.DisplayWarning warning =
                     (AutofillServiceBase.DisplayWarning)Intent.GetIntExtra(ExtraDisplayWarning, (int)AutofillServiceBase.DisplayWarning.None);
+                Kp2aLog.Log("ChooseForAutofillActivityBase: ExtraDisplayWarning = " + warning);
                 if (warning != AutofillServiceBase.DisplayWarning.None)
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -118,6 +123,7 @@ namespace keepass2android.services.AutofillBase
                 }
 
             }
+            else Kp2aLog.Log("ChooseForAutofillActivityBase: No ExtraDisplayWarning");
             Proceed();
         }
 
