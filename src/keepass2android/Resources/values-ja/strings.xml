@@ -254,6 +254,7 @@
   <string name="author">Keepass2AndroidはPhilipp Crocollによって開発されています。</string>
   <string name="further_authors">%1$s のコード貢献のおかげです。</string>
   <string name="designers">%1$s の、アイコンとレイアウト デザインの貢献に感謝します。</string>
+  <string name="supporters">%1$s による財政面の支援に感謝します。</string>
   <string name="credit_plugin1">Keepass用Twofish暗号プラグインはScott Greenberg氏により開発され、KP2Aに含まれています。</string>
   <string name="credit_android_filechooser">android-filechooserはHai Bisonによって開発されました。</string>
   <string name="credit_keyboard">KP2A キーボードは Android オープン ソース プロジェクトの Gingerbread keyboard をベースにして、Klaus Weidner の Hacker\'s Keyboard からプラグイン マネージャーのコードを使用しています。</string>
@@ -628,6 +629,12 @@
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>Android アプリのパッケージ名を URL フィールドに格納しません</item>
+    <item>ロック動作の改善 - ロック解除後すぐに生体認証プロンプトを表示しません</item>
+    <item>HTTP/2 をサポートする OkHttp を更新</item>
+    <item>不足している翻訳を修正</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>OkHttp の HTTP/2 実装に問題があるため、HTTP/1.1 を強制</item>
     <item>Android 9 以降でキーボードダイアログを改善</item>
