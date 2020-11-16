@@ -843,7 +843,7 @@ namespace keepass2android
 	        base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.preference);
 
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar));
+            SetSupportActionBar(FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar));
 
 	    }
 

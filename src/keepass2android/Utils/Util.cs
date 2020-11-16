@@ -19,6 +19,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -31,7 +32,12 @@ using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Hardware.Display;
 using Android.Util;
+using Android.Views.InputMethods;
+using AndroidX.Core.View.InputMethod;
+using KeePassLib;
+using KeePassLib.Security;
 using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
 
@@ -129,13 +135,41 @@ namespace keepass2android
 		
 		public static void CopyToClipboard(Context context, String text) {
             Android.Content.ClipboardManager clipboardManager = (ClipboardManager)context.GetSystemService(Context.ClipboardService);
-		    if (text == "")
-		        text = "***";
             ClipData clipData = Android.Content.ClipData.NewPlainText("KP2A", text);
             clipboardManager.PrimaryClip = clipData;
-		}
-		
-		public static void GotoUrl(Context context, String url) {
+		    if (text == "")
+		    {
+                //on some devices, adding empty text does not seem to work. Try again with some garbage.
+		        clipData = Android.Content.ClipData.NewPlainText("KP2A", "***");
+		        clipboardManager.PrimaryClip = clipData;
+                //seems to work better on some devices:
+		        try
+		        {
+		            clipboardManager.Text = text;
+                }
+		        catch (Exception exception)
+		        {
+		            Kp2aLog.LogUnexpectedError(exception);
+
+		        }
+		        
+            }
+
+
+        }
+
+	    private static readonly Regex ARC_DEVICE_PATTERN = new Regex(".+_cheets|cheets_.+");
+
+	    public static bool IsChromeOS(Context context)
+	    {
+	        return
+	            context.PackageManager.HasSystemFeature(
+	                "org.chromium.arc.device_management") // https://stackoverflow.com/a/39843396/292233
+	            || (Build.Device != null && ARC_DEVICE_PATTERN.IsMatch(Build.Device))
+                ;
+	    }
+
+        public static void GotoUrl(Context context, String url) {
 			if ( !string.IsNullOrEmpty(url) ) {
 
 				if (url.StartsWith("androidapp://"))
@@ -509,15 +543,19 @@ namespace keepass2android
             }
         }
 
-		public static bool GetShowKeyboardDuringFingerprintUnlock(Context ctx)
-		{
-				return (PreferenceManager.GetDefaultSharedPreferences(ctx).GetBoolean(
-					ctx.GetString(Resource.String.ShowKeyboardWhileFingerprint_key), true));
-			
-		}
+		
+        public static bool GetCloseDatabaseAfterFailedBiometricQuickUnlock(Context ctx)
+        {
+            return (PreferenceManager.GetDefaultSharedPreferences(ctx).GetBoolean(
+                ctx.GetString(Resource.String.CloseDatabaseAfterFailedBiometricQuickUnlock_key), true));
+
+        }
 
 
-		public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
+        
+
+
+        public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
 		{
 			var btn1 = context.FindViewById<Button>(btn1Id);
 			var btn2 = context.FindViewById<Button>(btn2Id);
@@ -567,6 +605,81 @@ namespace keepass2android
 	            "file" : displayPath.Substring(0, protocolSeparatorPos);
 	        return protocolId;
 	    }
-	}
+
+	    public static void MakeSecureDisplay(Activity context)
+	    {
+	        if (SecureDisplayConfigured(context))
+	        {
+	            var hasUnsecureDisplay = HasUnsecureDisplay(context);
+	            if (hasUnsecureDisplay)
+	            {
+	                var intent = new Intent(context, typeof(NoSecureDisplayActivity));
+	                intent.AddFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
+	                context.StartActivityForResult(intent,9999);
+	            }
+	            context.Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
+	        }
+        }
+
+	    public static bool SecureDisplayConfigured(Activity context)
+	    {
+	        return PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean(
+	            context.GetString(Resource.String.ViewDatabaseSecure_key), true);
+	    }
+
+	    public static bool HasUnsecureDisplay(Activity context)
+	    {
+	        bool hasUnsecureDisplay = false;
+	        if ((int) Build.VERSION.SdkInt >= 17)
+	        {
+	            foreach (var display in ((DisplayManager) context.GetSystemService(Context.DisplayService)).GetDisplays())
+	            {
+	                if ((display.Flags & DisplayFlags.Secure) == 0)
+	                {
+	                    hasUnsecureDisplay = true;
+	                }
+	            }
+	        }
+	        return hasUnsecureDisplay;
+	    }
+
+        public static void SetNoPersonalizedLearning(EditText editText)
+        {
+            if (editText == null)
+                return;
+            if ((int) Build.VERSION.SdkInt >= 26)
+                editText.ImeOptions = (ImeAction)EditorInfoCompat.ImeFlagNoPersonalizedLearning;
+            ;
+
+        }
+
+        public static void SetNoPersonalizedLearning(View view)
+        {
+            if (view is ViewGroup vg)
+            {
+                for (int i=0;i<vg.ChildCount;i++)
+                {
+                    SetNoPersonalizedLearning(vg.GetChildAt(i));
+                }
+            }
+
+            if (view is EditText editText)
+            {
+                SetNoPersonalizedLearning(editText);
+            }
+        }
+
+        public static void SetNextFreeUrlField(PwEntry entry, string url)
+        {
+            string prefix = url.StartsWith(KeePass.AndroidAppScheme) ? "AndroidApp" : "KP2A_URL_";
+            int c = 1;
+            while (entry.Strings.Get(prefix + c) != null)
+            {
+                c++;
+            }
+
+            entry.Strings.Set(prefix + c, new ProtectedString(false, url));
+		}
+    }
 }
 

@@ -29,7 +29,8 @@ namespace keepass2android
 	/// Base class for activities displaying sensitive information. 
 	/// </summary>
 	/// Checks in OnResume whether the timeout occured and the database must be locked/closed.
-	public class LockCloseActivity : LockingActivity {
+	public class LockCloseActivity : LockingActivity, ILockCloseActivity
+    {
 		
 		//the check if the database was locked/closed can be disabled by the caller for activities
 		//which may be used "outside" the database (e.g. GeneratePassword for creating a master password)
@@ -54,13 +55,9 @@ namespace keepass2android
 		{
 			_design.ApplyTheme();
 			base.OnCreate(savedInstanceState);
-			
 
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);	
-			}
+
+		    Util.MakeSecureDisplay(this);
 			
 
 			_ioc = App.Kp2a.CurrentDb?.Ioc;
@@ -119,35 +116,13 @@ namespace keepass2android
 			App.Kp2a.CheckForOpenFileChanged(this);
 		}
 
-		private void OnLockDatabase()
-		{
-			Kp2aLog.Log("Finishing " + ComponentName.ClassName + " due to database lock");
 
-			SetResult(KeePass.ExitLock);
-			Finish();
-		}
+        public void OnLockDatabase(bool lockedByTimeout)
+        {
+            TimeoutHelper.Lock(this, lockedByTimeout);
 
-		private class LockCloseActivityBroadcastReceiver : BroadcastReceiver
-		{			
-			readonly LockCloseActivity _activity;
-			public LockCloseActivityBroadcastReceiver(LockCloseActivity activity)
-			{
-				_activity = activity;
-			}
+        }
 
-			public override void OnReceive(Context context, Intent intent)
-			{
-				switch (intent.Action)
-				{
-					case Intents.DatabaseLocked:
-						_activity.OnLockDatabase();
-						break;
-					case Intent.ActionScreenOff:
-						App.Kp2a.OnScreenOff();
-						break;
-				}
-			}
-		}
 	}
 
 }

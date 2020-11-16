@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
@@ -52,6 +53,7 @@ import okhttp3.internal.tls.OkHostnameVerifier;
 public class WebDavStorage extends JavaFileStorageBase {
 
     private final ICertificateErrorHandler mCertificateErrorHandler;
+    private Context appContext;
 
     public WebDavStorage(ICertificateErrorHandler certificateErrorHandler)
     {
@@ -125,9 +127,13 @@ public class WebDavStorage extends JavaFileStorageBase {
         }
     }
 
+    //client to be reused (connection pool/thread pool). We're building a custom client for each ConnectionInfo in getClient for actual usage
+    final OkHttpClient baseClient = new OkHttpClient();
+
     private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        OkHttpClient.Builder builder = baseClient.newBuilder();
         final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
 
         com.burgstaller.okhttp.digest.Credentials credentials = new com.burgstaller.okhttp.digest.Credentials(ci.username, ci.password);
@@ -447,10 +453,20 @@ public class WebDavStorage extends JavaFileStorageBase {
         if (href.endsWith("/"))
             href = href.substring(0, href.length()-1);
         int lastIndex = href.lastIndexOf("/");
+
+        String displayName;
+
         if (lastIndex >= 0)
-            return href.substring(lastIndex + 1);
+            displayName = href.substring(lastIndex + 1);
         else
-            return href;
+            displayName = href;
+
+        try {
+            displayName = java.net.URLDecoder.decode(displayName, UTF_8);
+        } catch (UnsupportedEncodingException e) {
+        }
+
+        return displayName;
     }
 
     @Override
@@ -493,7 +509,7 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     @Override
     public void prepareFileUsage(Context appContext, String path) {
-        //nothing to do
+        this.appContext = appContext;
 
     }
 

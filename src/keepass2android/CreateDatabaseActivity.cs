@@ -21,7 +21,7 @@ namespace keepass2android
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_ActionBar")]
-	public class CreateDatabaseActivity : AppCompatActivity
+	public class CreateDatabaseActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private IOConnectionInfo _ioc;
 		private string _keyfileFilename;
@@ -141,8 +141,9 @@ namespace keepass2android
 			Android.Graphics.Color color = new Android.Graphics.Color (224, 224, 224);
 			btnTogglePassword.SetColorFilter (color, mMode);
 
-			
-		}
+            Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.root));
+
+        }
 
 	    readonly PasswordFont _passwordFont = new PasswordFont();
 

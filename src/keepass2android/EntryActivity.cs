@@ -92,7 +92,7 @@ namespace keepass2android
 	{
 		public const String KeyEntry = "entry";
         public const String KeyRefreshPos = "refresh_pos";
-		public const String KeyCloseAfterCreate = "close_after_create";
+		public const String KeyActivateKeyboard = "activate_keyboard";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
 	    public const int requestCodeBinaryFilename = 42376;
@@ -480,13 +480,13 @@ namespace keepass2android
 
 		
 
-		internal void StartNotificationsService(bool closeAfterCreate)
+		internal void StartNotificationsService(bool activateKeyboard)
 		{
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
 			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
-			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
+			showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
 
 			StartService(showNotIntent);
 		}
@@ -809,7 +809,7 @@ namespace keepass2android
 
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.url_container),
 			                  FindViewById(Resource.Id.url_vdots), PwDefs.UrlField)
-				.Add(new GotoUrlMenuItem(this));
+				.Add(new GotoUrlMenuItem(this, PwDefs.UrlField));
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.password_container),
 			                  FindViewById(Resource.Id.password_vdots), PwDefs.PasswordField);
 
@@ -829,7 +829,7 @@ namespace keepass2android
 			PopulateStandardText(Resource.Id.entry_comment, Resource.Id.entryfield_container_comment, PwDefs.NotesField);
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.comment_container),
 							  FindViewById(Resource.Id.comment_vdots), PwDefs.NotesField);
-
+                              
 			PopulateText(Resource.Id.entry_tags, Resource.Id.entryfield_container_tags, concatTags(Entry.Tags));
 			PopulateText(Resource.Id.entry_override_url, Resource.Id.entryfield_container_overrideurl, Entry.OverrideUrl);
 
@@ -877,6 +877,12 @@ namespace keepass2android
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
 			if (isProtected)
 				popupItems.Add(new ToggleVisibilityPopupMenuItem(this));
+            if (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
+                || _stringViews[fieldKey].Text.StartsWith("http://")
+                || _stringViews[fieldKey].Text.StartsWith("https://"))
+            {
+                popupItems.Add(new GotoUrlMenuItem(this, fieldKey));
+			}
 			return popupItems;
 		}
 
@@ -1209,19 +1215,15 @@ namespace keepass2android
 			newEntry.Touch(true, false); // Touch *after* backup
 
 			//if there is no URL in the entry, set that field. If it's already in use, use an additional (not existing) field
-			if (String.IsNullOrEmpty(newEntry.Strings.ReadSafe(PwDefs.UrlField)))
+			if (!url.StartsWith(KeePass.AndroidAppScheme) && String.IsNullOrEmpty(newEntry.Strings.ReadSafe(PwDefs.UrlField)))
 			{
 				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, url));
 			}
 			else
-			{
-				int c = 1;
-				while (newEntry.Strings.Get("KP2A_URL_" + c) != null)
-				{
-					c++;
-				}
+            {
+                Util.SetNextFreeUrlField(newEntry, url);
 
-				newEntry.Strings.Set("KP2A_URL_" + c, new ProtectedString(false, url));
+                
 			}
 
 			//save the entry:
@@ -1247,9 +1249,9 @@ namespace keepass2android
 		}
 
 
-		public bool GotoUrl()
-		{
-			string url = _stringViews[PwDefs.UrlField].Text;
+		public bool GotoUrl(string urlFieldKey)
+        {
+            string url = _stringViews[urlFieldKey].Text;
 			if (url == null) return false;
 
 			// Default http:// if no protocol specified

@@ -227,7 +227,7 @@ namespace keepass2android
             newEntry.SetUuid(new PwUuid(true), true); // Create new UUID
             string strTitle = newEntry.Strings.ReadSafe(PwDefs.TitleField);
             newEntry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, strTitle + " (" + Android.OS.Build.Model + ")"));
-            var addTask = new AddEntry(this, App.Kp2a, newEntry,item.Entry.ParentGroup,new ActionOnFinish(this, (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
+            var addTask = new AddEntry(this, App.Kp2a.CurrentDb, App.Kp2a, newEntry,item.Entry.ParentGroup,new ActionOnFinish(this, (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
 
             ProgressTask pt = new ProgressTask(App.Kp2a, this, addTask);
             pt.Run();
@@ -284,7 +284,7 @@ namespace keepass2android
             var listView = FindViewById<ListView>(Android.Resource.Id.List);
             listView.Adapter = _adapter;
 
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar));
+            SetSupportActionBar(FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar));
 
             FindViewById<Button>(Resource.Id.add_child_db_button).Click += (sender, args) =>
             {
@@ -366,7 +366,7 @@ namespace keepass2android
                         {KeeAutoExecExt.ThisDeviceId, true}
                     })));
 
-            var addTask = new AddEntry(this, App.Kp2a, newEntry, autoOpenGroup, new ActionOnFinish(this, (success, message, activity) => (activity as ConfigureChildDatabasesActivity)?.Update()));
+            var addTask = new AddEntry(this, db, App.Kp2a, newEntry, autoOpenGroup, new ActionOnFinish(this, (success, message, activity) => (activity as ConfigureChildDatabasesActivity)?.Update()));
 
             ProgressTask pt = new ProgressTask(App.Kp2a, this, addTask);
             pt.Run();

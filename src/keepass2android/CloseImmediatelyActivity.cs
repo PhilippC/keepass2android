@@ -15,7 +15,7 @@ using Android.Widget;
 namespace keepass2android
 {
     [Activity(Label = AppNames.AppName, Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-    public class CloseImmediatelyActivity : AppCompatActivity
+    public class CloseImmediatelyActivity : AndroidX.AppCompat.App.AppCompatActivity
     {
         protected override void OnResume()
         {

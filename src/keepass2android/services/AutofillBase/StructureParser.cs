@@ -28,32 +28,63 @@ namespace keepass2android.services.AutofillBase
 	    private PublicSuffixRuleCache domainSuffixParserCache;
 	    public FilledAutofillFieldCollection ClientFormData { get; set; }
 
+        public string PackageId { get; set; }
+
 		public StructureParser(Context context, AssistStructure structure)
-		{
+        {
+            kp2aDigitalAssetLinksDataSource = new Kp2aDigitalAssetLinksDataSource(context);
 		    mContext = context;
 		    Structure = structure;
 			AutofillFields = new AutofillFieldMetadataCollection();
 		    domainSuffixParserCache = new PublicSuffixRuleCache(context);
 		}
 
-		public string ParseForFill(bool isManual)
+        public class AutofillTargetId
+        {
+			public string PackageName { get; set; }
+
+            public string PackageNameWithPseudoSchema
+            {
+                get { return KeePass.AndroidAppScheme + PackageName; }
+            }
+
+            public string WebDomain { get; set; }
+
+			/// <summary>
+			/// If PackageName and WebDomain are not compatible (by DAL or because PackageName is a trusted browser in which case we treat all domains as "compatible"
+			/// we need to issue a warning. If we would fill credentials for the package, a malicious website could try to get credentials for the app.
+			/// If we would fill credentials for the domain, a malicious app could get credentials for the domain.
+			/// </summary>
+            public bool IncompatiblePackageAndDomain { get; set; }
+
+            public string DomainOrPackage
+            {
+                get
+                {
+                    return WebDomain ?? PackageNameWithPseudoSchema;
+                }
+            }
+        }
+
+		public AutofillTargetId ParseForFill(bool isManual)
 		{
 			return Parse(true, isManual);
 		}
 
-		public string ParseForSave()
+		public AutofillTargetId ParseForSave()
 		{
 			return Parse(false, true);
 		}
 
-	    /// <summary>
-	    /// Traverse AssistStructure and add ViewNode metadata to a flat list.
-	    /// </summary>
-	    /// <returns>The parse.</returns>
-	    /// <param name="forFill">If set to <c>true</c> for fill.</param>
-	    /// <param name="isManualRequest"></param>
-	    string Parse(bool forFill, bool isManualRequest)
-		{
+		/// <summary>
+		/// Traverse AssistStructure and add ViewNode metadata to a flat list.
+		/// </summary>
+		/// <returns>The parse.</returns>
+		/// <param name="forFill">If set to <c>true</c> for fill.</param>
+		/// <param name="isManualRequest"></param>
+        AutofillTargetId Parse(bool forFill, bool isManualRequest)
+        {
+            AutofillTargetId result = new AutofillTargetId();
 			CommonUtil.logd("Parsing structure for " + Structure.ActivityComponent);
 			var nodes = Structure.WindowNodeCount;
 			ClientFormData = new FilledAutofillFieldCollection();
@@ -63,6 +94,7 @@ namespace keepass2android.services.AutofillBase
             for (int i = 0; i < nodes; i++)
 			{
 				var node = Structure.GetWindowNodeAt(i);
+
 				var view = node.RootViewNode;
 				ParseLocked(forFill, isManualRequest, view, ref webDomain);
 			}
@@ -78,23 +110,33 @@ namespace keepass2android.services.AutofillBase
 		        {
 		            passwordFields = _editTextsWithoutHint.Where(HasPasswordHint).ToList();
                 }
-		        
-		        foreach (var passwordField in passwordFields)
-		        {
-                    var usernameField = _editTextsWithoutHint.TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
-		            if (usernameField != null)
-		            {
-		                usernameFields.Add(usernameField);
-		            }
-		        }
-                //for some pages with two-step login, we don't see a password field and don't display the autofill for non-manual requests. But if the user forces autofill, 
-                //let's assume it is a username field:
-		        if (isManualRequest && !passwordFields.Any() && _editTextsWithoutHint.Count == 1)
-		        {
-		            usernameFields.Add(_editTextsWithoutHint.First());
+
+                usernameFields = _editTextsWithoutHint.Where(HasUsernameHint).ToList();
+
+                if (usernameFields.Any() == false)
+                {
+
+                    foreach (var passwordField in passwordFields)
+                    {
+                        var usernameField = _editTextsWithoutHint
+                            .TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
+                        if (usernameField != null)
+                        {
+                            usernameFields.Add(usernameField);
+                        }
+                    }
+                }
+                if (usernameFields.Any() == false)
+                {
+                    //for some pages with two-step login, we don't see a password field and don't display the autofill for non-manual requests. But if the user forces autofill, 
+                    //let's assume it is a username field:
+                    if (isManualRequest && !passwordFields.Any() && _editTextsWithoutHint.Count == 1)
+                    {
+                        usernameFields.Add(_editTextsWithoutHint.First());
+                    }
                 }
 
-                
+
             }
 		    
             //force focused fields to be included in autofill fields when request was triggered manually. This allows to fill fields which are "off" or don't have a hint (in case there are hints)
@@ -131,32 +173,49 @@ namespace keepass2android.services.AutofillBase
             }
 
 
-
-            String packageName = Structure.ActivityComponent.PackageName;
+            result.WebDomain = webDomain;
+            result.PackageName = Structure.ActivityComponent.PackageName;
             if (!string.IsNullOrEmpty(webDomain))
 		    {
-		        bool valid = Kp2aDigitalAssetLinksDataSource.Instance.IsValid(mContext, webDomain, packageName);
-		        if (!valid)
-		        {
-		            CommonUtil.loge($"DAL verification failed for {packageName}/{webDomain}");
-		            webDomain = null;
-		        }
+                result.IncompatiblePackageAndDomain = !kp2aDigitalAssetLinksDataSource.IsTrustedLink(webDomain, result.PackageName);
+		        if (result.IncompatiblePackageAndDomain)
+		        {   
+					CommonUtil.loge($"DAL verification failed for {result.PackageName}/{result.WebDomain}");
+                }
 		    }
-		    if (string.IsNullOrEmpty(webDomain))
+            else
             {
-		        webDomain = "androidapp://" + packageName;
-                CommonUtil.logd("no web domain. Using package name.");
-		    }
-		    return webDomain;
+                result.IncompatiblePackageAndDomain = false;
+            }
+            return result;
 		}
-
-	    private static bool HasPasswordHint(AssistStructure.ViewNode f)
+        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort" };
+        private static bool HasPasswordHint(AssistStructure.ViewNode f)
 	    {
-	        return (f.IdEntry?.ToLowerInvariant().Contains("password") ?? false)
-	               || (f.Hint?.ToLowerInvariant().Contains("password") ?? false);
-	    }
+            return ContainsAny(f.IdEntry, _passwordHints) ||
+                   ContainsAny(f.Hint, _passwordHints);
+        }
 
-	    private static bool IsInputTypeClass(InputTypes inputType, InputTypes inputTypeClass)
+        private static readonly HashSet<string> _usernameHints = new HashSet<string> { "email","e-mail","username" };
+        private Kp2aDigitalAssetLinksDataSource kp2aDigitalAssetLinksDataSource;
+
+        private static bool HasUsernameHint(AssistStructure.ViewNode f)
+        {
+            return ContainsAny(f.IdEntry, _usernameHints) ||
+                ContainsAny(f.Hint, _usernameHints);
+        }
+
+        private static bool ContainsAny(string value, IEnumerable<string> terms)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+            var lowerValue = value.ToLowerInvariant();
+            return terms.Any(t => lowerValue.Contains(t));
+        }
+
+        private static bool IsInputTypeClass(InputTypes inputType, InputTypes inputTypeClass)
 	    {
             if (!InputTypes.MaskClass.HasFlag(inputTypeClass))
                 throw new Exception("invalid inputTypeClas");
@@ -198,8 +257,13 @@ namespace keepass2android.services.AutofillBase
         void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
 		{
 		    String webDomain = viewNode.WebDomain;
+            if ((PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
+                (viewNode.IdPackage != "android"))
+            {
+                PackageId = viewNode.IdPackage;
+            }
 
-		    DomainName outDomain;
+            DomainName outDomain;
 		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
 		    {
 		        webDomain = outDomain.RegisterableDomainName;
@@ -224,9 +288,13 @@ namespace keepass2android.services.AutofillBase
 		    if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
 		        isManualRequest)
 		        viewHints[0] = "on";
-		    CommonUtil.logd("viewHints=" + viewHints);
-            CommonUtil.logd("class=" + viewNode.ClassName);
-		    CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
+            if (viewHints != null && viewHints.Any())
+            {
+                CommonUtil.logd("viewHints=" + viewHints);
+                CommonUtil.logd("class=" + viewNode.ClassName);
+                CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
+            }
+		    
 		    if (viewNode?.HtmlInfo?.Tag == "input")
 		    {
 		        foreach (var p in viewNode.HtmlInfo.Attributes)

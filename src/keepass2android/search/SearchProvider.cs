@@ -263,8 +263,8 @@ namespace keepass2android.search
 			{
 				get
 				{
-                    if (MPos < _entriesWithContexts.Count)
-					    return _entriesWithContexts[MPos].entry;
+                    if ((Position < _entriesWithContexts.Count) && (Position >= 0))
+					    return _entriesWithContexts[Position].entry;
                     return null;
                     
 				}
@@ -275,7 +275,7 @@ namespace keepass2android.search
 				switch (column)
 				{
 					case 0: // _ID
-						return MPos;
+						return Position;
 					default:
 						throw new FormatException();
 				}
@@ -283,30 +283,41 @@ namespace keepass2android.search
 
 			public override string GetString(int column)
 			{
-				switch (column)
-				{
-					case 0: // _ID
-						return MPos.ToString(CultureInfo.InvariantCulture);
-					case 1: // SuggestColumnText1
-						return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField);
-					case 2: // SuggestColumnText2
-                        if (MPos < _entriesWithContexts.Count)
-                            return Internationalise(_entriesWithContexts[MPos].resultContext);
-					    return "";
-					case 3: // SuggestColumnIcon1
-						var builder = new Android.Net.Uri.Builder();
-						builder.Scheme(ContentResolver.SchemeContent);
-						builder.Authority(Authority);
-						builder.Path(GetIconPathQuery);
-						builder.AppendQueryParameter(IconIdParameter, CurrentEntry.IconId.ToString());
-						builder.AppendQueryParameter(CustomIconUuidParameter, CurrentEntry.CustomIconUuid.ToHexString());
-					    builder.AppendQueryParameter(DatabaseIndexParameter, _entriesWithContexts[MPos].DatabaseIndex.ToString());
-                        return builder.Build().ToString();
-					case 4: // SuggestColumnIntentDataId
-						return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(CurrentEntry),CurrentEntry).FullId;
-					default:
-						return null;
-				}
+                try
+                {
+                    if ((Position >= _entriesWithContexts.Count) || (Position < 0))
+                        return "";
+
+                    switch (column)
+                    {
+                        case 0: // _ID
+                            return Position.ToString(CultureInfo.InvariantCulture);
+                        case 1: // SuggestColumnText1
+                            string username = CurrentEntry.Strings.ReadSafe(PwDefs.UserNameField);
+                            return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField) + (string.IsNullOrWhiteSpace(username) ? "" : " ("+username+")");
+                        case 2: // SuggestColumnText2
+                                return Internationalise(_entriesWithContexts[Position].resultContext);
+                        case 3: // SuggestColumnIcon1
+                            var builder = new Android.Net.Uri.Builder();
+                            builder.Scheme(ContentResolver.SchemeContent);
+                            builder.Authority(Authority);
+                            builder.Path(GetIconPathQuery);
+                            builder.AppendQueryParameter(IconIdParameter, CurrentEntry.IconId.ToString());
+                            builder.AppendQueryParameter(CustomIconUuidParameter, CurrentEntry.CustomIconUuid.ToHexString());
+                            builder.AppendQueryParameter(DatabaseIndexParameter, _entriesWithContexts[Position].DatabaseIndex.ToString());
+                            return builder.Build().ToString();
+                        case 4: // SuggestColumnIntentDataId
+                            return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(CurrentEntry), CurrentEntry).FullId;
+                        default:
+                            return null;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.LogUnexpectedError(e);
+                    return "(error retrieving data)";
+                }
+				
 			}
 
 			private string Internationalise(KeyValuePair<string, string> context)
@@ -340,11 +351,15 @@ namespace keepass2android.search
 							break;
 					}
 
-					if (intlResourceId > 0)
+                    string value = context.Value;
+                    value = value.Replace("\t", "");
+                    value = value.Replace("\n", "");
+                    value = value.Replace("\r", "");
+                    if (intlResourceId > 0)
 					{
-						return Application.Context.GetString(intlResourceId) + ": "+context.Value;
+						return Application.Context.GetString(intlResourceId) + ": "+value;
 					}
-					return context.Key + ": " + context.Value;
+					return context.Key + ": " + value;
 				}
 				catch (Exception)
 				{

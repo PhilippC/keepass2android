@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.FtpClient;
 using System.Reflection;
 using System.Threading;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
+using FluentFTP;
 using KeePassLib;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -17,73 +17,6 @@ namespace keepass2android.Io
 {
 	public class NetFtpFileStorage: IFileStorage
 	{
-		class RetryConnectFtpClient : FtpClient
-		{
-			protected override FtpClient CloneConnection()
-			{
-				RetryConnectFtpClient conn = new RetryConnectFtpClient();
-
-				conn.m_isClone = true;
-
-				foreach (PropertyInfo prop in GetType().GetProperties())
-				{
-					object[] attributes = prop.GetCustomAttributes(typeof(FtpControlConnectionClone), true);
-
-					if (attributes != null && attributes.Length > 0)
-					{
-						prop.SetValue(conn, prop.GetValue(this, null), null);
-					}
-				}
-
-				// always accept certficate no matter what because if code execution ever
-				// gets here it means the certificate on the control connection object being
-				// cloned was already accepted.
-				conn.ValidateCertificate += new FtpSslValidation(
-					delegate(FtpClient obj, FtpSslValidationEventArgs e)
-					{
-						e.Accept = true;
-					});
-
-				return conn;
-			}
-
-			private static T DoInRetryLoop<T>(Func<T> func)
-			{
-				double timeout = 30.0;
-				double timePerRequest = 1.0;
-				var startTime = DateTime.Now;
-				while (true)
-				{
-					var attemptStartTime = DateTime.Now;
-					try
-					{
-						return func();
-					}
-					catch (System.Net.Sockets.SocketException e)
-					{
-						if ((e.ErrorCode != 10061) || (DateTime.Now > startTime.AddSeconds(timeout)))
-						{
-							throw;
-						}
-						double secondsSinceAttemptStart = (DateTime.Now - attemptStartTime).TotalSeconds;
-						if (secondsSinceAttemptStart < timePerRequest)
-						{
-							Thread.Sleep(TimeSpan.FromSeconds(timePerRequest - secondsSinceAttemptStart));
-						}
-					}
-				}
-			}
-			public override void Connect()
-			{
-				DoInRetryLoop(() =>
-				{
-					base.Connect();
-					return true;
-				}
-				);
-			}
-		}
-
 		public struct ConnectionSettings
 		{
 			public FtpEncryptionMode EncryptionMode {get; set; }
@@ -147,9 +80,8 @@ namespace keepass2android.Io
 
 		public NetFtpFileStorage(Context context, ICertificateValidationHandler app)
 		{
-			_app = app;
+            _app = app;
 			traceStream = new MemoryStream();
-			FtpTrace.AddListener(new System.Diagnostics.TextWriterTraceListener(traceStream));
 			
 		}
 
@@ -172,9 +104,9 @@ namespace keepass2android.Io
 			{
 				using (FtpClient client = GetClient(ioc))
 				{
-					string localPath = IocToUri(ioc).PathAndQuery;
+					string localPath = IocToLocalPath(ioc);
 					if (client.DirectoryExists(localPath))
-						client.DeleteDirectory(localPath, true);
+						client.DeleteDirectory(localPath);
 					else
 						client.DeleteFile(localPath);
 				}
@@ -205,7 +137,8 @@ namespace keepass2android.Io
 		{
 			var settings = ConnectionSettings.FromIoc(ioc);
 			
-			FtpClient client = new RetryConnectFtpClient();
+			FtpClient client = new FtpClient();
+		    client.RetryAttempts = 3;
 			if ((settings.Username.Length > 0) || (settings.Password.Length > 0))
 				client.Credentials = new NetworkCredential(settings.Username, settings.Password);
 			else
@@ -250,20 +183,22 @@ namespace keepass2android.Io
 				path = path.Substring(settings.Length + 1);
 				
 			}
-			return new Uri(scheme + "://" + path);
+            Kp2aLog.Log("FTP: IocToUri out = " + scheme + "://" + path);
+            return new Uri(scheme + "://" + path);
 		}
 
-		private string IocPathFromUri(IOConnectionInfo baseIoc, Uri uri)
+		private string IocPathFromUri(IOConnectionInfo baseIoc, string uri)
 		{
-			string basePath = baseIoc.Path;
+            string basePath = baseIoc.Path;
 			int schemeLength = basePath.IndexOf("://", StringComparison.Ordinal);
 			string scheme = basePath.Substring(0, schemeLength);
 			basePath = basePath.Substring(schemeLength + 3);
 			string baseSettings = basePath.Substring(0, basePath.IndexOf(ConnectionSettings.SettingsPostFix, StringComparison.Ordinal));
 			basePath = basePath.Substring(baseSettings.Length+1);
 			string baseHost = basePath.Substring(0, basePath.IndexOf("/", StringComparison.Ordinal));
-			return scheme + "://" + baseSettings + ConnectionSettings.SettingsPostFix + baseHost + uri.AbsolutePath; //TODO does this contain Query?
-		}
+			string result = scheme + "://" + baseSettings + ConnectionSettings.SettingsPostFix + baseHost + uri; //TODO does this contain Query?
+            return result;
+        }
 
 
 		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
@@ -281,9 +216,12 @@ namespace keepass2android.Io
 			try
 			{
 				using (var cl = GetClient(ioc))
-				{
-					return cl.OpenRead(IocToUri(ioc).PathAndQuery, FtpDataType.Binary, 0);
-				}
+                {
+                    var memStream = new MemoryStream();
+                    cl.OpenRead(IocToLocalPath(ioc), FtpDataType.Binary, 0).CopyTo(memStream);
+                    memStream.Seek(0, SeekOrigin.Begin);
+					return memStream;
+                }
 			}
 			catch (FtpCommandException ex)
 			{
@@ -330,7 +268,7 @@ namespace keepass2android.Io
 			{
 				using (var client = GetClient(ioc))
 				{
-					client.CreateDirectory(IocToUri(GetFilePath(ioc, newDirName)).PathAndQuery);
+					client.CreateDirectory(IocToLocalPath(GetFilePath(ioc, newDirName)));
 				}
 			}
 			catch (FtpCommandException ex)
@@ -339,14 +277,19 @@ namespace keepass2android.Io
 			}
 		}
 
-		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
+        public static string IocToLocalPath(IOConnectionInfo ioc)
+        {
+            return WebUtility.UrlDecode(IocToUri(ioc).PathAndQuery);
+        }
+
+        public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
 		{
 			try
 			{
-				using (var client = GetClient(ioc))
+                using (var client = GetClient(ioc))
 				{
 					List<FileDescription> files = new List<FileDescription>();
-					foreach (FtpListItem item in client.GetListing(IocToUri(ioc).PathAndQuery,
+					foreach (FtpListItem item in client.GetListing(IocToLocalPath(ioc),
 						FtpListOption.Modify | FtpListOption.Size | FtpListOption.DerefLinks))
 					{
 
@@ -360,7 +303,7 @@ namespace keepass2android.Io
 									DisplayName = item.Name,
 									IsDirectory = true,
 									LastModified = item.Modified,
-									Path = IocPathFromUri(ioc, new Uri(item.FullName))
+									Path = IocPathFromUri(ioc, item.FullName)
 								});
 								break;
 							case FtpFileSystemObjectType.File:
@@ -371,7 +314,7 @@ namespace keepass2android.Io
 									DisplayName = item.Name,
 									IsDirectory = false,
 									LastModified = item.Modified,
-									Path = IocPathFromUri(ioc, new Uri(item.FullName)),
+									Path = IocPathFromUri(ioc, item.FullName),
 									SizeInBytes = item.Size
 								});
 								break;
@@ -396,10 +339,10 @@ namespace keepass2android.Io
 				//is it very inefficient to connect for each description?
 
 				using (FtpClient client = GetClient(ioc))
-				{
-					
-					var uri = IocToUri(ioc);
-					string path = uri.PathAndQuery;
+                {
+
+
+                    string path = IocToLocalPath(ioc);
 					if (!client.FileExists(path) && (!client.DirectoryExists(path)))
 						throw new FileNotFoundException();
 					var fileDesc = new FileDescription()
@@ -511,7 +454,7 @@ namespace keepass2android.Io
 			{
 				using (var client = GetClient(ioc))
 				{
-					return client.OpenWrite(IocToUri(ioc).PathAndQuery);
+					return client.OpenWrite(IocToLocalPath(ioc));
 
 				}
 			}
@@ -580,7 +523,7 @@ namespace keepass2android.Io
 			{
 
 				_client = _fileStorage.GetClient(_ioc, false);
-				_stream = _client.OpenWrite(NetFtpFileStorage.IocToUri(_iocTemp).PathAndQuery);
+				_stream = _client.OpenWrite(NetFtpFileStorage.IocToLocalPath(_iocTemp));
 				return _stream;
 			}
 			catch (FtpCommandException ex)
@@ -595,22 +538,11 @@ namespace keepass2android.Io
 			{
 				Android.Util.Log.Debug("NETFTP","connected: " + _client.IsConnected.ToString());
 				_stream.Close();
-				Android.Util.Log.Debug("NETFTP", "connected: " + _client.IsConnected.ToString());
+                _stream.Dispose();
+                _client.GetReply();
 
-				//make sure target file does not exist:
-				//try
-				{
-					if (_client.FileExists(NetFtpFileStorage.IocToUri(_ioc).PathAndQuery))
-						_client.DeleteFile(NetFtpFileStorage.IocToUri(_ioc).PathAndQuery);
-
-				}
-				//catch (FtpCommandException)
-				{
-					//TODO get a new clien? might be stale
-				}
-
-				_client.Rename(NetFtpFileStorage.IocToUri(_iocTemp).PathAndQuery,
-				    NetFtpFileStorage.IocToUri(_ioc).PathAndQuery);
+				_client.MoveFile(NetFtpFileStorage.IocToLocalPath(_iocTemp),
+				    NetFtpFileStorage.IocToLocalPath(_ioc));
 				
 			}
 			catch (FtpCommandException ex)

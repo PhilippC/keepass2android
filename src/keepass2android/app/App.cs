@@ -45,9 +45,13 @@ using keepass2android.database.edit;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 #if !NoNet
+#if !EXCLUDE_JAVAFILESTORAGE
+using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
+#endif
+
 #endif
 namespace keepass2android
 {
@@ -97,12 +101,15 @@ namespace keepass2android
 
 	}
 #endif
+
+
+
 	/// <summary>
 	/// Main implementation of the IKp2aApp interface for usage in the real app.
 	/// </summary>
-    public class Kp2aApp: IKp2aApp, ICacheSupervisor
+	public class Kp2aApp: IKp2aApp, ICacheSupervisor
 	{
-	    public void Lock(bool allowQuickUnlock = true)
+	    public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
 			if (OpenDatabases.Any())
 			{
@@ -143,7 +150,10 @@ namespace keepass2android
 	        _currentlyWaitingXcKey = null;
 
 			UpdateOngoingNotification();
-			Application.Context.SendBroadcast(new Intent(Intents.DatabaseLocked));
+            var intent = new Intent(Intents.DatabaseLocked);
+            if (lockWasTriggeredByTimeout)
+                intent.PutExtra("ByTimeout", true);
+            Application.Context.SendBroadcast(intent);
         }
 
 
@@ -249,6 +259,8 @@ namespace keepass2android
 		            .Commit();
             }
 
+			TimeoutHelper.ResumingApp();
+
             UpdateOngoingNotification();
 
 	        return newDb;
@@ -281,6 +293,8 @@ namespace keepass2android
         internal void UnlockDatabase()
 		{
 			QuickLocked = false;
+
+			TimeoutHelper.ResumingApp();
 
 			UpdateOngoingNotification();
 
@@ -696,7 +710,7 @@ namespace keepass2android
 #if !NoNet
 							new DropboxFileStorage(Application.Context, this),
 							new DropboxAppFolderFileStorage(Application.Context, this),
-							new GoogleDriveFileStorage(Application.Context, this),
+                            GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(Application.Context)==ConnectionResult.Success ? new GoogleDriveFileStorage(Application.Context, this) : null,
 							new OneDriveFileStorage(Application.Context, this),
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
@@ -710,7 +724,7 @@ namespace keepass2android
 #endif
 #endif
 							new LocalFileStorage(this)
-						};
+						}.Where(fs => fs != null).ToList();
 				}
 				return _fileStorages;
 			}
@@ -791,12 +805,13 @@ namespace keepass2android
 				return prefs.GetBoolean(Application.Context.GetString(Resource.String.CheckForDuplicateUuids_key), true);
 			}
 		}
-#if !NoNet
-		public ICertificateErrorHandler CertificateErrorHandler
+
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
+
+            public ICertificateErrorHandler CertificateErrorHandler
 		{
 			get { return new CertificateErrorHandlerImpl(this); }
 		}
-	    
 
 
 	    public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
@@ -1013,7 +1028,12 @@ namespace keepass2android
 			get; set;
 		}
 
-		public void OnScreenOff()
+		/// <summary>
+		/// When opening an activity after this time, we should close the database as it timed out.
+		/// </summary>
+        public DateTime TimeoutTime { get; set; }
+
+        public void OnScreenOff()
 		{
 			if (PreferenceManager.GetDefaultSharedPreferences(Application.Context)
 											 .GetBoolean(
@@ -1187,7 +1207,8 @@ namespace keepass2android
 
 		    IntentFilter intentFilter = new IntentFilter();
 		    intentFilter.AddAction(Intents.LockDatabase);
-		    intentFilter.AddAction(Intents.CloseDatabase);
+            intentFilter.AddAction(Intents.LockDatabaseByTimeout);
+			intentFilter.AddAction(Intents.CloseDatabase);
             Context.RegisterReceiver(broadcastReceiver, intentFilter);
         }
 

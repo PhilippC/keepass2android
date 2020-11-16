@@ -234,7 +234,7 @@ namespace keepass2android
 				else
 				{
 					// Let's not bother recovering from a failure to save.  It is too much work.
-					App.Lock(false);
+					App.Lock(false, false);
 				}
 			}, OnFinishToRun);
 

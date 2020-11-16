@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+<resources>
+    <string name="afc_title_name">പേര്</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">ഫോൾഡർ ചേർക്കുക</item>
+        <item quantity="other">ഫോൾഡറുകൾ ചേർക്കുക</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">ഫയൽ തിരഞ്ഞെടുക്കുക</item>
+        <item quantity="other">ഫയലുകൾ തിരഞ്ഞെടുക്കുക</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">ഫയൽ/ഫോൾഡർ തിരഞ്ഞെടുക്കുക</item>
+        <item quantity="other">ഫയലുകൾ/ഫോൾഡറുകൾ തിരഞ്ഞെടുക്കുക </item>
+    </plurals>
+</resources>

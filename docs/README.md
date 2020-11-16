@@ -13,6 +13,7 @@ Beta-releases can be obtained by opting in to the [Beta testing channel](https:/
 # How can I contribute?
 * Help to translate Keepass2Android into your language or improve translations at [our Crowdin page](http://crowdin.net/project/keepass2android)
 * Add features by [creating a plugin](How-to-create-a-plug-in_.md) or creating a pull request. You might want to contact me before you start working so I can coordinate efforts.
+* [Become a GitHub sponsor to boost 🚀 development](https://github.com/sponsors/PhilippC)
 * [Make a donation](http://philipp.crocoll.net/donate.php)
 
 # How do I learn more?

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+<resources>
+    <string name="afc_cmd_advanced_selection_all">Todo</string>
+    <string name="afc_cmd_advanced_selection_invert">Inverter selección</string>
+    <string name="afc_cmd_advanced_selection_none">Ningún</string>
+    <string name="afc_cmd_grid_view">Vista en grella</string>
+    <string name="afc_cmd_home">Inicio</string>
+    <string name="afc_cmd_list_view">Vista en lista</string>
+    <string name="afc_cmd_new_folder">Novo cartafol…</string>
+    <string name="afc_cmd_select_all_files">Seleccionar todos os arquivos</string>
+    <string name="afc_cmd_select_all_folders">Seleccionar todos os cartafoles</string>
+    <string name="afc_cmd_sort">Ordenar…</string>
+    <string name="afc_file">arquivo</string>
+    <string name="afc_folder">cartafol</string>
+    <string name="afc_hint_clear">baleirar</string>
+    <string name="afc_hint_folder_name">nome do cartafol</string>
+    <string name="afc_hint_save_as_filename">nome do arquivo</string>
+    <string name="afc_hint_search">buscar</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">Esta aplicación non ten permiso para crear arquivos/cartafoles</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Esta aplicación non ten permiso para eliminar arquivos/cartafoles</string>
+    <string name="afc_msg_cancelled">Cancelado</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">Non se pode conectar ao servizo de provedor de arquivos</string>
+    <string name="afc_msg_cannot_create_new_folder_here">Non se pode crear un novo cartafol aquí</string>
+    <string name="afc_msg_cannot_save_a_file_here">Non se pode gardar un arquivo aquí</string>
+    <string name="afc_msg_done">Feito</string>
+    <string name="afc_msg_empty">Baleiro</string>
+    <string name="afc_msg_failed_please_try_again">Houbo un erro; téntao de novo.</string>
+    <string name="afc_msg_loading">Cargando…</string>
+    <string name="afc_phone">Teléfono</string>
+    <string name="afc_pmsg_cannot_access_dir">Non se pode acceder a \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_create_folder">Non se pode crear o cartafol \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_delete_file">Non se pode eliminar %1$s \"%2$s\"</string>
+    <string name="afc_pmsg_confirm_delete_file">Quere realmente eliminar este %1$s \"%2$s\"?</string>
+    <string name="afc_pmsg_confirm_replace_file">Este arquivo \"%1$s\" xa existe.\n\nQuere substituílo?</string>
+    <string name="afc_pmsg_deleting_file">Eliminando %1$s \"%2$s\"…</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" foi eliminado</string>
+    <string name="afc_pmsg_filename_is_directory">\"%1$s\" é un cartafol</string>
+    <string name="afc_pmsg_filename_is_invalid">O nome de arquivo \"%1$s\" non é válido</string>
+    <string name="afc_pmsg_max_file_count_allowed">…ten máis arquivos, máximo permitido: %1$,d</string>
+    <string name="afc_pmsg_unknown_error">Erro descoñecido: %1$s</string>
+    <string name="afc_root">Raíz</string>
+    <string name="afc_title_advanced_selection">Seleccionar…</string>
+    <string name="afc_title_confirmation">Confirmación</string>
+    <string name="afc_title_date">Data</string>
+    <string name="afc_title_error">Erro</string>
+    <string name="afc_title_info">Información</string>
+    <string name="afc_title_name">Nome</string>
+    <string name="afc_title_save_as">Gardar como…</string>
+    <string name="afc_title_size">Tamaño</string>
+    <string name="afc_title_sort_by">Ordenar por…</string>
+    <string name="afc_yesterday">Onte</string>
+</resources>

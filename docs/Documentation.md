@@ -77,6 +77,10 @@ The KP2A keyboard is meant to quickly "paste" or "type" values from your databas
 ## Is it safe to store my kdbx file in the cloud?
 While it may happen that someone gets access to your kdbx file in the cloud, there is still no need to worry: the purpose of encryption is to protect the data even in case someone gets the kdbx file! As long as you are using a safe master key, you're safe! [Key files](https://keepass.info/help/base/keys.html#keyfiles) can help with securing the database even more. 
 
+## Doesn't Keepass2Android create automatic backups?
+Yes and no. Yes: Keepass2Android stores the last successfully opened file as a read-only backup locally on the phone (unless you disable this is in the settings). This should make sure that even if the file gets destroyed during a save operation or gets deleted by accident, you should always have a version that can be opened. (Don't mix this up with the internal file cache which is not meant as a backup and can easily be overwritten even with a corrupt file. This internal file cache is meant for providing writable access even when the original file is not reachable, e.g. when you're offline.)
+No: The local backup has two shortcomings: It is only one backup and does not allow to revert to older versions. So if you deleted an entry from the database, it might be deleted in the local backup soon as well. The even more important shortcoming is that it is just a local backup. It won't help when your phone gets lost or broken. Please create additional backups on seperate storage!
+
 ## How do I backup the database?
 If you have stored your database on the cloud, you might rely on your cloud storage providers backups. Make sure they allow you to revert to older revisions in case the file gets corrupted for some reason.
 If you are working with a local database file, make sure you create regular backups. I suggest you have an aumotated mechanism, e.g. with FolderSync (Lite) which can copy local files from your device to other locations, e.g. your PC in a local network. You can also use USB or tools like MyPhoneExploror to transfer data to your PC. Or, you use a removable storage like an SD card which you keep in a safe place after making the backup. 
@@ -93,6 +97,23 @@ It's time for action! As soon as possible, select Settings - Database - Export a
 
 ## Why is Keepass2Android's apk so big?
 Please see [Keepass2Android Apk](Keepass2Android-Apk.md) for more information.
+
+## I get a message "File is trashed" when reading or writing a file on Google Drive
+This happens because ocaml-fuse (I guess you are on Linux  and use that) moves files to trash and then creates a new one instead of correctly updating the file on Google Drive (each file has a unique ID which Keepass2Android uses). Fortunately, this was fixed: https://github.com/astrada/google-drive-ocamlfuse/issues/494After activating this option, please select "Change database" in KP2A, tap ,"Open file" and browse to the file on Google Drive again. After that, the message should no longer pop up.
+
+## I get a message "The name must not be empty: null" when opening from Google Drive
+Please follow  these steps:
+
+ * select "Change database" on the password screen, then "Open database" and browse to your file again
+ * go to Android app settings and disable all permissions for the KP2A app. Then try again to open the database file.
+ * reboot the device
+
+(Before running the following steps, make sure you don't have local changes in your database which have not been synchronized with Google Drive (this can happen if you worked offline). If you have, please open the database from the local cache and go to settings - database settings - export database and make a backup copy of the data.)
+
+  * clear KP2A's app cache in the Android settings
+  * uninstall & reinstall
+
+One of these has helped all users so far, but unfortunately it's not totally clear to me why different steps are required (or nothing for most users).
 
 # For developers
 If you are interested in adding new features, you have two options:

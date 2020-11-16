@@ -16,8 +16,13 @@ namespace keepass2android.services.AutofillBase
 {
     public interface IAutofillIntentBuilder
     {
-        IntentSender GetAuthIntentSenderForResponse(Context context, string query, bool isManualRequest, bool autoReturnFromQuery);
-        IntentSender GetDisableIntentSenderForResponse(Context context, string query, bool isManualRequest, bool isDisable);
+        IntentSender GetAuthIntentSenderForResponse(Context context, string query, string queryDomain, string queryPackage,
+            bool isManualRequest, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning);
+
+        IntentSender GetAuthIntentSenderForWarning(Context context, string query, string queryDomain, string queryPackage, AutofillServiceBase.DisplayWarning warning);
+
+        IntentSender GetDisableIntentSenderForResponse(Context context, string query, 
+            bool isManualRequest, bool isDisable);
         Intent GetRestartAppIntent(Context context);
 
         int AppIconResource { get; }
@@ -35,6 +40,44 @@ namespace keepass2android.services.AutofillBase
         {
         }
 
+        public static HashSet<string> CompatBrowsers = new HashSet<string>
+        {
+            "org.mozilla.firefox",
+            "org.mozilla.firefox_beta",
+            "com.microsoft.emmx",
+            "com.android.chrome",
+            "com.chrome.beta",
+            "com.android.browser",
+            "com.brave.browser",
+            "com.opera.browser",
+            "com.opera.browser.beta",
+            "com.opera.mini.native",
+            "com.chrome.dev",
+            "com.chrome.canary",
+            "com.google.android.apps.chrome",
+            "com.google.android.apps.chrome_dev",
+            "com.yandex.browser",
+            "com.sec.android.app.sbrowser",
+            "com.sec.android.app.sbrowser.beta",
+            "org.codeaurora.swe.browser",
+            "com.amazon.cloud9",
+            "mark.via.gp",
+            "org.bromite.bromite",
+            "org.chromium.chrome",
+            "com.kiwibrowser.browser",
+            "com.ecosia.android",
+            "com.opera.mini.native.beta",
+            "org.mozilla.fennec_aurora",
+            "org.mozilla.fennec_fdroid",
+            "com.qwant.liberty",
+            "com.opera.touch",
+            "org.mozilla.fenix",
+            "org.mozilla.fenix.nightly",
+            "org.mozilla.reference.browser",
+            "org.mozilla.rocket",
+            "org.torproject.torbrowser",
+            "com.vivaldi.browser",
+        };
 
         public override void OnFillRequest(FillRequest request, CancellationSignal cancellationSignal, FillCallback callback)
         {
@@ -52,7 +95,7 @@ namespace keepass2android.services.AutofillBase
                 Log.Warn(CommonUtil.Tag, "Cancel autofill not implemented yet.");
             };
             // Parse AutoFill data in Activity
-            string query = null;
+            StructureParser.AutofillTargetId query = null;
             var parser = new StructureParser(this, structure);
             try
             {
@@ -74,16 +117,44 @@ namespace keepass2android.services.AutofillBase
             {
                 var responseBuilder = new FillResponse.Builder();
 
-                var entryDataset = AddEntryDataset(query, parser);
+                Dataset entryDataset = null;
+                if (query.IncompatiblePackageAndDomain == false)
+                {
+                    //domain and package are compatible. Use Domain if available and package otherwise. Can fill without warning.
+                    entryDataset = BuildEntryDataset(query.DomainOrPackage, query.WebDomain, query.PackageName, autofillIds, parser, DisplayWarning.None);
+                }
+                else
+                {
+
+                    //domain or package are incompatible. Don't show the entry. (Tried to do so first but behavior was not consistent)
+                    //entryDataset = BuildEntryDataset(query.WebDomain, query.WebDomain, query.PackageName, autofillIds, parser, DisplayWarning.FillDomainInUntrustedApp);
+                }
                 bool hasEntryDataset = entryDataset != null;
                 if (entryDataset != null)
                     responseBuilder.AddDataset(entryDataset);
 
-                AddQueryDataset(query, isManual, autofillIds, responseBuilder, !hasEntryDataset);
-                AddDisableDataset(query, autofillIds, responseBuilder, isManual);
-                if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
-                    responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
-                        parser.AutofillFields.GetAutofillIds()).Build());
+                if (query.WebDomain != null)
+                    AddQueryDataset(query.WebDomain, 
+                        query.WebDomain, query.PackageName,
+                        isManual, autofillIds, responseBuilder, !hasEntryDataset, query.IncompatiblePackageAndDomain ? DisplayWarning.FillDomainInUntrustedApp : DisplayWarning.None);
+                else
+                    AddQueryDataset(query.PackageNameWithPseudoSchema,
+                        query.WebDomain, query.PackageName,
+                        isManual, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None);
+
+
+                AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual);
+                
+                if (PreferenceManager.GetDefaultSharedPreferences(this)
+                    .GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
+                {
+                    if (!CompatBrowsers.Contains(parser.PackageId))
+                    {
+                        responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
+                            parser.AutofillFields.GetAutofillIds()).Build());
+                    }
+                    
+                }
 
                 callback.OnSuccess(responseBuilder.Build());
             }
@@ -93,22 +164,57 @@ namespace keepass2android.services.AutofillBase
             }
         }
 
-        private Dataset AddEntryDataset(string query, StructureParser parser)
+        private Dataset BuildEntryDataset(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, StructureParser parser,
+            DisplayWarning warning)
         {
             var filledAutofillFieldCollection = GetSuggestedEntry(query);
             if (filledAutofillFieldCollection == null)
                 return null;
-            int partitionIndex = AutofillHintsHelper.GetPartitionIndex(parser.AutofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
-            FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
 
-            return AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder);
+            if (warning == DisplayWarning.None)
+            {
+                //can return an actual dataset
+                int partitionIndex = AutofillHintsHelper.GetPartitionIndex(parser.AutofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
+                FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
+
+                return AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder);
+            }
+            else
+            {
+                //return an "auth" dataset (actually for just warning the user in case domain/package dont match)
+                var sender = IntentBuilder.GetAuthIntentSenderForWarning(this, query, queryDomain, queryPackage, warning);
+                var datasetName = filledAutofillFieldCollection.DatasetName;
+                if (datasetName == null)
+                    return null;
+
+                RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, datasetName, AppNames.LauncherIcon);
+
+                var datasetBuilder = new Dataset.Builder(presentation);
+                datasetBuilder.SetAuthentication(sender);
+                //need to add placeholders so we can directly fill after ChooseActivity
+                foreach (var autofillId in autofillIds)
+                {
+                    datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
+                }
+
+                return datasetBuilder.Build();
+            }
+
+            
         }
 
         protected abstract FilledAutofillFieldCollection GetSuggestedEntry(string query);
 
-        private void AddQueryDataset(string query, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery)
+        public enum DisplayWarning
         {
-            var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, isManual, autoReturnFromQuery);
+            None,
+            FillDomainInUntrustedApp, //display a warning that the user is filling credentials for a domain inside an app not marked as trusted browser
+            
+        }
+
+        private void AddQueryDataset(string query, string queryDomain, string queryPackage, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning)
+        {
+            var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, queryDomain, queryPackage, isManual, autoReturnFromQuery, warning);
             RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
                 GetString(Resource.String.autofill_sign_in_prompt), AppNames.LauncherIcon);
 
@@ -127,7 +233,7 @@ namespace keepass2android.services.AutofillBase
             string displayName = str;
             try
             {
-                string appPrefix = "androidapp://";
+                string appPrefix = KeePass.AndroidAppScheme;
                 if (str.StartsWith(appPrefix))
                 {
                     str = str.Substring(appPrefix.Length);
@@ -174,13 +280,13 @@ namespace keepass2android.services.AutofillBase
             responseBuilder.AddDataset(datasetBuilder.Build());
         }
 
-        private bool CanAutofill(string query, bool isManual)
+        private bool CanAutofill(StructureParser.AutofillTargetId query, bool isManual)
         {
-            if (query == "androidapp://android" || query == "androidapp://" + this.PackageName)
+            if (query.PackageNameWithPseudoSchema == KeePass.AndroidAppScheme+"android" || query.PackageNameWithPseudoSchema == KeePass.AndroidAppScheme + this.PackageName)
                 return false;
             if (!isManual)
             {
-                var isQueryDisabled = IsQueryDisabled(query);
+                var isQueryDisabled = IsQueryDisabled(query.DomainOrPackage);
                 if (isQueryDisabled)
                     return false;
             }
@@ -206,7 +312,7 @@ namespace keepass2android.services.AutofillBase
             }
 
             var parser = new StructureParser(this, structure);
-            string query = parser.ParseForSave();
+            var query = parser.ParseForSave();
             try
             {
                 HandleSaveRequest(parser, query);
@@ -219,7 +325,7 @@ namespace keepass2android.services.AutofillBase
             
         }
 
-        protected abstract void HandleSaveRequest(StructureParser parser, string query);
+        protected abstract void HandleSaveRequest(StructureParser parser, StructureParser.AutofillTargetId query);
 
 
         public override void OnConnected()

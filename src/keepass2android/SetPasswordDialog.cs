@@ -114,7 +114,7 @@ namespace keepass2android
 						edit.Commit();
 
 						Toast.MakeText(_dlg.Context, Resource.String.fingerprint_reenable, ToastLength.Long).Show();
-						_dlg.Context.StartActivity(typeof(FingerprintSetupActivity));
+						_dlg.Context.StartActivity(typeof(BiometricSetupActivity));
 					}
 
 					_dlg.Dismiss();

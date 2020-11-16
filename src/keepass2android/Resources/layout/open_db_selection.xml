@@ -7,7 +7,7 @@
               android:fitsSystemWindows="true"
               android:layout_height="fill_parent"
               android:gravity="center_horizontal">
-  <android.support.v7.widget.Toolbar
+  <androidx.appcompat.widget.Toolbar
     android:id="@+id/mytoolbar"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"

@@ -204,6 +204,7 @@ namespace keepass2android.Io
             private readonly string _specialFolder;
             public IGraphServiceClient client;
             public OneDrive2ItemLocation<OneDrive2PrefixContainerType> itemLocation;
+            public bool verbose;
 
             public PathItemBuilder(string specialFolder)
             {
@@ -213,6 +214,7 @@ namespace keepass2android.Io
 
             public IDriveItemRequestBuilder getPathItem()
             {
+                Kp2aLog.Log("getPathItem for " + itemLocation.ToString());
                 IDriveItemRequestBuilder pathItem;
                 if (!hasShare())
                 {
@@ -220,20 +222,33 @@ namespace keepass2android.Io
                 }
                 if ("me".Equals(itemLocation.Share.Id))
                 {
+                    if (verbose) Kp2aLog.Log("Path share is me");
+                    
+
                     if (_specialFolder == null)
+                    {
+                        if (verbose) Kp2aLog.Log("No special folder. Use drive root.");
                         pathItem = client.Me.Drive.Root;
+                    }
                     else
+                    {
+                        if (verbose) Kp2aLog.Log("Special folder = " + _specialFolder);
                         pathItem = client.Me.Drive.Special[_specialFolder];
+                    }
+
                     if (itemLocation.LocalPath.Any())
                     {
+                        if (verbose) Kp2aLog.Log("LocalPath = " + itemLocation.LocalPathString);
                         pathItem = pathItem.ItemWithPath(itemLocation.LocalPathString);
                     }
                 }
                 else
                 {
+                    if (verbose) Kp2aLog.Log("Path share is not me");
                     if (!itemLocation.LocalPath.Any())
                     {
                         String webUrl = itemLocation.Share.WebUrl;
+                        if (verbose) Kp2aLog.Log("Share WebUrl = " + webUrl);
                         var encodedShareId = CalculateEncodedShareId(webUrl);
                         return client.Shares[encodedShareId].Root;
                     }
@@ -249,6 +264,7 @@ namespace keepass2android.Io
                     Android.Util.Log.Debug("KP2A", "encodedShareId = " + encodedShareId);
                     pathItem = client.Shares[encodedShareId].Root;
                     */
+                    if (verbose) Kp2aLog.Log("Using driveId=" + itemLocation.DriveId + " and item id=" + itemLocation.LocalPath.Last().Id);
                     return client.Drives[itemLocation.DriveId].Items[itemLocation.LocalPath.Last().Id];
                 }
 
@@ -514,18 +530,25 @@ namespace keepass2android.Io
             {
                 Task.Run(async () =>
                 {
-                    PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
-                    return await
-                        pathItemBuilder
-                            .getPathItem()
-                            .Content
-                            .Request()
-                            .PutAsync<DriveItem>(stream);
+                        PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
+                        return await
+                            pathItemBuilder
+                                .getPathItem()
+                                .Content
+                                .Request()
+                                .PutAsync<DriveItem>(stream);
+
                 }).Wait();
 
             }
             catch (Exception e)
             {
+                Task.Run(async () =>
+                {
+                    PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
+                    pathItemBuilder.verbose = true;
+                    pathItemBuilder.getPathItem();
+                }).Wait();
                 throw convertException(e);
             }
         }
@@ -1028,9 +1051,6 @@ namespace keepass2android.Io
 
         private async Task<string> CreateFilePathAsync(string parent, string newFilename)
         {
-            DriveItem driveItem = new DriveItem();
-            driveItem.Name = newFilename;
-            driveItem.File = new File();
             PathItemBuilder pathItemBuilder = await GetPathItemBuilder(parent);
 
             //see if such a file exists already:
@@ -1044,9 +1064,11 @@ namespace keepass2android.Io
             logDebug("building request for " + pathItemBuilder.itemLocation);
 
             DriveItem res = await pathItemBuilder.getPathItem()
-                .Children
+
+                .ItemWithPath(newFilename)
+                .Content
                 .Request()
-                .AddAsync(driveItem);
+                .PutAsync<DriveItem>(new MemoryStream());
 
             return pathItemBuilder.itemLocation.BuildLocalChildLocation(res.Name, res.Id, res.ParentReference?.DriveId)
                 .ToString();

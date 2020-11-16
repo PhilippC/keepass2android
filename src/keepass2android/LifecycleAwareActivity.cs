@@ -24,8 +24,8 @@ using Android.Support.V7.App;
 namespace keepass2android
 {
 				
-	public abstract class LifecycleAwareActivity : AppCompatActivity
-	{
+	public abstract class LifecycleAwareActivity : AndroidX.AppCompat.App.AppCompatActivity
+    {
 		protected LifecycleAwareActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{

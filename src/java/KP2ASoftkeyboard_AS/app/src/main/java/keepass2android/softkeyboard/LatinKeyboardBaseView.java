@@ -26,6 +26,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Region.Op;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -774,7 +775,9 @@ public class LatinKeyboardBaseView extends View implements PointerTracker.UIProx
             mKeyboardChanged = false;
         }
         final Canvas canvas = mCanvas;
-        canvas.clipRect(mDirtyRect, Op.REPLACE);
+        canvas.save();
+        canvas.clipRect(new RectF(mDirtyRect));
+
 
         if (mKeyboard == null) return;
 
@@ -906,6 +909,8 @@ public class LatinKeyboardBaseView extends View implements PointerTracker.UIProx
                 }
             }
         }
+
+        canvas.restore();
 
         mDrawPending = false;
         mDirtyRect.setEmpty();

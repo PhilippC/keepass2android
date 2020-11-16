@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 #if !NoNet
-using System.Net.FtpClient;
+using FluentFTP;
 using Keepass2android.Javafilestorage;
 
 #endif
@@ -14,6 +15,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+
 using Java.IO;
 using keepass2android.Io;
 using KeePassLib.Serialization;
@@ -185,7 +187,7 @@ namespace keepass2android
                 string pathAndQuery = uri.PathAndQuery;
 
 		        var host = uri.Host;
-		        var localPath = pathAndQuery;
+		        var localPath = WebUtility.UrlDecode(pathAndQuery);
 
                 
 		        if (!uri.IsDefaultPort)
@@ -456,7 +458,7 @@ namespace keepass2android
 			_activity.StartActivityForResult(i, _requestCode);
 
 #else
-			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
+			Toast.MakeText(Application.Context, "File chooser is excluded!", ToastLength.Long).Show();
 #endif
 			return true;
 		}

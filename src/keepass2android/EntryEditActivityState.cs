@@ -18,17 +18,31 @@ namespace keepass2android
 	        return keys;
 	    }
 
-	    public virtual bool ShowAddAttachments
-	    {
-	        get { return true; }
-	    }
+        protected bool? manualShowAddAttachments = null;
 
-	    public virtual bool ShowAddExtras
-	    {
-	        get { return true; }
-	    }
+        public virtual bool ShowAddAttachments
+        {
+            get
+            {
+                if (manualShowAddAttachments != null) return (bool)manualShowAddAttachments;
+                return true; }
+            set { manualShowAddAttachments = value; }
+        }
 
-	    public virtual string GetTitle(string key)
+
+        protected bool? manualShowAddExtras = null;
+
+        public virtual bool ShowAddExtras
+        {
+            get
+            {
+                if (manualShowAddExtras != null) return (bool) manualShowAddExtras; 
+                return true;
+            }
+            set { manualShowAddExtras = value; }
+        }
+
+        public virtual string GetTitle(string key)
 	    {
 	        return key;
 	    }

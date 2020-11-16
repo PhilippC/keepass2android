@@ -27,6 +27,9 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
+                BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08b, "1.08b"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08b, "1.08b"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08, "1.08"),
 			    ctx.GetString(Resource.String.ChangeLog_1_07b),
                 ctx.GetString(Resource.String.ChangeLog_1_07),
                 ctx.GetString(Resource.String.ChangeLog_1_06),
@@ -110,6 +113,21 @@ namespace keepass2android
 			message.AutoLinkMask=MatchOptions.WebUrls;*/
 
 		}
+
+	    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
+	    {
+	        string result = "Version " + version + "\n";
+            string previous = "";
+	        foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
+            {
+                if (item == previous) //there was some trouble with crowdin translations, remove duplicates
+                    continue;
+	            result += " * " + item + "\n";
+                previous = item;
+            }
+	        return result;
+
+	    }
 
 		private const string HtmlStart = @"<html>
   <head>

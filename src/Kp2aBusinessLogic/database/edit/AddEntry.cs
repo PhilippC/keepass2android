@@ -31,15 +31,17 @@ namespace keepass2android
 		private readonly PwEntry _entry;
 		private readonly PwGroup _parentGroup;
 		private readonly Activity _ctx;
-		
-		public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
+	    private readonly Database _db;
 
-			return new AddEntry(ctx, app, entry, parentGroup, finish);
+	    public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish, Database db) {
+
+			return new AddEntry(ctx, db, app, entry, parentGroup, finish);
 		}
 		
-		public AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
+		public AddEntry(Activity ctx, Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
 			_ctx = ctx;
-			_parentGroup = parentGroup;
+		    _db = db;
+		    _parentGroup = parentGroup;
 			_app = app;
 			_entry = entry;
 			
@@ -57,10 +59,13 @@ namespace keepass2android
 			{
 				_parentGroup.AddEntry(_entry, true);	
 			}
-			
-			
-			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
+
+		    // Add entry to global
+		    _db.EntriesById[_entry.Uuid] = _entry;
+		    _db.Elements.Add(_entry);
+
+            // Commit to disk
+            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -86,9 +91,7 @@ namespace keepass2android
 					// Mark parent group dirty
 					_app.DirtyGroups.Add(parent);
 					
-					// Add entry to global
-					_db.EntriesById[_entry.Uuid] = _entry;
-				    _db.Elements.Add(_entry);
+
 
 				} else
 				{

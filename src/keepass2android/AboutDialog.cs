@@ -96,6 +96,9 @@ namespace keepass2android
 
 			TextView tvdesigners = (TextView)FindViewById(Resource.Id.designers);
 			tvdesigners.Text = Context.GetString(Resource.String.designers, new Java.Lang.Object[] { Context.GetString(Resource.String.designer_names) });
+
+            TextView tvsupporters = (TextView)FindViewById(Resource.Id.supporters);
+            tvsupporters.Text = Context.GetString(Resource.String.supporters, new Java.Lang.Object[] { Context.GetString(Resource.String.supporter_names) });
 		}
 
 		private void SetVersion() {

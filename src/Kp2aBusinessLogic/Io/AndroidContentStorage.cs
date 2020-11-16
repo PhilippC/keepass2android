@@ -270,7 +270,7 @@ namespace keepass2android.Io
 					}
 					else return false;
 				}
-				else throw new Exception("couldn't move to first result element: " + (cursor == null) + uri.ToString());
+				else return false;
 			}
 			catch (Exception e)
 			{
@@ -333,12 +333,13 @@ namespace keepass2android.Io
 
 		public void CommitWrite()
 		{
-		    ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "w");
+		    ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "rwt");
             
             using (var outputStream = new FileOutputStream(fileDescriptor.FileDescriptor))
 			{
 				byte[] data = _memoryStream.ToArray();
-				outputStream.Write(data, 0, data.Length);
+                
+				outputStream.Write(data);
 			    outputStream.Close();
 			}
             fileDescriptor.Close();

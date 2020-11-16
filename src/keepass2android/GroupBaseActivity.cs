@@ -463,7 +463,7 @@ namespace keepass2android
 		                new AlertDialog.Builder(this)
 		                    .SetTitle(Resource.String.autofill_enable)
 		                    .SetMessage(Resource.String.autofill_enable_failed)
-		                    .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+		                    .SetPositiveButton(Resource.String.Ok, (o, eventArgs) => { })
 		                    .Show();
 		                const string autofillservicewasenabled = "AutofillServiceWasEnabled";
 		                _prefs.Edit().PutBoolean(autofillservicewasenabled, true).Commit();
@@ -495,7 +495,7 @@ namespace keepass2android
             {
                 FindViewById(Resource.Id.enable_fingerprint).Click += (sender, args) =>
                 {
-                    StartActivity(typeof(FingerprintSetupActivity));
+                    StartActivity(typeof(BiometricSetupActivity));
                 };
             }
 
@@ -689,8 +689,8 @@ namespace keepass2android
             if (!disabledForAll && !disabledForDatabase && !App.Kp2a.IsChildDatabase(App.Kp2a.CurrentDb))
             {
 
-                FingerprintModule fpModule = new FingerprintModule(this);
-                if (fpModule.FingerprintManager != null && fpModule.FingerprintManager.IsHardwareDetected)
+                BiometricModule biometricModule = new BiometricModule(this);
+                if (biometricModule.IsAvailable)
                 {
                     FingerprintUnlockMode um;
                     Enum.TryParse(_prefs.GetString(Database.GetFingerprintModePrefKey(App.Kp2a.CurrentDb.Ioc), ""), out um);
@@ -1239,7 +1239,7 @@ namespace keepass2android
                 {
                     Handler.Post(() =>
                     {
-                        Toast.MakeText(ActiveActivity, "Unrecoverable error: " + Message, ToastLength.Long).Show();
+                        Toast.MakeText(ActiveActivity ?? Application.Context, "Unrecoverable error: " + Message, ToastLength.Long).Show();
                     });
 
                     App.Kp2a.Lock(false);
@@ -1390,7 +1390,7 @@ namespace keepass2android
                 case Resource.Id.menu_copy:
 
                     var copyTask = new CopyEntry((GroupBaseActivity)Activity, App.Kp2a, (PwEntry)checkedItems.First(),
-                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)));
+                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a.CurrentDb);
 
                     ProgressTask pt = new ProgressTask(App.Kp2a, Activity, copyTask);
                     pt.Run();

@@ -69,7 +69,7 @@ namespace keepass2android
 			if (Intent.Action == Strings.ActionQueryCredentialsForOwnPackage)
 			{
 				_requiredScope = Strings.ScopeQueryCredentialsForOwnPackage;
-				_requestedUrl = "androidapp://" + _pluginPackage;
+				_requestedUrl = KeePass.AndroidAppScheme + _pluginPackage;
 			}
 			else if (Intent.Action == Strings.ActionQueryCredentials)
 			{
@@ -139,7 +139,7 @@ namespace keepass2android
             //will return the results later
             Intent i = new Intent(this, typeof (SelectCurrentDbActivity));
 			//don't show user notifications when an entry is opened.
-			var task = new SearchUrlTask() {UrlToSearchFor = _requestedUrl, ShowUserNotifications = false};
+			var task = new SearchUrlTask() {UrlToSearchFor = _requestedUrl, ShowUserNotifications = ShowUserNotificationsMode.WhenTotp};
 			task.ToIntent(i);
 			StartActivityForResult(i, RequestCodeQuery);
 			_startedQuery = true;

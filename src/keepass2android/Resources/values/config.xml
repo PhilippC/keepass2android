@@ -40,6 +40,7 @@
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>
 	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski, gilbsgilbs, Chih-Hsuan Yen, DDoSolitary, marcoDallas</string>
 	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
+  <string name="supporter_names">Arno Welzel</string>
     <string name="issues">https://github.com/PhilippC/keepass2android/issues</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
@@ -82,7 +83,7 @@
     <bool name="ShowUsernameInList_default">true</bool>
     <bool name="ShowGroupnameInSearchResult_default">true</bool>
 	<string name="ViewDatabaseSecure_key">ViewDatabaseSecure</string>
-  <string name="ShowKeyboardWhileFingerprint_key">ShowKeyboardWhileFingerprint_key</string>
+  <string name="CloseDatabaseAfterFailedBiometricQuickUnlock_key">CloseDatabaseAfterFailedBiometricQuickUnlock_key</string>
   <bool name="RememberRecentFiles_default">true</bool>
 	<string name="TrayTotp_SettingsField_key">TrayTotp_SettingsField_key</string>
 	<string name="TrayTotp_SeedField_key">TrayTotp_SeedField_key</string>

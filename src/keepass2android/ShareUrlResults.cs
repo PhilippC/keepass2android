@@ -100,53 +100,19 @@ namespace keepass2android
 		}
 
 		private void Query(string url, bool autoReturnFromQuery)
-		{	
-			try
-			{
-			    foreach (var db in App.Kp2a.OpenDatabases)
-			    {
-			        PwGroup resultsForThisDb;
-			        //first: search for exact url
-			        resultsForThisDb = db.SearchForExactUrl(url);
-			        if (!url.StartsWith("androidapp://"))
-			        {
-			            //if no results, search for host (e.g. "accounts.google.com")
-			            if (!resultsForThisDb.Entries.Any())
-			                resultsForThisDb = db.SearchForHost(url, false);
-			            //if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
-			            if (!resultsForThisDb.Entries.Any())
-			                resultsForThisDb = db.SearchForHost(url, true);
-
-			        }
-			        //if no results returned up to now, try to search through other fields as well:
-			        if (!resultsForThisDb.Entries.Any())
-			            resultsForThisDb = db.SearchForText(url);
-			        //search for host as text
-			        if (!resultsForThisDb.Entries.Any())
-			            resultsForThisDb = db.SearchForText(UrlUtil.GetHost(url.Trim()));
-
-			        if (Group == null)
-			        {
-			            Group = resultsForThisDb;
-			        }
-			        else
-                    {
-                        foreach (var entry in resultsForThisDb.Entries)
-                        {
-                            Group.AddEntry(entry, false,false);
-                        }
-                    }
-                    
-			    }
-
-			} catch (Exception e)
+        {
+            
+            try
+            {
+                Group = GetSearchResultsForUrl(url);
+            } catch (Exception e)
 			{
 				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
 				SetResult(Result.Canceled);
 				Finish();
 				return;
 			}
-			
+
 			//if there is exactly one match: open the entry
 			if ((Group.Entries.Count() == 1) && autoReturnFromQuery && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.AutoReturnFromQuery_key),true))
 			{
@@ -166,7 +132,7 @@ namespace keepass2android
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
 
-		    var newTask = new SelectEntryForUrlTask(url);
+            var newTask = new SearchUrlTask() {AutoReturnFromQuery = false, UrlToSearchFor = url};
 		    if (AppTask is SelectEntryTask currentSelectTask)
 		        newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
             
@@ -183,7 +149,7 @@ namespace keepass2android
 				createUrlEntry.Visibility = ViewStates.Visible;
 				createUrlEntry.Click += (sender, e) =>
 				{
-					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? true }, new ActivityLaunchModeRequestCode(0));
+					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ShowUserNotificationsMode.Always }, new ActivityLaunchModeRequestCode(0));
 					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
 				};
 			}
@@ -195,7 +161,47 @@ namespace keepass2android
 			Util.MoveBottomBarButtons(Resource.Id.select_other_entry, Resource.Id.add_url_entry, Resource.Id.bottom_bar, this);
 		}
 
-		public override bool OnSearchRequested()
+        public static PwGroup GetSearchResultsForUrl(string url)
+        {
+            PwGroup resultsGroup = null;
+            foreach (var db in App.Kp2a.OpenDatabases)
+            {
+                //first: search for exact url
+                var resultsForThisDb = db.SearchForExactUrl(url);
+                if (!url.StartsWith(KeePass.AndroidAppScheme))
+                {
+                    //if no results, search for host (e.g. "accounts.google.com")
+                    if (!resultsForThisDb.Entries.Any())
+                        resultsForThisDb = db.SearchForHost(url, false);
+                    //if still no results, search for host, allowing subdomains ("www.google.com" in entry is ok for "accounts.google.com" in search (but not the other way around)
+                    if (!resultsForThisDb.Entries.Any())
+                        resultsForThisDb = db.SearchForHost(url, true);
+                }
+
+                //if no results returned up to now, try to search through other fields as well:
+                if (!resultsForThisDb.Entries.Any())
+                    resultsForThisDb = db.SearchForText(url);
+                //search for host as text
+                if (!resultsForThisDb.Entries.Any())
+                    resultsForThisDb = db.SearchForText(UrlUtil.GetHost(url.Trim()));
+
+                if (resultsGroup == null)
+                {
+                    resultsGroup = resultsForThisDb;
+                }
+                else
+                {
+                    foreach (var entry in resultsForThisDb.Entries)
+                    {
+                        resultsGroup.AddEntry(entry, false, false);
+                    }
+                }
+            }
+
+            return resultsGroup;
+        }
+
+        public override bool OnSearchRequested()
 		{
 			Intent i = new Intent(this, typeof(SearchActivity));
 			AppTask.ToIntent(i);

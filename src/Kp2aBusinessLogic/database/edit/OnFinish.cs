@@ -39,7 +39,7 @@ namespace keepass2android
         protected OnFinish BaseOnFinish;
 		protected Handler Handler;
 		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
-	    private Activity _activeActivity;
+	    private Activity _activeActivity, _previouslyActiveActivity;
 
 
 	    public ProgressDialogStatusLogger StatusLogger
@@ -53,7 +53,12 @@ namespace keepass2android
 	        get { return _activeActivity; }
 	        set
 	        {
-	            _activeActivity = value;
+                if (_activeActivity != null && _activeActivity != _previouslyActiveActivity)
+                {
+                    _previouslyActiveActivity = _activeActivity;
+
+                }
+				_activeActivity = value;
 	            if (BaseOnFinish != null)
 	            {
 	                BaseOnFinish.ActiveActivity = value;
@@ -61,8 +66,15 @@ namespace keepass2android
 	        }
 	    }
 
+        public Activity PreviouslyActiveActivity
+        {
+            get { return _previouslyActiveActivity; }
 
-	    protected OnFinish(Activity activeActivity, Handler handler)
+        }
+
+
+
+		protected OnFinish(Activity activeActivity, Handler handler)
 	    {
 	        ActiveActivity = activeActivity;
 			BaseOnFinish = null;

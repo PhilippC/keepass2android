@@ -23,7 +23,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml;
-
+using keepass2android;
 #if !KeePassUAP
 using System.Drawing;
 #endif
@@ -872,8 +872,17 @@ namespace KeePassLib.Serialization
 					pb = pb8;
 				}
 				long lSec = MemUtil.BytesToInt64(pb);
-				return new DateTime(lSec * TimeSpan.TicksPerSecond, DateTimeKind.Utc);
-			}
+                try
+                {
+                    return new DateTime(lSec * TimeSpan.TicksPerSecond, DateTimeKind.Utc);
+                }
+                catch (System.ArgumentOutOfRangeException e)
+                {
+                    //files might contain bad data, e.g. see #868. Fall back to MinValue
+                    Kp2aLog.Log("Failed to read date from file.");
+                    return DateTime.MinValue;
+                }
+            }
 			else
 			{
 				string str = ReadString(xr);

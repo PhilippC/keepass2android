@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				  xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:paddingBottom="16dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp">
+	<androidx.appcompat.widget.Toolbar  android:id="@+id/mytoolbar"
+  app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+  app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      app:titleTextStyle="@style/MyTitleTextStyle"
+      android:layout_height="wrap_content"
+      android:layout_width="fill_parent"
+      android:minHeight="?attr/actionBarSize"
+      android:background="#00000000" />
+
+	<TextView android:text="@string/no_secure_display" android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+	<Button android:id="@+id/btn_goto_settings" android:text="@string/IconVisibilityInfo_Android8_btnSettings" android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+</LinearLayout>

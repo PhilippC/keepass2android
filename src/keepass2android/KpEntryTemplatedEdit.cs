@@ -138,14 +138,21 @@ namespace keepass2android
 			return keys.OrderBy(s => s, c);
 		}
 
-		public override bool ShowAddAttachments
-		{
-			get { return false; }
-		}
+        public override bool ShowAddAttachments
+        {
+            get
+            {
+                if (manualShowAddAttachments != null) return (bool)manualShowAddAttachments;
+                return false;
+            }
+        }
 
-		public override bool ShowAddExtras
+        public override bool ShowAddExtras
 		{
-			get { return false; }
+			get {
+                if (manualShowAddExtras != null) return (bool)manualShowAddExtras;
+                return false;
+            }
 		}
 
 	    public override string GetTitle(string key)

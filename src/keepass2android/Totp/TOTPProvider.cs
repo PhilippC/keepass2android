@@ -229,7 +229,7 @@ namespace KeeTrayTOTP.Libraries
         /// <returns>Time-based One Time Password encoded byte array.</returns>
         public string Generate(string key)
         {
-            byte[] bkey = Base32.Decode(key);
+            byte[] bkey = Base32.Decode(key.Trim());
             return this.GenerateByByte(bkey);
         }
 

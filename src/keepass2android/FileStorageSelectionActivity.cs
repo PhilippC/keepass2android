@@ -23,7 +23,7 @@ using Object = Java.Lang.Object;
 namespace keepass2android
 {
     [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_Blue")]
-    public class FileStorageSelectionActivity : AppCompatActivity
+    public class FileStorageSelectionActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
 
@@ -239,7 +239,7 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.filestorage_selection);
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
+            var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
             
             SetSupportActionBar(toolbar);
 

@@ -348,7 +348,28 @@ namespace keepass2android
 		{
 			
 		}
-	}
+
+
+        protected static bool GetBoolFromBundle(Bundle b, string key, bool defaultValue)
+        {
+            bool boolValue;
+            if (!Boolean.TryParse(b.GetString(key), out boolValue))
+            {
+                boolValue = defaultValue;
+            }
+            return boolValue;
+        }
+
+        protected static int GetIntFromBundle(Bundle b, string key, int defaultValue)
+        {
+            int intValue;
+            if (!Int32.TryParse(b.GetString(key), out intValue))
+            {
+                intValue = defaultValue;
+            }
+            return intValue;
+        }
+    }
 
 	/// <summary>
 	/// Implementation of AppTask for "no task currently active" (Null pattern)
@@ -436,54 +457,92 @@ namespace keepass2android
 	    {
             if (App.Kp2a.LastOpenedEntry != null)
 	            App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
-	        base.CompleteOnCreateEntryActivity(activity);
-	    }
-	}
 
-	
-	/// <summary>
-	/// User is about to select an entry for use in another app
-	/// </summary>
-	public class SelectEntryTask: AppTask
+
+            //if the database is readonly (or no URL exists), don't offer to modify the URL
+            if ((App.Kp2a.CurrentDb.CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor) || keepass2android.ShareUrlResults.GetSearchResultsForUrl(UrlToSearchFor).Entries.Any(e => e == activity.Entry) ))
+            {
+                base.CompleteOnCreateEntryActivity(activity);
+                return;
+            }
+
+            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
+        }
+
+
+        /// <summary>
+        /// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
+        /// </summary>
+        public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
+
+            builder.SetMessage(activity.GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url }));
+
+            builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
+            {
+                activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
+            });
+
+            builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
+            {
+                base.CompleteOnCreateEntryActivity(activity);
+            });
+
+            Dialog dialog = builder.Create();
+            dialog.Show();
+        }
+    }
+
+
+    public enum ShowUserNotificationsMode
+    {
+        Never,
+        WhenTotp,
+        Always
+    }
+    /// <summary>
+    /// User is about to select an entry for use in another app
+    /// </summary>
+    public class SelectEntryTask: AppTask
 	{
 		public SelectEntryTask()
 		{
-			ShowUserNotifications = true;
+			ShowUserNotifications = ShowUserNotificationsMode.Always;
 			CloseAfterCreate = true;
-		}
+            ActivateKeyboard = true;
+        }
 
 		public const String ShowUserNotificationsKey = "ShowUserNotifications";
 
-		public bool ShowUserNotifications { get; set; }
+
+
+        public ShowUserNotificationsMode ShowUserNotifications { get; set; }
 
 		public const String CloseAfterCreateKey = "CloseAfterCreate";
+        public const String ActivateKeyboardKey = "ActivateKeyboard";
 
-		public bool CloseAfterCreate { get; set; }
+        public bool CloseAfterCreate { get; set; }
+        public bool ActivateKeyboard { get; set; }
 
 
-		public override void Setup(Bundle b)
+        public override void Setup(Bundle b)
 		{
-			ShowUserNotifications = GetBoolFromBundle(b, ShowUserNotificationsKey, true);
+			ShowUserNotifications = (ShowUserNotificationsMode) GetIntFromBundle(b, ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
 			CloseAfterCreate = GetBoolFromBundle(b, CloseAfterCreateKey, true);
-		}
+            ActivateKeyboard = GetBoolFromBundle(b, ActivateKeyboardKey, true);
+        }
 
-		private static bool GetBoolFromBundle(Bundle b, string key, bool defaultValue)
-		{
-			bool boolValue;
-			if (!Boolean.TryParse(b.GetString(key), out boolValue))	
-			{
-				boolValue = defaultValue; 
-			}
-			return boolValue;
-		}
 
-		public override IEnumerable<IExtra> Extras
+        public override IEnumerable<IExtra> Extras
 		{
 			get
 			{
-				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ShowUserNotifications.ToString() };
+				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ((int)ShowUserNotifications).ToString() };
 				yield return new StringExtra { Key = CloseAfterCreateKey, Value = CloseAfterCreate.ToString() };
-			}
+                yield return new StringExtra { Key = ActivateKeyboardKey, Value = ActivateKeyboard.ToString() };
+            }
 		}
 
 		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
@@ -492,10 +551,11 @@ namespace keepass2android
 		    if (ctx == null)
 		        ctx = Application.Context;
 
-			if (ShowUserNotifications)
+			if ((ShowUserNotifications == ShowUserNotificationsMode.Always)
+                || ((ShowUserNotifications == ShowUserNotificationsMode.WhenTotp) && new Kp2aTotp().TryGetAdapter(new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb)) != null))
 			{
 				//show the notifications
-				activity.StartNotificationsService(CloseAfterCreate);
+				activity.StartNotificationsService(ActivateKeyboard);
 			}
 			else
 			{
@@ -508,93 +568,6 @@ namespace keepass2android
 				activity.CloseAfterTaskComplete();	
 			}
 		}
-	}
-
-	/// <summary>
-	/// User is about to select an entry. When selected, ask whether the url he was searching for earlier should be stored 
-	/// in the selected entry for later use.
-	/// </summary>
-	public class SelectEntryForUrlTask: SelectEntryTask
-	{
-		/// <summary>
-		/// default constructor for creating from Bundle
-		/// </summary>
-		public SelectEntryForUrlTask()
-		{
-			
-		}
-
-		public SelectEntryForUrlTask(string url)
-		{
-			UrlToSearchFor = url;
-			ShowUserNotifications = true;
-		}
-
-		public const String UrlToSearchKey = "UrlToSearch";
-		
-		public string UrlToSearchFor
-		{
-			get;
-			set;
-		}
-
-		public override void Setup(Bundle b)
-		{
-			base.Setup(b);
-			UrlToSearchFor = b.GetString(UrlToSearchKey);
-		}
-		public override IEnumerable<IExtra> Extras
-		{
-			get
-			{
-				foreach (IExtra e in base.Extras)
-					yield return e;
-				yield return new StringExtra { Key = UrlToSearchKey, Value = UrlToSearchFor };
-			}
-		}
-
-		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
-		{
-            if (App.Kp2a.LastOpenedEntry != null)
-		        App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
-
-            //if the database is readonly (or no URL exists), don't offer to modify the URL
-            if ((App.Kp2a.CurrentDb.CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor)))
-			{
-				base.CompleteOnCreateEntryActivity(activity);
-				return;
-			}
-		    
-
-
-            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
-
-		}
-
-		/// <summary>
-		/// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
-		/// </summary>
-		public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url)
-		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-			builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
-
-			builder.SetMessage(activity.GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url }));
-
-			builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
-			{
-				activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
-			});
-
-			builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
-			{
-				base.CompleteOnCreateEntryActivity(activity);
-			});
-
-			Dialog dialog = builder.Create();
-			dialog.Show();
-		}
-		
 	}
 
 
@@ -657,7 +630,7 @@ namespace keepass2android
 	{
 		public CreateEntryThenCloseTask()
 		{
-			ShowUserNotifications = true;
+			ShowUserNotifications = ShowUserNotificationsMode.Always;
 		}
 
 	    public override bool CanActivateSearchViewOnStart
@@ -697,17 +670,13 @@ namespace keepass2android
 
 		public IList<string> ProtectedFieldsList { get; set; }
 
-		public bool ShowUserNotifications { get; set; }
+		public ShowUserNotificationsMode ShowUserNotifications { get; set; }
 
 
 		public override void Setup(Bundle b)
 		{
-			bool showUserNotification; 
-			if (!Boolean.TryParse(b.GetString(ShowUserNotificationsKey), out showUserNotification))
-			{
-				showUserNotification = true; //default to true
-			}
-			ShowUserNotifications = showUserNotification;
+			
+			ShowUserNotifications = (ShowUserNotificationsMode)GetIntFromBundle(b,ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
 			
 			Url = b.GetString(UrlKey);
 			AllFields = b.GetString(AllFieldsKey);
@@ -732,9 +701,9 @@ namespace keepass2android
 		public override void PrepareNewEntry(PwEntry newEntry)
 		{
 			if (Url != null)
-			{
-				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, Url));
-			}
+            {
+                Util.SetNextFreeUrlField(newEntry, Url);
+            }
 			if (AllFields != null)
 			{
 				

@@ -63,7 +63,9 @@ namespace keepass2android
 
 		const string IntentContinueWithEditing = "ContinueWithEditing";
 
-		EntryEditActivityState State
+        private PasswordFont _passwordFont = new PasswordFont();
+
+        EntryEditActivityState State
 		{
 			get { return App.Kp2a.EntryEditActivityState; }
 		}
@@ -110,6 +112,8 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.entry_edit);
 			_closeForReload = false;
+
+            Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.entry_scroll));
 
 			// Likely the app has been killed exit the activity
 			if (!App.Kp2a.DatabaseIsUnlocked)
@@ -291,8 +295,10 @@ namespace keepass2android
 				State.EntryModified = true;
 			};
 
+            
 
-		}
+
+        }
 
 	    protected override void OnStart()
 	    {
@@ -397,6 +403,7 @@ namespace keepass2android
 			if (State.ShowPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+                _passwordFont.ApplyTo(password);
 				confpassword.Visibility = ViewStates.Gone;
 			}
 			else
@@ -490,7 +497,7 @@ namespace keepass2android
 			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) => {
 				if (success)
 				{
-				    activity.Finish();
+                    activity?.Finish();
 				} else
 				{
 				    OnFinish.DisplayMessage(activity, message, true);
@@ -498,15 +505,18 @@ namespace keepass2android
                     State.EditMode.InitializeEntry(State.Entry);
 				}
 			});
+            //make sure we can close the EntryEditActivity activity even if the app went to background till we get to the OnFinish Action
+			closeOrShowError.AllowInactiveActivity = true;
+			
 
 			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
 			{
-				if (success)
-					_appTask.AfterAddNewEntry((EntryEditActivity)activity, newEntry);
+				if (success && activity is EntryEditActivity entryEditActivity)
+					_appTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
-				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry);
+				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry, db);
 			} else {
 				runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}
@@ -565,7 +575,9 @@ namespace keepass2android
 					continue;
 
 				TextView valueView = (TextView)view.FindViewById(Resource.Id.value);
-				String value = valueView.Text;
+                
+
+                String value = valueView.Text;
 
 				bool protect = ((CheckBox) view.FindViewById(Resource.Id.protection))?.Checked ?? State.EntryInDatabase.Strings.GetSafe(key).IsProtected;
 				entry.Strings.Set(key, new ProtectedString(protect, value));
@@ -915,7 +927,15 @@ namespace keepass2android
 					item.SetVisible(false);
 					foreach (View v in _editModeHiddenViews)
 						v.Visibility = ViewStates.Visible;
-					return true;
+                    State.EditMode.ShowAddAttachments = true;
+                    State.EditMode.ShowAddExtras = true;
+                    ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
+                    binariesGroup.Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.entry_binaries_container).Visibility = ViewStates.Visible;
+                    ((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.entry_extras_container).Visibility = ViewStates.Visible;
+
+                    return true;
                 case Android.Resource.Id.Home:
                     OnBackPressed();
 			        return true;
@@ -1031,8 +1051,8 @@ namespace keepass2android
 				titleView.Text = title;
 				((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
 				((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
-				
-				((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
+                _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
+                ((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
 				
 				//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
 				ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
@@ -1093,7 +1113,9 @@ namespace keepass2android
 			View ees = (View) sender.Parent;
 			dlgView.FindViewById<TextView>(Resource.Id.title).Text = ees.FindViewById<TextView>(Resource.Id.extrakey).Text;
 			dlgView.FindViewById<EditText>(Resource.Id.value).Text = ees.FindViewById<EditText>(Resource.Id.value).Text;
-			dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
+            _passwordFont.ApplyTo(dlgView.FindViewById<EditText>(Resource.Id.value));
+            Util.SetNoPersonalizedLearning(dlgView);
+            dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
 
 			var titleView = ((AutoCompleteTextView)dlgView.FindViewById(Resource.Id.title));
 			titleView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, AdditionalKeys);
@@ -1138,6 +1160,10 @@ namespace keepass2android
 			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
 			PopulateText(Resource.Id.entry_password, password);
 			PopulateText(Resource.Id.entry_confpassword, password);
+
+            _passwordFont.ApplyTo(FindViewById<EditText>(Resource.Id.entry_password));
+
+
 			
 			PopulateText(Resource.Id.entry_comment, State.Entry.Strings.ReadSafe (PwDefs.NotesField));
 

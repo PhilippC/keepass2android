@@ -11,7 +11,7 @@ using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
 using KeePassLib.Interfaces;
-#if !NoNet
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
 #endif 
 
@@ -29,7 +29,7 @@ namespace keepass2android
 
 	}
 
-	/// <summary>
+    /// <summary>
 	/// Interface through which Activities and the logic layer can access some app specific functionalities and Application static data
 	/// </summary>
 	/// This also contains methods which are UI specific and should be replacable for testing.
@@ -38,7 +38,7 @@ namespace keepass2android
         /// <summary>
         /// Locks all currently open databases, quicklocking if available (unless false is passed for allowQuickUnlock)
         /// </summary>
-        void Lock(bool allowQuickUnlock);
+        void Lock(bool allowQuickUnlock, bool lockWasTriggeredByTimeout);
 
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace keepass2android
 
 		
 		bool CheckForDuplicateUuids { get; }
-#if !NoNet
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 		ICertificateErrorHandler CertificateErrorHandler { get; }
 	    
 

@@ -36,8 +36,11 @@ namespace keepass2android
 		{
 			_actionToPerform = actionToPerform;
 		}
-        
-		public override void Run()
+
+		//if set to true, the previously active active will be passed to ActionToPerformOnFinish instead null if no activity is on foreground
+        public bool AllowInactiveActivity { get; set; }
+
+        public override void Run()
 		{
 			if (Message == null)
 				Message = "";
@@ -46,7 +49,7 @@ namespace keepass2android
 				Handler.Post(() => {_actionToPerform(Success, Message, ActiveActivity);});
 			}
 			else
-				_actionToPerform(Success, Message, ActiveActivity);
+				_actionToPerform(Success, Message, AllowInactiveActivity ? (ActiveActivity ?? PreviouslyActiveActivity) :  ActiveActivity);
 			base.Run();
 		}
 	}

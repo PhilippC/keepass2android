@@ -20,6 +20,9 @@ namespace keepass2android
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.switch_ime_activity_layout);
+            FindViewById<Button>(Resource.Id.btn_reopen).Click += (sender, args) => TrySwitchKeyboard();
+            FindViewById<Button>(Resource.Id.btn_cancel).Click += (sender, args) => Finish();
         }
         private string Kp2aInputMethodName
         {
@@ -32,6 +35,11 @@ namespace keepass2android
         {
             base.OnResume();
 
+            TrySwitchKeyboard();
+        }
+
+        private void TrySwitchKeyboard()
+        {
             var needsKeyboardSwitch = NeedsKeyboardSwitch();
 
             if (needsKeyboardSwitch)
@@ -50,8 +58,6 @@ namespace keepass2android
                         if (!NeedsKeyboardSwitch()) Finish();
                     });
                 }, null, timeToWait, timeToWait);
-
-
             }
             else
                 Finish();

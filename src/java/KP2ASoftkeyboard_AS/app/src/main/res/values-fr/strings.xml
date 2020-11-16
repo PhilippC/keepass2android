@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 /*
 **
 ** Copyright 2008, The Android Open Source Project
@@ -16,125 +16,238 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
- -->
-
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Clavier Keepass2Android"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Paramètres du clavier Keepass2Android"</string>
-    <string name="english_ime_input_options" msgid="3909945612939668554">"Options de saisie"</string>
-    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Vibrer à chaque touche"</string>
-    <string name="sound_on_keypress" msgid="6093592297198243644">"Son à chaque touche"</string>
-    <string name="popup_on_keypress" msgid="123894815723512944">"Agrandir les caractères"</string>
-    <string name="hit_correction" msgid="4855351009261318389">"Corriger les fautes de frappe"</string>
-    <string name="hit_correction_summary" msgid="8761701873008070796">"Activer la correction des erreurs de saisie"</string>
-    <string name="hit_correction_land" msgid="2567691684825205448">"Erreurs de saisie en mode paysage"</string>
-    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Activer la correction des erreurs de saisie"</string>
-    <string name="auto_correction" msgid="7911639788808958255">"Saisie prédictive"</string>
-    <string name="auto_correction_summary" msgid="6881047311475758267">"Corriger automatiquement le mot précédent"</string>
-    <string name="prediction" msgid="466220283138359837">"Saisie prédictive"</string>
-    <string name="prediction_category" msgid="7027100625580696660">"Paramètres de la saisie prédictive"</string>
-    <string name="prediction_summary" msgid="459788228830873110">"Activer la saisie semi-automatique"</string>
-    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Saisie semi-automatique"</string>
-    <string name="prediction_landscape" msgid="4874601565593216183">"Agrandir le champ de texte"</string>
-    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Masquer la saisie prédictive en mode paysage"</string>
-    <string name="auto_cap" msgid="1719746674854628252">"Majuscules auto"</string>
-    <string name="auto_cap_summary" msgid="3260681697600786825">"Mettre en majuscule la première lettre de chaque phrase"</string>
-    <string name="auto_punctuate" msgid="7276672334264521751">"Ponctuation automatique"</string>
-    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
-    <string name="quick_fixes" msgid="5353213327680897927">"Corrections rapides"</string>
-    <string name="quick_fixes_summary" msgid="3405028402510332373">"Corrige les fautes de frappe courantes"</string>
-    <string name="show_suggestions" msgid="507074425254289133">"Afficher les suggestions"</string>
-    <string name="show_suggestions_summary" msgid="1989672863935759654">"Afficher les suggestions de terme lors de la saisie"</string>
-    <string name="auto_complete" msgid="1103196318775486023">"Saisie semi-automatique"</string>
-    <string name="auto_complete_summary" msgid="6113149638718274624">"Insérer autom. terme surligné (pression sur barre espace/ponctuation)"</string>
-    <string name="prefs_settings_key" msgid="4623341240804046498">"Afficher touche param."</string>
-    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automatique"</string>
-    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Toujours afficher"</string>
-    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Toujours masquer"</string>
-    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
-    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
-    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
-    <string name="bigram_suggestion" msgid="1323347224043514969">"Suggestions de type bigramme"</string>
-    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Améliorer la suggestion en fonction du mot précédent"</string>
-  <string-array name="prediction_modes">
-    <item msgid="4870266572388153286">"Aucun"</item>
-    <item msgid="1669461741568287396">"Simple"</item>
-    <item msgid="4894328801530136615">"Avancé"</item>
-  </string-array>
-    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : enregistré"</string>
-    <string name="tip_long_press" msgid="6101270866284343344">"Maintenir une touche enfoncée pour afficher les accents (à, é, etc.)"</string>
-    <string name="tip_dismiss" msgid="7585579046862204381">"Appuyez sur la touche Retour ↶ pour fermer le clavier à tout moment."</string>
-    <string name="tip_access_symbols" msgid="6344098517525531652">"Accéder aux chiffres et symboles"</string>
-    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Appuyer et maintenir le doigt sur le mot le plus à gauche pour l\'ajouter au dictionnaire"</string>
-    <string name="touch_to_continue" msgid="7869803257948414531">"Touchez ce conseil pour continuer »"</string>
-    <string name="touch_to_finish" msgid="7990196086480585789">"Touchez ici pour fermer ce conseil et commencer à saisir votre texte."</string>
-    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Le clavier s\'affiche à chaque fois que vous touchez une zone de texte."</b></string>
-    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Maintenez une touche enfoncée pour afficher les accents"\n"(ø, ö, ô, ó, etc.)"</b>"."</string>
-    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Appuyez sur cette touche pour basculer vers les chiffres et les symboles."</b></string>
-    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Appuyez de nouveau sur cette touche pour retourner aux lettres."</b></string>
-    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Maintenez cette touche enfoncée afin de modifier les paramètres du clavier, tels que la saisie semi-automatique."</b></string>
-    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Essayez !"</b></string>
-    <string name="label_go_key" msgid="1635148082137219148">"OK"</string>
-    <string name="label_next_key" msgid="362972844525672568">"Suivant"</string>
-    <string name="label_done_key" msgid="2441578748772529288">"OK"</string>
-    <string name="label_send_key" msgid="2815056534433717444">"Envoyer"</string>
-    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
-    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
-    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
-    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
-    <string name="voice_warning_title" msgid="4419354150908395008">"Saisie vocale"</string>
-    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"La saisie vocale n\'est pas encore prise en charge pour votre langue, mais elle fonctionne en anglais."</string>
-    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"La saisie vocale est une fonctionnalité expérimentale qui fait appel à la reconnaissance vocale en réseau de Google."</string>
-    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Pour désactiver la saisie vocale, accédez aux paramètres du clavier."</string>
-    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Pour utiliser la saisie vocale, appuyez sur la touche du microphone ou faites glisser votre doigt sur le clavier à l\'écran."</string>
-    <string name="voice_listening" msgid="467518160751321844">"Parlez maintenant"</string>
-    <string name="voice_working" msgid="6666937792815731889">"Traitement en cours"</string>
-    <string name="voice_initializing" msgid="661962047129906646"></string>
-    <string name="voice_error" msgid="5140896300312186162">"Erreur. Veuillez réessayer."</string>
-    <string name="voice_network_error" msgid="6649556447401862563">"Connexion impossible"</string>
-    <string name="voice_too_much_speech" msgid="5746973620134227376">"Erreur, discours trop long."</string>
-    <string name="voice_audio_error" msgid="5072707727016414454">"Problème audio"</string>
-    <string name="voice_server_error" msgid="7807129913977261644">"Erreur serveur"</string>
-    <string name="voice_speech_timeout" msgid="8461817525075498795">"Aucune requête vocale détectée"</string>
-    <string name="voice_no_match" msgid="4285117547030179174">"Aucune correspondance n\'a été trouvée."</string>
-    <string name="voice_not_installed" msgid="5552450909753842415">"Recherche vocale non installée"</string>
-    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Astuce :"</b>" Faites glisser votre doigt sur le clavier pour parler."</string>
-    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Astuce :"</b>" La prochaine fois, essayez de prononcer la ponctuation, en énonçant des termes tels que \"point\", \"virgule\" ou \"point d\'interrogation\"."</string>
-    <string name="cancel" msgid="6830980399865683324">"Annuler"</string>
-    <string name="ok" msgid="7898366843681727667">"OK"</string>
-    <string name="voice_input" msgid="2466640768843347841">"Saisie vocale"</string>
-  <string-array name="voice_input_modes">
-    <item msgid="1349082139076086774">"Sur le clavier principal"</item>
-    <item msgid="8529385602829095903">"Sur le clavier des symboles"</item>
-    <item msgid="7283103513488381103">"Désactivée"</item>
-  </string-array>
-  <string-array name="voice_input_modes_summary">
-    <item msgid="554248625705084903">"Micro sur le clavier principal"</item>
-    <item msgid="6907837061058876770">"Micro sur le clavier des symboles"</item>
-    <item msgid="3664304608587798036">"Saisie vocale désactivée"</item>
-  </string-array>
-    <string name="auto_submit" msgid="9151008027068358518">"Envoi automatique après la saisie vocale"</string>
-    <string name="auto_submit_summary" msgid="4961875269610384226">"Appuyez automatiquement sur Entrée pour effectuer une recherche ou accéder au champ suivant."</string>
-    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Ouvrir le clavier"\n</b></font><font size="3">\n</font>"Appuyez sur un champ de texte."</string>
-    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Fermer le clavier"\n</b></font><font size="3">\n</font>"Appuyez sur la touche Retour."</string>
-    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Appuyez sur une touche de manière prolongée pour accéder aux options"\n</b></font><font size="3">\n</font>"Accédez aux signes de ponctuation et aux accents."</string>
-    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Paramètres du clavier"\n</b></font><font size="3">\n</font>"Appuyez sur la touche "<b>"?123"</b>" de manière prolongée."</string>
-    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
-    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
-    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
-    <string name="popular_domain_3" msgid="8718639560809452028">".gouv"</string>
-    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
-    <string name="selectInputMethod" msgid="315076553378705821">"Sélectionner un mode de saisie."</string>
-    <string name="language_selection_title" msgid="1651299598555326750">"Langues de saisie"</string>
-    <string name="language_selection_summary" msgid="187110938289512256">"Faites glisser votre doigt sur la barre d\'espacement pour changer la langue."</string>
-    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Appuyer de nouveau pour enregistrer"</string>
-    <string name="has_dictionary" msgid="6071847973466625007">"Dictionnaire disponible"</string>
-    <string name="prefs_enable_log" msgid="6620424505072963557">"Autoriser les commentaires des utilisateurs"</string>
-    <string name="prefs_description_log" msgid="5827825607258246003">"Contribuer à l\'amélioration de cet éditeur du mode de saisie grâce à l\'envoi automatique de statistiques d\'utilisation et de rapports d\'incident à Google."</string>
-    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Appuyer pour corriger"</string>
-    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Appuyer sur les mots saisis pour les corriger"</string>
-    <string name="keyboard_layout" msgid="437433231038683666">"Thème du clavier"</string>
-    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"clavier"</string>
-    <string name="subtype_mode_voice" msgid="4394113125441627771">"voix"</string>
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Clavier Keepass2Android</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Paramètres du clavier Keepass2Android</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Options de saisie</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Vibrer à chaque touche</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Son à chaque touche</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Agrandir les caractères</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Corriger les fautes de frappe</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Activer la correction des erreurs de saisie</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Erreurs de saisie en mode paysage</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Activer la correction des erreurs de saisie</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Saisie prédictive</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Corriger automatiquement le mot précédent</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Saisie prédictive</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Paramètres de la saisie prédictive</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Activer la saisie semi-automatique</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Saisie semi-automatique</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Agrandir le champ de texte</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Masquer la saisie prédictive en mode paysage</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Majuscules auto</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Mettre en majuscule la première lettre de chaque phrase</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Ponctuation automatique</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Corrections rapides</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Corrige les fautes de frappe courantes</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Afficher les suggestions</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Afficher les suggestions de terme lors de la saisie</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Saisie semi-automatique</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Insérer autom. terme surligné (pression sur barre espace/ponctuation)</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Afficher touche param.</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Automatique</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Toujours afficher</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Toujours masquer</string>
+    <!-- Array of the settings key modes -->
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Suggestions de type bigramme</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Améliorer la suggestion en fonction du mot précédent</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Aucun</item>
+        <item>Simple</item>
+        <item>Avancé</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="WORD">%s</xliff:g> : enregistré</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Maintenir une touche enfoncée pour afficher les accents (à, é, etc.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Appuyez sur la touche Retour ↶ pour fermer le clavier à tout moment.</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Accéder aux chiffres et symboles</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Appuyer et maintenir le doigt sur le mot le plus à gauche pour l\'ajouter au dictionnaire</string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Touchez ce conseil pour continuer »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Touchez ici pour fermer ce conseil et commencer à saisir votre texte.</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>\"Le clavier s\'affiche à chaque fois que vous touchez une zone de texte.\"</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>\"Maintenez une touche enfoncée pour afficher les accents\"\n\"(ø, ö, ô, ó, etc.)\"</b>\".\"</string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>\"Appuyez sur cette touche pour basculer vers les chiffres et les symboles.\"</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>\"Appuyez de nouveau sur cette touche pour retourner aux lettres.\"</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>\"Maintenez cette touche enfoncée afin de modifier les paramètres du clavier, tels que la saisie semi-automatique.\"</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>\"Essayez !\"</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">OK</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Suivant</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Valider</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Envoyer</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">Alt</string>
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Saisie vocale</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">La saisie vocale n\'est pas encore prise en charge pour votre langue, mais elle fonctionne en anglais.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">La saisie vocale est une fonctionnalité expérimentale qui fait appel à la reconnaissance vocale en réseau de Google.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Pour désactiver la saisie vocale, accédez aux paramètres du clavier.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Pour utiliser la saisie vocale, appuyez sur la touche du microphone ou faites glisser votre doigt sur le clavier à l\'écran.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Parlez maintenant</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Traitement en cours</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Erreur. Veuillez réessayer.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Connexion impossible</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Erreur, discours trop long.</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Problème audio</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Erreur serveur</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Aucune requête vocale détectée</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Aucune correspondance n\'a été trouvée.</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Recherche vocale non installée</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>\"Astuce :\"</b>\" Faites glisser votre doigt sur le clavier pour parler.\"</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>\"Astuce :\"</b>\" La prochaine fois, essayez de prononcer la ponctuation, en énonçant des termes tels que \"point\", \"virgule\" ou \"point d\'interrogation\".\"</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Annuler</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">Ok</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Saisie vocale</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>Sur le clavier principal</item>
+        <item>Sur le clavier des symboles</item>
+        <item>Désactivée</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Micro sur le clavier principal</item>
+        <item>Micro sur le clavier des symboles</item>
+        <item>Saisie vocale désactivée</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Envoi automatique après la saisie vocale</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Appuyez automatiquement sur Entrée pour effectuer une recherche ou accéder au champ suivant.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>\"Ouvrir le clavier\"\n</b></font><font size="3">\n</font>\"Appuyez sur un champ de texte.\"</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>\"Fermer le clavier\"\n</b></font><font size="3">\n</font>\"Appuyez sur la touche Retour.\"</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>\"Appuyez sur une touche de manière prolongée pour accéder aux options\"\n</b></font><font size="3">\n</font>\"Accédez aux signes de ponctuation et aux accents.\"</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>\"Paramètres du clavier\"\n</b></font><font size="3">\n</font>\"Appuyez sur la touche \"<b>\"?123\"</b>\" de manière prolongée.\"</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gouv"</string>
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Sélectionner un mode de saisie.</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Langues de saisie</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Faites glisser votre doigt sur la barre d\'espacement pour changer la langue.</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">← Appuyer de nouveau pour enregistrer</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Dictionnaire disponible</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Autoriser les commentaires des utilisateurs</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Contribuer à l\'amélioration de cet éditeur du mode de saisie grâce à l\'envoi automatique de statistiques d\'utilisation et de rapports d\'incident à Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Appuyer pour corriger</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Appuyer sur les mots saisis pour les corriger</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Thème du clavier</string>
+    <string name="subtype_mode_keyboard">clavier</string>
+    <string name="subtype_mode_voice">voix</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>
