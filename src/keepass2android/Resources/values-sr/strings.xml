@@ -19,9 +19,18 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Временско прекорачење апликације</string>
+  <string name="app_timeout_summary">Време пре закључавања базе података када апликација није активна</string>
+  <string name="kill_app_label">Угасите процес апликације</string>
   <string name="show_kill_app">Дугме за излаз</string>
+  <string name="application">Апликација</string>
+  <string name="application_settings">Подешавања апликације</string>
   <string name="ShowGroupnameInSearchResult_title">Прикажи име групе у резултату претраге</string>
   <string name="ShowGroupnameInSearchResult_resume">Прикажи име групе испод унешених назива у резултату претраге. Корисно уколико неколико уноса имају исто име.</string>
+  <string name="AutofillDisabledQueriesPreference_title">Онемогућено аутоматско попуњавање</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Преглед листе апликација и веб страница за које је аутоматско попуњавање угашено</string>
+  <string name="OfferSaveCredentials_summary">Ако је омогућено, Андроид ће вас питати да ли желите да сачувате корисничко име и шифру након што сте ручно унели податке у поља са аутоматским попуњавањем.</string>
+  <string name="OfferSaveCredentials_title">Понуди чување корисничког имена и шифре</string>
   <string name="NavigationToGroupCompleted_message">Приказ групе је сада: %1$s</string>
   <string name="ShowGroupInEntry_title">Прикажи назив групе у погледу за унос</string>
   <string name="unknown_uri_scheme">Извините! Keepass2Android не може да обради повратни URI %1$s. Контактирајте девелопера!</string>
@@ -36,18 +45,22 @@
   <string name="FileHandling_prefs">Управљање датотеком</string>
   <string name="keyboard_prefs">Тастатура</string>
   <string name="export_prefs">Извоз базе података...</string>
-  <string name="import_db_prefs">Увоз базе података у унутрашњу фасциклу</string>
-  <string name="import_keyfile_prefs">Увоз кључа у унутрашњу фасциклу</string>
+  <string name="fingerprint_prefs">Биометријско откључавање</string>
+  <string name="import_db_prefs">Увоз базе података у унутрашњи директоријум</string>
+  <string name="import_keyfile_prefs">Увоз кључа у унутрашњи директоријум</string>
   <string name="keyboardswitch_prefs">Промена тастатуре</string>
   <string name="OnlyAvailableForLocalFiles">Доступно само за локалне датотеке.</string>
   <string name="FileIsInInternalDirectory">Датотека се чува у унтрашњем директоријуму.</string>
-  <string name="DatabaseFileMoved">Датотека базе података је копирана у унутрашњу фасциклу. Притисните Ok да бисте је отворили на новој локацији. Напомена: Не заборавите да редовно извозите базу података на сигурно складиште!</string>
+  <string name="DatabaseFileMoved">Датотека базе података је копирана у унутрашњи директоријум. Притисните Ok да бисте је отворили на новој локацији. Напомена: Не заборавите да редовно извозите базу података на сигурно складиште!</string>
   <string name="KeyfileMoved">Кључ је копиран у унутрашњи директоријум. Уверите се да имате сигурно резервну копију пре брисања са тренутне локације!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Не можете користити унутрашњи директоријум кад локација кључа није запамћена. Промените жељене поставке безбедности.</string>
   <string name="unlock_database_button">Откључај</string>
   <string name="unlock_database_title">Откључај базу података</string>
   <string name="brackets">Заграде</string>
   <string name="cancel">Прекини</string>
+  <string name="Ok">У реду</string>
+  <string name="disable_sensor">Онемогући сензор</string>
+  <string name="enable_sensor">Омогући сензор</string>
   <string name="ClearClipboard">Бележница је очишћена.</string>
   <string name="clipboard_timeout">Временско ограничење бележнице</string>
   <string name="clipboard_timeout_summary">Време пре чишћења бележнице после копирања корисничког имена или лозинке</string>
@@ -65,6 +78,24 @@
   <string name="disclaimer_formal">Keepass2Android долази апсолутно без гаранције: Ово је слободан софтвер, а ви сте добордошли да га дистрибуирате под условима GPL верзије 2 или новије.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Копирај у бележницу</string>
+  <string name="fingerprint_description">Молимо вас урадите аутентификацију како бисте наставили</string>
+  <string name="fingerprint_fatal">Није могуће подесити биометријско откључавање:</string>
+  <string name="fingerprint_not_recognized">Биометријска аутентификација није успела. Покушајте поново</string>
+  <string name="fingerprint_success">Успешна биометријска аутентификација</string>
+  <string name="fingerprint_os_error">Биометријско откључавање захтева Андроид верзију 6.0 или неку новију.</string>
+  <string name="fingerprint_hardware_error">Није пронађен биометријски хардвер</string>
+  <string name="fingerprint_no_enrolled">Нисте конфигурисали биометријску аутентификацију на овом уређају. Молимо вас да прво одрадите системско подешавање</string>
+  <string name="disable_fingerprint_unlock">Онемогући биометријско откључавање </string>
+  <string name="enable_fingerprint_unlock">Омогући потпуно биометријско откључавање </string>
+  <string name="enable_fingerprint_quickunlock">Омогућите биометријско откључавање за брзо откључавање</string>
+  <string name="fingerprint_unlock_failed">Неуспешно биометријско откључавање. Кључ за дешифровање је поништен од Андроида. Ово се обично дешава ако је дошло до промене биометријске аутентификације или безбедносних подешавања</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Неуспешно откључавање базе података: Неважећи сложени кључ. Биометријско откључавање је онемогућено јер главна лозинка није више валидна</string>
+  <string name="fingerprint_reenable">Поново омгућите биометријско откључавање за нову главну лозинку</string>
+  <string name="fingerprint_reenable2">Откључајте лозинком, а затим понво омогућите биометријско откључавање у поставкама базе података</string>
+  <string name="FingerprintInitFailed">Неуспешна иницијализација биометријске аутентификације. </string>
+  <string name="FingerprintSetupFailed">Неуспешно шифровање података. То се може догодити ако додате или уклоните отиске прстију у системским подешавањима док апликација очитава ваш отисак прстију.</string>
+  <string name="enable_fingerprint_unlock_Info">Ово ће на овом уређају сачувати вашу главну лозинку, шифрирану са Android Keystore-ом и заштићену биометријском потврдом идентитета. Омогућава откључавање базе података само помоћу биометрије.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Омогућава употребу биометријске потврде идентитета уместо кода за брзо откључавање. Не чува никакве информације везане за вашу главну лозинку.</string>
   <string name="enter_filename">Унесите име базе података</string>
   <string name="entry_accessed">Приступано</string>
   <string name="entry_cancel">Прекини</string>
@@ -84,6 +115,7 @@
   <string name="entry_user_name">Корисничко Име</string>
   <string name="entry_extra_strings">Додатна string поља</string>
   <string name="entry_binaries">Приложене датотеке</string>
+  <string name="error_can_not_handle_uri">Keepass2Android не може да обради овај URI.</string>
   <string name="error_could_not_create_group">Грешка при креирању група.</string>
   <string name="error_could_not_create_parent">Није могуће креирати родитељски директоријум.</string>
   <string name="error_database_exists">Ова датотека већ постоји.</string>
@@ -100,8 +132,9 @@
   <string name="error_rounds_not_number">Заокруживање мора бити број.</string>
   <string name="error_param_not_number">Параметар мора бити број.</string>
   <string name="error_title_required">Име је неопходно.</string>
+  <string name="error_wrong_length">Унесите позитиван цео број у поље за дужину</string>
   <string name="FileNotFound">Датотека не постоји.</string>
-  <string name="file_browser">Прегледач фајлова</string>
+  <string name="file_browser">Претраживач датотека</string>
   <string name="generate_password">Генерисање лозинке</string>
   <string name="group">Група</string>
   <string name="hint_comment">напомене</string>
@@ -134,6 +167,7 @@
   <string name="menu_change_key">Промени Главни кључ</string>
   <string name="menu_copy_pass">Копирај Лозинку</string>
   <string name="menu_copy_user">Копирај Корисника</string>
+  <string name="menu_copy_totp">Копирај TOTP</string>
   <string name="menu_create">Креирај</string>
   <string name="menu_app_settings">Поставке</string>
   <string name="menu_db_settings">Поставке базе података</string>
@@ -160,6 +194,7 @@
   <string name="no">Не</string>
   <string name="no_keys">Нема уноса у бази података или групи.</string>
   <string name="no_results">Нема резултата претраге</string>
+  <string name="open_recent">Отвори последњу базу податак (притисни за отварање)</string>
   <string name="omitbackup_title">Не претражуј реззервне копије и уносе корпе за отпатке</string>
   <string name="omitbackup_summary">Изоставите резервну копију и групу Корпе за Отпатке из резултата претраге</string>
   <string name="pass_filename">Име датотеке базе података KeePass</string>
@@ -197,6 +232,7 @@
   <string name="search_hint">Пронађи</string>
   <string name="search_results">Резултати претраге</string>
   <string name="search_in">Тражи у</string>
+  <string name="select_other_entry">Изабери други унос</string>
   <string name="select_group_then_add">Отворите жељену групу, онда притисните \"%1$s\"!</string>
   <string name="insert_element_here">Убаците овде</string>
   <string name="twofish">Twofish</string>
@@ -208,6 +244,7 @@
   <string name="author">Keepass2Android је развио Philipp Crocoll.</string>
   <string name="further_authors">Хвала доприносу кода од %1$s.</string>
   <string name="designers">Хвала за допринос иконе и распоред дизајна од %1$s.</string>
+  <string name="supporters">Хвала за финансијску подршку: %1$s.</string>
   <string name="credit_plugin1">Twofish Cipher Plugin за Keepass је развио Scott Greenberg и укључен је у KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser развио је Hai Bison</string>
   <string name="credit_keyboard">The KP2A тастатура је заснована на Gingerbread тастатури Android Open Source Project-а и користи Plugin Manager код од Hacker\'s Keyboard Klaus Weidner-а.</string>
@@ -219,6 +256,7 @@
   <string name="ShowUsernameInList_summary">Приказати корисничка имена испод наслова за уносе. Корисно за више рачуна и ТАN-ова.</string>
   <string name="RememberRecentFiles_title">Запамти базе података</string>
   <string name="RememberRecentFiles_summary">Запамти недавно отворене базе података и покажи их на екрану за отворену базу података.</string>
+  <string name="kp2a_findUrl">Порнађи шифру</string>
   <string name="excludeExpiredEntries">Изостави истекле уносе</string>
   <string name="search_options">Опције</string>
   <string name="caseSensitive">Разликуј мала/Велика слова</string>
@@ -230,6 +268,7 @@
   <string name="enter_filename_details_create_import">Датотека за увоз ће бити изабрана у следећем кораку.</string>
   <string name="enable_quickunlock">Омогући Брзо откључавање</string>
   <string name="QuickUnlock_label">Унесите последња %1$d карактера ваше лозинке:</string>
+  <string name="QuickUnlock_label_secure">Унесите код за брзо откључавање:</string>
   <string name="QuickUnlock_button">Брзо откључавање!</string>
   <string name="QuickUnlock_lockButton">Затвори базу података</string>
   <string name="QuickUnlockDefaultEnabled_title">Омогући Брзо откључавање подразумевано</string>
@@ -242,30 +281,83 @@
   <string name="QuickUnlockIconHidden16_summary">Брзо откључавање захтева обавештење да би исправно радило. Изаберите ову опцију да прикажете обавештење без иконе.</string>
   <string name="QuickUnlockLength_title">Дужина кључа Брзог откључавања</string>
   <string name="QuickUnlockLength_summary">Максимални број знакова који се користе за лозинку Брзог откључавања.</string>
+  <string name="QuickUnlockHideLength_title">Сакри дужину брзог откључавања</string>
+  <string name="QuickUnlockHideLength_summary">Ако је омогућено, дужина кода за брзо откључавање се не приказуције на екрану за брзо откључавање</string>
   <string name="QuickUnlock_fail">Брзо откључавање није успело: неисправна лозинка!</string>
   <string name="BinaryDirectory_title">Директоријум датотека прилога</string>
   <string name="BinaryDirectory_summary">Директоријум чувања датотека прилога.</string>
   <string name="SaveAttachmentDialog_title">Сачувај прилог</string>
   <string name="SaveAttachmentDialog_text">Молимо изаберите где желите да сачувате прилог.</string>
   <string name="SaveAttachmentDialog_open">Сачувај у кешу и отвори</string>
+  <string name="ShowAttachedImage">Приказати са уграђеним приказивачом слика</string>
   <string name="SaveAttachment_doneMessage">Сачувај датотеку у %1$s.</string>
   <string name="SaveAttachment_Failed">Није могуће сачувати датотеку у %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Запамти текст претраге?</string>
   <string name="AskOverwriteBinary_no">Преименуј</string>
+  <string name="AttachFailed">Додавање прилога није успело</string>
+  <string name="RecycleBin">Канта</string>
+  <string name="AskDeletePermanentlyEntry">Да ли желите заувек да избришете овај унос? Притинисте Не да бисте рециклирали.</string>
+  <string name="AskDeletePermanentlyGroup">Да ли желите заувек да избришете ову групу? Притисните Не да бисте рециклирали.</string>
+  <string name="AskDeletePermanentlyItems">Да ли желите заувек да избришете изабране елементе? Притисните Не да бисте рециклирали.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Да ли желите заувек да избришете овај унос?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Да ли желите заувек да избришете ову групу? </string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Да ли желите заувек да избришете изабране елементе?</string> 
+  <string name="AskDeletePermanently_title">Избриши заувек?</string>
+  <string name="AskReloadFile_title">Поново учитај датотеку?</string>
+  <string name="AskReloadFile">Датотеку која је тренутно отворена променио је други програм. Да ли желите да је поново учитате?</string>
+  <string name="AskDiscardChanges">Да ли желите да одбаците извршене промене? (Дугме Сачувај налази се на врху обрасца.) </string>
+  <string name="AskDiscardChanges_title">Одбаци промене?</string>
+  <string name="suggest_improvements">Предложи или гласај за побољшања</string>
+  <string name="rate_app">Оцени апликацију</string>
+  <string name="translate_app">Преведи KP2A</string>
+	<string name="AddingEntry">Додавање уноса…</string>
+	<string name="AddingGroup">Додавање групе…</string>
+	<string name="DeletingEntry">Брисање уноса…</string>
+	<string name="DeletingGroup">Брисање групе…</string>
+  <string name="DeletingItems">Брисање елемента…</string>
+	<string name="SettingPassword">Постављање лозинке…</string>
+	<string name="UndoingChanges">Поништавање промена…</string>
+	<string name="TransformingKey">Трансформација главног кључа…</string>
+	<string name="DecodingDatabase">Декодирање базе података…</string>
+	<string name="CheckingTargetFileForChanges">Провера крајње датотке на промене…</string>
+	<string name="TitleSyncQuestion">Споји промене?</string>
+	<string name="MessageSyncQuestion">База података је измењена споља. Да ли желите да учитате и спојите промене пре него што их сачувате? Изаберите Не ако желите да препишете спољне промене.</string>
+	<string name="SynchronizingDatabase">Спајање промена…</string>
+	<string name="YesSynchronize">Да, споји</string>
+	<string name="NoOverwrite">No, препиши</string>
+  <string name="UseOfflineMode">Ради само са унутрашњим кешом</string>
+  <string name="UseOnlineMode">Синхронизуј копију кеша са извором</string>
+  <string name="UseOfflineMode_Info">База података је учитана из унутрашње кеш меморије. Промене се чувају само у унутрашњем кешу и биће синхронизоване само ако се одабере опција Синхронизуј копију кеша са извором.</string>
+  <string name="InOfflineMode">Ради само на унутрашњој кеш меморији</string>
+	<string name="SynchronizingCachedDatabase">Синхронизација кеширане базе података…</string>
+	<string name="DownloadingRemoteFile">Учитавање изворне датотеке…</string>
+	<string name="UploadingFile">Снимање датотеке…</string>
+	<string name="RestoringRemoteFile">Повратак изворне датотеке…</string>
+	<string name="FilesInSync">Датотеке су синхронизоване.</string>
+	<string name="SynchronizedDatabaseSuccessfully">Базе података су успешно синхронизоване!</string>
+	<string name="CheckingDatabaseForChanges">Провера базе података за промене…</string>
+	<string name="CouldNotSaveToRemote">Није могуће сачувати у изворној датотеци: %1$s. Поново сачувајте или користите мени за синхронизацију када датотека поново буде доступна.</string>
+	<string name="CouldNotLoadFromRemote">Није могуће приступити изворној датотеци: %1$s. Датотека је учитана из унутрашње кеш меморије.  И даље можете вршити промене у бази података и касније их синхронизовати.</string>
+	<string name="UpdatedRemoteFileOnLoad">Изворна датотека је ажурирана.</string>
+	<string name="NotifyOpenFromLocalDueToConflict">Отворена датотека из унутрашњег кеша, због сукоба са променама у изворној датотеци. За спајање користите мени за синхронизацију.</string>
+	<string name="LoadedFromRemoteInSync">Изворна датотека и кеш меморија су синхронизовани.</string>
+	<string name="UpdatedCachedFileOnLoad">Ажурирана кеш копија %1$s.</string>
+	<string name="RemoteDatabaseUnchanged">Није откривена ниједна промена.</string>
+  
   <string name="TemplateField_IdCard_Name">Име</string>
   <string name="DbQuicklockedChannel_name">Брзо откључавање</string>
   <string-array name="clipboard_timeout_options">
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>5 minutes</item>
-    <item>10 minutes</item>
-    <item>15 minutes</item>
-    <item>30 minutes</item>
-    <item>1 hour</item>
+    <item>30 секунди</item>
+    <item>1 минут</item>
+    <item>5 минута</item>
+    <item>10 минута</item>
+    <item>15 минута</item>
+    <item>30 минута</item>
+    <item>1 сат</item>
     <item>Никад</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Лозинка</item>
-    <item>Private/Public key</item>
+    <item>Приватни/Јавни кључ</item>
   </string-array>
 </resources>
