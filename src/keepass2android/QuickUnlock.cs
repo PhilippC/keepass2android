@@ -375,10 +375,11 @@ namespace keepass2android
 
 			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.PostDelayed(() =>
-			{
+            {
+                pwd.RequestFocus();
 				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
 				if (showKeyboard)
-					keyboard.ShowSoftInput(pwd, 0);
+					keyboard.ShowSoftInput(pwd, ShowFlags.Implicit);
 				else
 					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
 			}, 50);
