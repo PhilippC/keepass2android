@@ -33,6 +33,7 @@ namespace keepass2android
 
         protected override void OnResume()
         {
+            Kp2aLog.Log("SwitchImeActivity.OnResume");
             base.OnResume();
 
             TrySwitchKeyboard();
@@ -40,15 +41,16 @@ namespace keepass2android
 
         private void TrySwitchKeyboard()
         {
+            Kp2aLog.Log("SwitchImeActivity.TrySwitchKeyboard");
             var needsKeyboardSwitch = NeedsKeyboardSwitch();
 
             if (needsKeyboardSwitch)
             {
                 new Handler().PostDelayed(() =>
                 {
-                    Log.Debug("KP2A", "ShowIMEPicker");
+                    Kp2aLog.Log("ShowIMEPicker");
                     Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(this, Kp2aInputMethodName, false);
-                    Log.Debug("KP2A", "ShowIMEPicker done.");
+                    Kp2aLog.Log( "ShowIMEPicker done.");
                 }, 1000);
                 var timeToWait = TimeSpan.FromMilliseconds(500);
                 _timer = new Timer(obj =>
@@ -65,6 +67,7 @@ namespace keepass2android
 
         protected override void OnPause()
         {
+            Kp2aLog.Log("SwitchImeActivity.OnPause");
             base.OnPause();
             Finish();
         }
@@ -75,6 +78,7 @@ namespace keepass2android
                 ContentResolver,
                 Android.Provider.Settings.Secure.DefaultInputMethod);
             bool needsKeyboardSwitch = currentIme != Kp2aInputMethodName;
+            Kp2aLog.Log("SwitchImeActivity.NeedsKeyboardSwitch: " + currentIme +  " vs " + Kp2aInputMethodName);
             return needsKeyboardSwitch;
         }
     }
