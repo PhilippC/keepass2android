@@ -27,8 +27,14 @@
   <string name="keyboard_prefs">കീബോർഡ്</string>
   <string name="export_prefs">ഡാറ്റാബേസ് കയറ്റുമതി ചെയ്യുക...</string>
   <string name="OnlyAvailableForLocalFiles">പ്രാദേശിക ഫയലുകൾക്ക് മാത്രം ലഭ്യമാണ്</string>
+  <string name="unlock_database_button">അൺലോക്ക്</string>
+  <string name="unlock_database_title">ഡാറ്റാബേസ് അൺലോക്ക് ചെയ്യുക</string>
   <string name="cancel">റദ്ദാക്കുക</string>
+  <string name="ClearClipboard">ക്ലിപ്ബോർഡ് മായ്ച്ചു</string>
+  <string name="copy_password">ക്ലിപ്പ്ബോർഡിലേക്ക് പാസ്‌വേഡ് പകർത്താൻ തിരഞ്ഞെടുക്കുക</string>
   <string name="entry_is_available">ലഭ്യമാണ്</string>
+  <string name="creating_db_key">ഡാറ്റാബേസ് കീ സൃഷ്ടിക്കുന്നു…</string>
+  <string name="current_group">നിലവിലെ ഗ്രൂപ്പ്</string>
   <string name="database">ഡാ‍റ്റാബേസ്</string>
   <string name="digits">അക്കങ്ങൾ</string>
   <string name="ellipsis">\u2026</string>
@@ -41,6 +47,7 @@
   <string name="entry_created">സൃഷ്ടിച്ചു</string>
   <string name="entry_group_name">ഗ്രൂപ്പിന്റെ പേര്</string>
   <string name="entry_keyfile">കീ ഫയൽ</string>
+  <string name="keyfile_heading">കീ ഫയൽ</string>
   <string name="entry_modified">തിരുത്തപ്പെട്ടത്</string>
   <string name="entry_password">പാസ്സ്‌വേർഡ്‌</string>
   <string name="entry_save">സംരക്ഷിക്കുക </string>
@@ -59,12 +66,101 @@
   <string name="error_pass_match">പാസ്സ്‌വേഡുകൾ പൊരുത്തപ്പെടുന്നില്ല.</string>
   <string name="error_rounds_not_number">റൗണ്ടുകൾ ഒരു നമ്പർ ആയിരിക്കണം.</string>
   <string name="error_title_required">ഒരു ശീർഷകം ആവശ്യമാണ്.</string>
+  <string name="FileNotFound">ഫയൽ കണ്ടെത്തിയില്ല</string>
+  <string name="generate_password">പാസ്‌വേഡ് സൃഷ്ടിക്കുക</string>
+  <string name="group">ഗ്രൂപ്പ്</string>
+  <string name="hint_comment">കുറിപ്പുകൾ</string>
+  <string name="hint_conf_pass">പാസ്സ്‌വേഡ് സ്ഥിരീകരിക്കുക</string>
+  <string name="hint_generated_password">സൃഷ്‌ടിച്ച പാസ്‍വേഡ്</string>
+  <string name="hint_group_name">ഗ്രൂപ്പിന്റെ പേര്</string>
+  <string name="hint_keyfile">കീ ഫയൽ</string>
+  <string name="hint_length">ദൈര്‍ഘ്യം</string>
+  <string name="hint_pass">പാസ്‌വേഡ്</string>
   <string name="hint_login_pass">പാസ്സ്‌വേർഡ്‌</string>
+  <string name="hint_title">പേര്</string>
   <string name="hint_url">URL</string>
+  <string name="hint_username">ഉപയോക്തൃനാമം</string>
+  <string name="keyfile_is_empty">കീ ഫയൽ ശൂന്യമാണ്</string>
+  <string name="length">ദൈര്‍ഘ്യം</string>
+  <string name="loading_database">ഡാറ്റാബേസ് ലഭ്യമാക്കുന്നു…</string>
+  <string name="MaskedPassword">*****</string>
+  <string name="menu_about">കുറിച്ച്</string>
+  <string name="menu_change_key">പ്രാഥമിക കീ  മാറ്റുക</string>
+  <string name="menu_copy_pass">പാസ്‌വേഡ് പകർത്തുക</string>
+  <string name="menu_create">സൃഷ്ടിക്കുക</string>
+  <string name="menu_app_settings">ക്രമീകരണങ്ങള്‍</string>
+  <string name="menu_db_settings">ഡാറ്റാബേസ് ക്രമീകരണങ്ങൾ</string>
+  <string name="menu_move">മറ്റൊരു ഗ്രൂപ്പിലേക്ക് പോകുക നീക്കുക</string>
+  <string name="menu_move_light">നീക്കുക</string>
+  <string name="menu_edit">തിരുത്തുക</string>
+  <string name="menu_hide_password">പാസ്‌വേഡ് മറയ്‌ക്കുക</string>
+  <string name="menu_lock">ഡാ‍റ്റാബേസ്പൂട്ടുക</string>
+  <string name="menu_open">തുറക്കുക</string>
+  <string name="menu_close">അടയ്ക്കുക</string>
+  <string name="menu_search">തിരയുക</string>
+  <string name="menu_search_advanced">വിപുലമായ തിരയൽ</string>
+  <string name="menu_url">URL-ലേക്ക് പോകൂ</string>
+  <string name="yes">അതെ</string>
+  <string name="no">ഇല്ല</string>
+  <string name="no_results">തിരയൽ ഫലങ്ങളൊന്നുമില്ല</string>
+  <string name="edit">തിരുത്തുക</string>
+  <string name="saving_database">ഡാറ്റാബേസ് സംരക്ഷിക്കുന്നു…</string>
+  <string name="exporting_database">ഡാറ്റാബേസ് എക്സ്പോർട് ചെയുന്നു…</string>
+  <string name="search_label">തിരയുക</string>
+  <string name="show_password">പാസ്‌വേഡ് കാണിക്കുക</string>
+  <string name="search_results">തിരച്ചിൽ ഫലങ്ങൾ</string>
+  <string name="twofish">Twofish</string>
+  <string name="version_label">പതിപ്പ്</string>
+  <string name="version_history">പതിപ്പ് ചരിത്രം</string>
+  <string name="please_note">ദയവായി ശ്രദ്ധിക്കുക</string>
+  <string name="contributors">സംഭാവകർ</string>
+  <string name="RememberRecentFiles_title">ഡാറ്റാബേസുകൾ ഓർക്കുക</string>
+  <string name="start_open_file">ഫയൽ തുറക്കുക...</string>
+  <string name="start_create">പുതിയ ഡാറ്റാബേസ് സൃഷ്ടിക്കുക...</string>
+  <string name="start_open_url">URL തുറക്കുക...</string>
+  <string name="ClearOfflineCache_title">കാഷേ മായ്‌ക്കണോ?</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">ക്രമീകരണം തുറക്കുക</string>
+  <string name="DontCare">ഞാൻ കാര്യമാക്കുന്നില്ല</string>
+  <string name="RecycleBin">റീസൈക്കിൾ ബിൻ</string>
+  <string name="AskDiscardChanges_title">മാറ്റങ്ങൾ ഒഴിവാക്കണോ?</string>
+  <string name="rate_app">ഈ അപ്ലിക്കേഷൻ റേറ്റുചെയ്യുക</string>
+  <string name="UploadingFile">ഫയൽ സംരക്ഷിക്കുക...</string>
+  <string name="ok_donate">എന്നോട് കൂടുതൽ പറയുക!</string>
+  <string name="no_thanks">ഇല്ല, എനിക്ക് അത് അത്ര ഇഷ്ടമല്ല</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="master_password">പ്രാഥമിക പാസ്‌വേഡ്</string>
+  <string name="key_file">കീ ഫയൽ</string>
+  <string name="use_key_file">കീ ഫയൽ ഉപയോഗിക്കുക</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="DuplicateTitle">പകര്‍ത്തുക</string>
   <string name="TemplateField_IdCard_Name">പേര്</string>
+  <string name="TemplateField_Number">നമ്പർ</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateTitle_CreditCard">ക്രെഡിറ്റ് കാർഡ്</string>
+  <string name="Continue">തുടരുക</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string-array name="clipboard_timeout_options">
+    <item>30 seconds</item>
+    <item>1 മിനിറ്റ്</item>
+    <item>5 മിനിറ്റ്</item>
+    <item>10 മിനിറ്റ്</item>
+    <item>15 മിനിറ്റ്</item>
+    <item>30 മിനിറ്റ്</item>
+    <item>ഒരു മണിക്കൂർ</item>
+    <item>Never</item>
+  </string-array>
   <string-array name="sftp_auth_modes">
     <item>പാസ്സ്‌വേർഡ്‌</item>
     <item>Private/Public key</item>
   </string-array>
+  <string name="dont_show_again">വീണ്ടും കാണിക്കരുത്</string>
 </resources>
