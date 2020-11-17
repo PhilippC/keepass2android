@@ -27,7 +27,14 @@
   <string name="keyboard_prefs">കീബോർഡ്</string>
   <string name="export_prefs">ഡാറ്റാബേസ് കയറ്റുമതി ചെയ്യുക...</string>
   <string name="OnlyAvailableForLocalFiles">പ്രാദേശിക ഫയലുകൾക്ക് മാത്രം ലഭ്യമാണ്</string>
+  <string name="cancel">റദ്ദാക്കുക</string>
+  <string name="entry_is_available">ലഭ്യമാണ്</string>
+  <string name="database">ഡാ‍റ്റാബേസ്</string>
+  <string name="digits">അക്കങ്ങൾ</string>
+  <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">ക്ലിപ്പ്‌ബോർഡിലേക്ക് പകർത്തുക</string>
   <string name="entry_accessed">ആക്‌സസ്സുചെയ്‌തു</string>
+  <string name="entry_cancel">റദ്ദാക്കുക</string>
   <string name="entry_comment">കുറിപ്പുകൾ</string>
   <string name="entry_tags">ടാഗുകൾ</string>
   <string name="entry_confpassword">പാസ്സ്‌വേഡ് സ്ഥിരീകരിക്കുക</string>
