@@ -255,6 +255,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="author">Keepass2Android wird von Philipp Crocoll entwickelt.</string>
   <string name="further_authors">Danke an %1$s für Beiträge zum Source-Code!</string>
   <string name="designers">Danke für das Icon und Layoutdesign erstellt von %1$s.</string>
+  <string name="supporters">Danke für die finanzielle Unterstützung durch %1$s.</string>
   <string name="credit_plugin1">Das Twofish-Plugin für Keepass wurde von Scott Greenberg entwickelt und ist in KP2A enthalten.</string>
   <string name="credit_android_filechooser">android-filechooser wurde entwickelt von Hai Bison</string>
   <string name="credit_keyboard">Die KP2A-Tastatur basiert auf der Gingerbread-Tastatur, entwickelt vom Android Open Source Project, und nutzt den Plugin-Manager-Code aus Hacker\'s Keyboard von Klaus Weidner.</string>
@@ -630,6 +631,12 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>Paketnamen von Android-Apps werden nicht mehr im URL-Feld gespeichert</item>
+    <item>Verbessertes Sperrverhalten - Keine Anzeige der biometrischen Eingabeaufforderung direkt nach dem Entsperren</item>
+    <item>OkHttp aktualisiert um HTTP/2 zu unterstützen</item>
+    <item>Fehlende Übersetzungen behoben</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Erzwingen von HTTP/1.1 aufgrund eines Problems mit der HTTP/2-Implementierung von OkHttp </item>
     <item>Tastaturdialog auf Android 9+ verbessert</item>
