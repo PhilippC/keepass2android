@@ -141,13 +141,23 @@
   <string name="ClearOfflineCache_title">കാഷേ മായ്‌ക്കണോ?</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">ക്രമീകരണം തുറക്കുക</string>
   <string name="DontCare">ഞാൻ കാര്യമാക്കുന്നില്ല</string>
+  <string name="AskOverwriteBinary_yes">തിരുത്തിയെഴുതുക</string>
   <string name="AskOverwriteBinary_no">പേരു മാറ്റുക</string>
   <string name="RecycleBin">റീസൈക്കിൾ ബിൻ</string>
+  <string name="AskReloadFile_title">ഫയൽ വീണ്ടും ലഭ്യമാക്കണോ?</string>
   <string name="AskDiscardChanges_title">മാറ്റങ്ങൾ ഒഴിവാക്കണോ?</string>
   <string name="rate_app">ഈ അപ്ലിക്കേഷൻ റേറ്റുചെയ്യുക</string>
+  <string name="translate_app">KP2A വിവർത്തനം ചെയ്യുക</string>
+  <string name="AddingEntry">എൻട്രി ചേർക്കുന്നു…</string>
+  <string name="AddingGroup">ഗ്രൂപ്പ് ചേർക്കുന്നു…</string>
+  <string name="SettingPassword">പാസ്‌വേഡ് ക്രമീകരിക്കുന്നു…</string>
+  <string name="TitleSyncQuestion">മാറ്റങ്ങൾ ലയിപ്പിക്കണോ?</string>
   <string name="UploadingFile">ഫയൽ സംരക്ഷിക്കുക...</string>
+  <string name="database_file">ഡാ‍റ്റാബേസ് ഫയൽ</string>
+  <string name="ErrorOcurred">ഒരു പിശക് സംഭവിച്ചു:</string>
   <string name="ok_donate">എന്നോട് കൂടുതൽ പറയുക!</string>
   <string name="no_thanks">ഇല്ല, എനിക്ക് അത് അത്ര ഇഷ്ടമല്ല</string>
+  <string name="hint_sftp_port">പോർട്ട്</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
@@ -161,16 +171,31 @@
   <string name="key_file">കീ ഫയൽ</string>
   <string name="use_key_file">കീ ഫയൽ ഉപയോഗിക്കുക</string>
   <string name="otp_hint">OTP %1$d</string>
+  <string name="AppOutdated">%1$s പിന്തുണയ്ക്കുന്നില്ല.</string>
+  <string name="DebugLog_title">ലോഗ് ഫയൽ ഉപയോഗിക്കുക</string>
+  <string name="plugin_packagename">പാക്കേജിന്റെ പേര്:</string>
   <string name="DuplicateTitle">പകര്‍ത്തുക</string>
+  <string name="TemplateGroupName">ടെംപ്ലേറ്റുകൾ</string>
+  <string name="TemplateTitle_IdCard">ഐഡി കാർഡ്</string>
   <string name="TemplateField_IdCard_Name">പേര്</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">പുറപ്പെടുവിച്ച സ്ഥലം</string>
+  <string name="TemplateField_IdCard_IssueDate">പുറപ്പെടുവിച്ച തീയതി</string>
+  <string name="TemplateTitle_EMail">ഇമെയിൽ</string>
+  <string name="TemplateTitle_Notes">സുരക്ഷിത കുറിപ്പ്</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
   <string name="TemplateField_Number">നമ്പർ</string>
   <string name="TemplateField_CreditCard_CVV">CVV</string>
   <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">കാർഡ് ഉടമ</string>
   <string name="TemplateTitle_CreditCard">ക്രെഡിറ്റ് കാർഡ്</string>
+  <string name="TemplateTitle_Membership">അംഗത്വം</string>
+  <string name="ChangeLog_title">മാറ്റ സൂചനാ പട്ടിക</string>
+  <string name="AskAddTemplatesTitle">ടെംപ്ലേറ്റുകൾ ചേർക്കണോ?</string>
   <string name="Continue">തുടരുക</string>
+  <string name="DbUnlockedChannel_name">ഡാറ്റാബേസ് അൺലോക്കുചെയ്തു</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string-array name="clipboard_timeout_options">
-    <item>30 seconds</item>
+    <item>30 സെക്കൻഡ്</item>
     <item>1 മിനിറ്റ്</item>
     <item>5 മിനിറ്റ്</item>
     <item>10 മിനിറ്റ്</item>
@@ -183,5 +208,6 @@
     <item>പാസ്സ്‌വേർഡ്‌</item>
     <item>Private/Public key</item>
   </string-array>
+  <string name="understand">എനിക്ക് മനസിലായി</string>
   <string name="dont_show_again">വീണ്ടും കാണിക്കരുത്</string>
 </resources>
