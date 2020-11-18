@@ -6,6 +6,7 @@
   <string name="deny">നിഷേധിക്കുക</string>
   <string name="add_entry">എൻ‌ട്രി ചേർക്കുക</string>
   <string name="edit_entry">എൻട്രി തിരുത്തുക</string>
+  <string name="add_url_entry">URL-നായി എൻ‌ട്രി സൃഷ്‌ടിക്കുക</string>
   <string name="add_group">ഗ്രൂപ്പ് ചേർക്കുക</string>
   <string name="add_group_title">ഗ്രൂപ്പ് ചേർക്കുക</string>
   <string name="edit_group_title">ഗ്രൂപ്പ് തിരുത്തുക</string>
@@ -24,6 +25,7 @@
   <string name="IconSet_install">കൂടുതല്‍ കണ്ടെത്തുക...</string>
   <string name="security_prefs">സുരക്ഷ</string>
   <string name="display_prefs">പ്രദർശിപ്പിക്കുക</string>
+  <string name="password_access_prefs">പാസ്‌വേഡ് എൻട്രി ആക്‌സസ്സ്</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">ഫയൽ കൈകാര്യം ചെയ്യൽ</string>
   <string name="keyboard_prefs">കീബോർഡ്</string>
@@ -33,6 +35,7 @@
   <string name="unlock_database_title">ഡാറ്റാബേസ് അൺലോക്ക് ചെയ്യുക</string>
   <string name="cancel">റദ്ദാക്കുക</string>
   <string name="ClearClipboard">ക്ലിപ്ബോർഡ് മായ്ച്ചു</string>
+  <string name="clipboard_timeout">ക്ലിപ്പ്ബോർഡ് ടൈംഔട്</string>
   <string name="copy_password">ക്ലിപ്പ്ബോർഡിലേക്ക് പാസ്‌വേഡ് പകർത്താൻ തിരഞ്ഞെടുക്കുക</string>
   <string name="entry_is_available">ലഭ്യമാണ്</string>
   <string name="creating_db_key">ഡാറ്റാബേസ് കീ സൃഷ്ടിക്കുന്നു…</string>
@@ -83,6 +86,7 @@
   <string name="hint_title">പേര്</string>
   <string name="hint_url">URL</string>
   <string name="hint_username">ഉപയോക്തൃനാമം</string>
+  <string name="keyfile_does_not_exist">കീ ഫയൽ നിലവിലില്ല.</string>
   <string name="no_keyfile_selected">കീ ഫയൽ തിരഞ്ഞെടുത്തിട്ടില്ല</string>
   <string name="keyfile_is_empty">കീ ഫയൽ ശൂന്യമാണ്</string>
   <string name="length">ദൈര്‍ഘ്യം</string>
@@ -107,9 +111,11 @@
   <string name="menu_search_advanced">വിപുലമായ തിരയൽ</string>
   <string name="menu_url">URL-ലേക്ക് പോകൂ</string>
   <string name="menu_change_db">ഡാറ്റാബേസ് മാറ്റുക</string>
+  <string name="menu_show_all">എല്ലാ ഫീൽഡുകളും കാണിക്കുക</string>
   <string name="yes">അതെ</string>
   <string name="no">ഇല്ല</string>
   <string name="no_results">തിരയൽ ഫലങ്ങളൊന്നുമില്ല</string>
+  <string name="progress_create">പുതിയ ഡാറ്റാബേസ് സൃഷ്ടിക്കുന്നു…</string>
   <string name="create_database">ഡാറ്റാബേസ് സൃഷ്ടിക്കുക</string>
   <string name="progress_title">പ്രവർത്തിക്കുന്നു…</string>
   <string name="remember_keyfile_title">കീ ഫയൽ സംരക്ഷിക്കുക</string>
