@@ -633,13 +633,13 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string-array name="ChangeLog_1_08c">
-    <item>No longer storing package names of Android apps in the URL field</item>
-    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
-    <item>Update OkHttp to support HTTP/2</item>
+    <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
+    <item>Vylepšení chování zamykání - již se nezobrazuje výzva pro biometrické ověření těsně po odemčení</item>
+    <item>Aktualizována knihovna OkHttp kvůli podpoře HTTP/2</item>
     <item>Oprava chybějících překladů</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Vynutit HTTP/1.1 kvůli chybě v implementaci HTTP/2 v OkHttp</item>
     <item>Zlepšit dialogové okno klávesnice na Android 9+</item>
     <item>Change file associations of the app to avoid some unnecessary associations</item>
     <item>Ujistěte se, že text hesla není skrytý za ikonou oka</item>
@@ -991,4 +991,5 @@ První veřejné vydání
   <string name="switch_ime_text">Aktivujte prosím klávesnici Keepass2Android.</string>
   <string name="switch_ime_reopen">Opakovat</string>
   <string name="AutofillWarning_Intro">Chystáte se vložit přihlašovací údaje pro doménu \"%1$s\" do aplikace \"%2$s\".</string>
+  <string name="AutofillWarning_trustAsBrowser">Přijmout vždy v \"%1$s\"</string>
 </resources>
