@@ -993,7 +993,7 @@ Prima release pubblica
   <string name="no_secure_display">Il display corrente non è contrassegnato come sicuro. Questo significa che degli screenshot potrebbero essere presi da altre applicazioni. Keepass2Android è configurato per visualizzare le informazioni sensibili solo su display sicuri. Si prega di passare ad un display sicuro (ad esempio scollegando un monitor HDMI) oppure di modificare le impostazioni dell\'app.</string>
   <string name="switch_ime_text">Si prega di attivare la tastiera Keepass2Android.</string>
   <string name="switch_ime_reopen">Riprova</string>
-  <string name="AutofillWarning_title">Avviso di Sicurezza: Link dominio/app non riconosciuto</string>
+  <string name="AutofillWarning_title">Avviso di sicurezza: relazione tra dominio/app non riconosciuto</string>
   <string name="AutofillWarning_Intro">Stai per inserire le credenziali per il dominio \"%1$s\" nell\'app \"%2$s\"</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Se ti fidi di \"%2$s\" ad appartenere a \"%1$s\" o se ti fidi dell\'app \"%2$s\" a non abusare delle credenziali (es. perché si tratta di un\'applicazione sicura), è possibile continuare. Altrimenti si prega di annullare.</string>
   <string name="AutofillWarning_trustAsBrowser">Accetta sempre in \"%1$s\"</string>
