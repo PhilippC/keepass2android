@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -32,6 +32,7 @@ package com.jcraft.jsch.jce;
 import java.math.BigInteger;
 import java.security.*;
 import java.security.spec.*;
+import com.jcraft.jsch.Buffer;
 
 public class SignatureRSA implements com.jcraft.jsch.SignatureRSA{
 
@@ -67,17 +68,15 @@ public class SignatureRSA implements com.jcraft.jsch.SignatureRSA{
     int i=0;
     int j=0;
     byte[] tmp;
+    Buffer buf=new Buffer(sig);
 
-    if(sig[0]==0 && sig[1]==0 && sig[2]==0){
-    j=((sig[i++]<<24)&0xff000000)|((sig[i++]<<16)&0x00ff0000)|
-	((sig[i++]<<8)&0x0000ff00)|((sig[i++])&0x000000ff);
-    i+=j;
-    j=((sig[i++]<<24)&0xff000000)|((sig[i++]<<16)&0x00ff0000)|
-	((sig[i++]<<8)&0x0000ff00)|((sig[i++])&0x000000ff);
-    tmp=new byte[j]; 
-    System.arraycopy(sig, i, tmp, 0, j); sig=tmp;
+    if(new String(buf.getString()).equals("ssh-rsa")){
+      j=buf.getInt();
+      i=buf.getOffSet();
+      tmp=new byte[j];
+      System.arraycopy(sig, i, tmp, 0, j); sig=tmp;
     }
-//System.err.println("j="+j+" "+Integer.toHexString(sig[0]&0xff));
+
     return signature.verify(sig);
   }
 }

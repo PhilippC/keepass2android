@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -599,7 +599,7 @@ public abstract class KeyPair{
       }
       else if(_type.equals("ecdsa-sha2-nistp256") ||
               _type.equals("ecdsa-sha2-nistp384") ||
-              _type.equals("ecdsa-sha2-nistp512")){
+              _type.equals("ecdsa-sha2-nistp521")){
         kpair=KeyPairECDSA.fromSSHAgent(jsch, buf);
       }
       else{
@@ -924,7 +924,7 @@ public abstract class KeyPair{
     KeyPair kpair=null;
     if(type==DSA){ kpair=new KeyPairDSA(jsch); }
     else if(type==RSA){ kpair=new KeyPairRSA(jsch); }
-    else if(type==ECDSA){ kpair=new KeyPairECDSA(jsch); }
+    else if(type==ECDSA){ kpair=new KeyPairECDSA(jsch, pubkey); }
     else if(vendor==VENDOR_PKCS8){ kpair = new KeyPairPKCS8(jsch); }
 
     if(kpair!=null){

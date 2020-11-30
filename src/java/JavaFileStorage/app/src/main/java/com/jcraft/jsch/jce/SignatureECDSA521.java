@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2018 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2015-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -29,18 +29,13 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch.jce;
 
-public class HMACMD596 extends HMACMD5 {
-  public HMACMD596(){
-    name="hmac-md5-96";
-  }
+import java.math.BigInteger;
+import java.security.*;
+import java.security.spec.*;
+import com.jcraft.jsch.Buffer;
 
-  public int getBlockSize(){
-    return 12;
-  };
-
-  private final byte[] _buf16 = new byte[16];
-  public void doFinal(byte[] buf, int offset){
-    super.doFinal(_buf16, 0);
-    System.arraycopy(_buf16, 0, buf, offset, 12);
+public class SignatureECDSA521 extends SignatureECDSAN {
+  String getName() {
+    return "ecdsa-sha2-nistp521";
   }
 }

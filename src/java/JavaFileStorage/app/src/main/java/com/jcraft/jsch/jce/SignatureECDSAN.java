@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2015-2016 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2015-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -34,16 +34,22 @@ import java.security.*;
 import java.security.spec.*;
 import com.jcraft.jsch.Buffer;
 
-public class SignatureECDSA implements com.jcraft.jsch.SignatureECDSA {
+public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA {
 
   Signature signature;
   KeyFactory keyFactory;
 
-  public void init() throws Exception{
-    signature=java.security.Signature.getInstance("SHA256withECDSA");
-    keyFactory=KeyFactory.getInstance("EC");
-  }     
+  abstract String getName();
 
+  public void init() throws Exception{
+    String name = getName();
+    String foo="SHA256withECDSA";
+    if(name.equals("ecdsa-sha2-nistp384")) foo="SHA384withECDSA";
+    else if(name.equals("ecdsa-sha2-nistp521")) foo="SHA512withECDSA";
+    signature=java.security.Signature.getInstance(foo);
+    keyFactory=KeyFactory.getInstance("EC");
+  }
+  
   public void setPubKey(byte[] r, byte[] s) throws Exception{
 
     // r and s must be unsigned values.
