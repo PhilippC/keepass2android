@@ -428,7 +428,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CouldNotLoadFromRemote">Auf die Quelldatei konnte nicht zugegriffen werden: %1$s. Datei wurde aus dem internen Zwischenspeicher geladen. Sie können weiterhin Änderungen in der Datenbank vornehmen und diese später synchronisieren.</string>
   <string name="UpdatedRemoteFileOnLoad">Aktualisierte Quelldatei.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Intern geöffnete Datei aus dem Zwischenspeicher aufgrund von Konflikten mit Änderungen in der Quelldatei. Verwenden Sie das Menü „Synchronisieren” zum Zusammenführen.</string>
-  <string name="LoadedFromRemoteInSync">Quelldatei und Zwischenspeicher wurden synchronisiert.</string>
+  <string name="LoadedFromRemoteInSync">Quelldatei und Zwischenspeicher sind auf dem gleichen Stand.</string>
   <string name="UpdatedCachedFileOnLoad">Die intern zwischengespeicherte Kopie von %1$s wurde aktualisiert.</string>
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Die zwischengespeicherte OTP-Hilfsdatei wurde aktualisiert: Der Quellenzähler war höher.</string>
