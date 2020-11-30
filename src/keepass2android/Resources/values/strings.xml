@@ -785,9 +785,13 @@
 
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
 
+  <string-array name="ChangeLog_1_08d">
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array
 
   <string-array name="ChangeLog_1_08c">
-    <item>Updated Jsch to version 0.1.55</item>
     <item>No longer storing package names of Android apps in the URL field</item>
     <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
     <item>Update OkHttp to support HTTP/2</item>
