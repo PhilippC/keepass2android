@@ -116,14 +116,18 @@ namespace keepass2android
 							return;
 						}	
 					}
-					
 
-					if (
-						(_streamForOrigFile != null)
-						|| fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion)  //first try to use the fast change detection
-						|| (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) == FileHashChange.Changed) //if that fails, hash the file and compare:
-						)
+
+                    bool hasStreamForOrigFile = (_streamForOrigFile != null);
+                    bool hasChangeFast = hasStreamForOrigFile ||
+                                         fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion);  //first try to use the fast change detection;
+                    bool hasHashChanged = hasChangeFast ||
+                                          (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) ==
+                                           FileHashChange.Changed); //if that fails, hash the file and compare:
+
+					if (hasHashChanged)
 					{
+						Kp2aLog.Log("Conflict. " + hasStreamForOrigFile + " " + hasChangeFast + " " + hasHashChanged);
 
 						//ask user...
 						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestion, 

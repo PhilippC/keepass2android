@@ -120,10 +120,14 @@ namespace keepass2android.Io
 
 		public bool IsCached(IOConnectionInfo ioc)
 		{
-			return File.Exists(CachedFilePath(ioc))
+			bool result = File.Exists(CachedFilePath(ioc))
 				&& File.Exists(VersionFilePath(ioc))
 				&& File.Exists(BaseVersionFilePath(ioc));
-		}
+
+			Kp2aLog.Log(ioc.GetDisplayName() + " isCached = " + result);
+
+            return result;
+        }
 
 		public void Delete(IOConnectionInfo ioc)
 		{
@@ -593,11 +597,15 @@ namespace keepass2android.Io
 
 		public string GetBaseVersionHash(IOConnectionInfo ioc)
 		{
-			return File.ReadAllText(BaseVersionFilePath(ioc));
-		}
+			string hash = File.ReadAllText(BaseVersionFilePath(ioc));
+            Kp2aLog.Log(ioc.GetDisplayName() + " baseVersionHash = " + hash);
+			return hash;
+        }
 		public string GetLocalVersionHash(IOConnectionInfo ioc)
 		{
-			return File.ReadAllText(VersionFilePath(ioc));
+			string hash = File.ReadAllText(VersionFilePath(ioc));
+            Kp2aLog.Log(ioc.GetDisplayName() + " localVersionHash = " + hash);
+			return hash;
 		}
 		public bool HasLocalChanges(IOConnectionInfo ioc)
 		{
