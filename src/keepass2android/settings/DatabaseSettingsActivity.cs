@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using Android.App;
@@ -28,6 +29,7 @@ using Android.Preferences;
 using Android.Provider;
 using Android.Views.Autofill;
 using Java.IO;
+using KeePass.DataExchange;
 using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -36,11 +38,12 @@ using keepass2android.Io;
 using keepass2android.Utils;
 using KeePassLib;
 using KeePassLib.Cryptography.KeyDerivation;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
     //http://stackoverflow.com/a/27422401/292233
-    public class SettingsFragment : PreferenceFragment
+        public class SettingsFragment : PreferenceFragment
     {
 
 
@@ -130,8 +133,9 @@ namespace keepass2android
 
         private KeyboardSwitchPrefManager _switchPrefManager;
 		private Preference aesRounds, argon2parallelism, argon2rounds, argon2memory;
+        
 
-	    void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
+        void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
         {
             if (!(bool)eventArgs.NewValue)
             {
@@ -631,13 +635,15 @@ namespace keepass2android
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
             var rememberKeyfile = prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
 
-            Preference importDb = FindPreference("import_keyfile_prefs");
-            importDb.Summary = "";
+            Preference importKeyfile = FindPreference("import_keyfile_prefs");
+            Preference exportKeyfile = FindPreference("export_keyfile_prefs");
+            importKeyfile.Summary = "";
 
             if (!rememberKeyfile)
             {
-                importDb.Summary = GetString(Resource.String.KeyfileMoveRequiresRememberKeyfile);
-                importDb.Enabled = false;
+                importKeyfile.Summary = GetString(Resource.String.KeyfileMoveRequiresRememberKeyfile);
+                importKeyfile.Enabled = false;
+                exportKeyfile.Enabled = false;
                 return;
             }
             CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
@@ -646,21 +652,33 @@ namespace keepass2android
                 IOConnectionInfo iocKeyfile = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
                 if (iocKeyfile.IsLocalFile() && IoUtil.IsInInternalDirectory(iocKeyfile.Path, Activity))
                 {
-                    importDb.Enabled = false;
-                    importDb.Summary = GetString(Resource.String.FileIsInInternalDirectory);
+                    importKeyfile.Enabled = false;
+                    exportKeyfile.Enabled = true;
+                    exportKeyfile.PreferenceClick += (sender, args) => { ExportKeyfileFromInternalFolder(); };
+                    importKeyfile.Summary = GetString(Resource.String.FileIsInInternalDirectory);
                 }
                 else
                 {
-                    importDb.Enabled = true;
-                    importDb.PreferenceClick += (sender, args) => { MoveKeyfileToInternalFolder(); };
+                    exportKeyfile.Enabled = false;
+                    importKeyfile.Enabled = true;
+                    importKeyfile.PreferenceClick += (sender, args) => { MoveKeyfileToInternalFolder(); };
                 }
 
 
             }
             else
             {
-                importDb.Enabled = false;
+                exportKeyfile.Enabled = false;
+                importKeyfile.Enabled = false;
             }
+        }
+
+
+
+        private void ExportKeyfileFromInternalFolder()
+        {
+            StartActivity(new Intent(Activity.ApplicationContext, typeof(ExportKeyfileActivity)));
+            
         }
 
         private void MoveKeyfileToInternalFolder()

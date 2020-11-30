@@ -128,10 +128,16 @@
 			  android:key="import_keyfile_prefs"
 			  android:title="@string/import_keyfile_prefs"
 	  />
-		
-		
-    
-	</PreferenceScreen>
+
+    <Preference
+      android:key="export_keyfile_prefs"
+      android:title="@string/export_keyfile_prefs"
+    />
+
+
+
+
+  </PreferenceScreen>
 	
 
 	<PreferenceScreen

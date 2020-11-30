@@ -56,6 +56,7 @@
   <string name="fingerprint_prefs">Biometric unlock</string>
 	<string name="import_db_prefs">Import database to internal folder</string>
 	<string name="import_keyfile_prefs">Import key file to internal folder</string>
+  <string name="export_keyfile_prefs">Export key file from internal folder</string>
 	<string name="keyboardswitch_prefs">Keyboard switching</string>
 	<string name="OnlyAvailableForLocalFiles">Only available for local files.</string>
 	<string name="FileIsInInternalDirectory">File is stored in internal directory.</string>
@@ -248,8 +249,10 @@
   <string name="saving_database">Saving database…</string>
 	<string name="exporting_database">Exporting database…</string>
 	<string name="export_database_successful">Database exported successfully!</string>
-	
-	<string name="space">Space</string>
+  <string name="export_keyfile_successful">Key file exported successfully!</string>
+  
+
+  <string name="space">Space</string>
   <string name="search_label">Search</string>
   <string name="show_password">Show password</string>
 	<string name="sort_menu">Sort by...</string>
@@ -784,6 +787,7 @@
 
 
   <string-array name="ChangeLog_1_08c">
+    <item>Updated Jsch to version 0.1.55</item>
     <item>No longer storing package names of Android apps in the URL field</item>
     <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
     <item>Update OkHttp to support HTTP/2</item>
