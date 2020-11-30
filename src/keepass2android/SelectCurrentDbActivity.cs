@@ -183,6 +183,38 @@ namespace keepass2android
             AppTask.LaunchFirstGroupActivity(this);
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater inflater = MenuInflater;
+            inflater.Inflate(Resource.Menu.menu_selectdb, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_search_advanced:
+                    if (App.Kp2a.CurrentDb == null)
+                        App.Kp2a.CurrentDb = App.Kp2a.OpenDatabases.First();
+                    Intent i = new Intent(this, typeof(SearchActivity));
+                    AppTask.ToIntent(i);
+                    StartActivityForResult(i, 0);
+                    return true;
+                case Resource.Id.menu_lock:
+                    App.Kp2a.Lock();
+                    return true;
+                case Resource.Id.menu_donate:
+                    return Util.GotoDonateUrl(this);
+                case Resource.Id.menu_app_settings:
+                    DatabaseSettingsActivity.Launch(this);
+                    return true;
+                default:
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

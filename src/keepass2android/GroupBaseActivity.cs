@@ -1033,6 +1033,7 @@ namespace keepass2android
                     return Util.GotoDonateUrl(this);
                 case Resource.Id.menu_lock:
                     App.Kp2a.Lock();
+                    Finish();
                     return true;
                 case Resource.Id.menu_search_dummy:
                     StartActivityForResult(typeof(CloseImmediatelyActivity), RequestCodeActivateRealSearch);
