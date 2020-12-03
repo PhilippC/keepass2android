@@ -631,6 +631,12 @@
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>Больше нет необходимости хранить имена пакетов приложений для Android в поле URL.</item>
+    <item>Улучшение поведения блокировки - больше не отображаются биометрическая подсказка сразу после разблокировки.</item>
+    <item>Обновление OkHttp для поддержки HTTP/2</item>
+    <item>Исправлены недостающие переводы</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Принудительно использовать HTTP/1.1 из-за проблем с HTTP/2 реализацией OkHttp</item>
     <item>Улучшить диалог клавиатуры на Android 9+</item>
