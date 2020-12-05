@@ -5,4 +5,9 @@
     See the file LICENSE at the root directory of this project for copying
     permission.
 -->
-<resources></resources>
+<resources>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">බහාලුමක් තෝරන්න</item>
+        <item quantity="other">බහාලුම් තෝරන්න</item>
+    </plurals>
+</resources>
