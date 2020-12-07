@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrično odklepanje</string>
   <string name="import_db_prefs">Uvozi podatkovno zbirko v notranjo mapo</string>
   <string name="import_keyfile_prefs">Uvozi datoteko ključa v notranjo mapo</string>
+  <string name="export_keyfile_prefs">Izvozite datoteko ključa iz notranje mape</string>
   <string name="keyboardswitch_prefs">Preklapljanje tipkovnice</string>
   <string name="OnlyAvailableForLocalFiles">Na voljo samo v krajevnih datotekah.</string>
   <string name="FileIsInInternalDirectory">Datoteka je shranjena v notranji mapi.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Shranjevanje podatkovne zbirke …</string>
   <string name="exporting_database">Izvažanje podatkovne zbirke …</string>
   <string name="export_database_successful">Podatkovna zbirka uspešno izvožena!</string>
+  <string name="export_keyfile_successful">Datoteka ključa je bila uspešno izvožena!</string>
   <string name="space">Presledek</string>
   <string name="search_label">Išči</string>
   <string name="show_password">Prikaži geslo</string>
@@ -633,6 +635,12 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Dodajte podporo za Argon2id kot funkcijo izpeljave ključa</item>
+    <item>Posodobite Jsch na različico 0.1.55</item>
+    <item>Dodaj meni na zaslon za izbiro baze podatkov</item>
+    <item>Dovoli izvoz datotek uvoženih ključev</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>V polje URL ne shranjuje več imen paketov aplikacij za Android</item>
     <item>Izboljšanje obnašanja pri zaklepanju - takoj po odklepanju ne bo več prikazan biometrični poziv</item>
