@@ -367,5 +367,27 @@ namespace KeePassLib.Cryptography
 			Debug.Assert(iPos == pbRes.Length);
 			return pbRes;
 		}
+
+
+        private static int g_iWeakSeed = 0;
+        public static Random NewWeakRandom()
+        {
+            long s64 = DateTime.UtcNow.ToBinary();
+            int s32 = (int)((s64 >> 32) ^ s64);
+
+            lock (g_oSyncRoot)
+            {
+                unchecked
+                {
+                    g_iWeakSeed += 0x78A8C4B7; // Prime number
+                    s32 ^= g_iWeakSeed;
+                }
+            }
+
+            // Prevent overflow in the Random constructor of .NET 2.0
+            if (s32 == int.MinValue) s32 = int.MaxValue;
+
+            return new Random(s32);
+        }
 	}
 }

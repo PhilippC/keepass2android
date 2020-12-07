@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2020 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -41,10 +41,11 @@ namespace KeePassLib.Cryptography.KeyDerivation
 
 		private static void EnsureInitialized()
 		{
-			if(g_l.Count > 0) return;
+			if(g_l.Count != 0) return;
 
 			g_l.Add(new AesKdf());
-			g_l.Add(new Argon2Kdf());
+			g_l.Add(new Argon2Kdf(Argon2Type.D));
+			g_l.Add(new Argon2Kdf(Argon2Type.ID));
 		}
 
 		internal static KdfParameters GetDefaultParameters()
