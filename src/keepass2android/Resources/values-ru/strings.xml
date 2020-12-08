@@ -631,6 +631,12 @@
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Добавить меню на экран выбора базы данных</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Больше нет необходимости хранить имена пакетов приложений для Android в поле URL.</item>
     <item>Улучшение поведения блокировки - больше не отображаются биометрическая подсказка сразу после разблокировки.</item>
