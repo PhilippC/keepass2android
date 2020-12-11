@@ -20,12 +20,18 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Suspendarea aplicației</string>
+  <string name="app_timeout_summary">Timp înainte de blocarea bazei de date atunci când aplicația este inactivă.</string>
+  <string name="kill_app_label">Oprește procesul aplicației</string>
   <string name="show_kill_app">Buton de închidere</string>
+  <string name="show_kill_app_summary">Afișează un buton pentru închiderea aplicației în ecranul cu parole (pentru utilizatori paranoici)</string>
   <string name="application">Aplicație</string>
   <string name="application_settings">Setări aplicație</string>
   <string name="ShowGroupnameInSearchResult_title">Arată numele grupului în rezultatele căutării</string>
   <string name="ShowGroupnameInSearchResult_resume">Arată numele grupului sub titlul înregistrărilor în rezultatele căutării. Folositor dacă mai multe înregistrări au același nume.</string>
   <string name="NavigationToGroupCompleted_message">Grupul afișat este acum: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Vizualizează o listă de aplicații și site-uri pentru care completarea automată a fost dezactivată</string>
+  <string name="OfferSaveCredentials_summary">Dacă este activat, Android va întreba dacă vrei să salvezi credențialele după ce ai introdus manual datele în câmpurile care pot fi completate automat.</string>
+  <string name="OfferSaveCredentials_title">Oferă salvarea datelor de autentificare</string>
   <string name="ShowGroupInEntry_title">Arată numele grupului în vizualizarea înregistrărilor</string>
   <string name="unknown_uri_scheme">Scuze! Keepass2Android nu poate interpreta URI-ul returnat %1$s. Te rog să contactezi producătorul!</string>
   <string name="Entry_singular">O inregistrare</string>
@@ -42,6 +48,7 @@
   <string name="fingerprint_prefs">Deblocare biometrică</string>
   <string name="import_db_prefs">Importă baza de date în folderul intern</string>
   <string name="import_keyfile_prefs">Importă fișierul cheie în folderul intern</string>
+  <string name="export_keyfile_prefs">Importă fișierul cheie din folderul intern</string>
   <string name="keyboardswitch_prefs">Comutare tastaturi</string>
   <string name="OnlyAvailableForLocalFiles">Valabil doar pentru fișiere locale.</string>
   <string name="FileIsInInternalDirectory">Fișierul este stocat în folderul intern.</string>
