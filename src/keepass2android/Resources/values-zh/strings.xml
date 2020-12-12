@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">生物识别解锁</string>
   <string name="import_db_prefs">在内部的文件夹中导入数据库</string>
   <string name="import_keyfile_prefs">将密钥文件导入到内部文件夹</string>
+  <string name="export_keyfile_prefs">从内部文件夹导出密钥文件</string>
   <string name="keyboardswitch_prefs">切换键盘</string>
   <string name="OnlyAvailableForLocalFiles">仅适用于本地文件。</string>
   <string name="FileIsInInternalDirectory">文件存储在内部目录中。</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">正在保存数据库…</string>
   <string name="exporting_database">正在导出数据库...</string>
   <string name="export_database_successful">数据库导出成功 ！</string>
+  <string name="export_keyfile_successful">密钥文件导出成功！</string>
   <string name="space">空格</string>
   <string name="search_label">搜索</string>
   <string name="show_password">显示密码</string>
@@ -632,6 +634,12 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>添加了对 Argon2id 作为密钥衍生函数的支持</item>
+    <item>更新 Jsch 到 0.1.55 版本</item>
+    <item>添加菜单到数据库选择屏幕</item>
+    <item>允许导出导入的密钥文件</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>在 URL字段中不再存储安卓应用程序的软件包名称</item>
     <item>改善锁定行为- 解锁后不再立即显示生物特征提示</item>
