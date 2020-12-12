@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Біометричне розблокування</string>
   <string name="import_db_prefs">Імпорт бази паролів до внутрішньої теки</string>
   <string name="import_keyfile_prefs">Імпорт ключового файлу до внутрішньої теки</string>
+  <string name="export_keyfile_prefs">Експортувати файл ключа з внутрішньої теки</string>
   <string name="keyboardswitch_prefs">Перемикання клавіатури</string>
   <string name="OnlyAvailableForLocalFiles">Доступно лише для локальних файлів.</string>
   <string name="FileIsInInternalDirectory">Файл зберігається у внутрішньому каталозі.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Збереження бази…</string>
   <string name="exporting_database">База даних експортується…</string>
   <string name="export_database_successful">Базу даних успішно експортовано!</string>
+  <string name="export_keyfile_successful">Файл ключа успішно експортовано!</string>
   <string name="space">П р о б і л</string>
   <string name="search_label">Пошук</string>
   <string name="show_password">Показати пароль</string>
@@ -633,6 +635,12 @@
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Додати підтримку Argon2id як функцію формування ключа</item>
+    <item>Оновіть Jsch до версії 0.1.55</item>
+    <item>Додати меню на екран вибору бази даних</item>
+    <item>Дозволити експортування імпортованих файлів ключів</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Не зберігати назви пакунків у полі URL-адрес для застосунків Android</item>
     <item>Вдосконалено поведінку блокування — біометричний запит більше не з\'являється одразу після розблокування</item>
