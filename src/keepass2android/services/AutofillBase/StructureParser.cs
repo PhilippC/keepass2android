@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App.Assist;
 using Android.Content;
+using Android.Preferences;
 using Android.Text;
 using Android.Util;
 using Android.Views;
@@ -175,7 +176,7 @@ namespace keepass2android.services.AutofillBase
 
             result.WebDomain = webDomain;
             result.PackageName = Structure.ActivityComponent.PackageName;
-            if (!string.IsNullOrEmpty(webDomain))
+            if (!string.IsNullOrEmpty(webDomain) && !PreferenceManager.GetDefaultSharedPreferences(mContext).GetBoolean(mContext.GetString(Resource.String.NoDalVerification_key), false))
 		    {
                 result.IncompatiblePackageAndDomain = !kp2aDigitalAssetLinksDataSource.IsTrustedLink(webDomain, result.PackageName);
 		        if (result.IncompatiblePackageAndDomain)

@@ -50,6 +50,7 @@
 
   <!--  Preference settings -->
   <string name="AutoReturnFromQuery_key">AutoReturnFromQuery_key</string>
+  <string name="NoDalVerification_key">NoDalVerification_key</string>
   <string name="algorithm_key">algorithm</string>
     <string name="app_key">app</string>
     <string name="app_timeout_key">app_timeout_key</string>
