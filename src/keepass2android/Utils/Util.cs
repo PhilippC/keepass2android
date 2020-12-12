@@ -608,9 +608,9 @@ namespace keepass2android
 
 	    public static void MakeSecureDisplay(Activity context)
 	    {
-	        if (SecureDisplayConfigured(context))
-	        {
-	            var hasUnsecureDisplay = HasUnsecureDisplay(context);
+	        if (SecureDisplayConfigured(context) && PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean("no_secure_display_check", false))
+            {
+                var hasUnsecureDisplay = HasUnsecureDisplay(context);
 	            if (hasUnsecureDisplay)
 	            {
 	                var intent = new Intent(context, typeof(NoSecureDisplayActivity));
