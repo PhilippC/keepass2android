@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Разблокирование при помощи биометрии</string>
   <string name="import_db_prefs">Импорт базы данных во внутреннюю папку</string>
   <string name="import_keyfile_prefs">Импорт файла-ключа во внутреннюю папку</string>
+  <string name="export_keyfile_prefs">Экспорт файла-ключа из внутренней папки</string>
   <string name="keyboardswitch_prefs">Переключение клавиатуры</string>
   <string name="OnlyAvailableForLocalFiles">Доступно только для локальных файлов.</string>
   <string name="FileIsInInternalDirectory">Файл сохранен во внутренний каталог.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Сохранение базы данных…</string>
   <string name="exporting_database">Экспорт базы данных…</string>
   <string name="export_database_successful">База данных успешно экспортирована!</string>
+  <string name="export_keyfile_successful">Файл-ключ экспортирован успешно!</string>
   <string name="space">Пробел</string>
   <string name="search_label">Поиск</string>
   <string name="show_password">Показать пароль</string>
@@ -632,8 +634,8 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string-array name="ChangeLog_1_08d">
-    <item>Add support for Argon2id as key derivation function</item>
-    <item>Update Jsch to version 0.1.55</item>
+    <item>Добавить поддержку Argon2id в качестве функции деривации ключа</item>
+    <item>Обновить Jsch до версии 0.1.55</item>
     <item>Добавить меню на экран выбора базы данных</item>
     <item>Allow to export imported keyfiles</item>
   </string-array>
