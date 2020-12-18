@@ -944,8 +944,10 @@ namespace keepass2android
 			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
 
             }
-			catch (Java.Security.GeneralSecurityException)
-			{
+			catch (Java.Security.GeneralSecurityException ex)
+            {
+				Kp2aLog.Log("GeneralSecurityException in DecryptStored");
+                Kp2aLog.LogUnexpectedError(ex);
 				HandleFingerprintKeyInvalidated();
 				return;
 			}
@@ -1855,6 +1857,7 @@ namespace keepass2android
 				}
 				else
 				{
+                    Kp2aLog.Log("biometricDec.Init() failed");
 					HandleFingerprintKeyInvalidated();
 					return false;
 				}
