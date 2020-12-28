@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">生物識別解鎖</string>
   <string name="import_db_prefs">導入資料庫到內部資料夾</string>
   <string name="import_keyfile_prefs">將金鑰檔導入到內部資料夾</string>
+  <string name="export_keyfile_prefs">從內部資料夾匯出金鑰檔案</string>
   <string name="keyboardswitch_prefs">切換鍵盤</string>
   <string name="OnlyAvailableForLocalFiles">僅可用於本地檔案。</string>
   <string name="FileIsInInternalDirectory">檔存儲在內部目錄中。</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">儲存資料庫…</string>
   <string name="exporting_database">正在匯出資料庫...</string>
   <string name="export_database_successful">資料庫匯出成功!</string>
+  <string name="export_keyfile_successful">金鑰檔案匯出成功</string>
   <string name="space">空格</string>
   <string name="search_label">搜尋</string>
   <string name="show_password">顯示密碼</string>
