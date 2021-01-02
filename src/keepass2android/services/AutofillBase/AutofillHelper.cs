@@ -28,6 +28,7 @@ namespace keepass2android.services.AutofillBase
 			if (datasetName != null)
 			{
 			    var datasetBuilder = new Dataset.Builder(NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
+                datasetBuilder.SetId(datasetName);
 				
 				var setValueAtLeastOnce = filledAutofillFieldCollection.ApplyToFields(autofillFields, datasetBuilder);
 				if (setValueAtLeastOnce)

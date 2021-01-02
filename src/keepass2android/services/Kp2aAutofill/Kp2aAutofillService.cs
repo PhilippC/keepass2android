@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android;
 using Android.App;
 using Android.Content;
@@ -9,6 +10,7 @@ using keepass2android.services.AutofillBase.model;
 using keepass2android.services.Kp2aAutofill;
 using Keepass2android.Pluginsdk;
 using KeePassLib;
+using KeePassLib.Collections;
 using KeePassLib.Utility;
 using Org.Json;
 using AutofillServiceBase = keepass2android.services.AutofillBase.AutofillServiceBase;
@@ -31,12 +33,22 @@ namespace keepass2android.services
         {
         }
 
-        protected override FilledAutofillFieldCollection GetSuggestedEntry(string query)
+        protected override List<FilledAutofillFieldCollection> GetSuggestedEntries(string query)
         {
-            if (App.Kp2a.LastOpenedEntry?.SearchUrl == query)
-                return ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(
-                    App.Kp2a.LastOpenedEntry, this);
-            return null;
+            var foundEntries = (ShareUrlResults.GetSearchResultsForUrl(query)?.Entries ?? new PwObjectList<PwEntry>())
+                .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
+                .ToList();
+
+            if ((App.Kp2a.LastOpenedEntry?.SearchUrl == query) && !foundEntries.Any(e => e.Uuid.Equals(App.Kp2a.LastOpenedEntry?.Uuid)))
+            {
+                foundEntries.Clear();
+                foundEntries.Add(App.Kp2a.LastOpenedEntry);
+            }
+
+            //it seems like at least with Firefox we can have at most 3 datasets. Reserve space for the disable/enable dataset and the "fill with KP2A" which allows to select another item
+            //so take only 1:
+            return foundEntries.Take(1).Select(e => ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(e, this))
+                .ToList();
         }
 
         protected override void HandleSaveRequest(StructureParser parser, StructureParser.AutofillTargetId query)

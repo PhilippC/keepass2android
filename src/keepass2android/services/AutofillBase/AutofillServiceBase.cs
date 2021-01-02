@@ -10,6 +10,7 @@ using Android.Service.Autofill;
 using Android.Util;
 using Android.Views.Autofill;
 using Android.Widget;
+using Java.Util.Concurrent.Atomic;
 using keepass2android.services.AutofillBase.model;
 
 namespace keepass2android.services.AutofillBase
@@ -30,6 +31,10 @@ namespace keepass2android.services.AutofillBase
 
     public abstract class AutofillServiceBase: AutofillService
     {
+        //use a lock to avoid returning a response several times in buggy Firefox during one connection: this avoids flickering 
+        //and disappearing of the autofill prompt.
+        private AtomicBoolean _lock = new AtomicBoolean();
+
         public AutofillServiceBase()
         {
             
@@ -83,127 +88,150 @@ namespace keepass2android.services.AutofillBase
         {
             bool isManual = (request.Flags & FillRequest.FlagManualRequest) != 0;
             CommonUtil.logd( "onFillRequest " + (isManual ? "manual" : "auto"));
-            var structure = request.FillContexts[request.FillContexts.Count - 1].Structure;
+            var structure = request.FillContexts.Last().Structure;
 
-            //TODO support package signature verification as soon as this is supported in Keepass storage
-
-            var clientState = request.ClientState;
-            CommonUtil.logd( "onFillRequest(): data=" + CommonUtil.BundleToString(clientState));
-
-
-            cancellationSignal.CancelEvent += (sender, e) => {
-                Log.Warn(CommonUtil.Tag, "Cancel autofill not implemented yet.");
-            };
-            // Parse AutoFill data in Activity
-            StructureParser.AutofillTargetId query = null;
-            var parser = new StructureParser(this, structure);
-            try
+            if (!_lock.Get())
             {
-                query = parser.ParseForFill(isManual);
-                
-            }
-            catch (Java.Lang.SecurityException e)
-            {
-                Log.Warn(CommonUtil.Tag, "Security exception handling request");
-                callback.OnFailure(e.Message);
-                return;
-            }
-            
-            AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
-            
-            
-            var autofillIds = autofillFields.GetAutofillIds();
-            if (autofillIds.Length != 0 && CanAutofill(query, isManual))
-            {
-                var responseBuilder = new FillResponse.Builder();
+                _lock.Set(true);
 
-                Dataset entryDataset = null;
-                if (query.IncompatiblePackageAndDomain == false)
+                //TODO support package signature verification as soon as this is supported in Keepass storage
+
+                var clientState = request.ClientState;
+                CommonUtil.logd("onFillRequest(): data=" + CommonUtil.BundleToString(clientState));
+
+
+                cancellationSignal.CancelEvent += (sender, e) =>
                 {
-                    //domain and package are compatible. Use Domain if available and package otherwise. Can fill without warning.
-                    entryDataset = BuildEntryDataset(query.DomainOrPackage, query.WebDomain, query.PackageName, autofillIds, parser, DisplayWarning.None);
+                    Log.Warn(CommonUtil.Tag, "Cancel autofill not implemented yet.");
+                };
+                // Parse AutoFill data in Activity
+                StructureParser.AutofillTargetId query = null;
+                var parser = new StructureParser(this, structure);
+                try
+                {
+                    query = parser.ParseForFill(isManual);
+
                 }
-                else
+                catch (Java.Lang.SecurityException e)
                 {
-
-                    //domain or package are incompatible. Don't show the entry. (Tried to do so first but behavior was not consistent)
-                    //entryDataset = BuildEntryDataset(query.WebDomain, query.WebDomain, query.PackageName, autofillIds, parser, DisplayWarning.FillDomainInUntrustedApp);
+                    Log.Warn(CommonUtil.Tag, "Security exception handling request");
+                    callback.OnFailure(e.Message);
+                    return;
                 }
-                bool hasEntryDataset = entryDataset != null;
-                if (entryDataset != null)
-                    responseBuilder.AddDataset(entryDataset);
 
-                if (query.WebDomain != null)
-                    AddQueryDataset(query.WebDomain, 
-                        query.WebDomain, query.PackageName,
-                        isManual, autofillIds, responseBuilder, !hasEntryDataset, query.IncompatiblePackageAndDomain ? DisplayWarning.FillDomainInUntrustedApp : DisplayWarning.None);
-                else
-                    AddQueryDataset(query.PackageNameWithPseudoSchema,
-                        query.WebDomain, query.PackageName,
-                        isManual, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None);
+                AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
 
 
-                AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual);
-                
-                if (PreferenceManager.GetDefaultSharedPreferences(this)
-                    .GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
+                var autofillIds = autofillFields.GetAutofillIds();
+                if (autofillIds.Length != 0 && CanAutofill(query, isManual))
                 {
-                    if (!CompatBrowsers.Contains(parser.PackageId))
+                    var responseBuilder = new FillResponse.Builder();
+
+                    bool hasEntryDataset = false;
+
+                    if (query.IncompatiblePackageAndDomain == false)
                     {
-                        responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
-                            parser.AutofillFields.GetAutofillIds()).Build());
+                        //domain and package are compatible. Use Domain if available and package otherwise. Can fill without warning.
+                        foreach (var entryDataset in BuildEntryDatasets(query.DomainOrPackage, query.WebDomain,
+                            query.PackageName,
+                            autofillIds, parser, DisplayWarning.None)
+                        )
+                        {
+                            responseBuilder.AddDataset(entryDataset);
+                            hasEntryDataset = true;
+                        }
                     }
-                    
-                }
+                   
 
-                callback.OnSuccess(responseBuilder.Build());
-            }
-            else
-            {
-                callback.OnSuccess(null);
+                    
+                    {
+                        if (query.WebDomain != null)
+                            AddQueryDataset(query.WebDomain,
+                                query.WebDomain, query.PackageName,
+                                isManual, autofillIds, responseBuilder, !hasEntryDataset,
+                                query.IncompatiblePackageAndDomain
+                                    ? DisplayWarning.FillDomainInUntrustedApp
+                                    : DisplayWarning.None);
+                        else
+                            AddQueryDataset(query.PackageNameWithPseudoSchema,
+                                query.WebDomain, query.PackageName,
+                                isManual, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None);
+                    }
+
+                    AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual);
+
+                    if (PreferenceManager.GetDefaultSharedPreferences(this)
+                        .GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
+                    {
+                        if (!CompatBrowsers.Contains(parser.PackageId))
+                        {
+                            responseBuilder.SetSaveInfo(new SaveInfo.Builder(parser.AutofillFields.SaveType,
+                                parser.AutofillFields.GetAutofillIds()).Build());
+                        }
+
+                    }
+
+                    callback.OnSuccess(responseBuilder.Build());
+                }
+                else
+                {
+                    callback.OnSuccess(null);
+                }
             }
         }
 
-        private Dataset BuildEntryDataset(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, StructureParser parser,
+        private List<Dataset> BuildEntryDatasets(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, StructureParser parser,
             DisplayWarning warning)
         {
-            var filledAutofillFieldCollection = GetSuggestedEntry(query);
-            if (filledAutofillFieldCollection == null)
-                return null;
-
-            if (warning == DisplayWarning.None)
+            List<Dataset> result = new List<Dataset>();
+            var suggestedEntries = GetSuggestedEntries(query).ToDictionary(e => e.DatasetName, e => e);
+            foreach (var filledAutofillFieldCollection in suggestedEntries.Values)
             {
-                //can return an actual dataset
-                int partitionIndex = AutofillHintsHelper.GetPartitionIndex(parser.AutofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
-                FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
 
-                return AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder);
-            }
-            else
-            {
-                //return an "auth" dataset (actually for just warning the user in case domain/package dont match)
-                var sender = IntentBuilder.GetAuthIntentSenderForWarning(this, query, queryDomain, queryPackage, warning);
-                var datasetName = filledAutofillFieldCollection.DatasetName;
-                if (datasetName == null)
-                    return null;
+                if (filledAutofillFieldCollection == null)
+                    continue;
 
-                RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName, datasetName, AppNames.LauncherIcon);
-
-                var datasetBuilder = new Dataset.Builder(presentation);
-                datasetBuilder.SetAuthentication(sender);
-                //need to add placeholders so we can directly fill after ChooseActivity
-                foreach (var autofillId in autofillIds)
+                if (warning == DisplayWarning.None)
                 {
-                    datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
-                }
+                    //can return an actual dataset
+                    int partitionIndex =
+                        AutofillHintsHelper.GetPartitionIndex(parser.AutofillFields.FocusedAutofillCanonicalHints
+                            .FirstOrDefault());
+                    FilledAutofillFieldCollection partitionData =
+                        AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
 
-                return datasetBuilder.Build();
+                    result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder));
+                }
+                else
+                {
+                    //return an "auth" dataset (actually for just warning the user in case domain/package dont match)
+                    var sender =
+                        IntentBuilder.GetAuthIntentSenderForWarning(this, query, queryDomain, queryPackage, warning);
+                    var datasetName = filledAutofillFieldCollection.DatasetName;
+                    if (datasetName == null)
+                        return null;
+
+                    RemoteViews presentation =
+                        AutofillHelper.NewRemoteViews(PackageName, datasetName, AppNames.LauncherIcon);
+
+                    var datasetBuilder = new Dataset.Builder(presentation);
+                    datasetBuilder.SetAuthentication(sender);
+                    //need to add placeholders so we can directly fill after ChooseActivity
+                    foreach (var autofillId in autofillIds)
+                    {
+                        datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
+                    }
+
+                    result.Add(datasetBuilder.Build());
+                }
             }
 
-            
+            return result;
+
+
         }
 
-        protected abstract FilledAutofillFieldCollection GetSuggestedEntry(string query);
+        protected abstract List<FilledAutofillFieldCollection> GetSuggestedEntries(string query);
 
         public enum DisplayWarning
         {
@@ -335,6 +363,8 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnDisconnected()
         {
+
+            _lock.Set(false);
             CommonUtil.logd( "onDisconnected");
         }
 

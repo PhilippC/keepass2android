@@ -182,6 +182,7 @@ namespace keepass2android.services.AutofillBase
             FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(clientFormDataMap, partitionIndex);
             ReplyIntent = new Intent();
             SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder));
+            SetResult(Result.Ok, ReplyIntent);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -229,7 +230,9 @@ namespace keepass2android.services.AutofillBase
 
         protected void SetDatasetIntent(Dataset dataset)
         {
-            ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, dataset);
+            var responseBuilder = new FillResponse.Builder();
+            responseBuilder.AddDataset(dataset);
+            ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, responseBuilder.Build());
         }
     }
 }

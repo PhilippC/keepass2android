@@ -74,8 +74,8 @@ namespace keepass2android.services.AutofillBase.model
 			foreach (string hint in autofillFieldMetadataCollection.AllAutofillCanonicalHints)
 			{
 				foreach (AutofillFieldMetadata autofillFieldMetadata in autofillFieldMetadataCollection.GetFieldsForHint(hint))
-				{
-					FilledAutofillField filledAutofillField;
+                {
+                    FilledAutofillField filledAutofillField;
 					if (!HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))
 					{
 						continue;
