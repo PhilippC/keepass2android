@@ -302,9 +302,21 @@ namespace keepass2android.search
                             builder.Scheme(ContentResolver.SchemeContent);
                             builder.Authority(Authority);
                             builder.Path(GetIconPathQuery);
-                            builder.AppendQueryParameter(IconIdParameter, CurrentEntry.IconId.ToString());
-                            builder.AppendQueryParameter(CustomIconUuidParameter, CurrentEntry.CustomIconUuid.ToHexString());
-                            builder.AppendQueryParameter(DatabaseIndexParameter, _entriesWithContexts[Position].DatabaseIndex.ToString());
+                            if (CurrentEntry.Expires && CurrentEntry.ExpiryTime < DateTime.Now)
+                            {
+								builder.AppendQueryParameter(IconIdParameter, PwIcon.Expired.ToString());
+                                builder.AppendQueryParameter(CustomIconUuidParameter, PwUuid.Zero.ToHexString());
+                                builder.AppendQueryParameter(DatabaseIndexParameter, _entriesWithContexts[Position].DatabaseIndex.ToString());
+							}
+                            else
+                            {
+                                builder.AppendQueryParameter(IconIdParameter, CurrentEntry.IconId.ToString());
+                                builder.AppendQueryParameter(CustomIconUuidParameter,
+                                    CurrentEntry.CustomIconUuid.ToHexString());
+                                builder.AppendQueryParameter(DatabaseIndexParameter,
+                                    _entriesWithContexts[Position].DatabaseIndex.ToString());
+                            }
+
                             return builder.Build().ToString();
                         case 4: // SuggestColumnIntentDataId
                             return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(CurrentEntry), CurrentEntry).FullId;
