@@ -19,11 +19,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
-    <string name="english_ime_name">键盘</string>
+    <string name="english_ime_name">==  Keepass2Android 键盘 ==</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">键盘设置</string>
+    <string name="english_ime_settings">USB 键盘设置</string>
     <!-- Title for Latin keyboard input options dialog -->
-    <string name="english_ime_input_options">输入选项</string>
+    <string name="english_ime_input_options">Input options</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
     <string name="vibrate_on_keypress">按键振动</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
