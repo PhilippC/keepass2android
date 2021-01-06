@@ -28,7 +28,10 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
+    [Activity(Label = AppNames.AppName, 
+        MainLauncher = false, 
+        Theme = "@style/MyTheme_Blue", 
+        LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
     public class SelectCurrentDbActivity : AndroidX.AppCompat.App.AppCompatActivity
     {
         private int ReqCodeOpenNewDb = 1;
@@ -284,11 +287,20 @@ namespace keepass2android
                 }
             }
 
-            _intentReceiver = new MyBroadcastReceiver(this);
-            IntentFilter filter = new IntentFilter();
-            filter.AddAction(Intents.DatabaseLocked);
-            RegisterReceiver(_intentReceiver, filter);
+        }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+            
+            if (_intentReceiver == null)
+            {
+                _intentReceiver = new MyBroadcastReceiver(this);
+                IntentFilter filter = new IntentFilter();
+                filter.AddAction(Intents.DatabaseLocked);
+                filter.AddAction(Intent.ActionScreenOff);
+                RegisterReceiver(_intentReceiver, filter);
+            }
         }
 
         protected override void OnStop()
@@ -360,6 +372,7 @@ namespace keepass2android
 
         protected override void OnResume()
         {
+            _isForeground = true;
             base.OnResume();
             if (!IsFinishing && !LaunchingOther)
             {
@@ -404,14 +417,13 @@ namespace keepass2android
                     return;
                 }
 
-                //more than one database open or user requested to load another db. Don't launch another activity.
-                _adapter.Update();
-                _adapter.NotifyDataSetChanged();
-
-                
-
 
             }
+            
+            //more than one database open or user requested to load another db. Don't launch another activity.
+            _adapter.Update();
+            _adapter.NotifyDataSetChanged();
+
             base.OnResume();
         }
 
@@ -451,6 +463,7 @@ namespace keepass2android
         protected override void OnPause()
         {
             LaunchingOther = false;
+            _isForeground = false;
             base.OnPause();
         }
 
@@ -467,6 +480,7 @@ namespace keepass2android
         internal AppTask AppTask;
         private OpenDatabaseAdapter _adapter;
         private MyBroadcastReceiver _intentReceiver;
+        private bool _isForeground;
 
         public override void OnBackPressed()
         {
@@ -613,6 +627,10 @@ namespace keepass2android
         {
             //app tasks are assumed to be finished/cancelled when the database is locked
             AppTask = new NullTask();
+            //in case we are the foreground activity, we won't get OnResume (in contrast to having other activities on top of us on the stack).
+            //Call it to ensure we switch to QuickUnlock/fileselect
+            if (_isForeground)
+                OnResume();
         }
     }
 }

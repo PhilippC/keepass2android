@@ -148,7 +148,40 @@ namespace keepass2android
 	    private DrawerLayout _drawerLayout;
 
 
-	    public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
+
+        private string mDrawerTitle;
+        private MeasuringRelativeLayout.MeasureArgs _measureArgs;
+        private ActivityDesign _activityDesign;
+        private BiometricDecryption _biometricDec;
+        private PasswordActivityBroadcastReceiver _intentReceiver;
+        private int _appnameclickCount;
+
+
+        public int InvalidCompositeKeyCount
+        {
+            get; set;
+        }
+        public int LoadingErrorCount
+        {
+            get; set;
+        }
+
+
+        private bool fingerprintInitialized;
+
+
+        public bool UsedFingerprintUnlock { get; set; }
+        readonly PasswordFont _passwordFont = new PasswordFont();
+        private const string Kp2aKeyProviderStringPrefix = "_KP2A_KEYTYPES:";
+
+
+        //can be set before launching the Activity. Will be used once to immediately open the database
+        static CompositeKey compositeKeyForImmediateLoad = null;
+        private bool _makeCurrent;
+
+
+
+		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 	    {
 		    _activityDesign = new ActivityDesign(this);
@@ -159,9 +192,6 @@ namespace keepass2android
 			_activityDesign = new ActivityDesign(this);
 		}
 
-
-        //can be set before launching the Activity. Will be used once to immediately open the database
-        static CompositeKey compositeKeyForImmediateLoad = null;
 
 
         public static void Launch(Activity act, IOConnectionInfo ioc, CompositeKey compositeKey, ActivityLaunchMode launchMode, bool makeCurrent)
@@ -576,37 +606,6 @@ namespace keepass2android
 		}
 
 		
-	    
-		private string mDrawerTitle;
-		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
-		private ActivityDesign _activityDesign;
-		private BiometricDecryption _biometricDec;
-        private PasswordActivityBroadcastReceiver _intentReceiver;
-		private int _appnameclickCount;
-
-
-		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
-		{
-			PasswordActivity owner;
-
-			public MyActionBarDrawerToggle(PasswordActivity activity, DrawerLayout layout, int openRes, int closeRes)
-				: base(activity, layout, openRes, closeRes)
-			{
-				owner = activity;
-			}
-
-			public override void OnDrawerClosed(View drawerView)
-			{
-				owner.SupportActionBar.Title = owner.Title;
-				owner.InvalidateOptionsMenu();
-			}
-
-			public override void OnDrawerOpened(View drawerView)
-			{
-				owner.SupportActionBar.Title = owner.mDrawerTitle;
-				owner.InvalidateOptionsMenu();
-			}
-		}
 		private void UncollapseToolbar()
 		{
 			AppBarLayout appbarLayout = FindViewById<AppBarLayout>(Resource.Id.appbar);
@@ -635,8 +634,6 @@ namespace keepass2android
 			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, 200, true);
 		}
 
-	    readonly PasswordFont _passwordFont = new PasswordFont();
-
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			_activityDesign.ApplyTheme();
@@ -651,102 +648,63 @@ namespace keepass2android
             //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
 		    Util.MakeSecureDisplay(this);
 
-            Intent i = Intent;
-
-
-			String action = i.Action;
-
+           
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
 
+            SetContentView(Resource.Layout.password);
+
+            InitializeToolbar();
+
+            var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
+            passwordEdit.TextChanged +=
+                (sender, args) =>
+                {
+                    _password = passwordEdit.Text;
+                    UpdateOkButtonState();
+                };
+            passwordEdit.EditorAction += (sender, args) =>
+            {
+                if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
+                    OnOk();
+            };
+
+
+
+            InitializeBottomBarButtons();
+
+            InitializeNavDrawerButtons();
+
+            InitializeTogglePasswordButton();
+            InitializeKeyfileBrowseButton();
+            InitializeOptionCheckboxes();
+            FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
+            InitializeToolbarCollapsing();
+            InitializeOtpSecretSpinner();
+
+			//Intent-specific
+
+			//fill _ioConnection, _keyFile, _password, _keepPasswordInOnResume
+
+			Intent i = Intent;
+
 			_ioConnection = new IOConnectionInfo();
 
-
-            if ((action != null) && (action.Equals(Intents.StartWithOtp)))
+            String action = i.Action;
+			if ((action != null) && (action.Equals(Intents.StartWithOtp)))
 			{
 				if (!GetIocFromOtpIntent(savedInstanceState, i)) return;
 				_keepPasswordInOnResume = true;
 			}
 			else
-			{
-			    Util.SetIoConnectionFromIntent(_ioConnection, i);
-				var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
-				if (keyFileFromIntent != null)
-				{
-					Kp2aLog.Log("try get keyfile from intent");
-				    _keyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyFileFromIntent));
-                    KeyProviderTypes.Clear();
-				    KeyProviderTypes.Add(KeyProviders.KeyFile);
-					Kp2aLog.Log("try get keyfile from intent ok");
-				}
-				else
-				{
-					_keyFile = null;
-				    KeyProviderTypes.Clear();
-                }
-				_password = i.GetStringExtra(KeyPassword) ?? "";
-				if (!KeyProviderTypes.Any())
-				{
-                    SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
-				}
-				if ((!string.IsNullOrEmpty(_keyFile)) || (_password != ""))
-				{
-					_keepPasswordInOnResume = true;
-				}
+            {
+                GetIocFromLaunchIntent(i);
+            }
 
-			}
-
-		    App.Kp2a.RegisterOpenAttempt(_ioConnection);
-
-			SetContentView(Resource.Layout.password);
-
-			InitializeToolbar();
-
-			InitializeFilenameView();
-
-			if (KeyProviderTypes.Contains(KeyProviders.KeyFile))
-			{
-				UpdateKeyfileIocView();
-			}
-
-			var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
-			passwordEdit.TextChanged +=
-				(sender, args) =>
-				{
-					_password = passwordEdit.Text;
-					UpdateOkButtonState();
-				};
-			passwordEdit.EditorAction += (sender, args) =>
-			{
-				if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
-					OnOk();
-			};
+		    InitializeAfterSetIoc();
 
 
-			FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
-
-			passwordEdit.Text = _password;
-
-			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-			passwordEdit.Typeface = passwordFont;
-
-
-			InitializeBottomBarButtons();
-
-			InitializePasswordModeSpinner();
-
-			InitializeOtpSecretSpinner();
-
-			InitializeNavDrawerButtons();
-
-			UpdateOkButtonState();
-
-			InitializeTogglePasswordButton();
-			InitializeKeyfileBrowseButton();
-
-			InitializeOptionCheckboxes();
-
-			RestoreState(savedInstanceState);
+            RestoreState(savedInstanceState);
 
 			if (i.GetBooleanExtra("launchImmediately", false))
 			{
@@ -757,7 +715,7 @@ namespace keepass2android
 
 
 			mDrawerTitle = Title;
-			InitializeToolbarCollapsing();
+			
 
             var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
@@ -787,6 +745,64 @@ namespace keepass2android
 
         }
 
+        private void InitializeAfterSetIoc()
+        {
+            App.Kp2a.RegisterOpenAttempt(_ioConnection);
+
+
+            InitializeFilenameView();
+
+            if (KeyProviderTypes.Contains(KeyProviders.KeyFile))
+            {
+                UpdateKeyfileIocView();
+            }
+
+            var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
+			passwordEdit.Text = _password;
+
+            var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
+            passwordEdit.Typeface = passwordFont;
+
+
+            InitializePasswordModeSpinner();
+
+
+            UpdateOkButtonState();
+        }
+
+        private void GetIocFromLaunchIntent(Intent i)
+        {
+            _makeCurrent = i.GetBooleanExtra("MakeCurrent", true);
+			Util.SetIoConnectionFromIntent(_ioConnection, i);
+            var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
+            if (keyFileFromIntent != null)
+            {
+                Kp2aLog.Log("try get keyfile from intent");
+                _keyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyFileFromIntent));
+                KeyProviderTypes.Clear();
+                KeyProviderTypes.Add(KeyProviders.KeyFile);
+                Kp2aLog.Log("try get keyfile from intent ok");
+            }
+            else
+            {
+                _keyFile = null;
+                KeyProviderTypes.Clear();
+            }
+
+            _password = i.GetStringExtra(KeyPassword) ?? "";
+            if (!KeyProviderTypes.Any())
+
+
+            {
+                SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
+            }
+
+            if ((!string.IsNullOrEmpty(_keyFile)) || (_password != ""))
+            {
+                _keepPasswordInOnResume = true;
+            }
+        }
+
         private void InitializeToolbarCollapsing()
 	    {
 	        var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
@@ -804,8 +820,6 @@ namespace keepass2android
 	        };
 	        rootview.MeasureEvent += (sender, args) => { _measureArgs = args; };
 	    }
-
-	    private const string Kp2aKeyProviderStringPrefix = "_KP2A_KEYTYPES:";
 
         private string GetKeyProviderString()
 	    {
@@ -903,10 +917,7 @@ namespace keepass2android
             }
         }
 
-	    
-	    
-
-		private void ClearFingerprintUnlockData()
+        private void ClearFingerprintUnlockData()
 		{
 			ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
 			edit.PutString(Database.GetFingerprintPrefKey(_ioConnection), "");
@@ -1127,7 +1138,6 @@ namespace keepass2android
 			                     RequestCodePrepareDbFile, false);
 		}
 
-		public bool UsedFingerprintUnlock { get; set; }
 
 		private void InitializeTogglePasswordButton()
 		{
@@ -1389,8 +1399,8 @@ namespace keepass2android
 				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
-						onFinish, this, true, Intent.GetBooleanExtra("MakeCurrent", true))
-					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish,true, Intent.GetBooleanExtra("MakeCurrent",true));
+						onFinish, this, true, _makeCurrent)
+					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
 			    new ProgressTask(App.Kp2a, this, task).Run();
@@ -1516,11 +1526,7 @@ namespace keepass2android
 
             base.OnPause();
 		}
-
-        private bool fingerprintInitialized;
-
-
-        protected override void OnStart()
+		protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
@@ -1596,58 +1602,100 @@ namespace keepass2android
 			//note: it's not called in other cases because OnNewIntent requires the activity to be on top already 
 			//which is never the case when started from another activity (in the same task).
 			//NfcOtpActivity sets the ClearTop flag to get OnNewIntent called.
-			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
-			{
-				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-				_keepPasswordInOnResume = true;
-				if (KeyProviderTypes.Contains(KeyProviders.Otp))
-				{
-				
-					if (_otpInfo == null)
-					{
-						//Entering OTPs not yet initialized:
-						_pendingOtps.Add(otp);
-						UpdateKeyProviderUiState();
-					}
-					else
-					{
-						//Entering OTPs is initialized. Write OTP into first empty field:
-						bool foundEmptyField = false;
-						foreach (int otpId in _otpTextViewIds)
-						{
-							EditText otpEdit = FindViewById<EditText>(otpId);
-							if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
-							{
-								otpEdit.Text = otp;
-								foundEmptyField = true;
-								break;
-							}
-						}
-						//did we find a field?
-						if (!foundEmptyField)
-						{
-							Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
-						}
-					}
+            if (intent != null)
+            {
+				if (intent.HasExtra(Intents.OtpExtraKey))
+                {
+                    string otp = intent.GetStringExtra(Intents.OtpExtraKey);
+                    _keepPasswordInOnResume = true;
+                    if (KeyProviderTypes.Contains(KeyProviders.Otp))
+                    {
 
-					Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
-					if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
-					{
-						passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
-					}	
-				}
-				else
-				{
-					//assume the key should be used as static password
-					FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
-				}
+                        if (_otpInfo == null)
+                        {
+                            //Entering OTPs not yet initialized:
+                            _pendingOtps.Add(otp);
+                            UpdateKeyProviderUiState();
+                        }
+                        else
+                        {
+                            //Entering OTPs is initialized. Write OTP into first empty field:
+                            bool foundEmptyField = false;
+                            foreach (int otpId in _otpTextViewIds)
+                            {
+                                EditText otpEdit = FindViewById<EditText>(otpId);
+                                if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
+                                {
+                                    otpEdit.Text = otp;
+                                    foundEmptyField = true;
+                                    break;
+                                }
+                            }
+                            //did we find a field?
+                            if (!foundEmptyField)
+                            {
+                                Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
+                            }
+                        }
 
-				
+                        Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
+                        if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
+                        {
+                            passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
+                        }
+                    }
+                    else
+                    {
+                        //assume the key should be used as static password
+                        FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
+                    }
+
+
+                }
+                else
+                {
+                    ResetState();
+                    GetIocFromLaunchIntent(intent);
+					InitializeAfterSetIoc();
+                    OnStart();
+                }
 			}
 	
 		}
-		
-		protected override void OnResume()
+
+        private void ResetState()
+        {
+            _makeCurrent = false;
+            _loadDbFileTask = null;
+            _loadDbTaskOffline = false;
+
+            _showPassword = false;
+            MakePasswordMaskedOrVisible();
+            _killOnDestroy = false;
+            _password = "";
+            _pendingOtps.Clear();
+            KeyProviderTypes.Clear();
+            _rememberKeyfile = false;
+            _starting = false;
+            _otpInfo = null;
+            _otpAuxIoc = null;
+            _chalInfo = null;
+            _challengeSecret = null;
+            _challengeProv = null;
+            _performingLoad = false;
+            _keepPasswordInOnResume = false;
+            _lastOnPauseTime = DateTime.MinValue;
+            mDrawerTitle = "";
+            _measureArgs = null;
+            _biometricDec = null;
+            _appnameclickCount = 0;
+            InvalidCompositeKeyCount = 0;
+            LoadingErrorCount = 0;
+            fingerprintInitialized = false;
+            UsedFingerprintUnlock = false;
+        }
+
+        protected override void OnResume()
 		{
 			base.OnResume();
 			_activityDesign.ReapplyTheme();
@@ -1755,8 +1803,8 @@ namespace keepass2android
 		        Handler handler = new Handler();
 		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 		        _performingLoad = true;
-		        LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
-		            onFinish, false, Intent.GetBooleanExtra("MakeCurrent",false));
+                LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+		            onFinish, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
 		        new ProgressTask(App.Kp2a, this, task).Run();
 		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
@@ -2076,16 +2124,8 @@ namespace keepass2android
 			}
 		}
 
-		public int InvalidCompositeKeyCount
-		{
-			get; set;
-		}
-	    public int LoadingErrorCount
-	    {
-	        get; set;
-	    }
 
-        private void BroadcastOpenDatabase()
+		private void BroadcastOpenDatabase()
 		{
 			App.Kp2a.BroadcastDatabaseAction(this, Strings.ActionOpenDatabase);
 		}

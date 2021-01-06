@@ -16,7 +16,9 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   */
 
 using System;
+using System.Runtime.InteropServices;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
@@ -47,17 +49,26 @@ namespace keepass2android
 			}
 		}
 
-		protected override void OnResume()
+        private static int staticCount = 0;
+
+        private int ID = staticCount++;
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            Kp2aLog.Log(ClassName + ".OnNewIntent " + ID);
+		}
+
+        protected override void OnResume()
 		{
 			base.OnResume();
-			Kp2aLog.Log(ClassName+".OnResume");
+			Kp2aLog.Log(ClassName+".OnResume " + ID);
 			if (App.Kp2a.CurrentDb== null)
 			{
-				Kp2aLog.Log(" DB null");
+				Kp2aLog.Log(" DB null" + " " + ID);
 			}
 			else
 			{
-				Kp2aLog.Log(" DatabaseIsUnlocked=" + App.Kp2a.DatabaseIsUnlocked);
+				Kp2aLog.Log(" DatabaseIsUnlocked=" + App.Kp2a.DatabaseIsUnlocked + " " + ID);
 			}
 		}
 
@@ -65,32 +76,32 @@ namespace keepass2android
 		{
 		    ProgressTask.SetNewActiveActivity(this);
 			base.OnStart();
-			Kp2aLog.Log(ClassName+".OnStart");
+			Kp2aLog.Log(ClassName+".OnStart" + " " + ID);
 		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			Kp2aLog.Log(ClassName+".OnCreate");
-			Kp2aLog.Log(ClassName+":apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE"));
+			Kp2aLog.Log(ClassName+".OnCreate" + " " + ID);
+			Kp2aLog.Log(ClassName+":apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE") + " " + ID);
 		}
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
-			Kp2aLog.Log(ClassName+".OnDestroy"+IsFinishing.ToString());
+			Kp2aLog.Log(ClassName+".OnDestroy"+IsFinishing.ToString() + " " + ID);
 		}
 
 		protected override void OnPause()
 		{
 			base.OnPause();
-			Kp2aLog.Log(ClassName+".OnPause");
+			Kp2aLog.Log(ClassName+".OnPause" + " " + ID);
 		}
 
 		protected override void OnStop()
 		{
 			base.OnStop();
-			Kp2aLog.Log(ClassName+".OnStop");
+			Kp2aLog.Log(ClassName+".OnStop" + " " + ID);
 		    ProgressTask.RemoveActiveActivity(this);
         }
 	}
