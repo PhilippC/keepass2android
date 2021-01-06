@@ -230,6 +230,8 @@ namespace keepass2android.services.AutofillBase
 
         protected void SetDatasetIntent(Dataset dataset)
         {
+            if (dataset == null)
+                return;
             var responseBuilder = new FillResponse.Builder();
             responseBuilder.AddDataset(dataset);
             ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, responseBuilder.Build());
