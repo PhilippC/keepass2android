@@ -31,8 +31,8 @@
   <string name="ShowGroupnameInSearchResult_resume">검색 결과 중 항목의 제목 아래에 그룹명을 표시 합니다. 여러 항목의 이름이 같은 경우 유용합니다.</string>
   <string name="NavigationToGroupCompleted_message">현재 표시된 그룹: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">자동 입력 비활성 대상</string>
-  <string name="OfferSaveCredentials_summary">이 설정을 사용하면 자동입력 가능한 필드에 수동으로 데이터를 입력 후, 자격 증명을 저장하려 할 때, Android가 물어봅니다</string>
-  <string name="OfferSaveCredentials_title">자격 증명 저장 제공</string>
+  <string name="OfferSaveCredentials_summary">이 설정을 사용하면 자동입력 가능한 필드에 수동으로 데이터를 입력 후, 신용 정보를 저장하려 할 때, Android가 물어봅니다</string>
+  <string name="OfferSaveCredentials_title">신용 정보 저장 제공</string>
   <string name="ShowGroupInEntry_title">항목 보기에서 그룹명 표시</string>
   <string name="unknown_uri_scheme">죄송합니다! Keepass2Android는 반환된 URI %1$s을 처리할 수 없습니다. 개발자에게 연락 하십시오!</string>
   <string name="Entry_singular">한 개의 항목</string>
@@ -547,9 +547,9 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="SCOPE_CURRENT_ENTRY_title">현재 항목 데이터</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">플러그인이 현재 데이터베이스 항목에 대한 모든 데이터를 받아 액션을 제공하고 해당 표시를 수정할 수 있도록 허가합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">자신의 자격증명 요청</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인이 자체 앱 패키지와 연관된 자격 증명을 요청할 수 있도록 허가합니다.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">플러그인이 자체 앱 패키지와 연관된 신용 정보를 요청할 수 있도록 허용합니다.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">자격 증명 요청</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인이 웹 사이트 또는 앱의 인증을 위해 자격 증명을 요청할 수 있도록 허가합니다.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">플러그인이 웹 사이트 또는 앱의 인증을 위해 신용 정보를 요청할 수 있도록 허용합니다.</string>
   <string name="get_regular_version">더 많은 저장소 유형 가져오기</string>
   <string name="CertificateWarning">경고: 서버 인증서 유효성 검사에 실패했습니다: %1$s. 기기에 적절한 루트 인증서를 설치하거나 설정을 확인하십시오!</string>
   <string name="CertificateFailure">오류: 서버 인증서 유효성 검사에 실패했습니다. 기기에 적절한 루트 인증서를 설치하거나 설정을 확인하십시오!</string>
@@ -636,6 +636,28 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="EntryChannel_name">항목 알림</string>
   <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
   <string name="CloseDbAfterFailedAttempts">생체 인식 잠금해제를 세 번 실패하면 데이터 베이스를 잠급니다</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>키 유도 함수 용으로 Argon2id 지원 추가</item>
+    <item>Jsch 버전을 0.1.55로 업데이트</item>
+    <item>데이터 베이스 선택 화면에 메뉴 추가</item>
+    <item>불러온 키 파일을 내보낼 수 있도록 허용</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>URL 필드에 안드로이드 앱의 패키지 이름을 저장하지 않도록 수정</item>
+    <item>잠금 방식 향상 - 더 이상 잠금해제 직후 생체 인증을 표시하지 않음</item>
+    <item>HTTP/2 지원을 위해 OkHttp 업데이트</item>
+    <item>누럭된 번역 수정</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>OkHtto의 HTTP/2 구현 문제로 인해 HTTP/1.1을 강제</item>
+    <item>Android 9 이상에서 키보드 다이얼로그 향상</item>
+    <item>몇몇 불필요한 연결을 피하기 위해 앱의 파일 연결 방식 변경</item>
+    <item>눈 아이콘이 패스워드 텍스트를 가리지 않도록 확실시 함</item>
+    <item>알 수 없는 앱을 통해서 도메인에 신용 정보를 자동 입력 할때 나오는 경고의 방식을 변경</item>
+    <item>FTP 라이브러리로 업데이트</item>
+    <item>앱의 잠재적 충돌 수정</item>
+    <item>그 외 마이너 픽스들</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>TLS 1.2 지원을 위해 FluentFTP로 변경</item>
     <item>사용자 경험과 지문 인식 잠금 해제 향상 및 안면 인식 잠금 해제 지원을 위해 BiometricPrompt API로 전환, 예시: Pixel 4 기기 등.</item>
@@ -987,4 +1009,10 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="emergency_infotext_head">긴급 상황에 대비하고 있습니까?</string>
   <string name="emergency_infotext_main">더 이상 암호 데이터베이스에 접근 할 수 없다면 어떻게 될지 생각해 보셨습니까? 만약 사고가 났다면? 비상 사태의 경우 신뢰할 수 있는 사람에게 마스터 키를 전달하는 것이 좋습니다. 그렇지 않으면 누구도 귀하의 비밀번호에 액세스 할 수 없습니다.</string>
   <string name="no_secure_display">현재 유효한 화면이 안전하다고 판단되지 않습니다.이는 다른 앱이 스크린샷을 찍을 수 있다는 것을 의미합니다. Keepass2Android는 민감한 정보를 안전한 화면에서만 표시하도록 설정되어 있습니다. 안전한 화면으로 전환(예시: HDMI 모니터 제거)하거나 앱의 설정을 변경해 주십시오.</string>
+  <string name="switch_ime_text">Keepass2Android 키보드를 활성화 해주십시오.</string>
+  <string name="switch_ime_reopen">재시도</string>
+  <string name="AutofillWarning_title">보안 알림: 알 수 없는 도메인/앱 링크 입니다</string>
+  <string name="AutofillWarning_Intro">\"%2$s\" 앱을 통해 \"%1$s\" 도메인에 신용 정보를 입력하려고 합니다</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">\"%1$s\"를 통해서 \"%2$s\"를 사용 하는 것에 대해 신뢰하시거나 \"%2$s\" 앱이 신용 정보를 남용하지 않을 것이라고 신뢰하신다면 (예: 검증된 브라우저 앱의 경우), 계속 하셔도 괜찮습니다. 그렇지 않다면 취소해 주십시오.</string>
+  <string name="AutofillWarning_trustAsBrowser">항상 \"%1$s\" 앱을 쓰는 경우를 제외함</string>
 </resources>
