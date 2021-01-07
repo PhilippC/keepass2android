@@ -49,6 +49,7 @@
   <string name="fingerprint_prefs">생체 인식 잠금 해제</string>
   <string name="import_db_prefs">내부 폴더에서 데이터베이스 불러오기</string>
   <string name="import_keyfile_prefs">내부 폴더에서 키 파일 불러오기</string>
+  <string name="export_keyfile_prefs">내부 폴더로 키 파일 내보내기</string>
   <string name="keyboardswitch_prefs">키보드 전환</string>
   <string name="OnlyAvailableForLocalFiles">로컬 파일에서만 사용 가능 합니다.</string>
   <string name="FileIsInInternalDirectory">파일은 내부 디렉토리 안에 저장됩니다.</string>
@@ -226,6 +227,7 @@
   <string name="saving_database">데이터베이스 저장 중...</string>
   <string name="exporting_database">데이터베이스 내보내는 중…</string>
   <string name="export_database_successful">데이터베이스를 성공적으로 내보냈습니다!</string>
+  <string name="export_keyfile_successful">키 파일을 성공적으로 내보냈습니다!</string>
   <string name="space">스페이스</string>
   <string name="search_label">검색</string>
   <string name="show_password">비밀번호 표시</string>
@@ -252,6 +254,7 @@
   <string name="author">Keepass2Android는 Philipp Crocoll에 의해 개발되었습니다.</string>
   <string name="further_authors">%1$s 코드 제공에 감사합니다.</string>
   <string name="designers">아이콘과 레이아웃 디자인을 기여해주신 %1$s 님께 감사를 표합니다.</string>
+  <string name="supporters">%1$s 님의 재정 지원에 감사드립니다.</string>
   <string name="credit_plugin1">Keepass에 쓰이는 Twofish 암호화 플러그인은 Scott Greenberg에 의해 개발 되었으며 KP2A에 포함됩니다.</string>
   <string name="credit_android_filechooser">Android 파일 선택기는 Hai Baison에 의해 개발되었습니다</string>
   <string name="credit_keyboard">KP2A 키보드는 Android 오픈소스 프로젝트에 따른 Gingerbread 키보드를 기반으로 하고 Klaus Weidner에 의한 Hacker\'s Keyboard의 플러그인 매니저 코드를 사용합니다.</string>
@@ -632,6 +635,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="DbQuicklockedChannel_desc">QuickUnlock으로 잠긴 데이터베이스에 대한 알림</string>
   <string name="EntryChannel_name">항목 알림</string>
   <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
+  <string name="CloseDbAfterFailedAttempts">생체 인식 잠금해제를 세 번 실패하면 데이터 베이스를 잠급니다</string>
   <string-array name="ChangeLog_1_08">
     <item>TLS 1.2 지원을 위해 FluentFTP로 변경</item>
     <item>사용자 경험과 지문 인식 잠금 해제 향상 및 안면 인식 잠금 해제 지원을 위해 BiometricPrompt API로 전환, 예시: Pixel 4 기기 등.</item>
