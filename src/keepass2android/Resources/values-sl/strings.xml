@@ -474,7 +474,6 @@
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v tej mapi.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Moje datoteke in deljene datoteke</string>
@@ -637,9 +636,11 @@
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string-array name="ChangeLog_1_08d">
     <item>Dodajte podporo za Argon2id kot funkcijo izpeljave ključa</item>
-    <item>Posodobite Jsch na različico 0.1.55</item>
-    <item>Dodaj meni na zaslon za izbiro baze podatkov</item>
-    <item>Dovoli izvoz datotek uvoženih ključev</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>V polje URL ne shranjuje več imen paketov aplikacij za Android</item>
