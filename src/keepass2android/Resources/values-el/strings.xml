@@ -471,7 +471,6 @@
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση στο φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από το λογαριασμό PCloud, βεβαιωθείτε ότι το αρχείο είναι τοποθετημένο σε αυτό τον φάκελο.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Όλα τα αρχεία και τα κοινά αρχεία</string>
