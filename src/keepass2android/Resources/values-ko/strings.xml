@@ -474,7 +474,6 @@
 그 다음 이 옵션을 다시 선택하여 데이터베이스 파일을 여십시오.</string>
   <string name="filestoragename_gdrive">Google 드라이브</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주십시오.</string>
   <string name="filestoragename_onedrive">원드라이브</string>
   <string name="filestoragename_onedrive2">원드라이브</string>
   <string name="filestoragename_onedrive2_full">모든 파일 및 공유한 파일</string>
@@ -638,9 +637,11 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="CloseDbAfterFailedAttempts">생체 인식 잠금해제를 세 번 실패하면 데이터 베이스를 잠급니다</string>
   <string-array name="ChangeLog_1_08d">
     <item>키 유도 함수 용으로 Argon2id 지원 추가</item>
-    <item>Jsch 버전을 0.1.55로 업데이트</item>
-    <item>데이터 베이스 선택 화면에 메뉴 추가</item>
-    <item>불러온 키 파일을 내보낼 수 있도록 허용</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>URL 필드에 안드로이드 앱의 패키지 이름을 저장하지 않도록 수정</item>
