@@ -474,7 +474,6 @@
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Цей тип зберігання вимагатиме доступу лише до теки \"Applications/Keepass2Android\". Якщо ви хочете використовувати наявну базу даних з вашого облікового запису PCloud, переконайтеся, що файл розміщений у цій теці.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Усі файли та спільні файли</string>
@@ -637,9 +636,11 @@
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
   <string-array name="ChangeLog_1_08d">
     <item>Додати підтримку Argon2id як функцію формування ключа</item>
-    <item>Оновіть Jsch до версії 0.1.55</item>
-    <item>Додати меню на екран вибору бази даних</item>
-    <item>Дозволити експортування імпортованих файлів ключів</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Не зберігати назви пакунків у полі URL-адрес для застосунків Android</item>
