@@ -254,6 +254,7 @@
   <string name="author">Το Keepass2Android έχει αναπτυχθεί από τον Philipp Crocoll.</string>
   <string name="further_authors">Ευχαριστίες για συνεισφορά κώδικα από %1$s.</string>
   <string name="designers">Ευχαριστίες για συνεισφορά εικονιδίων και σχεδίασης από %1$s.</string>
+  <string name="supporters">Χάρη στην οικονομική υποστήριξη από τον/την %1$s.</string>
   <string name="credit_plugin1">Το πρόσθετο Twofish Cipher για το Keepass αναπτύχθηκε από τον Scott Greenberg και περιλαμβάνεται στο KP2A.</string>
   <string name="credit_android_filechooser">Το android-filechooser αναπτύχθηκε από τον by Hai Bison</string>
   <string name="credit_keyboard">Το πληκτρολόγιο KP2A βασίζεται στο πληκτρολόγιο Gingerbread του Android Open Source Project και χρησιμοποιεί κώδικα του Plugin Manager από το Hacker\'s Keyboard του Klaus Weidner.</string>
@@ -627,6 +628,30 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Ενημερώστε το Jsch στην έκδοση 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Επιτρέπει την εξαγωγή εισηγμένων αρχείων-κλειδιών</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Δεν αποθηκεύει πλέον ονόματα πακέτων εφαρμογών Android στο πεδίο URL</item>
+    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
+    <item>Update OkHttp to support HTTP/2</item>
+    <item>Fix missing translations</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Βελτίωση του διαλόγου πληκτρολογίου στο Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Βεβαιωθείτε ότι το κείμενο του κωδικού πρόσβασης δεν είναι κρυμμένο πίσω από το εικονίδιο με τα μάτια</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Update to FTP library</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Further minor fixes</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Αλλαγή προς FluentFTP για παροχή υποστήριξης TLS 1.2</item>
     <item>Αλλαγή στo BiometricPrompt API για βελτίωση της εμπειρίας χρήστη με ξεκλείδωμα δακτυλικού αποτυπώματος και χρήση αναγνώρισης προσώπου, πχ στο Pixel 4.</item>
@@ -962,4 +987,7 @@ Initial public release
   <string name="emergency_infotext_head">Είστε προετοιμασμένοι για έκτακτα περιστατικά;</string>
   <string name="emergency_infotext_main">Αναρωτηθήκατε τι συμβαίνει αν δεν είνα δυνατόν να προσπελάσετε τη βάση δεδομένων με τα συνθηματικά σας; Ή στην περίπτωση που έχετε ένα ατύχημα; Συνιστάται να μοιράζεστε το κύριο συνθηματικό σας με κάποιο έμπιστο άτομο. Διαφορετικά, κανένας δεν θα προσπελάσει στα συνθηματικά σας.</string>
   <string name="no_secure_display">Η τρέχουσα επιλεγμένη οθόνη δεν αναγνωρίζεται ως ασφαλής. Αυτό σημαίνει ότι άλλες εφαρμογές μπορούν να πάρουν screenshots. Το Keepass2Android είναι ρυθμισμένο να προβάλει ευαίσθητη πληροφορία μόνον σε ασφαλείς οθόνες. Αλλάξτε σε ασφαλή οθόνη (πχ αποσυνδέοντας μια οθόνη HDMI) ή αλλάξτε τις ρυθμίσεις της εφαρμογής.</string>
+  <string name="switch_ime_text">Ενεργοποιήστε το πληκτρολόγιο Keepass2Android.</string>
+  <string name="switch_ime_reopen">Δοκιμάστε ξανά</string>
+  <string name="AutofillWarning_trustAsBrowser">Αποδοχή πάντα στο \"%1$s\"</string>
 </resources>
