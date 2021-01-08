@@ -474,7 +474,6 @@
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">此存储类型仅请求访问“Applications / Keepass2Android”文件夹。 如果要使用PCloud帐户中的现有数据库，请确保将文件放在此文件夹中。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">所有文件和共享文件</string>
@@ -636,9 +635,11 @@
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string-array name="ChangeLog_1_08d">
     <item>添加了对 Argon2id 作为密钥衍生函数的支持</item>
-    <item>更新 Jsch 到 0.1.55 版本</item>
-    <item>添加菜单到数据库选择屏幕</item>
-    <item>允许导出导入的密钥文件</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>在 URL字段中不再存储安卓应用程序的软件包名称</item>
