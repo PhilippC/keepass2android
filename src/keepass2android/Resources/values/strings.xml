@@ -558,7 +558,7 @@
 	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, select this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-	<string name="filestoragehelp_pcloud">This storage type will only request access to the "Applications/Keepass2Android" folder. If you want to use an existing database from your PCloud account, please make sure the file is placed in this folder.</string>
+	<string name="filestoragehelp_pcloud">This storage type will only request access to the "Applications/Keepass2Android" folder. If you want to use an existing database from your PCloud account, please make sure the file is placed in this folder. Note: PCloud does not provide a working SDK if you have your data stored in the European Union. You might try with WebDAV through https://ewebdav.pcloud.com/, but note that this does not support 2FA. Visit https://github.com/pCloud/pcloud-sdk-java/issues/8 for updates.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">All files and shared files</string>
@@ -788,6 +788,8 @@
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
 
   <string-array name="ChangeLog_1_08d">
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
     <item>Update Jsch to version 0.1.55</item>
     <item>Add menu to database selection screen</item>
     <item>Allow to export imported keyfiles</item>
