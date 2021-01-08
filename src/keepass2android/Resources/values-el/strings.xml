@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Βιομετρικό ξεκλείδωμα</string>
   <string name="import_db_prefs">Εισαγωγή βάσης δεδομένων σε εσωτερικό φάκελο</string>
   <string name="import_keyfile_prefs">Εισαγωγή αρχείου κλειδιού σε εσωτερικό φάκελο</string>
+  <string name="export_keyfile_prefs">Εξαγωγή αρχείου κλειδιού από εσωτερικό φάκελο</string>
   <string name="keyboardswitch_prefs">Εναλλαγή πληκτρολογίου</string>
   <string name="OnlyAvailableForLocalFiles">Διατίθεται μόνο για τοπικά αρχεία.</string>
   <string name="FileIsInInternalDirectory">Το αρχείο αποθηκεύεται σε εσωτερικό φάκελο.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Αποθήκευση βάσης δεδομένων…</string>
   <string name="exporting_database">Εξαγωγή βάσης δεδομένων…</string>
   <string name="export_database_successful">Η βάση δεδομένων εξήχθηκε με επιτυχία!</string>
+  <string name="export_keyfile_successful">Το αρχείο κλειδί εξήχθη επιτυχώς!</string>
   <string name="space">Διάστημα</string>
   <string name="search_label">Αναζήτηση</string>
   <string name="show_password">Εμφάνιση συνθηματικού</string>
@@ -267,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Προβολή ονομάτων χρήστη κάτω από τους τίτλους καταχωρίσεων. Χρήσιμο για πολλαπλούς λογαριασμούς ή TAN.</string>
   <string name="RememberRecentFiles_title">Απομνημόνευση βάσεων δεδομένων</string>
   <string name="RememberRecentFiles_summary">Απομνημονεύει τις πρόσφατα ανοιγμένες βάσεις δεδομένων και τις προβάλει στην οθόνη Άνοιγμα βάσης δεδομένων.</string>
+  <string name="NoDalVerification_title">Καμία επαλήθευση DAL</string>
+  <string name="NoDalVerification_summary">Απενεργοποιεί τον έλεγχο αν ταιριάζει ο τομέας και το πακέτο εφαρμογής</string>
   <string name="kp2a_findUrl">Εύρεση συνθηματικού</string>
   <string name="excludeExpiredEntries">Εξαίρεση ληγμένων εγγραφών</string>
   <string name="search_options">Επιλογές</string>
@@ -472,6 +476,7 @@
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση μόνο στον φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από το λογαριασμό PCloud, βεβαιωθείτε ότι το αρχείο έχει τοποθετηθεί σε αυτόν το φάκελο. Σημείωση: Το PCloud δεν παρέχει λειτουργικό SDK αν έχετε τα δεδομένα σας αποθηκευμένα στην Ευρωπαϊκή Ένωση. Μπορείτε να προσπαθήσετε με το WebDAV μέσω https://ewebdav. cloud.com/, αλλά σημειώστε ότι αυτό δεν υποστηρίζει 2FA. Επισκεφθείτε το https://github.com/pCloud/pcloud-sdk-java/issues/8 για ενημερώσεις.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Όλα τα αρχεία και τα κοινά αρχεία</string>
@@ -629,28 +634,28 @@
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string-array name="ChangeLog_1_08d">
-    <item>Add support for Argon2id as key derivation function</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Προσθήκη υποστήριξης για το Argon2id ως key derivation function</item>
+    <item>Βελτιωμένη συμβατότητα αυτόματης συμπλήρωσης με Firefox και Chrome</item>
+    <item>Ενημέρωση pCloud SDK προς για να διορθώσετε το πρόβλημα ελέγχου ταυτότητας</item>
     <item>Ενημερώστε το Jsch στην έκδοση 0.1.55</item>
-    <item>Add menu to database selection screen</item>
+    <item>Προσθήκη μενού στην οθόνη επιλογής βάσης δεδομένων</item>
     <item>Επιτρέπει την εξαγωγή εισηγμένων αρχείων-κλειδιών</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Δεν αποθηκεύει πλέον ονόματα πακέτων εφαρμογών Android στο πεδίο URL</item>
-    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
-    <item>Update OkHttp to support HTTP/2</item>
-    <item>Fix missing translations</item>
+    <item>Βελτίωση της συμπεριφοράς κλειδώματος - δεν εμφανίζει πλέον βιομετρική προτροπή αμέσως μετά το ξεκλείδωμα</item>
+    <item>Ενημέρωση OkHttp για υποστήριξη HTTP/2</item>
+    <item>Εμφάνιση μεταφράσεων που λείπουν</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Εξαναγκασμός HTTP/1.1 λόγω προβλήματος με την εφαρμογή HTTP/2 του OkHttp</item>
     <item>Βελτίωση του διαλόγου πληκτρολογίου στο Android 9+</item>
-    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Αλλάζει τις συσχετίσεις αρχείων της εφαρμογής για να αποφύγετε κάποιες περιττές συσχετίσεις</item>
     <item>Βεβαιωθείτε ότι το κείμενο του κωδικού πρόσβασης δεν είναι κρυμμένο πίσω από το εικονίδιο με τα μάτια</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
-    <item>Update to FTP library</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>Αλλάζει τη συμπεριφορά αυτόματης συμπλήρωσης ειδοποιώντας κατά τη συμπλήρωση διαπιστευτηρίων για έναν τομέα σε μια άγνωστη εφαρμογή</item>
+    <item>Ενημέρωση στη βιβλιοθήκη FTP</item>
+    <item>Διορθώνει ενδεχόμενα κρασαρίσματα της εφαρμογής</item>
+    <item>Ελάσσονες διορθώσεις</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Αλλαγή προς FluentFTP για παροχή υποστήριξης TLS 1.2</item>
@@ -987,7 +992,11 @@ Initial public release
   <string name="emergency_infotext_head">Είστε προετοιμασμένοι για έκτακτα περιστατικά;</string>
   <string name="emergency_infotext_main">Αναρωτηθήκατε τι συμβαίνει αν δεν είνα δυνατόν να προσπελάσετε τη βάση δεδομένων με τα συνθηματικά σας; Ή στην περίπτωση που έχετε ένα ατύχημα; Συνιστάται να μοιράζεστε το κύριο συνθηματικό σας με κάποιο έμπιστο άτομο. Διαφορετικά, κανένας δεν θα προσπελάσει στα συνθηματικά σας.</string>
   <string name="no_secure_display">Η τρέχουσα επιλεγμένη οθόνη δεν αναγνωρίζεται ως ασφαλής. Αυτό σημαίνει ότι άλλες εφαρμογές μπορούν να πάρουν screenshots. Το Keepass2Android είναι ρυθμισμένο να προβάλει ευαίσθητη πληροφορία μόνον σε ασφαλείς οθόνες. Αλλάξτε σε ασφαλή οθόνη (πχ αποσυνδέοντας μια οθόνη HDMI) ή αλλάξτε τις ρυθμίσεις της εφαρμογής.</string>
+  <string name="disable_secure_screen_check">Απενεργοποιήστε αυτό το μήνυμα</string>
   <string name="switch_ime_text">Ενεργοποιήστε το πληκτρολόγιο Keepass2Android.</string>
   <string name="switch_ime_reopen">Δοκιμάστε ξανά</string>
+  <string name="AutofillWarning_title">Ειδοποίηση ασφαλείας: Μη αναγνωρίσιμο domain ή σύνδεσμος εφαρμογής</string>
+  <string name="AutofillWarning_Intro">Πρόκειται να εισάγετε διαπιστευτήρια για τον τομέα \"%1$s\" στην εφαρμογή \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Εάν εμπιστεύεστε ότι το \"%2$s\" ανήκει στο \"%1$s\" ή εμπιστεύεστε ότι η εφαρμογή \"%2$s\" δεν καταχράται τα διαπιστευτήρια (πχ. επειδή είναι μια αξιόπιστη εφαρμογή περιήγησης), είναι εντάξει να συνεχίσετε. Αν όχι, ακυρώστε.</string>
   <string name="AutofillWarning_trustAsBrowser">Αποδοχή πάντα στο \"%1$s\"</string>
 </resources>
