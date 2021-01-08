@@ -55,7 +55,7 @@
   <ItemGroup>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <LibraryProjectZip Include="Jars\pcloud-sdk-android-1.1.0.aar" />
+    <LibraryProjectZip Include="Jars\pcloud-sdk-android-1.2.0.aar" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
@@ -71,6 +71,6 @@
   </Target>
   -->
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\pcloud-sdk-java-core-1.1.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\pcloud-sdk-java-core-1.2.0.jar" />
   </ItemGroup>
 </Project>

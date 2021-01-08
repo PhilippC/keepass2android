@@ -21,6 +21,7 @@ import com.pcloud.sdk.ApiClient;
 import com.pcloud.sdk.ApiError;
 import com.pcloud.sdk.Authenticators;
 import com.pcloud.sdk.AuthorizationActivity;
+import com.pcloud.sdk.AuthorizationData;
 import com.pcloud.sdk.AuthorizationResult;
 import com.pcloud.sdk.Call;
 import com.pcloud.sdk.DataSource;
@@ -40,6 +41,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     final static private String SHARED_PREF_NAME = "PCLOUD";
     final static private String SHARED_PREF_AUTH_TOKEN = "AUTH_TOKEN";
+    final static private String SHARED_PREF_API_HOST = "API_HOST";
 
     private final Context ctx;
 
@@ -237,18 +239,18 @@ public class PCloudFileStorage extends JavaFileStorageBase
     public void onActivityResult(FileStorageSetupActivity activity, int requestCode, int resultCode, Intent data) {
         if (requestCode == PCLOUD_AUTHORIZATION_REQUEST_CODE && data != null) {
             activity.getState().putBoolean("hasStartedAuth", false);
-            AuthorizationResult result = (AuthorizationResult)(
-                data.getSerializableExtra(AuthorizationActivity.KEY_AUTHORIZATION_RESULT)
-            );
-            this.handleAuthResult(activity, result, data);
+            AuthorizationData authData = AuthorizationActivity.getResult(data);
+
+
+            this.handleAuthResult(activity, authData);
         }
     }
 
-    private void handleAuthResult(FileStorageSetupActivity activity, AuthorizationResult authorizationResult,
-                                  Intent data) {
-        if (authorizationResult == AuthorizationResult.ACCESS_GRANTED) {
-            String authToken = data.getStringExtra(AuthorizationActivity.KEY_ACCESS_TOKEN);
-            setAuthToken(authToken);
+    private void handleAuthResult(FileStorageSetupActivity activity, AuthorizationData authorizationData) {
+        if (authorizationData.result == AuthorizationResult.ACCESS_GRANTED) {
+            String authToken = authorizationData.token;
+            String apiHost = authorizationData.apiHost;
+            setAuthToken(authToken, apiHost);
             finishActivityWithSuccess(activity);
         } else {
             Activity castedActivity = (Activity)activity;
@@ -267,19 +269,20 @@ public class PCloudFileStorage extends JavaFileStorageBase
     private ApiClient createApiClientFromSharedPrefs() {
         SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String authToken = prefs.getString(SHARED_PREF_AUTH_TOKEN, null);
-        return this.createApiClient(authToken);
+        String apiHost = prefs.getString(SHARED_PREF_API_HOST, null);
+        return this.createApiClient(authToken, apiHost);
     }
 
-    private ApiClient createApiClient(String authToken) {
-        if (authToken == null) {
+    private ApiClient createApiClient(String authToken, String apiHost) {
+        if (authToken == null || apiHost == null) {
             return null;
         }
+        ApiClient.Builder builder = PCloudSdk.newClientBuilder();
+        builder = builder.apiHost(apiHost);
 
-        return (
-            PCloudSdk.newClientBuilder()
-            .authenticator(Authenticators.newOAuthAuthenticator(authToken))
-            .create()
-        );
+        return builder
+                .authenticator(Authenticators.newOAuthAuthenticator(authToken))
+            .create();
     }
 
     private boolean isConnected() {
@@ -294,11 +297,12 @@ public class PCloudFileStorage extends JavaFileStorageBase
         edit.apply();
     }
 
-    private void setAuthToken(String authToken) {
-        this.apiClient = this.createApiClient(authToken);
+    private void setAuthToken(String authToken, String apiHost) {
+        this.apiClient = this.createApiClient(authToken, apiHost);
         SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();
         edit.putString(SHARED_PREF_AUTH_TOKEN, authToken);
+        edit.putString(SHARED_PREF_API_HOST, apiHost);
         edit.apply();
     }
 

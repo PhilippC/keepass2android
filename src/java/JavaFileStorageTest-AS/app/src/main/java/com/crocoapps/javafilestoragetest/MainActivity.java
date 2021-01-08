@@ -147,12 +147,14 @@ import java.util.List;
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
+import keepass2android.javafilestorage.PCloudFileStorage;
 import keepass2android.javafilestorage.SftpStorage;
 import keepass2android.javafilestorage.UserInteractionRequiredException;
 import keepass2android.javafilestorage.WebDavStorage;
 import keepass2android.kp2afilechooser.StorageFileProvider;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
@@ -160,6 +162,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -471,7 +474,8 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		
 		
 		findViewById(R.id.button_test_preparefileusage).setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
+            @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
+			public void onClick(View v) {
             	
             	final String path = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getString("selectedPath", "");
             	if (path.equals(""))
@@ -534,7 +538,8 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		storageToTest = new SftpStorage(ctx.getApplicationContext());
+		//storageToTest = new SftpStorage(ctx.getApplicationContext());
+		storageToTest = new PCloudFileStorage(ctx, "yCeH59Ffgtm");
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
