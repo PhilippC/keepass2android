@@ -471,7 +471,6 @@
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de map \"Applicaties/Keepass2Android\". Als je een bestaande database wil gebruiken uit een PCloud account, zorg er dan voor dat het bestand in die map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle bestanden en gedeelde bestanden</string>
