@@ -471,7 +471,6 @@
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, heu de seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció de nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Aquest tipus d’emmagatzematge només sol·licitarà accés a la carpeta \"Applications/Keepass2Android\". Si voleu utilitzar una base de dades existent del vostre compte de PCloud, assegureu-vos que el fitxer es col·loca en aquesta carpeta.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tots els fitxers i fitxers compartits</string>
