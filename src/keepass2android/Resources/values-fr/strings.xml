@@ -474,7 +474,6 @@
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Ce type de stockage ne demandera l\'accès qu\'au dossier \"Applications/Keepass2Android\". Si vous souhaitez utiliser une base de données existante à partir de votre compte PCloud, assurez-vous que le fichier soit placé dans ce dossier.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tous les fichiers et fichiers partagés</string>
@@ -634,9 +633,11 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string-array name="ChangeLog_1_08d">
     <item>Ajouter le support d\'Argon2id en tant que fonction de dérivation de clé</item>
-    <item>Mettre à jour Jsch vers la version 0.1.55</item>
-    <item>Ajouter un menu à l\'écran de sélection de la base de données</item>
-    <item>Permettre d\'exporter les fichiers clés importés</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Arrêt du stockage des noms de paquets des applications Android dans le champ URL</item>
