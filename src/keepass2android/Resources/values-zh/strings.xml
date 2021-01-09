@@ -269,6 +269,8 @@
   <string name="ShowUsernameInList_summary">在条目标题下方显示用户名，对多账户或 TANs 很有用。</string>
   <string name="RememberRecentFiles_title">记忆数据库</string>
   <string name="RememberRecentFiles_summary">记忆最近打开过的数据库并在开启数据库屏显示。</string>
+  <string name="NoDalVerification_title">无 DAL 验证</string>
+  <string name="NoDalVerification_summary">不检查域名和应用程序包是否匹配</string>
   <string name="kp2a_findUrl">找回密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
   <string name="search_options">选项</string>
