@@ -442,7 +442,7 @@
   <string name="ErrorOcurred">Een fout is opgetreden:</string>
   <string name="DuplicateUuidsError">Database is corrupt: dubbele IDs gevonden. (Heb je het opgeslagen met Minikeepass?) Importeer alstublieft opnieuw in een nieuwe database met Keepass 2 voor PC en selecteer \'Nieuwe id\'s maken\'.</string>
   <string name="DuplicateUuidsErrorAdditional">Je kunt deze foutmelding uitschakelen in Instellingen/Applicatie-instellingen/Bestandsafhandeling/Controle op dubbele UUID\'s. Houd er rekening mee dat onverwacht gedrag kan optreden. Het wordt aanbevolen om de database te herstellen.</string>
-  <string name="synchronize_database_menu">Database synchroniseren…</string>
+  <string name="synchronize_database_menu">Synchroniseer Database…</string>
   <string name="CannotMoveGroupHere">Kan de groep niet naar deze groep verplaatsen.</string>
   <string name="donate_question">Vandaag is het Oktoberfeest! Als je Keepass2Android leuk vind: zou het niet de uitgelezen dag zijn om mij te trakteren op een biertje?</string>
   <string name="donate_bday_question">10 mei? Het is mijn verjaardag! Als je deze app waardeert, stuur me eens een verjaardagskaartje met een leuk cadeautje! Dit zou ik heel erg waarderen! :-)</string>
@@ -635,6 +635,20 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Voeg ondersteuning voor Argon2id toe als sleutel afleidingsfunctie</item>
+    <item>Verbeterde compatibiliteit voor Autofill met Firefox en Chrome</item>
+    <item>pCloud SDK verbeterd om authenticatieprobleem op te lossen</item>
+    <item>Jsch bijwerken naar versie 0.1.55</item>
+    <item>Voeg menu toe aan database selectiescherm</item>
+    <item>Sta exporteren van geïmporteerde sleutelbestanden toe</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Pakketnamen van Android-apps worden niet meer opgeslagen in het URL-veld</item>
+    <item>Vergrendelgedrag verbeterd - biometrische prompt wordt niet langer weergeven direct na ontgrendelen</item>
+    <item>OkHttp bijgewerkt om HTTP/2 te ondersteunen</item>
+    <item>Ontbrekende vertaling(en) verbeterd</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Forceer HTTP / 1.1 vanwege een probleem met de HTTP / 2-implementatie van OkHttp</item>
     <item>Verbeter het toetsenborddialoog op Android 9+</item>
@@ -991,6 +1005,7 @@ Eerste publieke publicatie
   <string name="emergency_infotext_head">Ben je voorbereid op nood situaties?</string>
   <string name="emergency_infotext_main">Heb je ooit nagedacht over wat er gebeurd als je niet meer in staat bent om je wachtwoorden database te gebruiken? Wat als je een ongeluk krijgt? Veel mensen geven voor noodgevallen hun hoofdwachtwoord aan een persoon die ze vertrouwen. Anders heeft niemand meer toegang tot jouw wachtwoorden.</string>
   <string name="no_secure_display">Het huidige scherm is niet als veilig gemarkeerd. Dit betekent dat een schermafbeelding kan worden genomen door andere apps. Keepass2Android is ingesteld om gevoelige informatie alleen op beveiligde displays te tonen. Verander naar een beveiligde weergave (bijvoorbeeld door een HDMI monitor te koppelen) of verander de app instellingen.</string>
+  <string name="disable_secure_screen_check">Schakel dit bericht uit</string>
   <string name="switch_ime_text">activeer de Keepass2 Android toetsenbord aub.</string>
   <string name="switch_ime_reopen">Probeer opnieuw.</string>
   <string name="AutofillWarning_title">Beveiligingswaarschuwing: niet-herkende domein / app-link</string>
