@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Ontgrendelen met biometrie</string>
   <string name="import_db_prefs">Database importeren naar interne map</string>
   <string name="import_keyfile_prefs">Sleutelbestand importeren</string>
+  <string name="export_keyfile_prefs">Exporteer sleutelbestand vanuit interne map</string>
   <string name="keyboardswitch_prefs">Toetsenbord wisselen</string>
   <string name="OnlyAvailableForLocalFiles">Alleen beschikbaar voor lokale bestanden.</string>
   <string name="FileIsInInternalDirectory">Bestand is opgeslagen in interne map.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Database wordt opgeslagen…</string>
   <string name="exporting_database">Database exporteren…</string>
   <string name="export_database_successful">Database succesvol geëxporteerd!</string>
+  <string name="export_keyfile_successful">Sleutelbestand succesvol geëxporteerd!</string>
   <string name="space">Spatie</string>
   <string name="search_label">Zoeken</string>
   <string name="show_password">Toon wachtwoord</string>
@@ -254,6 +256,7 @@
   <string name="author">Keepass2Android is ontwikkeld door Philipp Crocoll.</string>
   <string name="further_authors">Dankzij de bijdragen van de code door %1$s.</string>
   <string name="designers">Dank aan %1$s voor het ontwerp van het pictogram en de layout.</string>
+  <string name="supporters">Dankzij de financiële steun van %1$s.</string>
   <string name="credit_plugin1">De Twofish Cipher Plugin voor Keepass werd ontwikkeld door Scott Greenberg en is opgenomen in KP2A.</string>
   <string name="credit_android_filechooser">Android-bestandskiezer is ontwikkeld door Hai Bison</string>
   <string name="credit_keyboard">Het KP2A toetsenbord is gebaseerd op het Gingerbread toetsenbord van het Android Open Source Project en gebruikt de Plugin Manager code van Hacker\'s Keybord van Klaus Weidner.</string>
@@ -266,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Gebruikersnamen onder item titels weergeven. Handig voor meerdere accounts of TANs.</string>
   <string name="RememberRecentFiles_title">Onthoud databases</string>
   <string name="RememberRecentFiles_summary">Onthoud onlangs geopende databases en deze in het geopende databasescherm weergeven.</string>
+  <string name="NoDalVerification_title">Geen DAL verificatie</string>
+  <string name="NoDalVerification_summary">Schakelt controle of domein en app pakket overeenkomen uit </string>
   <string name="kp2a_findUrl">Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
   <string name="search_options">Opties</string>
@@ -471,6 +476,7 @@
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Dit opslagtype vraagt alleen toegang tot de map \"Applicaties/Keepass2Android\". Als je een bestaande database uit je PCloud account wilt gebruiken, zorg er dan voor dat het bestand in deze map is geplaatst. Opmerking: PCloud biedt geen werkende SDK als je je gegevens hebt opgeslagen in de Europese Unie. Je kunt het proberen met WebDAV via https://ewebdav. cloud.com/, maar let op dat dit geen 2FA ondersteunt. Ga naar https://github.com/pCloud/pcloud-sdk-java/issues/8 voor updates.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle bestanden en gedeelde bestanden</string>
