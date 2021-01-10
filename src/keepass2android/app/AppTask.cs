@@ -371,7 +371,7 @@ namespace keepass2android
         }
     }
 
-	/// <summary>
+    /// <summary>
 	/// Implementation of AppTask for "no task currently active" (Null pattern)
 	/// </summary>
 	public class NullTask: AppTask

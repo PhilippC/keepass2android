@@ -94,8 +94,17 @@ namespace keepass2android
 
 		bool _closeForReload;
 
-		AppTask _appTask;
-		
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -108,7 +117,7 @@ namespace keepass2android
 				return;
 			}
 
-			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			SetContentView(Resource.Layout.entry_edit);
 			_closeForReload = false;
@@ -170,7 +179,7 @@ namespace keepass2android
 						CreateNewWithoutTemplate(db);
 					}
 					
-					_appTask.PrepareNewEntry(State.EntryInDatabase);
+					AppTask.PrepareNewEntry(State.EntryInDatabase);
 					State.IsNew = true;
 					State.EntryModified = true;
 					
@@ -512,7 +521,7 @@ namespace keepass2android
 			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
 			{
 				if (success && activity is EntryEditActivity entryEditActivity)
-					_appTask.AfterAddNewEntry(entryEditActivity, newEntry);
+					AppTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
@@ -715,7 +724,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			_appTask.ToBundle(outState);
+			AppTask.ToBundle(outState);
 		}
 
 		public override void OnBackPressed()

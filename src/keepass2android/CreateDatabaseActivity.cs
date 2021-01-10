@@ -21,7 +21,7 @@ namespace keepass2android
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
                Theme = "@style/MyTheme_ActionBar")]
-	public class CreateDatabaseActivity : AndroidX.AppCompat.App.AppCompatActivity
+	public class CreateDatabaseActivity : LifecycleAwareActivity
 	{
 		private IOConnectionInfo _ioc;
 		private string _keyfileFilename;
@@ -29,7 +29,16 @@ namespace keepass2android
 		private bool _showPassword;
 
 		private readonly ActivityDesign _design;
-		private AppTask _appTask;
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
 
 		public CreateDatabaseActivity()
 		{
@@ -63,7 +72,7 @@ namespace keepass2android
             SupportActionBar.SetHomeButtonEnabled(true);
 
 			SetContentView(Resource.Layout.create_database);
-			_appTask = AppTask.GetTaskInOnCreate(bundle, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 
 			SetDefaultIoc();
 

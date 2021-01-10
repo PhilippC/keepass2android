@@ -92,8 +92,18 @@ namespace keepass2android
 		public const string OverrideUrlKey = "@override";
 		public const string ExpDateKey = "@exp_date";
 
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
 
-		AppTask _appTask;
+
 		private ActivityDesign _design;
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -104,13 +114,13 @@ namespace keepass2android
 			//see comment to this in PasswordActivity.
 			//Note that this activity is affected even though it's finished when the app is closed because it
 			//seems that the "app launch intent" is re-delivered, so this might end up here.
-			if ((_appTask == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+			if ((AppTask == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
 			{
-				_appTask = new NullTask();
+				AppTask = new NullTask();
 			}
 			else
 			{
-				_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 			}
 
 
@@ -241,7 +251,7 @@ namespace keepass2android
 		private void LaunchNextActivity() {
 
             Intent intent = new Intent(this, typeof(SelectCurrentDbActivity));
-			_appTask.ToIntent(intent);
+			AppTask.ToIntent(intent);
 			intent.AddFlags(ActivityFlags.ForwardResult);
 			StartActivity(intent);
 			Finish();
