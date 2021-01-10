@@ -289,18 +289,14 @@ namespace keepass2android.services.AutofillBase
 		    if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
 		        isManualRequest)
 		        viewHints[0] = "on";
-            if (viewHints != null && viewHints.Any())
+            /*if (viewHints != null && viewHints.Any())
             {
                 CommonUtil.logd("viewHints=" + viewHints);
                 CommonUtil.logd("class=" + viewNode.ClassName);
                 CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
-            }
+            }*/
 		    
-		    if (viewNode?.HtmlInfo?.Tag == "input")
-		    {
-		        foreach (var p in viewNode.HtmlInfo.Attributes)
-                CommonUtil.logd("attr="+p.First + "/" + p.Second);
-		    }
+		   
             if (viewHints != null && viewHints.Length > 0 && viewHints.First() != "on" /*if hint is "on", treat as if there is no hint*/)
 			{
 				if (forFill)

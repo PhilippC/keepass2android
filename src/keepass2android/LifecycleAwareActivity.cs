@@ -49,6 +49,11 @@ namespace keepass2android
 			}
 		}
 
+        public string MyDebugName
+        {
+            get { return ClassName + " " + ID; }
+        }
+
         private static int staticCount = 0;
 
         private int ID = staticCount++;

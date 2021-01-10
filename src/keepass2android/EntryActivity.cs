@@ -141,9 +141,18 @@ namespace keepass2android
 		internal bool _showPassword;
 		private int _pos;
 
-		AppTask _appTask;
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
 
-	    struct ProtectedTextviewGroup
+		struct ProtectedTextviewGroup
 	    {
 	        public TextView ProtectedField;
 	        public TextView VisibleProtectedField;
@@ -178,7 +187,7 @@ namespace keepass2android
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
 				{
-					EntryEditActivity.Launch(this, Entry, _appTask);
+					EntryEditActivity.Launch(this, Entry, AppTask);
 				};	
 			}
 			else
@@ -410,7 +419,7 @@ namespace keepass2android
 			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(dbAndElementId.ElementIdString));
 			_pos = i.GetIntExtra(KeyRefreshPos, -1);
 
-			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			Entry = db.EntriesById[uuid];
 			
@@ -445,7 +454,7 @@ namespace keepass2android
 			new Thread(NotifyPluginsOnOpen).Start();
 
 			//the rest of the things to do depends on the current app task:
-			_appTask.CompleteOnCreateEntryActivity(this);
+			AppTask.CompleteOnCreateEntryActivity(this);
 		}
 
 		private void NotifyPluginsOnOpen()
@@ -485,7 +494,7 @@ namespace keepass2android
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
 			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
-			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
+			AppTask.PopulatePasswordAccessServiceIntent(showNotIntent);
 			showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
 
 			StartService(showNotIntent);
@@ -970,7 +979,7 @@ namespace keepass2android
 		{
 			Intent ret = new Intent();
 			ret.PutExtra(KeyRefreshPos, _pos);
-			_appTask.ToIntent(ret);
+			AppTask.ToIntent(ret);
 			SetResult(KeePass.ExitRefresh, ret);
 		}
         
@@ -982,12 +991,15 @@ namespace keepass2android
                 return;
             }
 
-            if (AppTask.TryGetFromActivityResult(data, ref _appTask))
-			{
+            AppTask appTask = null;
+            if (AppTask.TryGetFromActivityResult(data, ref appTask))
+            {
+                
 				//make sure app task is passed to calling activity.
 				//the result code might be modified later.
 				Intent retData = new Intent();
-				_appTask.ToIntent(retData);
+                AppTask = appTask;
+				appTask.ToIntent(retData);
 				SetResult(KeePass.ExitNormal, retData);	
 			}
 

@@ -24,18 +24,23 @@ namespace keepass2android.services.AutofillBase
 	    public static Dataset NewDataset(Context context,
 				AutofillFieldMetadataCollection autofillFields, FilledAutofillFieldCollection filledAutofillFieldCollection, IAutofillIntentBuilder intentBuilder) 
 		{
-			var datasetName = filledAutofillFieldCollection.DatasetName;
-			if (datasetName != null)
+			var datasetName = filledAutofillFieldCollection.DatasetName ?? "[noname]";
+			
+			var datasetBuilder = new Dataset.Builder(NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
+            datasetBuilder.SetId(datasetName);
+			
+			var setValueAtLeastOnce = filledAutofillFieldCollection.ApplyToFields(autofillFields, datasetBuilder);
+
+
+			if (setValueAtLeastOnce)
 			{
-			    var datasetBuilder = new Dataset.Builder(NewRemoteViews(context.PackageName, datasetName, intentBuilder.AppIconResource));
-                datasetBuilder.SetId(datasetName);
-				
-				var setValueAtLeastOnce = filledAutofillFieldCollection.ApplyToFields(autofillFields, datasetBuilder);
-				if (setValueAtLeastOnce)
-				{
-					return datasetBuilder.Build();
-				}
+				return datasetBuilder.Build();
 			}
+            else
+            {
+                Kp2aLog.Log("Failed to set at least one value. #fields="+autofillFields.GetAutofillIds().Length + " " + autofillFields.FocusedAutofillCanonicalHints);
+            }
+		
 			return null;
 		}
 

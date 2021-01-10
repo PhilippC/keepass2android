@@ -166,10 +166,12 @@ namespace keepass2android
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            if (AppTask.TryGetFromActivityResult(data, ref AppTask))
+            AppTask a = null;
+            if (AppTask.TryGetFromActivityResult(data, ref a))
             {
+                AppTask = a;
                 //make sure the app task is passed to the calling activity
-                AppTask.SetActivityResult(this, KeePass.ExitNormal);
+                this.AppTask.SetActivityResult(this, KeePass.ExitNormal);
 
             }
 
@@ -228,7 +230,15 @@ namespace keepass2android
 
         protected PwGroup Group;
 
-        internal AppTask AppTask;
+        private AppTask _appTask;
+        public AppTask AppTask
+        {
+            get { return _appTask; }
+            set { _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
+        
 
         private String strCachedGroupUuid = null;
         private IMenuItem _offlineItem;

@@ -272,7 +272,8 @@ namespace keepass2android
             return a;
         }
 
-        public static bool AutoOpenEntry(Activity activity, AutoExecItem item, bool bManual)
+        public static bool AutoOpenEntry(Activity activity, AutoExecItem item, bool bManual,
+            ActivityLaunchMode launchMode)
         {
             string str;
             PwEntry pe = item.Entry;
@@ -330,7 +331,7 @@ namespace keepass2android
             GetString(pe, "Focus", ctxNoEsc, true, out str);
             bool bRestoreFocus = str.Equals("Restore", StrUtil.CaseIgnoreCmp);
 
-            PasswordActivity.Launch(activity,ioc,ck,new ActivityLaunchModeSimple(), !
+            PasswordActivity.Launch(activity,ioc,ck,launchMode, !
                 bRestoreFocus);
 
             App.Kp2a.RegisterChildDatabase(ioc);

@@ -30,7 +30,7 @@ namespace keepass2android.services.Kp2aAutofill
             {
                 return null;
             }
-            //launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
+            //launch SelectCurrentDbActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
             //will return the results later
             Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
             //don't show user notifications when an entry is opened.

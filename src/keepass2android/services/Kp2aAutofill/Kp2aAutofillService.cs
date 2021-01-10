@@ -35,6 +35,8 @@ namespace keepass2android.services
 
         protected override List<FilledAutofillFieldCollection> GetSuggestedEntries(string query)
         {
+            if (!App.Kp2a.DatabaseIsUnlocked)
+                return new List<FilledAutofillFieldCollection>();
             var foundEntries = (ShareUrlResults.GetSearchResultsForUrl(query)?.Entries ?? new PwObjectList<PwEntry>())
                 .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
                 .ToList();

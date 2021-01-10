@@ -32,7 +32,7 @@ namespace keepass2android
         MainLauncher = false, 
         Theme = "@style/MyTheme_Blue", 
         LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
-    public class SelectCurrentDbActivity : AndroidX.AppCompat.App.AppCompatActivity
+    public class SelectCurrentDbActivity : LifecycleAwareActivity
     {
         private int ReqCodeOpenNewDb = 1;
         
@@ -171,7 +171,7 @@ namespace keepass2android
 
         private void OnAutoExecItemSelected(AutoExecItem autoExecItem)
         {
-            KeeAutoExecExt.AutoOpenEntry(this, autoExecItem, true);
+            KeeAutoExecExt.AutoOpenEntry(this, autoExecItem, true, new ActivityLaunchModeSimple());
         }
 
         private void OnOpenOther()
@@ -444,7 +444,7 @@ namespace keepass2android
                         App.Kp2a.AttemptedToOpenBefore(dbIoc) == false
                     )
                     {
-                        if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false))
+                        if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false, new ActivityLaunchModeRequestCode(ReqCodeOpenNewDb)))
                         {
                             LaunchingOther = true;
                             return true;
@@ -477,7 +477,16 @@ namespace keepass2android
             StartActivityForResult(intent, ReqCodeOpenNewDb);
         }
 
-        internal AppTask AppTask;
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
         private OpenDatabaseAdapter _adapter;
         private MyBroadcastReceiver _intentReceiver;
         private bool _isForeground;
@@ -497,13 +506,21 @@ namespace keepass2android
                 Finish();
         }
 
+        public override void Finish()
+        {
+            Kp2aLog.Log($"Finishing {MyDebugName}");
+            base.Finish();
+        }
+
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            Kp2aLog.Log("StackBaseActivity.OnActivityResult " + resultCode + "/" + requestCode);
+            Kp2aLog.Log($"{MyDebugName}: OnActivityResult " + resultCode + "/" + requestCode);
 
-            AppTask.TryGetFromActivityResult(data, ref AppTask);
+            AppTask appTask = null;
+            if (AppTask.TryGetFromActivityResult(data, ref appTask))
+                this.AppTask = appTask;
 
             if (requestCode == ReqCodeOpenNewDb)
             {

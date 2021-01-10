@@ -199,7 +199,7 @@ namespace keepass2android.search
 		public override bool OnSearchRequested()
 		{
 			Intent i = new Intent(this, typeof(SearchActivity));
-			AppTask.ToIntent(i);
+			this.AppTask.ToIntent(i);
 			i.SetFlags(ActivityFlags.ForwardResult);
 			StartActivity(i);
 			return true;
