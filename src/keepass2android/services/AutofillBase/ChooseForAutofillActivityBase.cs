@@ -178,8 +178,10 @@ namespace keepass2android.services.AutofillBase
             StructureParser parser = new StructureParser(this, structure);
             parser.ParseForFill(isManual);
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
-            int partitionIndex = AutofillHintsHelper.GetPartitionIndex(autofillFields.FocusedAutofillCanonicalHints.FirstOrDefault());
-            FilledAutofillFieldCollection partitionData = AutofillHintsHelper.FilterForPartition(clientFormDataMap, partitionIndex);
+            var partitionData = AutofillHintsHelper.FilterForPartition(clientFormDataMap, parser.AutofillFields.FocusedAutofillCanonicalHints);
+            
+            
+            
             ReplyIntent = new Intent();
             SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder));
             SetResult(Result.Ok, ReplyIntent);
@@ -231,7 +233,11 @@ namespace keepass2android.services.AutofillBase
         protected void SetDatasetIntent(Dataset dataset)
         {
             if (dataset == null)
+            {
+                Toast.MakeText(this, "Failed to build an autofill dataset.", ToastLength.Long).Show();
                 return;
+            }
+                
             var responseBuilder = new FillResponse.Builder();
             responseBuilder.AddDataset(dataset);
             ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, responseBuilder.Build());

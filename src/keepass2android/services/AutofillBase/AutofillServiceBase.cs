@@ -102,7 +102,8 @@ namespace keepass2android.services.AutofillBase
 
                 cancellationSignal.CancelEvent += (sender, e) =>
                 {
-                    Log.Warn(CommonUtil.Tag, "Cancel autofill not implemented yet.");
+                    Kp2aLog.Log("Cancel autofill not implemented yet.");
+                    _lock.Set(false);
                 };
                 // Parse AutoFill data in Activity
                 StructureParser.AutofillTargetId query = null;
@@ -134,9 +135,10 @@ namespace keepass2android.services.AutofillBase
                         //domain and package are compatible. Use Domain if available and package otherwise. Can fill without warning.
                         foreach (var entryDataset in BuildEntryDatasets(query.DomainOrPackage, query.WebDomain,
                             query.PackageName,
-                            autofillIds, parser, DisplayWarning.None)
+                            autofillIds, parser, DisplayWarning.None).Where(ds => ds != null)
                         )
                         {
+
                             responseBuilder.AddDataset(entryDataset);
                             hasEntryDataset = true;
                         }
@@ -171,12 +173,18 @@ namespace keepass2android.services.AutofillBase
 
                     }
 
+                    Kp2aLog.Log("return autofill success");
                     callback.OnSuccess(responseBuilder.Build());
                 }
                 else
                 {
+                    Kp2aLog.Log("cannot autofill");
                     callback.OnSuccess(null);
                 }
+            }
+            else
+            {
+                Kp2aLog.Log("Ignoring onFillRequest as there is another request going on.");
             }
         }
 
@@ -193,12 +201,9 @@ namespace keepass2android.services.AutofillBase
 
                 if (warning == DisplayWarning.None)
                 {
-                    //can return an actual dataset
-                    int partitionIndex =
-                        AutofillHintsHelper.GetPartitionIndex(parser.AutofillFields.FocusedAutofillCanonicalHints
-                            .FirstOrDefault());
+          
                     FilledAutofillFieldCollection partitionData =
-                        AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
+                        AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, parser.AutofillFields.FocusedAutofillCanonicalHints);
 
                     result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder));
                 }
