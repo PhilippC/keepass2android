@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">生体認証ロック解除</string>
   <string name="import_db_prefs">データベースを内部のフォルダへインポート</string>
   <string name="import_keyfile_prefs">キーファイルを内部のフォルダへインポート</string>
+  <string name="export_keyfile_prefs">内部フォルダからキーファイルをエクスポート</string>
   <string name="keyboardswitch_prefs">キーボードの切り替え</string>
   <string name="OnlyAvailableForLocalFiles">ローカルのファイルに対してのみ使用できます。</string>
   <string name="FileIsInInternalDirectory">ファイルは内部のディレクトリに保存されています。</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">データベースを保存中…</string>
   <string name="exporting_database">データベースをエクスポート中…</string>
   <string name="export_database_successful">データベースのエクスポートが完了しました。</string>
+  <string name="export_keyfile_successful">キーファイルは正常にエクスポートされました！</string>
   <string name="space">半角スペース</string>
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
@@ -267,6 +269,8 @@
   <string name="ShowUsernameInList_summary">エントリのタイトルの下にユーザー名を表示します。複数のアカウントやTANに役立ちます。</string>
   <string name="RememberRecentFiles_title">データベースを記憶する</string>
   <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
+  <string name="NoDalVerification_title">DAL認証なし</string>
+  <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかのチェックを無効にします</string>
   <string name="kp2a_findUrl">パスワードを見つける</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
@@ -628,6 +632,14 @@
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>鍵導出関数 Argon2id のサポートを追加</item>
+    <item>FirefoxとChromeでの自動入力の互換性が向上しました</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>データベース選択画面にメニューを追加</item>
+    <item>インポートされたキーファイルのエクスポートを許可</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Android アプリのパッケージ名を URL フィールドに格納しません</item>
     <item>ロック動作の改善 - ロック解除後すぐに生体認証プロンプトを表示しません</item>
@@ -985,6 +997,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="emergency_infotext_head">緊急時の準備はできていますか?</string>
   <string name="emergency_infotext_main">パスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか? アクシデントが発生したら? 緊急事態に備えて、マスター鍵を信頼できる人に渡すことをお勧めします。 そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります。</string>
   <string name="no_secure_display">現在有効なディスプレイはセキュアとしてマークされていません。 これは、他のアプリによってスクリーンショットが撮られる可能性があることを意味します。 Keepass2Androidは、安全なディスプレイのみに機密情報を表示するように構成されています。 安全なディスプレイに変更する (HDMIモニターを取り外すなど) か、アプリの設定を変更してください。</string>
+  <string name="disable_secure_screen_check">このメッセージを非表示にする</string>
   <string name="switch_ime_text">Keepass2Android キーボードを有効にしてください</string>
   <string name="switch_ime_reopen">再試行</string>
   <string name="AutofillWarning_title">セキュリティ警告: 認識できないドメイン/アプリリンク</string>
