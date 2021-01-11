@@ -22,9 +22,9 @@
   <string name="short_app_name_nonet">KP2A オフライン版</string>
   <string name="app_timeout">アプリのタイムアウト</string>
   <string name="app_timeout_summary">KeePassがこの時間非アクティブだった場合、データベースをロックします。</string>
-  <string name="kill_app_label">アプリのプロセスを殺す</string>
+  <string name="kill_app_label">アプリを終了する</string>
   <string name="show_kill_app">終了ボタン</string>
-  <string name="show_kill_app_summary">パスワード入力画面にアプリのプロセスを終了するためのボタンを表示します。 (神経質なユーザー向け)</string>
+  <string name="show_kill_app_summary">パスワード入力画面にアプリのプロセスを終了するボタンを表示します。（神経質なユーザー向け）</string>
   <string name="application">アプリ</string>
   <string name="application_settings">アプリの設定</string>
   <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示する</string>
@@ -62,8 +62,8 @@
   <string name="brackets">括弧</string>
   <string name="cancel">キャンセル</string>
   <string name="Ok">OK</string>
-  <string name="disable_sensor">センサーを無効にする</string>
-  <string name="enable_sensor">センサーを有効にする</string>
+  <string name="disable_sensor">指紋認証を無効にする</string>
+  <string name="enable_sensor">生体認証を有効にする</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
   <string name="clipboard_timeout">クリップボードのタイムアウト</string>
   <string name="clipboard_timeout_summary">コピーされたユーザー名やパスワードがクリップボードから消去されるまでの時間。</string>
@@ -137,7 +137,7 @@
   <string name="error_rounds_not_number">数値を入力してください。</string>
   <string name="error_param_not_number">パラメーターが数値でなければなりません。</string>
   <string name="error_title_required">タイトルは必須入力です。</string>
-  <string name="error_wrong_length">\"長さ\"欄には正の整数を入力してください</string>
+  <string name="error_wrong_length">長さの欄には正の整数を入力してください</string>
   <string name="FileNotFound">ファイルが見つかりません。</string>
   <string name="file_browser">ファイルブラウザ</string>
   <string name="generate_password">パスワードを生成する</string>
