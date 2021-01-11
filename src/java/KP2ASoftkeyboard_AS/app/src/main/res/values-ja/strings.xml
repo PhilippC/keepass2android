@@ -102,21 +102,22 @@
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
-    <string name="added_word"><xliff:g id="WORD">%s</xliff:g>:保存しました</string>
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : 保存しました</string>
     <!-- Tip to long press on keys -->
-    <string name="tip_long_press">キー長押しでアクセント文字を表示（ø、öなど）</string>
+    <string name="tip_long_press">キー長押しでアクセント付き文字を表示（ø、ö など）</string>
     <!-- Tip to dismiss keyboard -->
-    <string name="tip_dismiss">戻るキーでキーボードを閉じます</string>
+    <string name="tip_dismiss">バックキー\u21B6でキーボードを閉じます</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">数字と記号</string>
     <!-- Tip to long press on typed word to add to dictionary -->
-    <string name="tip_add_to_dictionary">一番左の単語を長押しすると辞書に追加されます</string>
+    <string name="tip_add_to_dictionary">一番左の単語を長押しすると辞書に追加されます
+        </string>
     <!-- Instruction to touch the bubble to continue -->
     <string name="touch_to_continue">続けるにはここをタッチ</string>
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">タッチしてこのヒントを終了し、入力を開始してください。</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"テキストフィールドを選択するとキーボードが表示されます\"</b></string>
+    <string name="tip_to_open_keyboard"><b>テキストフィールドを選択するとキーボードが表示されます</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <string name="tip_to_view_accents"><b>\"キーを長押しするとアクセント付き文字\"\n\"（ø、ö、ô、óなど）が表示されます\"</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
