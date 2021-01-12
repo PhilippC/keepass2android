@@ -1734,5 +1734,24 @@ namespace KeePassLib.Utility
 			// behavior of Notepad (on Windows 10)
 			return str.Replace('\0', ' ');
 		}
+
+        internal static string RemoveWhiteSpace(string str)
+        {
+            if (str == null) { Debug.Assert(false); return string.Empty; }
+
+            int cc = str.Length;
+            if (cc == 0) return string.Empty;
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < cc; ++i)
+            {
+                char ch = str[i];
+                if (char.IsWhiteSpace(ch)) continue;
+                sb.Append(ch);
+            }
+
+            return sb.ToString();
+        }
 	}
 }

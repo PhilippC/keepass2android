@@ -72,6 +72,7 @@
     <Compile Include="Cryptography\KeyDerivation\KdfParameters.cs" />
     <Compile Include="Cryptography\KeyDerivation\KdfPool.cs" />
     <Compile Include="IDatabaseFormat.cs" />
+    <Compile Include="Keys\KcpKeyFile.Xml.cs" />
     <Compile Include="Kp2aLog.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Resources\KLRes.Generated.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Utility\UrlUtil.cs" />
     <Compile Include="Utility\TimeUtil.cs" />
     <Compile Include="Delegates\Handlers.cs" />
+    <Compile Include="Utility\XmlUtilEx.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
