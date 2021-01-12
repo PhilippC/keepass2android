@@ -33,11 +33,11 @@ namespace PluginTOTP
 				Dictionary<string, string> entryFields = App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 				//mute warnings to avoid repeated display of the toasts
 				TotpData totpData = _adapter.GetTotpData(entryFields, _context, true /*mute warnings*/);
-				if (totpData.IsTotpEnry)
+				if (totpData.IsTotpEntry)
 				{
 					//generate a new totp
-					TOTPProvider prov = new TOTPProvider(totpData.Settings);
-					string totp = prov.Generate(totpData.TotpSeed);
+					TOTPProvider prov = new TOTPProvider(totpData);
+					string totp = prov.GenerateByByte(totpData.TotpSecret);
 					//update entry and keyboard
 					UpdateEntryData(totp);
 					//broadcast new field value (update EntryActivity). this might result in another keyboard 

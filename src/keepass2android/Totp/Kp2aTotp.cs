@@ -11,7 +11,13 @@ namespace keepass2android
 	class Kp2aTotp
 	{
 
-		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[] { new TrayTotpPluginAdapter(), new KeeOtpPluginAdapter(), new KeeWebOtpPluginAdapter() };
+		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
+        {
+            new TrayTotpPluginAdapter(), 
+            new KeeOtpPluginAdapter(), 
+            new KeeWebOtpPluginAdapter(),
+            new Keepass2TotpPluginAdapter(),
+        };
 
         public ITotpPluginAdapter TryGetAdapter(PwEntryOutput entry)
         {
@@ -20,7 +26,7 @@ namespace keepass2android
             foreach (ITotpPluginAdapter adapter in _pluginAdapters)
             {
                 TotpData totpData = adapter.GetTotpData(App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
-                if (totpData.IsTotpEnry)
+                if (totpData.IsTotpEntry)
                 {
                     return adapter;
                 }

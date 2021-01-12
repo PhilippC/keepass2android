@@ -4,9 +4,8 @@ using KeePassLib.Collections;
 
 namespace PluginTOTP
 {
-
-	interface ITotpPluginAdapter
-	{
-		TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx, bool muteWarnings);
-	}
+    interface ITotpPluginAdapter
+    {
+        TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx, bool muteWarnings);
+    }
 }

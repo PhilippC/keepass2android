@@ -135,7 +135,7 @@ namespace PluginTOTP
 						string InvalidCharacters;
 						if (SeedValidate(entryFields, out InvalidCharacters))
 						{
-							res.IsTotpEnry = true;
+							res.IsTotpEntry = true;
 							res.TotpSeed = SeedGet(entryFields).ExtWithoutSpaces();
 
 

@@ -230,6 +230,7 @@
     <Compile Include="Totp\Base32.cs" />
     <Compile Include="Totp\ITotpPluginAdapter.cs" />
     <Compile Include="Totp\KeeOtpPluginAdapter.cs" />
+    <Compile Include="Totp\Keepass2TotpPluginAdapter.cs" />
     <Compile Include="Totp\KeeWebOtpPluginAdapter.cs" />
     <Compile Include="Totp\Kp2aTotp.cs" />
     <Compile Include="Totp\TimeCorrectionProvider.cs" />

@@ -37,7 +37,7 @@ namespace KeePassLib.Utility
 	/// </summary>
 	public static class MemUtil
 	{
-		internal static readonly byte[] EmptyByteArray = new byte[0];
+        public static readonly byte[] EmptyByteArray = new byte[0];
 
 		private static readonly uint[] m_vSBox = new uint[256] {
 			0xCD2FACB3, 0xE78A7F5C, 0x6F0803FC, 0xBCF6E230,

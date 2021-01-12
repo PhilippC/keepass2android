@@ -46,7 +46,7 @@ namespace keepass2android
                 return res;
             }
             
-            res.IsTotpEnry = true;
+            res.IsTotpEntry = true;
             return res;
         }
     }
