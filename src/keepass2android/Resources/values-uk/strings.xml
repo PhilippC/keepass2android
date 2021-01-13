@@ -634,14 +634,6 @@
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
-  <string-array name="ChangeLog_1_08d">
-    <item>Додати підтримку Argon2id як функцію формування ключа</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
-    <item>Update Jsch to version 0.1.55</item>
-    <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
-  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Не зберігати назви пакунків у полі URL-адрес для застосунків Android</item>
     <item>Вдосконалено поведінку блокування — біометричний запит більше не з\'являється одразу після розблокування</item>
