@@ -635,14 +635,6 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
-  <string-array name="ChangeLog_1_08d">
-    <item>Voeg ondersteuning voor Argon2id toe als sleutel afleidingsfunctie</item>
-    <item>Verbeterde compatibiliteit voor Autofill met Firefox en Chrome</item>
-    <item>pCloud SDK verbeterd om authenticatieprobleem op te lossen</item>
-    <item>Jsch bijwerken naar versie 0.1.55</item>
-    <item>Voeg menu toe aan database selectiescherm</item>
-    <item>Sta exporteren van geïmporteerde sleutelbestanden toe</item>
-  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Pakketnamen van Android-apps worden niet meer opgeslagen in het URL-veld</item>
     <item>Vergrendelgedrag verbeterd - biometrische prompt wordt niet langer weergeven direct na ontgrendelen</item>
