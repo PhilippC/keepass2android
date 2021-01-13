@@ -635,14 +635,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="EntryChannel_name">항목 알림</string>
   <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
   <string name="CloseDbAfterFailedAttempts">생체 인식 잠금해제를 세 번 실패하면 데이터 베이스를 잠급니다</string>
-  <string-array name="ChangeLog_1_08d">
-    <item>키 유도 함수 용으로 Argon2id 지원 추가</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
-    <item>Update Jsch to version 0.1.55</item>
-    <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
-  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>URL 필드에 안드로이드 앱의 패키지 이름을 저장하지 않도록 수정</item>
     <item>잠금 방식 향상 - 더 이상 잠금해제 직후 생체 인증을 표시하지 않음</item>
