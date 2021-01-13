@@ -41,7 +41,7 @@ namespace keepass2android.services
                 .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
                 .ToList();
 
-            if ((App.Kp2a.LastOpenedEntry?.SearchUrl == query) && !foundEntries.Any(e => e.Uuid.Equals(App.Kp2a.LastOpenedEntry?.Uuid)))
+            if (App.Kp2a.LastOpenedEntry?.SearchUrl == query)
             {
                 foundEntries.Clear();
                 foundEntries.Add(App.Kp2a.LastOpenedEntry);

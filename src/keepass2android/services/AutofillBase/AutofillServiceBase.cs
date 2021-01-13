@@ -33,7 +33,10 @@ namespace keepass2android.services.AutofillBase
     {
         //use a lock to avoid returning a response several times in buggy Firefox during one connection: this avoids flickering 
         //and disappearing of the autofill prompt.
-        private AtomicBoolean _lock = new AtomicBoolean();
+        //Instead of using a boolean lock, we use a "time-out lock" which is cleared after a few seconds
+        private DateTime _lockTime = DateTime.MinValue;
+
+        private TimeSpan _lockTimeout = TimeSpan.FromSeconds(2);
 
         public AutofillServiceBase()
         {
@@ -90,9 +93,10 @@ namespace keepass2android.services.AutofillBase
             CommonUtil.logd( "onFillRequest " + (isManual ? "manual" : "auto"));
             var structure = request.FillContexts.Last().Structure;
 
-            if (!_lock.Get())
+
+            if (_lockTime + _lockTimeout < DateTime.Now)
             {
-                _lock.Set(true);
+                _lockTime = DateTime.Now;
 
                 //TODO support package signature verification as soon as this is supported in Keepass storage
 
@@ -103,7 +107,7 @@ namespace keepass2android.services.AutofillBase
                 cancellationSignal.CancelEvent += (sender, e) =>
                 {
                     Kp2aLog.Log("Cancel autofill not implemented yet.");
-                    _lock.Set(false);
+                    _lockTime = DateTime.MinValue;
                 };
                 // Parse AutoFill data in Activity
                 StructureParser.AutofillTargetId query = null;
@@ -369,7 +373,7 @@ namespace keepass2android.services.AutofillBase
         public override void OnDisconnected()
         {
 
-            _lock.Set(false);
+            _lockTime = DateTime.MinValue;
             CommonUtil.logd( "onDisconnected");
         }
 
