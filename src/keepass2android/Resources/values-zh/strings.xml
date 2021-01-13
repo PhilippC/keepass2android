@@ -636,14 +636,6 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
-  <string-array name="ChangeLog_1_08d">
-    <item>添加了对 Argon2id 作为密钥衍生函数的支持</item>
-    <item>改进与 Firefox 和 Chrome 的自动填充兼容性</item>
-    <item>更新 pCloud SDK 修复认证问题</item>
-    <item>更新 Jsch 到 0.1.55 版本</item>
-    <item>添加到数据库选择屏幕的菜单</item>
-    <item>允许导出导入的密钥文件</item>
-  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>在 URL字段中不再存储安卓应用程序的软件包名称</item>
     <item>改善锁定行为- 解锁后不再立即显示生物特征提示</item>
