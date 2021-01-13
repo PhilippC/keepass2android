@@ -131,6 +131,7 @@
   <string name="error_rounds_not_number">Etapele trebuie să fie un număr.</string>
   <string name="error_param_not_number">Parametru trebuie să fie un număr.</string>
   <string name="error_title_required">Este necesar un titlu.</string>
+  <string name="error_wrong_length">Introduceți un număr întreg pozitiv în câmpul de lungime</string>
   <string name="FileNotFound">Fișierul nu s-a găsit.</string>
   <string name="file_browser">Browser fișiere</string>
   <string name="generate_password">Generare parolă</string>
@@ -145,6 +146,7 @@
   <string name="hint_login_pass">Parola</string>
   <string name="hint_title">nume</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">suprascrie URL-ul</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">nume de utilizator</string>
   <string name="InvalidPassword">Parolă sau fișier cheie invalide.</string>
@@ -191,6 +193,7 @@
   <string name="no">Nu</string>
   <string name="no_keys">Nu sunt înregistrări în baza de date sau grup.</string>
   <string name="no_results">Nici un rezultat de căutare</string>
+  <string name="no_url_handler">Niciun handler pentru acest URL.</string>
   <string name="omitbackup_title">Nu căuta înregistrări în backup şi coşul de gunoi</string>
   <string name="omitbackup_summary">Omite grupurile \'Backup\' şi \'Coş de gunoi\' din toate căutările</string>
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
@@ -251,6 +254,7 @@
   <string name="ShowUsernameInList_summary">Afişează numele utilizatorului sub înregistrări. Util pentru conturi sau TAN-uri multiple.</string>
   <string name="RememberRecentFiles_title">Reţine bazele de date</string>
   <string name="RememberRecentFiles_summary">Reţine baze de date deschise recent si afişează-le în ecranul de deschidere a bazelor de date.</string>
+  <string name="kp2a_findUrl">Găsește parola</string>
   <string name="excludeExpiredEntries">Exclude înregistrările expirate</string>
   <string name="search_options">Opţiuni</string>
   <string name="caseSensitive">Case sensitive</string>
@@ -279,6 +283,7 @@
   <string name="BinaryDirectory_summary">Folder în care se salvează ataşamentele.</string>
   <string name="SaveAttachmentDialog_title">Salvaţi ataşament</string>
   <string name="SaveAttachmentDialog_text">Selectaţi unde se salvează ataşamentul.</string>
+  <string name="SaveAttachmentDialog_save">Exportă ca fișier...</string>
   <string name="SaveAttachmentDialog_open">Salvează în cache și deschide</string>
   <string name="SaveAttachment_doneMessage">Fișierul salvat ca %1$s.</string>
   <string name="SaveAttachment_Failed">Nu s-a putut salva atașamentul la %1$s.</string>
@@ -304,8 +309,11 @@
   <string name="ClearPasswordOnLeave_summary">Șterge parola principală introdusă când părăsiți ecranul fără să deblocați baza de date.</string>
   <string name="LockWhenNavigateBack_title">Blochează când părăsiți aplicația</string>
   <string name="LockWhenNavigateBack_summary">Blochează baza de date când părăsiți aplicația apăsând butonul înapoi.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Utilizați tastatura încorporată în Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Dacă nu aveți încredere în furnizorul de tastatură standard, bifați această opțiune pentru a utiliza tastatura încorporată atunci când introduceți parola principală sau editați intrările.</string>
   <string name="NoDonateOption_title">Ascunde opțiunea de donație</string>
   <string name="NoDonateOption_summary">Această setare este pentru donatori. Este valabilă doar după ce folosiți Keepass2Android o vreme.</string>
+  <string name="NoDonateOption_question">Fără donații, această aplicație nu ar exista și nu ar fi îmbunătățită continuu! Dacă nu ai donat încă, te rugăm să iei în considerare acest lucru acum</string>
   <string name="NoDonationReminder_title">Nu mai cere niciodata donație</string>
   <string name="NoDonationReminder_summary">N-o să-ți dau niciun ban sau am donat deja. Nu mai cere donație, nici măcar de ziua autorului.</string>
   <string name="UseOfflineCache_title">Caching bază de date</string>
