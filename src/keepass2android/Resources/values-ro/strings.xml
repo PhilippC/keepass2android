@@ -540,14 +540,6 @@
   <string name="if_device_text">Activează pentru %1$s</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="CloseDbAfterFailedAttempts">Închide baza de date după trei încercări de deblocare biometrică eșuate.</string>
-  <string-array name="ChangeLog_1_08d">
-    <item>Adaugă suport pentru Argon2id ca funcție de derivare cheie</item>
-    <item>Compatibilitate îmbunătățită de autocompletare cu Firefox și Chrome</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
-    <item>Update Jsch to version 0.1.55</item>
-    <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
-  </string-array>
   <string name="ChangeLog_0_9_8c">Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  </string>
   <string name="ChangeLog_0_9_9">Versiunea 0.9.9\n * UI complet reproiectat. Multumesc mult lui Stefano Pignataro (http://www.spstudio.at) pentru sprijinul lui! \n * Adaugarea personalizata a iconitelor\n * Suport pentru Multi Window mode pe telefoanele Samsung\n * Crescut implicit numărul de runde de criptare pentru baze de date noi\n * Verificarea cheilor duplicate a câmpurilor suplimentare pentru a evita pierderea de date\n</string>
   <string name="ChangeLog_0_9_7">Versiunea 0.9.7\n
