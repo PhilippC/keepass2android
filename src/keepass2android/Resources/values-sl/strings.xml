@@ -637,6 +637,16 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Dodajte podporo za novo obliko datoteke ključa, uvedeno v Keepass 2.47</item>
+    <item>Dodajte podporo za Argon2id kot funkcijo izpeljave ključa</item>
+    <item>Izboljšana združljivost samodejnega izpolnjevanja v Firefoxu in Chromu</item>
+    <item>Izboljšajte podporo za vnose TOTP iz namiznih programov</item>
+    <item>Posodobite paket pCloud SDK, da odpravite težavo s preverjanjem pristnosti</item>
+    <item>Posodobite Jsch na različico 0.1.55</item>
+    <item>Dodaj meni na zaslon za izbiro baze podatkov</item>
+    <item>Omogoči izvoz uvoženih ključnih datotek</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>V polje URL ne shranjuje več imen paketov aplikacij za Android</item>
     <item>Izboljšanje obnašanja pri zaklepanju - takoj po odklepanju ne bo več prikazan biometrični poziv</item>
