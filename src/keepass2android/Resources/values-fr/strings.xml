@@ -877,7 +877,7 @@ Première version publique</string>
     <item>Clair</item>
     <item>Sombre</item>
   </string-array>
-  <string name="design_title">Conception</string>
+  <string name="design_title">Thème</string>
   <string-array name="ftp_encryption_modes">
     <item>Aucun chiffrement (FTP)</item>
     <item>Chiffrement implicite (FTP sur TLS, FTPS)</item>
