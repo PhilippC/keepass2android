@@ -788,8 +788,10 @@
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
 
   <string-array name="ChangeLog_1_08d">
+    <item>Add support for new key file format introduced in Keepass 2.47</item>
     <item>Add support for Argon2id as key derivation function</item>
     <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
     <item>Update pCloud SDK to fix authentication issue</item>
     <item>Update Jsch to version 0.1.55</item>
     <item>Add menu to database selection screen</item>
