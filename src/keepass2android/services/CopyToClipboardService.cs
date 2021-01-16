@@ -303,10 +303,13 @@ namespace keepass2android
         {
             Kp2aLog.Log("Received intent to provide access to entry");
 
-            _stopOnLockBroadcastReceiver = new StopOnLockBroadcastReceiver(this);
-            IntentFilter filter = new IntentFilter();
-            filter.AddAction(Intents.DatabaseLocked);
-            RegisterReceiver(_stopOnLockBroadcastReceiver, filter);
+            if (_stopOnLockBroadcastReceiver == null)
+            {
+                _stopOnLockBroadcastReceiver = new StopOnLockBroadcastReceiver(this);
+                IntentFilter filter = new IntentFilter();
+                filter.AddAction(Intents.DatabaseLocked);
+                RegisterReceiver(_stopOnLockBroadcastReceiver, filter);
+            }
 
             if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
             {
@@ -402,10 +405,12 @@ namespace keepass2android
             if (_stopOnLockBroadcastReceiver != null)
             {
                 UnregisterReceiver(_stopOnLockBroadcastReceiver);
+                _stopOnLockBroadcastReceiver = null;
             }
             if (_notificationDeletedBroadcastReceiver != null)
             {
                 UnregisterReceiver(_notificationDeletedBroadcastReceiver);
+                _notificationDeletedBroadcastReceiver = null;
             }
             if (_notificationManager != null)
             {
@@ -521,10 +526,14 @@ namespace keepass2android
             }
 
             //register receiver to get notified when notifications are discarded in which case we can shutdown the service
-            _notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
-            IntentFilter deletefilter = new IntentFilter();
-            deletefilter.AddAction(ActionNotificationCancelled);
-            RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
+            if (_notificationDeletedBroadcastReceiver == null)
+            {
+                _notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
+                IntentFilter deletefilter = new IntentFilter();
+                deletefilter.AddAction(ActionNotificationCancelled);
+                RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
+            }
+            
         }
 
         public void ActivateKeyboardIfAppropriate(bool closeAfterCreate, ISharedPreferences prefs)
