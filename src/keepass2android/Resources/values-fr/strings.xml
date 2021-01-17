@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Algorithme</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
+  <string name="app_name_nonet">KeePass2Android Hors-ligne</string>
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
   <string name="app_timeout">Délai dépassé</string>
   <string name="app_timeout_summary">Délai avant de verrouiller la base de donnée lorsque l\'application est inactive.</string>
