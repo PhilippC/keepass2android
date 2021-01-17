@@ -107,7 +107,6 @@
     <!-- Short hint shown in candidate view to explain voice input. -->
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
-    <string name="cancel">റദ്ദാക്കുക</string>
     <!-- Label on button when an error occurs -->
     <!-- Preferences item for enabling speech input -->
     <!-- Array of Voice Input modes -->

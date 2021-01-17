@@ -48,8 +48,9 @@
   <string name="keyboard_prefs">鍵盤</string>
   <string name="export_prefs">匯出資料庫...</string>
   <string name="fingerprint_prefs">生物識別解鎖</string>
-  <string name="import_db_prefs">導入資料庫到內部資料夾</string>
-  <string name="import_keyfile_prefs">將金鑰檔導入到內部資料夾</string>
+  <string name="import_db_prefs">匯入資料庫到內部資料夾</string>
+  <string name="import_keyfile_prefs">匯入金鑰檔案到內部資料夾</string>
+  <string name="export_keyfile_prefs">從內部資料夾匯出金鑰檔案</string>
   <string name="keyboardswitch_prefs">切換鍵盤</string>
   <string name="OnlyAvailableForLocalFiles">僅可用於本地檔案。</string>
   <string name="FileIsInInternalDirectory">檔存儲在內部目錄中。</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">儲存資料庫…</string>
   <string name="exporting_database">正在匯出資料庫...</string>
   <string name="export_database_successful">資料庫匯出成功!</string>
+  <string name="export_keyfile_successful">金鑰檔案匯出成功</string>
   <string name="space">空格</string>
   <string name="search_label">搜尋</string>
   <string name="show_password">顯示密碼</string>
@@ -274,9 +276,9 @@
   <string name="start_open_file">開啟檔案…</string>
   <string name="start_create">建立新資料庫...</string>
   <string name="start_open_url">打開 URL...</string>
-  <string name="start_create_import">導入檔案到新資料庫...</string>
+  <string name="start_create_import">匯入檔案到新資料庫...</string>
   <string name="enter_filename_details_url">必須指定完整的 URL 包括協定，如 http://。</string>
-  <string name="enter_filename_details_create_import">將在下一步中選擇要導入檔案。</string>
+  <string name="enter_filename_details_create_import">下一步將選擇要匯入的檔案。</string>
   <string name="enable_quickunlock">啟用 QuickUnlock</string>
   <string name="QuickUnlock_label">輸入您的密碼的最後 %1$d 字元:</string>
   <string name="QuickUnlock_label_secure">輸入 QuickUnlock 密碼:</string>
@@ -490,7 +492,7 @@
   <string name="help_master_password">您的資料庫將以您在此處輸入的密碼進行加密。為了保證資料庫的安全，選擇強式密碼！提示: 自創一兩英文句子，使用句中單詞首字母作為密碼。包括標點符號。</string>
   <string name="hint_master_password">選擇一個主密碼來保護您的資料庫:</string>
   <string name="key_file">金鑰檔</string>
-  <string name="help_key_file">金鑰檔案基本上是儲存為檔案的密碼。因為金鑰檔案一般更複雜，而比主密碼更安全，但也難維持隱密。請不要將資料庫與金鑰檔案同時儲存在雲端，不然金鑰檔案則變得毫無用處！重要提示：建立資料庫後不要更改金鑰檔案的內容！</string>
+  <string name="help_key_file">金鑰檔案就是檔案形式的密碼。金鑰檔案比主密碼更複雜，因而更安全，但也難維持隱密。請不要將資料庫與金鑰檔案同時儲存在雲端，不然金鑰檔案則變得毫無用處！重要提示：建立資料庫後不要更改金鑰檔案的內容！</string>
   <string name="hint_key_file">選擇是否除主密碼外，同時使用金鑰檔案:</string>
   <string name="use_key_file">使用金鑰檔</string>
   <string name="error_adding_keyfile">新增金鑰檔案時發生錯誤!</string>
@@ -633,6 +635,12 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>不再於網址欄位中儲存 Android 程式包名</item>
+    <item>改進鎖定功能，不再於解鎖時立刻顯示生物識別解鎖</item>
+    <item>升級 OkHttp，而支持 HTTP/2</item>
+    <item>修正缺失的翻譯</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>因 Okhttp 的 HTTP/2 實現問題，而強制使用 HTTP/1.1 </item>
     <item>改進 Android 9+ 上的鍵盤對話方塊</item>

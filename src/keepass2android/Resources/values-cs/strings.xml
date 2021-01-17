@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android vyvíjí Philipp Crocoll.</string>
   <string name="further_authors">Díky za příspěvky kódu %1$s.</string>
   <string name="designers">Díky za pomoc s ikonami a designem rozvržení %1$s.</string>
+  <string name="supporters">Děkujeme za finanční podporu od %1$s.</string>
   <string name="credit_plugin1">Šifrovací modul Twofish pro Keepass vyvinul Scott Greenberg a je součástí KP2A.</string>
   <string name="credit_android_filechooser">Souborový dialog vyvinul Hai Bison</string>
   <string name="credit_keyboard">KP2A klávesnice je založen na Gingerbread klávesnici Android Open Source projektu a využívá kódu z projektu Plugin Manageru klávesnice Hacker\'s Keyboard Klause Weidnera.</string>
@@ -631,8 +632,14 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
+    <item>Vylepšení chování zamykání - již se nezobrazuje výzva pro biometrické ověření těsně po odemčení</item>
+    <item>Aktualizována knihovna OkHttp kvůli podpoře HTTP/2</item>
+    <item>Oprava chybějících překladů</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Vynutit HTTP/1.1 kvůli chybě v implementaci HTTP/2 v OkHttp</item>
     <item>Zlepšit dialogové okno klávesnice na Android 9+</item>
     <item>Change file associations of the app to avoid some unnecessary associations</item>
     <item>Ujistěte se, že text hesla není skrytý za ikonou oka</item>
@@ -984,4 +991,5 @@ První veřejné vydání
   <string name="switch_ime_text">Aktivujte prosím klávesnici Keepass2Android.</string>
   <string name="switch_ime_reopen">Opakovat</string>
   <string name="AutofillWarning_Intro">Chystáte se vložit přihlašovací údaje pro doménu \"%1$s\" do aplikace \"%2$s\".</string>
+  <string name="AutofillWarning_trustAsBrowser">Přijmout vždy v \"%1$s\"</string>
 </resources>

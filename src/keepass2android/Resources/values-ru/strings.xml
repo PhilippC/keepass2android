@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Разблокирование при помощи биометрии</string>
   <string name="import_db_prefs">Импорт базы данных во внутреннюю папку</string>
   <string name="import_keyfile_prefs">Импорт файла-ключа во внутреннюю папку</string>
+  <string name="export_keyfile_prefs">Экспорт файла-ключа из внутренней папки</string>
   <string name="keyboardswitch_prefs">Переключение клавиатуры</string>
   <string name="OnlyAvailableForLocalFiles">Доступно только для локальных файлов.</string>
   <string name="FileIsInInternalDirectory">Файл сохранен во внутренний каталог.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Сохранение базы данных…</string>
   <string name="exporting_database">Экспорт базы данных…</string>
   <string name="export_database_successful">База данных успешно экспортирована!</string>
+  <string name="export_keyfile_successful">Файл-ключ экспортирован успешно!</string>
   <string name="space">Пробел</string>
   <string name="search_label">Поиск</string>
   <string name="show_password">Показать пароль</string>
@@ -336,7 +338,7 @@
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
-  <string name="UseOfflineCache_summary">Держать кешь базы данных на устройстве. Что бы использовать её без интернета.</string>
+  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш-директории приложения. Это позволит использовать базы данных даже тогда, когда сам файл базы данных недоступен.</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
@@ -631,6 +633,12 @@
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>Больше нет необходимости хранить имена пакетов приложений для Android в поле URL.</item>
+    <item>Улучшение поведения блокировки - больше не отображаются биометрическая подсказка сразу после разблокировки.</item>
+    <item>Обновление OkHttp для поддержки HTTP/2</item>
+    <item>Исправлены недостающие переводы</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Принудительно использовать HTTP/1.1 из-за проблем с HTTP/2 реализацией OkHttp</item>
     <item>Улучшить диалог клавиатуры на Android 9+</item>

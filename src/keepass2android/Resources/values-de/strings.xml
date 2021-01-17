@@ -51,6 +51,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="fingerprint_prefs">Biometrisches Entsperren</string>
   <string name="import_db_prefs">Datenbank in internen Ordner importieren</string>
   <string name="import_keyfile_prefs">Schlüsseldatei in internen Ordner importieren</string>
+  <string name="export_keyfile_prefs">Schlüsseldatei aus internem Ordner exportieren</string>
   <string name="keyboardswitch_prefs">Wechseln der Eingabemethode</string>
   <string name="OnlyAvailableForLocalFiles">Nur für lokale Dateien verfügbar.</string>
   <string name="FileIsInInternalDirectory">Datei ist in internem Ordner gespeichert.</string>
@@ -229,6 +230,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="saving_database">Speichere Datenbank\u2026</string>
   <string name="exporting_database">Datenbank exportieren…</string>
   <string name="export_database_successful">Datenbank erfolgreich exportiert!</string>
+  <string name="export_keyfile_successful">Schlüsseldatei erfolgreich exportiert!</string>
   <string name="space">Leerzeichen</string>
   <string name="search_label">Suchen</string>
   <string name="show_password">Kennwort anzeigen</string>
@@ -255,6 +257,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="author">Keepass2Android wird von Philipp Crocoll entwickelt.</string>
   <string name="further_authors">Danke an %1$s für Beiträge zum Source-Code!</string>
   <string name="designers">Danke für das Icon und Layoutdesign erstellt von %1$s.</string>
+  <string name="supporters">Danke für die finanzielle Unterstützung durch %1$s.</string>
   <string name="credit_plugin1">Das Twofish-Plugin für Keepass wurde von Scott Greenberg entwickelt und ist in KP2A enthalten.</string>
   <string name="credit_android_filechooser">android-filechooser wurde entwickelt von Hai Bison</string>
   <string name="credit_keyboard">Die KP2A-Tastatur basiert auf der Gingerbread-Tastatur, entwickelt vom Android Open Source Project, und nutzt den Plugin-Manager-Code aus Hacker\'s Keyboard von Klaus Weidner.</string>
@@ -267,6 +270,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
   <string name="RememberRecentFiles_title">Datenbanken merken</string>
   <string name="RememberRecentFiles_summary">Dateinamen der bisher geöffneten Datenbanken speichern und im Bildschirm zum Öffnen der Datenbank anzeigen.</string>
+  <string name="NoDalVerification_title">Keine Digital-Asset-Link-Verifikation</string>
+  <string name="NoDalVerification_summary">Deaktiviert die Prüfung, ob Domain und App-Package zueinander passen</string>
   <string name="kp2a_findUrl">Kennwort finden</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
@@ -427,7 +432,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CouldNotLoadFromRemote">Auf die Quelldatei konnte nicht zugegriffen werden: %1$s. Datei wurde aus dem internen Zwischenspeicher geladen. Sie können weiterhin Änderungen in der Datenbank vornehmen und diese später synchronisieren.</string>
   <string name="UpdatedRemoteFileOnLoad">Aktualisierte Quelldatei.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Intern geöffnete Datei aus dem Zwischenspeicher aufgrund von Konflikten mit Änderungen in der Quelldatei. Verwenden Sie das Menü „Synchronisieren” zum Zusammenführen.</string>
-  <string name="LoadedFromRemoteInSync">Quelldatei und Zwischenspeicher wurden synchronisiert.</string>
+  <string name="LoadedFromRemoteInSync">Quelldatei und Zwischenspeicher sind auf dem gleichen Stand.</string>
   <string name="UpdatedCachedFileOnLoad">Die intern zwischengespeicherte Kopie von %1$s wurde aktualisiert.</string>
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Die zwischengespeicherte OTP-Hilfsdatei wurde aktualisiert: Der Quellenzähler war höher.</string>
@@ -630,6 +635,22 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Unterstützung für neues Schlüsseldateiformat aus KeePass 2.47 integriert</item>
+    <item>Unterstützung für Argon2id als Schlüsselableitungsfunktion integriert</item>
+    <item>Kompatibilität von Autofill mit Firefox und Chrome verbessert</item>
+    <item>Unterstützung für zeitbasierte One-Time-Passwords (TOTP) von Desktop-Programmen verbessert</item>
+    <item>pCloud-SDK aktualisiert, um ein Authentifizierungsproblem zu beheben</item>
+    <item>Jsch auf Version 0.1.55 aktualisiert</item>
+    <item>Menü zum Datenbank-Auswahl-Bildschirm hinzugefügt</item>
+    <item>Importierte Schlüsseldateien können nun exportiert werden</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Paketnamen von Android-Apps werden nicht mehr im URL-Feld gespeichert</item>
+    <item>Verbessertes Sperrverhalten - Keine Anzeige der biometrischen Eingabeaufforderung direkt nach dem Entsperren</item>
+    <item>OkHttp aktualisiert um HTTP/2 zu unterstützen</item>
+    <item>Fehlende Übersetzungen behoben</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Erzwingen von HTTP/1.1 aufgrund eines Problems mit der HTTP/2-Implementierung von OkHttp </item>
     <item>Tastaturdialog auf Android 9+ verbessert</item>
@@ -975,6 +996,7 @@ Erstes öffentliches Release</string>
   <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
   <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
   <string name="no_secure_display">Der aktuell gültige Bildschirm ist als unsicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte wechsle zu einem sicheren Bildschirm (z.B. durch Abtrennen eines HDMI-Monitors) oder ändere die App-Einstellungen.</string>
+  <string name="disable_secure_screen_check">Diese Nachricht deaktivieren</string>
   <string name="switch_ime_text">Bitte aktiviere die Keepass2Android-Tastatur.</string>
   <string name="switch_ime_reopen">Erneut versuchen</string>
   <string name="AutofillWarning_title">Sicherheitswarnung: Unbekannte Domain/App-Verknüpfung</string>

@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrično odklepanje</string>
   <string name="import_db_prefs">Uvozi podatkovno zbirko v notranjo mapo</string>
   <string name="import_keyfile_prefs">Uvozi datoteko ključa v notranjo mapo</string>
+  <string name="export_keyfile_prefs">Izvozite datoteko ključa iz notranje mape</string>
   <string name="keyboardswitch_prefs">Preklapljanje tipkovnice</string>
   <string name="OnlyAvailableForLocalFiles">Na voljo samo v krajevnih datotekah.</string>
   <string name="FileIsInInternalDirectory">Datoteka je shranjena v notranji mapi.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Shranjevanje podatkovne zbirke …</string>
   <string name="exporting_database">Izvažanje podatkovne zbirke …</string>
   <string name="export_database_successful">Podatkovna zbirka uspešno izvožena!</string>
+  <string name="export_keyfile_successful">Datoteka ključa je bila uspešno izvožena!</string>
   <string name="space">Presledek</string>
   <string name="search_label">Išči</string>
   <string name="show_password">Prikaži geslo</string>
@@ -267,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Prikaži uporniška imena pod nazivi vnosov. Uporabno za več računov ali TAN-e.</string>
   <string name="RememberRecentFiles_title">Zapomni si pod. zbirke</string>
   <string name="RememberRecentFiles_summary">Zapomni si nedavno odprte podatkovne zbirke in jih prikaži na zaslonu Odpri podatkovno zbirko.</string>
+  <string name="NoDalVerification_title">Brez preverjanja DAL</string>
+  <string name="NoDalVerification_summary">Onemogoči preverjanje, ali se paket domen in aplikacije ujemata</string>
   <string name="kp2a_findUrl">Najdi geslo</string>
   <string name="excludeExpiredEntries">Izključi potekle vnose</string>
   <string name="search_options">Možnosti</string>
@@ -633,6 +637,22 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Dodajte podporo za novo obliko datoteke ključa, uvedeno v Keepass 2.47</item>
+    <item>Dodajte podporo za Argon2id kot funkcijo izpeljave ključa</item>
+    <item>Izboljšana združljivost samodejnega izpolnjevanja v Firefoxu in Chromu</item>
+    <item>Izboljšajte podporo za vnose TOTP iz namiznih programov</item>
+    <item>Posodobite paket pCloud SDK, da odpravite težavo s preverjanjem pristnosti</item>
+    <item>Posodobite Jsch na različico 0.1.55</item>
+    <item>Dodaj meni na zaslon za izbiro baze podatkov</item>
+    <item>Omogoči izvoz uvoženih ključnih datotek</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>V polje URL ne shranjuje več imen paketov aplikacij za Android</item>
+    <item>Izboljšanje obnašanja pri zaklepanju - takoj po odklepanju ne bo več prikazan biometrični poziv</item>
+    <item>Posodobi OkHttp za podporo HTTP/2</item>
+    <item>Popravljeni manjkajoči prevodi</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Uporabi HTTP / 1.1 zaradi težave s HTTP/2 implementacijo OkHttp</item>
     <item>Izboljšajte pogovorno okno tipkovnice v sistemu Android 9+</item>
@@ -984,6 +1004,7 @@ Začetna javna izdaja
   <string name="emergency_infotext_head">Ali ste pripravljene na nujne primere?</string>
   <string name="emergency_infotext_main">Ste kdaj razmislili, kaj se zgodi, če ne morete več dostopati do baze podatkov z geslih? Kaj če imaš nesrečo? To je dobra praksa, da predate vaše glavno geslo zaupanja vredni osebi za nujne primere. V nasprotnem primeru nihče ne bo imel dostopa do vaših gesel.</string>
   <string name="no_secure_display">Trenutno veljavni pogled ni označen kot varen. To pomeni, da bi lahko posnetke zaslona posnele tudi druge aplikacije. Keepass2Android je konfiguriran za prikaz občutljivih informacij samo na varnih zaslonih. Preklopite na varen zaslon (npr. Izvlecite monitor HDMI) ali spremenite nastavitve aplikacije.</string>
+  <string name="disable_secure_screen_check">Onemogoči to sporočilo</string>
   <string name="switch_ime_text">Prosimo, aktivirajte tipkovnico Keepass2Android</string>
   <string name="switch_ime_reopen">Poskusi znova</string>
   <string name="AutofillWarning_title">Varnostno opozorilo: Neznana povezava domene/aplikacije</string>

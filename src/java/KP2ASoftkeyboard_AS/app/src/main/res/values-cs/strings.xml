@@ -83,6 +83,11 @@
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Vždy skrývat</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_always_show_name</item>
+        <item>@string/settings_key_mode_always_hide_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Návrh Bigram</string>
     <!-- Description for auto completion -->
@@ -217,9 +222,11 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Nastavení klávesnice\"\n</b></font><font size="3">\n</font>\"Dotkněte se klávesy \"<b>\"?123\"</b>\" a přidržte ji.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
     <string name="popular_domain_1">".cz"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
     <string name="popular_domain_3">".net"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->

@@ -6,6 +6,7 @@
     permission.
 -->
 <resources>
+    <string name="afc_root">റൂട്ട്</string>
     <string name="afc_title_name">പേര്</string>
     <plurals name="afc_title_choose_directories">
         <item quantity="one">ഫോൾഡർ ചേർക്കുക</item>

@@ -254,6 +254,7 @@
   <string name="author">Keepass2Android vyvinul Philipp Crocoll.</string>
   <string name="further_authors">Vďaka za príspevky ku kódu aplikácie od %1$s.</string>
   <string name="designers">Ďakujeme za príspevky v oblasti ikon a dizajnu rozloženia: %1$s.</string>
+  <string name="supporters">Vďaka za finančnú podporu od %1$s.</string>
   <string name="credit_plugin1">Prídavný modul Twofish Cipher for Keepass vyvinul Scott Greenberg a je zahrnutý do programu KP2A.</string>
   <string name="credit_android_filechooser">Výber súboru v systéme Android vyvinul Hai Bison</string>
   <string name="credit_keyboard">Klávesnica KP2A je založená na klávesnici Gingerbread, z projektu Android Open Souce, a využíva kód pre manažér príd. modulov z Hacker\'s Keyboard od Klausa Weidnera.</string>
@@ -632,6 +633,12 @@
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>V poli URL sa už neukladajú názvy balíkov s aplikáciami systému Android</item>
+    <item>Vylepšené správanie pri uzamknutí - už bezprostredne po odomknutí sa už nezobrazuje požiadavka biometrie</item>
+    <item>Aktualizovať OkHttp pre podporu HTTP/2</item>
+    <item>Náprava chýbajúcich prekladov</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Vynútenie HTTP/1.1 kvôli problému s implementáciou HTTP/2 v OkHttp</item>
     <item>Vylepšenie dialógu pre klávesnicu na systéme Android 9+</item>
