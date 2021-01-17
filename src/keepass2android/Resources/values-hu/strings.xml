@@ -470,6 +470,7 @@
   <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen. A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni. Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Ez a tárhelytípus csak az \"Applications/Keepass2Android\" mappához igényel hozzáférést. Ahhoz, hogy a PCloud tárhelyed egy meglévő adatbázisát használd, azt ebben az mappában kell elhelyezned.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Az összes fájl és a megosztott fájlok</string>
