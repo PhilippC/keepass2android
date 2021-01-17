@@ -115,7 +115,7 @@
   <string name="entry_modified">Змінено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Зберегти</string>
-  <string name="entry_title">Назва</string>
+  <string name="entry_title">Ім’я</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
@@ -570,7 +570,7 @@
   <string name="DefaultTemplate">Стандартний запис</string>
   <string name="TemplateGroupName">Шаблони</string>
   <string name="TemplateTitle_IdCard">ID карта</string>
-  <string name="TemplateField_IdCard_Name">Назва</string>
+  <string name="TemplateField_IdCard_Name">Ім’я</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Місце видачі</string>
   <string name="TemplateField_IdCard_IssueDate">Дата випуску</string>
   <string name="TemplateTitle_EMail">Електронна пошта</string>
