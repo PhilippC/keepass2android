@@ -215,7 +215,7 @@
   <string name="remove_from_filelist">移除</string>
   <string name="edit">編輯</string>
   <string name="rijndael">Rijndael加密(AES)</string>
-  <string name="root">根目錄</string>
+  <string name="root">Root</string>
   <string name="AutoReturnFromQuery_title">自動從查詢畫面返回</string>
   <string name="AutoReturnFromQuery_summary">查找應用或網站的項目時：如資料庫裡只有一個相符項目，則從查詢畫面自動返回。</string>
   <string name="KeyDerivFunc">金鑰派生函數</string>
