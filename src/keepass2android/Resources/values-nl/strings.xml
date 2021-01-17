@@ -476,7 +476,7 @@
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Dit opslagtype vraagt alleen toegang tot de map \"Applicaties/Keepass2Android\". Als je een bestaande database uit je PCloud account wilt gebruiken, zorg er dan voor dat het bestand in deze map is geplaatst. Opmerking: PCloud biedt geen werkende SDK als je je gegevens hebt opgeslagen in de Europese Unie. Je kunt het proberen met WebDAV via https://ewebdav. cloud.com/, maar let op dat dit geen 2FA ondersteunt. Ga naar https://github.com/pCloud/pcloud-sdk-java/issues/8 voor updates.</string>
+  <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de map \"Applicaties/Keepass2Android\". Als je een bestaande database wil gebruiken uit een PCloud account, zorg er dan voor dat het bestand in die map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle bestanden en gedeelde bestanden</string>
@@ -594,21 +594,24 @@
   <string name="Continue">Ga verder</string>
   <string name="NoFilenameWarning">De URI die je hebt ingevoerd lijkt niet in een bestandsnaam. Weet je zeker dat dit een geldig bestand is?</string>
   <string name="FirstInvalidCompositeKeyError">Ongeldige sleutelcombinatie! Probeer het opnieuw.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ongeldige sleutelcombinatie! Controleer alsjeblieft de volgende zaken:\n
- 
-  • Zorg dat je het correcte wachtwoord hebt ingevuld. Gebruik het oog-pictogram om het ingevoerde wachtwoord te tonen.\n
-  • Zorg dat je het correcte wachtwoordtype hebt gekozen. Dit dient overeen te komen met het type dat je gekozen heeft bij het aanmaken van de database.\n
-  • Zorg dat je het juiste bestand hebt gekozen.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-&#8226; Hint: als je denkt dat je database corrupt kan zijn, of als je het hoofdwachtwoord niet meer weet nadat je hebt gewijzigd, dan kun je proberen de laatst goed geopende versie te openen door \"%1$s\" te klikken en de lokale back-up te kiezen.</string>
-  <string name="HintLocalBackupOtherError">\n
-&#8226; Hint: Keepass2Android heeft de laatst goed geopende versie opgeslagen in intern geheugen. Je kunt deze openen door op \"%1$s\" te klikken en de lokale back-up te kiezen.  </string>
-  <string name="CorruptDatabaseHelp">Het bestand is beschadigd. \n
-  Dit zijn enkele aanwijzingen om het probleem te diagnosticeren:\n
-  
-  • Als je het bestand via USB (MTP-modus) hebt gekopieerd: probeer je het opnieuw via een programma zoals MyPhoneExplorer. MTP kapt namelijk in sommige gevallen bestanden af.\n
-  • Als je het bestand ook niet op jouw PC kunt openen dan is het aannemelijk dat het bestand daadwerkelijk beschadigd is. Gebruik in dat geval een back-up van de database. Als je vermoedt dat Keepass2Android het bestand heeft beschadigd neem dan alsjeblieft contact op.\n
-  • Als je het bestand wel kunt openen op jouw PC, neem dan contact op. Wellicht kun je het bestand met andere instellingen opslaan op jouw PC (bv niet gezipt) en het daarna openen in Keepass2Android.
+  <string name="RepeatedInvalidCompositeKeyHelp">    Ongeldige sleutelcombinatie! Controleer alsjeblieft de volgende zaken:\n
+
+    • Zorg dat je het correcte wachtwoord hebt ingevuld. Gebruik het oog-pictogram om het ingevoerde wachtwoord te tonen.\n
+    • Zorg dat je het correcte wachtwoordtype hebt gekozen. Dit dient overeen te komen met het type dat je gekozen heeft bij het aanmaken van de database.\n
+    • Zorg dat je het juiste bestand hebt gekozen.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Hint: als je denkt dat je database corrupt kan zijn, of als je het hoofdwachtwoord niet meer weet nadat je hebt gewijzigd, dan kun je proberen de laatst goed geopende versie te openen door \"%1$s\" te klikken en de lokale back-up te kiezen.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Hint: Keepass2Android heeft de laatst goed geopende versie opgeslagen in intern geheugen. Je kunt deze openen door op \"%1$s\" te klikken en de lokale back-up te kiezen.
+  </string>
+  <string name="CorruptDatabaseHelp">    Het bestand is beschadigd. \n
+    Dit zijn enkele aanwijzingen om het probleem te diagnosticeren:\n
+
+    • Als je het bestand via USB (MTP-modus) hebt gekopieerd: probeer je het opnieuw via een programma zoals MyPhoneExplorer. MTP kapt namelijk in sommige gevallen bestanden af.\n
+    • Als je het bestand ook niet op jouw PC kunt openen dan is het aannemelijk dat het bestand daadwerkelijk beschadigd is. Gebruik in dat geval een back-up van de database. Als je vermoedt dat Keepass2Android het bestand heeft beschadigd neem dan alsjeblieft contact op.\n
+    • Als je het bestand wel kunt openen op jouw PC, neem dan contact op. Wellicht kun je het bestand met andere instellingen opslaan op jouw PC (bv niet gezipt) en het daarna openen in Keepass2Android.
 
   </string>
   <string name="open_other_db">Een andere database openen…</string>
@@ -657,7 +660,7 @@
     <item>Bugs opgelost</item>
     <item>Bugs opgelost</item>
   </string-array>
-  <string name="ChangeLog_1_07b">Versie 1.07b-pre\n
+  <string name="ChangeLog_1_07b">    Versie 1.07b-pre\n
     * Verbeterde Argon2 prestaties door gebruik van orginele implentatie (Met dank aan Chih-Hsuan Yen!)\n
     * Sta het uitschakelen van de vingerafdruk toe door het klikken op de vingerafdruk icoon (vermijdt probleem met vingerafdruklezer onder het scherm, met dank aan marcoDallas!)\n
     * Herstel aanwijzer locatie bij wisselen van de wachtwoordzichtbaarheid (met dank aan DDoSolitary!)\n
@@ -676,7 +679,8 @@
     * Meer opties voor het aanpassen van app gedrag in persoonlijke voorkeuren\n
     * SSL: vertrouw gebruiker certicaten\n
     * Automatisch invullen verbeterd (werkt nu met Firefox, minder popups)\n
-    * Fout oplossingen\n  </string>
+    * Fout oplossingen\n
+  </string>
   <string name="ChangeLog_1_06">  Versie 1.06\n
   * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey challenge/response.\n
   * Ondersteuning voor KeepassXC-stijl challenge/response. Merk op: de database-indeling moet KDBX4 zijn!\n
@@ -794,19 +798,20 @@ ChangeLog_1_05  </string>
 		* Voorkomt screenshots van Snel Openen en wachtwoordschermen\n
 		* Omgekeerde sorteervolgorde voor Sorteren op wijzigingsdatum (nu aflopend)\n
 		* Bug fixes: Notitie schermen nu correct vernieuwd na wijzigingen, Wachtwoord schermen verbergen nu het wachtwoord correct op (hopelijk) alle apparaten, probleem opgelost dat het toevoegen van dubbele items toestond, probleem opgelost waarbij de Dubbele UUID melding werd weergegeven na het repareren van de database\n</string>
-  <string name="ChangeLog_0_9_6">Versie 0.9.6\n
-		* mogelijkheid om sleutelbestand en/of database naar het interne geheugen van de app te kopiëren (zie instellingen)\n
-		* verschillende sorteeropties\n
-		* instellingen voor automatisch toetsenbordwisselen verbeterd\n
-		* applicatielogo en ontwerp van notificaties bijgewerkt, ontworpen door Stefano Pignataro (http://www.spstudio.at)\n
-		* wachtwoordgenerator onthoudt laatste instellingen\n
-		* instellen zichtbaarheid notificaties voor vergrendelscherm van Android 5\n
-		* hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op Oké te klikken\n
-		* opgelost: probleem met ontbrekende invoertalen in toetsenbordinstellingen op sommige apparaten\n
-		* opgelost: probleem met automatisch toetsenbordwisselen op geroote apparaten\n
-		* check toegevoegd voor corrupte databases (duplicate UUIDS)\n
-		* automatisch herladen van database wanneer wijzigingen worden gedetecteerd, lost beveiligingsvraagstuk over het lekken van het hoofdwachtwoord op\n
-		* verbeterd van Poolse kleine toetsenbord, verbeterd thema van de toetsenbordinstellingen (dank aan Wiktor Ławski)\n</string>
+  <string name="ChangeLog_0_9_6">    Versie 0.9.6\n
+    * mogelijkheid om sleutelbestand en/of database naar het interne geheugen van de app te kopiëren (zie instellingen)\n
+    * verschillende sorteeropties\n
+    * instellingen voor automatisch toetsenbordwisselen verbeterd\n
+    * applicatielogo en ontwerp van notificaties bijgewerkt, ontworpen door Stefano Pignataro (http://www.spstudio.at)\n
+    * wachtwoordgenerator onthoudt laatste instellingen\n
+    * instellen zichtbaarheid notificaties voor vergrendelscherm van Android 5\n
+    * hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op Oké te klikken\n
+    * opgelost: probleem met ontbrekende invoertalen in toetsenbordinstellingen op sommige apparaten\n
+    * opgelost: probleem met automatisch toetsenbordwisselen op geroote apparaten\n
+    * check toegevoegd voor corrupte databases (duplicate UUIDS)\n
+    * automatisch herladen van database wanneer wijzigingen worden gedetecteerd, lost beveiligingsvraagstuk over het lekken van het hoofdwachtwoord op\n
+    * verbeterd van Poolse kleine toetsenbord, verbeterd thema van de toetsenbordinstellingen (dank aan Wiktor Ławski)\n
+  </string>
   <string name="ChangeLog_0_9_5"><b>Versie 0.9.5</b>\n
 		* Opgelost: problemen met bestanden selecteren (vooral op Android 4.4)\n
 		* Opgelost: probleem met laden van kdb-bestanden (Keepass 1) op Nexus 5 met Android Lollipop\n
@@ -865,13 +870,14 @@ ChangeLog_1_05  </string>
 		* Mogelijkheid om items en groepen te veranderen\n
 		* Snel Openen pictogram kan transparant gemaakt worden (zie instellingen)\n
 		* Bug fixes</string>
-  <string name="ChangeLog_0_8_5"><b>Versie 0.8.5</b>\n
-		* Online bestanden worden bewaard in de lokale appcache om offline gebruik mogelijk te maken (inclusief bewerken en later synchronisatie). Zie instellingen. \n
-		* Meldingsicoon om de vergrendelingsstaat van de database weer te geven. (Zie instellingen)\n
-		* Verbeterde vaststelling van de vergrendelingsstaat in sommige situaties\n
-		* Databasebestanden worden in het geheugen geladen terwijl je jouw wachtwoord intypt voor snellere laadtijd (zie instellingen)\n
-		* Items kunnen worden toegevoegd aan de hoofdgroep\n
-		* Fouten verholpen (opzoeken referentievelden, problemen met toetsenbord op Italiaanse en Chinese apparaten)</string>
+  <string name="ChangeLog_0_8_5">    <b>Versie 0.8.5</b>\n
+    * Online bestanden worden bewaard in de lokale appcache om offline gebruik mogelijk te maken (inclusief bewerken en later synchronisatie). Zie instellingen. \n
+    * Meldingsicoon om de vergrendelingsstaat van de database weer te geven. (Zie instellingen)\n
+    * Verbeterde vaststelling van de vergrendelingsstaat in sommige situaties\n
+    * Databasebestanden worden in het geheugen geladen terwijl je jouw wachtwoord intypt voor snellere laadtijd (zie instellingen)\n
+    * Items kunnen worden toegevoegd aan de hoofdgroep\n
+    * Fouten verholpen (opzoeken referentievelden, problemen met toetsenbord op Italiaanse en Chinese apparaten)
+  </string>
   <string name="ChangeLog_0_8_4">  <b>Version 0.8.4</b>\n
  * Veranderingen in externe database worden herkend en samengevoegd bij opslaan\n
  * Verbeterde opstartsnelheid\n
@@ -1001,7 +1007,7 @@ Eerste publieke publicatie
   <string name="switch_ime_text">activeer de Keepass2 Android toetsenbord aub.</string>
   <string name="switch_ime_reopen">Probeer opnieuw.</string>
   <string name="AutofillWarning_title">Beveiligingswaarschuwing: niet-herkende domein / app-link</string>
-  <string name="AutofillWarning_Intro">U staat op het punt, om inloggegevens voor domein \"% 1 $ s\" in te voegen in de app \"% 2 $ s\".</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">Als u vertrouwt dat \"% 2 $ s\" tot \"% 1 $ s\" behoort of u vertrouwt erop dat de app \"% 2 $ s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kunt u doorgaan . Indien niet, gelieve te annuleren.</string>
-  <string name="AutofillWarning_trustAsBrowser">Altijd accepteren in \"% 1 $ s\"</string>
+  <string name="AutofillWarning_Intro">U staat op het punt, om inloggegevens voor domein \"%1$s\" in te voegen in de app \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Als u vertrouwt dat \"%2$s\" tot \"%1$s\" behoort of u vertrouwt erop dat de app \"%2$s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kunt u doorgaan . Indien niet, gelieve te annuleren.</string>
+  <string name="AutofillWarning_trustAsBrowser">Altijd accepteren in \"%1$s\"</string>
 </resources>
