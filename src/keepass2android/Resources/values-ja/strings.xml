@@ -115,7 +115,7 @@
   <string name="entry_modified">更新日時</string>
   <string name="entry_password">パスワード</string>
   <string name="entry_save">保存</string>
-  <string name="entry_title">タイトル</string>
+  <string name="entry_title">名前</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">ユーザー名</string>
   <string name="entry_extra_strings">その他のフィールド</string>
@@ -572,7 +572,7 @@
   <string name="DefaultTemplate">標準のエントリー</string>
   <string name="TemplateGroupName">テンプレート</string>
   <string name="TemplateTitle_IdCard">ID カード</string>
-  <string name="TemplateField_IdCard_Name">タイトル</string>
+  <string name="TemplateField_IdCard_Name">名前</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">発行地</string>
   <string name="TemplateField_IdCard_IssueDate">発行日</string>
   <string name="TemplateTitle_EMail">メール</string>
