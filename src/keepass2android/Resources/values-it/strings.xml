@@ -214,7 +214,7 @@
   <string name="remove_from_filelist">Elimina</string>
   <string name="edit">Modifica</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Radice</string>
+  <string name="root">Principale</string>
   <string name="AutoReturnFromQuery_title">Ritorna automaticamente dalla schermata di ricerca</string>
   <string name="AutoReturnFromQuery_summary">Quando cerchi una voce per un\'app o un sito web: ritorna automaticamente dalla schermata di ricerca se c\'è una sola voce corrispondente nel database.</string>
   <string name="KeyDerivFunc">Funzione di derivazione chiave</string>
