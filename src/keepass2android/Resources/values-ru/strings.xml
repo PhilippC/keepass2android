@@ -115,7 +115,7 @@
   <string name="entry_modified">Изменено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Сохранить</string>
-  <string name="entry_title">Название</string>
+  <string name="entry_title">Имя</string>
   <string name="entry_url">Ссылка</string>
   <string name="entry_user_name">Логин</string>
   <string name="entry_extra_strings">Дополнительные строковые поля</string>
@@ -570,7 +570,7 @@
   <string name="DefaultTemplate">Стандартная запись</string>
   <string name="TemplateGroupName">Шаблоны</string>
   <string name="TemplateTitle_IdCard">ID карты</string>
-  <string name="TemplateField_IdCard_Name">Название</string>
+  <string name="TemplateField_IdCard_Name">Имя</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Место выдачи</string>
   <string name="TemplateField_IdCard_IssueDate">Дата выпуска</string>
   <string name="TemplateTitle_EMail">Электронная почта</string>
