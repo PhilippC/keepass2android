@@ -634,6 +634,16 @@
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Keepass 2.47 で導入された新しいキーファイル形式のサポートを追加</item>
+    <item>鍵導出関数 Argon2id のサポートを追加</item>
+    <item>FirefoxとChromeでの自動入力の互換性が向上しました</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>データベース選択画面にメニューを追加</item>
+    <item>インポートされたキーファイルのエクスポートを許可</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Android アプリのパッケージ名を URL フィールドに格納しないようにしました</item>
     <item>ロック動作の改善 - ロック解除後すぐに生体認証プロンプトを表示しません</item>
