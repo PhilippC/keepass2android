@@ -641,9 +641,9 @@
     <item>Add support for Argon2id as key derivation function</item>
     <item>Vylepšená kompatibilita automatického vyplňování s Firefoxem a Chrome</item>
     <item>Zlepšení podpory pro TOTP záznamy z desktopových programů.</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
-    <item>Update Jsch to version 0.1.55</item>
-    <item>Add menu to database selection screen</item>
+    <item>Upgrade pCloud SDK kvůli opravě problému s autentizací</item>
+    <item>Update Jsch na verzi 0.1.55</item>
+    <item>Přidáno menu na obrazovku volby databáze.</item>
     <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
