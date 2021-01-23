@@ -270,6 +270,7 @@
   <string name="RememberRecentFiles_title">Zapamatovat databáze</string>
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
   <string name="NoDalVerification_title">Žádné ověření DAL</string>
+  <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
   <string name="search_options">Možnosti</string>
@@ -635,6 +636,16 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Přidání podpory pro nový souborový formát klíče představený v Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Vylepšená kompatibilita automatického vyplňování s Firefoxem a Chrome</item>
+    <item>Zlepšení podpory pro TOTP záznamy z desktopových programů.</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
     <item>Vylepšení chování zamykání - již se nezobrazuje výzva pro biometrické ověření těsně po odemčení</item>
