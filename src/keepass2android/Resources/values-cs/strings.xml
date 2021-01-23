@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrické odemknutí</string>
   <string name="import_db_prefs">Import databáze do vnitřní složky</string>
   <string name="import_keyfile_prefs">Importovat soubor s klíčem do vnitřní složky</string>
+  <string name="export_keyfile_prefs">Exportovat soubor klíče z interní složky</string>
   <string name="keyboardswitch_prefs">Přepínání klávesnice</string>
   <string name="OnlyAvailableForLocalFiles">K dispozici pouze pro místní soubory.</string>
   <string name="FileIsInInternalDirectory">Soubor je uložen ve vnitřním adresáři.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Ukládám databázi…</string>
   <string name="exporting_database">Exportování databáze…</string>
   <string name="export_database_successful">Databáze byla úspěšně exportována!</string>
+  <string name="export_keyfile_successful">Soubor s klíčem úspěšně exportován!</string>
   <string name="space">Mezera</string>
   <string name="search_label">Hledat</string>
   <string name="show_password">Zobrazit heslo</string>
@@ -267,6 +269,7 @@
   <string name="ShowUsernameInList_summary">Zobrazovat uživatelská jména pod názvy položek. Užitečné pro vícenásobné účty nebo TANy.</string>
   <string name="RememberRecentFiles_title">Zapamatovat databáze</string>
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
+  <string name="NoDalVerification_title">Žádné ověření DAL</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
   <string name="search_options">Možnosti</string>
