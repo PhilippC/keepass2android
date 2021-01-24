@@ -211,7 +211,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="progress_create">Neue Datenbank anlegen\u2026</string>
   <string name="create_database">Datenbank anlegen</string>
   <string name="progress_title">In Bearbeitung\u2026</string>
-  <string name="remember_keyfile_summary">Schlüsseldatei anlegen und ihr Speicherort merken</string>
+  <string name="remember_keyfile_summary">Speicherort der Schlüsseldateien merken</string>
   <string name="remember_keyfile_title">Schlüsseldatei speichern</string>
   <string name="remove_from_filelist">Entfernen</string>
   <string name="edit">Bearbeiten</string>
