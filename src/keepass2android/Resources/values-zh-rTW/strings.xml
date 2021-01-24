@@ -269,6 +269,7 @@
   <string name="ShowUsernameInList_summary">項目標題下面顯示使用者名稱。用於多個帳戶或者 TAN。</string>
   <string name="RememberRecentFiles_title">記住資料庫</string>
   <string name="RememberRecentFiles_summary">記得最近打開的資料庫，並顯示在打開資料庫的螢幕中。</string>
+  <string name="NoDalVerification_title">無 DAL 驗證</string>
   <string name="kp2a_findUrl">查找密碼</string>
   <string name="excludeExpiredEntries">排除過期的項目</string>
   <string name="search_options">選項</string>
