@@ -14,7 +14,7 @@ namespace PluginTOTP
         {
             TotpData res = new TotpData();
             byte[] pbSecret = (GetOtpSecret(entryFields, "TimeOtp-") ?? MemUtil.EmptyByteArray);
-            if (pbSecret == null)
+            if (pbSecret.Length == 0)
                 return res;
 
             string strPeriod;
