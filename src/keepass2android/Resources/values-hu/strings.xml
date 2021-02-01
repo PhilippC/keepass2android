@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrikus feloldás</string>
   <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
   <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
+  <string name="export_keyfile_prefs">A kulcsfájl exportálása az alkalmazás saját tárterületéről</string>
   <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
   <string name="OnlyAvailableForLocalFiles">Csak a készüléken tárolt fájlok esetén lehetséges.</string>
   <string name="FileIsInInternalDirectory">A fájl az alkalmazás saját tárterületén van.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Adatbázis mentése…</string>
   <string name="exporting_database">Adatbázis exportálása…</string>
   <string name="export_database_successful">Adatbázis exportálása sikerült!</string>
+  <string name="export_keyfile_successful">Kulcsfájlok exportálása sikeresen lezajlott</string>
   <string name="space">Szóköz</string>
   <string name="search_label">Keresés</string>
   <string name="show_password">Jelszó megjelenítése</string>
@@ -254,6 +256,7 @@
   <string name="author">Keepass2Android-ot Philipp Crocoll fejleszti.</string>
   <string name="further_authors">Köszönet jár az alábbiaknak az átadott programkódért: %1$s.</string>
   <string name="designers">Köszönet jár továbbá az ikon és a megjelenítés tervezésében nyújtott segítségért az alábbiaknak: %1$s.</string>
+  <string name="supporters">Köszönjük a pénzbeli támogatást az alábbiaknak: %1$s.</string>
   <string name="credit_plugin1">A KP2A által is használt Twofish Cipher Plugin for Keepass fejlesztését Scott Greenberg végezte.</string>
   <string name="credit_android_filechooser">Az android-filechooser Hai Bison munkája.</string>
   <string name="credit_keyboard">The KP2A billentyűzet az Android Open Source Project által fejlesztett Gingerbread billentyűzetre alapul, használva a Klaus Weidner által írt Hacker\'s Keyboard beépülőmodul-menedzser programkódját is.</string>
