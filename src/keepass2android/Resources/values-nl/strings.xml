@@ -641,8 +641,8 @@
   <string-array name="ChangeLog_1_08d">
     <item>Ondersteuning toevoegen voor nieuwe sleutelbestandsindeling ingevoerd in Keepass 2.47</item>
     <item>Voeg ondersteuning voor Argon2id toe als sleutel afleidingsfunctie</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Verbeterde compatibiliteit voor Autofill met Firefox en Chrome</item>
+    <item>Verbeter ondersteuning voor TOTP-items van desktopprogramma\'s</item>
     <item>Update pCloud SDK om authenticatie probleem op te lossen</item>
     <item>Jsch bijwerken naar versie 0.1.55</item>
     <item>Menu toevoegen aan database selectiescherm</item>
