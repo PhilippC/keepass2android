@@ -530,13 +530,50 @@ namespace keepass2android.Io
             {
                 Task.Run(async () =>
                 {
-                        PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
+                    PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
+                    //for small files <2MB use the direct upload:
+                    if (stream.Length < 2* 1024 * 1024) 
+                    {
                         return await
                             pathItemBuilder
                                 .getPathItem()
                                 .Content
                                 .Request()
                                 .PutAsync<DriveItem>(stream);
+                    }
+
+                    //for larger files use an upload session. This is required for 4MB and beyond, but as the docs are not very clear about this
+                    //limit, let's use it a bit more often to be safe.
+
+                    var uploadProps = new DriveItemUploadableProperties
+                    {
+                        ODataType = null,
+                        AdditionalData = new Dictionary<string, object>
+                        {
+                            { "@microsoft.graph.conflictBehavior", "replace" }
+                        }
+                    };
+                    
+
+                    var uploadSession = await pathItemBuilder
+                                .getPathItem()
+                        .CreateUploadSession(uploadProps)
+                        .Request()
+                        .PostAsync();
+
+                    // Max slice size must be a multiple of 320 KiB
+                    int maxSliceSize = 320 * 1024;
+                    var fileUploadTask = new LargeFileUploadTask<DriveItem>(uploadSession, stream, maxSliceSize);
+                    var uploadResult = await fileUploadTask.UploadAsync();
+
+                    if (!uploadResult.UploadSucceeded)
+                    {
+                        throw new Exception("Failed to upload data!");
+                    }
+
+                    return uploadResult.ItemResponse;
+
+
 
                 }).Wait();
 
