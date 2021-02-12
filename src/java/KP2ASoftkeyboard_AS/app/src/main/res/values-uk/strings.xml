@@ -21,13 +21,13 @@
     <!-- Title for Latin keyboard  -->
     <string name="english_ime_name">Клавіатура Keepass2Android</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">Налашт-ня клавіат. Keepass2Android</string>
+    <string name="english_ime_settings">Налаштування клавіатури Android</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">Парам. введення</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
-    <string name="vibrate_on_keypress">Вібр при натиску клав.</string>
+    <string name="vibrate_on_keypress">Вібрація клавіатури</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
-    <string name="sound_on_keypress">Звук при натиску клав.</string>
+    <string name="sound_on_keypress">Звук клавіатури</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
     <string name="popup_on_keypress">Сплив. при нат.клав.</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
