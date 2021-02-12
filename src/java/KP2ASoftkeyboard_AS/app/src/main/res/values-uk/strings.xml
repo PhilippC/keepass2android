@@ -31,13 +31,13 @@
     <!-- Option to pop up the character with a larger font above soft keyboard -->
     <string name="popup_on_keypress">Сплив. при нат.клав.</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
-    <string name="hit_correction">Виправ. помилки вводу</string>
+    <string name="hit_correction">Виправляти помилки</string>
     <!-- Description for hit_correction  -->
-    <string name="hit_correction_summary">Увімкн. виправл. помилок вводу</string>
+    <string name="hit_correction_summary">Виправлення помилок введення</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
-    <string name="hit_correction_land">Помилки альбомного вводу</string>
+    <string name="hit_correction_land">Помилки при введенні в альбомному режимі</string>
     <!-- Description for hit_correction in landscape -->
-    <string name="hit_correction_land_summary">Увімкн. виправл. помилок вводу</string>
+    <string name="hit_correction_land_summary">Виправлення помилок введення</string>
     <!-- Option to automatically correct word on hitting space -->
     <string name="auto_correction">Пропозиції слів</string>
     <!-- Description for auto_correction -->
@@ -47,9 +47,9 @@
     <!-- Category title for text prediction -->
     <string name="prediction_category">Налашт-ня пропозицій слів</string>
     <!-- Description for text prediction -->
-    <string name="prediction_summary">Увімкн. автозаповнення при вводі</string>
+    <string name="prediction_summary">Автозавершення при введенні</string>
     <!-- Dialog title for auto complete choices -->
-    <string name="auto_complete_dialog_title">Автозаповнення</string>
+    <string name="auto_complete_dialog_title">Автозавершення</string>
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">Збільш. розмір текст. поля</string>
     <!-- Description for text prediction -->
