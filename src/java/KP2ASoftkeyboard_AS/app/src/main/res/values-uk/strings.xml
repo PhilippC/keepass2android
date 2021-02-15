@@ -79,7 +79,7 @@
     <!-- Option to automatically decide to show/hide the settings key -->
     <string name="settings_key_mode_auto_name">Автоматично</string>
     <!-- Option to always show the settings key -->
-    <string name="settings_key_mode_always_show_name">Завжди показ.</string>
+    <string name="settings_key_mode_always_show_name">Завжди показувати</string>
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Завжди ховати</string>
     <!-- Array of the settings key modes -->
