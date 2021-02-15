@@ -62,19 +62,19 @@
     <string name="auto_punctuate">Авто пунктуація</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
-    <string name="quick_fixes">Шв. виправлення</string>
+    <string name="quick_fixes">Швидке виправлення</string>
     <!-- Description for quick fixes -->
     <string name="quick_fixes_summary">Виправляє поширені помилки</string>
     <!-- Option to enable showing suggestions -->
-    <string name="show_suggestions">Показати пропозиції</string>
+    <string name="show_suggestions">Показувати пропозиції</string>
     <!-- Description for show suggestions -->
-    <string name="show_suggestions_summary">Відображати при вводі пропоновані слова</string>
+    <string name="show_suggestions_summary">Показувати пропозиції слів при введенні</string>
     <!-- Option to enable auto completion -->
-    <string name="auto_complete">Автозаповнення</string>
+    <string name="auto_complete">Автозавершення</string>
     <!-- Description for auto completion -->
-    <string name="auto_complete_summary">Пробіл і пунктуація автоматично вставляє виділене слово</string>
+    <string name="auto_complete_summary">Пробіл і пунктуація автоматично вставляє позначене слово</string>
     <!-- Option to show/hide the settings key -->
-    <string name="prefs_settings_key">Показ. клав. налашт.</string>
+    <string name="prefs_settings_key">Клавіша налаштувань</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
     <string name="settings_key_mode_auto_name">Автоматично</string>
@@ -134,7 +134,7 @@
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <string name="label_done_key">Виконано</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
-    <string name="label_send_key">Надісл.</string>
+    <string name="label_send_key">Надіслати</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
@@ -146,7 +146,7 @@
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
-    <string name="voice_warning_title">Голос. ввід</string>
+    <string name="voice_warning_title">Голосове введення</string>
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
@@ -163,7 +163,7 @@
     <!-- Short message to tell the user the system is ready for them to speak. -->
     <string name="voice_listening">Диктуйте</string>
     <!-- Short message shown after the user finishes speaking. -->
-    <string name="voice_working">Працює</string>
+    <string name="voice_working">Обробка</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
     <string name="voice_error">Помилка. Спробуйте ще раз.</string>
@@ -192,7 +192,7 @@
     <!-- Label on button when an error occurs -->
     <string name="ok">Гаразд</string>
     <!-- Preferences item for enabling speech input -->
-    <string name="voice_input">Голос. ввід</string>
+    <string name="voice_input">Голосове введення</string>
     <!-- Array of Voice Input modes -->
     <string-array name="voice_input_modes">
         <item>На осн. клавіатурі</item>
