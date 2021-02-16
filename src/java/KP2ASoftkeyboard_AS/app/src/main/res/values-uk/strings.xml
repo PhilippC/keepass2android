@@ -89,14 +89,14 @@
         <item>@string/settings_key_mode_always_hide_name</item>
     </string-array>
     <!-- Option to enable bigram completion -->
-    <string name="bigram_suggestion">Двобуквені пропозиції</string>
+    <string name="bigram_suggestion">Біграмні пропозиції</string>
     <!-- Description for auto completion -->
-    <string name="bigram_suggestion_summary">Викор. попер. слово для покращ. пропозиції</string>
+    <string name="bigram_suggestion_summary">Використовуйте попереднє слово для поліпшення пропозиції</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>Нічого</item>
-        <item>Базовий</item>
-        <item>Розшир.</item>
+        <item>Основний</item>
+        <item>Розширений</item>
     </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
