@@ -51,13 +51,13 @@
     <!-- Dialog title for auto complete choices -->
     <string name="auto_complete_dialog_title">Автозавершення</string>
     <!-- Option to enable text prediction in landscape -->
-    <string name="prediction_landscape">Збільш. розмір текст. поля</string>
+    <string name="prediction_landscape">Збільшити розмір текстового поля</string>
     <!-- Description for text prediction -->
-    <string name="prediction_landscape_summary">Сховати пропозиції слів в альбом. режимі</string>
+    <string name="prediction_landscape_summary">Приховати пропозиції слів в альбомному режимі</string>
     <!-- Option to enable auto capitalization of sentences -->
-    <string name="auto_cap">Авто викор. вел. літер</string>
+    <string name="auto_cap">Великі літери автоматично</string>
     <!-- Description for auto cap -->
-    <string name="auto_cap_summary">Поч. писати речення з великої літери</string>
+    <string name="auto_cap_summary">Велика літера початку речення</string>
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">Авто пунктуація</string>
     <!-- Description for auto punctuate -->
