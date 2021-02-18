@@ -136,13 +136,14 @@ namespace keepass2android.services.AutofillBase
 
                     if (query.IncompatiblePackageAndDomain == false)
                     {
+                        Kp2aLog.Log("AF: (query.IncompatiblePackageAndDomain == false)");
                         //domain and package are compatible. Use Domain if available and package otherwise. Can fill without warning.
                         foreach (var entryDataset in BuildEntryDatasets(query.DomainOrPackage, query.WebDomain,
                             query.PackageName,
                             autofillIds, parser, DisplayWarning.None).Where(ds => ds != null)
                         )
                         {
-
+                            Kp2aLog.Log("AF: Got EntryDataset " + (entryDataset == null));
                             responseBuilder.AddDataset(entryDataset);
                             hasEntryDataset = true;
                         }
@@ -196,7 +197,9 @@ namespace keepass2android.services.AutofillBase
             DisplayWarning warning)
         {
             List<Dataset> result = new List<Dataset>();
+            Kp2aLog.Log("AF: BuildEntryDatasets");
             var suggestedEntries = GetSuggestedEntries(query).ToDictionary(e => e.DatasetName, e => e);
+            Kp2aLog.Log("AF: BuildEntryDatasets found " + suggestedEntries.Count + " entries");
             foreach (var filledAutofillFieldCollection in suggestedEntries.Values)
             {
 
@@ -209,6 +212,8 @@ namespace keepass2android.services.AutofillBase
                     FilledAutofillFieldCollection partitionData =
                         AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, parser.AutofillFields.FocusedAutofillCanonicalHints);
 
+                    Kp2aLog.Log("AF: Add dataset");
+
                     result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder));
                 }
                 else
@@ -218,7 +223,10 @@ namespace keepass2android.services.AutofillBase
                         IntentBuilder.GetAuthIntentSenderForWarning(this, query, queryDomain, queryPackage, warning);
                     var datasetName = filledAutofillFieldCollection.DatasetName;
                     if (datasetName == null)
-                        return null;
+                    {
+                        Kp2aLog.Log("AF: dataset name is null");
+                        continue;
+                    }
 
                     RemoteViews presentation =
                         AutofillHelper.NewRemoteViews(PackageName, datasetName, AppNames.LauncherIcon);
@@ -230,7 +238,7 @@ namespace keepass2android.services.AutofillBase
                     {
                         datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
                     }
-
+                    Kp2aLog.Log("AF: Add auth dataset");
                     result.Add(datasetBuilder.Build());
                 }
             }

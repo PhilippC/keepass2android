@@ -236,6 +236,7 @@ namespace keepass2android
 					{
 						IOConnectionInfo ioc = new IOConnectionInfo();
 					    Util.SetIoConnectionFromIntent(ioc, data);
+                        Kp2aLog.Log("Set keyfile after returning from RequestCodeSelectKeyfile");
 						_keyFile = IOConnectionInfo.SerializeToString(ioc);
 						UpdateKeyfileIocView();
 					}
@@ -692,7 +693,8 @@ namespace keepass2android
 
             String action = i.Action;
 			if ((action != null) && (action.Equals(Intents.StartWithOtp)))
-			{
+            {
+                Kp2aLog.Log("Launching with OTP");
 				if (!GetIocFromOtpIntent(savedInstanceState, i)) return;
 				_keepPasswordInOnResume = true;
 			}
@@ -772,7 +774,8 @@ namespace keepass2android
 
         private void GetIocFromLaunchIntent(Intent i)
         {
-            _makeCurrent = i.GetBooleanExtra("MakeCurrent", true);
+            Kp2aLog.Log("GetIocFromLaunchIntent()");
+			_makeCurrent = i.GetBooleanExtra("MakeCurrent", true);
 			Util.SetIoConnectionFromIntent(_ioConnection, i);
             var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
             if (keyFileFromIntent != null)
@@ -785,7 +788,9 @@ namespace keepass2android
             }
             else
             {
-                _keyFile = null;
+                Kp2aLog.Log("no keyprovider specified");
+
+				_keyFile = null;
                 KeyProviderTypes.Clear();
             }
 
@@ -843,7 +848,8 @@ namespace keepass2android
 	        KeyProviderTypes.Clear();
             if (string.IsNullOrEmpty(keyProviderString))
             {
-                _keyFile = null;
+                Kp2aLog.Log("Reset keyfile");
+				_keyFile = null;
                 return;
             }
 
@@ -852,12 +858,15 @@ namespace keepass2android
 	            keyProviderString = keyProviderString.Substring(Kp2aKeyProviderStringPrefix.Length);
 	            foreach (string type in keyProviderString.Split(';'))
 	            {
+					Kp2aLog.Log("PasswordActivity: key file type " + type);
 	                if (!type.Trim().Any())
 	                    continue;
 	                if (type.StartsWith(KeyProviders.KeyFile.ToString()))
 	                {
 	                    _keyFile = WebUtility.UrlDecode(type.Substring(KeyProviders.KeyFile.ToString().Length));
-	                    KeyProviderTypes.Add(KeyProviders.KeyFile);
+                        Kp2aLog.Log("Added key file of length " + _keyFile.Length);
+
+						KeyProviderTypes.Add(KeyProviders.KeyFile);
 	                    continue;
 	                }
 	                foreach (KeyProviders providerType in Enum.GetValues(typeof(KeyProviders)))
@@ -872,9 +881,9 @@ namespace keepass2android
             }
             else
             {
-
-                //legacy mode
-                _keyFile = null;
+                Kp2aLog.Log("PasswordActivity: legacy key file mode");
+				//legacy mode
+				_keyFile = null;
                 
                 if (keyProviderString == KeyProviderIdOtp)
                     KeyProviderTypes.Add(KeyProviders.Otp);
@@ -1195,13 +1204,16 @@ namespace keepass2android
 				{
 				    KeyProviderTypes.Clear();
 				    _keyFile = null;
+                    Kp2aLog.Log("PasswordModeSpinner item selected: " + args.Position);
 						switch (args.Position)
 						{
 							case 0:
 								break;
 							case 1:
-                            //don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
-							    _keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
+							//don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
+                                Kp2aLog.Log("key file length before: " + _keyFile?.Length);
+								_keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
+                                Kp2aLog.Log("key file length after: " + _keyFile?.Length);
 							    KeyProviderTypes.Add(KeyProviders.KeyFile);
 								break;
 							case 2:
@@ -1242,11 +1254,16 @@ namespace keepass2android
 		private void RestoreState(Bundle savedInstanceState)
 		{
 			if (savedInstanceState != null)
-			{
+            {
+                Kp2aLog.Log("PasswordActivity: Restoring state from savedInstanceState");
 				_showPassword = savedInstanceState.GetBoolean(ShowpasswordKey, false);
 				MakePasswordMaskedOrVisible();
 
-                SetKeyProviderFromString(savedInstanceState.GetString(KeyFileOrProviderKey));
+                if (!string.IsNullOrEmpty(savedInstanceState.GetString(KeyFileOrProviderKey)))
+                    Kp2aLog.Log("No key provider found");
+				else
+                    Kp2aLog.Log("Key provider found");
+				SetKeyProviderFromString(savedInstanceState.GetString(KeyFileOrProviderKey));
 				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = savedInstanceState.GetString(PasswordKey);
 
 				_pendingOtps = new List<string>(savedInstanceState.GetStringArrayList(PendingOtpsKey));

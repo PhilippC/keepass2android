@@ -322,20 +322,37 @@ namespace keepass2android.Io
 
         private async Task<IGraphServiceClient> TryGetMsGraphClient(String path, bool tryConnect)
         {
+
             String userId = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path).User.Id;
+
+            logDebug("TryGetMsGraphClient for " + userId);
             if (mClientByUser.ContainsKey(userId))
             {
+                logDebug("TryGetMsGraphClient found user " + userId);
                 GraphServiceClientWithState clientWithState = mClientByUser[userId];
-                if (!(clientWithState.RequiresUserInteraction || (clientWithState.TokenExpiryDate < DateTime.Now) || (clientWithState.Client == null)))
+                if (!(clientWithState.RequiresUserInteraction || (clientWithState.TokenExpiryDate < DateTime.Now) ||
+                      (clientWithState.Client == null)))
+                {
+                    logDebug("TryGetMsGraphClient returning client");
                     return clientWithState.Client;
+                }
+                else
+                {
+                    logDebug("not returning client because " + clientWithState.RequiresUserInteraction + " " +
+                             (clientWithState.TokenExpiryDate < DateTime.Now) + " " + (clientWithState.Client == null));
+                }
             }
             if (tryConnect)
             {
+                logDebug("trying to connect...");
                 if (await TryLoginSilent(path) != null)
                 {
+                    logDebug("trying to connect ok");
                     return mClientByUser[userId].Client;
                 }
+                logDebug("trying to connect failed");
             }
+            logDebug("TryGetMsGraphClient for " + userId + " returns null");
             return null;
         }
 
@@ -367,7 +384,7 @@ namespace keepass2android.Io
             if (authenticationResult.Account == null)
                 throw new Exception("authenticationResult.Account == null!");
             mClientByUser[authenticationResult.Account.HomeAccountId.Identifier] = clientWithState;
-       
+            logDebug("buildClient ok.");
             return clientWithState.Client;
         }
 
@@ -375,7 +392,9 @@ namespace keepass2android.Io
         
         private void logDebug(string str)
         {
-            Log.Debug("KP2A", str);
+#if DEBUG
+            Log.Debug("KP2A", "OneDrive2: " + str);
+#endif
         }
         
 
@@ -530,13 +549,50 @@ namespace keepass2android.Io
             {
                 Task.Run(async () =>
                 {
-                        PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
+                    PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
+                    //for small files <2MB use the direct upload:
+                    if (stream.Length < 2* 1024 * 1024) 
+                    {
                         return await
                             pathItemBuilder
                                 .getPathItem()
                                 .Content
                                 .Request()
                                 .PutAsync<DriveItem>(stream);
+                    }
+
+                    //for larger files use an upload session. This is required for 4MB and beyond, but as the docs are not very clear about this
+                    //limit, let's use it a bit more often to be safe.
+
+                    var uploadProps = new DriveItemUploadableProperties
+                    {
+                        ODataType = null,
+                        AdditionalData = new Dictionary<string, object>
+                        {
+                            { "@microsoft.graph.conflictBehavior", "replace" }
+                        }
+                    };
+                    
+
+                    var uploadSession = await pathItemBuilder
+                                .getPathItem()
+                        .CreateUploadSession(uploadProps)
+                        .Request()
+                        .PostAsync();
+
+                    // Max slice size must be a multiple of 320 KiB
+                    int maxSliceSize = 320 * 1024;
+                    var fileUploadTask = new LargeFileUploadTask<DriveItem>(uploadSession, stream, maxSliceSize);
+                    var uploadResult = await fileUploadTask.UploadAsync();
+
+                    if (!uploadResult.UploadSucceeded)
+                    {
+                        throw new Exception("Failed to upload data!");
+                    }
+
+                    return uploadResult.ItemResponse;
+
+
 
                 }).Wait();
 
@@ -821,14 +877,17 @@ namespace keepass2android.Io
 
         public async void OnStart(IFileStorageSetupActivity activity)
         {
-
+            logDebug("OneDrive2.OnStart");
             if (activity.ProcessName.Equals(FileStorageSetupDefs.ProcessNameFileUsageSetup))
                 activity.State.PutString(FileStorageSetupDefs.ExtraPath, activity.Ioc.Path);
             string rootPathForUser = await TryLoginSilent(activity.Ioc.Path);
             if (rootPathForUser != null)
             {
+                logDebug("rootPathForUser not null");
                 FinishActivityWithSuccess(activity, rootPathForUser);
+                return;
             }
+            logDebug("rootPathForUser null");
 
             try
             {
@@ -856,13 +915,14 @@ namespace keepass2android.Io
 
         private async Task<string> TryLoginSilent(string iocPath)
         {
-
+            logDebug("Login Silent for " + iocPath);
             IAccount account = null;
             try
             {
                 
                 if (IsConnected(iocPath))
                 {
+                    logDebug("Login Silent ok, connected");
                     return iocPath;
                 }
                 String userId = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(iocPath).User?.Id;
@@ -891,7 +951,9 @@ namespace keepass2android.Io
                     /*User me = await graphClient.Me.Request().WithForceRefresh(true).GetAsync();
                     logDebug("received name " + me.DisplayName);*/
 
-                    return BuildRootPathForUser(authResult);
+                    var rootFolder = BuildRootPathForUser(authResult);
+                    logDebug("Found RootPath for user");
+                    return rootFolder;
 
                 }
                 catch (MsalUiRequiredException ex)

@@ -40,7 +40,7 @@
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>
 	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski, gilbsgilbs, Chih-Hsuan Yen, DDoSolitary, marcoDallas</string>
 	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
-  <string name="supporter_names">Arno Welzel, Sebastián Ramírez</string>
+  <string name="supporter_names">Arno Welzel, Sebastián Ramírez, A. Finkhäuser</string>
     <string name="issues">https://github.com/PhilippC/keepass2android/issues</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>

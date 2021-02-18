@@ -429,7 +429,9 @@ namespace keepass2android
 			// Update last access time.
 			Entry.Touch(false);
 
-			if (PwDefs.IsTanEntry(Entry) && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
+			if (PwDefs.IsTanEntry(Entry) 
+                && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) 
+                && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
 			{
 				PwEntry backupEntry = Entry.CloneDeep();
 				Entry.ExpiryTime = DateTime.Now;

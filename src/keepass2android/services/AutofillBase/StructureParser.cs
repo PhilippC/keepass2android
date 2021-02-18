@@ -267,8 +267,8 @@ namespace keepass2android.services.AutofillBase
             DomainName outDomain;
 		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
 		    {
-		        webDomain = outDomain.RegisterableDomainName;
-		    }
+		        webDomain = outDomain.RawDomainName;
+            }
 
             if (webDomain != null)
 		    {
