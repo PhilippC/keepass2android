@@ -787,6 +787,14 @@
 
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
 
+
+  <string-array name="ChangeLog_1_09a">
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    
+  </string-array>
+
+
   <string-array name="ChangeLog_1_08d">
     <item>Add support for new key file format introduced in Keepass 2.47</item>
     <item>Add support for Argon2id as key derivation function</item>
