@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Αλγόριθμος</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android χωρίς σύνδεση</string>
+  <string name="app_name_nonet">Keepass2Android εκτός σύνδεσης</string>
   <string name="short_app_name_nonet">KP2A χωρίς σύνδεση</string>
   <string name="app_timeout">Λήξη χρονικού ορίου εφαρμογής</string>
   <string name="app_timeout_summary">Χρόνος πριν το κλείδωμα της βάσης δεδομένων όταν η εφαρμογή είναι ανενεργή.</string>

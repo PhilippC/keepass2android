@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Algorithme</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Hors-ligne</string>
+  <string name="app_name_nonet">KeePass2Android Hors-ligne</string>
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
   <string name="app_timeout">Délai dépassé</string>
   <string name="app_timeout_summary">Délai avant de verrouiller la base de donnée lorsque l\'application est inactive.</string>
@@ -269,6 +269,7 @@
   <string name="ShowUsernameInList_summary">Afficher les noms d\'utilisateurs sous les titres des entrées. Utile si vous avez plusieurs comptes ou des TANs.</string>
   <string name="RememberRecentFiles_title">Se souvenir des bases de données</string>
   <string name="RememberRecentFiles_summary">Se souvenir des bases de données récemment ouvertes et les afficher dans l\'écran d\'ouverture de base de données.</string>
+  <string name="NoDalVerification_summary">Désactive la vérification si le domaine et le  package d\'application correspondent</string>
   <string name="kp2a_findUrl">Trouver un mot de passe</string>
   <string name="excludeExpiredEntries">Exclure les entrées arrivées à expiration</string>
   <string name="search_options">Options</string>
@@ -632,6 +633,16 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Ajout de la prise en charge d\'un nouveau format de fichier de clé introduit dans Keepass 2.47</item>
+    <item>Ajoute le support d\'Argon2id en tant que fonction de dérivation de clé</item>
+    <item>Compatibilité améliorée du remplissage automatique avec Firefox et Chrome</item>
+    <item>Améliorer la prise en charge des entrées TOTP des programmes sur ordinateur</item>
+    <item>Mise à jour du SDK pCloud pour résoudre le problème d\'authentification</item>
+    <item>Mise à jour de Jsch vers la version 0.1.55</item>
+    <item>Ajout d\'un menu à l\'écran de sélection de la base de données</item>
+    <item>Permission d\'exporter les fichiers clés importés</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Arrêt du stockage des noms de paquets des applications Android dans le champ URL</item>
     <item>Améliorer le comportement de verrouillage - n\'affiche plus l\'invite biométrique immédiatement après le déverrouillage</item>
@@ -930,6 +941,7 @@ Première version publique</string>
   <string name="emergency_infotext_head">Êtes-vous prêt pour les cas d’urgence ?</string>
   <string name="emergency_infotext_main">Avez-vous déjà envisagé ce qui se passerait si vous ne pouviez plus accéder à votre base de données de mots de passe ? Et si vous avez un accident ? Il est recommandé de transmettre votre clé principale à une personne de confiance pour les cas d\'urgence. Sinon, personne n\'aura accès à vos mots de passe.</string>
   <string name="no_secure_display">L\'écran actuellement valide n\'est pas marqué comme sécurisé. Cela signifie que des captures d\'écran peuvent être prises par d\'autres applications. Keepass2Android est configuré pour afficher des informations sensibles sur les écrans sécurisés uniquement. Veuillez changer pour un écran sécurisé (par exemple en détachant un moniteur HDMI) ou modifier les paramètres de l\'application.</string>
+  <string name="disable_secure_screen_check">Désactiver ce message</string>
   <string name="switch_ime_text">Veuillez activer le clavier Keepass2Android.</string>
   <string name="switch_ime_reopen">Réessayer</string>
   <string name="AutofillWarning_title">Alerte de sécurité : lien de domaine/application non reconnu</string>

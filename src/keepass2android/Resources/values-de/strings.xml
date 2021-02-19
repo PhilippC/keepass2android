@@ -114,9 +114,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_keyfile">Schlüsseldatei (optional)</string>
   <string name="keyfile_heading">Schlüsseldatei</string>
   <string name="entry_modified">Letzte Änderung</string>
-  <string name="entry_password">Kennwort</string>
+  <string name="entry_password">Passwort</string>
   <string name="entry_save">Speichern</string>
-  <string name="entry_title">Titel</string>
+  <string name="entry_title">Name</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Benutzername</string>
   <string name="entry_extra_strings">Zusätzliche Felder</string>
@@ -150,7 +150,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_keyfile">Schlüsseldatei</string>
   <string name="hint_length">Länge</string>
   <string name="hint_pass">Passwort</string>
-  <string name="hint_login_pass">Kennwort</string>
+  <string name="hint_login_pass">Passwort</string>
   <string name="hint_title">Name</string>
   <string name="hint_url">URL</string>
   <string name="hint_override_url">Override URL</string>
@@ -211,12 +211,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="progress_create">Neue Datenbank anlegen\u2026</string>
   <string name="create_database">Datenbank anlegen</string>
   <string name="progress_title">In Bearbeitung\u2026</string>
-  <string name="remember_keyfile_summary">Schlüsseldatei anlegen und ihr Speicherort merken</string>
+  <string name="remember_keyfile_summary">Speicherort der Schlüsseldateien merken</string>
   <string name="remember_keyfile_title">Schlüsseldatei speichern</string>
   <string name="remove_from_filelist">Entfernen</string>
   <string name="edit">Bearbeiten</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Start</string>
+  <string name="root">Root</string>
   <string name="AutoReturnFromQuery_title">Kehre automatisch vom Abfragebildschirm zurück</string>
   <string name="AutoReturnFromQuery_summary">Beim Suchen eines Eintrags für eine App oder Webseite: Kehre automatisch vom Abfragebildschirm zurück, wenn nur ein passender Eintrag in der Datenbank existiert.</string>
   <string name="KeyDerivFunc">Schlüsselableitungsfunktion</string>
@@ -573,7 +573,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="DefaultTemplate">Standardeintrag</string>
   <string name="TemplateGroupName">Vorlagen</string>
   <string name="TemplateTitle_IdCard">Ausweis</string>
-  <string name="TemplateField_IdCard_Name">Titel</string>
+  <string name="TemplateField_IdCard_Name">Name</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Ausstellungsort</string>
   <string name="TemplateField_IdCard_IssueDate">Ausstellungsdatum</string>
   <string name="TemplateTitle_EMail">E-Mail</string>
@@ -966,7 +966,7 @@ Erstes öffentliches Release</string>
     <item>Kennwort + Schlüsseldatei + Challenge-Response für Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
-    <item>Kennwort</item>
+    <item>Passwort</item>
     <item>Privater/Öffentlicher Schlüssel</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">

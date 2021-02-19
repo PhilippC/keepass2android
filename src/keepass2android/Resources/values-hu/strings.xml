@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrikus feloldás</string>
   <string name="import_db_prefs">Az adatbázis importálása az alkalmazás saját tárterületére</string>
   <string name="import_keyfile_prefs">A kulcsfájl importálása az alkalmazás saját tárterületére</string>
+  <string name="export_keyfile_prefs">A kulcsfájl exportálása az alkalmazás saját tárterületéről</string>
   <string name="keyboardswitch_prefs">Billentyűzetváltás</string>
   <string name="OnlyAvailableForLocalFiles">Csak a készüléken tárolt fájlok esetén lehetséges.</string>
   <string name="FileIsInInternalDirectory">A fájl az alkalmazás saját tárterületén van.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Adatbázis mentése…</string>
   <string name="exporting_database">Adatbázis exportálása…</string>
   <string name="export_database_successful">Adatbázis exportálása sikerült!</string>
+  <string name="export_keyfile_successful">Kulcsfájlok exportálása sikeresen lezajlott</string>
   <string name="space">Szóköz</string>
   <string name="search_label">Keresés</string>
   <string name="show_password">Jelszó megjelenítése</string>
@@ -254,6 +256,7 @@
   <string name="author">Keepass2Android-ot Philipp Crocoll fejleszti.</string>
   <string name="further_authors">Köszönet jár az alábbiaknak az átadott programkódért: %1$s.</string>
   <string name="designers">Köszönet jár továbbá az ikon és a megjelenítés tervezésében nyújtott segítségért az alábbiaknak: %1$s.</string>
+  <string name="supporters">Köszönjük a pénzbeli támogatást az alábbiaknak: %1$s.</string>
   <string name="credit_plugin1">A KP2A által is használt Twofish Cipher Plugin for Keepass fejlesztését Scott Greenberg végezte.</string>
   <string name="credit_android_filechooser">Az android-filechooser Hai Bison munkája.</string>
   <string name="credit_keyboard">The KP2A billentyűzet az Android Open Source Project által fejlesztett Gingerbread billentyűzetre alapul, használva a Klaus Weidner által írt Hacker\'s Keyboard beépülőmodul-menedzser programkódját is.</string>
@@ -266,6 +269,9 @@
   <string name="ShowUsernameInList_summary">A felhasználónevek megjelenítése a bejegyzések címe alatt. Hasznos, ha több felhasználói fiókkal is rendelkezik, vagy TAN-okat használ.</string>
   <string name="RememberRecentFiles_title">Az adatbázisok megjegyzése</string>
   <string name="RememberRecentFiles_summary">A legutóbb megnyitott adatbázisok megjegyzése és megjelenítése az Adatbázis megnyitása képernyőn.</string>
+  <string name="NoDalVerification_title">DAL ellenőrzés kikapcsolása</string>
+  <string name="NoDalVerification_summary">Eltekintés az internettartomány-alkalmazás összetertozásának ellenőrzésétől</string>
+  <string name="kp2a_findUrl">Jelszó keresése</string>
   <string name="excludeExpiredEntries">Lejárt bejegyzések kizárása</string>
   <string name="search_options">Opciók</string>
   <string name="caseSensitive">Kis- és nagybetűk megkülönböztetése</string>
@@ -627,6 +633,7 @@
   <string name="DbQuicklockedChannel_desc">Értesítés az adatbázis GyorsFeloldással való zárolásáról</string>
   <string name="EntryChannel_name">Bejegyzésértesítések</string>
   <string name="EntryChannel_desc">Értesítés a jelenleg kiválasztott bejegyzés egyszerűsített eléréséhez.</string>
+  <string name="CloseDbAfterFailedAttempts">Az adatbázis zárolása három sikertelen biometrikus feloldási kísérlet után.</string>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
   <string name="ChangeLog">&lt;b&gt;Version 0.6.2&lt;/&gt;
 * Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
@@ -704,7 +711,7 @@ Kezdeti közösségi kiadás</string>
   <string name="autofill_sign_in_prompt">Kitöltés Keepass2Androiddal</string>
   <string name="autofill_disable">Az AutoFill tiltása %1$s esetén</string>
   <string name="autofill_enable_for">Az AutoFill engedélyezése %1$s esetén</string>
-  <string name="invalid_link_association">Nem sikerült összerendelni a %1$s web domaint a %2$s alkalmazással</string>
+  <string name="invalid_link_association">Nem sikerült összerendelni a %1$s internettartományt a %2$s alkalmazással</string>
   <string name="enable_fingerprint_hint">Biometrikus eszköz detektálva. Szeretné engedélyezni az adatbázis biometrikus feloldását?</string>
   <string name="understand">Értem</string>
   <string name="dont_show_again">Ne mutassa többet</string>
@@ -717,4 +724,7 @@ Kezdeti közösségi kiadás</string>
   <string name="emergency_infotext_head">Felkészült vészhelyzeti esetekre?</string>
   <string name="emergency_infotext_main">Gondolkozott már azon, hogy mi történne, ha nem tudna többé a jelszó adatbázisához hozzáférni? Mi történik, ha baleset éri? Hasznos lehet vészhelyzet esetére a főkulcsot (jelszó) megosztani egy olyan személlyel, akiben megbízik. Különben senki sem fog tudni hozzáférni a jelszavaihoz.</string>
   <string name="no_secure_display">A jelenleg használt kijelző nincs biztonságosként megjelölve, ami azt jelenti, hogy más alkalmazások képernyőképeket készíthetnek. A Keepass2Android jelenlegi beállítása csak biztonságos képernyőkön engedélyezi érzékeny információ megjelenítését. Kérjük, váltson át egy biztonságos kijelzőre (például válassza le a HDMI monitort) vagy módosítsa az alkalmazás-beállításokat.</string>
+  <string name="AutofillWarning_title">Biztonsági figyelmeztetés: ismeretlen internettartomány/alkalmazás kapcsolat</string>
+  <string name="AutofillWarning_Intro">A(z) \"%1$s\" tartományhoz tartozó azonosítókat készül a(z) \"%2$s\" alkalmazás számára elérhetővé tenni.</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Ha megbízik abban, hogy a(z) \"%1$s\" tartomány a(z) \"%2$s\" alkalmazáshoz tartozik, vagy megbízik abban, hogy az alkalmazás nem él vissza a titkos adatokkal (mert például egy megbízható böngészőprogram), folytassa.  Ha nem, szakítsa meg a folyamatot.</string>
 </resources>

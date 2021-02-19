@@ -112,7 +112,7 @@
   <string name="entry_keyfile">Fişierul cheie (opţional)</string>
   <string name="keyfile_heading">Fişier cheie</string>
   <string name="entry_modified">Modificat</string>
-  <string name="entry_password">Parola</string>
+  <string name="entry_password">Parolă</string>
   <string name="entry_save">Salvează</string>
   <string name="entry_title">Nume</string>
   <string name="entry_url">URL</string>
@@ -148,7 +148,7 @@
   <string name="hint_keyfile">fişier cheie</string>
   <string name="hint_length">lungime</string>
   <string name="hint_pass">parola</string>
-  <string name="hint_login_pass">Parola</string>
+  <string name="hint_login_pass">Parolă</string>
   <string name="hint_title">nume</string>
   <string name="hint_url">URL</string>
   <string name="hint_override_url">suprascrie URL-ul</string>
@@ -698,7 +698,7 @@ Versiunea publică iniţială
     <item>Password + Key file + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
-    <item>Parola</item>
+    <item>Parolă</item>
     <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">

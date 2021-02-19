@@ -102,7 +102,7 @@
   <string name="entry_modified">معدل</string>
   <string name="entry_password">كلمة السر</string>
   <string name="entry_save">حفظ</string>
-  <string name="entry_title">الإسم</string>
+  <string name="entry_title">الاسم</string>
   <string name="entry_url">الرابط</string>
   <string name="entry_user_name">اسم المستخدم</string>
   <string name="entry_extra_strings">حقول النص الإضافية</string>
@@ -495,7 +495,7 @@
   <string name="DefaultTemplate">قيد إعتيادي</string>
   <string name="TemplateGroupName">قوالب</string>
   <string name="TemplateTitle_IdCard">بطاقة التعريف/الهوية</string>
-  <string name="TemplateField_IdCard_Name">الإسم</string>
+  <string name="TemplateField_IdCard_Name">الاسم</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">مكان الإصدار</string>
   <string name="TemplateField_IdCard_IssueDate">تاريخ الصّدور</string>
   <string name="TemplateTitle_EMail">البريد الإلكتروني</string>

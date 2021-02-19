@@ -176,7 +176,7 @@
   <string name="remove_from_filelist">Fjern</string>
   <string name="edit">Rediger</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Rot</string>
+  <string name="root">Toppnivå</string>
   <string name="KeyDerivFunc">Nøkkelavledningsfunksjon</string>
   <string name="rounds">Krypteringsomganger</string>
   <string name="rounds_explaination">Flere krypteringsomganger gir bedre beskyttelse mot rå-makt-angrep, men kan også gjøre lasting og lagring mye tregere.</string>
