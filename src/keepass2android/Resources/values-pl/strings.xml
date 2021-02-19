@@ -911,6 +911,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string-array name="design_options">
     <item>Jasny</item>
     <item>Ciemny</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
