@@ -888,6 +888,7 @@ Première version publique</string>
   <string-array name="design_options">
     <item>Clair</item>
     <item>Sombre</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Thème</string>
   <string-array name="ftp_encryption_modes">
