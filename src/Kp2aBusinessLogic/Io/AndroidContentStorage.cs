@@ -262,13 +262,13 @@ namespace keepass2android.Io
 						return false; //seems like this is not supported. See below for reasoning to return false.
 					int flags = cursor.GetInt(column);
 					Kp2aLog.Log("File flags: " + flags);
-					if ((flags & (long) DocumentContractFlags.SupportsWrite) == 0)
+					/*if ((flags & (long) DocumentContractFlags.SupportsWrite) == 0)
 					{
 						if (reason != null)
 							reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
 						return true;
 					}
-					else return false;
+					else */return false;
 				}
 				else return false;
 			}
