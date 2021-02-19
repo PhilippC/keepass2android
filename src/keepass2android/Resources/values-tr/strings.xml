@@ -941,6 +941,7 @@
   <string-array name="design_options">
     <item>Aydınlık</item>
     <item>Karanlık</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Dizayn</string>
   <string-array name="ftp_encryption_modes">
