@@ -846,6 +846,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string-array name="design_options">
     <item>Vaalea</item>
     <item>Tumma</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Ulkoasu</string>
   <string-array name="ftp_encryption_modes">
