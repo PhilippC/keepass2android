@@ -680,6 +680,7 @@ Versiunea publică iniţială
   <string-array name="design_options">
     <item>Luminoasă</item>
     <item>Întunecată</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="cred_remember_modes">
