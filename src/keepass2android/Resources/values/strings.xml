@@ -1198,6 +1198,7 @@ Initial public release
 	<string-array name="design_options">
 		<item>Light</item>
 		<item>Dark</item>
+    <item>System settings</item>
 	</string-array>
 
 	<string name="design_title">Design</string>

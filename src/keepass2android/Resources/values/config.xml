@@ -177,10 +177,11 @@
     	<item>28</item>
     </string-array>
 
-	<string name="design_default">Light</string>
+	<string name="design_default">System</string>
 	<string-array name="design_values">
 		<item>Light</item>
 		<item>Dark</item>
+    <item>System</item>
 	</string-array>
 	
 	<string name="AcceptAllServerCertificates_default">WARN</string>
