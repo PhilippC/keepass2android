@@ -931,6 +931,7 @@ Initial public release
   <string-array name="design_options">
     <item>Ανοιχτό</item>
     <item>Σκοτεινό</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Σχεδιασμός</string>
   <string-array name="ftp_encryption_modes">
