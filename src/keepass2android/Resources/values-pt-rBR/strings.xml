@@ -61,7 +61,7 @@
   <string name="brackets">Parênteses</string>
   <string name="cancel">Cancelar</string>
   <string name="Ok">Ok</string>
-  <string name="disable_sensor">Ativar sensor de impressão digital</string>
+  <string name="disable_sensor">Desativar sensor</string>
   <string name="enable_sensor">Ativar sensor de impressão digital</string>
   <string name="ClearClipboard">Área de transferência limpa.</string>
   <string name="clipboard_timeout">Limite de tempo para a área de transferência</string>
@@ -974,4 +974,7 @@ Lançamento público inicial
   <string name="emergency_infotext_head">Está preparado para casos de emergência?</string>
   <string name="emergency_infotext_main">Já pensou o que acontece se você não for capaz de acessar seu banco de dados de senhas? Se você tiver um acidente? É uma boa prática transmitir sua chave mestra para uma pessoa de confiança para casos de emergência. Caso contrário, ninguém terá acesso a suas senhas.</string>
   <string name="no_secure_display">A tela válida atualmente não está marcada como segura. Isto significa que capturas de tela podem ser feitas por outros apps. Keepass2Android está configurado para exibir informações confidenciais somente em telas seguras. Por favor, altere para uma tela segura (por exemplo, desconectando um monitor HDMI) ou altere as configurações do aplicativo.</string>
+  <string name="disable_secure_screen_check">Desativar esta mensagem</string>
+  <string name="switch_ime_text">Por favor, ative o teclado Keepass2Android.</string>
+  <string name="switch_ime_reopen">Tentar novamente</string>
 </resources>
