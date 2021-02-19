@@ -802,6 +802,7 @@ Prvotna javna verzija  </string>
   <string-array name="design_options">
     <item>Svjetlo</item>
     <item>Tamno</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Dizajn</string>
   <string-array name="ftp_encryption_modes">

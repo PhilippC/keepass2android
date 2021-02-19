@@ -648,6 +648,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string-array name="design_options">
     <item>روشن</item>
     <item>تیره</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">پوسته</string>
   <string-array name="ftp_encryption_modes">

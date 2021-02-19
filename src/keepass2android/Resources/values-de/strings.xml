@@ -815,7 +815,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 		* Problem mit Google Drive behoben \n
 		* Schlüsseldateien können auf beliebigen Speicherorten abgelegt werden\n
 		* Dropbox-SDK aktualisiert, um offiziellen Sicherheitspatch zu integrieren\n
-		* Build-Tools aktualisiert -> APK-Größe leider gewachsen, sorry :-(\n
+		* Build-Tools aktualisiert -&gt; APK-Größe leider gewachsen, sorry :-(\n
 		Ich hatte noch weitere Änderungen versprochen. Diese kommen mit dem nächsten Release, dieses muss wegen aktueller Probleme so früh wie möglich veröffentlicht werden.</string>
   <string name="ChangeLog_0_9_4"><b>Version 0.9.4</b> \n
 		* Plugin-Unterstützung hinzugefügt: siehe Einstellungen, um Plugins zu bekommen! \n
@@ -943,7 +943,7 @@ Erstes öffentliches Release</string>
   <string-array name="design_options">
     <item>Hell</item>
     <item>Dunkel</item>
-    <item>Wie System</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">

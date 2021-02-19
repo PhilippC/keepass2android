@@ -948,6 +948,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string-array name="design_options">
     <item>ライト</item>
     <item>ダーク</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">デザイン</string>
   <string-array name="ftp_encryption_modes">

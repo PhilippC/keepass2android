@@ -644,6 +644,7 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   <string-array name="design_options">
     <item>Lyst</item>
     <item>Mørkt</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Utseende</string>
   <string-array name="ftp_encryption_modes">
