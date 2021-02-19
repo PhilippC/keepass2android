@@ -1981,8 +1981,18 @@ namespace keepass2android
 			}
 		}
 		
-		private void InitializeFilenameView() {
-			SetEditText(Resource.Id.filename, App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection));
+		private void InitializeFilenameView()
+        {
+            string filenameToShow = _ioConnection.Path;
+            try
+            {
+                filenameToShow = App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection);
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+			SetEditText(Resource.Id.filename, filenameToShow);
 						
 		}
 

@@ -44,7 +44,7 @@
     <string name="afc_pmsg_filename_is_invalid">שם הקובץ \'%1$ s\' אינו חוקי</string>
     <string name="afc_pmsg_max_file_count_allowed">...מכיל עוד קבצים, מקסימום מותר: %1$, d</string>
     <string name="afc_pmsg_unknown_error">שגיאה לא ידועה: %1$ s</string>
-    <string name="afc_root">Root</string>
+    <string name="afc_root">שורש</string>
     <string name="afc_title_advanced_selection">בחר...</string>
     <string name="afc_title_confirmation">אישור</string>
     <string name="afc_title_date">תאריך</string>

@@ -115,7 +115,7 @@
   <string name="entry_modified">Змінено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Зберегти</string>
-  <string name="entry_title">Назва</string>
+  <string name="entry_title">Ім’я</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
@@ -269,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Показувати ім\'я користувача під назвою запису в списку. Корисно для декількох облікових записів або TAN.</string>
   <string name="RememberRecentFiles_title">Пам\'ятати бази даних</string>
   <string name="RememberRecentFiles_summary">Пам\'ятати недавно відкриті бази даних і відображати їх на екрані відкриття бази даних.</string>
+  <string name="NoDalVerification_title">Немає DAL перевірки</string>
+  <string name="NoDalVerification_summary">Вимкнення перевірки, якщо збігаються домен і пакунок програми</string>
   <string name="kp2a_findUrl">Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
   <string name="search_options">Параметри</string>
@@ -570,7 +572,7 @@
   <string name="DefaultTemplate">Стандартний запис</string>
   <string name="TemplateGroupName">Шаблони</string>
   <string name="TemplateTitle_IdCard">ID карта</string>
-  <string name="TemplateField_IdCard_Name">Назва</string>
+  <string name="TemplateField_IdCard_Name">Ім’я</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Місце видачі</string>
   <string name="TemplateField_IdCard_IssueDate">Дата випуску</string>
   <string name="TemplateTitle_EMail">Електронна пошта</string>
@@ -635,6 +637,16 @@
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Додано підтримку нових форматів ключових файлів, впровадженій в Keepass 2.47</item>
+    <item>Додано підтримку для Argon2id як функції формування ключа</item>
+    <item>Поліпшено сумісність автозаповнення з Firefox і Chrome</item>
+    <item>Вдосконалено підтримку записів TOTP з комп\'ютерних програм</item>
+    <item>Оновлено pCloud SDK для виправлення проблеми автентифікації</item>
+    <item>Оновлення Jsch до версії 0.1.55</item>
+    <item>Додано меню на екрані розділу бази даних</item>
+    <item>Дозволити експортування імпортованих файлів ключів</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Не зберігати назви пакунків у полі URL-адрес для застосунків Android</item>
     <item>Вдосконалено поведінку блокування — біометричний запит більше не з\'являється одразу після розблокування</item>
@@ -948,6 +960,7 @@ Initial public release
   <string-array name="design_options">
     <item>Світла</item>
     <item>Темна</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Тема</string>
   <string-array name="ftp_encryption_modes">
@@ -1001,6 +1014,7 @@ Initial public release
   <string name="emergency_infotext_head">Ви готові до непередбачуваних випадків?</string>
   <string name="emergency_infotext_main">Ви коли-небудь думали про те, що станеться, якщо ви втратите доступ до вашої бази паролів? Що, як сталась непередбачувана подія? Завжди добре, щоб довірена людина мала доступ до вашого головного пароля. Інакше, ніхто не зможе отримати доступ до вашої бази паролів в надзвичайній ситуації.</string>
   <string name="no_secure_display">Поточний екран не вважається безпечним. Це означає, що інші додатки можуть робити знімки екрану. Keepass2Android налаштований показувати вразливу інформацію лише на безпечних екранах. Будь ласка, перемкніться на безпечний екран (наприклад, вимкнувши HDMI-монітор), або змініть налаштування додатка.</string>
+  <string name="disable_secure_screen_check">Вимкнути це повідомлення</string>
   <string name="switch_ime_text">Будь ласка, активуйте клавіатуру Keepass2Android.</string>
   <string name="switch_ime_reopen">Повторити</string>
   <string name="AutofillWarning_title">Попередження безпеки: Нерозпізнане посилання домену/програми</string>

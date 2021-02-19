@@ -44,7 +44,7 @@
     <string name="afc_pmsg_filename_is_invalid">檔案名稱\"%1$s\"不正確</string>
     <string name="afc_pmsg_max_file_count_allowed">…有更多檔案，最多允許：%1$,d</string>
     <string name="afc_pmsg_unknown_error">未知的錯誤: %1$s</string>
-    <string name="afc_root">根目錄</string>
+    <string name="afc_root">Root</string>
     <string name="afc_title_advanced_selection">請選擇...</string>
     <string name="afc_title_confirmation">確認</string>
     <string name="afc_title_date">日期</string>

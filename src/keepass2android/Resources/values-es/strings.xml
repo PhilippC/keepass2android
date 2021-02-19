@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Algoritmo</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="app_name_nonet">Keepass2Android Offline (fuera de línea)</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Tiempo de espera de la aplicación</string>
   <string name="app_timeout_summary">Tiempo antes de bloquear la base de datos cuando la aplicación está inactiva.</string>
@@ -936,6 +936,7 @@ Publicación inicial</string>
   <string-array name="design_options">
     <item>Claro</item>
     <item>Oscuro</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Diseño</string>
   <string-array name="ftp_encryption_modes">

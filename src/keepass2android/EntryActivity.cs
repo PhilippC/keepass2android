@@ -1179,7 +1179,13 @@ namespace keepass2android
 			{
 				case Resource.Id.menu_donate:
 					return Util.GotoDonateUrl(this);
-                case Resource.Id.menu_delete:
+                case Resource.Id.menu_move:
+					var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, Entry.ParentGroup, new List<PwUuid>() {Entry.Uuid}, false);
+                    AppTask = navMove;
+					navMove.SetActivityResult(this, Result.Ok);
+                    Finish();
+                    return true;
+				case Resource.Id.menu_delete:
                     DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
                         new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();

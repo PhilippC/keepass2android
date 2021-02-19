@@ -912,6 +912,7 @@ Revisió inicial per al públic
   <string-array name="design_options">
     <item>Clar</item>
     <item>Fosc</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Disseny</string>
   <string-array name="ftp_encryption_modes">

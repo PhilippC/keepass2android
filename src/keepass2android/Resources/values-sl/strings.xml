@@ -215,7 +215,7 @@
   <string name="remove_from_filelist">Odstrani</string>
   <string name="edit">Uredi</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Korenska mapa</string>
+  <string name="root">Koren</string>
   <string name="AutoReturnFromQuery_title">Samodejno se vrnite iz povpraševalnega dela</string>
   <string name="AutoReturnFromQuery_summary">Če iščete vnos za aplikacijo in spletno stran: samodejno se vrni z povpraševalnega zaslona, če obstaja samo en zapis v bazi podatkov.</string>
   <string name="KeyDerivFunc">Funkcija za izpeljavo ključa</string>
@@ -951,6 +951,7 @@ Začetna javna izdaja
   <string-array name="design_options">
     <item>Svetla</item>
     <item>Temna</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Tema</string>
   <string-array name="ftp_encryption_modes">

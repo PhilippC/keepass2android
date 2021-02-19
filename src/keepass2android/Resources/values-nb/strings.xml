@@ -176,7 +176,7 @@
   <string name="remove_from_filelist">Fjern</string>
   <string name="edit">Rediger</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Rot</string>
+  <string name="root">Toppnivå</string>
   <string name="KeyDerivFunc">Nøkkelavledningsfunksjon</string>
   <string name="rounds">Krypteringsomganger</string>
   <string name="rounds_explaination">Flere krypteringsomganger gir bedre beskyttelse mot rå-makt-angrep, men kan også gjøre lasting og lagring mye tregere.</string>
@@ -644,6 +644,7 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   <string-array name="design_options">
     <item>Lyst</item>
     <item>Mørkt</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Utseende</string>
   <string-array name="ftp_encryption_modes">

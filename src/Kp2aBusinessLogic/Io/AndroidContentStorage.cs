@@ -249,28 +249,11 @@ namespace keepass2android.Io
 						reason.Result = UiStringKey.ReadOnlyReason_PreKitKat;
 					return true;
 				}
-				
 
-				//KitKat or later...
-				var uri = Android.Net.Uri.Parse(ioc.Path);
-				cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
-
-				if (cursor != null && cursor.MoveToFirst())
-				{
-					int column = cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags);
-					if (column < 0)
-						return false; //seems like this is not supported. See below for reasoning to return false.
-					int flags = cursor.GetInt(column);
-					Kp2aLog.Log("File flags: " + flags);
-					if ((flags & (long) DocumentContractFlags.SupportsWrite) == 0)
-					{
-						if (reason != null)
-							reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
-						return true;
-					}
-					else return false;
-				}
-				else return false;
+				//in previous implementations, we were checking for FLAG_SUPPORTS_WRITE in the document flags,
+				//but it seems like this is very poorly supported, e.g. Dropbox and OneDrive return !FLAG_SUPPORTS_WRITE
+				//even though writing work.
+				return false;
 			}
 			catch (Exception e)
 			{

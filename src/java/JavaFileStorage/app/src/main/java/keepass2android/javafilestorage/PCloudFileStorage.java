@@ -255,7 +255,11 @@ public class PCloudFileStorage extends JavaFileStorageBase
         } else {
             Activity castedActivity = (Activity)activity;
             Intent resultData = new Intent();
-            resultData.putExtra(EXTRA_ERROR_MESSAGE, "Authentication failed.");
+            resultData.putExtra(EXTRA_ERROR_MESSAGE, "Authentication failed!");
+
+            //reset any stored token in case we have an invalid one
+            clearAuthToken();
+
             castedActivity.setResult(Activity.RESULT_CANCELED, resultData);
             castedActivity.finish();
         }

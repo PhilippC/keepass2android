@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Algoritmi</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="app_name_nonet">Keepass2Android offline-tila</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Aika-katkaisu</string>
   <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
@@ -191,7 +191,7 @@
   <string name="remove_from_filelist">Poista</string>
   <string name="edit">Muokkaa</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Juurihakemisto</string>
+  <string name="root">Juuri</string>
   <string name="AutoReturnFromQuery_title">Palaa automaattisesti kyselyikkunasta</string>
   <string name="AutoReturnFromQuery_summary">Haettaessa merkintää sovellukselle tai sivustolle: palaa automaattisesti kyselyikkunasta jos tietokannasta löytyy vain yksi osuma.</string>
   <string name="KeyDerivFunc">Avaimenjohtamisfunktio</string>
@@ -846,6 +846,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string-array name="design_options">
     <item>Vaalea</item>
     <item>Tumma</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Ulkoasu</string>
   <string-array name="ftp_encryption_modes">

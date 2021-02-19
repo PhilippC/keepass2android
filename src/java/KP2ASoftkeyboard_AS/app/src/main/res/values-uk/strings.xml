@@ -21,23 +21,23 @@
     <!-- Title for Latin keyboard  -->
     <string name="english_ime_name">Клавіатура Keepass2Android</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">Налашт-ня клавіат. Keepass2Android</string>
+    <string name="english_ime_settings">Налаштування клавіатури Android</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">Парам. введення</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
-    <string name="vibrate_on_keypress">Вібр при натиску клав.</string>
+    <string name="vibrate_on_keypress">Вібрація клавіатури</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
-    <string name="sound_on_keypress">Звук при натиску клав.</string>
+    <string name="sound_on_keypress">Звук клавіатури</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
     <string name="popup_on_keypress">Сплив. при нат.клав.</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
-    <string name="hit_correction">Виправ. помилки вводу</string>
+    <string name="hit_correction">Виправляти помилки</string>
     <!-- Description for hit_correction  -->
-    <string name="hit_correction_summary">Увімкн. виправл. помилок вводу</string>
+    <string name="hit_correction_summary">Виправлення помилок введення</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
-    <string name="hit_correction_land">Помилки альбомного вводу</string>
+    <string name="hit_correction_land">Помилки при введенні в альбомному режимі</string>
     <!-- Description for hit_correction in landscape -->
-    <string name="hit_correction_land_summary">Увімкн. виправл. помилок вводу</string>
+    <string name="hit_correction_land_summary">Виправлення помилок введення</string>
     <!-- Option to automatically correct word on hitting space -->
     <string name="auto_correction">Пропозиції слів</string>
     <!-- Description for auto_correction -->
@@ -47,39 +47,39 @@
     <!-- Category title for text prediction -->
     <string name="prediction_category">Налашт-ня пропозицій слів</string>
     <!-- Description for text prediction -->
-    <string name="prediction_summary">Увімкн. автозаповнення при вводі</string>
+    <string name="prediction_summary">Автозавершення при введенні</string>
     <!-- Dialog title for auto complete choices -->
-    <string name="auto_complete_dialog_title">Автозаповнення</string>
+    <string name="auto_complete_dialog_title">Автозавершення</string>
     <!-- Option to enable text prediction in landscape -->
-    <string name="prediction_landscape">Збільш. розмір текст. поля</string>
+    <string name="prediction_landscape">Збільшити розмір текстового поля</string>
     <!-- Description for text prediction -->
-    <string name="prediction_landscape_summary">Сховати пропозиції слів в альбом. режимі</string>
+    <string name="prediction_landscape_summary">Приховати пропозиції слів в альбомному режимі</string>
     <!-- Option to enable auto capitalization of sentences -->
-    <string name="auto_cap">Авто викор. вел. літер</string>
+    <string name="auto_cap">Великі літери автоматично</string>
     <!-- Description for auto cap -->
-    <string name="auto_cap_summary">Поч. писати речення з великої літери</string>
+    <string name="auto_cap_summary">Велика літера початку речення</string>
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">Авто пунктуація</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
-    <string name="quick_fixes">Шв. виправлення</string>
+    <string name="quick_fixes">Швидке виправлення</string>
     <!-- Description for quick fixes -->
     <string name="quick_fixes_summary">Виправляє поширені помилки</string>
     <!-- Option to enable showing suggestions -->
-    <string name="show_suggestions">Показати пропозиції</string>
+    <string name="show_suggestions">Показувати пропозиції</string>
     <!-- Description for show suggestions -->
-    <string name="show_suggestions_summary">Відображати при вводі пропоновані слова</string>
+    <string name="show_suggestions_summary">Показувати пропозиції слів при введенні</string>
     <!-- Option to enable auto completion -->
-    <string name="auto_complete">Автозаповнення</string>
+    <string name="auto_complete">Автозавершення</string>
     <!-- Description for auto completion -->
-    <string name="auto_complete_summary">Пробіл і пунктуація автоматично вставляє виділене слово</string>
+    <string name="auto_complete_summary">Пробіл і пунктуація автоматично вставляє позначене слово</string>
     <!-- Option to show/hide the settings key -->
-    <string name="prefs_settings_key">Показ. клав. налашт.</string>
+    <string name="prefs_settings_key">Клавіша налаштувань</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
     <string name="settings_key_mode_auto_name">Автоматично</string>
     <!-- Option to always show the settings key -->
-    <string name="settings_key_mode_always_show_name">Завжди показ.</string>
+    <string name="settings_key_mode_always_show_name">Завжди показувати</string>
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Завжди ховати</string>
     <!-- Array of the settings key modes -->
@@ -89,14 +89,14 @@
         <item>@string/settings_key_mode_always_hide_name</item>
     </string-array>
     <!-- Option to enable bigram completion -->
-    <string name="bigram_suggestion">Двобуквені пропозиції</string>
+    <string name="bigram_suggestion">Біграмні пропозиції</string>
     <!-- Description for auto completion -->
-    <string name="bigram_suggestion_summary">Викор. попер. слово для покращ. пропозиції</string>
+    <string name="bigram_suggestion_summary">Використовуйте попереднє слово для поліпшення пропозиції</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>Нічого</item>
-        <item>Базовий</item>
-        <item>Розшир.</item>
+        <item>Основний</item>
+        <item>Розширений</item>
     </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
@@ -134,7 +134,7 @@
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <string name="label_done_key">Виконано</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
-    <string name="label_send_key">Надісл.</string>
+    <string name="label_send_key">Надіслати</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
@@ -146,7 +146,7 @@
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
-    <string name="voice_warning_title">Голос. ввід</string>
+    <string name="voice_warning_title">Голосове введення</string>
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
@@ -163,7 +163,7 @@
     <!-- Short message to tell the user the system is ready for them to speak. -->
     <string name="voice_listening">Диктуйте</string>
     <!-- Short message shown after the user finishes speaking. -->
-    <string name="voice_working">Працює</string>
+    <string name="voice_working">Обробка</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
     <string name="voice_error">Помилка. Спробуйте ще раз.</string>
@@ -192,7 +192,7 @@
     <!-- Label on button when an error occurs -->
     <string name="ok">Гаразд</string>
     <!-- Preferences item for enabling speech input -->
-    <string name="voice_input">Голос. ввід</string>
+    <string name="voice_input">Голосове введення</string>
     <!-- Array of Voice Input modes -->
     <string-array name="voice_input_modes">
         <item>На осн. клавіатурі</item>

@@ -224,7 +224,7 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>键盘设置\n</b></font><font size="3">\n</font>触摸 \u0026 按住 <b>\?123\</b> 键。</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
-    <string name="popular_domain_0">"com"</string>
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
     <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->

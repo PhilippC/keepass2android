@@ -950,6 +950,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string-array name="design_options">
     <item>밝은 테마</item>
     <item>어두운 테마</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">디자인</string>
   <string-array name="ftp_encryption_modes">

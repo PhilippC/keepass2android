@@ -427,6 +427,7 @@
   <string-array name="design_options">
     <item>Argia</item>
     <item>Iluna</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Diseinua</string>
   <string-array name="ftp_encryption_modes">

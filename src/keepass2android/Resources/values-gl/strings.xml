@@ -201,7 +201,7 @@
   <string name="remove_from_filelist">Eliminar</string>
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Raíz</string>
+  <string name="root">Root</string>
   <string name="KeyDerivFunc">Función de derivación de claves</string>
   <string name="rounds">Series de encriptación</string>
   <string name="rounds_explaination">Maior nivel de encriptación proporciona unha protección adicional contra ataques de forza bruta, pero pode retardar a carga e o gardado.</string>
@@ -806,6 +806,7 @@ Lanzamento público inicial
   <string-array name="design_options">
     <item>Claro</item>
     <item>Escuro</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Deseño</string>
   <string-array name="ftp_encryption_modes">

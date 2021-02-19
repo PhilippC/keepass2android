@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrické odemknutí</string>
   <string name="import_db_prefs">Import databáze do vnitřní složky</string>
   <string name="import_keyfile_prefs">Importovat soubor s klíčem do vnitřní složky</string>
+  <string name="export_keyfile_prefs">Exportovat soubor klíče z interní složky</string>
   <string name="keyboardswitch_prefs">Přepínání klávesnice</string>
   <string name="OnlyAvailableForLocalFiles">K dispozici pouze pro místní soubory.</string>
   <string name="FileIsInInternalDirectory">Soubor je uložen ve vnitřním adresáři.</string>
@@ -114,7 +115,7 @@
   <string name="entry_modified">Změněno</string>
   <string name="entry_password">Heslo</string>
   <string name="entry_save">Uložit</string>
-  <string name="entry_title">Název</string>
+  <string name="entry_title">Jméno</string>
   <string name="entry_url">Adresa URL</string>
   <string name="entry_user_name">Uživatelské jméno</string>
   <string name="entry_extra_strings">Doplňková textová pole</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Ukládám databázi…</string>
   <string name="exporting_database">Exportování databáze…</string>
   <string name="export_database_successful">Databáze byla úspěšně exportována!</string>
+  <string name="export_keyfile_successful">Soubor s klíčem úspěšně exportován!</string>
   <string name="space">Mezera</string>
   <string name="search_label">Hledat</string>
   <string name="show_password">Zobrazit heslo</string>
@@ -267,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Zobrazovat uživatelská jména pod názvy položek. Užitečné pro vícenásobné účty nebo TANy.</string>
   <string name="RememberRecentFiles_title">Zapamatovat databáze</string>
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
+  <string name="NoDalVerification_title">Žádné ověření DAL</string>
+  <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
   <string name="search_options">Možnosti</string>
@@ -568,7 +572,7 @@
   <string name="DefaultTemplate">Standardní položka</string>
   <string name="TemplateGroupName">Šablony</string>
   <string name="TemplateTitle_IdCard">Identifikační karta</string>
-  <string name="TemplateField_IdCard_Name">Název</string>
+  <string name="TemplateField_IdCard_Name">Jméno</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Místo vydání</string>
   <string name="TemplateField_IdCard_IssueDate">Datum vydání</string>
   <string name="TemplateTitle_EMail">E-Mail</string>
@@ -632,6 +636,16 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Přidání podpory pro nový souborový formát klíče představený v Keepass 2.47</item>
+    <item>Přidána podpora pro Argon2id jako funkci pro odvození klíče</item>
+    <item>Vylepšená kompatibilita automatického vyplňování s Firefoxem a Chrome</item>
+    <item>Zlepšení podpory pro TOTP záznamy z desktopových programů.</item>
+    <item>Upgrade pCloud SDK kvůli opravě problému s autentizací</item>
+    <item>Update Jsch na verzi 0.1.55</item>
+    <item>Přidáno menu na obrazovku volby databáze.</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
     <item>Vylepšení chování zamykání - již se nezobrazuje výzva pro biometrické ověření těsně po odemčení</item>
@@ -935,6 +949,7 @@ První veřejné vydání
   <string-array name="design_options">
     <item>Světlý</item>
     <item>Tmavý</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Vzhled</string>
   <string-array name="ftp_encryption_modes">

@@ -196,7 +196,7 @@
   <string name="remove_from_filelist">Fjern</string>
   <string name="edit">Redigér</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Root</string>
+  <string name="root">Rod</string>
   <string name="AutoReturnFromQuery_title">Returnér automatisk fra forespørgselsskærmen</string>
   <string name="AutoReturnFromQuery_summary">Ved opslag af en post til en app eller et websted: Returnér automatisk fra forespørgselsskærmen, hvis der kun er én matchende post i databasen.</string>
   <string name="KeyDerivFunc">Nøgleafledningsfunktion</string>
@@ -789,6 +789,7 @@
   <string-array name="design_options">
     <item>Lys</item>
     <item>Mørk</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">

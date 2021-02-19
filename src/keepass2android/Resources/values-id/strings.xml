@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Algoritma</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Luring</string>
+  <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Luring</string>
   <string name="show_kill_app">Tombol-Tutup</string>
   <string name="ShowGroupnameInSearchResult_title">Tampilkan nama grup dalam hasil pencarian</string>
@@ -83,7 +83,7 @@
   <string name="entry_keyfile">Berkas kunci (opsional)</string>
   <string name="keyfile_heading">Berkas kunci</string>
   <string name="entry_modified">Diubah</string>
-  <string name="entry_password">Sandi</string>
+  <string name="entry_password">Kata kunci</string>
   <string name="entry_save">Simpan</string>
   <string name="entry_title">Nama</string>
   <string name="entry_url">URL</string>
@@ -117,7 +117,7 @@
   <string name="hint_keyfile">berkas kunci</string>
   <string name="hint_length">panjang</string>
   <string name="hint_pass">sandi</string>
-  <string name="hint_login_pass">Sandi</string>
+  <string name="hint_login_pass">Kata kunci</string>
   <string name="hint_title">nama</string>
   <string name="hint_url">URL</string>
   <string name="hint_tags">tag1, tag2</string>
@@ -737,6 +737,7 @@ Rilis publik awal  </string>
   <string-array name="design_options">
     <item>Terang</item>
     <item>Gelap</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Desain</string>
   <string-array name="ftp_encryption_modes">
@@ -760,7 +761,7 @@ Rilis publik awal  </string>
     <item>Password + Key file + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
-    <item>Sandi</item>
+    <item>Kata kunci</item>
     <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
