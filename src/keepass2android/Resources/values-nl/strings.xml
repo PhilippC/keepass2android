@@ -960,6 +960,7 @@ Eerste publieke publicatie
   <string-array name="design_options">
     <item>Licht</item>
     <item>Donker</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Ontwerp</string>
   <string-array name="ftp_encryption_modes">
