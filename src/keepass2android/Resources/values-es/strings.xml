@@ -936,6 +936,7 @@ Publicación inicial</string>
   <string-array name="design_options">
     <item>Claro</item>
     <item>Oscuro</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Diseño</string>
   <string-array name="ftp_encryption_modes">
