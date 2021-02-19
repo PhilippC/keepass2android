@@ -651,6 +651,7 @@ Bản phát hành chính thức đầu tiên</string>
   <string-array name="design_options">
     <item>Sáng</item>
     <item>Tối</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Thiết kế</string>
   <string-array name="ftp_encryption_modes">
