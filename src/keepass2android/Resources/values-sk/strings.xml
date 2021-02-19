@@ -946,6 +946,7 @@ Prvé verejné vydanie
   <string-array name="design_options">
     <item>Svetlá</item>
     <item>Tmavá</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Dizajn</string>
   <string-array name="ftp_encryption_modes">
