@@ -35,7 +35,23 @@ namespace keepass2android
     public class SelectCurrentDbActivity : LifecycleAwareActivity
     {
         private int ReqCodeOpenNewDb = 1;
-        
+
+        private static bool IsValidIoc(AutoExecItem item)
+        {
+            IOConnectionInfo itemIoc;
+            if (!KeeAutoExecExt.TryGetDatabaseIoc(item, out itemIoc))
+                return false;
+            try
+            {
+                //see if we have a file storage for the given protocol
+                App.Kp2a.GetFileStorage(itemIoc);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public class OpenDatabaseAdapter : BaseAdapter
         {
@@ -164,9 +180,15 @@ namespace keepass2android
                             IOConnectionInfo itemIoc;
                             return KeeAutoExecExt.TryGetDatabaseIoc(item, out itemIoc) &&
                                    displayedDb.Ioc.IsSameFileAs(itemIoc);
-                        }))
+                        })
+                        && IsValidIoc(item)
+                        
+                        )
+
                     .ToList();
             }
+
+            
         }
 
         private void OnAutoExecItemSelected(AutoExecItem autoExecItem)
@@ -438,6 +460,9 @@ namespace keepass2android
                         continue;
                     if (!KeeAutoExecExt.IsDeviceEnabled(autoOpenItem, thisDevice, out _))
                         continue;
+                    if (!IsValidIoc(autoOpenItem))
+                        continue;
+                    
                     IOConnectionInfo dbIoc;
                     if (KeeAutoExecExt.TryGetDatabaseIoc(autoOpenItem, out dbIoc) &&
                         App.Kp2a.TryGetDatabase(dbIoc) == null &&
