@@ -951,7 +951,7 @@ Začetna javna izdaja
   <string-array name="design_options">
     <item>Svetla</item>
     <item>Temna</item>
-    <item>System settings</item>
+    <item>Sistemske nastavitve</item>
   </string-array>
   <string name="design_title">Tema</string>
   <string-array name="ftp_encryption_modes">
