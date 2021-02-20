@@ -969,7 +969,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + チャレンジ/レスポンス</item>
     <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
     <item>KeePassXC のパスワード + チャレンジ/レスポンス</item>
-    <item>Keepass XC のパスワード + キーファイル + チャレンジレスポンス</item>
+    <item>KeePassXC のパスワード + キーファイル + チャレンジレスポンス</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
