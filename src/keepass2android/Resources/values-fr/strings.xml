@@ -269,6 +269,7 @@
   <string name="ShowUsernameInList_summary">Afficher les noms d\'utilisateurs sous les titres des entrées. Utile si vous avez plusieurs comptes ou des TANs.</string>
   <string name="RememberRecentFiles_title">Se souvenir des bases de données</string>
   <string name="RememberRecentFiles_summary">Se souvenir des bases de données récemment ouvertes et les afficher dans l\'écran d\'ouverture de base de données.</string>
+  <string name="NoDalVerification_title">Aucune vérification DAL</string>
   <string name="NoDalVerification_summary">Désactive la vérification si le domaine et le  package d\'application correspondent</string>
   <string name="kp2a_findUrl">Trouver un mot de passe</string>
   <string name="excludeExpiredEntries">Exclure les entrées arrivées à expiration</string>
@@ -888,7 +889,7 @@ Première version publique</string>
   <string-array name="design_options">
     <item>Clair</item>
     <item>Sombre</item>
-    <item>System settings</item>
+    <item>Paramètres Système</item>
   </string-array>
   <string name="design_title">Thème</string>
   <string-array name="ftp_encryption_modes">
