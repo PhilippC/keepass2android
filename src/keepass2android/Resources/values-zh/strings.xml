@@ -953,7 +953,7 @@ Initial public release
   <string-array name="design_options">
     <item>白天模式</item>
     <item>夜间模式</item>
-    <item>System settings</item>
+    <item>系统设置</item>
   </string-array>
   <string name="design_title">设计</string>
   <string-array name="ftp_encryption_modes">
