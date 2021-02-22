@@ -945,7 +945,7 @@
   <string-array name="design_options">
     <item>Светлый</item>
     <item>Тёмный</item>
-    <item>System settings</item>
+    <item>Системные настройки</item>
   </string-array>
   <string name="design_title">Дизайн</string>
   <string-array name="ftp_encryption_modes">
