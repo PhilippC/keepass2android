@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Odblokowywanie biometryczne</string>
   <string name="import_db_prefs">Import bazy danych do wewnętrznego folderu</string>
   <string name="import_keyfile_prefs">Import pliku klucza do folderu wewnętrznego</string>
+  <string name="export_keyfile_prefs">Import pliku klucza do folderu wewnętrznego</string>
   <string name="keyboardswitch_prefs">Przełączanie klawiatury</string>
   <string name="OnlyAvailableForLocalFiles">Dostępne tylko dla plików lokalnych.</string>
   <string name="FileIsInInternalDirectory">Plik jest przechowywany w katalogu wewnętrznym.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Zapisywanie bazy danych…</string>
   <string name="exporting_database">Eksportowanie bazy danych…</string>
   <string name="export_database_successful">Baza danych wyeksportowana pomyślnie!</string>
+  <string name="export_keyfile_successful">Plik klucza został pomyślnie wyeksportowany</string>
   <string name="space">Spacja</string>
   <string name="search_label">Szukaj</string>
   <string name="show_password">Pokaż hasło</string>
@@ -254,6 +256,7 @@
   <string name="author">Keepass2Android jest rozwijany przez Philippa Crocolla.</string>
   <string name="further_authors">Podziękowania za wkład do kodu dla %1$s.</string>
   <string name="designers">Podziękowania dla %1$s za ikony i projekt layoutu.</string>
+  <string name="supporters">Dzięki za wsparcie finansowe %1$s.</string>
   <string name="credit_plugin1">Plugin Twofish Cipher dla Keepass został opracowany przez Scotta Greenberga i jest zawarty w KP2A.</string>
   <string name="credit_android_filechooser">Manager wyboru plików został opracowany przez Hai Bizon</string>
   <string name="credit_keyboard">Klawiatura KP2A bazuje na klawiaturze Gingerbread od Android Open Source Project i korzysta z kodu Menadżera Wtyczek klawiatury Hacker\'s Keyboard autorstwa Klausa Weidnera.</string>
@@ -266,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Wyświetla nazwy użytkowników poniżej tytułów. Przydatne przy wielu kontach lub TAN (hasłach jednorazowych).</string>
   <string name="RememberRecentFiles_title">Zapamiętaj bazę danych</string>
   <string name="RememberRecentFiles_summary">Zapamiętaj ostatnio otwieraną bazę danych i pokazuj ją na ekranie wyboru.</string>
+  <string name="NoDalVerification_title">Brak weryfikacji DAL</string>
+  <string name="NoDalVerification_summary">Wyłącza sprawdzanie zgodności domeny i pakietu aplikacji</string>
   <string name="kp2a_findUrl">Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
   <string name="search_options">Opcje</string>
@@ -632,6 +637,32 @@
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Dodano wsparcie dla nowego formatu pliku klucza wprowadzonego w Keepass 2.47</item>
+    <item>Dodao wsparcie dla Argon2id jako kluczowej funkcji wyprowadzania</item>
+    <item>Poprawiono kompatybilność autouzupełniania z Firefox i Chrome</item>
+    <item>Poprawiono obsługę wpisów TOTP z programów komputerowych</item>
+    <item>Zaktualizuj SDK pCloud ,aby naprawić problem uwierzytelniania</item>
+    <item>Zaktualizuj Jsch do wersji 0.1.55</item>
+    <item>Dodaj menu do ekranu wyboru bazy danych</item>
+    <item>Zezwalaj na eksport zaimportowanych plików kluczy</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Nie przechowuj już nazw pakietów aplikacji Android w polu URL</item>
+    <item>Popraw zachowanie blokowania - nie wyświetlaj już biometrycznych podpowiedzi po odblokowaniu</item>
+    <item>Zaktualizuj okHttp, aby obsługiwać HTTP/2</item>
+    <item>Popraw brakujące tłumaczenia</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Wymuś HTTP/1.1 z powodu problemów z implementacją HTTP/2 OkHttp</item>
+    <item>Popraw okno dialogowe klawiatury na Androidzie 9+</item>
+    <item>Zmień powiązania plików aplikacji, aby uniknąć niepotrzebnych powiązań</item>
+    <item>Upewnij się, że tekst hasła nie jest ukryty za ikoną oczu</item>
+    <item>Zmień zachowanie autouzupełniania, aby ostrzec przy wypełnianiu poświadczeń domeny do nierozpoznanej aplikacji</item>
+    <item>Aktualizuj do biblioteki FTP</item>
+    <item>Naprawiono potencjalne awarie aplikacji</item>
+    <item>Kolejne drobne poprawki</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Przełącz na FluentFTP aby zapewnić wsparcie dla TLS 1.2</item>
     <item>Przełącz na BiometricPrompt API, aby poprawić wrażenie użytkownika przy odblokowywaniu odciskiem palca i umożliwić odblokowanie twarzy, np. na Pixel 4.</item>
@@ -911,7 +942,7 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string-array name="design_options">
     <item>Jasny</item>
     <item>Ciemny</item>
-    <item>System settings</item>
+    <item>Ustawienia systemowe</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
@@ -965,4 +996,9 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="emergency_infotext_head">Czy jesteś gotowy/a na sytuacje awaryjne?</string>
   <string name="emergency_infotext_main">Czy zastanawiałeś/aś się co się stanie, jeśli nie będziesz w stanie uzyskać dostępu do bazy haseł? Co zrobić, jeśli masz wypadek? Dobrą praktyką jest przekazanie swojego klucza głównego do niektórych zaufanych osób na wypadek sytuacji nadzwyczajnych. Inaczej nikt nie będzie mieć dostępu do haseł.</string>
   <string name="no_secure_display">Aktualny wyświetlacz nie jest oznaczony jako bezpieczny. To oznacza, że zrzuty ekranu mogą być przechwycone przez inne aplikacje. Keepass2Android jest skonfigurowany, aby wyświetlać wrażliwe informacje tylko na bezpiecznym ekranie. Proszę przełącz się na bezpieczny ekran (np. przez odłączenie monitora HDMI) lub zmień ustawienia aplikacji.</string>
+  <string name="disable_secure_screen_check">Wyłącz tę wiadomość</string>
+  <string name="switch_ime_text">Proszę aktywować klawiaturę Keepass2Android.</string>
+  <string name="switch_ime_reopen">Spróbuj ponownie</string>
+  <string name="AutofillWarning_title">Alert bezpieczeństwa: Nierozpoznany link domena/aplikacji</string>
+  <string name="AutofillWarning_Intro">Zamierzasz wstawić poświadczenia dla domeny \"%1$s\" do aplikacji \"%2$s\".</string>
 </resources>
