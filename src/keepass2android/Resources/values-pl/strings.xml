@@ -1001,4 +1001,6 @@ Podziękowania dla Niki Hüttner (www.close-cut.de) za nowe logo!\n  </string>
   <string name="switch_ime_reopen">Spróbuj ponownie</string>
   <string name="AutofillWarning_title">Alert bezpieczeństwa: Nierozpoznany link domena/aplikacji</string>
   <string name="AutofillWarning_Intro">Zamierzasz wstawić poświadczenia dla domeny \"%1$s\" do aplikacji \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Jeśli ufasz \"%2$s\" należącym do \"%1$s\" lub ufasz aplikacji \"%2$s\", aby nie używać danych logowania (np. ponieważ jest to zaufana aplikacja przeglądarki), jest w porządku, aby kontynuować. Jeśli nie, proszę anulować.</string>
+  <string name="AutofillWarning_trustAsBrowser">Akceptuj zawsze w \"%1$s\"</string>
 </resources>
