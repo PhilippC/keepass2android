@@ -638,9 +638,9 @@
     <item>Keepass 2.47 で導入された新しいキーファイル形式のサポートを追加</item>
     <item>鍵導出関数 Argon2id のサポートを追加</item>
     <item>FirefoxとChromeでの自動入力の互換性が向上しました</item>
-    <item>Improve support for TOTP entries from desktop programs</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
-    <item>Update Jsch to version 0.1.55</item>
+    <item>デスクトッププログラムからのTOTP入力のサポートを改善</item>
+    <item>認証の問題を解決するために pCloud SDK を更新</item>
+    <item>Jsch をバージョン 0.1.55 に更新</item>
     <item>データベース選択画面にメニューを追加</item>
     <item>インポートされたキーファイルのエクスポートを許可</item>
   </string-array>
@@ -948,7 +948,7 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string-array name="design_options">
     <item>ライト</item>
     <item>ダーク</item>
-    <item>System settings</item>
+    <item>システム設定</item>
   </string-array>
   <string name="design_title">デザイン</string>
   <string-array name="ftp_encryption_modes">
