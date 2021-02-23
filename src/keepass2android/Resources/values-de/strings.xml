@@ -943,7 +943,7 @@ Erstes öffentliches Release</string>
   <string-array name="design_options">
     <item>Hell</item>
     <item>Dunkel</item>
-    <item>System settings</item>
+    <item>Systemeinstellungen</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
