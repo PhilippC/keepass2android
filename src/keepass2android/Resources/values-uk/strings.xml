@@ -960,7 +960,7 @@ Initial public release
   <string-array name="design_options">
     <item>Світла</item>
     <item>Темна</item>
-    <item>System settings</item>
+    <item>Системні налаштування</item>
   </string-array>
   <string name="design_title">Тема</string>
   <string-array name="ftp_encryption_modes">
