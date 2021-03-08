@@ -247,12 +247,14 @@ public class PCloudFileStorage extends JavaFileStorageBase
     }
 
     private void handleAuthResult(FileStorageSetupActivity activity, AuthorizationData authorizationData) {
+
         if (authorizationData.result == AuthorizationResult.ACCESS_GRANTED) {
             String authToken = authorizationData.token;
             String apiHost = authorizationData.apiHost;
             setAuthToken(authToken, apiHost);
             finishActivityWithSuccess(activity);
         } else {
+            android.util.Log.d("KP2A", "Auth failed with " + authorizationData.result.toString() + ", code=" + authorizationData.authCode + ", error=" + authorizationData.errorMessage);
             Activity castedActivity = (Activity)activity;
             Intent resultData = new Intent();
             resultData.putExtra(EXTRA_ERROR_MESSAGE, "Authentication failed!");
