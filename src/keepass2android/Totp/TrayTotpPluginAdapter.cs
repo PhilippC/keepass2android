@@ -117,6 +117,8 @@ namespace PluginTOTP
 						string[] Settings = SettingsGet(entryFields);
 						res.Duration = Settings[0];
 						res.Length = Settings[1];
+                        if (res.Length == "S")
+                            res.Encoder = TotpData.EncoderSteam;
 						if (ValidUrl)
 						{
 							NoTimeCorrection = true;
