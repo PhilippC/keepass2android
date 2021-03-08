@@ -888,9 +888,10 @@ namespace keepass2android
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
 			if (isProtected)
 				popupItems.Add(new ToggleVisibilityPopupMenuItem(this));
-            if (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
+            if (fieldKey != PwDefs.UrlField //url already has a go-to-url menu
+              && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
                 || _stringViews[fieldKey].Text.StartsWith("http://")
-                || _stringViews[fieldKey].Text.StartsWith("https://"))
+                || _stringViews[fieldKey].Text.StartsWith("https://")))
             {
                 popupItems.Add(new GotoUrlMenuItem(this, fieldKey));
 			}
