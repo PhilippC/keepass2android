@@ -62,7 +62,7 @@
     <string name="auto_punctuate">Pontuação automática</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
-    <string name="quick_fixes">Reparos rápidos</string>
+    <string name="quick_fixes">Correções rápidas</string>
     <!-- Description for quick fixes -->
     <string name="quick_fixes_summary">Corrige erros comuns de digitação</string>
     <!-- Option to enable showing suggestions -->
