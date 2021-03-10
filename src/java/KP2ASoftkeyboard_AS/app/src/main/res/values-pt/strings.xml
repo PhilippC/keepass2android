@@ -51,7 +51,7 @@
     <!-- Dialog title for auto complete choices -->
     <string name="auto_complete_dialog_title">Conclusão automática</string>
     <!-- Option to enable text prediction in landscape -->
-    <string name="prediction_landscape">Aumentar o tamanho do arquivo de texto</string>
+    <string name="prediction_landscape">Aumentar o tamanho do campo de texto</string>
     <!-- Description for text prediction -->
     <string name="prediction_landscape_summary">Ocultar sugestões de palavra na visualização da paisagem</string>
     <!-- Option to enable auto capitalization of sentences -->
