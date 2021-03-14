@@ -569,7 +569,7 @@
   <string name="AddCustomIcon">从文件添加图标...</string>
   <string name="CopyingFile">正在复制文件...</string>
   <string name="DuplicateTitle">副本</string>
-  <string name="DefaultTemplate">进入数据库的标准</string>
+  <string name="DefaultTemplate">标准条目</string>
   <string name="TemplateGroupName">模板</string>
   <string name="TemplateTitle_IdCard">身份卡</string>
   <string name="TemplateField_IdCard_Name">名称</string>
