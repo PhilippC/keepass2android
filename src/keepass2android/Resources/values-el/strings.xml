@@ -633,6 +633,16 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Προσθήκη υποστήριξης για νέα μορφή αρχείου κλειδιού που εισήχθη στο Keepass 2.47</item>
+    <item>Προσθήκη υποστήριξης για το Argon2id ως λειτουργία παραγωγής κλειδιού</item>
+    <item>Βελτιωμένη συμβατότητα αυτόματης συμπλήρωσης με Firefox και Chrome</item>
+    <item>Βελτίωση υποστήριξης καταχωρήσεων TOTP από προγράμματα υπολογιστών</item>
+    <item>Ενημέρωση pCloud SDK για να διορθωθεί το πρόβλημα ελέγχου ταυτότητας</item>
+    <item>Ενημέρωση Jsch στην έκδοση 0.1.55</item>
+    <item>Προσθήκη μενού στην οθόνη επιλογής βάσης δεδομένων</item>
+    <item>Επιτρέψτε την εξαγωγή εισαγόμενων αρχείων-κλειδιών</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Δεν αποθηκεύει πλέον ονόματα πακέτων εφαρμογών Android στο πεδίο URL</item>
     <item>Βελτίωση της συμπεριφοράς κλειδώματος - δεν εμφανίζει πλέον βιομετρική προτροπή αμέσως μετά το ξεκλείδωμα</item>
@@ -931,7 +941,7 @@ Initial public release
   <string-array name="design_options">
     <item>Ανοιχτό</item>
     <item>Σκοτεινό</item>
-    <item>System settings</item>
+    <item>Ρυθμίσεις συστήματος</item>
   </string-array>
   <string name="design_title">Σχεδιασμός</string>
   <string-array name="ftp_encryption_modes">
