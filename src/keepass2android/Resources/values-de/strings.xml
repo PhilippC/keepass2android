@@ -171,7 +171,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="maskpass_title">Kennwort ausblenden</string>
   <string name="maskpass_summary">Kennwörter standardmäßig ausgeblendet</string>
   <string name="menu_about">Über</string>
-  <string name="menu_change_key">Datenbank-Kennwort ändern</string>
+  <string name="menu_change_key">Master-Passwort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
   <string name="menu_copy_totp">TOTP kopieren</string>
@@ -250,7 +250,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="underline">Unterstrich</string>
   <string name="unsupported_db_version">Datenbankversion wird nicht unterstützt.</string>
   <string name="uppercase">Großbuchstaben</string>
-  <string name="warning_read_only">Der Speicherort hat nur Lese-Rechte. Zum Speichern ist er nicht geeignet, darum ist es unmöglich letzte Änderungen zu sichern.</string>
+  <string name="warning_read_only">Der Speicherort hat nur Lese-Rechte. Zum Speichern ist er nicht geeignet, darum können letzte Änderungen nicht gespeichert werden.</string>
   <string name="warning_unmounted">Keine SD-Karte vorhanden oder derzeit nicht im Gerät eingebunden. Daher kann weder eine Datenbank geöffnet noch erstellt werden.</string>
   <string name="version_label">Version</string>
   <string name="version_history">Versionsinformationen</string>
@@ -344,7 +344,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Cache-Ordner der App auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
   <string name="CreateBackups_title">Lokale Backups</string>
   <string name="CreateBackups_summary">Erstelle eine lokale Sicherungskopie der Datenbank, nachdem diese erfolgreich geladen wurde.</string>
-  <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie...</string>
+  <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie\u2026</string>
   <string name="LocalBackupOf">Lokale Sicherung von %1$s</string>
   <string name="show_local_backups">Lokale Backups anzeigen</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
@@ -528,7 +528,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="DebugLog_prefs_prefs">Log-Datei (für Debugging)</string>
   <string name="DebugLog_title">Log-Datei benutzen</string>
   <string name="DebugLog_summary">Ausgabe der Anwendung in eine lokale Log-Datei schreiben</string>
-  <string name="DebugLog_send">Debug-Log senden...</string>
+  <string name="DebugLog_send">Debug-Log senden\u2026</string>
   <string name="loading">Lade…</string>
   <string name="plugins">Plug-ins</string>
   <string name="plugin_packagename">Paketname:</string>
@@ -568,7 +568,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne die Datei dann über die System-Dateiauswahl.</string>
   <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet werden. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
-  <string name="CopyingFile">Kopiere Datei...</string>
+  <string name="CopyingFile">Kopiere Datei\u2026</string>
   <string name="DuplicateTitle">Kopie</string>
   <string name="DefaultTemplate">Standardeintrag</string>
   <string name="TemplateGroupName">Vorlagen</string>
@@ -622,7 +622,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopie für dieses Gerät</string>
   <string name="unconfigured_child_dbs">Deine Datenbank enthält neue Kinddatenbanken in der Gruppe \"AutoOpen\". Bitte gib an, wenn diese Kinddatenbanken auf diesem Gerät verwendet werden sollen.</string>
-  <string name="add_child_db">Füge Kinddatenbank hinzu...</string>
+  <string name="add_child_db">Füge Kinddatenbank hinzu\u2026</string>
   <string name="EnableCopyForThisDevice_Info">Hiermit wird eine Kopie der Kinddatenbank-Einstellungen erstellt und aktiviert. Diese kopierten Einstellungen können dann speziell für dieses Gerät verändert werden.</string>
   <string name="Visible_title">Sichtbar</string>
   <string name="child_db_Enabled_title">Automatisch öffnen</string>
