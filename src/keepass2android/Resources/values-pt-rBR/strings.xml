@@ -651,7 +651,17 @@
     <item>Não mais guardando nomes de pacote de apps Android no campo de URL </item>
     <item>Melhora no comportamento de bloqueio - não mais mostrando prompt de biometria imediatamente depois de desbloquear</item>
     <item>Atualizado OkHttp para suportar HTTP/2</item>
-    <item>Fix missing translations</item>
+    <item>Arrumadas traduções faltantes</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Forçar HTTP/1.1 devido a problemas com a implementação de HTTP/2 do OkHttp</item>
+    <item>Melhora do diálogo de teclado no Android 9+</item>
+    <item>Mudança nas associações de arquivo do app para evitar algumas associações desnecessárias</item>
+    <item>Certifique-se que o texto da senha não está oculto atrás do icone de olho</item>
+    <item>Mudar comportamento do autocompletar para avisar quando estiver preenchendo credenciais de um domínio para um aplicativo não reconhecido. </item>
+    <item>Atualizado para a biblioteca FTP</item>
+    <item>Correções para potenciais falhas do aplicativo</item>
+    <item>Mais correções menores</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Alterne para o uso do FluentFTP para fornecer suporte a TLS 1.2</item>
@@ -941,7 +951,7 @@ Lançamento público inicial
   <string-array name="design_options">
     <item>Claro</item>
     <item>Escuro</item>
-    <item>System settings</item>
+    <item>Configurações do sistema</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
@@ -998,4 +1008,8 @@ Lançamento público inicial
   <string name="disable_secure_screen_check">Desativar esta mensagem</string>
   <string name="switch_ime_text">Por favor, ative o teclado Keepass2Android.</string>
   <string name="switch_ime_reopen">Tentar novamente</string>
+  <string name="AutofillWarning_title">Alerta de Segurança: Link de app/domínio não reconhecido</string>
+  <string name="AutofillWarning_Intro">Você esta prestes a inserir credenciais do domínio \"%1$s\" no app \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Se você confia em \"%2$s\" para pertencer \"%1$s\" ou se você confia no app \"%2$s\" a não mal-usar as credenciais (ex. por causa de um app de navegador confiável), é ok para continuar. Se não, por favor cancele.</string>
+  <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
 </resources>
