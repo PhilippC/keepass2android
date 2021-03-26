@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Debloqueio por impressão digital</string>
   <string name="import_db_prefs">Importar base de dados para pasta interna</string>
   <string name="import_keyfile_prefs">Importar arquivo chave para pasta interna</string>
+  <string name="export_keyfile_prefs">Exportar arquivo-chave da pasta interna</string>
   <string name="keyboardswitch_prefs">Alterar teclado</string>
   <string name="OnlyAvailableForLocalFiles">Só disponível para arquivos locais.</string>
   <string name="FileIsInInternalDirectory">Arquivo armazenado no diretório interno.</string>
@@ -230,6 +231,7 @@
   <string name="saving_database">Salvando banco de dados…</string>
   <string name="exporting_database">Exportando banco de dados…</string>
   <string name="export_database_successful">Banco de dados exportado com sucesso!</string>
+  <string name="export_keyfile_successful">Arquivo-chave exportado com sucesso!</string>
   <string name="space">Espaço</string>
   <string name="search_label">Procurar</string>
   <string name="show_password">Mostrar senha</string>
@@ -256,6 +258,7 @@
   <string name="author">Keepass2Android é desenvolvido por Philipp Crocoll.</string>
   <string name="further_authors">Agradecimentos a contribuições de código por %1$s.</string>
   <string name="designers">Obrigado à %1$s por contribuir com ícones e projetos do layout.</string>
+  <string name="supporters">Obrigado pelo suporte financeiro de %1$s</string>
   <string name="credit_plugin1">O Plugin Twofish Cipher para Keepass foi desenvolvido por Scott Greenberg e está incluído em KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser foi desenvolvido por Hai Bison</string>
   <string name="credit_keyboard">O teclado do KP2A é baseado no teclado do Gibgerbread pelo Android Open Source Project e usa o código do Plugin Manager do Hacker\'s Keyboard por Klaus Weidner.</string>
@@ -268,6 +271,8 @@
   <string name="ShowUsernameInList_summary">Mostrar nome de usuário abaixo dos títulos das entradas. Útil para várias contas ou TANs.</string>
   <string name="RememberRecentFiles_title">Lembrar-se dos bancos de dados</string>
   <string name="RememberRecentFiles_summary">Lembrar-se dos bancos de dados abertos recentemente, e mostrá-los na tela Abrir Banco de Dados.</string>
+  <string name="NoDalVerification_title">Sem verificação de DAL</string>
+  <string name="NoDalVerification_summary">Desativa a checagem se domínio e pacote do app correspondem.</string>
   <string name="kp2a_findUrl">Keepass2Android: Buscar senha</string>
   <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
   <string name="search_options">Opções</string>
@@ -632,6 +637,22 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Adicionar suporte ao novo formato de arquivo-chave introduzido no Keepass 2.47</item>
+    <item>Adicionar suporte para Argon2id como função de derivação de chaves</item>
+    <item>Melhorada compatibilidade de autopreenchimento com Firefox e Chrome</item>
+    <item>Melhorado suporte para entradas TOTP de programas desktop</item>
+    <item>Atualização do SDK do pCloud para arrumar problema de autenticação</item>
+    <item>Atualização do Jsch para versão 0.1.55</item>
+    <item>Adicionado menu para a tela de seleção de banco de dados</item>
+    <item>Permissão para exportar arquivos-chave importados</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Não mais guardando nomes de pacote de apps Android no campo de URL </item>
+    <item>Melhora no comportamento de bloqueio - não mais mostrando prompt de biometria imediatamente depois de desbloquear</item>
+    <item>Atualizado OkHttp para suportar HTTP/2</item>
+    <item>Fix missing translations</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Alterne para o uso do FluentFTP para fornecer suporte a TLS 1.2</item>
     <item>Alterne para a API BiometricPrompt para melhorar a experiência do usuário com desbloqueio por impressão digital e permitir o uso do desbloqueio facial, por exemplo, no Pixel 4.</item>
