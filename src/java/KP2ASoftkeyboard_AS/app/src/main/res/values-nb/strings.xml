@@ -111,7 +111,7 @@
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">Trykk her for å lukke dette hintet og begynne å skrive!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"Tastaturet åpnes når du tar på et tekstfelt\"</b></string>
+    <string name="tip_to_open_keyboard"><b>\"Tastaturet åpnes når du trykker på et tekstfelt\"</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <string name="tip_to_view_accents"><b>\"Trykk på og hold nede en tast for å se aksenter\"\n\"(ø, ö, ô, ó, osv.)\"</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
