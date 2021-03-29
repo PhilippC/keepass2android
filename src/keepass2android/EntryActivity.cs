@@ -606,11 +606,10 @@ namespace keepass2android
 
 
 	        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-	        string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),
-	            GetString(Resource.String.BinaryDirectory_default));
+	        
 	        if (writeToCacheDirectory)
 	        {
-	            binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+	            string binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
 	            string filepart = key;
 	            Java.Lang.String javaFilename = new Java.Lang.String(filepart);

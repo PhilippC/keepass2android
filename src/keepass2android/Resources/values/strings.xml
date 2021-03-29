@@ -325,8 +325,6 @@
   <string name="QuickUnlockHideLength_summary">If enabled, the length of the QuickUnlock code is not displayed on the QuickUnlock screen.</string>
   
   <string name="QuickUnlock_fail">QuickUnlock failed: incorrect password!</string>
-  <string name="BinaryDirectory_title">File attachments directory</string>
-  <string name="BinaryDirectory_summary">Directory where file attachments are saved to.</string>
   <string name="SaveAttachmentDialog_title">Save attachment</string>
   <string name="SaveAttachmentDialog_text">Please select where to save the attachment.</string>
   <string name="SaveAttachmentDialog_save">Export to file...</string>

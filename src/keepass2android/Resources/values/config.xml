@@ -75,7 +75,7 @@
 	<string name="RememberRecentFiles_key">RememberRecentFiles_key</string>
     <string name="default_username_key">defaultUsername</string>
     <string name="database_name_key">databaseName</string>
-    <string name="BinaryDirectory_key">binaryDirectory</string>
+    
     <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
     <bool name="maskpass_default">true</bool>
     <bool name="keyfile_default">true</bool>
