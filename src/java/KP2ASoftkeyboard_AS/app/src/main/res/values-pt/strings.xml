@@ -133,8 +133,11 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
@@ -182,6 +185,7 @@
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Cancelar</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">OK</string>
     <!-- Preferences item for enabling speech input -->
     <string name="voice_input">Entrada de voz</string>
     <!-- Array of Voice Input modes -->
@@ -213,10 +217,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Configurações de teclado\"\n</b></font><font size="3">\n</font>\"Toque e mantenha pressionada a tecla \"<b>\"?123\"</b>\".\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">Selecionar método de entrada</string>
     <!-- Title for input language selection screen -->
@@ -240,4 +249,5 @@
     <string name="subtype_mode_keyboard">teclado</string>
     <string name="subtype_mode_voice">voz</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>
