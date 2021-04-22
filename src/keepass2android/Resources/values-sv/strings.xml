@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrisk upplåsning</string>
   <string name="import_db_prefs">Importera databasen till intern mapp</string>
   <string name="import_keyfile_prefs">Importera nyckelfil till intern mapp</string>
+  <string name="export_keyfile_prefs">Exportera nyckelfil från intern mapp</string>
   <string name="keyboardswitch_prefs">Tangentbordsbyte</string>
   <string name="OnlyAvailableForLocalFiles">Endast tillgängligt för lokala filer.</string>
   <string name="FileIsInInternalDirectory">Filen är lagrad i en intern katalog.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Sparar databasen...</string>
   <string name="exporting_database">Exporterar databas…</string>
   <string name="export_database_successful">Databas exporterades framgångsrikt!</string>
+  <string name="export_keyfile_successful">Export av nyckelfil lyckades!</string>
   <string name="space">Utrymme</string>
   <string name="search_label">Sök</string>
   <string name="show_password">Visa lösenord</string>
@@ -267,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Visa användarnamn under posttitlar. Användbart för multipla konton eller engångskoder.</string>
   <string name="RememberRecentFiles_title">Kom ihåg databaser</string>
   <string name="RememberRecentFiles_summary">Kom ihåg senast öppnade databaser och visa de på öppna databas-skärmen.</string>
+  <string name="NoDalVerification_title">Ingen DAL-verifiering</string>
+  <string name="NoDalVerification_summary">Inaktiverar kontroll om domän- och appaket matchar</string>
   <string name="kp2a_findUrl">Hitta lösenord</string>
   <string name="excludeExpiredEntries">Uteslut utgångna poster</string>
   <string name="search_options">Alternativ</string>
@@ -620,6 +624,16 @@
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Lagt till stöd för nytt nyckelfilformat som introducerades i Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Tvinga HTTP/1.1 på grund av problem med HTTP/2-implementering av OkHttp</item>
     <item>Förbättra tangentbordsdialogen på Android 9+</item>
