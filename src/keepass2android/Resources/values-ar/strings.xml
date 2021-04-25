@@ -5,6 +5,7 @@
   <string name="AboutText">Keepass2Android هو مدير كلمات سر يتيح القراءة والكتابة على قواعد بيانات KeePass 2.x على نظام الـAndroid.</string>
   <string name="CreditsText">واجهة المستخدم مبنية على تطبيق KeepassDroid الذي طوّره Brian Pellin. الكود المستخدم لعمليات قاعدة البيانات مبني على برنامج KeePass الذي طوّرهDominik Reichl. تم تطوير أو تعديل برنامج Android باستخدام بعض من أعمال Google حسب شروط الاستخدام المذكورة في رخصة Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">دعم SFTP مطور باستخدام مكتبة JSch تحت رخصة BSD، التي تم إنشاؤها بواسطة شركة JCraft.</string>
+  <string name="CreditsIcons">تم إنشاء أيقونة المطرقة بواسطة جون كاسيرتا من مشروع نون. يتم إنشاء أيقونة البطريق بواسطة أدريانو أميريك من مشروع نون. تم إنشاء أيقونة الريشة بواسطة جون تيستا من مشروع نون. تم إنشاء أيقونة أبل بواسطة آفا روويل من مشروع نون. رمز الصورة من https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">موافق</string>
   <string name="deny">منع</string>
   <string name="add_entry">إضافة قيد</string>
@@ -49,6 +50,7 @@
   <string name="fingerprint_prefs">فتح القفل الحيوي</string>
   <string name="import_db_prefs">استيراد قاعدة البيانات إلى مجلد داخلي</string>
   <string name="import_keyfile_prefs">استيراد ملف المفتاح إلى المجلد الداخلية</string>
+  <string name="export_keyfile_prefs">تصدير ملف المفتاح من المجلد الداخلي</string>
   <string name="keyboardswitch_prefs">تبديل لوحة المفاتيح</string>
   <string name="OnlyAvailableForLocalFiles">متاح فقط للملفات المحلية.</string>
   <string name="FileIsInInternalDirectory">تم تخزين الملف.</string>
@@ -87,6 +89,10 @@
   <string name="fingerprint_os_error">\"فتح القفل بالبصمة\" يتطلب Android 6.0 أو أحدث.</string>
   <string name="fingerprint_hardware_error">لا يوجد حساس البصمة.</string>
   <string name="fingerprint_no_enrolled">لا يوجد بصمات مسجلة على الجهاز. الرجاء الذهاب لاعدادات الجهاز اولا.</string>
+  <string name="disable_fingerprint_unlock">تعطيل \"فتح القفل بالبصمة\"</string>
+  <string name="enable_fingerprint_unlock">تفعيل \"فتح القفل بالبصمة\" الكامل</string>
+  <string name="enable_fingerprint_quickunlock">تفعيل \"فتح القفل بالبصمة\" لـ \"فتح القفل السريع\"</string>
+  <string name="fingerprint_unlock_failed">فشل فتح القفل البيومتري. تم إبطال مفتاح فك التشفير بواسطة نظام التشغيل الأندرويد. يحدث هذا عادة إذا تم تغيير المصادقة الحيوية أو إعدادات الأمان. </string>
   <string name="enter_filename">أدخل اسم ملف قاعدة البيانات</string>
   <string name="entry_accessed">تم الوصول</string>
   <string name="entry_cancel">إلغاء</string>
