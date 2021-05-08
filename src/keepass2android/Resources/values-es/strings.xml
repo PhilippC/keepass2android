@@ -648,9 +648,9 @@
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Ya no se almacenan los nombres de los paquetes de aplicaciones Android en el campo URL</item>
-    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
-    <item>Update OkHttp to support HTTP/2</item>
-    <item>Fix missing translations</item>
+    <item>Mejorar el comportamiento de bloqueo - dejar de mostrar la pantalla de entrada biométrica inmediatamente después de desbloquear</item>
+    <item>Actualizar OkHttp para soportar HTTP/2</item>
+    <item>Corregir traducción</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Fuerza HTTP/1.1 debido a un problema con la implementación de HTTP/2 de OkHttp</item>
@@ -957,7 +957,7 @@ Publicación inicial</string>
   <string-array name="design_options">
     <item>Claro</item>
     <item>Oscuro</item>
-    <item>System settings</item>
+    <item>Ajustes de Sistema</item>
   </string-array>
   <string name="design_title">Diseño</string>
   <string-array name="ftp_encryption_modes">
@@ -1011,6 +1011,7 @@ Publicación inicial</string>
   <string name="emergency_infotext_head">¿Está preparado para casos de emergencia?</string>
   <string name="emergency_infotext_main">¿Ha considerado alguna vez qué pasa si ya no es capaz de acceder a su base de datos de contraseñas? ¿Qué pasa si tiene un accidente? Es una buena práctica pasar su llave maestra a alguna persona de confianza para casos de emergencia. Nadie tendrá acceso a sus contraseñas de otra manera.</string>
   <string name="no_secure_display">La pantalla válida actualmente no está marcada como segura. Esto significa que otras aplicaciones pueden tomar capturas de pantalla. Keepass2Android está configurado para mostrar información sensible sólo en pantallas seguras. Por favor, cambie a una pantalla segura (por ejemplo, desconectando un monitor HDMI) o cambie la configuración de la aplicación.</string>
+  <string name="disable_secure_screen_check">Desactivar este mensaje</string>
   <string name="switch_ime_text">Por favor, active el teclado Keepass2Android.</string>
   <string name="switch_ime_reopen">Reintentar</string>
   <string name="AutofillWarning_title">Alerta de seguridad: enlace de dominio/app no reconocido</string>
