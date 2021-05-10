@@ -105,7 +105,7 @@
   <string name="entry_cancel">取消</string>
   <string name="entry_comment">备注</string>
   <string name="entry_tags">标签</string>
-  <string name="entry_override_url">覆盖链接地址</string>
+  <string name="entry_override_url">覆盖 URL</string>
   <string name="entry_confpassword">确认密码</string>
   <string name="entry_created">创建时间：</string>
   <string name="entry_expires">失效时间：</string>
@@ -361,7 +361,7 @@
   <string name="AccServiceAutoFill_prefs">自动填充服务（辅助功能）</string>
   <string name="AutoFill_prefs">自动填充服务</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
-  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
+  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取（推荐）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">自动切换键盘</string>
@@ -450,14 +450,14 @@
   <string name="ok_donate">告诉我更多！</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
   <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
-  <string name="hint_http_url">文件夹或文件 URL (如: mycloud.me.com/webdav/)</string>
+  <string name="hint_http_url">文件夹或文件 URL（如: mycloud.me.com/webdav/）</string>
   <string name="enter_owncloud_login_title">输入 OwnCloud 登录信息:</string>
   <string name="hint_owncloud_url">OwnCloud 地址 (例如: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">输入 Nextcloud 登录信息：</string>
   <string name="hint_nextcloud_url">Nextcloud 网址（例如：nextcloud.me.com）</string>
   <string name="hint_sftp_host">主机（比如: 192.168.0.1）</string>
   <string name="hint_sftp_port">端口</string>
-  <string name="initial_directory">初始目录 （可选）：</string>
+  <string name="initial_directory">初始目录（可选）：</string>
   <string name="enter_sftp_login_title">输入 SFTP 登录数据：</string>
   <string name="sftp_auth_mode">身份验证模式</string>
   <string name="send_public_key">发送公钥...</string>
@@ -647,7 +647,7 @@
     <item>允许导出导入的密钥文件</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
-    <item>在 URL字段中不再存储安卓应用程序的软件包名称</item>
+    <item>URL 字段中不再存储应用的包名</item>
     <item>改善锁定行为- 解锁后不再立即显示生物特征提示</item>
     <item>更新 OkHttp 以支持 HTTP/2</item>
     <item>修复缺失的翻译</item>
@@ -970,7 +970,7 @@ Initial public release
     <item>仅密码</item>
     <item>密码 + 密钥文件</item>
     <item>密码 + 一次性密码</item>
-    <item>密码 + 一次性密码 （恢复模式）</item>
+    <item>密码 + 一次性密码（恢复模式）</item>
     <item>密码 + 挑战—响应</item>
     <item>密码 + 挑战—响应（恢复模式）</item>
     <item>密码 + 挑战-应答（Keepass XC）</item>
