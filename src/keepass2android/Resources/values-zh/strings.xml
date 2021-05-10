@@ -5,7 +5,7 @@
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
   <string name="CreditsText">用户界面基于 Brian Pellin 开发的 KeepassDroid 项目。数据库操作代码基于 Dominik Reichl 开发的KeePass 项目。Android机器人图案根据Google创建和共享的作品进行复制或修改，并依照知识共享署名3.0许可进行使用。</string>
   <string name="CreditsTextSFTP">SFTP 支持由 JCraft, Inc. 创建的 JSch 库（基于 BSD 许可证）实现</string>
-  <string name="CreditsIcons">锤子图标是由John Caserta通过Noun Project创建的。企鹅图标是由Adriano Emerick通过Noun Project创建的。羽毛图标是由 Jon Testa通过Noun Project创建的。苹果图标是由Ava Rowell通过Noun Project创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
+  <string name="CreditsIcons">锤子图标是由 John Caserta 通过 Noun Project 创建的。企鹅图标是由 Adriano Emerick 通过 Noun Project 创建的。羽毛图标是由 Jon Testa 通过 Noun Project 创建的。苹果图标是由 Ava Rowell 通过 Noun Project 创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
@@ -35,9 +35,9 @@
   <string name="OfferSaveCredentials_summary">如果启用，Android 会在您将数据手动输入自动填充字段后询问是否要保存凭据。</string>
   <string name="OfferSaveCredentials_title">支持保存凭据</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
-  <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
+  <string name="unknown_uri_scheme">对不起！Keepass2Android 无法处理返回的 URI %1$s。请联系开发者！</string>
   <string name="Entry_singular">1个项目</string>
-  <string name="Entry_plural">%1$d 个项目</string>
+  <string name="Entry_plural">%1$d 个条目</string>
   <string name="IconSet_title">图标集</string>
   <string name="IconSet_install">发现更多...</string>
   <string name="security_prefs">安全</string>
@@ -120,7 +120,7 @@
   <string name="entry_user_name">用户名</string>
   <string name="entry_extra_strings">额外的字符串字段</string>
   <string name="entry_binaries">文件附件</string>
-  <string name="error_can_not_handle_uri">Keepass2Android无法处理此URI。</string>
+  <string name="error_can_not_handle_uri">Keepass2Android 无法处理此 URI。</string>
   <string name="error_could_not_create_group">创建群组错误。</string>
   <string name="error_could_not_create_parent">无法创建上级目录。</string>
   <string name="error_database_exists">文件已存在。</string>
@@ -209,7 +209,7 @@
   <string name="master_key_type">选择主密钥类型：</string>
   <string name="progress_create">创建新数据库中…</string>
   <string name="create_database">创建数据库</string>
-  <string name="progress_title">处理中...</string>
+  <string name="progress_title">处理中…</string>
   <string name="remember_keyfile_summary">记住密钥文件的位置</string>
   <string name="remember_keyfile_title">保存密钥文件</string>
   <string name="remove_from_filelist">移除</string>
@@ -228,7 +228,7 @@
   <string name="default_username">新条目的默认用户名</string>
   <string name="saving_database">正在保存数据库…</string>
   <string name="exporting_database">正在导出数据库…</string>
-  <string name="export_database_successful">数据库导出成功 ！</string>
+  <string name="export_database_successful">数据库导出成功！</string>
   <string name="export_keyfile_successful">密钥文件导出成功！</string>
   <string name="space">空格</string>
   <string name="search_label">搜索</string>
@@ -421,11 +421,11 @@
   <string name="UseOfflineMode_Info">已从内部缓存加载数据库。数据库的更改将只会保存在内部缓存中，且只在点击“缓存副本同步至文件源”后才会进行同步。</string>
   <string name="InOfflineMode">仅使用内部缓存。</string>
   <string name="SynchronizingCachedDatabase">同步缓存的数据库…</string>
-  <string name="DownloadingRemoteFile">正在从文件源加载…</string>
+  <string name="DownloadingRemoteFile">正在加载源文件…</string>
   <string name="UploadingFile">保存文件…</string>
   <string name="RestoringRemoteFile">正在从文件源恢复…</string>
   <string name="FilesInSync">文件同步中。</string>
-  <string name="SynchronizedDatabaseSuccessfully">数据库同步成功 ！</string>
+  <string name="SynchronizedDatabaseSuccessfully">数据库同步成功！</string>
   <string name="CheckingDatabaseForChanges">检查数据库更改…</string>
   <string name="CouldNotSaveToRemote">无法保存至文件源：%1$s。请重试，或在文件可用后使用同步菜单。</string>
   <string name="CouldNotLoadFromRemote">无法读取文件源：%1$s。已从本地缓存中加载。你仍可修改数据库，并稍后进行同步。</string>
@@ -447,7 +447,7 @@
   <string name="donate_question">今天是慕尼黑啤酒节！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
   <string name="donate_bday_question">5月10日？今天是我的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？这会让我非常高兴！:-)</string>
   <string name="donate_missedbday_question">呃，您错过了我5月10日的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？还不算太晚，这会让我非常高兴！:-)</string>
-  <string name="ok_donate">告诉我更多 ！</string>
+  <string name="ok_donate">告诉我更多！</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
   <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
   <string name="hint_http_url">文件夹或文件 URL (如: mycloud.me.com/webdav/)</string>
@@ -502,7 +502,7 @@
   <string name="otp_explanation">输入下一个一次性密码，或通过 NFC 感应您的 Yubikey NEO 设备（需要安装 Yubiclip 应用）。</string>
   <string name="otp_hint">一次性密码 %1$d</string>
   <string name="CouldntLoadOtpAuxFile">不能加载一次性密码文件 ！</string>
-  <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs ！</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs！</string>
   <string name="otp_discarded_because_no_db">请先选择数据库。出于安全原因，一次性密码将被丢弃。</string>
   <string name="otp_discarded_no_space">一次性密码已丢弃：所有一次性密码已进入。</string>
   <string name="otp_discarded_because_db_open">请先关闭数据库。一次性密码已丢弃。</string>
@@ -550,8 +550,8 @@
   <string name="SCOPE_QUERY_CREDENTIALS_title">查询凭据</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">插件将获准查询特定的网站及应用的证书。</string>
   <string name="get_regular_version">获取更多的存储类型</string>
-  <string name="CertificateWarning">警告： 服务器证书验证失败: %1$s。在您的设备上安装相应的根证书，或请参阅设置 ！</string>
-  <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
+  <string name="CertificateWarning">警告：服务器证书验证失败：%1$s。请在您的设备上安装相应的根证书，或请参阅设置！</string>
+  <string name="CertificateFailure">错误：服务器证书验证失败！请在您的设备上安装相应的根证书，或请参阅设置！</string>
   <string name="export_fileformats_title">选择文件格式</string>
   <string name="killed_by_os">对不起 ！Keepass2Android 被系统结束进程！出于安全原因，Keepass2Android 不在磁盘上存留证书，所以您需要重新打开您的数据库。注：出现该问题的几率极低。如果出现了，请给我发送我邮件至 crocoapps@gmail.com</string>
   <string name="FileIsTemporarilyAvailable">该文件暂时仅供 Keepass2Android使用。</string>
@@ -590,7 +590,7 @@
   <string name="AskAddTemplatesTitle">增加模板</string>
   <string name="AskAddTemplatesMessage">Keepass2Android包含了将电子邮箱账户,无线局域网密码,安全记录和别的更多的连入数据库模板.你想把这些加入你的数据库吗?如果你选择了否,你可以稍后在数据库设置中添加它们.</string>
   <string name="AddTemplates_pref">添加模板到数据库中</string>
-  <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到“任何”意外，请告诉我（通过Google+ beta tester group或电子邮件）。</string>
+  <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到*任何*意外，请告诉我（通过 Google+ beta tester group 或电子邮件）。</string>
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
   <string name="FirstInvalidCompositeKeyError">复合密钥无效！请重试。</string>
