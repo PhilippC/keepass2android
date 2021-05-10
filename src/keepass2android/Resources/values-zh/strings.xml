@@ -3,7 +3,7 @@
 <resources>
   <string name="about_feedback">反馈</string>
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
-  <string name="CreditsText">用户界面基于 Brian Pellin 开发的 KeepassDroid 项目。数据库操作代码基于 Dominik Reichl 开发的KeePass 项目。Android机器人图案根据Google创建和共享的作品进行复制或修改，并依照知识共享署名3.0许可进行使用。</string>
+  <string name="CreditsText">用户界面基于 Brian Pellin 开发的 KeepassDroid 项目。数据库操作代码基于 Dominik Reichl 开发的 KeePass 项目。Android 机器人图案根据 Google 创建和共享的作品进行复制或修改，并依照知识共享署名 3.0 协议进行使用。</string>
   <string name="CreditsTextSFTP">SFTP 支持由 JCraft, Inc. 创建的 JSch 库（基于 BSD 许可证）实现</string>
   <string name="CreditsIcons">锤子图标是由 John Caserta 通过 Noun Project 创建的。企鹅图标是由 Adriano Emerick 通过 Noun Project 创建的。羽毛图标是由 Jon Testa 通过 Noun Project 创建的。苹果图标是由 Ava Rowell 通过 Noun Project 创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
   <string name="accept">接受</string>
