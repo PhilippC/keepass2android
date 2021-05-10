@@ -188,7 +188,7 @@
     <!-- Short hint shown in candidate view to explain voice input. -->
     <string name="voice_swipe_hint"><b>提示：</b> 滑动键盘说话。</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
-    <string name="voice_punctuation_hint"><b>提示：</b> 下一次，试着说一些符号\"句号\",\"逗号\"或者\"问号\"。</string>
+    <string name="voice_punctuation_hint"><b>提示：</b> 下一次，请试着说“句号”“逗号”“问号”等标点符号。</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">取消</string>
     <!-- Label on button when an error occurs -->
