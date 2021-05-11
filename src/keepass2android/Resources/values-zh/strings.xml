@@ -24,7 +24,7 @@
   <string name="app_timeout_summary">当应用进入后台之后，锁定数据库之前等待的时间。</string>
   <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">关闭按钮</string>
-  <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（对于偏执的用户）</string>
+  <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（强迫症选项）</string>
   <string name="application">应用</string>
   <string name="application_settings">应用设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
@@ -330,7 +330,7 @@
   <string name="ClearPasswordOnLeave_summary">当没有解锁数据库就退出时，清除已输入的主密码。</string>
   <string name="LockWhenNavigateBack_title">离开应用时锁定</string>
   <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
-  <string name="UseKp2aKeyboardInKp2a_title">在 Keepass2Android中 使用内置键盘</string>
+  <string name="UseKp2aKeyboardInKp2a_title">在 Keepass2Android 中使用内置键盘</string>
   <string name="UseKp2aKeyboardInKp2a_summary">如果您不信任您的输入法提供者，请在输入主密码或编辑条目时选中此选项以使用内置键盘。</string>
   <string name="ActivateSearchViewOnStart_title">启动时自动激活搜索区域</string>
   <string name="ActivateSearchViewOnStart_summary">当进入分组视图或开始搜索条目时自动将焦点转至搜索区域</string>
