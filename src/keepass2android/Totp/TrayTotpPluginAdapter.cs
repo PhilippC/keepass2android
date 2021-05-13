@@ -122,7 +122,7 @@ namespace PluginTOTP
 						if (ValidUrl)
 						{
 							NoTimeCorrection = true;
-							res.Url = Settings[2];
+							res.TimeCorrectionUrl = Settings[2];
 							/*var CurrentTimeCorrection = TimeCorrections[Settings[2]];
 							if (CurrentTimeCorrection != null)
 							{

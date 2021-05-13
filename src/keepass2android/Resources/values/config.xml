@@ -177,6 +177,12 @@
     	<item>28</item>
     </string-array>
 
+  <string-array name="totp_algorithms">
+    <item>SHA-1</item>
+    <item>SHA-256</item>
+    <item>SHA-512</item>
+  </string-array>
+
 	<string name="design_default">System</string>
 	<string-array name="design_values">
 		<item>Light</item>
