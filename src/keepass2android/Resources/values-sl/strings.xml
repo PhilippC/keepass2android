@@ -316,6 +316,13 @@
   <string name="protection">Zaščiteno polje</string>
   <string name="add_binary">Dodaj datotečno priponko …</string>
   <string name="add_extra_string">Dodaj dodaten niz</string>
+  <string name="configure_totp">Nastavi TOTP</string>
+  <string name="totp_secret_key">Skrivni ključ</string>
+  <string name="totp_encoding_rfc6238">Privzete nastavitve žetona RFC6238</string>
+  <string name="totp_encoding_steam">Nastavitve Steam žetona</string>
+  <string name="totp_encoding_custom">Nastavitve žetona po meri</string>
+  <string name="totp_time_step">Časovni korak</string>
+  <string name="totp_length">Dolžina kode</string>
   <string name="delete_extra_string">Izbriši dodaten niz</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: zaklenjena. Hitro odklepanje omogočeno.</string>
   <string name="database_loaded_unlocked">%1$s: odklenjena.</string>
