@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Απόκρυψη μήκους QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Αν ενεργοποιηθεί, αποκρύπτει το μήκος του κωδικού QuickUnlock στη σχετική οθόνη.</string>
   <string name="QuickUnlock_fail">Αποτυχία QuickUnlock: λανθασμένο συνθηματικό!</string>
-  <string name="BinaryDirectory_title">Φάκελος για συνημμένα αρχεία</string>
-  <string name="BinaryDirectory_summary">Φάκελος όπου αποθηκεύονται τα συνημμένα αρχεία.</string>
   <string name="SaveAttachmentDialog_title">Αποθήκευση συνημμένου</string>
   <string name="SaveAttachmentDialog_text">Επιλέξτε πού θα αποθηκεύσετε το συνημμένο.</string>
   <string name="SaveAttachmentDialog_save">Εξαγωγή σε αρχείο...</string>
