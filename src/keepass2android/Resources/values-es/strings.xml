@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de QuickUnlock no aparece en la pantalla de QuickUnlock.</string>
   <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
-  <string name="BinaryDirectory_title">Ubicación de archivos adjuntos</string>
-  <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor, seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Exportar a archivo...</string>
