@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Dölj snabbupplåsningslängd</string>
   <string name="QuickUnlockHideLength_summary">Om aktiverat visas ej längden på snabbupplåsningskoden på snabbupplåsningsskärmen.</string>
   <string name="QuickUnlock_fail">Snabbupplåsning misslyckades: fel lösenord!</string>
-  <string name="BinaryDirectory_title">Katalog för bifogade filer</string>
-  <string name="BinaryDirectory_summary">Katalog där bifogade filer sparas.</string>
   <string name="SaveAttachmentDialog_title">Spara bilaga</string>
   <string name="SaveAttachmentDialog_text">Var god välj var den bifogade filen ska sparas.</string>
   <string name="SaveAttachmentDialog_save">Exportera till fil...</string>
