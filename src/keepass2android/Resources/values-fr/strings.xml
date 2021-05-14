@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Masquer la longueur du code QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Si activé, la longueur du code QuickUnlock n’est pas affichée sur l’écran QuickUnlock.</string>
   <string name="QuickUnlock_fail">Échec de QuickUnlock : mot de passe incorrect !</string>
-  <string name="BinaryDirectory_title">Dossier des pièces jointes</string>
-  <string name="BinaryDirectory_summary">Répertoire où les fichiers joints seront sauvegardés.</string>
   <string name="SaveAttachmentDialog_title">Enregistrer la pièce jointe</string>
   <string name="SaveAttachmentDialog_text">Veuillez sélectionner où enregistrer la pièce jointe.</string>
   <string name="SaveAttachmentDialog_save">Exporter vers un fichier...</string>
