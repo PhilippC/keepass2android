@@ -219,7 +219,6 @@
   <string name="QuickUnlockLength_title">QuickUnlock gakoaren luzera</string>
   <string name="QuickUnlockLength_summary">QuickUnlock pasahitzaren gehieneko karaktere kopurua.</string>
   <string name="QuickUnlock_fail">QuickUnlock errorea: pasahitz okerra!</string>
-  <string name="BinaryDirectory_title">Eranskinen karpeta</string>
   <string name="SaveAttachmentDialog_title">Gorde eranskina</string>
   <string name="SaveAttachmentDialog_save">Fitxategira esportatu...</string>
   <string name="SaveAttachmentDialog_open">Gorde katxean eta ireki</string>
