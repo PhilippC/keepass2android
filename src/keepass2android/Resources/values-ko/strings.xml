@@ -295,8 +295,6 @@
   <string name="QuickUnlockHideLength_title">QuickUnlock 길이 숨김</string>
   <string name="QuickUnlockHideLength_summary">이 설정이 허용되면 QuickUnlock 코드의 길이가 QuickUnlock 화면에 표시되지 않습니다.</string>
   <string name="QuickUnlock_fail">QuickUnlock 실패 : 잘못된 비밀번호!</string>
-  <string name="BinaryDirectory_title">첨부파일 폴더</string>
-  <string name="BinaryDirectory_summary">첨부파일이 저장될 폴더를 설정합니다.</string>
   <string name="SaveAttachmentDialog_title">첨부파일 저장</string>
   <string name="SaveAttachmentDialog_text">첨부파일을 저장할 위치를 선택하십시오.</string>
   <string name="SaveAttachmentDialog_save">파일로 내보내기...</string>
