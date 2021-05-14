@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Skrij dolžino kode Hitrega odklepanja</string>
   <string name="QuickUnlockHideLength_summary">Če je omogočeno, dolžina kode Hitrega odklepanja ni prikazana na zaslonu Hitrega odklepanja.</string>
   <string name="QuickUnlock_fail">Hitro odklepanje je spodletelo: nepravilno geslo!</string>
-  <string name="BinaryDirectory_title">Mapa datotečnih priponk</string>
-  <string name="BinaryDirectory_summary">Mapa, kamor se shranjujejo datotečne priponke.</string>
   <string name="SaveAttachmentDialog_title">Shrani priponko</string>
   <string name="SaveAttachmentDialog_text">Izberite, kam naj se shranjujejo priponke.</string>
   <string name="SaveAttachmentDialog_save">Izvozi v datoteko ...</string>
