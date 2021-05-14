@@ -250,8 +250,6 @@
   <string name="QuickUnlockHideLength_title">Скрий дължината на \"Бързо отключване\".</string>
   <string name="QuickUnlockHideLength_summary">При активация, дължината на кодът за \"Бързо отключване\" не се показва върху полето за \"Бързо отключване\". </string>
   <string name="QuickUnlock_fail">Бързо отключване НЕУСПЕШНО: невярна парола!</string>
-  <string name="BinaryDirectory_title">Папка с приложени файлове</string>
-  <string name="BinaryDirectory_summary">Папка където се записват приложените файлове.</string>
   <string name="SaveAttachmentDialog_title">Запази приложен файл</string>
   <string name="SaveAttachmentDialog_text">Моля изберете къде да се запише приложения файл.</string>
   <string name="SaveAttachmentDialog_open">Запази в кеша и отвори</string>
