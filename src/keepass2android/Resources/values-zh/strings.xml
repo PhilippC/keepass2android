@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
   <string name="QuickUnlockHideLength_summary">若启用，快速解锁所需的密码长度不会再显示在快速解锁界面上。</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
-  <string name="BinaryDirectory_title">文件附件目录</string>
-  <string name="BinaryDirectory_summary">附件所保存到的目录位置</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
   <string name="SaveAttachmentDialog_save">导出到文件...</string>
