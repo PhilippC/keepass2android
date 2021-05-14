@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Ukryj długość SzybkieOdblokowanie</string>
   <string name="QuickUnlockHideLength_summary">Jeśli włączone, długość kodu Szybkiego Odblokowania nie jest wyświetlana na ekranie Szybkiego Odblokowania.</string>
   <string name="QuickUnlock_fail">Odblokowanie za pomocą Szybkiego Odblokowania nie powiodło się: wprowadzono nieprawidłowe hasło.</string>
-  <string name="BinaryDirectory_title">Katalog plików załączników</string>
-  <string name="BinaryDirectory_summary">Katalog w którym są zapisywane pliki załączników.</string>
   <string name="SaveAttachmentDialog_title">Zapisz załącznik</string>
   <string name="SaveAttachmentDialog_text">Wybierz gdzie zapisać załącznik.</string>
   <string name="SaveAttachmentDialog_save">Eksportuj do pliku...</string>
