@@ -786,5 +786,28 @@ namespace KeePassLib.Utility
 
 			yield break;
 		}
+        internal static bool ListsEqual<T>(List<T> a, List<T> b)
+            where T : class, IEquatable<T>
+        {
+            if (object.ReferenceEquals(a, b)) return true;
+            if ((a == null) || (b == null)) return false;
+
+            int n = a.Count;
+            if (n != b.Count) return false;
+
+            for (int i = 0; i < n; ++i)
+            {
+                T tA = a[i], tB = b[i];
+
+                if (tA == null)
+                {
+                    if (tB != null) return false;
+                }
+                else if (tB == null) return false;
+                else if (!tA.Equals(tB)) return false;
+            }
+
+            return true;
+        }
 	}
 }

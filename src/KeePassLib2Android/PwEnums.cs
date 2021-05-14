@@ -316,4 +316,13 @@ namespace KeePassLib
 		Cinnamon,
 		Pantheon
 	}
+
+
+    public enum PwSearchMode
+    {
+        None = 0,
+        Simple,
+        Regular,
+        XPath
+    }
 }

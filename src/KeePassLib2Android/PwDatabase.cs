@@ -97,7 +97,7 @@ namespace KeePassLib
 		private int m_nHistoryMaxItems = DefaultHistoryMaxItems;
 		private long m_lHistoryMaxSize = DefaultHistoryMaxSize; // In bytes
 
-		private StringDictionaryEx m_dCustomData = new StringDictionaryEx();
+		private StringDictionaryEx m_dCustomData = new StringDictionaryEx(true);
 		private VariantDictionary m_dPublicCustomData = new VariantDictionary();
 
 		private byte[] m_pbHashOfFileOnDisk = null;
@@ -690,9 +690,9 @@ namespace KeePassLib
 		public void MergeIn(PwDatabase pdSource, PwMergeMethod mm,
 			IStatusLogger slStatus)
 		{
-			if(pdSource == null) throw new ArgumentNullException("pdSource");
+			if (pdSource == null) throw new ArgumentNullException("pdSource");
 
-			if(mm == PwMergeMethod.CreateNewUuids)
+			if (mm == PwMergeMethod.CreateNewUuids)
 			{
 				pdSource.RootGroup.Uuid = new PwUuid(true);
 				pdSource.RootGroup.CreateNewItemUuids(true, true, true);
@@ -707,7 +707,7 @@ namespace KeePassLib
 			PwObjectPoolEx ppOrg = PwObjectPoolEx.FromGroup(m_pgRootGroup);
 			PwObjectPoolEx ppSrc = PwObjectPoolEx.FromGroup(pdSource.RootGroup);
 
-			GroupHandler ghSrc = delegate(PwGroup pg)
+			GroupHandler ghSrc = delegate (PwGroup pg)
 			{
 				// if(pg == pdSource.m_pgRootGroup) return true;
 
@@ -716,11 +716,11 @@ namespace KeePassLib
 				// pool should not be modified)
 				PwGroup pgLocal = m_pgRootGroup.FindGroup(pg.Uuid, true);
 
-				if(pgLocal == null)
+				if (pgLocal == null)
 				{
 					PwGroup pgSourceParent = pg.ParentGroup;
 					PwGroup pgLocalContainer;
-					if(pgSourceParent == null)
+					if (pgSourceParent == null)
 					{
 						// pg is the root group of pdSource, and no corresponding
 						// local group was found; create the group within the
@@ -728,17 +728,23 @@ namespace KeePassLib
 						Debug.Assert(pg == pdSource.m_pgRootGroup);
 						pgLocalContainer = m_pgRootGroup;
 					}
-					else if(pgSourceParent == pdSource.m_pgRootGroup)
+					else if (pgSourceParent == pdSource.m_pgRootGroup)
 						pgLocalContainer = m_pgRootGroup;
 					else
 						pgLocalContainer = m_pgRootGroup.FindGroup(pgSourceParent.Uuid, true);
 					Debug.Assert(pgLocalContainer != null);
-					if(pgLocalContainer == null) pgLocalContainer = m_pgRootGroup;
+					if (pgLocalContainer == null) pgLocalContainer = m_pgRootGroup;
 
 					PwGroup pgNew = new PwGroup(false, false);
 					pgNew.Uuid = pg.Uuid;
 					pgNew.AssignProperties(pg, false, true);
 
+					if (!pgLocalContainer.CanAddGroup(pgNew))
+					{
+						Debug.Assert(false);
+						pgLocalContainer = m_pgRootGroup;
+						pgLocalContainer.CheckCanAddGroup(pgNew);
+					}
 					// pgLocalContainer.AddGroup(pgNew, true);
 					InsertObjectAtBestPos<PwGroup>(pgLocalContainer.Groups, pgNew, ppSrc);
 					pgNew.ParentGroup = pgLocalContainer;
@@ -747,9 +753,9 @@ namespace KeePassLib
 				{
 					Debug.Assert(mm != PwMergeMethod.CreateNewUuids);
 
-					if(mm == PwMergeMethod.OverwriteExisting)
+					if (mm == PwMergeMethod.OverwriteExisting)
 						pgLocal.AssignProperties(pg, false, false);
-					else if((mm == PwMergeMethod.OverwriteIfNewer) ||
+					else if ((mm == PwMergeMethod.OverwriteIfNewer) ||
 						(mm == PwMergeMethod.Synchronize))
 					{
 						pgLocal.AssignProperties(pg, true, false);
@@ -760,23 +766,23 @@ namespace KeePassLib
 				return ((slStatus != null) ? slStatus.ContinueWork() : true);
 			};
 
-			EntryHandler ehSrc = delegate(PwEntry pe)
+			EntryHandler ehSrc = delegate (PwEntry pe)
 			{
 				// PwEntry peLocal = m_pgRootGroup.FindEntry(pe.Uuid, true);
 				PwEntry peLocal = (ppOrg.GetItemByUuid(pe.Uuid) as PwEntry);
 				Debug.Assert(object.ReferenceEquals(peLocal,
 					m_pgRootGroup.FindEntry(pe.Uuid, true)));
 
-				if(peLocal == null)
+				if (peLocal == null)
 				{
 					PwGroup pgSourceParent = pe.ParentGroup;
 					PwGroup pgLocalContainer;
-					if(pgSourceParent == pdSource.m_pgRootGroup)
+					if (pgSourceParent == pdSource.m_pgRootGroup)
 						pgLocalContainer = m_pgRootGroup;
 					else
 						pgLocalContainer = m_pgRootGroup.FindGroup(pgSourceParent.Uuid, true);
 					Debug.Assert(pgLocalContainer != null);
-					if(pgLocalContainer == null) pgLocalContainer = m_pgRootGroup;
+					if (pgLocalContainer == null) pgLocalContainer = m_pgRootGroup;
 
 					PwEntry peNew = new PwEntry(false, false);
 					peNew.Uuid = pe.Uuid;
@@ -796,19 +802,19 @@ namespace KeePassLib
 					bool bEquals = peLocal.EqualsEntry(pe, cmpOpt, MemProtCmpMode.None);
 
 					bool bOrgBackup = !bEquals;
-					if(mm != PwMergeMethod.OverwriteExisting)
+					if (mm != PwMergeMethod.OverwriteExisting)
 						bOrgBackup &= (TimeUtil.CompareLastMod(pe, peLocal, true) > 0);
 					bOrgBackup &= !pe.HasBackupOfData(peLocal, false, true);
-					if(bOrgBackup) peLocal.CreateBackup(null); // Maintain at end
+					if (bOrgBackup) peLocal.CreateBackup(null); // Maintain at end
 
 					bool bSrcBackup = !bEquals && (mm != PwMergeMethod.OverwriteExisting);
 					bSrcBackup &= (TimeUtil.CompareLastMod(peLocal, pe, true) > 0);
 					bSrcBackup &= !peLocal.HasBackupOfData(pe, false, true);
-					if(bSrcBackup) pe.CreateBackup(null); // Maintain at end
+					if (bSrcBackup) pe.CreateBackup(null); // Maintain at end
 
-					if(mm == PwMergeMethod.OverwriteExisting)
+					if (mm == PwMergeMethod.OverwriteExisting)
 						peLocal.AssignProperties(pe, false, false, false);
-					else if((mm == PwMergeMethod.OverwriteIfNewer) ||
+					else if ((mm == PwMergeMethod.OverwriteIfNewer) ||
 						(mm == PwMergeMethod.Synchronize))
 					{
 						peLocal.AssignProperties(pe, true, false, false);
@@ -822,13 +828,13 @@ namespace KeePassLib
 			};
 
 			ghSrc(pdSource.RootGroup);
-			if(!pdSource.RootGroup.TraverseTree(TraversalMethod.PreOrder, ghSrc, ehSrc))
+			if (!pdSource.RootGroup.TraverseTree(TraversalMethod.PreOrder, ghSrc, ehSrc))
 				throw new InvalidOperationException();
 
 			IStatusLogger slPrevStatus = m_slStatus;
 			m_slStatus = slStatus;
 
-			if(mm == PwMergeMethod.Synchronize)
+			if (mm == PwMergeMethod.Synchronize)
 			{
 				RelocateGroups(ppOrg, ppSrc);
 				RelocateEntries(ppOrg, ppSrc);
@@ -838,24 +844,24 @@ namespace KeePassLib
 				MergeInLocationChanged(m_pgRootGroup, ppOrg, ppSrc);
 				ppOrg = null; // Pools are now invalid, because the location
 				ppSrc = null; // changed times have been merged in
-
-				// Delete *after* relocating, because relocating might
-				// empty some groups that are marked for deletion (and
-				// objects that weren't relocated yet might prevent the
-				// deletion)
-				Dictionary<PwUuid, PwDeletedObject> dOrgDel = CreateDeletedObjectsPool();
-				MergeInDeletionInfo(pdSource.m_vDeletedObjects, dOrgDel);
-				ApplyDeletions(m_pgRootGroup, dOrgDel);
-
-				// The list and the dictionary should be kept in sync
-				Debug.Assert(m_vDeletedObjects.UCount == (uint)dOrgDel.Count);
 			}
+
+			// Delete *after* relocating, because relocating might empty
+			// some groups that are marked for deletion (and objects
+			// that weren't relocated yet might prevent the deletion)
+			Dictionary<PwUuid, PwDeletedObject> dDel = CreateDeletedObjectsPool();
+			if (mm == PwMergeMethod.Synchronize)
+				MergeInDeletionInfo(pdSource.m_vDeletedObjects, dDel);
+			ApplyDeletions(m_pgRootGroup, dDel);
+			// The list and the dictionary should be kept in sync
+			Debug.Assert(m_vDeletedObjects.UCount == (uint)dDel.Count);
 
 			// Must be called *after* merging groups, because group UUIDs
 			// are required for recycle bin and entry template UUIDs
 			MergeInDbProperties(pdSource, mm);
 
-			MergeInCustomIcons(pdSource);
+			MergeInCustomIcons(pdSource, dDel);
+			Debug.Assert(m_vDeletedObjects.UCount == (uint)dDel.Count);
 
 			MaintainBackups();
 
@@ -863,15 +869,79 @@ namespace KeePassLib
 			m_slStatus = slPrevStatus;
 		}
 
-		private void MergeInCustomIcons(PwDatabase pdSource)
-		{
-			foreach(PwCustomIcon pwci in pdSource.CustomIcons)
-			{
-				if(GetCustomIconIndex(pwci.Uuid) >= 0) continue;
 
-				m_vCustomIcons.Add(pwci); // PwCustomIcon is immutable
-				m_bUINeedsIconUpdate = true;
+		private void MergeInCustomIcons(PwDatabase pdSource,
+			Dictionary<PwUuid, PwDeletedObject> dDel)
+		{
+			bool bIconsMod = false;
+
+			Dictionary<PwUuid, int> d = new Dictionary<PwUuid, int>();
+			for (int i = m_vCustomIcons.Count - 1; i >= 0; --i)
+				d[m_vCustomIcons[i].Uuid] = i;
+			Debug.Assert(d.Count == m_vCustomIcons.Count); // UUIDs unique
+
+			foreach (PwCustomIcon ciS in pdSource.m_vCustomIcons)
+			{
+				int iT;
+				if (d.TryGetValue(ciS.Uuid, out iT))
+				{
+					PwCustomIcon ciT = m_vCustomIcons[iT];
+
+					DateTime? odtT = ciT.LastModificationTime;
+					DateTime? odtS = ciS.LastModificationTime;
+
+					if (odtT.HasValue && odtS.HasValue)
+					{
+						if (odtT.Value >= odtS.Value) continue;
+					}
+					else if (odtT.HasValue) continue;
+					else if (!odtS.HasValue) continue; // Both no time
+
+					m_vCustomIcons[iT] = ciS.Clone();
+				}
+				else
+				{
+					d[ciS.Uuid] = m_vCustomIcons.Count;
+					m_vCustomIcons.Add(ciS.Clone());
+				}
+
+				bIconsMod = true;
 			}
+
+			List<PwDeletedObject> lObsoleteDel = new List<PwDeletedObject>();
+			foreach (KeyValuePair<PwUuid, PwDeletedObject> kvpDel in dDel)
+			{
+				int iT;
+				if (d.TryGetValue(kvpDel.Key, out iT))
+				{
+					PwCustomIcon ci = m_vCustomIcons[iT];
+					if (ci == null) { Debug.Assert(false); continue; } // Dup. del. obj.?
+
+					DateTime? odt = ci.LastModificationTime;
+
+					if (odt.HasValue && (odt.Value > kvpDel.Value.DeletionTime))
+						lObsoleteDel.Add(kvpDel.Value);
+					else
+					{
+						m_vCustomIcons[iT] = null; // Preserve indices, removed below
+						bIconsMod = true;
+					}
+				}
+			}
+
+			Predicate<PwCustomIcon> f = delegate (PwCustomIcon ci) { return (ci == null); };
+			m_vCustomIcons.RemoveAll(f);
+
+			foreach (PwDeletedObject pdo in lObsoleteDel)
+			{
+				// Prevent future deletion attempts
+				if (!m_vDeletedObjects.Remove(pdo)) { Debug.Assert(false); }
+				if (!dDel.Remove(pdo.Uuid)) { Debug.Assert(false); }
+			}
+
+			if (bIconsMod) m_bUINeedsIconUpdate = true;
+
+			FixCustomIconRefs();
 		}
 
 		private Dictionary<PwUuid, PwDeletedObject> CreateDeletedObjectsPool()
@@ -1212,7 +1282,9 @@ namespace KeePassLib
 				PwObjectBlock<T> b = new PwObjectBlock<T>();
 
 				DateTime dtLoc;
-				PwObjectPoolEx pPool = GetBestPool(t, ppOrg, ppSrc, out dtLoc);
+                PwUuid puPrevParent;
+                PwObjectPoolEx pPool = GetBestPool(t, ppOrg, ppSrc, out dtLoc,
+                    out puPrevParent);
 				b.Add(t, dtLoc, pPool);
 
 				lBlocks.Add(b);
@@ -1247,7 +1319,7 @@ namespace KeePassLib
 					}
 					if(idSrcNext == 0) break;
 
-					pPool = GetBestPool(tNext, ppOrg, ppSrc, out dtLoc);
+					pPool = GetBestPool(tNext, ppOrg, ppSrc, out dtLoc, out puPrevParent);
 					b.Add(tNext, dtLoc, pPool);
 
 					++u;
@@ -1260,28 +1332,31 @@ namespace KeePassLib
 		}
 
 		private static PwObjectPoolEx GetBestPool<T>(T t, PwObjectPoolEx ppOrg,
-			PwObjectPoolEx ppSrc, out DateTime dtLoc)
+			PwObjectPoolEx ppSrc, out DateTime dtLoc, out PwUuid puPrevParent)
 			where T : class, ITimeLogger, IStructureItem, IDeepCloneable<T>
 		{
-			PwObjectPoolEx p = null;
-			dtLoc = TimeUtil.SafeMinValueUtc;
+            PwObjectPoolEx p = null;
+            dtLoc = TimeUtil.SafeMinValueUtc;
+            puPrevParent = PwUuid.Zero;
 
-			IStructureItem ptOrg = ppOrg.GetItemByUuid(t.Uuid);
-			if(ptOrg != null)
-			{
-				dtLoc = ptOrg.LocationChanged;
-				p = ppOrg;
-			}
+            IStructureItem ptOrg = ppOrg.GetItemByUuid(t.Uuid);
+            if (ptOrg != null)
+            {
+                dtLoc = ptOrg.LocationChanged;
+                puPrevParent = ptOrg.PreviousParentGroup;
+                p = ppOrg;
+            }
 
-			IStructureItem ptSrc = ppSrc.GetItemByUuid(t.Uuid);
-			if((ptSrc != null) && (ptSrc.LocationChanged > dtLoc))
-			{
-				dtLoc = ptSrc.LocationChanged;
-				p = ppSrc;
-			}
+            IStructureItem ptSrc = ppSrc.GetItemByUuid(t.Uuid);
+            if ((ptSrc != null) && (ptSrc.LocationChanged > dtLoc))
+            {
+                dtLoc = ptSrc.LocationChanged;
+                puPrevParent = ptSrc.PreviousParentGroup;
+                p = ppSrc;
+            }
 
-			Debug.Assert(p != null);
-			return p;
+            Debug.Assert(p != null);
+            return p;
 		}
 
 		private static int FindLocationChangedPivot<T>(List<PwObjectBlock<T>> lBlocks,
@@ -1307,30 +1382,40 @@ namespace KeePassLib
 			return iPosMax;
 		}
 
-		private static void MergeInLocationChanged(PwGroup pg,
-			PwObjectPoolEx ppOrg, PwObjectPoolEx ppSrc)
-		{
-			GroupHandler gh = delegate(PwGroup pgSub)
-			{
-				DateTime dt;
-				if(GetBestPool<PwGroup>(pgSub, ppOrg, ppSrc, out dt) != null)
-					pgSub.LocationChanged = dt;
-				else { Debug.Assert(false); }
-				return true;
-			};
+        private static void MergeInLocationChanged(PwGroup pg,
+            PwObjectPoolEx ppOrg, PwObjectPoolEx ppSrc)
+        {
+            GroupHandler gh = delegate (PwGroup pgSub)
+            {
+                DateTime dt;
+                PwUuid puPrevParent;
+                if (GetBestPool<PwGroup>(pgSub, ppOrg, ppSrc, out dt,
+                    out puPrevParent) != null)
+                {
+                    pgSub.LocationChanged = dt;
+                    pgSub.PreviousParentGroup = puPrevParent;
+                }
+                else { Debug.Assert(false); }
+                return true;
+            };
 
-			EntryHandler eh = delegate(PwEntry pe)
-			{
-				DateTime dt;
-				if(GetBestPool<PwEntry>(pe, ppOrg, ppSrc, out dt) != null)
-					pe.LocationChanged = dt;
-				else { Debug.Assert(false); }
-				return true;
-			};
+            EntryHandler eh = delegate (PwEntry pe)
+            {
+                DateTime dt;
+                PwUuid puPrevParent;
+                if (GetBestPool<PwEntry>(pe, ppOrg, ppSrc, out dt,
+                    out puPrevParent) != null)
+                {
+                    pe.LocationChanged = dt;
+                    pe.PreviousParentGroup = puPrevParent;
+                }
+                else { Debug.Assert(false); }
+                return true;
+            };
 
-			gh(pg);
-			pg.TraverseTree(TraversalMethod.PreOrder, gh, eh);
-		}
+            gh(pg);
+            pg.TraverseTree(TraversalMethod.PreOrder, gh, eh);
+        }
 
 		private static void InsertObjectAtBestPos<T>(PwObjectList<T> lItems,
 			T tNew, PwObjectPoolEx ppSrc)
@@ -1445,12 +1530,18 @@ namespace KeePassLib
 			foreach(KeyValuePair<string, string> kvp in pdSource.m_dCustomData)
 			{
 				if(bSourceNewer || !m_dCustomData.Exists(kvp.Key))
-					m_dCustomData.Set(kvp.Key, kvp.Value);
+					m_dCustomData.Set(kvp.Key, kvp.Value, null);
 			}
 
-			VariantDictionary vdLocal = m_dPublicCustomData; // Backup
-			m_dPublicCustomData = (VariantDictionary)pdSource.m_dPublicCustomData.Clone();
-			if(!bSourceNewer) vdLocal.CopyTo(m_dPublicCustomData); // Merge
+            // 'Clone' duplicates deep values (e.g. byte arrays)
+            VariantDictionary vdS = (VariantDictionary)pdSource.m_dPublicCustomData.Clone();
+            if (bForce || bSourceNewer)
+                vdS.CopyTo(m_dPublicCustomData);
+            else
+            {
+                m_dPublicCustomData.CopyTo(vdS);
+                m_dPublicCustomData = vdS;
+            }
 		}
 
 		private void MergeEntryHistory(PwEntry pe, PwEntry peSource,
@@ -1543,12 +1634,12 @@ namespace KeePassLib
 		/// <returns>Index of the icon.</returns>
 		public int GetCustomIconIndex(PwUuid pwIconId)
 		{
-			for(int i = 0; i < m_vCustomIcons.Count; ++i)
-			{
-				PwCustomIcon pwci = m_vCustomIcons[i];
-				if(pwci.Uuid.Equals(pwIconId))
-					return i;
-			}
+            for (int i = 0; i < m_vCustomIcons.Count; ++i)
+            {
+                PwCustomIcon pwci = m_vCustomIcons[i];
+                if (pwci.Uuid.Equals(pwIconId))
+                    return i;
+            }
 
 			// Debug.Assert(false); // Do not assert
 			return -1;
@@ -1558,15 +1649,15 @@ namespace KeePassLib
 		{
 			if(pbPngData == null) { Debug.Assert(false); return -1; }
 
-			for(int i = 0; i < m_vCustomIcons.Count; ++i)
-			{
-				PwCustomIcon pwci = m_vCustomIcons[i];
-				byte[] pbEx = pwci.ImageDataPng;
-				if(pbEx == null) { Debug.Assert(false); continue; }
+            for (int i = 0; i < m_vCustomIcons.Count; ++i)
+            {
+                PwCustomIcon pwci = m_vCustomIcons[i];
+                byte[] pbEx = pwci.ImageDataPng;
+                if (pbEx == null) { Debug.Assert(false); continue; }
 
-				if(MemUtil.ArraysEqual(pbEx, pbPngData))
-					return i;
-			}
+                if (MemUtil.ArraysEqual(pbEx, pbPngData))
+                    return i;
+            }
 
 			return -1;
 		}
@@ -1585,68 +1676,64 @@ namespace KeePassLib
 			else { Debug.Assert(false); return null; }
 		}
 
-		public bool DeleteCustomIcons(List<PwUuid> vUuidsToDelete)
-		{
-			Debug.Assert(vUuidsToDelete != null);
-			if(vUuidsToDelete == null) throw new ArgumentNullException("vUuidsToDelete");
-			if(vUuidsToDelete.Count <= 0) return true;
+        public bool DeleteCustomIcons(List<PwUuid> lUuids)
+        {
+            if (lUuids == null) { Debug.Assert(false); throw new ArgumentNullException("lUuids"); }
+            if (lUuids.Count == 0) return false;
 
-			GroupHandler gh = delegate(PwGroup pg)
-			{
-				PwUuid uuidThis = pg.CustomIconUuid;
-				if(uuidThis.Equals(PwUuid.Zero)) return true;
+            Dictionary<PwUuid, bool> dToDel = new Dictionary<PwUuid, bool>();
+            foreach (PwUuid pu in lUuids) { dToDel[pu] = true; }
 
-				foreach(PwUuid uuidDelete in vUuidsToDelete)
-				{
-					if(uuidThis.Equals(uuidDelete))
-					{
-						pg.CustomIconUuid = PwUuid.Zero;
-						break;
-					}
-				}
+            DateTime dt = DateTime.UtcNow;
+            for (int i = m_vCustomIcons.Count - 1; i >= 0; --i)
+            {
+                PwUuid pu = m_vCustomIcons[i].Uuid;
+                if (dToDel.ContainsKey(pu))
+                {
+                    m_vCustomIcons[i] = null; // Removed below
+                    m_vDeletedObjects.Add(new PwDeletedObject(pu, dt));
+                }
+            }
 
-				return true;
-			};
+            Predicate<PwCustomIcon> f = delegate (PwCustomIcon ci) { return (ci == null); };
+            m_vCustomIcons.RemoveAll(f);
 
-			EntryHandler eh = delegate(PwEntry pe)
-			{
-				RemoveCustomIconUuid(pe, vUuidsToDelete);
-				return true;
-			};
+            FixCustomIconRefs();
+            return true;
+        }
 
-			gh(m_pgRootGroup);
-			if(!m_pgRootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh))
-			{
-				Debug.Assert(false);
-				return false;
-			}
+        private void FixCustomIconRefs()
+        {
+            Dictionary<PwUuid, bool> d = new Dictionary<PwUuid, bool>();
+            foreach (PwCustomIcon ci in m_vCustomIcons) { d[ci.Uuid] = true; }
 
-			foreach(PwUuid pwUuid in vUuidsToDelete)
-			{
-				int nIndex = GetCustomIconIndex(pwUuid);
-				if(nIndex >= 0) m_vCustomIcons.RemoveAt(nIndex);
-			}
+            GroupHandler gh = delegate (PwGroup pg)
+            {
+                PwUuid pu = pg.CustomIconUuid;
+                if (pu.Equals(PwUuid.Zero)) return true;
+                if (!d.ContainsKey(pu)) pg.CustomIconUuid = PwUuid.Zero;
+                return true;
+            };
 
-			return true;
-		}
+            EntryHandler eh = delegate (PwEntry pe)
+            {
+                FixCustomIconRefs(pe, d);
+                return true;
+            };
 
-		private static void RemoveCustomIconUuid(PwEntry pe, List<PwUuid> vToDelete)
-		{
-			PwUuid uuidThis = pe.CustomIconUuid;
-			if(uuidThis.Equals(PwUuid.Zero)) return;
+            gh(m_pgRootGroup);
+            m_pgRootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh);
+        }
 
-			foreach(PwUuid uuidDelete in vToDelete)
-			{
-				if(uuidThis.Equals(uuidDelete))
-				{
-					pe.CustomIconUuid = PwUuid.Zero;
-					break;
-				}
-			}
+        private void FixCustomIconRefs(PwEntry pe, Dictionary<PwUuid, bool> d)
+        {
+            PwUuid pu = pe.CustomIconUuid;
+            if (pu.Equals(PwUuid.Zero)) return;
+            if (!d.ContainsKey(pu)) pe.CustomIconUuid = PwUuid.Zero;
 
-			foreach(PwEntry peHistory in pe.History)
-				RemoveCustomIconUuid(peHistory, vToDelete);
-		}
+            foreach (PwEntry peH in pe.History) FixCustomIconRefs(peH, d);
+        }
+
 
 		private int GetTotalObjectUuidCount()
 		{
@@ -1935,61 +2022,119 @@ namespace KeePassLib
 			return uDeleted;
 		}
 
+
 		public uint DeleteUnusedCustomIcons()
 		{
-			List<PwUuid> lToDelete = new List<PwUuid>();
-			foreach(PwCustomIcon pwci in m_vCustomIcons)
-				lToDelete.Add(pwci.Uuid);
+			Dictionary<PwUuid, bool> dToDel = new Dictionary<PwUuid, bool>();
+			foreach (PwCustomIcon ci in m_vCustomIcons) { dToDel[ci.Uuid] = true; }
 
-			GroupHandler gh = delegate(PwGroup pg)
+			GroupHandler gh = delegate (PwGroup pg)
 			{
-				PwUuid pwUuid = pg.CustomIconUuid;
-				if((pwUuid == null) || pwUuid.Equals(PwUuid.Zero)) return true;
-
-				for(int i = 0; i < lToDelete.Count; ++i)
-				{
-					if(lToDelete[i].Equals(pwUuid))
-					{
-						lToDelete.RemoveAt(i);
-						break;
-					}
-				}
-
+				PwUuid pu = pg.CustomIconUuid;
+				if (!pu.Equals(PwUuid.Zero)) dToDel.Remove(pu);
 				return true;
 			};
 
-			EntryHandler eh = delegate(PwEntry pe)
+			EntryHandler eh = delegate (PwEntry pe)
 			{
-				PwUuid pwUuid = pe.CustomIconUuid;
-				if((pwUuid == null) || pwUuid.Equals(PwUuid.Zero)) return true;
-
-				for(int i = 0; i < lToDelete.Count; ++i)
-				{
-					if(lToDelete[i].Equals(pwUuid))
-					{
-						lToDelete.RemoveAt(i);
-						break;
-					}
-				}
-
+				RemoveCustomIconsFromDict(dToDel, pe);
 				return true;
 			};
 
 			gh(m_pgRootGroup);
 			m_pgRootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh);
 
-			uint uDeleted = 0;
-			foreach(PwUuid pwDel in lToDelete)
+			uint cDel = (uint)dToDel.Count;
+			if (cDel != 0)
 			{
-				int nIndex = GetCustomIconIndex(pwDel);
-				if(nIndex < 0) { Debug.Assert(false); continue; }
-
-				m_vCustomIcons.RemoveAt(nIndex);
-				++uDeleted;
+				DeleteCustomIcons(new List<PwUuid>(dToDel.Keys));
+				m_bUINeedsIconUpdate = true;
 			}
 
-			if(uDeleted > 0) m_bUINeedsIconUpdate = true;
-			return uDeleted;
+			return cDel;
+		}
+
+		private static void RemoveCustomIconsFromDict(Dictionary<PwUuid, bool> d,
+			PwEntry pe)
+		{
+			PwUuid pu = pe.CustomIconUuid;
+			if (!pu.Equals(PwUuid.Zero)) d.Remove(pu);
+
+			foreach (PwEntry peH in pe.History) RemoveCustomIconsFromDict(d, peH);
+		}
+
+		internal static void CopyCustomIcons(PwDatabase pdFrom, PwDatabase pdTo,
+			PwGroup pgSelect, bool bResetIfUnknown)
+		{
+			if (pgSelect == null) { Debug.Assert(false); return; }
+
+			Dictionary<PwUuid, PwCustomIcon> dFrom = new Dictionary<PwUuid, PwCustomIcon>();
+			if (pdFrom != null)
+			{
+				foreach (PwCustomIcon ci in pdFrom.m_vCustomIcons)
+					dFrom[ci.Uuid] = ci;
+			}
+
+			Dictionary<PwUuid, int> dTo = new Dictionary<PwUuid, int>();
+			if (pdTo != null)
+			{
+				for (int i = pdTo.m_vCustomIcons.Count - 1; i >= 0; --i)
+					dTo[pdTo.m_vCustomIcons[i].Uuid] = i;
+			}
+
+    		Func<PwUuid, bool> fEnsureIcon = delegate (PwUuid puIcon)
+			{
+				if (puIcon.Equals(PwUuid.Zero)) return true;
+				if (pdTo == null) { Debug.Assert(false); return false; }
+
+				PwCustomIcon ciFrom;
+				if (!dFrom.TryGetValue(puIcon, out ciFrom)) { Debug.Assert(false); return false; }
+
+				int iTo;
+				if (dTo.TryGetValue(puIcon, out iTo))
+				{
+					PwCustomIcon ciTo = pdTo.m_vCustomIcons[iTo];
+
+					DateTime? odtFrom = ciFrom.LastModificationTime;
+					DateTime? odtTo = ciTo.LastModificationTime;
+
+					if (odtFrom.HasValue && odtTo.HasValue)
+					{
+						if (odtFrom.Value <= odtTo.Value) return true;
+					}
+					else if (odtTo.HasValue) return true;
+					else if (!odtFrom.HasValue) return true; // Both no time
+
+					pdTo.m_vCustomIcons[iTo] = ciFrom.Clone();
+				}
+				else
+				{
+					dTo[puIcon] = pdTo.m_vCustomIcons.Count;
+					pdTo.m_vCustomIcons.Add(ciFrom.Clone());
+				}
+
+				pdTo.Modified = true;
+				pdTo.UINeedsIconUpdate = true;
+				return true;
+			};
+
+			GroupHandler gh = delegate (PwGroup pgCur)
+			{
+				bool bTo = fEnsureIcon(pgCur.CustomIconUuid);
+				if (!bTo && bResetIfUnknown) pgCur.CustomIconUuid = PwUuid.Zero;
+				return true;
+			};
+
+			EntryHandler eh = delegate (PwEntry peCur)
+			{
+				bool bTo = fEnsureIcon(peCur.CustomIconUuid);
+				if (!bTo && bResetIfUnknown) peCur.CustomIconUuid = PwUuid.Zero;
+				return true;
+			};
+
+			gh(pgSelect);
+			pgSelect.TraverseTree(TraversalMethod.PreOrder, gh, eh);
 		}
 	}
 }
+

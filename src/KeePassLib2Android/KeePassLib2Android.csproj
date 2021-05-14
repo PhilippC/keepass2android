@@ -74,6 +74,7 @@
     <Compile Include="IDatabaseFormat.cs" />
     <Compile Include="Keys\KcpKeyFile.Xml.cs" />
     <Compile Include="Kp2aLog.cs" />
+    <Compile Include="PwGroup.Search.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Resources\KLRes.Generated.cs" />
     <Compile Include="Resources\KSRes.Generated.cs" />
