@@ -297,8 +297,6 @@
   <string name="QuickUnlockHideLength_title">Nascondi la lunghezza di QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se abilitata, la lunghezza della password non viene visualizzata sullo schermo di QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock fallito: password errata!</string>
-  <string name="BinaryDirectory_title">Cartella per gli allegati</string>
-  <string name="BinaryDirectory_summary">Cartella dove vengono salvati i file allegati.</string>
   <string name="SaveAttachmentDialog_title">Salva allegato</string>
   <string name="SaveAttachmentDialog_text">Per favore, scegli dove salvare l\'allegato.</string>
   <string name="SaveAttachmentDialog_save">Esporta su file...</string>
