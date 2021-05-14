@@ -301,8 +301,6 @@
   <string name="QuickUnlockHideLength_title">Esconder o tamanho do código QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se ativado, o tamanho do código QuickUnlock não é exibido durante a digitação.</string>
   <string name="QuickUnlock_fail">O QuickUnlock falhou: senha incorreta!</string>
-  <string name="BinaryDirectory_title">Pasta de anexos</string>
-  <string name="BinaryDirectory_summary">Pasta onde os anexos de arquivos são salvos.</string>
   <string name="SaveAttachmentDialog_title">Salvar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
   <string name="SaveAttachmentDialog_save">Salvar para o cartão SD</string>
