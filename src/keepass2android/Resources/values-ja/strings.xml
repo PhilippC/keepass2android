@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">クイック解除の長さを表示しない</string>
   <string name="QuickUnlockHideLength_summary">有効にすると、クイック解除コードの長さをクイック解除の画面に表示しません。</string>
   <string name="QuickUnlock_fail">クイック解除に失敗しました：パスワードが正しくありません</string>
-  <string name="BinaryDirectory_title">添付ファイルのディレクトリ</string>
-  <string name="BinaryDirectory_summary">添付ファイルが保存されるディレクトリ。</string>
   <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
   <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください。</string>
   <string name="SaveAttachmentDialog_save">ファイルへエクスポート...</string>
