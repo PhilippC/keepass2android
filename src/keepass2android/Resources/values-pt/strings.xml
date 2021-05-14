@@ -295,8 +295,6 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="QuickUnlockHideLength_title">Esconder o comprimento do código de desbloqueio rápido</string>
   <string name="QuickUnlockHideLength_summary">Se ativo, o comprimento do código de desbloqueio rápido não será exibido no ecrã de desbloqueio rápido.</string>
   <string name="QuickUnlock_fail">Desbloqueio-Rápido falhou: palavra-passe incorreta!</string>
-  <string name="BinaryDirectory_title">Pasta para os anexos</string>
-  <string name="BinaryDirectory_summary">Pasta para onde os anexos são guardados.</string>
   <string name="SaveAttachmentDialog_title">Guardar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja guardar o anexo.</string>
   <string name="SaveAttachmentDialog_save">Exportar para ficheiro...</string>
