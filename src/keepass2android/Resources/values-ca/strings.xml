@@ -294,8 +294,6 @@
   <string name="QuickUnlockHideLength_title">Amagar longitud de DesbloqueigRàpid</string>
   <string name="QuickUnlockHideLength_summary">Si està activat, la longitud del codi de DesbloqueigRàpid no apareix a la pantalla de DesbloqueigRàpid.</string>
   <string name="QuickUnlock_fail">DesbloqueigRàpid ha fallat: Contrasenya incorrecta!</string>
-  <string name="BinaryDirectory_title">Directori d\'arxius adjunts</string>
-  <string name="BinaryDirectory_summary">Directori on es guarden els fitxers adjunts.</string>
   <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
   <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
   <string name="SaveAttachmentDialog_save">Exportar a fitxer...</string>
