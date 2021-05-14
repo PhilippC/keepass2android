@@ -280,8 +280,6 @@
   <string name="QuickUnlockLength_title">Дужина кључа Брзог откључавања</string>
   <string name="QuickUnlockLength_summary">Максимални број знакова који се користе за лозинку Брзог откључавања.</string>
   <string name="QuickUnlock_fail">Брзо откључавање није успело: неисправна лозинка!</string>
-  <string name="BinaryDirectory_title">Директоријум датотека прилога</string>
-  <string name="BinaryDirectory_summary">Директоријум чувања датотека прилога.</string>
   <string name="SaveAttachmentDialog_title">Сачувај прилог</string>
   <string name="SaveAttachmentDialog_text">Молимо изаберите где желите да сачувате прилог.</string>
   <string name="SaveAttachmentDialog_open">Сачувај у кешу и отвори</string>
