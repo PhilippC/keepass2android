@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Rejtse el a GyorsFeloldás kód hosszát</string>
   <string name="QuickUnlockHideLength_summary">Ha engedélyezve van, a GyorsFeloldás kód hossza nem jelenik meg a GyorsFeloldás képernyőn.</string>
   <string name="QuickUnlock_fail">A GyorsFeloldás nem sikerült: a jelszó helytelen!</string>
-  <string name="BinaryDirectory_title">Csatolt fájlok könyvtára</string>
-  <string name="BinaryDirectory_summary">A könyvtár, ahová a csatolt fájlok mentésre kerülnek.</string>
   <string name="SaveAttachmentDialog_title">Csatolt fájl mentése</string>
   <string name="SaveAttachmentDialog_text">Adja meg, hová akarja menteni a csatolt fájlt.</string>
   <string name="SaveAttachmentDialog_save">Exportálás fájlba...</string>
