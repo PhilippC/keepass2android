@@ -276,8 +276,6 @@
   <string name="QuickUnlockHideLength_title">Ocultar lonxitude de QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se activo, a lonxitude do código QuickUnlock non se amosará na pantalla de QuickUnlock.</string>
   <string name="QuickUnlock_fail">Fallou o QuickUnlock: contrasinal incorrecto!</string>
-  <string name="BinaryDirectory_title">Directorio de arquivos adxuntos</string>
-  <string name="BinaryDirectory_summary">Directorio no que se gardarán os arquivos adxuntos.</string>
   <string name="SaveAttachmentDialog_title">Gardar arquivo adxunto</string>
   <string name="SaveAttachmentDialog_text">Seleccione onde gardar o arquivo adxunto.</string>
   <string name="SaveAttachmentDialog_open">Gardar na caché e abrir</string>
