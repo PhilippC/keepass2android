@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Schovej délku kódu pro Rychlé odemknutí</string>
   <string name="QuickUnlockHideLength_summary">Je-li tato možnost aktivní, délka kódu Rychlého odemknutí nebude zobrazena na odemykací obrazovce.</string>
   <string name="QuickUnlock_fail">Rychlé odemknutí se nezdařilo: nesprávné heslo!</string>
-  <string name="BinaryDirectory_title">Adresář souborů s přílohami</string>
-  <string name="BinaryDirectory_summary">Adresář, do kterého jsou ukládány přílohy souborů.</string>
   <string name="SaveAttachmentDialog_title">Uložit přílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam chcete uložit přílohu.</string>
   <string name="SaveAttachmentDialog_save">Export do souboru...</string>
