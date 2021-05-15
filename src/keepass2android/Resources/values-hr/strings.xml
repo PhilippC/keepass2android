@@ -252,8 +252,6 @@
   <string name="QuickUnlockHideLength_title">Sakrij QuickUnlock duljinu</string>
   <string name="QuickUnlockHideLength_summary">Ako je omogućeno, duljina koda QuickUnlock neće biti prikazana na QuickUnlock zaslonu.</string>
   <string name="QuickUnlock_fail">QuickUnlock nije uspio: netočna lozinka!</string>
-  <string name="BinaryDirectory_title">Mapa za privitke</string>
-  <string name="BinaryDirectory_summary">Mapa u kojoj će biti spremljeni privici.</string>
   <string name="SaveAttachmentDialog_title">Spremi privitak</string>
   <string name="SaveAttachmentDialog_text">Odaberite mjesto za spremanje privitka.</string>
   <string name="SaveAttachmentDialog_save">Izvoz u datoteku...</string>

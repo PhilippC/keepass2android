@@ -250,8 +250,6 @@
   <string name="QuickUnlockHideLength_title">Skjul QuickUnlock-lengde</string>
   <string name="QuickUnlockHideLength_summary">Dersom aktivert, vil ikke lengden på QuickUnlock-koden vises på skjermbildet for QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock mislyktes: feil passord.</string>
-  <string name="BinaryDirectory_title">Filvedleggsmappe</string>
-  <string name="BinaryDirectory_summary">Mappen der filvedlegg lagres.</string>
   <string name="SaveAttachmentDialog_title">Lagre vedlegg</string>
   <string name="SaveAttachmentDialog_text">Velg hvor du vil lagre vedlegget.</string>
   <string name="SaveAttachmentDialog_open">Lagre til hurtiglager og åpne</string>

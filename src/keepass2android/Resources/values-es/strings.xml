@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Desbloqueo biométrico</string>
   <string name="import_db_prefs">Importar base de datos a carpeta interna</string>
   <string name="import_keyfile_prefs">Importar archivo de clave a carpeta interna</string>
+  <string name="export_keyfile_prefs">Exportar archivo de clave de la carpeta interna</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
   <string name="OnlyAvailableForLocalFiles">Sólo disponible para archivos locales.</string>
   <string name="FileIsInInternalDirectory">El archivo se almacena en el directorio interno.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Guardando base de datos…</string>
   <string name="exporting_database">Exportando base de datos…</string>
   <string name="export_database_successful">Base de datos exportada con éxito!</string>
+  <string name="export_keyfile_successful">Archivo de clave exportado correctamente</string>
   <string name="space">Espacio</string>
   <string name="search_label">Buscar</string>
   <string name="show_password">Mostrar contraseña</string>
@@ -254,6 +256,7 @@
   <string name="author">Keepass2Android está desarrollado por Philipp Crocoll.</string>
   <string name="further_authors">Gracias a las contribuciones de código de %1$s.</string>
   <string name="designers">Gracias a las contribuciones de diseño del ícono y del diseño gráfico por %1$s.</string>
+  <string name="supporters">Gracias al apoyo financiero de %1$s.</string>
   <string name="credit_plugin1">El Plugin de cifrado Twofish para Keepass fue desarrollado por Scott Greenberg y se incluye en KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser fue desarrollado por Hai Bison</string>
   <string name="credit_keyboard">El teclado de KP2A se basa en el teclado de Gingerbread de Android Open Source Project y utiliza el código del  Administrador de Plugins del teclado hacker por Klaus Weidner.</string>
@@ -266,6 +269,8 @@
   <string name="ShowUsernameInList_summary">Mostrar nombres de usuario por debajo de los títulos de entrada. Útil para múltiples cuentas o TANs.</string>
   <string name="RememberRecentFiles_title">Recordar Bases de Datos</string>
   <string name="RememberRecentFiles_summary">Recuerda la base de datos recientemente abierta y se muestra en la pantalla.</string>
+  <string name="NoDalVerification_title">Sin verificación DAL</string>
+  <string name="NoDalVerification_summary">Deshabilita comprobar si el dominio y el paquete de la aplicación coinciden</string>
   <string name="kp2a_findUrl">Encuentra una contraseña</string>
   <string name="excludeExpiredEntries">Excluir las entradas caducadas</string>
   <string name="search_options">Opciones</string>
@@ -294,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de QuickUnlock no aparece en la pantalla de QuickUnlock.</string>
   <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
-  <string name="BinaryDirectory_title">Ubicación de archivos adjuntos</string>
-  <string name="BinaryDirectory_summary">Directorio en donde se guardan los archivos adjuntos.</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor, seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Exportar a archivo...</string>
@@ -631,6 +634,22 @@
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Añade soporte para el nuevo formato de archivo de claves introducido en Keepass 2.47</item>
+    <item>Añade soporte para Argon2id como función de derivación de clave</item>
+    <item>Compatibilidad de autorrelleno mejorada con Firefox y Chrome</item>
+    <item>Mejora el soporte de contraseñas de un solo uso (TOTP) en programas de escritorio</item>
+    <item>Actualizar pCloud SDK para corregir el problema de autentificación</item>
+    <item>Actualiza Jsch a la versión 0.1.55</item>
+    <item>Añadir menú a la pantalla de selección de base de datos</item>
+    <item>Permitir exportar archivos de claves importados</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Ya no se almacenan los nombres de los paquetes de aplicaciones Android en el campo URL</item>
+    <item>Mejorar el comportamiento de bloqueo - dejar de mostrar la pantalla de entrada biométrica inmediatamente después de desbloquear</item>
+    <item>Actualizar OkHttp para soportar HTTP/2</item>
+    <item>Corregir traducción</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Fuerza HTTP/1.1 debido a un problema con la implementación de HTTP/2 de OkHttp</item>
     <item>Mejora el menú del teclado en Android 9+</item>
@@ -936,7 +955,7 @@ Publicación inicial</string>
   <string-array name="design_options">
     <item>Claro</item>
     <item>Oscuro</item>
-    <item>System settings</item>
+    <item>Ajustes de Sistema</item>
   </string-array>
   <string name="design_title">Diseño</string>
   <string-array name="ftp_encryption_modes">
@@ -990,6 +1009,7 @@ Publicación inicial</string>
   <string name="emergency_infotext_head">¿Está preparado para casos de emergencia?</string>
   <string name="emergency_infotext_main">¿Ha considerado alguna vez qué pasa si ya no es capaz de acceder a su base de datos de contraseñas? ¿Qué pasa si tiene un accidente? Es una buena práctica pasar su llave maestra a alguna persona de confianza para casos de emergencia. Nadie tendrá acceso a sus contraseñas de otra manera.</string>
   <string name="no_secure_display">La pantalla válida actualmente no está marcada como segura. Esto significa que otras aplicaciones pueden tomar capturas de pantalla. Keepass2Android está configurado para mostrar información sensible sólo en pantallas seguras. Por favor, cambie a una pantalla segura (por ejemplo, desconectando un monitor HDMI) o cambie la configuración de la aplicación.</string>
+  <string name="disable_secure_screen_check">Desactivar este mensaje</string>
   <string name="switch_ime_text">Por favor, active el teclado Keepass2Android.</string>
   <string name="switch_ime_reopen">Reintentar</string>
   <string name="AutofillWarning_title">Alerta de seguridad: enlace de dominio/app no reconocido</string>

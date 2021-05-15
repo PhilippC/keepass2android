@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Sblocco biometrico</string>
   <string name="import_db_prefs">Importa database in cartella interna</string>
   <string name="import_keyfile_prefs">Importa file chiave in cartella interna</string>
+  <string name="export_keyfile_prefs">Esporta file chiave dalla cartella interna</string>
   <string name="keyboardswitch_prefs">Cambio tastiera</string>
   <string name="OnlyAvailableForLocalFiles">Disponibile solo per file interni.</string>
   <string name="FileIsInInternalDirectory">File salvato in cartella interna.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Salvataggio del database…</string>
   <string name="exporting_database">Esportazione database…</string>
   <string name="export_database_successful">Database esportato con successo!</string>
+  <string name="export_keyfile_successful">file chiave esportato con successo!</string>
   <string name="space">Spazio</string>
   <string name="search_label">Cerca</string>
   <string name="show_password">Mostra password</string>
@@ -295,8 +297,6 @@
   <string name="QuickUnlockHideLength_title">Nascondi la lunghezza di QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se abilitata, la lunghezza della password non viene visualizzata sullo schermo di QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock fallito: password errata!</string>
-  <string name="BinaryDirectory_title">Cartella per gli allegati</string>
-  <string name="BinaryDirectory_summary">Cartella dove vengono salvati i file allegati.</string>
   <string name="SaveAttachmentDialog_title">Salva allegato</string>
   <string name="SaveAttachmentDialog_text">Per favore, scegli dove salvare l\'allegato.</string>
   <string name="SaveAttachmentDialog_save">Esporta su file...</string>
@@ -472,7 +472,7 @@
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Applicazioni/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Questo storage richiederà accesso solamente alla cartella \"Applicazioni/Keepass2Android\". Se vuoi usare un database dal tuo account PCloud, assicurati che sia in questa cartella.</string>
+  <string name="filestoragehelp_pcloud">Questo storage richiederà accesso solamente alla cartella \"Applications/Keepass2Android\". Se vuoi usare un database dal tuo account PCloud, assicurati che sia in questa cartella.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tutti i file e gli elementi condivisi</string>
@@ -938,7 +938,7 @@ Prima release pubblica
   <string-array name="design_options">
     <item>Chiaro</item>
     <item>Scuro</item>
-    <item>System settings</item>
+    <item>Impostazioni di sistema</item>
   </string-array>
   <string name="design_title">Tema</string>
   <string-array name="ftp_encryption_modes">
@@ -992,6 +992,7 @@ Prima release pubblica
   <string name="emergency_infotext_head">Sei preparato per i casi d\'emergenza?</string>
   <string name="emergency_infotext_main">Hai mai pensato a cosa succederebbe se tu non fossi più in grado di accedere al database delle tue password? Cosa succederebbe se avessi un incidente? È buona norma passare la password principale a qualche persona di fiducia per casi di emergenza. Altrimenti nessuno potrà accedere alle tue password.</string>
   <string name="no_secure_display">Il display corrente non è contrassegnato come sicuro. Questo significa che degli screenshot potrebbero essere presi da altre applicazioni. Keepass2Android è configurato per visualizzare le informazioni sensibili solo su display sicuri. Si prega di passare ad un display sicuro (ad esempio scollegando un monitor HDMI) oppure di modificare le impostazioni dell\'app.</string>
+  <string name="disable_secure_screen_check">Disabilita questo messaggio</string>
   <string name="switch_ime_text">Si prega di attivare la tastiera Keepass2Android.</string>
   <string name="switch_ime_reopen">Riprova</string>
   <string name="AutofillWarning_title">Avviso di sicurezza: relazione tra dominio/app non riconosciuto</string>

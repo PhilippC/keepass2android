@@ -56,4 +56,16 @@
     <string name="afc_title_size">اندازه‌</string>
     <string name="afc_title_sort_by">مرتب‌کردن بر اساس…</string>
     <string name="afc_yesterday">دیروز</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">انتخاب پوشه…</item>
+        <item quantity="other">انتخاب پوشه‌ها…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">انتخاب فایل...</item>
+        <item quantity="other">انتخاب فایل‌ها</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">انتخاب فایل / پوشه…</item>
+        <item quantity="other">انتخاب فایل‌ها / پوشه‌ها…</item>
+    </plurals>
 </resources>

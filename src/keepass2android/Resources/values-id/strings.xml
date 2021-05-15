@@ -253,8 +253,6 @@
   <string name="QuickUnlockHideLength_title">Sembunyikan panjang kode BukaCepat</string>
   <string name="QuickUnlockHideLength_summary">Jika diaktifkan, panjang dari kode BukaCepat tidak akan ditampilkan pada layar BukaCepat.</string>
   <string name="QuickUnlock_fail">BukaCepat gagal: sandi salah!</string>
-  <string name="BinaryDirectory_title">Direktori berkas lampiran</string>
-  <string name="BinaryDirectory_summary">Direktori untuk menyimpan berkas lampiran.</string>
   <string name="SaveAttachmentDialog_title">Simpan lampiran</string>
   <string name="SaveAttachmentDialog_text">Silakan pilih lokasi untuk menyimpan lampiran.</string>
   <string name="SaveAttachmentDialog_open">Simpan ke cache dan buka</string>

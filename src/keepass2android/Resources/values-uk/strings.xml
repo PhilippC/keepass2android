@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Приховати довжину QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Якщо увімкнено, довжина коду QuickUnlock не показується на екрані блокування.</string>
   <string name="QuickUnlock_fail">Неправильний пароль QuickUnlock!</string>
-  <string name="BinaryDirectory_title">Каталог вкладених файлів</string>
-  <string name="BinaryDirectory_summary">Каталог збереження вкладених файлів.</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
   <string name="SaveAttachmentDialog_save">Експорт у файл...</string>
@@ -960,7 +958,7 @@ Initial public release
   <string-array name="design_options">
     <item>Світла</item>
     <item>Темна</item>
-    <item>System settings</item>
+    <item>Системні налаштування</item>
   </string-array>
   <string name="design_title">Тема</string>
   <string-array name="ftp_encryption_modes">

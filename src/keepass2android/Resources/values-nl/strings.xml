@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Verberg Snel Openen lengte</string>
   <string name="QuickUnlockHideLength_summary">Als ingeschakeld, wordt de lengte van de Snel Openen code niet weergegeven in het Snel Openen scherm.</string>
   <string name="QuickUnlock_fail">Snel Openen is mislukt: verkeerd wachtwoord!</string>
-  <string name="BinaryDirectory_title">Map met bestandsbijlagen</string>
-  <string name="BinaryDirectory_summary">Map waar bestandsbijlagen worden opgeslagen.</string>
   <string name="SaveAttachmentDialog_title">Bijlage opslaan</string>
   <string name="SaveAttachmentDialog_text">Selecteer waar u de bijlage wilt opslaan.</string>
   <string name="SaveAttachmentDialog_save">Exporteer naar bestand...</string>
@@ -960,7 +958,7 @@ Eerste publieke publicatie
   <string-array name="design_options">
     <item>Licht</item>
     <item>Donker</item>
-    <item>System settings</item>
+    <item>Systeem instellingen</item>
   </string-array>
   <string name="design_title">Ontwerp</string>
   <string-array name="ftp_encryption_modes">

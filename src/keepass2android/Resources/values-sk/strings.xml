@@ -295,8 +295,6 @@
   <string name="QuickUnlockHideLength_title">Skryť dĺžku QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Ak je zapnuté, nezobrazí sa dĺžka kódu QuickUnlick a obrazovke pre funkciu QuickUnlock.</string>
   <string name="QuickUnlock_fail">Rýchle odomknutie zlyhalo: nesprávne heslo!</string>
-  <string name="BinaryDirectory_title">Priečinok pre prílohy</string>
-  <string name="BinaryDirectory_summary">Priečinok, do ktorého sa uložia prílohy.</string>
   <string name="SaveAttachmentDialog_title">Uložiť prílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam sa príloha uloží.</string>
   <string name="SaveAttachmentDialog_save">Exportovať do súboru...</string>

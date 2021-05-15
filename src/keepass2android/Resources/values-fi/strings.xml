@@ -271,8 +271,6 @@
   <string name="QuickUnlockHideLength_title">Piilota pika-avauskoodin pituus</string>
   <string name="QuickUnlockHideLength_summary">Jos käytössä, pika-avauskoodin pituutta ei näytetä pika-avausnäytössä.</string>
   <string name="QuickUnlock_fail">Pika-avaus epäonnistui: väärä salasana!</string>
-  <string name="BinaryDirectory_title">Tiedostoliitteiden hakemisto</string>
-  <string name="BinaryDirectory_summary">Liitetiedostojen tallennushakemisto.</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
   <string name="SaveAttachmentDialog_save">Vie hakemistoon...</string>

@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Скрыть длину БыстройРазблокировки</string>
   <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
   <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
-  <string name="BinaryDirectory_title">Каталог файлов-вложений</string>
-  <string name="BinaryDirectory_summary">Каталог для сохранения вложенных файлов.</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
   <string name="SaveAttachmentDialog_save">Экспорт в файл...</string>
@@ -945,7 +943,7 @@
   <string-array name="design_options">
     <item>Светлый</item>
     <item>Тёмный</item>
-    <item>System settings</item>
+    <item>Системные настройки</item>
   </string-array>
   <string name="design_title">Дизайн</string>
   <string-array name="ftp_encryption_modes">

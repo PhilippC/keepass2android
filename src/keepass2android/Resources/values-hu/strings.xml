@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Rejtse el a GyorsFeloldás kód hosszát</string>
   <string name="QuickUnlockHideLength_summary">Ha engedélyezve van, a GyorsFeloldás kód hossza nem jelenik meg a GyorsFeloldás képernyőn.</string>
   <string name="QuickUnlock_fail">A GyorsFeloldás nem sikerült: a jelszó helytelen!</string>
-  <string name="BinaryDirectory_title">Csatolt fájlok könyvtára</string>
-  <string name="BinaryDirectory_summary">A könyvtár, ahová a csatolt fájlok mentésre kerülnek.</string>
   <string name="SaveAttachmentDialog_title">Csatolt fájl mentése</string>
   <string name="SaveAttachmentDialog_text">Adja meg, hová akarja menteni a csatolt fájlt.</string>
   <string name="SaveAttachmentDialog_save">Exportálás fájlba...</string>
@@ -725,7 +723,11 @@ Kezdeti közösségi kiadás</string>
   <string name="emergency_infotext_head">Felkészült vészhelyzeti esetekre?</string>
   <string name="emergency_infotext_main">Gondolkozott már azon, hogy mi történne, ha nem tudna többé a jelszó adatbázisához hozzáférni? Mi történik, ha baleset éri? Hasznos lehet vészhelyzet esetére a főkulcsot (jelszó) megosztani egy olyan személlyel, akiben megbízik. Különben senki sem fog tudni hozzáférni a jelszavaihoz.</string>
   <string name="no_secure_display">A jelenleg használt kijelző nincs biztonságosként megjelölve, ami azt jelenti, hogy más alkalmazások képernyőképeket készíthetnek. A Keepass2Android jelenlegi beállítása csak biztonságos képernyőkön engedélyezi érzékeny információ megjelenítését. Kérjük, váltson át egy biztonságos kijelzőre (például válassza le a HDMI monitort) vagy módosítsa az alkalmazás-beállításokat.</string>
+  <string name="disable_secure_screen_check">Ennek a képernyőnek az eltüntetése</string>
+  <string name="switch_ime_text">Kérem aktiválja a Keepass2Android billentyűzetet.</string>
+  <string name="switch_ime_reopen">Újra</string>
   <string name="AutofillWarning_title">Biztonsági figyelmeztetés: ismeretlen internettartomány/alkalmazás kapcsolat</string>
   <string name="AutofillWarning_Intro">A(z) \"%1$s\" tartományhoz tartozó azonosítókat készül a(z) \"%2$s\" alkalmazás számára elérhetővé tenni.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Ha megbízik abban, hogy a(z) \"%1$s\" tartomány a(z) \"%2$s\" alkalmazáshoz tartozik, vagy megbízik abban, hogy az alkalmazás nem él vissza a titkos adatokkal (mert például egy megbízható böngészőprogram), folytassa.  Ha nem, szakítsa meg a folyamatot.</string>
+  <string name="AutofillWarning_trustAsBrowser">Mindig fogadja el itt: \"%1$s\"</string>
 </resources>

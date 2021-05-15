@@ -299,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">隱藏 QuickUnlock 代碼長度</string>
   <string name="QuickUnlockHideLength_summary">若啟用，QuickUnlock 代碼長度不會顯示在 QuickUnlock 畫面中。</string>
   <string name="QuickUnlock_fail">QuickUnlock 失敗：密碼錯誤！</string>
-  <string name="BinaryDirectory_title">檔案附件目錄</string>
-  <string name="BinaryDirectory_summary">指定檔案附件保存到的位置。</string>
   <string name="SaveAttachmentDialog_title">儲存附件</string>
   <string name="SaveAttachmentDialog_text">請選擇保存該附件的位置。</string>
   <string name="SaveAttachmentDialog_save">匯出到檔案...</string>
@@ -958,7 +956,7 @@
   <string-array name="design_options">
     <item>亮色主題</item>
     <item>暗色主題</item>
-    <item>System settings</item>
+    <item>系統設定</item>
   </string-array>
   <string name="design_title">設計</string>
   <string-array name="ftp_encryption_modes">

@@ -55,4 +55,16 @@
     <string name="afc_title_size">Tamanho</string>
     <string name="afc_title_sort_by">Ordenar por…</string>
     <string name="afc_yesterday">Ontem</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Escolher pasta…</item>
+        <item quantity="other">Escolher pastas…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Escolher ficheiro...</item>
+        <item quantity="other">Escolher ficheiros...</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Escolher ficheiro/pasta…</item>
+        <item quantity="other">Escolher ficheiros/pastas…</item>
+    </plurals>
 </resources>
