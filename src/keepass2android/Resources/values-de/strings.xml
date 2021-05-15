@@ -317,6 +317,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="protection">Geschütztes Feld</string>
   <string name="add_binary">Dateianhang hinzufügen...</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
+  <string name="configure_totp">TOTP konfigurieren</string>
+  <string name="totp_secret_key">Geheimer Schlüssel</string>
+  <string name="totp_encoding_rfc6238">RFC-6238-Standardeinstellungen</string>
+  <string name="totp_encoding_steam">Steam-Token-Einstellungen</string>
+  <string name="totp_encoding_custom">Benutzerdefinierte Einstellungen</string>
+  <string name="totp_time_step">Zeitschritt</string>
+  <string name="totp_length">Codelänge</string>
   <string name="delete_extra_string">Zusätzliches Feld löschen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: gesperrt. QuickUnlock aktiviert.</string>
   <string name="database_loaded_unlocked">%1$s: Entsperrt.</string>
@@ -633,6 +640,15 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
+    <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
+    <item>Verbesserungen für Autofill (Popup wurde in Chrome nicht immer angezeigt, bessere Unterstützung von Subdomains)</item>
+    <item>Verbesserungen in der OneDrive-Implementierung: keine Größenbeschränkung mehr, keine überflüssigen Authentifizierungsanfragen</item>
+    <item>Option hinzugefügt, um das helle/dunkel Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
+    <item>Dateien können über den Android-Dateibrowser geöffnet werden, das Nur-Lesen-Attribut wird ignoriert</item>
+    <item>Das verschieben von Einträgen kann aus dem Menü der Eintragsansicht gestartet werden</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Unterstützung für neues Schlüsseldateiformat aus KeePass 2.47 integriert</item>
     <item>Unterstützung für Argon2id als Schlüsselableitungsfunktion integriert</item>
