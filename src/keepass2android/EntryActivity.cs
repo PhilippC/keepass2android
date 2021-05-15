@@ -606,11 +606,10 @@ namespace keepass2android
 
 
 	        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-	        string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),
-	            GetString(Resource.String.BinaryDirectory_default));
+	        
 	        if (writeToCacheDirectory)
 	        {
-	            binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+	            string binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
 	            string filepart = key;
 	            Java.Lang.String javaFilename = new Java.Lang.String(filepart);
@@ -888,9 +887,10 @@ namespace keepass2android
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
 			if (isProtected)
 				popupItems.Add(new ToggleVisibilityPopupMenuItem(this));
-            if (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
+            if (fieldKey != PwDefs.UrlField //url already has a go-to-url menu
+              && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
                 || _stringViews[fieldKey].Text.StartsWith("http://")
-                || _stringViews[fieldKey].Text.StartsWith("https://"))
+                || _stringViews[fieldKey].Text.StartsWith("https://")))
             {
                 popupItems.Add(new GotoUrlMenuItem(this, fieldKey));
 			}

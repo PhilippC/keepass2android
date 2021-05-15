@@ -42,7 +42,7 @@ namespace PluginTOTP
             string strAlg;
             entryFields.TryGetValue("TimeOtp-Algorithm", out strAlg);
 
-
+            res.HashAlgorithm = strAlg;
             res.TotpSecret = pbSecret;
             res.Length = uLength.ToString();
             res.Duration = uPeriod.ToString();

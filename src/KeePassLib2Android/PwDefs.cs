@@ -228,6 +228,18 @@ namespace KeePassLib
 	/// </summary>
 	public sealed class SearchParameters
 	{
+		private string m_strName = string.Empty;
+		[DefaultValue("")]
+		public string Name
+		{
+			get { return m_strName; }
+			set
+			{
+				if (value == null) throw new ArgumentNullException("value");
+				m_strName = value;
+			}
+		}
+
 		private string m_strText = string.Empty;
 		[DefaultValue("")]
 		public string SearchString
@@ -235,17 +247,25 @@ namespace KeePassLib
 			get { return m_strText; }
 			set
 			{
-				if(value == null) throw new ArgumentNullException("value");
+				if (value == null) throw new ArgumentNullException("value");
 				m_strText = value;
 			}
 		}
 
-		private bool m_bRegex = false;
+		private PwSearchMode m_sm = PwSearchMode.Simple;
+		public PwSearchMode SearchMode
+		{
+			get { return m_sm; }
+			set { m_sm = value; }
+		}
+
 		[DefaultValue(false)]
+		[Obsolete]
+		[XmlIgnore]
 		public bool RegularExpression
 		{
-			get { return m_bRegex; }
-			set { m_bRegex = value; }
+			get { return (m_sm == PwSearchMode.Regular); }
+			set { m_sm = (value ? PwSearchMode.Regular : PwSearchMode.Simple); }
 		}
 
 		private bool m_bSearchInTitles = true;
@@ -296,12 +316,36 @@ namespace KeePassLib
 			set { m_bSearchInOther = value; }
 		}
 
+		private bool m_bSearchInStringNames = false;
+		[DefaultValue(false)]
+		public bool SearchInStringNames
+		{
+			get { return m_bSearchInStringNames; }
+			set { m_bSearchInStringNames = value; }
+		}
+
+		private bool m_bSearchInTags = true;
+		[DefaultValue(true)]
+		public bool SearchInTags
+		{
+			get { return m_bSearchInTags; }
+			set { m_bSearchInTags = value; }
+		}
+
 		private bool m_bSearchInUuids = false;
 		[DefaultValue(false)]
 		public bool SearchInUuids
 		{
 			get { return m_bSearchInUuids; }
 			set { m_bSearchInUuids = value; }
+		}
+
+		private bool m_bSearchInGroupPaths = false;
+		[DefaultValue(false)]
+		public bool SearchInGroupPaths
+		{
+			get { return m_bSearchInGroupPaths; }
+			set { m_bSearchInGroupPaths = value; }
 		}
 
 		private bool m_bSearchInGroupNames = false;
@@ -312,12 +356,12 @@ namespace KeePassLib
 			set { m_bSearchInGroupNames = value; }
 		}
 
-		private bool m_bSearchInTags = true;
-		[DefaultValue(true)]
-		public bool SearchInTags
+		private bool m_bSearchInHistory = false;
+		[DefaultValue(false)]
+		public bool SearchInHistory
 		{
-			get { return m_bSearchInTags; }
-			set { m_bSearchInTags = value; }
+			get { return m_bSearchInHistory; }
+			set { m_bSearchInHistory = value; }
 		}
 
 #if KeePassUAP
@@ -369,7 +413,7 @@ namespace KeePassLib
 			get { return m_strDataTrf; }
 			set
 			{
-				if(value == null) throw new ArgumentNullException("value");
+				if (value == null) throw new ArgumentNullException("value");
 				m_strDataTrf = value;
 			}
 		}
@@ -381,20 +425,24 @@ namespace KeePassLib
 			{
 				SearchParameters sp = new SearchParameters();
 
-				// sp.m_strText = string.Empty;
-				// sp.m_bRegex = false;
+				Debug.Assert(sp.m_strName.Length == 0);
+				Debug.Assert(sp.m_strText.Length == 0);
+				Debug.Assert(sp.m_sm == PwSearchMode.Simple);
 				sp.m_bSearchInTitles = false;
 				sp.m_bSearchInUserNames = false;
-				// sp.m_bSearchInPasswords = false;
+				Debug.Assert(!sp.m_bSearchInPasswords);
 				sp.m_bSearchInUrls = false;
 				sp.m_bSearchInNotes = false;
 				sp.m_bSearchInOther = false;
-				// sp.m_bSearchInUuids = false;
-				// sp.SearchInGroupNames = false;
+				Debug.Assert(!sp.m_bSearchInStringNames);
 				sp.m_bSearchInTags = false;
-				// sp.m_scType = StringComparison.InvariantCultureIgnoreCase;
-				// sp.m_bExcludeExpired = false;
-				// m_bRespectEntrySearchingDisabled = true;
+				Debug.Assert(!sp.m_bSearchInUuids);
+				Debug.Assert(!sp.m_bSearchInGroupPaths);
+				Debug.Assert(!sp.m_bSearchInGroupNames);
+				Debug.Assert(!sp.m_bSearchInHistory);
+				// Debug.Assert(sp.m_scType == StringComparison.InvariantCultureIgnoreCase);
+				Debug.Assert(!sp.m_bExcludeExpired);
+				Debug.Assert(sp.m_bRespectEntrySearchingDisabled);
 
 				return sp;
 			}

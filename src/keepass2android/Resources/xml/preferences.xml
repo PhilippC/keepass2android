@@ -509,13 +509,7 @@
   android:key="@string/FileHandling_prefs_key"
 	  android:title="@string/FileHandling_prefs"/>
 
-			<EditTextPreference
-				 android:enabled="true"
-				 android:persistent="true"
-				 android:summary="@string/BinaryDirectory_summary"
-				 android:defaultValue="@string/BinaryDirectory_default"
-				 android:title="@string/BinaryDirectory_title"
-				 android:key="@string/BinaryDirectory_key" />
+			
 			<CheckBoxPreference
 				  android:enabled="true"
 				  android:persistent="true"

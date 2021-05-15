@@ -127,7 +127,7 @@ namespace KeeTrayTOTP.Libraries
                 this.encoder = TOTPEncoder.rfc6238;
             }
 
-            if(data.Url != null)
+            if(data.TimeCorrectionUrl != null)
             {
                 {
                     this.TimeCorrection = TimeSpan.Zero;

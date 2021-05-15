@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2021 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -67,47 +67,6 @@ namespace KeePassLib.Serialization
 	/// </summary>
 	public sealed partial class KdbxFile
 	{
-		private class ColorTranslator
-		{
-			public static Color FromHtml(String colorString)
-			{
-				Color color;
-
-				if (colorString.StartsWith("#"))
-				{
-					colorString = colorString.Substring(1);
-				}
-				if (colorString.EndsWith(";"))
-				{
-					colorString = colorString.Substring(0, colorString.Length - 1);
-				}
-
-				int red, green, blue;
-				switch (colorString.Length)
-				{
-					case 6:
-						red = int.Parse(colorString.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-						green = int.Parse(colorString.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-						blue = int.Parse(colorString.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-						color = Color.FromArgb(red, green, blue);
-						break;
-					case 3:
-						red = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
-						green = int.Parse(colorString.Substring(1, 1), System.Globalization.NumberStyles.HexNumber);
-						blue = int.Parse(colorString.Substring(2, 1), System.Globalization.NumberStyles.HexNumber);
-						color = Color.FromArgb(red, green, blue);
-						break;
-					case 1:
-						red = green = blue = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
-						color = Color.FromArgb(red, green, blue);
-						break;
-					default:
-						throw new ArgumentException("Invalid color: " + colorString);
-				}
-				return color;
-			}
-
-		}
 		/// <summary>
 		/// File identifier, first 32-bit value.
 		/// </summary>
@@ -119,16 +78,17 @@ namespace KeePassLib.Serialization
 		internal const uint FileSignature2 = 0xB54BFB67;
 
 		/// <summary>
-		/// File version of files saved by the current <c>KdbxFile</c> class.
+		/// Maximum supported version of database files.
 		/// KeePass 2.07 has version 1.01, 2.08 has 1.02, 2.09 has 2.00,
 		/// 2.10 has 2.02, 2.11 has 2.04, 2.15 has 3.00, 2.20 has 3.01.
 		/// The first 2 bytes are critical (i.e. loading will fail, if the
 		/// file version is too high), the last 2 bytes are informational.
 		/// </summary>
-		private const uint FileVersion32 = 0x00040000;
+		private const uint FileVersion32 = 0x00040001;
 
-		public const uint FileVersion32_4 = 0x00040000; // First of 4.x series
-		public const uint FileVersion32_3 = 0x00030001; // Old format 3.1
+		public const uint FileVersion32_4_1 = 0x00040001; // 4.1
+        public const uint FileVersion32_4 = 0x00040000; // 4.0
+        public const uint FileVersion32_3_1 = 0x00030001; // 3.1
 
 		private const uint FileVersionCriticalMask = 0xFFFF0000;
 
@@ -143,7 +103,7 @@ namespace KeePassLib.Serialization
 		private const string ElemMeta = "Meta";
 		private const string ElemRoot = "Root";
 		private const string ElemGroup = "Group";
-		private const string ElemEntry = "Entry";
+		internal const string ElemEntry = "Entry";
 
 		private const string ElemGenerator = "Generator";
 		private const string ElemHeaderHash = "HeaderHash";
@@ -188,12 +148,13 @@ namespace KeePassLib.Serialization
 
 		private const string ElemName = "Name";
 		private const string ElemNotes = "Notes";
-		private const string ElemUuid = "UUID";
+		internal const string ElemUuid = "UUID";
 		private const string ElemIcon = "IconID";
 		private const string ElemCustomIconID = "CustomIconUUID";
 		private const string ElemFgColor = "ForegroundColor";
 		private const string ElemBgColor = "BackgroundColor";
 		private const string ElemOverrideUrl = "OverrideURL";
+		private const string ElemQualityCheck = "QualityCheck";
 		private const string ElemTimes = "Times";
 		private const string ElemTags = "Tags";
 
@@ -204,6 +165,8 @@ namespace KeePassLib.Serialization
 		private const string ElemExpires = "Expires";
 		private const string ElemUsageCount = "UsageCount";
 		private const string ElemLocationChanged = "LocationChanged";
+
+		private const string ElemPreviousParentGroup = "PreviousParentGroup";
 
 		private const string ElemGroupDefaultAutoTypeSeq = "DefaultAutoTypeSequence";
 		private const string ElemEnableAutoType = "EnableAutoType";
@@ -261,7 +224,7 @@ namespace KeePassLib.Serialization
 		private CrsAlgorithm m_craInnerRandomStream = CrsAlgorithm.ArcFourVariant;
 		private byte[] m_pbInnerRandomStreamKey = null;
 
-		private ProtectedBinarySet m_pbsBinaries = new ProtectedBinarySet();
+		private ProtectedBinarySet m_pbsBinaries = null;
 
 		private byte[] m_pbHashOfHeader = null;
 		private byte[] m_pbHashOfFileOnDisk = null;
@@ -271,7 +234,7 @@ namespace KeePassLib.Serialization
 		private const uint NeutralLanguageOffset = 0x100000; // 2^20, see 32-bit Unicode specs
 		private const uint NeutralLanguageIDSec = 0x7DC5C; // See 32-bit Unicode specs
 		private const uint NeutralLanguageID = NeutralLanguageOffset + NeutralLanguageIDSec;
-		private static bool m_bLocalizedNames = false;
+		private static bool g_bLocalizedNames = false;
 
 		private enum KdbxHeaderFieldID : byte
 		{
@@ -345,7 +308,7 @@ namespace KeePassLib.Serialization
 		public KdbxFile(PwDatabase pwDataStore)
 		{
 			Debug.Assert(pwDataStore != null);
-			if(pwDataStore == null) throw new ArgumentNullException("pwDataStore");
+			if (pwDataStore == null) throw new ArgumentNullException("pwDataStore");
 
 			m_pwDatabase = pwDataStore;
 		}
@@ -356,57 +319,92 @@ namespace KeePassLib.Serialization
 		public static void DetermineLanguageId()
 		{
 			// Test if localized names should be used. If localized names are used,
-			// the m_bLocalizedNames value must be set to true. By default, localized
-			// names should be used! (Otherwise characters could be corrupted
+			// the g_bLocalizedNames value must be set to true. By default, localized
+			// names should be used (otherwise characters could be corrupted
 			// because of different code pages).
 			unchecked
 			{
 				uint uTest = 0;
-				foreach(char ch in PwDatabase.LocalizedAppName)
+				foreach (char ch in PwDatabase.LocalizedAppName)
 					uTest = uTest * 5 + ch;
 
-				m_bLocalizedNames = (uTest != NeutralLanguageID);
+				g_bLocalizedNames = (uTest != NeutralLanguageID);
 			}
 		}
 
-		private uint GetMinKdbxVersion()
+        private uint GetMinKdbxVersion()
+        {
+            if (m_uForceVersion != 0) return m_uForceVersion;
+
+			uint minVersionForKeys = m_pwDatabase.MasterKey.UserKeys.Select(key => key.GetMinKdbxVersion()).Max();
+
+            uint minRequiredVersion = Math.Max(minVersionForKeys, m_uFileVersion); //don't save a version lower than what we read
+
+            return Math.Max(minRequiredVersion, GetMinKdbxVersionOrig());
+        }
+
+		private uint GetMinKdbxVersionOrig()
 		{
-			if(m_uForceVersion != 0) return m_uForceVersion;
+			if (m_uForceVersion != 0) return m_uForceVersion;
 
-            // See also KeePassKdb2x3.Export (KDBX 3.1 export module)
-		    uint minVersionForKeys = m_pwDatabase.MasterKey.UserKeys.Select(key => key.GetMinKdbxVersion()).Max();
+			// See also KeePassKdb2x3.Export (KDBX 3.1 export module)
+            
+			uint uMin = 0;
 
-		    uint minRequiredVersion = Math.Max(minVersionForKeys, m_uFileVersion); //don't save a version lower than what we read
-
-
-            AesKdf kdfAes = new AesKdf();
-			if(!kdfAes.Uuid.Equals(m_pwDatabase.KdfParameters.KdfUuid))
-				return Math.Max(FileVersion32, minRequiredVersion);
-
-			if(m_pwDatabase.PublicCustomData.Count > 0)
-			    return Math.Max(FileVersion32, minRequiredVersion);
-
-
-
-            bool bCustomData = false;
-			GroupHandler gh = delegate(PwGroup pg)
+			GroupHandler gh = delegate (PwGroup pg)
 			{
-				if(pg == null) { Debug.Assert(false); return true; }
-				if(pg.CustomData.Count > 0) { bCustomData = true; return false; }
+				if (pg == null) { Debug.Assert(false); return true; }
+
+				if (pg.Tags.Count != 0)
+					uMin = Math.Max(uMin, FileVersion32_4_1);
+				if (pg.CustomData.Count != 0)
+					uMin = Math.Max(uMin, FileVersion32_4);
+
 				return true;
 			};
-			EntryHandler eh = delegate(PwEntry pe)
+
+			EntryHandler eh = delegate (PwEntry pe)
 			{
-				if(pe == null) { Debug.Assert(false); return true; }
-				if(pe.CustomData.Count > 0) { bCustomData = true; return false; }
+				if (pe == null) { Debug.Assert(false); return true; }
+
+				if (!pe.QualityCheck)
+					uMin = Math.Max(uMin, FileVersion32_4_1);
+				if (pe.CustomData.Count != 0)
+					uMin = Math.Max(uMin, FileVersion32_4);
+
 				return true;
 			};
+
 			gh(m_pwDatabase.RootGroup);
 			m_pwDatabase.RootGroup.TraverseTree(TraversalMethod.PreOrder, gh, eh);
-			if(bCustomData)
-			    return Math.Max(FileVersion32, minRequiredVersion);
 
-            return Math.Max(FileVersion32_3, minRequiredVersion); ; // KDBX 3.1 is sufficient
+			if (uMin >= FileVersion32_4_1) return uMin; // All below is <= 4.1
+
+			foreach (PwCustomIcon ci in m_pwDatabase.CustomIcons)
+			{
+				if ((ci.Name.Length != 0) || ci.LastModificationTime.HasValue)
+					return FileVersion32_4_1;
+			}
+
+			foreach (KeyValuePair<string, string> kvp in m_pwDatabase.CustomData)
+			{
+				DateTime? odt = m_pwDatabase.CustomData.GetLastModificationTime(kvp.Key);
+				if (odt.HasValue) return FileVersion32_4_1;
+			}
+
+			if (uMin >= FileVersion32_4) return uMin; // All below is <= 4
+
+			if (m_pwDatabase.DataCipherUuid.Equals(ChaCha20Engine.ChaCha20Uuid))
+				return FileVersion32_4;
+
+			AesKdf kdfAes = new AesKdf();
+			if (!m_pwDatabase.KdfParameters.KdfUuid.Equals(kdfAes.Uuid))
+				return FileVersion32_4;
+
+			if (m_pwDatabase.PublicCustomData.Count != 0)
+				return FileVersion32_4;
+
+			return FileVersion32_3_1; // KDBX 3.1 is sufficient
 		}
 
 		private void ComputeKeys(out byte[] pbCipherKey, int cbCipherKey,
@@ -416,12 +414,12 @@ namespace KeePassLib.Serialization
 			try
 			{
 				Debug.Assert(m_pbMasterSeed != null);
-				if(m_pbMasterSeed == null)
+				if (m_pbMasterSeed == null)
 					throw new ArgumentNullException("m_pbMasterSeed");
 				Debug.Assert(m_pbMasterSeed.Length == 32);
-				if(m_pbMasterSeed.Length != 32)
+				if (m_pbMasterSeed.Length != 32)
 					throw new FormatException(KLRes.MasterSeedLengthInvalid);
-				
+				Array.Copy(m_pbMasterSeed, 0, pbCmp, 0, 32);
 
 				Debug.Assert(m_pwDatabase != null);
 				Debug.Assert(m_pwDatabase.MasterKey != null);
@@ -431,10 +429,10 @@ namespace KeePassLib.Serialization
 				Array.Copy(m_pbMasterSeed, 0, pbCmp, 0, 32);
 
 				Debug.Assert(pbinUser != null);
-				if(pbinUser == null)
+				if (pbinUser == null)
 					throw new SecurityException(KLRes.InvalidCompositeKey);
 				byte[] pUserKey32 = pbinUser.ReadData();
-				if((pUserKey32 == null) || (pUserKey32.Length != 32))
+				if ((pUserKey32 == null) || (pUserKey32.Length != 32))
 					throw new SecurityException(KLRes.InvalidCompositeKey);
 				Array.Copy(pUserKey32, 0, pbCmp, 32, 32);
 				MemUtil.ZeroByteArray(pUserKey32);
@@ -442,7 +440,7 @@ namespace KeePassLib.Serialization
 				pbCipherKey = CryptoUtil.ResizeKey(pbCmp, 0, 64, cbCipherKey);
 
 				pbCmp[64] = 1;
-				using(SHA512Managed h = new SHA512Managed())
+				using (SHA512Managed h = new SHA512Managed())
 				{
 					pbHmacKey64 = h.ComputeHash(pbCmp);
 				}
@@ -454,19 +452,19 @@ namespace KeePassLib.Serialization
 		{
 			PwUuid pu = m_pwDatabase.DataCipherUuid;
 			ICipherEngine iCipher = CipherPool.GlobalPool.GetCipher(pu);
-			if(iCipher == null) // CryptographicExceptions are translated to "file corrupted"
+			if (iCipher == null) // CryptographicExceptions are translated to "file corrupted"
 				throw new Exception(KLRes.FileUnknownCipher +
 					MessageService.NewParagraph + KLRes.FileNewVerOrPlgReq +
 					MessageService.NewParagraph + "UUID: " + pu.ToHexString() + ".");
 
 			ICipherEngine2 iCipher2 = (iCipher as ICipherEngine2);
-			if(iCipher2 != null)
+			if (iCipher2 != null)
 			{
 				cbEncKey = iCipher2.KeyLength;
-				if(cbEncKey < 0) throw new InvalidOperationException("EncKey.Length");
+				if (cbEncKey < 0) throw new InvalidOperationException("EncKey.Length");
 
 				cbEncIV = iCipher2.IVLength;
-				if(cbEncIV < 0) throw new InvalidOperationException("EncIV.Length");
+				if (cbEncIV < 0) throw new InvalidOperationException("EncIV.Length");
 			}
 			else
 			{
@@ -481,13 +479,13 @@ namespace KeePassLib.Serialization
 			byte[] pbKey, int cbIV, bool bEncrypt)
 		{
 			byte[] pbIV = (m_pbEncryptionIV ?? MemUtil.EmptyByteArray);
-			if(pbIV.Length != cbIV)
+			if (pbIV.Length != cbIV)
 			{
 				Debug.Assert(false);
 				throw new Exception(KLRes.FileCorrupted);
 			}
 
-			if(bEncrypt)
+			if (bEncrypt)
 				return iCipher.EncryptStream(s, pbKey, pbIV);
 			return iCipher.DecryptStream(s, pbKey, pbIV);
 		}
@@ -497,7 +495,7 @@ namespace KeePassLib.Serialization
 			byte[] pbHeaderHmac;
 			byte[] pbBlockKey = HmacBlockStream.GetHmacKey64(
 				pbKey, ulong.MaxValue);
-			using(HMACSHA256 h = new HMACSHA256(pbBlockKey))
+			using (HMACSHA256 h = new HMACSHA256(pbBlockKey))
 			{
 				pbHeaderHmac = h.ComputeHash(pbHeader);
 			}
@@ -508,7 +506,7 @@ namespace KeePassLib.Serialization
 
 		private void CloseStreams(List<Stream> lStreams)
 		{
-			if(lStreams == null) { Debug.Assert(false); return; }
+			if (lStreams == null) { Debug.Assert(false); return; }
 
 			// Typically, closing a stream also closes its base
 			// stream; however, there may be streams that do not
@@ -516,14 +514,14 @@ namespace KeePassLib.Serialization
 			// we close all streams manually, from the innermost
 			// to the outermost
 
-			for(int i = lStreams.Count - 1; i >= 0; --i)
+			for (int i = lStreams.Count - 1; i >= 0; --i)
 			{
 				// Check for duplicates
 				Debug.Assert((lStreams.IndexOf(lStreams[i]) == i) &&
 					(lStreams.LastIndexOf(lStreams[i]) == i));
 
 				try { lStreams[i].Close(); }
-				catch(Exception) { Debug.Assert(false); }
+				catch (Exception) { Debug.Assert(false); }
 			}
 
 			// Do not clear the list
@@ -531,18 +529,18 @@ namespace KeePassLib.Serialization
 
 		private void CleanUpInnerRandomStream()
 		{
-			if(m_randomStream != null) m_randomStream.Dispose();
+			if (m_randomStream != null) m_randomStream.Dispose();
 
-			if(m_pbInnerRandomStreamKey != null)
+			if (m_pbInnerRandomStreamKey != null)
 				MemUtil.ZeroByteArray(m_pbInnerRandomStreamKey);
 		}
 
 		private static void SaveBinary(string strName, ProtectedBinary pb,
 			string strSaveDir)
 		{
-			if(pb == null) { Debug.Assert(false); return; }
+			if (pb == null) { Debug.Assert(false); return; }
 
-			if(string.IsNullOrEmpty(strName)) strName = "File.bin";
+			strName = UrlUtil.GetSafeFileName(strName);
 
 			string strPath;
 			int iTry = 1;
@@ -550,31 +548,23 @@ namespace KeePassLib.Serialization
 			{
 				strPath = UrlUtil.EnsureTerminatingSeparator(strSaveDir, false);
 
-				string strExt = UrlUtil.GetExtension(strName);
 				string strDesc = UrlUtil.StripExtension(strName);
+				string strExt = UrlUtil.GetExtension(strName);
 
 				strPath += strDesc;
-				if(iTry > 1)
+				if (iTry > 1)
 					strPath += " (" + iTry.ToString(NumberFormatInfo.InvariantInfo) +
 						")";
 
-				if(!string.IsNullOrEmpty(strExt)) strPath += "." + strExt;
+				if (!string.IsNullOrEmpty(strExt)) strPath += "." + strExt;
 
 				++iTry;
 			}
-			while(File.Exists(strPath));
+			while (File.Exists(strPath));
 
-#if !KeePassLibSD
 			byte[] pbData = pb.ReadData();
-			File.WriteAllBytes(strPath, pbData);
-			MemUtil.ZeroByteArray(pbData);
-#else
-			FileStream fs = new FileStream(strPath, FileMode.Create,
-				FileAccess.Write, FileShare.None);
-			byte[] pbData = pb.ReadData();
-			fs.Write(pbData, 0, pbData.Length);
-			fs.Close();
-#endif
+			try { File.WriteAllBytes(strPath, pbData); }
+			finally { if (pb.IsProtected) MemUtil.ZeroByteArray(pbData); }
 		}
 	}
 }

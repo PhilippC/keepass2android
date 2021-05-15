@@ -353,9 +353,6 @@ namespace keepass2android.search
 						case PwDefs.NotesField:
 							intlResourceId = Resource.String.entry_comment;
 							break;
-						case PwGroup.SearchContextTags:
-							intlResourceId = Resource.String.entry_tags;
-							break;
 						default:
 							//don't disclose protected strings:
 							if (CurrentEntry.Strings.Get(context.Key).IsProtected)

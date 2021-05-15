@@ -16,7 +16,7 @@ namespace KeePassLib.Resources
 		{
 			string strTemp;
 
-			if(dictNew.TryGetValue(strName, out strTemp))
+			if (dictNew.TryGetValue(strName, out strTemp))
 				return strTemp;
 
 			return strDefault;
@@ -24,8 +24,11 @@ namespace KeePassLib.Resources
 
 		public static void SetTranslatedStrings(Dictionary<string, string> dictNew)
 		{
-			if(dictNew == null) throw new ArgumentNullException("dictNew");
+			if (dictNew == null) throw new ArgumentNullException("dictNew");
 
+			m_strAlgorithmUnknown = TryGetEx(dictNew, "AlgorithmUnknown", m_strAlgorithmUnknown);
+			m_strCharSetInvalid = TryGetEx(dictNew, "CharSetInvalid", m_strCharSetInvalid);
+			m_strCharSetTooFewChars = TryGetEx(dictNew, "CharSetTooFewChars", m_strCharSetTooFewChars);
 			m_strCryptoStreamFailed = TryGetEx(dictNew, "CryptoStreamFailed", m_strCryptoStreamFailed);
 			m_strEncDataTooLarge = TryGetEx(dictNew, "EncDataTooLarge", m_strEncDataTooLarge);
 			m_strErrorInClipboard = TryGetEx(dictNew, "ErrorInClipboard", m_strErrorInClipboard);
@@ -41,7 +44,7 @@ namespace KeePassLib.Resources
 			m_strFileNewVerOrPlgReq = TryGetEx(dictNew, "FileNewVerOrPlgReq", m_strFileNewVerOrPlgReq);
 			m_strFileNewVerReq = TryGetEx(dictNew, "FileNewVerReq", m_strFileNewVerReq);
 			m_strFileSaveCorruptionWarning = TryGetEx(dictNew, "FileSaveCorruptionWarning", m_strFileSaveCorruptionWarning);
-			m_strFileSaveFailed = TryGetEx(dictNew, "FileSaveFailed", m_strFileSaveFailed);
+			m_strFileSaveFailed2 = TryGetEx(dictNew, "FileSaveFailed2", m_strFileSaveFailed2);
 			m_strFileSigInvalid = TryGetEx(dictNew, "FileSigInvalid", m_strFileSigInvalid);
 			m_strFileUnknownCipher = TryGetEx(dictNew, "FileUnknownCipher", m_strFileUnknownCipher);
 			m_strFileUnknownCompression = TryGetEx(dictNew, "FileUnknownCompression", m_strFileUnknownCompression);
@@ -55,12 +58,18 @@ namespace KeePassLib.Resources
 			m_strKeePass1xHint = TryGetEx(dictNew, "KeePass1xHint", m_strKeePass1xHint);
 			m_strKeyBits = TryGetEx(dictNew, "KeyBits", m_strKeyBits);
 			m_strKeyFileDbSel = TryGetEx(dictNew, "KeyFileDbSel", m_strKeyFileDbSel);
+			m_strKeyHashMismatch = TryGetEx(dictNew, "KeyHashMismatch", m_strKeyHashMismatch);
 			m_strMasterSeedLengthInvalid = TryGetEx(dictNew, "MasterSeedLengthInvalid", m_strMasterSeedLengthInvalid);
 			m_strOldFormat = TryGetEx(dictNew, "OldFormat", m_strOldFormat);
 			m_strPassive = TryGetEx(dictNew, "Passive", m_strPassive);
+			m_strPathBackslash = TryGetEx(dictNew, "PathBackslash", m_strPathBackslash);
+			m_strPatternInvalid = TryGetEx(dictNew, "PatternInvalid", m_strPatternInvalid);
 			m_strPreAuth = TryGetEx(dictNew, "PreAuth", m_strPreAuth);
+			m_strPwGenFailed = TryGetEx(dictNew, "PwGenFailed", m_strPwGenFailed);
+			m_strStructsTooDeep = TryGetEx(dictNew, "StructsTooDeep", m_strStructsTooDeep);
 			m_strTimeout = TryGetEx(dictNew, "Timeout", m_strTimeout);
 			m_strTryAgainSecs = TryGetEx(dictNew, "TryAgainSecs", m_strTryAgainSecs);
+			m_strUnknownError = TryGetEx(dictNew, "UnknownError", m_strUnknownError);
 			m_strUnknownHeaderId = TryGetEx(dictNew, "UnknownHeaderId", m_strUnknownHeaderId);
 			m_strUnknownKdf = TryGetEx(dictNew, "UnknownKdf", m_strUnknownKdf);
 			m_strUserAccountKeyError = TryGetEx(dictNew, "UserAccountKeyError", m_strUserAccountKeyError);
@@ -68,6 +77,9 @@ namespace KeePassLib.Resources
 		}
 
 		private static readonly string[] m_vKeyNames = {
+			"AlgorithmUnknown",
+			"CharSetInvalid",
+			"CharSetTooFewChars",
 			"CryptoStreamFailed",
 			"EncDataTooLarge",
 			"ErrorInClipboard",
@@ -83,7 +95,7 @@ namespace KeePassLib.Resources
 			"FileNewVerOrPlgReq",
 			"FileNewVerReq",
 			"FileSaveCorruptionWarning",
-			"FileSaveFailed",
+			"FileSaveFailed2",
 			"FileSigInvalid",
 			"FileUnknownCipher",
 			"FileUnknownCompression",
@@ -97,12 +109,18 @@ namespace KeePassLib.Resources
 			"KeePass1xHint",
 			"KeyBits",
 			"KeyFileDbSel",
+			"KeyHashMismatch",
 			"MasterSeedLengthInvalid",
 			"OldFormat",
 			"Passive",
+			"PathBackslash",
+			"PatternInvalid",
 			"PreAuth",
+			"PwGenFailed",
+			"StructsTooDeep",
 			"Timeout",
 			"TryAgainSecs",
+			"UnknownError",
 			"UnknownHeaderId",
 			"UnknownKdf",
 			"UserAccountKeyError",
@@ -112,6 +130,39 @@ namespace KeePassLib.Resources
 		public static string[] GetKeyNames()
 		{
 			return m_vKeyNames;
+		}
+
+		private static string m_strAlgorithmUnknown =
+			@"The algorithm is unknown.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'The algorithm is unknown.'.
+		/// </summary>
+		public static string AlgorithmUnknown
+		{
+			get { return m_strAlgorithmUnknown; }
+		}
+
+		private static string m_strCharSetInvalid =
+			@"The character set is invalid.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'The character set is invalid.'.
+		/// </summary>
+		public static string CharSetInvalid
+		{
+			get { return m_strCharSetInvalid; }
+		}
+
+		private static string m_strCharSetTooFewChars =
+			@"There are too few characters in the character set.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'There are too few characters in the character set.'.
+		/// </summary>
+		public static string CharSetTooFewChars
+		{
+			get { return m_strCharSetTooFewChars; }
 		}
 
 		private static string m_strCryptoStreamFailed =
@@ -279,15 +330,15 @@ namespace KeePassLib.Resources
 			get { return m_strFileSaveCorruptionWarning; }
 		}
 
-		private static string m_strFileSaveFailed =
-			@"Failed to save the current database to the specified location!";
+		private static string m_strFileSaveFailed2 =
+			@"Failed to save to the specified file!";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'Failed to save the current database to the specified location!'.
+		/// 'Failed to save to the specified file!'.
 		/// </summary>
-		public static string FileSaveFailed
+		public static string FileSaveFailed2
 		{
-			get { return m_strFileSaveFailed; }
+			get { return m_strFileSaveFailed2; }
 		}
 
 		private static string m_strFileSigInvalid =
@@ -346,10 +397,10 @@ namespace KeePassLib.Resources
 		}
 
 		private static string m_strFrameworkNotImplExcp =
-			@"The .NET framework/runtime under which KeePass is currently running does not support this operation.";
+			@"The .NET Framework/runtime under which KeePass is currently running does not support this operation.";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'The .NET framework/runtime under which KeePass is currently running does not support this operation.'.
+		/// 'The .NET Framework/runtime under which KeePass is currently running does not support this operation.'.
 		/// </summary>
 		public static string FrameworkNotImplExcp
 		{
@@ -368,10 +419,10 @@ namespace KeePassLib.Resources
 		}
 
 		private static string m_strInvalidCompositeKey =
-			@"The composite key is invalid!";
+			@"The master key is invalid!";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'The composite key is invalid!'.
+		/// 'The master key is invalid!'.
 		/// </summary>
 		public static string InvalidCompositeKey
 		{
@@ -379,10 +430,10 @@ namespace KeePassLib.Resources
 		}
 
 		private static string m_strInvalidCompositeKeyHint =
-			@"Make sure the composite key is correct and try again.";
+			@"Make sure that the master key is correct and try it again.";
 		/// <summary>
 		/// Look up a localized string similar to
-		/// 'Make sure the composite key is correct and try again.'.
+		/// 'Make sure that the master key is correct and try it again.'.
 		/// </summary>
 		public static string InvalidCompositeKeyHint
 		{
@@ -433,6 +484,17 @@ namespace KeePassLib.Resources
 			get { return m_strKeyFileDbSel; }
 		}
 
+		private static string m_strKeyHashMismatch =
+			@"The key and the hash do not match, i.e. the key or the hash is invalid.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'The key and the hash do not match, i.e. the key or the hash is invalid.'.
+		/// </summary>
+		public static string KeyHashMismatch
+		{
+			get { return m_strKeyHashMismatch; }
+		}
+
 		private static string m_strMasterSeedLengthInvalid =
 			@"The length of the master key seed is invalid!";
 		/// <summary>
@@ -466,6 +528,28 @@ namespace KeePassLib.Resources
 			get { return m_strPassive; }
 		}
 
+		private static string m_strPathBackslash =
+			@"The path contains a backslash. Such paths are not supported (for security reasons).";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'The path contains a backslash. Such paths are not supported (for security reasons).'.
+		/// </summary>
+		public static string PathBackslash
+		{
+			get { return m_strPathBackslash; }
+		}
+
+		private static string m_strPatternInvalid =
+			@"The pattern is invalid.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'The pattern is invalid.'.
+		/// </summary>
+		public static string PatternInvalid
+		{
+			get { return m_strPatternInvalid; }
+		}
+
 		private static string m_strPreAuth =
 			@"Pre-authenticate";
 		/// <summary>
@@ -475,6 +559,28 @@ namespace KeePassLib.Resources
 		public static string PreAuth
 		{
 			get { return m_strPreAuth; }
+		}
+
+		private static string m_strPwGenFailed =
+			@"Failed to generate a password.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Failed to generate a password.'.
+		/// </summary>
+		public static string PwGenFailed
+		{
+			get { return m_strPwGenFailed; }
+		}
+
+		private static string m_strStructsTooDeep =
+			@"Structures are nested too deeply.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'Structures are nested too deeply.'.
+		/// </summary>
+		public static string StructsTooDeep
+		{
+			get { return m_strStructsTooDeep; }
 		}
 
 		private static string m_strTimeout =
@@ -497,6 +603,17 @@ namespace KeePassLib.Resources
 		public static string TryAgainSecs
 		{
 			get { return m_strTryAgainSecs; }
+		}
+
+		private static string m_strUnknownError =
+			@"An unknown error occurred.";
+		/// <summary>
+		/// Look up a localized string similar to
+		/// 'An unknown error occurred.'.
+		/// </summary>
+		public static string UnknownError
+		{
+			get { return m_strUnknownError; }
 		}
 
 		private static string m_strUnknownHeaderId =

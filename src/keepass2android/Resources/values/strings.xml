@@ -325,8 +325,6 @@
   <string name="QuickUnlockHideLength_summary">If enabled, the length of the QuickUnlock code is not displayed on the QuickUnlock screen.</string>
   
   <string name="QuickUnlock_fail">QuickUnlock failed: incorrect password!</string>
-  <string name="BinaryDirectory_title">File attachments directory</string>
-  <string name="BinaryDirectory_summary">Directory where file attachments are saved to.</string>
   <string name="SaveAttachmentDialog_title">Save attachment</string>
   <string name="SaveAttachmentDialog_text">Please select where to save the attachment.</string>
   <string name="SaveAttachmentDialog_save">Export to file...</string>
@@ -348,7 +346,15 @@
   <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment</string>
   <string name="add_extra_string">Add additional string</string>
-	<string name="delete_extra_string">Delete additional string</string>
+  <string name="configure_totp">Configure TOTP</string>
+  <string name="totp_secret_key">Secret key</string>
+  <string name="totp_encoding_rfc6238">Default RFC6238 token settings</string>
+  <string name="totp_encoding_steam">Steam token settings</string>
+  <string name="totp_encoding_custom">Custom token settings</string>
+  <string name="totp_time_step">Time step</string>
+  <string name="totp_length">Code length</string>
+  
+  <string name="delete_extra_string">Delete additional string</string>
 	<string name="database_loaded_quickunlock_enabled">%1$s: Locked. QuickUnlock enabled.</string>
 	<string name="database_loaded_unlocked">%1$s: Unlocked.</string>
   <string name="credentials_dialog_title">Enter server credentials</string>

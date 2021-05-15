@@ -1,8 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2013 Dominik Reichl <dominik.reichl@t-online.de>
-  
-  Modified to be used with Mono for Android. Changes Copyright (C) 2013 Philipp Crocoll
+  Copyright (C) 2003-2021 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,61 +18,106 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+
+#if !KeePassUAP
 using System.Drawing;
-using System.IO;
+#endif
 
 using KeePassLib.Utility;
 
-
 namespace KeePassLib
 {
-
-	/// <summary>
-	/// Custom icon. <c>PwCustomIcon</c> objects are immutable.
-	/// </summary>
 	public sealed class PwCustomIcon
 	{
-		private PwUuid m_pwUuid;
-		private byte[] m_pbImageDataPng;
-		private Android.Graphics.Bitmap m_pCachedImage;
+		// Recommended maximum sizes, not obligatory
+		internal const int MaxWidth = 128;
+		internal const int MaxHeight = 128;
+
+		private readonly PwUuid m_uuid;
+		private readonly byte[] m_pbImageDataPng;
+
+		private string m_strName = string.Empty;
+		private DateTime? m_odtLastMod = null;
+
+		private Dictionary<long, Android.Graphics.Bitmap> m_dImageCache = new Dictionary<long, Android.Graphics.Bitmap>();
 
 		public PwUuid Uuid
 		{
-			get { return m_pwUuid; }
+			get { return m_uuid; }
 		}
 
 		public byte[] ImageDataPng
 		{
 			get { return m_pbImageDataPng; }
+			// When allowing 'set', do not copy the cache in 'Clone'
 		}
 
+		public string Name
+		{
+			get { return m_strName; }
+			set
+			{
+				if (value == null) throw new ArgumentNullException("value");
+				m_strName = value;
+			}
+		}
+
+		public DateTime? LastModificationTime
+		{
+			get { return m_odtLastMod; }
+			set { m_odtLastMod = value; }
+		}
+
+		[Obsolete("Use GetImage instead.")]
 		public Android.Graphics.Bitmap Image
 		{
-			get { return m_pCachedImage; }
+			get { return GetImage(); } // Backward compatibility
+        }
+
+		public PwCustomIcon(PwUuid pu, byte[] pbImageDataPng)
+		{
+			if (pu == null) { Debug.Assert(false); throw new ArgumentNullException("pu"); }
+			if (pu.Equals(PwUuid.Zero)) { Debug.Assert(false); throw new ArgumentOutOfRangeException("pu"); }
+			if (pbImageDataPng == null) { Debug.Assert(false); throw new ArgumentNullException("pbImageDataPng"); }
+
+			m_uuid = pu;
+			m_pbImageDataPng = pbImageDataPng;
 		}
 
-		public PwCustomIcon(PwUuid pwUuid, byte[] pbImageDataPng)
+		private static long GetKey(int w, int h)
 		{
-			Debug.Assert(pwUuid != null);
-			if(pwUuid == null) throw new ArgumentNullException("pwUuid");
-			Debug.Assert(!pwUuid.Equals(PwUuid.Zero));
-			if(pwUuid.Equals(PwUuid.Zero)) throw new ArgumentException("pwUuid == 0");
+			return (((long)w << 32) ^ (long)h);
+		}
 
-			Debug.Assert(pbImageDataPng != null);
-			if(pbImageDataPng == null) throw new ArgumentNullException("pbImageDataPng");
+		/// <summary>
+		/// Get the icon as an <c>Image</c> (original size).
+		/// </summary>
+		public Android.Graphics.Bitmap GetImage()
+		{
+			const long lKey = -1;
 
-			m_pwUuid = pwUuid;
-			m_pbImageDataPng = pbImageDataPng;
+            Android.Graphics.Bitmap img;
+			if (m_dImageCache.TryGetValue(lKey, out img)) return img;
 
-#if !KeePassLibSD
-			// MemoryStream ms = new MemoryStream(m_pbImageDataPng, false);
-			// m_pCachedImage = Image.FromStream(ms);
-			// ms.Close();
-			m_pCachedImage = GfxUtil.LoadImage(m_pbImageDataPng);
-#else
-			m_pCachedImage = null;
-#endif
+			try { img = GfxUtil.LoadImage(m_pbImageDataPng); }
+			catch (Exception) { Debug.Assert(false); }
+
+			m_dImageCache[lKey] = img;
+			return img;
+		}
+
+		internal PwCustomIcon Clone()
+		{
+			PwCustomIcon ico = new PwCustomIcon(m_uuid, m_pbImageDataPng);
+
+			ico.m_strName = m_strName;
+			ico.m_odtLastMod = m_odtLastMod;
+
+			ico.m_dImageCache = m_dImageCache; // Same image data
+
+			return ico;
 		}
 	}
 }

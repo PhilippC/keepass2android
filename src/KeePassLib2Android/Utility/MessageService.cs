@@ -429,7 +429,7 @@ Clipboard.SetText(ObjectsToMessage(vLines, true));*/
 			if ((strFilePath != null) && (strFilePath.Length > 0))
 				str += strFilePath + MessageService.NewParagraph;
 
-			str += KLRes.FileSaveFailed;
+			str += KLRes.FileSaveFailed2;
 
 			if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
 				str += MessageService.NewParagraph + ex.Message;

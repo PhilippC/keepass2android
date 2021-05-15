@@ -40,7 +40,7 @@
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>
 	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski, gilbsgilbs, Chih-Hsuan Yen, DDoSolitary, marcoDallas</string>
 	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
-  <string name="supporter_names">Arno Welzel, Sebastián Ramírez, A. Finkhäuser</string>
+  <string name="supporter_names">Arno Welzel, Sebastián Ramírez, A. Finkhäuser, Makoto Mizukami</string>
     <string name="issues">https://github.com/PhilippC/keepass2android/issues</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
@@ -75,7 +75,7 @@
 	<string name="RememberRecentFiles_key">RememberRecentFiles_key</string>
     <string name="default_username_key">defaultUsername</string>
     <string name="database_name_key">databaseName</string>
-    <string name="BinaryDirectory_key">binaryDirectory</string>
+    
     <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
     <bool name="maskpass_default">true</bool>
     <bool name="keyfile_default">true</bool>
@@ -176,6 +176,12 @@
     	<item>20</item>
     	<item>28</item>
     </string-array>
+
+  <string-array name="totp_algorithms">
+    <item>SHA-1</item>
+    <item>SHA-256</item>
+    <item>SHA-512</item>
+  </string-array>
 
 	<string name="design_default">System</string>
 	<string-array name="design_values">
