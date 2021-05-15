@@ -316,6 +316,13 @@
   <string name="protection">受保护的字段</string>
   <string name="add_binary">添加附件...</string>
   <string name="add_extra_string">添加额外的字符串</string>
+  <string name="configure_totp">配置 TOTP</string>
+  <string name="totp_secret_key">密钥</string>
+  <string name="totp_encoding_rfc6238">默认 RFC6238 令牌设置</string>
+  <string name="totp_encoding_steam">Steam令牌设置</string>
+  <string name="totp_encoding_custom">自定义令牌设置</string>
+  <string name="totp_time_step">时间步数</string>
+  <string name="totp_length">代码长度</string>
   <string name="delete_extra_string">删除额外的字符串</string>
   <string name="database_loaded_quickunlock_enabled">%1$s：已锁定，快速解锁已启用。</string>
   <string name="database_loaded_unlocked">%1$s：已解锁。</string>
