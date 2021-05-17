@@ -24,14 +24,43 @@ using Android.OS;
 using Android.Preferences;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace keepass2android
 {
     [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]		    
-    public class GeneratePasswordActivity : LockCloseActivity {
-		private readonly int[] _buttonIds  = new[]  {Resource.Id.btn_length6, Resource.Id.btn_length8, Resource.Id.btn_length12, Resource.Id.btn_length16};
+    public class GeneratePasswordActivity :
+#if DEBUG
+        LifecycleAwareActivity
+#else
+		LockCloseActivity 
+#endif
 
-	    private ActivityDesign _design;
+    {
+		private readonly int[] _buttonLengthButtonIds  = new[]  {Resource.Id.btn_length6,
+            Resource.Id.btn_length8, 
+            Resource.Id.btn_length12, 
+            Resource.Id.btn_length16,
+            Resource.Id.btn_length24,
+            Resource.Id.btn_length32};
+
+        private readonly int[] _checkboxIds = new[]  {Resource.Id.cb_uppercase,
+            Resource.Id.cb_lowercase,
+            Resource.Id.cb_digits,
+            Resource.Id.cb_minus,
+            Resource.Id.cb_underline,
+            Resource.Id.cb_space,
+            Resource.Id.cb_specials,
+            Resource.Id.cb_specials_extended,
+            Resource.Id.cb_brackets,
+            Resource.Id.cb_at_least_one_from_each_group,
+            Resource.Id.cb_exclude_lookalike
+        };
+
+		PasswordFont _passwordFont = new PasswordFont();
+
+
+		private ActivityDesign _design;
 	    public GeneratePasswordActivity()
 	    {
 		    _design = new ActivityDesign(this);
@@ -47,7 +76,10 @@ namespace keepass2android
 		{
 			Intent i = new Intent(act, typeof(GeneratePasswordActivity));
 
+#if DEBUG
+#else
 			i.PutExtra(NoLockCheck, true);
+#endif
 
 			act.StartActivityForResult(i, 0);
 		}
@@ -61,17 +93,54 @@ namespace keepass2android
 			SetResult(KeePass.ExitNormal);
 
 			var prefs = GetPreferences(FileCreationMode.Private);
-			((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked = prefs.GetBoolean("cb_uppercase", true);
-			((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked = prefs.GetBoolean("cb_lowercase", true);
-			((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked = prefs.GetBoolean("cb_digits", true);
-			((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked = prefs.GetBoolean("cb_minus", false);
-			((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked = prefs.GetBoolean("cb_underline", false);
-			((CheckBox)FindViewById(Resource.Id.cb_space)).Checked = prefs.GetBoolean("cb_space", false);
-			((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked = prefs.GetBoolean("cb_specials", false);
-			((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked = prefs.GetBoolean("cb_brackets", false);
-			((EditText)FindViewById(Resource.Id.length)).Text = prefs.GetInt("length", 12).ToString(CultureInfo.InvariantCulture);
+
+
+            PasswordGenerator.PasswordGenerationOptions options = null;
+			string jsonOptions = prefs.GetString("password_generator_options", null);
+            if (jsonOptions != null)
+            {
+                try
+                {
+                    options = JsonConvert.DeserializeObject<PasswordGenerator.PasswordGenerationOptions>(jsonOptions);
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.LogUnexpectedError(e);
+                }
+            }
+            else
+            {
+				options = new PasswordGenerator.PasswordGenerationOptions()
+                {
+                    Length = prefs.GetInt("length", 12),
+                    UpperCase = prefs.GetBoolean("cb_uppercase", true),
+                    LowerCase = prefs.GetBoolean("cb_lowercase", true),
+                    Digits = prefs.GetBoolean("cb_digits", true),
+                    Minus = prefs.GetBoolean("cb_minus", false),
+                    Underline = prefs.GetBoolean("cb_underline", false),
+                    Space = prefs.GetBoolean("cb_space", false),
+                    Specials = prefs.GetBoolean("cb_specials", false),
+                    SpecialsExtended = false,
+                    Brackets = prefs.GetBoolean("cb_brackets", false)
+                };
+
+			}
+
+			((CheckBox)FindViewById(Resource.Id.cb_uppercase)).Checked = options.UpperCase;
+			((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked = options.LowerCase;
+			((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked = options.Digits;
+			((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked = options.Minus;
+			((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked = options.Underline;
+			((CheckBox)FindViewById(Resource.Id.cb_space)).Checked = options.Space;
+			((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked = options.Specials;
+            ((CheckBox)FindViewById(Resource.Id.cb_specials_extended)).Checked = options.SpecialsExtended;
+			((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked = options.Brackets;
+            ((CheckBox)FindViewById(Resource.Id.cb_exclude_lookalike)).Checked = options.ExcludeLookAlike;
+            ((CheckBox)FindViewById(Resource.Id.cb_at_least_one_from_each_group)).Checked = options.AtLeastOneFromEachGroup;
+
+			((EditText)FindViewById(Resource.Id.length)).Text = options.Length.ToString(CultureInfo.InvariantCulture);
 			
-			foreach (int id in _buttonIds) {
+			foreach (int id in _buttonLengthButtonIds) {
 				Button button = (Button) FindViewById(id);
 				button.Click += (sender, e) => 
 				{
@@ -79,17 +148,18 @@ namespace keepass2android
 					
 					EditText editText = (EditText) FindViewById(Resource.Id.length);
 					editText.Text = b.Text;
+					UpdatePassword();
 
 				};
 			}
-			
-			Button genPassButton = (Button) FindViewById(Resource.Id.generate_password_button);
-			genPassButton.Click += (sender, e) =>  {
-					String password = GeneratePassword();
-					
-					EditText txtPassword = (EditText) FindViewById(Resource.Id.password_edit);
-					txtPassword.Text = password;
-			};
+
+            foreach (int id in _checkboxIds)
+            {
+                FindViewById<CheckBox>(id).CheckedChange += (sender, args) => UpdatePassword();
+            }
+
+            Button genPassButton = (Button) FindViewById(Resource.Id.generate_password_button);
+			genPassButton.Click += (sender, e) => { UpdatePassword(); };
 
 
 
@@ -118,12 +188,22 @@ namespace keepass2android
 			EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password_edit);
 			txtPasswordToSet.Text = GeneratePassword();
 
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            _passwordFont.ApplyTo(txtPasswordToSet);
+
+			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
 		}
-		
-		public String GeneratePassword() {
+
+        private void UpdatePassword()
+        {
+            String password = GeneratePassword();
+
+            EditText txtPassword = (EditText) FindViewById(Resource.Id.password_edit);
+            txtPassword.Text = password;
+        }
+
+        public String GeneratePassword() {
 			String password = "";
 			
 			try {
@@ -137,29 +217,15 @@ namespace keepass2android
 
 
 				PasswordGenerator generator = new PasswordGenerator(this);
-				
-				password = generator.GeneratePassword(length,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_lowercase)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_digits)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_minus)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_underline)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_space)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_specials)).Checked,
-				                                      ((CheckBox) FindViewById(Resource.Id.cb_brackets)).Checked);
+
+                var options = GetOptions(length);
+
+				password = generator.GeneratePassword(options);
 
 				var prefs = GetPreferences(FileCreationMode.Private);
 				prefs.Edit()
-				     .PutBoolean("cb_uppercase", ((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked)
-				     .PutBoolean("cb_lowercase", ((CheckBox) FindViewById(Resource.Id.cb_lowercase)).Checked)
-				     .PutBoolean("cb_digits", ((CheckBox) FindViewById(Resource.Id.cb_digits)).Checked)
-				     .PutBoolean("cb_minus", ((CheckBox) FindViewById(Resource.Id.cb_minus)).Checked)
-				     .PutBoolean("cb_underline", ((CheckBox) FindViewById(Resource.Id.cb_underline)).Checked)
-				     .PutBoolean("cb_space", ((CheckBox) FindViewById(Resource.Id.cb_space)).Checked)
-				     .PutBoolean("cb_specials", ((CheckBox) FindViewById(Resource.Id.cb_specials)).Checked)
-				     .PutBoolean("cb_brackets", ((CheckBox) FindViewById(Resource.Id.cb_brackets)).Checked)
-				     .PutInt("length", length)
-				     .Commit();
+				     .PutString("password_generator_options", JsonConvert.SerializeObject(options))
+                         .Commit();
 
 
 
@@ -169,6 +235,26 @@ namespace keepass2android
 			
 			return password;
 		}
+
+        private PasswordGenerator.PasswordGenerationOptions GetOptions(int length)
+        {
+            PasswordGenerator.PasswordGenerationOptions options = new PasswordGenerator.PasswordGenerationOptions()
+            {
+                Length = length,
+                UpperCase = ((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked,
+                LowerCase = ((CheckBox) FindViewById(Resource.Id.cb_lowercase)).Checked,
+                Digits = ((CheckBox) FindViewById(Resource.Id.cb_digits)).Checked,
+                Minus = ((CheckBox) FindViewById(Resource.Id.cb_minus)).Checked,
+                Underline = ((CheckBox) FindViewById(Resource.Id.cb_underline)).Checked,
+                Space = ((CheckBox) FindViewById(Resource.Id.cb_space)).Checked,
+                Specials = ((CheckBox) FindViewById(Resource.Id.cb_specials)).Checked,
+                SpecialsExtended = ((CheckBox) FindViewById(Resource.Id.cb_specials_extended)).Checked,
+                Brackets = ((CheckBox) FindViewById(Resource.Id.cb_brackets)).Checked,
+                ExcludeLookAlike = ((CheckBox) FindViewById(Resource.Id.cb_exclude_lookalike)).Checked,
+                AtLeastOneFromEachGroup = ((CheckBox) FindViewById(Resource.Id.cb_at_least_one_from_each_group)).Checked
+            };
+            return options;
+        }
 
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -181,7 +267,7 @@ namespace keepass2android
             }
             return false;
         }
-	}
+    }
 
 }
 

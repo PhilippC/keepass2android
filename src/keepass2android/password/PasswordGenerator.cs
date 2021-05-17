@@ -16,6 +16,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Android.Content;
@@ -33,6 +35,7 @@ namespace keepass2android
 		private const String UnderlineChars 	= "_";
 		private const String SpaceChars 		= " ";
 		private const String SpecialChars 	= "!\"#$%&'*+,./:;=?@\\^`";
+        private const String ExtendedChars = "§©®¢°±¹²³¼½×÷«âéïñù¡¿»¦Ø";
 		private const String BracketChars 	= "[]{}()<>";
 		
 		private readonly Context _cxt;
@@ -47,7 +50,7 @@ namespace keepass2android
 			{
 				var data = new byte[sizeof(int)];
 				_rng.GetBytes(data);
-				return BitConverter.ToInt32(data, 0) & (int.MaxValue - 1);
+				return BitConverter.ToInt32(data, 0) & (Int32.MaxValue - 1);
 			}
 
 			public override int Next(int maxValue)
@@ -69,7 +72,7 @@ namespace keepass2android
 				var data = new byte[sizeof(uint)];
 				_rng.GetBytes(data);
 				var randUint = BitConverter.ToUInt32(data, 0);
-				return randUint / (uint.MaxValue + 1.0);
+				return randUint / (UInt32.MaxValue + 1.0);
 			}
 
 			public override void NextBytes(byte[] data)
@@ -81,64 +84,136 @@ namespace keepass2android
 		public PasswordGenerator(Context cxt) {
 			_cxt = cxt;
 		}
-		
-		public String GeneratePassword(int length, bool upperCase, bool lowerCase, bool digits, bool minus, bool underline, bool space, bool specials, bool brackets) {
-			if (length <= 0)
+
+
+        public class PasswordGenerationOptions
+        {
+            public int Length { get; set; }
+            public bool UpperCase { get; set; }
+            public bool LowerCase { get; set; }
+            public bool Digits { get; set; }
+            public bool Minus { get; set; }
+            public bool Underline { get; set; }
+            public bool Space { get; set; }
+            public bool Specials { get; set; }
+            public bool SpecialsExtended { get; set; }
+            public bool Brackets { get; set; }
+
+			public bool ExcludeLookAlike { get; set; }
+			public bool AtLeastOneFromEachGroup { get; set; }
+
+        }
+
+
+        public String GeneratePassword(PasswordGenerationOptions options) {
+			if (options.Length <= 0)
 				throw new ArgumentException(_cxt.GetString(Resource.String.error_wrong_length));
-			
-			if (!upperCase && !lowerCase && !digits && !minus && !underline && !space && !specials && !brackets)
-				throw new ArgumentException(_cxt.GetString(Resource.String.error_pass_gen_type));
-			
-			String characterSet = GetCharacterSet(upperCase, lowerCase, digits, minus, underline, space, specials, brackets);
-			
+
+
+            var groups = GetCharacterGroups(options);
+			String characterSet = GetCharacterSet(options, groups);
+
+			if (characterSet.Length == 0)
+                throw new ArgumentException(_cxt.GetString(Resource.String.error_pass_gen_type));
+
 			int size = characterSet.Length;
 			
 			StringBuilder buffer = new StringBuilder();
 
 			Random random = new SecureRandom();
+
+            if (options.AtLeastOneFromEachGroup)
+            {
+                foreach (var g in groups)
+                {
+                    if (g.Length > 0)
+                    {
+                        buffer.Append(g[random.Next(g.Length)]);
+                    }
+                }
+            }
+
 			if (size > 0) 
 			{
-				for (int i = 0; i < length; i++) 
+				while (buffer.Length < options.Length)
 				{
-					char c = characterSet[random.Next(size)];
-					
-					buffer.Append(c);
+					buffer.Append(characterSet[random.Next(size)]);
 				}
 			}
-			
-			return buffer.ToString();
-		}
-		
-		public String GetCharacterSet(bool upperCase, bool lowerCase, bool digits, bool minus, bool underline, bool space, bool specials, bool brackets) {
-			StringBuilder charSet = new StringBuilder();
-			
-			if (upperCase)
-				charSet.Append(UpperCaseChars);
-			
-			if (lowerCase)
-				charSet.Append(LowerCaseChars);
-			
-			if (digits)
-				charSet.Append(DigitChars);
-			
-			if (minus)
-				charSet.Append(MinusChars);
 
-			if (underline)
-				charSet.Append(UnderlineChars);
-			
-			if (space)
-				charSet.Append(SpaceChars);
-			
-			if (specials)
-				charSet.Append(SpecialChars);
-			
-			if (brackets)
-				charSet.Append(BracketChars);
-			
-			return charSet.ToString();
-		}
-	}
+			var password = buffer.ToString();
+
+            if (options.AtLeastOneFromEachGroup)
+            {
+                //shuffle
+                StringBuilder sb = new StringBuilder(password);
+                for (int i = (password.Length - 1); i >= 1; i--)
+                {
+                    int j = random.Next(i + 1);
+
+                    var tmp = sb[i];
+                    sb[i] = sb[j];
+                    sb[j] = tmp;
+                }
+
+                password = sb.ToString();
+            }
+
+            
+			return password;
+        }
+		
+		public string GetCharacterSet(PasswordGenerationOptions options, List<string> groups)
+        {
+            var characterSet =  String.Join("", groups);
+
+            return characterSet;
+
+        }
+
+        private static List<string> GetCharacterGroups(PasswordGenerationOptions options)
+        {
+            List<string> groups = new List<string>();
+
+            if (options.UpperCase)
+                groups.Add(UpperCaseChars);
+
+            if (options.LowerCase)
+                groups.Add(LowerCaseChars);
+
+            if (options.Digits)
+                groups.Add(DigitChars);
+
+            if (options.Minus)
+                groups.Add(MinusChars);
+
+            if (options.Underline)
+                groups.Add(UnderlineChars);
+
+            if (options.Space)
+                groups.Add(SpaceChars);
+
+            if (options.Specials)
+                groups.Add(SpecialChars);
+
+            if (options.SpecialsExtended)
+                groups.Add(ExtendedChars);
+
+            if (options.Brackets)
+                groups.Add(BracketChars);
+
+            
+            if (options.ExcludeLookAlike)
+            {
+                for (int i = 0; i < groups.Count; i++)
+                {
+                    groups[i] = String.Join("", groups[i].Except("Il1|8B6GO0"));
+                }
+            }
+
+            return groups;
+        }
+    }
 
 }
 
