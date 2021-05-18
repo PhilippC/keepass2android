@@ -239,6 +239,11 @@
   <string name="sort_moddate">按修改日期排序</string>
   <string name="sort_default">保持預設的順序</string>
   <string name="special">特殊</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>密碼</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">尋找內容</string>
   <string name="search_results">搜尋結果</string>
   <string name="search_in">搜尋條件</string>
