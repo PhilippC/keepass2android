@@ -275,8 +275,6 @@
   <string name="QuickUnlockHideLength_title">Skjul Hurtigoplåsningskodens længde</string>
   <string name="QuickUnlockHideLength_summary">Hvis aktiveret, vises længden af Hurtigoplåsningskoden ikke på Hurtigoplåsningsskærmen.</string>
   <string name="QuickUnlock_fail">Hurtigoplåsning mislykkedes: Forkert adgangskode!</string>
-  <string name="BinaryDirectory_title">Filvedhæftningsmappe</string>
-  <string name="BinaryDirectory_summary">Mappe, hvori filvedhæftninger gemmes.</string>
   <string name="SaveAttachmentDialog_title">Gem vedhæftning</string>
   <string name="SaveAttachmentDialog_text">Vælg, hvor vedhæftningen skal gemmes.</string>
   <string name="SaveAttachmentDialog_save">Eksportér til fil...</string>

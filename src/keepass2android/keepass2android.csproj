@@ -86,6 +86,8 @@
     <JavaMaximumHeapSize>4G</JavaMaximumHeapSize>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidLinkTool>proguard</AndroidLinkTool>
+    <AndroidUseAapt2>false</AndroidUseAapt2>
+    <AndroidDexTool>dx</AndroidDexTool>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU' ">
     <DebugType>none</DebugType>

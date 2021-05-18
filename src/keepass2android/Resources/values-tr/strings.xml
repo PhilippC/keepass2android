@@ -295,8 +295,6 @@
   <string name="QuickUnlockHideLength_title">Hızlı Açma kodunun uzunluğunu gizle</string>
   <string name="QuickUnlockHideLength_summary">Etkinse, Hızlı Açma kodunun uzunluğu ekranda görüntülenmez.</string>
   <string name="QuickUnlock_fail">ÇabukAç başarısız oldu: yanlış şifre!</string>
-  <string name="BinaryDirectory_title">Ek dosyalar klasörü</string>
-  <string name="BinaryDirectory_summary">Ek dosyalarının kaydedileceği klasör.</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
   <string name="SaveAttachmentDialog_save">Dosyaya aktar...</string>

@@ -295,8 +295,6 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="QuickUnlockHideLength_title">Esconder o comprimento do código de desbloqueio rápido</string>
   <string name="QuickUnlockHideLength_summary">Se ativo, o comprimento do código de desbloqueio rápido não será exibido no ecrã de desbloqueio rápido.</string>
   <string name="QuickUnlock_fail">Desbloqueio-Rápido falhou: palavra-passe incorreta!</string>
-  <string name="BinaryDirectory_title">Pasta para os anexos</string>
-  <string name="BinaryDirectory_summary">Pasta para onde os anexos são guardados.</string>
   <string name="SaveAttachmentDialog_title">Guardar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja guardar o anexo.</string>
   <string name="SaveAttachmentDialog_save">Exportar para ficheiro...</string>
@@ -974,4 +972,6 @@ Não há forma de fazer \"reset\" à chave mestra.</string>
   <string name="emergency_infotext_head">Está preparado para casos de emergência?</string>
   <string name="emergency_infotext_main">Já considerou em o que acontece caso você não consiga aceder à sua base de dados? E se tem um acidente? É uma boa prática dar a sua senha mestra a alguém de sua confiança para situações de emergência. Ninguém vai conseguir aceder às suas passwords de outra forma.</string>
   <string name="no_secure_display">O ecrã atual não está marcado como seguro. Isso significa que capturas de ecrã podem ser feitas por outras aplicações. Keepass2Android está configurado para exibir informações confidenciais apenas em ecrãs seguros. Por favor, altere para um ecrã seguro (por exemplo, desconectando um monitor HDMI) ou altere as configurações da aplicação.</string>
+  <string name="switch_ime_reopen">Tente novamente</string>
+  <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
 </resources>

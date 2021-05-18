@@ -57,7 +57,7 @@
     <string name="afc_yesterday">Tegnap</string>
     <plurals name="afc_title_choose_directories">
         <item quantity="one">Könyvtár választása...</item>
-        <item quantity="other">Könyvtárak választása</item>
+        <item quantity="other">Könyvtárak választása...</item>
     </plurals>
     <plurals name="afc_title_choose_files">
         <item quantity="one">Fájl kiválasztása...</item>

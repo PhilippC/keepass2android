@@ -20,6 +20,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">ആൻഡ്രോയിഡ് കീബോർഡ് ക്രമീകരണങ്ങൾ</string>
     <!-- Title for Latin keyboard input options dialog -->
     <!-- Option to provide vibrate/haptic feedback on keypress -->
     <!-- Option to play back sound on keypress in soft keyboard -->

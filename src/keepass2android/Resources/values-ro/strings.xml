@@ -289,8 +289,6 @@
   <string name="QuickUnlockLength_title">Lungimea cheii QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numărul maxim de caractere utilizate ca şi parolă QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock a eşuat: parolă incorectă!</string>
-  <string name="BinaryDirectory_title">Folder ataşamente</string>
-  <string name="BinaryDirectory_summary">Folder în care se salvează ataşamentele.</string>
   <string name="SaveAttachmentDialog_title">Salvaţi ataşament</string>
   <string name="SaveAttachmentDialog_text">Selectaţi unde se salvează ataşamentul.</string>
   <string name="SaveAttachmentDialog_save">Exportă ca fișier...</string>
