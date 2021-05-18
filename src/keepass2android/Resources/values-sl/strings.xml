@@ -650,11 +650,12 @@
   <string-array name="ChangeLog_1_09a">
     <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>
     <item>Dodano pogovorno okno za nastavitev nastavitev TOTP za vnose</item>
-    <item>Izboljšave samodejnega izpolnjevanja (fiksno pojavno okno ni prikazano v Chromu, boljša podpora poddomenam)</item>
-    <item>Izboljšave izvajanja OneDrive: ni več omejitve velikosti, ni več odvečnih zahtev za preverjanje pristnosti</item>
-    <item>Dodana možnost izbire svetlega/temnega načina v sistemskih nastavitvah, vključno z nočnimi načrti, zahtevan je Android 10+</item>
-    <item>Dovoljeno odpiranje datotek prek izbirnika sistemskih datotek, pri čemer ignorira zastavico samo za branje</item>
-    <item>Dovoljenje, da začnete premikati vnose iz menija pogleda vnosov</item>
+    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Dodajte podporo za novo obliko datoteke ključa, uvedeno v Keepass 2.47</item>
