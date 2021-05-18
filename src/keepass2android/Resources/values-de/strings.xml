@@ -252,6 +252,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
     <item>Passphrase</item>
     <item>Passphrase + Passwort</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>kleingeschrieben</item>
+    <item>GROSSGESCHRIEBEN</item>
+    <item>Erster Buchstabe Großgeschrieben</item>
+  </string-array>
+  <string name="custom_settings">Benutzerdefiniert</string>
+  <string name="passphrase_capitalization">Passphrase Großschreibung</string>
   <string name="search_hint">Suchbegriff(e)</string>
   <string name="search_results">Suchergebnisse</string>
   <string name="search_in">Suche in</string>
@@ -655,12 +662,12 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
     <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
-    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
-    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
-    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
-    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Passwort-Generator verbessert: Unterstützung für Passphrases, mehr Einstellmöglichkeiten, Profile und Schätzung der Passwortstärke hinzugefügt</item>
+    <item>Verbesserungen bei Autofill: Bugfix bzgl. nicht angezeigtem Popup in Chrome, bessere Unterstützung für Subdomains</item>
+    <item>Verbesserungen bei OneDrive: keine Größenbegrenzung mehr, keine unnötigen Authentifizierungsanfragen</item>
+    <item>Option hinzugefügt, um das helle/dunkel Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
+    <item>Dateien können über den Android-Dateibrowser geöffnet werden, das Nur-Lesen-Attribut wird ignoriert</item>
+    <item>Das verschieben von Einträgen kann aus dem Menü der Eintragsansicht gestartet werden</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Unterstützung für neues Schlüsseldateiformat aus KeePass 2.47 integriert</item>
