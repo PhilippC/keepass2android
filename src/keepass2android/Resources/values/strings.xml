@@ -266,7 +266,26 @@
   <string name="special_extended">Extended Special</string>
   <string name="at_least_one_from_each_group">At least one from each group</string>
   <string name="exclude_lookalike">Exclude look-alike characters</string>
-  <string name="search_hint">Find what</string>
+  <string name="password_generation_profile">Profile</string>
+  <string name="save_password_generation_profile_text">Enter the name of the profile to save. Enter an existing name to overwrite.</string>
+
+  <string name="hint_wordcount">Passphrase word count</string>
+  <string name="hint_wordseparator">Word separator</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Password</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>lowercase</item>
+    <item>UPPERCASE</item>
+    <item>First Character Uppercase</item>
+  </string-array>
+  <string name="custom_settings">Custom settings</string>
+  <string name="passphrase_capitalization">Passphrase capitalization</string>
+  
+
+    <string name="search_hint">Find what</string>
   <string name="search_results">Search results</string>
   <string name="search_in">Search in</string>
   <string name="select_other_entry">Select another entry</string>
