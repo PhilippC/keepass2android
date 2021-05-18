@@ -239,6 +239,11 @@
   <string name="sort_moddate">Razvrsti po datumu spremembe</string>
   <string name="sort_default">Ohrani privzeti vrtni red</string>
   <string name="special">Posebni znaki</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Geslo</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Najdite, kar</string>
   <string name="search_results">Rezultati iskanja</string>
   <string name="search_in">Išči v</string>
