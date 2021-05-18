@@ -197,6 +197,11 @@
   <string name="sort_moddate">Сортирай по дата на модификация</string>
   <string name="sort_default">Запази ред по подразбиране</string>
   <string name="special">Специални</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Парола</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Търси</string>
   <string name="search_results">Резултати от търсенето</string>
   <string name="search_in">Търсене в</string>
