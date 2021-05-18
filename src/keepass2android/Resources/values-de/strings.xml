@@ -240,6 +240,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="sort_moddate">Sortiere nach Änderungsdatum</string>
   <string name="sort_default">Behalte Standardsortierung</string>
   <string name="special">Spezialsymbole</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Passwort</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Suchbegriff(e)</string>
   <string name="search_results">Suchergebnisse</string>
   <string name="search_in">Suche in</string>
