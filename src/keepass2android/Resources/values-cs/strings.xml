@@ -239,6 +239,11 @@
   <string name="sort_moddate">Seřadit podle data změny</string>
   <string name="sort_default">Zachovat výchozí pořadí</string>
   <string name="special">Zvláštní znaky</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Heslo</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Co hledat</string>
   <string name="search_results">Výsledky hledání</string>
   <string name="search_in">Hledat v</string>

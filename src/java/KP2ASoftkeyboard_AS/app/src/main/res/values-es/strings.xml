@@ -84,9 +84,9 @@
     <string name="settings_key_mode_always_hide_name">Ocultar siempre</string>
     <!-- Array of the settings key modes -->
     <string-array name="settings_key_modes">
-        <item>@string/settings_key_mode_auto_name</item>
-        <item>@string/settings_key_mode_auto_name</item>
-        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/modo-de-configuracion-de-clave-nombramiento-automatico</item>
+        <item>@string/modo-de-configuracion-de-clave-siempre-mostrar-nombre</item>
+        <item>@string/modo-de-configuracion-de-clave-siempre-ocultar-nombre</item>
     </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Sugerencias de bigramas</string>

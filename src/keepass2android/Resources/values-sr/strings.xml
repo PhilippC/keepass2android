@@ -229,6 +229,11 @@
   <string name="sort_moddate">Сортирај по датуму измене</string>
   <string name="sort_default">Чувај подразумевани ред</string>
   <string name="special">Посебно</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Лозинка</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Пронађи</string>
   <string name="search_results">Резултати претраге</string>
   <string name="search_in">Тражи у</string>

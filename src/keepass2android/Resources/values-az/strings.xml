@@ -46,6 +46,11 @@
   <string name="error_no_name">Ad lazımdır.</string>
   <string name="hint_login_pass">Şifrə</string>
   <string name="hint_url">URL</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Şifrə</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="TemplateField_IdCard_Name">Ad</string>
   <string-array name="sftp_auth_modes">
     <item>Şifrə</item>

@@ -239,6 +239,11 @@
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
   <string name="special">Ειδικό</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Συνθηματικό</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Βρείτε τι</string>
   <string name="search_results">Αποτελέσματα αναζήτησης</string>
   <string name="search_in">Αναζήτηση σε</string>

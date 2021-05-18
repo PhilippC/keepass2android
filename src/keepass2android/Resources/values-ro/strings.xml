@@ -233,6 +233,11 @@
   <string name="sort_moddate">Sortează după data modificării</string>
   <string name="sort_default">Păstrează ordinea implicită</string>
   <string name="special">Special</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Parolă</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Găsește</string>
   <string name="search_results">Rezultate căutare</string>
   <string name="search_in">Căutare în</string>

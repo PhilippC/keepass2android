@@ -238,6 +238,11 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="sort_moddate">Ordenar por data de modificação</string>
   <string name="sort_default">Manter ordenação por defeito</string>
   <string name="special">Especial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Palavra-passe</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">O que encontrar</string>
   <string name="search_results">Resultado da procura</string>
   <string name="search_in">Procurar em</string>

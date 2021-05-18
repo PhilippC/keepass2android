@@ -240,6 +240,25 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="sort_moddate">Sortiere nach Änderungsdatum</string>
   <string name="sort_default">Behalte Standardsortierung</string>
   <string name="special">Spezialsymbole</string>
+  <string name="special_extended">Erweiterte Sonderzeichen</string>
+  <string name="at_least_one_from_each_group">Mindestens ein Zeichen aus jeder Gruppe</string>
+  <string name="exclude_lookalike">Ähnlich aussehende Zeichen ausschließen</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Gib den Namen des zu speichernden Profils ein. Verwende einen bestehenden Namen, um ein Profil zu überscheiben.</string>
+  <string name="hint_wordcount">Anzahl Wörter der Passphrase </string>
+  <string name="hint_wordseparator">Wort-Trenner</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Passwort</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Passwort</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>kleingeschrieben</item>
+    <item>GROSSGESCHRIEBEN</item>
+    <item>Erster Buchstabe Großgeschrieben</item>
+  </string-array>
+  <string name="custom_settings">Benutzerdefiniert</string>
+  <string name="passphrase_capitalization">Passphrase Großschreibung</string>
   <string name="search_hint">Suchbegriff(e)</string>
   <string name="search_results">Suchergebnisse</string>
   <string name="search_in">Suche in</string>
@@ -563,7 +582,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileIsTemporarilyAvailable">Die Datei ist nur kurzzeitig für Keepass2Android verfügbar.</string>
   <string name="FileIsReadOnly">The gewählte Datei ist schreibgeschützt.</string>
   <string name="FileIsReadOnlyOnKitkat">The gewählte Datei kann aufgrund von Beschränkungen in Android 4.4+ von Keepass2Android nicht geändert werden.</string>
-  <string name="CopyFileRequired">Um die Datei zu benutzen, muss sie an einen anderen Speicherort kopiert werden.</string>
+  <string name="CopyFileRequired">Um sie zu benutzen, musst sie an einen anderen Speicherort kopiert werden.</string>
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="ClickOkToSelectLocation">Tippe auf OK, um einen Speicherort zu wählen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
@@ -643,8 +662,9 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
     <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
-    <item>Verbesserungen für Autofill (Popup wurde in Chrome nicht immer angezeigt, bessere Unterstützung von Subdomains)</item>
-    <item>Verbesserungen in der OneDrive-Implementierung: keine Größenbeschränkung mehr, keine überflüssigen Authentifizierungsanfragen</item>
+    <item>Passwort-Generator verbessert: Unterstützung für Passphrases, mehr Einstellmöglichkeiten, Profile und Schätzung der Passwortstärke hinzugefügt</item>
+    <item>Verbesserungen bei Autofill: Bugfix bzgl. nicht angezeigtem Popup in Chrome, bessere Unterstützung für Subdomains</item>
+    <item>Verbesserungen bei OneDrive: keine Größenbegrenzung mehr, keine unnötigen Authentifizierungsanfragen</item>
     <item>Option hinzugefügt, um das helle/dunkel Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
     <item>Dateien können über den Android-Dateibrowser geöffnet werden, das Nur-Lesen-Attribut wird ignoriert</item>
     <item>Das verschieben von Einträgen kann aus dem Menü der Eintragsansicht gestartet werden</item>

@@ -239,6 +239,11 @@
   <string name="sort_moddate">Sorteren op wijzigingsdatum</string>
   <string name="sort_default">Standaardvolgorde behouden</string>
   <string name="special">Speciaal</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Wachtwoord</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Zoeken</string>
   <string name="search_results">Zoekresultaten</string>
   <string name="search_in">Zoeken in</string>

@@ -200,6 +200,11 @@
   <string name="argon2parallelism">מקביליות עבור Argon 2</string>
   <string name="database_name">שם מסד הנתונים</string>
   <string name="search_label">חיפוש</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>סיסמה</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="select_other_entry">בחר ערך אחר</string>
   <string name="further_authors">תודה לכותבי הקוד שתרמו: %1$s.</string>
   <string name="designers">תודה לעיצוב הסמלים והממשק על ידי %1$s.</string>
