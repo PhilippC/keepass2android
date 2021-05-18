@@ -200,6 +200,11 @@
   <string name="sort_moddate">Urut berdasarkan tanggal diubah</string>
   <string name="sort_default">Tetap gunakan urutan bawaan</string>
   <string name="special">Spesial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Kata kunci</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Cari apa</string>
   <string name="search_results">Hasil pencarian</string>
   <string name="search_in">Cari di</string>
