@@ -239,11 +239,25 @@
   <string name="sort_moddate">Razvrsti po datumu spremembe</string>
   <string name="sort_default">Ohrani privzeti vrtni red</string>
   <string name="special">Posebni znaki</string>
+  <string name="special_extended">Posebno razširjeno</string>
+  <string name="at_least_one_from_each_group">Vsaj po en iz vsake skupine</string>
+  <string name="exclude_lookalike">Izključi podobne znake</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Vnesite ime profila, ki ga želite shraniti. Vnesite obstoječe ime za prepis.</string>
+  <string name="hint_wordcount">Število besed parafraze</string>
+  <string name="hint_wordseparator">Ločilo besed</string>
   <string-array name="PasswordGeneratorModes">
     <item>Geslo</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Parafraza</item>
+    <item>Parafraza + Geslo</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>male črke</item>
+    <item>VELIKE ČRKE</item>
+    <item>Velika Črka Prvega Znaka</item>
+  </string-array>
+  <string name="custom_settings">Nastavitve po meri</string>
+  <string name="passphrase_capitalization">Parafraza z veliko črko</string>
   <string name="search_hint">Najdite, kar</string>
   <string name="search_results">Rezultati iskanja</string>
   <string name="search_in">Išči v</string>
@@ -650,7 +664,7 @@
   <string-array name="ChangeLog_1_09a">
     <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>
     <item>Dodano pogovorno okno za nastavitev nastavitev TOTP za vnose</item>
-    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>Izboljšan generator gesel: dodana podpora za parafrazo, več možnosti, profili in ocena moči gesla</item>
     <item>Izboljšave samodejnega izpolnjevanja (fiksno pojavno okno ni prikazano v Chromu, boljša podpora poddomenam)</item>
     <item>Izboljšave izvajanja OneDrive: ni več omejitve velikosti, ni več odvečnih zahtev za preverjanje pristnosti</item>
     <item>Dodana možnost izbire svetlega/temnega načina v sistemskih nastavitvah, vključno z nočnimi načrti, zahtevan je Android 10+</item>
