@@ -240,10 +240,17 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="sort_moddate">Sortiere nach Änderungsdatum</string>
   <string name="sort_default">Behalte Standardsortierung</string>
   <string name="special">Spezialsymbole</string>
+  <string name="special_extended">Erweiterte Sonderzeichen</string>
+  <string name="at_least_one_from_each_group">Mindestens ein Zeichen aus jeder Gruppe</string>
+  <string name="exclude_lookalike">Ähnlich aussehende Zeichen ausschließen</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Gib den Namen des zu speichernden Profils ein. Verwende einen bestehenden Namen, um ein Profil zu überscheiben.</string>
+  <string name="hint_wordcount">Anzahl Wörter der Passphrase </string>
+  <string name="hint_wordseparator">Wort-Trenner</string>
   <string-array name="PasswordGeneratorModes">
     <item>Passwort</item>
     <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Passphrase + Passwort</item>
   </string-array>
   <string name="search_hint">Suchbegriff(e)</string>
   <string name="search_results">Suchergebnisse</string>
@@ -648,11 +655,12 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
     <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
-    <item>Verbesserungen für Autofill (Popup wurde in Chrome nicht immer angezeigt, bessere Unterstützung von Subdomains)</item>
-    <item>Verbesserungen in der OneDrive-Implementierung: keine Größenbeschränkung mehr, keine überflüssigen Authentifizierungsanfragen</item>
-    <item>Option hinzugefügt, um das helle/dunkel Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
-    <item>Dateien können über den Android-Dateibrowser geöffnet werden, das Nur-Lesen-Attribut wird ignoriert</item>
-    <item>Das verschieben von Einträgen kann aus dem Menü der Eintragsansicht gestartet werden</item>
+    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Unterstützung für neues Schlüsseldateiformat aus KeePass 2.47 integriert</item>
