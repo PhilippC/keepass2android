@@ -563,7 +563,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileIsTemporarilyAvailable">Die Datei ist nur kurzzeitig für Keepass2Android verfügbar.</string>
   <string name="FileIsReadOnly">The gewählte Datei ist schreibgeschützt.</string>
   <string name="FileIsReadOnlyOnKitkat">The gewählte Datei kann aufgrund von Beschränkungen in Android 4.4+ von Keepass2Android nicht geändert werden.</string>
-  <string name="CopyFileRequired">Um die Datei zu benutzen, muss sie an einen anderen Speicherort kopiert werden.</string>
+  <string name="CopyFileRequired">Um sie zu benutzen, musst sie an einen anderen Speicherort kopiert werden.</string>
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="ClickOkToSelectLocation">Tippe auf OK, um einen Speicherort zu wählen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
