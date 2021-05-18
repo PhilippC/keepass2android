@@ -24,9 +24,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using keepass2android;
-#if !KeePassUAP
-using System.Drawing;
-#endif
 
 using KeePassLib;
 using KeePassLib.Collections;

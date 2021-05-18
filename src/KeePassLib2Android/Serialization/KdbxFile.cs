@@ -68,6 +68,51 @@ namespace KeePassLib.Serialization
 	public sealed partial class KdbxFile
 	{
 		/// <summary>
+		/// System.Drawing.ColorTranslator is not supported on Android. Provide a custom implementation here for loading colors from file.
+		/// </summary>
+        private class ColorTranslator
+        {
+            public static Color FromHtml(String colorString)
+            {
+                Color color;
+
+                if (colorString.StartsWith("#"))
+                {
+                    colorString = colorString.Substring(1);
+                }
+                if (colorString.EndsWith(";"))
+                {
+                    colorString = colorString.Substring(0, colorString.Length - 1);
+                }
+
+                int red, green, blue;
+                switch (colorString.Length)
+                {
+                    case 6:
+                        red = int.Parse(colorString.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                        green = int.Parse(colorString.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+                        blue = int.Parse(colorString.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                        color = Color.FromArgb(red, green, blue);
+                        break;
+                    case 3:
+                        red = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
+                        green = int.Parse(colorString.Substring(1, 1), System.Globalization.NumberStyles.HexNumber);
+                        blue = int.Parse(colorString.Substring(2, 1), System.Globalization.NumberStyles.HexNumber);
+                        color = Color.FromArgb(red, green, blue);
+                        break;
+                    case 1:
+                        red = green = blue = int.Parse(colorString.Substring(0, 1), System.Globalization.NumberStyles.HexNumber);
+                        color = Color.FromArgb(red, green, blue);
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid color: " + colorString);
+                }
+                return color;
+            }
+
+        }
+
+		/// <summary>
 		/// File identifier, first 32-bit value.
 		/// </summary>
 		internal const uint FileSignature1 = 0x9AA2D903;
