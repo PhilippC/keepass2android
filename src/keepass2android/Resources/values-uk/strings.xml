@@ -239,6 +239,11 @@
   <string name="sort_moddate">Впорядкувати за датою зміни</string>
   <string name="sort_default">Залишити типовий порядок</string>
   <string name="special">Спеціальний</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Пароль</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Що знайти</string>
   <string name="search_results">Результати пошуку</string>
   <string name="search_in">Пошук в</string>
