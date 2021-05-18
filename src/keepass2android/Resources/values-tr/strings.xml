@@ -237,6 +237,11 @@
   <string name="sort_moddate">Değiştirme tarihine göre sırala</string>
   <string name="sort_default">Varsayılan düzeni koru</string>
   <string name="special">Özel</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Parola</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Bul</string>
   <string name="search_results">Arama sonuçları</string>
   <string name="search_in">Arama yeri</string>
