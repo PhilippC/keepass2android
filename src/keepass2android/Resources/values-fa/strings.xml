@@ -202,6 +202,11 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="sort_moddate">ترتیب بر اساس تاریخ تغییر</string>
   <string name="sort_default">حفظ چینش پیشفرض</string>
   <string name="special">ویژه</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>گذرواژه</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">دنبال چه می‌گردید</string>
   <string name="search_results">نتایج جست‌وجو</string>
   <string name="search_in">جست‌وجو در</string>
