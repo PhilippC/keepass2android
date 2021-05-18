@@ -197,6 +197,11 @@
   <string name="sort_moddate">Sắp xếp theo ngày sửa đổi</string>
   <string name="sort_default">Giữ thứ tự mặc định</string>
   <string name="special">Đặc biệt</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Mật mã</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Nội dung tìm kiếm</string>
   <string name="search_results">Kết quả tìm kiếm</string>
   <string name="search_in">Tìm kiếm trong</string>
