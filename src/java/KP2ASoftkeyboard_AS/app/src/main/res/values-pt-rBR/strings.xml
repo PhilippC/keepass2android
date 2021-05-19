@@ -84,6 +84,7 @@
     <string name="settings_key_mode_always_hide_name">Ocultar sempre</string>
     <!-- Array of the settings key modes -->
     <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Sugestões do Bigram</string>
     <!-- Description for auto completion -->
     <string name="bigram_suggestion_summary">Usar palavra anterior para melhorar a sugestão</string>
     <!-- Array of prediction modes -->
