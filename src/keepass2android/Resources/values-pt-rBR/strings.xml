@@ -30,8 +30,8 @@
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Ativar auto-preenchimento para %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Visualiza uma lista de aplicativos e sites para os quais o AutoFill foi desativado</string>
+  <string name="AutofillDisabledQueriesPreference_title">Desabilitar Auto-Preenchimento para os alvos</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Visualiza uma lista de aplicativos e sites para os quais o Auto-Preenchimento foi desativado</string>
   <string name="OfferSaveCredentials_summary">Se ativado, o Android pergunta se deseja salvar as credenciais após que você inseriu manualmente dados em campos auto-preenchidos.</string>
   <string name="OfferSaveCredentials_title">Oferecer salvação de credenciais</string>
   <string name="ShowGroupInEntry_title">Mostrar nome do grupo na tela de entrada</string>
@@ -384,8 +384,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Tornar usuários e senhas disponíveis através da barra de notificações e da área de transferência. Cuidado com sniffers de senhas!</string>
   <string name="ShowSeparateNotifications_title">Notificações separadas</string>
   <string name="ShowSeparateNotifications_summary">Exibir notificações separadas para copiar nome de usuário e senha para área de transferência e ativar o teclado.</string>
-  <string name="AccServiceAutoFill_prefs">Serviço de Acessibilidade para Preenchimento Automático</string>
-  <string name="AutoFill_prefs">Serviço de preenchimento automático</string>
+  <string name="AccServiceAutoFill_prefs">Serviço de Acessibilidade para Auto-Preenchimento</string>
+  <string name="AutoFill_prefs">Serviço de Auto-Preenchimento</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
@@ -668,8 +668,8 @@
     <item>Melhoramentos no Autopreenchimento (corrigido o bolão não aparecendo no Chrome, melhor suporte a subdomínios)</item>
     <item>Melhoramentos para implementação do OneDrive: agora, sem limite de tamanho, não há mais autenticação supérflua</item>
     <item>Adicionado opção para selecionar os temas claro/escuro das configurações do sistema, incluindo planos noturnos, requer Android 10+</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Permitir abrir arquivos através gerenciador de arquivos do sistema, ignorando o sinalizador de somente para leitura</item>
+    <item>Permitir iniciar movendo entradas de uma entrada no menu de exibição</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Adicionar suporte ao novo formato de arquivo-chave introduzido no Keepass 2.47</item>
