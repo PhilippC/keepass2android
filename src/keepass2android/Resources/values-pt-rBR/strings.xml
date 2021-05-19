@@ -241,11 +241,25 @@
   <string name="sort_moddate">Ordenar por data de modificação</string>
   <string name="sort_default">Manter ordem padrão</string>
   <string name="special">Caracteres Especiais</string>
+  <string name="special_extended">Especial Estendido</string>
+  <string name="at_least_one_from_each_group">Pelo menos um de cada grupo</string>
+  <string name="exclude_lookalike">Excluir caracteres parecidos</string>
+  <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Digite o nome do perfil para salvar. Digite um nome existente para sobrescrever.</string>
+  <string name="hint_wordcount">Número de palavras na frase</string>
+  <string name="hint_wordseparator">Separador de palavras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Senha</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Frase</item>
+    <item>Frase + Senha</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúsculas</item>
+    <item>MAIÚSCULAS</item>
+    <item>Primeiro Caractere Maiúsculo</item>
+  </string-array>
+  <string name="custom_settings">Opções personalizadas</string>
+  <string name="passphrase_capitalization">Capitalização da frase</string>
   <string name="search_hint">O que encontrar</string>
   <string name="search_results">Resultado da busca</string>
   <string name="search_in">Procurar em</string>
@@ -323,6 +337,13 @@
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Adicione o arquivo anexo...</string>
   <string name="add_extra_string">Adicionar sequência de caracteres adicional</string>
+  <string name="configure_totp">Configurar TOPT</string>
+  <string name="totp_secret_key">Chave secreta</string>
+  <string name="totp_encoding_rfc6238">Configurações padrão do token RFC6238</string>
+  <string name="totp_encoding_steam">Configurações do token Steam</string>
+  <string name="totp_encoding_custom">Configurações de token personalizadas</string>
+  <string name="totp_time_step">Passagem do tempo</string>
+  <string name="totp_length">Comprimento do código</string>
   <string name="delete_extra_string">Excluir caracteres adicionais</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio Rápido habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
@@ -640,6 +661,16 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Adicionado suporte ao formato de arquivo KDBX 4.1, introduzido no KeePass 2.48</item>
+    <item>Adicionado diálogo para configurar  as opções TOTP para as entradas</item>
+    <item>Melhorado gerador de senhas: Adicionado a suporte de frases, mais opções, perfis e estimativa da força da senha</item>
+    <item>Melhoramentos no Autopreenchimento (corrigido o bolão não aparecendo no Chrome, melhor suporte a subdomínios)</item>
+    <item>Melhoramentos para implementação do OneDrive: agora, sem limite de tamanho, não há mais autenticação supérflua</item>
+    <item>Adicionado opção para selecionar os temas claro/escuro das configurações do sistema, incluindo planos noturnos, requer Android 10+</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Adicionar suporte ao novo formato de arquivo-chave introduzido no Keepass 2.47</item>
     <item>Adicionar suporte para Argon2id como função de derivação de chaves</item>
