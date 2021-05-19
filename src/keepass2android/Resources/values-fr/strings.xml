@@ -239,7 +239,9 @@
   <string name="sort_moddate">Trier par date de modification</string>
   <string name="sort_default">Maintenir l\'ordre par défaut</string>
   <string name="special">Spéciaux</string>
+  <string name="special_extended">Spécial étendu</string>
   <string name="at_least_one_from_each_group">Au moins une de chaque groupe</string>
+  <string name="exclude_lookalike">Exclure les caractères ressemblants.</string>
   <string name="password_generation_profile">Profil</string>
   <string name="save_password_generation_profile_text">Entrer le nom du profil à enregistrer. Entrer un nom existant pour l\'écraser.</string>
   <string name="hint_wordcount">Nombre de mots de la phrase secrète</string>
