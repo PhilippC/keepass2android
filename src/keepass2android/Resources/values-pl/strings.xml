@@ -321,6 +321,10 @@
   <string name="protection">Pole zabezpieczone</string>
   <string name="add_binary">Dodaj załącznik...</string>
   <string name="add_extra_string">Dodaj dodatkowy ciąg znaków</string>
+  <string name="totp_secret_key">Sekretny klucz</string>
+  <string name="totp_encoding_rfc6238">Domyślne ustawienia tokena RFC6238</string>
+  <string name="totp_time_step">Interwał czasowy</string>
+  <string name="totp_length">Długość kodu</string>
   <string name="delete_extra_string">Usuń dodatkowy ciąg znaków</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: zablokowana. SzybkieOdblokowanie włączone.</string>
   <string name="database_loaded_unlocked">%1$s: Odblokowana.</string>
