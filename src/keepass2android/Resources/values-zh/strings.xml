@@ -239,11 +239,25 @@
   <string name="sort_moddate">按修改日期排序</string>
   <string name="sort_default">保持默认顺序</string>
   <string name="special">特别</string>
+  <string name="special_extended">扩展的特殊</string>
+  <string name="at_least_one_from_each_group">每组至少一个</string>
+  <string name="exclude_lookalike">排除外观相像的字符</string>
+  <string name="password_generation_profile">配置文件</string>
+  <string name="save_password_generation_profile_text">输入要保存的配置文件的名称。输入一个现有的名称以覆盖。</string>
+  <string name="hint_wordcount">Passphrase 单词计数</string>
+  <string name="hint_wordseparator">单词分隔符</string>
   <string-array name="PasswordGeneratorModes">
     <item>密码</item>
     <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Passphrase + 密码</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>小写</item>
+    <item>大写</item>
+    <item>首字母大写</item>
+  </string-array>
+  <string name="custom_settings">自定义设置</string>
+  <string name="passphrase_capitalization">Passphrase 大写</string>
   <string name="search_hint">查找内容</string>
   <string name="search_results">搜索结果</string>
   <string name="search_in">在...中搜索</string>
@@ -649,7 +663,7 @@
   <string-array name="ChangeLog_1_09a">
     <item>添加对 KeePass 2.48 中引入的 KDBX 4.1 文件格式的支持</item>
     <item>添加了配置条目 TOTP 设置的对话框</item>
-    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>改进密码生成器：添加 passphrase 支持、更多选项、配置文件和密码强度估计</item>
     <item>改进自动填充 (固定弹出窗口未在 Chrome 中显示, 更好的子域支持)</item>
     <item>改进OneDrive实现：不再限制大小，不再有多余的身份验证请求</item>
     <item>添加了从系统设置中选择浅/深色设计(包括夜间计划)的选项，需要 Android 10 以上系统</item>
