@@ -239,9 +239,16 @@
   <string name="sort_moddate">Sortuj według daty modyfikacji</string>
   <string name="sort_default">Zachowaj domyślną kolejność</string>
   <string name="special">Znaki specjalne</string>
+  <string name="special_extended">Rozszerzone Specjalne</string>
+  <string name="at_least_one_from_each_group">Co najmniej jeden z każdej grupy</string>
+  <string name="exclude_lookalike">Wyklucz znaki wyglądające podobnie</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Wprowadź nazwę profilu, aby  zapisać. Wprowadź istniejącą nazwę, aby nadpisać.</string>
+  <string name="hint_wordcount">Liczba słów hasła</string>
+  <string name="hint_wordseparator">Separator wyrazów</string>
   <string-array name="PasswordGeneratorModes">
     <item>Hasło</item>
-    <item>Passphrase</item>
+    <item>Hasło</item>
     <item>Passphrase + Password</item>
   </string-array>
   <string name="search_hint">Szukaj</string>
