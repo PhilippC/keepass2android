@@ -47,6 +47,7 @@
   <string name="FileHandling_prefs">Filhåndtering</string>
   <string name="keyboard_prefs">Tastatur</string>
   <string name="export_prefs">Eksportere database...</string>
+  <string name="fingerprint_prefs">Biometrisk oplåsning</string>
   <string name="import_db_prefs">Importere database til intern mappe</string>
   <string name="import_keyfile_prefs">Importer nøglefilen til intern mappe</string>
   <string name="export_keyfile_prefs">Eksporter nøglefil fra intern mappe</string>
