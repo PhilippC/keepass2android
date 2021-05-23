@@ -49,6 +49,7 @@
   <string name="export_prefs">Eksportere database...</string>
   <string name="import_db_prefs">Importere database til intern mappe</string>
   <string name="import_keyfile_prefs">Importer nøglefilen til intern mappe</string>
+  <string name="export_keyfile_prefs">Eksporter nøglefil fra intern mappe</string>
   <string name="keyboardswitch_prefs">Tastaturskiftning</string>
   <string name="OnlyAvailableForLocalFiles">Kun tilgængelig for lokale filer.</string>
   <string name="FileIsInInternalDirectory">Fil lagres i den interne mappe.</string>
