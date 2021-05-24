@@ -664,11 +664,21 @@
     <item>Tilføjet understøttelse af KDBX 4.1 filformat indført i KeePass 2.48</item>
     <item>Tilføjet dialog til at konfigurere TOTP indstillinger for poster</item>
     <item>Forbedret adgangskodegenerator: Tilføjet adgangssætning-understøttelse, flere muligheder, profiler og estimering af adgangskodestyrke</item>
-    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
-    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
-    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Forbedringer til Autofyldning (fast popup vises ikke i Chrome, bedre underdomæne understøttelse)</item>
+    <item>Forbedringer til OneDrive-implementering: ikke længere nogen størrelsesgrænse, ikke flere overflødige anmodninger om autentificering</item>
+    <item>Tilføjet mulighed for at vælge lyst / mørkt design fra systemindstillinger, herunder nat-planer, kræver Android 10+</item>
+    <item>Tillad at åbne filer gennem systemfilvælger, ignorering af det skrivebeskyttede flag</item>
+    <item>Tillad at begynde at flytte poster fra postvisningsmenuen</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Tilføjet understøttelse af nyt nøglefilformat indført i KeePass 2.47</item>
+    <item>Tilføj understøttelse af Argon2id som nøgleafledningsfunktion</item>
+    <item>Forbedret Autofyld kompatibilitet med Firefox og Chrome</item>
+    <item>Forbedre understøttelse af TOTP-poster fra skrivebordsprogrammer</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Skift til brug af FluentFTP for understøttelse af TLS 1.2</item>
