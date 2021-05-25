@@ -170,7 +170,7 @@
   <string name="maskpass_title">Maskér adgangskode</string>
   <string name="maskpass_summary">Maskér som standard adgangskoder</string>
   <string name="menu_about">Om</string>
-  <string name="menu_change_key">Skift Hovedadgangskode</string>
+  <string name="menu_change_key">Skift hovednøgle</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
   <string name="menu_copy_user">Kopiér Bruger</string>
   <string name="menu_copy_totp">Kopiér TOTP</string>
@@ -206,7 +206,7 @@
   <string name="omitbackup_summary">Udelad \'Sikkerhedskopi\'- og Papirkurv-grupper i søgeresultater</string>
   <string name="pass_filename">KeePass-databasefilnavn</string>
   <string name="password_title">Angiv databaseadgangskode</string>
-  <string name="master_key_type">Vælg type af Hovedadgangskode:</string>
+  <string name="master_key_type">Vælg type af hovednøgle:</string>
   <string name="progress_create">Opretter ny database…</string>
   <string name="create_database">Opret database</string>
   <string name="progress_title">Behandler…</string>
@@ -300,7 +300,7 @@
   <string name="start_create_import">Importér fil til ny database…</string>
   <string name="enter_filename_details_url">Fuld URL skal angives, inkl. protokol (f.eks. http://).</string>
   <string name="enter_filename_details_create_import">Fil til import vælges i næste trin.</string>
-  <string name="enable_quickunlock">Aktivér Hurtigoplåsning</string>
+  <string name="enable_quickunlock">Aktivér hurtigoplåsning</string>
   <string name="QuickUnlock_label">Angiv de sidste %1$d tegn i din adgangskode:</string>
   <string name="QuickUnlock_label_secure">Angiv Hurtigoplåsningskoden:</string>
   <string name="QuickUnlock_button">Hurtigoplåsning!</string>
@@ -431,7 +431,7 @@
   <string name="DeletingItems">Sletter elementer…</string>
   <string name="SettingPassword">Opsætter adgangskode…</string>
   <string name="UndoingChanges">Fortryder ændringer…</string>
-  <string name="TransformingKey">Transformerer Hovednøgle…</string>
+  <string name="TransformingKey">Transformerer hovednøgle…</string>
   <string name="DecodingDatabase">Afkoder database…</string>
   <string name="ParsingDatabase">Fortolker database…</string>
   <string name="CheckingTargetFileForChanges">Tjekker målfil for ændringer…</string>
@@ -676,12 +676,18 @@
     <item>Forbedret Autofyld kompatibilitet med Firefox og Chrome</item>
     <item>Forbedre understøttelse af TOTP-poster fra skrivebordsprogrammer</item>
     <item>Opdater pCloud SDK for at rette godkendelsesproblem</item>
-    <item>Update Jsch to version 0.1.55</item>
-    <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
+    <item>Opdater Jsch til version 0.1.55</item>
+    <item>Føj menu til skærm for valg af database</item>
+    <item>Tillad eksport af importerede nøglefiler</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Lagrer ikke længere pakkenavne på Android-apps i URL-feltet</item>
+    <item>Forbedre låsning adfærd - viser ikke længere biometrisk prompt umiddelbart efter oplåsning</item>
+    <item>Opdater OkHttp til at understøtte HTTP/2</item>
+    <item>Retter manglende oversættelser</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Gennemtving HTTP/1.1 grundet problem med HTTP/2 implementering af OkHttp</item>
     <item>Forbedre tastaturdialogen på Android 9+</item>
     <item>Skift filassociationer for app\'en for at undgå nogle unødvendige associationer</item>
     <item>Sørg for at adgangskodeteksten ikke er skjult bag øjenikon</item>
