@@ -239,10 +239,12 @@
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
   <string name="special">Ειδικό</string>
+  <string name="password_generation_profile">Προφίλ</string>
+  <string name="hint_wordseparator">Διαχωριστικό λέξεων</string>
   <string-array name="PasswordGeneratorModes">
     <item>Συνθηματικό</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Συνθηματική φράση</item>
+    <item>Συνθηματική φράση + Κωδικός Πρόσβασης</item>
   </string-array>
   <string name="search_hint">Βρείτε τι</string>
   <string name="search_results">Αποτελέσματα αναζήτησης</string>
@@ -321,6 +323,13 @@
   <string name="protection">Προστατευμένο πεδίο</string>
   <string name="add_binary">Προσθήκη συνημμένου αρχείου</string>
   <string name="add_extra_string">Προσθήκη πρόσθετου κειμένου</string>
+  <string name="configure_totp">Ρύθμιση TOTP</string>
+  <string name="totp_secret_key">Μυστικό κλειδί</string>
+  <string name="totp_encoding_rfc6238">Προεπιλεγμένες ρυθμίσεις τεκμηρίου RFC6238</string>
+  <string name="totp_encoding_steam">Ρυθμίσεις τεκμηρίου Steam</string>
+  <string name="totp_encoding_custom">Προσαρμοσμένες ρυθμίσεις τεκμηρίου</string>
+  <string name="totp_time_step">Χρονικό βήμα</string>
+  <string name="totp_length">Μήκος κωδικού</string>
   <string name="delete_extra_string">Διαγραφή πρόσθετου κειμένου</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: κλειδωμένο. Ενεργοποιήθηκε το QuickUnlock.</string>
   <string name="database_loaded_unlocked">%1$s: Ξεκλείδωτο.</string>
@@ -636,6 +645,16 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
+    <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρήσεις</item>
+    <item>Βελτιωμένη γεννήτρια κωδικού πρόσβασης: Προστέθηκε υποστήριξη συνθηματικής φράσης, περισσότερες επιλογές, προφίλ και εκτίμηση ισχύος κωδικού πρόσβασης</item>
+    <item>Βελτιώσεις στην αυτόματη συμπλήρωση (σταθερό αναδυόμενο παράθυρο δεν εμφανίζεται στο Chrome, καλύτερη υποστήριξη υποτομέα)</item>
+    <item>Βελτιώσεις στην υλοποίηση του OneDrive: δεν υπάρχει πλέον όριο μεγέθους, ούτε περιττές αιτήσεις ελέγχου ταυτότητας</item>
+    <item>Προστέθηκε επιλογή για να επιλέξετε το φωτεινό/σκούρο θέμα από τις ρυθμίσεις του συστήματος, συμπεριλαμβανομένων των νυχτερινών πλάνων, απαιτεί Android 10+</item>
+    <item>Επιτρέπει το άνοιγμα αρχείων μέσω του επιλογέα αρχείων συστήματος, αγνοώντας τη σημαία μόνο για ανάγνωση</item>
+    <item>Επιτρέπει την έναρξη μετακίνησης καταχωρήσεων από το μενού προβολής καταχωρήσεων</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Προσθήκη υποστήριξης για νέα μορφή αρχείου κλειδιού που εισήχθη στο Keepass 2.47</item>
     <item>Προσθήκη υποστήριξης για το Argon2id ως λειτουργία παραγωγής κλειδιού</item>
