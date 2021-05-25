@@ -675,10 +675,20 @@
     <item>Tilføj understøttelse af Argon2id som nøgleafledningsfunktion</item>
     <item>Forbedret Autofyld kompatibilitet med Firefox og Chrome</item>
     <item>Forbedre understøttelse af TOTP-poster fra skrivebordsprogrammer</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Opdater pCloud SDK for at rette godkendelsesproblem</item>
     <item>Update Jsch to version 0.1.55</item>
     <item>Add menu to database selection screen</item>
     <item>Allow to export imported keyfiles</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Forbedre tastaturdialogen på Android 9+</item>
+    <item>Skift filassociationer for app\'en for at undgå nogle unødvendige associationer</item>
+    <item>Sørg for at adgangskodeteksten ikke er skjult bag øjenikon</item>
+    <item>Skift autofyld-adfærd for at advare ved udfyldning af legitimationsoplysninger for et domæne til en ukendt app</item>
+    <item>Opdatér til FTP-bibliotek</item>
+    <item>Løser potentielle nedbrud i appen</item>
+    <item>Yderligere smårettelser</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Skift til brug af FluentFTP for understøttelse af TLS 1.2</item>
