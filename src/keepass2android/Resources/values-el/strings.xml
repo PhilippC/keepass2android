@@ -239,13 +239,25 @@
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
   <string name="special">Ειδικό</string>
+  <string name="special_extended">Εκτεταμένοι Ειδικοί</string>
+  <string name="at_least_one_from_each_group">Τουλάχιστον ένα από κάθε ομάδα</string>
+  <string name="exclude_lookalike">Εξαίρεση παρόμοιων χαρακτήρων</string>
   <string name="password_generation_profile">Προφίλ</string>
+  <string name="save_password_generation_profile_text">Εισάγετε το όνομα του προφίλ που θα αποθηκευτεί. Εισάγετε ένα υπάρχον όνομα για αντικατάσταση.</string>
+  <string name="hint_wordcount">Αριθμός λέξεων συνθηματικής φράσης</string>
   <string name="hint_wordseparator">Διαχωριστικό λέξεων</string>
   <string-array name="PasswordGeneratorModes">
     <item>Συνθηματικό</item>
     <item>Συνθηματική φράση</item>
-    <item>Συνθηματική φράση + Κωδικός Πρόσβασης</item>
+    <item>Συνθηματική φράση + συνθηματικό</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>πεζά</item>
+    <item>ΚΕΦΑΛΑΙΑ</item>
+    <item>Πρώτος χαρακτήρας κεφαλαίος</item>
+  </string-array>
+  <string name="custom_settings">Προσαρμοσμένες ρυθμίσεις</string>
+  <string name="passphrase_capitalization">Συνθηματική φράση στα κεφαλαία</string>
   <string name="search_hint">Βρείτε τι</string>
   <string name="search_results">Αποτελέσματα αναζήτησης</string>
   <string name="search_in">Αναζήτηση σε</string>
