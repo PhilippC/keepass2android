@@ -30,7 +30,7 @@
   <string name="ShowGroupnameInSearchResult_title">Zobrazit název skupiny ve výsledku hledání</string>
   <string name="ShowGroupnameInSearchResult_resume">Zobrazovat jméno skupiny pod titulkem záznamu ve výsledcích hledání. Užitečné, máte-li několik záznamů stejného jména.</string>
   <string name="NavigationToGroupCompleted_message">Zobrazení jména kategorií je nyní: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Zakázat Automatické doplnění pro cíle</string>
+  <string name="AutofillDisabledQueriesPreference_title">Zakázané cíle pro Automatické vyplňování</string>
   <string name="AutofillDisabledQueriesPreference_summary">Zobrazí seznam aplikací a webových stránek, pro které bylo zakázáno Automatické vyplnění</string>
   <string name="OfferSaveCredentials_summary">Pokud je povoleno, Android se bude ptát zda chcete ukládat přihlašovací údaje poté, co jste tyto data ručně zadali do polí pro automatické vyplnění.</string>
   <string name="OfferSaveCredentials_title">Nabízet ukládání přihlašovacích údajů</string>
@@ -239,9 +239,12 @@
   <string name="sort_moddate">Seřadit podle data změny</string>
   <string name="sort_default">Zachovat výchozí pořadí</string>
   <string name="special">Zvláštní znaky</string>
+  <string name="special_extended">Rozšířené speciální</string>
   <string name="at_least_one_from_each_group">Alespoň jeden z každé skupiny</string>
   <string name="exclude_lookalike">Vynechat podobné znaky</string>
   <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Zadejte jméno profilu pro uložení. Zadáním existujícího jména profil přepíšete.</string>
+  <string name="hint_wordcount">Počet slov v heslové frázi</string>
   <string name="hint_wordseparator">Oddělovač slov</string>
   <string-array name="PasswordGeneratorModes">
     <item>Heslo</item>
@@ -337,6 +340,7 @@
   <string name="totp_encoding_rfc6238">Výchozí nastavení RFC6238 tokenu</string>
   <string name="totp_encoding_steam">Nastavení Steam tokenu</string>
   <string name="totp_encoding_custom">Nastavení vlastního tokenu</string>
+  <string name="totp_time_step">Časový krok</string>
   <string name="totp_length">Délka kódu</string>
   <string name="delete_extra_string">Smazat doplňkový text</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: uzamčen. Rychlé odemknutí povoleno.</string>
@@ -664,7 +668,7 @@
     <item>Vylepšení implementace OneDrive: odstranění limitu velikosti, žádné zbytečné požadavky na ověření</item>
     <item>Přidána možnost výběru světlého/tmavého vzhledu z nastavení systému, včetně nočního režimu, vyžaduje Android 10+</item>
     <item>Přidána možnost otevřít soubory, pomocí výběru systému souborů, označené pouze pro čtení jako zapisovatelé</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Přidána možnost přesunu položek z detailu záznamu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Přidání podpory pro nový souborový formát klíče představený v Keepass 2.47</item>
@@ -674,7 +678,7 @@
     <item>Upgrade pCloud SDK kvůli opravě problému s autentizací</item>
     <item>Update Jsch na verzi 0.1.55</item>
     <item>Přidáno menu na obrazovku volby databáze.</item>
-    <item>Allow to export imported keyfiles</item>
+    <item>Přidána možnost exportu importovaného klíčového souboru</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
@@ -685,9 +689,9 @@
   <string-array name="ChangeLog_1_08b">
     <item>Vynutit HTTP/1.1 kvůli chybě v implementaci HTTP/2 v OkHttp</item>
     <item>Zlepšit dialogové okno klávesnice na Android 9+</item>
-    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Odstranění zbytečných asociací souborů</item>
     <item>Ujistěte se, že text hesla není skrytý za ikonou oka</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Automatické doplňování nyní varuje pokud dojde k doplnění údajů k webové stránce do neznámé aplikace</item>
     <item>Aktualizace FTP knihovny</item>
     <item>Opravy možných pádů aplikace</item>
     <item>Další drobné opravy</item>
@@ -979,7 +983,7 @@ První veřejné vydání
   <string-array name="design_options">
     <item>Světlý</item>
     <item>Tmavý</item>
-    <item>System settings</item>
+    <item>Nastavení systému</item>
   </string-array>
   <string name="design_title">Vzhled</string>
   <string-array name="ftp_encryption_modes">
@@ -1033,8 +1037,11 @@ První veřejné vydání
   <string name="emergency_infotext_head">Jste připraven/a na nouzové situace?</string>
   <string name="emergency_infotext_main">Uvažoval/a jste co se stane v případě že již nebude schopen/a přístupu k Vaší databázi hesel? Co se stane v případě nehody? Dobrý způsob je, pro případ mimořádných okolností, sdělit hlavní klíč osobě které věříte. V opačném případě nikdo nebude schopen otevřít Vaši databázi hesel.</string>
   <string name="no_secure_display">Aktuální displej není nastavený jako zabezpečený. Toto znamená že jiné aplikace mohou pořizovat snímky obrazovky. Nastavení Keepass2Android povoluje zobrazování soukromých informací pouze na zabezpečených displejích. Prosím přepněte na zabezpečený displej (např. odpojením HDMI monitoru) nebo změňte nastavení aplikace.</string>
+  <string name="disable_secure_screen_check">Tuto zprávu již neukazovat</string>
   <string name="switch_ime_text">Aktivujte prosím klávesnici Keepass2Android.</string>
   <string name="switch_ime_reopen">Opakovat</string>
+  <string name="AutofillWarning_title">Bezpečnostní upozornění: Neznámá doména/aplikace</string>
   <string name="AutofillWarning_Intro">Chystáte se vložit přihlašovací údaje pro doménu \"%1$s\" do aplikace \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Pokud věříte že \"%2$s\" patří k \"%1$s\", nebo důvěřujete \"%2$s\" že nezneužije přihlašovací údaje (např. pokud se jedná o důvěryhodný prohlížeč), můžete pokračovat. Pokud tomu tak není, zrušte prosím tuto akci.</string>
   <string name="AutofillWarning_trustAsBrowser">Přijmout vždy v \"%1$s\"</string>
 </resources>
