@@ -337,6 +337,11 @@
   <string name="add_extra_string">Добавить дополнительную строку</string>
   <string name="configure_totp">Настроить TOTP</string>
   <string name="totp_secret_key">Секретный ключ</string>
+  <string name="totp_encoding_rfc6238">Настройки токена RFC6238 по умолчанию</string>
+  <string name="totp_encoding_steam">Настройка steam-токена</string>
+  <string name="totp_encoding_custom">Пользовательские настройки токена</string>
+  <string name="totp_time_step">Период</string>
+  <string name="totp_length">Длина кода</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
