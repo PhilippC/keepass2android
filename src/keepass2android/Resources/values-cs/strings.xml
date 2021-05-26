@@ -239,6 +239,10 @@
   <string name="sort_moddate">Seřadit podle data změny</string>
   <string name="sort_default">Zachovat výchozí pořadí</string>
   <string name="special">Zvláštní znaky</string>
+  <string name="at_least_one_from_each_group">Alespoň jeden z každé skupiny</string>
+  <string name="exclude_lookalike">Vynechat podobné znaky</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="hint_wordseparator">Oddělovač slov</string>
   <string-array name="PasswordGeneratorModes">
     <item>Heslo</item>
     <item>Passphrase</item>
