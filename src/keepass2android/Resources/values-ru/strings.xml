@@ -239,11 +239,25 @@
   <string name="sort_moddate">Сортировка по дате изменения</string>
   <string name="sort_default">Оставить порядок по-умолчанию</string>
   <string name="special">Особые</string>
+  <string name="special_extended">Специальная расширенная</string>
+  <string name="at_least_one_from_each_group">По крайней мере, по одному от каждой группы</string>
+  <string name="exclude_lookalike">Исключить похожие символы</string>
+  <string name="password_generation_profile">Профиль</string>
+  <string name="save_password_generation_profile_text">Введите имя профиля для сохранения. Введите существующее имя для перезаписи.</string>
+  <string name="hint_wordcount">Количество слов в ключевой фразе</string>
+  <string name="hint_wordseparator">Разделитель слов</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Ключевая фраза</item>
+    <item>Ключевая фраза + пароль</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>в нижнем регистре</item>
+    <item>В ВЕРХНЕМ РЕГИСТРЕ</item>
+    <item>Первый символ в верхнем регистре</item>
+  </string-array>
+  <string name="custom_settings">Пользовательские настройки</string>
+  <string name="passphrase_capitalization">Использование заглавных букв в ключевой  фразе</string>
   <string name="search_hint">Что ищем</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
@@ -321,6 +335,8 @@
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
   <string name="add_extra_string">Добавить дополнительную строку</string>
+  <string name="configure_totp">Настроить TOTP</string>
+  <string name="totp_secret_key">Секретный ключ</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
