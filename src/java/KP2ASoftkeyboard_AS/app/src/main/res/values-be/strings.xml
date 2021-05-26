@@ -136,5 +136,9 @@
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
     <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Тэма клавіятуры</string>
+    <string name="subtype_mode_keyboard">клавіятура</string>
+    <string name="subtype_mode_voice">галасавы</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>
