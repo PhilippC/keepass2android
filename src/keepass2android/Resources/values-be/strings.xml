@@ -10,6 +10,21 @@
     <item>Passphrase + Password</item>
   </string-array>
   <string name="select_other_entry">Абраць іншы запіс</string>
+  <string-array name="clipboard_timeout_options">
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>5 minutes</item>
+    <item>10 minutes</item>
+    <item>15 хвілін</item>
+    <item>30 хвілін</item>
+    <item>1 гадзіна</item>
+    <item>Never</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>База даных Keepass 2 (.kdbx)</item>
+    <item>Keepass 2 XML (незашыфраваны) (.xml)</item>
+    <item>Keepass CSV (unencrypted) (.csv)</item>
+  </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
     <item>Private/Public key</item>
