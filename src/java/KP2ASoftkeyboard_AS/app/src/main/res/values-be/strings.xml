@@ -125,13 +125,21 @@
     <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Абраць метад уводу</string>
     <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Мовы ўводу</string>
     <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Каб змяніць мову, правядзіце пальцам па кнопцы прагалу</string>
     <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">\u2190 Націсніце зноў, каб захаваць</string>
     <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Даступны слоўнік</string>
     <!-- Preferences item for enabling to send user statistics to Google -->
     <!-- Description for enabling to send user statistics to Google -->
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
