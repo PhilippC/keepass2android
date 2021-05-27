@@ -5,4 +5,18 @@
     See the file LICENSE at the root directory of this project for copying
     permission.
 -->
-<resources></resources>
+<resources>
+    <string name="afc_cmd_advanced_selection_all">Усе</string>
+    <string name="afc_cmd_advanced_selection_invert">Адваротнае вылучэнне</string>
+    <string name="afc_cmd_advanced_selection_none">Няма</string>
+    <string name="afc_cmd_grid_view">У выглядзе сеткі</string>
+    <string name="afc_cmd_home">Галоўная</string>
+    <string name="afc_cmd_list_view">У выглядзе спіса</string>
+    <string name="afc_cmd_new_folder">Новы каталог…</string>
+    <string name="afc_cmd_select_all_files">Абраць усе файлы</string>
+    <string name="afc_cmd_select_all_folders">Абраць усе каталогі</string>
+    <string name="afc_cmd_sort">Сартаванне…</string>
+    <string name="afc_file">файл</string>
+    <string name="afc_folder">каталог</string>
+    <string name="afc_hint_clear">ачысціць</string>
+</resources>
