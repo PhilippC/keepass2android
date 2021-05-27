@@ -55,6 +55,11 @@
     <!-- Option to enable bigram completion -->
     <!-- Description for auto completion -->
     <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Няма</item>
+        <item>Basic</item>
+        <item>Advanced</item>
+    </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
