@@ -79,6 +79,7 @@
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Завершана</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
@@ -146,6 +147,7 @@
     <!-- Inform the user that a particular language has an available dictionary -->
     <string name="has_dictionary">Даступны слоўнік</string>
     <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Уключыць адпраўленне водгукаў</string>
     <!-- Description for enabling to send user statistics to Google -->
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
