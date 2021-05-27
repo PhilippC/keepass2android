@@ -19,4 +19,15 @@
     <string name="afc_file">файл</string>
     <string name="afc_folder">каталог</string>
     <string name="afc_hint_clear">ачысціць</string>
+    <string name="afc_hint_folder_name">назва каталога</string>
+    <string name="afc_hint_save_as_filename">назва файла</string>
+    <string name="afc_hint_search">пошук</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">У гэтай праграмы няма дазволу на стварэнне файлаў і каталогаў</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">У гэтай праграмы няма дазволу на выдаленне файлаў і каталогаў</string>
+    <string name="afc_msg_cancelled">Скасавана</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">Не атрымалася злучыцца са службай захоўвання файлаў</string>
+    <string name="afc_msg_cannot_create_new_folder_here">Тут немагчыма стварыць новы каталог</string>
+    <string name="afc_msg_cannot_save_a_file_here">Тут немагчыма захаваць файл</string>
+    <string name="afc_msg_done">Завершана</string>
+    <string name="afc_msg_empty">Пуста</string>
 </resources>
