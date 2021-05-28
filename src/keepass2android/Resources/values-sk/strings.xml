@@ -669,17 +669,17 @@
     <item>Vylepšenia pre implementáciu OneDrive: už žiadny limit veľkosti, už žiadne zbytočné požiadavky na autentifikáciu</item>
     <item>Pridaná voľba pre výber svetlého/tmavého dizajnu zo systémových nastavení, vrátane plánov pre noc. Vyžaduje Android 10+</item>
     <item>Umožnenie otvorenia súborov cez systémovú súčasť na výber súboru, ignorovanie príznaku len na čítanie</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Umožnenie spustenia presúvania záznamov z menu pre zobrazenie záznamu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Pridaná podpora pre nový súbor s kľúčom, zavedený v KeePass 2.47</item>
     <item>Pridaná podpora pre Argon2id ako funkcie na odvodenie kľúča</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Improve support for TOTP entries from desktop programs</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
-    <item>Update Jsch to version 0.1.55</item>
-    <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
+    <item>Vylepšená podpora automatického dopĺňania s prehliadačmi Firefox a Chrome</item>
+    <item>Vylepšená podpora pre záznamy TOTP z počítačových programov</item>
+    <item>Aktualizácia pCloud SDK pre opravu problému s autentifikáciou</item>
+    <item>Aktualizácie Jsch na verziu 0.1.55</item>
+    <item>Pridané menu na obrazovku pre výber databázy</item>
+    <item>Umožnenie exportu pre importované súbory s kľúčom</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>V poli URL sa už neukladajú názvy balíkov s aplikáciami systému Android</item>
@@ -994,7 +994,7 @@ Prvé verejné vydanie
   <string-array name="design_options">
     <item>Svetlá</item>
     <item>Tmavá</item>
-    <item>System settings</item>
+    <item>Systémové nastavenia</item>
   </string-array>
   <string name="design_title">Dizajn</string>
   <string-array name="ftp_encryption_modes">
@@ -1048,6 +1048,7 @@ Prvé verejné vydanie
   <string name="emergency_infotext_head">Ste pripravení na núdzové prípady?</string>
   <string name="emergency_infotext_main">Premýšľali ste niekedy nad tým, čo sa stane, keby ste nemali prístup ku svojej databáze hesiel? Čo keď sa niečo stane? Je dobré poskytnúť svoj primárny kľúč nejakej dôveryhodnej osobe, pre núdzové prípady. V opačnom prípade by nikto nemal prístup k Vaším heslám.</string>
   <string name="no_secure_display">Aktuálne platný displej nie je označený ako zabezpečený. Znamená to, že ostatné aplikácie si môžu vytvárať snímky obrazovky. Keepass2Android je nakonfigurovaný na zobrazovanie citlivých informácií len na zabezpečených displejoch. Prosím prepnite na zabezpečený displej (napríklad odpojením monitora HDMI) alebo zmeňte nastavenia aplikácie.</string>
+  <string name="disable_secure_screen_check">Vypnúť túto správu</string>
   <string name="switch_ime_text">Prosím aktivujte klávesnicu Keepass2Android.</string>
   <string name="switch_ime_reopen">Opakovať</string>
   <string name="AutofillWarning_title">Bezpečnostné upozornenie: nerozpoznaná doména/odkaz aplikácie</string>
