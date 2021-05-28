@@ -4,6 +4,7 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="entry_password">Пароль</string>
   <string name="hint_login_pass">Пароль</string>
+  <string name="root">Каранёвы каталог (Root)</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
     <item>Passphrase</item>
