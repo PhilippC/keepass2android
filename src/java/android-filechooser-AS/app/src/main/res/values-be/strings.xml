@@ -30,4 +30,16 @@
     <string name="afc_msg_cannot_save_a_file_here">Тут немагчыма захаваць файл</string>
     <string name="afc_msg_done">Завершана</string>
     <string name="afc_msg_empty">Пуста</string>
+    <string name="afc_msg_failed_please_try_again">Не атрымалася. Калі ласка, паспрабуйце зноў.</string>
+    <string name="afc_msg_loading">Загрузка…</string>
+    <string name="afc_phone">Тэлефон</string>
+    <string name="afc_pmsg_cannot_access_dir">Не ўдалося атрымаць доступ да \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_create_folder">Не атрымалася стварыць каталог \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_delete_file">Не атрымалася выдаліць %1$s \"%2$s\"</string>
+    <string name="afc_pmsg_confirm_delete_file">Сапраўды хочаце выдаліць %1$s \"%2$s\"?</string>
+    <string name="afc_pmsg_confirm_replace_file">Файл \"%1$s\" ужо існуе.\n\nХочаце замяніць яго?</string>
+    <string name="afc_pmsg_deleting_file">Выдаленне %1$s \"%2$s\"…</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" выдалены</string>
+    <string name="afc_pmsg_filename_is_directory">\"%1$s\" - каталог</string>
+    <string name="afc_pmsg_filename_is_invalid">Назва файла \"%1$s\" хібная</string>
 </resources>
