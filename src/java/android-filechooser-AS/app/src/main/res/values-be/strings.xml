@@ -46,4 +46,13 @@
     <string name="afc_pmsg_unknown_error">Невядомая памылка: %1$s</string>
     <string name="afc_root">Каранёвы каталог (Root)</string>
     <string name="afc_title_advanced_selection">Абраць…</string>
+    <string name="afc_title_confirmation">Пацвярджэнне</string>
+    <string name="afc_title_date">Дата</string>
+    <string name="afc_title_error">Памылка</string>
+    <string name="afc_title_info">Звесткі</string>
+    <string name="afc_title_name">Назва</string>
+    <string name="afc_title_save_as">Захаваць як…</string>
+    <string name="afc_title_size">Памер</string>
+    <string name="afc_title_sort_by">Сартаваць па…</string>
+    <string name="afc_yesterday">Учора</string>
 </resources>
