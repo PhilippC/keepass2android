@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Biometrické odomykanie</string>
   <string name="import_db_prefs">Import DB do interného priečinka</string>
   <string name="import_keyfile_prefs">Import súbor. kľúča do interného priečinka</string>
+  <string name="export_keyfile_prefs">Exportovať súbor s kľúčom z interného priečinka</string>
   <string name="keyboardswitch_prefs">Prepínanie klávesnice</string>
   <string name="OnlyAvailableForLocalFiles">Dostupné len pre lokálne súbory.</string>
   <string name="FileIsInInternalDirectory">Súbor je uložený v internom priečinku.</string>
@@ -228,6 +229,7 @@
   <string name="saving_database">Databáza sa ukladá…</string>
   <string name="exporting_database">Databáza sa exportuje…</string>
   <string name="export_database_successful">Databáza bola úspešne exportovaná!</string>
+  <string name="export_keyfile_successful">Súbor s kľúčom bol exportovaný!</string>
   <string name="space">Miesto</string>
   <string name="search_label">Hľadať</string>
   <string name="show_password">Zobraziť heslo</string>
@@ -237,11 +239,25 @@
   <string name="sort_moddate">Zoradiť podľa dátumu úpravy</string>
   <string name="sort_default">Zachovať predvolené poradie</string>
   <string name="special">Špeciálne</string>
+  <string name="special_extended">Rozšírené, špeciálne</string>
+  <string name="at_least_one_from_each_group">Aspoň 1 z každej skupiny</string>
+  <string name="exclude_lookalike">Vylúčiť vzhľadovo podobné znaky</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Zadajte názov profilu na uloženie. Prepísanie vykonáte zadaním existujúceho názvu.</string>
+  <string name="hint_wordcount">Počet slov frázy s heslom</string>
+  <string name="hint_wordseparator">Oddeľovač slov</string>
   <string-array name="PasswordGeneratorModes">
     <item>Heslo</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Fráza s heslom</item>
+    <item>Fráza + heslo</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>malé písmená</item>
+    <item>VEĽKÉ PÍSMENÁ</item>
+    <item>Prvé Písmeno Veľké</item>
+  </string-array>
+  <string name="custom_settings">Používateľské nastavenia</string>
+  <string name="passphrase_capitalization">Prvé veľké písmeno vo fráze</string>
   <string name="search_hint">Nájsť</string>
   <string name="search_results">Výsledky vyhľadávania</string>
   <string name="search_in">Hľadať v</string>
@@ -272,6 +288,8 @@
   <string name="ShowUsernameInList_summary">Zobraziť mená používateľov pod záznamami. Užitočné pri viacnásobných účtoch alebo TAN.</string>
   <string name="RememberRecentFiles_title">Zapamätať si databázy</string>
   <string name="RememberRecentFiles_summary">Zapamätať si naposledy otvorené databázy a zobraziť ich na obrazovke pre otvorenie databázy.</string>
+  <string name="NoDalVerification_title">Žiadne overovanie DAL</string>
+  <string name="NoDalVerification_summary">Vypne kontrolu, či sa zhoduje doména a balík aplikácie</string>
   <string name="kp2a_findUrl">Nájsť heslo</string>
   <string name="excludeExpiredEntries">Vylúčiť expirované záznamy</string>
   <string name="search_options">Možnosti</string>
@@ -317,6 +335,13 @@
   <string name="protection">Chránené pole</string>
   <string name="add_binary">Priložiť súbor...</string>
   <string name="add_extra_string">Pridať ďalší reťazec</string>
+  <string name="configure_totp">Konfigurovať TOTP</string>
+  <string name="totp_secret_key">Tajný kľúč</string>
+  <string name="totp_encoding_rfc6238">Predvolené nastavenia pre RFC6238 token</string>
+  <string name="totp_encoding_steam">Nastavenia tokenu Steam</string>
+  <string name="totp_encoding_custom">Používateľské nastavenia tokenu</string>
+  <string name="totp_time_step">Časový krok</string>
+  <string name="totp_length">Dĺžka kódu</string>
   <string name="delete_extra_string">Vymazať pridaný reťazec</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Uzamknuté. Rýchle odomknutie je aktívne.</string>
   <string name="database_loaded_unlocked">%1$s: Odomknuté.</string>
@@ -636,6 +661,26 @@
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Pridaná podpora pre formát súboru KDBX 4.1, zavedené v KeePass 2.48</item>
+    <item>Pridaný dialóg na konfigurovanie nastavení TOTP pre záznamy</item>
+    <item>Vylepšený generátor hesiel: pridaná podpora frázy s heslom, viac možností, profilov a odhadovanie obtiažnosti hesla</item>
+    <item>Vylepšenia automatického dopĺňania (opravené vyskakovacie okno, ktoré sa nezobrazovalo v Chrome; lepšia podpora subdomény)</item>
+    <item>Vylepšenia pre implementáciu OneDrive: už žiadny limit veľkosti, už žiadne zbytočné požiadavky na autentifikáciu</item>
+    <item>Pridaná voľba pre výber svetlého/tmavého dizajnu zo systémových nastavení, vrátane plánov pre noc. Vyžaduje Android 10+</item>
+    <item>Umožnenie otvorenia súborov cez systémovú súčasť na výber súboru, ignorovanie príznaku len na čítanie</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Pridaná podpora pre nový súbor s kľúčom, zavedený v KeePass 2.47</item>
+    <item>Pridaná podpora pre Argon2id ako funkcie na odvodenie kľúča</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>V poli URL sa už neukladajú názvy balíkov s aplikáciami systému Android</item>
     <item>Vylepšené správanie pri uzamknutí - už bezprostredne po odomknutí sa už nezobrazuje požiadavka biometrie</item>
