@@ -10,6 +10,7 @@
     <item>Passphrase + Password</item>
   </string-array>
   <string name="select_other_entry">Абраць іншы запіс</string>
+  <string name="loading">Загрузка…</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconds</item>
     <item>1 minute</item>
