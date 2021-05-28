@@ -3,6 +3,7 @@
 <resources>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="entry_password">Пароль</string>
+  <string name="entry_title">Назва</string>
   <string name="hint_login_pass">Пароль</string>
   <string name="root">Каранёвы каталог (Root)</string>
   <string-array name="PasswordGeneratorModes">
@@ -12,6 +13,7 @@
   </string-array>
   <string name="select_other_entry">Абраць іншы запіс</string>
   <string name="loading">Загрузка…</string>
+  <string name="TemplateField_IdCard_Name">Назва</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconds</item>
     <item>1 minute</item>
