@@ -137,6 +137,7 @@
     <!-- appears above image showing how to use touch and hold -->
     <string name="touch_and_hold"><font size="17"><b>Націсніце \u0026 і ўтрымлівайце клавішу для паказу параметраў\n</b></font><font size="3">\n</font>Доступ да пунктуацыйных і дыякрытычных знакаў.</string>
     <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>Налады клавіятуры\n</b></font><font size="3">\n</font>Націсніце \u0026 і ўтрымлівайце <b>\?123\</b>.</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
     <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
@@ -160,8 +161,11 @@
     <!-- Preferences item for enabling to send user statistics to Google -->
     <string name="prefs_enable_log">Уключыць адпраўленне водгукаў</string>
     <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Дапамажыце палепшыць рэдактар метаду ўводу, дазволіўшы адпраўленне статыстыкі і справаздач пра хібы Google.</string>
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Выпраўленне націсканнем</string>
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Націсніце на слова, каб выправіць яго</string>
     <!-- Description for keyboard theme switcher -->
     <string name="keyboard_layout">Тэма клавіятуры</string>
     <string name="subtype_mode_keyboard">клавіятура</string>
