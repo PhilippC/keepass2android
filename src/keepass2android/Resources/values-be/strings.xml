@@ -34,6 +34,16 @@
   <string name="AutofillDisabledQueriesPreference_summary">Прагляд спіса праграм і сайтаў, для якіх аўтазапаўненне адключана</string>
   <string name="OfferSaveCredentials_summary">Калі ўключана, сістэма будзе пытацца, ці захоўваць уліковыя даныя пасля таго, як вы ўвялі даныя ў палі аўтазапаўнення.</string>
   <string name="OfferSaveCredentials_title">Прапанаванне захавання ўліковых даных</string>
+  <string name="ShowGroupInEntry_title">Паказваць назву групы пры праглядзе запісу</string>
+  <string name="unknown_uri_scheme">Выбачайце, але Keepass2Android не змог апрацаваць вернуты URI  %1$s. Калі ласка, звяжыцеся з распрацоўнікам!</string>
+  <string name="Entry_singular">Адзін запіс</string>
+  <string name="Entry_plural">%1$d запісаў</string>
+  <string name="IconSet_title">Набор значкоў</string>
+  <string name="IconSet_install">Шукаць яшчэ…</string>
+  <string name="security_prefs">Бяспека</string>
+  <string name="display_prefs">Адлюстраванне</string>
+  <string name="password_access_prefs">Доступ да пароляў</string>
+  <string name="QuickUnlock_prefs">Хуткае разблакаванне</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_title">Назва</string>
   <string name="hint_login_pass">Пароль</string>
@@ -46,6 +56,7 @@
   <string name="select_other_entry">Абраць іншы запіс</string>
   <string name="loading">Загрузка…</string>
   <string name="TemplateField_IdCard_Name">Назва</string>
+  <string name="DbQuicklockedChannel_name">Хуткае разблакаванне</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconds</item>
     <item>1 minute</item>
