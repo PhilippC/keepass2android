@@ -44,6 +44,10 @@
   <string name="display_prefs">Адлюстраванне</string>
   <string name="password_access_prefs">Доступ да пароляў</string>
   <string name="QuickUnlock_prefs">Хуткае разблакаванне</string>
+  <string name="FileHandling_prefs">Апрацоўка файлаў</string>
+  <string name="keyboard_prefs">Клавіятура</string>
+  <string name="export_prefs">Экспарт базы даных…</string>
+  <string name="fingerprint_prefs">Разблакаванне з дапамогай біяметрычных даных</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_title">Назва</string>
   <string name="hint_login_pass">Пароль</string>
