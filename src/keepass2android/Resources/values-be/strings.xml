@@ -28,6 +28,12 @@
   <string name="application">Праграма</string>
   <string name="application_settings">Налады праграмы</string>
   <string name="ShowGroupnameInSearchResult_title">Адлюстраванне назвы групы ў выніках пошуку</string>
+  <string name="ShowGroupnameInSearchResult_resume">Паказваць пад назвай запісу ў выніках пошуку назву групы. Будзе карысна, калі ў запісаў аднолькавыя назвы.</string>
+  <string name="NavigationToGroupCompleted_message">Адлюстраванне групы зараз: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Адключаныя мэты аўтазапаўнення</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Прагляд спіса праграм і сайтаў, для якіх аўтазапаўненне адключана</string>
+  <string name="OfferSaveCredentials_summary">Калі ўключана, сістэма будзе пытацца, ці захоўваць уліковыя даныя пасля таго, як вы ўвялі даныя ў палі аўтазапаўнення.</string>
+  <string name="OfferSaveCredentials_title">Прапанаванне захавання ўліковых даных</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_title">Назва</string>
   <string name="hint_login_pass">Пароль</string>
