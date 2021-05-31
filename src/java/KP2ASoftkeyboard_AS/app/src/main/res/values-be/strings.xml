@@ -120,12 +120,22 @@
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Mic on main keyboard</item>
+        <item>Значок на клавіятуры сімвалаў</item>
+        <item>Галасавы ўвод адключаны</item>
+    </string-array>
     <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Аўтаматычнае адпраўленне пасля галасавога ўводу</string>
     <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Аўтаматычна націскаць \"Увод\" падчас пошуку альбо пераходу да новага поля.</string>
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>Адкрыццё клавіятуры\n</b></font><font size="3">\n</font>Націсніце на любое тэкставае поле.</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>Закрыццё клавіятуры\n</b></font><font size="3">\n</font>Націсніце кнопку \"Назад\".</string>
     <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>Націсніце \u0026 і ўтрымлівайце клавішу для паказу параметраў\n</b></font><font size="3">\n</font>Доступ да пунктуацыйных і дыякрытычных знакаў.</string>
     <!-- appears above image showing how to access keyboard settings -->
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
     <string name="popular_domain_0">".com"</string>
