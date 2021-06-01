@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Hardware.Biometrics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -16,13 +17,15 @@ using Java.Lang;
 
 namespace keepass2android
 {
-	class FingerprintSamsungIdentifier: IFingerprintIdentifier
+	class BiometrySamsungIdentifier: IBiometricIdentifier
 	{
-		SpassFingerprint _spassFingerprint;
+        private readonly Context _context;
+        SpassFingerprint _spassFingerprint;
 		Spass _spass;
-		public FingerprintSamsungIdentifier(Context context)
+		public BiometrySamsungIdentifier(Context context)
 		{
-			_spass = new Spass();
+            _context = context;
+            _spass = new Spass();
 
 			try
 			{
@@ -61,12 +64,12 @@ namespace keepass2android
 		}
 		class IdentifyListener : Java.Lang.Object, IIdentifyListener
 		{
-			private readonly IFingerprintAuthCallback _callback;
+			private readonly IBiometricAuthCallback _callback;
 			private readonly Context _context;
-			private readonly FingerprintSamsungIdentifier _id;
+			private readonly BiometrySamsungIdentifier _id;
 
 
-			public IdentifyListener(IFingerprintAuthCallback callback, Context context, FingerprintSamsungIdentifier id)
+			public IdentifyListener(IBiometricAuthCallback callback, Context context, BiometrySamsungIdentifier id)
 			{
 				_callback = callback;
 				_context = context;
@@ -80,11 +83,11 @@ namespace keepass2android
 				_id.Listening = false;
 				if (responseCode == SpassFingerprint.StatusAuthentificationSuccess) 
 				{
-					_callback.OnFingerprintAuthSucceeded();
+					_callback.OnBiometricAuthSucceeded();
 				} 
 				else if (responseCode == SpassFingerprint.StatusAuthentificationPasswordSuccess) 
 				{
-					_callback.OnFingerprintAuthSucceeded();
+					_callback.OnBiometricAuthSucceeded();
 				} 
 				
 			}
@@ -106,22 +109,22 @@ namespace keepass2android
 		}
 
 
-		public void StartListening(Context ctx, IFingerprintAuthCallback callback)
+		public void StartListening(IBiometricAuthCallback callback)
 		{
 			if (Listening) return;
 
 			try 
 			{
-				_spassFingerprint.StartIdentifyWithDialog(ctx, new IdentifyListener(callback, ctx, this), false);
+				_spassFingerprint.StartIdentifyWithDialog(_context, new IdentifyListener(callback, _context, this), false);
 				Listening = true;
 			} 
 			catch (SpassInvalidStateException m)
 			{
-				callback.OnFingerprintError(m.Message);
+				callback.OnBiometricError(m.Message);
 			} 
 			catch (IllegalStateException ex) 
 			{
-				callback.OnFingerprintError(ex.Message);
+				callback.OnBiometricError(ex.Message);
 			}
 		}
 
@@ -141,5 +144,10 @@ namespace keepass2android
 				Kp2aLog.LogUnexpectedError(e);
 			}
 		}
-	}
+
+        public bool HasUserInterface
+        {
+            get { return false; }
+        }
+    }
 }

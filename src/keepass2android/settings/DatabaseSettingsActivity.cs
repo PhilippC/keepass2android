@@ -16,26 +16,20 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   */
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Content.Res;
-using Android.Graphics;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Widget;
 using Android.Preferences;
 using Android.Provider;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
 using Android.Views.Autofill;
 using Java.IO;
+using KeePass.DataExchange;
 using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -44,208 +38,12 @@ using keepass2android.Io;
 using keepass2android.Utils;
 using KeePassLib;
 using KeePassLib.Cryptography.KeyDerivation;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
-
-	public class IconSetPreference : ListPreference
-	{
-		private int selectedEntry;
-
-		private class IconSet
-		{
-			public string PackageName { get; set; }
-			public string DisplayName { get; set; }
-
-			public Drawable GetIcon(Context context)
-			{
-				if (PackageName == context.PackageName)
-					return context.Resources.GetDrawable(Resource.Drawable.ic00);
-				Resources res = context.PackageManager.GetResourcesForApplication(PackageName);
-
-				return res.GetDrawable(res.GetIdentifier("ic00", "drawable", PackageName));
-			}
-		}
-
-		private class IconListPreferenceScreenAdapter : BaseAdapter
-		{
-			private readonly IconSetPreference _pref;
-
-			public IconListPreferenceScreenAdapter(IconSetPreference pref, Context context)
-			{
-				_pref = pref;
-			}
-
-
-			private class CustomHolder : Java.Lang.Object
-			{
-				private TextView text = null;
-				private RadioButton rButton = null;
-
-				public CustomHolder(View row, int position, IconSetPreference pref)
-				{
-					text = (TextView)row.FindViewById(Resource.Id.image_list_view_row_text_view);
-					text.Text = pref.IconSets[position].DisplayName;
-
-					rButton = (RadioButton)row.FindViewById(Resource.Id.image_list_view_row_radio_button);
-					rButton.Id = position;
-					rButton.Clickable = false;
-					rButton.Checked = (pref.selectedEntry == position);
-
-					try
-					{
-						Drawable dr = pref.IconSets[position].GetIcon(row.Context);
-						var bitmap = ((BitmapDrawable)dr).Bitmap;
-						Drawable d = new BitmapDrawable(row.Resources, Bitmap.CreateScaledBitmap(bitmap, 64, 64, true));
-						text.SetCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
-						text.Text = (" " + text.Text);
-					}
-					catch (Exception)
-					{
-					}
-
-
-				}
-			}
-
-			public override Java.Lang.Object GetItem(int position)
-			{
-				return null;
-			}
-
-			public override long GetItemId(int position)
-			{
-				return position;
-			}
-
-
-
-			public override View GetView(int position, View convertView, ViewGroup parent)
-			{
-				View row = convertView;
-				CustomHolder holder = null;
-				int p = position;
-				row = LayoutInflater.From(_pref.Context).Inflate(Resource.Layout.image_list_preference_row, parent, false);
-				holder = new CustomHolder(row, position, _pref);
-
-				row.Tag = holder;
-
-				// row.setClickable(true);
-				// row.setFocusable(true);
-				// row.setFocusableInTouchMode(true);
-				row.Click += (sender, args) =>
-				{
-
-					((View)sender).RequestFocus();
-
-					Dialog mDialog = _pref.Dialog;
-					mDialog.Dismiss();
-
-					_pref.CallChangeListener(_pref.IconSets[p].PackageName);
-					ISharedPreferences pref = PreferenceManager.GetDefaultSharedPreferences(_pref.Context);
-					var edit = pref.Edit();
-					edit.PutString(_pref.Key, _pref.IconSets[p].PackageName);
-					edit.Commit();
-					_pref.selectedEntry = p;
-					
-				};
-
-				return row;
-			}
-
-			public override int Count
-			{
-				get { return _pref.IconSets.Count; }
-			}
-		}
-
-
-		List<IconSet> _iconSets = null;
-		List<IconSet> IconSets
-		{
-			get
-			{
-				if (_iconSets != null)
-					return _iconSets;
-				_iconSets = new List<IconSet>();
-
-				_iconSets.Add(new IconSet()
-				{
-					DisplayName = Context.GetString(AppNames.AppNameResource),
-					PackageName = Context.PackageName
-				});
-
-				foreach (var p in Context.PackageManager.GetInstalledPackages(0))
-				{
-					try
-					{
-
-						string packageName = p.PackageName;
-						Resources res = Context.PackageManager.GetResourcesForApplication(packageName);
-						int nameId = res.GetIdentifier("kp2a_iconset_name", "string", packageName);
-						_iconSets.Add(new IconSet()
-						{
-							DisplayName = res.GetString(nameId),
-							PackageName = packageName
-						});
-					}
-					catch (Exception)
-					{
-
-					}
-				}
-				return _iconSets;
-			}
-		}
-		protected IconSetPreference(IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-		}
-
-		private readonly Task _populatorTask;
-
-		public IconSetPreference(Context context, IAttributeSet attrs)
-			: base(context, attrs)
-		{
-			_populatorTask = Task.Factory.StartNew(() =>
-			{
-				SetEntries(IconSets.Select(s => s.DisplayName).ToArray());
-				SetEntryValues(IconSets.Select(s => s.PackageName).ToArray());
-			});
-			
-		}
-
-
-		protected override void OnPrepareDialogBuilder(AlertDialog.Builder builder)
-		{
-			_populatorTask.Wait();
-			base.OnPrepareDialogBuilder(builder);
-
-
-			var iconListPreferenceAdapter = new IconListPreferenceScreenAdapter(this, Context);
-
-			String selectedValue = PreferenceManager.GetDefaultSharedPreferences(Context).GetString(Key, "");
-			for (int i = 0; i < IconSets.Count; i++)
-			{
-				if (selectedValue == IconSets[i].PackageName)
-				{
-					selectedEntry = i;
-					break;
-				}
-			}
-
-			builder.SetAdapter(iconListPreferenceAdapter, (sender, args) => { });
-			builder.SetNeutralButton(Resource.String.IconSet_install, (sender, args) =>
-			{
-				Util.GotoUrl(Context, "market://search?q=keepass2android icon set");
-			});
-
-
-		}
-	}
-
     //http://stackoverflow.com/a/27422401/292233
-    public class SettingsFragment : PreferenceFragment
+        public class SettingsFragment : PreferenceFragment
     {
 
 
@@ -335,8 +133,9 @@ namespace keepass2android
 
         private KeyboardSwitchPrefManager _switchPrefManager;
 		private Preference aesRounds, argon2parallelism, argon2rounds, argon2memory;
+        
 
-	    void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
+        void OnRememberKeyFileHistoryChanged(object sender, Preference.PreferenceChangeEventArgs eventArgs)
         {
             if (!(bool)eventArgs.NewValue)
             {
@@ -406,7 +205,7 @@ namespace keepass2android
                         new AlertDialog.Builder(Context)
                             .SetTitle(Resource.String.autofill_enable)
                             .SetMessage(Resource.String.autofill_enable_failed)
-                            .SetPositiveButton(Resource.String.ok, (o, eventArgs) => { })
+                            .SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => { })
                             .Show();
 
                     }
@@ -423,8 +222,8 @@ namespace keepass2android
 
 	        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
             
-            Database db = App.Kp2a.GetDb();
-            if (db.Loaded)
+            Database db = App.Kp2a.CurrentDb;
+            if (db != null)
             {
 	            ListPreference kdfPref = (ListPreference) FindPreference(GetString(Resource.String.kdf_key));
 	            kdfPref.SetEntries(KdfPool.Engines.Select(eng => eng.Name).ToArray());
@@ -457,7 +256,7 @@ namespace keepass2android
 				algorithmPref.SetValueIndex(algoValues.Select((v, i) => new { kdf = v, index = i }).First(el => el.kdf == db.KpDatabase.DataCipherUuid.ToHexString()).index);
 				algorithmPref.PreferenceChange += AlgorithmPrefChange;
 	            algorithmPref.Summary =
-		            CipherPool.GlobalPool.GetCipher(App.Kp2a.GetDb().KpDatabase.DataCipherUuid).DisplayName;
+		            CipherPool.GlobalPool.GetCipher(App.Kp2a.CurrentDb.KpDatabase.DataCipherUuid).DisplayName;
                 UpdateImportDbPref();
                 UpdateImportKeyfilePref();
             }
@@ -504,8 +303,8 @@ namespace keepass2android
 
 			FindPreference("IconSetKey").PreferenceChange += (sender, args) =>
 			{
-				if (App.Kp2a.GetDb() != null)
-					App.Kp2a.GetDb().DrawableFactory.Clear();
+				if (App.Kp2a.CurrentDb!= null)
+					App.Kp2a.CurrentDb.DrawableFactory.Clear();
 
 			};
 
@@ -517,7 +316,10 @@ namespace keepass2android
 
         private void UpdateAutofillPref()
         {
+            var autofillScreen = FindPreference(GetString(Resource.String.AutoFill_prefs_screen_key));
             var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
+            var autofillDisabledPref = FindPreference(GetString(Resource.String.AutofillDisabledQueriesPreference_key));
+            var autofillSavePref = FindPreference(GetString(Resource.String.OfferSaveCredentials_key));
             if (autofillPref == null)
                 return;
             if ((Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.O) ||
@@ -526,19 +328,23 @@ namespace keepass2android
             {
                 var passwordAccessScreen =
                     (PreferenceScreen) FindPreference(Activity.GetString(Resource.String.password_access_prefs_key));
-                passwordAccessScreen.RemovePreference(autofillPref);
+                passwordAccessScreen.RemovePreference(autofillScreen);
             }
             else
             {
                 if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
                     .HasEnabledAutofillServices)
                 {
+                    autofillDisabledPref.Enabled = true;
+                    autofillSavePref.Enabled = true;
                     autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
                     autofillPref.Intent = new Intent(Intent.ActionView);
                     autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://philippc.github.io/keepass2android/OreoAutoFill.html"));
                 }
                 else
                 {
+                    autofillDisabledPref.Enabled = false;
+                    autofillSavePref.Enabled = false;
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
                 }
 
@@ -565,11 +371,11 @@ namespace keepass2android
 
 	    private void AlgorithmPrefChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
 	    {
-			var db = App.Kp2a.GetDb();
+			var db = App.Kp2a.CurrentDb;
 			var previousCipher = db.KpDatabase.DataCipherUuid;
 			db.KpDatabase.DataCipherUuid = new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue));
 
-			SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+			SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
 			{
 				if (!success)
 				{
@@ -586,7 +392,7 @@ namespace keepass2android
 
 	    private void UpdateKdfScreen()
 	    {
-		    var db = App.Kp2a.GetDb();
+		    var db = App.Kp2a.CurrentDb;
 			var kdf = KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid);
 
 			var kdfpref = FindPreference(GetString(Resource.String.kdf_key));
@@ -624,7 +430,7 @@ namespace keepass2android
 
 	    private void OnKdfChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
 	    {
-		    var db = App.Kp2a.GetDb();
+		    var db = App.Kp2a.CurrentDb;
 		    var previousKdfParams = db.KpDatabase.KdfParameters;
 			Kp2aLog.Log("previous kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString() );
 		    db.KpDatabase.KdfParameters =
@@ -634,7 +440,7 @@ namespace keepass2android
 
 			Kp2aLog.Log("--new    kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString());
 		    
-			SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+			SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
 			{
 				if (!success)
 				{
@@ -669,7 +475,7 @@ namespace keepass2android
 	    private void PrepareTemplates(Database db)
 	    {
 			Preference pref = FindPreference("AddTemplates_pref_key");
-		    if ((!db.DatabaseFormat.SupportsTemplates) || (AddTemplateEntries.ContainsAllTemplates(App.Kp2a)))
+		    if ((!db.DatabaseFormat.SupportsTemplates) || (AddTemplateEntries.ContainsAllTemplates(App.Kp2a.CurrentDb)))
 		    {
 			    pref.Enabled = false;
 		    }
@@ -692,7 +498,7 @@ namespace keepass2android
 	    private void PrepareMasterPassword()
         {
             Preference changeMaster = FindPreference(GetString(Resource.String.master_pwd_key));
-            if (App.Kp2a.GetDb().CanWrite)
+            if (App.Kp2a.CurrentDb.CanWrite)
             {
                 changeMaster.Enabled = true;
                 changeMaster.PreferenceClick += delegate { new SetPasswordDialog(Activity).Show(); };
@@ -717,7 +523,7 @@ namespace keepass2android
                     String previousName = db.KpDatabase.Name;
                     db.KpDatabase.Name = e.NewValue.ToString();
 
-                    SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+                    SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
                     {
                         if (!success)
                         {
@@ -755,7 +561,7 @@ namespace keepass2android
                     String previousUsername = db.KpDatabase.DefaultUserName;
                     db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 
-                    SaveDb save = new SaveDb(Activity, App.Kp2a, new ActionOnFinish(Activity, (success, message, activity) =>
+                    SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnFinish(Activity, (success, message, activity) =>
                     {
                         if (!success)
                         {
@@ -790,10 +596,6 @@ namespace keepass2android
 
         private void OnUseOfflineCacheChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
-            //ensure the user gets a matching database
-            if (App.Kp2a.GetDb().Loaded && !App.Kp2a.GetDb().Ioc.IsLocalFile())
-                App.Kp2a.LockDatabase(false);
-
             if (!(bool)e.NewValue)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
@@ -833,36 +635,50 @@ namespace keepass2android
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
             var rememberKeyfile = prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
 
-            Preference importDb = FindPreference("import_keyfile_prefs");
-            importDb.Summary = "";
+            Preference importKeyfile = FindPreference("import_keyfile_prefs");
+            Preference exportKeyfile = FindPreference("export_keyfile_prefs");
+            importKeyfile.Summary = "";
 
             if (!rememberKeyfile)
             {
-                importDb.Summary = GetString(Resource.String.KeyfileMoveRequiresRememberKeyfile);
-                importDb.Enabled = false;
+                importKeyfile.Summary = GetString(Resource.String.KeyfileMoveRequiresRememberKeyfile);
+                importKeyfile.Enabled = false;
+                exportKeyfile.Enabled = false;
                 return;
             }
-            CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
+            CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
             if (masterKey.ContainsType(typeof(KcpKeyFile)))
             {
                 IOConnectionInfo iocKeyfile = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
                 if (iocKeyfile.IsLocalFile() && IoUtil.IsInInternalDirectory(iocKeyfile.Path, Activity))
                 {
-                    importDb.Enabled = false;
-                    importDb.Summary = GetString(Resource.String.FileIsInInternalDirectory);
+                    importKeyfile.Enabled = false;
+                    exportKeyfile.Enabled = true;
+                    exportKeyfile.PreferenceClick += (sender, args) => { ExportKeyfileFromInternalFolder(); };
+                    importKeyfile.Summary = GetString(Resource.String.FileIsInInternalDirectory);
                 }
                 else
                 {
-                    importDb.Enabled = true;
-                    importDb.PreferenceClick += (sender, args) => { MoveKeyfileToInternalFolder(); };
+                    exportKeyfile.Enabled = false;
+                    importKeyfile.Enabled = true;
+                    importKeyfile.PreferenceClick += (sender, args) => { MoveKeyfileToInternalFolder(); };
                 }
 
 
             }
             else
             {
-                importDb.Enabled = false;
+                exportKeyfile.Enabled = false;
+                importKeyfile.Enabled = false;
             }
+        }
+
+
+
+        private void ExportKeyfileFromInternalFolder()
+        {
+            StartActivity(new Intent(Activity.ApplicationContext, typeof(ExportKeyfileActivity)));
+            
         }
 
         private void MoveKeyfileToInternalFolder()
@@ -871,12 +687,12 @@ namespace keepass2android
             {
                 try
                 {
-                    CompositeKey masterKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
+                    CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
                     var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
                     var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).ResetIoc(newIoc);
                     var keyfileString = IOConnectionInfo.SerializeToString(newIoc);
-                    App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.GetDb().Ioc, keyfileString);
+                    App.Kp2a.StoreOpenedFileAsRecent(App.Kp2a.CurrentDb.Ioc, keyfileString, false);
                     return () =>
                     {
                         UpdateImportKeyfilePref();
@@ -914,7 +730,7 @@ namespace keepass2android
             //Import db/key file preferences:
             Preference importDb = FindPreference("import_db_prefs");
             bool isLocalOrContent =
-                App.Kp2a.GetDb().Ioc.IsLocalFile() || App.Kp2a.GetDb().Ioc.Path.StartsWith("content://");
+                App.Kp2a.CurrentDb.Ioc.IsLocalFile() || App.Kp2a.CurrentDb.Ioc.Path.StartsWith("content://");
             if (!isLocalOrContent)
             {
                 importDb.Summary = GetString(Resource.String.OnlyAvailableForLocalFiles);
@@ -922,7 +738,7 @@ namespace keepass2android
             }
             else
             {
-                if (IoUtil.IsInInternalDirectory(App.Kp2a.GetDb().Ioc.Path, Activity))
+                if (IoUtil.IsInInternalDirectory(App.Kp2a.CurrentDb.Ioc.Path, Activity))
                 {
                     importDb.Summary = GetString(Resource.String.FileIsInInternalDirectory);
                     importDb.Enabled = false;
@@ -941,7 +757,7 @@ namespace keepass2android
             {
                 try
                 {
-                    var sourceIoc = App.Kp2a.GetDb().Ioc;
+                    var sourceIoc = App.Kp2a.CurrentDb.Ioc;
                     var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                     return () =>
                     {
@@ -949,7 +765,12 @@ namespace keepass2android
                         builder
                             .SetMessage(Resource.String.DatabaseFileMoved);
                         builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
-                                                                              PasswordActivity.Launch(Activity, newIoc, new NullTask()));
+                        {
+                            var key = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
+                            App.Kp2a.CloseDatabase(App.Kp2a.CurrentDb);
+                            PasswordActivity.Launch(Activity, newIoc, key, new ActivityLaunchModeSimple(), false);
+
+                        });
                         builder.Show();
 
                     };
@@ -1016,12 +837,12 @@ namespace keepass2android
 
         
     }
-    
 
+    
     /// <summary>
 	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme")]			
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class DatabaseSettingsActivity : LockCloseActivity 
 	{
 
@@ -1040,7 +861,7 @@ namespace keepass2android
 	        base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.preference);
 
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar));
+            SetSupportActionBar(FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar));
 
 	    }
 

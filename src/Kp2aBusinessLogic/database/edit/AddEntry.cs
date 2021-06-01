@@ -24,26 +24,28 @@ namespace keepass2android
 	public class AddEntry : RunnableOnFinish {
 		protected Database Db
 		{
-			get { return _app.GetDb(); }
+			get { return _app.CurrentDb; }
 		}
 
 		private readonly IKp2aApp _app;
 		private readonly PwEntry _entry;
 		private readonly PwGroup _parentGroup;
 		private readonly Activity _ctx;
-		
-		public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
+	    private readonly Database _db;
 
-			return new AddEntry(ctx, app, entry, parentGroup, finish);
+	    public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish, Database db) {
+
+			return new AddEntry(ctx, db, app, entry, parentGroup, finish);
 		}
 		
-		protected AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
+		public AddEntry(Activity ctx, Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
 			_ctx = ctx;
-			_parentGroup = parentGroup;
+		    _db = db;
+		    _parentGroup = parentGroup;
 			_app = app;
 			_entry = entry;
 			
-			_onFinishToRun = new AfterAdd(ctx, app.GetDb(), entry, OnFinishToRun);
+			_onFinishToRun = new AfterAdd(ctx, app.CurrentDb, entry, app,OnFinishToRun);
 		}
 		
 		
@@ -57,10 +59,13 @@ namespace keepass2android
 			{
 				_parentGroup.AddEntry(_entry, true);	
 			}
-			
-			
-			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+
+		    // Add entry to global
+		    _db.EntriesById[_entry.Uuid] = _entry;
+		    _db.Elements.Add(_entry);
+
+            // Commit to disk
+            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -68,12 +73,13 @@ namespace keepass2android
 		private class AfterAdd : OnFinish {
 			private readonly Database _db;
 			private readonly PwEntry _entry;
+		    private readonly IKp2aApp _app;
 
-			public AfterAdd(Activity activity, Database db, PwEntry entry, OnFinish finish):base(activity, finish) {
+		    public AfterAdd(Activity activity, Database db, PwEntry entry, IKp2aApp app, OnFinish finish):base(activity, finish) {
 				_db = db;
 				_entry = entry;
-
-			}
+		        _app = app;
+		    }
 			
 
 
@@ -83,11 +89,10 @@ namespace keepass2android
 					PwGroup parent = _entry.ParentGroup; 
 					
 					// Mark parent group dirty
-					_db.Dirty.Add(parent);
+					_app.DirtyGroups.Add(parent);
 					
-					// Add entry to global
-					_db.Entries[_entry.Uuid] = _entry;
-					
+
+
 				} else
 				{
 					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);

@@ -62,10 +62,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.design.widget.TextInputLayout
+                      android:layout_weight="1"
                         style="@style/EntryEditSingleLine_TextInputLayout">
                         <EditText
                             android:id="@+id/entry_password"
@@ -103,7 +104,7 @@
                             android:src="@drawable/ic_plus_button"
                             android:background="?android:selectableItemBackground" />
                     </LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
                 <EditText
                     android:id="@+id/entry_confpassword"
                     android:layout_width="match_parent"
@@ -176,6 +177,19 @@
     android:layout_weight="1"
     android:layout_height="wrap_content"
     android:text="@string/add_extra_string"/>
+
+            <Button
+              android:id="@+id/configure_totp"
+              android:background="?android:selectableItemBackground"
+              android:textColor="?android:attr/textColorPrimary"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textAllCaps="true"
+              android:paddingLeft="8dp"
+              android:layout_width="match_parent"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              android:drawableLeft="@drawable/baseline_schedule_white_24"
+              android:text="@string/configure_totp"/>
                 
             </LinearLayout>
         </LinearLayout>

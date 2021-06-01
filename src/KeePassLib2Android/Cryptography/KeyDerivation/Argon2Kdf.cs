@@ -20,15 +20,27 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace KeePassLib.Cryptography.KeyDerivation
 {
-	public sealed partial class Argon2Kdf : KdfEngine
+    public enum Argon2Type
+    {
+        // The values must be the same as in the Argon2 specification
+        D = 0,
+        ID = 2
+    }
+    public sealed partial class Argon2Kdf : KdfEngine
 	{
-		private static readonly PwUuid g_uuid = new PwUuid(new byte[] {
-			0xEF, 0x63, 0x6D, 0xDF, 0x8C, 0x29, 0x44, 0x4B,
-			0x91, 0xF7, 0xA9, 0xA4, 0x03, 0xE3, 0x0A, 0x0C });
+       
+
+        private static readonly PwUuid g_uuidD = new PwUuid(new byte[] {
+            0xEF, 0x63, 0x6D, 0xDF, 0x8C, 0x29, 0x44, 0x4B,
+            0x91, 0xF7, 0xA9, 0xA4, 0x03, 0xE3, 0x0A, 0x0C });
+        private static readonly PwUuid g_uuidID = new PwUuid(new byte[] {
+            0x9E, 0x29, 0x8B, 0x19, 0x56, 0xDB, 0x47, 0x73,
+            0xB2, 0x3D, 0xFC, 0x3E, 0xC6, 0xF0, 0xA1, 0xE6 });
 
 		public const string ParamSalt = "S"; // Byte[]
 		public const string ParamParallelism = "P"; // UInt32
@@ -54,28 +66,37 @@ namespace KeePassLib.Cryptography.KeyDerivation
 		internal const uint MinParallelism = 1;
 		internal const uint MaxParallelism = (1 << 24) - 1;
 
-		internal const ulong DefaultIterations = 2;
-		internal const ulong DefaultMemory = 1024 * 1024; // 1 MB
-		internal const uint DefaultParallelism = 2;
+        internal const ulong DefaultIterations = 2;
+        internal const ulong DefaultMemory = 64 * 1024 * 1024; // 64 MB
+        internal const uint DefaultParallelism = 2;
 
-		public override PwUuid Uuid
-		{
-			get { return g_uuid; }
-		}
+        private readonly Argon2Type m_t;
 
-		public override string Name
-		{
-			get { return "Argon2"; }
-		}
+        public override PwUuid Uuid
+        {
+            get { return ((m_t == Argon2Type.D) ? g_uuidD : g_uuidID); }
+        }
 
+        public override string Name
+        {
+            get { return ((m_t == Argon2Type.D) ? "Argon2d" : "Argon2id"); }
+        }
+
+        public Argon2Kdf() : this(Argon2Type.D)
+        {
+        }
+
+        public Argon2Kdf(Argon2Type t)
+        {
+            if ((t != Argon2Type.D) && (t != Argon2Type.ID))
+                throw new NotSupportedException();
+
+            m_t = t;
+        }
         public override byte[] GetSeed(KdfParameters p)
         { return p.GetByteArray(ParamSalt); }
 
-        public Argon2Kdf()
-		{
-		}
-
-		public override KdfParameters GetDefaultParameters()
+        public override KdfParameters GetDefaultParameters()
 		{
 			KdfParameters p = base.GetDefaultParameters();
 
@@ -91,7 +112,7 @@ namespace KeePassLib.Cryptography.KeyDerivation
 		public override void Randomize(KdfParameters p)
 		{
 			if(p == null) { Debug.Assert(false); return; }
-			Debug.Assert(g_uuid.Equals(p.KdfUuid));
+            Debug.Assert(p.KdfUuid.Equals(this.Uuid));
 
 			byte[] pb = CryptoRandom.Instance.GetRandomBytes(32);
 			p.SetByteArray(ParamSalt, pb);
@@ -127,10 +148,59 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			byte[] pbSecretKey = p.GetByteArray(ParamSecretKey);
 			byte[] pbAssocData = p.GetByteArray(ParamAssocData);
 
-			byte[] pbRet = Argon2d(pbMsg, pbSalt, uPar, uMem, uIt,
-				32, v, pbSecretKey, pbAssocData);
+            byte[] pbRet;
 
-			if(uMem > (100UL * 1024UL * 1024UL)) GC.Collect();
+			if (m_t == Argon2Type.ID)
+            {
+                 pbRet = Argon2Transform(pbMsg, pbSalt, uPar, uMem,
+                    uIt, 32, v, pbSecretKey, pbAssocData);
+			}
+            else
+            {
+                if (pbSecretKey != null)
+                {
+                    throw new ArgumentOutOfRangeException("Unsupported configuration: non-null pbSecretKey");
+                }
+
+                if (pbAssocData != null)
+                {
+                    throw new ArgumentOutOfRangeException("Unsupported configuration: non-null pbAssocData");
+                }
+
+                /*
+                byte[] pbRet = Argon2d(pbMsg, pbSalt, uPar, uMem, uIt,
+                    32, v, pbSecretKey, pbAssocData);
+                */
+
+                IntPtr msgPtr = Marshal.AllocHGlobal(pbMsg.Length);
+                IntPtr saltPtr = Marshal.AllocHGlobal(pbSalt.Length);
+                IntPtr retPtr = Marshal.AllocHGlobal(32);
+                Marshal.Copy(pbMsg, 0, msgPtr, pbMsg.Length);
+                Marshal.Copy(pbSalt, 0, saltPtr, pbSalt.Length);
+
+                const UInt32 Argon2_d = 0;
+
+                int ret = argon2_hash(
+                    (UInt32)uIt, (UInt32)(uMem / 1024), uPar,
+                    msgPtr, (IntPtr)pbMsg.Length,
+                    saltPtr, (IntPtr)pbSalt.Length,
+                    retPtr, (IntPtr)32,
+                    (IntPtr)0, (IntPtr)0, Argon2_d, v);
+
+                if (ret != 0)
+                {
+                    throw new Exception("argon2_hash failed with " + ret);
+                }
+
+                pbRet = new byte[32];
+                Marshal.Copy(retPtr, pbRet, 0, 32);
+
+                Marshal.FreeHGlobal(msgPtr);
+                Marshal.FreeHGlobal(saltPtr);
+                Marshal.FreeHGlobal(retPtr);
+			}
+
+            if(uMem > (100UL * 1024UL * 1024UL)) GC.Collect();
 			return pbRet;
 		}
 
@@ -143,5 +213,14 @@ namespace KeePassLib.Cryptography.KeyDerivation
 				MaxIterations, uMilliseconds, true);
 			return p;
 		}
+
+		[DllImport("argon2")]
+		static extern int argon2_hash(
+				UInt32 t_cost, UInt32 m_cost, UInt32 parallelism,
+				IntPtr pwd, IntPtr pwdlen,
+				IntPtr salt, IntPtr saltlen,
+				IntPtr hash, IntPtr hashlen,
+				IntPtr encoded, IntPtr encodedlen,
+				UInt32 type, UInt32 version);
 	}
 }

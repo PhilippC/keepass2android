@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/totp_secret_key"
+        android:singleLine="true"
+        android:inputType="text"
+        android:hint="@string/totp_secret_key"
+        android:dropDownWidth="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/totp_encoding">
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/totp_encoding_rfc6238"
+            android:id="@+id/totp_encoding_rfc6238" />
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/totp_encoding_steam"
+            android:id="@+id/totp_encoding_steam" />
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/totp_encoding_custom"
+            android:id="@+id/totp_encoding_custom" />
+    </RadioGroup>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/totp_custom_settings_group">
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/totp_algorithms"
+            android:prompt="@string/algorithm"
+            android:id="@+id/totp_algorithm" />
+        <EditText
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/totp_time_step"
+            android:id="@+id/totp_time_step" />
+
+        <EditText
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/totp_length"
+            android:id="@+id/totp_length" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

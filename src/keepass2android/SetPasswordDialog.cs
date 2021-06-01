@@ -104,17 +104,17 @@ namespace keepass2android
 						_finish.Filename = _dlg.Keyfile;
 					}
 					FingerprintUnlockMode um;
-					Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).GetString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, ""), out um);
+					Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).GetString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, ""), out um);
 
 					if (um == FingerprintUnlockMode.FullUnlock)
 					{
 						ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).Edit();
-						edit.PutString(App.Kp2a.GetDb().CurrentFingerprintPrefKey, "");
-						edit.PutString(App.Kp2a.GetDb().CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
+						edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, "");
+						edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
 						edit.Commit();
 
 						Toast.MakeText(_dlg.Context, Resource.String.fingerprint_reenable, ToastLength.Long).Show();
-						_dlg.Context.StartActivity(typeof(FingerprintSetupActivity));
+						_dlg.Context.StartActivity(typeof(BiometricSetupActivity));
 					}
 
 					_dlg.Dismiss();

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="127" 
-			android:versionName="1.06f" 
+			android:versionCode="170" 
+			android:versionName="1.09a-r0" 
 			package="keepass2android.keepass2android" 
 			android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="26" />
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="29" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
   
@@ -14,6 +14,19 @@
 	android:networkSecurityConfig="@xml/network_security_config"
 
 	>
+	
+		<uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+			
+			<activity android:name="microsoft.identity.client.BrowserTabActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="msal8374f801-0f55-407d-80cc-9a04fe86d9b2" android:host="auth" />
+			</intent-filter>
+		</activity>
 		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
@@ -58,7 +71,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.PasswordActivity"  android:windowSoftInputMode="adjustResize">
+		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.SelectCurrentDbActivity"  android:windowSoftInputMode="adjustResize">
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -69,10 +82,9 @@
       </intent-filter>
 	  
 	  <intent-filter>
-        <action android:name="kp2a.action.PasswordActivity" />
+        <action android:name="kp2a.action.SelectCurrentDbActivity" />
         <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
-	  
 
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.SEND" />
@@ -82,12 +94,27 @@
 
         <data android:mimeType="application/*" />
       </intent-filter>
+	  
+<!-- intent filter for opening database files 
+Note that this stopped working nicely with Android 7, see e.g. https://stackoverflow.com/a/26635162/292233
+KP2A was using 
+<data android:scheme="content" />
+<data android:mimeType="*/*" />
+previously, but that leaded to complaints by users saying KP2A is showing up way too often, even when opening contacts and the like.
+
+This is why this was reduced  content with mimeType=application/octet-stream or content with pathPattern .
+
+The scheme=file is still there for old OS devices. It's also queried by apps like Dropbox to find apps for a certain file type.
+        
+-->
+
+
+<!-- This intent filter is for apps which use content with a URI containing the extension but no specific mimeType, e.g. ASTRO file manager -->
 
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="file" />
         <data android:scheme="content" />
         <data android:mimeType="*/*" />
         <data android:host="*" />
@@ -122,16 +149,69 @@
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
       </intent-filter>
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <data
-          android:scheme="https"
-          android:host="my.yubico.com"
-          android:pathPrefix="/neo"/>
+
+      <!-- This intent filter is for apps which use content with a URI not containing the extension but at least specify mimeType=application/octet-stream, e.g. GoogleDrive or FolderSync -->
+<intent-filter android:label="@string/app_name">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="content" />
+        <data android:mimeType="application/octet-stream" />
+        <data android:host="*" />
       </intent-filter>
+
+
+      <!-- This intent filter is for old OS versions (Android 6 and below) or for apps explicitly querying intents for a certain file:-URI -->
+      <intent-filter android:label="@string/app_name">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="file" />
+        <data android:mimeType="*/*" />
+        <data android:host="*" />
+        <data android:pathPattern=".*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbp" />
+        <data android:pathPattern=".*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdbx" />
+        <data android:pathPattern=".*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
+        <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
+      </intent-filter>
+
+      <intent-filter android:label="@string/kp2a_findUrl">
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="keepass2android.ACTION_START_WITH_TASK" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 		</activity>
-			<uses-library required="false" name="com.sec.android.app.multiwindow" />
+			<uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
 		<meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
 		<meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
 		<meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
@@ -149,6 +229,7 @@
 	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
   <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />

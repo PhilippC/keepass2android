@@ -14,12 +14,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import com.pcloud.sdk.ApiClient;
 import com.pcloud.sdk.ApiError;
 import com.pcloud.sdk.Authenticators;
 import com.pcloud.sdk.AuthorizationActivity;
+import com.pcloud.sdk.AuthorizationData;
 import com.pcloud.sdk.AuthorizationResult;
 import com.pcloud.sdk.Call;
 import com.pcloud.sdk.DataSource;
@@ -27,6 +29,7 @@ import com.pcloud.sdk.PCloudSdk;
 import com.pcloud.sdk.RemoteEntry;
 import com.pcloud.sdk.RemoteFile;
 import com.pcloud.sdk.RemoteFolder;
+import com.pcloud.sdk.UploadOptions;
 
 /**
  * FileStorage implementation for PCloud provider.
@@ -38,6 +41,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     final static private String SHARED_PREF_NAME = "PCLOUD";
     final static private String SHARED_PREF_AUTH_TOKEN = "AUTH_TOKEN";
+    final static private String SHARED_PREF_API_HOST = "API_HOST";
 
     private final Context ctx;
 
@@ -52,7 +56,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     @Override
     public boolean requiresSetup(String path) {
-        return true;
+        return !this.isConnected();
     }
 
     @Override
@@ -136,7 +140,9 @@ public class PCloudFileStorage extends JavaFileStorageBase
         RemoteFolder remoteFolder = this.getRemoteFolderByPath(filePath);
 
         try {
-            this.apiClient.createFile(remoteFolder, filename, dataSource).execute();
+            RemoteFile remoteFile = this.apiClient.createFile(
+                remoteFolder, filename, dataSource, null, null, UploadOptions.OVERRIDE_FILE
+            ).execute();
         } catch (ApiError e) {
             throw convertApiError(e);
         }
@@ -233,23 +239,29 @@ public class PCloudFileStorage extends JavaFileStorageBase
     public void onActivityResult(FileStorageSetupActivity activity, int requestCode, int resultCode, Intent data) {
         if (requestCode == PCLOUD_AUTHORIZATION_REQUEST_CODE && data != null) {
             activity.getState().putBoolean("hasStartedAuth", false);
-            AuthorizationResult result = (AuthorizationResult)(
-                data.getSerializableExtra(AuthorizationActivity.KEY_AUTHORIZATION_RESULT)
-            );
-            this.handleAuthResult(activity, result, data);
+            AuthorizationData authData = AuthorizationActivity.getResult(data);
+
+
+            this.handleAuthResult(activity, authData);
         }
     }
 
-    private void handleAuthResult(FileStorageSetupActivity activity, AuthorizationResult authorizationResult,
-                                  Intent data) {
-        if (authorizationResult == AuthorizationResult.ACCESS_GRANTED) {
-            String authToken = data.getStringExtra(AuthorizationActivity.KEY_ACCESS_TOKEN);
-            setAuthToken(authToken);
+    private void handleAuthResult(FileStorageSetupActivity activity, AuthorizationData authorizationData) {
+
+        if (authorizationData.result == AuthorizationResult.ACCESS_GRANTED) {
+            String authToken = authorizationData.token;
+            String apiHost = authorizationData.apiHost;
+            setAuthToken(authToken, apiHost);
             finishActivityWithSuccess(activity);
         } else {
+            android.util.Log.d("KP2A", "Auth failed with " + authorizationData.result.toString() + ", code=" + authorizationData.authCode + ", error=" + authorizationData.errorMessage);
             Activity castedActivity = (Activity)activity;
             Intent resultData = new Intent();
-            resultData.putExtra(EXTRA_ERROR_MESSAGE, "Authentication failed.");
+            resultData.putExtra(EXTRA_ERROR_MESSAGE, "Authentication failed!");
+
+            //reset any stored token in case we have an invalid one
+            clearAuthToken();
+
             castedActivity.setResult(Activity.RESULT_CANCELED, resultData);
             castedActivity.finish();
         }
@@ -263,19 +275,20 @@ public class PCloudFileStorage extends JavaFileStorageBase
     private ApiClient createApiClientFromSharedPrefs() {
         SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String authToken = prefs.getString(SHARED_PREF_AUTH_TOKEN, null);
-        return this.createApiClient(authToken);
+        String apiHost = prefs.getString(SHARED_PREF_API_HOST, null);
+        return this.createApiClient(authToken, apiHost);
     }
 
-    private ApiClient createApiClient(String authToken) {
-        if (authToken == null) {
+    private ApiClient createApiClient(String authToken, String apiHost) {
+        if (authToken == null || apiHost == null) {
             return null;
         }
+        ApiClient.Builder builder = PCloudSdk.newClientBuilder();
+        builder = builder.apiHost(apiHost);
 
-        return (
-            PCloudSdk.newClientBuilder()
-            .authenticator(Authenticators.newOAuthAuthenticator(authToken))
-            .create()
-        );
+        return builder
+                .authenticator(Authenticators.newOAuthAuthenticator(authToken))
+            .create();
     }
 
     private boolean isConnected() {
@@ -290,11 +303,12 @@ public class PCloudFileStorage extends JavaFileStorageBase
         edit.apply();
     }
 
-    private void setAuthToken(String authToken) {
-        this.apiClient = this.createApiClient(authToken);
+    private void setAuthToken(String authToken, String apiHost) {
+        this.apiClient = this.createApiClient(authToken, apiHost);
         SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();
         edit.putString(SHARED_PREF_AUTH_TOKEN, authToken);
+        edit.putString(SHARED_PREF_API_HOST, apiHost);
         edit.apply();
     }
 
@@ -372,7 +386,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     private Exception convertApiError(ApiError e) {
         String strErrorCode = String.valueOf(e.errorCode());
-        if (strErrorCode.startsWith("1") || "2000".equals(strErrorCode)) {
+        if (strErrorCode.startsWith("1") || "2000".equals(strErrorCode) || "2095".equals(strErrorCode)) {
             this.clearAuthToken();
             return new UserInteractionRequiredException("Unlinked from PCloud! User must re-link.", e);
         } else if (strErrorCode.startsWith("2")) {

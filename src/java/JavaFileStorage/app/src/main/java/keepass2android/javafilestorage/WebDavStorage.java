@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
@@ -29,6 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -51,6 +53,7 @@ import okhttp3.internal.tls.OkHostnameVerifier;
 public class WebDavStorage extends JavaFileStorageBase {
 
     private final ICertificateErrorHandler mCertificateErrorHandler;
+    private Context appContext;
 
     public WebDavStorage(ICertificateErrorHandler certificateErrorHandler)
     {
@@ -70,9 +73,18 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         String scheme = filename.substring(0, filename.indexOf("://"));
         filename = filename.substring(scheme.length() + 3);
-        String userPwd = filename.substring(0, filename.indexOf('@'));
-        ci.username = decode(userPwd.substring(0, userPwd.indexOf(":")));
-        ci.password = decode(userPwd.substring(userPwd.indexOf(":") + 1));
+        int idxAt = filename.indexOf('@');
+        if (idxAt >= 0)
+        {
+            String userPwd = filename.substring(0, idxAt);
+            int idxColon = userPwd.indexOf(":");
+            if (idxColon >= 0);
+            {
+                ci.username = decode(userPwd.substring(0, idxColon));
+                ci.password = decode(userPwd.substring(idxColon + 1));
+            }
+        }
+
         ci.URL = scheme + "://" +filename.substring(filename.indexOf('@') + 1);
         return ci;
     }
@@ -115,9 +127,13 @@ public class WebDavStorage extends JavaFileStorageBase {
         }
     }
 
+    //client to be reused (connection pool/thread pool). We're building a custom client for each ConnectionInfo in getClient for actual usage
+    final OkHttpClient baseClient = new OkHttpClient();
+
     private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        OkHttpClient.Builder builder = baseClient.newBuilder();
         final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
 
         com.burgstaller.okhttp.digest.Credentials credentials = new com.burgstaller.okhttp.digest.Credentials(ci.username, ci.password);
@@ -149,13 +165,19 @@ public class WebDavStorage extends JavaFileStorageBase {
             sslContext.init(null, new TrustManager[] { trustManager }, null);
             SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
+
             builder = builder.sslSocketFactory(sslSocketFactory, trustManager)
                              .hostnameVerifier(new DecoratedHostnameVerifier(OkHostnameVerifier.INSTANCE, mCertificateErrorHandler));
 
 
+            builder.connectTimeout(25, TimeUnit.SECONDS);
+            builder.readTimeout(25, TimeUnit.SECONDS);
+            builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
         OkHttpClient client =  builder.build();
+
+
         return client;
     }
 
@@ -431,10 +453,20 @@ public class WebDavStorage extends JavaFileStorageBase {
         if (href.endsWith("/"))
             href = href.substring(0, href.length()-1);
         int lastIndex = href.lastIndexOf("/");
+
+        String displayName;
+
         if (lastIndex >= 0)
-            return href.substring(lastIndex + 1);
+            displayName = href.substring(lastIndex + 1);
         else
-            return href;
+            displayName = href;
+
+        try {
+            displayName = java.net.URLDecoder.decode(displayName, UTF_8);
+        } catch (UnsupportedEncodingException e) {
+        }
+
+        return displayName;
     }
 
     @Override
@@ -477,7 +509,7 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     @Override
     public void prepareFileUsage(Context appContext, String path) {
-        //nothing to do
+        this.appContext = appContext;
 
     }
 

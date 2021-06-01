@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 #if !NoNet
-using System.Net.FtpClient;
+using FluentFTP;
 #endif
 using System.Text;
 
@@ -12,9 +13,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+
 using Java.IO;
 using keepass2android.Io;
+#if !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
+#endif
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
@@ -22,18 +26,30 @@ namespace keepass2android
 {
 	public class FileSelectHelper
 	{
+		public static string ConvertFilenameToIocPath(string filename)
+		{
+			if ((filename != null) && (filename.StartsWith("file://")))
+			{
+				filename = filename.Substring(7);
+				filename = Java.Net.URLDecoder.Decode(filename);
+			}
+			return filename;
+		}
+		
 		private readonly Activity _activity;
 		private readonly bool _isForSave;
 		private readonly int _requestCode;
 	    private readonly string _schemeSeparator = "://";
+	    private bool _tryGetPermanentAccess;
 
 	    public string DefaultExtension { get; set; }
 
-		public FileSelectHelper(Activity activity, bool isForSave, int requestCode)
+		public FileSelectHelper(Activity activity, bool isForSave, bool tryGetPermanentAccess, int requestCode)
 		{
 			_activity = activity;
 			_isForSave = isForSave;
 			_requestCode = requestCode;
+			_tryGetPermanentAccess = tryGetPermanentAccess;
 		}
 
 		private void ShowSftpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
@@ -172,7 +188,7 @@ namespace keepass2android
                 string pathAndQuery = uri.PathAndQuery;
 
 		        var host = uri.Host;
-		        var localPath = pathAndQuery;
+		        var localPath = WebUtility.UrlDecode(pathAndQuery);
 
                 
 		        if (!uri.IsDefaultPort)
@@ -291,7 +307,7 @@ namespace keepass2android
 				return StartFileChooser(filename);
 			}
 			//looks like a file
-			IocSelected(IOConnectionInfo.FromPath(filename));
+			IocSelected(null, IOConnectionInfo.FromPath(filename));
 			return true;
 		}
 
@@ -335,7 +351,7 @@ namespace keepass2android
 			int lastDotPos = filename.LastIndexOf('.');
 			if (lastSlashPos >= lastDotPos) //no dot after last slash or == in case neither / nor .
 			{
-				ShowFilenameWarning(filename, () => { IocSelected(ioc); dialog.Dismiss(); }, () => { /* don't do anything, leave dialog open, let user try again*/ });
+				ShowFilenameWarning(filename, () => { IocSelected(null, ioc); dialog.Dismiss(); }, () => { /* don't do anything, leave dialog open, let user try again*/ });
 				//signal that the dialog should be kept open
 				return false;
 			}
@@ -381,7 +397,7 @@ namespace keepass2android
 
 						}
 					}
-					System.IO.File.Create(filename);
+					System.IO.File.Create(filename).Dispose();
 
 				}
 				catch (IOException ex)
@@ -397,20 +413,20 @@ namespace keepass2android
 			}
 			if (fileStorage.RequiresCredentials(ioc))
 			{
-				Util.QueryCredentials(ioc, IocSelected, _activity);
+				Util.QueryCredentials(ioc, iocResult => IocSelected(null, iocResult), _activity);
 			}
 			else
 			{
-				IocSelected(ioc);
+				IocSelected(null, ioc);
 			}
 
 			return true;
 		}
 
-		private void IocSelected(IOConnectionInfo ioc)
+		private void IocSelected(Activity activity, IOConnectionInfo ioc)
 		{
 			if (OnOpen != null)
-				OnOpen(this, ioc);
+				OnOpen(activity, ioc);
 		}
 
 		public bool StartFileChooser(string defaultPath)
@@ -443,7 +459,7 @@ namespace keepass2android
 			_activity.StartActivityForResult(i, _requestCode);
 
 #else
-			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
+			Toast.MakeText(Application.Context, "File chooser is excluded!", ToastLength.Long).Show();
 #endif
 			return true;
 		}
@@ -459,5 +475,100 @@ namespace keepass2android
 	               || ioc.Path.StartsWith("sftp");
 
 	    }
-	}
+
+	    public bool HandleActivityResult(Activity activity, int requestCode, Result resultCode, Intent data)
+	    {
+	        if (requestCode != _requestCode)
+	            return false;
+			
+			if (resultCode == KeePass.ExitFileStorageSelectionOk)
+			{
+				string protocolId = data.GetStringExtra("protocolId");
+				if (protocolId == "content")
+				{
+					Util.ShowBrowseDialog(activity, _requestCode, _isForSave, _tryGetPermanentAccess);
+				}
+				else
+				{					
+					App.Kp2a.GetFileStorage(protocolId).StartSelectFile(
+							new FileStorageSetupInitiatorActivity(activity,(i, result, arg3) =>HandleActivityResult(activity, i, result, arg3),s => PerformManualFileSelect(s)), 
+							_isForSave, 
+							_requestCode, 
+							protocolId);	
+				}
+			}
+			
+			if (resultCode == Result.Ok)
+				{
+					
+					if (data.Data.Scheme == "content")
+					{
+						if ((int)Build.VERSION.SdkInt >= 19)
+						{
+							//try to take persistable permissions
+							try
+							{
+								Kp2aLog.Log("TakePersistableUriPermission");
+								var takeFlags = data.Flags
+										& (ActivityFlags.GrantReadUriPermission
+										| ActivityFlags.GrantWriteUriPermission);
+								activity.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+							}
+							catch (Exception e)
+							{
+								Kp2aLog.Log(e.ToString());
+							}
+
+						}
+					}
+
+					
+					string filename = Util.IntentToFilename(data, activity);
+					if (filename == null)
+						filename = data.DataString;
+
+					bool fileExists = data.GetBooleanExtra("group.pals.android.lib.ui.filechooser.FileChooserActivity.result_file_exists", true);
+
+					if (fileExists)
+					{
+						var ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(filename) };
+						IocSelected(activity,ioc);
+					}
+					else
+					{
+						var task = new CreateNewFilename(activity, new ActionOnFinish(activity, (success, messageOrFilename, newActivity) =>
+							{
+								if (!success)
+								{
+									Toast.MakeText(newActivity, messageOrFilename, ToastLength.Long).Show();
+									return;
+								}
+								var ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) };
+							    IocSelected(newActivity, ioc);
+								
+							}), filename);
+
+						new ProgressTask(App.Kp2a, activity, task).Run();
+					}
+
+				}
+				
+				
+			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
+			{
+				var ioc = new IOConnectionInfo();
+				Util.SetIoConnectionFromIntent(ioc, data);
+				IocSelected(null, ioc);
+			}
+			if (resultCode == (Result)FileStorageResults.FileChooserPrepared )
+			{
+				IOConnectionInfo ioc = new IOConnectionInfo();
+				Util.SetIoConnectionFromIntent(ioc, data);
+				StartFileChooser(ioc.Path);
+				
+			}
+	        return true;
+
+        }
+    }
 }

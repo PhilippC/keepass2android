@@ -9,6 +9,7 @@ using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Text;
 using Android.Text.Method;
@@ -26,8 +27,15 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
-
-			    ctx.GetString(Resource.String.ChangeLog_1_06),
+                
+                BuildChangelogString(ctx, Resource.Array.ChangeLog_1_09a, "1.09a"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08d, "1.08d"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08c, "1.08c"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08b, "1.08b"),
+				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_08, "1.08"),
+			    ctx.GetString(Resource.String.ChangeLog_1_07b),
+                ctx.GetString(Resource.String.ChangeLog_1_07),
+                ctx.GetString(Resource.String.ChangeLog_1_06),
                 ctx.GetString(Resource.String.ChangeLog_1_05),
 				ctx.GetString(Resource.String.ChangeLog_1_04b),
                 ctx.GetString(Resource.String.ChangeLog_1_04),
@@ -109,7 +117,22 @@ namespace keepass2android
 
 		}
 
-		private const string HtmlStart = @"<html>
+	    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
+	    {
+	        string result = "Version " + version + "\n";
+            string previous = "";
+	        foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
+            {
+                if (item == previous) //there was some trouble with crowdin translations, remove duplicates
+                    continue;
+	            result += " * " + item + "\n";
+                previous = item;
+            }
+	        return result;
+
+	    }
+
+	    private const string HtmlStart = @"<html>
   <head>
     <style type='text/css'>
       a            { color:#000000 }
@@ -145,21 +168,36 @@ namespace keepass2android
 			{
 				string versionLog2 = versionLog; 
 				bool title = true;
-				if (isFirst)
-				{
-					if (versionLog2.EndsWith("\n") == false)
-						versionLog2 += "\n";
-					string donateUrl = ctx.GetString(Resource.String.donate_url,
-														 new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
-						ctx.PackageName
-					});
-					versionLog2 += " * <a href=\"" + donateUrl
-						+ "\">" +
-						ctx.GetString(Resource.String.ChangeLog_keptDonate)
-							+ "<a/>";
-					isFirst = false;
-				}
-				foreach (string line in versionLog2.Split('\n'))
+			    if (isFirst)
+			    {
+
+			        bool showDonateOption = true;
+			        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+			        if (prefs.GetBoolean(ctx.GetString(Resource.String.NoDonationReminder_key), false))
+			            showDonateOption = false;
+
+			        long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
+
+			        if (usageCount <= 5)
+			            showDonateOption = false;
+
+			        if (showDonateOption)
+			        {
+			            if (versionLog2.EndsWith("\n") == false)
+			                versionLog2 += "\n";
+			            string donateUrl = ctx.GetString(Resource.String.donate_url,
+			                new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
+			                    ctx.PackageName
+			                });
+
+			            versionLog2 += " * <a href=\"" + donateUrl
+			                           + "\">" +
+			                           ctx.GetString(Resource.String.ChangeLog_keptDonate)
+			                           + "<a/>";
+			        }
+			        isFirst = false;
+			    }
+                foreach (string line in versionLog2.Split('\n'))
 				{
 					string w = line.Trim();
 					if (title)

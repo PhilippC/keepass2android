@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 /*
 **
 ** Copyright 2008, The Android Open Source Project
@@ -16,125 +16,243 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
- -->
-
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Keepass2Android-toetsenbord"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Instellingen voor Keepass2Android-toetsenbord"</string>
-    <string name="english_ime_input_options" msgid="3909945612939668554">"Invoeropties"</string>
-    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Trillen bij toetsaanslag"</string>
-    <string name="sound_on_keypress" msgid="6093592297198243644">"Geluid bij toetsaanslag"</string>
-    <string name="popup_on_keypress" msgid="123894815723512944">"Pop-up bij toetsaanslag"</string>
-    <string name="hit_correction" msgid="4855351009261318389">"Typefouten corrigeren"</string>
-    <string name="hit_correction_summary" msgid="8761701873008070796">"Foutcorrectie tijdens invoer inschakelen"</string>
-    <string name="hit_correction_land" msgid="2567691684825205448">"Invoerfouten in liggende weergave"</string>
-    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Foutcorrectie tijdens invoer inschakelen"</string>
-    <string name="auto_correction" msgid="7911639788808958255">"Woordsuggesties"</string>
-    <string name="auto_correction_summary" msgid="6881047311475758267">"Het vorige woord automatisch corrigeren"</string>
-    <string name="prediction" msgid="466220283138359837">"Woordsuggesties"</string>
-    <string name="prediction_category" msgid="7027100625580696660">"Instellingen voor woordsuggesties"</string>
-    <string name="prediction_summary" msgid="459788228830873110">"Automatisch voltooien tijdens typen inschakelen"</string>
-    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Automatisch voltooien"</string>
-    <string name="prediction_landscape" msgid="4874601565593216183">"Tekstveld vergroten"</string>
-    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Woordsuggesties verbergen in liggende weergave"</string>
-    <string name="auto_cap" msgid="1719746674854628252">"Auto-hoofdlettergebruik"</string>
-    <string name="auto_cap_summary" msgid="3260681697600786825">"Hoofdletter gebruiken aan het begin van een zin"</string>
-    <string name="auto_punctuate" msgid="7276672334264521751">"Automatische interpunctie"</string>
-    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
-    <string name="quick_fixes" msgid="5353213327680897927">"Snelle oplossingen"</string>
-    <string name="quick_fixes_summary" msgid="3405028402510332373">"Hiermee worden veelvoorkomende typefouten gecorrigeerd"</string>
-    <string name="show_suggestions" msgid="507074425254289133">"Suggesties weergeven"</string>
-    <string name="show_suggestions_summary" msgid="1989672863935759654">"Voorgestelde woorden weergeven tijdens typen"</string>
-    <string name="auto_complete" msgid="1103196318775486023">"Auto-aanvullen"</string>
-    <string name="auto_complete_summary" msgid="6113149638718274624">"Gemarkeerd woord automatisch invoegen met spatiebalk en interpunctie"</string>
-    <string name="prefs_settings_key" msgid="4623341240804046498">"Instellingscode weergeven"</string>
-    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Automatisch"</string>
-    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Altijd weergeven"</string>
-    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Altijd verbergen"</string>
-    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
-    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
-    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
-    <string name="bigram_suggestion" msgid="1323347224043514969">"Digram-suggesties"</string>
-    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Vorig woord gebruiken om suggestie te verbeteren"</string>
-  <string-array name="prediction_modes">
-    <item msgid="4870266572388153286">"Geen"</item>
-    <item msgid="1669461741568287396">"Basis"</item>
-    <item msgid="4894328801530136615">"Geavanceerd"</item>
-  </string-array>
-    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g>: opgeslagen"</string>
-    <string name="tip_long_press" msgid="6101270866284343344">"Houd een toets ingedrukt om diakritische tekens weer te geven (ø, ö, enzovoort)"</string>
-    <string name="tip_dismiss" msgid="7585579046862204381">"Druk op elk gewenst moment op de toets Terug ↶ om het toetsenbord te sluiten"</string>
-    <string name="tip_access_symbols" msgid="6344098517525531652">"Toegang tot cijfers en symbolen"</string>
-    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Blijf drukken op het meest linkse woord om het toe te voegen aan het woordenboek"</string>
-    <string name="touch_to_continue" msgid="7869803257948414531">"Raak deze tip aan om door te gaan »"</string>
-    <string name="touch_to_finish" msgid="7990196086480585789">"Raak dit punt aan om deze tip te sluiten en te beginnen met typen."</string>
-    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Het toetsenbord wordt geopend wanneer u een tekstveld aanraakt"</b></string>
-    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Blijf een toets aanraken om diakritische tekens weer te geven"\n"(ø, ö, ô, ó, enzovoort)"</b></string>
-    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Schakel over naar cijfers en symbolen door deze toets aan te raken"</b></string>
-    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Ga terug naar letters door deze toets nogmaals aan te raken"</b></string>
-    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Blijf deze toets aanraken om toetsenbordinstellingen te wijzigen, zoals auto-aanvullen"</b></string>
-    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Probeer het zelf!"</b></string>
-    <string name="label_go_key" msgid="1635148082137219148">"Start"</string>
-    <string name="label_next_key" msgid="362972844525672568">"Volgende"</string>
-    <string name="label_done_key" msgid="2441578748772529288">"Gereed"</string>
-    <string name="label_send_key" msgid="2815056534433717444">"Verzenden"</string>
-    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
-    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
-    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
-    <string name="label_alt_key" msgid="2846315350346694811">"Alt"</string>
-    <string name="voice_warning_title" msgid="4419354150908395008">"Spraakinvoer"</string>
-    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Spraakinvoer wordt momenteel niet ondersteund in uw taal, maar is wel beschikbaar in het Engels."</string>
-    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Spraakinvoer is een experimentele functie met de spraakherkenning van het Google-netwerk."</string>
-    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Als u spraakinvoer wilt uitschakelen, gaat u naar de toetsenbordinstellingen."</string>
-    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Als u spraakinvoer gebruikt, drukt u op de microfoonknop of schuift u uw vinger over het schermtoetsenbord."</string>
-    <string name="voice_listening" msgid="467518160751321844">"Nu spreken"</string>
-    <string name="voice_working" msgid="6666937792815731889">"Wordt uitgevoerd"</string>
-    <string name="voice_initializing" msgid="661962047129906646"></string>
-    <string name="voice_error" msgid="5140896300312186162">"Fout. Probeer het opnieuw."</string>
-    <string name="voice_network_error" msgid="6649556447401862563">"Kan geen verbinding maken"</string>
-    <string name="voice_too_much_speech" msgid="5746973620134227376">"Fout, te lange spraakinvoer."</string>
-    <string name="voice_audio_error" msgid="5072707727016414454">"Audioprobleem"</string>
-    <string name="voice_server_error" msgid="7807129913977261644">"Serverfout"</string>
-    <string name="voice_speech_timeout" msgid="8461817525075498795">"Geen spraak te horen"</string>
-    <string name="voice_no_match" msgid="4285117547030179174">"Geen resultaten gevonden"</string>
-    <string name="voice_not_installed" msgid="5552450909753842415">"Spraakgestuurd zoeken is niet geïnstalleerd"</string>
-    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Hint:"</b>" schuif over het toetsenbord om te spreken"</string>
-    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Hint:"</b>" spreek de volgende keer interpunctie uit, zoals \'period\' (punt), \'comma\' (komma) of \'question mark\' (vraagteken)."</string>
-    <string name="cancel" msgid="6830980399865683324">"Annuleren"</string>
-    <string name="ok" msgid="7898366843681727667">"OK"</string>
-    <string name="voice_input" msgid="2466640768843347841">"Spraakinvoer"</string>
-  <string-array name="voice_input_modes">
-    <item msgid="1349082139076086774">"Op hoofdtoetsenbord"</item>
-    <item msgid="8529385602829095903">"Op toetsenbord voor symbolen"</item>
-    <item msgid="7283103513488381103">"Uit"</item>
-  </string-array>
-  <string-array name="voice_input_modes_summary">
-    <item msgid="554248625705084903">"Microfoon op hoofdtoetsenbord"</item>
-    <item msgid="6907837061058876770">"Microfoon op toetsenbord voor symbolen"</item>
-    <item msgid="3664304608587798036">"Spraakinvoer is uitgeschakeld"</item>
-  </string-array>
-    <string name="auto_submit" msgid="9151008027068358518">"Automatisch verzenden na spraak"</string>
-    <string name="auto_submit_summary" msgid="4961875269610384226">"Drukt automatisch op Enter tijdens het zoeken of wanneer u naar het volgende veld wilt gaan."</string>
-    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Het toetsenbord openen"\n</b></font><font size="3">\n</font>"Raak een tekstveld aan."</string>
-    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Het toetsenbord sluiten"\n</b></font><font size="3">\n</font>"Druk op de terugtoets."</string>
-    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Een toets blijven aanraken voor opties"\n</b></font><font size="3">\n</font>"Toegang tot interpunctie en diakritische tekens."</string>
-    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Toetsenbordinstellingen"\n</b></font><font size="3">\n</font>"Blijf de toets \'"<b>"?123"</b>"\' aanraken."</string>
-    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
-    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
-    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
-    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
-    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
-    <string name="selectInputMethod" msgid="315076553378705821">"Invoermethode selecteren"</string>
-    <string name="language_selection_title" msgid="1651299598555326750">"Invoertalen"</string>
-    <string name="language_selection_summary" msgid="187110938289512256">"Schuif uw vinger over de spatiebalk om de taal te wijzigen"</string>
-    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Raak nogmaals aan om op te slaan"</string>
-    <string name="has_dictionary" msgid="6071847973466625007">"Woordenboek beschikbaar"</string>
-    <string name="prefs_enable_log" msgid="6620424505072963557">"Gebruikersfeedback inschakelen."</string>
-    <string name="prefs_description_log" msgid="5827825607258246003">"Help deze invoermethode te verbeteren door automatisch gebruiksstatistieken en crashmeldingen naar Google te verzenden."</string>
-    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Raak aan om woorden te corrigeren"</string>
-    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Raak ingevoerde woorden aan om ze te corrigeren"</string>
-    <string name="keyboard_layout" msgid="437433231038683666">"Toetsenbordthema"</string>
-    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"toetsenbord"</string>
-    <string name="subtype_mode_voice" msgid="4394113125441627771">"spraak"</string>
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Keepass2Android-toetsenbord</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Instellingen voor Keepass2Android-toetsenbord</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Invoeropties</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Trillen bij toetsaanslag</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Geluid bij toetsaanslag</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Pop-up bij toetsaanslag</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Typefouten corrigeren</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Foutcorrectie tijdens invoer inschakelen</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Invoerfouten in liggende weergave</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Foutcorrectie tijdens invoer inschakelen</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Woordsuggesties</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Het vorige woord automatisch corrigeren</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Woordsuggesties</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Instellingen voor woordsuggesties</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Automatisch voltooien tijdens typen inschakelen</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Automatisch voltooien</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Tekstveld vergroten</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Woordsuggesties verbergen in liggende weergave</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Auto-hoofdlettergebruik</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Hoofdletter gebruiken aan het begin van een zin</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Automatische interpunctie</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Snelle oplossingen</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Hiermee worden veelvoorkomende typefouten gecorrigeerd</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Suggesties weergeven</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Voorgestelde woorden weergeven tijdens typen</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Auto-aanvullen</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Gemarkeerd woord automatisch invoegen met spatiebalk en interpunctie</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Instellingscode weergeven</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Automatisch</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Altijd weergeven</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Altijd verbergen</string>
+    <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>\@ rij- instellingen-sleutel-wijze-automatisch-naam</item>
+        <item>\@ rij- instellingen- sleutel-wijze-altijd-tonen-naam</item>
+        <item>\@rij-instellingen-sleutel-wijze-altijd-verberg-naam</item>
+    </string-array>
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Digram-suggesties</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Vorig woord gebruiken om suggestie te verbeteren</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Geen</item>
+        <item>Basis</item>
+        <item>Geavanceerd</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="WORD">%s</xliff:g>: opgeslagen</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Houd een toets ingedrukt om diakritische tekens weer te geven (ø, ö, enzovoort)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Druk op elk gewenst moment op de toets Terug ↶ om het toetsenbord te sluiten</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Toegang tot cijfers en symbolen</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Blijf drukken op het meest linkse woord om het toe te voegen aan het woordenboek</string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Raak deze tip aan om door te gaan »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Raak dit punt aan om deze tip te sluiten en te beginnen met typen.</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>\"Het toetsenbord wordt geopend wanneer u een tekstveld aanraakt\"</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>\"Blijf een toets aanraken om diakritische tekens weer te geven\"\n\"(ø, ö, ô, ó, enzovoort)\"</b></string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>\"Schakel over naar cijfers en symbolen door deze toets aan te raken\"</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>\"Ga terug naar letters door deze toets nogmaals aan te raken\"</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>\"Blijf deze toets aanraken om toetsenbordinstellingen te wijzigen, zoals auto-aanvullen\"</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>\"Probeer het zelf!\"</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Start</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Volgende</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Klaar</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Verzenden</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">Ga naar nummer toets</string>
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">Ga naar alfabetische toetsenbord</string>
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">Alt</string>
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Spraakinvoer</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">Spraakinvoer wordt momenteel niet ondersteund in uw taal, maar is wel beschikbaar in het Engels.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Spraakinvoer is een experimentele functie met de spraakherkenning van het Google-netwerk.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Als u spraakinvoer wilt uitschakelen, gaat u naar de toetsenbordinstellingen.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Als u spraakinvoer gebruikt, drukt u op de microfoonknop of schuift u uw vinger over het schermtoetsenbord.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Nu spreken</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Wordt uitgevoerd</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Fout. Probeer het opnieuw.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Kan geen verbinding maken</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Fout, te lange spraakinvoer.</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Audioprobleem</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Serverfout</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Geen spraak te horen</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Geen resultaten gevonden</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Spraakgestuurd zoeken is niet geïnstalleerd</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>\"Hint:\"</b>\" schuif over het toetsenbord om te spreken\"</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>\"Hint:\"</b>\" spreek de volgende keer interpunctie uit, zoals \'period\' (punt), \'comma\' (komma) of \'question mark\' (vraagteken).\"</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Annuleren</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">in orde</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Spraakinvoer</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>Op hoofdtoetsenbord</item>
+        <item>Op toetsenbord voor symbolen</item>
+        <item>Uit</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Microfoon op hoofdtoetsenbord</item>
+        <item>Microfoon op toetsenbord voor symbolen</item>
+        <item>Spraakinvoer is uitgeschakeld</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Automatisch verzenden na spraak</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Drukt automatisch op Enter tijdens het zoeken of wanneer u naar het volgende veld wilt gaan.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>\"Het toetsenbord openen\"\n</b></font><font size="3">\n</font>\"Raak een tekstveld aan.\"</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>\"Het toetsenbord sluiten\"\n</b></font><font size="3">\n</font>\"Druk op de terugtoets.\"</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>\"Een toets blijven aanraken voor opties\"\n</b></font><font size="3">\n</font>\"Toegang tot interpunctie en diakritische tekens.\"</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>\"Toetsenbordinstellingen\"\n</b></font><font size="3">\n</font>\"Blijf de toets \'\"<b>\"?123\"</b>\"\' aanraken.\"</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">"Ga naar het .com domein"</string>
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">"Ga naar het .net domein"</string>
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">"Ga naar het .org domein"</string>
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">"Ga naar het .gov domein"</string>
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">"Ga naar het .edu domein"</string>
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Invoermethode selecteren</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Invoertalen</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Schuif uw vinger over de spatiebalk om de taal te wijzigen</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">← Raak nogmaals aan om op te slaan</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Woordenboek beschikbaar</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Gebruikersfeedback inschakelen.</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Help deze invoermethode te verbeteren door automatisch gebruiksstatistieken en crashmeldingen naar Google te verzenden.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Raak aan om woorden te corrigeren</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Raak ingevoerde woorden aan om ze te corrigeren</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Toetsenbordthema</string>
+    <string name="subtype_mode_keyboard">toetsenbord</string>
+    <string name="subtype_mode_voice">spraak</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[Volgende veld]]></string>
 </resources>

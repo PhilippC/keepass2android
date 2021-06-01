@@ -85,8 +85,8 @@ namespace keepass2android
 		{
 			if (!File.Exists(LogFilename))
 			{
-				File.Create(LogFilename);
-				_logToFile = true;
+				File.Create(LogFilename).Dispose();
+                _logToFile = true;
 			}
 			
 
@@ -100,8 +100,7 @@ namespace keepass2android
 				int count = 0;
 				while (File.Exists(LogFilename + "." + count))
 					count++;
-                if (count > 0)
-				    File.Move(LogFilename, LogFilename + "." + count);
+                File.Move(LogFilename, LogFilename + "." + count);
 				
 			}
 				
@@ -119,5 +118,10 @@ namespace keepass2android
 			sendIntent.SetType("text/plain");
 			ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
 		}
-	}
+
+        public static void LogTask(object task, string activityName)
+        {
+			Log($"Task in activity {activityName} changed to {task?.GetType()?.Name ?? "null"}");
+        }
+    }
 }

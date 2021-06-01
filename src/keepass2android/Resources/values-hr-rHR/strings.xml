@@ -681,7 +681,7 @@ Verzija 0.9.6\n
 * automatsko ponovno učitavanje baze podataka kada otkrije promjenu, rješava sigurnosnu zabrinutost otkrivanja glavne lozinke\n
 * poboljšani izgled male poljske tipkovnice, otklonjen problem teme tipkovnice (zahvaljujući Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5">
-<b> Verzija 0.9.5 </ b> \ n
+<b> Verzija 0.9.5 </b> \n
 <b>Verzija 0.9.5</b>\n
 * Otklonjeni problemi s pregledavanjem datoteka (osobito na Androidu 4.4)\n
 * Otklonjeni problemi s učitavanjem .kdb datoteka (Keepass 1) na Nexusu 5 s Android Lollipopom\n

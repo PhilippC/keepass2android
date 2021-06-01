@@ -37,7 +37,7 @@ namespace KeePassLib.Utility
 	/// </summary>
 	public static class MemUtil
 	{
-		internal static readonly byte[] EmptyByteArray = new byte[0];
+        public static readonly byte[] EmptyByteArray = new byte[0];
 
 		private static readonly uint[] m_vSBox = new uint[256] {
 			0xCD2FACB3, 0xE78A7F5C, 0x6F0803FC, 0xBCF6E230,
@@ -786,5 +786,28 @@ namespace KeePassLib.Utility
 
 			yield break;
 		}
+        internal static bool ListsEqual<T>(List<T> a, List<T> b)
+            where T : class, IEquatable<T>
+        {
+            if (object.ReferenceEquals(a, b)) return true;
+            if ((a == null) || (b == null)) return false;
+
+            int n = a.Count;
+            if (n != b.Count) return false;
+
+            for (int i = 0; i < n; ++i)
+            {
+                T tA = a[i], tB = b[i];
+
+                if (tA == null)
+                {
+                    if (tB != null) return false;
+                }
+                else if (tB == null) return false;
+                else if (!tA.Equals(tB)) return false;
+            }
+
+            return true;
+        }
 	}
 }

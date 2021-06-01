@@ -117,10 +117,12 @@ namespace PluginTOTP
 						string[] Settings = SettingsGet(entryFields);
 						res.Duration = Settings[0];
 						res.Length = Settings[1];
+                        if (res.Length == "S")
+                            res.Encoder = TotpData.EncoderSteam;
 						if (ValidUrl)
 						{
 							NoTimeCorrection = true;
-							res.Url = Settings[2];
+							res.TimeCorrectionUrl = Settings[2];
 							/*var CurrentTimeCorrection = TimeCorrections[Settings[2]];
 							if (CurrentTimeCorrection != null)
 							{
@@ -135,7 +137,7 @@ namespace PluginTOTP
 						string InvalidCharacters;
 						if (SeedValidate(entryFields, out InvalidCharacters))
 						{
-							res.IsTotpEnry = true;
+							res.IsTotpEntry = true;
 							res.TotpSeed = SeedGet(entryFields).ExtWithoutSpaces();
 
 

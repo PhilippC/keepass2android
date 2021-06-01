@@ -100,7 +100,8 @@ namespace keepass2android
 						};
 
 				Db.KpDatabase.RootGroup.AddGroup(pgRecycleBin, true);
-				Db.Groups[pgRecycleBin.Uuid] = pgRecycleBin;
+				Db.GroupsById[pgRecycleBin.Uuid] = pgRecycleBin;
+			    Db.Elements.Add(pgRecycleBin);
 				Db.KpDatabase.RecycleBinUuid = pgRecycleBin.Uuid;
 
 				bGroupListUpdateRequired = true;
@@ -121,24 +122,27 @@ namespace keepass2android
 
 		public void Start()
 		{
-			if (CanRecycle)
+            string messageSuffix = ShowDatabaseIocInStatus ? "(" + App.GetFileStorage(Db.Ioc).GetDisplayName(Db.Ioc) + ")" : "";
+
+            if (CanRecycle)
 			{
 				App.AskYesNoCancel(UiStringKey.AskDeletePermanently_title,
 					QuestionRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
-						DeletePermanently = true;
-						ProgressTask pt = new ProgressTask(App, Ctx, this);
-						pt.Run();
+					    DeletePermanently = true;
+					    ProgressTask pt = new ProgressTask(App, Ctx, this);
+					    pt.Run();
+
 					},
 				(dlgSender, dlgEvt) =>
 				{
-					DeletePermanently = false;
-					ProgressTask pt = new ProgressTask(App, Ctx, this);
-					pt.Run();
+				    DeletePermanently = false;
+				    ProgressTask pt = new ProgressTask(App, Ctx, this);
+				    pt.Run();
 				},
 				(dlgSender, dlgEvt) => { },
-				Ctx);
+				Ctx, messageSuffix);
 
 
 
@@ -149,12 +153,12 @@ namespace keepass2android
 					QuestionNoRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
-						ProgressTask pt = new ProgressTask(App, Ctx, this);
-						pt.Run();
+					    ProgressTask pt = new ProgressTask(App, Ctx, this);
+					    pt.Run();
 					},
 				null,
 				(dlgSender, dlgEvt) => { },
-				Ctx);
+				Ctx, messageSuffix);
 
 				
 			}
@@ -182,7 +186,8 @@ namespace keepass2android
 					PwDeletedObject pdo = new PwDeletedObject(pe.Uuid, dtNow);
 					pd.DeletedObjects.Add(pdo);
 					touchedGroups.Add(pgParent);
-				    Db.Entries.Remove(pe.Uuid);
+				    Db.EntriesById.Remove(pe.Uuid);
+				    Db.Elements.Remove(pe);
 				}
 				else // Recycle
 				{
@@ -215,31 +220,41 @@ namespace keepass2android
 				if (success)
 				{
 					foreach (var g in touchedGroups)
-						Db.Dirty.Add(g);
+						App.DirtyGroups.Add(g);
 					foreach (var g in permanentlyDeletedGroups)
 					{
-						//remove groups from global lists if present there
-						Db.Dirty.Remove(g);
-						Db.Groups.Remove(g.Uuid);
+                        //remove groups from global lists if present there
+					    App.DirtyGroups.Remove(g);
+						Db.GroupsById.Remove(g.Uuid);
+					    Db.Elements.Remove(g);
+
 					}
 
 				}
 				else
 				{
 					// Let's not bother recovering from a failure to save.  It is too much work.
-					App.LockDatabase(false);
+					App.Lock(false, false);
 				}
 			}, OnFinishToRun);
 
 			// Commit database
-			SaveDb save = new SaveDb(Ctx, App, OnFinishToRun, false);
-			save.SetStatusLogger(StatusLogger);
+			SaveDb save = new SaveDb(Ctx, App, Db, OnFinishToRun, false);
+		    save.ShowDatabaseIocInStatus = ShowDatabaseIocInStatus;
+
+            save.SetStatusLogger(StatusLogger);
 			save.Run();
 
 
 		}
 
-		protected abstract void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups);
+	    public bool ShowDatabaseIocInStatus
+	    {
+	        get;
+	        set;
+	    }
+
+	    protected abstract void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups);
 
 		public abstract UiStringKey StatusMessage { get; }
 

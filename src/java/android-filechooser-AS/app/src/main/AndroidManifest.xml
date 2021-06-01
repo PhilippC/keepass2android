@@ -9,8 +9,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="group.pals.android.lib.ui.filechooser" >
 
-    <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="23" />
 
 </manifest>

@@ -27,7 +27,7 @@ namespace keepass2android
 		}
 
 		public byte[] HashOfLastStream { get; private set; }
-		public bool CanWrite { get { return true; } }
+		public bool CanWrite { get { return _format != KdbxFormat.PlainXml; } }
 		public string SuccessMessage { get { return null; } }
 		public void Save(PwDatabase kpDatabase, Stream stream)
 		{

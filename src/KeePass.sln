@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib2Android", "KeePassLib2Android\KeePassLib2Android.csproj", "{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}"
 EndProject
@@ -23,13 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginSdkBinding", "PluginS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZlibAndroid", "ZlibAndroid\ZlibAndroid.csproj", "{6C29A7E7-E016-4FC1-B1A0-DEE26AC711BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Net.FtpClient.Android", "netftpandroid\System.Net.FtpClient\System.Net.FtpClient.Android.csproj", "{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamsungPass", "SamsungPass\Xamarin.SamsungPass\SamsungPass\SamsungPass.csproj", "{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCloudBindings", "PCloudBindings\PCloudBindings.csproj", "{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdalBindings", "AdalBindings\AdalBindings.csproj", "{0B109C0E-0514-4340-8779-5BD6A0DDE84E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -257,24 +253,6 @@ Global
 		{6C29A7E7-E016-4FC1-B1A0-DEE26AC711BB}.ReleaseNoNet|Win32.Build.0 = Release|Any CPU
 		{6C29A7E7-E016-4FC1-B1A0-DEE26AC711BB}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{6C29A7E7-E016-4FC1-B1A0-DEE26AC711BB}.ReleaseNoNet|x64.Build.0 = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Release|Win32.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.Release|x64.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
-		{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -317,30 +295,6 @@ Global
 		{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}.ReleaseNoNet|Win32.Build.0 = ReleaseNoNet|Any CPU
 		{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}.ReleaseNoNet|x64.ActiveCfg = ReleaseNoNet|Any CPU
 		{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}.ReleaseNoNet|x64.Build.0 = ReleaseNoNet|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|Win32.Build.0 = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Debug|x64.Build.0 = Debug|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|Win32.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|Win32.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|x64.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.Release|x64.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|Win32.Build.0 = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
-		{0B109C0E-0514-4340-8779-5BD6A0DDE84E}.ReleaseNoNet|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

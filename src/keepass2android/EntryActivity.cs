@@ -86,13 +86,13 @@ namespace keepass2android
     }
 
 
-	[Activity (Label = "@string/app_name", ConfigurationChanges=ConfigChanges.Orientation|ConfigChanges.KeyboardHidden,
+	[Activity (Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
         Theme = "@style/MyTheme_ActionBar")]
 	public class EntryActivity : LockCloseActivity 
 	{
 		public const String KeyEntry = "entry";
-		public const String KeyRefreshPos = "refresh_pos";
-		public const String KeyCloseAfterCreate = "close_after_create";
+        public const String KeyRefreshPos = "refresh_pos";
+		public const String KeyActivateKeyboard = "activate_keyboard";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
 	    public const int requestCodeBinaryFilename = 42376;
@@ -104,8 +104,14 @@ namespace keepass2android
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
 
-			i.PutExtra(KeyEntry, pw.Uuid.ToHexString());
+            var db = App.Kp2a.FindDatabaseForElement(pw);
+			i.PutExtra(KeyEntry, new ElementAndDatabaseId(db, pw).FullId);
 			i.PutExtra(KeyRefreshPos, pos);
+
+		    if (App.Kp2a.CurrentDb != db)
+		    {
+		        App.Kp2a.CurrentDb = db;
+		    }
 
 			if (flags != null)
 				i.SetFlags((ActivityFlags) flags);
@@ -130,14 +136,23 @@ namespace keepass2android
 
 	    public PwEntry Entry;
 
-		private static Typeface _passwordFont;
+		private PasswordFont _passwordFont = new PasswordFont();
 
 		internal bool _showPassword;
 		private int _pos;
 
-		AppTask _appTask;
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
 
-	    struct ProtectedTextviewGroup
+		struct ProtectedTextviewGroup
 	    {
 	        public TextView ProtectedField;
 	        public TextView VisibleProtectedField;
@@ -167,12 +182,12 @@ namespace keepass2android
 
 		protected void SetupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
-			if (App.Kp2a.GetDb().CanWrite)
+			if (App.Kp2a.CurrentDb.CanWrite)
 			{
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
 				{
-					EntryEditActivity.Launch(this, Entry, _appTask);
+					EntryEditActivity.Launch(this, Entry, AppTask);
 				};	
 			}
 			else
@@ -265,12 +280,12 @@ namespace keepass2android
 
 			//update the Entry output in the App database and notify the CopyToClipboard service
 
-		    if (App.Kp2a.GetDb()?.LastOpenedEntry != null)
+		    if (App.Kp2a.LastOpenedEntry != null)
 		    {
-		        App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
+		        App.Kp2a.LastOpenedEntry.OutputStrings.Set(key, new ProtectedString(isProtected, value));
 		        Intent updateKeyboardIntent = new Intent(this, typeof(CopyToClipboardService));
 		        updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-		        updateKeyboardIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
+		        updateKeyboardIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 		        StartService(updateKeyboardIntent);
 
 		        //notify plugins
@@ -323,7 +338,7 @@ namespace keepass2android
 				i.SetPackage(pluginPackage);
 				i.PutExtra(Strings.ExtraActionData, bundleExtra);
 				i.PutExtra(Strings.ExtraSender, PackageName);
-				PluginHost.AddEntryToIntent(i, App.Kp2a.GetDb().LastOpenedEntry);
+				PluginHost.AddEntryToIntent(i, App.Kp2a.LastOpenedEntry);
 
 				var menuOption = new PluginMenuOption()
 					{
@@ -389,9 +404,9 @@ namespace keepass2android
 
 			SetEntryView();
 
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			// Likely the app has been killed exit the activity 
-			if (!db.Loaded || (App.Kp2a.QuickLocked))
+			if (db == null || (App.Kp2a.QuickLocked))
 			{
 				Finish();
 				return;
@@ -400,12 +415,13 @@ namespace keepass2android
 			SetResult(KeePass.ExitNormal);
 
 			Intent i = Intent;
-			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(i.GetStringExtra(KeyEntry)));
+            ElementAndDatabaseId dbAndElementId = new ElementAndDatabaseId(i.GetStringExtra(KeyEntry));
+			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(dbAndElementId.ElementIdString));
 			_pos = i.GetIntExtra(KeyRefreshPos, -1);
 
-			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
-			Entry = db.Entries[uuid];
+			Entry = db.EntriesById[uuid];
 			
 			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
@@ -413,7 +429,9 @@ namespace keepass2android
 			// Update last access time.
 			Entry.Touch(false);
 
-			if (PwDefs.IsTanEntry(Entry) && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
+			if (PwDefs.IsTanEntry(Entry) 
+                && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) 
+                && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
 			{
 				PwEntry backupEntry = Entry.CloneDeep();
 				Entry.ExpiryTime = DateTime.Now;
@@ -428,7 +446,7 @@ namespace keepass2android
 
 			SetupEditButtons();
 			
-			App.Kp2a.GetDb().LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.GetDb().KpDatabase);
+			App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
 			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction));
@@ -438,7 +456,7 @@ namespace keepass2android
 			new Thread(NotifyPluginsOnOpen).Start();
 
 			//the rest of the things to do depends on the current app task:
-			_appTask.CompleteOnCreateEntryActivity(this);
+			AppTask.CompleteOnCreateEntryActivity(this);
 		}
 
 		private void NotifyPluginsOnOpen()
@@ -473,13 +491,13 @@ namespace keepass2android
 
 		
 
-		internal void StartNotificationsService(bool closeAfterCreate)
+		internal void StartNotificationsService(bool activateKeyboard)
 		{
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
-			showNotIntent.PutExtra(KeyEntry, Entry.Uuid.ToHexString());
-			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
-			showNotIntent.PutExtra(KeyCloseAfterCreate, closeAfterCreate);
+			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
+			AppTask.PopulatePasswordAccessServiceIntent(showNotIntent);
+			showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
 
 			StartService(showNotIntent);
 		}
@@ -507,9 +525,9 @@ namespace keepass2android
 		{
 			ViewGroup extraGroup = (ViewGroup) FindViewById(Resource.Id.extra_strings);
 		    bool hasExtras = false;
-			IEditMode editMode = new DefaultEdit();
-			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.GetDb(), this.Entry))
-				editMode = new KpEntryTemplatedEdit(App.Kp2a.GetDb(), this.Entry);
+			EditModeBase editMode = new DefaultEdit();
+			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.CurrentDb, this.Entry))
+				editMode = new KpEntryTemplatedEdit(App.Kp2a.CurrentDb, this.Entry);
 			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key))))
 			{
 				if (editMode.IsVisible(key))
@@ -588,11 +606,10 @@ namespace keepass2android
 
 
 	        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-	        string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),
-	            GetString(Resource.String.BinaryDirectory_default));
+	        
 	        if (writeToCacheDirectory)
 	        {
-	            binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+	            string binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
 	            string filepart = key;
 	            Java.Lang.String javaFilename = new Java.Lang.String(filepart);
@@ -802,7 +819,7 @@ namespace keepass2android
 
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.url_container),
 			                  FindViewById(Resource.Id.url_vdots), PwDefs.UrlField)
-				.Add(new GotoUrlMenuItem(this));
+				.Add(new GotoUrlMenuItem(this, PwDefs.UrlField));
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.password_container),
 			                  FindViewById(Resource.Id.password_vdots), PwDefs.PasswordField);
 
@@ -822,7 +839,7 @@ namespace keepass2android
 			PopulateStandardText(Resource.Id.entry_comment, Resource.Id.entryfield_container_comment, PwDefs.NotesField);
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.comment_container),
 							  FindViewById(Resource.Id.comment_vdots), PwDefs.NotesField);
-
+                              
 			PopulateText(Resource.Id.entry_tags, Resource.Id.entryfield_container_tags, concatTags(Entry.Tags));
 			PopulateText(Resource.Id.entry_override_url, Resource.Id.entryfield_container_overrideurl, Entry.OverrideUrl);
 
@@ -870,6 +887,13 @@ namespace keepass2android
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
 			if (isProtected)
 				popupItems.Add(new ToggleVisibilityPopupMenuItem(this));
+            if (fieldKey != PwDefs.UrlField //url already has a go-to-url menu
+              && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
+                || _stringViews[fieldKey].Text.StartsWith("http://")
+                || _stringViews[fieldKey].Text.StartsWith("https://")))
+            {
+                popupItems.Add(new GotoUrlMenuItem(this, fieldKey));
+			}
 			return popupItems;
 		}
 
@@ -899,11 +923,7 @@ namespace keepass2android
 		
 		private void SetPasswordTypeface(TextView textView)
 		{
-			if (_passwordFont == null)
-			{
-				_passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-			}
-			textView.Typeface = _passwordFont;	
+			_passwordFont.ApplyTo(textView);	
 		}
 
 	    private void PopulateText(int viewId, int containerViewId, String text)
@@ -940,7 +960,7 @@ namespace keepass2android
         private void PopulateStandardText(List<int> viewIds, int containerViewId, String key)
 		{
 			String value = Entry.Strings.ReadSafe(key);
-			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.GetDb().KpDatabase, SprCompileFlags.All));
+			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
 			PopulateText(viewIds, containerViewId, value);
 			_stringViews.Add(key, new StandardStringView(viewIds, containerViewId, this));
 		}
@@ -961,7 +981,7 @@ namespace keepass2android
 		{
 			Intent ret = new Intent();
 			ret.PutExtra(KeyRefreshPos, _pos);
-			_appTask.ToIntent(ret);
+			AppTask.ToIntent(ret);
 			SetResult(KeePass.ExitRefresh, ret);
 		}
         
@@ -973,12 +993,15 @@ namespace keepass2android
                 return;
             }
 
-            if (AppTask.TryGetFromActivityResult(data, ref _appTask))
-			{
+            AppTask appTask = null;
+            if (AppTask.TryGetFromActivityResult(data, ref appTask))
+            {
+                
 				//make sure app task is passed to calling activity.
 				//the result code might be modified later.
 				Intent retData = new Intent();
-				_appTask.ToIntent(retData);
+                AppTask = appTask;
+				appTask.ToIntent(retData);
 				SetResult(KeePass.ExitNormal, retData);	
 			}
 
@@ -1016,7 +1039,7 @@ namespace keepass2android
 	                {
 	                    ((IOfflineSwitchable)fileStorage).IsOffline = false;
 	                }
-	                using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetDb().KpDatabase.UseFileTransactions))
+	                using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 	                {
 	                    Stream sOut = writeTransaction.OpenFile();
 
@@ -1156,7 +1179,13 @@ namespace keepass2android
 			{
 				case Resource.Id.menu_donate:
 					return Util.GotoDonateUrl(this);
-                case Resource.Id.menu_delete:
+                case Resource.Id.menu_move:
+					var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, Entry.ParentGroup, new List<PwUuid>() {Entry.Uuid}, false);
+                    AppTask = navMove;
+					navMove.SetActivityResult(this, Result.Ok);
+                    Finish();
+                    return true;
+				case Resource.Id.menu_delete:
                     DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
                         new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();
@@ -1177,7 +1206,7 @@ namespace keepass2android
 					return true;
 
 				case Resource.Id.menu_lock:
-					App.Kp2a.LockDatabase();
+					App.Kp2a.Lock();
 					return true;
 				case Android.Resource.Id.Home:
 					//Currently the action bar only displays the home button when we come from a previous activity.
@@ -1206,26 +1235,22 @@ namespace keepass2android
 			newEntry.Touch(true, false); // Touch *after* backup
 
 			//if there is no URL in the entry, set that field. If it's already in use, use an additional (not existing) field
-			if (String.IsNullOrEmpty(newEntry.Strings.ReadSafe(PwDefs.UrlField)))
+			if (!url.StartsWith(KeePass.AndroidAppScheme) && String.IsNullOrEmpty(newEntry.Strings.ReadSafe(PwDefs.UrlField)))
 			{
 				newEntry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, url));
 			}
 			else
-			{
-				int c = 1;
-				while (newEntry.Strings.Get("KP2A_URL_" + c) != null)
-				{
-					c++;
-				}
+            {
+                Util.SetNextFreeUrlField(newEntry, url);
 
-				newEntry.Strings.Set("KP2A_URL_" + c, new ProtectedString(false, url));
+                
 			}
 
 			//save the entry:
 
 			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) =>
 			{
-				OnFinish.DisplayMessage(this, message);
+				OnFinish.DisplayMessage(this, message, true);
 			    finishAction((EntryActivity)activity);
 			});
 
@@ -1244,9 +1269,9 @@ namespace keepass2android
 		}
 
 
-		public bool GotoUrl()
-		{
-			string url = _stringViews[PwDefs.UrlField].Text;
+		public bool GotoUrl(string urlFieldKey)
+        {
+            string url = _stringViews[urlFieldKey].Text;
 			if (url == null) return false;
 
 			// Default http:// if no protocol specified
@@ -1268,7 +1293,7 @@ namespace keepass2android
 
 		public void AddEntryToIntent(Intent intent)
 		{
-			PluginHost.AddEntryToIntent(intent, App.Kp2a.GetDb().LastOpenedEntry);
+			PluginHost.AddEntryToIntent(intent, App.Kp2a.LastOpenedEntry);
 		}
 
 		public void CloseAfterTaskComplete()
@@ -1302,7 +1327,7 @@ namespace keepass2android
 			byte[] pbData = pb.ReadData();		
 
 			Intent imageViewerIntent = new Intent(this, typeof(ImageViewActivity));
-			imageViewerIntent.PutExtra("EntryId", Entry.Uuid.ToHexString());
+			imageViewerIntent.PutExtra("EntryId", new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
 			imageViewerIntent.PutExtra("EntryKey", key);
 			StartActivity(imageViewerIntent);
 		}

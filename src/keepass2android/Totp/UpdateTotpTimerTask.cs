@@ -13,7 +13,7 @@ namespace PluginTOTP
 {
 	class UpdateTotpTimerTask: TimerTask
 	{
-		private const string _totp = "TOTP";
+		public const string TotpKey = "TOTP";
 		private readonly Context _context;
 		private readonly ITotpPluginAdapter _adapter;
 
@@ -27,17 +27,17 @@ namespace PluginTOTP
 		{
 			try
 			{
-				if (App.Kp2a.GetDb().LastOpenedEntry == null)
+				if (App.Kp2a.LastOpenedEntry == null)
 					return; //DB was locked
 
-				Dictionary<string, string> entryFields = App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
+				Dictionary<string, string> entryFields = App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
 				//mute warnings to avoid repeated display of the toasts
 				TotpData totpData = _adapter.GetTotpData(entryFields, _context, true /*mute warnings*/);
-				if (totpData.IsTotpEnry)
+				if (totpData.IsTotpEntry)
 				{
 					//generate a new totp
-					TOTPProvider prov = new TOTPProvider(totpData.Settings);
-					string totp = prov.Generate(totpData.TotpSeed);
+					TOTPProvider prov = new TOTPProvider(totpData);
+					string totp = prov.GenerateByByte(totpData.TotpSecret);
 					//update entry and keyboard
 					UpdateEntryData(totp);
 					//broadcast new field value (update EntryActivity). this might result in another keyboard 
@@ -49,7 +49,7 @@ namespace PluginTOTP
 			}
 			catch (Exception e)
 			{
-				Android.Util.Log.Debug(_totp, e.ToString());
+				Android.Util.Log.Debug(TotpKey, e.ToString());
 			}
 			
 			
@@ -58,10 +58,10 @@ namespace PluginTOTP
 		private void UpdateEntryData(string totp)
 		{
 			//update the Entry output in the App database and notify the CopyToClipboard service
-			App.Kp2a.GetDb().LastOpenedEntry.OutputStrings.Set(_totp, new ProtectedString(true, totp));
+			App.Kp2a.LastOpenedEntry.OutputStrings.Set(TotpKey, new ProtectedString(true, totp));
 			Intent updateKeyboardIntent = new Intent(_context, typeof(CopyToClipboardService));
 			updateKeyboardIntent.SetAction(Intents.UpdateKeyboard);
-			updateKeyboardIntent.PutExtra("entry", App.Kp2a.GetDb().LastOpenedEntry.Uuid.ToHexString());
+			updateKeyboardIntent.PutExtra(EntryActivity.KeyEntry, new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(App.Kp2a.LastOpenedEntry.Entry), App.Kp2a.LastOpenedEntry.Entry).FullId);
 			_context.StartService(updateKeyboardIntent);
 
 		}
@@ -73,8 +73,8 @@ namespace PluginTOTP
 			i.SetPackage(_context.PackageName);
 			i.PutExtra(Strings.ExtraSender, _context.PackageName);
 			i.PutExtra(Strings.ExtraFieldValue, totp);
-			i.PutExtra(Strings.ExtraEntryId, App.Kp2a.GetDb().LastOpenedEntry.Entry.Uuid.ToHexString());
-			i.PutExtra(Strings.ExtraFieldId, _totp);
+			i.PutExtra(Strings.ExtraEntryId, App.Kp2a.LastOpenedEntry.Entry.Uuid.ToHexString());
+			i.PutExtra(Strings.ExtraFieldId, TotpKey);
 			i.PutExtra(Strings.ExtraFieldProtected, true);
 			
 			_context.SendBroadcast(i);

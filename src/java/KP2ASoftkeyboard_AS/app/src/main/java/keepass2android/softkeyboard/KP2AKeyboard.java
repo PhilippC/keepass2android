@@ -627,6 +627,10 @@ public class KP2AKeyboard extends InputMethodService
         
 		updateShowKp2aMode();
 		Log.d("KP2AK", "updateKeyboardMode -> setKM");
+
+        Log.d("KP2AK", "variation = " + variation);
+        Log.d("KP2AK", "input type = " + attribute.inputType);
+
         if ((mShowKp2aKeyboard) && (mKp2aEnableSimpleKeyboard))
         {
         	mKeyboardSwitcher.setKeyboardMode(KeyboardSwitcher.MODE_KP2A, attribute.imeOptions);

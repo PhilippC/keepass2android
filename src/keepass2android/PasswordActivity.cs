@@ -57,6 +57,7 @@ using Process = Android.OS.Process;
 
 using KeeChallenge;
 using AlertDialog = Android.App.AlertDialog;
+using ClipboardManager = Android.Content.ClipboardManager;
 using Enum = System.Enum;
 using Exception = System.Exception;
 using String = System.String;
@@ -64,12 +65,11 @@ using String = System.String;
 namespace keepass2android
 {
     [Activity(Label = "@string/app_name",
-		ConfigurationChanges = ConfigChanges.Orientation,
+		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
-		Theme = "@style/MyTheme_Blue")] /*caution: also contained in AndroidManifest.xml*/
-	//CAUTION: don't add intent filters here, they must be set in the manifest xml file
-	public class PasswordActivity : LockingActivity, IFingerprintAuthCallback
+		Theme = "@style/MyTheme_Blue")] 
+	public class PasswordActivity : LockingActivity, IBiometricAuthCallback
 	{
 
 		enum KeyProviders
@@ -84,15 +84,12 @@ namespace keepass2android
 
 		public const String KeyDefaultFilename = "defaultFileName";
 
-		public const String KeyFilename = "fileName";
-		private const String KeyKeyfile = "keyFile";
-		private const String KeyPassword = "password";
-		public const String KeyServerusername = "serverCredUser";
-		public const String KeyServerpassword = "serverCredPwd";
-		public const String KeyServercredmode = "serverCredRememberMode";
+	    public const String KeyKeyfile = "keyFile";
+	    public const String KeyPassword = "password";
+        public const String LaunchImmediately = "launchImmediately";
 
-		private const String ViewIntent = "android.intent.action.VIEW";
-		private const string ShowpasswordKey = "ShowPassword";
+
+        private const string ShowpasswordKey = "ShowPassword";
 		private const string KeyProviderIdOtp = "KP2A-OTP";
 		private const string KeyProviderIdOtpRecovery = "KP2A-OTPSecret";
 		private const string KeyProviderIdChallenge = "KP2A-Chal";
@@ -107,15 +104,16 @@ namespace keepass2android
 		private const int RequestCodePrepareKeyFile = 1004;
 		private const int RequestCodeSelectAuxFile = 1005;
 
+	    public const int ResultSelectOtherFile = (int) Result.FirstUser;
 
-		private Task<MemoryStream> _loadDbFileTask;
+
+        private Task<MemoryStream> _loadDbFileTask;
 		private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
 
 		private IOConnectionInfo _ioConnection;
 		private String _keyFile;
 		bool _showPassword;
 
-		internal AppTask AppTask;
 		private bool _killOnDestroy;
 		private string _password = "";
 		//OTPs which should be entered into the OTP fields as soon as these become visible
@@ -143,13 +141,47 @@ namespace keepass2android
 
 		private bool _performingLoad;
 		private bool _keepPasswordInOnResume;
-	    private Typeface _passwordFont;
+	    private DateTime _lastOnPauseTime = DateTime.MinValue;
+	    
 
         private ActionBarDrawerToggle mDrawerToggle;
 	    private DrawerLayout _drawerLayout;
 
 
-	    public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
+
+        private string mDrawerTitle;
+        private MeasuringRelativeLayout.MeasureArgs _measureArgs;
+        private ActivityDesign _activityDesign;
+        private BiometricDecryption _biometricDec;
+        private PasswordActivityBroadcastReceiver _intentReceiver;
+        private int _appnameclickCount;
+
+
+        public int InvalidCompositeKeyCount
+        {
+            get; set;
+        }
+        public int LoadingErrorCount
+        {
+            get; set;
+        }
+
+
+        private bool fingerprintInitialized;
+
+
+        public bool UsedFingerprintUnlock { get; set; }
+        readonly PasswordFont _passwordFont = new PasswordFont();
+        private const string Kp2aKeyProviderStringPrefix = "_KP2A_KEYTYPES:";
+
+
+        //can be set before launching the Activity. Will be used once to immediately open the database
+        static CompositeKey compositeKeyForImmediateLoad = null;
+        private bool _makeCurrent;
+
+
+
+		public PasswordActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 	    {
 		    _activityDesign = new ActivityDesign(this);
@@ -161,61 +193,33 @@ namespace keepass2android
 		}
 
 
-		public static void PutIoConnectionToIntent(IOConnectionInfo ioc, Intent i)
-		{
-			i.PutExtra(KeyFilename, ioc.Path);
-			i.PutExtra(KeyServerusername, ioc.UserName);
-			i.PutExtra(KeyServerpassword, ioc.Password);
-			i.PutExtra(KeyServercredmode, (int)ioc.CredSaveMode);
-		}
-		
-		public static void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent i)
-		{
-			ioc.Path = i.GetStringExtra(KeyFilename);
-			ioc.UserName = i.GetStringExtra(KeyServerusername) ?? "";
-			ioc.Password = i.GetStringExtra(KeyServerpassword) ?? "";
-			ioc.CredSaveMode  = (IOCredSaveMode)i.GetIntExtra(KeyServercredmode, (int) IOCredSaveMode.NoSave);
-		}
 
-		public static void Launch(Activity act, String fileName, AppTask appTask)  {
-			File dbFile = new File(fileName);
-			if ( ! dbFile.Exists() ) {
-				throw new FileNotFoundException();
-			}
-	
-			
-			Intent i = new Intent(act, typeof(PasswordActivity));
-			i.SetFlags(ActivityFlags.ForwardResult);
-			i.PutExtra(KeyFilename, fileName);
-			appTask.ToIntent(i);
+        public static void Launch(Activity act, IOConnectionInfo ioc, CompositeKey compositeKey, ActivityLaunchMode launchMode, bool makeCurrent)
+	    {
+	        compositeKeyForImmediateLoad = compositeKey;
+	        Launch(act, ioc, launchMode, makeCurrent);
+	    }
 
-			act.StartActivity(i);
-			
-		}
 		
 
-		public static void Launch(Activity act, IOConnectionInfo ioc, AppTask appTask)
+		public static void Launch(Activity act, IOConnectionInfo ioc, ActivityLaunchMode launchMode, bool makeCurrent)
 		{
-			if (ioc.IsLocalFile())
-			{
-				Launch(act, ioc.Path, appTask);
-				return;
-			}
-
 			Intent i = new Intent(act, typeof(PasswordActivity));
-			
-			PutIoConnectionToIntent(ioc, i);
-			i.SetFlags(ActivityFlags.ForwardResult);
+		    Util.PutIoConnectionToIntent(ioc, i);
+		    i.PutExtra("MakeCurrent", makeCurrent);
 
-			appTask.ToIntent(i);
-
-			act.StartActivity(i);
-			
+		    launchMode.Launch(act, i);
 		}
 
 		public void LaunchNextActivity()
 		{
-			AppTask.AfterUnlockDatabase(this);
+            //StackBaseActivity will launch the next activity
+            Intent data = new Intent();
+		    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioConnection));
+
+		    SetResult(Result.Ok, data);
+
+		    Finish();
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -224,75 +228,15 @@ namespace keepass2android
 			_keepPasswordInOnResume = true; 
 			Kp2aLog.Log("PasswordActivity.OnActivityResult "+resultCode+"/"+requestCode);
 
-			AppTask.TryGetFromActivityResult(data, ref AppTask);
-
 			switch(resultCode) {
 
-				case KeePass.ExitNormal: // Returned to this screen using the Back key
-					if (PreferenceManager.GetDefaultSharedPreferences(this)
-						                 .GetBoolean(GetString(Resource.String.LockWhenNavigateBack_key), false))
-					{
-						App.Kp2a.LockDatabase();	
-					}
-					//by leaving the app with the back button, the user probably wants to cancel the task
-					//The activity might be resumed (through Android's recent tasks list), then use a NullTask:
-					AppTask = new NullTask();
-					Finish();
-					break;
-				case KeePass.ExitLock:
-					// The database has already been locked, and the quick unlock screen will be shown if appropriate
-
-					_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default)); //update value
-					if (KeyProviderHasKeyFile() && (_rememberKeyfile))
-					{
-						//check if the keyfile was changed (by importing to internal directory)
-						var newKeyProviderString = LoadKeyProviderStringForIoc(_ioConnection.Path);
-						if (newKeyProviderString != GetKeyProviderString())
-						{
-							SetKeyProviderFromString(newKeyProviderString);
-							UpdateKeyfileIocView();
-						}
-					}
-					break;
-				case KeePass.ExitCloseAfterTaskComplete:
-					// Do not lock the database
-					SetResult(KeePass.ExitCloseAfterTaskComplete);
-					Finish();
-					break;
-				case KeePass.ExitClose:
-					SetResult(KeePass.ExitClose);
-					Finish();
-					break;
-				case KeePass.ExitReloadDb:
-					
-					if (App.Kp2a.GetDb().Loaded)
-					{
-						//remember the composite key for reloading:
-						var compositeKey = App.Kp2a.GetDb().KpDatabase.MasterKey;
-
-						//lock the database:
-						App.Kp2a.LockDatabase(false);
-
-
-						//reload the database (without most other stuff performed in PerformLoadDatabase.
-						// We're assuming that the db file (and if appropriate also the key file) are still available 
-						// and there's no need to re-init the file storage. if it is, loading will fail and the user has 
-						// to retry with typing the full password, but that's intended to avoid showing the password to a 
-						// a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
-						Handler handler = new Handler();
-						OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
-						_performingLoad = true;
-						LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish);
-						_loadDbFileTask = null; // prevent accidental re-use
-						new ProgressTask(App.Kp2a, this, task).Run();
-					}
-					
-					break;
+				
 				case Result.Ok:
 					if (requestCode == RequestCodeSelectKeyfile) 
 					{
 						IOConnectionInfo ioc = new IOConnectionInfo();
-						SetIoConnectionFromIntent(ioc, data);
+					    Util.SetIoConnectionFromIntent(ioc, data);
+                        Kp2aLog.Log("Set keyfile after returning from RequestCodeSelectKeyfile");
 						_keyFile = IOConnectionInfo.SerializeToString(ioc);
 						UpdateKeyfileIocView();
 					}
@@ -330,7 +274,7 @@ namespace keepass2android
 			if (requestCode == RequestCodeSelectAuxFile && resultCode == Result.Ok)
 			{
 				IOConnectionInfo auxFileIoc = new IOConnectionInfo();
-				SetIoConnectionFromIntent(auxFileIoc, data);
+			    Util.SetIoConnectionFromIntent(auxFileIoc, data);
 				
 				PreferenceManager.GetDefaultSharedPreferences(this).Edit()
 				                 .PutString("KP2A.PasswordAct.AuxFileIoc" + IOConnectionInfo.SerializeToString(_ioConnection), 
@@ -341,7 +285,7 @@ namespace keepass2android
 			}
 		    if (requestCode == RequestCodeChallengeYubikey)
 		    {
-		        if (_currentlyWaitingKey != null)
+		        if (CurrentlyWaitingKey != null)
 		        {
                     //ActivityResult was handled in base class already
 		            return;
@@ -435,12 +379,12 @@ namespace keepass2android
 			int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
 			string protocolId = protocolSeparatorPos < 0 ?
 				"file" : displayPath.Substring(0, protocolSeparatorPos);
-			Drawable drawable = App.Kp2a.GetResourceDrawable("ic_storage_" + protocolId);
+			Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
 			FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
 			FindViewById<ImageView>(Resource.Id.filestorage_logo).Visibility = ViewStates.Visible;
 			
 
-			String title = App.Kp2a.GetResourceString("filestoragename_" + protocolId);
+			String title = App.Kp2a.GetStorageDisplayName(protocolId);
 			FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
 			FindViewById<TextView>(Resource.Id.filestorage_label).Visibility = ViewStates.Visible;
 
@@ -662,40 +606,7 @@ namespace keepass2android
 			}
 		}
 
-		int count = 1;
-
-	    
-		private string mDrawerTitle;
-		private MeasuringRelativeLayout.MeasureArgs _measureArgs;
-		private ActivityDesign _activityDesign;
-		private FingerprintDecryption _fingerprintDec;
-		private bool _fingerprintPermissionGranted;
-		private PasswordActivityBroadcastReceiver _intentReceiver;
-		private int _appnameclickCount;
-
-
-		internal class MyActionBarDrawerToggle : ActionBarDrawerToggle
-		{
-			PasswordActivity owner;
-
-			public MyActionBarDrawerToggle(PasswordActivity activity, DrawerLayout layout, int openRes, int closeRes)
-				: base(activity, layout, openRes, closeRes)
-			{
-				owner = activity;
-			}
-
-			public override void OnDrawerClosed(View drawerView)
-			{
-				owner.SupportActionBar.Title = owner.Title;
-				owner.InvalidateOptionsMenu();
-			}
-
-			public override void OnDrawerOpened(View drawerView)
-			{
-				owner.SupportActionBar.Title = owner.mDrawerTitle;
-				owner.InvalidateOptionsMenu();
-			}
-		}
+		
 		private void UncollapseToolbar()
 		{
 			AppBarLayout appbarLayout = FindViewById<AppBarLayout>(Resource.Id.appbar);
@@ -724,143 +635,78 @@ namespace keepass2android
 			behavior.OnNestedFling(FindViewById<CoordinatorLayout>(Resource.Id.main_content), appbarLayout, null, 0, 200, true);
 		}
 
-        
-
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			_activityDesign.ApplyTheme();
 			base.OnCreate(savedInstanceState);
 
-			_intentReceiver = new PasswordActivityBroadcastReceiver(this);
+		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
 			RegisterReceiver(_intentReceiver, filter);
-			
-			
-			//use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
-			}
-
-			Intent i = Intent;
-
-			//only load the AppTask if this is the "first" OnCreate (not because of kill/resume, i.e. savedInstanceState==null)
-			// and if the activity is not launched from history (i.e. recent tasks) because this would mean that
-			// the Activity was closed already (user cancelling the task or task complete) but is restarted due recent tasks.
-			// Don't re-start the task (especially bad if tak was complete already)
-			if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
-			{
-				AppTask = new NullTask();
-			}
-			else
-			{
-				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
-			}
 
 
-			String action = i.Action;
+            //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
+		    Util.MakeSecureDisplay(this);
 
+           
 			_prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 			_rememberKeyfile = _prefs.GetBoolean(GetString(Resource.String.keyfile_key), Resources.GetBoolean(Resource.Boolean.keyfile_default));
 
+            SetContentView(Resource.Layout.password);
+
+            InitializeToolbar();
+
+            var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
+            passwordEdit.TextChanged +=
+                (sender, args) =>
+                {
+                    _password = passwordEdit.Text;
+                    UpdateOkButtonState();
+                };
+            passwordEdit.EditorAction += (sender, args) =>
+            {
+                if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
+                    OnOk();
+            };
+
+
+
+            InitializeBottomBarButtons();
+
+            InitializeNavDrawerButtons();
+
+            InitializeTogglePasswordButton();
+            InitializeKeyfileBrowseButton();
+            InitializeOptionCheckboxes();
+            FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
+            InitializeToolbarCollapsing();
+            InitializeOtpSecretSpinner();
+
+			//Intent-specific
+
+			//fill _ioConnection, _keyFile, _password, _keepPasswordInOnResume
+
+			Intent i = Intent;
+
 			_ioConnection = new IOConnectionInfo();
 
-
-			if (action != null && action.Equals(ViewIntent))
-			{
-				if (!GetIocFromViewIntent(i)) return;
-			}
-			else if ((action != null) && (action.Equals(Intents.StartWithOtp)))
-			{
+            String action = i.Action;
+			if ((action != null) && (action.Equals(Intents.StartWithOtp)))
+            {
+                Kp2aLog.Log("Launching with OTP");
 				if (!GetIocFromOtpIntent(savedInstanceState, i)) return;
 				_keepPasswordInOnResume = true;
 			}
 			else
-			{
-				SetIoConnectionFromIntent(_ioConnection, i);
-				var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
-				if (keyFileFromIntent != null)
-				{
-					Kp2aLog.Log("try get keyfile from intent");
-				    _keyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyFileFromIntent));
-                    KeyProviderTypes.Clear();
-				    KeyProviderTypes.Add(KeyProviders.KeyFile);
-					Kp2aLog.Log("try get keyfile from intent ok");
-				}
-				else
-				{
-					_keyFile = null;
-				    KeyProviderTypes.Clear();
-                }
-				_password = i.GetStringExtra(KeyPassword) ?? "";
-				if (!KeyProviderTypes.Any())
-				{
-                    SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
-				}
-				if ((!string.IsNullOrEmpty(_keyFile)) || (_password != ""))
-				{
-					_keepPasswordInOnResume = true;
-				}
-			}
+            {
+                GetIocFromLaunchIntent(i);
+            }
 
-			if (App.Kp2a.GetDb().Loaded && App.Kp2a.GetDb().Ioc != null &&
-				App.Kp2a.GetDb().Ioc.GetDisplayName() != _ioConnection.GetDisplayName())
-			{
-				// A different database is currently loaded, unload it before loading the new one requested
-				App.Kp2a.LockDatabase(false);
-			}
-
-			SetContentView(Resource.Layout.password);
-
-			InitializeToolbar();
-
-			InitializeFilenameView();
-
-			if (KeyProviderTypes.Contains(KeyProviders.KeyFile))
-			{
-				UpdateKeyfileIocView();
-			}
-
-			var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
-			passwordEdit.TextChanged +=
-				(sender, args) =>
-				{
-					_password = passwordEdit.Text;
-					UpdateOkButtonState();
-				};
-			passwordEdit.EditorAction += (sender, args) =>
-			{
-				if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
-					OnOk();
-			};
+		    InitializeAfterSetIoc();
 
 
-			FindViewById<EditText>(Resource.Id.pass_otpsecret).TextChanged += (sender, args) => UpdateOkButtonState();
-
-			passwordEdit.Text = _password;
-
-			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-			passwordEdit.Typeface = passwordFont;
-
-
-			InitializeBottomBarButtons();
-
-			InitializePasswordModeSpinner();
-
-			InitializeOtpSecretSpinner();
-
-			InitializeNavDrawerButtons();
-
-			UpdateOkButtonState();
-
-			InitializeTogglePasswordButton();
-			InitializeKeyfileBrowseButton();
-
-			InitializeOptionCheckboxes();
-
-			RestoreState(savedInstanceState);
+            RestoreState(savedInstanceState);
 
 			if (i.GetBooleanExtra("launchImmediately", false))
 			{
@@ -871,33 +717,114 @@ namespace keepass2android
 
 
 			mDrawerTitle = Title;
-			FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-			var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
-			rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
-			{
-				Android.Util.Log.Debug("KP2A", "GlobalLayout");
-				var args = _measureArgs;
-				if (args == null)
-					return;
-				Android.Util.Log.Debug("KP2A", "ActualHeight=" + args.ActualHeight);
-				Android.Util.Log.Debug("KP2A", "ProposedHeight=" + args.ProposedHeight);
-				if (args.ActualHeight < args.ProposedHeight)
-					UncollapseToolbar();
-				if (args.ActualHeight > args.ProposedHeight)
-					CollapseToolbar();
-			};
-			rootview.MeasureEvent += (sender, args) =>
-			{
-				//Snackbar.Make(rootview, "height="+args.ActualHeight, Snackbar.LengthLong).Show();
-				_measureArgs = args;
-			};
-
-			if ((int)Build.VERSION.SdkInt >= 23)
-				RequestPermissions(new[] { Manifest.Permission.UseFingerprint }, FingerprintPermissionRequestCode);
 			
-		}
 
-	    private const string Kp2aKeyProviderStringPrefix = "_KP2A_KEYTYPES:";
+            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+            btn.Click += (sender, args) =>
+            {
+                if (!string.IsNullOrEmpty((string)btn.Tag))
+                {
+                    AlertDialog.Builder b = new AlertDialog.Builder(this);
+                    b.SetTitle(Resource.String.fingerprint_prefs);
+                    b.SetMessage(btn.Tag.ToString());
+                    b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
+                    b.SetOnDismissListener(new Util.DismissListener(() => _biometricDec?.StartListening(this)));
+                    b.Show();
+                }
+                else _biometricDec?.StartListening(this);
+
+            };
+
+
+            if (App.Kp2a.TrySelectCurrentDb(_ioConnection))
+            { 
+                //database already opened. return the ioc and we're good.
+		        LaunchNextActivity();
+		    }
+
+            Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.password_edit));
+            
+
+        }
+
+        private void InitializeAfterSetIoc()
+        {
+            App.Kp2a.RegisterOpenAttempt(_ioConnection);
+
+
+            InitializeFilenameView();
+
+            if (KeyProviderTypes.Contains(KeyProviders.KeyFile))
+            {
+                UpdateKeyfileIocView();
+            }
+
+            var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
+			passwordEdit.Text = _password;
+
+            var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
+            passwordEdit.Typeface = passwordFont;
+
+
+            InitializePasswordModeSpinner();
+
+
+            UpdateOkButtonState();
+        }
+
+        private void GetIocFromLaunchIntent(Intent i)
+        {
+            Kp2aLog.Log("GetIocFromLaunchIntent()");
+			_makeCurrent = i.GetBooleanExtra("MakeCurrent", true);
+			Util.SetIoConnectionFromIntent(_ioConnection, i);
+            var keyFileFromIntent = i.GetStringExtra(KeyKeyfile);
+            if (keyFileFromIntent != null)
+            {
+                Kp2aLog.Log("try get keyfile from intent");
+                _keyFile = IOConnectionInfo.SerializeToString(IOConnectionInfo.FromPath(keyFileFromIntent));
+                KeyProviderTypes.Clear();
+                KeyProviderTypes.Add(KeyProviders.KeyFile);
+                Kp2aLog.Log("try get keyfile from intent ok");
+            }
+            else
+            {
+                Kp2aLog.Log("no keyprovider specified");
+
+				_keyFile = null;
+                KeyProviderTypes.Clear();
+            }
+
+            _password = i.GetStringExtra(KeyPassword) ?? "";
+            if (!KeyProviderTypes.Any())
+
+
+            {
+                SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
+            }
+
+            if ((!string.IsNullOrEmpty(_keyFile)) || (_password != ""))
+            {
+                _keepPasswordInOnResume = true;
+            }
+        }
+
+        private void InitializeToolbarCollapsing()
+	    {
+	        var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
+	        rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
+	        {
+	            Android.Util.Log.Debug("KP2A", "GlobalLayout");
+	            if (_measureArgs == null)
+	                return;
+	            Android.Util.Log.Debug("KP2A", "ActualHeight=" + _measureArgs.ActualHeight);
+	            Android.Util.Log.Debug("KP2A", "ProposedHeight=" + _measureArgs.ProposedHeight);
+	            if (_measureArgs.ActualHeight < _measureArgs.ProposedHeight)
+	                UncollapseToolbar();
+	            if (_measureArgs.ActualHeight > _measureArgs.ProposedHeight)
+	                CollapseToolbar();
+	        };
+	        rootview.MeasureEvent += (sender, args) => { _measureArgs = args; };
+	    }
 
         private string GetKeyProviderString()
 	    {
@@ -921,7 +848,8 @@ namespace keepass2android
 	        KeyProviderTypes.Clear();
             if (string.IsNullOrEmpty(keyProviderString))
             {
-                _keyFile = null;
+                Kp2aLog.Log("Reset keyfile");
+				_keyFile = null;
                 return;
             }
 
@@ -930,12 +858,15 @@ namespace keepass2android
 	            keyProviderString = keyProviderString.Substring(Kp2aKeyProviderStringPrefix.Length);
 	            foreach (string type in keyProviderString.Split(';'))
 	            {
+					Kp2aLog.Log("PasswordActivity: key file type " + type);
 	                if (!type.Trim().Any())
 	                    continue;
 	                if (type.StartsWith(KeyProviders.KeyFile.ToString()))
 	                {
 	                    _keyFile = WebUtility.UrlDecode(type.Substring(KeyProviders.KeyFile.ToString().Length));
-	                    KeyProviderTypes.Add(KeyProviders.KeyFile);
+                        Kp2aLog.Log("Added key file of length " + _keyFile.Length);
+
+						KeyProviderTypes.Add(KeyProviders.KeyFile);
 	                    continue;
 	                }
 	                foreach (KeyProviders providerType in Enum.GetValues(typeof(KeyProviders)))
@@ -950,9 +881,9 @@ namespace keepass2android
             }
             else
             {
-
-                //legacy mode
-                _keyFile = null;
+                Kp2aLog.Log("PasswordActivity: legacy key file mode");
+				//legacy mode
+				_keyFile = null;
                 
                 if (keyProviderString == KeyProviderIdOtp)
                     KeyProviderTypes.Add(KeyProviders.Otp);
@@ -995,27 +926,7 @@ namespace keepass2android
             }
         }
 
-	    const int FingerprintPermissionRequestCode = 99;
-	    
-
-	    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-		{
-			if ((requestCode == FingerprintPermissionRequestCode) && (grantResults.Length > 0) && (grantResults[0] == Permission.Granted))
-			{
-				var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
-				btn.Click += (sender, args) =>
-				{
-					AlertDialog.Builder b = new AlertDialog.Builder(this);
-					b.SetTitle(Resource.String.fingerprint_prefs);
-					b.SetMessage(btn.Tag.ToString());
-					b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
-					b.Show();
-				};
-				_fingerprintPermissionGranted = true;
-			}
-		}
-
-		private void ClearFingerprintUnlockData()
+        private void ClearFingerprintUnlockData()
 		{
 			ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
 			edit.PutString(Database.GetFingerprintPrefKey(_ioConnection), "");
@@ -1023,8 +934,7 @@ namespace keepass2android
 			edit.Commit();
 		}
 
-		
-		public void OnFingerprintError(string message)
+		public void OnBiometricError(string message)
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
@@ -1032,12 +942,16 @@ namespace keepass2android
 			btn.PostDelayed(() =>
 			{
 				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
-				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
-			}, 1300);
+            }, 1300);
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
 
-		public void OnFingerprintAuthSucceeded()
+        public void OnBiometricAttemptFailed(string message)
+        {
+            //ignore
+        }
+
+        public void OnBiometricAuthSucceeded()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
@@ -1045,13 +959,15 @@ namespace keepass2android
 
 			try
 			{
-				var masterPassword = _fingerprintDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
+				var masterPassword = _biometricDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
 				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
 			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
 
             }
-			catch (Java.Security.GeneralSecurityException)
-			{
+			catch (Java.Security.GeneralSecurityException ex)
+            {
+				Kp2aLog.Log("GeneralSecurityException in DecryptStored");
+                Kp2aLog.LogUnexpectedError(ex);
 				HandleFingerprintKeyInvalidated();
 				return;
 			}
@@ -1103,7 +1019,7 @@ namespace keepass2android
 					
 				if (_appnameclickCount == 7)
 				{
-					throw new Exception("this is an easter egg crash (to test uncaught exceptions.");
+					throw new Exception("this is an easter egg crash (to test uncaught exceptions.)");
 				}
 					
 
@@ -1113,7 +1029,7 @@ namespace keepass2android
 
 	    private void InitializeToolbar()
 	    {
-	        var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.mytoolbar);
+	        var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
 
 	        SetSupportActionBar(toolbar);
 
@@ -1205,50 +1121,6 @@ namespace keepass2android
 			return true;
 		}
 
-		private bool GetIocFromViewIntent(Intent i)
-		{
-			//started from "view" intent (e.g. from file browser)
-			_ioConnection.Path = i.DataString;
-
-			if (_ioConnection.Path.StartsWith("file://"))
-			{
-				_ioConnection.Path = URLDecoder.Decode(_ioConnection.Path.Substring(7));
-
-				if (_ioConnection.Path.Length == 0)
-				{
-					// No file name
-					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-					Finish();
-					return false;
-				}
-
-				File dbFile = new File(_ioConnection.Path);
-				if (!dbFile.Exists())
-				{
-					// File does not exist
-					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
-					Finish();
-					return false;
-				}
-			}
-			else
-			{
-				if (!_ioConnection.Path.StartsWith("content://"))
-				{
-			
-					Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
-					Finish();
-					return false;
-				}
-				IoUtil.TryTakePersistablePermissions(this.ContentResolver, i.Data);
-
-
-			}
-
-			
-			SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
-			return true;
-		}
 
 		private void InitializeBottomBarButtons()
 		{
@@ -1260,7 +1132,7 @@ namespace keepass2android
 
 			var changeDbButton = FindViewById<Button>(Resource.Id.change_db);
 			string label = changeDbButton.Text;
-			if (label.EndsWith("…"))
+			if (label.EndsWith("\u2026"))
 				changeDbButton.Text = label.Substring(0, label.Length - 1);
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
@@ -1275,7 +1147,6 @@ namespace keepass2android
 			                     RequestCodePrepareDbFile, false);
 		}
 
-		public bool UsedFingerprintUnlock { get; set; }
 
 		private void InitializeTogglePasswordButton()
 		{
@@ -1333,13 +1204,16 @@ namespace keepass2android
 				{
 				    KeyProviderTypes.Clear();
 				    _keyFile = null;
+                    Kp2aLog.Log("PasswordModeSpinner item selected: " + args.Position);
 						switch (args.Position)
 						{
 							case 0:
 								break;
 							case 1:
-                            //don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
-							    _keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
+							//don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
+                                Kp2aLog.Log("key file length before: " + _keyFile?.Length);
+								_keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
+                                Kp2aLog.Log("key file length after: " + _keyFile?.Length);
 							    KeyProviderTypes.Add(KeyProviders.KeyFile);
 								break;
 							case 2:
@@ -1380,11 +1254,16 @@ namespace keepass2android
 		private void RestoreState(Bundle savedInstanceState)
 		{
 			if (savedInstanceState != null)
-			{
+            {
+                Kp2aLog.Log("PasswordActivity: Restoring state from savedInstanceState");
 				_showPassword = savedInstanceState.GetBoolean(ShowpasswordKey, false);
 				MakePasswordMaskedOrVisible();
 
-                SetKeyProviderFromString(savedInstanceState.GetString(KeyFileOrProviderKey));
+                if (!string.IsNullOrEmpty(savedInstanceState.GetString(KeyFileOrProviderKey)))
+                    Kp2aLog.Log("No key provider found");
+				else
+                    Kp2aLog.Log("Key provider found");
+				SetKeyProviderFromString(savedInstanceState.GetString(KeyFileOrProviderKey));
 				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = savedInstanceState.GetString(PasswordKey);
 
 				_pendingOtps = new List<string>(savedInstanceState.GetStringArrayList(PendingOtpsKey));
@@ -1486,10 +1365,10 @@ namespace keepass2android
 
 	    private void PerformLoadDatabase()
 		{
-			_currentlyWaitingKey = null;
 		    if (_performingLoad)
 		        return;
-		    _performingLoad = true;
+		    CurrentlyWaitingKey = null;
+            _performingLoad = true;
             //put loading into background thread to allow loading the key file (potentially over network)
             new SimpleLoadingDialog(this, GetString(Resource.String.loading),
 			                        true, () =>
@@ -1514,11 +1393,9 @@ namespace keepass2android
 				throw new NullPointerException("cpQuickUnlock");
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
 
-			if (App.Kp2a.OfflineMode != _loadDbTaskOffline)
+            if ((_loadDbFileTask != null) &&  (App.Kp2a.OfflineMode != _loadDbTaskOffline))
 			{
-				if (_loadDbFileTask == null)
-					throw new NullPointerException("_loadDbFileTask");
-				if (App.Kp2a == null)
+                if (App.Kp2a == null)
 					throw new NullPointerException("App.Kp2a");
 				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
 				if (!App.Kp2a.OfflineMode || !_loadDbFileTask.IsCompleted)
@@ -1539,13 +1416,11 @@ namespace keepass2android
 				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
 				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
-						onFinish, this)
-					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish);
+						onFinish, this, true, _makeCurrent)
+					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
-				SetNewDefaultFile();
-
-				new ProgressTask(App.Kp2a, this, task).Run();
+			    new ProgressTask(App.Kp2a, this, task).Run();
 			}
 			catch (Exception e)
 			{
@@ -1570,7 +1445,7 @@ namespace keepass2android
 					var ioc = IOConnectionInfo.UnserializeFromString(_keyFile);
 					using (var stream = App.Kp2a.GetFileStorage(ioc).OpenFileForRead(ioc))
 					{
-						byte[] keyfileData = StreamToMemoryStream(stream).ToArray();
+						byte[] keyfileData = Util.StreamToMemoryStream(stream).ToArray();
 						compositeKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
 					}
 				}
@@ -1626,8 +1501,8 @@ namespace keepass2android
 			} 
 			if (KeyProviderTypes.Contains(KeyProviders.ChallengeXC))
 			{
-				_currentlyWaitingKey = new ChallengeXCKey(this, RequestCodeChallengeYubikey);
-				compositeKey.AddUserKey(_currentlyWaitingKey);
+				CurrentlyWaitingKey = new ChallengeXCKey(this, RequestCodeChallengeYubikey);
+				compositeKey.AddUserKey(CurrentlyWaitingKey);
 			}
 			return true;
 		}
@@ -1647,65 +1522,27 @@ namespace keepass2android
 
 		private void MakePasswordMaskedOrVisible()
 		{
-			TextView password = (TextView) FindViewById(Resource.Id.password_edit);
+		    EditText password = (EditText) FindViewById(Resource.Id.password_edit);
+			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
 			if (_showPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-                SetPasswordTypeface(password);
+                _passwordFont.ApplyTo(password);
 			}
 			else
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 			}
-            
+			password.SetSelection(selStart, selEnd);
 		}
 
 		protected override void OnPause()
 		{
-			if (_fingerprintDec != null)
-			{
-				_fingerprintDec.StopListening();
-			}
-			base.OnPause();
+		    _biometricDec?.StopListening();
+		    _lastOnPauseTime = DateTime.Now;
+
+            base.OnPause();
 		}
-
-		private void SetPasswordTypeface(TextView textView)
-	    {
-            if (_passwordFont == null)
-            {
-                _passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
-            }
-            textView.Typeface = _passwordFont;	
-	    }
-
-	    private void SetNewDefaultFile()
-		{
-//Don't allow the current file to be the default if we don't have stored credentials
-			bool makeFileDefault;
-			if ((_ioConnection.IsLocalFile() == false) && (_ioConnection.CredSaveMode != IOCredSaveMode.SaveCred))
-			{
-				makeFileDefault = false;
-			}
-			else
-			{
-				makeFileDefault = true;
-			}
-			String newDefaultFileName;
-
-			if (makeFileDefault)
-			{
-				newDefaultFileName = _ioConnection.Path;
-			}
-			else
-			{
-				newDefaultFileName = "";
-			}
-
-			ISharedPreferencesEditor editor = _prefs.Edit();
-			editor.PutString(KeyDefaultFilename, newDefaultFileName);
-			EditorCompat.Apply(editor);
-		}
-
 		protected override void OnStart()
 		{
 			base.OnStart();
@@ -1717,15 +1554,19 @@ namespace keepass2android
 		        CopyToClipboardService.ActivateKeyboard(this);
 		    }
 
-                AppTask.CanActivateSearchViewOnStart = true;
             DonateReminder.ShowDonateReminderIfAppropriate(this);
-			
-			
-		}
+
+
+            if (compositeKeyForImmediateLoad == null && !fingerprintInitialized)
+            {
+                fingerprintInitialized = InitFingerprintUnlock();
+            }
+
+        }
 
 		private MemoryStream PreloadDbFile()
 		{
-			if (KdbpFile.GetFormatToUse(_ioConnection) == KdbxFormat.ProtocolBuffers)
+			if (KdbpFile.GetFormatToUse(App.Kp2a.GetFileStorage(_ioConnection).GetFileExtension(_ioConnection)) == KdbxFormat.ProtocolBuffers)
 			{
 				Kp2aLog.Log("Preparing kdbp serializer");				
 				KdbpFile.PrepareSerializer();
@@ -1735,22 +1576,16 @@ namespace keepass2android
 			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
 			var stream = fileStorage.OpenFileForRead(_ioConnection);
 
-			var memoryStream = StreamToMemoryStream(stream);
+			var memoryStream = Util.StreamToMemoryStream(stream);
 
 			Kp2aLog.Log("Pre-loading database file completed");
 
 			return memoryStream;
 		}
 
-		private static MemoryStream StreamToMemoryStream(Stream stream)
-		{
-			return Util.StreamToMemoryStream(stream);
-		}
-
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			AppTask.ToBundle(outState);
 			outState.PutBoolean(ShowpasswordKey, _showPassword);
 
 			outState.PutString(KeyFileOrProviderKey, GetKeyProviderString());
@@ -1784,58 +1619,100 @@ namespace keepass2android
 			//note: it's not called in other cases because OnNewIntent requires the activity to be on top already 
 			//which is never the case when started from another activity (in the same task).
 			//NfcOtpActivity sets the ClearTop flag to get OnNewIntent called.
-			if ((intent != null) && (intent.HasExtra(Intents.OtpExtraKey)))
-			{
-				string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-				_keepPasswordInOnResume = true;
-				if (KeyProviderTypes.Contains(KeyProviders.Otp))
-				{
-				
-					if (_otpInfo == null)
-					{
-						//Entering OTPs not yet initialized:
-						_pendingOtps.Add(otp);
-						UpdateKeyProviderUiState();
-					}
-					else
-					{
-						//Entering OTPs is initialized. Write OTP into first empty field:
-						bool foundEmptyField = false;
-						foreach (int otpId in _otpTextViewIds)
-						{
-							EditText otpEdit = FindViewById<EditText>(otpId);
-							if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
-							{
-								otpEdit.Text = otp;
-								foundEmptyField = true;
-								break;
-							}
-						}
-						//did we find a field?
-						if (!foundEmptyField)
-						{
-							Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
-						}
-					}
+            if (intent != null)
+            {
+				if (intent.HasExtra(Intents.OtpExtraKey))
+                {
+                    string otp = intent.GetStringExtra(Intents.OtpExtraKey);
+                    _keepPasswordInOnResume = true;
+                    if (KeyProviderTypes.Contains(KeyProviders.Otp))
+                    {
 
-					Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
-					if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
-					{
-						passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
-					}	
-				}
-				else
-				{
-					//assume the key should be used as static password
-					FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
-				}
+                        if (_otpInfo == null)
+                        {
+                            //Entering OTPs not yet initialized:
+                            _pendingOtps.Add(otp);
+                            UpdateKeyProviderUiState();
+                        }
+                        else
+                        {
+                            //Entering OTPs is initialized. Write OTP into first empty field:
+                            bool foundEmptyField = false;
+                            foreach (int otpId in _otpTextViewIds)
+                            {
+                                EditText otpEdit = FindViewById<EditText>(otpId);
+                                if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
+                                {
+                                    otpEdit.Text = otp;
+                                    foundEmptyField = true;
+                                    break;
+                                }
+                            }
+                            //did we find a field?
+                            if (!foundEmptyField)
+                            {
+                                Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
+                            }
+                        }
 
-				
+                        Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
+                        if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
+                        {
+                            passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
+                        }
+                    }
+                    else
+                    {
+                        //assume the key should be used as static password
+                        FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
+                    }
+
+
+                }
+                else
+                {
+                    ResetState();
+                    GetIocFromLaunchIntent(intent);
+					InitializeAfterSetIoc();
+                    OnStart();
+                }
 			}
 	
 		}
-		
-		protected override void OnResume()
+
+        private void ResetState()
+        {
+            _makeCurrent = false;
+            _loadDbFileTask = null;
+            _loadDbTaskOffline = false;
+
+            _showPassword = false;
+            MakePasswordMaskedOrVisible();
+            _killOnDestroy = false;
+            _password = "";
+            _pendingOtps.Clear();
+            KeyProviderTypes.Clear();
+            _rememberKeyfile = false;
+            _starting = false;
+            _otpInfo = null;
+            _otpAuxIoc = null;
+            _chalInfo = null;
+            _challengeSecret = null;
+            _challengeProv = null;
+            _performingLoad = false;
+            _keepPasswordInOnResume = false;
+            _lastOnPauseTime = DateTime.MinValue;
+            mDrawerTitle = "";
+            _measureArgs = null;
+            _biometricDec = null;
+            _appnameclickCount = 0;
+            InvalidCompositeKeyCount = 0;
+            LoadingErrorCount = 0;
+            fingerprintInitialized = false;
+            UsedFingerprintUnlock = false;
+        }
+
+        protected override void OnResume()
 		{
 			base.OnResume();
 			_activityDesign.ReapplyTheme();
@@ -1866,6 +1743,7 @@ namespace keepass2android
 				killButton.Click += (sender, args) =>
 				{
 					_killOnDestroy = true;
+                    SetResult(Result.Canceled);
 					Finish();
 
 				};
@@ -1876,17 +1754,24 @@ namespace keepass2android
 			{
 				killButton.Visibility = ViewStates.Gone;
 			}
-			
-			if (!_keepPasswordInOnResume)
-			{
-				if (
-					PreferenceManager.GetDefaultSharedPreferences(this)
-					                 .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
-				{
-					ClearEnteredPassword();
-				}
-				
-			}
+
+		    TryGetOtpFromClipboard();
+
+		    if (!_keepPasswordInOnResume)
+		    {
+		        if (
+                    _lastOnPauseTime < DateTime.Now - TimeSpan.FromSeconds(5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
+                    && 
+		            PreferenceManager.GetDefaultSharedPreferences(this)
+		                .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
+		        {
+		            ClearEnteredPassword();
+		        }
+
+		    }
+
+
+
 			_keepPasswordInOnResume = false;
 
 			MakePasswordMaskedOrVisible();
@@ -1902,66 +1787,116 @@ namespace keepass2android
 			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
 			if ( !IsFinishing && !_performingLoad)  
 			{
-				if (App.Kp2a.DatabaseIsUnlocked)
-				{
-					LaunchNextActivity();
-				}
-				else if (App.Kp2a.QuickUnlockEnabled && App.Kp2a.QuickLocked)
-				{
-					var i = new Intent(this, typeof (QuickUnlock));
-					PutIoConnectionToIntent(_ioConnection, i);
-					Kp2aLog.Log("Starting QuickUnlock");
-					StartActivityForResult(i, 0);
-				}
-				else
-				{
-					// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
-					// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-					if (_starting)
-					{
+				
+				
+			    // OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
+				// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
+			    if (_starting)
+			    {
 
-						_starting = false;
+			        _starting = false;
 
-						//database not yet loaded.
+			        //database not yet loaded.
 
-						//check if pre-loading is enabled but wasn't started yet:
-						if (_loadDbFileTask == null && _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
-						{
-							// Create task to kick off file loading while the user enters the password
-							_loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
-							_loadDbTaskOffline = App.Kp2a.OfflineMode;
-						}
-					}
-				}
+			        //check if pre-loading is enabled but wasn't started yet:
+			        if (_loadDbFileTask == null &&
+			            _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+			        {
+			            // Create task to kick off file loading while the user enters the password
+			            _loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
+			            _loadDbTaskOffline = App.Kp2a.OfflineMode;
+			        }
+			    }
+
 			}
 
-			bool showKeyboard = (Util.GetShowKeyboardDuringFingerprintUnlock(this));
+		    if (compositeKeyForImmediateLoad != null)
+		    {
+		        //reload the database (without most other stuff performed in PerformLoadDatabase.
+		        // We're assuming that the db file (and if appropriate also the key file) are still available 
+		        // and there's no need to re-init the file storage. if it is, loading will fail and the user has 
+		        // to retry with typing the full password, but that's intended to avoid showing the password to a 
+		        // a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
+		        Handler handler = new Handler();
+		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
+		        _performingLoad = true;
+                LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+		            onFinish, false, _makeCurrent);
+		        _loadDbFileTask = null; // prevent accidental re-use
+		        new ProgressTask(App.Kp2a, this, task).Run();
+		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
+		    }
+		    else
+		    {
+		        bool showKeyboard = true;
 
-			if (_fingerprintPermissionGranted)
-			{
-				if (!InitFingerprintUnlock())
-					showKeyboard = true;
-			}
-			else
-			{
-				FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-				showKeyboard = true;
-			}
-			
-			
-			EditText pwd = (EditText)FindViewById(Resource.Id.password_edit);
-			pwd.PostDelayed(() =>
-			{
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(InputMethodService);
-				if (showKeyboard)
-					keyboard.ShowSoftInput(pwd, 0);
-				else
-					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
-			}, 50);
-		}
+		       
+		        EditText pwd = (EditText) FindViewById(Resource.Id.password_edit);
+		        pwd.PostDelayed(() =>
+		        {
+		            InputMethodManager keyboard = (InputMethodManager) GetSystemService(InputMethodService);
+                    if (showKeyboard)
+                    {
+                        pwd.RequestFocus();
+                        keyboard.ShowSoftInput(pwd, 0);
+                    }
+                    else
+		                keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+		        }, 50);
+		    }
+        }
 
-		private bool InitFingerprintUnlock()
+	    private void TryGetOtpFromClipboard()
+	    {
+	        if (_otpInfo != null)
+	        {
+	            if ((int) Build.VERSION.SdkInt >= 26)
+	            {
+	                Android.Content.ClipboardManager clipboardManager = (ClipboardManager)GetSystemService(Context.ClipboardService);
+	                if (clipboardManager?.PrimaryClip?.Description == null || (clipboardManager.PrimaryClip.Description.Timestamp <
+	                    Java.Lang.JavaSystem.CurrentTimeMillis() - 5000))
+	                    return; //data older than 5 seconds
+	            }
+	            string clipboardContent = Util.GetClipboard(this);
+	            if (clipboardContent == null || (_otpInfo.OtpLength != clipboardContent.Length))
+	            {
+	                return;
+	            }
+	            foreach (char c in clipboardContent)
+	            {
+	                if (c < '0' || c > '9')
+	                    return;
+	            }
+	            string otp = clipboardContent;
+                
+	            EditText lastNonEmptyOtpEdit = null;
+
+                foreach (int otpId in _otpTextViewIds)
+	            {
+	                EditText otpEdit = FindViewById<EditText>(otpId);
+	                if (otpEdit?.Visibility == ViewStates.Visible)
+	                {
+	                    if (string.IsNullOrEmpty(otpEdit.Text))
+	                    {
+	                        if ((lastNonEmptyOtpEdit != null) && (lastNonEmptyOtpEdit.Text == otp))
+	                            return; //otp was already set.
+
+                            //otp ok. use it:
+                            otpEdit.Text = otp;
+	                        break;
+                        }
+
+                        lastNonEmptyOtpEdit = otpEdit;
+
+	                }
+	                
+	            }
+	            
+	        }
+        }
+
+	    private bool InitFingerprintUnlock()
 		{
 			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 			try
@@ -1975,20 +1910,19 @@ namespace keepass2android
 					return false;
 				}
 
-				FingerprintModule fpModule = new FingerprintModule(this);
-				_fingerprintDec = new FingerprintDecryption(fpModule, Database.GetFingerprintPrefKey(_ioConnection), this,
+				BiometricModule fpModule = new BiometricModule(this);
+				_biometricDec = new BiometricDecryption(fpModule, Database.GetFingerprintPrefKey(_ioConnection), this,
 					Database.GetFingerprintPrefKey(_ioConnection));
 
-				btn.Tag = GetString(Resource.String.fingerprint_unlock_hint);
-
-				if (_fingerprintDec.Init())
+				if (_biometricDec.Init())
 				{
 					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
-					_fingerprintDec.StartListening(new FingerprintAuthCallbackAdapter(this, this));
+					_biometricDec.StartListening(new BiometricAuthCallbackAdapter(this, this));
 					return true;
 				}
 				else
 				{
+                    Kp2aLog.Log("biometricDec.Init() failed");
 					HandleFingerprintKeyInvalidated();
 					return false;
 				}
@@ -2005,7 +1939,7 @@ namespace keepass2android
 
 			    Toast.MakeText(this, Resource.String.fingerprint_reenable2, ToastLength.Long).Show();
 
-				_fingerprintDec = null;
+				_biometricDec = null;
 				return false;
 			}
 				
@@ -2018,7 +1952,7 @@ namespace keepass2android
 //key invalidated permanently
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
-			_fingerprintDec = null;
+			_biometricDec = null;
 
 			ClearFingerprintUnlockData();
 		}
@@ -2047,8 +1981,18 @@ namespace keepass2android
 			}
 		}
 		
-		private void InitializeFilenameView() {
-			SetEditText(Resource.Id.filename, App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection));
+		private void InitializeFilenameView()
+        {
+            string filenameToShow = _ioConnection.Path;
+            try
+            {
+                filenameToShow = App.Kp2a.GetFileStorage(_ioConnection).GetDisplayName(_ioConnection);
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+			SetEditText(Resource.Id.filename, filenameToShow);
 						
 		}
 
@@ -2089,12 +2033,8 @@ namespace keepass2android
 
 		private void GoToFileSelectActivity()
 		{
-			Intent intent = new Intent(this, typeof (FileSelectActivity));
-			intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, true);
-			AppTask.ToIntent(intent);
-			intent.AddFlags(ActivityFlags.ForwardResult);
-			StartActivity(intent);
-			Finish();
+		    SetResult((Result) ResultSelectOtherFile);
+            Finish();
 		}
 
 		private class AfterLoad : OnFinish {
@@ -2182,20 +2122,22 @@ namespace keepass2android
 					                                                (sender, args) =>
 						                                                {
 							                                                ((Dialog) sender).Dismiss();
-																			_act.LaunchNextActivity();
-						                                                })
+						                                                    if (Success)
+						                                                    {
+						                                                        _act.LaunchNextActivity();
+						                                                    }
+                                                                        })
 												.SetCancelable(false)
 												.Show();
 					
 				}
 				else
 				{
-					DisplayMessage(_act);	
-					if (Success)
-					{
-						_act.LaunchNextActivity();
-					}
-						
+					DisplayMessage(_act);
+				    if (Success)
+				    {
+				        _act.LaunchNextActivity();
+				    }
 
 				}
 
@@ -2209,16 +2151,8 @@ namespace keepass2android
 			}
 		}
 
-		public int InvalidCompositeKeyCount
-		{
-			get; set;
-		}
-	    public int LoadingErrorCount
-	    {
-	        get; set;
-	    }
 
-        private void BroadcastOpenDatabase()
+		private void BroadcastOpenDatabase()
 		{
 			App.Kp2a.BroadcastDatabaseAction(this, Strings.ActionOpenDatabase);
 		}
@@ -2245,7 +2179,7 @@ namespace keepass2android
 			private readonly PasswordActivity _act;
 
 
-			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish)
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish,updateLastUsageTimestamp,makeCurrent)
 			{
 				_act = act;
 			}
@@ -2259,22 +2193,32 @@ namespace keepass2android
 					KeyProviderQueryContext ctx = new KeyProviderQueryContext(_act._ioConnection, false, false);
 					
 					if (!OathHotpKeyProv.CreateAuxFile(_act._otpInfo, ctx, _act._otpAuxIoc))
-						Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile), ToastLength.Long).Show();
+						ShowError(_act.GetString(Resource.String.ErrorUpdatingOtpAuxFile));
 
-					App.Kp2a.GetDb().OtpAuxFileIoc = _act._otpAuxIoc;
+					
 				}
 				catch (Exception e)
 				{
 					Kp2aLog.LogUnexpectedError(e);
 
-					Toast.MakeText(_act, _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message,
-								   ToastLength.Long).Show();
+					ShowError( _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message);
 				}
 
 
 				base.Run();
 
-			}
+			    if (success)
+			    {
+			        App.Kp2a.CurrentDb.OtpAuxFileIoc = _act._otpAuxIoc;
+                }
+
+                
+            }
+
+		    private void ShowError(string message)
+		    {
+		        App.Kp2a.ShowToast(message);
+		    }
 		}
 		private class PasswordActivityBroadcastReceiver : BroadcastReceiver
 		{
@@ -2297,10 +2241,12 @@ namespace keepass2android
 
 		private void OnScreenLocked()
 		{
-			if (_fingerprintDec != null)
-				_fingerprintDec.StopListening();
+			if (_biometricDec != null)
+				_biometricDec.StopListening();
 			
 		}
+
+	    
 	}
 
 

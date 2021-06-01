@@ -4,6 +4,7 @@ using KeePassLib.Serialization;
 using OtpKeyProv;
 using keepass2android.Io;
 using System.Xml;
+using Android.Content;
 
 namespace keepass2android.addons.OtpKeyProv
 {
@@ -28,8 +29,8 @@ namespace keepass2android.addons.OtpKeyProv
 		}
 
 
-		public OtpAuxCachingFileStorage(IFileStorage cachedStorage, string cacheDir, IOtpAuxCacheSupervisor cacheSupervisor)
-			: base(cachedStorage, cacheDir, cacheSupervisor)
+		public OtpAuxCachingFileStorage(IFileStorage cachedStorage, Context context, IOtpAuxCacheSupervisor cacheSupervisor)
+			: base(cachedStorage, context, cacheSupervisor)
 		{
 			_cacheSupervisor = cacheSupervisor;
 		}

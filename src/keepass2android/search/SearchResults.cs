@@ -18,7 +18,9 @@ using System;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using keepass2android.view;
@@ -29,7 +31,7 @@ namespace keepass2android.search
 	/// <summary>
 	/// Activity to show search results
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission="keepass2android."+AppNames.PackagePart+".permission.KP2aInternalSearch")]
+    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission="keepass2android."+AppNames.PackagePart+".permission.KP2aInternalSearch", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else
@@ -56,17 +58,17 @@ namespace keepass2android.search
 			ProcessIntent(Intent);
 		}
 
-	    protected override bool AddEntryEnabled
+	    public override bool EntriesBelongToCurrentDatabaseOnly
 	    {
 	        get { return false; }
 	    }
-        protected override bool AddGroupEnabled
-        {
-            get { return false; }
-        }
 
-        
-        
+	    public override ElementAndDatabaseId FullGroupId
+	    {
+	        get { return null; }
+	    }
+
+
 	    protected override void OnNewIntent(Intent intent)
 		{
 			ProcessIntent(intent);
@@ -83,11 +85,24 @@ namespace keepass2android.search
 			if (intent.Action == Intent.ActionView)
 			{
 				var entryIntent = new Intent(this, typeof(EntryActivity));
-				entryIntent.PutExtra(EntryActivity.KeyEntry, intent.Data.LastPathSegment);
-				entryIntent.AddFlags(ActivityFlags.ForwardResult);
-				Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
-				StartActivity(entryIntent);
-			}
+			    ElementAndDatabaseId id;
+			    try
+			    {
+			        id = new ElementAndDatabaseId(intent.Data.LastPathSegment);
+                }
+			    catch (Exception e)
+			    {
+			        Kp2aLog.Log("Failed to transform " + intent.Data.LastPathSegment + " to an ElementAndDatabaseId object. ");
+			        Toast.MakeText(this, "Bad path passed. Please provide database and element ID.", ToastLength.Long).Show();
+                    Finish();
+			        return;
+			    }
+			    entryIntent.PutExtra(EntryActivity.KeyEntry, id.FullId);
+			    entryIntent.AddFlags(ActivityFlags.ForwardResult);
+			    Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
+			    StartActivity(entryIntent);
+
+            }
 			else
 			{
 				// Action may either by ActionSearch (from search widget) or null (if called from SearchActivity directly)
@@ -95,11 +110,36 @@ namespace keepass2android.search
 			}
 		}
 
-		private void Query (SearchParameters searchParams)
-		{
-			try {
-				Group = App.Kp2a.GetDb().Search (searchParams, null);
-			} catch (Exception e) {
+        private void Query(SearchParameters searchParams)
+        {
+			//kind of an easter egg: if the user types this exact string into the search, it immediately allows to disable the donation options
+            if (searchParams.SearchString == "allow disable donation")
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+                ISharedPreferencesEditor edit = prefs.Edit();
+                edit.PutLong(GetString(Resource.String.UsageCount_key), 1000);
+                edit.PutBoolean("DismissedDonateReminder", true);
+                edit.Commit();
+                Toast.MakeText(this, "Please go to Settings - App - Display to disable donation requests.", ToastLength.Long).Show();
+            }
+        
+
+            Group = null;
+            try {
+                foreach (var db in App.Kp2a.OpenDatabases)
+                {
+                    PwGroup resultsForThisDb = db.Search(searchParams, null);
+                    if (Group == null)
+                        Group = resultsForThisDb;
+                    else
+                    {
+                        foreach (var entry in resultsForThisDb.Entries)
+                        {
+                            Group.AddEntry(entry, false);
+                        }
+                    }
+                }
+            } catch (Exception e) {
 				Kp2aLog.LogUnexpectedError(e);
 				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
 				Finish();
@@ -159,7 +199,7 @@ namespace keepass2android.search
 		public override bool OnSearchRequested()
 		{
 			Intent i = new Intent(this, typeof(SearchActivity));
-			AppTask.ToIntent(i);
+			this.AppTask.ToIntent(i);
 			i.SetFlags(ActivityFlags.ForwardResult);
 			StartActivity(i);
 			return true;

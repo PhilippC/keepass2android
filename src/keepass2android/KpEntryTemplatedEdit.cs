@@ -8,7 +8,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	class KpEntryTemplatedEdit : IEditMode
+	class KpEntryTemplatedEdit : EditModeBase
 	{
 		internal class KeyOrderComparer : IComparer<string>
 		{
@@ -38,10 +38,9 @@ namespace keepass2android
 			return res;
 		}
 
-		private const string EtmTemplateUuid = "_etm_template_uuid";
+		public const string EtmTemplateUuid = "_etm_template_uuid";
 		private const string EtmTitle = "_etm_title_";
-		private readonly Database _db;
-		private readonly PwEntry _entry;
+	    private readonly PwEntry _entry;
 		private readonly PwEntry _templateEntry;
 
 		public static bool IsTemplated(Database db, PwEntry entry)
@@ -52,7 +51,7 @@ namespace keepass2android
 				if (uuidBytes != null)
 				{
 						PwUuid templateUuid = new PwUuid(uuidBytes);
-						return db.Entries.ContainsKey(templateUuid);
+						return db.EntriesById.ContainsKey(templateUuid);
 				}
 			}
 			return false;
@@ -60,10 +59,9 @@ namespace keepass2android
 
 		public KpEntryTemplatedEdit(Database db, PwEntry entry)
 		{
-			_db = db;
-			_entry = entry;
+		    _entry = entry;
 			PwUuid templateUuid = new PwUuid(MemUtil.HexStringToByteArray(entry.Strings.ReadSafe(EtmTemplateUuid)));
-			_templateEntry = db.Entries[templateUuid];
+			_templateEntry = db.EntriesById[templateUuid];
 		}
 
 		public static void InitializeEntry(PwEntry entry, PwEntry templateEntry)
@@ -107,7 +105,7 @@ namespace keepass2android
 			}
 		}
 
-		public bool IsVisible(string fieldKey)
+		public override bool IsVisible(string fieldKey)
 		{
 			if (fieldKey == EtmTemplateUuid)
 				return false;
@@ -134,23 +132,43 @@ namespace keepass2android
 			return _entry.Strings.ReadSafe(fieldKey);
 		}
 
-		public IEnumerable<string> SortExtraFieldKeys(IEnumerable<string> keys)
+		public override IEnumerable<string> SortExtraFieldKeys(IEnumerable<string> keys)
 		{
 			var c = new KeyOrderComparer(this);
 			return keys.OrderBy(s => s, c);
 		}
 
-		public bool ShowAddAttachments
+        public override bool ShowAddAttachments
+        {
+            get
+            {
+                if (manualShowAddAttachments != null) return (bool)manualShowAddAttachments;
+                return false;
+            }
+        }
+
+        public override bool ShowAddExtras
 		{
-			get { return false; }
+			get {
+                if (manualShowAddExtras != null) return (bool)manualShowAddExtras;
+                return false;
+            }
 		}
 
-		public bool ShowAddExtras
-		{
-			get { return false; }
-		}
+	    public override string GetTitle(string key)
+	    {
+	        return key;
+	    }
 
-		public static bool IsTemplate(PwEntry entry)
+	    public override string GetFieldType(string key)
+	    {
+            //TODO return "bool" for boolean fields
+	        return "";
+	    }
+
+	    
+
+	    public static bool IsTemplate(PwEntry entry)
 		{
 			if (entry == null) return false;
 			return entry.Strings.Exists("_etm_template");

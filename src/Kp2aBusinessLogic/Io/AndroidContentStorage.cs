@@ -82,7 +82,12 @@ namespace keepass2android.Io
 		        UrlUtil.GetFileName(ioc.Path));
         }
 
-		public bool RequiresCredentials(IOConnectionInfo ioc)
+	    public string GetFileExtension(IOConnectionInfo ioc)
+	    {
+	        return UrlUtil.GetExtension(ioc.Path);
+        }
+
+	    public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return false;
 		}
@@ -207,8 +212,7 @@ namespace keepass2android.Io
 
 		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
 		{
-			//TODO: required for OTP Aux file retrieval
-			throw new NotImplementedException();
+		    return IoUtil.GetParentPath(ioc);
 		}
 
 		public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
@@ -245,28 +249,11 @@ namespace keepass2android.Io
 						reason.Result = UiStringKey.ReadOnlyReason_PreKitKat;
 					return true;
 				}
-				
 
-				//KitKat or later...
-				var uri = Android.Net.Uri.Parse(ioc.Path);
-				cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
-
-				if (cursor != null && cursor.MoveToFirst())
-				{
-					int column = cursor.GetColumnIndex(DocumentsContract.Document.ColumnFlags);
-					if (column < 0)
-						return false; //seems like this is not supported. See below for reasoning to return false.
-					int flags = cursor.GetInt(column);
-					Kp2aLog.Log("File flags: " + flags);
-					if ((flags & (long) DocumentContractFlags.SupportsWrite) == 0)
-					{
-						if (reason != null)
-							reason.Result = UiStringKey.ReadOnlyReason_ReadOnlyFlag;
-						return true;
-					}
-					else return false;
-				}
-				else throw new Exception("couldn't move to first result element: " + (cursor == null) + uri.ToString());
+				//in previous implementations, we were checking for FLAG_SUPPORTS_WRITE in the document flags,
+				//but it seems like this is very poorly supported, e.g. Dropbox and OneDrive return !FLAG_SUPPORTS_WRITE
+				//even though writing work.
+				return false;
 			}
 			catch (Exception e)
 			{
@@ -329,12 +316,13 @@ namespace keepass2android.Io
 
 		public void CommitWrite()
 		{
-		    ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "w");
+		    ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "rwt");
             
             using (var outputStream = new FileOutputStream(fileDescriptor.FileDescriptor))
 			{
 				byte[] data = _memoryStream.ToArray();
-				outputStream.Write(data, 0, data.Length);
+                
+				outputStream.Write(data);
 			    outputStream.Close();
 			}
             fileDescriptor.Close();

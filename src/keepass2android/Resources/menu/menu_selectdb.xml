@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2020 Philipp Crocoll. 
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item android:id="@+id/menu_search_advanced"
+        android:icon="@drawable/ic_menu_search"
+        android:title="@string/menu_search_advanced"
+        app:showAsAction="always"
+    />
+  <item android:id="@+id/menu_lock"
+      android:icon="@drawable/ic_menu_lock"
+      android:title="@string/menu_lock"
+      app:showAsAction="ifRoom"
+    />
+  <item android:id="@+id/menu_donate"
+        android:icon="@drawable/ic_menu_donatebeer"
+      android:title="@string/menu_donate"
+      app:showAsAction="ifRoom"
+    />
+  <item android:id="@+id/menu_app_settings"
+      android:icon="@drawable/ic_menu_settings"
+      android:title="@string/menu_app_settings"
+      app:showAsAction="ifRoom"
+    />
+  
+
+
+</menu>

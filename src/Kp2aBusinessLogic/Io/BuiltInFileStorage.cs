@@ -12,13 +12,10 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
-using Android.Support.V13.App;
-using Android.Support.V4.App;
 using Java.IO;
-using Java.Util;
+using Android.Support.V4;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
-using ActivityCompat = Android.Support.V13.App.ActivityCompat;
 using File = System.IO.File;
 using FileNotFoundException = System.IO.FileNotFoundException;
 using IOException = System.IO.IOException;
@@ -204,7 +201,12 @@ namespace keepass2android.Io
 
 		}
 
-		public bool RequiresCredentials(IOConnectionInfo ioc)
+	    public string GetFileExtension(IOConnectionInfo ioc)
+	    {
+	        return UrlUtil.GetExtension(ioc.Path);
+        }
+
+	    public bool RequiresCredentials(IOConnectionInfo ioc)
 		{
 			return (!ioc.IsLocalFile()) && (ioc.CredSaveMode != IOCredSaveMode.SaveCred);
 		}
@@ -255,7 +257,8 @@ namespace keepass2android.Io
 			if (ioc.IsLocalFile())
 			{
 				bool requiresPermission = !(ioc.Path.StartsWith(activity.Activity.FilesDir.CanonicalPath)
-												|| ioc.Path.StartsWith(IoUtil.GetInternalDirectory(activity.Activity).CanonicalPath));
+												|| ioc.Path.StartsWith(IoUtil.GetInternalDirectory(activity.Activity).CanonicalPath)
+				                            || ioc.Path.StartsWith(IoUtil.GetInternalDirectory(activity.Activity).CanonicalPath));
 				
 				var extDirectory = activity.Activity.GetExternalFilesDir(null);
 				if ((extDirectory != null) && (ioc.Path.StartsWith(extDirectory.CanonicalPath)))

@@ -33,12 +33,17 @@ namespace keepass2android
 		{
 			private const long DefaultTimeout = 5 * 60 * 1000;  // 5 minutes
 			
-			private static PendingIntent BuildIntent(Context ctx)
+			private static PendingIntent BuildPendingBroadcastIntent(Context ctx)
 			{
-				return PendingIntent.GetBroadcast(ctx, 0, new Intent(ctx, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent);
+				return PendingIntent.GetBroadcast(ctx, 0, BuildBroadcastIntent(ctx), PendingIntentFlags.UpdateCurrent);
 			}
 
-			public static void Start(Context ctx)
+            private static Intent BuildBroadcastIntent(Context ctx)
+            {
+                return new Intent(ctx, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabaseByTimeout);
+            }
+
+            public static void LeavingApp(Context ctx)
 			{
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
 				String sTimeout = prefs.GetString(ctx.GetString(Resource.String.app_timeout_key), ctx.GetString(Resource.String.clipboard_timeout_default));
@@ -55,55 +60,83 @@ namespace keepass2android
 					return;
 				}
 
+				//in addition to starting an alarm, check the time in the next resume. This might be required as alarms seems to be unrealiable in more recent android versions
+                App.Kp2a.TimeoutTime = DateTime.Now + TimeSpan.FromMilliseconds(timeout);
+
 				long triggerTime = Java.Lang.JavaSystem.CurrentTimeMillis() + timeout;
 				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
 
 				Kp2aLog.Log("Timeout start");
-				am.Set(AlarmType.Rtc, triggerTime, BuildIntent(ctx));
+				am.Set(AlarmType.Rtc, triggerTime, BuildPendingBroadcastIntent(App.Context));
 			}
 
-			public static void Cancel(Context ctx)
+			public static void ResumingApp(Context ctx)
 			{
+                
+                
 				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
-
+				//cancel alarm
 				Kp2aLog.Log("Timeout cancel");
-				am.Cancel(BuildIntent(ctx));
-			}
+				am.Cancel(BuildPendingBroadcastIntent(App.Context));
+                App.Kp2a.TimeoutTime = DateTime.MaxValue;
+            }
 
-		}
+
+            public static void CheckIfTimedOutWithoutAlarm(Context ctx)
+            {
+                if (DateTime.Now > App.Kp2a.TimeoutTime)
+                {
+                    ctx.SendBroadcast(BuildBroadcastIntent(ctx));
+                }
+			}
+        }
 
 		public static void Pause(Activity act) 
 		{
 			if ( App.Kp2a.DatabaseIsUnlocked )
 			{
-				Timeout.Start(act);
+				Timeout.LeavingApp(act);
 			}
 			
 		}
 		
-		public static void Resume(Activity act) 
-		{
-			if ( App.Kp2a.GetDb().Loaded ) 
-			{
-				Timeout.Cancel(act);
+		public static void Resume(Activity act)
+        {
+            if ( App.Kp2a.CurrentDb!= null)
+            {
+                Timeout.CheckIfTimedOutWithoutAlarm(act);
+				Timeout.ResumingApp(act);
 			}
 		}
+
+        public static void ResumingApp()
+        {
+            Timeout.ResumingApp(App.Context);
+		}
+
 
 		static bool IocChanged(IOConnectionInfo ioc, IOConnectionInfo other)
 		{
 			if ((ioc == null) || (other == null)) return false;
-			return ioc.GetDisplayName() != other.GetDisplayName();
+			return !ioc.IsSameFileAs(other);
 		}
 		
-		public static bool CheckShutdown(Activity act, IOConnectionInfo ioc) {
+		public static bool CheckDbChanged(Activity act, IOConnectionInfo ioc) {
 			if ((  !App.Kp2a.DatabaseIsUnlocked ) 
-			    || (IocChanged(ioc, App.Kp2a.GetDb().Ioc))) //file was changed from ActionSend-Intent
+			    || (IocChanged(ioc, App.Kp2a.CurrentDb.Ioc))) //file was changed from ActionSend-Intent
 			{
-				App.Kp2a.LockDatabase();
 				return true;
 			}
 			return false;
 		}
-	}
+
+        public static void Lock(Activity activity, in bool lockedByTimeout)
+        {
+            Kp2aLog.Log("Finishing " + activity.ComponentName.ClassName + " due to database lock");
+
+            activity.SetResult(lockedByTimeout ? KeePass.ExitLockByTimeout : KeePass.ExitLock);
+            activity.Finish();
+		}
+    }
 }
 

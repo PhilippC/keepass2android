@@ -252,5 +252,18 @@ namespace keepass2android.services.AutofillBase
             
             return filteredCollection;
         }
+
+        public static FilledAutofillFieldCollection FilterForPartition(FilledAutofillFieldCollection filledAutofillFieldCollection, List<string> autofillFieldsFocusedAutofillCanonicalHints)
+        {
+
+            //only apply partition data if we have FocusedAutofillCanonicalHints. This may be empty on buggy Firefox.
+            if (autofillFieldsFocusedAutofillCanonicalHints.Any())
+            {
+                int partitionIndex = AutofillHintsHelper.GetPartitionIndex(autofillFieldsFocusedAutofillCanonicalHints.FirstOrDefault());
+                return AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, partitionIndex);
+            }
+
+            return filledAutofillFieldCollection;
+        }
     }
 }

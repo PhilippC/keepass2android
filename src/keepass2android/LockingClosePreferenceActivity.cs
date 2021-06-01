@@ -23,7 +23,8 @@ using KeePassLib.Serialization;
 namespace keepass2android
 {
 	
-	public class LockingClosePreferenceActivity : LockingPreferenceActivity {
+	public class LockingClosePreferenceActivity : LockingPreferenceActivity, ILockCloseActivity
+    {
 
 		
 		IOConnectionInfo _ioc;
@@ -32,10 +33,10 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			_ioc = App.Kp2a.GetDb().Ioc;
+			_ioc = App.Kp2a.CurrentDb.Ioc;
 
 
-			_intentReceiver = new LockingClosePreferenceActivityBroadcastReceiver(this);
+			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
 			RegisterReceiver(_intentReceiver, filter);
@@ -43,8 +44,12 @@ namespace keepass2android
 
 		protected override void OnResume() {
 			base.OnResume();
-			
-			TimeoutHelper.CheckShutdown(this, _ioc);
+
+		    if (TimeoutHelper.CheckDbChanged(this, _ioc))
+		    {
+		        Finish();
+		        return;
+		    }
 		}
 
 
@@ -62,33 +67,13 @@ namespace keepass2android
 			base.OnDestroy();
 		}
 
-		private void OnLockDatabase()
-		{
-			Kp2aLog.Log("Finishing " + ComponentName.ClassName + " due to database lock");
 
-			SetResult(KeePass.ExitLock);
-			Finish();
-		}
+        public void OnLockDatabase(bool lockedByTimeout)
+        {
+            TimeoutHelper.Lock(this, lockedByTimeout);
 
-		private class LockingClosePreferenceActivityBroadcastReceiver : BroadcastReceiver
-		{
-			readonly LockingClosePreferenceActivity _service;
-			public LockingClosePreferenceActivityBroadcastReceiver(LockingClosePreferenceActivity service)
-			{
-				_service = service;
-			}
-
-			public override void OnReceive(Context context, Intent intent)
-			{
-				switch (intent.Action)
-				{
-					case Intents.DatabaseLocked:
-						_service.OnLockDatabase();
-						break;
-				}
-			}
-		}
-	}
+        }
+    }
 
 }
 

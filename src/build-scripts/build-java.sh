@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+unset ANDROID_NDK_HOME ANDROID_NDK
+
 pushd ../java/
 
 pushd JavaFileStorageTest-AS
@@ -12,6 +14,10 @@ pushd KP2ASoftkeyboard_AS
 popd
 
 pushd Keepass2AndroidPluginSDK2
+./gradlew assemble
+popd
+
+pushd PluginQR
 ./gradlew assemble
 popd
 

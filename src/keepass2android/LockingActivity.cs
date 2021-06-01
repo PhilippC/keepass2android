@@ -43,35 +43,32 @@ namespace keepass2android
 	    {
 	        base.OnStart();
 
-	        if (App.Kp2a.GetDb().Loaded)
+	        var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	        if (CurrentlyWaitingKey == null && xcKey != null)
 	        {
-	            var xcKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
-	            if (xcKey != null)
-	            {
-	                xcKey.Activity = this;
-	                _currentlyWaitingKey = xcKey;
-
-	            }
-
+	            CurrentlyWaitingKey = xcKey;
 	        }
+	        if (CurrentlyWaitingKey != null)
+	        {
+	            CurrentlyWaitingKey.Activity = this;
+            }
 
-        }
+
+
+	    }
 
 	    protected override void OnStop()
 	    {
 	        base.OnStop();
-	        if (App.Kp2a.GetDb().Loaded)
+	        var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+	        if (xcKey != null)
 	        {
-	            var xcKey = App.Kp2a.GetDb().KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
-	            if (xcKey != null)
-	            {
-                    //don't store a pointer to this activity in the static database object to avoid memory leak
-                    if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
-	                    xcKey.Activity = null;
-	            }
-
+	            //don't store a pointer to this activity in the static database object to avoid memory leak
+	            if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
+	                xcKey.Activity = null;
 	        }
-        }
+
+	    }
 
 	    protected override void OnPause() {
 			base.OnPause();
@@ -93,29 +90,33 @@ namespace keepass2android
 
 	    public const int RequestCodeChallengeYubikey = 793;
 
-	    protected ChallengeXCKey _currentlyWaitingKey;
+        //need to store this in the App object to make sure it survives activity recreation
+	    protected ChallengeXCKey CurrentlyWaitingKey
+	    {
+	        get { return App.Kp2a._currentlyWaitingXcKey; }
+	        set { App.Kp2a._currentlyWaitingXcKey = value; }
+	    }
 
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-	    {
+        {
+            Kp2aLog.Log("LockingActivity: OnActivityResult " + (requestCode == RequestCodeChallengeYubikey ? "yubichall" : ""));
 	        base.OnActivityResult(requestCode, resultCode, data);
-	        if ((requestCode == RequestCodeChallengeYubikey) && (_currentlyWaitingKey != null))
+	        if ((requestCode == RequestCodeChallengeYubikey) && (CurrentlyWaitingKey != null))
 	        {
 	            if (resultCode == Result.Ok)
 	            {
 	                byte[] challengeResponse = data.GetByteArrayExtra("response");
 	                if ((challengeResponse != null) && (challengeResponse.Length > 0))
 	                {
-	                    _currentlyWaitingKey.Response = challengeResponse;
+	                    CurrentlyWaitingKey.Response = challengeResponse;
 	                }
 	                else
-	                    _currentlyWaitingKey.Error = "Did not receive a valid response.";
-	                    
-
+	                    CurrentlyWaitingKey.Error = "Did not receive a valid response.";
 	            }
 	            else
                 {
-                    _currentlyWaitingKey.Error = "Cancelled Yubichallenge.";
+                    CurrentlyWaitingKey.Error = "Cancelled Yubichallenge.";
                 }
 	            
             }

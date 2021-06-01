@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:paddingTop="1dip"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+				
+<LinearLayout
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content">
+
+
+    <TextView
+          android:id="@+id/title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="0dip"
+        style="@style/EntryFieldHeader"
+		  />
+		  
+		 
+    <TextView
+          android:id="@+id/extrakey"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="0dip"
+		 android:visibility="gone" />
+
+	<LinearLayout
+	android:id="@+id/filestorage_display"
+			android:orientation="horizontal"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content">
+
+			<ImageView
+				android:id="@+id/filestorage_logo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_storage_file"
+				android:padding="5dp"
+					
+				/>
+
+			<TextView
+		android:id="@+id/filestorage_label"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:text="Local file (...)"
+		android:textSize="16dp" >
+			</TextView>
+		</LinearLayout>
+
+			<TextView
+			android:id="@+id/label_filename"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="/keepass/keepass.kdbx"
+			android:layout_marginLeft="18dp"
+			 />
+		
+		<Button android:id="@+id/btn_change_location" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/button_change_location"
+			style="@style/TextAppearance_SubElement"
+			/>
+			
+			<TextView
+          android:id="@+id/value"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="0dip"
+		 android:visibility="gone" 
+		  />
+			
+			</LinearLayout>
+</RelativeLayout>

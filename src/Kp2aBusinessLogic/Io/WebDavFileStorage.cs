@@ -9,14 +9,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-#if !NoNet
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
 #endif
 using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
-#if !NoNet
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 	public class WebDavFileStorage: JavaFileStorage
 	{
 		public WebDavFileStorage(IKp2aApp app) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler), app)

@@ -55,7 +55,7 @@ namespace PluginTOTP
 				res.Duration = GetIntOrDefault(parameters, StepParameter, 30).ToString();
 				res.Length = GetIntOrDefault(parameters, SizeParameter, 6).ToString();
 
-				res.IsTotpEnry = true;
+				res.IsTotpEntry = true;
 				return res;
 
 			}

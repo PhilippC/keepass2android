@@ -24,7 +24,6 @@ import com.jcraft.jsch.UserInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 public class SftpStorage extends JavaFileStorageBase {
 
@@ -358,12 +357,10 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	}
 
-	@NonNull
 	private String getBaseDir() {
 		return _appContext.getFilesDir().getAbsolutePath();
 	}
 
-	@NonNull
 	private String getKeyFileName() {
 		return getBaseDir() + "/id_kp2a_rsa";
 	}

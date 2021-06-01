@@ -28,7 +28,7 @@ namespace keepass2android
 {
 	public class AddTemplateEntries : RunnableOnFinish {
 
-		class TemplateEntry
+		public class TemplateEntry
 		{
 			public UiStringKey Title { get; set; }
 			public PwIcon Icon { get; set; }
@@ -47,11 +47,12 @@ namespace keepass2android
 				void AddToEntry(IKp2aApp app, PwEntry entry, int position);
 			}
 
-			internal enum FieldType
+		    public enum FieldType
 			{
 				Inline, ProtectedInline
 			}
-			internal enum SpecialFieldKey
+
+		    public enum SpecialFieldKey
 			{
 				ExpDate, OverrideUrl, Tags
 			}
@@ -125,7 +126,7 @@ namespace keepass2android
 
 		protected Database Db
 		{
-			get { return _app.GetDb(); }
+			get { return _app.CurrentDb; }
 		}
 
 		private readonly IKp2aApp _app;
@@ -140,7 +141,7 @@ namespace keepass2android
 			//_onFinishToRun = new AfterAdd(this, OnFinishToRun);
 		}
 
-		static readonly List<TemplateEntry> TemplateEntries = new List<TemplateEntry>()
+		public static readonly List<TemplateEntry> TemplateEntries = new List<TemplateEntry>()
 			{
 				new TemplateEntry()
 				{
@@ -285,12 +286,23 @@ namespace keepass2android
 				
 			};
 
-		public static bool ContainsAllTemplates(IKp2aApp app)
+		public static bool ContainsAllTemplates(Database db)
 		{
-			return TemplateEntries.All(t => app.GetDb().Entries.ContainsKey(t.Uuid));
+			return TemplateEntries.All(t =>
+			{
+			    string hexId = t.Uuid.ToHexString();
+                
+                return db.EntriesById.Any(kvp => kvp.Key.Equals(t.Uuid) ||
+                    kvp.Value.Strings.ReadSafe(TemplateIdStringKey) == hexId);
+			});
 		}
 
-		public override void Run() {	
+	    public static string TemplateIdStringKey
+	    {
+	        get { return "KP2A_TemplateId"; }
+	    }
+
+	    public override void Run() {	
 			StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
 
 			List<PwEntry> addedEntries;
@@ -298,10 +310,10 @@ namespace keepass2android
 
 			if (addedEntries.Any())
 			{
-				_app.GetDb().Dirty.Add(templateGroup);
+				_app.DirtyGroups.Add(templateGroup);
 
 				// Commit to disk
-				SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
+				SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
 				save.SetStatusLogger(StatusLogger);
 				save.Run();
 			}
@@ -315,26 +327,28 @@ namespace keepass2android
 			}
 
 			PwGroup templateGroup;
-			if (!_app.GetDb().Groups.TryGetValue(_app.GetDb().KpDatabase.EntryTemplatesGroup, out templateGroup))
+			if (!_app.CurrentDb.GroupsById.TryGetValue(_app.CurrentDb.KpDatabase.EntryTemplatesGroup, out templateGroup))
 			{
 				//create template group
 				templateGroup = new PwGroup(true, true, _app.GetResourceString(UiStringKey.TemplateGroupName), PwIcon.Folder);
-				_app.GetDb().KpDatabase.RootGroup.AddGroup(templateGroup, true);
-				_app.GetDb().KpDatabase.EntryTemplatesGroup = templateGroup.Uuid;
-				_app.GetDb().KpDatabase.EntryTemplatesGroupChanged = DateTime.Now;
-				_app.GetDb().Dirty.Add(_app.GetDb().KpDatabase.RootGroup);
-				_app.GetDb().Groups[templateGroup.Uuid] = templateGroup;
+				_app.CurrentDb.KpDatabase.RootGroup.AddGroup(templateGroup, true);
+				_app.CurrentDb.KpDatabase.EntryTemplatesGroup = templateGroup.Uuid;
+				_app.CurrentDb.KpDatabase.EntryTemplatesGroupChanged = DateTime.Now;
+				_app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
+				_app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
+			    _app.CurrentDb.Elements.Add(templateGroup);
+
 			}
 			addedEntries = new List<PwEntry>();
 
 			foreach (var template in TemplateEntries)
 			{
-				if (_app.GetDb().Entries.ContainsKey(template.Uuid))
+				if (_app.CurrentDb.EntriesById.ContainsKey(template.Uuid))
 					continue;
 				PwEntry entry = CreateEntry(template);
 				templateGroup.AddEntry(entry, true);
 				addedEntries.Add(entry);
-				_app.GetDb().Entries[entry.Uuid] = entry;
+				_app.CurrentDb.EntriesById[entry.Uuid] = entry;
 			}
 			return templateGroup;
 		}
@@ -373,8 +387,12 @@ namespace keepass2android
 				base.Run();
 			}
 		}
-		
-		
+
+
+	    public static bool IsTemplateId(PwUuid pwUuid)
+	    {
+	        return TemplateEntries.Any(te => te.Uuid.Equals(pwUuid));
+	    }
 	}
 
 }

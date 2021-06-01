@@ -29,7 +29,8 @@ namespace keepass2android
 	/// Base class for activities displaying sensitive information. 
 	/// </summary>
 	/// Checks in OnResume whether the timeout occured and the database must be locked/closed.
-	public class LockCloseActivity : LockingActivity {
+	public class LockCloseActivity : LockingActivity, ILockCloseActivity
+    {
 		
 		//the check if the database was locked/closed can be disabled by the caller for activities
 		//which may be used "outside" the database (e.g. GeneratePassword for creating a master password)
@@ -54,16 +55,12 @@ namespace keepass2android
 		{
 			_design.ApplyTheme();
 			base.OnCreate(savedInstanceState);
+
+
+		    Util.MakeSecureDisplay(this);
 			
 
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
-				GetString(Resource.String.ViewDatabaseSecure_key), true))
-			{
-				Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);	
-			}
-			
-
-			_ioc = App.Kp2a.GetDb().Ioc;
+			_ioc = App.Kp2a.CurrentDb?.Ioc;
 
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;
@@ -106,45 +103,26 @@ namespace keepass2android
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;
 
-			if (TimeoutHelper.CheckShutdown(this, _ioc))
-				return;
+		    if (TimeoutHelper.CheckDbChanged(this, _ioc))
+		    {
+		        Finish();
+		        return;
+		    }
 
-			//todo: it seems like OnResume can be called after dismissing a dialog, e.g. the Delete-permanently-Dialog.
+		    //todo: it seems like OnResume can be called after dismissing a dialog, e.g. the Delete-permanently-Dialog.
 			//in this case the following check might run in parallel with the check performed during the SaveDb check (triggered after the 
 			//aforementioned dialog is closed) which can cause odd behavior. However, this is a rare case and hard to resolve so this is currently
 			//accepted. (If the user clicks cancel on the reload-dialog, everything will work.)
 			App.Kp2a.CheckForOpenFileChanged(this);
 		}
 
-		private void OnLockDatabase()
-		{
-			Kp2aLog.Log("Finishing " + ComponentName.ClassName + " due to database lock");
 
-			SetResult(KeePass.ExitLock);
-			Finish();
-		}
+        public void OnLockDatabase(bool lockedByTimeout)
+        {
+            TimeoutHelper.Lock(this, lockedByTimeout);
 
-		private class LockCloseActivityBroadcastReceiver : BroadcastReceiver
-		{			
-			readonly LockCloseActivity _activity;
-			public LockCloseActivityBroadcastReceiver(LockCloseActivity activity)
-			{
-				_activity = activity;
-			}
+        }
 
-			public override void OnReceive(Context context, Intent intent)
-			{
-				switch (intent.Action)
-				{
-					case Intents.DatabaseLocked:
-						_activity.OnLockDatabase();
-						break;
-					case Intent.ActionScreenOff:
-						App.Kp2a.OnScreenOff();
-						break;
-				}
-			}
-		}
 	}
 
 }

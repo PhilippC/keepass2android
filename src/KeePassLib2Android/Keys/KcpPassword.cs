@@ -53,7 +53,12 @@ namespace KeePassLib.Keys
 			get { return m_pbKeyData; }
 		}
 
-		public KcpPassword(byte[] pbPasswordUtf8)
+	    public uint GetMinKdbxVersion()
+	    {
+	        return 0;
+	    }
+
+	    public KcpPassword(byte[] pbPasswordUtf8)
 		{
 			SetKey(pbPasswordUtf8);
 		}

@@ -1,6 +1,6 @@
 ﻿/*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2021 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -33,8 +33,11 @@ namespace KeePassLib.Collections
 		private Dictionary<int, ProtectedBinary> m_d =
 			new Dictionary<int, ProtectedBinary>();
 
-		public ProtectedBinarySet()
+		private readonly bool m_bDedupAdd;
+
+		public ProtectedBinarySet(bool bDedupAdd)
 		{
+			m_bDedupAdd = bDedupAdd;
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
@@ -47,15 +50,10 @@ namespace KeePassLib.Collections
 			return m_d.GetEnumerator();
 		}
 
-		public void Clear()
-		{
-			m_d.Clear();
-		}
-
 		private int GetFreeID()
 		{
 			int i = m_d.Count;
-			while(m_d.ContainsKey(i)) { ++i; }
+			while (m_d.ContainsKey(i)) { ++i; }
 			Debug.Assert(i == m_d.Count); // m_d.Count should be free
 			return i;
 		}
@@ -63,7 +61,7 @@ namespace KeePassLib.Collections
 		public ProtectedBinary Get(int iID)
 		{
 			ProtectedBinary pb;
-			if(m_d.TryGetValue(iID, out pb)) return pb;
+			if (m_d.TryGetValue(iID, out pb)) return pb;
 
 			// Debug.Assert(false); // No assert
 			return null;
@@ -71,12 +69,12 @@ namespace KeePassLib.Collections
 
 		public int Find(ProtectedBinary pb)
 		{
-			if(pb == null) { Debug.Assert(false); return -1; }
+			if (pb == null) { Debug.Assert(false); return -1; }
 
 			// Fast search by reference
-			foreach(KeyValuePair<int, ProtectedBinary> kvp in m_d)
+			foreach (KeyValuePair<int, ProtectedBinary> kvp in m_d)
 			{
-				if(object.ReferenceEquals(pb, kvp.Value))
+				if (object.ReferenceEquals(pb, kvp.Value))
 				{
 					Debug.Assert(pb.Equals(kvp.Value));
 					return kvp.Key;
@@ -84,9 +82,9 @@ namespace KeePassLib.Collections
 			}
 
 			// Slow search by content
-			foreach(KeyValuePair<int, ProtectedBinary> kvp in m_d)
+			foreach (KeyValuePair<int, ProtectedBinary> kvp in m_d)
 			{
-				if(pb.Equals(kvp.Value)) return kvp.Key;
+				if (pb.Equals(kvp.Value)) return kvp.Key;
 			}
 
 			// Debug.Assert(false); // No assert
@@ -95,28 +93,26 @@ namespace KeePassLib.Collections
 
 		public void Set(int iID, ProtectedBinary pb)
 		{
-			if(iID < 0) { Debug.Assert(false); return; }
-			if(pb == null) { Debug.Assert(false); return; }
+			if (iID < 0) { Debug.Assert(false); return; }
+			if (pb == null) { Debug.Assert(false); return; }
 
 			m_d[iID] = pb;
 		}
 
 		public void Add(ProtectedBinary pb)
 		{
-			if(pb == null) { Debug.Assert(false); return; }
+			if (pb == null) { Debug.Assert(false); return; }
 
-			int i = Find(pb);
-			if(i >= 0) return; // Exists already
+			if (m_bDedupAdd && (Find(pb) >= 0)) return; // Exists already
 
-			i = GetFreeID();
-			m_d[i] = pb;
+			m_d[GetFreeID()] = pb;
 		}
 
 		public void AddFrom(ProtectedBinaryDictionary d)
 		{
-			if(d == null) { Debug.Assert(false); return; }
+			if (d == null) { Debug.Assert(false); return; }
 
-			foreach(KeyValuePair<string, ProtectedBinary> kvp in d)
+			foreach (KeyValuePair<string, ProtectedBinary> kvp in d)
 			{
 				Add(kvp.Value);
 			}
@@ -124,16 +120,16 @@ namespace KeePassLib.Collections
 
 		public void AddFrom(PwGroup pg)
 		{
-			if(pg == null) { Debug.Assert(false); return; }
+			if (pg == null) { Debug.Assert(false); return; }
 
-			EntryHandler eh = delegate(PwEntry pe)
+			EntryHandler eh = delegate (PwEntry pe)
 			{
-				if(pe == null) { Debug.Assert(false); return true; }
+				if (pe == null) { Debug.Assert(false); return true; }
 
 				AddFrom(pe.Binaries);
-				foreach(PwEntry peHistory in pe.History)
+				foreach (PwEntry peHistory in pe.History)
 				{
-					if(peHistory == null) { Debug.Assert(false); continue; }
+					if (peHistory == null) { Debug.Assert(false); continue; }
 					AddFrom(peHistory.Binaries);
 				}
 
@@ -148,9 +144,9 @@ namespace KeePassLib.Collections
 			int n = m_d.Count;
 			ProtectedBinary[] v = new ProtectedBinary[n];
 
-			foreach(KeyValuePair<int, ProtectedBinary> kvp in m_d)
+			foreach (KeyValuePair<int, ProtectedBinary> kvp in m_d)
 			{
-				if((kvp.Key < 0) || (kvp.Key >= n))
+				if ((kvp.Key < 0) || (kvp.Key >= n))
 				{
 					Debug.Assert(false);
 					throw new InvalidOperationException();
@@ -159,9 +155,9 @@ namespace KeePassLib.Collections
 				v[kvp.Key] = kvp.Value;
 			}
 
-			for(int i = 0; i < n; ++i)
+			for (int i = 0; i < n; ++i)
 			{
-				if(v[i] == null)
+				if (v[i] == null)
 				{
 					Debug.Assert(false);
 					throw new InvalidOperationException();

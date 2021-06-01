@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Teclado Keepass2Android</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Configurações do teclado Android</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Opções de entrada</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Vibrar ao pressionar tecla</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Som ao pressionar tecla</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Popup ao pressionar tecla</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Corrigir erros de digitação</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Ativar correção de erro de digitação</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Erros de entrada em modo paisagem</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Ativar correção de erro de digitação</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Sugestões de palavra</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Corrigir automaticamente a palavra anterior</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Sugestões de palavra</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Configurações de sugestão de palavra</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Ativar autocompletar durante digitação</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Autocompletar</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Aumentar tamanho do campo de texto</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Ocultar sugestões de palavras em modo paisagem</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Capitalização automática</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Iniciar uma sentença com letra maiúscula</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Pontuação automática</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Correções rápidas</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Corrigir erros digitados frequentemente</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Mostrar sugestões</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Exibir palavras sugeridas durante a digitação</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Autocompletar</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Barra de espaço e pontuação inserem automaticamente a palavra destacada</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Mostrar tecla de configurações</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Automático</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Exibir sempre</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Ocultar sempre</string>
+    <!-- Array of the settings key modes -->
+    <!-- Option to enable bigram completion -->
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Usar palavra anterior para melhorar a sugestão</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Nada</item>
+        <item>Básico</item>
+        <item>Avançado</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : Salvo</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Segure a tecla para ver acentos (ø, ö, etc.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Pressione a tecla voltar \u21B6 para fechar o teclado a qualquer momento</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Acessar números e símbolos</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Pressione e segure a palavra mais à esquerda para adicioná-la ao dicionário
+        </string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Toque nesta dica para continuar »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Toque aqui para fechar esta dica e começar a digitar!</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>O teclado abre sempre que você tocar um campo de texto</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>Toque em &amp; segure uma tecla para ver os acentos\n(ø, o├, o├, o├,  etc.)</b>
+    </string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>Alterne para números e símbolos tocando esta tecla</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>Volte para as letras tocando nessa tecla novamente</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>Toque em &amp; segure esta tecla para alterar as configurações do teclado, como auto completar</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>Experimente!</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Ir</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Próximo</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Feito</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Enviar</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Entrada por voz</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">A entrada por voz não é atualmente suportada para o seu idioma, mas funciona em inglês.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Entrada de voz é um recurso experimental usando o reconhecimento de fala em rede do Google.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Para desativar a entrada por voz, vá para as configurações do teclado.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Para usar entrada de voz, pressione o botão do microfone ou deslize seu dedo através do teclado na tela.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Fale agora</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Processando</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Erro. Por favor tente novamente.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Não foi possível se conectar</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Erro, muita fala de uma vez.</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Problema de áudio</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Erro no servidor</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Nenhuma fala ouvida</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Nenhum resultado encontrado</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Pesquisa de voz não instalada</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>Dica:</b> Deslize pelo teclado para falar</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>Dica:</b> Da próxima vez, tente falar pontuações como \"ponto\", \"vírgula\" ou \"ponto de interrogação\".</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Cancelar</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">OK</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Entrada por voz</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>No teclado principal</item>
+        <item>No teclado de símbolos</item>
+        <item>Desativado</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Microfone no teclado principal</item>
+        <item>Microfone no teclado de símbolos</item>
+        <item>Entrada por voz desativada</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Submeter automaticamente após fala</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Pressionar enter automaticamente quando estiver pesquisando ou indo para o próximo campo.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>Abra o teclado\n</b></font><font size="3">\n</font>Toque em qualquer campo de texto.</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>Feche o teclado\n</b></font><font size="3">\n</font>Pressione o botão de voltar.</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>Toque em \u0026 segure uma tecla para opções\n</b></font><font size="3">\n</font>Acesse pontuações e acentos.</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>Configurações do teclado\n</b></font><font size="3">\n</font>Toque em \u0026 e segure a tecla <b>\?123\</b>.</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Selecionar método de entrada</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Idiomas de entrada</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Deslize o dedo na barra de espaço para mudar o idioma</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">\u2190 Toque novamente para salvar</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Dicionário disponível</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Ativar feedback do usuário</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Ajude a melhorar este editor de métodos de entrada enviando automaticamente estatísticas de uso e relatórios de erro para o Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Toque para corrigir as palavras</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Toque nas palavras inseridas para corrigi-las</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Tema do Teclado</string>
+    <string name="subtype_mode_keyboard">teclado</string>
+    <string name="subtype_mode_voice">voz</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
+</resources>

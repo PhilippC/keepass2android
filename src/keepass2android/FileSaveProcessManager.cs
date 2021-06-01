@@ -10,16 +10,6 @@ namespace keepass2android
 {
     public abstract class FileSaveProcessManager
     {
-        private static string ConvertFilenameToIocPath(string filename)
-        {
-            if ((filename != null) && (filename.StartsWith("file://")))
-            {
-                filename = filename.Substring(7);
-                filename = Java.Net.URLDecoder.Decode(filename);
-            }
-            return filename;
-        }
-
 
         protected readonly int _requestCode;
         protected readonly Activity _activity;
@@ -45,7 +35,7 @@ namespace keepass2android
                     }
                     else
                     {
-                        FileSelectHelper fileSelectHelper = new FileSelectHelper(_activity, true, _requestCode);
+                        FileSelectHelper fileSelectHelper = new FileSelectHelper(_activity, true, true, _requestCode);
                         fileSelectHelper.OnOpen += (sender, ioc) =>
                         {
                             SaveFile(ioc);
@@ -62,15 +52,15 @@ namespace keepass2android
                 if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
                 {
                     var ioc = new IOConnectionInfo();
-                    PasswordActivity.SetIoConnectionFromIntent(ioc, data);
+                    Util.SetIoConnectionFromIntent(ioc, data);
                     SaveFile(ioc);
                     return true;
                 }
                 if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
                 {
                     IOConnectionInfo ioc = new IOConnectionInfo();
-                    PasswordActivity.SetIoConnectionFromIntent(ioc, data);
-                    new FileSelectHelper(_activity, true, _requestCode).StartFileChooser(ioc.Path);
+                    Util.SetIoConnectionFromIntent(ioc, data);
+                    new FileSelectHelper(_activity, true, true, _requestCode).StartFileChooser(ioc.Path);
                     return true;
                 }
                 if (resultCode == Result.Ok)
@@ -108,7 +98,7 @@ namespace keepass2android
 
                         if (fileExists)
                         {
-                            SaveFile(new IOConnectionInfo { Path = ConvertFilenameToIocPath(filename) });
+                            SaveFile(new IOConnectionInfo { Path = FileSelectHelper.ConvertFilenameToIocPath(filename) });
 
                         }
                         else
@@ -120,7 +110,7 @@ namespace keepass2android
                                     Toast.MakeText(activity, messageOrFilename, ToastLength.Long).Show();
                                     return;
                                 }
-                                SaveFile(new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) });
+                                SaveFile(new IOConnectionInfo { Path = FileSelectHelper.ConvertFilenameToIocPath(messageOrFilename) });
 
 
                             }), filename);

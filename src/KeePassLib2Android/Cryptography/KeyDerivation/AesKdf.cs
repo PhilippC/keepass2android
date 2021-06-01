@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-
+using keepass2android;
 #if KeePassUAP
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
@@ -144,6 +144,7 @@ namespace KeePassLib.Cryptography.KeyDerivation
 		public static bool TransformKeyManaged(byte[] pbNewKey32, byte[] pbKeySeed32,
 			ulong uNumRounds)
 		{
+		    Kp2aLog.Log("Warning: transforming key managed. Expect this to be slow!");
 #if KeePassUAP
 			KeyParameter kp = new KeyParameter(pbKeySeed32);
 			AesEngine aes = new AesEngine();

@@ -28,15 +28,29 @@ using KeePassLib.Resources;
 namespace KeePassLib.Cryptography.Cipher
 {
 	public sealed class ChaCha20Engine : ICipherEngine2
-	{
-		private PwUuid m_uuid = new PwUuid(new byte[] {
-			0xD6, 0x03, 0x8A, 0x2B, 0x8B, 0x6F, 0x4C, 0xB5,
-			0xA5, 0x24, 0x33, 0x9A, 0x31, 0xDB, 0xB5, 0x9A
-		});
+    {
+        private static PwUuid m_uuid = null;
+
+        internal static PwUuid ChaCha20Uuid
+        {
+            get
+            {
+                PwUuid pu = m_uuid;
+                if (pu == null)
+                {
+                    pu = new PwUuid(new byte[] {
+                        0xD6, 0x03, 0x8A, 0x2B, 0x8B, 0x6F, 0x4C, 0xB5,
+                        0xA5, 0x24, 0x33, 0x9A, 0x31, 0xDB, 0xB5, 0x9A });
+                    m_uuid = pu;
+                }
+
+                return pu;
+            }
+        }
 
 		public PwUuid CipherUuid
 		{
-			get { return m_uuid; }
+			get { return ChaCha20Uuid; }
 		}
 
 		public string DisplayName

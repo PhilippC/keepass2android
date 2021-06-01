@@ -8,12 +8,14 @@ namespace keepass2android
 	/// </summary>
 	class GotoUrlMenuItem : IPopupMenuItem
 	{
-		private readonly EntryActivity _ctx;
+        public string UrlFieldKey { get; }
+        private readonly EntryActivity _ctx;
 
-		public GotoUrlMenuItem(EntryActivity ctx)
-		{
-			_ctx = ctx;
-		}
+		public GotoUrlMenuItem(EntryActivity ctx, string urlFieldKey)
+        {
+            UrlFieldKey = urlFieldKey;
+            _ctx = ctx;
+        }
 
 		public Drawable Icon
 		{
@@ -27,7 +29,7 @@ namespace keepass2android
 
 		public void HandleClick()
 		{
-			_ctx.GotoUrl();
+			_ctx.GotoUrl(UrlFieldKey);
 		}
 	}
 }

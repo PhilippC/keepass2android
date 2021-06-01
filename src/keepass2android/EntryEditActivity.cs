@@ -33,9 +33,17 @@ using KeePassLib.Security;
 using Android.Content.PM;
 using System.IO;
 using System.Globalization;
+using System.Net;
+using System.Text;
+using Android.Content.Res;
 using Android.Database;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Util;
+using keepass2android.Io;
+using KeePassLib.Serialization;
+using KeeTrayTOTP.Libraries;
+using PluginTOTP;
 using Debug = System.Diagnostics.Debug;
 using File = System.IO.File;
 using Object = Java.Lang.Object;
@@ -43,7 +51,7 @@ using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
 	    
 
@@ -53,11 +61,16 @@ namespace keepass2android
 		public const String KeyTemplateUuid = "KeyTemplateUuid";
 		
 		public const int ResultOkIconPicker = (int)Result.FirstUser + 1000;
+		//Certain additional (=extra) fields may have type="file". These fields show a browse button which triggers the file selection process, involving several activities.
+		//The same requestCode is used for all such fields. We store the field key to which the last triggered process belongs in the Activity state. 
+		public const int requestCodeSelectFileExtra = 44000;
 		
 
 		const string IntentContinueWithEditing = "ContinueWithEditing";
 
-		EntryEditActivityState State
+        private PasswordFont _passwordFont = new PasswordFont();
+
+        EntryEditActivityState State
 		{
 			get { return App.Kp2a.EntryEditActivityState; }
 		}
@@ -86,8 +99,17 @@ namespace keepass2android
 
 		bool _closeForReload;
 
-		AppTask _appTask;
-		
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -100,10 +122,12 @@ namespace keepass2android
 				return;
 			}
 
-			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			SetContentView(Resource.Layout.entry_edit);
 			_closeForReload = false;
+
+            Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.entry_scroll));
 
 			// Likely the app has been killed exit the activity
 			if (!App.Kp2a.DatabaseIsUnlocked)
@@ -120,7 +144,7 @@ namespace keepass2android
 
 			} else
 			{
-				Database db = App.Kp2a.GetDb();
+				Database db = App.Kp2a.CurrentDb;
 
 				App.Kp2a.EntryEditActivityState = new EntryEditActivityState();
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
@@ -144,7 +168,7 @@ namespace keepass2android
 					PwEntry templateEntry = null;
 					if (!PwUuid.Zero.Equals(templateId))
 					{
-						templateEntry = db.Entries[templateId];
+						templateEntry = db.EntriesById[templateId];
 					}
 					
 					if (KpEntryTemplatedEdit.IsTemplate(templateEntry))
@@ -160,7 +184,7 @@ namespace keepass2android
 						CreateNewWithoutTemplate(db);
 					}
 					
-					_appTask.PrepareNewEntry(State.EntryInDatabase);
+					AppTask.PrepareNewEntry(State.EntryInDatabase);
 					State.IsNew = true;
 					State.EntryModified = true;
 					
@@ -170,17 +194,22 @@ namespace keepass2android
 					
 					Debug.Assert(entryId != null);
 					
-					State.EntryInDatabase = db.Entries [entryId];
+					State.EntryInDatabase = db.EntriesById [entryId];
 					State.IsNew = false;
 					
 					
 				} 
 				
 				State.Entry = State.EntryInDatabase.CloneDeep();
-				if (KpEntryTemplatedEdit.IsTemplated(db, State.Entry))
-					State.EditMode = new KpEntryTemplatedEdit(db, State.Entry);
-				else
-					State.EditMode = new DefaultEdit();
+			    if (State.Entry.ParentGroup != null && State.Entry.ParentGroup.Name.Equals("AutoOpen", StrUtil.CaseIgnoreCmp))
+			        State.EditMode = new AutoOpenEdit(State.Entry);
+			    else if (KpEntryTemplatedEdit.IsTemplated(db, State.Entry))
+			        State.EditMode = new KpEntryTemplatedEdit(db, State.Entry);
+			    else
+			        State.EditMode = new DefaultEdit();
+
+
+			    State.EditMode.InitializeEntry(State.Entry);
 
 			}
 		
@@ -199,7 +228,7 @@ namespace keepass2android
 			
 			if (State.SelectedIcon)
 			{
-				App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.GetDb().KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
+				App.Kp2a.CurrentDb.DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.CurrentDb.KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
 			}
 			iconButton.Click += (sender, evt) => {
 				UpdateEntryFromUi(State.Entry);
@@ -263,8 +292,36 @@ namespace keepass2android
 				EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
 			};
 			SetAddExtraStringEnabled();
-		
-			((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).CheckedChange += (sender, e) => 
+			
+
+            Button configureTotpButton = (Button)FindViewById(Resource.Id.configure_totp);
+
+            configureTotpButton.Visibility = CanConfigureOtpSettings() ? ViewStates.Gone : ViewStates.Visible;
+			configureTotpButton.Click += (sender, e) =>
+            {
+                bool added = false;
+                View ees = FindExtraEditSection("otp");
+				if (ees == null)
+                {
+                    LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
+
+                    KeyValuePair<string, ProtectedString> pair =
+                        new KeyValuePair<string, ProtectedString>("otp", new ProtectedString(true, ""));
+                    ees = CreateExtraStringView(pair);
+                    container.AddView(ees);
+                    added = true;
+                }
+                
+
+				EditTotpString(ees.FindViewById(Resource.Id.edit_extra));
+            };
+
+			FindViewById(Resource.Id.entry_extras_container).Visibility =
+		        State.EditMode.ShowAddExtras || State.Entry.Strings.Any(s => !PwDefs.IsStandardField(s.Key)) ? ViewStates.Visible : ViewStates.Gone;
+		    FindViewById(Resource.Id.entry_binaries_container).Visibility =
+		        State.EditMode.ShowAddAttachments || State.Entry.Binaries.Any() ? ViewStates.Visible : ViewStates.Gone;
+
+            ((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).CheckedChange += (sender, e) => 
 			{
 				State.Entry.Expires = e.IsChecked;
 				if (e.IsChecked)
@@ -276,8 +333,10 @@ namespace keepass2android
 				State.EntryModified = true;
 			};
 
+            
 
-		}
+
+        }
 
 	    protected override void OnStart()
 	    {
@@ -371,17 +430,26 @@ namespace keepass2android
 
 		private void SetAddExtraStringEnabled()
 		{
-			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveCustomFields)
-				((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Gone;
+			((Button)FindViewById(Resource.Id.add_advanced)).Visibility = (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveCustomFields || !State.EditMode.ShowAddExtras) ? ViewStates.Gone : ViewStates.Visible;
+            ((Button)FindViewById(Resource.Id.configure_totp)).Visibility = CanConfigureOtpSettings() ? ViewStates.Gone : ViewStates.Visible;
 		}
 
-		private void MakePasswordVisibleOrHidden()
+        private bool CanConfigureOtpSettings()
+        {
+            return (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveCustomFields || !State.EditMode.ShowAddExtras) 
+                && (new Kp2aTotp().TryGetAdapter(new PwEntryOutput(State.Entry, App.Kp2a.CurrentDb)) == null || (State.Entry.Strings.GetKeys().Contains("otp"))) //only allow to edit KeeWeb/KeepassXC style otps
+                ;
+        }
+
+        private void MakePasswordVisibleOrHidden()
 		{
-			TextView password = (TextView) FindViewById(Resource.Id.entry_password);
+		    EditText password = (EditText) FindViewById(Resource.Id.entry_password);
 			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
+			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
 			if (State.ShowPassword)
 			{
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+                _passwordFont.ApplyTo(password);
 				confpassword.Visibility = ViewStates.Gone;
 			}
 			else
@@ -389,11 +457,12 @@ namespace keepass2android
 				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 				confpassword.Visibility = ViewStates.Visible;
 			}
+			password.SetSelection(selStart, selEnd);
 		}
 
 		void SaveEntry()
 		{
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			EntryEditActivity act = this;
 			
 			if (!ValidateBeforeSaving())
@@ -432,6 +501,8 @@ namespace keepass2android
 			{
 				newEntry.ExpiryTime = State.Entry.ExpiryTime;
 			}
+
+		    State.EditMode.PrepareForSaving(newEntry);
 
 			
 			newEntry.Touch(true, false); // Touch *after* backup
@@ -472,21 +543,26 @@ namespace keepass2android
 			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) => {
 				if (success)
 				{
-				    activity.Finish();
+                    activity?.Finish();
 				} else
 				{
-					OnFinish.DisplayMessage(activity, message);
+				    OnFinish.DisplayMessage(activity, message, true);
+                    //Re-initialize for editing:
+                    State.EditMode.InitializeEntry(State.Entry);
 				}
 			});
+            //make sure we can close the EntryEditActivity activity even if the app went to background till we get to the OnFinish Action
+			closeOrShowError.AllowInactiveActivity = true;
+			
 
 			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
 			{
-				if (success)
-					_appTask.AfterAddNewEntry((EntryEditActivity)activity, newEntry);
+				if (success && activity is EntryEditActivity entryEditActivity)
+					AppTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
-				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry);
+				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry, db);
 			} else {
 				runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}
@@ -498,7 +574,7 @@ namespace keepass2android
 
 		void UpdateEntryFromUi(PwEntry entry)
 		{
-			Database db = App.Kp2a.GetDb();
+			Database db = App.Kp2a.CurrentDb;
 			EntryEditActivity act = this;
 
 			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(db.KpDatabase.MemoryProtection.ProtectTitle,
@@ -525,7 +601,7 @@ namespace keepass2android
 			}
 			else
 			{
-				State.Entry.ExpiryTime = newExpiry;
+				State.Entry.ExpiryTime = newExpiry.ToUniversalTime();
 			}
 
 			// Delete all non standard strings
@@ -538,18 +614,18 @@ namespace keepass2android
 			
 			for (int index = 0; index < container.ChildCount; index++) {
 				View view = container.GetChildAt(index);
-				
-				TextView keyView = (TextView)view.FindViewById(Resource.Id.title);
+				TextView keyView = (TextView)view.FindViewById(Resource.Id.extrakey);
 				String key = keyView.Text;
 
 				if (String.IsNullOrEmpty(key))
 					continue;
 
 				TextView valueView = (TextView)view.FindViewById(Resource.Id.value);
-				String value = valueView.Text;
+                
 
+                String value = valueView.Text;
 
-				bool protect = ((CheckBox) view.FindViewById(Resource.Id.protection)).Checked;
+				bool protect = ((CheckBox) view.FindViewById(Resource.Id.protection))?.Checked ?? State.EntryInDatabase.Strings.GetSafe(key).IsProtected;
 				entry.Strings.Set(key, new ProtectedString(protect, value));
 			}
 			
@@ -685,7 +761,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			_appTask.ToBundle(outState);
+			AppTask.ToBundle(outState);
 		}
 
 		public override void OnBackPressed()
@@ -736,7 +812,19 @@ namespace keepass2android
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 		    base.OnActivityResult(requestCode, resultCode, data);
-			switch (resultCode)
+
+		    FileSelectHelper fileSelectHelper = new FileSelectHelper(this, false, true, requestCodeSelectFileExtra);
+		    fileSelectHelper.OnOpen += (sender, info) =>
+		    {
+		        State.EntryModified = true;
+		        var ees = FindExtraEditSection(State.LastTriggeredFileSelectionProcessKey);
+		        (sender as EntryEditActivity ?? this).UpdateFileView(ees, info.Path);
+		    };
+
+		    if (fileSelectHelper.HandleActivityResult(this, requestCode, resultCode, data))
+		        return;
+
+            switch (resultCode)
 			{
 			case (Result)ResultOkIconPicker:
 				State.SelectedIconId = (PwIcon) data.Extras.GetInt(IconPickerActivity.KeyIconId,(int)PwIcon.Key);
@@ -747,19 +835,19 @@ namespace keepass2android
 				State.SelectedIcon = true;
 				State.EntryModified = true;
 				Reload();
-				break;
+				return;
 				
 			case KeePass.ResultOkPasswordGenerator:
 				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
 				
 				byte[] password = StrUtil.Utf8.GetBytes(generatedPassword);
-				State.Entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.GetDb().KpDatabase.MemoryProtection.ProtectPassword,
+				State.Entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(App.Kp2a.CurrentDb.KpDatabase.MemoryProtection.ProtectPassword,
 			                                                            password));
 				MemUtil.ZeroByteArray(password);
 
 				State.EntryModified = true;
 				Reload();
-				break;
+				return;
 			case Result.Ok:
 				if (requestCode == Intents.RequestCodeFileBrowseForBinary)
 				{
@@ -776,11 +864,30 @@ namespace keepass2android
 					}
 				    _uriToAddOrAsk = uri; //we can't launch a dialog in onActivityResult, so delay this to onResume		
 				}
-				break;
+				return;
 			case Result.Canceled:
 				Reload();
-				break;
+				return;
 			}
+			
+		}
+		
+		View FindExtraEditSection(string key)
+		{
+			
+			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
+			for (int i = 0; i < container.ChildCount; i++) 
+			{
+				var ees = container.GetChildAt(i);	
+				var extra_key_view = ees.FindViewById<TextView>(Resource.Id.extrakey);
+				if (extra_key_view != null && extra_key_view.Text == key)
+				{
+					return ees;
+				}
+			}
+
+			return null;
+			
 		}
 
 		void PopulateBinaries()
@@ -792,7 +899,7 @@ namespace keepass2android
 			{
 				String key = pair.Key;
 				String label = key;
-				if ((String.IsNullOrEmpty(label) || (!App.Kp2a.GetDb().DatabaseFormat.SupportsAttachmentKeys)))
+				if ((String.IsNullOrEmpty(label) || (!App.Kp2a.CurrentDb.DatabaseFormat.SupportsAttachmentKeys)))
 				{
 					label = "<attachment>";
 				}
@@ -820,18 +927,21 @@ namespace keepass2android
 
 			addBinaryButton.Enabled = true;
             
-			if (!App.Kp2a.GetDb().DatabaseFormat.CanHaveMultipleAttachments)
+			if (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveMultipleAttachments)
 				addBinaryButton.Enabled = !State.Entry.Binaries.Any();
 			addBinaryButton.Click += (sender, e) => 
 			{
 				Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false, true /*force OpenDocument if available, GetContent is not well support starting with Android 7 */);
 
 			};
+			
 			binariesGroup.AddView(addBinaryButton,layoutParams);
 
 			var binariesLabel = FindViewById(Resource.Id.entry_binaries_label);
 			if (binariesLabel != null)
 				binariesLabel.Visibility = State.Entry.Binaries.UCount > 0 ? ViewStates.Visible : ViewStates.Gone;
+			
+			binariesGroup.Visibility = State.EditMode.ShowAddAttachments  ? ViewStates.Visible : ViewStates.Gone;
 		}
 
 		public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -863,7 +973,16 @@ namespace keepass2android
 					item.SetVisible(false);
 					foreach (View v in _editModeHiddenViews)
 						v.Visibility = ViewStates.Visible;
-					return true;
+                    State.EditMode.ShowAddAttachments = true;
+                    State.EditMode.ShowAddExtras = true;
+                    ViewGroup binariesGroup = (ViewGroup)FindViewById(Resource.Id.binaries);
+                    binariesGroup.Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.entry_binaries_container).Visibility = ViewStates.Visible;
+                    ((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Visible;
+                    ((Button)FindViewById(Resource.Id.configure_totp)).Visibility = ViewStates.Visible;
+					FindViewById(Resource.Id.entry_extras_container).Visibility = ViewStates.Visible;
+
+                    return true;
                 case Android.Resource.Id.Home:
                     OnBackPressed();
 			        return true;
@@ -896,19 +1015,99 @@ namespace keepass2android
 			return this;
 		}*/
 
-        RelativeLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair)
+		void UpdateFileView(View ees, string newValue)
 		{
-            RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
-	        var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
-	        titleView.Text = pair.Key;
-	        ((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
-			((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
+			var valueView = ((TextView)ees.FindViewById(Resource.Id.value));
+			valueView.Text = newValue;
+			IFileStorage fileStorage = null;
+			var ioc = IOConnectionInfo.FromPath(newValue);
+			try{
+				fileStorage = App.Kp2a.GetFileStorage(ioc);
+			}
+			catch (NoFileStorageFoundException ex)
+			{
+				//ignore.
+			}
+			ees.FindViewById(Resource.Id.filestorage_display).Visibility = 
+				ees.FindViewById(Resource.Id.filestorage_display).Visibility = (string.IsNullOrEmpty(newValue) && fileStorage != null) ? ViewStates.Gone : ViewStates.Visible;
+			if (fileStorage != null)
+			{
+				int protocolSeparatorPos = ioc.Path.IndexOf("://", StringComparison.Ordinal);
+				string protocolId = protocolSeparatorPos < 0 ?
+					"file" : ioc.Path.Substring(0, protocolSeparatorPos);
+				Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
+				ees.FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
+
+				String fs_title = App.Kp2a.GetStorageDisplayName(protocolId);
+				ees.FindViewById<TextView>(Resource.Id.filestorage_label).Text = fs_title;
+
+			    string displayPath = fileStorage.GetDisplayName(ioc);
+                protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+                ees.FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
+					displayPath :
+					displayPath.Substring(protocolSeparatorPos + 3);
+					
+			}
 			
-			((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
-			
-			//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
-			ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
-			return ees;
+		}
+		
+        RelativeLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair, string title = null, string type = "")
+		{
+			if (title == null)
+				title = pair.Key;
+			if (type == "bool")
+			{
+				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section_bool, null);
+                ees.Tag = pair.Key;
+				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
+				var checkbox = ((CheckBox)ees.FindViewById(Resource.Id.checkbox));
+			    var valueView = ((TextView)ees.FindViewById(Resource.Id.value));
+                keyView.Text = pair.Key;
+				checkbox.Checked = pair.Value.ReadString().Equals("True", StrUtil.CaseIgnoreCmp);
+				checkbox.Text = title;
+			    valueView.Text = checkbox.Checked.ToString();
+                checkbox.CheckedChange += (sender, e) =>
+				{
+				    valueView.Text = checkbox.Checked.ToString();
+				    State.EntryModified = true;
+				};
+				return ees;
+			}
+			else if (type == "file")
+			{
+				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section_file, null);
+                ees.Tag = pair.Key;
+				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
+				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
+				keyView.Text = pair.Key;
+				titleView.Text = title;
+				UpdateFileView(ees, pair.Value.ReadString());
+				ees.FindViewById(Resource.Id.btn_change_location).Click += (sender, e) =>  
+				{
+					State.LastTriggeredFileSelectionProcessKey = pair.Key;
+					Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+					StartActivityForResult(intent, requestCodeSelectFileExtra);
+				};
+				
+				return ees;
+			}
+			else
+			{
+				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
+                ees.Tag = pair.Key;
+				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
+				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
+				keyView.Text = pair.Key;
+				titleView.Text = title;
+				((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
+				((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
+                _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
+                ((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
+				
+				//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
+				ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
+				return ees;
+			}
 		}
 
 	    private string[] _additionalKeys = null;
@@ -921,7 +1120,7 @@ namespace keepass2android
 		    {
 			    if (_additionalKeys == null)
 			    {
-				    _additionalKeys = App.Kp2a.GetDb().Entries
+				    _additionalKeys = App.Kp2a.CurrentDb.EntriesById
 						.Select(kvp => kvp.Value)
 						.SelectMany(x => x.Strings.GetKeys().Where(k => !PwDefs.IsStandardField(k)))
 						.Where(k => (k != null) && !k.StartsWith("_etm_") )
@@ -932,8 +1131,184 @@ namespace keepass2android
 		    }
 		    
 	    }
+		
+        private void EditTotpString(View sender)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            View dlgView = LayoutInflater.Inflate(Resource.Layout.
+                configure_totp_dialog, null);
 
-	    private void EditAdvancedString(View sender)
+
+
+            builder.SetView(dlgView);
+            builder.SetNegativeButton(Android.Resource.String.Cancel, (o, args) => { });
+            builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
+            {
+                
+                var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                if (targetField != null)
+                {
+                    string entryTitle = Util.GetEditText(this, Resource.Id.entry_title);
+                    string username = Util.GetEditText(this, Resource.Id.entry_user_name);
+                    string secret = dlgView.FindViewById<TextView>(Resource.Id.totp_secret_key).Text;
+                    string totpLength = dlgView.FindViewById<EditText>(Resource.Id.totp_length).Text;
+                    string timeStep = dlgView.FindViewById<EditText>(Resource.Id.totp_time_step).Text;
+                    var checkedTotpId = (int)dlgView.FindViewById<RadioGroup>(Resource.Id.totp_encoding).CheckedRadioButtonId;
+                    TotpEncoding encoding = (checkedTotpId == Resource.Id.totp_encoding_steam)
+                        ? TotpEncoding.Steam : (checkedTotpId == Resource.Id.totp_encoding_rfc6238 ? TotpEncoding.Default : TotpEncoding.Custom);
+                    var algorithm = (int)dlgView.FindViewById<Spinner>(Resource.Id.totp_algorithm).SelectedItemPosition;
+
+                    targetField.Text = BuildOtpString(entryTitle, username, secret, totpLength, timeStep, encoding, algorithm);
+				}
+                else
+                {
+					Toast.MakeText(this, "did not find target field", ToastLength.Long).Show();
+                }
+                
+				
+				//not calling State.Entry.Strings.Set(...). We only do this when the user saves the changes.
+				State.EntryModified = true;
+
+			});
+            Dialog dialog = builder.Create();
+
+            dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_custom).CheckedChange += (o, args) =>
+            {
+                dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = args.IsChecked ? ViewStates.Visible : ViewStates.Gone;
+            };
+
+
+			//copy values from entry into dialog
+			View ees = (View)sender.Parent;
+            TotpData totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(State.Entry, App.Kp2a.CurrentDb));
+            if (totpData != null)
+            {
+                dlgView.FindViewById<TextView>(Resource.Id.totp_secret_key).Text = totpData.TotpSeed;
+                if (totpData.Encoder == TotpData.EncoderSteam)
+                {
+                    dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_steam).Checked = true;
+                } 
+                else if ((totpData.Encoder == TotpData.EncoderRfc6238) && (totpData.IsDefaultRfc6238))
+				{
+                    dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_rfc6238).Checked = true;
+				}
+				else
+                {
+                    dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_custom).Checked = true;
+				}
+
+                dlgView.FindViewById<EditText>(Resource.Id.totp_length).Text = totpData.Length;
+                dlgView.FindViewById<EditText>(Resource.Id.totp_time_step).Text = totpData.Duration;
+                dlgView.FindViewById <Spinner>(Resource.Id.totp_algorithm).SetSelection(totpData.HashAlgorithm == TotpData.HashSha1 ? 0 : (
+                        totpData.HashAlgorithm == TotpData.HashSha256 ? 1:
+                            (totpData.HashAlgorithm == TotpData.HashSha256 ? 2 : 0)));
+
+                dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_custom).Checked ? ViewStates.Visible : ViewStates.Gone;
+			}
+            
+            _passwordFont.ApplyTo(dlgView.FindViewById<EditText>(Resource.Id.totp_secret_key));
+            Util.SetNoPersonalizedLearning(dlgView);
+            
+
+
+            dialog.Show();
+
+        }
+
+        string SanitizeInput(string encodedData)
+        {
+            if (encodedData.Length <= 0)
+            {
+                return encodedData;
+            }
+
+			StringBuilder newEncodedDataBuilder = new StringBuilder(encodedData);
+            int i = 0;
+            foreach (var ch in encodedData)
+            {
+                switch (ch)
+                {
+                    case '0':
+                        newEncodedDataBuilder[i++] = 'O';
+                        break;
+                    case '1':
+                        newEncodedDataBuilder[i++] = 'L';
+                        break;
+                    case '8':
+                        newEncodedDataBuilder[i++] = 'B';
+                        break;
+                    default:
+                        if (('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('2' <= ch && ch <= '7'))
+                        {
+                            newEncodedDataBuilder[i++] = ch;
+                        }
+
+                        break;
+                }
+            }
+
+            string newEncodedData = newEncodedDataBuilder.ToString().Substring(0, i);
+
+            return AddPadding(newEncodedData);
+        
+		}
+
+
+        string AddPadding(string encodedData)
+        {
+            if (encodedData.Length <= 0 || encodedData.Length % 8 == 0) {
+                return encodedData;
+            }
+
+            int rBytes = encodedData.Length % 8;
+            // rBytes must be a member of {2, 4, 5, 7}
+            if (1 == rBytes || 3 == rBytes || 6 == rBytes) {
+                return encodedData;
+            }
+
+            string newEncodedData = encodedData;
+            for (int nPads = 8 - rBytes; nPads > 0; --nPads)
+            {
+                newEncodedData += "=";
+            }
+
+            return newEncodedData;
+        }
+
+        enum TotpEncoding
+        {
+			Default, Steam, Custom
+        }
+
+		private string BuildOtpString(string entryTitle, string userName, string secret, string totpLength, string timeStep, TotpEncoding encoding, int algorithm)
+        {
+            string entryEncoded = string.IsNullOrWhiteSpace(entryTitle)
+                ? "Keepass2Android"
+                : System.Uri.EscapeUriString(entryTitle);
+			return $"otpauth://totp/{entryEncoded}:{System.Uri.EscapeUriString(userName)}?" +
+                   $"secret={SanitizeInput(secret)}" +
+				   $"&issuer={ entryEncoded}"
+					   + (encoding != TotpEncoding.Custom? "" : $"&period={timeStep}&digits={totpLength}&algorithm={AlgorithmIndexToString(algorithm)}") +
+                   (encoding  == TotpEncoding.Steam ? "&encoder=steam" : "");
+
+		}
+
+        private string AlgorithmIndexToString(in int algorithm)
+        {
+            switch (algorithm)
+            {
+				case 0:
+                    return "SHA1";
+				case 1:
+                    return "SHA256";
+                case 2:
+                    return "SHA512";
+				default:
+                    return "";
+			}
+        }
+
+        private void EditAdvancedString(View sender)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			View dlgView = LayoutInflater.Inflate(Resource.Layout.
@@ -945,8 +1320,9 @@ namespace keepass2android
 			builder.SetNegativeButton(Android.Resource.String.Cancel, (o, args) => { });
 			builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
 				{
-					CopyFieldFromExtraDialog(sender, o, Resource.Id.title);
-					CopyFieldFromExtraDialog(sender, o, Resource.Id.value);
+					CopyFieldFromExtraDialog(sender, o, Resource.Id.title, Resource.Id.extrakey);
+					CopyFieldFromExtraDialog(sender, o, Resource.Id.title, Resource.Id.title);
+					CopyFieldFromExtraDialog(sender, o, Resource.Id.value, Resource.Id.value);
 					CopyCheckboxFromExtraDialog(sender, o, Resource.Id.protection);
 				});
 			Dialog dialog = builder.Create();
@@ -961,9 +1337,11 @@ namespace keepass2android
 				};
 			//copy values:
 			View ees = (View) sender.Parent;
-			dlgView.FindViewById<TextView>(Resource.Id.title).Text = ees.FindViewById<TextView>(Resource.Id.title).Text;
+			dlgView.FindViewById<TextView>(Resource.Id.title).Text = ees.FindViewById<TextView>(Resource.Id.extrakey).Text;
 			dlgView.FindViewById<EditText>(Resource.Id.value).Text = ees.FindViewById<EditText>(Resource.Id.value).Text;
-			dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
+            _passwordFont.ApplyTo(dlgView.FindViewById<EditText>(Resource.Id.value));
+            Util.SetNoPersonalizedLearning(dlgView);
+            dlgView.FindViewById<CheckBox>(Resource.Id.protection).Checked = ees.FindViewById<CheckBox>(Resource.Id.protection).Checked;
 
 			var titleView = ((AutoCompleteTextView)dlgView.FindViewById(Resource.Id.title));
 			titleView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, AdditionalKeys);
@@ -973,10 +1351,10 @@ namespace keepass2android
 
 		}
 
-		private void CopyFieldFromExtraDialog(View eesButton, object dialog, int fieldId)
+		private void CopyFieldFromExtraDialog(View eesButton, object dialog, int originFieldId, int targetFieldId)
 		{
-			var sourceField = (EditText)((Dialog)dialog).FindViewById(fieldId);
-			var targetField = ((TextView)((View)eesButton.Parent).FindViewById(fieldId));
+			var sourceField = (EditText)((Dialog)dialog).FindViewById(originFieldId);
+			var targetField = ((TextView)((View)eesButton.Parent).FindViewById(targetFieldId));
 			if (sourceField.Text != targetField.Text)
 			{
 				targetField.Text = sourceField.Text;
@@ -999,7 +1377,7 @@ namespace keepass2android
 		{
 			_editModeHiddenViews = new List<View>();
 			ImageButton currIconButton = (ImageButton) FindViewById(Resource.Id.icon_button);
-			App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(currIconButton, this, App.Kp2a.GetDb().KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid, false);
+			App.Kp2a.CurrentDb.DrawableFactory.AssignDrawableTo(currIconButton, this, App.Kp2a.CurrentDb.KpDatabase, State.Entry.IconId, State.Entry.CustomIconUuid, false);
 			
 			PopulateText(Resource.Id.entry_title, State.Entry.Strings.ReadSafe (PwDefs.TitleField));
 			PopulateText(Resource.Id.entry_user_name, State.Entry.Strings.ReadSafe (PwDefs.UserNameField));
@@ -1008,6 +1386,10 @@ namespace keepass2android
 			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
 			PopulateText(Resource.Id.entry_password, password);
 			PopulateText(Resource.Id.entry_confpassword, password);
+
+            _passwordFont.ApplyTo(FindViewById<EditText>(Resource.Id.entry_password));
+
+
 			
 			PopulateText(Resource.Id.entry_comment, State.Entry.Strings.ReadSafe (PwDefs.NotesField));
 
@@ -1017,7 +1399,7 @@ namespace keepass2android
 			{
 				if (!PwDefs.IsStandardField(key)) 
 				{
-					RelativeLayout ees = CreateExtraStringView(new KeyValuePair<string, ProtectedString>(key, State.Entry.Strings.Get(key)));
+					RelativeLayout ees = CreateExtraStringView(new KeyValuePair<string, ProtectedString>(key, State.Entry.Strings.Get(key)), State.EditMode.GetTitle(key), State.EditMode.GetFieldType(key));
 					var isVisible = State.EditMode.IsVisible(key);
 					ees.Visibility =  isVisible ? ViewStates.Visible : ViewStates.Gone;
 					if (!isVisible)
@@ -1028,7 +1410,7 @@ namespace keepass2android
 
 			PopulateBinaries();
 
-			if (App.Kp2a.GetDb().DatabaseFormat.SupportsOverrideUrl)
+			if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsOverrideUrl)
 			{
 				PopulateText(Resource.Id.entry_override_url, State.Entry.OverrideUrl);
 			}
@@ -1037,7 +1419,7 @@ namespace keepass2android
 				FindViewById(Resource.Id.entry_override_url_container).Visibility = ViewStates.Gone;
 			}
 			
-			if (App.Kp2a.GetDb().DatabaseFormat.SupportsTags)
+			if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsTags)
 			{
 				PopulateText(Resource.Id.entry_tags, StrUtil.TagsToString(State.Entry.Tags, true));	
 			}
@@ -1076,7 +1458,7 @@ namespace keepass2android
 			
 		}
 		private String getDateTime(DateTime dt) {
-			return dt.ToString ("g", CultureInfo.CurrentUICulture);
+			return dt.ToLocalTime().ToString ("g", CultureInfo.CurrentUICulture);
 		}
 
 
@@ -1123,15 +1505,14 @@ namespace keepass2android
 				Toast.MakeText(this, Resource.String.error_invalid_expiry_date, ToastLength.Long).Show();
 				return false;
 			}
-			State.Entry.ExpiryTime = newExpiry;
+			State.Entry.ExpiryTime = newExpiry.ToUniversalTime();
 
 
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
 			HashSet<string> allKeys = new HashSet<string>();
 			for (int i = 0; i < container.ChildCount; i++) {
 				View ees = container.GetChildAt(i);
-				
-				TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
+				TextView keyView = (TextView) ees.FindViewById(Resource.Id.extrakey);
 				string key = keyView.Text;
 				
 				if (String.IsNullOrEmpty(key)) {
@@ -1175,32 +1556,9 @@ namespace keepass2android
 		}
 	}
 
-	public class DefaultEdit : IEditMode
+    public class DefaultEdit : EditModeBase
 	{
-		public DefaultEdit()
-		{
-			
-		}
-
-		public bool IsVisible(string fieldKey)
-		{
-			return true;
-		}
-
-		public IEnumerable<string> SortExtraFieldKeys(IEnumerable<string> keys)
-		{
-			return keys;
-		}
-
-		public bool ShowAddAttachments
-		{
-			get { throw new NotImplementedException(); }
-		}
-
-		public bool ShowAddExtras
-		{
-			get { throw new NotImplementedException(); }
-		}
+		
 	}
 }
 

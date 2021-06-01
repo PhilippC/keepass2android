@@ -27,23 +27,22 @@ namespace keepass2android
 {
 	
 	public class CreateDb : RunnableOnFinish {
-		
-		private const ulong DefaultEncryptionRounds = PwDefs.DefaultKeyEncryptionRounds;
-		
-		private readonly IOConnectionInfo _ioc;
+	    private readonly IOConnectionInfo _ioc;
 		private readonly bool _dontSave;
 		private readonly Activity _ctx;
         private readonly IKp2aApp _app;
 		private CompositeKey _key;
+	    private readonly bool _makeCurrent;
 
-		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave): base(ctx, finish) {
+	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, bool makeCurrent): base(ctx, finish) {
 			_ctx = ctx;
 			_ioc = ioc;
 			_dontSave = dontSave;
-            _app = app;
+	        _makeCurrent = makeCurrent;
+	        _app = app;
 		}
 
-		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key)
+		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key, bool makeCurrent)
 			: base(ctx, finish)
 		{
 			_ctx = ctx;
@@ -51,12 +50,13 @@ namespace keepass2android
 			_dontSave = dontSave;
 			_app = app;
 			_key = key;
+		    _makeCurrent = makeCurrent;
 		}
 		
 
 		public override void Run() {
 			StatusLogger.UpdateMessage(UiStringKey.progress_create);
-			Database db = _app.CreateNewDatabase();
+			Database db = _app.CreateNewDatabase(_makeCurrent);
 
 			db.KpDatabase = new KeePassLib.PwDatabase();
 			
@@ -65,7 +65,7 @@ namespace keepass2android
 				_key = new CompositeKey(); //use a temporary key which should be changed after creation
 			}
 			
-			db.KpDatabase.New(_ioc, _key);
+			db.KpDatabase.New(_ioc, _key, _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc));
 
 			db.KpDatabase.KdfParameters = (new AesKdf()).GetDefaultParameters();
 			db.KpDatabase.Name = "Keepass2Android Password Database";
@@ -74,7 +74,6 @@ namespace keepass2android
 			
 			// Set Database state
 			db.Root = db.KpDatabase.RootGroup;
-			db.Loaded = true;
 			db.SearchHelper = new SearchDbHelper(_app);
 
 			// Add a couple default groups
@@ -88,12 +87,14 @@ namespace keepass2android
 			addTemplates.AddTemplates(out addedEntries);
 			
 			// Commit changes
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
+			SaveDb save = new SaveDb(_ctx, _app, db, OnFinishToRun, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			_onFinishToRun = null;
 			save.Run();
-			
-			
+
+		    db.UpdateGlobals();
+
+
 		}
 		
 	}

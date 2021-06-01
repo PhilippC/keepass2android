@@ -92,7 +92,7 @@ android:fitsSystemWindows="true">
               android:textSize="10sp"
               android:text="/storage/emulated/0/keepass/keepass/database.kdbx" />
         </RelativeLayout>
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/mytoolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"

@@ -112,6 +112,13 @@
 			<intent android:action="kp2a.action.ExportDatabaseActivity"/>
 		</PreferenceScreen>
 
+    <PreferenceScreen
+      android:key="configure_child_dbs_prefs"
+      android:title="@string/configure_child_dbs"
+    >
+      <intent android:action="kp2a.action.ConfigureChildDatabasesActivity"/>
+    </PreferenceScreen>
+
 		<Preference
 	  android:key="import_db_prefs"
 	  android:title="@string/import_db_prefs"
@@ -121,10 +128,16 @@
 			  android:key="import_keyfile_prefs"
 			  android:title="@string/import_keyfile_prefs"
 	  />
-		
-		
-    
-	</PreferenceScreen>
+
+    <Preference
+      android:key="export_keyfile_prefs"
+      android:title="@string/export_keyfile_prefs"
+    />
+
+
+
+
+  </PreferenceScreen>
 	
 
 	<PreferenceScreen
@@ -396,11 +409,43 @@
                 android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
       </Preference>
 
+		  <PreferenceScreen
+		    android:key="@string/AutoFill_prefs_screen_key"
+		    android:title="@string/AutoFill_prefs"
+		  >
+        <keepass2android.ToolbarPreference
+          android:key="@string/AutoFill_prefs_screen_key"
+          android:title="@string/AutoFill_prefs" />
       <Preference 
         android:key="@string/AutoFill_prefs_key"
         android:title="@string/AutoFill_prefs">
         
       </Preference>
+        
+        
+		    <CheckBoxPreference
+		      android:enabled="true"
+		      android:persistent="true"
+		      android:summary="@string/OfferSaveCredentials_summary"
+		      android:defaultValue="true"
+		      android:title="@string/OfferSaveCredentials_title"
+		      android:key="@string/OfferSaveCredentials_key" />
+
+        <CheckBoxPreference
+          android:enabled="true"
+          android:persistent="true"
+          android:summary="@string/NoDalVerification_summary"
+          android:defaultValue="false"
+          android:title="@string/NoDalVerification_title"
+          android:key="@string/NoDalVerification_key" />
+
+		  <keepass2android.AutofillDisabledQueriesPreference
+		    android:title="@string/AutofillDisabledQueriesPreference_title"
+		    android:summary="@string/AutofillDisabledQueriesPreference_summary"
+		    android:persistent="false"
+		    android:key="AutofillDisabledQueriesPreference_key"/>
+        
+      </PreferenceScreen>
 
 		  <CheckBoxPreference
 		    android:enabled="true"
@@ -464,13 +509,7 @@
   android:key="@string/FileHandling_prefs_key"
 	  android:title="@string/FileHandling_prefs"/>
 
-			<EditTextPreference
-				 android:enabled="true"
-				 android:persistent="true"
-				 android:summary="@string/BinaryDirectory_summary"
-				 android:defaultValue="@string/BinaryDirectory_default"
-				 android:title="@string/BinaryDirectory_title"
-				 android:key="@string/BinaryDirectory_key" />
+			
 			<CheckBoxPreference
 				  android:enabled="true"
 				  android:persistent="true"

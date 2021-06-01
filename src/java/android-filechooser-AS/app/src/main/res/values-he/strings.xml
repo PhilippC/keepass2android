@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+<resources>
+    <string name="afc_cmd_advanced_selection_all">כל</string>
+    <string name="afc_cmd_advanced_selection_invert">הפוך בחירה</string>
+    <string name="afc_cmd_advanced_selection_none">אף אחד</string>
+    <string name="afc_cmd_grid_view">תצוגת רשת</string>
+    <string name="afc_cmd_home">בית</string>
+    <string name="afc_cmd_list_view">תצוגת רשימה</string>
+    <string name="afc_cmd_new_folder">תיקיה חדשה...</string>
+    <string name="afc_cmd_select_all_files">בחר את כל הקבצים</string>
+    <string name="afc_cmd_select_all_folders">בחר את כל התיקיות</string>
+    <string name="afc_cmd_sort">מיין...</string>
+    <string name="afc_file">קובץ</string>
+    <string name="afc_folder">תיקיה</string>
+    <string name="afc_hint_clear">נקה</string>
+    <string name="afc_hint_folder_name">שם תיקיה</string>
+    <string name="afc_hint_save_as_filename">שם קובץ</string>
+    <string name="afc_hint_search">חפש</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">ליישום זה אין הרשאה ליצירת קבצים / תיקיות</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">ליישום זה אין הרשאה למחיקת קבצים / תיקיות</string>
+    <string name="afc_msg_cancelled">בוטל</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">אין אפשרות להתחבר לשירות ספק הקבצים</string>
+    <string name="afc_msg_cannot_create_new_folder_here">אין אפשרות ליצור תיקיה חדשה כאן</string>
+    <string name="afc_msg_cannot_save_a_file_here">אין אפשרות לשמור קובץ כאן</string>
+    <string name="afc_msg_done">בוצע</string>
+    <string name="afc_msg_empty">ריק</string>
+    <string name="afc_msg_failed_please_try_again">נכשל. נא נסה שנית.</string>
+    <string name="afc_msg_loading">טוען...</string>
+    <string name="afc_phone">טלפון</string>
+    <string name="afc_pmsg_cannot_access_dir">אין אפשרות לגשת ל- \'%1$ s\'</string>
+    <string name="afc_pmsg_cannot_create_folder">אין אפשרות ליצור את התיקיה \'%1$ s\'</string>
+    <string name="afc_pmsg_cannot_delete_file">אין אפשרות למחוק את %1$ s \'%2$s\'</string>
+    <string name="afc_pmsg_confirm_delete_file">האם אתה בטוח שברצונך למחוק את %1$ s \'%2$ s\'?</string>
+    <string name="afc_pmsg_confirm_replace_file">הקובץ \'%1$ s\' כבר קיים/n/nהאם ברצונך להחליף אותו?</string>
+    <string name="afc_pmsg_deleting_file">מוחק %1$ s \'%2$ s\'...</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$ s \'%2$ s\' נמחק</string>
+    <string name="afc_pmsg_filename_is_directory">\'%1$ s\' הוא תיקיה</string>
+    <string name="afc_pmsg_filename_is_invalid">שם הקובץ \'%1$ s\' אינו חוקי</string>
+    <string name="afc_pmsg_max_file_count_allowed">...מכיל עוד קבצים, מקסימום מותר: %1$, d</string>
+    <string name="afc_pmsg_unknown_error">שגיאה לא ידועה: %1$ s</string>
+    <string name="afc_root">שורש</string>
+    <string name="afc_title_advanced_selection">בחר...</string>
+    <string name="afc_title_confirmation">אישור</string>
+    <string name="afc_title_date">תאריך</string>
+    <string name="afc_title_error">שגיאה</string>
+    <string name="afc_title_info">מידע</string>
+    <string name="afc_title_name">שם</string>
+    <string name="afc_title_save_as">שמירה בשם...</string>
+    <string name="afc_title_size">גודל</string>
+    <string name="afc_title_sort_by">מיון לפי…</string>
+    <string name="afc_yesterday">אתמול</string>
+</resources>

@@ -49,8 +49,8 @@ namespace keepass2android
 			//if launched from history, don't re-use the task. Proceed to FileSelect instead.
 			if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
 			{
-				Kp2aLog.Log("Forwarding to FileSelect. QueryCredentialsActivity started from history.");
-				Intent intent = new Intent(this, typeof(FileSelectActivity));
+				Kp2aLog.Log("Forwarding to SelectCurrentDbActivity. QueryCredentialsActivity started from history.");
+				Intent intent = new Intent(this, typeof(SelectCurrentDbActivity));
 				intent.AddFlags(ActivityFlags.ForwardResult);
 				StartActivity(intent);
 				Finish();
@@ -69,7 +69,7 @@ namespace keepass2android
 			if (Intent.Action == Strings.ActionQueryCredentialsForOwnPackage)
 			{
 				_requiredScope = Strings.ScopeQueryCredentialsForOwnPackage;
-				_requestedUrl = "androidapp://" + _pluginPackage;
+				_requestedUrl = KeePass.AndroidAppScheme + _pluginPackage;
 			}
 			else if (Intent.Action == Strings.ActionQueryCredentials)
 			{
@@ -135,11 +135,11 @@ namespace keepass2android
 
 		private void StartQuery()
 		{
-			//launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
-			//will return the results later
-			Intent i = new Intent(this, typeof (FileSelectActivity));
+		    //launch SelectCurrentDbActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
+            //will return the results later
+            Intent i = new Intent(this, typeof (SelectCurrentDbActivity));
 			//don't show user notifications when an entry is opened.
-			var task = new SearchUrlTask() {UrlToSearchFor = _requestedUrl, ShowUserNotifications = false};
+			var task = new SearchUrlTask() {UrlToSearchFor = _requestedUrl, ShowUserNotifications = ShowUserNotificationsMode.WhenTotp};
 			task.ToIntent(i);
 			StartActivityForResult(i, RequestCodeQuery);
 			_startedQuery = true;
@@ -185,7 +185,7 @@ namespace keepass2android
 					}
 					//return credentials to caller:
 					Intent credentialData = new Intent();
-					PluginHost.AddEntryToIntent(credentialData, App.Kp2a.GetDb().LastOpenedEntry);
+					PluginHost.AddEntryToIntent(credentialData, App.Kp2a.LastOpenedEntry);
 					credentialData.PutExtra(Strings.ExtraQueryString,_requestedUrl);
 					SetResult(Result.Ok, credentialData);
 					Finish();

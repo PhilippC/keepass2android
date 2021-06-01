@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using Android.App;
@@ -9,7 +10,8 @@ using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
-#if !NoNet
+using KeePassLib.Interfaces;
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
 #endif 
 
@@ -27,37 +29,47 @@ namespace keepass2android
 
 	}
 
-	/// <summary>
+    /// <summary>
 	/// Interface through which Activities and the logic layer can access some app specific functionalities and Application static data
 	/// </summary>
 	/// This also contains methods which are UI specific and should be replacable for testing.
 	public interface IKp2aApp : ICertificateValidationHandler
 	{
-		/// <summary>
-		/// Locks the currently open database, quicklocking if available (unless false is passed for allowQuickUnlock)
-		/// </summary>
-		void LockDatabase(bool allowQuickUnlock = true);
+        /// <summary>
+        /// Locks all currently open databases, quicklocking if available (unless false is passed for allowQuickUnlock)
+        /// </summary>
+        void Lock(bool allowQuickUnlock, bool lockWasTriggeredByTimeout);
 
-		/// <summary>
-		/// Loads the specified data as the currently open database, as unlocked.
-		/// </summary>
-		void LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey,
-		                  ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat);
 
-		/// <summary>
-		/// Returns the current database
-		/// </summary>
-		Database GetDb();
+        /// <summary>
+        /// Loads the specified data as the currently open database, as unlocked.
+        /// </summary>
+        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent);
 
-		/// <summary>
-		/// Tell the app that the file from ioc was opened with keyfile.
-		/// </summary>
-		void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, string displayName = "");
+
+	    HashSet<PwGroup> DirtyGroups { get; }
+
+	    void MarkAllGroupsAsDirty();
+
+        /// <summary>
+        /// Returns the current database
+        /// </summary>
+	    Database CurrentDb { get; }
+
+	    IEnumerable<Database> OpenDatabases { get; }
+	    void CloseDatabase(Database db);
+
+	    Database FindDatabaseForElement(IStructureItem element);
+        
+        /// <summary>
+        /// Tell the app that the file from ioc was opened with keyfile.
+        /// </summary>
+        void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "");
 
 		/// <summary>
 		/// Creates a new database and returns it
 		/// </summary>
-		Database CreateNewDatabase();
+		Database CreateNewDatabase(bool makeCurrent);
 
 		/// <summary>
 		/// Returns the user-displayable string identified by stringKey
@@ -76,7 +88,8 @@ namespace keepass2android
 		                    EventHandler<DialogClickEventArgs> yesHandler,
 		                    EventHandler<DialogClickEventArgs> noHandler,
 		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    Context ctx);
+		                    Context ctx,
+                            string messageSuffix = "");
 
 		/// <summary>
 		/// Asks the user the question "messageKey" with the options Yes/No/Cancel, but the yes/no strings can be selected freely, calls the handler corresponding to the answer.
@@ -86,7 +99,8 @@ namespace keepass2android
 		                    EventHandler<DialogClickEventArgs> yesHandler,
 		                    EventHandler<DialogClickEventArgs> noHandler,
 		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    Context ctx);
+		                    Context ctx,
+		                    string messageSuffix = "");
 
 		/// <summary>
 		/// Returns a Handler object which can run tasks on the UI thread
@@ -109,8 +123,12 @@ namespace keepass2android
 
 		
 		bool CheckForDuplicateUuids { get; }
-#if !NoNet
+#if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 		ICertificateErrorHandler CertificateErrorHandler { get; }
+	    
+
+
 #endif
+	    
 	}
 }
