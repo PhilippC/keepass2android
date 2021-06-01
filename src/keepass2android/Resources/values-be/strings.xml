@@ -48,6 +48,13 @@
   <string name="keyboard_prefs">Клавіятура</string>
   <string name="export_prefs">Экспарт базы даных…</string>
   <string name="fingerprint_prefs">Разблакаванне з дапамогай біяметрычных даных</string>
+  <string name="import_db_prefs">Імпарт базы даных ва ўнутраны каталог</string>
+  <string name="import_keyfile_prefs">Імпарт файла ключа ва ўнутраны каталог</string>
+  <string name="export_keyfile_prefs">Экспарт файла ключа з унутранага каталога</string>
+  <string name="keyboardswitch_prefs">Пераключэнне клавіятуры</string>
+  <string name="OnlyAvailableForLocalFiles">Даступна толькі для лакальных файлаў.</string>
+  <string name="FileIsInInternalDirectory">Файл захаваны ва ўнутраны каталог.</string>
+  <string name="DatabaseFileMoved">Файл базы даных скапіяваны ва ўнутраны каталог. Націсніце \"Добра\", каб адкрыць яго з новага месца. Не забывайцеся рэгулярна капіяваць базу даных у бяспечнае месца!</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_title">Назва</string>
   <string name="hint_login_pass">Пароль</string>
