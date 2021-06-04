@@ -84,6 +84,10 @@
   <string name="copy_to_clipboard">Скапіяваць у буфер абмену</string>
   <string name="fingerprint_description">Для працягу патрабуецца аўтэнтыфікацыя</string>
   <string name="fingerprint_fatal">Не атрымалася наладзіць разблакаванне з дапамогай біяметрычных даных:</string>
+  <string name="fingerprint_not_recognized">Не атрымалася выканаць аўтэнтыфікацыю з дапамогай біяметрычных даных. Паспрабуйце яшчэ раз</string>
+  <string name="fingerprint_success">Аўтэнтыфікацыя з дапамогай біяметрычных даных паспяхова выкананая</string>
+  <string name="fingerprint_os_error">Разблакаванне з дапамогай біяметрычных даных працуе на Android 6.0 і пазнейшых версіях</string>
+  <string name="fingerprint_hardware_error">Не выяўлена абсталявання для распазнавання біяметрычных даных.</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасаваць</string>
   <string name="entry_comment">Нататкі</string>
