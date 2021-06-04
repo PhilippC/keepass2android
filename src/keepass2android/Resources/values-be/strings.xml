@@ -79,6 +79,7 @@
   <string name="current_group_root">Бягучая група: каранёвая</string>
   <string name="database">База даных</string>
   <string name="digits">Лічбы</string>
+  <string name="disclaimer_formal">Keepass2Android пастаўляецца без АНІЯКІХ ГАРАНТЫЙ; Гэта свабоднае праграмнае забеспячэнне, якое вы можаце распаўсюджваць на ўмовах ліцэнзіі GPL 2 ці пазнейшай версіі.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Скапіяваць у буфер абмену</string>
   <string name="fingerprint_description">Для працягу патрабуецца аўтэнтыфікацыя</string>
