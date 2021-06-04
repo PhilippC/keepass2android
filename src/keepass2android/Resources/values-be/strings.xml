@@ -89,6 +89,9 @@
   <string name="fingerprint_os_error">Разблакаванне з дапамогай біяметрычных даных працуе на Android 6.0 і пазнейшых версіях</string>
   <string name="fingerprint_hardware_error">Не выяўлена абсталявання для распазнавання біяметрычных даных.</string>
   <string name="fingerprint_no_enrolled">Вы не наладзілі на прыладзе аўтэнтыфікацыю па біяметрычных даных. Спачатку перайдзіце ў сістэмныя налады.</string>
+  <string name="disable_fingerprint_unlock">Адключыць разблакаванне з дапамогай біяметрычных даных</string>
+  <string name="enable_fingerprint_unlock">Уключыць разблакаванне з дапамогай біяметрычных даных</string>
+  <string name="enable_fingerprint_quickunlock">Уключыць разблакаванне з дапамогай біяметрычных даных для хуткага разблакавання</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасаваць</string>
   <string name="entry_comment">Нататкі</string>
