@@ -92,13 +92,27 @@
   <string name="disable_fingerprint_unlock">Адключыць разблакаванне з дапамогай біяметрычных даных</string>
   <string name="enable_fingerprint_unlock">Уключыць разблакаванне з дапамогай біяметрычных даных</string>
   <string name="enable_fingerprint_quickunlock">Уключыць разблакаванне з дапамогай біяметрычных даных для хуткага разблакавання</string>
+  <string name="fingerprint_unlock_failed">Не атрымалася разблакаваць з дапамогай біяметрычных даных. Ключ шыфравання быў адхілены аперацыйнай сістэмай. Звычайна такое адбываецца пры змене налад разблакавання з дапамогай біяметрычных даных або налад бяспекі.</string>
+  <string name="enter_filename">Увядзіце назву файла базы даных</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасаваць</string>
   <string name="entry_comment">Нататкі</string>
   <string name="entry_tags">Пазнакі</string>
+  <string name="entry_override_url">Перавызначыць URL</string>
+  <string name="entry_confpassword">Пацвердзіць пароль</string>
+  <string name="entry_created">Створана</string>
+  <string name="entry_expires">Сканчаецца</string>
+  <string name="entry_group_name">Назва групы</string>
+  <string name="entry_keyfile">Файл ключа (неабавязкова)</string>
+  <string name="keyfile_heading">Файл ключа</string>
+  <string name="entry_modified">Зменена</string>
   <string name="entry_password">Пароль</string>
+  <string name="entry_save">Захаваць</string>
   <string name="entry_title">Назва</string>
+  <string name="entry_url">URL</string>
+  <string name="entry_user_name">Імя карыстальніка</string>
   <string name="hint_login_pass">Пароль</string>
+  <string name="hint_url">URL</string>
   <string name="root">Каранёвы каталог (Root)</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
@@ -106,6 +120,7 @@
     <item>Passphrase + Password</item>
   </string-array>
   <string name="select_other_entry">Абраць іншы запіс</string>
+  <string name="key_file">Файл ключа</string>
   <string name="loading">Загрузка…</string>
   <string name="TemplateField_IdCard_Name">Назва</string>
   <string name="DbQuicklockedChannel_name">Хуткае разблакаванне</string>
