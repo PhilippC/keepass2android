@@ -239,6 +239,11 @@
   <string name="sort_moddate">Впорядкувати за датою зміни</string>
   <string name="sort_default">Залишити типовий порядок</string>
   <string name="special">Спеціальний</string>
+  <string name="special_extended">Cпеціальна розширена</string>
+  <string name="at_least_one_from_each_group">Щонайменше по одному з кожної групи</string>
+  <string name="exclude_lookalike">Виключити подібні символи</string>
+  <string name="password_generation_profile">Профіль</string>
+  <string name="save_password_generation_profile_text">Введіть ім\'я профілю для збереження. Введіть наявне ім\'я, щоб перезаписати його.</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
     <item>Passphrase</item>
