@@ -131,6 +131,12 @@
   <string name="error_invalid_db">Хібная база даных.</string>
   <string name="error_invalid_path">Хібны шлях.</string>
   <string name="error_no_name">Увядзіце назву.</string>
+  <string name="FileNotFound">Файл не знойдзены.</string>
+  <string name="file_browser">Агляд файлаў</string>
+  <string name="generate_password">Згенераваць пароль</string>
+  <string name="group">Група</string>
+  <string name="hint_comment">нататкі</string>
+  <string name="hint_conf_pass">пацвердзіць пароль</string>
   <string name="hint_login_pass">Пароль</string>
   <string name="hint_url">URL</string>
   <string name="root">Каранёвы каталог (Root)</string>
@@ -148,6 +154,15 @@
   <string name="TemplateTitle_WLan">Бесправадная сетка</string>
   <string name="TemplateTitle_Notes">Абароненая нататка</string>
   <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Нумар</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN-код</string>
+  <string name="TemplateField_CreditCard_Owner">Уладальнік карткі</string>
+  <string name="TemplateTitle_CreditCard">Банкаўская картка</string>
+  <string name="TemplateTitle_Membership">Удзел</string>
+  <string name="ChangeLog_title">Журнал змен</string>
+  <string name="AskAddTemplatesTitle">Дадаць шаблоны?</string>
+  <string name="Continue">Працягнуць</string>
   <string name="DbQuicklockedChannel_name">Хуткае разблакаванне</string>
   <string-array name="ChangeLog_1_08">
     <item>Add notification button for copying TOTP to clipboard</item>
