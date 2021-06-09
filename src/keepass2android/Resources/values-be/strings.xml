@@ -97,6 +97,7 @@
   <string name="fingerprint_reenable">Для новага галоўнага пароля неабходна паўторна ўключыць разблакаванне з дапамогай біяметрычных даных.</string>
   <string name="fingerprint_reenable2">Разблакуйце паролем і паўторна ўключыце разблакаванне з дапамогай біяметрычных даных у наладах базы даных.</string>
   <string name="FingerprintInitFailed">Не атрымалася ініцыялізаваць аўтэнтыфікацыю з дапамогай біяметрычных даных. </string>
+  <string name="FingerprintSetupFailed">Не атрымалася зашыфраваць даныя. Гэта магло адбыцца, калі вы дадавалі альбо выдалялі адбіткі пальцаў у наладах сістэмы падчас таго, як Keepass2Android чакаў ад вас уводу адбітка пальца.</string>
   <string name="enter_filename">Увядзіце назву файла базы даных</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасаваць</string>
