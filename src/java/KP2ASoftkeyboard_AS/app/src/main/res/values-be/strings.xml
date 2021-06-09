@@ -44,15 +44,26 @@
     <!-- Description for quick fixes -->
     <!-- Option to enable showing suggestions -->
     <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Прапаноўваць словы падчас уводу</string>
     <!-- Option to enable auto completion -->
     <string name="auto_complete">Аўтазавяршэнне</string>
     <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Пры націсканні прагала ўстаўляць прапанаванае слова</string>
     <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Кнопка налад</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Аўтаматычна</string>
     <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Заўсёды паказваць</string>
     <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Заўсёды хаваць</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_always_show_name</item>
+        <item>@string/settings_key_mode_always_hide_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <!-- Description for auto completion -->
     <!-- Array of prediction modes -->
