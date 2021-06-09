@@ -45,6 +45,7 @@
     <!-- Option to enable showing suggestions -->
     <!-- Description for show suggestions -->
     <!-- Option to enable auto completion -->
+    <string name="auto_complete">Аўтазавяршэнне</string>
     <!-- Description for auto completion -->
     <!-- Option to show/hide the settings key -->
     <!-- Array of the settings key mode values -->
@@ -102,31 +103,49 @@
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
     <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Гаварыце</string>
     <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Апрацоўка</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Памылка. Паўтарыце спробу.</string>
     <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Не атрымалася злучыцца</string>
     <!-- Short message shown for a network error where the utterance was really long,
          in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Памылка, занадта доўгая фраза.</string>
     <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Праблема з гукам</string>
     <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Памылка сервера</string>
     <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Голас не чутны</string>
     <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Супадзенняў не знойдзена</string>
     <!-- Short message shown when the user initiates voice and voice
 	search is not installed. -->
+    <string name="voice_not_installed">Галасавы пошук не ўсталяваны</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>Падказка:</b> Для пачатку галасавога ўводу правядзіце па клавіятуры</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>Падказа:</b> Наступным разам называйце знакі прыпынку: \"коска\", \"кропка\", \"пытальнік\".</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Скасаваць</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">Добра</string>
     <!-- Preferences item for enabling speech input -->
     <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>На асноўнай клавіятуры</item>
+        <item>На клавіятуры сімвалаў</item>
+        <item>Адключыць</item>
+    </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Array of Voice Input modes summary -->
     <string-array name="voice_input_modes_summary">
-        <item>Mic on main keyboard</item>
+        <item>Значок на асноўнай клавіятуры</item>
         <item>Значок на клавіятуры сімвалаў</item>
         <item>Галасавы ўвод адключаны</item>
     </string-array>
