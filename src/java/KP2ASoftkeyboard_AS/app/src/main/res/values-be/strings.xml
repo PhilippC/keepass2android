@@ -21,9 +21,13 @@
     <!-- Title for Latin keyboard  -->
     <!-- Title for Latin keyboard settings activity / dialog -->
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Параметры ўводу</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Вібрацыя пры націсканні клавіш</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Гук пры націсканні клавіш</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Павелічэнне пры націсканні кнопак</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <!-- Description for hit_correction  -->
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
