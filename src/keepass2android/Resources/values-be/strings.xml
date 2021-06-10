@@ -163,8 +163,12 @@
   <string name="keyfile_is_empty">Файл ключа пусты.</string>
   <string name="length">Даўжыня</string>
   <string name="list_size_title">Памер спіса групы</string>
+  <string name="list_size_summary">Памер тэксту ў спісе групы</string>
+  <string name="loading_database">Загрузка базы даных…</string>
+  <string name="lowercase">Ніжні рэгістр</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Схаваць пароль</string>
+  <string name="maskpass_summary">Хаваць паролі</string>
   <string name="menu_about">Пра праграму</string>
   <string name="menu_change_key">Змяніць галоўны ключ</string>
   <string name="menu_copy_pass">Скапіяваць пароль</string>
@@ -177,13 +181,33 @@
   <string name="menu_copy">Стварыць дублікат</string>
   <string name="menu_move">Перамясціць у іншую групу</string>
   <string name="menu_move_light">Перамясціць</string>
+  <string name="menu_navigate">Перайсці да бацькоўскай групы</string>
+  <string name="menu_donate">Ахвяраваць на піва…</string>
+  <string name="menu_edit">Рэдагаваць</string>
+  <string name="menu_hide_password">Схаваць пароль</string>
+  <string name="menu_lock">Заблакаваць базу даных</string>
+  <string name="menu_open">Адкрыць</string>
+  <string name="menu_close">Закрыць</string>
+  <string name="menu_rename">Змяніць назву</string>
+  <string name="menu_search">Пошук</string>
+  <string name="menu_search_advanced">Пашыраны пошук</string>
+  <string name="menu_url">Перайсці па URL</string>
+  <string name="menu_change_db">Змяніць базу даных</string>
+  <string name="menu_show_all">Паказаць усе палі</string>
+  <string name="minus">Мінус</string>
+  <string name="never">Ніколі</string>
+  <string name="yes">Так</string>
+  <string name="no">Не</string>
+  <string name="edit">Рэдагаваць</string>
   <string name="root">Каранёвы каталог (Root)</string>
+  <string name="search_label">Пошук</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
     <item>Passphrase</item>
     <item>Passphrase + Password</item>
   </string-array>
   <string name="select_other_entry">Абраць іншы запіс</string>
+  <string name="AskOverwriteBinary_no">Змяніць назву</string>
   <string name="key_file">Файл ключа</string>
   <string name="loading">Загрузка…</string>
   <string name="TemplateField_IdCard_Name">Назва</string>
@@ -483,7 +507,7 @@ Initial public release
     <item>15 хвілін</item>
     <item>30 хвілін</item>
     <item>1 гадзіна</item>
-    <item>Never</item>
+    <item>Ніколі</item>
   </string-array>
   <string-array name="export_fileformat_options">
     <item>База даных Keepass 2 (.kdbx)</item>
