@@ -224,16 +224,90 @@
   <string name="rounds_hint">цыклы</string>
   <string name="argon2memory">Памяць для Argon 2 (байты)</string>
   <string name="argon2parallelism">Паралелізм Argon 2</string>
+  <string name="database_name">Назва базы даных</string>
+  <string name="default_username">Прадвызначанае імя карыстальніка для запісаў</string>
+  <string name="saving_database">Захаванне базы даных…</string>
+  <string name="exporting_database">Экспарт базы даных…</string>
+  <string name="export_database_successful">База даных паспяхова экспартаваная!</string>
+  <string name="export_keyfile_successful">Файл ключа паспяхова экспартаваны!</string>
+  <string name="space">Прагал</string>
   <string name="search_label">Пошук</string>
+  <string name="show_password">Паказаць пароль</string>
+  <string name="sort_menu">Сартаванне…</string>
+  <string name="sort_name">Сартаваць па назве</string>
+  <string name="sort_db">Сартаваць па даце стварэння</string>
+  <string name="sort_moddate">Сартаваць па даце змены</string>
+  <string name="sort_default">Пакінуць прадвызначаны парадак</string>
+  <string name="special">Адмысловыя</string>
+  <string name="special_extended">Адмысловая пашыраная</string>
+  <string name="at_least_one_from_each_group">Прынамсі адзін з кожнай групы</string>
+  <string name="exclude_lookalike">Выключыць падобныя сімвалы</string>
+  <string name="password_generation_profile">Профіль</string>
+  <string name="save_password_generation_profile_text">Увядзіце назву профілю для захавання. Увядзіце існую назву, каб перазапісаць.</string>
+  <string name="hint_wordcount">Колькасць слоў парольнай фразы</string>
+  <string name="hint_wordseparator">Падзяляльнік слоў</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Парольная фраза</item>
+    <item>Парольная фраза + пароль</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>малыя літары</item>
+    <item>ВЯЛІКІЯ ЛІТАРЫ</item>
+    <item>Першая Літара Вялікая</item>
+  </string-array>
+  <string name="custom_settings">Адвольныя налады</string>
+  <string name="passphrase_capitalization">Вялікія літары ў парольнай фразе</string>
+  <string name="search_hint">Што шукаць</string>
+  <string name="search_results">Вынікі пошуку</string>
+  <string name="search_in">Шукаць у</string>
   <string name="select_other_entry">Абраць іншы запіс</string>
+  <string name="select_group_then_add">Адкрыйце патрэбную групу, пасля націсніце \"%1$s\"!</string>
+  <string name="insert_element_here">Уставіць сюды</string>
+  <string name="twofish">Twofish</string>
+  <string name="underline">Падкрэсленне</string>
+  <string name="unsupported_db_version">Версія базы даных не падтрымліваецца.</string>
+  <string name="uppercase">Верхні рэгістр</string>
+  <string name="warning_read_only">Запісаць на картку памяці немагчыма. Змены не захаваюцца ў вашу базу даных.</string>
+  <string name="version_label">Версія</string>
+  <string name="version_history">Гісторыя версій</string>
+  <string name="author">Keepass2Android распрацоўвае Philipp Crocoll.</string>
+  <string name="further_authors">Вялікая падзяка %1$s за ўдзел у распрацоўцы.</string>
+  <string name="search_options">Параметры</string>
+  <string name="field_name">Назва поля</string>
+  <string name="field_value">Значэнне поля</string>
+  <string name="protection">Абароненае поле</string>
+  <string name="add_binary">Дадаць файл</string>
+  <string name="add_extra_string">Дадаць дадатковы радок</string>
+  <string name="configure_totp">Наладзіць TOTP</string>
+  <string name="totp_secret_key">Сакрэтны ключ</string>
+  <string name="totp_encoding_rfc6238">Налады токена RFC6238</string>
+  <string name="totp_encoding_steam">Налады токена steam</string>
+  <string name="totp_encoding_custom">Налады адвольнага токена</string>
+  <string name="totp_time_step">Перыяд часу</string>
+  <string name="totp_length">Даўжыня кода</string>
   <string name="AskOverwriteBinary_no">Змяніць назву</string>
+  <string name="rate_app">Ацаніць праграму</string>
+  <string name="translate_app">Перакласці KP2A</string>
+  <string name="AddingEntry">Даданне запісу…</string>
+  <string name="AddingGroup">Даданне групы…</string>
+  <string name="DeletingEntry">Выдаленне запісу…</string>
+  <string name="DeletingGroup">Выдаленне групы…</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (каталог KP2A)</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="key_file">Файл ключа</string>
+  <string name="DebugLog_title">Выкарыстоўваць файл журнала</string>
+  <string name="DebugLog_summary">Запісваць выходныя даныя праграмы ў лакальны файл журнала</string>
+  <string name="DebugLog_send">Адправіць журнал адладкі…</string>
   <string name="loading">Загрузка…</string>
+  <string name="plugins">Убудовы</string>
+  <string name="plugin_packagename">Назва пакунка:</string>
+  <string name="plugin_description">Апісанне (не праверана):</string>
+  <string name="plugin_author">Аўтар (не праверана):</string>
+  <string name="plugin_enabled">уключана</string>
+  <string name="plugin_disabled">адключана</string>
+  <string name="plugin_web">Шукаць убудовы ў сеціве</string>
   <string name="TemplateField_IdCard_Name">Назва</string>
   <string name="TemplateTitle_EMail">Электронная пошта</string>
   <string name="TemplateField_EMail_EMail">Адрас электроннай пошты</string>
@@ -249,6 +323,8 @@
   <string name="ChangeLog_title">Журнал змен</string>
   <string name="AskAddTemplatesTitle">Дадаць шаблоны?</string>
   <string name="Continue">Працягнуць</string>
+  <string name="database_file_heading">Файл базы даных</string>
+  <string name="if_device_text">Уключыць для %1$s</string>
   <string name="DbQuicklockedChannel_name">Хуткае разблакаванне</string>
   <string-array name="ChangeLog_1_08">
     <item>Add notification button for copying TOTP to clipboard</item>
