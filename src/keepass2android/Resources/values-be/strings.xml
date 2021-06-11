@@ -198,6 +198,9 @@
   <string name="never">Ніколі</string>
   <string name="yes">Так</string>
   <string name="no">Не</string>
+  <string name="no_keys">Няма запісаў у базе даных або групе.</string>
+  <string name="no_results">Нічога не знойдзена</string>
+  <string name="no_url_handler">Для гэтага URL-адраса няма апрацоўнікаў.</string>
   <string name="edit">Рэдагаваць</string>
   <string name="root">Каранёвы каталог (Root)</string>
   <string name="search_label">Пошук</string>
