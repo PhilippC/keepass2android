@@ -269,10 +269,12 @@
   <string name="unsupported_db_version">Версія базы даных не падтрымліваецца.</string>
   <string name="uppercase">Верхні рэгістр</string>
   <string name="warning_read_only">Запісаць на картку памяці немагчыма. Змены не захаваюцца ў вашу базу даных.</string>
+  <string name="warning_unmounted">На вашай прыладзе няма прымантаваных картак памяці. Вы не можаце стварыць альбо загрузіць базу даных.</string>
   <string name="version_label">Версія</string>
   <string name="version_history">Гісторыя версій</string>
   <string name="author">Keepass2Android распрацоўвае Philipp Crocoll.</string>
   <string name="further_authors">Вялікая падзяка %1$s за ўдзел у распрацоўцы.</string>
+  <string name="designers">Дзякуй %1$s за значкі і дызайн.</string>
   <string name="search_options">Параметры</string>
   <string name="field_name">Назва поля</string>
   <string name="field_value">Значэнне поля</string>
