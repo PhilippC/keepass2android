@@ -814,6 +814,7 @@
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
+  <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
 
   <string-array name="ChangeLog_1_09a">

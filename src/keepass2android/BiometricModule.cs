@@ -376,7 +376,7 @@ namespace keepass2android
                     .SetUserAuthenticationRequired(true);
                 
                 if ((int)Build.VERSION.SdkInt >= 24)
-                    builder.SetInvalidatedByBiometricEnrollment(false);
+                    builder.SetInvalidatedByBiometricEnrollment(true);
 
                 _keyGen.Init(
                     builder
