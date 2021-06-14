@@ -43,11 +43,14 @@
     <!-- Option to enable auto capitalization of sentences -->
     <!-- Description for auto cap -->
     <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Аўтаматычная пунктуацыя</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
     <string name="quick_fixes">Хуткае выпраўленне</string>
     <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Выпраўленне распаўсюджаных памылак</string>
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Паказ прапаноў</string>
     <!-- Description for show suggestions -->
     <string name="show_suggestions_summary">Прапаноўваць словы падчас уводу</string>
     <!-- Option to enable auto completion -->
@@ -70,22 +73,30 @@
         <item>@string/settings_key_mode_always_hide_name</item>
     </string-array>
     <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Біграмныя прапановы</string>
     <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Выкарыстоўвайце папярэдняе слова, каб выправіць прапанову</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>Няма</item>
-        <item>Basic</item>
-        <item>Advanced</item>
+        <item>Базавы</item>
+        <item>Пашыраны</item>
     </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : захавана</string>
     <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Утрымлівайце клавішу, каб пабачыць дыякрытычныя знакі (ø, ö і г.д.)</string>
     <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Націсніце клавішу \"Назад\", каб закрыць клавіятуру ў любы момант</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Адкрыць лічбы і сімвалы</string>
     <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Націсніце і ўтрымлівайце слова злева, каб дадаць яго ў слоўнік</string>
     <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Націсніце на падказку, каб працягнуць »</string>
     <!-- Instruction to touch the bubble to start typing -->
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
@@ -93,11 +104,15 @@
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
     <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>Паспрабуйце!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Пераход</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Далей</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <string name="label_done_key">Завершана</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Адправіць</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
@@ -109,6 +124,7 @@
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
+    <string name="voice_warning_title">Галасавы ўвод</string>
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
@@ -150,6 +166,7 @@
     <!-- Label on button when an error occurs -->
     <string name="ok">Добра</string>
     <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Галасавы ўвод</string>
     <!-- Array of Voice Input modes -->
     <string-array name="voice_input_modes">
         <item>На асноўнай клавіятуры</item>
