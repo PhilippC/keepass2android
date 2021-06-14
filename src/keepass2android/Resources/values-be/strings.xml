@@ -275,6 +275,8 @@
   <string name="author">Keepass2Android распрацоўвае Philipp Crocoll.</string>
   <string name="further_authors">Вялікая падзяка %1$s за ўдзел у распрацоўцы.</string>
   <string name="designers">Дзякуй %1$s за значкі і дызайн.</string>
+  <string name="supporters">Дзякуй %1$s за фінансавую падтрымку.</string>
+  <string name="credit_plugin1">Убудову Twofish Cipher Plugin для Keepass распрацаваў і прыстасаваў да KP2A Scott Greenberg.</string>
   <string name="search_options">Параметры</string>
   <string name="field_name">Назва поля</string>
   <string name="field_value">Значэнне поля</string>
