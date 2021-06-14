@@ -283,7 +283,13 @@
   <string name="contributors">Удзельнікі</string>
   <string name="regular_expression">Рэгулярны выраз</string>
   <string name="TanExpiresOnUse_title">TAN нядзейсныя пасля выкарыстання</string>
+  <string name="TanExpiresOnUse_summary">Пазначаць запісы TAN састарэлымі пасля іх выкарыстання</string>
+  <string name="ShowUsernameInList_title">Паказваць імя карыстальніка ў спісе</string>
   <string name="search_options">Параметры</string>
+  <string name="start_open_file">Адкрыць файл…</string>
+  <string name="start_create">Стварыць новую базу даных…</string>
+  <string name="start_open_url">Адкрыць URL-адрас…</string>
+  <string name="start_create_import">Імпартаваць файл у новую базу даных…</string>
   <string name="field_name">Назва поля</string>
   <string name="field_value">Значэнне поля</string>
   <string name="protection">Абароненае поле</string>
@@ -328,6 +334,12 @@
   <string name="plugin_enabled">уключана</string>
   <string name="plugin_disabled">адключана</string>
   <string name="plugin_web">Шукаць убудовы ў сеціве</string>
+  <string name="AddCustomIcon">Дадаць значок з файла…</string>
+  <string name="CopyingFile">Капіяванне файла…</string>
+  <string name="DuplicateTitle">Скапіяваць</string>
+  <string name="DefaultTemplate">Стандартны запіс</string>
+  <string name="TemplateGroupName">Шаблоны</string>
+  <string name="TemplateTitle_IdCard">Ідэнтыфікатар карткі</string>
   <string name="TemplateField_IdCard_Name">Назва</string>
   <string name="TemplateTitle_EMail">Электронная пошта</string>
   <string name="TemplateField_EMail_EMail">Адрас электроннай пошты</string>
