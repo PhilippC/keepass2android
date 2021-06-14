@@ -277,6 +277,12 @@
   <string name="designers">Дзякуй %1$s за значкі і дызайн.</string>
   <string name="supporters">Дзякуй %1$s за фінансавую падтрымку.</string>
   <string name="credit_plugin1">Убудову Twofish Cipher Plugin для Keepass распрацаваў і прыстасаваў да KP2A Scott Greenberg.</string>
+  <string name="credit_android_filechooser">дыялог выбару файла распрацаваны Hai Bison</string>
+  <string name="credit_keyboard">Клавіятура KP2A базуецца на Gingerbread keyboard з Android Open Source Project і выкарыстоўвае код кіраўніка ўбудоў з Hacker\'s Keyboard ад Klaus Weidner.</string>
+  <string name="please_note">Звярніце ўвагу</string>
+  <string name="contributors">Удзельнікі</string>
+  <string name="regular_expression">Рэгулярны выраз</string>
+  <string name="TanExpiresOnUse_title">TAN нядзейсныя пасля выкарыстання</string>
   <string name="search_options">Параметры</string>
   <string name="field_name">Назва поля</string>
   <string name="field_value">Значэнне поля</string>
@@ -290,6 +296,8 @@
   <string name="totp_encoding_custom">Налады адвольнага токена</string>
   <string name="totp_time_step">Перыяд часу</string>
   <string name="totp_length">Даўжыня кода</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
+  <string name="DontCare">Мне няма розніцы</string>
   <string name="AskOverwriteBinary_no">Змяніць назву</string>
   <string name="rate_app">Ацаніць праграму</string>
   <string name="translate_app">Перакласці KP2A</string>
@@ -297,6 +305,14 @@
   <string name="AddingGroup">Даданне групы…</string>
   <string name="DeletingEntry">Выдаленне запісу…</string>
   <string name="DeletingGroup">Выдаленне групы…</string>
+  <string name="DeletingItems">Выдаленне элементаў…</string>
+  <string name="SettingPassword">Прызначэнне пароля…</string>
+  <string name="UndoingChanges">Скасаванне зменаў…</string>
+  <string name="TransformingKey">Пераўтварэнне галоўнага ключа…</string>
+  <string name="DecodingDatabase">Дэкадаванне базы даных…</string>
+  <string name="ParsingDatabase">Разбор базы даных…</string>
+  <string name="CheckingTargetFileForChanges">Праверка мэтавага файла на наяўнасць зменаў…</string>
+  <string name="TitleSyncQuestion">Аб’яднаць змены?</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (каталог KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
