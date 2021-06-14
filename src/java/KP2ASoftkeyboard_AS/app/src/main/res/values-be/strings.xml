@@ -45,6 +45,7 @@
     <!-- Option to enable auto punctuate -->
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Хуткае выпраўленне</string>
     <!-- Description for quick fixes -->
     <!-- Option to enable showing suggestions -->
     <!-- Description for show suggestions -->
