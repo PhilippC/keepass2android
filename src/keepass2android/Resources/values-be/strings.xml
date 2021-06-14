@@ -618,4 +618,5 @@ Initial public release
     <item>Пароль</item>
     <item>Private/Public key</item>
   </string-array>
+  <string name="AutofillWarning_title">Папярэджанне бяспекі: невядомая спасылка на дамен ці праграму</string>
 </resources>
