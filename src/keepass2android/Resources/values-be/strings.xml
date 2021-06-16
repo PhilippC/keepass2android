@@ -326,6 +326,10 @@
   <string name="SaveAttachment_doneMessage">Файл захаваны ў %1$s.</string>
   <string name="SaveAttachment_Failed">Не атрымалася захаваць у %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Захоўваць тэкст пошуку?</string>
+  <string name="AddUrlToEntryDialog_text">Хочаце захаваць тэкст пошуку \"%1$s\" у абраным запісе, каб аўтаматычна знайсці яго наступным разам?</string>
+  <string name="error_invalid_expiry_date">Хібны фармат даты ці часу для тэрміна дзеяння!</string>
+  <string name="error_string_key">Назва поля патрэбная для кожнага радка.</string>
+  <string name="error_string_duplicate_key">Назву поля немагчыма выкарыстаць двойчы (%1$s).</string>
   <string name="field_name">Назва поля</string>
   <string name="field_value">Значэнне поля</string>
   <string name="protection">Абароненае поле</string>
@@ -338,6 +342,11 @@
   <string name="totp_encoding_custom">Налады адвольнага токена</string>
   <string name="totp_time_step">Перыяд часу</string>
   <string name="totp_length">Даўжыня кода</string>
+  <string name="delete_extra_string">Выдаліць дадатковы радок</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: заблакавана. Хуткае разблакаванне ўключана.</string>
+  <string name="database_loaded_unlocked">%1$s: разблакавана.</string>
+  <string name="credentials_dialog_title">Увядзіце ўліковыя даныя сервера</string>
+  <string name="UseFileTransactions_title">Файлавыя трансакцыі</string>
   <string name="UpdatingBackup">Абнаўленне лакальнай рэзервовай копіі…</string>
   <string name="LocalBackupOf">Лакальная рэзервовая копія %1$s</string>
   <string name="show_local_backups">Паказаць лакальныя рэзервовыя копіі</string>
