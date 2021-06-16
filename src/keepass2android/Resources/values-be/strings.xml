@@ -347,11 +347,33 @@
   <string name="database_loaded_unlocked">%1$s: разблакавана.</string>
   <string name="credentials_dialog_title">Увядзіце ўліковыя даныя сервера</string>
   <string name="UseFileTransactions_title">Файлавыя трансакцыі</string>
+  <string name="UseFileTransactions_summary">Выкарыстоўваць для запісу базаў даных файлавыя трансакцыі</string>
+  <string name="LockWhenScreenOff_title">Блакаванне пры адключэнні экрана</string>
+  <string name="LockWhenScreenOff_summary">Блакаваць базы даных пры адключэнні экрана.</string>
+  <string name="ClearPasswordOnLeave_title">Ачышчэнне ўведзенага галоўнага пароля</string>
+  <string name="ClearPasswordOnLeave_summary">Пры пераключэнні з экрана без разблакавання базы даных ачышчаць уведзены галоўны пароль.</string>
+  <string name="LockWhenNavigateBack_title">Блакаванне пры выхадзе з праграмы</string>
+  <string name="LockWhenNavigateBack_summary">Пры выхадзе з праграмы з дапамогай кнопкі \"Назад\" блакаваць базу даных.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Выкарыстоўваць убудаваную клавіятуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Калі вы не давяраеце стандартнай сістэмнай клавіятуры, то адзначце гэты параметр, каб падчас уводу пароля ці рэдагавання запісаў выкарыстоўваць убудаваную клавіятуру.</string>
+  <string name="ActivateSearchViewOnStart_title">Актывацыя поля пошуку падчас запуску</string>
+  <string name="ActivateSearchViewOnStart_summary">Пасля разблакавання або падчас пошуку значэння актываваць поле пошуку</string>
+  <string name="NoDonateOption_title">Схаваць параметр для ахвяравання</string>
+  <string name="NoDonateOption_summary">Гэта параметр для падтрымкі. Даступны толькі пасля пэўнага часу карыстання Keepass2Android.</string>
+  <string name="NoDonateOption_question">Без ахвяраванняў праграма не існавала бы і не развівалася! Калі вы яшчэ не ахвяравалі, падумайце пра гэта</string>
+  <string name="NoDonationReminder_title">Ніколі не пытацца пра ахвяраванне</string>
+  <string name="NoDonationReminder_summary">Я не буду вам ахвяраваць ці ўжо ахвяраваў. Не пытацца пра ахвяраванне нават у дзень нараджэння аўтара.</string>
+  <string name="UseOfflineCache_title">Запіс базы даных у кэш</string>
+  <string name="UseOfflineCache_summary">Захоўваць копію базы даных у каталозе кэшу праграмы. Гэта дасць магчымасць выкарстоўваць базу даных пры недаступнасці файла базы даных.</string>
+  <string name="CreateBackups_title">Лакальныя рэзервовыя копіі</string>
+  <string name="CreateBackups_summary">Ствараць лакальную рэзервовую копію пасля паспяховай загрузкі базы даных.</string>
   <string name="UpdatingBackup">Абнаўленне лакальнай рэзервовай копіі…</string>
   <string name="LocalBackupOf">Лакальная рэзервовая копія %1$s</string>
   <string name="show_local_backups">Паказаць лакальныя рэзервовыя копіі</string>
   <string name="AcceptAllServerCertificates_title">Сертыфікаты SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Вызначце паводзіны пры збоі праверкі сертыфіката. Майце на ўвазе, што, калі праверка схібіла, вы можаце ўсталяваць сертыфікаты на сваёй прыладзе!</string>
   <string name="ClearOfflineCache_title">Ачысціць кэш?</string>
+  <string name="ClearOfflineCache_question">Гэта выдаліць усе копіі базаў даных з кэшу. Любыя несінхранізаваныя змены, унесеныя ў атаномным рэжыме, страцяцца. Працягнуць?</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Пераключыць клавіятуру</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
   <string name="DontCare">Мне няма розніцы</string>
@@ -764,4 +786,5 @@ Initial public release
     <item>Private/Public key</item>
   </string-array>
   <string name="AutofillWarning_title">Папярэджанне бяспекі: невядомая спасылка на дамен ці праграму</string>
+  <string name="AutofillWarning_trustAsBrowser">Заўсёды ўхваляць у \"%1$s\"</string>
 </resources>
