@@ -338,6 +338,12 @@
   <string name="totp_encoding_custom">Налады адвольнага токена</string>
   <string name="totp_time_step">Перыяд часу</string>
   <string name="totp_length">Даўжыня кода</string>
+  <string name="UpdatingBackup">Абнаўленне лакальнай рэзервовай копіі…</string>
+  <string name="LocalBackupOf">Лакальная рэзервовая копія %1$s</string>
+  <string name="show_local_backups">Паказаць лакальныя рэзервовыя копіі</string>
+  <string name="AcceptAllServerCertificates_title">Сертыфікаты SSL</string>
+  <string name="ClearOfflineCache_title">Ачысціць кэш?</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Пераключыць клавіятуру</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
   <string name="DontCare">Мне няма розніцы</string>
   <string name="AskOverwriteBinary_no">Змяніць назву</string>
