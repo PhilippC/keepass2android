@@ -285,6 +285,10 @@
   <string name="TanExpiresOnUse_title">TAN нядзейсныя пасля выкарыстання</string>
   <string name="TanExpiresOnUse_summary">Пазначаць запісы TAN састарэлымі пасля іх выкарыстання</string>
   <string name="ShowUsernameInList_title">Паказваць імя карыстальніка ў спісе</string>
+  <string name="ShowUsernameInList_summary">Паказваць імёны карыстальнікаў пад назвамі. Карысна пры наяўнасці некалькіх акаўнтаў або TAN.</string>
+  <string name="RememberRecentFiles_title">Памятаць базы даных</string>
+  <string name="RememberRecentFiles_summary">Запамінаць нядаўна адкрытыя базы даных і паказваць іх на экране адкрыцця базы даных.</string>
+  <string name="NoDalVerification_title">Няма пацвярджэння DAL</string>
   <string name="search_options">Параметры</string>
   <string name="start_open_file">Адкрыць файл…</string>
   <string name="start_create">Стварыць новую базу даных…</string>
