@@ -55,4 +55,22 @@
     <string name="afc_title_size">Памер</string>
     <string name="afc_title_sort_by">Сартаваць па…</string>
     <string name="afc_yesterday">Учора</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Абраць каталог…</item>
+        <item quantity="few">Абраць каталогі…</item>
+        <item quantity="many">Абраць каталогі…</item>
+        <item quantity="other">Абраць каталогі…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Абраць файл…</item>
+        <item quantity="few">Абраць файлы…</item>
+        <item quantity="many">Абраць файлы…</item>
+        <item quantity="other">Абраць файлы…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Абраць файл / каталог…</item>
+        <item quantity="few">Абраць файлы / каталогі…</item>
+        <item quantity="many">Абраць файлы / каталогі…</item>
+        <item quantity="other">Абраць файлы / каталогі…</item>
+    </plurals>
 </resources>
