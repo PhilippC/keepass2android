@@ -374,6 +374,17 @@
   <string name="AcceptAllServerCertificates_summary">Вызначце паводзіны пры збоі праверкі сертыфіката. Майце на ўвазе, што, калі праверка схібіла, вы можаце ўсталяваць сертыфікаты на сваёй прыладзе!</string>
   <string name="ClearOfflineCache_title">Ачысціць кэш?</string>
   <string name="ClearOfflineCache_question">Гэта выдаліць усе копіі базаў даных з кэшу. Любыя несінхранізаваныя змены, унесеныя ў атаномным рэжыме, страцяцца. Працягнуць?</string>
+  <string name="CheckForFileChangesOnSave_title">Праверка наяўнасці зменаў</string>
+  <string name="CheckForFileChangesOnSave_summary">Перад захаваннем зменаў правяраць ці быў зменены файл звонку.</string>
+  <string name="CheckForDuplicateUuids_title">Праверка наяўнасці паўторных UUID</string>
+  <string name="CheckForDuplicateUuids_summary">Правяраць, ці ёсць у файле базы даных радкі з аднолькавымі ідэнтфікатарамі. Калі ёсць, то могуць быць нечаканыя наступствы.</string>
+  <string name="ShowCopyToClipboardNotification_title">Апавяшчэнні буфера абмену</string>
+  <string name="ShowCopyToClipboardNotification_summary">Зрабіць імя карыстальніка і пароль даступнымі праз панэль апавяшчэнняў і буфер абмену. Сцеражыцеся перахопу пароляў!</string>
+  <string name="ShowSeparateNotifications_title">Асобныя апавяшчэнні</string>
+  <string name="ShowSeparateNotifications_summary">Паказваць асобныя апавяшчэнні для капіявання імя карыстальніка і пароля ў буфер абмену і актывацыі клавіятуры.</string>
+  <string name="AccServiceAutoFill_prefs">Адмысловая служба аўтазапаўнення</string>
+  <string name="AutoFill_prefs">Служба аўтазапаўнення</string>
+  <string name="ShowKp2aKeyboardNotification_title">Апавяшчэнні клавіятуры KP2A </string>
   <string name="OpenKp2aKeyboardAutomatically_title">Пераключыць клавіятуру</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
   <string name="DontCare">Мне няма розніцы</string>
