@@ -19,7 +19,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Клавіятура Keepass2Android</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Налады клавіятуры Android</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">Параметры ўводу</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
@@ -29,16 +31,21 @@
     <!-- Option to pop up the character with a larger font above soft keyboard -->
     <string name="popup_on_keypress">Павелічэнне пры націсканні кнопак</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Выпраўленне памылак уводу</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Уключыць выпраўленне памылак падчас уводу</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Уключыць выпраўленне памылак падчас уводу</string>
     <!-- Option to automatically correct word on hitting space -->
     <!-- Description for auto_correction -->
     <!-- Option to enable text prediction -->
     <!-- Category title for text prediction -->
     <!-- Description for text prediction -->
     <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Аўтазавяршэнне</string>
     <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Павялічыць памер тэкставага поля</string>
     <!-- Description for text prediction -->
     <!-- Option to enable auto capitalization of sentences -->
     <!-- Description for auto cap -->
