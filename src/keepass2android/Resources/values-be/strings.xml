@@ -385,6 +385,7 @@
   <string name="AccServiceAutoFill_prefs">Адмысловая служба аўтазапаўнення</string>
   <string name="AutoFill_prefs">Служба аўтазапаўнення</string>
   <string name="ShowKp2aKeyboardNotification_title">Апавяшчэнні клавіятуры KP2A </string>
+  <string name="ShowKp2aKeyboardNotification_summary">Зрабіць увесь запіс даступным праз клавіятуру KP2A (рэкамендуецца).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Пераключыць клавіятуру</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
   <string name="DontCare">Мне няма розніцы</string>
