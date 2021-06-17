@@ -521,16 +521,16 @@
   <string-array name="ChangeLog_1_08b">
     <item>Прымусова выкарыстоўваць HTTP/1.1 праз праблемы з рэалізацыяй HTTP/2 для OkHttp</item>
     <item>Палепшаны дыялог клавіятуры на Android 9+</item>
-    <item>Change file associations of the app to avoid some unnecessary associations</item>
-    <item>Make sure password text is not hidden behind eye icon</item>
-    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
-    <item>Update to FTP library</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>Змена файлавых асацыяцый для пазбягання непатрэбных сувязяў</item>
+    <item>Пераканайцеся, што тэкст пароля не схаваны значком вока</item>
+    <item>Змяніць паводзіны аўтазапаўнення, каб папярэджваць пра ўвод уліковых даных для дамена ў нераспазнанай праграме</item>
+    <item>Абнаўленне FTP-бібліятэкі</item>
+    <item>Выпраўлены патэнцыйныя збоі праграмы</item>
+    <item>Невялічкія выпраўленні</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
-    <item>Add notification button for copying TOTP to clipboard</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Дадаць кнопку апавяшчэння для капіявання  TOTP у буфер абмену</item>
+    <item>Пераключыцца на FluentFTP для падтрымкі TLS 1.2</item>
     <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
     <item>Выпраўленні хібаў</item>
   </string-array>
