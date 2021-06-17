@@ -509,9 +509,26 @@
   <string name="select_database">Абраць базу даных</string>
   <string name="configure_child_dbs">Наладзіць дачынныя базы даных…</string>
   <string name="child_dbs_title">Дачынныя базы даных</string>
+  <string name="unspecified">не вызначана</string>
+  <string name="Visible_title">Бачнасць</string>
+  <string name="child_db_Enabled_title">Адкрываць аўтаматычна</string>
   <string name="database_file_heading">Файл базы даных</string>
   <string name="if_device_text">Уключыць для %1$s</string>
+  <string name="DbUnlockedChannel_name">База даных разблакаваная</string>
+  <string name="DbUnlockedChannel_desc">Апавяшчэнне пра разблакаванне базы даных</string>
   <string name="DbQuicklockedChannel_name">Хуткае разблакаванне</string>
+  <string name="DbQuicklockedChannel_desc">Апавяшчэнне пра разблакаванне базы даных з дапамогай хуткага разблакавання</string>
+  <string name="EntryChannel_name">Апавяшчэнне пра запіс</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for new key file format introduced in Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Jsch абноўлены да версіі 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>No longer storing package names of Android apps in the URL field</item>
     <item>Паляпшэнне паводзін блакавання - адразу пасля разблакавання больш не паказваецца біяметрычная падказка.</item>
@@ -857,6 +874,25 @@ Initial public release
     <item>Папярэджваць пра няўдалыя праверкі</item>
     <item>Не прымаць хібныя сертыфікаты</item>
   </string-array>
+  <string name="ClearClipboardWarning">Пераканайцеся, што гэта працуе на вашай сістэме, і выкарыстайце ўбудаваную клавіятуру, калі не працуе.</string>
+  <string name="PluginDescription">Апісанне бярэцца з убудовы:</string>
+  <string name="autofill_hint">Keepass2Android падтрымлівае функцыю аўтаматычнага запаўнення, але мабыць вы яе не ўключылі.</string>
+  <string name="autofill_enable">Уключыць аўтазапаўненне</string>
+  <string name="autofill_enable_failed">Выбачайце, але ваша сістэма не падтрымлівае адкрыццё сістэмных налад з праграмы. Перайдзіце ў налады і ўключыце аўтазапаўненне.</string>
+  <string name="show_autofill_help">Паказаць даведку</string>
+  <string name="autofill_sign_in_prompt">Запоўніць з Keepass2Android</string>
+  <string name="autofill_disable">Адключыць аўтазапаўненне для %1$s</string>
+  <string name="autofill_enable_for">Уключыць аўтазапаўненне для %1$s</string>
+  <string name="invalid_link_association">Не атрымалася звязаць дамен %1$s з праграмай %2$s</string>
+  <string name="enable_fingerprint_hint">Праграма Keepass2Android выявіла абсталяванне для распазнавання біяметрычных даных. Хочаце ўключыць для гэтай базы даных разблакаванне з дапамогай біяметрычных даных?</string>
+  <string name="understand">Зразумела</string>
+  <string name="dont_show_again">Больш не паказваць</string>
+  <string name="masterkey_infotext_head">Вы памятаеце свой галоўны пароль?</string>
+  <string name="masterkey_infotext_main">Звярніце ўвагу, што вы не зможаце адкрыць сваю базу даных без галоўнага ключа. Не існуе спосабаў скінуць галоўны пароль.</string>
+  <string name="masterkey_infotext_fingerprint_note">Таксама памятайце, што функцыя разблакавання з дапамогай біяметрычных даных захоўвае ваш галоўны пароль у бяспечным сховішчы Android. Гэтае сховішча можа выдаліцца ў любы момант. Таму не забывайцеся на свой пароль!</string>
+  <string name="backup_infotext_head">Вы маеце рэзервовую копію базы даных?</string>
+  <string name="switch_ime_reopen">Паўтарыць</string>
   <string name="AutofillWarning_title">Папярэджанне бяспекі: невядомая спасылка на дамен ці праграму</string>
+  <string name="AutofillWarning_Intro">Вы хочаце ўставіць уліковыя даныя для дамена \"%1$s\" у праграму \"%2$s\".</string>
   <string name="AutofillWarning_trustAsBrowser">Заўсёды ўхваляць у \"%1$s\"</string>
 </resources>
