@@ -387,6 +387,9 @@
   <string name="ShowKp2aKeyboardNotification_title">Апавяшчэнні клавіятуры KP2A </string>
   <string name="ShowKp2aKeyboardNotification_summary">Зрабіць увесь запіс даступным праз клавіятуру KP2A (рэкамендуецца).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Пераключыць клавіятуру</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Адкрыць дыялог выбару клавіятуры, калі запіс даступны праз клавіятуру KP2A пасля пошуку ў браўзеры.</string>
+  <string name="kp2a_switch_rooted">Аўтаматычнае пераключэнне клавіятуры</string>
+  <string name="kp2a_switch_rooted_summary">Аўтаматычна пераключацца на клавіятуру KP2A, калі запіс адкрыты. Патрабуецца правільна наладжаная ўбудова KeyboardSwap Plugin або прылада з разблакаваным root-доступам і праграма Secure Settings з System+. </string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
   <string name="DontCare">Мне няма розніцы</string>
   <string name="AskOverwriteBinary_no">Змяніць назву</string>
