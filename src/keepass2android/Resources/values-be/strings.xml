@@ -531,7 +531,7 @@
   <string-array name="ChangeLog_1_08">
     <item>Дадаць кнопку апавяшчэння для капіявання  TOTP у буфер абмену</item>
     <item>Пераключыцца на FluentFTP для падтрымкі TLS 1.2</item>
-    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Пераключэнне на BiometricPrompt API для паляпшэння ўзаемадзеяння з дапамогай разблакавання адбіткам пальца і тварам, напрыклад на Pixel 4.</item>
     <item>Выпраўленні хібаў</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
@@ -783,6 +783,7 @@
 * Added safer way for opening attachments (through cache directory)\n
 * fixed bugs in Edit activity\n
 * probably introduced new bugs :-)</string>
+  <string name="ChangeLog_keptDonate">Дадатковыя спосабы ахвяравання</string>
   <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
 * Increased loading speed: key transformations now 10x faster!\n
 * Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
@@ -842,14 +843,19 @@ Initial public release
     <item>Пароль + файл ключа</item>
     <item>Пароль + OTP (аднаразовы пароль)</item>
     <item>Пароль + сакрэтны OTP (аднаразовы пароль) (рэжым аднаўлення)</item>
-    <item>Password + Challenge-Response</item>
-    <item>Password + Challenge-Response secret (recovery mode)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Пароль + Выклік-Адказ</item>
+    <item>Пароль + сакрэтны Выклік-Адказ (рэжым аднаўлення)</item>
+    <item>Пароль + Выклік-Адказ для Keepass XC</item>
+    <item>Пароль + файл ключа + Выклік-Адказ для Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
-    <item>Private/Public key</item>
+    <item>Прыватны / Публічны ключ</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Не зважаць на памылкі праверкі сертыфіката</item>
+    <item>Папярэджваць пра няўдалыя праверкі</item>
+    <item>Не прымаць хібныя сертыфікаты</item>
   </string-array>
   <string name="AutofillWarning_title">Папярэджанне бяспекі: невядомая спасылка на дамен ці праграму</string>
   <string name="AutofillWarning_trustAsBrowser">Заўсёды ўхваляць у \"%1$s\"</string>
