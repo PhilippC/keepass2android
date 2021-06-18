@@ -442,6 +442,7 @@
   <string name="NoOverwrite">Не, перазапісаць</string>
   <string name="UseOfflineMode">Працаваць толькі з лакальнай копіяй</string>
   <string name="UseOnlineMode">Сінхранізаваць копію з кэшу з зыходным файлам</string>
+  <string name="UseOfflineMode_Info">База даных загружаная з унутранага кэшу. Змены захоўваюцца толькі ва ўнутраным кэшы і будуць сінхранізавацца толькі, калі абраць сінхранізацыю копіі з зыходным файлам.</string>
   <string name="UploadingFile">Захаваць файл…</string>
   <string name="hint_nextcloud_url">URL-адрас nextcloud (напрыклад: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (напрыклад: 192.168.0.1)</string>
