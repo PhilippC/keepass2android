@@ -464,6 +464,7 @@
   <string name="database_file">файл базы даных</string>
   <string name="otp_aux_file">Дапаможны файл OTP (аднаразовых пароляў) </string>
   <string name="ErrorOcurred">Адбылася памылка:</string>
+  <string name="DuplicateUuidsError">База даных пашкоджаная: выяўлены паўторныя ідэнтыфікатары. (Вы захавалі базу ў Minikeepass?) Імпартуйце новую базу даных з дапамогай Keepass 2 для ПК і абярыце \"Стварыць новыя ідэнтыфікатары\".</string>
   <string name="hint_nextcloud_url">URL-адрас nextcloud (напрыклад: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (напрыклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
