@@ -443,7 +443,25 @@
   <string name="UseOfflineMode">Працаваць толькі з лакальнай копіяй</string>
   <string name="UseOnlineMode">Сінхранізаваць копію з кэшу з зыходным файлам</string>
   <string name="UseOfflineMode_Info">База даных загружаная з унутранага кэшу. Змены захоўваюцца толькі ва ўнутраным кэшы і будуць сінхранізавацца толькі, калі абраць сінхранізацыю копіі з зыходным файлам.</string>
+  <string name="InOfflineMode">Працаваць толькі з унутранай копіяй.</string>
+  <string name="SynchronizingCachedDatabase">Сінхранізацыя базы даных з кэшу…</string>
+  <string name="DownloadingRemoteFile">Загрузка зыходнага файла…</string>
   <string name="UploadingFile">Захаваць файл…</string>
+  <string name="RestoringRemoteFile">Аднаўленне зыходнага файла…</string>
+  <string name="FilesInSync">Файлы сінхранізуюцца.</string>
+  <string name="SynchronizedDatabaseSuccessfully">База даных паспяхова сінхранізаваная!</string>
+  <string name="CheckingDatabaseForChanges">Праверка базы даных на наяўнасць зменаў…</string>
+  <string name="CouldNotSaveToRemote">Не атрымалася захаваць зыходны файл: %1$s. Паўтарыце або выкарыстайце меню сінхранізацыі, калі адновіцца доступ.</string>
+  <string name="CouldNotLoadFromRemote">Не ўдалося атрымаць доступ да файла: %1$s. Была загружаная копія з кэшу. Вы можаце ўнесці змены ў базу даных і сінхранізаваць іх пазней.</string>
+  <string name="UpdatedRemoteFileOnLoad">Абноўлены зыходны файл.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Змены ў адкрытай копіі з кэшу канфліктуюць з зыходным файлам. Выкарыстайце меню сінхранізацыі, каб сінхранізаваць змены.</string>
+  <string name="LoadedFromRemoteInSync">Зыходны файл і копія з кэшу сінхранізаваныя.</string>
+  <string name="UpdatedCachedFileOnLoad">Копія з кэшу \"%1$s\" абноўленая.</string>
+  <string name="RemoteDatabaseUnchanged">Зменаў не выяўлена.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Кэшаваны дапаможны файл OTP (аднаразовы пароль) абноўлены: зыходны лічыльнік быў большы.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Зыходны дапаможны файл OTP (аднаразовы пароль) абноўлены: кэшаваны лічыльнік быў большы.</string>
+  <string name="SynchronizingOtpAuxFile">Сінхранізацыя дапаможнага файла OTP (аднаразовы пароль)…</string>
+  <string name="otp_aux_file">Дапаможны файл OTP (аднаразовы пароль) </string>
   <string name="hint_nextcloud_url">URL-адрас nextcloud (напрыклад: nextcloud.me.com)</string>
   <string name="hint_sftp_host">хост (напрыклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
@@ -474,6 +492,12 @@
   <string name="filestoragename_content">Сістэмны сродак для выбару файлаў</string>
   <string name="filestorage_setup_title">Ініцыялізацыя доступу да файла</string>
   <string name="key_file">Файл ключа</string>
+  <string name="init_otp">Загрузіць дапаможны файл OTP (аднаразовы пароль)…</string>
+  <string name="otp_explanation">Увядзіце наступны OTP (аднаразовы пароль). Правядзіце прыладай Yubikey NEO уздоўж задняй панэль прылады праз сэнсар  NFC (патрабуецца праграма Yubiclip).</string>
+  <string name="otp_hint">OTP (аднаразовы пароль) %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Не атрымалася загрузіць дапаможны файл OTP (аднаразовы пароль)!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Выкарыстоўвайце ўбудову OtpKeyProv у KeePass 2.x (PC), каб наладзіць базу даных для працы з OTP(аднаразовы пароль)!</string>
+  <string name="otp_discarded_because_no_db">Спачатку абярыце базу даных. OTP (аднаразовы пароль) адхілены з прычыны бяспекі.</string>
   <string name="DebugLog_title">Выкарыстоўваць файл журнала</string>
   <string name="DebugLog_summary">Запісваць выходныя даныя праграмы ў лакальны файл журнала</string>
   <string name="DebugLog_send">Адправіць журнал адладкі…</string>
@@ -520,11 +544,21 @@
   <string name="DbQuicklockedChannel_name">Хуткае разблакаванне</string>
   <string name="DbQuicklockedChannel_desc">Апавяшчэнне пра разблакаванне базы даных з дапамогай хуткага разблакавання</string>
   <string name="EntryChannel_name">Апавяшчэнне пра запіс</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Added support for KDBX 4.1 file format introduced in KeePass 2.48</item>
+    <item>Дададзены дыялог налад TOTP для запісаў</item>
+    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Add support for new key file format introduced in Keepass 2.47</item>
     <item>Add support for Argon2id as key derivation function</item>
     <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Палепшана падтрымка TOTP запісаў з праграм для камп\'ютараў</item>
     <item>Update pCloud SDK to fix authentication issue</item>
     <item>Jsch абноўлены да версіі 0.1.55</item>
     <item>Add menu to database selection screen</item>
