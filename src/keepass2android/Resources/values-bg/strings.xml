@@ -20,6 +20,9 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android офлайн</string>
   <string name="short_app_name_nonet">KP2A Офлайн</string>
+  <string name="app_timeout">App timeout</string>
+  <string name="app_timeout_summary">Време за заключване на базата данни, когато приложение е неактивно.5543835425</string>
+  <string name="kill_app_label">Kill app process</string>
   <string name="show_kill_app">Бутон-Затваряне</string>
   <string name="ShowGroupnameInSearchResult_title">Показване на името на групата в резултата от търсенето</string>
   <string name="ShowGroupnameInSearchResult_resume">Показване на името на групата под заглавието  в резултатите от търсенето. Полезно е, ако няколко записа имат едно и също име.</string>
