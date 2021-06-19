@@ -55,8 +55,4 @@
     <string name="afc_title_size">Размер</string>
     <string name="afc_title_sort_by">Сортирай според…</string>
     <string name="afc_yesterday">Вчера</string>
-    <plurals name="afc_title_choose_directories">
-        <item quantity="one">Choose folder…12</item>
-        <item quantity="other">Choose folders…</item>
-    </plurals>
 </resources>
