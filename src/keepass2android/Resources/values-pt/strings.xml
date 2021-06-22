@@ -12,7 +12,7 @@
   <string name="edit_entry">Alterar entrada</string>
   <string name="add_url_entry">Criar entrada por URL</string>
   <string name="add_group">Adicionar grupo</string>
-  <string name="add_group_title">Adicionar Grupo</string>
+  <string name="add_group_title">Adicionar grupo</string>
   <string name="edit_group_title">Editar grupo</string>
   <string name="algorithm">Algoritmo</string>
   <string name="algorithm_colon">Algoritmo</string>
@@ -49,15 +49,15 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar base de dados...</string>
   <string name="fingerprint_prefs">Desbloqueio biométrico</string>
-  <string name="import_db_prefs">importar base de dados para pasta interna</string>
+  <string name="import_db_prefs">Importar base de dados para uma pasta interna</string>
   <string name="import_keyfile_prefs">Importar ficheiro-chave para pasta interna</string>
   <string name="export_keyfile_prefs">Exportar ficheiro-chave da pasta interna</string>
   <string name="keyboardswitch_prefs">Alterar teclado</string>
   <string name="OnlyAvailableForLocalFiles">Apenas disponível para ficheiros locais.</string>
   <string name="FileIsInInternalDirectory">Ficheiro guardado na pasta local.</string>
-  <string name="DatabaseFileMoved">A base de dados foi copiada para a pasta local. Prima OK para abrir a nova localização. Nota: Não se esqueça de exportar a sua base de dados para uma localização segura regularmente!</string>
-  <string name="KeyfileMoved">O ficheiro-chave foi copiado para a diretoria interna. Verifique se tem uma cópia de segurança válida antes de a eliminar da diretoria atual!</string>
-  <string name="KeyfileMoveRequiresRememberKeyfile">Não é possível usar a diretoria interna quando a localização do ficheiro-chave não é guardada. Altere as preferências de segurança.</string>
+  <string name="DatabaseFileMoved">A base de dados foi copiada para a pasta local. Prima OK para abrir a nova localização. Nota: não se esqueça de exportar a sua base de dados para uma localização segura regularmente!</string>
+  <string name="KeyfileMoved">O ficheiro-chave foi copiado para a pasta interna. Verifique se tem uma cópia de segurança válida antes de a eliminar da pasta atual!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Não é possível usar a pasta interna quando a localização do ficheiro-chave não é guardada. Altere as preferências de segurança.</string>
   <string name="unlock_database_button">Desbloquear</string>
   <string name="unlock_database_title">Desbloquear base de dados</string>
   <string name="brackets">Parêntesis</string>
@@ -85,14 +85,14 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="fingerprint_description">Por favor, autentique-se para continuar</string>
   <string name="fingerprint_fatal">Não é possível configurar o Desbloquear Biométrico:</string>
-  <string name="fingerprint_not_recognized">A Autenticação Biométrica falhou. Tente novamente</string>
+  <string name="fingerprint_not_recognized">A autenticação biométrica falhou. Tente novamente</string>
   <string name="fingerprint_success">Autenticação biométrica bem-sucedida</string>
   <string name="fingerprint_os_error">Desbloqueio biométrico requer Android 6.0 ou posterior.</string>
   <string name="fingerprint_hardware_error">Nenhum hardware de biometria detetado.</string>
   <string name="fingerprint_no_enrolled">Não existem impressões digitais registadas neste aparelho. Por favor dirija-se primeiro à definições.</string>
-  <string name="disable_fingerprint_unlock">Desativar Desbloqueio Biométrico</string>
-  <string name="enable_fingerprint_unlock">Ativar desbloquear através impressão digital</string>
-  <string name="enable_fingerprint_quickunlock">Permitir utilizar impressão digital desbloquear para o Desbloqueio-rápido</string>
+  <string name="disable_fingerprint_unlock">Desativar desbloqueio biométrico</string>
+  <string name="enable_fingerprint_unlock">Ativar desbloquear biométrico total</string>
+  <string name="enable_fingerprint_quickunlock">Permitir utilizar o desbloquear biométrico para o desbloqueio rápido</string>
   <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: Chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados.</string>
   <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada já não é válida.</string>
   <string name="fingerprint_reenable">Por favor, ligue novamente o destrancar através de impressão digital para a nova palavra-passe mestra.</string>
@@ -339,6 +339,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="totp_secret_key">Chave secreta</string>
   <string name="totp_encoding_rfc6238">Configurações padrão do token RFC6238</string>
   <string name="totp_encoding_custom">Configurações de token personalizadas</string>
+  <string name="totp_time_step">Intervalo de tempo</string>
   <string name="totp_length">Comprimento do código</string>
   <string name="delete_extra_string">Eliminar texto adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio-Rápido ativo.</string>
@@ -662,17 +663,37 @@ Muito útil se existirem muitos resultados iguais.</string>
     <item>Adicionado suporte para o formato de ficheiro KDBX 4.1 introduzido no KeePass 2.48</item>
     <item>Adicionado diálogo para configurar o TOTP em entradas</item>
     <item>Gerador de palavra-chave aprimorado: adicionado suporte a frase-chave, mais opções, perfis e estimativa de força da palavra-chave</item>
-    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
-    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
-    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Melhorias no preenchimento automático (popup fixo não mostrado no Chrome, melhor suporte ao subdomínio)</item>
+    <item>Melhorias na implementação do OneDrive: sem limite de tamanho, sem mais solicitações de autenticação supérfluas</item>
+    <item>Adicionada opção para selecionar o tema claro/escuro de configurações de sistema, incluindo perfis noturnos, requer Android 10+</item>
+    <item>Permitir abrir ficheiros através do gestor de ficheiros do sistema, ignorando a bandeira de apenas leitura</item>
+    <item>Permite começar a mover as entradas do menu de visualização de entradas</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Adicionado suporte para o novo formato de ficheiro-chave introduzido no Keepass 2.47</item>
+    <item>Adicionado suporte para o Argon2id como função de derivação de chaves</item>
+    <item>Compatibilidade do preenchimento automático no Firefox e Chrome</item>
+    <item>Melhorado o suporte a entradas TOTP de programas em computadores de mesa</item>
+    <item>Atualizado o pCloud SDK para corrigir problemas de autenticação</item>
+    <item>Atualizado o Jsch para a versão 0.1.55</item>
+    <item>Adicionado o menu ao ecrã de seleção da base de dados</item>
+    <item>Permite a exportação de ficheiro-chave importados</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
-    <item>No longer storing package names of Android apps in the URL field</item>
-    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
-    <item>Update OkHttp to support HTTP/2</item>
+    <item>Não armazena mais os nomes de pacotes de aplicações Android no campo URL</item>
+    <item>Melhorado o comportamento de bloqueio - sem mostrar o alerta de biometria imediatamente após o desbloqueio</item>
+    <item>Atualizado o OkHttp para suportar HTTP/2</item>
     <item>Corrigir traduções em falta</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Forçar o HTTP/1.1 devido a problemas com a implementação HTTP/2 do OkHttp</item>
+    <item>Melhorado a janela de diálogo do teclado no Android 9+</item>
+    <item>Alteradas as associações de ficheiros da aplicação para evitar associações desnecessárias</item>
+    <item>Verificação que o texto da palavra-chave não está escondido atrás do ícone do olho</item>
+    <item>Alterado o comportamento do preenchimento automático para avisar ao preencher credenciais para um domínio para uma aplicação não reconhecida</item>
+    <item>Atualizada a biblioteca FTP</item>
+    <item>Correções em falhas potenciais da aplicação</item>
+    <item>Mais correções menores</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Adicionar botão de notificação para copiar TOTP para área de transferência</item>
@@ -961,7 +982,7 @@ Lançamento público inicial
   <string-array name="design_options">
     <item>Claro</item>
     <item>Escuro</item>
-    <item>System settings</item>
+    <item>Configurações do sistema</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
@@ -1016,6 +1037,11 @@ Não há forma de fazer \"reset\" à chave mestra.</string>
   <string name="emergency_infotext_head">Está preparado para casos de emergência?</string>
   <string name="emergency_infotext_main">Já considerou em o que acontece caso você não consiga aceder à sua base de dados? E se tem um acidente? É uma boa prática dar a sua senha mestra a alguém de sua confiança para situações de emergência. Ninguém vai conseguir aceder às suas passwords de outra forma.</string>
   <string name="no_secure_display">O ecrã atual não está marcado como seguro. Isso significa que capturas de ecrã podem ser feitas por outras aplicações. Keepass2Android está configurado para exibir informações confidenciais apenas em ecrãs seguros. Por favor, altere para um ecrã seguro (por exemplo, desconectando um monitor HDMI) ou altere as configurações da aplicação.</string>
+  <string name="disable_secure_screen_check">Desativar esta mensagem</string>
+  <string name="switch_ime_text">Por favor, ative o teclado Keepass2Android.</string>
   <string name="switch_ime_reopen">Tente novamente</string>
+  <string name="AutofillWarning_title">Alerta de segurança: domínio/link da aplicação desconhecido</string>
+  <string name="AutofillWarning_Intro">Está prestes a inserir credenciais para o domínio \"%1$s\" na aplicação \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Se confia em \"%2$s\" para pertencer a \"%1$s\" ou confia na aplicação \"%2$s\" para que esta não utilize indevidamente as credenciais (por ex. por ser uma aplicação de navegação confiável), pode continuar. Caso contrário cancele.</string>
   <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
 </resources>
