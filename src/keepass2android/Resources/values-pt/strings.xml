@@ -51,6 +51,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="fingerprint_prefs">Desbloqueio biométrico</string>
   <string name="import_db_prefs">importar base de dados para pasta interna</string>
   <string name="import_keyfile_prefs">Importar ficheiro-chave para pasta interna</string>
+  <string name="export_keyfile_prefs">Exportar ficheiro-chave da pasta interna</string>
   <string name="keyboardswitch_prefs">Alterar teclado</string>
   <string name="OnlyAvailableForLocalFiles">Apenas disponível para ficheiros locais.</string>
   <string name="FileIsInInternalDirectory">Ficheiro guardado na pasta local.</string>
@@ -229,6 +230,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="saving_database">A gravar a base de dados...</string>
   <string name="exporting_database">A exportar base de dados…</string>
   <string name="export_database_successful">Base de dados exportada com sucesso!</string>
+  <string name="export_keyfile_successful">Ficheiro-chave exportado com sucesso!</string>
   <string name="space">Espaço</string>
   <string name="search_label">Pesquisar</string>
   <string name="show_password">Mostrar palavra-passe</string>
@@ -238,11 +240,24 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="sort_moddate">Ordenar por data de modificação</string>
   <string name="sort_default">Manter ordenação por defeito</string>
   <string name="special">Especial</string>
+  <string name="special_extended">Especial estendido</string>
+  <string name="at_least_one_from_each_group">Pelo menos um de cada grupo</string>
+  <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Digite o nome do perfil para guardar. Digite um nome existente para o substituir.</string>
+  <string name="hint_wordcount">Contagem de palavras da frase-chave</string>
+  <string name="hint_wordseparator">Separador de palavras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Palavra-passe</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Frase-chave</item>
+    <item>Frase-chave + palavra-chave</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúsculas</item>
+    <item>MAIÚSCULAS</item>
+    <item>Primeiro caractere em maiúsculas</item>
+  </string-array>
+  <string name="custom_settings">Configurações personalizadas</string>
+  <string name="passphrase_capitalization">Capitalização da frase-chave</string>
   <string name="search_hint">O que encontrar</string>
   <string name="search_results">Resultado da procura</string>
   <string name="search_in">Procurar em</string>
@@ -260,6 +275,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="author">Keepass2Android é desenvolvido por Philipp Crocoll.</string>
   <string name="further_authors">Agradecimentos a contribuições de código por %1$s.</string>
   <string name="designers">Agradeço pelo ícone e desenho da aparência executado por %1$s.</string>
+  <string name="supporters">Graças ao apoio financeiro de %1$s.</string>
   <string name="credit_plugin1">A Extensão Twofish Cipher para Keepass foi desenvolvido por Scott Greenberg e está incluído em KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser foi desenvolvido por Hai Bison</string>
   <string name="credit_keyboard">O teclado KP2A baseia-se no teclado Gingerbread pelo Android Open Source Project e usa o código do Gestor da Extensões de Hacker\'s Keyboard por Klaus Weidner.</string>
@@ -272,6 +288,8 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="ShowUsernameInList_summary">Mostrar nome de utilizador abaixo dos títulos das entradas. Útil para várias contas ou TANs.</string>
   <string name="RememberRecentFiles_title">Lembrar-se das bases de dados</string>
   <string name="RememberRecentFiles_summary">Lembrar-se das bases de dados abertas recentemente, e mostrá-los no ecrã Abrir Bases de Dados.</string>
+  <string name="NoDalVerification_title">Sem verificação DAL </string>
+  <string name="NoDalVerification_summary">Desativa a verificação se o domínio e pacote da aplicação correspondem</string>
   <string name="kp2a_findUrl">Encontra a tua palavra-passe</string>
   <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
   <string name="search_options">Opções</string>
@@ -317,6 +335,11 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Anexar ficheiro...</string>
   <string name="add_extra_string">Adicionar outro texto</string>
+  <string name="configure_totp">Configurar TOTP</string>
+  <string name="totp_secret_key">Chave secreta</string>
+  <string name="totp_encoding_rfc6238">Configurações padrão do token RFC6238</string>
+  <string name="totp_encoding_custom">Configurações de token personalizadas</string>
+  <string name="totp_length">Comprimento do código</string>
   <string name="delete_extra_string">Eliminar texto adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio-Rápido ativo.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
@@ -635,6 +658,22 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="EntryChannel_name">Entrada de notificações</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar base de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Adicionado suporte para o formato de ficheiro KDBX 4.1 introduzido no KeePass 2.48</item>
+    <item>Adicionado diálogo para configurar o TOTP em entradas</item>
+    <item>Gerador de palavra-chave aprimorado: adicionado suporte a frase-chave, mais opções, perfis e estimativa de força da palavra-chave</item>
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>No longer storing package names of Android apps in the URL field</item>
+    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
+    <item>Update OkHttp to support HTTP/2</item>
+    <item>Corrigir traduções em falta</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Adicionar botão de notificação para copiar TOTP para área de transferência</item>
     <item>Alterar o uso para FluentFTP como suporte para TLS 1.2</item>
