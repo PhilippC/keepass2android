@@ -530,6 +530,8 @@
   <string name="SavingOtpAuxFile">Захаванне дапаможнага файла OTP (аднаразовых пароляў)…</string>
   <string name="ErrorUpdatingChalAuxFile">Не атрымалася абнавіць дапаможны файл OTP (аднаразовых пароляў)!</string>
   <string name="TrayTotp_SeedField_title">Назва поля пачатковага значэння TOTP</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Файл журнала для адладкі</string>
   <string name="DebugLog_title">Выкарыстоўваць файл журнала</string>
   <string name="DebugLog_summary">Запісваць выходныя даныя праграмы ў лакальны файл журнала</string>
   <string name="DebugLog_send">Адправіць журнал адладкі…</string>
@@ -541,6 +543,9 @@
   <string name="plugin_enabled">уключана</string>
   <string name="plugin_disabled">адключана</string>
   <string name="plugin_web">Шукаць убудовы ў сеціве</string>
+  <string name="plugin_scopes">Вобласці</string>
+  <string name="not_enabled">не ўключана</string>
+  <string name="plugin_enabled_checkbox">Уключана</string>
   <string name="AddCustomIcon">Дадаць значок з файла…</string>
   <string name="CopyingFile">Капіяванне файла…</string>
   <string name="DuplicateTitle">Скапіяваць</string>
@@ -548,6 +553,8 @@
   <string name="TemplateGroupName">Шаблоны</string>
   <string name="TemplateTitle_IdCard">Ідэнтыфікатар карткі</string>
   <string name="TemplateField_IdCard_Name">Назва</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Месца выдачы</string>
+  <string name="TemplateField_IdCard_IssueDate">Дата выдачы</string>
   <string name="TemplateTitle_EMail">Электронная пошта</string>
   <string name="TemplateField_EMail_EMail">Адрас электроннай пошты</string>
   <string name="TemplateTitle_WLan">Бесправадная сетка</string>
@@ -561,6 +568,7 @@
   <string name="TemplateTitle_Membership">Удзел</string>
   <string name="ChangeLog_title">Журнал змен</string>
   <string name="AskAddTemplatesTitle">Дадаць шаблоны?</string>
+  <string name="AddTemplates_pref">Дадаць шаблоны ў базу даных</string>
   <string name="Continue">Працягнуць</string>
   <string name="open_other_db">Адкрыць іншую базу даных…</string>
   <string name="select_database">Абраць базу даных</string>
