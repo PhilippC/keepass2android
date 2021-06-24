@@ -562,6 +562,16 @@
   <string name="plugin_scopes">Вобласці</string>
   <string name="not_enabled">не ўключана</string>
   <string name="plugin_enabled_checkbox">Уключана</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Апавяшчэнні пра дзеянні з базай даных</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Убудова будзе апавяшчаць пра адкрыццё, закрыццё або захаванне базы даных.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Бягучы запіс</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Убудова будзе атрымліваць усе звесткі пра бягучы запіс і мець дазвол прапаноўваць дзеянні па яго змене.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запыт уласных уліковых даных</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Запыт уліковых даных</string>
+  <string name="get_regular_version">Больш тыпаў сховішчаў</string>
+  <string name="export_fileformats_title">Абраць фармат файла</string>
+  <string name="FileReadOnlyTitle">База даных даступная толькі для чытання</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android адкрыў бягучую базу даных у рэжыме чытання.</string>
   <string name="AddCustomIcon">Дадаць значок з файла…</string>
   <string name="CopyingFile">Капіяванне файла…</string>
   <string name="DuplicateTitle">Скапіяваць</string>
@@ -591,6 +601,11 @@
   <string name="configure_child_dbs">Наладзіць дачынныя базы даных…</string>
   <string name="child_dbs_title">Дачынныя базы даных</string>
   <string name="unspecified">не вызначана</string>
+  <string name="child_db_enabled_on_this_device">Уключана на гэтай прыладзе</string>
+  <string name="child_db_enable_on_this_device">Уключыць на гэтай прыладзе</string>
+  <string name="child_db_disable_on_this_device">Адключыць на гэтай прыладзе</string>
+  <string name="child_db_enable_a_copy_for_this_device">Капіяваць для гэтай прылады</string>
+  <string name="add_child_db">Дадаць дачынную базу даных…</string>
   <string name="Visible_title">Бачнасць</string>
   <string name="child_db_Enabled_title">Адкрываць аўтаматычна</string>
   <string name="database_file_heading">Файл базы даных</string>
@@ -618,7 +633,7 @@
     <item>Update pCloud SDK to fix authentication issue</item>
     <item>Jsch абноўлены да версіі 0.1.55</item>
     <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
+    <item>Дазволіць экспарт імпартаваных файлаў ключоў</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>No longer storing package names of Android apps in the URL field</item>
@@ -982,6 +997,8 @@ Initial public release
   <string name="masterkey_infotext_main">Звярніце ўвагу, што вы не зможаце адкрыць сваю базу даных без галоўнага ключа. Не існуе спосабаў скінуць галоўны пароль.</string>
   <string name="masterkey_infotext_fingerprint_note">Таксама памятайце, што функцыя разблакавання з дапамогай біяметрычных даных захоўвае ваш галоўны пароль у бяспечным сховішчы Android. Гэтае сховішча можа выдаліцца ў любы момант. Таму не забывайцеся на свой пароль!</string>
   <string name="backup_infotext_head">Вы маеце рэзервовую копію базы даных?</string>
+  <string name="disable_secure_screen_check">Адключыць гэтае паведамленне</string>
+  <string name="switch_ime_text">Актывуйце клавіятуру Keepass2Android.</string>
   <string name="switch_ime_reopen">Паўтарыць</string>
   <string name="AutofillWarning_title">Папярэджанне бяспекі: невядомая спасылка на дамен ці праграму</string>
   <string name="AutofillWarning_Intro">Вы хочаце ўставіць уліковыя даныя для дамена \"%1$s\" у праграму \"%2$s\".</string>
