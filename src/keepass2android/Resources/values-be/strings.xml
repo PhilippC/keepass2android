@@ -510,7 +510,10 @@
   <string name="filestoragename_content">Сістэмны сродак для выбару файлаў</string>
   <string name="filestorage_setup_title">Ініцыялізацыя доступу да файла</string>
   <string name="database_location">Размяшчэнне базы даных</string>
+  <string name="help_database_location">Вы можаце захоўваць сваю базу даных лакальна на прыладзе Android або ў воблаку (толькі для сеціўнай версіі). Keepass2Android забяспечвае магчымасць доступу да базы даных нават пры адсутнасці злучэння з сецівам. База даных зашыфраваная 256-бітавым алгарытмам AES, таму ніхто апроч вас не зможа атрымаць доступ да вашых пароляў. Мы рэкамендуем абраць Dropbox: сховішча даступна на ўсіх платформах і захоўвае папярэднія версіі файлаў.</string>
+  <string name="hint_database_location">Абярыце месца захоўвання базы даных:</string>
   <string name="button_change_location">Змяніць размяшчэнне</string>
+  <string name="help_quickunlock">Калі ўключана, Keepass2Android застаецца працаваць у фонавым рэжыме нават калі база даных заблакаваная. Гэта дае магчымасць пазней разблакаваць базу даных з дапамогай часткі галоўнага пароля.</string>
   <string name="master_password">Галоўны пароль</string>
   <string name="key_file">Файл ключа</string>
   <string name="use_key_file">Выкарыстоўваць файл ключа</string>
