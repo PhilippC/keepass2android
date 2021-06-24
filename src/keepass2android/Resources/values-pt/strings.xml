@@ -242,6 +242,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="special">Especial</string>
   <string name="special_extended">Especial estendido</string>
   <string name="at_least_one_from_each_group">Pelo menos um de cada grupo</string>
+  <string name="exclude_lookalike">Excluir caracteres parecidos</string>
   <string name="password_generation_profile">Perfil</string>
   <string name="save_password_generation_profile_text">Digite o nome do perfil para guardar. Digite um nome existente para o substituir.</string>
   <string name="hint_wordcount">Contagem de palavras da frase-chave</string>
@@ -338,6 +339,7 @@ Muito útil se existirem muitos resultados iguais.</string>
   <string name="configure_totp">Configurar TOTP</string>
   <string name="totp_secret_key">Chave secreta</string>
   <string name="totp_encoding_rfc6238">Configurações padrão do token RFC6238</string>
+  <string name="totp_encoding_steam">Configurações do token Steam</string>
   <string name="totp_encoding_custom">Configurações de token personalizadas</string>
   <string name="totp_time_step">Intervalo de tempo</string>
   <string name="totp_length">Comprimento do código</string>
