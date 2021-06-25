@@ -92,12 +92,12 @@
   <string name="disable_fingerprint_unlock">Desativar desbloqueio biométrico</string>
   <string name="enable_fingerprint_unlock">Ativar desbloquear biométrico total</string>
   <string name="enable_fingerprint_quickunlock">Permitir utilizar o desbloquear biométrico para o desbloqueio rápido</string>
-  <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: Chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados.</string>
+  <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: a chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados.</string>
   <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada já não é válida.</string>
   <string name="fingerprint_reenable">Por favor, ligue novamente o destrancar através de impressão digital para a nova palavra-passe mestra.</string>
-  <string name="fingerprint_reenable2">Por favor desbloquear com sua password e re-ativar desbloqueio por impressão digital nas configurações da base de dados.</string>
+  <string name="fingerprint_reenable2">Por favor desbloqueie com sua palavra-passe e torne a ativar o desbloqueio por impressão digital nas configurações da base de dados.</string>
   <string name="FingerprintInitFailed">Falha ao inicializar a autenticação biométrica. </string>
-  <string name="FingerprintSetupFailed">Falha ao encriptar dados. Isto pode acontecer se adicionar ou remover impressões digitais nas configurações do sistema enquanto o Keepass2Android está à espera da sua impressão digital.</string>
+  <string name="FingerprintSetupFailed">Falha ao encriptar os dados. Isto pode acontecer se adicionar ou remover impressões digitais nas configurações do sistema enquanto o Keepass2Android está à espera da sua impressão digital.</string>
   <string name="enable_fingerprint_unlock_Info">Esta operação irá guardar a sua palavra-passe mestra neste aparelho, encriptada pela chave do Android e protegida utilizando a autenticação biométrica. Isto irá permitir que desbloqueie a sua base de dados com a sua impressão digital.</string>
   <string name="enable_fingerprint_quickunlock_Info">Permite o uso da impressão digital em vez do código de desbloqueio-rápido. Não requer que seja guardada nenhuma informação sobre a sua palavra-passe mestra.</string>
   <string name="enter_filename">Introduza o nome do ficheiro da base de dados</string>
@@ -249,7 +249,7 @@
   <string-array name="PasswordGeneratorModes">
     <item>Palavra-passe</item>
     <item>Frase-chave</item>
-    <item>Frase-chave + palavra-chave</item>
+    <item>Frase-chave + palavra-passe</item>
   </string-array>
   <string-array name="PasswordGeneratorCaseModes">
     <item>minúsculas</item>
@@ -379,7 +379,7 @@
   <string name="CheckForDuplicateUuids_title">Verificação de UUIDs duplicados</string>
   <string name="CheckForDuplicateUuids_summary">Verificar se o ficheiro da base de dados está corrupto, por ter várias entradas com o mesmo ID. Isto pode causar um comportamento inesperado.</string>
   <string name="ShowCopyToClipboardNotification_title">Notificações da área de transferência</string>
-  <string name="ShowCopyToClipboardNotification_summary">Permitir acesso ao nome do utilizador e palavra-chave através da barra de notificação e a área de transferência. Cuidado com os \'analisadores de pacotes nas redes (sniffers)\' de palavras-passe!</string>
+  <string name="ShowCopyToClipboardNotification_summary">Permitir acesso ao nome do utilizador e palavra-passe através da barra de notificação e a área de transferência. Cuidado com os \'analisadores de pacotes nas redes (sniffers)\' de palavras-passe!</string>
   <string name="ShowSeparateNotifications_title">Notificações separadas</string>
   <string name="ShowSeparateNotifications_summary">Mostrar notificações separadas para copiar o nome de utilizador e a palavra-passe para área de transferência e ativar o teclado.</string>
   <string name="AccServiceAutoFill_prefs">Serviço de acessibilidade para o preenchimento automático</string>
@@ -401,71 +401,71 @@
   <string name="IconVisibilityInfo_Android8_text">O Android 8 introduziu um novo comportamento para notificações. Se quiser pode esconder o ícone das notificações do Keepass2Android, por favor configure isto através das configurações do sistema. Defina a importância das notificações para o mínimo.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Abrir configurações</string>
   <string name="DontCare">Não quero saber</string>
-  <string name="DocumentAccessRevoked">O ficheiro já não está acessível pelo Kepass2Android. Ou foi removido ou as permissões de acesso foram revogadas. Por favor reabra o ficheiro, por exemplo altere a base de dados.</string>
+  <string name="DocumentAccessRevoked">O ficheiro já não está acessível pelo Kepass2Android. Ou foi removido ou as permissões de acesso foram revogadas. Por favor torne a abrir o ficheiro, por exemplo altere a base de dados.</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar o ficheiro da base de dados</string>
   <string name="PreloadDatabaseEnabled_summary">Iniciar o carregamento ou transferência em segundo plano do ficheiro da base de dados durante a inserção da palavra-passe.</string>
   <string name="AskOverwriteBinary">Pretende substituir o binário existente com o mesmo nome?</string>
   <string name="AskOverwriteBinary_title">Substituir o binário existente?</string>
-  <string name="AskOverwriteBinary_yes">Sobrescrever</string>
+  <string name="AskOverwriteBinary_yes">Substituir</string>
   <string name="AskOverwriteBinary_no">Alterar nome</string>
   <string name="AttachFailed">Falha ao carregar o anexo.</string>
   <string name="RecycleBin">Reciclagem</string>
-  <string name="AskDeletePermanentlyEntry">Deseja apagar esta entrada permanentemente? Pressione Não para reciclar.</string>
-  <string name="AskDeletePermanentlyGroup">Deseja apagar este grupo permanentemente? Pressione Não para reciclar.</string>
-  <string name="AskDeletePermanentlyItems">Deseja apagar os elementos selecionados permanentemente? Pressione Não para reciclar.</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">Deseja eliminar esta entrada permanentemente?</string>
-  <string name="AskDeletePermanentlyGroupNoRecycle">Deseja eliminar este grupo permanentemente?</string>
-  <string name="AskDeletePermanentlyItemsNoRecycle">Deseja eliminar os elementos selecionados permanentemente?</string>
-  <string name="AskDeletePermanently_title">Apagar permanentemente?</string>
+  <string name="AskDeletePermanentlyEntry">Quer eliminar esta entrada permanentemente? Pressione \"Não\" para enviar para a reciclagem.</string>
+  <string name="AskDeletePermanentlyGroup">Quer eliminar este grupo permanentemente? Pressione \"Não\" para enviar para a reciclagem.</string>
+  <string name="AskDeletePermanentlyItems">Quer eliminar os elementos selecionados permanentemente? Pressione \"Não\" para enviar para a reciclagem.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Quer eliminar esta entrada permanentemente?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Quer eliminar este grupo permanentemente?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Quer eliminar os elementos selecionados permanentemente?</string>
+  <string name="AskDeletePermanently_title">Eliminar permanentemente?</string>
   <string name="AskReloadFile_title">Recarregar ficheiro?</string>
   <string name="AskReloadFile">O ficheiro que está atualmente aberto foi alterado por outro programa. Quer recarregá-lo?</string>
-  <string name="AskDiscardChanges">Quer realmente descartar as alterações feitas? (O botão Gravar está no topo do formulário.)</string>
+  <string name="AskDiscardChanges">Quer realmente descartar as alterações feitas? (O botão \"Guardar\" está no topo do formulário.)</string>
   <string name="AskDiscardChanges_title">Descartar alterações?</string>
-  <string name="suggest_improvements">Sugerir ou votar melhorias</string>
-  <string name="rate_app">Classifique esta aplicação</string>
+  <string name="suggest_improvements">Sugerir ou votar em melhorias</string>
+  <string name="rate_app">Avalie esta aplicação</string>
   <string name="translate_app">Traduza o KP2A</string>
   <string name="AddingEntry">A adicionar entrada…</string>
   <string name="AddingGroup">A adicionar grupo…</string>
-  <string name="DeletingEntry">A apagar entrada…</string>
-  <string name="DeletingGroup">A apagar grupo…</string>
-  <string name="DeletingItems">A apagar elementos…</string>
-  <string name="SettingPassword">A definir password…</string>
-  <string name="UndoingChanges">A desfazer alterações…</string>
+  <string name="DeletingEntry">A eliminar a entrada…</string>
+  <string name="DeletingGroup">A eliminar o grupo…</string>
+  <string name="DeletingItems">A eliminar os elementos…</string>
+  <string name="SettingPassword">A definir a palavra-passe…</string>
+  <string name="UndoingChanges">A desfazer as alterações…</string>
   <string name="TransformingKey">A transformar a chave mestra…</string>
-  <string name="DecodingDatabase">A descodificar base de dados…</string>
-  <string name="ParsingDatabase">A processar base de dados…</string>
+  <string name="DecodingDatabase">A descodificar a base de dados…</string>
+  <string name="ParsingDatabase">A processar a base de dados…</string>
   <string name="CheckingTargetFileForChanges">A verificar o ficheiro de destino para as alterações…</string>
-  <string name="TitleSyncQuestion">Juntar alterações?</string>
-  <string name="MessageSyncQuestion">A base de dados foi modificado externamente. Deseja carregar e juntar as alterações antes de gravar? Selecione Não se deseja sobrescrever as alterações externas.</string>
-  <string name="SynchronizingDatabase">A juntar alterações…</string>
-  <string name="YesSynchronize">Sim, juntar</string>
-  <string name="NoOverwrite">Não, sobrescrever</string>
+  <string name="TitleSyncQuestion">Fundir alterações?</string>
+  <string name="MessageSyncQuestion">A base de dados foi alterada externamente. Quer carregar e fundir as alterações antes de guardar? Selecione \"Não\" se quer substituir as alterações feitas externamente.</string>
+  <string name="SynchronizingDatabase">A fundir as alterações…</string>
+  <string name="YesSynchronize">Sim, fundir</string>
+  <string name="NoOverwrite">Não, substituir</string>
   <string name="UseOfflineMode">Trabalhar apenas com a cache interna</string>
-  <string name="UseOnlineMode">Sincronizar copia em cache com a fonte</string>
-  <string name="UseOfflineMode_Info">Base de dados carregada a partir da cache interna. Alterações serão gravadas na cache interna apenas e apenas serão sincronizadas quando selecionar Sincronizar cópia em cache com a fonte.</string>
+  <string name="UseOnlineMode">Sincronizar cópia em cache com a fonte</string>
+  <string name="UseOfflineMode_Info">Base de dados carregada a partir da cache interna. As alterações serão guardadas na cache interna apenas e apenas serão sincronizadas quando selecionar \"Sincronizar cópia em cache com a fonte\".</string>
   <string name="InOfflineMode">A trabalhar apenas com a cache interna.</string>
   <string name="SynchronizingCachedDatabase">Sincronização da base de dados em cache…</string>
   <string name="DownloadingRemoteFile">A carregar o ficheiro fonte…</string>
-  <string name="UploadingFile">Salvar ficheiro…</string>
-  <string name="RestoringRemoteFile">Restaurando o ficheiro fonte…</string>
+  <string name="UploadingFile">Guardar ficheiro…</string>
+  <string name="RestoringRemoteFile">A restaurar o ficheiro fonte…</string>
   <string name="FilesInSync">Os ficheiros estão sincronizados.</string>
   <string name="SynchronizedDatabaseSuccessfully">Base de dados sincronizada com sucesso!</string>
   <string name="CheckingDatabaseForChanges">A verificar alterações na base de dados…</string>
-  <string name="CouldNotSaveToRemote">Não foi possível salvar para o ficheiro fonte: %1$s. Salvar novamente ou usar o menu de sincronização quando o ficheiro estiver acessível novamente.</string>
-  <string name="CouldNotLoadFromRemote">Não foi possível aceder ao ficheiro fonte: %1$s. Carregado o ficheiro a partir da cache interna. Você pode fazer alterações à base de dados e sincronizar mais tarde.</string>
+  <string name="CouldNotSaveToRemote">Não foi possível guardar para o ficheiro fonte: %1$s. Guarde novamente ou use o menu de sincronização quando o ficheiro estiver acessível novamente.</string>
+  <string name="CouldNotLoadFromRemote">Não foi possível aceder ao ficheiro fonte: %1$s. Foi carregado o ficheiro a partir da cache interna. Pode fazer alterações à base de dados e sincronizar mais tarde.</string>
   <string name="UpdatedRemoteFileOnLoad">Ficheiro fonte atualizado.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Aberto ficheiro em cache interna devido a conflito com alterações no ficheiro fonte. Use o menu sincronização para unir.</string>
-  <string name="LoadedFromRemoteInSync">Ficheiro fonte e cache estão sincronizados.</string>
-  <string name="UpdatedCachedFileOnLoad">Atualizada copia em cache interna de %1$s.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Foi aberto o ficheiro na cache interna devido a um conflito com alterações no ficheiro fonte. Use o menu sincronização para fundir as alterações.</string>
+  <string name="LoadedFromRemoteInSync">O ficheiro fonte e a cache estão sincronizados.</string>
+  <string name="UpdatedCachedFileOnLoad">Atualizada cópia em cache interna de %1$s.</string>
   <string name="RemoteDatabaseUnchanged">Nenhuma alteração detetada.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Atualizado cache OTP de ficheiro auxiliar: Contador fonte era mais elevado.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Atualizada fonte OTP de ficheiro auxiliar: Contador fonte era mais elevado.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Foi atualizado o ficheiro auxiliar na cache OTP: o contador fonte era mais elevado.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Foi atualizado o ficheiro fonte OTP: o contador local era mais elevado.</string>
   <string name="SynchronizingOtpAuxFile">A sincronizar o ficheiro auxiliar OTP…</string>
-  <string name="database_file">ficheiro de base de dados</string>
+  <string name="database_file">ficheiro da base de dados</string>
   <string name="otp_aux_file">Ficheiro auxiliar do OTP</string>
   <string name="ErrorOcurred">Ocorreu um erro:</string>
-  <string name="DuplicateUuidsError">Base de dados está corrupta: Foram encontrado IDs duplicados. (Será que foram gravados com o Minikeepass?) Por favor importe novamente os dados para uma nova base de dados com o Keepass 2 para PC e selecione \'Criar novos IDs\'.</string>
-  <string name="DuplicateUuidsErrorAdditional">Desative esta mensagem de erro em Definições/Definições do App/Manipular ficheiro/Verificar UUIDs duplicadas. Note que poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
+  <string name="DuplicateUuidsError">A base de dados está corrupta: foram encontrado IDs duplicados. (Será que foram gravados com o Minikeepass?) Por favor importe novamente os dados para uma nova base de dados com o Keepass 2 para PC e selecione \"Criar novos IDs\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Desative esta mensagem de erro em \"Definições/Definições do App/Manipular ficheiro/Verificar UUIDs duplicadas\". Note que poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
   <string name="synchronize_database_menu">Sincronizar base de dados…</string>
   <string name="CannotMoveGroupHere">Não pode mover o grupo para este grupo.</string>
   <string name="donate_question">Hoje, é a Oktoberfest! Se gosta do Keepass2Android: hoje seria um bom dia para me pagar uma cerveja?</string>
@@ -473,22 +473,22 @@
   <string name="donate_missedbday_question">Ah, esqueceu-se do meu aniversário no dia 10 de maio! Se gosta desta aplicação, porque não enviar-me algumas saudações de aniversário e um pequeno presente de aniversário? Ainda não é tarde demais para me fazer feliz! :-)</string>
   <string name="ok_donate">Conte-me mais!</string>
   <string name="no_thanks">Não, não me agrada muito</string>
-  <string name="enter_http_login_title">Insira os dados de acesso do WebDav:</string>
+  <string name="enter_http_login_title">Introduza os dados de acesso do WebDav:</string>
   <string name="hint_http_url">URL do ficheiro ou pasta (ex: mycloud.me.com/webdav/)</string>
-  <string name="enter_owncloud_login_title">Insira os dados de acesso do OwnCloud:</string>
+  <string name="enter_owncloud_login_title">Introduza os dados de acesso do OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
-  <string name="enter_nextcloud_login_title">Insira os dados de acesso do Nextcloud:</string>
+  <string name="enter_nextcloud_login_title">Introduza os dados de acesso do Nextcloud:</string>
   <string name="hint_nextcloud_url">URL do Nextcloud (ex: nextcloud.me.com)</string>
   <string name="hint_sftp_host">hospedeiro (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Pasta inicial (opcional):</string>
-  <string name="enter_sftp_login_title">Insira os dados de acesso SFTP:</string>
+  <string name="enter_sftp_login_title">Introduza os dados de acesso SFTP:</string>
   <string name="sftp_auth_mode">Modo de autenticação</string>
   <string name="send_public_key">Enviar chave pública...</string>
-  <string name="enter_ftp_login_title">Insira os dados de acesso FTP:</string>
+  <string name="enter_ftp_login_title">Introduza os dados de acesso FTP:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
   <string name="filestoragename_file">Ficheiro local</string>
-  <string name="filestoragename_androidget">Receber de aplicações de terceiros</string>
+  <string name="filestoragename_androidget">Obter de aplicações de terceiros</string>
   <string name="filestoragename_androidsend">Enviar para aplicações de terceiros</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
@@ -497,10 +497,10 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
-  <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, toque nesta opção para criar a pasta, em seguida, pôr o ficheiro dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
+  <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar apenas o acesso à pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, toque nesta opção para criar a pasta, em seguida, coloque o ficheiro dentro da pasta (a partir do seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Este tipo de armazenamento só irá solicitar acesso à pasta \"Aplicativos/Keepass2Android\". Se você deseja usar a base de dados existente da sua conta PCloud, por favor certifique-se de que o arquivo é colocado nesta pasta.</string>
+  <string name="filestoragehelp_pcloud">Este tipo de armazenamento só irá solicitar acesso à pasta \"Aplicações/Keepass2Android\". Se quiser usar a base de dados existente da sua conta PCloud, por favor certifique-se que o ficheiro é colocado nesta pasta.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Todos os ficheiros (incluindo partilhados)</string>
@@ -510,16 +510,16 @@
   <string name="filestoragename_content">Gestor de ficheiros de sistema</string>
   <string name="filestorage_setup_title">Arranque de acesso de ficheiro</string>
   <string name="database_location">Localização da base de dados</string>
-  <string name="help_database_location">Pode armazenar sua base de dados localmente no dispositivo Android ou na nuvem (somente na versão não offline). Keepass2Android torna a base de dados disponível, mesmo se estiver offline. Como a base de dados é encriptada com segurança de AES 256 bits de encriptação, ninguém será capaz de aceder suas palavras-chave, exceto você. Recomendamos selecionar Dropbox: é acessível em todos os seus dispositivos e até mesmo fornece copias de segurança de versões anteriores do ficheiro.</string>
-  <string name="hint_database_location">Selecione onde deseja guardar a base de dados:</string>
+  <string name="help_database_location">Pode armazenar sua base de dados localmente no dispositivo Android ou na nuvem (apenas na versão não offline). O Keepass2Android torna a base de dados disponível, mesmo se estiver offline. Como a base de dados é encriptada com segurança de AES 256 bits de encriptação, ninguém será capaz de aceder às suas palavras-chave, exceto você. Recomendamos selecionar Dropbox: é acessível em todos os seus dispositivos e até fornece cópias de segurança de versões anteriores do ficheiro.</string>
+  <string name="hint_database_location">Selecione onde quer guardar a base de dados:</string>
   <string name="button_change_location">Alterar o local</string>
-  <string name="help_quickunlock">Se ativado, o Keepass2Android permanece em execução em segundo plano mesmo quando a base de dados está bloqueada. Isto permite desbloquear a base de dados mais tarde com somente uma pequena parte da palavra-passe mestra.</string>
+  <string name="help_quickunlock">Se ativado, o Keepass2Android permanece em execução em segundo plano mesmo quando a base de dados está bloqueada. Isto permite desbloquear a base de dados mais tarde apenas com uma pequena parte da palavra-passe mestra.</string>
   <string name="master_password">Palavra-passe mestra</string>
-  <string name="help_master_password">A sua base de dados é encriptada com a palavra-passe que inserir aqui. Escolha uma palavra-passe forte para manter a sua de dados a salvo! Dica: Componha uma frase ou duas e usar as primeiras letras das palavras como palavra-passe. Inclua marcas de pontuação.</string>
+  <string name="help_master_password">A sua base de dados é encriptada com a palavra-passe que inserir aqui. Escolha uma palavra-passe forte para manter a sua de dados protegida! Dica: componha uma frase ou duas e use as primeiras letras das palavras como palavra-passe. Inclua marcas de pontuação também.</string>
   <string name="hint_master_password">Selecione uma palavra-passe mestra para proteger a sua base de dados:</string>
   <string name="key_file">Ficheiro-chave</string>
-  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada em num ficheiro. Ficheiros-chave são tipicamente mais fortes que palavras-passe mestras, pois a palavra-passe pode ser muito mais complexa; contudo, também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto o faria completamente inútil! Importante: não modifique o conteúdo do ficheiro-chave após a criação da base de dados!</string>
-  <string name="hint_key_file">Escolha se deseja utilizar um ficheiro-chave em adição a sua palavra-passe mestra:</string>
+  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada em num ficheiro. Os ficheiros-chave são tipicamente mais fortes que as palavras-passe mestras, porque a chave pode ser muito mais complexa; contudo também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto tornaria-o completamente inútil! Importante: não altere o conteúdo do ficheiro-chave após a criação da base de dados!</string>
+  <string name="hint_key_file">Escolha se quer utilizar um ficheiro-chave para além da sua palavra-passe mestra:</string>
   <string name="use_key_file">Utilizar ficheiro-chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o ficheiro-chave!</string>
   <string name="init_otp">Carregar o ficheiro auxiliar OTP…</string>
@@ -586,7 +586,7 @@
   <string name="ClickOkToSelectLocation">Toque OK para selecionar o local para onde o ficheiro deve ser copiado.</string>
   <string name="FileReadOnlyTitle">Base de dados é apenas de leitura</string>
   <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
-  <string name="ReadOnlyReason_PreKitKat">Parece que abriu o ficheiro a partir de uma aplicação externa. Desta forma não oferece suporte para escrita. Se quiser fazer alterações na base de dados, feche a base de dados e selecione Alterar base de dados. De seguida, abra o ficheiro com uma das opções disponíveis, se possível.</string>
+  <string name="ReadOnlyReason_PreKitKat">Parece que abriu o ficheiro a partir de uma aplicação externa. Desta forma não oferece suporte para escrita. Se quiser fazer alterações na base de dados, feche a base de dados e selecione \"Alterar base de dados\". De seguida, abra o ficheiro com uma das opções disponíveis, se possível.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Está ativado o indicador somente leitura. Remova-o se desejar fazer alterações na base de dados.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Escrever não é possível devido a restrições introduzidas no Android KitKat. Se você quiser fazer alterações no banco de dados, feche o banco de dados e selecione o banco de dados de alteração. De seguida, abra o arquivo usando o seletor de arquivo de sistema.</string>
   <string name="ReadOnlyReason_LocalBackup">Backup local não pode ser modificado. Você pode usar as configurações da base de dados - Exportar base de dados para exportar esta cópia de segurança para outra localização a partir da qual você pode-a abrir. Irá permitir a escrita novamente.</string>
@@ -663,7 +663,7 @@
   <string-array name="ChangeLog_1_09a">
     <item>Adicionado suporte para o formato de ficheiro KDBX 4.1 introduzido no KeePass 2.48</item>
     <item>Adicionado diálogo para configurar o TOTP em entradas</item>
-    <item>Gerador de palavra-chave aprimorado: adicionado suporte a frase-chave, mais opções, perfis e estimativa de força da palavra-chave</item>
+    <item>Gerador de palavra-passe aprimorado: adicionado suporte a frase-chave, mais opções, perfis e estimativa de força da palavra-passe</item>
     <item>Melhorias no preenchimento automático (popup fixo não mostrado no Chrome, melhor suporte ao subdomínio)</item>
     <item>Melhorias na implementação do OneDrive: sem limite de tamanho, sem mais solicitações de autenticação supérfluas</item>
     <item>Adicionada opção para selecionar o tema claro/escuro de configurações de sistema, incluindo perfis noturnos, requer Android 10+</item>
@@ -690,7 +690,7 @@
     <item>Forçar o HTTP/1.1 devido a problemas com a implementação HTTP/2 do OkHttp</item>
     <item>Melhorado a janela de diálogo do teclado no Android 9+</item>
     <item>Alteradas as associações de ficheiros da aplicação para evitar associações desnecessárias</item>
-    <item>Verificação que o texto da palavra-chave não está escondido atrás do ícone do olho</item>
+    <item>Verificação que o texto da palavra-passe não está escondido atrás do ícone do olho</item>
     <item>Alterado o comportamento do preenchimento automático para avisar ao preencher credenciais para um domínio para uma aplicação não reconhecida</item>
     <item>Atualizada a biblioteca FTP</item>
     <item>Correções em falhas potenciais da aplicação</item>
@@ -1003,8 +1003,8 @@ Lançamento público inicial
     <item>Palavra-passe + OTP secreto (modo de recuperação)</item>
     <item>Palavra-passe + Desafio-Resposta</item>
     <item>Palavra-passe + Desafio-Resposta secreto (modo de recuperação)</item>
-    <item>Palavra-chave e resposta de desafio para o Keepass XC</item>
-    <item>Palavra-chave + Ficheiro de chave + Reposta de Desafio para o Keepass XC</item>
+    <item>Palavra-passe e resposta de desafio para o Keepass XC</item>
+    <item>Palavra-passe + ficheiro-chave + reposta de desafio para o Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Palavra-passe</item>
