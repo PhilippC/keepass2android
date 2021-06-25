@@ -57,6 +57,7 @@
     <!-- Option to enable auto capitalization of sentences -->
     <string name="auto_cap">Аўтаматычныя вялікія літары</string>
     <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Рабіць вялікай першую літару сказа</string>
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">Аўтаматычная пунктуацыя</string>
     <!-- Description for auto punctuate -->
@@ -113,11 +114,18 @@
     <!-- Instruction to touch the bubble to continue -->
     <string name="touch_to_continue">Націсніце на падказку, каб працягнуць »</string>
     <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Націсніце сюды, каб закрыць прапанову і пачаць увод!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>Клавіятура з\'яўляецца аўтаматычна пры дакрананні да тэкставага поля</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>Націсніце і ўтрымлівайце кнопку, каб убачыць варыянты з дыякрытычнымі знакамі\n(ø, ö, ô, ó і г.д.)</b>
+    </string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>Для пераключэння паміж лічбамі і сімваламі выкарыстоўвайце гэтую кнопку</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>Каб вярнуцца назад да літар, зноў націсніце гэтую кнопку</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>Націсніце і ўтрымлівайце гэтую кнопку, каб змяніць налады клавіятуры кшталту аўтазапаўнення</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
     <string name="tip_to_start_typing"><b>Паспрабуйце!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
@@ -143,12 +151,16 @@
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">На дадзены момант галасавы ўвод не падтрымліваецца для вашай мовы, але вы можаце карыстацца ім на англійскай.</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Галасавы ўвод - эксперыментальная функцыя, якая выкарыстоўвае сістэму распазнавання маўлення ад Google.</string>
     <!-- An additional part of the warning dialog for voice input that only shows when the user
          actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Функцыя галасавога ўводу адключаецца ў наладах клавіятуры.</string>
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Каб выкарыстоўваць галасавы ўвод, націсніце кнопку мікрафона або правядзіце пальцам па экраннай клавіятуры.</string>
     <!-- Short message to tell the user the system is ready for them to speak. -->
     <string name="voice_listening">Гаварыце</string>
     <!-- Short message shown after the user finishes speaking. -->
