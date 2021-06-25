@@ -35,13 +35,19 @@
     <!-- Description for hit_correction  -->
     <string name="hit_correction_summary">Уключыць выпраўленне памылак падчас уводу</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Памылка ўводу ў альбомнай арыентацыі</string>
     <!-- Description for hit_correction in landscape -->
     <string name="hit_correction_land_summary">Уключыць выпраўленне памылак падчас уводу</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Прапанаванне слоў</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Аўтаматычна выпраўляць папярэдняе слова</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">Прапанаванне слоў</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category">Налады прапанавання слоў</string>
     <!-- Description for text prediction -->
+    <string name="prediction_summary">Уключыць аўтаматычнае завяршэнне слоў падчас уводу</string>
     <!-- Dialog title for auto complete choices -->
     <string name="auto_complete_dialog_title">Аўтазавяршэнне</string>
     <!-- Option to enable text prediction in landscape -->
