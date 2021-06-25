@@ -588,6 +588,8 @@
   <string name="FileReadOnlyMessagePre">Keepass2Android адкрыў бягучую базу даных у рэжыме чытання.</string>
   <string name="ReadOnlyReason_PreKitKat">Выглядае, што вы адкрылі файл у іншай праграме. Таму запіс не падтрымліваецца. Калі вы хочаце ўнесці змены ў базу даных, закрыйце яе і абярыце \"Змяніць базу даных\". Пасля адкрыйце яе адным з даступных спосабаў.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Вызначана адзнака \"толькі для чытання\". Калі хочаце ўнесці змены ў базу даных, прыбярыце яе.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Праз сістэмныя абмежаванні Android KitKat немагчыма выканаць запіс. Калі вы хочаце ўнесці змены ў базу даных, закрыйце яе і абярыце \"Змяніць базу даных\". Пасля адкрыйце яе з дапамогай сістэмнага сродку выбару файлаў.</string>
+  <string name="ReadOnlyReason_LocalBackup">Лакальныя рэзервовыя копіі базаў даных немагчыма змяніць. Вы можаце выкарыстаць \"Налады базы даных - Экспарт базы даных\", каб скапіяваць рэзервовую копію ў іншае месца і адкрыць адтуль.</string>
   <string name="AddCustomIcon">Дадаць значок з файла…</string>
   <string name="CopyingFile">Капіяванне файла…</string>
   <string name="DuplicateTitle">Скапіяваць</string>
@@ -610,7 +612,9 @@
   <string name="TemplateTitle_Membership">Удзел</string>
   <string name="ChangeLog_title">Журнал змен</string>
   <string name="AskAddTemplatesTitle">Дадаць шаблоны?</string>
+  <string name="AskAddTemplatesMessage">У Keepass2Android ёсць шаблоны запісаў для акаўнтаў электроннай пошты, пароляў для бесправадных сетак, абароненых нататак і іншага. Хочаце дадаць іх у базу даных? Калі абярэце \"Не\", то пазней зможаце дадаць іх у наладах базы даных.</string>
   <string name="AddTemplates_pref">Дадаць шаблоны ў базу даных</string>
+  <string name="PreviewWarning">Памятайце, што гэта папярэдні выпуск! Калі вы ўбачыце нешта \"нечаканае\", напішыце мне (у суполцы Google+ або па электроннай пошце).</string>
   <string name="Continue">Працягнуць</string>
   <string name="open_other_db">Адкрыць іншую базу даных…</string>
   <string name="select_database">Абраць базу даных</string>
