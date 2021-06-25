@@ -124,6 +124,7 @@
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
     <!-- Tutorial tip 6 - Done with the tutorial -->
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Get</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
     <string name="label_next_key">Növbəti</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
@@ -179,6 +180,7 @@
 	search is not installed. -->
     <string name="voice_not_installed">Səsli axtarış quraşdırılmayıb</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>Məsləhət:</b> Danışmaq üçün klaviaturada sürüşdürün.</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <!-- Label on button when an error occurs -->
@@ -203,9 +205,12 @@
     <!-- Press the "enter" key after the user speaks. Option on settings.-->
     <string name="auto_submit">Səsdən sonra avtomatik göndər</string>
     <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Axtarış və ya növbəti sahəyə gediş zamanı enter düyməsinə avtomatik basın.</string>
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>Klaviaturanı aç\n</b></font><font size="3">\n</font>Hər hansısa mətn sahəsinə toxunun.</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>Klaviaturanı bağla\n</b></font><font size="3">\n</font>Geri düyməsinə basın.</string>
     <!-- appears above image showing how to use touch and hold -->
     <!-- appears above image showing how to access keyboard settings -->
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
