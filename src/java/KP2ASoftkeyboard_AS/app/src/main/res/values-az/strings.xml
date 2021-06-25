@@ -94,7 +94,7 @@
     <string name="bigram_suggestion_summary">Təklifi təkmilləşdirmək üçün əvvəlki sözü istifadə et</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
-        <item>None</item>
+        <item>Heç biri</item>
         <item>Təməl</item>
         <item>Qabaqcıl</item>
     </string-array>
@@ -127,6 +127,7 @@
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
     <string name="label_next_key">Növbəti</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Hazırdır</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
     <string name="label_send_key">Göndər</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
