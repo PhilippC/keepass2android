@@ -676,13 +676,13 @@
     <item>Дададзена падтрымка Argon2id як функцыі фармавання ключа</item>
     <item>Палепшана сумяшчальнасць аўтазапаўнення з Firefox і Chrome</item>
     <item>Палепшана падтрымка TOTP запісаў з праграм для камп\'ютараў</item>
-    <item>Update pCloud SDK to fix authentication issue</item>
+    <item> Выпраўлены праблемы аўтэнтыфікацыі ў pCloud SDK</item>
     <item>Jsch абноўлены да версіі 0.1.55</item>
-    <item>Add menu to database selection screen</item>
+    <item>На экран выбару базы даных дададзена меню</item>
     <item>Дазволіць экспарт імпартаваных файлаў ключоў</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
-    <item>No longer storing package names of Android apps in the URL field</item>
+    <item>Больш няма неабходнасці захоўваць назвы пакункаў праграм Android у полі URL.</item>
     <item>Паляпшэнне паводзін блакавання - адразу пасля разблакавання больш не паказваецца біяметрычная падказка.</item>
     <item>Абнаўленне OkHttp для падтрымкі HTTP/2</item>
     <item>Выпраўленне перакладаў</item>
@@ -1043,10 +1043,16 @@ Initial public release
   <string name="masterkey_infotext_main">Звярніце ўвагу, што вы не зможаце адкрыць сваю базу даных без галоўнага ключа. Не існуе спосабаў скінуць галоўны пароль.</string>
   <string name="masterkey_infotext_fingerprint_note">Таксама памятайце, што функцыя разблакавання з дапамогай біяметрычных даных захоўвае ваш галоўны пароль у бяспечным сховішчы Android. Гэтае сховішча можа выдаліцца ў любы момант. Таму не забывайцеся на свой пароль!</string>
   <string name="backup_infotext_head">Вы маеце рэзервовую копію базы даных?</string>
+  <string name="backup_infotext_main">Keepass2Android захоўвае паролі ў файле ў месцы, якое вы абярэце. Вы зможаце атрымаць доступ да гэтага файла, калі згубіце тэлефон або яго ў вас скрадуць, або файл пашкодзіцца ці выдаліцца? Пераканайцеся, што маеце рэзервовую копію ў надзейным месцы!</string>
+  <string name="backup_infotext_note">Каб стварыць рэзервовую копію, перайдзіце ў %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">А вы гатовыя да надзвычайных сітуацый?</string>
+  <string name="emergency_infotext_main">Вы думалі, што можа здарыцца, калі вы страціце доступ да базы даных з паролямі? Што рабіць, калі гэта здарыцца? Вы можаце перадаць свой галоўны ключ давераным асобам. </string>
+  <string name="no_secure_display">Бягучы дысплэй не пазначаны бяспечным. Гэта азначае, што іншыя праграмы могуць рабіць яго здымкі. Keepass2Android наладжаны паказваць важныя звесткі толькі на бяспечных дысплэях. Пераключыцеся на бяспечны дысплэй (напрыклад, адлучыце манітор, падлучаны праз HDMI ) або змяніце налады праграмы.</string>
   <string name="disable_secure_screen_check">Адключыць гэтае паведамленне</string>
   <string name="switch_ime_text">Актывуйце клавіятуру Keepass2Android.</string>
   <string name="switch_ime_reopen">Паўтарыць</string>
   <string name="AutofillWarning_title">Папярэджанне бяспекі: невядомая спасылка на дамен ці праграму</string>
   <string name="AutofillWarning_Intro">Вы хочаце ўставіць уліковыя даныя для дамена \"%1$s\" у праграму \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Калі ёсць упэўненасць, што \"%2$s\" належыць \"%1$s\" або вы давяраеце \"%2$s\", не злоўжывайце ўліковымі данымі (напрыклад, гэта давераная праграма браўзера). Калі ўсё добра, можна працягнуць. Калі не, скасуйце.</string>
   <string name="AutofillWarning_trustAsBrowser">Заўсёды ўхваляць у \"%1$s\"</string>
 </resources>
