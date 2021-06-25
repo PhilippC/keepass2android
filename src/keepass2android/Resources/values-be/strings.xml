@@ -544,6 +544,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Усталюйце ўбудову KeeChallenge для KeePass 2.x (PC), каб наладзіць базу даных для працы з запытамі-адказамі!</string>
   <string name="ErrorUpdatingChalAuxFile">Не атрымалася абнавіць дапаможны файл OTP (аднаразовых пароляў)!</string>
   <string name="TrayTotp_SeedField_title">Назва поля пачатковага значэння TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Калі вы выкарыстоўваеце ўбудову Keepass 2 \"TrayTotp\" са змененымі наладамі, увядзіце назву поля для поля пачатковага значэння ў адпаведнасці з наладамі PC.</string>
   <string name="TrayTotp_SettingsField_title">Назва поля налад TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Увядзіце сюды назву поля для налад TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
