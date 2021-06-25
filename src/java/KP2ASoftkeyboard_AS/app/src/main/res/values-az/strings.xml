@@ -19,53 +19,105 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Keepass2Android klaviaturası</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Android klaviatura tənzimləmələri</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Giriş seçimləri</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Basanda titrəmə</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Basanda səs vermə</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Basanda pəncərə açılması</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Yazılış xətalarını düzəlt</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Giriş xətasının düzəldilməsini fəallaşdır</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Üfüqi giriş xətaları</string>
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Giriş xətasının düzəldilməsini fəallaşdır</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Söz təklifləri</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Əvvəlki sözün avto-düzəlişi</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">Söz təklifləri</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category">Söz təklifi tənzimləmələri</string>
     <!-- Description for text prediction -->
+    <string name="prediction_summary">Yazarkən avto-tamamlamanı fəallaşdır</string>
     <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Avtomatik tamamlama</string>
     <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Mətn sahə ölçüsünü artır</string>
     <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Üfüqi rejimdə mətn təkliflərini gizlət</string>
     <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Avto-böyük hərf</string>
     <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Cümləni böyük hərflə başlat</string>
     <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Avto-nöqtələmə</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Cəld bərpa</string>
     <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Ən çox edilən yazılış səhvlərini düzəldir</string>
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Təklifləri göstər</string>
     <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Yazarkən təklif edilən sözləri görüntülə</string>
     <!-- Option to enable auto completion -->
+    <string name="auto_complete">Avtomatik tamamla</string>
     <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Boşluq və durğu işarələrini vurğulanan sözə avtomatik əlavə edər</string>
     <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Tənzimləmələr açarını göstər</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Avtomatik</string>
     <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Həmişə göstər</string>
     <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Həmişə gizlət</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_always_show_name</item>
+        <item>@string/settings_key_mode_always_hide_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Bigram Təklifləri</string>
     <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Təklifi təkmilləşdirmək üçün əvvəlki sözü istifadə et</string>
     <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>None</item>
+        <item>Təməl</item>
+        <item>Qabaqcıl</item>
+    </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : Saxlanıldı</string>
     <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Vurğuları görmək üçün bir düyməyə basılı saxlayın (ø, ö və s.)</string>
     <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Klaviaturanı hər hansısa bir nöqtədə bağlamaq üçün \u21B6 geri düyməsinə bas</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Nömrələrə və simvollara müraciət</string>
     <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Lüğətə əlavə etmək üçün ən soldakı sözə basıb saxlayın
+        </string>
     <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Davam etmək üçün bu məsləhət toxunun »</string>
     <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Məsləhəti bağlayıb yazmağa başlamaq üçün bura toxun!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>Bir mətn sahəsinə toxunanda klaviatura açılır</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
@@ -73,48 +125,82 @@
     <!-- Tutorial tip 6 - Done with the tutorial -->
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Növbəti</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Göndər</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
+    <string name="voice_warning_title">Səs girişi</string>
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">Səs girişi, hal-hazırda diliniz üçün dəstəklənmir, ancaq İngiliscədə işləyir.</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Səs girişi, Google-ın şəbəkə bağlantılı danışıq səsini tanıma özəlliyini istifadə edən təcrübi bir özəllikdir.</string>
     <!-- An additional part of the warning dialog for voice input that only shows when the user
          actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Səs girişini söndürüb klaviatura tənzimləmələrinə gedin.</string>
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Səs girişini istifadə etmək üçün, mikrofon düyməsinə bas və ya klaviatura üzərində barmağını sürüşdür.</string>
     <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">İndi danış</string>
     <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">İşləyir</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Xəta. Yenidən sınayın.</string>
     <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Bağlantı qurula bilmədi</string>
     <!-- Short message shown for a network error where the utterance was really long,
          in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Xəta, çox uzun danışıq.</string>
     <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Səs problemi</string>
     <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Server xətası</string>
     <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Danışıq eşidilmədi</string>
     <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Uyğunluq tapılmadı</string>
     <!-- Short message shown when the user initiates voice and voice
 	search is not installed. -->
+    <string name="voice_not_installed">Səsli axtarış quraşdırılmayıb</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <!-- Label on button when an error occurs -->
+    <string name="ok">Oldu</string>
     <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Səs girişi</string>
     <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>Əsas klaviaturada</item>
+        <item>Simvol klaviaturasında</item>
+        <item>Bağlı</item>
+    </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Əsas klaviaturada mikrofon</item>
+        <item>Simvol klaviaturasında mikrofon</item>
+        <item>Səs girişi sıradan çıxarıldı</item>
+    </string-array>
     <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Səsdən sonra avtomatik göndər</string>
     <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
@@ -122,19 +208,35 @@
     <!-- appears above image showing how to use touch and hold -->
     <!-- appears above image showing how to access keyboard settings -->
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".org"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Giriş metodunu seç</string>
     <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Giriş dilləri</string>
     <!-- Title summary for input language selection screen -->
     <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">\u2190 Saxlamaq üçün təkrar toxun</string>
     <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Lüğət əlçatandır</string>
     <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">İstifadəçi əks əlaqəsini fəallaşdır</string>
     <!-- Description for enabling to send user statistics to Google -->
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Sözləri düzəltmək üçün toxun</string>
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Düzəltmək üçün daxil edilən sözlərə toxun</string>
     <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Klaviatura teması</string>
+    <string name="subtype_mode_keyboard">klaviatura</string>
+    <string name="subtype_mode_voice">səs</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>
