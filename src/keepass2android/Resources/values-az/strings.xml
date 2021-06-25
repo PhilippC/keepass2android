@@ -24,12 +24,20 @@
   <string name="ShowGroupnameInSearchResult_title">Qrup adını axtarış nəticələrində göstər</string>
   <string name="NavigationToGroupCompleted_message">Qrup adı indi: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Avto-doldurma hədəfləri sıradan çıxarıldı</string>
+  <string name="OfferSaveCredentials_title">Kimlik məlumatlarını saxlamağı təklif et</string>
+  <string name="ShowGroupInEntry_title">Qeyd görünüşündə qrup adını göstər</string>
+  <string name="Entry_singular">Bir qeyd</string>
+  <string name="Entry_plural">%1$d qeyd</string>
   <string name="IconSet_title">Nişan dəsti</string>
   <string name="IconSet_install">Daha çox tap...</string>
   <string name="security_prefs">Təhlükəsizlik</string>
   <string name="display_prefs">Görüntü</string>
+  <string name="password_access_prefs">Şifrə qeyd müraciəti</string>
+  <string name="QuickUnlock_prefs">Cəld Kilid Açma</string>
+  <string name="FileHandling_prefs">Fayl idarəsi</string>
   <string name="keyboard_prefs">Klaviatura</string>
   <string name="export_prefs">Verilənlər bazasını ixrac et...</string>
+  <string name="fingerprint_prefs">Biometrik kilid açma</string>
   <string name="import_db_prefs">Verilənlər bazasını daxili qovluğa idxal et</string>
   <string name="OnlyAvailableForLocalFiles">Yalnız yerli fayllar üçün mövcuddur.</string>
   <string name="enter_filename">Verilənlər bazası fayl adını daxil edin</string>
@@ -63,6 +71,7 @@
   <string name="select_other_entry">Başqa qeyd seç</string>
   <string name="loading">Yüklənir…</string>
   <string name="TemplateField_IdCard_Name">Ad</string>
+  <string name="DbQuicklockedChannel_name">Cəld Kilid Açma</string>
   <string-array name="sftp_auth_modes">
     <item>Şifrə</item>
     <item>Private/Public key</item>
@@ -71,4 +80,6 @@
   <string name="switch_ime_text">Keepass2Android klaviaturasını aktivləşdir.</string>
   <string name="switch_ime_reopen">Yenidən sına</string>
   <string name="AutofillWarning_title">Təhlükəsizlik xəbərdarlığı: Tanınmayan domen/tətbiq bağlantısı</string>
+  <string name="AutofillWarning_Intro">\"%2$s\" tətbiqinə \"%1$s\" domeni üçün kimlik məlumatlarını daxil edirsiniz.</string>
+  <string name="AutofillWarning_trustAsBrowser">\"%1$s\" səyyahında həmişə qəbul et</string>
 </resources>
