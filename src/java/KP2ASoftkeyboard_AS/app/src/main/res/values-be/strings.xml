@@ -53,7 +53,9 @@
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">Павялічыць памер тэкставага поля</string>
     <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Хаваць прапанаванне слоў у альбомнай арыентацыі</string>
     <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Аўтаматычныя вялікія літары</string>
     <!-- Description for auto cap -->
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">Аўтаматычная пунктуацыя</string>
