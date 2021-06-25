@@ -54,15 +54,21 @@
   <string name="error_no_name">Ad lazımdır.</string>
   <string name="hint_login_pass">Şifrə</string>
   <string name="hint_url">URL</string>
+  <string name="root">Kök (root)</string>
   <string-array name="PasswordGeneratorModes">
     <item>Şifrə</item>
     <item>Passphrase</item>
     <item>Passphrase + Password</item>
   </string-array>
   <string name="select_other_entry">Başqa qeyd seç</string>
+  <string name="loading">Yüklənir…</string>
   <string name="TemplateField_IdCard_Name">Ad</string>
   <string-array name="sftp_auth_modes">
     <item>Şifrə</item>
     <item>Private/Public key</item>
   </string-array>
+  <string name="disable_secure_screen_check">Bu mesajı ləğv et</string>
+  <string name="switch_ime_text">Keepass2Android klaviaturasını aktivləşdir.</string>
+  <string name="switch_ime_reopen">Yenidən sına</string>
+  <string name="AutofillWarning_title">Təhlükəsizlik xəbərdarlığı: Tanınmayan domen/tətbiq bağlantısı</string>
 </resources>
