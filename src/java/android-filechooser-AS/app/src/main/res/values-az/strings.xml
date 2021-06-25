@@ -7,4 +7,16 @@
 -->
 <resources>
     <string name="afc_title_name">Ad</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Qovluq seç…</item>
+        <item quantity="other">Qovluqları seç…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Fayl seç…</item>
+        <item quantity="other">Faylları seç…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Fayl/qovluq seç…</item>
+        <item quantity="other">Faylları/qovluqları seç…</item>
+    </plurals>
 </resources>
