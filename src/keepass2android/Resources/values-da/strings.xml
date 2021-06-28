@@ -667,8 +667,10 @@
     <item>Forbedringer til Autofyldning (fast popup vises ikke i Chrome, bedre underdomæne understøttelse)</item>
     <item>Forbedringer til OneDrive-implementering: ikke længere nogen størrelsesgrænse, ikke flere overflødige anmodninger om autentificering</item>
     <item>Tilføjet mulighed for at vælge lyst / mørkt design fra systemindstillinger, herunder nat-planer, kræver Android 10+</item>
-    <item>Tillad at åbne filer gennem systemfilvælger, ignorering af det skrivebeskyttede flag</item>
-    <item>Tillad at begynde at flytte poster fra postvisningsmenuen</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Tilføjet understøttelse af nyt nøglefilformat indført i KeePass 2.47</item>
