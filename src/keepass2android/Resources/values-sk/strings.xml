@@ -668,8 +668,10 @@
     <item>Vylepšenia automatického dopĺňania (opravené vyskakovacie okno, ktoré sa nezobrazovalo v Chrome; lepšia podpora subdomény)</item>
     <item>Vylepšenia pre implementáciu OneDrive: už žiadny limit veľkosti, už žiadne zbytočné požiadavky na autentifikáciu</item>
     <item>Pridaná voľba pre výber svetlého/tmavého dizajnu zo systémových nastavení, vrátane plánov pre noc. Vyžaduje Android 10+</item>
-    <item>Umožnenie otvorenia súborov cez systémovú súčasť na výber súboru, ignorovanie príznaku len na čítanie</item>
-    <item>Umožnenie spustenia presúvania záznamov z menu pre zobrazenie záznamu</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Pridaná podpora pre nový súbor s kľúčom, zavedený v KeePass 2.47</item>
