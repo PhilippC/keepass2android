@@ -661,6 +661,7 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>
     <item>Dodano pogovorno okno za nastavitev nastavitev TOTP za vnose</item>
@@ -668,10 +669,10 @@
     <item>Izboljšave samodejnega izpolnjevanja (fiksno pojavno okno ni prikazano v Chromu, boljša podpora poddomenam)</item>
     <item>Izboljšave izvajanja OneDrive: ni več omejitve velikosti, ni več odvečnih zahtev za preverjanje pristnosti</item>
     <item>Dodana možnost izbire svetlega/temnega načina v sistemskih nastavitvah, vključno z nočnimi načrti, zahtevan je Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Posodobite Dropbox, da bo podpiral nov način preverjanja pristnosti.</item>
+    <item>Novo nastavljeno odklepanje prstnih odtisov bo zaradi večje varnosti razveljavljeno po dodajanju prstnega odtisa v sistemske nastavitve.</item>
+    <item>Dovoljeno odpiranje datotek prek izbirnika sistemskih datotek, pri čemer ignorira zastavico samo za branje</item>
+    <item>Dovoljenje, da začnete premikati vnose iz menija pogleda vnosov</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Dodajte podporo za novo obliko datoteke ključa, uvedeno v Keepass 2.47</item>
