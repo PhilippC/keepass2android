@@ -667,8 +667,10 @@
     <item>Vylepšení automatického doplňování (opraveny vyskakovací okna v Chrome, vylepšena podpora subdomén)</item>
     <item>Vylepšení implementace OneDrive: odstranění limitu velikosti, žádné zbytečné požadavky na ověření</item>
     <item>Přidána možnost výběru světlého/tmavého vzhledu z nastavení systému, včetně nočního režimu, vyžaduje Android 10+</item>
-    <item>Přidána možnost otevřít soubory, pomocí výběru systému souborů, označené pouze pro čtení jako zapisovatelé</item>
-    <item>Přidána možnost přesunu položek z detailu záznamu</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Přidání podpory pro nový souborový formát klíče představený v Keepass 2.47</item>
