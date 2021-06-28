@@ -668,8 +668,10 @@
     <item>Вдосконалення автозаповнення (фіксоване спливне вікно не з\'являється у Chrome, краща підтримка піддоменів)</item>
     <item>Вдосконалення впровадження OneDrive: прибрано обмеження розміру, більше жодних зайвих запитів автентифікації</item>
     <item>Додано параметр вибору світлого/темного дизайну з системних налаштувань, включно з нічними планами, вимагає Android 10+</item>
-    <item>Дозволити відкривати файли через системний засіб вибору файлів, нехтуючи прапорцем лише для читання</item>
-    <item>Дозволено починати переміщення записів з меню перегляду записів</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Додано підтримку нових форматів ключових файлів, впровадженій в Keepass 2.47</item>
