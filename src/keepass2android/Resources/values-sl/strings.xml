@@ -668,8 +668,10 @@
     <item>Izboljšave samodejnega izpolnjevanja (fiksno pojavno okno ni prikazano v Chromu, boljša podpora poddomenam)</item>
     <item>Izboljšave izvajanja OneDrive: ni več omejitve velikosti, ni več odvečnih zahtev za preverjanje pristnosti</item>
     <item>Dodana možnost izbire svetlega/temnega načina v sistemskih nastavitvah, vključno z nočnimi načrti, zahtevan je Android 10+</item>
-    <item>Dovoljeno odpiranje datotek prek izbirnika sistemskih datotek, pri čemer ignorira zastavico samo za branje</item>
-    <item>Dovoljenje, da začnete premikati vnose iz menija pogleda vnosov</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Dodajte podporo za novo obliko datoteke ključa, uvedeno v Keepass 2.47</item>
