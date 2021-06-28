@@ -145,6 +145,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
+import keepass2android.javafilestorage.DropboxV2Storage;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
 import keepass2android.javafilestorage.PCloudFileStorage;
@@ -539,7 +540,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
 		//storageToTest = new SftpStorage(ctx.getApplicationContext());
-		storageToTest = new PCloudFileStorage(ctx, "yCeH59Ffgtm");
+		//storageToTest = new PCloudFileStorage(ctx, "yCeH59Ffgtm");
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
@@ -556,7 +557,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 			}
 		});*/
 
-		//storageToTest =  new DropboxV2Storage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
+		storageToTest =  new DropboxV2Storage(ctx,"4ybka4p4a1027n6", "3s86datjhkihwyc", !simulateRestart);
 		//storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
 		//storageToTest = new DropboxAppFolderFileStorage(ctx,"ax0268uydp1ya57", "3s86datjhkihwyc", true);
 

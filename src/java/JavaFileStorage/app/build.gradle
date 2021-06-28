@@ -26,7 +26,7 @@ NOTE: If you change dependencies here, don't forget to update the jar files in J
  */
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:28.0.0'
+
     compile 'com.squareup.okhttp3:okhttp:4.10.0-RC1'
     compile 'com.burgstaller:okhttp-digest:2.5'
     compile 'com.google.android.gms:play-services:4.0.30'
@@ -35,7 +35,7 @@ dependencies {
         exclude group: 'com.google.android.google-play-services'
     }
     compile 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
-    compile 'com.dropbox.core:dropbox-core-sdk:3.1.1'
+    compile 'com.dropbox.core:dropbox-core-sdk:4.0.0'
     //onedrive:
     compile('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
