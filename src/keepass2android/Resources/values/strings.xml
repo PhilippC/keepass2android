@@ -824,6 +824,8 @@
     <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
     <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
     <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
     <item>Allow to open files through system file picker, ignoring the read-only flag</item>
     <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
