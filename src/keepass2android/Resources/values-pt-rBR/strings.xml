@@ -668,8 +668,10 @@
     <item>Melhoramentos no Autopreenchimento (corrigido o bolão não aparecendo no Chrome, melhor suporte a subdomínios)</item>
     <item>Melhoramentos para implementação do OneDrive: agora, sem limite de tamanho, não há mais autenticação supérflua</item>
     <item>Adicionado opção para selecionar os temas claro/escuro das configurações do sistema, incluindo planos noturnos, requer Android 10+</item>
-    <item>Permitir abrir arquivos através gerenciador de arquivos do sistema, ignorando o sinalizador de somente para leitura</item>
-    <item>Permitir iniciar movendo entradas de uma entrada no menu de exibição</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Adicionar suporte ao novo formato de arquivo-chave introduzido no Keepass 2.47</item>
