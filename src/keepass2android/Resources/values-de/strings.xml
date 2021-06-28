@@ -659,6 +659,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
     <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
@@ -666,10 +667,10 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
     <item>Verbesserungen bei Autofill: Bugfix bzgl. nicht angezeigtem Popup in Chrome, bessere Unterstützung für Subdomains</item>
     <item>Verbesserungen bei OneDrive: keine Größenbegrenzung mehr, keine unnötigen Authentifizierungsanfragen</item>
     <item>Option hinzugefügt, um das helle/dunkel Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Dropbox-Implementierung aktualisiert um neue Authentifizierungsmethode zu unterstützen.</item>
+    <item>Neu eingerichtetes Entsperren mit Fingerabdruck wird ungültig, wenn ein Fingerabdruck in den Systemeinstellungen hinzugefügt wird (um die Sicherheit zu erhöhen).</item>
+    <item>Öffnen von Dateien über den Systemdialog ermöglicht, das Nur-Lesen-Attribut wird ignoriert.</item>
+    <item>Das Verschieben von Einträgen kann nun aus der Eintragsansicht begonnen werden.</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Unterstützung für neues Schlüsseldateiformat aus KeePass 2.47 integriert</item>
