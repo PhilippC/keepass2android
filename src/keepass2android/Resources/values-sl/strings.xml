@@ -239,6 +239,11 @@
   <string name="sort_moddate">Razvrsti po datumu spremembe</string>
   <string name="sort_default">Ohrani privzeti vrtni red</string>
   <string name="special">Posebni znaki</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Geslo</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Najdite, kar</string>
   <string name="search_results">Rezultati iskanja</string>
   <string name="search_in">Išči v</string>
@@ -642,6 +647,16 @@
   <string name="EntryChannel_name">Vstopna obvestila</string>
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>
+    <item>Dodano pogovorno okno za nastavitev nastavitev TOTP za vnose</item>
+    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>Izboljšave samodejnega izpolnjevanja (fiksno pojavno okno ni prikazano v Chromu, boljša podpora poddomenam)</item>
+    <item>Izboljšave izvajanja OneDrive: ni več omejitve velikosti, ni več odvečnih zahtev za preverjanje pristnosti</item>
+    <item>Dodana možnost izbire svetlega/temnega načina v sistemskih nastavitvah, vključno z nočnimi načrti, zahtevan je Android 10+</item>
+    <item>Dovoljeno odpiranje datotek prek izbirnika sistemskih datotek, pri čemer ignorira zastavico samo za branje</item>
+    <item>Dovoljenje, da začnete premikati vnose iz menija pogleda vnosov</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Dodajte podporo za novo obliko datoteke ključa, uvedeno v Keepass 2.47</item>
     <item>Dodajte podporo za Argon2id kot funkcijo izpeljave ključa</item>

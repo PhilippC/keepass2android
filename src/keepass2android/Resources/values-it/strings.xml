@@ -239,6 +239,11 @@
   <string name="sort_moddate">Ordina per data di modifica</string>
   <string name="sort_default">Mantieni l\'ordinamento predefinito</string>
   <string name="special">Speciale</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Password</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Cerca</string>
   <string name="search_results">Risultati della ricerca</string>
   <string name="search_in">Cerca in</string>

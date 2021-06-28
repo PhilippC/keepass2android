@@ -239,6 +239,11 @@
   <string name="sort_moddate">فرز حسب تاريخ التعديل</string>
   <string name="sort_default">الحفاظ على الترتيب الاصلي</string>
   <string name="special">خاص</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>كلمة السر</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">البحث عن ماذا</string>
   <string name="search_results">نتائج البحث</string>
   <string name="search_in">البحث في</string>

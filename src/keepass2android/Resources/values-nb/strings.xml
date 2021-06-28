@@ -197,6 +197,11 @@
   <string name="sort_moddate">Sorter etter endringsdato</string>
   <string name="sort_default">Behold standardrekkefølgen</string>
   <string name="special">Spesial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Passord</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Søk etter</string>
   <string name="search_results">Søkeresultater</string>
   <string name="search_in">Søk i</string>

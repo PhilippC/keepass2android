@@ -820,6 +820,7 @@
   <string-array name="ChangeLog_1_09a">
     <item>Added support for KDBX 4.1 file format introduced in KeePass 2.48</item>
     <item>Added dialog to configure TOTP settings for entries</item>
+    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
     <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
     <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
     <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>

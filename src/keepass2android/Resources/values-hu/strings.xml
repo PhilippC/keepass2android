@@ -239,6 +239,11 @@
   <string name="sort_moddate">Az utolsó módosítás ideje szerinti rendezés</string>
   <string name="sort_default">Alapértelmezett sorrend</string>
   <string name="special">Speciális</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Jelszó</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Keresendő szöveg</string>
   <string name="search_results">Keresési eredmények</string>
   <string name="search_in">Keresendő mezők</string>
