@@ -670,9 +670,9 @@
     <item>Melhoramentos para implementação do OneDrive: agora, sem limite de tamanho, não há mais autenticação supérflua</item>
     <item>Adicionado opção para selecionar os temas claro/escuro das configurações do sistema, incluindo planos noturnos, requer Android 10+</item>
     <item>Atualizado a implementação do Dropbox para suportar novo método de autenticação.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Nova configuração de desbloqueio com digital irá ser invalidada depois de adicionar uma digital nas configurações do seu sistema para aumentar a segurança.</item>
+    <item>Permitir que abra arquivos através do selecionador de arquivos do sistema, ignorando a sinalização de só para leitura</item>
+    <item>Permitir iniciar a mover entradas de uma entrada no menu de exibição</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Adicionar suporte ao novo formato de arquivo-chave introduzido no Keepass 2.47</item>
