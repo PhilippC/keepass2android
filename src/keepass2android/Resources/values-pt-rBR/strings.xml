@@ -661,6 +661,7 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Adicionado suporte ao formato de arquivo KDBX 4.1, introduzido no KeePass 2.48</item>
     <item>Adicionado diálogo para configurar  as opções TOTP para as entradas</item>
@@ -668,7 +669,7 @@
     <item>Melhoramentos no Autopreenchimento (corrigido o bolão não aparecendo no Chrome, melhor suporte a subdomínios)</item>
     <item>Melhoramentos para implementação do OneDrive: agora, sem limite de tamanho, não há mais autenticação supérflua</item>
     <item>Adicionado opção para selecionar os temas claro/escuro das configurações do sistema, incluindo planos noturnos, requer Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Atualizado a implementação do Dropbox para suportar novo método de autenticação.</item>
     <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
     <item>Allow to open files through system file picker, ignoring the read-only flag</item>
     <item>Allow to start moving entries from the entry view menu</item>
