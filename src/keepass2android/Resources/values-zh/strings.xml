@@ -671,7 +671,7 @@
     <item>更新Dropbox实现，以支持新的认证方法。</item>
     <item>在系统设置中增加指纹后，新设置的指纹解锁将失效，以提高安全性。</item>
     <item>允许通过系统文件选择器打开文件，忽略只读标志</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>允许从条目视图菜单开始移动条目</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>添加对 Keepass 2.47 版本引入的新密钥文件格式的支持</item>
