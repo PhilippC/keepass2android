@@ -661,6 +661,7 @@
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
+  <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Dodane wsparcie dla nowego formatu pliku klucza wprowadzonego w Keepass 2.48</item>
     <item>Dodano okno dialogowe, aby skonfigurować ustawienia TOTP dla wpisów</item>
@@ -668,7 +669,7 @@
     <item>Ulepszenia do autouzupełniania (wyskakujące okienko nie jest wyświetlane w Chrome, lepsza obsługa subdomeny)</item>
     <item>Ulepszenia implementacji OneDrive: brak limitu rozmiaru, brak zbędnych żądań uwierzytelniania</item>
     <item>Dodano opcję, aby wybrać jasny/ciemny wygląd z ustawień systemowych, w tym planów nocnych, wymaga Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Zaktualizuj implementację Dropbox, aby obsługiwać nową metodę uwierzytelniania.</item>
     <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
     <item>Allow to open files through system file picker, ignoring the read-only flag</item>
     <item>Allow to start moving entries from the entry view menu</item>
