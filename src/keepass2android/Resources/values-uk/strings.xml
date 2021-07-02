@@ -661,6 +661,7 @@
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
+  <string name="WarnFingerprintInvalidated">Увага! Біометрична автентифікація може бути скасована Android, наприклад після додавання нового відбитку пальця у налаштуваннях вашого пристрою. Переконайтеся, що ви завжди знаєте, як розблокувати за допомогою головного пароля!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Додано підтримку формату файлів KDBX 4.1, впровадженої в Keepass 2.48</item>
     <item>Додано діалогове вікно для налаштування параметрів TOTP для записів</item>
@@ -668,10 +669,10 @@
     <item>Вдосконалення автозаповнення (фіксоване спливне вікно не з\'являється у Chrome, краща підтримка піддоменів)</item>
     <item>Вдосконалення впровадження OneDrive: прибрано обмеження розміру, більше жодних зайвих запитів автентифікації</item>
     <item>Додано параметр вибору світлого/темного дизайну з системних налаштувань, включно з нічними планами, вимагає Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Оновлено взаємодію з Dropbox для підтримки нового методу автентифікації.</item>
+    <item>Нове налаштування відбитків пальців для підвищення рівня безпеки — автентифікацію буде скасовано після додавання відбитка пальця.</item>
+    <item>Дозволено відкривати файли через системний засіб вибору файлів, нехтуючи прапорцем лише для читання</item>
+    <item>Дозволено починати переміщення записів з меню перегляду записів</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Додано підтримку нових форматів ключових файлів, впровадженій в Keepass 2.47</item>
