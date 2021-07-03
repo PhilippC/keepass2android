@@ -85,7 +85,7 @@
     <!-- Array of the settings key modes -->
     <string-array name="settings_key_modes">
         <item>@string/settings_key_mode_auto_name</item>
-        <item>\@ rij- instellingen- sleutel-wijze-altijd-tonen-naam</item>
+        <item>@string/settings_key_mode_always_show_name</item>
         <item>@string/settings_key_mode_always_hide_name</item>
     </string-array>
     <!-- Option to enable bigram completion -->
