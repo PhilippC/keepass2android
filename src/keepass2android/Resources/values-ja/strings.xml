@@ -239,6 +239,11 @@
   <string name="sort_moddate">更新日順</string>
   <string name="sort_default">デフォルトの順序を保持</string>
   <string name="special">記号</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>パスワード</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">検索文字列</string>
   <string name="search_results">検索結果</string>
   <string name="search_in">検索対象</string>

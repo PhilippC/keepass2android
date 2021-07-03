@@ -128,6 +128,11 @@
   <string name="exporting_database">ഡാറ്റാബേസ് എക്സ്പോർട് ചെയുന്നു…</string>
   <string name="search_label">തിരയുക</string>
   <string name="show_password">പാസ്‌വേഡ് കാണിക്കുക</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>പാസ്സ്‌വേർഡ്‌</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_results">തിരച്ചിൽ ഫലങ്ങൾ</string>
   <string name="twofish">Twofish</string>
   <string name="version_label">പതിപ്പ്</string>

@@ -239,6 +239,25 @@
   <string name="sort_moddate">Сортировка по дате изменения</string>
   <string name="sort_default">Оставить порядок по-умолчанию</string>
   <string name="special">Особые</string>
+  <string name="special_extended">Специальная расширенная</string>
+  <string name="at_least_one_from_each_group">По крайней мере, по одному от каждой группы</string>
+  <string name="exclude_lookalike">Исключить похожие символы</string>
+  <string name="password_generation_profile">Профиль</string>
+  <string name="save_password_generation_profile_text">Введите имя профиля для сохранения. Введите существующее имя для перезаписи.</string>
+  <string name="hint_wordcount">Количество слов в ключевой фразе</string>
+  <string name="hint_wordseparator">Разделитель слов</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Пароль</item>
+    <item>Ключевая фраза</item>
+    <item>Ключевая фраза + пароль</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>в нижнем регистре</item>
+    <item>В ВЕРХНЕМ РЕГИСТРЕ</item>
+    <item>Первый символ в верхнем регистре</item>
+  </string-array>
+  <string name="custom_settings">Пользовательские настройки</string>
+  <string name="passphrase_capitalization">Использование заглавных букв в ключевой  фразе</string>
   <string name="search_hint">Что ищем</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
@@ -316,6 +335,13 @@
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
   <string name="add_extra_string">Добавить дополнительную строку</string>
+  <string name="configure_totp">Настроить TOTP</string>
+  <string name="totp_secret_key">Секретный ключ</string>
+  <string name="totp_encoding_rfc6238">Настройки токена RFC6238 по умолчанию</string>
+  <string name="totp_encoding_steam">Настройка steam-токена</string>
+  <string name="totp_encoding_custom">Пользовательские настройки токена</string>
+  <string name="totp_time_step">Период</string>
+  <string name="totp_length">Длина кода</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
@@ -633,6 +659,18 @@
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Добавлена поддержка формата файлов KDBX 4.1, представленного в KeePass 2.48</item>
+    <item>Добавлен диалог настройки параметров TOTP для записей</item>
+    <item>Улучшен генератор паролей: добавлена поддержка ключевой фразы, дополнительные параметры, оценка надежности профилей и пароля</item>
+    <item>Улучшения в автозаполнении (исправлено всплывающее окно, не отображающееся в Chrome, улучшена поддержка поддоменов)</item>
+    <item>Улучшение реализации OneDrive: нет больше ограничений по размеру, больше нет лишних запросов аутентификации</item>
+    <item>Добавлена возможность выбора светлого/темного оформления в настройках системы, включая ночные планы, требуется Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Добавлена поддержка нового формата ключевого файла, представленного в Keepass 2.47</item>
     <item>Добавлена поддержка Argon2id в качестве функции деривации ключа</item>

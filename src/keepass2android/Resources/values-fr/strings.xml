@@ -239,6 +239,25 @@
   <string name="sort_moddate">Trier par date de modification</string>
   <string name="sort_default">Maintenir l\'ordre par défaut</string>
   <string name="special">Spéciaux</string>
+  <string name="special_extended">Spécial étendu</string>
+  <string name="at_least_one_from_each_group">Au moins une de chaque groupe</string>
+  <string name="exclude_lookalike">Exclure les caractères ressemblants.</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Entrer le nom du profil à enregistrer. Entrer un nom existant pour l\'écraser.</string>
+  <string name="hint_wordcount">Nombre de mots de la phrase secrète</string>
+  <string name="hint_wordseparator">Séparateur de mots</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Mot de passe</item>
+    <item>Phrase secrète</item>
+    <item>Phrase secrète + Mot de passe</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minuscules</item>
+    <item>MAJUSCULE</item>
+    <item>Premier caractère en majuscule</item>
+  </string-array>
+  <string name="custom_settings">Paramètres personnalisés</string>
+  <string name="passphrase_capitalization">Mise en majuscule de la phrase secrète</string>
   <string name="search_hint">Rechercher</string>
   <string name="search_results">Résultats de la recherche</string>
   <string name="search_in">Chercher dans</string>
@@ -316,6 +335,13 @@
   <string name="protection">Champ protégé</string>
   <string name="add_binary">Ajouter une pièce jointe...</string>
   <string name="add_extra_string">Ajouter une chaîne de caractère supplémentaire</string>
+  <string name="configure_totp">Configurer TOTP</string>
+  <string name="totp_secret_key">Clé secrète</string>
+  <string name="totp_encoding_rfc6238">Paramètres par défaut du jeton RFC6238</string>
+  <string name="totp_encoding_steam">Paramètres du jeton Steam</string>
+  <string name="totp_encoding_custom">Personnaliser les paramètres du jeton</string>
+  <string name="totp_time_step">Durée de vie</string>
+  <string name="totp_length">Longueur du code</string>
   <string name="delete_extra_string">Supprimer la chaîne additionnelle</string>
   <string name="database_loaded_quickunlock_enabled">%1$s : Verrouillé. Déverrouillage rapide activé.</string>
   <string name="database_loaded_unlocked">%1$s : Déverrouillé.</string>
@@ -632,6 +658,18 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Ajout de la prise en charge du format de fichier KDBX 4.1 introduit dans KeePass 2.48</item>
+    <item>Ajout d`une fenêtre pour configurer les paramètres TOTP pour les entrées</item>
+    <item>Amélioration du générateur de mots de passe : Ajout de la prise en charge des phrases secrètes, de plus d\'options, de profils et d\'une estimation de la force des mots de passe</item>
+    <item>Améliorations apportées au remplissage auto (correction du popup non affiché dans Chrome, meilleur support des sous-domaines)</item>
+    <item>Améliorations de l\'implémentation de OneDrive : plus de limite de taille, plus de demandes d\'authentification superflues</item>
+    <item>Ajout d\'une option permettant de sélectionner le mode clair/sombre dans les paramètres du système, y compris les plans de nuit, nécessite Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Ajout de la prise en charge d\'un nouveau format de fichier de clé introduit dans Keepass 2.47</item>
     <item>Ajoute le support d\'Argon2id en tant que fonction de dérivation de clé</item>

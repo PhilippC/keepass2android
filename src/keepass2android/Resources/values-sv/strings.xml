@@ -239,6 +239,13 @@
   <string name="sort_moddate">Sortera efter ändringsdatum</string>
   <string name="sort_default">Behåll standardordning</string>
   <string name="special">Special</string>
+  <string name="password_generation_profile">Profil</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Lösenord</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
+  <string name="custom_settings">Anpassade inställningar</string>
   <string name="search_hint">Hitta vad</string>
   <string name="search_results">Sökresultat</string>
   <string name="search_in">Sök i</string>

@@ -814,6 +814,7 @@
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
+  <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
 
   <string-array name="ChangeLog_1_09a">
@@ -823,6 +824,8 @@
     <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
     <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
     <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
     <item>Allow to open files through system file picker, ignoring the read-only flag</item>
     <item>Allow to start moving entries from the entry view menu</item>
   </string-array>

@@ -239,6 +239,25 @@
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
   <string name="special">Ειδικό</string>
+  <string name="special_extended">Εκτεταμένοι Ειδικοί</string>
+  <string name="at_least_one_from_each_group">Τουλάχιστον ένα από κάθε ομάδα</string>
+  <string name="exclude_lookalike">Εξαίρεση παρόμοιων χαρακτήρων</string>
+  <string name="password_generation_profile">Προφίλ</string>
+  <string name="save_password_generation_profile_text">Εισάγετε το όνομα του προφίλ που θα αποθηκευτεί. Εισάγετε ένα υπάρχον όνομα για αντικατάσταση.</string>
+  <string name="hint_wordcount">Αριθμός λέξεων συνθηματικής φράσης</string>
+  <string name="hint_wordseparator">Διαχωριστικό λέξεων</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Συνθηματικό</item>
+    <item>Συνθηματική φράση</item>
+    <item>Συνθηματική φράση + συνθηματικό</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>πεζά</item>
+    <item>ΚΕΦΑΛΑΙΑ</item>
+    <item>Πρώτος χαρακτήρας κεφαλαίος</item>
+  </string-array>
+  <string name="custom_settings">Προσαρμοσμένες ρυθμίσεις</string>
+  <string name="passphrase_capitalization">Συνθηματική φράση στα κεφαλαία</string>
   <string name="search_hint">Βρείτε τι</string>
   <string name="search_results">Αποτελέσματα αναζήτησης</string>
   <string name="search_in">Αναζήτηση σε</string>
@@ -316,6 +335,13 @@
   <string name="protection">Προστατευμένο πεδίο</string>
   <string name="add_binary">Προσθήκη συνημμένου αρχείου</string>
   <string name="add_extra_string">Προσθήκη πρόσθετου κειμένου</string>
+  <string name="configure_totp">Ρύθμιση TOTP</string>
+  <string name="totp_secret_key">Μυστικό κλειδί</string>
+  <string name="totp_encoding_rfc6238">Προεπιλεγμένες ρυθμίσεις τεκμηρίου RFC6238</string>
+  <string name="totp_encoding_steam">Ρυθμίσεις τεκμηρίου Steam</string>
+  <string name="totp_encoding_custom">Προσαρμοσμένες ρυθμίσεις τεκμηρίου</string>
+  <string name="totp_time_step">Χρονικό βήμα</string>
+  <string name="totp_length">Μήκος κωδικού</string>
   <string name="delete_extra_string">Διαγραφή πρόσθετου κειμένου</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: κλειδωμένο. Ενεργοποιήθηκε το QuickUnlock.</string>
   <string name="database_loaded_unlocked">%1$s: Ξεκλείδωτο.</string>
@@ -631,6 +657,18 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
+    <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρήσεις</item>
+    <item>Βελτιωμένη γεννήτρια κωδικού πρόσβασης: Προστέθηκε υποστήριξη συνθηματικής φράσης, περισσότερες επιλογές, προφίλ και εκτίμηση ισχύος κωδικού πρόσβασης</item>
+    <item>Βελτιώσεις στην αυτόματη συμπλήρωση (σταθερό αναδυόμενο παράθυρο δεν εμφανίζεται στο Chrome, καλύτερη υποστήριξη υποτομέα)</item>
+    <item>Βελτιώσεις στην υλοποίηση του OneDrive: δεν υπάρχει πλέον όριο μεγέθους, ούτε περιττές αιτήσεις ελέγχου ταυτότητας</item>
+    <item>Προστέθηκε επιλογή για να επιλέξετε το φωτεινό/σκούρο θέμα από τις ρυθμίσεις του συστήματος, συμπεριλαμβανομένων των νυχτερινών πλάνων, απαιτεί Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Προσθήκη υποστήριξης για νέα μορφή αρχείου κλειδιού που εισήχθη στο Keepass 2.47</item>
     <item>Προσθήκη υποστήριξης για το Argon2id ως λειτουργία παραγωγής κλειδιού</item>

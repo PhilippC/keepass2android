@@ -39,6 +39,7 @@
   <string name="export_prefs">Експортиране на база данни...</string>
   <string name="import_db_prefs">Импортиране на БД във вътрешна папка</string>
   <string name="import_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
+  <string name="export_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
   <string name="keyboardswitch_prefs">Превключване на клавиатурата</string>
   <string name="OnlyAvailableForLocalFiles">Достъпно само за локални файлове.</string>
   <string name="FileIsInInternalDirectory">Файлът се съхранява във вътрешна папка</string>
@@ -197,6 +198,11 @@
   <string name="sort_moddate">Сортирай по дата на модификация</string>
   <string name="sort_default">Запази ред по подразбиране</string>
   <string name="special">Специални</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Парола</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Търси</string>
   <string name="search_results">Резултати от търсенето</string>
   <string name="search_in">Търсене в</string>

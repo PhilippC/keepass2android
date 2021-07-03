@@ -214,6 +214,11 @@
   <string name="sort_moddate">Järjestä muokkauspäivämäärän mukaan</string>
   <string name="sort_default">Säilytä oletusjärjestys</string>
   <string name="special">Erikoismerkit</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Salasana</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Kirjoita haku</string>
   <string name="search_results">Hakutulokset</string>
   <string name="search_in">Haku</string>

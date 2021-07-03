@@ -6,5 +6,65 @@
     permission.
 -->
 <resources>
+    <string name="afc_cmd_advanced_selection_all">Hamısı</string>
+    <string name="afc_cmd_advanced_selection_invert">Seçimə tərsinə çevir</string>
+    <string name="afc_cmd_advanced_selection_none">Heç biri</string>
+    <string name="afc_cmd_grid_view">Tor görünüşü</string>
+    <string name="afc_cmd_home">Əsas səhifə</string>
+    <string name="afc_cmd_list_view">Siyahı görünüşü</string>
+    <string name="afc_cmd_new_folder">Yeni qovluq…</string>
+    <string name="afc_cmd_select_all_files">Bütün faylları seç</string>
+    <string name="afc_cmd_select_all_folders">Bütün qovluqları seç</string>
+    <string name="afc_cmd_sort">Sırala…</string>
+    <string name="afc_file">fayl</string>
+    <string name="afc_folder">qovluq</string>
+    <string name="afc_hint_clear">təmizlə</string>
+    <string name="afc_hint_folder_name">qovluq adı</string>
+    <string name="afc_hint_save_as_filename">fayl adı</string>
+    <string name="afc_hint_search">axtar</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">Bu tətbiqin fayl/qovluq yaratma icazəsi yoxdur</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Bu tətbiqin fayl/qovluq silmə icazəsi yoxdur</string>
+    <string name="afc_msg_cancelled">İmtina edildi</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">Fayl təchizatçı xidməti ilə bağlantı qurula bilmir</string>
+    <string name="afc_msg_cannot_create_new_folder_here">Burada yeni qovluq yaradıla bilmir</string>
+    <string name="afc_msg_cannot_save_a_file_here">Burada fayl saxlanıla bilmir</string>
+    <string name="afc_msg_done">Hazırdır</string>
+    <string name="afc_msg_empty">Boş</string>
+    <string name="afc_msg_failed_please_try_again">Uğursuz. Yenidən sına.</string>
+    <string name="afc_msg_loading">Yüklənir…</string>
+    <string name="afc_phone">Telefon</string>
+    <string name="afc_pmsg_cannot_access_dir">\"%1$s\" müraciət edilə bilmir</string>
+    <string name="afc_pmsg_cannot_create_folder">\"%1$s\" qovluğu yaradıla bilmir</string>
+    <string name="afc_pmsg_cannot_delete_file">%1$s \"%2$s\" silinə bilmir</string>
+    <string name="afc_pmsg_confirm_delete_file">Bu %1$s \"%2$s\" silmək istəyirsən?</string>
+    <string name="afc_pmsg_confirm_replace_file">\"%1$s\" faylı artıq var.\n\nƏvəzləmək istəyirsən?</string>
+    <string name="afc_pmsg_deleting_file">%1$s \"%2$s\" silinir…</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" silindi</string>
+    <string name="afc_pmsg_filename_is_directory">\"%1$s\" bir qovluqdur</string>
+    <string name="afc_pmsg_filename_is_invalid">\"%1$s\" fayl adı etibarsızdır</string>
+    <string name="afc_pmsg_max_file_count_allowed">…daha çox faylı var, maksimal icazə: %1$,d</string>
+    <string name="afc_pmsg_unknown_error">Bilinməyən xəta: %1$s</string>
+    <string name="afc_root">Kök (root)</string>
+    <string name="afc_title_advanced_selection">Seç…</string>
+    <string name="afc_title_confirmation">Təsdiq</string>
+    <string name="afc_title_date">Tarix</string>
+    <string name="afc_title_error">Xəta</string>
+    <string name="afc_title_info">Məlumat</string>
     <string name="afc_title_name">Ad</string>
+    <string name="afc_title_save_as">Saxla…</string>
+    <string name="afc_title_size">Ölçü</string>
+    <string name="afc_title_sort_by">Sırala…</string>
+    <string name="afc_yesterday">Dünən</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Qovluq seç…</item>
+        <item quantity="other">Qovluqları seç…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Fayl seç…</item>
+        <item quantity="other">Faylları seç…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Fayl/qovluq seç…</item>
+        <item quantity="other">Faylları/qovluqları seç…</item>
+    </plurals>
 </resources>

@@ -222,6 +222,11 @@
   <string name="sort_moddate">Ordenar pola data de modificación</string>
   <string name="sort_default">Manter a orde predeterminada</string>
   <string name="special">Especial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Contrasinal</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Atopar o que</string>
   <string name="search_results">Resultados de busca</string>
   <string name="search_in">Buscar en</string>
