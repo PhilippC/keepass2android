@@ -309,6 +309,8 @@ public class DropboxV2Storage extends JavaFileStorageBase
             credential = new DbxCredential(credential.getAccessToken(), -1L, credential.getRefreshToken(), credential.getAppKey());
             dbxClient = new DbxClientV2(DbxRequestConfigFactory.getRequestConfig(), credential);
 
+            setLoggedIn(true);
+
             return;
         }
 
