@@ -239,10 +239,16 @@
   <string name="sort_moddate">Ordenar por fecha de modificación</string>
   <string name="sort_default">Mantener el orden por defecto</string>
   <string name="special">Especial</string>
+  <string name="password_generation_profile">Perfil</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contraseña</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Frase de contraseña</item>
+    <item>Frase de contraseña + contraseña</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúsculas</item>
+    <item>MAYÚSCULAS</item>
+    <item>First Character Uppercase</item>
   </string-array>
   <string name="search_hint">Encontrar qué</string>
   <string name="search_results">Resultados de búsqueda</string>
@@ -321,6 +327,9 @@
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Agregar archivo adjunto...</string>
   <string name="add_extra_string">Añadir cadena adicional</string>
+  <string name="configure_totp">Configurar TOTP</string>
+  <string name="totp_secret_key">Llave secreta</string>
+  <string name="totp_length">Longitud del código</string>
   <string name="delete_extra_string">Eliminar cadena adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloqueado. QuickUnlock habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>

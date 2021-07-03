@@ -56,17 +56,15 @@
     <string name="afc_title_sort_by">Ordenar por…</string>
     <string name="afc_yesterday">Ontem</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="one">Escolher pasta&#8230;
-Escolher pastas&#8230;</item>
-        <item quantity="other">Escolher pasta&#8230;
-Escolher pastas&#8230;</item>
+        <item quantity="one">Escolher pasta…</item>
+        <item quantity="other">Escolher pastas…</item>
     </plurals>
     <plurals name="afc_title_choose_files">
-        <item quantity="one">Escolher arquivo&#8230;</item>
-        <item quantity="other">Escolher arquivos&#8230;</item>
+        <item quantity="one">Escolher arquivo…</item>
+        <item quantity="other">Escolher arquivos…</item>
     </plurals>
     <plurals name="afc_title_choose_files_directories">
-        <item quantity="one">Escolher arquivo/ pasta&#8230;</item>
-        <item quantity="other">Escolher arquivos/ pastas&#8230;</item>
+        <item quantity="one">Escolher arquivo/pasta…</item>
+        <item quantity="other">Escolher arquivos/pastas…</item>
     </plurals>
 </resources>

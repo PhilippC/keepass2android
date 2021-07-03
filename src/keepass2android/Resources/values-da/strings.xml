@@ -47,8 +47,10 @@
   <string name="FileHandling_prefs">Filhåndtering</string>
   <string name="keyboard_prefs">Tastatur</string>
   <string name="export_prefs">Eksportere database...</string>
+  <string name="fingerprint_prefs">Biometrisk oplåsning</string>
   <string name="import_db_prefs">Importere database til intern mappe</string>
   <string name="import_keyfile_prefs">Importer nøglefilen til intern mappe</string>
+  <string name="export_keyfile_prefs">Eksporter nøglefil fra intern mappe</string>
   <string name="keyboardswitch_prefs">Tastaturskiftning</string>
   <string name="OnlyAvailableForLocalFiles">Kun tilgængelig for lokale filer.</string>
   <string name="FileIsInInternalDirectory">Fil lagres i den interne mappe.</string>
@@ -80,7 +82,24 @@
   <string name="disclaimer_formal">Keepass2Android leveres ABSOLUT UDEN GARANTI. Det er gratis software, og du er velkommen til at videredistribuere det jf. betingelserne i GPL version 2 eller senere.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiér til Upklipsholder</string>
+  <string name="fingerprint_description">Verificér for at fortsætte</string>
+  <string name="fingerprint_fatal">Kan ikke opsætte biometrisk oplåsning:</string>
+  <string name="fingerprint_not_recognized">Biometrisk verifikation fejlede. Prøv igen</string>
+  <string name="fingerprint_success">Biometrisk verifikation lykkedes</string>
+  <string name="fingerprint_os_error">Biometrisk oplåsning kræver Android 6.0 eller nyere.</string>
+  <string name="fingerprint_hardware_error">Ingen biometrisk hardware fundet.</string>
+  <string name="fingerprint_no_enrolled">Du har ikke konfigureret biometrisk verifikation på denne enhed. Gå til systemindstillinger.</string>
+  <string name="disable_fingerprint_unlock">Deaktivér biometrisk oplåsning</string>
+  <string name="enable_fingerprint_unlock">Aktivér fuld biometrisk oplåsning</string>
+  <string name="enable_fingerprint_quickunlock">Aktivér biometrisk oplåsning for hurtig oplåsning</string>
+  <string name="fingerprint_unlock_failed">Biometrisk oplåsning mislykkedes. Dekrypteringsnøglen blev ugyldiggjort af Android OS\'et. Dette sker sædvanligvis, hvis en biometrik godkendelse eller sikkerhedsindstillingerne ændres. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Databaseoplåsning mislykkedes: Ugyldig kombinøgle. Biometrisk oplåsning blev deaktiveret, da den lagrede hovedadgangskode tilsyneladende ikke længere er gyldig. </string>
+  <string name="fingerprint_reenable">Genaktivér biometrisk oplåsning for den nye hovedadgangskode.</string>
+  <string name="fingerprint_reenable2">Oplås med din adgangskode og genaktivér så biometrisk oplåsning i databaseindstillingerne.</string>
+  <string name="FingerprintInitFailed">Kunne ikke initialisere biometrisk verifikation. </string>
   <string name="FingerprintSetupFailed">Mislykkedes at kryptere data. Dette kan ske, hvis du tilføjer eller fjerner fingeraftryk i systemindstillingerne, mens Keepass2Android moniterer for brug af fingeraftryk.</string>
+  <string name="enable_fingerprint_unlock_Info">Dette gemmer din hovedadgangskode på denne enhed, krypteret med Android Keystore og beskyttet af biometrisk verifikation. Tillader dig at oplåse din database alene via biometri.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Tillader brug af biometrisk verifikation i stedet for hurtigoplåsningskoden. Gemmer ingen information relateret til din hovedadgangskode.</string>
   <string name="enter_filename">Angiv databasefilnavn</string>
   <string name="entry_accessed">Tilgået</string>
   <string name="entry_cancel">Annullér</string>
@@ -151,7 +170,7 @@
   <string name="maskpass_title">Maskér adgangskode</string>
   <string name="maskpass_summary">Maskér som standard adgangskoder</string>
   <string name="menu_about">Om</string>
-  <string name="menu_change_key">Skift Hovedadgangskode</string>
+  <string name="menu_change_key">Skift hovednøgle</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
   <string name="menu_copy_user">Kopiér Bruger</string>
   <string name="menu_copy_totp">Kopiér TOTP</string>
@@ -187,7 +206,7 @@
   <string name="omitbackup_summary">Udelad \'Sikkerhedskopi\'- og Papirkurv-grupper i søgeresultater</string>
   <string name="pass_filename">KeePass-databasefilnavn</string>
   <string name="password_title">Angiv databaseadgangskode</string>
-  <string name="master_key_type">Vælg type af Hovedadgangskode:</string>
+  <string name="master_key_type">Vælg type af hovednøgle:</string>
   <string name="progress_create">Opretter ny database…</string>
   <string name="create_database">Opret database</string>
   <string name="progress_title">Behandler…</string>
@@ -210,6 +229,7 @@
   <string name="saving_database">Gemmer database…</string>
   <string name="exporting_database">Eksporterer database…</string>
   <string name="export_database_successful">Databaseeksport udført!</string>
+  <string name="export_keyfile_successful">Nøglefil eksporteret!</string>
   <string name="space">Mellemrum</string>
   <string name="search_label">Søg</string>
   <string name="show_password">Vis adgangskode</string>
@@ -219,11 +239,25 @@
   <string name="sort_moddate">Sortér efter ændringsdato</string>
   <string name="sort_default">Behold standardrækkefølgen</string>
   <string name="special">Speciel</string>
+  <string name="special_extended">Udvidet Speciel</string>
+  <string name="at_least_one_from_each_group">Mindst én fra hver gruppe</string>
+  <string name="exclude_lookalike">Udeluk lignende tegn</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Indtast navnet på den profil, der skal gemmes. Indtast et eksisterende navn for at overskrive.</string>
+  <string name="hint_wordcount">Adgangssætning antal ord</string>
+  <string name="hint_wordseparator">Ordadskiller</string>
   <string-array name="PasswordGeneratorModes">
     <item>Adgangskode</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Adgangssætning</item>
+    <item>Adgangssætning + Adgangskode</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>små bogstaver</item>
+    <item>STORE BOGSTAVER</item>
+    <item>Første Tegn Store Bogstaver</item>
+  </string-array>
+  <string name="custom_settings">Tilpassede indstillinger</string>
+  <string name="passphrase_capitalization">Adgangssætning bogstavstørrelse</string>
   <string name="search_hint">Find hvad</string>
   <string name="search_results">Søgeresultater</string>
   <string name="search_in">Søg i</string>
@@ -241,6 +275,7 @@
   <string name="author">Keepass2Android er udviklet af Philipp Crocoll.</string>
   <string name="further_authors">Tak for kodebidrag fra %1$s.</string>
   <string name="designers">Tak til ikon- og layoutdesignbidrag fra %1$s.</string>
+  <string name="supporters">Takket være finansiel støtte fra %1$s.</string>
   <string name="credit_plugin1">Twofish Cipher-plugin\'et til KeePass er udviklet af Scott Greenberg og er inkluderet i KP2A.</string>
   <string name="credit_android_filechooser">Android-filvælger er udviklet af Hai Bison</string>
   <string name="credit_keyboard">KP2A-tastaturet er baseret på Gingerbread-tastaturet fra Android Open Source Project og benytter Plugin Manager-koden fra Hacker\'s Keyboard fra Klaus Weidner.</string>
@@ -253,6 +288,9 @@
   <string name="ShowUsernameInList_summary">Vis brugernavne under posttitlerne. Nyttigt ved flere konti eller TAN\'er.</string>
   <string name="RememberRecentFiles_title">Husk databaser</string>
   <string name="RememberRecentFiles_summary">Husk senest åbnede databaser og vis dem på skærmen Åbn database.</string>
+  <string name="NoDalVerification_title">Ingen DAL verifikation</string>
+  <string name="NoDalVerification_summary">Deaktiverer tjek af om domæne- og app-pakke matcher</string>
+  <string name="kp2a_findUrl">Find adgangskode</string>
   <string name="excludeExpiredEntries">Udelad udløbne poster</string>
   <string name="search_options">Indstillinger</string>
   <string name="caseSensitive">Versal/minuskel sensitiv</string>
@@ -262,7 +300,7 @@
   <string name="start_create_import">Importér fil til ny database…</string>
   <string name="enter_filename_details_url">Fuld URL skal angives, inkl. protokol (f.eks. http://).</string>
   <string name="enter_filename_details_create_import">Fil til import vælges i næste trin.</string>
-  <string name="enable_quickunlock">Aktivér Hurtigoplåsning</string>
+  <string name="enable_quickunlock">Aktivér hurtigoplåsning</string>
   <string name="QuickUnlock_label">Angiv de sidste %1$d tegn i din adgangskode:</string>
   <string name="QuickUnlock_label_secure">Angiv Hurtigoplåsningskoden:</string>
   <string name="QuickUnlock_button">Hurtigoplåsning!</string>
@@ -297,6 +335,13 @@
   <string name="protection">Beskyttet felt</string>
   <string name="add_binary">Tilføj filvedhæftning</string>
   <string name="add_extra_string">Tilføj ekstra streng</string>
+  <string name="configure_totp">Konfigurer TOTP</string>
+  <string name="totp_secret_key">Hemmelig nøgle</string>
+  <string name="totp_encoding_rfc6238">Standard indstillinger for RFC6238 token</string>
+  <string name="totp_encoding_steam">Indstillinger for Steam token</string>
+  <string name="totp_encoding_custom">Tilpassede indstillinger for token</string>
+  <string name="totp_time_step">Tidstrin</string>
+  <string name="totp_length">Kodelængde</string>
   <string name="delete_extra_string">Slet ekstra streng</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Låst. Hurtigoplåsning aktiv.</string>
   <string name="database_loaded_unlocked">%1$s: Oplåst.</string>
@@ -386,7 +431,7 @@
   <string name="DeletingItems">Sletter elementer…</string>
   <string name="SettingPassword">Opsætter adgangskode…</string>
   <string name="UndoingChanges">Fortryder ændringer…</string>
-  <string name="TransformingKey">Transformerer Hovednøgle…</string>
+  <string name="TransformingKey">Transformerer hovednøgle…</string>
   <string name="DecodingDatabase">Afkoder database…</string>
   <string name="ParsingDatabase">Fortolker database…</string>
   <string name="CheckingTargetFileForChanges">Tjekker målfil for ændringer…</string>
@@ -614,6 +659,45 @@
   <string name="DbQuicklockedChannel_desc">Notificering om låsning af databasen med Hurtigoplåsning</string>
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
+  <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Tilføjet understøttelse af KDBX 4.1 filformat indført i KeePass 2.48</item>
+    <item>Tilføjet dialog til at konfigurere TOTP indstillinger for poster</item>
+    <item>Forbedret adgangskodegenerator: Tilføjet adgangssætning-understøttelse, flere muligheder, profiler og estimering af adgangskodestyrke</item>
+    <item>Forbedringer til Autofyldning (fast popup vises ikke i Chrome, bedre underdomæne understøttelse)</item>
+    <item>Forbedringer til OneDrive-implementering: ikke længere nogen størrelsesgrænse, ikke flere overflødige anmodninger om autentificering</item>
+    <item>Tilføjet mulighed for at vælge lyst / mørkt design fra systemindstillinger, herunder nat-planer, kræver Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Tilføjet understøttelse af nyt nøglefilformat indført i KeePass 2.47</item>
+    <item>Tilføj understøttelse af Argon2id som nøgleafledningsfunktion</item>
+    <item>Forbedret Autofyld kompatibilitet med Firefox og Chrome</item>
+    <item>Forbedre understøttelse af TOTP-poster fra skrivebordsprogrammer</item>
+    <item>Opdater pCloud SDK for at rette godkendelsesproblem</item>
+    <item>Opdater Jsch til version 0.1.55</item>
+    <item>Føj menu til skærm for valg af database</item>
+    <item>Tillad eksport af importerede nøglefiler</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Lagrer ikke længere pakkenavne på Android-apps i URL-feltet</item>
+    <item>Forbedre låsning adfærd - viser ikke længere biometrisk prompt umiddelbart efter oplåsning</item>
+    <item>Opdater OkHttp til at understøtte HTTP/2</item>
+    <item>Retter manglende oversættelser</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Gennemtving HTTP/1.1 grundet problem med HTTP/2 implementering af OkHttp</item>
+    <item>Forbedre tastaturdialogen på Android 9+</item>
+    <item>Skift filassociationer for app\'en for at undgå nogle unødvendige associationer</item>
+    <item>Sørg for at adgangskodeteksten ikke er skjult bag øjenikon</item>
+    <item>Skift autofyld-adfærd for at advare ved udfyldning af legitimationsoplysninger for et domæne til en ukendt app</item>
+    <item>Opdatér til FTP-bibliotek</item>
+    <item>Løser potentielle nedbrud i appen</item>
+    <item>Yderligere smårettelser</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Skift til brug af FluentFTP for understøttelse af TLS 1.2</item>
     <item>Skift til BiometricPrompt-API for at forbedre brugeroplevelsen med fingeraftryksoplåsning samt tillade brug af ansigtsoplåsning på f.eks. Pixel 4.</item>
@@ -792,7 +876,7 @@
   <string-array name="design_options">
     <item>Lys</item>
     <item>Mørk</item>
-    <item>System settings</item>
+    <item>Systemindstillinger</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="ftp_encryption_modes">
@@ -834,14 +918,23 @@
   <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
   <string name="autofill_enable_for">Aktivér Auto-udfyld for %1$s</string>
   <string name="invalid_link_association">Kunne ikke tilknytte webdomæne %1$s med app\'en %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android har registreret biometrisk-hardware. Vil du aktivere biometrisk oplåsning for denne database?</string>
   <string name="understand">Forstået</string>
   <string name="dont_show_again">Vis ikke igen</string>
   <string name="masterkey_infotext_head">Kan du huske din hovedadgangskode?</string>
   <string name="masterkey_infotext_main">Bemærk, at du ikke vil kunne åbne din database uden hovednøglen. Der er ingen måde, hvorpå hovedadgangskoden kan \"nulstilles\".</string>
+  <string name="masterkey_infotext_fingerprint_note">Bemærk også, at biometrisk oplåsning fungerer ved at gemme din hovednøgle i Androids sikre lager. Lageret kan til enhver tid slettes af Android f.eks. ved tilføjelse af et nyt fingeraftryk via systemindstillingerne. Sæt derfor ikke kun din lid til biometrisk oplåsning, husk også din hovedadgangskode!</string>
   <string name="backup_infotext_head">Er din database sikkerhedskopieret?</string>
   <string name="backup_infotext_main">Keepass2Android lagrer dine adgangskoder i en fil på en placering efter eget valg. Er du sikker på, at du stadig kan tilgå denne fil, hvis din mobil går tabt eller stjæles, eller filen ødelægges eller slettes? Sørg altid for at opbevare en opdateret sikkerhedskopi på et sikkert sted!</string>
   <string name="backup_infotext_note">For at oprette en sikkerhedskopi nu, så gå til %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Forberedt på nødsituationer?</string>
   <string name="emergency_infotext_main">Har du nogensinde overvejet, hvad der sker, hvis du ikke længere kan tilgå din adgangskodedatabase? Hvis du kommer ud for en ulykke? Det er god praksis at videregive din hovednøgle til en betroet person for nødstilfælde. Ingen vil ellers kunne tilgå dine adgangskoder.</string>
   <string name="no_secure_display">Den aktuelt anvendte skærm er ikke markeret som sikker. Dette betyder, at andre apps kan tage skærmfotos. Keepass2Android er konfigureret til kun at vise følsomme oplysninger på sikre skærme. Skift til en sikker skærm (f.eks. ved at frakoble en HDMI-skærm) eller ændr app-indstillingerne.</string>
+  <string name="disable_secure_screen_check">Deaktiver denne besked</string>
+  <string name="switch_ime_text">Aktivér venligst Keepass2Android-tastaturet.</string>
+  <string name="switch_ime_reopen">Forsøg igen</string>
+  <string name="AutofillWarning_title">Sikkerhedsadvarsel: Ukendt domæne/app-link</string>
+  <string name="AutofillWarning_Intro">Du er ved at indsætte legitimationsoplysninger for domæne \"%1$s\" i appen \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Hvis du stoler på at \"%2$s\" tilhører \"%1$s\", eller du stoler på at app\'en \"%2$s\" ikke misbruger legitimationsoplysningerne (f.eks. fordi det er en betroet browser app), er det ok at fortsætte. Ellers bedes du annullere.</string>
+  <string name="AutofillWarning_trustAsBrowser">Accepter altid i \"%1$s\"</string>
 </resources>

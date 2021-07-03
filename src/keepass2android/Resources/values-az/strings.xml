@@ -4,6 +4,9 @@
   <string name="about_feedback">Əks əlaqə</string>
   <string name="accept">Qəbul et</string>
   <string name="deny">Rədd et</string>
+  <string name="add_entry">Qeyd əlavə et</string>
+  <string name="edit_entry">Qeydə düzəliş et</string>
+  <string name="add_url_entry">URL üçün qeyd yarat</string>
   <string name="add_group">Qrup əlavə et</string>
   <string name="add_group_title">Qrup əlavə et</string>
   <string name="edit_group_title">Qrupa düzəliş et</string>
@@ -13,15 +16,28 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Xətdən Kənar</string>
   <string name="short_app_name_nonet">KP2A Xətdən Kənar</string>
+  <string name="app_timeout">Tətbiq istifadə vaxtı</string>
+  <string name="kill_app_label">Tətbiqi bağla</string>
   <string name="show_kill_app">Bağla düyməsi</string>
+  <string name="application">Tətbiq</string>
+  <string name="application_settings">Tətbiq tənzimləmələri</string>
   <string name="ShowGroupnameInSearchResult_title">Qrup adını axtarış nəticələrində göstər</string>
   <string name="NavigationToGroupCompleted_message">Qrup adı indi: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Avto-doldurma hədəfləri sıradan çıxarıldı</string>
+  <string name="OfferSaveCredentials_title">Kimlik məlumatlarını saxlamağı təklif et</string>
+  <string name="ShowGroupInEntry_title">Qeyd görünüşündə qrup adını göstər</string>
+  <string name="Entry_singular">Bir qeyd</string>
+  <string name="Entry_plural">%1$d qeyd</string>
   <string name="IconSet_title">Nişan dəsti</string>
   <string name="IconSet_install">Daha çox tap...</string>
   <string name="security_prefs">Təhlükəsizlik</string>
   <string name="display_prefs">Görüntü</string>
+  <string name="password_access_prefs">Şifrə qeyd müraciəti</string>
+  <string name="QuickUnlock_prefs">Cəld Kilid Açma</string>
+  <string name="FileHandling_prefs">Fayl idarəsi</string>
   <string name="keyboard_prefs">Klaviatura</string>
   <string name="export_prefs">Verilənlər bazasını ixrac et...</string>
+  <string name="fingerprint_prefs">Biometrik kilid açma</string>
   <string name="import_db_prefs">Verilənlər bazasını daxili qovluğa idxal et</string>
   <string name="OnlyAvailableForLocalFiles">Yalnız yerli fayllar üçün mövcuddur.</string>
   <string name="enter_filename">Verilənlər bazası fayl adını daxil edin</string>
@@ -46,14 +62,24 @@
   <string name="error_no_name">Ad lazımdır.</string>
   <string name="hint_login_pass">Şifrə</string>
   <string name="hint_url">URL</string>
+  <string name="root">Kök (root)</string>
   <string-array name="PasswordGeneratorModes">
     <item>Şifrə</item>
     <item>Passphrase</item>
     <item>Passphrase + Password</item>
   </string-array>
+  <string name="select_other_entry">Başqa qeyd seç</string>
+  <string name="loading">Yüklənir…</string>
   <string name="TemplateField_IdCard_Name">Ad</string>
+  <string name="DbQuicklockedChannel_name">Cəld Kilid Açma</string>
   <string-array name="sftp_auth_modes">
     <item>Şifrə</item>
     <item>Private/Public key</item>
   </string-array>
+  <string name="disable_secure_screen_check">Bu mesajı ləğv et</string>
+  <string name="switch_ime_text">Keepass2Android klaviaturasını aktivləşdir.</string>
+  <string name="switch_ime_reopen">Yenidən sına</string>
+  <string name="AutofillWarning_title">Təhlükəsizlik xəbərdarlığı: Tanınmayan domen/tətbiq bağlantısı</string>
+  <string name="AutofillWarning_Intro">\"%2$s\" tətbiqinə \"%1$s\" domeni üçün kimlik məlumatlarını daxil edirsiniz.</string>
+  <string name="AutofillWarning_trustAsBrowser">\"%1$s\" səyyahında həmişə qəbul et</string>
 </resources>

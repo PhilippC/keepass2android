@@ -30,8 +30,8 @@
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nome do grupo abaixo do título de entrada no resultado das pesquisas. Útil se várias entradas têm o mesmo nome.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Ativar auto-preenchimento para %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Visualiza uma lista de aplicativos e sites para os quais o AutoFill foi desativado</string>
+  <string name="AutofillDisabledQueriesPreference_title">Desabilitar Auto-Preenchimento para os alvos</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Visualiza uma lista de aplicativos e sites para os quais o Auto-Preenchimento foi desativado</string>
   <string name="OfferSaveCredentials_summary">Se ativado, o Android pergunta se deseja salvar as credenciais após que você inseriu manualmente dados em campos auto-preenchidos.</string>
   <string name="OfferSaveCredentials_title">Oferecer salvação de credenciais</string>
   <string name="ShowGroupInEntry_title">Mostrar nome do grupo na tela de entrada</string>
@@ -241,11 +241,25 @@
   <string name="sort_moddate">Ordenar por data de modificação</string>
   <string name="sort_default">Manter ordem padrão</string>
   <string name="special">Caracteres Especiais</string>
+  <string name="special_extended">Especial Estendido</string>
+  <string name="at_least_one_from_each_group">Pelo menos um de cada grupo</string>
+  <string name="exclude_lookalike">Excluir caracteres parecidos</string>
+  <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Digite o nome do perfil para salvar. Digite um nome existente para sobrescrever.</string>
+  <string name="hint_wordcount">Número de palavras na frase</string>
+  <string name="hint_wordseparator">Separador de palavras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Senha</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Frase</item>
+    <item>Frase + Senha</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúsculas</item>
+    <item>MAIÚSCULAS</item>
+    <item>Primeiro Caractere Maiúsculo</item>
+  </string-array>
+  <string name="custom_settings">Opções personalizadas</string>
+  <string name="passphrase_capitalization">Capitalização da frase</string>
   <string name="search_hint">O que encontrar</string>
   <string name="search_results">Resultado da busca</string>
   <string name="search_in">Procurar em</string>
@@ -323,6 +337,13 @@
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Adicione o arquivo anexo...</string>
   <string name="add_extra_string">Adicionar sequência de caracteres adicional</string>
+  <string name="configure_totp">Configurar TOPT</string>
+  <string name="totp_secret_key">Chave secreta</string>
+  <string name="totp_encoding_rfc6238">Configurações padrão do token RFC6238</string>
+  <string name="totp_encoding_steam">Configurações do token Steam</string>
+  <string name="totp_encoding_custom">Configurações de token personalizadas</string>
+  <string name="totp_time_step">Passagem do tempo</string>
+  <string name="totp_length">Comprimento do código</string>
   <string name="delete_extra_string">Excluir caracteres adicionais</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio Rápido habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
@@ -363,8 +384,8 @@
   <string name="ShowCopyToClipboardNotification_summary">Tornar usuários e senhas disponíveis através da barra de notificações e da área de transferência. Cuidado com sniffers de senhas!</string>
   <string name="ShowSeparateNotifications_title">Notificações separadas</string>
   <string name="ShowSeparateNotifications_summary">Exibir notificações separadas para copiar nome de usuário e senha para área de transferência e ativar o teclado.</string>
-  <string name="AccServiceAutoFill_prefs">Serviço de Acessibilidade para Preenchimento Automático</string>
-  <string name="AutoFill_prefs">Serviço de preenchimento automático</string>
+  <string name="AccServiceAutoFill_prefs">Serviço de Acessibilidade para Auto-Preenchimento</string>
+  <string name="AutoFill_prefs">Serviço de Auto-Preenchimento</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
@@ -640,6 +661,19 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Adicionado suporte ao formato de arquivo KDBX 4.1, introduzido no KeePass 2.48</item>
+    <item>Adicionado diálogo para configurar  as opções TOTP para as entradas</item>
+    <item>Melhorado gerador de senhas: Adicionado a suporte de frases, mais opções, perfis e estimativa da força da senha</item>
+    <item>Melhoramentos no Autopreenchimento (corrigido o bolão não aparecendo no Chrome, melhor suporte a subdomínios)</item>
+    <item>Melhoramentos para implementação do OneDrive: agora, sem limite de tamanho, não há mais autenticação supérflua</item>
+    <item>Adicionado opção para selecionar os temas claro/escuro das configurações do sistema, incluindo planos noturnos, requer Android 10+</item>
+    <item>Atualizado a implementação do Dropbox para suportar novo método de autenticação.</item>
+    <item>Nova configuração de desbloqueio com digital irá ser invalidada depois de adicionar uma digital nas configurações do seu sistema para aumentar a segurança.</item>
+    <item>Permitir que abra arquivos através do selecionador de arquivos do sistema, ignorando a sinalização de só para leitura</item>
+    <item>Permitir iniciar a mover entradas de uma entrada no menu de exibição</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Adicionar suporte ao novo formato de arquivo-chave introduzido no Keepass 2.47</item>
     <item>Adicionar suporte para Argon2id como função de derivação de chaves</item>

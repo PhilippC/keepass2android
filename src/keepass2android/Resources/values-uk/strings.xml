@@ -239,11 +239,25 @@
   <string name="sort_moddate">Впорядкувати за датою зміни</string>
   <string name="sort_default">Залишити типовий порядок</string>
   <string name="special">Спеціальний</string>
+  <string name="special_extended">Cпеціальна розширена</string>
+  <string name="at_least_one_from_each_group">Щонайменше по одному з кожної групи</string>
+  <string name="exclude_lookalike">Виключити подібні символи</string>
+  <string name="password_generation_profile">Профіль</string>
+  <string name="save_password_generation_profile_text">Введіть ім\'я профілю для збереження. Введіть наявне ім\'я, щоб перезаписати його.</string>
+  <string name="hint_wordcount">Кількість слів у парольній фразі</string>
+  <string name="hint_wordseparator">Розділювач слів</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Парольна фраза</item>
+    <item>Парольна фраза + Пароль</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>маленькі символи</item>
+    <item>ВЕЛИКІ СИМВОЛИ</item>
+    <item>Перший символ — велика буква</item>
+  </string-array>
+  <string name="custom_settings">Власні налаштування</string>
+  <string name="passphrase_capitalization">Парольна фраза великими буквами</string>
   <string name="search_hint">Що знайти</string>
   <string name="search_results">Результати пошуку</string>
   <string name="search_in">Пошук в</string>
@@ -321,6 +335,13 @@
   <string name="protection">Захищене поле</string>
   <string name="add_binary">Додати файл</string>
   <string name="add_extra_string">Додати рядок</string>
+  <string name="configure_totp">Налаштувати TOTP</string>
+  <string name="totp_secret_key">Таємний ключ</string>
+  <string name="totp_encoding_rfc6238">Стандартні параметри жестів RFC6238</string>
+  <string name="totp_encoding_steam">Налаштування steam-токена</string>
+  <string name="totp_encoding_custom">Власні налаштування токена</string>
+  <string name="totp_time_step">Часовий проміжок</string>
+  <string name="totp_length">Довжина коду</string>
   <string name="delete_extra_string">Видалити рядок</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблоковано. QuickUnlock увімкнено.</string>
   <string name="database_loaded_unlocked">%1$s: Розблоковано.</string>
@@ -640,6 +661,19 @@
   <string name="EntryChannel_name">Сповіщення запису</string>
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
+  <string name="WarnFingerprintInvalidated">Увага! Біометрична автентифікація може бути скасована Android, наприклад після додавання нового відбитку пальця у налаштуваннях вашого пристрою. Переконайтеся, що ви завжди знаєте, як розблокувати за допомогою головного пароля!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Додано підтримку формату файлів KDBX 4.1, впровадженої в Keepass 2.48</item>
+    <item>Додано діалогове вікно для налаштування параметрів TOTP для записів</item>
+    <item>Вдосконалено створювач паролів: Додано підтримку парольних фраз, додаткові параметри, профілі та перевірку надійності пароля</item>
+    <item>Вдосконалення автозаповнення (фіксоване спливне вікно не з\'являється у Chrome, краща підтримка піддоменів)</item>
+    <item>Вдосконалення впровадження OneDrive: прибрано обмеження розміру, більше жодних зайвих запитів автентифікації</item>
+    <item>Додано параметр вибору світлого/темного дизайну з системних налаштувань, включно з нічними планами, вимагає Android 10+</item>
+    <item>Оновлено взаємодію з Dropbox для підтримки нового методу автентифікації.</item>
+    <item>Нове налаштування відбитків пальців для підвищення рівня безпеки — автентифікацію буде скасовано після додавання відбитка пальця.</item>
+    <item>Дозволено відкривати файли через системний засіб вибору файлів, нехтуючи прапорцем лише для читання</item>
+    <item>Дозволено починати переміщення записів з меню перегляду записів</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Додано підтримку нових форматів ключових файлів, впровадженій в Keepass 2.47</item>
     <item>Додано підтримку для Argon2id як функції формування ключа</item>

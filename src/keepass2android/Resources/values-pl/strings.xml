@@ -239,11 +239,25 @@
   <string name="sort_moddate">Sortuj według daty modyfikacji</string>
   <string name="sort_default">Zachowaj domyślną kolejność</string>
   <string name="special">Znaki specjalne</string>
+  <string name="special_extended">Rozszerzone Specjalne</string>
+  <string name="at_least_one_from_each_group">Co najmniej jeden z każdej grupy</string>
+  <string name="exclude_lookalike">Wyklucz znaki wyglądające podobnie</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Wprowadź nazwę profilu, aby  zapisać. Wprowadź istniejącą nazwę, aby nadpisać.</string>
+  <string name="hint_wordcount">Liczba słów hasła</string>
+  <string name="hint_wordseparator">Separator wyrazów</string>
   <string-array name="PasswordGeneratorModes">
     <item>Hasło</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Hasło</item>
+    <item>Hasło + Hasło</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>małe litery</item>
+    <item>DUŻE LITERY</item>
+    <item>Pierwszy znak dużą literą</item>
+  </string-array>
+  <string name="custom_settings">Ustawienia niestandardowe</string>
+  <string name="passphrase_capitalization">Hasło dużymi literami</string>
   <string name="search_hint">Szukaj</string>
   <string name="search_results">Wyniki wyszukiwania</string>
   <string name="search_in">Szukaj w</string>
@@ -321,6 +335,13 @@
   <string name="protection">Pole zabezpieczone</string>
   <string name="add_binary">Dodaj załącznik...</string>
   <string name="add_extra_string">Dodaj dodatkowy ciąg znaków</string>
+  <string name="configure_totp">Konfiguracja TOTP</string>
+  <string name="totp_secret_key">Sekretny klucz</string>
+  <string name="totp_encoding_rfc6238">Domyślne ustawienia tokena RFC6238</string>
+  <string name="totp_encoding_steam">Ustawienia tokena Steam</string>
+  <string name="totp_encoding_custom">Własne ustawienia tokena</string>
+  <string name="totp_time_step">Interwał czasowy</string>
+  <string name="totp_length">Długość kodu</string>
   <string name="delete_extra_string">Usuń dodatkowy ciąg znaków</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: zablokowana. SzybkieOdblokowanie włączone.</string>
   <string name="database_loaded_unlocked">%1$s: Odblokowana.</string>
@@ -640,6 +661,19 @@
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
+  <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Dodane wsparcie dla nowego formatu pliku klucza wprowadzonego w Keepass 2.48</item>
+    <item>Dodano okno dialogowe, aby skonfigurować ustawienia TOTP dla wpisów</item>
+    <item>Poprawiono tworzenie haseł: Dodano obsługę haseł, więcej opcji, profili i szacowanie siły hasła</item>
+    <item>Ulepszenia do autouzupełniania (wyskakujące okienko nie jest wyświetlane w Chrome, lepsza obsługa subdomeny)</item>
+    <item>Ulepszenia implementacji OneDrive: brak limitu rozmiaru, brak zbędnych żądań uwierzytelniania</item>
+    <item>Dodano opcję, aby wybrać jasny/ciemny wygląd z ustawień systemowych, w tym planów nocnych, wymaga Android 10+</item>
+    <item>Zaktualizuj implementację Dropbox, aby obsługiwać nową metodę uwierzytelniania.</item>
+    <item>Na nowo skonfigurowane odblokowanie odciskiem palca zostanie unieważnione po dodaniu odcisku palca w ustawieniach systemu dla zwiększenia bezpieczeństwa.</item>
+    <item>Pozwala na otwieranie plików przez systemowy menager plików, ignorując flagę tylko do odczytu</item>
+    <item>Zezwól na przenoszenie wpisów z menu wpisu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Dodano wsparcie dla nowego formatu pliku klucza wprowadzonego w Keepass 2.47</item>
     <item>Dodao wsparcie dla Argon2id jako kluczowej funkcji wyprowadzania</item>
