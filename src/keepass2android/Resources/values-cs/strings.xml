@@ -660,6 +660,7 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Přidána podpora pro soubory KDBX 4.1 zavedené v KeePass 2.48</item>
     <item>Přidána možnost konfigurovat TOTP nastavení pro položky</item>
@@ -667,8 +668,8 @@
     <item>Vylepšení automatického doplňování (opraveny vyskakovací okna v Chrome, vylepšena podpora subdomén)</item>
     <item>Vylepšení implementace OneDrive: odstranění limitu velikosti, žádné zbytečné požadavky na ověření</item>
     <item>Přidána možnost výběru světlého/tmavého vzhledu z nastavení systému, včetně nočního režimu, vyžaduje Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Aktualizována implementace Dropboxu pro podporu nové ověřovací metody.</item>
+    <item>Nově je kvůli zvýšení zabezpečení zneplatněno nastavení odemykání otiskem prstu po přidání otisku prstu do nastavení systému.</item>
     <item>Allow to open files through system file picker, ignoring the read-only flag</item>
     <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
