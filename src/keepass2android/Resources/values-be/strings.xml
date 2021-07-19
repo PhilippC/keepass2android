@@ -661,6 +661,7 @@
   <string name="EntryChannel_name">Апавяшчэнне пра запіс</string>
   <string name="EntryChannel_desc">Апавяшчэнне для зручнага доступу да абранага запісу.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыць базу даных пасля трох няўдалых спробаў разблакавання з дапамогай біяметрычных даных.</string>
+  <string name="WarnFingerprintInvalidated">Увага! Android можа ануляваць аўтэнтыфікацыю з дапамогай біяметрычных даных. Напрыклад, калі вы дададзіце новы адбітак пальца ў сістэмных наладах. Пераканайцеся, што ведаеце, як разблакаваць свой галоўны пароль.</string>
   <string-array name="ChangeLog_1_09a">
     <item>Дададзена падтрымка фармату KDBX 4.1 з KeePass 2.48</item>
     <item>Дададзены дыялог наладаў TOTP для запісаў</item>
