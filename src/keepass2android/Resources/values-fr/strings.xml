@@ -658,6 +658,7 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
+  <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
   <string-array name="ChangeLog_1_09a">
     <item>Ajout de la prise en charge du format de fichier KDBX 4.1 introduit dans KeePass 2.48</item>
     <item>Ajout d`une fenêtre pour configurer les paramètres TOTP pour les entrées</item>
@@ -665,10 +666,10 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
     <item>Améliorations apportées au remplissage auto (correction du popup non affiché dans Chrome, meilleur support des sous-domaines)</item>
     <item>Améliorations de l\'implémentation de OneDrive : plus de limite de taille, plus de demandes d\'authentification superflues</item>
     <item>Ajout d\'une option permettant de sélectionner le mode clair/sombre dans les paramètres du système, y compris les plans de nuit, nécessite Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Mise à jour de l\'implémentation de Dropbox pour prendre en charge la nouvelle méthode d\'authentification.</item>
+    <item>Le déverrouillage par une empreinte digitale nouvellement configurée sera invalidé après avoir ajouté une empreinte digitale dans les paramètres du système pour une sécurité accrue.</item>
+    <item>Permission d\'ouvrir des fichiers via le sélecteur de fichiers système, en ignorant l\'indicateur de lecture seule</item>
+    <item>Permission d\'initier le déplacement d\'entrées depuis le menu d\'affichage des entrées</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Ajout de la prise en charge d\'un nouveau format de fichier de clé introduit dans Keepass 2.47</item>
