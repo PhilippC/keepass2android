@@ -659,6 +659,7 @@
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Добавлена поддержка формата файлов KDBX 4.1, представленного в KeePass 2.48</item>
     <item>Добавлен диалог настройки параметров TOTP для записей</item>
@@ -666,10 +667,10 @@
     <item>Улучшения в автозаполнении (исправлено всплывающее окно, не отображающееся в Chrome, улучшена поддержка поддоменов)</item>
     <item>Улучшение реализации OneDrive: нет больше ограничений по размеру, больше нет лишних запросов аутентификации</item>
     <item>Добавлена возможность выбора светлого/темного оформления в настройках системы, включая ночные планы, требуется Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Обновление реализации Dropbox, чтобы поддержать новый метод аутентификации.</item>
+    <item>Новые настройки разблокировки отпечатка пальца будут аннулированы после добавления отпечатка пальца в настройках системы для повышенной безопасности.</item>
+    <item>Открывать файлы через средство выбора системных файлов, игнорируя флаг только для чтения</item>
+    <item>Позволяет начать перемещение записей из меню просмотра записей</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Добавлена поддержка нового формата ключевого файла, представленного в Keepass 2.47</item>
