@@ -239,13 +239,24 @@
   <string name="sort_moddate">Sorteren op wijzigingsdatum</string>
   <string name="sort_default">Standaardvolgorde behouden</string>
   <string name="special">Speciaal</string>
+  <string name="at_least_one_from_each_group">Ten minste één van elke groep</string>
+  <string name="exclude_lookalike">Vergelijkbare tekens uitsluiten</string>
   <string name="password_generation_profile">Profiel</string>
+  <string name="save_password_generation_profile_text">Geef de naam van het profiel. Geef een bestaande naam om een profiel te overschrijven.</string>
+  <string name="hint_wordcount">Aantal woorden in wachtwoordzin</string>
   <string name="hint_wordseparator">Woordscheidingsteken</string>
   <string-array name="PasswordGeneratorModes">
     <item>Wachtwoord</item>
     <item>Wachtwoordzin</item>
-    <item>Passphrase + Password</item>
+    <item>Wachtwoordzin + Wachtwoord</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>kleine letters</item>
+    <item>HOOFDLETTERS</item>
+    <item>Eerste Letter Hoofdletters</item>
+  </string-array>
+  <string name="custom_settings">Aangepaste instellingen</string>
+  <string name="passphrase_capitalization">Wachtwoordzin letters</string>
   <string name="search_hint">Zoeken</string>
   <string name="search_results">Zoekresultaten</string>
   <string name="search_in">Zoeken in</string>
@@ -323,6 +334,13 @@
   <string name="protection">Beveiligd veld</string>
   <string name="add_binary">Bestandsbijlage toevoegen...</string>
   <string name="add_extra_string">Toevoegen extra waarde</string>
+  <string name="configure_totp">TOTP configureren</string>
+  <string name="totp_secret_key">Geheime sleutel</string>
+  <string name="totp_encoding_rfc6238">Standaard RFC6238 token instellingen</string>
+  <string name="totp_encoding_steam">Steam token instellingen</string>
+  <string name="totp_encoding_custom">Aangepaste token instellingen</string>
+  <string name="totp_time_step">Tijdstap</string>
+  <string name="totp_length">Lengte van de code</string>
   <string name="delete_extra_string">Extra waarde verwijderen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: vergrendeld. Snel Openen ingeschakeld.</string>
   <string name="database_loaded_unlocked">%1$s: Ontgrendeld.</string>
