@@ -31,7 +31,7 @@
   <string name="ShowGroupnameInSearchResult_resume">検索結果のエントリータイトルの下にグループ名を表示します。同名のエントリーが複数あるときに便利です。</string>
   <string name="NavigationToGroupCompleted_message">表示中のグループ: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">自動入力が無効の対象</string>
-  <string name="AutofillDisabledQueriesPreference_summary">自動入力が無効になっているアプリと web サイトの一覧を表示します</string>
+  <string name="AutofillDisabledQueriesPreference_summary">自動入力が無効になっているアプリとウェブサイトの一覧を表示します</string>
   <string name="OfferSaveCredentials_summary">有効な場合、自動入力可能なフィールドに手動でデータを入力した後、Android は資格情報を保存するかどうか確認します。</string>
   <string name="OfferSaveCredentials_title">資格情報の保存を提案</string>
   <string name="ShowGroupInEntry_title">エントリー表示画面にグループ名を表示する。</string>
@@ -239,6 +239,11 @@
   <string name="sort_moddate">更新日順</string>
   <string name="sort_default">デフォルトの順序を保持</string>
   <string name="special">記号</string>
+  <string name="special_extended">Extended Special</string>
+  <string name="at_least_one_from_each_group">各グループから少なくとも1つずつ</string>
+  <string name="exclude_lookalike">一致する文字を除外</string>
+  <string name="password_generation_profile">プロファイル</string>
+  <string name="save_password_generation_profile_text">保存するプロファイル名を入力してください。既存の名前を入力すると上書きします。</string>
   <string name="hint_wordcount">パスフレーズの単語数</string>
   <string name="hint_wordseparator">区切り文字</string>
   <string-array name="PasswordGeneratorModes">
@@ -251,6 +256,8 @@
     <item>大文字</item>
     <item>先頭大文字</item>
   </string-array>
+  <string name="custom_settings">カスタム設定</string>
+  <string name="passphrase_capitalization">パスフレーズの大文字化</string>
   <string name="search_hint">検索文字列</string>
   <string name="search_results">検索結果</string>
   <string name="search_in">検索対象</string>
@@ -328,6 +335,13 @@
   <string name="protection">保護されたフィールド</string>
   <string name="add_binary">添付ファイルを追加</string>
   <string name="add_extra_string">補足文字列を追加</string>
+  <string name="configure_totp">TOTP の設定</string>
+  <string name="totp_secret_key">シークレットキー</string>
+  <string name="totp_encoding_rfc6238">デフォルトの RFC 6238 トークン設定</string>
+  <string name="totp_encoding_steam">Steamトークンの設定</string>
+  <string name="totp_encoding_custom">カスタムトークンの設定</string>
+  <string name="totp_time_step">間隔</string>
+  <string name="totp_length">コードの文字数</string>
   <string name="delete_extra_string">補足文字列を削除</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: ロック中。クイック解除が有効です。</string>
   <string name="database_loaded_unlocked">%1$s: ロック解除。</string>
@@ -348,7 +362,7 @@
   <string name="NoDonateOption_summary">この設定は寄付者向けです。Keepass2Android をしばらく使用した後でのみ利用可能です。</string>
   <string name="NoDonateOption_question">寄付がなければ、このアプリも継続的な改善もありませんでした！まだ寄付を頂いていないようであれば、今すぐご検討ください</string>
   <string name="NoDonationReminder_title">絶対に寄付を求めない</string>
-  <string name="NoDonationReminder_summary">びた一文あげたくない、またはすでに寄付をしました。作者の誕生日でさえ、寄付金を求めないでください。</string>
+  <string name="NoDonationReminder_summary">びた一文あげたくない、またはすでに寄付をしました。作者の誕生日でさえ、寄付金を求めないようにする。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
   <string name="UseOfflineCache_summary">アプリのキャッシュディレクトリにデータベースファイルのコピーを保存します。これにより、データベースファイルにアクセスできないときもデータベースを使用することができます。</string>
   <string name="CreateBackups_title">ローカルバックアップ</string>
@@ -558,7 +572,7 @@
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">自己資格情報のクエリ</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">プラグインは、アプリ パッケージに関連付けられた資格情報を照会することができます。</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">資格情報のクエリ</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">プラグインは、意図した web サイトまたはアプリの資格情報を照会することができます。</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">プラグインは、意図したウェブサイトやアプリの資格情報を照会することができます。</string>
   <string name="get_regular_version">追加のストレージタイプを取得</string>
   <string name="CertificateWarning">警告: サーバー証明書の検証に失敗しました: %1$s。お使いのデバイスに適切なルート証明書をインストールするか、設定を確認してください!</string>
   <string name="CertificateFailure">エラー: サーバー証明書の検証に失敗しました! お使いのデバイスに適切なルート証明書をインストールするか、設定を確認してください!</string>
@@ -645,6 +659,18 @@
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
   <string name="WarnFingerprintInvalidated">警告！　生体認証は Android によって無効にされる可能性があります。例えば、新たな指紋を端末に追加したときなどです。つねにマスターパスワードによる解除方法を忘れないでください！</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式のサポートを追加</item>
+    <item>エントリーの TOTP 設定を構成するためのダイアログを追加しました</item>
+    <item>パスワード ジェネレーターの改善：パスフレーズのサポート、オプションの増強、プロファイル機能、パスワードの強度の推定を追加しました</item>
+    <item>自動入力の改善（Chrome で表示されないポップアップを修正し、サブドメインのサポートを改善）</item>
+    <item>OneDrive 実装の改善：サイズ制限を撤廃。余分な認証リクエストを不要化</item>
+    <item>システム設定からライト テーマ・ダーク テーマを選択するオプションを追加（Android 10 以上が必要）</item>
+    <item>Dropbox 実装の更新：新しい認証メソッドのサポート</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Keepass 2.47 で導入された新しいキーファイル形式のサポートを追加</item>
     <item>鍵導出関数 Argon2id のサポートを追加</item>
