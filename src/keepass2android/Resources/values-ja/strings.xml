@@ -602,7 +602,7 @@
   <string name="TemplateTitle_EMail">メール</string>
   <string name="TemplateField_EMail_EMail">メールアドレス</string>
   <string name="TemplateTitle_WLan">無線 LAN</string>
-  <string name="TemplateTitle_Notes">保護されたメモ</string>
+  <string name="TemplateTitle_Notes">セキュアメモ</string>
   <string name="TemplateField_WLan_SSID">SSID</string>
   <string name="TemplateField_Number">番号</string>
   <string name="TemplateField_CreditCard_CVV">CVV</string>
