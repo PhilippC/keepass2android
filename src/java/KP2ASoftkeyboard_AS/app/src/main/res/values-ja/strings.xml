@@ -55,7 +55,7 @@
     <!-- Description for text prediction -->
     <string name="prediction_landscape_summary">横表示では入力候補を表示しない</string>
     <!-- Option to enable auto capitalization of sentences -->
-    <string name="auto_cap">自動大文字変換</string>
+    <string name="auto_cap">文頭の自動大文字化</string>
     <!-- Description for auto cap -->
     <string name="auto_cap_summary">英字入力で文頭文字を大文字にする</string>
     <!-- Option to enable auto punctuate -->
