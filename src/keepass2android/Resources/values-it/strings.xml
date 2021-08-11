@@ -239,11 +239,19 @@
   <string name="sort_moddate">Ordina per data di modifica</string>
   <string name="sort_default">Mantieni l\'ordinamento predefinito</string>
   <string name="special">Speciale</string>
+  <string name="password_generation_profile">Profilo</string>
+  <string name="save_password_generation_profile_text">Inserisci il nome del profilo da salvare. Inserisci un nome esistente per sovrascrivere.</string>
   <string-array name="PasswordGeneratorModes">
     <item>Password</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Frase segreta</item>
+    <item>Frase segreta + Password</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minuscolo</item>
+    <item>MAIUSCOLO</item>
+    <item>Primo carattere maiuscolo</item>
+  </string-array>
+  <string name="custom_settings">Impostazioni personalizzate</string>
   <string name="search_hint">Cerca</string>
   <string name="search_results">Risultati della ricerca</string>
   <string name="search_in">Cerca in</string>
@@ -274,6 +282,7 @@
   <string name="ShowUsernameInList_summary">Visualizza il nome utente sotto i titoli delle voci. Utile per account multipli o TAN multipli.</string>
   <string name="RememberRecentFiles_title">Ricorda i database</string>
   <string name="RememberRecentFiles_summary">Ricorda i database aperti di recente e visualizzali nella schermata Apri database.</string>
+  <string name="NoDalVerification_title">Nessuna verifica DAL</string>
   <string name="kp2a_findUrl">Trova password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
   <string name="search_options">Opzioni</string>
@@ -319,6 +328,9 @@
   <string name="protection">Campo protetto</string>
   <string name="add_binary">Aggiungi un allegato</string>
   <string name="add_extra_string">Aggiungi campo</string>
+  <string name="configure_totp">Configura TOTP</string>
+  <string name="totp_secret_key">Chiave segreta</string>
+  <string name="totp_length">Lunghezza del codice</string>
   <string name="delete_extra_string">Elimina campo</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloccato. QuickUnlock abilitato.</string>
   <string name="database_loaded_unlocked">%1$s: Sbloccato.</string>
@@ -635,6 +647,29 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
+  <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Aggiunto il supporto per il formato file KDBX 4.1 introdotto in KeePass 2.48</item>
+    <item>Aggiunta finestra di dialogo per configurare le impostazioni TOTP per le voci</item>
+    <item>Generatore di password migliorato: aggiunto supporto alle frasi segrete, più opzioni, profili e una stima della robustezza della password</item>
+    <item>Miglioramenti al riempimento automatico (popup fisso che non mostra in Chrome, migliore supporto ai sottodomini)</item>
+    <item>Miglioramenti nell\'implementazione di OneDrive: nessun limite di dimensione, nessuna richiesta di autenticazione superflua</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for new key file format introduced in Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Aggiornato l\'SDK pCloud per risolvere un problema di autenticazione</item>
+    <item>Aggiornato Jsch alla versione 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Non viene più memorizzato il package name delle app nel campo URL</item>
     <item>Migliorato il comportamento di blocco - non visualizza più il prompt biometrico subito dopo lo sblocco</item>
