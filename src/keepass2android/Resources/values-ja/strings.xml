@@ -63,7 +63,7 @@
   <string name="cancel">キャンセル</string>
   <string name="Ok">OK</string>
   <string name="disable_sensor">指紋認証を無効にする</string>
-  <string name="enable_sensor">生体認証を有効にする</string>
+  <string name="enable_sensor">指紋認証を有効にする</string>
   <string name="ClearClipboard">クリップボードを消去しました。</string>
   <string name="clipboard_timeout">クリップボードのタイムアウト</string>
   <string name="clipboard_timeout_summary">コピーされたユーザー名やパスワードがクリップボードから消去されるまでの時間</string>
@@ -337,10 +337,10 @@
   <string name="add_extra_string">補足文字列を追加</string>
   <string name="configure_totp">TOTP の設定</string>
   <string name="totp_secret_key">シークレットキー</string>
-  <string name="totp_encoding_rfc6238">デフォルトの RFC 6238 トークン設定</string>
+  <string name="totp_encoding_rfc6238">RFC 6238 のデフォルトのトークン設定</string>
   <string name="totp_encoding_steam">Steamトークンの設定</string>
   <string name="totp_encoding_custom">カスタムトークンの設定</string>
-  <string name="totp_time_step">間隔</string>
+  <string name="totp_time_step">間隔（秒）</string>
   <string name="totp_length">コードの文字数</string>
   <string name="delete_extra_string">補足文字列を削除</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: ロック中。クイック解除が有効です。</string>
@@ -657,7 +657,7 @@
   <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
-  <string name="CloseDbAfterFailedAttempts">生体認証ロック解除試行に3回失敗した後、データベースを閉じます。</string>
+  <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に3回失敗したら、データベースを閉じます。</string>
   <string name="WarnFingerprintInvalidated">警告！　生体認証は Android によって無効にされる可能性があります。例えば、新たな指紋を端末に追加したときなどです。つねにマスターパスワードによる解除方法を忘れないでください！</string>
   <string-array name="ChangeLog_1_09a">
     <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式のサポートを追加</item>
