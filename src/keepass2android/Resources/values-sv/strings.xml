@@ -481,7 +481,6 @@
   <string name="filestoragehelp_dropboxKP2A">Om du inte vill ge KP2A tillgång till din hela Dropbox, kan du välja detta alternativ. Den kommer då endast att begära tillgång till mappen Apps/Keepass2Android. Detta är särskilt lämpligt när du skapar en ny databas. Om du redan har en databas, klicka på detta alternativ för att skapa mappen, placera sedan filen i mappen (från datorn) och välj därefter alternativet igen för att öppna filen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Denna lagringstyp kommer endast begära åtkomst till \"Applications/Keepass2Android\" mappen. Om du vill använda en befintlig databas i ditt PCloud-konto, vänligen kontrollera att filen är placerad i den mappen.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alla filer och utdelade filer</string>
