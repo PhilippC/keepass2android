@@ -239,6 +239,7 @@
   <string name="sort_moddate">Ordenar por fecha de modificación</string>
   <string name="sort_default">Mantener el orden por defecto</string>
   <string name="special">Especial</string>
+  <string name="special_extended">Extended Special</string>
   <string name="password_generation_profile">Perfil</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contraseña</item>
