@@ -500,6 +500,7 @@
   <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z konta pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Všetky súbory a zdieľané súbory</string>
@@ -660,6 +661,7 @@
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
+  <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
   <string-array name="ChangeLog_1_09a">
     <item>Pridaná podpora pre formát súboru KDBX 4.1, zavedené v KeePass 2.48</item>
     <item>Pridaný dialóg na konfigurovanie nastavení TOTP pre záznamy</item>
@@ -667,10 +669,10 @@
     <item>Vylepšenia automatického dopĺňania (opravené vyskakovacie okno, ktoré sa nezobrazovalo v Chrome; lepšia podpora subdomény)</item>
     <item>Vylepšenia pre implementáciu OneDrive: už žiadny limit veľkosti, už žiadne zbytočné požiadavky na autentifikáciu</item>
     <item>Pridaná voľba pre výber svetlého/tmavého dizajnu zo systémových nastavení, vrátane plánov pre noc. Vyžaduje Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Aktualizovať implementáciu Dropbox pre podporu novej metódy autentifikácie.</item>
+    <item>Kvôli zvýšeniu bezpečnosti je nové nastavenie odomknutia odtlačkom zneplatnené po pridaní odtlačku do nastavení systému.</item>
+    <item>Povoliť otváranie súborov cez syst. výber, ignorovať atribút len na čítanie</item>
+    <item>Povoliť spustenie presúvania záznamov z menu pre zobrazenie záznamu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Pridaná podpora pre nový súbor s kľúčom, zavedený v KeePass 2.47</item>
