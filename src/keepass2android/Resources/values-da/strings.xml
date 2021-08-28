@@ -500,6 +500,7 @@
   <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Den vil kun anmode om at tilgå mappen Apps/Keepass2Android. Dette er især egnet til oprettelse af en ny database. Har du allerede en database, så tryk på denne valgmulighed for at oprette mappen, dernæst placere din fil inde i mappen (fra din PC) og så vælge denne muilghed igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Denne lagringstype vil kun anmode om adgang til pCloud-mappen \"Applications/Keepass2Android\". Hvis du vil benytte en eksisterende database fra din pCloud-konto, skal du sørge for, at filen er placeret i denne pCloud-mappe.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle filer og delte filer</string>
@@ -659,6 +660,7 @@
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
+  <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Tilføjet understøttelse af KDBX 4.1 filformat indført i KeePass 2.48</item>
     <item>Tilføjet dialog til at konfigurere TOTP indstillinger for poster</item>
@@ -666,10 +668,10 @@
     <item>Forbedringer til Autofyldning (fast popup vises ikke i Chrome, bedre underdomæne understøttelse)</item>
     <item>Forbedringer til OneDrive-implementering: ikke længere nogen størrelsesgrænse, ikke flere overflødige anmodninger om autentificering</item>
     <item>Tilføjet mulighed for at vælge lyst / mørkt design fra systemindstillinger, herunder nat-planer, kræver Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Opdater Dropbox-implementering for at understøtte ny godkendelsesmetode.</item>
+    <item>For øget sikkerhed vil nyligt indstillet fingeraftryksoplåsning blive ugyldiggjort efter tilføjelse af et fingeraftryk i systemindstillinger.</item>
+    <item>Tillad at åbne filer gennem systemfilvælger med ignorering af skrivebeskyttet-markeringen</item>
+    <item>Tillad at begynde at flytte poster fra postvisningsmenuen</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Tilføjet understøttelse af nyt nøglefilformat indført i KeePass 2.47</item>
