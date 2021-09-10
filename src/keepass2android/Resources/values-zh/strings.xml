@@ -422,7 +422,7 @@
   <string name="AskDiscardChanges">确认放弃之前所做的更改？（保存按钮在顶部）</string>
   <string name="AskDiscardChanges_title">放弃更改？</string>
   <string name="suggest_improvements">建议或投票改进</string>
-  <string name="rate_app">为本应用评分</string>
+  <string name="rate_app">给本应用评分</string>
   <string name="translate_app">翻译 KP2A</string>
   <string name="AddingEntry">添加条目…</string>
   <string name="AddingGroup">添加群组…</string>
