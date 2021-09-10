@@ -471,7 +471,7 @@
   <string name="donate_question">今天是慕尼黑啤酒节！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
   <string name="donate_bday_question">5月10日？今天是我的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？这会让我非常高兴！:-)</string>
   <string name="donate_missedbday_question">呃，您错过了我5月10日的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？还不算太晚，这会让我非常高兴！:-)</string>
-  <string name="ok_donate">告诉我更多！</string>
+  <string name="ok_donate">愿闻其详</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
   <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
   <string name="hint_http_url">文件夹或文件 URL（如: mycloud.me.com/webdav/）</string>
