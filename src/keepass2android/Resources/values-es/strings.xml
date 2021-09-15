@@ -240,7 +240,9 @@
   <string name="sort_default">Mantener el orden por defecto</string>
   <string name="special">Especial</string>
   <string name="special_extended">Extended Special</string>
+  <string name="exclude_lookalike">Excluir caracteres parecidos</string>
   <string name="password_generation_profile">Perfil</string>
+  <string name="hint_wordseparator">Separador de palabras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contraseña</item>
     <item>Frase de contraseña</item>
@@ -249,7 +251,7 @@
   <string-array name="PasswordGeneratorCaseModes">
     <item>minúsculas</item>
     <item>MAYÚSCULAS</item>
-    <item>First Character Uppercase</item>
+    <item>Primer Carácter En Mayúscula</item>
   </string-array>
   <string name="search_hint">Encontrar qué</string>
   <string name="search_results">Resultados de búsqueda</string>
@@ -330,6 +332,7 @@
   <string name="add_extra_string">Añadir cadena adicional</string>
   <string name="configure_totp">Configurar TOTP</string>
   <string name="totp_secret_key">Llave secreta</string>
+  <string name="totp_time_step">Intervalo de tiempo</string>
   <string name="totp_length">Longitud del código</string>
   <string name="delete_extra_string">Eliminar cadena adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloqueado. QuickUnlock habilitado.</string>
