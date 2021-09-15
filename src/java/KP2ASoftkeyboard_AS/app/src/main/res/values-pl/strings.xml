@@ -57,7 +57,7 @@
     <!-- Option to enable auto capitalization of sentences -->
     <string name="auto_cap">Wstawiaj wielkie litery</string>
     <!-- Description for auto cap -->
-    <string name="auto_cap_summary">Zamieniaj na wielką pierwszą literę zdania</string>
+    <string name="auto_cap_summary">Zaczynaj zdanie wielką literą</string>
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">Automatyczna interpunkcja</string>
     <!-- Description for auto punctuate -->
@@ -106,7 +106,7 @@
     <!-- Tip to long press on keys -->
     <string name="tip_long_press">Przytrzymaj klawisz, aby wyświetlić znaki akcentowane (ą, ó itp.)</string>
     <!-- Tip to dismiss keyboard -->
-    <string name="tip_dismiss">Naciśnij klawisz cofania ↶, aby zamknąć klawiaturę w dowolnym momencie</string>
+    <string name="tip_dismiss">Naciśnij klawisz cofania \u21B6, aby zamknąć klawiaturę w dowolnym momencie</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">Przejdź do cyfr i symboli</string>
     <!-- Tip to long press on typed word to add to dictionary -->
@@ -116,17 +116,17 @@
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">Dotknij tutaj, aby zamknąć tę podpowiedź i zacząć pisać!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"Klawiatura jest otwierana po każdym dotknięciu pola tekstowego.\"</b></string>
+    <string name="tip_to_open_keyboard"><b>Klawiatura otwiera się po każdym dotknięciu pola tekstowego</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
-    <string name="tip_to_view_accents"><b>\"Dotknij i przytrzymaj klawisz, aby wyświetlić znaki akcentowane\"\n\"(ą, ę, ł, ó itd.).\"</b></string>
+    <string name="tip_to_view_accents"><b>Dotknij i przytrzymaj klawisz, aby wyświetlić znaki akcentowane\n(ą, ę, ł, ó itd.)</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
-    <string name="tip_to_open_symbols"><b>\"Przełącz na cyfry i symbole, dotykając tego klawisza.\"</b></string>
+    <string name="tip_to_open_symbols"><b>Przełącz na cyfry i symbole dotykając tego klawisza</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
-    <string name="tip_to_close_symbols"><b>\"Wróć do trybu liter, dotykając ponownie tego klawisza.\"</b></string>
+    <string name="tip_to_close_symbols"><b>Wróć do trybu liter dotykając ponownie tego klawisza</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
-    <string name="tip_to_launch_settings"><b>\"Dotknij i przytrzymaj ten klawisz, aby zmienić ustawienia klawiatury, takie jak autouzupełnianie.\"</b></string>
+    <string name="tip_to_launch_settings"><b>Dotknij i przytrzymaj ten klawisz, aby zmienić ustawienia klawiatury takie jak autouzupełnianie</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
-    <string name="tip_to_start_typing"><b>\"Wypróbuj!\"</b></string>
+    <string name="tip_to_start_typing"><b>Wypróbuj!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <string name="label_go_key">OK</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
