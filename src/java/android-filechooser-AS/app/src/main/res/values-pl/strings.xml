@@ -57,7 +57,7 @@
     <string name="afc_yesterday">Wczoraj</string>
     <plurals name="afc_title_choose_directories">
         <item quantity="one">Wybierz katalog...</item>
-        <item quantity="few">Wybierz katalog...</item>
+        <item quantity="few">Wybierz katalogi...</item>
         <item quantity="many">Wybierz katalogi...</item>
         <item quantity="other">Wybierz katalog...</item>
     </plurals>
