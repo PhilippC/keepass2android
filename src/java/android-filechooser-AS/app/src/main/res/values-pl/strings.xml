@@ -59,10 +59,10 @@
         <item quantity="one">Wybierz katalog...</item>
         <item quantity="few">Wybierz katalogi...</item>
         <item quantity="many">Wybierz katalogi...</item>
-        <item quantity="other">Wybierz katalog...</item>
+        <item quantity="other">Wybierz katalogi...</item>
     </plurals>
     <plurals name="afc_title_choose_files">
-        <item quantity="one">Wybierz pliki…</item>
+        <item quantity="one">Wybierz plik…</item>
         <item quantity="few">Wybierz pliki…</item>
         <item quantity="many">Wybierz pliki…</item>
         <item quantity="other">Wybierz pliki…</item>
@@ -71,6 +71,6 @@
         <item quantity="one">Wybierz plik/folder…</item>
         <item quantity="few">Wybierz pliki/foldery...</item>
         <item quantity="many">Wybierz pliki/foldery…</item>
-        <item quantity="other">Wybierz plik/folder…</item>
+        <item quantity="other">Wybierz pliki/foldery…</item>
     </plurals>
 </resources>
