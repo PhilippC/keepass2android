@@ -79,7 +79,7 @@
   <string name="current_group_root">当前群组：根群组</string>
   <string name="database">数据库</string>
   <string name="digits">数字</string>
-  <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
+  <string name="disclaimer_formal">Keepass2Android 不承担任何担保责任；这是自由软件，欢迎您在遵循 GPL 版本 2 或者以后版本许可证的情况下重新分发。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
   <string name="fingerprint_description">请验证以继续</string>
