@@ -243,6 +243,7 @@
   <string name="exclude_lookalike">Excluir caracteres parecidos</string>
   <string name="password_generation_profile">Perfil</string>
   <string name="save_password_generation_profile_text">Introduzca el nombre del perfil a guardar. Introduzca un nombre existente para sobrescribir.</string>
+  <string name="hint_wordcount">Recuento de palabras de la frase de paso</string>
   <string name="hint_wordseparator">Separador de palabras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contraseña</item>
@@ -255,6 +256,7 @@
     <item>Primer Carácter En Mayúscula</item>
   </string-array>
   <string name="custom_settings">Ajustes personalizados</string>
+  <string name="passphrase_capitalization">Frase de paso en mayúsculas</string>
   <string name="search_hint">Encontrar qué</string>
   <string name="search_results">Resultados de búsqueda</string>
   <string name="search_in">Buscar en</string>
@@ -654,6 +656,19 @@
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
+  <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Añadido soporte para formato de archivo KDBX 4.1 introducido en KeePass 2.48</item>
+    <item>Añadido un cuadro de diálogo para configurar los ajustes de contraseñas de un sólo uso temporales (TOTP) para las entradas.</item>
+    <item>Generador de contraseñas mejorado: Se ha añadido soporte para frases de paso, más opciones, perfiles y estimación de la robustez de las contraseñas</item>
+    <item>Mejoras en el Autorrelleno (se ha corregido la ventana emergente que no se mostraba en Chrome, mejor soporte de subdominios)</item>
+    <item>Mejoras en la implementación de OneDrive: no más límite de tamaño, no más peticiones de autenticación superfluas</item>
+    <item>Opción añadida para seleccionar diseño claro/oscuro de la configuración del sistema, incluyendo planes nocturnos, requiere Android 10+</item>
+    <item>Actualiza la implementación de Dropbox para soportar nuevo método de autenticación.</item>
+    <item>El desbloqueo por huella dactilar recién configurado será invalidado después de añadir una huella dactilar en los ajustes del sistema para aumentar la seguridad.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Añade soporte para el nuevo formato de archivo de claves introducido en Keepass 2.47</item>
     <item>Añade soporte para Argon2id como función de derivación de clave</item>
