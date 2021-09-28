@@ -242,6 +242,7 @@
   <string name="special_extended">Extended Special</string>
   <string name="exclude_lookalike">Excluir caracteres parecidos</string>
   <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Introduzca el nombre del perfil a guardar. Introduzca un nombre existente para sobrescribir.</string>
   <string name="hint_wordseparator">Separador de palabras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contraseña</item>
@@ -253,6 +254,7 @@
     <item>MAYÚSCULAS</item>
     <item>Primer Carácter En Mayúscula</item>
   </string-array>
+  <string name="custom_settings">Ajustes personalizados</string>
   <string name="search_hint">Encontrar qué</string>
   <string name="search_results">Resultados de búsqueda</string>
   <string name="search_in">Buscar en</string>
@@ -492,6 +494,7 @@
   <string name="filestoragehelp_dropboxKP2A">Si no quieres darle a KP2A acceso completo a tu Dropbox, deberías seleccionar esta opción. Sólo se pedirá acceso a la carpeta Apps/Keepass2Android. Esto es especialmente adecuado cuando creas una nueva base de datos. Si ya tienes una base de datos, slecciona esta opción para crear la carpeta, luego pon el archivo dentro de esta carpeta (desde tu PC) y después selecciona otra vez esta opción para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta de pCloud \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente de su cuenta pCloud, asegúrese de que el archivo se coloca en dicha carpeta de pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Todos los archivos y archivos compartidos</string>
