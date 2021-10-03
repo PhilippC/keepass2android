@@ -239,6 +239,7 @@
   <string name="sort_moddate">Sorteren op wijzigingsdatum</string>
   <string name="sort_default">Standaardvolgorde behouden</string>
   <string name="special">Speciaal</string>
+  <string name="special_extended">Uitgebreid speciaal</string>
   <string name="at_least_one_from_each_group">Ten minste één van elke groep</string>
   <string name="exclude_lookalike">Vergelijkbare tekens uitsluiten</string>
   <string name="password_generation_profile">Profiel</string>
@@ -499,6 +500,7 @@
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de pCloud map \"Applications/Keepass2Android\". Als je een bestaande database uit jouw PCloud account wil gebruiken, zorg dan dat het bestand in die pCloud map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle bestanden en gedeelde bestanden</string>
@@ -660,6 +662,19 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
+  <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie kan worden geïnvalideerd door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van uw apparaat. Zorg ervoor dat u altijd weet hoe u moet ontgrendelen met uw hoofdwachtwoord!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Ondersteuning toegevoegd voor KDBX 4.1, de bestandsindeling geintroduceerd in KeePass 2.48</item>
+    <item>Dialoog toegevoegd voor het configureren van TOTP instellingen</item>
+    <item>Wachtwoordgenerator verbetert: wachtwoordzinnen toegevoegd, meer opties, profiel- en wachtwoordsterkte inschatting</item>
+    <item>Verbeteringen van Autofill (pop-up werd niet weergegeven in Chrome, betere subdomein ondersteuning)</item>
+    <item>Verbeteringen in de OneDrive implementatie: grootte limiet verwijderd, geen overbodige authenticatieverzoeken meer</item>
+    <item>Optie toegevoegd om licht/donker ontwerp te selecteren uit systeeminstellingen inclusief nachtplannen, vereist Android 10+</item>
+    <item>Update de Dropbox-implementatie om de nieuwe verificatiemethode te ondersteunen.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Ondersteuning toevoegen voor nieuwe sleutelbestandsindeling ingevoerd in Keepass 2.47</item>
     <item>Voeg ondersteuning voor Argon2id toe als sleutel afleidingsfunctie</item>
