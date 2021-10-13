@@ -239,11 +239,22 @@
   <string name="sort_moddate">Az utolsó módosítás ideje szerinti rendezés</string>
   <string name="sort_default">Alapértelmezett sorrend</string>
   <string name="special">Speciális</string>
+  <string name="at_least_one_from_each_group">legalább egy minden csoportból</string>
+  <string name="exclude_lookalike">hasonlóan kinéző karakterek kizárása</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="hint_wordcount">Jelmondat szavainak száma</string>
+  <string name="hint_wordseparator">Szóelválasztó</string>
   <string-array name="PasswordGeneratorModes">
     <item>Jelszó</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Jelmondat</item>
+    <item>Jelmondat és jelszó</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>kisbetűs</item>
+    <item>NAGYBETŰS</item>
+    <item>Első karakter nagybetűs</item>
+  </string-array>
+  <string name="custom_settings">Egyéni beállítások</string>
   <string name="search_hint">Keresendő szöveg</string>
   <string name="search_results">Keresési eredmények</string>
   <string name="search_in">Keresendő mezők</string>
@@ -321,6 +332,9 @@
   <string name="protection">Védett mező</string>
   <string name="add_binary">Fájl csatolása...</string>
   <string name="add_extra_string">Kiegészítő szövegmezők hozzáadása</string>
+  <string name="totp_secret_key">Titkos kulcs</string>
+  <string name="totp_time_step">Időlépés</string>
+  <string name="totp_length">A kód hossza</string>
   <string name="delete_extra_string">Kiegészítő szövegmezők törlése</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Zárolva. Gyorsfeloldás engedélyezett.</string>
   <string name="database_loaded_unlocked">%1$s: Hozzáférhető.</string>
@@ -479,6 +493,7 @@
   <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen. A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni. Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Ez a tárhelytípus csak az \"Applications/Keepass2Android\" mappához igényel hozzáférést. Ahhoz, hogy a PCloud tárhelyed egy meglévő adatbázisát használd, azt ebben az mappában kell elhelyezned.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Az összes fájl és a megosztott fájlok</string>
