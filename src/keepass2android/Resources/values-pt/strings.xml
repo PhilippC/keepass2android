@@ -93,7 +93,7 @@
   <string name="enable_fingerprint_unlock">Ativar desbloquear biométrico total</string>
   <string name="enable_fingerprint_quickunlock">Permitir utilizar o desbloquear biométrico para o desbloqueio rápido</string>
   <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: a chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados.</string>
-  <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada já não é válida.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada já não é válida.</string>
   <string name="fingerprint_reenable">Por favor, ligue novamente o destrancar através de impressão digital para a nova palavra-passe mestra.</string>
   <string name="fingerprint_reenable2">Por favor desbloqueie com sua palavra-passe e torne a ativar o desbloqueio por impressão digital nas configurações da base de dados.</string>
   <string name="FingerprintInitFailed">Falha ao inicializar a autenticação biométrica. </string>
@@ -170,7 +170,7 @@
   <string name="maskpass_title">Esconder palavra-passe</string>
   <string name="maskpass_summary">Esconder palavra-passe por defeito</string>
   <string name="menu_about">Sobre</string>
-  <string name="menu_change_key">Alterar a palavra-passe mestra</string>
+  <string name="menu_change_key">Alterar a chave mestra</string>
   <string name="menu_copy_pass">Copiar palavra-passe</string>
   <string name="menu_copy_user">Copiar utilizador</string>
   <string name="menu_copy_totp">Copiar TOTP</string>
@@ -206,7 +206,7 @@
   <string name="omitbackup_summary">Omitir o grupo \'Cópia de segurança\' e \' Reciclagem\' dos resultados de pesquisa</string>
   <string name="pass_filename">Nome do ficheiro da base de dados do KeePass</string>
   <string name="password_title">Introduza a palavra-passe da base de dados</string>
-  <string name="master_key_type">Selecionar o tipo de palavra-passe mestra:</string>
+  <string name="master_key_type">Selecionar o tipo de chave mestra:</string>
   <string name="progress_create">A criar a nova base de dados…</string>
   <string name="create_database">Criar base de dados</string>
   <string name="progress_title">A processar…</string>
@@ -518,7 +518,7 @@
   <string name="help_master_password">A sua base de dados é encriptada com a palavra-passe que inserir aqui. Escolha uma palavra-passe forte para manter a sua de dados protegida! Dica: componha uma frase ou duas e use as primeiras letras das palavras como palavra-passe. Inclua marcas de pontuação também.</string>
   <string name="hint_master_password">Selecione uma palavra-passe mestra para proteger a sua base de dados:</string>
   <string name="key_file">Ficheiro-chave</string>
-  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada em num ficheiro. Os ficheiros-chave são tipicamente mais fortes que as palavras-passe mestras, porque a chave pode ser muito mais complexa; contudo também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto tornaria-o completamente inútil! Importante: não altere o conteúdo do ficheiro-chave após a criação da base de dados!</string>
+  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada num ficheiro. Os ficheiros-chave são tipicamente mais fortes que as palavras-passe mestras, porque a chave pode ser muito mais complexa; contudo também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto tornaria-o completamente inútil! Importante: não altere o conteúdo do ficheiro-chave após a criação da base de dados!</string>
   <string name="hint_key_file">Escolha se quer utilizar um ficheiro-chave para além da sua palavra-passe mestra:</string>
   <string name="use_key_file">Utilizar ficheiro-chave</string>
   <string name="error_adding_keyfile">Erro ao adicionar o ficheiro-chave!</string>
@@ -661,7 +661,7 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar base de dados após três tentativas de desbloqueio biométrico falhadas.</string>
-  <string name="WarnFingerprintInvalidated">Aviso! A autenticação biométrica pode ser invalidada pelo Android, por exemplo, depois de adicionar uma nova impressão digital nas configurações do seu dispositivo. Certifique-se de que você sempre sabe como desbloquear com sua senha mestra!</string>
+  <string name="WarnFingerprintInvalidated">Aviso! A autenticação biométrica pode ser invalidada pelo Android, por exemplo, depois de adicionar uma nova impressão digital nas configurações do seu dispositivo. Certifique-se que sabe como desbloquear com a sua palavra-passe mestra!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Adicionado suporte para o formato de ficheiro KDBX 4.1 introduzido no KeePass 2.48</item>
     <item>Adicionado diálogo para configurar o TOTP em entradas</item>
@@ -807,17 +807,18 @@
 * Correções (no teclado embutido ao selecionar ícones)\n 
 * Incluída opção de enviar relatórios de erros\n 
 * Acrescentadas mensagens de ajuda em vários pontos\n   </string>
-  <string name="ChangeLog_0_9_9">Versão 0.9.9\n 
-   * Interface do utilizador completamente redesenhada. Muito obrigado a Stefano Pignataro ( http://www.spstudio.at) pela sua ajuda!\n 
+  <string name="ChangeLog_0_9_9">Versão 0.9.9\n
+		* Interface do utilizador completamente redesenhada. Muito obrigado a Stefano Pignataro (http://www.spstudio.at) pela sua ajuda!\n 
    * Permitir adicionar ícones personalizados\n 
    * Suporte para o modo multi-janelas em dispositivos Samsung\n 
    * O número padrão de etapas para encriptação de novas bases de dados aumentou\n
-   * Verificar chaves duplicadas de campos adicionais para evitar a perda de dados\n</string>
-  <string name="ChangeLog_0_9_9c">Versão 0.9.9c \n
-* o tema escuro está de volta \n
-* pode-se instalar outros pacotes de ícones (o antigo estilo de ícones Windows estão disponíveis na Play Store) \n
-* acrescentada pergunta de confirmação quando eliminar elementos sem envio para lixeira\n
-* correções (visualização incorreta da codificação secreta da palavra-passe de uso único (OTP), ícone da aplicação errado em alguns lugares) \n
+   * Verificar chaves duplicadas de campos adicionais para evitar a perda de dados\n
+    </string>
+  <string name="ChangeLog_0_9_9c">    Versão 0.9.9c\n
+    * o tema escuro está de volta\n
+    * pode-se instalar outros pacotes de ícones (o antigo estilo de ícones Windows estão disponíveis na Play Store)\n
+    * acrescentada pergunta de confirmação quando eliminar elementos sem envio para lixeira\n
+    * correções (visualização incorreta da codificação secreta da palavra-passe de uso único (OTP), ícone da aplicação errado em alguns lugares)\n
   </string>
   <string name="ChangeLog_0_9_8b">Versão 0.9.8b\n* Falhas corrigidas (a operação de guardar estava a falhar em algumas bases de dados, a exportação para o dispositivo local estava falhar, a seleção de algumas opções de preferência encerrava a aplicação)\n</string>
   <string name="ChangeLog_0_9_8">   Versão 0.9.8\n
@@ -1002,13 +1003,13 @@ Lançamento público inicial
   </string-array>
   <string-array name="password_modes">
     <item>Palavra-passe apenas</item>
-    <item>Palavra-passe + Ficheiro-chave</item>
+    <item>Palavra-passe + ficheiro-chave</item>
     <item>Palavra-passe + OTP</item>
     <item>Palavra-passe + OTP secreto (modo de recuperação)</item>
-    <item>Palavra-passe + Desafio-Resposta</item>
-    <item>Palavra-passe + Desafio-Resposta secreto (modo de recuperação)</item>
-    <item>Palavra-passe e resposta de desafio para o Keepass XC</item>
-    <item>Palavra-passe + ficheiro-chave + reposta de desafio para o Keepass XC</item>
+    <item>Palavra-passe + desafio-resposta</item>
+    <item>Palavra-passe + desafio-resposta secreto (modo de recuperação)</item>
+    <item>Palavra-passe + desafio-resposta para o Keepass XC</item>
+    <item>Palavra-passe + ficheiro-chave + desafio-resposta para o Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Palavra-passe</item>
@@ -1037,10 +1038,10 @@ Lançamento público inicial
 Não há forma de fazer \"reset\" à chave mestra.</string>
   <string name="masterkey_infotext_fingerprint_note">Note que o desbloqueio por impressão digital funciona ao guardar a sua chave mestra no armazenamento seguro do Android. Este armazenamento pode ser apagado pelo Android a qualquer altura, por exemplo se adicionar uma nova impressão digital ao sistema. Portanto não dependa apenas da sua impressão digital, lembre-se sempre da sua chave mestra, por favor!</string>
   <string name="backup_infotext_head">Fez cópia de segurança da sua base de dados?</string>
-  <string name="backup_infotext_main">Keepass2Android guarda as suas passwords num ficheiro numa localização do seu dispositivo à sua escolha. Tem a certeza que consegue aceder ao ficheiro caso o seu telemóvel seja perdido ou roubado, ou caso o ficheiro seja destruído ou apagado? Por favor, tenha a certeza que tem uma cópia de segurança atualizada num local seguro!</string>
+  <string name="backup_infotext_main">Keepass2Android guarda as suas palavras-passe num ficheiro numa localização do seu dispositivo à sua escolha. Tem a certeza que consegue aceder ao ficheiro caso o seu telemóvel seja perdido ou roubado, ou caso o ficheiro seja destruído ou eliminado? Por favor, tenha a certeza que tem uma cópia de segurança atualizada num local seguro!</string>
   <string name="backup_infotext_note">Para criar uma cópia de segurança agora, por favor ir a %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Está preparado para casos de emergência?</string>
-  <string name="emergency_infotext_main">Já considerou em o que acontece caso você não consiga aceder à sua base de dados? E se tem um acidente? É uma boa prática dar a sua senha mestra a alguém de sua confiança para situações de emergência. Ninguém vai conseguir aceder às suas passwords de outra forma.</string>
+  <string name="emergency_infotext_main">Já pensou no que acontece caso não consiga aceder à sua base de dados? E se tem um acidente? É uma boa prática dar a sua chave mestra a alguém da sua confiança para situações de emergência. Caso contrário, ninguém irá conseguir aceder às suas palavras-passe.</string>
   <string name="no_secure_display">O ecrã atual não está marcado como seguro. Isso significa que capturas de ecrã podem ser feitas por outras aplicações. Keepass2Android está configurado para exibir informações confidenciais apenas em ecrãs seguros. Por favor, altere para um ecrã seguro (por exemplo, desconectando um monitor HDMI) ou altere as configurações da aplicação.</string>
   <string name="disable_secure_screen_check">Desativar esta mensagem</string>
   <string name="switch_ime_text">Por favor, ative o teclado Keepass2Android.</string>
