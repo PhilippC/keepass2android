@@ -40,14 +40,25 @@ namespace keepass2android
         {
             if (entry == null)
                 return null;
-            foreach (ITotpPluginAdapter adapter in _pluginAdapters)
+
+            try
             {
-                TotpData totpData = adapter.GetTotpData(App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
-                if (totpData.IsTotpEntry)
+                foreach (ITotpPluginAdapter adapter in _pluginAdapters)
                 {
-                    return adapter;
+                    TotpData totpData = adapter.GetTotpData(
+                        App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
+                            pair => pair.Value.ReadString()), Application.Context, false);
+                    if (totpData.IsTotpEntry)
+                    {
+                        return adapter;
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+            
 
             return null;
         }
