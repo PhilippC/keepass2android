@@ -43,10 +43,10 @@
     android:maxLongVersionCode="10000000000"/>
   <compatibility-package
     android:name="org.mozilla.firefox"
-    android:maxLongVersionCode="10000000000"/>
+    android:maxLongVersionCode="2015836711"/>
   <compatibility-package
     android:name="org.mozilla.firefox_beta"
-    android:maxLongVersionCode="10000000000"/>
+    android:maxLongVersionCode="2015849447"/>
   <compatibility-package
     android:name="org.mozilla.fenix"
     android:maxLongVersionCode="10000000000"/>
