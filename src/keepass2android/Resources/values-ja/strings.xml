@@ -667,7 +667,7 @@
     <item>システム設定からライト テーマ・ダーク テーマを選択するオプションを追加（Android 10 以上が必要）</item>
     <item>Dropbox 実装の更新：新しい認証メソッドのサポート</item>
     <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>読み取り専用フラグを無視してシステムファイルピッカーを通じてファイルを開くことを許可する</item>
     <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
