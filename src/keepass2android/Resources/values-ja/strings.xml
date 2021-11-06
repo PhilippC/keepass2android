@@ -667,7 +667,7 @@
     <item>OneDrive 実装の改善：サイズ制限を撤廃。余分な認証リクエストを不要化</item>
     <item>システム設定からライト テーマ・ダーク テーマを選択するオプションを追加（Android 10 以上が必要）</item>
     <item>Dropbox 実装の更新：新しい認証メソッドのサポート</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>セキュリティ強化のため、システム設定に指紋を追加した後、新しい指紋認証ロック解除のセットアップは無効になります。</item>
     <item>読み取り専用フラグを無視してシステムファイルピッカーを通じてファイルを開くことを許可する</item>
     <item>エントリー表示メニューからエントリーを移動することができます</item>
   </string-array>
