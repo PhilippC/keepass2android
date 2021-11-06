@@ -500,6 +500,7 @@
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー \"Applications/Keepass2Android\" へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合には、そのファイルが、この pCloud フォルダー内にあるかどうかを確認して下さい。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">すべてのファイルと共有ファイル</string>
@@ -668,7 +669,7 @@
     <item>Dropbox 実装の更新：新しい認証メソッドのサポート</item>
     <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
     <item>読み取り専用フラグを無視してシステムファイルピッカーを通じてファイルを開くことを許可する</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>エントリー表示メニューからエントリーを移動することができます</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Keepass 2.47 で導入された新しいキーファイル形式のサポートを追加</item>
