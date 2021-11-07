@@ -241,7 +241,7 @@
   <string name="special">記号</string>
   <string name="special_extended">Extended Special</string>
   <string name="at_least_one_from_each_group">各グループから少なくとも1つずつ</string>
-  <string name="exclude_lookalike">一致する文字を除外</string>
+  <string name="exclude_lookalike">見た目が似ている文字を除外</string>
   <string name="password_generation_profile">プロファイル</string>
   <string name="save_password_generation_profile_text">保存するプロファイル名を入力してください。既存の名前を入力すると上書きします。</string>
   <string name="hint_wordcount">パスフレーズの単語数</string>
