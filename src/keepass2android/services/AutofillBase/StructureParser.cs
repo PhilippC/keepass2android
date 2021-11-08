@@ -312,7 +312,9 @@ namespace keepass2android.services.AutofillBase
             else
             {
                 
-                if (viewNode.ClassName == "android.widget.EditText" || viewNode?.HtmlInfo?.Tag == "input")
+                if (viewNode.ClassName == "android.widget.EditText" 
+                    || viewNode.ClassName == "android.widget.AutoCompleteTextView" 
+                    || viewNode?.HtmlInfo?.Tag == "input")
                 {
                     _editTextsWithoutHint.Add(viewNode);
                 }
