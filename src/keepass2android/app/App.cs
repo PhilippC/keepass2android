@@ -95,9 +95,9 @@ namespace keepass2android
 		public const string PackagePart = "keepass2android";
 		public const string Searchable = "@xml/searchable";
 #endif
-		public const int LauncherIcon = Resource.Mipmap.ic_launcher_online;
-		public const int NotificationLockedIcon = Resource.Drawable.ic_notify_loaded;
-		public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
+        public const int LauncherIcon = Resource.Mipmap.ic_launcher_online;
+        public const int NotificationLockedIcon = Resource.Drawable.ic_notify_loaded;
+        public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
 
 	}
 #endif

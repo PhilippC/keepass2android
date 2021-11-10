@@ -83,7 +83,10 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj" />
+    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj">
+      <Project>{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}</Project>
+      <Name>PCloudBindings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\msa-auth-0.8.6\classes-msa-auth.jar" />

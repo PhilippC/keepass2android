@@ -78,7 +78,7 @@ namespace keepass2android
 
 			SetSupportActionBar(toolbar);
 
-			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+			var collapsingToolbar = FindViewById<Android.Support.Design.Widget.CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
 
 			if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
