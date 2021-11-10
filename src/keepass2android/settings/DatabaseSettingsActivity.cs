@@ -320,6 +320,8 @@ namespace keepass2android
             var autofillPref = FindPreference(GetString(Resource.String.AutoFill_prefs_key));
             var autofillDisabledPref = FindPreference(GetString(Resource.String.AutofillDisabledQueriesPreference_key));
             var autofillSavePref = FindPreference(GetString(Resource.String.OfferSaveCredentials_key));
+            var autofillInlineSuggestions = FindPreference(GetString(Resource.String.InlineSuggestions_key));
+            var autofillNoDalVerification = FindPreference(GetString(Resource.String.NoDalVerification_key));
             if (autofillPref == null)
                 return;
             if ((Android.OS.Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.O) ||
@@ -337,17 +339,25 @@ namespace keepass2android
                 {
                     autofillDisabledPref.Enabled = true;
                     autofillSavePref.Enabled = true;
+                    autofillNoDalVerification.Enabled = true;
+                    autofillInlineSuggestions.Enabled = true;
                     autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
                     autofillPref.Intent = new Intent(Intent.ActionView);
                     autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://philippc.github.io/keepass2android/OreoAutoFill.html"));
                 }
                 else
                 {
+                    autofillNoDalVerification.Enabled = false;
                     autofillDisabledPref.Enabled = false;
                     autofillSavePref.Enabled = false;
+                    autofillInlineSuggestions.Enabled = false;
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
                 }
+                if ((int)Android.OS.Build.VERSION.SdkInt < 30)
+                {
+                    autofillInlineSuggestions.Summary = Activity.GetString(Resource.String.requires_android11);
 
+                }
             }
         }
 

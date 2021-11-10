@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
+using Android.App.Slices;
 using Android.Content;
 using Android.Content.PM;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
 using Android.Service.Autofill;
 using Android.Util;
 using Android.Views.Autofill;
+using Android.Views.InputMethods;
 using Android.Widget;
+using Android.Widget.Inline;
+using AndroidX.AutoFill.Inline;
+using AndroidX.AutoFill.Inline.V1;
 using Java.Util.Concurrent.Atomic;
 using keepass2android.services.AutofillBase.model;
 
@@ -125,6 +133,15 @@ namespace keepass2android.services.AutofillBase
                 }
 
                 AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
+                InlineSuggestionsRequest inlineSuggestionsRequest = null;
+                IList<InlinePresentationSpec> inlinePresentationSpecs = null;
+                if (((int) Build.VERSION.SdkInt >= 30)
+                    && (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.InlineSuggestions_key), true)))
+                {
+                    inlineSuggestionsRequest = request.InlineSuggestionsRequest;
+
+                    inlinePresentationSpecs = inlineSuggestionsRequest?.InlinePresentationSpecs;
+                }
 
 
                 var autofillIds = autofillFields.GetAutofillIds();
@@ -134,13 +151,27 @@ namespace keepass2android.services.AutofillBase
 
                     bool hasEntryDataset = false;
 
+                    IList<Dataset> entryDatasets = new List<Dataset>();
                     if (query.IncompatiblePackageAndDomain == false)
                     {
                         Kp2aLog.Log("AF: (query.IncompatiblePackageAndDomain == false)");
                         //domain and package are compatible. Use Domain if available and package otherwise. Can fill without warning.
-                        foreach (var entryDataset in BuildEntryDatasets(query.DomainOrPackage, query.WebDomain,
-                            query.PackageName,
-                            autofillIds, parser, DisplayWarning.None).Where(ds => ds != null)
+                        entryDatasets = BuildEntryDatasets(query.DomainOrPackage, query.WebDomain,
+                                                    query.PackageName,
+                                                    autofillIds, parser, DisplayWarning.None,
+                                                    inlinePresentationSpecs
+                                                    ).Where(ds => ds != null).ToList();
+                        if (entryDatasets.Count > inlineSuggestionsRequest?.MaxSuggestionCount - 2 /*disable dataset and query*/)
+                        {
+                            //we have too many elements. disable inline suggestions
+                            inlinePresentationSpecs = null;
+                            entryDatasets = BuildEntryDatasets(query.DomainOrPackage, query.WebDomain,
+                                                    query.PackageName,
+                                                    autofillIds, parser, DisplayWarning.None,
+                                                    null
+                                                    ).Where(ds => ds != null).ToList();
+                        }
+                        foreach (var entryDataset in entryDatasets
                         )
                         {
                             Kp2aLog.Log("AF: Got EntryDataset " + (entryDataset == null));
@@ -158,14 +189,16 @@ namespace keepass2android.services.AutofillBase
                                 isManual, autofillIds, responseBuilder, !hasEntryDataset,
                                 query.IncompatiblePackageAndDomain
                                     ? DisplayWarning.FillDomainInUntrustedApp
-                                    : DisplayWarning.None);
+                                    : DisplayWarning.None,
+                                AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
                         else
                             AddQueryDataset(query.PackageNameWithPseudoSchema,
                                 query.WebDomain, query.PackageName,
-                                isManual, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None);
+                                isManual, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None,
+                                AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
                     }
 
-                    AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual);
+                    AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual, AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
 
                     if (PreferenceManager.GetDefaultSharedPreferences(this)
                         .GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))
@@ -192,19 +225,25 @@ namespace keepass2android.services.AutofillBase
                 Kp2aLog.Log("Ignoring onFillRequest as there is another request going on.");
             }
         }
+        
+        
+        
 
         private List<Dataset> BuildEntryDatasets(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, StructureParser parser,
-            DisplayWarning warning)
+            DisplayWarning warning, IList<InlinePresentationSpec> inlinePresentationSpecs)
         {
             List<Dataset> result = new List<Dataset>();
             Kp2aLog.Log("AF: BuildEntryDatasets");
             var suggestedEntries = GetSuggestedEntries(query).ToDictionary(e => e.DatasetName, e => e);
             Kp2aLog.Log("AF: BuildEntryDatasets found " + suggestedEntries.Count + " entries");
+            int count = 0;
             foreach (var filledAutofillFieldCollection in suggestedEntries.Values)
             {
 
                 if (filledAutofillFieldCollection == null)
                     continue;
+
+                var inlinePresentationSpec = AutofillHelper.ExtractSpec(inlinePresentationSpecs, count);
 
                 if (warning == DisplayWarning.None)
                 {
@@ -214,12 +253,13 @@ namespace keepass2android.services.AutofillBase
 
                     Kp2aLog.Log("AF: Add dataset");
 
-                    result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder));
+                    result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder, 
+                        inlinePresentationSpec));
                 }
                 else
                 {
                     //return an "auth" dataset (actually for just warning the user in case domain/package dont match)
-                    var sender =
+                    IntentSender sender =
                         IntentBuilder.GetAuthIntentSenderForWarning(this, query, queryDomain, queryPackage, warning);
                     var datasetName = filledAutofillFieldCollection.DatasetName;
                     if (datasetName == null)
@@ -233,6 +273,9 @@ namespace keepass2android.services.AutofillBase
 
                     var datasetBuilder = new Dataset.Builder(presentation);
                     datasetBuilder.SetAuthentication(sender);
+
+                    AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, datasetName, datasetBuilder, AppNames.LauncherIcon);
+
                     //need to add placeholders so we can directly fill after ChooseActivity
                     foreach (var autofillId in autofillIds)
                     {
@@ -241,6 +284,7 @@ namespace keepass2android.services.AutofillBase
                     Kp2aLog.Log("AF: Add auth dataset");
                     result.Add(datasetBuilder.Build());
                 }
+                count++;
             }
 
             return result;
@@ -257,11 +301,12 @@ namespace keepass2android.services.AutofillBase
             
         }
 
-        private void AddQueryDataset(string query, string queryDomain, string queryPackage, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning)
+        private void AddQueryDataset(string query, string queryDomain, string queryPackage, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning, InlinePresentationSpec inlinePresentationSpec)
         {
             var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, queryDomain, queryPackage, isManual, autoReturnFromQuery, warning);
-            RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
-                GetString(Resource.String.autofill_sign_in_prompt), AppNames.LauncherIcon);
+            string text = GetString(Resource.String.autofill_sign_in_prompt);
+            RemoteViews presentation = AutofillHelper.NewRemoteViews(base.PackageName,
+                text, AppNames.LauncherIcon);
 
             var datasetBuilder = new Dataset.Builder(presentation);
             datasetBuilder.SetAuthentication(sender);
@@ -270,6 +315,9 @@ namespace keepass2android.services.AutofillBase
             {
                 datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
             }
+
+            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, AppNames.LauncherIcon);
+
 
             responseBuilder.AddDataset(datasetBuilder.Build());
         }
@@ -303,19 +351,22 @@ namespace keepass2android.services.AutofillBase
             return displayName;
         }
 
-        private void AddDisableDataset(string query, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool isManual)
+        private void AddDisableDataset(string query, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool isManual, InlinePresentationSpec inlinePresentationSpec)
         {
             bool isQueryDisabled = IsQueryDisabled(query);
             if (isQueryDisabled && !isManual)
                 return;
             bool isForDisable = !isQueryDisabled;
             var sender = IntentBuilder.GetDisableIntentSenderForResponse(this, query, isManual, isForDisable);
-            
-            RemoteViews presentation = AutofillHelper.NewRemoteViews(PackageName,
-                GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this)}), Resource.Drawable.ic_menu_close_grey);
+
+            string text = GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this) });
+            RemoteViews presentation = AutofillHelper.NewRemoteViews(base.PackageName,
+                text, Resource.Drawable.ic_menu_close_grey);
 
             var datasetBuilder = new Dataset.Builder(presentation);
             datasetBuilder.SetAuthentication(sender);
+
+            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.ic_menu_close_grey);
 
             foreach (var autofillId in autofillIds)
             {

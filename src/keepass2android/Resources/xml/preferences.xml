@@ -404,11 +404,6 @@
 
 			</PreferenceScreen>
 
-      <Preference android:title="@string/AccServiceAutoFill_prefs" >
-        <intent android:action="android.intent.action.VIEW"
-                android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
-      </Preference>
-
 		  <PreferenceScreen
 		    android:key="@string/AutoFill_prefs_screen_key"
 		    android:title="@string/AutoFill_prefs"
@@ -438,6 +433,14 @@
           android:defaultValue="false"
           android:title="@string/NoDalVerification_title"
           android:key="@string/NoDalVerification_key" />
+
+        <CheckBoxPreference
+       android:enabled="true"
+       android:persistent="true"
+       android:summary="@string/InlineSuggestions_summary"
+       android:defaultValue="true"
+       android:title="@string/InlineSuggestions_title"
+       android:key="@string/InlineSuggestions_key" />
 
 		  <keepass2android.AutofillDisabledQueriesPreference
 		    android:title="@string/AutofillDisabledQueriesPreference_title"

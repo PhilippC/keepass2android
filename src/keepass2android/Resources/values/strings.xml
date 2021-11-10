@@ -317,6 +317,10 @@
 	<string name="RememberRecentFiles_summary">Remember recently opened databases and show them in the Open database screen.</string>
   <string name="NoDalVerification_title">No DAL verification</string>
   <string name="NoDalVerification_summary">Disables check if domain and app package match</string>
+
+  <string name="InlineSuggestions_title">Integrate with keyboard</string>
+  <string name="InlineSuggestions_summary">Shows the autofill suggestions as inline options in the keyboard (if supported by the input method)</string>
+  <string name="requires_android11">Requires Android 11 or later</string>
 	
 	<string name="kp2a_findUrl">Find password</string>
   <string name="excludeExpiredEntries">Exclude expired entries</string>

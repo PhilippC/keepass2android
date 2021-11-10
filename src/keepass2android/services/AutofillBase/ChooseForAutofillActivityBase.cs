@@ -183,7 +183,7 @@ namespace keepass2android.services.AutofillBase
             
             
             ReplyIntent = new Intent();
-            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder));
+            SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder, null /*TODO can we get the inlinePresentationSpec here?*/));
             SetResult(Result.Ok, ReplyIntent);
         }
 
