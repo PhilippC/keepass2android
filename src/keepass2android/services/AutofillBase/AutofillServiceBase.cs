@@ -39,6 +39,11 @@ namespace keepass2android.services.AutofillBase
 
     public abstract class AutofillServiceBase: AutofillService
     {
+        protected override void AttachBaseContext(Context baseContext)
+        {
+            base.AttachBaseContext(LocaleManager.setLocale(baseContext));
+        }
+
         //use a lock to avoid returning a response several times in buggy Firefox during one connection: this avoids flickering 
         //and disappearing of the autofill prompt.
         //Instead of using a boolean lock, we use a "time-out lock" which is cleared after a few seconds

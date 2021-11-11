@@ -67,6 +67,7 @@
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
 	<string name="design_key">design_key</string>
+  <string name="app_language_pref_key">app_language_pref_key</string>
 	<string name="sort_key_old">sort_key</string>
 	<string name="sort_key">sort_key_new</string>
 	<string name="sortgroups_key">sortgroups_key</string>

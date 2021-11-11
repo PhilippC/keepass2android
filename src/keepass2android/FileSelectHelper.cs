@@ -459,7 +459,7 @@ namespace keepass2android
 			_activity.StartActivityForResult(i, _requestCode);
 
 #else
-			Toast.MakeText(Application.Context, "File chooser is excluded!", ToastLength.Long).Show();
+			Toast.MakeText(LocaleManager.LocalizedAppContext, "File chooser is excluded!", ToastLength.Long).Show();
 #endif
 			return true;
 		}

@@ -28,6 +28,10 @@ namespace keepass2android
 				
 	public abstract class LifecycleAwareActivity : AndroidX.AppCompat.App.AppCompatActivity
     {
+		protected override void AttachBaseContext(Context baseContext)
+		{
+			base.AttachBaseContext(LocaleManager.setLocale(baseContext));
+		}
 		protected LifecycleAwareActivity (IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
@@ -86,7 +90,9 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			
 			base.OnCreate(bundle);
+			
 			Kp2aLog.Log(ClassName+".OnCreate" + " " + ID);
 			Kp2aLog.Log(ClassName+":apptask="+Intent.GetStringExtra("KP2A_APP_TASK_TYPE") + " " + ID);
 		}

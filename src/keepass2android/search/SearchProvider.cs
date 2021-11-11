@@ -137,7 +137,7 @@ namespace keepass2android.search
 				    Database database = databases[databaseIndex];
 
 
-                    var iconDrawable = database.DrawableFactory.GetIconDrawable(App.Context, database.KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
+                    var iconDrawable = database.DrawableFactory.GetIconDrawable(LocaleManager.LocalizedAppContext, database.KpDatabase, iconId, customIconUuid, false) as BitmapDrawable;
 					if (iconDrawable?.Bitmap != null)
 
                     {
@@ -152,7 +152,7 @@ namespace keepass2android.search
                                 copiedCanvas.DrawBitmap(original, 0f, 0f, null);
 
                                 var bitmap = copy;
-                                float maxSize = convertDpToPixel(60, App.Context);
+                                float maxSize = convertDpToPixel(60, LocaleManager.LocalizedAppContext);
                                 float scale = Math.Min(maxSize / bitmap.Width, maxSize / bitmap.Height);
                                 var scaleWidth = (int)(bitmap.Width * scale);
                                 var scaleHeight = (int)(bitmap.Height * scale);
@@ -366,7 +366,7 @@ namespace keepass2android.search
                     value = value.Replace("\r", "");
                     if (intlResourceId > 0)
 					{
-						return Application.Context.GetString(intlResourceId) + ": "+value;
+						return LocaleManager.LocalizedAppContext.GetString(intlResourceId) + ": "+value;
 					}
 					return context.Key + ": " + value;
 				}

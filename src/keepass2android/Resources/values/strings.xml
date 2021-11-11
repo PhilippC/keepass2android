@@ -81,6 +81,7 @@
   <string name="copy_password">Select to copy password to clipboard</string>
   <string name="copy_totp">Select to copy TOTP to clipboard</string>
   <string name="available_through_keyboard">Entry is available through KP2A Keyboard</string>
+  <string name="app_language_pref_title">App language</string>
 	<string name="entry_is_available">is available</string>
   <string name="not_possible_im_picker">Could not open dialog to select input method. Please activate keyboard manually.</string>
   <string name="please_activate_keyboard">Please enable the Keepass2Android keyboard in your system settings.</string>
@@ -92,6 +93,7 @@
   <string name="disclaimer_formal">Keepass2Android comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 2 or later.</string>
   <string name="ellipsis">\u2026</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
+  <string name="SystemLanguage">System language</string>
   <string name="fingerprint_description">Please authenticate to continue</string>
   <string name="fingerprint_fatal">Cannot setup Biometric Unlock:</string>
   <string name="fingerprint_not_recognized">Biometric authentication failed. Try again</string>
@@ -824,6 +826,7 @@
   <string-array name="ChangeLog_1_09b">
     <item>Fix disappearing autofill prompt in Firefox</item>
     <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>Allow to change app language in settings</item>
   </string-array>
 
 

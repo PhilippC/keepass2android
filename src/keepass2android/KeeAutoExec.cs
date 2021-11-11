@@ -61,7 +61,7 @@ namespace keepass2android
             {
                 if (_thisDevice != null)
                     return _thisDevice;
-                String android_id = Settings.Secure.GetString(Application.Context.ContentResolver, Settings.Secure.AndroidId);
+                String android_id = Settings.Secure.GetString(LocaleManager.LocalizedAppContext.ContentResolver, Settings.Secure.AndroidId);
 
                 string deviceName = Build.Manufacturer+" "+Build.Model;
                 _thisDevice = deviceName + " (" + android_id + ")";
@@ -315,7 +315,7 @@ namespace keepass2android
                 try { ck.AddUserKey(new KcpKeyFile(strAbs)); }
                 catch (InvalidOperationException)
                 {
-                    Toast.MakeText(Application.Context,Resource.String.error_adding_keyfile,ToastLength.Long).Show();
+                    Toast.MakeText(LocaleManager.LocalizedAppContext,Resource.String.error_adding_keyfile,ToastLength.Long).Show();
                     return false;
                 }
                 catch (Exception) { throw; }

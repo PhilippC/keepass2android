@@ -1250,7 +1250,7 @@ namespace keepass2android
                 {
                     Handler.Post(() =>
                     {
-                        Toast.MakeText(ActiveActivity ?? Application.Context, "Unrecoverable error: " + Message, ToastLength.Long).Show();
+                        Toast.MakeText(ActiveActivity ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message, ToastLength.Long).Show();
                     });
 
                     App.Kp2a.Lock(false);

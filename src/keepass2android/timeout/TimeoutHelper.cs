@@ -67,7 +67,7 @@ namespace keepass2android
 				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
 
 				Kp2aLog.Log("Timeout start");
-				am.Set(AlarmType.Rtc, triggerTime, BuildPendingBroadcastIntent(App.Context));
+				am.Set(AlarmType.Rtc, triggerTime, BuildPendingBroadcastIntent(LocaleManager.LocalizedAppContext));
 			}
 
 			public static void ResumingApp(Context ctx)
@@ -77,7 +77,7 @@ namespace keepass2android
 				AlarmManager am = (AlarmManager)ctx.GetSystemService(Context.AlarmService);
 				//cancel alarm
 				Kp2aLog.Log("Timeout cancel");
-				am.Cancel(BuildPendingBroadcastIntent(App.Context));
+				am.Cancel(BuildPendingBroadcastIntent(LocaleManager.LocalizedAppContext));
                 App.Kp2a.TimeoutTime = DateTime.MaxValue;
             }
 

@@ -39,6 +39,10 @@ namespace keepass2android
 	[Service]
 	public class OngoingNotificationsService : Service
 	{
+		protected override void AttachBaseContext(Context baseContext)
+		{
+			base.AttachBaseContext(LocaleManager.setLocale(baseContext));
+		}
 		private ScreenOffReceiver _screenOffReceiver;
 
 		#region Service

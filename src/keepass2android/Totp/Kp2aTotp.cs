@@ -26,7 +26,7 @@ namespace keepass2android
                 return null;
             foreach (ITotpPluginAdapter adapter in _pluginAdapters)
             {
-                TotpData totpData = adapter.GetTotpData(entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
+                TotpData totpData = adapter.GetTotpData(entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), LocaleManager.LocalizedAppContext, false);
                 if (totpData.IsTotpEntry)
                 {
                     return totpData;
@@ -47,7 +47,7 @@ namespace keepass2android
                 {
                     TotpData totpData = adapter.GetTotpData(
                         App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
-                            pair => pair.Value.ReadString()), Application.Context, false);
+                            pair => pair.Value.ReadString()), LocaleManager.LocalizedAppContext, false);
                     if (totpData.IsTotpEntry)
                     {
                         return adapter;
@@ -67,7 +67,7 @@ namespace keepass2android
         {
             var adapter = TryGetAdapter(App.Kp2a.LastOpenedEntry);
             if (adapter != null)
-                new UpdateTotpTimerTask(Application.Context, adapter).Run();
+                new UpdateTotpTimerTask(LocaleManager.LocalizedAppContext, adapter).Run();
         }
 	}
 }

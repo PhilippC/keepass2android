@@ -49,6 +49,11 @@ namespace keepass2android
     [Service]
     public class CopyToClipboardService : Service
     {
+        
+        protected override void AttachBaseContext(Context baseContext)
+        {
+            base.AttachBaseContext(LocaleManager.setLocale(baseContext));
+        }
         class PasswordAccessNotificationBuilder
         {
             private readonly Context _ctx;

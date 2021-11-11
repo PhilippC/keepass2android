@@ -41,12 +41,79 @@ using KeePassLib.Security;
 using KeePassLib.Serialization;
 using Uri = Android.Net.Uri;
 
+
 namespace keepass2android
 {
-	
+	public class LocaleManager
+	{
+		public static Context LocalizedAppContext
+		{
+			get
+			{
+				//the standard way of setting locale on the app context is through Application.AttachBaseContext,
+				//but because of https://bugzilla.xamarin.com/11/11182/bug.html this doesn't work
+				return setLocale(Application.Context);
+			}
+		}
+		public static Context setLocale(Context c)
+		{
+			return setNewLocale(c, getLanguage(c));
+		}
+
+		public static Context setNewLocale(Context c, String language)
+		{
+			return updateResources(c, language);
+		}
+
+		static string _language;
+		public static string Language 
+		{			
+			get { return _language; }
+			set { _language = value;languageLoaded = true; 
+			} 
+		}
+		static bool languageLoaded = false;
+
+		public static String getLanguage(Context c)
+		{
+			if (!languageLoaded)
+            {
+				var language = PreferenceManager.GetDefaultSharedPreferences(c).GetString(c.GetString(Resource.String.app_language_pref_key), null);
+				Language = language;
+			}			
+			return Language;
+		}
+
+		private static Context updateResources(Context context, String language)
+		{
+			if (language == null)
+				return context;
+			
+			Java.Util.Locale locale = new Java.Util.Locale(language);
+			Java.Util.Locale.Default = locale;
+
+			Resources res = context.Resources;
+			Configuration config = new Configuration(res.Configuration);
+			if ((int)Build.VERSION.SdkInt >= 17)
+			{
+				config.SetLocale(locale);
+				context = context.CreateConfigurationContext(config);
+			}
+			else
+			{
+				config.Locale = locale;
+				res.UpdateConfiguration(config, res.DisplayMetrics);
+			}
+			return context;
+
+		}
+	}
+
+
 	public class Util {
 
-	    public const String KeyFilename = "fileName";
+		
+		public const String KeyFilename = "fileName";
 	    public const String KeyServerusername = "serverCredUser";
 	    public const String KeyServerpassword = "serverCredPwd";
 	    public const String KeyServercredmode = "serverCredRememberMode";
@@ -253,7 +320,7 @@ namespace keepass2android
 	 * @return True if an Intent with the specified action can be sent and
 	 *         responded to, false otherwise.
 	 */
-		static bool IsIntentAvailable(Context context, String action, String type, List<String> categories )
+				static bool IsIntentAvailable(Context context, String action, String type, List<String> categories )
 		{
 			PackageManager packageManager = context.PackageManager;
 			Intent intent = new Intent(action);

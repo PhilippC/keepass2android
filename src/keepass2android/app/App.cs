@@ -109,7 +109,10 @@ namespace keepass2android
 	/// </summary>
 	public class Kp2aApp: IKp2aApp, ICacheSupervisor
 	{
-	    public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
+
+		
+
+		public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
 			if (OpenDatabases.Any())
 			{
@@ -122,7 +125,7 @@ namespace keepass2android
 						Kp2aLog.Log("QuickLocking database");
 					    QuickLocked = true;
 					    LastOpenedEntry = null;
-                        BroadcastDatabaseAction(Application.Context, Strings.ActionLockDatabase);
+                        BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionLockDatabase);
 					}
 					else
 					{
@@ -133,7 +136,7 @@ namespace keepass2android
 				{
 					Kp2aLog.Log("Locking database");
 
-					BroadcastDatabaseAction(Application.Context, Strings.ActionCloseDatabase);
+					BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionCloseDatabase);
 
                     // Couldn't quick-lock, so unload database(s) instead
                     _openAttempts.Clear();
@@ -153,7 +156,7 @@ namespace keepass2android
             var intent = new Intent(Intents.DatabaseLocked);
             if (lockWasTriggeredByTimeout)
                 intent.PutExtra("ByTimeout", true);
-            Application.Context.SendBroadcast(intent);
+            LocaleManager.LocalizedAppContext.SendBroadcast(intent);
         }
 
 
@@ -178,8 +181,8 @@ namespace keepass2android
 
 	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent)
 	    {
-	        var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-	        var createBackup = prefs.GetBoolean(Application.Context.GetString(Resource.String.CreateBackups_key), true)
+	        var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+	        var createBackup = prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key), true)
                 && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
 
 	        MemoryStream backupCopy = new MemoryStream();
@@ -216,8 +219,8 @@ namespace keepass2android
 
             if (createBackup)
             { 
-		        statusLogger.UpdateMessage(Application.Context.GetString(Resource.String.UpdatingBackup));
-		        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(Application.Context);
+		        statusLogger.UpdateMessage(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatingBackup));
+		        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(LocaleManager.LocalizedAppContext);
                 string baseDisplayName = App.Kp2a.GetFileStorage(ioConnectionInfo).GetDisplayName(ioConnectionInfo);
                 string targetPath = baseDisplayName;
 		        var charsToRemove = "|\\?*<\":>+[]/'";
@@ -242,7 +245,7 @@ namespace keepass2android
                 Java.Lang.Object baseIocDisplayName = baseDisplayName;
 
                 string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(ioConnectionInfo.Path);
-		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, false, Application.Context.
+		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, false, LocaleManager.LocalizedAppContext.
 		            GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
 
                 prefs.Edit()
@@ -298,13 +301,13 @@ namespace keepass2android
 
 			UpdateOngoingNotification();
 
-			BroadcastDatabaseAction(Application.Context, Strings.ActionUnlockDatabase);
+			BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionUnlockDatabase);
 		}
 
 		public void UpdateOngoingNotification()
 		{
 			// Start or update the notification icon service to reflect the current state
-			var ctx = Application.Context;
+			var ctx = LocaleManager.LocalizedAppContext;
 		    if (DatabaseIsUnlocked || QuickLocked)
 		    {
 		        ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
@@ -333,7 +336,7 @@ namespace keepass2android
 				//Set KeyLength of QuickUnlock at time of enabling.
 				//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
 
-				var ctx = Application.Context;
+				var ctx = LocaleManager.LocalizedAppContext;
 				var prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
 				QuickUnlockKeyLength = Math.Max(1, int.Parse(prefs.GetString(ctx.GetString(Resource.String.QuickUnlockLength_key), ctx.GetString(Resource.String.QuickUnlockLength_default))));
 			}
@@ -429,7 +432,7 @@ namespace keepass2android
 
         public bool GetBooleanPreference(PreferenceKey key)
         {
-            Context ctx = Application.Context;
+            Context ctx = LocaleManager.LocalizedAppContext;
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
             switch (key)
             {
@@ -504,7 +507,7 @@ namespace keepass2android
 			var field = typeof(Resource.String).GetField(key);
 			if (field == null)
 				throw new Exception("Invalid key " + key);
-			return Application.Context.GetString((int)field.GetValue(null));
+			return LocaleManager.LocalizedAppContext.GetString((int)field.GetValue(null));
 		}
 
 	    public Drawable GetStorageIcon(string protocolId)
@@ -523,7 +526,7 @@ namespace keepass2android
 			var field = typeof(Resource.Drawable).GetField(key);
 			if (field == null)
 				throw new Exception("Invalid key " + key);
-			return Application.Context.Resources.GetDrawable((int)field.GetValue(null));
+			return LocaleManager.LocalizedAppContext.Resources.GetDrawable((int)field.GetValue(null));
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler, Context ctx, string messageSuffix)
@@ -667,7 +670,7 @@ namespace keepass2android
 
 				if (DatabaseCacheEnabled && allowCache)
 				{
-					fileStorage = new CachingFileStorage(innerFileStorage, Application.Context, this);
+					fileStorage = new CachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, this);
 				}
 				else
 				{
@@ -705,20 +708,20 @@ namespace keepass2android
 					_fileStorages = new List<IFileStorage>
 						{
 							
-							new AndroidContentStorage(Application.Context),
+							new AndroidContentStorage(LocaleManager.LocalizedAppContext),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
-							new DropboxFileStorage(Application.Context, this),
-							new DropboxAppFolderFileStorage(Application.Context, this),
-                            GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(Application.Context)==ConnectionResult.Success ? new GoogleDriveFileStorage(Application.Context, this) : null,
-							new OneDriveFileStorage(Application.Context, this),
+							new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
+							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
+                            GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
+							new OneDriveFileStorage(LocaleManager.LocalizedAppContext, this),
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
 						    new OneDrive2AppFolderFileStorage(),
-                            new SftpFileStorage(Application.Context, this),
-							new NetFtpFileStorage(Application.Context, this),
+                            new SftpFileStorage(LocaleManager.LocalizedAppContext, this),
+							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this),
 							new WebDavFileStorage(this),
-							new PCloudFileStorage(Application.Context, this),
+							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
 							//new LegacyWebDavStorage(this),
                             //new LegacyFtpStorage(this),
 #endif
@@ -783,12 +786,12 @@ namespace keepass2android
 
 		private ValidationMode GetValidationMode()
 		{
-			var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+			var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 
 			ValidationMode validationMode = ValidationMode.Warn;
 
-			string strValMode = prefs.GetString(Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
-												 Application.Context.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
+			string strValMode = prefs.GetString(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
+												 LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
 
 			if (strValMode == "IGNORE")
 				validationMode = ValidationMode.Ignore;
@@ -801,8 +804,8 @@ namespace keepass2android
 		{
 			get
 			{
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-				return prefs.GetBoolean(Application.Context.GetString(Resource.String.CheckForDuplicateUuids_key), true);
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+				return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CheckForDuplicateUuids_key), true);
 			}
 		}
 
@@ -849,7 +852,7 @@ namespace keepass2android
 #endif
 		private void ShowValidationWarning(string error)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.CertificateWarning, error));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CertificateWarning, error));
 		}
 
 
@@ -901,7 +904,7 @@ namespace keepass2android
 		internal void ShowToast(string message)
 		{
 			var handler = new Handler(Looper.MainLooper);
-			handler.Post(() => { var toast = Toast.MakeText(Application.Context, message, ToastLength.Long);
+			handler.Post(() => { var toast = Toast.MakeText(LocaleManager.LocalizedAppContext, message, ToastLength.Long);
 				                   toast.SetGravity(GravityFlags.Center, 0, 0);
 									toast.Show(); 
 			});
@@ -910,7 +913,7 @@ namespace keepass2android
 		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
 		{
 			var errorMessage = GetErrorMessageForFileStorageException(e);
-			ShowToast(Application.Context.GetString(Resource.String.CouldNotSaveToRemote, errorMessage));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotSaveToRemote, errorMessage));
 		}
 
 		private string GetErrorMessageForFileStorageException(Exception e)
@@ -928,33 +931,33 @@ namespace keepass2android
 		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
 		{
 			var errorMessage = GetErrorMessageForFileStorageException(ex);
-			ShowToast(Application.Context.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage));
 		}
 
 		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.UpdatedCachedFileOnLoad, 
-				new Java.Lang.Object[] { Application.Context.GetString(Resource.String.database_file) }));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad, 
+				new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file) }));
 		}
 
 		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.UpdatedRemoteFileOnLoad));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedRemoteFileOnLoad));
 		}
 
 		public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.NotifyOpenFromLocalDueToConflict));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.NotifyOpenFromLocalDueToConflict));
 		}
 
 		public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
 		{
-			ShowToast(Application.Context.GetString(Resource.String.LoadedFromRemoteInSync));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.LoadedFromRemoteInSync));
 		}
 
 		public void ClearOfflineCache()
 		{
-			new CachingFileStorage(new LocalFileStorage(this), Application.Context, this).ClearCache();
+			new CachingFileStorage(new LocalFileStorage(this), LocaleManager.LocalizedAppContext, this).ClearCache();
 		}
 
 		public IFileStorage GetFileStorage(string protocolId)
@@ -978,7 +981,7 @@ namespace keepass2android
 				
 				if (DatabaseCacheEnabled)
 				{
-					return new OtpAuxCachingFileStorage(innerFileStorage, Application.Context, new OtpAuxCacheSupervisor(this));
+					return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this));
 				}
 				else
 				{
@@ -991,8 +994,8 @@ namespace keepass2android
 		{
 			get
 			{
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
-				bool cacheEnabled = prefs.GetBoolean(Application.Context.Resources.GetString(Resource.String.UseOfflineCache_key),
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+				bool cacheEnabled = prefs.GetBoolean(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.UseOfflineCache_key),
 #if NoNet
 					false
 #else
@@ -1007,14 +1010,14 @@ namespace keepass2android
 		{
 			get
 			{
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context); 
-				return prefs.GetBoolean(Application.Context.GetString(Resource.String.OfflineMode_key), false);
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext); 
+				return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.OfflineMode_key), false);
 			}
 			set
 			{
-				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 				ISharedPreferencesEditor edit = prefs.Edit();
-				edit.PutBoolean(Application.Context.GetString(Resource.String.OfflineMode_key), value);
+				edit.PutBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.OfflineMode_key), value);
 				edit.Commit();
 
 			}
@@ -1035,9 +1038,9 @@ namespace keepass2android
 
         public void OnScreenOff()
 		{
-			if (PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+			if (PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
 											 .GetBoolean(
-												Application.Context.GetString(Resource.String.LockWhenScreenOff_key),
+												LocaleManager.LocalizedAppContext.GetString(Resource.String.LockWhenScreenOff_key),
 												false))
 			{
 				App.Kp2a.Lock();
@@ -1172,7 +1175,13 @@ namespace keepass2android
 #endif
 	public class App : Application {
 
-	    public const string NotificationChannelIdUnlocked = "channel_db_unlocked_5";
+		public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+		{
+			base.OnConfigurationChanged(newConfig);
+			LocaleManager.setLocale(this);
+		}
+
+		public const string NotificationChannelIdUnlocked = "channel_db_unlocked_5";
 	    public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_5";
 	    public const string NotificationChannelIdEntry = "channel_db_entry_5";
 

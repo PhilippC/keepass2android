@@ -37,7 +37,7 @@ namespace keepass2android
             };
             FindViewById<Button>(Resource.Id.disable_secure_screen_check).Click += (sender, args) =>
             {
-                var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
                 prefs.Edit()
                     .PutBoolean("no_secure_display_check", true)
                     .Commit();

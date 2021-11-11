@@ -39,6 +39,7 @@ using keepass2android.Utils;
 using KeePassLib;
 using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Interfaces;
+using System.Collections.Generic;
 
 namespace keepass2android
 {
@@ -170,10 +171,42 @@ namespace keepass2android
                 //use system notification channels to control notification visibility
                 unlockedNotificationPref.Parent.RemovePreference(unlockedNotificationPref);
             }
-            
+
 
             FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
-			FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
+            FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
+
+            HashSet<string> supportedLocales = new HashSet<string>() { "en", "af", "ar", "az", "be", "bg", "ca", "cs", "da", "de", "el", "es", "eu", "fa", "fi", "fr", "gl", "he", "hr", "hu", "id", "in", "it", "iw", "ja", "ko", "ml", "nb", "nl", "nn", "no", "pl", "pt", "ro", "ru", "si", "sk", "sl", "sr", "sv", "tr", "uk", "vi", "zh" };
+
+            ListPreference appLanguagePref = (ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key));
+            
+            var localesByCode = new System.Collections.Generic.Dictionary<string, List<Java.Util.Locale>>();
+            foreach (var loc in Java.Util.Locale.GetAvailableLocales())
+            {
+                if (!supportedLocales.Contains(loc.Language))
+                    continue;
+                if (!localesByCode.ContainsKey(loc.Language))
+                {
+                    localesByCode[loc.Language] = new List<Java.Util.Locale>();
+                }
+                localesByCode[loc.Language].Add(loc);
+
+            }
+            var localesByCodeUnique = localesByCode.Select(l => new KeyValuePair<string, Java.Util.Locale>(l.Key, l.Value.First())).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            List<KeyValuePair<string, List<Java.Util.Locale>>> codesWithMultiple = localesByCode.Where(l => l.Value.Count > 1).ToList();
+            List<KeyValuePair<string, Java.Util.Locale>> localesByLanguageList = localesByCodeUnique
+                .OrderBy(kvp => kvp.Value.DisplayLanguage).ToList();
+            appLanguagePref.SetEntries(localesByLanguageList.Select(kvp => kvp.Value.DisplayLanguage).ToArray());
+            appLanguagePref.SetEntryValues(localesByLanguageList.Select(kvp => kvp.Value.Language).ToArray());
+            string languageCode = appLanguagePref.Value;
+            string summary = GetDisplayLanguage(localesByCodeUnique, languageCode);
+            ((ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key))).Summary = summary;
+            appLanguagePref.PreferenceChange += (sender, args) =>
+            {
+                ((ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key))).Summary = GetDisplayLanguage(localesByCodeUnique, (string)args.NewValue);
+                LocaleManager.Language = (string)args.NewValue;
+            };
+
 
             UpdateAutofillPref();
 
@@ -184,7 +217,7 @@ namespace keepass2android
                 {
 
                     var intent = new Intent(Settings.ActionRequestSetAutofillService);
-                    if (((AutofillManager) Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
+                    if (((AutofillManager)Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
                         .HasEnabledAutofillServices)
                     {
                         intent.SetData(Android.Net.Uri.Parse("package:" + Context.PackageName + "notexisting")); //if we use our package name, the activity won't launch
@@ -218,45 +251,45 @@ namespace keepass2android
 
 
             PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
-			PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
+            PrepareNoDonationReminderPreference(Activity, ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key))), FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
-	        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
-            
+            FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
+
             Database db = App.Kp2a.CurrentDb;
             if (db != null)
             {
-	            ListPreference kdfPref = (ListPreference) FindPreference(GetString(Resource.String.kdf_key));
-	            kdfPref.SetEntries(KdfPool.Engines.Select(eng => eng.Name).ToArray());
-	            string[] kdfValues = KdfPool.Engines.Select(eng => eng.Uuid.ToHexString()).ToArray();
-				kdfPref.SetEntryValues(kdfValues);
-				kdfPref.SetValueIndex(kdfValues.Select((v, i) => new {kdf = v, index = i}).First(el => el.kdf == db.KpDatabase.KdfParameters.KdfUuid.ToHexString()).index);
-				kdfPref.PreferenceChange += OnKdfChange;
-				
-				aesRounds = FindPreference(GetString(Resource.String.rounds_key));
-				argon2rounds = FindPreference("argon2rounds");
-				argon2memory = FindPreference("argon2memory");
-				argon2parallelism = FindPreference("argon2parallelism");
+                ListPreference kdfPref = (ListPreference)FindPreference(GetString(Resource.String.kdf_key));
+                kdfPref.SetEntries(KdfPool.Engines.Select(eng => eng.Name).ToArray());
+                string[] kdfValues = KdfPool.Engines.Select(eng => eng.Uuid.ToHexString()).ToArray();
+                kdfPref.SetEntryValues(kdfValues);
+                kdfPref.SetValueIndex(kdfValues.Select((v, i) => new { kdf = v, index = i }).First(el => el.kdf == db.KpDatabase.KdfParameters.KdfUuid.ToHexString()).index);
+                kdfPref.PreferenceChange += OnKdfChange;
 
-				aesRounds.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
-				argon2rounds.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
-				argon2memory.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
-				argon2parallelism.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+                aesRounds = FindPreference(GetString(Resource.String.rounds_key));
+                argon2rounds = FindPreference("argon2rounds");
+                argon2memory = FindPreference("argon2memory");
+                argon2parallelism = FindPreference("argon2parallelism");
 
-	            UpdateKdfScreen();
-				
+                aesRounds.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+                argon2rounds.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+                argon2memory.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+                argon2parallelism.PreferenceChange += (sender, e) => UpdateKdfSummary(e.Preference);
+
+                UpdateKdfScreen();
+
                 PrepareDefaultUsername(db);
                 PrepareDatabaseName(db);
                 PrepareMasterPassword();
-	            PrepareTemplates(db);
-                
+                PrepareTemplates(db);
+
                 ListPreference algorithmPref = (ListPreference)FindPreference(GetString(Resource.String.algorithm_key));
-				algorithmPref.SetEntries(CipherPool.GlobalPool.Engines.Select(eng => eng.DisplayName).ToArray());
-				string[] algoValues = CipherPool.GlobalPool.Engines.Select(eng => eng.CipherUuid.ToHexString()).ToArray();
-				algorithmPref.SetEntryValues(algoValues);
-				algorithmPref.SetValueIndex(algoValues.Select((v, i) => new { kdf = v, index = i }).First(el => el.kdf == db.KpDatabase.DataCipherUuid.ToHexString()).index);
-				algorithmPref.PreferenceChange += AlgorithmPrefChange;
-	            algorithmPref.Summary =
-		            CipherPool.GlobalPool.GetCipher(App.Kp2a.CurrentDb.KpDatabase.DataCipherUuid).DisplayName;
+                algorithmPref.SetEntries(CipherPool.GlobalPool.Engines.Select(eng => eng.DisplayName).ToArray());
+                string[] algoValues = CipherPool.GlobalPool.Engines.Select(eng => eng.CipherUuid.ToHexString()).ToArray();
+                algorithmPref.SetEntryValues(algoValues);
+                algorithmPref.SetValueIndex(algoValues.Select((v, i) => new { kdf = v, index = i }).First(el => el.kdf == db.KpDatabase.DataCipherUuid.ToHexString()).index);
+                algorithmPref.PreferenceChange += AlgorithmPrefChange;
+                algorithmPref.Summary =
+                    CipherPool.GlobalPool.GetCipher(App.Kp2a.CurrentDb.KpDatabase.DataCipherUuid).DisplayName;
                 UpdateImportDbPref();
                 UpdateImportKeyfilePref();
             }
@@ -292,26 +325,36 @@ namespace keepass2android
             }
             catch (Exception ex)
             {
-				Kp2aLog.LogUnexpectedError(ex);
+                Kp2aLog.LogUnexpectedError(ex);
             }
 
-            
+
 
             //AppSettingsActivity.PrepareKeyboardSwitchingPreferences(this);
             _switchPrefManager = new KeyboardSwitchPrefManager(this);
             PrepareSeparateNotificationsPreference();
 
-			FindPreference("IconSetKey").PreferenceChange += (sender, args) =>
-			{
-				if (App.Kp2a.CurrentDb!= null)
-					App.Kp2a.CurrentDb.DrawableFactory.Clear();
+            FindPreference("IconSetKey").PreferenceChange += (sender, args) =>
+            {
+                if (App.Kp2a.CurrentDb != null)
+                    App.Kp2a.CurrentDb.DrawableFactory.Clear();
 
-			};
+            };
 
             Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
             cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
 
-			
+
+        }
+
+        private string GetDisplayLanguage(Dictionary<string, Java.Util.Locale> localesByCode, string languageCode)
+        {
+            return languageCode != null && localesByCode.ContainsKey(languageCode) ? localesByCode[languageCode]?.DisplayLanguage : GetString(Resource.String.SystemLanguage);
+        }
+
+        private void AppLanguagePref_PreferenceChange(object sender, Preference.PreferenceChangeEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void UpdateAutofillPref()
@@ -625,7 +668,7 @@ namespace keepass2android
                     catch (Exception ex)
                     {
 						Kp2aLog.LogUnexpectedError(ex);
-                        Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                        Toast.MakeText(LocaleManager.LocalizedAppContext, ex.Message, ToastLength.Long).Show();
                     }
                 }
                     );

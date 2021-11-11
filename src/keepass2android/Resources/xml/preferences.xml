@@ -280,6 +280,12 @@
 			  android:dialogTitle="@string/design_title"
 			  android:defaultValue="@string/design_default"/>
 
+      <ListPreference
+    android:key="@string/app_language_pref_key"
+    android:title="@string/app_language_pref_title"
+    android:dialogTitle="@string/app_language_pref_title"
+    />
+
       
       <CheckBoxPreference
 				android:enabled="true"
