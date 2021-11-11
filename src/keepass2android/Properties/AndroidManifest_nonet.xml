@@ -4,7 +4,7 @@
 			android:versionName="1.01-g" 
 			package="keepass2android.keepass2android_nonet"
 			android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="29" />
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="30" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_nonet.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
 	<application 
