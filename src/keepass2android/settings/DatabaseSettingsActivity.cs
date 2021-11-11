@@ -356,7 +356,10 @@ namespace keepass2android
                 if ((int)Android.OS.Build.VERSION.SdkInt < 30)
                 {
                     autofillInlineSuggestions.Summary = Activity.GetString(Resource.String.requires_android11);
-
+                    CheckBoxPreference cbp = autofillInlineSuggestions as CheckBoxPreference;
+                    if (cbp != null)
+                        cbp.Checked = false;
+                    autofillInlineSuggestions.Enabled = false;
                 }
             }
         }
