@@ -10,6 +10,7 @@
   <queries>
     <!-- Specific intents and packages we query for (required since Android 11) -->
     <package android:name="keepass2android.plugin.keyboardswap2" />
+    <package android:name="keepass2android.AncientIconSet" />
 
     <intent>
         <action android:name="android.intent.action.OPEN_DOCUMENT" />
