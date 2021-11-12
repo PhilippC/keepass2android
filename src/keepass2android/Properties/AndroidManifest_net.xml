@@ -6,6 +6,38 @@
 			xmlns:tools="http://schemas.android.com/tools"
 			android:installLocation="auto">
 			
+			
+  <queries>
+    <!-- Specific intents and packages we query for (required since Android 11) -->
+    <package android:name="keepass2android.plugin.keyboardswap2" />
+
+    <intent>
+        <action android:name="android.intent.action.OPEN_DOCUMENT" />
+        <data android:mimeType="*/*" />
+      </intent>
+	  
+	  <intent>
+      <action android:name="android.intent.action.GET_DOCUMENT" />
+      <data android:mimeType="*/*" />
+    </intent>
+
+    <intent>
+      <action android:name="com.dropbox.android.AUTHENTICATE_V2" />
+    </intent>
+
+    <intent>
+      <action android:name="com.yubichallenge.NFCActivity.CHALLENGE" />
+    </intent>
+
+    <intent>
+      <action android:name="net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE" />
+    </intent>
+
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+	  </intent>
+  </queries>			
+			
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
@@ -235,5 +267,6 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 	
+	<!-- READ_PHONE_STATE seems to come from some library or so, not clear where. We don't want to have it, remove it: -->
 	<uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
 </manifest>

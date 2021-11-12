@@ -8,10 +8,5 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
-    <application
-        android:allowBackup="true"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-    </application>
 
 </manifest>
