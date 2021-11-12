@@ -78,7 +78,6 @@ namespace keepass2android
                 ContentResolver,
                 Android.Provider.Settings.Secure.DefaultInputMethod);
             bool needsKeyboardSwitch = currentIme != Kp2aInputMethodName;
-            Kp2aLog.Log("SwitchImeActivity.NeedsKeyboardSwitch: " + currentIme +  " vs " + Kp2aInputMethodName);
             return needsKeyboardSwitch;
         }
     }
