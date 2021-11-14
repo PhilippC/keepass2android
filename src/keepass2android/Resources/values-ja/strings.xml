@@ -71,7 +71,7 @@
   <string name="copy_password">ここをタップするとパスワードをクリップボードにコピーします</string>
   <string name="copy_totp">ここをタップするとTOTPをクリップボードにコピーします</string>
   <string name="available_through_keyboard">KP2A キーボードで入力できます</string>
-  <string name="app_language_pref_title">アプリの言語</string>
+  <string name="app_language_pref_title">言語の設定</string>
   <string name="entry_is_available">使用可能</string>
   <string name="not_possible_im_picker">「入力方法の選択」ダイアログを開けません。手動でキーボードを有効にしてください。</string>
   <string name="please_activate_keyboard">システム設定で Keepass2Android キーボードを有効にしてください。</string>
@@ -83,7 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android は無保証のフリーソフトウェアであり、GPLバージョン2以降のライセンスで再配布することができます。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">クリップボードにコピー</string>
-  <string name="SystemLanguage">システム言語</string>
+  <string name="SystemLanguage">システムの言語</string>
   <string name="fingerprint_description">続行するには認証してください</string>
   <string name="fingerprint_fatal">生体認証によるロック解除を設定できません:</string>
   <string name="fingerprint_not_recognized">生体認証に失敗しました。もう一度やり直してください</string>
@@ -292,7 +292,6 @@
   <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
   <string name="NoDalVerification_title">DAL認証なし</string>
   <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかのチェックを無効にします</string>
-  <string name="InlineSuggestions_title">キーボードと統合</string>
   <string name="kp2a_findUrl">パスワードを見つける</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
@@ -502,6 +501,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
+  <string name="filestoragehelp_gdrive">注意：Googleによるアプリの検証を要求しましたが、数ヶ月の間、何もありません。 アプリが検証されていないためブロックされているというメッセージが表示された場合、Android のシステムファイルピッカー - Google ドライブ をこのオプションの代わりに使用してください。</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー \"Applications/Keepass2Android\" へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合には、そのファイルが、この pCloud フォルダー内にあるかどうかを確認して下さい。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -662,6 +662,11 @@
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に3回失敗したら、データベースを閉じます。</string>
   <string name="WarnFingerprintInvalidated">警告！　生体認証は Android によって無効にされる可能性があります。例えば、新たな指紋を端末に追加したときなどです。つねにマスターパスワードによる解除方法を忘れないでください！</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Fix disappearing autofill prompt in Firefox</item>
+    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>設定でアプリの言語を変更することが可能に</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式のサポートを追加</item>
     <item>エントリーの TOTP 設定を構成するためのダイアログを追加しました</item>
