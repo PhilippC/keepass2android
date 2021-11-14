@@ -71,6 +71,7 @@
   <string name="copy_password">ここをタップするとパスワードをクリップボードにコピーします</string>
   <string name="copy_totp">ここをタップするとTOTPをクリップボードにコピーします</string>
   <string name="available_through_keyboard">KP2A キーボードで入力できます</string>
+  <string name="app_language_pref_title">アプリの言語</string>
   <string name="entry_is_available">使用可能</string>
   <string name="not_possible_im_picker">「入力方法の選択」ダイアログを開けません。手動でキーボードを有効にしてください。</string>
   <string name="please_activate_keyboard">システム設定で Keepass2Android キーボードを有効にしてください。</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android は無保証のフリーソフトウェアであり、GPLバージョン2以降のライセンスで再配布することができます。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">クリップボードにコピー</string>
+  <string name="SystemLanguage">システム言語</string>
   <string name="fingerprint_description">続行するには認証してください</string>
   <string name="fingerprint_fatal">生体認証によるロック解除を設定できません:</string>
   <string name="fingerprint_not_recognized">生体認証に失敗しました。もう一度やり直してください</string>
@@ -290,6 +292,7 @@
   <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
   <string name="NoDalVerification_title">DAL認証なし</string>
   <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかのチェックを無効にします</string>
+  <string name="InlineSuggestions_title">キーボードと統合</string>
   <string name="kp2a_findUrl">パスワードを見つける</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
