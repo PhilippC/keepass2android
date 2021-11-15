@@ -77,9 +77,12 @@ namespace keepass2android
 				{
 					_displayedProtocolIds.Remove("file");
 				}
-					
 
-				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false))
+
+				//starting with Android 11, we don't show the Third party app option. Due to restricted permissions,
+				//this no longer works.
+				if ((int)Build.VERSION.SdkInt < 30)
+                    if (context.Intent.GetBooleanExtra(AllowThirdPartyAppGet, false))
 					_displayedProtocolIds.Add("androidget");
 				if (context.Intent.GetBooleanExtra(AllowThirdPartyAppSend, false))
 					_displayedProtocolIds.Add("androidsend");
