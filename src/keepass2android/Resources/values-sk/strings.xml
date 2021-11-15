@@ -292,6 +292,9 @@
   <string name="RememberRecentFiles_summary">Zapamätať si naposledy otvorené databázy a zobraziť ich na obrazovke pre otvorenie databázy.</string>
   <string name="NoDalVerification_title">Žiadne overovanie DAL</string>
   <string name="NoDalVerification_summary">Vypne kontrolu, či sa zhoduje doména a balík aplikácie</string>
+  <string name="InlineSuggestions_title">Integrácia s klávesnicou</string>
+  <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického dopĺňania ako vložené možnosti na klávesnici (ak to metóda vstupu podporuje)</string>
+  <string name="requires_android11">Vyžaduje Android 11 alebo novší</string>
   <string name="kp2a_findUrl">Nájsť heslo</string>
   <string name="excludeExpiredEntries">Vylúčiť expirované záznamy</string>
   <string name="search_options">Možnosti</string>
@@ -501,6 +504,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Poznámka: Požiadal som o overenie aplikácie spoločnosťou Google, ale už niekoľko mesiacov sa nič nestalo. Ak sa vám zobrazí hlásenie, že aplikácia je zablokovaná, pretože nie je overená, použite namiesto tejto možnosti prehliadač súborov Android – Disk Google.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z konta pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -664,6 +668,11 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Opravte miznúcu výzvu na automatické dopĺňanie vo Firefoxe</item>
+    <item>Integrujte návrhy automatického dopĺňania s klávesnicou (vyžaduje Android 11+)</item>
+    <item>Povoliť zmenu jazyka aplikácie v nastaveniach</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Pridaná podpora pre formát súboru KDBX 4.1, zavedené v KeePass 2.48</item>
     <item>Pridaný dialóg na konfigurovanie nastavení TOTP pre záznamy</item>
