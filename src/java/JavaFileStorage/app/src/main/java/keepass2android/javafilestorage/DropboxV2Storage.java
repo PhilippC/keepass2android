@@ -192,7 +192,30 @@ public class DropboxV2Storage extends JavaFileStorageBase
     {
         ByteArrayInputStream bis = new ByteArrayInputStream(data);
         try {
-            path = removeProtocol(path);
+
+            //try to get the file id from the path and use that to create the uploadBuilder. This should preserve the case of the path.
+            String id = null;
+
+            try {
+                id = getFileEntry(path).userData;
+            }
+            catch (Exception e)
+            {
+                //ignore. file might not exist yet.
+            }
+
+            if (id != null && id.length() > 0)
+            {
+                path = id;
+            }
+            else
+            {
+                path = removeProtocol(path);
+            }
+
+
+
+
 
             dbxClient.files().uploadBuilder(path).withMode(WriteMode.OVERWRITE).uploadAndFinish(bis);
 
@@ -416,6 +439,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
             fileEntry.sizeInBytes = fm.getSize();
             fileEntry.isDirectory = false;
             fileEntry.lastModifiedTime = fm.getServerModified().getTime();
+            fileEntry.userData = fm.getId();
         }
         else if (e instanceof DeletedMetadata)
         {
@@ -428,6 +452,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
 
         fileEntry.path = getProtocolId()+"://"+ e.getPathLower();
         fileEntry.displayName = e.getName();
+
         //Log.d("JFS","fileEntry="+fileEntry);
         //Log.d("JFS","Ok. Dir="+fileEntry.isDirectory);
         return fileEntry;
