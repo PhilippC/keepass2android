@@ -71,6 +71,7 @@
   <string name="copy_password">Копіювати пароль до буфера обміну</string>
   <string name="copy_totp">Оберіть для копії TOTP в буфер обміну</string>
   <string name="available_through_keyboard">Вхід доступний за допомогою клавіатури KP2A</string>
+  <string name="app_language_pref_title">Мова застосунку</string>
   <string name="entry_is_available">доступно</string>
   <string name="not_possible_im_picker">Не вдалося відкрити діалогове вікно для вибору методу введення. Активуйте клавіатуру вручну.</string>
   <string name="please_activate_keyboard">Будь ласка, увімкніть клавіатуру Keepass2Android в налаштуваннях системи.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android поставляється БЕЗ ЖОДНИХ ГАРАНТІЙ; Це вільне програмне забезпечення і ви можете розповсюджувати його на умовах ліцензії GPL v2 або новішої.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Копіювати в буфер</string>
+  <string name="SystemLanguage">Системна мова</string>
   <string name="fingerprint_description">Авторизуйтесь, щоб продовжити</string>
   <string name="fingerprint_fatal">Не вдається встановити біометричне розблокування:</string>
   <string name="fingerprint_not_recognized">Помилка біометричної автентифікації. Повторіть спробу</string>
@@ -290,6 +292,9 @@
   <string name="RememberRecentFiles_summary">Пам\'ятати недавно відкриті бази даних і відображати їх на екрані відкриття бази даних.</string>
   <string name="NoDalVerification_title">Немає DAL перевірки</string>
   <string name="NoDalVerification_summary">Вимкнення перевірки, якщо збігаються домен і пакунок програми</string>
+  <string name="InlineSuggestions_title">Інтегрувати до клавіатури</string>
+  <string name="InlineSuggestions_summary">Показує пропозиції автозаповнення як вбудовану опцію в клавіатурі (якщо підтримується методом вводу)</string>
+  <string name="requires_android11">Потрібна версія Android 11 або новіша</string>
   <string name="kp2a_findUrl">Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
   <string name="search_options">Параметри</string>
@@ -499,6 +504,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragehelp_gdrive">Зверніть увагу: я вимагав затвердження застосунку у Google, але нічого не відбулося за місяці. Якщо ви бачите повідомлення, яке говорить, що програма заблокована, тому що вона не перевірена, будь ласка, використовуйте файловий браузер Android — Google Drive замість цієї опції.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Цей тип сховища вимагатиме доступу лише до теки \"Applications/Keepass2Android\" у pCloud. Якщо ви хочете використовувати наявну базу даних з вашого облікового запису pCloud, переконайтеся, що файл розміщений у цій теці pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -662,6 +668,11 @@
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
   <string name="WarnFingerprintInvalidated">Увага! Біометрична автентифікація може бути скасована Android, наприклад після додавання нового відбитку пальця у налаштуваннях вашого пристрою. Переконайтеся, що ви завжди знаєте, як розблокувати за допомогою головного пароля!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Виправлено зникання запиту автозаповнення у Firefox</item>
+    <item>Інтеграція пропозицій автозаповнення до клавіатури (потрібен Android 11+)</item>
+    <item>Дозволено змінювати мову застосунку в налаштуваннях</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Додано підтримку формату файлів KDBX 4.1, впровадженої в Keepass 2.48</item>
     <item>Додано діалогове вікно для налаштування параметрів TOTP для записів</item>
