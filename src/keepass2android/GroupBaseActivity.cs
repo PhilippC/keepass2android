@@ -28,7 +28,6 @@ using Android.Widget;
 using KeePassLib;
 using Android.Preferences;
 using KeePassLib.Interfaces;
-using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using keepass2android.Io;
 using keepass2android.database.edit;
@@ -42,7 +41,6 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-
     public abstract class GroupBaseActivity : LockCloseActivity
     {
         public const String KeyEntry = "entry";
@@ -1062,7 +1060,7 @@ namespace keepass2android
                     return true;
 
                 case Resource.Id.menu_sync:
-                    Synchronize();
+                    new SyncUtil(this).SynchronizeDatabase(() => { });
                     return true;
 
                 case Resource.Id.menu_work_offline:
@@ -1073,7 +1071,7 @@ namespace keepass2android
                 case Resource.Id.menu_work_online:
                     App.Kp2a.OfflineMode = App.Kp2a.OfflineModePreference = false;
                     UpdateOfflineModeMenu();
-                    Synchronize();
+                    new SyncUtil(this).SynchronizeDatabase(() => { });
                     return true;
                 case Resource.Id.menu_open_other_db:
                     AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);
@@ -1096,77 +1094,7 @@ namespace keepass2android
             return base.OnOptionsItemSelected(item);
         }
 
-        public class SyncOtpAuxFile : RunnableOnFinish
-        {
-            private readonly IOConnectionInfo _ioc;
-
-            public SyncOtpAuxFile(Activity activity, IOConnectionInfo ioc)
-                : base(activity,null)
-            {
-                _ioc = ioc;
-            }
-
-            public override void Run()
-            {
-                StatusLogger.UpdateMessage(UiStringKey.SynchronizingOtpAuxFile);
-                try
-                {
-                    //simply open the file. The file storage does a complete sync.
-                    using (App.Kp2a.GetOtpAuxFileStorage(_ioc).OpenFileForRead(_ioc))
-                    {
-                    }
-
-                    Finish(true);
-                }
-                catch (Exception e)
-                {
-
-                    Finish(false, e.Message);
-                }
-
-
-            }
-
-        }
-
-        private void Synchronize()
-        {
-            var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
-            RunnableOnFinish task;
-            OnFinish onFinish = new ActionOnFinish(this, (success, message, activity) =>
-            {
-                if (!String.IsNullOrEmpty(message))
-                    Toast.MakeText(activity, message, ToastLength.Long).Show();
-
-                // Tell the adapter to refresh it's list
-                BaseAdapter adapter = (BaseAdapter)((GroupBaseActivity)activity)?.ListAdapter;
-                adapter?.NotifyDataSetChanged();
-
-                if (App.Kp2a.CurrentDb.OtpAuxFileIoc != null)
-                {
-                    var task2 = new SyncOtpAuxFile(this, App.Kp2a.CurrentDb.OtpAuxFileIoc);
-                    new ProgressTask(App.Kp2a, activity, task2).Run(true);
-                }
-            });
-
-            if (filestorage is CachingFileStorage)
-            {
-
-                task = new SynchronizeCachedDatabase(this, App.Kp2a, onFinish);
-            }
-            else
-            {
-
-                task = new CheckDatabaseForChanges(this, App.Kp2a, onFinish);
-            }
-
-
-
-
-            var progressTask = new ProgressTask(App.Kp2a, this, task);
-            progressTask.Run();
-
-        }
+    
 
         public override void OnBackPressed()
         {

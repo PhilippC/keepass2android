@@ -212,10 +212,8 @@ namespace keepass2android
 			pwd.Text = ExpectedPasswordPart;
 			
 			btn.PostDelayed(() =>
-			{
-			
-				App.Kp2a.UnlockDatabase();
-				Finish();
+            {
+				UnlockAndSyncAndClose();
 			}, 500);
 
 
@@ -327,20 +325,36 @@ namespace keepass2android
 		{
 			var expectedPasswordPart = ExpectedPasswordPart;
 			if (pwd.Text == expectedPasswordPart)
-			{
-				Kp2aLog.Log("QuickUnlock successful!");
-				App.Kp2a.UnlockDatabase();
-			}
+            {
+                UnlockAndSyncAndClose();
+            }
 			else
 			{
 				Kp2aLog.Log("QuickUnlock not successful!");
 				App.Kp2a.Lock(false);
 				Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
+                Finish();
 			}
-			Finish();
+			
 		}
 
-		private string ExpectedPasswordPart
+        private void UnlockAndSyncAndClose()
+        {
+            App.Kp2a.UnlockDatabase();
+
+			if (PreferenceManager.GetDefaultSharedPreferences(this)
+									 .GetBoolean(GetString(Resource.String.SyncAfterQuickUnlock_key), false))
+			{
+				new SyncUtil(this).SynchronizeDatabase(Finish);
+			}
+			else
+				Finish();
+
+			
+            
+        }
+
+        private string ExpectedPasswordPart
 		{
 			get
 			{

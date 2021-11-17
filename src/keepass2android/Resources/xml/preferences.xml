@@ -567,7 +567,15 @@
 					 android:defaultValue="@bool/PreloadDatabaseEnabled_default"
 					 android:title="@string/PreloadDatabaseEnabled_title"
 					 android:key="@string/PreloadDatabaseEnabled_key" />
-			<CheckBoxPreference
+      <CheckBoxPreference
+  android:enabled="true"
+  android:persistent="true"
+  android:summary="@string/SyncAfterQuickUnlock_summary"
+  android:defaultValue="false"
+  android:title="@string/SyncAfterQuickUnlock_title"
+  android:key="@string/SyncAfterQuickUnlock_key" />
+
+      <CheckBoxPreference
   android:key="@string/TanExpiresOnUse_key"
   android:title="@string/TanExpiresOnUse_title"
   android:summary="@string/TanExpiresOnUse_summary"

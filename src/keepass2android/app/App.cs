@@ -460,14 +460,14 @@ namespace keepass2android
                 }
                 else
                 {
-                    AskForReload(activity);
+                    AskForReload(activity, null);
                 }
                 
             }
         }
 
 	    
-	    private void AskForReload(Activity activity)
+	    private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
@@ -480,16 +480,27 @@ namespace keepass2android
 				    CurrentDb.ReloadRequested = true;
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
+					if (actionOnResult != null)
+						actionOnResult(true);
 
 				});
 
 			builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
 			{
-
+				if (actionOnResult != null)
+					actionOnResult(false);
 			});
+			
 
 
 			Dialog dialog = builder.Create();
+
+			dialog.SetOnDismissListener(new Util.DismissListener(() =>
+			{
+				if (actionOnResult != null)
+					actionOnResult(false);
+			}));
+
 			dialog.Show();
 		}
 
@@ -733,12 +744,12 @@ namespace keepass2android
 			}
 		}
 
-		public void TriggerReload(Context ctx)
+		public void TriggerReload(Context ctx, Action<bool> actionOnResult)
 		{
 			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
 				{
-					AskForReload((Activity) ctx);
+					AskForReload((Activity) ctx, actionOnResult);
 				});
 		}
 

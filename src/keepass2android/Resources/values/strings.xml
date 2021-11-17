@@ -473,6 +473,9 @@
 	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
 	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>
 
+  <string name="SyncAfterQuickUnlock_title">Sync after QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchronize database with remote file after unlocking with QuickUnlock.</string>
+
 	<string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
   <string name="AskOverwriteBinary_title">Overwrite existing binary?</string>
   <string name="AskOverwriteBinary_yes">Overwrite</string>

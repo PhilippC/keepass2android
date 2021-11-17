@@ -51,7 +51,7 @@ namespace keepass2android
 					
 					if (!MemUtil.ArraysEqual(_app.CurrentDb.KpDatabase.HashOfFileOnDisk, hashingRemoteStream.Hash))
 					{
-						_app.TriggerReload(_context);
+						_app.TriggerReload(_context, null);
 						Finish(true);
 					}
 					else

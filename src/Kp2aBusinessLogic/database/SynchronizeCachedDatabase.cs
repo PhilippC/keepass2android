@@ -85,8 +85,7 @@ namespace keepass2android
 					{
 						//only the remote file was modified -> reload database.
 						//note: it's best to lock the database and do a complete reload here (also better for UI consistency in case something goes wrong etc.)
-						_app.TriggerReload(_context);
-						Finish(true);
+						_app.TriggerReload(_context, (bool result) => Finish(result));
 					}
 				}
 				else

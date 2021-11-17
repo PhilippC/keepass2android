@@ -207,6 +207,7 @@
     <Compile Include="settings\ExportKeyfileActivity.cs" />
     <Compile Include="settings\IconSetPreference.cs" />
     <Compile Include="SwitchImeActivity.cs" />
+    <Compile Include="SyncUtil.cs" />
     <Compile Include="timeout\TimeoutHelper.cs" />
     <Compile Include="GroupActivity.cs" />
     <Compile Include="GroupBaseActivity.cs" />
