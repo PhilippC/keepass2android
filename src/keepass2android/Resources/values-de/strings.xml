@@ -293,6 +293,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="RememberRecentFiles_summary">Dateinamen der bisher geöffneten Datenbanken speichern und im Bildschirm zum Öffnen der Datenbank anzeigen.</string>
   <string name="NoDalVerification_title">Keine Digital-Asset-Link-Verifikation</string>
   <string name="NoDalVerification_summary">Deaktiviert die Prüfung, ob Domain und App-Package zueinander passen</string>
+  <string name="InlineSuggestions_title">In die Tastatur integrieren</string>
+  <string name="InlineSuggestions_summary">Zeigt Vorschläge für automatisches Ausfüllen innerhalb der virtuellen Tastatur (wenn von dieser unterstützt)</string>
+  <string name="requires_android11">Benötigt Android 11 oder neuer</string>
   <string name="kp2a_findUrl">Kennwort finden</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
@@ -407,6 +410,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="DocumentAccessRevoked">Keepass2Android kann nicht mehr auf die Datei zugreifen. Entweder wurde sie entfernt oder die Zugriffsrechte wurden entzogen. Bitte öffne sie erneut, z.B. durch Klick auf \"Datenbank wechseln\".</string>
   <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
   <string name="PreloadDatabaseEnabled_summary">Starte das Laden oder Herunterladen von Datenbank-Dateien im Hintergrund während der Passwort-Eingabe.</string>
+  <string name="SyncAfterQuickUnlock_title">Nach QuickUnlock synchronisieren</string>
+  <string name="SyncAfterQuickUnlock_summary">Datenbank nach Entsperren mit QuickUnlock mit der Remote-Kopie synchronisieren.</string>
   <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
   <string name="AskOverwriteBinary_title">Vorhandenen Anhang überschreiben?</string>
   <string name="AskOverwriteBinary_yes">Überschreiben</string>
@@ -502,6 +507,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Bitte beachte: Ich habe eine Verifikation der App durch Google angefragt, leider ist seit Monaten nichts geschehen. Wenn du eine Nachricht siehst, dass die App wegen fehlender Verifikation blockiert sei, benutze bitte den Android Dateibrowser und dort Google Drive. </string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Dieser Speichertyp verlangt nur Zugriff auf den pCloud-Ordner \"Applications/Keepass2Android\". Wenn Sie eine existierende Datenbank aus Ihrem pCloud-Konto verwenden möchten, stellen Sie bitte sicher, dass die Datei in diesem pCloud-Ordner gespeichert ist.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -662,6 +668,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Bugfix für schnell verschwindende Autofill-Anzeige in Firefox</item>
+    <item>Vorschläge für automatischisches Ausfüllen in die Tastatur integriert (benötigt Android 11+)</item>
+    <item>Option zum Verändern der Sprache innerhalb der App</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
     <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
