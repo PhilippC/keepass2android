@@ -409,6 +409,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android无法访问此文件。文件可能已被删除，或其访问权限受限。请使用“更改数据库”重新打开文件。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
   <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件。</string>
+  <string name="SyncAfterQuickUnlock_title">快速解锁后同步</string>
+  <string name="SyncAfterQuickUnlock_summary">使用 QuickUnlock 解锁后将数据库与远程文件同步.</string>
   <string name="AskOverwriteBinary">是否要以相同的名字覆盖现有的文件？</string>
   <string name="AskOverwriteBinary_title">覆盖已存在的文件？</string>
   <string name="AskOverwriteBinary_yes">覆盖</string>
