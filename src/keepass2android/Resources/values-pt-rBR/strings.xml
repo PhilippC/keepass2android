@@ -91,8 +91,8 @@
   <string name="fingerprint_os_error">Desbloqueio por Digital requer Android 6.0 ou posterior.</string>
   <string name="fingerprint_hardware_error">Nenhum leitor de digital detectado.</string>
   <string name="fingerprint_no_enrolled">Você não tem digitais registradas neste dispositivo. Por favor vá para configurações do sistema primeiro.</string>
-  <string name="disable_fingerprint_unlock">Desativar o Desbloqueio de Digital</string>
-  <string name="enable_fingerprint_unlock">Ativar por completo o Desbloqueio de Digital</string>
+  <string name="disable_fingerprint_unlock">Desabilitar o Desbloqueio de Digital</string>
+  <string name="enable_fingerprint_unlock">Habilitar o Desbloqueio de Digital completo</string>
   <string name="enable_fingerprint_quickunlock">Ativar o Desbloqueio de Digital para o QuickUnlock</string>
   <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: Chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada não é válida. </string>
@@ -411,6 +411,8 @@
   <string name="DocumentAccessRevoked">O arquivo não está mais acessível ao Keepass2Android. Pode ter sido removido ou as permissões de acesso foram revogadas. É necessário reabrir o arquivo, por exemplo usando \"Alterar banco de dados\".</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar arquivo de banco de dados</string>
   <string name="PreloadDatabaseEnabled_summary">Inicia o carregamento ou download em segundo plano do arquivo de banco de dados durante a inserção da senha.</string>
+  <string name="SyncAfterQuickUnlock_title">Sincronizar depois do QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Sincroniza o banco de dados com o arquivo remoto após desbloquear com o QuickUnlock</string>
   <string name="AskOverwriteBinary">Você deseja sobrescrever o binário existente com o mesmo nome?</string>
   <string name="AskOverwriteBinary_title">Sobrescrever binário existente?</string>
   <string name="AskOverwriteBinary_yes">Sobrescrever</string>
