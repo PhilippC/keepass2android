@@ -240,9 +240,10 @@
   <string name="sort_default">Behåll standardordning</string>
   <string name="special">Special</string>
   <string name="password_generation_profile">Profil</string>
+  <string name="hint_wordseparator">Ordavgränsare</string>
   <string-array name="PasswordGeneratorModes">
     <item>Lösenord</item>
-    <item>Passphrase</item>
+    <item>Lösenordsfras</item>
     <item>Passphrase + Password</item>
   </string-array>
   <string name="custom_settings">Anpassade inställningar</string>
@@ -323,6 +324,8 @@
   <string name="protection">Skyddat fält</string>
   <string name="add_binary">Bifoga fil</string>
   <string name="add_extra_string">Lägg till extra sträng</string>
+  <string name="totp_secret_key">Hemlig nyckel</string>
+  <string name="totp_length">Kodlängd</string>
   <string name="delete_extra_string">Ta bort extra sträng</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: låst. Snabbupplåsning aktiverat.</string>
   <string name="database_loaded_unlocked">%1$s: upplåst.</string>
@@ -481,7 +484,6 @@
   <string name="filestoragehelp_dropboxKP2A">Om du inte vill ge KP2A tillgång till din hela Dropbox, kan du välja detta alternativ. Den kommer då endast att begära tillgång till mappen Apps/Keepass2Android. Detta är särskilt lämpligt när du skapar en ny databas. Om du redan har en databas, klicka på detta alternativ för att skapa mappen, placera sedan filen i mappen (från datorn) och välj därefter alternativet igen för att öppna filen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Denna lagringstyp kommer endast begära åtkomst till \"Applications/Keepass2Android\" mappen. Om du vill använda en befintlig databas i ditt PCloud-konto, vänligen kontrollera att filen är placerad i den mappen.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alla filer och utdelade filer</string>

@@ -477,7 +477,6 @@
 그 다음 이 옵션을 다시 선택하여 데이터베이스 파일을 여십시오.</string>
   <string name="filestoragename_gdrive">Google 드라이브</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">이 저장공간 유형은 오직 \"Application/Keepass2Android\" 폴더에만 접근을 요청할 것입니다. 만약 PCloud 계정에 존재하는 데이터베이스를 사용하길 원하신다면, 데이터베이스 파일이 이 폴더 내에 있는지 확인해주십시오.</string>
   <string name="filestoragename_onedrive">원드라이브</string>
   <string name="filestoragename_onedrive2">원드라이브</string>
   <string name="filestoragename_onedrive2_full">모든 파일 및 공유한 파일</string>

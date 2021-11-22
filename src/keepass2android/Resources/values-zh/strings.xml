@@ -71,6 +71,7 @@
   <string name="copy_password">复制密码到剪贴板</string>
   <string name="copy_totp">复制 TOTP 到剪贴板</string>
   <string name="available_through_keyboard">可通过 KP2A 键盘获得条目</string>
+  <string name="app_language_pref_title">程序语言</string>
   <string name="entry_is_available">可用</string>
   <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘。</string>
   <string name="please_activate_keyboard">请在系统设置中启用 Keepass2Android 键盘。</string>
@@ -79,9 +80,10 @@
   <string name="current_group_root">当前群组：根群组</string>
   <string name="database">数据库</string>
   <string name="digits">数字</string>
-  <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
+  <string name="disclaimer_formal">Keepass2Android 不承担任何担保责任；这是自由软件，欢迎您在遵循 GPL 版本 2 或者以后版本许可证的情况下重新分发。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
+  <string name="SystemLanguage">系统语言</string>
   <string name="fingerprint_description">请验证以继续</string>
   <string name="fingerprint_fatal">无法设置指纹解锁：</string>
   <string name="fingerprint_not_recognized">生物鉴别失败。请重试</string>
@@ -290,6 +292,9 @@
   <string name="RememberRecentFiles_summary">记忆最近打开过的数据库并在开启数据库屏显示。</string>
   <string name="NoDalVerification_title">无 DAL 验证</string>
   <string name="NoDalVerification_summary">不检查域名和应用程序包是否匹配</string>
+  <string name="InlineSuggestions_title">与键盘集成</string>
+  <string name="InlineSuggestions_summary">将自动填充建议显示为键盘中的内联选项(如果输入法支持的话)</string>
+  <string name="requires_android11">需要 Android 11 或更高版本</string>
   <string name="kp2a_findUrl">找回密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
   <string name="search_options">选项</string>
@@ -404,6 +409,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android无法访问此文件。文件可能已被删除，或其访问权限受限。请使用“更改数据库”重新打开文件。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
   <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件。</string>
+  <string name="SyncAfterQuickUnlock_title">快速解锁后同步</string>
+  <string name="SyncAfterQuickUnlock_summary">使用 QuickUnlock 解锁后将数据库与远程文件同步.</string>
   <string name="AskOverwriteBinary">是否要以相同的名字覆盖现有的文件？</string>
   <string name="AskOverwriteBinary_title">覆盖已存在的文件？</string>
   <string name="AskOverwriteBinary_yes">覆盖</string>
@@ -422,7 +429,7 @@
   <string name="AskDiscardChanges">确认放弃之前所做的更改？（保存按钮在顶部）</string>
   <string name="AskDiscardChanges_title">放弃更改？</string>
   <string name="suggest_improvements">建议或投票改进</string>
-  <string name="rate_app">为本应用评分</string>
+  <string name="rate_app">给本应用评分</string>
   <string name="translate_app">翻译 KP2A</string>
   <string name="AddingEntry">添加条目…</string>
   <string name="AddingGroup">添加群组…</string>
@@ -471,7 +478,7 @@
   <string name="donate_question">今天是慕尼黑啤酒节！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
   <string name="donate_bday_question">5月10日？今天是我的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？这会让我非常高兴！:-)</string>
   <string name="donate_missedbday_question">呃，您错过了我5月10日的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？还不算太晚，这会让我非常高兴！:-)</string>
-  <string name="ok_donate">告诉我更多！</string>
+  <string name="ok_donate">愿闻其详</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
   <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
   <string name="hint_http_url">文件夹或文件 URL（如: mycloud.me.com/webdav/）</string>
@@ -499,8 +506,9 @@
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">请注意：我已经请求谷歌对应用程序进行验证，但几个月来什么都没有发生。如果你看到一条消息说应用程序被阻止，因为它没有验证，请使用 Android 文件浏览器 - 谷歌云盘而不是这个选项。</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">此存储类型仅请求访问“Applications / Keepass2Android”文件夹。 如果要使用PCloud帐户中的现有数据库，请确保将文件放在此文件夹中。</string>
+  <string name="filestoragehelp_pcloud">这种存储类型只请求访问 pCloud 文件夹 \"Applications/Keepass2Android\"。如果您想使用 pCloud 帐户中现有的数据库，请确保文件被放置在这个 pCloud 文件夹中。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">所有文件和共享文件</string>
@@ -661,6 +669,11 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>修复了 Firefox 中自动填充提示消失的问题</item>
+    <item>将自动填充建议与键盘集成 (需要 Android 11+)</item>
+    <item>允许在设置中更改应用程序语言</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>添加对 KeePass 2.48 中引入的 KDBX 4.1 文件格式的支持</item>
     <item>添加了配置条目 TOTP 设置的对话框</item>
