@@ -71,6 +71,7 @@
   <string name="copy_password">Izberite, da kopirate geslo na odložišče</string>
   <string name="copy_totp">Izberite, da kopirate enkratno geslo na odložišče</string>
   <string name="available_through_keyboard">Vnos je na voljo preko tipkovnice K2PA</string>
+  <string name="app_language_pref_title">Jezik aplikacije</string>
   <string name="entry_is_available">je na voljo</string>
   <string name="not_possible_im_picker">Pogovornega okna za izbiranje metode vnosa ni bilo mogoče odpreti. Ročno omogočite tipkovnico.</string>
   <string name="please_activate_keyboard">Omogočite tipkovnico Keepass2Android v svojih sistemskih nastavitvah.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android je brez VSAKRŠNE GARANCIJE; to je brezplačna programska oprema in lahko jo razširjate pod pogoji GPL-a različice 2 ali kasnejše.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiraj na odložišče</string>
+  <string name="SystemLanguage">Sistemski jezik</string>
   <string name="fingerprint_description">Prosimo, če se avtenticirate za nadaljevanje</string>
   <string name="fingerprint_fatal">Ni mogoče nastaviti Biometričnega odklepanja:</string>
   <string name="fingerprint_not_recognized">Biometrična avtentikacija je spodletela. Poskusite znova</string>
@@ -290,6 +292,9 @@
   <string name="RememberRecentFiles_summary">Zapomni si nedavno odprte podatkovne zbirke in jih prikaži na zaslonu Odpri podatkovno zbirko.</string>
   <string name="NoDalVerification_title">Brez preverjanja DAL</string>
   <string name="NoDalVerification_summary">Onemogoči preverjanje, ali se paket domen in aplikacije ujemata</string>
+  <string name="InlineSuggestions_title">Integracija s tipkovnico</string>
+  <string name="InlineSuggestions_summary">Prikaže predloge samodejnega izpolnjevanja kot vgrajene možnosti na tipkovnici (če to podpira način vnosa)</string>
+  <string name="requires_android11">Zahteva Android 11 ali novejši</string>
   <string name="kp2a_findUrl">Najdi geslo</string>
   <string name="excludeExpiredEntries">Izključi potekle vnose</string>
   <string name="search_options">Možnosti</string>
@@ -499,8 +504,9 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Prosimo, upoštevajte: Zahtevali smo preverjanje aplikacije s strani Googla, vendar se že več mesecev ni zgodilo nič. Če vidite sporočilo, da je aplikacija blokirana, ker ni preverjena, namesto te možnosti uporabite brskalnik datotek za Android – Google Drive.</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v tej mapi.</string>
+  <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do pCloud mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v pCloud mapi.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Moje datoteke in deljene datoteke</string>
@@ -662,6 +668,11 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Popravljeno izginotje poziva za samodejno izpolnjevanje v Firefoxu</item>
+    <item>Integracija predlogov za samodejno izpolnjevanje s tipkovnico (zahteva Android 11+)</item>
+    <item>Dovoli spreminjanje jezika aplikacije v nastavitvah</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>
     <item>Dodano pogovorno okno za nastavitev nastavitev TOTP za vnose</item>
