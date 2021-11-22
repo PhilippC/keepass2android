@@ -670,7 +670,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
   <string-array name="ChangeLog_1_09b">
     <item>Bugfix für schnell verschwindende Autofill-Anzeige in Firefox</item>
-    <item>Vorschläge für automatischisches Ausfüllen in die Tastatur integriert (benötigt Android 11+)</item>
+    <item>Vorschläge für automatisches Ausfüllen in die Tastatur integriert (benötigt Android 11+)</item>
     <item>Option zum Verändern der Sprache innerhalb der App</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
