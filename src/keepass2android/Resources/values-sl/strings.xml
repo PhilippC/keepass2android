@@ -409,6 +409,8 @@
   <string name="DocumentAccessRevoked">Datoteka ni več dostopna za Keepass2Android. Ali je bila preklicana ali so bila dovoljena umaknjena. Ponovno odprite datoteko, npr. z uporabo funkcije Zamenjaj bazo.</string>
   <string name="PreloadDatabaseEnabled_title">Predn. dat. pod. zbirke</string>
   <string name="PreloadDatabaseEnabled_summary">Začni z nalaganjem v ozadju ali prejemanjem datoteke podatkovne zbirke med vnosom gesla.</string>
+  <string name="SyncAfterQuickUnlock_title">Sinhronizacija po hitrem odklepanju</string>
+  <string name="SyncAfterQuickUnlock_summary">Sinhronizirajte podatkovno bazo z oddaljeno datoteko po odklepanju s QuickUnlock.</string>
   <string name="AskOverwriteBinary">Ali želite prepisati obstoječo dvojiško datoteko z enakim imenom?</string>
   <string name="AskOverwriteBinary_title">Prepiši obstoječi dvojiško datoteko?</string>
   <string name="AskOverwriteBinary_yes">Prepiši</string>
@@ -672,8 +674,8 @@
     <item>Popravljeno izginotje poziva za samodejno izpolnjevanje v Firefoxu</item>
     <item>Integracija predlogov za samodejno izpolnjevanje s tipkovnico (zahteva Android 11+)</item>
     <item>Dovoli spreminjanje jezika aplikacije v nastavitvah</item>
-    <item>Add option to synchronize database after QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Dodaj možnost za sinhronizacijo podatkovne baze po QuickUnlock</item>
+    <item>Popravek napake: Pri shranjevanju v Dropbox imen datotek ne shrani z malimi črkami</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>
