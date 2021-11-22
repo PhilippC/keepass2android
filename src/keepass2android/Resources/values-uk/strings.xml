@@ -672,6 +672,8 @@
     <item>Виправлено зникання запиту автозаповнення у Firefox</item>
     <item>Інтеграція пропозицій автозаповнення до клавіатури (потрібен Android 11+)</item>
     <item>Дозволено змінювати мову застосунку в налаштуваннях</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Додано підтримку формату файлів KDBX 4.1, впровадженої в Keepass 2.48</item>
