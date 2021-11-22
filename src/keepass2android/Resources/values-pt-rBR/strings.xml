@@ -674,6 +674,8 @@
     <item>Corrigido o desaparecimento da pergunta pelo Autopreenchimento no Firefox</item>
     <item>Integrar sugestões de Autopreenchimento com teclado (requer Android 11+)</item>
     <item>Permitir mudança de idioma do app nas configurações</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Adicionado suporte ao formato de arquivo KDBX 4.1, introduzido no KeePass 2.48</item>
