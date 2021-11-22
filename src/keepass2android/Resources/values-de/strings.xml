@@ -672,6 +672,8 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
     <item>Bugfix für schnell verschwindende Autofill-Anzeige in Firefox</item>
     <item>Vorschläge für automatisches Ausfüllen in die Tastatur integriert (benötigt Android 11+)</item>
     <item>Option zum Verändern der Sprache innerhalb der App</item>
+    <item>Option zum Synchronisieren der Datenbank nach QuickUnlock hinzugefügt</item>
+    <item>Bugfix: Dateinamen werden beim Speichern auf Dropbox nicht mehr in Kleinbuchstaben gewandelt</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>

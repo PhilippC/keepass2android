@@ -666,6 +666,8 @@
     <item>Fix disappearing autofill prompt in Firefox</item>
     <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
     <item>設定でアプリの言語を変更することが可能に</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式のサポートを追加</item>

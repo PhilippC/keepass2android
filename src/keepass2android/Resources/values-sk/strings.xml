@@ -672,6 +672,8 @@
     <item>Opravte miznúcu výzvu na automatické dopĺňanie vo Firefoxe</item>
     <item>Integrujte návrhy automatického dopĺňania s klávesnicou (vyžaduje Android 11+)</item>
     <item>Povoliť zmenu jazyka aplikácie v nastaveniach</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Pridaná podpora pre formát súboru KDBX 4.1, zavedené v KeePass 2.48</item>

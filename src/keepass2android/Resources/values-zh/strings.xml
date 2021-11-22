@@ -673,6 +673,8 @@
     <item>修复了 Firefox 中自动填充提示消失的问题</item>
     <item>将自动填充建议与键盘集成 (需要 Android 11+)</item>
     <item>允许在设置中更改应用程序语言</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>添加对 KeePass 2.48 中引入的 KDBX 4.1 文件格式的支持</item>

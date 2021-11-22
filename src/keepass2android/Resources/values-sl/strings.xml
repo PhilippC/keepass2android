@@ -672,6 +672,8 @@
     <item>Popravljeno izginotje poziva za samodejno izpolnjevanje v Firefoxu</item>
     <item>Integracija predlogov za samodejno izpolnjevanje s tipkovnico (zahteva Android 11+)</item>
     <item>Dovoli spreminjanje jezika aplikacije v nastavitvah</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Dodana podpora za format datoteke KDBX 4.1, uvedena v KeePass 2.48</item>

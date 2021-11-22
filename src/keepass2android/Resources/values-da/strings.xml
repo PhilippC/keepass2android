@@ -671,6 +671,8 @@
     <item>Fiks forsvindende autofyld prompt i Firefox</item>
     <item>Integrer forslag til autofyld med tastatur (kræver Android 11+)</item>
     <item>Tillad ændring af app-sprog i indstillinger</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Tilføjet understøttelse af KDBX 4.1 filformat indført i KeePass 2.48</item>
