@@ -71,6 +71,7 @@
   <string name="copy_password">Επιλέξτε για αντιγραφή του συνθηματικού στο πρόχειρο</string>
   <string name="copy_totp">Επιλογή αντιγραφής TOTP στο clipboard</string>
   <string name="available_through_keyboard">Η καταχώριση είναι διαθέσιμη μέσω πληκτρολογίου KP2A</string>
+  <string name="app_language_pref_title">Γλώσσα εφαρμογής</string>
   <string name="entry_is_available">είναι διαθέσιμο</string>
   <string name="not_possible_im_picker">Αδύνατο το άνοιγμα διαλόγου για επιλογή μεθόδου εισαγωγής. Ενεργοποιήστε το πληκτρολόγιο με μη αυτόματο τρόπο.</string>
   <string name="please_activate_keyboard">Ενεργοποιήστε το πληκτρολόγιο Keepass2Android στις ρυθμίσεις συστήματος.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Το Keepass2Android έρχεται με ΑΠΟΛΥΤΩΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ. Είναι ελεύθερο λογισμικό και μπορείτε να το αναδιανέμετε υπό τους όρους της GPL έκδοση 2 ή νεότερη.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
+  <string name="SystemLanguage">Γλώσσα συστήματος</string>
   <string name="fingerprint_description">Χρειάζεται αυθεντικοποίηση για να συνεχίσετε</string>
   <string name="fingerprint_fatal">Αποτυχία βιομετρικού ξεκειδώματος:</string>
   <string name="fingerprint_not_recognized">Η βιομετρική αυθεντικοποίηση απέτυχε. Δοκιμάστε ξανά</string>
@@ -290,6 +292,8 @@
   <string name="RememberRecentFiles_summary">Απομνημονεύει τις πρόσφατα ανοιγμένες βάσεις δεδομένων και τις προβάλει στην οθόνη Άνοιγμα βάσης δεδομένων.</string>
   <string name="NoDalVerification_title">Καμία επαλήθευση DAL</string>
   <string name="NoDalVerification_summary">Απενεργοποιεί τον έλεγχο αν ταιριάζει ο τομέας και το πακέτο εφαρμογής</string>
+  <string name="InlineSuggestions_summary">Δείχνει τις προτάσεις αυτόματης συμπλήρωσης ως γραμμές μέσα στο πρηκτρολόγιο</string>
+  <string name="requires_android11">Απαιτείται Android 11 ή νεότερη έκδοση</string>
   <string name="kp2a_findUrl">Εύρεση συνθηματικού</string>
   <string name="excludeExpiredEntries">Εξαίρεση ληγμένων εγγραφών</string>
   <string name="search_options">Επιλογές</string>
@@ -404,6 +408,8 @@
   <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακηθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανα-ανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
   <string name="PreloadDatabaseEnabled_title">Προ-φόρτωση αρχείου βάσης δεδομένων</string>
   <string name="PreloadDatabaseEnabled_summary">Ξεκίνημα φόρτωσης στο παρασκήνιο ή λήψη του αρχείου της βάσης δεδομένων κατά την εισαγωγή του συνθηματικού.</string>
+  <string name="SyncAfterQuickUnlock_title">Συγχρονισμός μετά το QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Η βάση δεδομένων θα συγχρονιστεί με το απομακρυσμένο αρχείο μετά το QuickUnlock.</string>
   <string name="AskOverwriteBinary">Θέλετε να αντικαταστήσετε το υπάρχον δυαδικό αρχείο με το ίδιο όνομα;</string>
   <string name="AskOverwriteBinary_title">Αντικατάσταση υπάρχοντος δυαδικού αρχείου;</string>
   <string name="AskOverwriteBinary_yes">Αντικατάσταση</string>
@@ -499,7 +505,9 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (φάκελος KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Σημείωση: Έχω ζητήσει επαλήθευση της εφαρμογής από την Google, αλλά τίποτα δεν έχει συμβεί επί μήνες. Αν δείτε ένα μήνυμα που λέει ότι η εφαρμογή έχει αποκλειστεί επειδή δεν έχει επαληθευτεί, παρακαλώ χρησιμοποιήστε τον Android filebrowser - Google Drive αντί αυτής της επιλογής.</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση μόνο στον pCloud φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από τον pCloud λογαριασμό σας, βεβαιωθείτε ότι το αρχείο έχει τοποθετηθεί σε αυτόν τον φάκελο.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Όλα τα αρχεία και τα κοινά αρχεία</string>
@@ -656,6 +664,14 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
+  <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με τον κύριο κωδικό πρόσβασης!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Διόρθωση της εξαφανιζόμενης προτροπής αυτόματης συμπλήρωσης στο Firefox</item>
+    <item>Ενσωμάτωση προτάσεων αυτόματης συμπλήρωσης με πληκτρολόγιο (απαιτεί Android 11+)</item>
+    <item>Επιτρέπεται η αλλαγή γλώσσας της εφαρμογής στις ρυθμίσεις</item>
+    <item>Προσθήκη επιλογής για συγχρονισμό της βάσης δεδομένων μετά το QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
     <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρήσεις</item>
