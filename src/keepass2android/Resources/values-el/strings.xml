@@ -292,6 +292,7 @@
   <string name="RememberRecentFiles_summary">Απομνημονεύει τις πρόσφατα ανοιγμένες βάσεις δεδομένων και τις προβάλει στην οθόνη Άνοιγμα βάσης δεδομένων.</string>
   <string name="NoDalVerification_title">Καμία επαλήθευση DAL</string>
   <string name="NoDalVerification_summary">Απενεργοποιεί τον έλεγχο αν ταιριάζει ο τομέας και το πακέτο εφαρμογής</string>
+  <string name="InlineSuggestions_title">Ενσωμάτωση με πληκτρολόγιο</string>
   <string name="InlineSuggestions_summary">Δείχνει τις προτάσεις αυτόματης συμπλήρωσης ως γραμμές μέσα στο πρηκτρολόγιο</string>
   <string name="requires_android11">Απαιτείται Android 11 ή νεότερη έκδοση</string>
   <string name="kp2a_findUrl">Εύρεση συνθηματικού</string>
@@ -670,7 +671,7 @@
     <item>Ενσωμάτωση προτάσεων αυτόματης συμπλήρωσης με πληκτρολόγιο (απαιτεί Android 11+)</item>
     <item>Επιτρέπεται η αλλαγή γλώσσας της εφαρμογής στις ρυθμίσεις</item>
     <item>Προσθήκη επιλογής για συγχρονισμό της βάσης δεδομένων μετά το QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Διόρθωση σφάλματος: Να μην γίνονται πεζά τα ονόματα αρχείων κατά την αποθήκευση στο Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
@@ -679,10 +680,10 @@
     <item>Βελτιώσεις στην αυτόματη συμπλήρωση (σταθερό αναδυόμενο παράθυρο δεν εμφανίζεται στο Chrome, καλύτερη υποστήριξη υποτομέα)</item>
     <item>Βελτιώσεις στην υλοποίηση του OneDrive: δεν υπάρχει πλέον όριο μεγέθους, ούτε περιττές αιτήσεις ελέγχου ταυτότητας</item>
     <item>Προστέθηκε επιλογή για να επιλέξετε το φωτεινό/σκούρο θέμα από τις ρυθμίσεις του συστήματος, συμπεριλαμβανομένων των νυχτερινών πλάνων, απαιτεί Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Ενημέρωση της υλοποίησης του Dropbox ώστε να υποστηρίζει τη νέα μέθοδο αυθεντικοποίησης</item>
+    <item>Η νέα ρύθμιση ξεκλειδώματος δακτυλικών αποτυπωμάτων θα ακυρωθεί μετά την προσθήκη δακτυλικού αποτυπώματος στις ρυθμίσεις συστήματος για αυξημένη ασφάλεια.</item>
+    <item>Επιτρέπει το άνοιγμα αρχείων μέσω του επιλογέα αρχείων συστήματος, αγνοώντας τη σημαία ανάγνωση-μόνον</item>
+    <item>Επιτρέπει την έναρξη μετακίνησης καταχωρήσεων από το μενού προβολής καταχωρήσεων</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Προσθήκη υποστήριξης για νέα μορφή αρχείου κλειδιού που εισήχθη στο Keepass 2.47</item>
