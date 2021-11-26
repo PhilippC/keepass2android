@@ -294,6 +294,7 @@
   <string name="NoDalVerification_summary">Wyłącza sprawdzanie zgodności domeny i pakietu aplikacji</string>
   <string name="InlineSuggestions_title">Zintegruj z klawiaturą</string>
   <string name="InlineSuggestions_summary">Pokazuje sugestie autouzupełniania jako opcje wbudowane w klawiaturze (jeśli jest obsługiwana przez metodę wprowadzania)</string>
+  <string name="requires_android11">Wymaga Androida 11 lub późniejszego</string>
   <string name="kp2a_findUrl">Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
   <string name="search_options">Opcje</string>
@@ -408,6 +409,8 @@
   <string name="DocumentAccessRevoked">Plik nie jest już dostępny dla Keepass2Android. Został usunięty lub uprawnienia do niego zostały cofnięte. Użyj opcji ponownego otwarcia pliku, np. przełączając bazę danych.</string>
   <string name="PreloadDatabaseEnabled_title">Wstępnie wczytuj bazę danych</string>
   <string name="PreloadDatabaseEnabled_summary">Rozpocznij ładowanie w tle lub pobieranie pliku bazy danych podczas wprowadzania hasła.</string>
+  <string name="SyncAfterQuickUnlock_title">Synchronizacja po Szybkim Odblokowaniu</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchronizuj bazę danych ze zdalnym plikiem po odblokowaniu z SzybkimOdblokowaniem.</string>
   <string name="AskOverwriteBinary">Czy chcesz zastąpić istniejący plik binarny o tej samej nazwie?</string>
   <string name="AskOverwriteBinary_title">Czy zastąpić istniejący plik binarny?</string>
   <string name="AskOverwriteBinary_yes">Zastąp</string>
@@ -503,6 +506,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję, aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie, aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Uwaga: Poprosiłem o weryfikację aplikacji przez Google, ale nic się nie wydarzyło od miesięcy. Jeśli widzisz wiadomość mówiącą, że aplikacja jest zablokowana, ponieważ nie jest zweryfikowana, proszę użyć przeglądarki plików Androida - Dysk Google zamiast tej opcji.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ten typ magazynu będzie wymagał jedynie dostępu do folderu pCloud. \"Applications/Keepass2Android\". Jeżeli chcesz używać istniejącej bazy danych ze swojego konta pCloud, proszę upewnij się, że plik jest umieszczony w tym katalogu pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -666,6 +670,13 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Naprawiono znikający monit automatycznego wypełniania w Firefoksie</item>
+    <item>Integracja sugestii autouzupełniania z klawiaturą (wymaga Android 11+)</item>
+    <item>Pozwól na zmianę języka aplikacji w ustawieniach</item>
+    <item>Dodaj opcję synchronizacji bazy danych po SzybkimOdblokowaniu</item>
+    <item>Naprawa błędów: Nie tworzy nazw plików z małych liter podczas zapisywania do Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Dodane wsparcie dla nowego formatu pliku klucza wprowadzonego w Keepass 2.48</item>
     <item>Dodano okno dialogowe, aby skonfigurować ustawienia TOTP dla wpisów</item>
