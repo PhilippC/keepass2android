@@ -71,6 +71,7 @@
   <string name="copy_password">Kopiuj hasło do schowka</string>
   <string name="copy_totp">Zaznacz, aby skopiować TOTP do schoweka</string>
   <string name="available_through_keyboard">Wpis jest dostępny za pośrednictwem klawiatury KP2A</string>
+  <string name="app_language_pref_title">Język aplikacji</string>
   <string name="entry_is_available">jest dostępny</string>
   <string name="not_possible_im_picker">Nie można otworzyć okna dialogowego wyboru metody wprowadzania. Aktywuj klawiaturę ręcznie w ustawieniach systemu.</string>
   <string name="please_activate_keyboard">Proszę włączyć obsługę klawiatury Keepass2Android w ustawieniach systemu.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android jest udostępniany BEZ JAKIEJKOLWIEK GWARANCJI. Niniejszy program jest wolnym oprogramowaniem: możesz go swobodnie rozpowszechniać na warunkach licencji GNU General Public License w wersji 2 lub późniejszej.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopiuj do schowka</string>
+  <string name="SystemLanguage">Język systemowy</string>
   <string name="fingerprint_description">Uwierzytelnij, aby kontynuować</string>
   <string name="fingerprint_fatal">Nie można skonfigurować odblokowywania biometrycznego:</string>
   <string name="fingerprint_not_recognized">Uwierzytelnianie biometryczne nie powiodło się. Spróbuj ponownie</string>
@@ -290,6 +292,8 @@
   <string name="RememberRecentFiles_summary">Zapamiętaj ostatnio otwieraną bazę danych i pokazuj ją na ekranie wyboru.</string>
   <string name="NoDalVerification_title">Brak weryfikacji DAL</string>
   <string name="NoDalVerification_summary">Wyłącza sprawdzanie zgodności domeny i pakietu aplikacji</string>
+  <string name="InlineSuggestions_title">Zintegruj z klawiaturą</string>
+  <string name="InlineSuggestions_summary">Pokazuje sugestie autouzupełniania jako opcje wbudowane w klawiaturze (jeśli jest obsługiwana przez metodę wprowadzania)</string>
   <string name="kp2a_findUrl">Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
   <string name="search_options">Opcje</string>
