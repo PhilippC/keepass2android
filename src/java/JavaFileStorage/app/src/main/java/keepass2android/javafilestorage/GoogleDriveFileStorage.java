@@ -275,18 +275,13 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public String getCurrentFileVersionFast(String path) {
-
-		try {
-			GDrivePath gdrivePath = new GDrivePath(path);
-			return getFileForPath(gdrivePath, getDriveService(gdrivePath.getAccount())).getMd5Checksum();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return null;
 	}
 
 	@Override
 	public InputStream openFileForRead(String path) throws Exception {
+
+		throwAppBlocked();
 
 		logDebug("openFileForRead...");
 		GDrivePath gdrivePath = new GDrivePath(path);
@@ -305,9 +300,14 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 	}
 
-	
+	private void throwAppBlocked() throws Exception {
+		throw new Exception("Built-in Google Drive access is currently blocked by Google. Please use Open file > System file picker > Google Drive.");
+	}
+
+
 	private File getFileForPath(GDrivePath path, Drive driveService)
-			throws IOException, InvalidPathException {
+			throws Exception {
+		throwAppBlocked();
 		logDebug("getFileForPath... ");
 		try
 		{
@@ -334,7 +334,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 	}
 
-	private InputStream getFileContent(File driveFile, Drive driveService) throws IOException {
+	private InputStream getFileContent(File driveFile, Drive driveService) throws Exception {
+		throwAppBlocked();
 		if (driveFile.getDownloadUrl() != null && driveFile.getDownloadUrl().length() > 0) {
 
 			GenericUrl downloadUrl = new GenericUrl(driveFile.getDownloadUrl());
@@ -352,6 +353,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void uploadFile(String path, byte[] data, boolean writeTransactional)
 			throws Exception {
+		throwAppBlocked();
 		logDebug("upload file...");		
 		try
 		{
@@ -373,6 +375,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public String createFolder(String parentPath, String newDirName) throws Exception {
+		throwAppBlocked();
 		File body = new File();
 		body.setTitle(newDirName);
 		body.setMimeType(FOLDER_MIME_TYPE);
@@ -398,6 +401,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public String createFilePath(String parentPath, String newFileName) throws Exception {
+		throwAppBlocked();
 		File body = new File();
 		body.setTitle(newFileName);
 		GDrivePath parentGdrivePath = new GDrivePath(parentPath);
@@ -420,6 +424,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	@Override
 	public List<FileEntry> listFiles(String parentPath) throws Exception {
+		throwAppBlocked();
 		GDrivePath gdrivePath = new GDrivePath(parentPath);
 		String parentId = gdrivePath.getGDriveId();
 
@@ -507,7 +512,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public FileEntry getFileEntry(String filename) throws Exception {
-		
+		throwAppBlocked();
 		try
 		{
 			logDebug("getFileEntry "+filename);
@@ -527,7 +532,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public void delete(String path) throws Exception {
-		
+		throwAppBlocked();
 		GDrivePath gdrivePath = new GDrivePath(path);
 		Drive driveService = getDriveService(gdrivePath.getAccount());
 		try
@@ -698,7 +703,8 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	}
 	
 	private void initializeAccount(final Context appContext,
-			final String accountName) throws IOException {
+			final String accountName) throws Exception {
+		throwAppBlocked();
 		logDebug("Init account for " + accountName);
 		if (!mAccountData.containsKey(accountName))
 		{
@@ -749,6 +755,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException, Throwable 
 	{
+		throwAppBlocked();
 		try
 		{
 			logDebug("prepareFileUsage " + path + "...");
