@@ -31,6 +31,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
   <string name="NavigationToGroupCompleted_message">Nyt näytettävä ryhmä on: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Poista automaattinen täyttö %1$s: ltä</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Näyttää luettelon sovelluksista ja sivustoista, joille AutoFill on poistettu käytöstä</string>
+  <string name="OfferSaveCredentials_summary">Jos käytössä, Android kysyy haluatko tallentaa käyttäjätunnukset sen jälkeen, kun olet syöttänyt tiedot automaattisesti täytettäviin kenttiin.</string>
+  <string name="OfferSaveCredentials_title">Tarjoa käyttäjätunnusten tallentamista</string>
   <string name="ShowGroupInEntry_title">Näytä ryhmän nimi merkinnässä</string>
   <string name="unknown_uri_scheme">Keepass2Android ei voi käsitellä saatua URI-osoitetta %1$s. Ota yhteyttä kehittäjään!</string>
   <string name="Entry_singular">Yksi merkintä</string>
@@ -47,6 +50,7 @@
   <string name="fingerprint_prefs">Sormenjälkitunnistus</string>
   <string name="import_db_prefs">Tuo tietokanta sisäiseen kansioon</string>
   <string name="import_keyfile_prefs">Tuo avaintiedosto sisäiseen kansioon</string>
+  <string name="export_keyfile_prefs">Vie avaintiedosto sisäisestä kansiosta</string>
   <string name="keyboardswitch_prefs">Näppäimistön vaihtaminen</string>
   <string name="OnlyAvailableForLocalFiles">Saatavilla vain paikallisille tiedostoille.</string>
   <string name="FileIsInInternalDirectory">Tiedosto on tallennettu sisäiseen hakemistoon.</string>
