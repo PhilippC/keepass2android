@@ -500,7 +500,7 @@
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Tento druh úložiště si vyžádá pouze přístup do složky \"Applications/Keepass2Android\". Chcete-li použít existující databázi vašeho PCloud účtu, ujistěte se, že soubor je uložen v této složce.</string>
+  <string name="filestoragehelp_pcloud">Tento typ úložiště si vyžaduje přístup pouze do pCloudové složky \"Applications/Keepass2Android\". Chcete-li použít existující databázi ze svého pCloud účtu, ujistěte se, že je soubor umístěn v této složce.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Všechny soubory a sdílené soubory</string>
@@ -660,6 +660,7 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
   <string-array name="ChangeLog_1_09a">
     <item>Přidána podpora pro soubory KDBX 4.1 zavedené v KeePass 2.48</item>
     <item>Přidána možnost konfigurovat TOTP nastavení pro položky</item>
@@ -667,8 +668,8 @@
     <item>Vylepšení automatického doplňování (opraveny vyskakovací okna v Chrome, vylepšena podpora subdomén)</item>
     <item>Vylepšení implementace OneDrive: odstranění limitu velikosti, žádné zbytečné požadavky na ověření</item>
     <item>Přidána možnost výběru světlého/tmavého vzhledu z nastavení systému, včetně nočního režimu, vyžaduje Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Aktualizována implementace Dropboxu pro podporu nové ověřovací metody.</item>
+    <item>Nově je kvůli zvýšení zabezpečení zneplatněno nastavení odemykání otiskem prstu po přidání otisku prstu do nastavení systému.</item>
     <item>Allow to open files through system file picker, ignoring the read-only flag</item>
     <item>Allow to start moving entries from the entry view menu</item>
   </string-array>

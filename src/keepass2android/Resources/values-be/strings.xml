@@ -500,7 +500,6 @@
   <string name="filestoragehelp_dropboxKP2A">Калі вы хочаце даць KP2A доступ да ўсяго сховішча Dropbox, абярыце гэты параметр. Праграма будзе запытваць доступ толькі да каталога Apps/Keepass2Android. Гэта асабліва пасуе пры стварэнні новай базы даных. Калі ў вас ужо ёсць база даных, абярыце гэты параметр, каб стварыць каталог, перамясціце ў яго файл базы даных, а пасля зноў абярыце гэты параметр, каб адкрыць файл.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Для гэтага тыпу захоўвання патрэбны доступ толькі да каталога \"Applications/Keepass2Android\". Калі вы хочаце выкарыстоўваць базу даных з акаўнта PCloud, пераканайцеся, што файл размешчаны ў гэтым каталозе.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Усе файлы і агульныя файлы</string>
@@ -661,6 +660,7 @@
   <string name="EntryChannel_name">Апавяшчэнне пра запіс</string>
   <string name="EntryChannel_desc">Апавяшчэнне для зручнага доступу да абранага запісу.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыць базу даных пасля трох няўдалых спробаў разблакавання з дапамогай біяметрычных даных.</string>
+  <string name="WarnFingerprintInvalidated">Увага! Android можа ануляваць аўтэнтыфікацыю з дапамогай біяметрычных даных. Напрыклад, калі вы дададзіце новы адбітак пальца ў сістэмных наладах. Пераканайцеся, што ведаеце, як разблакаваць свой галоўны пароль.</string>
   <string-array name="ChangeLog_1_09a">
     <item>Дададзена падтрымка фармату KDBX 4.1 з KeePass 2.48</item>
     <item>Дададзены дыялог наладаў TOTP для запісаў</item>
@@ -668,10 +668,10 @@
     <item>Палепшана аўтазапаўненне (выпраўлена выплыўное акно ў Chrome, палепшана падтрымка паддаменаў)</item>
     <item>Палепшана рэалізацыя OneDrive: больш няма абмежаванняў па памеры і лішніх запытаў аўтэнтыфікацыі</item>
     <item>З сістэмных наладаў дададзены параметр выбару цёмнай / светлай тэмы, уключаючы начныя планы, Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
-    <item>Allow to start moving entries from the entry view menu</item>
+    <item>Абноўлена ўзаемадзеянне з Dropbox для падтрымкі новага спосабу аўтэнтыфікацыі.</item>
+    <item>Пасля дадання адбітка пальца ў сістэмныя налады нядаўна наладжанае разблакаванне з дапамогай адбітка пальца стане непрыдатным.</item>
+    <item>Дазволена адкрыццё файлаў праз сістэмны сродак выбару файлаў, не зважаючы на адзнаку \"толькі для чытання\"</item>
+    <item>Дазволена перамяшчэнне запісаў з меню прагляду запісаў</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Дададзена падтрымка новага фармату файлаў ключоў з Keepass 2.47</item>

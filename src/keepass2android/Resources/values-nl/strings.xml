@@ -239,11 +239,25 @@
   <string name="sort_moddate">Sorteren op wijzigingsdatum</string>
   <string name="sort_default">Standaardvolgorde behouden</string>
   <string name="special">Speciaal</string>
+  <string name="special_extended">Uitgebreid speciaal</string>
+  <string name="at_least_one_from_each_group">Ten minste één van elke groep</string>
+  <string name="exclude_lookalike">Vergelijkbare tekens uitsluiten</string>
+  <string name="password_generation_profile">Profiel</string>
+  <string name="save_password_generation_profile_text">Geef de naam van het profiel. Geef een bestaande naam om een profiel te overschrijven.</string>
+  <string name="hint_wordcount">Aantal woorden in wachtwoordzin</string>
+  <string name="hint_wordseparator">Woordscheidingsteken</string>
   <string-array name="PasswordGeneratorModes">
     <item>Wachtwoord</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Wachtwoordzin</item>
+    <item>Wachtwoordzin + Wachtwoord</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>kleine letters</item>
+    <item>HOOFDLETTERS</item>
+    <item>Eerste Letter Hoofdletters</item>
+  </string-array>
+  <string name="custom_settings">Aangepaste instellingen</string>
+  <string name="passphrase_capitalization">Wachtwoordzin letters</string>
   <string name="search_hint">Zoeken</string>
   <string name="search_results">Zoekresultaten</string>
   <string name="search_in">Zoeken in</string>
@@ -321,6 +335,13 @@
   <string name="protection">Beveiligd veld</string>
   <string name="add_binary">Bestandsbijlage toevoegen...</string>
   <string name="add_extra_string">Toevoegen extra waarde</string>
+  <string name="configure_totp">TOTP configureren</string>
+  <string name="totp_secret_key">Geheime sleutel</string>
+  <string name="totp_encoding_rfc6238">Standaard RFC6238 token instellingen</string>
+  <string name="totp_encoding_steam">Steam token instellingen</string>
+  <string name="totp_encoding_custom">Aangepaste token instellingen</string>
+  <string name="totp_time_step">Tijdstap</string>
+  <string name="totp_length">Lengte van de code</string>
   <string name="delete_extra_string">Extra waarde verwijderen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: vergrendeld. Snel Openen ingeschakeld.</string>
   <string name="database_loaded_unlocked">%1$s: Ontgrendeld.</string>
@@ -479,7 +500,7 @@
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de map \"Applicaties/Keepass2Android\". Als je een bestaande database wil gebruiken uit een PCloud account, zorg er dan voor dat het bestand in die map wordt geplaatst.</string>
+  <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de pCloud map \"Applications/Keepass2Android\". Als je een bestaande database uit jouw PCloud account wil gebruiken, zorg dan dat het bestand in die pCloud map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle bestanden en gedeelde bestanden</string>
@@ -612,9 +633,9 @@
   <string name="CorruptDatabaseHelp">    Het bestand is beschadigd. \n
     Dit zijn enkele aanwijzingen om het probleem te diagnosticeren:\n
 
-    • Als je het bestand via USB (MTP-modus) hebt gekopieerd: probeer je het opnieuw via een programma zoals MyPhoneExplorer. MTP kapt namelijk in sommige gevallen bestanden af.\n
-    • Als je het bestand ook niet op jouw PC kunt openen dan is het aannemelijk dat het bestand daadwerkelijk beschadigd is. Gebruik in dat geval een back-up van de database. Als je vermoedt dat Keepass2Android het bestand heeft beschadigd neem dan alsjeblieft contact op.\n
-    • Als je het bestand wel kunt openen op jouw PC, neem dan contact op. Wellicht kun je het bestand met andere instellingen opslaan op jouw PC (bv niet gezipt) en het daarna openen in Keepass2Android.
+    • Als je het bestand via USB (MTP-modus) hebt gekopieerd: probeer je het opnieuw via een programma zoals MyPhoneExplorer. MTP verkort bestanden in sommige gevallen.\n
+    • Als je het bestand ook niet op jouw PC kunt openen dan is het aannemelijk dat het bestand daadwerkelijk beschadigd is. Gebruik in dat geval een back-up van de database. Als je vermoedt dat Keepass2Android het bestand heeft beschadigd neem dan alsjeblieft contact op met het support team.\n
+    • Als je het bestand wel kunt openen op jouw PC, neem dan contact op met het support team. Wellicht kun je het bestand met andere instellingen opslaan op jouw PC (bv niet gezipt) en het daarna openen in Keepass2Android.
 
   </string>
   <string name="open_other_db">Een andere database openen…</string>
@@ -641,6 +662,19 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
+  <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt ongeldig gemaakt door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van uw apparaat. Zorg ervoor dat u altijd weet hoe u moet ontgrendelen met uw hoofdwachtwoord!</string>
+  <string-array name="ChangeLog_1_09a">
+    <item>Ondersteuning toegevoegd voor KDBX 4.1, de bestandsindeling geintroduceerd in KeePass 2.48</item>
+    <item>Dialoog toegevoegd voor het configureren van TOTP instellingen</item>
+    <item>Wachtwoordgenerator verbetert: wachtwoordzinnen toegevoegd, meer opties, profiel- en wachtwoordsterkte inschatting</item>
+    <item>Verbeteringen van Autofill (pop-up werd niet weergegeven in Chrome, betere subdomein ondersteuning)</item>
+    <item>Verbeteringen in de OneDrive implementatie: grootte limiet verwijderd, geen overbodige authenticatieverzoeken meer</item>
+    <item>Optie toegevoegd om licht/donker ontwerp te selecteren uit systeeminstellingen inclusief nachtplannen, vereist Android 10+</item>
+    <item>Update de Dropbox-implementatie om de nieuwe verificatiemethode te ondersteunen.</item>
+    <item>Nieuw ingestelde vingerafdrukontgrendeling wordt ongeldig na het toevoegen van een vingerafdruk in systeeminstellingen voor meer veiligheid.</item>
+    <item>Toestaan om bestanden te openen via de systeem bestandskiezer, waarbij de alleen-lezen vlag genegeerd wordt</item>
+    <item>Sta toe om items te verplaatsen vanuit het item weergave menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Ondersteuning toevoegen voor nieuwe sleutelbestandsindeling ingevoerd in Keepass 2.47</item>
     <item>Voeg ondersteuning voor Argon2id toe als sleutel afleidingsfunctie</item>

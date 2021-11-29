@@ -830,6 +830,8 @@
     <item>Fix disappearing autofill prompt in Firefox</item>
     <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
     <item>Allow to change app language in settings</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
 
 
