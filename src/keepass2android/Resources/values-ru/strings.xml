@@ -290,6 +290,8 @@
   <string name="RememberRecentFiles_summary">Запоминать недавно открытые базы и отображать их на экране открытия базы данных.</string>
   <string name="NoDalVerification_title">Нет подтверждения DAL</string>
   <string name="NoDalVerification_summary">Отключает проверку, если домен соответствует приложению</string>
+  <string name="InlineSuggestions_title">Интеграция с клавиатурой</string>
+  <string name="requires_android11">Требуется Android 11 или новее</string>
   <string name="kp2a_findUrl">Вспомнить пароль</string>
   <string name="excludeExpiredEntries">Исключить просроченные записи</string>
   <string name="search_options">Параметры</string>
@@ -499,6 +501,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragehelp_gdrive">Обратите внимание: я запросил проверку приложения в Google, но уже несколько месяцев нет ответа. Если вы видите сообщение о том, что приложение заблокировано, потому что оно не проверено, используйте браузер файлов Android - Google Диск вместо этого параметра.
+Если вы видите сообщение о том, что приложение заблокировано, потому что оно не верифицировано, используйте менеджер файлов Android - Google Drive вместо этого варианта.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -660,6 +664,13 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Исправлена ошибка с автозаполнением в Firefox</item>
+    <item>Интегрировать подсказки автозаполнения с помощью клавиатуры (требуется Android 11+)</item>
+    <item>Allow to change app language in settings</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Добавлена поддержка формата файлов KDBX 4.1, представленного в KeePass 2.48</item>
     <item>Добавлен диалог настройки параметров TOTP для записей</item>
