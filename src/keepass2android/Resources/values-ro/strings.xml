@@ -216,6 +216,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
   <string name="AutoReturnFromQuery_title">Revino în automat din ecranul de interogare</string>
+  <string name="AutoReturnFromQuery_summary">Când căutați o intrare pentru o aplicație sau un sit în linie: reveniți automat de pe ecranul de interogare dacă există o singură înregistrare potrivită în baza de date.</string>
   <string name="KeyDerivFunc">Funcția de derivare a cheii</string>
   <string name="rounds">Etape de criptare</string>
   <string name="rounds_explaination">Mai multe etape de criptare oferă protecţie împotriva atacurilor prin forță brută, dar pot încetini semnificativ încărcarea şi salvarea.</string>
@@ -227,6 +228,7 @@
   <string name="saving_database">Se salvează baza de date…</string>
   <string name="exporting_database">Se exportă baza de date…</string>
   <string name="export_database_successful">Baza de date exportată cu succes!</string>
+  <string name="export_keyfile_successful">Fișier cheie exportat cu succes!</string>
   <string name="space">Spaţiu</string>
   <string name="search_label">Căutare</string>
   <string name="show_password">Arată parola</string>
@@ -236,11 +238,25 @@
   <string name="sort_moddate">Sortează după data modificării</string>
   <string name="sort_default">Păstrează ordinea implicită</string>
   <string name="special">Special</string>
+  <string name="special_extended">Special extins</string>
+  <string name="at_least_one_from_each_group">Cel puțin unul din fiecare grup</string>
+  <string name="exclude_lookalike">Exclude caractere asemănătoare</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Introduceți numele profilului pentru a fi salvat. Introduceți un nume existent pentru suprascrie.</string>
+  <string name="hint_wordcount">Numărul de cuvinte din expresia de acces</string>
+  <string name="hint_wordseparator">Separator cuvinte</string>
   <string-array name="PasswordGeneratorModes">
     <item>Parolă</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Expresie de acces</item>
+    <item>Frasă de acces + parolă</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>litere mici</item>
+    <item>LITERE MARI</item>
+    <item>Prima Literă Majusculă</item>
+  </string-array>
+  <string name="custom_settings">Setări personalizate</string>
+  <string name="passphrase_capitalization">Capitalizare frază de acces</string>
   <string name="search_hint">Găsește</string>
   <string name="search_results">Rezultate căutare</string>
   <string name="search_in">Căutare în</string>
@@ -250,6 +266,7 @@
   <string name="twofish">Twofish</string>
   <string name="underline">Subliniere</string>
   <string name="unsupported_db_version">Versiunea bazei de date nesuportată.</string>
+  <string name="uppercase">Litere mari</string>
   <string name="warning_read_only">Cardul sd este momentan read-only. Nu veți putea salva modificările la baza de date.</string>
   <string name="warning_unmounted">Cardul sd nu este montat momentan. Nu veți putea încărca sau crea baza de date.</string>
   <string name="version_label">Versiune</string>
@@ -272,6 +289,9 @@
   <string name="RememberRecentFiles_summary">Reţine baze de date deschise recent si afişează-le în ecranul de deschidere a bazelor de date.</string>
   <string name="NoDalVerification_title">Fără verificare DAL</string>
   <string name="NoDalVerification_summary">Dezactivează verificarea dacă domeniul și pachetul aplicației se potrivesc</string>
+  <string name="InlineSuggestions_title">Integrează cu tastatura</string>
+  <string name="InlineSuggestions_summary">Arată sugestiile de autocompletare ca opțiuni integrate în tastatură (dacă sunt acceptate de metoda de introducere)</string>
+  <string name="requires_android11">Necesită Android 11 sau mai recent</string>
   <string name="kp2a_findUrl">Găsește parola</string>
   <string name="excludeExpiredEntries">Exclude înregistrările expirate</string>
   <string name="search_options">Opţiuni</string>
@@ -284,6 +304,7 @@
   <string name="enter_filename_details_create_import">Fişierul de importat va fi selectat la pasul următor.</string>
   <string name="enable_quickunlock">Activare QuickUnlock</string>
   <string name="QuickUnlock_label">Introduceţi ultimele %1$d caractere ale parolei dvs.:</string>
+  <string name="QuickUnlock_label_secure">Introduceți codul QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Închide baza de date</string>
   <string name="QuickUnlockDefaultEnabled_title">Activează QuickUnlock implicit</string>
@@ -296,11 +317,14 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock necesită o notificare pentru a funcționa corect. Selectează această opțiune pentru a afișa o notificare fără icoană.</string>
   <string name="QuickUnlockLength_title">Lungimea cheii QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numărul maxim de caractere utilizate ca şi parolă QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Ascunde lungimea QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Dacă este activat, lungimea codului QuickUnlock nu este afișat pe ecranul QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock a eşuat: parolă incorectă!</string>
   <string name="SaveAttachmentDialog_title">Salvaţi ataşament</string>
   <string name="SaveAttachmentDialog_text">Selectaţi unde se salvează ataşamentul.</string>
   <string name="SaveAttachmentDialog_save">Exportă ca fișier...</string>
   <string name="SaveAttachmentDialog_open">Salvează în cache și deschide</string>
+  <string name="ShowAttachedImage">Arată cu vizualizatorul intern de imagini</string>
   <string name="SaveAttachment_doneMessage">Fișierul salvat ca %1$s.</string>
   <string name="SaveAttachment_Failed">Nu s-a putut salva atașamentul la %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Memorează textul căutat?</string>
@@ -313,6 +337,9 @@
   <string name="protection">Câmp protejat</string>
   <string name="add_binary">Ataşează fişier...</string>
   <string name="add_extra_string">Adaugă câmp adiţional</string>
+  <string name="totp_secret_key">Cheie secretă</string>
+  <string name="totp_time_step">Pas temporal</string>
+  <string name="totp_length">Lungime cod</string>
   <string name="delete_extra_string">Şterge câmp adiţional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Blocat. QuickUnlock activat.</string>
   <string name="database_loaded_unlocked">%1$s: Deblocat.</string>
@@ -327,15 +354,24 @@
   <string name="LockWhenNavigateBack_summary">Blochează baza de date când părăsiți aplicația apăsând butonul înapoi.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Utilizați tastatura încorporată în Keepass2Android</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Dacă nu aveți încredere în furnizorul de tastatură standard, bifați această opțiune pentru a utiliza tastatura încorporată atunci când introduceți parola principală sau editați intrările.</string>
+  <string name="ActivateSearchViewOnStart_title">Activează câmpul de căutare la pornire</string>
+  <string name="ActivateSearchViewOnStart_summary">Activează câmpul de căutare în vizualizarea grupului după deblocare sau în timpul căutării unei intrări</string>
   <string name="NoDonateOption_title">Ascunde opțiunea de donație</string>
   <string name="NoDonateOption_summary">Această setare este pentru donatori. Este valabilă doar după ce folosiți Keepass2Android o vreme.</string>
   <string name="NoDonateOption_question">Fără donații, această aplicație nu ar exista și nu ar fi îmbunătățită continuu! Dacă nu ai donat încă, te rugăm să iei în considerare acest lucru acum</string>
   <string name="NoDonationReminder_title">Nu mai cere niciodata donație</string>
   <string name="NoDonationReminder_summary">N-o să-ți dau niciun ban sau am donat deja. Nu mai cere donație, nici măcar de ziua autorului.</string>
   <string name="UseOfflineCache_title">Caching bază de date</string>
+  <string name="UseOfflineCache_summary">Păstrați o copie a fişierelor bazei de date în memoria de serviciu a aplicației. Această permite utilizarea bazelor de date chiar şi în timp ce fişierul bazei de date nu este accesibil.</string>
+  <string name="CreateBackups_title">Copii de rezervă locale</string>
+  <string name="CreateBackups_summary">Creaţi o copie de rezervă locală după încărcarea cu succes a unei baze de date.</string>
+  <string name="UpdatingBackup">Actualizare copiei de rezervă locală…</string>
+  <string name="LocalBackupOf">Copie de rezervă locală din %1$s</string>
+  <string name="show_local_backups">Arată copiile de rezervă locale</string>
   <string name="AcceptAllServerCertificates_title">Certificate SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definește comportamentul atunci când validarea certificatului eșuează. Notă: puteţi instala certificate pe aparatul vostru dacă validarea eşuează!</string>
   <string name="ClearOfflineCache_title">Goliţi cache-ul?</string>
+  <string name="ClearOfflineCache_question">Această acțiune va şterge toate bazele de date din memoria de serviciu. Orice modificări efectuate în timp ce nu aveți acces la baza de date originală și care nu au fost încă sincronizate vor fi pierdute! Continuați?</string>
   <string name="CheckForFileChangesOnSave_title">Verifică modificări</string>
   <string name="CheckForFileChangesOnSave_summary">Verifică dacă nu s-a modificat extern fişierul înainte de a salva.</string>
   <string name="CheckForDuplicateUuids_title">Verifică dubluri UUID</string>
@@ -344,6 +380,10 @@
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă prin bara de notificări şi clipboard. Atenţie la \"password sniffers\"!</string>
   <string name="ShowSeparateNotifications_title">Separă notificările</string>
   <string name="ShowSeparateNotifications_summary">Arată notificări separate pentru copierea numelui utilizatorului și a parolei în clipboard și activarea tastaturii.</string>
+  <string name="AccServiceAutoFill_prefs">Serviciu de accesibilitate de completare automată</string>
+  <string name="AutoFill_prefs">Serviciu de completare automată</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificare tastatură KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Oferă întreaga înregistrare folosind tastatura KP2A (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Comută tastatura</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Comută automat tastatura doar după căutare</string>
