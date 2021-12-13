@@ -677,21 +677,21 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Generatore di password migliorato: aggiunto supporto alle frasi segrete, più opzioni, profili e una stima della robustezza della password</item>
     <item>Miglioramenti al riempimento automatico (popup fisso che non mostra in Chrome, migliore supporto ai sottodomini)</item>
     <item>Miglioramenti nell\'implementazione di OneDrive: nessun limite di dimensione, nessuna richiesta di autenticazione superflua</item>
-    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
-    <item>Update Dropbox implementation to support new authentication method.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
-    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Aggiunta l\'opzione per selezionare il motivo chiaro/scuro dalle impostazioni di sistema, inclusi i piani notturni; richiede Android 10+</item>
+    <item>Aggiorna l\'implementazione Dropbox per supportare il nuovo metodo di autenticazione.</item>
+    <item>La nuova configurazione dello sblocco di impronte digitali sarà invalidata dopo aver aggiunto un\'impronta digitale nelle impostazioni di sistema per una maggiore sicurezza.</item>
+    <item>Consenti di aprire gli archivi attraverso il gestore di archivi di sistema, ignorando l\'indicatore di sola lettura</item>
     <item>Allow to start moving entries from the entry view menu</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
-    <item>Add support for new key file format introduced in Keepass 2.47</item>
-    <item>Add support for Argon2id as key derivation function</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Aggiunto il supporto per il nuovo formato di filza chiave introdotto in Keepass 2.47</item>
+    <item>Aggiunto il supporto per Argon2id come funzione di derivazione delle chiavi</item>
+    <item>Migliorata la compatibilità di auto completamento con Firefox e Chrome</item>
+    <item>Migliorato il supporto per le voci TOTP da programmi da scrivania</item>
     <item>Aggiornato l\'SDK pCloud per risolvere un problema di autenticazione</item>
     <item>Aggiornato Jsch alla versione 0.1.55</item>
-    <item>Add menu to database selection screen</item>
-    <item>Allow to export imported keyfiles</item>
+    <item>Aggiunto menu alla schermata di selezione della base dati</item>
+    <item>Permetti di esportare l\'archivio chiave importato</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Non viene più memorizzato il package name delle app nel campo URL</item>
