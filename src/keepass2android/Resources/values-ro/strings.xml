@@ -81,6 +81,7 @@
   <string name="disclaimer_formal">Keepass2Android este oferit FĂRĂ NICI O GARANȚIE; Acesta este software gratuit și sunteți bine venit să îl redistribuiți respectând condițiile GPL versiunea 2 sau mai nouă.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiază în clipboard</string>
+  <string name="SystemLanguage">Limba sistemului</string>
   <string name="fingerprint_description">Vă rugăm să vă autentificați pentru a continua</string>
   <string name="fingerprint_fatal">Nu se poate seta deblocarea prin amprentă:</string>
   <string name="fingerprint_not_recognized">Autentificare biometrică eșuată. Încearcă din nou</string>
@@ -199,6 +200,7 @@
   <string name="no_keys">Nu sunt înregistrări în baza de date sau grup.</string>
   <string name="no_results">Nici un rezultat de căutare</string>
   <string name="no_url_handler">Niciun handler pentru acest URL.</string>
+  <string name="open_recent">Deschideți baza de date recentă (apăsați pentru a deschide)</string>
   <string name="omitbackup_title">Nu căuta înregistrări în backup şi coşul de gunoi</string>
   <string name="omitbackup_summary">Omite grupurile \'Backup\' şi \'Coş de gunoi\' din toate căutările</string>
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
@@ -213,6 +215,7 @@
   <string name="edit">Editare</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Revino în automat din ecranul de interogare</string>
   <string name="KeyDerivFunc">Funcția de derivare a cheii</string>
   <string name="rounds">Etape de criptare</string>
   <string name="rounds_explaination">Mai multe etape de criptare oferă protecţie împotriva atacurilor prin forță brută, dar pot încetini semnificativ încărcarea şi salvarea.</string>
