@@ -71,7 +71,7 @@
   <string name="copy_password">複製密碼到剪貼簿</string>
   <string name="copy_totp">複製 TOTP 到剪貼簿</string>
   <string name="available_through_keyboard">可通過 KP2A 鍵盤取得項目</string>
-  <string name="app_language_pref_title">應用程式語言</string>
+  <string name="app_language_pref_title">應用語言</string>
   <string name="entry_is_available">可用</string>
   <string name="not_possible_im_picker">無法打開選擇輸入法對話方塊。請手動啟動鍵盤。</string>
   <string name="please_activate_keyboard">請在系統設定中啟用 Keepass2Android 鍵盤。</string>
@@ -241,11 +241,25 @@
   <string name="sort_moddate">按修改日期排序</string>
   <string name="sort_default">保持預設的順序</string>
   <string name="special">特殊</string>
+  <string name="special_extended">擴展特殊</string>
+  <string name="at_least_one_from_each_group">每群組至少一個</string>
+  <string name="exclude_lookalike">排除外觀相似的字符</string>
+  <string name="password_generation_profile">配置</string>
+  <string name="save_password_generation_profile_text">輸入要保存的配置文件的名稱。輸入一個現有的名稱以覆蓋。 </string>
+  <string name="hint_wordcount">密碼短語詞數</string>
+  <string name="hint_wordseparator">單詞分隔符</string>
   <string-array name="PasswordGeneratorModes">
     <item>密碼</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>密碼短語</item>
+    <item>密碼短語 + 密碼</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>小寫字母</item>
+    <item>大寫字母</item>
+    <item>首字母大寫</item>
+  </string-array>
+  <string name="custom_settings">自訂設定</string>
+  <string name="passphrase_capitalization">密碼短語大寫</string>
   <string name="search_hint">尋找內容</string>
   <string name="search_results">搜尋結果</string>
   <string name="search_in">搜尋條件</string>
@@ -278,6 +292,9 @@
   <string name="RememberRecentFiles_summary">記得最近打開的資料庫，並顯示在打開資料庫的螢幕中。</string>
   <string name="NoDalVerification_title">無 DAL 驗證</string>
   <string name="NoDalVerification_summary">不檢查域名是否符合應用程式包裹</string>
+  <string name="InlineSuggestions_title">集成到鍵盤</string>
+  <string name="InlineSuggestions_summary">將自動填充建議顯示為鍵盤中的內聯選項(如果輸入法支持的話) </string>
+  <string name="requires_android11">需要Android 11或更高版本</string>
   <string name="kp2a_findUrl">查找密碼</string>
   <string name="excludeExpiredEntries">排除過期的項目</string>
   <string name="search_options">選項</string>
@@ -323,6 +340,13 @@
   <string name="protection">受保護的欄位</string>
   <string name="add_binary">新增附件檔案</string>
   <string name="add_extra_string">新增額外字串</string>
+  <string name="configure_totp">配置 TOTP</string>
+  <string name="totp_secret_key">密鑰</string>
+  <string name="totp_encoding_rfc6238">默認 RFC6238 令牌設定 </string>
+  <string name="totp_encoding_steam">Steam 令牌設定</string>
+  <string name="totp_encoding_custom">自訂令牌設定</string>
+  <string name="totp_time_step">時間步長</string>
+  <string name="totp_length">代碼長度</string>
   <string name="delete_extra_string">刪除額外字串</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: 已鎖定。已啟用 QuickUnlock。</string>
   <string name="database_loaded_unlocked">%1$s: 解鎖。</string>
@@ -385,6 +409,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android 無法存取這檔案。檔案或其存取權可能被移除了，請重新開啟它，如「變更資料庫」。</string>
   <string name="PreloadDatabaseEnabled_title">預載入資料庫檔案</string>
   <string name="PreloadDatabaseEnabled_summary">啟用背景載入、或在輸入密碼時下載資料庫檔案。</string>
+  <string name="SyncAfterQuickUnlock_title">QuickUnlock後同步</string>
+  <string name="SyncAfterQuickUnlock_summary">使用 QuickUnlock 解鎖後將本地數據庫與遠程文件同步。</string>
   <string name="AskOverwriteBinary">是否以相同名稱覆蓋現有檔案？</string>
   <string name="AskOverwriteBinary_title">覆蓋現有檔案？</string>
   <string name="AskOverwriteBinary_yes">覆寫</string>
@@ -481,6 +507,7 @@
   <string name="filestoragehelp_dropboxKP2A">使用此選項只請求「應用程式/Keepass2Android」 路徑的存取權，而非授予 KP2A 存取 Dropbox 全部空間的權限。這選項更適合新建資料庫。如果要存取現有資料庫，按一下此選項建立該資料夾，然後 (從您的個人電腦) 將資料庫檔案放在資料夾內，再點擊此選項打開檔案。</string>
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
   <string name="filestoragename_pcloud">pCloud</string>
+  <string name="filestoragehelp_pcloud">這個儲存類型只會請求存取 pCloud「Applications/Keepass2Android」資料夾。要使用你 pCloud 賬戶裏現有的資料庫，請確保其檔案置於該 pCloud 資料夾。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">所有檔案與已共用檔案</string>
@@ -641,6 +668,26 @@
   <string name="EntryChannel_name">項目通知</string>
   <string name="EntryChannel_desc">簡化所選項目存取流程的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
+  <string name="WarnFingerprintInvalidated">警告!生物識別驗證可能會被Android系統作廢（例如當在你的設備設定中新增一個新的指紋後）。請確保你總是知道如何用你的主密碼解鎖！ </string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Fix disappearing autofill prompt in Firefox</item>
+    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>Allow to change app language in settings</item>
+    <item>新增了QuickUnlock后同步數據庫的選項</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>Added support for KDBX 4.1 file format introduced in KeePass 2.48</item>
+    <item>Added dialog to configure TOTP settings for entries</item>
+    <item>改進密碼生成器：添加了 對 passphrase 的支持、更多選項、配置文件和密碼強度估算</item>
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>支援 Keepass 2.47 新增的金鑰檔案格式</item>
     <item>支援以 Argon2id 作為金鑰衍生函數</item>
