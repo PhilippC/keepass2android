@@ -254,4 +254,5 @@
     <string name="subtype_mode_keyboard">teclado</string>
     <string name="subtype_mode_voice">voz</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>
