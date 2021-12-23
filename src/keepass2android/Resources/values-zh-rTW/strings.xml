@@ -677,10 +677,10 @@
     <item>漏洞修復：保存到 Dropbox 時，不會將文件名改成小寫</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
-    <item>Added support for KDBX 4.1 file format introduced in KeePass 2.48</item>
-    <item>Added dialog to configure TOTP settings for entries</item>
+    <item>新增對 KeePass 2.48 時引入的 KDBX 4.1 檔案格式的支持</item>
+    <item>新增設置項目TOTP的對話方塊</item>
     <item>改進密碼生成器：添加了 對 passphrase 的支持、更多選項、配置文件和密碼強度估算</item>
-    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>改善自動填入 (解決彈出式視窗未在Chrome中顯示的問題，并對子域提供更好的支持)</item>
     <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
     <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
     <item>Update Dropbox implementation to support new authentication method.</item>
