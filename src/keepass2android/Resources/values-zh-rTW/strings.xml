@@ -670,11 +670,11 @@
   <string name="CloseDbAfterFailedAttempts">三次生物識別解鎖失敗後關閉資料庫</string>
   <string name="WarnFingerprintInvalidated">警告!生物識別驗證可能會被Android系統作廢（例如當在你的設備設定中新增一個新的指紋後）。請確保你總是知道如何用你的主密碼解鎖！ </string>
   <string-array name="ChangeLog_1_09b">
-    <item>Fix disappearing autofill prompt in Firefox</item>
-    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
-    <item>Allow to change app language in settings</item>
+    <item>修復了Firefox中自動填入提示消息的問題</item>
+    <item>將自動填入建議提示集成到鍵盤裏 (需要安卓11或更高版本)</item>
+    <item>允許在設置中修改應用程式的語言</item>
     <item>新增了QuickUnlock后同步數據庫的選項</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>漏洞修復：保存到 Dropbox 時，不會將文件名改成小寫</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Added support for KDBX 4.1 file format introduced in KeePass 2.48</item>
