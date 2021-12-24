@@ -242,6 +242,7 @@
   <string name="at_least_one_from_each_group">legalább egy minden csoportból</string>
   <string name="exclude_lookalike">hasonlóan kinéző karakterek kizárása</string>
   <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Írja be a menteni kívánt nevet ,és mentse a profilt.  Írjon be egy  nevet a felülíráshoz.</string>
   <string name="hint_wordcount">Jelmondat szavainak száma</string>
   <string name="hint_wordseparator">Szóelválasztó</string>
   <string-array name="PasswordGeneratorModes">
@@ -287,6 +288,7 @@
   <string name="RememberRecentFiles_summary">A legutóbb megnyitott adatbázisok megjegyzése és megjelenítése az Adatbázis megnyitása képernyőn.</string>
   <string name="NoDalVerification_title">DAL ellenőrzés kikapcsolása</string>
   <string name="NoDalVerification_summary">Eltekintés az internettartomány-alkalmazás összetertozásának ellenőrzésétől</string>
+  <string name="requires_android11">Android 11, vagy újabb verzió szükséges</string>
   <string name="kp2a_findUrl">Jelszó keresése</string>
   <string name="excludeExpiredEntries">Lejárt bejegyzések kizárása</string>
   <string name="search_options">Opciók</string>
