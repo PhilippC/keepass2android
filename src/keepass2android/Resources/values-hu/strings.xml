@@ -71,6 +71,7 @@
   <string name="copy_password">Jelszó másolása a vágólapra</string>
   <string name="copy_totp">TOTP másolása a vágólapra</string>
   <string name="available_through_keyboard">Bejegyzés elérhető KP2A billentyűzeten keresztül</string>
+  <string name="app_language_pref_title">Alkalmazás nyelve</string>
   <string name="entry_is_available">elérhető</string>
   <string name="not_possible_im_picker">Nem lehet megnyitni a dialógust a kiválasztott módszerrel. Aktiválja a billentyűzetet manuálisan.</string>
   <string name="please_activate_keyboard">Kérem engedélyezze a Keepass2Android billentyűzetet a rendszer beállításokban.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Ehhez a programhoz SEMMILYEN GARANCIA NEM JÁR. Ez egy szabad szoftver, GNU General Public License v2 vagy későbbi verziójának feltételei mellett terjeszthető, illetve módosítható.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">Másolás vágólapra</string>
+  <string name="SystemLanguage">Rendszernyelv</string>
   <string name="fingerprint_description">A folytatáshoz azonosítsa önmagát</string>
   <string name="fingerprint_fatal">A biometrikus feloldás beállítása sikertelen:</string>
   <string name="fingerprint_not_recognized">A biometrikus azonosítás sikertelen. Próbálja újra</string>
@@ -335,6 +337,7 @@
   <string name="add_binary">Fájl csatolása...</string>
   <string name="add_extra_string">Kiegészítő szövegmezők hozzáadása</string>
   <string name="totp_secret_key">Titkos kulcs</string>
+  <string name="totp_encoding_custom">Egyéni beállítások</string>
   <string name="totp_time_step">Időlépés</string>
   <string name="totp_length">A kód hossza</string>
   <string name="delete_extra_string">Kiegészítő szövegmezők törlése</string>
@@ -653,6 +656,12 @@
   <string name="EntryChannel_name">Bejegyzésértesítések</string>
   <string name="EntryChannel_desc">Értesítés a jelenleg kiválasztott bejegyzés egyszerűsített eléréséhez.</string>
   <string name="CloseDbAfterFailedAttempts">Az adatbázis zárolása három sikertelen biometrikus feloldási kísérlet után.</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>No longer storing package names of Android apps in the URL field</item>
+    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
+    <item>Update OkHttp to support HTTP/2</item>
+    <item>Mutassa a hiányzó fordításokat</item>
+  </string-array>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
   <string name="ChangeLog">&lt;b&gt;Version 0.6.2&lt;/&gt;
 * Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
