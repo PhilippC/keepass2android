@@ -336,6 +336,7 @@
   <string name="protection">Védett mező</string>
   <string name="add_binary">Fájl csatolása...</string>
   <string name="add_extra_string">Kiegészítő szövegmezők hozzáadása</string>
+  <string name="configure_totp">TOTP beállítása</string>
   <string name="totp_secret_key">Titkos kulcs</string>
   <string name="totp_encoding_custom">Egyéni beállítások</string>
   <string name="totp_time_step">Időlépés</string>
@@ -662,6 +663,12 @@
     <item>Update OkHttp to support HTTP/2</item>
     <item>Mutassa a hiányzó fordításokat</item>
   </string-array>
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Hibajavítások</item>
+  </string-array>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
   <string name="ChangeLog">&lt;b&gt;Version 0.6.2&lt;/&gt;
 * Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
@@ -699,7 +706,7 @@ Kezdeti közösségi kiadás</string>
   <string-array name="design_options">
     <item>Világos</item>
     <item>Sötét</item>
-    <item>System settings</item>
+    <item>Rendszerbeállítások</item>
   </string-array>
   <string name="design_title">Megjelenés</string>
   <string-array name="ftp_encryption_modes">
