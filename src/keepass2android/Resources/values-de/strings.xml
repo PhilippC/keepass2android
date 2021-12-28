@@ -24,7 +24,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout">Zeitsperre für Anwendung</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
-  <string name="show_kill_app">Schließen-Knopf</string>
+  <string name="show_kill_app">Schließen-Button</string>
   <string name="show_kill_app_summary">Zeige eine Schaltfläche auf dem Kennwort-Bildschirm, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
