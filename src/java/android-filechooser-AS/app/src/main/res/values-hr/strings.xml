@@ -55,4 +55,19 @@
     <string name="afc_title_size">Veličina</string>
     <string name="afc_title_sort_by">Poredaj po…</string>
     <string name="afc_yesterday">Jučer</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Odaberi mapu…</item>
+        <item quantity="few">Odaberi mape…</item>
+        <item quantity="other">Odaberi mape…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Odaberi datoteku...</item>
+        <item quantity="few">Odaberi datoteke…</item>
+        <item quantity="other">Odaberi datoteke…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Odaberi datoteku/mapu…</item>
+        <item quantity="few">Odaberi datoteke/mape…</item>
+        <item quantity="other">Odaberi datoteke/mape…</item>
+    </plurals>
 </resources>
