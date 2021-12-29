@@ -167,6 +167,7 @@
   <string name="menu_change_key">Promijeni glavni ključ</string>
   <string name="menu_copy_pass">Kopiraj lozinku</string>
   <string name="menu_copy_user">Kopiraj korisničko ime</string>
+  <string name="menu_copy_totp">Kopiraj TOTP</string>
   <string name="menu_create">Stvori</string>
   <string name="menu_app_settings">Postavke</string>
   <string name="menu_db_settings">Postavke baze podataka</string>
@@ -193,6 +194,7 @@
   <string name="no">Ne</string>
   <string name="no_keys">Nema zapisa u bazi podataka ili grupi.</string>
   <string name="no_results">Nema rezultata pretrage</string>
+  <string name="no_url_handler">Nije moguće obraditi ovaj URL.</string>
   <string name="omitbackup_title">Ne pretražujte smeće i sigurnosne kopije</string>
   <string name="omitbackup_summary">Zapisi o otpadu i sigurnosne kopije nisu uključene u pretraživanje</string>
   <string name="pass_filename">Naziv KeePass datoteke baze podataka</string>
@@ -304,6 +306,10 @@
   <string name="protection">Zaštićeno polje</string>
   <string name="add_binary">Dodaj privitak</string>
   <string name="add_extra_string">Dodajte dodatno polje</string>
+  <string name="totp_encoding_rfc6238">Zadane postavke RFC6238 tokena</string>
+  <string name="totp_encoding_steam">Vlastite postavke Steam tokena</string>
+  <string name="totp_encoding_custom">Vlastite postavke tokena</string>
+  <string name="totp_length">Duljina koda</string>
   <string name="delete_extra_string">Uklonite dodatno polje</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Zaključano. QuickUnlock omogućen.</string>
   <string name="database_loaded_unlocked">%1$s: Otključano.</string>
@@ -322,9 +328,11 @@
   <string name="ActivateSearchViewOnStart_summary">Aktivira polje za pretraživanje u prikazu grupe nakon otključavanja ili kada traži unos</string>
   <string name="NoDonateOption_title">Sakrij opciju donacije</string>
   <string name="NoDonateOption_summary">Ova je postavka namijenjena donatorima. Dostupno je nakon upotrebe Keepass2Android neko vrijeme.</string>
+  <string name="NoDonateOption_question">Bez donacija, ova aplikacija nebi posojala i nebi bila nesprestatno poboljšana! Ako još niste donirali, smatrajte da to uradite sada</string>
   <string name="NoDonationReminder_title">Nikada nemojte tražiti donaciju</string>
   <string name="NoDonationReminder_summary">Neću donirati ni centa ili sam već donirao. Nemoj tražiti donaciju, čak ni autorov rođendan.</string>
   <string name="UseOfflineCache_title">Predmemoriranje baza podataka</string>
+  <string name="UseOfflineCache_summary">Zadržite kopiju datoteka baze podataka u direktoriju predmemorije aplikacije. To omogućuje korištenje baze podataka čak i dok datoteka baze podataka nije dostupna.</string>
   <string name="CreateBackups_title">Lokalna sigurnosna kopija</string>
   <string name="CreateBackups_summary">Izradite lokalnu sigurnosnu kopiju nakon uspješnog učitavanja baze podataka.</string>
   <string name="UpdatingBackup">Ažuriranje lokalne sigurnosne kopije...</string>
@@ -364,6 +372,7 @@
   <string name="DocumentAccessRevoked">Datoteka više nije dostupna za Keepass2Android. Bila je uklonjena ili su dozvole za pristup ukinute. Ponovno otvorite datoteku, npr. pomoću stavke Promjena baze podataka.</string>
   <string name="PreloadDatabaseEnabled_title">Prethodno učitaj datoteku baze podataka</string>
   <string name="PreloadDatabaseEnabled_summary">Pokrenite pozadinsko učitavanje ili preuzimanje datoteke baze podataka tijekom unosa lozinke.</string>
+  <string name="SyncAfterQuickUnlock_title">Sinkroniziraj nakon QuickUnlock</string>
   <string name="AskOverwriteBinary">Želite li prebrisati postojeću datoteku koristeći isti naziv?</string>
   <string name="AskOverwriteBinary_title">Prebrišite postojeću datoteku?</string>
   <string name="AskOverwriteBinary_yes">Prebriši</string>
@@ -425,6 +434,7 @@
   <string name="otp_aux_file">OTP pomoćna datoteka</string>
   <string name="ErrorOcurred">Dogodila se pogreška:</string>
   <string name="DuplicateUuidsError">Baza podataka je oštećena: Pronađeni su duplikati ID-ova. (Jeste li spremili s Minikeepassom?) Molimo ponovno uvezite podatke u novu bazu pomoću Keepass 2 za PC i odaberite \'Kreiraj nove ID-eve\'.</string>
+  <string name="DuplicateUuidsErrorAdditional">Tu poruku o pogrešci možete onemogućiti u Postavke/Postavke aplikacije/Upravljanje datotekama/Provjeri duplikate UUID-ova. Imajte na umu da možete doživjeti neočekivano ponašanje. Preporuča se popravak baze podataka.</string>
   <string name="synchronize_database_menu">Sinkronizacija baze podataka…</string>
   <string name="CannotMoveGroupHere">Grupu nije moguće premjestiti u ovu grupu.</string>
   <string name="donate_question">Danas je Oktoberfest! Ako vam se sviđa Keepass2Android: ne bi li danas bio dobar dan da me počastite pivom?</string>
@@ -456,6 +466,7 @@
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A mapa)</string>
+  <string name="filestoragehelp_dropboxKP2A">Ako ne želite dati KP2A puni pristup svom Dropboxu, možete odabrati ovu opciju. Tražit će samo pristup mapi Apps/Keepass2Android. To je posebno pogodno prilikom izrade nove baze podataka. Ako već imate bazu podataka, kliknite ovu opciju za stvaranje mape, a zatim stavite datoteku unutar mape (s računala) te ponovo odaberite ovu opciju za otvaranje datoteke.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
