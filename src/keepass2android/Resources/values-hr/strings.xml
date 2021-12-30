@@ -147,6 +147,7 @@
   <string name="hint_login_pass">Lozinka</string>
   <string name="hint_title">naziv</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">prepiši URL</string>
   <string name="hint_tags">oznaka 1, oznaka 2</string>
   <string name="hint_username">korisničko ime</string>
   <string name="InvalidPassword">Neispravna lozinka ili ključna datoteka.</string>
@@ -195,6 +196,7 @@
   <string name="no_keys">Nema zapisa u bazi podataka ili grupi.</string>
   <string name="no_results">Nema rezultata pretrage</string>
   <string name="no_url_handler">Nije moguće obraditi ovaj URL.</string>
+  <string name="open_recent">Otvori nedavnu bazu podataka (klikni za otvaranje)</string>
   <string name="omitbackup_title">Ne pretražujte smeće i sigurnosne kopije</string>
   <string name="omitbackup_summary">Zapisi o otpadu i sigurnosne kopije nisu uključene u pretraživanje</string>
   <string name="pass_filename">Naziv KeePass datoteke baze podataka</string>
@@ -222,6 +224,7 @@
   <string name="saving_database">Spremanje baze podataka…</string>
   <string name="exporting_database">Izvoz baze podataka…</string>
   <string name="export_database_successful">Baza podataka je uspješno izvezena!</string>
+  <string name="export_keyfile_successful">Ključna datoteka je uspješno izvezena!</string>
   <string name="space">Prostor</string>
   <string name="search_label">Traži</string>
   <string name="show_password">Prikaži lozinku</string>
