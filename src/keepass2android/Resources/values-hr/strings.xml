@@ -97,6 +97,9 @@
   <string name="fingerprint_reenable">Molimo da ponovno omogućite biometrijsko otključavanje za novu glavnu lozinku.</string>
   <string name="fingerprint_reenable2">Molimo da otključajte lozinkom i ponovno omogućite biometrisko otključavanje u postavkama baze podataka.</string>
   <string name="FingerprintInitFailed">Desila se greška prilikom inicijaliziranje biometriske autorizacije. </string>
+  <string name="FingerprintSetupFailed">Neuspješno šifrijanje podataka. To se desi ako dotate ili uklanjate otiske prsta u postavkama sustava dok Keepass2Android učitava vaš otisak prsta.</string>
+  <string name="enable_fingerprint_unlock_Info">To će pohraniti Vašu glavnu lozinku na ovom uređaju, šifrirano pomoću Android Keystore i zaštićena biometrijskom autorizacijom. Omogućuje otključavanje baze podataka samo pomoću biometrijskom autorizacijom.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Omogućuje upotrebu biometrijsku autorizaciju umjesto QuickUnlock koda. Ne pohranjuje nikakve informacije vezane uz glavnu lozinku.</string>
   <string name="enter_filename">Unesite naziv datoteke baze podataka</string>
   <string name="entry_accessed">Zadnji pristup</string>
   <string name="entry_cancel">Otkaži</string>
@@ -117,6 +120,7 @@
   <string name="entry_user_name">Korisničko Ime</string>
   <string name="entry_extra_strings">Dodatna polja</string>
   <string name="entry_binaries">Priložene datoteke</string>
+  <string name="error_can_not_handle_uri">Keepass2Android ne može obraditi ovaj URI.</string>
   <string name="error_could_not_create_group">Pogreška pri izradi grupe.</string>
   <string name="error_could_not_create_parent">Nije moguće stvoriti nadređeni direktorij.</string>
   <string name="error_database_exists">Ova datoteka već postoji.</string>
@@ -133,6 +137,7 @@
   <string name="error_rounds_not_number">Broj ponavljanja mora biti broj.</string>
   <string name="error_param_not_number">Parametar mora biti broj.</string>
   <string name="error_title_required">Naslov je potreban.</string>
+  <string name="error_wrong_length">Unesite pozitivan cijeli broj na polje duljine</string>
   <string name="FileNotFound">Datoteka nije pronađena.</string>
   <string name="file_browser">Preglednik datoteka</string>
   <string name="generate_password">Generiraj lozinku</string>
@@ -234,11 +239,24 @@
   <string name="sort_moddate">Poredaj po datumu izmjene</string>
   <string name="sort_default">Zadrži zadano sortiranje</string>
   <string name="special">Posebno</string>
+  <string name="at_least_one_from_each_group">Najmanje jedan iz svake grupe</string>
+  <string name="exclude_lookalike">Isključi slično izgledajuče znakove</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Upiši ime profila za spremanje. Upiši  postojeće ime za prepisati.</string>
+  <string name="hint_wordcount">Broj riječi pristupnog izraza</string>
+  <string name="hint_wordseparator">Razdjelitelj riječi</string>
   <string-array name="PasswordGeneratorModes">
     <item>Lozinka</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Pristupni izraz</item>
+    <item>Pristupni izraz + Lozinka</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>mala slova</item>
+    <item>VELIKA SLOVA</item>
+    <item>Prvi Znak Velikim Slovim</item>
+  </string-array>
+  <string name="custom_settings">Osobne postavke</string>
+  <string name="passphrase_capitalization">Pretvori pristupni izraz u velika slova</string>
   <string name="search_hint">Pronađi što</string>
   <string name="search_results">Rezultati pretraživanja</string>
   <string name="search_in">Traži u</string>
@@ -246,7 +264,9 @@
   <string name="select_group_then_add">Otvorite željenu grupu, a zatim pritisnite \"%1$s\"!</string>
   <string name="insert_element_here">Umetni ovdje</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">podcrtaj</string>
   <string name="unsupported_db_version">Nepodržana verzija baze podataka.</string>
+  <string name="uppercase">Velika slova</string>
   <string name="warning_read_only">Vaša sd kartica trenutačno ima prava samo za čitanje. Možda nećete moći spremiti promjene u bazi podataka.</string>
   <string name="warning_unmounted">Vaša sd kartica trenutačno nije dostupna. Nećete moći učitati ili izraditi bazu podataka.</string>
   <string name="version_label">Verzija</string>
@@ -254,17 +274,25 @@
   <string name="author">Keepass2Android razvio je Philipp Crocoll.</string>
   <string name="further_authors">Hvala %1$s za doprinose izvornom kodu.</string>
   <string name="designers">Hvala %1$s na konceptu dizajna i ikona.</string>
+  <string name="supporters">Hvala za financijsku potporu od %1$s.</string>
   <string name="credit_plugin1">Twofish dodatak za Keepass razvio je Scott Greenberg i uključen je u KP2A.</string>
   <string name="credit_android_filechooser">odabir datoteka na Androidu razvio je Hai Bison</string>
   <string name="credit_keyboard">KP2A tipkovnica temelji se na Gingerbread tipkovnici, razvijena od strane Android Open Source Project te koristi kôd dodatka upravitelja s Hackerove tipkovnice Klausa Weidnera.</string>
   <string name="please_note">Imajte na umu</string>
   <string name="contributors">Suradnici</string>
   <string name="regular_expression">Regularni izraz</string>
+  <string name="TanExpiresOnUse_title">TAN istječe nakon upotrebe</string>
   <string name="TanExpiresOnUse_summary">Označi TAN unose isteklima nakon što se upotrijebe</string>
   <string name="ShowUsernameInList_title">Prikaži korisničko ime na popisu</string>
   <string name="ShowUsernameInList_summary">Prikaži korisnička imena ispod naslova unosa. Korisno za više računa ili više TAN-ova.</string>
   <string name="RememberRecentFiles_title">Zapamti baze podataka</string>
   <string name="RememberRecentFiles_summary">Zapamti nedavno otvorene baze podataka i prikaži ih na zaslonu \"Otvorite bazu podataka\".</string>
+  <string name="NoDalVerification_title">Nema DAL potvrde</string>
+  <string name="NoDalVerification_summary">Unemogućava provjeru ako domena i paket aplikacije se podudaraju</string>
+  <string name="InlineSuggestions_title">Ujedinite s tipkovnicom</string>
+  <string name="InlineSuggestions_summary">Pokazuje prijedloge automatskog popunjavanja kako opcije za pisanje u istoj razini na tipkovnici (ako način unosa podržava)</string>
+  <string name="requires_android11">Zahtijeva Android 11 ili noviju verziju</string>
+  <string name="kp2a_findUrl">Pronađi lozinku</string>
   <string name="excludeExpiredEntries">Izuzmi istekle stavke</string>
   <string name="search_options">Mogućnosti</string>
   <string name="caseSensitive">Osjetljivo na velika i mala slova</string>
@@ -309,9 +337,12 @@
   <string name="protection">Zaštićeno polje</string>
   <string name="add_binary">Dodaj privitak</string>
   <string name="add_extra_string">Dodajte dodatno polje</string>
+  <string name="configure_totp">Namjesti TOTP</string>
+  <string name="totp_secret_key">Tajni ključ</string>
   <string name="totp_encoding_rfc6238">Zadane postavke RFC6238 tokena</string>
   <string name="totp_encoding_steam">Vlastite postavke Steam tokena</string>
   <string name="totp_encoding_custom">Vlastite postavke tokena</string>
+  <string name="totp_time_step">Vremenski korak</string>
   <string name="totp_length">Duljina koda</string>
   <string name="delete_extra_string">Uklonite dodatno polje</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Zaključano. QuickUnlock omogućen.</string>
@@ -376,6 +407,7 @@
   <string name="PreloadDatabaseEnabled_title">Prethodno učitaj datoteku baze podataka</string>
   <string name="PreloadDatabaseEnabled_summary">Pokrenite pozadinsko učitavanje ili preuzimanje datoteke baze podataka tijekom unosa lozinke.</string>
   <string name="SyncAfterQuickUnlock_title">Sinkroniziraj nakon QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Sinkroniziraj bazu podataka s udaljenom datotekom nakon otključavanja s QuickUnlock.</string>
   <string name="AskOverwriteBinary">Želite li prebrisati postojeću datoteku koristeći isti naziv?</string>
   <string name="AskOverwriteBinary_title">Prebrišite postojeću datoteku?</string>
   <string name="AskOverwriteBinary_yes">Prebriši</string>
@@ -474,6 +506,9 @@
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Sve datoteke i podjeljene datoteke</string>
+  <string name="filestoragename_onedrive2_myfiles">Moje datoteke</string>
+  <string name="filestoragename_onedrive2_appfolder">Mapa Keepass2Android aplikacije</string>
   <string name="filestoragename_sftp">SFTP (SSH prijenos datoteka)</string>
   <string name="filestoragename_content">Birač datoteka sustava</string>
   <string name="filestorage_setup_title">Inicijalizacija pristupa datotekama</string>
@@ -486,6 +521,7 @@
   <string name="help_master_password">Vaša baza podataka je šifrirana lozinkom koju unesete ovdje. Odaberite jaku lozinku kako bi baza podataka bila sigurna! Savjet: Izradite rečenicu ili dvije i upotrijebite prva slova riječi kao lozinku. Uključite interpunkcijske znakove.</string>
   <string name="hint_master_password">Odaberite glavnu lozinku za zaštitu Vaše baze podataka:</string>
   <string name="key_file">Ključna datoteka</string>
+  <string name="help_key_file">Ključna datoteka u osnovi je zaporka pohranjena u datoteci. Ključne datoteke obično su jače od glavnih zaporki, jer ključ može biti puno složeniji; ali ih je također teže čuvati u tajnosti. Ako pohranite svoju bazu podataka u oblaku, ne pohranjujte ključnu datoteku! To bi ga učinilo potpuno beskorisnim! Važno: Ne mijenjajte sadržaj ključne datoteke nakon stvaranja baze podataka!</string>
   <string name="hint_key_file">Odaberite želite li upotrijebiti ključnu datoteku uz glavnu lozinku:</string>
   <string name="use_key_file">Koristi ključnu datoteku</string>
   <string name="error_adding_keyfile">Pogreška prilikom dodavanja ključne datoteke!</string>
@@ -537,7 +573,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Trenutni podaci o unosu</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Dodatak će primiti sve podatke o trenutnom unosu u bazu podataka i moći će ponuditi radnje i izmijeniti njegov prikaz.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Upitajte svoje vjerodajnice</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Dodatku će biti dopušteno da upita vjerodajnice povezane s vlastitim aplikacijskim paketom.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Upitajte vjerodajnice</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Dodatku će biti dopušteno tražiti vjerodajnice za namjerno odabrane mrežne stranice ili aplikacije.</string>
   <string name="get_regular_version">Dohvati više vrsta pohrane</string>
   <string name="CertificateWarning">Upozorenje: Provjera certifikata poslužitelja nije uspjela: %1$s. Instalirajte odgovarajući root certifikat na svoj uređaj ili pogledajte postavke!</string>
   <string name="CertificateFailure">Upozorenje: Provjera certifikata poslužitelja nije uspjela. Instalirajte odgovarajući root certifikat na svoj uređaj ili pogledajte postavke!</string>
@@ -548,6 +586,7 @@
   <string name="FileIsReadOnlyOnKitkat">Odabrana datoteka je samo za čitanje za Keepass2Android zbog ograničenja na Androidu 4.4+.</string>
   <string name="CopyFileRequired">Da biste ju koristili, morate ju kopirati na drugo mjesto.</string>
   <string name="CopyFileRequiredForEditing">Da biste ju uređivali, morate ju kopirati na drugo mjesto.</string>
+  <string name="ClickOkToSelectLocation">Kliknite OK (U redu) da biste odabrali mjesto na kojem biste trebali kopirati datoteku.</string>
   <string name="FileReadOnlyTitle">Baza podataka je samo za čitanje</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android otvorio je trenutnu bazu podataka u načinu rada samo za čitanje.</string>
   <string name="ReadOnlyReason_PreKitKat">Izgleda da ste otvorili datoteku iz vanjske aplikacije. Taj način ne podržava uređivanje. Ako želite izmijeniti bazu podataka, zatvorite bazu podataka i odaberite Promijeni bazu podataka. Zatim otvorite datoteku s jedne od dostupnih opcija ako je moguće.</string>
@@ -587,6 +626,11 @@
 &#8226; Provjerite jeste li unijeli ispravnu lozinku. Upotrijebite ikonu oka kako biste otkrili unesenu zaporku.\n
 &#8226; Provjerite jeste li odabrali ispravnu vrstu zaporke. Provjerite odgovara li tipu koji se koristio prilikom izrade baze podataka.\n
 &#8226; Provjerite jeste li odabrali ispravnu datoteku baze podataka.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Savjet: Ako mislite da je Vaša datoteka baze podataka možda oštećena ili se ne sjećate glavne lozinke nakon što ste istu modificirali, možete pokušati s posljednjom uspješno otvorenom verzijom datoteke klikom na \"%1$s\" i odabirom lokalne sigurnosne kopije.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Savjet: Keepass2Android je pohranio posljednju uspješno otvorenu verziju datoteke u internu memoriju. Možete je otvoriti klikom na \"%1$s\" i odabirom lokalne sigurnosne kopije.
+  </string>
   <string name="CorruptDatabaseHelp">Datoteka je oštećena. \n
 Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
 
@@ -615,6 +659,39 @@ Evo nekoliko savjeta koji bi Vam mogli pomoći u dijagnosticiranju problema:\n
   <string name="DbQuicklockedChannel_desc">Obavijest da će baza podataka biti zaključana QuickUnlockom</string>
   <string name="EntryChannel_name">Obavijesti o prijavama</string>
   <string name="EntryChannel_desc">Obavijest za pojednostavljenje pristupa trenutno odabranom unosu.</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Popravi nestajuću retku automatskog popunjavanja u Firefoxu</item>
+    <item>Integrirajte preporuke automatskog popunjavanja sa tipkovnicom (zahtjeva Android 11 ili noviju verziju)</item>
+    <item>Allow to change app language in settings</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for new key file format introduced in Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Ažurijane Jsch-a na verziju 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Improve keyboard dialog on Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Ažurijanje FTP zbrirke</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Further minor fixes</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08">
+    <item>Add notification button for copying TOTP to clipboard</item>
+    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
+    <item>Ispravci pogrešaka</item>
+  </string-array>
   <string name="ChangeLog_1_06">Verzija 1.06\n
      * Prelazak na ykDroid umjesto YubiChallenge kao aplikacije za Yubikey Challenge-Response.\n
      * Implementacija podrške za Challenge-Response u stilu \"KeepassXC\". Napomena: Format baze podataka mora biti KDBX4!\n
@@ -849,7 +926,7 @@ Prvotna javna verzija  </string>
   <string-array name="design_options">
     <item>Svjetlo</item>
     <item>Tamno</item>
-    <item>System settings</item>
+    <item>Postavke sustava</item>
   </string-array>
   <string name="design_title">Dizajn</string>
   <string-array name="ftp_encryption_modes">
@@ -888,7 +965,8 @@ Prvotna javna verzija  </string>
   <string name="autofill_enable_failed">Nažalost, izgleda da Vaš uređaj ne podržava otvaranje postavki unutar aplikacije. Idite ručno na postavke sustava za AutoFill kako biste omogućili uslugu.</string>
   <string name="show_autofill_help">Prikaži pomoć automatskog popunjavanja</string>
   <string name="autofill_sign_in_prompt">Ispuni pomoću Keepass2Android</string>
-  <string name="autofill_disable">Onemogući automatsko izpunjavanje za %1$s</string>
+  <string name="autofill_disable">Onemogući automatsko popunjavanje za %1$s</string>
+  <string name="autofill_enable_for">Omogući automatsko popunjavanje za %1$s</string>
   <string name="invalid_link_association">Nije moguće povezati web domenu %1$s s aplikacijom %2$s</string>
   <string name="understand">Razumijem</string>
   <string name="dont_show_again">Više ne prikazuj</string>
@@ -899,4 +977,9 @@ Prvotna javna verzija  </string>
   <string name="backup_infotext_note">Da bi stvorili sigurnosnu kopiju, idite na %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Jeste li spremni za hitne slučajeve?</string>
   <string name="emergency_infotext_main">Jeste li ikada razmotrili što se događa ako više ne možete pristupiti bazi podataka? Što ako imate nesreću? Dobra je praksa da proslijedite glavni ključ nekoj pouzdanoj osobi za hitne slučajeve. U suprotnom nitko neće imati pristup Vašim zaporkama.</string>
+  <string name="disable_secure_screen_check">Onemogući ovu poruku</string>
+  <string name="switch_ime_text">Molimo Vas da aktivirajte Keepass2Android Tipkovnicu.</string>
+  <string name="switch_ime_reopen">Pokušaj ponovno</string>
+  <string name="AutofillWarning_title">Upozorenje Sigurnosti: Nepoznata domena/veza aplikacije</string>
+  <string name="AutofillWarning_trustAsBrowser">Prehvati uvijek u \"%1$s\"</string>
 </resources>
