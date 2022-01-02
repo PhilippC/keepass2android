@@ -409,6 +409,8 @@
   <string name="DocumentAccessRevoked">Súbor už nie je dostupný pre Keepass2Android. Buď bol odstránený alebo boli zrušené prístupové oprávnenia. Prosím znovu otvorte súbor, napríklad príkazom pre zmenu databázy.</string>
   <string name="PreloadDatabaseEnabled_title">Vopred načítať databázu</string>
   <string name="PreloadDatabaseEnabled_summary">Spustiť načítavanie alebo sťahovanie databázového súboru na pozadí, počas záznamu hesla.</string>
+  <string name="SyncAfterQuickUnlock_title">Synchronizácia po rýchlom odomknutí</string>
+  <string name="SyncAfterQuickUnlock_summary">Po použití rýchleho odomknutia synchronizovať databázu so vzdialeným súborom.</string>
   <string name="AskOverwriteBinary">Chcete prepísať existujúci binárny súbor s použitím rovnakého názvu?</string>
   <string name="AskOverwriteBinary_title">Prepísať existujúci binárny súbor?</string>
   <string name="AskOverwriteBinary_yes">Prepísať</string>
@@ -672,8 +674,8 @@
     <item>Opravte miznúcu výzvu na automatické dopĺňanie vo Firefoxe</item>
     <item>Integrujte návrhy automatického dopĺňania s klávesnicou (vyžaduje Android 11+)</item>
     <item>Povoliť zmenu jazyka aplikácie v nastaveniach</item>
-    <item>Add option to synchronize database after QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Pridaná možnosť synchronizácie databázy po rýchlom odomknutí</item>
+    <item>Oprava chyby: Nemeniť veľkosť písmen v názve súboru pri ukladaní v službe Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Pridaná podpora pre formát súboru KDBX 4.1, zavedené v KeePass 2.48</item>
