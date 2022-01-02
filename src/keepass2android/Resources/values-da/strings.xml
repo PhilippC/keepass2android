@@ -409,6 +409,8 @@
   <string name="DocumentAccessRevoked">Filen er ikke længere tilgængelig for KP2A. Enten er den fjernet eller adgangstilladelserne er tilbagekaldt. Genåbn filen, f.eks. via Skift database.</string>
   <string name="PreloadDatabaseEnabled_title">Præindlæs databasefil</string>
   <string name="PreloadDatabaseEnabled_summary">Start baggrundsindlæsning eller download af databasefilen under adgangskodeangivelse.</string>
+  <string name="SyncAfterQuickUnlock_title">Synkroniser efter Hurtigoplåsning</string>
+  <string name="SyncAfterQuickUnlock_summary">Synkroniser database med ekstern fil efter oplåsning med Hurtigoplåsning.</string>
   <string name="AskOverwriteBinary">Overskriv eksisterende binære med samme navn?</string>
   <string name="AskOverwriteBinary_title">Overskriv eksisterende binære?</string>
   <string name="AskOverwriteBinary_yes">Overskriv</string>
@@ -671,8 +673,8 @@
     <item>Fiks forsvindende autofyld prompt i Firefox</item>
     <item>Integrer forslag til autofyld med tastatur (kræver Android 11+)</item>
     <item>Tillad ændring af app-sprog i indstillinger</item>
-    <item>Add option to synchronize database after QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Tilføj mulighed for at synkronisere database efter Hurtigoplåsning</item>
+    <item>Fejlfinding: Gør ikke filnavne til små bogstaver, når der gemmes til Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Tilføjet understøttelse af KDBX 4.1 filformat indført i KeePass 2.48</item>
