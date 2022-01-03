@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="183" 
-			android:versionName="1.09b-r1" 
+			android:versionCode="184" 
+			android:versionName="1.09b-r2" 
 			package="keepass2android.keepass2android" 
 			xmlns:tools="http://schemas.android.com/tools"
 			android:installLocation="auto">
@@ -11,6 +11,9 @@
     <!-- Specific intents and packages we query for (required since Android 11) -->
     <package android:name="keepass2android.plugin.keyboardswap2" />
     <package android:name="keepass2android.AncientIconSet" />
+	<package android:name="keepass2android.plugin.qr" />
+	<package android:name="it.andreacioni.kp2a.plugin.keelink" />
+	<package android:name="com.inputstick.apps.kp2aplugin" />	
 	<package android:name="com.dropbox.android" />
 
     <intent>
