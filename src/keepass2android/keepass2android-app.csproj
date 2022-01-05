@@ -699,6 +699,7 @@
     <AndroidResource Include="Resources/values-af/strings.xml" />
     <AndroidResource Include="Resources/values-ar/strings.xml" />
     <AndroidResource Include="Resources/values-az/strings.xml" />
+	<AndroidResource Include="Resources/values-be/strings.xml" />
     <AndroidResource Include="Resources/values-bg-rBG/strings.xml" />
     <AndroidResource Include="Resources/values-bg/strings.xml" />
     <AndroidResource Include="Resources/values-ca/strings.xml" />
