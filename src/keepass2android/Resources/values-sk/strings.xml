@@ -506,7 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Poznámka: Požiadal som o overenie aplikácie spoločnosťou Google, ale už niekoľko mesiacov sa nič nestalo. Ak sa vám zobrazí hlásenie, že aplikácia je zablokovaná, pretože nie je overená, použite namiesto tejto možnosti prehliadač súborov Android – Disk Google.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z konta pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
