@@ -728,18 +728,17 @@
     * 新的 OneDrive 实现：支持 OneDrive for Business、共享文件、可选权限范围、多账户，以及修复离线访问问题\n
     * 其他问题修复
   </string>
-  <string name="ChangeLog_1_07">版本1.07 \n
-     *修复了三星Android 9上的崩溃问题\n
-     *允许打开多个与KeeAutoExec兼容的数据库\n
-     * SFTP：允许公钥验证，检查主机密钥是否已更改\n
-     *介绍pCloud支持 - 感谢gilbsgilbs！\n
-     *明确指出Nextcloud支持\n
-     *改进入口附件的保存和更新\n
-     *更多选择，以适应个人喜好的行为\n
-     * SSL：信任用户证书\n
-     *改进自动填充功能（现在适用于Firefox，允许减少弹出窗口）\n
-     *错误修复\n
-  </string>
+  <string name="ChangeLog_1_07">版本1.07 \ n
+     *修复了三星Android 9上的崩溃问题\ n
+     *允许打开多个与KeeAutoExec兼容的数据库\ n
+     * SFTP：允许公钥验证，检查主机密钥是否已更改\ n
+     *介绍pCloud支持 - 感谢gilbsgilbs！\ n
+     *明确指出Nextcloud支持\ n
+     *改进入口附件的保存和更新\ n
+     *更多选择，以适应个人喜好的行为\ n
+     * SSL：信任用户证书\ n
+     *改进自动填充功能（现在适用于Firefox，允许减少弹出窗口）\ n
+     *错误修复\ n</string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
