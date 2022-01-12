@@ -18,6 +18,7 @@ import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.ByteArrayContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
@@ -37,6 +38,19 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
@@ -48,7 +62,10 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	static final int MAGIC_GDRIVE=2082334;
 	static final int REQUEST_ACCOUNT_PICKER = MAGIC_GDRIVE+1;
 	static final int REQUEST_AUTHORIZATION = MAGIC_GDRIVE+2;
+	static final int REQUEST_SIGN_IN = MAGIC_GDRIVE+3;
 	private boolean mRequiresRuntimePermissions = false;
+	private int MY_REQUEST_AUTHORIZATION;
+	private GoogleSignInClient mGoogleSignInClient;
 
 
 	class FileSystemEntryData
@@ -281,8 +298,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public InputStream openFileForRead(String path) throws Exception {
 
-		throwAppBlocked();
-
 		logDebug("openFileForRead...");
 		GDrivePath gdrivePath = new GDrivePath(path);
 		Drive driveService = getDriveService(gdrivePath.getAccount());
@@ -300,14 +315,10 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 	}
 
-	private void throwAppBlocked() throws Exception {
-		throw new Exception("Built-in Google Drive access is currently blocked by Google. Please use Open file > System file picker > Google Drive.");
-	}
-
 
 	private File getFileForPath(GDrivePath path, Drive driveService)
 			throws Exception {
-		throwAppBlocked();
+
 		logDebug("getFileForPath... ");
 		try
 		{
@@ -335,7 +346,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	}
 
 	private InputStream getFileContent(File driveFile, Drive driveService) throws Exception {
-		throwAppBlocked();
+
 		if (driveFile.getDownloadUrl() != null && driveFile.getDownloadUrl().length() > 0) {
 
 			GenericUrl downloadUrl = new GenericUrl(driveFile.getDownloadUrl());
@@ -353,7 +364,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void uploadFile(String path, byte[] data, boolean writeTransactional)
 			throws Exception {
-		throwAppBlocked();
+
 		logDebug("upload file...");		
 		try
 		{
@@ -364,6 +375,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			File driveFile = getFileForPath(gdrivePath, driveService);
 			getDriveService(gdrivePath.getAccount()).files()
 					.update(driveFile.getId(), driveFile, content).execute();
+
 			logDebug("upload file ok.");
 		}
 		catch (Exception e)
@@ -375,7 +387,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public String createFolder(String parentPath, String newDirName) throws Exception {
-		throwAppBlocked();
+
 		File body = new File();
 		body.setTitle(newDirName);
 		body.setMimeType(FOLDER_MIME_TYPE);
@@ -401,7 +413,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public String createFilePath(String parentPath, String newFileName) throws Exception {
-		throwAppBlocked();
+
 		File body = new File();
 		body.setTitle(newFileName);
 		GDrivePath parentGdrivePath = new GDrivePath(parentPath);
@@ -424,7 +436,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	@Override
 	public List<FileEntry> listFiles(String parentPath) throws Exception {
-		throwAppBlocked();
+
 		GDrivePath gdrivePath = new GDrivePath(parentPath);
 		String parentId = gdrivePath.getGDriveId();
 
@@ -434,9 +446,12 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 		try
 		{
-		
-			if (driveService.files().get(parentId).execute().getLabels().getTrashed())
-				throw new FileNotFoundException(parentPath + " is trashed!");
+			AccountData accountData = mAccountData.get(gdrivePath.getAccount());
+
+			if (!parentId.equals(accountData.mRootFolderId)) {
+				if (driveService.files().get(parentId).execute().getLabels().getTrashed())
+					throw new FileNotFoundException(parentPath + " is trashed!");
+			}
 			logDebug("listing files in "+parentId);
 			Files.List request = driveService.files().list()
 					.setQ("trashed=false and '" + parentId + "' in parents");
@@ -512,11 +527,24 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public FileEntry getFileEntry(String filename) throws Exception {
-		throwAppBlocked();
 		try
 		{
-			logDebug("getFileEntry "+filename);
+
 			GDrivePath gdrivePath = new GDrivePath(filename);
+			logDebug("getFileEntry "+filename + ". local = " + gdrivePath.mAccountLocalPath);
+
+			if (gdrivePath.mAccountLocalPath.equals(""))
+			{
+				FileEntry res = new FileEntry();
+				res.userData = "";
+				res.canRead = true;
+				res.canWrite = true;
+				res.displayName = "";
+				res.isDirectory = true;
+				return res;
+
+			}
+
 			FileEntry res =  convertToFileEntry(
 					getFileForPath(gdrivePath, getDriveService(gdrivePath.getAccount())),
 					filename);
@@ -532,7 +560,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	@Override
 	public void delete(String path) throws Exception {
-		throwAppBlocked();
 		GDrivePath gdrivePath = new GDrivePath(path);
 		Drive driveService = getDriveService(gdrivePath.getAccount());
 		try
@@ -546,13 +573,14 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		}
 	}
 
+	private static final HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
 
 	private Drive createDriveService(String accountName, Context appContext) {
 		logDebug("createDriveService "+accountName);
 		GoogleAccountCredential credential = createCredential(appContext);
 		credential.setSelectedAccountName(accountName);
 
-		return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
+		return new Drive.Builder(HTTP_TRANSPORT, new GsonFactory(), credential)
 		.setApplicationName(getApplicationName())
 		.build();
 	}
@@ -573,7 +601,36 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	@Override
 	public void onActivityResult(final JavaFileStorage.FileStorageSetupActivity setupAct, int requestCode, int resultCode, Intent data) {
 		logDebug("ActivityResult: " + requestCode + "/" + resultCode);
+
 		switch (requestCode) {
+			case REQUEST_SIGN_IN:
+				Activity activity = (Activity)setupAct;
+				Task<GoogleSignInAccount> completedTask = GoogleSignIn.getSignedInAccountFromIntent(data);
+
+				Log.d(TAG, "handleSignInResult:" + completedTask.isSuccessful());
+
+				try {
+					// Signed in successfully
+					GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+					if (GoogleSignIn.hasPermissions(account, new Scope(Scopes.DRIVE_FULL))) {
+						initializeAccountOrPath(setupAct, account.getAccount().name);
+
+						return;
+					}
+
+
+				} catch (ApiException e) {
+					// Signed out, show unauthenticated UI.
+					Log.w(TAG, "handleSignInResult:error", e);
+
+				}
+
+				((Activity)setupAct).setResult(Activity.RESULT_CANCELED, data);
+				((Activity)setupAct).finish();
+
+
+
+				break;
 		case REQUEST_ACCOUNT_PICKER:
 			logDebug("ActivityResult: REQUEST_ACCOUNT_PICKER");
 			if (resultCode == Activity.RESULT_OK && data != null && data.getExtras() != null) {
@@ -647,15 +704,24 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			@Override
 			protected AsyncTaskResult<String> doInBackground(Object... arg0) {
 				try {
-					
-					
+
+
 					initializeAccount(appContext, accountName);
-					
+
 					if (setupAct.getProcessName().equals(PROCESS_NAME_SELECTFILE))
 						setupAct.getState().putString(EXTRA_PATH, getRootPathForAccount(accountName));
-					
+
 					return new AsyncTaskResult<String>("ok");
-				} catch ( Exception anyError) {
+				}
+				catch (UserRecoverableAuthIOException recoverableAuthIOException)
+					{
+						activity.startActivityForResult(
+								((UserRecoverableAuthIOException) recoverableAuthIOException).getIntent(),
+								MY_REQUEST_AUTHORIZATION);
+						return new AsyncTaskResult<String>("wait");
+					}
+
+				catch ( Exception anyError) {
 					return new AsyncTaskResult<String>(anyError);
 				}
 
@@ -704,7 +770,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	private void initializeAccount(final Context appContext,
 			final String accountName) throws Exception {
-		throwAppBlocked();
 		logDebug("Init account for " + accountName);
 		if (!mAccountData.containsKey(accountName))
 		{
@@ -712,6 +777,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			newAccountData.drive = createDriveService(accountName, appContext);
 			mAccountData.put(accountName, newAccountData);
 			logDebug("Added account data for " + accountName);
+			//sign out the SignInClient to bring up the account picker next time again.
 		}
 		AccountData accountData = mAccountData.get(accountName);
 		//try to finish the initialization. If this fails, we throw.
@@ -725,17 +791,19 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 	private void finishInitialization(AccountData newAccountData, String accountName) throws IOException
 	{
-		
 		if (TextUtils.isEmpty(newAccountData.mRootFolderId))
 		{
 			logDebug("Finish init account for " + accountName);
 			About about = newAccountData.drive.about().get().execute();
 			newAccountData.mRootFolderId = about.getRootFolderId();
+			logDebug("Finish init account for " + accountName + " complete with folder id = " + newAccountData.mRootFolderId);
 		}
 		else
 		{
 			logDebug("Account for " + accountName + " already fully initialized.");
 		}
+
+
 	}
 
 	@Override
@@ -755,7 +823,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	public void prepareFileUsage(Context appContext, String path) throws UserInteractionRequiredException, Throwable 
 	{
-		throwAppBlocked();
 		try
 		{
 			logDebug("prepareFileUsage " + path + "...");
@@ -811,10 +878,27 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 		if (PROCESS_NAME_SELECTFILE.equals(setupAct.getProcessName()))
         {
-            GoogleAccountCredential credential = createCredential(activity.getApplicationContext());
+			// [START configure_signin]
+			// Configure sign-in to request the user's ID, email address, and basic
+			// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+			GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+					.requestScopes(new Scope(Scopes.DRIVE_FULL))
+					.requestEmail()
+					.build();
+			// [END configure_signin]
 
-            logDebug("starting REQUEST_ACCOUNT_PICKER");
-            activity.startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+			// [START build_client]
+			// Build a GoogleSignInClient with access to the Google Sign-In API and the
+			// options specified by gso.
+			mGoogleSignInClient = GoogleSignIn.getClient(activity, gso);
+			// [END build_client]
+
+			Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+			//make sure the user will be prompted to select the account to be used:
+			mGoogleSignInClient.signOut();
+			activity.startActivityForResult(signInIntent, REQUEST_SIGN_IN);
+
+
         }
 
 		if (PROCESS_NAME_FILE_USAGE_SETUP.equals(setupAct.getProcessName()))

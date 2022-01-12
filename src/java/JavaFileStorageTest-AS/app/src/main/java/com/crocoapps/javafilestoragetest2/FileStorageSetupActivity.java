@@ -1,4 +1,4 @@
-package com.crocoapps.javafilestoragetest;
+package com.crocoapps.javafilestoragetest2;
 
 import keepass2android.javafilestorage.JavaFileStorage;
 import android.os.Bundle;

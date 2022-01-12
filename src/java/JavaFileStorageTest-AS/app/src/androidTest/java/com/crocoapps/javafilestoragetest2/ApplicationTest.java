@@ -1,4 +1,4 @@
-package com.crocoapps.javafilestoragetest;
+package com.crocoapps.javafilestoragetest2;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

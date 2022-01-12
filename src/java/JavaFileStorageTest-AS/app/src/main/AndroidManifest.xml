@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.crocoapps.javafilestoragetest">
+    package="com.crocoapps.javafilestoragetest2">
 
     <application
         android:allowBackup="true"
@@ -9,13 +9,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.crocoapps.javafilestoragetest2.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <provider
             android:name="keepass2android.kp2afilechooser.StorageFileProvider"
@@ -24,13 +27,13 @@
 
         <provider
             android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider"
-            android:authorities="com.crocoapps.javafilestoragetest.android-filechooser.localfile"
+            android:authorities="com.crocoapps.javafilestoragetest2.android-filechooser.localfile"
             android:exported="false" />
 
 
         <provider
             android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider"
-            android:authorities="com.crocoapps.javafilestoragetest.android-filechooser.history"
+            android:authorities="com.crocoapps.javafilestoragetest2.android-filechooser.history"
             android:exported="false" />
 
 
@@ -41,7 +44,7 @@
             android:theme="@style/Afc.Theme.Light" />
 
         <activity
-            android:name="com.crocoapps.javafilestoragetest.FileStorageSetupActivity"
+            android:name="com.crocoapps.javafilestoragetest2.FileStorageSetupActivity"
             android:label="@string/title_activity_file_storage_setup" >
         </activity>
         <activity

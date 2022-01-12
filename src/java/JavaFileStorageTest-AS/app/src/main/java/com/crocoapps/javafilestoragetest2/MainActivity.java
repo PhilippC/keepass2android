@@ -1,4 +1,4 @@
-package com.crocoapps.javafilestoragetest;
+package com.crocoapps.javafilestoragetest2;
 
 //
 //import java.io.IOException;
@@ -145,10 +145,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
-import keepass2android.javafilestorage.DropboxV2Storage;
+import keepass2android.javafilestorage.GoogleDriveFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
-import keepass2android.javafilestorage.PCloudFileStorage;
 import keepass2android.javafilestorage.SftpStorage;
 import keepass2android.javafilestorage.UserInteractionRequiredException;
 import keepass2android.javafilestorage.WebDavStorage;
@@ -163,7 +162,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -218,7 +217,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 				String filename = path+"file.text";*/
 				fs.uploadFile(filename2,textToUpload2.getBytes(),true);
 
-				FileEntry e1 = fs.getFileEntry(parentPath);
+			//	FileEntry e1 = fs.getFileEntry(parentPath);
 				FileEntry e2 = fs.getFileEntry(path);
 
 				boolean receivedFileNotFoundException;
@@ -544,7 +543,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
-		//storageToTest = new GoogleDriveFileStorage();
+		storageToTest = new GoogleDriveFileStorage();
 		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
 			public boolean onValidationError(String error) {
@@ -557,7 +556,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 			}
 		});*/
 
-		storageToTest =  new DropboxV2Storage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
+		//storageToTest =  new DropboxV2Storage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
 		//storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
 		//storageToTest = new DropboxAppFolderFileStorage(ctx,"ax0268uydp1ya57", "3s86datjhkihwyc", true);
 

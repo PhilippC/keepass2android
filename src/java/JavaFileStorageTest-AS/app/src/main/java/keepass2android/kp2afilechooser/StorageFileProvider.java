@@ -2,7 +2,7 @@ package keepass2android.kp2afilechooser;
 
 import java.util.List;
 
-import com.crocoapps.javafilestoragetest.MainActivity;
+import com.crocoapps.javafilestoragetest2.MainActivity;
 
 public class StorageFileProvider extends Kp2aFileProvider {
 
