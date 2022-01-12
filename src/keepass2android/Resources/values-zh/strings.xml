@@ -506,7 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">请注意：我已经请求谷歌对应用程序进行验证，但几个月来什么都没有发生。如果你看到一条消息说应用程序被阻止，因为它没有验证，请使用 Android 文件浏览器 - 谷歌云盘而不是这个选项。</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">这种存储类型只请求访问 pCloud 文件夹 \"Applications/Keepass2Android\"。如果您想使用 pCloud 帐户中现有的数据库，请确保文件被放置在这个 pCloud 文件夹中。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
