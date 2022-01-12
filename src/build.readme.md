@@ -33,7 +33,7 @@ build-java.bat will call gradlew for several Java modules. build-xamarin.bat wil
 
 - Install [Mono](https://www.mono-project.com/)
 - Install Xamarin.Android
-  - Option 1: Use the mono-project [CI builds](https://jenkins.mono-project.com/view/Xamarin.Android/job/xamarin-android-linux/lastSuccessfulBuild/Azure/)
+  - Option 1: Use the mono-project [CI builds](https://dev.azure.com/xamarin/public/_build/latest?definitionId=48&branchName=main&stageName=Linux)
   - Option 2: [Build it from source](https://github.com/xamarin/xamarin-android/blob/master/Documentation/README.md#building-from-source)
 - Setup your environment:
   - Add `xabuild` to your path: `export PATH=/path/to/xamarin.android-oss/bin/Release/bin/:$PATH`
