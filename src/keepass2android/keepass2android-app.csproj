@@ -454,7 +454,6 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_file.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftps.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_gdrive.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_http.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_https.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_owncloud.png" />
@@ -1074,9 +1073,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_ftps.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_gdrive.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_http.png" />
@@ -1917,6 +1913,9 @@
       <Project>{6c29a7e7-e016-4fc1-b1a0-dee26ac711bb}</Project>
       <Name>ZlibAndroid</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_gdrive.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
