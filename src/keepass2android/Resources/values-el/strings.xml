@@ -506,7 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (φάκελος KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Σημείωση: Έχω ζητήσει επαλήθευση της εφαρμογής από την Google, αλλά τίποτα δεν έχει συμβεί επί μήνες. Αν δείτε ένα μήνυμα που λέει ότι η εφαρμογή έχει αποκλειστεί επειδή δεν έχει επαληθευτεί, παρακαλώ χρησιμοποιήστε τον Android filebrowser - Google Drive αντί αυτής της επιλογής.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση μόνο στον pCloud φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από τον pCloud λογαριασμό σας, βεβαιωθείτε ότι το αρχείο έχει τοποθετηθεί σε αυτόν τον φάκελο.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
