@@ -117,34 +117,20 @@ namespace keepass2android
 
                 Button btn;
 
-                var protocolId = _displayedProtocolIds[position];
-                string firstProtocolInList = protocolId.Split(",").First();
-				String title =
-                    protocolId == "kp2a" ? App.Kp2a.GetResourceString("get_regular_version")
-                        :
-                        App.Kp2a.GetStorageMainTypeDisplayName(firstProtocolInList);
-
-				if (convertView == null)
+                if (convertView == null)
                 {  // if it's not recycled, initialize some attributes
 
                     btn = new Button(_context);
-                    btn.LayoutParameters = new GridView.LayoutParams((int)convertDpToPixel(250, _context), (int)convertDpToPixel(45, _context));
-                    btn.SetBackgroundColor(Color.White);
-					if (title == "Google Drive")
-                        btn.SetPadding((int)convertDpToPixel(0, _context),
-                            (int)convertDpToPixel(0, _context),
-                            (int)convertDpToPixel(0, _context),
-                            (int)convertDpToPixel(0, _context));
-					else
-
-					btn.SetPadding((int)convertDpToPixel(12, _context),
-						(int)convertDpToPixel(12, _context),
+                    btn.LayoutParameters = new GridView.LayoutParams((int)convertDpToPixel(90, _context), (int)convertDpToPixel(110, _context));
+                    btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
+					btn.SetPadding((int)convertDpToPixel(4, _context),
+						(int)convertDpToPixel(20, _context),
 						(int)convertDpToPixel(4, _context),
 						(int)convertDpToPixel(4, _context));
-                    btn.SetTextSize(ComplexUnitType.Sp, 14);
+                    btn.SetTextSize(ComplexUnitType.Sp, 11);
                     btn.SetTextColor(new Color(115, 115, 115));
-                    btn.SetSingleLine(true);
-					btn.Gravity = GravityFlags.Left;
+                    btn.SetSingleLine(false);
+					btn.Gravity = GravityFlags.Center;
                     btn.Click += (sender, args) => _context.OnItemSelected( (string) ((Button)sender).Tag);
                 }
                 else
@@ -152,32 +138,23 @@ namespace keepass2android
                     btn = (Button)convertView;
                 }
 			    
+			    var protocolId = _displayedProtocolIds[position];
                 btn.Tag = protocolId;
 
-			    
+			    string firstProtocolInList = protocolId.Split(",").First();
 
 
                 Drawable drawable = App.Kp2a.GetStorageIcon(firstProtocolInList);
 
-                bool isdrive = (title == "Google Drive");
-
-
-				if (title == "Google Drive")
-                    title = "";
-
-                var str = new SpannableString("  " + title);
-
+				String title =
+					protocolId == "kp2a" ? App.Kp2a.GetResourceString("get_regular_version")
+						:
+						App.Kp2a.GetStorageMainTypeDisplayName(firstProtocolInList);
+                var str = new SpannableString(title);
 
 			    btn.TextFormatted = str;
                 //var drawable = ContextCompat.GetDrawable(context, Resource.Drawable.Icon);
-                if (!isdrive)
-                {
-                    drawable.SetBounds(0, 0, 75, 75);
-                    btn.SetCompoundDrawables(drawable, null, null, null);
-				}
-				else
-
-                btn.SetCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+                btn.SetCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
 
                 return btn;
 			}
