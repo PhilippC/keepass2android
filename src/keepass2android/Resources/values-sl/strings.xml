@@ -506,7 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Prosimo, upoštevajte: Zahtevali smo preverjanje aplikacije s strani Googla, vendar se že več mesecev ni zgodilo nič. Če vidite sporočilo, da je aplikacija blokirana, ker ni preverjena, namesto te možnosti uporabite brskalnik datotek za Android – Google Drive.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do pCloud mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v pCloud mapi.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
