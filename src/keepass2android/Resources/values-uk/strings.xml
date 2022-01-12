@@ -409,6 +409,8 @@
   <string name="DocumentAccessRevoked">Файл більше не доступний для Keepass2Android. Його було вилучено, або відкликано дозвіл на доступ. Відкрийте файл повторно, наприклад через меню Змінити базу даних.</string>
   <string name="PreloadDatabaseEnabled_title">Попереднє завантаження</string>
   <string name="PreloadDatabaseEnabled_summary">Починати завантаження файлу бази даних під час введення пароля.</string>
+  <string name="SyncAfterQuickUnlock_title">Синхронізувати після QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Синхронізувати базу даних з віддаленим файлом після розблокування за допомогою QuickUnlock.</string>
   <string name="AskOverwriteBinary">Хочете перезаписати наявний бінарний файл з тим самим іменем?</string>
   <string name="AskOverwriteBinary_title">Перезаписати наявний бінарний файл?</string>
   <string name="AskOverwriteBinary_yes">Перезаписати</string>
@@ -504,7 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
-  <string name="filestoragehelp_gdrive">Зверніть увагу: я вимагав затвердження застосунку у Google, але нічого не відбулося за місяці. Якщо ви бачите повідомлення, яке говорить, що програма заблокована, тому що вона не перевірена, будь ласка, використовуйте файловий браузер Android — Google Drive замість цієї опції.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Цей тип сховища вимагатиме доступу лише до теки \"Applications/Keepass2Android\" у pCloud. Якщо ви хочете використовувати наявну базу даних з вашого облікового запису pCloud, переконайтеся, що файл розміщений у цій теці pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -672,8 +673,8 @@
     <item>Виправлено зникання запиту автозаповнення у Firefox</item>
     <item>Інтеграція пропозицій автозаповнення до клавіатури (потрібен Android 11+)</item>
     <item>Дозволено змінювати мову застосунку в налаштуваннях</item>
-    <item>Add option to synchronize database after QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Додано опцію для синхронізації бази даних після QuickUnlock</item>
+    <item>Виправлено помилку: не створювати назви файлів у нижньому регістрі під час збереження в Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Додано підтримку формату файлів KDBX 4.1, впровадженої в Keepass 2.48</item>

@@ -508,7 +508,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Observação: Eu solicitei a verificação do aplicativo pelo Google, mas nada aconteceu há meses. Se você vir uma mensagem dizendo que o aplicativo está bloqueado porque não foi verificado, use o navegador de arquivos do Android - Google Drive em vez desta opção.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só solicitará acesso à pasta pCloud \"Applications/Keepass2Android\". Se você deseja usar um banco de dados existente de sua conta pCloud, certifique-se de que o arquivo está colocado nesta pasta pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -674,8 +673,8 @@
     <item>Corrigido o desaparecimento da pergunta pelo Autopreenchimento no Firefox</item>
     <item>Integrar sugestões de Autopreenchimento com teclado (requer Android 11+)</item>
     <item>Permitir mudança de idioma do app nas configurações</item>
-    <item>Add option to synchronize database after QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Adicionada opção de sincronizar banco de dados após QuickUnlock</item>
+    <item>Correção: Não fazer nome de arquivos minúsculos quando salvando no Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Adicionado suporte ao formato de arquivo KDBX 4.1, introduzido no KeePass 2.48</item>

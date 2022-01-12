@@ -237,11 +237,14 @@
   <string name="sort_moddate">수정된 날짜 순으로 정렬</string>
   <string name="sort_default">기본 순서 유지</string>
   <string name="special">특수</string>
+  <string name="special_extended">확장된 특수문자</string>
+  <string name="exclude_lookalike">서로 모양이 비슷한 문자 제외</string>
   <string-array name="PasswordGeneratorModes">
     <item>비밀번호</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>패스프레이즈</item>
+    <item>패스프레이즈 + 비밀번호</item>
   </string-array>
+  <string name="custom_settings">사용자 지정 설정</string>
   <string name="search_hint">찾을 내용</string>
   <string name="search_results">검색 결과</string>
   <string name="search_in">검색</string>

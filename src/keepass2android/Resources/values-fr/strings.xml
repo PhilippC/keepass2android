@@ -71,6 +71,7 @@
   <string name="copy_password">Cliquez pour copier le mot de passe</string>
   <string name="copy_totp">Sélectionner pour copier le code TOTP vers le presse-papiers</string>
   <string name="available_through_keyboard">L\'entrée est disponible via le clavier KP2A</string>
+  <string name="app_language_pref_title">Langue de l\'application</string>
   <string name="entry_is_available">est disponible</string>
   <string name="not_possible_im_picker">L\'ouverture de la fenêtre de sélection de la méthode de saisie a échoué. Merci de choisir votre clavier manuellement.</string>
   <string name="please_activate_keyboard">Merci d\'activer le clavier Keepass2Android dans vos paramètres systèmes.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android n\'offre ABSOLUMENT AUCUNE GARANTIE ; il s\'agit d\'un logiciel gratuit, et vous pouvez le redistribuer sous les conditions de la licenceGPL v2 ou ultérieure.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copier dans le Presse-papier</string>
+  <string name="SystemLanguage">Langue du système</string>
   <string name="fingerprint_description">Veuillez vous authentifier pour continuer</string>
   <string name="fingerprint_fatal">Impossible de configurer le déverrouillage biométrique :</string>
   <string name="fingerprint_not_recognized">Échec de l\'authentification biométrique. Essayer à nouveau</string>
@@ -290,6 +292,9 @@
   <string name="RememberRecentFiles_summary">Se souvenir des bases de données récemment ouvertes et les afficher dans l\'écran d\'ouverture de base de données.</string>
   <string name="NoDalVerification_title">Aucune vérification DAL</string>
   <string name="NoDalVerification_summary">Désactive la vérification si le domaine et le  package d\'application correspondent</string>
+  <string name="InlineSuggestions_title">Intégrer au clavier</string>
+  <string name="InlineSuggestions_summary">Affiche les suggestions de saisie automatique comme options en ligne dans le clavier (si pris en charge par la méthode de saisie)</string>
+  <string name="requires_android11">Nécessite Android 11 ou supérieur</string>
   <string name="kp2a_findUrl">Trouver un mot de passe</string>
   <string name="excludeExpiredEntries">Exclure les entrées arrivées à expiration</string>
   <string name="search_options">Options</string>
@@ -404,6 +409,8 @@
   <string name="DocumentAccessRevoked">Le fichier n\'est plus accessible pour Keepass2Android. Soit il a été supprimé ou les permissions d\'accès ont été révoquées. Merci de ré-ouvrir le fichier, par exemple en utilisant Changer de base de données.</string>
   <string name="PreloadDatabaseEnabled_title">Préchargement de la base de données</string>
   <string name="PreloadDatabaseEnabled_summary">Démarrer le chargement ou de téléchargement en arrière-plan de la base de données pendant la saisie du mot de passe.</string>
+  <string name="SyncAfterQuickUnlock_title">Synchroniser après le déverrouillage rapide</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchroniser la base de données avec un fichier distant après le déverrouillage rapide.</string>
   <string name="AskOverwriteBinary">Voulez-vous écraser le fichier existant en utilisant le même nom ?</string>
   <string name="AskOverwriteBinary_title">Écraser le fichier existant ?</string>
   <string name="AskOverwriteBinary_yes">Écraser</string>
@@ -659,6 +666,13 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Correction de la disparition de l\'invite de remplissage automatique dans Firefox</item>
+    <item>Intégrer les suggestions de remplissage automatique avec le clavier (nécessite Android 11+)</item>
+    <item>Permettre de changer la langue de l\'application dans les paramètres</item>
+    <item>Ajouter une option pour synchroniser la base de données après le déverrouillage rapide</item>
+    <item>Correction de bug : Ne pas créer de noms de fichiers en minuscule lors de l\'enregistrement dans Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Ajout de la prise en charge du format de fichier KDBX 4.1 introduit dans KeePass 2.48</item>
     <item>Ajout d`une fenêtre pour configurer les paramètres TOTP pour les entrées</item>
