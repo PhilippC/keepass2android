@@ -506,7 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres darle a KP2A acceso completo a tu Dropbox, deberías seleccionar esta opción. Sólo se pedirá acceso a la carpeta Apps/Keepass2Android. Esto es especialmente adecuado cuando creas una nueva base de datos. Si ya tienes una base de datos, slecciona esta opción para crear la carpeta, luego pon el archivo dentro de esta carpeta (desde tu PC) y después selecciona otra vez esta opción para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Nota: He solicitado la verificación de la aplicación por parte de Google, pero no ha pasado nada desde hace meses. Si ves un mensaje diciendo que la aplicación está bloqueada porque no está verificada, por favor, utiliza el explorador de archivos de Android - Google Drive en lugar de esta opción.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta de pCloud \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente de su cuenta pCloud, asegúrese de que el archivo se coloca en dicha carpeta de pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
