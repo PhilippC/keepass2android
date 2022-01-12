@@ -824,7 +824,9 @@
 
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
-
+  <string-array name="ChangeLog_1_09c">
+    <item>Re-implemented Google Drive authentication, re-enabled Google Drive support</item>
+    </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Fix disappearing autofill prompt in Firefox</item>
     <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
