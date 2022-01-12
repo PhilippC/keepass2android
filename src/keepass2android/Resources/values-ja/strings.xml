@@ -501,7 +501,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
-  <string name="filestoragehelp_gdrive">注意：Googleによるアプリの検証を要求しましたが、数ヶ月の間、何もありません。 アプリが検証されていないためブロックされているというメッセージが表示された場合、Android のシステムファイルピッカー - Google ドライブ をこのオプションの代わりに使用してください。</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー \"Applications/Keepass2Android\" へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合には、そのファイルが、この pCloud フォルダー内にあるかどうかを確認して下さい。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
