@@ -669,6 +669,9 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Re-implementado autenticação no Google Drive, re-habilitado suporte ao Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Corrigido o desaparecimento da pergunta pelo Autopreenchimento no Firefox</item>
     <item>Integrar sugestões de Autopreenchimento com teclado (requer Android 11+)</item>
