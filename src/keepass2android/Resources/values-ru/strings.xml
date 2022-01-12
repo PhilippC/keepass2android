@@ -506,8 +506,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
-  <string name="filestoragehelp_gdrive">Обратите внимание: я запросил проверку приложения в Google, но уже несколько месяцев нет ответа. Если вы видите сообщение о том, что приложение заблокировано, потому что оно не проверено, используйте браузер файлов Android - Google Диск вместо этого параметра.
-Если вы видите сообщение о том, что приложение заблокировано, потому что оно не верифицировано, используйте менеджер файлов Android - Google Drive вместо этого варианта.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
