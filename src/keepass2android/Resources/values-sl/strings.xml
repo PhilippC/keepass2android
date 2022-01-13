@@ -669,6 +669,9 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Implementirano novo preverjanje pristnosti Google Drive, ponovno omogočena podpora za Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Popravljeno izginotje poziva za samodejno izpolnjevanje v Firefoxu</item>
     <item>Integracija predlogov za samodejno izpolnjevanje s tipkovnico (zahteva Android 11+)</item>
