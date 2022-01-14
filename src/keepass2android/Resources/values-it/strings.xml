@@ -245,7 +245,7 @@
   <string name="at_least_one_from_each_group">Almeno un carattere da ogni gruppo</string>
   <string name="exclude_lookalike">Escludi caratteri simili</string>
   <string name="password_generation_profile">Profilo</string>
-  <string name="save_password_generation_profile_text">Inserisci il nome del profilo da salvare. Inserisci un nome esistente per sovrascrivere.</string>
+  <string name="save_password_generation_profile_text">Inserisci il nome del profilo da salvare. Inserisci un nome esistente per sovrascriverlo.</string>
   <string name="hint_wordcount">Conteggio parole nella frase segreta</string>
   <string name="hint_wordseparator">Separatore parole</string>
   <string-array name="PasswordGeneratorModes">
@@ -708,7 +708,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Forza HTTP/1.1 a causa del problema con l\'implementazione di HTTP/2 di OkHttp</item>
     <item>Migliora la finestra di dialogo della tastiera su Android 9+</item>
     <item>Modifica le associazioni dei file dell\'app per evitare alcune associazioni non necessarie</item>
-    <item>Assicurati che il testo della password non sia nascosto dietro l\'icona dell\'occhio</item>
+    <item>Verifica che il testo della password non sia nascosto dietro l\'icona dell\'occhio</item>
     <item>Modifica il comportamento di riempimento automatico per avvisare quando si compilano le credenziali per un dominio in un\'app non riconosciuta</item>
     <item>Aggiorna alla libreria FTP</item>
     <item>Correzioni di crash potenziali dell\'app</item>
