@@ -95,12 +95,12 @@
   <string name="enable_fingerprint_unlock">Abilita lo Sblocco Biometrico completo</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo Sblocco Biometrico per QuickUnlock</string>
   <string name="fingerprint_unlock_failed">Sblocco con impronta fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
-  <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco della banca dati è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la parola d\'accesso principale non sia più valida. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
-  <string name="fingerprint_reenable2">Sblocca la banca dati con la tua parola d\'accesso e abilita di nuovo lo Sblocco Biometrico nelle impostazioni della banca dati.</string>
+  <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo Sblocco Biometrico nelle impostazioni del database.</string>
   <string name="FingerprintInitFailed">Impossibile inizializzare l\'autenticazione biometrica. </string>
   <string name="FingerprintSetupFailed">Impossibile crittografare i dati. Questo può accadere se si aggiungono o rimuovono impronte digitali nelle impostazioni di sistema mentre Keepass2Android è in attesa della tua impronta digitale.</string>
-  <string name="enable_fingerprint_unlock_Info">Questo memorizzerà la parola d\'accesso principale su questo dispositivo, cifrata con l\'Archivio Chiavi di Android e protetta tramite autenticazione biometrica. Permette di sbloccare la banca dati utilizzando solo la biometria.</string>
+  <string name="enable_fingerprint_unlock_Info">Questo memorizzerà la password principale su questo dispositivo, cifrata con il Keystore Android e protetta tramite autenticazione biometrica. Permette di sbloccare il database utilizzando solo la biometria.</string>
   <string name="enable_fingerprint_quickunlock_Info">Permette di utilizzare l\'autenticazione biometrica anziché il codice di QuickUnlock. Non memorizza alcuna informazione relativa alla tua password principale.</string>
   <string name="enter_filename">Inserisci il nome del file del database</string>
   <string name="entry_accessed">Ultimo accesso</string>
@@ -270,7 +270,7 @@
   <string name="underline">Sottolineato</string>
   <string name="unsupported_db_version">Versione del database non supportata.</string>
   <string name="uppercase">Maiuscole</string>
-  <string name="warning_read_only">La tua scheda SD è attualmente in sola lettura. Potresti non essere in grado di salvare le modifiche nella banca dati.</string>
+  <string name="warning_read_only">La tua scheda SD è attualmente in sola lettura. Potresti non essere in grado di salvare le modifiche nel database.</string>
   <string name="warning_unmounted">La tua scheda SD non è attualmente montata. Non sarai in grado di caricare o creare nessun database.</string>
   <string name="version_label">Versione</string>
   <string name="version_history">Cronologia delle versioni</string>
@@ -343,6 +343,7 @@
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Chiave segreta</string>
   <string name="totp_encoding_rfc6238">Impostazioni predefinite del gettone RFC6238</string>
+  <string name="totp_encoding_steam">Impostazioni token di Steam</string>
   <string name="totp_encoding_custom">Impostazioni del gettone personalizzate</string>
   <string name="totp_time_step">Passo temporale</string>
   <string name="totp_length">Lunghezza del codice</string>
@@ -377,7 +378,7 @@
   <string name="AcceptAllServerCertificates_title">Certificati SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definisci cosa fare quando la convalida del certificato fallisce. Nota: puoi installare i certificati sul dispositivo se la validazione fallisce!</string>
   <string name="ClearOfflineCache_title">Svuotare la cache?</string>
-  <string name="ClearOfflineCache_question">Questo cancellerà tutti gli archivi delle banche dati memorizzate nella memoria di servizio. Eventuali modifiche apportate mentre non avevi accesso alla banca dati di origine, e che non sono ancora state sincronizzate, saranno perse! Continuare?</string>
+  <string name="ClearOfflineCache_question">Questo cancellerà tutti i file di database memorizzati nella cache. Eventuali modifiche apportate mentre non avevi accesso ai database di origine, e che non sono ancora state sincronizzate, saranno perse! Continuo?</string>
   <string name="CheckForFileChangesOnSave_title">Controlla modifiche</string>
   <string name="CheckForFileChangesOnSave_summary">Controlla se il file è stato modificato esternamente prima di salvare le modifiche.</string>
   <string name="CheckForDuplicateUuids_title">Cerca UUID duplicati</string>
@@ -409,7 +410,7 @@
   <string name="PreloadDatabaseEnabled_title">Pre-carica il file del database</string>
   <string name="PreloadDatabaseEnabled_summary">Inizia il caricamento in background o il download del database durante l\'immissione della password.</string>
   <string name="SyncAfterQuickUnlock_title">Sincronizza dopo QuickUnlock</string>
-  <string name="SyncAfterQuickUnlock_summary">Sincronizza la banca dati con l\'archivio remoto dopo lo sblocco con QuickUnlock.</string>
+  <string name="SyncAfterQuickUnlock_summary">Sincronizza il database con il file remoto dopo lo sblocco con QuickUnlock.</string>
   <string name="AskOverwriteBinary">Vuoi sovrascrivere il file esistente usando lo stesso nome?</string>
   <string name="AskOverwriteBinary_title">Sovrascrivere il file esistente?</string>
   <string name="AskOverwriteBinary_yes">Sovrascrivi</string>
@@ -448,7 +449,7 @@
   <string name="NoOverwrite">No, sovrascrivi</string>
   <string name="UseOfflineMode">Usare solo la cache interna</string>
   <string name="UseOnlineMode">Sincronizzare la copia cache con l\'originale</string>
-  <string name="UseOfflineMode_Info">La banca dati viene caricata dalla memoria di servizio interna. Le modifiche vengono memorizzate solo nella memoria di servizio interna e verranno sincronizzate solamente selezionando \"Sincronizzare la copia nella memoria di servizio con l\'originale\".</string>
+  <string name="UseOfflineMode_Info">Il database viene caricato dalla cache interna. Le modifiche vengono memorizzate solo nella cache interna e verranno sincronizzate solamente selezionando Sincronizzare la copia cache con l\'originale.</string>
   <string name="InOfflineMode">Sto usando solo la cache interna.</string>
   <string name="SynchronizingCachedDatabase">Sincronizzazione dei database nella cache…</string>
   <string name="DownloadingRemoteFile">Caricamento del file di origine…</string>
@@ -458,7 +459,7 @@
   <string name="SynchronizedDatabaseSuccessfully">Banca dati sincronizzata con successo!</string>
   <string name="CheckingDatabaseForChanges">Controllo delle modifiche alla banca dati…</string>
   <string name="CouldNotSaveToRemote">Impossibile salvare nel file di origine: %1$s. Salva nuovamente o utilizza il menu di sincronizzazione quando il file sarà nuovamente accessibile.</string>
-  <string name="CouldNotLoadFromRemote">Impossibile accedere all\'archivio di origine: %1$s. Archivio caricato dalla memoria di servizio interna. Puoi comunque modificare la banca dati e sincronizzarla più tardi.</string>
+  <string name="CouldNotLoadFromRemote">Non posso accedere al file di origine: %1$s. File caricato dalla cache interna. Puoi comunque modificare il database e sincronizzarlo più tardi.</string>
   <string name="UpdatedRemoteFileOnLoad">File di origine aggiornato.</string>
   <string name="NotifyOpenFromLocalDueToConflict">Aperto il file dalla cache interna a causa di conflitti con modifiche nel file di origine. Utilizza il menu Sincronizza per unirle.</string>
   <string name="LoadedFromRemoteInSync">La cache interna e il file di origine sono sincronizzati.</string>
@@ -506,7 +507,7 @@
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Applicazioni/Keepass2Android. Ciò è particolarmente indicato quando si crea una nuova banca dati. Se hai già una banca dati, seleziona questa opzione per creare la cartella, poi spostaci dentro l\'archivio (dal PC), quindi seleziona di nuovo questa opzione per aprire l\'archivio.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Questo tipo di archiviazione richiederà l\'accesso solo alla cartella pCloud \"Applicazioni/Keepass2Android\". Se si desidera utilizzare una banca dati esistente dal proprio conto pCloud, assicurarsi che l\'archivio sia posizionato in questa cartella pCloud.</string>
+  <string name="filestoragehelp_pcloud">Questo tipo di archiviazione richiederà l\'accesso solo alla cartella pCloud \"Applicazioni/Keepass2Android\". Se desideri utilizzare un database esistente dal tuo account pCloud, assicurati che il file sia posizionato in questa cartella pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tutti i file e gli elementi condivisi</string>
@@ -665,11 +666,14 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Re-implementato autenticazione Google Drive, ri-abilitato supporto Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Corretta la scomparsa del sollecito di riempimento automatico in Firefox</item>
     <item>Integra i suggerimenti di riempimento automatico con la tastiera (richiede Android 11+)</item>
     <item>Consenti di modificare la lingua dell\'app nelle impostazioni</item>
-    <item>Aggiunta l\'opzione per sincronizzare la banca dati dopo QuickUnlock</item>
+    <item>Aggiunta l\'opzione per sincronizzare il database dopo QuickUnlock</item>
     <item>Correzione falla: non era possibile nominare gli archivi con caratteri in minuscolo quando si salvava su Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
@@ -691,7 +695,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Migliorato il supporto per le voci TOTP da programmi da scrivania</item>
     <item>Aggiornato l\'SDK pCloud per risolvere un problema di autenticazione</item>
     <item>Aggiornato Jsch alla versione 0.1.55</item>
-    <item>Aggiunto menu alla schermata di selezione della banca dati</item>
+    <item>Aggiunto menu alla schermata di selezione del database</item>
     <item>Permetti di esportare l\'archivio chiave importato</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
@@ -1044,17 +1048,17 @@ Prima release pubblica
   <string name="autofill_disable">Disattiva Compilazione automatica per %1$s</string>
   <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
-  <string name="enable_fingerprint_hint">Keepass2Android ha rilevato il sensore biometrico. Desideri attivare lo sblocco biometrico per questa banca dati?</string>
+  <string name="enable_fingerprint_hint">Keepass2Android ha rilevato il sensore biometrico. Desideri attivare lo sblocco biometrico per questo database?</string>
   <string name="understand">Ho capito</string>
   <string name="dont_show_again">Non mostrare più</string>
   <string name="masterkey_infotext_head">Ricordi la tua password principale?</string>
-  <string name="masterkey_infotext_main">Nota che senza la parola d\'accesso principale non sarai in grado di aprire la banca dati. Non c\'è nessun modo di \"ripristinare\" la parola d\'accesso principale.</string>
+  <string name="masterkey_infotext_main">Nota che senza la password principale non sarai in grado di aprire il database. Non c\'è nessun modo di \"ripristinare\" la password principale.</string>
   <string name="masterkey_infotext_fingerprint_note">Nota inoltre che lo Sblocco Biometrico funziona memorizzando la tua password principale nella memoria sicura di Android. Questa memoria può essere eliminata da Android in qualsiasi momento, ad esempio se aggiungi una nuova impronta nelle impostazioni del sistema. Quindi non fare affidamento sullo Sblocco Biometrico, ma ricordati la password principale, per favore!</string>
   <string name="backup_infotext_head">Esiste un backup del tuo database?</string>
   <string name="backup_infotext_main">Keepass2Android memorizza le password in un file in una posizione di tua scelta. Sei sicuro di poter accedere a questo file anche quando il telefono viene perso o rubato, o quando il file viene distrutto o cancellato? Assicurati di avere sempre un backup aggiornato in un luogo sicuro!</string>
   <string name="backup_infotext_note">Per creare un backup ora, vai a %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Sei preparato per i casi d\'emergenza?</string>
-  <string name="emergency_infotext_main">Hai mai pensato a cosa succederebbe se tu non fossi più in grado di accedere alla banca dati delle tue parole d\'accesso? Cosa succederebbe se avessi un incidente? È buona norma passare la tua chiave d\'accesso principale a qualche persona di fiducia per casi di emergenza. Altrimenti nessuno potrà accedere alle tue parole d\'accesso.</string>
+  <string name="emergency_infotext_main">Hai mai pensato a cosa succederebbe se tu non fossi più in grado di accedere al database delle tue password? Cosa succederebbe se avessi un incidente? È buona norma passare la password principale a qualche persona di fiducia per casi di emergenza. Altrimenti nessuno potrà accedere alle tue password.</string>
   <string name="no_secure_display">Il display corrente non è contrassegnato come sicuro. Questo significa che degli screenshot potrebbero essere presi da altre applicazioni. Keepass2Android è configurato per visualizzare le informazioni sensibili solo su display sicuri. Si prega di passare ad un display sicuro (ad esempio scollegando un monitor HDMI) oppure di modificare le impostazioni dell\'app.</string>
   <string name="disable_secure_screen_check">Disabilita questo messaggio</string>
   <string name="switch_ime_text">Si prega di attivare la tastiera Keepass2Android.</string>
