@@ -1230,7 +1230,11 @@ namespace keepass2android
             intentFilter.AddAction(Intents.LockDatabaseByTimeout);
 			intentFilter.AddAction(Intents.CloseDatabase);
             Context.RegisterReceiver(broadcastReceiver, intentFilter);
-        }
+
+
+            Xamarin.Essentials.Platform.Init(this);
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+		}
 
 	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
 

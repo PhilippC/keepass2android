@@ -63,6 +63,14 @@
             android:hint="@string/totp_length"
             android:id="@+id/totp_length" />
 
+        <Button
+          android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          android:text="@string/totp_scan"
+          android:id="@+id/totp_scan"
+            />
+
     </LinearLayout>
 
 

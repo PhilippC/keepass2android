@@ -39,11 +39,15 @@ using Android.Content.Res;
 using Android.Database;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Runtime;
 using Android.Util;
 using keepass2android.Io;
 using KeePassLib.Serialization;
 using KeeTrayTOTP.Libraries;
 using PluginTOTP;
+using Xamarin.Essentials;
+using Xamarin.Forms.Platform.Android;
+using ZXing.Mobile;
 using Debug = System.Diagnostics.Debug;
 using File = System.IO.File;
 using Object = Java.Lang.Object;
@@ -1113,8 +1117,8 @@ namespace keepass2android
 	    private string[] _additionalKeys = null;
 	    private List<View> _editModeHiddenViews;
 	    private Uri _uriToAddOrAsk;
-
-	    public string[] AdditionalKeys
+      
+		public string[] AdditionalKeys
 	    {
 		    get
 		    {
@@ -1177,6 +1181,25 @@ namespace keepass2android
                 dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = args.IsChecked ? ViewStates.Visible : ViewStates.Gone;
             };
 
+            dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
+                options.PossibleFormats = new List<ZXing.BarcodeFormat>() { ZXing.BarcodeFormat.QR_CODE };
+
+                var result = await scanner.Scan(options);
+                if (result?.Text?.StartsWith("otpauth://") == true)
+                {
+                    dialog.Dismiss();
+                    var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                    targetField.Text = result.Text;
+                }
+                else
+                {
+                    Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
+				}
+                
+			};
 
 			//copy values from entry into dialog
 			View ees = (View)sender.Parent;
@@ -1208,14 +1231,22 @@ namespace keepass2android
             
             _passwordFont.ApplyTo(dlgView.FindViewById<EditText>(Resource.Id.totp_secret_key));
             Util.SetNoPersonalizedLearning(dlgView);
-            
-
 
             dialog.Show();
 
         }
 
-        string SanitizeInput(string encodedData)
+      
+
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+		string SanitizeInput(string encodedData)
         {
             if (encodedData.Length <= 0)
             {
