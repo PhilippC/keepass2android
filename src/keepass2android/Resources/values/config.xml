@@ -35,6 +35,7 @@
 
   <string name="app_name_debug">KP2ADbg</string>
   <string name="library_name"></string>
+  <string name="QuickUnlockKeyFromDatabase_key">QuickUnlockKeyFromDatabase_key</string>
     <string name="default_file_path">/keepass/keepass.kdbx</string>
     <string name="donate_url"><![CDATA[https://philipp.crocoll.net/donate.php?lang=%1$s&app=%2$s]]></string>
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>

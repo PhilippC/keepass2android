@@ -29,6 +29,7 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
+using KeePassLib;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -107,7 +108,12 @@ namespace keepass2android
 
 			_quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
-		    if (PreferenceManager.GetDefaultSharedPreferences(this)
+			bool useUnlockKeyFromDatabase = 
+                QuickUnlockFromDatabaseEnabled
+				&& FindQuickUnlockEntry() != null;
+			
+
+            if (useUnlockKeyFromDatabase || PreferenceManager.GetDefaultSharedPreferences(this)
 		        .GetBoolean(GetString(Resource.String.QuickUnlockHideLength_key), false))
 		    {
 		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label_secure);
@@ -155,6 +161,15 @@ namespace keepass2android
 
 
 
+        }
+
+        private bool QuickUnlockFromDatabaseEnabled =>
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .GetBoolean(GetString(Resource.String.QuickUnlockKeyFromDatabase_key), false);
+
+        private static PwEntry FindQuickUnlockEntry()
+        {
+            return App.Kp2a.GetDbForQuickUnlock()?.KpDatabase?.RootGroup?.Entries.SingleOrDefault(e => e.Strings.GetSafe(PwDefs.TitleField).ReadString() == "QuickUnlock");
         }
 
         private const string NumFailedAttemptsKey = "FailedAttempts";
@@ -357,7 +372,17 @@ namespace keepass2android
         private string ExpectedPasswordPart
 		{
 			get
-			{
+            {
+                if (QuickUnlockFromDatabaseEnabled)
+                {
+                    var quickUnlockEntry = FindQuickUnlockEntry();
+                    if (quickUnlockEntry != null)
+                    {
+                        return quickUnlockEntry.Strings.ReadSafe(PwDefs.PasswordField).ToString();
+                    }
+				}
+
+                
 				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
 				String password = kcpPassword.Password.ReadString();
 

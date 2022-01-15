@@ -508,6 +508,14 @@
 		    android:defaultValue="false"
 		    android:title="@string/QuickUnlockHideLength_title"
 		    android:key="@string/QuickUnlockHideLength_key" />
+
+      <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/QuickUnlockKeyFromDatabase_summary"
+        android:defaultValue="false"
+        android:title="@string/QuickUnlockKeyFromDatabase_title"
+        android:key="@string/QuickUnlockKeyFromDatabase_key" />
       
 		</PreferenceScreen>
 		<PreferenceScreen
