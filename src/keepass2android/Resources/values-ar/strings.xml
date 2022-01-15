@@ -71,6 +71,7 @@
   <string name="copy_password">حدد لنسخ كلموة المرور إلى حافظة لوحة المفاتيح</string>
   <string name="copy_totp">حدد لنسخ اسم المستخدم إلى حافظة لوحة المفاتيح</string>
   <string name="available_through_keyboard">القيد متوفر من خلال لوحة مفاتيح KP2A</string>
+  <string name="app_language_pref_title">لعة التطبيق</string>
   <string name="entry_is_available">متوفر</string>
   <string name="not_possible_im_picker">لا يمكن فتح صندوق الحوار لتحديد طريقة الإدخال. يرجى تفعيل لوحة المفاتيح يدويًا.</string>
   <string name="please_activate_keyboard">يرجى تفعيل لوحة مفاتيح Keepass2Android في إعدادات النظام.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android يأتي دون أدنى ضمان، هذا البرنامج مجاني، وإعادة توزيعه مرحب بها تحت شروط GPL الإصدار 2 أو ما بعده.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">نسخ إلى حافظة لوحة المفاتيح</string>
+  <string name="SystemLanguage">لغة النظام</string>
   <string name="fingerprint_description">الرجاء المصادقة للمتابعة</string>
   <string name="fingerprint_fatal">لا يمكن إعداد \"فتح القفل بالبصمة\":</string>
   <string name="fingerprint_not_recognized">فشل المصادقة البيومترية. حاول مرة أخرى</string>
@@ -239,11 +241,22 @@
   <string name="sort_moddate">فرز حسب تاريخ التعديل</string>
   <string name="sort_default">الحفاظ على الترتيب الاصلي</string>
   <string name="special">خاص</string>
+  <string name="at_least_one_from_each_group">واحد على الأقل من كل مجموعة</string>
+  <string name="exclude_lookalike">استبعاد الأحرف المتشابهة في الشكل</string>
+  <string name="password_generation_profile">الملف الشخصي</string>
+  <string name="hint_wordseparator">فاصل الكلمات</string>
   <string-array name="PasswordGeneratorModes">
     <item>كلمة السر</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>عبارة المرور</item>
+    <item>عبارة المرور + كلمة المرور</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item> أحرف صغيرة </item>
+    <item>أحرف كبيرة</item>
+    <item>الحرف الأول حرف كبير</item>
+  </string-array>
+  <string name="custom_settings">الإعدادات المُخصصة</string>
+  <string name="passphrase_capitalization"> استخدام الأحرف الكبيرة لعبارة المرور</string>
   <string name="search_hint">البحث عن ماذا</string>
   <string name="search_results">نتائج البحث</string>
   <string name="search_in">البحث في</string>
@@ -276,6 +289,7 @@
   <string name="RememberRecentFiles_summary">تذكر قواعد البيانات المفتوحة حديثا وأظهرها في شاشة \"فتح قاعدة البيانات\".</string>
   <string name="NoDalVerification_title">لا يوجد تحقق DAL</string>
   <string name="NoDalVerification_summary">تعطيل التحقق من تطابق النطاق وحزمة التطبيقات</string>
+  <string name="InlineSuggestions_title">دمج مع لوحة المفاتيح</string>
   <string name="kp2a_findUrl">العثور على كلمة المرور</string>
   <string name="excludeExpiredEntries">استبعاد المدخالات المنتهية الصلاحية</string>
   <string name="search_options">خيارات البحث</string>

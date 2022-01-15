@@ -24,7 +24,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout">Zeitsperre für Anwendung</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
-  <string name="show_kill_app">Schließen-Knopf</string>
+  <string name="show_kill_app">Schließen-Button</string>
   <string name="show_kill_app_summary">Zeige eine Schaltfläche auf dem Kennwort-Bildschirm, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
@@ -507,7 +507,6 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Bitte beachte: Ich habe eine Verifikation der App durch Google angefragt, leider ist seit Monaten nichts geschehen. Wenn du eine Nachricht siehst, dass die App wegen fehlender Verifikation blockiert sei, benutze bitte den Android Dateibrowser und dort Google Drive. </string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Dieser Speichertyp verlangt nur Zugriff auf den pCloud-Ordner \"Applications/Keepass2Android\". Wenn Sie eine existierende Datenbank aus Ihrem pCloud-Konto verwenden möchten, stellen Sie bitte sicher, dass die Datei in diesem pCloud-Ordner gespeichert ist.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
