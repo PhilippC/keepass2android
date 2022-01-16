@@ -284,6 +284,8 @@
   <string name="please_note">请注意</string>
   <string name="contributors">贡献者</string>
   <string name="regular_expression">正则表达式</string>
+  <string name="AlwaysMergeOnConflict_title">冲突时总是合并</string>
+  <string name="AlwaysMergeOnConflict_summary">当 Keepass2Android 检测到远程文件被修改时，总是将本地更改与远程更改合并。</string>
   <string name="TanExpiresOnUse_title">TAN 在使用时过期</string>
   <string name="TanExpiresOnUse_summary">当使用它们时标记 TAN 条目过期</string>
   <string name="ShowUsernameInList_title">在列表中显示用户名</string>
@@ -322,6 +324,8 @@
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
   <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
   <string name="QuickUnlockHideLength_summary">若启用，快速解锁所需的密码长度不会再显示在快速解锁界面上。</string>
+  <string name="QuickUnlockKeyFromDatabase_title">来自数据库条目的 QuickUnlock 密钥</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">如果活动数据库在其根组中包含一个标题为 QuickUnlock 的条目，则该条目的密码将用作 QuickUnlock 代码。</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
@@ -347,6 +351,7 @@
   <string name="totp_encoding_custom">自定义令牌设置</string>
   <string name="totp_time_step">时间步数</string>
   <string name="totp_length">代码长度</string>
+  <string name="totp_scan">扫描二维码</string>
   <string name="delete_extra_string">删除额外的字符串</string>
   <string name="database_loaded_quickunlock_enabled">%1$s：已锁定，快速解锁已启用。</string>
   <string name="database_loaded_unlocked">%1$s：已解锁。</string>
