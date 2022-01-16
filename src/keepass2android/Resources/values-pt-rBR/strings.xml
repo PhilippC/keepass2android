@@ -286,6 +286,8 @@
   <string name="please_note">Atenção</string>
   <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expressão regular</string>
+  <string name="AlwaysMergeOnConflict_title">Sempre mesclar quando em conflito</string>
+  <string name="AlwaysMergeOnConflict_summary">Quando Keepass2Android detecta que o arquivo remoto foi modificado, sempre mesclará as mudanças locais com as mudanças remotas.</string>
   <string name="TanExpiresOnUse_title">Tan expira em uso</string>
   <string name="TanExpiresOnUse_summary">Marque as entradas TAN como expiradas quando usá-las</string>
   <string name="ShowUsernameInList_title">Mostrar nome de usuário na lista</string>
@@ -324,6 +326,8 @@
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como senha do QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Esconder o tamanho do código QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se ativado, o tamanho do código QuickUnlock não é exibido durante a digitação.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Chave de Desbloqueio Rápido da entrada do banco de dados</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Se o banco de dados ativo contém uma entrada com título Desbloqueio Rápido no seu grupo raiz, a senha desta entrada é usada como código de Desbloqueio Rápido.</string>
   <string name="QuickUnlock_fail">O QuickUnlock falhou: senha incorreta!</string>
   <string name="SaveAttachmentDialog_title">Salvar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
@@ -349,6 +353,7 @@
   <string name="totp_encoding_custom">Configurações de token personalizadas</string>
   <string name="totp_time_step">Passagem do tempo</string>
   <string name="totp_length">Comprimento do código</string>
+  <string name="totp_scan">Escanear código QR</string>
   <string name="delete_extra_string">Excluir caracteres adicionais</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio Rápido habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
