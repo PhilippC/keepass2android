@@ -45,6 +45,7 @@ using KeePass.DataExchange;
 using KeePass.Util.Spr;
 using KeePassLib.Interfaces;
 using KeePassLib.Serialization;
+using PluginTOTP;
 using File = Java.IO.File;
 using Uri = Android.Net.Uri;
 
@@ -138,7 +139,7 @@ namespace keepass2android
 
 		private PasswordFont _passwordFont = new PasswordFont();
 
-		internal bool _showPassword;
+		internal Dictionary<TextView /*the "ProtectedField" of the ProtectedTextviewGroup*/, bool> _showPassword = new Dictionary<TextView, bool>();
 		private int _pos;
 
         private AppTask _appTask;
@@ -391,10 +392,12 @@ namespace keepass2android
 			edit.PutLong(GetString(Resource.String.UsageCount_key), usageCount + 1);
 			edit.Commit();
 
-			_showPassword =
+			_showPasswordDefault =
 				!prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
-            
-            RequestWindowFeature(WindowFeatures.IndeterminateProgress);
+            _showTotpDefault =
+                !prefs.GetBoolean(GetString(Resource.String.masktotp_key), Resources.GetBoolean(Resource.Boolean.masktotp_default));
+
+			RequestWindowFeature(WindowFeatures.IndeterminateProgress);
 			
 			_activityDesign.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
@@ -567,7 +570,7 @@ namespace keepass2android
 		    SetPasswordTypeface(valueViewVisible);
 		    if (isProtected)
 		    {
-		        RegisterProtectedTextView(valueView, valueViewVisible);
+		        RegisterProtectedTextView(key, valueView, valueViewVisible);
                 
 		    }
 		    else
@@ -700,8 +703,12 @@ namespace keepass2android
 
 
 
-		private void RegisterProtectedTextView(TextView protectedTextView, TextView visibleTextView)
+		private void RegisterProtectedTextView(string fieldKey, TextView protectedTextView, TextView visibleTextView)
 		{
+            if (!_showPassword.ContainsKey(protectedTextView))
+            {
+                _showPassword[protectedTextView] = fieldKey == UpdateTotpTimerTask.TotpKey ? _showTotpDefault : _showPasswordDefault;
+            }
 		    var protectedTextviewGroup = new ProtectedTextviewGroup { ProtectedField = protectedTextView, VisibleProtectedField = visibleTextView};
 		    _protectedTextViews.Add(protectedTextviewGroup);
             SetPasswordStyle(protectedTextviewGroup);
@@ -809,7 +816,7 @@ namespace keepass2android
 			PopulateStandardText(Resource.Id.entry_url, Resource.Id.entryfield_container_url, PwDefs.UrlField);
 			PopulateStandardText(new List<int> { Resource.Id.entry_password, Resource.Id.entry_password_visible}, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
 		    
-            RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
+            RegisterProtectedTextView(PwDefs.PasswordField, FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
 
 			RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
 				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath);
@@ -885,12 +892,16 @@ namespace keepass2android
 				container,
 				anchor);
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
-			if (isProtected)
-				popupItems.Add(new ToggleVisibilityPopupMenuItem(this));
+            if (isProtected)
+            {
+                var valueView = container.FindViewById<TextView>(fieldKey == PwDefs.PasswordField ? Resource.Id.entry_password : Resource.Id.entry_extra);
+				popupItems.Add(new ToggleVisibilityPopupMenuItem(this, valueView));
+            }
+
             if (fieldKey != PwDefs.UrlField //url already has a go-to-url menu
-              && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
-                || _stringViews[fieldKey].Text.StartsWith("http://")
-                || _stringViews[fieldKey].Text.StartsWith("https://")))
+                && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
+                    || _stringViews[fieldKey].Text.StartsWith("http://")
+                    || _stringViews[fieldKey].Text.StartsWith("https://")))
             {
                 popupItems.Add(new GotoUrlMenuItem(this, fieldKey));
 			}
@@ -1070,8 +1081,10 @@ namespace keepass2android
 	    }
         
 	    private ExportBinaryProcessManager _exportBinaryProcessManager;
+        private bool _showPasswordDefault;
+        private bool _showTotpDefault;
 
-	    protected override void OnSaveInstanceState(Bundle outState)
+        protected override void OnSaveInstanceState(Bundle outState)
 	    {
 	        
 	        
@@ -1114,7 +1127,7 @@ namespace keepass2android
 		private void UpdateTogglePasswordMenu()
 		{
 			IMenuItem togglePassword = _menu.FindItem(Resource.Id.menu_toggle_pass);
-			if (_showPassword)
+			if (_showPassword.Values.All(x => x))
 			{
 				togglePassword.SetTitle(Resource.String.menu_hide_password);
 			}
@@ -1134,8 +1147,9 @@ namespace keepass2android
 
         private void SetPasswordStyle(ProtectedTextviewGroup group)
         {
-            group.VisibleProtectedField.Visibility = _showPassword ? ViewStates.Visible : ViewStates.Gone;
-            group.ProtectedField.Visibility = !_showPassword ? ViewStates.Visible : ViewStates.Gone;
+            bool showPassword = _showPassword.GetValueOrDefault(group.ProtectedField, _showPasswordDefault);
+            group.VisibleProtectedField.Visibility = showPassword ? ViewStates.Visible : ViewStates.Gone;
+            group.ProtectedField.Visibility = !showPassword ? ViewStates.Visible : ViewStates.Gone;
 
             SetPasswordTypeface(group.VisibleProtectedField);
 
@@ -1191,15 +1205,17 @@ namespace keepass2android
                     task.Start();
                     break;
                 case Resource.Id.menu_toggle_pass:
-					if (_showPassword)
+					if (_showPassword.Values.All(x => x))
 					{
 						item.SetTitle(Resource.String.show_password);
-						_showPassword = false;
+						foreach (var k in _showPassword.Keys.ToList())
+						    _showPassword[k] = false;
 					}
 					else
 					{
 						item.SetTitle(Resource.String.menu_hide_password);
-						_showPassword = true;
+                        foreach (var k in _showPassword.Keys.ToList())
+                            _showPassword[k] = true;
 					}
 					SetPasswordStyle();
 
@@ -1260,10 +1276,26 @@ namespace keepass2android
 			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
 			pt.Run();
 
-		}	
-		public void ToggleVisibility()
+		}
+
+        public bool GetVisibilityForProtectedView(TextView protectedView)
+        {
+            if (protectedView == null)
+            {
+                return _showPasswordDefault;
+            }
+            if (_showPassword.ContainsKey(protectedView) == false)
+            {
+                _showPassword[protectedView] = _showPasswordDefault;
+            }
+
+            return _showPassword[protectedView];
+        }
+
+		public void ToggleVisibility(TextView valueView)
 		{
-			_showPassword = !_showPassword;
+            
+            _showPassword[valueView] = !GetVisibilityForProtectedView(valueView);
 			SetPasswordStyle();
 			UpdateTogglePasswordMenu();
 		}

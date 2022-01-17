@@ -66,6 +66,7 @@
 	<string name="master_pwd_key">change_master_pwd</string>
     <string name="keyfile_key">keyfile</string>
     <string name="maskpass_key">maskpass</string>
+  <string name="masktotp_key">masktotp</string>
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
 	<string name="design_key">design_key</string>
@@ -82,6 +83,7 @@
     
     <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
     <bool name="maskpass_default">true</bool>
+    <bool name="masktotp_default">true</bool>
     <bool name="keyfile_default">true</bool>
     <bool name="omitbackup_default">true</bool>
     <bool name="TanExpiresOnUse_default">true</bool>

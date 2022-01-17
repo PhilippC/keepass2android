@@ -186,6 +186,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Mask password</string>
   <string name="maskpass_summary">Hide passwords by default</string>
+
+  <string name="masktotp_title">Mask TOTP field</string>
+  <string name="masktotp_summary">Hide TOTP field by default</string>
+
   <string name="menu_about">About</string>
   <string name="menu_change_key">Change Master Key</string>
   <string name="menu_copy_pass">Copy Password</string>

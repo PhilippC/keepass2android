@@ -243,6 +243,12 @@
 			  android:summary="@string/maskpass_summary"
 			  android:defaultValue="@bool/maskpass_default"/>
 
+      <CheckBoxPreference
+        android:key="@string/masktotp_key"
+        android:title="@string/masktotp_title"
+        android:summary="@string/masktotp_summary"
+        android:defaultValue="@bool/masktotp_default"/>
+
 			<CheckBoxPreference
 			  android:key="@string/ShowUsernameInList_key"
 			  android:title="@string/ShowUsernameInList_title"
