@@ -190,6 +190,9 @@
   <string name="masktotp_title">Mask TOTP field</string>
   <string name="masktotp_summary">Hide TOTP field by default</string>
 
+  <string name="NoAutofillDisabling_title">No option to disable autofill</string>
+  <string name="NoAutofillDisabling_summary">If activated, the app will not show the option to disable autofill for specific entries.</string>
+
   <string name="menu_about">About</string>
   <string name="menu_change_key">Change Master Key</string>
   <string name="menu_copy_pass">Copy Password</string>

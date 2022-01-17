@@ -454,6 +454,14 @@
        android:title="@string/InlineSuggestions_title"
        android:key="@string/InlineSuggestions_key" />
 
+        <CheckBoxPreference
+          android:enabled="true"
+          android:persistent="true"
+          android:summary="@string/NoAutofillDisabling_summary"
+          android:defaultValue="true"
+          android:title="@string/NoAutofillDisabling_title"
+          android:key="@string/NoAutofillDisabling_key" />
+
 		  <keepass2android.AutofillDisabledQueriesPreference
 		    android:title="@string/AutofillDisabledQueriesPreference_title"
 		    android:summary="@string/AutofillDisabledQueriesPreference_summary"
