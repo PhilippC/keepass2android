@@ -203,7 +203,9 @@ namespace keepass2android.services.AutofillBase
                                 AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
                     }
 
-                    AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual, AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
+                    if (!PreferenceManager.GetDefaultSharedPreferences(this)
+                        .GetBoolean(GetString(Resource.String.NoAutofillDisabling_key), false))
+                        AddDisableDataset(query.DomainOrPackage, autofillIds, responseBuilder, isManual, AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
 
                     if (PreferenceManager.GetDefaultSharedPreferences(this)
                         .GetBoolean(GetString(Resource.String.OfferSaveCredentials_key), true))

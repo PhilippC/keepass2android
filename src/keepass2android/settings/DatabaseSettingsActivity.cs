@@ -364,6 +364,7 @@ namespace keepass2android
             var autofillDisabledPref = FindPreference(GetString(Resource.String.AutofillDisabledQueriesPreference_key));
             var autofillSavePref = FindPreference(GetString(Resource.String.OfferSaveCredentials_key));
             var autofillInlineSuggestions = FindPreference(GetString(Resource.String.InlineSuggestions_key));
+            var noAutofillDisablingPref = FindPreference(GetString(Resource.String.NoAutofillDisabling_key));
             var autofillNoDalVerification = FindPreference(GetString(Resource.String.NoDalVerification_key));
             if (autofillPref == null)
                 return;
@@ -384,6 +385,7 @@ namespace keepass2android
                     autofillSavePref.Enabled = true;
                     autofillNoDalVerification.Enabled = true;
                     autofillInlineSuggestions.Enabled = true;
+                    noAutofillDisablingPref.Enabled = true;
                     autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
                     autofillPref.Intent = new Intent(Intent.ActionView);
                     autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://philippc.github.io/keepass2android/OreoAutoFill.html"));
@@ -393,6 +395,7 @@ namespace keepass2android
                     autofillNoDalVerification.Enabled = false;
                     autofillDisabledPref.Enabled = false;
                     autofillSavePref.Enabled = false;
+                    noAutofillDisablingPref.Enabled = false;
                     autofillInlineSuggestions.Enabled = false;
                     autofillPref.Summary = Activity.GetString(Resource.String.not_enabled);
                 }

@@ -458,7 +458,7 @@
           android:enabled="true"
           android:persistent="true"
           android:summary="@string/NoAutofillDisabling_summary"
-          android:defaultValue="true"
+          android:defaultValue="false"
           android:title="@string/NoAutofillDisabling_title"
           android:key="@string/NoAutofillDisabling_key" />
 

@@ -67,7 +67,7 @@
     <string name="keyfile_key">keyfile</string>
     <string name="maskpass_key">maskpass</string>
   <string name="masktotp_key">masktotp</string>
-  <string name="NoAutofillDisabling">NoAutofillDisabling</string>
+  <string name="NoAutofillDisabling_key">NoAutofillDisabling</string>
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
 	<string name="design_key">design_key</string>
