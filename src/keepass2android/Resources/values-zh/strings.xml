@@ -171,6 +171,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">密码掩码</string>
   <string name="maskpass_summary">默认隐藏密码</string>
+  <string name="masktotp_title">遮盖 TOTP 字段</string>
+  <string name="masktotp_summary">默认隐藏 TOTP 字段</string>
+  <string name="NoAutofillDisabling_title">无禁用自动填充选项</string>
+  <string name="NoAutofillDisabling_summary">如激活，应用将不会显示对特定条目禁用自动填充的选项。</string>
   <string name="menu_about">关于</string>
   <string name="menu_change_key">更改主密钥</string>
   <string name="menu_copy_pass">复制密码</string>
