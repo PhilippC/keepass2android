@@ -171,6 +171,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Skryť heslo</string>
   <string name="maskpass_summary">Štandardne skrývať heslá</string>
+  <string name="masktotp_title">Maskovanie poľa pre jednorazové heslo</string>
+  <string name="masktotp_summary">Predvolene skrývať pole pre jednorazové heslo</string>
+  <string name="NoAutofillDisabling_title">Žiadna možnosť vypnutia automatického dopĺňania</string>
+  <string name="NoAutofillDisabling_summary">Ak je aktívne, aplikácia nebude zobrazovať možnosť vypnutia autom. dopĺňania pre určité záznamy.</string>
   <string name="menu_about">O aplikácii</string>
   <string name="menu_change_key">Zmeniť primárny kľúč</string>
   <string name="menu_copy_pass">Kopírovať heslo</string>
@@ -284,6 +288,8 @@
   <string name="please_note">Vezmite prosím na vedomie, že</string>
   <string name="contributors">Prispievatelia</string>
   <string name="regular_expression">Regulárny výraz</string>
+  <string name="AlwaysMergeOnConflict_title">Pri konflikte vždy zlúčiť</string>
+  <string name="AlwaysMergeOnConflict_summary">Ak Keepass2Android zistí, že vzdialený súbor bol upravený, vždy zlúčiť lokálne zmeny so zmenami vzdialeného súboru.</string>
   <string name="TanExpiresOnUse_title">Platnosť TAN skončí po jeho použití</string>
   <string name="TanExpiresOnUse_summary">Označiť záznamy TAN ako expirované pri ich použití</string>
   <string name="ShowUsernameInList_title">Zobraziť meno používateľa v zozname</string>
@@ -322,6 +328,8 @@
   <string name="QuickUnlockLength_summary">Max. počet znakov použitých ako heslo na rýchle odomknutie.</string>
   <string name="QuickUnlockHideLength_title">Skryť dĺžku QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Ak je zapnuté, nezobrazí sa dĺžka kódu QuickUnlick a obrazovke pre funkciu QuickUnlock.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Tlačidlo rýchleho odomknutia zo záznamu v databáze</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Ak aktívna databáza obsahuje záznam s názvom QuickUnlock (rýchle odomknutie) v hlavnej skupine, heslo záznamu sa použije ako kód pre rýchle odomknutie.</string>
   <string name="QuickUnlock_fail">Rýchle odomknutie zlyhalo: nesprávne heslo!</string>
   <string name="SaveAttachmentDialog_title">Uložiť prílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam sa príloha uloží.</string>
@@ -347,6 +355,7 @@
   <string name="totp_encoding_custom">Používateľské nastavenia tokenu</string>
   <string name="totp_time_step">Časový krok</string>
   <string name="totp_length">Dĺžka kódu</string>
+  <string name="totp_scan">Skenovať QR kód</string>
   <string name="delete_extra_string">Vymazať pridaný reťazec</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Uzamknuté. Rýchle odomknutie je aktívne.</string>
   <string name="database_loaded_unlocked">%1$s: Odomknuté.</string>
@@ -669,6 +678,9 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Opätovne implementovaná autentifikácia Google Drive, opätovne zapnutá podpora Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Opravte miznúcu výzvu na automatické dopĺňanie vo Firefoxe</item>
     <item>Integrujte návrhy automatického dopĺňania s klávesnicou (vyžaduje Android 11+)</item>
