@@ -171,6 +171,9 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maskér adgangskode</string>
   <string name="maskpass_summary">Maskér som standard adgangskoder</string>
+  <string name="masktotp_summary">Skjul TOTP-felt som standard</string>
+  <string name="NoAutofillDisabling_title">Ingen mulighed for at deaktivere autofyld</string>
+  <string name="NoAutofillDisabling_summary">Hvis aktiveret, vil appen ikke vise muligheden for at deaktivere autofyld for bestemte poster.</string>
   <string name="menu_about">Om</string>
   <string name="menu_change_key">Skift hovednøgle</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
@@ -284,6 +287,8 @@
   <string name="please_note">Bemærk venligst</string>
   <string name="contributors">Bidragsydere</string>
   <string name="regular_expression">Regulært udtryk</string>
+  <string name="AlwaysMergeOnConflict_title">Sammenflet altid ved konflikt</string>
+  <string name="AlwaysMergeOnConflict_summary">Når Keepass2Android registrerer, at den eksterne fil blev ændret, skal de lokale ændringer altid sammenflettes med de eksterne ændringer.</string>
   <string name="TanExpiresOnUse_title">TAN udløber efter brug</string>
   <string name="TanExpiresOnUse_summary">Markér TAN\'er som udløbet efter brug</string>
   <string name="ShowUsernameInList_title">Vis brugernavn på liste</string>
@@ -322,6 +327,7 @@
   <string name="QuickUnlockLength_summary">Maks. antal tegn benyttet som adgangskode til Hurtigoplåsning.</string>
   <string name="QuickUnlockHideLength_title">Skjul Hurtigoplåsningskodens længde</string>
   <string name="QuickUnlockHideLength_summary">Hvis aktiveret, vises længden af Hurtigoplåsningskoden ikke på Hurtigoplåsningsskærmen.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Hurtigoplåsningsnøgle fra database post</string>
   <string name="QuickUnlock_fail">Hurtigoplåsning mislykkedes: Forkert adgangskode!</string>
   <string name="SaveAttachmentDialog_title">Gem vedhæftning</string>
   <string name="SaveAttachmentDialog_text">Vælg, hvor vedhæftningen skal gemmes.</string>
