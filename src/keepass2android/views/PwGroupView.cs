@@ -81,8 +81,22 @@ namespace keepass2android.view
 			_pwGroup = pw;
 			
 			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
-		    Database db = App.Kp2a.FindDatabaseForElement(pw);
-            db.DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, db.KpDatabase, pw.IconId, pw.CustomIconUuid, true);
+		    
+            Database db;
+            try
+            {
+                db = App.Kp2a.FindDatabaseForElement(pw);
+            }
+            catch (Exception e)
+            {
+				//for some reason, since Android 12 we get here when the database is reloaded (after making remote changes and selecting sync)
+				//we can just ignore this.
+                Console.WriteLine(e);
+                return;
+
+            }
+
+			db.DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, db.KpDatabase, pw.IconId, pw.CustomIconUuid, true);
 		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
