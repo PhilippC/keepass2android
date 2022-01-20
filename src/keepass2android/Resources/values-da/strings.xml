@@ -171,6 +171,7 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maskér adgangskode</string>
   <string name="maskpass_summary">Maskér som standard adgangskoder</string>
+  <string name="masktotp_title">Maskér TOTP-felt</string>
   <string name="masktotp_summary">Skjul TOTP-felt som standard</string>
   <string name="NoAutofillDisabling_title">Ingen mulighed for at deaktivere autofyld</string>
   <string name="NoAutofillDisabling_summary">Hvis aktiveret, vil appen ikke vise muligheden for at deaktivere autofyld for bestemte poster.</string>
@@ -328,6 +329,7 @@
   <string name="QuickUnlockHideLength_title">Skjul Hurtigoplåsningskodens længde</string>
   <string name="QuickUnlockHideLength_summary">Hvis aktiveret, vises længden af Hurtigoplåsningskoden ikke på Hurtigoplåsningsskærmen.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Hurtigoplåsningsnøgle fra database post</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Hvis den aktive database indeholder en post med titlen Hurtigoplåsning i sin rodgruppe, bruges adgangskoden til denne post som Hurtigoplåsningskode.</string>
   <string name="QuickUnlock_fail">Hurtigoplåsning mislykkedes: Forkert adgangskode!</string>
   <string name="SaveAttachmentDialog_title">Gem vedhæftning</string>
   <string name="SaveAttachmentDialog_text">Vælg, hvor vedhæftningen skal gemmes.</string>
@@ -353,6 +355,7 @@
   <string name="totp_encoding_custom">Tilpassede indstillinger for token</string>
   <string name="totp_time_step">Tidstrin</string>
   <string name="totp_length">Kodelængde</string>
+  <string name="totp_scan">Skan QR-kode</string>
   <string name="delete_extra_string">Slet ekstra streng</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Låst. Hurtigoplåsning aktiv.</string>
   <string name="database_loaded_unlocked">%1$s: Oplåst.</string>
@@ -674,6 +677,9 @@
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
   <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Genimplementeret Google Drev-godkendelse, genaktiveret understøttelse af Google Drev</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Fiks forsvindende autofyld prompt i Firefox</item>
     <item>Integrer forslag til autofyld med tastatur (kræver Android 11+)</item>
