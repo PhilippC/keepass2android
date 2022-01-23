@@ -171,6 +171,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Cacher le mot de passe</string>
   <string name="maskpass_summary">Toujours masquer les mots de passe</string>
+  <string name="masktotp_title">Masquer le champ TOTP</string>
+  <string name="masktotp_summary">Cacher le champ TOTP par défaut</string>
+  <string name="NoAutofillDisabling_title">Aucune option pour désactiver le remplissage automatique</string>
+  <string name="NoAutofillDisabling_summary">Si activée, l\'application n\'affichera pas l\'option de désactiver le remplissage automatique pour des entrées spécifiques.</string>
   <string name="menu_about">A propos</string>
   <string name="menu_change_key">Modifier la clé maître</string>
   <string name="menu_copy_pass">Copier Mot de passe</string>
@@ -284,6 +288,8 @@
   <string name="please_note">Notez s\'il vous plaît</string>
   <string name="contributors">Contributeurs</string>
   <string name="regular_expression">Expression régulière</string>
+  <string name="AlwaysMergeOnConflict_title">Toujours fusionner en cas de conflit</string>
+  <string name="AlwaysMergeOnConflict_summary">Lorsque Keepass2Android détecte que le fichier distant a été modifié, fusionnez toujours les changements locaux avec les changements à distance.</string>
   <string name="TanExpiresOnUse_title">Le TAN expire lors de son utilisation</string>
   <string name="TanExpiresOnUse_summary">Marquer les entrées TAN expirées lors de leur utilisation</string>
   <string name="ShowUsernameInList_title">Afficher le nom d\'utilisateur dans la liste</string>
@@ -322,6 +328,8 @@
   <string name="QuickUnlockLength_summary">Nombre maximal de caractères utilisés comme mot de passe QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Masquer la longueur du code QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Si activé, la longueur du code QuickUnlock n’est pas affichée sur l’écran QuickUnlock.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Clé de déverrouillage rapide depuis l\'entrée de la base de données</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de données active contient une entrée avec le titre QuickUnlock dans son groupe racine, le mot de passe de cette entrée est utilisé comme code QuickUnlock.</string>
   <string name="QuickUnlock_fail">Échec de QuickUnlock : mot de passe incorrect !</string>
   <string name="SaveAttachmentDialog_title">Enregistrer la pièce jointe</string>
   <string name="SaveAttachmentDialog_text">Veuillez sélectionner où enregistrer la pièce jointe.</string>
@@ -347,6 +355,7 @@
   <string name="totp_encoding_custom">Personnaliser les paramètres du jeton</string>
   <string name="totp_time_step">Durée de vie</string>
   <string name="totp_length">Longueur du code</string>
+  <string name="totp_scan">Scanner un code QR</string>
   <string name="delete_extra_string">Supprimer la chaîne additionnelle</string>
   <string name="database_loaded_quickunlock_enabled">%1$s : Verrouillé. Déverrouillage rapide activé.</string>
   <string name="database_loaded_unlocked">%1$s : Déverrouillé.</string>
@@ -666,6 +675,9 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Authentification Google Drive réimplémentée, support Google Drive réactivé</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Correction de la disparition de l\'invite de remplissage automatique dans Firefox</item>
     <item>Intégrer les suggestions de remplissage automatique avec le clavier (nécessite Android 11+)</item>
