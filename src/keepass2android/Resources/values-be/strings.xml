@@ -413,6 +413,7 @@
   <string name="DocumentAccessRevoked">Гэты файл цяпер неадаступны для Keepass2Android. Ён або быў выдалены, або доступ да яго быў адкліканы. Паспрабуйце адкрыць файл нанова.</string>
   <string name="PreloadDatabaseEnabled_title">Папярэдняя загрузка файла базы даных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фонавай загрузкі або спампоўвання файла базы даных падчас уводу пароля.</string>
+  <string name="SyncAfterQuickUnlock_title">Сінхранізацыя пасля хуткага разблакавання</string>
   <string name="AskOverwriteBinary">Хочаце перазапісаць існы двайковы файл з такой самай назвай?</string>
   <string name="AskOverwriteBinary_title">Перазапісаць існы двайковы файл?</string>
   <string name="AskOverwriteBinary_yes">Перазапісаць</string>
