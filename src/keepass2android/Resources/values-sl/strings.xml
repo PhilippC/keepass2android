@@ -171,6 +171,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Zakrij geslo</string>
   <string name="maskpass_summary">Privzeto skrij gesla</string>
+  <string name="masktotp_title">Zakrij polje TOTP</string>
+  <string name="masktotp_summary">Privzeto skrij polje TOTP</string>
+  <string name="NoAutofillDisabling_title">Brez možnosti za onemogočanje samodejnega izpolnjevanja</string>
+  <string name="NoAutofillDisabling_summary">Če je aktivirano, aplikacija ne bo prikazala možnosti za onemogočanje samodejnega izpolnjevanja za določene vnose.</string>
   <string name="menu_about">O programu</string>
   <string name="menu_change_key">Spremeni glavni ključ</string>
   <string name="menu_copy_pass">Kopiraj geslo</string>
@@ -284,6 +288,8 @@
   <string name="please_note">Upoštevajte</string>
   <string name="contributors">Prispevali so</string>
   <string name="regular_expression">Običajni izraz</string>
+  <string name="AlwaysMergeOnConflict_title">V konfliktu se vedno združi</string>
+  <string name="AlwaysMergeOnConflict_summary">Ko Keepass2Android zazna, da je bila oddaljena datoteka spremenjena, vedno združite lokalne spremembe z oddaljenimi spremembami.</string>
   <string name="TanExpiresOnUse_title">TAN poteče ob uporabi</string>
   <string name="TanExpiresOnUse_summary">Ob uporabi označi vnose TAN kot potekle</string>
   <string name="ShowUsernameInList_title">Prikaži up. ime na sez.</string>
@@ -322,6 +328,8 @@
   <string name="QuickUnlockLength_summary">Največje število znakov, ki naj se uporabi v geslu Hitrega odklepanja.</string>
   <string name="QuickUnlockHideLength_title">Skrij dolžino kode Hitrega odklepanja</string>
   <string name="QuickUnlockHideLength_summary">Če je omogočeno, dolžina kode Hitrega odklepanja ni prikazana na zaslonu Hitrega odklepanja.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ključ QuickUnlock iz zaščitene baze</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Če aktivna baza podatkov vsebuje vnos z naslovom QuickUnlock v svoji korenski skupini, se geslo tega vnosa uporablja kot koda za hitro odklepanje.</string>
   <string name="QuickUnlock_fail">Hitro odklepanje je spodletelo: nepravilno geslo!</string>
   <string name="SaveAttachmentDialog_title">Shrani priponko</string>
   <string name="SaveAttachmentDialog_text">Izberite, kam naj se shranjujejo priponke.</string>
@@ -347,6 +355,7 @@
   <string name="totp_encoding_custom">Nastavitve žetona po meri</string>
   <string name="totp_time_step">Časovni korak</string>
   <string name="totp_length">Dolžina kode</string>
+  <string name="totp_scan">Skeniraj QR kodo</string>
   <string name="delete_extra_string">Izbriši dodaten niz</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: zaklenjena. Hitro odklepanje omogočeno.</string>
   <string name="database_loaded_unlocked">%1$s: odklenjena.</string>
