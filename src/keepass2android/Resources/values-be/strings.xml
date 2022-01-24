@@ -176,7 +176,7 @@
   <string name="NoAutofillDisabling_title">Няма магчымасці адключыць аўтазапаўненне </string>
   <string name="NoAutofillDisabling_summary">Калі ўключана, у праграме не будзе паказвацца параметр адключэння аўтазапаўнення для пэўных запісаў.</string>
   <string name="menu_about">Пра праграму</string>
-  <string name="menu_change_key">Змяніць галоўны ключ</string>
+  <string name="menu_change_key">Змена галоўнага ключа</string>
   <string name="menu_copy_pass">Скапіяваць пароль</string>
   <string name="menu_copy_user">Скапіяваць лагін</string>
   <string name="menu_copy_totp">Скапіяваць TOTP</string>
@@ -299,6 +299,8 @@
   <string name="NoDalVerification_title">Няма пацвярджэння DAL</string>
   <string name="NoDalVerification_summary">Адключае праверку, калі дамен адпавядае праграме</string>
   <string name="InlineSuggestions_title">Інтэграцыя з клавіятурай</string>
+  <string name="InlineSuggestions_summary">Паказваць прапановы для аўтазапаўнення як убудаваныя параметры клавіятуры (калі падтрымліваецца метадам уводу)</string>
+  <string name="requires_android11">Патрэбны Android 11 ці навейшая версія</string>
   <string name="kp2a_findUrl">Знайсці пароль</string>
   <string name="excludeExpiredEntries">Выключыць пратэрмінаваныя запісы</string>
   <string name="search_options">Параметры</string>
@@ -326,6 +328,8 @@
   <string name="QuickUnlockLength_summary">Максімальная колькасць сімвалаў, якія выкарыстоўваюцца для пароля хуткага разблакавання.</string>
   <string name="QuickUnlockHideLength_title">Не паказваць даўжыню кода хуткага разблакавання</string>
   <string name="QuickUnlockHideLength_summary">Калі ўключана, даўжыня кода не будзе паказвацца на экране хуткага разблакавання.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ хуткага разблакавання з запісу базы даных</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Калі актыўная база даных змяшчае ў сваёй каранёвай групе запіс з назвай \"Хуткае разблакаванне\"(QuickUnlock), то пароль з яго будзе выкарыстоўвацца для хуткага разблакавання.</string>
   <string name="QuickUnlock_fail">Хібны пароль для хуткага разблакавання!</string>
   <string name="SaveAttachmentDialog_title">Захаваць далучаныя файлы</string>
   <string name="SaveAttachmentDialog_text">Калі ласка, абярыце месца для захавання далучаных файлаў.</string>
@@ -351,6 +355,7 @@
   <string name="totp_encoding_custom">Налады адвольнага токена</string>
   <string name="totp_time_step">Перыяд часу</string>
   <string name="totp_length">Даўжыня кода</string>
+  <string name="totp_scan">Сканаваць QR-код</string>
   <string name="delete_extra_string">Выдаліць дадатковы радок</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: заблакавана. Хуткае разблакаванне ўключана.</string>
   <string name="database_loaded_unlocked">%1$s: разблакавана.</string>
@@ -414,6 +419,7 @@
   <string name="PreloadDatabaseEnabled_title">Папярэдняя загрузка файла базы даных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фонавай загрузкі або спампоўвання файла базы даных падчас уводу пароля.</string>
   <string name="SyncAfterQuickUnlock_title">Сінхранізацыя пасля хуткага разблакавання</string>
+  <string name="SyncAfterQuickUnlock_summary">Сінхранізаваць базу даных з адлеглым файлам пасля хуткага разблакавання.</string>
   <string name="AskOverwriteBinary">Хочаце перазапісаць існы двайковы файл з такой самай назвай?</string>
   <string name="AskOverwriteBinary_title">Перазапісаць існы двайковы файл?</string>
   <string name="AskOverwriteBinary_yes">Перазапісаць</string>
@@ -510,6 +516,7 @@
   <string name="filestoragehelp_dropboxKP2A">Калі вы хочаце даць KP2A доступ да ўсяго сховішча Dropbox, абярыце гэты параметр. Праграма будзе запытваць доступ толькі да каталога Apps/Keepass2Android. Гэта асабліва пасуе пры стварэнні новай базы даных. Калі ў вас ужо ёсць база даных, абярыце гэты параметр, каб стварыць каталог, перамясціце ў яго файл базы даных, а пасля зноў абярыце гэты параметр, каб адкрыць файл.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Гэты тып сховішча запытвае доступ толькі да каталога pCloud \"Праграмы/Keepass2Android\". Калі вы хочаце выкарыстоўваць наяўную базу даных з акаўнта pCloud, то пераканайцеся, што файл знаходзіцца ў каталозе pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Усе файлы і агульныя файлы</string>
@@ -648,16 +655,16 @@
   </string>
   <string name="open_other_db">Адкрыць іншую базу даных…</string>
   <string name="select_database">Абраць базу даных</string>
-  <string name="configure_child_dbs">Наладзіць дачынныя базы даных…</string>
-  <string name="child_dbs_title">Дачынныя базы даных</string>
+  <string name="configure_child_dbs">Наладжванне даччыных базаў даных…</string>
+  <string name="child_dbs_title">Даччыныя базы даных</string>
   <string name="unspecified">не вызначана</string>
-  <string name="child_db_explanation">Дачынныя базы даных - іншыя базы даных, якія аўтаматычна адкрываюцца падчас адкрыцця бацькоўскай базы даных. Таму галоўны пароль і размяшчэнне дачынных базаў даных захоўваюцца ў бацькоўскай. Гэтая функцыя дае магчымасць дзяліцца паролямі з іншымі людзьмі. Сумяшчальна з KeeAutoExec для камп\'ютара. </string>
+  <string name="child_db_explanation">Даччыныя базы даных - іншыя базы даных, якія аўтаматычна адкрываюцца падчас адкрыцця бацькоўскай базы даных. Таму галоўны пароль і размяшчэнне даччыных базаў даных захоўваюцца ў бацькоўскай. Гэтая функцыя дае магчымасць дзяліцца паролямі з іншымі людзьмі. Сумяшчальна з KeeAutoExec для камп\'ютара. </string>
   <string name="child_db_enabled_on_this_device">Уключана на гэтай прыладзе</string>
   <string name="child_db_enable_on_this_device">Уключыць на гэтай прыладзе</string>
   <string name="child_db_disable_on_this_device">Адключыць на гэтай прыладзе</string>
   <string name="child_db_enable_a_copy_for_this_device">Капіяваць для гэтай прылады</string>
-  <string name="unconfigured_child_dbs">База даных змяшчае ў групе \"AutoOpen\" дачынныя базы даных. Вызначце, ці выкарыстоўваць іх на гэтай прыладзе.</string>
-  <string name="add_child_db">Дадаць дачынную базу даных…</string>
+  <string name="unconfigured_child_dbs">База даных змяшчае ў групе \"AutoOpen\" даччыныя базы даных. Вызначце, ці выкарыстоўваць іх на гэтай прыладзе.</string>
+  <string name="add_child_db">Дадаць даччыную базу даных…</string>
   <string name="EnableCopyForThisDevice_Info">Гэта створыць і ўключыць копію налад даччынай базы даных. Пасля гэтага іх можна будзе прыстасаваць для гэтай прылады.</string>
   <string name="Visible_title">Бачнасць</string>
   <string name="child_db_Enabled_title">Адкрываць аўтаматычна</string>
@@ -671,6 +678,16 @@
   <string name="EntryChannel_desc">Апавяшчэнне для зручнага доступу да абранага запісу.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыць базу даных пасля трох няўдалых спробаў разблакавання з дапамогай біяметрычных даных.</string>
   <string name="WarnFingerprintInvalidated">Увага! Android можа ануляваць аўтэнтыфікацыю з дапамогай біяметрычных даных. Напрыклад, калі вы дададзіце новы адбітак пальца ў сістэмных наладах. Пераканайцеся, што ведаеце, як разблакаваць свой галоўны пароль.</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Падтрымка аўтэнтыфікацыі Google Drive, паўторна ўключана падтрымка Google Drive</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Выпраўлена памылка з аўтазапаўненнем у Firefox</item>
+    <item>Інтэграцыя прапаноў для аўтазапаўнення з клавіятурай (патрабуецца Android 11+)</item>
+    <item>Дазволіць змяняць мову ў наладах праграмы</item>
+    <item>Дадаць параметр для сінхранізацыі базы даных пасля хуткага разблакавання</item>
+    <item>Выпраўленне хібы: не пераводзіць літары назваў файлаў у ніжні рэгістр пры захаванні ў Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Дададзена падтрымка фармату KDBX 4.1 з KeePass 2.48</item>
     <item>Дададзены дыялог налад TOTP для запісаў</item>
