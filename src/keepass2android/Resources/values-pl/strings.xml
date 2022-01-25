@@ -171,6 +171,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Ukryj hasło</string>
   <string name="maskpass_summary">Domyślnie ukrywaj hasło podczas wpisywania</string>
+  <string name="masktotp_title">Maskuj pole TOTP</string>
+  <string name="masktotp_summary">Domyślnie ukryj pole TOTP</string>
+  <string name="NoAutofillDisabling_title">Brak opcji aby wyłączyć autouzupełnianie</string>
+  <string name="NoAutofillDisabling_summary">Jeśli aktywowane, aplikacja nie wyświetli opcji wyłączenia autouzupełniania dla określonych wpisów.</string>
   <string name="menu_about">O aplikacji</string>
   <string name="menu_change_key">Zmień klucz główny</string>
   <string name="menu_copy_pass">Kopiuj hasło</string>
@@ -284,6 +288,8 @@
   <string name="please_note">Uwaga:</string>
   <string name="contributors">Współpracownicy</string>
   <string name="regular_expression">Wyrażenie regularne</string>
+  <string name="AlwaysMergeOnConflict_title">Zawsze scalaj przy konflikcie</string>
+  <string name="AlwaysMergeOnConflict_summary">Gdy Keepass2Android wykryje, że plik zdalny został zmodyfikowany, zawsze scalaj lokalne zmiany ze zdalnymi zmianami.</string>
   <string name="TanExpiresOnUse_title">TAN wygasają po ich wykorzystaniu</string>
   <string name="TanExpiresOnUse_summary">Zaznacz wpisy TAN (hasła jednorazowe) jako wygasłe po ich wykorzystaniu</string>
   <string name="ShowUsernameInList_title">Wyświetl nazwę użytkownika na liście</string>
@@ -322,6 +328,8 @@
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
   <string name="QuickUnlockHideLength_title">Ukryj długość SzybkieOdblokowanie</string>
   <string name="QuickUnlockHideLength_summary">Jeśli włączone, długość kodu Szybkiego Odblokowania nie jest wyświetlana na ekranie Szybkiego Odblokowania.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Szybko Odblokuj klucz z wpisu do bazy danych</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Jeśli aktywna baza danych zawiera wpis z tytułem SzybkieOdblokowanie w grupie głównej, hasło tego wpisu jest używane jako kod SzybkiegoOdblokowania.</string>
   <string name="QuickUnlock_fail">Odblokowanie za pomocą Szybkiego Odblokowania nie powiodło się: wprowadzono nieprawidłowe hasło.</string>
   <string name="SaveAttachmentDialog_title">Zapisz załącznik</string>
   <string name="SaveAttachmentDialog_text">Wybierz gdzie zapisać załącznik.</string>
@@ -347,6 +355,7 @@
   <string name="totp_encoding_custom">Własne ustawienia tokena</string>
   <string name="totp_time_step">Interwał czasowy</string>
   <string name="totp_length">Długość kodu</string>
+  <string name="totp_scan">Skanuj kod QR</string>
   <string name="delete_extra_string">Usuń dodatkowy ciąg znaków</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: zablokowana. SzybkieOdblokowanie włączone.</string>
   <string name="database_loaded_unlocked">%1$s: Odblokowana.</string>
@@ -669,6 +678,9 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Ponownie zaimplementowane uwierzytelnianie Google Drive, ponownie włączyło obsługę Dysku Google</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Naprawiono znikający monit automatycznego wypełniania w Firefoksie</item>
     <item>Integracja sugestii autouzupełniania z klawiaturą (wymaga Android 11+)</item>
