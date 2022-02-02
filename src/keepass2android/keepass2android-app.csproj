@@ -467,6 +467,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_androidsend.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_content.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_dropbox.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_mega.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_pcloud.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_dropboxKP2A.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_file.png" />
@@ -1077,6 +1078,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_dropbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_mega.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_dropboxKP2A.png" />
@@ -1935,6 +1939,12 @@
       <Project>{6c29a7e7-e016-4fc1-b1a0-dee26ac711bb}</Project>
       <Name>ZlibAndroid</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\megacredentials.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

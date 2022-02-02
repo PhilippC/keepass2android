@@ -229,6 +229,67 @@ namespace keepass2android
 		}
 
 
+		private void ShowMegaDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+		{
+#if !NoNet
+            var settings = MegaFileStorage.GetAccountSettings(activity);
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.megacredentials, null);
+			if (!defaultPath.EndsWith(_schemeSeparator))
+            {
+                string user = "";
+                string password = "";
+                if (!defaultPath.EndsWith(_schemeSeparator))
+				{
+					 user = MegaFileStorage.GetAccount(defaultPath);
+                     if (!settings.PasswordByUsername.TryGetValue(user, out password))
+                         password = "";
+                     dlgContents.FindViewById<EditText>(Resource.Id.mega_user).Enabled = false;
+
+                }
+				dlgContents.FindViewById<EditText>(Resource.Id.mega_user).Text = user;
+				dlgContents.FindViewById<EditText>(Resource.Id.mega_password).Text = password;
+
+			}
+
+            var userView = ((AutoCompleteTextView)dlgContents.FindViewById(Resource.Id.mega_user));
+            userView.Adapter = new ArrayAdapter(activity, Android.Resource.Layout.SimpleListItem1, Android.Resource.Id.Text1, settings.PasswordByUsername.Keys.ToArray());
+
+            userView.TextChanged += (sender, args) =>
+            {
+                if (userView.Text != null && settings.PasswordByUsername.TryGetValue(userView.Text, out string pwd))
+                {
+                    dlgContents.FindViewById<EditText>(Resource.Id.mega_password).Text = pwd;
+				}
+            };
+            builder.SetCancelable(false);
+			builder.SetView(dlgContents);
+			builder.SetPositiveButton(Android.Resource.String.Ok,
+									  (sender, args) =>
+									  {
+										  string user = dlgContents.FindViewById<EditText>(Resource.Id.mega_user).Text;
+										  string password = dlgContents.FindViewById<EditText>(Resource.Id.mega_password).Text;
+										  //store the credentials in the mega credentials store:
+                                          
+
+                                          settings.PasswordByUsername[user] = password;
+
+                                          MegaFileStorage.UpdateAccountSettings(settings, activity);
+
+                                          onStartBrowse(MegaFileStorage.ProtocolId + "://" + user);
+                                      });
+			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+
+			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
+			builder.SetTitle(activity.GetString(Resource.String.enter_mega_login_title));
+			Dialog dialog = builder.Create();
+
+			dialog.Show();
+#endif
+		}
+
+
+
 		public void PerformManualFileSelect(string defaultPath)
 		{
 			if (defaultPath.StartsWith("sftp://"))
@@ -241,7 +302,9 @@ namespace keepass2android
 				ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath, "owncloud");
 			else if (defaultPath.StartsWith("nextcloud://"))
 			    ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath, "nextcloud");
-            else
+            else if (defaultPath.StartsWith("mega://"))
+                ShowMegaDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
+			else
 			{
 				Func<string, Dialog, bool> onOpen = OnOpenButton;
 				Util.ShowFilenameDialog(_activity,
@@ -472,7 +535,8 @@ namespace keepass2android
 	    {
 	        return ioc.Path.StartsWith("http")
 	               || ioc.Path.StartsWith("ftp")
-	               || ioc.Path.StartsWith("sftp");
+	               || ioc.Path.StartsWith("sftp")
+                   || ioc.Path.StartsWith("mega");
 
 	    }
 

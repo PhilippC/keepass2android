@@ -591,6 +591,7 @@
 
   <string name="enter_ftp_login_title">Enter FTP login data:</string>
 
+  <string name="enter_mega_login_title">Enter your MEGA account login data:</string>
 
   <string name="select_storage_type">Select the storage type:</string>
 	
@@ -615,7 +616,9 @@
   <string name="filestoragename_onedrive2_myfiles">My files</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android App folder</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
-	<string name="filestoragename_content">System file picker</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Please note: Keepass2Android must download the list of all files in your Mega account to work properly. For this reason, accessing accounts with many files might be slow.</string>
+  <string name="filestoragename_content">System file picker</string>
 
 	<string name="filestorage_setup_title">File access initialization</string>
 

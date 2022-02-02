@@ -733,6 +733,7 @@ namespace keepass2android
 							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this),
 							new WebDavFileStorage(this),
 							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
+							new MegaFileStorage(App.Context),
 							//new LegacyWebDavStorage(this),
                             //new LegacyFtpStorage(this),
 #endif

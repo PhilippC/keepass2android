@@ -87,6 +87,7 @@
     <Compile Include="Io\IFileStorage.cs" />
     <Compile Include="Io\IoUtil.cs" />
     <Compile Include="Io\JavaFileStorage.cs" />
+    <Compile Include="Io\MegaFileStorage.cs" />
     <Compile Include="Io\NetFtpFileStorage.cs" />
     <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
     <Compile Include="Io\OneDrive2FileStorage.cs" />
@@ -164,6 +165,9 @@
   <ItemGroup>
     <PackageReference Include="FluentFTP">
       <Version>31.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="MegaApiClient">
+      <Version>1.10.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>1.21.0</Version>
@@ -275,6 +279,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.ViewPager">
       <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Preference">
+      <Version>1.1.1.11</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
