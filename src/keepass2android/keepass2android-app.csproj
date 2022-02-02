@@ -474,6 +474,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftps.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_gdrive.png" />
+	<AndroidResource Include="Resources\drawable-mdpi\ic_storage_gdriveKP2A.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_http.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_https.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_owncloud.png" />
@@ -1099,6 +1100,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_gdrive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_gdriveKP2A.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_storage_http.png" />

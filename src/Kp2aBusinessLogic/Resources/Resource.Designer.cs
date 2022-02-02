@@ -2998,7 +2998,10 @@ namespace keepass2android
 			public static int config_tooltipAnimTime = 2131230727;
 			
 			// aapt resource value: 0x7F080008
-			public static int status_bar_notification_info_maxnum = 2131230728;
+			public static int google_play_services_version = 2131230728;
+			
+			// aapt resource value: 0x7F080009
+			public static int status_bar_notification_info_maxnum = 2131230729;
 			
 			static Integer()
 			{
@@ -3560,13 +3563,16 @@ namespace keepass2android
 			public static int app_name = 2131492964;
 			
 			// aapt resource value: 0x7F0C0065
-			public static int library_name = 2131492965;
+			public static int common_google_play_services_unknown_issue = 2131492965;
 			
 			// aapt resource value: 0x7F0C0066
-			public static int search_menu_title = 2131492966;
+			public static int library_name = 2131492966;
 			
 			// aapt resource value: 0x7F0C0067
-			public static int status_bar_notification_info_overflow = 2131492967;
+			public static int search_menu_title = 2131492967;
+			
+			// aapt resource value: 0x7F0C0068
+			public static int status_bar_notification_info_overflow = 2131492968;
 			
 			static String()
 			{

@@ -44,6 +44,7 @@ using keepass2android.addons.OtpKeyProv;
 using keepass2android.database.edit;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
+using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
 using Android.Gms.Common;
@@ -725,6 +726,7 @@ namespace keepass2android
 							new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
 							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
+                            GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
 							new OneDriveFileStorage(LocaleManager.LocalizedAppContext, this),
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),

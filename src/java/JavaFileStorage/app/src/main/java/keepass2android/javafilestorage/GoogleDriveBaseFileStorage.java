@@ -55,9 +55,9 @@ import com.google.android.gms.tasks.Task;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 
-public class GoogleDriveFileStorage extends JavaFileStorageBase {
+public abstract class GoogleDriveBaseFileStorage extends JavaFileStorageBase {
 
-	private static final String GDRIVE_PROTOCOL_ID = "gdrive";
+
 	private static final String FOLDER_MIME_TYPE = "application/vnd.google-apps.folder";
 	static final int MAGIC_GDRIVE=2082334;
 	static final int REQUEST_ACCOUNT_PICKER = MAGIC_GDRIVE+1;
@@ -89,7 +89,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 	
 	
 	public String getRootPathForAccount(String accountName) throws UnsupportedEncodingException {
-		return GDRIVE_PROTOCOL_ID+"://"+encode(accountName)+"/";
+		return getProtocolId()+"://"+encode(accountName)+"/";
 	}
 	
 	class GDrivePath
@@ -276,7 +276,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			
 	};
 	
-	public GoogleDriveFileStorage()
+	public GoogleDriveBaseFileStorage()
 	{
 		logDebug("Creating GDrive FileStorage.");
 	}
@@ -612,7 +612,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 				try {
 					// Signed in successfully
 					GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-					if (GoogleSignIn.hasPermissions(account, new Scope(Scopes.DRIVE_FULL))) {
+					if (GoogleSignIn.hasPermissions(account, getScope())) {
 						initializeAccountOrPath(setupAct, account.getAccount().name);
 
 						return;
@@ -851,10 +851,6 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 		
 	}
 
-	@Override
-	public String getProtocolId() {
-		return GDRIVE_PROTOCOL_ID;
-	}
 
 
 	@Override
@@ -882,7 +878,7 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 			// Configure sign-in to request the user's ID, email address, and basic
 			// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
 			GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-					.requestScopes(new Scope(Scopes.DRIVE_FULL))
+					.requestScopes(getScope())
 					.requestEmail()
 					.build();
 			// [END configure_signin]
@@ -922,10 +918,15 @@ public class GoogleDriveFileStorage extends JavaFileStorageBase {
 
 
 	}
+	protected Scope getScope() {
+		return new Scope(getScopeString());
+	}
+
+	protected abstract String getScopeString();
 
 	private GoogleAccountCredential createCredential(Context appContext) {
 		List<String> scopes = new ArrayList<String>();
-		scopes.add(DriveScopes.DRIVE);
+		scopes.add(getScopeString());
 		GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(appContext, scopes);
 		return credential;
 	}

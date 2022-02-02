@@ -17,7 +17,7 @@ namespace keepass2android.Io
 	public class GoogleDriveFileStorage : JavaFileStorage
 	{
 		public GoogleDriveFileStorage(Context ctx, IKp2aApp app) :
-			base(new Keepass2android.Javafilestorage.GoogleDriveFileStorage(), app)
+			base(new Keepass2android.Javafilestorage.GoogleDriveFullFileStorage(), app)
 		{
 		}
 
@@ -27,5 +27,19 @@ namespace keepass2android.Io
 	        get { return false; }
 	    }
 	}
+
+    public class GoogleDriveAppDataFileStorage : JavaFileStorage
+    {
+        public GoogleDriveAppDataFileStorage(Context ctx, IKp2aApp app) :
+            base(new Keepass2android.Javafilestorage.GoogleDriveAppDataFileStorage(), app)
+        {
+        }
+
+
+        public override bool UserShouldBackup
+        {
+            get { return false; }
+        }
+    }
 }
 #endif

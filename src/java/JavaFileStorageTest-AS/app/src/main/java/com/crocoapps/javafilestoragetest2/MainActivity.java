@@ -145,7 +145,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
-import keepass2android.javafilestorage.GoogleDriveFileStorage;
+import keepass2android.javafilestorage.GoogleDriveAppDataFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
 import keepass2android.javafilestorage.SftpStorage;
@@ -543,7 +543,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
-		storageToTest = new GoogleDriveFileStorage();
+		storageToTest = new GoogleDriveAppDataFileStorage();
 		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
 			public boolean onValidationError(String error) {
