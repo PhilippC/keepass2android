@@ -21,6 +21,8 @@
   <string name="app_name_nonet">Keepass2Android офлайн</string>
   <string name="short_app_name_nonet">KP2A Офлайн</string>
   <string name="show_kill_app">Бутон-Затваряне</string>
+  <string name="application">Приложение</string>
+  <string name="application_settings">Настройки на приложението</string>
   <string name="ShowGroupnameInSearchResult_title">Показване на името на групата в резултата от търсенето</string>
   <string name="ShowGroupnameInSearchResult_resume">Показване на името на групата под заглавието  в резултатите от търсенето. Полезно е, ако няколко записа имат едно и също име.</string>
   <string name="NavigationToGroupCompleted_message">Групата за показване е: %1$s</string>
