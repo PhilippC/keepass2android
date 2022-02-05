@@ -93,6 +93,7 @@ namespace keepass2android
 	{
 		public const String KeyEntry = "entry";
         public const String KeyRefreshPos = "refresh_pos";
+        public const String KeyEntryHistoryIndex = "entry_history_index";
 		public const String KeyActivateKeyboard = "activate_keyboard";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
@@ -101,13 +102,14 @@ namespace keepass2android
 	    
 
 
-        public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
+        public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null, int historyIndex=-1)
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
 
             var db = App.Kp2a.FindDatabaseForElement(pw);
 			i.PutExtra(KeyEntry, new ElementAndDatabaseId(db, pw).FullId);
 			i.PutExtra(KeyRefreshPos, pos);
+            i.PutExtra(KeyEntryHistoryIndex, historyIndex);
 
 		    if (App.Kp2a.CurrentDb != db)
 		    {
@@ -135,7 +137,10 @@ namespace keepass2android
 			_activityDesign = new ActivityDesign(this);
 		}
 
+		//this is the entry we display. Note that it might be an element from a History list in case _historyIndex >= 0
 	    public PwEntry Entry;
+		//if _historyIndex >=0, _historyParentEntry stores the PwEntry which contains the history entry "Entry"
+        private PwEntry _historyParentEntry;
 
 		private PasswordFont _passwordFont = new PasswordFont();
 
@@ -183,7 +188,7 @@ namespace keepass2android
 
 		protected void SetupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
-			if (App.Kp2a.CurrentDb.CanWrite)
+			if (App.Kp2a.CurrentDb.CanWrite && _historyIndex < 0)
 			{
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
@@ -421,16 +426,41 @@ namespace keepass2android
             ElementAndDatabaseId dbAndElementId = new ElementAndDatabaseId(i.GetStringExtra(KeyEntry));
 			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(dbAndElementId.ElementIdString));
 			_pos = i.GetIntExtra(KeyRefreshPos, -1);
+            _historyIndex = i.GetIntExtra(KeyEntryHistoryIndex, -1);
 
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			Entry = db.EntriesById[uuid];
-			
-			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
+
+            if (_historyIndex >= 0 && _historyIndex < Entry.History.UCount)
+            {
+                _historyParentEntry = Entry;
+                Entry = Entry.History.Skip(_historyIndex).First();
+                FindViewById<Button>(Resource.Id.btn_restore_history).Click += (sender, args) =>
+                {
+                    RestoreFromHistory();
+                    SaveHistoryChangeAndFinish();
+                };
+                FindViewById<Button>(Resource.Id.btn_remove_history).Click += (sender, args) =>
+                {
+                    RemoveFromHistory();
+                    SaveHistoryChangeAndFinish();
+				};
+
+
+            }
+            else
+            {
+                // Update last access time.
+                Entry.Touch(false);
+                FindViewById<Button>(Resource.Id.btn_restore_history).Visibility = ViewStates.Gone;
+                FindViewById<Button>(Resource.Id.btn_remove_history).Visibility = ViewStates.Gone;
+			}
+
+            // Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
 
-			// Update last access time.
-			Entry.Touch(false);
+			
 
 			if (PwDefs.IsTanEntry(Entry) 
                 && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) 
@@ -462,7 +492,39 @@ namespace keepass2android
 			AppTask.CompleteOnCreateEntryActivity(this);
 		}
 
-		private void NotifyPluginsOnOpen()
+        private void RemoveFromHistory()
+        {
+            _historyParentEntry.History.RemoveAt((uint)_historyIndex);
+            _historyParentEntry.Touch(true, false);
+		}
+
+        private void RestoreFromHistory()
+        {
+            var db = App.Kp2a.FindDatabaseForElement(_historyParentEntry);
+			_historyParentEntry.RestoreFromBackup((uint)_historyIndex, db.KpDatabase);
+            _historyParentEntry.Touch(true, false);
+		}
+
+        private void SaveHistoryChangeAndFinish()
+        {
+            PwGroup parent = _historyParentEntry.ParentGroup;
+            if (parent != null)
+            {
+                // Mark parent group dirty (title might have changed etc.)
+                App.Kp2a.DirtyGroups.Add(parent);
+            }
+
+			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnFinish(this, (success, message, activity) =>
+            {
+                activity.SetResult(KeePass.ExitRefresh);
+                activity.Finish();
+            }));
+
+            ProgressTask pt = new ProgressTask(App.Kp2a, this, saveTask);
+            pt.Run();
+		}
+
+        private void NotifyPluginsOnOpen()
 		{
 			Intent i = new Intent(Strings.ActionOpenEntry);
 			i.PutExtra(Strings.ExtraSender, PackageName);
@@ -854,12 +916,41 @@ namespace keepass2android
 
 			PopulateBinaries();
 
+            PopulatePreviousVersions();
+
 			SetPasswordStyle();
 		}
 
-		
+        private void PopulatePreviousVersions()
+        {
+			ViewGroup historyGroup = (ViewGroup)FindViewById(Resource.Id.previous_versions);
+            int index = 0;
+			foreach (var previousVersion in Entry.History)
+			{
+				
 
-		protected override void OnDestroy()
+
+                Button btn = new Button(this);
+                btn.Text = getDateTime(previousVersion.LastModificationTime);
+
+				//copy variable from outer scope for capturing it below.
+                var index1 = index;
+                btn.Click += (sender, args) =>
+                {
+                    EntryActivity.Launch(this, this.Entry, this._pos, this.AppTask, null, index1);
+                };
+
+				historyGroup.AddView(btn);
+
+                index++;
+
+
+            }
+			FindViewById(Resource.Id.entry_history_container).Visibility = Entry.History.Any() ? ViewStates.Visible : ViewStates.Gone;
+		}
+
+
+        protected override void OnDestroy()
 		{
 			NotifyPluginsOnClose();
 			if (_pluginActionReceiver != null)
@@ -1083,6 +1174,7 @@ namespace keepass2android
 	    private ExportBinaryProcessManager _exportBinaryProcessManager;
         private bool _showPasswordDefault;
         private bool _showTotpDefault;
+        private int _historyIndex;
 
         protected override void OnSaveInstanceState(Bundle outState)
 	    {

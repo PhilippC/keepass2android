@@ -797,7 +797,7 @@ namespace keepass2android
 			}
 
 		}
-
+		
 		public void Reload() {
 			//this reload ìs necessary to overcome a strange problem with the extra string fields which get lost
 			//somehow after re-creating the activity. Maybe a Mono for Android bug?

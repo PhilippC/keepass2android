@@ -399,6 +399,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_cross.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_attachments.png" />
+	<AndroidResource Include="Resources\drawable-mdpi\ic_entry_history.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_comments.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_created.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_expires.png" />
@@ -986,6 +987,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_entry_attachments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_entry_history.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_entry_comments.png" />

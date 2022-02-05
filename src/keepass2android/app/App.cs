@@ -1138,7 +1138,8 @@ namespace keepass2android
 	    {
             foreach (var db in OpenDatabases)
             {
-                if (db.Elements.Contains(element))
+				//we compare UUIDs and not by reference. this is more robust and works with history items as well
+                if (db.Elements.Any(e => e.Uuid?.Equals(element.Uuid) == true))
                     return db;
             }
 	        return null;
