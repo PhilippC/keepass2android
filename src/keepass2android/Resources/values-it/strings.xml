@@ -718,7 +718,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Aggiornato l\'SDK pCloud per risolvere un problema di autenticazione</item>
     <item>Aggiornato Jsch alla versione 0.1.55</item>
     <item>Aggiunto menu alla schermata di selezione del database</item>
-    <item>Permetti di esportare l\'archivio chiave importato</item>
+    <item>Permette di esportare i file chiave importati</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Non viene più memorizzato il package name delle app nel campo URL</item>
