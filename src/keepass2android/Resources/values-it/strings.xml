@@ -122,6 +122,7 @@
   <string name="entry_user_name">Nome utente</string>
   <string name="entry_extra_strings">Campi di testo extra</string>
   <string name="entry_binaries">File allegati</string>
+  <string name="entry_history">Versioni precedenti</string>
   <string name="error_can_not_handle_uri">Keepass2Android non può gestire questo URI.</string>
   <string name="error_could_not_create_group">Errore di creazione del gruppo.</string>
   <string name="error_could_not_create_parent">Impossibile creare la cartella principale.</string>
@@ -171,6 +172,9 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Nascondi la password</string>
   <string name="maskpass_summary">Nascondi le password in modo predefinito</string>
+  <string name="masktotp_title">Maschera campo TOTP</string>
+  <string name="masktotp_summary">Nascondi il campo TOTP per impostazione predefinita</string>
+  <string name="NoAutofillDisabling_title">Nessuna opzione per disabilitare il completamento automatico</string>
   <string name="menu_about">Info</string>
   <string name="menu_change_key">Modifica la Chiave Principale</string>
   <string name="menu_copy_pass">Copia Password</string>
@@ -284,6 +288,8 @@
   <string name="please_note">Attenzione</string>
   <string name="contributors">Collaboratori</string>
   <string name="regular_expression">Espressione regolare</string>
+  <string name="AlwaysMergeOnConflict_title">Unisci sempre i conflitti</string>
+  <string name="AlwaysMergeOnConflict_summary">Quando Keepass2Android rileva che il file remoto è stato modificato, unisci sempre le modifiche locali con le modifiche remote.</string>
   <string name="TanExpiresOnUse_title">Il TAN scade con l\'uso</string>
   <string name="TanExpiresOnUse_summary">Segna i TAN come scaduti una volta utilizzati</string>
   <string name="ShowUsernameInList_title">Visualizza il nome utente nella lista</string>
@@ -293,7 +299,7 @@
   <string name="NoDalVerification_title">Nessuna verifica DAL</string>
   <string name="NoDalVerification_summary">Disabilita il controllo se i pacchetti di dominio e applicazione corrispondono</string>
   <string name="InlineSuggestions_title">Integra con la tastiera</string>
-  <string name="InlineSuggestions_summary">Mostra i suggerimenti di riempimento automatico come opzioni in linea sulla tastiera (se supportato dal metodo di inserimento)</string>
+  <string name="InlineSuggestions_summary">Mostra i suggerimenti di completamento automatico come opzioni in linea sulla tastiera (se supportato dal metodo di inserimento)</string>
   <string name="requires_android11">Richiede Android 11 o versioni successive</string>
   <string name="kp2a_findUrl">Trova password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
@@ -670,8 +676,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Re-implementato autenticazione Google Drive, ri-abilitato supporto Google Drive</item>
   </string-array>
   <string-array name="ChangeLog_1_09b">
-    <item>Corretta la scomparsa del sollecito di riempimento automatico in Firefox</item>
-    <item>Integra i suggerimenti di riempimento automatico con la tastiera (richiede Android 11+)</item>
+    <item>Risolto il problema della richiesta di completamento automatico che scompare in Firefox</item>
+    <item>Integra i suggerimenti di completamento automatico con la tastiera (richiede Android 11+)</item>
     <item>Consenti di modificare la lingua dell\'app nelle impostazioni</item>
     <item>Aggiunta l\'opzione per sincronizzare il database dopo QuickUnlock</item>
     <item>Correzione falla: non era possibile nominare gli archivi con caratteri in minuscolo quando si salvava su Dropbox</item>
@@ -680,7 +686,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Aggiunto il supporto per il formato file KDBX 4.1 introdotto in KeePass 2.48</item>
     <item>Aggiunta finestra di dialogo per configurare le impostazioni TOTP per le voci</item>
     <item>Generatore di password migliorato: aggiunto supporto alle frasi segrete, più opzioni, profili e una stima della robustezza della password</item>
-    <item>Miglioramenti al riempimento automatico (popup fisso che non mostra in Chrome, migliore supporto ai sottodomini)</item>
+    <item>Miglioramenti al completamento automatico (risolto problema con il popup che non veniva visualizzato in Chrome, migliore supporto per i sottodomini)</item>
     <item>Miglioramenti nell\'implementazione di OneDrive: nessun limite di dimensione, nessuna richiesta di autenticazione superflua</item>
     <item>Aggiunta l\'opzione per selezionare il motivo chiaro/scuro dalle impostazioni di sistema, inclusi i piani notturni; richiede Android 10+</item>
     <item>Aggiorna l\'implementazione Dropbox per supportare il nuovo metodo di autenticazione.</item>
@@ -709,7 +715,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Migliora la finestra di dialogo della tastiera su Android 9+</item>
     <item>Modifica le associazioni dei file dell\'app per evitare alcune associazioni non necessarie</item>
     <item>Verifica che il testo della password non sia nascosto dietro l\'icona dell\'occhio</item>
-    <item>Modifica il comportamento di riempimento automatico per avvisare quando si compilano le credenziali per un dominio in un\'app non riconosciuta</item>
+    <item>Comportamento di completamento automatico modificato per avvisare quando si compilano le credenziali per un dominio in un\'app non riconosciuta</item>
     <item>Aggiorna alla libreria FTP</item>
     <item>Correzioni di crash potenziali dell\'app</item>
     <item>Ulteriori correzioni minori</item>
@@ -817,7 +823,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   </string>
   <string name="ChangeLog_1_0_0">Versione 1.0.0\n
 * sblocco con impronta (richiede Android 6.0+ o un dispositivo Samsung)\n
-* aggiunto servizio Compilazione automatica (richiede Android 5.0+)\n
+* aggiunto servizio Completamento Automatico (richiede Android 5.0+)\n
 * aggiunto supporto per i modelli delle voci\n
 * aggiunto \"modalità non in linea\"\n
 * consente di copiare le voci\n
