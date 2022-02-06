@@ -528,7 +528,7 @@
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android 应用文件夹</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">请注意：Keepass2Android 必须下载您 Mega 帐户中所有文件的列表才能正常工作。 出于这个原因，访问有许多文件的账户可能会很慢。</string>
+  <string name="filestoragehelp_mega">请注意：Keepass2Android 必须下载您 Mega 帐户中所有文件的列表才能正常工作。 出于这个原因，访问有许多文件的帐户可能会很慢。</string>
   <string name="filestoragename_content">系统文件选择器</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
   <string name="database_location">数据库位置</string>
@@ -688,7 +688,7 @@
   <string-array name="ChangeLog_1_09d">
     <item>新增查看、移除和恢复条目备份的功能</item>
     <item>支持MEGA 云存储</item>
-    <item>Added support for Google Drive with restricted scope</item>
+    <item>允许用户不授予KPA完整的Google Drive访问权限</item>
   </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>重新实现 Google Drive 身份验证，重新启用 Google Drive 支持</item>
