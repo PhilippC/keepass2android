@@ -122,6 +122,7 @@
   <string name="entry_user_name">Uporabniško ime</string>
   <string name="entry_extra_strings">Dodatna polja nizov</string>
   <string name="entry_binaries">Datotečne priponke</string>
+  <string name="entry_history">Prejšnje različice</string>
   <string name="error_can_not_handle_uri">Keepass2Android ne more upravljati tega URI-ja.</string>
   <string name="error_could_not_create_group">Napaka pri ustvarjanju skupine.</string>
   <string name="error_could_not_create_parent">Nadrejene mape ni bilo mogoče ustvariti.</string>
@@ -502,6 +503,7 @@
   <string name="sftp_auth_mode">Način overitve</string>
   <string name="send_public_key">Pošlji javni ključ ...</string>
   <string name="enter_ftp_login_title">Vnesite podatke FTP za prijavo:</string>
+  <string name="enter_mega_login_title">Vnesite podatke za prijavo v račun MEGA:</string>
   <string name="select_storage_type">Izberite mesto za shranjevanje:</string>
   <string name="filestoragename_file">Krajevna datoteka</string>
   <string name="filestoragename_androidget">Dobi iz programa tretje osebe</string>
@@ -515,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A datoteke)</string>
+  <string name="filestoragehelp_gdriveKP2A">Če KP2A ne želite omogočiti dostopa do celotnega Google Drive, lahko izberete to možnost. Upoštevajte, da morate najprej ustvariti novo datoteko baze podatkov, obstoječe datoteke niso vidne aplikaciji. To možnost izberite na zaslonu Ustvari bazo podatkov ali, če ste že odprli bazo podatkov, izvozite bazo podatkov in izberete to možnost.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do pCloud mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v pCloud mapi.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -523,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Moje datoteke</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android mapa aplikacije</string>
   <string name="filestoragename_sftp">SFTP (prenos datotek SSH)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Upoštevajte: Keepass2Android mora za pravilno delovanje prenesti seznam vseh datotek v vašem računu MEGA. Zaradi tega je lahko dostop do računov z veliko datotekami počasen.</string>
   <string name="filestoragename_content">Sistemski izbirnik datotek</string>
   <string name="filestorage_setup_title">Začenjanje dostopa do datoteke</string>
   <string name="database_location">Mesto podatkovne zbirke</string>
@@ -670,6 +676,8 @@
   <string name="child_db_Enabled_title">Samodejno odpri</string>
   <string name="database_file_heading">Datoteka podatkovne zbirke</string>
   <string name="if_device_text">Omogoči za %1$s</string>
+  <string name="restore_history">Obnovi to različico</string>
+  <string name="remove_history">Odstrani to različico</string>
   <string name="DbUnlockedChannel_name">Baza odklenjena</string>
   <string name="DbUnlockedChannel_desc">Obvestilo o odklenjeni bazi podatkov</string>
   <string name="DbQuicklockedChannel_name">Hitro odklepanje</string>
@@ -678,6 +686,11 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Dodana podpora za ogled, odstranjevanje in obnavljanje varnostnih kopij vnosov</item>
+    <item>Dodana podpora za shranjevanje v oblaku MEGA</item>
+    <item>Dodana podpora za Google Drive z omejenim obsegom</item>
+  </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Implementirano novo preverjanje pristnosti Google Drive, ponovno omogočena podpora za Google Drive</item>
   </string-array>
