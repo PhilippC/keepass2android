@@ -122,6 +122,7 @@
   <string name="entry_user_name">Nazwa użytkownika</string>
   <string name="entry_extra_strings">Dodatkowe pola</string>
   <string name="entry_binaries">Załączniki</string>
+  <string name="entry_history">Poprzednie wersje</string>
   <string name="error_can_not_handle_uri">Keepass2Android nie obsługuje tego URI.</string>
   <string name="error_could_not_create_group">Błąd podczas tworzenia grupy.</string>
   <string name="error_could_not_create_parent">Nie można utworzyć folderu nadrzędnego.</string>
@@ -502,6 +503,7 @@
   <string name="sftp_auth_mode">Tryb uwierzytelniania</string>
   <string name="send_public_key">Wyślij klucz publiczny…</string>
   <string name="enter_ftp_login_title">Wpisz dane logowania FTP:</string>
+  <string name="enter_mega_login_title">Wprowadź dane logowania do konta MEGA:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
   <string name="filestoragename_file">Plik lokalny</string>
   <string name="filestoragename_androidget">Z aplikacji zewnętrznej</string>
@@ -515,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję, aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie, aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Dysk Google (pliki KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Jeśli nie chcesz dać KP2A dostępu do pełnego Dysku Google, możesz wybrać tę opcję. Pamiętaj, że najpierw musisz utworzyć plik bazy danych, istniejące pliki nie są widoczne dla aplikacji. Wybierz tę opcję z ekranu tworzenia bazy danych lub, jeśli już otworzyłeś bazę danych, eksportując bazę danych wybierając tę opcję.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ten typ magazynu będzie wymagał jedynie dostępu do folderu pCloud. \"Applications/Keepass2Android\". Jeżeli chcesz używać istniejącej bazy danych ze swojego konta pCloud, proszę upewnij się, że plik jest umieszczony w tym katalogu pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -523,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Moje pliki</string>
   <string name="filestoragename_onedrive2_appfolder">Katalog KeePass2Android</string>
   <string name="filestoragename_sftp">SFTP (transfer plików przez SSH)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Uwaga: Keepass2Android musi pobrać listę wszystkich plików na Twoim koncie Mega, aby działać poprawnie. Z tego powodu dostęp do kont z wieloma plikami może być powolny.</string>
   <string name="filestoragename_content">Systemowa przeglądarka plików</string>
   <string name="filestorage_setup_title">Inicjowanie dostępu do pliku</string>
   <string name="database_location">Miejsce zapisu bazy danych</string>
@@ -670,6 +676,8 @@
   <string name="child_db_Enabled_title">Otwórz automatycznie</string>
   <string name="database_file_heading">Plik bazy danych</string>
   <string name="if_device_text">Włącz dla %1$s</string>
+  <string name="restore_history">Przywróć tę wersję</string>
+  <string name="remove_history">Usuń tę wersję</string>
   <string name="DbUnlockedChannel_name">Baza danych odblokowana</string>
   <string name="DbUnlockedChannel_desc">Powiadomienie o odblokowanej bazie danych</string>
   <string name="DbQuicklockedChannel_name">Szybkie Odblokowanie</string>
@@ -678,6 +686,11 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Dodano wsparcie dla przeglądania, usuwania i przywracania kopii zapasowych wpisów</item>
+    <item>Zaimplementowane wsparcie dla MEGA w chmurze</item>
+    <item>Dodano wsparcie dla Dysku Google o ograniczonym zakresie</item>
+  </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Ponownie zaimplementowane uwierzytelnianie Google Drive, ponownie włączyło obsługę Dysku Google</item>
   </string-array>
