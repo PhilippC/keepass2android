@@ -122,6 +122,7 @@
   <string name="entry_user_name">Όνομα χρήστη</string>
   <string name="entry_extra_strings">Πρόσθετα πεδία κειμένου</string>
   <string name="entry_binaries">Συνημμένα αρχεία</string>
+  <string name="entry_history">Προηγούμενες εκδόσεις</string>
   <string name="error_can_not_handle_uri">Το Keepass2Android δεν μπορεί να χειριστεί αυτό το URL.</string>
   <string name="error_could_not_create_group">Σφάλμα στη δημιουργία ομάδας.</string>
   <string name="error_could_not_create_parent">Αδυναμία δημιουργίας γονικού φακέλου.</string>
@@ -665,6 +666,14 @@
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με τον κύριο κωδικό πρόσβασης!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Added support for viewing, removing and restoring of entry backups</item>
+    <item>Υλοποιήθηκε υποστήριξη για αποθήκευση στο νέφος MEGA </item>
+    <item>Προστέθηκε (περιορισμένη) υποστήριξη για το Google Drive</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Υλοποιήθηκε ξανά η αυθεντικοποίηση στο Google Drive, ενεργοποιήθηκε ξανά υποστήριξή του</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Διόρθωση της εξαφανιζόμενης προτροπής αυτόματης συμπλήρωσης στο Firefox</item>
     <item>Ενσωμάτωση προτάσεων αυτόματης συμπλήρωσης με πληκτρολόγιο (απαιτεί Android 11+)</item>
