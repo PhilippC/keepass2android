@@ -122,6 +122,7 @@
   <string name="entry_user_name">Nom d\'utilisateur </string>
   <string name="entry_extra_strings">Champs chaines de caractères supplémentaire</string>
   <string name="entry_binaries">Pièces jointes</string>
+  <string name="entry_history">Versions précédentes</string>
   <string name="error_can_not_handle_uri">Keepass2Android ne peut pas gérer cette URI.</string>
   <string name="error_could_not_create_group">Erreur de création de groupe.</string>
   <string name="error_could_not_create_parent">Création du répertoire parent impossible.</string>
@@ -502,6 +503,7 @@
   <string name="sftp_auth_mode">Mode d\'authentification</string>
   <string name="send_public_key">Envoyez la clé publique...</string>
   <string name="enter_ftp_login_title">Saisir les données de connexion FTP :</string>
+  <string name="enter_mega_login_title">Entrez les données de connexion de votre compte MEGA :</string>
   <string name="select_storage_type">Sélectionner le type de stockage :</string>
   <string name="filestoragename_file">Fichier local</string>
   <string name="filestoragename_androidget">Obtenir depuis une application tierce</string>
@@ -515,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (dossier KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si vous ne voulez pas donner l\'accès KP2A à votre espace Dropbox complet, vous pouvez sélectionner cette option. Seul l\'accès au dossier Apps/Keepass2Android sera demandé. Ceci est particulièrement adapté lorsque vous créez une nouvelle base de données. Si vous avez déjà une base de données, cliquez sur cette option pour créer le dossier, puis placez votre fichier dans le dossier (à partir de votre PC) et puis sélectionnez à nouveau cette option pour ouvrir le fichier.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (fichiers KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Si vous ne voulez pas donner à KP2A un accès complet à Google Drive, vous pouvez sélectionner cette option. Notez que vous devez d\'abord créer un fichier de base de données, les fichiers existants ne sont pas visibles pour l\'application. Choisissez cette option dans l\'écran Créer une base de données ou, si vous avez déjà ouvert une base de données, en exportant la base de données en choisissant cette option.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ce type de stockage ne demandera l\'accès qu\'au dossier \"Applications/Keepass2Android\". Si vous souhaitez utiliser une base de données existante à partir de votre compte PCloud, assurez-vous que le fichier soit placé dans ce dossier.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -523,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Mes fichiers</string>
   <string name="filestoragename_onedrive2_appfolder">Dossier de l\'application Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Remarque : Keepass2Android doit télécharger la liste de tous les fichiers de votre compte Mega pour fonctionner correctement. Pour cette raison, l\'accès aux comptes avec de nombreux fichiers peut être lent.</string>
   <string name="filestoragename_content">Sélecteur de fichier système</string>
   <string name="filestorage_setup_title">Initialisation de l\'accès aux fichiers</string>
   <string name="database_location">Emplacement de la base de données</string>
@@ -667,6 +673,8 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="child_db_Enabled_title">Ouvrir automatiquement</string>
   <string name="database_file_heading">Fichier de base de données</string>
   <string name="if_device_text">Activer pour %1$s</string>
+  <string name="restore_history">Restaurer cette version</string>
+  <string name="remove_history">Supprimer cette version</string>
   <string name="DbUnlockedChannel_name">Base de données déverrouillée</string>
   <string name="DbUnlockedChannel_desc">Notification à propos de la base de données en train d\'être déverrouillée</string>
   <string name="DbQuicklockedChannel_name">Déverrouillage rapide</string>
@@ -675,6 +683,11 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Ajout du support pour la visualisation, la suppression et la restauration des sauvegardes d\'entrée</item>
+    <item>Support implémenté pour le stockage cloud MEGA</item>
+    <item>Ajout de la prise en charge de Google Drive avec une portée restreinte</item>
+  </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Authentification Google Drive réimplémentée, support Google Drive réactivé</item>
   </string-array>
