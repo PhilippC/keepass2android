@@ -17,3 +17,7 @@ Allows to send text from KP2A via InputStick to your PC.
 # USB Keyboard Plug-in
 Allows to send text from KP2A to your PC. Requires special kernel on the Android device.
 [https://play.google.com/store/apps/details?id=th.in.whs.k2ausbkbd](https://play.google.com/store/apps/details?id=th.in.whs.k2ausbkbd)
+
+# Bluetooth Keyboard Plug-in
+Allows to send text from KP2A to your PC.
+[https://play.google.com/store/apps/details?id=mzrw.k2aplugin.bluetoothkeyboard](https://play.google.com/store/apps/details?id=mzrw.k2aplugin.bluetoothkeyboard)
