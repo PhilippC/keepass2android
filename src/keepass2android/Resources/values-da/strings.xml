@@ -122,6 +122,7 @@
   <string name="entry_user_name">Brugernavn</string>
   <string name="entry_extra_strings">Ekstra strengfelter</string>
   <string name="entry_binaries">Filvedhæftninger</string>
+  <string name="entry_history">Tidligere versioner</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan ikke håndtere denne URI.</string>
   <string name="error_could_not_create_group">Fejl under gruppeoprettelse.</string>
   <string name="error_could_not_create_parent">Overordnet mappe kunne ikke oprettes.</string>
@@ -502,6 +503,7 @@
   <string name="sftp_auth_mode">Godkendelsestilstand</string>
   <string name="send_public_key">Send offentlig nøgle...</string>
   <string name="enter_ftp_login_title">Angiv FTP-login:</string>
+  <string name="enter_mega_login_title">Indtast dine login-data til din MEGA-konto:</string>
   <string name="select_storage_type">Vælg lagerpladstype:</string>
   <string name="filestoragename_file">Lokal fil</string>
   <string name="filestoragename_androidget">Hent fra tredjeparts-app</string>
@@ -515,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Den vil kun anmode om at tilgå mappen Apps/Keepass2Android. Dette er især egnet til oprettelse af en ny database. Har du allerede en database, så tryk på denne valgmulighed for at oprette mappen, dernæst placere din fil inde i mappen (fra din PC) og så vælge denne muilghed igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
+  <string name="filestoragename_gdriveKP2A">Google Drev (KP2A filer)</string>
+  <string name="filestoragehelp_gdriveKP2A">Hvis du ikke ønsker at give KP2A adgang til hele dit Google Drev, kan du vælge denne mulighed. Bemærk, at du skal oprette en databasefil først, eksisterende filer er ikke synlige for appen. Du kan enten vælge denne mulighed fra skærmen Opret database eller, hvis du allerede har åbnet en database, ved at vælge muligheden for at eksportere databasen.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Denne lagringstype vil kun anmode om adgang til pCloud-mappen \"Applications/Keepass2Android\". Hvis du vil benytte en eksisterende database fra din pCloud-konto, skal du sørge for, at filen er placeret i denne pCloud-mappe.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -523,6 +527,7 @@
   <string name="filestoragename_onedrive2_myfiles">Mine filer</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android app-mappe</string>
   <string name="filestoragename_sftp">SFTP (SSH-filoverførsel)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Systemfilvælger</string>
   <string name="filestorage_setup_title">Filtilgangsinitialisering</string>
   <string name="database_location">Databaseplacering</string>
