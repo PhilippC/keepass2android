@@ -528,6 +528,7 @@
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android app-mappe</string>
   <string name="filestoragename_sftp">SFTP (SSH-filoverførsel)</string>
   <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Bemærk: Keepass2Android skal downloade listen over alle filer på din Mega-konto for at fungere korrekt. Af denne grund kan adgang til konti med mange filer være langsom.</string>
   <string name="filestoragename_content">Systemfilvælger</string>
   <string name="filestorage_setup_title">Filtilgangsinitialisering</string>
   <string name="database_location">Databaseplacering</string>
@@ -674,6 +675,8 @@
   <string name="child_db_Enabled_title">Åbn automatisk</string>
   <string name="database_file_heading">Databasefil</string>
   <string name="if_device_text">Aktivér for %1$s</string>
+  <string name="restore_history">Gendan denne version</string>
+  <string name="remove_history">Fjern denne version</string>
   <string name="DbUnlockedChannel_name">Database oplåst</string>
   <string name="DbUnlockedChannel_desc">Notificering om oplåsning af databasen</string>
   <string name="DbQuicklockedChannel_name">Hurtigoplåsning</string>
@@ -682,6 +685,11 @@
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
   <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Tilføjet understøttelse af visning, fjernelse og gendannelse af sikkerhedskopierede poster</item>
+    <item>Implementeret understøttelse af MEGA-skylager</item>
+    <item>Tilføjet understøttelse af Google Drev med begrænset anvendelsesområde</item>
+  </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Genimplementeret Google Drev-godkendelse, genaktiveret understøttelse af Google Drev</item>
   </string-array>
