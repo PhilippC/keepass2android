@@ -69,7 +69,7 @@
   <string name="clipboard_timeout_summary">Χρόνος πριν την εκκαθάριση του πρόχειρου μετά την αντιγραφή ονόματος χρήστη ή συνθηματικού</string>
   <string name="copy_username">Επιλέξτε για αντιγραφή ονόματος χρήστη στο πρόχειρο</string>
   <string name="copy_password">Επιλέξτε για αντιγραφή του συνθηματικού στο πρόχειρο</string>
-  <string name="copy_totp">Επιλογή αντιγραφής TOTP στο clipboard</string>
+  <string name="copy_totp">Επιλέξτε για αντιγραφή TOTP στο πρόχειρο</string>
   <string name="available_through_keyboard">Η καταχώριση είναι διαθέσιμη μέσω του πληκτρολογίου KP2A</string>
   <string name="app_language_pref_title">Γλώσσα εφαρμογής</string>
   <string name="entry_is_available">είναι διαθέσιμο</string>
@@ -107,7 +107,7 @@
   <string name="entry_cancel">Ακύρωση</string>
   <string name="entry_comment">Σημειώσεις</string>
   <string name="entry_tags">Ετικέτες</string>
-  <string name="entry_override_url">Παράκαμψη URL</string>
+  <string name="entry_override_url">Εναλλακτικό URL</string>
   <string name="entry_confpassword">Επιβεβαίωση συνθηματικού</string>
   <string name="entry_created">Δημιουργήθηκε</string>
   <string name="entry_expires">Λήγει</string>
@@ -155,7 +155,7 @@
   <string name="hint_login_pass">Συνθηματικό</string>
   <string name="hint_title">όνομα</string>
   <string name="hint_url">URL</string>
-  <string name="hint_override_url">παράκαμψη URL</string>
+  <string name="hint_override_url">εναλλακτικό URL</string>
   <string name="hint_tags">ετικέτα1, ετικέτα2</string>
   <string name="hint_username">όνομα χρήστη</string>
   <string name="InvalidPassword">Μη έγκυρο συνθηματικό ή αρχείο κλειδιού.</string>
@@ -173,7 +173,7 @@
   <string name="maskpass_title">Μάσκα συνθηματικού</string>
   <string name="maskpass_summary">Απόκρυψη συνθηματικών από προεπιλογή</string>
   <string name="masktotp_title">Μάσκα στο πεδίο TOTP</string>
-  <string name="masktotp_summary">Απόκρυψη πεδίου TOTP εξ ορισμού</string>
+  <string name="masktotp_summary">Απόκρυψη του πεδίου TOTP εξ ορισμού</string>
   <string name="NoAutofillDisabling_title">Χωρίς επιλογή για απενεργοποίηση της αυτόματης συμπλήρωσης</string>
   <string name="NoAutofillDisabling_summary">Εάν ενεργοποιηθεί, η εφαρμογή δεν θα προβάλει την επιλογή που απενεργοποιεί την αυτόματη συμπλήρωση για συγκεκριμένες εγγραφές.</string>
   <string name="menu_about">Πληροφορίες</string>
@@ -545,7 +545,7 @@
   <string name="use_key_file">Χρήση αρχείου κλειδιού</string>
   <string name="error_adding_keyfile">Παρουσιάστηκε σφάλμα κατά την προσθήκη του αρχείου κλειδιού!</string>
   <string name="init_otp">Φόρτωση βοηθητικού αρχείου OTP…</string>
-  <string name="otp_explanation">Εισάγετε το επόμενο συνθηματικό-μιας-φοράς. Σαρώσετε το Yubikey NEO σας στο πίσω μέρος της συσκευής για να εισάγετε μέσω NFC (απαιτεί την εφαρμογή Yubiclip).</string>
+  <string name="otp_explanation">Εισάγετε τα επόμενα συνθηματικά-μιας-χρήσης (OTP). Σαρώσετε το Yubikey NEO σας στο πίσω μέρος της συσκευής για να εισάγετε μέσω NFC (απαιτεί την εφαρμογή Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Δεν ήταν δυνατή η φόρτωση του βοηθητικού αρχείου OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Χρησιμοποιήστε το πρόσθετο OtpKeyProv σε KeePass 2.x (PC) για να ρυθμίσετε τη βάση δεδομένων για χρήση με OTP!</string>
@@ -699,7 +699,7 @@
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
-    <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρήσεις</item>
+    <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρίσεις</item>
     <item>Βελτιωμένη γεννήτρια κωδικού πρόσβασης: Προστέθηκε υποστήριξη συνθηματικής φράσης, περισσότερες επιλογές, προφίλ και εκτίμηση ισχύος κωδικού πρόσβασης</item>
     <item>Βελτιώσεις στην αυτόματη συμπλήρωση (σταθερό αναδυόμενο παράθυρο δεν εμφανίζεται στο Chrome, καλύτερη υποστήριξη υποτομέα)</item>
     <item>Βελτιώσεις στην υλοποίηση του OneDrive: δεν υπάρχει πλέον όριο μεγέθους, ούτε περιττές αιτήσεις ελέγχου ταυτότητας</item>
@@ -713,7 +713,7 @@
     <item>Προσθήκη υποστήριξης για νέα μορφή αρχείου κλειδιού που εισήχθη στο Keepass 2.47</item>
     <item>Προσθήκη υποστήριξης για το Argon2id ως λειτουργία παραγωγής κλειδιού</item>
     <item>Βελτιωμένη συμβατότητα αυτόματης συμπλήρωσης με Firefox και Chrome</item>
-    <item>Βελτίωση υποστήριξης καταχωρήσεων TOTP από προγράμματα υπολογιστών</item>
+    <item>Βελτίωση υποστήριξης καταχωρίσεων TOTP από προγράμματα υπολογιστών</item>
     <item>Ενημέρωση pCloud SDK για να διορθωθεί το πρόβλημα ελέγχου ταυτότητας</item>
     <item>Ενημέρωση Jsch στην έκδοση 0.1.55</item>
     <item>Προσθήκη μενού στην οθόνη επιλογής βάσης δεδομένων</item>
