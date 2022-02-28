@@ -172,6 +172,8 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Μάσκα συνθηματικού</string>
   <string name="maskpass_summary">Απόκρυψη συνθηματικών από προεπιλογή</string>
+  <string name="masktotp_title">Μάσκα στο πεδίο TOTP</string>
+  <string name="masktotp_summary">Απόκρυψη πεδίου TOTP εξ ορισμού</string>
   <string name="NoAutofillDisabling_title">Χωρίς επιλογή για απενεργοποίηση της αυτόματης συμπλήρωσης</string>
   <string name="NoAutofillDisabling_summary">Εάν ενεργοποιηθεί, η εφαρμογή δεν θα προβάλει την επιλογή που απενεργοποιεί την αυτόματη συμπλήρωση για συγκεκριμένες εγγραφές.</string>
   <string name="menu_about">Πληροφορίες</string>
@@ -327,6 +329,7 @@
   <string name="QuickUnlockLength_summary">Μέγιστος αριθμός χαρακτήρων που χρησιμοποιούνται στο συνθηματικό QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Απόκρυψη μήκους QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Αν ενεργοποιηθεί, αποκρύπτει το μήκος του κωδικού QuickUnlock στη σχετική οθόνη.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Κλειδί QuickUnlock από τη βάση δεδομένων</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Εάν η ενεργή βάση δεδομένων περιέχει μια καταχώρηση με τίτλο QuickUnlock στην ομάδα ρίζας της, ο κωδικός πρόσβασης αυτής της καταχώρησης χρησιμοποιείται ως κωδικός QuickUnlock.</string>
   <string name="QuickUnlock_fail">Αποτυχία QuickUnlock: λανθασμένο συνθηματικό!</string>
   <string name="SaveAttachmentDialog_title">Αποθήκευση συνημμένου</string>
@@ -353,6 +356,7 @@
   <string name="totp_encoding_custom">Προσαρμοσμένες ρυθμίσεις τεκμηρίου</string>
   <string name="totp_time_step">Χρονικό βήμα</string>
   <string name="totp_length">Μήκος κωδικού</string>
+  <string name="totp_scan">Σάρωση κωδικού QR</string>
   <string name="delete_extra_string">Διαγραφή πρόσθετου κειμένου</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: κλειδωμένο. Ενεργοποιήθηκε το QuickUnlock.</string>
   <string name="database_loaded_unlocked">%1$s: Ξεκλείδωτο.</string>
