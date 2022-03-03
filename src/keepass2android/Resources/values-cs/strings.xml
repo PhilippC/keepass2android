@@ -71,6 +71,7 @@
   <string name="copy_password">Kopírovat heslo do schránky</string>
   <string name="copy_totp">Zvolte pro kopírování TOTP do schránky</string>
   <string name="available_through_keyboard">K dispozici je klávesnice KP2A</string>
+  <string name="app_language_pref_title">Jazyk aplikace</string>
   <string name="entry_is_available">je k dispozici</string>
   <string name="not_possible_im_picker">Nepodařilo se otevřít dialog pro výběr metody zadávání dat. Aktivujte klávesnici ručně.</string>
   <string name="please_activate_keyboard">Prosím, povolte klávesnici Keepass2Android v nastavení systému.</string>
@@ -120,6 +121,7 @@
   <string name="entry_user_name">Uživatelské jméno</string>
   <string name="entry_extra_strings">Doplňková textová pole</string>
   <string name="entry_binaries">Přiložené soubory</string>
+  <string name="entry_history">Předchozí verze</string>
   <string name="error_can_not_handle_uri">Keepass2Android nemůže zpracovat tuto URI.</string>
   <string name="error_could_not_create_group">Chyba při vytváření skupiny.</string>
   <string name="error_could_not_create_parent">Nelze vytvořit nadřazený adresář.</string>
@@ -290,6 +292,7 @@
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
   <string name="NoDalVerification_title">Žádné ověření DAL</string>
   <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
+  <string name="requires_android11">Vyžaduje Android 11 nebo novější</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
   <string name="search_options">Možnosti</string>
@@ -342,6 +345,7 @@
   <string name="totp_encoding_custom">Nastavení vlastního tokenu</string>
   <string name="totp_time_step">Časový krok</string>
   <string name="totp_length">Délka kódu</string>
+  <string name="totp_scan">Naskenovat QR kód</string>
   <string name="delete_extra_string">Smazat doplňkový text</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: uzamčen. Rychlé odemknutí povoleno.</string>
   <string name="database_loaded_unlocked">%1$s: odemčen.</string>
@@ -507,6 +511,7 @@
   <string name="filestoragename_onedrive2_myfiles">Mé soubory</string>
   <string name="filestoragename_onedrive2_appfolder">Složka aplikace Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Výběr systému souborů</string>
   <string name="filestorage_setup_title">Inicializace přístupu k souboru</string>
   <string name="database_location">Umístění databáze</string>
@@ -653,6 +658,8 @@
   <string name="child_db_Enabled_title">Otevřít automaticky</string>
   <string name="database_file_heading">Databázový soubor</string>
   <string name="if_device_text">Povolit pro %1$s</string>
+  <string name="restore_history">Obnovit tuto verzi</string>
+  <string name="remove_history">Odstranit tuto verzi</string>
   <string name="DbUnlockedChannel_name">Databáze odemknuta</string>
   <string name="DbUnlockedChannel_desc">Upozornění o odemykání databáze</string>
   <string name="DbQuicklockedChannel_name">Rychlé odemknutí</string>
