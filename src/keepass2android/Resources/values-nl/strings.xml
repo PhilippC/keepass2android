@@ -329,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Maximum aantal tekens gebruikt voor Snel Openen wachtwoord.</string>
   <string name="QuickUnlockHideLength_title">Verberg Snel Openen lengte</string>
   <string name="QuickUnlockHideLength_summary">Als ingeschakeld, wordt de lengte van de Snel Openen code niet weergegeven in het Snel Openen scherm.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Snelle deblokkeercode uit database item</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Als de actieve database een item met titel QuickUnlock in de hoofdgroep bevat, wordt het wachtwoord van dit item gebruikt als snelle deblokkeer code.</string>
   <string name="QuickUnlock_fail">Snel Openen is mislukt: verkeerd wachtwoord!</string>
   <string name="SaveAttachmentDialog_title">Bijlage opslaan</string>
   <string name="SaveAttachmentDialog_text">Selecteer waar u de bijlage wilt opslaan.</string>
@@ -354,6 +356,7 @@
   <string name="totp_encoding_custom">Aangepaste token instellingen</string>
   <string name="totp_time_step">Tijdstap</string>
   <string name="totp_length">Lengte van de code</string>
+  <string name="totp_scan">Scan QR code</string>
   <string name="delete_extra_string">Extra waarde verwijderen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: vergrendeld. Snel Openen ingeschakeld.</string>
   <string name="database_loaded_unlocked">%1$s: Ontgrendeld.</string>
@@ -416,6 +419,8 @@
   <string name="DocumentAccessRevoked">Dit bestand is niet meer toegangelijk voor Keepass2Android. Het is verwijderd of de toegangsrechten zijn ingetrokken. Probeer opnieuw te openen, bijv. met \'Wijzig database\'.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-load van databasebestand</string>
   <string name="PreloadDatabaseEnabled_summary">Start laden op de achtergrond of het downloaden van het databasebestand tijdens het wachtwoord invoeren.</string>
+  <string name="SyncAfterQuickUnlock_title">Synchroniseer na Snel Openen</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchroniseer de database met externe bestanden na het ontgrendelen met QuickUnlock.</string>
   <string name="AskOverwriteBinary">Wil je het bestaande binaire bestand met dezelfde naam overschrijven?</string>
   <string name="AskOverwriteBinary_title">Overschrijf bestaande bestand?</string>
   <string name="AskOverwriteBinary_yes">Overschrijven</string>
@@ -498,6 +503,7 @@
   <string name="sftp_auth_mode">Authenticatiemodus</string>
   <string name="send_public_key">Zend publieke sleutel...</string>
   <string name="enter_ftp_login_title">SFTP logingegevens invoeren:</string>
+  <string name="enter_mega_login_title">Voer uw MEGA account login gegevens in:</string>
   <string name="select_storage_type">Selecteer het opslagtype:</string>
   <string name="filestoragename_file">Lokaal bestand</string>
   <string name="filestoragename_androidget">Krijg via externe app</string>
@@ -511,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A map)</string>
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A bestanden)</string>
+  <string name="filestoragehelp_gdriveKP2A">Als u KP2A geen toegang wilt geven tot uw volledige Google Drive, kunt u deze optie selecteren. Merk op dat je eerst een databasebestand moet aanmaken, bestaande bestanden zijn niet zichtbaar voor de app. Kies deze optie uit het database scherm aanmaken, of als je al een database hebt geopend door de database te exporteren die voor deze optie wordt gekozen.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de pCloud map \"Applications/Keepass2Android\". Als je een bestaande database uit jouw PCloud account wil gebruiken, zorg dan dat het bestand in die pCloud map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -519,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Mijn bestanden</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android app map</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Let op: Keepass2Android moet de lijst van alle bestanden in jouw Mega account downloaden om goed te werken. Om deze reden kan het benaderen van accounts met veel bestanden traag zijn.</string>
   <string name="filestoragename_content">Systeem bestand kiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
   <string name="database_location">Database locatie</string>
@@ -667,6 +677,8 @@
   <string name="child_db_Enabled_title">Automatisch openen</string>
   <string name="database_file_heading">Databasebestand</string>
   <string name="if_device_text">Inschakelen voor %1$s</string>
+  <string name="restore_history">Deze versie terugzetten</string>
+  <string name="remove_history">Deze versie verwijderen</string>
   <string name="DbUnlockedChannel_name">Database geopend</string>
   <string name="DbUnlockedChannel_desc">Melding bij het openen van de database</string>
   <string name="DbQuicklockedChannel_name">Snel Openen</string>
@@ -675,6 +687,21 @@
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
   <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt ongeldig gemaakt door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van uw apparaat. Zorg ervoor dat u altijd weet hoe u moet ontgrendelen met uw hoofdwachtwoord!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Toegevoegde ondersteuning voor het bekijken, verwijderen en herstellen van invoer back-ups</item>
+    <item>Implementatie ondersteuning voor MEGA cloud opslag</item>
+    <item>Ondersteuning voor Google Drive met beperkte scope toegevoegd</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Google Drive authenticatie opnieuw geïmplementeerd, Google Drive ondersteuning opnieuw ingeschakeld</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Repareer de automatische invulprompt in Firefox</item>
+    <item>Integreer suggesties met toetsenbord (met Android 11+)</item>
+    <item>Toestaan om de app taal te wijzigen in de instellingen</item>
+    <item>Optie toevoegen om database te synchroniseren na Snel Openen</item>
+    <item>Bug fix: Maak geen kleine bestandsnamen bij het opslaan naar Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Ondersteuning toegevoegd voor KDBX 4.1, de bestandsindeling geintroduceerd in KeePass 2.48</item>
     <item>Dialoog toegevoegd voor het configureren van TOTP instellingen</item>
