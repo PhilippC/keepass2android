@@ -71,6 +71,7 @@
   <string name="copy_password">Selecteer om wachtwoord naar klembord te kopiëren</string>
   <string name="copy_totp">Selecteer om TOTP naar klembord te kopiëren</string>
   <string name="available_through_keyboard">Invoer is mogelijk via KP2A-toetsenbord</string>
+  <string name="app_language_pref_title">App taal</string>
   <string name="entry_is_available">is beschikbaar</string>
   <string name="not_possible_im_picker">Kan venster om invoermethode te selecteren niet openen. Activeer toetsenbord handmatig.</string>
   <string name="please_activate_keyboard">Activeer het Keepass2Android-toetsenbord in de systeeminstellingen.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, je mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopieer naar klembord</string>
+  <string name="SystemLanguage">Systeemtaal</string>
   <string name="fingerprint_description">Verifiëren om door te gaan</string>
   <string name="fingerprint_fatal">Biometrische ontgrendeling kan niet worden ingesteld:</string>
   <string name="fingerprint_not_recognized">Biometrische authenticatie mislukt. Probeer opnieuw.</string>
@@ -120,6 +122,7 @@
   <string name="entry_user_name">Gebruikersnaam</string>
   <string name="entry_extra_strings">Extra tekst velden</string>
   <string name="entry_binaries">Bijlagen</string>
+  <string name="entry_history">Vorige versies</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan deze URI niet verwerken.</string>
   <string name="error_could_not_create_group">Fout bij het aanmaken van de groep.</string>
   <string name="error_could_not_create_parent">Kan de bovenliggende map niet aanmaken.</string>
@@ -169,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maskeer wachtwoord</string>
   <string name="maskpass_summary">Wachtwoorden standaard verbergen</string>
+  <string name="masktotp_title">Maskeer TOTP-veld</string>
+  <string name="masktotp_summary">Verberg TOTP-veld standaard</string>
+  <string name="NoAutofillDisabling_title">Geen optie om automatisch aanvullen uit te schakelen</string>
+  <string name="NoAutofillDisabling_summary">Indien geactiveerd, zal de app de optie om automatisch invullen uit te schakelen voor specifieke items niet tonen.</string>
   <string name="menu_about">Over</string>
   <string name="menu_change_key">Wijzig hoofdsleutel</string>
   <string name="menu_copy_pass">Kopieer wachtwoord</string>
@@ -282,6 +289,8 @@
   <string name="please_note">Merk op</string>
   <string name="contributors">Bijdragers</string>
   <string name="regular_expression">Reguliere expressie</string>
+  <string name="AlwaysMergeOnConflict_title">Altijd samenvoegen bij conflicten</string>
+  <string name="AlwaysMergeOnConflict_summary">Wanneer Keepass2Android detecteert dat het externe bestand is gewijzigd, voeg de lokale wijzigingen altijd samen met de externe wijzigingen.</string>
   <string name="TanExpiresOnUse_title">TAN vervalt na gebruik</string>
   <string name="TanExpiresOnUse_summary">TAN-items markeren als vervallen na gebruik</string>
   <string name="ShowUsernameInList_title">Geef gebruikersnaam weer in lijst</string>
@@ -290,6 +299,9 @@
   <string name="RememberRecentFiles_summary">Onthoud onlangs geopende databases en deze in het geopende databasescherm weergeven.</string>
   <string name="NoDalVerification_title">Geen DAL verificatie</string>
   <string name="NoDalVerification_summary">Schakelt controle of domein en app pakket overeenkomen uit </string>
+  <string name="InlineSuggestions_title">Integreer met toetsenbord</string>
+  <string name="InlineSuggestions_summary">Toont de suggesties voor automatisch aanvullen als inline-opties in het toetsenbord (indien ondersteund door de invoermethode)</string>
+  <string name="requires_android11">Vereist Android 11 of hoger</string>
   <string name="kp2a_findUrl">Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
   <string name="search_options">Opties</string>
