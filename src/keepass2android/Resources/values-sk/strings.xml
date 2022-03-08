@@ -122,6 +122,7 @@
   <string name="entry_user_name">Meno používateľa</string>
   <string name="entry_extra_strings">Polia pre zvláštne príkazy</string>
   <string name="entry_binaries">Priložené súbory</string>
+  <string name="entry_history">Predchádzajúce verzie</string>
   <string name="error_can_not_handle_uri">Keepass2Android nedokáže spracovať tento identifikátor zdrojov (URI).</string>
   <string name="error_could_not_create_group">Chyba pri vytváraní skupiny.</string>
   <string name="error_could_not_create_parent">Nemožno vytvoriť rodičovský priečinok.</string>
@@ -502,6 +503,7 @@
   <string name="sftp_auth_mode">Spôsob autentifikácie</string>
   <string name="send_public_key">Odoslať verejný kľúč...</string>
   <string name="enter_ftp_login_title">Zadajte prihlas. údaje pre FTP:</string>
+  <string name="enter_mega_login_title">Zadajte svoje prihlasovacie údaje ku kontu MEGA:</string>
   <string name="select_storage_type">Vyberte spôsob uloženia:</string>
   <string name="filestoragename_file">Lokálny súbor</string>
   <string name="filestoragename_androidget">Získať z inej aplikácie</string>
@@ -515,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (súbory KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Ak nechcete poskytnúť KP2A prístup k celému úložisku Google Drive, môžete vybrať túto možnosť. Pamätajte na to, že najskôr musíte vytvoriť súbor s databázou, existujúce súbory aplikácia neuvidí. Buď vyberte takúto možnosť z obrazovky pre vytvorenie databázy, alebo už otvorenú databázu exportujte vybratím tejto možnosti.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z konta pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -523,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Moje súbory</string>
   <string name="filestoragename_onedrive2_appfolder">Priečinok aplikácie Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Pamätajte: pre správne fungovanie musí Keepass2Android stiahnuť zoznam všetkých súborov vo vašom konte Mega. Preto môže byť prístup ku kontám s mnohými súbormi pomalý.</string>
   <string name="filestoragename_content">Systémový prehliadač súborov</string>
   <string name="filestorage_setup_title">Inicializácia prístupu k súboru</string>
   <string name="database_location">Umiestnenie databázy</string>
@@ -670,6 +676,8 @@
   <string name="child_db_Enabled_title">Otvoriť automaticky</string>
   <string name="database_file_heading">Databázový súbor</string>
   <string name="if_device_text">Zapnúť pre %1$s</string>
+  <string name="restore_history">Obnoviť túto verziu</string>
+  <string name="remove_history">Odstrániť túto verziu</string>
   <string name="DbUnlockedChannel_name">Databáza odomknutá</string>
   <string name="DbUnlockedChannel_desc">Notifikácia o odomknutí databázy</string>
   <string name="DbQuicklockedChannel_name">Rýchle odomknutie</string>
@@ -678,6 +686,11 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Pridaná podpora prehliadania, odstraňovania a obnovovania záloh záznamu</item>
+    <item>Implementovaná podpora pre cloudové úložisko MEGA</item>
+    <item>Pridaná podpora pre Google Drive s obmedzeným rozsahom</item>
+  </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Opätovne implementovaná autentifikácia Google Drive, opätovne zapnutá podpora Google Drive</item>
   </string-array>
