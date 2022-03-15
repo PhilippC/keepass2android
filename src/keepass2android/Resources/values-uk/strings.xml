@@ -122,6 +122,7 @@
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
   <string name="entry_binaries">Вкладені файли</string>
+  <string name="entry_history">Попередні версії</string>
   <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю URL-адресу.</string>
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити теку верхнього рівня.</string>
@@ -171,6 +172,8 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Приховувати пароль</string>
   <string name="maskpass_summary">Приховувати всі паролі</string>
+  <string name="masktotp_title">Маска поля TOTP</string>
+  <string name="masktotp_summary">Усталено ховати поле TOTP</string>
   <string name="menu_about">Про</string>
   <string name="menu_change_key">Змінити головний ключ</string>
   <string name="menu_copy_pass">Копіювати пароль</string>
@@ -347,6 +350,7 @@
   <string name="totp_encoding_custom">Власні налаштування токена</string>
   <string name="totp_time_step">Часовий проміжок</string>
   <string name="totp_length">Довжина коду</string>
+  <string name="totp_scan">Сканувати QR-код</string>
   <string name="delete_extra_string">Видалити рядок</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблоковано. QuickUnlock увімкнено.</string>
   <string name="database_loaded_unlocked">%1$s: Розблоковано.</string>
@@ -493,6 +497,7 @@
   <string name="sftp_auth_mode">Режим перевірки</string>
   <string name="send_public_key">Надіслати публічний ключ...</string>
   <string name="enter_ftp_login_title">Введіть дані входу FTP:</string>
+  <string name="enter_mega_login_title">Введіть дані входу до облікового запису MEGA:</string>
   <string name="select_storage_type">Виберіть тип сховища:</string>
   <string name="filestoragename_file">Локальний файл</string>
   <string name="filestoragename_androidget">Отримати від сторонньої програми</string>
@@ -506,6 +511,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_gdriveKP2A">Google Диск (файли KP2A)</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Цей тип сховища вимагатиме доступу лише до теки \"Applications/Keepass2Android\" у pCloud. Якщо ви хочете використовувати наявну базу даних з вашого облікового запису pCloud, переконайтеся, що файл розміщений у цій теці pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +520,7 @@
   <string name="filestoragename_onedrive2_myfiles">Мої файли</string>
   <string name="filestoragename_onedrive2_appfolder">Тека програми Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
   <string name="database_location">Розташування бази даних</string>
@@ -661,6 +668,8 @@
   <string name="child_db_Enabled_title">Відкривати автоматично</string>
   <string name="database_file_heading">Файл бази даних</string>
   <string name="if_device_text">Увімкнути для %1$s</string>
+  <string name="restore_history">Відновити цю версію</string>
+  <string name="remove_history">Вилучити цю версію</string>
   <string name="DbUnlockedChannel_name">База даних розблокована</string>
   <string name="DbUnlockedChannel_desc">Сповіщення про розблокування бази даних</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
