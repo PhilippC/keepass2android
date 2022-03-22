@@ -122,6 +122,7 @@
   <string name="entry_user_name">Логин</string>
   <string name="entry_extra_strings">Дополнительные строковые поля</string>
   <string name="entry_binaries">Вложенные файлы</string>
+  <string name="entry_history">Предыдущие версии</string>
   <string name="error_can_not_handle_uri">Keepass2Android не может обработать этот адрес URL.</string>
   <string name="error_could_not_create_group">Не удалось создать группу.</string>
   <string name="error_could_not_create_parent">Не удалось создать родительскую папку</string>
