@@ -172,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Скрыть пароль</string>
   <string name="maskpass_summary">Скрыть пароли по умолчанию</string>
+  <string name="masktotp_title">Маскирование поля TOTP</string>
+  <string name="masktotp_summary">По умолчанию скрывать поле TOTP</string>
+  <string name="NoAutofillDisabling_title">Нет возможности отключить автозаполнение</string>
+  <string name="NoAutofillDisabling_summary">Если включено, приложение не будет показывать опцию отключения автозаполнения для определенных записей.</string>
   <string name="menu_about">О программе</string>
   <string name="menu_change_key">Изменить мастер-ключ</string>
   <string name="menu_copy_pass">Скопировать пароль</string>
@@ -285,6 +289,8 @@
   <string name="please_note">Обратите внимание</string>
   <string name="contributors">Участники</string>
   <string name="regular_expression">Регулярное выражение</string>
+  <string name="AlwaysMergeOnConflict_title">Всегда объединять при конфликте</string>
+  <string name="AlwaysMergeOnConflict_summary">Когда Keepass2Android обнаруживает, что внешний (удаленный) файл был изменен, всегда объединять локальные изменения с удаленными.</string>
   <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
   <string name="ShowUsernameInList_title">Отображать имя пользователя в списке</string>
@@ -323,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрыть длину БыстройРазблокировки</string>
   <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ Быстрой Разблокировки из записи в базе данных</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием БыстраяРазблокировка в ее корневой группе, пароль этой записи используется в качестве кода БыстройРазблокировки.</string>
   <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
@@ -348,6 +356,7 @@
   <string name="totp_encoding_custom">Пользовательские настройки токена</string>
   <string name="totp_time_step">Период</string>
   <string name="totp_length">Длина кода</string>
+  <string name="totp_scan">Сканировать QR-код</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
@@ -494,6 +503,7 @@
   <string name="sftp_auth_mode">Режим аутентификации</string>
   <string name="send_public_key">Отправить публичный ключ...</string>
   <string name="enter_ftp_login_title">Введите данные входа (FTP):</string>
+  <string name="enter_mega_login_title">Введите данные для входа в аккаунт MEGA:</string>
   <string name="select_storage_type">Выберите тип хранилища:</string>
   <string name="filestoragename_file">Локальный файл</string>
   <string name="filestoragename_androidget">Получить из стороннего приложения</string>
@@ -507,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
+  <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -515,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Мои файлы</string>
   <string name="filestoragename_onedrive2_appfolder">Папка приложения Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Обратите внимание: для правильной работы Keepass2Android необходимо загрузить список всех файлов в вашем аккаунте Mega. По этой причине доступ к аккаунтам с большим количеством файлов может быть медленным.</string>
   <string name="filestoragename_content">Системное средство выбора файлов</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
   <string name="database_location">Расположение базы данных</string>
@@ -660,6 +674,8 @@
   <string name="child_db_Enabled_title">Открыть автоматически</string>
   <string name="database_file_heading">Файл базы данных</string>
   <string name="if_device_text">Включить для %1$s</string>
+  <string name="restore_history">Восстановить эту версию</string>
+  <string name="remove_history">Удалить эту версию</string>
   <string name="DbUnlockedChannel_name">БД разблокирована</string>
   <string name="DbUnlockedChannel_desc">Уведомление о том, что БД разблокирована</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -668,6 +684,11 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Добавлена поддержка просмотра, удаления и восстановления резервных копий записей</item>
+    <item>Реализована поддержка облачного хранилища MEGA</item>
+    <item>Добавлена поддержка Google Drive с ограниченным охватом</item>
+  </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Поддержка аутентификации Google Drive, вновь включена поддержка Google Drive</item>
   </string-array>
