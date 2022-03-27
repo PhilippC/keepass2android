@@ -329,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Максимальна кількість символів, що використовуються як пароль QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Приховати довжину QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Якщо увімкнено, довжина коду QuickUnlock не показується на екрані блокування.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ швидкого розблокування ключа з запису бази даних</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Якщо активна база даних містить запис з назвою швидке розблокування у її кореневій групі, пароль цього запису використовується як швидке розблокування.</string>
   <string name="QuickUnlock_fail">Неправильний пароль QuickUnlock!</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
@@ -516,6 +518,7 @@
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_gdriveKP2A">Google Диск (файли KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Якщо не хочете надавати доступ KP2A до всього свого Google Диска, ви можете вибрати цю опцію. Зверніть увагу, що спочатку потрібно створити файл бази даних, наявні файли не показуються для застосунку. Або виберіть цю опцію з екрана створення бази даних або, якщо ви вже відкрили базу даних, експортуйте її, вибравши цю опцію.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Цей тип сховища вимагатиме доступу лише до теки \"Applications/Keepass2Android\" у pCloud. Якщо ви хочете використовувати наявну базу даних з вашого облікового запису pCloud, переконайтеся, що файл розміщений у цій теці pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -525,6 +528,7 @@
   <string name="filestoragename_onedrive2_appfolder">Тека програми Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
   <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Зверніть увагу: Keepass2Android повинен завантажити список всіх файлів у вашому обліковому записі Mega, щоб працювати належним чином. З цієї причини доступ до облікових записів з багатьма файлами може бути повільним.</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
   <string name="database_location">Розташування бази даних</string>
@@ -682,6 +686,14 @@
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
   <string name="WarnFingerprintInvalidated">Увага! Біометрична автентифікація може бути скасована Android, наприклад після додавання нового відбитку пальця у налаштуваннях вашого пристрою. Переконайтеся, що ви завжди знаєте, як розблокувати за допомогою головного пароля!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Додано підтримку перегляду, видалення та відновлення резервних копій записів</item>
+    <item>Додано підтримку хмарного сховища MEGA</item>
+    <item>Додано підтримку Диска Google з обмеженим вибором файлів</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Повернено автентифікацію Google Диска, повторно увімкнено підтримку Google Диска</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Виправлено зникання запиту автозаповнення у Firefox</item>
     <item>Інтеграція пропозицій автозаповнення до клавіатури (потрібен Android 11+)</item>
