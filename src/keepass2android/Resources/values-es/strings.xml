@@ -172,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Ocultar contraseña</string>
   <string name="maskpass_summary">Ocultar contraseñas por defecto</string>
+  <string name="masktotp_title">Ocultar espacio TOTP</string>
+  <string name="masktotp_summary">Ocultar espacio TOTP por defecto</string>
+  <string name="NoAutofillDisabling_title">No hay opción para desactivar el llenado automático</string>
+  <string name="NoAutofillDisabling_summary">Se está activado, la aplicación no mostrará la opción para desactivar el llenado automático para entradas específicas.</string>
   <string name="menu_about">Acerca de</string>
   <string name="menu_change_key">Cambiar Contraseña Maestra</string>
   <string name="menu_copy_pass">Copiar Contraseña</string>
@@ -285,6 +289,8 @@
   <string name="please_note">Tenga en cuenta</string>
   <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expresión común</string>
+  <string name="AlwaysMergeOnConflict_title">Siempre combinar en conflicto</string>
+  <string name="AlwaysMergeOnConflict_summary">Cuando Keepass2Android detecta que el archivo remoto se ha modificado, siempre se combinarán los cambios locales con los cambios remotos.</string>
   <string name="TanExpiresOnUse_title">TAN caduca con el uso</string>
   <string name="TanExpiresOnUse_summary">Marcar entradas TAN vencidas al usarlas</string>
   <string name="ShowUsernameInList_title">Mostrar Usuario en la lista</string>
@@ -323,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de QuickUnlock no aparece en la pantalla de QuickUnlock.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Clave de QuickUnlock desde la entrada de la base de datos</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de datos en uso contiene una entrada con el título de QuickUnlock en el grupo raíz, la contraseña de esta entrada se utilizará como el código de QuickUnlock.</string>
   <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor, seleccione dónde guardar el archivo adjunto.</string>
@@ -495,6 +503,7 @@
   <string name="sftp_auth_mode">Modo de autenticación</string>
   <string name="send_public_key">Enviar clave pública...</string>
   <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
+  <string name="enter_mega_login_title">Digite las credenciales de su cuenta en MEGA:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
   <string name="filestoragename_file">Archivo local</string>
   <string name="filestoragename_androidget">Coger de una aplicación de terceros</string>
@@ -509,6 +518,7 @@
   <string name="filestoragehelp_dropboxKP2A">Si no quieres darle a KP2A acceso completo a tu Dropbox, deberías seleccionar esta opción. Sólo se pedirá acceso a la carpeta Apps/Keepass2Android. Esto es especialmente adecuado cuando creas una nueva base de datos. Si ya tienes una base de datos, slecciona esta opción para crear la carpeta, luego pon el archivo dentro de esta carpeta (desde tu PC) y después selecciona otra vez esta opción para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (archivos KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Si no deseas brindarle acceso completo a KP2A para acceder a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta de pCloud \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente de su cuenta pCloud, asegúrese de que el archivo se coloca en dicha carpeta de pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -518,6 +528,7 @@
   <string name="filestoragename_onedrive2_appfolder">Carpeta de Aplicación Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH transferencia de archivos)</string>
   <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Tenga en cuenta: Keepass2Android debe descargar el listado de todos los archivos en su cuenta de MEGA para funcionar correctamente. Por esta razón, el acceso a las cuentas con muchos archivos puede tardar un poco.</string>
   <string name="filestoragename_content">Selector de archivo del sistema</string>
   <string name="filestorage_setup_title">Inicialización de acceso de archivo</string>
   <string name="database_location">Ubicación de la base de datos</string>
@@ -674,6 +685,14 @@
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Añadido el soporte para visualizar, remover y restaurar los respaldos de las entradas</item>
+    <item>Implementado el soporte para el servicio en la nube de MEGA</item>
+    <item>Añadido el soporte para Google Drive con alcance limitado</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Reimplementada la autenticación de Google Drive, reactivado el soporte de Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Corregir la desaparición del aviso de autocompletado en Firefox</item>
     <item>Integrar sugerencias de autocompletar con el teclado (requiere Android 11+)</item>
