@@ -42,7 +42,7 @@
   <string name="IconSet_install">Найти еще...</string>
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
-  <string name="password_access_prefs">Парольный доступ</string>
+  <string name="password_access_prefs">Доступ для ввода пароля</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="keyboard_prefs">Клавиатура</string>
@@ -172,7 +172,7 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Скрыть пароль</string>
   <string name="maskpass_summary">Скрыть пароли по умолчанию</string>
-  <string name="masktotp_title">Маскирование поля TOTP</string>
+  <string name="masktotp_title">Маскировка поля TOTP</string>
   <string name="masktotp_summary">По умолчанию скрывать поле TOTP</string>
   <string name="NoAutofillDisabling_title">Нет возможности отключить автозаполнение</string>
   <string name="NoAutofillDisabling_summary">Если включено, приложение не будет показывать опцию отключения автозаполнения для определенных записей.</string>
@@ -223,7 +223,7 @@
   <string name="edit">Изменить</string>
   <string name="rijndael">Алгоритм шифрования Rijndael (AES)</string>
   <string name="root">Корень</string>
-  <string name="AutoReturnFromQuery_title">Автоматически вернуться с экрана запроса</string>
+  <string name="AutoReturnFromQuery_title">Вернуться с экрана запроса</string>
   <string name="AutoReturnFromQuery_summary">При поиске записи для приложения или веб-сайта: автоматически вернуться с экрана запроса, если в БД имеется только одна соответствующая запись.</string>
   <string name="KeyDerivFunc">Функция деривации ключа</string>
   <string name="rounds">Циклов шифрования</string>
@@ -312,12 +312,12 @@
   <string name="start_create_import">Импортировать файл в новую базу данных...</string>
   <string name="enter_filename_details_url">Необходимо указать полный URL, включая протокол, например http://.</string>
   <string name="enter_filename_details_create_import">В следующем шаге будет выбран файл для импортирования.</string>
-  <string name="enable_quickunlock">Включить QuickUnlock</string>
+  <string name="enable_quickunlock">Включить \"Быструю разблокировку\"</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
   <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
   <string name="QuickUnlock_button">Быстрая разблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
-  <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по умолчанию</string>
+  <string name="QuickUnlockDefaultEnabled_title">Включить по умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли \"Быстрая разблокировка\" по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
   <string name="ViewDatabaseSecure_summary">Если включено, то не разрешены скриншоты и приложение не появится в списке Последних Запущенных.</string>
@@ -325,11 +325,11 @@
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
-  <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
+  <string name="QuickUnlockLength_title">Длина ключа</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
-  <string name="QuickUnlockHideLength_title">Скрыть длину БыстройРазблокировки</string>
-  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">Ключ Быстрой Разблокировки из записи в базе данных</string>
+  <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
+  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для \"Быстрой разблокировки\" не будет отображаться на экране.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ из записи в базе данных</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"Быстрая разблокировка\" в ее корневой группе, пароль этой записи используется в качестве кода \"Быстрой разблокировки\".</string>
   <string name="QuickUnlock_fail">Быстрая разблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
@@ -369,7 +369,7 @@
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Использовать встроенную клавиатуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Клавиатура \"Keepass2Android\"</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете своей стандартной клавиатуре, установите этот параметр, чтобы использовать встроенную клавиатуру при вводе мастер-пароля или редактирования записей.</string>
   <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при запуске</string>
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
@@ -391,7 +391,7 @@
   <string name="ClearOfflineCache_question">Это удалит все кэшированные копии баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
   <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
-  <string name="CheckForDuplicateUuids_title">Проверить на наличие повторяющихся идентификаторов UUID</string>
+  <string name="CheckForDuplicateUuids_title">Проверка дубликатов UUID</string>
   <string name="CheckForDuplicateUuids_summary">Проверить, испорчен ли файл базы данных  наличием множественных записей с одинаковым ID. Это может вызвать непредсказуемое поведение.</string>
   <string name="ShowCopyToClipboardNotification_title">Уведомления буфера обмена</string>
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
@@ -570,10 +570,10 @@
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
-  <string name="DebugLog_prefs_prefs">Log-файл для отладки</string>
-  <string name="DebugLog_title">Использовать log-файл</string>
-  <string name="DebugLog_summary">Записывать выходные данные приложения в локальный log-файл</string>
-  <string name="DebugLog_send">Отправить журнал отладки...</string>
+  <string name="DebugLog_prefs_prefs">Лог-файл для отладки</string>
+  <string name="DebugLog_title">Включить логирование</string>
+  <string name="DebugLog_summary">Запись работы приложения в локальный лог-файл</string>
+  <string name="DebugLog_send">Отправить логи отладки...</string>
   <string name="loading">Загрузка…</string>
   <string name="plugins">Плагины</string>
   <string name="plugin_packagename">Имя пакета:</string>
@@ -652,9 +652,9 @@
   <string name="CorruptDatabaseHelp">    Файл поврежден. \n
     Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
     
-    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты MyPhoneExplorer. MTP-режим иногда обрезает файлы.\n
-    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват Keepass2Android, то свяжитесь с нами.\n
-    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в Keepass2Android.
+    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты \"MyPhoneExplorer\". MTP-режим иногда обрезает файлы.\n
+    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват \"Keepass2Android\", то свяжитесь с нами.\n
+    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в \"Keepass2Android\".
 
   </string>
   <string name="open_other_db">Открыть другую базу данных…</string>
@@ -1000,11 +1000,11 @@
 первоначальный публичный релиз</string>
   <string-array name="clipboard_timeout_options">
     <item>30 сек.</item>
-    <item>1 мин.</item>
-    <item>5 мин.</item>
-    <item>10 мин.</item>
-    <item>15 мин.</item>
-    <item>30 мин.</item>
+    <item>1 минута</item>
+    <item>5 минут</item>
+    <item>10 минут</item>
+    <item>15 минут</item>
+    <item>30 минут</item>
     <item>1 час</item>
     <item>Никогда</item>
   </string-array>
