@@ -315,23 +315,23 @@
   <string name="enable_quickunlock">Включить QuickUnlock</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
   <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
-  <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
+  <string name="QuickUnlock_button">Быстрая разблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
   <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по умолчанию</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли БыстраяРазблокировка по умолчанию или нет.</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли \"Быстрая разблокировка\" по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
   <string name="ViewDatabaseSecure_summary">Если включено, то не разрешены скриншоты и приложение не появится в списке Последних Запущенных.</string>
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
-  <string name="QuickUnlockIconHidden_summary">К сожалению, БыстраяРазблокировка не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
+  <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
+  <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
   <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрыть длину БыстройРазблокировки</string>
   <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Ключ Быстрой Разблокировки из записи в базе данных</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием БыстраяРазблокировка в ее корневой группе, пароль этой записи используется в качестве кода БыстройРазблокировки.</string>
-  <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"Быстрая разблокировка\" в ее корневой группе, пароль этой записи используется в качестве кода \"Быстрой разблокировки\".</string>
+  <string name="QuickUnlock_fail">Быстрая разблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
   <string name="SaveAttachmentDialog_save">Экспорт в файл...</string>
@@ -358,7 +358,7 @@
   <string name="totp_length">Длина кода</string>
   <string name="totp_scan">Сканировать QR-код</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. Быстрая разблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
   <string name="UseFileTransactions_title">Файловые транзакции</string>
@@ -867,10 +867,10 @@
 * обновление переводов\n
 * исправление ошибок: шрифт пароля был утерян в 0.9.7, сортировка по имени не сортировала группы\n</string>
   <string name="ChangeLog_0_9_7">Версия 0.9.7\n
-* Поддержка записи в файлы баз данных Keepass 1 (kdb) (beta!)\n
+* Поддержка записи в файлы баз данных \"Keepass 1 (kdb) (beta!)\"\n
 * Улучшенное переключение на предыдущую клавиатуру (также работает на устройствах без root-прав)\n
-* Поддержка KeeChallenge с переменной длиной ключа\n
-* Предотвращение создания скриншотов с экранов БыстраяРазблокировка и паролей\n
+* Поддержка \"KeeChallenge\" с переменной длиной ключа\n
+* Предотвращение создания скриншотов с экранов \"Быстрая разблокировка\" и \"Паролей\"\n
 * Обратная сортировка для режима Сортировать по дате модификации (теперь по убыванию)\n
 * Исправления ошибок: Теперь заметки корректно обновляются после изменений. Просмотр пароля теперь прячет пароль корректно на всех устройствах (надеюсь), исправлена ошибка с возможностью повторного добавления записи, исправлена ошибка отображения предупреждения \"Дублирующийся UUID\" даже после исправления базы данных\n</string>
   <string name="ChangeLog_0_9_6">Версия 0.9.6\n
