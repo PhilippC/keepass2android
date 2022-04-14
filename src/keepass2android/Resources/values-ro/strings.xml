@@ -171,6 +171,7 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maschează parola</string>
   <string name="maskpass_summary">Ascunde parolele în mod implicit</string>
+  <string name="NoAutofillDisabling_title">Nicio opțiune pentru a dezactiva autocompletarea</string>
   <string name="menu_about">Despre</string>
   <string name="menu_change_key">Schimbă cheia principală</string>
   <string name="menu_copy_pass">Copiază parola</string>
