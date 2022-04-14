@@ -19,9 +19,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
-    <string name="english_ime_name">Клавиатура Keepass2Android</string>
+    <string name="english_ime_name">Клавиатура \"Keepass2Android\"</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">Настройки клавиатуры Keepass2Android</string>
+    <string name="english_ime_settings">Настройки клавиатуры \"Keepass2Android\"</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">Параметры ввода</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
