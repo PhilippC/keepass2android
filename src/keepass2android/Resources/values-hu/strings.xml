@@ -122,6 +122,7 @@
   <string name="entry_user_name">Felhasználónév</string>
   <string name="entry_extra_strings">Kiegészítő szövegmezők</string>
   <string name="entry_binaries">Csatolt fájlok</string>
+  <string name="entry_history">Korábbi verziók</string>
   <string name="error_can_not_handle_uri">Nem található kezelő ehhez az URI-hez.</string>
   <string name="error_could_not_create_group">Hiba a csoport létrehozásakor.</string>
   <string name="error_could_not_create_parent">Nem sikerült létrehozni szülő könyvtárat.</string>
@@ -171,6 +172,8 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Jelszó elrejtése</string>
   <string name="maskpass_summary">Jelszavak elrejtése alapértelmezésben.</string>
+  <string name="masktotp_title">TOTP mező maszkolása</string>
+  <string name="masktotp_summary">TOTP mező elrejtése alapértelmezetten</string>
   <string name="menu_about">Névjegy</string>
   <string name="menu_change_key">Főkulcs (jelszó) megváltoztatása</string>
   <string name="menu_copy_pass">Jelszó másolása</string>
