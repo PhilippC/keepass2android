@@ -123,6 +123,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_user_name">Benutzername</string>
   <string name="entry_extra_strings">Zusätzliche Felder</string>
   <string name="entry_binaries">Datei-Anhänge</string>
+  <string name="entry_history">Vorherige Versionen</string>
   <string name="error_can_not_handle_uri">Keepass2Android kann diese Adresse nicht verarbeiten.</string>
   <string name="error_could_not_create_group">Fehler beim Erstellen der Gruppe.</string>
   <string name="error_could_not_create_parent">Verzeichnis konnte nicht erstellt werden.</string>
@@ -172,6 +173,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Kennwort ausblenden</string>
   <string name="maskpass_summary">Kennwörter standardmäßig ausgeblendet</string>
+  <string name="masktotp_summary">TOTP-Feld standardmäßig ausblenden</string>
   <string name="menu_about">Über</string>
   <string name="menu_change_key">Master-Passwort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
