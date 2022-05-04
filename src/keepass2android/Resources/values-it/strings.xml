@@ -94,7 +94,7 @@
   <string name="disable_fingerprint_unlock">Disabilita lo Sblocco Biometrico</string>
   <string name="enable_fingerprint_unlock">Abilita lo Sblocco Biometrico completo</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo Sblocco Biometrico per QuickUnlock</string>
-  <string name="fingerprint_unlock_failed">Sblocco con impronta fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
+  <string name="fingerprint_unlock_failed">Sblocco biometrico fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
   <string name="fingerprint_reenable2">Sblocca il database con la tua password e abilita di nuovo lo Sblocco Biometrico nelle impostazioni del database.</string>
@@ -247,11 +247,11 @@
   <string name="sort_default">Mantieni l\'ordinamento predefinito</string>
   <string name="special">Speciale</string>
   <string name="special_extended">Speciale esteso</string>
-  <string name="at_least_one_from_each_group">Almeno un carattere da ogni gruppo</string>
+  <string name="at_least_one_from_each_group">Almeno uno per ogni gruppo</string>
   <string name="exclude_lookalike">Escludi caratteri simili</string>
   <string name="password_generation_profile">Profilo</string>
   <string name="save_password_generation_profile_text">Inserisci il nome del profilo da salvare. Inserisci un nome esistente per sovrascriverlo.</string>
-  <string name="hint_wordcount">Conteggio parole nella frase segreta</string>
+  <string name="hint_wordcount">Numero parole nella frase segreta</string>
   <string name="hint_wordseparator">Separatore parole</string>
   <string-array name="PasswordGeneratorModes">
     <item>Password</item>
