@@ -609,7 +609,7 @@
   <string name="FileReadOnlyTitle">Il database è in sola lettura</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android ha aperto il database corrente in sola lettura.</string>
   <string name="ReadOnlyReason_PreKitKat">Sembra che tu abbia aperto il file da un\'app esterna. In questa modalità non è supportata la scrittura. Se vuoi modificare il database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando una delle opzioni disponibili, se possibile.</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">È impostato il flag di sola lettura. Rimuovi il flag vuoi modificare il database.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">È impostato il flag di sola lettura. Rimuovi il flag se vuoi modificare il database.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">La scrittura non è possibile a causa delle restrizioni introdotte in Android KitKat. Se vuoi apportare modifiche al database, chiudilo e seleziona \"Cambia il database\". Quindi apri il file utilizzando il Selettore file di sistema.</string>
   <string name="ReadOnlyReason_LocalBackup">I backup locali non possono essere modificati. È possibile utilizzare \'Impostazioni - Database - Esporta il database...\' per esportare il backup in un\'altra posizione, dalla quale potrai riaprirlo. Sarà quindi nuovamente scrivibile.</string>
   <string name="AddCustomIcon">Aggiungi icona da file...</string>
