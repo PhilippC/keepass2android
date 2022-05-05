@@ -365,8 +365,8 @@
   <string name="UseFileTransactions_summary">Χρησιμοποιήστε αρχείο συναλλαγών για ενημερώσεις της βάσης δεδομένων</string>
   <string name="LockWhenScreenOff_title">Κλείδωμα όταν σβήσει η οθόνη</string>
   <string name="LockWhenScreenOff_summary">Κλειδώνει τη βάση δεδομένων μόλις σβήσει η οθόνη.</string>
-  <string name="ClearPasswordOnLeave_title">Καθαρισμός του εισαχθέντος κύριου συνθηματικού</string>
-  <string name="ClearPasswordOnLeave_summary">Κατά την έξοδο από την οθόνη καθαρίζει το κύριο συνθηματικό που εισάγατε χωρίς να ξεκλειδώνει τη βάση δεδομένων.</string>
+  <string name="ClearPasswordOnLeave_title">Καθαρισμός του κύριου συνθηματικού</string>
+  <string name="ClearPasswordOnLeave_summary">Κατά την έξοδο από την οθόνη καθαρίζει το κύριο συνθηματικό, χωρίς να ξεκλειδώνει τη βάση δεδομένων.</string>
   <string name="LockWhenNavigateBack_title">Κλείδωμα με την έξοδο από την εφαρμογή</string>
   <string name="LockWhenNavigateBack_summary">Κλειδώνει τη βάση δεδομένων όταν βγείτε από την εφαρμογή με το πλήκτρο επιστροφής.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Χρήση του ενσωματωμένου στο Keepass2Android πληκτρολογίου</string>
