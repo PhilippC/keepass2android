@@ -248,14 +248,23 @@
   <string name="special">Special</string>
   <string name="special_extended">Utökad special</string>
   <string name="at_least_one_from_each_group">Minst en från varje grupp</string>
+  <string name="exclude_lookalike">Uteslut liknande tecken</string>
   <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Ange namnet på profilen som ska sparas. Ange ett befintligt namn för att skriva över.</string>
+  <string name="hint_wordcount">Antal ord i lösenordsfras</string>
   <string name="hint_wordseparator">Ordavgränsare</string>
   <string-array name="PasswordGeneratorModes">
     <item>Lösenord</item>
     <item>Lösenordsfras</item>
-    <item>Passphrase + Password</item>
+    <item>Lösenfras + lösenord</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>små bokstäver</item>
+    <item>STORA BOKSTÄVER</item>
+    <item>Första tecknet versalt</item>
   </string-array>
   <string name="custom_settings">Anpassade inställningar</string>
+  <string name="passphrase_capitalization">Versaler i lösenfras</string>
   <string name="search_hint">Hitta vad</string>
   <string name="search_results">Sökresultat</string>
   <string name="search_in">Sök i</string>
@@ -280,6 +289,8 @@
   <string name="please_note">Observera</string>
   <string name="contributors">Medhjälpare</string>
   <string name="regular_expression">Reguljärt uttryck</string>
+  <string name="AlwaysMergeOnConflict_title">Sammafoga alltid vid konflikter</string>
+  <string name="AlwaysMergeOnConflict_summary">När Keepass2Android upptäcker att fjärrfilen har ändrats så slå alltid ihop de lokala ändringarna med fjärrändringarna.</string>
   <string name="TanExpiresOnUse_title">Engångskod upphör efter användning</string>
   <string name="TanExpiresOnUse_summary">Markera engångskoder som använda när du använder dem</string>
   <string name="ShowUsernameInList_title">Visa användarnamn i listan</string>
@@ -288,6 +299,9 @@
   <string name="RememberRecentFiles_summary">Kom ihåg senast öppnade databaser och visa de på öppna databas-skärmen.</string>
   <string name="NoDalVerification_title">Ingen DAL-verifiering</string>
   <string name="NoDalVerification_summary">Inaktiverar kontroll om domän- och appaket matchar</string>
+  <string name="InlineSuggestions_title">Integrera med tangentbordet</string>
+  <string name="InlineSuggestions_summary">Visar autofyllförslagen som inline-alternativ på tangentbordet (om det stöds av inmatningsmetoden)</string>
+  <string name="requires_android11">Kräver Android 11 eller senare</string>
   <string name="kp2a_findUrl">Hitta lösenord</string>
   <string name="excludeExpiredEntries">Uteslut utgångna poster</string>
   <string name="search_options">Alternativ</string>
@@ -315,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Maximalt antal tecken som används som snabbupplåsningslösenord.</string>
   <string name="QuickUnlockHideLength_title">Dölj snabbupplåsningslängd</string>
   <string name="QuickUnlockHideLength_summary">Om aktiverat visas ej längden på snabbupplåsningskoden på snabbupplåsningsskärmen.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Snabbupplåsningsnyckel från databaspost</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Om den aktiva databasen innehåller en post med titeln QuickUnlock i sin rotgrupp, används lösenordet för denna post som QuickUnlock-kod.</string>
   <string name="QuickUnlock_fail">Snabbupplåsning misslyckades: fel lösenord!</string>
   <string name="SaveAttachmentDialog_title">Spara bilaga</string>
   <string name="SaveAttachmentDialog_text">Var god välj var den bifogade filen ska sparas.</string>
@@ -333,8 +349,14 @@
   <string name="protection">Skyddat fält</string>
   <string name="add_binary">Bifoga fil</string>
   <string name="add_extra_string">Lägg till extra sträng</string>
+  <string name="configure_totp">Konfigurera TOTP</string>
   <string name="totp_secret_key">Hemlig nyckel</string>
+  <string name="totp_encoding_rfc6238">Standardinställningar för RFC6238-token</string>
+  <string name="totp_encoding_steam">Inställningar för Steam-token</string>
+  <string name="totp_encoding_custom">Anpassade tokeninställningar</string>
+  <string name="totp_time_step">Tidssteg</string>
   <string name="totp_length">Kodlängd</string>
+  <string name="totp_scan">Skanna QR kod</string>
   <string name="delete_extra_string">Ta bort extra sträng</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: låst. Snabbupplåsning aktiverat.</string>
   <string name="database_loaded_unlocked">%1$s: upplåst.</string>
@@ -397,6 +419,8 @@
   <string name="DocumentAccessRevoked">Filen är inte längre tillgänglig för Keepass2Android. Antingen var den borttagen eller så har accessrättigheterna blivit återkallade. Var god öppna filen igen, t.ex. med Byt databas.</string>
   <string name="PreloadDatabaseEnabled_title">Förladda databasfilen</string>
   <string name="PreloadDatabaseEnabled_summary">Starta laddning eller nedladdning av databasfilen i bakgrunden under tiden du anger lösenordet.</string>
+  <string name="SyncAfterQuickUnlock_title">Synkronisera efter QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Synkronisera databas med fjärrfil efter upplåsning med QuickUnlock.</string>
   <string name="AskOverwriteBinary">Vill du skriva över den befintliga binärfilen med samma namn?</string>
   <string name="AskOverwriteBinary_title">Skriv över befintlig fil?</string>
   <string name="AskOverwriteBinary_yes">Skriv över</string>
@@ -479,6 +503,7 @@
   <string name="sftp_auth_mode">Autentiseringsläge</string>
   <string name="send_public_key">Skicka offentlig nyckel...</string>
   <string name="enter_ftp_login_title">Ange FTP inloggnings-data:</string>
+  <string name="enter_mega_login_title">Ange inloggningsdata för ditt MEGA-konto:</string>
   <string name="select_storage_type">Välj lagringtyp:</string>
   <string name="filestoragename_file">Lokal fil</string>
   <string name="filestoragename_androidget">Få från tredjeparts-app</string>
@@ -492,13 +517,18 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mapp)</string>
   <string name="filestoragehelp_dropboxKP2A">Om du inte vill ge KP2A tillgång till din hela Dropbox, kan du välja detta alternativ. Den kommer då endast att begära tillgång till mappen Apps/Keepass2Android. Detta är särskilt lämpligt när du skapar en ny databas. Om du redan har en databas, klicka på detta alternativ för att skapa mappen, placera sedan filen i mappen (från datorn) och välj därefter alternativet igen för att öppna filen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-filer)</string>
+  <string name="filestoragehelp_gdriveKP2A">Om du inte vill ge KP2A åtkomst till hela din Google Drive kan du välja det här alternativet. Observera att du måste skapa en databasfil först, befintliga filer är inte synliga för appen. Välj antingen det här alternativet från skärmen Skapa databas eller, om du redan har öppnat en databas, genom att exportera databasen genom att välja det här alternativet.</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Denna lagringstyp kommer endast att begära åtkomst till pCloud-mappen \"Applications/Keepass2Android\". Om du vill använda en befintlig databas från ditt pCloud-konto, se till att filen är placerad i den här pCloud-mappen.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alla filer och utdelade filer</string>
   <string name="filestoragename_onedrive2_myfiles">Mina filer</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android program-mapp</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Observera: Keepass2Android måste ladda ner listan över alla filer på ditt Mega-konto för att fungera korrekt. Av denna anledning kan det vara långsamt att komma åt konton med många filer.</string>
   <string name="filestoragename_content">System-filväljare</string>
   <string name="filestorage_setup_title">Filrättighets-initiering</string>
   <string name="database_location">Databasplacering</string>
@@ -633,6 +663,8 @@
   <string name="child_db_Enabled_title">Öppna automatiskt</string>
   <string name="database_file_heading">Databasefil</string>
   <string name="if_device_text">Aktivera för %1$s</string>
+  <string name="restore_history">Återställ den här versionen</string>
+  <string name="remove_history">Ta bort den här versionen</string>
   <string name="DbUnlockedChannel_name">Databas upplåst</string>
   <string name="DbUnlockedChannel_desc">Avisering om att databasen blivit upplåst</string>
   <string name="DbQuicklockedChannel_name">Snabbupplåsning</string>
@@ -640,6 +672,34 @@
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
+  <string name="WarnFingerprintInvalidated">Varning! Biometrisk autentisering kan ogiltigförklaras av Android, t.ex. efter att du har lagt till ett nytt fingeravtryck i dina enhetsinställningar. Se till att du alltid vet hur du låser upp med ditt huvudlösenord!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Tillagt stöd för visning, borttagning och återställning av säkerhetskopior</item>
+    <item>Implementerat stöd för MEGA molnlagring</item>
+    <item>Lade till stöd för Google Drive med begränsad omfattning</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Återimplementerad Google Drive-autentisering, återaktiverad Google Drive-support</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Åtgärda försvinnande autofyll-prompt i Firefox</item>
+    <item>Integrera autofyllförslag med tangentbord (kräver Android 11+)</item>
+    <item>Tillåt att ändra appspråk i inställningarna</item>
+    <item>Lägg till alternativ för att synkronisera databasen efter QuickUnlock</item>
+    <item>Buggfix: Gör inte filnamn med små bokstäver när du sparar i Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>Lagt till stöd för KDBX 4.1 filformat introducerat i KeePass 2.48</item>
+    <item>Lade till dialog för att konfigurera TOTP-inställningar för poster</item>
+    <item>Förbättrad lösenordsgenerator: Tillagt stöd för lösenordsfraser, fler alternativ, profiler och uppskattning av lösenordsstyrka</item>
+    <item>Förbättringar av Autofyll (fixat popup som inte visas i Chrome, bättre stöd för underdomäner)</item>
+    <item>Förbättringar av OneDrive-implementeringen: ingen mera storleksbegränsning, inga fler överflödiga autentiseringsförfrågningar</item>
+    <item>Tillagt alternativ för att välja ljus/mörkt tema från systeminställningar inklusive natt-schema, kräver Android 10+</item>
+    <item>Uppdatera Dropbox-implementeringen för att stödja ny autentiseringsmetod.</item>
+    <item>Nyligen inställd fingeravtrycksupplåsning kommer att ogiltigförklaras efter att ett fingeravtryck lagts till i systeminställningarna för ökad säkerhet.</item>
+    <item>Tillåt att filer öppnas genom systemfilväljaren, ignorera skrivskyddad flagga</item>
+    <item>Tillåt att börja flytta poster från postvymenyn</item>
+  </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Lagt till stöd för nytt nyckelfilformat som introducerades i Keepass 2.47</item>
     <item>Lagt till stöd för Argon2id som nyckelgenereringsfunktion</item>
