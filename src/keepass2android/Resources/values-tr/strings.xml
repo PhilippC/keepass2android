@@ -174,6 +174,8 @@
   <string name="maskpass_summary">Parolaları varsayılan olarak gizle</string>
   <string name="masktotp_title">TOTP alanını gizle</string>
   <string name="masktotp_summary">TOTP alanını varsayılan olarak gizle</string>
+  <string name="NoAutofillDisabling_title">Otomatik doldurmayı devre dışı bırakma seçeneği yok</string>
+  <string name="NoAutofillDisabling_summary">Etkinleştirilirse, uygulama belirli girişler için otomatik doldurmayı devre dışı bırakma seçeneğini göstermez.</string>
   <string name="menu_about">Hakkında</string>
   <string name="menu_change_key">Asıl anahtarı değiştir</string>
   <string name="menu_copy_pass">Parolayı kopyala</string>
@@ -234,6 +236,7 @@
   <string name="saving_database">Veritabanı kaydediliyor…</string>
   <string name="exporting_database">Veritabanı dışa aktarılıyor…</string>
   <string name="export_database_successful">Dışa aktarma işlemi başarılı!</string>
+  <string name="export_keyfile_successful">Anahtar dosyası başarıyla dışa aktarıldı!</string>
   <string name="space">Boşluk</string>
   <string name="search_label">Arama</string>
   <string name="show_password">Parolayı göster</string>
@@ -243,11 +246,25 @@
   <string name="sort_moddate">Değiştirme tarihine göre sırala</string>
   <string name="sort_default">Varsayılan düzeni koru</string>
   <string name="special">Özel</string>
+  <string name="special_extended">Genişletilmiş Özel</string>
+  <string name="at_least_one_from_each_group">Her gruptan en az bir</string>
+  <string name="exclude_lookalike">Benzer karakterleri hariç tut</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Kaydedilecek profilin adını girin.  Üzerine yazmak için mevcut bir ad girin.</string>
+  <string name="hint_wordcount">Parola kelime sayısı</string>
+  <string name="hint_wordseparator">Kelime ayracı</string>
   <string-array name="PasswordGeneratorModes">
     <item>Parola</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Parola</item>
+    <item>Parola + Şifre</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>küçük harf</item>
+    <item>BÜYÜK HARF</item>
+    <item>İlk Karakter Büyük Harf</item>
+  </string-array>
+  <string name="custom_settings">Özel ayarlar</string>
+  <string name="passphrase_capitalization">Parola büyük harf kullanımı</string>
   <string name="search_hint">Bul</string>
   <string name="search_results">Arama sonuçları</string>
   <string name="search_in">Arama yeri</string>
@@ -272,12 +289,19 @@
   <string name="please_note">Lütfen unutmayın</string>
   <string name="contributors">Katkıda bulunanlar</string>
   <string name="regular_expression">Kurallı ifade</string>
+  <string name="AlwaysMergeOnConflict_title">Her zaman çakışmada birleştir</string>
+  <string name="AlwaysMergeOnConflict_summary">Keepass2Android, uzak dosyanın değiştirildiğini algıladığında, yerel değişiklikleri daima uzak değişikliklerle birleştir.</string>
   <string name="TanExpiresOnUse_title">TAN kullanım süresi</string>
   <string name="TanExpiresOnUse_summary">TAN kayıtları kullanıldıktan sonra süresi geçmiş olarak işaretlensin</string>
   <string name="ShowUsernameInList_title">Kullanıcının adını listede göster</string>
   <string name="ShowUsernameInList_summary">Kullanıcı adını kayıtların altında gösterir. Birden fazla hesaplar yada TAN için uygundur.</string>
   <string name="RememberRecentFiles_title">Açılan veritabanlarını hatırla</string>
   <string name="RememberRecentFiles_summary">En son açılan veritabanlarını hatırla ve onları veritabani açma ekranında göster.</string>
+  <string name="NoDalVerification_title">DAL doğrulama yok</string>
+  <string name="NoDalVerification_summary">Etki alanı ve uygulama paketinin eşleşip eşleşmediğini kontrol etmeyi devre dışı bırakır</string>
+  <string name="InlineSuggestions_title">Klavye ile entegre et</string>
+  <string name="InlineSuggestions_summary">Otomatik doldurma önerilerini klavyede satır içi seçenekler olarak gösterir (giriş yöntemi tarafından destekleniyorsa)</string>
+  <string name="requires_android11">Android 11 veya sonraki bir sürümünü gerektirir</string>
   <string name="kp2a_findUrl">Parola bul</string>
   <string name="excludeExpiredEntries">Hızlı aramalara süresi dolmuş kayıtlar katılmasın</string>
   <string name="search_options">Seçenekler</string>
@@ -305,6 +329,8 @@
   <string name="QuickUnlockLength_summary">ÇabukAç anahtar uzunluğu karakter sayısının üst sınırı.</string>
   <string name="QuickUnlockHideLength_title">Hızlı Açma kodunun uzunluğunu gizle</string>
   <string name="QuickUnlockHideLength_summary">Etkinse, Hızlı Açma kodunun uzunluğu ekranda görüntülenmez.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Veritabanı girişinden Hızlı Kilit Açma anahtarı</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Etkin veritabanı, kök grubunda Hızlı Kilit Açma başlıklı bir giriş içeriyorsa, bu girişin parolası Hızlı Kilit Açma kodu olarak kullanılır.</string>
   <string name="QuickUnlock_fail">ÇabukAç başarısız oldu: yanlış şifre!</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
@@ -323,6 +349,14 @@
   <string name="protection">Korunmuş alan</string>
   <string name="add_binary">Ek dosya ekle...</string>
   <string name="add_extra_string">Ek dize ekle</string>
+  <string name="configure_totp">TOTP\'yi yapılandır</string>
+  <string name="totp_secret_key">Gizli anahtar</string>
+  <string name="totp_encoding_rfc6238">Varsayılan RFC6238 belirteç ayarları</string>
+  <string name="totp_encoding_steam">Steam belirteç ayarları</string>
+  <string name="totp_encoding_custom">Özel belirteç ayarları</string>
+  <string name="totp_time_step">Saat adımı</string>
+  <string name="totp_length">Kod uzunluğu</string>
+  <string name="totp_scan">QR kodunu tara</string>
   <string name="delete_extra_string">Ek dize sil</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: kitlendi. ÇabukAç etkin.</string>
   <string name="database_loaded_unlocked">%1$s: Açıldı.</string>
@@ -385,6 +419,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android artık dosyaya erişemiyor. Dosya ya silindi yada erişim izinleri iptal edildi. Lütfen Veritabanını değiştir seçeneğiyle dosyayı yeniden açın.</string>
   <string name="PreloadDatabaseEnabled_title">Veritabanı dosyasını önceden yükleme</string>
   <string name="PreloadDatabaseEnabled_summary">Veritabanı dosyası yükleme veya indirmeyi şifre girişi sırasında arka planda başlatın.</string>
+  <string name="SyncAfterQuickUnlock_title">Hızlı Kilit Açma\'dan sonra senkronize et</string>
+  <string name="SyncAfterQuickUnlock_summary">Hızlı Kilit Açma ile kilidi açtıktan sonra veritabanını uzak dosyayla senkronize et.</string>
   <string name="AskOverwriteBinary">Varolan ek dosyayı aynı isim ile üzerine yazmak mı istiyorsunuz?</string>
   <string name="AskOverwriteBinary_title">Varolan ek dosyayı üzerine yaz?</string>
   <string name="AskOverwriteBinary_yes">Üzerine yaz</string>
@@ -467,6 +503,7 @@
   <string name="sftp_auth_mode">Kimlik doğrulama modu</string>
   <string name="send_public_key">Ortak anahtar gönder...</string>
   <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
+  <string name="enter_mega_login_title">MEGA hesap bilgilerinizi girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
   <string name="filestoragename_file">Yerel dosya</string>
   <string name="filestoragename_androidget">Diğer uygulama ile seç</string>
@@ -480,13 +517,18 @@
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A dosyaları)</string>
+  <string name="filestoragehelp_gdriveKP2A">KP2A\'ya tam Google Drive\'ınıza erişim izni vermek istemiyorsanız, bu seçeneği belirleyebilirsiniz.  Önce bir veritabanı dosyası oluşturmanız gerektiğini unutmayın, mevcut dosyalar uygulama tarafından görülmez.  Ya veritabanı oluştur ekranından bu seçeneği seçin ya da zaten bir veritabanı açtıysanız, bu seçeneği seçerek veritabanını dışa aktarın.</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Bu depolama türü yalnızca pCloud \"Applications/Keepass2Android\" klasörüne erişim talep eder.  pCloud hesabınızdaki mevcut bir veritabanını kullanmak istiyorsanız, lütfen dosyanın bu pCloud klasörüne yerleştirildiğinden emin olun.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tüm dosyalar ve paylaşılan dosyalar</string>
   <string name="filestoragename_onedrive2_myfiles">Dosyalarım</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android Uygulama klasörü</string>
   <string name="filestoragename_sftp">SFTP (SSH dosya aktarımı)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Lütfen unutmayın: Keepass2Android, düzgün çalışması için Mega hesabınızdaki tüm dosyaların listesini indirmelidir.  Bu nedenle çok sayıda dosya içeren hesaplara erişim yavaş olabilir.</string>
   <string name="filestoragename_content">Sistem dosyası seçicisi</string>
   <string name="filestorage_setup_title">Dosya erişimi başlatma</string>
   <string name="database_location">Veritabanı konumu</string>
@@ -634,6 +676,8 @@
   <string name="child_db_Enabled_title">Otomatik aç</string>
   <string name="database_file_heading">Veritabanı dosyası</string>
   <string name="if_device_text">%1$s etkinleştir</string>
+  <string name="restore_history">Bu sürümü geri yükle</string>
+  <string name="remove_history">Bu sürümü kaldır</string>
   <string name="DbUnlockedChannel_name">Veritabanı açıldı</string>
   <string name="DbUnlockedChannel_desc">Açılan veritabanıyla ilgili bildirim</string>
   <string name="DbQuicklockedChannel_name">Kilidi ÇabukAç</string>
@@ -641,6 +685,12 @@
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="CloseDbAfterFailedAttempts">Üç başarısız biyometrik kilit açma denemesinden sonra veritabanını kapat</string>
+  <string-array name="ChangeLog_1_08c">
+    <item>No longer storing package names of Android apps in the URL field</item>
+    <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
+    <item>Update OkHttp to support HTTP/2</item>
+    <item>Eksik çevirileri düzelt</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
     <item>Android 9+\'da klavye diyaloğunu geliştir.</item>
@@ -649,7 +699,7 @@
     <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
     <item>Update to FTP library</item>
     <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>Diğer küçük düzeltmeler</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>TLS 1.2 desteği sağlamak için FluentFTP kullanmaya geç</item>
@@ -949,7 +999,7 @@
   <string-array name="design_options">
     <item>Aydınlık</item>
     <item>Karanlık</item>
-    <item>System settings</item>
+    <item>Sistem ayarları</item>
   </string-array>
   <string name="design_title">Dizayn</string>
   <string-array name="ftp_encryption_modes">
@@ -1003,6 +1053,11 @@
   <string name="emergency_infotext_head">Acil durumlar için hazır mısın?</string>
   <string name="emergency_infotext_main">Şifre veritabanınıza erişmediğinizde ne olacağını hiç düşündünüz mü? Ya bir kaza geçirirsen? Acil durumlar için ana anahtarınızı güvenilir bir kişiye iletmek iyi bir yöntemdir. Aksi halde şifrelerinize kimse erişemez.</string>
   <string name="no_secure_display">Şu anki ekran güvenli olarak işaretlenmemiş. Bu, ekran görüntülerinin diğer uygulamalar tarafından alınabileceği anlamına geliyor. Keepass2Android, hassas bilgileri yalnızca güvenli ekranlarda gösterecek şekilde yapılandırılmıştır. Lütfen güvenli bir ekrana geçin (örneğin bir HDMI monitörünü sökerek) veya uygulama ayarlarını değiştirin.</string>
+  <string name="disable_secure_screen_check">Bu mesajı devre dışı bırak</string>
+  <string name="switch_ime_text">Lütfen Keepass2Android klavyesini etkinleştirin.</string>
+  <string name="switch_ime_reopen">Tekrar dene</string>
   <string name="AutofillWarning_title">Güvenlik Uyarısı: Tanınmayan alan adı/uygulama bağlantısı</string>
+  <string name="AutofillWarning_Intro">\"%1$s\" alanı için kimlik bilgilerini \"%2$s\" uygulamasına eklemek üzeresiniz.</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">\"%2$s\" öğesinin \"%1$s\" öğesine ait olduğuna veya \"%2$s\" uygulamasının kimlik bilgilerini kötüye kullanmayacağına (örneğin, güvenilir bir tarayıcı uygulaması olduğu için) güveniyorsanız, devam edebilirsiniz. Değilse, lütfen iptal edin.</string>
   <string name="AutofillWarning_trustAsBrowser">Her zaman kabul et</string>
 </resources>
