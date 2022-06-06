@@ -685,6 +685,44 @@
   <string name="EntryChannel_name">Kayıt bildirimleri</string>
   <string name="EntryChannel_desc">Seçili kayıta erişimi kolaylaştırmak için bildirim.</string>
   <string name="CloseDbAfterFailedAttempts">Üç başarısız biyometrik kilit açma denemesinden sonra veritabanını kapat</string>
+  <string name="WarnFingerprintInvalidated">Uyarı! Örneğin cihaz ayarlarınıza yeni bir parmak izi ekledikten sonra, biyometrik kimlik doğrulama Android tarafından geçersiz kılınabilir. Ana şifrenizle her zaman kilidin nasıl açılacağını bildiğinizden emin olun!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Giriş yedeklerinin görüntülenmesi, kaldırılması ve geri yüklenmesi için destek eklendi</item>
+    <item>MEGA bulut depolama desteği eklendi</item>
+    <item>Sınırlı kapsamda Google Drive desteği eklendi</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Google Drive kimlik doğrulaması yeniden eklendi, Google Drive desteği yeniden etkinleştirildi</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Firefox\'ta kaybolan otomatik doldurma istemini düzelt</item>
+    <item>Otomatik doldurma önerilerini klavyeyle entegre et (Android 11+ gerektirir)</item>
+    <item>Ayarlarda uygulama dilini değiştirmeye izin ver</item>
+    <item>Hızlı Kilit Açma\'dan sonra veritabanını senkronize etme seçeneği ekle</item>
+    <item>Hata düzeltme: Dropbox\'a kaydederken dosya adlarını küçük harf yapma</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>KeePass 2.48\'de sunulan KDBX 4.1 dosya formatı desteği eklendi</item>
+    <item>Girişler için TOTP ayarlarını yapılandırmak için iletişim kutusu eklendi</item>
+    <item>Geliştirilmiş parola üreticisi: Parola desteği, daha fazla seçenek, profil ve parola gücü tahmini eklendi</item>
+    <item>Otomatik Doldurma İyileştirmeleri (Chrome\'da açılır pencerenin gösterilmemesi düzeltildi, daha iyi alt alan adı desteği)</item>
+    <item>OneDrive uygulamasında iyileştirmeler: artık boyut sınırı yok, gereksiz kimlik doğrulama istekleri yok</item>
+    <item>Gece planları dahil olmak üzere sistem ayarlarından açık/koyu tasarımı seçme seçeneği eklendi, Android 10+ gerektirir</item>
+    <item>Yeni kimlik doğrulama yöntemini desteklemek için Dropbox uygulamasını güncelleyin.</item>
+    <item>Yeni ayarlanan parmak iziyle kilit açma, artırılmış güvenlik için sistem ayarlarına bir parmak izi eklendikten sonra geçersiz kılınacaktır.</item>
+    <item>Salt okunur işaretini yok sayarak dosyaların sistem dosyası seçici aracılığıyla açılmasına izin ver</item>
+    <item>Giriş görünümü menüsünden girişleri taşımaya başlamaya izin ver</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Keepass 2.47\'de tanıtılan yeni anahtar dosya biçimi için destek eklendi</item>
+    <item>Anahtar türetme işlevi olarak Argon2id desteği eklendi</item>
+    <item>Firefox ve Chrome ile geliştirilmiş Otomatik Doldurma uyumluluğu</item>
+    <item>Masaüstü programlarından TOTP girişleri için iyileştirimiş destek</item>
+    <item>Kimlik doğrulama sorununu gidermek için pCloud SDK\'yı güncelleyin</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>No longer storing package names of Android apps in the URL field</item>
     <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
