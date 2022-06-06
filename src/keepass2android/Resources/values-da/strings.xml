@@ -953,7 +953,7 @@
   <string name="autofill_hint">Keepass2Android understøtter Android-funktionen Autoudfyld, der dog ikke ser ud til at være aktiveret endnu.</string>
   <string name="autofill_enable">Aktivér Autoudfyld</string>
   <string name="autofill_enable_failed">Beklager, din enhed synes ikke at understøtter åbning af indstillingerne inde fra app\'en. Gå til systemindstillingerne for manuelt at aktivere Autoudfyld-tjenesten.</string>
-  <string name="show_autofill_help">Vis Aotoudfyld-hjælp</string>
+  <string name="show_autofill_help">Vis Autoudfyld-hjælp</string>
   <string name="autofill_sign_in_prompt">Udfyld med Keepass2Android</string>
   <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
   <string name="autofill_enable_for">Aktivér Auto-udfyld for %1$s</string>
