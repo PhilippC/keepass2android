@@ -172,6 +172,8 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Esconder palavra-passe</string>
   <string name="maskpass_summary">Esconder palavra-passe por defeito</string>
+  <string name="masktotp_title">Mascarar campo TOTP</string>
+  <string name="masktotp_summary">Ocultar campo TOTP por padrão</string>
   <string name="NoAutofillDisabling_title">Nenhuma opção para desativar o preenchimento automático</string>
   <string name="NoAutofillDisabling_summary">Se ativado, a aplicação não mostrará a opção de desativar o preenchimento automático para entradas específicas.</string>
   <string name="menu_about">Sobre</string>
@@ -287,6 +289,8 @@
   <string name="please_note">Note que</string>
   <string name="contributors">Contribuidores</string>
   <string name="regular_expression">Expressão regular</string>
+  <string name="AlwaysMergeOnConflict_title">Fundir sempre em caso de conflito</string>
+  <string name="AlwaysMergeOnConflict_summary">Quando Keepass2Android detetar que o ficheiro remoto foi alterado, fundir sempre as alterações locais com as alterações remotas.</string>
   <string name="TanExpiresOnUse_title">TAN expira ao ser usada</string>
   <string name="TanExpiresOnUse_summary">Marcar as entradas TAN como expiradas ao usá-las</string>
   <string name="ShowUsernameInList_title">Mostrar nome de utilizador na lista</string>
@@ -325,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como palavra-passe de desbloqueio rápido.</string>
   <string name="QuickUnlockHideLength_title">Esconder o comprimento do código de desbloqueio rápido</string>
   <string name="QuickUnlockHideLength_summary">Se ativo, o comprimento do código de desbloqueio rápido não será mostrado no ecrã de desbloqueio rápido.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Chave de desbloqueio rápido da entrada da base de dados</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Se a base de dados ativa contém uma entrada com título QuickUnlock no seu grupo raiz, a palavra-passe desta entrada é usada como código do desbloqueio rápido (QuickUnlock).</string>
   <string name="QuickUnlock_fail">O desbloqueio rápido falhou: palavra-passe incorreta!</string>
   <string name="SaveAttachmentDialog_title">Guardar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja guardar o anexo.</string>
@@ -512,6 +518,7 @@
   <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar apenas o acesso à pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, toque nesta opção para criar a pasta, em seguida, coloque o ficheiro dentro da pasta (a partir do seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (ficheiros KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Se não quiser fornecer o acesso KP2A ao seu Google Drive, pode selecionar esta opção. Note que tem primeiro criar um ficheiro de base de dados, os ficheiros existentes não são visíveis para a aplicação. Escolha esta opção a partir do ecrã Criar base de dados ou, caso você já tenha aberto uma base de dados, exportando a base de dados escolhendo essa opção.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só irá solicitar acesso à pasta pCloud \"Aplicações/Keepass2Android\". Se quiser usar a base de dados existente da sua conta pCloud, por favor certifique-se que o ficheiro é colocado nesta pasta pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -521,6 +528,7 @@
   <string name="filestoragename_onedrive2_appfolder">Pasta da aplicação Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (transferência de ficheiros por SSH)</string>
   <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Note que o Keepass2Android tem de descarregar a lista de todos os ficheiros na sua conta Mega para funcionar corretamente. Por isso pode ser lento ao aceder a contas com muitos ficheiros.</string>
   <string name="filestoragename_content">Gestor de ficheiros de sistema</string>
   <string name="filestorage_setup_title">Arranque de acesso de ficheiro</string>
   <string name="database_location">Localização da base de dados</string>
@@ -669,6 +677,7 @@
   <string name="database_file_heading">Ficheiro da base de dados</string>
   <string name="if_device_text">Ativar para %1$s</string>
   <string name="restore_history">Restaurar esta versão</string>
+  <string name="remove_history">Remover esta versão</string>
   <string name="DbUnlockedChannel_name">Base de dados desbloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificação sobre a base de dados a ser desbloqueada</string>
   <string name="DbQuicklockedChannel_name">Desbloqueio-rápido</string>
@@ -677,6 +686,21 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar base de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Aviso! A autenticação biométrica pode ser invalidada pelo Android, por exemplo, depois de adicionar uma nova impressão digital nas configurações do seu dispositivo. Certifique-se que sabe como desbloquear com a sua palavra-passe mestra!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Adicionado suporte para visualização, remoção e restauração de cópias de segurança de entradas</item>
+    <item>Suporte implementado para armazenamento na nuvem MEGA</item>
+    <item>Adicionado suporte para Google Drive com âmbito restrito</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Autenticação do Google Drive reimplementado, reativado o suporte ao Google Drive</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Corrigido o desaparecimento do prompt de preenchimento automático no Firefox</item>
+    <item>Integradas as sugestões de preenchimento automático com teclado (requer Android 11+)</item>
+    <item>Possibilidade de alterar o idioma da aplicação nas configurações</item>
+    <item>Adicionada opção para sincronizar a base de dados após o desbloqueio rápido</item>
+    <item>Correção de erro: não alterar os nomes dos ficheiros para minúsculas ao guardar no Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Adicionado suporte para o formato de ficheiro KDBX 4.1 introduzido no KeePass 2.48</item>
     <item>Adicionado diálogo para configurar o TOTP em entradas</item>
