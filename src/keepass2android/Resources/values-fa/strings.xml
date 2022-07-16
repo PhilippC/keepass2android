@@ -24,6 +24,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="app_timeout_summary">در صورتی که نرم افزار در این مدت فعالیتی نداشته باشد پایگاه داده قفل می شود.</string>
   <string name="kill_app_label">قطع کردن پروسه پردازش نرم افزار</string>
   <string name="show_kill_app">دکمهٔ بستن</string>
+  <string name="application">برنامه</string>
+  <string name="application_settings">تنظیمات برنامه</string>
   <string name="ShowGroupnameInSearchResult_title">نمایش نام گروه در نتیجهٔ جست‌وجو</string>
   <string name="ShowGroupnameInSearchResult_resume">نام گروه را زیر عنوان مدخل در نتایج جست‌وجو نشان می‌دهد. هنگامی که چندین مدخل همنام وجود دارد سودمند است.</string>
   <string name="NavigationToGroupCompleted_message">در حال دیدن این گروه هستید: %1$s</string>
@@ -61,6 +63,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="copy_username">برای کپی‌کردن نام کاربری انتخاب کنید</string>
   <string name="copy_password">برای کپی‌کردن گذرواژه انتخاب کنید</string>
   <string name="available_through_keyboard">ورودی با صفحه‌کلید KP2A در دسترس است</string>
+  <string name="app_language_pref_title">زبان برنامه</string>
   <string name="entry_is_available">موجود است</string>
   <string name="not_possible_im_picker">بازکردن منو برای انتخاب روش ورودی ناموفق بود. لطفاً صفحه‌کلید را به‌صورت دستی فعال کنید.</string>
   <string name="please_activate_keyboard">لطفاً صفحه‌کلید Keepass2Android را در تنظیمات سیستم خود فعال کنید.</string>
@@ -72,6 +75,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="disclaimer_formal">برنامهٔ Keepass2Android هیچ‌گونه ضمانتی ندارد. این نرم‌افزار رایگان است و از لطف شماست که آن را تحت شرایط GPL نسخهٔ ۲ یا بالاتر بازپخش کنید.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">کپی‌کردن در بریده‌دان</string>
+  <string name="SystemLanguage">زبان دستگاه</string>
+  <string name="fingerprint_hardware_error">سخت‌افزاری برای شناسایی اثرانگشت پیدا نشد.</string>
   <string name="enter_filename">نام فایل پایگاه‌داده را وارد کنید</string>
   <string name="entry_accessed">تاریخ دسترسی</string>
   <string name="entry_cancel">لغو</string>
