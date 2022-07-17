@@ -147,6 +147,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="menu_change_key">تغییر شاه‌کلید</string>
   <string name="menu_copy_pass">کپی گذرواژه</string>
   <string name="menu_copy_user">کپی نام کاربری</string>
+  <string name="menu_copy_totp">رونوشت TOTP</string>
   <string name="menu_create">ساختن</string>
   <string name="menu_app_settings">تنظيمات</string>
   <string name="menu_db_settings">تنظیمات پایگاه داده</string>
@@ -207,6 +208,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="sort_moddate">ترتیب بر اساس تاریخ تغییر</string>
   <string name="sort_default">حفظ چینش پیشفرض</string>
   <string name="special">ویژه</string>
+  <string name="password_generation_profile">نمایه</string>
+  <string name="hint_wordseparator">جداکننده کلمات</string>
   <string-array name="PasswordGeneratorModes">
     <item>گذرواژه</item>
     <item>Passphrase</item>
