@@ -61,7 +61,7 @@
   <string name="unlock_database_title">Розблокувати</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
-  <string name="Ok">Ok</string>
+  <string name="Ok">Гаразд</string>
   <string name="disable_sensor">Вимкнути датчик</string>
   <string name="enable_sensor">Увімкнути датчик</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
@@ -102,7 +102,7 @@
   <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
   <string name="enable_fingerprint_unlock_Info">Це збереже Ваш головний пароль на цьому пристрої, зашифрованому за допомогою Android Keystore і захищеному з використанням біометричної автентифікації. Дозволяє розблоковувати базу паролів лише за Вашою біометрією.</string>
   <string name="enable_fingerprint_quickunlock_Info">Дозволяє використовувати біометричну автентифікацію замість коду QuickUnlock. Не зберігає жодної інформації, повʼязаної з Вашим головним паролем.</string>
-  <string name="enter_filename">Введіть ім’я бази даних</string>
+  <string name="enter_filename">Введіть назву файлу бази даних</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасувати</string>
   <string name="entry_comment">Нотатки</string>
@@ -117,7 +117,7 @@
   <string name="entry_modified">Змінено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Зберегти</string>
-  <string name="entry_title">Ім’я</string>
+  <string name="entry_title">Назва</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
@@ -133,11 +133,11 @@
   <string name="error_file_not_create">Не вдається створити файл</string>
   <string name="error_invalid_db">Недійсна база даних.</string>
   <string name="error_invalid_path">Недійсний шлях.</string>
-  <string name="error_no_name">Необхідно ввести ім\'я.</string>
+  <string name="error_no_name">Необхідно ввести назву.</string>
   <string name="error_nopass">Необхідний пароль або ключовий файл.</string>
   <string name="error_pass_gen_type">Повинен бути вибраний принаймні один тип генерації пароля</string>
-  <string name="error_pass_match">Паролі не збігаються.</string>
-  <string name="error_rounds_not_number">Кількість циклів повинна бути числом.</string>
+  <string name="error_pass_match">Паролі відрізняються.</string>
+  <string name="error_rounds_not_number">Кількість циклів має бути числом.</string>
   <string name="error_param_not_number">Параметр має бути числом.</string>
   <string name="error_title_required">Необхідно ввести назву.</string>
   <string name="error_wrong_length">Введіть ціле число на всю довжину поля</string>
@@ -237,11 +237,11 @@
   <string name="exporting_database">База даних експортується…</string>
   <string name="export_database_successful">Базу даних успішно експортовано!</string>
   <string name="export_keyfile_successful">Файл ключа успішно експортовано!</string>
-  <string name="space">П р о б і л</string>
+  <string name="space">Пробіл</string>
   <string name="search_label">Пошук</string>
   <string name="show_password">Показати пароль</string>
   <string name="sort_menu">Впорядкувати за...</string>
-  <string name="sort_name">Впорядкувати за ім’ям</string>
+  <string name="sort_name">Впорядкувати за назвою</string>
   <string name="sort_db">Впорядкувати за датою створення</string>
   <string name="sort_moddate">Впорядкувати за датою зміни</string>
   <string name="sort_default">Залишити типовий порядок</string>
@@ -329,8 +329,8 @@
   <string name="QuickUnlockLength_summary">Максимальна кількість символів, що використовуються як пароль QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Приховати довжину QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Якщо увімкнено, довжина коду QuickUnlock не показується на екрані блокування.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">Ключ швидкого розблокування ключа з запису бази даних</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Якщо активна база даних містить запис з назвою швидке розблокування у її кореневій групі, пароль цього запису використовується як швидке розблокування.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ QuickUnlock із запису бази даних</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Якщо активна база даних містить запис із назвою QuickUnlock у її кореневій групі, пароль цього запису використовується як код QuickUnlock.</string>
   <string name="QuickUnlock_fail">Неправильний пароль QuickUnlock!</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
@@ -618,7 +618,7 @@
   <string name="DefaultTemplate">Стандартний запис</string>
   <string name="TemplateGroupName">Шаблони</string>
   <string name="TemplateTitle_IdCard">ID карта</string>
-  <string name="TemplateField_IdCard_Name">Ім’я</string>
+  <string name="TemplateField_IdCard_Name">Назва</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Місце видачі</string>
   <string name="TemplateField_IdCard_IssueDate">Дата випуску</string>
   <string name="TemplateTitle_EMail">Електронна пошта</string>
