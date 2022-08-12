@@ -36,7 +36,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="OfferSaveCredentials_summary">اگر فعال باشد پس از اینکه اطلاعات را به‌طور دستی در فیلدهای با قابلیت تکمیل خودکار وارد کنید، اندروید می‌پرسد که آیا مایلید اطلاعات شناسایی را ذخیره کنید.</string>
   <string name="OfferSaveCredentials_title">پیشنهاد ذخیره‌سازی اطلاعات شناسایی</string>
   <string name="ShowGroupInEntry_title">نمایش نام گروه در نمای مدخل‌ها</string>
-  <string name="unknown_uri_scheme">متأسفم! Keepass2Android در کار با این URI ناموفق بود:\n
+  <string name="unknown_uri_scheme">متأسفم! Keepass2Android نمی‌تواند با این URI کار کند:\n
 %1$s\n
 لطفاً با توسعه‌دهنده تماس بگیرید!</string>
   <string name="Entry_singular">یک مدخل</string>
@@ -50,8 +50,10 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="FileHandling_prefs">فایل‌گردانی</string>
   <string name="keyboard_prefs">صفحه‌کلید</string>
   <string name="export_prefs">صدور پایگاه‌داده...</string>
+  <string name="fingerprint_prefs">قفل‌گشایی بیومتریک</string>
   <string name="import_db_prefs">واردکردن پایگاه‌داده به پوشهٔ داخلی</string>
   <string name="import_keyfile_prefs">واردکردن فایل کلید به پوشهٔ داخلی</string>
+  <string name="export_keyfile_prefs">صادرکردن فایل کلید از پوشهٔ داخلی</string>
   <string name="keyboardswitch_prefs">تعویض صفحه‌کلید</string>
   <string name="OnlyAvailableForLocalFiles">فقط برای فایل‌های محلی است.</string>
   <string name="FileIsInInternalDirectory">فایل در پوشهٔ داخلی ذخیره شد.</string>
@@ -63,15 +65,18 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="brackets">پرانتزها</string>
   <string name="cancel">لغو</string>
   <string name="Ok">تأیید</string>
+  <string name="disable_sensor">غیرفعال‌کردن حسگر</string>
+  <string name="enable_sensor">فعال‌کردن حسگر</string>
   <string name="ClearClipboard">بریده‌دان پاک شد.</string>
   <string name="clipboard_timeout">مهلت بریده‌دان</string>
   <string name="clipboard_timeout_summary">پس از کپی‌کردن نام کاربری و گذرواژه تا این مدت در بریده‌دان باقی می‌مانند و سپس پاک می‌شوند</string>
   <string name="copy_username">برای کپی‌کردن نام کاربری انتخاب کنید</string>
   <string name="copy_password">برای کپی‌کردن گذرواژه انتخاب کنید</string>
+  <string name="copy_totp">برای کپی‌کردن TOTP به بریده‌دان، انتخاب کنید</string>
   <string name="available_through_keyboard">ورودی با صفحه‌کلید KP2A در دسترس است</string>
   <string name="app_language_pref_title">زبان برنامه</string>
   <string name="entry_is_available">موجود است</string>
-  <string name="not_possible_im_picker">بازکردن منو برای انتخاب روش ورودی ناموفق بود. لطفاً صفحه‌کلید را به‌صورت دستی فعال کنید.</string>
+  <string name="not_possible_im_picker">برای انتخاب روش ورودی، منو باز نشد. لطفاً صفحه‌کلید را دستی فعال کنید.</string>
   <string name="please_activate_keyboard">لطفاً صفحه‌کلید Keepass2Android را در تنظیمات سیستم خود فعال کنید.</string>
   <string name="creating_db_key">در حال ایجاد کلید پایگاه‌داده…</string>
   <string name="current_group">گروه جاری</string>
@@ -82,7 +87,22 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">کپی‌کردن در بریده‌دان</string>
   <string name="SystemLanguage">زبان دستگاه</string>
+  <string name="fingerprint_description">لطفاً برای ادامه، احراز هویت کنید</string>
+  <string name="fingerprint_fatal">نمی‌توان قفل‌گشایی بیومتریک را راه‌اندازی کرد:</string>
+  <string name="fingerprint_not_recognized">احراز هویت بیومتریک انجام نشد. دوباره امتحان کنید</string>
+  <string name="fingerprint_success">احراز هویت بیومتریک انجام شد</string>
+  <string name="fingerprint_os_error">قفل‌گشایی بیومتریک به اندروید ۶٫۰ یا بالاتر نیاز دارد.</string>
   <string name="fingerprint_hardware_error">سخت‌افزاری برای شناسایی اثرانگشت پیدا نشد.</string>
+  <string name="fingerprint_no_enrolled">هیچ احراز هویت بیومتریکی در این دستگاه ثبت نکرده‌اید. لطفاً ابتدا به تنظیمات سیستم بروید.</string>
+  <string name="disable_fingerprint_unlock">غیر‌فعال‌کردن قفل‌گشایی بیومتریک</string>
+  <string name="enable_fingerprint_unlock">فعال‌کردن قفل‌گشایی بیومتریک کامل</string>
+  <string name="enable_fingerprint_quickunlock">فعال‌کردن قفل‌گشایی بیومتریک برای زودگشایی</string>
+  <string name="fingerprint_unlock_failed">قفل‌گشایی بیومتریک انجام نشد. سیستم‌عامل اندروید کلید رمزگشایی را نامعتبر کرده. این مسئله معمولاً وقتی اتفاق می‌افتد که احراز هویت بیومتریک یا تنظیمات امنیتی تغییر کرده باشد. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">پایگاه‌داده قفل‌گشایی نشد: کلید ترکیبی نامعتبر. قفل‌گشایی بیومتریک غیرفعال شد زیرا ظاهراً شاه‌رمز ذخیره‌شده، دیگر معتبر نیست. </string>
+  <string name="fingerprint_reenable">لطفاً قفل‌گشایی بیومتریک را برای شاه‌رمز جدید مجدداً فعال کنید.</string>
+  <string name="fingerprint_reenable2">لطفاً ابتدا با گذرواژه‌تان قفل را باز کنید و سپس قفل‌گشایی بیومتریک را در تنظیمات پایگاه‌داده مجدداً فعال کنید.</string>
+  <string name="FingerprintInitFailed">احراز هویت بیومتریک مقداردهی اولیه نشد. </string>
+  <string name="FingerprintSetupFailed">داده رمزگذاری نشد. اگر هنگامی که Keepass2Android منتظر اثر انگشت شماست، در تنظیمات سیستم اثرانگشت اضافه یا حذف کنید، ممکن است اینطور بشود.</string>
   <string name="enter_filename">نام فایل پایگاه‌داده را وارد کنید</string>
   <string name="entry_accessed">تاریخ دسترسی</string>
   <string name="entry_cancel">لغو</string>
@@ -103,13 +123,13 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="entry_user_name">نام کاربری</string>
   <string name="entry_extra_strings">فیلدهای رشته‌ای بیشتر</string>
   <string name="entry_binaries">پیوست‌های فایلی</string>
-  <string name="error_could_not_create_group">ساخت گروه ناموفق بود.</string>
-  <string name="error_could_not_create_parent">ساخت پوشهٔ والد ناموفق بود.</string>
+  <string name="error_could_not_create_group">گروه ساخته نشد.</string>
+  <string name="error_could_not_create_parent">پوشهٔ والد ساخته نشد.</string>
   <string name="error_database_exists">این فایل از پیش وجود دارد.</string>
-  <string name="error_database_settinoverrgs">شناسایی تنظیمات پایگاه‌داده ناموفق بود.</string>
-  <string name="error_failed_to_launch_link">بازگشایی لینک ناموفق بود.</string>
+  <string name="error_database_settinoverrgs">تنظیمات پایگاه‌داده شناسایی نشد.</string>
+  <string name="error_failed_to_launch_link">پیوند باز نشد.</string>
   <string name="error_filename_required">نوشتن نام فایل ضروری است.</string>
-  <string name="error_file_not_create">ساخت فایل ناموفق بود</string>
+  <string name="error_file_not_create">فایل ساخته نشد</string>
   <string name="error_invalid_db">پایگاه‌دادهٔ نامعتبر.</string>
   <string name="error_invalid_path">مسیر نامعتبر.</string>
   <string name="error_no_name">نوشتن نام ضروری است.</string>
@@ -144,11 +164,13 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="length">طول</string>
   <string name="list_size_title">اندازهٔ لیست گروه</string>
   <string name="list_size_summary">اندازهٔ متن در لیست گروه</string>
-  <string name="loading_database">در حال بارگذاری پایگاه‌داده…</string>
+  <string name="loading_database">در حال بارکردن پایگاه‌داده…</string>
   <string name="lowercase">حروف کوچک</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">پنهان‌کردن گذرواژه</string>
   <string name="maskpass_summary">به‌طور پیشفرض گذرواژه‌ها را مخفی کن</string>
+  <string name="masktotp_title">پوشاندن فیلد TOTP</string>
+  <string name="masktotp_summary">فیلد TOTP را به‌طور پیشفرض پنهان کن</string>
   <string name="menu_about">درباره</string>
   <string name="menu_change_key">تغییر شاه‌کلید</string>
   <string name="menu_copy_pass">کپی گذرواژه</string>
@@ -179,7 +201,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="yes">بله</string>
   <string name="no">خير</string>
   <string name="no_keys">هیچ مدخلی در پایگاه‌داده یا گروه وجود ندارد.</string>
-  <string name="no_results">چیزی پیدا نشد</string>
+  <string name="no_results">بدون نتیجه</string>
   <string name="omitbackup_title">در مدخل‌های پشتیبان و سطل بازیافت نگرد</string>
   <string name="omitbackup_summary">چیزی از گروه‌های پشتیبان و سطل بازیافت در نتایج جست‌وجو نباشد</string>
   <string name="pass_filename">نام فایل پایگاه‌دادهٔ KeePass</string>
@@ -196,7 +218,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="root">ریشه</string>
   <string name="KeyDerivFunc">تابع استخراج کلید</string>
   <string name="rounds">دورهای رمزنگاری</string>
-  <string name="rounds_explaination">با افزایش دورهای رمزنگاری، قدرت محافظت در برابر حملات جست‌وجوی فراگیر بیشتر می‌شود، اما می‌تواند بارگیری و ذخیره‌سازی را به‌شدت کُند کند.</string>
+  <string name="rounds_explaination">با افزایش دورهای رمزنگاری، قدرت محافظت در برابر حملات جست‌وجوی فراگیر بیشتر می‌شود، اما می‌تواند بارکردن و ذخیره‌سازی را به‌شدت کُند کند.</string>
   <string name="rounds_hint">دورها</string>
   <string name="argon2memory">حافظه برای آرگون ۲ (بایت)</string>
   <string name="argon2parallelism">موازی‌سازی برای آرگون ۲</string>
@@ -230,7 +252,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="twofish">Twofish</string>
   <string name="unsupported_db_version">نسخهٔ پشتیبانی‌نشده از پایگاه‌داده.</string>
   <string name="warning_read_only">اکنون کارت حافظه فقط-خواندنی است. شاید نتوانید تغییرات را در پایگاه‌داده ذخیره کنید.</string>
-  <string name="warning_unmounted">کارت SD بر روی دستگاهتان بار نشده. نمی‌توانید پایگاه‌داده‌تان را بارگذاری یا ایجاد کنید.</string>
+  <string name="warning_unmounted">کارت SD بر روی دستگاهتان سوار نشده. نمی‌توانید پایگاه‌داده‌تان را بار یا ایجاد کنید.</string>
   <string name="version_label">نسخه</string>
   <string name="version_history">تاریخچهٔ نسخه‌ها</string>
   <string name="author">توسعه‌دهندهٔ Keepass2Android فیلیپ کُروکُل است.</string>
@@ -273,16 +295,16 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="QuickUnlockLength_summary">بیشترین تعداد حروفی که برای گذرواژهٔ زودگشا استفاده می‌شود.</string>
   <string name="QuickUnlockHideLength_title">پنهان‌کردن طول کد زودگشایی</string>
   <string name="QuickUnlockHideLength_summary">اگر فعال باشد، طول کد زودگشایی در صفحهٔ زودگشایی نشان داده نمی‌شود.</string>
-  <string name="QuickUnlock_fail">زودگشایی ناموفق بود: گذرواژه اشتباه است!</string>
+  <string name="QuickUnlock_fail">زودگشایی نشد: گذرواژه اشتباه است!</string>
   <string name="SaveAttachmentDialog_title">ذخیرهٔ پیوست</string>
   <string name="SaveAttachmentDialog_text">لطفاً محل ذخیره‌سازی پیوست را انتخاب کنید.</string>
   <string name="SaveAttachmentDialog_open">در نهانگاه ذخیره و سپس باز شود</string>
   <string name="ShowAttachedImage">عکس را با نمایشگر داخلی نشان بده</string>
   <string name="SaveAttachment_doneMessage">فایل ذخیره شد. در:\n
 %1$s</string>
-  <string name="SaveAttachment_Failed">ذخیره‌سازی فایل در\n
+  <string name="SaveAttachment_Failed">فایل در\n
 %1$s\n
-ناموفق بود.</string>
+ذخیره نشد.</string>
   <string name="AddUrlToEntryDialog_title">متن جست‌وجو ذخیره شود؟</string>
   <string name="AddUrlToEntryDialog_text">مایلید عبارت جست‌وجوی «%1$s» را در این مدخل ذخیره کنید تا در دفعات بعدی به‌صورت خودکار پیدا شود؟</string>
   <string name="error_invalid_expiry_date">قالب تاریخ/ساعت برای تاریخ انقضا نامعتبر است!</string>
@@ -293,10 +315,12 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="protection">فیلد محافظت‌شده</string>
   <string name="add_binary">افزودن پیوست فایلی</string>
   <string name="add_extra_string">افزودن رشتهٔ اضافی</string>
+  <string name="configure_totp">پیکربندی TOTP</string>
+  <string name="totp_secret_key">کلید رمزینه</string>
   <string name="delete_extra_string">حذف‌کردن رشتهٔ اضافی</string>
   <string name="database_loaded_quickunlock_enabled">‏%1$s: قفل شد. زودگشایی فعال شد.</string>
   <string name="database_loaded_unlocked">‏%1$s: قفل نیست.</string>
-  <string name="credentials_dialog_title">واردکردن اطلاعات شناسایی در کارساز</string>
+  <string name="credentials_dialog_title">واردکردن اطلاعات شناسایی در سرور</string>
   <string name="UseFileTransactions_title">تراکنش‌های فایلی</string>
   <string name="UseFileTransactions_summary">از تراکنش‌های فایلی برای نوشتن پایگاه‌داده‌ها استفاده کن</string>
   <string name="LockWhenScreenOff_title">با خاموش‌شدنِ صفحه، قفل شود</string>
@@ -315,12 +339,12 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="NoDonationReminder_summary">چندرغاز هم نمی‌دهم یا قبلاً حمایت کرده‌ام. حتی روز تولد سازندهٔ برنامه هم درخواست هدیه نکن.</string>
   <string name="UseOfflineCache_title">پایگاه‌داده در نهانگاه</string>
   <string name="CreateBackups_title">پشتیبان‌های محلی</string>
-  <string name="CreateBackups_summary">پس از بارگذاری موفقیت‌آمیز پایگاه‌داده، یک نسخهٔ پشتیبان از آن روی دستگاه ایجاد می‌شود.</string>
+  <string name="CreateBackups_summary">پس از اینکه پایگاه‌داده با موفقیت بار شد، از آن یک نسخهٔ پشتیبان روی دستگاه ایجاد شود.</string>
   <string name="UpdatingBackup">به‌روزآوری پشتیبان محلی...</string>
   <string name="LocalBackupOf">پشتیبان محلی از %1$s</string>
   <string name="show_local_backups">نمایش پشتیبان های داخلی</string>
   <string name="AcceptAllServerCertificates_title">گواهی‌های SSL</string>
-  <string name="AcceptAllServerCertificates_summary">در صورتی که اعتبارسنجی گواهی ناموفق بود، برنامه چگونه رفتار کند؟ توجه: اگر اعتبارسنجی ناموفق باشد می‌توانید خودتان گواهی‌ها را روی دستگاه نصب کنید!</string>
+  <string name="AcceptAllServerCertificates_summary">مشخص کنید در صورتی که اعتبارسنجی گواهی انجام نشد، برنامه چگونه رفتار کند. توجه: اگر اعتبارسنجی انجام نمی‌شود می‌توانید خودتان گواهی‌ها را روی دستگاه نصب کنید!</string>
   <string name="ClearOfflineCache_title">نهانگاه (cache) پاک شود؟</string>
   <string name="ClearOfflineCache_question">همهٔ پایگاه‌داده‌ها از نهانگاه (cache) پاک می‌شود. همهٔ تغییراتی که زمان دسترسی‌نداشتن به فایل اصلی پایگاه انجام داده‌اید و هنوز همگام‌سازی نشده باشد از دست خواهد رفت! ادامه می‌دهید؟</string>
   <string name="CheckForFileChangesOnSave_title">بررسی تغییرات</string>
@@ -351,13 +375,13 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">بازکردن تنظیمات</string>
   <string name="DontCare">مهم نیست</string>
   <string name="DocumentAccessRevoked">فایل برای Keepass2Android قابل‌دسترسی نیست. یا حذف شده یا اینکه اجازهٔ دسترسی به آن ستانده شده است. لطفاً آن را مجدداً باز کنید؛ مثلاً از «تغییر پایگاه‌داده» استفاده کنید.</string>
-  <string name="PreloadDatabaseEnabled_title">پیش‌بارگذاری فایل پایگاه‌داده</string>
-  <string name="PreloadDatabaseEnabled_summary">هنگام واردکردن گذرواژه، بارگذاری یا دانلود فایل پایگاه‌داده را در پس‌زمینه شروع کن.</string>
+  <string name="PreloadDatabaseEnabled_title">پیش‌بارکردن فایل پایگاه‌داده</string>
+  <string name="PreloadDatabaseEnabled_summary">هنگام واردکردن گذرواژه، بارکردن یا بارگیری فایل پایگاه‌داده را در پس‌زمینه شروع کن.</string>
   <string name="AskOverwriteBinary">به‌جای فایل موجود با همان نام نوشته شود؟</string>
   <string name="AskOverwriteBinary_title">جایگزین فایل موجود شود؟</string>
   <string name="AskOverwriteBinary_yes">جایگزینی</string>
   <string name="AskOverwriteBinary_no">تغییر نام</string>
-  <string name="AttachFailed">افزودن فایل پیوست ناموفق بود.</string>
+  <string name="AttachFailed">فایل پیوست اضافه نشد.</string>
   <string name="RecycleBin">سطل بازیافت</string>
   <string name="AskDeletePermanentlyEntry">این مدخل را برای همیشه حذف می‌کنید؟
 خیر را انتخاب کنید تا برگشت‌پذیر باشد.</string>
@@ -369,8 +393,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">این گروه را برای همیشه حذف می‌کنید؟</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">موارد انتخاب‌شده را برای همیشه حذف می‌کنید؟</string>
   <string name="AskDeletePermanently_title">برای همیشه حذف می‌کنید؟</string>
-  <string name="AskReloadFile_title">بارگذاری مجدد فایل؟</string>
-  <string name="AskReloadFile">فایلی که هم‌اکنون باز است به‌وسیلهٔ برنامهٔ دیگری تغییر کرده. مجدداً بارگذاری شود؟</string>
+  <string name="AskReloadFile_title">فایل دوباره بار شود؟</string>
+  <string name="AskReloadFile">فایلی که هم‌اکنون باز است به‌وسیلهٔ برنامهٔ دیگری تغییر کرده. می‌خواهید مجدداً بار شود؟</string>
   <string name="AskDiscardChanges">واقعاً تغییراتی که دادید را ذخیره نمی‌کنید؟ (دکمهٔ ذخیره در بالای فرم قرار دارد.)</string>
   <string name="AskDiscardChanges_title">تغییرات از بین برود؟</string>
   <string name="suggest_improvements">برای توسعه و پیشرفت برنامه، رأی یا پیشنهاد بدهید</string>
@@ -388,16 +412,16 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ParsingDatabase">در حال خواندن پایگاه‌داده…</string>
   <string name="CheckingTargetFileForChanges">در حال بررسی تغییرات در فایل هدف…</string>
   <string name="TitleSyncQuestion">تغییرات ادغام شود؟</string>
-  <string name="MessageSyncQuestion">فایل پایگاه‌داده بیرون از برنامه تغییر کرده است. مایلید پیش از ذخیره‌سازی، تغییرات را بارگذاری و ادغام کنیم؟ اگر می‌خواهید روی تغییراتی که بیرون برنامه انجام شده ذخیره کنید خیر را انتخاب کنید.</string>
+  <string name="MessageSyncQuestion">فایل پایگاه‌داده بیرون از برنامه تغییر کرده است. مایلید پیش از ذخیره‌سازی، تغییرات را بار و ادغام کنیم؟ اگر می‌خواهید روی تغییراتی که بیرون برنامه انجام شده ذخیره کنید خیر را انتخاب کنید.</string>
   <string name="SynchronizingDatabase">در حال ادغام تغییرات…</string>
   <string name="YesSynchronize">بله، ادغام کن</string>
   <string name="NoOverwrite">خیر، به‌جای آن ذخیره کن</string>
   <string name="UseOfflineMode">کار فقط با نهانگاه داخلی</string>
-  <string name="UseOnlineMode">همگام‌سازی نسخهٔ نهانگاهی و فایل اصلی</string>
-  <string name="UseOfflineMode_Info">پایگاه‌داده از نهانگاه (cache) بار شده است. تغییرات فقط در نهانگاه داخلی ذخیره می‌شود. برای ذخیرهٔ تغییرات در فایل اصلی حتماً گزینهٔ «همگام‌سازی نسخهٔ نهانگاهی و فایل اصلی» را انتخاب کنید.</string>
+  <string name="UseOnlineMode">همگام‌سازی نسخهٔ نهانگاهی و فایل منبع</string>
+  <string name="UseOfflineMode_Info">پایگاه‌داده از نهانگاه (cache) بار شده است. تغییرات فقط در نهانگاه داخلی ذخیره می‌شود. برای ذخیرهٔ تغییرات در فایل منبع حتماً گزینهٔ «همگام‌سازی نسخهٔ نهانگاهی و فایل منبع» را انتخاب کنید.</string>
   <string name="InOfflineMode">در حال کار با فقط نسخهٔ نهانگاهی.</string>
   <string name="SynchronizingCachedDatabase">در حال همگام‌سازی پایگاه‌دادهٔ نهانگاهی…</string>
-  <string name="DownloadingRemoteFile">در حال بارگذاری فایل اصلی…</string>
+  <string name="DownloadingRemoteFile">در حال بارکردن فایل منبع…</string>
   <string name="UploadingFile">ذخیرهٔ فایل…</string>
   <string name="RestoringRemoteFile">در حال بازیابی فایل اصلی…</string>
   <string name="FilesInSync">فایل‌ها همگام هستند.</string>
@@ -406,12 +430,12 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="CouldNotSaveToRemote">ذخیره‌سازی در فایل اصلی انجام نشد:
 %1$s
 مجدداً ذخیره کنید یا وقتی به فایل اصلی دسترسی داشتید از منوی همگام‌سازی استفاده کنید.</string>
-  <string name="CouldNotLoadFromRemote">دسترسی به فایل اصلی ممکن نیست:
+  <string name="CouldNotLoadFromRemote">دسترسی به فایل منبع ممکن نیست:
 %1$s
-فایل موجود در نهانگاه داخلی باز شد. هنوز هم می‌توانید در پایگاه‌داده تغییراتی بدهید و بعداً فایل اصلی را با آن همگام کنید.</string>
-  <string name="UpdatedRemoteFileOnLoad">فایل اصلی به‌روز شد.</string>
+فایل از نهانگاه داخلی بار شد. با این حال، می‌توانید در پایگاه‌داده تغییرات بدهید و فایل منبع را بعداً با آن همگام کنید.</string>
+  <string name="UpdatedRemoteFileOnLoad">فایل منبع به‌روز شد.</string>
   <string name="NotifyOpenFromLocalDueToConflict">به‌سبب تعارض تغییرات با فایل اصلی، فایلی که در نهانگاه داخلی موجود بود باز شد. برای ادغام تغییرات از منوی همگام‌سازی استفاده کنید.</string>
-  <string name="LoadedFromRemoteInSync">فایل اصلی و نسخهٔ نهانگاهی همگام شدند.</string>
+  <string name="LoadedFromRemoteInSync">فایل منبع و نسخهٔ نهانگاهی همگام شدند.</string>
   <string name="UpdatedCachedFileOnLoad">نسخهٔ نهانگاهی %1$s در دستگاه به‌روز شد.</string>
   <string name="RemoteDatabaseUnchanged">تغییری نکرده.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">فایل کمکی OTP در نهانگاه به‌روز شد: شمارندهٔ فایل اصلی بالاتر بود.</string>
@@ -468,12 +492,13 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="help_master_password">پایگاه‌داده با شاه‌رمزی که اینجا می‌نویسید رمزگذاری می‌شود. یک گذرواژهٔ قوی انتخاب کنید تا پایگاه‌داده امن بماند! راهنمایی: یک یا دو جمله بسازید و از حروف اول کلمه‌ها برای ساخت شاه‌رمز استفاده کنید. علائم نگارشی را هم به‌کار ببرید.</string>
   <string name="hint_master_password">یک شاه‌رمز برای محافظت از پایگاه‌داده انتخاب کنید:</string>
   <string name="key_file">فایل کلید</string>
+  <string name="help_key_file">فایل کلید در اصل گذرواژه‌ای است که در یک فایل ذخیره شده. فایل‌های کلید معمولاً قوی‌تر از شاه‌رمزها هستند زیرا کلید می‌تواند بسیار پیچیده‌تر باشد؛ هرچند محفوظ نگه‌داشتن آن‌ها نیز دشوارتر است. اگر پایگاه‌داده‌تان را روی ابر ذخیره می‌کنید، فایل کلید را هم آنجا کنارش نگذارید! اگر این کار را بکنید کلید کاملاً بی‌استفاده می‌شود! مهم: بعد از اینکه پایگاه‌داده ساخته شد، محتوای فایل کلید را تغییر ندهید!</string>
   <string name="hint_key_file">در صورتی انتخاب کنید که بخواهید علاوه بر شاه‌رمزتان از یک فایل کلید هم استفاده کنید:</string>
   <string name="use_key_file">استفاده از فایل کلید</string>
   <string name="error_adding_keyfile">هنگام افزودن فایل کلید خطایی رخ داد!</string>
-  <string name="init_otp">بارگذاری فایل کمکی OTP…</string>
+  <string name="init_otp">بارکردن فایل کمکی OTP…</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="CouldntLoadOtpAuxFile">بارگذاری فایل کمکی OTP ناموفق بود!</string>
+  <string name="CouldntLoadOtpAuxFile">فایل کمکی OTP بار نشد!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">لطفاً با استفاده از افزونهٔ OtpKeyProv در نسخهٔ کامپیوتری نرم‌افزار KeePass 2.x پایگاه‌داده‌تان را برای کار با رمزهای یک‌بارمصرف (OTP) آماده کنید!</string>
   <string name="otp_discarded_because_no_db">لطفاً اول پایگاه‌داده را انتخاب کنید. به‌دلایل امنیتی رمز یک‌بارمصرف از درجهٔ اعتبار افتاد.</string>
   <string name="otp_discarded_no_space">رمز یک‌بارمصرف از اعتبار افتاد: همهٔ رمزهای یک‌بارمصرف وارد شده!</string>
@@ -481,14 +506,14 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="otps_pending">( یک یا چند رمز یک‌بارمصرف وجود دارد)</string>
   <string name="otpsecret_hint">رمزینهٔ OTP (مثلاً 0‎1 2‎3 ab cd…‎)</string>
   <string name="CouldntParseOtpSecret">خطا هنگام تجزیه‌کردن رمزینهٔ OTP!</string>
-  <string name="OtpKeyError">ساخت کلید OTP ناموفق بود! مطمئن شوید OTPها را درست وارد کرده باشید.</string>
+  <string name="OtpKeyError">کلید OTP ساخته نشد! مطمئن شوید OTPهای درست را وارد کرده باشید.</string>
   <string name="ErrorUpdatingOtpAuxFile">خطا هنگام به‌روزرسانی فایل کمکی OTP!</string>
   <string name="SavingOtpAuxFile">در حال ذخیره‌سازی فایل OTP کمکی…</string>
   <string name="NoChallengeApp">برنامه‌ای برای کار با چالش پیدا نشد.</string>
   <string name="PleaseInstallApp">لطفاً %1$s را از گوگل‌پلی نصب کنید.</string>
   <string name="AppOutdated">‏%1$s دیگر پشتیبانی نمی‌شود.</string>
   <string name="bad_resp">پاسخ چالش نادرست است.</string>
-  <string name="CouldntLoadChalAuxFile">بارگذاری فایل چالش کمکی ناموفق بود!</string>
+  <string name="CouldntLoadChalAuxFile">فایل چالش کمکی بار نشد!</string>
   <string name="CouldntLoadChalAuxFile_Hint">لطفاً با استفاده از افزونهٔ KeeChallenge در نسخهٔ کامپیوتری KeePass 2.x پایگاه‌داده‌تان را برای کار با احراز هویت چالش-پاسخ (challenge-response) آماده کنید!</string>
   <string name="ErrorUpdatingChalAuxFile">خطا هنگام به‌روزرسانی فایل کمکی OTP!</string>
   <string name="TrayTotp_SeedField_title">نام فیلد TOTP Seed</string>
@@ -500,7 +525,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="DebugLog_title">استفاده از فایل گزارش</string>
   <string name="DebugLog_summary">خروجی برنامه در یک فایل گزارش روی دستگاه نوشته می‌شود</string>
   <string name="DebugLog_send">ارسال گزارش عیب‌یابی...</string>
-  <string name="loading">در حال بارگیری…</string>
+  <string name="loading">در حال بارکردن…</string>
   <string name="plugins">افزونه‌ها</string>
   <string name="plugin_packagename">نام بسته:</string>
   <string name="plugin_description">توضیحات (تأیید نشده):</string>
@@ -524,8 +549,8 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">یافتن اطلاعات شناسایی</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">افزونه اجازه دارد اطلاعات شناسایی وب‌سایت‌ها یا برنامه‌های درخواستی را بیابد.</string>
   <string name="get_regular_version">انواع بیشتری از ذخیره‌گاه‌ها را دریافت کنید</string>
-  <string name="CertificateWarning">هشدار: اعتبارسنجی گواهینامهٔ میزبان ناموفق بود: %1$s. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
-  <string name="CertificateFailure">هشدار: اعتبارسنجی گواهینامهٔ میزبان ناموفق بود. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
+  <string name="CertificateWarning">هشدار: اعتبارسنجی گواهی سرور انجام نشد: %1$s. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
+  <string name="CertificateFailure">خطا: اعتبارسنجی گواهی سرور انجام نشد. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
   <string name="export_fileformats_title">قالب فایل را انتخاب کنید</string>
   <string name="killed_by_os">متأسفم! سیستم‌عامل اندروید Keepass2Android را کُشت! به‌دلایل امنیتی، Keepass2Android اطلاعات شناسایی‌ای را که انتخاب کرده بودید روی حافظه نگه نداشت، بنابراین باید پایگاه‌داده را مجدداً باز کنید. توجه: این مشکل نباید رخ بدهد، مگر خیلی به‌ندرت. اگر اتفاق افتاد، لطفاً به نشانی ایمیل crocoapps@gmail.com به من گزارش بدهید.</string>
   <string name="FileIsTemporarilyAvailable">فایل فقط به‌صورت موقت در دسترس Keepass2Android است.</string>
@@ -586,10 +611,20 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="DbQuicklockedChannel_desc">اعلان دربارهٔ بازشدن قفل پایگاه‌داده به‌روش زودگشایی</string>
   <string name="EntryChannel_name">اعلانات مدخل</string>
   <string name="EntryChannel_desc">اعلان برای سهولت دسترسی به مدخلی که اکنون انتخاب شده است.</string>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Improve keyboard dialog on Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>رفتار تکمیل خودکار را تغییر دهید تا هنگام پرکردن اطلاعات شناسایی برای دامنهٔ یک برنامهٔ ناشناخته، هشدار دریافت کنید</item>
+    <item>Update to FTP library</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Further minor fixes</item>
+  </string-array>
   <string name="ChangeLog_1_06">    نسخهٔ ۱٫۰۶\n
     *استفاده از برنامهٔ ykDroid به‌جای YubiChallenge برای چالش-پاسخ یوبی‌کی.\n
     *پشتیبانی از چالش-پاسخ به‌سبک KeepassXC. توجه: قالب پایگاه‌داده باید KDBX4 باشد!\n
-    *فایل‌های زباله‌دان گوگل‌درایو بارگیری نمی‌شود.\n
+    *فایل‌های زباله‌دان گوگل‌درایو بار نمی‌شود.\n
     *تعویض پیاده‌سازی TLS برای FTPS و افزودن راهکاری برای باگ JSch با میزبان‌های پشتیبانی‌کننده از gssapi-with-mic\n
     *رفع اشکال‌ها\n
   </string>
@@ -695,9 +730,9 @@ mycloud.me.com/webdav/‎ )</string>
     <item>کلید خصوصی/عمومی</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>شکست‌های اعتبارسنجی گواهینامه را نادیده بگیرد</item>
-    <item>هنگام شکست اعتبارسنجی هشدار بده</item>
-    <item>گواهینامه‌های نامعتبر را نپذیر</item>
+    <item>اعتبارسنجی‌نشدن گواهی را نادیده بگیر</item>
+    <item>اگر اعتبارسنجی نشد هشدار بده</item>
+    <item>گواهی‌های نامعتبر را نپذیر</item>
   </string-array>
   <string name="ClearClipboardWarning">مطمئن شوید این روش روی سیستم شما کار می‌کند، در غیر این صورت از صفحه‌کلید اصلی استفاده کنید.</string>
   <string name="PluginDescription">توضیحات ارائه‌شده با افزونه:</string>
@@ -706,11 +741,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="autofill_enable_failed">شوربختانه دستگاه شما نمی‌تواند تنظیمات را مستقیماً از داخل برنامه باز کند. لطفاً خودتان به تنظیمات سیستم برای تکمیل خودکار بروید و سرویس آن را فعال کنید.</string>
   <string name="show_autofill_help">نمایش راهنمای تکمیل خودکار</string>
   <string name="autofill_sign_in_prompt">تکمیل با Keepass2Android</string>
-  <string name="invalid_link_association">پیونددادن دامنهٔ اینترنتی\n
-%1$s\n
-با برنامهٔ\n
-%2$s\n
-ناموفق بود</string>
+  <string name="invalid_link_association">دامنهٔ اینترنتی %1$s با برنامهٔ %2$s مرتبط نشد</string>
   <string name="understand">فهمیدم</string>
   <string name="dont_show_again">دوباره نشان نده</string>
   <string name="masterkey_infotext_head">آیا شاه‌کلیدتان را به خاطر دارید؟</string>
@@ -720,4 +751,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="backup_infotext_note">برای اینکه هم‌اکنون یک پشتیبان تهیه کنید، به %1$s &gt; %2$s &gt; %3$s بروید.</string>
   <string name="emergency_infotext_head">آیا برای شرایط اضطراری آماده‌اید؟</string>
   <string name="emergency_infotext_main">آیا تاکنون تصور کرده‌اید که اگر نتوانید به پایگاه گذرواژه‌هایتان دسترسی داشته باشید چه می‌شود؟ اگر تصادف کنید چه؟ بهتر است برای روز مبادا شاه‌کلید خود را به فردی امین بگویید. در غیر این صورت هیچ‌کس به گذرواژه‌هایتان دسترسی نخواهد داشت.</string>
+  <string name="AutofillWarning_title">هشدار امنیتی: پیوند ناشناختهٔ دامنه/برنامه</string>
+  <string name="AutofillWarning_Intro">در حال واردکردن اطلاعات شناسایی برای دامنهٔ «%1$s» در برنامهٔ «%2$s» هستید.</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">اگر اعتماد دارید که «%2$s» به «%1$s» تعلق دارد یا اعتماد دارید که برنامهٔ «%2$s» از اطلاعات شناسایی سوءاستفاده نمی‌کند (مثلاً مرورگری قابل‌اعتماد است)، بدون نگرانی ادامه دهید، در غیر این صورت لغو کنید.</string>
 </resources>
