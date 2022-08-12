@@ -33,7 +33,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="NavigationToGroupCompleted_message">در حال دیدن این گروه هستید: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">هدف‌های غیرفعال تکمیل خودکار</string>
   <string name="AutofillDisabledQueriesPreference_summary">فهرستی از برنامه‌ها و وبسایت‌هایی که تکمیل خودکار برای آن‌ها غیرفعال شده است</string>
-  <string name="OfferSaveCredentials_summary">اگر فعال باشد اندروید می‌پرسد که آیا می‌خواهید </string>
+  <string name="OfferSaveCredentials_summary">اگر فعال باشد پس از اینکه اطلاعات را به‌طور دستی در فیلدهای با قابلیت تکمیل خودکار وارد کنید، اندروید می‌پرسد که آیا مایلید اطلاعات شناسایی را ذخیره کنید.</string>
+  <string name="OfferSaveCredentials_title">پیشنهاد ذخیره‌سازی اطلاعات شناسایی</string>
   <string name="ShowGroupInEntry_title">نمایش نام گروه در نمای مدخل‌ها</string>
   <string name="unknown_uri_scheme">متأسفم! Keepass2Android در کار با این URI ناموفق بود:\n
 %1$s\n
@@ -295,7 +296,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="delete_extra_string">حذف‌کردن رشتهٔ اضافی</string>
   <string name="database_loaded_quickunlock_enabled">‏%1$s: قفل شد. زودگشایی فعال شد.</string>
   <string name="database_loaded_unlocked">‏%1$s: قفل نیست.</string>
-  <string name="credentials_dialog_title">اطلاعات اعتبارنامهٔ میزبان را وارد کنید</string>
+  <string name="credentials_dialog_title">واردکردن اطلاعات شناسایی در کارساز</string>
   <string name="UseFileTransactions_title">تراکنش‌های فایلی</string>
   <string name="UseFileTransactions_summary">از تراکنش‌های فایلی برای نوشتن پایگاه‌داده‌ها استفاده کن</string>
   <string name="LockWhenScreenOff_title">با خاموش‌شدنِ صفحه، قفل شود</string>
@@ -509,22 +510,24 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="plugin_web">یافتن افزونه در اینترنت</string>
   <string name="plugin_scopes">آزادی عمل</string>
   <string name="not_enabled">فعال نیست</string>
-  <string name="query_credentials_for_url">درخواست اعتبارنامه از سوی %1$s\n
+  <string name="query_credentials_for_url">درخواست اطلاعات شناسایی از سوی %1$s\n
 برای\n
 %2$s</string>
-  <string name="query_credentials">درخواست اعتبارنامه از سوی ‏%1$s. لطفاً یک مدخل را انتخاب کنید.</string>
+  <string name="query_credentials">درخواست اطلاعات شناسایی از سوی ‏%1$s. لطفاً یک مدخل را انتخاب کنید.</string>
   <string name="plugin_enabled_checkbox">فعال</string>
   <string name="SCOPE_DATABASE_ACTIONS_title">اعلانات کار با پایگاه‌داده</string>
   <string name="SCOPE_DATABASE_ACTIONS_explanation">افزونه از باز، بسته یا ذخیره‌شدن پایگاه‌داده آگاه می‌شود.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">دادگان مدخل جاری</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">افزونه همهٔ دادگان مربوط به مدخل جاری را دریافت می‌کند و می‌تواند پیشنهاد انجام کاری را بدهد و ظاهر آن را تغییر دهد.</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">یافتن اعتبارنامهٔ خود</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_title">یافتن اعتبارنامه</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">یافتن اطلاعات شناسایی خود</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">افزونه اجازه دارد اطلاعات شناسایی متناظر با بستهٔ نرم‌افزاری خودش را بیابد.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">یافتن اطلاعات شناسایی</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">افزونه اجازه دارد اطلاعات شناسایی وب‌سایت‌ها یا برنامه‌های درخواستی را بیابد.</string>
   <string name="get_regular_version">انواع بیشتری از ذخیره‌گاه‌ها را دریافت کنید</string>
   <string name="CertificateWarning">هشدار: اعتبارسنجی گواهینامهٔ میزبان ناموفق بود: %1$s. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
   <string name="CertificateFailure">هشدار: اعتبارسنجی گواهینامهٔ میزبان ناموفق بود. گواهی ریشه‌ای مناسب را روی دستگاهتان نصب کنید یا تنظیمات را ببینید!</string>
   <string name="export_fileformats_title">قالب فایل را انتخاب کنید</string>
-  <string name="killed_by_os">متأسفم! سیستم‌عامل اندروید Keepass2Android را کُشت! به‌دلایل امنیتی، Keepass2Android اعتبارنامهٔ انتخاب‌شده را روی حافظه نگه نداشت، بنابراین باید پایگاه‌داده را مجدداً باز کنید. توجه: این مشکل نباید رخ بدهد، مگر خیلی به‌ندرت. اگر اتفاق افتاد، لطفاً به نشانی ایمیل crocoapps@gmail.com به من گزارش بدهید.</string>
+  <string name="killed_by_os">متأسفم! سیستم‌عامل اندروید Keepass2Android را کُشت! به‌دلایل امنیتی، Keepass2Android اطلاعات شناسایی‌ای را که انتخاب کرده بودید روی حافظه نگه نداشت، بنابراین باید پایگاه‌داده را مجدداً باز کنید. توجه: این مشکل نباید رخ بدهد، مگر خیلی به‌ندرت. اگر اتفاق افتاد، لطفاً به نشانی ایمیل crocoapps@gmail.com به من گزارش بدهید.</string>
   <string name="FileIsTemporarilyAvailable">فایل فقط به‌صورت موقت در دسترس Keepass2Android است.</string>
   <string name="FileIsReadOnly">فایلی که انتخاب کرده‌اید فقط-خواندنی است.</string>
   <string name="FileIsReadOnlyOnKitkat">به‌سبب محدودیت‌هایی که اندروید ۴٫۴‎+‎ دارد، Keepass2Android فقط می‌تواند این فایل را بخواند.</string>
