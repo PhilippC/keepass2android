@@ -33,6 +33,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="NavigationToGroupCompleted_message">در حال دیدن این گروه هستید: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">هدف‌های غیرفعال تکمیل خودکار</string>
   <string name="AutofillDisabledQueriesPreference_summary">فهرستی از برنامه‌ها و وبسایت‌هایی که تکمیل خودکار برای آن‌ها غیرفعال شده است</string>
+  <string name="OfferSaveCredentials_summary">اگر فعال باشد اندروید می‌پرسد که آیا می‌خواهید </string>
   <string name="ShowGroupInEntry_title">نمایش نام گروه در نمای مدخل‌ها</string>
   <string name="unknown_uri_scheme">متأسفم! Keepass2Android در کار با این URI ناموفق بود:\n
 %1$s\n
