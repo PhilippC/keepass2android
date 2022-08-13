@@ -103,6 +103,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="fingerprint_reenable2">لطفاً ابتدا با گذرواژه‌تان قفل را باز کنید و سپس قفل‌گشایی بیومتریک را در تنظیمات پایگاه‌داده مجدداً فعال کنید.</string>
   <string name="FingerprintInitFailed">احراز هویت بیومتریک مقداردهی اولیه نشد. </string>
   <string name="FingerprintSetupFailed">داده رمزگذاری نشد. اگر هنگامی که Keepass2Android منتظر اثر انگشت شماست، در تنظیمات سیستم اثرانگشت اضافه یا حذف کنید، ممکن است اینطور بشود.</string>
+  <string name="enable_fingerprint_unlock_Info">شاه‌رمز شما را در این دستگاه ذخیره می‌کند. گذرواژه با استفاده از ذخیره‌گاه کلید اندروید رمزگذاری و با احراز هویت بیومتریک محافظت می‌شود. اجازه می‌دهد که پایگاه‌داده‌تان فقط با بیومتری قفل‌گشایی شود.</string>
+  <string name="enable_fingerprint_quickunlock_Info">می‌توانید از احراز هویت بیومتریک به‌جای کد زودگشایی استفاده کنید. هیچ‌گونه داده‌ای که مربوط به شاه‌رمزتان باشد ذخیره نمی‌کند.</string>
   <string name="enter_filename">نام فایل پایگاه‌داده را وارد کنید</string>
   <string name="entry_accessed">تاریخ دسترسی</string>
   <string name="entry_cancel">لغو</string>
@@ -123,6 +125,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="entry_user_name">نام کاربری</string>
   <string name="entry_extra_strings">فیلدهای رشته‌ای بیشتر</string>
   <string name="entry_binaries">پیوست‌های فایلی</string>
+  <string name="entry_history">نسخه‌های پیشین</string>
+  <string name="error_can_not_handle_uri">برنامهٔ Keepass2Android این URI را پشتیبانی نمی‌کند.</string>
   <string name="error_could_not_create_group">گروه ساخته نشد.</string>
   <string name="error_could_not_create_parent">پوشهٔ والد ساخته نشد.</string>
   <string name="error_database_exists">این فایل از پیش وجود دارد.</string>
@@ -139,6 +143,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="error_rounds_not_number">تعداد دورها باید عدد باشد.</string>
   <string name="error_param_not_number">پارامتر باید عددی باشد.</string>
   <string name="error_title_required">نوشتن عنوان ضروری است.</string>
+  <string name="error_wrong_length">در فیلد طول یک عدد صحیح وارد کنید</string>
   <string name="FileNotFound">فایل پیدا نشد.</string>
   <string name="file_browser">مرورگر فایل</string>
   <string name="generate_password">ساخت گذرواژه</string>
@@ -153,6 +158,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="hint_login_pass">گذرواژه</string>
   <string name="hint_title">نام</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">‏URL چیره</string>
   <string name="hint_tags">برچسب۱, برچسب۲</string>
   <string name="hint_username">نام کاربری</string>
   <string name="InvalidPassword">گذرواژه یا فایل کلید نامعتبر.</string>
@@ -171,6 +177,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="maskpass_summary">به‌طور پیشفرض گذرواژه‌ها را مخفی کن</string>
   <string name="masktotp_title">پوشاندن فیلد TOTP</string>
   <string name="masktotp_summary">فیلد TOTP را به‌طور پیشفرض پنهان کن</string>
+  <string name="NoAutofillDisabling_title">بدون گزینه برای غیرفعال‌سازی تکمیل خودکار</string>
   <string name="menu_about">درباره</string>
   <string name="menu_change_key">تغییر شاه‌کلید</string>
   <string name="menu_copy_pass">کپی گذرواژه</string>
