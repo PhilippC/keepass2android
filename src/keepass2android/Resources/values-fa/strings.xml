@@ -178,6 +178,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="masktotp_title">پوشاندن فیلد TOTP</string>
   <string name="masktotp_summary">فیلد TOTP را به‌طور پیشفرض پنهان کن</string>
   <string name="NoAutofillDisabling_title">بدون گزینه برای غیرفعال‌سازی تکمیل خودکار</string>
+  <string name="NoAutofillDisabling_summary">اگر فعال باشد برنامه گزینهٔ غیرفعال‌سازی تکمیل خودکار برای مدخل‌های مشخص را نشان نمی‌دهد.</string>
   <string name="menu_about">درباره</string>
   <string name="menu_change_key">تغییر شاه‌کلید</string>
   <string name="menu_copy_pass">کپی گذرواژه</string>
@@ -209,6 +210,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="no">خير</string>
   <string name="no_keys">هیچ مدخلی در پایگاه‌داده یا گروه وجود ندارد.</string>
   <string name="no_results">بدون نتیجه</string>
+  <string name="no_url_handler">گرداننده‌ای برای این URL وجود ندارد.</string>
+  <string name="open_recent">بازکردن آخرین پایگاه‌داده (لمس کنید تا باز شود)</string>
   <string name="omitbackup_title">در مدخل‌های پشتیبان و سطل بازیافت نگرد</string>
   <string name="omitbackup_summary">چیزی از گروه‌های پشتیبان و سطل بازیافت در نتایج جست‌وجو نباشد</string>
   <string name="pass_filename">نام فایل پایگاه‌دادهٔ KeePass</string>
@@ -223,6 +226,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="edit">ویرایش</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">ریشه</string>
+  <string name="AutoReturnFromQuery_title">بازگشت خودکار از صفحهٔ جستجو</string>
+  <string name="AutoReturnFromQuery_summary">هنگام جستجوی مدخل برای یک وبسایت یا برنامه: اگر در پایگاه‌داده فقط یک مدخل منطبق پیدا شد به‌طور خودکار از صفحهٔ جستجو بازگرد.</string>
   <string name="KeyDerivFunc">تابع استخراج کلید</string>
   <string name="rounds">دورهای رمزنگاری</string>
   <string name="rounds_explaination">با افزایش دورهای رمزنگاری، قدرت محافظت در برابر حملات جست‌وجوی فراگیر بیشتر می‌شود، اما می‌تواند بارکردن و ذخیره‌سازی را به‌شدت کُند کند.</string>
@@ -234,6 +239,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="saving_database">در حال ذخیره‌سازی پایگاه‌داده…</string>
   <string name="exporting_database">در حال صادرکردن پایگاه‌داده…</string>
   <string name="export_database_successful">پایگاه‌داده با موفقیت صادر شد!</string>
+  <string name="export_keyfile_successful">فایل کلید با موفقیت صادر شد!</string>
   <string name="space">فاصله</string>
   <string name="search_label">جست‌وجو</string>
   <string name="show_password">نمایش گذرواژه</string>
@@ -243,7 +249,11 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="sort_moddate">ترتیب بر اساس تاریخ تغییر</string>
   <string name="sort_default">حفظ چینش پیشفرض</string>
   <string name="special">ویژه</string>
+  <string name="special_extended">Extended Special</string>
+  <string name="at_least_one_from_each_group">حداقل یکی از هر گروه</string>
+  <string name="exclude_lookalike">به‌استثنای نویسه‌های هم‌شکل</string>
   <string name="password_generation_profile">نمایه</string>
+  <string name="save_password_generation_profile_text">نام پروفایل را برای ذخیره‌سازی وارد کنید. یک نام موجود را بنویسید تا به جای آن قرار بگیرد.</string>
   <string name="hint_wordseparator">جداکننده کلمات</string>
   <string-array name="PasswordGeneratorModes">
     <item>گذرواژه</item>
