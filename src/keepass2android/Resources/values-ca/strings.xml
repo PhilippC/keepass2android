@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Desbloqueig biomètric</string>
   <string name="import_db_prefs">Importa la base de dades a una carpeta interna</string>
   <string name="import_keyfile_prefs">Importar arxiu de claus a una carpeta interna</string>
+  <string name="export_keyfile_prefs">Exporta arxiu de claus des d\'una carpeta interna</string>
   <string name="keyboardswitch_prefs">Canvia de teclat</string>
   <string name="OnlyAvailableForLocalFiles">Només disponible per a arxius locals.</string>
   <string name="FileIsInInternalDirectory">L\'arxiu s\'emmagatzema a un directori intern.</string>
@@ -70,6 +71,7 @@
   <string name="copy_password">Selecciona per copiar la contrasenya al porta-retalls</string>
   <string name="copy_totp">Seleccioneu per copiar TOTP al porta-retalls</string>
   <string name="available_through_keyboard">Entrada disponible a través de teclat KP2A</string>
+  <string name="app_language_pref_title">Idioma de l\'aplicació</string>
   <string name="entry_is_available">està disponible</string>
   <string name="not_possible_im_picker">No s\'ha pogut obrir el quadre de diàleg per seleccionar el mètode d\'entrada. Si us plau activi teclat manualment.</string>
   <string name="please_activate_keyboard">Si us plau permeti el teclat Keepass2Android en la configuració del sistema.</string>
@@ -81,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android ve SENSE CAP MENA DE GARANTIA; Això és programari lliure, i pots redistribuïr-lo sota els termes de la llicència GPL versió 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiar al portapapers</string>
+  <string name="SystemLanguage">Idioma del sistema</string>
   <string name="fingerprint_description">Si us plau autentiquis per continuar</string>
   <string name="fingerprint_fatal">No es pot configurar Desblocatge Biomètric:</string>
   <string name="fingerprint_not_recognized">L\'autenticació biomètrica ha fallat. Provi una altra vegada</string>
@@ -119,6 +122,7 @@
   <string name="entry_user_name">Usuari</string>
   <string name="entry_extra_strings">Camps de cadena addicionals</string>
   <string name="entry_binaries">Arxius adjunts</string>
+  <string name="entry_history">Versions prèvies</string>
   <string name="error_can_not_handle_uri">Keepass2Android no pot manegar aquesta URI.</string>
   <string name="error_could_not_create_group">Error creant grup.</string>
   <string name="error_could_not_create_parent">No s\'ha pogut crear el directori pare.</string>
