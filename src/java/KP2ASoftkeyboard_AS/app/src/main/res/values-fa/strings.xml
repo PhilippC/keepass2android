@@ -214,10 +214,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"تنظیمات صفحه کلید\"\n</b></font><font size="3">\n</font>\"کلید \"<b>\"?123\"</b>\" را لمس کرده و نگهدارید.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov.ir"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".ir"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">انتخاب روش ورودی</string>
     <!-- Title for input language selection screen -->
