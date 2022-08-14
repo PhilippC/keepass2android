@@ -254,12 +254,20 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="exclude_lookalike">به‌استثنای نویسه‌های هم‌شکل</string>
   <string name="password_generation_profile">نمایه</string>
   <string name="save_password_generation_profile_text">نام پروفایل را برای ذخیره‌سازی وارد کنید. یک نام موجود را بنویسید تا به جای آن قرار بگیرد.</string>
+  <string name="hint_wordcount">تعداد واژه‌های گذرعبارت</string>
   <string name="hint_wordseparator">جداکننده کلمات</string>
   <string-array name="PasswordGeneratorModes">
     <item>گذرواژه</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>گذرعبارت</item>
+    <item>گذرعبارت + گذرواژه</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>حروف کوچک</item>
+    <item>حروف بزرگ</item>
+    <item>حرف اول بزرگ</item>
+  </string-array>
+  <string name="custom_settings">تنظیمات سفارشی</string>
+  <string name="passphrase_capitalization">حالت حروف گذرعبارت</string>
   <string name="search_hint">دنبال چه می‌گردید</string>
   <string name="search_results">نتایج جست‌وجو</string>
   <string name="search_in">جست‌وجو در</string>
@@ -267,7 +275,9 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="select_group_then_add">گروه دلخواهتان را باز کنید و سپس «%1$s» را بزنید!</string>
   <string name="insert_element_here">اینجا بگذار</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">خط زیر</string>
   <string name="unsupported_db_version">نسخهٔ پشتیبانی‌نشده از پایگاه‌داده.</string>
+  <string name="uppercase">حروف بزرگ</string>
   <string name="warning_read_only">اکنون کارت حافظه فقط-خواندنی است. شاید نتوانید تغییرات را در پایگاه‌داده ذخیره کنید.</string>
   <string name="warning_unmounted">کارت SD بر روی دستگاهتان سوار نشده. نمی‌توانید پایگاه‌داده‌تان را بار یا ایجاد کنید.</string>
   <string name="version_label">نسخه</string>
@@ -281,6 +291,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="please_note">لطفا توجه کنید</string>
   <string name="contributors">مشارکت‌کنندگان</string>
   <string name="regular_expression">عبارت باقاعده</string>
+  <string name="AlwaysMergeOnConflict_title">هنگام تداخل همیشه ادغام کن</string>
   <string name="TanExpiresOnUse_summary">کدهای TAN پس از یک بار استفاده منقضی شود</string>
   <string name="ShowUsernameInList_title">نمایش نام کاربری در لیست</string>
   <string name="ShowUsernameInList_summary">نام‌های کاربری زیر عنوان مدخل نشان داده شود. مواقعی که چند حساب یا چند TAN وجود دارد، سودمند است.</string>
@@ -363,7 +374,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="AcceptAllServerCertificates_title">گواهی‌های SSL</string>
   <string name="AcceptAllServerCertificates_summary">مشخص کنید در صورتی که اعتبارسنجی گواهی انجام نشد، برنامه چگونه رفتار کند. توجه: اگر اعتبارسنجی انجام نمی‌شود می‌توانید خودتان گواهی‌ها را روی دستگاه نصب کنید!</string>
   <string name="ClearOfflineCache_title">نهانگاه (cache) پاک شود؟</string>
-  <string name="ClearOfflineCache_question">همهٔ پایگاه‌داده‌ها از نهانگاه (cache) پاک می‌شود. همهٔ تغییراتی که زمان دسترسی‌نداشتن به فایل اصلی پایگاه انجام داده‌اید و هنوز همگام‌سازی نشده باشد از دست خواهد رفت! ادامه می‌دهید؟</string>
+  <string name="ClearOfflineCache_question">همهٔ پایگاه‌داده‌ها از نهانگاه (cache) پاک می‌شود. همهٔ تغییراتی که زمان دسترسی‌نداشتن به فایل منبع پایگاه انجام داده‌اید و هنوز همگام‌سازی نشده باشد از دست خواهد رفت! ادامه می‌دهید؟</string>
   <string name="CheckForFileChangesOnSave_title">بررسی تغییرات</string>
   <string name="CheckForFileChangesOnSave_summary">قبل از ذخیره‌سازی بررسی کن آیا فایل بیرون از برنامه تغییر کرده یا خیر.</string>
   <string name="CheckForDuplicateUuids_title">بررسی UUIDهای تکراری</string>
@@ -440,23 +451,23 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="SynchronizingCachedDatabase">در حال همگام‌سازی پایگاه‌دادهٔ نهانگاهی…</string>
   <string name="DownloadingRemoteFile">در حال بارکردن فایل منبع…</string>
   <string name="UploadingFile">ذخیرهٔ فایل…</string>
-  <string name="RestoringRemoteFile">در حال بازیابی فایل اصلی…</string>
+  <string name="RestoringRemoteFile">در حال بازیابی فایل منبع…</string>
   <string name="FilesInSync">فایل‌ها همگام هستند.</string>
   <string name="SynchronizedDatabaseSuccessfully">پایگاه‌داده با موفقیت همگام شد!</string>
   <string name="CheckingDatabaseForChanges">در حال بررسی تغییرات پایگاه‌داده…</string>
-  <string name="CouldNotSaveToRemote">ذخیره‌سازی در فایل اصلی انجام نشد:
+  <string name="CouldNotSaveToRemote">ذخیره‌سازی در فایل منبع انجام نشد:
 %1$s
-مجدداً ذخیره کنید یا وقتی به فایل اصلی دسترسی داشتید از منوی همگام‌سازی استفاده کنید.</string>
+مجدداً ذخیره کنید یا وقتی به فایل منبع دسترسی داشتید از منوی همگام‌سازی استفاده کنید.</string>
   <string name="CouldNotLoadFromRemote">دسترسی به فایل منبع ممکن نیست:
 %1$s
 فایل از نهانگاه داخلی بار شد. با این حال، می‌توانید در پایگاه‌داده تغییرات بدهید و فایل منبع را بعداً با آن همگام کنید.</string>
   <string name="UpdatedRemoteFileOnLoad">فایل منبع به‌روز شد.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">به‌سبب تعارض تغییرات با فایل اصلی، فایلی که در نهانگاه داخلی موجود بود باز شد. برای ادغام تغییرات از منوی همگام‌سازی استفاده کنید.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">به‌سبب تعارض تغییرات با فایل منبع، فایلی که در نهانگاه داخلی موجود بود باز شد. برای ادغام تغییرات از منوی همگام‌سازی استفاده کنید.</string>
   <string name="LoadedFromRemoteInSync">فایل منبع و نسخهٔ نهانگاهی همگام شدند.</string>
   <string name="UpdatedCachedFileOnLoad">نسخهٔ نهانگاهی %1$s در دستگاه به‌روز شد.</string>
   <string name="RemoteDatabaseUnchanged">تغییری نکرده.</string>
-  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">فایل کمکی OTP در نهانگاه به‌روز شد: شمارندهٔ فایل اصلی بالاتر بود.</string>
-  <string name="ResolvedCacheConflictByUsingLocalOtpAux">فایل کمکی OTP برای فایل اصلی به‌روز شد: شمارندهٔ محلی بالاتر بود.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">فایل کمکی OTP در نهانگاه به‌روز شد: شمارندهٔ فایل منبع بالاتر بود.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">فایل کمکی OTP برای فایل منبع به‌روز شد: شمارندهٔ محلی بالاتر بود.</string>
   <string name="SynchronizingOtpAuxFile">در حال همگام‌سازی فایل کمکی OTP…</string>
   <string name="database_file">فایل پایگاه‌داده</string>
   <string name="otp_aux_file">فایل کمکی OTP</string>
