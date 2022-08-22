@@ -170,6 +170,8 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">비밀번호 가리기</string>
   <string name="maskpass_summary">비밀번호 가리기를 기본으로 설정합니다</string>
+  <string name="masktotp_title">TOTP 필드 가리기</string>
+  <string name="masktotp_summary">TOTP 필드를 기본적으로 숨깁니다</string>
   <string name="menu_about">Keepass2Android 정보</string>
   <string name="menu_change_key">마스터 키 변경하기</string>
   <string name="menu_copy_pass">비밀번호 복사</string>
@@ -272,6 +274,8 @@
   <string name="please_note">주의 바랍니다</string>
   <string name="contributors">기여자</string>
   <string name="regular_expression">정규 표현식</string>
+  <string name="AlwaysMergeOnConflict_title">충돌 발생 시 항상 병합</string>
+  <string name="AlwaysMergeOnConflict_summary">Keepass2Android 가 리모트 파일이 수정된 것을 감지했을 때, 항상 로컬 수정내용과 리모트 수정내용을 병합합니다.</string>
   <string name="TanExpiresOnUse_title">TAN 사용 만료</string>
   <string name="TanExpiresOnUse_summary">TAN 항목 사용 시 만료된 항목을 표시합니다</string>
   <string name="ShowUsernameInList_title">목록에 계정명 표시하기</string>
@@ -343,7 +347,7 @@
   <string name="NoDonateOption_summary">기부자를 위한 옵션입니다. 이 앱을 한동안 사용한 후에만 설정이 가능합니다.</string>
   <string name="NoDonateOption_question">이 앱은 기부 없이는 존재하거나 지속적으로 발전할 수 없습니다! 아직 기부를 하지 않으셨다면, 지금 기부에 대해 고려해 주십시오</string>
   <string name="NoDonationReminder_title">기부에 대해 다시는 묻지 않기</string>
-  <string name="NoDonationReminder_summary">나는 너에게 한 푼도 주지 않을 것이거나 이미 기증을 했다. 제작자 생일이라도 기부에 대한 요청을 하지마라.</string>
+  <string name="NoDonationReminder_summary">저는 기부를 원하지 않거나 이미 기부를 했습니다. 심지어 제작자 생일인 경우에도 기부에 대한 요청은 하지마세요.</string>
   <string name="UseOfflineCache_title">데이터베이스 캐싱</string>
   <string name="UseOfflineCache_summary">앱의 캐시 디렉토리에 데이터베이스 파일의 사본을 보관합니다. 이렇게하면 데이터베이스 파일에 접근 할 수 없는 동안에도 데이터베이스를 사용할 수 있습니다.</string>
   <string name="CreateBackups_title">기기 내부 백업</string>
@@ -385,6 +389,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android에서 더 이상 파일에 접근 할 수 없습니다. 파일이 제거 되었거나 접근 권한이 취소되었습니다. 파일을 다시 열어 사용하십시오. 예시: 데이터베이스 변경 사용</string>
   <string name="PreloadDatabaseEnabled_title">데이터베이스 파일 미리 불러오기</string>
   <string name="PreloadDatabaseEnabled_summary">비밀번호 항목 사용 중에 백그라운드 불러오기나 데이터베이스 파일 다운로드를 시작합니다.</string>
+  <string name="SyncAfterQuickUnlock_title">QuickUnlock 후 동기화</string>
+  <string name="SyncAfterQuickUnlock_summary">QuickUnlock 으로 잠금을 해제 한 후 리모트 파일과 데이터베이스를 동기화 합니다.</string>
   <string name="AskOverwriteBinary">같은 이름의 기존 바이너리를 덮어쓰시겠습니까?</string>
   <string name="AskOverwriteBinary_title">기존의 바이너리를 덮어쓰시겠습니까?</string>
   <string name="AskOverwriteBinary_yes">덮어쓰기</string>
@@ -644,6 +650,13 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="EntryChannel_name">항목 알림</string>
   <string name="EntryChannel_desc">현재 선택된 항목을 위한 간단한 접근 알림.</string>
   <string name="CloseDbAfterFailedAttempts">생체 인식 잠금해제를 세 번 실패하면 데이터 베이스를 잠급니다</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Fix disappearing autofill prompt in Firefox</item>
+    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>Allow to change app language in settings</item>
+    <item>QuickUnlock 후 데이터베이스를 동기화 하는 옵션 추가</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>URL 필드에 안드로이드 앱의 패키지 이름을 저장하지 않도록 수정</item>
     <item>잠금 방식 향상 - 더 이상 잠금해제 직후 생체 인증을 표시하지 않음</item>
