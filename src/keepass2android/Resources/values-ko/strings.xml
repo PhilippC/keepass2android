@@ -70,6 +70,7 @@
   <string name="copy_password">비밀번호를 클립보드에 복사합니다</string>
   <string name="copy_totp">TOTP를 클립보드에 복사합니다.</string>
   <string name="available_through_keyboard">이 항목은 KP2A 키보드를 통해 사용 가능합니다</string>
+  <string name="app_language_pref_title">앱 언어</string>
   <string name="entry_is_available">사용 가능</string>
   <string name="not_possible_im_picker">입력 방법을 선택하는 대화 상자를 열 수 없습니다. 키보드를 수동으로 활성화 하십시오.</string>
   <string name="please_activate_keyboard">시스템 설정에서 Keepass2Android 키보드를 활성화 하십시오.</string>
@@ -81,6 +82,7 @@
   <string name="disclaimer_formal">Keepass2Android는 절대적으로 보증되지 않습니다. 이 앱은 무료 소프트웨어이며, the GPL 버전 2 또는 그 최근 버전의 조건 하에서 재배포가 가능합니다.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">클립보드에 복사</string>
+  <string name="SystemLanguage">시스템 언어</string>
   <string name="fingerprint_description">계속하려면 인증을 진행해주십시오</string>
   <string name="fingerprint_fatal">생체 인식 잠금 해제를 설정할 수 없습니다:</string>
   <string name="fingerprint_not_recognized">생체 인증에 실패했습니다. 다시 시도해 주십시오</string>
@@ -118,6 +120,7 @@
   <string name="entry_user_name">계정명</string>
   <string name="entry_extra_strings">추가 문자열 필드</string>
   <string name="entry_binaries">첨부 파일</string>
+  <string name="entry_history">이전 버전</string>
   <string name="error_can_not_handle_uri">Keepass2Android가 이 URI를 처리할 수 없습니다.</string>
   <string name="error_could_not_create_group">그룹 생성 오류</string>
   <string name="error_could_not_create_parent">상위 디렉터리를 만들 수 없습니다.</string>
