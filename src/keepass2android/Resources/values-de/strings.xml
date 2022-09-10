@@ -173,7 +173,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Kennwort ausblenden</string>
   <string name="maskpass_summary">Kennwörter standardmäßig ausgeblendet</string>
+  <string name="masktotp_title">TOTP-Feld verdecken</string>
   <string name="masktotp_summary">TOTP-Feld standardmäßig ausblenden</string>
+  <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
+  <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
   <string name="menu_about">Über</string>
   <string name="menu_change_key">Master-Passwort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
@@ -287,6 +290,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="please_note">Bitte beachten</string>
   <string name="contributors">Mitwirkende</string>
   <string name="regular_expression">Regulärer Ausdruck</string>
+  <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer vereinigen</string>
+  <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
   <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
@@ -325,6 +330,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
