@@ -174,6 +174,8 @@
   <string name="maskpass_summary">Jelszavak elrejtése alapértelmezésben.</string>
   <string name="masktotp_title">TOTP mező maszkolása</string>
   <string name="masktotp_summary">TOTP mező elrejtése alapértelmezetten</string>
+  <string name="NoAutofillDisabling_title">Automatikus kitöltés tiltása opció kikapcsolása</string>
+  <string name="NoAutofillDisabling_summary">Bekapcsolás esetén az alkalmazás nem fogja felajánlani az Automatikus kitöltés egyes bejegyzésekre vonatkozó kikapcsolását.</string>
   <string name="menu_about">Névjegy</string>
   <string name="menu_change_key">Főkulcs (jelszó) megváltoztatása</string>
   <string name="menu_copy_pass">Jelszó másolása</string>
@@ -244,8 +246,9 @@
   <string name="sort_moddate">Az utolsó módosítás ideje szerinti rendezés</string>
   <string name="sort_default">Alapértelmezett sorrend</string>
   <string name="special">Speciális</string>
-  <string name="at_least_one_from_each_group">legalább egy minden csoportból</string>
-  <string name="exclude_lookalike">hasonlóan kinéző karakterek kizárása</string>
+  <string name="special_extended">További speciális karakterek</string>
+  <string name="at_least_one_from_each_group">Legalább egy minden csoportból</string>
+  <string name="exclude_lookalike">Hasonlóan kinéző karakterek kizárása</string>
   <string name="password_generation_profile">Profil</string>
   <string name="save_password_generation_profile_text">Írja be a menteni kívánt nevet ,és mentse a profilt.  Írjon be egy  nevet a felülíráshoz.</string>
   <string name="hint_wordcount">Jelmondat szavainak száma</string>
@@ -261,6 +264,7 @@
     <item>Első karakter nagybetűs</item>
   </string-array>
   <string name="custom_settings">Egyéni beállítások</string>
+  <string name="passphrase_capitalization">Jelmondat: kisbetű-nagybetű</string>
   <string name="search_hint">Keresendő szöveg</string>
   <string name="search_results">Keresési eredmények</string>
   <string name="search_in">Keresendő mezők</string>
@@ -285,6 +289,8 @@
   <string name="please_note">Figyelem!</string>
   <string name="contributors">Közreműködők</string>
   <string name="regular_expression">Reguláris kifejezés</string>
+  <string name="AlwaysMergeOnConflict_title">A változtatások automatikus összefésülése</string>
+  <string name="AlwaysMergeOnConflict_summary">A változások automatikus összefésülése, ha a Keepass2Android azt érzékeli, hogy a forrás (eredeti) fájl megváltozott.</string>
   <string name="TanExpiresOnUse_title">A felhasználást követően a TAN lejár</string>
   <string name="TanExpiresOnUse_summary">A felhasználást követően a TAN bejegyzések megjelölése lejártként.</string>
   <string name="ShowUsernameInList_title">Felhasználónév mutatása a listában</string>
@@ -293,6 +299,8 @@
   <string name="RememberRecentFiles_summary">A legutóbb megnyitott adatbázisok megjegyzése és megjelenítése az Adatbázis megnyitása képernyőn.</string>
   <string name="NoDalVerification_title">DAL ellenőrzés kikapcsolása</string>
   <string name="NoDalVerification_summary">Eltekintés az internettartomány-alkalmazás összetertozásának ellenőrzésétől</string>
+  <string name="InlineSuggestions_title">Billentyűzet-integráció</string>
+  <string name="InlineSuggestions_summary">Az Automatikus kitöltéssel kapcsolatos javaslatok megjelnítése a billentyűzet inline opcióiként (ha a billentyűzet ezt támogatja)</string>
   <string name="requires_android11">Android 11, vagy újabb verzió szükséges</string>
   <string name="kp2a_findUrl">Jelszó keresése</string>
   <string name="excludeExpiredEntries">Lejárt bejegyzések kizárása</string>
@@ -343,9 +351,12 @@
   <string name="add_extra_string">Kiegészítő szövegmezők hozzáadása</string>
   <string name="configure_totp">TOTP beállítása</string>
   <string name="totp_secret_key">Titkos kulcs</string>
+  <string name="totp_encoding_rfc6238">RFC6238 szerinti alapértelmezett tokenbeállítások</string>
+  <string name="totp_encoding_steam">Steam tokenbeállítások</string>
   <string name="totp_encoding_custom">Egyéni beállítások</string>
   <string name="totp_time_step">Időlépés</string>
   <string name="totp_length">A kód hossza</string>
+  <string name="totp_scan">QR-kód beolvasása</string>
   <string name="delete_extra_string">Kiegészítő szövegmezők törlése</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Zárolva. Gyorsfeloldás engedélyezett.</string>
   <string name="database_loaded_unlocked">%1$s: Hozzáférhető.</string>
@@ -408,6 +419,8 @@
   <string name="DocumentAccessRevoked">A fájl már nem elérhető a Keepass2Android által. Vagy el lett távolítva, vagy a hozzáférési jogosultságok vissza lettek vonva. Kérjük használja a Fájl újra megnyitását, pl. az adatbázis-váltást használva.</string>
   <string name="PreloadDatabaseEnabled_title">Adatbázisok előrehozott betöltése</string>
   <string name="PreloadDatabaseEnabled_summary">A jelszó bekérésével egyidejűleg kezdődjön el az adatbázis betöltése vagy letöltése.</string>
+  <string name="SyncAfterQuickUnlock_title">Szinkronizálása GyorsFeloldás után</string>
+  <string name="SyncAfterQuickUnlock_summary">Az adatbázis szinkronizálása  a forrás (eredeti) fájllal a GyorsFeloldás után.</string>
   <string name="AskOverwriteBinary">Szeretné felülírni a meglévő, azonos nevű bináris fájlt?</string>
   <string name="AskOverwriteBinary_title">Meglévő bináris fájl felülírása?</string>
   <string name="AskOverwriteBinary_yes">Felülírás</string>
@@ -490,6 +503,7 @@
   <string name="sftp_auth_mode">Hitelesítési mód</string>
   <string name="send_public_key">A nyilvános kulcs küldése...</string>
   <string name="enter_ftp_login_title">Adja meg az FTP bejelentkezési adatait:</string>
+  <string name="enter_mega_login_title">Adja meg a MEGA fiókjának belépési adatait:</string>
   <string name="select_storage_type">Tárolási típus kiválasztása:</string>
   <string name="filestoragename_file">A készüléken tárolt fájl</string>
   <string name="filestoragename_androidget">Külső alkalmazás</string>
@@ -503,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KPA2 mappa)</string>
   <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen. A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni. Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A fájlok)</string>
+  <string name="filestoragehelp_gdriveKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Google Drive-hoz hozzáférjen.  Fontos, hogy először egy új adatbázist kell létrehoznia, a korábban létrehozott fájlokat az alkalmazás nem fogja látni.  Vagy válassza ezt az opciót az Új adatbázis létrehozása képernyőn, vagy, ha már létezik az opció, exportálja azt ennek ezzel az opcióval.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ez a tárhelytípus csak az \"Applications/Keepass2Android\" mappához igényel hozzáférést. Ahhoz, hogy a PCloud tárhelyed egy meglévő adatbázisát használd, azt ebben az mappában kell elhelyezned.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -511,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">A saját fájljaim</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android alkalmazás mappája</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Fontos: a helyes működéshez a Keepass2Androidnak Mega fiókja minden fájljának listáját le kell töltenie.  Ez, ha a fiók sok fájlt tartalmaz, sok időt igényelhet lehet.</string>
   <string name="filestoragename_content">Alapértelmezett fájlválasztó</string>
   <string name="filestorage_setup_title">A fájlhozzáférés inicializálása</string>
   <string name="database_location">Adatbázis helye</string>
@@ -655,6 +673,8 @@
   <string name="child_db_Enabled_title">Automatikus megnyitás</string>
   <string name="database_file_heading">Adatbázis fájl</string>
   <string name="if_device_text">Engedélyezés a(z) %1$s számára</string>
+  <string name="restore_history">Visszatérés ehhez a verzióhoz</string>
+  <string name="remove_history">A verzió törlése</string>
   <string name="DbUnlockedChannel_name">Adatbázis feloldva</string>
   <string name="DbUnlockedChannel_desc">Értesítés az adatbázis feloldásáról</string>
   <string name="DbQuicklockedChannel_name">GyorsFeloldás</string>
@@ -662,6 +682,7 @@
   <string name="EntryChannel_name">Bejegyzésértesítések</string>
   <string name="EntryChannel_desc">Értesítés a jelenleg kiválasztott bejegyzés egyszerűsített eléréséhez.</string>
   <string name="CloseDbAfterFailedAttempts">Az adatbázis zárolása három sikertelen biometrikus feloldási kísérlet után.</string>
+  <string name="WarnFingerprintInvalidated">Figyelmeztetés! A biometrikus azonosítást az Android megakadályozhatja, például új ujjlenyomat hozzáadása után.  Ügyeljen rá, hogy az adatbázist a főkulccsal (jelszó) is meg tudja nyitni!</string>
   <string-array name="ChangeLog_1_08c">
     <item>No longer storing package names of Android apps in the URL field</item>
     <item>Improve locking behavior - no longer displaying biometric prompt immediately after unlocking</item>
