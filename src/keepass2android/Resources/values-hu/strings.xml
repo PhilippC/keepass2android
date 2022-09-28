@@ -321,6 +321,8 @@
   <string name="QuickUnlockLength_summary">A GyorsFeloldás jelszó maximális hossza.</string>
   <string name="QuickUnlockHideLength_title">Rejtse el a GyorsFeloldás kód hosszát</string>
   <string name="QuickUnlockHideLength_summary">Ha engedélyezve van, a GyorsFeloldás kód hossza nem jelenik meg a GyorsFeloldás képernyőn.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">GyorsFeloldás kulcsa adatbázisból</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Ha az aktív adatbázis a legfelső szintjén tartalmaz egy QuickUnlock nevű bejegyzést, a GyorsFeloldáshoz e bejegyzéshez tartozó jelszót kell megadni.</string>
   <string name="QuickUnlock_fail">A GyorsFeloldás nem sikerült: a jelszó helytelen!</string>
   <string name="SaveAttachmentDialog_title">Csatolt fájl mentése</string>
   <string name="SaveAttachmentDialog_text">Adja meg, hová akarja menteni a csatolt fájlt.</string>
