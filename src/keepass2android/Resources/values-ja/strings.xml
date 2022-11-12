@@ -80,7 +80,7 @@
   <string name="current_group_root">現在のグループ: Root</string>
   <string name="database">データベース</string>
   <string name="digits">数字</string>
-  <string name="disclaimer_formal">Keepass2Android は無保証のフリーソフトウェアであり、GPLバージョン2以降のライセンスで再配布することができます。</string>
+  <string name="disclaimer_formal">Keepass2Android は無保証のフリーソフトウェアであり、GPL バージョン 2 以降のライセンスで再配布することができます。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">クリップボードにコピー</string>
   <string name="SystemLanguage">システムの言語</string>
@@ -94,7 +94,7 @@
   <string name="disable_fingerprint_unlock">生体認証ロック解除を無効にする</string>
   <string name="enable_fingerprint_unlock">すべての生体認証ロック解除を有効にする</string>
   <string name="enable_fingerprint_quickunlock">生体認証によるクイック解除を有効にする</string>
-  <string name="fingerprint_unlock_failed">生体認証のロック解除に失敗しました。Android OS によって復号鍵が無効にされました。これは通常、生体認証、またはセキュリティ設定が変更された場合に発生します。 </string>
+  <string name="fingerprint_unlock_failed">生体認証のロック解除に失敗しました。復号鍵が Android OS によって無効にされました。これは通常、生体認証の変更またはセキュリティ設定の変更により発生します。 </string>
   <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合鍵です。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
   <string name="fingerprint_reenable">新しいマスターパスワードの生体認証によるロック解除を再度有効にしてください。</string>
   <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度生体認証のロック解除を有効にしてください。</string>
