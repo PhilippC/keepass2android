@@ -96,7 +96,7 @@
   <string name="enable_fingerprint_quickunlock">生体認証によるクイック解除を有効にする</string>
   <string name="fingerprint_unlock_failed">生体認証のロック解除に失敗しました。復号鍵が Android OS によって無効にされました。これは通常、生体認証の変更またはセキュリティ設定の変更により発生します。 </string>
   <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合鍵です。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
-  <string name="fingerprint_reenable">新しいマスターパスワードの生体認証によるロック解除を再度有効にしてください。</string>
+  <string name="fingerprint_reenable">新しいマスターパスワードで生体認証によるロック解除を再度有効にしてください。</string>
   <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度生体認証のロック解除を有効にしてください。</string>
   <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
