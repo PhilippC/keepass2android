@@ -499,6 +499,7 @@
   <string name="sftp_auth_mode">認証方式</string>
   <string name="send_public_key">公開鍵を送信...</string>
   <string name="enter_ftp_login_title">FTP のログイン データを入力してください:</string>
+  <string name="enter_mega_login_title">MEGA アカウントのログイン情報を入力:</string>
   <string name="select_storage_type">ストレージタイプの選択</string>
   <string name="filestoragename_file">ローカルファイル</string>
   <string name="filestoragename_androidget">サードパーティーのアプリから取得</string>
@@ -512,6 +513,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A フォルダー)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox の全てに KP2A がアクセスできるようにしたくない場合にこのオプションを選択してください。このオプションを選択すると、Apps/Keepass2Android フォルダーだけにアクセスを要求します。これは特に新しいデータベースを作成するときに向いています。既にデータベースがある場合は、このオプションを選択してフォルダーを作成し、その後 (PC から) フォルダー内にファイルを配置し、そのファイルを開く際にもう一度このオプションを選択します。</string>
   <string name="filestoragename_gdrive">Google ドライブ</string>
+  <string name="filestoragename_gdriveKP2A">Google ドライブ (KP2A ファイル)</string>
+  <string name="filestoragehelp_gdriveKP2A">Google ドライブ全体へのアクセス権を KP2A に付与したくない場合はこちらを選択してください。このオプションを使用すると既存のファイルはアプリから見えないため、まずデータベースファイルを作成する必要があることに注意してください。新しいデータベースを作成する場合はこのまま続行してください。既存のデータベースをアップロードしたい場合はデータベースのエクスポートからこのオプションを実行してください。</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー \"Applications/Keepass2Android\" へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合には、そのファイルが、この pCloud フォルダー内にあるかどうかを確認して下さい。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -520,6 +523,8 @@
   <string name="filestoragename_onedrive2_myfiles">自身のファイル</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android アプリフォルダー</string>
   <string name="filestoragename_sftp">SFTP (SSH ファイル転送)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">注意: Keepass2Android が正常に動作するためには、Mega アカウントのすべてのファイルのリストをダウンロードする必要があります。このため、多くのファイルのあるアカウントにアクセスすると動作が遅くなる可能性があります。</string>
   <string name="filestoragename_content">システムファイルピッカー</string>
   <string name="filestorage_setup_title">ファイルのアクセスの初期化</string>
   <string name="database_location">データベースの場所</string>
@@ -664,6 +669,8 @@
   <string name="child_db_Enabled_title">自動的に開く</string>
   <string name="database_file_heading">データベースファイル</string>
   <string name="if_device_text">%1$s 用に有効にする</string>
+  <string name="restore_history">このバージョンを復元</string>
+  <string name="remove_history">このバージョンを削除</string>
   <string name="DbUnlockedChannel_name">データベースがアンロックされました</string>
   <string name="DbUnlockedChannel_desc">データベースのアンロックに関する通知</string>
   <string name="DbQuicklockedChannel_name">クイック解除</string>
