@@ -354,6 +354,7 @@
   <string name="totp_encoding_custom">カスタムトークンの設定</string>
   <string name="totp_time_step">間隔（秒）</string>
   <string name="totp_length">コードの文字数</string>
+  <string name="totp_scan">QR コードをスキャン</string>
   <string name="delete_extra_string">補足文字列を削除</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: ロック中。クイック解除が有効です。</string>
   <string name="database_loaded_unlocked">%1$s: ロック解除。</string>
