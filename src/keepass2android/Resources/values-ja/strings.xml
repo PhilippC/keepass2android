@@ -175,6 +175,7 @@
   <string name="masktotp_title">TOTP フィールドを隠す</string>
   <string name="masktotp_summary">デフォルトで TOTP フィールドを隠します</string>
   <string name="NoAutofillDisabling_title">自動入力を無効にするオプションをなくす</string>
+  <string name="NoAutofillDisabling_summary">有効にすると、特定のエントリーの自動入力を無効にするオプションを表示しません。</string>
   <string name="menu_about">Keepass2Android について</string>
   <string name="menu_change_key">マスターキーを変更</string>
   <string name="menu_copy_pass">パスワードをコピー</string>
@@ -288,6 +289,8 @@
   <string name="please_note">ご確認ください：</string>
   <string name="contributors">貢献者</string>
   <string name="regular_expression">正規表現</string>
+  <string name="AlwaysMergeOnConflict_title">常にコンフリクトをマージ</string>
+  <string name="AlwaysMergeOnConflict_summary">Keepass2Android がリモートファイルの変更を確認したとき、リモートの変更を常にローカルにマージします。</string>
   <string name="TanExpiresOnUse_title">トランザクション認証番号の使用期限</string>
   <string name="TanExpiresOnUse_summary">使用期限が切れたトランザクション認証番号に印をつける</string>
   <string name="ShowUsernameInList_title">リスト内のユーザー名を表示</string>
@@ -296,6 +299,9 @@
   <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
   <string name="NoDalVerification_title">DAL認証なし</string>
   <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかのチェックを無効にします</string>
+  <string name="InlineSuggestions_title">キーボードとの統合</string>
+  <string name="InlineSuggestions_summary">自動入力のサジェスト表示をキーボード内に表示します (入力方法が対応している場合のみ)</string>
+  <string name="requires_android11">Android 11 以上が必要</string>
   <string name="kp2a_findUrl">パスワードを見つける</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
