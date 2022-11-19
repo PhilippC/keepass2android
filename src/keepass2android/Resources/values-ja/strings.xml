@@ -10,7 +10,7 @@
   <string name="deny">拒否</string>
   <string name="add_entry">エントリーを追加</string>
   <string name="edit_entry">エントリーを編集</string>
-  <string name="add_url_entry">URL のエントリーを作成します。</string>
+  <string name="add_url_entry">URL のエントリーを作成</string>
   <string name="add_group">グループを追加</string>
   <string name="add_group_title">グループを追加</string>
   <string name="edit_group_title">グループを編集</string>
@@ -58,7 +58,7 @@
   <string name="KeyfileMoved">キーファイルは内部フォルダーへコピーされました。現在のキーファイルを削除する前に必ずバックアップを行ってください！</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">内部フォルダーを使用するにはキーファイルの場所を保存する必要があります。セキュリティ設定を変更してください</string>
   <string name="unlock_database_button">ロック解除</string>
-  <string name="unlock_database_title">データベースのロック解除</string>
+  <string name="unlock_database_title">データベースをロック解除</string>
   <string name="brackets">括弧</string>
   <string name="cancel">キャンセル</string>
   <string name="Ok">OK</string>
@@ -75,7 +75,7 @@
   <string name="entry_is_available">使用可能</string>
   <string name="not_possible_im_picker">「入力方法の選択」ダイアログを開けません。手動でキーボードを有効にしてください</string>
   <string name="please_activate_keyboard">システム設定で Keepass2Android キーボードを有効にしてください</string>
-  <string name="creating_db_key">データベース認証中…</string>
+  <string name="creating_db_key">データベース鍵を作成中…</string>
   <string name="current_group">現在のグループ</string>
   <string name="current_group_root">現在のグループ: Root</string>
   <string name="database">データベース</string>
@@ -102,7 +102,7 @@
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみで、データベースのロックを解除できるようになります。</string>
   <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を利用するようにします。マスターパスワードに関連する情報は格納しません。</string>
-  <string name="enter_filename">データベースファイル名の入力</string>
+  <string name="enter_filename">データベースのファイル名を入力</string>
   <string name="entry_accessed">最終アクセス日時</string>
   <string name="entry_cancel">キャンセル</string>
   <string name="entry_comment">メモ</string>
@@ -300,7 +300,7 @@
   <string name="NoDalVerification_title">DAL認証なし</string>
   <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかのチェックを無効にします</string>
   <string name="InlineSuggestions_title">キーボードとの統合</string>
-  <string name="InlineSuggestions_summary">自動入力のサジェスト表示をキーボード内に表示します (入力方法が対応している場合のみ)</string>
+  <string name="InlineSuggestions_summary">自動入力のサジェストをキーボード内に表示します (入力方法が対応している場合のみ)</string>
   <string name="requires_android11">Android 11 以上が必要</string>
   <string name="kp2a_findUrl">パスワードを見つける</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
@@ -682,14 +682,17 @@
   <string-array name="ChangeLog_1_09d">
     <item>エントリーバックアップの表示、削除、および復元に対応</item>
     <item>MEGA クラウドストレージに対応</item>
-    <item>Added support for Google Drive with restricted scope</item>
+    <item>アクセスするファイルを制限した Google ドライブに対応</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Google ドライブの認証を再実装し、Google ドライブへの対応を再有効化</item>
   </string-array>
   <string-array name="ChangeLog_1_09b">
-    <item>Fix disappearing autofill prompt in Firefox</item>
-    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>Firefox で自動入力プロンプトが表示されない事象を修正</item>
+    <item>自動入力のサジェストをキーボード内に統合 (Android 11 以上が必要)</item>
     <item>設定でアプリの言語を変更することが可能に</item>
     <item>Add option to synchronize database after QuickUnlock</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>バグ修正: Dropbox に保存する際にファイル名を小文字にしないでください</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式のサポートを追加</item>
