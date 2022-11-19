@@ -19,7 +19,7 @@
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android オフライン版</string>
-  <string name="short_app_name_nonet">KP2A オフライン版</string>
+  <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">アプリのタイムアウト</string>
   <string name="app_timeout_summary">アプリが非アクティブになったあと、データベースをロックするまでの時間</string>
   <string name="kill_app_label">アプリのプロセスを終了</string>
@@ -46,16 +46,16 @@
   <string name="QuickUnlock_prefs">クイック解除</string>
   <string name="FileHandling_prefs">ファイル操作</string>
   <string name="keyboard_prefs">キーボード</string>
-  <string name="export_prefs">データベースのエクスポート...</string>
+  <string name="export_prefs">データベースをエクスポート...</string>
   <string name="fingerprint_prefs">生体認証ロック解除</string>
   <string name="import_db_prefs">データベースを内部フォルダーへインポート</string>
   <string name="import_keyfile_prefs">キーファイルを内部フォルダーへインポート</string>
   <string name="export_keyfile_prefs">キーファイルを内部フォルダーからエクスポート</string>
   <string name="keyboardswitch_prefs">キーボードを切り替え</string>
-  <string name="OnlyAvailableForLocalFiles">ローカルのファイルにのみインポートできます</string>
+  <string name="OnlyAvailableForLocalFiles">ローカルのファイルにのみ対応しています</string>
   <string name="FileIsInInternalDirectory">ファイルは内部ディレクトリーに保存されています</string>
   <string name="DatabaseFileMoved">データベースファイルは内部フォルダーへコピーされました。OK を押して新しい場所からデータベースを開いてください。注意: データベースを安全なストレージへ定期的にエクスポートすることを忘れないで下さい。</string>
-  <string name="KeyfileMoved">キーファイルは内部フォルダーへコピーされました。現在のキーファイルを削除する前に必ずバックアップを行ってください！</string>
+  <string name="KeyfileMoved">キーファイルは内部フォルダーへコピーされました。現在のキーファイルを削除する前に必ずバックアップしてください！</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">内部フォルダーを使用するにはキーファイルの場所を保存する必要があります。セキュリティ設定を変更してください</string>
   <string name="unlock_database_button">ロック解除</string>
   <string name="unlock_database_title">データベースをロック解除</string>
@@ -66,7 +66,7 @@
   <string name="enable_sensor">指紋認証を有効にする</string>
   <string name="ClearClipboard">クリップボードを消去しました</string>
   <string name="clipboard_timeout">クリップボードのタイムアウト</string>
-  <string name="clipboard_timeout_summary">コピーしたユーザー名やパスワードがクリップボードから消去するまでの時間</string>
+  <string name="clipboard_timeout_summary">コピーしたユーザー名やパスワードをクリップボードから消去するまでの時間</string>
   <string name="copy_username">タップしてユーザー名をコピー</string>
   <string name="copy_password">タップしてパスワードをコピー</string>
   <string name="copy_totp">タップして TOTP をコピー</string>
