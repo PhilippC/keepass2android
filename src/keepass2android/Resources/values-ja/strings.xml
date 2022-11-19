@@ -88,7 +88,7 @@
   <string name="fingerprint_fatal">生体認証によるロック解除を設定できません:</string>
   <string name="fingerprint_not_recognized">生体認証に失敗しました。もう一度やり直してください</string>
   <string name="fingerprint_success">生体認証に成功しました</string>
-  <string name="fingerprint_os_error">生体認証によるロック解除には、Android 6.0 以降が必要です。</string>
+  <string name="fingerprint_os_error">生体認証によるロック解除は、Android 6.0 以降が必要です。</string>
   <string name="fingerprint_hardware_error">生体認証のハードウェアがありません。</string>
   <string name="fingerprint_no_enrolled">このデバイスで生体認証が設定されていません。最初にシステムの設定で登録してください。</string>
   <string name="disable_fingerprint_unlock">生体認証ロック解除を無効にする</string>
@@ -101,7 +101,7 @@
   <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間、システム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみで、データベースのロックを解除できるようになります。</string>
-  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を利用するようにします。マスターパスワードに関連する情報は格納しません。</string>
+  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を使用するようにします。マスターパスワードに関連する情報は格納しません。</string>
   <string name="enter_filename">データベースのファイル名を入力</string>
   <string name="entry_accessed">最終アクセス日時</string>
   <string name="entry_cancel">キャンセル</string>
