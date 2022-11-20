@@ -208,11 +208,11 @@
   <string name="no_keys">データベース/グループにエントリーがありません</string>
   <string name="no_results">検索結果がありません</string>
   <string name="no_url_handler">この URL を処理できません</string>
-  <string name="open_recent">最近使用したデータベースを開く（タップして開く）</string>
-  <string name="omitbackup_title">検索対象から除外</string>
+  <string name="open_recent">最近使用したデータベースを開く (タップして開く)</string>
+  <string name="omitbackup_title">バックアップとごみ箱を検索しない</string>
   <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
-  <string name="pass_filename">KeePassデータベースファイル</string>
-  <string name="password_title">データベースのパスワード設定</string>
+  <string name="pass_filename">KeePass データベースファイル名</string>
+  <string name="password_title">データベースのパスワードを入力</string>
   <string name="master_key_type">マスターキーの種類を選択:</string>
   <string name="progress_create">データベースファイルを作成中…</string>
   <string name="create_database">データベースを作成</string>
