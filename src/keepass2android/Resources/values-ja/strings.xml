@@ -217,8 +217,8 @@
   <string name="progress_create">データベースファイルを作成中…</string>
   <string name="create_database">データベースを作成</string>
   <string name="progress_title">実行中…</string>
-  <string name="remember_keyfile_summary">前回使用したキーファイルを次回も表示します</string>
-  <string name="remember_keyfile_title">キーファイルを記憶する</string>
+  <string name="remember_keyfile_summary">前回使用したキーファイルを記憶して表示します</string>
+  <string name="remember_keyfile_title">キーファイルを記憶</string>
   <string name="remove_from_filelist">削除</string>
   <string name="edit">編集</string>
   <string name="rijndael">Rijndael (AES)</string>
