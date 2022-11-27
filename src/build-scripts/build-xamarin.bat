@@ -11,6 +11,6 @@ cd ..
 
 call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
 
-msbuild KeePass.sln /target:keepass2android /p:BuildProjectReferences=true /p:Configuration="Debug" /p:Platform="Any CPU"
+msbuild KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="Debug" /p:Platform="Any CPU"
 
 cd build-scripts
