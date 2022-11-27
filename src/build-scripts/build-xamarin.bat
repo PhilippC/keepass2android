@@ -9,8 +9,17 @@ cd ..\..\keepass2android
 call UseManifestDebug.bat
 cd ..
 
-call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
+IF NOT "%VSCMD_VCVARSALL_INIT%" == "1" (
+  call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+)
 
-msbuild KeePass.sln /target:keepass2android /p:BuildProjectReferences=true /p:Configuration="Debug" /p:Platform="Any CPU"
+REM Download NuGet dependencies
+msbuild KeePass.sln -t:restore -p:RestorePackagesConfig=true || exit /b
+
+REM Build
+set CONFIG=Debug
+msbuild KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="%CONFIG%" /p:Platform="Any CPU" /p:AndroidBuildApplicationPackage=True || exit /b
 
 cd build-scripts
+
+echo apk can be found in src\keepass2android\bin\%CONFIG%
