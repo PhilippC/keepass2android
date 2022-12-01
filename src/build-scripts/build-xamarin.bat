@@ -15,7 +15,7 @@ REM Download NuGet dependencies
 msbuild KeePass.sln -t:restore -p:RestorePackagesConfig=true
 
 REM Build
-set CONFIG=Debug
+set CONFIG=Release
 msbuild KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="%CONFIG%" /p:Platform="Any CPU" /p:AndroidBuildApplicationPackage=True
 
 cd build-scripts
