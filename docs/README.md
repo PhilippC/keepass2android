@@ -8,7 +8,7 @@ The password database file can be synchronized across different devices. This wo
 # Where to get it?
 Regular stable releases of Keepass2Android are available on [Google Play](https://play.google.com/store/apps/details?id=keepass2android.keepass2android).
 
-Beta-releases can be obtained by opting in to the [Beta testing channel](https://play.google.com/apps/testing/keepass2android.keepass2android) or [Beta testing channel for Keepass2Android Offline](https://play.google.com/apps/testing/keepass2android.keepass2android_nonet). Please join the [Beta tester group](https://plus.google.com/communities/107293657110547776032) for news and discussions about the latest beta releases.
+Beta-releases can be obtained by opting in to the [Beta testing channel](https://play.google.com/apps/testing/keepass2android.keepass2android) or [Beta testing channel for Keepass2Android Offline](https://play.google.com/apps/testing/keepass2android.keepass2android_nonet).
 
 # How can I contribute?
 * Help to translate Keepass2Android into your language or improve translations at [our Crowdin page](http://crowdin.net/project/keepass2android)
@@ -18,5 +18,7 @@ Beta-releases can be obtained by opting in to the [Beta testing channel](https:/
 
 # How do I learn more?
 Please see the [documentation](Documentation.md).
+
+The project homepage is https://philipp.crocoll.net/keepass2android/index.php
 
 [![Build Status](https://www.bitrise.io/app/43a23ab54dee9f7e/status.svg?token=2vryTsMQzTX3XRPikhgRwA&branch=nonet)](https://www.bitrise.io/app/43a23ab54dee9f7e)

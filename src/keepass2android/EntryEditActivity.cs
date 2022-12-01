@@ -33,12 +33,21 @@ using KeePassLib.Security;
 using Android.Content.PM;
 using System.IO;
 using System.Globalization;
+using System.Net;
+using System.Text;
+using Android.Content.Res;
 using Android.Database;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Runtime;
 using Android.Util;
 using keepass2android.Io;
 using KeePassLib.Serialization;
+using KeeTrayTOTP.Libraries;
+using PluginTOTP;
+using Xamarin.Essentials;
+using Xamarin.Forms.Platform.Android;
+using ZXing.Mobile;
 using Debug = System.Diagnostics.Debug;
 using File = System.IO.File;
 using Object = Java.Lang.Object;
@@ -94,8 +103,17 @@ namespace keepass2android
 
 		bool _closeForReload;
 
-		AppTask _appTask;
-		
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -108,7 +126,7 @@ namespace keepass2android
 				return;
 			}
 
-			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			SetContentView(Resource.Layout.entry_edit);
 			_closeForReload = false;
@@ -170,7 +188,7 @@ namespace keepass2android
 						CreateNewWithoutTemplate(db);
 					}
 					
-					_appTask.PrepareNewEntry(State.EntryInDatabase);
+					AppTask.PrepareNewEntry(State.EntryInDatabase);
 					State.IsNew = true;
 					State.EntryModified = true;
 					
@@ -278,7 +296,31 @@ namespace keepass2android
 				EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
 			};
 			SetAddExtraStringEnabled();
-		    FindViewById(Resource.Id.entry_extras_container).Visibility =
+			
+
+            Button configureTotpButton = (Button)FindViewById(Resource.Id.configure_totp);
+
+            configureTotpButton.Visibility = CanConfigureOtpSettings() ? ViewStates.Gone : ViewStates.Visible;
+			configureTotpButton.Click += (sender, e) =>
+            {
+                bool added = false;
+                View ees = FindExtraEditSection("otp");
+				if (ees == null)
+                {
+                    LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
+
+                    KeyValuePair<string, ProtectedString> pair =
+                        new KeyValuePair<string, ProtectedString>("otp", new ProtectedString(true, ""));
+                    ees = CreateExtraStringView(pair);
+                    container.AddView(ees);
+                    added = true;
+                }
+                
+
+				EditTotpString(ees.FindViewById(Resource.Id.edit_extra));
+            };
+
+			FindViewById(Resource.Id.entry_extras_container).Visibility =
 		        State.EditMode.ShowAddExtras || State.Entry.Strings.Any(s => !PwDefs.IsStandardField(s.Key)) ? ViewStates.Visible : ViewStates.Gone;
 		    FindViewById(Resource.Id.entry_binaries_container).Visibility =
 		        State.EditMode.ShowAddAttachments || State.Entry.Binaries.Any() ? ViewStates.Visible : ViewStates.Gone;
@@ -393,9 +435,17 @@ namespace keepass2android
 		private void SetAddExtraStringEnabled()
 		{
 			((Button)FindViewById(Resource.Id.add_advanced)).Visibility = (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveCustomFields || !State.EditMode.ShowAddExtras) ? ViewStates.Gone : ViewStates.Visible;
+            ((Button)FindViewById(Resource.Id.configure_totp)).Visibility = CanConfigureOtpSettings() ? ViewStates.Gone : ViewStates.Visible;
 		}
 
-		private void MakePasswordVisibleOrHidden()
+        private bool CanConfigureOtpSettings()
+        {
+            return (!App.Kp2a.CurrentDb.DatabaseFormat.CanHaveCustomFields || !State.EditMode.ShowAddExtras) 
+                && (new Kp2aTotp().TryGetAdapter(new PwEntryOutput(State.Entry, App.Kp2a.CurrentDb)) == null || (State.Entry.Strings.GetKeys().Contains("otp"))) //only allow to edit KeeWeb/KeepassXC style otps
+                ;
+        }
+
+        private void MakePasswordVisibleOrHidden()
 		{
 		    EditText password = (EditText) FindViewById(Resource.Id.entry_password);
 			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
@@ -512,7 +562,7 @@ namespace keepass2android
 			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
 			{
 				if (success && activity is EntryEditActivity entryEditActivity)
-					_appTask.AfterAddNewEntry(entryEditActivity, newEntry);
+					AppTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
@@ -715,7 +765,7 @@ namespace keepass2android
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			_appTask.ToBundle(outState);
+			AppTask.ToBundle(outState);
 		}
 
 		public override void OnBackPressed()
@@ -747,7 +797,7 @@ namespace keepass2android
 			}
 
 		}
-
+		
 		public void Reload() {
 			//this reload ìs necessary to overcome a strange problem with the extra string fields which get lost
 			//somehow after re-creating the activity. Maybe a Mono for Android bug?
@@ -933,7 +983,8 @@ namespace keepass2android
                     binariesGroup.Visibility = ViewStates.Visible;
                     FindViewById(Resource.Id.entry_binaries_container).Visibility = ViewStates.Visible;
                     ((Button)FindViewById(Resource.Id.add_advanced)).Visibility = ViewStates.Visible;
-                    FindViewById(Resource.Id.entry_extras_container).Visibility = ViewStates.Visible;
+                    ((Button)FindViewById(Resource.Id.configure_totp)).Visibility = ViewStates.Visible;
+					FindViewById(Resource.Id.entry_extras_container).Visibility = ViewStates.Visible;
 
                     return true;
                 case Android.Resource.Id.Home:
@@ -1011,6 +1062,7 @@ namespace keepass2android
 			if (type == "bool")
 			{
 				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section_bool, null);
+                ees.Tag = pair.Key;
 				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
 				var checkbox = ((CheckBox)ees.FindViewById(Resource.Id.checkbox));
 			    var valueView = ((TextView)ees.FindViewById(Resource.Id.value));
@@ -1028,6 +1080,7 @@ namespace keepass2android
 			else if (type == "file")
 			{
 				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section_file, null);
+                ees.Tag = pair.Key;
 				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
 				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
 				keyView.Text = pair.Key;
@@ -1045,6 +1098,7 @@ namespace keepass2android
 			else
 			{
 				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
+                ees.Tag = pair.Key;
 				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
 				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
 				keyView.Text = pair.Key;
@@ -1063,8 +1117,8 @@ namespace keepass2android
 	    private string[] _additionalKeys = null;
 	    private List<View> _editModeHiddenViews;
 	    private Uri _uriToAddOrAsk;
-
-	    public string[] AdditionalKeys
+      
+		public string[] AdditionalKeys
 	    {
 		    get
 		    {
@@ -1081,8 +1135,211 @@ namespace keepass2android
 		    }
 		    
 	    }
+		
+        private void EditTotpString(View sender)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            View dlgView = LayoutInflater.Inflate(Resource.Layout.
+                configure_totp_dialog, null);
 
-	    private void EditAdvancedString(View sender)
+
+
+            builder.SetView(dlgView);
+            builder.SetNegativeButton(Android.Resource.String.Cancel, (o, args) => { });
+            builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
+            {
+                
+                var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                if (targetField != null)
+                {
+                    string entryTitle = Util.GetEditText(this, Resource.Id.entry_title);
+                    string username = Util.GetEditText(this, Resource.Id.entry_user_name);
+                    string secret = dlgView.FindViewById<TextView>(Resource.Id.totp_secret_key).Text;
+                    string totpLength = dlgView.FindViewById<EditText>(Resource.Id.totp_length).Text;
+                    string timeStep = dlgView.FindViewById<EditText>(Resource.Id.totp_time_step).Text;
+                    var checkedTotpId = (int)dlgView.FindViewById<RadioGroup>(Resource.Id.totp_encoding).CheckedRadioButtonId;
+                    TotpEncoding encoding = (checkedTotpId == Resource.Id.totp_encoding_steam)
+                        ? TotpEncoding.Steam : (checkedTotpId == Resource.Id.totp_encoding_rfc6238 ? TotpEncoding.Default : TotpEncoding.Custom);
+                    var algorithm = (int)dlgView.FindViewById<Spinner>(Resource.Id.totp_algorithm).SelectedItemPosition;
+
+                    targetField.Text = BuildOtpString(entryTitle, username, secret, totpLength, timeStep, encoding, algorithm);
+				}
+                else
+                {
+					Toast.MakeText(this, "did not find target field", ToastLength.Long).Show();
+                }
+                
+				
+				//not calling State.Entry.Strings.Set(...). We only do this when the user saves the changes.
+				State.EntryModified = true;
+
+			});
+            Dialog dialog = builder.Create();
+
+            dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_custom).CheckedChange += (o, args) =>
+            {
+                dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = args.IsChecked ? ViewStates.Visible : ViewStates.Gone;
+            };
+
+            dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
+                options.PossibleFormats = new List<ZXing.BarcodeFormat>() { ZXing.BarcodeFormat.QR_CODE };
+
+                var result = await scanner.Scan(options);
+                if (result?.Text?.StartsWith("otpauth://") == true)
+                {
+                    dialog.Dismiss();
+                    var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                    targetField.Text = result.Text;
+                }
+                else
+                {
+                    Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
+				}
+                
+			};
+
+			//copy values from entry into dialog
+			View ees = (View)sender.Parent;
+            TotpData totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(State.Entry, App.Kp2a.CurrentDb));
+            if (totpData != null)
+            {
+                dlgView.FindViewById<TextView>(Resource.Id.totp_secret_key).Text = totpData.TotpSeed;
+                if (totpData.Encoder == TotpData.EncoderSteam)
+                {
+                    dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_steam).Checked = true;
+                } 
+                else if ((totpData.Encoder == TotpData.EncoderRfc6238) && (totpData.IsDefaultRfc6238))
+				{
+                    dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_rfc6238).Checked = true;
+				}
+				else
+                {
+                    dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_custom).Checked = true;
+				}
+
+                dlgView.FindViewById<EditText>(Resource.Id.totp_length).Text = totpData.Length;
+                dlgView.FindViewById<EditText>(Resource.Id.totp_time_step).Text = totpData.Duration;
+                dlgView.FindViewById <Spinner>(Resource.Id.totp_algorithm).SetSelection(totpData.HashAlgorithm == TotpData.HashSha1 ? 0 : (
+                        totpData.HashAlgorithm == TotpData.HashSha256 ? 1:
+                            (totpData.HashAlgorithm == TotpData.HashSha256 ? 2 : 0)));
+
+                dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = dlgView.FindViewById<RadioButton>(Resource.Id.totp_encoding_custom).Checked ? ViewStates.Visible : ViewStates.Gone;
+			}
+            
+            _passwordFont.ApplyTo(dlgView.FindViewById<EditText>(Resource.Id.totp_secret_key));
+            Util.SetNoPersonalizedLearning(dlgView);
+
+            dialog.Show();
+
+        }
+
+      
+
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+		string SanitizeInput(string encodedData)
+        {
+            if (encodedData.Length <= 0)
+            {
+                return encodedData;
+            }
+
+			StringBuilder newEncodedDataBuilder = new StringBuilder(encodedData);
+            int i = 0;
+            foreach (var ch in encodedData)
+            {
+                switch (ch)
+                {
+                    case '0':
+                        newEncodedDataBuilder[i++] = 'O';
+                        break;
+                    case '1':
+                        newEncodedDataBuilder[i++] = 'L';
+                        break;
+                    case '8':
+                        newEncodedDataBuilder[i++] = 'B';
+                        break;
+                    default:
+                        if (('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('2' <= ch && ch <= '7'))
+                        {
+                            newEncodedDataBuilder[i++] = ch;
+                        }
+
+                        break;
+                }
+            }
+
+            string newEncodedData = newEncodedDataBuilder.ToString().Substring(0, i);
+
+            return AddPadding(newEncodedData);
+        
+		}
+
+
+        string AddPadding(string encodedData)
+        {
+            if (encodedData.Length <= 0 || encodedData.Length % 8 == 0) {
+                return encodedData;
+            }
+
+            int rBytes = encodedData.Length % 8;
+            // rBytes must be a member of {2, 4, 5, 7}
+            if (1 == rBytes || 3 == rBytes || 6 == rBytes) {
+                return encodedData;
+            }
+
+            string newEncodedData = encodedData;
+            for (int nPads = 8 - rBytes; nPads > 0; --nPads)
+            {
+                newEncodedData += "=";
+            }
+
+            return newEncodedData;
+        }
+
+        enum TotpEncoding
+        {
+			Default, Steam, Custom
+        }
+
+		private string BuildOtpString(string entryTitle, string userName, string secret, string totpLength, string timeStep, TotpEncoding encoding, int algorithm)
+        {
+            string entryEncoded = string.IsNullOrWhiteSpace(entryTitle)
+                ? "Keepass2Android"
+                : System.Uri.EscapeUriString(entryTitle);
+			return $"otpauth://totp/{entryEncoded}:{System.Uri.EscapeUriString(userName)}?" +
+                   $"secret={SanitizeInput(secret)}" +
+				   $"&issuer={ entryEncoded}"
+					   + (encoding != TotpEncoding.Custom? "" : $"&period={timeStep}&digits={totpLength}&algorithm={AlgorithmIndexToString(algorithm)}") +
+                   (encoding  == TotpEncoding.Steam ? "&encoder=steam" : "");
+
+		}
+
+        private string AlgorithmIndexToString(in int algorithm)
+        {
+            switch (algorithm)
+            {
+				case 0:
+                    return "SHA1";
+				case 1:
+                    return "SHA256";
+                case 2:
+                    return "SHA512";
+				default:
+                    return "";
+			}
+        }
+
+        private void EditAdvancedString(View sender)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			View dlgView = LayoutInflater.Inflate(Resource.Layout.

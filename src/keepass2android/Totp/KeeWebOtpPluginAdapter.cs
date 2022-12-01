@@ -31,8 +31,13 @@ namespace keepass2android
                 res.Length = parsedQuery.Get("digits");
                 res.Duration = parsedQuery.Get("period");
                 res.Encoder = parsedQuery.Get("encoder");
+                string algo = parsedQuery.Get("algorithm");
+                if (algo == "SHA512")
+                    res.HashAlgorithm = TotpData.HashSha512;
+                if (algo == "SHA256")
+                    res.HashAlgorithm = TotpData.HashSha256;
 
-                
+
                 //set defaults according to https://github.com/google/google-authenticator/wiki/Key-Uri-Format
                 if (res.Length == null)
                     res.Length = "6";
@@ -46,7 +51,7 @@ namespace keepass2android
                 return res;
             }
             
-            res.IsTotpEnry = true;
+            res.IsTotpEntry = true;
             return res;
         }
     }

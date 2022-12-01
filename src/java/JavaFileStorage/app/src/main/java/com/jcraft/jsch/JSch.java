@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -66,9 +66,9 @@ public class JSch{
     config.put("diffie-hellman-group-exchange-sha256", 
                "com.jcraft.jsch.DHGEX256"); // available since JDK1.4.2.
                                             // On JDK8, 2048bits will be used.
-    config.put("ecdsa-sha2-nistp256", "com.jcraft.jsch.jce.SignatureECDSA");
-    config.put("ecdsa-sha2-nistp384", "com.jcraft.jsch.jce.SignatureECDSA");
-    config.put("ecdsa-sha2-nistp521", "com.jcraft.jsch.jce.SignatureECDSA");
+    config.put("ecdsa-sha2-nistp256", "com.jcraft.jsch.jce.SignatureECDSA256");
+    config.put("ecdsa-sha2-nistp384", "com.jcraft.jsch.jce.SignatureECDSA384");
+    config.put("ecdsa-sha2-nistp521", "com.jcraft.jsch.jce.SignatureECDSA521");
 
     config.put("ecdh-sha2-nistp256", "com.jcraft.jsch.DHEC256");
     config.put("ecdh-sha2-nistp384", "com.jcraft.jsch.DHEC384");
@@ -94,7 +94,6 @@ public class JSch{
     config.put("md5",           "com.jcraft.jsch.jce.MD5");
     config.put("signature.dss", "com.jcraft.jsch.jce.SignatureDSA");
     config.put("signature.rsa", "com.jcraft.jsch.jce.SignatureRSA");
-    config.put("signature.ecdsa", "com.jcraft.jsch.jce.SignatureECDSA");
     config.put("keypairgen.dsa",   "com.jcraft.jsch.jce.KeyPairGenDSA");
     config.put("keypairgen.rsa",   "com.jcraft.jsch.jce.KeyPairGenRSA");
     config.put("keypairgen.ecdsa", "com.jcraft.jsch.jce.KeyPairGenECDSA");

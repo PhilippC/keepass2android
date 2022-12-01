@@ -237,6 +237,11 @@
   <string name="sort_moddate">Değiştirme tarihine göre sırala</string>
   <string name="sort_default">Varsayılan düzeni koru</string>
   <string name="special">Özel</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Parola</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Bul</string>
   <string name="search_results">Arama sonuçları</string>
   <string name="search_in">Arama yeri</string>
@@ -295,8 +300,6 @@
   <string name="QuickUnlockHideLength_title">Hızlı Açma kodunun uzunluğunu gizle</string>
   <string name="QuickUnlockHideLength_summary">Etkinse, Hızlı Açma kodunun uzunluğu ekranda görüntülenmez.</string>
   <string name="QuickUnlock_fail">ÇabukAç başarısız oldu: yanlış şifre!</string>
-  <string name="BinaryDirectory_title">Ek dosyalar klasörü</string>
-  <string name="BinaryDirectory_summary">Ek dosyalarının kaydedileceği klasör.</string>
   <string name="SaveAttachmentDialog_title">Ek dosyayı kaydet</string>
   <string name="SaveAttachmentDialog_text">Ek dosyayı kaydedecek konumu seç.</string>
   <string name="SaveAttachmentDialog_save">Dosyaya aktar...</string>
@@ -472,7 +475,6 @@
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Bu depolama türü yalnızca \"Uygulamalar/Keepass2Android\" klasörüne erişim ister. PCloud hesabınızdan mevcut bir veritabanını kullanmak istiyorsanız, lütfen dosyanın bu klasörde olduğundan emin olun.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tüm dosyalar ve paylaşılan dosyalar</string>
@@ -941,6 +943,7 @@
   <string-array name="design_options">
     <item>Aydınlık</item>
     <item>Karanlık</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Dizayn</string>
   <string-array name="ftp_encryption_modes">

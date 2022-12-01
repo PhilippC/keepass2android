@@ -66,16 +66,16 @@ namespace keepass2android
         public override string GetTitle(string key)
         {
             if (key == strVisible)
-                return Application.Context.GetString(Resource.String.Visible_title);
+                return LocaleManager.LocalizedAppContext.GetString(Resource.String.Visible_title);
             if (key == strEnabled)
-                return Application.Context.GetString(Resource.String.child_db_Enabled_title);
+                return LocaleManager.LocalizedAppContext.GetString(Resource.String.child_db_Enabled_title);
             if (key == strUiKeyFile)
-                return Application.Context.GetString(Resource.String.keyfile_heading);
+                return LocaleManager.LocalizedAppContext.GetString(Resource.String.keyfile_heading);
             if (key == strUiDatabaseFile)
-                return Application.Context.GetString(Resource.String.database_file_heading);
+                return LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file_heading);
             if (key.StartsWith(strUiIfDevice))
             {
-                return Application.Context.GetString(Resource.String.if_device_text,new Object[]{key.Substring(strUiIfDevice.Length)});
+                return LocaleManager.LocalizedAppContext.GetString(Resource.String.if_device_text,new Object[]{key.Substring(strUiIfDevice.Length)});
             }
             return key;
         }

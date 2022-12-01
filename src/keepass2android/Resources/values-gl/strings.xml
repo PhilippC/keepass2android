@@ -201,7 +201,7 @@
   <string name="remove_from_filelist">Eliminar</string>
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Raíz</string>
+  <string name="root">Root</string>
   <string name="KeyDerivFunc">Función de derivación de claves</string>
   <string name="rounds">Series de encriptación</string>
   <string name="rounds_explaination">Maior nivel de encriptación proporciona unha protección adicional contra ataques de forza bruta, pero pode retardar a carga e o gardado.</string>
@@ -222,6 +222,11 @@
   <string name="sort_moddate">Ordenar pola data de modificación</string>
   <string name="sort_default">Manter a orde predeterminada</string>
   <string name="special">Especial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Contrasinal</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Atopar o que</string>
   <string name="search_results">Resultados de busca</string>
   <string name="search_in">Buscar en</string>
@@ -276,8 +281,6 @@
   <string name="QuickUnlockHideLength_title">Ocultar lonxitude de QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se activo, a lonxitude do código QuickUnlock non se amosará na pantalla de QuickUnlock.</string>
   <string name="QuickUnlock_fail">Fallou o QuickUnlock: contrasinal incorrecto!</string>
-  <string name="BinaryDirectory_title">Directorio de arquivos adxuntos</string>
-  <string name="BinaryDirectory_summary">Directorio no que se gardarán os arquivos adxuntos.</string>
   <string name="SaveAttachmentDialog_title">Gardar arquivo adxunto</string>
   <string name="SaveAttachmentDialog_text">Seleccione onde gardar o arquivo adxunto.</string>
   <string name="SaveAttachmentDialog_open">Gardar na caché e abrir</string>
@@ -806,6 +809,7 @@ Lanzamento público inicial
   <string-array name="design_options">
     <item>Claro</item>
     <item>Escuro</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Deseño</string>
   <string-array name="ftp_encryption_modes">

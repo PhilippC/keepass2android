@@ -1,4 +1,5 @@
 using Android.Graphics.Drawables;
+using Android.Widget;
 
 namespace keepass2android
 {
@@ -8,13 +9,14 @@ namespace keepass2android
 	class ToggleVisibilityPopupMenuItem : IPopupMenuItem
 	{
 		private readonly EntryActivity _activity;
-		
+        private readonly TextView _valueView;
 
-		public ToggleVisibilityPopupMenuItem(EntryActivity activity)
-		{
-			_activity = activity;
-			
-		}
+
+        public ToggleVisibilityPopupMenuItem(EntryActivity activity, TextView valueView)
+        {
+            _activity = activity;
+            _valueView = valueView;
+        }
 
 		public Drawable Icon 
 		{ 
@@ -30,7 +32,7 @@ namespace keepass2android
 			get
 			{
 				return _activity.Resources.GetString(
-					_activity._showPassword ? 
+					_activity.GetVisibilityForProtectedView(_valueView) ? 
 						Resource.String.menu_hide_password 
 						: Resource.String.show_password);
 			}
@@ -39,7 +41,7 @@ namespace keepass2android
 		
 		public void HandleClick()
 		{
-			_activity.ToggleVisibility();
+			_activity.ToggleVisibility(_valueView);
 		}
 	}
 }

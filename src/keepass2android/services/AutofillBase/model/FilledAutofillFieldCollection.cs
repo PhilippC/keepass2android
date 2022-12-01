@@ -74,8 +74,8 @@ namespace keepass2android.services.AutofillBase.model
 			foreach (string hint in autofillFieldMetadataCollection.AllAutofillCanonicalHints)
 			{
 				foreach (AutofillFieldMetadata autofillFieldMetadata in autofillFieldMetadataCollection.GetFieldsForHint(hint))
-				{
-					FilledAutofillField filledAutofillField;
+                {
+                    FilledAutofillField filledAutofillField;
 					if (!HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))
 					{
 						continue;
@@ -120,7 +120,31 @@ namespace keepass2android.services.AutofillBase.model
 					}
 				}
 			}
-			return setValueAtLeastOnce;
+			/*
+            if (!setValueAtLeastOnce)
+            {
+                Kp2aLog.Log("No value set. Hint keys : " + string.Join(",", HintMap.Keys));
+				foreach (string hint in autofillFieldMetadataCollection.AllAutofillCanonicalHints)
+                {
+                    Kp2aLog.Log("No value set. Hint = " + hint);
+                    foreach (AutofillFieldMetadata autofillFieldMetadata in autofillFieldMetadataCollection
+                        .GetFieldsForHint(hint))
+                    {
+                        Kp2aLog.Log("No value set. fieldForHint = " + autofillFieldMetadata.AutofillId.ToString());
+                        FilledAutofillField filledAutofillField;
+                        if (!HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))
+                        {
+                            Kp2aLog.Log("No value set. Hint map does not contain value, " +
+                                        (filledAutofillField == null));
+                            continue;
+                        }
+
+                        Kp2aLog.Log("autofill type=" + autofillFieldMetadata.AutofillType);
+                    }
+                }
+            }*/
+
+            return setValueAtLeastOnce;
 		}
 
 		/// <summary>

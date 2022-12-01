@@ -246,7 +246,7 @@ namespace keepass2android.Io
 			else
 			{
 				Intent intent = new Intent();
-				activity.IocToIntent(intent, new IOConnectionInfo() { Path = protocolId+"://"});
+				activity.IocToIntent(intent, new IOConnectionInfo() { Path = protocolId+"://", });
 				activity.OnImmediateResult(requestCode, (int) FileStorageResults.FileChooserPrepared, intent);
 			}
 		}

@@ -208,7 +208,7 @@ namespace keepass2android
 
         private void OnOpen(AutoExecItem item)
         {
-            KeeAutoExecExt.AutoOpenEntry(this, item, true);
+            KeeAutoExecExt.AutoOpenEntry(this, item, true, new ActivityLaunchModeSimple());
         }
 
         private void OnEnableCopy(AutoExecItem item)

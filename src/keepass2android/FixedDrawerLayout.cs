@@ -35,7 +35,7 @@ namespace keepass2android
 
 		protected override bool FitSystemWindows(Rect insets)
 		{
-			if (Build.VERSION.SdkInt >= Build.VERSION_CODES.Kitkat)
+			if (Util.IsKitKatOrLater)
 			{
 				// Intentionally do not modify the bottom inset. For some reason, 
 				// if the bottom inset is modified, window resizing stops working.

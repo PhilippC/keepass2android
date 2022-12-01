@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using Android.App;
+using Android.Content.Res;
+using Android.OS;
 using Android.Preferences;
 
 namespace keepass2android
@@ -121,6 +123,15 @@ namespace keepass2android
 			{
 				var prefs = PreferenceManager.GetDefaultSharedPreferences(_activity);
 				string design = prefs.GetString(_activity.GetString(Resource.String.design_key), _activity.GetString(Resource.String.design_default));
+
+                if ((design == "System") && (int)Build.VERSION.SdkInt>=29 && _activity.Resources.Configuration != null)
+                {
+                    UiMode nightModeFlags = ((UiMode)((int)_activity.Resources.Configuration.UiMode & (int)Android.Content.Res.UiMode.NightMask));
+
+                    if (nightModeFlags == UiMode.NightYes)
+                        return true;
+                }
+
 				bool dark = (design == "Dark");
 				return dark;
 			}

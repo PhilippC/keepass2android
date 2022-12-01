@@ -30,7 +30,7 @@ namespace keepass2android.services.Kp2aAutofill
             {
                 return null;
             }
-            //launch FileSelectActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
+            //launch SelectCurrentDbActivity (which is root of the stack (exception: we're even below!)) with the appropriate task.
             //will return the results later
             Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
             //don't show user notifications when an entry is opened.
@@ -136,15 +136,15 @@ namespace keepass2android.services.Kp2aAutofill
                 {PwDefs.PasswordField, new List<string>{View.AutofillHintPassword}},
                 {PwDefs.UrlField, new List<string>{W3cHints.URL}},
                 {
-                    Application.Context.GetString(Resource.String.TemplateField_CreditCard_CVV),
+                    LocaleManager.LocalizedAppContext.GetString(Resource.String.TemplateField_CreditCard_CVV),
                     new List<string>{View.AutofillHintCreditCardSecurityCode}
                 },
                 {
-                    Application.Context.GetString(Resource.String.TemplateField_CreditCard_Owner),
+                    LocaleManager.LocalizedAppContext.GetString(Resource.String.TemplateField_CreditCard_Owner),
                     new List<string>{W3cHints.CC_NAME}
                 },
-                {Application.Context.GetString(Resource.String.TemplateField_Number), new List<string>{View.AutofillHintCreditCardNumber}},
-                {Application.Context.GetString(Resource.String.TemplateField_IdCard_Name), new List<string>{View.AutofillHintName}},
+                {LocaleManager.LocalizedAppContext.GetString(Resource.String.TemplateField_Number), new List<string>{View.AutofillHintCreditCardNumber}},
+                {LocaleManager.LocalizedAppContext.GetString(Resource.String.TemplateField_IdCard_Name), new List<string>{View.AutofillHintName}},
             };
             return result;
         }

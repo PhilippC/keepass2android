@@ -29,6 +29,7 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
+using KeePassLib;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -78,7 +79,7 @@ namespace keepass2android
 
 			SetSupportActionBar(toolbar);
 
-			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+			var collapsingToolbar = FindViewById<Android.Support.Design.Widget.CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
 
 			if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
@@ -107,7 +108,12 @@ namespace keepass2android
 
 			_quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
-		    if (PreferenceManager.GetDefaultSharedPreferences(this)
+			bool useUnlockKeyFromDatabase = 
+                QuickUnlockFromDatabaseEnabled
+				&& FindQuickUnlockEntry() != null;
+			
+
+            if (useUnlockKeyFromDatabase || PreferenceManager.GetDefaultSharedPreferences(this)
 		        .GetBoolean(GetString(Resource.String.QuickUnlockHideLength_key), false))
 		    {
 		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label_secure);
@@ -155,6 +161,15 @@ namespace keepass2android
 
 
 
+        }
+
+        private bool QuickUnlockFromDatabaseEnabled =>
+            PreferenceManager.GetDefaultSharedPreferences(this)
+                .GetBoolean(GetString(Resource.String.QuickUnlockKeyFromDatabase_key), false);
+
+        private static PwEntry FindQuickUnlockEntry()
+        {
+            return App.Kp2a.GetDbForQuickUnlock()?.KpDatabase?.RootGroup?.Entries.SingleOrDefault(e => e.Strings.GetSafe(PwDefs.TitleField).ReadString() == "QuickUnlock");
         }
 
         private const string NumFailedAttemptsKey = "FailedAttempts";
@@ -212,10 +227,8 @@ namespace keepass2android
 			pwd.Text = ExpectedPasswordPart;
 			
 			btn.PostDelayed(() =>
-			{
-			
-				App.Kp2a.UnlockDatabase();
-				Finish();
+            {
+				UnlockAndSyncAndClose();
 			}, 500);
 
 
@@ -327,23 +340,49 @@ namespace keepass2android
 		{
 			var expectedPasswordPart = ExpectedPasswordPart;
 			if (pwd.Text == expectedPasswordPart)
-			{
-				Kp2aLog.Log("QuickUnlock successful!");
-				App.Kp2a.UnlockDatabase();
-			}
+            {
+                UnlockAndSyncAndClose();
+            }
 			else
 			{
 				Kp2aLog.Log("QuickUnlock not successful!");
 				App.Kp2a.Lock(false);
 				Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
+                Finish();
 			}
-			Finish();
+			
 		}
 
-		private string ExpectedPasswordPart
+        private void UnlockAndSyncAndClose()
+        {
+            App.Kp2a.UnlockDatabase();
+
+			if (PreferenceManager.GetDefaultSharedPreferences(this)
+									 .GetBoolean(GetString(Resource.String.SyncAfterQuickUnlock_key), false))
+			{
+				new SyncUtil(this).SynchronizeDatabase(Finish);
+			}
+			else
+				Finish();
+
+			
+            
+        }
+
+        private string ExpectedPasswordPart
 		{
 			get
-			{
+            {
+                if (QuickUnlockFromDatabaseEnabled)
+                {
+                    var quickUnlockEntry = FindQuickUnlockEntry();
+                    if (quickUnlockEntry != null)
+                    {
+                        return quickUnlockEntry.Strings.ReadSafe(PwDefs.PasswordField).ToString();
+                    }
+				}
+
+                
 				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
 				String password = kcpPassword.Password.ReadString();
 
@@ -375,10 +414,11 @@ namespace keepass2android
 
 			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
 			pwd.PostDelayed(() =>
-			{
+            {
+                pwd.RequestFocus();
 				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
 				if (showKeyboard)
-					keyboard.ShowSoftInput(pwd, 0);
+					keyboard.ShowSoftInput(pwd, ShowFlags.Implicit);
 				else
 					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
 			}, 50);

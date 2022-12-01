@@ -19,9 +19,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
-    <string name="english_ime_name">键盘</string>
+    <string name="english_ime_name">==  Keepass2Android 键盘 ==</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">键盘设置</string>
+    <string name="english_ime_settings">USB 键盘设置</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">输入选项</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
@@ -39,11 +39,11 @@
     <!-- Description for hit_correction in landscape -->
     <string name="hit_correction_land_summary">启用输入错误校正</string>
     <!-- Option to automatically correct word on hitting space -->
-    <string name="auto_correction">词语联想</string>
+    <string name="auto_correction">单词联想</string>
     <!-- Description for auto_correction -->
     <string name="auto_correction_summary">自动更正前一个单词</string>
     <!-- Option to enable text prediction -->
-    <string name="prediction">词语联想</string>
+    <string name="prediction">单词联想</string>
     <!-- Category title for text prediction -->
     <string name="prediction_category"> 词语建议设置</string>
     <!-- Description for text prediction -->
@@ -89,7 +89,7 @@
         <item>@string/settings_key_mode_auto_name</item>
     </string-array>
     <!-- Option to enable bigram completion -->
-    <string name="bigram_suggestion">Bigram分词建议</string>
+    <string name="bigram_suggestion">二元语法分词建议</string>
     <!-- Description for auto completion -->
     <string name="bigram_suggestion_summary">使用曾经使用过的词语改进建议</string>
     <!-- Array of prediction modes -->
@@ -152,7 +152,7 @@
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
-    <string name="voice_warning_locale_not_supported">语音输入目前不支持您的语言，但确实可以使用英语。</string>
+    <string name="voice_warning_locale_not_supported">语音输入目前不支持您的语言，但仍然可以使用英语。</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
     <string name="voice_warning_may_not_understand">语音输入是一项使用Google的网络语音识别功能的实验性功能。</string>
@@ -188,7 +188,7 @@
     <!-- Short hint shown in candidate view to explain voice input. -->
     <string name="voice_swipe_hint"><b>提示：</b> 滑动键盘说话。</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
-    <string name="voice_punctuation_hint"><b>提示：</b> 下一次，试着说一些符号\"句号\",\"逗号\"或者\"问号\"。</string>
+    <string name="voice_punctuation_hint"><b>提示：</b> 下一次，请试着说“句号”“逗号”“问号”等标点符号。</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">取消</string>
     <!-- Label on button when an error occurs -->
@@ -224,7 +224,7 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>键盘设置\n</b></font><font size="3">\n</font>触摸 \u0026 按住 <b>\?123\</b> 键。</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
-    <string name="popular_domain_0">"com"</string>
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
     <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->

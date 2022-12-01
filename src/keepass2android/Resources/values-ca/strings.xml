@@ -237,6 +237,11 @@
   <string name="sort_moddate">Ordenar per data modificació</string>
   <string name="sort_default">Mantenir l\'ordre per defecte</string>
   <string name="special">Especial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Contrasenya</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Trobar el que</string>
   <string name="search_results">Resultats de cerca</string>
   <string name="search_in">Cerca a</string>
@@ -294,8 +299,6 @@
   <string name="QuickUnlockHideLength_title">Amagar longitud de DesbloqueigRàpid</string>
   <string name="QuickUnlockHideLength_summary">Si està activat, la longitud del codi de DesbloqueigRàpid no apareix a la pantalla de DesbloqueigRàpid.</string>
   <string name="QuickUnlock_fail">DesbloqueigRàpid ha fallat: Contrasenya incorrecta!</string>
-  <string name="BinaryDirectory_title">Directori d\'arxius adjunts</string>
-  <string name="BinaryDirectory_summary">Directori on es guarden els fitxers adjunts.</string>
   <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
   <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
   <string name="SaveAttachmentDialog_save">Exportar a fitxer...</string>
@@ -471,7 +474,6 @@
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, heu de seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció de nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Aquest tipus d’emmagatzematge només sol·licitarà accés a la carpeta \"Applications/Keepass2Android\". Si voleu utilitzar una base de dades existent del vostre compte de PCloud, assegureu-vos que el fitxer es col·loca en aquesta carpeta.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tots els fitxers i fitxers compartits</string>
@@ -912,6 +914,7 @@ Revisió inicial per al públic
   <string-array name="design_options">
     <item>Clar</item>
     <item>Fosc</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Disseny</string>
   <string-array name="ftp_encryption_modes">

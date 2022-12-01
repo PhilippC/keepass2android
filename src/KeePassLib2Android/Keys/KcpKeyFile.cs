@@ -127,10 +127,9 @@ namespace KeePassLib.Keys
 #endif
 			}
 
-			byte[] pbKey = LoadXmlKeyFile(pbFileData);
-			if(pbKey == null) pbKey = LoadKeyFile(pbFileData);
+            byte[] pbKey = LoadKeyFile(pbFileData);
 
-			if(pbKey == null) throw new InvalidOperationException();
+			if (pbKey == null) throw new InvalidOperationException();
 
 			m_ioc = iocKeyFile;
 			m_pbKeyData = new ProtectedBinary(true, pbKey);
@@ -150,54 +149,60 @@ namespace KeePassLib.Keys
 		// }
 
 
-		private static byte[] LoadKeyFile(byte[] pbFileData)
-		{
-			if(pbFileData == null) { Debug.Assert(false); return null; }
+        private static byte[] LoadKeyFile(byte[] pbFileData)
+        {
+            if (pbFileData == null) throw new ArgumentNullException("pbFileData");
 
-			int iLength = pbFileData.Length;
+            byte[] pbKey = LoadKeyFileXml(pbFileData);
+            if (pbKey != null) return pbKey;
 
-			byte[] pbKey = null;
-			if(iLength == 32) pbKey = LoadBinaryKey32(pbFileData);
-			else if(iLength == 64) pbKey = LoadHexKey32(pbFileData);
+            int cb = pbFileData.Length;
+            if (cb == 32) return pbFileData;
 
-			if(pbKey == null)
-				pbKey = CryptoUtil.HashSha256(pbFileData);
+            if (cb == 64)
+            {
+                pbKey = LoadKeyFileHex(pbFileData);
+                if (pbKey != null) return pbKey;
+            }
 
-			return pbKey;
-		}
+            return CryptoUtil.HashSha256(pbFileData);
+        }
 
-		private static byte[] LoadBinaryKey32(byte[] pbFileData)
-		{
-			if(pbFileData == null) { Debug.Assert(false); return null; }
-			if(pbFileData.Length != 32) { Debug.Assert(false); return null; }
+        private static byte[] LoadKeyFileXml(byte[] pbFileData)
+        {
+            KfxFile kf;
+            try
+            {
+                using (MemoryStream ms = new MemoryStream(pbFileData, false))
+                {
+                    kf = KfxFile.Load(ms);
+                }
+            }
+            catch (Exception) { return null; }
 
-			return pbFileData;
-		}
+            // We have a syntactically valid XML key file;
+            // failing to verify the key should throw an exception
+            return ((kf != null) ? kf.GetKey() : null);
+        }
 
-		private static byte[] LoadHexKey32(byte[] pbFileData)
-		{
-			if(pbFileData == null) { Debug.Assert(false); return null; }
-			if(pbFileData.Length != 64) { Debug.Assert(false); return null; }
+        private static byte[] LoadKeyFileHex(byte[] pbFileData)
+        {
+            if (pbFileData == null) { Debug.Assert(false); return null; }
 
-			try
-			{
-				if(!StrUtil.IsHexString(pbFileData, true)) return null;
+            try
+            {
+                int cc = pbFileData.Length;
+                if ((cc & 1) != 0) { Debug.Assert(false); return null; }
 
-				string strHex = StrUtil.Utf8.GetString(pbFileData);
-				byte[] pbKey = MemUtil.HexStringToByteArray(strHex);
-				if((pbKey == null) || (pbKey.Length != 32))
-				{
-					Debug.Assert(false);
-					return null;
-				}
+                if (!StrUtil.IsHexString(pbFileData, true)) return null;
 
-				return pbKey;
-			}
-			catch(Exception) { Debug.Assert(false); }
+                string strHex = StrUtil.Utf8.GetString(pbFileData);
+                return MemUtil.HexStringToByteArray(strHex);
+            }
+            catch (Exception) { Debug.Assert(false); }
 
-			return null;
-		}
-
+            return null;
+        }
 		/// <summary>
 		/// Create a new, random key-file.
 		/// </summary>

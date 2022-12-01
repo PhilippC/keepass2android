@@ -7,6 +7,8 @@ import com.dropbox.core.DbxOAuth1Upgrader;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.InvalidAccessTokenException;
 import com.dropbox.core.android.Auth;
+import com.dropbox.core.json.JsonReadException;
+import com.dropbox.core.oauth.DbxCredential;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.http.OkHttp3Requestor;
 import com.dropbox.core.v2.files.DeleteErrorException;
@@ -25,6 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -39,17 +42,27 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+class DbxRequestConfigFactory {
+    private static DbxRequestConfig sDbxRequestConfig;
+
+    public static DbxRequestConfig getRequestConfig() {
+        if (sDbxRequestConfig == null) {
+            sDbxRequestConfig = DbxRequestConfig.newBuilder("Keepass2Android")
+                    .withHttpRequestor(new OkHttp3Requestor(OkHttp3Requestor.defaultOkHttpClient()))
+                    .build();
+        }
+        return sDbxRequestConfig;
+    }
+}
 /**
  * Created by Philipp on 18.11.2016.
  */
 public class DropboxV2Storage extends JavaFileStorageBase
 {
+    private List<String> scope = new ArrayList<String>(Arrays.asList("account_info.read", "files.metadata.write","files.content.write","files.content.read"));
+
     private DbxAppInfo appInfo;
 
-    public void bla()
-    {
-
-    }
     DbxRequestConfig requestConfig = DbxRequestConfig.newBuilder("kp2a")
             .withHttpRequestor(new OkHttp3Requestor(OkHttp3Requestor.defaultOkHttpClient()))
             .build();
@@ -60,6 +73,8 @@ public class DropboxV2Storage extends JavaFileStorageBase
     final static private String ACCESS_KEY_V1_NAME = "ACCESS_KEY";
     final static private String ACCESS_SECRET_V1_NAME = "ACCESS_SECRET";
     final static private String ACCESS_TOKEN_NAME = "ACCESS_TOKEN_V2";
+    //key for serialized dropbox credentials (used to store access + refresh tokens as long-living access tokens (v2) have been deprecated
+    final static private String SERIALIZED_CREDENTIALS = "SERIALIZED_CREDENTIALS";
 
     private boolean mLoggedIn = false;
     private Context mContext;
@@ -101,7 +116,9 @@ public class DropboxV2Storage extends JavaFileStorageBase
     }
 
     private void initialize(Context ctx, String _appKey, String _appSecret,
-                            boolean clearKeysOnStart, AccessType accessType) {
+                            boolean clearKeysOnStart, AccessType accessType)
+    {
+        Log.d("KP2A","Initializing Dropbox storage. Update for use with short-lived access tokens.");
         appInfo = new DbxAppInfo(_appKey,_appSecret);
         mContext = ctx;
 
@@ -117,7 +134,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
     public boolean tryConnect(Activity activity)
     {
         if (!mLoggedIn)
-            Auth.startOAuth2Authentication(activity, appInfo.getKey());
+            Auth.startOAuth2PKCE(activity, appInfo.getKey(), DbxRequestConfigFactory.getRequestConfig(), scope);
         return mLoggedIn;
     }
 
@@ -175,7 +192,30 @@ public class DropboxV2Storage extends JavaFileStorageBase
     {
         ByteArrayInputStream bis = new ByteArrayInputStream(data);
         try {
-            path = removeProtocol(path);
+
+            //try to get the file id from the path and use that to create the uploadBuilder. This should preserve the case of the path.
+            String id = null;
+
+            try {
+                id = getFileEntry(path).userData;
+            }
+            catch (Exception e)
+            {
+                //ignore. file might not exist yet.
+            }
+
+            if (id != null && id.length() > 0)
+            {
+                path = id;
+            }
+            else
+            {
+                path = removeProtocol(path);
+            }
+
+
+
+
 
             dbxClient.files().uploadBuilder(path).withMode(WriteMode.OVERWRITE).uploadAndFinish(bis);
 
@@ -252,6 +292,22 @@ public class DropboxV2Storage extends JavaFileStorageBase
     }
 
 
+    private DbxCredential getStoredCredential(){
+        SharedPreferences prefs = mContext.getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
+        String serialized = prefs.getString(SERIALIZED_CREDENTIALS, null);
+        if (serialized == null)
+            return null;
+        try {
+            return DbxCredential.Reader.readFully(serialized);
+        } catch (JsonReadException e) {
+            return null;
+        }
+    }
+
+
+
+    //stores a long-living access token from API v2
+    //New tokens of this kind will no longer be issued, but we have a v1-updater which converts v1 to v2 tokens so we should still be able to store them.
     private void storeKey(String v2token) {
         Log.d(TAG, "Storing Dropbox accessToken");
         // Save the access key for later
@@ -269,6 +325,18 @@ public class DropboxV2Storage extends JavaFileStorageBase
     }
 
     private void buildSession() {
+
+        DbxCredential credential = getStoredCredential();
+        if (credential != null)
+        {
+            credential = new DbxCredential(credential.getAccessToken(), -1L, credential.getRefreshToken(), credential.getAppKey());
+            dbxClient = new DbxClientV2(DbxRequestConfigFactory.getRequestConfig(), credential);
+
+            setLoggedIn(true);
+
+            return;
+        }
+
 
         String v2Token = getKeyV2();
 
@@ -371,6 +439,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
             fileEntry.sizeInBytes = fm.getSize();
             fileEntry.isDirectory = false;
             fileEntry.lastModifiedTime = fm.getServerModified().getTime();
+            fileEntry.userData = fm.getId();
         }
         else if (e instanceof DeletedMetadata)
         {
@@ -383,6 +452,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
 
         fileEntry.path = getProtocolId()+"://"+ e.getPathLower();
         fileEntry.displayName = e.getName();
+
         //Log.d("JFS","fileEntry="+fileEntry);
         //Log.d("JFS","Ok. Dir="+fileEntry.isDirectory);
         return fileEntry;
@@ -548,13 +618,13 @@ public class DropboxV2Storage extends JavaFileStorageBase
         if (storageSetupAct.getState().containsKey("hasStartedAuth")) {
             Log.d("KP2AJ", "auth started");
 
-            String v2Token = Auth.getOAuth2Token();
+            DbxCredential dbxCredential = Auth.getDbxCredential();
 
 
-            if (v2Token != null) {
+            if (dbxCredential != null) {
                 Log.d("KP2AJ", "auth successful");
                 try {
-                    storeKey(v2Token);
+                    storeCredentials(dbxCredential);
                     buildSession();
                     finishActivityWithSuccess(activity);
                     return;
@@ -574,10 +644,23 @@ public class DropboxV2Storage extends JavaFileStorageBase
             ((Activity) activity).finish();
         } else {
             Log.d("KP2AJ", "Starting auth");
-            Auth.startOAuth2Authentication((Activity) activity, appInfo.getKey());
+            Auth.startOAuth2PKCE((Activity) activity, appInfo.getKey(), DbxRequestConfigFactory.getRequestConfig(), scope);
+            Log.d("KP2AJ", "Started auth");
             storageSetupAct.getState().putBoolean("hasStartedAuth", true);
+            Log.d("KP2AJ", "add state flag");
 
         }
+    }
+
+    private void storeCredentials(DbxCredential dbxCredential)
+    {
+        Log.d(TAG, "Storing Dropbox credentials");
+        // Save the access key for later
+        SharedPreferences prefs = mContext.getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
+        Editor edit = prefs.edit();
+        edit.putString(SERIALIZED_CREDENTIALS, dbxCredential.toString());
+        edit.commit();
+
     }
 
     @Override

@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Algoritmi</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="app_name_nonet">Keepass2Android offline-tila</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Aika-katkaisu</string>
   <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
@@ -31,6 +31,9 @@
   <string name="ShowGroupnameInSearchResult_resume">Näytä hakutuloksissa ryhmän nimi merkinnän otsikon alla. Hyödyllinen, jos useammalla merkinnällä on sama nimi.</string>
   <string name="NavigationToGroupCompleted_message">Nyt näytettävä ryhmä on: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Poista automaattinen täyttö %1$s: ltä</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Näyttää luettelon sovelluksista ja sivustoista, joille AutoFill on poistettu käytöstä</string>
+  <string name="OfferSaveCredentials_summary">Jos käytössä, Android kysyy haluatko tallentaa käyttäjätunnukset sen jälkeen, kun olet syöttänyt tiedot automaattisesti täytettäviin kenttiin.</string>
+  <string name="OfferSaveCredentials_title">Tarjoa käyttäjätunnusten tallentamista</string>
   <string name="ShowGroupInEntry_title">Näytä ryhmän nimi merkinnässä</string>
   <string name="unknown_uri_scheme">Keepass2Android ei voi käsitellä saatua URI-osoitetta %1$s. Ota yhteyttä kehittäjään!</string>
   <string name="Entry_singular">Yksi merkintä</string>
@@ -47,6 +50,7 @@
   <string name="fingerprint_prefs">Sormenjälkitunnistus</string>
   <string name="import_db_prefs">Tuo tietokanta sisäiseen kansioon</string>
   <string name="import_keyfile_prefs">Tuo avaintiedosto sisäiseen kansioon</string>
+  <string name="export_keyfile_prefs">Vie avaintiedosto sisäisestä kansiosta</string>
   <string name="keyboardswitch_prefs">Näppäimistön vaihtaminen</string>
   <string name="OnlyAvailableForLocalFiles">Saatavilla vain paikallisille tiedostoille.</string>
   <string name="FileIsInInternalDirectory">Tiedosto on tallennettu sisäiseen hakemistoon.</string>
@@ -58,12 +62,16 @@
   <string name="brackets">Hakasulkeet</string>
   <string name="cancel">Peruuta</string>
   <string name="Ok">Ok</string>
+  <string name="disable_sensor">Poista sormenjälkitunnistin käytöstä</string>
+  <string name="enable_sensor">Ota sormenjälkitunnistin käyttöön</string>
   <string name="ClearClipboard">Leikepöytä tyhjennetty.</string>
   <string name="clipboard_timeout">Leikepöydän aikakatkaisu</string>
   <string name="clipboard_timeout_summary">Viive ennen kopioidun käyttäjänimen tai salasanan poistamista leikepöydältä</string>
   <string name="copy_username">Valitse kopioidaksesi käyttäjänimi leikepöydälle</string>
   <string name="copy_password">Valitse ja kopioi salasana leikepöydälle</string>
+  <string name="copy_totp">Valitse kopioidaksesi TOTP leikepöydälle</string>
   <string name="available_through_keyboard">Merkintä on saatavana KP2A näppäimistöllä</string>
+  <string name="app_language_pref_title">Sovelluksen kieli</string>
   <string name="entry_is_available">on saatavilla</string>
   <string name="not_possible_im_picker">Näppäimistön valinta -ikkunaa ei voitu avata. Valitse näppäimistö manuaalisesti.</string>
   <string name="please_activate_keyboard">Ota käyttöön Keepass2Android-näppäimistö Sovellus-asetuksissa.</string>
@@ -75,9 +83,25 @@
   <string name="disclaimer_formal">Keepass2Androidilla ei ole takuuta; Tämä on ilmaisohjelmisto ja sitä saa levittää GPL-lisenssin version 2 tai sitä uudemman version lisenssiehtojen mukaisesti.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopioi leikepöydälle</string>
+  <string name="SystemLanguage">Järjestelmän kieli</string>
+  <string name="fingerprint_description">Ole hyvä ja tunnistaudu jatkaaksesi</string>
+  <string name="fingerprint_fatal">Biometrisen avauksen käyttöönotto ei onnistunut:</string>
+  <string name="fingerprint_not_recognized">Biometrinen tunnistus epäonnistui. Yritä uudelleen</string>
+  <string name="fingerprint_success">Biometrinen tunnistus onnistui</string>
+  <string name="fingerprint_os_error">Biometrinen avaus vaatii Android 6.0 tai uudemman.</string>
+  <string name="fingerprint_hardware_error">Biometristä laitteistoa ei löydetty.</string>
+  <string name="fingerprint_no_enrolled">Et ole määrittänyt biometristä todennusta tällä laitteella. Siirry järjestelmän asetuksiin ensin.</string>
   <string name="disable_fingerprint_unlock">Poista sormenjälkitunnistus käytöstä</string>
   <string name="enable_fingerprint_unlock">Käytä sormenjälkitunnistusta</string>
   <string name="enable_fingerprint_quickunlock">Käytä sormenjälkitunnistusta Pika-avauksessa</string>
+  <string name="fingerprint_unlock_failed">Biometrinen avaus epäonnistui. Android-käyttöjärjestelmä mitätöi salauksen purkuavaimen. Yleensä näin tapahtuu, jos biometrisiä todennus tai tietoturva-asetuksia muutetaan. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Tietokannan avaaminen epäonnistui: Virheellinen komposiittiavain. Biometrinen avaus poistettiin, koska ilmeisesti tallennettu pääsalasana ei ole enää voimassa. </string>
+  <string name="fingerprint_reenable">Ota Biometrinen avaus uudelleen käyttöön uutta pääsalasanaa varten.</string>
+  <string name="fingerprint_reenable2">Ole hyvä ja avaa lukitus salasanallasi ja ota Biometrinen avaus uudelleen käyttöön tietokannan asetuksista.</string>
+  <string name="FingerprintInitFailed">Biometrisen tunnistuksen alustus epäonnistui. </string>
+  <string name="FingerprintSetupFailed">Tietojen salaaminen epäonnistui. Tämä voi tapahtua, jos lisäät tai poistat sormenjälkiä järjestelmäasetuksista, kun Keepass2Android odottaa sormenjälkeäsi.</string>
+  <string name="enable_fingerprint_unlock_Info">Tämä tallentaa pääsalasanasi tälle laitteelle, salattuna Android-avaimella ja suojattuna biometrisellä tunnistautumisella. Mahdollistaa tietokannan avauksen vain biometrisesti.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Mahdollistaa biometrisen tunnistautumisen QuickUnlock-koodin sijaan. Ei tallenna mitään pääsalasanaan liittyviä tietoja.</string>
   <string name="enter_filename">Kirjoita tietokannan tiedostonimi</string>
   <string name="entry_accessed">Käytetty</string>
   <string name="entry_cancel">Peruuta</string>
@@ -98,6 +122,7 @@
   <string name="entry_user_name">Käyttäjänimi</string>
   <string name="entry_extra_strings">Lisäkentät</string>
   <string name="entry_binaries">Liitetiedostot</string>
+  <string name="error_can_not_handle_uri">Keepass2Android ei osaa käsitellä tätä URI-osoitetta.</string>
   <string name="error_could_not_create_group">Virhe luotaessa ryhmää.</string>
   <string name="error_could_not_create_parent">Ylemmän tason hakemistoa ei voitu luoda.</string>
   <string name="error_database_exists">Tiedosto on jo olemassa.</string>
@@ -114,6 +139,7 @@
   <string name="error_rounds_not_number">Kierrosmäärän tulee olla numero.</string>
   <string name="error_param_not_number">Parametrin tulee olla numero.</string>
   <string name="error_title_required">Otsikko on pakollinen.</string>
+  <string name="error_wrong_length">Kirjoita Pituus-kenttään positiivinen kokonaisluku</string>
   <string name="FileNotFound">Tiedostoa ei löydy.</string>
   <string name="file_browser">Tiedostoselain</string>
   <string name="generate_password">Luo salasana</string>
@@ -191,7 +217,7 @@
   <string name="remove_from_filelist">Poista</string>
   <string name="edit">Muokkaa</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Juurihakemisto</string>
+  <string name="root">Juuri</string>
   <string name="AutoReturnFromQuery_title">Palaa automaattisesti kyselyikkunasta</string>
   <string name="AutoReturnFromQuery_summary">Haettaessa merkintää sovellukselle tai sivustolle: palaa automaattisesti kyselyikkunasta jos tietokannasta löytyy vain yksi osuma.</string>
   <string name="KeyDerivFunc">Avaimenjohtamisfunktio</string>
@@ -205,6 +231,7 @@
   <string name="saving_database">Tallennetaan tietokantaa...</string>
   <string name="exporting_database">Viedään tietokantaa...</string>
   <string name="export_database_successful">Tietokannan vienti onnistui!</string>
+  <string name="export_keyfile_successful">Avaintiedosto viety onnistuneesti!</string>
   <string name="space">Välilyönti</string>
   <string name="search_label">Hae</string>
   <string name="show_password">Näytä salasana</string>
@@ -214,6 +241,25 @@
   <string name="sort_moddate">Järjestä muokkauspäivämäärän mukaan</string>
   <string name="sort_default">Säilytä oletusjärjestys</string>
   <string name="special">Erikoismerkit</string>
+  <string name="special_extended">Laajennettu Erikoisuus</string>
+  <string name="at_least_one_from_each_group">Vähintään yksi kustakin ryhmästä</string>
+  <string name="exclude_lookalike">Älä huomioi samankaltaisia merkkejä</string>
+  <string name="password_generation_profile">Profiili</string>
+  <string name="save_password_generation_profile_text">Syötä tallennettavan profiilin nimi. Kirjoita olemassa oleva nimi korvataksesi.</string>
+  <string name="hint_wordcount">Tunnuslauseen sanamäärä</string>
+  <string name="hint_wordseparator">Sanaerotin</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Salasana</item>
+    <item>Tunnuslause</item>
+    <item>Tunnuslause + Salasana</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>pienet kirjaimet</item>
+    <item>SUURET KIRJAIMET</item>
+    <item>Ensimmäinen Merkki Isoina Kirjaimina</item>
+  </string-array>
+  <string name="custom_settings">Mukautetut asetukset</string>
+  <string name="passphrase_capitalization">Tunnuslause isoina kirjaimina</string>
   <string name="search_hint">Kirjoita haku</string>
   <string name="search_results">Hakutulokset</string>
   <string name="search_in">Haku</string>
@@ -243,6 +289,11 @@
   <string name="ShowUsernameInList_summary">Näytä käyttäjätunnukset merkintöjen otsikoiden alla. Hyödyllinen TAN-merkinnöissä, tai kun käyttäjätunnuksia on useita.</string>
   <string name="RememberRecentFiles_title">Muista tietokannat</string>
   <string name="RememberRecentFiles_summary">Muista edelliset tietokannat, ja näytä ne aloitusnäkymässä.</string>
+  <string name="NoDalVerification_title">Ei DAL-tarkastusta</string>
+  <string name="NoDalVerification_summary">Poistaa käytöstä verkkotunnuksen ja sovelluspaketin täsmäämisen tarkistuksen</string>
+  <string name="InlineSuggestions_title">Integroi näppäimistön kanssa</string>
+  <string name="InlineSuggestions_summary">Näyttää automaattisen täytön ehdotukset näppäimistön sisäkkäisinä valintoina (jos syöte on tuettu)</string>
+  <string name="requires_android11">Vaatii Android 11 tai uudemman</string>
   <string name="kp2a_findUrl">Etsi salasana</string>
   <string name="excludeExpiredEntries">Sivuuta vanhentuneet merkinnät</string>
   <string name="search_options">Asetukset</string>
@@ -271,8 +322,6 @@
   <string name="QuickUnlockHideLength_title">Piilota pika-avauskoodin pituus</string>
   <string name="QuickUnlockHideLength_summary">Jos käytössä, pika-avauskoodin pituutta ei näytetä pika-avausnäytössä.</string>
   <string name="QuickUnlock_fail">Pika-avaus epäonnistui: väärä salasana!</string>
-  <string name="BinaryDirectory_title">Tiedostoliitteiden hakemisto</string>
-  <string name="BinaryDirectory_summary">Liitetiedostojen tallennushakemisto.</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
   <string name="SaveAttachmentDialog_save">Vie hakemistoon...</string>
@@ -290,6 +339,8 @@
   <string name="protection">Suojattu kenttä</string>
   <string name="add_binary">Lisää liitetiedosto</string>
   <string name="add_extra_string">Lisää lisärivi</string>
+  <string name="configure_totp">Määritä TOTP</string>
+  <string name="totp_secret_key">Salainen avain</string>
   <string name="delete_extra_string">Poista lisärivi</string>
   <string name="database_loaded_quickunlock_enabled">%1$s lukittu. Pika-avaus käytössä.</string>
   <string name="database_loaded_unlocked">%1$s avattu.</string>
@@ -846,6 +897,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string-array name="design_options">
     <item>Vaalea</item>
     <item>Tumma</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Ulkoasu</string>
   <string-array name="ftp_encryption_modes">

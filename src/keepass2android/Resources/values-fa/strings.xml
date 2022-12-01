@@ -202,6 +202,11 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="sort_moddate">ترتیب بر اساس تاریخ تغییر</string>
   <string name="sort_default">حفظ چینش پیشفرض</string>
   <string name="special">ویژه</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>گذرواژه</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">دنبال چه می‌گردید</string>
   <string name="search_results">نتایج جست‌وجو</string>
   <string name="search_in">جست‌وجو در</string>
@@ -255,8 +260,6 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="QuickUnlockHideLength_title">پنهان‌کردن طول کد زودگشایی</string>
   <string name="QuickUnlockHideLength_summary">اگر فعال باشد، طول کد زودگشایی در صفحهٔ زودگشایی نشان داده نمی‌شود.</string>
   <string name="QuickUnlock_fail">زودگشایی ناموفق بود: گذرواژه اشتباه است!</string>
-  <string name="BinaryDirectory_title">پوشهٔ پیوست‌های فایلی</string>
-  <string name="BinaryDirectory_summary">پوشه‌ای که پیوست‌ها در آن ذخیره می‌شود.</string>
   <string name="SaveAttachmentDialog_title">ذخیرهٔ پیوست</string>
   <string name="SaveAttachmentDialog_text">لطفاً محل ذخیره‌سازی پیوست را انتخاب کنید.</string>
   <string name="SaveAttachmentDialog_open">در نهانگاه ذخیره و سپس باز شود</string>
@@ -648,6 +651,7 @@ mycloud.me.com/webdav/‎ )</string>
   <string-array name="design_options">
     <item>روشن</item>
     <item>تیره</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">پوسته</string>
   <string-array name="ftp_encryption_modes">

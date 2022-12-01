@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Алгоритъм</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Офлайн</string>
+  <string name="app_name_nonet">Keepass2Android офлайн</string>
   <string name="short_app_name_nonet">KP2A Офлайн</string>
   <string name="show_kill_app">Бутон-Затваряне</string>
   <string name="ShowGroupnameInSearchResult_title">Показване на името на групата в резултата от търсенето</string>
@@ -39,6 +39,7 @@
   <string name="export_prefs">Експортиране на база данни...</string>
   <string name="import_db_prefs">Импортиране на БД във вътрешна папка</string>
   <string name="import_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
+  <string name="export_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
   <string name="keyboardswitch_prefs">Превключване на клавиатурата</string>
   <string name="OnlyAvailableForLocalFiles">Достъпно само за локални файлове.</string>
   <string name="FileIsInInternalDirectory">Файлът се съхранява във вътрешна папка</string>
@@ -197,6 +198,11 @@
   <string name="sort_moddate">Сортирай по дата на модификация</string>
   <string name="sort_default">Запази ред по подразбиране</string>
   <string name="special">Специални</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Парола</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Търси</string>
   <string name="search_results">Резултати от търсенето</string>
   <string name="search_in">Търсене в</string>
@@ -250,8 +256,6 @@
   <string name="QuickUnlockHideLength_title">Скрий дължината на \"Бързо отключване\".</string>
   <string name="QuickUnlockHideLength_summary">При активация, дължината на кодът за \"Бързо отключване\" не се показва върху полето за \"Бързо отключване\". </string>
   <string name="QuickUnlock_fail">Бързо отключване НЕУСПЕШНО: невярна парола!</string>
-  <string name="BinaryDirectory_title">Папка с приложени файлове</string>
-  <string name="BinaryDirectory_summary">Папка където се записват приложените файлове.</string>
   <string name="SaveAttachmentDialog_title">Запази приложен файл</string>
   <string name="SaveAttachmentDialog_text">Моля изберете къде да се запише приложения файл.</string>
   <string name="SaveAttachmentDialog_open">Запази в кеша и отвори</string>

@@ -176,6 +176,7 @@ namespace keepass2android
 
         public void StopListening()
         {
+            Kp2aLog.Log("Fingerprint: StopListening " + (_biometricPrompt != null ? " having prompt " : " without prompt"));
             _biometricAuthCallbackAdapter?.IgnoreNextError();
             _biometricPrompt?.CancelAuthentication();
         }
@@ -272,7 +273,24 @@ namespace keepass2android
             try
             {
                 _keystore.Load(null);
+                var aliases = _keystore.Aliases();
+                if (aliases == null)
+                {
+                    Kp2aLog.Log("KS: no aliases");
+                }
+                else
+                {
+                    while (aliases.HasMoreElements)
+                    {
+                        var o = aliases.NextElement();
+                        Kp2aLog.Log("alias: " + o?.ToString());
+                    }
+                    Kp2aLog.Log("KS: end aliases");
+
+                }
                 var key = _keystore.GetKey(GetAlias(_keyId), null);
+                if (key == null)
+                    throw new Exception("Failed to init cipher for fingerprint Init: key is null");
                 var ivParams = new IvParameterSpec(_iv);
                 _cipher.Init(CipherMode.DecryptMode, key, ivParams);
 
@@ -286,27 +304,27 @@ namespace keepass2android
             }
             catch (KeyStoreException e)
             {
-                throw new RuntimeException(FailedToInitCipher, e);
+                throw new RuntimeException(FailedToInitCipher + " (keystore)", e);
             }
             catch (CertificateException e)
             {
-                throw new RuntimeException(FailedToInitCipher, e);
+                throw new RuntimeException(FailedToInitCipher + " (CertificateException)", e);
             }
             catch (UnrecoverableKeyException e)
             {
-                throw new RuntimeException(FailedToInitCipher, e);
+                throw new RuntimeException(FailedToInitCipher + " (UnrecoverableKeyException)", e);
             }
             catch (IOException e)
             {
-                throw new RuntimeException(FailedToInitCipher, e);
+                throw new RuntimeException(FailedToInitCipher + " (IOException)", e);
             }
             catch (NoSuchAlgorithmException e)
             {
-                throw new RuntimeException(FailedToInitCipher, e);
+                throw new RuntimeException(FailedToInitCipher + " (NoSuchAlgorithmException)", e);
             }
             catch (InvalidKeyException e)
             {
-                throw new RuntimeException(FailedToInitCipher, e);
+                throw new RuntimeException(FailedToInitCipher + " (InvalidKeyException)" + e.ToString(), e);
             }
         }
 
@@ -349,14 +367,19 @@ namespace keepass2android
             try
             {
                 _keystore.Load(null);
-                _keyGen.Init(new KeyGenParameterSpec.Builder(GetAlias(_keyId),
-                    KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
+                KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(GetAlias(_keyId),
+                        KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
                     .SetBlockModes(KeyProperties.BlockModeCbc)
                     // Require the user to authenticate with biometry to authorize every use
                     // of the key
                     .SetEncryptionPaddings(KeyProperties.EncryptionPaddingPkcs7)
-                    .SetUserAuthenticationRequired(true)
+                    .SetUserAuthenticationRequired(true);
+                
+                if ((int)Build.VERSION.SdkInt >= 24)
+                    builder.SetInvalidatedByBiometricEnrollment(true);
 
+                _keyGen.Init(
+                    builder
                     .Build());
                 _keyGen.GenerateKey();
             }

@@ -11,20 +11,54 @@ namespace keepass2android
 	class Kp2aTotp
 	{
 
-		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[] { new TrayTotpPluginAdapter(), new KeeOtpPluginAdapter(), new KeeWebOtpPluginAdapter() };
+		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
+        {
+            new TrayTotpPluginAdapter(), 
+            new KeeOtpPluginAdapter(), 
+            new KeeWebOtpPluginAdapter(),
+            new Keepass2TotpPluginAdapter(),
+        };
 
-        public ITotpPluginAdapter TryGetAdapter(PwEntryOutput entry)
+
+        public TotpData TryGetTotpData(PwEntryOutput entry)
         {
             if (entry == null)
                 return null;
             foreach (ITotpPluginAdapter adapter in _pluginAdapters)
             {
-                TotpData totpData = adapter.GetTotpData(App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), Application.Context, false);
-                if (totpData.IsTotpEnry)
+                TotpData totpData = adapter.GetTotpData(entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString()), LocaleManager.LocalizedAppContext, false);
+                if (totpData.IsTotpEntry)
                 {
-                    return adapter;
+                    return totpData;
                 }
             }
+
+            return null;
+        }
+
+        public ITotpPluginAdapter TryGetAdapter(PwEntryOutput entry)
+        {
+            if (entry == null)
+                return null;
+
+            try
+            {
+                foreach (ITotpPluginAdapter adapter in _pluginAdapters)
+                {
+                    TotpData totpData = adapter.GetTotpData(
+                        App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
+                            pair => pair.Value.ReadString()), LocaleManager.LocalizedAppContext, false);
+                    if (totpData.IsTotpEntry)
+                    {
+                        return adapter;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+            
 
             return null;
         }
@@ -33,7 +67,7 @@ namespace keepass2android
         {
             var adapter = TryGetAdapter(App.Kp2a.LastOpenedEntry);
             if (adapter != null)
-                new UpdateTotpTimerTask(Application.Context, adapter).Run();
+                new UpdateTotpTimerTask(LocaleManager.LocalizedAppContext, adapter).Run();
         }
 	}
 }

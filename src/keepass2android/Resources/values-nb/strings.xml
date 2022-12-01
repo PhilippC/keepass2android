@@ -176,7 +176,7 @@
   <string name="remove_from_filelist">Fjern</string>
   <string name="edit">Rediger</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Rot</string>
+  <string name="root">Toppnivå</string>
   <string name="KeyDerivFunc">Nøkkelavledningsfunksjon</string>
   <string name="rounds">Krypteringsomganger</string>
   <string name="rounds_explaination">Flere krypteringsomganger gir bedre beskyttelse mot rå-makt-angrep, men kan også gjøre lasting og lagring mye tregere.</string>
@@ -197,6 +197,11 @@
   <string name="sort_moddate">Sorter etter endringsdato</string>
   <string name="sort_default">Behold standardrekkefølgen</string>
   <string name="special">Spesial</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Passord</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Søk etter</string>
   <string name="search_results">Søkeresultater</string>
   <string name="search_in">Søk i</string>
@@ -250,8 +255,6 @@
   <string name="QuickUnlockHideLength_title">Skjul QuickUnlock-lengde</string>
   <string name="QuickUnlockHideLength_summary">Dersom aktivert, vil ikke lengden på QuickUnlock-koden vises på skjermbildet for QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock mislyktes: feil passord.</string>
-  <string name="BinaryDirectory_title">Filvedleggsmappe</string>
-  <string name="BinaryDirectory_summary">Mappen der filvedlegg lagres.</string>
   <string name="SaveAttachmentDialog_title">Lagre vedlegg</string>
   <string name="SaveAttachmentDialog_text">Velg hvor du vil lagre vedlegget.</string>
   <string name="SaveAttachmentDialog_open">Lagre til hurtiglager og åpne</string>
@@ -644,6 +647,7 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   <string-array name="design_options">
     <item>Lyst</item>
     <item>Mørkt</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Utseende</string>
   <string-array name="ftp_encryption_modes">

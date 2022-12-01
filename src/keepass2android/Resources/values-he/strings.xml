@@ -18,7 +18,7 @@
   <string name="algorithm_colon">אלגוריתם</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android במצב לא מקוון</string>
+  <string name="app_name_nonet">Keepass2Android Offline (גרסה לא מקוונת)</string>
   <string name="short_app_name_nonet">KP2A במצב לא מקוון</string>
   <string name="app_timeout_summary">פרק זמן לפני נעילת מסד הנתונים כאשר היישום אינו פעיל.</string>
   <string name="kill_app_label">הפסק יישום</string>
@@ -191,7 +191,7 @@
   <string name="remove_from_filelist">הסר</string>
   <string name="edit">עריכה</string>
   <string name="rijndael">Rijndael (AES)</string>
-  <string name="root">Root</string>
+  <string name="root">שורש</string>
   <string name="KeyDerivFunc">פונקציה לגזירת מפתח</string>
   <string name="rounds">סיבובי הצפנה</string>
   <string name="rounds_explaination">יותר סיבובי הצפנה מספקים הגנה נוספת נגד מתקפת כוח-גס, אבל יכולים להאט משמעותית טעינה ושמירה.</string>
@@ -200,6 +200,11 @@
   <string name="argon2parallelism">מקביליות עבור Argon 2</string>
   <string name="database_name">שם מסד הנתונים</string>
   <string name="search_label">חיפוש</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>סיסמה</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="select_other_entry">בחר ערך אחר</string>
   <string name="further_authors">תודה לכותבי הקוד שתרמו: %1$s.</string>
   <string name="designers">תודה לעיצוב הסמלים והממשק על ידי %1$s.</string>
@@ -238,8 +243,6 @@
   <string name="QuickUnlockLength_title">אורך המפתח של QuickUnlock</string>
   <string name="QuickUnlockLength_summary">מספר התווים המקסימלי שישמש כסיסמת הפתיחה המהירה QuickUnlock.</string>
   <string name="QuickUnlock_fail">פתיחה מהירה נכשלה: סיסמא שגויה!</string>
-  <string name="BinaryDirectory_title">תיקיה לקבצים מצורפים</string>
-  <string name="BinaryDirectory_summary">תיקיה בה יישמרו קבצים מצורפים.</string>
   <string name="SaveAttachmentDialog_title">שמירת קובץ מצורף</string>
   <string name="SaveAttachmentDialog_text">בחרו היכן לשמור את הקובץ המצורף.</string>
   <string name="SaveAttachmentDialog_open">שמירה בזיכרון זמני ופתיחת הקובץ</string>

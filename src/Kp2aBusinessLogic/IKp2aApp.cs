@@ -119,7 +119,7 @@ namespace keepass2android
 		/// </summary>
 		IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache);
 
-		void TriggerReload(Context context);
+		void TriggerReload(Context context, Action<bool> actionOnResult /*if not null, called when the user selected yes (true) or no (false)*/);
 
 		
 		bool CheckForDuplicateUuids { get; }

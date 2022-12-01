@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
@@ -33,6 +34,18 @@ namespace keepass2android
             FindViewById<Button>(Resource.Id.btn_goto_settings).Click += (sender, args) =>
             {
                 AppSettingsActivity.Launch(this);
+            };
+            FindViewById<Button>(Resource.Id.disable_secure_screen_check).Click += (sender, args) =>
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                prefs.Edit()
+                    .PutBoolean("no_secure_display_check", true)
+                    .Commit();
+                Finish();
+            };
+            FindViewById<Button>(Resource.Id.btn_close).Click += (sender, args) =>
+            {
+                Finish();
             };
 
             var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);

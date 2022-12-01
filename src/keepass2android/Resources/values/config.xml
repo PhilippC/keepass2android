@@ -35,12 +35,13 @@
 
   <string name="app_name_debug">KP2ADbg</string>
   <string name="library_name"></string>
+  <string name="QuickUnlockKeyFromDatabase_key">QuickUnlockKeyFromDatabase_key</string>
     <string name="default_file_path">/keepass/keepass.kdbx</string>
     <string name="donate_url"><![CDATA[https://philipp.crocoll.net/donate.php?lang=%1$s&app=%2$s]]></string>
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>
 	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski, gilbsgilbs, Chih-Hsuan Yen, DDoSolitary, marcoDallas</string>
 	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
-  <string name="supporter_names">Arno Welzel</string>
+  <string name="supporter_names">Arno Welzel, Sebastián Ramírez, A. Finkhäuser, Makoto Mizukami</string>
     <string name="issues">https://github.com/PhilippC/keepass2android/issues</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
@@ -50,6 +51,9 @@
 
   <!--  Preference settings -->
   <string name="AutoReturnFromQuery_key">AutoReturnFromQuery_key</string>
+  <string name="AlwaysMergeOnConflict_key">AlwaysMergeOnConflict</string>
+  <string name="NoDalVerification_key">NoDalVerification_key</string>
+  <string name="InlineSuggestions_key">InlineSuggestions_key</string>
   <string name="algorithm_key">algorithm</string>
     <string name="app_key">app</string>
     <string name="app_timeout_key">app_timeout_key</string>
@@ -62,9 +66,12 @@
 	<string name="master_pwd_key">change_master_pwd</string>
     <string name="keyfile_key">keyfile</string>
     <string name="maskpass_key">maskpass</string>
+  <string name="masktotp_key">masktotp</string>
+  <string name="NoAutofillDisabling_key">NoAutofillDisabling</string>
     <string name="omitbackup_key">omitbackup</string>    
     <string name="list_size_key">list_size</string>
 	<string name="design_key">design_key</string>
+  <string name="app_language_pref_key">app_language_pref_key</string>
 	<string name="sort_key_old">sort_key</string>
 	<string name="sort_key">sort_key_new</string>
 	<string name="sortgroups_key">sortgroups_key</string>
@@ -74,9 +81,10 @@
 	<string name="RememberRecentFiles_key">RememberRecentFiles_key</string>
     <string name="default_username_key">defaultUsername</string>
     <string name="database_name_key">databaseName</string>
-    <string name="BinaryDirectory_key">binaryDirectory</string>
+    
     <string name="BinaryDirectory_default">/mnt/sdcard/keepass2android/binaries/</string>
     <bool name="maskpass_default">true</bool>
+    <bool name="masktotp_default">true</bool>
     <bool name="keyfile_default">true</bool>
     <bool name="omitbackup_default">true</bool>
     <bool name="TanExpiresOnUse_default">true</bool>
@@ -176,10 +184,17 @@
     	<item>28</item>
     </string-array>
 
-	<string name="design_default">Light</string>
+  <string-array name="totp_algorithms">
+    <item>SHA-1</item>
+    <item>SHA-256</item>
+    <item>SHA-512</item>
+  </string-array>
+
+	<string name="design_default">System</string>
 	<string-array name="design_values">
 		<item>Light</item>
 		<item>Dark</item>
+    <item>System</item>
 	</string-array>
 	
 	<string name="AcceptAllServerCertificates_default">WARN</string>
@@ -194,6 +209,8 @@
 
 	<string name="PreloadDatabaseEnabled_key">PreloadDatabaseEnabled</string>
 	<bool name="PreloadDatabaseEnabled_default">true</bool>
+
+  <string name="SyncAfterQuickUnlock_key">SyncAfterQuickUnlock_key</string>
 
 	<string name="ClearPasswordOnLeave_key">ClearPasswordOnLeave</string>
 

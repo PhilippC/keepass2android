@@ -44,7 +44,7 @@
     <string name="afc_pmsg_filename_is_invalid">Filnavnet \"%1$s\" er ugyldigt</string>
     <string name="afc_pmsg_max_file_count_allowed">… har for mange filer; maks. tilladt: %1$,d</string>
     <string name="afc_pmsg_unknown_error">Ukendt fejl: %1$s</string>
-    <string name="afc_root">Root</string>
+    <string name="afc_root">Rod</string>
     <string name="afc_title_advanced_selection">Vælg…</string>
     <string name="afc_title_confirmation">Bekræftelse</string>
     <string name="afc_title_date">Dato</string>

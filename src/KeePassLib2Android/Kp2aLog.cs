@@ -118,5 +118,10 @@ namespace keepass2android
 			sendIntent.SetType("text/plain");
 			ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
 		}
-	}
+
+        public static void LogTask(object task, string activityName)
+        {
+			Log($"Task in activity {activityName} changed to {task?.GetType()?.Name ?? "null"}");
+        }
+    }
 }

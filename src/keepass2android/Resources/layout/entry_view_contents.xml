@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/entry_table"
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
@@ -348,32 +349,7 @@
           style="@style/EntryItem" />
     </LinearLayout>
   </LinearLayout>
-  <LinearLayout
-    android:id="@+id/entryfield_container_modified"
-            style="@style/EntryEditSingleLine_container">
-    <ImageView
-        style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_modified" />
-
-    <LinearLayout
-        
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="vertical">
-      <!-- Modified -->
-      <TextView
-          android:id="@+id/entry_modified_label"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/entry_modified"
-          style="@style/EntryFieldHeader" />
-      <TextView
-          android:id="@+id/entry_modified"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          style="@style/EntryItem" />
-    </LinearLayout>
-  </LinearLayout>
+  
   <LinearLayout
     android:id="@+id/entryfield_container_expires"
             style="@style/EntryEditSingleLine_container">
@@ -400,4 +376,77 @@
           style="@style/EntryItem" />
     </LinearLayout>
   </LinearLayout>
+  
+  
+  <LinearLayout
+    android:id="@+id/entryfield_container_modified"
+            style="@style/EntryEditSingleLine_container">
+    <ImageView
+        style="@style/EntryEditSingleLine_ImageView"
+        android:src="@drawable/ic_entry_modified" />
+
+    <LinearLayout
+        
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+      <!-- Modified -->
+      <TextView
+          android:id="@+id/entry_modified_label"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/entry_modified"
+          style="@style/EntryFieldHeader" />
+      <TextView
+          android:id="@+id/entry_modified"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          style="@style/EntryItem" />
+		  
+		<Button android:id="@+id/btn_restore_history" 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:drawableLeft="@drawable/ic_entry_history"
+			android:text="@string/restore_history"
+			
+			/>
+			
+			<Button android:id="@+id/btn_remove_history" 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:drawableLeft="@android:drawable/ic_menu_delete"
+			android:text="@string/remove_history"
+			
+			/>
+    </LinearLayout>
+  </LinearLayout>
+  
+  <LinearLayout
+    android:id="@+id/entry_history_container"
+            style="@style/EntryEditSingleLine_container">
+    <ImageView
+        style="@style/EntryEditSingleLine_ImageView"
+        android:src="@drawable/ic_entry_history" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+
+      <!-- previous versions-->
+      <TextView
+        
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/entry_history"
+          style="@style/EntryFieldHeader" />
+      <LinearLayout
+          android:id="@+id/previous_versions"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical" />
+    </LinearLayout>
+  </LinearLayout>
+  
+		
 </LinearLayout>

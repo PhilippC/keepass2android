@@ -1,11 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="162" 
-			android:versionName="1.08c-r1" 
+			android:versionCode="186" 
+			android:versionName="1.09d-r0" 
 			package="keepass2android.keepass2android_nonet"
+			xmlns:tools="http://schemas.android.com/tools"
 			android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="29" />
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="26" />
+			
+			
+  <queries>
+    <!-- Specific intents and packages we query for (required since Android 11) -->
+    <package android:name="keepass2android.plugin.keyboardswap2" />
+    <package android:name="keepass2android.AncientIconSet" />
+	<package android:name="com.dropbox.android" />
+
+    <intent>
+        <action android:name="android.intent.action.OPEN_DOCUMENT" />
+        <data android:mimeType="*/*" />
+      </intent>
+	  
+	  <intent>
+      <action android:name="android.intent.action.GET_DOCUMENT" />
+      <data android:mimeType="*/*" />
+    </intent>
+
+    <intent>
+      <action android:name="com.dropbox.android.AUTHENTICATE_V2" />
+    </intent>
+
+    <intent>
+      <action android:name="com.yubichallenge.NFCActivity.CHALLENGE" />
+    </intent>
+
+    <intent>
+      <action android:name="net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE" />
+    </intent>
+
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+	  </intent>
+  </queries>			
+			
+	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="30" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher_offline" android:label="KP2A entry search" android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher_offline" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_nonet.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
 	<application 
@@ -59,7 +94,6 @@
         <action android:name="kp2a.action.SelectCurrentDbActivity" />
         <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
-	  
 
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.SEND" />
@@ -206,9 +240,11 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
   <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-
   <uses-permission android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalFileBrowsing" />
   <uses-permission android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" />
 	<!-- Samsung Pass permission -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+	
+	<!-- READ_PHONE_STATE seems to come from some library or so, not clear where. We don't want to have it, remove it: -->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
 </manifest>

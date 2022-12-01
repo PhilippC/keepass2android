@@ -25,7 +25,7 @@
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">Esta aplicação não tem permissão para criar ficheiros/pastas</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Esta aplicação não tem permissão para apagar ficheiros/pastas</string>
     <string name="afc_msg_cancelled">Cancelada</string>
-    <string name="afc_msg_cannot_connect_to_file_provider_service">Não foi possível ligar ao serviço provedor de ficheiros</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">Não foi possível ligar ao serviço fornecedor de ficheiros</string>
     <string name="afc_msg_cannot_create_new_folder_here">Não pode criar uma nova pasta aqui</string>
     <string name="afc_msg_cannot_save_a_file_here">Não pode guardar um ficheiro aqui</string>
     <string name="afc_msg_done">Terminado</string>
@@ -35,8 +35,8 @@
     <string name="afc_phone">Telefone</string>
     <string name="afc_pmsg_cannot_access_dir">Não foi possível aceder a \"%1$s\"</string>
     <string name="afc_pmsg_cannot_create_folder">Não foi possível criar a pasta \"%1$s\"</string>
-    <string name="afc_pmsg_cannot_delete_file">Não foi possível apagar %1$s \"%2$s\"</string>
-    <string name="afc_pmsg_confirm_delete_file">Tem certeza de que quer apagar %1$s \"%2$s\"?</string>
+    <string name="afc_pmsg_cannot_delete_file">Não foi possível eliminar %1$s \"%2$s\"</string>
+    <string name="afc_pmsg_confirm_delete_file">Tem a certeza de que quer eliminar %1$s \"%2$s\"?</string>
     <string name="afc_pmsg_confirm_replace_file">O ficheiro \"%1$s\" já existe.\n\nPretende substituí-lo?</string>
     <string name="afc_pmsg_deleting_file">A apagar %1$s \"%2$s\"…</string>
     <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" foi apagado</string>
@@ -44,7 +44,7 @@
     <string name="afc_pmsg_filename_is_invalid">O nome de ficheiro \"%1$s\" é inválido</string>
     <string name="afc_pmsg_max_file_count_allowed">…tem mais ficheiros, máximo permitido %1$,d</string>
     <string name="afc_pmsg_unknown_error">Erro desconhecido: %1$s</string>
-    <string name="afc_root">Raiz</string>
+    <string name="afc_root">Root</string>
     <string name="afc_title_advanced_selection">Selecionar…</string>
     <string name="afc_title_confirmation">Confirmação</string>
     <string name="afc_title_date">Data</string>
@@ -55,4 +55,16 @@
     <string name="afc_title_size">Tamanho</string>
     <string name="afc_title_sort_by">Ordenar por…</string>
     <string name="afc_yesterday">Ontem</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Escolher pasta…</item>
+        <item quantity="other">Escolher pastas…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Escolher ficheiro...</item>
+        <item quantity="other">Escolher ficheiros...</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Escolher ficheiro/pasta…</item>
+        <item quantity="other">Escolher ficheiros/pastas…</item>
+    </plurals>
 </resources>

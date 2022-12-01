@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Αλγόριθμος</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android χωρίς σύνδεση</string>
+  <string name="app_name_nonet">Keepass2Android εκτός σύνδεσης</string>
   <string name="short_app_name_nonet">KP2A χωρίς σύνδεση</string>
   <string name="app_timeout">Λήξη χρονικού ορίου εφαρμογής</string>
   <string name="app_timeout_summary">Χρόνος πριν το κλείδωμα της βάσης δεδομένων όταν η εφαρμογή είναι ανενεργή.</string>
@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Βιομετρικό ξεκλείδωμα</string>
   <string name="import_db_prefs">Εισαγωγή βάσης δεδομένων σε εσωτερικό φάκελο</string>
   <string name="import_keyfile_prefs">Εισαγωγή αρχείου κλειδιού σε εσωτερικό φάκελο</string>
+  <string name="export_keyfile_prefs">Εξαγωγή αρχείου κλειδιού από εσωτερικό φάκελο</string>
   <string name="keyboardswitch_prefs">Εναλλαγή πληκτρολογίου</string>
   <string name="OnlyAvailableForLocalFiles">Διατίθεται μόνο για τοπικά αρχεία.</string>
   <string name="FileIsInInternalDirectory">Το αρχείο αποθηκεύεται σε εσωτερικό φάκελο.</string>
@@ -70,6 +71,7 @@
   <string name="copy_password">Επιλέξτε για αντιγραφή του συνθηματικού στο πρόχειρο</string>
   <string name="copy_totp">Επιλογή αντιγραφής TOTP στο clipboard</string>
   <string name="available_through_keyboard">Η καταχώριση είναι διαθέσιμη μέσω πληκτρολογίου KP2A</string>
+  <string name="app_language_pref_title">Γλώσσα εφαρμογής</string>
   <string name="entry_is_available">είναι διαθέσιμο</string>
   <string name="not_possible_im_picker">Αδύνατο το άνοιγμα διαλόγου για επιλογή μεθόδου εισαγωγής. Ενεργοποιήστε το πληκτρολόγιο με μη αυτόματο τρόπο.</string>
   <string name="please_activate_keyboard">Ενεργοποιήστε το πληκτρολόγιο Keepass2Android στις ρυθμίσεις συστήματος.</string>
@@ -81,6 +83,7 @@
   <string name="disclaimer_formal">Το Keepass2Android έρχεται με ΑΠΟΛΥΤΩΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ. Είναι ελεύθερο λογισμικό και μπορείτε να το αναδιανέμετε υπό τους όρους της GPL έκδοση 2 ή νεότερη.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
+  <string name="SystemLanguage">Γλώσσα συστήματος</string>
   <string name="fingerprint_description">Χρειάζεται αυθεντικοποίηση για να συνεχίσετε</string>
   <string name="fingerprint_fatal">Αποτυχία βιομετρικού ξεκειδώματος:</string>
   <string name="fingerprint_not_recognized">Η βιομετρική αυθεντικοποίηση απέτυχε. Δοκιμάστε ξανά</string>
@@ -228,6 +231,7 @@
   <string name="saving_database">Αποθήκευση βάσης δεδομένων…</string>
   <string name="exporting_database">Εξαγωγή βάσης δεδομένων…</string>
   <string name="export_database_successful">Η βάση δεδομένων εξήχθηκε με επιτυχία!</string>
+  <string name="export_keyfile_successful">Το αρχείο κλειδί εξήχθη επιτυχώς!</string>
   <string name="space">Διάστημα</string>
   <string name="search_label">Αναζήτηση</string>
   <string name="show_password">Εμφάνιση συνθηματικού</string>
@@ -237,6 +241,25 @@
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
   <string name="special">Ειδικό</string>
+  <string name="special_extended">Εκτεταμένοι Ειδικοί</string>
+  <string name="at_least_one_from_each_group">Τουλάχιστον ένα από κάθε ομάδα</string>
+  <string name="exclude_lookalike">Εξαίρεση παρόμοιων χαρακτήρων</string>
+  <string name="password_generation_profile">Προφίλ</string>
+  <string name="save_password_generation_profile_text">Εισάγετε το όνομα του προφίλ που θα αποθηκευτεί. Εισάγετε ένα υπάρχον όνομα για αντικατάσταση.</string>
+  <string name="hint_wordcount">Αριθμός λέξεων συνθηματικής φράσης</string>
+  <string name="hint_wordseparator">Διαχωριστικό λέξεων</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Συνθηματικό</item>
+    <item>Συνθηματική φράση</item>
+    <item>Συνθηματική φράση + συνθηματικό</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>πεζά</item>
+    <item>ΚΕΦΑΛΑΙΑ</item>
+    <item>Πρώτος χαρακτήρας κεφαλαίος</item>
+  </string-array>
+  <string name="custom_settings">Προσαρμοσμένες ρυθμίσεις</string>
+  <string name="passphrase_capitalization">Συνθηματική φράση στα κεφαλαία</string>
   <string name="search_hint">Βρείτε τι</string>
   <string name="search_results">Αποτελέσματα αναζήτησης</string>
   <string name="search_in">Αναζήτηση σε</string>
@@ -254,6 +277,7 @@
   <string name="author">Το Keepass2Android έχει αναπτυχθεί από τον Philipp Crocoll.</string>
   <string name="further_authors">Ευχαριστίες για συνεισφορά κώδικα από %1$s.</string>
   <string name="designers">Ευχαριστίες για συνεισφορά εικονιδίων και σχεδίασης από %1$s.</string>
+  <string name="supporters">Χάρη στην οικονομική υποστήριξη από τον/την %1$s.</string>
   <string name="credit_plugin1">Το πρόσθετο Twofish Cipher για το Keepass αναπτύχθηκε από τον Scott Greenberg και περιλαμβάνεται στο KP2A.</string>
   <string name="credit_android_filechooser">Το android-filechooser αναπτύχθηκε από τον by Hai Bison</string>
   <string name="credit_keyboard">Το πληκτρολόγιο KP2A βασίζεται στο πληκτρολόγιο Gingerbread του Android Open Source Project και χρησιμοποιεί κώδικα του Plugin Manager από το Hacker\'s Keyboard του Klaus Weidner.</string>
@@ -266,6 +290,11 @@
   <string name="ShowUsernameInList_summary">Προβολή ονομάτων χρήστη κάτω από τους τίτλους καταχωρίσεων. Χρήσιμο για πολλαπλούς λογαριασμούς ή TAN.</string>
   <string name="RememberRecentFiles_title">Απομνημόνευση βάσεων δεδομένων</string>
   <string name="RememberRecentFiles_summary">Απομνημονεύει τις πρόσφατα ανοιγμένες βάσεις δεδομένων και τις προβάλει στην οθόνη Άνοιγμα βάσης δεδομένων.</string>
+  <string name="NoDalVerification_title">Καμία επαλήθευση DAL</string>
+  <string name="NoDalVerification_summary">Απενεργοποιεί τον έλεγχο αν ταιριάζει ο τομέας και το πακέτο εφαρμογής</string>
+  <string name="InlineSuggestions_title">Ενσωμάτωση με πληκτρολόγιο</string>
+  <string name="InlineSuggestions_summary">Δείχνει τις προτάσεις αυτόματης συμπλήρωσης ως γραμμές μέσα στο πρηκτρολόγιο</string>
+  <string name="requires_android11">Απαιτείται Android 11 ή νεότερη έκδοση</string>
   <string name="kp2a_findUrl">Εύρεση συνθηματικού</string>
   <string name="excludeExpiredEntries">Εξαίρεση ληγμένων εγγραφών</string>
   <string name="search_options">Επιλογές</string>
@@ -294,8 +323,6 @@
   <string name="QuickUnlockHideLength_title">Απόκρυψη μήκους QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Αν ενεργοποιηθεί, αποκρύπτει το μήκος του κωδικού QuickUnlock στη σχετική οθόνη.</string>
   <string name="QuickUnlock_fail">Αποτυχία QuickUnlock: λανθασμένο συνθηματικό!</string>
-  <string name="BinaryDirectory_title">Φάκελος για συνημμένα αρχεία</string>
-  <string name="BinaryDirectory_summary">Φάκελος όπου αποθηκεύονται τα συνημμένα αρχεία.</string>
   <string name="SaveAttachmentDialog_title">Αποθήκευση συνημμένου</string>
   <string name="SaveAttachmentDialog_text">Επιλέξτε πού θα αποθηκεύσετε το συνημμένο.</string>
   <string name="SaveAttachmentDialog_save">Εξαγωγή σε αρχείο...</string>
@@ -313,6 +340,13 @@
   <string name="protection">Προστατευμένο πεδίο</string>
   <string name="add_binary">Προσθήκη συνημμένου αρχείου</string>
   <string name="add_extra_string">Προσθήκη πρόσθετου κειμένου</string>
+  <string name="configure_totp">Ρύθμιση TOTP</string>
+  <string name="totp_secret_key">Μυστικό κλειδί</string>
+  <string name="totp_encoding_rfc6238">Προεπιλεγμένες ρυθμίσεις τεκμηρίου RFC6238</string>
+  <string name="totp_encoding_steam">Ρυθμίσεις τεκμηρίου Steam</string>
+  <string name="totp_encoding_custom">Προσαρμοσμένες ρυθμίσεις τεκμηρίου</string>
+  <string name="totp_time_step">Χρονικό βήμα</string>
+  <string name="totp_length">Μήκος κωδικού</string>
   <string name="delete_extra_string">Διαγραφή πρόσθετου κειμένου</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: κλειδωμένο. Ενεργοποιήθηκε το QuickUnlock.</string>
   <string name="database_loaded_unlocked">%1$s: Ξεκλείδωτο.</string>
@@ -375,6 +409,8 @@
   <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακηθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανα-ανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
   <string name="PreloadDatabaseEnabled_title">Προ-φόρτωση αρχείου βάσης δεδομένων</string>
   <string name="PreloadDatabaseEnabled_summary">Ξεκίνημα φόρτωσης στο παρασκήνιο ή λήψη του αρχείου της βάσης δεδομένων κατά την εισαγωγή του συνθηματικού.</string>
+  <string name="SyncAfterQuickUnlock_title">Συγχρονισμός μετά το QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Η βάση δεδομένων θα συγχρονιστεί με το απομακρυσμένο αρχείο μετά το QuickUnlock.</string>
   <string name="AskOverwriteBinary">Θέλετε να αντικαταστήσετε το υπάρχον δυαδικό αρχείο με το ίδιο όνομα;</string>
   <string name="AskOverwriteBinary_title">Αντικατάσταση υπάρχοντος δυαδικού αρχείου;</string>
   <string name="AskOverwriteBinary_yes">Αντικατάσταση</string>
@@ -471,7 +507,7 @@
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση στο φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από το λογαριασμό PCloud, βεβαιωθείτε ότι το αρχείο είναι τοποθετημένο σε αυτό τον φάκελο.</string>
+  <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση μόνο στον pCloud φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από τον pCloud λογαριασμό σας, βεβαιωθείτε ότι το αρχείο έχει τοποθετηθεί σε αυτόν τον φάκελο.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Όλα τα αρχεία και τα κοινά αρχεία</string>
@@ -628,6 +664,52 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα εγγραφή.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
+  <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με τον κύριο κωδικό πρόσβασης!</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>Διόρθωση της εξαφανιζόμενης προτροπής αυτόματης συμπλήρωσης στο Firefox</item>
+    <item>Ενσωμάτωση προτάσεων αυτόματης συμπλήρωσης με πληκτρολόγιο (απαιτεί Android 11+)</item>
+    <item>Επιτρέπεται η αλλαγή γλώσσας της εφαρμογής στις ρυθμίσεις</item>
+    <item>Προσθήκη επιλογής για συγχρονισμό της βάσης δεδομένων μετά το QuickUnlock</item>
+    <item>Διόρθωση σφάλματος: Να μην γίνονται πεζά τα ονόματα αρχείων κατά την αποθήκευση στο Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
+    <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρήσεις</item>
+    <item>Βελτιωμένη γεννήτρια κωδικού πρόσβασης: Προστέθηκε υποστήριξη συνθηματικής φράσης, περισσότερες επιλογές, προφίλ και εκτίμηση ισχύος κωδικού πρόσβασης</item>
+    <item>Βελτιώσεις στην αυτόματη συμπλήρωση (σταθερό αναδυόμενο παράθυρο δεν εμφανίζεται στο Chrome, καλύτερη υποστήριξη υποτομέα)</item>
+    <item>Βελτιώσεις στην υλοποίηση του OneDrive: δεν υπάρχει πλέον όριο μεγέθους, ούτε περιττές αιτήσεις ελέγχου ταυτότητας</item>
+    <item>Προστέθηκε επιλογή για να επιλέξετε το φωτεινό/σκούρο θέμα από τις ρυθμίσεις του συστήματος, συμπεριλαμβανομένων των νυχτερινών πλάνων, απαιτεί Android 10+</item>
+    <item>Ενημέρωση της υλοποίησης του Dropbox ώστε να υποστηρίζει τη νέα μέθοδο αυθεντικοποίησης</item>
+    <item>Η νέα ρύθμιση ξεκλειδώματος δακτυλικών αποτυπωμάτων θα ακυρωθεί μετά την προσθήκη δακτυλικού αποτυπώματος στις ρυθμίσεις συστήματος για αυξημένη ασφάλεια.</item>
+    <item>Επιτρέπει το άνοιγμα αρχείων μέσω του επιλογέα αρχείων συστήματος, αγνοώντας τη σημαία ανάγνωση-μόνον</item>
+    <item>Επιτρέπει την έναρξη μετακίνησης καταχωρήσεων από το μενού προβολής καταχωρήσεων</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Προσθήκη υποστήριξης για νέα μορφή αρχείου κλειδιού που εισήχθη στο Keepass 2.47</item>
+    <item>Προσθήκη υποστήριξης για το Argon2id ως λειτουργία παραγωγής κλειδιού</item>
+    <item>Βελτιωμένη συμβατότητα αυτόματης συμπλήρωσης με Firefox και Chrome</item>
+    <item>Βελτίωση υποστήριξης καταχωρήσεων TOTP από προγράμματα υπολογιστών</item>
+    <item>Ενημέρωση pCloud SDK για να διορθωθεί το πρόβλημα ελέγχου ταυτότητας</item>
+    <item>Ενημέρωση Jsch στην έκδοση 0.1.55</item>
+    <item>Προσθήκη μενού στην οθόνη επιλογής βάσης δεδομένων</item>
+    <item>Επιτρέψτε την εξαγωγή εισαγόμενων αρχείων-κλειδιών</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Δεν αποθηκεύει πλέον ονόματα πακέτων εφαρμογών Android στο πεδίο URL</item>
+    <item>Βελτίωση της συμπεριφοράς κλειδώματος - δεν εμφανίζει πλέον βιομετρική προτροπή αμέσως μετά το ξεκλείδωμα</item>
+    <item>Ενημέρωση OkHttp για υποστήριξη HTTP/2</item>
+    <item>Εμφάνιση μεταφράσεων που λείπουν</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Εξαναγκασμός HTTP/1.1 λόγω προβλήματος με την εφαρμογή HTTP/2 του OkHttp</item>
+    <item>Βελτίωση του διαλόγου πληκτρολογίου στο Android 9+</item>
+    <item>Αλλάζει τις συσχετίσεις αρχείων της εφαρμογής για να αποφύγετε κάποιες περιττές συσχετίσεις</item>
+    <item>Βεβαιωθείτε ότι το κείμενο του κωδικού πρόσβασης δεν είναι κρυμμένο πίσω από το εικονίδιο με τα μάτια</item>
+    <item>Αλλάζει τη συμπεριφορά αυτόματης συμπλήρωσης ειδοποιώντας κατά τη συμπλήρωση διαπιστευτηρίων για έναν τομέα σε μια άγνωστη εφαρμογή</item>
+    <item>Ενημέρωση στη βιβλιοθήκη FTP</item>
+    <item>Διορθώνει ενδεχόμενα κρασαρίσματα της εφαρμογής</item>
+    <item>Ελάσσονες διορθώσεις</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Αλλαγή προς FluentFTP για παροχή υποστήριξης TLS 1.2</item>
     <item>Αλλαγή στo BiometricPrompt API για βελτίωση της εμπειρίας χρήστη με ξεκλείδωμα δακτυλικού αποτυπώματος και χρήση αναγνώρισης προσώπου, πχ στο Pixel 4.</item>
@@ -910,6 +992,7 @@ Initial public release
   <string-array name="design_options">
     <item>Ανοιχτό</item>
     <item>Σκοτεινό</item>
+    <item>Ρυθμίσεις συστήματος</item>
   </string-array>
   <string name="design_title">Σχεδιασμός</string>
   <string-array name="ftp_encryption_modes">
@@ -963,4 +1046,11 @@ Initial public release
   <string name="emergency_infotext_head">Είστε προετοιμασμένοι για έκτακτα περιστατικά;</string>
   <string name="emergency_infotext_main">Αναρωτηθήκατε τι συμβαίνει αν δεν είνα δυνατόν να προσπελάσετε τη βάση δεδομένων με τα συνθηματικά σας; Ή στην περίπτωση που έχετε ένα ατύχημα; Συνιστάται να μοιράζεστε το κύριο συνθηματικό σας με κάποιο έμπιστο άτομο. Διαφορετικά, κανένας δεν θα προσπελάσει στα συνθηματικά σας.</string>
   <string name="no_secure_display">Η τρέχουσα επιλεγμένη οθόνη δεν αναγνωρίζεται ως ασφαλής. Αυτό σημαίνει ότι άλλες εφαρμογές μπορούν να πάρουν screenshots. Το Keepass2Android είναι ρυθμισμένο να προβάλει ευαίσθητη πληροφορία μόνον σε ασφαλείς οθόνες. Αλλάξτε σε ασφαλή οθόνη (πχ αποσυνδέοντας μια οθόνη HDMI) ή αλλάξτε τις ρυθμίσεις της εφαρμογής.</string>
+  <string name="disable_secure_screen_check">Απενεργοποιήστε αυτό το μήνυμα</string>
+  <string name="switch_ime_text">Ενεργοποιήστε το πληκτρολόγιο Keepass2Android.</string>
+  <string name="switch_ime_reopen">Δοκιμάστε ξανά</string>
+  <string name="AutofillWarning_title">Ειδοποίηση ασφαλείας: Μη αναγνωρίσιμο domain ή σύνδεσμος εφαρμογής</string>
+  <string name="AutofillWarning_Intro">Πρόκειται να εισάγετε διαπιστευτήρια για τον τομέα \"%1$s\" στην εφαρμογή \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Εάν εμπιστεύεστε ότι το \"%2$s\" ανήκει στο \"%1$s\" ή εμπιστεύεστε ότι η εφαρμογή \"%2$s\" δεν καταχράται τα διαπιστευτήρια (πχ. επειδή είναι μια αξιόπιστη εφαρμογή περιήγησης), είναι εντάξει να συνεχίσετε. Αν όχι, ακυρώστε.</string>
+  <string name="AutofillWarning_trustAsBrowser">Αποδοχή πάντα στο \"%1$s\"</string>
 </resources>

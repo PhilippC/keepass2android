@@ -20,12 +20,19 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Suspendarea aplicației</string>
+  <string name="app_timeout_summary">Timp înainte de blocarea bazei de date atunci când aplicația este inactivă.</string>
+  <string name="kill_app_label">Oprește procesul aplicației</string>
   <string name="show_kill_app">Buton de închidere</string>
+  <string name="show_kill_app_summary">Afișează un buton pentru închiderea aplicației în ecranul cu parole (pentru utilizatori paranoici)</string>
   <string name="application">Aplicație</string>
   <string name="application_settings">Setări aplicație</string>
   <string name="ShowGroupnameInSearchResult_title">Arată numele grupului în rezultatele căutării</string>
   <string name="ShowGroupnameInSearchResult_resume">Arată numele grupului sub titlul înregistrărilor în rezultatele căutării. Folositor dacă mai multe înregistrări au același nume.</string>
   <string name="NavigationToGroupCompleted_message">Grupul afișat este acum: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Obiective de completare automată dezactivate</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Vizualizează o listă de aplicații și site-uri pentru care completarea automată a fost dezactivată</string>
+  <string name="OfferSaveCredentials_summary">Dacă este activat, Android va întreba dacă vrei să salvezi credențialele după ce ai introdus manual datele în câmpurile care pot fi completate automat.</string>
+  <string name="OfferSaveCredentials_title">Oferă salvarea datelor de autentificare</string>
   <string name="ShowGroupInEntry_title">Arată numele grupului în vizualizarea înregistrărilor</string>
   <string name="unknown_uri_scheme">Scuze! Keepass2Android nu poate interpreta URI-ul returnat %1$s. Te rog să contactezi producătorul!</string>
   <string name="Entry_singular">O inregistrare</string>
@@ -42,6 +49,7 @@
   <string name="fingerprint_prefs">Deblocare biometrică</string>
   <string name="import_db_prefs">Importă baza de date în folderul intern</string>
   <string name="import_keyfile_prefs">Importă fișierul cheie în folderul intern</string>
+  <string name="export_keyfile_prefs">Importă fișierul cheie din folderul intern</string>
   <string name="keyboardswitch_prefs">Comutare tastaturi</string>
   <string name="OnlyAvailableForLocalFiles">Valabil doar pentru fișiere locale.</string>
   <string name="FileIsInInternalDirectory">Fișierul este stocat în folderul intern.</string>
@@ -60,6 +68,7 @@
   <string name="clipboard_timeout_summary">Timpul înainte de a goli clipboardul după ce s-a copiat utilizatorul sau parola</string>
   <string name="copy_username">Selectați pentru a copia utilizatorul în clipboard</string>
   <string name="copy_password">Selectați pentru a copia parola în clipboard</string>
+  <string name="copy_totp">Selectați pentru a copia TOTP în clipboard</string>
   <string name="available_through_keyboard">Înregistrarea este disponibilă folosind tastatura KP2A</string>
   <string name="entry_is_available">este disponibil</string>
   <string name="not_possible_im_picker">Nu s-a putut deschide dialogul de a selecta medoda de introducere. Activați tastatura manual.</string>
@@ -72,6 +81,25 @@
   <string name="disclaimer_formal">Keepass2Android este oferit FĂRĂ NICI O GARANȚIE; Acesta este software gratuit și sunteți bine venit să îl redistribuiți respectând condițiile GPL versiunea 2 sau mai nouă.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Copiază în clipboard</string>
+  <string name="SystemLanguage">Limba sistemului</string>
+  <string name="fingerprint_description">Vă rugăm să vă autentificați pentru a continua</string>
+  <string name="fingerprint_fatal">Nu se poate seta deblocarea prin amprentă:</string>
+  <string name="fingerprint_not_recognized">Autentificare biometrică eșuată. Încearcă din nou</string>
+  <string name="fingerprint_success">Autentificarea cu amprentă a reușit.</string>
+  <string name="fingerprint_os_error">Deblocarea biometrică necesită Android 6.0 sau mai nou.</string>
+  <string name="fingerprint_hardware_error">Nu s-a detectat dispozitiv pentru recunoaștere a amprentei.</string>
+  <string name="fingerprint_no_enrolled">Nu ați configurat autentificarea biometrică pe acest dispozitiv. Vă rugăm să mergeți mai întâi la setările sistemului.</string>
+  <string name="disable_fingerprint_unlock">Dezactivează deblocarea biometrică</string>
+  <string name="enable_fingerprint_unlock">Activează deblocarea biometrică completă</string>
+  <string name="enable_fingerprint_quickunlock">Activează deblocarea biometrică pentru QuickUnlock</string>
+  <string name="fingerprint_unlock_failed">Deblocarea biometrică a eșuat. Cheia de decriptare a fost invalidată de Android OS. Acest lucru se întâmplă de obicei dacă o autentificare biometrică sau setările de securitate au fost modificate. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Deblocarea bazei de date a eșuat: Cheie compozită invalidă. Deblocarea biometrică a fost dezactivată deoarece aparent parola principală stocată nu mai este validă. </string>
+  <string name="fingerprint_reenable">Vă rugăm reactivați deblocarea biometrică pentru noua parolă principală.</string>
+  <string name="fingerprint_reenable2">Vă rugăm să deblocați cu parola dvs. și apoi să reactivați deblocarea biometrică în setările bazei de date.</string>
+  <string name="FingerprintInitFailed">Inițializarea autentificării biometrice a eșuat. </string>
+  <string name="FingerprintSetupFailed">Criptarea datelor a eșuat. Acest lucru se poate întâmpla dacă adăugați sau eliminați amprentele din setările de sistem în timp ce Keepass2Android vă așteaptă amprenta.</string>
+  <string name="enable_fingerprint_unlock_Info">Aceasta va stoca parola principală pe acest dispozitiv, criptată cu Keystore Android și protejată folosind autentificarea biometrică. Permite deblocarea bazei de date doar folosind biometria.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite utilizarea autentificării biometrice în locul codului QuickUnlock. Nu stochează nicio informație legată de parola principală.</string>
   <string name="enter_filename">Alegeți numele bazei de date</string>
   <string name="entry_accessed">Accesat</string>
   <string name="entry_cancel">Anulează</string>
@@ -85,13 +113,14 @@
   <string name="entry_keyfile">Fişierul cheie (opţional)</string>
   <string name="keyfile_heading">Fişier cheie</string>
   <string name="entry_modified">Modificat</string>
-  <string name="entry_password">Parola</string>
+  <string name="entry_password">Parolă</string>
   <string name="entry_save">Salvează</string>
   <string name="entry_title">Nume</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Nume de utilizator</string>
   <string name="entry_extra_strings">Câmpuri text suplimentare</string>
   <string name="entry_binaries">Fișiere atașate</string>
+  <string name="error_can_not_handle_uri">Keepass2Android nu poate gestiona acest URI.</string>
   <string name="error_could_not_create_group">Eroare creare grup.</string>
   <string name="error_could_not_create_parent">Imposibil de creat folder-ul părinte.</string>
   <string name="error_database_exists">Acest fișier există deja.</string>
@@ -108,6 +137,7 @@
   <string name="error_rounds_not_number">Etapele trebuie să fie un număr.</string>
   <string name="error_param_not_number">Parametru trebuie să fie un număr.</string>
   <string name="error_title_required">Este necesar un titlu.</string>
+  <string name="error_wrong_length">Introduceți un număr întreg pozitiv în câmpul de lungime</string>
   <string name="FileNotFound">Fișierul nu s-a găsit.</string>
   <string name="file_browser">Browser fișiere</string>
   <string name="generate_password">Generare parolă</string>
@@ -119,9 +149,10 @@
   <string name="hint_keyfile">fişier cheie</string>
   <string name="hint_length">lungime</string>
   <string name="hint_pass">parola</string>
-  <string name="hint_login_pass">Parola</string>
+  <string name="hint_login_pass">Parolă</string>
   <string name="hint_title">nume</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">suprascrie URL-ul</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">nume de utilizator</string>
   <string name="InvalidPassword">Parolă sau fișier cheie invalide.</string>
@@ -168,6 +199,8 @@
   <string name="no">Nu</string>
   <string name="no_keys">Nu sunt înregistrări în baza de date sau grup.</string>
   <string name="no_results">Nici un rezultat de căutare</string>
+  <string name="no_url_handler">Niciun handler pentru acest URL.</string>
+  <string name="open_recent">Deschideți baza de date recentă (apăsați pentru a deschide)</string>
   <string name="omitbackup_title">Nu căuta înregistrări în backup şi coşul de gunoi</string>
   <string name="omitbackup_summary">Omite grupurile \'Backup\' şi \'Coş de gunoi\' din toate căutările</string>
   <string name="pass_filename">Nume fişier bază de date KeePass</string>
@@ -182,6 +215,8 @@
   <string name="edit">Editare</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Revino în automat din ecranul de interogare</string>
+  <string name="AutoReturnFromQuery_summary">Când căutați o intrare pentru o aplicație sau un sit în linie: reveniți automat de pe ecranul de interogare dacă există o singură înregistrare potrivită în baza de date.</string>
   <string name="KeyDerivFunc">Funcția de derivare a cheii</string>
   <string name="rounds">Etape de criptare</string>
   <string name="rounds_explaination">Mai multe etape de criptare oferă protecţie împotriva atacurilor prin forță brută, dar pot încetini semnificativ încărcarea şi salvarea.</string>
@@ -193,6 +228,7 @@
   <string name="saving_database">Se salvează baza de date…</string>
   <string name="exporting_database">Se exportă baza de date…</string>
   <string name="export_database_successful">Baza de date exportată cu succes!</string>
+  <string name="export_keyfile_successful">Fișier cheie exportat cu succes!</string>
   <string name="space">Spaţiu</string>
   <string name="search_label">Căutare</string>
   <string name="show_password">Arată parola</string>
@@ -202,6 +238,25 @@
   <string name="sort_moddate">Sortează după data modificării</string>
   <string name="sort_default">Păstrează ordinea implicită</string>
   <string name="special">Special</string>
+  <string name="special_extended">Special extins</string>
+  <string name="at_least_one_from_each_group">Cel puțin unul din fiecare grup</string>
+  <string name="exclude_lookalike">Exclude caractere asemănătoare</string>
+  <string name="password_generation_profile">Profil</string>
+  <string name="save_password_generation_profile_text">Introduceți numele profilului pentru a fi salvat. Introduceți un nume existent pentru suprascrie.</string>
+  <string name="hint_wordcount">Numărul de cuvinte din expresia de acces</string>
+  <string name="hint_wordseparator">Separator cuvinte</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Parolă</item>
+    <item>Expresie de acces</item>
+    <item>Frasă de acces + parolă</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>litere mici</item>
+    <item>LITERE MARI</item>
+    <item>Prima Literă Majusculă</item>
+  </string-array>
+  <string name="custom_settings">Setări personalizate</string>
+  <string name="passphrase_capitalization">Capitalizare frază de acces</string>
   <string name="search_hint">Găsește</string>
   <string name="search_results">Rezultate căutare</string>
   <string name="search_in">Căutare în</string>
@@ -209,7 +264,9 @@
   <string name="select_group_then_add">Deschideți grupul dorit, apoi apăsaţi \"%1$s\"!</string>
   <string name="insert_element_here">Introduceţi aici</string>
   <string name="twofish">Twofish</string>
+  <string name="underline">Subliniere</string>
   <string name="unsupported_db_version">Versiunea bazei de date nesuportată.</string>
+  <string name="uppercase">Litere mari</string>
   <string name="warning_read_only">Cardul sd este momentan read-only. Nu veți putea salva modificările la baza de date.</string>
   <string name="warning_unmounted">Cardul sd nu este montat momentan. Nu veți putea încărca sau crea baza de date.</string>
   <string name="version_label">Versiune</string>
@@ -217,17 +274,25 @@
   <string name="author">Keepass2Android este creat de către Philipp Crocoll.</string>
   <string name="further_authors">Mulțumită contribuţiilor de cod de către %1$s.</string>
   <string name="designers">Icoană și design mulțumită contribuțiilor făcute de %1$s.</string>
+  <string name="supporters">Mulțumită sprijinului financiar din partea %1$s.</string>
   <string name="credit_plugin1">Plugin-ul pentru cifrul Twofish  a fost creat de Scott Greenberg şi este inclus în KP2A.</string>
   <string name="credit_android_filechooser">android-filechooser a fost creat de Hai Bison</string>
   <string name="credit_keyboard">Tastatura KP2A este bazată pe tastatura Gingerbread din Android Open Source Project și folosește codul Plugin Manager din Hacker\'s Keyboard creat de Klaus Weidner.</string>
   <string name="please_note">Vă rugăm să reţineţi</string>
   <string name="contributors">Contribuitori</string>
   <string name="regular_expression">Regular expression</string>
+  <string name="TanExpiresOnUse_title">TAN expiră la utilizare</string>
   <string name="TanExpiresOnUse_summary">Marchează înregistrările TAN ca expirate la utilizarea lor</string>
   <string name="ShowUsernameInList_title">Afişează numele utilizatorului în listă</string>
   <string name="ShowUsernameInList_summary">Afişează numele utilizatorului sub înregistrări. Util pentru conturi sau TAN-uri multiple.</string>
   <string name="RememberRecentFiles_title">Reţine bazele de date</string>
   <string name="RememberRecentFiles_summary">Reţine baze de date deschise recent si afişează-le în ecranul de deschidere a bazelor de date.</string>
+  <string name="NoDalVerification_title">Fără verificare DAL</string>
+  <string name="NoDalVerification_summary">Dezactivează verificarea dacă domeniul și pachetul aplicației se potrivesc</string>
+  <string name="InlineSuggestions_title">Integrează cu tastatura</string>
+  <string name="InlineSuggestions_summary">Arată sugestiile de autocompletare ca opțiuni integrate în tastatură (dacă sunt acceptate de metoda de introducere)</string>
+  <string name="requires_android11">Necesită Android 11 sau mai recent</string>
+  <string name="kp2a_findUrl">Găsește parola</string>
   <string name="excludeExpiredEntries">Exclude înregistrările expirate</string>
   <string name="search_options">Opţiuni</string>
   <string name="caseSensitive">Case sensitive</string>
@@ -239,6 +304,7 @@
   <string name="enter_filename_details_create_import">Fişierul de importat va fi selectat la pasul următor.</string>
   <string name="enable_quickunlock">Activare QuickUnlock</string>
   <string name="QuickUnlock_label">Introduceţi ultimele %1$d caractere ale parolei dvs.:</string>
+  <string name="QuickUnlock_label_secure">Introduceți codul QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Închide baza de date</string>
   <string name="QuickUnlockDefaultEnabled_title">Activează QuickUnlock implicit</string>
@@ -251,12 +317,14 @@
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock necesită o notificare pentru a funcționa corect. Selectează această opțiune pentru a afișa o notificare fără icoană.</string>
   <string name="QuickUnlockLength_title">Lungimea cheii QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numărul maxim de caractere utilizate ca şi parolă QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Ascunde lungimea QuickUnlock</string>
+  <string name="QuickUnlockHideLength_summary">Dacă este activat, lungimea codului QuickUnlock nu este afișat pe ecranul QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock a eşuat: parolă incorectă!</string>
-  <string name="BinaryDirectory_title">Folder ataşamente</string>
-  <string name="BinaryDirectory_summary">Folder în care se salvează ataşamentele.</string>
   <string name="SaveAttachmentDialog_title">Salvaţi ataşament</string>
   <string name="SaveAttachmentDialog_text">Selectaţi unde se salvează ataşamentul.</string>
+  <string name="SaveAttachmentDialog_save">Exportă ca fișier...</string>
   <string name="SaveAttachmentDialog_open">Salvează în cache și deschide</string>
+  <string name="ShowAttachedImage">Arată cu vizualizatorul intern de imagini</string>
   <string name="SaveAttachment_doneMessage">Fișierul salvat ca %1$s.</string>
   <string name="SaveAttachment_Failed">Nu s-a putut salva atașamentul la %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Memorează textul căutat?</string>
@@ -269,6 +337,9 @@
   <string name="protection">Câmp protejat</string>
   <string name="add_binary">Ataşează fişier...</string>
   <string name="add_extra_string">Adaugă câmp adiţional</string>
+  <string name="totp_secret_key">Cheie secretă</string>
+  <string name="totp_time_step">Pas temporal</string>
+  <string name="totp_length">Lungime cod</string>
   <string name="delete_extra_string">Şterge câmp adiţional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Blocat. QuickUnlock activat.</string>
   <string name="database_loaded_unlocked">%1$s: Deblocat.</string>
@@ -281,14 +352,26 @@
   <string name="ClearPasswordOnLeave_summary">Șterge parola principală introdusă când părăsiți ecranul fără să deblocați baza de date.</string>
   <string name="LockWhenNavigateBack_title">Blochează când părăsiți aplicația</string>
   <string name="LockWhenNavigateBack_summary">Blochează baza de date când părăsiți aplicația apăsând butonul înapoi.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Utilizați tastatura încorporată în Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Dacă nu aveți încredere în furnizorul de tastatură standard, bifați această opțiune pentru a utiliza tastatura încorporată atunci când introduceți parola principală sau editați intrările.</string>
+  <string name="ActivateSearchViewOnStart_title">Activează câmpul de căutare la pornire</string>
+  <string name="ActivateSearchViewOnStart_summary">Activează câmpul de căutare în vizualizarea grupului după deblocare sau în timpul căutării unei intrări</string>
   <string name="NoDonateOption_title">Ascunde opțiunea de donație</string>
   <string name="NoDonateOption_summary">Această setare este pentru donatori. Este valabilă doar după ce folosiți Keepass2Android o vreme.</string>
+  <string name="NoDonateOption_question">Fără donații, această aplicație nu ar exista și nu ar fi îmbunătățită continuu! Dacă nu ai donat încă, te rugăm să iei în considerare acest lucru acum</string>
   <string name="NoDonationReminder_title">Nu mai cere niciodata donație</string>
   <string name="NoDonationReminder_summary">N-o să-ți dau niciun ban sau am donat deja. Nu mai cere donație, nici măcar de ziua autorului.</string>
   <string name="UseOfflineCache_title">Caching bază de date</string>
+  <string name="UseOfflineCache_summary">Păstrați o copie a fişierelor bazei de date în memoria de serviciu a aplicației. Această permite utilizarea bazelor de date chiar şi în timp ce fişierul bazei de date nu este accesibil.</string>
+  <string name="CreateBackups_title">Copii de rezervă locale</string>
+  <string name="CreateBackups_summary">Creaţi o copie de rezervă locală după încărcarea cu succes a unei baze de date.</string>
+  <string name="UpdatingBackup">Actualizare copiei de rezervă locală…</string>
+  <string name="LocalBackupOf">Copie de rezervă locală din %1$s</string>
+  <string name="show_local_backups">Arată copiile de rezervă locale</string>
   <string name="AcceptAllServerCertificates_title">Certificate SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definește comportamentul atunci când validarea certificatului eșuează. Notă: puteţi instala certificate pe aparatul vostru dacă validarea eşuează!</string>
   <string name="ClearOfflineCache_title">Goliţi cache-ul?</string>
+  <string name="ClearOfflineCache_question">Această acțiune va şterge toate bazele de date din memoria de serviciu. Orice modificări efectuate în timp ce nu aveți acces la baza de date originală și care nu au fost încă sincronizate vor fi pierdute! Continuați?</string>
   <string name="CheckForFileChangesOnSave_title">Verifică modificări</string>
   <string name="CheckForFileChangesOnSave_summary">Verifică dacă nu s-a modificat extern fişierul înainte de a salva.</string>
   <string name="CheckForDuplicateUuids_title">Verifică dubluri UUID</string>
@@ -297,6 +380,10 @@
   <string name="ShowCopyToClipboardNotification_summary">Oferă utilizatorul şi parolă prin bara de notificări şi clipboard. Atenţie la \"password sniffers\"!</string>
   <string name="ShowSeparateNotifications_title">Separă notificările</string>
   <string name="ShowSeparateNotifications_summary">Arată notificări separate pentru copierea numelui utilizatorului și a parolei în clipboard și activarea tastaturii.</string>
+  <string name="AccServiceAutoFill_prefs">Serviciu de accesibilitate de completare automată</string>
+  <string name="AutoFill_prefs">Serviciu de completare automată</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificare tastatură KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Oferă întreaga înregistrare folosind tastatura KP2A (recomandat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Comută tastatura</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Comută automat tastatura doar după căutare</string>
@@ -364,10 +451,14 @@
   <string name="hint_http_url">URL-ul folder sau fişier (ex: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Introdu datele de conectare OwnCloud:</string>
   <string name="hint_owncloud_url">URL-ul OwnCloud (ex: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Introduceți datele de conectare Nextcloud:</string>
+  <string name="hint_nextcloud_url">Nextcloud URL (ex: nextcloud.me.com)</string>
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Folder inițial (opțional):</string>
   <string name="enter_sftp_login_title">Introduceţi datele de conectare SFTP:</string>
+  <string name="sftp_auth_mode">Mod autentificare</string>
+  <string name="send_public_key">Trimite cheia publică...</string>
   <string name="enter_ftp_login_title">Introdu datele de conectare FTP:</string>
   <string name="select_storage_type">Selectaţi tipul de stocare:</string>
   <string name="filestoragename_file">Fişier local</string>
@@ -377,12 +468,17 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Dacă nu doriți să dați KP2A acces la Dropbox-ul complet, puteți selecta această opțiune. Va solicita acces doar la directorul Apps/Keepass2Android. Acest lucru este potrivit în special atunci când se creează o bază de date nouă. Dacă aveţi deja o bază de date, selectaţi această opţiune pentru a crea directorul, apoi plasați fișierul în director (de la PC) și apoi selectați din nou această opțiune pentru deschiderea fișierului.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Toate fișierele și fișierele partajate</string>
   <string name="filestoragename_onedrive2_myfiles">Fișierele mele</string>
+  <string name="filestoragename_onedrive2_appfolder">Directorul Keepass2Android App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
@@ -477,8 +573,19 @@
   <string name="NoFilenameWarning">URI introdus nu arata ca un nume de file. Sunteţi sigur că acesta este un file valid?</string>
   <string name="FirstInvalidCompositeKeyError">Cheie compusă invalidă! Vă rugăm să încercaţi din nou.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">Cheie compusă invalida! Vă rugăm să încercaţi următorii paşi pentru a debloca baza dumneavoastră de date: \n • asiguraţi-vă că aţi introdus parola corectă. Utilizati pictograma in forma de ochi să dezvăluiti parola introdusă. \n • asiguraţi-vă că aţi selectat tipul de parola corectă. Asiguraţi-vă că aceasta este de acelasi fel cu tipul utilizat la crearea bazei de date. \n • asiguraţi-vă că aţi selectat fişierul bazei de date corecte.</string>
+  <string name="select_database">Selectați baza de date</string>
+  <string name="unspecified">nespecificat</string>
+  <string name="child_db_enabled_on_this_device">Activat pe acest dispozitiv</string>
+  <string name="child_db_enable_on_this_device">Activează pe acest dispozitiv</string>
+  <string name="child_db_disable_on_this_device">Dezactivează pe acest dispozitiv</string>
+  <string name="child_db_enable_a_copy_for_this_device">Copiază pentru acest dispozitiv</string>
+  <string name="unconfigured_child_dbs">Baza de date conţine baze de date noi în grupul \"Autodeschidere\". Vă rugăm să specificaţi dacă aceste baze de date ar trebui folosite pe acest dispozitiv.</string>
   <string name="Visible_title">Vizibil</string>
+  <string name="child_db_Enabled_title">Deschide automat</string>
+  <string name="database_file_heading">Fișier bază de date</string>
+  <string name="if_device_text">Activează pentru %1$s</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="CloseDbAfterFailedAttempts">Închide baza de date după trei încercări de deblocare biometrică eșuate.</string>
   <string name="ChangeLog_0_9_8c">Versiunea 0.9.8c\n * Fix pentru SSL vulnerabilitatea din Microsoft Live SDK (folosite la accesarea fişierelor prin intermediul OneDrive) \n * Bug fix: versiune anterioară conţinea două metode de intrare (unul nu functiona) \n  </string>
   <string name="ChangeLog_0_9_9">Versiunea 0.9.9\n * UI complet reproiectat. Multumesc mult lui Stefano Pignataro (http://www.spstudio.at) pentru sprijinul lui! \n * Adaugarea personalizata a iconitelor\n * Suport pentru Multi Window mode pe telefoanele Samsung\n * Crescut implicit numărul de runde de criptare pentru baze de date noi\n * Verificarea cheilor duplicate a câmpurilor suplimentare pentru a evita pierderea de date\n</string>
   <string name="ChangeLog_0_9_7">Versiunea 0.9.7\n
@@ -619,6 +726,7 @@ Versiunea publică iniţială
   <string-array name="design_options">
     <item>Luminoasă</item>
     <item>Întunecată</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Design</string>
   <string-array name="cred_remember_modes">
@@ -637,7 +745,7 @@ Versiunea publică iniţială
     <item>Password + Key file + Challenge-Response for Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
-    <item>Parola</item>
+    <item>Parolă</item>
     <item>Private/Public key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
@@ -645,4 +753,14 @@ Versiunea publică iniţială
     <item>Avertizează când validarea eșuează</item>
     <item>Nu accepta certificate invalide</item>
   </string-array>
+  <string name="autofill_disable">Dezactivează completarea automată pentru %1$s</string>
+  <string name="autofill_enable_for">Activează completare automată pentru %1$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android a detectat dispozitive biometrice. Doriţi să activaţi deblocarea biometrică pentru această bază de date?</string>
+  <string name="masterkey_infotext_fingerprint_note">De asemenea, rețineți că Deblocarea biometrică funcționează prin stocarea cheii principale în spațiul de stocare securizat Android. Această stocare poate fi ștearsă de Android în orice moment, de ex. dacă adăugați o nouă amprentă în setările sistemului. Așa că nu vă bazați pe deblocarea biometrică ci retineți parola principală, vă rog!</string>
+  <string name="disable_secure_screen_check">Dezactivează acest mesaj</string>
+  <string name="switch_ime_reopen">Reîncercați</string>
+  <string name="AutofillWarning_title">Alertă de securitate: Link nerecunoscut domeniu/aplicație</string>
+  <string name="AutofillWarning_Intro">Sunteți pe cale de a insera datele de autentificare pentru domeniul \"%1$s\" în aplicația \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Dacă aveți încredere că \"%2$s\" aparține la \"%1$s\" sau dacă aveți încredere în aplicația \"%2$s\" să nu abuzeze de datele de autentificare (de ex. deoarece este o aplicație de încredere pentru browser), este in regulă să continuați. Dacă nu, vă rugăm să anulați.</string>
+  <string name="AutofillWarning_trustAsBrowser">Acceptați întotdeauna în \"%1$s\"</string>
 </resources>

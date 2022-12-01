@@ -75,8 +75,8 @@ private static Drawable _blank;
 		{
 			get
 			{
-				var context = Application.Context;
-				string packageName = PreferenceManager.GetDefaultSharedPreferences(Application.Context).GetString("IconSetKey", context.PackageName);
+				var context = LocaleManager.LocalizedAppContext;
+				string packageName = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext).GetString("IconSetKey", context.PackageName);
 				//assume that at the momemt only the built in icons are white
 				return packageName == context.PackageName;
 			}
@@ -99,7 +99,7 @@ private static Drawable _blank;
 			Drawable draw;
 			if (!_standardIconMap.TryGetValue(dictKey, out draw))
 			{
-				string packageName = PreferenceManager.GetDefaultSharedPreferences(Application.Context).GetString("IconSetKey", context.PackageName);
+				string packageName = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext).GetString("IconSetKey", context.PackageName);
 
 				Resources res;
 			    try
@@ -111,7 +111,7 @@ private static Drawable _blank;
                     //can happen after uninstalling icons
                     packageName = context.PackageName;
 			        res = context.PackageManager.GetResourcesForApplication(packageName);
-			        PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+			        PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
                         .Edit()
 			            .PutString("IconSetKey", packageName)
                         .Commit();

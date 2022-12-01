@@ -371,7 +371,7 @@ namespace keepass2android
         }
     }
 
-	/// <summary>
+    /// <summary>
 	/// Implementation of AppTask for "no task currently active" (Null pattern)
 	/// </summary>
 	public class NullTask: AppTask
@@ -549,7 +549,7 @@ namespace keepass2android
 		{
 		    Context ctx = activity;
 		    if (ctx == null)
-		        ctx = Application.Context;
+		        ctx = LocaleManager.LocalizedAppContext;
 
 			if ((ShowUserNotifications == ShowUserNotificationsMode.Always)
                 || ((ShowUserNotifications == ShowUserNotificationsMode.WhenTotp) && new Kp2aTotp().TryGetAdapter(new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb)) != null))

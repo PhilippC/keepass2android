@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2002-2016 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -32,6 +32,7 @@ package com.jcraft.jsch.jce;
 import java.math.BigInteger;
 import java.security.*;
 import java.security.spec.*;
+import com.jcraft.jsch.Buffer;
 
 public class SignatureDSA implements com.jcraft.jsch.SignatureDSA{
 
@@ -106,42 +107,51 @@ System.err.println("");
     int i=0;
     int j=0;
     byte[] tmp;
+    Buffer buf=new Buffer(sig);
 
-    if(sig[0]==0 && sig[1]==0 && sig[2]==0){
-    j=((sig[i++]<<24)&0xff000000)|((sig[i++]<<16)&0x00ff0000)|
-	((sig[i++]<<8)&0x0000ff00)|((sig[i++])&0x000000ff);
-    i+=j;
-    j=((sig[i++]<<24)&0xff000000)|((sig[i++]<<16)&0x00ff0000)|
-	((sig[i++]<<8)&0x0000ff00)|((sig[i++])&0x000000ff);
-    tmp=new byte[j]; 
-    System.arraycopy(sig, i, tmp, 0, j); sig=tmp;
+    if(new String(buf.getString()).equals("ssh-dss")){
+      j=buf.getInt();
+      i=buf.getOffSet();
+      tmp=new byte[j];
+      System.arraycopy(sig, i, tmp, 0, j); sig=tmp;
     }
 
-    // ASN.1
-    int frst=((sig[0]&0x80)!=0?1:0);
-    int scnd=((sig[20]&0x80)!=0?1:0);
-    //System.err.println("frst: "+frst+", scnd: "+scnd);
+    byte[] _frst=new byte[20];
+    System.arraycopy(sig, 0, _frst, 0, 20);
+    _frst=normalize(_frst);
 
-    int length=sig.length+6+frst+scnd;
+    byte[] _scnd=new byte[20];
+    System.arraycopy(sig, 20, _scnd, 0, 20);
+    _scnd=normalize(_scnd);
+
+    // ASN.1
+    int frst=((_frst[0]&0x80)!=0?1:0);
+    int scnd=((_scnd[0]&0x80)!=0?1:0);
+
+    int length=_frst.length+_scnd.length+6+frst+scnd;
     tmp=new byte[length];
-    tmp[0]=(byte)0x30; tmp[1]=(byte)0x2c; 
+    tmp[0]=(byte)0x30; tmp[1]=(byte)(_frst.length+_scnd.length+4);
     tmp[1]+=frst; tmp[1]+=scnd;
-    tmp[2]=(byte)0x02; tmp[3]=(byte)0x14;
+    tmp[2]=(byte)0x02; tmp[3]=(byte)_frst.length;
     tmp[3]+=frst;
-    System.arraycopy(sig, 0, tmp, 4+frst, 20);
-    tmp[4+tmp[3]]=(byte)0x02; tmp[5+tmp[3]]=(byte)0x14;
+    System.arraycopy(_frst, 0, tmp, 4+frst, _frst.length);
+    tmp[4+tmp[3]]=(byte)0x02; tmp[5+tmp[3]]=(byte)_scnd.length;
     tmp[5+tmp[3]]+=scnd;
-    System.arraycopy(sig, 20, tmp, 6+tmp[3]+scnd, 20);
+    System.arraycopy(_scnd, 0, tmp, 6+tmp[3]+scnd, _scnd.length);
     sig=tmp;
 
-/*
-    tmp=new byte[sig.length+6];
-    tmp[0]=(byte)0x30; tmp[1]=(byte)0x2c; 
-    tmp[2]=(byte)0x02; tmp[3]=(byte)0x14;
-    System.arraycopy(sig, 0, tmp, 4, 20);
-    tmp[24]=(byte)0x02; tmp[25]=(byte)0x14;
-    System.arraycopy(sig, 20, tmp, 26, 20); sig=tmp;
-*/  
     return signature.verify(sig);
+  }
+
+  protected byte[] normalize(byte[] secret) {
+    if(secret.length > 1 &&
+       secret[0] == 0 && (secret[1]&0x80) == 0) {
+      byte[] tmp=new byte[secret.length-1];
+      System.arraycopy(secret, 1, tmp, 0, tmp.length);
+      return normalize(tmp);
+    }
+    else {
+      return secret;
+    }
   }
 }

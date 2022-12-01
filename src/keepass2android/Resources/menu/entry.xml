@@ -32,6 +32,11 @@
         android:title="@string/menu_delete"
         app:showAsAction="ifRoom"
   />
+    <item android:id="@+id/menu_move"
+          android:icon="@drawable/ic_menu_cut"
+          android:title="@string/menu_move"
+          app:showAsAction="ifRoom"
+    />
     <item android:id="@+id/menu_donate"
         android:title="@string/menu_donate"
         app:showAsAction="ifRoom"

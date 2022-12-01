@@ -57,7 +57,7 @@
     <!-- Option to enable auto capitalization of sentences -->
     <string name="auto_cap">Wstawiaj wielkie litery</string>
     <!-- Description for auto cap -->
-    <string name="auto_cap_summary">Zamieniaj na wielką pierwszą literę zdania</string>
+    <string name="auto_cap_summary">Zaczynaj zdanie wielką literą</string>
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">Automatyczna interpunkcja</string>
     <!-- Description for auto punctuate -->
@@ -83,6 +83,11 @@
     <!-- Option to always hide the settings key -->
     <string name="settings_key_mode_always_hide_name">Zawsze ukrywaj</string>
     <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_auto_name</item>
+    </string-array>
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">Sugestie dla bigramów</string>
     <!-- Description for auto completion -->
@@ -101,7 +106,7 @@
     <!-- Tip to long press on keys -->
     <string name="tip_long_press">Przytrzymaj klawisz, aby wyświetlić znaki akcentowane (ą, ó itp.)</string>
     <!-- Tip to dismiss keyboard -->
-    <string name="tip_dismiss">Naciśnij klawisz cofania ↶, aby zamknąć klawiaturę w dowolnym momencie</string>
+    <string name="tip_dismiss">Naciśnij klawisz cofania \u21B6, aby zamknąć klawiaturę w dowolnym momencie</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">Przejdź do cyfr i symboli</string>
     <!-- Tip to long press on typed word to add to dictionary -->
@@ -111,17 +116,17 @@
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">Dotknij tutaj, aby zamknąć tę podpowiedź i zacząć pisać!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"Klawiatura jest otwierana po każdym dotknięciu pola tekstowego.\"</b></string>
+    <string name="tip_to_open_keyboard"><b>Klawiatura otwiera się po każdym dotknięciu pola tekstowego</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
-    <string name="tip_to_view_accents"><b>\"Dotknij i przytrzymaj klawisz, aby wyświetlić znaki akcentowane\"\n\"(ą, ę, ł, ó itd.).\"</b></string>
+    <string name="tip_to_view_accents"><b>Dotknij i przytrzymaj klawisz, aby wyświetlić znaki akcentowane\n(ą, ę, ł, ó itd.)</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
-    <string name="tip_to_open_symbols"><b>\"Przełącz na cyfry i symbole, dotykając tego klawisza.\"</b></string>
+    <string name="tip_to_open_symbols"><b>Przełącz na cyfry i symbole dotykając tego klawisza</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
-    <string name="tip_to_close_symbols"><b>\"Wróć do trybu liter, dotykając ponownie tego klawisza.\"</b></string>
+    <string name="tip_to_close_symbols"><b>Wróć do trybu liter dotykając ponownie tego klawisza</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
-    <string name="tip_to_launch_settings"><b>\"Dotknij i przytrzymaj ten klawisz, aby zmienić ustawienia klawiatury, takie jak autouzupełnianie.\"</b></string>
+    <string name="tip_to_launch_settings"><b>Dotknij i przytrzymaj ten klawisz, aby zmienić ustawienia klawiatury takie jak autouzupełnianie</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
-    <string name="tip_to_start_typing"><b>\"Wypróbuj!\"</b></string>
+    <string name="tip_to_start_typing"><b>Wypróbuj!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <string name="label_go_key">OK</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
@@ -133,8 +138,11 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
@@ -182,6 +190,7 @@
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Anuluj</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">OK</string>
     <!-- Preferences item for enabling speech input -->
     <string name="voice_input">Wprowadzanie głosowe</string>
     <!-- Array of Voice Input modes -->
@@ -213,10 +222,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"Ustawienia klawiatury\"\n</b></font><font size="3">\n</font>\"Dotknij klawisza \"<b>\"?123\"</b>\" i przytrzymaj go.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">Wybierz sposób wprowadzania tekstu</string>
     <!-- Title for input language selection screen -->
@@ -240,4 +254,5 @@
     <string name="subtype_mode_keyboard">klawiatura</string>
     <string name="subtype_mode_voice">głosowe</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>

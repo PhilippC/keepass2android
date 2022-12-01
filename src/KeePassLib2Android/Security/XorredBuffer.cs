@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2021 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,97 +20,90 @@
 using System;
 using System.Diagnostics;
 
+using KeePassLib.Utility;
+
 namespace KeePassLib.Security
 {
 	/// <summary>
-	/// Represents an object that is encrypted using a XOR pad until
-	/// it is read. <c>XorredBuffer</c> objects are immutable and
-	/// thread-safe.
+	/// A <c>XorredBuffer</c> object stores data that is encrypted
+	/// using a XOR pad.
 	/// </summary>
-	public sealed class XorredBuffer
+	public sealed class XorredBuffer : IDisposable
 	{
-		private byte[] m_pbData; // Never null
-		private byte[] m_pbXorPad; // Always valid for m_pbData
+		private byte[] m_pbCT;
+		private byte[] m_pbXorPad;
 
-		/// <summary>
-		/// Length of the protected data in bytes.
-		/// </summary>
 		public uint Length
 		{
-			get { return (uint)m_pbData.Length; }
+			get
+			{
+				if (m_pbCT == null) { Debug.Assert(false); throw new ObjectDisposedException(null); }
+				return (uint)m_pbCT.Length;
+			}
 		}
 
 		/// <summary>
-		/// Construct a new XOR-protected object using a protected byte array
-		/// and a XOR pad that decrypts the protected data. The
-		/// <paramref name="pbProtectedData" /> byte array must have the same size
-		/// as the <paramref name="pbXorPad" /> byte array.
+		/// Construct a new <c>XorredBuffer</c> object.
+		/// The <paramref name="pbCT" /> byte array must have the same
+		/// length as the <paramref name="pbXorPad" /> byte array.
 		/// The <c>XorredBuffer</c> object takes ownership of the two byte
-		/// arrays, i.e. the caller must not use or modify them afterwards.
+		/// arrays, i.e. the caller must not use them afterwards.
 		/// </summary>
-		/// <param name="pbProtectedData">Protected data (XOR pad applied).</param>
+		/// <param name="pbCT">Data with XOR pad applied.</param>
 		/// <param name="pbXorPad">XOR pad that can be used to decrypt the
-		/// <paramref name="pbProtectedData" /> parameter.</param>
-		/// <exception cref="System.ArgumentNullException">Thrown if one of the input
-		/// parameters is <c>null</c>.</exception>
-		/// <exception cref="System.ArgumentException">Thrown if the byte arrays are
-		/// of different size.</exception>
-		public XorredBuffer(byte[] pbProtectedData, byte[] pbXorPad)
+		/// <paramref name="pbCT" /> byte array.</param>
+		public XorredBuffer(byte[] pbCT, byte[] pbXorPad)
 		{
-			if(pbProtectedData == null) { Debug.Assert(false); throw new ArgumentNullException("pbProtectedData"); }
-			if(pbXorPad == null) { Debug.Assert(false); throw new ArgumentNullException("pbXorPad"); }
+			if (pbCT == null) { Debug.Assert(false); throw new ArgumentNullException("pbCT"); }
+			if (pbXorPad == null) { Debug.Assert(false); throw new ArgumentNullException("pbXorPad"); }
+			if (pbCT.Length != pbXorPad.Length)
+			{
+				Debug.Assert(false);
+				throw new ArgumentOutOfRangeException("pbXorPad");
+			}
 
-			Debug.Assert(pbProtectedData.Length == pbXorPad.Length);
-			if(pbProtectedData.Length != pbXorPad.Length) throw new ArgumentException();
-
-			m_pbData = pbProtectedData;
+			m_pbCT = pbCT;
 			m_pbXorPad = pbXorPad;
+		}
+
+#if DEBUG
+		~XorredBuffer()
+		{
+			Debug.Assert((m_pbCT == null) && (m_pbXorPad == null));
+		}
+#endif
+
+		public void Dispose()
+		{
+			if (m_pbCT == null) return;
+
+			MemUtil.ZeroByteArray(m_pbCT);
+			m_pbCT = null;
+
+			MemUtil.ZeroByteArray(m_pbXorPad);
+			m_pbXorPad = null;
 		}
 
 		/// <summary>
 		/// Get a copy of the plain-text. The caller is responsible
 		/// for clearing the byte array safely after using it.
 		/// </summary>
-		/// <returns>Unprotected plain-text byte array.</returns>
+		/// <returns>Plain-text byte array.</returns>
 		public byte[] ReadPlainText()
 		{
-			byte[] pbPlain = new byte[m_pbData.Length];
-
-			for(int i = 0; i < pbPlain.Length; ++i)
-				pbPlain[i] = (byte)(m_pbData[i] ^ m_pbXorPad[i]);
-
-			return pbPlain;
-		}
-
-		/* public bool EqualsValue(XorredBuffer xb)
-		{
-			if(xb == null) { Debug.Assert(false); throw new ArgumentNullException("xb"); }
-
-			if(xb.m_pbData.Length != m_pbData.Length) return false;
-
-			for(int i = 0; i < m_pbData.Length; ++i)
+			byte[] pbCT = m_pbCT, pbX = m_pbXorPad;
+			if ((pbCT == null) || (pbX == null) || (pbCT.Length != pbX.Length))
 			{
-				byte bt1 = (byte)(m_pbData[i] ^ m_pbXorPad[i]);
-				byte bt2 = (byte)(xb.m_pbData[i] ^ xb.m_pbXorPad[i]);
-
-				if(bt1 != bt2) return false;
+				Debug.Assert(false);
+				throw new ObjectDisposedException(null);
 			}
 
-			return true;
+			byte[] pbPT = new byte[pbCT.Length];
+
+			for (int i = 0; i < pbPT.Length; ++i)
+				pbPT[i] = (byte)(pbCT[i] ^ pbX[i]);
+
+			return pbPT;
 		}
-
-		public bool EqualsValue(byte[] pb)
-		{
-			if(pb == null) { Debug.Assert(false); throw new ArgumentNullException("pb"); }
-
-			if(pb.Length != m_pbData.Length) return false;
-
-			for(int i = 0; i < m_pbData.Length; ++i)
-			{
-				if((byte)(m_pbData[i] ^ m_pbXorPad[i]) != pb[i]) return false;
-			}
-
-			return true;
-		} */
 	}
 }

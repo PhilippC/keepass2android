@@ -45,6 +45,7 @@ using KeePass.DataExchange;
 using KeePass.Util.Spr;
 using KeePassLib.Interfaces;
 using KeePassLib.Serialization;
+using PluginTOTP;
 using File = Java.IO.File;
 using Uri = Android.Net.Uri;
 
@@ -92,6 +93,7 @@ namespace keepass2android
 	{
 		public const String KeyEntry = "entry";
         public const String KeyRefreshPos = "refresh_pos";
+        public const String KeyEntryHistoryIndex = "entry_history_index";
 		public const String KeyActivateKeyboard = "activate_keyboard";
 		public const String KeyGroupFullPath = "groupfullpath_key";
 
@@ -100,13 +102,14 @@ namespace keepass2android
 	    
 
 
-        public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null)
+        public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null, int historyIndex=-1)
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
 
             var db = App.Kp2a.FindDatabaseForElement(pw);
 			i.PutExtra(KeyEntry, new ElementAndDatabaseId(db, pw).FullId);
 			i.PutExtra(KeyRefreshPos, pos);
+            i.PutExtra(KeyEntryHistoryIndex, historyIndex);
 
 		    if (App.Kp2a.CurrentDb != db)
 		    {
@@ -134,16 +137,28 @@ namespace keepass2android
 			_activityDesign = new ActivityDesign(this);
 		}
 
+		//this is the entry we display. Note that it might be an element from a History list in case _historyIndex >= 0
 	    public PwEntry Entry;
+		//if _historyIndex >=0, _historyParentEntry stores the PwEntry which contains the history entry "Entry"
+        private PwEntry _historyParentEntry;
 
 		private PasswordFont _passwordFont = new PasswordFont();
 
-		internal bool _showPassword;
+		internal Dictionary<TextView /*the "ProtectedField" of the ProtectedTextviewGroup*/, bool> _showPassword = new Dictionary<TextView, bool>();
 		private int _pos;
 
-		AppTask _appTask;
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
 
-	    struct ProtectedTextviewGroup
+		struct ProtectedTextviewGroup
 	    {
 	        public TextView ProtectedField;
 	        public TextView VisibleProtectedField;
@@ -173,12 +188,12 @@ namespace keepass2android
 
 		protected void SetupEditButtons() {
 			View edit =  FindViewById(Resource.Id.entry_edit);
-			if (App.Kp2a.CurrentDb.CanWrite)
+			if (App.Kp2a.CurrentDb.CanWrite && _historyIndex < 0)
 			{
 				edit.Visibility = ViewStates.Visible;
 				edit.Click += (sender, e) =>
 				{
-					EntryEditActivity.Launch(this, Entry, _appTask);
+					EntryEditActivity.Launch(this, Entry, AppTask);
 				};	
 			}
 			else
@@ -382,10 +397,12 @@ namespace keepass2android
 			edit.PutLong(GetString(Resource.String.UsageCount_key), usageCount + 1);
 			edit.Commit();
 
-			_showPassword =
+			_showPasswordDefault =
 				!prefs.GetBoolean(GetString(Resource.String.maskpass_key), Resources.GetBoolean(Resource.Boolean.maskpass_default));
-            
-            RequestWindowFeature(WindowFeatures.IndeterminateProgress);
+            _showTotpDefault =
+                !prefs.GetBoolean(GetString(Resource.String.masktotp_key), Resources.GetBoolean(Resource.Boolean.masktotp_default));
+
+			RequestWindowFeature(WindowFeatures.IndeterminateProgress);
 			
 			_activityDesign.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
@@ -409,18 +426,45 @@ namespace keepass2android
             ElementAndDatabaseId dbAndElementId = new ElementAndDatabaseId(i.GetStringExtra(KeyEntry));
 			PwUuid uuid = new PwUuid(MemUtil.HexStringToByteArray(dbAndElementId.ElementIdString));
 			_pos = i.GetIntExtra(KeyRefreshPos, -1);
+            _historyIndex = i.GetIntExtra(KeyEntryHistoryIndex, -1);
 
-			_appTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
 			Entry = db.EntriesById[uuid];
-			
-			// Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
+
+            if (_historyIndex >= 0 && _historyIndex < Entry.History.UCount)
+            {
+                _historyParentEntry = Entry;
+                Entry = Entry.History.Skip(_historyIndex).First();
+                FindViewById<Button>(Resource.Id.btn_restore_history).Click += (sender, args) =>
+                {
+                    RestoreFromHistory();
+                    SaveHistoryChangeAndFinish();
+                };
+                FindViewById<Button>(Resource.Id.btn_remove_history).Click += (sender, args) =>
+                {
+                    RemoveFromHistory();
+                    SaveHistoryChangeAndFinish();
+				};
+
+
+            }
+            else
+            {
+                // Update last access time.
+                Entry.Touch(false);
+                FindViewById<Button>(Resource.Id.btn_restore_history).Visibility = ViewStates.Gone;
+                FindViewById<Button>(Resource.Id.btn_remove_history).Visibility = ViewStates.Gone;
+			}
+
+            // Refresh Menu contents in case onCreateMenuOptions was called before Entry was set
 			ActivityCompat.InvalidateOptionsMenu(this);
 
-			// Update last access time.
-			Entry.Touch(false);
+			
 
-			if (PwDefs.IsTanEntry(Entry) && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
+			if (PwDefs.IsTanEntry(Entry) 
+                && prefs.GetBoolean(GetString(Resource.String.TanExpiresOnUse_key), Resources.GetBoolean(Resource.Boolean.TanExpiresOnUse_default)) 
+                && ((Entry.Expires == false) || Entry.ExpiryTime > DateTime.Now))
 			{
 				PwEntry backupEntry = Entry.CloneDeep();
 				Entry.ExpiryTime = DateTime.Now;
@@ -445,10 +489,42 @@ namespace keepass2android
 			new Thread(NotifyPluginsOnOpen).Start();
 
 			//the rest of the things to do depends on the current app task:
-			_appTask.CompleteOnCreateEntryActivity(this);
+			AppTask.CompleteOnCreateEntryActivity(this);
 		}
 
-		private void NotifyPluginsOnOpen()
+        private void RemoveFromHistory()
+        {
+            _historyParentEntry.History.RemoveAt((uint)_historyIndex);
+            _historyParentEntry.Touch(true, false);
+		}
+
+        private void RestoreFromHistory()
+        {
+            var db = App.Kp2a.FindDatabaseForElement(_historyParentEntry);
+			_historyParentEntry.RestoreFromBackup((uint)_historyIndex, db.KpDatabase);
+            _historyParentEntry.Touch(true, false);
+		}
+
+        private void SaveHistoryChangeAndFinish()
+        {
+            PwGroup parent = _historyParentEntry.ParentGroup;
+            if (parent != null)
+            {
+                // Mark parent group dirty (title might have changed etc.)
+                App.Kp2a.DirtyGroups.Add(parent);
+            }
+
+			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnFinish(this, (success, message, activity) =>
+            {
+                activity.SetResult(KeePass.ExitRefresh);
+                activity.Finish();
+            }));
+
+            ProgressTask pt = new ProgressTask(App.Kp2a, this, saveTask);
+            pt.Run();
+		}
+
+        private void NotifyPluginsOnOpen()
 		{
 			Intent i = new Intent(Strings.ActionOpenEntry);
 			i.PutExtra(Strings.ExtraSender, PackageName);
@@ -485,7 +561,7 @@ namespace keepass2android
 			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
 			showNotIntent.SetAction(Intents.ShowNotification);
 			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
-			_appTask.PopulatePasswordAccessServiceIntent(showNotIntent);
+			AppTask.PopulatePasswordAccessServiceIntent(showNotIntent);
 			showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
 
 			StartService(showNotIntent);
@@ -556,7 +632,7 @@ namespace keepass2android
 		    SetPasswordTypeface(valueViewVisible);
 		    if (isProtected)
 		    {
-		        RegisterProtectedTextView(valueView, valueViewVisible);
+		        RegisterProtectedTextView(key, valueView, valueViewVisible);
                 
 		    }
 		    else
@@ -595,11 +671,10 @@ namespace keepass2android
 
 
 	        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-	        string binaryDirectory = prefs.GetString(GetString(Resource.String.BinaryDirectory_key),
-	            GetString(Resource.String.BinaryDirectory_default));
+	        
 	        if (writeToCacheDirectory)
 	        {
-	            binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
+	            string binaryDirectory = CacheDir.Path + File.Separator + AttachmentContentProvider.AttachmentCacheSubDir;
 
 	            string filepart = key;
 	            Java.Lang.String javaFilename = new Java.Lang.String(filepart);
@@ -690,8 +765,12 @@ namespace keepass2android
 
 
 
-		private void RegisterProtectedTextView(TextView protectedTextView, TextView visibleTextView)
+		private void RegisterProtectedTextView(string fieldKey, TextView protectedTextView, TextView visibleTextView)
 		{
+            if (!_showPassword.ContainsKey(protectedTextView))
+            {
+                _showPassword[protectedTextView] = fieldKey == UpdateTotpTimerTask.TotpKey ? _showTotpDefault : _showPasswordDefault;
+            }
 		    var protectedTextviewGroup = new ProtectedTextviewGroup { ProtectedField = protectedTextView, VisibleProtectedField = visibleTextView};
 		    _protectedTextViews.Add(protectedTextviewGroup);
             SetPasswordStyle(protectedTextviewGroup);
@@ -799,7 +878,7 @@ namespace keepass2android
 			PopulateStandardText(Resource.Id.entry_url, Resource.Id.entryfield_container_url, PwDefs.UrlField);
 			PopulateStandardText(new List<int> { Resource.Id.entry_password, Resource.Id.entry_password_visible}, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
 		    
-            RegisterProtectedTextView(FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
+            RegisterProtectedTextView(PwDefs.PasswordField, FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
 
 			RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
 				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath);
@@ -837,12 +916,41 @@ namespace keepass2android
 
 			PopulateBinaries();
 
+            PopulatePreviousVersions();
+
 			SetPasswordStyle();
 		}
 
-		
+        private void PopulatePreviousVersions()
+        {
+			ViewGroup historyGroup = (ViewGroup)FindViewById(Resource.Id.previous_versions);
+            int index = 0;
+			foreach (var previousVersion in Entry.History)
+			{
+				
 
-		protected override void OnDestroy()
+
+                Button btn = new Button(this);
+                btn.Text = getDateTime(previousVersion.LastModificationTime);
+
+				//copy variable from outer scope for capturing it below.
+                var index1 = index;
+                btn.Click += (sender, args) =>
+                {
+                    EntryActivity.Launch(this, this.Entry, this._pos, this.AppTask, null, index1);
+                };
+
+				historyGroup.AddView(btn);
+
+                index++;
+
+
+            }
+			FindViewById(Resource.Id.entry_history_container).Visibility = Entry.History.Any() ? ViewStates.Visible : ViewStates.Gone;
+		}
+
+
+        protected override void OnDestroy()
 		{
 			NotifyPluginsOnClose();
 			if (_pluginActionReceiver != null)
@@ -875,11 +983,16 @@ namespace keepass2android
 				container,
 				anchor);
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
-			if (isProtected)
-				popupItems.Add(new ToggleVisibilityPopupMenuItem(this));
-            if (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
-                || _stringViews[fieldKey].Text.StartsWith("http://")
-                || _stringViews[fieldKey].Text.StartsWith("https://"))
+            if (isProtected)
+            {
+                var valueView = container.FindViewById<TextView>(fieldKey == PwDefs.PasswordField ? Resource.Id.entry_password : Resource.Id.entry_extra);
+				popupItems.Add(new ToggleVisibilityPopupMenuItem(this, valueView));
+            }
+
+            if (fieldKey != PwDefs.UrlField //url already has a go-to-url menu
+                && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
+                    || _stringViews[fieldKey].Text.StartsWith("http://")
+                    || _stringViews[fieldKey].Text.StartsWith("https://")))
             {
                 popupItems.Add(new GotoUrlMenuItem(this, fieldKey));
 			}
@@ -970,7 +1083,7 @@ namespace keepass2android
 		{
 			Intent ret = new Intent();
 			ret.PutExtra(KeyRefreshPos, _pos);
-			_appTask.ToIntent(ret);
+			AppTask.ToIntent(ret);
 			SetResult(KeePass.ExitRefresh, ret);
 		}
         
@@ -982,12 +1095,15 @@ namespace keepass2android
                 return;
             }
 
-            if (AppTask.TryGetFromActivityResult(data, ref _appTask))
-			{
+            AppTask appTask = null;
+            if (AppTask.TryGetFromActivityResult(data, ref appTask))
+            {
+                
 				//make sure app task is passed to calling activity.
 				//the result code might be modified later.
 				Intent retData = new Intent();
-				_appTask.ToIntent(retData);
+                AppTask = appTask;
+				appTask.ToIntent(retData);
 				SetResult(KeePass.ExitNormal, retData);	
 			}
 
@@ -1056,8 +1172,11 @@ namespace keepass2android
 	    }
         
 	    private ExportBinaryProcessManager _exportBinaryProcessManager;
+        private bool _showPasswordDefault;
+        private bool _showTotpDefault;
+        private int _historyIndex;
 
-	    protected override void OnSaveInstanceState(Bundle outState)
+        protected override void OnSaveInstanceState(Bundle outState)
 	    {
 	        
 	        
@@ -1100,7 +1219,7 @@ namespace keepass2android
 		private void UpdateTogglePasswordMenu()
 		{
 			IMenuItem togglePassword = _menu.FindItem(Resource.Id.menu_toggle_pass);
-			if (_showPassword)
+			if (_showPassword.Values.All(x => x))
 			{
 				togglePassword.SetTitle(Resource.String.menu_hide_password);
 			}
@@ -1120,8 +1239,9 @@ namespace keepass2android
 
         private void SetPasswordStyle(ProtectedTextviewGroup group)
         {
-            group.VisibleProtectedField.Visibility = _showPassword ? ViewStates.Visible : ViewStates.Gone;
-            group.ProtectedField.Visibility = !_showPassword ? ViewStates.Visible : ViewStates.Gone;
+            bool showPassword = _showPassword.GetValueOrDefault(group.ProtectedField, _showPasswordDefault);
+            group.VisibleProtectedField.Visibility = showPassword ? ViewStates.Visible : ViewStates.Gone;
+            group.ProtectedField.Visibility = !showPassword ? ViewStates.Visible : ViewStates.Gone;
 
             SetPasswordTypeface(group.VisibleProtectedField);
 
@@ -1165,21 +1285,29 @@ namespace keepass2android
 			{
 				case Resource.Id.menu_donate:
 					return Util.GotoDonateUrl(this);
-                case Resource.Id.menu_delete:
+                case Resource.Id.menu_move:
+					var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, Entry.ParentGroup, new List<PwUuid>() {Entry.Uuid}, false);
+                    AppTask = navMove;
+					navMove.SetActivityResult(this, Result.Ok);
+                    Finish();
+                    return true;
+				case Resource.Id.menu_delete:
                     DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
                         new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();
                     break;
                 case Resource.Id.menu_toggle_pass:
-					if (_showPassword)
+					if (_showPassword.Values.All(x => x))
 					{
 						item.SetTitle(Resource.String.show_password);
-						_showPassword = false;
+						foreach (var k in _showPassword.Keys.ToList())
+						    _showPassword[k] = false;
 					}
 					else
 					{
 						item.SetTitle(Resource.String.menu_hide_password);
-						_showPassword = true;
+                        foreach (var k in _showPassword.Keys.ToList())
+                            _showPassword[k] = true;
 					}
 					SetPasswordStyle();
 
@@ -1240,10 +1368,26 @@ namespace keepass2android
 			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
 			pt.Run();
 
-		}	
-		public void ToggleVisibility()
+		}
+
+        public bool GetVisibilityForProtectedView(TextView protectedView)
+        {
+            if (protectedView == null)
+            {
+                return _showPasswordDefault;
+            }
+            if (_showPassword.ContainsKey(protectedView) == false)
+            {
+                _showPassword[protectedView] = _showPasswordDefault;
+            }
+
+            return _showPassword[protectedView];
+        }
+
+		public void ToggleVisibility(TextView valueView)
 		{
-			_showPassword = !_showPassword;
+            
+            _showPassword[valueView] = !GetVisibilityForProtectedView(valueView);
 			SetPasswordStyle();
 			UpdateTogglePasswordMenu();
 		}

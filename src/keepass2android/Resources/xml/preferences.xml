@@ -128,10 +128,16 @@
 			  android:key="import_keyfile_prefs"
 			  android:title="@string/import_keyfile_prefs"
 	  />
-		
-		
-    
-	</PreferenceScreen>
+
+    <Preference
+      android:key="export_keyfile_prefs"
+      android:title="@string/export_keyfile_prefs"
+    />
+
+
+
+
+  </PreferenceScreen>
 	
 
 	<PreferenceScreen
@@ -237,6 +243,12 @@
 			  android:summary="@string/maskpass_summary"
 			  android:defaultValue="@bool/maskpass_default"/>
 
+      <CheckBoxPreference
+        android:key="@string/masktotp_key"
+        android:title="@string/masktotp_title"
+        android:summary="@string/masktotp_summary"
+        android:defaultValue="@bool/masktotp_default"/>
+
 			<CheckBoxPreference
 			  android:key="@string/ShowUsernameInList_key"
 			  android:title="@string/ShowUsernameInList_title"
@@ -273,6 +285,12 @@
 			  android:entryValues="@array/design_values"
 			  android:dialogTitle="@string/design_title"
 			  android:defaultValue="@string/design_default"/>
+
+      <ListPreference
+    android:key="@string/app_language_pref_key"
+    android:title="@string/app_language_pref_title"
+    android:dialogTitle="@string/app_language_pref_title"
+    />
 
       
       <CheckBoxPreference
@@ -398,11 +416,6 @@
 
 			</PreferenceScreen>
 
-      <Preference android:title="@string/AccServiceAutoFill_prefs" >
-        <intent android:action="android.intent.action.VIEW"
-                android:data="https://philippc.github.io/keepass2android/AccServiceAutoFill.html" />
-      </Preference>
-
 		  <PreferenceScreen
 		    android:key="@string/AutoFill_prefs_screen_key"
 		    android:title="@string/AutoFill_prefs"
@@ -424,6 +437,30 @@
 		      android:defaultValue="true"
 		      android:title="@string/OfferSaveCredentials_title"
 		      android:key="@string/OfferSaveCredentials_key" />
+
+        <CheckBoxPreference
+          android:enabled="true"
+          android:persistent="true"
+          android:summary="@string/NoDalVerification_summary"
+          android:defaultValue="false"
+          android:title="@string/NoDalVerification_title"
+          android:key="@string/NoDalVerification_key" />
+
+        <CheckBoxPreference
+       android:enabled="true"
+       android:persistent="true"
+       android:summary="@string/InlineSuggestions_summary"
+       android:defaultValue="true"
+       android:title="@string/InlineSuggestions_title"
+       android:key="@string/InlineSuggestions_key" />
+
+        <CheckBoxPreference
+          android:enabled="true"
+          android:persistent="true"
+          android:summary="@string/NoAutofillDisabling_summary"
+          android:defaultValue="false"
+          android:title="@string/NoAutofillDisabling_title"
+          android:key="@string/NoAutofillDisabling_key" />
 
 		  <keepass2android.AutofillDisabledQueriesPreference
 		    android:title="@string/AutofillDisabledQueriesPreference_title"
@@ -485,6 +522,14 @@
 		    android:defaultValue="false"
 		    android:title="@string/QuickUnlockHideLength_title"
 		    android:key="@string/QuickUnlockHideLength_key" />
+
+      <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/QuickUnlockKeyFromDatabase_summary"
+        android:defaultValue="false"
+        android:title="@string/QuickUnlockKeyFromDatabase_title"
+        android:key="@string/QuickUnlockKeyFromDatabase_key" />
       
 		</PreferenceScreen>
 		<PreferenceScreen
@@ -495,13 +540,7 @@
   android:key="@string/FileHandling_prefs_key"
 	  android:title="@string/FileHandling_prefs"/>
 
-			<EditTextPreference
-				 android:enabled="true"
-				 android:persistent="true"
-				 android:summary="@string/BinaryDirectory_summary"
-				 android:defaultValue="@string/BinaryDirectory_default"
-				 android:title="@string/BinaryDirectory_title"
-				 android:key="@string/BinaryDirectory_key" />
+			
 			<CheckBoxPreference
 				  android:enabled="true"
 				  android:persistent="true"
@@ -550,7 +589,23 @@
 					 android:defaultValue="@bool/PreloadDatabaseEnabled_default"
 					 android:title="@string/PreloadDatabaseEnabled_title"
 					 android:key="@string/PreloadDatabaseEnabled_key" />
-			<CheckBoxPreference
+      <CheckBoxPreference
+  android:enabled="true"
+  android:persistent="true"
+  android:summary="@string/SyncAfterQuickUnlock_summary"
+  android:defaultValue="false"
+  android:title="@string/SyncAfterQuickUnlock_title"
+  android:key="@string/SyncAfterQuickUnlock_key" />
+
+      <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/AlwaysMergeOnConflict_summary"
+        android:defaultValue="false"
+        android:title="@string/AlwaysMergeOnConflict_title"
+        android:key="@string/AlwaysMergeOnConflict_key" />
+
+      <CheckBoxPreference
   android:key="@string/TanExpiresOnUse_key"
   android:title="@string/TanExpiresOnUse_title"
   android:summary="@string/TanExpiresOnUse_summary"

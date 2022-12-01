@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App.Assist;
 using Android.Content;
+using Android.Preferences;
 using Android.Text;
 using Android.Util;
 using Android.Views;
@@ -175,7 +176,7 @@ namespace keepass2android.services.AutofillBase
 
             result.WebDomain = webDomain;
             result.PackageName = Structure.ActivityComponent.PackageName;
-            if (!string.IsNullOrEmpty(webDomain))
+            if (!string.IsNullOrEmpty(webDomain) && !PreferenceManager.GetDefaultSharedPreferences(mContext).GetBoolean(mContext.GetString(Resource.String.NoDalVerification_key), false))
 		    {
                 result.IncompatiblePackageAndDomain = !kp2aDigitalAssetLinksDataSource.IsTrustedLink(webDomain, result.PackageName);
 		        if (result.IncompatiblePackageAndDomain)
@@ -266,8 +267,8 @@ namespace keepass2android.services.AutofillBase
             DomainName outDomain;
 		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
 		    {
-		        webDomain = outDomain.RegisterableDomainName;
-		    }
+		        webDomain = outDomain.RawDomainName;
+            }
 
             if (webDomain != null)
 		    {
@@ -288,18 +289,14 @@ namespace keepass2android.services.AutofillBase
 		    if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
 		        isManualRequest)
 		        viewHints[0] = "on";
-            if (viewHints != null && viewHints.Any())
+            /*if (viewHints != null && viewHints.Any())
             {
                 CommonUtil.logd("viewHints=" + viewHints);
                 CommonUtil.logd("class=" + viewNode.ClassName);
                 CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
-            }
+            }*/
 		    
-		    if (viewNode?.HtmlInfo?.Tag == "input")
-		    {
-		        foreach (var p in viewNode.HtmlInfo.Attributes)
-                CommonUtil.logd("attr="+p.First + "/" + p.Second);
-		    }
+		   
             if (viewHints != null && viewHints.Length > 0 && viewHints.First() != "on" /*if hint is "on", treat as if there is no hint*/)
 			{
 				if (forFill)
@@ -315,7 +312,9 @@ namespace keepass2android.services.AutofillBase
             else
             {
                 
-                if (viewNode.ClassName == "android.widget.EditText" || viewNode?.HtmlInfo?.Tag == "input")
+                if (viewNode.ClassName == "android.widget.EditText" 
+                    || viewNode.ClassName == "android.widget.AutoCompleteTextView" 
+                    || viewNode?.HtmlInfo?.Tag == "input")
                 {
                     _editTextsWithoutHint.Add(viewNode);
                 }

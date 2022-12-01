@@ -50,13 +50,13 @@
     <string name="afc_title_date">Дата</string>
     <string name="afc_title_error">Ошибка</string>
     <string name="afc_title_info">Информация</string>
-    <string name="afc_title_name">Название</string>
+    <string name="afc_title_name">Имя</string>
     <string name="afc_title_save_as">Сохранить как…</string>
     <string name="afc_title_size">Размер</string>
     <string name="afc_title_sort_by">Сортировать по…</string>
     <string name="afc_yesterday">Вчера</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="one">Выберите папку…</item>
+        <item quantity="one">Выбе…рите папку…</item>
         <item quantity="few">Выберите папки…</item>
         <item quantity="many">Выберите папок…</item>
         <item quantity="other">Выберите папки…</item>

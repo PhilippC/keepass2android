@@ -28,11 +28,30 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
-    public class SelectCurrentDbActivity : AndroidX.AppCompat.App.AppCompatActivity
+    [Activity(Label = AppNames.AppName, 
+        MainLauncher = false, 
+        Theme = "@style/MyTheme_Blue", 
+        LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
+    public class SelectCurrentDbActivity : LifecycleAwareActivity
     {
         private int ReqCodeOpenNewDb = 1;
-        
+
+        private static bool IsValidIoc(AutoExecItem item)
+        {
+            IOConnectionInfo itemIoc;
+            if (!KeeAutoExecExt.TryGetDatabaseIoc(item, out itemIoc))
+                return false;
+            try
+            {
+                //see if we have a file storage for the given protocol
+                App.Kp2a.GetFileStorage(itemIoc);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public class OpenDatabaseAdapter : BaseAdapter
         {
@@ -161,14 +180,20 @@ namespace keepass2android
                             IOConnectionInfo itemIoc;
                             return KeeAutoExecExt.TryGetDatabaseIoc(item, out itemIoc) &&
                                    displayedDb.Ioc.IsSameFileAs(itemIoc);
-                        }))
+                        })
+                        && IsValidIoc(item)
+                        
+                        )
+
                     .ToList();
             }
+
+            
         }
 
         private void OnAutoExecItemSelected(AutoExecItem autoExecItem)
         {
-            KeeAutoExecExt.AutoOpenEntry(this, autoExecItem, true);
+            KeeAutoExecExt.AutoOpenEntry(this, autoExecItem, true, new ActivityLaunchModeSimple());
         }
 
         private void OnOpenOther()
@@ -181,6 +206,38 @@ namespace keepass2android
             App.Kp2a.CurrentDb = selectedDatabase;
             LaunchingOther = true;
             AppTask.LaunchFirstGroupActivity(this);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater inflater = MenuInflater;
+            inflater.Inflate(Resource.Menu.menu_selectdb, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_search_advanced:
+                    if (App.Kp2a.CurrentDb == null)
+                        App.Kp2a.CurrentDb = App.Kp2a.OpenDatabases.First();
+                    Intent i = new Intent(this, typeof(SearchActivity));
+                    AppTask.ToIntent(i);
+                    StartActivityForResult(i, 0);
+                    return true;
+                case Resource.Id.menu_lock:
+                    App.Kp2a.Lock();
+                    return true;
+                case Resource.Id.menu_donate:
+                    return Util.GotoDonateUrl(this);
+                case Resource.Id.menu_app_settings:
+                    DatabaseSettingsActivity.Launch(this);
+                    return true;
+                default:
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -252,11 +309,20 @@ namespace keepass2android
                 }
             }
 
-            _intentReceiver = new MyBroadcastReceiver(this);
-            IntentFilter filter = new IntentFilter();
-            filter.AddAction(Intents.DatabaseLocked);
-            RegisterReceiver(_intentReceiver, filter);
+        }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+            
+            if (_intentReceiver == null)
+            {
+                _intentReceiver = new MyBroadcastReceiver(this);
+                IntentFilter filter = new IntentFilter();
+                filter.AddAction(Intents.DatabaseLocked);
+                filter.AddAction(Intent.ActionScreenOff);
+                RegisterReceiver(_intentReceiver, filter);
+            }
         }
 
         protected override void OnStop()
@@ -328,6 +394,7 @@ namespace keepass2android
 
         protected override void OnResume()
         {
+            _isForeground = true;
             base.OnResume();
             if (!IsFinishing && !LaunchingOther)
             {
@@ -372,14 +439,13 @@ namespace keepass2android
                     return;
                 }
 
-                //more than one database open or user requested to load another db. Don't launch another activity.
-                _adapter.Update();
-                _adapter.NotifyDataSetChanged();
-
-                
-
 
             }
+            
+            //more than one database open or user requested to load another db. Don't launch another activity.
+            _adapter.Update();
+            _adapter.NotifyDataSetChanged();
+
             base.OnResume();
         }
 
@@ -394,13 +460,16 @@ namespace keepass2android
                         continue;
                     if (!KeeAutoExecExt.IsDeviceEnabled(autoOpenItem, thisDevice, out _))
                         continue;
+                    if (!IsValidIoc(autoOpenItem))
+                        continue;
+                    
                     IOConnectionInfo dbIoc;
                     if (KeeAutoExecExt.TryGetDatabaseIoc(autoOpenItem, out dbIoc) &&
                         App.Kp2a.TryGetDatabase(dbIoc) == null &&
                         App.Kp2a.AttemptedToOpenBefore(dbIoc) == false
                     )
                     {
-                        if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false))
+                        if (KeeAutoExecExt.AutoOpenEntry(this, autoOpenItem, false, new ActivityLaunchModeRequestCode(ReqCodeOpenNewDb)))
                         {
                             LaunchingOther = true;
                             return true;
@@ -419,6 +488,7 @@ namespace keepass2android
         protected override void OnPause()
         {
             LaunchingOther = false;
+            _isForeground = false;
             base.OnPause();
         }
 
@@ -432,9 +502,19 @@ namespace keepass2android
             StartActivityForResult(intent, ReqCodeOpenNewDb);
         }
 
-        internal AppTask AppTask;
+        private AppTask _appTask;
+        private AppTask AppTask
+        {
+            get { return _appTask; }
+            set
+            {
+                _appTask = value;
+                Kp2aLog.LogTask(value, MyDebugName);
+            }
+        }
         private OpenDatabaseAdapter _adapter;
         private MyBroadcastReceiver _intentReceiver;
+        private bool _isForeground;
 
         public override void OnBackPressed()
         {
@@ -451,13 +531,21 @@ namespace keepass2android
                 Finish();
         }
 
+        public override void Finish()
+        {
+            Kp2aLog.Log($"Finishing {MyDebugName}");
+            base.Finish();
+        }
+
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            Kp2aLog.Log("StackBaseActivity.OnActivityResult " + resultCode + "/" + requestCode);
+            Kp2aLog.Log($"{MyDebugName}: OnActivityResult " + resultCode + "/" + requestCode);
 
-            AppTask.TryGetFromActivityResult(data, ref AppTask);
+            AppTask appTask = null;
+            if (AppTask.TryGetFromActivityResult(data, ref appTask))
+                this.AppTask = appTask;
 
             if (requestCode == ReqCodeOpenNewDb)
             {
@@ -581,6 +669,10 @@ namespace keepass2android
         {
             //app tasks are assumed to be finished/cancelled when the database is locked
             AppTask = new NullTask();
+            //in case we are the foreground activity, we won't get OnResume (in contrast to having other activities on top of us on the stack).
+            //Call it to ensure we switch to QuickUnlock/fileselect
+            if (_isForeground)
+                OnResume();
         }
     }
 }

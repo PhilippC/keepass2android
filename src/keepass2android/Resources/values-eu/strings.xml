@@ -182,6 +182,11 @@
   <string name="sort_moddate">Ordenatu aldatze dataren arabera</string>
   <string name="sort_default">Mantendu lehenetsitako ordena</string>
   <string name="special">Berezia</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Pasahitza</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Zer aurkitu</string>
   <string name="search_results">Bilaketaren emaitzak</string>
   <string name="search_in">Non bilatu</string>
@@ -219,7 +224,6 @@
   <string name="QuickUnlockLength_title">QuickUnlock gakoaren luzera</string>
   <string name="QuickUnlockLength_summary">QuickUnlock pasahitzaren gehieneko karaktere kopurua.</string>
   <string name="QuickUnlock_fail">QuickUnlock errorea: pasahitz okerra!</string>
-  <string name="BinaryDirectory_title">Eranskinen karpeta</string>
   <string name="SaveAttachmentDialog_title">Gorde eranskina</string>
   <string name="SaveAttachmentDialog_save">Fitxategira esportatu...</string>
   <string name="SaveAttachmentDialog_open">Gorde katxean eta ireki</string>
@@ -427,6 +431,7 @@
   <string-array name="design_options">
     <item>Argia</item>
     <item>Iluna</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Diseinua</string>
   <string-array name="ftp_encryption_modes">

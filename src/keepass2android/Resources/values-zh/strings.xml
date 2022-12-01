@@ -3,9 +3,9 @@
 <resources>
   <string name="about_feedback">反馈</string>
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
-  <string name="CreditsText">用户界面基于 Brian Pellin 开发的 KeepassDroid 项目。数据库操作代码基于 Dominik Reichl 开发的KeePass 项目。Android机器人图案根据Google创建和共享的作品进行复制或修改，并依照知识共享署名3.0许可进行使用。</string>
-  <string name="CreditsTextSFTP">SFTP 支持由 JCraft，Inc. 创建的 JSch 库（基于BSD许可证）实现</string>
-  <string name="CreditsIcons">锤子图标是由John Caserta通过Noun Project创建的。企鹅图标是由Adriano Emerick通过Noun Project创建的。羽毛图标是由 Jon Testa通过Noun Project创建的。苹果图标是由Ava Rowell通过Noun Project创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
+  <string name="CreditsText">用户界面基于 Brian Pellin 开发的 KeepassDroid 项目。数据库操作代码基于 Dominik Reichl 开发的 KeePass 项目。Android 机器人图案根据 Google 创建和共享的作品进行复制或修改，并依照知识共享署名 3.0 协议进行使用。</string>
+  <string name="CreditsTextSFTP">SFTP 支持由 JCraft, Inc. 创建的 JSch 库（基于 BSD 许可证）实现</string>
+  <string name="CreditsIcons">锤子图标是由 John Caserta 通过 Noun Project 创建的。企鹅图标是由 Adriano Emerick 通过 Noun Project 创建的。羽毛图标是由 Jon Testa 通过 Noun Project 创建的。苹果图标是由 Ava Rowell 通过 Noun Project 创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
   <string name="accept">接受</string>
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
@@ -24,7 +24,7 @@
   <string name="app_timeout_summary">当应用进入后台之后，锁定数据库之前等待的时间。</string>
   <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">关闭按钮</string>
-  <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（对于偏执的用户）</string>
+  <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（强迫症选项）</string>
   <string name="application">应用</string>
   <string name="application_settings">应用设置</string>
   <string name="ShowGroupnameInSearchResult_title">在搜索结果中显示群组名</string>
@@ -35,9 +35,9 @@
   <string name="OfferSaveCredentials_summary">如果启用，Android 会在您将数据手动输入自动填充字段后询问是否要保存凭据。</string>
   <string name="OfferSaveCredentials_title">支持保存凭据</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
-  <string name="unknown_uri_scheme">对不起 ！Keepass2Android 不能处理返回的 URI %1$s。请联系开发者 ！</string>
+  <string name="unknown_uri_scheme">对不起！Keepass2Android 无法处理返回的 URI %1$s。请联系开发者！</string>
   <string name="Entry_singular">1个项目</string>
-  <string name="Entry_plural">%1$d 个项目</string>
+  <string name="Entry_plural">%1$d 个条目</string>
   <string name="IconSet_title">图标集</string>
   <string name="IconSet_install">发现更多...</string>
   <string name="security_prefs">安全</string>
@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">生物识别解锁</string>
   <string name="import_db_prefs">在内部的文件夹中导入数据库</string>
   <string name="import_keyfile_prefs">将密钥文件导入到内部文件夹</string>
+  <string name="export_keyfile_prefs">从内部文件夹导出密钥文件</string>
   <string name="keyboardswitch_prefs">切换键盘</string>
   <string name="OnlyAvailableForLocalFiles">仅适用于本地文件。</string>
   <string name="FileIsInInternalDirectory">文件存储在内部目录中。</string>
@@ -70,6 +71,7 @@
   <string name="copy_password">复制密码到剪贴板</string>
   <string name="copy_totp">复制 TOTP 到剪贴板</string>
   <string name="available_through_keyboard">可通过 KP2A 键盘获得条目</string>
+  <string name="app_language_pref_title">程序语言</string>
   <string name="entry_is_available">可用</string>
   <string name="not_possible_im_picker">无法打开输入法选择对话框，请手动激活键盘。</string>
   <string name="please_activate_keyboard">请在系统设置中启用 Keepass2Android 键盘。</string>
@@ -78,9 +80,10 @@
   <string name="current_group_root">当前群组：根群组</string>
   <string name="database">数据库</string>
   <string name="digits">数字</string>
-  <string name="disclaimer_formal">Keepass2Android 版权归 Philipp Crocoll；软件不带有绝对担保；是自由软件，您可在遵循 GPL 2 或者更高版本的情况下重新发布。</string>
+  <string name="disclaimer_formal">Keepass2Android 不承担任何担保责任；这是自由软件，欢迎您在遵循 GPL 版本 2 或者以后版本许可证的情况下重新分发。</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">复制到剪贴板</string>
+  <string name="SystemLanguage">系统语言</string>
   <string name="fingerprint_description">请验证以继续</string>
   <string name="fingerprint_fatal">无法设置指纹解锁：</string>
   <string name="fingerprint_not_recognized">生物鉴别失败。请重试</string>
@@ -104,7 +107,7 @@
   <string name="entry_cancel">取消</string>
   <string name="entry_comment">备注</string>
   <string name="entry_tags">标签</string>
-  <string name="entry_override_url">覆盖链接地址</string>
+  <string name="entry_override_url">覆盖 URL</string>
   <string name="entry_confpassword">确认密码</string>
   <string name="entry_created">创建时间：</string>
   <string name="entry_expires">失效时间：</string>
@@ -119,7 +122,7 @@
   <string name="entry_user_name">用户名</string>
   <string name="entry_extra_strings">额外的字符串字段</string>
   <string name="entry_binaries">文件附件</string>
-  <string name="error_can_not_handle_uri">Keepass2Android无法处理此URI。</string>
+  <string name="error_can_not_handle_uri">Keepass2Android 无法处理此 URI。</string>
   <string name="error_could_not_create_group">创建群组错误。</string>
   <string name="error_could_not_create_parent">无法创建上级目录。</string>
   <string name="error_database_exists">文件已存在。</string>
@@ -181,7 +184,7 @@
   <string name="menu_move">移动到其他群组</string>
   <string name="menu_move_light">移动</string>
   <string name="menu_navigate">导航字父群组</string>
-  <string name="menu_donate">捐出一瓶啤酒钱......</string>
+  <string name="menu_donate">捐赠一杯啤酒钱...</string>
   <string name="menu_edit">编辑</string>
   <string name="menu_hide_password">隐藏密码</string>
   <string name="menu_lock">锁定数据库</string>
@@ -208,7 +211,7 @@
   <string name="master_key_type">选择主密钥类型：</string>
   <string name="progress_create">创建新数据库中…</string>
   <string name="create_database">创建数据库</string>
-  <string name="progress_title">工作中…</string>
+  <string name="progress_title">处理中…</string>
   <string name="remember_keyfile_summary">记住密钥文件的位置</string>
   <string name="remember_keyfile_title">保存密钥文件</string>
   <string name="remove_from_filelist">移除</string>
@@ -226,8 +229,9 @@
   <string name="database_name">数据库名称</string>
   <string name="default_username">新条目的默认用户名</string>
   <string name="saving_database">正在保存数据库…</string>
-  <string name="exporting_database">正在导出数据库...</string>
-  <string name="export_database_successful">数据库导出成功 ！</string>
+  <string name="exporting_database">正在导出数据库…</string>
+  <string name="export_database_successful">数据库导出成功！</string>
+  <string name="export_keyfile_successful">密钥文件导出成功！</string>
   <string name="space">空格</string>
   <string name="search_label">搜索</string>
   <string name="show_password">显示密码</string>
@@ -237,6 +241,25 @@
   <string name="sort_moddate">按修改日期排序</string>
   <string name="sort_default">保持默认顺序</string>
   <string name="special">特别</string>
+  <string name="special_extended">扩展的特殊</string>
+  <string name="at_least_one_from_each_group">每组至少一个</string>
+  <string name="exclude_lookalike">排除外观相像的字符</string>
+  <string name="password_generation_profile">配置文件</string>
+  <string name="save_password_generation_profile_text">输入要保存的配置文件的名称。输入一个现有的名称以覆盖。</string>
+  <string name="hint_wordcount">Passphrase 单词计数</string>
+  <string name="hint_wordseparator">单词分隔符</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>密码</item>
+    <item>Passphrase</item>
+    <item>Passphrase + 密码</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>小写</item>
+    <item>大写</item>
+    <item>首字母大写</item>
+  </string-array>
+  <string name="custom_settings">自定义设置</string>
+  <string name="passphrase_capitalization">Passphrase 大写</string>
   <string name="search_hint">查找内容</string>
   <string name="search_results">搜索结果</string>
   <string name="search_in">在...中搜索</string>
@@ -267,6 +290,11 @@
   <string name="ShowUsernameInList_summary">在条目标题下方显示用户名，对多账户或 TANs 很有用。</string>
   <string name="RememberRecentFiles_title">记忆数据库</string>
   <string name="RememberRecentFiles_summary">记忆最近打开过的数据库并在开启数据库屏显示。</string>
+  <string name="NoDalVerification_title">无 DAL 验证</string>
+  <string name="NoDalVerification_summary">不检查域名和应用程序包是否匹配</string>
+  <string name="InlineSuggestions_title">与键盘集成</string>
+  <string name="InlineSuggestions_summary">将自动填充建议显示为键盘中的内联选项(如果输入法支持的话)</string>
+  <string name="requires_android11">需要 Android 11 或更高版本</string>
   <string name="kp2a_findUrl">找回密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
   <string name="search_options">选项</string>
@@ -295,8 +323,6 @@
   <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
   <string name="QuickUnlockHideLength_summary">若启用，快速解锁所需的密码长度不会再显示在快速解锁界面上。</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
-  <string name="BinaryDirectory_title">文件附件目录</string>
-  <string name="BinaryDirectory_summary">附件所保存到的目录位置</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
   <string name="SaveAttachmentDialog_save">导出到文件...</string>
@@ -314,6 +340,13 @@
   <string name="protection">受保护的字段</string>
   <string name="add_binary">添加附件...</string>
   <string name="add_extra_string">添加额外的字符串</string>
+  <string name="configure_totp">配置 TOTP</string>
+  <string name="totp_secret_key">密钥</string>
+  <string name="totp_encoding_rfc6238">默认 RFC6238 令牌设置</string>
+  <string name="totp_encoding_steam">Steam令牌设置</string>
+  <string name="totp_encoding_custom">自定义令牌设置</string>
+  <string name="totp_time_step">时间步数</string>
+  <string name="totp_length">代码长度</string>
   <string name="delete_extra_string">删除额外的字符串</string>
   <string name="database_loaded_quickunlock_enabled">%1$s：已锁定，快速解锁已启用。</string>
   <string name="database_loaded_unlocked">%1$s：已解锁。</string>
@@ -326,7 +359,7 @@
   <string name="ClearPasswordOnLeave_summary">当没有解锁数据库就退出时，清除已输入的主密码。</string>
   <string name="LockWhenNavigateBack_title">离开应用时锁定</string>
   <string name="LockWhenNavigateBack_summary">当通过点按返回键离开本应用时锁定数据库</string>
-  <string name="UseKp2aKeyboardInKp2a_title">在 Keepass2Android中 使用内置键盘</string>
+  <string name="UseKp2aKeyboardInKp2a_title">在 Keepass2Android 中使用内置键盘</string>
   <string name="UseKp2aKeyboardInKp2a_summary">如果您不信任您的输入法提供者，请在输入主密码或编辑条目时选中此选项以使用内置键盘。</string>
   <string name="ActivateSearchViewOnStart_title">启动时自动激活搜索区域</string>
   <string name="ActivateSearchViewOnStart_summary">当进入分组视图或开始搜索条目时自动将焦点转至搜索区域</string>
@@ -357,7 +390,7 @@
   <string name="AccServiceAutoFill_prefs">自动填充服务（辅助功能）</string>
   <string name="AutoFill_prefs">自动填充服务</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
-  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取 （推荐）。</string>
+  <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取（推荐）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">当从浏览器搜索或键盘后可用通过 KP2A 键盘输入时，打开键盘选择对话框。</string>
   <string name="kp2a_switch_rooted">自动切换键盘</string>
@@ -376,6 +409,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android无法访问此文件。文件可能已被删除，或其访问权限受限。请使用“更改数据库”重新打开文件。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
   <string name="PreloadDatabaseEnabled_summary">当输入密码项时启动后台加载或下载数据库文件。</string>
+  <string name="SyncAfterQuickUnlock_title">快速解锁后同步</string>
+  <string name="SyncAfterQuickUnlock_summary">使用 QuickUnlock 解锁后将数据库与远程文件同步.</string>
   <string name="AskOverwriteBinary">是否要以相同的名字覆盖现有的文件？</string>
   <string name="AskOverwriteBinary_title">覆盖已存在的文件？</string>
   <string name="AskOverwriteBinary_yes">覆盖</string>
@@ -394,35 +429,35 @@
   <string name="AskDiscardChanges">确认放弃之前所做的更改？（保存按钮在顶部）</string>
   <string name="AskDiscardChanges_title">放弃更改？</string>
   <string name="suggest_improvements">建议或投票改进</string>
-  <string name="rate_app">为本应用评分</string>
+  <string name="rate_app">给本应用评分</string>
   <string name="translate_app">翻译 KP2A</string>
-  <string name="AddingEntry">添加条目...</string>
-  <string name="AddingGroup">添加群组...</string>
-  <string name="DeletingEntry">删除条目...</string>
-  <string name="DeletingGroup">删除群组...</string>
+  <string name="AddingEntry">添加条目…</string>
+  <string name="AddingGroup">添加群组…</string>
+  <string name="DeletingEntry">删除条目…</string>
+  <string name="DeletingGroup">删除群组…</string>
   <string name="DeletingItems">删除元素中…</string>
-  <string name="SettingPassword">设置密码...</string>
-  <string name="UndoingChanges">撤消更改...</string>
-  <string name="TransformingKey">变更主密钥...</string>
-  <string name="DecodingDatabase">解码数据库...</string>
-  <string name="ParsingDatabase">解析数据库...</string>
+  <string name="SettingPassword">设置密码…</string>
+  <string name="UndoingChanges">撤消更改…</string>
+  <string name="TransformingKey">变更主密钥…</string>
+  <string name="DecodingDatabase">解码数据库…</string>
+  <string name="ParsingDatabase">解析数据库…</string>
   <string name="CheckingTargetFileForChanges">检查目标文件是否被更改...</string>
   <string name="TitleSyncQuestion">合并更改吗？</string>
   <string name="MessageSyncQuestion">数据库文件被外目修改。你想在保存之前载入并合并已有的更改吗？如果你想覆盖外部更改选择「不」。</string>
-  <string name="SynchronizingDatabase">合并更改...</string>
+  <string name="SynchronizingDatabase">合并更改…</string>
   <string name="YesSynchronize">是的，合并</string>
   <string name="NoOverwrite">不，覆盖</string>
   <string name="UseOfflineMode">仅使用本地缓存</string>
   <string name="UseOnlineMode">缓存副本同步至文件源</string>
   <string name="UseOfflineMode_Info">已从内部缓存加载数据库。数据库的更改将只会保存在内部缓存中，且只在点击“缓存副本同步至文件源”后才会进行同步。</string>
   <string name="InOfflineMode">仅使用内部缓存。</string>
-  <string name="SynchronizingCachedDatabase">同步缓存的数据库...</string>
-  <string name="DownloadingRemoteFile">正在从文件源加载…</string>
+  <string name="SynchronizingCachedDatabase">同步缓存的数据库…</string>
+  <string name="DownloadingRemoteFile">正在加载源文件…</string>
   <string name="UploadingFile">保存文件…</string>
-  <string name="RestoringRemoteFile">正在从文件源恢复...</string>
+  <string name="RestoringRemoteFile">正在从文件源恢复…</string>
   <string name="FilesInSync">文件同步中。</string>
-  <string name="SynchronizedDatabaseSuccessfully">数据库同步成功 ！</string>
-  <string name="CheckingDatabaseForChanges">检查数据库更改...</string>
+  <string name="SynchronizedDatabaseSuccessfully">数据库同步成功！</string>
+  <string name="CheckingDatabaseForChanges">检查数据库更改…</string>
   <string name="CouldNotSaveToRemote">无法保存至文件源：%1$s。请重试，或在文件可用后使用同步菜单。</string>
   <string name="CouldNotLoadFromRemote">无法读取文件源：%1$s。已从本地缓存中加载。你仍可修改数据库，并稍后进行同步。</string>
   <string name="UpdatedRemoteFileOnLoad">已从文件源更新。</string>
@@ -438,22 +473,22 @@
   <string name="ErrorOcurred">发生错误：</string>
   <string name="DuplicateUuidsError">数据库损坏：发现重复的ID。（你曾使用Minikeepass编辑？）请用Keepass 2 for PC并选择创建新的ID重新导入到新的数据库。</string>
   <string name="DuplicateUuidsErrorAdditional">您可以在 设置/应用设置/文件处理/检查重复的 UUID 中关闭此错误消息。请注意您可能碰到意外的情况，建议您立即修复数据库。</string>
-  <string name="synchronize_database_menu">同步数据库...</string>
+  <string name="synchronize_database_menu">同步数据库…</string>
   <string name="CannotMoveGroupHere">不能将群组移动到这。</string>
-  <string name="donate_question">今天是慕尼黑啤酒节 ！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
+  <string name="donate_question">今天是慕尼黑啤酒节！如果你喜欢 Keepass2Android：今天难道不是给我买一杯啤酒的好日子吗？</string>
   <string name="donate_bday_question">5月10日？今天是我的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？这会让我非常高兴！:-)</string>
   <string name="donate_missedbday_question">呃，您错过了我5月10日的生日！如果您喜欢本应用，为什么不送我点生日问候与生日礼物？还不算太晚，这会让我非常高兴！:-)</string>
-  <string name="ok_donate">告诉我更多 ！</string>
+  <string name="ok_donate">愿闻其详</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
   <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
-  <string name="hint_http_url">文件夹或文件 URL (如: mycloud.me.com/webdav/)</string>
+  <string name="hint_http_url">文件夹或文件 URL（如: mycloud.me.com/webdav/）</string>
   <string name="enter_owncloud_login_title">输入 OwnCloud 登录信息:</string>
   <string name="hint_owncloud_url">OwnCloud 地址 (例如: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">输入 Nextcloud 登录信息：</string>
   <string name="hint_nextcloud_url">Nextcloud 网址（例如：nextcloud.me.com）</string>
   <string name="hint_sftp_host">主机（比如: 192.168.0.1）</string>
   <string name="hint_sftp_port">端口</string>
-  <string name="initial_directory">初始目录 （可选）：</string>
+  <string name="initial_directory">初始目录（可选）：</string>
   <string name="enter_sftp_login_title">输入 SFTP 登录数据：</string>
   <string name="sftp_auth_mode">身份验证模式</string>
   <string name="send_public_key">发送公钥...</string>
@@ -472,7 +507,7 @@
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">此存储类型仅请求访问“Applications / Keepass2Android”文件夹。 如果要使用PCloud帐户中的现有数据库，请确保将文件放在此文件夹中。</string>
+  <string name="filestoragehelp_pcloud">这种存储类型只请求访问 pCloud 文件夹 \"Applications/Keepass2Android\"。如果您想使用 pCloud 帐户中现有的数据库，请确保文件被放置在这个 pCloud 文件夹中。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">所有文件和共享文件</string>
@@ -494,22 +529,22 @@
   <string name="hint_key_file">勾选以在使用主密码之余额外使用一个密钥文件：</string>
   <string name="use_key_file">使用密钥文件</string>
   <string name="error_adding_keyfile">添加密钥文件时出错 ！</string>
-  <string name="init_otp">加载一次性密码辅助文件......</string>
+  <string name="init_otp">加载一次性密码辅助文件…</string>
   <string name="otp_explanation">输入下一个一次性密码，或通过 NFC 感应您的 Yubikey NEO 设备（需要安装 Yubiclip 应用）。</string>
   <string name="otp_hint">一次性密码 %1$d</string>
   <string name="CouldntLoadOtpAuxFile">不能加载一次性密码文件 ！</string>
-  <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs ！</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">请使用 KeePass 2.x（电脑端）的 OtpKeyProv 插件来配置您的数据库使用 OTPs！</string>
   <string name="otp_discarded_because_no_db">请先选择数据库。出于安全原因，一次性密码将被丢弃。</string>
   <string name="otp_discarded_no_space">一次性密码已丢弃：所有一次性密码已进入。</string>
   <string name="otp_discarded_because_db_open">请先关闭数据库。一次性密码已丢弃。</string>
   <string name="otps_pending">（一个或多个一次性密码已经可用）</string>
-  <string name="otpsecret_hint">一次性密码（例如：01 23 ab cd）</string>
+  <string name="otpsecret_hint">一次性密码（例如：01 23 ab cd…）</string>
   <string name="CouldntParseOtpSecret">解析一次性密码错误！</string>
   <string name="OtpKeyError">无法创建一次性密码密钥！确保你输入了正确的 OTPs。</string>
   <string name="ErrorUpdatingOtpAuxFile">更新一次性密码辅助文件时出错 ！</string>
-  <string name="SavingOtpAuxFile">正在保存一次性密码辅助文件...</string>
+  <string name="SavingOtpAuxFile">正在保存一次性密码辅助文件…</string>
   <string name="NoChallengeApp">无法找到处理此挑战请求的应用。</string>
-  <string name="PleaseInstallApp">请于Google Play安装%1$s。</string>
+  <string name="PleaseInstallApp">请从 Google Play 安装 %1$s。</string>
   <string name="AppOutdated">不再支持%1$s。</string>
   <string name="bad_resp">挑战响应不正确</string>
   <string name="CouldntLoadChalAuxFile">无法加载辅助挑战文件！</string>
@@ -546,8 +581,8 @@
   <string name="SCOPE_QUERY_CREDENTIALS_title">查询凭据</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">插件将获准查询特定的网站及应用的证书。</string>
   <string name="get_regular_version">获取更多的存储类型</string>
-  <string name="CertificateWarning">警告： 服务器证书验证失败: %1$s。在您的设备上安装相应的根证书，或请参阅设置 ！</string>
-  <string name="CertificateFailure">错误： 服务器证书验证失败！在您的设备上安装相应的根证书，或请参阅设置 ！</string>
+  <string name="CertificateWarning">警告：服务器证书验证失败：%1$s。请在您的设备上安装相应的根证书，或请参阅设置！</string>
+  <string name="CertificateFailure">错误：服务器证书验证失败！请在您的设备上安装相应的根证书，或请参阅设置！</string>
   <string name="export_fileformats_title">选择文件格式</string>
   <string name="killed_by_os">对不起 ！Keepass2Android 被系统结束进程！出于安全原因，Keepass2Android 不在磁盘上存留证书，所以您需要重新打开您的数据库。注：出现该问题的几率极低。如果出现了，请给我发送我邮件至 crocoapps@gmail.com</string>
   <string name="FileIsTemporarilyAvailable">该文件暂时仅供 Keepass2Android使用。</string>
@@ -565,7 +600,7 @@
   <string name="AddCustomIcon">从文件添加图标...</string>
   <string name="CopyingFile">正在复制文件...</string>
   <string name="DuplicateTitle">副本</string>
-  <string name="DefaultTemplate">进入数据库的标准</string>
+  <string name="DefaultTemplate">标准条目</string>
   <string name="TemplateGroupName">模板</string>
   <string name="TemplateTitle_IdCard">身份卡</string>
   <string name="TemplateField_IdCard_Name">名称</string>
@@ -586,7 +621,7 @@
   <string name="AskAddTemplatesTitle">增加模板</string>
   <string name="AskAddTemplatesMessage">Keepass2Android包含了将电子邮箱账户,无线局域网密码,安全记录和别的更多的连入数据库模板.你想把这些加入你的数据库吗?如果你选择了否,你可以稍后在数据库设置中添加它们.</string>
   <string name="AddTemplates_pref">添加模板到数据库中</string>
-  <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到“任何”意外，请告诉我（通过Google+ beta tester group或电子邮件）。</string>
+  <string name="PreviewWarning">请注意！这是一个预览版本，可能会有一些缺陷！如果您遇到*任何*意外，请告诉我（通过 Google+ beta tester group 或电子邮件）。</string>
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
   <string name="FirstInvalidCompositeKeyError">复合密钥无效！请重试。</string>
@@ -608,9 +643,9 @@
     &#8226;如果你可以在PC上打开这个文件，请联系技术支持。你也可以尝试在PC上使用不同参数（如不压缩）另存一份文件，再尝试在Keepass2Android上打开。
 
   </string>
-  <string name="open_other_db">打开另一个数据库...</string>
+  <string name="open_other_db">打开另一个数据库…</string>
   <string name="select_database">选择数据库</string>
-  <string name="configure_child_dbs">配置子数据库...</string>
+  <string name="configure_child_dbs">配置子数据库…</string>
   <string name="child_dbs_title">子数据库</string>
   <string name="unspecified">未指定</string>
   <string name="child_db_explanation">子数据库是可以在打开父数据库时自动打开的其他数据库。 因此，子数据库的主密码和文件位置存储在父数据库中。 此功能允许与其他人共享您的一些密码。 该实现与 PC 端的 KeeAutoExec 兼容。</string>
@@ -632,6 +667,42 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
+  <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_09b">
+    <item>修复了 Firefox 中自动填充提示消失的问题</item>
+    <item>将自动填充建议与键盘集成 (需要 Android 11+)</item>
+    <item>允许在设置中更改应用程序语言</item>
+    <item>添加了在快速解锁后同步数据库的选项</item>
+    <item>Bug 修复：保存到 Dropbox 时不将文件名变小写</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>添加对 KeePass 2.48 中引入的 KDBX 4.1 文件格式的支持</item>
+    <item>添加了配置条目 TOTP 设置的对话框</item>
+    <item>改进密码生成器：添加 passphrase 支持、更多选项、配置文件和密码强度估计</item>
+    <item>改进自动填充 (固定弹出窗口未在 Chrome 中显示, 更好的子域支持)</item>
+    <item>改进OneDrive实现：不再限制大小，不再有多余的身份验证请求</item>
+    <item>添加了从系统设置中选择浅/深色设计(包括夜间计划)的选项，需要 Android 10 以上系统</item>
+    <item>更新Dropbox实现，以支持新的认证方法。</item>
+    <item>在系统设置中增加指纹后，新设置的指纹解锁将失效，以提高安全性。</item>
+    <item>允许通过系统文件选择器打开文件，忽略只读标志</item>
+    <item>允许从条目视图菜单开始移动条目</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>添加对 Keepass 2.47 版本引入的新密钥文件格式的支持</item>
+    <item>添加对 Argon2id 作为密钥衍生函数的支持</item>
+    <item>改进与 Firefox 和 Chrome 浏览器的自动填充兼容性</item>
+    <item>改进了对来自桌面程序的 TOTP 条目的支持</item>
+    <item>更新 pCloud SDK 修复认证问题</item>
+    <item>更新 Jsch 到 0.1.55 版本</item>
+    <item>添加到数据库选择屏幕的菜单</item>
+    <item>允许导出导入的密钥文件</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>URL 字段中不再存储应用的包名</item>
+    <item>改善锁定行为- 解锁后不再立即显示生物特征提示</item>
+    <item>更新 OkHttp 以支持 HTTP/2</item>
+    <item>修复缺失的翻译</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>由于OkHttp的HTTP/2实现有问题，强制使用HTTP/1.1</item>
     <item>改进安卓9+上的键盘对话框</item>
@@ -646,7 +717,7 @@
     <item>切换到使用 FluentFTP 为 TLS 1.2 提供支持</item>
     <item>切换到 BiometricPrompt API 以提高用户指纹解锁体验，并允许使用脸解锁，例如在 Pixel 4 上。</item>
     <item>BUG修复</item>
-    <item>BUG修复</item>
+    <item>Bug 修复</item>
   </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
     * 采用原生实现改进 Argon2 性能（感谢 Chih-Hsuan Yen!）\n
@@ -657,17 +728,18 @@
     * 新的 OneDrive 实现：支持 OneDrive for Business、共享文件、可选权限范围、多账户，以及修复离线访问问题\n
     * 其他问题修复
   </string>
-  <string name="ChangeLog_1_07">版本1.07 \ n
-     *修复了三星Android 9上的崩溃问题\ n
-     *允许打开多个与KeeAutoExec兼容的数据库\ n
-     * SFTP：允许公钥验证，检查主机密钥是否已更改\ n
-     *介绍pCloud支持 - 感谢gilbsgilbs！\ n
-     *明确指出Nextcloud支持\ n
-     *改进入口附件的保存和更新\ n
-     *更多选择，以适应个人喜好的行为\ n
-     * SSL：信任用户证书\ n
-     *改进自动填充功能（现在适用于Firefox，允许减少弹出窗口）\ n
-     *错误修复\ n</string>
+  <string name="ChangeLog_1_07">版本1.07 \n
+     *修复了三星Android 9上的崩溃问题\n
+     *允许打开多个与KeeAutoExec兼容的数据库\n
+     * SFTP：允许公钥验证，检查主机密钥是否已更改\n
+     *介绍pCloud支持 - 感谢gilbsgilbs！\n
+     *明确指出Nextcloud支持\n
+     *改进入口附件的保存和更新\n
+     *更多选择，以适应个人喜好的行为\n
+     * SSL：信任用户证书\n
+     *改进自动填充功能（现在适用于Firefox，允许减少弹出窗口）\n
+     *错误修复\n
+  </string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n
@@ -931,8 +1003,9 @@ Initial public release
     <item>大</item>
   </string-array>
   <string-array name="design_options">
-    <item>白天模式</item>
-    <item>夜间模式</item>
+    <item>浅色</item>
+    <item>深色</item>
+    <item>系统设置</item>
   </string-array>
   <string name="design_title">设计</string>
   <string-array name="ftp_encryption_modes">
@@ -949,7 +1022,7 @@ Initial public release
     <item>仅密码</item>
     <item>密码 + 密钥文件</item>
     <item>密码 + 一次性密码</item>
-    <item>密码 + 一次性密码 （恢复模式）</item>
+    <item>密码 + 一次性密码（恢复模式）</item>
     <item>密码 + 挑战—响应</item>
     <item>密码 + 挑战—响应（恢复模式）</item>
     <item>密码 + 挑战-应答（Keepass XC）</item>
@@ -986,6 +1059,7 @@ Initial public release
   <string name="emergency_infotext_head">你准备好应对突发情况了吗？</string>
   <string name="emergency_infotext_main">你是否考虑过，当你突然无法打开你的密码数据库时，该怎么办？万一你不幸发生事故，又该怎么办？你应该将主密钥托付给一个值得信任的人，以应对突发情况。除此以外的其他人都无法查看你的密码。</string>
   <string name="no_secure_display">当前有效的显示器未标记为“安全”。因此其他应用可以屏幕截图。Keepass2Android 已配置为仅在安全的显示器上显示敏感信息。请更换到安全的显示器（如断开 HDMI 监视器）或更改本应用的设置。</string>
+  <string name="disable_secure_screen_check">禁用此消息</string>
   <string name="switch_ime_text">请激活Keepass2Android 键盘。</string>
   <string name="switch_ime_reopen">重试</string>
   <string name="AutofillWarning_title">安全警报：无法识别的域名/应用链接</string>

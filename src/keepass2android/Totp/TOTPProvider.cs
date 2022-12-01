@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Security;
 using System.Security.Cryptography;
+using keepass2android;
+using PluginTOTP;
 
 namespace KeeTrayTOTP.Libraries
 {
@@ -110,24 +112,23 @@ namespace KeeTrayTOTP.Libraries
         /// Instanciates a new TOTP_Generator.
         /// </summary>
         /// <param name="initSettings">Saved Settings.</param>
-        public TOTPProvider(string[] Settings)
+        public TOTPProvider(TotpData data)
         {
-            this.duration = Convert.ToInt16(Settings[0]);
+            this.duration = Convert.ToInt16(data.Duration);
 
-            if (Settings[1] == "S")
+            if (data.Encoder == TotpData.EncoderSteam)
             {
                 this.length = 5;
                 this.encoder = TOTPEncoder.steam;
             }
             else
             {
-                this.length = Convert.ToInt16(Settings[1]);
+                this.length = Convert.ToInt16(data.Length);
                 this.encoder = TOTPEncoder.rfc6238;
             }
 
-            if(Settings.Length > 2 && Settings[2] != String.Empty)
+            if(data.TimeCorrectionUrl != null)
             {
-
                 {
                     this.TimeCorrection = TimeSpan.Zero;
                     this.timeCorrectionError = false;
@@ -138,8 +139,11 @@ namespace KeeTrayTOTP.Libraries
                 this.TimeCorrection = TimeSpan.Zero;
             }
 
-                           
+            this.HashAlgorithm = data.HashAlgorithm;
+
         }
+
+        public string HashAlgorithm { get; set; }
 
         /// <summary>
         /// Returns current time with correction int UTC format.
@@ -195,32 +199,6 @@ namespace KeeTrayTOTP.Libraries
             return b;
         }
 
-        /// <summary>
-        /// Generate a TOTP using provided binary data.
-        /// </summary>
-        /// <param name="key">Binary data.</param>
-        /// <returns>Time-based One Time Password encoded byte array.</returns>
-        public byte[] Generate(byte[] key)
-        {
-            System.Security.Cryptography.HMACSHA1 hmac = new System.Security.Cryptography.HMACSHA1(key, true); //Instanciates a new hash provider with a key.
-            byte[] hash = hmac.ComputeHash(GetBytes((ulong)Counter)); //Generates hash from key using counter.
-            hmac.Clear(); //Clear hash instance securing the key.
-
-            /*int binary =                                        //Math.
-               ((hash[offset] & 0x7f) << 24)                   //Math.
-               | ((hash[offset + 1] & 0xff) << 16)             //Math.
-               | ((hash[offset + 2] & 0xff) << 8)              //Math.
-               | (hash[offset + 3] & 0xff);                    //Math.
-
-          int password = binary % (int)Math.Pow(10, length); //Math.*/
-
-            int offset = hash[hash.Length - 1] & 0x0f;           //Math.
-            byte[] totp = { hash[offset + 3], hash[offset + 2], hash[offset + 1], hash[offset] };
-            return totp;
-
-            /* 
-             return password.ToString(new string('0', length)); //Math.*/
-        }
 
         /// <summary>
         /// Generate a TOTP using provided binary data.
@@ -241,15 +219,37 @@ namespace KeeTrayTOTP.Libraries
         public string GenerateByByte(byte[] key)
         {
 
-            HMACSHA1 hmac = new HMACSHA1(key, true); //Instanciates a new hash provider with a key.
-
-            byte[] codeInterval = BitConverter.GetBytes((ulong)Counter);
+            byte[] pbText = BitConverter.GetBytes((ulong)Counter);
 
             if (BitConverter.IsLittleEndian)
-                Array.Reverse(codeInterval);
+                Array.Reverse(pbText);
 
-            byte[] hash = hmac.ComputeHash(codeInterval); //Generates hash from key using counter.
-            hmac.Clear(); //Clear hash instance securing the key.
+            byte[] hash;
+            if (HashAlgorithm == "HMAC-SHA-256")
+            {
+                using (HMACSHA256 h = new HMACSHA256(key))
+                {
+                    hash = h.ComputeHash(pbText);
+                }
+            }
+            else if (HashAlgorithm == "HMAC-SHA-512")
+            {
+                using (HMACSHA512 h = new HMACSHA512(key))
+                {
+                    hash = h.ComputeHash(pbText);
+                }
+            }
+            else
+            {
+                if (HashAlgorithm != "HMAC-SHA-1")
+                {
+                    Kp2aLog.Log("Unexpected hash algorithm " + HashAlgorithm);
+                }
+                using (HMACSHA1 h = new HMACSHA1(key))
+                {
+                    hash = h.ComputeHash(pbText);
+                }
+            }
             int start = hash[hash.Length - 1] & 0xf;
             byte[] totp = new byte[4];
 

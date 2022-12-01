@@ -89,7 +89,7 @@
     <string name="bigram_suggestion_summary">Utilizaţi cuvântul anterior pentru a îmbunătăţi sugestia</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
-        <item>Nici unul</item>
+        <item>Nimic</item>
         <item>De bază</item>
         <item>Avansat</item>
     </string-array>

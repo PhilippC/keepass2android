@@ -18,7 +18,7 @@
   <string name="algorithm_colon">Thuật toán</string>
   <string name="app_name">Keepass2Android</string>
   <string name="short_app_name">KP2A</string>
-  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="app_name_nonet">Keepass2Android Ngoại tuyến</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="show_kill_app">Nút đóng</string>
   <string name="ShowGroupnameInSearchResult_title">Hiển thị tên nhóm trong kết quả tìm kiếm</string>
@@ -197,6 +197,11 @@
   <string name="sort_moddate">Sắp xếp theo ngày sửa đổi</string>
   <string name="sort_default">Giữ thứ tự mặc định</string>
   <string name="special">Đặc biệt</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Mật mã</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
   <string name="search_hint">Nội dung tìm kiếm</string>
   <string name="search_results">Kết quả tìm kiếm</string>
   <string name="search_in">Tìm kiếm trong</string>
@@ -250,10 +255,9 @@
   <string name="QuickUnlockHideLength_title">Dấu biểu tượng mở khóa nhanh</string>
   <string name="QuickUnlockHideLength_summary">QuickUnlockHideLength_summary</string>
   <string name="QuickUnlock_fail">QuickUnlock thất bại: mật mã không đúng!</string>
-  <string name="BinaryDirectory_title">Thư mục của tập tin đính kèm</string>
-  <string name="BinaryDirectory_summary">Thư mục nơi tập tin đính kèm được lưu.</string>
   <string name="SaveAttachmentDialog_title">Lưu tập tin đính kèm</string>
   <string name="SaveAttachmentDialog_text">Xin vui lòng chọn nơi lưu tập tin đính kèm.</string>
+  <string name="SaveAttachmentDialog_save">Xuất ra tập tin</string>
   <string name="SaveAttachmentDialog_open">Lưu vô bộ nhớ đệm và mở ra</string>
   <string name="ShowAttachedImage">Mở bằng trình xem ảnh sẵn có trong ứng dụng</string>
   <string name="SaveAttachment_doneMessage">Đã lưu tập tin vô %1$s.</string>
@@ -651,6 +655,7 @@ Bản phát hành chính thức đầu tiên</string>
   <string-array name="design_options">
     <item>Sáng</item>
     <item>Tối</item>
+    <item>System settings</item>
   </string-array>
   <string name="design_title">Thiết kế</string>
   <string-array name="ftp_encryption_modes">

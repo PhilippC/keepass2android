@@ -99,7 +99,7 @@ It's time for action! As soon as possible, select Settings - Database - Export a
 Please see [Keepass2Android Apk](Keepass2Android-Apk.md) for more information.
 
 ## I get a message "File is trashed" when reading or writing a file on Google Drive
-This happens because ocaml-fuse (I guess you are on Linux  and use that) moves files to trash and then creates a new one instead of correctly updating the file on Google Drive (each file has a unique ID which Keepass2Android uses). Fortunately, this was fixed: https://github.com/astrada/google-drive-ocamlfuse/issues/494After activating this option, please select "Change database" in KP2A, tap ,"Open file" and browse to the file on Google Drive again. After that, the message should no longer pop up.
+This happens because ocaml-fuse (I guess you are on Linux  and use that) moves files to trash and then creates a new one instead of correctly updating the file on Google Drive (each file has a unique ID which Keepass2Android uses). Fortunately, this was fixed: https://github.com/astrada/google-drive-ocamlfuse/issues/494. After activating this option, please select "Change database" in KP2A, tap ,"Open file" and browse to the file on Google Drive again. After that, the message should no longer pop up.
 
 ## I get a message "The name must not be empty: null" when opening from Google Drive
 Please follow  these steps:

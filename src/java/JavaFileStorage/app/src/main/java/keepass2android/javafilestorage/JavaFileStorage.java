@@ -48,6 +48,8 @@ public class FileEntry {
 	public boolean canWrite;
 	public long sizeInBytes;
 	public String displayName;
+
+	public String userData; //can be set by the storage implementation
 	
 	public FileEntry()
 	{

@@ -21,6 +21,7 @@ using System.Security.Cryptography;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Java.Lang;
 using KeePassLib;
 using KeePassLib.Serialization;
@@ -37,7 +38,7 @@ namespace keepass2android
 	    private readonly Database _db;
 	    private readonly bool _dontSave;
 
-		/// <summary>
+        /// <summary>
 		/// stream for reading the data from the original file. If this is set to a non-null value, we know we need to sync
 		/// </summary>
 		private readonly Stream _streamForOrigFile;
@@ -51,7 +52,7 @@ namespace keepass2android
 			_ctx = ctx;
 			_app = app;
 			_dontSave = dontSave;
-		}
+        }
 		
 		/// <summary>
 		/// Constructor for sync
@@ -116,14 +117,29 @@ namespace keepass2android
 							return;
 						}	
 					}
-					
 
-					if (
-						(_streamForOrigFile != null)
-						|| fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion)  //first try to use the fast change detection
-						|| (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) == FileHashChange.Changed) //if that fails, hash the file and compare:
-						)
+
+                    bool hasStreamForOrigFile = (_streamForOrigFile != null);
+                    bool hasChangeFast = hasStreamForOrigFile ||
+                                         fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion);  //first try to use the fast change detection;
+                    bool hasHashChanged = hasChangeFast ||
+                                          (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) ==
+                                           FileHashChange.Changed); //if that fails, hash the file and compare:
+
+					if (hasHashChanged)
 					{
+						Kp2aLog.Log("Conflict. " + hasStreamForOrigFile + " " + hasChangeFast + " " + hasHashChanged);
+
+						bool alwaysMerge = (PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+                            .GetBoolean("AlwaysMergeOnConflict", false));
+
+						if (alwaysMerge)
+                        {
+                            MergeAndFinish(fileStorage, ioc);
+						}
+                        else
+                        {
+                            
 
 						//ask user...
 						_app.AskYesNoCancel(UiStringKey.TitleSyncQuestion, UiStringKey.MessageSyncQuestion, 
@@ -132,16 +148,7 @@ namespace keepass2android
 							//yes = sync
 							(sender, args) =>
 							{
-								Action runHandler = () =>
-									{
-										//note: when synced, the file might be downloaded once again from the server. Caching the data
-										//in the hashing function would solve this but increases complexity. I currently assume the files are 
-										//small.
-										MergeIn(fileStorage, ioc);
-										PerformSaveWithoutCheck(fileStorage, ioc);
-                                        _db.UpdateGlobals();
-										Finish(true);
-									};
+								Action runHandler = () => { MergeAndFinish(fileStorage, ioc); };
 								RunInWorkerThread(runHandler);
 							},
 							//no = overwrite
@@ -160,6 +167,8 @@ namespace keepass2android
 							},
 							_ctx
 							);
+                        }
+						
 					}
 					else
 					{
@@ -189,7 +198,18 @@ namespace keepass2android
 			
 		}
 
-		private void RunInWorkerThread(Action runHandler)
+        private void MergeAndFinish(IFileStorage fileStorage, IOConnectionInfo ioc)
+        {
+            //note: when synced, the file might be downloaded once again from the server. Caching the data
+            //in the hashing function would solve this but increases complexity. I currently assume the files are 
+            //small.
+            MergeIn(fileStorage, ioc);
+            PerformSaveWithoutCheck(fileStorage, ioc);
+            _db.UpdateGlobals();
+            Finish(true);
+        }
+
+        private void RunInWorkerThread(Action runHandler)
 		{
 			try
 			{

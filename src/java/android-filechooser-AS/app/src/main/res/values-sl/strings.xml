@@ -44,7 +44,7 @@
     <string name="afc_pmsg_filename_is_invalid">Ime datoteke \"%1$s\" je neveljavno</string>
     <string name="afc_pmsg_max_file_count_allowed">… ima več datotek, največje dovoljeno št.: %1,d</string>
     <string name="afc_pmsg_unknown_error">Neznana napaka: %1$s</string>
-    <string name="afc_root">Korenska mapa</string>
+    <string name="afc_root">Koren</string>
     <string name="afc_title_advanced_selection">Izberite …</string>
     <string name="afc_title_confirmation">Potrditev</string>
     <string name="afc_title_date">Datum</string>

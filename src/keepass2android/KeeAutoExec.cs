@@ -61,7 +61,7 @@ namespace keepass2android
             {
                 if (_thisDevice != null)
                     return _thisDevice;
-                String android_id = Settings.Secure.GetString(Application.Context.ContentResolver, Settings.Secure.AndroidId);
+                String android_id = Settings.Secure.GetString(LocaleManager.LocalizedAppContext.ContentResolver, Settings.Secure.AndroidId);
 
                 string deviceName = Build.Manufacturer+" "+Build.Model;
                 _thisDevice = deviceName + " (" + android_id + ")";
@@ -272,7 +272,8 @@ namespace keepass2android
             return a;
         }
 
-        public static bool AutoOpenEntry(Activity activity, AutoExecItem item, bool bManual)
+        public static bool AutoOpenEntry(Activity activity, AutoExecItem item, bool bManual,
+            ActivityLaunchMode launchMode)
         {
             string str;
             PwEntry pe = item.Entry;
@@ -314,7 +315,7 @@ namespace keepass2android
                 try { ck.AddUserKey(new KcpKeyFile(strAbs)); }
                 catch (InvalidOperationException)
                 {
-                    Toast.MakeText(Application.Context,Resource.String.error_adding_keyfile,ToastLength.Long).Show();
+                    Toast.MakeText(LocaleManager.LocalizedAppContext,Resource.String.error_adding_keyfile,ToastLength.Long).Show();
                     return false;
                 }
                 catch (Exception) { throw; }
@@ -330,7 +331,7 @@ namespace keepass2android
             GetString(pe, "Focus", ctxNoEsc, true, out str);
             bool bRestoreFocus = str.Equals("Restore", StrUtil.CaseIgnoreCmp);
 
-            PasswordActivity.Launch(activity,ioc,ck,new ActivityLaunchModeSimple(), !
+            PasswordActivity.Launch(activity,ioc,ck,launchMode, !
                 bRestoreFocus);
 
             App.Kp2a.RegisterChildDatabase(ioc);

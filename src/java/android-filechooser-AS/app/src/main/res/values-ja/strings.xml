@@ -36,7 +36,7 @@
     <string name="afc_pmsg_cannot_access_dir">\"%1$s\" にアクセスできません。</string>
     <string name="afc_pmsg_cannot_create_folder">フォルダ \"%1$s\" を作成できません。</string>
     <string name="afc_pmsg_cannot_delete_file">%1$s \"%2$s\" を削除できません。</string>
-    <string name="afc_pmsg_confirm_delete_file">%1$s \"%2$s\"? を削除してもよろしいですか？</string>
+    <string name="afc_pmsg_confirm_delete_file">本当に %1$s \"%2$s\" を削除してもよろしいですか？</string>
     <string name="afc_pmsg_confirm_replace_file">ファイル \"%1$s\" は既にあります。\n\n上書きしますか？</string>
     <string name="afc_pmsg_deleting_file">%1$s \"%2$s\" を削除中…</string>
     <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" が削除されました。</string>
@@ -50,7 +50,7 @@
     <string name="afc_title_date">日付</string>
     <string name="afc_title_error">エラー</string>
     <string name="afc_title_info">情報</string>
-    <string name="afc_title_name">タイトル</string>
+    <string name="afc_title_name">名前</string>
     <string name="afc_title_save_as">名前を付けて保存</string>
     <string name="afc_title_size">サイズ</string>
     <string name="afc_title_sort_by">並べ替え</string>

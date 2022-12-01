@@ -56,6 +56,7 @@
   <string name="fingerprint_prefs">Biometric unlock</string>
 	<string name="import_db_prefs">Import database to internal folder</string>
 	<string name="import_keyfile_prefs">Import key file to internal folder</string>
+  <string name="export_keyfile_prefs">Export key file from internal folder</string>
 	<string name="keyboardswitch_prefs">Keyboard switching</string>
 	<string name="OnlyAvailableForLocalFiles">Only available for local files.</string>
 	<string name="FileIsInInternalDirectory">File is stored in internal directory.</string>
@@ -80,6 +81,7 @@
   <string name="copy_password">Select to copy password to clipboard</string>
   <string name="copy_totp">Select to copy TOTP to clipboard</string>
   <string name="available_through_keyboard">Entry is available through KP2A Keyboard</string>
+  <string name="app_language_pref_title">App language</string>
 	<string name="entry_is_available">is available</string>
   <string name="not_possible_im_picker">Could not open dialog to select input method. Please activate keyboard manually.</string>
   <string name="please_activate_keyboard">Please enable the Keepass2Android keyboard in your system settings.</string>
@@ -91,6 +93,7 @@
   <string name="disclaimer_formal">Keepass2Android comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 2 or later.</string>
   <string name="ellipsis">\u2026</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
+  <string name="SystemLanguage">System language</string>
   <string name="fingerprint_description">Please authenticate to continue</string>
   <string name="fingerprint_fatal">Cannot setup Biometric Unlock:</string>
   <string name="fingerprint_not_recognized">Biometric authentication failed. Try again</string>
@@ -133,6 +136,7 @@
   <string name="entry_user_name">User Name</string>
   <string name="entry_extra_strings">Extra string fields</string>
   <string name="entry_binaries">File attachments</string>
+  <string name="entry_history">Previous versions</string>
   <string name="error_can_not_handle_uri">Keepass2Android cannot handle this URI.</string>
   <string name="error_could_not_create_group">Error creating group.</string>
   <string name="error_could_not_create_parent">Could not create parent directory.</string>
@@ -183,6 +187,13 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Mask password</string>
   <string name="maskpass_summary">Hide passwords by default</string>
+
+  <string name="masktotp_title">Mask TOTP field</string>
+  <string name="masktotp_summary">Hide TOTP field by default</string>
+
+  <string name="NoAutofillDisabling_title">No option to disable autofill</string>
+  <string name="NoAutofillDisabling_summary">If activated, the app will not show the option to disable autofill for specific entries.</string>
+
   <string name="menu_about">About</string>
   <string name="menu_change_key">Change Master Key</string>
   <string name="menu_copy_pass">Copy Password</string>
@@ -248,8 +259,10 @@
   <string name="saving_database">Saving database…</string>
 	<string name="exporting_database">Exporting database…</string>
 	<string name="export_database_successful">Database exported successfully!</string>
-	
-	<string name="space">Space</string>
+  <string name="export_keyfile_successful">Key file exported successfully!</string>
+  
+
+  <string name="space">Space</string>
   <string name="search_label">Search</string>
   <string name="show_password">Show password</string>
 	<string name="sort_menu">Sort by...</string>
@@ -260,7 +273,29 @@
 	
 	
   <string name="special">Special</string>
-  <string name="search_hint">Find what</string>
+  <string name="special_extended">Extended Special</string>
+  <string name="at_least_one_from_each_group">At least one from each group</string>
+  <string name="exclude_lookalike">Exclude look-alike characters</string>
+  <string name="password_generation_profile">Profile</string>
+  <string name="save_password_generation_profile_text">Enter the name of the profile to save. Enter an existing name to overwrite.</string>
+
+  <string name="hint_wordcount">Passphrase word count</string>
+  <string name="hint_wordseparator">Word separator</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Password</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>lowercase</item>
+    <item>UPPERCASE</item>
+    <item>First Character Uppercase</item>
+  </string-array>
+  <string name="custom_settings">Custom settings</string>
+  <string name="passphrase_capitalization">Passphrase capitalization</string>
+  
+
+    <string name="search_hint">Find what</string>
   <string name="search_results">Search results</string>
   <string name="search_in">Search in</string>
   <string name="select_other_entry">Select another entry</string>
@@ -284,12 +319,20 @@
 	<string name="please_note">Please note</string>
 	<string name="contributors">Contributors</string>
   <string name="regular_expression">Regular expression</string>
+  <string name="AlwaysMergeOnConflict_title">Always merge on conflict</string>
+  <string name="AlwaysMergeOnConflict_summary">When Keepass2Android detects that the remote file was modified, always merge the local changes with the remote changes.</string>
   <string name="TanExpiresOnUse_title">TAN expires on use</string>
   <string name="TanExpiresOnUse_summary">Mark TAN entries expired when using them</string>
   <string name="ShowUsernameInList_title">Display username in list</string>
   <string name="ShowUsernameInList_summary">Display usernames below entry titles. Useful for multiple accounts or TANs.</string>
 	<string name="RememberRecentFiles_title">Remember databases</string>
 	<string name="RememberRecentFiles_summary">Remember recently opened databases and show them in the Open database screen.</string>
+  <string name="NoDalVerification_title">No DAL verification</string>
+  <string name="NoDalVerification_summary">Disables check if domain and app package match</string>
+
+  <string name="InlineSuggestions_title">Integrate with keyboard</string>
+  <string name="InlineSuggestions_summary">Shows the autofill suggestions as inline options in the keyboard (if supported by the input method)</string>
+  <string name="requires_android11">Requires Android 11 or later</string>
 	
 	<string name="kp2a_findUrl">Find password</string>
   <string name="excludeExpiredEntries">Exclude expired entries</string>
@@ -318,10 +361,11 @@
   <string name="QuickUnlockLength_summary">Maximum number of characters used as QuickUnlock password.</string>
   <string name="QuickUnlockHideLength_title">Hide QuickUnlock length</string>
   <string name="QuickUnlockHideLength_summary">If enabled, the length of the QuickUnlock code is not displayed on the QuickUnlock screen.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock key from database entry</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">If the active database contains an entry with title QuickUnlock in its root group, the password of this entry is used as QuickUnlock code.</string>
   
+
   <string name="QuickUnlock_fail">QuickUnlock failed: incorrect password!</string>
-  <string name="BinaryDirectory_title">File attachments directory</string>
-  <string name="BinaryDirectory_summary">Directory where file attachments are saved to.</string>
   <string name="SaveAttachmentDialog_title">Save attachment</string>
   <string name="SaveAttachmentDialog_text">Please select where to save the attachment.</string>
   <string name="SaveAttachmentDialog_save">Export to file...</string>
@@ -343,7 +387,16 @@
   <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment</string>
   <string name="add_extra_string">Add additional string</string>
-	<string name="delete_extra_string">Delete additional string</string>
+  <string name="configure_totp">Configure TOTP</string>
+  <string name="totp_secret_key">Secret key</string>
+  <string name="totp_encoding_rfc6238">Default RFC6238 token settings</string>
+  <string name="totp_encoding_steam">Steam token settings</string>
+  <string name="totp_encoding_custom">Custom token settings</string>
+  <string name="totp_time_step">Time step</string>
+  <string name="totp_length">Code length</string>
+  <string name="totp_scan">Scan QR code</string>
+  
+  <string name="delete_extra_string">Delete additional string</string>
 	<string name="database_loaded_quickunlock_enabled">%1$s: Locked. QuickUnlock enabled.</string>
 	<string name="database_loaded_unlocked">%1$s: Unlocked.</string>
   <string name="credentials_dialog_title">Enter server credentials</string>
@@ -433,6 +486,9 @@
 
 	<string name="PreloadDatabaseEnabled_title">Pre-load database file</string>
 	<string name="PreloadDatabaseEnabled_summary">Start background loading or downloading of the database file during password entry.</string>
+
+  <string name="SyncAfterQuickUnlock_title">Sync after QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchronize database with remote file after unlocking with QuickUnlock.</string>
 
 	<string name="AskOverwriteBinary">Do you want to overwrite the existing binary with the same name?</string>
   <string name="AskOverwriteBinary_title">Overwrite existing binary?</string>
@@ -536,6 +592,7 @@
 
   <string name="enter_ftp_login_title">Enter FTP login data:</string>
 
+  <string name="enter_mega_login_title">Enter your MEGA account login data:</string>
 
   <string name="select_storage_type">Select the storage type:</string>
 	
@@ -552,15 +609,19 @@
 	<string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
 	<string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, select this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
 	<string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A files)</string>
+  <string name="filestoragehelp_gdriveKP2A">If you do not want to give KP2A access to your full Google Drive, you may select this option. Note that you need to create a database file first, existing files are not visible to the app. Either choose this option from the Create database screen or, if you already opened a database, by exporting the database choosing this option.</string>
   <string name="filestoragename_pcloud">PCloud</string>
-	<string name="filestoragehelp_pcloud">This storage type will only request access to the "Applications/Keepass2Android" folder. If you want to use an existing database from your PCloud account, please make sure the file is placed in this folder.</string>
+	<string name="filestoragehelp_pcloud">This storage type will only request access to the pCloud folder "Applications/Keepass2Android". If you want to use an existing database from your pCloud account, please make sure the file is placed in this pCloud folder.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">All files and shared files</string>
   <string name="filestoragename_onedrive2_myfiles">My files</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android App folder</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
-	<string name="filestoragename_content">System file picker</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Please note: Keepass2Android must download the list of all files in your Mega account to work properly. For this reason, accessing accounts with many files might be slow.</string>
+  <string name="filestoragename_content">System file picker</string>
 
 	<string name="filestorage_setup_title">File access initialization</string>
 
@@ -768,8 +829,9 @@
   <string name="child_db_Enabled_title">Open automatically</string>
   <string name="database_file_heading">Database file</string>
   <string name="if_device_text">Enable for %1$s</string>
-  
 
+  <string name="restore_history">Restore this version</string>
+  <string name="remove_history">Remove this version</string>
   
   <string name="DbUnlockedChannel_name">Database unlocked</string>
   <string name="DbUnlockedChannel_desc">Notification about the database being unlocked</string>
@@ -781,7 +843,51 @@
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
 
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
+  <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
+
+  <string-array name="ChangeLog_1_09d">
+    <item>Added support for viewing, removing and restoring of entry backups</item>
+    <item>Implemented support for MEGA cloud storage</item>
+    <item>Added support for Google Drive with restricted scope</item>
+  </string-array>
+
+  <string-array name="ChangeLog_1_09c">
+    <item>Re-implemented Google Drive authentication, re-enabled Google Drive support</item>
+    </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Fix disappearing autofill prompt in Firefox</item>
+    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>Allow to change app language in settings</item>
+    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+  </string-array>
+
+
+  <string-array name="ChangeLog_1_09a">
+    <item>Added support for KDBX 4.1 file format introduced in KeePass 2.48</item>
+    <item>Added dialog to configure TOTP settings for entries</item>
+    <item>Improved password generator: Added passphrase support, more options, profiles and password strength estimation</item>
+    <item>Improvements to Autofill (fixed popup not showing in Chrome, better subdomain support)</item>
+    <item>Improvements to OneDrive implementation: no more size limit, no more superfluous authentication requests</item>
+    <item>Added option to select light/dark design from system settings including night plans, requires Android 10+</item>
+    <item>Update Dropbox implementation to support new authentication method.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Allow to open files through system file picker, ignoring the read-only flag</item>
+    <item>Allow to start moving entries from the entry view menu</item>
+  </string-array>
+
+
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for new key file format introduced in Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
 
   <string-array name="ChangeLog_1_08c">
     <item>No longer storing package names of Android apps in the URL field</item>
@@ -1183,6 +1289,7 @@ Initial public release
 	<string-array name="design_options">
 		<item>Light</item>
 		<item>Dark</item>
+    <item>System settings</item>
 	</string-array>
 
 	<string name="design_title">Design</string>
@@ -1246,6 +1353,7 @@ Initial public release
   <string name="emergency_infotext_main">Did you ever consider what happens if you are no longer able to access your password database? What if you have an accident? It is good practice to pass your master key to some trusted person for emergency cases. Nobody will have access to your passwords otherwise.</string>
 
   <string name="no_secure_display">The currently valid display is not marked as secure. This means that screenshots might be taken by other apps. Keepass2Android is configured to display sensitive information on secure displays only. Please change to a secure display (e.g. by detaching an HDMI monitor) or change the app settings.</string>
+  <string name="disable_secure_screen_check">Disable this message</string>
 
   <string name="switch_ime_text">Please activate the Keepass2Android keyboard.</string>
   <string name="switch_ime_reopen">Retry</string>

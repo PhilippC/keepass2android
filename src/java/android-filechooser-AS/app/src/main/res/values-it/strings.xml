@@ -44,7 +44,7 @@
     <string name="afc_pmsg_filename_is_invalid">Il nome del file \"%1$s\" non è valido</string>
     <string name="afc_pmsg_max_file_count_allowed">…ha più file, massimo consentito: %1$,d</string>
     <string name="afc_pmsg_unknown_error">Errore sconosciuto: %1$s</string>
-    <string name="afc_root">Radice</string>
+    <string name="afc_root">Principale</string>
     <string name="afc_title_advanced_selection">Seleziona…</string>
     <string name="afc_title_confirmation">Conferma</string>
     <string name="afc_title_date">Data</string>

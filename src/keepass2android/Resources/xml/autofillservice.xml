@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <autofill-service
   xmlns:android="http://schemas.android.com/apk/res/android"
+  android:supportsInlineSuggestions="true"
   >
   <compatibility-package
       android:name="com.android.chrome"
@@ -43,10 +44,10 @@
     android:maxLongVersionCode="10000000000"/>
   <compatibility-package
     android:name="org.mozilla.firefox"
-    android:maxLongVersionCode="10000000000"/>
+    android:maxLongVersionCode="2015836711"/>
   <compatibility-package
     android:name="org.mozilla.firefox_beta"
-    android:maxLongVersionCode="10000000000"/>
+    android:maxLongVersionCode="2015849447"/>
   <compatibility-package
     android:name="org.mozilla.fenix"
     android:maxLongVersionCode="10000000000"/>
@@ -61,6 +62,12 @@
     android:maxLongVersionCode="10000000000"/>
   <compatibility-package
     android:name="com.brave.browser"
+    android:maxLongVersionCode="10000000000"/>
+  <compatibility-package
+    android:name="com.brave.browser_beta"
+    android:maxLongVersionCode="10000000000"/>
+  <compatibility-package
+    android:name="com.brave.browser_nightly"
     android:maxLongVersionCode="10000000000"/>
   <compatibility-package
     android:name="com.google.android.apps.chrome"

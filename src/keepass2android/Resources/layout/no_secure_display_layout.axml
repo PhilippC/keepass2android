@@ -21,5 +21,8 @@
     android:layout_height="wrap_content" />
 	<Button android:id="@+id/btn_goto_settings" android:text="@string/IconVisibilityInfo_Android8_btnSettings" android:layout_width="match_parent"
     android:layout_height="wrap_content" />
-
+  <Button android:id="@+id/disable_secure_screen_check" android:text="@string/disable_secure_screen_check" android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+  <Button android:id="@+id/btn_close" android:text="@string/menu_close" android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
 </LinearLayout>
