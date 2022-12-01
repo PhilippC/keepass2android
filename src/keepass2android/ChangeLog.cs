@@ -134,7 +134,7 @@ namespace keepass2android
 
 	    }
 
-		private const string HtmlStart = @"<html>
+	    private const string HtmlStart = @"<html>
   <head>
     <style type='text/css'>
       a            { color:#000000 }
@@ -170,36 +170,36 @@ namespace keepass2android
 			{
 				string versionLog2 = versionLog; 
 				bool title = true;
-				if (isFirst)
-				{
-					
-				    bool showDonateOption = true;
-				    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
-				    if (prefs.GetBoolean(ctx.GetString(Resource.String.NoDonationReminder_key), false))
-				        showDonateOption = false;
+			    if (isFirst)
+			    {
 
-				    long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
+			        bool showDonateOption = true;
+			        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+			        if (prefs.GetBoolean(ctx.GetString(Resource.String.NoDonationReminder_key), false))
+			            showDonateOption = false;
 
-				    if (usageCount <= 5)
-				        showDonateOption = false;
+			        long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
 
-				    if (showDonateOption)
-				    {
-				        if (versionLog2.EndsWith("\n") == false)
-				            versionLog2 += "\n";
-				        string donateUrl = ctx.GetString(Resource.String.donate_url,
-				            new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
-				                ctx.PackageName
-				            });
+			        if (usageCount <= 5)
+			            showDonateOption = false;
 
-                        versionLog2 += " * <a href=\"" + donateUrl
-				                       + "\">" +
-				                       ctx.GetString(Resource.String.ChangeLog_keptDonate)
-				                       + "<a/>";
-				    }
-				    isFirst = false;
-				}
-				foreach (string line in versionLog2.Split('\n'))
+			        if (showDonateOption)
+			        {
+			            if (versionLog2.EndsWith("\n") == false)
+			                versionLog2 += "\n";
+			            string donateUrl = ctx.GetString(Resource.String.donate_url,
+			                new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
+			                    ctx.PackageName
+			                });
+
+			            versionLog2 += " * <a href=\"" + donateUrl
+			                           + "\">" +
+			                           ctx.GetString(Resource.String.ChangeLog_keptDonate)
+			                           + "<a/>";
+			        }
+			        isFirst = false;
+			    }
+                foreach (string line in versionLog2.Split('\n'))
 				{
 					string w = line.Trim();
 					if (title)
