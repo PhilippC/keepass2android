@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "keepass2android.plugin.qr"
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 26
         versionCode 3
         versionName "1.0.2"
     }

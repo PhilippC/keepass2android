@@ -15,7 +15,12 @@ To build KP2A from scratch, make sure that you have Xamarin's Mono for Android i
 ## Build
 
 ### On Windows
-
+From within the `src` directory, build the native lib with:
+```bat
+cd java/argon2
+%ANDROID_NDK_ROOT%/ndk-build.cmd
+```
+Then, from within the `src` directory run:
 ```bat
 cd build-scripts
 build-java.bat
