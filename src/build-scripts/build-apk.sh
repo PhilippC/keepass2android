@@ -15,7 +15,7 @@ else
   BUILDER=xabuild
 fi
 
-CONFIG=Debug
+CONFIG=Release
 
 # check if ANDROID_HOME is defined
 if [ -z ${ANDROID_HOME+x} ];

@@ -22,4 +22,4 @@ echo '*****************************************'
 ./build-apk.sh
 
 echo
-echo 'Congratulations! You you can find the target APK in src/keepass2android/bin/Debug/.'
+echo 'Congratulations! You you can find the target APK in src/keepass2android/bin/Release/.'

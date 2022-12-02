@@ -15,7 +15,7 @@ fi
 popd
 
 pushd keepass2android
-./UseManifestDebug.sh
+./UseManifestNoNet.sh
 popd
 
 # call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
@@ -32,7 +32,7 @@ else
   BUILDER=xabuild
 fi
 
-CONFIG=Debug
+CONFIG=Release
 
 # check if ANDROID_HOME is defined
 if [ -z ${ANDROID_HOME+x} ];
