@@ -32,12 +32,14 @@ else
   BUILDER=xabuild
 fi
 
+CONFIG=Debug
+
 # check if ANDROID_HOME is defined
 if [ -z ${ANDROID_HOME+x} ];
 then
-	$BUILDER KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="Debug" /p:Platform="Any CPU" "$@"
+	$BUILDER KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="$CONFIG" /p:Platform="Any CPU" "$@"
 else
-	$BUILDER KeePass.sln /target:keepass2android-app /p:AndroidSdkDirectory=$ANDROID_HOME /p:BuildProjectReferences=true /p:Configuration="Debug" /p:Platform="Any CPU" "$@"
+	$BUILDER KeePass.sln /target:keepass2android-app /p:AndroidSdkDirectory=$ANDROID_HOME /p:BuildProjectReferences=true /p:Configuration="$CONFIG" /p:Platform="Any CPU" "$@"
 fi
 
 popd
