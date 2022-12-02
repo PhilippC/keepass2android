@@ -14,11 +14,11 @@ IF NOT "%VSCMD_VCVARSALL_INIT%" == "1" (
 )
 
 REM Download NuGet dependencies
-msbuild KeePass.sln -t:restore -p:RestorePackagesConfig=true
+msbuild KeePass.sln -t:restore -p:RestorePackagesConfig=true || exit /b
 
 REM Build
 set CONFIG=Debug
-msbuild KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="%CONFIG%" /p:Platform="Any CPU" /p:AndroidBuildApplicationPackage=True
+msbuild KeePass.sln /target:keepass2android-app /p:BuildProjectReferences=true /p:Configuration="%CONFIG%" /p:Platform="Any CPU" /p:AndroidBuildApplicationPackage=True || exit /b
 
 cd build-scripts
 
