@@ -1,0 +1,179 @@
+name: Build keepass2android app
+
+on: [push, pull_request]
+
+jobs:
+  macos:
+
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Fetch submodules
+      run: git submodule init && git submodule update
+
+#    - name: use Visual Studio 2019 by default
+#      run: |
+#        # As per https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md#visual-studio-for-mac
+#        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
+#        mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
+
+    - name: Set default Xamarin SDK versions
+      run: |
+        # If using the github runner 'macos-12'
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1 # Build fails in this case, as of 2022-12-02
+        # If using the github runner 'macos-11'
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Might fail
+        # If using the github runner 'macos-10.15'
+        # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
+
+#    - name: Setup .NET Core SDK 5.0.x
+#      uses: actions/setup-dotnet@v3
+#      with:
+#        dotnet-version: '5.0.x'
+
+    - name: Build native dependencies
+      run: cd src/java/argon2 && $ANDROID_NDK_ROOT/ndk-build
+
+    - name: Build java dependencies
+      run: cd src/build-scripts/ && ./build-java.sh
+
+    - name: Fixes (can be removed once merged in SamsungPass)
+      run: |
+        sed -i '' 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '' '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+
+    - name: Install nuget dependencies
+      run: nuget restore src/KeePass.sln
+
+    - name: Build keepass2android
+      run: cd src/build-scripts/ && ./build-xamarin.sh
+
+    - name: Build APK
+      run: cd src/build-scripts/ && ./build-apk.sh
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK (built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+  linux:
+    if: ${{ false }}  # disable for now
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Fetch submodules
+      run: git submodule init && git submodule update
+
+    - name: Install Xamarin.Android
+      run: |
+        set -x
+        cd $HOME
+
+        # Build Artifact of xamarin.android-oss dated 2021-02-02, master branch (= version 11.2.99) - Build fails with this version as of 2022-12-02
+        #wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM0NTE3L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip &&
+
+        # Build Artifact of xamarin.android-oss dated 2021-03-23, d16-9 branch (= version 11.2.2) - Build fails with this version as of 2022-12-02
+        #wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM3Njg0L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip &&
+
+        # Build Artifact of xamarin.android-oss dated 2021-07-21, master branch (= version 11.4.99) - Build fails with this version as of 2022-12-02
+        wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzQzNjU5L2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip &&
+
+        # Build Artifact of xamarin.android-oss dated 2022-02-16, master branch (= version 12.2.99) - Build fails with this version as of 2022-12-02
+        #wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzU0OTUzL2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip &&
+
+        unzip "installers-unsigned - Linux.zip" &&
+        mkdir -p xamarin.android-oss &&
+        DIR=$(unzip -Z -1 installers-unsigned\ -\ Linux.zip   | cut -d '/' -f1 | sort -u) &&
+        tar -xvf "$DIR"/xamarin.android-oss-*.tar.* --strip-components=1 -C xamarin.android-oss &&
+        sudo apt install -y ./"$DIR"/*.deb
+
+    - name: Build jar2xml
+      run: |
+        cd $HOME
+        wget -O jar2xml.tar.gz https://github.com/xamarin/jar2xml/archive/refs/heads/master.tar.gz &&
+        tar -xvf jar2xml.tar.gz &&
+        cd jar2xml-master &&
+        make &&
+        cp jar2xml.jar "$HOME/xamarin.android-oss/bin/Release/lib/xamarin.android/xbuild/Xamarin/Android/"
+
+    - name: Install [libzip]
+      run: sudo apt -y install libzip4
+
+    - name: Build native dependencies
+      run: cd src/java/argon2 && $ANDROID_NDK_ROOT/ndk-build
+
+    - name: Build java dependencies
+      run: cd src/build-scripts/ && ./build-java.sh
+
+    - name: Fixes (can be removed once merged in SamsungPass)
+      run: |
+        sed -i 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+
+    - name: Install nuget dependencies
+      run: nuget restore src/KeePass.sln
+
+    - name: Build keepass2android
+      run: |
+        set -x
+        export PATH=$HOME/xamarin.android-oss/bin/Release/bin:$PATH &&
+        cd src/build-scripts/ && ./build-xamarin.sh
+
+    - name: Build APK
+      run: cd src/build-scripts/ && ./build-apk.sh
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK (built on ${{ github.job }} )
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+  windows:
+
+    # We use windows-2019 (=VS-2019) because it fails on windows-2022 (=VS-2022) as of 2022-12-02 with error:
+    #   D8 : OpenJDK 64-Bit Server VM warning : INFO: os::commit_memory(0x000000009c700000, 423624704, 0) failed; error='The paging file is too small for this operation to complete' (DOS error/errno=1455) [D:\a\keepass2android\keepass2android\src\keepass2android\keepass2android-app.csproj]
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Fetch submodules
+      run: git submodule init && git submodule update
+
+    - name: Build native dependencies
+      run: |
+        cd src/java/argon2
+        cmd /c $env:ANDROID_NDK_ROOT\ndk-build.cmd
+
+    - name: Build java dependencies
+      run: |
+        cd src/build-scripts/ && ./build-java.bat
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Fixes (can be removed once merged in SamsungPass)
+      run: |
+        sed -i 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+
+    - name: Build keepass2android
+      run: |
+        cd src/build-scripts/ && ./build-xamarin.bat
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK (built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk

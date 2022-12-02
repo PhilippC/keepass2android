@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-unset ANDROID_NDK_HOME ANDROID_NDK
+#unset ANDROID_NDK_HOME ANDROID_NDK
 
 pushd ../java/
 
@@ -14,6 +14,10 @@ pushd KP2ASoftkeyboard_AS
 popd
 
 pushd Keepass2AndroidPluginSDK2
+./gradlew assemble
+popd
+
+pushd KP2AKdbLibrary
 ./gradlew assemble
 popd
 
