@@ -15,12 +15,14 @@ else
   BUILDER=xabuild
 fi
 
+CONFIG=Debug
+
 # check if ANDROID_HOME is defined
 if [ -z ${ANDROID_HOME+x} ];
 then
-	$BUILDER keepass2android-app.csproj /t:SignAndroidPackage "$@"
+	$BUILDER keepass2android-app.csproj /t:SignAndroidPackage /p:Configuration="$CONFIG" /p:Platform=AnyCPU "$@"
 else
-	$BUILDER keepass2android-app.csproj /p:AndroidSdkDirectory=$ANDROID_HOME /t:SignAndroidPackage "$@"
+	$BUILDER keepass2android-app.csproj /p:AndroidSdkDirectory=$ANDROID_HOME /t:SignAndroidPackage /p:Configuration="$CONFIG" /p:Platform=AnyCPU "$@"
 fi
 
 popd
