@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-unset ANDROID_NDK_HOME ANDROID_NDK
+#unset ANDROID_NDK_HOME ANDROID_NDK
 
 pushd ../java/
 
