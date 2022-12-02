@@ -9,7 +9,9 @@ cd ..\..\keepass2android
 call UseManifestDebug.bat
 cd ..
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+IF NOT "%VSCMD_VCVARSALL_INIT%" == "1" (
+  call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+)
 
 REM Download NuGet dependencies
 msbuild KeePass.sln -t:restore -p:RestorePackagesConfig=true
