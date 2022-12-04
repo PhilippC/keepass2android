@@ -44,7 +44,6 @@ build-java.bat will call gradlew for several Java modules. build-xamarin.bat wil
   - Add `xabuild` to your path: `export PATH=/path/to/xamarin.android-oss/bin/Release/bin/:$PATH`
   - Setup your `ANDROID_HOME` if it's not already: `export ANDROID_HOME=/path/to/android/`
   - Alternatively, you can set your `ANDROID_SDK_PATH` and `ANDROID_NDK_PATH`.
-- Build [jar2xml](https://github.com/xamarin/jar2xml) and copy `jar2xml.jar` to `/path/to/xamarin.android-oss/bin/Release/lib/xamarin.android/xbuild/Xamarin/Android/`
 - Install [libzip](https://libzip.org/) for your distribution.
   - Note: Xamarin seems to require `libzip4`, yet most distributions only ships `libzip5`. As a dirty workaround, it's possible to symlink `libzip.so.5` to `libzip.so.4`. Luckily, it appears to be working.
   - `sudo ln -s /usr/lib/libzip.so.5 /usr/lib/libzip.so.4`
