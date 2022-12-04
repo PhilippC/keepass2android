@@ -269,7 +269,7 @@
   <string name="search_results">検索結果</string>
   <string name="search_in">検索対象</string>
   <string name="select_other_entry">別のエントリーを選択</string>
-  <string name="select_group_then_add">目的のグループを開き、\"%1$s\"キーを押してください!</string>
+  <string name="select_group_then_add">目的のグループを開き、\"%1$s\" キーを押してください！</string>
   <string name="insert_element_here">ここに挿入</string>
   <string name="twofish">Twofish</string>
   <string name="underline">下線</string>
