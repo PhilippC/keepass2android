@@ -101,7 +101,7 @@
   <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間にシステム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみでデータベースのロックを解除できるようになります。</string>
-  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を利用するようにします。マスターパスワードに関連する情報は格納しません。</string>
+  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を利用できるようにします。マスターパスワードに関連する情報は格納しません。</string>
   <string name="enter_filename">データベースのファイル名を入力</string>
   <string name="entry_accessed">最終アクセス日時</string>
   <string name="entry_cancel">キャンセル</string>
@@ -132,7 +132,7 @@
   <string name="error_filename_required">ファイル名が必要です</string>
   <string name="error_file_not_create">ファイルを作成できませんでした</string>
   <string name="error_invalid_db">無効なデータベースです</string>
-  <string name="error_invalid_path">パスが無効です</string>
+  <string name="error_invalid_path">無効なパスです</string>
   <string name="error_no_name">タイトルが必要です</string>
   <string name="error_nopass">パスワードかキーファイルが必要です</string>
   <string name="error_pass_gen_type">少なくとも 1 つ以上のパスワード生成タイプを選択する必要があります</string>
@@ -158,9 +158,9 @@
   <string name="hint_override_url">URL のオーバーライド</string>
   <string name="hint_tags">タグ 1, タグ 2</string>
   <string name="hint_username">ユーザー名</string>
-  <string name="InvalidPassword">パスワード/キーファイルが違います</string>
-  <string name="invalid_algorithm">アルゴリズムが無効です</string>
-  <string name="invalid_db_sig">データベースフォーマットが認識できません</string>
+  <string name="InvalidPassword">パスワードまたはキーファイルが違います</string>
+  <string name="invalid_algorithm">無効なアルゴリズムです</string>
+  <string name="invalid_db_sig">データベースフォーマットを認識できません</string>
   <string name="keyfile_does_not_exist">キー ファイルが存在しません</string>
   <string name="no_keyfile_selected">キーファイルが選択されていません</string>
   <string name="keyfile_is_empty">キーファイルの中身が空です</string>
@@ -208,9 +208,9 @@
   <string name="no_keys">データベース/グループにエントリーがありません</string>
   <string name="no_results">検索結果がありません</string>
   <string name="no_url_handler">この URL を処理できません</string>
-  <string name="open_recent">最近使用したデータベースを開く (タップして開く)</string>
+  <string name="open_recent">最近使用したデータベース (タップして開く)</string>
   <string name="omitbackup_title">バックアップとごみ箱を検索しない</string>
-  <string name="omitbackup_summary">\"バックアップ\"と\"ごみ箱\"を検索対象から除外します</string>
+  <string name="omitbackup_summary">\"バックアップ\" と \"ごみ箱\" を検索対象から除外します</string>
   <string name="pass_filename">KeePass データベースファイル名</string>
   <string name="password_title">データベースのパスワードを入力</string>
   <string name="master_key_type">マスターキーの種類を選択:</string>
