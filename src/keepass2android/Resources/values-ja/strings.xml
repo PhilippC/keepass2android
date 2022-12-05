@@ -43,7 +43,7 @@
   <string name="security_prefs">セキュリティ</string>
   <string name="display_prefs">表示</string>
   <string name="password_access_prefs">パスワードエントリーへのアクセス</string>
-  <string name="QuickUnlock_prefs">クイック解除</string>
+  <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">ファイル操作</string>
   <string name="keyboard_prefs">キーボード</string>
   <string name="export_prefs">データベースをエクスポート...</string>
@@ -93,7 +93,7 @@
   <string name="fingerprint_no_enrolled">このデバイスで生体認証が設定されていません。最初にシステムの設定で登録してください。</string>
   <string name="disable_fingerprint_unlock">生体認証ロック解除を無効にする</string>
   <string name="enable_fingerprint_unlock">すべての生体認証ロック解除を有効にする</string>
-  <string name="enable_fingerprint_quickunlock">生体認証によるクイック解除を有効にする</string>
+  <string name="enable_fingerprint_quickunlock">生体認証による QuickUnlock を有効にする</string>
   <string name="fingerprint_unlock_failed">生体認証ロック解除に失敗しました。復号鍵が Android OS によって無効にされました。これは通常、生体認証の変更またはセキュリティ設定の変更により発生します。 </string>
   <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合鍵です。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
   <string name="fingerprint_reenable">新しいマスターパスワードで生体認証によるロック解除を再度有効にしてください。</string>
@@ -101,7 +101,7 @@
   <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間にシステム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみでデータベースのロックを解除できるようになります。</string>
-  <string name="enable_fingerprint_quickunlock_Info">クイック解除のコードのかわりに生体認証を利用できるようにします。マスターパスワードに関連する情報は格納しません。</string>
+  <string name="enable_fingerprint_quickunlock_Info">QuickUnlock キーのかわりに生体認証を利用できるようにします。マスターパスワードに関連する情報は格納しません</string>
   <string name="enter_filename">データベースのファイル名を入力</string>
   <string name="entry_accessed">最終アクセス日時</string>
   <string name="entry_cancel">キャンセル</string>
@@ -291,18 +291,18 @@
   <string name="regular_expression">正規表現</string>
   <string name="AlwaysMergeOnConflict_title">常にコンフリクトをマージ</string>
   <string name="AlwaysMergeOnConflict_summary">Keepass2Android がリモートファイルの変更を確認したとき、リモートの変更を常にローカルにマージします。</string>
-  <string name="TanExpiresOnUse_title">トランザクション認証番号の使用期限</string>
-  <string name="TanExpiresOnUse_summary">使用期限が切れたトランザクション認証番号に印をつける</string>
-  <string name="ShowUsernameInList_title">リスト内のユーザー名を表示</string>
-  <string name="ShowUsernameInList_summary">エントリのタイトルの下にユーザー名を表示します。複数のアカウントやTANに役立ちます。</string>
-  <string name="RememberRecentFiles_title">データベースを記憶する</string>
-  <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します。</string>
-  <string name="NoDalVerification_title">DAL認証なし</string>
-  <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかのチェックを無効にします</string>
+  <string name="TanExpiresOnUse_title">TAN の使用期限</string>
+  <string name="TanExpiresOnUse_summary">使用期限が切れた TAN (トランザクション認証番号) に印をつけます</string>
+  <string name="ShowUsernameInList_title">ユーザー名をリストに表示</string>
+  <string name="ShowUsernameInList_summary">エントリーのタイトルの下にユーザー名を表示します。複数のアカウントや TAN の管理に役立ちます</string>
+  <string name="RememberRecentFiles_title">データベースを記憶</string>
+  <string name="RememberRecentFiles_summary">最近開いたデータベースを記憶して、データベース選択画面に表示します</string>
+  <string name="NoDalVerification_title">DAL 認証なし</string>
+  <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかの確認を無効にします</string>
   <string name="InlineSuggestions_title">キーボードとの統合</string>
-  <string name="InlineSuggestions_summary">自動入力のサジェストをキーボード内に表示します (入力方法が対応している場合のみ)</string>
+  <string name="InlineSuggestions_summary">自動入力のサジェストをキーボード内に表示します (対応する入力方法のみ)</string>
   <string name="requires_android11">Android 11 以上が必要</string>
-  <string name="kp2a_findUrl">パスワードを見つける</string>
+  <string name="kp2a_findUrl">パスワードを探す</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
   <string name="caseSensitive">大文字と小文字を区別する</string>
@@ -310,38 +310,40 @@
   <string name="start_create">新しいデータベースを作成する...</string>
   <string name="start_open_url">URL を開く...</string>
   <string name="start_create_import">新しいデータベースにファイルをインポートする...</string>
-  <string name="enter_filename_details_url">http:// のようなプロトコルを含む完全な URL を指定しなければなりません。</string>
+  <string name="enter_filename_details_url">http:// のようにプロトコルを含む完全な URL を指定してください</string>
   <string name="enter_filename_details_create_import">インポートするファイルは、次の手順で選択します。</string>
-  <string name="enable_quickunlock">クイック解除を有効にする</string>
-  <string name="QuickUnlock_label">パスワードの最後の %1$d 文字を入力：</string>
-  <string name="QuickUnlock_label_secure">クイック解除キーを入力：</string>
-  <string name="QuickUnlock_button">クイック解除</string>
+  <string name="enable_quickunlock">QuickUnlock を有効にする</string>
+  <string name="QuickUnlock_label">パスワードの最後の %1$d 文字を入力:</string>
+  <string name="QuickUnlock_label_secure">QuickUnlock キーを入力:</string>
+  <string name="QuickUnlock_button">QuickUnlock</string>
   <string name="QuickUnlock_lockButton">データベースを閉じる</string>
-  <string name="QuickUnlockDefaultEnabled_title">クイック解除をデフォルトで有効にする</string>
-  <string name="QuickUnlockDefaultEnabled_summary">クイック解除をデフォルトで有効にするか指定します。</string>
-  <string name="ViewDatabaseSecure_title">データーベースの表示を保護する</string>
-  <string name="ViewDatabaseSecure_summary">有効の場合、データーベースのスクリーンショットを撮れなくなります。また最近使ったアプリにサムネイルが表示されなくなります。</string>
-  <string name="QuickUnlockIconHidden_title">クイック解除アイコンを隠す</string>
-  <string name="QuickUnlockIconHidden_summary">残念ながらクイック解除は通知領域にアイコンを表示しないと動作しません。このオプションを選択すると透明のアイコンを使用します。</string>
-  <string name="QuickUnlockIconHidden16_title">クイック解除アイコンを隠す</string>
-  <string name="QuickUnlockIconHidden16_summary">クイック解除が正しく機能するには、通知を必要とします。アイコンなしで通知を表示するには、このオプションを選択します。</string>
-  <string name="QuickUnlockLength_title">クイック解除キーの長さ</string>
-  <string name="QuickUnlockLength_summary">クイック解除時のパスワードの最大文字数</string>
-  <string name="QuickUnlockHideLength_title">クイック解除の長さを表示しない</string>
-  <string name="QuickUnlockHideLength_summary">有効にすると、クイック解除コードの長さをクイック解除の画面に表示しません。</string>
-  <string name="QuickUnlock_fail">クイック解除に失敗しました：パスワードが正しくありません</string>
+  <string name="QuickUnlockDefaultEnabled_title">QuickUnlock をデフォルトで有効にする</string>
+  <string name="QuickUnlockDefaultEnabled_summary">QuickUnlock をデフォルトで有効にするか指定します</string>
+  <string name="ViewDatabaseSecure_title">データーベースの表示を保護</string>
+  <string name="ViewDatabaseSecure_summary">有効にすると、データーベースのスクリーンショットを撮れなくなります。また最近使ったアプリにサムネイルが表示されなくなります</string>
+  <string name="QuickUnlockIconHidden_title">QuickUnlock アイコンを隠す</string>
+  <string name="QuickUnlockIconHidden_summary">QuickUnlock は通知領域にアイコンを表示しないと動作しません。このオプションを選択すると透明のアイコンを使用します</string>
+  <string name="QuickUnlockIconHidden16_title">QuickUnlock アイコンを隠す</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock が正しく機能するには、通知が必要です。アイコンなしで通知を表示するには、このオプションを選択してください</string>
+  <string name="QuickUnlockLength_title">QuickUnlock キーの長さ</string>
+  <string name="QuickUnlockLength_summary">QuickUnlock キーの最大文字数</string>
+  <string name="QuickUnlockHideLength_title">QuickUnlock の長さを表示しない</string>
+  <string name="QuickUnlockHideLength_summary">有効にすると、QuickUnlock キーの長さを QuickUnlock 画面に表示しません</string>
+  <string name="QuickUnlockKeyFromDatabase_title">データベースエントリーで QuickUnlock キーを指定</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">有効にするとルート領域に QuickUnlock というタイトルのデータベースが作成され、そのパスワードを QuickUnlock キーとして使用します</string>
+  <string name="QuickUnlock_fail">QuickUnlock に失敗しました: パスワードが正しくありません</string>
   <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
-  <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください。</string>
+  <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください</string>
   <string name="SaveAttachmentDialog_save">ファイルへエクスポート...</string>
   <string name="SaveAttachmentDialog_open">キャッシュに保存して開く</string>
   <string name="ShowAttachedImage">内部の画像ビューアーで表示</string>
-  <string name="SaveAttachment_doneMessage">ファイルを %1$s に保存しました。</string>
-  <string name="SaveAttachment_Failed">%1$s の添付ファイルを保存できませんでした。</string>
+  <string name="SaveAttachment_doneMessage">ファイルを %1$s に保存しました</string>
+  <string name="SaveAttachment_Failed">%1$s の添付ファイルを保存できませんでした</string>
   <string name="AddUrlToEntryDialog_title">検索テキストを記憶しますか？</string>
   <string name="AddUrlToEntryDialog_text">自動的に検索可能にするために、選択したエントリーに検索テキスト \"%1$s\" を保存しますか？</string>
-  <string name="error_invalid_expiry_date">有効期限の日付/時刻の形式が無効です。</string>
-  <string name="error_string_key">各文字列にはフィールド名が必要です。</string>
-  <string name="error_string_duplicate_key">同じフィールド名を使うことはできません (%1$s)。</string>
+  <string name="error_invalid_expiry_date">有効期限の日付/時刻の形式が無効です！</string>
+  <string name="error_string_key">各文字列にはフィールド名が必要です</string>
+  <string name="error_string_duplicate_key">同じフィールド名を使うことはできません (%1$s)</string>
   <string name="field_name">フィールド名</string>
   <string name="field_value">フィールド値</string>
   <string name="protection">保護されたフィールド</string>
@@ -356,8 +358,8 @@
   <string name="totp_length">コードの文字数</string>
   <string name="totp_scan">QR コードをスキャン</string>
   <string name="delete_extra_string">補足文字列を削除</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s: ロック中。クイック解除が有効です。</string>
-  <string name="database_loaded_unlocked">%1$s: ロック解除。</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: ロック中 - QuickUnlock が有効です</string>
+  <string name="database_loaded_unlocked">%1$s: ロックが解除されています</string>
   <string name="credentials_dialog_title">サーバーのアカウント情報を入力してください。</string>
   <string name="UseFileTransactions_title">ファイル トランザクション</string>
   <string name="UseFileTransactions_summary">データベースの書き込みにファイル トランザクションを使用します</string>
@@ -417,6 +419,8 @@
   <string name="DocumentAccessRevoked">ファイルに Keepass2Android がアクセスできません。削除されたか、アクセス許可が無効になっています。データベースの変更などを使用して、ファイルを再度開いてください。</string>
   <string name="PreloadDatabaseEnabled_title">データベースファイルの事前読み込み</string>
   <string name="PreloadDatabaseEnabled_summary">パスワード入力中に、データベースファイルのバックグラウンドでの読み込みやダウンロードを開始します。</string>
+  <string name="SyncAfterQuickUnlock_title">QuickUnlock 後に同期</string>
+  <string name="SyncAfterQuickUnlock_summary">QuickUnlock でロック解除した後にデータベースをリモートファイルと同期します</string>
   <string name="AskOverwriteBinary">同じ名前の既存のバイナリを上書きしますか？</string>
   <string name="AskOverwriteBinary_title">既存のバイナリを上書きしますか？</string>
   <string name="AskOverwriteBinary_yes">上書き</string>
@@ -673,8 +677,8 @@
   <string name="remove_history">このバージョンを削除</string>
   <string name="DbUnlockedChannel_name">データベースがアンロックされました</string>
   <string name="DbUnlockedChannel_desc">データベースのアンロックに関する通知</string>
-  <string name="DbQuicklockedChannel_name">クイック解除</string>
-  <string name="DbQuicklockedChannel_desc">クイック解除でデータベースがロックされていることに関する通知</string>
+  <string name="DbQuicklockedChannel_name">QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">QuickUnlock でデータベースがロックされていることに関する通知</string>
   <string name="EntryChannel_name">エントリーの通知</string>
   <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に3回失敗したら、データベースを閉じます。</string>
@@ -691,7 +695,7 @@
     <item>Firefox で自動入力プロンプトが表示されない事象を修正</item>
     <item>自動入力のサジェストをキーボード内に統合 (Android 11 以上が必要)</item>
     <item>設定でアプリの言語を変更することが可能に</item>
-    <item>Add option to synchronize database after QuickUnlock</item>
+    <item>QuickUnlock 後に同期するオプションを追加</item>
     <item>バグ修正: Dropbox に保存する際にファイル名を小文字にしないでください</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
@@ -811,7 +815,7 @@
   <string name="ChangeLog_1_01d">バージョン 1.01-d\n
  * OneDrive ファイル一覧表示の修正\n
  * 証明書エラー同様、ホスト名の検証が失敗したのを無視できるようにする (製品としての利用には推奨しません)\n
- * クイック解除が、正しい解除コードにもかかわらず時々失敗するのを修正\n  </string>
+ * QuickUnlock が、正しい解除コードにもかかわらず時々失敗する不具合を修正\n  </string>
   <string name="ChangeLog_0_9_8c">Version 0.9.8c\n
  * マイクロソフト Live SDKのSSL脆弱性が修正されました(ファイルをOneDriveでアクセスする際に使用されます)\n
 * バグ修正: 以前のリリースで2つのIMEが含まれていた(一方はクラッシュしていた)  </string>
@@ -866,7 +870,7 @@
 * Keepass 1 (kdb) データベースの書き込みサポート (ベータ!)\n
 * 以前のキーボードに切り替え (非 root デバイスでも動作します)\n
 * 可変長チャレンジで KeeChallenge のサポート\n
-* クイック解除とパスワード画面で、スクリーン ショットの取得を防止\n
+* QuickUnlock とパスワード画面で、スクリーン ショットの取得を防止\n
 * 更新日での並べ替え順序を逆にしました (降順になりました)\n
 * バグ修正: メモ画面が変更後に正しく更新されるようになります。(うまく行けば) すべてのデバイスで、パスワード画面のパスワードが正しく非表示になります。エントリを 2 回追加する問題を修正。データベースを修正した後でも、UUID の重複を警告が表示される問題を修正\n</string>
   <string name="ChangeLog_0_9_6">バージョン 0.9.6\n
@@ -1038,10 +1042,10 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + キーファイル</item>
     <item>パスワード + OTP</item>
     <item>パスワード + OTP secret (回復モード)</item>
-    <item>パスワード + チャレンジ/レスポンス</item>
-    <item>パスワード + チャレンジ/レスポンス secret (回復モード)</item>
+    <item>パスワード + チャレンジレスポンス認証</item>
+    <item>パスワード + チャレンジレスポンス認証 秘密鍵 (回復モード)</item>
     <item>KeePassXC のパスワード + チャレンジ/レスポンス</item>
-    <item>KeePassXC のパスワード + キーファイル + チャレンジレスポンス</item>
+    <item>KeePassXC のパスワード + キーファイル + チャレンジレスポンス認証</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
