@@ -20,13 +20,20 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidManifest>Properties\AndroidManifest_debug.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
+  <Choose>
+    <When Condition=" '$(Configuration)'=='Release' ">
+      <PropertyGroup>
+        <AndroidManifest>Properties\AndroidManifest_net.xml</AndroidManifest>
+      </PropertyGroup>
+    </When>
+  </Choose>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>portable</DebugType>
@@ -356,12 +363,6 @@
       <Visible>False</Visible>
     </None>
     <None Include="todos.cs">
-      <Visible>False</Visible>
-    </None>
-    <None Include="UseManifestNet.bat">
-      <Visible>False</Visible>
-    </None>
-    <None Include="UseManifestNoNet.bat">
       <Visible>False</Visible>
     </None>
     <None Include="Properties\AndroidManifest_net.xml">

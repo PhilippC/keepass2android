@@ -5,9 +5,7 @@ if exist "DropboxFileStorageKeys.cs" (
   xcopy DropboxFileStorageKeysDummy.cs DropboxFileStorageKeys.cs*
 )
 
-cd ..\..\keepass2android
-call UseManifestDebug.bat
-cd ..
+cd ..\..
 
 IF NOT "%VSCMD_VCVARSALL_INIT%" == "1" (
   call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64

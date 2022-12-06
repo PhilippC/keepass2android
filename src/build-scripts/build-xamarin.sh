@@ -14,10 +14,6 @@ fi
 
 popd
 
-pushd keepass2android
-./UseManifestDebug.sh
-popd
-
 # call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
 
 # Determine if we use msbuild or xabuild to build.
