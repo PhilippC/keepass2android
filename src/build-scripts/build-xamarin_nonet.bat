@@ -1,8 +1,9 @@
-REM Build Keepass2Android
+REM Build Keepass2Android Offline
+REM This is the same as the build-xamarin.bat script except Flavor is set to NoNet
 
 @echo OFF
 
-set Flavor=
+set Flavor=NoNet
 set Configuration=Debug
 
 if NOT "%Flavor%" == "" (
