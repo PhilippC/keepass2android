@@ -6,8 +6,11 @@
 # append the Configuration variable to 'make' call with value to use in '/p:Configuration='
 # of msbuild command.
 #
+# append the Flavor variable to 'make' call with value to use in '/p:Flavor='
+# of msbuild command.
+#
 # Example:
-#    make Configuration=Release
+#    make Configuration=Release Flavor=NoNet
 #
 #
 # Some targets:
@@ -107,6 +110,11 @@ ifneq ($(Configuration),)
   MSBUILD_PARAM = -p:Configuration="$(Configuration)"
 else
   $(warning Configuration environment variable not set.)
+endif
+ifneq ($(Flavor),)
+  MSBUILD_PARAM += -p:Flavor="$(Flavor)"
+else
+  $(warning Flavor environment variable not set.)
 endif
 
 ifeq ($(detected_OS),Windows)

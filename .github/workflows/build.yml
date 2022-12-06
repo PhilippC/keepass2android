@@ -53,10 +53,10 @@ jobs:
       run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
 
     - name: Build native dependencies
-      run: cd src/java/argon2 && $ANDROID_NDK_ROOT/ndk-build
+      run: make native
 
     - name: Build java dependencies
-      run: cd src/build-scripts/ && ./build-java.sh
+      run: make java
 
     - name: Fixes (can be removed once merged in SamsungPass)
       run: |
@@ -65,20 +65,40 @@ jobs:
         sed -i '' 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
     - name: Install NuGet dependencies
-      run: nuget restore src/KeePass.sln
+      run: make nuget
 
-    - name: Build keepass2android
-      run: cd src/build-scripts/ && ./build-xamarin.sh
+    - name: Build keepass2android (net)
+      run: |
+        make msbuild Flavor=Net
 
-    - name: Build APK
-      run: cd src/build-scripts/ && ./build-apk.sh
+    - name: Build APK (net)
+      run: |
+        make apk Flavor=Net
 
-    - name: Archive production artifacts
+    - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v3
       with:
-        name: signed APK (built on ${{ github.job }})
+        name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Build keepass2android (nonet)
+      run: |
+        make msbuild Flavor=NoNet
+
+    - name: Build APK (nonet)
+      run: |
+        make apk Flavor=NoNet
+
+    - name: Archive production artifacts (nonet)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('nonet' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Perform "make distclean"
+      run: make distclean
 
   linux:
 
@@ -143,10 +163,10 @@ jobs:
       run: sudo apt -y install libzip4
 
     - name: Build native dependencies
-      run: cd src/java/argon2 && $ANDROID_NDK_ROOT/ndk-build
+      run: make native
 
     - name: Build java dependencies
-      run: cd src/build-scripts/ && ./build-java.sh
+      run: make java
 
     - name: Fixes (can be removed once merged in SamsungPass)
       run: |
@@ -155,22 +175,40 @@ jobs:
         sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
     - name: Install NuGet dependencies
-      run: nuget restore src/KeePass.sln
+      run: make nuget
 
-    - name: Build keepass2android
+    - name: Build keepass2android (net)
       run: |
-        cd src/build-scripts/ && ./build-xamarin.sh
+        make msbuild Flavor=Net
 
-    - name: Build APK
+    - name: Build APK (net)
       run: |
-        cd src/build-scripts/ && ./build-apk.sh
+        make apk Flavor=Net
 
-    - name: Archive production artifacts
+    - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v3
       with:
-        name: signed APK (built on ${{ github.job }})
+        name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Build keepass2android (nonet)
+      run: |
+        make msbuild Flavor=NoNet
+
+    - name: Build APK (nonet)
+      run: |
+        make apk Flavor=NoNet
+
+    - name: Archive production artifacts (nonet)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('nonet' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Perform "make distclean"
+      run: make distclean
 
   windows:
 
@@ -212,14 +250,12 @@ jobs:
     - name: Build native dependencies
       shell: cmd
       run: |
-        cd src/java/argon2
-        %ANDROID_NDK_ROOT%\ndk-build.cmd
+        make native
 
     - name: Build java dependencies
       shell: cmd
       run: |
-        cd src\build-scripts
-        build-java.bat
+        make java
 
     - name: Fixes (can be removed once merged in SamsungPass)
       shell: bash
@@ -228,15 +264,35 @@ jobs:
         sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
         sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
-    - name: Build keepass2android
-      shell: cmd
+    - name: Build keepass2android (net)
       run: |
-        cd src\build-scripts
-        build-xamarin.bat
+        make msbuild Flavor=Net
 
-    - name: Archive production artifacts
+    - name: Build APK (net)
+      run: |
+        make apk Flavor=Net
+
+    - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v3
       with:
-        name: signed APK (built on ${{ github.job }})
+        name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Build keepass2android (nonet)
+      run: |
+        make msbuild Flavor=NoNet
+
+    - name: Build APK (nonet)
+      run: |
+        make apk Flavor=NoNet
+
+    - name: Archive production artifacts (nonet)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('nonet' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Perform "make distclean"
+      run: make distclean
