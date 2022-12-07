@@ -330,7 +330,7 @@
   <string name="QuickUnlockHideLength_title">QuickUnlock の長さを表示しない</string>
   <string name="QuickUnlockHideLength_summary">有効にすると、QuickUnlock キーの長さを QuickUnlock 画面に表示しません</string>
   <string name="QuickUnlockKeyFromDatabase_title">データベースエントリーで QuickUnlock キーを指定</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">有効にするとルート領域に QuickUnlock というタイトルのデータベースが作成され、そのパスワードを QuickUnlock キーとして使用します</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">使用中のデータベースのルート領域に QuickUnlock というタイトルのエントリーが存在する場合、そのパスワードを QuickUnlock キーとして使用します</string>
   <string name="QuickUnlock_fail">QuickUnlock に失敗しました: パスワードが正しくありません</string>
   <string name="SaveAttachmentDialog_title">添付ファイルを保存</string>
   <string name="SaveAttachmentDialog_text">添付ファイルを保存する場所を選択してください</string>
@@ -349,8 +349,8 @@
   <string name="protection">保護されたフィールド</string>
   <string name="add_binary">添付ファイルを追加</string>
   <string name="add_extra_string">補足文字列を追加</string>
-  <string name="configure_totp">TOTP の設定</string>
-  <string name="totp_secret_key">シークレットキー</string>
+  <string name="configure_totp">TOTP を設定</string>
+  <string name="totp_secret_key">秘密鍵</string>
   <string name="totp_encoding_rfc6238">RFC 6238 のデフォルトのトークン設定</string>
   <string name="totp_encoding_steam">Steamトークンの設定</string>
   <string name="totp_encoding_custom">カスタムトークンの設定</string>
@@ -553,8 +553,8 @@
   <string name="otp_discarded_no_space">OTP 破棄されました: すべての OTP はすでに入力されました!</string>
   <string name="otp_discarded_because_db_open">最初にデータベースを閉じてください。OTP は破棄されます。</string>
   <string name="otps_pending">(1 または複数の OTP が既に利用可能)</string>
-  <string name="otpsecret_hint">OTP secret (例: 01 23 ab cd…)</string>
-  <string name="CouldntParseOtpSecret">OTP secret 解析エラー!</string>
+  <string name="otpsecret_hint">OTP 秘密鍵 (例: 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">OTP 秘密鍵の解析でエラーが発生しました！</string>
   <string name="OtpKeyError">OTP キーの作成に失敗しました! 正しい OTP を入力したか確認してください。</string>
   <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイル更新エラー!</string>
   <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中…</string>
@@ -1041,11 +1041,11 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワードのみ</item>
     <item>パスワード + キーファイル</item>
     <item>パスワード + OTP</item>
-    <item>パスワード + OTP secret (回復モード)</item>
+    <item>パスワード + OTP 秘密鍵 (回復モード)</item>
     <item>パスワード + チャレンジレスポンス認証</item>
     <item>パスワード + チャレンジレスポンス認証 秘密鍵 (回復モード)</item>
-    <item>KeePassXC のパスワード + チャレンジ/レスポンス</item>
-    <item>KeePassXC のパスワード + キーファイル + チャレンジレスポンス認証</item>
+    <item>パスワード + KeePass XC のチャレンジレスポンス認証</item>
+    <item>パスワード + キーファイル + KeePass XC のチャレンジレスポンス認証</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
