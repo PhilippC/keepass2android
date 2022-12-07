@@ -352,10 +352,10 @@
   <string name="configure_totp">TOTP を設定</string>
   <string name="totp_secret_key">秘密鍵</string>
   <string name="totp_encoding_rfc6238">RFC 6238 のデフォルトのトークン設定</string>
-  <string name="totp_encoding_steam">Steamトークンの設定</string>
+  <string name="totp_encoding_steam">Steam トークンの設定</string>
   <string name="totp_encoding_custom">カスタムトークンの設定</string>
-  <string name="totp_time_step">間隔（秒）</string>
-  <string name="totp_length">コードの文字数</string>
+  <string name="totp_time_step">間隔 (秒)</string>
+  <string name="totp_length">コードの長さ</string>
   <string name="totp_scan">QR コードをスキャン</string>
   <string name="delete_extra_string">補足文字列を削除</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: ロック中 - QuickUnlock が有効です</string>
@@ -363,13 +363,13 @@
   <string name="credentials_dialog_title">サーバーのアカウント情報を入力してください。</string>
   <string name="UseFileTransactions_title">ファイル トランザクション</string>
   <string name="UseFileTransactions_summary">データベースの書き込みにファイル トランザクションを使用します</string>
-  <string name="LockWhenScreenOff_title">画面オフ時にロックする</string>
-  <string name="LockWhenScreenOff_summary">画面がオフになったときにデータベースをロックします。</string>
-  <string name="ClearPasswordOnLeave_title">入力済みのマスターパスワードをクリアする</string>
-  <string name="ClearPasswordOnLeave_summary">データベースのロック解除をせずに画面を離れると、入力済みのマスターパスワードをクリアします。</string>
-  <string name="LockWhenNavigateBack_title">アプリから離れたらロックする</string>
-  <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから抜けたときにデータベースをロックします。</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android の内蔵キーボードを使用する</string>
+  <string name="LockWhenScreenOff_title">画面オフ時にロック</string>
+  <string name="LockWhenScreenOff_summary">画面がオフになったときにデータベースをロックします</string>
+  <string name="ClearPasswordOnLeave_title">入力済みのマスターパスワードのクリア</string>
+  <string name="ClearPasswordOnLeave_summary">データベースのロックを解除せずに画面を離れると、入力済みのマスターパスワードをクリアします</string>
+  <string name="LockWhenNavigateBack_title">アプリから離れたらロック</string>
+  <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから離れたときにデータベースをロックします</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android の内蔵キーボードを使用</string>
   <string name="UseKp2aKeyboardInKp2a_summary">マスターパスワードの入力またはエントリー編集時に、標準キーボードプロバイダーを信頼しない場合、このオプションをチェックし内蔵キーボードを使用してください。</string>
   <string name="ActivateSearchViewOnStart_title">開始時に検索フィールドを有効にする</string>
   <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
@@ -561,7 +561,7 @@
   <string name="NoChallengeApp">チャレンジを扱うことができるアプリが見つかりませんでした。</string>
   <string name="PleaseInstallApp">Google Play から %1$s をインストールしてください。</string>
   <string name="AppOutdated">%1$s はサポートされていません。</string>
-  <string name="bad_resp">チャレンジ応答が正しくありません。</string>
+  <string name="bad_resp">チャレンジレスポンスが正しくありません</string>
   <string name="CouldntLoadChalAuxFile">補助チャレンジ ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジ レスポンスを使うようにデータベースを構成してください!</string>
   <string name="ErrorUpdatingChalAuxFile">OTP 補助ファイル更新エラー!</string>
@@ -1042,10 +1042,10 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>パスワード + キーファイル</item>
     <item>パスワード + OTP</item>
     <item>パスワード + OTP 秘密鍵 (回復モード)</item>
-    <item>パスワード + チャレンジレスポンス認証</item>
-    <item>パスワード + チャレンジレスポンス認証 秘密鍵 (回復モード)</item>
-    <item>パスワード + KeePass XC のチャレンジレスポンス認証</item>
-    <item>パスワード + キーファイル + KeePass XC のチャレンジレスポンス認証</item>
+    <item>パスワード + チャレンジレスポンス</item>
+    <item>パスワード + チャレンジレスポンス秘密鍵 (回復モード)</item>
+    <item>パスワード + KeePass XC のチャレンジレスポンス</item>
+    <item>パスワード + キーファイル + KeePass XC のチャレンジレスポンス</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
