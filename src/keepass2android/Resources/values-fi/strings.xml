@@ -122,6 +122,7 @@
   <string name="entry_user_name">Käyttäjänimi</string>
   <string name="entry_extra_strings">Lisäkentät</string>
   <string name="entry_binaries">Liitetiedostot</string>
+  <string name="entry_history">Edelliset versiot</string>
   <string name="error_can_not_handle_uri">Keepass2Android ei osaa käsitellä tätä URI-osoitetta.</string>
   <string name="error_could_not_create_group">Virhe luotaessa ryhmää.</string>
   <string name="error_could_not_create_parent">Ylemmän tason hakemistoa ei voitu luoda.</string>
@@ -171,6 +172,7 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Piilota salasana</string>
   <string name="maskpass_summary">Piilota salasanat oletuksena</string>
+  <string name="masktotp_summary">Piilota TOTP-kenttä oletuksena</string>
   <string name="menu_about">Tietoja</string>
   <string name="menu_change_key">Vaihda pääavain</string>
   <string name="menu_copy_pass">Kopioi salasana</string>
@@ -341,6 +343,8 @@
   <string name="add_extra_string">Lisää lisärivi</string>
   <string name="configure_totp">Määritä TOTP</string>
   <string name="totp_secret_key">Salainen avain</string>
+  <string name="totp_length">Koodin pituus</string>
+  <string name="totp_scan">Skannaa QR-koodi</string>
   <string name="delete_extra_string">Poista lisärivi</string>
   <string name="database_loaded_quickunlock_enabled">%1$s lukittu. Pika-avaus käytössä.</string>
   <string name="database_loaded_unlocked">%1$s avattu.</string>
@@ -403,6 +407,7 @@
   <string name="DocumentAccessRevoked">Tiedosto ei ole enää Keepass2Android:in saatavilla. Joko tiedosto on poistettu, tai send käyttöoikeudet on peruutettu. Ole hyvä ja avaa tiedosto uudelleen, esimerkiksi käyttämällä Vaihda tietokanta -toimintoa.</string>
   <string name="PreloadDatabaseEnabled_title">Esilataa tietokanta</string>
   <string name="PreloadDatabaseEnabled_summary">Aloita tietokannan lataus taustalla jo salasanaa syötettäessä.</string>
+  <string name="SyncAfterQuickUnlock_title">Synkronoi QuickUnlock jälkeen</string>
   <string name="AskOverwriteBinary">Haluatko korvata nykyisen saman nimisen binääritiedoston?</string>
   <string name="AskOverwriteBinary_title">Haluatko korvata nykyisen binääritiedoston?</string>
   <string name="AskOverwriteBinary_yes">Korvaa</string>
@@ -485,6 +490,7 @@
   <string name="sftp_auth_mode">Todentamistapa</string>
   <string name="send_public_key">Lähetä julkinen avain...</string>
   <string name="enter_ftp_login_title">Syötä FTP:n kirjautumistiedot:</string>
+  <string name="enter_mega_login_title">Anna MEGA-tilisi kirjautumistiedot:</string>
   <string name="select_storage_type">Valitse tallennustyyppi:</string>
   <string name="filestoragename_file">Paikallinen tiedosto</string>
   <string name="filestoragename_androidget">Hae kolmannen osapuolen sovelluksesta</string>
@@ -502,6 +508,7 @@
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_myfiles">Omat tiedostot</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
   <string name="filestorage_setup_title">Tiedoston käytön alustaminen</string>
   <string name="database_location">Tietokannan sijainti</string>
@@ -637,12 +644,34 @@ Tässä vihjeitä, joiden avulla voit paikantaa ongelmaa:\n
   <string name="child_db_Enabled_title">Avaa automaattisesti</string>
   <string name="database_file_heading">Tietokantatiedosto</string>
   <string name="if_device_text">Ota käyttöön %1$s:lle</string>
+  <string name="restore_history">Palauta tämä versio</string>
+  <string name="remove_history">Poista tämä versio</string>
   <string name="DbUnlockedChannel_name">Tietokanta avattu</string>
   <string name="DbUnlockedChannel_desc">Ilmoitus, että tietokannan on auki</string>
   <string name="DbQuicklockedChannel_name">Pika-avaus</string>
   <string name="DbQuicklockedChannel_desc">Ilmoitus, että tietokanta on lukittu ja pika-avaus on käytössä</string>
   <string name="EntryChannel_name">Merkintöjen ilmoitukset</string>
   <string name="EntryChannel_desc">Ilmoitus, jolla pääsee helpommin käsiksi valittuna olevaan merkintään.</string>
+  <string-array name="ChangeLog_1_08d">
+    <item>Add support for new key file format introduced in Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Päivitä Jsch versioon 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Improve keyboard dialog on Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Päivitä FTP-kirjastoon</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Muita pieniä korjauksia</item>
+  </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Add notification button for copying TOTP to clipboard</item>
     <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
@@ -897,7 +926,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string-array name="design_options">
     <item>Vaalea</item>
     <item>Tumma</item>
-    <item>System settings</item>
+    <item>Järjestelmäasetukset</item>
   </string-array>
   <string name="design_title">Ulkoasu</string>
   <string-array name="ftp_encryption_modes">
@@ -951,5 +980,6 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   <string name="emergency_infotext_head">Oletko varautunut hätätilanteisiin?</string>
   <string name="emergency_infotext_main">Oletko koskaan miettinyt mitä tapahtuu jos et pääse enää käsiksi salasanatietokantaasi? Mitä jos joudut onnettomuuteen? On hyvä käytäntö antaa pääavaimesi jonkun luotetun henkilön haltuun hätätilanteita varten. Muussa tapauksessa kukaan ei pääse käsiksi salasanoihisi.</string>
   <string name="no_secure_display">Nykyistä näyttöä ei ole merkitty turvalliseksi. Tämä tarkoittaa sitä että muut sovellukset voivat tehdä kuvankaappauksen. Keepass2Android on näyttää arkaluontoisia tietoja vain suojatuissa näytöissä. Vaihda suojattuun näyttöön (esimerkiksi irrottamalla HDMI-näyttö) tai muuta sovelluksen asetuksia.</string>
+  <string name="disable_secure_screen_check">Poista tämä viesti käytöstä</string>
   <string name="switch_ime_reopen">Yritä uudelleen</string>
 </resources>
