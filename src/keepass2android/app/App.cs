@@ -478,20 +478,24 @@ namespace keepass2android
 			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
 				(dlgSender, dlgEvt) =>
 				{
-				    CurrentDb.ReloadRequested = true;
+					CurrentDb.ReloadRequested = true;
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
 					if (actionOnResult != null)
+					{
 						actionOnResult(true);
-
+						actionOnResult = null;
+					}
 				});
 
 			builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
 			{
 				if (actionOnResult != null)
+				{
 					actionOnResult(false);
+					actionOnResult = null;
+				}
 			});
-			
 
 
 			Dialog dialog = builder.Create();
