@@ -145,17 +145,7 @@ These are the basic steps to build Keepass2Android. You can also build Keepass2A
 
 ### Command Line
 
-#### Windows
-```
-    cd src/build-scripts
-    build-xamarin.bat
-```
-
-`build-xamarin.bat` will first make sure that you have all files at their place. (There is a "secret" file for Dropbox SDK keys which is not in the repo, this is replaced with a dummy file).
-
-Use `build-xamarin_nonet.bat` to build the 'nonet' flavor.
-
-#### Macos & Linux
+#### Windows, Macos & Linux
 to build the APK, simply run:
 
 ```
@@ -206,16 +196,7 @@ Proceed this way:
 
 #### Command line
 
-##### Windows
-
-On Windows, you can use the `src/build-scripts/build-xamarin_nonet.bat` script to build 'NoNet'.
-
-```
-    cd src/build-scripts
-    build-xamarin_nonet.bat
-```
-
-#####  Macos & Linux
+##### Windows, Macos & Linux
 
 To force building 'net' with `make`, run:
 
