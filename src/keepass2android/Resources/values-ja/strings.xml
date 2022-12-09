@@ -550,23 +550,23 @@
   <string name="CouldntLoadOtpAuxFile">OTP 補助ファイルを読み込めませんでした！</string>
   <string name="CouldntLoadOtpAuxFile_Hint">KeePass 2.x (PC) の OtpKeyProv プラグインを使用して、OTP を使用するようにデータベースを設定してください！</string>
   <string name="otp_discarded_because_no_db">まずデータベースを選択してください。OTP は、セキュリティ上の理由から破棄されます</string>
-  <string name="otp_discarded_no_space">OTP 破棄されました: すべての OTP はすでに入力されました!</string>
-  <string name="otp_discarded_because_db_open">最初にデータベースを閉じてください。OTP は破棄されます。</string>
-  <string name="otps_pending">(1 または複数の OTP が既に利用可能)</string>
+  <string name="otp_discarded_no_space">OTP が破棄されました: すべての OTP はすでに入力されました！</string>
+  <string name="otp_discarded_because_db_open">先にデータベースを閉じてください。OTP は破棄されます</string>
+  <string name="otps_pending">(1 つ以上の OTP が既に利用可能)</string>
   <string name="otpsecret_hint">OTP 秘密鍵 (例: 01 23 ab cd…)</string>
   <string name="CouldntParseOtpSecret">OTP 秘密鍵の解析でエラーが発生しました！</string>
-  <string name="OtpKeyError">OTP キーの作成に失敗しました! 正しい OTP を入力したか確認してください。</string>
-  <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイル更新エラー!</string>
-  <string name="SavingOtpAuxFile">OTP 補助ファイルを保存中…</string>
+  <string name="OtpKeyError">OTP 鍵の作成に失敗しました！ 正しい OTP を入力したか確認してください</string>
+  <string name="ErrorUpdatingOtpAuxFile">OTP 補助ファイルの更新にエラーが発生しました！</string>
+  <string name="SavingOtpAuxFile">OTP 補助ファイルを保存しています…</string>
   <string name="NoChallengeApp">チャレンジを扱うことができるアプリが見つかりませんでした。</string>
   <string name="PleaseInstallApp">Google Play から %1$s をインストールしてください。</string>
   <string name="AppOutdated">%1$s はサポートされていません。</string>
   <string name="bad_resp">チャレンジレスポンスが正しくありません</string>
   <string name="CouldntLoadChalAuxFile">補助チャレンジ ファイルを読み込みできませんでした!</string>
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジ レスポンスを使うようにデータベースを構成してください!</string>
-  <string name="ErrorUpdatingChalAuxFile">OTP 補助ファイル更新エラー!</string>
+  <string name="ErrorUpdatingChalAuxFile">OTP 補助ファイルの更新にエラーが発生しました！</string>
   <string name="TrayTotp_SeedField_title">TOTP シード フィールド名</string>
-  <string name="TrayTotp_SeedField_summary">デフォルト以外の設定で Keepass 2 プラグイン \"TrayTotp\" を使用している場合、PC での設定に従ってシード フィールドのフィールド名を入力してください。</string>
+  <string name="TrayTotp_SeedField_summary">デフォルト以外の設定で Keepass 2 プラグイン \"TrayTotp\" を使用している場合、PC での設定に従ってシード フィールドのフィールド名を入力してください</string>
   <string name="TrayTotp_SettingsField_title">TOTP 設定フィールド名</string>
   <string name="TrayTotp_SettingsField_summary">ここで TrayTotp の設定フィールドのフィールド名を入力してください。</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
@@ -639,8 +639,8 @@
   <string name="PreviewWarning">ご注意ください！　これはプレビューリリースのため、不具合があるかもしれません！ *何か* 予期しない事象が発生した場合は、(Google+ ベータテスターグループかメールで) 私にお知らせください。</string>
   <string name="Continue">続行</string>
   <string name="NoFilenameWarning">入力した URI はファイル名ではないようです。これは有効なファイルですか？</string>
-  <string name="FirstInvalidCompositeKeyError">複合キーが無効です！　もう一度やり直してください。</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">複合キーが無効です！次の手順を試してデータベースのロックを解除してください：\n
+  <string name="FirstInvalidCompositeKeyError">複合鍵が無効です！ もう一度やり直してください</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">複合鍵が無効です！次の手順を試してデータベースのロックを解除してください：\n
   
     • 正しいパスワードを入力したことを確認してください。入力したパスワードを表示するには、目のアイコンを使用してください。\n
    • 正しいパスワードタイプを選択したことを確認してください。データベースを作成するときに使用したタイプと一致することを確認してください。\n
