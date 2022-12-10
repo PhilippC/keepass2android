@@ -606,13 +606,13 @@
   <string name="CopyFileRequired">使用するには、別の場所にコピーしてください｡</string>
   <string name="CopyFileRequiredForEditing">ファイルを編集するには、別の場所にコピーしてください｡</string>
   <string name="ClickOkToSelectLocation">OK をタップしてファイルをコピーする場所を選択します｡</string>
-  <string name="FileReadOnlyTitle">データベースは読み取り専用</string>
+  <string name="FileReadOnlyTitle">データベースが読み取り専用</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android は、現在のデータベースを読み取り専用モードで開きました｡</string>
-  <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。この方法は、書き込みをサポートしません。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。可能であれば、いずれかの利用可能なオプションからファイルを開いてください。</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">読み取り専用フラグが設定されます。データベースを変更したい場合は、このフラグを削除してください｡</string>
-  <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat で導入された制限のため、書き込みは不可能です。データベースを変更したい場合は、データベースを閉じて、データベースの変更を選択してください。その後、システムのファイル選択を使用してファイルを開いてください｡</string>
-  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません。データベース設定 - エクスポートデータベースを使用して、このバックアップを開くことができる別の場所へエクスポートすることができます。その後、再び書き込み可能になります。</string>
-  <string name="AddCustomIcon">ファイルからアイコンを追加する...</string>
+  <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです｡ ファイルへの書き込みはできません｡ データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください｡ 対応している場合は、いずれかのオプションからファイルを開くことができます｡</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">読み取り専用フラグが設定されます｡ データベースを編集する場合は、このフラグを削除してください｡</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat で導入された制限のため、書き込みは不可能です｡ データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください｡ その後、システムのファイル選択を使用してファイルを開いてください｡</string>
+  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません｡ [データベースの設定] > [データベースをエクスポート] で、このバックアップをあなたが自由に開ける場所へエクスポートできます｡ その後、再び書き込み可能になります｡</string>
+  <string name="AddCustomIcon">ファイルからアイコンを追加...</string>
   <string name="CopyingFile">ファイルをコピーしています...</string>
   <string name="DuplicateTitle">コピー</string>
   <string name="DefaultTemplate">標準のエントリー</string>
@@ -629,22 +629,22 @@
   <string name="TemplateField_Number">番号</string>
   <string name="TemplateField_CreditCard_CVV">CVV</string>
   <string name="TemplateField_CreditCard_PIN">PIN</string>
-  <string name="TemplateField_CreditCard_Owner">カード所有者</string>
+  <string name="TemplateField_CreditCard_Owner">カード名義人</string>
   <string name="TemplateTitle_CreditCard">クレジットカード</string>
   <string name="TemplateTitle_Membership">会員情報</string>
   <string name="ChangeLog_title">変更履歴</string>
   <string name="AskAddTemplatesTitle">テンプレートを追加しますか？</string>
-  <string name="AskAddTemplatesMessage">Keepass2Android には、メールアカウント、無線 LAN パスワード、保護されたメモなど多くの入力テンプレートが含まれています。これらをデータベースに追加しますか？　いいえを選択した場合は、後からデータベースの設定で追加することができます。</string>
-  <string name="AddTemplates_pref">データベースにテンプレートを追加</string>
-  <string name="PreviewWarning">ご注意ください！　これはプレビューリリースのため、不具合があるかもしれません！ *何か* 予期しない事象が発生した場合は、(Google+ ベータテスターグループかメールで) 私にお知らせください。</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android には、メールアカウント、無線 LAN パスワード、セキュアメモなど多くの入力テンプレートが用意されています。これらをデータベースに追加しますか？ いいえを選択した場合も後からデータベースの設定で追加することができます</string>
+  <string name="AddTemplates_pref">テンプレートを追加</string>
+  <string name="PreviewWarning">ご注意ください！ これはプレビューリリースのため、不具合があるかもしれません！ 予期しない事象が発生した場合は *どんな内容でも* 私に(Google+ ベータテスターグループかメールで) お知らせください。</string>
   <string name="Continue">続行</string>
-  <string name="NoFilenameWarning">入力した URI はファイル名ではないようです。これは有効なファイルですか？</string>
+  <string name="NoFilenameWarning">入力された URI はファイル名ではないようです。これは本当に有効なファイルですか？</string>
   <string name="FirstInvalidCompositeKeyError">複合鍵が無効です！ もう一度やり直してください</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">複合鍵が無効です！次の手順を試してデータベースのロックを解除してください：\n
+  <string name="RepeatedInvalidCompositeKeyHelp">複合鍵が無効です！ 次の手順を試してデータベースのロックを解除してください:\n
   
-    • 正しいパスワードを入力したことを確認してください。入力したパスワードを表示するには、目のアイコンを使用してください。\n
-   • 正しいパスワードタイプを選択したことを確認してください。データベースを作成するときに使用したタイプと一致することを確認してください。\n
-   • 正しいデータベースファイルが選択されていることを確認してください。
+    &#8226; 正しいパスワードを入力したことを確認してください。目のアイコンを使用すると、入力したパスワードを表示できます\n
+   &#8226; 正しいパスワードタイプを選択したことを確認してください。データベースを作成するときに使用したタイプと一致することを確認してください\n
+   &#8226; 正しいデータベースファイルを選択していることを確認してください
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
    &#8226; ヒント: データベースファイルが破損したとみられる場合、または、マスターキー変更後に忘れてしまった場合は、\"%1$s\" をクリックしてローカルバックアップを選択し、最後に開くことができたバージョンのファイルを試すことができます。</string>
