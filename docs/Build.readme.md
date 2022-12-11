@@ -24,6 +24,7 @@ By using the command line, you can build on Windows, macOS or Linux.
 - Install Visual Studio (for example 2019) with Xamarin.Android (ie. with capability to build Android apps). This should provide the needed tools like
     - Xamarin.Android
     - MSBuild
+    - Java JDK
 - If you plan to build also from the command line:
     - Install the MSVC build tools of visual studio. They provide the `vcvarsall.bat` file which among other things adds MSBuild to the PATH.
     - Install [NuGet](https://www.nuget.org/downloads) to build also with "make". Alternatively, on Windows, if you use [chocolatey](https://chocolatey.org), run as administrator:
@@ -34,9 +35,12 @@ By using the command line, you can build on Windows, macOS or Linux.
       - On macOS, it is usually only installed if you have developer command line tools installed or if you use [homebrew](https://brew.sh) or [macports](https://www.macports.org/). As an alternative it may be available in the Android NDK at `%ANDROID_NDK_ROOT%/prebuilt/darwin-x86_64/bin/make`.
 
 ### On Linux
+- Install Java's JDK
+    - On Debian, for example: `apt install default-jdk-headless`.
+
 - Install [Mono](https://www.mono-project.com/)
     - This should provide `msbuild` & `xabuild` binary
-    - On Debian, after having added the repo from above, install with `apt install -t <repo_name> mono-complete`. A value for `<repo_name>` could be `stable-buster` for example, depending on which one you chose.
+    - On Debian, after having added the repo from above, install with `apt install -t <repo_name> mono-devel msbuild`. A value for `<repo_name>` could be `stable-buster` for example, depending on which one you chose. You could also install the `mono-complete` package if you prefer.
 
 - Install Xamarin.Android
   - Option 1: Use the mono-project [CI builds](https://dev.azure.com/xamarin/public/_build/latest?definitionId=48&branchName=main&stageName=Linux)
@@ -45,8 +49,9 @@ By using the command line, you can build on Windows, macOS or Linux.
 - Install NuGet package of your distribution
     - On Debian/Ubuntu: `apt install nuget`
 
-- Install [libzip](https://libzip.org/) for your distribution.
-  - Note: Xamarin seems to require `libzip4`.
+- Install [libzip](https://libzip.org/) for your distribution for some Xamarin.Android versions
+  - This may not be relevant anymore: for example, with Xamarin.Android 11.4.99. this is not needed.
+  - Some versions of Xamarin may require `libzip4`. If you are in this case:
     - On Debian/Ubuntu, install it with `apt install libzip4`.
     - Other distributions ship only `libzip5`. As a dirty workaround, it's possible to symlink `libzip.so.5` to `libzip.so.4`. Luckily, it appears to be working. For example:
       - `sudo ln -s /usr/lib/libzip.so.5 /usr/lib/libzip.so.4`
@@ -54,7 +59,7 @@ By using the command line, you can build on Windows, macOS or Linux.
 
 ## Building the required components:
 
-This is done on the command line and requires the Android SDK & NDK.
+This is done on the command line and requires the Android SDK & NDK and Java JDK.
 
 ### On Windows
 - Setup your environment:
