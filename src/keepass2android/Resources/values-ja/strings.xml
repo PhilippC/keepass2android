@@ -713,28 +713,28 @@
     <item>エントリー表示メニューからエントリーを移動できるように変更</item>
   </string-array>
   <string-array name="ChangeLog_1_08d">
-    <item>Keepass 2.47 で導入された新しいキーファイル形式のサポートを追加</item>
-    <item>鍵導出関数 Argon2id のサポートを追加</item>
-    <item>FirefoxとChromeでの自動入力の互換性が向上しました</item>
-    <item>デスクトッププログラムからのTOTP入力のサポートを改善</item>
+    <item>KeePass 2.47 で導入された新しいキーファイル形式に対応</item>
+    <item>鍵導出関数 Argon2id に対応</item>
+    <item>Firefox と Chrome での自動入力の互換性が向上</item>
+    <item>デスクトッププログラムからの TOTP エントリーの対応を改善</item>
     <item>認証の問題を解決するために pCloud SDK を更新</item>
     <item>Jsch をバージョン 0.1.55 に更新</item>
     <item>データベース選択画面にメニューを追加</item>
     <item>インポートされたキーファイルのエクスポートを許可</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
-    <item>Android アプリのパッケージ名を URL フィールドに格納しないようにしました</item>
-    <item>ロック動作の改善 - ロック解除後すぐに生体認証プロンプトを表示しません</item>
-    <item>HTTP/2 をサポートする OkHttp を更新</item>
-    <item>不足している翻訳を修正</item>
+    <item>Android アプリのパッケージ名を URL フィールドに格納しないように変更</item>
+    <item>ロック動作の改善 - ロック解除後すぐに生体認証プロンプトが表示されることはなくなります</item>
+    <item>OkHttp を更新して HTTP/2 に対応</item>
+    <item>翻訳の欠落を修正</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>OkHttp の HTTP/2 実装に問題があるため、HTTP/1.1 を強制</item>
     <item>Android 9 以降でキーボードダイアログを改善</item>
     <item>不必要な関連付けを避けるためにアプリのファイルの関連付けを変更</item>
-    <item>パスワード文字列が目のアイコンで隠れないようにした</item>
-    <item>ドメインの認証情報を自動入力するときに認識できないアプリで警告するよう自動入力の動作を変更</item>
-    <item>FTP ライブラリに更新</item>
+    <item>パスワード文字列が目のアイコンの後ろに隠れないよう変更</item>
+    <item>ドメインのアカウント情報を、未知のアプリに自動入力すると警告するよう自動入力の動作を変更</item>
+    <item>FTP ライブラリを更新</item>
     <item>アプリの潜在的なクラッシュに対する修正</item>
     <item>その他のマイナーな修正</item>
   </string-array>
