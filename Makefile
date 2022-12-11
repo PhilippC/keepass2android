@@ -25,7 +25,8 @@
 #  - clean: all clean_* targets below
 #  - clean_native: clean native lib
 #  - clean_java: call clean target of java libs
-#  - msbuild_clean: call clean target of java libs
+#  - clean_nuget: cleanup the 'nuget restore'
+#  - clean_msbuild: call clean target of msbuild
 #
 #
 #
@@ -34,6 +35,7 @@ ifeq ($(OS),Windows_NT)     # is Windows_NT on XP, 2000, 7, Vista, 10...
     detected_OS := Windows
     WHICH := where
     RM := RMDIR /S /Q
+    RMFILE := DEL
     CP := copy
     GRADLEW := gradlew.bat
     # Force use of cmd shell (don't use POSIX shell because the user may not have one installed)
@@ -42,6 +44,7 @@ else
     detected_OS := $(shell uname)
     WHICH := which
     RM := rm -rf
+    RMFILE := $(RM)
     CP := cp
     GRADLEW := ./gradlew
 endif
@@ -118,11 +121,11 @@ else
 endif
 
 ifeq ($(detected_OS),Windows)
-  define remove
+  define remove_dir
     if exist $(1) ( $(RM) $(1) )
   endef
 else
-  define remove
+  define remove_dir
     $(RM) $(1)
   endef
 endif
@@ -158,11 +161,12 @@ OUTPUT_Keepass2AndroidPluginSDK2 = src/java/Keepass2AndroidPluginSDK2/app/build/
 OUTPUT_KP2AKdbLibrary = src/java/KP2AKdbLibrary/app/build/outputs/aar/app-debug.aar
 OUTPUT_PluginQR = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepass2AndroidPluginSDK2-release.aar src/java/PluginQR/app/build/outputs/apk/debug/app-debug.apk
 
+
 ##### Targets definition
 
 .PHONY: native $(NATIVE_COMPONENTS) clean_native $(NATIVE_CLEAN_TARGETS)  \
 	java $(JAVA_COMPONENTS) clean_java $(JAVA_CLEAN_TARGETS) \
-	nuget \
+	nuget clean_nuget \
 	msbuild clean_msbuild \
 	apk all clean
 
@@ -200,11 +204,15 @@ $(OUTPUT_PluginQR):
 
 ##### Nuget Dependencies
 
-nuget:
+nuget: stamp.nuget_$(Flavor)
+stamp.nuget_$(Flavor): src/KeePass.sln $(wildcard src/*/*.csproj) $(wildcard src/*/packages.config) src/.nuget/packages.config
 ifeq ($(shell $(WHICH) nuget),)
 	$(error "nuget" command not found. Check it is in your PATH)
 endif
+	$(RMFILE) stamp.nuget_*
 	nuget restore src/KeePass.sln
+	$(MSBUILD) src/KeePass.sln -t:restore $(MSBUILD_PARAM) -p:RestorePackagesConfig=true
+	@echo "" > stamp.nuget_$(Flavor)
 
 #####
 src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs:
@@ -240,10 +248,22 @@ clean_KP2AKdbLibrary:
 clean_PluginQR:
 	cd src/java/PluginQR && $(GRADLEW) clean
 
+# https://learn.microsoft.com/en-us/nuget/consume-packages/package-restore-troubleshooting#other-potential-conditions
+clean_nuget:
+	cd src && $(call remove_dir,packages)
+ifeq ($(detected_OS),Windows)
+	DEL /S src\project.assets.json
+	DEL /S src\*.nuget.*
+else
+	$(RM) src/*/obj/project.assets.json
+	$(RM) src/*/obj/*.nuget.*
+endif
+	$(RMFILE) stamp.nuget_*
+
 clean_msbuild:
 	$(MSBUILD) src/KeePass.sln -target:clean $(MSBUILD_PARAM)
 
-clean: clean_native clean_java clean_msbuild
+clean: clean_native clean_java clean_nuget clean_msbuild
 
 distclean: clean
 ifneq ("$(wildcard ./allow_git_clean)","")

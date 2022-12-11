@@ -64,8 +64,8 @@ jobs:
         sed -i '' '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
         sed -i '' 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
-    - name: Install NuGet dependencies
-      run: make nuget
+    - name: Install NuGet dependencies (net)
+      run: make nuget Flavor=Net
 
     - name: Build keepass2android (net)
       run: |
@@ -81,6 +81,9 @@ jobs:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Install NuGet dependencies (nonet)
+      run: make nuget Flavor=NoNet
 
     - name: Build keepass2android (nonet)
       run: |
@@ -174,8 +177,8 @@ jobs:
         sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
         sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
-    - name: Install NuGet dependencies
-      run: make nuget
+    - name: Install NuGet dependencies (net)
+      run: make nuget Flavor=Net
 
     - name: Build keepass2android (net)
       run: |
@@ -191,6 +194,9 @@ jobs:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Install NuGet dependencies (nonet)
+      run: make nuget Flavor=NoNet
 
     - name: Build keepass2android (nonet)
       run: |
@@ -264,6 +270,9 @@ jobs:
         sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
         sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
+    - name: Install NuGet dependencies (net)
+      run: make nuget Flavor=Net
+
     - name: Build keepass2android (net)
       run: |
         make msbuild Flavor=Net
@@ -278,6 +287,9 @@ jobs:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Install NuGet dependencies (nonet)
+      run: make nuget Flavor=NoNet
 
     - name: Build keepass2android (nonet)
       run: |
