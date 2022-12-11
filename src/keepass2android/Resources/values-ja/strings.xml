@@ -744,31 +744,32 @@
     <item>BiometricPrompt API に変更して、指紋認証のユーザーエクスペリエンスを向上・Pixel 4 などでは顔認証にも対応</item>
     <item>バグ修正</item>
   </string-array>
-  <string name="ChangeLog_1_07b">バージョン 1.07b\n
-     * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen に感謝!)\n
-     * 指紋アイコンをクリックして指紋を無効にすることができます (画面下の指紋リーダーの問題を回避できます。marcoDallas に感謝!)\n
-     * パスワードの表示を切り替えるときにカーソル位置を復元 (DDoSolitaryに感謝!)\n
-     * pCloud 実装の改善 (再び gilbsgilbs に感謝!)\n
-     * さらにいくつかのブラウザでオートフィルサポートを追加 \n
-     * OneDrive の新しい実装: OneDrive for Business のサポート、共有ファイル、選択可能なアクセススコープ、複数のアカウント、オフラインアクセスの問題を修正を含みます\n
-     * バグの修正  </string>
-  <string name="ChangeLog_1_07">    バージョン 1.07\n
-    * Samsung の Android 9 でのクラッシュを修正\n
-    * KeeAutoExec と互換性のある 1 つ以上のデータベースを開くことができます\n
-    * SFTP: 公開鍵認証を許可。ホスト鍵が変更された場合にチェック\n
-    * pCloud サポートの導入 - gilbsgilbs に感謝!\n
-    * 明示的に Nextcloud サポート\n
-    * エントリ添付ファイルの保存と更新を改善\n
-    * 個人設定の動作を適応させるためのオプションを追加\n
-    * SSL: ユーザー証明書の信頼\n
-    * 自動入力の改善 (Firefox で動作します。ポップアップを抑えることができます)\n
-    * バグフィックス\n
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen に感謝！)\n
+    * 指紋アイコンをクリックして指紋を無効にできるよう変更 (画面内指紋認証の問題を回避できます。marcoDallas に感謝！)\n
+    * パスワードの表示を切り替えたときにカーソル位置を復元 (DDoSolitaryに感謝！)\n
+    * pCloud の実装を改善 (gilbsgilbs に再び感謝！)\n
+    * 自動入力に対応するブラウザーをいくつか追加\n
+    * OneDrive の新しい実装: OneDrive for Business、共有ファイル、選択可能なアクセススコープ、複数のアカウントへの対応と、オフラインアクセスの問題の修正\n
+    * バグ修正
   </string>
-  <string name="ChangeLog_1_06">    バージョン 1.06\n
-    * Yubikey チャレンジ-レスポンス アプリとして YubiChallenge ではなく ykDroid に切り替え。\n
-    * KeepassXC スタイルのチャレンジ-レスポンスのサポートを実装します。注: データベースの形式を KDBX4 にする必要があります!\n
-    * Google ドライブからゴミ箱のファイルを読み込むことを拒否\n
-    * FTPS の TLS 実装を切り替え。 gssapi-with-mic をサポートするサーバーの JSch バグ回避策を追加\n
+  <string name="ChangeLog_1_07">    Version 1.07\n
+    * Samsung の Android 9 でのクラッシュを修正\n
+    * 複数のデータベースを開けるように変更 (KeeAutoExec と互換)\n
+    * SFTP: 公開鍵認証を許可、ホスト鍵が変更された場合に確認\n
+    * pCloud に対応 - gilbsgilbs に感謝！\n
+    * Nextcloud に明示的に対応\n
+    * エントリーの添付ファイルの保存と更新を改善\n
+    * 個人設定に動作を適応させるためのオプションを追加\n
+    * SSL: ユーザー証明書の信頼\n
+    * 自動入力を改善 (Firefox での動作、ポップアップの削減オプション)\n
+    * バグ修正\n
+  </string>
+  <string name="ChangeLog_1_06">    Version 1.06\n
+    * Yubikey のチャレンジレスポンス アプリを YubiChallenge から ykDroid に変更\n
+    * KeepassXC 方式のチャレンジレスポンスに対応。注: データベースの形式を KDBX4 にしてください！\n
+    * Google ドライブのゴミ箱のファイルを読み込みを拒否\n
+    * FTPS の TLS 実装を変更し、gssapi-with-mic をサポートするサーバーの JSch バグの回避方法を追加\n
     * バグ修正\n
   </string>
   <string name="ChangeLog_1_05">    バージョン 1.05\n
