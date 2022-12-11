@@ -734,15 +734,15 @@
     <item>不必要な関連付けを避けるためにアプリのファイルの関連付けを変更</item>
     <item>パスワード文字列が目のアイコンの後ろに隠れないよう変更</item>
     <item>ドメインのアカウント情報を、未知のアプリに自動入力すると警告するよう自動入力の動作を変更</item>
-    <item>FTP ライブラリを更新</item>
-    <item>アプリの潜在的なクラッシュに対する修正</item>
+    <item>FTP ライブラリに更新</item>
+    <item>アプリの潜在的なクラッシュを修正</item>
     <item>その他のマイナーな修正</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
-    <item>通知ボタンからTOTPをクリップボードにコピーできるように</item>
-    <item>FluentFTP を使用して TLS 1.2 をサポートするように変更しました</item>
-    <item>BiometricPrompt API に切り替えて、指紋認証のユーザーエクスペリエンスを向上させ、さらに顔認証を使用できるようにしました。（ピクセル4など）</item>
-    <item>バグフィックス</item>
+    <item>TOTP をクリップボードにコピーするボタンを通知に追加</item>
+    <item>FluentFTP を使用するように変更して TLS 1.2 に対応</item>
+    <item>BiometricPrompt API に変更して、指紋認証のユーザーエクスペリエンスを向上・Pixel 4 などでは顔認証にも対応</item>
+    <item>バグ修正</item>
   </string-array>
   <string name="ChangeLog_1_07b">バージョン 1.07b\n
      * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen に感謝!)\n
