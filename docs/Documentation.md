@@ -118,3 +118,5 @@ One of these has helped all users so far, but unfortunately it's not totally cle
 # For developers
 If you are interested in adding new features, you have two options:
 Either your features can be implemented as a plug-in. Please see [How to create a plug-in?](How-to-create-a-plug-in_.md) for more information. Or you add the features directly in the source code of the projects and create a pull request.
+
+If you want to build Keepass2Android, check the [build guide](Build.readme.md).

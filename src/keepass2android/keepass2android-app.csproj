@@ -20,12 +20,13 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidManifest>Properties\AndroidManifest_debug.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+    <Flavor Condition=" '$(Flavor)' != '' ">$(Flavor)</Flavor>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -67,6 +68,24 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
+  <Choose>
+    <When Condition=" '$(Flavor)'=='Net' ">
+      <PropertyGroup>
+        <AndroidManifest>Properties\AndroidManifest_net.xml</AndroidManifest>
+      </PropertyGroup>
+    </When>
+    <When Condition=" '$(Flavor)'=='NoNet' ">
+      <PropertyGroup>
+        <AndroidManifest>Properties\AndroidManifest_nonet.xml</AndroidManifest>
+        <DefineConstants>$(DefineConstants);NoNet;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <ItemGroup Condition=" '$(Flavor)'=='NoNet' ">
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Core">
       <Version>1.5.0</Version>
@@ -358,12 +377,6 @@
     <None Include="todos.cs">
       <Visible>False</Visible>
     </None>
-    <None Include="UseManifestNet.bat">
-      <Visible>False</Visible>
-    </None>
-    <None Include="UseManifestNoNet.bat">
-      <Visible>False</Visible>
-    </None>
     <None Include="Properties\AndroidManifest_net.xml">
       <Visible>False</Visible>
     </None>
@@ -631,8 +644,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_download.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_share.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_upload.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v4\ic_launcher_offline.png" />
     <AndroidResource Include="Resources\drawable-mdpi-v4\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v4\ic_launcher_offline.png" />
     <AndroidResource Include="Resources\drawable-hdpi-v4\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi-v4\ic_launcher_offline.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v4\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1902,14 +1918,20 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
+      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
+      <Name>JavaFileStorageBindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj">
+      <Project>{2db80c77-d46f-4970-b967-e9ffa9b2ac2e}</Project>
+      <Name>PCloudBindings</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
       <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
       <Name>AndroidFileChooserBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
       <Project>{545b4a6b-8bba-4fbe-92fc-4ac060122a54}</Project>
@@ -1926,10 +1948,6 @@
     <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj">
       <Project>{a8779d4d-7c49-4c2f-82bd-2cdc448391da}</Project>
       <Name>Kp2aKeyboardBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj">
-      <Project>{2db80c77-d46f-4970-b967-e9ffa9b2ac2e}</Project>
-      <Name>PCloudBindings</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
       <Project>{3da3911e-36de-465e-8f15-f1991b6437e5}</Project>

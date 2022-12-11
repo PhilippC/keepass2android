@@ -44,12 +44,12 @@ using keepass2android.addons.OtpKeyProv;
 using keepass2android.database.edit;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
-using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
 using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
+using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 #endif
 

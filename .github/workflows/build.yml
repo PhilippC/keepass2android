@@ -1,0 +1,298 @@
+name: Build keepass2android app
+
+on: [push, pull_request]
+
+jobs:
+  macos:
+
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Fetch submodules
+      run: git submodule init && git submodule update
+
+    # As per https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md#visual-studio-for-mac
+    - name: Switch to Visual Studio 2019
+      if: ${{ false }} # Not needed. We stay with the default 'Visual Studio 2022' of macos-12 runner.
+      run: |
+        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
+        mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
+
+    # As of 2022-12-02, keepass2android doesn't build with Xamarin >= 12.1 because there is some issue with SamsungPass. Removing SamsungPass would make the build succeed.
+    - name: Set default Xamarin SDK versions
+      run: |
+        # If using the github runner 'macos-12'
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.1 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1 # Build fails in this case, as of 2022-12-02 : Error in obj/Debug/lp/12/jl/__reference__pass-v1.1.3.jar:com/samsung/android/sdk/pass/SpassFingerprint.class:  java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
+
+        # If using the github runner 'macos-11'
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
+
+        # If using the github runner 'macos-10.15'
+        # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
+
+    - name: Switch to JDK-8
+      if: ${{ false }} # Not needed, we stay with the default installed JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+
+    - name: Display java version
+      run: java -version
+
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+
+    - name: Build native dependencies
+      run: make native
+
+    - name: Build java dependencies
+      run: make java
+
+    - name: Fixes (can be removed once merged in SamsungPass)
+      run: |
+        sed -i '' 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '' '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '' 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+
+    - name: Install NuGet dependencies
+      run: make nuget
+
+    - name: Build keepass2android (net)
+      run: |
+        make msbuild Flavor=Net
+
+    - name: Build APK (net)
+      run: |
+        make apk Flavor=Net
+
+    - name: Archive production artifacts (net)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('net' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Build keepass2android (nonet)
+      run: |
+        make msbuild Flavor=NoNet
+
+    - name: Build APK (nonet)
+      run: |
+        make apk Flavor=NoNet
+
+    - name: Archive production artifacts (nonet)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('nonet' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Perform "make distclean"
+      run: make distclean
+
+  linux:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Fetch submodules
+      run: git submodule init && git submodule update
+
+    - name: Install Mono
+      if: ${{ false }}  # disable for now since it is already installed on the runner which uses the same repo https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md#language-and-runtime
+      run: |
+        sudo apt install gnupg ca-certificates &&
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF &&
+        echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list &&
+        sudo apt update &&
+        sudo apt-get -y -t stable-focal install mono-complete
+
+    - name: Install Xamarin.Android
+      run: |
+        set -x
+        cd $HOME
+
+        # Build Artifact of xamarin.android-oss dated 2021-02-02, master branch (= version 11.2.99) - *.deb cannot be installed because "lxd" package is not anymore shipped in current ubuntu version
+        #wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM0NTE3L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip &&
+
+        # Build Artifact of xamarin.android-oss dated 2021-03-23, d16-9 branch (= version 11.2.2) - *.deb cannot be installed because "lxd" package is not anymore shipped in current ubuntu version
+        #wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM3Njg0L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip &&
+
+        # Build Artifact of xamarin.android-oss dated 2021-07-21, master branch (= version 11.4.99)
+        wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzQzNjU5L2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip &&
+
+        # Build Artifact of xamarin.android-oss dated 2022-02-16, master branch (= version 12.2.99) - Build fails with this version as of 2022-12-02 because there is some issue with SamsungPass. Removing SamsungPass would make the build succeed.
+        #wget -O "installers-unsigned - Linux.zip" https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzU0OTUzL2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip &&
+
+        unzip "installers-unsigned - Linux.zip" &&
+        mkdir -p xamarin.android-oss &&
+        DIR=$(unzip -Z -1 installers-unsigned\ -\ Linux.zip   | cut -d '/' -f1 | sort -u) &&
+        tar -xvf "$DIR"/xamarin.android-oss-*.tar.* --strip-components=1 -C xamarin.android-oss &&
+        sudo apt install -y ./"$DIR"/*.deb
+
+        echo "$HOME/xamarin.android-oss/bin/Release/bin" >> $GITHUB_PATH
+
+    - name: Switch to JDK-8
+      if: ${{ false }} # Not needed, we stay with the default installed JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+
+    - name: Display java version
+      run: java -version
+
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+
+    - name: Install libzip4
+      if: ${{ false }}  # disable for now since it is already installed on the runner
+      run: sudo apt -y install libzip4
+
+    - name: Build native dependencies
+      run: make native
+
+    - name: Build java dependencies
+      run: make java
+
+    - name: Fixes (can be removed once merged in SamsungPass)
+      run: |
+        sed -i 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+
+    - name: Install NuGet dependencies
+      run: make nuget
+
+    - name: Build keepass2android (net)
+      run: |
+        make msbuild Flavor=Net
+
+    - name: Build APK (net)
+      run: |
+        make apk Flavor=Net
+
+    - name: Archive production artifacts (net)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('net' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Build keepass2android (nonet)
+      run: |
+        make msbuild Flavor=NoNet
+
+    - name: Build APK (nonet)
+      run: |
+        make apk Flavor=NoNet
+
+    - name: Archive production artifacts (nonet)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('nonet' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Perform "make distclean"
+      run: make distclean
+
+  windows:
+
+    # We use windows-2019 because build fails on windows-2022
+    #
+    # on windows-2019 it builds with:
+    #    Microsoft Visual Studio\2019\Enterprise
+    #    Found Java SDK version 1.8.0
+    #    Found Xamarin.Android 12.0.0.3
+    #
+    # on windows-2022 it builds with:
+    #    Microsoft Visual Studio\2022\Enterprise
+    #    Found Java SDK version 11.0.12
+    #    Found Xamarin.Android 13.1.0.1
+    #
+    #    Same error as on macos:
+    #       Error in obj/Debug/lp/12/jl/__reference__pass-v1.1.3.jar:com/samsung/android/sdk/pass/SpassFingerprint.class:  java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Fetch submodules
+      run: git submodule init && git submodule update
+
+    # Workaround an issue when building on windows-2022. Error was
+    #       D8 : OpenJDK 64-Bit Server VM warning : INFO: os::commit_memory(0x00000000ae400000, 330301440, 0) failed; error='The paging file is too small for this operation to complete' (DOS error/errno=1455) [D:\a\keepass2android\keepass2android\src\keepass2android\keepass2android-app.csproj]
+    #       C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Xamarin\Android\Xamarin.Android.D8.targets(81,5): error MSB6006: "java.exe" exited with code 1. [D:\a\keepass2android\keepass2android\src\keepass2android\keepass2android-app.csproj]
+    - name: Configure Pagefile
+      uses: al-cheb/configure-pagefile-action@v1.3
+      with:
+        minimum-size: 8GB
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+      # If we want to also have nmake, use this instead
+      #uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Build native dependencies
+      shell: cmd
+      run: |
+        make native
+
+    - name: Build java dependencies
+      shell: cmd
+      run: |
+        make java
+
+    - name: Fixes (can be removed once merged in SamsungPass)
+      shell: bash
+      run: |
+        sed -i 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+        sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
+
+    - name: Build keepass2android (net)
+      run: |
+        make msbuild Flavor=Net
+
+    - name: Build APK (net)
+      run: |
+        make apk Flavor=Net
+
+    - name: Archive production artifacts (net)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('net' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Build keepass2android (nonet)
+      run: |
+        make msbuild Flavor=NoNet
+
+    - name: Build APK (nonet)
+      run: |
+        make apk Flavor=NoNet
+
+    - name: Archive production artifacts (nonet)
+      uses: actions/upload-artifact@v3
+      with:
+        name: signed APK ('nonet' built on ${{ github.job }})
+        path: |
+          src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Perform "make distclean"
+      run: make distclean

@@ -7,6 +7,8 @@ PCtest
 bin
 obj
 
+allow_git_clean
+
 Resource.designer.cs
 R.java
 
