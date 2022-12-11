@@ -650,23 +650,25 @@
    &#8226; ヒント: データベースファイルが破損した疑いのある場合、または、変更したマスターキーを忘れてしまった場合は、\"%1$s\" をタップしてローカルバックアップを選択すると、最後に開けたバージョンのファイルを試せます。</string>
   <string name="HintLocalBackupOtherError">    \n
     &#8226; ヒント: Keepass2Android は、内部ストレージに最後に開けたバージョンのファイルを保持しています。\"%1$s\" をタップして、ローカルバックアップを選択すると開けます。  </string>
-  <string name="CorruptDatabaseHelp">ファイルが壊れています。\n
-ここに、問題を診断するために役立ついくつかのヒントがあります:\n
+  <string name="CorruptDatabaseHelp">    ファイルが破損しています。\n
+    問題を診断するのに以下のヒントが役立つかもしれません:\n
+    
+    &#8226; USB ケーブルを接続して (MTP モードで) ファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。MTP の仕様でファイルが切り捨てられる場合があります。\n
+    &#8226; お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android が原因でファイルが破損していると思われる場合は、サポートチームにお問い合わせください。\n
+    &#8226; お使いの PC でファイルを開くことができる場合は、サポートチームにお問い合わせください。PC で、(ZIP を解凍するなど) 異なる設定で保存して、Keepass2Android で再度開いてみると問題が解消する場合があります。
 
- • USB (MTP モード) でファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。特定の場合 MTP はファイルが切り捨てられます。\n
- • お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android がファイルを破損すると思われる場合は、サポートにお問い合わせください。\n
- • お使いの PC でファイルを開くことができる場合は、サポートにお問い合わせください。PC で、(解凍してなど) 異なる設定でそれを保存して、Keepass2Android で再度開いてみることも試してください。  </string>
+  </string>
   <string name="open_other_db">別のデータベースを開く…</string>
   <string name="select_database">データベースを選択</string>
   <string name="configure_child_dbs">子データベースを設定…</string>
   <string name="child_dbs_title">子データベース</string>
   <string name="unspecified">未指定</string>
-  <string name="child_db_explanation">子データベースは、親データベースを開くときに自動的に開くことができる別のデータベースです。したがって、子のマスターパスワードとファイルの場所は、親に格納されます。この機能は、あなたのパスワードの一部を他の人と共有することができます。実装は KeeAutoExec for PC と互換性があります。</string>
+  <string name="child_db_explanation">子データベースは、親データベースを開くときに自動的に開く別のデータベースです。子のマスターパスワードとファイルの場所は、親に格納されます。この機能を使用すると、パスワードの一部だけを他の人と共有することができます。実装は KeeAutoExec for PC と互換性があります。</string>
   <string name="child_db_enabled_on_this_device">このデバイスで有効です</string>
   <string name="child_db_enable_on_this_device">このデバイスで有効にする</string>
   <string name="child_db_disable_on_this_device">このデバイスで無効にする</string>
   <string name="child_db_enable_a_copy_for_this_device">このデバイスのコピー</string>
-  <string name="unconfigured_child_dbs">お使いのデータベースの \"AutoOpen\" グループに新しい子データベースが含まれています。このデバイスでこれらの子データベースを使用するかどうか指定してください。</string>
+  <string name="unconfigured_child_dbs">お使いのデータベースの \"AutoOpen\" グループに新しい子データベースが保存されています。このデバイスでこれらの子データベースを使用するかどうか指定してください。</string>
   <string name="add_child_db">子データベースを追加...</string>
   <string name="EnableCopyForThisDevice_Info">これにより子データベース設定のコピーを作成して有効にします。このコピーされた設定は、このデバイス用に調整されます。</string>
   <string name="Visible_title">参照可能</string>
@@ -675,14 +677,14 @@
   <string name="if_device_text">%1$s 用に有効にする</string>
   <string name="restore_history">このバージョンを復元</string>
   <string name="remove_history">このバージョンを削除</string>
-  <string name="DbUnlockedChannel_name">データベースがアンロックされました</string>
-  <string name="DbUnlockedChannel_desc">データベースのアンロックに関する通知</string>
+  <string name="DbUnlockedChannel_name">データベースのロック解除</string>
+  <string name="DbUnlockedChannel_desc">データベースのロック解除に関する通知</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="DbQuicklockedChannel_desc">QuickUnlock でデータベースがロックされていることに関する通知</string>
   <string name="EntryChannel_name">エントリーの通知</string>
-  <string name="EntryChannel_desc">選択中のエントリーへの簡易アクセスの通知</string>
-  <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に3回失敗したら、データベースを閉じます。</string>
-  <string name="WarnFingerprintInvalidated">警告！　生体認証は Android によって無効にされる可能性があります。例えば、新たな指紋を端末に追加したときなどです。つねにマスターパスワードによる解除方法を忘れないでください！</string>
+  <string name="EntryChannel_desc">選択中のエントリーへ簡単にアクセスするための通知</string>
+  <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に 3 回失敗すると、データベースを閉じます。</string>
+  <string name="WarnFingerprintInvalidated">警告！ 生体認証は、例えば、新たな指紋をデバイスに追加したときなどに Android によって無効にされる可能性があります。常にマスターパスワードによる解除方法を覚えておいてください！</string>
   <string-array name="ChangeLog_1_09d">
     <item>エントリーバックアップの表示、削除、および復元に対応</item>
     <item>MEGA クラウドストレージに対応</item>
@@ -696,16 +698,16 @@
     <item>自動入力のサジェストをキーボード内に統合 (Android 11 以上が必要)</item>
     <item>設定でアプリの言語を変更することが可能に</item>
     <item>QuickUnlock 後に同期するオプションを追加</item>
-    <item>バグ修正: Dropbox に保存する際にファイル名を小文字にしないでください</item>
+    <item>バグ修正: Dropbox に保存する際にファイル名を小文字にしない</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
-    <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式のサポートを追加</item>
-    <item>エントリーの TOTP 設定を構成するためのダイアログを追加しました</item>
-    <item>パスワード ジェネレーターの改善：パスフレーズのサポート、オプションの増強、プロファイル機能、パスワードの強度の推定を追加しました</item>
-    <item>自動入力の改善（Chrome で表示されないポップアップを修正し、サブドメインのサポートを改善）</item>
-    <item>OneDrive 実装の改善：サイズ制限を撤廃。余分な認証リクエストを不要化</item>
-    <item>システム設定からライト テーマ・ダーク テーマを選択するオプションを追加（Android 10 以上が必要）</item>
-    <item>Dropbox 実装の更新：新しい認証メソッドのサポート</item>
+    <item>KeePass 2.48 で導入された KDBX 4.1 ファイル形式に対応</item>
+    <item>エントリーの TOTP 設定を構成するためのダイアログを追加</item>
+    <item>パスワード ジェネレーターを改善: パスフレーズに対応、オプションを増強、プロファイル機能、パスワードの強度推定を追加</item>
+    <item>自動入力の改善 (Chrome でポップアップが表示されない問題を修正、サブドメインの処理を改善)</item>
+    <item>OneDrive 実装を改善: サイズ制限を撤廃、余計な認証リクエストを削除</item>
+    <item>システム設定からライト/ダーク テーマを選択するオプションを追加 (Android 10 以上が必要)</item>
+    <item>Dropbox 実装を更新し、新しい認証方法に対応</item>
     <item>セキュリティ強化のため、システム設定に指紋を追加した後、新しい指紋認証ロック解除のセットアップは無効になります。</item>
     <item>読み取り専用フラグを無視してシステムファイルピッカーを通じてファイルを開くことを許可する</item>
     <item>エントリー表示メニューからエントリーを移動することができます</item>
