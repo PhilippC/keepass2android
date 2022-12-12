@@ -19,9 +19,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
-    <string name="english_ime_name">Keepass2Androidキーボード</string>
+    <string name="english_ime_name">Keepass2Android キーボード</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">Keepass2Androidキーボードの設定</string>
+    <string name="english_ime_settings">Keepass2Android キーボードの設定</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">入力オプション</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
@@ -33,19 +33,19 @@
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <string name="hit_correction">入力ミス補正</string>
     <!-- Description for hit_correction  -->
-    <string name="hit_correction_summary">入力間違いを自動修正する</string>
+    <string name="hit_correction_summary">入力の間違いを自動修正します</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
-    <string name="hit_correction_land">横表示での入力修正</string>
+    <string name="hit_correction_land">横表示での入力補正</string>
     <!-- Description for hit_correction in landscape -->
-    <string name="hit_correction_land_summary">入力間違いを自動修正する</string>
+    <string name="hit_correction_land_summary">入力の間違いを自動修正します</string>
     <!-- Option to automatically correct word on hitting space -->
-    <string name="auto_correction">入力候補表示</string>
+    <string name="auto_correction">単語候補</string>
     <!-- Description for auto_correction -->
-    <string name="auto_correction_summary">前の単語を自動修正する</string>
+    <string name="auto_correction_summary">前の単語を自動修正します</string>
     <!-- Option to enable text prediction -->
-    <string name="prediction">入力候補表示</string>
+    <string name="prediction">単語候補</string>
     <!-- Category title for text prediction -->
-    <string name="prediction_category">入力候補の設定</string>
+    <string name="prediction_category">単語候補の設定</string>
     <!-- Description for text prediction -->
     <string name="prediction_summary">オートコンプリートを使用する</string>
     <!-- Dialog title for auto complete choices -->
@@ -53,11 +53,11 @@
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">入力作業スペースを広げる</string>
     <!-- Description for text prediction -->
-    <string name="prediction_landscape_summary">横表示では入力候補を表示しない</string>
+    <string name="prediction_landscape_summary">横表示では単語候補を表示しない</string>
     <!-- Option to enable auto capitalization of sentences -->
     <string name="auto_cap">文頭の自動大文字化</string>
     <!-- Description for auto cap -->
-    <string name="auto_cap_summary">英字入力で文頭文字を大文字にする</string>
+    <string name="auto_cap_summary">英字入力で文頭文字を大文字にします</string>
     <!-- Option to enable auto punctuate -->
     <string name="auto_punctuate">句読点を自動入力</string>
     <!-- Description for auto punctuate -->
@@ -68,11 +68,11 @@
     <!-- Option to enable showing suggestions -->
     <string name="show_suggestions">入力候補を表示</string>
     <!-- Description for show suggestions -->
-    <string name="show_suggestions_summary">入力時に入力候補を表示する</string>
+    <string name="show_suggestions_summary">入力時に入力候補を表示します</string>
     <!-- Option to enable auto completion -->
     <string name="auto_complete">オートコンプリート</string>
     <!-- Description for auto completion -->
-    <string name="auto_complete_summary">誤入力をスペースまたは句読点キーで修正する</string>
+    <string name="auto_complete_summary">スペースまたは句読点キーでハイライトされた単語を入力します</string>
     <!-- Option to show/hide the settings key -->
     <string name="prefs_settings_key">設定キーを表示</string>
     <!-- Array of the settings key mode values -->
@@ -89,7 +89,7 @@
         <item>@string/settings_key_mode_always_hide_name</item>
     </string-array>
     <!-- Option to enable bigram completion -->
-    <string name="bigram_suggestion">バイグラム入力候補表示</string>
+    <string name="bigram_suggestion">バイグラムの提案</string>
     <!-- Description for auto completion -->
     <string name="bigram_suggestion_summary">直前の単語から入力候補を予測します</string>
     <!-- Array of prediction modes -->
@@ -104,30 +104,30 @@
     <!-- Indicates that a word has been added to the dictionary -->
     <string name="added_word"><xliff:g id="word">%s</xliff:g> : 保存しました</string>
     <!-- Tip to long press on keys -->
-    <string name="tip_long_press">キー長押しでアクセント付き文字を表示（ø、ö など）</string>
+    <string name="tip_long_press">キー長押しでアクセント付き文字を表示 (ø、ö など)</string>
     <!-- Tip to dismiss keyboard -->
-    <string name="tip_dismiss">バックキー\u21B6でキーボードを閉じます</string>
+    <string name="tip_dismiss">バックキー \u21B6 でキーボードを閉じる</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">数字と記号</string>
     <!-- Tip to long press on typed word to add to dictionary -->
     <string name="tip_add_to_dictionary">一番左の単語を長押しすると辞書に追加されます
         </string>
     <!-- Instruction to touch the bubble to continue -->
-    <string name="touch_to_continue">続けるにはここをタッチ</string>
+    <string name="touch_to_continue">続行するにはこのヒントをタッチ »</string>
     <!-- Instruction to touch the bubble to start typing -->
-    <string name="touch_to_finish">タッチしてこのヒントを終了し、入力を開始してください。</string>
+    <string name="touch_to_finish">タッチしてヒントを終了し、入力を開始してください！</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
     <string name="tip_to_open_keyboard"><b>テキストフィールドを選択するとキーボードが表示されます</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
-    <string name="tip_to_view_accents"><b>\"キーを長押しするとアクセント付き文字\"\n\"（ø、ö、ô、óなど）が表示されます\"</b></string>
+    <string name="tip_to_view_accents"><b>キーを長押しするとアクセント付き文字\n(ø、ö、ô、ó など)が表示されます</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
-    <string name="tip_to_open_symbols"><b>\"このキーを押すと、数字/記号入力に切り替わります\"</b></string>
+    <string name="tip_to_open_symbols"><b>このキーを押すと、数字/記号入力に切り替わります</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
-    <string name="tip_to_close_symbols"><b>\"このキーを押すと、文字入力に再度切り替わります\"</b></string>
+    <string name="tip_to_close_symbols"><b>このキーを押すと、文字入力に再度切り替わります</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
-    <string name="tip_to_launch_settings"><b>\"オートコンプリートなどのキーボードの設定を変更するには、このキーを長押しします\"</b></string>
+    <string name="tip_to_launch_settings"><b>オートコンプリートなどのキーボードの設定を変更するには、このキーを長押しします</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
-    <string name="tip_to_start_typing"><b>\"試してみてください。\"</b></string>
+    <string name="tip_to_start_typing"><b>試してみてください！</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <string name="label_go_key">実行</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
@@ -151,13 +151,13 @@
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
-    <string name="voice_warning_locale_not_supported">音声入力は現在英語には対応していますが、日本語には対応していません。</string>
+    <string name="voice_warning_locale_not_supported">現在、音声入力は英語には対応していますが、日本語には対応していません。</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
-    <string name="voice_warning_may_not_understand">音声入力はGoogleのネットワーク音声認識技術を利用した試験段階の機能です。</string>
+    <string name="voice_warning_may_not_understand">音声入力は Google の音声認識ネットワークを利用した試験段階の機能です。</string>
     <!-- An additional part of the warning dialog for voice input that only shows when the user
          actually initiates voice input, rather than just turning it on in settings. -->
-    <string name="voice_warning_how_to_turn_off">音声入力をOFFにするには、キーボードの設定を開きます。</string>
+    <string name="voice_warning_how_to_turn_off">音声入力を OFF にするには、キーボードの設定を開いてください。</string>
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
     <string name="voice_hint_dialog_message">音声入力するには、マイクボタンを押すか画面キーボードをスワイプしてください。</string>
@@ -174,7 +174,7 @@
          in which case we should suggest that the user speak less. -->
     <string name="voice_too_much_speech">音声が長すぎてエラーになりました。</string>
     <!-- Short message shown for an audio error. -->
-    <string name="voice_audio_error">オーディオエラー</string>
+    <string name="voice_audio_error">オーディオの問題です</string>
     <!-- Short message shown for an error with the voice server. -->
     <string name="voice_server_error">サーバーエラー</string>
     <!-- Short message shown when no speech is heard. -->
@@ -183,11 +183,11 @@
     <string name="voice_no_match">該当なし</string>
     <!-- Short message shown when the user initiates voice and voice
 	search is not installed. -->
-    <string name="voice_not_installed">Voice Searchはインストールされていません</string>
+    <string name="voice_not_installed">Voice Search はインストールされていません</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
-    <string name="voice_swipe_hint"><b>\"ヒント:\"</b>\" 音声入力するにはキーボードをスワイプします\"</string>
+    <string name="voice_swipe_hint"><b>ヒント:</b> 音声入力するにはキーボードをスワイプ</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
-    <string name="voice_punctuation_hint"><b>\"ヒント:\"</b>\" 次回は句読点として「period」、「comma」、「question mark」などの音声入力を試してみてください。\"</string>
+    <string name="voice_punctuation_hint"><b>ヒント:</b> 次は句読点として「period」、「comma」、「question mark」などの音声入力を試してみてください</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">キャンセル</string>
     <!-- Label on button when an error occurs -->
@@ -210,18 +210,18 @@
         <item>音声入力は無効です</item>
     </string-array>
     <!-- Press the "enter" key after the user speaks. Option on settings.-->
-    <string name="auto_submit">入力後に自動送信する</string>
+    <string name="auto_submit">入力後に自動送信</string>
     <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
-    <string name="auto_submit_summary">検索または次のフィールドに進む際、Enterキーが自動的に押されます。</string>
+    <string name="auto_submit_summary">検索または次のフィールドに進む際、Enter キーが自動的に押されます</string>
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
-    <string name="open_the_keyboard"><font size="17"><b>\"キーボードを開く\"\n</b></font><font size="3">\n</font>\"テキストフィールドをタップします。\"</string>
+    <string name="open_the_keyboard"><font size="17"><b>キーボードを開く\n</b></font><font size="3">\n</font>テキストフィールドをタップします</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
-    <string name="close_the_keyboard"><font size="17"><b>\"キーボードを閉じる\"\n</b></font><font size="3">\n</font>\"[戻る]キーを押します。\"</string>
+    <string name="close_the_keyboard"><font size="17"><b>キーボードを閉じる\n</b></font><font size="3">\n</font>[戻る] キーを押します</string>
     <!-- appears above image showing how to use touch and hold -->
-    <string name="touch_and_hold"><font size="17"><b>\"キーを長押しして選択する\"\n</b></font><font size="3">\n</font>\"句読点キーとアクセント文字を表示します。\"</string>
+    <string name="touch_and_hold"><font size="17"><b>キーを長押しして選択する\n</b></font><font size="3">\n</font>句読点キーとアクセント文字を表示します</string>
     <!-- appears above image showing how to access keyboard settings -->
-    <string name="keyboard_settings"><font size="17"><b>\"キーボードの設定\"\n</b></font><font size="3">\n</font>\"[\"<b>\"?123\"</b>\"]キーを長押しします。\"</string>
+    <string name="keyboard_settings"><font size="17"><b>キーボードの設定\n</b></font><font size="3">\n</font>[<b>?123</b>]キーを長押しします</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
     <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
@@ -233,11 +233,11 @@
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
     <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
-    <string name="selectInputMethod">入力方法の選択</string>
+    <string name="selectInputMethod">入力方法を選択</string>
     <!-- Title for input language selection screen -->
     <string name="language_selection_title">入力言語</string>
     <!-- Title summary for input language selection screen -->
-    <string name="language_selection_summary">スペースバーで指をスライドさせて言語を変更する</string>
+    <string name="language_selection_summary">スペースバーで指をスライドさせて言語を変更</string>
     <!-- Add to dictionary hint -->
     <string name="hint_add_to_dictionary">←保存するにはもう一度タップ</string>
     <!-- Inform the user that a particular language has an available dictionary -->
@@ -245,7 +245,7 @@
     <!-- Preferences item for enabling to send user statistics to Google -->
     <string name="prefs_enable_log">ユーザーフィードバックを有効にする</string>
     <!-- Description for enabling to send user statistics to Google -->
-    <string name="prefs_description_log">IMEの機能向上のため、使用統計状況やクラッシュレポートをGoogleに自動送信します。</string>
+    <string name="prefs_description_log">IME の機能向上のため、使用統計状況やクラッシュレポートを Google に自動送信します。</string>
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
     <string name="prefs_enable_recorrection">タップして語句を修正</string>
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
