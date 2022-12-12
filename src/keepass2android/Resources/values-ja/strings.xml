@@ -209,8 +209,8 @@
   <string name="no_results">検索結果がありません</string>
   <string name="no_url_handler">この URL を処理できません</string>
   <string name="open_recent">最近使用したデータベース (タップして開く)</string>
-  <string name="omitbackup_title">バックアップとごみ箱を検索しない</string>
-  <string name="omitbackup_summary">\"バックアップ\" と \"ごみ箱\" を検索対象から除外します</string>
+  <string name="omitbackup_title">バックアップとゴミ箱を検索しない</string>
+  <string name="omitbackup_summary">\"バックアップ\" と \"ゴミ箱\" を検索対象から除外します</string>
   <string name="pass_filename">KeePass データベースファイル名</string>
   <string name="password_title">データベースのパスワードを入力</string>
   <string name="master_key_type">マスターキーの種類を選択:</string>
@@ -426,10 +426,10 @@
   <string name="AskOverwriteBinary_yes">上書き</string>
   <string name="AskOverwriteBinary_no">タイトルを変更</string>
   <string name="AttachFailed">添付ファイルを追加できませんでした</string>
-  <string name="RecycleBin">ごみ箱</string>
-  <string name="AskDeletePermanentlyEntry">このエントリーを完全に削除しますか？ いいえを選択するとごみ箱へ移動します</string>
-  <string name="AskDeletePermanentlyGroup">このグループを完全に削除しますか？ いいえを選択するとごみ箱へ移動します</string>
-  <string name="AskDeletePermanentlyItems">選択した要素を完全に削除しますか？ いいえを選択するとごみ箱へ移動します</string>
+  <string name="RecycleBin">ゴミ箱</string>
+  <string name="AskDeletePermanentlyEntry">このエントリーを完全に削除しますか？ いいえを選択するとゴミ箱へ移動します</string>
+  <string name="AskDeletePermanentlyGroup">このグループを完全に削除しますか？ いいえを選択するとゴミ箱へ移動します</string>
+  <string name="AskDeletePermanentlyItems">選択した要素を完全に削除しますか？ いいえを選択するとゴミ箱へ移動します</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">このエントリーを完全に削除しますか？</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">このグループを完全に削除しますか？</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">選択した要素を完全に削除しますか？</string>
@@ -855,34 +855,36 @@
     * 一部の場所にヘルプメッセージを追加\n
   </string>
   <string name="ChangeLog_0_9_9">Version 0.9.9\n
-* ユーザーインターフェイスを作り直しました。Stefano Pignataro (http://www.spstudio.at) 氏のサポートに感謝します。\n
-    * カスタムアイコンを追加できるようになりました\n
-    * サムソン製端末のマルチウィンドウモードに対応しました\n    
-    * データベース作成時のデフォルト暗号化回数を増やしました\n
-* データ消失防止のため、要素追加時にキーが重複していないかチェックされるようになりました。\n</string>
-  <string name="ChangeLog_0_9_9c">バージョン 0.9.9c\n
- * ダークテーマが復活\n
- * 他のアイコン パックをインストールできます (古い Windows スタイルのアイコンは Play ストアで利用可能です)\n
- * ごみ箱なしに要素を削除するときに確認の質問を追加しました\n
- * バグ修正 (間違った表示のOTP 秘密エンコーディング、一部の場所で間違ったアプリケーション アイコン)\n  </string>
-  <string name="ChangeLog_0_9_8b">Version 0.9.8b\n 
-* バグ修正 (一部のデータベース保存に失敗する, ローカル端末へのエクスポートができない, 一部の設定を選択した時にアプリがクラッシュする)\n </string>
+		* UI 全体を再デザイン。Stefano Pignataro 氏 (http://www.spstudio.at) の協力に感謝！\n
+    * カスタムアイコンを追加できるように変更\n
+    * Samsung 製デバイスのマルチ画面モードに対応\n
+    * データベース作成時のデフォルトの暗号化レベルが増加\n
+    * データ消失を防止するため、追加フィールドのキーが重複していないかの確認を追加\n
+    </string>
+  <string name="ChangeLog_0_9_9c">    Version 0.9.9c\n
+    * ダークテーマが復活\n
+    * 他のアイコンパックのインストールに対応 (過去の Windows 風アイコンを Play ストアで入手できます)\n
+    * データベースの要素をゴミ箱に移動せず、すぐに削除するときの確認画面を追加\n
+    * バグ修正 (OTP 秘密鍵のエンコードが正しく表示されない問題、間違ったアプリアイコンが表示される場所がある問題)\n
+  </string>
+  <string name="ChangeLog_0_9_8b">Version 0.9.8b\n
+		* バグ修正 (一部のデータベースで保存に失敗する問題、ローカルデバイスへのエクスポートが機能しない問題、一部の設定を選択するとクラッシュする問題)\n</string>
   <string name="ChangeLog_0_9_8">Version 0.9.8\n
-		* ストレージアクセスフレームワークに対応しました (KP2Aオフライン版でSDカードとGoogleドライブに書込めるようになります)\n
-		* WebDAV URLを (ファイルの代わりに)入力したときに誤入力をチェックするようになりました\n
-		* パスワードのフォントを変更しました\n
-		* Dropboxのアカウントを変更できるようになりました\n
-		* バグ修正: 今のワンタイムパスワードが記録される\n</string>
-  <string name="ChangeLog_0_9_7b">バージョン 0.9.7b\n
-* 翻訳を更新\n
-* バグ修正: 0.9.7、パスワード フォントが見つからない、名前順でグループの並べ替えができない\n</string>
-  <string name="ChangeLog_0_9_7">バージョン 0.9.7\n
-* Keepass 1 (kdb) データベースの書き込みサポート (ベータ!)\n
-* 以前のキーボードに切り替え (非 root デバイスでも動作します)\n
-* 可変長チャレンジで KeeChallenge のサポート\n
-* QuickUnlock とパスワード画面で、スクリーン ショットの取得を防止\n
-* 更新日での並べ替え順序を逆にしました (降順になりました)\n
-* バグ修正: メモ画面が変更後に正しく更新されるようになります。(うまく行けば) すべてのデバイスで、パスワード画面のパスワードが正しく非表示になります。エントリを 2 回追加する問題を修正。データベースを修正した後でも、UUID の重複を警告が表示される問題を修正\n</string>
+		* ストレージアクセスフレームワークに対応 (KP2A Offline で SD カードと Google ドライブに書き込めるようになります)\n
+		* WebDAV URL を (ファイルの代わりに)入力したときに誤入力を確認する機能を追加\n
+		* パスワードのフォントを変更\n
+		* Dropbox アカウントを変更できる機能を追加\n
+		* バグ修正: OTP を保存できるように修正\n</string>
+  <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
+		* 翻訳を更新\n
+		* バグ修正: 0.9.7 でパスワードのフォントが見つからない問題、グループを名前順に並べ替えられない問題\n</string>
+  <string name="ChangeLog_0_9_7">Version 0.9.7\n
+		* Keepass 1 (kdb) データベースの書き込みに対応 (ベータ！)\n
+		* 以前のキーボードに切り替える機能を調整 (非 root デバイスでも動作)\n
+		* 可変長チャレンジで KeeChallenge に対応\n
+		* QuickUnlock とパスワード画面で、スクリーンショットの取得を防止\n
+		* 更新日での並べ替えの順序を逆に変更 (降順になりました)\n
+		* バグ修正: メモを編集後に画面が正しく更新されるように修正、(うまく行けば) すべてのデバイスでパスワード画面のパスワードが正しく非表示になるよう修正、エントリーを 2 回追加する問題を修正、データベースを修正後も UUID の重複の警告が表示される問題を修正\n</string>
   <string name="ChangeLog_0_9_6">バージョン 0.9.6\n
 *キーファイルとデータベースファイルをアプリの内部ディレクトリへインポートできるようになりました(設定を参照して下さい)\n
 *並び替えの方法が追加されました\n
