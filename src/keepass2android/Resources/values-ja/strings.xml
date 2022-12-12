@@ -1014,13 +1014,13 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
 最初の公開リリース
   </string>
   <string-array name="clipboard_timeout_options">
-    <item>30秒</item>
-    <item>1分</item>
-    <item>5分</item>
-    <item>10分</item>
-    <item>15分</item>
-    <item>30分</item>
-    <item>1時間</item>
+    <item>30 秒</item>
+    <item>1 分</item>
+    <item>5 分</item>
+    <item>10 分</item>
+    <item>15 分</item>
+    <item>30 分</item>
+    <item>1 時間</item>
     <item>期限なし</item>
   </string-array>
   <string-array name="export_fileformat_options">
@@ -1041,8 +1041,8 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="design_title">デザイン</string>
   <string-array name="ftp_encryption_modes">
     <item>暗号化なし (FTP)</item>
-    <item>暗黙的な暗号化 (FTP over TLS、FTPS)</item>
-    <item>明示的な暗号化 (FTP over TLS、FTPS)</item>
+    <item>暗黙的 (Implicit) な暗号化 (FTP over TLS、FTPS)</item>
+    <item>明示的 (Explicit) な暗号化 (FTP over TLS、FTPS)</item>
   </string-array>
   <string-array name="cred_remember_modes">
     <item>ユーザー名とパスワードを保存しない</item>
@@ -1064,26 +1064,26 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
     <item>秘密鍵/公開鍵</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>証明書検証エラーを無視する</item>
-    <item>検証が失敗したときに警告する</item>
+    <item>証明書の検証エラーを無視</item>
+    <item>検証が失敗したときに警告</item>
     <item>無効な証明書を受け入れない</item>
   </string-array>
-  <string name="ClearClipboardWarning">お使いのシステムでこれが機能していることを確認してください。そうでない場合は、内蔵キーボードの使用を考慮してください。</string>
-  <string name="PluginDescription">プラグインによって提供される説明：</string>
-  <string name="autofill_hint">Keepass2Android は Android の自動入力機能をサポートしていますが、まだ有効にしていないようです。</string>
+  <string name="ClearClipboardWarning">この機能がお使いのシステムで正しく動作していることを確認してください。動作しない場合は、内蔵キーボードの使用を検討してください</string>
+  <string name="PluginDescription">プラグインから提供された説明:</string>
+  <string name="autofill_hint">Keepass2Android は Android の自動入力機能に対応していますが、まだ有効にしていないようです</string>
   <string name="autofill_enable">自動入力を有効にする</string>
-  <string name="autofill_enable_failed">お使いのデバイスでは、アプリから設定を開くことができないようです。システム設定を開いて、自動入力を有効にしてください。</string>
+  <string name="autofill_enable_failed">お使いのデバイスでは、アプリから設定を開くことができないようです。システム設定を開いて、自動入力を有効にしてください</string>
   <string name="show_autofill_help">自動入力のヘルプ</string>
   <string name="autofill_sign_in_prompt">Keepass2Android で入力</string>
   <string name="autofill_disable">%1$s の自動入力を無効にする</string>
   <string name="autofill_enable_for">%1$s の自動入力を有効にする</string>
-  <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けできません</string>
-  <string name="enable_fingerprint_hint">Keepass2Android が生体認証ハードウェアを検出しました。生体認証を有効にして、このデータベースのロックを解除しますか?</string>
+  <string name="invalid_link_association">ドメイン %1$s をアプリ %2$s と関連付けられませんでした</string>
+  <string name="enable_fingerprint_hint">Keepass2Android が生体認証ハードウェアを検出しました。このデータベースのロックを生体認証で解除しますか？</string>
   <string name="understand">理解しました</string>
   <string name="dont_show_again">二度と表示しない</string>
   <string name="masterkey_infotext_head">マスターパスワードを思い出せますか？</string>
-  <string name="masterkey_infotext_main">マスターキーなしにデータベースを開くことはできません。マスターパスワードをリセットする方法はありません。</string>
-  <string name="masterkey_infotext_fingerprint_note">また、生体認証のロック解除は Android のセキュリティで保護されたストレージにマスター鍵を格納することに注意してください。例えばシステムの設定に新しい指紋を追加する場合など、Android はいつでもこのストレージを削除することがあります。そのため、生体認証に頼らず、マスターパスワードを覚えておいてください!</string>
+  <string name="masterkey_infotext_main">マスターキー以外でデータベースを開くことはできません。マスターパスワードをリセットする方法は存在しません</string>
+  <string name="masterkey_infotext_fingerprint_note">また、生体認証ロック解除は Android のセキュリティ保護されたストレージにマスターキーを格納していることに注意してください。システム設定に新しい指紋を追加したときなど、Android がこのストレージを削除する条件が複数あります。そのため、生体認証に頼らず、マスターパスワードを確実に覚えておいてください！</string>
   <string name="backup_infotext_head">データベースはバックアップされていますか？</string>
   <string name="backup_infotext_main">Keepass2Android は、お好みの場所でファイルにパスワードを格納します。お使いの携帯電話を紛失したり盗難されたとき、またはファイルが破壊されたり削除されたときに、このファイルにアクセスできますか？常に安全な場所に最新のバックアップがあることを確認してください！</string>
   <string name="backup_infotext_note">バックアップを作成するには、%1$s &gt; %2$s &gt; %3$s へアクセスしてください。</string>
