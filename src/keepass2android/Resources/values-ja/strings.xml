@@ -95,7 +95,7 @@
   <string name="enable_fingerprint_unlock">すべての生体認証ロック解除を有効にする</string>
   <string name="enable_fingerprint_quickunlock">生体認証による QuickUnlock を有効にする</string>
   <string name="fingerprint_unlock_failed">生体認証ロック解除に失敗しました。復号鍵が Android OS によって無効にされました。これは通常、生体認証の変更またはセキュリティ設定の変更により発生します。 </string>
-  <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合鍵です。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
+  <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合マスターキーです。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
   <string name="fingerprint_reenable">新しいマスターパスワードで生体認証によるロック解除を再度有効にしてください。</string>
   <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度生体認証のロック解除を有効にしてください。</string>
   <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
@@ -639,8 +639,8 @@
   <string name="PreviewWarning">ご注意ください！ これはプレビューリリースのため、不具合があるかもしれません！ 予期しない事象が発生した場合は *どんな内容でも* 私に(Google+ ベータテスターグループかメールで) お知らせください。</string>
   <string name="Continue">続行</string>
   <string name="NoFilenameWarning">入力された URI はファイル名ではないようです。これは本当に有効なファイルですか？</string>
-  <string name="FirstInvalidCompositeKeyError">複合鍵が無効です！ もう一度やり直してください</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">複合鍵が無効です！ 次の手順を試してデータベースのロックを解除してください:\n
+  <string name="FirstInvalidCompositeKeyError">複合マスターキーが無効です！ もう一度やり直してください</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">複合マスターキーが無効です！ 次の手順を試してデータベースのロックを解除してください:\n
   
     &#8226; 正しいパスワードを入力したことを確認してください。目のアイコンを使用すると、入力したパスワードを表示できます\n
    &#8226; 正しいパスワードタイプを選択したことを確認してください。データベースを作成するときに使用したタイプと一致することを確認してください\n
