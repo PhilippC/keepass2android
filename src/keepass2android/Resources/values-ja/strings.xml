@@ -745,10 +745,10 @@
     <item>バグ修正</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
-    * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen に感謝！)\n
-    * 指紋アイコンをクリックして指紋を無効にできるよう変更 (画面内指紋認証の問題を回避できます。marcoDallas に感謝！)\n
-    * パスワードの表示を切り替えたときにカーソル位置を復元 (DDoSolitaryに感謝！)\n
-    * pCloud の実装を改善 (gilbsgilbs に再び感謝！)\n
+    * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen 氏に感謝！)\n
+    * 指紋アイコンをクリックして指紋を無効にできるよう変更 (画面内指紋認証の問題を回避できます。marcoDallas 氏に感謝！)\n
+    * パスワードの表示を切り替えたときにカーソル位置を復元 (DDoSolitary 氏に感謝！)\n
+    * pCloud の実装を改善 (gilbsgilbs 氏に再び感謝！)\n
     * 自動入力に対応するブラウザーをいくつか追加\n
     * OneDrive の新しい実装: OneDrive for Business、共有ファイル、選択可能なアクセススコープ、複数のアカウントへの対応と、オフラインアクセスの問題の修正\n
     * バグ修正
@@ -757,7 +757,7 @@
     * Samsung の Android 9 でのクラッシュを修正\n
     * 複数のデータベースを開けるように変更 (KeeAutoExec と互換)\n
     * SFTP: 公開鍵認証を許可、ホスト鍵が変更された場合に確認\n
-    * pCloud に対応 - gilbsgilbs に感謝！\n
+    * pCloud に対応 - gilbsgilbs 氏に感謝！\n
     * Nextcloud に明示的に対応\n
     * エントリーの添付ファイルの保存と更新を改善\n
     * 個人設定に動作を適応させるためのオプションを追加\n
@@ -795,33 +795,37 @@
     * ライブラリー、ビルドツール、ターゲット SDK バージョンをアップグレード\n
   </string>
   <string name="ChangeLog_1_03">    Version 1.03\n
-    * Googleからの要請により、自動入力のためのアクセシビリティサービスを削除。設定の「パスワードエントリーへのアクセス」から以前の機能を再現するプラグインを確認してください\n
+    * Googleからの要請により、自動入力のためのユーザー補助サービスを削除。設定の「パスワードエントリーへのアクセス」から以前の機能を再現するプラグインを確認してください\n
     * サードパーティのアプリをストレージオプションとして再び追加\n
     * 添付画像を他のアプリに転送せずに表示する画像ビューアを内蔵\n
     * OkHttp をアップグレードして接続の問題を修正\n
     * KeeTrayTOTP エントリーに対応。これによりSteam エントリーにも対応\n
   </string>
-  <string name="ChangeLog_1_02">バージョン 1.02\n
- * いくつかのセキュリティの向上。 jean-baptiste.cayrou@thalesgroup.com と vincent.fargues@thalesgroup.com と彼らのコラボレーションによる、たくさんのセキュリティ レポートに感謝します!\n
- * KeyboardSwapPlugin のサポート (パスワードアクセス オプションを参照してください): 非 root 化デバイスで、自動的に入力方式を切り替えることができます。これを可能にしてくれた XDA-開発者から Mishaal Rahman に感謝します。\n
- * 最近の Chrome バージョンでユーザー補助サービスの修正\n
- * 指紋データの不要なクリアの修正\n
- * マイナーなクラッシュを修正\n
- * 将来の互換性を確保するため Dropbox SDK の更新\n
- * Xamarin Insights 経由の報告を削除\n
- * ビルドツールを更新\n  </string>
-  <string name="ChangeLog_1_01g">バージョン 1.01-g\n
- * オフラインに操作しようとしたときのクラッシュを修正\n
- * FTP の不適切なエンコーディングの修正\n
- * OneDrive と、古い Android バージョンを使用するときのクラッシュを修正\n
- * エントリ画面で現地時間として時間を表示\n  </string>
-  <string name="ChangeLog_1_01d">バージョン 1.01-d\n
- * OneDrive ファイル一覧表示の修正\n
- * 証明書エラー同様、ホスト名の検証が失敗したのを無視できるようにする (製品としての利用には推奨しません)\n
- * QuickUnlock が、正しい解除コードにもかかわらず時々失敗する不具合を修正\n  </string>
-  <string name="ChangeLog_0_9_8c">Version 0.9.8c\n
- * マイクロソフト Live SDKのSSL脆弱性が修正されました(ファイルをOneDriveでアクセスする際に使用されます)\n
-* バグ修正: 以前のリリースで2つのIMEが含まれていた(一方はクラッシュしていた)  </string>
+  <string name="ChangeLog_1_02">    Version 1.02\n
+    * いくつかのセキュリティの向上。jean-baptiste.cayrou@thalesgroup.com 氏と vincent.fargues@thalesgroup.com 氏、彼らのコラボレーションによる、たくさんのセキュリティ レポートに感謝します！\n
+    * KeyboardSwapPlugin に対応 (設定の「パスワードエントリーへのアクセス」から参照): 非 root 化デバイスで、自動的に入力方式を切り替えることができます。これを可能にしてくれた XDA-Developers の Mishaal Rahman 氏に感謝します\n
+    * 最近の Chrome バージョンでユーザー補助サービスの問題を修正\n
+    * 指紋データが不必要にクリアされる事象を修正\n
+    * マイナーなクラッシュを修正\n
+    * Dropbox SDK を更新し、将来の互換性を確保\n
+    * Xamarin Insights 経由のエラー報告を削除\n
+    * ビルドツールを更新\n
+  </string>
+  <string name="ChangeLog_1_01g">    Version 1.01-g\n
+    * オフラインで操作しようとしたときのクラッシュを修正\n
+    * FTP の認証情報の不適切なエンコーディングを修正\n
+    * OneDrive と古いバージョンの Android を使用するときのクラッシュを修正\n
+    * エントリー画面で現地時間として時間を表示\n
+  </string>
+  <string name="ChangeLog_1_01d">    Version 1.01-d\n
+    * OneDrive ファイルの一覧表示を修正\n
+    * ホスト名の検証が失敗したときにも証明書エラーを無視できるように変更 (製品としての利用には推奨しません)\n
+    * QuickUnlock が、正しい解除コードにもかかわらず時々失敗する問題を修正\n
+  </string>
+  <string name="ChangeLog_0_9_8c">    Version 0.9.8c\n
+    * Microsoft Live SDK の SSL 脆弱性を修正 (OneDrive でファイルにアクセスする際に使用)\n
+    * バグ修正: 以前のリリースで 2 つの IME が含まれていた問題 (一方がクラッシュ)\n
+  </string>
   <string name="ChangeLog_1_01">Version 1.01\n
     * KDBX-4フォーマット(Keepass 2.35と互換)をサポート。 鍵導出アルゴリズムのArgon2と暗号方式のChaCha20が含まれます。\n
     * WebDavファイルストレージを再実装し、ファイルブラウジングと最新の暗号方式をサポート。\n
