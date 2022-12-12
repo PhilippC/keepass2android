@@ -898,15 +898,15 @@
 		* データベースの破損確認を追加 (UUID の重複)\n
 		* データベースの変更を検出したときの自動リロードで、マスターパスワードがわかってしまうセキュリティ上の問題を解決\n
 		* ポーランド語のスモールキーボードのレイアウトを改良。キーボード設定のテーマを修正 (Wiktor Ławski 氏に感謝)\n</string>
-  <string name="ChangeLog_0_9_5"><b>バージョン 0.9.5</b>\n
- * ファイル閲覧の問題を修正 (特に Android 4.4 上で)\n
- * Android Lollipop の Nexus 5 で .kdb ファイル (Keepass 1) 読み込み時の問題を修正\n
- * 最近使用したアプリ一覧でスクリーン ショットの撮影/アプリの表示できないようにするオプションを追加\n
- * Google ドライブのファイルのストレージの問題を修正 (正規版)\n
- * 意図的なストレージ タイプにキー ファイルを許可 (正規版)\n
- * 公式のセキュリティ パッチを含む Dropbox SDK の更新 (正規版)\n
- * ビルド ツール更新 --&gt; apk のサイズが増えました :-(\n
- さらにいくつかの変更を予定しています。これは次のリリースになります - 申し訳ありません。このホットフィックスをできるだけ早く公開したかったので。</string>
+  <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
+		* ファイル閲覧の問題を修正 (特に Android 4.4 上で)\n
+		* Android Lollipop の Nexus 5 での .kdb ファイル (Keepass 1) 読み込みの問題を修正\n
+		* 最近使用したアプリ一覧でスクリーン ショットを撮影/アプリを表示できないようにする設定を追加\n
+		* Google ドライブのファイルのストレージの問題を修正 (正規版)\n
+		* 意図的なストレージ タイプにキーファイルを許可 (正規版)\n
+		* 公式のセキュリティ パッチを含む Dropbox SDK の更新 (正規版)\n
+		* ビルドツールを更新 --&gt; apk のサイズが増えました :-(\n
+		さらにいくつかの変更を予定しています。ホットフィックスをできるだけ早く公開したかったので、これらの変更は次のリリースになります - 申し訳ありません。</string>
   <string name="ChangeLog_0_9_4"><b>バージョン 0.9.4</b>\n
  * プラグイン サポートを追加： プラグインの入手方法は設定を参照してください!\n
  * QR プラグインを公開 (パスワードのスキャン、パスワードを QR コードで表示、エントリーを他の KP2A デバイスへ転送)\n
@@ -1085,16 +1085,16 @@ Niki Hüttner (www.close-cut.de) の新しいロゴに感謝!\n</string>
   <string name="masterkey_infotext_main">マスターキー以外でデータベースを開くことはできません。マスターパスワードをリセットする方法は存在しません</string>
   <string name="masterkey_infotext_fingerprint_note">また、生体認証ロック解除は Android のセキュリティ保護されたストレージにマスターキーを格納していることに注意してください。システム設定に新しい指紋を追加したときなど、Android がこのストレージを削除する条件が複数あります。そのため、生体認証に頼らず、マスターパスワードを確実に覚えておいてください！</string>
   <string name="backup_infotext_head">データベースはバックアップされていますか？</string>
-  <string name="backup_infotext_main">Keepass2Android は、お好みの場所でファイルにパスワードを格納します。お使いの携帯電話を紛失したり盗難されたとき、またはファイルが破壊されたり削除されたときに、このファイルにアクセスできますか？常に安全な場所に最新のバックアップがあることを確認してください！</string>
-  <string name="backup_infotext_note">バックアップを作成するには、%1$s &gt; %2$s &gt; %3$s へアクセスしてください。</string>
+  <string name="backup_infotext_main">Keepass2Android は、あなたの選択した場所にあるファイルへパスワードを格納します。お使いの携帯電話を紛失したり盗難されたときやファイルが破壊されたり削除されたときに、このファイルにアクセスできますか？ 常に安全な場所に最新のバックアップがあることを確認してください！</string>
+  <string name="backup_infotext_note">バックアップを作成するには、%1$s &gt; %2$s &gt; %3$s へアクセスしてください</string>
   <string name="emergency_infotext_head">緊急時の準備はできていますか？</string>
-  <string name="emergency_infotext_main">パスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか？もしアクシデントが起きたら？緊急事態に備えて、マスターキーを信頼できる人に渡すことをお勧めします。そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります。</string>
-  <string name="no_secure_display">現在有効なディスプレイはセキュアとしてマークされていません。 これは、他のアプリによってスクリーンショットが撮られる可能性があることを意味します。 Keepass2Androidは、安全なディスプレイのみに機密情報を表示するように構成されています。 安全なディスプレイに変更する (HDMIモニターを取り外すなど) か、アプリの設定を変更してください。</string>
+  <string name="emergency_infotext_main">あなたがパスワードデータベースにアクセスできなくなった場合にどうなるかを考えたことはありますか？ もしアクシデントが起きたら？ 緊急事態に備えて、マスターキーを信頼できる人に渡すことをお勧めします。そうでなければ誰もあなたのパスワードにアクセスすることはできなくなります</string>
+  <string name="no_secure_display">現在有効なディスプレイはセキュアとしてマークされていません。これは、他のアプリによってスクリーンショットが撮られる可能性があることを意味します。 Keepass2Android は、安全なディスプレイのみに機密情報を表示するように構成されています。安全なディスプレイに変更する (HDMI モニターを取り外すなど) か、アプリの設定を変更してください</string>
   <string name="disable_secure_screen_check">このメッセージを非表示にする</string>
   <string name="switch_ime_text">Keepass2Android キーボードを有効にしてください</string>
   <string name="switch_ime_reopen">再試行</string>
-  <string name="AutofillWarning_title">セキュリティ警告: 認識できないドメイン/アプリリンク</string>
+  <string name="AutofillWarning_title">セキュリティ警告: 未知のドメイン/アプリリンク</string>
   <string name="AutofillWarning_Intro">ドメイン \"%1$s\" の資格情報をアプリ \"%2$s\" に挿入しようとしています。</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">\"%1$s\" に属する \"%2$s\" を信頼しているか、アプリ \"%2$s\" を信頼していて、資格情報の誤用ではない場合 (信頼できるブラウザアプリなど) 続行しても構いません。そうでない場合はキャンセルしてください。</string>
-  <string name="AutofillWarning_trustAsBrowser">常に \"%1$s\" に同意する</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">\"%2$s\" が信頼できて \"%1$s\" に属するか、アプリ \"%2$s\" を信頼していて、アカウント情報の誤用ではない場合 (信頼できるブラウザアプリなど) であれば続行しても問題ありません。そうでない場合はキャンセルしてください。</string>
+  <string name="AutofillWarning_trustAsBrowser">常に \"%1$s\" に同意</string>
 </resources>
