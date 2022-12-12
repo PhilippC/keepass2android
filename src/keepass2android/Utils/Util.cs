@@ -200,9 +200,15 @@ namespace keepass2android
             return "";
         }
 		
-		public static void CopyToClipboard(Context context, String text) {
+		public static void CopyToClipboard(Context context, String text, bool isProtected) {
             Android.Content.ClipboardManager clipboardManager = (ClipboardManager)context.GetSystemService(Context.ClipboardService);
             ClipData clipData = Android.Content.ClipData.NewPlainText("KP2A", text);
+			if (isProtected)
+			{
+				var extras = clipData.Description.Extras ?? new Android.OS.PersistableBundle();
+				extras.PutBoolean("android.content.extra.IS_SENSITIVE", true);
+				clipData.Description.Extras = extras;
+			}
             clipboardManager.PrimaryClip = clipData;
 		    if (text == "")
 		    {

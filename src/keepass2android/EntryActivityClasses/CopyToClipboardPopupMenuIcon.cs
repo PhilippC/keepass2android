@@ -10,12 +10,13 @@ namespace keepass2android
 	{
 		private readonly Context _context;
 		private readonly IStringView _stringView;
+		private readonly bool _isProtected;
 
-		public CopyToClipboardPopupMenuIcon(Context context, IStringView stringView)
+		public CopyToClipboardPopupMenuIcon(Context context, IStringView stringView, bool isProtected)
 		{
 			_context = context;
 			_stringView = stringView;
-			
+			_isProtected = isProtected;
 		}
 
 		public Drawable Icon 
@@ -33,7 +34,7 @@ namespace keepass2android
 		
 		public void HandleClick()
 		{
-			CopyToClipboardService.CopyValueToClipboardWithTimeout(_context, _stringView.Text);
+			CopyToClipboardService.CopyValueToClipboardWithTimeout(_context, _stringView.Text, _isProtected);
 		}
 	}
 }

@@ -982,7 +982,7 @@ namespace keepass2android
 				popupKey,
 				container,
 				anchor);
-			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey]));
+			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey], isProtected));
             if (isProtected)
             {
                 var valueView = container.FindViewById<TextView>(fieldKey == PwDefs.PasswordField ? Resource.Id.entry_password : Resource.Id.entry_extra);

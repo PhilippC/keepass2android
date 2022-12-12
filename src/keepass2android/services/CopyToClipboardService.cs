@@ -262,11 +262,12 @@ namespace keepass2android
         public const int NotifyCombined = 5;
         public const int NotifyTotp = 6;
 
-        static public void CopyValueToClipboardWithTimeout(Context ctx, string text)
+        static public void CopyValueToClipboardWithTimeout(Context ctx, string text, bool isProtected)
         {
             Intent i = new Intent(ctx, typeof(CopyToClipboardService));
             i.SetAction(Intents.CopyStringToClipboard);
             i.PutExtra(_stringtocopy, text);
+            i.PutExtra(_stringisprotected, isProtected);
             ctx.StartService(i);
         }
 
@@ -377,7 +378,7 @@ namespace keepass2android
             if (intent.Action == Intents.CopyStringToClipboard)
             {
 
-                TimeoutCopyToClipboard(intent.GetStringExtra(_stringtocopy));
+                TimeoutCopyToClipboard(intent.GetStringExtra(_stringtocopy), intent.GetBooleanExtra(_stringisprotected, false));
             }
             if (intent.Action == Intents.ActivateKeyboard)
             {
@@ -673,9 +674,9 @@ namespace keepass2android
 
         private readonly Timer _timer = new Timer();
 
-        internal void TimeoutCopyToClipboard(String text)
+        internal void TimeoutCopyToClipboard(String text, bool isProtected)
         {
-            Util.CopyToClipboard(this, text);
+            Util.CopyToClipboard(this, text, isProtected);
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             String sClipClear = prefs.GetString(GetString(Resource.String.clipboard_timeout_key), GetString(Resource.String.clipboard_timeout_default));
@@ -711,7 +712,7 @@ namespace keepass2android
                 DoPostClear();
                 if (currentClip.Equals(_clearText))
                 {
-                    Util.CopyToClipboard(_service, "");
+                    Util.CopyToClipboard(_service, "", false);
                     DoPostWarn();
                 }
             }
@@ -747,6 +748,7 @@ namespace keepass2android
         readonly Handler _uiThreadCallback = new Handler();
         private ClearClipboardTask _clearClipboardTask;
         private const string _stringtocopy = "StringToCopy";
+        private const string _stringisprotected = "StringIsProtected";
 
 
 
@@ -942,7 +944,7 @@ namespace keepass2android
                 String username = App.Kp2a.LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.UserNameField);
                 if (username.Length > 0)
                 {
-                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, username);
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, username, false);
                 }
                 context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
             }
@@ -951,7 +953,7 @@ namespace keepass2android
                 String password = App.Kp2a.LastOpenedEntry.OutputStrings.ReadSafe(PwDefs.PasswordField);
                 if (password.Length > 0)
                 {
-                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password);
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password, true);
                 }
                 context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
             }
@@ -960,7 +962,7 @@ namespace keepass2android
                 String totp = App.Kp2a.LastOpenedEntry.OutputStrings.ReadSafe(UpdateTotpTimerTask.TotpKey);
                 if (totp.Length > 0)
                 {
-                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, totp);
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(context, totp, true);
                 }
                 context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
             }
