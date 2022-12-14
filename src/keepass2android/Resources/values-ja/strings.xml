@@ -28,7 +28,7 @@
   <string name="application">アプリ</string>
   <string name="application_settings">アプリの設定</string>
   <string name="ShowGroupnameInSearchResult_title">検索結果にグループ名を表示</string>
-  <string name="ShowGroupnameInSearchResult_resume">検索結果のエントリータイトルの下にグループ名を表示します。同名のエントリーが複数あるときに便利です。</string>
+  <string name="ShowGroupnameInSearchResult_resume">検索結果のエントリータイトルの下にグループ名を表示します。同名のエントリーが複数あるときに便利です</string>
   <string name="NavigationToGroupCompleted_message">表示中のグループ: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">自動入力が無効の対象</string>
   <string name="AutofillDisabledQueriesPreference_summary">自動入力が無効になっているアプリとウェブサイトの一覧を表示します</string>
@@ -370,7 +370,7 @@
   <string name="LockWhenNavigateBack_title">アプリから離れたらロック</string>
   <string name="LockWhenNavigateBack_summary">戻るボタンを押してこのアプリから離れたときにデータベースをロックします</string>
   <string name="UseKp2aKeyboardInKp2a_title">Keepass2Android の内蔵キーボードを使用</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">マスターパスワードの入力またはエントリー編集時に、標準キーボードプロバイダーを信頼しない場合、このオプションをチェックし内蔵キーボードを使用してください。</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">マスターパスワードの入力やエントリー編集で標準キーボードプロバイダーを信頼したくないときは、このオプションをチェックし内蔵キーボードを使用してください</string>
   <string name="ActivateSearchViewOnStart_title">開始時に検索フィールドを有効にする</string>
   <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
