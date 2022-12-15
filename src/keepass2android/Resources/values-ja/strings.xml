@@ -241,9 +241,9 @@
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
   <string name="sort_menu">並べ替え...</string>
-  <string name="sort_name">タイトル順</string>
-  <string name="sort_db">作成日順</string>
-  <string name="sort_moddate">更新日順</string>
+  <string name="sort_name">タイトル</string>
+  <string name="sort_db">作成日</string>
+  <string name="sort_moddate">更新日</string>
   <string name="sort_default">デフォルトの順序</string>
   <string name="special">記号</string>
   <string name="special_extended">拡張記号</string>
