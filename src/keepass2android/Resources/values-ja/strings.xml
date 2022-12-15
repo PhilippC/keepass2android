@@ -54,7 +54,7 @@
   <string name="keyboardswitch_prefs">キーボードを切り替え</string>
   <string name="OnlyAvailableForLocalFiles">ローカルのファイルにのみ対応しています</string>
   <string name="FileIsInInternalDirectory">ファイルは内部ディレクトリーに保存されています</string>
-  <string name="DatabaseFileMoved">データベースファイルは内部フォルダーへコピーされました。OK を押して新しい場所からデータベースを開いてください。注意: データベースを安全なストレージへ定期的にエクスポートすることを忘れないで下さい。</string>
+  <string name="DatabaseFileMoved">データベースファイルは内部フォルダーへコピーされました。OK を押して新しい場所からデータベースを開いてください。注意: データベースを安全なストレージへ定期的にエクスポートすることを忘れないでください。</string>
   <string name="KeyfileMoved">キーファイルは内部フォルダーへコピーされました。現在のキーファイルを削除する前に必ずバックアップしてください！</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">内部フォルダーを使用するにはキーファイルの場所を保存する必要があります。セキュリティ設定を変更してください</string>
   <string name="unlock_database_button">ロック解除</string>
@@ -101,7 +101,7 @@
   <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間にシステム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみでデータベースのロックを解除できるようになります。</string>
-  <string name="enable_fingerprint_quickunlock_Info">QuickUnlock キーのかわりに生体認証を利用できるようにします。マスターパスワードに関連する情報は格納しません</string>
+  <string name="enable_fingerprint_quickunlock_Info">QuickUnlock キーのかわりに生体認証を利用できるようにします。マスターパスワードに関連する情報は格納しません。</string>
   <string name="enter_filename">データベースのファイル名を入力</string>
   <string name="entry_accessed">最終アクセス日時</string>
   <string name="entry_cancel">キャンセル</string>
@@ -160,8 +160,8 @@
   <string name="hint_username">ユーザー名</string>
   <string name="InvalidPassword">パスワードまたはキーファイルが違います</string>
   <string name="invalid_algorithm">無効なアルゴリズムです</string>
-  <string name="invalid_db_sig">データベースフォーマットを認識できません</string>
-  <string name="keyfile_does_not_exist">キー ファイルが存在しません</string>
+  <string name="invalid_db_sig">未知のデータベースフォーマットです</string>
+  <string name="keyfile_does_not_exist">キーファイルが存在しません</string>
   <string name="no_keyfile_selected">キーファイルが選択されていません</string>
   <string name="keyfile_is_empty">キーファイルの中身が空です</string>
   <string name="length">生成するパスワードの長さ</string>
@@ -210,7 +210,7 @@
   <string name="no_url_handler">この URL を処理できません</string>
   <string name="open_recent">最近使用したデータベース (タップして開く)</string>
   <string name="omitbackup_title">バックアップとゴミ箱を検索しない</string>
-  <string name="omitbackup_summary">\"バックアップ\" と \"ゴミ箱\" を検索対象から除外します</string>
+  <string name="omitbackup_summary">「バックアップ」と「ゴミ箱」を検索対象から除外します</string>
   <string name="pass_filename">KeePass データベースファイル名</string>
   <string name="password_title">データベースのパスワードを入力</string>
   <string name="master_key_type">マスターキーの種類を選択:</string>
@@ -269,7 +269,7 @@
   <string name="search_results">検索結果</string>
   <string name="search_in">検索対象</string>
   <string name="select_other_entry">別のエントリーを選択</string>
-  <string name="select_group_then_add">目的のグループを開き、\"%1$s\" キーを押してください！</string>
+  <string name="select_group_then_add">目的のグループを開き「%1$s」キーを押してください！</string>
   <string name="insert_element_here">ここに挿入</string>
   <string name="twofish">Twofish</string>
   <string name="underline">下線</string>
@@ -340,7 +340,7 @@
   <string name="SaveAttachment_doneMessage">ファイルを %1$s に保存しました</string>
   <string name="SaveAttachment_Failed">%1$s の添付ファイルを保存できませんでした</string>
   <string name="AddUrlToEntryDialog_title">検索テキストを記憶しますか？</string>
-  <string name="AddUrlToEntryDialog_text">自動的に検索可能にするために、選択したエントリーに検索テキスト \"%1$s\" を保存しますか？</string>
+  <string name="AddUrlToEntryDialog_text">自動的に検索可能にするために、選択したエントリーに検索テキスト「%1$s」を保存しますか？</string>
   <string name="error_invalid_expiry_date">有効期限の日付/時刻の形式が無効です！</string>
   <string name="error_string_key">各文字列にはフィールド名が必要です</string>
   <string name="error_string_duplicate_key">同じフィールド名を使うことはできません (%1$s)</string>
@@ -375,9 +375,9 @@
   <string name="ActivateSearchViewOnStart_summary">ロック解除後または入力を検索中、グループ表示に検索フィールドを有効にします</string>
   <string name="NoDonateOption_title">寄付オプションを表示しない</string>
   <string name="NoDonateOption_summary">この設定は寄付者向けです。Keepass2Android をしばらく使用した後でのみ利用可能です。</string>
-  <string name="NoDonateOption_question">寄付がなければ、このアプリも継続的な改善もありませんでした！まだ寄付を頂いていないようであれば、今すぐご検討ください</string>
+  <string name="NoDonateOption_question">寄付がなければ、このアプリも継続的な改善もありませんでした！ まだ寄付を頂いていないようであれば、今すぐご検討ください</string>
   <string name="NoDonationReminder_title">絶対に寄付を求めない</string>
-  <string name="NoDonationReminder_summary">びた一文あげたくない、またはすでに寄付をしました。作者の誕生日でさえ、寄付金を求めないようにする。</string>
+  <string name="NoDonationReminder_summary">すでに寄付をした、またはびた一文あげたくない。作者の誕生日でさえ、寄付金を求めないようにする。</string>
   <string name="UseOfflineCache_title">データベース キャッシュ</string>
   <string name="UseOfflineCache_summary">アプリのキャッシュディレクトリにデータベースファイルのコピーを保存します。これにより、データベースファイルにアクセスできないときもデータベースを使用することができます。</string>
   <string name="CreateBackups_title">ローカルバックアップ</string>
@@ -520,7 +520,7 @@
   <string name="filestoragename_gdriveKP2A">Google ドライブ (KP2A ファイル)</string>
   <string name="filestoragehelp_gdriveKP2A">Google ドライブ全体へのアクセス権を KP2A に付与したくない場合はこちらを選択してください。このオプションを使用すると既存のファイルはアプリから見えないため、まずデータベースファイルを作成する必要があることに注意してください。新しいデータベースを作成する場合はこのまま続行してください。既存のデータベースをアップロードしたい場合はデータベースのエクスポートからこのオプションを実行してください。</string>
   <string name="filestoragename_pcloud">pCloud</string>
-  <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー \"Applications/Keepass2Android\" へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合は、そのファイルが、この pCloud フォルダー内にあるかどうかを確認してください。</string>
+  <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー「Applications/Keepass2Android」へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合は、そのファイルが、この pCloud フォルダー内にあるかどうかを確認してください。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">すべてのファイルと共有ファイル</string>
@@ -566,7 +566,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジレスポンスを使うようにデータベースを構成してください！</string>
   <string name="ErrorUpdatingChalAuxFile">OTP 補助ファイルの更新にエラーが発生しました！</string>
   <string name="TrayTotp_SeedField_title">TOTP シード フィールド名</string>
-  <string name="TrayTotp_SeedField_summary">デフォルト以外の設定で Keepass 2 プラグイン \"TrayTotp\" を使用している場合、PC での設定に従ってシード フィールドのフィールド名を入力してください</string>
+  <string name="TrayTotp_SeedField_summary">デフォルト以外の設定で Keepass 2 プラグイン「TrayTotp」を使用している場合、PC での設定に従ってシード フィールドのフィールド名を入力してください</string>
   <string name="TrayTotp_SettingsField_title">TOTP 設定フィールド名</string>
   <string name="TrayTotp_SettingsField_summary">ここに TrayTotp の設定フィールドのフィールド名を入力してください</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
@@ -647,9 +647,9 @@
    &#8226; 正しいデータベースファイルを選択していることを確認してください
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; ヒント: データベースファイルが破損した疑いのある場合、または、変更したマスターキーを忘れてしまった場合は、\"%1$s\" をタップしてローカルバックアップを選択すると、最後に開けたバージョンのファイルを試せます。</string>
+   &#8226; ヒント: データベースファイルが破損した疑いのある場合、または、変更したマスターキーを忘れてしまった場合は「%1$s」をタップしてローカルバックアップを選択すると、最後に開けたバージョンのファイルを試せます。</string>
   <string name="HintLocalBackupOtherError">    \n
-    &#8226; ヒント: Keepass2Android は、内部ストレージに最後に開けたバージョンのファイルを保持しています。\"%1$s\" をタップして、ローカルバックアップを選択すると開けます。  </string>
+    &#8226; ヒント: Keepass2Android は、内部ストレージに最後に開けたバージョンのファイルを保持しています。「%1$s」をタップして、ローカルバックアップを選択すると開けます。  </string>
   <string name="CorruptDatabaseHelp">    ファイルが破損しています。\n
     問題を診断するのに以下のヒントが役立つかもしれません:\n
     
@@ -668,7 +668,7 @@
   <string name="child_db_enable_on_this_device">このデバイスで有効にする</string>
   <string name="child_db_disable_on_this_device">このデバイスで無効にする</string>
   <string name="child_db_enable_a_copy_for_this_device">このデバイスのコピー</string>
-  <string name="unconfigured_child_dbs">お使いのデータベースの \"AutoOpen\" グループに新しい子データベースが保存されています。このデバイスでこれらの子データベースを使用するかどうか指定してください。</string>
+  <string name="unconfigured_child_dbs">お使いのデータベースの「AutoOpen」グループに新しい子データベースが保存されています。このデバイスでこれらの子データベースを使用するかどうか指定してください。</string>
   <string name="add_child_db">子データベースを追加...</string>
   <string name="EnableCopyForThisDevice_Info">これにより子データベース設定のコピーを作成して有効にします。このコピーされた設定は、このデバイス用に調整されます。</string>
   <string name="Visible_title">参照可能</string>
@@ -922,7 +922,7 @@
 		* KeeChallenge (Yubikey NEO を使用する) に対応。Ben Rush 氏のコネクターの実装に感謝！\n
 		* ユーザーインターフェイスを改良\n
 		* Google ドライブのインターフェイスのバグを修正\n
-		* \"寄付\" オプションを無効にするオプションを追加\n
+		* 「寄付」オプションを無効にするオプションを追加\n
 		* QuickUnlock アイコンは Android 4.2 以上のデバイスではデフォルトで非表示に変更\n </string>
   <string name="ChangeLog_0_9_3_r5"><b>Version 0.9.3 r5</b>\n
 		* Xamarin からの修正を組み込み: Keepass2Android は Android 4.4.2 の ART への対応を完了しました！\n
@@ -1094,7 +1094,7 @@
   <string name="switch_ime_text">Keepass2Android キーボードを有効にしてください</string>
   <string name="switch_ime_reopen">再試行</string>
   <string name="AutofillWarning_title">セキュリティ警告: 未知のドメイン/アプリリンク</string>
-  <string name="AutofillWarning_Intro">ドメイン \"%1$s\" の資格情報をアプリ \"%2$s\" に挿入しようとしています。</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">\"%2$s\" が信頼できて \"%1$s\" に属するか、アプリ \"%2$s\" を信頼していて、アカウント情報の誤用ではない場合 (信頼できるブラウザアプリなど) であれば続行しても問題ありません。そうでない場合はキャンセルしてください。</string>
-  <string name="AutofillWarning_trustAsBrowser">常に \"%1$s\" に同意</string>
+  <string name="AutofillWarning_Intro">ドメイン「%1$s」のアカウント情報をアプリ「%2$s」に挿入しようとしています。</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">「%2$s」が信頼できて「%1$s」に属するか、アプリ「%2$s」を信頼していて、アカウント情報の誤用ではない場合 (信頼できるブラウザアプリなど) であれば続行しても問題ありません。そうでない場合はキャンセルしてください。</string>
+  <string name="AutofillWarning_trustAsBrowser">常に「%1$s」に同意</string>
 </resources>
