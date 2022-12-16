@@ -242,8 +242,8 @@
   <string name="show_password">パスワードを表示</string>
   <string name="sort_menu">並べ替え...</string>
   <string name="sort_name">タイトル</string>
-  <string name="sort_db">作成日</string>
-  <string name="sort_moddate">更新日</string>
+  <string name="sort_db">作成日時</string>
+  <string name="sort_moddate">更新日時</string>
   <string name="sort_default">デフォルトの順序</string>
   <string name="special">記号</string>
   <string name="special_extended">拡張記号</string>
@@ -877,13 +877,13 @@
 		* バグ修正: OTP を保存できるように修正\n</string>
   <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
 		* 翻訳を更新\n
-		* バグ修正: 0.9.7 でパスワードのフォントが見つからない問題、グループを名前順に並べ替えられない問題\n</string>
+		* バグ修正: 0.9.7 でパスワードのフォントが見つからない問題、グループをタイトル順に並べ替えられない問題\n</string>
   <string name="ChangeLog_0_9_7">Version 0.9.7\n
 		* Keepass 1 (kdb) データベースの書き込みに対応 (ベータ！)\n
 		* 以前のキーボードに切り替える機能を調整 (非 root デバイスでも動作)\n
 		* 可変長チャレンジで KeeChallenge に対応\n
 		* QuickUnlock とパスワード画面で、スクリーンショットの取得を防止\n
-		* 更新日での並べ替えの順序を逆に変更 (降順になりました)\n
+		* 更新日時での並べ替えの順序を逆に変更 (降順になりました)\n
 		* バグ修正: メモを編集後に画面が正しく更新されるように修正、(うまく行けば) すべてのデバイスでパスワード画面のパスワードが正しく非表示になるよう修正、エントリーを 2 回追加する問題を修正、データベースを修正後も UUID の重複の警告が表示される問題を修正\n</string>
   <string name="ChangeLog_0_9_6">Version 0.9.6\n
 		* キーファイルとデータベースファイルをアプリの内部ディレクトリーへインポートできるように変更 (設定を参照)\n
