@@ -25,7 +25,8 @@
 #  - clean: all clean_* targets below
 #  - clean_native: clean native lib
 #  - clean_java: call clean target of java libs
-#  - msbuild_clean: call clean target of java libs
+#  - clean_nuget: cleanup the 'nuget restore'
+#  - clean_msbuild: call clean target of msbuild
 #
 #
 #
@@ -34,6 +35,7 @@ ifeq ($(OS),Windows_NT)     # is Windows_NT on XP, 2000, 7, Vista, 10...
     detected_OS := Windows
     WHICH := where
     RM := RMDIR /S /Q
+    RMFILE := DEL
     CP := copy
     GRADLEW := gradlew.bat
     # Force use of cmd shell (don't use POSIX shell because the user may not have one installed)
@@ -42,6 +44,7 @@ else
     detected_OS := $(shell uname)
     WHICH := which
     RM := rm -rf
+    RMFILE := $(RM)
     CP := cp
     GRADLEW := ./gradlew
 endif
@@ -118,14 +121,26 @@ else
 endif
 
 ifeq ($(detected_OS),Windows)
-  define remove
+  define to_win_path
+    $(subst /,\,$(1))
+  endef
+  define remove_dir
     if exist $(1) ( $(RM) $(1) )
   endef
+  define remove_files
+    $(foreach file,$(call to_win_path,$(1)), IF EXIST $(file) ( $(RMFILE) $(file) ) & )
+  endef
 else
-  define remove
+  define remove_dir
     $(RM) $(1)
   endef
+  define remove_files
+    $(RMFILE) $(1)
+  endef
 endif
+
+# Recursive wildcard: https://stackoverflow.com/a/18258352
+rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
 $(info MSBUILD_PARAM: $(MSBUILD_PARAM))
 $(info nuget path: $(shell $(WHICH) nuget))
@@ -152,17 +167,37 @@ JAVA_CLEAN_TARGETS := \
 	clean_KP2AKdbLibrary \
 	clean_PluginQR
 
-OUTPUT_JavaFileStorageTest-AS = src/java/JavaFileStorage/app/build/outputs/aar/JavaFileStorage-debug.aar src/java/android-filechooser-AS/app/build/outputs/aar/android-filechooser-release.aar
-OUTPUT_KP2ASoftkeyboard_AS =src/java/KP2ASoftkeyboard_AS/app/build/outputs/aar/app-debug.aar
-OUTPUT_Keepass2AndroidPluginSDK2 = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/app-release.aar
-OUTPUT_KP2AKdbLibrary = src/java/KP2AKdbLibrary/app/build/outputs/aar/app-debug.aar
-OUTPUT_PluginQR = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepass2AndroidPluginSDK2-release.aar src/java/PluginQR/app/build/outputs/apk/debug/app-debug.apk
+INPUT_JavaFileStorageTest-AS = $(call rwildcard,src/java/android-filechooser-AS/app/src,*) $(call rwildcard,src/java/JavaFileStorage/app/src,*) $(call rwildcard,src/java/JavaFileStorageTest-AS/app/src,*.java)
+OUTPUT_JavaFileStorageTest-AS = src/java/android-filechooser-AS/app/build/outputs/aar/android-filechooser-debug.aar \
+	src/java/android-filechooser-AS/app/build/outputs/aar/android-filechooser-release.aar \
+	src/java/JavaFileStorage/app/build/outputs/aar/JavaFileStorage-debug.aar \
+	src/java/JavaFileStorage/app/build/outputs/aar/JavaFileStorage-release.aar \
+	src/java/JavaFileStorageTest-AS/app/build/outputs/apk/debug/app-debug.apk \
+	src/java/JavaFileStorageTest-AS/app/build/outputs/apk/release/app-release-unsigned.apk
+
+INPUT_KP2ASoftkeyboard_AS = $(call rwildcard,src/java/KP2ASoftkeyboard_AS/app/src,*)
+OUTPUT_KP2ASoftkeyboard_AS = src/java/KP2ASoftkeyboard_AS/app/build/outputs/aar/app-debug.aar \
+	src/java/KP2ASoftkeyboard_AS/app/build/outputs/aar/app-release.aar
+
+INPUT_Keepass2AndroidPluginSDK2 = $(call rwildcard,src/java/Keepass2AndroidPluginSDK2/app/src,*)
+OUTPUT_Keepass2AndroidPluginSDK2 = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/app-debug.aar \
+	src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/app-release.aar
+
+INPUT_KP2AKdbLibrary = $(call rwildcard,src/java/KP2AKdbLibrary/app/src,*)
+OUTPUT_KP2AKdbLibrary = src/java/KP2AKdbLibrary/app/build/outputs/aar/app-debug.aar \
+	src/java/KP2AKdbLibrary/app/build/outputs/aar/app-release.aar
+
+INPUT_PluginQR = $(call rwildcard,src/java/PluginQR/app/src,*)
+OUTPUT_PluginQR = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepass2AndroidPluginSDK2-debug.aar \
+	src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepass2AndroidPluginSDK2-release.aar \
+	src/java/PluginQR/app/build/outputs/apk/debug/app-debug.apk \
+	src/java/PluginQR/app/build/outputs/apk/debug/app-release-unsigned.apk
 
 ##### Targets definition
 
-.PHONY: native $(NATIVE_COMPONENTS) clean_native $(NATIVE_CLEAN_TARGETS)  \
+.PHONY: native $(NATIVE_COMPONENTS) clean_native $(NATIVE_CLEAN_TARGETS) \
 	java $(JAVA_COMPONENTS) clean_java $(JAVA_CLEAN_TARGETS) \
-	nuget \
+	nuget clean_nuget \
 	msbuild clean_msbuild \
 	apk all clean
 
@@ -173,7 +208,7 @@ all: apk
 native: $(NATIVE_COMPONENTS)
 
 argon2: $(OUTPUT_argon2)
-$(OUTPUT_argon2):
+$(OUTPUT_argon2): $(wildcard src/java/argon2/phc-winner-argon2/src/*)  $(wildcard src/java/argon2/phc-winner-argon2/src/blake2/*)
 	cd src/java/argon2 && $(ANDROID_NDK_ROOT)/ndk-build
 
 ##### Java Dependencies
@@ -186,25 +221,34 @@ Keepass2AndroidPluginSDK2: $(OUTPUT_Keepass2AndroidPluginSDK2)
 KP2AKdbLibrary: $(OUTPUT_KP2AKdbLibrary)
 PluginQR: $(OUTPUT_PluginQR)
 
-$(OUTPUT_JavaFileStorageTest-AS):
+$(OUTPUT_JavaFileStorageTest-AS): $(INPUT_JavaFileStorageTest-AS)
+	$(call remove_files,$(OUTPUT_JavaFileStorageTest-AS))
 	cd src/java/JavaFileStorageTest-AS && $(GRADLEW) assemble
-$(OUTPUT_KP2ASoftkeyboard_AS):
+$(OUTPUT_KP2ASoftkeyboard_AS): $(INPUT_KP2ASoftkeyboard_AS)
+	$(call remove_files,$(OUTPUT_KP2ASoftkeyboard_AS))
 	cd src/java/KP2ASoftkeyboard_AS && $(GRADLEW) assemble
-$(OUTPUT_Keepass2AndroidPluginSDK2):
+$(OUTPUT_Keepass2AndroidPluginSDK2): $(INPUT_Keepass2AndroidPluginSDK2)
+	$(call remove_files,$(OUTPUT_Keepass2AndroidPluginSDK2))
 	cd src/java/Keepass2AndroidPluginSDK2 && $(GRADLEW) assemble
-$(OUTPUT_KP2AKdbLibrary):
+$(OUTPUT_KP2AKdbLibrary): $(INPUT_KP2AKdbLibrary)
+	$(call remove_files,$(OUTPUT_KP2AKdbLibrary))
 	cd src/java/KP2AKdbLibrary && $(GRADLEW) assemble
-$(OUTPUT_PluginQR):
+$(OUTPUT_PluginQR): $(INPUT_PluginQR)
+	$(call remove_files,$(OUTPUT_PluginQR))
 	cd src/java/PluginQR && $(GRADLEW) assemble
 
 
 ##### Nuget Dependencies
 
-nuget:
+nuget: stamp.nuget_$(Flavor)
+stamp.nuget_$(Flavor): src/KeePass.sln $(wildcard src/*/*.csproj) $(wildcard src/*/packages.config) src/.nuget/packages.config
 ifeq ($(shell $(WHICH) nuget),)
 	$(error "nuget" command not found. Check it is in your PATH)
 endif
+	$(RMFILE) stamp.nuget_*
 	nuget restore src/KeePass.sln
+	$(MSBUILD) src/KeePass.sln -t:restore $(MSBUILD_PARAM) -p:RestorePackagesConfig=true
+	@echo "" > stamp.nuget_$(Flavor)
 
 #####
 src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs:
@@ -240,10 +284,22 @@ clean_KP2AKdbLibrary:
 clean_PluginQR:
 	cd src/java/PluginQR && $(GRADLEW) clean
 
+# https://learn.microsoft.com/en-us/nuget/consume-packages/package-restore-troubleshooting#other-potential-conditions
+clean_nuget:
+	cd src && $(call remove_dir,packages)
+ifeq ($(detected_OS),Windows)
+	DEL /S src\project.assets.json
+	DEL /S src\*.nuget.*
+else
+	$(RM) src/*/obj/project.assets.json
+	$(RM) src/*/obj/*.nuget.*
+endif
+	$(RMFILE) stamp.nuget_*
+
 clean_msbuild:
 	$(MSBUILD) src/KeePass.sln -target:clean $(MSBUILD_PARAM)
 
-clean: clean_native clean_java clean_msbuild
+clean: clean_native clean_java clean_nuget clean_msbuild
 
 distclean: clean
 ifneq ("$(wildcard ./allow_git_clean)","")
