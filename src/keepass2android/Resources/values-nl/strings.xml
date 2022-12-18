@@ -97,10 +97,10 @@
   <string name="fingerprint_unlock_failed">Biometrische Ontgrendel is mislukt. Decryptie sleutel is ongeldig gemaakt door Android OS. Dit gebeurt meestal als biometrische authenticatie of veiligheidsinstellingen zijn gewijzigd. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutel. Biometrische ontgrendelen is uitgeschakeld omdat het hoofdwachtwoord niet meer geldig is. </string>
   <string name="fingerprint_reenable">Schakel de Biometrische ontgrendeling opnieuw in voor het nieuwe hoofdwachtwoord.</string>
-  <string name="fingerprint_reenable2">Gelieve te ontgrendelen met uw wachtwoord en vervolgens de Biometrische ontgrendeling opnieuw in te schakelen in de instellingen van de database.</string>
+  <string name="fingerprint_reenable2">Ontgrendelen met jouw wachtwoord, schakel daarna de Biometrische ontgrendeling opnieuw in in de instellingen van de database.</string>
   <string name="FingerprintInitFailed">Mislukt om biometrische authenticatie te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
-  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met jouw vingerafdruk te ontgrendelen.</string>
+  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid de database enkel met jouw vingerafdruk te ontgrendelen.</string>
   <string name="enable_fingerprint_quickunlock_Info">Gebruik biometrische authenticatie in plaats van de QuickUnlock code. Dit slaat geen informatie op die gerelateerd is aan je hoofdwachtwoord.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Geopend op</string>
@@ -435,7 +435,7 @@
   <string name="AskDeletePermanentlyItemsNoRecycle">Wil je de geselecteerde elementen permanent verwijderen?</string>
   <string name="AskDeletePermanently_title">Definitief verwijderen?</string>
   <string name="AskReloadFile_title">Bestand opnieuw laden?</string>
-  <string name="AskReloadFile">Het bestand dat momenteel geopend is werd veranderd door een ander programma. Wil je het herladen?</string>
+  <string name="AskReloadFile">Het bestand dat momenteel geopend is, werd veranderd door een ander programma. Wil je het herladen?</string>
   <string name="AskDiscardChanges">Wil je de wijzigingen echt ongedaan maken? (De knop Opslaan is aan de bovenkant van het formulier.)</string>
   <string name="AskDiscardChanges_title">Wijzigingen negeren?</string>
   <string name="suggest_improvements">Geef suggesties of stem voor verbeteringen</string>
@@ -503,7 +503,7 @@
   <string name="sftp_auth_mode">Authenticatiemodus</string>
   <string name="send_public_key">Zend publieke sleutel...</string>
   <string name="enter_ftp_login_title">SFTP logingegevens invoeren:</string>
-  <string name="enter_mega_login_title">Voer uw MEGA account login gegevens in:</string>
+  <string name="enter_mega_login_title">Voer je MEGA account login gegevens in:</string>
   <string name="select_storage_type">Selecteer het opslagtype:</string>
   <string name="filestoragename_file">Lokaal bestand</string>
   <string name="filestoragename_androidget">Krijg via externe app</string>
@@ -518,7 +518,7 @@
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A bestanden)</string>
-  <string name="filestoragehelp_gdriveKP2A">Als u KP2A geen toegang wilt geven tot uw volledige Google Drive, kunt u deze optie selecteren. Merk op dat je eerst een databasebestand moet aanmaken, bestaande bestanden zijn niet zichtbaar voor de app. Kies deze optie uit het database scherm aanmaken, of als je al een database hebt geopend door de database te exporteren die voor deze optie wordt gekozen.</string>
+  <string name="filestoragehelp_gdriveKP2A">Als je KP2A geen toegang wilt geven tot je volledige Google Drive, kunt je deze optie selecteren. Merk op dat je eerst een databasebestand moet aanmaken, bestaande bestanden zijn niet zichtbaar voor de app. Kies deze optie uit het database scherm aanmaken, of als je al een database hebt geopend door de database te exporteren die voor deze optie wordt gekozen.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de pCloud map \"Applications/Keepass2Android\". Als je een bestaande database uit jouw PCloud account wil gebruiken, zorg dan dat het bestand in die pCloud map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -532,7 +532,7 @@
   <string name="filestoragename_content">Systeem bestand kiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
   <string name="database_location">Database locatie</string>
-  <string name="help_database_location">Je kunt jouw database lokaal op je Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als je offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot jouw wachtwoorden behalve jij. We adviseren Dropbox te kiezen: het is beschikbaar op al uw apparaten en voorziet zelfs in back-ups van vorige bestandsversies.</string>
+  <string name="help_database_location">Je kunt jouw database lokaal op je Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als je offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot jouw wachtwoorden behalve jij. We adviseren Dropbox te kiezen: het is beschikbaar op al je apparaten en voorziet zelfs in back-ups van vorige bestandsversies.</string>
   <string name="hint_database_location">Selecteer waar je de database wilt opslaan:</string>
   <string name="button_change_location">Locatie wijzigen</string>
   <string name="help_quickunlock">Wanneer ingeschakeld zal Keepass2Android in de achtergrond blijven draaien, zelfs wanneer de database vergrendeld is. Hierdoor kan de database later met slechts een klein gedeelte van het hoofdwachtwoord worden ontgrendeld.</string>
