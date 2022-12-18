@@ -686,7 +686,7 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
-  <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt ongeldig gemaakt door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van uw apparaat. Zorg ervoor dat u altijd weet hoe u moet ontgrendelen met uw hoofdwachtwoord!</string>
+  <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt uitgeschakeld door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van jouw apparaat. Zorg ervoor dat je de database altijd kunt ontgrendelen met het hoofdwachtwoord!</string>
   <string-array name="ChangeLog_1_09d">
     <item>Toegevoegde ondersteuning voor het bekijken, verwijderen en herstellen van invoer back-ups</item>
     <item>Implementatie ondersteuning voor MEGA cloud opslag</item>
@@ -1083,7 +1083,7 @@ Eerste publieke publicatie
   <string name="dont_show_again">Niet meer tonen</string>
   <string name="masterkey_infotext_head">Weet je het hoofdwachtwoord nog?</string>
   <string name="masterkey_infotext_main">Merk op dat zonder hoofdwachtwoord de database niet te openen is. Er is geen manier om het hoofdwachtwoord te \"resetten\".</string>
-  <string name="masterkey_infotext_fingerprint_note">Houd er ook rekening mee dat Biometrische ontgrendeling werkt door uw hoofdsleutel op te slaan in de veilige opslag van Android. Deze opslag kan op elk moment door Android worden verwijderd, bijvoorbeeld wanneer je een nieuwe vingerafdruk toevoegt in de systeeminstellingen. Vertrouw dus niet op Biometrische ontgrendeling maar onthoud a.u.b. je hoofdwachtwoord!</string>
+  <string name="masterkey_infotext_fingerprint_note">Houd er ook rekening mee dat Biometrische ontgrendeling werkt door de hoofdsleutel op te slaan in de veilige opslag van Android. Deze opslag kan op elk moment door Android worden verwijderd, bijvoorbeeld wanneer je een nieuwe vingerafdruk toevoegt in de systeeminstellingen. Vertrouw dus niet op Biometrische ontgrendeling maar onthoud a.u.b. je hoofdwachtwoord!</string>
   <string name="backup_infotext_head">Worden er back-ups gemaakt van jouw database?</string>
   <string name="backup_infotext_main">Keepass2Android bewaart je wachtwoorden in een file op een door jou gekozen locatie. Weet je zeker dat je deze file nog steeds hebt als je telefoon verloren raakt, of gestolen, of als de file gewist wordt? Zorg alsjeblieft altijd voor een recente back-up op een veilige plaats!</string>
   <string name="backup_infotext_note">Om nu een back-up te maken, ga naar %1$s &gt; %2$s &gt; %3$s.</string>
@@ -1094,7 +1094,7 @@ Eerste publieke publicatie
   <string name="switch_ime_text">activeer de Keepass2 Android toetsenbord aub.</string>
   <string name="switch_ime_reopen">Probeer opnieuw.</string>
   <string name="AutofillWarning_title">Beveiligingswaarschuwing: niet-herkende domein / app-link</string>
-  <string name="AutofillWarning_Intro">U staat op het punt, om inloggegevens voor domein \"%1$s\" in te voegen in de app \"%2$s\".</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">Als u vertrouwt dat \"%2$s\" tot \"%1$s\" behoort of u vertrouwt erop dat de app \"%2$s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kunt u doorgaan . Indien niet, gelieve te annuleren.</string>
+  <string name="AutofillWarning_Intro">Je staat op het punt, om inloggegevens voor domein \"%1$s\" in te voegen in de app \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Als je vertrouwt dat \"%2$s\" tot \"%1$s\" behoort, of je vertrouwt dat app \"%2$s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kun je doorgaan. Anders annuleren.</string>
   <string name="AutofillWarning_trustAsBrowser">Altijd accepteren in \"%1$s\"</string>
 </resources>
