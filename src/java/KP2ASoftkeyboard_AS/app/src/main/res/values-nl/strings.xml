@@ -116,7 +116,7 @@
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">Raak dit punt aan om deze tip te sluiten en te beginnen met typen.</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"Het toetsenbord wordt geopend wanneer u een tekstveld aanraakt\"</b></string>
+    <string name="tip_to_open_keyboard"><b>\"Het toetsenbord wordt geopend wanneer je een tekstveld aanraakt\"</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <string name="tip_to_view_accents"><b>\"Blijf een toets aanraken om diakritische tekens weer te geven\"\n\"(ø, ö, ô, ó, enzovoort)\"</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
@@ -150,7 +150,7 @@
     <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
          voice input in a currently unsupported locale. Voice input will work for such a user,
          but it will only recognize them in English. -->
-    <string name="voice_warning_locale_not_supported">Spraakinvoer wordt momenteel niet ondersteund in uw taal, maar is wel beschikbaar in het Engels.</string>
+    <string name="voice_warning_locale_not_supported">Spraakinvoer wordt momenteel niet ondersteund in jouw taal, maar is wel beschikbaar in het Engels.</string>
     <!-- Message of the warning dialog that shows when a user initiates voice input for
          the first time, or turns it on in settings. -->
     <string name="voice_warning_may_not_understand">Spraakinvoer is een experimentele functie met de spraakherkenning van het Google-netwerk.</string>
@@ -159,7 +159,7 @@
     <string name="voice_warning_how_to_turn_off">Als u spraakinvoer wilt uitschakelen, gaat u naar de toetsenbordinstellingen.</string>
     <!-- Message to show when user clicks the swiping hint (which says
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
-    <string name="voice_hint_dialog_message">Als u spraakinvoer gebruikt, drukt u op de microfoonknop of schuift u uw vinger over het schermtoetsenbord.</string>
+    <string name="voice_hint_dialog_message">Als je spraakinvoer gebruikt, druk je op de microfoonknop of je schuift je vinger over het schermtoetsenbord.</string>
     <!-- Short message to tell the user the system is ready for them to speak. -->
     <string name="voice_listening">Nu spreken</string>
     <!-- Short message shown after the user finishes speaking. -->
