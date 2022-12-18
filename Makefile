@@ -31,6 +31,12 @@
 #
 #
 
+# Disable built-in rules to speed-up the Makefile processing.
+# for example when running 'make java' on Windows it could take ~10 sec more than on linux to start building
+# from what this option disables, the "clearing out the default list of suffixes for suffix rules"
+# gives the most speed gain.
+MAKEFLAGS += --no-builtin-rules
+
 ifeq ($(OS),Windows_NT)     # is Windows_NT on XP, 2000, 7, Vista, 10...
     detected_OS := Windows
     WHICH := where
@@ -121,9 +127,8 @@ else
 endif
 
 ifeq ($(detected_OS),Windows)
-  define to_win_path
-    $(subst /,\,$(1))
-  endef
+  to_win_path=$(subst /,\,$(1))
+  to_posix_path=$(subst \,/,$(1))
   define remove_dir
     if exist $(1) ( $(RM) $(1) )
   endef
