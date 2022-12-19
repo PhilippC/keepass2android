@@ -20,7 +20,10 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Tidsavbrudd for app</string>
   <string name="show_kill_app">Lukk-knapp</string>
+  <string name="application">App</string>
+  <string name="application_settings">Appinnstillinger</string>
   <string name="ShowGroupnameInSearchResult_title">Viser gruppenavnet i søkeresultat</string>
   <string name="ShowGroupnameInSearchResult_resume">Vis gruppenavn under oppføringstitler i søkeresultatene. Nyttig hvis flere oppføringer har samme navn.</string>
   <string name="NavigationToGroupCompleted_message">Visningsgruppe er nå: %1$s</string>
@@ -67,6 +70,7 @@
   <string name="disclaimer_formal">Keepass2Android kommer HELT UTEN NOEN FORM FOR GARANTI; Dette er fri programvare, og du er velkommen til å redistribuere det under vilkårene i GPL versjon 2 eller senere.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopier til utklippstavle</string>
+  <string name="SystemLanguage">Systemspråk</string>
   <string name="enter_filename">Angi filnavnet for databasen</string>
   <string name="entry_accessed">Brukt</string>
   <string name="entry_cancel">Avbryt</string>

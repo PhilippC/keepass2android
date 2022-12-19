@@ -71,6 +71,7 @@
   <string name="copy_password">Selecteer om wachtwoord naar klembord te kopiëren</string>
   <string name="copy_totp">Selecteer om TOTP naar klembord te kopiëren</string>
   <string name="available_through_keyboard">Invoer is mogelijk via KP2A-toetsenbord</string>
+  <string name="app_language_pref_title">App taal</string>
   <string name="entry_is_available">is beschikbaar</string>
   <string name="not_possible_im_picker">Kan venster om invoermethode te selecteren niet openen. Activeer toetsenbord handmatig.</string>
   <string name="please_activate_keyboard">Activeer het Keepass2Android-toetsenbord in de systeeminstellingen.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android biedt GEEN ENKELE GARANTIE; Dit is gratis software, je mag deze software verspreiden onder de voorwaarden van de GPL versie 2 of recenter.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopieer naar klembord</string>
+  <string name="SystemLanguage">Systeemtaal</string>
   <string name="fingerprint_description">Verifiëren om door te gaan</string>
   <string name="fingerprint_fatal">Biometrische ontgrendeling kan niet worden ingesteld:</string>
   <string name="fingerprint_not_recognized">Biometrische authenticatie mislukt. Probeer opnieuw.</string>
@@ -95,10 +97,10 @@
   <string name="fingerprint_unlock_failed">Biometrische Ontgrendel is mislukt. Decryptie sleutel is ongeldig gemaakt door Android OS. Dit gebeurt meestal als biometrische authenticatie of veiligheidsinstellingen zijn gewijzigd. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutel. Biometrische ontgrendelen is uitgeschakeld omdat het hoofdwachtwoord niet meer geldig is. </string>
   <string name="fingerprint_reenable">Schakel de Biometrische ontgrendeling opnieuw in voor het nieuwe hoofdwachtwoord.</string>
-  <string name="fingerprint_reenable2">Gelieve te ontgrendelen met uw wachtwoord en vervolgens de Biometrische ontgrendeling opnieuw in te schakelen in de instellingen van de database.</string>
+  <string name="fingerprint_reenable2">Ontgrendelen met jouw wachtwoord, schakel daarna de Biometrische ontgrendeling opnieuw in in de instellingen van de database.</string>
   <string name="FingerprintInitFailed">Mislukt om biometrische authenticatie te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
-  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid uw database enkel met jouw vingerafdruk te ontgrendelen.</string>
+  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid de database enkel met jouw vingerafdruk te ontgrendelen.</string>
   <string name="enable_fingerprint_quickunlock_Info">Gebruik biometrische authenticatie in plaats van de QuickUnlock code. Dit slaat geen informatie op die gerelateerd is aan je hoofdwachtwoord.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Geopend op</string>
@@ -120,6 +122,7 @@
   <string name="entry_user_name">Gebruikersnaam</string>
   <string name="entry_extra_strings">Extra tekst velden</string>
   <string name="entry_binaries">Bijlagen</string>
+  <string name="entry_history">Vorige versies</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan deze URI niet verwerken.</string>
   <string name="error_could_not_create_group">Fout bij het aanmaken van de groep.</string>
   <string name="error_could_not_create_parent">Kan de bovenliggende map niet aanmaken.</string>
@@ -169,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maskeer wachtwoord</string>
   <string name="maskpass_summary">Wachtwoorden standaard verbergen</string>
+  <string name="masktotp_title">Maskeer TOTP-veld</string>
+  <string name="masktotp_summary">Verberg TOTP-veld standaard</string>
+  <string name="NoAutofillDisabling_title">Geen optie om automatisch aanvullen uit te schakelen</string>
+  <string name="NoAutofillDisabling_summary">Indien geactiveerd, zal de app de optie om automatisch invullen uit te schakelen voor specifieke items niet tonen.</string>
   <string name="menu_about">Over</string>
   <string name="menu_change_key">Wijzig hoofdsleutel</string>
   <string name="menu_copy_pass">Kopieer wachtwoord</string>
@@ -282,6 +289,8 @@
   <string name="please_note">Merk op</string>
   <string name="contributors">Bijdragers</string>
   <string name="regular_expression">Reguliere expressie</string>
+  <string name="AlwaysMergeOnConflict_title">Altijd samenvoegen bij conflicten</string>
+  <string name="AlwaysMergeOnConflict_summary">Wanneer Keepass2Android detecteert dat het externe bestand is gewijzigd, voeg de lokale wijzigingen altijd samen met de externe wijzigingen.</string>
   <string name="TanExpiresOnUse_title">TAN vervalt na gebruik</string>
   <string name="TanExpiresOnUse_summary">TAN-items markeren als vervallen na gebruik</string>
   <string name="ShowUsernameInList_title">Geef gebruikersnaam weer in lijst</string>
@@ -290,6 +299,9 @@
   <string name="RememberRecentFiles_summary">Onthoud onlangs geopende databases en deze in het geopende databasescherm weergeven.</string>
   <string name="NoDalVerification_title">Geen DAL verificatie</string>
   <string name="NoDalVerification_summary">Schakelt controle of domein en app pakket overeenkomen uit </string>
+  <string name="InlineSuggestions_title">Integreer met toetsenbord</string>
+  <string name="InlineSuggestions_summary">Toont de suggesties voor automatisch aanvullen als inline-opties in het toetsenbord (indien ondersteund door de invoermethode)</string>
+  <string name="requires_android11">Vereist Android 11 of hoger</string>
   <string name="kp2a_findUrl">Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
   <string name="search_options">Opties</string>
@@ -317,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Maximum aantal tekens gebruikt voor Snel Openen wachtwoord.</string>
   <string name="QuickUnlockHideLength_title">Verberg Snel Openen lengte</string>
   <string name="QuickUnlockHideLength_summary">Als ingeschakeld, wordt de lengte van de Snel Openen code niet weergegeven in het Snel Openen scherm.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Snelle deblokkeercode uit database item</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Als de actieve database een item met titel QuickUnlock in de hoofdgroep bevat, wordt het wachtwoord van dit item gebruikt als snelle deblokkeer code.</string>
   <string name="QuickUnlock_fail">Snel Openen is mislukt: verkeerd wachtwoord!</string>
   <string name="SaveAttachmentDialog_title">Bijlage opslaan</string>
   <string name="SaveAttachmentDialog_text">Selecteer waar u de bijlage wilt opslaan.</string>
@@ -342,6 +356,7 @@
   <string name="totp_encoding_custom">Aangepaste token instellingen</string>
   <string name="totp_time_step">Tijdstap</string>
   <string name="totp_length">Lengte van de code</string>
+  <string name="totp_scan">Scan QR code</string>
   <string name="delete_extra_string">Extra waarde verwijderen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: vergrendeld. Snel Openen ingeschakeld.</string>
   <string name="database_loaded_unlocked">%1$s: Ontgrendeld.</string>
@@ -404,6 +419,8 @@
   <string name="DocumentAccessRevoked">Dit bestand is niet meer toegangelijk voor Keepass2Android. Het is verwijderd of de toegangsrechten zijn ingetrokken. Probeer opnieuw te openen, bijv. met \'Wijzig database\'.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-load van databasebestand</string>
   <string name="PreloadDatabaseEnabled_summary">Start laden op de achtergrond of het downloaden van het databasebestand tijdens het wachtwoord invoeren.</string>
+  <string name="SyncAfterQuickUnlock_title">Synchroniseer na Snel Openen</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchroniseer de database met externe bestanden na het ontgrendelen met QuickUnlock.</string>
   <string name="AskOverwriteBinary">Wil je het bestaande binaire bestand met dezelfde naam overschrijven?</string>
   <string name="AskOverwriteBinary_title">Overschrijf bestaande bestand?</string>
   <string name="AskOverwriteBinary_yes">Overschrijven</string>
@@ -418,7 +435,7 @@
   <string name="AskDeletePermanentlyItemsNoRecycle">Wil je de geselecteerde elementen permanent verwijderen?</string>
   <string name="AskDeletePermanently_title">Definitief verwijderen?</string>
   <string name="AskReloadFile_title">Bestand opnieuw laden?</string>
-  <string name="AskReloadFile">Het bestand dat momenteel geopend is werd veranderd door een ander programma. Wil je het herladen?</string>
+  <string name="AskReloadFile">Het bestand dat momenteel geopend is, werd veranderd door een ander programma. Wil je het herladen?</string>
   <string name="AskDiscardChanges">Wil je de wijzigingen echt ongedaan maken? (De knop Opslaan is aan de bovenkant van het formulier.)</string>
   <string name="AskDiscardChanges_title">Wijzigingen negeren?</string>
   <string name="suggest_improvements">Geef suggesties of stem voor verbeteringen</string>
@@ -486,6 +503,7 @@
   <string name="sftp_auth_mode">Authenticatiemodus</string>
   <string name="send_public_key">Zend publieke sleutel...</string>
   <string name="enter_ftp_login_title">SFTP logingegevens invoeren:</string>
+  <string name="enter_mega_login_title">Voer je MEGA account login gegevens in:</string>
   <string name="select_storage_type">Selecteer het opslagtype:</string>
   <string name="filestoragename_file">Lokaal bestand</string>
   <string name="filestoragename_androidget">Krijg via externe app</string>
@@ -499,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A map)</string>
   <string name="filestoragehelp_dropboxKP2A">Selecteer deze optie als je KP2A geen toegang wilt geven tot jouw volledige Dropbox. Dit zal alleen toegang vragen tot de map Apps/Keepass2Android. Dit is met name geschikt bij het aanmaken van een nieuwe database. Als je al een database hebt, klik hier om de map te openen, plaats daarna het bestand in de map (vanaf uw PC) en selecteer deze optie opnieuw om het bestand te openen.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A bestanden)</string>
+  <string name="filestoragehelp_gdriveKP2A">Als je KP2A geen toegang wilt geven tot je volledige Google Drive, kunt je deze optie selecteren. Merk op dat je eerst een databasebestand moet aanmaken, bestaande bestanden zijn niet zichtbaar voor de app. Kies deze optie uit het database scherm aanmaken, of als je al een database hebt geopend door de database te exporteren die voor deze optie wordt gekozen.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de pCloud map \"Applications/Keepass2Android\". Als je een bestaande database uit jouw PCloud account wil gebruiken, zorg dan dat het bestand in die pCloud map wordt geplaatst.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -507,10 +527,12 @@
   <string name="filestoragename_onedrive2_myfiles">Mijn bestanden</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android app map</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Let op: Keepass2Android moet de lijst van alle bestanden in jouw Mega account downloaden om goed te werken. Om deze reden kan het benaderen van accounts met veel bestanden traag zijn.</string>
   <string name="filestoragename_content">Systeem bestand kiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
   <string name="database_location">Database locatie</string>
-  <string name="help_database_location">Je kunt jouw database lokaal op je Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als je offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot jouw wachtwoorden behalve jij. We adviseren Dropbox te kiezen: het is beschikbaar op al uw apparaten en voorziet zelfs in back-ups van vorige bestandsversies.</string>
+  <string name="help_database_location">Je kunt jouw database lokaal op je Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als je offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot jouw wachtwoorden behalve jij. We adviseren Dropbox te kiezen: het is beschikbaar op al je apparaten en voorziet zelfs in back-ups van vorige bestandsversies.</string>
   <string name="hint_database_location">Selecteer waar je de database wilt opslaan:</string>
   <string name="button_change_location">Locatie wijzigen</string>
   <string name="help_quickunlock">Wanneer ingeschakeld zal Keepass2Android in de achtergrond blijven draaien, zelfs wanneer de database vergrendeld is. Hierdoor kan de database later met slechts een klein gedeelte van het hoofdwachtwoord worden ontgrendeld.</string>
@@ -655,6 +677,8 @@
   <string name="child_db_Enabled_title">Automatisch openen</string>
   <string name="database_file_heading">Databasebestand</string>
   <string name="if_device_text">Inschakelen voor %1$s</string>
+  <string name="restore_history">Deze versie terugzetten</string>
+  <string name="remove_history">Deze versie verwijderen</string>
   <string name="DbUnlockedChannel_name">Database geopend</string>
   <string name="DbUnlockedChannel_desc">Melding bij het openen van de database</string>
   <string name="DbQuicklockedChannel_name">Snel Openen</string>
@@ -662,7 +686,22 @@
   <string name="EntryChannel_name">Item meldingen</string>
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
-  <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt ongeldig gemaakt door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van uw apparaat. Zorg ervoor dat u altijd weet hoe u moet ontgrendelen met uw hoofdwachtwoord!</string>
+  <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt uitgeschakeld door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van jouw apparaat. Zorg ervoor dat je de database altijd kunt ontgrendelen met het hoofdwachtwoord!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Toegevoegde ondersteuning voor het bekijken, verwijderen en herstellen van invoer back-ups</item>
+    <item>Implementatie ondersteuning voor MEGA cloud opslag</item>
+    <item>Ondersteuning voor Google Drive met beperkte scope toegevoegd</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Google Drive authenticatie opnieuw geïmplementeerd, Google Drive ondersteuning opnieuw ingeschakeld</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Repareer de automatische invulprompt in Firefox</item>
+    <item>Integreer suggesties met toetsenbord (met Android 11+)</item>
+    <item>Toestaan om de app taal te wijzigen in de instellingen</item>
+    <item>Optie toevoegen om database te synchroniseren na Snel Openen</item>
+    <item>Bug fix: Maak geen kleine bestandsnamen bij het opslaan naar Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Ondersteuning toegevoegd voor KDBX 4.1, de bestandsindeling geintroduceerd in KeePass 2.48</item>
     <item>Dialoog toegevoegd voor het configureren van TOTP instellingen</item>
@@ -1044,7 +1083,7 @@ Eerste publieke publicatie
   <string name="dont_show_again">Niet meer tonen</string>
   <string name="masterkey_infotext_head">Weet je het hoofdwachtwoord nog?</string>
   <string name="masterkey_infotext_main">Merk op dat zonder hoofdwachtwoord de database niet te openen is. Er is geen manier om het hoofdwachtwoord te \"resetten\".</string>
-  <string name="masterkey_infotext_fingerprint_note">Houd er ook rekening mee dat Biometrische ontgrendeling werkt door uw hoofdsleutel op te slaan in de veilige opslag van Android. Deze opslag kan op elk moment door Android worden verwijderd, bijvoorbeeld wanneer je een nieuwe vingerafdruk toevoegt in de systeeminstellingen. Vertrouw dus niet op Biometrische ontgrendeling maar onthoud a.u.b. je hoofdwachtwoord!</string>
+  <string name="masterkey_infotext_fingerprint_note">Houd er ook rekening mee dat Biometrische ontgrendeling werkt door de hoofdsleutel op te slaan in de veilige opslag van Android. Deze opslag kan op elk moment door Android worden verwijderd, bijvoorbeeld wanneer je een nieuwe vingerafdruk toevoegt in de systeeminstellingen. Vertrouw dus niet op Biometrische ontgrendeling maar onthoud a.u.b. je hoofdwachtwoord!</string>
   <string name="backup_infotext_head">Worden er back-ups gemaakt van jouw database?</string>
   <string name="backup_infotext_main">Keepass2Android bewaart je wachtwoorden in een file op een door jou gekozen locatie. Weet je zeker dat je deze file nog steeds hebt als je telefoon verloren raakt, of gestolen, of als de file gewist wordt? Zorg alsjeblieft altijd voor een recente back-up op een veilige plaats!</string>
   <string name="backup_infotext_note">Om nu een back-up te maken, ga naar %1$s &gt; %2$s &gt; %3$s.</string>
@@ -1055,7 +1094,7 @@ Eerste publieke publicatie
   <string name="switch_ime_text">activeer de Keepass2 Android toetsenbord aub.</string>
   <string name="switch_ime_reopen">Probeer opnieuw.</string>
   <string name="AutofillWarning_title">Beveiligingswaarschuwing: niet-herkende domein / app-link</string>
-  <string name="AutofillWarning_Intro">U staat op het punt, om inloggegevens voor domein \"%1$s\" in te voegen in de app \"%2$s\".</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">Als u vertrouwt dat \"%2$s\" tot \"%1$s\" behoort of u vertrouwt erop dat de app \"%2$s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kunt u doorgaan . Indien niet, gelieve te annuleren.</string>
+  <string name="AutofillWarning_Intro">Je staat op het punt, om inloggegevens voor domein \"%1$s\" in te voegen in de app \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Als je vertrouwt dat \"%2$s\" tot \"%1$s\" behoort, of je vertrouwt dat app \"%2$s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kun je doorgaan. Anders annuleren.</string>
   <string name="AutofillWarning_trustAsBrowser">Altijd accepteren in \"%1$s\"</string>
 </resources>

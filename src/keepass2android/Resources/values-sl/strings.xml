@@ -122,6 +122,7 @@
   <string name="entry_user_name">Uporabniško ime</string>
   <string name="entry_extra_strings">Dodatna polja nizov</string>
   <string name="entry_binaries">Datotečne priponke</string>
+  <string name="entry_history">Prejšnje različice</string>
   <string name="error_can_not_handle_uri">Keepass2Android ne more upravljati tega URI-ja.</string>
   <string name="error_could_not_create_group">Napaka pri ustvarjanju skupine.</string>
   <string name="error_could_not_create_parent">Nadrejene mape ni bilo mogoče ustvariti.</string>
@@ -171,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Zakrij geslo</string>
   <string name="maskpass_summary">Privzeto skrij gesla</string>
+  <string name="masktotp_title">Zakrij polje TOTP</string>
+  <string name="masktotp_summary">Privzeto skrij polje TOTP</string>
+  <string name="NoAutofillDisabling_title">Brez možnosti za onemogočanje samodejnega izpolnjevanja</string>
+  <string name="NoAutofillDisabling_summary">Če je aktivirano, aplikacija ne bo prikazala možnosti za onemogočanje samodejnega izpolnjevanja za določene vnose.</string>
   <string name="menu_about">O programu</string>
   <string name="menu_change_key">Spremeni glavni ključ</string>
   <string name="menu_copy_pass">Kopiraj geslo</string>
@@ -284,6 +289,8 @@
   <string name="please_note">Upoštevajte</string>
   <string name="contributors">Prispevali so</string>
   <string name="regular_expression">Običajni izraz</string>
+  <string name="AlwaysMergeOnConflict_title">V konfliktu se vedno združi</string>
+  <string name="AlwaysMergeOnConflict_summary">Ko Keepass2Android zazna, da je bila oddaljena datoteka spremenjena, vedno združite lokalne spremembe z oddaljenimi spremembami.</string>
   <string name="TanExpiresOnUse_title">TAN poteče ob uporabi</string>
   <string name="TanExpiresOnUse_summary">Ob uporabi označi vnose TAN kot potekle</string>
   <string name="ShowUsernameInList_title">Prikaži up. ime na sez.</string>
@@ -322,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Največje število znakov, ki naj se uporabi v geslu Hitrega odklepanja.</string>
   <string name="QuickUnlockHideLength_title">Skrij dolžino kode Hitrega odklepanja</string>
   <string name="QuickUnlockHideLength_summary">Če je omogočeno, dolžina kode Hitrega odklepanja ni prikazana na zaslonu Hitrega odklepanja.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ključ QuickUnlock iz zaščitene baze</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Če aktivna baza podatkov vsebuje vnos z naslovom QuickUnlock v svoji korenski skupini, se geslo tega vnosa uporablja kot koda za hitro odklepanje.</string>
   <string name="QuickUnlock_fail">Hitro odklepanje je spodletelo: nepravilno geslo!</string>
   <string name="SaveAttachmentDialog_title">Shrani priponko</string>
   <string name="SaveAttachmentDialog_text">Izberite, kam naj se shranjujejo priponke.</string>
@@ -347,6 +356,7 @@
   <string name="totp_encoding_custom">Nastavitve žetona po meri</string>
   <string name="totp_time_step">Časovni korak</string>
   <string name="totp_length">Dolžina kode</string>
+  <string name="totp_scan">Skeniraj QR kodo</string>
   <string name="delete_extra_string">Izbriši dodaten niz</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: zaklenjena. Hitro odklepanje omogočeno.</string>
   <string name="database_loaded_unlocked">%1$s: odklenjena.</string>
@@ -493,6 +503,7 @@
   <string name="sftp_auth_mode">Način overitve</string>
   <string name="send_public_key">Pošlji javni ključ ...</string>
   <string name="enter_ftp_login_title">Vnesite podatke FTP za prijavo:</string>
+  <string name="enter_mega_login_title">Vnesite podatke za prijavo v račun MEGA:</string>
   <string name="select_storage_type">Izberite mesto za shranjevanje:</string>
   <string name="filestoragename_file">Krajevna datoteka</string>
   <string name="filestoragename_androidget">Dobi iz programa tretje osebe</string>
@@ -506,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A datoteke)</string>
+  <string name="filestoragehelp_gdriveKP2A">Če KP2A ne želite omogočiti dostopa do celotnega Google Drive, lahko izberete to možnost. Upoštevajte, da morate najprej ustvariti novo datoteko baze podatkov, obstoječe datoteke niso vidne aplikaciji. To možnost izberite na zaslonu Ustvari bazo podatkov ali, če ste že odprli bazo podatkov, izvozite bazo podatkov in izberete to možnost.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do pCloud mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v pCloud mapi.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Moje datoteke</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android mapa aplikacije</string>
   <string name="filestoragename_sftp">SFTP (prenos datotek SSH)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Upoštevajte: Keepass2Android mora za pravilno delovanje prenesti seznam vseh datotek v vašem računu MEGA. Zaradi tega je lahko dostop do računov z veliko datotekami počasen.</string>
   <string name="filestoragename_content">Sistemski izbirnik datotek</string>
   <string name="filestorage_setup_title">Začenjanje dostopa do datoteke</string>
   <string name="database_location">Mesto podatkovne zbirke</string>
@@ -661,6 +676,8 @@
   <string name="child_db_Enabled_title">Samodejno odpri</string>
   <string name="database_file_heading">Datoteka podatkovne zbirke</string>
   <string name="if_device_text">Omogoči za %1$s</string>
+  <string name="restore_history">Obnovi to različico</string>
+  <string name="remove_history">Odstrani to različico</string>
   <string name="DbUnlockedChannel_name">Baza odklenjena</string>
   <string name="DbUnlockedChannel_desc">Obvestilo o odklenjeni bazi podatkov</string>
   <string name="DbQuicklockedChannel_name">Hitro odklepanje</string>
@@ -669,6 +686,14 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Dodana podpora za ogled, odstranjevanje in obnavljanje varnostnih kopij vnosov</item>
+    <item>Dodana podpora za shranjevanje v oblaku MEGA</item>
+    <item>Dodana podpora za Google Drive z omejenim obsegom</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Implementirano novo preverjanje pristnosti Google Drive, ponovno omogočena podpora za Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Popravljeno izginotje poziva za samodejno izpolnjevanje v Firefoxu</item>
     <item>Integracija predlogov za samodejno izpolnjevanje s tipkovnico (zahteva Android 11+)</item>

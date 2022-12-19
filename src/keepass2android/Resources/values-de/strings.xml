@@ -123,6 +123,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_user_name">Benutzername</string>
   <string name="entry_extra_strings">Zusätzliche Felder</string>
   <string name="entry_binaries">Datei-Anhänge</string>
+  <string name="entry_history">Vorherige Versionen</string>
   <string name="error_can_not_handle_uri">Keepass2Android kann diese Adresse nicht verarbeiten.</string>
   <string name="error_could_not_create_group">Fehler beim Erstellen der Gruppe.</string>
   <string name="error_could_not_create_parent">Verzeichnis konnte nicht erstellt werden.</string>
@@ -172,6 +173,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Kennwort ausblenden</string>
   <string name="maskpass_summary">Kennwörter standardmäßig ausgeblendet</string>
+  <string name="masktotp_title">TOTP-Feld verdecken</string>
+  <string name="masktotp_summary">TOTP-Feld standardmäßig ausblenden</string>
+  <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
+  <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
   <string name="menu_about">Über</string>
   <string name="menu_change_key">Master-Passwort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
@@ -285,6 +290,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="please_note">Bitte beachten</string>
   <string name="contributors">Mitwirkende</string>
   <string name="regular_expression">Regulärer Ausdruck</string>
+  <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer vereinigen</string>
+  <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
   <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
@@ -323,6 +330,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel \"QuickUnlock\" in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
@@ -348,6 +357,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="totp_encoding_custom">Benutzerdefinierte Einstellungen</string>
   <string name="totp_time_step">Zeitschritt</string>
   <string name="totp_length">Codelänge</string>
+  <string name="totp_scan">QR-Code scannen</string>
   <string name="delete_extra_string">Zusätzliches Feld löschen</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: gesperrt. QuickUnlock aktiviert.</string>
   <string name="database_loaded_unlocked">%1$s: Entsperrt.</string>
@@ -494,6 +504,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="sftp_auth_mode">Authentifizierungsmodus</string>
   <string name="send_public_key">Sende öffentlichen Schlüssel...</string>
   <string name="enter_ftp_login_title">FTP-Zugangsdaten eingeben:</string>
+  <string name="enter_mega_login_title">Geben Sie Ihre MEGA-Zugangsdaten ein:</string>
   <string name="select_storage_type">Speichertyp wählen:</string>
   <string name="filestoragename_file">Lokale Datei</string>
   <string name="filestoragename_androidget">Mit externer App suchen</string>
@@ -507,6 +518,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-Dateien)</string>
+  <string name="filestoragehelp_gdriveKP2A">Wenn Sie KP2A keinen Zugriff auf Ihr vollständiges Google Drive geben möchten, können Sie diese Option auswählen. Beachten Sie, dass Sie zuerst eine Datenbankdatei erstellen müssen; vorhandene Dateien sind für die App nicht sichtbar. Wählen Sie diese Option entweder auf dem \"Datenbank erstellen\" Bildschirm oder, wenn Sie bereits eine Datenbank geöffnet haben, indem Sie die Datenbank mit dieser Option exportieren.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Dieser Speichertyp verlangt nur Zugriff auf den pCloud-Ordner \"Applications/Keepass2Android\". Wenn Sie eine existierende Datenbank aus Ihrem pCloud-Konto verwenden möchten, stellen Sie bitte sicher, dass die Datei in diesem pCloud-Ordner gespeichert ist.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -515,6 +528,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_onedrive2_myfiles">Meine Dateien</string>
   <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android-App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Bitte beachten: Keepass2Android muss die Liste aller Dateien in Ihrem Mega-Konto herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
@@ -659,6 +674,8 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="child_db_Enabled_title">Automatisch öffnen</string>
   <string name="database_file_heading">Datenbankdatei</string>
   <string name="if_device_text">Aktiviere für %1$s</string>
+  <string name="restore_history">Diese Version wiederherstellen</string>
+  <string name="remove_history">Diese Version entfernen</string>
   <string name="DbUnlockedChannel_name">Datenbank entsperrt</string>
   <string name="DbUnlockedChannel_desc">Benachrichtigung wenn die Datenbank entsperrt ist</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -667,6 +684,14 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
+    <item>Unterstützung für MEGA Cloudspeicher hinzugefügt </item>
+    <item>Unterstützung für Google Drive mit eingeschränktem Anwendungsbereich hinzugefügt</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Google Drive Authentifizierung wieder eingebaut, Google Drive Unterstützung wieder aktiviert </item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Bugfix für schnell verschwindende Autofill-Anzeige in Firefox</item>
     <item>Vorschläge für automatisches Ausfüllen in die Tastatur integriert (benötigt Android 11+)</item>

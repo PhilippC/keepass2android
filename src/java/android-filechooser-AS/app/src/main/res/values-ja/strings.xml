@@ -56,12 +56,12 @@
     <string name="afc_title_sort_by">並べ替え</string>
     <string name="afc_yesterday">昨日</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="other">フォルダを選択</item>
+        <item quantity="other">フォルダーを選択…</item>
     </plurals>
     <plurals name="afc_title_choose_files">
-        <item quantity="other">ファイルを選択</item>
+        <item quantity="other">ファイルを選択…</item>
     </plurals>
     <plurals name="afc_title_choose_files_directories">
-        <item quantity="other">ファイル/フォルダを選択</item>
+        <item quantity="other">ファイル/フォルダーを選択…</item>
     </plurals>
 </resources>

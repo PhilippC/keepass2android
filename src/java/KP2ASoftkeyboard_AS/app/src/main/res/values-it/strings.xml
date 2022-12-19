@@ -110,7 +110,8 @@
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">Accedi a numeri e simboli</string>
     <!-- Tip to long press on typed word to add to dictionary -->
-    <string name="tip_add_to_dictionary">Tieni premuto sulla parola all\'estrema sinistra per aggiungerla al dizionario</string>
+    <string name="tip_add_to_dictionary">Tieni premuta la parola più a sinistra per aggiungerla al dizionario
+        </string>
     <!-- Instruction to touch the bubble to continue -->
     <string name="touch_to_continue">Tocca questo suggerimento per continuare »</string>
     <!-- Instruction to touch the bubble to start typing -->

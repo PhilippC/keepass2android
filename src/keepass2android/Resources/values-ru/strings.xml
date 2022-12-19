@@ -42,7 +42,7 @@
   <string name="IconSet_install">Найти еще...</string>
   <string name="security_prefs">Безопасность</string>
   <string name="display_prefs">Отображение</string>
-  <string name="password_access_prefs">Парольный доступ</string>
+  <string name="password_access_prefs">Доступ для ввода пароля</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="keyboard_prefs">Клавиатура</string>
@@ -122,6 +122,7 @@
   <string name="entry_user_name">Логин</string>
   <string name="entry_extra_strings">Дополнительные строковые поля</string>
   <string name="entry_binaries">Вложенные файлы</string>
+  <string name="entry_history">Предыдущие версии</string>
   <string name="error_can_not_handle_uri">Keepass2Android не может обработать этот адрес URL.</string>
   <string name="error_could_not_create_group">Не удалось создать группу.</string>
   <string name="error_could_not_create_parent">Не удалось создать родительскую папку</string>
@@ -171,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Скрыть пароль</string>
   <string name="maskpass_summary">Скрыть пароли по умолчанию</string>
+  <string name="masktotp_title">Маскировка поля TOTP</string>
+  <string name="masktotp_summary">По умолчанию скрывать поле TOTP</string>
+  <string name="NoAutofillDisabling_title">Нет возможности отключить автозаполнение</string>
+  <string name="NoAutofillDisabling_summary">Если включено, приложение не будет показывать опцию отключения автозаполнения для определенных записей.</string>
   <string name="menu_about">О программе</string>
   <string name="menu_change_key">Изменить мастер-ключ</string>
   <string name="menu_copy_pass">Скопировать пароль</string>
@@ -218,7 +223,7 @@
   <string name="edit">Изменить</string>
   <string name="rijndael">Алгоритм шифрования Rijndael (AES)</string>
   <string name="root">Корень</string>
-  <string name="AutoReturnFromQuery_title">Автоматически вернуться с экрана запроса</string>
+  <string name="AutoReturnFromQuery_title">Вернуться с экрана запроса</string>
   <string name="AutoReturnFromQuery_summary">При поиске записи для приложения или веб-сайта: автоматически вернуться с экрана запроса, если в БД имеется только одна соответствующая запись.</string>
   <string name="KeyDerivFunc">Функция деривации ключа</string>
   <string name="rounds">Циклов шифрования</string>
@@ -284,6 +289,8 @@
   <string name="please_note">Обратите внимание</string>
   <string name="contributors">Участники</string>
   <string name="regular_expression">Регулярное выражение</string>
+  <string name="AlwaysMergeOnConflict_title">Всегда объединять при конфликте</string>
+  <string name="AlwaysMergeOnConflict_summary">Когда Keepass2Android обнаруживает, что внешний (удаленный) файл был изменен, всегда объединять локальные изменения с удаленными.</string>
   <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
   <string name="ShowUsernameInList_title">Отображать имя пользователя в списке</string>
@@ -305,24 +312,26 @@
   <string name="start_create_import">Импортировать файл в новую базу данных...</string>
   <string name="enter_filename_details_url">Необходимо указать полный URL, включая протокол, например http://.</string>
   <string name="enter_filename_details_create_import">В следующем шаге будет выбран файл для импортирования.</string>
-  <string name="enable_quickunlock">Включить QuickUnlock</string>
+  <string name="enable_quickunlock">Включить \"Быструю разблокировку\"</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
   <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
-  <string name="QuickUnlock_button">БыстраяРазблокировка!</string>
+  <string name="QuickUnlock_button">Быстрая разблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
-  <string name="QuickUnlockDefaultEnabled_title">Включить БыструюРазблокировку по умолчанию</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли БыстраяРазблокировка по умолчанию или нет.</string>
+  <string name="QuickUnlockDefaultEnabled_title">Включить по умолчанию</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли \"Быстрая разблокировка\" по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
   <string name="ViewDatabaseSecure_summary">Если включено, то не разрешены скриншоты и приложение не появится в списке Последних Запущенных.</string>
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
-  <string name="QuickUnlockIconHidden_summary">К сожалению, БыстраяРазблокировка не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
+  <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
-  <string name="QuickUnlockLength_title">Длина ключа БыстройРазблокировки</string>
+  <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
+  <string name="QuickUnlockLength_title">Длина ключа</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
-  <string name="QuickUnlockHideLength_title">Скрыть длину БыстройРазблокировки</string>
-  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для БыстройРазблокировки не будет отображаться на экране.</string>
-  <string name="QuickUnlock_fail">БыстраяРазблокировка не удалась: неправильный пароль!</string>
+  <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
+  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для \"Быстрой разблокировки\" не будет отображаться на экране.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ из записи в базе данных</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"Быстрая разблокировка\" в ее корневой группе, пароль этой записи используется в качестве кода \"Быстрой разблокировки\".</string>
+  <string name="QuickUnlock_fail">Быстрая разблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
   <string name="SaveAttachmentDialog_save">Экспорт в файл...</string>
@@ -347,8 +356,9 @@
   <string name="totp_encoding_custom">Пользовательские настройки токена</string>
   <string name="totp_time_step">Период</string>
   <string name="totp_length">Длина кода</string>
+  <string name="totp_scan">Сканировать QR-код</string>
   <string name="delete_extra_string">Удалить дополнительную строку</string>
-  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. БыстраяРазблокировка включена.</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Заблокирована. Быстрая разблокировка включена.</string>
   <string name="database_loaded_unlocked">%1$s: Разблокирована.</string>
   <string name="credentials_dialog_title">Введите учетные данные сервера</string>
   <string name="UseFileTransactions_title">Файловые транзакции</string>
@@ -359,7 +369,7 @@
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Использовать встроенную клавиатуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Клавиатура \"Keepass2Android\"</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете своей стандартной клавиатуре, установите этот параметр, чтобы использовать встроенную клавиатуру при вводе мастер-пароля или редактирования записей.</string>
   <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при запуске</string>
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
@@ -381,7 +391,7 @@
   <string name="ClearOfflineCache_question">Это удалит все кэшированные копии баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
   <string name="CheckForFileChangesOnSave_summary">Проверка был ли файл изменен извне до сохранения изменений.</string>
-  <string name="CheckForDuplicateUuids_title">Проверить на наличие повторяющихся идентификаторов UUID</string>
+  <string name="CheckForDuplicateUuids_title">Проверка дубликатов UUID</string>
   <string name="CheckForDuplicateUuids_summary">Проверить, испорчен ли файл базы данных  наличием множественных записей с одинаковым ID. Это может вызвать непредсказуемое поведение.</string>
   <string name="ShowCopyToClipboardNotification_title">Уведомления буфера обмена</string>
   <string name="ShowCopyToClipboardNotification_summary">Сделать имя пользователя и пароль доступными через панель уведомлений и буфер обмена. Остерегайтесь перехватчиков паролей!</string>
@@ -493,6 +503,7 @@
   <string name="sftp_auth_mode">Режим аутентификации</string>
   <string name="send_public_key">Отправить публичный ключ...</string>
   <string name="enter_ftp_login_title">Введите данные входа (FTP):</string>
+  <string name="enter_mega_login_title">Введите данные для входа в аккаунт MEGA:</string>
   <string name="select_storage_type">Выберите тип хранилища:</string>
   <string name="filestoragename_file">Локальный файл</string>
   <string name="filestoragename_androidget">Получить из стороннего приложения</string>
@@ -506,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
+  <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Мои файлы</string>
   <string name="filestoragename_onedrive2_appfolder">Папка приложения Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлов)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Обратите внимание: для правильной работы Keepass2Android необходимо загрузить список всех файлов в вашем аккаунте Mega. По этой причине доступ к аккаунтам с большим количеством файлов может быть медленным.</string>
   <string name="filestoragename_content">Системное средство выбора файлов</string>
   <string name="filestorage_setup_title">Инициализация доступа к файлу</string>
   <string name="database_location">Расположение базы данных</string>
@@ -555,10 +570,10 @@
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
-  <string name="DebugLog_prefs_prefs">Log-файл для отладки</string>
-  <string name="DebugLog_title">Использовать log-файл</string>
-  <string name="DebugLog_summary">Записывать выходные данные приложения в локальный log-файл</string>
-  <string name="DebugLog_send">Отправить журнал отладки...</string>
+  <string name="DebugLog_prefs_prefs">Лог-файл для отладки</string>
+  <string name="DebugLog_title">Включить логирование</string>
+  <string name="DebugLog_summary">Запись работы приложения в локальный лог-файл</string>
+  <string name="DebugLog_send">Отправить логи отладки...</string>
   <string name="loading">Загрузка…</string>
   <string name="plugins">Плагины</string>
   <string name="plugin_packagename">Имя пакета:</string>
@@ -637,9 +652,9 @@
   <string name="CorruptDatabaseHelp">    Файл поврежден. \n
     Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
     
-    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты MyPhoneExplorer. MTP-режим иногда обрезает файлы.\n
-    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват Keepass2Android, то свяжитесь с нами.\n
-    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в Keepass2Android.
+    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты \"MyPhoneExplorer\". MTP-режим иногда обрезает файлы.\n
+    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват \"Keepass2Android\", то свяжитесь с нами.\n
+    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в \"Keepass2Android\".
 
   </string>
   <string name="open_other_db">Открыть другую базу данных…</string>
@@ -659,6 +674,8 @@
   <string name="child_db_Enabled_title">Открыть автоматически</string>
   <string name="database_file_heading">Файл базы данных</string>
   <string name="if_device_text">Включить для %1$s</string>
+  <string name="restore_history">Восстановить эту версию</string>
+  <string name="remove_history">Удалить эту версию</string>
   <string name="DbUnlockedChannel_name">БД разблокирована</string>
   <string name="DbUnlockedChannel_desc">Уведомление о том, что БД разблокирована</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -667,6 +684,14 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Добавлена поддержка просмотра, удаления и восстановления резервных копий записей</item>
+    <item>Реализована поддержка облачного хранилища MEGA</item>
+    <item>Добавлена поддержка Google Drive с ограниченным охватом</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Поддержка аутентификации Google Drive, вновь включена поддержка Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Исправлена ошибка с автозаполнением в Firefox</item>
     <item>Интегрировать подсказки автозаполнения с помощью клавиатуры (требуется Android 11+)</item>
@@ -842,10 +867,10 @@
 * обновление переводов\n
 * исправление ошибок: шрифт пароля был утерян в 0.9.7, сортировка по имени не сортировала группы\n</string>
   <string name="ChangeLog_0_9_7">Версия 0.9.7\n
-* Поддержка записи в файлы баз данных Keepass 1 (kdb) (beta!)\n
+* Поддержка записи в файлы баз данных \"Keepass 1 (kdb) (beta!)\"\n
 * Улучшенное переключение на предыдущую клавиатуру (также работает на устройствах без root-прав)\n
-* Поддержка KeeChallenge с переменной длиной ключа\n
-* Предотвращение создания скриншотов с экранов БыстраяРазблокировка и паролей\n
+* Поддержка \"KeeChallenge\" с переменной длиной ключа\n
+* Предотвращение создания скриншотов с экранов \"Быстрая разблокировка\" и \"Паролей\"\n
 * Обратная сортировка для режима Сортировать по дате модификации (теперь по убыванию)\n
 * Исправления ошибок: Теперь заметки корректно обновляются после изменений. Просмотр пароля теперь прячет пароль корректно на всех устройствах (надеюсь), исправлена ошибка с возможностью повторного добавления записи, исправлена ошибка отображения предупреждения \"Дублирующийся UUID\" даже после исправления базы данных\n</string>
   <string name="ChangeLog_0_9_6">Версия 0.9.6\n
@@ -975,11 +1000,11 @@
 первоначальный публичный релиз</string>
   <string-array name="clipboard_timeout_options">
     <item>30 сек.</item>
-    <item>1 мин.</item>
-    <item>5 мин.</item>
-    <item>10 мин.</item>
-    <item>15 мин.</item>
-    <item>30 мин.</item>
+    <item>1 минута</item>
+    <item>5 минут</item>
+    <item>10 минут</item>
+    <item>15 минут</item>
+    <item>30 минут</item>
     <item>1 час</item>
     <item>Никогда</item>
   </string-array>

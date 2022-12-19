@@ -122,6 +122,7 @@
   <string name="entry_user_name">Brugernavn</string>
   <string name="entry_extra_strings">Ekstra strengfelter</string>
   <string name="entry_binaries">Filvedhæftninger</string>
+  <string name="entry_history">Tidligere versioner</string>
   <string name="error_can_not_handle_uri">Keepass2Android kan ikke håndtere denne URI.</string>
   <string name="error_could_not_create_group">Fejl under gruppeoprettelse.</string>
   <string name="error_could_not_create_parent">Overordnet mappe kunne ikke oprettes.</string>
@@ -171,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maskér adgangskode</string>
   <string name="maskpass_summary">Maskér som standard adgangskoder</string>
+  <string name="masktotp_title">Maskér TOTP-felt</string>
+  <string name="masktotp_summary">Skjul TOTP-felt som standard</string>
+  <string name="NoAutofillDisabling_title">Ingen mulighed for at deaktivere autofyld</string>
+  <string name="NoAutofillDisabling_summary">Hvis aktiveret, vil appen ikke vise muligheden for at deaktivere autofyld for bestemte poster.</string>
   <string name="menu_about">Om</string>
   <string name="menu_change_key">Skift hovednøgle</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
@@ -284,6 +289,8 @@
   <string name="please_note">Bemærk venligst</string>
   <string name="contributors">Bidragsydere</string>
   <string name="regular_expression">Regulært udtryk</string>
+  <string name="AlwaysMergeOnConflict_title">Sammenflet altid ved konflikt</string>
+  <string name="AlwaysMergeOnConflict_summary">Når Keepass2Android registrerer, at den eksterne fil blev ændret, skal de lokale ændringer altid sammenflettes med de eksterne ændringer.</string>
   <string name="TanExpiresOnUse_title">TAN udløber efter brug</string>
   <string name="TanExpiresOnUse_summary">Markér TAN\'er som udløbet efter brug</string>
   <string name="ShowUsernameInList_title">Vis brugernavn på liste</string>
@@ -322,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Maks. antal tegn benyttet som adgangskode til Hurtigoplåsning.</string>
   <string name="QuickUnlockHideLength_title">Skjul Hurtigoplåsningskodens længde</string>
   <string name="QuickUnlockHideLength_summary">Hvis aktiveret, vises længden af Hurtigoplåsningskoden ikke på Hurtigoplåsningsskærmen.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Hurtigoplåsningsnøgle fra database post</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Hvis den aktive database indeholder en post med titlen Hurtigoplåsning i sin rodgruppe, bruges adgangskoden til denne post som Hurtigoplåsningskode.</string>
   <string name="QuickUnlock_fail">Hurtigoplåsning mislykkedes: Forkert adgangskode!</string>
   <string name="SaveAttachmentDialog_title">Gem vedhæftning</string>
   <string name="SaveAttachmentDialog_text">Vælg, hvor vedhæftningen skal gemmes.</string>
@@ -347,6 +356,7 @@
   <string name="totp_encoding_custom">Tilpassede indstillinger for token</string>
   <string name="totp_time_step">Tidstrin</string>
   <string name="totp_length">Kodelængde</string>
+  <string name="totp_scan">Skan QR-kode</string>
   <string name="delete_extra_string">Slet ekstra streng</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Låst. Hurtigoplåsning aktiv.</string>
   <string name="database_loaded_unlocked">%1$s: Oplåst.</string>
@@ -493,6 +503,7 @@
   <string name="sftp_auth_mode">Godkendelsestilstand</string>
   <string name="send_public_key">Send offentlig nøgle...</string>
   <string name="enter_ftp_login_title">Angiv FTP-login:</string>
+  <string name="enter_mega_login_title">Indtast dine login-data til din MEGA-konto:</string>
   <string name="select_storage_type">Vælg lagerpladstype:</string>
   <string name="filestoragename_file">Lokal fil</string>
   <string name="filestoragename_androidget">Hent fra tredjeparts-app</string>
@@ -506,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Den vil kun anmode om at tilgå mappen Apps/Keepass2Android. Dette er især egnet til oprettelse af en ny database. Har du allerede en database, så tryk på denne valgmulighed for at oprette mappen, dernæst placere din fil inde i mappen (fra din PC) og så vælge denne muilghed igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
+  <string name="filestoragename_gdriveKP2A">Google Drev (KP2A filer)</string>
+  <string name="filestoragehelp_gdriveKP2A">Hvis du ikke ønsker at give KP2A adgang til hele dit Google Drev, kan du vælge denne mulighed. Bemærk, at du skal oprette en databasefil først, eksisterende filer er ikke synlige for appen. Du kan enten vælge denne mulighed fra skærmen Opret database eller, hvis du allerede har åbnet en database, ved at vælge muligheden for at eksportere databasen.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Denne lagringstype vil kun anmode om adgang til pCloud-mappen \"Applications/Keepass2Android\". Hvis du vil benytte en eksisterende database fra din pCloud-konto, skal du sørge for, at filen er placeret i denne pCloud-mappe.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Mine filer</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android app-mappe</string>
   <string name="filestoragename_sftp">SFTP (SSH-filoverførsel)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Bemærk: Keepass2Android skal downloade listen over alle filer på din Mega-konto for at fungere korrekt. Af denne grund kan adgang til konti med mange filer være langsom.</string>
   <string name="filestoragename_content">Systemfilvælger</string>
   <string name="filestorage_setup_title">Filtilgangsinitialisering</string>
   <string name="database_location">Databaseplacering</string>
@@ -660,6 +675,8 @@
   <string name="child_db_Enabled_title">Åbn automatisk</string>
   <string name="database_file_heading">Databasefil</string>
   <string name="if_device_text">Aktivér for %1$s</string>
+  <string name="restore_history">Gendan denne version</string>
+  <string name="remove_history">Fjern denne version</string>
   <string name="DbUnlockedChannel_name">Database oplåst</string>
   <string name="DbUnlockedChannel_desc">Notificering om oplåsning af databasen</string>
   <string name="DbQuicklockedChannel_name">Hurtigoplåsning</string>
@@ -668,6 +685,14 @@
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
   <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Tilføjet understøttelse af visning, fjernelse og gendannelse af sikkerhedskopierede poster</item>
+    <item>Implementeret understøttelse af MEGA-skylager</item>
+    <item>Tilføjet understøttelse af Google Drev med begrænset anvendelsesområde</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Genimplementeret Google Drev-godkendelse, genaktiveret understøttelse af Google Drev</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Fiks forsvindende autofyld prompt i Firefox</item>
     <item>Integrer forslag til autofyld med tastatur (kræver Android 11+)</item>
@@ -928,7 +953,7 @@
   <string name="autofill_hint">Keepass2Android understøtter Android-funktionen Autoudfyld, der dog ikke ser ud til at være aktiveret endnu.</string>
   <string name="autofill_enable">Aktivér Autoudfyld</string>
   <string name="autofill_enable_failed">Beklager, din enhed synes ikke at understøtter åbning af indstillingerne inde fra app\'en. Gå til systemindstillingerne for manuelt at aktivere Autoudfyld-tjenesten.</string>
-  <string name="show_autofill_help">Vis Aotoudfyld-hjælp</string>
+  <string name="show_autofill_help">Vis Autoudfyld-hjælp</string>
   <string name="autofill_sign_in_prompt">Udfyld med Keepass2Android</string>
   <string name="autofill_disable">Deaktivér Auto-udfyld for %1$s</string>
   <string name="autofill_enable_for">Aktivér Auto-udfyld for %1$s</string>

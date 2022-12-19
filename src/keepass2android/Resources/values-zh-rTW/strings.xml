@@ -122,6 +122,7 @@
   <string name="entry_user_name">使用者名稱</string>
   <string name="entry_extra_strings">額外字串欄位</string>
   <string name="entry_binaries">檔案附件</string>
+  <string name="entry_history">舊版本</string>
   <string name="error_can_not_handle_uri">Keepass2Android無法處理此URI。</string>
   <string name="error_could_not_create_group">建立群組錯誤。</string>
   <string name="error_could_not_create_parent">無法建立上層目錄。</string>
@@ -347,6 +348,7 @@
   <string name="totp_encoding_custom">自訂令牌設定</string>
   <string name="totp_time_step">時間步長</string>
   <string name="totp_length">代碼長度</string>
+  <string name="totp_scan">掃描 QR 碼</string>
   <string name="delete_extra_string">刪除額外字串</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: 已鎖定。已啟用 QuickUnlock。</string>
   <string name="database_loaded_unlocked">%1$s: 解鎖。</string>
@@ -493,6 +495,7 @@
   <string name="sftp_auth_mode">身份驗證模式</string>
   <string name="send_public_key">發送公鑰...</string>
   <string name="enter_ftp_login_title">輸入 FTP 登入資訊：</string>
+  <string name="enter_mega_login_title">輸入您的 MEGA 帳號登入資料</string>
   <string name="select_storage_type">選擇存儲類型:</string>
   <string name="filestoragename_file">本機檔案</string>
   <string name="filestoragename_androidget">從第三方應用程式取得</string>
@@ -506,6 +509,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A 資料夾)</string>
   <string name="filestoragehelp_dropboxKP2A">使用此選項只請求「應用程式/Keepass2Android」 路徑的存取權，而非授予 KP2A 存取 Dropbox 全部空間的權限。這選項更適合新建資料庫。如果要存取現有資料庫，按一下此選項建立該資料夾，然後 (從您的個人電腦) 將資料庫檔案放在資料夾內，再點擊此選項打開檔案。</string>
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
+  <string name="filestoragename_gdriveKP2A">Google 雲端硬碟 (KP2A檔案)</string>
   <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragehelp_pcloud">這個儲存類型只會請求存取 pCloud「Applications/Keepass2Android」資料夾。要使用你 pCloud 賬戶裏現有的資料庫，請確保其檔案置於該 pCloud 資料夾。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +518,7 @@
   <string name="filestoragename_onedrive2_myfiles">我的檔案</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android 應用程式資料夾</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">系統檔選擇器</string>
   <string name="filestorage_setup_title">檔案存取權限初始化</string>
   <string name="database_location">資料庫位置</string>
@@ -661,6 +666,8 @@
   <string name="child_db_Enabled_title">自動開啟</string>
   <string name="database_file_heading">資料庫檔案</string>
   <string name="if_device_text">在 %1$s 上啟用</string>
+  <string name="restore_history">還原這個版本</string>
+  <string name="remove_history">移除這個版本</string>
   <string name="DbUnlockedChannel_name">已解鎖資料庫</string>
   <string name="DbUnlockedChannel_desc">已解鎖資料庫的通知</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>

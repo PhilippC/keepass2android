@@ -124,6 +124,7 @@
   <string name="entry_user_name">Nome de usuário</string>
   <string name="entry_extra_strings">Campos de texto extra</string>
   <string name="entry_binaries">Anexos</string>
+  <string name="entry_history">Versões anteriores</string>
   <string name="error_can_not_handle_uri">Keepass2Android não pôde tratar esta uri.</string>
   <string name="error_could_not_create_group">Erro ao criar grupo.</string>
   <string name="error_could_not_create_parent">Não foi possível criar o diretório pai.</string>
@@ -173,6 +174,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Esconder senha</string>
   <string name="maskpass_summary">Esconder senha por padrão</string>
+  <string name="masktotp_title">Mascarar campo TOTP</string>
+  <string name="masktotp_summary">Ocultar campo TOTP por padrão</string>
+  <string name="NoAutofillDisabling_title">Sem opção de desabilitar preenchimento automático</string>
+  <string name="NoAutofillDisabling_summary">Se ativado, o app não irá mostrar a opção de desabilitar o preenchimento automático para entradas específicas.</string>
   <string name="menu_about">Sobre</string>
   <string name="menu_change_key">Modificar Senha Mestre</string>
   <string name="menu_copy_pass">Copiar Senha</string>
@@ -286,6 +291,8 @@
   <string name="please_note">Atenção</string>
   <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expressão regular</string>
+  <string name="AlwaysMergeOnConflict_title">Sempre mesclar quando em conflito</string>
+  <string name="AlwaysMergeOnConflict_summary">Quando Keepass2Android detecta que o arquivo remoto foi modificado, sempre mesclará as mudanças locais com as mudanças remotas.</string>
   <string name="TanExpiresOnUse_title">Tan expira em uso</string>
   <string name="TanExpiresOnUse_summary">Marque as entradas TAN como expiradas quando usá-las</string>
   <string name="ShowUsernameInList_title">Mostrar nome de usuário na lista</string>
@@ -324,6 +331,8 @@
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como senha do QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Esconder o tamanho do código QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Se ativado, o tamanho do código QuickUnlock não é exibido durante a digitação.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Chave de Desbloqueio Rápido da entrada do banco de dados</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Se o banco de dados ativo contém uma entrada com título Desbloqueio Rápido no seu grupo raiz, a senha desta entrada é usada como código de Desbloqueio Rápido.</string>
   <string name="QuickUnlock_fail">O QuickUnlock falhou: senha incorreta!</string>
   <string name="SaveAttachmentDialog_title">Salvar anexo</string>
   <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja salvar o anexo.</string>
@@ -349,6 +358,7 @@
   <string name="totp_encoding_custom">Configurações de token personalizadas</string>
   <string name="totp_time_step">Passagem do tempo</string>
   <string name="totp_length">Comprimento do código</string>
+  <string name="totp_scan">Escanear código QR</string>
   <string name="delete_extra_string">Excluir caracteres adicionais</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Bloqueado. Desbloqueio Rápido habilitado.</string>
   <string name="database_loaded_unlocked">%1$s: Desbloqueado.</string>
@@ -495,6 +505,7 @@
   <string name="sftp_auth_mode">Modo de autenticação</string>
   <string name="send_public_key">Enviar chave pública...</string>
   <string name="enter_ftp_login_title">Insira os dados de login FTP:</string>
+  <string name="enter_mega_login_title">Digite seus dados da conta MEGA:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
   <string name="filestoragename_file">Arquivo local</string>
   <string name="filestoragename_androidget">Obter de app de terceiros</string>
@@ -508,6 +519,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (Arquivos KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Se você não quiser dar acesso KP2A ao seu Google Drive completo, você pode selecionar esta opção. Observe que você precisa criar um arquivo de banco de dados primeiro, os arquivos existentes não são visíveis para o aplicativo. Escolha esta opção na tela Criar banco de dados ou, se você já abriu um banco de dados, exportando o banco de dados escolhendo esta opção.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só solicitará acesso à pasta pCloud \"Applications/Keepass2Android\". Se você deseja usar um banco de dados existente de sua conta pCloud, certifique-se de que o arquivo está colocado nesta pasta pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -516,6 +529,8 @@
   <string name="filestoragename_onedrive2_myfiles">Meus arquivos</string>
   <string name="filestoragename_onedrive2_appfolder">Pasta do App Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH transferência de arquivos)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Atenção: Keepass2Android deve baixar a lista de todos os arquivos em sua conta Mega para funcionar corretamente. Por esse motivo, acessar contas com muitos arquivos pode ser lento.</string>
   <string name="filestoragename_content">Seletor de arquivo de sistema</string>
   <string name="filestorage_setup_title">Inicialização do arquivo de acesso</string>
   <string name="database_location">Localização do banco de dados</string>
@@ -661,6 +676,8 @@
   <string name="child_db_Enabled_title">Abrir automaticamente</string>
   <string name="database_file_heading">Ficheiro de Base de Dados</string>
   <string name="if_device_text">Habilitar por %1$s</string>
+  <string name="restore_history">Restaurar esta versão</string>
+  <string name="remove_history">Remover esta versão</string>
   <string name="DbUnlockedChannel_name">Banco de dados desbloqueado</string>
   <string name="DbUnlockedChannel_desc">Notificação sobre o banco de dados sendo desbloqueado</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -669,6 +686,14 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Adicionado suporte para visualização, remoção e restauração de backups de entrada</item>
+    <item>Implementado suporte para armazenamento em nuvem MEGA</item>
+    <item>Adicionado suporte para o Google Drive com escopo restrito</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Re-implementado autenticação no Google Drive, re-habilitado suporte ao Google Drive</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Corrigido o desaparecimento da pergunta pelo Autopreenchimento no Firefox</item>
     <item>Integrar sugestões de Autopreenchimento com teclado (requer Android 11+)</item>

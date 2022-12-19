@@ -20,7 +20,7 @@
     <string name="afc_folder">тека</string>
     <string name="afc_hint_clear">очистити</string>
     <string name="afc_hint_folder_name">назва теки</string>
-    <string name="afc_hint_save_as_filename">ім\'я файлу</string>
+    <string name="afc_hint_save_as_filename">назва файлу</string>
     <string name="afc_hint_search">пошук</string>
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">Ця програма не має дозволу на створення файлів/тек</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">Ця програма не має дозволу на видалення файлів/тек</string>
@@ -41,7 +41,7 @@
     <string name="afc_pmsg_deleting_file">Видалення %1$s \"%2$s\"…</string>
     <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" було видалено</string>
     <string name="afc_pmsg_filename_is_directory">\"%1$s\" є текою</string>
-    <string name="afc_pmsg_filename_is_invalid">Ім\'я файлу \"%1$s\" є недійсним</string>
+    <string name="afc_pmsg_filename_is_invalid">Назва файлу \"%1$s\" недійсна</string>
     <string name="afc_pmsg_max_file_count_allowed">…має більше файлів, макс. дозволено: %1$,d</string>
     <string name="afc_pmsg_unknown_error">Невідома помилка: %1$s</string>
     <string name="afc_root">Корінь</string>
@@ -50,7 +50,7 @@
     <string name="afc_title_date">Дата</string>
     <string name="afc_title_error">Помилка</string>
     <string name="afc_title_info">Інформація</string>
-    <string name="afc_title_name">Ім’я</string>
+    <string name="afc_title_name">Назва</string>
     <string name="afc_title_save_as">Зберегти як…</string>
     <string name="afc_title_size">Розмір</string>
     <string name="afc_title_sort_by">Сортувати за…</string>

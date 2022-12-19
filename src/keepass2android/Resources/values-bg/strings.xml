@@ -21,6 +21,8 @@
   <string name="app_name_nonet">Keepass2Android офлайн</string>
   <string name="short_app_name_nonet">KP2A Офлайн</string>
   <string name="show_kill_app">Бутон-Затваряне</string>
+  <string name="application">Приложение</string>
+  <string name="application_settings">Настройки на приложението</string>
   <string name="ShowGroupnameInSearchResult_title">Показване на името на групата в резултата от търсенето</string>
   <string name="ShowGroupnameInSearchResult_resume">Показване на името на групата под заглавието  в резултатите от търсенето. Полезно е, ако няколко записа имат едно и също име.</string>
   <string name="NavigationToGroupCompleted_message">Групата за показване е: %1$s</string>
@@ -37,6 +39,7 @@
   <string name="FileHandling_prefs">Работа с файлове</string>
   <string name="keyboard_prefs">Клавиатура</string>
   <string name="export_prefs">Експортиране на база данни...</string>
+  <string name="fingerprint_prefs">Биометрично отключване</string>
   <string name="import_db_prefs">Импортиране на БД във вътрешна папка</string>
   <string name="import_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
   <string name="export_keyfile_prefs">Импортирай ключ от вътрешна папка</string>
@@ -57,6 +60,7 @@
   <string name="copy_username">Изберете за да копиране потребителското име в клипборда</string>
   <string name="copy_password">Изберете за да копирате парола в клипборда</string>
   <string name="available_through_keyboard">Въвеждането е възможно чрез KP2A клавиатурата</string>
+  <string name="app_language_pref_title">Език на приложението</string>
   <string name="entry_is_available">е наличен</string>
   <string name="not_possible_im_picker">Невъзможно отваряне на диалог за избиране на метод за въвеждане. Моля активирайте клавиатурата ръчно.</string>
   <string name="please_activate_keyboard">Моля активирайте клавиатурата на Keepass2Android във вашата системни настройки.</string>
@@ -68,6 +72,7 @@
   <string name="disclaimer_formal">Keepass2Android е с АБСОЛЮТНО НИКАКВИ ГАРАНЦИИ. Това е свободен софтуер и вие сте свободни да го разпространявате при условията на GPL врсия 2 и по-късни.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Копиране в клипборда</string>
+  <string name="fingerprint_os_error">Биометричното отключване изисква Android 6.0 или по нов. </string>
   <string name="enter_filename">Въведете име на файла на базаданни</string>
   <string name="entry_accessed">Достъп до</string>
   <string name="entry_cancel">Прекъсни</string>

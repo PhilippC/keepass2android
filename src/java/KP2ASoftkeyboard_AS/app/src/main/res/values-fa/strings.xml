@@ -99,7 +99,7 @@
     <!-- Indicates that a word has been added to the dictionary -->
     <string name="added_word"><xliff:g id="WORD">%s</xliff:g> : ذخیره شد</string>
     <!-- Tip to long press on keys -->
-    <string name="tip_long_press">برای مشاهده علائم تکیه (ø، ö و موارد دیگر) کلیدی را پایین نگه دارید</string>
+    <string name="tip_long_press">برای مشاهدهٔ علائم تکیه (ø،‏ ö و...) کلیدی را پایین نگه دارید</string>
     <!-- Tip to dismiss keyboard -->
     <string name="tip_dismiss">برای بستن صفحه کلید در هر نقطه که بخواهید، کلید برگشت ↶ را فشار دهید</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
@@ -113,7 +113,7 @@
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
     <string name="tip_to_open_keyboard"><b>\"هر زمان که قسمت متنی را لمس می کنید، صفحه کلید باز می شود\"</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
-    <string name="tip_to_view_accents"><b>\"یک کلید را برای مشاهده تکیه های صدا لمس کرده و نگه دارید (ø، ö، ô، ó و موارد دیگر)\"\n</b></string>
+    <string name="tip_to_view_accents"><b>برای مشاهدهٔ تکیه‌های صدا کلیدی را لمس کرده و نگه دارید (ø،‏ ö،‏ ô،‏ ó و...)\n</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
     <string name="tip_to_open_symbols"><b>\"تغییر شماره ها و نمادها با لمس این کلید\"</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
@@ -133,8 +133,11 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
     <!-- Voice related labels -->
     <!-- Title of the warning dialog that shows when a user initiates voice input for
          the first time. -->
@@ -214,10 +217,15 @@
     <!-- appears above image showing how to access keyboard settings -->
     <string name="keyboard_settings"><font size="17"><b>\"تنظیمات صفحه کلید\"\n</b></font><font size="3">\n</font>\"کلید \"<b>\"?123\"</b>\" را لمس کرده و نگهدارید.\"</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov.ir"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".ir"</string>
     <!-- Menu item for launching Input method picker -->
     <string name="selectInputMethod">انتخاب روش ورودی</string>
     <!-- Title for input language selection screen -->
@@ -241,4 +249,5 @@
     <string name="subtype_mode_keyboard">صفحه کلید</string>
     <string name="subtype_mode_voice">صوتی</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[<]]></string>
 </resources>

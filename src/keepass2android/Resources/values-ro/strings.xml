@@ -9,7 +9,7 @@
   <string name="deny">Interzice</string>
   <string name="add_entry">Adăugă o înregistrare</string>
   <string name="edit_entry">Editeaza inregistrare</string>
-  <string name="add_url_entry">Creaţi înregistrare pentru URL</string>
+  <string name="add_url_entry">Creați înregistrare pentru URL</string>
   <string name="add_group">Adăugă un grup</string>
   <string name="add_group_title">Adăugare grup</string>
   <string name="edit_group_title">Editează Grupul</string>
@@ -70,6 +70,7 @@
   <string name="copy_password">Selectați pentru a copia parola în clipboard</string>
   <string name="copy_totp">Selectați pentru a copia TOTP în clipboard</string>
   <string name="available_through_keyboard">Înregistrarea este disponibilă folosind tastatura KP2A</string>
+  <string name="app_language_pref_title">Limba aplicației</string>
   <string name="entry_is_available">este disponibil</string>
   <string name="not_possible_im_picker">Nu s-a putut deschide dialogul de a selecta medoda de introducere. Activați tastatura manual.</string>
   <string name="please_activate_keyboard">Activați tastatura Keepass2Android în setările dvs. de sistem.</string>
@@ -120,6 +121,7 @@
   <string name="entry_user_name">Nume de utilizator</string>
   <string name="entry_extra_strings">Câmpuri text suplimentare</string>
   <string name="entry_binaries">Fișiere atașate</string>
+  <string name="entry_history">Versiuni anterioare</string>
   <string name="error_can_not_handle_uri">Keepass2Android nu poate gestiona acest URI.</string>
   <string name="error_could_not_create_group">Eroare creare grup.</string>
   <string name="error_could_not_create_parent">Imposibil de creat folder-ul părinte.</string>
@@ -169,6 +171,7 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Maschează parola</string>
   <string name="maskpass_summary">Ascunde parolele în mod implicit</string>
+  <string name="NoAutofillDisabling_title">Nicio opțiune pentru a dezactiva autocompletarea</string>
   <string name="menu_about">Despre</string>
   <string name="menu_change_key">Schimbă cheia principală</string>
   <string name="menu_copy_pass">Copiază parola</string>

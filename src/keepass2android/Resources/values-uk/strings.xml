@@ -61,7 +61,7 @@
   <string name="unlock_database_title">Розблокувати</string>
   <string name="brackets">Дужки</string>
   <string name="cancel">Скасувати</string>
-  <string name="Ok">Ok</string>
+  <string name="Ok">Гаразд</string>
   <string name="disable_sensor">Вимкнути датчик</string>
   <string name="enable_sensor">Увімкнути датчик</string>
   <string name="ClearClipboard">Буфер обміну очищено.</string>
@@ -102,7 +102,7 @@
   <string name="FingerprintSetupFailed">Не вдалося зашифрувати дані. Це могло статися, коли ви додавали чи вилучали відбитки пальців у системних налаштуваннях, в той час як Keepass2Android очікував ваш відбиток пальця.</string>
   <string name="enable_fingerprint_unlock_Info">Це збереже Ваш головний пароль на цьому пристрої, зашифрованому за допомогою Android Keystore і захищеному з використанням біометричної автентифікації. Дозволяє розблоковувати базу паролів лише за Вашою біометрією.</string>
   <string name="enable_fingerprint_quickunlock_Info">Дозволяє використовувати біометричну автентифікацію замість коду QuickUnlock. Не зберігає жодної інформації, повʼязаної з Вашим головним паролем.</string>
-  <string name="enter_filename">Введіть ім’я бази даних</string>
+  <string name="enter_filename">Введіть назву файлу бази даних</string>
   <string name="entry_accessed">Доступ</string>
   <string name="entry_cancel">Скасувати</string>
   <string name="entry_comment">Нотатки</string>
@@ -117,11 +117,12 @@
   <string name="entry_modified">Змінено</string>
   <string name="entry_password">Пароль</string>
   <string name="entry_save">Зберегти</string>
-  <string name="entry_title">Ім’я</string>
+  <string name="entry_title">Назва</string>
   <string name="entry_url">URL</string>
   <string name="entry_user_name">Ім’я користувача</string>
   <string name="entry_extra_strings">Додаткові поля</string>
   <string name="entry_binaries">Вкладені файли</string>
+  <string name="entry_history">Попередні версії</string>
   <string name="error_can_not_handle_uri">Keepass2Android не може обробити цю URL-адресу.</string>
   <string name="error_could_not_create_group">Помилка створення групи.</string>
   <string name="error_could_not_create_parent">Не вдалося створити теку верхнього рівня.</string>
@@ -132,11 +133,11 @@
   <string name="error_file_not_create">Не вдається створити файл</string>
   <string name="error_invalid_db">Недійсна база даних.</string>
   <string name="error_invalid_path">Недійсний шлях.</string>
-  <string name="error_no_name">Необхідно ввести ім\'я.</string>
+  <string name="error_no_name">Необхідно ввести назву.</string>
   <string name="error_nopass">Необхідний пароль або ключовий файл.</string>
   <string name="error_pass_gen_type">Повинен бути вибраний принаймні один тип генерації пароля</string>
-  <string name="error_pass_match">Паролі не збігаються.</string>
-  <string name="error_rounds_not_number">Кількість циклів повинна бути числом.</string>
+  <string name="error_pass_match">Паролі відрізняються.</string>
+  <string name="error_rounds_not_number">Кількість циклів має бути числом.</string>
   <string name="error_param_not_number">Параметр має бути числом.</string>
   <string name="error_title_required">Необхідно ввести назву.</string>
   <string name="error_wrong_length">Введіть ціле число на всю довжину поля</string>
@@ -171,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Приховувати пароль</string>
   <string name="maskpass_summary">Приховувати всі паролі</string>
+  <string name="masktotp_title">Маска поля TOTP</string>
+  <string name="masktotp_summary">Усталено ховати поле TOTP</string>
+  <string name="NoAutofillDisabling_title">Немає опції вимкнути автозаповнення</string>
+  <string name="NoAutofillDisabling_summary">Якщо активовано, застосунок не показуватиме опцію автозаповнення для конкретних записів.</string>
   <string name="menu_about">Про</string>
   <string name="menu_change_key">Змінити головний ключ</string>
   <string name="menu_copy_pass">Копіювати пароль</string>
@@ -232,11 +237,11 @@
   <string name="exporting_database">База даних експортується…</string>
   <string name="export_database_successful">Базу даних успішно експортовано!</string>
   <string name="export_keyfile_successful">Файл ключа успішно експортовано!</string>
-  <string name="space">П р о б і л</string>
+  <string name="space">Пробіл</string>
   <string name="search_label">Пошук</string>
   <string name="show_password">Показати пароль</string>
   <string name="sort_menu">Впорядкувати за...</string>
-  <string name="sort_name">Впорядкувати за ім’ям</string>
+  <string name="sort_name">Впорядкувати за назвою</string>
   <string name="sort_db">Впорядкувати за датою створення</string>
   <string name="sort_moddate">Впорядкувати за датою зміни</string>
   <string name="sort_default">Залишити типовий порядок</string>
@@ -284,6 +289,8 @@
   <string name="please_note">Зверніть увагу</string>
   <string name="contributors">Учасники</string>
   <string name="regular_expression">Звичайний вираз</string>
+  <string name="AlwaysMergeOnConflict_title">Завжди об\'єднувати конфліктні</string>
+  <string name="AlwaysMergeOnConflict_summary">Коли Keepass2Android виявляє, що віддалений файл було змінено, завжди об\'єднувати локальні зміни з віддаленими змінами.</string>
   <string name="TanExpiresOnUse_title">TAN недійсний після використання</string>
   <string name="TanExpiresOnUse_summary">Позначати використані записи TAN, як недійсні</string>
   <string name="ShowUsernameInList_title">Ім\'я користувача в списку записів</string>
@@ -322,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Максимальна кількість символів, що використовуються як пароль QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Приховати довжину QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Якщо увімкнено, довжина коду QuickUnlock не показується на екрані блокування.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ QuickUnlock із запису бази даних</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Якщо активна база даних містить запис із назвою QuickUnlock у її кореневій групі, пароль цього запису використовується як код QuickUnlock.</string>
   <string name="QuickUnlock_fail">Неправильний пароль QuickUnlock!</string>
   <string name="SaveAttachmentDialog_title">Збереження вкладення</string>
   <string name="SaveAttachmentDialog_text">Будь ласка, виберіть місце для збереження вкладення.</string>
@@ -347,6 +356,7 @@
   <string name="totp_encoding_custom">Власні налаштування токена</string>
   <string name="totp_time_step">Часовий проміжок</string>
   <string name="totp_length">Довжина коду</string>
+  <string name="totp_scan">Сканувати QR-код</string>
   <string name="delete_extra_string">Видалити рядок</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Заблоковано. QuickUnlock увімкнено.</string>
   <string name="database_loaded_unlocked">%1$s: Розблоковано.</string>
@@ -493,6 +503,7 @@
   <string name="sftp_auth_mode">Режим перевірки</string>
   <string name="send_public_key">Надіслати публічний ключ...</string>
   <string name="enter_ftp_login_title">Введіть дані входу FTP:</string>
+  <string name="enter_mega_login_title">Введіть дані входу до облікового запису MEGA:</string>
   <string name="select_storage_type">Виберіть тип сховища:</string>
   <string name="filestoragename_file">Локальний файл</string>
   <string name="filestoragename_androidget">Отримати від сторонньої програми</string>
@@ -506,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Якщо ви не хочете надавати доступ KP2A до всього сховища Dropbox, ви можете вибрати цю опцію. Вона запитає доступ лише до теки Apps/Keepass2Android. Це особливо зручно при створенні нової бази даних. Якщо у вас вже є база даних, виберіть цю опцію для створення теки, а потім розмістіть свій файл в цій теці (з комп\'ютера), після чого знову виберіть цю опцію для відкриття файлу.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragename_gdriveKP2A">Google Диск (файли KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Якщо не хочете надавати доступ KP2A до всього свого Google Диска, ви можете вибрати цю опцію. Зверніть увагу, що спочатку потрібно створити файл бази даних, наявні файли не показуються для застосунку. Або виберіть цю опцію з екрана створення бази даних або, якщо ви вже відкрили базу даних, експортуйте її, вибравши цю опцію.</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Цей тип сховища вимагатиме доступу лише до теки \"Applications/Keepass2Android\" у pCloud. Якщо ви хочете використовувати наявну базу даних з вашого облікового запису pCloud, переконайтеся, що файл розміщений у цій теці pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Мої файли</string>
   <string name="filestoragename_onedrive2_appfolder">Тека програми Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH передача файлів)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Зверніть увагу: Keepass2Android повинен завантажити список всіх файлів у вашому обліковому записі Mega, щоб працювати належним чином. З цієї причини доступ до облікових записів з багатьма файлами може бути повільним.</string>
   <string name="filestoragename_content">Системний вибір файлу</string>
   <string name="filestorage_setup_title">Ініціалізація доступу до файлу</string>
   <string name="database_location">Розташування бази даних</string>
@@ -603,7 +618,7 @@
   <string name="DefaultTemplate">Стандартний запис</string>
   <string name="TemplateGroupName">Шаблони</string>
   <string name="TemplateTitle_IdCard">ID карта</string>
-  <string name="TemplateField_IdCard_Name">Ім’я</string>
+  <string name="TemplateField_IdCard_Name">Назва</string>
   <string name="TemplateField_IdCard_PlaceOfIssue">Місце видачі</string>
   <string name="TemplateField_IdCard_IssueDate">Дата випуску</string>
   <string name="TemplateTitle_EMail">Електронна пошта</string>
@@ -661,6 +676,8 @@
   <string name="child_db_Enabled_title">Відкривати автоматично</string>
   <string name="database_file_heading">Файл бази даних</string>
   <string name="if_device_text">Увімкнути для %1$s</string>
+  <string name="restore_history">Відновити цю версію</string>
+  <string name="remove_history">Вилучити цю версію</string>
   <string name="DbUnlockedChannel_name">База даних розблокована</string>
   <string name="DbUnlockedChannel_desc">Сповіщення про розблокування бази даних</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
@@ -669,6 +686,14 @@
   <string name="EntryChannel_desc">Сповіщення для простого доступу до обраного запису.</string>
   <string name="CloseDbAfterFailedAttempts">Закрити базу паролів після трьох невдалих спроб біометричного розблокування.</string>
   <string name="WarnFingerprintInvalidated">Увага! Біометрична автентифікація може бути скасована Android, наприклад після додавання нового відбитку пальця у налаштуваннях вашого пристрою. Переконайтеся, що ви завжди знаєте, як розблокувати за допомогою головного пароля!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Додано підтримку перегляду, видалення та відновлення резервних копій записів</item>
+    <item>Додано підтримку хмарного сховища MEGA</item>
+    <item>Додано підтримку Диска Google з обмеженим вибором файлів</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Повернено автентифікацію Google Диска, повторно увімкнено підтримку Google Диска</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Виправлено зникання запиту автозаповнення у Firefox</item>
     <item>Інтеграція пропозицій автозаповнення до клавіатури (потрібен Android 11+)</item>

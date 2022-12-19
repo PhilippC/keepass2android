@@ -71,6 +71,7 @@
   <string name="copy_password">Kopírovat heslo do schránky</string>
   <string name="copy_totp">Zvolte pro kopírování TOTP do schránky</string>
   <string name="available_through_keyboard">K dispozici je klávesnice KP2A</string>
+  <string name="app_language_pref_title">Jazyk aplikace</string>
   <string name="entry_is_available">je k dispozici</string>
   <string name="not_possible_im_picker">Nepodařilo se otevřít dialog pro výběr metody zadávání dat. Aktivujte klávesnici ručně.</string>
   <string name="please_activate_keyboard">Prosím, povolte klávesnici Keepass2Android v nastavení systému.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android je dodáván BEZ JAKÉKOLIV ZÁRUKY; Toto je svobodný software, můžete jej šířit pod licencí GPL verze 2 nebo novější.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopírovat do schránky</string>
+  <string name="SystemLanguage">Jazyk systému</string>
   <string name="fingerprint_description">Ověřte se po pokračování</string>
   <string name="fingerprint_fatal">Nebylo možné nastavit Biometrické odemknutí:</string>
   <string name="fingerprint_not_recognized">Biometrické ověření selhalo. Zkuste to prosím znovu</string>
@@ -120,6 +122,7 @@
   <string name="entry_user_name">Uživatelské jméno</string>
   <string name="entry_extra_strings">Doplňková textová pole</string>
   <string name="entry_binaries">Přiložené soubory</string>
+  <string name="entry_history">Předchozí verze</string>
   <string name="error_can_not_handle_uri">Keepass2Android nemůže zpracovat tuto URI.</string>
   <string name="error_could_not_create_group">Chyba při vytváření skupiny.</string>
   <string name="error_could_not_create_parent">Nelze vytvořit nadřazený adresář.</string>
@@ -169,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Skrýt heslo</string>
   <string name="maskpass_summary">Skrýt heslo jako výchozí</string>
+  <string name="masktotp_title">Skrýt pole TOTP</string>
+  <string name="masktotp_summary">Ve výchozím stavu skrývat pole TOTP</string>
+  <string name="NoAutofillDisabling_title">Není možné vypnout automatické doplňování</string>
+  <string name="NoAutofillDisabling_summary">Po zapnutí nebude aplikace zobrazovat možnost vypnutí automatického doplňování pro určité záznamy.</string>
   <string name="menu_about">O aplikaci</string>
   <string name="menu_change_key">Změnit hlavní klíč</string>
   <string name="menu_copy_pass">Kopírovat heslo</string>
@@ -282,6 +289,8 @@
   <string name="please_note">Upozornění</string>
   <string name="contributors">Přispěvatelé</string>
   <string name="regular_expression">Regulární výraz</string>
+  <string name="AlwaysMergeOnConflict_title">Při konfliktu sloučit</string>
+  <string name="AlwaysMergeOnConflict_summary">Při detekci změny vzdáleného souboru vždy provést sloučení lokálních změn se vzdálenými</string>
   <string name="TanExpiresOnUse_title">Ověřovací kód TAN vyprší po prvním použití</string>
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
   <string name="ShowUsernameInList_title">Zobrazit uživatelské jméno v seznamu</string>
@@ -290,6 +299,9 @@
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
   <string name="NoDalVerification_title">Žádné ověření DAL</string>
   <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
+  <string name="InlineSuggestions_title">Integrovat s klávesnicí</string>
+  <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického doplňování jako možnosti na klávesnici (pokud je podporováno metodou vstupu)</string>
+  <string name="requires_android11">Vyžaduje Android 11 nebo novější</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
   <string name="search_options">Možnosti</string>
@@ -317,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro Rychlé odemknutí.</string>
   <string name="QuickUnlockHideLength_title">Schovej délku kódu pro Rychlé odemknutí</string>
   <string name="QuickUnlockHideLength_summary">Je-li tato možnost aktivní, délka kódu Rychlého odemknutí nebude zobrazena na odemykací obrazovce.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Klíč Rychlého odemknutí z položky v databázi</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Pokud aktivní databáze obsahuje položku s názvem QuickUnlock v kořenové skupině, tak se heslo této položky použije jako kód pro Rychlé odemknutí.</string>
   <string name="QuickUnlock_fail">Rychlé odemknutí se nezdařilo: nesprávné heslo!</string>
   <string name="SaveAttachmentDialog_title">Uložit přílohu</string>
   <string name="SaveAttachmentDialog_text">Prosím vyberte, kam chcete uložit přílohu.</string>
@@ -342,6 +356,7 @@
   <string name="totp_encoding_custom">Nastavení vlastního tokenu</string>
   <string name="totp_time_step">Časový krok</string>
   <string name="totp_length">Délka kódu</string>
+  <string name="totp_scan">Naskenovat QR kód</string>
   <string name="delete_extra_string">Smazat doplňkový text</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: uzamčen. Rychlé odemknutí povoleno.</string>
   <string name="database_loaded_unlocked">%1$s: odemčen.</string>
@@ -404,6 +419,8 @@
   <string name="DocumentAccessRevoked">Soubor není dále dostupný pro Keepass2Android. Buď byl smazán, nebo bylo zrušeno povolení k přístupu. Prosím otevřete daný soubor znovu pomocí: Změnit databázi.</string>
   <string name="PreloadDatabaseEnabled_title">Přednačítat databázový soubor</string>
   <string name="PreloadDatabaseEnabled_summary">Zahájit nahrávání nebo stahování na pozadí.</string>
+  <string name="SyncAfterQuickUnlock_title">Synchronizovat po Rychlém odemknutí</string>
+  <string name="SyncAfterQuickUnlock_summary">Synchronizovat databázi se vzdáleným souborem po odemknutí pomocí Rychlého odemknutí.</string>
   <string name="AskOverwriteBinary">Chcete přepsat existující binární soubor se stejným názvem?</string>
   <string name="AskOverwriteBinary_title">Přepsat existující soubor?</string>
   <string name="AskOverwriteBinary_yes">Přepsat</string>
@@ -486,6 +503,7 @@
   <string name="sftp_auth_mode">Režim ověření</string>
   <string name="send_public_key">Odeslat veřejný klíč...</string>
   <string name="enter_ftp_login_title">Zadejte přihlašovací údaje pro FTP:</string>
+  <string name="enter_mega_login_title">Zadejte přihlašovací údaje pro váš účet MEGA</string>
   <string name="select_storage_type">Vyberte typ úložiště:</string>
   <string name="filestoragename_file">Místní soubor</string>
   <string name="filestoragename_androidget">Získat od aplikace třetí strany</string>
@@ -499,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A soubory)</string>
+  <string name="filestoragehelp_gdriveKP2A">Nechcete-li dát aplikaci KeePass2Android přístup k celému vašemu Google Drive, použijte tuto možnost. Upozorňujeme, že nejprve musíte vytvořit soubor s databází položek, existující soubory nejsou viditelné pro aplikaci. Toto můžete udělat z obrazovky Vytvořit databázi, nebo exportem právě otevřené databáze, volbou této možnosti</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Tento typ úložiště si vyžaduje přístup pouze do pCloudové složky \"Applications/Keepass2Android\". Chcete-li použít existující databázi ze svého pCloud účtu, ujistěte se, že je soubor umístěn v této složce.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -507,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">Mé soubory</string>
   <string name="filestoragename_onedrive2_appfolder">Složka aplikace Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH přenos souborů)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Upozornění: Pro správné fungování musí Keepass2Android stáhnout seznam všech souborů na vašem účtu MEGA. Z tohoto důvodu může být přístup k účtům s mnoha soubory pomalý.</string>
   <string name="filestoragename_content">Výběr systému souborů</string>
   <string name="filestorage_setup_title">Inicializace přístupu k souboru</string>
   <string name="database_location">Umístění databáze</string>
@@ -653,6 +675,8 @@
   <string name="child_db_Enabled_title">Otevřít automaticky</string>
   <string name="database_file_heading">Databázový soubor</string>
   <string name="if_device_text">Povolit pro %1$s</string>
+  <string name="restore_history">Obnovit tuto verzi</string>
+  <string name="remove_history">Odstranit tuto verzi</string>
   <string name="DbUnlockedChannel_name">Databáze odemknuta</string>
   <string name="DbUnlockedChannel_desc">Upozornění o odemykání databáze</string>
   <string name="DbQuicklockedChannel_name">Rychlé odemknutí</string>
@@ -661,6 +685,21 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Přidaná podpora zobrazování, mazání a obnovování záloh položek</item>
+    <item>Přidaná podpora pro cloudové úložiště MEGA </item>
+    <item>Přidání podpory pro Google Drive s omezeným přístupem</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Přepsání přihlašování ke Google Drive, vrácení podpory pro Google Drive</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Oprava mizící výzvy automatického doplňování ve Firefoxu</item>
+    <item>Integrování návrhů automatického doplňování s klávesnicí (vyžaduje Android 11+)</item>
+    <item>Povolení změny jazyka aplikace v nastavení</item>
+    <item>Přidaná možnost pro synchronizaci databáze po Rychlém odemknutí</item>
+    <item>Oprava chyby: Neměnit velikost písmen v názvu souboru při ukládání do Dropboxu</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Přidána podpora pro soubory KDBX 4.1 zavedené v KeePass 2.48</item>
     <item>Přidána možnost konfigurovat TOTP nastavení pro položky</item>

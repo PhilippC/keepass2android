@@ -122,6 +122,7 @@
   <string name="entry_user_name">用户名</string>
   <string name="entry_extra_strings">额外的字符串字段</string>
   <string name="entry_binaries">文件附件</string>
+  <string name="entry_history">之前的版本</string>
   <string name="error_can_not_handle_uri">Keepass2Android 无法处理此 URI。</string>
   <string name="error_could_not_create_group">创建群组错误。</string>
   <string name="error_could_not_create_parent">无法创建上级目录。</string>
@@ -171,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">密码掩码</string>
   <string name="maskpass_summary">默认隐藏密码</string>
+  <string name="masktotp_title">遮盖 TOTP 字段</string>
+  <string name="masktotp_summary">默认隐藏 TOTP 字段</string>
+  <string name="NoAutofillDisabling_title">无禁用自动填充选项</string>
+  <string name="NoAutofillDisabling_summary">如激活，应用将不会显示对特定条目禁用自动填充的选项。</string>
   <string name="menu_about">关于</string>
   <string name="menu_change_key">更改主密钥</string>
   <string name="menu_copy_pass">复制密码</string>
@@ -284,6 +289,8 @@
   <string name="please_note">请注意</string>
   <string name="contributors">贡献者</string>
   <string name="regular_expression">正则表达式</string>
+  <string name="AlwaysMergeOnConflict_title">冲突时总是合并</string>
+  <string name="AlwaysMergeOnConflict_summary">当 Keepass2Android 检测到远程文件被修改时，总是将本地更改与远程更改合并。</string>
   <string name="TanExpiresOnUse_title">TAN 在使用时过期</string>
   <string name="TanExpiresOnUse_summary">当使用它们时标记 TAN 条目过期</string>
   <string name="ShowUsernameInList_title">在列表中显示用户名</string>
@@ -322,6 +329,8 @@
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
   <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
   <string name="QuickUnlockHideLength_summary">若启用，快速解锁所需的密码长度不会再显示在快速解锁界面上。</string>
+  <string name="QuickUnlockKeyFromDatabase_title">来自数据库条目的 QuickUnlock 密钥</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">如果活动数据库在其根组中包含一个标题为 QuickUnlock 的条目，则该条目的密码将用作 QuickUnlock 代码。</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
@@ -347,6 +356,7 @@
   <string name="totp_encoding_custom">自定义令牌设置</string>
   <string name="totp_time_step">时间步数</string>
   <string name="totp_length">代码长度</string>
+  <string name="totp_scan">扫描二维码</string>
   <string name="delete_extra_string">删除额外的字符串</string>
   <string name="database_loaded_quickunlock_enabled">%1$s：已锁定，快速解锁已启用。</string>
   <string name="database_loaded_unlocked">%1$s：已解锁。</string>
@@ -493,6 +503,7 @@
   <string name="sftp_auth_mode">身份验证模式</string>
   <string name="send_public_key">发送公钥...</string>
   <string name="enter_ftp_login_title">输入 FTP 登录数据:</string>
+  <string name="enter_mega_login_title">输入您的 MEGA 帐户登录数据：</string>
   <string name="select_storage_type">选择存储类型：</string>
   <string name="filestoragename_file">本地文件</string>
   <string name="filestoragename_androidget">从第三方应用程序中获取</string>
@@ -506,6 +517,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (KP2A文件)</string>
+  <string name="filestoragehelp_gdriveKP2A">如果您不想给予KP2A对您Google Drive的完整访问权，您可以选择此选项。 请注意，您需要先创建一个数据库文件，现有文件对本应用不可见。 您可以从“创建数据库”屏幕中选择此选项，或者选择此选项导出数据库，前提是您已经打开了一个数据库。</string>
   <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">这种存储类型只请求访问 pCloud 文件夹 \"Applications/Keepass2Android\"。如果您想使用 pCloud 帐户中现有的数据库，请确保文件被放置在这个 pCloud 文件夹中。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -514,6 +527,8 @@
   <string name="filestoragename_onedrive2_myfiles">我的文件</string>
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android 应用文件夹</string>
   <string name="filestoragename_sftp">SFTP（SSH 文件传输）</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">请注意：Keepass2Android 必须下载您 Mega 帐户中所有文件的列表才能正常工作。 出于这个原因，访问有许多文件的帐户可能会很慢。</string>
   <string name="filestoragename_content">系统文件选择器</string>
   <string name="filestorage_setup_title">初始化文件访问</string>
   <string name="database_location">数据库位置</string>
@@ -660,6 +675,8 @@
   <string name="child_db_Enabled_title">自动打开</string>
   <string name="database_file_heading">数据库文件</string>
   <string name="if_device_text">启用%1$s</string>
+  <string name="restore_history">还原此版本</string>
+  <string name="remove_history">删除此版本</string>
   <string name="DbUnlockedChannel_name">数据库已解锁</string>
   <string name="DbUnlockedChannel_desc">数据库解锁通知</string>
   <string name="DbQuicklockedChannel_name">快速解锁</string>
@@ -668,6 +685,14 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>新增查看、移除和恢复条目备份的功能</item>
+    <item>支持MEGA 云存储</item>
+    <item>允许用户不授予KPA完整的Google Drive访问权限</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>重新实现 Google Drive 身份验证，重新启用 Google Drive 支持</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>修复了 Firefox 中自动填充提示消失的问题</item>
     <item>将自动填充建议与键盘集成 (需要 Android 11+)</item>
@@ -728,18 +753,17 @@
     * 新的 OneDrive 实现：支持 OneDrive for Business、共享文件、可选权限范围、多账户，以及修复离线访问问题\n
     * 其他问题修复
   </string>
-  <string name="ChangeLog_1_07">版本1.07 \n
-     *修复了三星Android 9上的崩溃问题\n
-     *允许打开多个与KeeAutoExec兼容的数据库\n
-     * SFTP：允许公钥验证，检查主机密钥是否已更改\n
-     *介绍pCloud支持 - 感谢gilbsgilbs！\n
-     *明确指出Nextcloud支持\n
-     *改进入口附件的保存和更新\n
-     *更多选择，以适应个人喜好的行为\n
-     * SSL：信任用户证书\n
-     *改进自动填充功能（现在适用于Firefox，允许减少弹出窗口）\n
-     *错误修复\n
-  </string>
+  <string name="ChangeLog_1_07">版本1.07 \ n
+     *修复了三星Android 9上的崩溃问题\ n
+     *允许打开多个与KeeAutoExec兼容的数据库\ n
+     * SFTP：允许公钥验证，检查主机密钥是否已更改\ n
+     *介绍pCloud支持 - 感谢gilbsgilbs！\ n
+     *明确指出Nextcloud支持\ n
+     *改进入口附件的保存和更新\ n
+     *更多选择，以适应个人喜好的行为\ n
+     * SSL：信任用户证书\ n
+     *改进自动填充功能（现在适用于Firefox，允许减少弹出窗口）\ n
+     *错误修复\ n</string>
   <string name="ChangeLog_1_06">    1.06版本\n
     *切换到ykDroid而不是YubiChallenge作为Yubikey Challenge-Response的应用程序。\n
     *实施对KeepassXC挑战应答的支持。 注意：数据库格式必须是KDBX4！\n

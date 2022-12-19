@@ -27,7 +27,7 @@
   <string name="show_kill_app_summary">Паказваць на экране пароля кнопку закрыцця праграмы</string>
   <string name="application">Праграма</string>
   <string name="application_settings">Налады праграмы</string>
-  <string name="ShowGroupnameInSearchResult_title">Адлюстраванне назвы групы ў выніках пошуку</string>
+  <string name="ShowGroupnameInSearchResult_title">Паказваць назву групы ў выніках пошуку</string>
   <string name="ShowGroupnameInSearchResult_resume">Паказваць пад назвай запісу ў выніках пошуку назву групы. Будзе карысна, калі ў запісаў аднолькавыя назвы.</string>
   <string name="NavigationToGroupCompleted_message">Адлюстраванне групы зараз: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Адключаныя мэты аўтазапаўнення</string>
@@ -71,6 +71,7 @@
   <string name="copy_password">Скапіяваць пароль у буфер абмену</string>
   <string name="copy_totp">Скапіяваць TOTP у буфер абмену</string>
   <string name="available_through_keyboard">Уваход даступны праз клавіятуру KP2A</string>
+  <string name="app_language_pref_title">Мова праграмы</string>
   <string name="entry_is_available">даступна</string>
   <string name="not_possible_im_picker">Не атрымалася адкрыць дыялог для выбару метаду ўводу. Калі ласка, актывуйце клавіятуру ўласнаручна.</string>
   <string name="please_activate_keyboard">Калі ласка, уключыце клавіятуру Keepass2Android у сістэмных наладах.</string>
@@ -82,6 +83,7 @@
   <string name="disclaimer_formal">Keepass2Android пастаўляецца без АНІЯКІХ ГАРАНТЫЙ; Гэта свабоднае праграмнае забеспячэнне, якое вы можаце распаўсюджваць на ўмовах ліцэнзіі GPL 2 ці пазнейшай версіі.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Скапіяваць у буфер абмену</string>
+  <string name="SystemLanguage">Мова сістэмы</string>
   <string name="fingerprint_description">Для працягу патрабуецца аўтэнтыфікацыя</string>
   <string name="fingerprint_fatal">Не атрымалася наладзіць разблакаванне з дапамогай біяметрычных даных:</string>
   <string name="fingerprint_not_recognized">Не атрымалася выканаць аўтэнтыфікацыю з дапамогай біяметрычных даных. Паспрабуйце яшчэ раз</string>
@@ -92,7 +94,7 @@
   <string name="disable_fingerprint_unlock">Адключыць разблакаванне з дапамогай біяметрычных даных</string>
   <string name="enable_fingerprint_unlock">Уключыць разблакаванне з дапамогай біяметрычных даных</string>
   <string name="enable_fingerprint_quickunlock">Уключыць разблакаванне з дапамогай біяметрычных даных для хуткага разблакавання</string>
-  <string name="fingerprint_unlock_failed">Не атрымалася разблакаваць з дапамогай біяметрычных даных. Ключ шыфравання быў адхілены аперацыйнай сістэмай. Звычайна такое адбываецца пры змене наладаў разблакавання з дапамогай біяметрычных даных або наладаў бяспекі.</string>
+  <string name="fingerprint_unlock_failed">Не атрымалася разблакаваць з дапамогай біяметрычных даных. Ключ шыфравання быў адхілены аперацыйнай сістэмай. Звычайна такое адбываецца пры змене налад разблакавання з дапамогай біяметрычных даных або налад бяспекі.</string>
   <string name="fingerprint_disabled_wrong_masterkey">Не атрымалася разблакаваць базу даных: хібны складаны ключ. Разблакаванне з дапамогай біяметрычных даных было адключана, бо захаваны галоўны пароль больш не дзейнічае.</string>
   <string name="fingerprint_reenable">Для новага галоўнага пароля неабходна паўторна ўключыць разблакаванне з дапамогай біяметрычных даных.</string>
   <string name="fingerprint_reenable2">Разблакуйце паролем і паўторна ўключыце разблакаванне з дапамогай біяметрычных даных у наладах базы даных.</string>
@@ -169,8 +171,12 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Схаваць пароль</string>
   <string name="maskpass_summary">Хаваць паролі</string>
+  <string name="masktotp_title">Хаванне поля TOTP</string>
+  <string name="masktotp_summary">Прадвызначана хаваць поле TOTP</string>
+  <string name="NoAutofillDisabling_title">Няма магчымасці адключыць аўтазапаўненне </string>
+  <string name="NoAutofillDisabling_summary">Калі ўключана, у праграме не будзе паказвацца параметр адключэння аўтазапаўнення для пэўных запісаў.</string>
   <string name="menu_about">Пра праграму</string>
-  <string name="menu_change_key">Змяніць галоўны ключ</string>
+  <string name="menu_change_key">Змена галоўнага ключа</string>
   <string name="menu_copy_pass">Скапіяваць пароль</string>
   <string name="menu_copy_user">Скапіяваць лагін</string>
   <string name="menu_copy_totp">Скапіяваць TOTP</string>
@@ -211,12 +217,12 @@
   <string name="create_database">Стварыць базу даных</string>
   <string name="progress_title">Апрацоўка…</string>
   <string name="remember_keyfile_summary">Памятаць шлях да файлаў ключоў</string>
-  <string name="remember_keyfile_title">Захаваць файл ключа</string>
+  <string name="remember_keyfile_title">Захаванне файла ключа</string>
   <string name="remove_from_filelist">Выдаліць</string>
   <string name="edit">Рэдагаваць</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Каранёвы каталог (Root)</string>
-  <string name="AutoReturnFromQuery_title">Аўтаматычна вяртацца з экрана запыту</string>
+  <string name="AutoReturnFromQuery_title">Аўтаматычнае вяртанне з экрана запыту</string>
   <string name="AutoReturnFromQuery_summary">Падчас пошуку запісу для праграмы або сайта аўтаматычна вяртацца з экрана запыту, калі ў базе даных ёсць толькі адзін запіс.</string>
   <string name="KeyDerivFunc">Функцыя паходжання ключа</string>
   <string name="rounds">Цыклы шыфравання</string>
@@ -282,14 +288,19 @@
   <string name="please_note">Звярніце ўвагу</string>
   <string name="contributors">Удзельнікі</string>
   <string name="regular_expression">Рэгулярны выраз</string>
+  <string name="AlwaysMergeOnConflict_title">Аб\'яднанне пры канфліктаванні</string>
+  <string name="AlwaysMergeOnConflict_summary">Калі Keepass2Android выяўляе, што адлеглы файл зменены, то заўсёды аб\'ядноўвае лакальныя змены з адлеглымі.</string>
   <string name="TanExpiresOnUse_title">TAN нядзейсныя пасля выкарыстання</string>
   <string name="TanExpiresOnUse_summary">Пазначаць запісы TAN састарэлымі пасля іх выкарыстання</string>
   <string name="ShowUsernameInList_title">Паказваць імя карыстальніка ў спісе</string>
   <string name="ShowUsernameInList_summary">Паказваць імёны карыстальнікаў пад назвамі. Карысна пры наяўнасці некалькіх акаўнтаў або TAN.</string>
-  <string name="RememberRecentFiles_title">Памятаць базы даных</string>
+  <string name="RememberRecentFiles_title">Запамінанне базаў даных</string>
   <string name="RememberRecentFiles_summary">Запамінаць нядаўна адкрытыя базы даных і паказваць іх на экране адкрыцця базы даных.</string>
   <string name="NoDalVerification_title">Няма пацвярджэння DAL</string>
   <string name="NoDalVerification_summary">Адключае праверку, калі дамен адпавядае праграме</string>
+  <string name="InlineSuggestions_title">Інтэграцыя з клавіятурай</string>
+  <string name="InlineSuggestions_summary">Паказваць прапановы для аўтазапаўнення як убудаваныя параметры клавіятуры (калі падтрымліваецца метадам уводу)</string>
+  <string name="requires_android11">Патрэбны Android 11 ці навейшая версія</string>
   <string name="kp2a_findUrl">Знайсці пароль</string>
   <string name="excludeExpiredEntries">Выключыць пратэрмінаваныя запісы</string>
   <string name="search_options">Параметры</string>
@@ -307,7 +318,7 @@
   <string name="QuickUnlock_lockButton">Закрыць базу даных</string>
   <string name="QuickUnlockDefaultEnabled_title">Прадвызначана ўключыць хуткае разблакаванне</string>
   <string name="QuickUnlockDefaultEnabled_summary">Вызначае, ці ўключана прадвызначана хуткае разблакаванне.</string>
-  <string name="ViewDatabaseSecure_title">Абарона адлюстравання базы даных</string>
+  <string name="ViewDatabaseSecure_title">Абараняць паказ базы даных</string>
   <string name="ViewDatabaseSecure_summary">Калі ўключана, то здымкі экрана забараняюцца, і праграма не паказваецца ў спісе нядаўніх праграм.</string>
   <string name="QuickUnlockIconHidden_title">Схаваць значок хуткага разблакавання</string>
   <string name="QuickUnlockIconHidden_summary">Нажаль, хуткае разблакаванне не працуе без значка на панэлі апавяшчэнняў. Уключыце гэты параметр, каб выкарыстоўваць празрысты значок.</string>
@@ -317,6 +328,8 @@
   <string name="QuickUnlockLength_summary">Максімальная колькасць сімвалаў, якія выкарыстоўваюцца для пароля хуткага разблакавання.</string>
   <string name="QuickUnlockHideLength_title">Не паказваць даўжыню кода хуткага разблакавання</string>
   <string name="QuickUnlockHideLength_summary">Калі ўключана, даўжыня кода не будзе паказвацца на экране хуткага разблакавання.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Ключ хуткага разблакавання з запісу базы даных</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Калі актыўная база даных змяшчае ў сваёй каранёвай групе запіс з назвай \"Хуткае разблакаванне\"(QuickUnlock), то пароль з яго будзе выкарыстоўвацца для хуткага разблакавання.</string>
   <string name="QuickUnlock_fail">Хібны пароль для хуткага разблакавання!</string>
   <string name="SaveAttachmentDialog_title">Захаваць далучаныя файлы</string>
   <string name="SaveAttachmentDialog_text">Калі ласка, абярыце месца для захавання далучаных файлаў.</string>
@@ -342,6 +355,7 @@
   <string name="totp_encoding_custom">Налады адвольнага токена</string>
   <string name="totp_time_step">Перыяд часу</string>
   <string name="totp_length">Даўжыня кода</string>
+  <string name="totp_scan">Сканаваць QR-код</string>
   <string name="delete_extra_string">Выдаліць дадатковы радок</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: заблакавана. Хуткае разблакаванне ўключана.</string>
   <string name="database_loaded_unlocked">%1$s: разблакавана.</string>
@@ -354,9 +368,9 @@
   <string name="ClearPasswordOnLeave_summary">Пры пераключэнні з экрана без разблакавання базы даных ачышчаць уведзены галоўны пароль.</string>
   <string name="LockWhenNavigateBack_title">Блакаванне пры выхадзе з праграмы</string>
   <string name="LockWhenNavigateBack_summary">Пры выхадзе з праграмы з дапамогай кнопкі \"Назад\" блакаваць базу даных.</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Выкарыстоўваць убудаваную клавіятуру Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Выкарыстанне убудаванай клавіятуры Keepass2Android</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Калі вы не давяраеце стандартнай сістэмнай клавіятуры, то адзначце гэты параметр, каб падчас уводу пароля ці рэдагавання запісаў выкарыстоўваць убудаваную клавіятуру.</string>
-  <string name="ActivateSearchViewOnStart_title">Актывацыя поля пошуку падчас запуску</string>
+  <string name="ActivateSearchViewOnStart_title">Актываваць поле пошуку падчас запуску</string>
   <string name="ActivateSearchViewOnStart_summary">Пасля разблакавання або падчас пошуку значэння актываваць поле пошуку</string>
   <string name="NoDonateOption_title">Схаваць параметр для ахвяравання</string>
   <string name="NoDonateOption_summary">Гэта параметр для падтрымкі. Даступны толькі пасля пэўнага часу карыстання Keepass2Android.</string>
@@ -404,6 +418,8 @@
   <string name="DocumentAccessRevoked">Гэты файл цяпер неадаступны для Keepass2Android. Ён або быў выдалены, або доступ да яго быў адкліканы. Паспрабуйце адкрыць файл нанова.</string>
   <string name="PreloadDatabaseEnabled_title">Папярэдняя загрузка файла базы даных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фонавай загрузкі або спампоўвання файла базы даных падчас уводу пароля.</string>
+  <string name="SyncAfterQuickUnlock_title">Сінхранізацыя пасля хуткага разблакавання</string>
+  <string name="SyncAfterQuickUnlock_summary">Сінхранізаваць базу даных з адлеглым файлам пасля хуткага разблакавання.</string>
   <string name="AskOverwriteBinary">Хочаце перазапісаць існы двайковы файл з такой самай назвай?</string>
   <string name="AskOverwriteBinary_title">Перазапісаць існы двайковы файл?</string>
   <string name="AskOverwriteBinary_yes">Перазапісаць</string>
@@ -500,6 +516,7 @@
   <string name="filestoragehelp_dropboxKP2A">Калі вы хочаце даць KP2A доступ да ўсяго сховішча Dropbox, абярыце гэты параметр. Праграма будзе запытваць доступ толькі да каталога Apps/Keepass2Android. Гэта асабліва пасуе пры стварэнні новай базы даных. Калі ў вас ужо ёсць база даных, абярыце гэты параметр, каб стварыць каталог, перамясціце ў яго файл базы даных, а пасля зноў абярыце гэты параметр, каб адкрыць файл.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_pcloud">PCloud</string>
+  <string name="filestoragehelp_pcloud">Гэты тып сховішча запытвае доступ толькі да каталога pCloud \"Праграмы/Keepass2Android\". Калі вы хочаце выкарыстоўваць наяўную базу даных з акаўнта pCloud, то пераканайцеся, што файл знаходзіцца ў каталозе pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Усе файлы і агульныя файлы</string>
@@ -544,8 +561,8 @@
   <string name="ErrorUpdatingChalAuxFile">Не атрымалася абнавіць дапаможны файл OTP (аднаразовых пароляў)!</string>
   <string name="TrayTotp_SeedField_title">Назва поля пачатковага значэння TOTP</string>
   <string name="TrayTotp_SeedField_summary">Калі вы выкарыстоўваеце ўбудову Keepass 2 \"TrayTotp\" са змененымі наладамі, увядзіце назву поля для поля пачатковага значэння ў адпаведнасці з наладамі PC.</string>
-  <string name="TrayTotp_SettingsField_title">Назва поля наладаў TOTP</string>
-  <string name="TrayTotp_SettingsField_summary">Увядзіце сюды назву поля для наладаў TrayTotp.</string>
+  <string name="TrayTotp_SettingsField_title">Назва поля налад TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Увядзіце сюды назву поля для налад TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Файл журнала для адладкі</string>
   <string name="DebugLog_title">Выкарыстоўваць файл журнала</string>
@@ -638,17 +655,17 @@
   </string>
   <string name="open_other_db">Адкрыць іншую базу даных…</string>
   <string name="select_database">Абраць базу даных</string>
-  <string name="configure_child_dbs">Наладзіць дачынныя базы даных…</string>
-  <string name="child_dbs_title">Дачынныя базы даных</string>
+  <string name="configure_child_dbs">Наладжванне даччыных базаў даных…</string>
+  <string name="child_dbs_title">Даччыныя базы даных</string>
   <string name="unspecified">не вызначана</string>
-  <string name="child_db_explanation">Дачынныя базы даных - іншыя базы даных, якія аўтаматычна адкрываюцца падчас адкрыцця бацькоўскай базы даных. Таму галоўны пароль і размяшчэнне дачынных базаў даных захоўваюцца ў бацькоўскай. Гэтая функцыя дае магчымасць дзяліцца паролямі з іншымі людзьмі. Сумяшчальна з KeeAutoExec для камп\'ютара. </string>
+  <string name="child_db_explanation">Даччыныя базы даных - іншыя базы даных, якія аўтаматычна адкрываюцца падчас адкрыцця бацькоўскай базы даных. Таму галоўны пароль і размяшчэнне даччыных базаў даных захоўваюцца ў бацькоўскай. Гэтая функцыя дае магчымасць дзяліцца паролямі з іншымі людзьмі. Сумяшчальна з KeeAutoExec для камп\'ютара. </string>
   <string name="child_db_enabled_on_this_device">Уключана на гэтай прыладзе</string>
   <string name="child_db_enable_on_this_device">Уключыць на гэтай прыладзе</string>
   <string name="child_db_disable_on_this_device">Адключыць на гэтай прыладзе</string>
   <string name="child_db_enable_a_copy_for_this_device">Капіяваць для гэтай прылады</string>
-  <string name="unconfigured_child_dbs">База даных змяшчае ў групе \"AutoOpen\" дачынныя базы даных. Вызначце, ці выкарыстоўваць іх на гэтай прыладзе.</string>
-  <string name="add_child_db">Дадаць дачынную базу даных…</string>
-  <string name="EnableCopyForThisDevice_Info">Гэта створыць і ўключыць копію наладаў дачыннай базы даных. Пасля гэтага іх можна будзе прыстасаваць для гэтай прылады.</string>
+  <string name="unconfigured_child_dbs">База даных змяшчае ў групе \"AutoOpen\" даччыныя базы даных. Вызначце, ці выкарыстоўваць іх на гэтай прыладзе.</string>
+  <string name="add_child_db">Дадаць даччыную базу даных…</string>
+  <string name="EnableCopyForThisDevice_Info">Гэта створыць і ўключыць копію налад даччынай базы даных. Пасля гэтага іх можна будзе прыстасаваць для гэтай прылады.</string>
   <string name="Visible_title">Бачнасць</string>
   <string name="child_db_Enabled_title">Адкрываць аўтаматычна</string>
   <string name="database_file_heading">Файл базы даных</string>
@@ -661,13 +678,23 @@
   <string name="EntryChannel_desc">Апавяшчэнне для зручнага доступу да абранага запісу.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыць базу даных пасля трох няўдалых спробаў разблакавання з дапамогай біяметрычных даных.</string>
   <string name="WarnFingerprintInvalidated">Увага! Android можа ануляваць аўтэнтыфікацыю з дапамогай біяметрычных даных. Напрыклад, калі вы дададзіце новы адбітак пальца ў сістэмных наладах. Пераканайцеся, што ведаеце, як разблакаваць свой галоўны пароль.</string>
+  <string-array name="ChangeLog_1_09c">
+    <item>Падтрымка аўтэнтыфікацыі Google Drive, паўторна ўключана падтрымка Google Drive</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Выпраўлена памылка з аўтазапаўненнем у Firefox</item>
+    <item>Інтэграцыя прапаноў для аўтазапаўнення з клавіятурай (патрабуецца Android 11+)</item>
+    <item>Дазволіць змяняць мову ў наладах праграмы</item>
+    <item>Дадаць параметр для сінхранізацыі базы даных пасля хуткага разблакавання</item>
+    <item>Выпраўленне хібы: не пераводзіць літары назваў файлаў у ніжні рэгістр пры захаванні ў Dropbox</item>
+  </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Дададзена падтрымка фармату KDBX 4.1 з KeePass 2.48</item>
-    <item>Дададзены дыялог наладаў TOTP для запісаў</item>
+    <item>Дададзены дыялог налад TOTP для запісаў</item>
     <item>Палепшаны генератар пароляў: дададзена падтрымка парольных фразаў, дадатковыя параметры, ацэнка надзейнасці профіляў і пароляў</item>
     <item>Палепшана аўтазапаўненне (выпраўлена выплыўное акно ў Chrome, палепшана падтрымка паддаменаў)</item>
     <item>Палепшана рэалізацыя OneDrive: больш няма абмежаванняў па памеры і лішніх запытаў аўтэнтыфікацыі</item>
-    <item>З сістэмных наладаў дададзены параметр выбару цёмнай / светлай тэмы, уключаючы начныя планы, Android 10+</item>
+    <item>З сістэмных налад дададзены параметр выбару цёмнай / светлай тэмы, уключаючы начныя планы, Android 10+</item>
     <item>Абноўлена ўзаемадзеянне з Dropbox для падтрымкі новага спосабу аўтэнтыфікацыі.</item>
     <item>Пасля дадання адбітка пальца ў сістэмныя налады нядаўна наладжанае разблакаванне з дапамогай адбітка пальца стане непрыдатным.</item>
     <item>Дазволена адкрыццё файлаў праз сістэмны сродак выбару файлаў, не зважаючы на адзнаку \"толькі для чытання\"</item>
@@ -1032,7 +1059,7 @@ Initial public release
   <string name="PluginDescription">Апісанне бярэцца з убудовы:</string>
   <string name="autofill_hint">Keepass2Android падтрымлівае функцыю аўтаматычнага запаўнення, але мабыць вы яе не ўключылі.</string>
   <string name="autofill_enable">Уключыць аўтазапаўненне</string>
-  <string name="autofill_enable_failed">Выбачайце, але ваша сістэма не падтрымлівае адкрыццё сістэмных наладаў з праграмы. Перайдзіце ў налады і ўключыце аўтазапаўненне.</string>
+  <string name="autofill_enable_failed">Выбачайце, але ваша сістэма не падтрымлівае адкрыццё сістэмных налад з праграмы. Перайдзіце ў налады і ўключыце аўтазапаўненне.</string>
   <string name="show_autofill_help">Паказаць даведку</string>
   <string name="autofill_sign_in_prompt">Запоўніць з Keepass2Android</string>
   <string name="autofill_disable">Адключыць аўтазапаўненне для %1$s</string>
