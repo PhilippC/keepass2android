@@ -246,7 +246,7 @@ $(OUTPUT_PluginQR): $(INPUT_PluginQR)
 ##### Nuget Dependencies
 
 nuget: stamp.nuget_$(Flavor)
-stamp.nuget_$(Flavor): src/KeePass.sln $(wildcard src/*/*.csproj) $(wildcard src/*/packages.config) src/.nuget/packages.config
+stamp.nuget_$(Flavor): src/KeePass.sln $(wildcard src/*/*.csproj) $(wildcard src/*/packages.config)
 ifeq ($(shell $(WHICH) nuget),)
 	$(error "nuget" command not found. Check it is in your PATH)
 endif
