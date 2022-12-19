@@ -96,6 +96,10 @@ namespace keepass2android
 			{
 				
 			}
+			public void OnCompleted()
+			{
+				// TODO
+			}
 
 			public void OnStarted ()
 			{
