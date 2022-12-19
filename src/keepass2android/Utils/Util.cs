@@ -205,9 +205,13 @@ namespace keepass2android
             ClipData clipData = Android.Content.ClipData.NewPlainText("KP2A", text);
 			if (isProtected)
 			{
-				var extras = clipData.Description.Extras ?? new Android.OS.PersistableBundle();
-				extras.PutBoolean("android.content.extra.IS_SENSITIVE", true);
-				clipData.Description.Extras = extras;
+				//ClipDescription.Extras is only available since 24 
+				if ((int) Build.VERSION.SdkInt >= 24)
+				{
+					var extras = clipData.Description.Extras ?? new Android.OS.PersistableBundle();
+					extras.PutBoolean("android.content.extra.IS_SENSITIVE", true);
+					clipData.Description.Extras = extras;
+				}
 			}
             clipboardManager.PrimaryClip = clipData;
 		    if (text == "")
