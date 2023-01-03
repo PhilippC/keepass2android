@@ -56,9 +56,10 @@ class IdentityFile implements Identity{
   /**
    * Decrypts this identity with the specified pass-phrase.
    * @param passphrase the pass-phrase for this identity.
-   * @return <tt>true</tt> if the decryption is succeeded
+   * @return <code>true</code> if the decryption is succeeded
    * or this identity is not cyphered.
    */
+  @Override
   public boolean setPassphrase(byte[] passphrase) throws JSchException{
     return kpair.decrypt(passphrase);
   }
@@ -67,6 +68,7 @@ class IdentityFile implements Identity{
    * Returns the public-key blob.
    * @return the public-key blob
    */
+  @Override
   public byte[] getPublicKeyBlob(){
     return kpair.getPublicKeyBlob();
   }
@@ -76,14 +78,28 @@ class IdentityFile implements Identity{
    * @param data data to be signed
    * @return the signature
    */
+  @Override
   public byte[] getSignature(byte[] data){
     return kpair.getSignature(data);
+  }
+
+  /**
+   * Signs on data with this identity, and returns the result.
+   * @param data data to be signed
+   * @param alg signature algorithm to use
+   * @return the signature
+   */
+  @Override
+  public byte[] getSignature(byte[] data, String alg){
+    return kpair.getSignature(data, alg);
   }
 
   /**
    * @deprecated This method should not be invoked.
    * @see #setPassphrase(byte[] passphrase)
    */
+  @Override
+  @Deprecated
   public boolean decrypt(){
     throw new RuntimeException("not implemented");
   }
@@ -92,28 +108,26 @@ class IdentityFile implements Identity{
    * Returns the name of the key algorithm.
    * @return "ssh-rsa" or "ssh-dss"
    */
+  @Override
   public String getAlgName(){
     byte[] name = kpair.getKeyTypeName();
-    try {
-      return new String(name, "UTF-8");
-    }
-    catch (UnsupportedEncodingException e){
-      return new String(name);
-    }
+    return Util.byte2str(name);
   }
 
   /**
    * Returns the name of this identity. 
    * It will be useful to identify this object in the {@link IdentityRepository}.
    */
+  @Override
   public String getName(){
     return identity;
   }
 
   /**
-   * Returns <tt>true</tt> if this identity is cyphered.
-   * @return <tt>true</tt> if this identity is cyphered.
+   * Returns <code>true</code> if this identity is cyphered.
+   * @return <code>true</code> if this identity is cyphered.
    */
+  @Override
   public boolean isEncrypted(){
     return kpair.isEncrypted();
   }
@@ -121,6 +135,7 @@ class IdentityFile implements Identity{
   /**
    * Disposes internally allocated data, like byte array for the private key.
    */
+  @Override
   public void clear(){
     kpair.dispose();
     kpair = null;

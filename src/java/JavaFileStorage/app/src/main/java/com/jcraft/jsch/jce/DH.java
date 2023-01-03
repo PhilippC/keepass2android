@@ -32,6 +32,7 @@ package com.jcraft.jsch.jce;
 import java.math.BigInteger;
 import java.security.*;
 import javax.crypto.*;
+import javax.crypto.interfaces.*;
 import javax.crypto.spec.*;
 import com.jcraft.jsch.JSchException;
 
@@ -46,21 +47,24 @@ public class DH implements com.jcraft.jsch.DH{
 
   private KeyPairGenerator myKpairGen;
   private KeyAgreement myKeyAgree;
+  @Override
   public void init() throws Exception{
     myKpairGen=KeyPairGenerator.getInstance("DH");
     myKeyAgree=KeyAgreement.getInstance("DH");
   }
+  @Override
   public byte[] getE() throws Exception{
     if(e==null){
       DHParameterSpec dhSkipParamSpec=new DHParameterSpec(p, g);
       myKpairGen.initialize(dhSkipParamSpec);
       KeyPair myKpair=myKpairGen.generateKeyPair();
       myKeyAgree.init(myKpair.getPrivate());
-      e=((javax.crypto.interfaces.DHPublicKey)(myKpair.getPublic())).getY();
+      e=((DHPublicKey)(myKpair.getPublic())).getY();
       e_array=e.toByteArray();
     }
     return e_array;
   }
+  @Override
   public byte[] getK() throws Exception{
     if(K==null){
       KeyFactory myKeyFac=KeyFactory.getInstance("DH");
@@ -74,14 +78,18 @@ public class DH implements com.jcraft.jsch.DH{
     }
     return K_array;
   }
+  @Override
   public void setP(byte[] p){ setP(new BigInteger(1, p)); }
+  @Override
   public void setG(byte[] g){ setG(new BigInteger(1, g)); }
+  @Override
   public void setF(byte[] f){ setF(new BigInteger(1, f)); }
   void setP(BigInteger p){this.p=p;}
   void setG(BigInteger g){this.g=g;}
   void setF(BigInteger f){this.f=f;}
 
   // e, f must be in [1, p-1].
+  @Override
   public void checkRange() throws Exception {
     /*
     checkRange(e);

@@ -48,8 +48,8 @@ public class ProxyHTTP implements Proxy{
     String host=proxy_host;
     if(proxy_host.indexOf(':')!=-1){
       try{
-	host=proxy_host.substring(0, proxy_host.indexOf(':'));
-	port=Integer.parseInt(proxy_host.substring(proxy_host.indexOf(':')+1));
+        host=proxy_host.substring(0, proxy_host.indexOf(':'));
+        port=Integer.parseInt(proxy_host.substring(proxy_host.indexOf(':')+1));
       }
       catch(Exception e){
       }
@@ -65,6 +65,7 @@ public class ProxyHTTP implements Proxy{
     this.user=user;
     this.passwd=passwd;
   }
+  @Override
   public void connect(SocketFactory socket_factory, String host, int port, int timeout) throws JSchException{
     try{
       if(socket_factory==null){
@@ -85,11 +86,11 @@ public class ProxyHTTP implements Proxy{
       out.write(Util.str2byte("CONNECT "+host+":"+port+" HTTP/1.0\r\n"));
 
       if(user!=null && passwd!=null){
-	byte[] code=Util.str2byte(user+":"+passwd);
-	code=Util.toBase64(code, 0, code.length);
-	out.write(Util.str2byte("Proxy-Authorization: Basic "));
-	out.write(code);
-	out.write(Util.str2byte("\r\n"));
+        byte[] code=Util.str2byte(user+":"+passwd);
+        code=Util.toBase64(code, 0, code.length, true);
+        out.write(Util.str2byte("Proxy-Authorization: Basic "));
+        out.write(code);
+        out.write(Util.str2byte("\r\n"));
       }
 
       out.write(Util.str2byte("\r\n"));
@@ -97,7 +98,7 @@ public class ProxyHTTP implements Proxy{
 
       int foo=0;
 
-      StringBuffer sb=new StringBuffer();
+      StringBuilder sb=new StringBuilder();
       while(foo>=0){
         foo=in.read(); if(foo!=13){sb.append((char)foo);  continue;}
         foo=in.read(); if(foo!=10){continue;}
@@ -154,14 +155,16 @@ public class ProxyHTTP implements Proxy{
       catch(Exception eee){
       }
       String message="ProxyHTTP: "+e.toString();
-      if(e instanceof Throwable)
-        throw new JSchException(message, (Throwable)e);
-      throw new JSchException(message);
+      throw new JSchException(message, e);
     }
   }
+  @Override
   public InputStream getInputStream(){ return in; }
+  @Override
   public OutputStream getOutputStream(){ return out; }
+  @Override
   public Socket getSocket(){ return socket; }
+  @Override
   public void close(){
     try{
       if(in!=null)in.close();

@@ -27,52 +27,87 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.jcraft.jsch.jcraft;
-import com.jcraft.jzlib.*;
-import com.jcraft.jsch.*;
+package com.jcraft.jsch.jzlib;
+
+import java.util.function.Supplier;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Logger;
+import com.jcraft.jsch.Session;
+import java.io.UncheckedIOException;
 
 public class Compression implements com.jcraft.jsch.Compression {
   static private final int BUF_SIZE=4096;
   private final int buffer_margin=32+20; // AES256 + HMACSHA1
-  private int type;
-  private ZStream stream;
+  private Deflater deflater;
+  private Inflater inflater;
   private byte[] tmpbuf=new byte[BUF_SIZE];
+  private byte[] inflated_buf;
+  private Session session;
 
   public Compression(){
-    stream=new ZStream();
   }
 
-  public void init(int type, int level){
+  private void logMessage(int level, Supplier<String> message) {
+    Logger logger = session == null ? JSch.getLogger() : session.getLogger();
+    if (!logger.isEnabled(level)) {
+      return;
+    }
+    logger.log(level, message.get());
+  }
+
+  @Override
+  public void end() {
+    inflated_buf=null;
+    if(inflater!=null){
+      inflater.end();
+      inflater=null;
+    }
+    if(deflater!=null){
+      deflater.end();
+      deflater=null;
+    }
+    session=null;
+  }
+
+  @Override
+  public void init(int type, int level, Session session) {
+    this.session = session;
+    init(type, level);
+  }
+
+  public void init(int type, int level) throws UncheckedIOException {
     if(type==DEFLATER){
-      stream.deflateInit(level);
-      this.type=DEFLATER;
+      try{
+        deflater=new Deflater(level);
+      }
+      catch(GZIPException e){
+        throw new UncheckedIOException(e);
+      }
     }
     else if(type==INFLATER){
-      stream.inflateInit();
+      inflater=new Inflater();
       inflated_buf=new byte[BUF_SIZE];
-      this.type=INFLATER;
     }
+    logMessage(Logger.DEBUG, () -> "zlib using "+this.getClass().getCanonicalName());
   }
 
-  private byte[] inflated_buf;
-
+  @Override
   public byte[] compress(byte[] buf, int start, int[] len){
-    stream.next_in=buf;
-    stream.next_in_index=start;
-    stream.avail_in=len[0]-start;
-    int status;
+    deflater.next_in=buf;
+    deflater.next_in_index=start;
+    deflater.avail_in=len[0]-start;
     int outputlen=start;
     byte[] outputbuf=buf;
     int tmp=0;
 
     do{
-      stream.next_out=tmpbuf;
-      stream.next_out_index=0;
-      stream.avail_out=BUF_SIZE;
-      status=stream.deflate(JZlib.Z_PARTIAL_FLUSH);
+      deflater.next_out=tmpbuf;
+      deflater.next_out_index=0;
+      deflater.avail_out=BUF_SIZE;
+      int status=deflater.deflate(JZlib.Z_PARTIAL_FLUSH);
       switch(status){
         case JZlib.Z_OK:
-          tmp=BUF_SIZE-stream.avail_out;
+          tmp=BUF_SIZE-deflater.avail_out;
           if(outputbuf.length<outputlen+tmp+buffer_margin){
             byte[] foo=new byte[(outputlen+tmp+buffer_margin)*2];
             System.arraycopy(outputbuf, 0, foo, 0, outputbuf.length);
@@ -82,58 +117,59 @@ public class Compression implements com.jcraft.jsch.Compression {
           outputlen+=tmp;
           break;
         default:
-	    System.err.println("compress: deflate returnd "+status);
+          logMessage(Logger.WARN, () -> "compress: deflate returnd "+status);
       }
     }
-    while(stream.avail_out==0);
+    while(deflater.avail_out==0);
 
     len[0]=outputlen;
     return outputbuf;
   }
 
+  @Override
   public byte[] uncompress(byte[] buffer, int start, int[] length){
     int inflated_end=0;
 
-    stream.next_in=buffer;
-    stream.next_in_index=start;
-    stream.avail_in=length[0];
+    inflater.next_in=buffer;
+    inflater.next_in_index=start;
+    inflater.avail_in=length[0];
 
     while(true){
-      stream.next_out=tmpbuf;
-      stream.next_out_index=0;
-      stream.avail_out=BUF_SIZE;
-      int status=stream.inflate(JZlib.Z_PARTIAL_FLUSH);
+      inflater.next_out=tmpbuf;
+      inflater.next_out_index=0;
+      inflater.avail_out=BUF_SIZE;
+      int status=inflater.inflate(JZlib.Z_PARTIAL_FLUSH);
       switch(status){
         case JZlib.Z_OK:
-	  if(inflated_buf.length<inflated_end+BUF_SIZE-stream.avail_out){
+          if(inflated_buf.length<inflated_end+BUF_SIZE-inflater.avail_out){
             int len=inflated_buf.length*2;
-            if(len<inflated_end+BUF_SIZE-stream.avail_out)
-              len=inflated_end+BUF_SIZE-stream.avail_out;
+            if(len<inflated_end+BUF_SIZE-inflater.avail_out)
+              len=inflated_end+BUF_SIZE-inflater.avail_out;
             byte[] foo=new byte[len];
-	    System.arraycopy(inflated_buf, 0, foo, 0, inflated_end);
-	    inflated_buf=foo;
-	  }
-	  System.arraycopy(tmpbuf, 0,
-			   inflated_buf, inflated_end,
-			   BUF_SIZE-stream.avail_out);
-	  inflated_end+=(BUF_SIZE-stream.avail_out);
+            System.arraycopy(inflated_buf, 0, foo, 0, inflated_end);
+            inflated_buf=foo;
+          }
+          System.arraycopy(tmpbuf, 0,
+                           inflated_buf, inflated_end,
+                           BUF_SIZE-inflater.avail_out);
+          inflated_end+=(BUF_SIZE-inflater.avail_out);
           length[0]=inflated_end;
-	  break;
+          break;
         case JZlib.Z_BUF_ERROR:
           if(inflated_end>buffer.length-start){
             byte[] foo=new byte[inflated_end+start];
             System.arraycopy(buffer, 0, foo, 0, start);
             System.arraycopy(inflated_buf, 0, foo, start, inflated_end);
-	    buffer=foo;
-	  }
-	  else{
+            buffer=foo;
+          }
+          else{
             System.arraycopy(inflated_buf, 0, buffer, start, inflated_end);
-	  }
+          }
           length[0]=inflated_end;
-	  return buffer;
-	default:
-	  System.err.println("uncompress: inflate returnd "+status);
-          return null;
+          return buffer;
+         default:
+           logMessage(Logger.WARN, () -> "compress: deflate returnd "+status);
+           return null;
       }
     }
   }

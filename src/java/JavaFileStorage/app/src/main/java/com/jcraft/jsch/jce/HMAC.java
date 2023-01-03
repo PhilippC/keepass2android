@@ -37,16 +37,19 @@ abstract class HMAC implements MAC {
   protected String name;
   protected int bsize;
   protected String algorithm;
+  protected boolean etm;
   private Mac mac;
 
+  @Override
   public int getBlockSize() {
     return bsize;
   };
 
+  @Override
   public void init(byte[] key) throws Exception {
     if(key.length>bsize){
       byte[] tmp = new byte[bsize];
-      System.arraycopy(key, 0, tmp, 0, bsize);	  
+      System.arraycopy(key, 0, tmp, 0, bsize);
       key = tmp;
     }
     SecretKeySpec skey = new SecretKeySpec(key, algorithm);
@@ -55,6 +58,7 @@ abstract class HMAC implements MAC {
   } 
 
   private final byte[] tmp = new byte[4];
+  @Override
   public void update(int i){
     tmp[0] = (byte)(i>>>24);
     tmp[1] = (byte)(i>>>16);
@@ -63,10 +67,12 @@ abstract class HMAC implements MAC {
     update(tmp, 0, 4);
   }
 
+  @Override
   public void update(byte foo[], int s, int l){
     mac.update(foo, s, l);      
   }
 
+  @Override
   public void doFinal(byte[] buf, int offset){
     try{
       mac.doFinal(buf, offset);
@@ -76,7 +82,13 @@ abstract class HMAC implements MAC {
     }
   }
 
+  @Override
   public String getName(){
     return name;
+  }
+
+  @Override
+  public boolean isEtM(){
+    return etm;
   }
 }

@@ -32,7 +32,7 @@ package com.jcraft.jsch;
 import java.util.Vector;
 import java.math.BigInteger;
 
-public class KeyPairPKCS8 extends KeyPair {
+class KeyPairPKCS8 extends KeyPair {
   private static final byte[] rsaEncryption = {
     (byte)0x2a, (byte)0x86, (byte)0x48, (byte)0x86,
     (byte)0xf7, (byte)0x0d, (byte)0x01, (byte)0x01, (byte)0x01
@@ -75,23 +75,28 @@ public class KeyPairPKCS8 extends KeyPair {
 
   private KeyPair kpair = null;
 
-  public KeyPairPKCS8(JSch jsch){
+  KeyPairPKCS8(JSch jsch){
     super(jsch);
   }
 
+  @Override
   void generate(int key_size) throws JSchException{
   }
 
   private static final byte[] begin=Util.str2byte("-----BEGIN DSA PRIVATE KEY-----");
   private static final byte[] end=Util.str2byte("-----END DSA PRIVATE KEY-----");
 
+  @Override
   byte[] getBegin(){ return begin; }
+  @Override
   byte[] getEnd(){ return end; }
 
+  @Override
   byte[] getPrivateKey(){
     return null;
   }
 
+  @Override
   boolean parse(byte[] plain){
 
     /* from RFC5208
@@ -109,7 +114,7 @@ public class KeyPairPKCS8 extends KeyPair {
     */
 
     try{
-      Vector values = new Vector();
+      Vector<byte[]> values = new Vector<>();
 
       ASN1[] contents = null;
       ASN1 asn1 = new ASN1(plain);
@@ -163,10 +168,10 @@ public class KeyPairPKCS8 extends KeyPair {
           values.addElement(asn1.getContent());
         }
 
-        byte[] P_array = (byte[])values.elementAt(0);
-        byte[] Q_array = (byte[])values.elementAt(1);
-        byte[] G_array = (byte[])values.elementAt(2);
-        byte[] prv_array = (byte[])values.elementAt(3);
+        byte[] P_array = values.elementAt(0);
+        byte[] Q_array = values.elementAt(1);
+        byte[] G_array = values.elementAt(2);
+        byte[] prv_array = values.elementAt(3);
         // Y = g^X mode p
         byte[] pub_array =
           (new BigInteger(G_array)).
@@ -195,29 +200,47 @@ public class KeyPairPKCS8 extends KeyPair {
     return kpair != null;
   }
 
+  @Override
   public byte[] getPublicKeyBlob(){
     return kpair.getPublicKeyBlob();
   }
 
+  @Override
   byte[] getKeyTypeName(){ return kpair.getKeyTypeName();}
+  @Override
   public int getKeyType(){return kpair.getKeyType();}
 
+  @Override
   public int getKeySize(){
     return kpair.getKeySize();
   }
 
+  @Override
   public byte[] getSignature(byte[] data){
     return kpair.getSignature(data);
   }
 
+  @Override
+  public byte[] getSignature(byte[] data, String alg){
+    return kpair.getSignature(data, alg);
+  }
+
+  @Override
   public Signature getVerifier(){
     return kpair.getVerifier();
   }
 
+  @Override
+  public Signature getVerifier(String alg){
+    return kpair.getVerifier(alg);
+  }
+
+  @Override
   public byte[] forSSHAgent() throws JSchException {
     return kpair.forSSHAgent();
   }
 
+  @Override
   public boolean decrypt(byte[] _passphrase){
     if(!isEncrypted()){
       return true;
@@ -300,8 +323,8 @@ or
 
       byte[] key=null;
       try{
-        Class c=Class.forName((String)jsch.getConfig("pbkdf"));
-        PBKDF tmp=(PBKDF)(c.newInstance());
+        Class<? extends PBKDF> c=Class.forName(JSch.getConfig("pbkdf")).asSubclass(PBKDF.class);
+        PBKDF tmp=c.getDeclaredConstructor().newInstance();
         key = tmp.getKey(_passphrase, salt, iterations, cipher.getBlockSize());
       }
       catch(Exception ee){
@@ -343,11 +366,11 @@ or
       else if(Util.array_equals(id, aes256cbc)){
         name="aes256-cbc";
       }
-      Class c=Class.forName((String)jsch.getConfig(name));
-      cipher=(Cipher)(c.newInstance());
+      Class<? extends Cipher> c=Class.forName(JSch.getConfig(name)).asSubclass(Cipher.class);
+      cipher=c.getDeclaredConstructor().newInstance();
     }
     catch(Exception e){
-      if(JSch.getLogger().isEnabled(Logger.FATAL)){
+      if(jsch.getInstanceLogger().isEnabled(Logger.FATAL)){
         String message="";
         if(name==null){
           message="unknown oid: "+Util.toHex(id);
@@ -355,7 +378,7 @@ or
         else {
           message="function "+name+" is not supported";
         }
-        JSch.getLogger().log(Logger.FATAL, "PKCS8: "+message);
+        jsch.getInstanceLogger().log(Logger.FATAL, "PKCS8: "+message);
       }
     }
     return cipher;

@@ -33,6 +33,7 @@ class UserAuthNone extends UserAuth{
   private static final int SSH_MSG_SERVICE_ACCEPT=                  6;
   private String methods=null;
 
+  @Override
   public boolean start(Session session) throws Exception{
     super.start(session);
 
@@ -45,8 +46,8 @@ class UserAuthNone extends UserAuth{
     buf.putString(Util.str2byte("ssh-userauth"));
     session.write(packet);
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(session.getLogger().isEnabled(Logger.INFO)){
+        session.getLogger().log(Logger.INFO, 
                            "SSH_MSG_SERVICE_REQUEST sent");
     }
 
@@ -58,8 +59,8 @@ class UserAuthNone extends UserAuth{
 
     boolean result=(command==SSH_MSG_SERVICE_ACCEPT);
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(session.getLogger().isEnabled(Logger.INFO)){
+        session.getLogger().log(Logger.INFO, 
                            "SSH_MSG_SERVICE_ACCEPT received");
     }
     if(!result)
@@ -86,38 +87,38 @@ class UserAuthNone extends UserAuth{
       command=buf.getCommand()&0xff;
 
       if(command==SSH_MSG_USERAUTH_SUCCESS){
-	return true;
+        return true;
       }
       if(command==SSH_MSG_USERAUTH_BANNER){
-	buf.getInt(); buf.getByte(); buf.getByte();
-	byte[] _message=buf.getString();
-	byte[] lang=buf.getString();
-	String message=Util.byte2str(_message);
-	if(userinfo!=null){
+        buf.getInt(); buf.getByte(); buf.getByte();
+        byte[] _message=buf.getString();
+        byte[] lang=buf.getString();
+        String message=Util.byte2str(_message);
+        if(userinfo!=null){
           try{
             userinfo.showMessage(message);
           }
           catch(RuntimeException ee){
           }
-	}
-	continue loop;
+        }
+        continue loop;
       }
       if(command==SSH_MSG_USERAUTH_FAILURE){
-	buf.getInt(); buf.getByte(); buf.getByte(); 
-	byte[] foo=buf.getString();
-	int partial_success=buf.getByte();
-	methods=Util.byte2str(foo);
+        buf.getInt(); buf.getByte(); buf.getByte(); 
+        byte[] foo=buf.getString();
+        int partial_success=buf.getByte();
+        methods=Util.byte2str(foo);
 //System.err.println("UserAuthNONE: "+methods+
-//		   " partial_success:"+(partial_success!=0));
-//	if(partial_success!=0){
-//	  throw new JSchPartialAuthException(new String(foo));
-//	}
+//                   " partial_success:"+(partial_success!=0));
+//        if(partial_success!=0){
+//          throw new JSchPartialAuthException(new String(foo));
+//        }
 
         break;
       }
       else{
 //      System.err.println("USERAUTH fail ("+command+")");
-	throw new JSchException("USERAUTH fail ("+command+")");
+        throw new JSchException("USERAUTH fail ("+command+")");
       }
     }
    //throw new JSchException("USERAUTH fail");

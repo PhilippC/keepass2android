@@ -34,7 +34,7 @@ import java.io.*;
 
 public interface SocketFactory{
   public Socket createSocket(String host, int port)throws IOException,
-							  UnknownHostException;
+                                                          UnknownHostException;
   public InputStream getInputStream(Socket socket)throws IOException;
   public OutputStream getOutputStream(Socket socket)throws IOException;
 }

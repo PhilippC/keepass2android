@@ -51,9 +51,9 @@ abstract class Request{
       long start=System.currentTimeMillis();
       long timeout=channel.connectTimeout;
       while(channel.isConnected() && channel.reply==-1){
-	try{Thread.sleep(10);}
-	catch(Exception ee){
-	}
+        try{Thread.sleep(10);}
+        catch(Exception ee){
+        }
         if(timeout>0L &&
            (System.currentTimeMillis()-start)>timeout){
           channel.reply=0;
@@ -62,7 +62,7 @@ abstract class Request{
       }
 
       if(channel.reply==0){
-	throw new JSchException("failed to send channel request");
+        throw new JSchException("failed to send channel request");
       }
     }
   }

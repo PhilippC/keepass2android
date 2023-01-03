@@ -36,16 +36,20 @@ public class HostKey{
     Util.str2byte("ssh-rsa"),
     Util.str2byte("ecdsa-sha2-nistp256"),
     Util.str2byte("ecdsa-sha2-nistp384"),
-    Util.str2byte("ecdsa-sha2-nistp521")
+    Util.str2byte("ecdsa-sha2-nistp521"),
+    Util.str2byte("ssh-ed25519"),
+    Util.str2byte("ssh-ed448")
   };
 
-  protected static final int GUESS=0;
+  public static final int UNKNOWN=-1;
+  public static final int GUESS=0;
   public static final int SSHDSS=1;
   public static final int SSHRSA=2;
   public static final int ECDSA256=3;
   public static final int ECDSA384=4;
   public static final int ECDSA521=5;
-  static final int UNKNOWN=6;
+  public static final int ED25519=6;
+  public static final int ED448=7;
 
   protected String marker;
   protected String host;
@@ -69,6 +73,8 @@ public class HostKey{
     if(type==GUESS){
       if(key[8]=='d'){ this.type=SSHDSS; }
       else if(key[8]=='r'){ this.type=SSHRSA; }
+      else if(key[8]=='e' && key[10]=='2'){ this.type=ED25519; }
+      else if(key[8]=='e' && key[10]=='4'){ this.type=ED448; }
       else if(key[8]=='a' && key[20]=='2'){ this.type=ECDSA256; }
       else if(key[8]=='a' && key[20]=='3'){ this.type=ECDSA384; }
       else if(key[8]=='a' && key[20]=='5'){ this.type=ECDSA521; }
@@ -85,6 +91,8 @@ public class HostKey{
   public String getType(){
     if(type==SSHDSS ||
        type==SSHRSA ||
+       type==ED25519 ||
+       type==ED448 ||
        type==ECDSA256 ||
        type==ECDSA384 ||
        type==ECDSA521){
@@ -101,16 +109,17 @@ public class HostKey{
     return UNKNOWN;
   }
   public String getKey(){
-    return Util.byte2str(Util.toBase64(key, 0, key.length));
+    return Util.byte2str(Util.toBase64(key, 0, key.length, true));
   }
   public String getFingerPrint(JSch jsch){
     HASH hash=null;
     try{
-      Class c=Class.forName(jsch.getConfig("md5"));
-      hash=(HASH)(c.newInstance());
+      String _c=JSch.getConfig("FingerprintHash").toLowerCase();
+      Class<? extends HASH> c=Class.forName(JSch.getConfig(_c)).asSubclass(HASH.class);
+      hash=c.getDeclaredConstructor().newInstance();
     }
     catch(Exception e){ System.err.println("getFingerPrint: "+e); }
-    return Util.getFingerPrint(hash, key);
+    return Util.getFingerPrint(hash, key, false, true);
   }
   public String getComment(){ return comment; }
   public String getMarker(){ return marker; }
@@ -132,7 +141,7 @@ public class HostKey{
        return hosts.regionMatches(true, i, _host, 0, hostlen);
       }
       if(hostlen==(j-i)){
-	if(hosts.regionMatches(true, i, _host, 0, hostlen)) return true;
+        if(hosts.regionMatches(true, i, _host, 0, hostlen)) return true;
       }
       i=j+1;
     }

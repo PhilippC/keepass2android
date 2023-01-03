@@ -38,8 +38,11 @@ public class ARCFOUR128 implements Cipher{
   private static final int bsize=16;
   private static final int skip=1536; 
   private javax.crypto.Cipher cipher;    
+  @Override
   public int getIVSize(){return ivsize;} 
+  @Override
   public int getBlockSize(){return bsize;}
+  @Override
   public void init(int mode, byte[] key, byte[] iv) throws Exception{
     byte[] tmp;
     if(key.length>bsize){
@@ -50,12 +53,10 @@ public class ARCFOUR128 implements Cipher{
     try{
       cipher=javax.crypto.Cipher.getInstance("RC4");
       SecretKeySpec _key = new SecretKeySpec(key, "RC4");
-      synchronized(javax.crypto.Cipher.class){
-        cipher.init((mode==ENCRYPT_MODE?
-                     javax.crypto.Cipher.ENCRYPT_MODE:
-                     javax.crypto.Cipher.DECRYPT_MODE),
-                    _key);
-      }
+      cipher.init((mode==ENCRYPT_MODE?
+                   javax.crypto.Cipher.ENCRYPT_MODE:
+                   javax.crypto.Cipher.DECRYPT_MODE),
+                  _key);
       byte[] foo=new byte[1];
       for(int i=0; i<skip; i++){
         cipher.update(foo, 0, 1, foo, 0);
@@ -66,8 +67,10 @@ public class ARCFOUR128 implements Cipher{
       throw e;
     }
   }
+  @Override
   public void update(byte[] foo, int s1, int len, byte[] bar, int s2) throws Exception{
     cipher.update(foo, s1, len, bar, s2);
   }
+  @Override
   public boolean isCBC(){return false; }
 }

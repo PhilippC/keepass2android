@@ -37,8 +37,11 @@ public class TripleDESCBC implements Cipher{
   private static final int ivsize=8;
   private static final int bsize=24;
   private javax.crypto.Cipher cipher;    
+  @Override
   public int getIVSize(){return ivsize;} 
+  @Override
   public int getBlockSize(){return bsize;}
+  @Override
   public void init(int mode, byte[] key, byte[] iv) throws Exception{
     String pad="NoPadding";      
     //if(padding) pad="PKCS5Padding";
@@ -60,27 +63,27 @@ public class TripleDESCBC implements Cipher{
       // The following code does not work on IBM's JDK 1.4.1
       SecretKeySpec skeySpec = new SecretKeySpec(key, "DESede");
       cipher.init((mode==ENCRYPT_MODE?
-		   javax.crypto.Cipher.ENCRYPT_MODE:
-		   javax.crypto.Cipher.DECRYPT_MODE),
-		  skeySpec, new IvParameterSpec(iv));
+                   javax.crypto.Cipher.ENCRYPT_MODE:
+                   javax.crypto.Cipher.DECRYPT_MODE),
+                   skeySpec, new IvParameterSpec(iv));
 */
       DESedeKeySpec keyspec=new DESedeKeySpec(key);
       SecretKeyFactory keyfactory=SecretKeyFactory.getInstance("DESede");
       SecretKey _key=keyfactory.generateSecret(keyspec);
-      synchronized(javax.crypto.Cipher.class){
-        cipher.init((mode==ENCRYPT_MODE?
-                     javax.crypto.Cipher.ENCRYPT_MODE:
-                     javax.crypto.Cipher.DECRYPT_MODE),
-                    _key, new IvParameterSpec(iv));
-      }
+      cipher.init((mode==ENCRYPT_MODE?
+                   javax.crypto.Cipher.ENCRYPT_MODE:
+                   javax.crypto.Cipher.DECRYPT_MODE),
+                  _key, new IvParameterSpec(iv));
     }
     catch(Exception e){
       cipher=null;
       throw e;
     }
   }
+  @Override
   public void update(byte[] foo, int s1, int len, byte[] bar, int s2) throws Exception{
     cipher.update(foo, s1, len, bar, s2);
   }
+  @Override
   public boolean isCBC(){return true; }
 }

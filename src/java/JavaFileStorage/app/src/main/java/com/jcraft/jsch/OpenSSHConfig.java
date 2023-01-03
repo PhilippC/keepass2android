@@ -29,14 +29,20 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Set;
 import java.util.Vector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * This class implements ConfigRepository interface, and parses
@@ -47,6 +53,8 @@ import java.util.Vector;
  *   <li>Hostname</li>
  *   <li>Port</li>
  *   <li>PreferredAuthentications</li>
+ *   <li>PubkeyAcceptedAlgorithms</li>
+ *   <li>FingerprintHash</li>
  *   <li>IdentityFile</li>
  *   <li>NumberOfPasswordPrompts</li>
  *   <li>ConnectTimeout</li>
@@ -60,7 +68,7 @@ import java.util.Vector;
  *   <li>CompressionLevel</li>
  *   <li>ForwardAgent</li>
  *   <li>RequestTTY</li>
- *   <li>ServerAliveInterval</li>  
+ *   <li>ServerAliveInterval</li>
  *   <li>LocalForward</li>
  *   <li>RemoteForward</li>
  *   <li>ClearAllForwardings</li>
@@ -70,6 +78,10 @@ import java.util.Vector;
  */
 public class OpenSSHConfig implements ConfigRepository {
 
+  private static final Set<String> keysWithListAdoption = Stream
+      .of("KexAlgorithms", "Ciphers","HostKeyAlgorithms", "MACs", "PubkeyAcceptedAlgorithms", "PubkeyAcceptedKeyTypes")
+      .map(String::toUpperCase).collect(Collectors.toSet());
+
   /**
    * Parses the given string, and returns an instance of ConfigRepository.
    *
@@ -77,12 +89,10 @@ public class OpenSSHConfig implements ConfigRepository {
    * @return an instanceof OpenSSHConfig
    */
   public static OpenSSHConfig parse(String conf) throws IOException {
-    Reader r = new StringReader(conf);
-    try {
-      return new OpenSSHConfig(r);
-    }
-    finally {
-      r.close();
+    try(Reader r = new StringReader(conf)) {
+      try(BufferedReader br = new BufferedReader(r)) {
+        return new OpenSSHConfig(br);
+      }
     }
   }
 
@@ -93,27 +103,21 @@ public class OpenSSHConfig implements ConfigRepository {
    * @return an instanceof OpenSSHConfig
    */
   public static OpenSSHConfig parseFile(String file) throws IOException {
-    Reader r = new FileReader(Util.checkTilde(file));
-    try {
-      return new OpenSSHConfig(r);
-    }
-    finally {
-      r.close();
+    try(BufferedReader br = Files.newBufferedReader(Paths.get(Util.checkTilde(file)), StandardCharsets.UTF_8)) {
+      return new OpenSSHConfig(br);
     }
   }
 
-  OpenSSHConfig(Reader r) throws IOException {
-    _parse(r);
+  OpenSSHConfig(BufferedReader br) throws IOException {
+    _parse(br);
   }
 
-  private final Hashtable config = new Hashtable();
-  private final Vector hosts = new Vector();
+  private final Hashtable<String, Vector<String[]>> config = new Hashtable<>();
+  private final Vector<String> hosts = new Vector<>();
 
-  private void _parse(Reader r) throws IOException {
-    BufferedReader br = new BufferedReader(r);
-
+  private void _parse(BufferedReader br) throws IOException {
     String host = "";
-    Vector/*<String[]>*/ kv = new Vector();
+    Vector<String[]> kv = new Vector<>();
     String l = null;
 
     while((l = br.readLine()) != null){
@@ -128,11 +132,11 @@ public class OpenSSHConfig implements ConfigRepository {
       if(key_value.length <= 1)
         continue;
 
-      if(key_value[0].equals("Host")){
+      if(key_value[0].equalsIgnoreCase("Host")){
         config.put(host, kv);
         hosts.addElement(host);
         host = key_value[1];
-        kv = new Vector();
+        kv = new Vector<>();
       }
       else {
         kv.addElement(key_value);
@@ -142,11 +146,21 @@ public class OpenSSHConfig implements ConfigRepository {
     hosts.addElement(host);
   }
 
+  @Override
   public Config getConfig(String host) {
     return new MyConfig(host);
   }
 
-  private static final Hashtable keymap = new Hashtable();
+  /**
+   * Returns mapping of jsch config property names to OpenSSH property names.
+   *
+   * @return map
+   */
+  static Hashtable<String, String> getKeymap() {
+    return keymap;
+  }
+
+  private static final Hashtable<String, String> keymap = new Hashtable<>();
   static {
     keymap.put("kex", "KexAlgorithms");
     keymap.put("server_host_key", "HostKeyAlgorithms");
@@ -163,7 +177,7 @@ public class OpenSSHConfig implements ConfigRepository {
   class MyConfig implements Config {
 
     private String host;
-    private Vector _configs = new Vector();
+    private Vector<Vector<String[]>> _configs = new Vector<>();
 
     MyConfig(String host){
       this.host = host;
@@ -173,7 +187,7 @@ public class OpenSSHConfig implements ConfigRepository {
       byte[] _host = Util.str2byte(host);
       if(hosts.size() > 1){
         for(int i = 1; i < hosts.size(); i++){
-          String patterns[] = ((String)hosts.elementAt(i)).split("[ \t]");
+          String patterns[] = hosts.elementAt(i).split("[ \t]");
           for(int j = 0; j < patterns.length; j++){
             boolean negate = false;
             String foo = patterns[j].trim();
@@ -183,11 +197,11 @@ public class OpenSSHConfig implements ConfigRepository {
             }
             if(Util.glob(Util.str2byte(foo), _host)){
               if(!negate){
-                _configs.addElement(config.get((String)hosts.elementAt(i)));
+                _configs.addElement(config.get(hosts.elementAt(i)));
               }
             }
             else if(negate){
-              _configs.addElement(config.get((String)hosts.elementAt(i)));
+              _configs.addElement(config.get(hosts.elementAt(i)));
             }
           }
         }
@@ -195,15 +209,16 @@ public class OpenSSHConfig implements ConfigRepository {
     }
 
     private String find(String key) {
+      String originalKey=key;
       if(keymap.get(key)!=null) {
-        key = (String)keymap.get(key);
+        key = keymap.get(key);
       }
       key = key.toUpperCase();
       String value = null;
       for(int i = 0; i < _configs.size(); i++) {
-        Vector v = (Vector)_configs.elementAt(i);
+        Vector<String[]> v = _configs.elementAt(i);
         for(int j = 0; j < v.size(); j++) {
-          String[] kv = (String[])v.elementAt(j);
+          String[] kv = v.elementAt(j);
           if(kv[0].toUpperCase().equals(key)) {
             value = kv[1];
             break;
@@ -226,16 +241,34 @@ public class OpenSSHConfig implements ConfigRepository {
         }
       }
       */
+
+      if (keysWithListAdoption.contains(key) && value != null && (value.startsWith("+") || value.startsWith("-") || value.startsWith("^"))) {
+
+        String origConfig = JSch.getConfig(originalKey).trim();
+
+        if (value.startsWith("+")) {
+          value=origConfig + "," + value.substring(1).trim();
+        } else if (value.startsWith("-")) {
+          List<String> algList = Arrays.stream(Util.split(origConfig,",")).collect(Collectors.toList());
+          for (String alg : Util.split(value.substring(1).trim(),",")) {
+            algList.remove(alg.trim());
+          }
+          value = String.join(",", algList);
+        } else if (value.startsWith("^")) {
+          value = value.substring(1).trim() + "," + origConfig;
+        }
+      }
+
       return value;
     }
 
     private String[] multiFind(String key) {
       key = key.toUpperCase();
-      Vector value = new Vector();
+      Vector<String> value = new Vector<>();
       for(int i = 0; i < _configs.size(); i++) {
-        Vector v = (Vector)_configs.elementAt(i);
+        Vector<String[]> v = _configs.elementAt(i);
         for(int j = 0; j < v.size(); j++) {
-          String[] kv = (String[])v.elementAt(j);
+          String[] kv = v.elementAt(j);
           if(kv[0].toUpperCase().equals(key)) {
             String foo = kv[1];
             if(foo != null) {
@@ -245,13 +278,16 @@ public class OpenSSHConfig implements ConfigRepository {
           }
         }
       }
-      String[] result = new String[value.size()]; 
+      String[] result = new String[value.size()];
       value.toArray(result);
       return result;
     }
 
+    @Override
     public String getHostname(){ return find("Hostname"); }
+    @Override
     public String getUser(){ return find("User"); }
+    @Override
     public int getPort(){
       String foo = find("Port");
       int port = -1;
@@ -263,6 +299,7 @@ public class OpenSSHConfig implements ConfigRepository {
       }
       return port;
     }
+    @Override
     public String getValue(String key){
       if(key.equals("compression.s2c") ||
          key.equals("compression.c2s")) {
@@ -273,6 +310,7 @@ public class OpenSSHConfig implements ConfigRepository {
       }
       return find(key);
     }
+    @Override
     public String[] getValues(String key){ return multiFind(key); }
   }
 }

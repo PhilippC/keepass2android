@@ -32,6 +32,9 @@ import java.net.Socket;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Vector;
 
 class Util{
 
@@ -63,7 +66,7 @@ class Util{
       throw new JSchException("fromBase64: invalid base64 data", e);
     }
   }
-  static byte[] toBase64(byte[] buf, int start, int length){
+  static byte[] toBase64(byte[] buf, int start, int length, boolean include_pad){
 
     byte[] tmp=new byte[length*2];
     int i,j,k;
@@ -87,8 +90,10 @@ class Util{
       tmp[i++]=b64[k];
       k=((buf[j]&0x03)<<4)&0x3f;
       tmp[i++]=b64[k];
-      tmp[i++]=(byte)'=';
-      tmp[i++]=(byte)'=';
+      if(include_pad){
+        tmp[i++]=(byte)'=';
+        tmp[i++]=(byte)'=';
+      }
     }
     else if(foo==2){
       k=(buf[j]>>>2)&0x3f;
@@ -97,7 +102,9 @@ class Util{
       tmp[i++]=b64[k];
       k=((buf[j+1]&0x0f)<<2)&0x3f;
       tmp[i++]=b64[k];
-      tmp[i++]=(byte)'=';
+      if(include_pad){
+        tmp[i++]=(byte)'=';
+      }
     }
     byte[] bar=new byte[i];
     System.arraycopy(tmp, 0, bar, 0, i);
@@ -110,22 +117,22 @@ class Util{
     if(foo==null)
       return null;
     byte[] buf=Util.str2byte(foo);
-    java.util.Vector bar=new java.util.Vector();
+    Vector<String> bar=new Vector<>();
     int start=0;
     int index;
     while(true){
       index=foo.indexOf(split, start);
       if(index>=0){
-	bar.addElement(Util.byte2str(buf, start, index-start));
-	start=index+1;
-	continue;
+        bar.addElement(Util.byte2str(buf, start, index-start));
+        start=index+1;
+        continue;
       }
       bar.addElement(Util.byte2str(buf, start, buf.length-start));
       break;
     }
     String[] result=new String[bar.size()];
     for(int i=0; i<result.length; i++){
-      result[i]=(String)(bar.elementAt(i));
+      result[i]=bar.elementAt(i);
     }
     return result;
   }
@@ -133,7 +140,7 @@ class Util{
     return glob0(pattern, 0, name, 0);
   }
   static private boolean glob0(byte[] pattern, int pattern_index,
-			      byte[] name, int name_index){
+                              byte[] name, int name_index){
     if(name.length>0 && name[0]=='.'){
       if(pattern.length>0 && pattern[0]=='.'){
         if(pattern.length==2 && pattern[1]=='*') return true;
@@ -144,7 +151,7 @@ class Util{
     return glob(pattern, pattern_index, name, name_index);
   }
   static private boolean glob(byte[] pattern, int pattern_index,
-			      byte[] name, int name_index){
+                              byte[] name, int name_index){
     //System.err.println("glob: "+new String(pattern)+", "+pattern_index+" "+new String(name)+", "+name_index);
 
     int patternlen=pattern.length;
@@ -157,14 +164,14 @@ class Util{
 
     while(i<patternlen && j<namelen){
       if(pattern[i]=='\\'){
-	if(i+1==patternlen)
-	  return false;
-	i++;
-	if(pattern[i]!=name[j]) 
+        if(i+1==patternlen)
+          return false;
+        i++;
+        if(pattern[i]!=name[j]) 
           return false;
         i+=skipUTF8Char(pattern[i]);
         j+=skipUTF8Char(name[j]);
-	continue;
+        continue;
       }
 
       if(pattern[i]=='*'){
@@ -175,14 +182,14 @@ class Util{
           }
           break;
         }
-	if(patternlen==i)
+        if(patternlen==i)
           return true;
 
-	byte foo=pattern[i];
+        byte foo=pattern[i];
         if(foo=='?'){
           while(j<namelen){
-	    if(glob(pattern, i, name, j)){
-	      return true;
+            if(glob(pattern, i, name, j)){
+              return true;
             }
             j+=skipUTF8Char(name[j]);
           }
@@ -205,21 +212,21 @@ class Util{
           return false;
         }
 
-	while(j<namelen){
-	  if(foo==name[j]){
-	    if(glob(pattern, i, name, j)){
-	      return true;
-	    }
-	  }
+        while(j<namelen){
+          if(foo==name[j]){
+            if(glob(pattern, i, name, j)){
+              return true;
+            }
+          }
           j+=skipUTF8Char(name[j]);
-	}
-	return false;
+        }
+        return false;
       }
 
       if(pattern[i]=='?'){
         i++;
         j+=skipUTF8Char(name[j]);
-	continue;
+        continue;
       }
 
       if(pattern[i]!=name[j])
@@ -230,11 +237,11 @@ class Util{
 
       if(!(j<namelen)){         // name is end
         if(!(i<patternlen)){    // pattern is end
-	  return true;
-	}
-	if(pattern[i]=='*'){    
+          return true;
+        }
+        if(pattern[i]=='*'){    
           break;
-	}
+        }
       }
       continue;
     }
@@ -309,19 +316,29 @@ class Util{
   private static String[] chars={
     "0","1","2","3","4","5","6","7","8","9", "a","b","c","d","e","f"
   };
-  static String getFingerPrint(HASH hash, byte[] data){
+  static String getFingerPrint(HASH hash, byte[] data, boolean include_prefix, boolean force_hex){
     try{
       hash.init();
       hash.update(data, 0, data.length);
       byte[] foo=hash.digest();
-      StringBuffer sb=new StringBuffer();
-      int bar;
-      for(int i=0; i<foo.length;i++){
-        bar=foo[i]&0xff;
-        sb.append(chars[(bar>>>4)&0xf]);
-        sb.append(chars[(bar)&0xf]);
-        if(i+1<foo.length)
-          sb.append(":");
+      StringBuilder sb=new StringBuilder();
+      if(include_prefix){
+        sb.append(hash.name());
+        sb.append(":");
+      }
+      if(force_hex || hash.name().equals("MD5")){
+        int bar;
+        for(int i=0; i<foo.length;i++){
+          bar=foo[i]&0xff;
+          sb.append(chars[(bar>>>4)&0xf]);
+          sb.append(chars[(bar)&0xf]);
+          if(i+1<foo.length)
+            sb.append(":");
+        }
+      }
+      else{
+        byte[] b64str=toBase64(foo, 0, foo.length, false);
+        sb.append(byte2str(b64str, 0, b64str.length));
       }
       return sb.toString();
     }
@@ -345,9 +362,7 @@ class Util{
       }
       catch(Exception e){
         String message=e.toString();
-        if(e instanceof Throwable)
-          throw new JSchException(message, (Throwable)e);
-        throw new JSchException(message);
+        throw new JSchException(message, e);
       }
     }
     final String _host=host;
@@ -355,8 +370,7 @@ class Util{
     final Socket[] sockp=new Socket[1];
     final Exception[] ee=new Exception[1];
     String message="";
-    Thread tmp=new Thread(new Runnable(){
-        public void run(){
+    Thread tmp=new Thread(() -> {
           sockp[0]=null;
           try{
             sockp[0]=new Socket(_host, _port);
@@ -371,7 +385,6 @@ class Util{
             }
             sockp[0]=null;
           }
-        }
       });
     tmp.setName("Opening Socket "+host);
     tmp.start();
@@ -379,7 +392,7 @@ class Util{
       tmp.join(timeout);
       message="timeout: ";
     }
-    catch(java.lang.InterruptedException eee){
+    catch(InterruptedException eee){
     }
     if(sockp[0]!=null && sockp[0].isConnected()){
       socket=sockp[0];
@@ -396,40 +409,34 @@ class Util{
     return socket;
   } 
 
-  static byte[] str2byte(String str, String encoding){
+  static byte[] str2byte(String str, Charset encoding){
     if(str==null) 
       return null;
-    try{ return str.getBytes(encoding); }
-    catch(java.io.UnsupportedEncodingException e){
-      return str.getBytes();
-    }
+    return str.getBytes(encoding);
   }
 
   static byte[] str2byte(String str){
-    return str2byte(str, "UTF-8");
+    return str2byte(str, StandardCharsets.UTF_8);
   }
 
-  static String byte2str(byte[] str, String encoding){
+  static String byte2str(byte[] str, Charset encoding){
     return byte2str(str, 0, str.length, encoding);
   }
 
-  static String byte2str(byte[] str, int s, int l, String encoding){
-    try{ return new String(str, s, l, encoding); }
-    catch(java.io.UnsupportedEncodingException e){
-      return new String(str, s, l);
-    }
+  static String byte2str(byte[] str, int s, int l, Charset encoding){
+    return new String(str, s, l, encoding);
   }
 
   static String byte2str(byte[] str){
-    return byte2str(str, 0, str.length, "UTF-8");
+    return byte2str(str, 0, str.length, StandardCharsets.UTF_8);
   }
 
   static String byte2str(byte[] str, int s, int l){
-    return byte2str(str, s, l, "UTF-8");
+    return byte2str(str, s, l, StandardCharsets.UTF_8);
   }
 
   static String toHex(byte[] str){
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     for(int i = 0; i<str.length; i++){
       String foo = Integer.toHexString(str[i]&0xff);
       sb.append("0x"+(foo.length() == 1 ? "0" : "")+foo);
@@ -521,6 +528,42 @@ class Util{
     finally {
       if(fis!=null)
         fis.close();
+    }
+  }
+
+  static boolean arraysequals(byte[] a, byte[] b){
+    if(a.length!=b.length) return false;
+    int res=0;
+    for(int i=0; i<a.length; i++){
+      res|=a[i]^b[i];
+    }
+    return res==0;
+  }
+
+  static String getSystemEnv(String name){
+    try{
+      return System.getenv(name);
+    }
+    catch(SecurityException e){
+      return null;
+    }
+  }
+
+  static String getSystemProperty(String key){
+    try{
+      return System.getProperty(key);
+    }
+    catch(SecurityException e){
+      return null;
+    }
+  }
+
+  static String getSystemProperty(String key, String def){
+    try{
+      return System.getProperty(key, def);
+    }
+    catch(SecurityException e){
+      return def;
     }
   }
 }

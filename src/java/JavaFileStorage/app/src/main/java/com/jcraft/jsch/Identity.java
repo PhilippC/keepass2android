@@ -34,7 +34,7 @@ public interface Identity{
   /**
    * Decrypts this identity with the specified pass-phrase.
    * @param passphrase the pass-phrase for this identity.
-   * @return <tt>true</tt> if the decryption is succeeded
+   * @return <code>true</code> if the decryption is succeeded
    * or this identity is not cyphered.
    */
   public boolean setPassphrase(byte[] passphrase) throws JSchException;
@@ -47,15 +47,49 @@ public interface Identity{
 
   /**
    * Signs on data with this identity, and returns the result.
+   * <p>
+   * <em>IMPORTANT NOTE:</em>
+   * <br>
+   * The {@link #getSignature(byte[], String)} method should be overridden
+   * to ensure {@code ssh-rsa} type public keys function with the
+   * {@code rsa-sha2-256} or {@code rsa-sha2-512} signature algorithms.
+   * </p>
    * @param data data to be signed
    * @return the signature
+   * @see #getSignature(byte[], String)
    */
   public byte[] getSignature(byte[] data);
 
   /**
-   * @deprecated The decryption should be done automatically in #setPassphase(byte[] passphrase)
-   * @see #setPassphrase(byte[] passphrase)
+   * Signs on data with this identity, and returns the result.
+   * <p>
+   * <em>IMPORTANT NOTE:</em>
+   * <br>
+   * The default implementation of this method simply calls
+   * {@link #getSignature(byte[])}, which will fail with {@code ssh-rsa}
+   * type public keys when utilized with the {@code rsa-sha2-256} or
+   * {@code rsa-sha2-512} signature algorithms:
+   * <br>
+   * it exists only to maintain backwards compatibility of this interface.
+   * </p>
+   * <p>
+   * This default method should be overridden by implementations to
+   * ensure the {@code rsa-sha2-256} and {@code rsa-sha2-512} signature
+   * algorithms function correctly.
+   * </p>
+   * @param data data to be signed
+   * @param alg signature algorithm to use
+   * @return the signature
+   * @since 0.1.57
+   * @see #getSignature(byte[])
    */
+  public default byte[] getSignature(byte[] data, String alg) {return getSignature(data);}
+
+  /**
+   * @deprecated The decryption should be done automatically in {@link #setPassphrase(byte[])}
+   * @see #setPassphrase(byte[])
+   */
+  @Deprecated
   public boolean decrypt();
 
   /**
@@ -71,8 +105,8 @@ public interface Identity{
   public String getName();
 
   /**
-   * Returns <tt>true</tt> if this identity is cyphered.
-   * @return <tt>true</tt> if this identity is cyphered.
+   * Returns <code>true</code> if this identity is cyphered.
+   * @return <code>true</code> if this identity is cyphered.
    */
   public boolean isEncrypted();
 

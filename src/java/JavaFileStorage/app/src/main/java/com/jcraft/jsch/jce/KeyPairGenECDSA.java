@@ -41,6 +41,7 @@ public class KeyPairGenECDSA implements com.jcraft.jsch.KeyPairGenECDSA {
   ECPublicKey pubKey;
   ECPrivateKey prvKey;
   ECParameterSpec params;
+  @Override
   public void init(int key_size) throws Exception {
     String name=null;
     if(key_size==256) name="secp256r1";
@@ -56,7 +57,7 @@ public class KeyPairGenECDSA implements com.jcraft.jsch.KeyPairGenECDSA {
       prvKey = (ECPrivateKey)kp.getPrivate();
       pubKey = (ECPublicKey)kp.getPublic();
       params=pubKey.getParams();
-      d=((ECPrivateKey)prvKey).getS().toByteArray();
+      d=prvKey.getS().toByteArray();
       ECPoint w = pubKey.getW();
       r = w.getAffineX().toByteArray();
       s = w.getAffineY().toByteArray();
@@ -70,8 +71,11 @@ public class KeyPairGenECDSA implements com.jcraft.jsch.KeyPairGenECDSA {
       d=insert0(d);
     }
   }
+  @Override
   public byte[] getD(){return d;}
+  @Override
   public byte[] getR(){return r;}
+  @Override
   public byte[] getS(){return s;}
   ECPublicKey getPublicKey(){ return pubKey; }
   ECPrivateKey getPrivateKey(){ return prvKey; }

@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-public abstract class DHECN extends KeyExchange{
+abstract class DHECN extends KeyExchange{
 
   private static final int SSH_MSG_KEX_ECDH_INIT =                 30;
   private static final int SSH_MSG_KEX_ECDH_REPLY=                 31;
@@ -52,17 +52,17 @@ public abstract class DHECN extends KeyExchange{
   protected String sha_name; 
   protected int key_size;
 
+  @Override
   public void init(Session session,
-		   byte[] V_S, byte[] V_C, byte[] I_S, byte[] I_C) throws Exception{
-    this.session=session;
+                   byte[] V_S, byte[] V_C, byte[] I_S, byte[] I_C) throws Exception{
     this.V_S=V_S;      
     this.V_C=V_C;      
     this.I_S=I_S;      
     this.I_C=I_C;      
 
     try{
-      Class c=Class.forName(session.getConfig(sha_name));
-      sha=(HASH)(c.newInstance());
+      Class<? extends HASH> c=Class.forName(session.getConfig(sha_name)).asSubclass(HASH.class);
+      sha=c.getDeclaredConstructor().newInstance();
       sha.init();
     }
     catch(Exception e){
@@ -76,17 +76,15 @@ public abstract class DHECN extends KeyExchange{
     buf.putByte((byte)SSH_MSG_KEX_ECDH_INIT);
 
     try{
-      Class c=Class.forName(session.getConfig("ecdh-sha2-nistp"));
-      ecdh=(ECDH)(c.newInstance());
+      Class<? extends ECDH> c=Class.forName(session.getConfig("ecdh-sha2-nistp")).asSubclass(ECDH.class);
+      ecdh=c.getDeclaredConstructor().newInstance();
       ecdh.init(key_size);
 
       Q_C = ecdh.getQ();
       buf.putString(Q_C);
     }
     catch(Exception e){
-      if(e instanceof Throwable)
-        throw new JSchException(e.toString(), (Throwable)e);
-      throw new JSchException(e.toString());
+      throw new JSchException(e.toString(), e);
     }
 
     if(V_S==null){  // This is a really ugly hack for Session.checkKexes ;-(
@@ -95,16 +93,17 @@ public abstract class DHECN extends KeyExchange{
 
     session.write(packet);
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(session.getLogger().isEnabled(Logger.INFO)){
+        session.getLogger().log(Logger.INFO, 
                            "SSH_MSG_KEX_ECDH_INIT sent");
-      JSch.getLogger().log(Logger.INFO, 
+        session.getLogger().log(Logger.INFO, 
                            "expecting SSH_MSG_KEX_ECDH_REPLY");
     }
 
     state=SSH_MSG_KEX_ECDH_REPLY;
   }
 
+  @Override
   public boolean next(Buffer _buf) throws Exception{
     int i,j;
     switch(state){
@@ -117,9 +116,9 @@ public abstract class DHECN extends KeyExchange{
       j=_buf.getInt();
       j=_buf.getByte();
       j=_buf.getByte();
-      if(j!=31){
-	System.err.println("type: must be 31 "+j);
-	return false;
+      if(j!=SSH_MSG_KEX_ECDH_REPLY){
+        System.err.println("type: must be SSH_MSG_KEX_ECDH_REPLY "+j);
+        return false;
       }
 
       K_S=_buf.getString();
@@ -135,7 +134,7 @@ public abstract class DHECN extends KeyExchange{
       //   Section 3.2.2 of [SEC1].  If a key fails validation,
       //   the key exchange MUST fail.
       if(!ecdh.validate(r_s[0], r_s[1])){
-	return false;
+        return false;
       }
 
       K = ecdh.getSecret(r_s[0], r_s[1]);
@@ -171,7 +170,7 @@ public abstract class DHECN extends KeyExchange{
       i=0;
       j=0;
       j=((K_S[i++]<<24)&0xff000000)|((K_S[i++]<<16)&0x00ff0000)|
-	((K_S[i++]<<8)&0x0000ff00)|((K_S[i++])&0x000000ff);
+        ((K_S[i++]<<8)&0x0000ff00)|((K_S[i++])&0x000000ff);
       String alg=Util.byte2str(K_S, i, j);
       i+=j;
 
@@ -183,5 +182,6 @@ public abstract class DHECN extends KeyExchange{
     return false;
   }
 
+  @Override
   public int getState(){return state; }
 }

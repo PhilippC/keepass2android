@@ -32,6 +32,7 @@ package com.jcraft.jsch;
 class RequestSignal extends Request{
   private String signal="KILL";
   public void setSignal(String foo){ signal=foo; }
+  @Override
   public void request(Session session, Channel channel) throws Exception{
     super.request(session, channel);
 

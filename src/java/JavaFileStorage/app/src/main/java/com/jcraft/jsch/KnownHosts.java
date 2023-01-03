@@ -29,23 +29,29 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
-public
 class KnownHosts implements HostKeyRepository{
-  private static final String _known_hosts="known_hosts";
-
   private JSch jsch=null;
   private String known_hosts=null;
-  private java.util.Vector pool=null;
+  private Vector<HostKey> pool=null;
 
-  private MAC hmacsha1=null;
+  MAC hmacsha1;
 
-  KnownHosts(JSch jsch){
+  KnownHosts(JSch jsch) {
     super();
     this.jsch=jsch;
-    this.hmacsha1 = getHMACSHA1();
-    pool=new java.util.Vector();
+    getHMACSHA1();
+    pool=new Vector<>();
   }
 
   void setKnownHosts(String filename) throws JSchException{
@@ -60,7 +66,7 @@ class KnownHosts implements HostKeyRepository{
   }
   void setKnownHosts(InputStream input) throws JSchException{
     pool.removeAllElements();
-    StringBuffer sb=new StringBuffer();
+    StringBuilder sb=new StringBuilder();
     byte i;
     int j;
     boolean error=false;
@@ -73,15 +79,15 @@ class KnownHosts implements HostKeyRepository{
       int bufl=0;
 loop:
       while(true){
-	bufl=0;
+        bufl=0;
         while(true){
           j=fis.read();
           if(j==-1){
             if(bufl==0){ break loop; }
-            else{ break; }
+            break;
           }
-	  if(j==0x0d){ continue; }
-	  if(j==0x0a){ break; }
+          if(j==0x0d){ continue; }
+          if(j==0x0a){ break; }
           if(buf.length<=bufl){
             if(bufl>1024*10) break;   // too long...
             byte[] newbuf=new byte[buf.length*2];
@@ -89,38 +95,38 @@ loop:
             buf=newbuf;
           }
           buf[bufl++]=(byte)j;
-	}
+        }
 
-	j=0;
+        j=0;
         while(j<bufl){
           i=buf[j];
-	  if(i==' '||i=='\t'){ j++; continue; }
-	  if(i=='#'){
-	    addInvalidLine(Util.byte2str(buf, 0, bufl));
-	    continue loop;
-	  }
-	  break;
-	}
-	if(j>=bufl){ 
-	  addInvalidLine(Util.byte2str(buf, 0, bufl));
-	  continue loop; 
-	}
+          if(i==' '||i=='\t'){ j++; continue; }
+          if(i=='#'){
+            addInvalidLine(Util.byte2str(buf, 0, bufl));
+            continue loop;
+          }
+          break;
+        }
+        if(j>=bufl){ 
+          addInvalidLine(Util.byte2str(buf, 0, bufl));
+          continue loop; 
+        }
 
         sb.setLength(0);
         while(j<bufl){
           i=buf[j++];
           if(i==0x20 || i=='\t'){ break; }
           sb.append((char)i);
-	}
-	host=sb.toString();
-	if(j>=bufl || host.length()==0){
-	  addInvalidLine(Util.byte2str(buf, 0, bufl));
-	  continue loop; 
-	}
+        }
+        host=sb.toString();
+        if(j>=bufl || host.length()==0){
+          addInvalidLine(Util.byte2str(buf, 0, bufl));
+          continue loop; 
+        }
 
         while(j<bufl){
           i=buf[j];
-	  if(i==' '||i=='\t'){ j++; continue; }
+          if(i==' '||i=='\t'){ j++; continue; }
           break;
         }
 
@@ -148,25 +154,25 @@ loop:
         }
 
         sb.setLength(0);
-	type=-1;
+        type=-1;
         while(j<bufl){
           i=buf[j++];
           if(i==0x20 || i=='\t'){ break; }
           sb.append((char)i);
-	}
-	String tmp = sb.toString();
-	if(HostKey.name2type(tmp)!=HostKey.UNKNOWN){
-	  type=HostKey.name2type(tmp);
-	}
-	else { j=bufl; }
-	if(j>=bufl){
-	  addInvalidLine(Util.byte2str(buf, 0, bufl));
-	  continue loop; 
-	}
+        }
+        String tmp = sb.toString();
+        if(HostKey.name2type(tmp)!=HostKey.UNKNOWN){
+          type=HostKey.name2type(tmp);
+        }
+        else { j=bufl; }
+        if(j>=bufl){
+          addInvalidLine(Util.byte2str(buf, 0, bufl));
+          continue loop; 
+        }
 
         while(j<bufl){
           i=buf[j];
-	  if(i==' '||i=='\t'){ j++; continue; }
+          if(i==' '||i=='\t'){ j++; continue; }
           break;
         }
 
@@ -177,16 +183,16 @@ loop:
           if(i==0x0a){ break; }
           if(i==0x20 || i=='\t'){ break; }
           sb.append((char)i);
-	}
-	key=sb.toString();
-	if(key.length()==0){
-	  addInvalidLine(Util.byte2str(buf, 0, bufl));
-	  continue loop; 
-	}
+        }
+        key=sb.toString();
+        if(key.length()==0){
+          addInvalidLine(Util.byte2str(buf, 0, bufl));
+          continue loop; 
+        }
 
         while(j<bufl){
           i=buf[j];
-	  if(i==' '||i=='\t'){ j++; continue; }
+          if(i==' '||i=='\t'){ j++; continue; }
           break;
         }
 
@@ -212,30 +218,28 @@ loop:
           comment=sb.toString();
         }
 
-	//System.err.println(host);
-	//System.err.println("|"+key+"|");
+        //System.err.println(host);
+        //System.err.println("|"+key+"|");
 
-	HostKey hk = null;
+        HostKey hk = null;
         hk = new HashedHostKey(marker, host, type, 
                                Util.fromBase64(Util.str2byte(key), 0, 
                                                key.length()), comment);
-	pool.addElement(hk);
+        pool.addElement(hk);
       }
       if(error){
-	throw new JSchException("KnownHosts: invalid format");
+        throw new JSchException("KnownHosts: invalid format");
       }
     }
     catch(Exception e){
       if(e instanceof JSchException)
-	throw (JSchException)e;         
-      if(e instanceof Throwable)
-        throw new JSchException(e.toString(), (Throwable)e);
-      throw new JSchException(e.toString());
+        throw (JSchException)e;         
+      throw new JSchException(e.toString(), e);
     }
     finally {
       try{ input.close(); }
       catch(IOException e){
-        throw new JSchException(e.toString(), (Throwable)e);
+        throw new JSchException(e.toString(), e);
       }
     }
   }
@@ -244,8 +248,10 @@ loop:
     pool.addElement(hk);
   }
   String getKnownHostsFile(){ return known_hosts; }
+  @Override
   public String getKnownHostsRepositoryID(){ return known_hosts; }
 
+  @Override
   public int check(String host, byte[] key){
     int result=NOT_INCLUDED;
     if(host==null){
@@ -256,20 +262,19 @@ loop:
     try {
       hk = new HostKey(host, HostKey.GUESS, key);
     }
-    catch(JSchException e){  // unsupported key
+    catch(Exception e){  // unsupported key
+      jsch.getInstanceLogger().log(Logger.DEBUG, "exception while trying to read key while checking host '" + host + "'", e);
       return result;
     }
 
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        HostKey _hk=(HostKey)(pool.elementAt(i));
+        HostKey _hk=pool.elementAt(i);
         if(_hk.isMatched(host) && _hk.type==hk.type){
           if(Util.array_equals(_hk.key, key)){
             return OK;
           }
-          else{
-            result=CHANGED;
-	  }
+          result=CHANGED;
         }
       }
     }
@@ -284,26 +289,27 @@ loop:
     return result;
   }
 
+  @Override
   public void add(HostKey hostkey, UserInfo userinfo){
     int type=hostkey.type;
     String host=hostkey.getHost();
-    byte[] key=hostkey.key;
+//    byte[] key=hostkey.key;
 
     HostKey hk=null;
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        hk=(HostKey)(pool.elementAt(i));
+        hk=pool.elementAt(i);
         if(hk.isMatched(host) && hk.type==type){
 /*
-	  if(Util.array_equals(hk.key, key)){ return; }
-	  if(hk.host.equals(host)){
-	    hk.key=key;
-	    return;
-	  }
-	  else{
-	    hk.host=deleteSubString(hk.host, host);
-	    break;
-	  }
+          if(Util.array_equals(hk.key, key)){ return; }
+          if(hk.host.equals(host)){
+            hk.key=key;
+            return;
+          }
+          else{
+            hk.host=deleteSubString(hk.host, host);
+            break;
+          }
 */
         }
       }
@@ -313,61 +319,71 @@ loop:
 
     pool.addElement(hk);
 
-    String bar=getKnownHostsRepositoryID();
-    if(bar!=null){
-      boolean foo=true;
-      File goo=new File(Util.checkTilde(bar));
-      if(!goo.exists()){
-        foo=false;
-        if(userinfo!=null){
-          foo=userinfo.promptYesNo(bar+" does not exist.\n"+
+    syncKnownHostsFile(userinfo);
+  }
+
+  void syncKnownHostsFile(UserInfo userinfo) {
+    String khFilename = getKnownHostsRepositoryID();
+    if (khFilename == null) {
+      return;
+    }
+    boolean doSync=true;
+    File goo=new File(Util.checkTilde(khFilename ));
+    if(!goo.exists()){
+      doSync = false;
+      if (userinfo!=null) {
+        doSync = userinfo.promptYesNo(khFilename +" does not exist.\n"+
+                                 "Are you sure you want to create it?"
+                                 );
+        goo=goo.getParentFile();
+        if(doSync && goo!=null && !goo.exists()){
+          doSync=userinfo.promptYesNo("The parent directory "+goo+" does not exist.\n"+
                                    "Are you sure you want to create it?"
                                    );
-          goo=goo.getParentFile();
-          if(foo && goo!=null && !goo.exists()){
-            foo=userinfo.promptYesNo("The parent directory "+goo+" does not exist.\n"+
-                                     "Are you sure you want to create it?"
-                                     );
-            if(foo){
-              if(!goo.mkdirs()){
-                userinfo.showMessage(goo+" has not been created.");
-                foo=false;
-              }
-              else{
-                userinfo.showMessage(goo+" has been succesfully created.\nPlease check its access permission.");
-              }
+          if(doSync){
+            if(!goo.mkdirs()){
+              userinfo.showMessage(goo+" has not been created.");
+              doSync=false;
+            }
+            else{
+              userinfo.showMessage(goo+" has been succesfully created.\nPlease check its access permission.");
             }
           }
-          if(goo==null)foo=false;
         }
+        if(goo==null)doSync=false;
       }
-      if(foo){
-        try{ 
-          sync(bar); 
-        }
-        catch(Exception e){ System.err.println("sync known_hosts: "+e); }
-      }
+    }
+    if(!doSync){
+      return;
+    }
+    try{ 
+      sync(khFilename); 
+    }
+    catch(Exception e) {
+      jsch.getInstanceLogger().log(Logger.ERROR, "unable to sync known host file " + goo.getPath(), e);
     }
   }
 
+  @Override
   public HostKey[] getHostKey(){
     return getHostKey(null, (String)null);
   }
+  @Override
   public HostKey[] getHostKey(String host, String type){
     synchronized(pool){
-      java.util.ArrayList v = new java.util.ArrayList();
+      List<HostKey> v = new ArrayList<>();
       for(int i=0; i<pool.size(); i++){
-	HostKey hk=(HostKey)pool.elementAt(i);
-	if(hk.type==HostKey.UNKNOWN) continue;
-	if(host==null || 
-	   (hk.isMatched(host) && 
-	    (type==null || hk.getType().equals(type)))){
+        HostKey hk=pool.elementAt(i);
+        if(hk.type==HostKey.UNKNOWN) continue;
+        if(host==null || 
+           (hk.isMatched(host) && 
+            (type==null || hk.getType().equals(type)))){
           v.add(hk);
-	}
+        }
       }
       HostKey[] foo = new HostKey[v.size()];
       for(int i=0; i<v.size(); i++){
-        foo[i] = (HostKey)v.get(i);
+        foo[i] = v.get(i);
       }
       if(host != null && host.startsWith("[") && host.indexOf("]:")>1){
         HostKey[] tmp =
@@ -382,28 +398,31 @@ loop:
       return foo;
     }
   }
+  @Override
   public void remove(String host, String type){
     remove(host, type, null);
   }
+  @Override
   public void remove(String host, String type, byte[] key){
     boolean sync=false;
     synchronized(pool){
     for(int i=0; i<pool.size(); i++){
-      HostKey hk=(HostKey)(pool.elementAt(i));
+      HostKey hk=pool.elementAt(i);
       if(host==null ||
-	 (hk.isMatched(host) && 
-	  (type==null || (hk.getType().equals(type) &&
-			  (key==null || Util.array_equals(key, hk.key)))))){
+         (hk.isMatched(host) && 
+          (type==null || (hk.getType().equals(type) &&
+                          (key==null || Util.array_equals(key, hk.key)))))){
         String hosts=hk.getHost();
-        if(hosts.equals(host) || 
+        if(host == null || hosts.equals(host) || 
            ((hk instanceof HashedHostKey) &&
             ((HashedHostKey)hk).isHashed())){
           pool.removeElement(hk);
+          i--;
         }
         else{
           hk.host=deleteSubString(hosts, host);
         }
-	sync=true;
+        sync=true;
       }
     }
     }
@@ -412,58 +431,63 @@ loop:
     }
   }
 
-  protected void sync() throws IOException { 
+  void sync() throws IOException { 
     if(known_hosts!=null)
       sync(known_hosts); 
   }
-  protected synchronized void sync(String foo) throws IOException {
+  synchronized void sync(String foo) throws IOException {
     if(foo==null) return;
-    FileOutputStream fos=new FileOutputStream(Util.checkTilde(foo));
-    dump(fos);
-    fos.close();
+    try (FileOutputStream fos = new FileOutputStream(Util.checkTilde(foo))) {
+      dump(fos);
+    }
   }
 
   private static final byte[] space={(byte)0x20};
-  private static final byte[] cr=Util.str2byte("\n");
-  void dump(OutputStream out) throws IOException {
+  private static final byte[] lf=Util.str2byte("\n");
+  
+  void dump(OutputStream out) {
     try{
       HostKey hk;
       synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        hk=(HostKey)(pool.elementAt(i));
-        //hk.dump(out);
-	String marker=hk.getMarker();
-	String host=hk.getHost();
-	String type=hk.getType();
-        String comment = hk.getComment();
-	if(type.equals("UNKNOWN")){
-	  out.write(Util.str2byte(host));
-	  out.write(cr);
-	  continue;
-	}
-        if(marker.length()!=0){
-          out.write(Util.str2byte(marker));
-          out.write(space);
-        }
-	out.write(Util.str2byte(host));
-	out.write(space);
-	out.write(Util.str2byte(type));
-	out.write(space);
-	out.write(Util.str2byte(hk.getKey()));
-        if(comment!=null){
-          out.write(space);
-          out.write(Util.str2byte(comment));
-        }
-	out.write(cr);
+        hk=pool.elementAt(i);
+        dumpHostKey(out, hk);
       }
       }
     }
     catch(Exception e){
-      System.err.println(e);
+      jsch.getInstanceLogger().log(Logger.ERROR, "unable to dump known hosts", e);
     }
   }
 
-  private String deleteSubString(String hosts, String host){
+  void dumpHostKey(OutputStream out, HostKey hk) throws IOException {
+    String marker=hk.getMarker();
+    String host=hk.getHost();
+    String type=hk.getType();
+    String comment = hk.getComment();
+    if (type.equals("UNKNOWN")) {
+      out.write(Util.str2byte(host));
+      out.write(lf);
+      return;
+    }
+    if (marker.length() != 0) {
+      out.write(Util.str2byte(marker));
+      out.write(space);
+    }
+    out.write(Util.str2byte(host));
+    out.write(space);
+    out.write(Util.str2byte(type));
+    out.write(space);
+    out.write(Util.str2byte(hk.getKey()));
+    
+    if (comment != null) {
+      out.write(space);
+      out.write(Util.str2byte(comment));
+    }
+    out.write(lf);
+  }
+
+  String deleteSubString(String hosts, String host){
     int i=0;
     int hostlen=host.length();
     int hostslen=hosts.length();
@@ -472,7 +496,7 @@ loop:
       j=hosts.indexOf(',', i);
       if(j==-1) break;
       if(!host.equals(hosts.substring(i, j))){
-        i=j+1;	  
+        i=j+1;
         continue;
       }
       return hosts.substring(0, i)+hosts.substring(j+1);
@@ -483,17 +507,23 @@ loop:
     return hosts;
   }
 
-  private MAC getHMACSHA1(){
-    if(hmacsha1==null){
-      try{
-        Class c=Class.forName(jsch.getConfig("hmac-sha1"));
-        hmacsha1=(MAC)(c.newInstance());
-      }
-      catch(Exception e){ 
-        System.err.println("hmacsha1: "+e); 
-      }
+  MAC getHMACSHA1() throws IllegalArgumentException {
+    if (hmacsha1 == null){
+      hmacsha1 = createHMAC(JSch.getConfig("hmac-sha1"));
     }
+    
     return hmacsha1;
+  }
+  
+  MAC createHMAC(String hmacClassname) throws IllegalArgumentException {
+    try{
+      Class<? extends MAC> c=Class.forName(hmacClassname).asSubclass(MAC.class);
+      return c.getDeclaredConstructor().newInstance();
+    }
+    catch(Exception e){
+      jsch.getInstanceLogger().log(Logger.ERROR, "unable to instantiate HMAC-class " + hmacClassname, e);
+      throw new IllegalArgumentException("instantiation of " + hmacClassname + " lead to an error", e);
+    }
   }
 
   HostKey createHashedHostKey(String host, byte[]key) throws JSchException {
@@ -524,8 +554,8 @@ loop:
         String _hash=data.substring(data.indexOf(HASH_DELIM)+1);
         salt=Util.fromBase64(Util.str2byte(_salt), 0, _salt.length());
         hash=Util.fromBase64(Util.str2byte(_hash), 0, _hash.length());
-        if(salt.length!=20 ||  // block size of hmac-sha1
-           hash.length!=20){
+        int blockSize = hmacsha1.getBlockSize();
+        if (salt.length!=blockSize || hash.length!=blockSize) {
           salt=null;
           hash=null;
           return;
@@ -534,23 +564,23 @@ loop:
       }
     }
 
+    @Override
     boolean isMatched(String _host){
       if(!hashed){
         return super.isMatched(_host);
       }
-      MAC macsha1=getHMACSHA1();
       try{
-        synchronized(macsha1){
-          macsha1.init(salt);
+        synchronized(hmacsha1){
+          hmacsha1.init(salt);
           byte[] foo=Util.str2byte(_host);
-          macsha1.update(foo, 0, foo.length);
-          byte[] bar=new byte[macsha1.getBlockSize()];
-          macsha1.doFinal(bar, 0);
+          hmacsha1.update(foo, 0, foo.length);
+          byte[] bar=new byte[hmacsha1.getBlockSize()];
+          hmacsha1.doFinal(bar, 0);
           return Util.array_equals(hash, bar);
         }
       }
       catch(Exception e){
-        System.out.println(e);
+        jsch.getInstanceLogger().log(Logger.ERROR, "an error occurred while trying to check hash for host " + _host, e);
       }
       return false;
     }
@@ -562,27 +592,30 @@ loop:
     void hash(){
       if(hashed)
         return;
-      MAC macsha1=getHMACSHA1();
       if(salt==null){
         Random random=Session.random;
         synchronized(random){
-          salt=new byte[macsha1.getBlockSize()];
+          salt=new byte[hmacsha1.getBlockSize()];
           random.fill(salt, 0, salt.length);
         }
       }
       try{
-        synchronized(macsha1){
-          macsha1.init(salt);
+        synchronized(hmacsha1){
+          hmacsha1.init(salt);
           byte[] foo=Util.str2byte(host);
-          macsha1.update(foo, 0, foo.length);
-          hash=new byte[macsha1.getBlockSize()];
-          macsha1.doFinal(hash, 0);
+          hmacsha1.update(foo, 0, foo.length);
+          hash=new byte[hmacsha1.getBlockSize()];
+          hmacsha1.doFinal(hash, 0);
         }
       }
       catch(Exception e){
+        jsch.getInstanceLogger().log(Logger.ERROR, "an error occurred while trying to calculate the hash for host " + host, e);
+        salt = null;
+        hash = null;
+        return;
       }
-      host=HASH_MAGIC+Util.byte2str(Util.toBase64(salt, 0, salt.length))+
-        HASH_DELIM+Util.byte2str(Util.toBase64(hash, 0, hash.length));
+      host=HASH_MAGIC+Util.byte2str(Util.toBase64(salt, 0, salt.length, true))+
+        HASH_DELIM+Util.byte2str(Util.toBase64(hash, 0, hash.length, true));
       hashed=true;
     }
   }

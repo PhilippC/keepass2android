@@ -36,7 +36,7 @@ class ChannelSession extends Channel{
 
   protected boolean agent_forwarding=false;
   protected boolean xforwading=false;
-  protected Hashtable env=null;
+  protected Hashtable<byte[], byte[]> env=null;
 
   protected boolean pty=false;
 
@@ -68,16 +68,18 @@ class ChannelSession extends Channel{
    *
    * @param enable
    */
+  @Override
   public void setXForwarding(boolean enable){
     xforwading=enable; 
   }
 
   /**
-   * @deprecated Use {@link #setEnv(String, String)} or {@link #setEnv(byte[], byte[])} instead.
+   * @deprecated Use #setEnv(String, String) or #setEnv(byte[], byte[]) instead.
    * @see #setEnv(String, String)
    * @see #setEnv(byte[], byte[])
    */
-  public void setEnv(Hashtable env){ 
+  @Deprecated
+  public void setEnv(Hashtable<byte[], byte[]> env){ 
     synchronized(this){
       this.env=env; 
     }
@@ -111,9 +113,9 @@ class ChannelSession extends Channel{
     }
   }
 
-  private Hashtable getEnv(){
+  private Hashtable<byte[], byte[]> getEnv(){
     if(env==null)
-      env=new Hashtable();
+      env=new Hashtable<>();
     return env;
   }
 
@@ -213,9 +215,9 @@ class ChannelSession extends Channel{
     }
 
     if(env!=null){
-      for(Enumeration _env=env.keys(); _env.hasMoreElements();){
-        Object name=_env.nextElement();
-        Object value=env.get(name);
+      for(Enumeration<byte[]> _env=env.keys(); _env.hasMoreElements();){
+        byte[] name=_env.nextElement();
+        byte[] value=env.get(name);
         request=new RequestEnv();
         ((RequestEnv)request).setEnv(toByteArray(name), 
                                      toByteArray(value));
@@ -231,7 +233,8 @@ class ChannelSession extends Channel{
     return (byte[])o;
   }
 
-  public void run(){
+  @Override
+  void run(){
     //System.err.println(this+":run >");
 
     Buffer buf=new Buffer(rmpsize);
@@ -239,27 +242,27 @@ class ChannelSession extends Channel{
     int i=-1;
     try{
       while(isConnected() &&
-	    thread!=null && 
+            thread!=null && 
             io!=null && 
             io.in!=null){
         i=io.in.read(buf.buffer, 
                      14,    
                      buf.buffer.length-14
                      -Session.buffer_margin
-		     );
-	if(i==0)continue;
-	if(i==-1){
-	  eof();
-	  break;
-	}
-	if(close)break;
+                     );
+        if(i==0)continue;
+        if(i==-1){
+          eof();
+          break;
+        }
+        if(close)break;
         //System.out.println("write: "+i);
         packet.reset();
         buf.putByte((byte)Session.SSH_MSG_CHANNEL_DATA);
         buf.putInt(recipient);
         buf.putInt(i);
         buf.skip(i);
-	getSession().write(packet, this, i);
+        getSession().write(packet, this, i);
       }
     }
     catch(Exception e){

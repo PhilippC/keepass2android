@@ -30,6 +30,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.jcraft.jsch;
 
 class RequestAgentForwarding extends Request{
+  @Override
   public void request(Session session, Channel channel) throws Exception{
     super.request(session, channel);
 

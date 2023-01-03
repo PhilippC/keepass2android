@@ -29,12 +29,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch.jce;
 
-import java.math.BigInteger;
-import java.security.*;
-import java.security.spec.*;
-import com.jcraft.jsch.Buffer;
-
 public class SignatureECDSA384 extends SignatureECDSAN {
+  @Override
   String getName() {
     return "ecdsa-sha2-nistp384";
   }

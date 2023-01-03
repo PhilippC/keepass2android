@@ -28,7 +28,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 package com.jcraft.jsch.jce;
- 
+
 public class ECDH256 extends ECDHN implements com.jcraft.jsch.ECDH {
   public void init() throws Exception {
     super.init(256);

@@ -34,13 +34,14 @@ import java.security.*;
 import java.security.spec.*;
 import com.jcraft.jsch.Buffer;
 
-public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA {
+abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA {
 
   Signature signature;
   KeyFactory keyFactory;
 
   abstract String getName();
 
+  @Override
   public void init() throws Exception{
     String name = getName();
     String foo="SHA256withECDSA";
@@ -49,7 +50,8 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
     signature=java.security.Signature.getInstance(foo);
     keyFactory=KeyFactory.getInstance("EC");
   }
-  
+
+  @Override
   public void setPubKey(byte[] r, byte[] s) throws Exception{
 
     // r and s must be unsigned values.
@@ -62,14 +64,14 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
 
     AlgorithmParameters param = AlgorithmParameters.getInstance("EC");
     param.init(new ECGenParameterSpec(name));
-    ECParameterSpec ecparam =
-      (ECParameterSpec)param.getParameterSpec(ECParameterSpec.class);
+    ECParameterSpec ecparam = param.getParameterSpec(ECParameterSpec.class);
     ECPoint w = new ECPoint(new BigInteger(1, r), new BigInteger(1, s));
     PublicKey pubKey = 
       keyFactory.generatePublic(new ECPublicKeySpec(w, ecparam));
     signature.initVerify(pubKey);
   }
 
+  @Override
   public void setPrvKey(byte[] d) throws Exception{
 
     // d must be unsigned value.
@@ -81,13 +83,13 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
 
     AlgorithmParameters param = AlgorithmParameters.getInstance("EC");
     param.init(new ECGenParameterSpec(name));
-    ECParameterSpec ecparam =
-      (ECParameterSpec)param.getParameterSpec(ECParameterSpec.class);
+    ECParameterSpec ecparam = param.getParameterSpec(ECParameterSpec.class);
     BigInteger _d = new BigInteger(1, d);
     PrivateKey prvKey = 
       keyFactory.generatePrivate(new ECPrivateKeySpec(_d, ecparam));
     signature.initSign(prvKey);
   }
+  @Override
   public byte[] sign() throws Exception{
     byte[] sig=signature.sign();
 
@@ -120,9 +122,11 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
 
     return sig;
   }
+  @Override
   public void update(byte[] foo) throws Exception{
    signature.update(foo);
   }
+  @Override
   public boolean verify(byte[] sig) throws Exception{
 
     // It seems that SunEC expects ASN.1 data,
@@ -138,8 +142,8 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
       byte[] r = b.getMPInt();
       byte[] s = b.getMPInt();
 
-      r=insert0(r);
-      s=insert0(s);
+      r=trimLeadingZeros(insert0(r));
+      s=trimLeadingZeros(insert0(s));
 
       byte[] asn1 = null;
       if(r.length<64){
@@ -171,14 +175,15 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
     return signature.verify(sig); 
   }
 
-  private byte[] insert0(byte[] buf){
+  private static byte[] insert0(byte[] buf){
     if ((buf[0] & 0x80) == 0) return buf;
     byte[] tmp = new byte[buf.length+1];
     System.arraycopy(buf, 0, tmp, 1, buf.length);
     bzero(buf);
     return tmp;
   }
-  private byte[] chop0(byte[] buf){
+
+  private static byte[] chop0(byte[] buf){
     if(buf[0]!=0) return buf;
     byte[] tmp = new byte[buf.length-1];
     System.arraycopy(buf, 1, tmp, 0, tmp.length);
@@ -186,7 +191,24 @@ public abstract class SignatureECDSAN implements com.jcraft.jsch.SignatureECDSA 
     return tmp;
   }
 
-  private void bzero(byte[] buf){
+  private static void bzero(byte[] buf){
     for(int i = 0; i<buf.length; i++) buf[i]=0;
+  }
+
+  private static byte[] trimLeadingZeros(byte[] buf){
+    if(buf.length<2) return buf;
+
+    int i=0;
+    while(i<buf.length-1){
+      if(buf[i] == 0 && (buf[i+1] & 0x80) == 0) i++;
+      else break;
+    }
+
+    if(i == 0) return buf;
+
+    byte[] tmp = new byte[buf.length-i];
+    System.arraycopy(buf, i, tmp, 0, tmp.length);
+    bzero(buf);
+    return tmp;
   }
 }
