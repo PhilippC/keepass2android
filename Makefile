@@ -172,7 +172,20 @@ JAVA_CLEAN_TARGETS := \
 	clean_KP2AKdbLibrary \
 	clean_PluginQR
 
-INPUT_JavaFileStorageTest-AS = $(call rwildcard,src/java/android-filechooser-AS/app/src,*) $(call rwildcard,src/java/JavaFileStorage/app/src,*) $(call rwildcard,src/java/JavaFileStorageTest-AS/app/src,*.java)
+INPUT_android-filechooser-AS := $(filter-out $(filter %/app,$(wildcard src/java/android-filechooser-AS/*)),$(wildcard src/java/android-filechooser-AS/*)) \
+	$(filter-out $(filter %/build,$(wildcard src/java/android-filechooser-AS/app/*)),$(wildcard src/java/android-filechooser-AS/app/*)) \
+	$(call rwildcard,src/java/android-filechooser-AS/app/src,*)
+
+INPUT_JavaFileStorage := $(filter-out $(filter %/app,$(wildcard src/java/JavaFileStorage/*)),$(wildcard src/java/JavaFileStorage/*)) \
+	$(filter-out $(filter %/build,$(wildcard src/java/JavaFileStorage/app/*)),$(wildcard src/java/JavaFileStorage/app/*)) \
+	$(wildcard src/java/JavaFileStorage/libs/*) \
+	$(call rwildcard,src/java/JavaFileStorage/app/src,*) \
+
+INPUT_JavaFileStorageTest-AS := $(filter-out $(filter %/app,$(wildcard src/java/JavaFileStorageTest-AS/*)),$(wildcard src/java/JavaFileStorageTest-AS/*)) \
+	$(filter-out $(filter %/build,$(wildcard src/java/JavaFileStorageTest-AS/app/*)),$(wildcard src/java/JavaFileStorageTest-AS/app/*)) \
+	$(call rwildcard,src/java/JavaFileStorageTest-AS/app/src,*) \
+	$(INPUT_android-filechooser-AS) \
+	$(INPUT_JavaFileStorage)
 OUTPUT_JavaFileStorageTest-AS = src/java/android-filechooser-AS/app/build/outputs/aar/android-filechooser-debug.aar \
 	src/java/android-filechooser-AS/app/build/outputs/aar/android-filechooser-release.aar \
 	src/java/JavaFileStorage/app/build/outputs/aar/JavaFileStorage-debug.aar \
@@ -180,19 +193,28 @@ OUTPUT_JavaFileStorageTest-AS = src/java/android-filechooser-AS/app/build/output
 	src/java/JavaFileStorageTest-AS/app/build/outputs/apk/debug/app-debug.apk \
 	src/java/JavaFileStorageTest-AS/app/build/outputs/apk/release/app-release-unsigned.apk
 
-INPUT_KP2ASoftkeyboard_AS = $(call rwildcard,src/java/KP2ASoftkeyboard_AS/app/src,*)
+INPUT_KP2ASoftkeyboard_AS := $(wildcard src/java/KP2ASoftkeyboard_AS/*) \
+	$(wildcard src/java/KP2ASoftkeyboard_AS/app/*) \
+	$(call rwildcard,src/java/KP2ASoftkeyboard_AS/app/src,*)
 OUTPUT_KP2ASoftkeyboard_AS = src/java/KP2ASoftkeyboard_AS/app/build/outputs/aar/app-debug.aar \
 	src/java/KP2ASoftkeyboard_AS/app/build/outputs/aar/app-release.aar
 
-INPUT_Keepass2AndroidPluginSDK2 = $(call rwildcard,src/java/Keepass2AndroidPluginSDK2/app/src,*)
+INPUT_Keepass2AndroidPluginSDK2 := $(wildcard src/java/Keepass2AndroidPluginSDK2/*) \
+	$(wildcard src/java/Keepass2AndroidPluginSDK2/app/*) \
+	$(call rwildcard,src/java/Keepass2AndroidPluginSDK2/app/src,*)
 OUTPUT_Keepass2AndroidPluginSDK2 = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/app-debug.aar \
 	src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/app-release.aar
 
-INPUT_KP2AKdbLibrary = $(call rwildcard,src/java/KP2AKdbLibrary/app/src,*)
+INPUT_KP2AKdbLibrary := $(wildcard src/java/KP2AKdbLibrary/*) \
+	$(wildcard src/java/KP2AKdbLibrary/app/*) \
+	$(call rwildcard,src/java/KP2AKdbLibrary/app/src,*)
 OUTPUT_KP2AKdbLibrary = src/java/KP2AKdbLibrary/app/build/outputs/aar/app-debug.aar \
 	src/java/KP2AKdbLibrary/app/build/outputs/aar/app-release.aar
 
-INPUT_PluginQR = $(call rwildcard,src/java/PluginQR/app/src,*)
+INPUT_PluginQR := $(wildcard src/java/PluginQR/*) \
+	$(wildcard src/java/PluginQR/app/*) \
+	$(call rwildcard,src/java/PluginQR/app/src,*) \
+	$(INPUT_Keepass2AndroidPluginSDK2)
 OUTPUT_PluginQR = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepass2AndroidPluginSDK2-debug.aar \
 	src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepass2AndroidPluginSDK2-release.aar \
 	src/java/PluginQR/app/build/outputs/apk/debug/app-debug.apk \
