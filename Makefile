@@ -117,6 +117,10 @@ else
   $(warning Flavor environment variable not set.)
 endif
 
+ifneq ($(KeyStore),)
+  MSBUILD_PARAM += -p:AndroidKeyStore=True -p:AndroidSigningKeyStore="$(KeyStore)" -p:AndroidSigningStorePass=env:MyAndroidSigningStorePass -p:AndroidSigningKeyPass=env:MyAndroidSigningKeyPass
+endif
+
 ifeq ($(detected_OS),Windows)
   define remove
     if exist $(1) ( $(RM) $(1) )
@@ -218,7 +222,7 @@ msbuild: native java nuget src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
 	$(MSBUILD) src/KeePass.sln -target:keepass2android-app -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -p:BuildProjectReferences=true $(MSBUILD_PARAM) -p:Platform="Any CPU" -m
 
 apk: msbuild
-	$(MSBUILD) src/keepass2android/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m
+	$(MSBUILD) src/keepass2android/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m 
 
 build_all: msbuild
 
