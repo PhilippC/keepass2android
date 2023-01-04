@@ -72,20 +72,7 @@ namespace keepass2android.view
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
-            Database db;
-            try
-            {
-                db = App.Kp2a.FindDatabaseForElement(pw);
-			}
-            catch (Exception e)
-            {
-                //for some reason, since Android 12 we get here when the database is reloaded (after making remote changes and selecting sync)
-                //we can just ignore this.
-				Console.WriteLine(e);
-                return;
-
-            }
-		    
+		    Database db = App.Kp2a.FindDatabaseForElement(pw);
 			
 			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
 
