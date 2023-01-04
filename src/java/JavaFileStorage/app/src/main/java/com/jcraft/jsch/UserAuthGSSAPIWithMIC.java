@@ -29,7 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-public class UserAuthGSSAPIWithMIC extends UserAuth {
+class UserAuthGSSAPIWithMIC extends UserAuth {
   private static final int SSH_MSG_USERAUTH_GSSAPI_RESPONSE=         60;
   private static final int SSH_MSG_USERAUTH_GSSAPI_TOKEN=            61;
   private static final int SSH_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE=63;
@@ -48,6 +48,7 @@ public class UserAuthGSSAPIWithMIC extends UserAuth {
     "gssapi-with-mic.krb5"
   };
 
+  @Override
   public boolean start(Session session)throws Exception{
     super.start(session);
 
@@ -114,8 +115,8 @@ public class UserAuthGSSAPIWithMIC extends UserAuth {
 
     GSSContext context=null;
     try{
-      Class c=Class.forName(session.getConfig(method));
-      context=(GSSContext)(c.newInstance());
+      Class<? extends GSSContext> c=Class.forName(session.getConfig(method)).asSubclass(GSSContext.class);
+      context=c.getDeclaredConstructor().newInstance();
     }
     catch(Exception e){ 
       return false;
@@ -215,7 +216,7 @@ public class UserAuthGSSAPIWithMIC extends UserAuth {
       byte[] foo=buf.getString();
       int partial_success=buf.getByte();
       //System.err.println(new String(foo)+
-      //		 " partial_success:"+(partial_success!=0));
+      //                 " partial_success:"+(partial_success!=0));
       if(partial_success!=0){
         throw new JSchPartialAuthException(Util.byte2str(foo));
       }

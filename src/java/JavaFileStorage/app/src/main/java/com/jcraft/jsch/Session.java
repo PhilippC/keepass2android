@@ -29,11 +29,23 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InterruptedIOException;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
-public class Session implements Runnable{
+import javax.crypto.AEADBadTagException;
+
+public class Session{
 
   // http://ietf.org/internet-drafts/draft-ietf-secsh-assignednumbers-01.txt
   static final int SSH_MSG_DISCONNECT=                      1;
@@ -42,6 +54,7 @@ public class Session implements Runnable{
   static final int SSH_MSG_DEBUG=                           4;
   static final int SSH_MSG_SERVICE_REQUEST=                 5;
   static final int SSH_MSG_SERVICE_ACCEPT=                  6;
+  static final int SSH_MSG_EXT_INFO=                        7;
   static final int SSH_MSG_KEXINIT=                        20;
   static final int SSH_MSG_NEWKEYS=                        21;
   static final int SSH_MSG_KEXDH_INIT=                     30;
@@ -68,7 +81,7 @@ public class Session implements Runnable{
   private static final int PACKET_MAX_SIZE = 256 * 1024;
 
   private byte[] V_S;                                 // server version
-  private byte[] V_C=Util.str2byte("SSH-2.0-JSCH-"+JSch.VERSION); // client version
+  private byte[] V_C=Util.str2byte("SSH-2.0-JSCH_"+JSch.VERSION); // client version
 
   private byte[] I_C; // the payload of the client's SSH_MSG_KEXINIT
   private byte[] I_S; // the payload of the server's SSH_MSG_KEXINIT
@@ -104,7 +117,7 @@ public class Session implements Runnable{
 
   private volatile boolean isConnected=false;
 
-  private boolean isAuthed=false;
+  private volatile boolean isAuthed=false;
 
   private Thread connectThread=null;
   private Object lock=new Object();
@@ -126,7 +139,7 @@ public class Session implements Runnable{
                                    64 + // maximum mac length
                                    32;  // margin for deflater; deflater may inflate data
 
-  private java.util.Hashtable config=null;
+  private Hashtable<String, String> config=null;
 
   private Proxy proxy=null;
   private UserInfo userinfo;
@@ -137,6 +150,8 @@ public class Session implements Runnable{
 
   private IdentityRepository identityRepository = null;
   private HostKeyRepository hostkeyRepository = null;
+  private volatile String[] serverSigAlgs = null;
+  private volatile boolean sshBugSigType74 = false;
 
   protected boolean daemon_thread=false;
 
@@ -153,6 +168,7 @@ public class Session implements Runnable{
   byte[] password=null;
 
   JSch jsch;
+  Logger logger;
 
   Session(JSch jsch, String username, String host, int port) throws JSchException{
     super();
@@ -166,12 +182,7 @@ public class Session implements Runnable{
     applyConfig();
 
     if(this.username==null) {
-      try {
-        this.username=(String)(System.getProperties().get("user.name"));
-      }
-      catch(SecurityException e){
-        // ignore e
-      }
+      this.username=Util.getSystemProperty("user.name");
     }
 
     if(this.username==null) {
@@ -191,48 +202,48 @@ public class Session implements Runnable{
     io=new IO();
     if(random==null){
       try{
-	Class c=Class.forName(getConfig("random"));
-        random=(Random)(c.newInstance());
+        Class<? extends Random> c=Class.forName(getConfig("random")).asSubclass(Random.class);
+        random=c.getDeclaredConstructor().newInstance();
       }
-      catch(Exception e){ 
+      catch(Exception e){
         throw new JSchException(e.toString(), e);
       }
     }
     Packet.setRandom(random);
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "Connecting to "+host+" port "+port);
     }
 
-    try	{
+    try {
       int i, j;
 
       if(proxy==null){
         InputStream in;
         OutputStream out;
-	if(socket_factory==null){
+        if(socket_factory==null){
           socket=Util.createSocket(host, port, connectTimeout);
-	  in=socket.getInputStream();
-	  out=socket.getOutputStream();
-	}
-	else{
+          in=socket.getInputStream();
+          out=socket.getOutputStream();
+        }
+        else{
           socket=socket_factory.createSocket(host, port);
-	  in=socket_factory.getInputStream(socket);
-	  out=socket_factory.getOutputStream(socket);
-	}
-	//if(timeout>0){ socket.setSoTimeout(timeout); }
+          in=socket_factory.getInputStream(socket);
+          out=socket_factory.getOutputStream(socket);
+        }
+        //if(timeout>0){ socket.setSoTimeout(timeout); }
         socket.setTcpNoDelay(true);
         io.setInputStream(in);
         io.setOutputStream(out);
       }
       else{
-	synchronized(proxy){
+        synchronized(proxy){
           proxy.connect(socket_factory, host, port, connectTimeout);
-	  io.setInputStream(proxy.getInputStream());
-	  io.setOutputStream(proxy.getOutputStream());
+          io.setInputStream(proxy.getInputStream());
+          io.setOutputStream(proxy.getOutputStream());
           socket=proxy.getSocket();
-	}
+        }
       }
 
       if(connectTimeout>0 && socket!=null){
@@ -241,19 +252,20 @@ public class Session implements Runnable{
 
       isConnected=true;
 
-      if(JSch.getLogger().isEnabled(Logger.INFO)){
-        JSch.getLogger().log(Logger.INFO, 
+      if(getLogger().isEnabled(Logger.INFO)){
+        getLogger().log(Logger.INFO,
                              "Connection established");
       }
 
       jsch.addSession(this);
 
       {
-	// Some Cisco devices will miss to read '\n' if it is sent separately.
-	byte[] foo=new byte[V_C.length+1];
-	System.arraycopy(V_C, 0, foo, 0, V_C.length);
-	foo[foo.length-1]=(byte)'\n';
-	io.put(foo, 0, foo.length);
+        // Some Cisco devices will miss to read '\n' if it is sent separately.
+        byte[] foo=new byte[V_C.length+2];
+        System.arraycopy(V_C, 0, foo, 0, V_C.length);
+        foo[foo.length-2]=(byte)'\r';
+        foo[foo.length-1]=(byte)'\n';
+        io.put(foo, 0, foo.length);
       }
 
       while(true){
@@ -262,7 +274,7 @@ public class Session implements Runnable{
         while(i<buf.buffer.length){
           j=io.getByte();
           if(j<0)break;
-          buf.buffer[i]=(byte)j; i++; 
+          buf.buffer[i]=(byte)j; i++;
           if(j==10)break;
         }
         if(j<0){
@@ -276,7 +288,7 @@ public class Session implements Runnable{
           }
         }
 
-        if(i<=3 || 
+        if(i<=3 ||
            ((i!=buf.buffer.length) &&
             (buf.buffer[0]!='S'||buf.buffer[1]!='S'||
              buf.buffer[2]!='H'||buf.buffer[3]!='-'))){
@@ -296,11 +308,13 @@ public class Session implements Runnable{
 
       V_S=new byte[i]; System.arraycopy(buf.buffer, 0, V_S, 0, i);
       //System.err.println("V_S: ("+i+") ["+new String(V_S)+"]");
+      String _v_s=Util.byte2str(V_S);
+      sshBugSigType74=_v_s.startsWith("SSH-2.0-OpenSSH_7.4");
 
-      if(JSch.getLogger().isEnabled(Logger.INFO)){
-        JSch.getLogger().log(Logger.INFO, 
-                             "Remote version string: "+Util.byte2str(V_S));
-        JSch.getLogger().log(Logger.INFO, 
+      if(getLogger().isEnabled(Logger.INFO)){
+        getLogger().log(Logger.INFO,
+                             "Remote version string: "+_v_s);
+        getLogger().log(Logger.INFO,
                              "Local version string: "+Util.byte2str(V_C));
       }
 
@@ -309,34 +323,34 @@ public class Session implements Runnable{
       buf=read(buf);
       if(buf.getCommand()!=SSH_MSG_KEXINIT){
         in_kex=false;
-	throw new JSchException("invalid protocol: "+buf.getCommand());
+        throw new JSchException("invalid protocol: "+buf.getCommand());
       }
 
-      if(JSch.getLogger().isEnabled(Logger.INFO)){
-        JSch.getLogger().log(Logger.INFO, 
+      if(getLogger().isEnabled(Logger.INFO)){
+        getLogger().log(Logger.INFO,
                              "SSH_MSG_KEXINIT received");
       }
 
       KeyExchange kex=receive_kexinit(buf);
 
       while(true){
-	buf=read(buf);
-	if(kex.getState()==buf.getCommand()){
+        buf=read(buf);
+        if(kex.getState()==buf.getCommand()){
           kex_start_time=System.currentTimeMillis();
           boolean result=kex.next(buf);
-	  if(!result){
-	    //System.err.println("verify: "+result);
+          if(!result){
+            //System.err.println("verify: "+result);
             in_kex=false;
-	    throw new JSchException("verify: "+result);
-	  }
-	}
-	else{
+            throw new JSchException("verify: "+result);
+          }
+        }
+        else{
           in_kex=false;
-	  throw new JSchException("invalid protocol(kex): "+buf.getCommand());
-	}
-	if(kex.getState()==KeyExchange.STATE_END){
-	  break;
-	}
+          throw new JSchException("invalid protocol(kex): "+buf.getCommand());
+        }
+        if(kex.getState()==KeyExchange.STATE_END){
+          break;
+        }
       }
 
       try{
@@ -359,16 +373,16 @@ public class Session implements Runnable{
       //System.err.println("read: 21 ? "+buf.getCommand());
       if(buf.getCommand()==SSH_MSG_NEWKEYS){
 
-        if(JSch.getLogger().isEnabled(Logger.INFO)){
-          JSch.getLogger().log(Logger.INFO, 
+        if(getLogger().isEnabled(Logger.INFO)){
+          getLogger().log(Logger.INFO,
                                "SSH_MSG_NEWKEYS received");
         }
 
-	receive_newkeys(buf, kex);
+        receive_newkeys(buf, kex);
       }
       else{
         in_kex=false;
-	throw new JSchException("invalid protocol(newkyes): "+buf.getCommand());
+        throw new JSchException("invalid protocol(newkyes): "+buf.getCommand());
       }
 
       try{
@@ -386,10 +400,10 @@ public class Session implements Runnable{
 
       UserAuth ua=null;
       try{
-	Class c=Class.forName(getConfig("userauth.none"));
-        ua=(UserAuth)(c.newInstance());
+        Class<? extends UserAuth> c=Class.forName(getConfig("userauth.none")).asSubclass(UserAuth.class);
+        ua=c.getDeclaredConstructor().newInstance();
       }
-      catch(Exception e){ 
+      catch(Exception e){
         throw new JSchException(e.toString(), e);
       }
 
@@ -419,8 +433,8 @@ public class Session implements Runnable{
       loop:
       while(true){
 
-	while(!auth && 
-	      cmethoda!=null && methodi<cmethoda.length){
+        while(!auth &&
+              cmethoda!=null && methodi<cmethoda.length){
 
           String method=cmethoda[methodi++];
           boolean acceptable=false;
@@ -436,87 +450,87 @@ public class Session implements Runnable{
 
           //System.err.println("  method: "+method);
 
-          if(JSch.getLogger().isEnabled(Logger.INFO)){
+          if(getLogger().isEnabled(Logger.INFO)){
             String str="Authentications that can continue: ";
             for(int k=methodi-1; k<cmethoda.length; k++){
               str+=cmethoda[k];
               if(k+1<cmethoda.length)
                 str+=",";
             }
-            JSch.getLogger().log(Logger.INFO, 
+            getLogger().log(Logger.INFO,
                                  str);
-            JSch.getLogger().log(Logger.INFO, 
+            getLogger().log(Logger.INFO,
                                  "Next authentication method: "+method);
           }
 
-	  ua=null;
+          ua=null;
           try{
-            Class c=null;
+            Class<? extends UserAuth> c=null;
             if(getConfig("userauth."+method)!=null){
-              c=Class.forName(getConfig("userauth."+method));
-              ua=(UserAuth)(c.newInstance());
+              c=Class.forName(getConfig("userauth."+method)).asSubclass(UserAuth.class);
+              ua=c.getDeclaredConstructor().newInstance();
             }
           }
           catch(Exception e){
-            if(JSch.getLogger().isEnabled(Logger.WARN)){
-              JSch.getLogger().log(Logger.WARN, 
+            if(getLogger().isEnabled(Logger.WARN)){
+              getLogger().log(Logger.WARN,
                                    "failed to load "+method+" method");
             }
           }
 
-	  if(ua!=null){
+          if(ua!=null){
             auth_cancel=false;
-	    try{ 
-	      auth=ua.start(this); 
-              if(auth && 
-                 JSch.getLogger().isEnabled(Logger.INFO)){
-                JSch.getLogger().log(Logger.INFO, 
+            try{
+              auth=ua.start(this);
+              if(auth &&
+                 getLogger().isEnabled(Logger.INFO)){
+                getLogger().log(Logger.INFO,
                                      "Authentication succeeded ("+method+").");
               }
-	    }
-	    catch(JSchAuthCancelException ee){
-	      auth_cancel=true;
-	    }
-	    catch(JSchPartialAuthException ee){
+            }
+            catch(JSchAuthCancelException ee){
+              auth_cancel=true;
+            }
+            catch(JSchPartialAuthException ee){
               String tmp = smethods;
               smethods=ee.getMethods();
               smethoda=Util.split(smethods, ",");
               if(!tmp.equals(smethods)){
                 methodi=0;
               }
-	      //System.err.println("PartialAuth: "+methods);
-	      auth_cancel=false;
-	      continue loop;
-	    }
-	    catch(RuntimeException ee){
-	      throw ee;
-	    }
-	    catch(JSchException ee){
+              //System.err.println("PartialAuth: "+methods);
+              auth_cancel=false;
+              continue loop;
+            }
+            catch(RuntimeException ee){
               throw ee;
-	    }
-	    catch(Exception ee){
-	      //System.err.println("ee: "+ee); // SSH_MSG_DISCONNECT: 2 Too many authentication failures
-              if(JSch.getLogger().isEnabled(Logger.WARN)){
-                JSch.getLogger().log(Logger.WARN, 
+            }
+            catch(JSchException ee){
+              throw ee;
+            }
+            catch(Exception ee){
+              //System.err.println("ee: "+ee); // SSH_MSG_DISCONNECT: 2 Too many authentication failures
+              if(getLogger().isEnabled(Logger.WARN)){
+                getLogger().log(Logger.WARN,
                                      "an exception during authentication\n"+ee.toString());
               }
               break loop;
-	    }
-	  }
-	}
+            }
+          }
+        }
         break;
       }
 
       if(!auth){
         if(auth_failures >= max_auth_tries){
-          if(JSch.getLogger().isEnabled(Logger.INFO)){
-            JSch.getLogger().log(Logger.INFO, 
+          if(getLogger().isEnabled(Logger.INFO)){
+            getLogger().log(Logger.INFO,
                                  "Login trials exceeds "+max_auth_tries);
           }
         }
-        if(auth_cancel)
-          throw new JSchException("Auth cancel");
-        throw new JSchException("Auth fail");
+        throw new JSchException((auth_cancel ? "Auth cancel"
+                : "Auth fail")
+                + " for methods '" + smethods + "'");
       }
 
       if(socket!=null && (connectTimeout>0 || timeout>0)){
@@ -527,7 +541,7 @@ public class Session implements Runnable{
 
       synchronized(lock){
         if(isConnected){
-          connectThread=new Thread(this);
+          connectThread=new Thread(this::run);
           connectThread.setName("Connect thread "+host+" session");
           if(daemon_thread){
             connectThread.setDaemon(daemon_thread);
@@ -562,7 +576,7 @@ public class Session implements Runnable{
       //e.printStackTrace();
       if(e instanceof RuntimeException) throw (RuntimeException)e;
       if(e instanceof JSchException) throw (JSchException)e;
-      throw new JSchException("Session.connect: "+e);
+      throw new JSchException("Session.connect: "+e, e);
     }
     finally{
       Util.bzero(this.password);
@@ -585,9 +599,11 @@ public class Session implements Runnable{
      send_kexinit();
    }
 
-    guess=KeyExchange.guess(I_S, I_C);
-    if(guess==null){
-      throw new JSchException("Algorithm negotiation fail");
+    guess=KeyExchange.guess(this, I_S, I_C);
+
+    if(guess[KeyExchange.PROPOSAL_KEX_ALGS].equals("ext-info-c") ||
+       guess[KeyExchange.PROPOSAL_KEX_ALGS].equals("ext-info-s")){
+      throw new JSchException("Invalid Kex negotiated: " + guess[KeyExchange.PROPOSAL_KEX_ALGS]);
     }
 
     if(!isAuthed &&
@@ -598,19 +614,23 @@ public class Session implements Runnable{
 
     KeyExchange kex=null;
     try{
-      Class c=Class.forName(getConfig(guess[KeyExchange.PROPOSAL_KEX_ALGS]));
-      kex=(KeyExchange)(c.newInstance());
+      Class<? extends KeyExchange> c=Class.forName(getConfig(guess[KeyExchange.PROPOSAL_KEX_ALGS])).asSubclass(KeyExchange.class);
+      kex=c.getDeclaredConstructor().newInstance();
     }
-    catch(Exception e){ 
+    catch(Exception | NoClassDefFoundError e){
       throw new JSchException(e.toString(), e);
     }
 
-    kex.init(this, V_S, V_C, I_S, I_C);
+    kex.doInit(this, V_S, V_C, I_S, I_C);
     return kex;
   }
 
   private volatile boolean in_kex=false;
   private volatile boolean in_prompt=false;
+  private volatile String[] not_available_shks=null;
+  public String[] getUnavailableSignatures() {
+    return not_available_shks;
+  }
   public void rekey() throws Exception {
     send_kexinit();
   }
@@ -620,32 +640,145 @@ public class Session implements Runnable{
 
     String cipherc2s=getConfig("cipher.c2s");
     String ciphers2c=getConfig("cipher.s2c");
-
     String[] not_available_ciphers=checkCiphers(getConfig("CheckCiphers"));
     if(not_available_ciphers!=null && not_available_ciphers.length>0){
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "cipher.c2s proposal before removing unavailable algos is: " + cipherc2s);
+        getLogger().log(Logger.DEBUG,
+                "cipher.s2c proposal before removing unavailable algos is: " + ciphers2c);
+      }
+
       cipherc2s=Util.diffString(cipherc2s, not_available_ciphers);
       ciphers2c=Util.diffString(ciphers2c, not_available_ciphers);
       if(cipherc2s==null || ciphers2c==null){
         throw new JSchException("There are not any available ciphers.");
+      }
+
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "cipher.c2s proposal after removing unavailable algos is: " + cipherc2s);
+        getLogger().log(Logger.DEBUG,
+                "cipher.s2c proposal after removing unavailable algos is: " + ciphers2c);
+      }
+    }
+
+    String macc2s=getConfig("mac.c2s");
+    String macs2c=getConfig("mac.s2c");
+    String[] not_available_macs=checkMacs(getConfig("CheckMacs"));
+    if(not_available_macs!=null && not_available_macs.length>0){
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "mac.c2s proposal before removing unavailable algos is: " + macc2s);
+        getLogger().log(Logger.DEBUG,
+                "mac.s2c proposal before removing unavailable algos is: " + macs2c);
+      }
+
+      macc2s=Util.diffString(macc2s, not_available_macs);
+      macs2c=Util.diffString(macs2c, not_available_macs);
+      if(macc2s==null || macs2c==null){
+        throw new JSchException("There are not any available macs.");
+      }
+
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "mac.c2s proposal after removing unavailable algos is: " + macc2s);
+        getLogger().log(Logger.DEBUG,
+                "mac.s2c proposal after removing unavailable algos is: " + macs2c);
       }
     }
 
     String kex=getConfig("kex");
     String[] not_available_kexes=checkKexes(getConfig("CheckKexes"));
     if(not_available_kexes!=null && not_available_kexes.length>0){
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "kex proposal before removing unavailable algos is: " + kex);
+      }
+
       kex=Util.diffString(kex, not_available_kexes);
       if(kex==null){
         throw new JSchException("There are not any available kexes.");
       }
+
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "kex proposal after removing unavailable algos is: " + kex);
+      }
+    }
+
+    String enable_server_sig_algs=getConfig("enable_server_sig_algs");
+    if(enable_server_sig_algs.equals("yes") && !isAuthed){
+      kex+=",ext-info-c";
     }
 
     String server_host_key = getConfig("server_host_key");
     String[] not_available_shks =
       checkSignatures(getConfig("CheckSignatures"));
+    // Cache for UserAuthPublicKey
+    this.not_available_shks = not_available_shks;
     if(not_available_shks!=null && not_available_shks.length>0){
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "server_host_key proposal before removing unavailable algos is: " + server_host_key);
+      }
+
       server_host_key=Util.diffString(server_host_key, not_available_shks);
       if(server_host_key==null){
         throw new JSchException("There are not any available sig algorithm.");
+      }
+
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "server_host_key proposal after removing unavailable algos is: " + server_host_key);
+      }
+    }
+
+    String prefer_hkr=getConfig("prefer_known_host_key_types");
+    if(prefer_hkr.equals("yes")){
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "server_host_key proposal before known_host reordering is: " + server_host_key);
+      }
+
+      HostKeyRepository hkr=getHostKeyRepository();
+      String chost=host;
+      if(hostKeyAlias!=null){
+        chost=hostKeyAlias;
+      }
+      if(hostKeyAlias==null && port!=22){
+        chost=("["+chost+"]:"+port);
+      }
+      HostKey[] hks=hkr.getHostKey(chost, null);
+      if(hks!=null && hks.length>0){
+        List<String> pref_shks=new ArrayList<>();
+        List<String> shks=new ArrayList<>(Arrays.asList(Util.split(server_host_key, ",")));
+        Iterator<String> it=shks.iterator();
+        while(it.hasNext()){
+          String algo=it.next();
+          String type=algo;
+          if(type.equals("rsa-sha2-256") || type.equals("rsa-sha2-512") ||
+             type.equals("ssh-rsa-sha224@ssh.com") || type.equals("ssh-rsa-sha256@ssh.com") ||
+             type.equals("ssh-rsa-sha384@ssh.com") || type.equals("ssh-rsa-sha512@ssh.com")){
+            type="ssh-rsa";
+          }
+          for(HostKey hk : hks){
+            if(hk.getType().equals(type)){
+              pref_shks.add(algo);
+              it.remove();
+              break;
+            }
+          }
+        }
+        if(pref_shks.size()>0){
+          pref_shks.addAll(shks);
+          server_host_key=String.join(",", pref_shks);
+        }
+      }
+
+      if(getLogger().isEnabled(Logger.DEBUG)){
+        getLogger().log(Logger.DEBUG,
+                "server_host_key proposal after known_host reordering is: " + server_host_key);
       }
     }
 
@@ -690,8 +823,8 @@ public class Session implements Runnable{
 
     write(packet);
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "SSH_MSG_KEXINIT sent");
     }
   }
@@ -702,8 +835,8 @@ public class Session implements Runnable{
     buf.putByte((byte)SSH_MSG_NEWKEYS);
     write(packet);
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "SSH_MSG_NEWKEYS sent");
     }
   }
@@ -745,7 +878,7 @@ public class Session implements Runnable{
        i==HostKeyRepository.CHANGED){
       String file=null;
       synchronized(hkr){
-	file=hkr.getKnownHostsRepositoryID();
+        file=hkr.getKnownHostsRepositoryID();
       }
       if(file==null){file="known_hosts";}
 
@@ -776,7 +909,7 @@ key_fprint+".\n"+
       }
 
       synchronized(hkr){
-        hkr.remove(chost, 
+        hkr.remove(chost,
                    kex.getKeyAlgorithName(),
                    null);
         insert=true;
@@ -786,29 +919,29 @@ key_fprint+".\n"+
     if((shkc.equals("ask") || shkc.equals("yes")) &&
        (i!=HostKeyRepository.OK) && !insert){
       if(shkc.equals("yes")){
-	throw new JSchException("reject HostKey: "+host);
+        throw new JSchException("reject HostKey: "+host);
       }
       //System.err.println("finger-print: "+key_fprint);
       if(userinfo!=null){
-	boolean foo=userinfo.promptYesNo(
+        boolean foo=userinfo.promptYesNo(
 "The authenticity of host '"+host+"' can't be established.\n"+
 key_type+" key fingerprint is "+key_fprint+".\n"+
 "Are you sure you want to continue connecting?"
-					 );
-	if(!foo){
-	  throw new JSchException("reject HostKey: "+host);
-	}
-	insert=true;
+                                         );
+        if(!foo){
+          throw new JSchException("reject HostKey: "+host);
+        }
+        insert=true;
       }
       else{
-	if(i==HostKeyRepository.NOT_INCLUDED) 
-	  throw new JSchException("UnknownHostKey: "+host+". "+key_type+" key fingerprint is "+key_fprint);
-	else 
+        if(i==HostKeyRepository.NOT_INCLUDED)
+          throw new JSchException("UnknownHostKey: "+host+". "+key_type+" key fingerprint is "+key_fprint);
+        else
           throw new JSchException("HostKey has been changed: "+host);
       }
     }
 
-    if(shkc.equals("no") && 
+    if(shkc.equals("no") &&
        HostKeyRepository.NOT_INCLUDED==i){
       insert=true;
     }
@@ -816,9 +949,9 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     if(i==HostKeyRepository.OK){
       HostKey[] keys =
         hkr.getHostKey(chost, kex.getKeyAlgorithName());
-      String _key= Util.byte2str(Util.toBase64(K_S, 0, K_S.length));
+      String _key= Util.byte2str(Util.toBase64(K_S, 0, K_S.length, true));
       for(int j=0; j< keys.length; j++){
-        if(keys[i].getKey().equals(_key) &&
+        if(keys[j].getKey().equals(_key) &&
            keys[j].getMarker().equals("@revoked")){
           if(userinfo!=null){
             userinfo.showMessage(
@@ -826,8 +959,8 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
 "This could mean that a stolen key is being used to "+
 "impersonate this host.");
           }
-          if(JSch.getLogger().isEnabled(Logger.INFO)){
-            JSch.getLogger().log(Logger.INFO, 
+          if(getLogger().isEnabled(Logger.INFO)){
+            getLogger().log(Logger.INFO,
                                  "Host '"+host+"' has provided revoked key.");
           }
           throw new JSchException("revoked HostKey: "+host);
@@ -836,20 +969,20 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     }
 
     if(i==HostKeyRepository.OK &&
-       JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+       getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "Host '"+host+"' is known and matches the "+key_type+" host key");
     }
 
     if(insert &&
-       JSch.getLogger().isEnabled(Logger.WARN)){
-      JSch.getLogger().log(Logger.WARN, 
+       getLogger().isEnabled(Logger.WARN)){
+      getLogger().log(Logger.WARN,
                            "Permanently added '"+host+"' ("+key_type+") to the list of known hosts.");
     }
 
     if(insert){
       synchronized(hkr){
-	hkr.add(hostkey, userinfo);
+        hkr.add(hostkey, userinfo);
       }
     }
   }
@@ -861,7 +994,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
       throw new JSchException("session is down");
     }
     try{
-      Channel channel=Channel.getChannel(type);
+      Channel channel=Channel.getChannel(type, this);
       addChannel(channel);
       channel.init();
       if(channel instanceof ChannelSession){
@@ -876,7 +1009,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
   }
 
   // encode will bin invoked in write with synchronization.
-  public void encode(Packet packet) throws Exception{
+  void encode(Packet packet) throws Exception{
 //System.err.println("encode: "+packet.buffer.getCommand());
 //System.err.println("        "+packet.buffer.index);
 //if(packet.buffer.getCommand()==96){
@@ -884,33 +1017,54 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
 //}
     if(deflater!=null){
       compress_len[0]=packet.buffer.index;
-      packet.buffer.buffer=deflater.compress(packet.buffer.buffer, 
+      packet.buffer.buffer=deflater.compress(packet.buffer.buffer,
                                              5, compress_len);
       packet.buffer.index=compress_len[0];
     }
+    int bsize=8;
     if(c2scipher!=null){
-      //packet.padding(c2scipher.getIVSize());
-      packet.padding(c2scipher_size);
-      int pad=packet.buffer.buffer[4];
-      synchronized(random){
-	random.fill(packet.buffer.buffer, packet.buffer.index-pad, pad);
-      }
+      //bsize=c2scipher.getIVSize();
+      bsize=c2scipher_size;
     }
-    else{
-      packet.padding(8);
-    }
+    boolean isChaCha20=(c2scipher!=null && c2scipher.isChaCha20());
+    boolean isAEAD=(c2scipher!=null && c2scipher.isAEAD());
+    boolean isEtM=(!isChaCha20 && !isAEAD && c2scipher!=null && c2smac!=null && c2smac.isEtM());
+    packet.padding(bsize, !(isChaCha20 || isAEAD || isEtM));
 
-    if(c2smac!=null){
+    byte[] buf=packet.buffer.buffer;
+    if(isChaCha20){
+      // init cipher with seq number
+      c2scipher.update(seqo);
+      //encrypt packet length field
+      c2scipher.update(buf, 0, 4, buf, 0);
+      //encrypt rest of packet & add tag
+      c2scipher.doFinal(buf, 0, packet.buffer.index, buf, 0);
+      packet.buffer.skip(c2scipher.getTagSize());
+    }
+    else if(isAEAD){
+      c2scipher.updateAAD(buf, 0, 4);
+      c2scipher.doFinal(buf, 4, packet.buffer.index-4, buf, 4);
+      packet.buffer.skip(c2scipher.getTagSize());
+    }
+    else if(isEtM){
+      c2scipher.update(buf, 4, packet.buffer.index-4, buf, 4);
       c2smac.update(seqo);
       c2smac.update(packet.buffer.buffer, 0, packet.buffer.index);
       c2smac.doFinal(packet.buffer.buffer, packet.buffer.index);
-    }
-    if(c2scipher!=null){
-      byte[] buf=packet.buffer.buffer;
-      c2scipher.update(buf, 0, packet.buffer.index, buf, 0);
-    }
-    if(c2smac!=null){
       packet.buffer.skip(c2smac.getBlockSize());
+    }
+    else{
+      if(c2smac!=null){
+        c2smac.update(seqo);
+        c2smac.update(packet.buffer.buffer, 0, packet.buffer.index);
+        c2smac.doFinal(packet.buffer.buffer, packet.buffer.index);
+      }
+      if(c2scipher!=null){
+        c2scipher.update(buf, 0, packet.buffer.index, buf, 0);
+      }
+      if(c2smac!=null){
+        packet.buffer.skip(c2smac.getBlockSize());
+      }
     }
   }
 
@@ -919,78 +1073,180 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
 
   private int s2ccipher_size=8;
   private int c2scipher_size=8;
-  public Buffer read(Buffer buf) throws Exception{
+  Buffer read(Buffer buf) throws Exception{
     int j=0;
+    boolean isChaCha20=(s2ccipher!=null && s2ccipher.isChaCha20());
+    boolean isAEAD=(s2ccipher!=null && s2ccipher.isAEAD());
+    boolean isEtM=(!isChaCha20 && !isAEAD && s2ccipher!=null && s2cmac!=null && s2cmac.isEtM());
     while(true){
       buf.reset();
-      io.getByte(buf.buffer, buf.index, s2ccipher_size); 
-      buf.index+=s2ccipher_size;
-      if(s2ccipher!=null){
-        s2ccipher.update(buf.buffer, 0, s2ccipher_size, buf.buffer, 0);
-      }
-      j=((buf.buffer[0]<<24)&0xff000000)|
-        ((buf.buffer[1]<<16)&0x00ff0000)|
-        ((buf.buffer[2]<< 8)&0x0000ff00)|
-        ((buf.buffer[3]    )&0x000000ff);
-      // RFC 4253 6.1. Maximum Packet Length
-      if(j<5 || j>PACKET_MAX_SIZE){
-        start_discard(buf, s2ccipher, s2cmac, j, PACKET_MAX_SIZE);
-      }
-      int need = j+4-s2ccipher_size;
-      //if(need<0){
-      //  throw new IOException("invalid data");
-      //}
-      if((buf.index+need)>buf.buffer.length){
-        byte[] foo=new byte[buf.index+need];
-        System.arraycopy(buf.buffer, 0, foo, 0, buf.index);
-        buf.buffer=foo;
-      }
-
-      if((need%s2ccipher_size)!=0){
-        String message="Bad packet length "+need;
-        if(JSch.getLogger().isEnabled(Logger.FATAL)){
-          JSch.getLogger().log(Logger.FATAL, message); 
+      if(isChaCha20){
+        //read encrypted packet length field
+        io.getByte(buf.buffer, buf.index, 4);
+        buf.index+=4;
+        // init cipher with seq number
+        s2ccipher.update(seqi);
+        //decrypt packet length field
+        byte[] tmp=new byte[4];
+        s2ccipher.update(buf.buffer, 0, 4, tmp, 0);
+        j=((tmp[0]<<24)&0xff000000)|
+          ((tmp[1]<<16)&0x00ff0000)|
+          ((tmp[2]<< 8)&0x0000ff00)|
+          ((tmp[3]    )&0x000000ff);
+        // RFC 4253 6.1. Maximum Packet Length
+        if(j<5 || j>PACKET_MAX_SIZE){
+          start_discard(buf, s2ccipher, s2cmac, 0, PACKET_MAX_SIZE);
         }
-        start_discard(buf, s2ccipher, s2cmac, j, PACKET_MAX_SIZE-s2ccipher_size);
-      }
+        j+=s2ccipher.getTagSize();
+        if((buf.index+j)>buf.buffer.length){
+          byte[] foo=new byte[buf.index+j];
+          System.arraycopy(buf.buffer, 0, foo, 0, buf.index);
+          buf.buffer=foo;
+        }
 
-      if(need>0){
-	io.getByte(buf.buffer, buf.index, need); buf.index+=(need);
-	if(s2ccipher!=null){
-	  s2ccipher.update(buf.buffer, s2ccipher_size, need, buf.buffer, s2ccipher_size);
-	}
-      }
-
-      if(s2cmac!=null){
-	s2cmac.update(seqi);
-	s2cmac.update(buf.buffer, 0, buf.index);
-
-        s2cmac.doFinal(s2cmac_result1, 0);
-	io.getByte(s2cmac_result2, 0, s2cmac_result2.length);
-        if(!java.util.Arrays.equals(s2cmac_result1, s2cmac_result2)){
-          if(need > PACKET_MAX_SIZE){
-            throw new IOException("MAC Error");
+        if((j%s2ccipher_size)!=0){
+          String message="Bad packet length "+j;
+          if(getLogger().isEnabled(Logger.FATAL)){
+            getLogger().log(Logger.FATAL, message);
           }
-          start_discard(buf, s2ccipher, s2cmac, j, PACKET_MAX_SIZE-need);
-          continue;
-	}
+          start_discard(buf, s2ccipher, s2cmac, 0, PACKET_MAX_SIZE-s2ccipher_size);
+        }
+
+        io.getByte(buf.buffer, buf.index, j);
+        // subtract tag size now that whole packet has been fetched
+        j -= s2ccipher.getTagSize(); buf.index+=(j);
+        try {
+          s2ccipher.doFinal(buf.buffer, 0, j+4, buf.buffer, 0);
+        }
+        catch(AEADBadTagException e){
+          throw new JSchException("Packet corrupt", e);
+        }
+        // overwrite encrypted packet length field with decrypted version
+        System.arraycopy(tmp, 0, buf.buffer, 0, 4);
+      }
+      else if(isAEAD || isEtM){
+        io.getByte(buf.buffer, buf.index, 4);
+        buf.index+=4;
+        j=((buf.buffer[0]<<24)&0xff000000)|
+          ((buf.buffer[1]<<16)&0x00ff0000)|
+          ((buf.buffer[2]<< 8)&0x0000ff00)|
+          ((buf.buffer[3]    )&0x000000ff);
+        // RFC 4253 6.1. Maximum Packet Length
+        if(j<5 || j>PACKET_MAX_SIZE){
+          start_discard(buf, s2ccipher, s2cmac, 0, PACKET_MAX_SIZE);
+        }
+        if(isAEAD){
+          j+=s2ccipher.getTagSize();
+        }
+        if((buf.index+j)>buf.buffer.length){
+          byte[] foo=new byte[buf.index+j];
+          System.arraycopy(buf.buffer, 0, foo, 0, buf.index);
+          buf.buffer=foo;
+        }
+
+        if((j%s2ccipher_size)!=0){
+          String message="Bad packet length "+j;
+          if(getLogger().isEnabled(Logger.FATAL)){
+            getLogger().log(Logger.FATAL, message);
+          }
+          start_discard(buf, s2ccipher, s2cmac, 0, PACKET_MAX_SIZE-s2ccipher_size);
+        }
+
+        io.getByte(buf.buffer, buf.index, j); buf.index+=(j);
+
+        if(isAEAD){
+          try {
+            s2ccipher.updateAAD(buf.buffer, 0, 4);
+            s2ccipher.doFinal(buf.buffer, 4, j, buf.buffer, 4);
+          }
+          catch(AEADBadTagException e){
+            throw new JSchException("Packet corrupt", e);
+          }
+          // don't include AEAD tag size in buf so that decompression works below
+          buf.index -= s2ccipher.getTagSize();
+        }
+        else{
+          s2cmac.update(seqi);
+          s2cmac.update(buf.buffer, 0, buf.index);
+          s2cmac.doFinal(s2cmac_result1, 0);
+
+          io.getByte(s2cmac_result2, 0, s2cmac_result2.length);
+          if(!Util.arraysequals(s2cmac_result1, s2cmac_result2)){
+            throw new JSchException("Packet corrupt");
+          }
+          s2ccipher.update(buf.buffer, 4, j, buf.buffer, 4);
+        }
+      }
+      else{
+        io.getByte(buf.buffer, buf.index, s2ccipher_size);
+        buf.index+=s2ccipher_size;
+        if(s2ccipher!=null){
+          s2ccipher.update(buf.buffer, 0, s2ccipher_size, buf.buffer, 0);
+        }
+        j=((buf.buffer[0]<<24)&0xff000000)|
+          ((buf.buffer[1]<<16)&0x00ff0000)|
+          ((buf.buffer[2]<< 8)&0x0000ff00)|
+          ((buf.buffer[3]    )&0x000000ff);
+        // RFC 4253 6.1. Maximum Packet Length
+        if(j<5 || j>PACKET_MAX_SIZE){
+          start_discard(buf, s2ccipher, s2cmac, 0, PACKET_MAX_SIZE);
+        }
+        int need = j+4-s2ccipher_size;
+        //if(need<0){
+        //  throw new IOException("invalid data");
+        //}
+        if((buf.index+need)>buf.buffer.length){
+          byte[] foo=new byte[buf.index+need];
+          System.arraycopy(buf.buffer, 0, foo, 0, buf.index);
+          buf.buffer=foo;
+        }
+
+        if((need%s2ccipher_size)!=0){
+          String message="Bad packet length "+need;
+          if(getLogger().isEnabled(Logger.FATAL)){
+            getLogger().log(Logger.FATAL, message);
+          }
+          start_discard(buf, s2ccipher, s2cmac, 0, PACKET_MAX_SIZE-s2ccipher_size);
+        }
+
+        if(need>0){
+          io.getByte(buf.buffer, buf.index, need); buf.index+=(need);
+          if(s2ccipher!=null){
+            s2ccipher.update(buf.buffer, s2ccipher_size, need, buf.buffer, s2ccipher_size);
+          }
+        }
+
+        if(s2cmac!=null){
+          s2cmac.update(seqi);
+          s2cmac.update(buf.buffer, 0, buf.index);
+          s2cmac.doFinal(s2cmac_result1, 0);
+
+          io.getByte(s2cmac_result2, 0, s2cmac_result2.length);
+          if(!Util.arraysequals(s2cmac_result1, s2cmac_result2)){
+            if(need+s2ccipher_size > PACKET_MAX_SIZE){
+              throw new IOException("MAC Error");
+            }
+            start_discard(buf, s2ccipher, s2cmac, buf.index, PACKET_MAX_SIZE-need-s2ccipher_size);
+            continue;
+          }
+        }
       }
 
       seqi++;
 
       if(inflater!=null){
         //inflater.uncompress(buf);
-	int pad=buf.buffer[4];
-	uncompress_len[0]=buf.index-5-pad;
-	byte[] foo=inflater.uncompress(buf.buffer, 5, uncompress_len);
-	if(foo!=null){
-	  buf.buffer=foo;
-	  buf.index=5+uncompress_len[0];
-	}
-	else{
-	  System.err.println("fail in inflater");
-	  break;
-	}
+        int pad=buf.buffer[4];
+        uncompress_len[0]=buf.index-5-pad;
+        byte[] foo=inflater.uncompress(buf.buffer, 5, uncompress_len);
+        if(foo!=null){
+          buf.buffer=foo;
+          buf.index=5+uncompress_len[0];
+        }
+        else{
+          System.err.println("fail in inflater");
+          break;
+        }
       }
 
       int type=buf.getCommand()&0xff;
@@ -998,23 +1254,23 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
       if(type==SSH_MSG_DISCONNECT){
         buf.rewind();
         buf.getInt();buf.getShort();
-	int reason_code=buf.getInt();
-	byte[] description=buf.getString();
-	byte[] language_tag=buf.getString();
-	throw new JSchException("SSH_MSG_DISCONNECT: "+
-				    reason_code+
-				" "+Util.byte2str(description)+
-				" "+Util.byte2str(language_tag));
-	//break;
+        int reason_code=buf.getInt();
+        byte[] description=buf.getString();
+        byte[] language_tag=buf.getString();
+        throw new JSchException("SSH_MSG_DISCONNECT: "+
+                                    reason_code+
+                                " "+Util.byte2str(description)+
+                                " "+Util.byte2str(language_tag));
+        //break;
       }
       else if(type==SSH_MSG_IGNORE){
       }
       else if(type==SSH_MSG_UNIMPLEMENTED){
         buf.rewind();
         buf.getInt();buf.getShort();
-	int reason_id=buf.getInt();
-        if(JSch.getLogger().isEnabled(Logger.INFO)){
-          JSch.getLogger().log(Logger.INFO, 
+        int reason_id=buf.getInt();
+        if(getLogger().isEnabled(Logger.INFO)){
+          getLogger().log(Logger.INFO,
                                "Received SSH_MSG_UNIMPLEMENTED for "+reason_id);
         }
       }
@@ -1022,23 +1278,75 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
         buf.rewind();
         buf.getInt();buf.getShort();
 /*
-	byte always_display=(byte)buf.getByte();
-	byte[] message=buf.getString();
-	byte[] language_tag=buf.getString();
-	System.err.println("SSH_MSG_DEBUG:"+
-			   " "+Util.byte2str(message)+
-			   " "+Util.byte2str(language_tag));
+        byte always_display=(byte)buf.getByte();
+        byte[] message=buf.getString();
+        byte[] language_tag=buf.getString();
+        System.err.println("SSH_MSG_DEBUG:"+
+                           " "+Util.byte2str(message)+
+                           " "+Util.byte2str(language_tag));
 */
       }
       else if(type==SSH_MSG_CHANNEL_WINDOW_ADJUST){
           buf.rewind();
           buf.getInt();buf.getShort();
-	  Channel c=Channel.getChannel(buf.getInt(), this);
-	  if(c==null){
-	  }
-	  else{
-	    c.addRemoteWindowSize(buf.getUInt()); 
-	  }
+          Channel c=Channel.getChannel(buf.getInt(), this);
+          if(c==null){
+          }
+          else{
+            c.addRemoteWindowSize(buf.getUInt());
+          }
+      }
+      else if(type==SSH_MSG_EXT_INFO){
+        buf.rewind();
+        buf.getInt();buf.getShort();
+        boolean ignore=false;
+        String enable_server_sig_algs=getConfig("enable_server_sig_algs");
+        if(!enable_server_sig_algs.equals("yes")){
+          ignore=true;
+          if(getLogger().isEnabled(Logger.INFO)){
+            getLogger().log(Logger.INFO, "Ignoring SSH_MSG_EXT_INFO while enable_server_sig_algs != yes");
+          }
+        }
+        else if(isAuthed){
+          ignore=true;
+          if(getLogger().isEnabled(Logger.INFO)){
+            getLogger().log(Logger.INFO, "Ignoring SSH_MSG_EXT_INFO received after SSH_MSG_USERAUTH_SUCCESS");
+          }
+        }
+        else if(in_kex){
+          ignore=true;
+          if(getLogger().isEnabled(Logger.INFO)){
+            getLogger().log(Logger.INFO, "Ignoring SSH_MSG_EXT_INFO received before SSH_MSG_NEWKEYS");
+          }
+        }
+        else{
+          if(getLogger().isEnabled(Logger.INFO)){
+            getLogger().log(Logger.INFO, "SSH_MSG_EXT_INFO received");
+          }
+        }
+        long num_extensions=buf.getUInt();
+        for(long i=0; i<num_extensions; i++){
+          byte[] ext_name=buf.getString();
+          byte[] ext_value=buf.getString();
+          if(!ignore && Util.byte2str(ext_name).equals("server-sig-algs")){
+            String foo=Util.byte2str(ext_value);
+            if(getLogger().isEnabled(Logger.INFO)){
+              getLogger().log(Logger.INFO, "server-sig-algs=<" + foo + ">");
+            }
+            if(sshBugSigType74){
+              if(!foo.isEmpty()){
+                foo+=",rsa-sha2-256,rsa-sha2-512";
+              }
+              else{
+                foo="rsa-sha2-256,rsa-sha2-512";
+              }
+              if(getLogger().isEnabled(Logger.INFO)){
+                getLogger().log(Logger.INFO, "OpenSSH 7.4 detected: adding rsa-sha2-256 & rsa-sha2-512 to server-sig-algs");
+              }
+            }
+            serverSigAlgs=Util.split(foo, ",");
+          }
+        }
       }
       else if(type==UserAuth.SSH_MSG_USERAUTH_SUCCESS){
         isAuthed=true;
@@ -1059,35 +1367,46 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     return buf;
   }
 
-  private void start_discard(Buffer buf, Cipher cipher, MAC mac, 
-                             int packet_length, int discard) throws JSchException, IOException{
-    MAC discard_mac = null;
-
-    if(!cipher.isCBC()){
+  private void start_discard(Buffer buf, Cipher cipher, MAC mac,
+                             int mac_already, int discard) throws JSchException{
+    if(!cipher.isCBC() || (mac != null && mac.isEtM())){
       throw new JSchException("Packet corrupt");
     }
 
-    if(packet_length!=PACKET_MAX_SIZE && mac != null){
-      discard_mac = mac;
+    if(mac != null){
+      mac.update(seqi);
+      mac.update(buf.buffer, 0, mac_already);
     }
 
-    discard -= buf.index;
-
-    while(discard>0){
-      buf.reset();
-      int len = discard>buf.buffer.length ? buf.buffer.length : discard;
-      io.getByte(buf.buffer, 0, len);
-      if(discard_mac!=null){
-        discard_mac.update(buf.buffer, 0, len);
+    IOException ioe=null;
+    try{
+      while(discard>0){
+        buf.reset();
+        int len = discard>buf.buffer.length ? buf.buffer.length : discard;
+        io.getByte(buf.buffer, 0, len);
+        if(mac!=null){
+          mac.update(buf.buffer, 0, len);
+        }
+        discard -= len;
       }
-      discard -= len;
+    }
+    catch(IOException e){
+      ioe = e;
+      if(getLogger().isEnabled(Logger.ERROR)){
+        getLogger().log(Logger.ERROR,
+                             "start_discard finished early due to " + e.getMessage());
+      }
     }
 
-    if(discard_mac!=null){
-      discard_mac.doFinal(buf.buffer, 0);
+    if(mac!=null){
+      mac.doFinal(buf.buffer, 0);
     }
 
-    throw new JSchException("Packet corrupt");
+    JSchException e = new JSchException("Packet corrupt");
+    if(ioe!=null){
+      e.addSuppressed(ioe);
+    }
+    throw e;
   }
 
   byte[] getSessionId(){
@@ -1148,12 +1467,13 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     MACs2c=hash.digest();
 
     try{
-      Class c;
+      Class<? extends Cipher> cc;
+      Class<? extends MAC> cm;
       String method;
-  
+
       method=guess[KeyExchange.PROPOSAL_ENC_ALGS_STOC];
-      c=Class.forName(getConfig(method));
-      s2ccipher=(Cipher)(c.newInstance());
+      cc=Class.forName(getConfig(method)).asSubclass(Cipher.class);
+      s2ccipher=cc.getDeclaredConstructor().newInstance();
       while(s2ccipher.getBlockSize()>Es2c.length){
         buf.reset();
         buf.putMPInt(K);
@@ -1162,25 +1482,27 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
         hash.update(buf.buffer, 0, buf.index);
         byte[] foo=hash.digest();
         byte[] bar=new byte[Es2c.length+foo.length];
-	System.arraycopy(Es2c, 0, bar, 0, Es2c.length);
-	System.arraycopy(foo, 0, bar, Es2c.length, foo.length);
-	Es2c=bar;
+        System.arraycopy(Es2c, 0, bar, 0, Es2c.length);
+        System.arraycopy(foo, 0, bar, Es2c.length, foo.length);
+        Es2c=bar;
       }
       s2ccipher.init(Cipher.DECRYPT_MODE, Es2c, IVs2c);
       s2ccipher_size=s2ccipher.getIVSize();
 
-      method=guess[KeyExchange.PROPOSAL_MAC_ALGS_STOC];
-      c=Class.forName(getConfig(method));
-      s2cmac=(MAC)(c.newInstance());
-      MACs2c = expandKey(buf, K, H, MACs2c, hash, s2cmac.getBlockSize());
-      s2cmac.init(MACs2c);
-      //mac_buf=new byte[s2cmac.getBlockSize()];
-      s2cmac_result1=new byte[s2cmac.getBlockSize()];
-      s2cmac_result2=new byte[s2cmac.getBlockSize()];
+      if(!s2ccipher.isAEAD()){
+        method=guess[KeyExchange.PROPOSAL_MAC_ALGS_STOC];
+        cm=Class.forName(getConfig(method)).asSubclass(MAC.class);
+        s2cmac=cm.getDeclaredConstructor().newInstance();
+        MACs2c = expandKey(buf, K, H, MACs2c, hash, s2cmac.getBlockSize());
+        s2cmac.init(MACs2c);
+        //mac_buf=new byte[s2cmac.getBlockSize()];
+        s2cmac_result1=new byte[s2cmac.getBlockSize()];
+        s2cmac_result2=new byte[s2cmac.getBlockSize()];
+      }
 
       method=guess[KeyExchange.PROPOSAL_ENC_ALGS_CTOS];
-      c=Class.forName(getConfig(method));
-      c2scipher=(Cipher)(c.newInstance());
+      cc=Class.forName(getConfig(method)).asSubclass(Cipher.class);
+      c2scipher=cc.getDeclaredConstructor().newInstance();
       while(c2scipher.getBlockSize()>Ec2s.length){
         buf.reset();
         buf.putMPInt(K);
@@ -1189,18 +1511,20 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
         hash.update(buf.buffer, 0, buf.index);
         byte[] foo=hash.digest();
         byte[] bar=new byte[Ec2s.length+foo.length];
-	System.arraycopy(Ec2s, 0, bar, 0, Ec2s.length);
-	System.arraycopy(foo, 0, bar, Ec2s.length, foo.length);
-	Ec2s=bar;
+        System.arraycopy(Ec2s, 0, bar, 0, Ec2s.length);
+        System.arraycopy(foo, 0, bar, Ec2s.length, foo.length);
+        Ec2s=bar;
       }
       c2scipher.init(Cipher.ENCRYPT_MODE, Ec2s, IVc2s);
       c2scipher_size=c2scipher.getIVSize();
 
-      method=guess[KeyExchange.PROPOSAL_MAC_ALGS_CTOS];
-      c=Class.forName(getConfig(method));
-      c2smac=(MAC)(c.newInstance());
-      MACc2s = expandKey(buf, K, H, MACc2s, hash, c2smac.getBlockSize());
-      c2smac.init(MACc2s);
+      if(!c2scipher.isAEAD()){
+        method=guess[KeyExchange.PROPOSAL_MAC_ALGS_CTOS];
+        cm=Class.forName(getConfig(method)).asSubclass(MAC.class);
+        c2smac=cm.getDeclaredConstructor().newInstance();
+        MACc2s = expandKey(buf, K, H, MACc2s, hash, c2smac.getBlockSize());
+        c2smac.init(MACc2s);
+      }
 
       method=guess[KeyExchange.PROPOSAL_COMP_ALGS_CTOS];
       initDeflater(method);
@@ -1208,11 +1532,11 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
       method=guess[KeyExchange.PROPOSAL_COMP_ALGS_STOC];
       initInflater(method);
     }
-    catch(Exception e){ 
+    catch(Exception | NoClassDefFoundError e){
       if(e instanceof JSchException)
         throw e;
       throw new JSchException(e.toString(), e);
-      //System.err.println("updatekeys: "+e); 
+      //System.err.println("updatekeys: "+e);
     }
   }
 
@@ -1250,7 +1574,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     return result;
   }
 
-  /*public*/ /*synchronized*/ void write(Packet packet, Channel c, int length) throws Exception{
+    /*synchronized*/ void write(Packet packet, Channel c, int length) throws Exception{
     long t = getTimeout();
     while(true){
       if(in_kex){
@@ -1258,17 +1582,17 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
           throw new JSchException("timeout in waiting for rekeying process.");
         }
         try{Thread.sleep(10);}
-        catch(java.lang.InterruptedException e){};
+        catch(InterruptedException e){};
         continue;
       }
       synchronized(c){
 
         if(c.rwsize<length){
-          try{ 
+          try{
             c.notifyme++;
-            c.wait(100); 
+            c.wait(100);
           }
-          catch(java.lang.InterruptedException e){
+          catch(InterruptedException e){
           }
           finally{
             c.notifyme--;
@@ -1286,7 +1610,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
 
       }
       if(c.close || !c.isConnected()){
-	throw new IOException("channel is broken");
+        throw new IOException("channel is broken");
       }
 
       boolean sendit=false;
@@ -1294,29 +1618,29 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
       byte command=0;
       int recipient=-1;
       synchronized(c){
-	if(c.rwsize>0){
-	  long len=c.rwsize;
+        if(c.rwsize>0){
+          long len=c.rwsize;
           if(len>length){
             len=length;
           }
           if(len!=length){
-            s=packet.shift((int)len, 
+            s=packet.shift((int)len,
                            (c2scipher!=null ? c2scipher_size : 8),
                            (c2smac!=null ? c2smac.getBlockSize() : 0));
           }
-	  command=packet.buffer.getCommand();
-	  recipient=c.getRecipient();
-	  length-=len;
-	  c.rwsize-=len;
-	  sendit=true;
-	}
+          command=packet.buffer.getCommand();
+          recipient=c.getRecipient();
+          length-=len;
+          c.rwsize-=len;
+          sendit=true;
+        }
       }
       if(sendit){
-	_write(packet);
+        _write(packet);
         if(length==0){
           return;
         }
-	packet.unshift(command, recipient, s, length);
+        packet.unshift(command, recipient, s, length);
       }
 
       synchronized(c){
@@ -1328,12 +1652,12 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
           break;
         }
 
-        //try{ 
+        //try{
         //System.out.println("1wait: "+c.rwsize);
         //  c.notifyme++;
-        //  c.wait(100); 
+        //  c.wait(100);
         //}
-        //catch(java.lang.InterruptedException e){
+        //catch(InterruptedException e){
         //}
         //finally{
         //  c.notifyme--;
@@ -1343,7 +1667,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     _write(packet);
   }
 
-  public void write(Packet packet) throws Exception{
+  void write(Packet packet) throws Exception{
     // System.err.println("in_kex="+in_kex+" "+(packet.buffer.getCommand()));
     long t = getTimeout();
     while(in_kex){
@@ -1367,7 +1691,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
         break;
       }
       try{Thread.sleep(10);}
-      catch(java.lang.InterruptedException e){};
+      catch(InterruptedException e){};
     }
     _write(packet);
   }
@@ -1383,8 +1707,8 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
   }
 
   Runnable thread;
-  public void run(){
-    thread=this;
+  void run(){
+    thread=this::run;
 
     byte[] foo;
     Buffer buf=new Buffer();
@@ -1398,7 +1722,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     int stimeout=0;
     try{
       while(isConnected &&
-	    thread!=null){
+            thread!=null){
         try{
           buf=read(buf);
           stimeout=0;
@@ -1416,149 +1740,149 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
           throw ee;
         }
 
-	int msgType=buf.getCommand()&0xff;
+        int msgType=buf.getCommand()&0xff;
 
-	if(kex!=null && kex.getState()==msgType){
+        if(kex!=null && kex.getState()==msgType){
           kex_start_time=System.currentTimeMillis();
-	  boolean result=kex.next(buf);
-	  if(!result){
-	    throw new JSchException("verify: "+result);
-	  }
-	  continue;
-	}
+          boolean result=kex.next(buf);
+          if(!result){
+            throw new JSchException("verify: "+result);
+          }
+          continue;
+        }
 
         switch(msgType){
-	case SSH_MSG_KEXINIT:
+        case SSH_MSG_KEXINIT:
 //System.err.println("KEXINIT");
-	  kex=receive_kexinit(buf);
-	  break;
+          kex=receive_kexinit(buf);
+          break;
 
-	case SSH_MSG_NEWKEYS:
+        case SSH_MSG_NEWKEYS:
 //System.err.println("NEWKEYS");
           send_newkeys();
-	  receive_newkeys(buf, kex);
-	  kex=null;
-	  break;
+          receive_newkeys(buf, kex);
+          kex=null;
+          break;
 
-	case SSH_MSG_CHANNEL_DATA:
-          buf.getInt(); 
-          buf.getByte(); 
-          buf.getByte(); 
-          i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
-	  foo=buf.getString(start, length);
-	  if(channel==null){
-	    break;
-	  }
+        case SSH_MSG_CHANNEL_DATA:
+          buf.getInt();
+          buf.getByte();
+          buf.getByte();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          foo=buf.getString(start, length);
+          if(channel==null){
+            break;
+          }
 
           if(length[0]==0){
-	    break;
+            break;
           }
 
 try{
-	  channel.write(foo, start[0], length[0]);
+          channel.write(foo, start[0], length[0]);
 }
 catch(Exception e){
 //System.err.println(e);
   try{channel.disconnect();}catch(Exception ee){}
 break;
 }
-	  int len=length[0];
-	  channel.setLocalWindowSize(channel.lwsize-len);
- 	  if(channel.lwsize<channel.lwsize_max/2){
+          int len=length[0];
+          channel.setLocalWindowSize(channel.lwsize-len);
+           if(channel.lwsize<channel.lwsize_max/2){
             packet.reset();
-	    buf.putByte((byte)SSH_MSG_CHANNEL_WINDOW_ADJUST);
-	    buf.putInt(channel.getRecipient());
-	    buf.putInt(channel.lwsize_max-channel.lwsize);
+            buf.putByte((byte)SSH_MSG_CHANNEL_WINDOW_ADJUST);
+            buf.putInt(channel.getRecipient());
+            buf.putInt(channel.lwsize_max-channel.lwsize);
             synchronized(channel){
               if(!channel.close)
                 write(packet);
             }
-	    channel.setLocalWindowSize(channel.lwsize_max);
-	  }
-	  break;
+            channel.setLocalWindowSize(channel.lwsize_max);
+          }
+          break;
 
         case SSH_MSG_CHANNEL_EXTENDED_DATA:
           buf.getInt();
-	  buf.getShort();
-	  i=buf.getInt();
-	  channel=Channel.getChannel(i, this);
-	  buf.getInt();                   // data_type_code == 1
-	  foo=buf.getString(start, length);
-	  //System.err.println("stderr: "+new String(foo,start[0],length[0]));
-	  if(channel==null){
-	    break;
-	  }
-
-          if(length[0]==0){
-	    break;
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          buf.getInt();                   // data_type_code == 1
+          foo=buf.getString(start, length);
+          //System.err.println("stderr: "+new String(foo,start[0],length[0]));
+          if(channel==null){
+            break;
           }
 
-	  channel.write_ext(foo, start[0], length[0]);
+          if(length[0]==0){
+            break;
+          }
 
-	  len=length[0];
-	  channel.setLocalWindowSize(channel.lwsize-len);
- 	  if(channel.lwsize<channel.lwsize_max/2){
+          channel.write_ext(foo, start[0], length[0]);
+
+          len=length[0];
+          channel.setLocalWindowSize(channel.lwsize-len);
+           if(channel.lwsize<channel.lwsize_max/2){
             packet.reset();
-	    buf.putByte((byte)SSH_MSG_CHANNEL_WINDOW_ADJUST);
-	    buf.putInt(channel.getRecipient());
-	    buf.putInt(channel.lwsize_max-channel.lwsize);
+            buf.putByte((byte)SSH_MSG_CHANNEL_WINDOW_ADJUST);
+            buf.putInt(channel.getRecipient());
+            buf.putInt(channel.lwsize_max-channel.lwsize);
             synchronized(channel){
               if(!channel.close)
                 write(packet);
             }
-	    channel.setLocalWindowSize(channel.lwsize_max);
-	  }
-	  break;
+            channel.setLocalWindowSize(channel.lwsize_max);
+          }
+          break;
 
-	case SSH_MSG_CHANNEL_WINDOW_ADJUST:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
-	  if(channel==null){
-	    break;
-	  }
-	  channel.addRemoteWindowSize(buf.getUInt()); 
-	  break;
+        case SSH_MSG_CHANNEL_WINDOW_ADJUST:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          if(channel==null){
+            break;
+          }
+          channel.addRemoteWindowSize(buf.getUInt());
+          break;
 
-	case SSH_MSG_CHANNEL_EOF:
-          buf.getInt(); 
-          buf.getShort(); 
-          i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
-	  if(channel!=null){
-	    //channel.eof_remote=true;
-	    //channel.eof();
-	    channel.eof_remote();
-	  }
-	  /*
-	  packet.reset();
-	  buf.putByte((byte)SSH_MSG_CHANNEL_EOF);
-	  buf.putInt(channel.getRecipient());
-	  write(packet);
-	  */
-	  break;
-	case SSH_MSG_CHANNEL_CLOSE:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
-	  if(channel!=null){
-//	      channel.close();
-	    channel.disconnect();
-	  }
-	  /*
+        case SSH_MSG_CHANNEL_EOF:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          if(channel!=null){
+            //channel.eof_remote=true;
+            //channel.eof();
+            channel.eof_remote();
+          }
+          /*
+          packet.reset();
+          buf.putByte((byte)SSH_MSG_CHANNEL_EOF);
+          buf.putInt(channel.getRecipient());
+          write(packet);
+          */
+          break;
+        case SSH_MSG_CHANNEL_CLOSE:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          if(channel!=null){
+//              channel.close();
+            channel.disconnect();
+          }
+          /*
           if(Channel.pool.size()==0){
-	    thread=null;
-	  }
-	  */
-	  break;
-	case SSH_MSG_CHANNEL_OPEN_CONFIRMATION:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
+            thread=null;
+          }
+          */
+          break;
+        case SSH_MSG_CHANNEL_OPEN_CONFIRMATION:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
           int r=buf.getInt();
           long rws=buf.getUInt();
           int rps=buf.getInt();
@@ -1569,131 +1893,131 @@ break;
             channel.setRecipient(r);
           }
           break;
-	case SSH_MSG_CHANNEL_OPEN_FAILURE:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
+        case SSH_MSG_CHANNEL_OPEN_FAILURE:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
           if(channel!=null){
-            int reason_code=buf.getInt(); 
+            int reason_code=buf.getInt();
             //foo=buf.getString();  // additional textual information
-            //foo=buf.getString();  // language tag 
+            //foo=buf.getString();  // language tag
             channel.setExitStatus(reason_code);
             channel.close=true;
             channel.eof_remote=true;
             channel.setRecipient(0);
           }
-	  break;
-	case SSH_MSG_CHANNEL_REQUEST:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  foo=buf.getString(); 
+          break;
+        case SSH_MSG_CHANNEL_REQUEST:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          foo=buf.getString();
           boolean reply=(buf.getByte()!=0);
-	  channel=Channel.getChannel(i, this);
-	  if(channel!=null){
-	    byte reply_type=(byte)SSH_MSG_CHANNEL_FAILURE;
-	    if((Util.byte2str(foo)).equals("exit-status")){
-	      i=buf.getInt();             // exit-status
-	      channel.setExitStatus(i);
-	      reply_type=(byte)SSH_MSG_CHANNEL_SUCCESS;
-	    }
-	    if(reply){
-	      packet.reset();
-	      buf.putByte(reply_type);
-	      buf.putInt(channel.getRecipient());
-	      write(packet);
-	    }
-	  }
-	  else{
-	  }
-	  break;
-	case SSH_MSG_CHANNEL_OPEN:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  foo=buf.getString(); 
-	  String ctyp=Util.byte2str(foo);
+          channel=Channel.getChannel(i, this);
+          if(channel!=null){
+            byte reply_type=(byte)SSH_MSG_CHANNEL_FAILURE;
+            if((Util.byte2str(foo)).equals("exit-status")){
+              i=buf.getInt();             // exit-status
+              channel.setExitStatus(i);
+              reply_type=(byte)SSH_MSG_CHANNEL_SUCCESS;
+            }
+            if(reply){
+              packet.reset();
+              buf.putByte(reply_type);
+              buf.putInt(channel.getRecipient());
+              write(packet);
+            }
+          }
+          else{
+          }
+          break;
+        case SSH_MSG_CHANNEL_OPEN:
+          buf.getInt();
+          buf.getShort();
+          foo=buf.getString();
+          String ctyp=Util.byte2str(foo);
           if(!"forwarded-tcpip".equals(ctyp) &&
-	     !("x11".equals(ctyp) && x11_forwarding) &&
-	     !("auth-agent@openssh.com".equals(ctyp) && agent_forwarding)){
-            //System.err.println("Session.run: CHANNEL OPEN "+ctyp); 
-	    //throw new IOException("Session.run: CHANNEL OPEN "+ctyp);
-	    packet.reset();
-	    buf.putByte((byte)SSH_MSG_CHANNEL_OPEN_FAILURE);
-	    buf.putInt(buf.getInt());
- 	    buf.putInt(Channel.SSH_OPEN_ADMINISTRATIVELY_PROHIBITED);
-	    buf.putString(Util.empty);
-	    buf.putString(Util.empty);
-	    write(packet);
-	  }
-	  else{
-	    channel=Channel.getChannel(ctyp);
-	    addChannel(channel);
-	    channel.getData(buf);
-	    channel.init();
+             !("x11".equals(ctyp) && x11_forwarding) &&
+             !("auth-agent@openssh.com".equals(ctyp) && agent_forwarding)){
+            //System.err.println("Session.run: CHANNEL OPEN "+ctyp);
+            //throw new IOException("Session.run: CHANNEL OPEN "+ctyp);
+            packet.reset();
+            buf.putByte((byte)SSH_MSG_CHANNEL_OPEN_FAILURE);
+            buf.putInt(buf.getInt());
+             buf.putInt(Channel.SSH_OPEN_ADMINISTRATIVELY_PROHIBITED);
+            buf.putString(Util.empty);
+            buf.putString(Util.empty);
+            write(packet);
+          }
+          else{
+            channel=Channel.getChannel(ctyp, this);
+            addChannel(channel);
+            channel.getData(buf);
+            channel.init();
 
-	    Thread tmp=new Thread(channel);
-	    tmp.setName("Channel "+ctyp+" "+host);
+            Thread tmp=new Thread(channel::run);
+            tmp.setName("Channel "+ctyp+" "+host);
             if(daemon_thread){
               tmp.setDaemon(daemon_thread);
             }
-	    tmp.start();
-	  }
+            tmp.start();
+          }
           break;
-	case SSH_MSG_CHANNEL_SUCCESS:
-          buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
-	  if(channel==null){
-	    break;
-	  }
-	  channel.reply=1;
-	  break;
-	case SSH_MSG_CHANNEL_FAILURE:
-	  buf.getInt(); 
-	  buf.getShort(); 
-	  i=buf.getInt(); 
-	  channel=Channel.getChannel(i, this);
-	  if(channel==null){
-	    break;
-	  }
-	  channel.reply=0;
-	  break;
-	case SSH_MSG_GLOBAL_REQUEST:
-	  buf.getInt(); 
-	  buf.getShort(); 
-	  foo=buf.getString();       // request name
-	  reply=(buf.getByte()!=0);
-	  if(reply){
-	    packet.reset();
-	    buf.putByte((byte)SSH_MSG_REQUEST_FAILURE);
-	    write(packet);
-	  }
-	  break;
-	case SSH_MSG_REQUEST_FAILURE:
-	case SSH_MSG_REQUEST_SUCCESS:
+        case SSH_MSG_CHANNEL_SUCCESS:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          if(channel==null){
+            break;
+          }
+          channel.reply=1;
+          break;
+        case SSH_MSG_CHANNEL_FAILURE:
+          buf.getInt();
+          buf.getShort();
+          i=buf.getInt();
+          channel=Channel.getChannel(i, this);
+          if(channel==null){
+            break;
+          }
+          channel.reply=0;
+          break;
+        case SSH_MSG_GLOBAL_REQUEST:
+          buf.getInt();
+          buf.getShort();
+          foo=buf.getString();       // request name
+          reply=(buf.getByte()!=0);
+          if(reply){
+            packet.reset();
+            buf.putByte((byte)SSH_MSG_REQUEST_FAILURE);
+            write(packet);
+          }
+          break;
+        case SSH_MSG_REQUEST_FAILURE:
+        case SSH_MSG_REQUEST_SUCCESS:
           Thread t=grr.getThread();
           if(t!=null){
             grr.setReply(msgType==SSH_MSG_REQUEST_SUCCESS? 1 : 0);
             if(msgType==SSH_MSG_REQUEST_SUCCESS && grr.getPort()==0){
-              buf.getInt(); 
-              buf.getShort(); 
+              buf.getInt();
+              buf.getShort();
               grr.setPort(buf.getInt());
             }
             t.interrupt();
           }
-	  break;
-	default:
-          //System.err.println("Session.run: unsupported type "+msgType); 
-	  throw new IOException("Unknown SSH message type "+msgType);
-	}
+          break;
+        default:
+          //System.err.println("Session.run: unsupported type "+msgType);
+          throw new IOException("Unknown SSH message type "+msgType);
+        }
       }
     }
     catch(Exception e){
       in_kex=false;
-      if(JSch.getLogger().isEnabled(Logger.INFO)){
-        JSch.getLogger().log(Logger.INFO,
+      if(getLogger().isEnabled(Logger.INFO)){
+        getLogger().log(Logger.INFO,
                              "Caught an exception, leaving main loop due to " + e.getMessage());
       }
       //System.err.println("# Session.run");
@@ -1717,19 +2041,19 @@ break;
     if(!isConnected) return;
     //System.err.println(this+": disconnect");
     //Thread.dumpStack();
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO,
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "Disconnecting from "+host+" port "+port);
     }
     /*
     for(int i=0; i<Channel.pool.size(); i++){
       try{
         Channel c=((Channel)(Channel.pool.elementAt(i)));
-	if(c.session==this) c.eof();
+        if(c.session==this) c.eof();
       }
       catch(Exception e){
       }
-    } 
+    }
     */
 
     Channel.disconnect(this);
@@ -1750,19 +2074,19 @@ break;
     thread=null;
     try{
       if(io!=null){
-	if(io.in!=null) io.in.close();
-	if(io.out!=null) io.out.close();
-	if(io.out_ext!=null) io.out_ext.close();
+        if(io.in!=null) io.in.close();
+        if(io.out!=null) io.out.close();
+        if(io.out_ext!=null) io.out_ext.close();
       }
       if(proxy==null){
         if(socket!=null)
-	  socket.close();
+          socket.close();
       }
       else{
-	synchronized(proxy){
-	  proxy.close();	  
-	}
-	proxy=null;
+        synchronized(proxy){
+          proxy.close();
+        }
+        proxy=null;
       }
     }
     catch(Exception e){
@@ -1782,7 +2106,7 @@ break;
   /**
    * Registers the local port forwarding for loop-back interface.
    * If <code>lport</code> is <code>0</code>, the tcp port will be allocated.
-   * @param lport local port for local port forwarding 
+   * @param lport local port for local port forwarding
    * @param host host address for local port forwarding
    * @param rport remote port number for local port forwarding
    * @return an allocated local TCP port number
@@ -1799,7 +2123,7 @@ break;
    * <code>null</code>, the listening port will be bound for local use only.
    * If <code>lport</code> is <code>0</code>, the tcp port will be allocated.
    * @param bind_address bind address for local port forwarding
-   * @param lport local port for local port forwarding 
+   * @param lport local port for local port forwarding
    * @param host host address for local port forwarding
    * @param rport remote port number for local port forwarding
    * @return an allocated local TCP port number
@@ -1817,7 +2141,7 @@ break;
    * <code>null</code>, the listening port will be bound for local use only.
    * If <code>lport</code> is <code>0</code>, the tcp port will be allocated.
    * @param bind_address bind address for local port forwarding
-   * @param lport local port for local port forwarding 
+   * @param lport local port for local port forwarding
    * @param host host address for local port forwarding
    * @param rport remote port number for local port forwarding
    * @param ssf socket factory
@@ -1836,17 +2160,29 @@ break;
    * <code>null</code>, the listening port will be bound for local use only.
    * If <code>lport</code> is <code>0</code>, the tcp port will be allocated.
    * @param bind_address bind address for local port forwarding
-   * @param lport local port for local port forwarding 
+   * @param lport local port for local port forwarding
    * @param host host address for local port forwarding
    * @param rport remote port number for local port forwarding
    * @param ssf socket factory
    * @param connectTimeout timeout for establishing port connection
-   * @return an allocated local TCP port number 
+   * @return an allocated local TCP port number
    */
   public int setPortForwardingL(String bind_address, int lport, String host, int rport, ServerSocketFactory ssf, int connectTimeout) throws JSchException{
     PortWatcher pw=PortWatcher.addPort(this, bind_address, lport, host, rport, ssf);
     pw.setConnectTimeout(connectTimeout);
-    Thread tmp=new Thread(pw);
+    Thread tmp=new Thread(pw::run);
+    tmp.setName("PortWatcher Thread for "+host);
+    if(daemon_thread){
+      tmp.setDaemon(daemon_thread);
+    }
+    tmp.start();
+    return pw.lport;
+  }
+
+  public int setSocketForwardingL(String bindAddress, int lport, String socketPath, ServerSocketFactory ssf, int connectTimeout) throws JSchException {
+    PortWatcher pw=PortWatcher.addSocket(this, bindAddress, lport, socketPath, ssf);
+    pw.setConnectTimeout(connectTimeout);
+    Thread tmp=new Thread(pw::run);
     tmp.setName("PortWatcher Thread for "+host);
     if(daemon_thread){
       tmp.setDaemon(daemon_thread);
@@ -1997,7 +2333,7 @@ break;
    * remote, <code>"localhost"</code> is always used as a bind_address.
    * The TCP connection to <code>rport</code> on the remote will be
    * forwarded to an instance of the class <code>daemon</code> with the
-   * argument <code>arg</code>. 
+   * argument <code>arg</code>.
    * The class specified by <code>daemon</code> must implement <code>ForwardedTCPIPDaemon</code>.
    *
    * @param bind_address bind address
@@ -2021,33 +2357,34 @@ break;
     return ChannelForwardedTCPIP.getPortForwarding(this);
   }
 
-  private class Forwarding {
+  static class Forwarding {
     String bind_address = null;
     int port = -1;
     String host = null;
     int hostport = -1;
+    String socketPath = null;
   }
 
   /**
    * The given argument may be "[bind_address:]port:host:hostport" or
    * "[bind_address:]port host:hostport", which is from LocalForward command of
-   * ~/.ssh/config .
+   * ~/.ssh/config . Also allows "[bind_address:]port:socketPath" or "[bind_address:]port socketPath" for socket forwarding.
    */
-  private Forwarding parseForwarding(String conf) throws JSchException {
+  Forwarding parseForwarding(String conf) throws JSchException {
     String[] tmp = conf.split(" ");
     if(tmp.length>1){   // "[bind_address:]port host:hostport"
-      Vector foo = new Vector();
+      Vector<String> foo = new Vector<>();
       for(int i=0; i<tmp.length; i++){
         if(tmp[i].length()==0) continue;
         foo.addElement(tmp[i].trim());
       }
-      StringBuffer sb = new StringBuffer(); // join
+      StringBuilder sb = new StringBuilder(); // join
       for(int i=0; i<foo.size(); i++){
-        sb.append((String)(foo.elementAt(i)));
+        sb.append(foo.elementAt(i));
         if(i+1<foo.size())
           sb.append(":");
       }
-      conf = sb.toString(); 
+      conf = sb.toString();
     }
 
     String org = conf;
@@ -2055,11 +2392,16 @@ break;
     try {
       if(conf.lastIndexOf(":") == -1)
         throw new JSchException ("parseForwarding: "+org);
-      f.hostport = Integer.parseInt(conf.substring(conf.lastIndexOf(":")+1));
-      conf = conf.substring(0, conf.lastIndexOf(":"));
-      if(conf.lastIndexOf(":") == -1)
-        throw new JSchException ("parseForwarding: "+org);
-      f.host = conf.substring(conf.lastIndexOf(":")+1);
+      try {
+        f.hostport = Integer.parseInt(conf.substring(conf.lastIndexOf(":") + 1));
+        conf = conf.substring(0, conf.lastIndexOf(":"));
+        if(conf.lastIndexOf(":") == -1)
+          throw new JSchException ("parseForwarding: "+org);
+        f.host = conf.substring(conf.lastIndexOf(":")+1);
+      }
+      catch(NumberFormatException e){
+        f.socketPath=conf.substring(conf.lastIndexOf(":") + 1);
+      }
       conf = conf.substring(0, conf.lastIndexOf(":"));
       if(conf.lastIndexOf(":") != -1){
         f.port = Integer.parseInt(conf.substring(conf.lastIndexOf(":")+1));
@@ -2074,7 +2416,7 @@ break;
       }
     }
     catch(NumberFormatException e){
-      throw new JSchException ("parseForwarding: "+e.toString());
+      throw new JSchException("parseForwarding: "+e.toString(), e);
     }
     return f;
   }
@@ -2098,7 +2440,7 @@ break;
 
   /**
    * Registers the remote port forwarding.  The argument should be
-   * in the format like "[bind_address:]port:host:hostport".  If the 
+   * in the format like "[bind_address:]port:host:hostport".  If the
    * bind_address is not given, the default is to only bind to loopback
    * addresses.  If the bind_address is <code>"*"</code> or an empty string,
    * then the forwarding is requested to listen on all interfaces.
@@ -2133,9 +2475,9 @@ break;
     channel.setHost(host);
     channel.setPort(port);
     return channel;
-  } 
+  }
 
-  private class GlobalRequestReply{
+  private static class GlobalRequestReply{
     private Thread thread=null;
     private int reply=-1;
     private int port=0;
@@ -2152,7 +2494,7 @@ break;
   private GlobalRequestReply grr=new GlobalRequestReply();
   private int _setPortForwardingR(String bind_address, int rport) throws JSchException{
     synchronized(grr){
-    Buffer buf=new Buffer(100); // ??
+    Buffer buf=new Buffer(200); // ??
     Packet packet=new Packet(buf);
 
     String address_to_bind=ChannelForwardedTCPIP.normalize(bind_address);
@@ -2176,9 +2518,7 @@ break;
     }
     catch(Exception e){
       grr.setThread(null);
-      if(e instanceof Throwable)
-        throw new JSchException(e.toString(), (Throwable)e);
-      throw new JSchException(e.toString());
+      throw new JSchException(e.toString(), e);
     }
 
     int count = 0;
@@ -2187,7 +2527,7 @@ break;
       try{ Thread.sleep(1000); }
       catch(Exception e){
       }
-      count++; 
+      count++;
       reply = grr.getReply();
     }
     grr.setThread(null);
@@ -2221,8 +2561,12 @@ break;
   }
 
   private void initDeflater(String method) throws JSchException{
+    Compression odeflater=deflater;
     if(method.equals("none")){
       deflater=null;
+      if(odeflater!=null){
+        odeflater.end();
+      }
       return;
     }
     String foo=getConfig(method);
@@ -2230,26 +2574,32 @@ break;
       if(method.equals("zlib") ||
          (isAuthed && method.equals("zlib@openssh.com"))){
         try{
-          Class c=Class.forName(foo);
-          deflater=(Compression)(c.newInstance());
+          Class<? extends Compression> c=Class.forName(foo).asSubclass(Compression.class);
+          deflater=c.getDeclaredConstructor().newInstance();
           int level=6;
           try{ level=Integer.parseInt(getConfig("compression_level"));}
           catch(Exception ee){ }
-          deflater.init(Compression.DEFLATER, level);
-        }
-        catch(NoClassDefFoundError ee){
-          throw new JSchException(ee.toString(), ee);
+          deflater.init(Compression.DEFLATER, level, this);
         }
         catch(Exception ee){
           throw new JSchException(ee.toString(), ee);
           //System.err.println(foo+" isn't accessible.");
         }
+        finally{
+          if(odeflater!=null){
+            odeflater.end();
+          }
+        }
       }
     }
   }
   private void initInflater(String method) throws JSchException{
+    Compression oinflater=inflater;
     if(method.equals("none")){
       inflater=null;
+      if(oinflater!=null){
+        oinflater.end();
+      }
       return;
     }
     String foo=getConfig(method);
@@ -2257,13 +2607,18 @@ break;
       if(method.equals("zlib") ||
          (isAuthed && method.equals("zlib@openssh.com"))){
         try{
-          Class c=Class.forName(foo);
-          inflater=(Compression)(c.newInstance());
-          inflater.init(Compression.INFLATER, 0);
+          Class<? extends Compression> c=Class.forName(foo).asSubclass(Compression.class);
+          inflater=c.getDeclaredConstructor().newInstance();
+          inflater.init(Compression.INFLATER, 0, this);
         }
         catch(Exception ee){
           throw new JSchException(ee.toString(), ee);
-	    //System.err.println(foo+" isn't accessible.");
+            //System.err.println(foo+" isn't accessible.");
+        }
+        finally{
+          if(oinflater!=null){
+            oinflater.end();
+          }
         }
       }
     }
@@ -2273,6 +2628,7 @@ break;
     channel.setSession(this);
   }
 
+  String[] getServerSigAlgs(){ return serverSigAlgs; }
   public void setProxy(Proxy proxy){ this.proxy=proxy; }
   public void setHost(String host){ this.host=host; }
   public void setPort(int port){ this.port=port; }
@@ -2288,49 +2644,69 @@ break;
     if(password!=null)
       this.password=Util.str2byte(password);
   }
-  public void setPassword(byte[] password){ 
+  public void setPassword(byte[] password){
     if(password!=null){
       this.password=new byte[password.length];
       System.arraycopy(password, 0, this.password, 0, password.length);
     }
   }
 
-  public void setConfig(java.util.Properties newconf){
-    setConfig((java.util.Hashtable)newconf);
+  public void setConfig(Properties newconf){
+    Hashtable<String, String> foo=new Hashtable<>();
+    for(String key : newconf.stringPropertyNames()){
+      foo.put(key, newconf.getProperty(key));
+    }
+    setConfig(foo);
   }
- 
-  public void setConfig(java.util.Hashtable newconf){
+
+  public void setConfig(Hashtable<String, String> newconf){
     synchronized(lock){
-      if(config==null) 
-        config=new java.util.Hashtable();
-      for(java.util.Enumeration e=newconf.keys() ; e.hasMoreElements() ;) {
-        String key=(String)(e.nextElement());
-        config.put(key, (String)(newconf.get(key)));
+      if(config==null)
+        config=new Hashtable<>();
+      for(Enumeration<String> e=newconf.keys() ; e.hasMoreElements() ;) {
+        String newkey=e.nextElement();
+        String key=(newkey.equals("PubkeyAcceptedKeyTypes") ? "PubkeyAcceptedAlgorithms" : newkey);
+        String value=newconf.get(newkey);
+        if(key.equals("enable_server_sig_algs") && !value.equals("yes")){
+          serverSigAlgs=null;
+        }
+        config.put(key, value);
       }
     }
   }
 
   public void setConfig(String key, String value){
-    synchronized(lock){ 
+    synchronized(lock){
       if(config==null){
-        config=new java.util.Hashtable();
+        config=new Hashtable<>();
       }
-      config.put(key, value);
+      if(key.equals("PubkeyAcceptedKeyTypes")){
+        config.put("PubkeyAcceptedAlgorithms", value);
+      }
+      else{
+        if(key.equals("enable_server_sig_algs") && !value.equals("yes")){
+          serverSigAlgs=null;
+        }
+        config.put(key, value);
+      }
     }
   }
 
   public String getConfig(String key){
+    if(key.equals("PubkeyAcceptedKeyTypes")){
+      key="PubkeyAcceptedAlgorithms";
+    }
     Object foo=null;
     if(config!=null){
       foo=config.get(key);
       if(foo instanceof String) return (String)foo;
     }
-    foo=jsch.getConfig(key);
+    foo=JSch.getConfig(key);
     if(foo instanceof String) return (String)foo;
     return null;
   }
 
-  public void setSocketFactory(SocketFactory sfactory){ 
+  public void setSocketFactory(SocketFactory sfactory){
     socket_factory=sfactory;
   }
   public boolean isConnected(){ return isConnected; }
@@ -2348,9 +2724,7 @@ break;
       this.timeout=timeout;
     }
     catch(Exception e){
-      if(e instanceof Throwable)
-        throw new JSchException(e.toString(), (Throwable)e);
-      throw new JSchException(e.toString());
+      throw new JSchException(e.toString(), e);
     }
   }
   public String getServerVersion(){
@@ -2392,7 +2766,7 @@ break;
     buf.putByte((byte)0);
     write(packet);
   }
-  
+
   private HostKey hostkey=null;
   public HostKey getHostKey(){ return hostkey; }
   public String getHost(){return host;}
@@ -2457,15 +2831,15 @@ break;
     if(ciphers==null || ciphers.length()==0)
       return null;
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "CheckCiphers: "+ciphers);
     }
 
     String cipherc2s=getConfig("cipher.c2s");
     String ciphers2c=getConfig("cipher.s2c");
 
-    Vector result=new Vector();
+    Vector<String> result=new Vector<>();
     String[] _ciphers=Util.split(ciphers, ",");
     for(int i=0; i<_ciphers.length; i++){
       String cipher=_ciphers[i];
@@ -2480,9 +2854,9 @@ break;
     String[] foo=new String[result.size()];
     System.arraycopy(result.toArray(), 0, foo, 0, result.size());
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
+    if(getLogger().isEnabled(Logger.INFO)){
       for(int i=0; i<foo.length; i++){
-        JSch.getLogger().log(Logger.INFO, 
+        getLogger().log(Logger.INFO,
                              foo[i]+" is not available.");
       }
     }
@@ -2492,14 +2866,63 @@ break;
 
   static boolean checkCipher(String cipher){
     try{
-      Class c=Class.forName(cipher);
-      Cipher _c=(Cipher)(c.newInstance());
+      Class<? extends Cipher> c=Class.forName(cipher).asSubclass(Cipher.class);
+      Cipher _c=c.getDeclaredConstructor().newInstance();
       _c.init(Cipher.ENCRYPT_MODE,
               new byte[_c.getBlockSize()],
               new byte[_c.getIVSize()]);
       return true;
     }
-    catch(Exception e){
+    catch(Exception | NoClassDefFoundError e){
+      return false;
+    }
+  }
+
+  private String[] checkMacs(String macs){
+    if(macs==null || macs.length()==0)
+      return null;
+
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
+                           "CheckMacs: "+macs);
+    }
+
+    String macc2s=getConfig("mac.c2s");
+    String macs2c=getConfig("mac.s2c");
+
+    Vector<String> result=new Vector<>();
+    String[] _macs=Util.split(macs, ",");
+    for(int i=0; i<_macs.length; i++){
+      String mac=_macs[i];
+      if(macs2c.indexOf(mac) == -1 && macc2s.indexOf(mac) == -1)
+        continue;
+      if(!checkMac(getConfig(mac))){
+        result.addElement(mac);
+      }
+    }
+    if(result.size()==0)
+      return null;
+    String[] foo=new String[result.size()];
+    System.arraycopy(result.toArray(), 0, foo, 0, result.size());
+
+    if(getLogger().isEnabled(Logger.INFO)){
+      for(int i=0; i<foo.length; i++){
+        getLogger().log(Logger.INFO,
+                             foo[i]+" is not available.");
+      }
+    }
+
+    return foo;
+  }
+
+  static boolean checkMac(String mac){
+    try{
+      Class<? extends MAC> c=Class.forName(mac).asSubclass(MAC.class);
+      MAC _c=c.getDeclaredConstructor().newInstance();
+      _c.init(new byte[_c.getBlockSize()]);
+      return true;
+    }
+    catch(Exception | NoClassDefFoundError e){
       return false;
     }
   }
@@ -2508,12 +2931,12 @@ break;
     if(kexes==null || kexes.length()==0)
       return null;
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "CheckKexes: "+kexes);
     }
 
-    java.util.Vector result=new java.util.Vector();
+    Vector<String> result=new Vector<>();
     String[] _kexes=Util.split(kexes, ",");
     for(int i=0; i<_kexes.length; i++){
       if(!checkKex(this, getConfig(_kexes[i]))){
@@ -2525,9 +2948,9 @@ break;
     String[] foo=new String[result.size()];
     System.arraycopy(result.toArray(), 0, foo, 0, result.size());
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
+    if(getLogger().isEnabled(Logger.INFO)){
       for(int i=0; i<foo.length; i++){
-        JSch.getLogger().log(Logger.INFO, 
+        getLogger().log(Logger.INFO,
                              foo[i]+" is not available.");
       }
     }
@@ -2537,32 +2960,32 @@ break;
 
   static boolean checkKex(Session s, String kex){
     try{
-      Class c=Class.forName(kex);
-      KeyExchange _c=(KeyExchange)(c.newInstance());
-      _c.init(s ,null, null, null, null);
+      Class<? extends KeyExchange> c=Class.forName(kex).asSubclass(KeyExchange.class);
+      KeyExchange _c=c.getDeclaredConstructor().newInstance();
+      _c.doInit(s ,null, null, null, null);
       return true;
     }
-    catch(Exception e){ return false; }
+    catch(Exception | NoClassDefFoundError e){ return false; }
   }
 
   private String[] checkSignatures(String sigs){
     if(sigs==null || sigs.length()==0)
       return null;
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(getLogger().isEnabled(Logger.INFO)){
+      getLogger().log(Logger.INFO,
                            "CheckSignatures: "+sigs);
     }
 
-    java.util.Vector result=new java.util.Vector();
+    Vector<String> result=new Vector<>();
     String[] _sigs=Util.split(sigs, ",");
     for(int i=0; i<_sigs.length; i++){
-      try{      
-        Class c=Class.forName((String)jsch.getConfig(_sigs[i]));
-        final Signature sig=(Signature)(c.newInstance());
+      try{
+        Class<? extends Signature> c=Class.forName(JSch.getConfig(_sigs[i])).asSubclass(Signature.class);
+        final Signature sig=c.getDeclaredConstructor().newInstance();
         sig.init();
       }
-      catch(Exception e){
+      catch(Exception | NoClassDefFoundError e){
         result.addElement(_sigs[i]);
       }
    }
@@ -2570,9 +2993,9 @@ break;
       return null;
    String[] foo=new String[result.size()];
     System.arraycopy(result.toArray(), 0, foo, 0, result.size());
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
+    if(getLogger().isEnabled(Logger.INFO)){
       for(int i=0; i<foo.length; i++){
-        JSch.getLogger().log(Logger.INFO, 
+        getLogger().log(Logger.INFO,
                              foo[i]+" is not available.");
       }
     }
@@ -2583,7 +3006,7 @@ break;
    * Sets the identityRepository, which will be referred
    * in the public key authentication.  The default value is <code>null</code>.
    *
-   * @param identityRepository 
+   * @param identityRepository
    * @see #getIdentityRepository()
    */
   public void setIdentityRepository(IdentityRepository identityRepository){
@@ -2604,9 +3027,9 @@ break;
   }
 
   /**
-   * Sets the hostkeyRepository, which will be referred in checking host keys. 
+   * Sets the hostkeyRepository, which will be referred in checking host keys.
    *
-   * @param hostkeyRepository 
+   * @param hostkeyRepository
    * @see #getHostKeyRepository()
    */
   public void setHostKeyRepository(HostKeyRepository hostkeyRepository){
@@ -2627,7 +3050,7 @@ break;
   }
 
   /*
-  // setProxyCommand("ssh -l user2 host2 -o 'ProxyCommand ssh user1@host1 nc host2 22' nc %h %p") 
+  // setProxyCommand("ssh -l user2 host2 -o 'ProxyCommand ssh user1@host1 nc host2 22' nc %h %p")
   public void setProxyCommand(String command){
     setProxy(new ProxyCommand(command));
   }
@@ -2693,6 +3116,7 @@ break;
 
     checkConfig(config, "kex");
     checkConfig(config, "server_host_key");
+    checkConfig(config, "prefer_known_host_key_types");
 
     checkConfig(config, "cipher.c2s");
     checkConfig(config, "cipher.s2c");
@@ -2705,6 +3129,8 @@ break;
     checkConfig(config, "StrictHostKeyChecking");
     checkConfig(config, "HashKnownHosts");
     checkConfig(config, "PreferredAuthentications");
+    checkConfig(config, "PubkeyAcceptedAlgorithms");
+    checkConfig(config, "FingerprintHash");
     checkConfig(config, "MaxAuthTries");
     checkConfig(config, "ClearAllForwardings");
 
@@ -2732,8 +3158,8 @@ break;
         global = new String[0];
       }
       if(values.length - global.length > 0){
-        IdentityRepository.Wrapper ir =
-          new IdentityRepository.Wrapper(jsch.getIdentityRepository(), true);
+        IdentityRepositoryWrapper ir =
+          new IdentityRepositoryWrapper(jsch.getIdentityRepository(), true);
         for(int i = 0; i < values.length; i++){
           String ifile = values[i];
           for(int j = 0; j < global.length; j++){
@@ -2834,7 +3260,31 @@ break;
 
   private void checkConfig(ConfigRepository.Config config, String key){
     String value = config.getValue(key);
+    if(value == null && key.equals("PubkeyAcceptedAlgorithms"))
+      value = config.getValue("PubkeyAcceptedKeyTypes");
     if(value != null)
       this.setConfig(key, value);
+  }
+  
+  /**
+   * Returns the logger being used by this instance of Session. If no
+   * particular logger has been set, the instance logger of the
+   * jsch instance is returned this session belongs to. 
+   * @return The logger
+   */
+  public Logger getLogger() {
+    if (logger != null) {
+        return logger;
+    }
+    return jsch.getInstanceLogger();
+  }
+  
+  /**
+   * Sets the logger being used by this instance of Session
+   * @param logger The logger or <code>null</code> if the instance logger
+   * of this instance's jsch instance should be used
+   */
+  public void setLogger(Logger logger) {
+    this.logger = logger;
   }
 }

@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2006-2016 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2002-2018 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -27,11 +27,11 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.jcraft.jsch.jgss;
+package com.jcraft.jsch.jce;
 
-import com.jcraft.jsch.JSchException;
-
-
-public class GSSContextKrb5 {
-
+public class HMACSHA1ETM extends HMACSHA1 {
+  public HMACSHA1ETM(){
+    name = "hmac-sha1-etm@openssh.com";
+    etm = true;
+  }
 }

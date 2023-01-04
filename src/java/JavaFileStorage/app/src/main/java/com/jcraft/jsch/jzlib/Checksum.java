@@ -1,6 +1,6 @@
-/* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
+/* -*-mode:java; c-basic-offset:2; -*- */
 /*
-Copyright (c) 2006-2018 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2011 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -25,27 +25,19 @@ OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
+/*
+ * This program is based on zlib-1.1.3, so all credit should go authors
+ * Jean-loup Gailly(jloup@gzip.org) and Mark Adler(madler@alumni.caltech.edu)
+ * and contributors of zlib.
+ */
 
-package com.jcraft.jsch.jcraft;
+package com.jcraft.jsch.jzlib;
 
-import com.jcraft.jsch.MAC;
-import java.security.*;
-
-public class HMACMD5 extends HMAC implements MAC{
-  private static final String name="hmac-md5";
-
-  public HMACMD5(){
-    super();
-    MessageDigest md=null;
-    try{ md=MessageDigest.getInstance("MD5"); }
-    catch(Exception e){
-      System.err.println(e);
-    }
-    setH(md);
-  }
-
-  public String getName(){
-    return name;
-  }
+interface Checksum {
+  void update(byte[] buf, int index, int len);
+  void reset();
+  void reset(long init);
+  long getValue();
+  Checksum copy();
 }

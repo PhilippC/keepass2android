@@ -35,7 +35,7 @@ import java.util.Vector;
 
 public class ChannelForwardedTCPIP extends Channel{
 
-  private static Vector pool = new Vector();
+  private static Vector<Config> pool = new Vector<>();
 
   static private final int LOCAL_WINDOW_SIZE_MAX=0x20000;
 //static private final int LOCAL_WINDOW_SIZE_MAX=0x100000;
@@ -56,12 +56,13 @@ public class ChannelForwardedTCPIP extends Channel{
     connected=true;
   }
 
+  @Override
   public void run(){
     try{ 
       if(config instanceof ConfigDaemon){
         ConfigDaemon _config = (ConfigDaemon)config;
-        Class c=Class.forName(_config.target);
-        daemon=(ForwardedTCPIPDaemon)c.newInstance();
+        Class<? extends ForwardedTCPIPDaemon> c=Class.forName(_config.target).asSubclass(ForwardedTCPIPDaemon.class);
+        daemon=c.getDeclaredConstructor().newInstance();
 
         PipedOutputStream out=new PipedOutputStream();
         io.setInputStream(new PassiveInputStream(out
@@ -128,6 +129,7 @@ public class ChannelForwardedTCPIP extends Channel{
     disconnect();
   }
 
+  @Override
   void getData(Buffer buf){
     setRecipient(buf.getInt());
     setRemoteWindowSize(buf.getUInt());
@@ -157,8 +159,8 @@ public class ChannelForwardedTCPIP extends Channel{
       this.config = getPort(_session, null, port);
 
     if(this.config == null){
-      if(JSch.getLogger().isEnabled(Logger.ERROR)){
-        JSch.getLogger().log(Logger.ERROR, 
+      if(_session.getLogger().isEnabled(Logger.ERROR)){
+          _session.getLogger().log(Logger.ERROR, 
                              "ChannelForwardedTCPIP: "+Util.byte2str(addr)+":"+port+" is not registered.");
       }
     }
@@ -167,7 +169,7 @@ public class ChannelForwardedTCPIP extends Channel{
   private static Config getPort(Session session, String address_to_bind, int rport){
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        Config bar = (Config)(pool.elementAt(i));
+        Config bar = pool.elementAt(i);
         if(bar.session != session) continue;
         if(bar.rport != rport) {
           if(bar.rport != 0 || bar.allocated_rport != rport)
@@ -182,19 +184,21 @@ public class ChannelForwardedTCPIP extends Channel{
   }
 
   static String[] getPortForwarding(Session session){
-    Vector foo = new Vector();
+    Vector<String> foo = new Vector<>();
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        Config config = (Config)(pool.elementAt(i));
-        if(config instanceof ConfigDaemon)
-          foo.addElement(config.allocated_rport+":"+config.target+":");
-        else
-          foo.addElement(config.allocated_rport+":"+config.target+":"+((ConfigLHost)config).lport);
+        Config config = pool.elementAt(i);
+        if(config.session==session){
+          if(config instanceof ConfigDaemon)
+            foo.addElement(config.allocated_rport+":"+config.target+":");
+          else
+            foo.addElement(config.allocated_rport+":"+config.target+":"+((ConfigLHost)config).lport);
+        }
       }
     }
     String[] bar=new String[foo.size()];
     for(int i=0; i<foo.size(); i++){
-      bar[i]=(String)(foo.elementAt(i));
+      bar[i]=foo.elementAt(i);
     }
     return bar;
   }
@@ -263,13 +267,13 @@ public class ChannelForwardedTCPIP extends Channel{
       pool.removeElement(foo);
       if(address_to_bind==null){
         address_to_bind=foo.address_to_bind;
-      }	
+      }
       if(address_to_bind==null){
         address_to_bind="0.0.0.0";
       }
     }
 
-    Buffer buf=new Buffer(100); // ??
+    Buffer buf=new Buffer(200); // ??
     Packet packet=new Packet(buf);
 
     try{
@@ -287,7 +291,7 @@ public class ChannelForwardedTCPIP extends Channel{
       session.write(packet);
     }
     catch(Exception e){
-//    throw new JSchException(e.toString());
+//    throw new JSchException(e.toString(), e);
     }
   }
   static void delPort(Session session){
@@ -296,7 +300,7 @@ public class ChannelForwardedTCPIP extends Channel{
     synchronized(pool){
       rport=new int[pool.size()];
       for(int i=0; i<pool.size(); i++){
-        Config config = (Config)(pool.elementAt(i));
+        Config config = pool.elementAt(i);
         if(config.session == session) {
           rport[count++]=config.rport; // ((Integer)bar[1]).intValue();
         }

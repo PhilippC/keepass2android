@@ -1,6 +1,6 @@
 /* -*-mode:java; c-basic-offset:2; indent-tabs-mode:nil -*- */
 /*
-Copyright (c) 2006-2018 ymnk, JCraft,Inc. All rights reserved.
+Copyright (c) 2011 ymnk, JCraft,Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -27,24 +27,54 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package com.jcraft.jsch.jcraft;
+package com.jcraft.jsch;
 
-import com.jcraft.jsch.MAC;
+class AgentIdentity implements Identity {
 
-public class HMACSHA196 extends HMACSHA1{
-
-  private static final String name="hmac-sha1-96";
-  private static final int BSIZE=12;
-
-  public int getBlockSize(){return BSIZE;};
-
-  private final byte[] _buf16=new byte[20];
-  public void doFinal(byte[] buf, int offset){
-    super.doFinal(_buf16, 0);
-    System.arraycopy(_buf16, 0, buf, offset, BSIZE);
+  private AgentProxy agent;
+  private byte[] blob;
+  private String comment;
+  private String algname;
+  AgentIdentity(AgentProxy agent, byte[] blob, String comment) {
+    this.agent = agent;
+    this.blob = blob;
+    this.comment = comment;
+    algname = Util.byte2str((new Buffer(blob)).getString());
   }
 
-  public String getName(){
-    return name;
+  @Override
+  public boolean setPassphrase(byte[] passphrase) throws JSchException{
+    return true;
   }
+
+  @Override
+  public byte[] getPublicKeyBlob() { return blob; }
+
+  @Override
+  public byte[] getSignature(byte[] data){
+    return agent.sign(blob, data, null);
+  }
+
+  @Override
+  public byte[] getSignature(byte[] data, String alg){
+    return agent.sign(blob, data, alg);
+  }
+
+  @Override
+  @Deprecated
+  public boolean decrypt() {
+    throw new RuntimeException("not implemented");
+  }
+
+  @Override
+  public String getAlgName() { return algname; }
+
+  @Override
+  public String getName() { return comment; }
+
+  @Override
+  public boolean isEncrypted() { return false; }
+
+  @Override
+  public void clear() { }
 }

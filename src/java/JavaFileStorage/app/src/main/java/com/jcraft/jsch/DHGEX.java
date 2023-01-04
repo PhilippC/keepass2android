@@ -29,16 +29,16 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-public class DHGEX extends KeyExchange{
+abstract class DHGEX extends KeyExchange{
 
   private static final int SSH_MSG_KEX_DH_GEX_GROUP=               31;
   private static final int SSH_MSG_KEX_DH_GEX_INIT=                32;
   private static final int SSH_MSG_KEX_DH_GEX_REPLY=               33;
   private static final int SSH_MSG_KEX_DH_GEX_REQUEST=             34;
 
-  static int min=1024;
-  static int preferred=1024;
-  int max=1024;
+  int min;
+  int preferred;
+  int max;
 
   private int state;
 
@@ -56,19 +56,19 @@ public class DHGEX extends KeyExchange{
   private byte[] g;
   private byte[] e;
 
-  protected String hash="sha-1";
+  protected String hash;
 
+  @Override
   public void init(Session session,
-		   byte[] V_S, byte[] V_C, byte[] I_S, byte[] I_C) throws Exception{
-    this.session=session;
+                   byte[] V_S, byte[] V_C, byte[] I_S, byte[] I_C) throws Exception{
     this.V_S=V_S;      
     this.V_C=V_C;      
     this.I_S=I_S;      
     this.I_C=I_C;      
 
     try{
-      Class c=Class.forName(session.getConfig(hash));
-      sha=(HASH)(c.newInstance());
+      Class<? extends HASH> c=Class.forName(session.getConfig(hash)).asSubclass(HASH.class);
+      sha=c.getDeclaredConstructor().newInstance();
       sha.init();
     }
     catch(Exception e){
@@ -79,11 +79,14 @@ public class DHGEX extends KeyExchange{
     packet=new Packet(buf);
 
     try{
-      Class c=Class.forName(session.getConfig("dh"));
-      // Since JDK8, SunJCE has lifted the keysize restrictions
-      // from 1024 to 2048 for DH.
-      preferred = max = check2048(c, max); 
-      dh=(com.jcraft.jsch.DH)(c.newInstance());
+      Class<? extends DH> c=Class.forName(session.getConfig("dh")).asSubclass(DH.class);
+      min=Integer.parseInt(session.getConfig("dhgex_min"));
+      max=Integer.parseInt(session.getConfig("dhgex_max"));
+      preferred=Integer.parseInt(session.getConfig("dhgex_preferred"));
+      if(checkInvalidSize(min) || checkInvalidSize(max) || checkInvalidSize(preferred) || preferred < min || max < preferred){
+        throw new JSchException("Invalid DHGEX sizes: min=" + min + " max=" + max + " preferred=" + preferred);
+      }
+      dh=c.getDeclaredConstructor().newInstance();
       dh.init();
     }
     catch(Exception e){
@@ -97,16 +100,17 @@ public class DHGEX extends KeyExchange{
     buf.putInt(max);
     session.write(packet); 
 
-    if(JSch.getLogger().isEnabled(Logger.INFO)){
-      JSch.getLogger().log(Logger.INFO, 
+    if(session.getLogger().isEnabled(Logger.INFO)){
+      session.getLogger().log(Logger.INFO, 
                            "SSH_MSG_KEX_DH_GEX_REQUEST("+min+"<"+preferred+"<"+max+") sent");
-      JSch.getLogger().log(Logger.INFO, 
+      session.getLogger().log(Logger.INFO, 
                            "expecting SSH_MSG_KEX_DH_GEX_GROUP");
     }
 
     state=SSH_MSG_KEX_DH_GEX_GROUP;
   }
 
+  @Override
   public boolean next(Buffer _buf) throws Exception{
     int i,j;
     switch(state){
@@ -118,8 +122,8 @@ public class DHGEX extends KeyExchange{
       _buf.getByte();
       j=_buf.getByte();
       if(j!=SSH_MSG_KEX_DH_GEX_GROUP){
-	System.err.println("type: must be SSH_MSG_KEX_DH_GEX_GROUP "+j);
-	return false;
+        System.err.println("type: must be SSH_MSG_KEX_DH_GEX_GROUP "+j);
+        return false;
       }
 
       p=_buf.getMPInt();
@@ -139,10 +143,10 @@ public class DHGEX extends KeyExchange{
       buf.putMPInt(e);
       session.write(packet);
 
-      if(JSch.getLogger().isEnabled(Logger.INFO)){
-        JSch.getLogger().log(Logger.INFO, 
+      if(session.getLogger().isEnabled(Logger.INFO)){
+        session.getLogger().log(Logger.INFO, 
                              "SSH_MSG_KEX_DH_GEX_INIT sent");
-        JSch.getLogger().log(Logger.INFO, 
+        session.getLogger().log(Logger.INFO, 
                              "expecting SSH_MSG_KEX_DH_GEX_REPLY");
       }
 
@@ -160,8 +164,8 @@ public class DHGEX extends KeyExchange{
       j=_buf.getByte();
       j=_buf.getByte();
       if(j!=SSH_MSG_KEX_DH_GEX_REPLY){
-	System.err.println("type: must be SSH_MSG_KEX_DH_GEX_REPLY "+j);
-	return false;
+        System.err.println("type: must be SSH_MSG_KEX_DH_GEX_REPLY "+j);
+        return false;
       }
 
       K_S=_buf.getString();
@@ -212,7 +216,7 @@ public class DHGEX extends KeyExchange{
       i=0;
       j=0;
       j=((K_S[i++]<<24)&0xff000000)|((K_S[i++]<<16)&0x00ff0000)|
-	((K_S[i++]<<8)&0x0000ff00)|((K_S[i++])&0x000000ff);
+        ((K_S[i++]<<8)&0x0000ff00)|((K_S[i++])&0x000000ff);
       String alg=Util.byte2str(K_S, i, j);
       i+=j;
 
@@ -224,22 +228,10 @@ public class DHGEX extends KeyExchange{
     return false;
   }
 
+  @Override
   public int getState(){return state; }
 
-  protected int check2048(Class c, int _max) throws Exception {
-    DH dh=(com.jcraft.jsch.DH)(c.newInstance());
-    dh.init();
-    byte[] foo = new byte[257];
-    foo[1]=(byte)0xdd;
-    foo[256]=0x73;
-    dh.setP(foo);
-    byte[] bar = {(byte)0x02};
-    dh.setG(bar);
-    try {
-      dh.getE();
-      _max=2048;
-    }
-    catch(Exception e){ }
-    return _max;
+  static boolean checkInvalidSize(int size) {
+    return (size < 1024 || size > 8192 || size % 1024 != 0);
   }
 }

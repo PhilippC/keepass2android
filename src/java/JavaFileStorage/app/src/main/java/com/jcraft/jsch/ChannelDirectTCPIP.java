@@ -50,10 +50,12 @@ public class ChannelDirectTCPIP extends Channel{
     setLocalPacketSize(LOCAL_MAXIMUM_PACKET_SIZE);
   }
 
+  @Override
   void init (){
     io=new IO();
   }
 
+  @Override
   public void connect(int connectTimeout) throws JSchException{
     this.connectTimeout=connectTimeout;
     try{
@@ -63,7 +65,7 @@ public class ChannelDirectTCPIP extends Channel{
       }
 
       if(io.in!=null){
-        thread=new Thread(this);
+        thread=new Thread(this::run);
         thread.setName("DirectTCPIP thread "+_session.getHost());
         if(_session.daemon_thread){
           thread.setDaemon(_session.daemon_thread);
@@ -84,7 +86,8 @@ public class ChannelDirectTCPIP extends Channel{
     }
   }
 
-  public void run(){
+  @Override
+  void run(){
 
     try{
       sendChannelOpen();
@@ -133,9 +136,11 @@ public class ChannelDirectTCPIP extends Channel{
     disconnect();
   }
 
+  @Override
   public void setInputStream(InputStream in){
     io.setInputStream(in);
   }
+  @Override
   public void setOutputStream(OutputStream out){
     io.setOutputStream(out);
   }
@@ -145,6 +150,7 @@ public class ChannelDirectTCPIP extends Channel{
   public void setOrgIPAddress(String foo){this.originator_IP_address=foo;}
   public void setOrgPort(int foo){this.originator_port=foo;}
 
+  @Override
   protected Packet genChannelOpenPacket(){
     Buffer buf = new Buffer(50 + // 6 + 4*8 + 12
                             host.length() + originator_IP_address.length() +

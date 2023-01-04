@@ -29,6 +29,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.Vector;
 
@@ -37,26 +38,28 @@ class ChannelAgentForwarding extends Channel{
   static private final int LOCAL_WINDOW_SIZE_MAX=0x20000;
   static private final int LOCAL_MAXIMUM_PACKET_SIZE=0x4000;
 
-  private final byte SSH_AGENTC_REQUEST_RSA_IDENTITIES = 1;
-  private final byte SSH_AGENT_RSA_IDENTITIES_ANSWER = 2;
-  private final byte SSH_AGENTC_RSA_CHALLENGE = 3;
-  private final byte SSH_AGENT_RSA_RESPONSE = 4;
-  private final byte SSH_AGENT_FAILURE = 5;
-  private final byte SSH_AGENT_SUCCESS = 6;
-  private final byte SSH_AGENTC_ADD_RSA_IDENTITY	= 7;
-  private final byte SSH_AGENTC_REMOVE_RSA_IDENTITY = 8;
-  private final byte SSH_AGENTC_REMOVE_ALL_RSA_IDENTITIES = 9;
+  static private final byte SSH_AGENTC_REQUEST_RSA_IDENTITIES = 1;
+  static private final byte SSH_AGENT_RSA_IDENTITIES_ANSWER = 2;
+  static private final byte SSH_AGENTC_RSA_CHALLENGE = 3;
+  static private final byte SSH_AGENT_RSA_RESPONSE = 4;
+  static private final byte SSH_AGENT_FAILURE = 5;
+  static private final byte SSH_AGENT_SUCCESS = 6;
+  static private final byte SSH_AGENTC_ADD_RSA_IDENTITY = 7;
+  static private final byte SSH_AGENTC_REMOVE_RSA_IDENTITY = 8;
+  static private final byte SSH_AGENTC_REMOVE_ALL_RSA_IDENTITIES = 9;
 
-  private final byte SSH2_AGENTC_REQUEST_IDENTITIES=11;
-  private final byte SSH2_AGENT_IDENTITIES_ANSWER=12;
-  private final byte SSH2_AGENTC_SIGN_REQUEST=13;
-  private final byte SSH2_AGENT_SIGN_RESPONSE=14;
-  private final byte SSH2_AGENTC_ADD_IDENTITY=17;
-  private final byte SSH2_AGENTC_REMOVE_IDENTITY=18;
-  private final byte SSH2_AGENTC_REMOVE_ALL_IDENTITIES=19;
-  private final byte SSH2_AGENT_FAILURE=30;
+  static private final byte SSH2_AGENTC_REQUEST_IDENTITIES=11;
+  static private final byte SSH2_AGENT_IDENTITIES_ANSWER=12;
+  static private final byte SSH2_AGENTC_SIGN_REQUEST=13;
+  static private final byte SSH2_AGENT_SIGN_RESPONSE=14;
+  static private final byte SSH2_AGENTC_ADD_IDENTITY=17;
+  static private final byte SSH2_AGENTC_REMOVE_IDENTITY=18;
+  static private final byte SSH2_AGENTC_REMOVE_ALL_IDENTITIES=19;
+  static private final byte SSH2_AGENT_FAILURE=30;
 
-  boolean init=true;
+  //static private final int SSH_AGENT_OLD_SIGNATURE=0x1;
+  static private final int SSH_AGENT_RSA_SHA2_256=0x2;
+  static private final int SSH_AGENT_RSA_SHA2_512=0x4;
 
   private Buffer rbuf=null;
   private Buffer wbuf=null;
@@ -79,7 +82,8 @@ class ChannelAgentForwarding extends Channel{
     connected=true;
   }
 
-  public void run(){
+  @Override
+  void run(){
     try{
       sendOpenConfirmation();
     }
@@ -89,7 +93,8 @@ class ChannelAgentForwarding extends Channel{
     }
   }
 
-  void write(byte[] foo, int s, int l) throws java.io.IOException {
+  @Override
+  void write(byte[] foo, int s, int l) throws IOException {
 
     if(packet==null){
       wbuf=new Buffer(rmpsize);
@@ -118,7 +123,7 @@ class ChannelAgentForwarding extends Channel{
       _session=getSession();
     }
     catch(JSchException e){
-      throw new java.io.IOException(e.toString());
+      throw new IOException(e.toString(), e);
     }
 
     IdentityRepository irepo = _session.getIdentityRepository();
@@ -128,17 +133,17 @@ class ChannelAgentForwarding extends Channel{
 
     if(typ==SSH2_AGENTC_REQUEST_IDENTITIES){ 
       mbuf.putByte(SSH2_AGENT_IDENTITIES_ANSWER);
-      Vector identities = irepo.getIdentities();
+      Vector<Identity> identities = irepo.getIdentities();
       synchronized(identities){
         int count=0;
         for(int i=0; i<identities.size(); i++){
-          Identity identity=(Identity)(identities.elementAt(i));
+          Identity identity=identities.elementAt(i);
           if(identity.getPublicKeyBlob()!=null)
             count++;
         }
         mbuf.putInt(count);
         for(int i=0; i<identities.size(); i++){
-          Identity identity=(Identity)(identities.elementAt(i));
+          Identity identity=identities.elementAt(i);
           byte[] pubkeyblob=identity.getPublicKeyBlob();
           if(pubkeyblob==null)
             continue;
@@ -156,15 +161,15 @@ class ChannelAgentForwarding extends Channel{
       byte[] data=rbuf.getString();
       int flags=rbuf.getInt();
 
-//      if((flags & 1)!=0){ //SSH_AGENT_OLD_SIGNATURE // old OpenSSH 2.0, 2.1
+//      if((flags & SSH_AGENT_OLD_SIGNATURE)!=0){ // old OpenSSH 2.0, 2.1
 //        datafellows = SSH_BUG_SIGBLOB;
 //      }
 
-      Vector identities = irepo.getIdentities();
+      Vector<Identity> identities = irepo.getIdentities();
       Identity identity = null;
       synchronized(identities){
         for(int i=0; i<identities.size(); i++){
-          Identity _identity=(Identity)(identities.elementAt(i));
+          Identity _identity=identities.elementAt(i);
           if(_identity.getPublicKeyBlob()==null)
             continue;
           if(!Util.array_equals(blob, _identity.getPublicKeyBlob())){
@@ -205,7 +210,22 @@ class ChannelAgentForwarding extends Channel{
       byte[] signature=null;
 
       if(identity!=null){
-        signature=identity.getSignature(data);
+        Buffer kbuf=new Buffer(blob);
+        String keytype=Util.byte2str(kbuf.getString());
+        if(keytype.equals("ssh-rsa")){
+          if((flags & SSH_AGENT_RSA_SHA2_256)!=0){
+            signature=identity.getSignature(data, "rsa-sha2-256");
+          }
+          else if((flags & SSH_AGENT_RSA_SHA2_512)!=0){
+            signature=identity.getSignature(data, "rsa-sha2-512");
+          }
+          else{
+            signature=identity.getSignature(data, "ssh-rsa");
+          }
+        }
+        else{
+          signature=identity.getSignature(data);
+        }
       }
 
       if(signature==null){
@@ -259,6 +279,7 @@ class ChannelAgentForwarding extends Channel{
     }
   }
 
+  @Override
   void eof_remote(){
     super.eof_remote();
     eof();

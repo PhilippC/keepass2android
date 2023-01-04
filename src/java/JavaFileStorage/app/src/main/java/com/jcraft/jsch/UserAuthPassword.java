@@ -32,6 +32,7 @@ package com.jcraft.jsch;
 class UserAuthPassword extends UserAuth{
   private final int SSH_MSG_USERAUTH_PASSWD_CHANGEREQ=60;
 
+  @Override
   public boolean start(Session session) throws Exception{
     super.start(session);
 
@@ -50,20 +51,20 @@ class UserAuthPassword extends UserAuth{
       }
 
       if(password==null){
-	if(userinfo==null){
-	  //throw new JSchException("USERAUTH fail");
-	  return false;
-	}
-	if(!userinfo.promptPassword("Password for "+dest)){
-	  throw new JSchAuthCancelException("password");
-	  //break;
-	}
+        if(userinfo==null){
+          //throw new JSchException("USERAUTH fail");
+          return false;
+        }
+        if(!userinfo.promptPassword("Password for "+dest)){
+          throw new JSchAuthCancelException("password");
+          //break;
+        }
 
-	String _password=userinfo.getPassword();
-	if(_password==null){
-	  throw new JSchAuthCancelException("password");
-	  //break;
-	}
+        String _password=userinfo.getPassword();
+        if(_password==null){
+          throw new JSchAuthCancelException("password");
+          //break;
+        }
         password=Util.str2byte(_password);
       }
 
@@ -88,27 +89,27 @@ class UserAuthPassword extends UserAuth{
 
       loop:
       while(true){
-	buf=session.read(buf);
+        buf=session.read(buf);
         int command=buf.getCommand()&0xff;
 
-	if(command==SSH_MSG_USERAUTH_SUCCESS){
-	  return true;
-	}
-	if(command==SSH_MSG_USERAUTH_BANNER){
-	  buf.getInt(); buf.getByte(); buf.getByte();
-	  byte[] _message=buf.getString();
-	  byte[] lang=buf.getString();
+        if(command==SSH_MSG_USERAUTH_SUCCESS){
+          return true;
+        }
+        if(command==SSH_MSG_USERAUTH_BANNER){
+          buf.getInt(); buf.getByte(); buf.getByte();
+          byte[] _message=buf.getString();
+          byte[] lang=buf.getString();
           String message=Util.byte2str(_message);
-	  if(userinfo!=null){
-	    userinfo.showMessage(message);
-	  }
-	  continue loop;
-	}
-	if(command==SSH_MSG_USERAUTH_PASSWD_CHANGEREQ){
-	  buf.getInt(); buf.getByte(); buf.getByte(); 
-	  byte[] instruction=buf.getString();
-	  byte[] tag=buf.getString();
-	  if(userinfo==null || 
+          if(userinfo!=null){
+            userinfo.showMessage(message);
+          }
+          continue loop;
+        }
+        if(command==SSH_MSG_USERAUTH_PASSWD_CHANGEREQ){
+          buf.getInt(); buf.getByte(); buf.getByte(); 
+          byte[] instruction=buf.getString();
+          byte[] tag=buf.getString();
+          if(userinfo==null || 
              !(userinfo instanceof UIKeyboardInteractive)){
             if(userinfo!=null){
               userinfo.showMessage("Password must be changed.");
@@ -151,25 +152,25 @@ class UserAuthPassword extends UserAuth{
           Util.bzero(newpassword);
           response=null;
           session.write(packet);
-	  continue loop;
+          continue loop;
         }
-	if(command==SSH_MSG_USERAUTH_FAILURE){
-	  buf.getInt(); buf.getByte(); buf.getByte(); 
-	  byte[] foo=buf.getString();
-	  int partial_success=buf.getByte();
-	  //System.err.println(new String(foo)+
-	  //		 " partial_success:"+(partial_success!=0));
-	  if(partial_success!=0){
-	    throw new JSchPartialAuthException(Util.byte2str(foo));
-	  }
+        if(command==SSH_MSG_USERAUTH_FAILURE){
+          buf.getInt(); buf.getByte(); buf.getByte(); 
+          byte[] foo=buf.getString();
+          int partial_success=buf.getByte();
+          //System.err.println(new String(foo)+
+          //                 " partial_success:"+(partial_success!=0));
+          if(partial_success!=0){
+            throw new JSchPartialAuthException(Util.byte2str(foo));
+          }
           session.auth_failures++;
-	  break;
-	}
-	else{
+          break;
+        }
+        else{
           //System.err.println("USERAUTH fail ("+buf.getCommand()+")");
-//	  throw new JSchException("USERAUTH fail ("+buf.getCommand()+")");
-	  return false;
-	}
+//          throw new JSchException("USERAUTH fail ("+buf.getCommand()+")");
+          return false;
+        }
       }
 
       if(password!=null){

@@ -40,6 +40,7 @@ public class ECDHN implements com.jcraft.jsch.ECDH {
   ECPublicKey publicKey;
 
   private KeyAgreement myKeyAgree;
+  @Override
   public void init(int size) throws Exception{
     myKeyAgree = KeyAgreement.getInstance("ECDH");
     KeyPairGenECDSA kpair = new KeyPairGenECDSA();
@@ -51,10 +52,12 @@ public class ECDHN implements com.jcraft.jsch.ECDH {
     myKeyAgree.init(kpair.getPrivateKey());
   }
 
+  @Override
   public byte[] getQ() throws Exception{
     return Q_array;
   }
 
+  @Override
   public byte[] getSecret(byte[] r, byte[] s) throws Exception{
 
     KeyFactory kf = KeyFactory.getInstance("EC");
@@ -71,6 +74,7 @@ public class ECDHN implements com.jcraft.jsch.ECDH {
   // SEC 1: Elliptic Curve Cryptography, Version 2.0
   // http://www.secg.org/sec1-v2.pdf
   // 3.2.2.1 Elliptic Curve Public Key Validation Primitive
+  @Override
   public boolean validate(byte[] r, byte[] s) throws Exception{
     BigInteger x = new BigInteger(1, r);
     BigInteger y = new BigInteger(1, s);

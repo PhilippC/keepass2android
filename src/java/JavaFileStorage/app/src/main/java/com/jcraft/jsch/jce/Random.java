@@ -52,7 +52,7 @@ public class Random implements com.jcraft.jsch.Random{
       random=SecureRandom.getInstance("SHA1PRNG"); 
       return;
     }
-    catch(java.security.NoSuchAlgorithmException e){ 
+    catch(NoSuchAlgorithmException e){ 
       // System.err.println(e); 
     }
 
@@ -61,11 +61,12 @@ public class Random implements com.jcraft.jsch.Random{
       random=SecureRandom.getInstance("IBMSecureRandom"); 
       return;
     }
-    catch(java.security.NoSuchAlgorithmException ee){ 
+    catch(NoSuchAlgorithmException ee){ 
       //System.err.println(ee); 
     }
     */
   }
+  @Override
   public void fill(byte[] foo, int start, int len){
     /*
     // This case will not become true in our usage.

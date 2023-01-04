@@ -29,26 +29,32 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-public class Packet{
+class Packet{
 
   private static Random random=null;
   static void setRandom(Random foo){ random=foo;}
 
   Buffer buffer;
   byte[] ba4=new byte[4]; 
-  public Packet(Buffer buffer){
+  Packet(Buffer buffer){
     this.buffer=buffer;
   }
-  public void reset(){
+  void reset(){
     buffer.index=5;
   }
-  void padding(int bsize){
+  void padding(int bsize, boolean includePktLen){
     int len=buffer.index;
+    if(!includePktLen){
+      len-=4;
+    }
     int pad=(-len)&(bsize-1);
     if(pad<bsize){
       pad+=bsize;
     }
-    len=len+pad-4;
+    len+=pad;
+    if(includePktLen){
+      len-=4;
+    }
     ba4[0]=(byte)(len>>>24);
     ba4[1]=(byte)(len>>>16);
     ba4[2]=(byte)(len>>>8);
@@ -91,8 +97,8 @@ System.err.println("");
 //  System.err.println("buffer.buffer.length="+buffer.buffer.length+" s="+(s));
 
     System.arraycopy(buffer.buffer, 
-		     len+5+9, 
-		     buffer.buffer, s, buffer.index-5-9-len);
+                     len+5+9, 
+                     buffer.buffer, s, buffer.index-5-9-len);
 
     buffer.index=10;
     buffer.putInt(len);
@@ -101,8 +107,8 @@ System.err.println("");
   }
   void unshift(byte command, int recipient, int s, int len){
     System.arraycopy(buffer.buffer, 
-		     s, 
-		     buffer.buffer, 5+9, len);
+                     s, 
+                     buffer.buffer, 5+9, len);
     buffer.buffer[5]=command;
     buffer.index=6;
     buffer.putInt(recipient);

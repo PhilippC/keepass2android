@@ -53,8 +53,8 @@ public class ProxySOCKS4 implements Proxy{
     String host=proxy_host;
     if(proxy_host.indexOf(':')!=-1){
       try{
-	host=proxy_host.substring(0, proxy_host.indexOf(':'));
-	port=Integer.parseInt(proxy_host.substring(proxy_host.indexOf(':')+1));
+        host=proxy_host.substring(0, proxy_host.indexOf(':'));
+        port=Integer.parseInt(proxy_host.substring(proxy_host.indexOf(':')+1));
       }
       catch(Exception e){
       }
@@ -70,6 +70,7 @@ public class ProxySOCKS4 implements Proxy{
     this.user=user;
     this.passwd=passwd;
   }
+  @Override
   public void connect(SocketFactory socket_factory, String host, int port, int timeout) throws JSchException{
     try{
       if(socket_factory==null){
@@ -175,8 +176,8 @@ public class ProxySOCKS4 implements Proxy{
       }
       if(buf[1]!=90){
         try{ socket.close(); }
-	catch(Exception eee){
-	}
+        catch(Exception eee){
+        }
         String message="ProxySOCKS4: server returns CD "+buf[1];
         throw new JSchException(message);
       }
@@ -188,12 +189,16 @@ public class ProxySOCKS4 implements Proxy{
       try{ if(socket!=null)socket.close(); }
       catch(Exception eee){
       }
-      throw new JSchException("ProxySOCKS4: "+e.toString());
+      throw new JSchException("ProxySOCKS4: "+e.toString(), e);
     }
   }
+  @Override
   public InputStream getInputStream(){ return in; }
+  @Override
   public OutputStream getOutputStream(){ return out; }
+  @Override
   public Socket getSocket(){ return socket; }
+  @Override
   public void close(){
     try{
       if(in!=null)in.close();

@@ -37,8 +37,11 @@ public class ARCFOUR implements Cipher{
   private static final int ivsize=8;
   private static final int bsize=16;
   private javax.crypto.Cipher cipher;    
+  @Override
   public int getIVSize(){return ivsize;} 
+  @Override
   public int getBlockSize(){return bsize;}
+  @Override
   public void init(int mode, byte[] key, byte[] iv) throws Exception{
     String pad="NoPadding";      
     byte[] tmp;
@@ -51,20 +54,20 @@ public class ARCFOUR implements Cipher{
     try{
       cipher=javax.crypto.Cipher.getInstance("RC4");
       SecretKeySpec _key = new SecretKeySpec(key, "RC4");
-      synchronized(javax.crypto.Cipher.class){
-        cipher.init((mode==ENCRYPT_MODE?
-                     javax.crypto.Cipher.ENCRYPT_MODE:
-                     javax.crypto.Cipher.DECRYPT_MODE),
-		    _key);
-      }
+      cipher.init((mode==ENCRYPT_MODE?
+                   javax.crypto.Cipher.ENCRYPT_MODE:
+                   javax.crypto.Cipher.DECRYPT_MODE),
+                  _key);
     }
     catch(Exception e){
       cipher=null;
       throw e;
     }
   }
+  @Override
   public void update(byte[] foo, int s1, int len, byte[] bar, int s2) throws Exception{
     cipher.update(foo, s1, len, bar, s2);
   }
+  @Override
   public boolean isCBC(){return false; }
 }

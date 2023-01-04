@@ -271,15 +271,15 @@ public class Buffer{
     int foo;
     for(int i=0; i<tmp_buffer_index; i++){
         foo=tmp_buffer[i]&0xff;
-	System.err.print(chars[(foo>>>4)&0xf]);
-	System.err.print(chars[foo&0xf]);
+        System.err.print(chars[(foo>>>4)&0xf]);
+        System.err.print(chars[foo&0xf]);
         if(i%16==15){
           System.err.println("");
-	  continue;
-	}
+          continue;
+        }
         if(i>0 && i%2==1){
           System.err.print(" ");
-	}
+        }
     }
     System.err.println("");
   }

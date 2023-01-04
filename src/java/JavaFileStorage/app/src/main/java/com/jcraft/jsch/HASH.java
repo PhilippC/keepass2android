@@ -34,4 +34,5 @@ public interface HASH{
   int getBlockSize();
   void update(byte[] foo, int start, int len) throws Exception;
   byte[] digest() throws Exception;
+  default String name() {return "";}
 }
