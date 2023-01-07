@@ -25,16 +25,16 @@
     <string name="afc_msg_app_doesnot_have_permission_to_create_files">این برنامه اجازهٔ ساختن فایل‌ها/پوشه‌ها را ندارد</string>
     <string name="afc_msg_app_doesnot_have_permission_to_delete_files">این برنامه اجازهٔ حذف‌کردن فایل‌ها/پوشه‌ها را ندارد</string>
     <string name="afc_msg_cancelled">لغو شد</string>
-    <string name="afc_msg_cannot_connect_to_file_provider_service">اتصال به سرویس‌دهندهٔ فایل ناموفق بود</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">اتصال به سرویس‌دهندهٔ فایل برقرار نشد</string>
     <string name="afc_msg_cannot_create_new_folder_here">در اینجا نمی‌توان پوشهٔ جدید ساخت</string>
     <string name="afc_msg_cannot_save_a_file_here">در اینجا نمی‌توان فایلی را ذخیره کرد</string>
     <string name="afc_msg_done">ﺍﻧﺠﺎﻡ شد</string>
     <string name="afc_msg_empty">خالی</string>
-    <string name="afc_msg_failed_please_try_again">ناموفق. لطفاً دوباره سعی کنید.</string>
-    <string name="afc_msg_loading">در حال بارگیری…</string>
+    <string name="afc_msg_failed_please_try_again">نشد. لطفاً دوباره امتحان کنید.</string>
+    <string name="afc_msg_loading">در حال بارکردن…</string>
     <string name="afc_phone">تلفن</string>
     <string name="afc_pmsg_cannot_access_dir">پوشهٔ «%1$s» قابل‌دسترسی نیست</string>
-    <string name="afc_pmsg_cannot_create_folder">ایجاد پوشهٔ «%1$s» ناموفق بود</string>
+    <string name="afc_pmsg_cannot_create_folder">پوشهٔ «%1$s» ایجاد نشد</string>
     <string name="afc_pmsg_cannot_delete_file">نمی‌توان %1$s را حذف کرد «%2$s»</string>
     <string name="afc_pmsg_confirm_delete_file">از حذف این مورد مطمئن هستید؟
 %1$s  «%2$s»</string>
