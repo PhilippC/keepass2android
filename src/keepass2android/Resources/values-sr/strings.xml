@@ -51,7 +51,7 @@
   <string name="keyboardswitch_prefs">Промена тастатуре</string>
   <string name="OnlyAvailableForLocalFiles">Доступно само за локалне датотеке.</string>
   <string name="FileIsInInternalDirectory">Датотека се чува у унтрашњем директоријуму.</string>
-  <string name="DatabaseFileMoved">Датотека базе података је копирана у унутрашњи директоријум. Притисните Ok да бисте је отворили на новој локацији. Напомена: Не заборавите да редовно извозите базу података на сигурно складиште!</string>
+  <string name="DatabaseFileMoved">Датотека базе података је копирана у унутрашњу фасциклу. Притисните Ok да бисте је отворили на новој локацији. Напомена: Не заборавите да редовно извозите базу података на сигурно складиште!</string>
   <string name="KeyfileMoved">Кључ је копиран у унутрашњи директоријум. Уверите се да имате сигурно резервну копију пре брисања са тренутне локације!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Не можете користити унутрашњи директоријум кад локација кључа није запамћена. Промените жељене поставке безбедности.</string>
   <string name="unlock_database_button">Откључај</string>
@@ -237,7 +237,6 @@
   <string name="search_hint">Пронађи</string>
   <string name="search_results">Резултати претраге</string>
   <string name="search_in">Тражи у</string>
-  <string name="select_other_entry">Изабери други унос</string>
   <string name="select_group_then_add">Отворите жељену групу, онда притисните \"%1$s\"!</string>
   <string name="insert_element_here">Убаците овде</string>
   <string name="twofish">Twofish</string>
@@ -273,7 +272,6 @@
   <string name="enter_filename_details_create_import">Датотека за увоз ће бити изабрана у следећем кораку.</string>
   <string name="enable_quickunlock">Омогући Брзо откључавање</string>
   <string name="QuickUnlock_label">Унесите последња %1$d карактера ваше лозинке:</string>
-  <string name="QuickUnlock_label_secure">Унесите код за брзо откључавање:</string>
   <string name="QuickUnlock_button">Брзо откључавање!</string>
   <string name="QuickUnlock_lockButton">Затвори базу података</string>
   <string name="QuickUnlockDefaultEnabled_title">Омогући Брзо откључавање подразумевано</string>
@@ -286,76 +284,24 @@
   <string name="QuickUnlockIconHidden16_summary">Брзо откључавање захтева обавештење да би исправно радило. Изаберите ову опцију да прикажете обавештење без иконе.</string>
   <string name="QuickUnlockLength_title">Дужина кључа Брзог откључавања</string>
   <string name="QuickUnlockLength_summary">Максимални број знакова који се користе за лозинку Брзог откључавања.</string>
-  <string name="QuickUnlockHideLength_title">Сакри дужину брзог откључавања</string>
-  <string name="QuickUnlockHideLength_summary">Ако је омогућено, дужина кода за брзо откључавање се не приказуције на екрану за брзо откључавање</string>
   <string name="QuickUnlock_fail">Брзо откључавање није успело: неисправна лозинка!</string>
   <string name="SaveAttachmentDialog_title">Сачувај прилог</string>
   <string name="SaveAttachmentDialog_text">Молимо изаберите где желите да сачувате прилог.</string>
   <string name="SaveAttachmentDialog_open">Сачувај у кешу и отвори</string>
-  <string name="ShowAttachedImage">Приказати са уграђеним приказивачом слика</string>
   <string name="SaveAttachment_doneMessage">Сачувај датотеку у %1$s.</string>
   <string name="SaveAttachment_Failed">Није могуће сачувати датотеку у %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Запамти текст претраге?</string>
   <string name="AskOverwriteBinary_no">Преименуј</string>
-  <string name="AttachFailed">Додавање прилога није успело</string>
-  <string name="RecycleBin">Канта</string>
-  <string name="AskDeletePermanentlyEntry">Да ли желите заувек да избришете овај унос? Притинисте Не да бисте рециклирали.</string>
-  <string name="AskDeletePermanentlyGroup">Да ли желите заувек да избришете ову групу? Притисните Не да бисте рециклирали.</string>
-  <string name="AskDeletePermanentlyItems">Да ли желите заувек да избришете изабране елементе? Притисните Не да бисте рециклирали.</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">Да ли желите заувек да избришете овај унос?</string>
-  <string name="AskDeletePermanentlyGroupNoRecycle">Да ли желите заувек да избришете ову групу? </string>
-  <string name="AskDeletePermanentlyItemsNoRecycle">Да ли желите заувек да избришете изабране елементе?</string> 
-  <string name="AskDeletePermanently_title">Избриши заувек?</string>
-  <string name="AskReloadFile_title">Поново учитај датотеку?</string>
-  <string name="AskReloadFile">Датотеку која је тренутно отворена променио је други програм. Да ли желите да је поново учитате?</string>
-  <string name="AskDiscardChanges">Да ли желите да одбаците извршене промене? (Дугме Сачувај налази се на врху обрасца.) </string>
-  <string name="AskDiscardChanges_title">Одбаци промене?</string>
-  <string name="suggest_improvements">Предложи или гласај за побољшања</string>
-  <string name="rate_app">Оцени апликацију</string>
-  <string name="translate_app">Преведи KP2A</string>
-  <string name="AddingEntry">Додавање уноса…</string>
-  <string name="AddingGroup">Додавање групе…</string>
-  <string name="DeletingEntry">Брисање уноса…</string>
-  <string name="DeletingGroup">Брисање групе…</string>
-  <string name="DeletingItems">Брисање елемента…</string>
-  <string name="SettingPassword">Постављање лозинке…</string>
-  <string name="UndoingChanges">Поништавање промена…</string>
-  <string name="TransformingKey">Трансформација главног кључа…</string>
-  <string name="DecodingDatabase">Декодирање базе података…</string>
-  <string name="CheckingTargetFileForChanges">Провера крајње датотке на промене…</string>
-  <string name="TitleSyncQuestion">Споји промене?</string>
-  <string name="MessageSyncQuestion">База података је измењена споља. Да ли желите да учитате и спојите промене пре него што их сачувате? Изаберите Не ако желите да препишете спољне промене.</string>
-  <string name="SynchronizingDatabase">Спајање промена…</string>
-  <string name="YesSynchronize">Да, споји</string>
-  <string name="NoOverwrite">No, препиши</string>
-  <string name="UseOfflineMode">Ради само са унутрашњим кешом</string>
-  <string name="UseOnlineMode">Синхронизуј копију кеша са извором</string>
-  <string name="UseOfflineMode_Info">База података је учитана из унутрашње кеш меморије. Промене се чувају само у унутрашњем кешу и биће синхронизоване само ако се одабере опција Синхронизуј копију кеша са извором.</string>
-  <string name="InOfflineMode">Ради само на унутрашњој кеш меморији</string>
-  <string name="SynchronizingCachedDatabase">Синхронизација кеширане базе података…</string>
-  <string name="DownloadingRemoteFile">Учитавање изворне датотеке…</string>
-  <string name="UploadingFile">Снимање датотеке…</string>
-  <string name="RestoringRemoteFile">Повратак изворне датотеке…</string>
-  <string name="FilesInSync">Датотеке су синхронизоване.</string>
-  <string name="SynchronizedDatabaseSuccessfully">Базе података су успешно синхронизоване!</string>
-  <string name="CheckingDatabaseForChanges">Провера базе података за промене…</string>
-  <string name="CouldNotSaveToRemote">Није могуће сачувати у изворној датотеци: %1$s. Поново сачувајте или користите мени за синхронизацију када датотека поново буде доступна.</string>
-  <string name="CouldNotLoadFromRemote">Није могуће приступити изворној датотеци: %1$s. Датотека је учитана из унутрашње кеш меморије.  И даље можете вршити промене у бази података и касније их синхронизовати.</string>
-  <string name="UpdatedRemoteFileOnLoad">Изворна датотека је ажурирана.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Отворена датотека из унутрашњег кеша, због сукоба са променама у изворној датотеци. За спајање користите мени за синхронизацију.</string>
-  <string name="LoadedFromRemoteInSync">Изворна датотека и кеш меморија су синхронизовани.</string>
-  <string name="UpdatedCachedFileOnLoad">Ажурирана кеш копија %1$s.</string>
-  <string name="RemoteDatabaseUnchanged">Није откривена ниједна промена.</string>
   <string name="TemplateField_IdCard_Name">Име</string>
   <string name="DbQuicklockedChannel_name">Брзо откључавање</string>
   <string-array name="clipboard_timeout_options">
-    <item>30 секунди</item>
-    <item>1 минут</item>
-    <item>5 минута</item>
-    <item>10 минута</item>
-    <item>15 минута</item>
-    <item>30 минута</item>
-    <item>1 сат</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>5 minutes</item>
+    <item>10 minutes</item>
+    <item>15 minutes</item>
+    <item>30 minutes</item>
+    <item>1 hour</item>
     <item>Никад</item>
   </string-array>
   <string-array name="sftp_auth_modes">
