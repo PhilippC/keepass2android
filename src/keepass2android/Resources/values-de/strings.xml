@@ -684,6 +684,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Bugfix um Abstürze und unerwartetes Ausloggen zu vermeiden</item>
+    <item>Wechsel auf eine neue SFTP-Implementierung, jetzt mit Unterstützung von modernen Public-Key-Algorithmen wie rsa-sha2-256</item>
+    <item>Passwörter werden beim Kopieren in die Zwischenablage als vertraulich markiert (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
     <item>Unterstützung für MEGA Cloudspeicher hinzugefügt </item>
