@@ -685,6 +685,11 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>修复崩溃和意外注销的 bug</item>
+    <item>切换到新的 SFTP 实现，支持现代公钥算法，例如 rsa-sha2-256</item>
+    <item>复制到剪贴板时将密码标记为敏感 (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>新增查看、移除和恢复条目备份的功能</item>
     <item>支持MEGA 云存储</item>
