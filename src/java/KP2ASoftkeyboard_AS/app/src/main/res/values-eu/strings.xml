@@ -19,19 +19,32 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Keepass2Android teklatua</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Android teklatuaren ezarpenak</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Sartze aukerak</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Dardara egin tekla zapaltzean</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Soinua egin tekla zapaltzean</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Handitu tekla zapaltzean</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Zuzendu idazketa akatsak</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Sartze akatsen zuzenketa aktibatu</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Sartze akatsen zuzenketa aktibatu</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Hitz gomendioak</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Automatikoki zuzendu aurreko hitza</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">Hitz gomendioak</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category">Hitz gomendioen ezarpenak</string>
     <!-- Description for text prediction -->
     <!-- Dialog title for auto complete choices -->
     <!-- Option to enable text prediction in landscape -->
@@ -43,6 +56,7 @@
     <!-- Option to enable quick fixes -->
     <!-- Description for quick fixes -->
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Erakutsi gomendioak</string>
     <!-- Description for show suggestions -->
     <!-- Option to enable auto completion -->
     <!-- Description for auto completion -->
