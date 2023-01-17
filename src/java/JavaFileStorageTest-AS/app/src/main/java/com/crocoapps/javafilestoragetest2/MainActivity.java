@@ -697,12 +697,11 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		if (protocolId.equals("sftp"))
 		{
 			final View view = getLayoutInflater().inflate(R.layout.sftp_credentials, null);
+			final SftpStorage sftpStorage = (SftpStorage)storageToTest;
 
 			view.findViewById(R.id.send_public_key).setOnClickListener(v -> {
 				Intent sendIntent = new Intent();
 
-
-                SftpStorage sftpStorage = (SftpStorage)storageToTest;
                 try {
                     String pub_filename = sftpStorage.createKeyPair();
 
@@ -715,51 +714,121 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
                 }
                 catch (Exception ex)
                 {
-                    Toast.makeText(this,"Failed to create key pair: " + ex.getMessage(), Toast.LENGTH_LONG);
-                    return;
+                    Toast.makeText(this,"Failed to create key pair: " + ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
-
-
 			});
+
+			view.findViewById(R.id.list_private_keys).setOnClickListener(v -> {
+				String[] keys = sftpStorage.getCustomKeyNames();
+				Toast.makeText(this, "keys: " + String.join(",", keys), Toast.LENGTH_LONG).show();
+			});
+
+			view.findViewById(R.id.add_private_key).setOnClickListener(v -> {
+				EditText etKeyName = view.findViewById(R.id.private_key_name);
+				String keyName = etKeyName.getText().toString();
+				EditText etKeyContent = view.findViewById(R.id.private_key_content);
+				String keyContent = etKeyContent.getText().toString();
+
+				try {
+					sftpStorage.savePrivateKeyContent(keyName, keyContent);
+					Toast.makeText(this, "Add successful", Toast.LENGTH_LONG).show();
+				}
+				catch (Exception e) {
+					Toast.makeText(this, "Add failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+				}
+			});
+
+			view.findViewById(R.id.delete_private_key).setOnClickListener(v -> {
+				EditText etKeyName = view.findViewById(R.id.private_key_name);
+				String keyName = etKeyName.getText().toString();
+
+				String exMessage = null;
+				boolean success = false;
+				try {
+					success = sftpStorage.deleteCustomKey(keyName);
+				}
+				catch (Exception e) {
+					exMessage = e.getMessage();
+				}
+				StringBuilder msg = new StringBuilder("Delete ");
+				msg.append(success ? "succeeded" : "FAILED");
+				if (exMessage != null) {
+					msg.append(" (").append(exMessage).append(")");
+				}
+				Toast.makeText(this, msg.toString(), Toast.LENGTH_LONG).show();
+			});
+
+			view.findViewById(R.id.validate_private_key).setOnClickListener(v -> {
+				EditText etKeyName = view.findViewById(R.id.private_key_name);
+				String inKeyName = etKeyName.getText().toString();
+
+				if (!inKeyName.isEmpty()) {
+					String keyResponse;
+					try {
+						keyResponse = sftpStorage.sanitizeCustomKeyName(inKeyName);
+					} catch (Exception e) {
+						keyResponse = "EX:" + e.getMessage();
+					}
+					String msg = "key: [" + inKeyName + "] -> [" + keyResponse + "]";
+					Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+				}
+
+				EditText etKeyContent = view.findViewById(R.id.private_key_content);
+				String inKeyContent = etKeyContent.getText().toString();
+				String msg;
+				if (!inKeyContent.isEmpty()) {
+					try {
+						// We could print the key, but I don't it's that helpful
+						sftpStorage.getValidatedCustomKeyContent(inKeyContent);
+						msg = "Key content is valid";
+					} catch (Exception e) {
+						msg = "Invalid key content: " + e.getMessage();
+					}
+					Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+				}
+			});
+
 			new AlertDialog.Builder(this)
 					.setView(view)
 					.setTitle("Enter SFTP credentials")
-					.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+					.setPositiveButton("OK", (dialog, which) -> {
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
+						Toast.makeText(MainActivity.this, "Hey", Toast.LENGTH_LONG).show();
 
-							Toast.makeText(MainActivity.this, "Hey", Toast.LENGTH_LONG).show();
-
-							SftpStorage sftpStorage = (SftpStorage)storageToTest;
-							try {
-								EditText etHost = ((EditText)view.findViewById(R.id.sftp_host));
-								String host = etHost.getText().toString();
-								EditText etUser = ((EditText)view.findViewById(R.id.sftp_user));
-								String user = etUser.getText().toString();
-								EditText etPwd = ((EditText)view.findViewById(R.id.sftp_password));
-								String pwd = etPwd.getText().toString();
-								EditText etPort = ((EditText)view.findViewById(R.id.sftp_port));
-								int port = Integer.parseInt(etPort.getText().toString());
-								EditText etInitDir = ((EditText)view.findViewById(R.id.sftp_initial_dir));
-								String initialDir = etInitDir.getText().toString();
-								EditText etConnectTimeout = ((EditText)view.findViewById(R.id.sftp_connect_timeout));
-								int connectTimeout = SftpStorage.UNSET_SFTP_CONNECT_TIMEOUT;
-								String ctStr = etConnectTimeout.getText().toString();
-								if (!ctStr.isEmpty()) {
-									try {
-										int ct = Integer.parseInt(ctStr);
-										if (connectTimeout != ct) {
-											connectTimeout = ct;
-										}
-									} catch (NumberFormatException parseEx) {
+						SftpStorage sftpStorage1 = (SftpStorage)storageToTest;
+						try {
+							EditText etHost = view.findViewById(R.id.sftp_host);
+							String host = etHost.getText().toString();
+							EditText etUser = view.findViewById(R.id.sftp_user);
+							String user = etUser.getText().toString();
+							EditText etPwd = view.findViewById(R.id.sftp_password);
+							String pwd = etPwd.getText().toString();
+							EditText etPort = view.findViewById(R.id.sftp_port);
+							int port = Integer.parseInt(etPort.getText().toString());
+							EditText etInitDir = view.findViewById(R.id.sftp_initial_dir);
+							String initialDir = etInitDir.getText().toString();
+							EditText etConnectTimeout = view.findViewById(R.id.sftp_connect_timeout);
+							int connectTimeout = SftpStorage.UNSET_SFTP_CONNECT_TIMEOUT;
+							String ctStr = etConnectTimeout.getText().toString();
+							if (!ctStr.isEmpty()) {
+								try {
+									int ct = Integer.parseInt(ctStr);
+									if (connectTimeout != ct) {
+										connectTimeout = ct;
 									}
+								} catch (NumberFormatException parseEx) {
 								}
-								onReceivePathForFileSelect(requestCode, sftpStorage.buildFullPath( host, port, initialDir, user, pwd, connectTimeout));
-							} catch (UnsupportedEncodingException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
 							}
+							EditText etKeyName = view.findViewById(R.id.private_key_name);
+							String keyName = etKeyName.getText().toString();
+							EditText etKeyPassphrase = view.findViewById(R.id.private_key_passphrase);
+							String keyPassphrase = etKeyPassphrase.getText().toString();
+
+							onReceivePathForFileSelect(requestCode, sftpStorage1.buildFullPath(
+									host, port, initialDir, user, pwd, connectTimeout,
+									keyName, keyPassphrase));
+						} catch (UnsupportedEncodingException e) {
+							e.printStackTrace();
 						}
 					})
 					.create()

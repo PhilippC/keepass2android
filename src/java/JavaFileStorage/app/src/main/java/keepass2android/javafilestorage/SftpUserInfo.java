@@ -113,17 +113,19 @@ public class SftpUserInfo implements UserInfo {
 	Context _appContext;
 
 	String _password;
+	String _passphrase;
 	
-	public SftpUserInfo(String password, Context appContext)
+	public SftpUserInfo(String password, String passphrase, Context appContext)
 	{
 		_password = password;
+		_passphrase = passphrase;
 		_appContext = appContext;
 	}
 
 	@Override
 	public String getPassphrase() {
-		
-		return null;
+
+		return _passphrase;
 	}
 
 	@Override
@@ -134,12 +136,12 @@ public class SftpUserInfo implements UserInfo {
 
 	@Override
 	public boolean promptPassword(String message) {
-		return true;
+		return _password != null;
 	}
 
 	@Override
 	public boolean promptPassphrase(String message) {
-		return false; //passphrase not supported
+		return _passphrase != null;
 	}
 
 	@Override
