@@ -3,7 +3,7 @@
 <resources>
   <string name="about_feedback">フィードバック</string>
   <string name="AboutText">Keepass2Android は Android で KeePass 2.x データベースを読み書きするパスワードマネージャーです｡</string>
-  <string name="CreditsText">ユーザー インターフェイスは Brian Pellin 氏によって開発された KeepassDroid をベースにしています｡ データベース操作のコードは Dominik Reichl 氏の KeePass をベースにしています。アンドロイド ロボットは、Google が作成・共有した成果物をクリエイティブコモンズ 3.0 帰属ライセンスに記載の条件に従って複製および変更して使用しています｡</string>
+  <string name="CreditsText">ユーザー インターフェイスは Brian Pellin 氏によって開発された KeepassDroid をベースにしています｡ データベース操作のコードは Dominik Reichl 氏の KeePass をベースにしています｡ アンドロイド ロボットは Google が作成・共有した成果物をクリエイティブコモンズ 3.0 帰属ライセンスに記載の条件に従って複製および変更して使用しています｡</string>
   <string name="CreditsTextSFTP">SFTP 対応は BSD ライセンスの下で JCraft, Inc. によって作成された JSch ライブラリを使用して実装しています｡</string>
   <string name="CreditsIcons">ハンマーアイコンは John Caserta 氏が Noun Project で作成しました｡ ペンギンアイコンは Adriano Emerick 氏が Noun Project で作成しました｡ 羽のアイコンは Jon Testa 氏が Noun Project で作成しました｡ りんごのアイコンは Ava Rowell 氏が Noun Project で作成しました｡ 写真のアイコンは https://icons8.com/icon/5570/Picture から使用しています｡</string>
   <string name="accept">承諾</string>
