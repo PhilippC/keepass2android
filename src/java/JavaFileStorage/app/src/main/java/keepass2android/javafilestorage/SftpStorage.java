@@ -46,7 +46,7 @@ public class SftpStorage extends JavaFileStorageBase {
 
 		public String toString() {
 			return "ConnectionInfo{host=" + host + ",port=" + port + ",user=" + username +
-					"pwd=<hidden>,path=" + localPath + ",connectTimeout=" + connectTimeout +
+					",pwd=<hidden>,path=" + localPath + ",connectTimeout=" + connectTimeout +
 					"}";
 		}
 	}
@@ -166,41 +166,51 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	}
 
-	private String removeProtocolAndPath(String path) {
+	private String extractUserPwdHostPort(String path) {
 	    String withoutProtocol = path
 				.substring(getProtocolPrefix().length());
-		return withoutProtocol.substring(0,withoutProtocol.indexOf("/"));
+		return withoutProtocol.substring(0, withoutProtocol.indexOf("/"));
 	}
+
 	private String extractSessionPath(String newPath) {
 		String withoutProtocol = newPath
 				.substring(getProtocolPrefix().length());
-		return withoutProtocol.substring(withoutProtocol.indexOf("/"));
-	}
-	
-	private String extractUserPwdHost(String path) {
-		String userPwdHost = removeProtocolAndPath(path);
-		int extraOptsIdx = userPwdHost.indexOf("?");
-		if (extraOptsIdx > 0) {
-			userPwdHost = userPwdHost.substring(0, extraOptsIdx);
+		int pathStartIdx = withoutProtocol.indexOf("/");
+		int pathEndIdx = withoutProtocol.indexOf("?");
+		if (pathEndIdx < 0) {
+			pathEndIdx = withoutProtocol.length();
 		}
-		return userPwdHost;
+		return withoutProtocol.substring(pathStartIdx, pathEndIdx);
 	}
 
-	private Map<String, String> extractOptionsMap(String path) {
-		String userPwdHostAndOpts = removeProtocolAndPath(path);
+	private String extractFilePath(String pathUri) {
+		int queryStartIdx = pathUri.indexOf("?");
+		return queryStartIdx < 0 ? pathUri : pathUri.substring(0, queryStartIdx);
+	}
+
+	private String extractQueryParamsString(String pathUri) {
+		int queryStartIdx = pathUri.indexOf("?");
+		return queryStartIdx < 0 ? "" : pathUri.substring(queryStartIdx + 1, pathUri.length());
+	}
+
+	private Map<String, String> extractOptionsMap(String path) throws UnsupportedEncodingException {
+		String withoutProtocol = path
+				.substring(getProtocolPrefix().length());
 
 		Map<String, String> options = new HashMap<>();
 
-		int extraOptsIdx = userPwdHostAndOpts.indexOf("?");
-		if (extraOptsIdx > 0 && extraOptsIdx + 1 < userPwdHostAndOpts.length()) {
-			String optsString = userPwdHostAndOpts.substring(extraOptsIdx + 1);
+		int extraOptsIdx = withoutProtocol.indexOf("?");
+		if (extraOptsIdx > 0 && extraOptsIdx + 1 < withoutProtocol.length()) {
+			String optsString = withoutProtocol.substring(extraOptsIdx + 1);
 			String[] parts = optsString.split("&");
 			for (String p : parts) {
 				int sepIdx = p.indexOf('=');
 				if (sepIdx > 0) {
-					options.put(p.substring(0, sepIdx), p.substring(sepIdx + 1));
+					String key = decode(p.substring(0, sepIdx));
+					String value = decode(p.substring(sepIdx + 1));
+					options.put(key, value);
 				} else {
-					options.put(p, "true");
+					options.put(decode(p), "true");
 				}
 			}
 		}
@@ -208,27 +218,22 @@ public class SftpStorage extends JavaFileStorageBase {
 	}
 
 	private String concatPaths(String parentPath, String newDirName) {
-		String res = parentPath;
-		if (!res.endsWith("/"))
-			res += "/";
-		res += newDirName;
-		return res;
+		StringBuilder fp = new StringBuilder(parentPath);
+		if (!parentPath.endsWith("/"))
+			fp.append("/");
+		return fp.append(newDirName).toString();
 	}
 
 	@Override
 	public String createFilePath(String parentPath, String newFileName)
 			throws Exception {
-		if (parentPath.endsWith("/") == false)
-			parentPath += "/";
-		return parentPath + newFileName;
+		return concatPaths(parentPath, newFileName);
 	}
 
 	@Override
 	public List<FileEntry> listFiles(String parentPath) throws Exception {
-
 		ChannelSftp c = init(parentPath);
 		return listFiles(parentPath, c);
-
 	}
 
 	private void setFromAttrs(FileEntry fileEntry, SftpATTRS attrs) {
@@ -266,9 +271,10 @@ public class SftpStorage extends JavaFileStorageBase {
 			String sessionPath = extractSessionPath(filename);
 			SftpATTRS attr = c.stat(sessionPath);
 			setFromAttrs(fileEntry, attr);
-			fileEntry.path = filename;
+			fileEntry.path = extractFilePath(filename);
 			fileEntry.displayName = getFilename(sessionPath);
 			tryDisconnect(c);
+
 			return fileEntry;
 		} catch (Exception e) {
 			logDebug("Exception in getFileEntry! " + e);
@@ -438,7 +444,7 @@ public class SftpStorage extends JavaFileStorageBase {
 	public ConnectionInfo splitStringToConnectionInfo(String filename)
 			throws UnsupportedEncodingException {
 		ConnectionInfo ci = new ConnectionInfo();
-		ci.host = extractUserPwdHost(filename);
+		ci.host = extractUserPwdHostPort(filename);
 		String userPwd = ci.host.substring(0, ci.host.indexOf('@'));
 		ci.username = decode(userPwd.substring(0, userPwd.indexOf(":")));
 		ci.password = decode(userPwd.substring(userPwd.indexOf(":")+1));
@@ -447,7 +453,7 @@ public class SftpStorage extends JavaFileStorageBase {
 		int portSeparatorIndex = ci.host.indexOf(":");
 		if (portSeparatorIndex >= 0)
 		{
-			ci.port = Integer.parseInt(ci.host.substring(portSeparatorIndex+1));
+			ci.port = Integer.parseInt(ci.host.substring(portSeparatorIndex + 1));
 			ci.host = ci.host.substring(0, portSeparatorIndex);
 		}
 		ci.localPath = extractSessionPath(filename);
@@ -462,7 +468,7 @@ public class SftpStorage extends JavaFileStorageBase {
 				logDebug(SFTP_CONNECT_TIMEOUT_OPTION_NAME + " option not a number: " + optVal);
 			}
 		}
-
+		
 		return ci;
 	}
 
@@ -530,17 +536,39 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	}
 
-	public String buildFullPath( String host, int port, String localPath, String username, String password,
+	public String buildFullPath(String host, int port, String localPath, String username, String password,
 								 int connectTimeout) throws UnsupportedEncodingException
 	{
-		if (port != DEFAULT_SFTP_PORT)
-			host += ":" + port;
-		String fullPath = getProtocolPrefix()+encode(username)+":"+encode(password)+"@"+host;
-		if (connectTimeout != UNSET_SFTP_CONNECT_TIMEOUT) {
-			fullPath += "?" + SFTP_CONNECT_TIMEOUT_OPTION_NAME + "=" + connectTimeout;
-		}
+		StringBuilder uri = new StringBuilder(getProtocolPrefix())
+				.append(encode(username)).append(":").append(encode(password))
+				.append("@").append(host);
 
-		return fullPath + localPath;
+		if (port != DEFAULT_SFTP_PORT) {
+			uri.append(":").append(port);
+		}
+		if (localPath != null && localPath.startsWith("/")) {
+			uri.append(localPath);
+		}
+		Map<String, String> opts = new HashMap<>();
+		if (connectTimeout != UNSET_SFTP_CONNECT_TIMEOUT) {
+			opts.put(SFTP_CONNECT_TIMEOUT_OPTION_NAME, String.valueOf(connectTimeout));
+		}
+		appendOptions(uri, opts);
+		return uri.toString();
+	}
+
+	private void appendOptions(StringBuilder uri, Map<String, String> opts)
+			throws UnsupportedEncodingException {
+		boolean first = true;
+		for (Map.Entry<String, String> me : opts.entrySet()) {
+			if (first) {
+				uri.append("?");
+				first = false;
+			} else {
+				uri.append("&");
+			}
+			uri.append(encode(me.getKey())).append("=").append(encode(me.getValue()));
+		}
 	}
 
 
