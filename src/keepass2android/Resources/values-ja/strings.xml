@@ -359,7 +359,7 @@
   <string name="totp_scan">QR コードをスキャン</string>
   <string name="delete_extra_string">補足文字列を削除</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: ロック中 - QuickUnlock が有効です</string>
-  <string name="database_loaded_unlocked">%1$s: ロック解除されています</string>
+  <string name="database_loaded_unlocked">%1$s: ロックが解除されています</string>
   <string name="credentials_dialog_title">サーバーのアカウント情報を入力</string>
   <string name="UseFileTransactions_title">ファイル トランザクション</string>
   <string name="UseFileTransactions_summary">データベースの書き込みにファイル トランザクションを使用します</string>
