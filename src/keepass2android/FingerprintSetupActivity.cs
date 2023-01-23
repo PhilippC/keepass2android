@@ -22,7 +22,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-		Theme = "@style/MyTheme_ActionBar", MainLauncher = false)]
+		Theme = "@style/MyTheme_ActionBar", MainLauncher = false, Exported = true)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class BiometricSetupActivity : LockCloseActivity, IBiometricAuthCallback
 	{
@@ -141,30 +141,7 @@ namespace keepass2android
 		{
 			FindViewById(Resource.Id.close_database_after_failed).Visibility = _unlockMode == FingerprintUnlockMode.QuickUnlock ? ViewStates.Visible : ViewStates.Gone;
 		}
-
-		private bool TrySetupSamsung()
-		{
-			try
-			{
-				//try to create a Samsung ID object 
-				_samsungBiometry = new BiometrySamsungIdentifier(this);
-				if (!_samsungBiometry.Init())
-				{
-					SetError(Resource.String.fingerprint_no_enrolled);
-				}
-				ShowRadioButtons();
-				FindViewById(Resource.Id.container_fingerprint_unlock).Visibility = _samsungBiometry == null
-					? ViewStates.Visible
-					: ViewStates.Gone;
-				return true;
-			}
-			catch (Exception)
-			{
-				_samsungBiometry = null;
-				return false;
-			}
-		}
-
+		
 		string CurrentPreferenceKey
 		{
 			get { return App.Kp2a.CurrentDb.CurrentFingerprintPrefKey; }
@@ -245,18 +222,7 @@ namespace keepass2android
 			if (oldMode == newMode)
 				return;
 
-				
-			if (_samsungBiometry != null)
-			{
-				_unlockMode = newMode;
-				UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
 			
-				ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
-				edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, _unlockMode.ToString());
-				edit.Commit();
-				return;
-			}
-
 			if (newMode == FingerprintUnlockMode.Disabled)
 			{
 				_unlockMode = newMode;
@@ -296,8 +262,6 @@ namespace keepass2android
 		private ImageView _fpIcon;
 		private TextView _fpTextView;
 		
-		private BiometrySamsungIdentifier _samsungBiometry;
-
 		public void OnBiometricAuthSucceeded()
 		{
 			_unlockMode = _desiredUnlockMode;
@@ -353,9 +317,7 @@ namespace keepass2android
             HideRadioButtons();
             if (!fpModule.IsHardwareAvailable)
             {
-                //seems like not all Samsung Devices (e.g. Note 4) don't support the Android 6 fingerprint API
-                if (!TrySetupSamsung())
-                    SetError(Resource.String.fingerprint_hardware_error);
+                SetError(Resource.String.fingerprint_hardware_error);
                 UpdateCloseDatabaseAfterFailedBiometricQuickUnlockVisibility();
                 return;
             }

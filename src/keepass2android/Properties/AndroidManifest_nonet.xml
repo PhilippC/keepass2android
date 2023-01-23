@@ -40,7 +40,7 @@
 	  </intent>
   </queries>			
 			
-	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="30" />
+	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="33" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher_offline" android:label="KP2A entry search" android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher_offline" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_nonet.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
 	<application 
@@ -57,13 +57,13 @@
 		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
 		</activity>
 
-		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD">
+		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true">
 			<intent-filter>
 				<action android:name="android.view.InputMethod" />
 			</intent-filter>
 			<meta-data android:name="android.view.im" android:resource="@xml/method" />
 		</service>
-		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings">
+		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings" android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 			</intent-filter>
@@ -73,7 +73,8 @@
 			</intent-filter>
 		</activity>
 		 <activity android:name="keepass2android.softkeyboard.InputLanguageSelection"
-                android:label="@string/language_selection_title">
+                android:label="@string/language_selection_title"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
@@ -81,7 +82,8 @@
             </intent-filter>
         </activity>
  
-		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.SelectCurrentDbActivity" android:windowSoftInputMode="adjustResize">
+		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.SelectCurrentDbActivity" android:windowSoftInputMode="adjustResize"
+              android:exported="true">
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -244,9 +246,5 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
 
   <uses-permission android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalFileBrowsing" />
   <uses-permission android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" />
-	<!-- Samsung Pass permission -->
-	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 	
-	<!-- READ_PHONE_STATE seems to come from some library or so, not clear where. We don't want to have it, remove it: -->
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
 </manifest>

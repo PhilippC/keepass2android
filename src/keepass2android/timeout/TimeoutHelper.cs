@@ -35,7 +35,7 @@ namespace keepass2android
 			
 			private static PendingIntent BuildPendingBroadcastIntent(Context ctx)
 			{
-				return PendingIntent.GetBroadcast(ctx, 0, BuildBroadcastIntent(ctx), PendingIntentFlags.UpdateCurrent);
+				return PendingIntent.GetBroadcast(ctx, 0, BuildBroadcastIntent(ctx), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable));
 			}
 
             private static Intent BuildBroadcastIntent(Context ctx)

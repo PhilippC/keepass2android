@@ -201,7 +201,7 @@ namespace keepass2android
                 extra.PutInt("requestCode", requestCode);
                 intent.PutExtras(extra);
 
-                return PendingIntent.GetBroadcast(_ctx, requestCode, intent, PendingIntentFlags.CancelCurrent);
+                return PendingIntent.GetBroadcast(_ctx, requestCode, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));
             }
 
 
@@ -223,7 +223,7 @@ namespace keepass2android
                 PendingIntent pending;
                 if (intentText == null)
                 {
-                    pending = PendingIntent.GetActivity(_ctx.ApplicationContext, 0, new Intent(), 0);
+                    pending = PendingIntent.GetActivity(_ctx.ApplicationContext, 0, new Intent(), Util.AddMutabilityFlag(0, PendingIntentFlags.Immutable));
                 }
                 else
                 {
@@ -248,7 +248,8 @@ namespace keepass2android
                 PendingIntent pending;
                 Intent intent = new Intent(_ctx, typeof(CopyToClipboardBroadcastReceiver));
                 intent.SetAction(intentText);
-                pending = PendingIntent.GetBroadcast(_ctx, descResId, intent, PendingIntentFlags.CancelCurrent);
+                pending = PendingIntent.GetBroadcast(_ctx, descResId, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));
+                
                 return pending;
             }
 

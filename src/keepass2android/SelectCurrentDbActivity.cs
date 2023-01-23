@@ -31,6 +31,7 @@ namespace keepass2android
     [Activity(Label = AppNames.AppName, 
         MainLauncher = false, 
         Theme = "@style/MyTheme_Blue", 
+        Exported = true,
         LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
     public class SelectCurrentDbActivity : LifecycleAwareActivity
     {

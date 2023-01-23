@@ -19,7 +19,7 @@ using keepass2android.views;
 
 namespace keepass2android
 {
-	[Activity(Label = AppNames.AppName, Theme = "@style/android:Theme.Material.Light")]
+	[Activity(Label = AppNames.AppName, Theme = "@style/android:Theme.Material.Light", Exported = true)]
 	[IntentFilter(new[] { Strings.ActionEditPluginSettings },
 		Label = AppNames.AppName,
 		Categories = new[] { Intent.CategoryDefault })]

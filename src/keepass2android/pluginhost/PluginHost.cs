@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Util;
+using Group.Pals.Android.Lib.UI.Filechooser.Utils;
 using KeePassLib.Utility;
 using Keepass2android.Pluginsdk;
 using Org.Json;
@@ -14,7 +15,7 @@ namespace keepass2android
 	/// <summary>
 	/// Class which manages plugins inside the app
 	/// </summary>
-	[BroadcastReceiver]
+	[BroadcastReceiver(Exported = true)]
 	[IntentFilter(new[] { Strings.ActionRequestAccess })]
 	public class PluginHost : BroadcastReceiver
 	{

@@ -41,7 +41,7 @@ namespace keepass2android
 
 	[Activity(Label = "@string/app_name",
 	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-        Theme = "@style/MyTheme_ActionBar")]
+        Theme = "@style/MyTheme_ActionBar", Exported = true)]
 	[IntentFilter(new[] {"kp2a.action.ExportDatabaseActivity"}, Categories = new[] {Intent.CategoryDefault})]
 	public class ExportDatabaseActivity : LockCloseActivity
 	{

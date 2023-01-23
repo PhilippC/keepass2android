@@ -17,6 +17,7 @@ namespace keepass2android
 			   ConfigurationChanges = ConfigChanges.Orientation |
 			   ConfigChanges.KeyboardHidden,
 			   NoHistory = true,
+			   Exported = true,
 			   ExcludeFromRecents = true,
 			   Theme = "@android:style/Theme.Dialog")]
 	[IntentFilter(new[] { "android.nfc.action.NDEF_DISCOVERED" },

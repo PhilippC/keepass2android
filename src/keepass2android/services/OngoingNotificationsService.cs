@@ -173,7 +173,7 @@ namespace keepass2android
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
 			builder.AddAction(Android.Resource.Drawable.IcLockLock, GetString(Resource.String.QuickUnlock_lockButton), 
-				PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.CloseDatabase), PendingIntentFlags.UpdateCurrent));
+				PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.CloseDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
 			
 
 			return builder.Build();
@@ -216,7 +216,7 @@ namespace keepass2android
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
-			builder.AddAction(Resource.Drawable.ic_action_lock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), PendingIntentFlags.UpdateCurrent));
+			builder.AddAction(Resource.Drawable.ic_action_lock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
 			
 			return builder.Build();
 		}
@@ -227,7 +227,7 @@ namespace keepass2android
 			startKp2aIntent.SetAction(Intent.ActionMain);
 			startKp2aIntent.AddCategory(Intent.CategoryLauncher);
 
-			return PendingIntent.GetActivity(this, 0, startKp2aIntent, PendingIntentFlags.UpdateCurrent);
+			return PendingIntent.GetActivity(this, 0, startKp2aIntent, Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable));
 		}
 
 		private static string GetDatabaseName()

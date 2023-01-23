@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29418.71
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib2Android", "KeePassLib2Android\KeePassLib2Android.csproj", "{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}"
 EndProject
@@ -24,8 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCloudBindings", "PCloudBindings\PCloudBindings.csproj", "{2DB80C77-D46F-4970-B967-E9FFA9B2AC2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "keepass2android-app", "keepass2android\keepass2android-app.csproj", "{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamsungPass", "SamsungPass\Xamarin.SamsungPass\SamsungPass\SamsungPass.csproj", "{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -285,30 +283,6 @@ Global
 		{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}.ReleaseNoNet|x64.Build.0 = Release|Any CPU
 		{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}.ReleaseNoNet|x64.Deploy.0 = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|Win32.Build.0 = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Debug|x64.Build.0 = Debug|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Win32.ActiveCfg = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|Win32.Build.0 = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|x64.ActiveCfg = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.Release|x64.Build.0 = Release|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Any CPU.ActiveCfg = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Any CPU.Build.0 = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Mixed Platforms.ActiveCfg = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Mixed Platforms.Build.0 = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Win32.ActiveCfg = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|Win32.Build.0 = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|x64.ActiveCfg = ReleaseNoNet|Any CPU
-		{3A4B8E88-FA9B-4663-BCDA-21C12E3AF98A}.ReleaseNoNet|x64.Build.0 = ReleaseNoNet|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

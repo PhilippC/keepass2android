@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="showFlavor">
+  <Target Name="showFlavor" AfterTargets="Build">
+    <Message Importance="high" Text="building flavor $(Flavor)">
+    </Message>
+  </Target>
+  <Import Project="../build-properties.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -19,7 +24,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest_debug.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -98,6 +103,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.RecyclerView">
       <Version>1.2.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Build.Download">
+      <Version>0.11.4</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.1.0-beta2</Version>
@@ -186,7 +194,6 @@
     <Compile Include="EntryActivityClasses\WriteBinaryToFilePopupItem.cs" />
     <Compile Include="FileSelectHelper.cs" />
     <Compile Include="BiometricModule.cs" />
-    <Compile Include="FingerprintSamsungIdentifier.cs" />
     <Compile Include="FingerprintSetupActivity.cs" />
     <Compile Include="ExportDatabaseActivity.cs" />
     <Compile Include="fileselect\FileChooserFileProvider.cs" />
@@ -412,7 +419,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back_white_24dp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_cross.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_attachments.png" />
-	<AndroidResource Include="Resources\drawable-mdpi\ic_entry_history.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_entry_history.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_comments.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_created.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_entry_expires.png" />
@@ -488,7 +495,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_ftps.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_gdrive.png" />
-	<AndroidResource Include="Resources\drawable-mdpi\ic_storage_gdriveKP2A.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_storage_gdriveKP2A.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_http.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_https.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_owncloud.png" />
@@ -1952,10 +1959,6 @@
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj">
       <Project>{3da3911e-36de-465e-8f15-f1991b6437e5}</Project>
       <Name>PluginSdkBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SamsungPass\Xamarin.SamsungPass\SamsungPass\SamsungPass.csproj">
-      <Project>{3a4b8e88-fa9b-4663-bcda-21c12e3af98a}</Project>
-      <Name>SamsungPass</Name>
     </ProjectReference>
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
       <Project>{5cf675a5-9bee-4720-bed9-d5bf14a2ebf9}</Project>

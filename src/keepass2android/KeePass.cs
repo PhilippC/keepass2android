@@ -68,7 +68,7 @@ namespace keepass2android
 	/// <summary>
 	/// Launcher activity of Keepass2Android. This activity usually forwards to SelectCurrentDb but may show the revision dialog after installation or updates.
 	/// </summary>
-	[Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue")]
+	[Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/MyTheme_Blue", Exported = true)]
 	[IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "android.intent.category.LAUNCHER", "android.intent.category.MULTIWINDOW_LAUNCHER" })]
 	public class KeePass : LifecycleAwareActivity, IDialogInterfaceOnDismissListener
 	{

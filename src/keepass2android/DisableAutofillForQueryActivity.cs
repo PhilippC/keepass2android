@@ -68,6 +68,12 @@ namespace keepass2android
             Intent reply = new Intent();
             FillResponse.Builder builder = new FillResponse.Builder();
             AssistStructure structure = (AssistStructure)Intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
+            if (structure == null)
+            {
+                SetResult(Result.Canceled);
+                Finish();
+                return;
+            }
             StructureParser parser = new StructureParser(this, structure);
             try
             {

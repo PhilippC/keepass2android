@@ -30,7 +30,8 @@ namespace keepass2android.services.AutofillBase
             }
             //make sure we have a pendingIntent always not null
             pendingIntent ??= PendingIntent.GetService(context, 0, new Intent(),
-                PendingIntentFlags.OneShot | PendingIntentFlags.UpdateCurrent);
+                Util.AddMutabilityFlag(PendingIntentFlags.OneShot | PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Mutable));
+            
             var slice = CreateInlinePresentationSlice(
                 inlinePresentationSpec,
                 text,
@@ -45,6 +46,7 @@ namespace keepass2android.services.AutofillBase
             }
             return null;
         }
+
 
         private static Android.App.Slices.Slice CreateInlinePresentationSlice(
             InlinePresentationSpec inlinePresentationSpec,
@@ -107,7 +109,7 @@ namespace keepass2android.services.AutofillBase
             datasetBuilder.SetId(datasetName);
 
             var setValueAtLeastOnce = filledAutofillFieldCollection.ApplyToFields(autofillFields, datasetBuilder);
-            AddInlinePresentation(context, inlinePresentationSpec, datasetName, datasetBuilder, intentBuilder.AppIconResource);
+            AddInlinePresentation(context, inlinePresentationSpec, datasetName, datasetBuilder, intentBuilder.AppIconResource, null);
 
             if (setValueAtLeastOnce)
             {
@@ -121,12 +123,14 @@ namespace keepass2android.services.AutofillBase
             return null;
         }
 
-        public static void AddInlinePresentation(Context context, InlinePresentationSpec inlinePresentationSpec, string datasetName, Dataset.Builder datasetBuilder, int iconId)
+        public static void AddInlinePresentation(Context context, InlinePresentationSpec inlinePresentationSpec,
+            string datasetName, Dataset.Builder datasetBuilder, int iconId, PendingIntent pendingIntent)
         {
             if (inlinePresentationSpec != null)
             {
-                var inlinePresentation = BuildInlinePresentation(inlinePresentationSpec, datasetName, "", iconId, null, context);
-                datasetBuilder.SetInlinePresentation(inlinePresentation);
+                var inlinePresentation = BuildInlinePresentation(inlinePresentationSpec, datasetName, "", iconId, pendingIntent, context);
+                if (inlinePresentation != null)
+                    datasetBuilder.SetInlinePresentation(inlinePresentation);
             }
         }
 

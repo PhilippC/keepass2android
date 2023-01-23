@@ -394,7 +394,15 @@ namespace keepass2android
 			get { return (int)Build.VERSION.SdkInt >= 19; }
 		}
 
-		private static void ShowInternalLocalFileChooser(Activity act, int requestCodeBrowse, bool forSaving, string defaultPath)
+
+        public static PendingIntentFlags AddMutabilityFlag(PendingIntentFlags flags, PendingIntentFlags mutability)
+        {
+            if ((int)Build.VERSION.SdkInt >= 31)
+                return flags | mutability;
+            else return flags;
+        }
+
+        private static void ShowInternalLocalFileChooser(Activity act, int requestCodeBrowse, bool forSaving, string defaultPath)
 		{
 			
 #if !EXCLUDE_FILECHOOSER

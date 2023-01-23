@@ -270,31 +270,7 @@ namespace keepass2android
 					_biometryIdentifier = new BiometricDecryption(fpModule, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey, this,
 						App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey);
 				
-				if ((_biometryIdentifier == null) && (!BiometricDecryption.IsSetUp(this, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey)))
-				{
-					try
-					{
-						Kp2aLog.Log("trying Samsung Fingerprint API...");
-						_biometryIdentifier = new BiometrySamsungIdentifier(this);
-						btn.Click += (sender, args) =>
-						{
-                            if (_biometryIdentifier.Init())
-                            {
-                                if (numFailedAttempts  < maxNumFailedAttempts)
-                                {
-                                    _biometryIdentifier.StartListening(this);
-                                }
-                                
-                            }
-                        };
-						Kp2aLog.Log("trying Samsung Fingerprint API...Seems to work!");
-					}
-					catch (Exception)
-					{
-						Kp2aLog.Log("trying Samsung Fingerprint API...failed.");
-						_biometryIdentifier = null;
-					}
-				}
+				
 			    if (_biometryIdentifier == null)
 			    {
 			        FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;

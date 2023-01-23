@@ -16,6 +16,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+		Exported = true,
         Theme = "@style/MyTheme_ActionBar")]
 	[IntentFilter(new[] { Strings.ActionQueryCredentials},
 		Categories = new[] { Intent.CategoryDefault })]

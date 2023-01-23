@@ -25,12 +25,12 @@ namespace keepass2android.services.AutofillBase
 {
     public interface IAutofillIntentBuilder
     {
-        IntentSender GetAuthIntentSenderForResponse(Context context, string query, string queryDomain, string queryPackage,
+        PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage,
             bool isManualRequest, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning);
 
-        IntentSender GetAuthIntentSenderForWarning(Context context, string query, string queryDomain, string queryPackage, AutofillServiceBase.DisplayWarning warning);
+        PendingIntent GetAuthPendingIntentForWarning(Context context, string query, string queryDomain, string queryPackage, AutofillServiceBase.DisplayWarning warning);
 
-        IntentSender GetDisableIntentSenderForResponse(Context context, string query, 
+        PendingIntent GetDisablePendingIntentForResponse(Context context, string query, 
             bool isManualRequest, bool isDisable);
         Intent GetRestartAppIntent(Context context);
 
@@ -266,8 +266,8 @@ namespace keepass2android.services.AutofillBase
                 else
                 {
                     //return an "auth" dataset (actually for just warning the user in case domain/package dont match)
-                    IntentSender sender =
-                        IntentBuilder.GetAuthIntentSenderForWarning(this, query, queryDomain, queryPackage, warning);
+                    PendingIntent pendingIntent =
+                        IntentBuilder.GetAuthPendingIntentForWarning(this, query, queryDomain, queryPackage, warning);
                     var datasetName = filledAutofillFieldCollection.DatasetName;
                     if (datasetName == null)
                     {
@@ -279,9 +279,9 @@ namespace keepass2android.services.AutofillBase
                         AutofillHelper.NewRemoteViews(PackageName, datasetName, AppNames.LauncherIcon);
 
                     var datasetBuilder = new Dataset.Builder(presentation);
-                    datasetBuilder.SetAuthentication(sender);
+                    datasetBuilder.SetAuthentication(pendingIntent?.IntentSender);
 
-                    AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, datasetName, datasetBuilder, AppNames.LauncherIcon);
+                    AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, datasetName, datasetBuilder, AppNames.LauncherIcon, null);
 
                     //need to add placeholders so we can directly fill after ChooseActivity
                     foreach (var autofillId in autofillIds)
@@ -310,20 +310,20 @@ namespace keepass2android.services.AutofillBase
 
         private void AddQueryDataset(string query, string queryDomain, string queryPackage, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning, InlinePresentationSpec inlinePresentationSpec)
         {
-            var sender = IntentBuilder.GetAuthIntentSenderForResponse(this, query, queryDomain, queryPackage, isManual, autoReturnFromQuery, warning);
+            PendingIntent pendingIntent = IntentBuilder.GetAuthPendingIntentForResponse(this, query, queryDomain, queryPackage, isManual, autoReturnFromQuery, warning);
             string text = GetString(Resource.String.autofill_sign_in_prompt);
-            RemoteViews presentation = AutofillHelper.NewRemoteViews(base.PackageName,
+            RemoteViews overlayPresentation = AutofillHelper.NewRemoteViews(base.PackageName,
                 text, AppNames.LauncherIcon);
 
-            var datasetBuilder = new Dataset.Builder(presentation);
-            datasetBuilder.SetAuthentication(sender);
+            var datasetBuilder = new Dataset.Builder(overlayPresentation);
+            datasetBuilder.SetAuthentication(pendingIntent?.IntentSender);
             //need to add placeholders so we can directly fill after ChooseActivity
             foreach (var autofillId in autofillIds)
             {
                 datasetBuilder.SetValue(autofillId, AutofillValue.ForText("PLACEHOLDER"));
             }
 
-            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, AppNames.LauncherIcon);
+            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, AppNames.LauncherIcon, pendingIntent);
 
 
             responseBuilder.AddDataset(datasetBuilder.Build());
@@ -364,16 +364,16 @@ namespace keepass2android.services.AutofillBase
             if (isQueryDisabled && !isManual)
                 return;
             bool isForDisable = !isQueryDisabled;
-            var sender = IntentBuilder.GetDisableIntentSenderForResponse(this, query, isManual, isForDisable);
+            var pendingIntent = IntentBuilder.GetDisablePendingIntentForResponse(this, query, isManual, isForDisable);
 
             string text = GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this) });
             RemoteViews presentation = AutofillHelper.NewRemoteViews(base.PackageName,
                 text, Resource.Drawable.ic_menu_close_grey);
 
             var datasetBuilder = new Dataset.Builder(presentation);
-            datasetBuilder.SetAuthentication(sender);
+            datasetBuilder.SetAuthentication(pendingIntent?.IntentSender);
 
-            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.ic_menu_close_grey);
+            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.ic_menu_close_grey, null);
 
             foreach (var autofillId in autofillIds)
             {

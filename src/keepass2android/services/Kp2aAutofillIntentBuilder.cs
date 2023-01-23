@@ -14,8 +14,9 @@ namespace keepass2android.services
 {
     class Kp2aAutofillIntentBuilder: IAutofillIntentBuilder
     {
+        private static int _pendingIntentRequestCode = 0;
 
-        public IntentSender GetAuthIntentSenderForResponse(Context context, string query, string queryDomain, string queryPackage,
+        public PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage,
             bool isManualRequest, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
@@ -25,10 +26,10 @@ namespace keepass2android.services
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraAutoReturnFromQuery, autoReturnFromQuery);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraDisplayWarning, (int)warning);
-            return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
+            return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Mutable));
         }
 
-        public IntentSender GetAuthIntentSenderForWarning(Context context, string query, string queryDomain, string queryPackage,
+        public PendingIntent GetAuthPendingIntentForWarning(Context context, string query, string queryDomain, string queryPackage,
             AutofillServiceBase.DisplayWarning warning)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
@@ -37,10 +38,10 @@ namespace keepass2android.services
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryPackageString, queryPackage);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraDisplayWarning, (int)warning);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraUseLastOpenedEntry, true);
-            return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
+            return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));
         }
 
-        public IntentSender GetDisableIntentSenderForResponse(Context context, string query,
+        public PendingIntent GetDisablePendingIntentForResponse(Context context, string query,
             bool isManualRequest, bool isDisable)
         {
             Intent intent = new Intent(context, typeof(DisableAutofillForQueryActivity));
@@ -48,7 +49,7 @@ namespace keepass2android.services
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
             intent.PutExtra(DisableAutofillForQueryActivity.ExtraIsDisable, isDisable);
 
-            return PendingIntent.GetActivity(context, 0, intent, PendingIntentFlags.CancelCurrent).IntentSender;
+            return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));
         }
 
         public Intent GetRestartAppIntent(Context context)

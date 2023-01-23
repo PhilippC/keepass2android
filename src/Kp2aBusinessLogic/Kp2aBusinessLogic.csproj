@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="showFlavor">
+<Target Name="showFlavor" AfterTargets="Build">
+        <Message Importance="high" Text="building flavor $(Flavor)"></Message>
+    </Target>
+<Import Project="../build-properties.props"/>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,7 +16,7 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <Flavor Condition=" '$(Flavor)' != '' ">$(Flavor)</Flavor>
     <NuGetPackageImportStamp>
@@ -66,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
-     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
     <Compile Include="Io\DropboxFileStorage.cs" />
@@ -181,16 +185,16 @@
       <Version>31.3.1</Version>
     </PackageReference>
     <PackageReference Include="MegaApiClient">
-      <Version>1.10.2</Version>
+      <Version>1.10.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>1.21.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph.Auth">
-      <Version>1.0.0-preview.1</Version>
+      <Version>1.0.0-preview.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.8.2</Version>
+      <Version>4.49.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -297,7 +301,7 @@
       <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Preference">
-      <Version>1.1.1.11</Version>
+      <Version>1.2.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

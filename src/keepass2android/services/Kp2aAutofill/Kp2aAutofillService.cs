@@ -17,7 +17,7 @@ using AutofillServiceBase = keepass2android.services.AutofillBase.AutofillServic
 
 namespace keepass2android.services
 {
-[Service(Label = AppNames.AppName, Permission=Manifest.Permission.BindAutofillService)]
+[Service(Label = AppNames.AppName, Permission=Manifest.Permission.BindAutofillService, Exported = true)]
     [IntentFilter(new [] {"android.service.autofill.AutofillService"})]
     [MetaData("android.autofill", Resource = "@xml/autofillservice")]
     [Register("keepass2android.services.Kp2aAutofillService")]
