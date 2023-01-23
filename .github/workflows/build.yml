@@ -42,12 +42,12 @@ jobs:
     - name: Set default Xamarin SDK versions
       run: |
         # If using the github runner 'macos-12'
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
+        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.1 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1 # Build fails in this case, as of 2022-12-02 : Error in obj/Debug/lp/12/jl/__reference__pass-v1.1.3.jar:com/samsung/android/sdk/pass/SpassFingerprint.class:  java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1 
 
         # If using the github runner 'macos-11'
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
@@ -55,6 +55,11 @@ jobs:
 
         # If using the github runner 'macos-10.15'
         # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
+
+    - name: Install NDK
+      run: | 
+        yes | ${ANDROID_HOME}/tools/bin/sdkmanager.bat --licenses #accept licenses
+        ${ANDROID_HOME}/tools/bin/sdkmanager.bat --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
     - name: Switch to JDK-8
       if: ${{ false }} # Not needed, we stay with the default installed JDK
@@ -69,8 +74,8 @@ jobs:
     - name: Display java version
       run: java -version
 
-    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
-    - name: Download android-26 API
+    # Some components of Keepass2Android currently target android API 33 which are not available on the runner
+    - name: Download android-33 API
       run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-33"
 
     - name: Build native dependencies
@@ -161,6 +166,7 @@ jobs:
 
     - name: Cache Xamarin.Android packages
       id: xamarin_cache
+      if: ${{ false }}
       uses: actions/cache@v3
       with:
         path: ~/xamarin.android-oss
@@ -176,10 +182,15 @@ jobs:
         echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list &&
         sudo apt update &&
         sudo apt-get -y -t stable-focal install mono-complete
+    - name: Install dotnet workload
+      run: |
+        sudo dotnet workload install android-33
 
     - name: Download & unpack Xamarin.Android
-      if: steps.xamarin_cache.outputs.cache-hit != 'true'
+      #if: steps.xamarin_cache.outputs.cache-hit != 'true'
+      if: ${{ false }} # replaced by workload install
       run: |
+        dotnet workload install android-33
         set -x
         cd $HOME &&
         wget -O "installers-unsigned - Linux.zip" ${{ env.xamarin_url }} &&
@@ -190,6 +201,7 @@ jobs:
         mv "$DIR"/*.deb xamarin.android-oss
 
     - name: Setup Xamarin.Android
+      if: ${{ false }} # replaced by workload install
       run: |
         cd $HOME &&
         sudo apt install -y ./xamarin.android-oss/*.deb &&
