@@ -177,6 +177,12 @@ namespace keepass2android.services.AutofillBase
         {
             var intent = Intent;
             AssistStructure structure = (AssistStructure)intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
+            if (structure == null)
+            {
+                SetResult(Result.Canceled);
+                Finish();
+                return;
+            }
             StructureParser parser = new StructureParser(this, structure);
             parser.ParseForFill(isManual);
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
@@ -186,6 +192,7 @@ namespace keepass2android.services.AutofillBase
             
             ReplyIntent = new Intent();
             SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder, null /*TODO can we get the inlinePresentationSpec here?*/));
+            
             SetResult(Result.Ok, ReplyIntent);
         }
 
@@ -239,10 +246,7 @@ namespace keepass2android.services.AutofillBase
                 Toast.MakeText(this, "Failed to build an autofill dataset.", ToastLength.Long).Show();
                 return;
             }
-                
-            var responseBuilder = new FillResponse.Builder();
-            responseBuilder.AddDataset(dataset);
-            ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, responseBuilder.Build());
+            ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, dataset);
         }
     }
 }
