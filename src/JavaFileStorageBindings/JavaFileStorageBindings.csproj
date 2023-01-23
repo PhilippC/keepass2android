@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.props')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.props" Condition="Exists('..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.props')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.props')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.props" Condition="Exists('..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -13,7 +13,7 @@
     <AssemblyName>JavaFileStorageBindings</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <NuGetPackageImportStamp>
@@ -58,6 +58,72 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.AndroidX.Activity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Activity.1.6.0\lib\monoandroid12.0\Xamarin.AndroidX.Activity.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Annotation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Annotation.1.5.0\lib\monoandroid12.0\Xamarin.AndroidX.Annotation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Annotation.Experimental, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Annotation.Experimental.1.3.0\lib\monoandroid12.0\Xamarin.AndroidX.Annotation.Experimental.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Arch.Core.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.15\lib\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Arch.Core.Runtime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.15\lib\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Collection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Collection.1.2.0.4\lib\monoandroid12.0\Xamarin.AndroidX.Collection.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Concurrent.Futures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.9\lib\monoandroid12.0\Xamarin.AndroidX.Concurrent.Futures.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Core.1.9.0\lib\monoandroid12.0\Xamarin.AndroidX.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Core.Core.Ktx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Core.Core.Ktx.1.9.0\lib\monoandroid12.0\Xamarin.AndroidX.Core.Core.Ktx.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.CustomView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.CustomView.1.1.0.13\lib\monoandroid12.0\Xamarin.AndroidX.CustomView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Fragment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Fragment.1.5.3\lib\monoandroid12.0\Xamarin.AndroidX.Fragment.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Lifecycle.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Lifecycle.Common.2.5.1\lib\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.5.1\lib\monoandroid12.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Lifecycle.Runtime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.5.1\lib\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Lifecycle.ViewModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.5.1\lib\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Lifecycle.ViewModelSavedState, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.5.1\lib\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Loader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Loader.1.1.0.14\lib\monoandroid12.0\Xamarin.AndroidX.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.MultiDex, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.MultiDex.2.0.1.13\lib\monoandroid12.0\Xamarin.AndroidX.MultiDex.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.SavedState, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.SavedState.1.2.0\lib\monoandroid12.0\Xamarin.AndroidX.SavedState.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Tracing.Tracing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.Tracing.Tracing.1.1.0.1\lib\monoandroid12.0\Xamarin.AndroidX.Tracing.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.VersionedParcelable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.14\lib\monoandroid12.0\Xamarin.AndroidX.VersionedParcelable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.ViewPager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.AndroidX.ViewPager.1.0.0.14\lib\monoandroid12.0\Xamarin.AndroidX.ViewPager.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Google.Guava, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Google.Guava.28.2.0.1\lib\monoandroid90\Xamarin.Google.Guava.dll</HintPath>
     </Reference>
@@ -65,7 +131,49 @@
       <HintPath>..\packages\Xamarin.Google.Guava.FailureAccess.1.0.1.3\lib\monoandroid90\Xamarin.Google.Guava.FailureAccess.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Google.Guava.ListenableFuture, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.3\lib\monoandroid90\Xamarin.Google.Guava.ListenableFuture.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.9\lib\monoandroid12.0\Xamarin.Google.Guava.ListenableFuture.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Auth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Auth.120.4.0\lib\monoandroid12.0\Xamarin.GooglePlayServices.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Auth.Api.Phone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.118.0.1.2\lib\monoandroid12.0\Xamarin.GooglePlayServices.Auth.Api.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Auth.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Auth.Base.118.0.6\lib\monoandroid12.0\Xamarin.GooglePlayServices.Auth.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.118.1.0\lib\monoandroid12.0\Xamarin.GooglePlayServices.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Basement, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.118.1.0.1\lib\monoandroid12.0\Xamarin.GooglePlayServices.Basement.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Fido, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Fido.119.0.0\lib\monoandroid12.0\Xamarin.GooglePlayServices.Fido.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Tasks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.118.0.2\lib\monoandroid12.0\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Jetbrains.Annotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Jetbrains.Annotations.23.0.0.4\lib\monoandroid12.0\Xamarin.Jetbrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Kotlin.StdLib.1.7.10\lib\monoandroid12.0\Xamarin.Kotlin.StdLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Kotlin.StdLib.Common.1.7.10\lib\monoandroid12.0\Xamarin.Kotlin.StdLib.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib.Jdk7, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.7.10\lib\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk7.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib.Jdk8, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.7.10\lib\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk8.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.KotlinX.Coroutines.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.KotlinX.Coroutines.Android.1.6.4\lib\monoandroid12.0\Xamarin.KotlinX.Coroutines.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.KotlinX.Coroutines.Core.Jvm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.KotlinX.Coroutines.Core.Jvm.1.6.4\lib\monoandroid12.0\Xamarin.KotlinX.Coroutines.Core.Jvm.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -182,69 +290,93 @@
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gdrive\opencensus-api-0.24.0.jar" />
   </ItemGroup>
-  <Import Project="..\packages\Xamarin.AndroidX.Annotation.Experimental.1.0.0.9\build\monoandroid9.0\Xamarin.AndroidX.Annotation.Experimental.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Annotation.Experimental.1.0.0.9\build\monoandroid9.0\Xamarin.AndroidX.Annotation.Experimental.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Annotation.Experimental.1.0.0.9\build\monoandroid9.0\Xamarin.AndroidX.Annotation.Experimental.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Annotation.Experimental.1.0.0.9\build\monoandroid9.0\Xamarin.AndroidX.Annotation.Experimental.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.MultiDex.2.0.1.5\build\monoandroid90\Xamarin.AndroidX.MultiDex.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.MultiDex.2.0.1.5\build\monoandroid90\Xamarin.AndroidX.MultiDex.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.props'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Annotation.1.2.0\build\monoandroid9.0\Xamarin.AndroidX.Annotation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Annotation.1.2.0\build\monoandroid9.0\Xamarin.AndroidX.Annotation.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.8\build\monoandroid9.0\Xamarin.AndroidX.Arch.Core.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.8\build\monoandroid9.0\Xamarin.AndroidX.Arch.Core.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Collection.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Collection.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Collection.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Collection.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.Common.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.Common.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Runtime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Runtime.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.SavedState.1.1.0.1\build\monoandroid9.0\Xamarin.AndroidX.SavedState.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.SavedState.1.1.0.1\build\monoandroid9.0\Xamarin.AndroidX.SavedState.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.7\build\monoandroid9.0\Xamarin.AndroidX.VersionedParcelable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.7\build\monoandroid9.0\Xamarin.AndroidX.VersionedParcelable.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Core.1.3.2.3\build\monoandroid9.0\Xamarin.AndroidX.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Core.1.3.2.3\build\monoandroid9.0\Xamarin.AndroidX.Core.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Activity.1.2.2\build\monoandroid9.0\Xamarin.AndroidX.Activity.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Activity.1.2.2\build\monoandroid9.0\Xamarin.AndroidX.Activity.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.CustomView.1.1.0.6\build\monoandroid9.0\Xamarin.AndroidX.CustomView.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.CustomView.1.1.0.6\build\monoandroid9.0\Xamarin.AndroidX.CustomView.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Loader.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Loader.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Loader.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Loader.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.ViewPager.1.0.0.7\build\monoandroid9.0\Xamarin.AndroidX.ViewPager.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.ViewPager.1.0.0.7\build\monoandroid9.0\Xamarin.AndroidX.ViewPager.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Fragment.1.3.2\build\monoandroid9.0\Xamarin.AndroidX.Fragment.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Fragment.1.3.2\build\monoandroid9.0\Xamarin.AndroidX.Fragment.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.props'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Basement.117.6.0.4\build\monoandroid90\Xamarin.GooglePlayServices.Basement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Basement.117.6.0.4\build\monoandroid90\Xamarin.GooglePlayServices.Basement.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Tasks.117.2.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Tasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Tasks.117.2.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Tasks.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.117.6.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.117.6.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Base.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.117.5.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Api.Phone.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.117.5.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Api.Phone.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Auth.Base.117.1.4.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Auth.Base.117.1.4.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Base.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Auth.119.2.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Auth.119.2.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Google.Guava.FailureAccess.1.0.1.3\build\monoandroid90\Xamarin.Google.Guava.FailureAccess.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Google.Guava.FailureAccess.1.0.1.3\build\monoandroid90\Xamarin.Google.Guava.FailureAccess.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.3\build\monoandroid90\Xamarin.Google.Guava.ListenableFuture.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.3\build\monoandroid90\Xamarin.Google.Guava.ListenableFuture.targets'))" />
     <Error Condition="!Exists('..\packages\Xamarin.Google.Guava.28.2.0.1\build\monoandroid90\Xamarin.Google.Guava.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Google.Guava.28.2.0.1\build\monoandroid90\Xamarin.Google.Guava.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.MultiDex.2.0.1.13\build\monoandroid12.0\Xamarin.AndroidX.MultiDex.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.MultiDex.2.0.1.13\build\monoandroid12.0\Xamarin.AndroidX.MultiDex.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.props'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.9\build\monoandroid12.0\Xamarin.Google.Guava.ListenableFuture.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.9\build\monoandroid12.0\Xamarin.Google.Guava.ListenableFuture.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Jetbrains.Annotations.23.0.0.4\build\monoandroid12.0\Xamarin.Jetbrains.Annotations.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Jetbrains.Annotations.23.0.0.4\build\monoandroid12.0\Xamarin.Jetbrains.Annotations.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Kotlin.StdLib.Common.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Kotlin.StdLib.Common.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Kotlin.StdLib.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Kotlin.StdLib.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Annotation.1.5.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Annotation.1.5.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Annotation.Experimental.1.3.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.Experimental.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Annotation.Experimental.1.3.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.Experimental.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Runtime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Runtime.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Collection.1.2.0.4\build\monoandroid12.0\Xamarin.AndroidX.Collection.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Collection.1.2.0.4\build\monoandroid12.0\Xamarin.AndroidX.Collection.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.9\build\monoandroid12.0\Xamarin.AndroidX.Concurrent.Futures.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.9\build\monoandroid12.0\Xamarin.AndroidX.Concurrent.Futures.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.Common.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.Common.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Runtime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Runtime.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.SavedState.1.2.0\build\monoandroid12.0\Xamarin.AndroidX.SavedState.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.SavedState.1.2.0\build\monoandroid12.0\Xamarin.AndroidX.SavedState.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Tracing.Tracing.1.1.0.1\build\monoandroid12.0\Xamarin.AndroidX.Tracing.Tracing.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Tracing.Tracing.1.1.0.1\build\monoandroid12.0\Xamarin.AndroidX.Tracing.Tracing.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.14\build\monoandroid12.0\Xamarin.AndroidX.VersionedParcelable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.14\build\monoandroid12.0\Xamarin.AndroidX.VersionedParcelable.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Core.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Core.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Core.Core.Ktx.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.Core.Ktx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Core.Core.Ktx.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.Core.Ktx.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.CustomView.1.1.0.13\build\monoandroid12.0\Xamarin.AndroidX.CustomView.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.CustomView.1.1.0.13\build\monoandroid12.0\Xamarin.AndroidX.CustomView.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Loader.1.1.0.14\build\monoandroid12.0\Xamarin.AndroidX.Loader.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Loader.1.1.0.14\build\monoandroid12.0\Xamarin.AndroidX.Loader.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.ViewPager.1.0.0.14\build\monoandroid12.0\Xamarin.AndroidX.ViewPager.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.ViewPager.1.0.0.14\build\monoandroid12.0\Xamarin.AndroidX.ViewPager.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk7.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk7.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk8.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk8.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.KotlinX.Coroutines.Core.Jvm.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Core.Jvm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.KotlinX.Coroutines.Core.Jvm.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Core.Jvm.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.KotlinX.Coroutines.Android.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Android.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.KotlinX.Coroutines.Android.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Android.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Activity.1.6.0\build\monoandroid12.0\Xamarin.AndroidX.Activity.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Activity.1.6.0\build\monoandroid12.0\Xamarin.AndroidX.Activity.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.AndroidX.Fragment.1.5.3\build\monoandroid12.0\Xamarin.AndroidX.Fragment.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.AndroidX.Fragment.1.5.3\build\monoandroid12.0\Xamarin.AndroidX.Fragment.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Basement.118.1.0.1\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Basement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Basement.118.1.0.1\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Basement.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Tasks.118.0.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Tasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Tasks.118.0.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Tasks.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Base.118.1.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Base.118.1.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Base.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.118.0.1.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Api.Phone.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.118.0.1.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Api.Phone.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Auth.Base.118.0.6\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Base.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Auth.Base.118.0.6\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Base.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Fido.119.0.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Fido.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Fido.119.0.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Fido.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.GooglePlayServices.Auth.120.4.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.GooglePlayServices.Auth.120.4.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.targets'))" />
   </Target>
-  <Import Project="..\packages\Xamarin.AndroidX.MultiDex.2.0.1.5\build\monoandroid90\Xamarin.AndroidX.MultiDex.targets" Condition="Exists('..\packages\Xamarin.AndroidX.MultiDex.2.0.1.5\build\monoandroid90\Xamarin.AndroidX.MultiDex.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Migration.1.0.8\build\monoandroid90\Xamarin.AndroidX.Migration.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Annotation.1.2.0\build\monoandroid9.0\Xamarin.AndroidX.Annotation.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Annotation.1.2.0\build\monoandroid9.0\Xamarin.AndroidX.Annotation.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.8\build\monoandroid9.0\Xamarin.AndroidX.Arch.Core.Common.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.8\build\monoandroid9.0\Xamarin.AndroidX.Arch.Core.Common.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Collection.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Collection.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Collection.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Collection.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.Common.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Common.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.Common.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Common.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Runtime.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.Runtime.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.SavedState.1.1.0.1\build\monoandroid9.0\Xamarin.AndroidX.SavedState.targets" Condition="Exists('..\packages\Xamarin.AndroidX.SavedState.1.1.0.1\build\monoandroid9.0\Xamarin.AndroidX.SavedState.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.3.1\build\monoandroid9.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.7\build\monoandroid9.0\Xamarin.AndroidX.VersionedParcelable.targets" Condition="Exists('..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.7\build\monoandroid9.0\Xamarin.AndroidX.VersionedParcelable.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Core.1.3.2.3\build\monoandroid9.0\Xamarin.AndroidX.Core.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Core.1.3.2.3\build\monoandroid9.0\Xamarin.AndroidX.Core.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Activity.1.2.2\build\monoandroid9.0\Xamarin.AndroidX.Activity.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Activity.1.2.2\build\monoandroid9.0\Xamarin.AndroidX.Activity.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.CustomView.1.1.0.6\build\monoandroid9.0\Xamarin.AndroidX.CustomView.targets" Condition="Exists('..\packages\Xamarin.AndroidX.CustomView.1.1.0.6\build\monoandroid9.0\Xamarin.AndroidX.CustomView.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Loader.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Loader.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Loader.1.1.0.7\build\monoandroid9.0\Xamarin.AndroidX.Loader.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.ViewPager.1.0.0.7\build\monoandroid9.0\Xamarin.AndroidX.ViewPager.targets" Condition="Exists('..\packages\Xamarin.AndroidX.ViewPager.1.0.0.7\build\monoandroid9.0\Xamarin.AndroidX.ViewPager.targets')" />
-  <Import Project="..\packages\Xamarin.AndroidX.Fragment.1.3.2\build\monoandroid9.0\Xamarin.AndroidX.Fragment.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Fragment.1.3.2\build\monoandroid9.0\Xamarin.AndroidX.Fragment.targets')" />
-  <Import Project="..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.10.0\build\Xamarin.Build.Download.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.117.6.0.4\build\monoandroid90\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.117.6.0.4\build\monoandroid90\Xamarin.GooglePlayServices.Basement.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Tasks.117.2.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Tasks.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Tasks.117.2.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Tasks.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Base.117.6.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.117.6.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Base.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.117.5.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Api.Phone.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.117.5.1.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Api.Phone.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Auth.Base.117.1.4.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Auth.Base.117.1.4.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.Base.targets')" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Auth.119.2.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Auth.119.2.0.3\build\monoandroid90\Xamarin.GooglePlayServices.Auth.targets')" />
   <Import Project="..\packages\Xamarin.Google.Guava.FailureAccess.1.0.1.3\build\monoandroid90\Xamarin.Google.Guava.FailureAccess.targets" Condition="Exists('..\packages\Xamarin.Google.Guava.FailureAccess.1.0.1.3\build\monoandroid90\Xamarin.Google.Guava.FailureAccess.targets')" />
-  <Import Project="..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.3\build\monoandroid90\Xamarin.Google.Guava.ListenableFuture.targets" Condition="Exists('..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.3\build\monoandroid90\Xamarin.Google.Guava.ListenableFuture.targets')" />
   <Import Project="..\packages\Xamarin.Google.Guava.28.2.0.1\build\monoandroid90\Xamarin.Google.Guava.targets" Condition="Exists('..\packages\Xamarin.Google.Guava.28.2.0.1\build\monoandroid90\Xamarin.Google.Guava.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.MultiDex.2.0.1.13\build\monoandroid12.0\Xamarin.AndroidX.MultiDex.targets" Condition="Exists('..\packages\Xamarin.AndroidX.MultiDex.2.0.1.13\build\monoandroid12.0\Xamarin.AndroidX.MultiDex.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Migration.1.0.10\build\monoandroid120\Xamarin.AndroidX.Migration.targets')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.11.4\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.9\build\monoandroid12.0\Xamarin.Google.Guava.ListenableFuture.targets" Condition="Exists('..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.9\build\monoandroid12.0\Xamarin.Google.Guava.ListenableFuture.targets')" />
+  <Import Project="..\packages\Xamarin.Jetbrains.Annotations.23.0.0.4\build\monoandroid12.0\Xamarin.Jetbrains.Annotations.targets" Condition="Exists('..\packages\Xamarin.Jetbrains.Annotations.23.0.0.4\build\monoandroid12.0\Xamarin.Jetbrains.Annotations.targets')" />
+  <Import Project="..\packages\Xamarin.Kotlin.StdLib.Common.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Common.targets" Condition="Exists('..\packages\Xamarin.Kotlin.StdLib.Common.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Common.targets')" />
+  <Import Project="..\packages\Xamarin.Kotlin.StdLib.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.targets" Condition="Exists('..\packages\Xamarin.Kotlin.StdLib.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Annotation.1.5.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Annotation.1.5.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Annotation.Experimental.1.3.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.Experimental.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Annotation.Experimental.1.3.0\build\monoandroid12.0\Xamarin.AndroidX.Annotation.Experimental.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Common.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Arch.Core.Common.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Common.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Runtime.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.15\build\monoandroid12.0\Xamarin.AndroidX.Arch.Core.Runtime.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Collection.1.2.0.4\build\monoandroid12.0\Xamarin.AndroidX.Collection.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Collection.1.2.0.4\build\monoandroid12.0\Xamarin.AndroidX.Collection.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.9\build\monoandroid12.0\Xamarin.AndroidX.Concurrent.Futures.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Concurrent.Futures.1.1.0.9\build\monoandroid12.0\Xamarin.AndroidX.Concurrent.Futures.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.Common.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Common.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.Common.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Common.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.LiveData.Core.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.LiveData.Core.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Runtime.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.Runtime.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.Runtime.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModel.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModel.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.SavedState.1.2.0\build\monoandroid12.0\Xamarin.AndroidX.SavedState.targets" Condition="Exists('..\packages\Xamarin.AndroidX.SavedState.1.2.0\build\monoandroid12.0\Xamarin.AndroidX.SavedState.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Tracing.Tracing.1.1.0.1\build\monoandroid12.0\Xamarin.AndroidX.Tracing.Tracing.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Tracing.Tracing.1.1.0.1\build\monoandroid12.0\Xamarin.AndroidX.Tracing.Tracing.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.14\build\monoandroid12.0\Xamarin.AndroidX.VersionedParcelable.targets" Condition="Exists('..\packages\Xamarin.AndroidX.VersionedParcelable.1.1.1.14\build\monoandroid12.0\Xamarin.AndroidX.VersionedParcelable.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Core.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Core.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Core.Core.Ktx.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.Core.Ktx.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Core.Core.Ktx.1.9.0\build\monoandroid12.0\Xamarin.AndroidX.Core.Core.Ktx.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.CustomView.1.1.0.13\build\monoandroid12.0\Xamarin.AndroidX.CustomView.targets" Condition="Exists('..\packages\Xamarin.AndroidX.CustomView.1.1.0.13\build\monoandroid12.0\Xamarin.AndroidX.CustomView.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Loader.1.1.0.14\build\monoandroid12.0\Xamarin.AndroidX.Loader.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Loader.1.1.0.14\build\monoandroid12.0\Xamarin.AndroidX.Loader.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.ViewPager.1.0.0.14\build\monoandroid12.0\Xamarin.AndroidX.ViewPager.targets" Condition="Exists('..\packages\Xamarin.AndroidX.ViewPager.1.0.0.14\build\monoandroid12.0\Xamarin.AndroidX.ViewPager.targets')" />
+  <Import Project="..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk7.targets" Condition="Exists('..\packages\Xamarin.Kotlin.StdLib.Jdk7.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk7.targets')" />
+  <Import Project="..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk8.targets" Condition="Exists('..\packages\Xamarin.Kotlin.StdLib.Jdk8.1.7.10\build\monoandroid12.0\Xamarin.Kotlin.StdLib.Jdk8.targets')" />
+  <Import Project="..\packages\Xamarin.KotlinX.Coroutines.Core.Jvm.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Core.Jvm.targets" Condition="Exists('..\packages\Xamarin.KotlinX.Coroutines.Core.Jvm.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Core.Jvm.targets')" />
+  <Import Project="..\packages\Xamarin.KotlinX.Coroutines.Android.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Android.targets" Condition="Exists('..\packages\Xamarin.KotlinX.Coroutines.Android.1.6.4\build\monoandroid12.0\Xamarin.KotlinX.Coroutines.Android.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.2.5.1\build\monoandroid12.0\Xamarin.AndroidX.Lifecycle.ViewModelSavedState.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Activity.1.6.0\build\monoandroid12.0\Xamarin.AndroidX.Activity.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Activity.1.6.0\build\monoandroid12.0\Xamarin.AndroidX.Activity.targets')" />
+  <Import Project="..\packages\Xamarin.AndroidX.Fragment.1.5.3\build\monoandroid12.0\Xamarin.AndroidX.Fragment.targets" Condition="Exists('..\packages\Xamarin.AndroidX.Fragment.1.5.3\build\monoandroid12.0\Xamarin.AndroidX.Fragment.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.118.1.0.1\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.118.1.0.1\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Basement.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Tasks.118.0.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Tasks.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Tasks.118.0.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Tasks.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Base.118.1.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Base.118.1.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Base.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.118.0.1.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Api.Phone.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Auth.Api.Phone.118.0.1.2\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Api.Phone.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Auth.Base.118.0.6\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Base.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Auth.Base.118.0.6\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.Base.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Fido.119.0.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Fido.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Fido.119.0.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Fido.targets')" />
+  <Import Project="..\packages\Xamarin.GooglePlayServices.Auth.120.4.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Auth.120.4.0\build\MonoAndroid12.0\Xamarin.GooglePlayServices.Auth.targets')" />
 </Project>

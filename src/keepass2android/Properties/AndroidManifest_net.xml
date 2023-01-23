@@ -58,7 +58,7 @@
             android:name="org.apache.http.legacy"
             android:required="false"/>
 			
-			<activity android:name="microsoft.identity.client.BrowserTabActivity">
+			<activity android:name="microsoft.identity.client.BrowserTabActivity" android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
@@ -66,7 +66,7 @@
 				<data android:scheme="msal8374f801-0f55-407d-80cc-9a04fe86d9b2" android:host="auth" />
 			</intent-filter>
 		</activity>
-		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
+		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard"  android:exported="true">
 			<intent-filter>
 				<data android:scheme="db-i8shu7v1hgh7ynt" />
 				<action android:name="android.intent.action.VIEW" />
