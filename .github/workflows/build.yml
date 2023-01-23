@@ -68,19 +68,13 @@ jobs:
 
     # Some components of Keepass2Android currently target android API 26 which are not available on the runner
     - name: Download android-26 API
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-33"
 
     - name: Build native dependencies
       run: make native
 
     - name: Build java dependencies
       run: make java
-
-    - name: Fixes (can be removed once merged in SamsungPass)
-      run: |
-        sed -i '' 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
-        sed -i '' '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
-        sed -i '' 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
     - name: Install NuGet dependencies (net)
       run: make nuget Flavor=Net
@@ -208,9 +202,9 @@ jobs:
     - name: Display java version
       run: java -version
 
-    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
-    - name: Download android-26 API
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+    # Some components of Keepass2Android currently target android API 33 which are not available on the runner
+    - name: Download android-33 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-33"
 
     - name: Install libzip4
       if: ${{ false }}  # disable for now since it is already installed on the runner
@@ -221,12 +215,6 @@ jobs:
 
     - name: Build java dependencies
       run: make java
-
-    - name: Fixes (can be removed once merged in SamsungPass)
-      run: |
-        sed -i 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
-        sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
-        sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
     - name: Install NuGet dependencies (net)
       run: make nuget Flavor=Net
@@ -269,21 +257,13 @@ jobs:
 
   windows:
 
-    # We use windows-2019 because build fails on windows-2022
-    #
-    # on windows-2019 it builds with:
-    #    Microsoft Visual Studio\2019\Enterprise
-    #    Found Java SDK version 1.8.0
-    #    Found Xamarin.Android 12.0.0.3
-    #
+
     # on windows-2022 it builds with:
     #    Microsoft Visual Studio\2022\Enterprise
     #    Found Java SDK version 11.0.12
     #    Found Xamarin.Android 13.1.0.1
     #
-    #    Same error as on macos:
-    #       Error in obj/Debug/lp/12/jl/__reference__pass-v1.1.3.jar:com/samsung/android/sdk/pass/SpassFingerprint.class:  java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4
-    runs-on: windows-2019
+    runs-on: windows-2022
 
     steps:
     - uses: actions/checkout@v3
@@ -331,13 +311,6 @@ jobs:
       shell: cmd
       run: |
         make java
-
-    - name: Fixes (can be removed once merged in SamsungPass)
-      shell: bash
-      run: |
-        sed -i 's|\\Novell\\Xamarin.Android.Bindings.targets|\\Xamarin\\Android\\Xamarin.Android.Bindings.targets|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
-        sed -i '/TargetFrameworkVersion/ s|v9.0|v11.0|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
-        sed -i 's|<ReleaseVersion>1.0</ReleaseVersion>|<ReleaseVersion>1.0</ReleaseVersion><AndroidClassParser>class-parse</AndroidClassParser>|' src/SamsungPass/Xamarin.SamsungPass/SamsungPass/SamsungPass.csproj
 
     - name: Install NuGet dependencies (net)
       run: make nuget Flavor=Net
