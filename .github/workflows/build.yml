@@ -176,7 +176,6 @@ jobs:
 
     - name: Download & unpack Xamarin.Android
       #if: steps.xamarin_cache.outputs.cache-hit != 'true'
-      if: ${{ false }} # replaced by workload install
       run: |
         dotnet workload install android-33
         set -x
