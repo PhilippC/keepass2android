@@ -14,6 +14,7 @@ jobs:
       run: git submodule init && git submodule update
 
     - name: Cache Gradle packages
+      if: ${{ false }} # trying to reduce complexity temporilty
       uses: actions/cache@v3
       with:
         path: |
@@ -139,6 +140,7 @@ jobs:
       run: git submodule init && git submodule update
 
     - name: Cache Gradle packages
+      if: ${{ false }} # trying to reduce complexity temporilty
       uses: actions/cache@v3
       with:
         path: |
