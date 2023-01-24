@@ -269,7 +269,6 @@ public class FragmentFiles extends Fragment implements
                 FileChooserActivity.EXTRA_MAX_FILE_COUNT, 1000);
         mFileAdapter = new BaseFileAdapter(getActivity(), mFilterMode,
                 mIsMultiSelection);
-        
 
         /*
          * History.
@@ -2268,12 +2267,15 @@ public class FragmentFiles extends Fragment implements
             }
 
             if (mIsSaveDialog) {
-                mTextSaveas.setText(BaseFileProviderUtils.getFileName(cursor));
+                String fileName = BaseFileProviderUtils.getFileName(cursor);
+                Uri uri = BaseFileProviderUtils.getUri(cursor);
+
+                mTextSaveas.setText(fileName);
                 /*
                  * Always set tag after setting text, or tag will be reset to
                  * null.
                  */
-                mTextSaveas.setTag(BaseFileProviderUtils.getUri(cursor));
+                mTextSaveas.setTag(uri);
             }
 
             if (mDoubleTapToChooseFiles) {
@@ -2286,10 +2288,12 @@ public class FragmentFiles extends Fragment implements
                 if (mIsMultiSelection)
                     return;
 
-                if (mIsSaveDialog)
+                if (mIsSaveDialog) {
                     checkSaveasFilenameAndFinish();
-                else
+                }
+                else {
                     finish(BaseFileProviderUtils.getUri(cursor));
+                }
             }// single tap to choose files
         }// onItemClick()
     };// mViewFilesOnItemClickListener

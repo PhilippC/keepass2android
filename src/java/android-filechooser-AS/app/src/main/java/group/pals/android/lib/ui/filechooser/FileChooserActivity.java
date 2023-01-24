@@ -221,7 +221,6 @@ public class FileChooserActivity extends FragmentActivity {
     
     public static final String EXTRA_RESULT_FILE_EXISTS = CLASSNAME + ".result_file_exists";
     
-    
 
     /*
      * CONTROLS
