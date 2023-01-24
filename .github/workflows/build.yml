@@ -177,7 +177,6 @@ jobs:
     - name: Download & unpack Xamarin.Android
       #if: steps.xamarin_cache.outputs.cache-hit != 'true'
       run: |
-        dotnet workload install android-33
         set -x
         cd $HOME &&
         wget -O "installers-unsigned - Linux.zip" ${{ env.xamarin_url }} &&
