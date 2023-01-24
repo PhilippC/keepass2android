@@ -67,16 +67,9 @@ jobs:
       with:
         java-version: '8'
         distribution: 'temurin'
-    
-    - name: Install NDK
-      run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}		
 
     - name: Display java version
       run: java -version
-
-    # Some components of Keepass2Android currently target android API 33 which are not available on the runner
-    - name: Download android-33 API
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-33"
 
     - name: Build native dependencies
       run: make native
@@ -219,10 +212,6 @@ jobs:
 
     - name: Display java version
       run: java -version
-
-    # Some components of Keepass2Android currently target android API 33 which are not available on the runner
-    - name: Download android-33 API
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-33"
 
     - name: Install libzip4
       if: ${{ false }}  # disable for now since it is already installed on the runner
