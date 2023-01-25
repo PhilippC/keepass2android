@@ -49,11 +49,6 @@ jobs:
         # If using the github runner 'macos-10.15'
         # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
 
-    - name: Install NDK
-      run: | 
-        yes | ${ANDROID_HOME}/tools/bin/sdkmanager.bat --licenses #accept licenses
-        ${ANDROID_HOME}/tools/bin/sdkmanager.bat --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
-
     - name: Switch to JDK-8
       if: ${{ false }} # Not needed, we stay with the default installed JDK
       uses: actions/setup-java@v3
@@ -185,9 +180,6 @@ jobs:
       with:
         java-version: '8'
         distribution: 'temurin'
-
-    - name: Install NDK
-      run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}		
 
     - name: Display java version
       run: java -version
