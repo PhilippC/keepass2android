@@ -40,7 +40,7 @@ jobs:
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.1 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1 
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1
 
         # If using the github runner 'macos-11'
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
@@ -233,7 +233,6 @@ jobs:
       run: make distclean
 
   windows:
-
 
     # on windows-2022 it builds with:
     #    Microsoft Visual Studio\2022\Enterprise
