@@ -156,7 +156,7 @@ jobs:
         sudo apt-get -y -t stable-focal install mono-complete
 
     - name: Download & unpack Xamarin.Android
-      #if: steps.xamarin_cache.outputs.cache-hit != 'true'
+      if: steps.xamarin_cache.outputs.cache-hit != 'true'
       run: |
         set -x
         cd $HOME &&
