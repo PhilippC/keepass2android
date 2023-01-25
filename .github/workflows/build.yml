@@ -13,16 +13,8 @@ jobs:
     - name: Fetch submodules
       run: git submodule init && git submodule update
 
-    - name: Cache Gradle packages
-      if: ${{ false }} # trying to reduce complexity temporilty
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
@@ -139,16 +131,8 @@ jobs:
     - name: Fetch submodules
       run: git submodule init && git submodule update
 
-    - name: Cache Gradle packages
-      if: ${{ false }} # trying to reduce complexity temporilty
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
@@ -270,16 +254,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Cache Gradle packages
-      if: ${{ false }} # trying to reduce complexity temporilty
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
@@ -353,20 +329,3 @@ jobs:
 
     - name: Perform "make distclean"
       run: make distclean
-
-    # Stop gradle daemon so as to be able to save the Gradle cache
-    # Otherwise, error is: tar.exe: Couldn't open C:/Users/runneradmin/.gradle/caches/transforms-2/transforms-2.lock: Permission denied
-    - name: Stop gradle daemon
-      shell: cmd
-      run: |
-        echo on
-        call src\java\JavaFileStorageTest-AS\gradlew.bat --stop
-        echo on
-        call src\java\KP2ASoftkeyboard_AS\gradlew.bat --stop
-        echo on
-        call src\java\Keepass2AndroidPluginSDK2\gradlew.bat --stop
-        echo on
-        call src\java\KP2AKdbLibrary\gradlew.bat --stop
-        echo on
-        call src\java\PluginQR\gradlew.bat --stop
-        echo on
