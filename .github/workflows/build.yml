@@ -168,7 +168,6 @@ jobs:
         mv "$DIR"/*.deb xamarin.android-oss
 
     - name: Setup Xamarin.Android
-      if: ${{ false }} # replaced by workload install
       run: |
         cd $HOME &&
         sudo apt install -y ./xamarin.android-oss/*.deb &&
