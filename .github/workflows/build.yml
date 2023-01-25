@@ -59,6 +59,10 @@ jobs:
     - name: Display java version
       run: java -version
 
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+
     - name: Build native dependencies
       run: make native
 
@@ -183,6 +187,10 @@ jobs:
     - name: Display java version
       run: java -version
 
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+
     - name: Install libzip4
       if: ${{ false }}  # disable for now since it is already installed on the runner
       run: sudo apt -y install libzip4
@@ -270,6 +278,12 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
+
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      shell: cmd
+      run: |
+        %ANDROID_SDK_ROOT%\cmdline-tools\latest\bin\sdkmanager --install "platforms;android-26"
 
     - name: Build native dependencies
       shell: cmd
