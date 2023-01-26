@@ -49,11 +49,10 @@ jobs:
         # If using the github runner 'macos-10.15'
         # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
 
-    - name: Switch to JDK-8
-      if: ${{ false }} # Not needed, we stay with the default installed JDK
+    - name: Switch to JDK-11
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
+        java-version: '11'
         distribution: 'temurin'
 
     - name: Display java version
@@ -177,11 +176,10 @@ jobs:
         sudo apt install -y ./xamarin.android-oss/*.deb &&
         echo "$HOME/xamarin.android-oss/bin/Release/bin" >> $GITHUB_PATH
 
-    - name: Switch to JDK-8
-      if: ${{ false }} # Not needed, we stay with the default installed JDK
+    - name: Switch to JDK-11
       uses: actions/setup-java@v3
       with:
-        java-version: '8'
+        java-version: '11'
         distribution: 'temurin'
 
     - name: Display java version
@@ -278,6 +276,15 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Switch to JDK-11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: Display java version
+      run: java -version
 
     # Some components of Keepass2Android currently target android API 26 which are not available on the runner
     - name: Download android-26 API
