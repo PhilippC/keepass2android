@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.crocoapps.javafilestoragetest2">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -9,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.crocoapps.javafilestoragetest2.MainActivity">
+        <activity android:name="com.crocoapps.javafilestoragetest2.MainActivity"
+                  android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,6 +49,7 @@
         </activity>
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
+            android:exported="true"
             android:configChanges="orientation|keyboard"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -63,7 +64,8 @@
         </activity>
 
         <activity
-            android:name="com.microsoft.identity.client.BrowserTabActivity">
+            android:name="com.microsoft.identity.client.BrowserTabActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
