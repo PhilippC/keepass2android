@@ -13,16 +13,8 @@ jobs:
     - name: Fetch submodules
       run: git submodule init && git submodule update
 
-    - name: Cache Gradle packages
-      if: ${{ false }} # trying to reduce complexity temporilty
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
@@ -48,7 +40,7 @@ jobs:
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.1 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1 
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1
 
         # If using the github runner 'macos-11'
         #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
@@ -56,11 +48,6 @@ jobs:
 
         # If using the github runner 'macos-10.15'
         # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
-
-    - name: Install NDK
-      run: | 
-        yes | ${ANDROID_HOME}/tools/bin/sdkmanager.bat --licenses #accept licenses
-        ${ANDROID_HOME}/tools/bin/sdkmanager.bat --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
     - name: Switch to JDK-8
       if: ${{ false }} # Not needed, we stay with the default installed JDK
@@ -71,6 +58,10 @@ jobs:
 
     - name: Display java version
       run: java -version
+
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
 
     - name: Build native dependencies
       run: make native
@@ -139,16 +130,8 @@ jobs:
     - name: Fetch submodules
       run: git submodule init && git submodule update
 
-    - name: Cache Gradle packages
-      if: ${{ false }} # trying to reduce complexity temporilty
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
@@ -177,7 +160,7 @@ jobs:
         sudo apt-get -y -t stable-focal install mono-complete
 
     - name: Download & unpack Xamarin.Android
-      #if: steps.xamarin_cache.outputs.cache-hit != 'true'
+      if: steps.xamarin_cache.outputs.cache-hit != 'true'
       run: |
         set -x
         cd $HOME &&
@@ -189,7 +172,6 @@ jobs:
         mv "$DIR"/*.deb xamarin.android-oss
 
     - name: Setup Xamarin.Android
-      if: ${{ false }} # replaced by workload install
       run: |
         cd $HOME &&
         sudo apt install -y ./xamarin.android-oss/*.deb &&
@@ -202,11 +184,12 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
-    - name: Install NDK
-      run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}		
-
     - name: Display java version
       run: java -version
+
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
 
     - name: Install libzip4
       if: ${{ false }}  # disable for now since it is already installed on the runner
@@ -259,7 +242,6 @@ jobs:
 
   windows:
 
-
     # on windows-2022 it builds with:
     #    Microsoft Visual Studio\2022\Enterprise
     #    Found Java SDK version 11.0.12
@@ -270,16 +252,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Cache Gradle packages
-      if: ${{ false }} # trying to reduce complexity temporilty
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
@@ -304,6 +278,12 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
+
+    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+    - name: Download android-26 API
+      shell: cmd
+      run: |
+        %ANDROID_SDK_ROOT%\cmdline-tools\latest\bin\sdkmanager --install "platforms;android-26"
 
     - name: Build native dependencies
       shell: cmd
@@ -353,20 +333,3 @@ jobs:
 
     - name: Perform "make distclean"
       run: make distclean
-
-    # Stop gradle daemon so as to be able to save the Gradle cache
-    # Otherwise, error is: tar.exe: Couldn't open C:/Users/runneradmin/.gradle/caches/transforms-2/transforms-2.lock: Permission denied
-    - name: Stop gradle daemon
-      shell: cmd
-      run: |
-        echo on
-        call src\java\JavaFileStorageTest-AS\gradlew.bat --stop
-        echo on
-        call src\java\KP2ASoftkeyboard_AS\gradlew.bat --stop
-        echo on
-        call src\java\Keepass2AndroidPluginSDK2\gradlew.bat --stop
-        echo on
-        call src\java\KP2AKdbLibrary\gradlew.bat --stop
-        echo on
-        call src\java\PluginQR\gradlew.bat --stop
-        echo on
