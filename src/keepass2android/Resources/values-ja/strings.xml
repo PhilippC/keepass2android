@@ -98,7 +98,7 @@
   <string name="fingerprint_disabled_wrong_masterkey">データベースのロック解除に失敗しました: 無効な複合マスターキーです。保存されたマスターパスワードが無効になったため、生体認証のロック解除が無効にされました。 </string>
   <string name="fingerprint_reenable">新しいマスターパスワードで生体認証によるロック解除を再度有効にしてください。</string>
   <string name="fingerprint_reenable2">パスワードでロックを解除して、データベースの設定でもう一度生体認証のロック解除を有効にしてください。</string>
-  <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。 </string>
+  <string name="FingerprintInitFailed">生体認証の初期化に失敗しました。</string>
   <string name="FingerprintSetupFailed">データの暗号化に失敗しました。これは Keepass2Android が指紋を確認している間にシステム設定で指紋を追加または削除した場合に発生することがあります。</string>
   <string name="enable_fingerprint_unlock_Info">マスターパスワードを Android キーストアで暗号化した状態でこの端末に保存し、生体認証で保護します。生体認証のみでデータベースのロックを解除できるようになります。</string>
   <string name="enable_fingerprint_quickunlock_Info">QuickUnlock キーのかわりに生体認証を利用できるようにします。マスターパスワードに関連する情報は格納しません。</string>
@@ -404,7 +404,7 @@
   <string name="OpenKp2aKeyboardAutomatically_title">キーボード切り替え</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">ブラウザーから検索後、KP2A キーボードでエントリーが使用可能な場合にキーボード選択ダイアログを開きます。</string>
   <string name="kp2a_switch_rooted">キーボード自動切り替え</string>
-  <string name="kp2a_switch_rooted_summary">エントリーを開くときに、自動的に KP2A キーボードに切り替わります。 KeyboardSwap プラグインを正しく準備すること、または root 化した デバイスと System+ で保護された設定アプリが必要です。</string>
+  <string name="kp2a_switch_rooted_summary">エントリーを開くときに、自動的に KP2A キーボードに切り替わります。正しく準備された KeyboardSwap プラグイン、または root 化した デバイスと System+ で保護された設定アプリが必要です。</string>
   <string name="get_keyboardswap">KeyboardSwap プラグインをインストール</string>
   <string name="get_keyboardswap_summary">このプラグインは、root 化しなくても KP2A キーボードに切り替えることができます。ADB が必要です。</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">検索後のみ自動切り替え</string>
@@ -608,10 +608,10 @@
   <string name="ClickOkToSelectLocation">OK をタップしてファイルをコピーする場所を選択します。</string>
   <string name="FileReadOnlyTitle">データベースが読み取り専用</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android は、現在のデータベースを読み取り専用モードで開きました。</string>
-  <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。ファイルへの書き込みはできません｡ データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください。対応している場合は、いずれかのオプションからファイルを開くことができます。</string>
+  <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。ファイルへの書き込みはできません。データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください。対応している場合は、いずれかのオプションからファイルを開くことができます。</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">読み取り専用フラグが設定されます。データベースを編集する場合は、このフラグを削除してください。</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat で導入された制限のため、書き込みは不可能です。データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください。その後、システムのファイル選択を使用してファイルを開いてください。</string>
-  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません｡ [データベースの設定] > [データベースをエクスポート] で、このバックアップをあなたが自由に開ける場所へエクスポートできます。その後、再び書き込み可能になります。</string>
+  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません。[データベースの設定] > [データベースをエクスポート] から、この自由に開ける場所へエクスポートしてください。その後、再び書き込み可能になります。</string>
   <string name="AddCustomIcon">ファイルからアイコンを追加...</string>
   <string name="CopyingFile">ファイルをコピーしています...</string>
   <string name="DuplicateTitle">コピー</string>
