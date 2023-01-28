@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'keepass2android.plugin.qr'
     compileSdkVersion 26
-    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "keepass2android.plugin.qr"
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 31
         versionCode 3
         versionName "1.0.2"
     }
@@ -32,6 +32,6 @@ android {
 }
 
 dependencies {
-    compile project(':Keepass2AndroidPluginSDK2')
-    compile 'com.google.zxing:core:2.3.0'
+    implementation project(':Keepass2AndroidPluginSDK2')
+    implementation 'com.google.zxing:core:2.3.0'
 }

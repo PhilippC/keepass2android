@@ -1,8 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="keepass2android.softkeyboard">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-sdk android:targetSdkVersion="14"/>
 
     <application
             android:killAfterRestore="false">

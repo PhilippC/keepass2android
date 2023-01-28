@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace "com.crocoapps.javafilestoragetest2"
+
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.crocoapps.javafilestoragetest2"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -31,10 +32,11 @@ android {
 //apply plugin: 'com.getkeepsafe.dexcount'
 
 dependencies {
-    compile project(':android-filechooser')
-    compile project(':JavaFileStorage')
+    implementation project(':android-filechooser')
+    implementation project(':JavaFileStorage')
+    implementation "androidx.annotation:annotation:1.5.0"
 }
 
 configurations {
-    compile.exclude group: "org.apache.httpcomponents", module: "httpclient"
+    implementation.exclude group: "org.apache.httpcomponents", module: "httpclient"
 }

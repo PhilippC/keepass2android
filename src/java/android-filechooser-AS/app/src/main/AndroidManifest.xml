@@ -6,8 +6,7 @@
     permission.
 -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="group.pals.android.lib.ui.filechooser" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 </manifest>

@@ -1,8 +1,10 @@
 apply plugin: 'com.android.library'
 
 android {
+
+    namespace 'group.pals.android.lib.ui.filechooser'
+
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 16
@@ -23,5 +25,5 @@ android {
 }
 
 dependencies {
-    compile 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

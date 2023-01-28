@@ -1,7 +1,9 @@
 apply plugin: 'com.android.library'
 android {
+
+    namespace 'keepass2android.softkeyboard'
+
     compileSdkVersion 23
-    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 18
