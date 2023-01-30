@@ -686,6 +686,11 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Bug fix to crashes and unexpected log-outs</item>
+    <item>Przełącz się na nową implementację SFTP, wspierając nowoczesne algorytmy klucza publicznego, takie jak rsa-sha2-256</item>
+    <item>Oznacz hasła jako wrażliwe podczas kopiowania do schowka (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Dodano wsparcie dla przeglądania, usuwania i przywracania kopii zapasowych wpisów</item>
     <item>Zaimplementowane wsparcie dla MEGA w chmurze</item>

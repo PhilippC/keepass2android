@@ -683,6 +683,11 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Correction de bugs pour les plantages et les déconnexions inattendues</item>
+    <item>Passage à une nouvelle implémentation SFTP, prenant en charge les algorithmes à clé publique modernes tels que rsa-sha2-256</item>
+    <item>Marquer les mots de passe comme sensibles lors de la copie dans le presse-papiers (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Ajout du support pour la visualisation, la suppression et la restauration des sauvegardes d\'entrée</item>
     <item>Support implémenté pour le stockage cloud MEGA</item>
