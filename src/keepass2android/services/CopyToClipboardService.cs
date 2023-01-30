@@ -140,8 +140,9 @@ namespace keepass2android
                         _ctx.GetString(Resource.String.menu_copy_totp),
                         GetPendingIntent(Intents.CopyTotp, Resource.String.menu_copy_totp)));
 
-                // Don't show on wearable devices
-                notificationBuilder.SetLocalOnly(true);
+                // Don't show on wearable devices if possible
+                if ((int)Build.VERSION.SdkInt >= 20)
+                    notificationBuilder.SetLocalOnly(true);
 
                 notificationBuilder.SetPriority((int)Android.App.NotificationPriority.Max);
                 var notification = notificationBuilder.Build();
