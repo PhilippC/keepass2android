@@ -3,12 +3,12 @@ apply plugin: 'com.android.application'
 android {
     namespace "com.crocoapps.javafilestoragetest2"
 
-    compileSdkVersion 28
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.crocoapps.javafilestoragetest2"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -24,8 +24,8 @@ android {
 
 
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility 11
+        targetCompatibility 11
     }
 }
 

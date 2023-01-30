@@ -3,7 +3,7 @@ android {
 
     namespace 'keepass2android.softkeyboard'
 
-    compileSdkVersion 23
+    compileSdkVersion 33
 
     defaultConfig {
         minSdkVersion 18

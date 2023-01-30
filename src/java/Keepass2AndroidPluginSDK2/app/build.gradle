@@ -3,11 +3,11 @@ android {
 
     namespace 'keepass2android.pluginsdk'
 
-    compileSdkVersion 23
+    compileSdkVersion 33
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 19
+        minSdkVersion 18
+        targetSdkVersion 33
     }
 
     buildTypes {

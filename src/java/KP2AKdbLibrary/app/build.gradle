@@ -4,7 +4,7 @@ android {
 
     namespace 'keepass2android.kp2akeytransform'
 
-    compileSdkVersion 23
+    compileSdkVersion 33
 
     defaultConfig {
         ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
