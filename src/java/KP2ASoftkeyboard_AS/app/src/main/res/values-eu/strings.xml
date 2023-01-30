@@ -19,19 +19,32 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Keepass2Android teklatua</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Android teklatuaren ezarpenak</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Sartze aukerak</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Dardara egin tekla zapaltzean</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Soinua egin tekla zapaltzean</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Handitu tekla zapaltzean</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Zuzendu idazketa akatsak</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Sartze akatsen zuzenketa aktibatu</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Sartze akatsen zuzenketa aktibatu</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Hitzen iradokizunak</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Automatikoki zuzendu aurreko hitza</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">Hitzen iradokizunak</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category">Hitzen iradokizunen ezarpenak</string>
     <!-- Description for text prediction -->
     <!-- Dialog title for auto complete choices -->
     <!-- Option to enable text prediction in landscape -->
@@ -43,6 +56,7 @@
     <!-- Option to enable quick fixes -->
     <!-- Description for quick fixes -->
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Erakutsi iradokizunak</string>
     <!-- Description for show suggestions -->
     <!-- Option to enable auto completion -->
     <!-- Description for auto completion -->
@@ -77,11 +91,15 @@
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
     <!-- Tutorial tip 6 - Done with the tutorial -->
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Joan</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Hurrengoa</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <string name="label_done_key">Egina</string>
     <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Bidali</string>
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
@@ -115,12 +133,23 @@
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Utzi</string>
     <!-- Label on button when an error occurs -->
+    <string name="ok">Ados</string>
     <!-- Preferences item for enabling speech input -->
     <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>Teklatu nagusian</item>
+        <item>Ikurren teklatuan</item>
+        <item>Off</item>
+    </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Mikrofonoa teklatu nagusian</item>
+        <item>Mikrofonoa ikurren teklatuan</item>
+        <item>Ahots sartzea desgaitua</item>
+    </string-array>
     <!-- Press the "enter" key after the user speaks. Option on settings.-->
     <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
     <!-- IME Tutorial screen (ROMAN) -->
@@ -129,19 +158,34 @@
     <!-- appears above image showing how to use touch and hold -->
     <!-- appears above image showing how to access keyboard settings -->
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
     <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
     <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
     <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
     <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Aukeratu sartze modua</string>
     <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Sartze hizkuntzak</string>
     <!-- Title summary for input language selection screen -->
     <!-- Add to dictionary hint -->
     <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Hiztegia eskuragarri</string>
     <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Gaitu erabiltzaileen aipamenak</string>
     <!-- Description for enabling to send user statistics to Google -->
     <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Ukitu hitzak zuzentzeko</string>
     <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Ukitu sartutako hitzak horiek zuzentzeko</string>
     <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Teklatuaren gaia</string>
+    <string name="subtype_mode_keyboard">teklatua</string>
+    <string name="subtype_mode_voice">ahotsa</string>
     <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
 </resources>

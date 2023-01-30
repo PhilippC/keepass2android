@@ -686,6 +686,11 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Correção de bugs em falhas e logouts inesperados</item>
+    <item>Mudar para nova implementação SFTP, suportando algoritmos de chave pública modernos como rsa-sha2-256</item>
+    <item>Marcar senhas como confidenciais ao copiar para a área de transferência (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Adicionado suporte para visualização, remoção e restauração de backups de entrada</item>
     <item>Implementado suporte para armazenamento em nuvem MEGA</item>
