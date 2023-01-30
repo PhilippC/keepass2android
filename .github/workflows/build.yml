@@ -107,136 +107,140 @@ jobs:
     - name: Perform "make distclean"
       run: make distclean
 
-  linux:
+  # linux:
+  # disabled. 
+  # As per: xamarin/xamarin-android#7235 (comment)
+  # > Unfortunately the Classic OSS Xamarin.Android packages for Linux are no longer being built and as such they are not available for the v13.0 tag.
+  # we can re-enable this after porting to .net 6.0
 
-    runs-on: ubuntu-22.04
+  #   runs-on: ubuntu-22.04
 
-    env:
-        # Build Artifact of xamarin.android-oss dated 2021-02-02, master branch (= version 11.2.99) - *.deb cannot be installed because "lxd" package is not anymore shipped in current ubuntu version
-        #xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM0NTE3L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip
+  #   env:
+  #       # Build Artifact of xamarin.android-oss dated 2021-02-02, master branch (= version 11.2.99) - *.deb cannot be installed because "lxd" package is not anymore shipped in current ubuntu version
+  #       #xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM0NTE3L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip
 
-        # Build Artifact of xamarin.android-oss dated 2021-03-23, d16-9 branch (= version 11.2.2) - *.deb cannot be installed because "lxd" package is not anymore shipped in current ubuntu version
-        #xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM3Njg0L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip
+  #       # Build Artifact of xamarin.android-oss dated 2021-03-23, d16-9 branch (= version 11.2.2) - *.deb cannot be installed because "lxd" package is not anymore shipped in current ubuntu version
+  #       #xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzM3Njg0L2FydGlmYWN0TmFtZS9JbnN0YWxsZXJzKy0rTGludXg1/content?format=zip
 
-        # Build Artifact of xamarin.android-oss dated 2021-07-21, master branch (= version 11.4.99)
-        # xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzQzNjU5L2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip
+  #       # Build Artifact of xamarin.android-oss dated 2021-07-21, master branch (= version 11.4.99)
+  #       # xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzQzNjU5L2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip
 
-        # Build Artifact of xamarin.android-oss dated 2022-02-16, master branch (= version 12.2.99)
-        xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzU0OTUzL2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip
-    steps:
-    - uses: actions/checkout@v3
+  #       # Build Artifact of xamarin.android-oss dated 2022-02-16, master branch (= version 12.2.99)
+  #       xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzU0OTUzL2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip
+  #   steps:
+  #   - uses: actions/checkout@v3
 
-    - name: Fetch submodules
-      run: git submodule init && git submodule update
+  #   - name: Fetch submodules
+  #     run: git submodule init && git submodule update
 
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
+  #   - name: Setup Gradle
+  #     uses: gradle/gradle-build-action@v2
 
-    - name: Cache NuGet packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
+  #   - name: Cache NuGet packages
+  #     uses: actions/cache@v3
+  #     with:
+  #       path: ~/.nuget/packages
+  #       key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
+  #       restore-keys: |
+  #         ${{ runner.os }}-nuget-
 
-    - name: Cache Xamarin.Android packages
-      id: xamarin_cache
-      uses: actions/cache@v3
-      with:
-        path: ~/xamarin.android-oss
-        key: ${{ runner.os }}-xamarin.android-oss-${{ env.xamarin_url }}
-        restore-keys: |
-          ${{ runner.os }}-xamarin.android-oss-${{ env.xamarin_url }}
+  #   - name: Cache Xamarin.Android packages
+  #     id: xamarin_cache
+  #     uses: actions/cache@v3
+  #     with:
+  #       path: ~/xamarin.android-oss
+  #       key: ${{ runner.os }}-xamarin.android-oss-${{ env.xamarin_url }}
+  #       restore-keys: |
+  #         ${{ runner.os }}-xamarin.android-oss-${{ env.xamarin_url }}
 
-    - name: Install Mono
-      if: ${{ false }}  # disable for now since it is already installed on the runner which uses the same repo https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md#language-and-runtime
-      run: |
-        sudo apt install gnupg ca-certificates &&
-        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF &&
-        echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list &&
-        sudo apt update &&
-        sudo apt-get -y -t stable-focal install mono-complete
+  #   - name: Install Mono
+  #     if: ${{ false }}  # disable for now since it is already installed on the runner which uses the same repo https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md#language-and-runtime
+  #     run: |
+  #       sudo apt install gnupg ca-certificates &&
+  #       sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF &&
+  #       echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list &&
+  #       sudo apt update &&
+  #       sudo apt-get -y -t stable-focal install mono-complete
 
-    - name: Download & unpack Xamarin.Android
-      if: steps.xamarin_cache.outputs.cache-hit != 'true'
-      run: |
-        set -x
-        cd $HOME &&
-        wget -O "installers-unsigned - Linux.zip" ${{ env.xamarin_url }} &&
-        unzip "installers-unsigned - Linux.zip" &&
-        mkdir -p xamarin.android-oss &&
-        DIR=$(unzip -Z -1 installers-unsigned\ -\ Linux.zip   | cut -d '/' -f1 | sort -u) &&
-        tar -xvf "$DIR"/xamarin.android-oss-*.tar.* --strip-components=1 -C xamarin.android-oss &&
-        mv "$DIR"/*.deb xamarin.android-oss
+  #   - name: Download & unpack Xamarin.Android
+  #     if: steps.xamarin_cache.outputs.cache-hit != 'true'
+  #     run: |
+  #       set -x
+  #       cd $HOME &&
+  #       wget -O "installers-unsigned - Linux.zip" ${{ env.xamarin_url }} &&
+  #       unzip "installers-unsigned - Linux.zip" &&
+  #       mkdir -p xamarin.android-oss &&
+  #       DIR=$(unzip -Z -1 installers-unsigned\ -\ Linux.zip   | cut -d '/' -f1 | sort -u) &&
+  #       tar -xvf "$DIR"/xamarin.android-oss-*.tar.* --strip-components=1 -C xamarin.android-oss &&
+  #       mv "$DIR"/*.deb xamarin.android-oss
 
-    - name: Setup Xamarin.Android
-      run: |
-        cd $HOME &&
-        sudo apt install -y ./xamarin.android-oss/*.deb &&
-        echo "$HOME/xamarin.android-oss/bin/Release/bin" >> $GITHUB_PATH
+  #   - name: Setup Xamarin.Android
+  #     run: |
+  #       cd $HOME &&
+  #       sudo apt install -y ./xamarin.android-oss/*.deb &&
+  #       echo "$HOME/xamarin.android-oss/bin/Release/bin" >> $GITHUB_PATH
 
-    - name: Switch to JDK-11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
+  #   - name: Switch to JDK-11
+  #     uses: actions/setup-java@v3
+  #     with:
+  #       java-version: '11'
+  #       distribution: 'temurin'
 
-    - name: Display java version
-      run: java -version
+  #   - name: Display java version
+  #     run: java -version
 
-    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
-    - name: Download android-26 API
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+  #   # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+  #   - name: Download android-26 API
+  #     run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
 
-    - name: Install libzip4
-      if: ${{ false }}  # disable for now since it is already installed on the runner
-      run: sudo apt -y install libzip4
+  #   - name: Install libzip4
+  #     if: ${{ false }}  # disable for now since it is already installed on the runner
+  #     run: sudo apt -y install libzip4
 
-    - name: Build native dependencies
-      run: make native
+  #   - name: Build native dependencies
+  #     run: make native
 
-    - name: Build java dependencies
-      run: make java
+  #   - name: Build java dependencies
+  #     run: make java
 
-    - name: Install NuGet dependencies (net)
-      run: make nuget Flavor=Net
+  #   - name: Install NuGet dependencies (net)
+  #     run: make nuget Flavor=Net
 
-    - name: Build keepass2android (net)
-      run: |
-        make msbuild Flavor=Net
+  #   - name: Build keepass2android (net)
+  #     run: |
+  #       make msbuild Flavor=Net
 
-    - name: Build APK (net)
-      run: |
-        make apk Flavor=Net
+  #   - name: Build APK (net)
+  #     run: |
+  #       make apk Flavor=Net
 
-    - name: Archive production artifacts (net)
-      uses: actions/upload-artifact@v3
-      with:
-        name: signed APK ('net' built on ${{ github.job }})
-        path: |
-          src/keepass2android/bin/*/*-Signed.apk
+  #   - name: Archive production artifacts (net)
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: signed APK ('net' built on ${{ github.job }})
+  #       path: |
+  #         src/keepass2android/bin/*/*-Signed.apk
 
-    - name: Install NuGet dependencies (nonet)
-      run: make nuget Flavor=NoNet
+  #   - name: Install NuGet dependencies (nonet)
+  #     run: make nuget Flavor=NoNet
 
-    - name: Build keepass2android (nonet)
-      run: |
-        make msbuild Flavor=NoNet
+  #   - name: Build keepass2android (nonet)
+  #     run: |
+  #       make msbuild Flavor=NoNet
 
-    - name: Build APK (nonet)
-      run: |
-        make apk Flavor=NoNet
+  #   - name: Build APK (nonet)
+  #     run: |
+  #       make apk Flavor=NoNet
 
-    - name: Archive production artifacts (nonet)
-      uses: actions/upload-artifact@v3
-      with:
-        name: signed APK ('nonet' built on ${{ github.job }})
-        path: |
-          src/keepass2android/bin/*/*-Signed.apk
+  #   - name: Archive production artifacts (nonet)
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: signed APK ('nonet' built on ${{ github.job }})
+  #       path: |
+  #         src/keepass2android/bin/*/*-Signed.apk
 
-    - name: Perform "make distclean"
-      run: make distclean
+  #   - name: Perform "make distclean"
+  #     run: make distclean
 
   windows:
 
