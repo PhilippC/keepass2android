@@ -172,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">遮罩密碼</string>
   <string name="maskpass_summary">預設情況下隱藏密碼</string>
+  <string name="masktotp_title">遮罩 TOTP</string>
+  <string name="masktotp_summary">預設情況下隱藏 TOTP</string>
+  <string name="NoAutofillDisabling_title">無禁用自動填入選項</string>
+  <string name="NoAutofillDisabling_summary">啟用後，應用程式將不顯示禁用特定項目的自動填入選項。</string>
   <string name="menu_about">關於</string>
   <string name="menu_change_key">變更主金鑰</string>
   <string name="menu_copy_pass">複製密碼</string>
@@ -285,6 +289,7 @@
   <string name="please_note">請注意</string>
   <string name="contributors">貢獻者</string>
   <string name="regular_expression">正規表示式</string>
+  <string name="AlwaysMergeOnConflict_title">衝突時一律合併</string>
   <string name="TanExpiresOnUse_title">TAN 使用到期</string>
   <string name="TanExpiresOnUse_summary">當使用它們時標記 TAN 項目過期</string>
   <string name="ShowUsernameInList_title">在清單中顯示使用者名稱</string>
@@ -1076,5 +1081,5 @@
   <string name="AutofillWarning_title">安全警示：未知網域或應用程式的鏈結</string>
   <string name="AutofillWarning_Intro">你正將「%1$s」網域的憑證輸入到「%2$s」應用程式。</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">如你相信「%2$s」屬於「%1$s」，或「%2$s」應用程式不會誤用憑證（例如這是可信的瀏覽器）時，請繼續。反之請取消。</string>
-  <string name="AutofillWarning_trustAsBrowser">一律同意「%1$s」</string>
+  <string name="AutofillWarning_trustAsBrowser">一律接受「%1$s」</string>
 </resources>
