@@ -52,7 +52,7 @@
   <string name="import_keyfile_prefs">匯入金鑰檔案到內部資料夾</string>
   <string name="export_keyfile_prefs">從內部資料夾匯出金鑰檔案</string>
   <string name="keyboardswitch_prefs">切換鍵盤</string>
-  <string name="OnlyAvailableForLocalFiles">僅可用於本地檔案。</string>
+  <string name="OnlyAvailableForLocalFiles">僅可用於本機檔案。</string>
   <string name="FileIsInInternalDirectory">檔存儲在內部目錄中。</string>
   <string name="DatabaseFileMoved">資料庫檔案被複製到內部資料夾。按確定以從新位置打開。注意: 不要忘記定期將資料庫匯出到一個安全的存儲裝置！</string>
   <string name="KeyfileMoved">金鑰檔案被複製到內部資料夾。從目前位置刪除之前請確保您留有一個安全的備份!</string>
@@ -290,6 +290,7 @@
   <string name="contributors">貢獻者</string>
   <string name="regular_expression">正規表示式</string>
   <string name="AlwaysMergeOnConflict_title">衝突時一律合併</string>
+  <string name="AlwaysMergeOnConflict_summary">Keepass2Android 偵測到遠端檔案有修改時，一律合併本機和遠端變更</string>
   <string name="TanExpiresOnUse_title">TAN 使用到期</string>
   <string name="TanExpiresOnUse_summary">當使用它們時標記 TAN 項目過期</string>
   <string name="ShowUsernameInList_title">在清單中顯示使用者名稱</string>
@@ -328,6 +329,8 @@
   <string name="QuickUnlockLength_summary">用作 QuickUnlock 密碼的最大字數。</string>
   <string name="QuickUnlockHideLength_title">隱藏 QuickUnlock 代碼長度</string>
   <string name="QuickUnlockHideLength_summary">若啟用，QuickUnlock 代碼長度不會顯示在 QuickUnlock 畫面中。</string>
+  <string name="QuickUnlockKeyFromDatabase_title">以資料庫項目作為 QuickUnlock 金鑰</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">目前資料庫內根目錄內有名為 QuickUnlock 的項目時，用其密碼為 QuickUnlock 代碼。</string>
   <string name="QuickUnlock_fail">QuickUnlock 失敗：密碼錯誤！</string>
   <string name="SaveAttachmentDialog_title">儲存附件</string>
   <string name="SaveAttachmentDialog_text">請選擇保存該附件的位置。</string>
@@ -387,7 +390,7 @@
   <string name="ClearOfflineCache_title">清除快取？</string>
   <string name="ClearOfflineCache_question">這會刪除所有資料庫快取副本。在無法存取原始資料庫檔案或離線尚未同步時，將會遺失所有變更！要繼續嗎？</string>
   <string name="CheckForFileChangesOnSave_title">檢查修改</string>
-  <string name="CheckForFileChangesOnSave_summary">儲存前檢查該檔案是否有外部變更。</string>
+  <string name="CheckForFileChangesOnSave_summary">儲存前檢查該檔案是否有外部修改。</string>
   <string name="CheckForDuplicateUuids_title">檢查有重複的 UUID</string>
   <string name="CheckForDuplicateUuids_summary">由多個項目具有相同的 UUID 檢查資料庫檔案是否損壞。這可能會導致意外的行為。</string>
   <string name="ShowCopyToClipboardNotification_title">剪貼簿通知</string>
@@ -416,8 +419,8 @@
   <string name="DocumentAccessRevoked">Keepass2Android 無法存取這檔案。檔案或其存取權可能被移除了，請重新開啟它，如「變更資料庫」。</string>
   <string name="PreloadDatabaseEnabled_title">預載入資料庫檔案</string>
   <string name="PreloadDatabaseEnabled_summary">啟用背景載入、或在輸入密碼時下載資料庫檔案。</string>
-  <string name="SyncAfterQuickUnlock_title">QuickUnlock後同步</string>
-  <string name="SyncAfterQuickUnlock_summary">使用 QuickUnlock 解鎖後將本地數據庫與遠程文件同步。</string>
+  <string name="SyncAfterQuickUnlock_title">QuickUnlock 後同步</string>
+  <string name="SyncAfterQuickUnlock_summary">QuickUnlock 解鎖後從遠端檔案同步資料庫。</string>
   <string name="AskOverwriteBinary">是否以相同名稱覆蓋現有檔案？</string>
   <string name="AskOverwriteBinary_title">覆蓋現有檔案？</string>
   <string name="AskOverwriteBinary_yes">覆寫</string>
@@ -567,7 +570,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">偵錯用運行日誌</string>
   <string name="DebugLog_title">啟用運行日誌</string>
-  <string name="DebugLog_summary">記錄應用程式輸出至本地日誌檔案</string>
+  <string name="DebugLog_summary">記錄應用程式輸出至本機日誌檔案</string>
   <string name="DebugLog_send">發送偵錯日誌…</string>
   <string name="loading">載入中…</string>
   <string name="plugins">外掛程式</string>
@@ -802,7 +805,7 @@
     * 修復嘗試離線操作時的崩潰\n
     * 修復不正確的 FTP(S) 身份驗證資訊編碼\n
     * 修復在舊 Android 版本使用 OneDrive 發生的崩潰\n
-    * 在項目畫面以本地時間顯示時間\n
+    * 在項目畫面以本機時間顯示時間\n
   </string>
   <string name="ChangeLog_1_01d">    版本 1.01-d\n
     * 修復 OneDrive 檔案清單\n
@@ -815,12 +818,12 @@
   </string>
   <string name="ChangeLog_1_01">版本1.01\n
 * 支持 KDBX-4 格式（相容於 KeePass 2.35），包括 Argon2 密鑰推導和 ChaCha20 加密。\n
-* 重新構建 WebDav 文件存儲，現可進行瀏覽並支持現代加密（例如 SSL）。\n
-* 重新構建 FTP 文件存儲，現可進行瀏覽並支持加密的 FTPS 。\n
+* 重新構建 WebDav 檔案存儲，現可進行瀏覽並支持現代加密（例如 SSL）。\n
+* 重新構建 FTP 檔案存儲，現可進行瀏覽並支持加密的 FTPS 。\n
 * 更新 OneDrive SDK（此前使用的 Live SDK 不再更新）。\n
 * 更新 Dropbox SDK 第2版（此前使用的第1版 SDK 已棄用）。\n
 * 支持 OwnCloud 。\n
-* 在打開本地文件之前提示存儲權限。  </string>
+* 在打開本機檔案之前提示儲存權限。  </string>
   <string name="ChangeLog_1_0_0e">版本1.0.0e\n
 * 修復舊版三星設備在 Android 6 中出現的指紋解鎖異常。\n
 * 原生支持 x86 設備。\n
@@ -943,11 +946,11 @@
 		* 快速解鎖圖示可以變成透明 (見設定)\n
 		* 其它問題修正</string>
   <string name="ChangeLog_0_8_5"><b>版本 0.8.5</b>\n
-* 遠端檔案存儲於程式快取中以允許離線使用 (包括編輯和後續的同步)，詳情參閱設置。\n
-* 通知圖示展現資料庫的鎖定狀態 (見設置)\n
+* 遠端檔案存儲於程式快取中以允許離線使用 (包括編輯和後續的同步)，詳情參閱設定。\n
+* 通知圖示展現資料庫的鎖定狀態 (見設定)\n
 * 在某些情況下改進了鎖定狀態的確定\n
-* 鍵入密碼時，資料庫會加載到記憶體中以提升解鎖速度 (見設置)\n
-* 條目可添加到根目錄\n
+* 鍵入密碼時，資料庫會加載到記憶體中以提升解鎖速度 (見設定)\n
+* 項目可添加到根目錄\n
 * 錯誤修正：解析引用欄位、意大利語和漢語設備上的鍵盤問題</string>
   <string name="ChangeLog_0_8_4"><b>版本 0.8.4</b>\n
 * 保存資料庫時會偵測並合併外部更改\n
