@@ -741,7 +741,7 @@
     <item>確保密碼不被眼睛圖示掩蓋</item>
     <item>變更自動填入行為，填入網域憑證到未知程式時警告使用者</item>
     <item>更新 FTP 庫</item>
-    <item>修正應用程式的潛在崩潰</item>
+    <item>修正應用程式的潛在當機錯誤</item>
     <item>更多補丁</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
@@ -760,7 +760,7 @@
     * 修正錯誤
   </string>
   <string name="ChangeLog_1_07">版本 1.07\n
-* 修正三星 Android 9 上的崩潰\n
+* 修正三星 Android 9 上的當機錯誤\n
 * 允許開啟一個以上的資料庫，與 KeeAutoExec 相容\n
 * SFTP: 允許公開金鑰驗證，檢查主機金鑰是否改變\n
 * 導入 pCloud 支援 - 感謝 gilbsgilbs！\n
@@ -813,13 +813,13 @@
     * 修正不必的指紋資料清除\n
     * 修正當機\n
     * 升級 Dropbox SDK 確定未來的相容性\n
-    * 透過 Xamarin Insights 移除錯誤回報\n
+    * 移除用於錯誤回報的 Xamarin Insights \n
     * 升級構建工具\n
   </string>
   <string name="ChangeLog_1_01g">    版本 1.01-g\n
-    * 修復嘗試離線操作時的崩潰\n
-    * 修復不正確的 FTP(S) 身份驗證資訊編碼\n
-    * 修復在舊 Android 版本使用 OneDrive 發生的崩潰\n
+    * 修正嘗試離線操作時的當機\n
+    * 修正不正確的 FTP(S) 身份驗證資訊編碼\n
+    * 修正舊版本 Android 使用 OneDrive 時當機\n
     * 在項目畫面以本機時間顯示時間\n
   </string>
   <string name="ChangeLog_1_01d">    版本 1.01-d\n
@@ -829,7 +829,7 @@
   </string>
   <string name="ChangeLog_0_9_8c">    版本0.9.8c\n
     * 修正 Microsoft Live SDK (用於存取 OneDrive 檔案) 的 SSL 漏洞。\n
-    * 修正之前的版本內建兩個輸入法，其一崩潰的問題。\n
+    * 修正之前的版本內建兩個輸入法，其一當機的錯誤。\n
   </string>
   <string name="ChangeLog_1_01">版本1.01\n
 * 支持 KDBX-4 格式（相容於 KeePass 2.35），包括 Argon2 密鑰推導和 ChaCha20 加密。\n
@@ -880,7 +880,7 @@
 		* 修正錯誤: 現可記住一次性 (OTP) 密碼</string>
   <string name="ChangeLog_0_9_7b">版本 0.9.7b \n
 		* 更新翻譯 \n 
-		* 錯誤修正：0.9.7 版本中缺少密碼字體、按名稱排序沒有排序群組 \n</string>
+		* 修正錯誤：0.9.7 版本中缺少密碼字體、群組沒有按名稱排序 \n</string>
   <string name="ChangeLog_0_9_7">版本 0.9.7 \n
 * 支援讀寫 Keepass 1 (kdb) 資料庫（測試版）\n
 * 更完美的切回原先的鍵盤（無需 ROOT）\n
@@ -935,7 +935,7 @@
 * 新增 kdb (Keepass 1) 檔案的唯讀支援。實驗中！\n
 * 新增 SFTP 支援\n
 * 添加 ART 虛擬機環境出錯的解決辦法 (Android 4.4.2)\n
-* 其它錯誤修正\n</string>
+* 修正其它錯誤\n</string>
   <string name="ChangeLog_0_9_2"><b>版本 0.9.2</b>\n
 * 新增 OTP 支援 (相容於 OtpKeyProv 外掛程式)\n
 * 內建 NFC 支援，可从 YubiKey NEO 外掛獲取一次性密碼\n
@@ -943,7 +943,7 @@
 * 集成 Keepass 2.24 程式庫\n
 * 新增結束程式選單 (見設定)\n
 * 改進 SSL 電子憑證驗證\n
-* 其它錯誤修正\n</string>
+* 修正其它錯誤\n</string>
   <string name="ChangeLog_0_9_1"><b>版本 0.9.1</b>\n
 *內建 SkyDrive 支援 (僅適用於 Keepass2Android 常規版)\n
 *修正 Google 雲端硬碟的問題\n
@@ -953,20 +953,20 @@
 * 內建檔案管理器 (仰賴於 HBA 的 android-filechooser)\n
 * 改進新增資料庫時的使用者介面\n
 * 自定義字體 DejaVu Sans Mono 用於顯示密碼\n
-* 其它錯誤修正</string>
+* 修正其它錯誤</string>
   <string name="ChangeLog_0_8_6"><b>版本 0.8.6</b>\n
 		* 支援 Twofish 加密算法\n
 		* 允許編輯群組\n
 		* 允許移動項目和群組\n
-		* 快速解鎖圖示可以變成透明 (見設定)\n
-		* 其它錯誤修正</string>
+		* QuickUnlock 圖示可以變成透明 (見設定)\n
+		* 修正其它錯誤</string>
   <string name="ChangeLog_0_8_5"><b>版本 0.8.5</b>\n
 * 遠端檔案存儲於程式快取中以允許離線使用 (包括編輯和後續的同步)，詳情參閱設定。\n
 * 通知圖示展現資料庫的鎖定狀態 (見設定)\n
 * 在某些情況下改進了鎖定狀態的確定\n
 * 鍵入密碼時，資料庫會加載到記憶體中以提升解鎖速度 (見設定)\n
-* 項目可添加到根目錄\n
-* 錯誤修正：解析引用欄位、意大利語和漢語裝置上的鍵盤問題</string>
+* 可新增項目到根目錄\n
+* 修正錯誤：解析引用欄位、意大利語和漢語裝置上的鍵盤問題</string>
   <string name="ChangeLog_0_8_4"><b>版本 0.8.4</b>\n
 * 保存資料庫時會偵測並合併外部更改\n
 * 改進加載性能\n
