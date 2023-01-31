@@ -97,9 +97,9 @@ namespace keepass2android
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text = ci.Username;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text = ci.Password;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text = ci.LocalPath;
-		        if (ci.ConnectTimeout != SftpStorage.UnsetSftpConnectTimeout)
+		        if (ci.ConnectTimeoutSec != SftpStorage.UnsetSftpConnectTimeout)
 		        {
-			        dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text = ci.ConnectTimeout.ToString();
+			        dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text = ci.ConnectTimeoutSec.ToString();
 		        }
 		        if (string.IsNullOrEmpty(ci.Password))
 		        {

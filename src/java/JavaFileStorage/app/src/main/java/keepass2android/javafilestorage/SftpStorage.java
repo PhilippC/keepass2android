@@ -45,28 +45,28 @@ public class SftpStorage extends JavaFileStorageBase {
 		public String password;
 		public String localPath;
 		public int port;
-		public int connectTimeout = UNSET_SFTP_CONNECT_TIMEOUT;
+		public int connectTimeoutSec = UNSET_SFTP_CONNECT_TIMEOUT;
 
 
 		public String toString() {
 			return "ConnectionInfo{host=" + host + ",port=" + port + ",user=" + username +
-					",pwd=<hidden>,path=" + localPath + ",connectTimeout=" + connectTimeout +
+					",pwd=<hidden>,path=" + localPath + ",connectTimeout=" + connectTimeoutSec +
 					"}";
 		}
 
 		boolean hasOptions() {
-			return connectTimeout != UNSET_SFTP_CONNECT_TIMEOUT;
+			return connectTimeoutSec != UNSET_SFTP_CONNECT_TIMEOUT;
 		}
 	}
 
 	private static Map<String, String> buildOptionMap(ConnectionInfo ci) {
-		return buildOptionMap(ci.connectTimeout);
+		return buildOptionMap(ci.connectTimeoutSec);
 	}
 
-	private static Map<String, String> buildOptionMap(int connectTimeout) {
+	private static Map<String, String> buildOptionMap(int connectTimeoutSec) {
 		Map<String, String> opts = new HashMap<>();
-		if (connectTimeout != UNSET_SFTP_CONNECT_TIMEOUT) {
-			opts.put(SFTP_CONNECT_TIMEOUT_OPTION_NAME, String.valueOf(connectTimeout));
+		if (connectTimeoutSec != UNSET_SFTP_CONNECT_TIMEOUT) {
+			opts.put(SFTP_CONNECT_TIMEOUT_OPTION_NAME, String.valueOf(connectTimeoutSec));
 		}
 		return opts;
 	}
@@ -184,7 +184,7 @@ public class SftpStorage extends JavaFileStorageBase {
 			tryDisconnect(c);
 
 			return buildFullPath(cInfo.host, cInfo.port, newPath,
-					cInfo.username, cInfo.password, cInfo.connectTimeout);
+					cInfo.username, cInfo.password, cInfo.connectTimeoutSec);
 		} catch (Exception e) {
 			throw convertException(e);
 		}
@@ -440,8 +440,8 @@ public class SftpStorage extends JavaFileStorageBase {
 	}
 
 	private void sessionConnect(Session session, ConnectionInfo ci) throws JSchException {
-		if (ci.connectTimeout != UNSET_SFTP_CONNECT_TIMEOUT) {
-			session.connect(ci.connectTimeout);
+		if (ci.connectTimeoutSec != UNSET_SFTP_CONNECT_TIMEOUT) {
+			session.connect(ci.connectTimeoutSec * 1000);
 		} else {
 			session.connect();
 		}
@@ -498,7 +498,7 @@ public class SftpStorage extends JavaFileStorageBase {
 		if (options.containsKey(SFTP_CONNECT_TIMEOUT_OPTION_NAME)) {
 			String optVal = options.get(SFTP_CONNECT_TIMEOUT_OPTION_NAME);
 			try {
-				ci.connectTimeout = Integer.parseInt(optVal);
+				ci.connectTimeoutSec = Integer.parseInt(optVal);
 			} catch (NumberFormatException nan) {
 				logDebug(SFTP_CONNECT_TIMEOUT_OPTION_NAME + " option not a number: " + optVal);
 			}
@@ -580,7 +580,7 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	public String buildFullPath(String host, int port, String localPath,
 										String username, String password,
-										int connectTimeout)
+										int connectTimeoutSec)
 			throws UnsupportedEncodingException {
 		StringBuilder uri = new StringBuilder(getProtocolPrefix())
 				.append(encode(username)).append(":").append(encode(password))
@@ -593,7 +593,7 @@ public class SftpStorage extends JavaFileStorageBase {
 			uri.append(localPath);
 		}
 
-		Map<String, String> opts = buildOptionMap(connectTimeout);
+		Map<String, String> opts = buildOptionMap(connectTimeoutSec);
 		appendOptions(uri, opts);
 
 		return uri.toString();
@@ -635,5 +635,4 @@ public class SftpStorage extends JavaFileStorageBase {
 			return o1.getKey().compareTo(o2.getKey());
 		}
 	}
-
 }
