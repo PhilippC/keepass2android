@@ -24,14 +24,14 @@
   <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
   <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app">關閉按鈕</string>
-  <string name="show_kill_app_summary">在密碼螢幕中顯示中止應用程式進程的按鈕 (供偏執的用戶使用)</string>
+  <string name="show_kill_app_summary">在密碼畫面中顯示中止應用程式進程的按鈕 (供偏執的用戶使用)</string>
   <string name="application">應用程式</string>
   <string name="application_settings">應用程式設定</string>
   <string name="ShowGroupnameInSearchResult_title">在搜尋結果中顯示群組名稱</string>
   <string name="ShowGroupnameInSearchResult_resume">在搜尋結果中的項目標題下顯示群組名稱，在不同項目具有相同的名稱時推薦使用。</string>
   <string name="NavigationToGroupCompleted_message">顯示目前群組：%1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">已禁用自動填入的對象</string>
-  <string name="AutofillDisabledQueriesPreference_summary">顯示已禁用自動填入的應用程式及網站清單</string>
+  <string name="AutofillDisabledQueriesPreference_title">已停用自動填入的對象</string>
+  <string name="AutofillDisabledQueriesPreference_summary">顯示已停用自動填入的應用程式及網站清單</string>
   <string name="OfferSaveCredentials_summary">啟用後，若在可自動填入欄位手動輸入資料，Android 將會詢問是否保存憑證。</string>
   <string name="OfferSaveCredentials_title">提示儲存憑證</string>
   <string name="ShowGroupInEntry_title">在項目畫面中顯示群組名稱</string>
@@ -91,7 +91,7 @@
   <string name="fingerprint_os_error">生物識別解鎖需要 Android 6.0 或更高版本。</string>
   <string name="fingerprint_hardware_error">未偵測到生物識別硬體。</string>
   <string name="fingerprint_no_enrolled">你尚未在裝置上設定生物識別驗證，請先至系統設定。</string>
-  <string name="disable_fingerprint_unlock">禁用生物識別解鎖</string>
+  <string name="disable_fingerprint_unlock">停用生物識別解鎖</string>
   <string name="enable_fingerprint_unlock">啟用完整生物識別解鎖</string>
   <string name="enable_fingerprint_quickunlock">啟用 QuickUnlock 生物識別解鎖</string>
   <string name="fingerprint_unlock_failed">生物識別解鎖失敗。系統無法驗證解密金鑰，你可能更改了安全設定或生物識別設定。 </string>
@@ -113,7 +113,7 @@
   <string name="entry_expires">失效時間</string>
   <string name="entry_group_name">群組名稱</string>
   <string name="entry_keyfile">金鑰檔案（可選）</string>
-  <string name="keyfile_heading">金鑰檔</string>
+  <string name="keyfile_heading">金鑰檔案</string>
   <string name="entry_modified">修改時間</string>
   <string name="entry_password">密碼</string>
   <string name="entry_save">儲存</string>
@@ -131,19 +131,19 @@
   <string name="error_failed_to_launch_link">運行鏈結失敗。</string>
   <string name="error_filename_required">請求一個檔案名：</string>
   <string name="error_file_not_create">無法建立檔案</string>
-  <string name="error_invalid_db">非法資料庫。</string>
-  <string name="error_invalid_path">非法路徑。</string>
+  <string name="error_invalid_db">無效資料庫。</string>
+  <string name="error_invalid_path">無效路徑。</string>
   <string name="error_no_name">用戶名是必須的。</string>
-  <string name="error_nopass">密碼或者密鑰檔是必須的。</string>
+  <string name="error_nopass">密碼或金鑰檔案是必須的。</string>
   <string name="error_pass_gen_type">至少必須選擇一個密碼生成類型</string>
   <string name="error_pass_match">密碼不匹配。</string>
   <string name="error_rounds_not_number">次數必須是數位。</string>
   <string name="error_param_not_number">參數必須是數字。</string>
   <string name="error_title_required">標題是必填項。</string>
   <string name="error_wrong_length">在長度欄位輸入一個正整數</string>
-  <string name="FileNotFound">文件未找到。</string>
-  <string name="file_browser">檔流覽</string>
-  <string name="generate_password">生成密碼</string>
+  <string name="FileNotFound">檔案未找到。</string>
+  <string name="file_browser">檔案瀏覽器</string>
+  <string name="generate_password">產生密碼</string>
   <string name="group">群組</string>
   <string name="hint_comment">備註</string>
   <string name="hint_conf_pass">確認密碼</string>
@@ -158,7 +158,7 @@
   <string name="hint_override_url">URL 覆蓋</string>
   <string name="hint_tags">標籤1，標籤2</string>
   <string name="hint_username">使用者名稱</string>
-  <string name="InvalidPassword">不正確密碼或金鑰檔。</string>
+  <string name="InvalidPassword">無效密碼或金鑰檔案。</string>
   <string name="invalid_algorithm">無效演算法。</string>
   <string name="invalid_db_sig">資料庫格式無法識別。</string>
   <string name="keyfile_does_not_exist">金鑰檔不存在。</string>
@@ -222,7 +222,7 @@
   <string name="remove_from_filelist">移除</string>
   <string name="edit">編輯</string>
   <string name="rijndael">Rijndael加密(AES)</string>
-  <string name="root">Root</string>
+  <string name="root">根目錄</string>
   <string name="AutoReturnFromQuery_title">自動從查詢畫面返回</string>
   <string name="AutoReturnFromQuery_summary">查找應用或網站的項目時：如資料庫裡只有一個相符項目，則從查詢畫面自動返回。</string>
   <string name="KeyDerivFunc">金鑰派生函數</string>
@@ -341,7 +341,7 @@
   <string name="SaveAttachment_Failed">可不保存附件到 %1$s。</string>
   <string name="AddUrlToEntryDialog_title">還記得搜尋的文字嗎?</string>
   <string name="AddUrlToEntryDialog_text">你想將搜尋的文字「%1$s」儲存在所選的項目以便下次自動完成嗎?</string>
-  <string name="error_invalid_expiry_date">到期日期為不正確日期時間格式!</string>
+  <string name="error_invalid_expiry_date">失效時間或日期格式無效！</string>
   <string name="error_string_key">每個字串都需要欄位名稱。</string>
   <string name="error_string_duplicate_key">欄位名稱不能使用兩次 (%1$s)。</string>
   <string name="field_name">欄位名稱</string>
@@ -482,7 +482,7 @@
   <string name="otp_aux_file">一次性密碼輔助檔</string>
   <string name="ErrorOcurred">發生錯誤：</string>
   <string name="DuplicateUuidsError">資料庫已損壞：發現重複 ID。(你或曾用 Minikeepass 編輯它？) 請用電腦版 Keepass 2 重新導入到新的資料庫與並選擇「建立新的 ID」。</string>
-  <string name="DuplicateUuidsErrorAdditional">您可以在「設定/應用程式設定/檔案處理/檢查重複 UUID」中禁用此錯誤訊息。請注意，您可能還會遇到意外狀況，仍建議對資料庫進行修復。</string>
+  <string name="DuplicateUuidsErrorAdditional">您可以在「設定/應用程式設定/檔案處理/檢查重複 UUID」中停用此錯誤訊息。請注意，您可能還會遇到意外狀況，仍建議對資料庫進行修正。</string>
   <string name="synchronize_database_menu">同步資料庫...</string>
   <string name="CannotMoveGroupHere">無法將群組移動到此群組。</string>
   <string name="donate_question">今天，它是慕尼克啤酒節！如果你喜歡 Keepass2Android: 今天不是個好的日子買一杯啤酒給我嗎?</string>
@@ -528,7 +528,7 @@
   <string name="filestoragename_onedrive2_appfolder">Keepass2Android 應用程式資料夾</string>
   <string name="filestoragename_sftp">SFTP (SSH 檔案傳輸)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">請注意：Keepass2Android 必須下載 Mega 帳戶中的所有檔案列表才能運作。因此，存取擁有大量檔案的帳戶可能很慢。</string>
+  <string name="filestoragehelp_mega">請注意：Keepass2Android 必須下載 Mega 帳戶中的所有檔案清單才能運作。因此，存取擁有大量檔案的帳戶可能很慢。</string>
   <string name="filestoragename_content">系統檔選擇器</string>
   <string name="filestorage_setup_title">檔案存取權限初始化</string>
   <string name="database_location">資料庫位置</string>
@@ -539,7 +539,7 @@
   <string name="master_password">主密碼</string>
   <string name="help_master_password">您的資料庫將以您在此處輸入的密碼進行加密。為了保證資料庫的安全，選擇強式密碼！提示: 自創一兩英文句子，使用句中單詞首字母作為密碼。包括標點符號。</string>
   <string name="hint_master_password">選擇一個主密碼來保護您的資料庫:</string>
-  <string name="key_file">金鑰檔</string>
+  <string name="key_file">金鑰檔案</string>
   <string name="help_key_file">金鑰檔案就是檔案形式的密碼。金鑰檔案比主密碼更複雜，因而更安全，但也難維持隱密。請不要將資料庫與金鑰檔案同時儲存在雲端，不然金鑰檔案則變得毫無用處！重要提示：建立資料庫後不要更改金鑰檔案的內容！</string>
   <string name="hint_key_file">選擇是否除主密碼外，同時使用金鑰檔案:</string>
   <string name="use_key_file">使用金鑰檔</string>
@@ -634,7 +634,7 @@
   <string name="TemplateTitle_Membership">會員</string>
   <string name="ChangeLog_title">變更紀錄</string>
   <string name="AskAddTemplatesTitle">新增範本？</string>
-  <string name="AskAddTemplatesMessage">Keepass2Android 附有一些 E-Mail 帳號、無線網路密碼、安全記事等項目範本。要把這些加到資料庫中嗎？您稍後仍可在資料庫設定中加入這些範本。</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android 附有一些 E-Mail 帳戶、無線網路密碼、安全記事等項目範本。要把這些加到資料庫中嗎？您稍後仍可在資料庫設定中加入這些範本。</string>
   <string name="AddTemplates_pref">新增範本到資料庫</string>
   <string name="PreviewWarning">請注意！你正使用預覽版本，使用時可能會出現問題！如果你遇到任何問題，煩請以 Google+ 測試者群組或電子郵件告知。</string>
   <string name="Continue">繼續</string>
@@ -647,7 +647,7 @@
    &#8226; 確保已選擇正確的資料庫檔案。 
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; 提示：如果你認爲資料庫檔案可能會受損，或你有可能忘記修改後的主金鑰，你可以嘗試點擊「%1$s」開啓最後一個成功開啓的版本並選擇本機備份。</string>
+   &#8226; 提示：如果你認爲資料庫檔案可能會受損，或你有可能忘記修改後的主金鑰，你可以嘗試點擊「%1$s」開啓最後一個成功開啟的版本並選擇本機備份。</string>
   <string name="HintLocalBackupOtherError">    \n
     &#8226; 提示：Keepass2Android已經把最後一個開啓成功的檔案版本存儲在內部儲存裝置中。你可以點擊「%1$s」開啓它並選擇本機備份。 
   </string>
@@ -664,7 +664,7 @@
   <string name="configure_child_dbs">配置子資料庫…</string>
   <string name="child_dbs_title">子資料庫</string>
   <string name="unspecified">未指定</string>
-  <string name="child_db_explanation">在父資料庫打開時，子資料庫可以自動打開。因此，子資料庫的主密碼與檔案位置會儲存在父資料庫中。這功能可用於跟其他人分享密碼，並與 PC 的 KeeAutoExec 相容。</string>
+  <string name="child_db_explanation">在父資料庫打開時，子資料庫可以自動打開。因此，子資料庫的主密碼與檔案位置會儲存在父資料庫中。這功能可用於跟其他人分享密碼，而實作與 PC 的 KeeAutoExec 相容。</string>
   <string name="child_db_enabled_on_this_device">已在此裝置上啟用</string>
   <string name="child_db_enable_on_this_device">在此裝置上啟用</string>
   <string name="child_db_disable_on_this_device">在此裝置上停用</string>
@@ -714,7 +714,7 @@
     <item>改進 OneDrive 實作：無大小限制、無非必要的驗證請求</item>
     <item>新增選擇系統設定中的淺色/深色主題，自動開啟也同樣適用，需要 Android 10+</item>
     <item>更新 Dropbox 實作，支援新驗證方法</item>
-    <item>系統設定中新增指紋後，新設定的指紋解鎖會失效，更為安全</item>
+    <item>系統設定中新增指紋後，新設定的指紋解鎖會失效，更為安全。</item>
     <item>允許以系統檔案選擇器開啟檔案，忽略唯讀標記</item>
     <item>允許從項目畫面的選單移動項目</item>
   </string-array>
@@ -735,7 +735,7 @@
     <item>修正缺失的翻譯</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>因 Okhttp 的 HTTP/2 實現問題，而強制使用 HTTP/1.1 </item>
+    <item>因 Okhttp 的 HTTP/2 實作問題，而強制使用 HTTP/1.1 </item>
     <item>改進 Android 9+ 上的鍵盤對話方塊</item>
     <item>變更檔案關聯而避免開啟無關檔案</item>
     <item>確保密碼不被眼睛圖示掩蓋</item>
@@ -751,13 +751,13 @@
     <item>錯誤修正</item>
   </string-array>
   <string name="ChangeLog_1_07b">    版本 1.07b\n
-    * 以原生方式實現 Argon2 演算改進性能（感謝 Chih-Hsuan Yen！）\n
+    * 以原生 Argon2 實作演算改進性能（感謝 Chih-Hsuan Yen！）\n
     * 可停用指紋，點擊指紋圖示即可，以避免屏下指紋識別產生的問題（感謝 marcoDallas！）\n
     * 在開關密碼顯示時，還原滑鼠指標位置（感謝 DDoSolitary！）\n
     * 改進 pCloud 雲端實現（再次感謝 gilbsgilbs！）\n
-    * 新增對數個瀏覽器的自動填入支持\n
-    * 全新的 OneDrive 雲端實現：涵蓋商務用 OneDrive，已共用檔案，可選訪問範圍，多個賬戶，還修正了離線訪問的問題\n
-    * 錯誤修正
+    * 新增對數個瀏覽器的自動填入支援\n
+    * 全新的 OneDrive 雲端實作：涵蓋商務用 OneDrive，已共用檔案，可選訪問範圍，多個賬戶，還修正了離線訪問的問題\n
+    * 修正錯誤
   </string>
   <string name="ChangeLog_1_07">版本 1.07\n
 * 修正三星 Android 9 上的崩潰\n
@@ -853,7 +853,7 @@
     * 欄位名稱的自動完成模式\n
     * 允許從最近文件清單中移除項目\n
     * 在 Android 6.0 運行時請求權限\n
-    * 錯誤修復 (在內建鍵盤, 選擇圖示時)\n
+    * 修正錯誤 (在內建鍵盤, 選擇圖示時)\n
     * 包含發送錯誤報告的選項\n
     * 在數處新增幫助訊息\n
   </string>
@@ -868,10 +868,10 @@
     * 深色主題回歸 \n
     * 您可安裝其他圖示包（Play 商店可下載到經典 Windows 風格的圖示） \n
     * 直接移除項目而不放入回收桶時添加確認提示 \n 
-    * 錯誤修正：因一次性密碼檔編碼問題所致的錯誤顯示、某些場景下顯示錯誤的圖示\n
+    * 修正錯誤：因一次性密碼檔編碼問題所致的錯誤顯示、某些場景下顯示錯誤的圖示\n
   </string>
   <string name="ChangeLog_0_9_8b">版本 0.9.8b \n 
-* 錯誤修正：某些資料庫存取失敗、匯出至本機運作異常、個別偏好設定導致無回應之情形。\n</string>
+* 修正錯誤：某些資料庫存取失敗、匯出至本機運作異常、選擇個別偏好設定導致當機之情形。\n</string>
   <string name="ChangeLog_0_9_8">版本 0.9.8\n
 		* 支援儲存空間存取架構 (允許在離線版 KP2A 中讀寫 SD 卡與 Google 雲端硬碟)\n
 		* 嘗試偵測用戶輸入 WebDAV 的錯誤網址 (定位於資料夾而非檔案)\n
@@ -928,8 +928,8 @@
 		* 加入了停用「捐贈」選項的選項\n 
 		* 在 Android 4.2+ 的設備上改為預設隱藏 QuickUnlock 圖示\n </string>
   <string name="ChangeLog_0_9_3_r5"><b>版本 0.9.3 r5</b>\n
-		* 合併來自 Xamarin 的修正程式：Keepass2Android 現在與 Android 4.4.2 上的 ART 虛擬機相容。\n
-		* 修正錯誤：同步過程中的錯誤 (刷新顯示，正確檢測 HTTP 上的更改)、Android 2.x 裝置上的問題、Google 雲端硬碟與微軟 OneDrive 的存取問題、關閉資料庫同時清除剪貼簿、打開附加檔案時的錯誤、鍵盤顯示的問題\n</string>
+		* 合併來自 Xamarin 的修正：Keepass2Android 現在與 Android 4.4.2 上的 ART 虛擬機相容。\n
+		* 修正錯誤：同步過程中的錯誤 (刷新顯示，正確檢測 HTTP 上的更改)、Android 2.x 裝置上的問題、Google 雲端硬碟與微軟 OneDrive 的存取實作錯誤、關閉資料庫同時清除剪貼簿、打開附加檔案時的錯誤、鍵盤顯示的問題\n</string>
   <string name="ChangeLog_0_9_3"><b>版本 0.9.3</b>\n
 * 新鍵盤包含許多改進。到設置個人化吧！\n
 * 新增 kdb (Keepass 1) 檔案的唯讀支援。實驗中！\n
@@ -1037,11 +1037,11 @@
     <item>大</item>
   </string-array>
   <string-array name="design_options">
-    <item>亮色主題</item>
-    <item>暗色主題</item>
+    <item>淺色主題</item>
+    <item>深色主題</item>
     <item>系統設定</item>
   </string-array>
-  <string name="design_title">設計</string>
+  <string name="design_title">主題</string>
   <string-array name="ftp_encryption_modes">
     <item>無加密 (FTP)</item>
     <item>隱式加密 (透過 TLS 的 FTP，FTPS)</item>
@@ -1078,7 +1078,7 @@
   <string name="autofill_enable_failed">抱歉，您的裝置並未支援由應用程式打開系統設定。煩請親自到系統設定啟用自動填入服務。</string>
   <string name="show_autofill_help">顯示自動填入的說明</string>
   <string name="autofill_sign_in_prompt">以 Keepass2Android 填入</string>
-  <string name="autofill_disable">禁用 %1$s 的自動填入</string>
+  <string name="autofill_disable">停用 %1$s 的自動填入</string>
   <string name="autofill_enable_for">啟用 %1$s 的自動填入</string>
   <string name="invalid_link_association">無法關聯網域 %1$s 與應用程式 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android 偵測到生物識別硬件。要為這資料庫啟用生物識別解鎖嗎？</string>
