@@ -168,7 +168,7 @@
   <string name="list_size_title">グループ一覧のサイズ</string>
   <string name="list_size_summary">グループ一覧の文字の大きさ</string>
   <string name="loading_database">データベースを読み込み中…</string>
-  <string name="lowercase">英小文字</string>
+  <string name="lowercase">小文字</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">パスワードを隠す</string>
   <string name="maskpass_summary">デフォルトでパスワード欄を非表示にします</string>
