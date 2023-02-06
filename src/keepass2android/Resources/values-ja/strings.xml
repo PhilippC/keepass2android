@@ -168,7 +168,7 @@
   <string name="list_size_title">グループ一覧のサイズ</string>
   <string name="list_size_summary">グループ一覧の文字の大きさ</string>
   <string name="loading_database">データベースを読み込み中…</string>
-  <string name="lowercase">英小文字</string>
+  <string name="lowercase">小文字</string>
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">パスワードを隠す</string>
   <string name="maskpass_summary">デフォルトでパスワード欄を非表示にします</string>
@@ -280,8 +280,8 @@
   <string name="version_label">バージョン</string>
   <string name="version_history">バージョン履歴</string>
   <string name="author">Keepass2Android は Philipp Crocoll によって開発されています。</string>
-  <string name="further_authors">%1$s のコードへの貢献に感謝します。</string>
-  <string name="designers">%1$s のアイコンとレイアウトデザインへの貢献に感謝します。</string>
+  <string name="further_authors">%1$s 諸氏のコードへの貢献に感謝します。</string>
+  <string name="designers">%1$s 諸氏のアイコンとレイアウトデザインへの貢献に感謝します。</string>
   <string name="supporters">%1$s による財政面の支援に感謝します。</string>
   <string name="credit_plugin1">KP2A には Scott Greenberg 氏により開発された KeePass 向け Twofish 暗号化プラグインが含まれています。</string>
   <string name="credit_android_filechooser">android-filechooser は Hai Bison 氏によって開発されました。</string>
