@@ -686,6 +686,11 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Popravek napak pri zrušitvah in nepričakovanih odjavah</item>
+    <item>Preklopite na novo izvedbo SFTP, ki podpira sodobne algoritme javnih ključev, kot je rsa-sha2-256</item>
+    <item>Označi gesla kot občutljiva pri kopiranju v odložišče (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Dodana podpora za ogled, odstranjevanje in obnavljanje varnostnih kopij vnosov</item>
     <item>Dodana podpora za shranjevanje v oblaku MEGA</item>
