@@ -2,11 +2,13 @@
 using System.Linq;
 using Android.Content;
 using Android.Preferences;
+using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
 {
+    
 
-    internal class Kp2aDigitalAssetLinksDataSource
+    internal class Kp2aDigitalAssetLinksDataSource : IKp2aDigitalAssetLinksDataSource
     {
 
         private const string Autofilltrustedapps = "AutoFillTrustedApps";

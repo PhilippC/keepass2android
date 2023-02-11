@@ -11,10 +11,138 @@ using Android.Views.Autofill;
 using Android.Views.InputMethods;
 using DomainNameParser;
 using keepass2android.services.AutofillBase.model;
+using Kp2aAutofillParser;
+using Newtonsoft.Json;
+using static Android.App.Assist.AssistStructure;
+using static Java.IO.ObjectOutputStream;
 using FilledAutofillFieldCollection = keepass2android.services.AutofillBase.model.FilledAutofillFieldCollection;
+using InputTypes = Kp2aAutofillParser.InputTypes;
 
 namespace keepass2android.services.AutofillBase
 {
+    public class ViewNodeInputField : Kp2aAutofillParser.InputField
+    {
+        public ViewNodeInputField(AssistStructure.ViewNode viewNode)
+        {
+            ViewNode = viewNode;
+            IdEntry = viewNode.IdEntry;
+            Hint = viewNode.Hint;
+            ClassName = viewNode.ClassName;
+            AutofillHints = viewNode.GetAutofillHints();
+            IsFocused = viewNode.IsFocused;
+            InputType = (Kp2aAutofillParser.InputTypes) ((int)viewNode.InputType);
+            HtmlInfoTag = viewNode.HtmlInfo?.Tag;
+            HtmlInfoTypeAttribute = viewNode.HtmlInfo?.Attributes?.FirstOrDefault(p => p.First?.ToString() == "type")?.Second?.ToString();
+
+        }
+        [JsonIgnore]
+        public AssistStructure.ViewNode ViewNode { get; set; }
+
+        public override void FillFilledAutofillValue(FilledAutofillField filledField)
+        {
+            AutofillValue autofillValue = ViewNode.AutofillValue;
+            if (autofillValue != null)
+            {
+                if (autofillValue.IsList)
+                {
+                    string[] autofillOptions = ViewNode.GetAutofillOptions();
+                    int index = autofillValue.ListValue;
+                    if (autofillOptions != null && autofillOptions.Length > 0)
+                    {
+                        filledField.TextValue = autofillOptions[index];
+                    }
+                }
+                else if (autofillValue.IsDate)
+                {
+                    filledField.DateValue = autofillValue.DateValue;
+                }
+                else if (autofillValue.IsText)
+                {
+                    filledField.TextValue = autofillValue.TextValue;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Converts an AssistStructure into a list of InputFields
+    /// </summary>
+    class AutofillViewFromAssistStructureFinder
+    {
+        private readonly Context _context;
+        private readonly AssistStructure _structure;
+        private PublicSuffixRuleCache domainSuffixParserCache;
+
+        public AutofillViewFromAssistStructureFinder(Context context, AssistStructure structure)
+        {
+            _context = context;
+            _structure = structure;
+            domainSuffixParserCache = new PublicSuffixRuleCache(context);
+        }
+
+        public AutofillView<ViewNodeInputField> GetAutofillView(bool isManualRequest)
+        {
+            AutofillView<ViewNodeInputField> autofillView = new AutofillView<ViewNodeInputField>();
+            
+            
+            int nodeCount = _structure.WindowNodeCount;
+            for (int i = 0; i < nodeCount; i++)
+            {
+                var node = _structure.GetWindowNodeAt(i);
+
+                var view = node.RootViewNode;
+                ParseRecursive(autofillView, view, isManualRequest);
+            }
+
+            return autofillView;
+
+        }
+
+
+        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode, bool isManualRequest)
+        {
+            String webDomain = viewNode.WebDomain;
+            if ((autofillView.PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
+                (viewNode.IdPackage != "android"))
+            {
+                autofillView.PackageId = viewNode.IdPackage;
+            }
+
+            DomainName outDomain;
+            if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
+            {
+                webDomain = outDomain.RawDomainName;
+            }
+
+            if (webDomain != null)
+            {
+                if (!string.IsNullOrEmpty(autofillView.WebDomain))
+                {
+                    if (webDomain != autofillView.WebDomain)
+                    {
+                        throw new Java.Lang.SecurityException($"Found multiple web domains: valid= {autofillView.WebDomain}, child={webDomain}");
+                    }
+                }
+                else
+                {
+                    autofillView.WebDomain = webDomain;
+                }
+            }
+
+            autofillView.InputFields.Add(new ViewNodeInputField(viewNode));
+            Kp2aLog.Log($"Now we have {autofillView.InputFields.Count} fields, just added {autofillView.InputFields.Last().IdEntry} of type {autofillView.InputFields.Last().ClassName}");
+          
+            var childrenSize = viewNode.ChildCount;
+            if (childrenSize > 0)
+            {
+                for (int i = 0; i < childrenSize; i++)
+                {
+                    ParseRecursive(autofillView, viewNode.GetChildAt(i), isManualRequest);
+                }
+            }
+        }
+    }
+
 	/// <summary>
 	///	Parser for an AssistStructure object. This is invoked when the Autofill Service receives an
 	/// AssistStructure from the client Activity, representing its View hierarchy. In this sample, it
@@ -24,10 +152,7 @@ namespace keepass2android.services.AutofillBase
 	{
 	    public Context mContext { get; }
 	    public AutofillFieldMetadataCollection AutofillFields { get; set; }
-		AssistStructure Structure;
-	    private List<AssistStructure.ViewNode> _editTextsWithoutHint = new List<AssistStructure.ViewNode>();
-	    private PublicSuffixRuleCache domainSuffixParserCache;
-	    public FilledAutofillFieldCollection ClientFormData { get; set; }
+		public FilledAutofillFieldCollection ClientFormData { get; set; }
 
         public string PackageId { get; set; }
 
@@ -37,7 +162,7 @@ namespace keepass2android.services.AutofillBase
 		    mContext = context;
 		    Structure = structure;
 			AutofillFields = new AutofillFieldMetadataCollection();
-		    domainSuffixParserCache = new PublicSuffixRuleCache(context);
+		    
 		}
 
         public class AutofillTargetId
@@ -87,23 +212,73 @@ namespace keepass2android.services.AutofillBase
         {
             AutofillTargetId result = new AutofillTargetId();
 			CommonUtil.logd("Parsing structure for " + Structure.ActivityComponent);
-			var nodes = Structure.WindowNodeCount;
+			
 			ClientFormData = new FilledAutofillFieldCollection();
-		    String webDomain = null;
+		    
 		    _editTextsWithoutHint.Clear();
 
-            for (int i = 0; i < nodes; i++)
-			{
-				var node = Structure.GetWindowNodeAt(i);
+            Kp2aLog.Log("parsing autofillStructure...");
 
-				var view = node.RootViewNode;
-				ParseLocked(forFill, isManualRequest, view, ref webDomain);
-			}
+            AutofillView<ViewNodeInputField> autofillView = new AutofillViewFromAssistStructureFinder(mContext, Structure).GetAutofillView(isManualRequest);
 
+            //TODO remove from production
+            Kp2aLog.Log("will log the autofillStructure...");
+            string debugInfo = JsonConvert.SerializeObject(autofillView, Formatting.Indented);
+            Kp2aLog.Log("will log the autofillStructure... size is " + debugInfo.Length);
+            Kp2aLog.Log("This is the autofillStructure: \n\n " + debugInfo);
 
+            foreach (var viewNode in autofillView.InputFields)
+            {
+                string[] viewHints = viewNode.AutofillHints;
+                if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
+                    isManualRequest)
+                    viewHints[0] = "on";
+                /*if (viewHints != null && viewHints.Any())
+                {
+                    CommonUtil.logd("viewHints=" + viewHints);
+                    CommonUtil.logd("class=" + viewNode.ClassName);
+                    CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
+                }*/
 
-		    List<AssistStructure.ViewNode> passwordFields = new List<AssistStructure.ViewNode>();
-		    List<AssistStructure.ViewNode> usernameFields = new List<AssistStructure.ViewNode>();
+                if (IsPassword(viewNode) || HasPasswordHint(viewNode) || (HasUsernameHint(viewNode)))
+                {
+                    if (forFill)
+                    {
+                        AutofillFields.Add(new AutofillFieldMetadata(viewNode.ViewNode));
+                    }
+                    else
+                    {
+                        FilledAutofillField filledAutofillField = new FilledAutofillField(viewNode.ViewNode);
+                        ClientFormData.Add(filledAutofillField);
+                    }
+                }
+                else if (viewNode.ClassName == "android.widget.EditText"
+                    || viewNode.ClassName == "android.widget.AutoCompleteTextView"
+                    || viewNode.HtmlInfoTag == "input"
+                    || ((viewHints?.Length ?? 0) > 0))
+                {
+                    Kp2aLog.Log("Found something that looks fillable " + viewNode.ClassName);
+
+                }
+
+                if (viewHints != null && viewHints.Length > 0 && viewHints.First() != "on" /*if hint is "on", treat as if there is no hint*/)
+                {
+                }
+                else
+                {
+
+                    if (viewNode.ClassName == "android.widget.EditText"
+                        || viewNode.ClassName == "android.widget.AutoCompleteTextView"
+                        || viewNode.HtmlInfoTag == "input")
+                    {
+                        _editTextsWithoutHint.Add(viewNode);
+                    }
+
+                }
+            }
+
+		    List<ViewNodeInputField> passwordFields = new List<ViewNodeInputField>();
+		    List<ViewNodeInputField> usernameFields = new List<ViewNodeInputField>();
             if (AutofillFields.Empty)
 		    {
                 passwordFields = _editTextsWithoutHint.Where(IsPassword).ToList();
@@ -120,7 +295,7 @@ namespace keepass2android.services.AutofillBase
                     foreach (var passwordField in passwordFields)
                     {
                         var usernameField = _editTextsWithoutHint
-                            .TakeWhile(f => f.AutofillId != passwordField.AutofillId).LastOrDefault();
+                            .TakeWhile(f => f != passwordField).LastOrDefault();
                         if (usernameField != null)
                         {
                             usernameFields.Add(usernameField);
@@ -143,7 +318,7 @@ namespace keepass2android.services.AutofillBase
             //force focused fields to be included in autofill fields when request was triggered manually. This allows to fill fields which are "off" or don't have a hint (in case there are hints)
 		    if (isManualRequest)
 		    {
-		        foreach (AssistStructure.ViewNode editText in _editTextsWithoutHint)
+		        foreach (var editText in _editTextsWithoutHint)
 		        {
 		            if (editText.IsFocused)
 		            {
@@ -160,25 +335,25 @@ namespace keepass2android.services.AutofillBase
 		    if (forFill)
 		    {
 		        foreach (var uf in usernameFields)
-		            AutofillFields.Add(new AutofillFieldMetadata(uf, new[] { View.AutofillHintUsername }));
+		            AutofillFields.Add(new AutofillFieldMetadata(uf.ViewNode, new[] { View.AutofillHintUsername }));
 		        foreach (var pf in passwordFields)
-		            AutofillFields.Add(new AutofillFieldMetadata(pf, new[] { View.AutofillHintPassword }));
+		            AutofillFields.Add(new AutofillFieldMetadata(pf.ViewNode, new[] { View.AutofillHintPassword }));
 
             }
             else
 		    {
 		        foreach (var uf in usernameFields)
-		            ClientFormData.Add(new FilledAutofillField(uf, new[] { View.AutofillHintUsername }));
+		            ClientFormData.Add(new FilledAutofillField(uf.ViewNode, new[] { View.AutofillHintUsername }));
 		        foreach (var pf in passwordFields)
-		            ClientFormData.Add(new FilledAutofillField(pf, new[] { View.AutofillHintPassword }));
+		            ClientFormData.Add(new FilledAutofillField(pf.ViewNode, new[] { View.AutofillHintPassword }));
             }
 
 
-            result.WebDomain = webDomain;
+            result.WebDomain = autofillView.WebDomain;
             result.PackageName = Structure.ActivityComponent.PackageName;
-            if (!string.IsNullOrEmpty(webDomain) && !PreferenceManager.GetDefaultSharedPreferences(mContext).GetBoolean(mContext.GetString(Resource.String.NoDalVerification_key), false))
+            if (!string.IsNullOrEmpty(autofillView.WebDomain) && !PreferenceManager.GetDefaultSharedPreferences(mContext).GetBoolean(mContext.GetString(Resource.String.NoDalVerification_key), false))
 		    {
-                result.IncompatiblePackageAndDomain = !kp2aDigitalAssetLinksDataSource.IsTrustedLink(webDomain, result.PackageName);
+                result.IncompatiblePackageAndDomain = !kp2aDigitalAssetLinksDataSource.IsTrustedLink(autofillView.WebDomain, result.PackageName);
 		        if (result.IncompatiblePackageAndDomain)
 		        {   
 					CommonUtil.loge($"DAL verification failed for {result.PackageName}/{result.WebDomain}");
@@ -190,17 +365,17 @@ namespace keepass2android.services.AutofillBase
             }
             return result;
 		}
-        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort" };
-        private static bool HasPasswordHint(AssistStructure.ViewNode f)
+        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort", "passwordAuto", "pswd" };
+        private static bool HasPasswordHint(InputField f)
 	    {
             return ContainsAny(f.IdEntry, _passwordHints) ||
                    ContainsAny(f.Hint, _passwordHints);
         }
 
         private static readonly HashSet<string> _usernameHints = new HashSet<string> { "email","e-mail","username" };
-        private Kp2aDigitalAssetLinksDataSource kp2aDigitalAssetLinksDataSource;
+        private readonly Kp2aDigitalAssetLinksDataSource kp2aDigitalAssetLinksDataSource;
 
-        private static bool HasUsernameHint(AssistStructure.ViewNode f)
+        private static bool HasUsernameHint(InputField f)
         {
             return ContainsAny(f.IdEntry, _usernameHints) ||
                 ContainsAny(f.Hint, _usernameHints);
@@ -233,7 +408,7 @@ namespace keepass2android.services.AutofillBase
             
 	    }
 
-        private static bool IsPassword(AssistStructure.ViewNode f)
+        private static bool IsPassword(InputField f)
 	    {
 	        InputTypes inputType = f.InputType;
             
@@ -249,86 +424,14 @@ namespace keepass2android.services.AutofillBase
 	                  || IsInputTypeVariation(inputType, InputTypes.TextVariationWebPassword)
                       )
                       )
-	                || (f.HtmlInfo?.Attributes.Any(p => p.First.ToString() == "type" && p.Second.ToString() == "password") ?? false)
+	                || (f.HtmlInfoTypeAttribute == "password")
 	            );
 	    }
 
-	    
-
-        void ParseLocked(bool forFill, bool isManualRequest, AssistStructure.ViewNode viewNode, ref string validWebdomain)
-		{
-		    String webDomain = viewNode.WebDomain;
-            if ((PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
-                (viewNode.IdPackage != "android"))
-            {
-                PackageId = viewNode.IdPackage;
-            }
-
-            DomainName outDomain;
-		    if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
-		    {
-		        webDomain = outDomain.RawDomainName;
-            }
-
-            if (webDomain != null)
-		    {
-                if (!string.IsNullOrEmpty(validWebdomain))
-		        {
-		            if (webDomain != validWebdomain)
-		            {
-		                throw new Java.Lang.SecurityException($"Found multiple web domains: valid= {validWebdomain}, child={webDomain}");
-		            }
-		        }
-		        else
-		        {
-		            validWebdomain = webDomain;
-		        }
-		    }
-
-		    string[] viewHints = viewNode.GetAutofillHints();
-		    if (viewHints != null && viewHints.Length == 1 && viewHints.First() == "off" && viewNode.IsFocused &&
-		        isManualRequest)
-		        viewHints[0] = "on";
-            /*if (viewHints != null && viewHints.Any())
-            {
-                CommonUtil.logd("viewHints=" + viewHints);
-                CommonUtil.logd("class=" + viewNode.ClassName);
-                CommonUtil.logd("tag=" + (viewNode?.HtmlInfo?.Tag ?? "(null)"));
-            }*/
-		    
-		   
-            if (viewHints != null && viewHints.Length > 0 && viewHints.First() != "on" /*if hint is "on", treat as if there is no hint*/)
-			{
-				if (forFill)
-				{
-					AutofillFields.Add(new AutofillFieldMetadata(viewNode));
-				}
-				else
-				{
-				    FilledAutofillField filledAutofillField = new FilledAutofillField(viewNode);
-				    ClientFormData.Add(filledAutofillField);
-                }
-			}
-            else
-            {
-                
-                if (viewNode.ClassName == "android.widget.EditText" 
-                    || viewNode.ClassName == "android.widget.AutoCompleteTextView" 
-                    || viewNode?.HtmlInfo?.Tag == "input")
-                {
-                    _editTextsWithoutHint.Add(viewNode);
-                }
-                
-            }
-			var childrenSize = viewNode.ChildCount;
-			if (childrenSize > 0)
-			{
-				for (int i = 0; i < childrenSize; i++)
-				{
-					ParseLocked(forFill, isManualRequest, viewNode.GetChildAt(i), ref validWebdomain);
-				}
-			}
-		}
+        AssistStructure Structure;
+        private List<ViewNodeInputField> _editTextsWithoutHint = new List<ViewNodeInputField>();
+        
+        
 
 	}
 }

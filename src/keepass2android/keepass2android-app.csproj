@@ -1944,6 +1944,10 @@
       <Project>{545b4a6b-8bba-4fbe-92fc-4ac060122a54}</Project>
       <Name>KeePassLib2Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kp2aAutofillParser\Kp2aAutofillParser.csproj">
+      <Project>{39b12571-bafe-4d3a-aee2-4d74f14dfd96}</Project>
+      <Name>Kp2aAutofillParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj">
       <Project>{53a9cb7f-6553-4bc0-b56b-9410bb2e59aa}</Project>
       <Name>Kp2aBusinessLogic</Name>

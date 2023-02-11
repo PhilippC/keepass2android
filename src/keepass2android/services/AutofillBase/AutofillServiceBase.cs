@@ -137,7 +137,7 @@ namespace keepass2android.services.AutofillBase
                     return;
                 }
 
-                AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
+                
                 InlineSuggestionsRequest inlineSuggestionsRequest = null;
                 IList<InlinePresentationSpec> inlinePresentationSpecs = null;
                 if (((int) Build.VERSION.SdkInt >= 30)
@@ -149,7 +149,7 @@ namespace keepass2android.services.AutofillBase
                 }
 
 
-                var autofillIds = autofillFields.GetAutofillIds();
+                var autofillIds = parser.AutofillFields.GetAutofillIds();
                 if (autofillIds.Length != 0 && CanAutofill(query, isManual))
                 {
                     var responseBuilder = new FillResponse.Builder();

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCloudBindings", "PCloudBin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "keepass2android-app", "keepass2android\keepass2android-app.csproj", "{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kp2aAutofillParser", "Kp2aAutofillParser\Kp2aAutofillParser.csproj", "{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -283,6 +285,30 @@ Global
 		{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
 		{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}.ReleaseNoNet|x64.Build.0 = Release|Any CPU
 		{D4C32E0A-0193-4496-9DB4-02CC126FD9F3}.ReleaseNoNet|x64.Deploy.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|Win32.Build.0 = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Debug|x64.Build.0 = Debug|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|Win32.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|Win32.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|x64.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.Release|x64.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|Any CPU.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|Any CPU.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|Mixed Platforms.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|Win32.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|Win32.Build.0 = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|x64.ActiveCfg = Release|Any CPU
+		{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}.ReleaseNoNet|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
