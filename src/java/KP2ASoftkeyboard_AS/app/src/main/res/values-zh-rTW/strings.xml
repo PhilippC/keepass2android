@@ -81,7 +81,7 @@
     <!-- Option to always show the settings key -->
     <string name="settings_key_mode_always_show_name">一律顯示</string>
     <!-- Option to always hide the settings key -->
-    <string name="settings_key_mode_always_hide_name">永遠隱藏</string>
+    <string name="settings_key_mode_always_hide_name">一律隱藏</string>
     <!-- Array of the settings key modes -->
     <string-array name="settings_key_modes">
         <item>@string/settings_key_mode_auto_name</item>
