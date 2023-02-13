@@ -190,7 +190,7 @@ namespace keepass2android.services.AutofillBase
             }
             return result;
 		}
-        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort" };
+        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password","passwort", "passwordAuto", "pswd" };
         private static bool HasPasswordHint(AssistStructure.ViewNode f)
 	    {
             return ContainsAny(f.IdEntry, _passwordHints) ||
