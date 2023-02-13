@@ -51,7 +51,12 @@ public class SftpUserInfo implements UserInfo {
 				intent.putExtra("keepass2android.sftp.prompt", text);
 				intent.setData((Uri.parse("suckit://"+SystemClock.elapsedRealtime())));
 
-				PendingIntent contentIntent = PendingIntent.getActivity(_appContext, 0, intent, 0);
+				int flags = 0;
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+					flags |= PendingIntent.FLAG_MUTABLE;
+				}
+				PendingIntent contentIntent = PendingIntent.getActivity(_appContext, 0, intent, flags);
+
 				builder.setContentIntent(contentIntent);
 
 				{
