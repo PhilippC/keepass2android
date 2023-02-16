@@ -90,13 +90,17 @@ namespace keepass2android
 
             if (!defaultPath.EndsWith(_schemeSeparator))
 		    {
-		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext);
+		        var fileStorage = new SftpStorage(activity.ApplicationContext);
                 SftpStorage.ConnectionInfo ci = fileStorage.SplitStringToConnectionInfo(defaultPath);
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text = ci.Host;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text = ci.Port.ToString();
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text = ci.Username;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text = ci.Password;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text = ci.LocalPath;
+		        if (ci.ConnectTimeoutSec != SftpStorage.UnsetSftpConnectTimeout)
+		        {
+			        dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text = ci.ConnectTimeoutSec.ToString();
+		        }
 		        if (string.IsNullOrEmpty(ci.Password))
 		        {
 		            spinner.SetSelection(1);
@@ -109,7 +113,7 @@ namespace keepass2android
 									  {
 										  string host = dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text;
 										  string portText = dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text;
-										  int port = Keepass2android.Javafilestorage.SftpStorage.DefaultSftpPort;
+										  int port = SftpStorage.DefaultSftpPort;
 										  if (!string.IsNullOrEmpty(portText))
 											  int.TryParse(portText, out port);
 										  string user = dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text;
@@ -117,8 +121,14 @@ namespace keepass2android
 										  string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text;
 									      if (string.IsNullOrEmpty(initialPath))
 									          initialPath = "/";
-                                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext).BuildFullPath(host, port, initialPath, user,
-																										  password);
+									      string connectTimeoutText = dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text;
+									      int connectTimeout = SftpStorage.UnsetSftpConnectTimeout;
+									      if (!string.IsNullOrEmpty(connectTimeoutText)) {
+									          int.TryParse(connectTimeoutText, out connectTimeout);
+									      }
+
+                                          string sftpPath = new SftpStorage(activity.ApplicationContext)
+                                              .BuildFullPath(host, port, initialPath, user, password, connectTimeout);
 										  onStartBrowse(sftpPath);
 									  });
 			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
