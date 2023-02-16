@@ -538,12 +538,12 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		//storageToTest = new SftpStorage(ctx.getApplicationContext());
+		storageToTest = new SftpStorage(ctx.getApplicationContext());
 		//storageToTest = new PCloudFileStorage(ctx, "yCeH59Ffgtm");
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
-		storageToTest = new GoogleDriveAppDataFileStorage();
+		//storageToTest = new GoogleDriveAppDataFileStorage();
 		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
 			public boolean onValidationError(String error) {
@@ -743,7 +743,19 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 								int port = Integer.parseInt(etPort.getText().toString());
 								EditText etInitDir = ((EditText)view.findViewById(R.id.sftp_initial_dir));
 								String initialDir = etInitDir.getText().toString();
-								onReceivePathForFileSelect(requestCode, sftpStorage.buildFullPath( host, port, initialDir, user, pwd));
+								EditText etConnectTimeout = ((EditText)view.findViewById(R.id.sftp_connect_timeout));
+								int connectTimeout = SftpStorage.UNSET_SFTP_CONNECT_TIMEOUT;
+								String ctStr = etConnectTimeout.getText().toString();
+								if (!ctStr.isEmpty()) {
+									try {
+										int ct = Integer.parseInt(ctStr);
+										if (connectTimeout != ct) {
+											connectTimeout = ct;
+										}
+									} catch (NumberFormatException parseEx) {
+									}
+								}
+								onReceivePathForFileSelect(requestCode, sftpStorage.buildFullPath( host, port, initialDir, user, pwd, connectTimeout));
 							} catch (UnsupportedEncodingException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();

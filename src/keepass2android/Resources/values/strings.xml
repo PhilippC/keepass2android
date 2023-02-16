@@ -589,6 +589,7 @@
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
 	<string name="hint_sftp_port">port</string>
 	<string name="initial_directory">Initial directory (optional):</string>
+    <string name="connect_timeout">Connection timeout seconds (optional):"</string>
 	<string name="enter_sftp_login_title">Enter SFTP login data:</string>
   <string name="sftp_auth_mode">Authentication mode</string>
   <string name="send_public_key">Send public key...</string>
