@@ -25,7 +25,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Button</string>
-  <string name="show_kill_app_summary">Zeige eine Schaltfläche auf dem Kennwort-Bildschirm, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
+  <string name="show_kill_app_summary">Eine Schaltfläche auf dem Kennwortbildschirm anzeigen, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
@@ -370,7 +370,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ClearPasswordOnLeave_summary">Leere das Eingabefeld für das Master-Passwort, wenn der Passwort-Eingabebildschirm verlassen wird, ohne dass die Datenbank entsperrt wurde.</string>
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Benutze integrierte Tastatur in Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Integrierte Tastatur in Keepass2Android verwenden</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Wenn Sie ihrer Standardtastatur nicht vertrauen, setzen Sie diese Option, um die Built-In-Tastatur beim Eingeben des Masterkennworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
   <string name="ActivateSearchViewOnStart_title">Suchfeld beim Start aktivieren</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
@@ -659,7 +659,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 • Wenn du die Datei auf dem PC noch öffnen kannst, nimm bitte Kontakt mit dem Support auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
   <string name="open_other_db">Öffne weitere Datenbank…</string>
   <string name="select_database">Datenbank auswählen</string>
-  <string name="configure_child_dbs">Konfiguriere Kinddatenbanken…</string>
+  <string name="configure_child_dbs">Kinddatenbanken konfigurieren …</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
   <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Master-Passwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
