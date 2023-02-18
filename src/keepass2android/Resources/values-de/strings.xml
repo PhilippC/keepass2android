@@ -84,7 +84,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="disclaimer_formal">Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">In Zwischenablage kopieren</string>
-  <string name="SystemLanguage">System Sprache</string>
+  <string name="SystemLanguage">Systemsprache</string>
   <string name="fingerprint_description">Bitte authentifizieren, um fortzufahren</string>
   <string name="fingerprint_fatal">Biometrisches Entsperren kann nicht eingerichtet werden:</string>
   <string name="fingerprint_not_recognized">Biometrische Authentifizierung fehlgeschlagen. Versuche es erneut</string>
@@ -270,7 +270,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="search_results">Suchergebnisse</string>
   <string name="search_in">Suche in</string>
   <string name="select_other_entry">Anderen Eintrag wählen</string>
-  <string name="select_group_then_add">Gehe zur gewünschten Gruppe, dann drücke \"%1$s\"!</string>
+  <string name="select_group_then_add">Die gewünschte Gruppe öffnen, dann „%1$s“ drücken!</string>
   <string name="insert_element_here">Hier einfügen</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Unterstrich</string>
@@ -281,7 +281,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="version_label">Version</string>
   <string name="version_history">Versionsinformationen</string>
   <string name="author">Keepass2Android wird von Philipp Crocoll entwickelt.</string>
-  <string name="further_authors">Danke an %1$s für Beiträge zum Source-Code!</string>
+  <string name="further_authors">Danke an %1$s für Beiträge zum Quellcode!</string>
   <string name="designers">Danke für das Icon und Layoutdesign erstellt von %1$s.</string>
   <string name="supporters">Danke für die finanzielle Unterstützung durch %1$s.</string>
   <string name="credit_plugin1">Das Twofish-Plugin für Keepass wurde von Scott Greenberg entwickelt und ist in KP2A enthalten.</string>
@@ -294,7 +294,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN-Einträge als abgelaufen markieren, wenn sie verwendet werden</string>
-  <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
+  <string name="ShowUsernameInList_title">Benutzernamen in Liste anzeigen</string>
   <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
   <string name="RememberRecentFiles_title">Datenbanken merken</string>
   <string name="RememberRecentFiles_summary">Dateinamen der bisher geöffneten Datenbanken speichern und im Bildschirm zum Öffnen der Datenbank anzeigen.</string>
@@ -331,7 +331,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
   <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel \"QuickUnlock\" in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel „QuickUnlock“ in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
@@ -341,7 +341,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
   <string name="SaveAttachment_Failed">Datei konnte nicht unter %1$s gespeichert werden.</string>
   <string name="AddUrlToEntryDialog_title">Suchtext merken?</string>
-  <string name="AddUrlToEntryDialog_text">Soll der Suchtext \"%1$s\" im gewählten Eintrag gespeichert werden? Dann wird er bei der nächsten Suche automatisch gefunden!</string>
+  <string name="AddUrlToEntryDialog_text">Soll der Suchtext „%1$s“ im gewählten Eintrag gespeichert werden? Dann wird er bei der nächsten Suche automatisch gefunden!</string>
   <string name="error_invalid_expiry_date">Ungültiges Datums-/Zeitformat für Ablaufdatum!</string>
   <string name="error_string_key">Ein Feldname ist für jeden Eintrag erforderlich.</string>
   <string name="error_string_duplicate_key">Ein Feldname kann nicht doppelt genutzt werden (%1$s).</string>
@@ -382,25 +382,25 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Cache-Ordner der App auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
   <string name="CreateBackups_title">Lokale Backups</string>
-  <string name="CreateBackups_summary">Erstelle eine lokale Sicherungskopie der Datenbank, nachdem diese erfolgreich geladen wurde.</string>
-  <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie\u2026</string>
+  <string name="CreateBackups_summary">Eine lokale Sicherungskopie der Datenbank erstellen, nachdem diese erfolgreich geladen wurde.</string>
+  <string name="UpdatingBackup">Lokale Sicherung wird aktualisiert …</string>
   <string name="LocalBackupOf">Lokale Sicherung von %1$s</string>
   <string name="show_local_backups">Lokale Backups anzeigen</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
   <string name="AcceptAllServerCertificates_summary">Bestimme das Verhalten, wenn Zertifikate nicht validiert werden können. Hinweis: du kannst auf deinem Android-Gerät Root-Zertifikate installieren, damit die Validierung gelingt!</string>
   <string name="ClearOfflineCache_title">Cache löschen?</string>
-  <string name="ClearOfflineCache_question">Dadurch werden alle zwischengespeicherten Datenbankdateien gelöscht. Alle Änderungen, die Sie ohne Zugriff auf die Quelldatenbank vorgenommen haben und die noch nicht synchronisiert wurden, gehen verloren! Dennoch fortfahren?</string>
+  <string name="ClearOfflineCache_question">Dadurch werden alle zwischengespeicherten Datenbankdateien gelöscht. Alle Änderungen, die ohne Zugriff auf die Quelldatenbank vorgenommen wurden und noch nicht synchronisiert sind, gehen verloren! Dennoch fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
   <string name="CheckForFileChangesOnSave_summary">Vor dem Speichern prüfen, ob die Datei von außerhalb geändert wurde.</string>
-  <string name="CheckForDuplicateUuids_title">Prüfe auf doppelte UUIDs</string>
+  <string name="CheckForDuplicateUuids_title">Auf doppelte UUIDs prüfen</string>
   <string name="CheckForDuplicateUuids_summary">Prüfe ob die Datenbank-Datei korrupt ist, weil mehrere Einträge dieselbe ID haben. Das könnte zu unerwartetem Verhalten führen.</string>
   <string name="ShowCopyToClipboardNotification_title">Zwischenablage-Benachrichtigungen</string>
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
-  <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
+  <string name="ShowSeparateNotifications_summary">Getrennte Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode anzeigen.</string>
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
   <string name="AutoFill_prefs">AutoFill-Dienst</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur-Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen, wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
@@ -409,20 +409,20 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="get_keyboardswap">KeyboardSwap-Plugin installieren</string>
   <string name="get_keyboardswap_summary">Dieses Plugin erlaubt es, auch ohne gerootetes Gerät automatisch zur KP2A-Tastatur zu wechseln. Benötigt ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatischer Wechsel nur nach Suche</string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach dem Nutzen der \"URL teilen\"-Funktion automatisch zur KP2A-Tastatur wechseln (aber nicht beim Öffnen des Eintrags auf einem anderen Weg)</string>
-  <string name="AutoSwitchBackKeyboard_title">Tastatur zurück wechseln</string>
-  <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode wenn kein Eintrag ausgewählt ist</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach Nutzen der Funktion „URL teilen“ automatisch zur KP2A-Tastatur wechseln (aber nicht beim Öffnen des Eintrags auf einem anderen Weg)</string>
+  <string name="AutoSwitchBackKeyboard_title">Tastatur zurückwechseln</string>
+  <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode, wenn kein Eintrag ausgewählt ist</string>
   <string name="ShowUnlockedNotification_title">Benachrichtungssymbol anzeigen, solange entsperrt</string>
-  <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
-  <string name="IconVisibilityInfo_Android8_text">Mit Android 8 wurde ein neues Verhalten für Benachrichtigungen eingeführt. Wenn du das Icon für die Benachrichtigungen von Keepass2Android ausblenden möchtest, konfiguriere dies bitte in den Systemeinstellungen. Setze dazu die Wichtigkeit der Benachrichtigungskategorie auf Minimum.</string>
+  <string name="ShowUnlockedNotification_summary">Symbol in der Benachrichtigungsleiste anzeigen, solange die Datenbank entsperrt ist.</string>
+  <string name="IconVisibilityInfo_Android8_text">Mit Android 8 wurde ein neues Verhalten für Benachrichtigungen eingeführt. Wenn das Symbol für die Benachrichtigungen von Keepass2Android ausgeblendet werden soll, dies bitte in den Systemeinstellungen konfigurieren. Dazu die Wichtigkeit der Benachrichtigungskategorie auf Minimum setzen.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Einstellungen öffnen</string>
   <string name="DontCare">Ist mir egal</string>
-  <string name="DocumentAccessRevoked">Keepass2Android kann nicht mehr auf die Datei zugreifen. Entweder wurde sie entfernt oder die Zugriffsrechte wurden entzogen. Bitte öffne sie erneut, z.B. durch Klick auf \"Datenbank wechseln\".</string>
-  <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
-  <string name="PreloadDatabaseEnabled_summary">Starte das Laden oder Herunterladen von Datenbank-Dateien im Hintergrund während der Passwort-Eingabe.</string>
+  <string name="DocumentAccessRevoked">Keepass2Android kann nicht mehr auf die Datei zugreifen. Entweder wurde sie entfernt oder die Zugriffsrechte wurden entzogen. Bitte die Datei erneut öffnen, z. B. über „Datenbank wechseln“.</string>
+  <string name="PreloadDatabaseEnabled_title">Datenbankdatei vorladen</string>
+  <string name="PreloadDatabaseEnabled_summary">Das Laden oder Herunterladen von Datenbankdateien im Hintergrund während der Passworteingabe starten.</string>
   <string name="SyncAfterQuickUnlock_title">Nach QuickUnlock synchronisieren</string>
   <string name="SyncAfterQuickUnlock_summary">Datenbank nach Entsperren mit QuickUnlock mit der Remote-Kopie synchronisieren.</string>
-  <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
+  <string name="AskOverwriteBinary">Soll der vorhandenen Anhang mit dem gleichen Namen überschrieben werden?</string>
   <string name="AskOverwriteBinary_title">Vorhandenen Anhang überschreiben?</string>
   <string name="AskOverwriteBinary_yes">Überschreiben</string>
   <string name="AskOverwriteBinary_no">Umbenennen</string>
@@ -442,17 +442,17 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="suggest_improvements">Verbesserungen vorschlagen</string>
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
-  <string name="AddingEntry">Füge Eintrag hinzu…</string>
-  <string name="AddingGroup">Füge Gruppe hinzu…</string>
-  <string name="DeletingEntry">Lösche Eintrag…</string>
-  <string name="DeletingGroup">Lösche Gruppe…</string>
-  <string name="DeletingItems">Lösche Elemente…</string>
-  <string name="SettingPassword">Setze Passwort…</string>
-  <string name="UndoingChanges">Nehme Änderungen zurück…</string>
-  <string name="TransformingKey">Führe Schlüsseltransformationen durch…</string>
-  <string name="DecodingDatabase">Entschlüssele Datenbank…</string>
+  <string name="AddingEntry">Eintrag wird hinzugefügt …</string>
+  <string name="AddingGroup">Gruppe wird hinzugefügt …</string>
+  <string name="DeletingEntry">Eintrag wird gelöscht …</string>
+  <string name="DeletingGroup">Gruppe wird gelöscht …</string>
+  <string name="DeletingItems">Elemente werden gelöscht …</string>
+  <string name="SettingPassword">Passwort wird gesetzt …</string>
+  <string name="UndoingChanges">Änderungen werden zurückgenommen …</string>
+  <string name="TransformingKey">Schlüsseltransformationen wird durchführt …</string>
+  <string name="DecodingDatabase">Datenbank wird entschlüsselt …</string>
   <string name="ParsingDatabase">Lese Datenbank ein…</string>
-  <string name="CheckingTargetFileForChanges">Prüfe ob Zieldatei geändert wurde…</string>
+  <string name="CheckingTargetFileForChanges">Prüfen, ob Zieldatei geändert wurde …</string>
   <string name="TitleSyncQuestion">Änderungen zusammenführen?</string>
   <string name="MessageSyncQuestion">Die Datenbankdatei wurde von außerhalb geändert. Sollen diese Änderungen geladen und mit den in Keepass2Android gemachten Änderungen zusammengeführt werden, bevor die Datenbank gespeichert wird? Wähle Nein, um die externen Änderungen zu überschreiben.</string>
   <string name="SynchronizingDatabase">Führe Änderungen zusammen…</string>
@@ -483,7 +483,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="otp_aux_file">OTP-Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
   <string name="DuplicateUuidsError">Datenbank ist beschädigt: IDs kommen mehrfach vor. (Wurde mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und „Neue IDs erstellen“ auswählen.</string>
-  <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungs-Einstellungen/Umgang mit Dateien/Prüfe auf doppelte UUIDs deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
+  <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungseinstellungen/Umgang mit Dateien/Auf doppelte UUIDs prüfen deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
   <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
   <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
   <string name="donate_question">Heute ist Oktoberfest! Wenn dir Keepass2Android gefällt: Wäre heute nicht ein guter Tag, um mir ein Bier zu spendieren?</string>
@@ -538,7 +538,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="button_change_location">Speicherort ändern</string>
   <string name="help_quickunlock">Wenn aktiviert, läuft Keepass2Android im Hintergrund weiter, auch wenn die Datenbank gesperrt ist. Das ermöglicht das Öffnen der Datenbank mit QuickUnlock.</string>
   <string name="master_password">Hauptpasswort</string>
-  <string name="help_master_password">Deine Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Wähle ein starkes Passwort, um deine Datenbank zu schützen! Tipp: Denke dir ein oder zwei Sätze aus und nutze die Anfangsbuchstaben als Passwort. Übernimm auch die Satzzeichen.</string>
+  <string name="help_master_password">Die eigene Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Dazu ein starkes Passwort verwenden, um die Datenbank zu schützen! Tipp: Sich ein oder zwei Sätze ausdenken und die Anfangsbuchstaben als Passwort nutzen. Auch die Satzzeichen mit einschließen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
   <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wird die Datenbank in der Cloud gespeichert, sollte die Schlüsseldatei keinesfalls ebenfalls dort abgelegt werden! Das würde sie völlig nutzlos machen! Wichtig: Den Inhalt der Schlüsseldatei nicht mehr ändern, nachdem die Datenbank angelegt wurde!</string>
@@ -648,7 +648,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
    • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">   \n
-   &#8226; Hinweis: Wenn du denkst, dass deine Datenbank-Datei beschädigt sein könnte oder du das Passwort nicht mehr weißt, nachdem du es geändert hast, kannst du zur zuletzt erfolgreich geöffneten Datei wechseln. Klicke dazu auf \"%1$s\" und wähle das lokale Backup.</string>
+   &#8226; Tipp: Wenn die Vermutung besteht, die eigene Datenbankdatei könnte beschädigt sein oder sich nach einer Änderung nicht mehr an den Hauptschlüssel erinnern, kann man es mit der zuletzt erfolgreich geöffnete Dateiversion versuchen, indem auf „%1$s“ getippt und die lokale Sicherung ausgewählt wird.</string>
   <string name="HintLocalBackupOtherError">\n
 &#8226; Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Du kannst diese öffnen, indem du \"%1$s\" klickst und das lokale Backup wählst.  </string>
   <string name="CorruptDatabaseHelp">Die Datei ist beschädigt.\n
