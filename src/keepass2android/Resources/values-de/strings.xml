@@ -25,7 +25,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Button</string>
-  <string name="show_kill_app_summary">Eine Schaltfläche auf dem Kennwortbildschirm anzeigen, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
+  <string name="show_kill_app_summary">Eine Schaltfläche auf dem Passwortbildschirm anzeigen, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
@@ -97,8 +97,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
   <string name="fingerprint_unlock_failed">Biometrisches Entsperren fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn die Biometrische Authentifizierung oder die Sicherheitseinstellungen geändert wurden. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Biometrisches Entsperren wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist.</string>
-  <string name="fingerprint_reenable">Bitte biometrisches Entsperren für das neue Masterkennwort erneut aktivieren.</string>
-  <string name="fingerprint_reenable2">Bitte mit Kennwort entsperren und anschließend in den Datenbankeinstellungen das biometrische Entsperren erneut aktivieren.</string>
+  <string name="fingerprint_reenable">Bitte Biometrisches Entsperren für das neue Hauptpasswort erneut aktivieren.</string>
+  <string name="fingerprint_reenable2">Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Biometrische Entsperren erneut aktivieren.</string>
   <string name="FingerprintInitFailed">Initialisierung der biometrischen Authentifizierung fehlgeschlagen. </string>
   <string name="FingerprintSetupFailed">Daten konnten nicht verschlüsselt werden. Dies kann passieren, wenn Fingerabdrücke in den Systemeinstellungen hinzugefügt oder gelöscht wurden, während Keepass2Android auf deinen Fingerabdruck wartet.</string>
   <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Hauptpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Dadurch kann die Datenbank per biometrischer Authentifizierung entsperrt werden.</string>
@@ -109,7 +109,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_comment">Notizen</string>
   <string name="entry_tags">Tags</string>
   <string name="entry_override_url">URL überschreiben</string>
-  <string name="entry_confpassword">Kennwort wiederholen</string>
+  <string name="entry_confpassword">Passwort bestätigen</string>
   <string name="entry_created">Erstellt</string>
   <string name="entry_expires">Gültig bis</string>
   <string name="entry_group_name">Name der Gruppe</string>
@@ -147,7 +147,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="generate_password">Passwort erzeugen</string>
   <string name="group">Gruppe</string>
   <string name="hint_comment">Notizen</string>
-  <string name="hint_conf_pass">Kennwort wiederholen</string>
+  <string name="hint_conf_pass">Passwort bestätigen</string>
   <string name="hint_generated_password">Erzeugtes Kennwort</string>
   <string name="hint_group_name">Name der Gruppe</string>
   <string name="hint_keyfile">Schlüsseldatei</string>
@@ -159,7 +159,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_override_url">URL überschreiben</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">Benutzername</string>
-  <string name="InvalidPassword">Kennwort oder Schlüsseldatei ist falsch.</string>
+  <string name="InvalidPassword">Passwort oder Schlüsseldatei ungültig.</string>
   <string name="invalid_algorithm">Ungültiger Algorithmus.</string>
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
   <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
@@ -179,7 +179,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
   <string name="menu_about">Über</string>
   <string name="menu_change_key">Hauptschlüssel ändern</string>
-  <string name="menu_copy_pass">Kennwort kopieren</string>
+  <string name="menu_copy_pass">Passwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
   <string name="menu_copy_totp">TOTP kopieren</string>
   <string name="menu_create">Erstellen</string>
@@ -213,7 +213,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="omitbackup_title">Papierkorb und Sicherungen nicht durchsuchen</string>
   <string name="omitbackup_summary">Papierkorb und Sicherungseinträge werden bei der Suche nicht berücksichtigt.</string>
   <string name="pass_filename">KeePass Datenbankdatei</string>
-  <string name="password_title">Datenbankkennwort eingeben</string>
+  <string name="password_title">Datenbankpasswort eingeben</string>
   <string name="master_key_type">Hauptschlüsseltyp auswählen:</string>
   <string name="progress_create">Neue Datenbank wird angelegt …</string>
   <string name="create_database">Datenbank anlegen</string>
@@ -240,7 +240,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="export_keyfile_successful">Schlüsseldatei erfolgreich exportiert!</string>
   <string name="space">Leerzeichen</string>
   <string name="search_label">Suchen</string>
-  <string name="show_password">Kennwort anzeigen</string>
+  <string name="show_password">Passwort anzeigen</string>
   <string name="sort_menu">Sortieren nach …</string>
   <string name="sort_name">Sortieren nach Name</string>
   <string name="sort_db">Sortieren nach Erstellung</string>
@@ -303,7 +303,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="InlineSuggestions_title">In die Tastatur integrieren</string>
   <string name="InlineSuggestions_summary">Zeigt Vorschläge für automatisches Ausfüllen innerhalb der virtuellen Tastatur (wenn von dieser unterstützt)</string>
   <string name="requires_android11">Benötigt Android 11 oder neuer</string>
-  <string name="kp2a_findUrl">Kennwort finden</string>
+  <string name="kp2a_findUrl">Passwort finden</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
   <string name="caseSensitive">Groß-/Kleinschreibung beachten</string>
@@ -327,12 +327,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung, um ordnungsgemäß zu funktionieren. Diese Option wählen, um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
-  <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
+  <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Passwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
   <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel „QuickUnlock“ in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
-  <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
+  <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Passwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
   <string name="SaveAttachmentDialog_save">In Datei exportieren …</string>
@@ -662,7 +662,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="configure_child_dbs">Kinddatenbanken konfigurieren …</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
-  <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Master-Passwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
+  <string name="child_db_explanation">Kinddatenbanken sind weitere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Hauptpasswort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige der eigenen Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
   <string name="child_db_enabled_on_this_device">Auf diesem Gerät aktiviert</string>
   <string name="child_db_enable_on_this_device">Auf diesem Gerät aktivieren</string>
   <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
@@ -1071,7 +1071,7 @@ Erstes öffentliches Release</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
   <string name="masterkey_infotext_head">Ist das Hauptpasswort bekannt?</string>
   <string name="masterkey_infotext_main">Bitte beachten, dass die Datenbank ohne den Hauptschlüssel nicht geöffnet werden kann. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
-  <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass die biometrische Entsperrung durch das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
+  <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass das Biometrische Entsperren über das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
   <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
   <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, nach %1$s &gt; %2$s &gt; %3$s gehen.</string>
