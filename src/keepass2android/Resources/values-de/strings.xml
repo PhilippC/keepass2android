@@ -33,7 +33,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deaktivierte AutoFill-Ziele</string>
   <string name="AutofillDisabledQueriesPreference_summary">Zeigt eine Liste von Apps und Webseiten, für die AutoFill deaktiviert ist.</string>
-  <string name="OfferSaveCredentials_summary">Wenn aktiviert fragt Android, ob du die Anmeldedaten speichern möchtest, die du manuell in AutoFill-Felder eingegeben hast.</string>
+  <string name="OfferSaveCredentials_summary">Wenn aktiviert, fragt Android, ob die Anmeldedaten gespeichert werden sollen, die manuell in AutoFill-Felder eingegeben wurden.</string>
   <string name="OfferSaveCredentials_title">Speichern von Zugangsdaten anbieten</string>
   <string name="ShowGroupInEntry_title">Gruppennamen in der Eintragsansicht anzeigen</string>
   <string name="unknown_uri_scheme">Tut mir Leid! Keepass2Android kann die zurückgegebene URI %1$s nicht verarbeiten. Bitte kontaktiere den Entwickler!</string>
@@ -43,7 +43,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="IconSet_install">Weitere finden...</string>
   <string name="security_prefs">Sicherheit</string>
   <string name="display_prefs">Anzeige</string>
-  <string name="password_access_prefs">Passwort-Zugriff</string>
+  <string name="password_access_prefs">Passwortzugriff</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Umgang mit Dateien</string>
   <string name="keyboard_prefs">Tastatur</string>
@@ -76,7 +76,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_is_available">ist verfügbar</string>
   <string name="not_possible_im_picker">Der Dialog zum Auswählen der Eingabemethode konnte nicht geöffnet werden. Bitte die Tastatur manuell aktivieren.</string>
   <string name="please_activate_keyboard">Bitte Keepass2Android Tastatur in den Einstellungen aktivieren.</string>
-  <string name="creating_db_key">Datenbank-Schlüsseldatei erzeugen\u2026</string>
+  <string name="creating_db_key">Datenbankschlüsseldatei erzeugen …</string>
   <string name="current_group">Aktuelle Gruppe</string>
   <string name="current_group_root">Start</string>
   <string name="database">Datenbank</string>
@@ -85,13 +85,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">In Zwischenablage kopieren</string>
   <string name="SystemLanguage">System Sprache</string>
-  <string name="fingerprint_description">Bitte authentifizieren um fortzufahren</string>
-  <string name="fingerprint_fatal">Kann Biometrisches Entsperren nicht einrichten:</string>
+  <string name="fingerprint_description">Bitte authentifizieren, um fortzufahren</string>
+  <string name="fingerprint_fatal">Biometrisches Entsperren kann nicht eingerichtet werden:</string>
   <string name="fingerprint_not_recognized">Biometrische Authentifizierung fehlgeschlagen. Versuche es erneut</string>
   <string name="fingerprint_success">Biometrische Authentifizierung erfolgreich</string>
   <string name="fingerprint_os_error">Biometrische Entsperrung erfordert Android 6.0 oder höher.</string>
   <string name="fingerprint_hardware_error">Keine biometrische Hardware erkannt.</string>
-  <string name="fingerprint_no_enrolled">Sie haben keine biometrische Authentifizierung auf diesem Gerät konfiguriert. Bitte gehen Sie zuerst zu den Systemeinstellungen.</string>
+  <string name="fingerprint_no_enrolled">Es wurde keine biometrische Authentifizierung auf diesem Gerät konfiguriert. Bitte zuerst zu den Systemeinstellungen gehen.</string>
   <string name="disable_fingerprint_unlock">Biometrisches Entsperren deaktivieren</string>
   <string name="enable_fingerprint_unlock">Komplettes biometrisches Entsperren aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
@@ -101,7 +101,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="fingerprint_reenable2">Bitte mit Kennwort entsperren und anschließend in den Datenbankeinstellungen das biometrische Entsperren erneut aktivieren.</string>
   <string name="FingerprintInitFailed">Initialisierung der biometrischen Authentifizierung fehlgeschlagen. </string>
   <string name="FingerprintSetupFailed">Daten konnten nicht verschlüsselt werden. Dies kann passieren, wenn Fingerabdrücke in den Systemeinstellungen hinzugefügt oder gelöscht wurden, während Keepass2Android auf deinen Fingerabdruck wartet.</string>
-  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Master-Passwort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Dadurch kann die Datenbank per biometrischer Authentifizierung entsperrt werden.</string>
+  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Hauptpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Dadurch kann die Datenbank per biometrischer Authentifizierung entsperrt werden.</string>
   <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den biometrische Authentifizierung anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
@@ -178,7 +178,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
   <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
   <string name="menu_about">Über</string>
-  <string name="menu_change_key">Masterpasswort ändern</string>
+  <string name="menu_change_key">Hauptschlüssel ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
   <string name="menu_copy_totp">TOTP kopieren</string>
@@ -213,19 +213,19 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="omitbackup_title">Papierkorb und Sicherungen nicht durchsuchen</string>
   <string name="omitbackup_summary">Papierkorb und Sicherungseinträge werden bei der Suche nicht berücksichtigt.</string>
   <string name="pass_filename">KeePass Datenbankdatei</string>
-  <string name="password_title">Datenbank-Kennwort eingeben</string>
-  <string name="master_key_type">Master-Passwort-Typ auswählen:</string>
-  <string name="progress_create">Neue Datenbank anlegen\u2026</string>
+  <string name="password_title">Datenbankkennwort eingeben</string>
+  <string name="master_key_type">Hauptschlüsseltyp auswählen:</string>
+  <string name="progress_create">Neue Datenbank wird angelegt …</string>
   <string name="create_database">Datenbank anlegen</string>
-  <string name="progress_title">In Bearbeitung\u2026</string>
+  <string name="progress_title">In Bearbeitung …</string>
   <string name="remember_keyfile_summary">Speicherort der Schlüsseldateien merken</string>
   <string name="remember_keyfile_title">Schlüsseldatei speichern</string>
   <string name="remove_from_filelist">Entfernen</string>
   <string name="edit">Bearbeiten</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
-  <string name="AutoReturnFromQuery_title">Kehre automatisch vom Abfragebildschirm zurück</string>
-  <string name="AutoReturnFromQuery_summary">Beim Suchen eines Eintrags für eine App oder Webseite: Kehre automatisch vom Abfragebildschirm zurück, wenn nur ein passender Eintrag in der Datenbank existiert.</string>
+  <string name="AutoReturnFromQuery_title">Automatisch vom Abfragebildschirm zurückkehren</string>
+  <string name="AutoReturnFromQuery_summary">Beim Suchen eines Eintrags für eine App oder Webseite: Automatisch vom Abfragebildschirm zurückkehren, wenn nur ein passender Eintrag in der Datenbank existiert.</string>
   <string name="KeyDerivFunc">Schlüsselableitungsfunktion</string>
   <string name="rounds">Schlüsseltransformationen</string>
   <string name="rounds_explaination">Je höher die Anzahl der Schlüsseltransformationen, desto besser ist der Schutz gegen Wörterbuch- oder Brute-Force-Angriffe. Allerdings dauert dann auch das Laden und Speichern der Datenbank entsprechend länger.</string>
@@ -233,7 +233,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="argon2memory">Speicher für Argon 2 (in Bytes)</string>
   <string name="argon2parallelism">Parallelisierung für Argon 2</string>
   <string name="database_name">Datenbankname</string>
-  <string name="default_username">Standard-Benutzername für neue Einträge</string>
+  <string name="default_username">Standardbenutzername für neue Einträge</string>
   <string name="saving_database">Speichere Datenbank\u2026</string>
   <string name="exporting_database">Datenbank exportieren…</string>
   <string name="export_database_successful">Datenbank erfolgreich exportiert!</string>
@@ -241,7 +241,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="space">Leerzeichen</string>
   <string name="search_label">Suchen</string>
   <string name="show_password">Kennwort anzeigen</string>
-  <string name="sort_menu">Sortiere nach...</string>
+  <string name="sort_menu">Sortieren nach …</string>
   <string name="sort_name">Sortieren nach Name</string>
   <string name="sort_db">Sortieren nach Erstellung</string>
   <string name="sort_moddate">Sortiere nach Änderungsdatum</string>
@@ -293,7 +293,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer vereinigen</string>
   <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
-  <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
+  <string name="TanExpiresOnUse_summary">TAN-Einträge als abgelaufen markieren, wenn sie verwendet werden</string>
   <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
   <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
   <string name="RememberRecentFiles_title">Datenbanken merken</string>
@@ -307,10 +307,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
   <string name="caseSensitive">Groß-/Kleinschreibung beachten</string>
-  <string name="start_open_file">Datei öffnen...</string>
-  <string name="start_create">Neue Datenbank erstellen...</string>
-  <string name="start_open_url">URL öffnen...</string>
-  <string name="start_create_import">Datei in neue Datenbank importieren...</string>
+  <string name="start_open_file">Datei öffnen …</string>
+  <string name="start_create">Neue Datenbank erstellen …</string>
+  <string name="start_open_url">URL öffnen …</string>
+  <string name="start_create_import">Datei in neue Datenbank importieren …</string>
   <string name="enter_filename_details_url">Die vollständige URL muss einschließlich Protokoll, z.B. http://, angegeben werden.</string>
   <string name="enter_filename_details_create_import">Zu importierende Datei wird im nächsten Schritt gewählt.</string>
   <string name="enable_quickunlock">QuickUnlock aktivieren</string>
@@ -325,7 +325,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockIconHidden_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung um richtig zu funktionieren. Wähle diese Option um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung, um ordnungsgemäß zu funktionieren. Diese Option wählen, um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
@@ -335,7 +335,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
   <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
-  <string name="SaveAttachmentDialog_save">In Datei exportieren...</string>
+  <string name="SaveAttachmentDialog_save">In Datei exportieren …</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="ShowAttachedImage">Mit internem Bildbetrachter anzeigen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
@@ -348,7 +348,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="field_name">Feldname</string>
   <string name="field_value">Feldwert</string>
   <string name="protection">Geschütztes Feld</string>
-  <string name="add_binary">Dateianhang hinzufügen...</string>
+  <string name="add_binary">Dateianhang hinzufügen …</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="configure_totp">TOTP konfigurieren</string>
   <string name="totp_secret_key">Geheimer Schlüssel</string>
@@ -428,7 +428,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskOverwriteBinary_no">Umbenennen</string>
   <string name="AttachFailed">Fehler beim Hinzufügen des Anhangs.</string>
   <string name="RecycleBin">Papierkorb</string>
-  <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
+  <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Nein drücken, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyItems">Gewählte Elemente permanent löschen? Nein wählen, um in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">Eintrag permanent löschen?</string>
@@ -462,7 +462,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseOnlineMode">Zwischengespeicherte Kopie mit der Quelldatei synchronisieren</string>
   <string name="UseOfflineMode_Info">Datenbank wird vom internen Cache geladen. Änderungen werden nur im internen Cache gespeichert und nur synchronisiert, wenn eine Datenbanksynchronisierung manuell ausgewählt wird.</string>
   <string name="InOfflineMode">Verwende nur internen Zwischenspeicher.</string>
-  <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank…</string>
+  <string name="SynchronizingCachedDatabase">Gecachte Datenbank synchronisieren …</string>
   <string name="DownloadingRemoteFile">Quelldatei wird geladen…</string>
   <string name="UploadingFile">Datei speichern…</string>
   <string name="RestoringRemoteFile">Quelldatei wird wiederhergestellt…</string>
@@ -482,7 +482,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="database_file">Datenbankdatei</string>
   <string name="otp_aux_file">OTP-Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
-  <string name="DuplicateUuidsError">Datenbank ist beschädigt: IDs kommen mehrfach vor. (Hast du mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und \'Neue IDs erstellen\' auswählen.</string>
+  <string name="DuplicateUuidsError">Datenbank ist beschädigt: IDs kommen mehrfach vor. (Wurde mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und „Neue IDs erstellen“ auswählen.</string>
   <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungs-Einstellungen/Umgang mit Dateien/Prüfe auf doppelte UUIDs deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
   <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
   <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
@@ -502,7 +502,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="initial_directory">Startverzeichnis (optional):</string>
   <string name="enter_sftp_login_title">SFTP-Zugangsdaten eingeben:</string>
   <string name="sftp_auth_mode">Authentifizierungsmodus</string>
-  <string name="send_public_key">Sende öffentlichen Schlüssel...</string>
+  <string name="send_public_key">Öffentlichen Schlüssel senden …</string>
   <string name="enter_ftp_login_title">FTP-Zugangsdaten eingeben:</string>
   <string name="enter_mega_login_title">Geben Sie Ihre MEGA-Zugangsdaten ein:</string>
   <string name="select_storage_type">Speichertyp wählen:</string>
@@ -537,12 +537,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_database_location">Wähle, wo du deine Datenbank speichern möchtest:</string>
   <string name="button_change_location">Speicherort ändern</string>
   <string name="help_quickunlock">Wenn aktiviert, läuft Keepass2Android im Hintergrund weiter, auch wenn die Datenbank gesperrt ist. Das ermöglicht das Öffnen der Datenbank mit QuickUnlock.</string>
-  <string name="master_password">Master-Passwort</string>
+  <string name="master_password">Hauptpasswort</string>
   <string name="help_master_password">Deine Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Wähle ein starkes Passwort, um deine Datenbank zu schützen! Tipp: Denke dir ein oder zwei Sätze aus und nutze die Anfangsbuchstaben als Passwort. Übernimm auch die Satzzeichen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
-  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wenn du deine Datenbank in der Cloud speicherst, solltest du die Schlüsseldatei keinesfalls auch dort ablegen. Das würde sie nutzlos machen! Wichtig: Ändere die Schlüsseldatei nicht mehr, nachdem du die Datenbank angelegt hast!</string>
-  <string name="hint_key_file">Wähle, ob du eine Schlüsseldatei zusätzlich zum Master-Passwort nutzen möchtest:</string>
+  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wird die Datenbank in der Cloud gespeichert, sollte die Schlüsseldatei keinesfalls ebenfalls dort abgelegt werden! Das würde sie völlig nutzlos machen! Wichtig: Den Inhalt der Schlüsseldatei nicht mehr ändern, nachdem die Datenbank angelegt wurde!</string>
+  <string name="hint_key_file">Wählen, ob eine Schlüsseldatei zusätzlich zum Hauptpasswort verwendet werden soll:</string>
   <string name="use_key_file">Schlüsseldatei benutzen</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
   <string name="init_otp">OTP-Hilfsdatei laden…</string>
@@ -683,7 +683,7 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
-  <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
+  <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string-array name="ChangeLog_1_09e">
     <item>Bugfix um Abstürze und unerwartetes Ausloggen zu vermeiden</item>
     <item>Wechsel auf eine neue SFTP-Implementierung, jetzt mit Unterstützung von modernen Public-Key-Algorithmen wie rsa-sha2-256</item>
@@ -883,11 +883,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 		* App-Logo und Benachrichtigungsdesign aktualisiert, Design von Stefano Pignataro (http://www.spstudio.at)\n
 		* Keepass2Android merkt sich die letzten Einstellungen\n
 		* Sichtbarkeit von Benachrichtigungen unter Android 5 gesetzt \n
-		* Eingegebenes Master-Passwort wird gelöscht, wenn die App verlassen wird, ohne OK zu drücken\n
+		* Eingegebenes Hauptpasswort wird gelöscht, wenn die App verlassen wird, ohne OK zu drücken\n
 		* Problem mit fehlenden Tastatur-Eingabesprachen auf manchen Geräten behoben\n
 		* Problem mit automatischem Tastatur-Umschalten behoben\n
 		* Prüfung auf korrupte Datenbanken mit doppelten UUIDs\n
-		* Datenbank wird automatisch neu geladen, wenn eine Änderung erkannt wird (löst Sicherheitsbedenken bzgl. Möglichkeit, Masterpasswort sehen zu können)\n
+		* Datenbank wird automatisch neu geladen, wenn eine Änderung erkannt wird (löst Sicherheitsbedenken bzgl. Möglichkeit, Hauptpasswort sehen zu können)\n
 		* Design der Tastatureinstellungen korrigiert (danke an Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 		* Probleme bei Dateiauswahl behoben (bes. auf Android 4.4)\n
@@ -1069,9 +1069,9 @@ Erstes öffentliches Release</string>
   <string name="enable_fingerprint_hint">Keepass2Android hat biometrische Hardware erkannt. Möchtest du Biometrisches Entsperren für diese Datenbank aktivieren?</string>
   <string name="understand">Ich verstehe</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
-  <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
-  <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank nicht ohne Master-Passwort öffnen kannst. Es gibt keine Möglichkeit, das Passwort zurückzusetzen.</string>
-  <string name="masterkey_infotext_fingerprint_note">Beachte auch, dass für das biometrische Entsperren dein Masterkennwort durch Android in einem gesicherten Speicher abgelegt wird. Dieser Speicher kann aber von Android gelöscht oder ungültig gemacht werden, z.B. wenn du einen Fingerabdruck in den Systemeinstellungen hinterlegst. Verlass dich daher bitte nicht auf das biometrische Entsperren sondern merke dir dein Masterkennwort!</string>
+  <string name="masterkey_infotext_head">Ist das Hauptpasswort bekannt?</string>
+  <string name="masterkey_infotext_main">Bitte beachten, dass die Datenbank ohne den Hauptschlüssel nicht geöffnet werden kann. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
+  <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass die biometrische Entsperrung durch das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
   <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
   <string name="backup_infotext_main">Keepass2Android speichert deine Passwörter in eine Datei an einem Ort deiner Wahl. Bist du sicher, dass du auf diese Datei auch noch Zugriff hast wenn dein Telefon verloren geht oder gestohlen wird? Oder wenn die Datei zerstört oder gelöscht wird? Bitte stelle sicher, dass du immer eine aktuelle Kopie an einem sichern Ort aufbewahrst!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
