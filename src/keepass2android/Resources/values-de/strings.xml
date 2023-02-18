@@ -159,7 +159,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_override_url">Override URL</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">Benutzername</string>
-  <string name="InvalidPassword">Passwort oder Schlüssel-Datei ungültig.</string>
+  <string name="InvalidPassword">Kennwort oder Schlüsseldatei ist falsch.</string>
   <string name="invalid_algorithm">Ungültiger Algorithmus.</string>
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
   <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
@@ -178,7 +178,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
   <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
   <string name="menu_about">Über</string>
-  <string name="menu_change_key">Master-Passwort ändern</string>
+  <string name="menu_change_key">Masterpasswort ändern</string>
   <string name="menu_copy_pass">Kennwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
   <string name="menu_copy_totp">TOTP kopieren</string>
@@ -334,7 +334,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel \"QuickUnlock\" in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
-  <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
+  <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
   <string name="SaveAttachmentDialog_save">In Datei exportieren...</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="ShowAttachedImage">Mit internem Bildbetrachter anzeigen</string>
