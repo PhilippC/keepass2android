@@ -639,25 +639,25 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AddTemplates_pref">Vorlagen zu Datenbank hinzufügen</string>
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (über die Google+ Beta-Tester-Community oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
-  <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
+  <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Ist dies wirklich eine gültige Datei?</string>
   <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut probieren.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte probiere die folgenden Schritte, um die Datenbank zu entsperren:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte folgenden Schritte probieren, um die Datenbank zu entsperren:\n
   
-    • Stelle sicher, dass du das richtige Passwort eingegeben hast. Das Augensymbol kann genutzt werden um das eingegebene Passwort anzuzeigen.\n
-   • Stelle sicher, dass du den richtigen Passworttyp ausgewählt hast. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
-   • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
+    • Sicherstellen, dass das richtige Passwort eingegeben wurde. Das Augensymbol dafür nutzen, um das eingegebene Passwort anzuzeigen.\n
+   • Sicherstellen, dass der richtigen Passworttyp ausgewählt wurde. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
+   • Sicherstellen, dass die richtige Datenbankdatei gewählt wurde.
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">   \n
-   &#8226; Tipp: Wenn die Vermutung besteht, die eigene Datenbankdatei könnte beschädigt sein oder sich nach einer Änderung nicht mehr an den Hauptschlüssel erinnern, kann man es mit der zuletzt erfolgreich geöffnete Dateiversion versuchen, indem auf „%1$s“ getippt und die lokale Sicherung ausgewählt wird.</string>
+   &#8226; Tipp: Wenn die Vermutung besteht, die eigene Datenbankdatei könnte beschädigt sein oder sich nach einer Änderung nicht mehr an den Hauptschlüssel erinnern wird, kann man es mit der zuletzt erfolgreich geöffnete Dateiversion versuchen, indem auf „%1$s“ getippt und die lokale Sicherung ausgewählt wird.</string>
   <string name="HintLocalBackupOtherError">\n
-&#8226; Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Du kannst diese öffnen, indem du \"%1$s\" klickst und das lokale Backup wählst.  </string>
+&#8226; Tipp: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Diese kann geöffnet werden, indem „%1$s“ angetippt und das lokale Backup gewählte wird.</string>
   <string name="CorruptDatabaseHelp">Die Datei ist beschädigt.\n
-Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
+Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
 
-• Wenn du die Datei über USB kopiert hast (MTP-Modus), versuche es noch einmal mit Tools wie MyPhoneExplorer. MTP schneidet die Dateien in manchen Fällen ab.\n
-• Wenn du die Datei nicht von der gleichen Stelle auf deinem PC öffnen kannst, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte verwende in diesem Fall eine Datenbanksicherung. Wenn du annimmst, dass Keepass2Android die Datei beschädigt hat, nimm bitte Kontakt mit dem Support auf.\n
-• Wenn du die Datei auf dem PC noch öffnen kannst, nimm bitte Kontakt mit dem Support auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
-  <string name="open_other_db">Öffne weitere Datenbank…</string>
+• Wenn die Datei über USB kopiert wurde (MTP-Modus), es noch einmal mit Tools wie MyPhoneExplorer versuchen. MTP schneidet in manchen Fällen die Dateien ab.\n
+• Wenn sich die Datei vom gleichen Speicherort nicht auf dem PC öffnen lässt, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte in diesem Fall eine Datenbanksicherung verwenden. Wenn der Verdacht besteht, dass Keepass2Android die Datei beschädigt hat, bitte Kontakt mit dem Support aufnehmen.\n
+• Wenn sich die Datei auf dem PC noch öffnen lässt, bitte Kontakt mit dem Support aufnehmen. Man kann versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z. B. unkomprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
+  <string name="open_other_db">Weitere Datenbank öffnen …</string>
   <string name="select_database">Datenbank auswählen</string>
   <string name="configure_child_dbs">Kinddatenbanken konfigurieren …</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
