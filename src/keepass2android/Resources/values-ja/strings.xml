@@ -37,7 +37,7 @@
   <string name="ShowGroupInEntry_title">エントリー画面にグループ名を表示</string>
   <string name="unknown_uri_scheme">申し訳ありません！  Keepass2Android は、返された URI %1$s を処理できませんでした。開発者にお問い合わせください！</string>
   <string name="Entry_singular">1 エントリー</string>
-  <string name="Entry_plural">%1$d エントリー</string>
+  <string name="Entry_plural">%1$d 件のエントリー</string>
   <string name="IconSet_title">アイコンセット</string>
   <string name="IconSet_install">さらに探す…</string>
   <string name="security_prefs">セキュリティ</string>
