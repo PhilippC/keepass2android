@@ -156,7 +156,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_login_pass">Passwort</string>
   <string name="hint_title">Name</string>
   <string name="hint_url">URL</string>
-  <string name="hint_override_url">Override URL</string>
+  <string name="hint_override_url">URL überschreiben</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">Benutzername</string>
   <string name="InvalidPassword">Kennwort oder Schlüsseldatei ist falsch.</string>
@@ -431,13 +431,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Nein drücken, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyItems">Gewählte Elemente permanent löschen? Nein wählen, um in den Papierkorb zu verschieben.</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">Eintrag permanent löschen?</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Soll der Eintrag wirklich endgültig gelöscht werden?</string>
   <string name="AskDeletePermanentlyGroupNoRecycle">Gruppe endgültig löschen?</string>
   <string name="AskDeletePermanentlyItemsNoRecycle">Ausgewählte Elemente endgültig löschen?</string>
   <string name="AskDeletePermanently_title">Endgültig löschen?</string>
   <string name="AskReloadFile_title">Datei neu laden?</string>
-  <string name="AskReloadFile">Die geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
-  <string name="AskDiscardChanges">Möchtest du die gerade gemachten Änderungen wirklich verwerfen? (Der Button zum Speichern befindet sich oberhalb des Formulars.)</string>
+  <string name="AskReloadFile">Die geöffnete Datei wurde von einem anderen Programm geändert. Soll sie neu geladen werden?</string>
+  <string name="AskDiscardChanges">Sollen die vorgenommenen Änderungen wirklich verworfen werden? (Die Schaltfläche zum Speichern befindet sich oberhalb des Formulars.)</string>
   <string name="AskDiscardChanges_title">Änderungen verwerfen?</string>
   <string name="suggest_improvements">Verbesserungen vorschlagen</string>
   <string name="rate_app">Diese App bewerten</string>
@@ -538,7 +538,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="button_change_location">Speicherort ändern</string>
   <string name="help_quickunlock">Wenn aktiviert, läuft Keepass2Android im Hintergrund weiter, auch wenn die Datenbank gesperrt ist. Das ermöglicht das Öffnen der Datenbank mit QuickUnlock.</string>
   <string name="master_password">Hauptpasswort</string>
-  <string name="help_master_password">Die eigene Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Dazu ein starkes Passwort verwenden, um die Datenbank zu schützen! Tipp: Sich ein oder zwei Sätze ausdenken und die Anfangsbuchstaben als Passwort nutzen. Auch die Satzzeichen mit einschließen.</string>
+  <string name="help_master_password">Die eigene Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Dazu ein starkes Passwort verwenden, um die Datenbank abzusichern! Tipp: Sich ein oder zwei Sätze ausdenken und die Anfangsbuchstaben als Passwort nutzen. Auch die Satzzeichen mit einschließen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
   <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wird die Datenbank in der Cloud gespeichert, sollte die Schlüsseldatei keinesfalls ebenfalls dort abgelegt werden! Das würde sie völlig nutzlos machen! Wichtig: Den Inhalt der Schlüsseldatei nicht mehr ändern, nachdem die Datenbank angelegt wurde!</string>
@@ -567,7 +567,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CouldntLoadChalAuxFile_Hint">Bitte das KeeChallenge-Plugin in KeePass 2.x (PC) verwenden, um die Datenbank für die Verwendung von Challenge-Response zu konfigurieren!</string>
   <string name="ErrorUpdatingChalAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
   <string name="TrayTotp_SeedField_title">TOTP-Seed-Feldname</string>
-  <string name="TrayTotp_SeedField_summary">Wenn das Keepass 2-Plugin „TrayTotp“ nicht mit Standardeinstellungen verwendet wird, den Feldnamen für das Seed-Feld entsprechend der Einstellungen am PC angeben.</string>
+  <string name="TrayTotp_SeedField_summary">Wenn das Keepass2-Plugin „TrayTotp“ nicht mit Standardeinstellungen verwendet wird, den Feldnamen für das Seed-Feld entsprechend der Einstellungen am PC angeben.</string>
   <string name="TrayTotp_SettingsField_title">Feldname für TOTP-Einstellungen</string>
   <string name="TrayTotp_SettingsField_summary">Feldnamen für TOTP-Einstellungen entsprechend den TrayTotp-Einstellungen eingeben.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
@@ -608,7 +608,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="ClickOkToSelectLocation">Auf OK tippen, um einen Speicherort zu wählen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
-  <string name="FileReadOnlyMessagePre">Keepass2Android hat die Datenbank im Lese-Modus geöffnet.</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android hat die aktuelle Datenbank im schreibgeschützten Modus geöffnet.</string>
   <string name="ReadOnlyReason_PreKitKat">Es scheint, dass die Datei von einer externen Anwendung aus geöffnet wurde. Über diesen Weg ist das Schreiben nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über eine der verfügbaren Optionen öffnen, sofern möglich.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Diese Attribut entfernen, wenn Änderungen an der Datenbank vorgenommen werden sollen.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über die systeminterne Dateiauswahl öffnen.</string>
@@ -1056,7 +1056,7 @@ Erstes öffentliches Release</string>
     <item>Warnen, wenn die Überprüfung fehlschlägt</item>
     <item>Ungültige Zertifikate nicht akzeptieren</item>
   </string-array>
-  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die Standard-Tastatur.</string>
+  <string name="ClearClipboardWarning">Bitte sicherstellen, dass dies auf diesem System funktioniert; falls nicht, die Standardtastatur verwenden.</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
   <string name="autofill_hint">Keepass2Android unterstützt die Autofill-Funktion von Android, aber es wurde anscheinend noch nicht aktiviert.</string>
   <string name="autofill_enable">Autofill aktivieren</string>
