@@ -688,7 +688,7 @@
   <string-array name="ChangeLog_1_09e">
     <item>Fejlrettelse til nedbrud og uventede log-outs</item>
     <item>Skift til ny SFTP-implementering, som understøtter moderne offentlige nøglealgoritmer såsom rsa-sha2-256</item>
-    <item>Mark passwords as sensitive when copying to clipboard (Android 13)</item>
+    <item>Markér adgangskoder som følsomme ved kopiering til udklipsholder (Android 13)</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Tilføjet understøttelse af visning, fjernelse og gendannelse af sikkerhedskopierede poster</item>
