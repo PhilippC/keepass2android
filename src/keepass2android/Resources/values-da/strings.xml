@@ -685,6 +685,11 @@
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
   <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Fejlrettelse til nedbrud og uventede log-outs</item>
+    <item>Skift til ny SFTP-implementering, som understøtter moderne offentlige nøglealgoritmer såsom rsa-sha2-256</item>
+    <item>Mark passwords as sensitive when copying to clipboard (Android 13)</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Tilføjet understøttelse af visning, fjernelse og gendannelse af sikkerhedskopierede poster</item>
     <item>Implementeret understøttelse af MEGA-skylager</item>
