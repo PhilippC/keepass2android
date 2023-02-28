@@ -694,7 +694,7 @@ namespace Kp2aAutofillParser
     }
 
     /// <summary>
-    /// Base class for everything that is (or could be) an input field which might (or might not) be autofilled.
+    /// Base class for everything that is a input field which might (or might not) be autofilled.
     /// For testability, this is independent from Android classes like ViewNode
     /// </summary>
     public abstract class InputField
@@ -712,10 +712,6 @@ namespace Kp2aAutofillParser
 
     }
 
-    /// <summary>
-    /// Serializable structure defining the contents of the current view (from an autofill perspective)
-    /// </summary>
-    /// <typeparam name="TField"></typeparam>
     public class AutofillView<TField> where TField : InputField
     {
         public List<TField> InputFields { get; set; } = new List<TField>();
@@ -805,13 +801,12 @@ namespace Kp2aAutofillParser
             };
             
             _log.Log("parsing autofillStructure...");
-
-            if (LogAutofillView)
-            {
-                string debugInfo = JsonConvert.SerializeObject(autofillView, Newtonsoft.Json.Formatting.Indented);
-                _log.Log("This is the autofillStructure: \n\n " + debugInfo);
-            }
-
+            
+            //TODO remove from production
+            _log.Log("will log the autofillStructure...");
+            string debugInfo = JsonConvert.SerializeObject(autofillView, Newtonsoft.Json.Formatting.Indented);
+            _log.Log("will log the autofillStructure... size is " + debugInfo.Length);
+            _log.Log("This is the autofillStructure: \n\n " + debugInfo);
 
             //go through each input field and determine username/password fields.
             //Depending on the target this can require more or less heuristics.
@@ -884,8 +879,6 @@ namespace Kp2aAutofillParser
             }
             return result;
         }
-
-        public bool LogAutofillView { get; set; }
 
         private bool IsEditText(FieldT f)
         {

@@ -39,6 +39,11 @@ namespace keepass2android.services.AutofillBase
             return trustedLinks.Contains(BuildLink(domain, targetPackage));
         }
 
+        public bool IsEnabled()
+        {
+            return !PreferenceManager.GetDefaultSharedPreferences(_ctx).GetBoolean(_ctx.GetString(Resource.String.NoDalVerification_key), false);
+        }
+
         public void RememberAsTrustedApp(string packageName)
         {
             var prefs = PreferenceManager.GetDefaultSharedPreferences(_ctx);

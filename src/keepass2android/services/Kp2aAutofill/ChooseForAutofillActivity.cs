@@ -15,6 +15,7 @@ using keepass2android.services.AutofillBase.model;
 using Keepass2android.Pluginsdk;
 using KeePassLib;
 using KeePassLib.Utility;
+using Kp2aAutofillParser;
 
 namespace keepass2android.services.Kp2aAutofill
 {
@@ -41,7 +42,7 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override Result ExpectedActivityResult => KeePass.ExitCloseAfterTaskComplete;
 
-        protected override FilledAutofillFieldCollection GetDataset()
+        protected override FilledAutofillFieldCollection<ViewNodeInputField> GetDataset()
         {
             if (App.Kp2a.CurrentDb==null || (App.Kp2a.QuickLocked))
                 return null;
@@ -50,18 +51,18 @@ namespace keepass2android.services.Kp2aAutofill
             return GetFilledAutofillFieldCollectionFromEntry(entryOutput, this);
         }
 
-        public static FilledAutofillFieldCollection GetFilledAutofillFieldCollectionFromEntry(PwEntryOutput pwEntryOutput, Context context)
+        public static FilledAutofillFieldCollection<ViewNodeInputField> GetFilledAutofillFieldCollectionFromEntry(PwEntryOutput pwEntryOutput, Context context)
         {
             if (pwEntryOutput == null)
                 return null;
-            FilledAutofillFieldCollection fieldCollection = new FilledAutofillFieldCollection();
+            FilledAutofillFieldCollection<ViewNodeInputField> fieldCollection = new FilledAutofillFieldCollection<ViewNodeInputField>();
             var pwEntry = pwEntryOutput.Entry;
 
             foreach (string key in pwEntryOutput.OutputStrings.GetKeys())
             {
                 
-                FilledAutofillField field =
-                    new FilledAutofillField
+                FilledAutofillField<ViewNodeInputField> field =
+                    new FilledAutofillField<ViewNodeInputField>
                     {
                         AutofillHints = GetCanonicalHintsFromKp2aField(key).ToArray(),
                         TextValue = pwEntryOutput.OutputStrings.ReadSafe(key)
@@ -72,8 +73,8 @@ namespace keepass2android.services.Kp2aAutofill
             if (IsCreditCard(pwEntry, context) && pwEntry.Expires)
             {
                 DateTime expTime = pwEntry.ExpiryTime;
-                FilledAutofillField field =
-                    new FilledAutofillField
+                FilledAutofillField<ViewNodeInputField> field =
+                    new FilledAutofillField<ViewNodeInputField>
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationDate},
                         DateValue = (long) (1000 * TimeUtil.SerializeUnix(expTime))
@@ -81,7 +82,7 @@ namespace keepass2android.services.Kp2aAutofill
                 fieldCollection.Add(field);
 
                 field =
-                    new FilledAutofillField
+                    new FilledAutofillField<ViewNodeInputField>
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationDay},
                         TextValue = expTime.Day.ToString()
@@ -89,7 +90,7 @@ namespace keepass2android.services.Kp2aAutofill
                 fieldCollection.Add(field);
 
                 field =
-                    new FilledAutofillField
+                    new FilledAutofillField<ViewNodeInputField>
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationMonth},
                         TextValue = expTime.Month.ToString()
@@ -97,7 +98,7 @@ namespace keepass2android.services.Kp2aAutofill
                 fieldCollection.Add(field);
 
                 field =
-                    new FilledAutofillField
+                    new FilledAutofillField<ViewNodeInputField>
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationYear},
                         TextValue = expTime.Year.ToString()
