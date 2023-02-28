@@ -330,6 +330,10 @@ jobs:
     - name: Build keepass2android (nonet)
       run: |
         make msbuild Flavor=NoNet
+	
+    - name: Test Autofill
+      working-directory: ./src/Kp2aAutofillParserTest
+      run: dotnet test
 
     - name: Build APK (nonet)
       run: |
