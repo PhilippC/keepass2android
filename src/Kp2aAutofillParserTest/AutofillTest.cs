@@ -75,7 +75,7 @@ namespace Kp2aAutofillParserTest
                     actualHints = new string[0];
                 if (actualHints.Any() || expectedHints.Any())
                 {
-                    _testOutputHelper.WriteLine($"field = {field.IdEntry} {field.Hint} {string.Join(",", field.AutofillHints)}");
+                    _testOutputHelper.WriteLine($"field = {field.IdEntry} {field.Hint} {string.Join(",", field.AutofillHints ?? new string[]{})}");
                     _testOutputHelper.WriteLine("actual Hints = " + string.Join(", ", actualHints));
                     _testOutputHelper.WriteLine("expected Hints = " + string.Join(", ", expectedHints));
                 }
