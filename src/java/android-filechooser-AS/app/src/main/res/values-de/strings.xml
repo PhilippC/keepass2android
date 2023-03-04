@@ -56,15 +56,15 @@
     <string name="afc_title_sort_by">Sortieren nach…</string>
     <string name="afc_yesterday">Gestern</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="one">Verzeichnis wählen&#8230;</item>
+        <item quantity="one">Ordner wählen …</item>
         <item quantity="other">Verzeichnisse wählen&#8230;</item>
     </plurals>
     <plurals name="afc_title_choose_files">
         <item quantity="one">Datei wählen&#8230;</item>
-        <item quantity="other">Dateien wählen&#8230;</item>
+        <item quantity="other">Dateien wählen …</item>
     </plurals>
     <plurals name="afc_title_choose_files_directories">
-        <item quantity="one">Datei/Ordner wählen&#8230;</item>
-        <item quantity="other">Dateien/Ordner wählen&#8230;</item>
+        <item quantity="one">Datei/Ordner wählen …</item>
+        <item quantity="other">Dateien/Ordner wählen …</item>
     </plurals>
 </resources>

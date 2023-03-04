@@ -25,7 +25,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
   <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Button</string>
-  <string name="show_kill_app_summary">Zeige eine Schaltfläche auf dem Kennwort-Bildschirm, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
+  <string name="show_kill_app_summary">Eine Schaltfläche auf dem Passwortbildschirm anzeigen, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
@@ -33,7 +33,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deaktivierte AutoFill-Ziele</string>
   <string name="AutofillDisabledQueriesPreference_summary">Zeigt eine Liste von Apps und Webseiten, für die AutoFill deaktiviert ist.</string>
-  <string name="OfferSaveCredentials_summary">Wenn aktiviert fragt Android, ob du die Anmeldedaten speichern möchtest, die du manuell in AutoFill-Felder eingegeben hast.</string>
+  <string name="OfferSaveCredentials_summary">Wenn aktiviert, fragt Android, ob die Anmeldedaten gespeichert werden sollen, die manuell in AutoFill-Felder eingegeben wurden.</string>
   <string name="OfferSaveCredentials_title">Speichern von Zugangsdaten anbieten</string>
   <string name="ShowGroupInEntry_title">Gruppennamen in der Eintragsansicht anzeigen</string>
   <string name="unknown_uri_scheme">Tut mir Leid! Keepass2Android kann die zurückgegebene URI %1$s nicht verarbeiten. Bitte kontaktiere den Entwickler!</string>
@@ -43,7 +43,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="IconSet_install">Weitere finden...</string>
   <string name="security_prefs">Sicherheit</string>
   <string name="display_prefs">Anzeige</string>
-  <string name="password_access_prefs">Passwort-Zugriff</string>
+  <string name="password_access_prefs">Passwortzugriff</string>
   <string name="QuickUnlock_prefs">QuickUnlock</string>
   <string name="FileHandling_prefs">Umgang mit Dateien</string>
   <string name="keyboard_prefs">Tastatur</string>
@@ -76,7 +76,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_is_available">ist verfügbar</string>
   <string name="not_possible_im_picker">Der Dialog zum Auswählen der Eingabemethode konnte nicht geöffnet werden. Bitte die Tastatur manuell aktivieren.</string>
   <string name="please_activate_keyboard">Bitte Keepass2Android Tastatur in den Einstellungen aktivieren.</string>
-  <string name="creating_db_key">Datenbank-Schlüsseldatei erzeugen\u2026</string>
+  <string name="creating_db_key">Datenbankschlüsseldatei erzeugen …</string>
   <string name="current_group">Aktuelle Gruppe</string>
   <string name="current_group_root">Start</string>
   <string name="database">Datenbank</string>
@@ -84,32 +84,32 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="disclaimer_formal">Der Autor übernimmt keine Verantwortung gibt KEINERLEI GARANTIE bei der Nutzung der Anwendung; Die Anwendung ist kostenlos und kann unter den Bedingungen der GPL v2 oder später verbreitet werden.</string>
   <string name="ellipsis">…</string>
   <string name="copy_to_clipboard">In Zwischenablage kopieren</string>
-  <string name="SystemLanguage">System Sprache</string>
-  <string name="fingerprint_description">Bitte authentifizieren um fortzufahren</string>
-  <string name="fingerprint_fatal">Kann Biometrisches Entsperren nicht einrichten:</string>
+  <string name="SystemLanguage">Systemsprache</string>
+  <string name="fingerprint_description">Bitte authentifizieren, um fortzufahren</string>
+  <string name="fingerprint_fatal">Biometrisches Entsperren kann nicht eingerichtet werden:</string>
   <string name="fingerprint_not_recognized">Biometrische Authentifizierung fehlgeschlagen. Versuche es erneut</string>
   <string name="fingerprint_success">Biometrische Authentifizierung erfolgreich</string>
   <string name="fingerprint_os_error">Biometrische Entsperrung erfordert Android 6.0 oder höher.</string>
   <string name="fingerprint_hardware_error">Keine biometrische Hardware erkannt.</string>
-  <string name="fingerprint_no_enrolled">Sie haben keine biometrische Authentifizierung auf diesem Gerät konfiguriert. Bitte gehen Sie zuerst zu den Systemeinstellungen.</string>
+  <string name="fingerprint_no_enrolled">Es wurde keine biometrische Authentifizierung auf diesem Gerät konfiguriert. Bitte zuerst zu den Systemeinstellungen gehen.</string>
   <string name="disable_fingerprint_unlock">Biometrisches Entsperren deaktivieren</string>
   <string name="enable_fingerprint_unlock">Komplettes biometrisches Entsperren aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
   <string name="fingerprint_unlock_failed">Biometrisches Entsperren fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn die Biometrische Authentifizierung oder die Sicherheitseinstellungen geändert wurden. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Biometrisches Entsperren wurde deaktiviert, da das gespeicherte Masterpasswort nicht länger gültig ist.</string>
-  <string name="fingerprint_reenable">Bitte biometrisches Entsperren für das neue Masterkennwort erneut aktivieren.</string>
-  <string name="fingerprint_reenable2">Bitte mit Kennwort entsperren und anschließend in den Datenbankeinstellungen das biometrische Entsperren erneut aktivieren.</string>
+  <string name="fingerprint_reenable">Bitte Biometrisches Entsperren für das neue Hauptpasswort erneut aktivieren.</string>
+  <string name="fingerprint_reenable2">Bitte mit Passwort entsperren und anschließend in den Datenbankeinstellungen das Biometrische Entsperren erneut aktivieren.</string>
   <string name="FingerprintInitFailed">Initialisierung der biometrischen Authentifizierung fehlgeschlagen. </string>
   <string name="FingerprintSetupFailed">Daten konnten nicht verschlüsselt werden. Dies kann passieren, wenn Fingerabdrücke in den Systemeinstellungen hinzugefügt oder gelöscht wurden, während Keepass2Android auf deinen Fingerabdruck wartet.</string>
-  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Master-Passwort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Dadurch kann die Datenbank per biometrischer Authentifizierung entsperrt werden.</string>
+  <string name="enable_fingerprint_unlock_Info">Mit dieser Option wird das Hauptpasswort verschlüsselt im Android-Keystore auf dem Gerät gespeichert, geschützt durch einen Fingerabdruck. Dadurch kann die Datenbank per biometrischer Authentifizierung entsperrt werden.</string>
   <string name="enable_fingerprint_quickunlock_Info">Erlaubt es, den biometrische Authentifizierung anstelle des QuickUnlock-Codes zu nutzen. Speichert keine Informationen bezüglich des Masterpassworts.</string>
   <string name="enter_filename">Dateinamen der Datenbank eingeben</string>
   <string name="entry_accessed">Letzter Zugriff</string>
   <string name="entry_cancel">Abbrechen</string>
   <string name="entry_comment">Notizen</string>
   <string name="entry_tags">Tags</string>
-  <string name="entry_override_url">Override URL</string>
-  <string name="entry_confpassword">Kennwort wiederholen</string>
+  <string name="entry_override_url">URL überschreiben</string>
+  <string name="entry_confpassword">Passwort bestätigen</string>
   <string name="entry_created">Erstellt</string>
   <string name="entry_expires">Gültig bis</string>
   <string name="entry_group_name">Name der Gruppe</string>
@@ -147,7 +147,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="generate_password">Passwort erzeugen</string>
   <string name="group">Gruppe</string>
   <string name="hint_comment">Notizen</string>
-  <string name="hint_conf_pass">Kennwort wiederholen</string>
+  <string name="hint_conf_pass">Passwort bestätigen</string>
   <string name="hint_generated_password">Erzeugtes Kennwort</string>
   <string name="hint_group_name">Name der Gruppe</string>
   <string name="hint_keyfile">Schlüsseldatei</string>
@@ -156,10 +156,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="hint_login_pass">Passwort</string>
   <string name="hint_title">Name</string>
   <string name="hint_url">URL</string>
-  <string name="hint_override_url">Override URL</string>
+  <string name="hint_override_url">URL überschreiben</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">Benutzername</string>
-  <string name="InvalidPassword">Passwort oder Schlüssel-Datei ungültig.</string>
+  <string name="InvalidPassword">Passwort oder Schlüsseldatei ungültig.</string>
   <string name="invalid_algorithm">Ungültiger Algorithmus.</string>
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
   <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
@@ -178,8 +178,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
   <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
   <string name="menu_about">Über</string>
-  <string name="menu_change_key">Master-Passwort ändern</string>
-  <string name="menu_copy_pass">Kennwort kopieren</string>
+  <string name="menu_change_key">Hauptschlüssel ändern</string>
+  <string name="menu_copy_pass">Passwort kopieren</string>
   <string name="menu_copy_user">Benutzername kopieren</string>
   <string name="menu_copy_totp">TOTP kopieren</string>
   <string name="menu_create">Erstellen</string>
@@ -213,19 +213,19 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="omitbackup_title">Papierkorb und Sicherungen nicht durchsuchen</string>
   <string name="omitbackup_summary">Papierkorb und Sicherungseinträge werden bei der Suche nicht berücksichtigt.</string>
   <string name="pass_filename">KeePass Datenbankdatei</string>
-  <string name="password_title">Datenbank-Kennwort eingeben</string>
-  <string name="master_key_type">Master-Passwort-Typ auswählen:</string>
-  <string name="progress_create">Neue Datenbank anlegen\u2026</string>
+  <string name="password_title">Datenbankpasswort eingeben</string>
+  <string name="master_key_type">Hauptschlüsseltyp auswählen:</string>
+  <string name="progress_create">Neue Datenbank wird angelegt …</string>
   <string name="create_database">Datenbank anlegen</string>
-  <string name="progress_title">In Bearbeitung\u2026</string>
+  <string name="progress_title">In Bearbeitung …</string>
   <string name="remember_keyfile_summary">Speicherort der Schlüsseldateien merken</string>
   <string name="remember_keyfile_title">Schlüsseldatei speichern</string>
   <string name="remove_from_filelist">Entfernen</string>
   <string name="edit">Bearbeiten</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
-  <string name="AutoReturnFromQuery_title">Kehre automatisch vom Abfragebildschirm zurück</string>
-  <string name="AutoReturnFromQuery_summary">Beim Suchen eines Eintrags für eine App oder Webseite: Kehre automatisch vom Abfragebildschirm zurück, wenn nur ein passender Eintrag in der Datenbank existiert.</string>
+  <string name="AutoReturnFromQuery_title">Automatisch vom Abfragebildschirm zurückkehren</string>
+  <string name="AutoReturnFromQuery_summary">Beim Suchen eines Eintrags für eine App oder Webseite: Automatisch vom Abfragebildschirm zurückkehren, wenn nur ein passender Eintrag in der Datenbank existiert.</string>
   <string name="KeyDerivFunc">Schlüsselableitungsfunktion</string>
   <string name="rounds">Schlüsseltransformationen</string>
   <string name="rounds_explaination">Je höher die Anzahl der Schlüsseltransformationen, desto besser ist der Schutz gegen Wörterbuch- oder Brute-Force-Angriffe. Allerdings dauert dann auch das Laden und Speichern der Datenbank entsprechend länger.</string>
@@ -233,15 +233,15 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="argon2memory">Speicher für Argon 2 (in Bytes)</string>
   <string name="argon2parallelism">Parallelisierung für Argon 2</string>
   <string name="database_name">Datenbankname</string>
-  <string name="default_username">Standard-Benutzername für neue Einträge</string>
+  <string name="default_username">Standardbenutzername für neue Einträge</string>
   <string name="saving_database">Speichere Datenbank\u2026</string>
   <string name="exporting_database">Datenbank exportieren…</string>
   <string name="export_database_successful">Datenbank erfolgreich exportiert!</string>
   <string name="export_keyfile_successful">Schlüsseldatei erfolgreich exportiert!</string>
   <string name="space">Leerzeichen</string>
   <string name="search_label">Suchen</string>
-  <string name="show_password">Kennwort anzeigen</string>
-  <string name="sort_menu">Sortiere nach...</string>
+  <string name="show_password">Passwort anzeigen</string>
+  <string name="sort_menu">Sortieren nach …</string>
   <string name="sort_name">Sortieren nach Name</string>
   <string name="sort_db">Sortieren nach Erstellung</string>
   <string name="sort_moddate">Sortiere nach Änderungsdatum</string>
@@ -270,7 +270,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="search_results">Suchergebnisse</string>
   <string name="search_in">Suche in</string>
   <string name="select_other_entry">Anderen Eintrag wählen</string>
-  <string name="select_group_then_add">Gehe zur gewünschten Gruppe, dann drücke \"%1$s\"!</string>
+  <string name="select_group_then_add">Die gewünschte Gruppe öffnen, dann „%1$s“ drücken!</string>
   <string name="insert_element_here">Hier einfügen</string>
   <string name="twofish">Twofish</string>
   <string name="underline">Unterstrich</string>
@@ -281,7 +281,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="version_label">Version</string>
   <string name="version_history">Versionsinformationen</string>
   <string name="author">Keepass2Android wird von Philipp Crocoll entwickelt.</string>
-  <string name="further_authors">Danke an %1$s für Beiträge zum Source-Code!</string>
+  <string name="further_authors">Danke an %1$s für Beiträge zum Quellcode!</string>
   <string name="designers">Danke für das Icon und Layoutdesign erstellt von %1$s.</string>
   <string name="supporters">Danke für die finanzielle Unterstützung durch %1$s.</string>
   <string name="credit_plugin1">Das Twofish-Plugin für Keepass wurde von Scott Greenberg entwickelt und ist in KP2A enthalten.</string>
@@ -293,8 +293,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer vereinigen</string>
   <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
-  <string name="TanExpiresOnUse_summary">TAN Einträge als abgelaufen markieren, wenn sie geöffnet werden</string>
-  <string name="ShowUsernameInList_title">Zeige Benutzernamen in Liste</string>
+  <string name="TanExpiresOnUse_summary">TAN-Einträge als abgelaufen markieren, wenn sie verwendet werden</string>
+  <string name="ShowUsernameInList_title">Benutzernamen in Liste anzeigen</string>
   <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
   <string name="RememberRecentFiles_title">Datenbanken merken</string>
   <string name="RememberRecentFiles_summary">Dateinamen der bisher geöffneten Datenbanken speichern und im Bildschirm zum Öffnen der Datenbank anzeigen.</string>
@@ -303,14 +303,14 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="InlineSuggestions_title">In die Tastatur integrieren</string>
   <string name="InlineSuggestions_summary">Zeigt Vorschläge für automatisches Ausfüllen innerhalb der virtuellen Tastatur (wenn von dieser unterstützt)</string>
   <string name="requires_android11">Benötigt Android 11 oder neuer</string>
-  <string name="kp2a_findUrl">Kennwort finden</string>
+  <string name="kp2a_findUrl">Passwort finden</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
   <string name="search_options">Optionen</string>
   <string name="caseSensitive">Groß-/Kleinschreibung beachten</string>
-  <string name="start_open_file">Datei öffnen...</string>
-  <string name="start_create">Neue Datenbank erstellen...</string>
-  <string name="start_open_url">URL öffnen...</string>
-  <string name="start_create_import">Datei in neue Datenbank importieren...</string>
+  <string name="start_open_file">Datei öffnen …</string>
+  <string name="start_create">Neue Datenbank erstellen …</string>
+  <string name="start_open_url">URL öffnen …</string>
+  <string name="start_create_import">Datei in neue Datenbank importieren …</string>
   <string name="enter_filename_details_url">Die vollständige URL muss einschließlich Protokoll, z.B. http://, angegeben werden.</string>
   <string name="enter_filename_details_create_import">Zu importierende Datei wird im nächsten Schritt gewählt.</string>
   <string name="enable_quickunlock">QuickUnlock aktivieren</string>
@@ -321,34 +321,34 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
   <string name="ViewDatabaseSecure_title">Datenbankanzeige schützen</string>
-  <string name="ViewDatabaseSecure_summary">Wenn aktiviert, können keine Screenshots gemacht werden und es wird kein Vorschaubild der App in der Letzte-Apps-Liste angezeigt.</string>
+  <string name="ViewDatabaseSecure_summary">Wenn aktiviert, können keine Bildschirmfotos gemacht werden und es wird kein Vorschaubild der App in der Liste der zuletzt verwendeten Apps angezeigt.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung um richtig zu funktionieren. Wähle diese Option um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
+  <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung, um ordnungsgemäß zu funktionieren. Diese Option wählen, um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
-  <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Kennwort verwendet werden.</string>
+  <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Passwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
   <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel \"QuickUnlock\" in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
-  <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Kennwort!</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel „QuickUnlock“ in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
+  <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Passwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
-  <string name="SaveAttachmentDialog_text">Bitte wähle den Ort zum Speichern.</string>
-  <string name="SaveAttachmentDialog_save">In Datei exportieren...</string>
+  <string name="SaveAttachmentDialog_text">Bitte den Ort zum Speichern wählen.</string>
+  <string name="SaveAttachmentDialog_save">In Datei exportieren …</string>
   <string name="SaveAttachmentDialog_open">Im Cache speichern und öffnen</string>
   <string name="ShowAttachedImage">Mit internem Bildbetrachter anzeigen</string>
   <string name="SaveAttachment_doneMessage">Datei unter %1$s gespeichert.</string>
   <string name="SaveAttachment_Failed">Datei konnte nicht unter %1$s gespeichert werden.</string>
   <string name="AddUrlToEntryDialog_title">Suchtext merken?</string>
-  <string name="AddUrlToEntryDialog_text">Soll der Suchtext \"%1$s\" im gewählten Eintrag gespeichert werden? Dann wird er bei der nächsten Suche automatisch gefunden!</string>
+  <string name="AddUrlToEntryDialog_text">Soll der Suchtext „%1$s“ im gewählten Eintrag gespeichert werden? Dann wird er bei der nächsten Suche automatisch gefunden!</string>
   <string name="error_invalid_expiry_date">Ungültiges Datums-/Zeitformat für Ablaufdatum!</string>
   <string name="error_string_key">Ein Feldname ist für jeden Eintrag erforderlich.</string>
   <string name="error_string_duplicate_key">Ein Feldname kann nicht doppelt genutzt werden (%1$s).</string>
   <string name="field_name">Feldname</string>
   <string name="field_value">Feldwert</string>
   <string name="protection">Geschütztes Feld</string>
-  <string name="add_binary">Dateianhang hinzufügen...</string>
+  <string name="add_binary">Dateianhang hinzufügen …</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="configure_totp">TOTP konfigurieren</string>
   <string name="totp_secret_key">Geheimer Schlüssel</string>
@@ -370,7 +370,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ClearPasswordOnLeave_summary">Leere das Eingabefeld für das Master-Passwort, wenn der Passwort-Eingabebildschirm verlassen wird, ohne dass die Datenbank entsperrt wurde.</string>
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Benutze integrierte Tastatur in Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Integrierte Tastatur in Keepass2Android verwenden</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Wenn Sie ihrer Standardtastatur nicht vertrauen, setzen Sie diese Option, um die Built-In-Tastatur beim Eingeben des Masterkennworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
   <string name="ActivateSearchViewOnStart_title">Suchfeld beim Start aktivieren</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
@@ -382,25 +382,25 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Cache-Ordner der App auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
   <string name="CreateBackups_title">Lokale Backups</string>
-  <string name="CreateBackups_summary">Erstelle eine lokale Sicherungskopie der Datenbank, nachdem diese erfolgreich geladen wurde.</string>
-  <string name="UpdatingBackup">Aktualisiere lokale Sicherungskopie\u2026</string>
+  <string name="CreateBackups_summary">Eine lokale Sicherungskopie der Datenbank erstellen, nachdem diese erfolgreich geladen wurde.</string>
+  <string name="UpdatingBackup">Lokale Sicherung wird aktualisiert …</string>
   <string name="LocalBackupOf">Lokale Sicherung von %1$s</string>
   <string name="show_local_backups">Lokale Backups anzeigen</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
-  <string name="AcceptAllServerCertificates_summary">Bestimme das Verhalten, wenn Zertifikate nicht validiert werden können. Hinweis: du kannst auf deinem Android-Gerät Root-Zertifikate installieren, damit die Validierung gelingt!</string>
+  <string name="AcceptAllServerCertificates_summary">Das Verhalten bei fehlgeschlagener Zertifikatsüberprüfung festlegen. Hinweis: Es ist möglich, Zertifikate auf diesem Gerät zu installieren, falls die Gültigkeitsprüfung fehlschlägt!</string>
   <string name="ClearOfflineCache_title">Cache löschen?</string>
-  <string name="ClearOfflineCache_question">Dadurch werden alle zwischengespeicherten Datenbankdateien gelöscht. Alle Änderungen, die Sie ohne Zugriff auf die Quelldatenbank vorgenommen haben und die noch nicht synchronisiert wurden, gehen verloren! Dennoch fortfahren?</string>
+  <string name="ClearOfflineCache_question">Dadurch werden alle zwischengespeicherten Datenbankdateien gelöscht. Alle Änderungen, die ohne Zugriff auf die Quelldatenbank vorgenommen wurden und noch nicht synchronisiert sind, gehen verloren! Dennoch fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
   <string name="CheckForFileChangesOnSave_summary">Vor dem Speichern prüfen, ob die Datei von außerhalb geändert wurde.</string>
-  <string name="CheckForDuplicateUuids_title">Prüfe auf doppelte UUIDs</string>
+  <string name="CheckForDuplicateUuids_title">Auf doppelte UUIDs prüfen</string>
   <string name="CheckForDuplicateUuids_summary">Prüfe ob die Datenbank-Datei korrupt ist, weil mehrere Einträge dieselbe ID haben. Das könnte zu unerwartetem Verhalten führen.</string>
   <string name="ShowCopyToClipboardNotification_title">Zwischenablage-Benachrichtigungen</string>
   <string name="ShowCopyToClipboardNotification_summary">Benutzername und Passwort über die Benachrichtigungsleiste und die Zwischenablage verfügbar machen. Achtung vor Passwort-Sniffern!</string>
   <string name="ShowSeparateNotifications_title">Separate Benachrichtigungen</string>
-  <string name="ShowSeparateNotifications_summary">Zeige separate Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode.</string>
+  <string name="ShowSeparateNotifications_summary">Getrennte Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode anzeigen.</string>
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
   <string name="AutoFill_prefs">AutoFill-Dienst</string>
-  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur Benachrichtigung</string>
+  <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur-Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Dialog zum Auswählen der Eingabemethode öffnen, wenn ein Eintrag nach Suche aus dem Browser heraus verfügbar ist.</string>
@@ -409,90 +409,90 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="get_keyboardswap">KeyboardSwap-Plugin installieren</string>
   <string name="get_keyboardswap_summary">Dieses Plugin erlaubt es, auch ohne gerootetes Gerät automatisch zur KP2A-Tastatur zu wechseln. Benötigt ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Automatischer Wechsel nur nach Suche</string>
-  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach dem Nutzen der \"URL teilen\"-Funktion automatisch zur KP2A-Tastatur wechseln (aber nicht beim Öffnen des Eintrags auf einem anderen Weg)</string>
-  <string name="AutoSwitchBackKeyboard_title">Tastatur zurück wechseln</string>
-  <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode wenn kein Eintrag ausgewählt ist</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Nur nach Nutzen der Funktion „URL teilen“ automatisch zur KP2A-Tastatur wechseln (aber nicht beim Öffnen des Eintrags auf einem anderen Weg)</string>
+  <string name="AutoSwitchBackKeyboard_title">Tastatur zurückwechseln</string>
+  <string name="AutoSwitchBackKeyboard_summary">Wechsel zur vorigen Eingabemethode, wenn kein Eintrag ausgewählt ist</string>
   <string name="ShowUnlockedNotification_title">Benachrichtungssymbol anzeigen, solange entsperrt</string>
-  <string name="ShowUnlockedNotification_summary">Zeige ein Symbol in der Benachrichtigungsleiste, solange die Datenbank entsperrt ist.</string>
-  <string name="IconVisibilityInfo_Android8_text">Mit Android 8 wurde ein neues Verhalten für Benachrichtigungen eingeführt. Wenn du das Icon für die Benachrichtigungen von Keepass2Android ausblenden möchtest, konfiguriere dies bitte in den Systemeinstellungen. Setze dazu die Wichtigkeit der Benachrichtigungskategorie auf Minimum.</string>
+  <string name="ShowUnlockedNotification_summary">Symbol in der Benachrichtigungsleiste anzeigen, solange die Datenbank entsperrt ist.</string>
+  <string name="IconVisibilityInfo_Android8_text">Mit Android 8 wurde ein neues Verhalten für Benachrichtigungen eingeführt. Wenn das Symbol für die Benachrichtigungen von Keepass2Android ausgeblendet werden soll, dies bitte in den Systemeinstellungen konfigurieren. Dazu die Wichtigkeit der Benachrichtigungskategorie auf Minimum setzen.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Einstellungen öffnen</string>
   <string name="DontCare">Ist mir egal</string>
-  <string name="DocumentAccessRevoked">Keepass2Android kann nicht mehr auf die Datei zugreifen. Entweder wurde sie entfernt oder die Zugriffsrechte wurden entzogen. Bitte öffne sie erneut, z.B. durch Klick auf \"Datenbank wechseln\".</string>
-  <string name="PreloadDatabaseEnabled_title">Datenbank vor-laden</string>
-  <string name="PreloadDatabaseEnabled_summary">Starte das Laden oder Herunterladen von Datenbank-Dateien im Hintergrund während der Passwort-Eingabe.</string>
+  <string name="DocumentAccessRevoked">Keepass2Android kann nicht mehr auf die Datei zugreifen. Entweder wurde sie entfernt oder die Zugriffsrechte wurden entzogen. Bitte die Datei erneut öffnen, z. B. über „Datenbank wechseln“.</string>
+  <string name="PreloadDatabaseEnabled_title">Datenbankdatei vorladen</string>
+  <string name="PreloadDatabaseEnabled_summary">Das Laden oder Herunterladen von Datenbankdateien im Hintergrund während der Passworteingabe starten.</string>
   <string name="SyncAfterQuickUnlock_title">Nach QuickUnlock synchronisieren</string>
   <string name="SyncAfterQuickUnlock_summary">Datenbank nach Entsperren mit QuickUnlock mit der Remote-Kopie synchronisieren.</string>
-  <string name="AskOverwriteBinary">Möchtest du den vorhandenen Anhang mit dem gleichen Namen überschreiben?</string>
+  <string name="AskOverwriteBinary">Soll der vorhandenen Anhang mit dem gleichen Namen überschrieben werden?</string>
   <string name="AskOverwriteBinary_title">Vorhandenen Anhang überschreiben?</string>
   <string name="AskOverwriteBinary_yes">Überschreiben</string>
   <string name="AskOverwriteBinary_no">Umbenennen</string>
   <string name="AttachFailed">Fehler beim Hinzufügen des Anhangs.</string>
   <string name="RecycleBin">Papierkorb</string>
-  <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Drücke nein, um ihn in den Papierkorb zu verschieben.</string>
+  <string name="AskDeletePermanentlyEntry">Soll dieser Eintrag endgültig gelöscht werden? Nein drücken, um ihn in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyGroup">Soll diese Gruppe endgültig gelöscht werden? Drücke nein, um sie in den Papierkorb zu verschieben.</string>
   <string name="AskDeletePermanentlyItems">Gewählte Elemente permanent löschen? Nein wählen, um in den Papierkorb zu verschieben.</string>
-  <string name="AskDeletePermanentlyEntryNoRecycle">Eintrag permanent löschen?</string>
-  <string name="AskDeletePermanentlyGroupNoRecycle">Gruppe permanent löschen?</string>
-  <string name="AskDeletePermanentlyItemsNoRecycle">Ausgewählte Elemente permanent löschen?</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Soll der Eintrag wirklich endgültig gelöscht werden?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Gruppe endgültig löschen?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Ausgewählte Elemente endgültig löschen?</string>
   <string name="AskDeletePermanently_title">Endgültig löschen?</string>
   <string name="AskReloadFile_title">Datei neu laden?</string>
-  <string name="AskReloadFile">Die geöffnete Datei wurde von einem anderen Programm geändert. Möchtest du sie neu laden?</string>
-  <string name="AskDiscardChanges">Möchtest du die gerade gemachten Änderungen wirklich verwerfen? (Der Button zum Speichern befindet sich oberhalb des Formulars.)</string>
+  <string name="AskReloadFile">Die geöffnete Datei wurde von einem anderen Programm geändert. Soll sie neu geladen werden?</string>
+  <string name="AskDiscardChanges">Sollen die vorgenommenen Änderungen wirklich verworfen werden? (Die Schaltfläche zum Speichern befindet sich oberhalb des Formulars.)</string>
   <string name="AskDiscardChanges_title">Änderungen verwerfen?</string>
   <string name="suggest_improvements">Verbesserungen vorschlagen</string>
   <string name="rate_app">Diese App bewerten</string>
   <string name="translate_app">KP2A übersetzen</string>
-  <string name="AddingEntry">Füge Eintrag hinzu…</string>
-  <string name="AddingGroup">Füge Gruppe hinzu…</string>
-  <string name="DeletingEntry">Lösche Eintrag…</string>
-  <string name="DeletingGroup">Lösche Gruppe…</string>
-  <string name="DeletingItems">Lösche Elemente…</string>
-  <string name="SettingPassword">Setze Passwort…</string>
-  <string name="UndoingChanges">Nehme Änderungen zurück…</string>
-  <string name="TransformingKey">Führe Schlüsseltransformationen durch…</string>
-  <string name="DecodingDatabase">Entschlüssele Datenbank…</string>
+  <string name="AddingEntry">Eintrag wird hinzugefügt …</string>
+  <string name="AddingGroup">Gruppe wird hinzugefügt …</string>
+  <string name="DeletingEntry">Eintrag wird gelöscht …</string>
+  <string name="DeletingGroup">Gruppe wird gelöscht …</string>
+  <string name="DeletingItems">Elemente werden gelöscht …</string>
+  <string name="SettingPassword">Passwort wird gesetzt …</string>
+  <string name="UndoingChanges">Änderungen werden zurückgenommen …</string>
+  <string name="TransformingKey">Schlüsseltransformationen wird durchführt …</string>
+  <string name="DecodingDatabase">Datenbank wird entschlüsselt …</string>
   <string name="ParsingDatabase">Lese Datenbank ein…</string>
-  <string name="CheckingTargetFileForChanges">Prüfe ob Zieldatei geändert wurde…</string>
+  <string name="CheckingTargetFileForChanges">Prüfen, ob Zieldatei geändert wurde …</string>
   <string name="TitleSyncQuestion">Änderungen zusammenführen?</string>
-  <string name="MessageSyncQuestion">Die Datenbankdatei wurde von außerhalb geändert. Sollen diese Änderungen geladen und mit den in Keepass2Android gemachten Änderungen zusammengeführt werden, bevor die Datenbank gespeichert wird? Wähle Nein, um die externen Änderungen zu überschreiben.</string>
+  <string name="MessageSyncQuestion">Die Datenbankdatei wurde von außerhalb geändert. Sollen diese Änderungen geladen und mit den in Keepass2Android gemachten Änderungen zusammengeführt werden, bevor die Datenbank gespeichert wird? Nein wählen, um die externen Änderungen zu überschreiben.</string>
   <string name="SynchronizingDatabase">Führe Änderungen zusammen…</string>
   <string name="YesSynchronize">Ja, zusammenführen</string>
   <string name="NoOverwrite">Nein, überschreiben</string>
   <string name="UseOfflineMode">Nur internen Zwischenspeicher verwenden</string>
   <string name="UseOnlineMode">Zwischengespeicherte Kopie mit der Quelldatei synchronisieren</string>
   <string name="UseOfflineMode_Info">Datenbank wird vom internen Cache geladen. Änderungen werden nur im internen Cache gespeichert und nur synchronisiert, wenn eine Datenbanksynchronisierung manuell ausgewählt wird.</string>
-  <string name="InOfflineMode">Verwende nur internen Zwischenspeicher.</string>
-  <string name="SynchronizingCachedDatabase">Synchronisiere gecachte Datenbank…</string>
-  <string name="DownloadingRemoteFile">Quelldatei wird geladen…</string>
-  <string name="UploadingFile">Datei speichern…</string>
-  <string name="RestoringRemoteFile">Quelldatei wird wiederhergestellt…</string>
+  <string name="InOfflineMode">Nur internen Zwischenspeicher verwenden.</string>
+  <string name="SynchronizingCachedDatabase">Zwischengespeicherte Datenbank synchronisieren …</string>
+  <string name="DownloadingRemoteFile">Quelldatei wird geladen …</string>
+  <string name="UploadingFile">Datei speichern …</string>
+  <string name="RestoringRemoteFile">Quelldatei wird wiederhergestellt …</string>
   <string name="FilesInSync">Remote- und Cache-Dateien sind identisch.</string>
   <string name="SynchronizedDatabaseSuccessfully">Datenbank erfolgreich synchronisiert!</string>
   <string name="CheckingDatabaseForChanges">Prüfe auf Änderungen der Datenbank…</string>
-  <string name="CouldNotSaveToRemote">Quelldatei konnte nicht gespeichert werden: %1$s. Erneut speichern oder verwende das Menü „Synchronisieren”, sobald die Datei wieder verfügbar ist.</string>
-  <string name="CouldNotLoadFromRemote">Auf die Quelldatei konnte nicht zugegriffen werden: %1$s. Datei wurde aus dem internen Zwischenspeicher geladen. Du kannst weiterhin Änderungen in der Datenbank vornehmen und diese später synchronisieren.</string>
+  <string name="CouldNotSaveToRemote">Quelldatei konnte nicht gespeichert werden: %1$s. Erneut speichern oder das Menü „Synchronisieren” verwenden, sobald die Datei wieder verfügbar ist.</string>
+  <string name="CouldNotLoadFromRemote">Auf die Quelldatei konnte nicht zugegriffen werden: %1$s. Die Datei wurde aus dem internen Zwischenspeicher geladen. Es können weiterhin Änderungen in der Datenbank vorgenommen und diese später synchronisiert werden.</string>
   <string name="UpdatedRemoteFileOnLoad">Quelldatei aktualisiert.</string>
-  <string name="NotifyOpenFromLocalDueToConflict">Interne Datei aus dem Zwischenspeicher geöffnet wegen Konflikten mit Änderungen in der Quelldatei. Verwende das Menü „Synchronisieren” zum Zusammenführen.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Intern zwischengespeicherte Datei wurde aufgrund eines Konflikts mit Änderungen in der Quelldatei geöffnet.  Bitte das Menü „Synchronisieren” zum Zusammenführen verwenden.</string>
   <string name="LoadedFromRemoteInSync">Quelldatei und Zwischenspeicher sind auf dem gleichen Stand.</string>
   <string name="UpdatedCachedFileOnLoad">Die intern zwischengespeicherte Kopie der %1$s wurde aktualisiert.</string>
   <string name="RemoteDatabaseUnchanged">Keine Änderungen gefunden.</string>
   <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Die zwischengespeicherte OTP-Hilfsdatei wurde aktualisiert: Der Quellenzähler war höher.</string>
   <string name="ResolvedCacheConflictByUsingLocalOtpAux">Die zwischengespeicherte OTP-Hilfsdatei wurde aktualisiert: Der lokale Zähler war höher.</string>
-  <string name="SynchronizingOtpAuxFile">Synchronisiere OTP-Hilfsdatei…</string>
+  <string name="SynchronizingOtpAuxFile">OTP-Hilfsdatei wird synchronisiert …</string>
   <string name="database_file">Datenbankdatei</string>
   <string name="otp_aux_file">OTP-Hilfsdatei</string>
   <string name="ErrorOcurred">Ein Fehler ist aufgetreten:</string>
-  <string name="DuplicateUuidsError">Datenbank ist beschädigt: IDs kommen mehrfach vor. (Hast du mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und \'Neue IDs erstellen\' auswählen.</string>
-  <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungs-Einstellungen/Umgang mit Dateien/Prüfe auf doppelte UUIDs deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
-  <string name="synchronize_database_menu">Datenbank synchronisieren…</string>
-  <string name="CannotMoveGroupHere">Kann Gruppe nicht hierher verschieben.</string>
+  <string name="DuplicateUuidsError">Datenbank ist beschädigt: IDs kommen mehrfach vor. (Wurde mit Minikeepass gespeichert?) Bitte am PC mit Keepass 2 in eine neue Datenbank re-importieren und „Neue IDs erstellen“ auswählen.</string>
+  <string name="DuplicateUuidsErrorAdditional">Diese Fehlermeldung kann unter Einstellungen/Anwendungseinstellungen/Umgang mit Dateien/Auf doppelte UUIDs prüfen deaktiviert werden. Bitte beachten: Dies kann zu unerwartetem Verhalten führen. Es wird empfohlen, die Datenbank zu reparieren.</string>
+  <string name="synchronize_database_menu">Datenbank synchronisieren …</string>
+  <string name="CannotMoveGroupHere">Die Gruppe kann nicht in diese Gruppe verschoben werden.</string>
   <string name="donate_question">Heute ist Oktoberfest! Wenn dir Keepass2Android gefällt: Wäre heute nicht ein guter Tag, um mir ein Bier zu spendieren?</string>
   <string name="donate_bday_question">10. Mai? Heute ist mein Geburtstag! Wenn du diese App magst, warum schickst du mir nicht ein paar Geburtstagsgrüße zusammen mit einem kleinen Geburtstagsgeschenk? Das würde mich wirklich freuen! :-)</string>
-  <string name="donate_missedbday_question">Oh, du hast meinen Geburtstag am 10. Mai verpasst! Wenn du diese App magst, warum schickst du mir nicht ein paar Geburtstagsgrüße zusammen mit einem kleinen Geburtstagsgeschenk? Es ist noch nicht zu spät um mir eine Freude zu machen! :-)</string>
+  <string name="donate_missedbday_question">Oh, mein Geburtstag am 10. Mai wurde verpasst! Wenn diese App gefällt, warum nicht ein paar Geburtstagsgrüße zusammen mit einem kleinen Geburtstagsgeschenk an mich senden? Es ist noch nicht zu spät, um mir eine Freude zu machen! :-)</string>
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt\'s mir dann auch nicht</string>
   <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
-  <string name="hint_http_url">URL des Ordners oder der Datei (z.B. mycloud.me.com/webdav/)</string>
+  <string name="hint_http_url">URL des Ordners oder der Datei (z. B. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud-Zugangsdaten eingeben:</string>
   <string name="hint_owncloud_url">OwnCloud-URL (z.B. owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Nextcloud Logindaten eingeben:</string>
@@ -502,9 +502,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="initial_directory">Startverzeichnis (optional):</string>
   <string name="enter_sftp_login_title">SFTP-Zugangsdaten eingeben:</string>
   <string name="sftp_auth_mode">Authentifizierungsmodus</string>
-  <string name="send_public_key">Sende öffentlichen Schlüssel...</string>
+  <string name="send_public_key">Öffentlichen Schlüssel senden …</string>
   <string name="enter_ftp_login_title">FTP-Zugangsdaten eingeben:</string>
-  <string name="enter_mega_login_title">Geben Sie Ihre MEGA-Zugangsdaten ein:</string>
+  <string name="enter_mega_login_title">MEGA-Zugangsdaten eingeben:</string>
   <string name="select_storage_type">Speichertyp wählen:</string>
   <string name="filestoragename_file">Lokale Datei</string>
   <string name="filestoragename_androidget">Mit externer App suchen</string>
@@ -519,9 +519,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-Dateien)</string>
-  <string name="filestoragehelp_gdriveKP2A">Wenn Sie KP2A keinen Zugriff auf Ihr vollständiges Google Drive geben möchten, können Sie diese Option auswählen. Beachten Sie, dass Sie zuerst eine Datenbankdatei erstellen müssen; vorhandene Dateien sind für die App nicht sichtbar. Wählen Sie diese Option entweder auf dem \"Datenbank erstellen\" Bildschirm oder, wenn Sie bereits eine Datenbank geöffnet haben, indem Sie die Datenbank mit dieser Option exportieren.</string>
+  <string name="filestoragehelp_gdriveKP2A">Wenn KP2A keinen Zugriff auf das komplette eigenen Google Drive erhalten soll, kann diese Option gewählte werden. Bitte beachten, dass zuerst eine Datenbankdatei erstellt werden muss; vorhandene Dateien sind für die App nicht sichtbar. Diese Option entweder auf dem Bildschirm „Datenbank erstellen“ auswählen oder, wenn bereits eine Datenbank geöffnet wurde, indem die Datenbank mit dieser Option exportiert wird.</string>
   <string name="filestoragename_pcloud">PCloud</string>
-  <string name="filestoragehelp_pcloud">Dieser Speichertyp verlangt nur Zugriff auf den pCloud-Ordner \"Applications/Keepass2Android\". Wenn Sie eine existierende Datenbank aus Ihrem pCloud-Konto verwenden möchten, stellen Sie bitte sicher, dass die Datei in diesem pCloud-Ordner gespeichert ist.</string>
+  <string name="filestoragehelp_pcloud">Dieser Speichertyp verlangt nur Zugriff auf den pCloud-Ordner „Applications/Keepass2Android“. Wenn eine vorhandene Datenbank aus dem eigenen pCloud-Konto verwendet werden soll, bitte sicherstellen, dass die Datei in diesem pCloud-Ordner gespeichert ist.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle Dateien und freigegebene Dateien</string>
@@ -529,54 +529,54 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android-App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">Bitte beachten: Keepass2Android muss die Liste aller Dateien in Ihrem Mega-Konto herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
+  <string name="filestoragehelp_mega">Bitte beachten: Keepass2Android muss die Liste aller Dateien des Mega-Konto herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
-  <string name="help_database_location">Du kannst deine Datenbank lokal auf deinem Android-Gerät oder in der Cloud speichern (nur in der Nicht-Offline-Version). Keepass2Android macht die Datenbank dann auch verfügbar, wenn du offline bist. Da die Datenbank sicher mit der AES 256-Bit-Verschlüsselung geschützt ist, erhält auch dann niemand außer dir Zugriff auf deine Datenbank. Wir empfehlen die Benutzung von Dropbox: Es ist auf allen Geräten verfügbar und bietet automatisch Backups aller Dateiversionen.</string>
-  <string name="hint_database_location">Wähle, wo du deine Datenbank speichern möchtest:</string>
+  <string name="help_database_location">Die eigene Datenbank kann lokal auf diesem Android-Gerät oder in der Cloud gespeichert werden (nur in der Nicht-Offline-Version). Keepass2Android macht die Datenbank dann auch verfügbar, wenn man offline ist. Da die Datenbank sicher mit der AES 256-Bit-Verschlüsselung geschützt ist, erhält auch dann niemand außer man selbst Zugriff auf die Datenbank. Wir empfehlen die Nutzung von Dropbox: Es ist auf allen Geräten verfügbar und bietet automatisch Backups aller Dateiversionen.</string>
+  <string name="hint_database_location">Wählen, wo die Datenbank gespeichert werden soll:</string>
   <string name="button_change_location">Speicherort ändern</string>
   <string name="help_quickunlock">Wenn aktiviert, läuft Keepass2Android im Hintergrund weiter, auch wenn die Datenbank gesperrt ist. Das ermöglicht das Öffnen der Datenbank mit QuickUnlock.</string>
-  <string name="master_password">Master-Passwort</string>
-  <string name="help_master_password">Deine Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Wähle ein starkes Passwort, um deine Datenbank zu schützen! Tipp: Denke dir ein oder zwei Sätze aus und nutze die Anfangsbuchstaben als Passwort. Übernimm auch die Satzzeichen.</string>
+  <string name="master_password">Hauptpasswort</string>
+  <string name="help_master_password">Die eigene Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Dazu ein starkes Passwort verwenden, um die Datenbank abzusichern! Tipp: Sich ein oder zwei Sätze ausdenken und die Anfangsbuchstaben als Passwort nutzen. Auch die Satzzeichen mit einschließen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
-  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wenn du deine Datenbank in der Cloud speicherst, solltest du die Schlüsseldatei keinesfalls auch dort ablegen. Das würde sie nutzlos machen! Wichtig: Ändere die Schlüsseldatei nicht mehr, nachdem du die Datenbank angelegt hast!</string>
-  <string name="hint_key_file">Wähle, ob du eine Schlüsseldatei zusätzlich zum Master-Passwort nutzen möchtest:</string>
-  <string name="use_key_file">Schlüsseldatei benutzen</string>
+  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wird die Datenbank in der Cloud gespeichert, sollte die Schlüsseldatei keinesfalls ebenfalls dort abgelegt werden! Das würde sie völlig nutzlos machen! Wichtig: Den Inhalt der Schlüsseldatei nicht mehr ändern, nachdem die Datenbank angelegt wurde!</string>
+  <string name="hint_key_file">Wählen, ob eine Schlüsseldatei zusätzlich zum Hauptpasswort verwendet werden soll:</string>
+  <string name="use_key_file">Schlüsseldatei verwenden</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
-  <string name="init_otp">OTP-Hilfsdatei laden…</string>
-  <string name="otp_explanation">Gib die nächsten Einmalkennwörter (OTPs - One-Time-Passwords) an. Bewege deinen Yubikey NEO an der Rückseite deines Gerätes, für die Eingabe per NFC (erfordert Yubiclip-App).</string>
+  <string name="init_otp">OTP-Hilfsdatei laden …</string>
+  <string name="otp_explanation">Nächsten Einmalkennwörter (OTPs) eingeben. Den Yubikey NEO für die Eingabe per NFC an der Rückseite dieses Gerätes vorbeiziehen (erfordert Yubiclip-App).</string>
   <string name="otp_hint">OTP %1$d</string>
-  <string name="CouldntLoadOtpAuxFile">Konnte OTP-Hilfsdatei nicht laden!</string>
-  <string name="CouldntLoadOtpAuxFile_Hint">Bitte nutze das OtpKeyProv-Plugin in Keepass 2.x (PC) um deine Datenbank zur Verwendung von One-Time-Passwords einzurichten!</string>
+  <string name="CouldntLoadOtpAuxFile">OTP-Hilfsdatei konnte nicht geladen werden!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Bitte das OtpKeyProv-Plugin in Keepass 2.x (PC) verwenden, um die Datenbank zur Verwendung von One-Time-Passwords einzurichten!</string>
   <string name="otp_discarded_because_no_db">Bitte erst Datenbank laden. OTP wird aus Sicherheitsgründen verworfen.</string>
   <string name="otp_discarded_no_space">OTP verworfen. Alle OTPs bereits eingegeben!</string>
   <string name="otp_discarded_because_db_open">Bitte zuerst die aktuelle Datenbank schließen. OTP wird verworfen.</string>
   <string name="otps_pending">(Ein oder mehrere OTPs bereits verfügbar)</string>
-  <string name="otpsecret_hint">OTP Secret (z.B. 01 23 ab cd…)</string>
+  <string name="otpsecret_hint">OTP-Secret (z. B. 01 23 ab cd …)</string>
   <string name="CouldntParseOtpSecret">Fehler beim Parsen des OTP-Secrets!</string>
-  <string name="OtpKeyError">Fehler beim Erstellen des OTP-Schlüssels! Bitte stelle sicher, dass du die richtigen OTPs eingegeben hast.</string>
+  <string name="OtpKeyError">Fehler beim Erstellen des OTP-Schlüssels! Bitte sicherstellen, dass die richtigen OTPs eingegeben wurden.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
-  <string name="SavingOtpAuxFile">Speichere OTP-Hilfsdatei…</string>
+  <string name="SavingOtpAuxFile">OTP-Hilfsdatei wird gespeichert …</string>
   <string name="NoChallengeApp">Es konnte keine App gefunden werden, die diese Anforderung verarbeiten kann.</string>
-  <string name="PleaseInstallApp">Bitte installiere %1$s von Google Play.</string>
+  <string name="PleaseInstallApp">Bitte %1$s von Google Play installieren.</string>
   <string name="AppOutdated">%1$s wird nicht mehr unterstützt.</string>
   <string name="bad_resp">Die Challenge-Antwort ist falsch.</string>
   <string name="CouldntLoadChalAuxFile">Die externe Challenge-Datei konnte nicht geladen werden!</string>
-  <string name="CouldntLoadChalAuxFile_Hint">Bitte verwende das KeeChallenge-Plugin in KeePass 2.x (PC) um die Datenbank für die Verwendung von Challenge-Response zu konfigurieren!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Bitte das KeeChallenge-Plugin in KeePass 2.x (PC) verwenden, um die Datenbank für die Verwendung von Challenge-Response zu konfigurieren!</string>
   <string name="ErrorUpdatingChalAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
   <string name="TrayTotp_SeedField_title">TOTP-Seed-Feldname</string>
-  <string name="TrayTotp_SeedField_summary">Wenn du das Keepass 2-Plugin \"TrayTotp\" nicht mit Standard-Einstellungen verwendest, gib den Feldnamen für das Seed-Feld entsprechend der Einstellungen am PC an.</string>
+  <string name="TrayTotp_SeedField_summary">Wenn das Keepass2-Plugin „TrayTotp“ nicht mit Standardeinstellungen verwendet wird, den Feldnamen für das Seed-Feld entsprechend der Einstellungen am PC angeben.</string>
   <string name="TrayTotp_SettingsField_title">Feldname für TOTP-Einstellungen</string>
   <string name="TrayTotp_SettingsField_summary">Feldnamen für TOTP-Einstellungen entsprechend den TrayTotp-Einstellungen eingeben.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
-  <string name="DebugLog_prefs_prefs">Log-Datei (für Debugging)</string>
-  <string name="DebugLog_title">Log-Datei benutzen</string>
-  <string name="DebugLog_summary">Ausgabe der Anwendung in eine lokale Log-Datei schreiben</string>
-  <string name="DebugLog_send">Debug-Log senden\u2026</string>
+  <string name="DebugLog_prefs_prefs">Logdatei (für Debugging)</string>
+  <string name="DebugLog_title">Logdatei verwenden</string>
+  <string name="DebugLog_summary">Ausgabe der Anwendung in eine lokale Logdatei schreiben</string>
+  <string name="DebugLog_send">Debug-Log senden …</string>
   <string name="loading">Lade…</string>
-  <string name="plugins">Plug-ins</string>
+  <string name="plugins">Plugins</string>
   <string name="plugin_packagename">Paketname:</string>
   <string name="plugin_description">Beschreibung (nicht überprüft):</string>
   <string name="plugin_author">Autor (nicht überprüft):</string>
@@ -597,21 +597,21 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SCOPE_QUERY_CREDENTIALS_title">Anmeldeinformationen abfragen</string>
   <string name="SCOPE_QUERY_CREDENTIALS_explanation">Das Plugin wird berechtigt, Anmeldeinformationen für selbst ausgewählte Websites oder Anwendungen abzufragen.</string>
   <string name="get_regular_version">Weitere Speichertypen bekommen</string>
-  <string name="CertificateWarning">Warnung: Server-Zertifikat konnte nicht validiert werden: %1$s. Installiere ein passendes Root-Zertifikat auf deinem Gerät oder s. Einstellungen.</string>
-  <string name="CertificateFailure">Fehler: Server-Zertifikat konnte nicht validiert werden! Installiere ein passendes Root-Zertifikat auf deinem Android-Gerät oder s. Einstellungen!</string>
+  <string name="CertificateWarning">Warnung: Serverzertifikatsüberprüfung fehlgeschlagen: %1$s. Bitte ein passendes Root-Zertifikat auf diesem Gerät installieren oder in die Einstellungen schauen!</string>
+  <string name="CertificateFailure">Fehler: Serverzertifikatsüberprüfung fehlgeschlagen: %1$s. Bitte ein passendes Root-Zertifikat auf diesem Gerät installieren oder in die Einstellungen schauen!</string>
   <string name="export_fileformats_title">Dateiformat wählen</string>
-  <string name="killed_by_os">Entschuldigung! Keepass2Android wurde vom Android OS beendet! Aus Sicherheitsgründen hat Keepass2Android die ausgewählten Anmeldeinformationen nicht dauerhaft gespeichert, weshalb die Datenbank erneut geöffnet werden muss. Hinweis: Dies sollte nur sehr selten vorkommen. Wenn das passiert, schreibe mir bitte eine Nachricht an crocoapps@gmail.com.</string>
+  <string name="killed_by_os">Entschuldigung! Keepass2Android wurde vom Android OS beendet! Aus Sicherheitsgründen hat Keepass2Android die ausgewählten Anmeldeinformationen nicht dauerhaft gespeichert, weshalb die Datenbank erneut geöffnet werden muss. Hinweis: Dies sollte nur sehr selten vorkommen. Wenn das passiert, mir bitte eine Nachricht an crocoapps@gmail.com zukommen lassen.</string>
   <string name="FileIsTemporarilyAvailable">Die Datei ist nur kurzzeitig für Keepass2Android verfügbar.</string>
   <string name="FileIsReadOnly">The gewählte Datei ist schreibgeschützt.</string>
-  <string name="FileIsReadOnlyOnKitkat">The gewählte Datei kann aufgrund von Beschränkungen in Android 4.4+ von Keepass2Android nicht geändert werden.</string>
-  <string name="CopyFileRequired">Um sie zu benutzen, musst sie an einen anderen Speicherort kopiert werden.</string>
+  <string name="FileIsReadOnlyOnKitkat">Die gewählte Datei kann aufgrund von Beschränkungen in Android 4.4+ von Keepass2Android nicht geändert werden.</string>
+  <string name="CopyFileRequired">Um sie verwenden zu können, muss sie an einen anderen Speicherort kopiert werden.</string>
   <string name="CopyFileRequiredForEditing">Um sie zu bearbeiten, muss sie an einen anderen Speicherort kopiert werden.</string>
-  <string name="ClickOkToSelectLocation">Tippe auf OK, um einen Speicherort zu wählen.</string>
+  <string name="ClickOkToSelectLocation">Auf OK tippen, um einen Speicherort zu wählen.</string>
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
-  <string name="FileReadOnlyMessagePre">Keepass2Android hat die Datenbank im Lese-Modus geöffnet.</string>
-  <string name="ReadOnlyReason_PreKitKat">Es scheint als hättest du die Datei über eine externe App geöffnet. Diese Vorgehensweise unterstützt keinen Schreibzugriff. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne dann die Datei mit einer der angebotenen Optionen.</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Entferne das Attribut, um Änderungen an der Datenbank vorzunehmen.</string>
-  <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn du Änderungen in der Datenbank vornehmen möchtest, schließe die Datenbank und wähle Datenbank wechseln. Öffne die Datei dann über die System-Dateiauswahl.</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android hat die aktuelle Datenbank im schreibgeschützten Modus geöffnet.</string>
+  <string name="ReadOnlyReason_PreKitKat">Es scheint, dass die Datei von einer externen Anwendung aus geöffnet wurde. Über diesen Weg ist das Schreiben nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über eine der verfügbaren Optionen öffnen, sofern möglich.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Diese Attribut entfernen, wenn Änderungen an der Datenbank vorgenommen werden sollen.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über die systeminterne Dateiauswahl öffnen.</string>
   <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet werden. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
   <string name="CopyingFile">Kopiere Datei\u2026</string>
@@ -635,83 +635,83 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="TemplateTitle_Membership">Mitgliedschaft</string>
   <string name="ChangeLog_title">Neuigkeiten</string>
   <string name="AskAddTemplatesTitle">Vorlagen hinzufügen?</string>
-  <string name="AskAddTemplatesMessage">Keepass2Android kann Vorlagen für E-Mail Accounts, W-LAN-Passwörter, sichere Notizen und mehr erstellen. Sollen diese der Datenbank hinzugefügt werden? Dies kann auch später über die Datenbankeinstellungen gemacht werden.</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android kann Vorlagen für E-Mail-Konten, WLAN-Passwörter, sichere Notizen und mehr erstellen. Sollen diese der Datenbank hinzugefügt werden? Diese können auch später über die Datenbankeinstellungen hinzugefügt werden.</string>
   <string name="AddTemplates_pref">Vorlagen zu Datenbank hinzufügen</string>
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (über die Google+ Beta-Tester-Community oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
-  <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Bist du sicher, dass es sich um eine gültige Datei handelt?</string>
+  <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Ist dies wirklich eine gültige Datei?</string>
   <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut probieren.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte probiere die folgenden Schritte, um die Datenbank zu entsperren:\n
+  <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte folgenden Schritte probieren, um die Datenbank zu entsperren:\n
   
-    • Stelle sicher, dass du das richtige Passwort eingegeben hast. Das Augensymbol kann genutzt werden um das eingegebene Passwort anzuzeigen.\n
-   • Stelle sicher, dass du den richtigen Passworttyp ausgewählt hast. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
-   • Stelle sicher, dass du die richtige Datenbankdatei gewählt hast.
+    • Sicherstellen, dass das richtige Passwort eingegeben wurde. Das Augensymbol dafür nutzen, um das eingegebene Passwort anzuzeigen.\n
+   • Sicherstellen, dass der richtigen Passworttyp ausgewählt wurde. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
+   • Sicherstellen, dass die richtige Datenbankdatei gewählt wurde.
  </string>
   <string name="HintLocalBackupInvalidCompositeKey">   \n
-   &#8226; Hinweis: Wenn du denkst, dass deine Datenbank-Datei beschädigt sein könnte oder du das Passwort nicht mehr weißt, nachdem du es geändert hast, kannst du zur zuletzt erfolgreich geöffneten Datei wechseln. Klicke dazu auf \"%1$s\" und wähle das lokale Backup.</string>
+   &#8226; Tipp: Wenn die Vermutung besteht, die eigene Datenbankdatei könnte beschädigt sein oder sich nach einer Änderung nicht mehr an den Hauptschlüssel erinnern wird, kann man es mit der zuletzt erfolgreich geöffnete Dateiversion versuchen, indem auf „%1$s“ getippt und die lokale Sicherung ausgewählt wird.</string>
   <string name="HintLocalBackupOtherError">\n
-&#8226; Hinweis: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Du kannst diese öffnen, indem du \"%1$s\" klickst und das lokale Backup wählst.  </string>
+&#8226; Tipp: Keepass2Android hat die zuletzt erfolgreich geöffnete Dateiversion im internen Speicher gesichert. Diese kann geöffnet werden, indem „%1$s“ angetippt und das lokale Backup gewählte wird.</string>
   <string name="CorruptDatabaseHelp">Die Datei ist beschädigt.\n
-Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
+Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
 
-• Wenn du die Datei über USB kopiert hast (MTP-Modus), versuche es noch einmal mit Tools wie MyPhoneExplorer. MTP schneidet die Dateien in manchen Fällen ab.\n
-• Wenn du die Datei nicht von der gleichen Stelle auf deinem PC öffnen kannst, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte verwende in diesem Fall eine Datenbanksicherung. Wenn du annimmst, dass Keepass2Android die Datei beschädigt hat, nimm bitte Kontakt mit dem Support auf.\n
-• Wenn du die Datei auf dem PC noch öffnen kannst, nimm bitte Kontakt mit dem Support auf. Du kannst versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z.B. nicht ZIP-komprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
-  <string name="open_other_db">Öffne weitere Datenbank…</string>
+• Wenn die Datei über USB kopiert wurde (MTP-Modus), es noch einmal mit Tools wie MyPhoneExplorer versuchen. MTP schneidet in manchen Fällen die Dateien ab.\n
+• Wenn sich die Datei vom gleichen Speicherort nicht auf dem PC öffnen lässt, ist es sehr wahrscheinlich, dass die Datei tatsächlich beschädigt ist. Bitte in diesem Fall eine Datenbanksicherung verwenden. Wenn der Verdacht besteht, dass Keepass2Android die Datei beschädigt hat, bitte Kontakt mit dem Support aufnehmen.\n
+• Wenn sich die Datei auf dem PC noch öffnen lässt, bitte Kontakt mit dem Support aufnehmen. Man kann versuchen, die Datei mit anderen Einstellungen auf dem PC zu speichern (z. B. unkomprimiert) und sie dann noch einmal in Keepass2Android zu öffnen.  </string>
+  <string name="open_other_db">Weitere Datenbank öffnen …</string>
   <string name="select_database">Datenbank auswählen</string>
-  <string name="configure_child_dbs">Konfiguriere Kinddatenbanken…</string>
+  <string name="configure_child_dbs">Kinddatenbanken konfigurieren …</string>
   <string name="child_dbs_title">Kinddatenbanken</string>
   <string name="unspecified">nicht spezifiziert</string>
-  <string name="child_db_explanation">Kinddatenbanken sind andere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Master-Passwort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige deiner Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
+  <string name="child_db_explanation">Kinddatenbanken sind weitere Datenbanken, die automatisch geöffnet werden können, wenn die übergeordnete Datenbank geöffnet wird. Dazu werden das Hauptpasswort und der Dateipfad der Kinddatenbank in der Hauptdatenbank gespeichert. Diese Funktion erlaubt es, einige der eigenen Passwörter mit einer anderen Person zu teilen. Die Implementierung ist kompatibel mit KeeAutoExec für PC.</string>
   <string name="child_db_enabled_on_this_device">Auf diesem Gerät aktiviert</string>
   <string name="child_db_enable_on_this_device">Auf diesem Gerät aktivieren</string>
   <string name="child_db_disable_on_this_device">Auf diesem Gerät deaktivieren</string>
   <string name="child_db_enable_a_copy_for_this_device">Kopie für dieses Gerät</string>
-  <string name="unconfigured_child_dbs">Deine Datenbank enthält neue Kinddatenbanken in der Gruppe \"AutoOpen\". Bitte gib an, wenn diese Kinddatenbanken auf diesem Gerät verwendet werden sollen.</string>
-  <string name="add_child_db">Füge Kinddatenbank hinzu\u2026</string>
+  <string name="unconfigured_child_dbs">Die Datenbank enthält neue Kinddatenbanken in der Gruppe „AutoOpen“. Bitte angeben, ob diese Kinddatenbanken auf diesem Gerät verwendet werden sollen.</string>
+  <string name="add_child_db">Kinddatenbank hinzufügen …</string>
   <string name="EnableCopyForThisDevice_Info">Hiermit wird eine Kopie der Kinddatenbank-Einstellungen erstellt und aktiviert. Diese kopierten Einstellungen können dann speziell für dieses Gerät verändert werden.</string>
   <string name="Visible_title">Sichtbar</string>
   <string name="child_db_Enabled_title">Automatisch öffnen</string>
   <string name="database_file_heading">Datenbankdatei</string>
-  <string name="if_device_text">Aktiviere für %1$s</string>
+  <string name="if_device_text">Für %1$s aktivieren</string>
   <string name="restore_history">Diese Version wiederherstellen</string>
   <string name="remove_history">Diese Version entfernen</string>
   <string name="DbUnlockedChannel_name">Datenbank entsperrt</string>
-  <string name="DbUnlockedChannel_desc">Benachrichtigung wenn die Datenbank entsperrt ist</string>
+  <string name="DbUnlockedChannel_desc">Benachrichtigung über das Entsperren der Datenbank</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="DbQuicklockedChannel_desc">Benachrichtigung wenn die Datenbank mit QuickUnlock gesperrt ist</string>
+  <string name="DbQuicklockedChannel_desc">Benachrichtigung über das Sperren der Datenbank mit QuickUnlock</string>
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
-  <string name="WarnFingerprintInvalidated">Warnung! Biometrische Authentifizierung kann von Android ungültig gemacht werden, z.B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Stelle  sicher, dass du immer weißt, wie du mit deinem Master-Passwort entsperren kannst!</string>
+  <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string-array name="ChangeLog_1_09e">
-    <item>Bugfix um Abstürze und unerwartetes Ausloggen zu vermeiden</item>
+    <item>Fehlerbehebung, um Abstürze und unerwartetes Abmelden zu vermeiden</item>
     <item>Wechsel auf eine neue SFTP-Implementierung, jetzt mit Unterstützung von modernen Public-Key-Algorithmen wie rsa-sha2-256</item>
     <item>Passwörter werden beim Kopieren in die Zwischenablage als vertraulich markiert (Android 13)</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
-    <item>Unterstützung für MEGA Cloudspeicher hinzugefügt </item>
+    <item>Unterstützung für MEGA-Cloudspeicher hinzugefügt </item>
     <item>Unterstützung für Google Drive mit eingeschränktem Anwendungsbereich hinzugefügt</item>
   </string-array>
   <string-array name="ChangeLog_1_09c">
-    <item>Google Drive Authentifizierung wieder eingebaut, Google Drive Unterstützung wieder aktiviert </item>
+    <item>Google-Drive-Authentifizierung erneut implementiert, Google-Drive-Unterstützung wieder aktiviert </item>
   </string-array>
   <string-array name="ChangeLog_1_09b">
-    <item>Bugfix für schnell verschwindende Autofill-Anzeige in Firefox</item>
+    <item>Verschwundenen Nachfrage für Autofill in Firefox korrigiert</item>
     <item>Vorschläge für automatisches Ausfüllen in die Tastatur integriert (benötigt Android 11+)</item>
-    <item>Option zum Verändern der Sprache innerhalb der App</item>
+    <item>Ändern der App-Sprache in den Einstellungen zulassen</item>
     <item>Option zum Synchronisieren der Datenbank nach QuickUnlock hinzugefügt</item>
-    <item>Bugfix: Dateinamen werden beim Speichern auf Dropbox nicht mehr in Kleinbuchstaben gewandelt</item>
+    <item>Fehlerbehebung: Dateinamen beim Speichern in Dropbox nicht in Kleinbuchstaben umwandeln</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
     <item>Unterstützung für das KDBX-4.1-Dateiformat (in KeePass 2.48 eingeführt) implementiert</item>
     <item>Dialog zum Konfigurieren der TOTP-Einstellungen von Einträgen hinzugefügt</item>
-    <item>Passwort-Generator verbessert: Unterstützung für Passphrases, mehr Einstellmöglichkeiten, Profile und Schätzung der Passwortstärke hinzugefügt</item>
+    <item>Passwortgenerator verbessert: Unterstützung für Passphrases, mehr Einstellmöglichkeiten, Profile und Schätzung der Passwortstärke hinzugefügt</item>
     <item>Verbesserungen bei Autofill: Bugfix bzgl. nicht angezeigtem Popup in Chrome, bessere Unterstützung für Subdomains</item>
     <item>Verbesserungen bei OneDrive: keine Größenbegrenzung mehr, keine unnötigen Authentifizierungsanfragen</item>
-    <item>Option hinzugefügt, um das helle/dunkel Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
-    <item>Dropbox-Implementierung aktualisiert um neue Authentifizierungsmethode zu unterstützen.</item>
+    <item>Option hinzugefügt, um das helle/dunkle Design anhand der Systemeinstellungen zu wählen, erfordert Android 10+</item>
+    <item>Dropbox-Implementierung aktualisiert, um neue Authentifizierungsmethode zu unterstützen.</item>
     <item>Neu eingerichtetes Entsperren mit Fingerabdruck wird ungültig, wenn ein Fingerabdruck in den Systemeinstellungen hinzugefügt wird (um die Sicherheit zu erhöhen).</item>
     <item>Öffnen von Dateien über den Systemdialog ermöglicht, das Nur-Lesen-Attribut wird ignoriert.</item>
     <item>Das Verschieben von Einträgen kann nun aus der Eintragsansicht begonnen werden.</item>
@@ -720,38 +720,38 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
     <item>Unterstützung für neues Schlüsseldateiformat aus KeePass 2.47 integriert</item>
     <item>Unterstützung für Argon2id als Schlüsselableitungsfunktion integriert</item>
     <item>Kompatibilität von Autofill mit Firefox und Chrome verbessert</item>
-    <item>Unterstützung für zeitbasierte One-Time-Passwords (TOTP) von Desktop-Programmen verbessert</item>
+    <item>Unterstützung für zeitbasierte Einmal-Passwörter (TOTP) von Desktop-Programmen verbessert</item>
     <item>pCloud-SDK aktualisiert, um ein Authentifizierungsproblem zu beheben</item>
     <item>Jsch auf Version 0.1.55 aktualisiert</item>
-    <item>Menü zum Datenbank-Auswahl-Bildschirm hinzugefügt</item>
+    <item>Menü zum Datenbankauswahlbildschirm hinzugefügt</item>
     <item>Importierte Schlüsseldateien können nun exportiert werden</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Paketnamen von Android-Apps werden nicht mehr im URL-Feld gespeichert</item>
-    <item>Verbessertes Sperrverhalten - Keine Anzeige der biometrischen Eingabeaufforderung direkt nach dem Entsperren</item>
-    <item>OkHttp aktualisiert um HTTP/2 zu unterstützen</item>
+    <item>Verbessertes Sperrverhalten – keine Anzeige der biometrischen Eingabeaufforderung direkt nach dem Entsperren</item>
+    <item>OkHttp aktualisiert, um HTTP/2 zu unterstützen</item>
     <item>Fehlende Übersetzungen behoben</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>Erzwingen von HTTP/1.1 aufgrund eines Problems mit der HTTP/2-Implementierung von OkHttp </item>
+    <item>HTTP/1.1 aufgrund eines Problems mit HTTP/2-Implementierung von OkHttp erzwingen</item>
     <item>Tastaturdialog auf Android 9+ verbessert</item>
     <item>Dateizuordnungen der App geändert, um unnötige Verknüpfungen zu vermeiden</item>
     <item>Sicherstellen, dass der Passworttext nicht hinter dem Augensymbol versteckt ist</item>
-    <item>Ändern des Auto-Fill-Verhaltens, um beim Ausfüllen von Anmeldedaten für eine Domain un eine unbekannte App zu warnen</item>
+    <item>Ändern des Auto-Fill-Verhaltens, um beim Ausfüllen von Anmeldedaten für eine Domain in eine unbekannte App zu warnen</item>
     <item>FTP-Bibliothek aktualisiert</item>
     <item>Mögliche Abstürze der App behoben</item>
     <item>Weitere kleinere Korrekturen</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Schalfläche in der Benachrichtigung hinzugefügt, um TOTPs in die Zwischenablage zu kopieren</item>
-    <item>Wechsel zu FluentFTP um TLS 1.2 zu unterstützen</item>
-    <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z.B. auf Pixel 4.</item>
-    <item>Fehlerbehebungen</item>
+    <item>Wechsel zu FluentFTP, um TLS 1.2 zu unterstützen</item>
+    <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z. B. auf Pixel 4.</item>
+    <item>Fehlerkorrekturen</item>
   </string-array>
   <string name="ChangeLog_1_07b">    Version 1.07b\n
     * Verbesserung der Leistung von Argon2 durch die Verwendung einer nativen Implementierung (Danke an Chih-Hsuan Yen!)\n
-    * Der Fingerabdruck-Leser kann durch anklicken des Fingerabdruck-Symbols deaktiviert werden (das vermeidet Probleme mit Lesern unter der Displayoberfläche, Danke an marcoDallas!)\n
-    * Cursor-Position wird nach Änderung der Sichtbarkeit von KennwÖrtern wiederhergestellt (Danke an DDoSolitary!)\n
+    * Der Fingerabdruck-Leser kann durch Anklicken des Fingerabdrucksymbols deaktiviert werden (das vermeidet Probleme mit Lesern unter der Displayoberfläche, Danke an marcoDallas!)\n
+    * Cursorposition wird nach Änderung der Sichtbarkeit von Kennwörtern wiederhergestellt (Danke an DDoSolitary!)\n
     * Verbesserungen bei der pCloud-Implementierung (noch einmal Danke an gilbsgilbs!)\n
     * AutoFill-Unterstützung für verschiedene weitere Browser hinzugefügt \n
     * Neue Implementierung für OneDrive: einschließlich Unterstützung für OneDrive for Business, geteilte Dateien, auswählbare Zugriffsbereiche, mehrere Konten und Behebung von Problemen mit Offline-Zugriff\n
@@ -775,43 +775,43 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 * TLS-Implementierung für FTPS gewechselt, Workaround wegen eines JSch-Bugs integriert (betrifft Server, die gssapi-with-mic unterstützen)\n     
 * Fehler behoben\n  </string>
   <string name="ChangeLog_1_05">Version 1.05\n
-  • Verwendung von Benachrichtigungskanälen in Android 8. So können Benachrichtigungen über die Systemeinstellungen konfiguriert werden.\n
-  • Eintrags-Icon wird in Benachrichtigungen angezeigt\n
-  • Adaptive App-Launcher-Icons für Android 8 und rundes App-Launcher-Icon für Android 7\n
+  • Verwenden von Benachrichtigungskanälen in Android 8. So können Benachrichtigungen über die Systemeinstellungen konfiguriert werden.\n
+  • Eintragsymbol wird in Benachrichtigungen angezeigt\n
+  • Adaptive App-Launcher-Symbol für Android 8 und rundes App-Launcher-Symbol für Android 7\n
   • Suche kann nach dem Entsperren aktiviert werden (s. Einstellungen)\n
   • Fehler beim Schreiben von Dateien über das Storage-Access-Framework behoben. Dadurch wird ein Problem behoben, wenn Dateien über den Android-Dateibrowser aus Google Drive geöffnet werden.\n
   • Einige Infotexte ergänzt, um häufig auftretende Missverständnisse zu vermeiden.\n
   • Nach erfolgreichem Öffnen wird eine lokale Sicherungskopie der Datenbank angelegt, um das Risiko von Datenverlust zu reduzieren.\n
-  • JSch aktualisiert um aktuelle SSH-Verschlüsselungsalgorithmen zu unterstützen\n
+  • JSch aktualisiert, um aktuelle SSH-Verschlüsselungsalgorithmen zu unterstützen\n
   • Unterstützung für den statischen Passwortmodus des Yubikey Neo integriert.\n
   • Die Autofill-Empfehlung kann leichter deaktiviert werden\n
-  • Fix für u.U. nach Logcat geschriebene private Daten.\n
-  • Bugfixes\n  </string>
+  • Fix für gegebenenfalls nach Logcat geschriebene private Daten.\n
+  • Fehlerkorrekturen\n  </string>
   <string name="ChangeLog_1_04b">Version 1.04b\n     
-• Fix für App-Crash beim Aktivieren von Autofill auf Huawei-Geräten.\n  </string>
+• Korrektur für App-Crash beim Aktivieren von Autofill auf Huawei-Geräten.\n  </string>
   <string name="ChangeLog_1_04">    Version 1.04\n
     • Autofill-Dienst für Android 8.0 und höher implementiert.\n
     • Bibliotheken und Build-Tools aktualisiert.\n
   </string>
   <string name="ChangeLog_1_03">Version 1.03\n
-* Accessibility-Service für AutoFill entfernt, da dies von Google gefordert wurde. Gehe in die Passwort-Zugriff-Einstellungen für einen Link zu einem Plugin, das die zuvor integrierte Funktionalität wieder bereitstellen kann.\n
+* Accessibility-Service für AutoFill entfernt, da dies von Google gefordert wurde. Unter Passwortzugangseinstellungen findet sich ein Plugin, das die frühere Funktionalität nachbildet.\n
 * Drittanwendungen können wieder genutzt werden, um Dateien zu öffnen\n
-* Image-Viewer integriert, um angehängte Bilder zu öffnen, ohne diese in andere Apps übertragen zu müssen\n
-* OkHttp aktualisiert um Probleme mit manchen Verbindungen zu behoben.\n
+* Bildbetrachter integriert, um angehängte Bilder zu öffnen, ohne diese in andere Apps übertragen zu müssen\n
+* OkHttp aktualisiert, um Probleme mit manchen Verbindungen zu beheben.\n
 * Unterstützung für KeeTrayTOTP-Einträge, so dass jetzt auch Steam-Einträge möglich sind\n  </string>
   <string name="ChangeLog_1_02">Version 1.02\n 
- * mehrere Sicherheitsverbesserungen. Danke an jean-baptiste.cayrou@thalesgroup.com und vincent.fargues@thalesgroup.com für die Analyse und Zusammenarbeit! \n 
- * Unterstützung für KeyboardSwapPlugin (siehe Passwort-Eingabe-Optionen): erlaubt es, die Eingabemethode automatisch auf die KP2A-Tastatur zu wechseln, auch ohne gerootetes Gerät. Danke an Mishaal Rahman von XDA-Developers! \n 
- * Fix für Accessibility-Service mit neueren Chrome-Versionen\n 
- * Fix für unnötiges Löschen der Fingerabdruckdaten\n 
- * Fix für kleinere Crashes\n  
+ * Mehrere Sicherheitsverbesserungen. Danke an jean-baptiste.cayrou@thalesgroup.com und vincent.fargues@thalesgroup.com für die Analyse und Zusammenarbeit!\n 
+ * Unterstützung für KeyboardSwapPlugin (siehe Passworteingabe-Optionen): erlaubt es, die Eingabemethode automatisch auf die KP2A-Tastatur zu wechseln, auch ohne gerootetes Gerät. Danke an Mishaal Rahman von XDA-Developers! \n 
+ * Korrektur für Accessibility-Service mit neueren Chrome-Versionen\n 
+ * Korrektur für unnötiges Löschen der Fingerabdruckdaten\n 
+ * Korrektur für kleinere Crashes\n  
  * Dropbox-SDK aktualisiert, um zukünftige Kompatibilität zu gewährleisten \n 
  * Fehlerberichterstattung mittels Xamarin Insights entfernt\n 
  * Build-Tools aktualisiert\n  </string>
   <string name="ChangeLog_1_01g">Version 1.01-g\n     
-* Fix für Absturz wenn \"Offline-Arbeiten\" aktviert ist\n
-* Fix für Encoding der FTP(S)-Zugangsdaten\n
-* Fix für Abstürze bei Verwendung von OneDrive und auf älteren Android-Versionen\n
+* Korrektur für Absturz, wenn „Offline-Arbeiten“ aktviert ist\n
+* Korrektur für Encoding der FTP(S)-Zugangsdaten\n
+* Korrektur für Abstürze bei Verwendung von OneDrive und auf älteren Android-Versionen\n
 * Zeiten werden als lokale Zeiten dargestellt\n  </string>
   <string name="ChangeLog_1_01d">Version 1.01-d\n     
  * Fix beim Auflisten von Dateien mit OneDrive\n
@@ -830,20 +830,20 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 * Unterstützung für OwnCloud integriert.\n
 * Frage nach Speicherzugriffsberechtigung vor dem Öffnen von lokalen Dateien.</string>
   <string name="ChangeLog_1_0_0e">Version 1.0.0e\n
-* Bugfix für Fingerabdruckerkennung auf älteren Samsunggeräten mit Android 6\n
+* Fehlerkorrektur für Fingerabdruckerkennung auf älteren Samsunggeräten mit Android 6\n
 * Native x86-Unterstützung hinzugefügt\n
 * Bildschirmtastatur kann während Fingerabdruckerkennung deaktiviert werden\n
 * Update des Buildsystems  </string>
   <string name="ChangeLog_1_0_0">Version 1.0.0\n
 * Entsperren mit Fingerabdruck (benötigt Android 6.0+ oder ein Samsung-Gerät)\n
-* Auto-Fill-Dienst hinzugefügt (benötigt Android 5.0+)\n
-* Unterstützung für Eintrags-Vorlagen hinzugefügt\n
-* Modus \"offline arbeiten\" hinzugefügt\n
+* Autofill-Dienst hinzugefügt (benötigt Android 5.0+)\n
+* Unterstützung für Eintragsvorlagen hinzugefügt\n
+* Modus „Offline arbeiten“ hinzugefügt\n
 * Kopieren von Einträgen ermöglicht\n
 * Automatische Vervollständigung für Feldnamen\n
 * Einträge können aus der Liste der zuletzt verwendeten Dateien entfernt werden\n
 * Rechte werden in Android 6.0 zur Laufzeit angefragt\n
-* Fehlerbehebungen (integrierte Tastatatur wenn Icons ausgewählt werden)\n
+* Fehlerbehebungen (integrierte Tastatatur wenn Symbole ausgewählt werden)\n
 * Option zum Senden von Fehlerberichten hinzugefügt\n
 * Hilfemeldungen an verschiedenen Stellen hinzugefügt\n  \n</string>
   <string name="ChangeLog_0_9_9">Version 0.9.9\n
@@ -855,11 +855,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
     </string>
   <string name="ChangeLog_0_9_9c">Version 0.9.9c\n
 * Dark Theme ist zurück\n
-* Man kann jetzt weitere Icon-Packs installieren (Icons im alten Windows-Stil sind im Play Store verfügbar)\n
+* Man kann jetzt weitere Icon-Packs installieren (Symbole im alten Windows-Stil sind im Play Store verfügbar)\n
 * Bestätigungsabfrage für das Löschen von Elementen ohne Papierkorb hinzugefügt\n
-* Fehlerbehebungen (falsche Anzeige des OTP Secret Encoding, falsches App-Icon an manchen Stellen)\n  </string>
+* Fehlerbehebungen (falsche Anzeige des OTP Secret Encoding, falsches Appsymbol an manchen Stellen)\n  </string>
   <string name="ChangeLog_0_9_8b">Version 0.9.8b\n
-		* Bug fixes (Speichern funktionierte bei einigen Datenbanken nicht, Export zum lokalen Gerät funktionierte nicht, einige Einstellungsoptionen verursachten einen Absturz der App)\n</string>
+		* Fehlerkorrektur (Speichern funktionierte bei einigen Datenbanken nicht, Export zum lokalen Gerät funktionierte nicht, einige Einstellungsoptionen verursachten einen Absturz der App)\n</string>
   <string name="ChangeLog_0_9_8">Version 0.9.8\n
 		* Unterstützung des Storage Access Framework (erlaubt schreiben auf SD Kartr und Google Drive in KP2A Offline)\n
 		* Versuche, fehlerhafte Nutzereingaben bei der Eingabe von WebDAV URLs zu erkennen (Verzeichnis statt Datei)\n
@@ -868,14 +868,14 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 		* Bug Fix: Speichern des OTP-Passwort-Modus</string>
   <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
 		* Übersetzungen aktualisiert\n
-		* Bugs behoben: Passwort-Schriftart fehlte in 0.9.7, Gruppen wurden nicht sortiert, wenn \"Sortieren nach Namen\" ausgewählt war\n</string>
+		* Fehlr behoben: Passwortschriftart fehlte in 0.9.7, Gruppen wurden nicht sortiert, wenn „Sortieren nach Namen“ ausgewählt war\n</string>
   <string name="ChangeLog_0_9_7">Version 0.9.7\n
 		* Schreibunterstützung für Keepass 1 (kdb) Datenbanken (Beta!)\n
 		* Verbessertes Zurückschalten zur vorherigen Eingabemethode (funktioniert auch auf nicht gerooteten Geräten)\n
 		* Unterstützung für KeeChallenge mit variablen Challenge-Längen\n
-		* Screenshots vom QuickUnlock-Bildschirm und Passwort-Eingabe-Bildschirm nicht mehr möglich\n
+		* Screenshots vom QuickUnlock-Bildschirm und Passworteingabebildschirm nicht mehr möglich\n
 		* Sortierreihenfolge bei Sortierung nach Änderungsdatum (jetzt absteigend)\n
-		* Bugfixes: Notiz-Ansicht wird nach Änderung korrekt aktualisiert; Passwortfelder sollten nun auf allen Geräten korrekt versteckt werden; Problem behoben, wegen dem ein Eintrag doppelt angelegt werden konnte; Problem mit Anzeige der Warnung wegen doppelten UUIDs behoben\n</string>
+		* Fehlerkorrektur: Notizansicht wird nach Änderung korrekt aktualisiert; Passwortfelder sollten nun auf allen Geräten korrekt versteckt werden; Problem behoben, wegen dem ein Eintrag doppelt angelegt werden konnte; Problem mit Anzeige der Warnung wegen doppelten UUIDs behoben\n</string>
   <string name="ChangeLog_0_9_6">Version 0.9.6\n
 		* Schlüsseldatei und/oder lokale Datenbank können in ein App-internes Verzeichnis kopiert werden (siehe Einstellungen)\n
 		* verschiedene Sortieroptionen\n
@@ -883,11 +883,11 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
 		* App-Logo und Benachrichtigungsdesign aktualisiert, Design von Stefano Pignataro (http://www.spstudio.at)\n
 		* Keepass2Android merkt sich die letzten Einstellungen\n
 		* Sichtbarkeit von Benachrichtigungen unter Android 5 gesetzt \n
-		* Eingegebenes Master-Passwort wird gelöscht, wenn die App verlassen wird, ohne OK zu drücken\n
+		* Eingegebenes Hauptpasswort wird gelöscht, wenn die App verlassen wird, ohne OK zu drücken\n
 		* Problem mit fehlenden Tastatur-Eingabesprachen auf manchen Geräten behoben\n
 		* Problem mit automatischem Tastatur-Umschalten behoben\n
 		* Prüfung auf korrupte Datenbanken mit doppelten UUIDs\n
-		* Datenbank wird automatisch neu geladen, wenn eine Änderung erkannt wird (löst Sicherheitsbedenken bzgl. Möglichkeit, Masterpasswort sehen zu können)\n
+		* Datenbank wird automatisch neu geladen, wenn eine Änderung erkannt wird (löst Sicherheitsbedenken bzgl. Möglichkeit, Hauptpasswort sehen zu können)\n
 		* Design der Tastatureinstellungen korrigiert (danke an Wiktor Ławski)\n</string>
   <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
 		* Probleme bei Dateiauswahl behoben (bes. auf Android 4.4)\n
@@ -901,101 +901,101 @@ Anbei einige Hinweise, die bei der Diagnose des Problems helfen können:\n
   <string name="ChangeLog_0_9_4"><b>Version 0.9.4</b> \n
 		* Plugin-Unterstützung hinzugefügt: siehe Einstellungen, um Plugins zu bekommen! \n
 		* QR-Plugin veröffentlicht (Passwörter erfassen, Passwörter als QR-Code anzeigen, Einträge auf andere KP2A-Geräte übertragen)\n
-		* InputStick-Plugin veröffentlicht (Anmeldeinformationen per Bluetooth auf den PC übertragen - erfordert InputStick-USB-Stick)\n
-		* Apps von Drittanbieter können nun einfach Funktionen implementieren, um Anmeldeinformationen direkt  von KP2A abzufragen. Du bist ein Entwickler? Bitte bau das in deiner App ein, wenn geeignet!\n
+		* InputStick-Plugin veröffentlicht (Anmeldeinformationen per Bluetooth auf den PC übertragen – erfordert InputStick-USB-Stick)\n
+		* Apps von Drittanbieter können nun einfach Funktionen implementieren, um Anmeldeinformationen direkt von KP2A abzufragen. Selbst ein Entwickler? Dies bitte in die eigene App einbauen, wenn sie sich dafür eignet!\n
 		* TOTP-Unterstützung hinzugefügt (kompatibel mit KeeOTP und TrayTotp)\n
 		* App sollte von Android nicht mehr beendet werden, wenn die Datenbank geöffnet ist\n
-		* Datenbank ist nicht mehr gesperrt, wenn  die App mit dem Zurück-Knopf verlassen wird (siehe Einstellungen)\n
+		* Datenbank ist nicht mehr gesperrt, wenn die App mit dem Zurück-Knopf verlassen wird (siehe Einstellungen)\n
 		* Gruppennamen können in Suchergebnissen angezeigt werden (*)\n
-		* Kontextmenü in der Ergebnisansicht der Suche hinzugefügt, einschließlich der Option \"Zu übergeordneter Gruppe navigieren\" (*)\n
+		* Kontextmenü in der Ergebnisansicht der Suche hinzugefügt, einschließlich der Option „Zu übergeordneter Gruppe navigieren“ (*)\n
 		* Option zum Anzeigen des Gruppennamen von Einträgen (*)\n
 		* (*) Danke an Matthieu für die Umsetzung dieser Features!\n
 		* Unterstützung von KeeChallenge (mit Yubikey NEO). Danke an Ben Rush für die Implementierung des Connectors!\n
 		* verbesserte Benutzerschnittstelle.\n
-		* Fehler in der Google Drive-Schnittstelle behoben.\n
-		* Option zum Deaktivieren der \"Spenden\"-Option hinzugefügt\n
+		* Fehler in der Google-Drive-Schnittstelle behoben.\n
+		* Option zum Deaktivieren der „Spenden“-Option hinzugefügt\n
 		* QuickUnlock-Symbol jetzt standardmäßig ausgeblendet bei Geräten mit Android 4.2+\n</string>
   <string name="ChangeLog_0_9_3_r5"><b>Version 0.9.3 r5</b>\n
 		* Korrekturen von Xamarin übernommen: Keepass2Android ist jetzt kompatibel mit ART auf Android 4.4.2. Endlich!\n
-		* Fehlerkorrekturen: Fehler bei der Synchronization (Anzeigeaktualisierung, korrekte Prüfung auf Änderungen über HTTP), Fehler auf Android 2.x-Geräten, Fehler in den Implementierungen für Google Drive und OneDrive, Zwischenablage wird beim Schließen der Datenbank geleert, Fehler beim Öffnen von Anhängen, Anzeigeprobleme mit der Tastatur\n</string>
+		* Fehlerkorrekturen: Fehler bei der Synchronization (Anzeigeaktualisierung, korrekte Prüfung auf Änderungen über HTTP), Fehler auf Android-2.x-Geräten, Fehler in den Implementierungen für Google Drive und OneDrive, Zwischenablage wird beim Schließen der Datenbank geleert, Fehler beim Öffnen von Anhängen, Anzeigeprobleme mit der Tastatur\n</string>
   <string name="ChangeLog_0_9_3"><b>Version 0.9.3</b>\n
 		* Neue Tastatur mit einigen Verbesserungen. Siehe Einstellungen zum personalisieren.\n
-		* Leseunterstützung für kdb (Keepass 1) Dateien Experimentell!\n
+		* Leseunterstützung für kdb (Keepass-1-Dateien). Experimentell!\n
 		* SFTP-Unterstützung\n
-		* Workaround für Bug in ART (Android 4.4.2) eingebaut\n
-		* Bugs gefixt\n</string>
+		* Workaround für Fehler in ART (Android 4.4.2) eingebaut\n
+		* Fehler korrigiert\n</string>
   <string name="ChangeLog_0_9_2"><b>Version 0.9.2</b>\n
 * Unterstützung für OTPs (One Time Passwords) integriert (kompatibel zum OtpKeyProv-Plugin)\n
 * NFC-Support zur Eingabe von OTPs über YubiKey NEO integriert\n
 * Verbesserungen an der Benutzeroberfläche\n
-* Keepass 2.24-Bibliothek integriert \n
+* Keepass-2.24-Bibliothek integriert \n
 * Option zum Beenden des App-Prozesses eingebaut (s. Einstellungen)\n
-* Bugs behoben\n</string>
+* Fehler behoben\n</string>
   <string name="ChangeLog_0_9_1"><b>Version 0.9.1</b>\n
 * SkyDrive-Unterstützung integriert (Nur in der Nicht-Offline-Version von Keepass2Android)\n
 * Probleme mit Google Drive Integration behoben\n
 * NTLM-Unterstützung integriert</string>
   <string name="ChangeLog_0_9"><b>Version 0.9</b>\n
-		* Dropbox und Google Drive Unterstützung integriert (Lesen und Schreiben von Datenbank; Nur in der Nicht-Offline-Version von Keepass2Android)\n
-		* Datei-Browser integriert (basiert auf android-filechooser von HBA)\n
+		* Unterstützung für Dropbox und Google Drive integriert (Datenbank lesen und schreiben; Nur in der Nicht-Offline-Version von Keepass2Android)\n
+		* Dateibrowser integriert (basiert auf android-filechooser von HBA)\n
 		* Verbesserte Benutzeroberfläche zum Anlegen von Datenbanken\n
 		* Schriftart DejaVu Sans Mono integriert zur Anzeige von Passwörtern\n
-		* Bugfixes</string>
+		* Fehlerkorrekturen</string>
   <string name="ChangeLog_0_8_6"><b>Version 0.8.6</b>\n
 * Unterstützung für Twofish-Verschlüsselung\n
-* Ermöglicht Bearbeiten von Gruppen\n
-* Ermöglich Verschieben von Einträgen und Gruppen\n
-* Das QuickUnlock-Icon kann transparent gemacht werden (s. Einstellungen)\n
+* Bearbeiten von Gruppen ermöglicht\n
+* Verschieben von Einträgen und Gruppen ermöglicht\n
+* Das QuickUnlock-Symbol kann transparent gemacht werden (s. Einstellungen)\n
 * Bugs behoben</string>
   <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
 		* Remote-Dateien werden im lokalen Cache gespeichert. Das erlaubt Offline-Nutzung (inkl. Bearbeiten und späterem Synchronisieren). S. Einstellungen.\n
-		* Benachrichtigungssymbol zum Visualisieren des Sperr-Zustands (s. Einstellungen)\n
+		* Benachrichtigungssymbol zum Visualisieren des Sperrzustands (s. Einstellungen)\n
 		* Verbesserungen, um die Datenbank zur richtigen Zeit zu sperren\n
-		* Datenbank-Dateien werden in den Speicher geladen, während du das Passwort eingibst. Dadurch erhöhte Ladegeschwindigkeit.\n
-		* Einträge können zur Root Gruppe hinzugefügt werden.\n
-		* Bug Fixes (Auflösen von von Referenzfeldern, Probleme mit der tastatur auf Italienischen und Chinesischen Geräten)</string>
+		* Datenbankdateien werden in den Speicher geladen, während du das Passwort eingibst. Dadurch erhöhte Ladegeschwindigkeit.\n
+		* Einträge können zur Root-Gruppe hinzugefügt werden.\n
+		* Fehlerkorrekturen (Auflösen von von Referenzfeldern, Probleme mit der Tastatur auf italienischen und chinesischen Geräten)</string>
   <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
 		* Externe Änderungen an der Datenbank werden erkannt und beim Speichern zusammengeführt\n
-		* Verbesserte Geschwindigkeit beim starten\n
+		* Verbesserte Geschwindigkeit beim Starten\n
 		* Verbesserte Suchleiste mit Vorschlägen\n
-		* Neues App logo!\n
-		* Unterstützung für .kdbp Format für schnelleres laden und speichern hinzugefügt\n
-		* Verbesserung beim bearbeiten von zusätzlichen Feldern und versteckte Darstellung von geschützten Feldern\n
+		* Neues App-Logo!\n
+		* Unterstützung für .kdbp-Format für schnelleres Laden und Speichern hinzugefügt\n
+		* Verbesserung beim Bearbeiten von zusätzlichen Feldern und versteckte Darstellung von geschützten Feldern\n
 		Danke an Alex Vallat für seine Mitwirkung beim Code!\n
 		Danke an Niki Hüttner (www.close-cut.de) für das neue Logo!\n</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Benutzername/TAN index wird in Liste der Einträge angezeigt (s. Einstellungen)\n
+* Benutzername/TAN-Index wird in Liste der Einträge angezeigt (s. Einstellungen)\n
 * Einträge können neu angelegt werden, wenn Suche aus Browser kein Ergebnis gebracht hat\n
 * KP2A-Tastatur erlaubt Suche nach Zugangsdaten für die aktive App\n
 * App schließt sich automatisch nach Auswahl eines Eintrags über die Tastatur\n
-* Dialog zur Tastatur-Auswahl öffnet sich automatisch nach Suche nach einer URL (s. Einstellungen)\n
-* Platzhalter in Eintragsfeldern werden ersetzt vor dem Kopieren (die meisten Platzhalter werden unterstützt)\n
-* kleinere Bug-Fixes</string>
+* Dialog zur Tastaturauswahl öffnet sich automatisch nach Suche nach einer URL (s. Einstellungen)\n
+* Platzhalter in Eintragsfeldern werden vor dem Kopieren ersetzt (die meisten Platzhalter werden unterstützt)\n
+* kleinere Fehlerkorrekturen</string>
   <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
 * Unterstützung für Digest Authentication in WebDAV\n
-* Bugfixes (OI File manager, URL öffnen)</string>
+* Fehlerkorrekturen (OI File manager, URL öffnen)</string>
   <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
-* KP2A Offline and \"Online\" können wieder parallel zueinander installiert werden\n
+* KP2A Offline and „Online“ können wieder parallel zueinander installiert werden\n
 * Neue Übersetzungen hinzugefügt (Danke an alle Helfer!)</string>
   <string name="ChangeLog_0_8"><b>Version 0.8</b>\n 
 * Verbesserte Benutzeroberfläche, vor allem für Android 4.x-Geräte\n 
 * Möglichkeit, Dateimanager zur Auswahl von existierenden Dateien zu verwenden\n
 * Sicherer Weg zum Öffnen von Anhängen hinzugefügt (über das Cache-Verzeichnis)\n
-* Bugs beim Editieren von Einträgen gefixt\n 
-* vermutlich neue Bugs eingeführt :-)</string>
-  <string name="ChangeLog_keptDonate">Möglichkeit, ein Bier zu spendieren (oder was anderes) verlängert</string>
+* Fehler beim Bearbeiten von Einträgen korrigiert\n 
+* vermutlich neue Fehler eingeführt :-)</string>
+  <string name="ChangeLog_keptDonate">Erweiterte Möglichkeit, ein Bier oder etwas anderes zu spenden</string>
   <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Erhöhte Ladegeschwindigkeit: Schlüsseltransformationen sind jetzt 10x schneller!\n
-* Neu: Keepass2Android Software-Tastatur: Wechsle zu dieser Tastatur, um deine Zugangsdaten einzugeben. Das schützt vor Zwischenablage-basierten Passwort-Sniffern! (du kannst die bisherigen Benachrichtigungen für das Kopieren in die Zwischenablage in den Einstellungen deaktivieren)\n
+* Erhöhte Ladegeschwindigkeit: Schlüsseltransformationen sind jetzt 10× schneller!\n
+* Neu: Keepass2Android-Software-Tastatur: Zu dieser Tastatur wechseln, um die Zugangsdaten einzugeben. Das schützt vor Zwischenablage-basierten Passwort-Sniffern! (die bisherigen Benachrichtigungen für das Kopieren in die Zwischenablage lassen sich in den Einstellungen deaktivieren)\n
 * Option eingefügt, um mir ein Bier oder was anderes zu spendieren (s. Menü)</string>
   <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Google Drive/Dropbox/... Integration: Nutze die offizielle Google Drive oder Dropbox App und öffne daraus deine .kdbx-Datei. Das wird KP2A starten.\n
-* Verbesserter Such-Dialog \n
-* Verbesserte Suche bei \"Teilen\" mit Subdomains\n
+* Integration für Google Drive/Dropbox/…: Die offizielle App für Google Drive oder Dropbox nutzen und daraus die .kdbx-Datei öffnen. Das startet dann KP2A.\n
+* Verbesserter Suchdialog \n
+* Verbesserte Suche bei „Teilen“ mit Subdomains\n
 * Optionen für Feedback, Bewerten und Übersetzen zum Menü hinzugefügt\n
 \n
 <b>Version 0.6.1</b>\n
-* Erkennung, wenn sich eine Datenbank im Hingrund ändert (z.B. durch eine Sync-App)\n
+* Erkennung, wenn sich eine Datenbank im Hingrund ändert (z. B. durch eine Sync-App)\n
 * Suche aus dem Browser verbessert\n
 * Bestätigungsdialog, wenn Änderungen verworfen werden sollen\n
 \n
@@ -1012,9 +1012,9 @@ Erstes öffentliches Release</string>
     <item>Nie</item>
   </string-array>
   <string-array name="export_fileformat_options">
-    <item>Keepass 2 database (.kdbx)</item>
-    <item>Keepass 2 XML (unverschlüsselt) (.xml)</item>
-    <item>Keepass CSV (unverschlüsselt) (.csv)</item>
+    <item>Keepass2-Datenbank (.kdbx)</item>
+    <item>Keepass2-XML (unverschlüsselt) (.xml)</item>
+    <item>Keepass-CSV (unverschlüsselt) (.csv)</item>
   </string-array>
   <string-array name="list_size_options">
     <item>Klein</item>
@@ -1038,51 +1038,51 @@ Erstes öffentliches Release</string>
     <item>Benutzername und Passwort merken</item>
   </string-array>
   <string-array name="password_modes">
-    <item>Nur Kennwort</item>
-    <item>Kennwort + Schlüsseldatei</item>
-    <item>Kennwort + OTP</item>
-    <item>Kennwort + OTP Secret (Recovery-Modus)</item>
-    <item>Passwort + Challenge-Response</item>
-    <item>Passwort + Challenge-Response-Secret (Recovery-Modus)</item>
-    <item>Passwort + Challenge-Response für Keepass XC</item>
-    <item>Kennwort + Schlüsseldatei + Challenge-Response für Keepass XC</item>
+    <item>Nur Passwort</item>
+    <item>Passwort und Schlüsseldatei</item>
+    <item>Passwort und OTP</item>
+    <item>Passwort und OTP-Secret (Recovery-Modus)</item>
+    <item>Passwort und Challenge-Response</item>
+    <item>Passwort und Challenge-Response-Secret (Recovery-Modus)</item>
+    <item>Passwort und Challenge-Response für Keepass XC</item>
+    <item>Kennwort und Schlüsseldatei und Challenge-Response für Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Passwort</item>
     <item>Privater/Öffentlicher Schlüssel</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
-    <item>Fehler bei Zertifikatsvalidierung ignorieren</item>
-    <item>Warnen, wenn die Validierung fehlschlägt</item>
+    <item>Fehler bei Zertifikatsüberprüfung ignorieren</item>
+    <item>Warnen, wenn die Überprüfung fehlschlägt</item>
     <item>Ungültige Zertifikate nicht akzeptieren</item>
   </string-array>
-  <string name="ClearClipboardWarning">Bitte stelle sicher, dass dies auf deinem System funktioniert; falls nicht, nutze bitte die Standard-Tastatur.</string>
+  <string name="ClearClipboardWarning">Bitte sicherstellen, dass dies auf diesem System funktioniert; falls nicht, die Standardtastatur verwenden.</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
-  <string name="autofill_hint">Keepass2Android unterstützt das Autofill-Feature von Android, aber du hast es anscheinend noch nicht aktiviert.</string>
+  <string name="autofill_hint">Keepass2Android unterstützt die Autofill-Funktion von Android, aber es wurde anscheinend noch nicht aktiviert.</string>
   <string name="autofill_enable">Autofill aktivieren</string>
-  <string name="autofill_enable_failed">Sorry, anscheinend unterstützt dein Gerät es nicht, dass man die Einstellungen aus einer App heraus öffnet. Bitte gehe in die Systemeinstellungen und suche dort nach Autofill, um den Dienst zu aktivieren.</string>
+  <string name="autofill_enable_failed">Entschuldigung, anscheinend unterstützt dieses Gerät nicht, dass die Einstellungen aus einer App heraus geöffnet werden. Bitte in die Systemeinstellungen gehen und dort nach Autofill suchen, um den Dienst zu aktivieren.</string>
   <string name="show_autofill_help">Autofill-Hilfe anzeigen</string>
   <string name="autofill_sign_in_prompt">Mit Keepass2Android ausfüllen</string>
   <string name="autofill_disable">AutoFill für %1$s deaktivieren</string>
   <string name="autofill_enable_for">AutoFill für %1$s aktivieren</string>
-  <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s in Verbindung gebracht werden</string>
-  <string name="enable_fingerprint_hint">Keepass2Android hat biometrische Hardware erkannt. Möchtest du Biometrisches Entsperren für diese Datenbank aktivieren?</string>
-  <string name="understand">Ich verstehe</string>
+  <string name="invalid_link_association">Webdomain %1$s konnte nicht mit App %2$s verknüpft werden</string>
+  <string name="enable_fingerprint_hint">Keepass2Android hat biometrische Hardware erkannt. Soll Biometrisches Entsperren für diese Datenbank aktiviert werden?</string>
+  <string name="understand">Okay, verstanden</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
-  <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
-  <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank nicht ohne Master-Passwort öffnen kannst. Es gibt keine Möglichkeit, das Passwort zurückzusetzen.</string>
-  <string name="masterkey_infotext_fingerprint_note">Beachte auch, dass für das biometrische Entsperren dein Masterkennwort durch Android in einem gesicherten Speicher abgelegt wird. Dieser Speicher kann aber von Android gelöscht oder ungültig gemacht werden, z.B. wenn du einen Fingerabdruck in den Systemeinstellungen hinterlegst. Verlass dich daher bitte nicht auf das biometrische Entsperren sondern merke dir dein Masterkennwort!</string>
-  <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
-  <string name="backup_infotext_main">Keepass2Android speichert deine Passwörter in eine Datei an einem Ort deiner Wahl. Bist du sicher, dass du auf diese Datei auch noch Zugriff hast wenn dein Telefon verloren geht oder gestohlen wird? Oder wenn die Datei zerstört oder gelöscht wird? Bitte stelle sicher, dass du immer eine aktuelle Kopie an einem sichern Ort aufbewahrst!</string>
-  <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, gehe nach %1$s &gt; %2$s &gt; %3$s.</string>
-  <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
-  <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
-  <string name="no_secure_display">Der aktuell gültige Bildschirm ist als unsicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte wechsle zu einem sicheren Bildschirm (z.B. durch Abtrennen eines HDMI-Monitors) oder ändere die App-Einstellungen.</string>
+  <string name="masterkey_infotext_head">Ist das Hauptpasswort bekannt?</string>
+  <string name="masterkey_infotext_main">Bitte beachten, dass die Datenbank ohne den Hauptschlüssel nicht geöffnet werden kann. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
+  <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass das Biometrische Entsperren über das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
+  <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
+  <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
+  <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, nach %1$s &gt; %2$s &gt; %3$s gehen.</string>
+  <string name="emergency_infotext_head">Ist man auf Notfälle vorbereitet?</string>
+  <string name="emergency_infotext_main">Wurde schon einmal darüber nachgedacht, was passiert, wenn man keinen Zugriff mehr zu seiner Passwortdatenbank hat? Was ist, wenn man einen Unfall hat? Es ist eine vernünftige Maßnahme, den Hauptschlüssel für Notfälle an eine vertrauenswürdige Person weiterzugeben. Andernfalls hat niemand Zugang zu den Passwörtern.</string>
+  <string name="no_secure_display">Der aktuell gültige Bildschirm ist nicht als sicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte zu einem sicheren Bildschirm wechseln (z. B. durch Abklemmen eines HDMI-Monitors) oder die App-Einstellungen ändern.</string>
   <string name="disable_secure_screen_check">Diese Nachricht deaktivieren</string>
-  <string name="switch_ime_text">Bitte aktiviere die Keepass2Android-Tastatur.</string>
+  <string name="switch_ime_text">Bitte die Keepass2Android-Tastatur aktivieren.</string>
   <string name="switch_ime_reopen">Erneut versuchen</string>
   <string name="AutofillWarning_title">Sicherheitswarnung: Unbekannte Domain/App-Verknüpfung</string>
-  <string name="AutofillWarning_Intro">Du bist dabei, Anmeldedaten für die Domain \"%1$s\" in die App \"%2$s \" einzufügen.</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn du \"%2$s\" vertraust, dass  es zu \"%1$s\" gehört oder du der App \"%2$s\" vertraust, dass sie keine Anmeldedaten missbraucht (z.B. da es sich um eine vertrauenswürdige Browser-App handelt) ist es in Ordnung, fortzufahren. Falls nicht,  brich den Vorgang bitte ab.</string>
-  <string name="AutofillWarning_trustAsBrowser">Für \"%1$s \" immer akzeptieren</string>
+  <string name="AutofillWarning_Intro">Hiermit werden Anmeldeinformationen für die Domäne „%1$s“ in die Anwendung „%2$s“ eingefügt.</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn darauf vertraut wird, dass „%2$s“ zu „%1$s“ gehört, oder wenn darauf vertraut wird, dass die App „%2$s“ die Anmeldeinformationen nicht missbraucht (z. B. weil es sich um eine vertrauenswürdige Browser-App handelt), kann fortgefahren werden. Falls nicht, bitte abbrechen.</string>
+  <string name="AutofillWarning_trustAsBrowser">Für „%1$s“ immer akzeptieren</string>
 </resources>
