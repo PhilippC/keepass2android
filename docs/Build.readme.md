@@ -43,7 +43,7 @@ By using the command line, you can build on Windows, macOS or Linux.
     - On Debian, after having added the repo from above, install with `apt install -t <repo_name> mono-devel msbuild`. A value for `<repo_name>` could be `stable-buster` for example, depending on which one you chose. You could also install the `mono-complete` package if you prefer.
 
 - Install Xamarin.Android
-  - Option 1: Use the mono-project [CI builds](https://dev.azure.com/xamarin/public/_build/latest?definitionId=48&branchName=main&stageName=Linux)
+  - ~~Option 1: Use the mono-project [CI builds](https://dev.azure.com/xamarin/public/_build/latest?definitionId=48&branchName=main&stageName=Linux)~~ **NOTE:** KP2A now requires Xamarin.Android v13, which is newer than the current CI build; until a more recent CI build is available, this option is unfortunately no longer viable.
   - Option 2: [Build it from source](https://github.com/xamarin/xamarin-android/blob/master/Documentation/README.md#building-from-source)
 
 - Install NuGet package of your distribution
@@ -64,9 +64,11 @@ This is done on the command line and requires the Android SDK & NDK and Java JDK
 ### On Windows
 - Setup your environment:
   - Set these environment variables for Android's SDK & NDK
-    - `ANDROID_HOME` (for example `set ANDROID_HOME=C:\PATH\TO\android-sdk\`)
-    - `ANDROID_SDK_ROOT` (for example `set ANDROID_SDK_ROOT=C:\PATH\TO\android-sdk\`)
-    - `ANDROID_NDK_ROOT` (for example `set ANDROID_NDK_ROOT=C:\PATH\TO\android-sdk\ndk\version\`)
+    - `ANDROID_HOME` (for example `set ANDROID_HOME=C:\PATH\TO\android-sdk`)
+    - `ANDROID_SDK_ROOT` (for example `set ANDROID_SDK_ROOT=C:\PATH\TO\android-sdk`)
+    - `ANDROID_NDK_ROOT` (for example `set ANDROID_NDK_ROOT=C:\PATH\TO\android-sdk\ndk\version`)
+    
+    **Note:** Care must be taken when setting the above variables to **not** include a trailing backslash in the path. A trailing backslash may cause `make` to fail.
 
     **Note**: If the path to the Android SDK contains spaces, you **must** do one of these:
     - either put the Android SDK into a path without spaces.
@@ -103,6 +105,10 @@ This is done on the command line and requires the Android SDK & NDK and Java JDK
 
  - For building the java parts, it is suggested to keep a short name (e.g. "c:\projects\keepass2android") for the root project directory. Otherwise the Windows path length limit might be hit when building.
  - Before building the java parts, make sure you have set the ANDROID_HOME variable or create a local.properties file inside the directories with a gradlew file. It is recommended to use the same SDK location as that of the Xamarin build.
+ - On some environments, `make` can fail to properly use the detected `MSBUILD` tools. This seems to be due to long pathnames and/or spaces in pathnames. It may be required to explicitly set the `MSBUILD` path using 8.3 "short" path notation:
+ 	- Determine the location of `MSBUILD` (e.g. `C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe`)
+ 	- [Generate the "short" path](https://superuser.com/a/728792) of that location (e.g.: `C:\PROGRA~1\MICROS~2\2022\COMMUN~1\MSBuild\Current\Bin\MSBuild.exe`)
+ 	- When running `make` specify the location of ``MSBUILD` explicitly (e.g.: `make MSBUILD="C:\PROGRA~1\MICROS~2\2022\COMMUN~1\MSBuild\Current\Bin\MSBuild.exe` 
 
 
 ### On Linux/macOS
