@@ -54,6 +54,7 @@
   <string name="AlwaysMergeOnConflict_key">AlwaysMergeOnConflict</string>
   <string name="NoDalVerification_key">NoDalVerification_key</string>
   <string name="InlineSuggestions_key">InlineSuggestions_key</string>
+  <string name="LogAutofillView_key">LogAutofillView_key</string>
   <string name="algorithm_key">algorithm</string>
     <string name="app_key">app</string>
     <string name="app_timeout_key">app_timeout_key</string>

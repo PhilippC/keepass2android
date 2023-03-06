@@ -3,6 +3,7 @@ using System.Linq;
 
 using Android.App.Assist;
 using Android.Content;
+using Android.Preferences;
 using Android.Views.Autofill;
 using DomainNameParser;
 using Kp2aAutofillParser;
@@ -23,8 +24,8 @@ namespace keepass2android.services.AutofillBase
             InputType = (Kp2aAutofillParser.InputTypes) ((int)viewNode.InputType);
             HtmlInfoTag = viewNode.HtmlInfo?.Tag;
             HtmlInfoTypeAttribute = viewNode.HtmlInfo?.Attributes?.FirstOrDefault(p => p.First?.ToString() == "type")?.Second?.ToString();
-
         }
+
         [JsonIgnore]
         public AssistStructure.ViewNode ViewNode { get; set; }
 
@@ -152,7 +153,8 @@ namespace keepass2android.services.AutofillBase
 		    _context = context;
             _structure = structure;
             AutofillFields = new AutofillFieldMetadataCollection();
-            
+            LogAutofillView = PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean(context.GetString(Resource.String.LogAutofillView_key), false);
+
         }
 
         protected override AutofillTargetId Parse(bool forFill, bool isManualRequest, AutofillView<ViewNodeInputField> autofillView)

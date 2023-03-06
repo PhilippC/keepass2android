@@ -332,6 +332,9 @@
 
   <string name="InlineSuggestions_title">Integrate with keyboard</string>
   <string name="InlineSuggestions_summary">Shows the autofill suggestions as inline options in the keyboard (if supported by the input method)</string>
+
+  <string name="LogAutofillView_title">Log autofill view</string>
+  <string name="LogAutofillView_summary">Write details about the autofill view to debug log (if debug logging is enabled). These details can be sent to the developer if autofill does not work as expected.</string>
   <string name="requires_android11">Requires Android 11 or later</string>
 	
 	<string name="kp2a_findUrl">Find password</string>
