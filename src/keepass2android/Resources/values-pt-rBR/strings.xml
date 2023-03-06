@@ -303,6 +303,8 @@
   <string name="NoDalVerification_summary">Desativa a checagem se domínio e pacote do app correspondem.</string>
   <string name="InlineSuggestions_title">Integrar com o teclado</string>
   <string name="InlineSuggestions_summary">Mostra sugestões de Autopreenchimento como opção na linha no teclado (se suportado pelo método de entrada)</string>
+  <string name="LogAutofillView_title">Registrar exibição de preenchimento automático</string>
+  <string name="LogAutofillView_summary">Escreva detalhes sobre a exibição de preenchimento automático para registro de depuração (se o registro de depuração estiver habilitado). Esses detalhes podem ser enviados ao desenvolvedor se o preenchimento automático não funcionar conforme o esperado.</string>
   <string name="requires_android11">Requer Android 11 ou posterior</string>
   <string name="kp2a_findUrl">Keepass2Android: Buscar senha</string>
   <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
