@@ -3,109 +3,111 @@ name: Build keepass2android app
 on: [push, pull_request]
 
 jobs:
-  macos:
+  # macos:
+  # Disabled. Does not work, maybe due to nuget version, see https://github.com/PhilippC/keepass2android/actions/runs/4297640426/jobs/7490853348
+  # should work again when the Project solution is converted to sdk style .csproj files.
 
-    runs-on: macos-12
+  #   runs-on: macos-12
 
-    steps:
-    - uses: actions/checkout@v3
+  #   steps:
+  #   - uses: actions/checkout@v3
 
-    - name: Fetch submodules
-      run: git submodule init && git submodule update
+  #   - name: Fetch submodules
+  #     run: git submodule init && git submodule update
 
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
+  #   - name: Setup Gradle
+  #     uses: gradle/gradle-build-action@v2
 
-    - name: Cache NuGet packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
+  #   - name: Cache NuGet packages
+  #     uses: actions/cache@v3
+  #     with:
+  #       path: ~/.nuget/packages
+  #       key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
+  #       restore-keys: |
+  #         ${{ runner.os }}-nuget-
 
-    # As per https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md#visual-studio-for-mac
-    - name: Switch to Visual Studio 2019
-      if: ${{ false }} # Not needed. We stay with the default 'Visual Studio 2022' of macos-12 runner.
-      run: |
-        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
-        mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
+  #   # As per https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md#visual-studio-for-mac
+  #   - name: Switch to Visual Studio 2019
+  #     if: ${{ false }} # Not needed. We stay with the default 'Visual Studio 2022' of macos-12 runner.
+  #     run: |
+  #       mv "/Applications/Visual Studio.app" "/Applications/Visual Studio 2022.app"
+  #       mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 
-    # As of 2022-12-02, keepass2android doesn't build with Xamarin >= 12.1 because there is some issue with SamsungPass. Removing SamsungPass would make the build succeed.
-    - name: Set default Xamarin SDK versions
-      run: |
-        # If using the github runner 'macos-12'
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.1 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1
+  #   # As of 2022-12-02, keepass2android doesn't build with Xamarin >= 12.1 because there is some issue with SamsungPass. Removing SamsungPass would make the build succeed.
+  #   - name: Set default Xamarin SDK versions
+  #     run: |
+  #       # If using the github runner 'macos-12'
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.1 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2 # Build fails in this case, as of 2022-12-02 : Xamarin/Android/Xamarin.Android.D8.targets(79,5): error : java.lang.ArrayIndexOutOfBoundsException :  Index 4 out of bounds for length 4
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.3 # Build fails in this case, as of 2022-12-02
+  #       $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=13.1
 
-        # If using the github runner 'macos-11'
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
-        #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
+  #       # If using the github runner 'macos-11'
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.0
+  #       #$VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.0
 
-        # If using the github runner 'macos-10.15'
-        # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
+  #       # If using the github runner 'macos-10.15'
+  #       # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
 
-    - name: Switch to JDK-11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
+  #   - name: Switch to JDK-11
+  #     uses: actions/setup-java@v3
+  #     with:
+  #       java-version: '11'
+  #       distribution: 'temurin'
 
-    - name: Display java version
-      run: java -version
+  #   - name: Display java version
+  #     run: java -version
 
-    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
-    - name: Download android-26 API
-      run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
+  #   # Some components of Keepass2Android currently target android API 26 which are not available on the runner
+  #   - name: Download android-26 API
+  #     run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-26"
 
-    - name: Build native dependencies
-      run: make native
+  #   - name: Build native dependencies
+  #     run: make native
 
-    - name: Build java dependencies
-      run: make java
+  #   - name: Build java dependencies
+  #     run: make java
 
-    - name: Install NuGet dependencies (net)
-      run: make nuget Flavor=Net
+  #   - name: Install NuGet dependencies (net)
+  #     run: make nuget Flavor=Net
 
-    - name: Build keepass2android (net)
-      run: |
-        make msbuild Flavor=Net
+  #   - name: Build keepass2android (net)
+  #     run: |
+  #       make msbuild Flavor=Net
 
-    - name: Build APK (net)
-      run: |
-        make apk Flavor=Net
+  #   - name: Build APK (net)
+  #     run: |
+  #       make apk Flavor=Net
 
-    - name: Archive production artifacts (net)
-      uses: actions/upload-artifact@v3
-      with:
-        name: signed APK ('net' built on ${{ github.job }})
-        path: |
-          src/keepass2android/bin/*/*-Signed.apk
+  #   - name: Archive production artifacts (net)
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: signed APK ('net' built on ${{ github.job }})
+  #       path: |
+  #         src/keepass2android/bin/*/*-Signed.apk
 
-    - name: Install NuGet dependencies (nonet)
-      run: make nuget Flavor=NoNet
+  #   - name: Install NuGet dependencies (nonet)
+  #     run: make nuget Flavor=NoNet
 
-    - name: Build keepass2android (nonet)
-      run: |
-        make msbuild Flavor=NoNet
+  #   - name: Build keepass2android (nonet)
+  #     run: |
+  #       make msbuild Flavor=NoNet
 
-    - name: Build APK (nonet)
-      run: |
-        make apk Flavor=NoNet
+  #   - name: Build APK (nonet)
+  #     run: |
+  #       make apk Flavor=NoNet
 
-    - name: Archive production artifacts (nonet)
-      uses: actions/upload-artifact@v3
-      with:
-        name: signed APK ('nonet' built on ${{ github.job }})
-        path: |
-          src/keepass2android/bin/*/*-Signed.apk
+  #   - name: Archive production artifacts (nonet)
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: signed APK ('nonet' built on ${{ github.job }})
+  #       path: |
+  #         src/keepass2android/bin/*/*-Signed.apk
 
-    - name: Perform "make distclean"
-      run: make distclean
+  #   - name: Perform "make distclean"
+  #     run: make distclean
 
   # linux:
   # disabled. 
@@ -330,6 +332,9 @@ jobs:
     - name: Build keepass2android (nonet)
       run: |
         make msbuild Flavor=NoNet
+    - name: Test Autofill
+      working-directory: ./src/Kp2aAutofillParserTest
+      run: dotnet test
 
     - name: Build APK (nonet)
       run: |

@@ -241,6 +241,7 @@ namespace keepass2android
                        .SetWhen(Java.Lang.JavaSystem.CurrentTimeMillis())
                        .SetTicker(entryName + ": " + desc)
                        .SetVisibility((int)Android.App.NotificationVisibility.Secret)
+                       .SetAutoCancel(true)
                        .SetContentIntent(pending);
                 if (entryIcon != null)
                     builder.SetLargeIcon(entryIcon);
@@ -951,7 +952,9 @@ namespace keepass2android
                 {
                     CopyToClipboardService.CopyValueToClipboardWithTimeout(context, username, false);
                 }
-                context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
+
+                CloseNotificationDrawer(context);
+                
             }
             else if (action.Equals(Intents.CopyPassword))
             {
@@ -960,7 +963,7 @@ namespace keepass2android
                 {
                     CopyToClipboardService.CopyValueToClipboardWithTimeout(context, password, true);
                 }
-                context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
+                CloseNotificationDrawer(context);
             }
             else if (action.Equals(Intents.CopyTotp))
             {
@@ -969,7 +972,7 @@ namespace keepass2android
                 {
                     CopyToClipboardService.CopyValueToClipboardWithTimeout(context, totp, true);
                 }
-                context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
+                CloseNotificationDrawer(context);
             }
             else if (action.Equals(Intents.CheckKeyboard))
             {
@@ -977,6 +980,11 @@ namespace keepass2android
             }
         }
 
+        private static void CloseNotificationDrawer(Context context)
+        {
+            if ((int)Build.VERSION.SdkInt < 31) //sending this intent is no longer allowed since Android 31
+                context.SendBroadcast(new Intent(Intent.ActionCloseSystemDialogs)); //close notification drawer
+        }
     };
 }
 

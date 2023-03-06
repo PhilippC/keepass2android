@@ -5,6 +5,7 @@ using Android.App.Assist;
 using Android.Service.Autofill;
 using Android.Views;
 using Android.Views.Autofill;
+using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
 {
@@ -40,7 +41,6 @@ namespace keepass2android.services.AutofillBase
 		    var supportedHints = AutofillHintsHelper.FilterForSupportedHints(autofillHints);
 		    var canonicalHints = AutofillHintsHelper.ConvertToCanonicalHints(supportedHints);
             SetHints(canonicalHints.ToArray());
-
         }
 
 		void SetHints(string[] value)
