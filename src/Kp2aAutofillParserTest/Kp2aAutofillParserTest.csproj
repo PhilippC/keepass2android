@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="chrome-android10-amazon-it.json" />
+    <None Remove="com-expressvpn-vpn-android13.json" />
+    <None Remove="com-ifs-banking-fiid3364-android13.json" />
     <None Remove="com-servicenet-mobile-focused.json" />
     <None Remove="com-servicenet-mobile-no-focus.json" />
     <None Remove="firefox-amazon-it.json" />
@@ -32,6 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="chrome-android10-amazon-it.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="com-expressvpn-vpn-android13.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="com-ifs-banking-fiid3364-android13.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="firefox-amazon-it.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

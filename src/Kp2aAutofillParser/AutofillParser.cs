@@ -323,6 +323,7 @@ namespace Kp2aAutofillParser
             AutofillHintPassword,
             AutofillHintUsername,
             W3cHints.HONORIFIC_PREFIX,
+            W3cHints.EMAIL,
             W3cHints.NAME,
             W3cHints.GIVEN_NAME,
             W3cHints.ADDITIONAL_NAME,
@@ -430,18 +431,24 @@ namespace Kp2aAutofillParser
         /// <summary>
         /// transforms hints by replacing some W3cHints by their Android counterparts and transforming everything to lowercase
         /// </summary>
-        public static List<string> ConvertToCanonicalHints(string[] supportedHints)
+        public static List<string> ConvertToCanonicalLowerCaseHints(string[] supportedHints)
         {
             List<string> result = new List<string>();
             foreach (string hint in supportedHints)
             {
-                string canonicalHint;
-                if (!hintToCanonicalReplacement.TryGetValue(hint, out canonicalHint))
-                    canonicalHint = hint;
+                var canonicalHint = ToCanonicalHint(hint);
                 result.Add(canonicalHint.ToLower());
             }
             return result;
 
+        }
+
+        public static string ToCanonicalHint(string hint)
+        {
+            string canonicalHint;
+            if (!hintToCanonicalReplacement.TryGetValue(hint, out canonicalHint))
+                canonicalHint = hint;
+            return canonicalHint;
         }
 
         public static int GetPartitionIndex(string hint)
@@ -657,7 +664,7 @@ namespace Kp2aAutofillParser
                     
                 }
             }
-            AutofillHints = AutofillHintsHelper.ConvertToCanonicalHints(hintList.ToArray()).ToArray();
+            AutofillHints = AutofillHintsHelper.ConvertToCanonicalLowerCaseHints(hintList.ToArray()).ToArray();
 
 
         }
@@ -699,8 +706,8 @@ namespace Kp2aAutofillParser
     /// </summary>
     public abstract class InputField
     {
-        public string IdEntry { get; set; }
-        public string Hint { get; set; }
+        public string? IdEntry { get; set; }
+        public string? Hint { get; set; }
         public string ClassName { get; set; }
         public string[] AutofillHints { get; set; }
         public bool IsFocused { get; set; }
@@ -819,7 +826,7 @@ namespace Kp2aAutofillParser
             // * if there is no such autofill hint, we use IsPassword to 
 
             HashSet<string> autofillHintsOfAllFields = autofillView.InputFields.Where(f => f.AutofillHints != null)
-                .SelectMany(f => f.AutofillHints).ToHashSet();
+                .SelectMany(f => f.AutofillHints).Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet();
             bool hasLoginAutofillHints = autofillHintsOfAllFields.Intersect(_autofillHintsForLogin).Any();
 
             if (hasLoginAutofillHints)
@@ -829,9 +836,9 @@ namespace Kp2aAutofillParser
                     string[] viewHints = viewNode.AutofillHints;
                     if (viewHints == null)
                         continue;
-                    if (viewHints.Intersect(_autofillHintsForLogin).Any())
+                    if (viewHints.Select(AutofillHintsHelper.ToCanonicalHint).Intersect(_autofillHintsForLogin).Any())
                     {
-                        FieldsMappedToHints.Add(viewNode, viewHints);
+                        FieldsMappedToHints.Add(viewNode, viewHints.Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet().ToArray());
                     }
 
                 }
@@ -839,6 +846,7 @@ namespace Kp2aAutofillParser
             else
             {
                 //determine password fields, first by type, then by hint:
+                List<FieldT> editTexts = autofillView.InputFields.Where(f => IsEditText(f)).ToList();
                 List<FieldT> passwordFields = autofillView.InputFields.Where(f => IsEditText(f) && IsPassword(f)).ToList();
                 if (!passwordFields.Any())
                 {
@@ -851,8 +859,10 @@ namespace Kp2aAutofillParser
                 {
                     foreach (var passwordField in passwordFields)
                     {
-                        var lastInputBeforePassword = autofillView.InputFields
-                            .TakeWhile(f => IsEditText(f) && f != passwordField && !passwordFields.Contains(f)).LastOrDefault();
+                        
+                        var lastInputBeforePassword = autofillView.InputFields.Where(IsEditText)
+                            .TakeWhile(f =>  f != passwordField && !passwordFields.Contains(f)).LastOrDefault();
+                        
                         if (lastInputBeforePassword != null)
                             usernameFields.Add(lastInputBeforePassword);
                     }
@@ -864,7 +874,7 @@ namespace Kp2aAutofillParser
                 {
                     foreach (var uf in usernameFields)
                         FieldsMappedToHints.Add(uf, new string[] { AutofillHintsHelper.AutofillHintUsername });
-                    foreach (var pf in passwordFields)
+                    foreach (var pf in passwordFields.Except(usernameFields))
                         FieldsMappedToHints.Add(pf, new string[] { AutofillHintsHelper.AutofillHintPassword });
                 }
             }
@@ -894,23 +904,22 @@ namespace Kp2aAutofillParser
                     || f.HtmlInfoTag == "input");
         }
 
-        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password", "passwort"
-            /*, "passwordAuto", "pswd"*/ };
+        private static readonly HashSet<string> _passwordHints = new HashSet<string> { "password", "passwort", "passwordAuto", "pswd" };
         private static bool HasPasswordHint(InputField f)
         {
             return IsAny(f.IdEntry, _passwordHints) ||
                    IsAny(f.Hint, _passwordHints);
         }
 
-        private static readonly HashSet<string> _usernameHints = new HashSet<string> { "email", "e-mail", "username" };
+        private static readonly HashSet<string> _usernameHints = new HashSet<string> { "email", "e-mail", "username", "user id" };
 
         private static bool HasUsernameHint(InputField f)
         {
-            return IsAny(f.IdEntry, _usernameHints) ||
-                IsAny(f.Hint, _usernameHints);
+            return IsAny(f.IdEntry?.ToLower(), _usernameHints) ||
+                IsAny(f.Hint?.ToLower(), _usernameHints);
         }
 
-        private static bool IsAny(string value, IEnumerable<string> terms)
+        private static bool IsAny(string? value, IEnumerable<string> terms)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -935,6 +944,11 @@ namespace Kp2aAutofillParser
 
         private static bool IsPassword(InputField f)
         {
+            if (f.IdEntry?.Contains("password") == true)
+            {
+                f = f;
+            }
+
             InputTypes inputType = f.InputType;
 
             return

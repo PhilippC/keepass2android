@@ -41,6 +41,27 @@ namespace Kp2aAutofillParserTest
             RunTestFromAutofillInput(resourceName, "org.mozilla.firefox", "www.amazon.it");
         }
 
+        [Fact]
+        public void CanDetectFieldsWithoutAutofillHints()
+        {
+            var resourceName = "Kp2aAutofillParserTest.chrome-android10-amazon-it.json";
+            RunTestFromAutofillInput(resourceName, "com.android.chrome", "www.amazon.it");
+        }
+        
+        [Fact]
+        public void DetectsUsernameFieldDespitePasswordAutoHint()
+        {
+            var resourceName = "Kp2aAutofillParserTest.com-ifs-banking-fiid3364-android13.json";
+            RunTestFromAutofillInput(resourceName, "com.ifs.banking.fiid3364", null);
+        }
+
+        [Fact]
+        public void DetectsEmailAutofillHint()
+        {
+            var resourceName = "Kp2aAutofillParserTest.com-expressvpn-vpn-android13.json";
+            RunTestFromAutofillInput(resourceName, "com.expressvpn.vpn", null);
+        }
+
         private void RunTestFromAutofillInput(string resourceName, string expectedPackageName = null, string expectedWebDomain = null)
         {
             var assembly = Assembly.GetExecutingAssembly();

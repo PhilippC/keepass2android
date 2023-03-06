@@ -39,7 +39,7 @@ namespace keepass2android.services.AutofillBase
 			AutofillOptions = view.GetAutofillOptions();
 			Focused = view.IsFocused;
 		    var supportedHints = AutofillHintsHelper.FilterForSupportedHints(autofillHints);
-		    var canonicalHints = AutofillHintsHelper.ConvertToCanonicalHints(supportedHints);
+		    var canonicalHints = AutofillHintsHelper.ConvertToCanonicalLowerCaseHints(supportedHints);
             SetHints(canonicalHints.ToArray());
         }
 
