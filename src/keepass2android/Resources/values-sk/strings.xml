@@ -690,6 +690,7 @@
     <item>Oprava chyby vedúcej k pádom a neočakávaným odhláseniam</item>
     <item>Prepnutie na novú implementáciu SFTP, s podporou pre moderné algoritmy verejných kľúčov, ako je rsa-sha2-256</item>
     <item>Označiť heslá ako citlivé údaje pri kopírovaní do schránky (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Pridaná podpora prehliadania, odstraňovania a obnovovania záloh záznamu</item>
