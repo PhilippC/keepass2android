@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">不检查域名和应用程序包是否匹配</string>
   <string name="InlineSuggestions_title">与键盘集成</string>
   <string name="InlineSuggestions_summary">将自动填充建议显示为键盘中的内联选项(如果输入法支持的话)</string>
+  <string name="LogAutofillView_title">记录自动填充视图</string>
+  <string name="LogAutofillView_summary">将自动填充视图的详情写入调试日志 (如果启用了调试日志)。 如果自动填充无法正常工作，这些细节可以发送给开发者。</string>
   <string name="requires_android11">需要 Android 11 或更高版本</string>
   <string name="kp2a_findUrl">找回密码</string>
   <string name="excludeExpiredEntries">排除过期的条目</string>
