@@ -690,6 +690,7 @@
     <item>修正當機和意外登出的錯誤</item>
     <item>切換成新 SFTP 實作，支援現代公鑰演算法，如 rsa-sha2-256</item>
     <item>複製密碼到剪貼簿時設為機密 (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>支援查看、移除和還原項目備份</item>
