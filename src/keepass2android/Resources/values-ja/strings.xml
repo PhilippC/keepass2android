@@ -690,6 +690,7 @@
     <item>クラッシュと突発的にログアウトするバグを修正</item>
     <item>rsa-sha2-256 などの最新の公開鍵アルゴリズムをサポートする、新しい SFTP 実装に切り替え</item>
     <item>パスワードをクリップボードにコピーしたとき、機密コンテンツとしてマークするよう変更 (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>エントリーバックアップの表示、削除、および復元に対応</item>
