@@ -956,11 +956,6 @@ namespace Kp2aAutofillParser
 
         private static bool IsPassword(InputField f)
         {
-            if (f.IdEntry?.Contains("password") == true)
-            {
-                f = f;
-            }
-
             InputTypes inputType = f.InputType;
 
             return
