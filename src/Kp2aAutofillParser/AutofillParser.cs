@@ -838,7 +838,7 @@ namespace Kp2aAutofillParser
                         continue;
                     if (viewHints.Select(AutofillHintsHelper.ToCanonicalHint).Intersect(_autofillHintsForLogin).Any())
                     {
-                        FieldsMappedToHints.Add(viewNode, viewHints.Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet().ToArray());
+                        AddFieldToHintMap(viewNode, viewHints.Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet().ToArray());
                     }
 
                 }
@@ -873,9 +873,9 @@ namespace Kp2aAutofillParser
                 if (passwordFields.Concat(usernameFields).Any(f => f.IsFocused))
                 {
                     foreach (var uf in usernameFields)
-                        FieldsMappedToHints.Add(uf, new string[] { AutofillHintsHelper.AutofillHintUsername });
+                        AddFieldToHintMap(uf, new string[] { AutofillHintsHelper.AutofillHintUsername });
                     foreach (var pf in passwordFields.Except(usernameFields))
-                        FieldsMappedToHints.Add(pf, new string[] { AutofillHintsHelper.AutofillHintPassword });
+                        AddFieldToHintMap(pf, new string[] { AutofillHintsHelper.AutofillHintPassword });
                 }
             }
             
@@ -893,6 +893,18 @@ namespace Kp2aAutofillParser
                 result.IncompatiblePackageAndDomain = false;
             }
             return result;
+        }
+
+        private void AddFieldToHintMap(FieldT field, string[] hints)
+        {
+            if (FieldsMappedToHints.ContainsKey(field))
+            {
+                FieldsMappedToHints[field] = FieldsMappedToHints[field].Concat(hints).ToArray();
+            }
+            else
+            {
+                FieldsMappedToHints[field] = hints;
+            }
         }
 
         public bool LogAutofillView { get; set; }
