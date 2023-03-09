@@ -690,6 +690,7 @@
     <item>Naprawa błędów awarii i nieoczekiwanych wylogowań</item>
     <item>Przełącz się na nową implementację SFTP, wspierając nowoczesne algorytmy klucza publicznego, takie jak rsa-sha2-256</item>
     <item>Oznacz hasła jako wrażliwe podczas kopiowania do schowka (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Dodano wsparcie dla przeglądania, usuwania i przywracania kopii zapasowych wpisów</item>

@@ -690,6 +690,7 @@
     <item>Popravek napak pri zrušitvah in nepričakovanih odjavah</item>
     <item>Preklopite na novo izvedbo SFTP, ki podpira sodobne algoritme javnih ključev, kot je rsa-sha2-256</item>
     <item>Označi gesla kot občutljiva pri kopiranju v odložišče (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Dodana podpora za ogled, odstranjevanje in obnavljanje varnostnih kopij vnosov</item>

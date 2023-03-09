@@ -692,6 +692,7 @@
     <item>Correção de bugs em falhas e logouts inesperados</item>
     <item>Mudar para nova implementação SFTP, suportando algoritmos de chave pública modernos como rsa-sha2-256</item>
     <item>Marcar senhas como confidenciais ao copiar para a área de transferência (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Adicionado suporte para visualização, remoção e restauração de backups de entrada</item>

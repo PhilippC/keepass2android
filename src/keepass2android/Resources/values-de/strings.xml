@@ -688,6 +688,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
     <item>Fehlerbehebung, um Abstürze und unerwartetes Abmelden zu vermeiden</item>
     <item>Wechsel auf eine neue SFTP-Implementierung, jetzt mit Unterstützung von modernen Public-Key-Algorithmen wie rsa-sha2-256</item>
     <item>Passwörter werden beim Kopieren in die Zwischenablage als vertraulich markiert (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
