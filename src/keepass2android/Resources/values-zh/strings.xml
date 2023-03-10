@@ -691,7 +691,7 @@
     <item>修复崩溃和意外注销的 bug</item>
     <item>切换到新的 SFTP 实现，支持现代公钥算法，例如 rsa-sha2-256</item>
     <item>复制到剪贴板时将密码标记为敏感 (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>自动填充改进</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>新增查看、移除和恢复条目备份的功能</item>
