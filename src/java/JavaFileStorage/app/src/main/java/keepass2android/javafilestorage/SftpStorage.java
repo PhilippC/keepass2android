@@ -24,6 +24,7 @@ import com.jcraft.jsch.UserInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class SftpStorage extends JavaFileStorageBase {
 
@@ -323,6 +324,8 @@ public class SftpStorage extends JavaFileStorageBase {
 		jsch = new JSch();
 		ConnectionInfo ci = splitStringToConnectionInfo(filename);
 
+		Log.e("KP2AJFS", "init SFTP");
+
 		String base_dir = getBaseDir();
 		jsch.setKnownHosts(base_dir + "/known_hosts");
 
@@ -340,7 +343,9 @@ public class SftpStorage extends JavaFileStorageBase {
 
 		}
 
+		Log.e("KP2AJFS[thread]", "getting session...");
 		Session session = jsch.getSession(ci.username, ci.host, ci.port);
+		Log.e("KP2AJFS", "creating SftpUserInfo");
 		UserInfo ui = new SftpUserInfo(ci.password,_appContext);
 		session.setUserInfo(ui);
 
