@@ -324,7 +324,7 @@ public class SftpStorage extends JavaFileStorageBase {
 		jsch = new JSch();
 		ConnectionInfo ci = splitStringToConnectionInfo(filename);
 
-		Log.e("KP2AJFS", "init SFTP");
+		Log.d("KP2AJFS", "init SFTP");
 
 		String base_dir = getBaseDir();
 		jsch.setKnownHosts(base_dir + "/known_hosts");
