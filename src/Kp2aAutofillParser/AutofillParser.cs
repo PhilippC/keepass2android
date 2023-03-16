@@ -134,10 +134,10 @@ namespace Kp2aAutofillParser
     /// </summary>
     public class FilledAutofillFieldCollection<FieldT> where FieldT:InputField
     {
-        public Dictionary<string, FilledAutofillField<FieldT>> HintMap { get; }
+        public Dictionary<string, FilledAutofillField> HintMap { get; }
         public string DatasetName { get; set; }
 
-        public FilledAutofillFieldCollection(Dictionary<string, FilledAutofillField<FieldT>> hintMap, string datasetName = "")
+        public FilledAutofillFieldCollection(Dictionary<string, FilledAutofillField> hintMap, string datasetName = "")
         {
             //recreate hint map making sure we compare case insensitive
             HintMap = BuildHintMap();
@@ -149,9 +149,9 @@ namespace Kp2aAutofillParser
         public FilledAutofillFieldCollection() : this(BuildHintMap())
         { }
 
-        private static Dictionary<string, FilledAutofillField<FieldT>> BuildHintMap()
+        private static Dictionary<string, FilledAutofillField> BuildHintMap()
         {
-            return new Dictionary<string, FilledAutofillField<FieldT>>(StringComparer.OrdinalIgnoreCase);
+            return new Dictionary<string, FilledAutofillField>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Kp2aAutofillParser
         /// </summary>
         /// <returns>The add.</returns>
         /// <param name="filledAutofillField">Filled autofill field.</param>
-        public void Add(FilledAutofillField<FieldT> filledAutofillField)
+        public void Add(FilledAutofillField filledAutofillField)
         {
             foreach (string hint in filledAutofillField.AutofillHints)
             {
@@ -572,7 +572,7 @@ namespace Kp2aAutofillParser
         }
     }
 
-    public class FilledAutofillField<FieldT> where FieldT : InputField
+    public class FilledAutofillField
     {
         private string[] _autofillHints;
         public string TextValue { get; set; }
@@ -611,13 +611,13 @@ namespace Kp2aAutofillParser
         public FilledAutofillField()
         { }
 
-        public FilledAutofillField(FieldT inputField)
+        public FilledAutofillField(InputField inputField) 
             : this(inputField, inputField.AutofillHints)
         {
 
         }
 
-        public FilledAutofillField(FieldT inputField, string[] hints)
+        public FilledAutofillField(InputField inputField, string[] hints)
         {
 
             string[] rawHints = AutofillHintsHelper.FilterForSupportedHints(hints);
@@ -665,6 +665,7 @@ namespace Kp2aAutofillParser
                 }
             }
             AutofillHints = AutofillHintsHelper.ConvertToCanonicalLowerCaseHints(hintList.ToArray()).ToArray();
+            inputField.FillFilledAutofillValue(this);
 
 
         }
@@ -679,7 +680,7 @@ namespace Kp2aAutofillParser
             if (this == obj) return true;
             if (obj == null || GetType() != obj.GetType()) return false;
 
-            FilledAutofillField<FieldT> that = (FilledAutofillField<FieldT>)obj;
+            FilledAutofillField that = (FilledAutofillField)obj;
 
             if (!TextValue?.Equals(that.TextValue) ?? that.TextValue != null)
                 return false;
@@ -716,6 +717,8 @@ namespace Kp2aAutofillParser
 
         public string HtmlInfoTag { get; set; }
         public string HtmlInfoTypeAttribute { get; set; }
+
+        public abstract void FillFilledAutofillValue(FilledAutofillField filledField);
 
     }
 

@@ -18,6 +18,9 @@ namespace Kp2aAutofillParserTest
         class TestInputField: InputField
         {
             public string[] ExpectedAssignedHints { get; set; }
+            public override void FillFilledAutofillValue(FilledAutofillField filledField)
+            {
+            }
         }
 
         [Fact]
