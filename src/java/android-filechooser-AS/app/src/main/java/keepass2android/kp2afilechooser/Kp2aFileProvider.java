@@ -530,7 +530,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      *         parameters.
      */
     private MatrixCursor doRetrieveFileInfo(Uri uri) {
-    	Log.d(CLASSNAME, "retrieve file info "+uri.toString());
+
         MatrixCursor matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
 
         String filename = extractFile(uri);
