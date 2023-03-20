@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Disabilita il controllo se i pacchetti di dominio e applicazione corrispondono</string>
   <string name="InlineSuggestions_title">Integra con la tastiera</string>
   <string name="InlineSuggestions_summary">Mostra i suggerimenti di completamento automatico come opzioni in linea sulla tastiera (se supportato dal metodo di inserimento)</string>
+  <string name="LogAutofillView_title">Visualizza log autocompilazione</string>
+  <string name="LogAutofillView_summary">Scrivi i dettagli sulla visualizzazione del riempimento automatico per il log di debug (se il log di debug è abilitato). Questi dettagli possono essere inviati allo sviluppatore se il riempimento automatico non funziona come previsto.</string>
   <string name="requires_android11">Richiede Android 11 o versioni successive</string>
   <string name="kp2a_findUrl">Trova password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
@@ -683,6 +685,12 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Correzione bug per crash e logout non previsti</item>
+    <item>Passa alla nuova implementazione SFTP, supportando moderni algoritmi a chiave pubblica come rsa-sha2-256</item>
+    <item>Contrassegna le password come sensibili quando si copiano negli appunti (Android 13)</item>
+    <item>Migliorie Riempimento automatico</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Aggiunto il supporto per la visualizzazione, la rimozione e il ripristino dei backup delle voci</item>
     <item>Implementato supporto per l\'archiviazione su cloud MEGA</item>
