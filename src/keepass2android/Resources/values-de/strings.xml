@@ -529,7 +529,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android-App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">Bitte beachten: Keepass2Android muss die Liste aller Dateien des Mega-Konto herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
+  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eineListe aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
@@ -1070,8 +1070,8 @@ Erstes öffentliches Release</string>
   <string name="enable_fingerprint_hint">Keepass2Android hat biometrische Hardware erkannt. Soll Biometrisches Entsperren für diese Datenbank aktiviert werden?</string>
   <string name="understand">Okay, verstanden</string>
   <string name="dont_show_again">Nicht erneut anzeigen</string>
-  <string name="masterkey_infotext_head">Ist das Hauptpasswort bekannt?</string>
-  <string name="masterkey_infotext_main">Bitte beachten, dass die Datenbank ohne den Hauptschlüssel nicht geöffnet werden kann. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
+  <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
+  <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank ohne den Hauptschlüssel nicht öffnen kannst. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
   <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass das Biometrische Entsperren über das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
   <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
   <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
