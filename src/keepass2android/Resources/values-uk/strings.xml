@@ -301,7 +301,8 @@
   <string name="NoDalVerification_summary">Вимкнення перевірки, якщо збігаються домен і пакунок програми</string>
   <string name="InlineSuggestions_title">Інтегрувати до клавіатури</string>
   <string name="InlineSuggestions_summary">Показує пропозиції автозаповнення як вбудовану опцію в клавіатурі (якщо підтримується методом вводу)</string>
-  <string name="LogAutofillView_title">Перегляд журналу автозаповнення</string>
+  <string name="LogAutofillView_title">Журнал перегляду автозаповнення</string>
+  <string name="LogAutofillView_summary">Записувати подробиці про перегляд автозаповнення до журналу зневадження (якщо увімкнено журнал зневадження). Ці подробиці можна надсилати розробникам, якщо автозаповнення працює некоректно.</string>
   <string name="requires_android11">Потрібна версія Android 11 або новіша</string>
   <string name="kp2a_findUrl">Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
