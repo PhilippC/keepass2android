@@ -301,6 +301,7 @@
   <string name="NoDalVerification_summary">Вимкнення перевірки, якщо збігаються домен і пакунок програми</string>
   <string name="InlineSuggestions_title">Інтегрувати до клавіатури</string>
   <string name="InlineSuggestions_summary">Показує пропозиції автозаповнення як вбудовану опцію в клавіатурі (якщо підтримується методом вводу)</string>
+  <string name="LogAutofillView_title">Перегляд журналу автозаповнення</string>
   <string name="requires_android11">Потрібна версія Android 11 або новіша</string>
   <string name="kp2a_findUrl">Знайти пароль</string>
   <string name="excludeExpiredEntries">Виключити прострочені елементи</string>
@@ -690,7 +691,7 @@
     <item>Виправлено помилку зі збоями та несподіваними виходами</item>
     <item>Перехід на нову реалізацію SFTP з підтримкою сучасних алгоритмів публічного ключа, як-от rsa-sha2-256</item>
     <item>Позначати паролі як вразливі під час копіювання до буфера обміну (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>Вдосконалене автозаповнення</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Додано підтримку перегляду, видалення та відновлення резервних копій записів</item>
