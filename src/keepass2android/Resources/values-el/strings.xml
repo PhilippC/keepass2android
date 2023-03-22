@@ -332,7 +332,7 @@
   <string name="QuickUnlockHideLength_title">Απόκρυψη μήκους QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Αν ενεργοποιηθεί, αποκρύπτει το μήκος του κωδικού QuickUnlock στη σχετική οθόνη.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Κλειδί QuickUnlock από τη βάση δεδομένων</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Εάν η ενεργή βάση δεδομένων περιέχει μια καταχώρηση με τίτλο QuickUnlock στην ομάδα ρίζας της, ο κωδικός πρόσβασης αυτής της καταχώρησης χρησιμοποιείται ως κωδικός QuickUnlock.</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Εάν η ενεργή βάση δεδομένων περιέχει μια καταχώριση με τίτλο QuickUnlock στην ομάδα ρίζας της, ο κωδικός πρόσβασης αυτής της καταχώρισης χρησιμοποιείται ως κωδικός QuickUnlock.</string>
   <string name="QuickUnlock_fail">Αποτυχία QuickUnlock: λανθασμένο συνθηματικό!</string>
   <string name="SaveAttachmentDialog_title">Αποθήκευση συνημμένου</string>
   <string name="SaveAttachmentDialog_text">Επιλέξτε πού θα αποθηκεύσετε το συνημμένο.</string>
@@ -429,7 +429,7 @@
   <string name="AskOverwriteBinary_no">Μετονομασία</string>
   <string name="AttachFailed">Απέτυχε η προσθήκη του συνημμένου αρχείου.</string>
   <string name="RecycleBin">Κάδος ανακύκλωσης</string>
-  <string name="AskDeletePermanentlyEntry">Θέλετε να διαγράψετε οριστικά αυτή την καταχώριση; Πατήστε όχι για να ανακύκλωση.</string>
+  <string name="AskDeletePermanentlyEntry">Θέλετε να διαγράψετε οριστικά αυτή την καταχώριση; Πατήστε όχι για ανακύκλωση.</string>
   <string name="AskDeletePermanentlyGroup">Θέλετε να διαγράψετε οριστικά αυτή την ομάδα; Πατήστε όχι για ανακύκλωση.</string>
   <string name="AskDeletePermanentlyItems">Θέλετε να διαγράψετε οριστικά τα επιλεγμένα στοιχεία; Πατήστε όχι για ανακύκλωση.</string>
   <string name="AskDeletePermanentlyEntryNoRecycle">Θέλετε να διαγράψετε οριστικά αυτή την καταχώριση;</string>
@@ -542,7 +542,7 @@
   <string name="help_master_password">Η βάση δεδομένων είναι κρυπτογραφημένη με το συνθηματικό που εισάγετε εδώ. Επιλέξτε ένα ισχυρό συνθηματικό προκειμένου να διατηρείτε τη βάση δεδομένων ασφαλή! Συμβουλή: Συνθέστε μια-δυο φράσεις και χρησιμοποιήστε τα πρώτα γράμματα των λέξεων ως συνθηματικό. Συμπεριλάβετε σημεία στίξης.</string>
   <string name="hint_master_password">Επιλέξτε κύριο συνθηματικό για την προστασία της βάσης δεδομένων:</string>
   <string name="key_file">Αρχείο κλειδιού</string>
-  <string name="help_key_file">Το αρχείο κλειδιού είναι βασικά ένα συνθηματικό αποθηκευμένο σε ένα αρχείο. Τα αρχείο κλειδιού είναισυνήθως ισχυρότερα από τα κύρια συνθηματικά, γιατί το κλειδί μπορεί να είναι πιο σύνθετο, ωστόσο είναι ε΄πίσης δυσκολότερο να διατηρηθούν μυστικά. Αν αποθηκεύεις τη βάση δεδομένων στο σύννεφο, μην αποθηκεύσεις και το αρχείο κλειδί εκεί! Αυτό θα το έκανε εντελώς άχρηστο! Σημαντικό: Μην αλλάζετε τα περιεχόμενο του αρχείου κλειδιού αφού δημιουργηθεί η βάση δεδομένων!</string>
+  <string name="help_key_file">Το αρχείο κλειδιού είναι βασικά ένα συνθηματικό αποθηκευμένο σε ένα αρχείο. Τα αρχεία κλειδιού είναι συνήθως ισχυρότερα από τα κύρια συνθηματικά, γιατί το κλειδί μπορεί να είναι πιο σύνθετο, ωστόσο είναι επίσης δυσκολότερο να διατηρηθούν μυστικά. Αν αποθηκεύεις τη βάση δεδομένων στο σύννεφο, μην αποθηκεύσεις και το αρχείο κλειδιού εκεί! Αυτό θα το έκανε εντελώς άχρηστο! Σημαντικό: Μην αλλάζετε τα περιεχόμενο του αρχείου κλειδιού αφού δημιουργηθεί η βάση δεδομένων!</string>
   <string name="hint_key_file">Επιλέξτε αν θέλετε να χρησιμοποιήσετε ένα αρχείο κλειδιού, εκτός από το κύριο συνθηματικό:</string>
   <string name="use_key_file">Χρήση αρχείου κλειδιού</string>
   <string name="error_adding_keyfile">Παρουσιάστηκε σφάλμα κατά την προσθήκη του αρχείου κλειδιού!</string>
@@ -572,9 +572,9 @@
   <string name="TrayTotp_SettingsField_title">Όνομα πεδίου στις ρυθμίσεις TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Εισάγετε όνομα πεδίου από ρυθμίσεις TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
-  <string name="DebugLog_prefs_prefs">Αρχείο καταχώρησης για αποσφαλματοποίηση</string>
-  <string name="DebugLog_title">Χρήση αρχείου καταχώρησης</string>
-  <string name="DebugLog_summary">Καταγραφή στοιχείων εφαρμογής σε τοπικό αρχείο καταχώρησης</string>
+  <string name="DebugLog_prefs_prefs">Αρχείο καταγραφών για αποσφαλμάτωση</string>
+  <string name="DebugLog_title">Χρήση αρχείου καταγραφών</string>
+  <string name="DebugLog_summary">Καταγραφή στοιχείων της εφαρμογής σε τοπικό αρχείο καταγραφών</string>
   <string name="DebugLog_send">Αποστολή αρχείων καταγραφής εκσφαλμάτωσης...</string>
   <string name="loading">Φόρτωση…</string>
   <string name="plugins">Πρόσθετα</string>
