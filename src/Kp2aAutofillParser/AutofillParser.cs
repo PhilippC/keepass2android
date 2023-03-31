@@ -973,7 +973,7 @@ namespace Kp2aAutofillParser
                       || IsInputTypeVariation(inputType, InputTypes.TextVariationWebPassword)
                       )
                       )
-                    || (f.AutofillHints != null && f.AutofillHints.First() == "passwordAuto")
+                    || (f.AutofillHints != null && f.AutofillHints.FirstOrDefault() == "passwordAuto")
                     || (f.HtmlInfoTypeAttribute == "password")
                 );
         }
