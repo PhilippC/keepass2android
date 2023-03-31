@@ -172,7 +172,9 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Piilota salasana</string>
   <string name="maskpass_summary">Piilota salasanat oletuksena</string>
+  <string name="masktotp_title">Peitä TOTP-kenttä</string>
   <string name="masktotp_summary">Piilota TOTP-kenttä oletuksena</string>
+  <string name="NoAutofillDisabling_summary">Jos aktivoitu, sovellus ei näytä vaihtoehtoa poistaa automaattista täyttöä tiettyjen merkintöjen osalta.</string>
   <string name="menu_about">Tietoja</string>
   <string name="menu_change_key">Vaihda pääavain</string>
   <string name="menu_copy_pass">Kopioi salasana</string>
@@ -285,6 +287,8 @@
   <string name="please_note">Huomaa</string>
   <string name="contributors">Kehittäjät ja avustajat</string>
   <string name="regular_expression">Säännöllinen lauseke</string>
+  <string name="AlwaysMergeOnConflict_title">Yhdistä aina ristiriidan yhteydessä</string>
+  <string name="AlwaysMergeOnConflict_summary">Kun Keepass2Android havaitsee, että etätiedostoa on muokattu, yhdistetään paikalliset muutokset aina etämuutoksiin.</string>
   <string name="TanExpiresOnUse_title">TAN käytön lopetus</string>
   <string name="TanExpiresOnUse_summary">Merkitse TAN-merkinnät vanhentuneiksi käytön jälkeen</string>
   <string name="ShowUsernameInList_title">Näytä käyttäjänimi</string>
@@ -323,6 +327,7 @@
   <string name="QuickUnlockLength_summary">Pika-avauksessa käytettävien merkkien enimmäismäärä.</string>
   <string name="QuickUnlockHideLength_title">Piilota pika-avauskoodin pituus</string>
   <string name="QuickUnlockHideLength_summary">Jos käytössä, pika-avauskoodin pituutta ei näytetä pika-avausnäytössä.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-avain tietokannan syötteestä</string>
   <string name="QuickUnlock_fail">Pika-avaus epäonnistui: väärä salasana!</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
@@ -946,7 +951,7 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
     <item>Salasana + OTP salaus (Palautustila)</item>
     <item>Salasana + Haastemenetelmä</item>
     <item>Salasana + Haastemenetelmä (palautustila)</item>
-    <item>Salasana + Avaintiedosto + Haastemenetelmä Keepass XC:n kanssa</item>
+    <item>Salasana + Haastemenetelmä Keepass XC:n kanssa</item>
     <item>Salasana + Avaintiedosto + Haastemenetelmä Keepass XC:n kanssa</item>
   </string-array>
   <string-array name="sftp_auth_modes">

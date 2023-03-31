@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかの確認を無効にします</string>
   <string name="InlineSuggestions_title">キーボードとの統合</string>
   <string name="InlineSuggestions_summary">自動入力のサジェストをキーボード内に表示します (対応する入力方法のみ)</string>
+  <string name="LogAutofillView_title">自動入力表示のログ</string>
+  <string name="LogAutofillView_summary">(デバッグログが有効な場合) 自動入力表示に関する詳細をデバッグログに書き込みます。自動入力が予想に反する動作をした場合、これらの詳細を開発者に送信することができます。</string>
   <string name="requires_android11">Android 11 以上が必要</string>
   <string name="kp2a_findUrl">パスワードを探す</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
@@ -690,7 +692,7 @@
     <item>クラッシュと突発的にログアウトするバグを修正</item>
     <item>rsa-sha2-256 などの最新の公開鍵アルゴリズムをサポートする、新しい SFTP 実装に切り替え</item>
     <item>パスワードをクリップボードにコピーしたとき、機密コンテンツとしてマークするよう変更 (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>自動入力の改善</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>エントリーバックアップの表示、削除、および復元に対応</item>
