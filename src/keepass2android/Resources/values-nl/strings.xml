@@ -302,6 +302,7 @@
   <string name="InlineSuggestions_title">Integreer met toetsenbord</string>
   <string name="InlineSuggestions_summary">Toont de suggesties voor automatisch aanvullen als inline-opties in het toetsenbord (indien ondersteund door de invoermethode)</string>
   <string name="LogAutofillView_title">Automatisch invullen loggen</string>
+  <string name="LogAutofillView_summary">Schrijf details over de autofill weergave naar debug log (als debug logging is ingeschakeld). Deze details kunnen naar de ontwikkelaar worden verzonden als het automatisch invullen niet werkt zoals verwacht.</string>
   <string name="requires_android11">Vereist Android 11 of hoger</string>
   <string name="kp2a_findUrl">Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
@@ -688,6 +689,12 @@
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
   <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt uitgeschakeld door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van jouw apparaat. Zorg ervoor dat je de database altijd kunt ontgrendelen met het hoofdwachtwoord!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Bug fix op crashes en onverwachte log-outs</item>
+    <item>Schakel over naar nieuwe SFTP-implementatie ter ondersteuning van moderne publieke sleutel algoritmen zoals rsa-sha2-256</item>
+    <item>Wachtwoorden als gevoelig markeren bij het kopiëren naar klembord (Android 13)</item>
+    <item>Autofill verbeteringen</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Toegevoegde ondersteuning voor het bekijken, verwijderen en herstellen van invoer back-ups</item>
     <item>Implementatie ondersteuning voor MEGA cloud opslag</item>
