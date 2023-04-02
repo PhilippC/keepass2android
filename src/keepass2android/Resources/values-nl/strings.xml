@@ -301,6 +301,7 @@
   <string name="NoDalVerification_summary">Schakelt controle of domein en app pakket overeenkomen uit </string>
   <string name="InlineSuggestions_title">Integreer met toetsenbord</string>
   <string name="InlineSuggestions_summary">Toont de suggesties voor automatisch aanvullen als inline-opties in het toetsenbord (indien ondersteund door de invoermethode)</string>
+  <string name="LogAutofillView_title">Automatisch invullen loggen</string>
   <string name="requires_android11">Vereist Android 11 of hoger</string>
   <string name="kp2a_findUrl">Zoek wachtwoord</string>
   <string name="excludeExpiredEntries">Verlopen items uitsluiten</string>
