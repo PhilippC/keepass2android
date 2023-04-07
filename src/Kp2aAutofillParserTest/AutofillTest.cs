@@ -31,10 +31,17 @@ namespace Kp2aAutofillParserTest
         }
 
         [Fact]
+        public void TestCrashRegressionEmptySequence()
+        {
+            var resourceName = "Kp2aAutofillParserTest.imdb.json";
+            RunTestFromAutofillInput(resourceName, "com.vivaldi.browser", "m.imdb.com");
+        }
+
+        [Fact]
         public void TestFocusedPasswordAutoIsFilled()
         {
             var resourceName = "Kp2aAutofillParserTest.com-servicenet-mobile-focused.json";
-            RunTestFromAutofillInput(resourceName, "com.servicenet.mobile" );
+            RunTestFromAutofillInput(resourceName, "com.servicenet.mobile");
         }
 
         [Fact]
