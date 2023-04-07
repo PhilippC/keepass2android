@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Wyłącza sprawdzanie zgodności domeny i pakietu aplikacji</string>
   <string name="InlineSuggestions_title">Zintegruj z klawiaturą</string>
   <string name="InlineSuggestions_summary">Pokazuje sugestie autouzupełniania jako opcje wbudowane w klawiaturze (jeśli jest obsługiwana przez metodę wprowadzania)</string>
+  <string name="LogAutofillView_title">Widok autouzupełniania dziennika</string>
+  <string name="LogAutofillView_summary">Zapisz szczegóły dotyczące widoku autouzupełniania do dziennika debugowania (jeśli włączono logowanie debugowania). Szczegóły te można wysłać do dewelopera, jeśli autouzupełnianie nie działa zgodnie z oczekiwaniami.</string>
   <string name="requires_android11">Wymaga Androida 11 lub późniejszego</string>
   <string name="kp2a_findUrl">Znajdź hasło</string>
   <string name="excludeExpiredEntries">Pomiń wygasłe wpisy</string>
@@ -690,7 +692,7 @@
     <item>Naprawa błędów awarii i nieoczekiwanych wylogowań</item>
     <item>Przełącz się na nową implementację SFTP, wspierając nowoczesne algorytmy klucza publicznego, takie jak rsa-sha2-256</item>
     <item>Oznacz hasła jako wrażliwe podczas kopiowania do schowka (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>Ulepszenia autouzupełniania</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Dodano wsparcie dla przeglądania, usuwania i przywracania kopii zapasowych wpisów</item>
