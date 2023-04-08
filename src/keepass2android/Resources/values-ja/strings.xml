@@ -87,7 +87,7 @@
   <string name="fingerprint_description">続行するには認証してください</string>
   <string name="fingerprint_fatal">生体認証ロック解除を設定できません:</string>
   <string name="fingerprint_not_recognized">生体認証に失敗しました。もう一度やり直してください。</string>
-  <string name="fingerprint_success">生体認証に成功しました</string>
+  <string name="fingerprint_success">生体認証を完了しました</string>
   <string name="fingerprint_os_error">生体認証によるロック解除には、Android 6.0 以降が必要です。</string>
   <string name="fingerprint_hardware_error">生体認証ハードウェアを発見できません。</string>
   <string name="fingerprint_no_enrolled">このデバイスで生体認証が設定されていません。最初にシステムの設定で登録してください。</string>
