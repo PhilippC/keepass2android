@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="196" 
-			android:versionName="1.09e-r6" 
+			android:versionCode="197" 
+			android:versionName="1.09e-r7" 
 			package="keepass2android.keepass2android_nonet"
 			xmlns:tools="http://schemas.android.com/tools"
 			android:installLocation="auto">
@@ -246,5 +246,6 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
 
   <uses-permission android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalFileBrowsing" />
   <uses-permission android:name="keepass2android.keepass2android_nonet.permission.KP2aInternalSearch" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
 	
 </manifest>
