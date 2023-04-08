@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Vypne kontrolu, či sa zhoduje doména a balík aplikácie</string>
   <string name="InlineSuggestions_title">Integrácia s klávesnicou</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického dopĺňania ako vložené možnosti na klávesnici (ak to metóda vstupu podporuje)</string>
+  <string name="LogAutofillView_title">Zobrazenie záznamu pre autom. dopĺňanie</string>
+  <string name="LogAutofillView_summary">Zápis podrobností o zobrazení autom. dopĺňania do záznamu o ladení (ak je ladenie zapnuté). Tie je možné odoslať vývojárovi, ak autom. dopĺňanie nefunguje podľa očakávania.</string>
   <string name="requires_android11">Vyžaduje Android 11 alebo novší</string>
   <string name="kp2a_findUrl">Nájsť heslo</string>
   <string name="excludeExpiredEntries">Vylúčiť expirované záznamy</string>
@@ -690,7 +692,7 @@
     <item>Oprava chyby vedúcej k pádom a neočakávaným odhláseniam</item>
     <item>Prepnutie na novú implementáciu SFTP, s podporou pre moderné algoritmy verejných kľúčov, ako je rsa-sha2-256</item>
     <item>Označiť heslá ako citlivé údaje pri kopírovaní do schránky (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>Vylepšenia automatického dopĺňania</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Pridaná podpora prehliadania, odstraňovania a obnovovania záloh záznamu</item>
