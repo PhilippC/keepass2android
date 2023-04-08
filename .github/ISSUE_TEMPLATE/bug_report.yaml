@@ -1,0 +1,49 @@
+name: Bug Report
+description: Report a bug.
+title: "[BUG] "
+labels: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please check out the [FAQ section](https://github.com/PhilippC/keepass2android/blob/master/docs/Documentation.md#faq) and [search for open issues](https://github.com/PhilippC/keepass2android/issues?q=is%3Aopen+is%3Aissue+label%3Abug) first.
+  - type: checkboxes
+    attributes:
+      label: Checks
+      options:
+        - label: I have read the FAQ section, searched the open issues, and still think this is a new bug.
+          required: true
+  - type: textarea
+    id: bug
+    attributes:
+      label: "Describe the bug you encountered:"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Describe what you expected to happen:"
+  - type: input
+    id: version
+    attributes:
+      label: "What version of Keepass2Android are you using?"
+      placeholder: |
+        Please follow these steps to find your app version:
+        1. Click the **⁝** icon in the top right corner
+        2. Select **Settings**
+        3. Click **About**
+        4. Find the "Version" information and provide it here
+    validations:
+      required: true
+  - type: textarea
+    id: os
+    attributes:
+      label: Which version of Android are you on?
+      placeholder: |
+        Please follow these steps to find your Android version:
+        1. Open your device's **Settings** app.
+        2. Scroll down and select **About phone** or **About tablet**.
+        3. Find the **Android version** section and provide it here.
+    validations:
+      required: true
+
