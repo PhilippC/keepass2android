@@ -30,22 +30,24 @@ body:
           1. Click the **⁝** icon in the top right corner
           2. Select **Settings**
           3. Click **About**
-          4. Find the "Version" information and provide it here
+          4. Find the "Version" information and provide it below
   - type: input
     id: version
     attributes:
       label: "What version of Keepass2Android are you using?"
     validations:
       required: true
-  - type: textarea
+  - type: markdown
+    attributes:
+      value: |
+        Please follow these steps to find your Android version:
+        1. Open your device's **Settings** app
+        2. Scroll down and select **About phone** or **About tablet**
+        3. Find the **Android version** section and provide it below
+  - type: input
     id: os
     attributes:
-      label: Which version of Android are you on?
-      placeholder: |
-        Please follow these steps to find your Android version:
-        1. Open your device's **Settings** app.
-        2. Scroll down and select **About phone** or **About tablet**.
-        3. Find the **Android version** section and provide it here.
+      label: "Which version of Android are you on?"
     validations:
       required: true
 
