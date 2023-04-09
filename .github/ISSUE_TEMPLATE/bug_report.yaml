@@ -23,16 +23,18 @@ body:
     id: expected
     attributes:
       label: "Describe what you expected to happen:"
+  - type: markdown
+    attributes:
+      value: |
+          Please follow these steps to find your app version:
+          1. Click the **⁝** icon in the top right corner
+          2. Select **Settings**
+          3. Click **About**
+          4. Find the "Version" information and provide it here
   - type: input
     id: version
     attributes:
       label: "What version of Keepass2Android are you using?"
-      placeholder: |
-        Please follow these steps to find your app version:
-        1. Click the **⁝** icon in the top right corner
-        2. Select **Settings**
-        3. Click **About**
-        4. Find the "Version" information and provide it here
     validations:
       required: true
   - type: textarea

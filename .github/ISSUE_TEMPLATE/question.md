@@ -1,7 +1,7 @@
 ---
 name: Question
 about: Ask a question about 'Keepass2Android'.
-title: ''
+title: '[QUESTION] '
 labels: question
 assignees: ''
 
