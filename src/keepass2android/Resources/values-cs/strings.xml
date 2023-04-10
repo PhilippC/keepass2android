@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
   <string name="InlineSuggestions_title">Integrovat s klávesnicí</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického doplňování jako možnosti na klávesnici (pokud je podporováno metodou vstupu)</string>
+  <string name="LogAutofillView_title">Zahrnout obrazovky automatického doplňování do protokolu</string>
+  <string name="LogAutofillView_summary">Zahrne detaily o obrazovkách, kde byly detekovány prostory pro automatické dopňování, do protokolu (pokud je zapnut protokolovací soubor). Tyto detaily mohou být zaslány vývojáři pokud automatické doplňování nefunguje správně.</string>
   <string name="requires_android11">Vyžaduje Android 11 nebo novější</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
