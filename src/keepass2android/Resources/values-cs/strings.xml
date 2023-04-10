@@ -685,6 +685,12 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Bug fix to crashes and unexpected log-outs</item>
+    <item>Switch to new SFTP implementation, supporting modern public key algorithms such as rsa-sha2-256</item>
+    <item>Mark passwords as sensitive when copying to clipboard (Android 13)</item>
+    <item>Vylepšení automatického vyplňování</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Přidaná podpora zobrazování, mazání a obnovování záloh položek</item>
     <item>Přidaná podpora pro cloudové úložiště MEGA </item>
