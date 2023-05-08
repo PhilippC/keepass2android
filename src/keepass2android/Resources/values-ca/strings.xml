@@ -246,6 +246,11 @@
     <item>Passphrase</item>
     <item>Passphrase + Password</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúscules</item>
+    <item>MAJÚSCULES</item>
+    <item>First Character Uppercase</item>
+  </string-array>
   <string name="search_hint">Trobar el que</string>
   <string name="search_results">Resultats de cerca</string>
   <string name="search_in">Cerca a</string>
