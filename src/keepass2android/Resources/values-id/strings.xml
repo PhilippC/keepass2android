@@ -21,6 +21,8 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Luring</string>
   <string name="show_kill_app">Tombol-Tutup</string>
+  <string name="application">Aplikasi</string>
+  <string name="application_settings">Pengaturan aplikasi</string>
   <string name="ShowGroupnameInSearchResult_title">Tampilkan nama grup dalam hasil pencarian</string>
   <string name="ShowGroupnameInSearchResult_resume">Menampilkan nama grup di bawah judul entri dalam hasil pencarian. Berguna jika beberapa entri memiliki nama yang sama.</string>
   <string name="NavigationToGroupCompleted_message">Grup yang tampil adalah: %1$s</string>
@@ -49,6 +51,7 @@
   <string name="unlock_database_title">Buka basis data</string>
   <string name="brackets">Tanda kurung</string>
   <string name="cancel">Batal</string>
+  <string name="Ok">Oke</string>
   <string name="ClearClipboard">Papan klip dihapus.</string>
   <string name="clipboard_timeout">Batas waktu papan klip</string>
   <string name="clipboard_timeout_summary">Waktu sebelum menghapus isi papan klip setelah menyalin nama pengguna atau sandi</string>
