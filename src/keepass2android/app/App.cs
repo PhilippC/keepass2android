@@ -505,7 +505,7 @@ namespace keepass2android
 				}
 
 				OnUserInputDialogClose();
-            });
+			});
 
 			Dialog dialog = builder.Create();
 
@@ -522,11 +522,11 @@ namespace keepass2android
 					actionOnResult = null;
                 }
 
-                OnUserInputDialogClose();
+				OnUserInputDialogClose();
             }));
 
-            OnUserInputDialogShow();
-            dialog.Show();
+			OnUserInputDialogShow();
+			dialog.Show();
 		}
 
 		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "")
@@ -589,7 +589,7 @@ namespace keepass2android
 			EventHandler dismissHandler,
             Context ctx, string messageSuffix = "")
         {
-            Handler handler = new Handler(Looper.MainLooper);
+			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
 				{
 					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
@@ -597,13 +597,13 @@ namespace keepass2android
 
 					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
 
-                    // _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
+					// _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
 					// and to show progress dialog after yesNoCancel dialog is closed
-                    EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
-                    {
+					EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
+					{
 						OnUserInputDialogClose();
-                        yesHandler.Invoke(sender, args);
-                    };
+						yesHandler.Invoke(sender, args);
+					};
                     string yesText = GetResourceString(yesString);
 					builder.SetPositiveButton(yesText, yesHandlerWithShow);
 					string noText = "";
@@ -611,23 +611,23 @@ namespace keepass2android
 					{
                         EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
                         {
-                            OnUserInputDialogClose();
-                            noHandler.Invoke(sender, args);
-                        };
+							OnUserInputDialogClose();
+							noHandler.Invoke(sender, args);
+						};
 
-                        noText = GetResourceString(noString);
+						noText = GetResourceString(noString);
 						builder.SetNegativeButton(noText, noHandlerWithShow);
 					}
 					string cancelText = "";
 					if (cancelHandler != null)
 					{
-                        EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
-                        {
-                            OnUserInputDialogClose();
-                            cancelHandler.Invoke(sender, args);
-                        };
+						EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
+						{
+							OnUserInputDialogClose();
+							cancelHandler.Invoke(sender, args);
+						};
 
-                        cancelText = ctx.GetString(Android.Resource.String.Cancel);
+						cancelText = ctx.GetString(Android.Resource.String.Cancel);
 						builder.SetNeutralButton(cancelText,
 												 cancelHandlerWithShow);
 					}
@@ -660,7 +660,7 @@ namespace keepass2android
 					}
 				}
 			);
-        }
+		}
 
 		/// <summary>
 		/// Shows all non-dismissed progress dialogs.
@@ -765,8 +765,8 @@ namespace keepass2android
 
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
-            return new RealProgressDialog(ctx, this);
-        }
+			return new RealProgressDialog(ctx, this);
+		}
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
