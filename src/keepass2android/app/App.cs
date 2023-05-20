@@ -466,9 +466,9 @@ namespace keepass2android
             }
         }
 
-        private HashSet<RealProgressDialog> _activeProgressDialogs = new HashSet<RealProgressDialog>();
-        // Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
-        private bool _isShowingUserInputDialog = false;
+		private HashSet<RealProgressDialog> _activeProgressDialogs = new HashSet<RealProgressDialog>();
+		// Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
+		private bool _isShowingUserInputDialog = false;
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
