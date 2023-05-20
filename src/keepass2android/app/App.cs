@@ -112,7 +112,6 @@ namespace keepass2android
 	{
 
 
-
 		public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
 			if (OpenDatabases.Any())
@@ -663,47 +662,47 @@ namespace keepass2android
 			);
         }
 
-        /// <summary>
-        /// Shows all non-dismissed progress dialogs.
+		/// <summary>
+		/// Shows all non-dismissed progress dialogs.
 		/// If there are multiple progressDialogs active, they all will be showing.
 		/// There probably will never be multiple dialogs at the same time because only one ProgressTask can run at a time.
-        /// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
+		/// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
 		/// because they are just progress indicators.
-        /// </summary>
-        private void ShowAllActiveProgressDialogs()
+		/// </summary>
+		private void ShowAllActiveProgressDialogs()
 		{
-            foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
-            {
-                progressDialog.Show();
-            }
-        }
+			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+			{
+				progressDialog.Show();
+			}
+		}
 
-        private void HideAllActiveProgressDialogs()
-        {
-            foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
-            {
-                progressDialog.Hide();
-            }
-        }
-
-        /// <summary>
-        /// Hide progress dialogs whenever a dialog that requires user interaction
-        /// appears so that the progress dialogs cannot cover the user-interaction dialog
-        /// </summary>
-        private void OnUserInputDialogShow()
+		private void HideAllActiveProgressDialogs()
 		{
-            _isShowingUserInputDialog = true;
-            HideAllActiveProgressDialogs();
-        }
+			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+			{
+				progressDialog.Hide();
+			}
+		}
 
-        /// <summary>
-        /// Show previously hidden progress dialogs after user interaction with dialog finished
-        /// </summary>
-        private void OnUserInputDialogClose()
+		/// <summary>
+		/// Hide progress dialogs whenever a dialog that requires user interaction
+		/// appears so that the progress dialogs cannot cover the user-interaction dialog
+		/// </summary>
+		private void OnUserInputDialogShow()
 		{
-            _isShowingUserInputDialog = false;
-            ShowAllActiveProgressDialogs();
-        }
+			_isShowingUserInputDialog = true;
+			HideAllActiveProgressDialogs();
+		}
+
+		/// <summary>
+		/// Show previously hidden progress dialogs after user interaction with dialog finished
+		/// </summary>
+		private void OnUserInputDialogClose()
+		{
+			_isShowingUserInputDialog = false;
+			ShowAllActiveProgressDialogs();
+		}
 
         public Handler UiThreadHandler 
 		{
@@ -746,7 +745,7 @@ namespace keepass2android
 					Kp2aLog.LogUnexpectedError(e);
 				}
 				_app._activeProgressDialogs.Remove(this);
-            }
+			}
 
 			public void Show()
 			{
@@ -766,9 +765,8 @@ namespace keepass2android
 
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
-			var newProgressDialog = new RealProgressDialog(ctx, this);
-            return newProgressDialog;
-		}
+            return new RealProgressDialog(ctx, this);
+        }
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
