@@ -1041,7 +1041,7 @@
     <item>Пароль + секретные OTP (одноразовые пароли) (режим восстановления)</item>
     <item>Пароль + Вызов-Ответ</item>
     <item>Пароль + секретный Вызов-Ответ (режим восстановления)</item>
-    <item>Password + Challenge-Response для Keepass XC</item>
+    <item>Пароль + Вызов-Ответ для Keepass XC</item>
     <item>Пароль + Ключ файл + Вызов-ответ для Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
