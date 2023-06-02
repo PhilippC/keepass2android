@@ -244,7 +244,7 @@
   <string name="sort_name">Сортировка по имени</string>
   <string name="sort_db">Сортировка по дате создания</string>
   <string name="sort_moddate">Сортировка по дате изменения</string>
-  <string name="sort_default">Оставить порядок по-умолчанию</string>
+  <string name="sort_default">Оставить порядок по умолчанию</string>
   <string name="special">Особые</string>
   <string name="special_extended">Специальная расширенная</string>
   <string name="at_least_one_from_each_group">По крайней мере, по одному от каждой группы</string>
@@ -1042,7 +1042,7 @@
     <item>Пароль + Вызов-Ответ</item>
     <item>Пароль + секретный Вызов-Ответ (режим восстановления)</item>
     <item>Пароль + Вызов-Ответ для Keepass XC</item>
-    <item>Пароль + Ключ файл + Вызов-ответ для Keepass XC</item>
+    <item>Пароль + файл-ключ + Вызов-Ответ для Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
