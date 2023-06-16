@@ -34,7 +34,6 @@ public class SftpUserInfo implements UserInfo {
 				builder.setContentText("SFTP prompt");
 				builder.setSmallIcon(R.drawable.ic_logo_green_foreground);
 
-
 				Handler h = new Handler() {
 					public void handleMessage(Message M) {
 						msg.copyFrom(M);
@@ -51,7 +50,16 @@ public class SftpUserInfo implements UserInfo {
 				intent.putExtra("keepass2android.sftp.prompt", text);
 				intent.setData((Uri.parse("suckit://"+SystemClock.elapsedRealtime())));
 
-				PendingIntent contentIntent = PendingIntent.getActivity(_appContext, 0, intent, 0);
+
+				Log.e("KP2AJFS[thread]", "built after 2023-03-14");
+
+				int flags = 0;
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+					Log.e("KP2AJFS[thread]", "Setting mutable flag...");
+					flags |= PendingIntent.FLAG_MUTABLE;
+				}
+				PendingIntent contentIntent = PendingIntent.getActivity(_appContext, 0, intent, flags);
+
 				builder.setContentIntent(contentIntent);
 
 				{

@@ -36,8 +36,8 @@
   <string name="OfferSaveCredentials_title">アカウント情報の保存を提案</string>
   <string name="ShowGroupInEntry_title">エントリー画面にグループ名を表示</string>
   <string name="unknown_uri_scheme">申し訳ありません！  Keepass2Android は、返された URI %1$s を処理できませんでした。開発者にお問い合わせください！</string>
-  <string name="Entry_singular">1 エントリー</string>
-  <string name="Entry_plural">%1$d エントリー</string>
+  <string name="Entry_singular">1 件のエントリー</string>
+  <string name="Entry_plural">%1$d 件のエントリー</string>
   <string name="IconSet_title">アイコンセット</string>
   <string name="IconSet_install">さらに探す…</string>
   <string name="security_prefs">セキュリティ</string>
@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">ドメインとアプリパッケージが一致するかどうかの確認を無効にします</string>
   <string name="InlineSuggestions_title">キーボードとの統合</string>
   <string name="InlineSuggestions_summary">自動入力のサジェストをキーボード内に表示します (対応する入力方法のみ)</string>
+  <string name="LogAutofillView_title">自動入力表示のログ</string>
+  <string name="LogAutofillView_summary">(デバッグログが有効な場合) 自動入力表示に関する詳細をデバッグログに書き込みます。自動入力が予想に反する動作をした場合、これらの詳細を開発者に送信することができます。</string>
   <string name="requires_android11">Android 11 以上が必要</string>
   <string name="kp2a_findUrl">パスワードを探す</string>
   <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
@@ -389,9 +391,9 @@
   <string name="AcceptAllServerCertificates_summary">証明書の検証に失敗したときの動作を指定します。注意: 検証に失敗したときは、デバイスに証明書をインストールすることができます。</string>
   <string name="ClearOfflineCache_title">キャッシュをクリアしますか？</string>
   <string name="ClearOfflineCache_question">すべてのキャッシュされたデータベースファイルを削除します。元のデータベースにアクセスできない間に行った、同期されていない変更がすべて失われます！ 続行しますか？</string>
-  <string name="CheckForFileChangesOnSave_title">変更をチェック</string>
+  <string name="CheckForFileChangesOnSave_title">変更を確認</string>
   <string name="CheckForFileChangesOnSave_summary">変更を保存する前に、ファイルが外部から変更されているか確認します。</string>
-  <string name="CheckForDuplicateUuids_title">UUID の重複をチェック</string>
+  <string name="CheckForDuplicateUuids_title">UUID の重複を確認</string>
   <string name="CheckForDuplicateUuids_summary">同じ ID で複数のエントリーがあるかによってデータベース ファイルの破損を確認します。これは予期しない動作が発生する可能性があります。</string>
   <string name="ShowCopyToClipboardNotification_title">クリップボード通知</string>
   <string name="ShowCopyToClipboardNotification_summary">ユーザー名とパスワードが、通知バーとクリップボードからアクセス可能になります。パスワード盗聴アプリに気をつけてください！</string>
@@ -482,7 +484,7 @@
   <string name="otp_aux_file">OTP 補助ファイル</string>
   <string name="ErrorOcurred">エラーが発生しました:</string>
   <string name="DuplicateUuidsError">データベースが破損しています: 重複する ID が見つかりました。(Minikeepass で保存しましたか？) PC 用 Keepass 2 で新しいデータベースに再インポートして「新しい ID の作成」を選択してください。</string>
-  <string name="DuplicateUuidsErrorAdditional">設定/アプリ設定/ファイル処理/UUID の重複をチェック で、このエラーメッセージを無効にできます。予期しない動作が発生する可能性があることにご注意ください。データベースを修正することをお勧めします。</string>
+  <string name="DuplicateUuidsErrorAdditional">設定/アプリ設定/ファイル処理/UUID の重複を確認 で、このエラーメッセージを無効にできます。予期しない動作が発生する可能性があることにご注意ください。データベースを修正することをお勧めします。</string>
   <string name="synchronize_database_menu">データベースを同期...</string>
   <string name="CannotMoveGroupHere">このグループにグループを移動できません。</string>
   <string name="donate_question">今日はオクトーバーフェスト！ Keepass2Android を気に入ってくださったなら、今日は私にビールを買っていただくのにいい日ではありませんか？</string>
@@ -690,6 +692,7 @@
     <item>クラッシュと突発的にログアウトするバグを修正</item>
     <item>rsa-sha2-256 などの最新の公開鍵アルゴリズムをサポートする、新しい SFTP 実装に切り替え</item>
     <item>パスワードをクリップボードにコピーしたとき、機密コンテンツとしてマークするよう変更 (Android 13)</item>
+    <item>自動入力の改善</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>エントリーバックアップの表示、削除、および復元に対応</item>
