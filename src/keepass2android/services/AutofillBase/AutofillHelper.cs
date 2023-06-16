@@ -142,7 +142,7 @@ namespace keepass2android.services.AutofillBase
             {
                 foreach (AutofillFieldMetadata autofillFieldMetadata in autofillFieldMetadataCollection.GetFieldsForHint(hint))
                 {
-                    FilledAutofillField<ViewNodeInputField> filledAutofillField;
+                    FilledAutofillField filledAutofillField;
                     if (!filledAutofillFieldCollection.HintMap.TryGetValue(hint, out filledAutofillField) || (filledAutofillField == null))
                     {
                         continue;

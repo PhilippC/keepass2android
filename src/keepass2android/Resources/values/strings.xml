@@ -854,6 +854,7 @@
     <item>Bug fix to crashes and unexpected log-outs</item>
     <item>Switch to new SFTP implementation, supporting modern public key algorithms such as rsa-sha2-256</item>
     <item>Mark passwords as sensitive when copying to clipboard (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
 
   <string-array name="ChangeLog_1_09d">

@@ -77,10 +77,15 @@ namespace keepass2android.view
 			AddView(gv, lp);
 		}
 		
-		private void PopulateView(View gv, PwGroup pw) {
+		private void PopulateView(View gv, PwGroup pw)
+        {
 			_pwGroup = pw;
-			
-			ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
+            Kp2aLog.Log($"Populating group view {_groupBaseActivity.IsFinishing} {pw.Name}");
+
+            if (_groupBaseActivity.IsFinishing)
+                return;
+
+            ImageView iv = (ImageView) gv.FindViewById(Resource.Id.icon);
 		    Database db = App.Kp2a.FindDatabaseForElement(pw);
             db.DrawableFactory.AssignDrawableTo(iv, _groupBaseActivity, db.KpDatabase, pw.IconId, pw.CustomIconUuid, true);
 		    gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;

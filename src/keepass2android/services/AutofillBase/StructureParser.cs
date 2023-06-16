@@ -29,7 +29,7 @@ namespace keepass2android.services.AutofillBase
         [JsonIgnore]
         public AssistStructure.ViewNode ViewNode { get; set; }
 
-        public void FillFilledAutofillValue(FilledAutofillField<ViewNodeInputField> filledField)
+        public override void FillFilledAutofillValue(FilledAutofillField filledField)
         {
             AutofillValue autofillValue = ViewNode.AutofillValue;
             if (autofillValue != null)
@@ -159,7 +159,11 @@ namespace keepass2android.services.AutofillBase
 
         protected override AutofillTargetId Parse(bool forFill, bool isManualRequest, AutofillView<ViewNodeInputField> autofillView)
         {
+            if (autofillView == null)
+                Kp2aLog.Log("Received null autofill view!");
             var result = base.Parse(forFill, isManualRequest, autofillView);
+
+            Kp2aLog.Log("Parsing done");
 
             if (forFill)
             {
@@ -168,8 +172,9 @@ namespace keepass2android.services.AutofillBase
             }
             else
             {
+                ClientFormData = new FilledAutofillFieldCollection<ViewNodeInputField>();
                 foreach (var p in FieldsMappedToHints)
-                    ClientFormData.Add(new FilledAutofillField<ViewNodeInputField>(p.Key, p.Value));
+                    ClientFormData.Add(new FilledAutofillField(p.Key, p.Value));
             }
             
 

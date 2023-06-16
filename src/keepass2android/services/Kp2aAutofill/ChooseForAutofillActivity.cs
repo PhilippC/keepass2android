@@ -61,8 +61,8 @@ namespace keepass2android.services.Kp2aAutofill
             foreach (string key in pwEntryOutput.OutputStrings.GetKeys())
             {
                 
-                FilledAutofillField<ViewNodeInputField> field =
-                    new FilledAutofillField<ViewNodeInputField>
+                FilledAutofillField field =
+                    new FilledAutofillField
                     {
                         AutofillHints = GetCanonicalHintsFromKp2aField(key).ToArray(),
                         TextValue = pwEntryOutput.OutputStrings.ReadSafe(key)
@@ -73,8 +73,8 @@ namespace keepass2android.services.Kp2aAutofill
             if (IsCreditCard(pwEntry, context) && pwEntry.Expires)
             {
                 DateTime expTime = pwEntry.ExpiryTime;
-                FilledAutofillField<ViewNodeInputField> field =
-                    new FilledAutofillField<ViewNodeInputField>
+                FilledAutofillField field =
+                    new FilledAutofillField
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationDate},
                         DateValue = (long) (1000 * TimeUtil.SerializeUnix(expTime))
@@ -82,7 +82,7 @@ namespace keepass2android.services.Kp2aAutofill
                 fieldCollection.Add(field);
 
                 field =
-                    new FilledAutofillField<ViewNodeInputField>
+                    new FilledAutofillField
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationDay},
                         TextValue = expTime.Day.ToString()
@@ -90,7 +90,7 @@ namespace keepass2android.services.Kp2aAutofill
                 fieldCollection.Add(field);
 
                 field =
-                    new FilledAutofillField<ViewNodeInputField>
+                    new FilledAutofillField
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationMonth},
                         TextValue = expTime.Month.ToString()
@@ -98,7 +98,7 @@ namespace keepass2android.services.Kp2aAutofill
                 fieldCollection.Add(field);
 
                 field =
-                    new FilledAutofillField<ViewNodeInputField>
+                    new FilledAutofillField
                     {
                         AutofillHints = new[] {View.AutofillHintCreditCardExpirationYear},
                         TextValue = expTime.Year.ToString()

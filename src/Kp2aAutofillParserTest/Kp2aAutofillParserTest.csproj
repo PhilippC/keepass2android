@@ -15,6 +15,7 @@
     <None Remove="com-servicenet-mobile-focused.json" />
     <None Remove="com-servicenet-mobile-no-focus.json" />
     <None Remove="firefox-amazon-it.json" />
+    <None Remove="imdb.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +52,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="com-servicenet-mobile-no-focus.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imdb.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

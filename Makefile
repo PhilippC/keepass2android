@@ -314,6 +314,18 @@ clean_KP2AKdbLibrary:
 	cd src/java/KP2AKdbLibrary && $(GRADLEW) clean
 clean_PluginQR:
 	cd src/java/PluginQR && $(GRADLEW) clean
+clean_rm:
+	rm -rf src/*/obj
+	rm -rf src/*/bin
+	rm -rf src/java/*/app/build
+	rm -rf src/java/argon2/obj
+	rm -rf src/java/argon2/libs
+	rm -rf src/packages
+	rm -rf src/java/KP2AKdbLibrary/app/.cxx
+	rm -rf src/java/KP2ASoftkeyboard_AS/app/.cxx
+	rm -rf src/SamsungPass/Xamarin.SamsungPass/SamsungPass/bin
+	rm -rf src/SamsungPass/Xamarin.SamsungPass/SamsungPass/obj
+	
 
 # https://learn.microsoft.com/en-us/nuget/consume-packages/package-restore-troubleshooting#other-potential-conditions
 clean_nuget:

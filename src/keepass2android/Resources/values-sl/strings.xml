@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Onemogoči preverjanje, ali se paket domen in aplikacije ujemata</string>
   <string name="InlineSuggestions_title">Integracija s tipkovnico</string>
   <string name="InlineSuggestions_summary">Prikaže predloge samodejnega izpolnjevanja kot vgrajene možnosti na tipkovnici (če to podpira način vnosa)</string>
+  <string name="LogAutofillView_title">Pregled podrobnosti samodejnega izpolnjevanja</string>
+  <string name="LogAutofillView_summary">Zapišite podrobnosti o pogledu samodejnega izpolnjevanja v dnevnik odpravljanja napak (če je omogočeno beleženje odpravljanja napak). Te podrobnosti lahko pošljete razvijalcu, če samodejno izpolnjevanje ne deluje po pričakovanjih.</string>
   <string name="requires_android11">Zahteva Android 11 ali novejši</string>
   <string name="kp2a_findUrl">Najdi geslo</string>
   <string name="excludeExpiredEntries">Izključi potekle vnose</string>
@@ -690,6 +692,7 @@
     <item>Popravek napak pri zrušitvah in nepričakovanih odjavah</item>
     <item>Preklopite na novo izvedbo SFTP, ki podpira sodobne algoritme javnih ključev, kot je rsa-sha2-256</item>
     <item>Označi gesla kot občutljiva pri kopiranju v odložišče (Android 13)</item>
+    <item>Izboljšave samodejnega izpolnjevanja</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Dodana podpora za ogled, odstranjevanje in obnavljanje varnostnih kopij vnosov</item>

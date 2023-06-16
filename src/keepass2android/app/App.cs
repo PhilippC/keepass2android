@@ -475,22 +475,26 @@ namespace keepass2android
 
 			builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
 
-			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
+            bool buttonPressed = false;
+
+            builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
 				(dlgSender, dlgEvt) =>
-				{
+                {
+                    buttonPressed = true;
 					CurrentDb.ReloadRequested = true;
 					activity.SetResult(KeePass.ExitReloadDb);
 					activity.Finish();
 					if (actionOnResult != null)
-					{
-						actionOnResult(true);
-						actionOnResult = null;
+                    {
+                        actionOnResult(true);
+                        actionOnResult = null;
 					}
 				});
 
 			builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
-			{
-				if (actionOnResult != null)
+            {
+                buttonPressed = true;
+                if (actionOnResult != null)
 				{
 					actionOnResult(false);
 					actionOnResult = null;
@@ -501,10 +505,18 @@ namespace keepass2android
 			Dialog dialog = builder.Create();
 
 			dialog.SetOnDismissListener(new Util.DismissListener(() =>
-			{
-				if (actionOnResult != null)
-					actionOnResult(false);
-			}));
+            {
+				//dismiss can be called when we're calling activity.Finish() during button press.
+				//don't do anything then.
+                if (buttonPressed)
+                    return;
+
+                if (actionOnResult != null)
+                {
+                    actionOnResult(false);
+					actionOnResult = null;
+                }
+            }));
 
 			dialog.Show();
 		}
