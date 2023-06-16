@@ -67,8 +67,8 @@ namespace keepass2android.view
 		private PwEntryView(GroupBaseActivity groupActivity, PwEntry pw, int pos):base(groupActivity)
 		{
 			_groupActivity = groupActivity;
-			
-			View ev = Inflate(groupActivity, Resource.Layout.entry_list_entry, null);
+
+            View ev = Inflate(groupActivity, Resource.Layout.entry_list_entry, null);
 			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
 			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
@@ -103,7 +103,11 @@ namespace keepass2android.view
 		
 		private void PopulateView(View ev, PwEntry pw, int pos)
 		{
-			_entry = pw;
+
+            if (_groupBaseActivity.IsFinishing)
+                return;
+
+            _entry = pw;
 			_pos = pos;
 		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;

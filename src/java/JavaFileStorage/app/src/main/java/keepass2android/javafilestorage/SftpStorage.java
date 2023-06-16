@@ -27,6 +27,7 @@ import com.jcraft.jsch.UserInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 @SuppressWarnings("unused")  // Exposed by JavaFileStorageBindings
 public class SftpStorage extends JavaFileStorageBase {
@@ -423,6 +424,8 @@ public class SftpStorage extends JavaFileStorageBase {
 	ChannelSftp init(ConnectionInfo cInfo) throws JSchException, UnsupportedEncodingException {
 		jsch = new JSch();
 
+		Log.d("KP2AJFS", "init SFTP");
+
 		String base_dir = getBaseDir();
 		jsch.setKnownHosts(base_dir + "/known_hosts");
 
@@ -434,8 +437,10 @@ public class SftpStorage extends JavaFileStorageBase {
 
 		}
 
+		Log.e("KP2AJFS[thread]", "getting session...");
 		Session session = jsch.getSession(cInfo.username, cInfo.host, cInfo.port);
-		UserInfo ui = new SftpUserInfo(cInfo.password, cInfo.keyPassphrase, _appContext);
+		Log.e("KP2AJFS", "creating SftpUserInfo");
+		UserInfo ui = new SftpUserInfo(cInfo.password, _appContext);
 		session.setUserInfo(ui);
 
 		session.setConfig("PreferredAuthentications", "publickey,password");

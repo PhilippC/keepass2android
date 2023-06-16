@@ -687,6 +687,7 @@ Voici quelques conseils qui pourraient aider à diagnostiquer le problème : \n
     <item>Correction de bugs pour les plantages et les déconnexions inattendues</item>
     <item>Passage à une nouvelle implémentation SFTP, prenant en charge les algorithmes à clé publique modernes tels que rsa-sha2-256</item>
     <item>Marquer les mots de passe comme sensibles lors de la copie dans le presse-papiers (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Ajout du support pour la visualisation, la suppression et la restauration des sauvegardes d\'entrée</item>

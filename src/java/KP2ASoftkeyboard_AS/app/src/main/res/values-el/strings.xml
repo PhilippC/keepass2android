@@ -21,7 +21,7 @@
     <!-- Title for Latin keyboard  -->
     <string name="english_ime_name">Πληκτρολόγιο Keepass2Android</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">Ρυθμίσεις πληκτρολογίου Keepass2Android</string>
+    <string name="english_ime_settings">Ρυθμίσεις πληκτρολογίου Android</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">Επιλογές εισόδου</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
@@ -51,7 +51,7 @@
     <!-- Dialog title for auto complete choices -->
     <string name="auto_complete_dialog_title">Αυτόματη συμπλήρωση</string>
     <!-- Option to enable text prediction in landscape -->
-    <string name="prediction_landscape">Αυξήστε το μέγεθος του πεδίου κειμένου</string>
+    <string name="prediction_landscape">Αύξηση μεγέθους του πεδίου κειμένου</string>
     <!-- Description for text prediction -->
     <string name="prediction_landscape_summary">Απόκρυψη υποδείξεων λέξεων στην οριζόντια προβολή</string>
     <!-- Option to enable auto capitalization of sentences -->
@@ -77,7 +77,7 @@
     <string name="prefs_settings_key">Εμφάνιση πλήκτρου ρυθμίσεων</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
-    <string name="settings_key_mode_auto_name">Αυτόματο</string>
+    <string name="settings_key_mode_auto_name">Αυτόματα</string>
     <!-- Option to always show the settings key -->
     <string name="settings_key_mode_always_show_name">Να εμφανίζεται πάντα</string>
     <!-- Option to always hide the settings key -->
@@ -110,25 +110,25 @@
     <!-- Tip to press ?123 to access numbers and symbols -->
     <string name="tip_access_symbols">Πρόσβαση σε αριθμούς και σύμβολα</string>
     <!-- Tip to long press on typed word to add to dictionary -->
-    <string name="tip_add_to_dictionary">Κρατήστε πατημένη τη λέξη στην άκρη αριστερά, για να την προσθέσετε στο λεξικό</string>
+    <string name="tip_add_to_dictionary">Παρατεταμένη επιλογή της λέξης στα αριστερά, την προσθέτει στο λεξικό</string>
     <!-- Instruction to touch the bubble to continue -->
-    <string name="touch_to_continue">Αγγίξτε αυτή τη συμβουλή για να συνεχίσετε »</string>
+    <string name="touch_to_continue">Αγγίξτε αυτή την υπόδειξη για να συνεχίσετε »</string>
     <!-- Instruction to touch the bubble to start typing -->
-    <string name="touch_to_finish">Αγγίξτε εδώ για να κλείσετε τη συμβουλή και να ξεκινήσετε την πληκτρολόγηση!</string>
+    <string name="touch_to_finish">Αγγίξτε εδώ για να κλείσετε την υπόδειξη και να ξεκινήσετε την πληκτρολόγηση!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
-    <string name="tip_to_open_keyboard"><b>\"Το πληκτρολόγιο ανοίγει κάθε φορά που αγγίζετε ένα πεδίο κειμένου\"</b></string>
+    <string name="tip_to_open_keyboard"><b>Το πληκτρολόγιο ανοίγει κάθε φορά που αγγίζετε ένα πεδίο κειμένου</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <string name="tip_to_view_accents"><b>\"Αγγίξτε και κρατήστε κάποιο πλήκτρο για να προβάλετε τους τονισμένους χαρακτήρες\"\n\"(ø, ö, ô, ó κ.τ.λ.)\"</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
-    <string name="tip_to_open_symbols"><b>\"Αλλαγή σε αριθμούς και σύμβολα με το πάτημα αυτού του πλήκτρου\"</b></string>
+    <string name="tip_to_open_symbols"><b>Αλλαγή σε αριθμούς και σύμβολα με το πάτημα αυτού του πλήκτρου</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
-    <string name="tip_to_close_symbols"><b>\"Επιστρέψτε στα γράμματα αγγίζοντας ξανά αυτό το πλήκτρο\"</b></string>
+    <string name="tip_to_close_symbols"><b>Επιστρέψτε στα γράμματα αγγίζοντας ξανά αυτό το πλήκτρο</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
-    <string name="tip_to_launch_settings"><b>\"Αγγίξτε και κρατήστε πατημένο αυτό το πληκτρολόγιο για να αλλάξετε τις ρυθμίσεις πληκτρολογίου, όπως η αυτόματη συμπλήρωση\"</b></string>
+    <string name="tip_to_launch_settings"><b>Αγγίξτε και κρατήστε πατημένο αυτό το πλήκτρο για να αλλάξετε τις ρυθμίσεις πληκτρολογίου, όπως η αυτόματη συμπλήρωση</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
-    <string name="tip_to_start_typing"><b>\"Δοκιμάστε το!\"</b></string>
+    <string name="tip_to_start_typing"><b>Δοκιμάστε το!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
-    <string name="label_go_key">Μετ.</string>
+    <string name="label_go_key">Μετάβαση</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
     <string name="label_next_key">Επόμενο</string>
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
