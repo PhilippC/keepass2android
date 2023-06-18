@@ -1269,7 +1269,6 @@ namespace keepass2android
                                                 RequestCodePrepareOtpAuxFile, false);
 					};
 			}
-			
 		}
 
 		private void RestoreState(Bundle savedInstanceState)
