@@ -400,12 +400,16 @@ public class SftpStorage extends JavaFileStorageBase {
 		ci.password = decode(userPwd.substring(userPwd.indexOf(":")+1));
 		ci.host = ci.host.substring(ci.host.indexOf('@') + 1);
 		ci.port = DEFAULT_SFTP_PORT;
-		int portSeparatorIndex = ci.host.indexOf(":");
+		int portSeparatorIndex = ci.host.lastIndexOf(":");
 		if (portSeparatorIndex >= 0)
 		{
 			ci.port = Integer.parseInt(ci.host.substring(portSeparatorIndex+1));
 			ci.host = ci.host.substring(0, portSeparatorIndex);
 		}
+		// Encode/decode required to support IPv6 (colons break host:port parse logic)
+		// See Bug #2350
+		ci.host = decode(ci.host);
+
 		ci.localPath = extractSessionPath(filename);
 		return ci;
 	}
@@ -476,6 +480,10 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	public String buildFullPath( String host, int port, String localPath, String username, String password) throws UnsupportedEncodingException
 	{
+		// Encode/decode required to support IPv6 (colons break host:port parse logic)
+		// See Bug #2350
+		host = encode(host);
+
 		if (port != DEFAULT_SFTP_PORT)
 			host += ":"+String.valueOf(port);
 		return getProtocolPrefix()+encode(username)+":"+encode(password)+"@"+host+localPath;
