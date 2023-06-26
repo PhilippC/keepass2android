@@ -523,12 +523,16 @@ public class SftpStorage extends JavaFileStorageBase {
 
 		ci.host = ci.host.substring(ci.host.indexOf('@') + 1);
 		ci.port = DEFAULT_SFTP_PORT;
-		int portSeparatorIndex = ci.host.indexOf(":");
+		int portSeparatorIndex = ci.host.lastIndexOf(":");
 		if (portSeparatorIndex >= 0)
 		{
 			ci.port = Integer.parseInt(ci.host.substring(portSeparatorIndex + 1));
 			ci.host = ci.host.substring(0, portSeparatorIndex);
 		}
+		// Encode/decode required to support IPv6 (colons break host:port parse logic)
+		// See Bug #2350
+		ci.host = decode(ci.host);
+
 		ci.localPath = extractSessionPath(filename);
 
 		Map<String, String> options = extractOptionsMap(filename);
@@ -630,7 +634,9 @@ public class SftpStorage extends JavaFileStorageBase {
 		if (password != null) {
 			uri.append(":").append(encode(password));
 		}
-		uri.append("@").append(host);
+		// Encode/decode required to support IPv6 (colons break host:port parse logic)
+		// See Bug #2350
+		uri.append("@").append(encode(host));
 
 		if (port != DEFAULT_SFTP_PORT) {
 			uri.append(":").append(port);
