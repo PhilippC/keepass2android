@@ -30,8 +30,8 @@
   <string name="ShowGroupnameInSearchResult_title">A csoportnevek megjelenítése a keresési eredményeknél</string>
   <string name="ShowGroupnameInSearchResult_resume">A keresési eredményeknél a csoportnevek megjelenítése a bejegyzések címe alatt.  Hasznos, ha léteznek azonos című bejegyzések.</string>
   <string name="NavigationToGroupCompleted_message">A megjelenített csoport: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Tiltott AutoFill célpontok</string>
-  <string name="AutofillDisabledQueriesPreference_summary">Azoknak az alkalmazások és weboldalak listája, amelyek esetén az AutoFill szolgáltatás nem engedélyezett</string>
+  <string name="AutofillDisabledQueriesPreference_title">Automatikus kitöltésből kizárt célpontok</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Azoknak az alkalmazások és weboldalak listája, amelyek esetén az automatikus kitöltés szolgáltatás nem engedélyezett</string>
   <string name="OfferSaveCredentials_summary">Ha aktiválva van, az automatikusan kitölthető mezők kézzel történő kitöltése után a rendszer rá fog kérdezni, hogy kívánja-e az azonosítókat menteni.</string>
   <string name="OfferSaveCredentials_title">Azonosítók mentésének felajánlása</string>
   <string name="ShowGroupInEntry_title">A csoportnév megjelenítése a bejegyzések adatlapján.</string>
@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Eltekintés az internettartomány-alkalmazás összetertozásának ellenőrzésétől</string>
   <string name="InlineSuggestions_title">Billentyűzet-integráció</string>
   <string name="InlineSuggestions_summary">Az Automatikus kitöltéssel kapcsolatos javaslatok megjelnítése a billentyűzet inline opcióiként (ha a billentyűzet ezt támogatja)</string>
+  <string name="LogAutofillView_title">Az automatikus kitöltés naplózása</string>
+  <string name="LogAutofillView_summary">Az automatikus kitöltési használatával kapcsolatos információk rögzítése a naplófájlba (ha a naplófájl használata engedélyezett).  Ezeket az információkat elküldheti a fejlesztőnek, ha az automatikus kitöltés nem működik megfelelően.</string>
   <string name="requires_android11">Android 11, vagy újabb verzió szükséges</string>
   <string name="kp2a_findUrl">Jelszó keresése</string>
   <string name="excludeExpiredEntries">Lejárt bejegyzések kizárása</string>
@@ -771,8 +773,8 @@ Kezdeti közösségi kiadás</string>
   <string name="autofill_enable_failed">Elnézést, úgy tűnik az Ön készüléke nem támogatja a rendszerbeállítások megnyitását az alkalmazásból. Kérjük indítsa el a rendszerbeállításokat és engedélyezze az Automatikus kitöltés szolgáltatást.</string>
   <string name="show_autofill_help">Automatikus kitöltés segítség megjelenítése</string>
   <string name="autofill_sign_in_prompt">Kitöltés Keepass2Androiddal</string>
-  <string name="autofill_disable">Az AutoFill tiltása %1$s esetén</string>
-  <string name="autofill_enable_for">Az AutoFill engedélyezése %1$s esetén</string>
+  <string name="autofill_disable">Az automatikus kitöltés tiltása %1$s esetén</string>
+  <string name="autofill_enable_for">Az automatikus kitöltés engedélyezése %1$s esetén</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s internettartományt a %2$s alkalmazással</string>
   <string name="enable_fingerprint_hint">Biometrikus eszköz detektálva. Szeretné engedélyezni az adatbázis biometrikus feloldását?</string>
   <string name="understand">Értem</string>
