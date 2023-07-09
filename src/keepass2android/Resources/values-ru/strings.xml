@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Отключает проверку, если домен соответствует приложению</string>
   <string name="InlineSuggestions_title">Интеграция с клавиатурой</string>
   <string name="InlineSuggestions_summary">Показывать предложения автозаполнения как встроенные опции в клавиатуре (если поддерживается методом ввода).</string>
+  <string name="LogAutofillView_title">Просмотр журнала автозаполнения</string>
+  <string name="LogAutofillView_summary">Записывать информацию о режиме автозаполнения в журнал отладки (если отладка включена). Эта информация может быть передана разработчику, если автозаполнение работает не так, как ожидалось.</string>
   <string name="requires_android11">Требуется Android 11 или новее</string>
   <string name="kp2a_findUrl">Вспомнить пароль</string>
   <string name="excludeExpiredEntries">Исключить просроченные записи</string>
@@ -685,7 +687,7 @@
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
   <string-array name="ChangeLog_1_09e">
-    <item>Bug fix to crashes and unexpected log-outs</item>
+    <item>Исправлены ошибки, приводящие к сбоям и незапланированным выходам</item>
     <item>Switch to new SFTP implementation, supporting modern public key algorithms such as rsa-sha2-256</item>
     <item>Помечать пароли как чувствительные при копировании в буфер обмена (Android 13)</item>
     <item>Улучшения автозаполнения</item>
