@@ -688,7 +688,7 @@
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
   <string-array name="ChangeLog_1_09e">
     <item>Исправлены ошибки, приводящие к сбоям и незапланированным выходам</item>
-    <item>Switch to new SFTP implementation, supporting modern public key algorithms such as rsa-sha2-256</item>
+    <item>Смена реализации SFTP на новую, поддерживающую современные алгоритмы открытых ключей, таких как rsa-sha2-256</item>
     <item>Помечать пароли как чувствительные при копировании в буфер обмена (Android 13)</item>
     <item>Улучшения автозаполнения</item>
   </string-array>
