@@ -175,7 +175,12 @@ namespace keepass2android
 
             FindPreference(GetString(Resource.String.DebugLog_key)).PreferenceChange += OnDebugLogChanged;
             FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
+
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
             FindPreference(GetString(Resource.String.JSchDebug_key)).PreferenceChange += OnJSchDebugChanged;
+#else
+            FindPreference(GetString(Resource.String.JSchDebug_key)).Enabled = false;
+#endif
 
             HashSet<string> supportedLocales = new HashSet<string>() { "en", "af", "ar", "az", "be", "bg", "ca", "cs", "da", "de", "el", "es", "eu", "fa", "fi", "fr", "gl", "he", "hr", "hu", "id", "in", "it", "iw", "ja", "ko", "ml", "nb", "nl", "nn", "no", "pl", "pt", "ro", "ru", "si", "sk", "sl", "sr", "sv", "tr", "uk", "vi", "zh" };
 
@@ -423,11 +428,14 @@ namespace keepass2android
 		    else
                 Kp2aLog.FinishLogFile();
 
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
             bool jschLogEnable = PreferenceManager.GetDefaultSharedPreferences(Application.Context)
                 .GetBoolean(Application.Context.GetString(Resource.String.JSchDebug_key), false);
             SetJSchLogging(jschLogEnable);
+#endif
         }
 
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
         private void OnJSchDebugChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
             SetJSchLogging((bool)e.NewValue);
@@ -443,8 +451,9 @@ namespace keepass2android
             }
             sftpStorage.SetJschLogging(enabled, logFilename);
         }
+#endif
 
-	    private void AlgorithmPrefChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
+        private void AlgorithmPrefChange(object sender, Preference.PreferenceChangeEventArgs preferenceChangeEventArgs)
 	    {
 			var db = App.Kp2a.CurrentDb;
 			var previousCipher = db.KpDatabase.DataCipherUuid;
@@ -887,7 +896,7 @@ namespace keepass2android
 
 #if DEBUG
             preference.Enabled = (usageCount > 1);
-#else 
+#else
 			preference.Enabled = (usageCount > 50);
 #endif
             preference.PreferenceChange += delegate(object sender, Preference.PreferenceChangeEventArgs args)
