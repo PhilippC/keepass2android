@@ -375,6 +375,14 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	}
 
+	public void setJschLogging(boolean enabled, String logFilename) {
+		if (enabled) {
+			JSch.setLogger(new Kp2aJSchLogger(logFilename));
+		} else {
+			JSch.setLogger(null);
+		}
+	}
+
 	private String createKeyPair(String key_filename) throws JSchException, IOException {
 		String public_key_filename = key_filename + ".pub";
 		File file = new File(key_filename);

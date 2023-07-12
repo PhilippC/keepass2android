@@ -680,6 +680,7 @@
 	<string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Log-File for Debugging</string>
   <string name="DebugLog_title">Use log file</string>
+  <string name="JSchDebug_title">SFTP debug logging</string>
   <string name="DebugLog_summary">Write app output to a local log file</string>
   <string name="DebugLog_send">Send debug log...</string>
   
