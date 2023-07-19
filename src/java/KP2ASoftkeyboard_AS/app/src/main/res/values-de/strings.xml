@@ -25,7 +25,7 @@
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">Eingabeoptionen</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
-    <string name="vibrate_on_keypress">Vibrieren b. Tastendruck</string>
+    <string name="vibrate_on_keypress">Bei Tastendruck vibrieren</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
     <string name="sound_on_keypress">Ton bei Tastendruck</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
@@ -120,13 +120,13 @@
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
     <string name="tip_to_view_accents"><b>\"Halten Sie eine Taste gedrückt, um Akzente anzuzeigen\"\n\"(ø, ö, ô, ó usw.).\"</b></string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
-    <string name="tip_to_open_symbols"><b>\"Wechseln Sie zu Ziffern und Symbolen, indem Sie diese Taste berühren.\"</b></string>
+    <string name="tip_to_open_symbols"><b>„Wechseln Sie zu Ziffern und Symbolen, indem Sie diese Taste berühren.“</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
-    <string name="tip_to_close_symbols"><b>\"Durch erneutes Drücken dieser Taste gelangen Sie zurück zu den Buchstaben.\"</b></string>
+    <string name="tip_to_close_symbols"><b>„Durch erneutes Drücken dieser Taste gelangen Sie zurück zu den Buchstaben.“</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
-    <string name="tip_to_launch_settings"><b>\"Halten Sie diese Taste gedrückt, um die Tastatureinstellungen, wie beispielsweise die automatische Vervollständigung, zu ändern.\"</b></string>
+    <string name="tip_to_launch_settings"><b>„Halten Sie diese Taste gedrückt, um die Tastatureinstellungen, wie beispielsweise die automatische Vervollständigung, zu ändern.“</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
-    <string name="tip_to_start_typing"><b>\"Probieren Sie es aus!\"</b></string>
+    <string name="tip_to_start_typing"><b>„Probieren Sie es aus!“</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
     <string name="label_go_key">Los</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
@@ -166,7 +166,7 @@
     <string name="voice_working">Vorgang läuft</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
-    <string name="voice_error">Fehler. Versuchen Sie es erneut..</string>
+    <string name="voice_error">Fehler. Versuchen Sie es erneut.</string>
     <!-- Short message shown for a network error. -->
     <string name="voice_network_error">Keine Verbindung</string>
     <!-- Short message shown for a network error where the utterance was really long,
@@ -184,9 +184,9 @@
 	search is not installed. -->
     <string name="voice_not_installed">Sprachsuche nicht installiert</string>
     <!-- Short hint shown in candidate view to explain voice input. -->
-    <string name="voice_swipe_hint"><b>\"Hinweis:\"</b>\" Ziehen Sie zum Sprechen den Finger über die Tastatur.\"</string>
+    <string name="voice_swipe_hint"><b>„Hinweis:“</b>„ Ziehen Sie zum Sprechen den Finger über die Tastatur.“</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
-    <string name="voice_punctuation_hint"><b>\"Hinweis:\"</b>\" Versuchen Sie beim nächsten Mal, Satzzeichen wie \"Punkt\", \"Komma\" oder \"Fragezeichen\" per Sprachbefehl einzugeben.\"</string>
+    <string name="voice_punctuation_hint"><b>„Hinweis:“</b>„ Versuchen Sie beim nächsten Mal, Satzzeichen wie „Punkt“, „Komma“ oder „Fragezeichen“ per Sprachbefehl einzugeben.“</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Abbrechen</string>
     <!-- Label on button when an error occurs -->
@@ -214,13 +214,13 @@
     <string name="auto_submit_summary">Drücken Sie auf die Eingabetaste, wenn Sie einen Suchvorgang durchführen oder zum nächsten Feld wechseln.</string>
     <!-- IME Tutorial screen (ROMAN) -->
     <!-- appears above image showing the user to click on a TextView to show the IME -->
-    <string name="open_the_keyboard"><font size="17"><b>\"Tastatur öffnen\"\n</b></font><font size="3">\n</font>\"Berühren Sie ein beliebiges Textfeld.\"</string>
+    <string name="open_the_keyboard"><font size="17"><b>„Tastatur öffnen“\n</b></font><font size="3">\n</font>„Berühren Sie ein beliebiges Textfeld.“</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
-    <string name="close_the_keyboard"><font size="17"><b>\"Tastatur schließen\"\n</b></font><font size="3">\n</font>\"Drücken Sie die Zurücktaste.\"</string>
+    <string name="close_the_keyboard"><font size="17"><b>„Tastatur schließen“\n</b></font><font size="3">\n</font>„Drücken Sie die Zurücktaste.“</string>
     <!-- appears above image showing how to use touch and hold -->
-    <string name="touch_and_hold"><font size="17"><b>\"Für Optionen eine Taste berühren und gedrückt halten\"\n</b></font><font size="3">\n</font>\"Greifen Sie auf Satzzeichen und Akzente zu.\"</string>
+    <string name="touch_and_hold"><font size="17"><b>„Für Optionen eine Taste berühren und gedrückt halten“\n</b></font><font size="3">\n</font>„Greifen Sie auf Satzzeichen und Akzente zu.“</string>
     <!-- appears above image showing how to access keyboard settings -->
-    <string name="keyboard_settings"><font size="17"><b>\"Tastatureinstellungen\"\n</b></font><font size="3">\n</font>\"Berühren und halten Sie die Taste \"<b>\"?123\"</b>\" gedrückt.\"</string>
+    <string name="keyboard_settings"><font size="17"><b>„Tastatureinstellungen“\n</b></font><font size="3">\n</font>„Berühren und halten Sie die Taste „<b>\"?123\"</b>“ gedrückt.“</string>
     <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
     <string name="popular_domain_0">".com"</string>
     <!-- popular web domains for the locale - item 1, displayed in the popup -->

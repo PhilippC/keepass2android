@@ -12,6 +12,7 @@ using Keepass2android.Pluginsdk;
 using KeePassLib;
 using KeePassLib.Collections;
 using KeePassLib.Utility;
+using Kp2aAutofillParser;
 using Org.Json;
 using AutofillServiceBase = keepass2android.services.AutofillBase.AutofillServiceBase;
 
@@ -33,10 +34,10 @@ namespace keepass2android.services
         {
         }
 
-        protected override List<FilledAutofillFieldCollection> GetSuggestedEntries(string query)
+        protected override List<FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query)
         {
             if (!App.Kp2a.DatabaseIsUnlocked)
-                return new List<FilledAutofillFieldCollection>();
+                return new List<FilledAutofillFieldCollection<ViewNodeInputField>>();
             var foundEntries = (ShareUrlResults.GetSearchResultsForUrl(query)?.Entries ?? new PwObjectList<PwEntry>())
                 .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
                 .ToList();

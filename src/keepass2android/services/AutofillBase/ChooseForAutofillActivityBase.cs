@@ -12,6 +12,7 @@ using Java.Util;
 using keepass2android.services.AutofillBase.model;
 using System.Linq;
 using Android.Content.PM;
+using Kp2aAutofillParser;
 #if !NoNet
 using Com.Dropbox.Core.V2.Teamlog;
 #endif
@@ -173,7 +174,7 @@ namespace keepass2android.services.AutofillBase
             ReplyIntent = null;
         }
 
-        protected void OnSuccess(FilledAutofillFieldCollection clientFormDataMap, bool isManual)
+        protected void OnSuccess(FilledAutofillFieldCollection<ViewNodeInputField> clientFormDataMap, bool isManual)
         {
             var intent = Intent;
             AssistStructure structure = (AssistStructure)intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
@@ -229,7 +230,7 @@ namespace keepass2android.services.AutofillBase
         /// <summary>
         /// Creates the FilledAutofillFieldCollection from the intent returned from the query activity
         /// </summary>
-        protected abstract FilledAutofillFieldCollection GetDataset();
+        protected abstract FilledAutofillFieldCollection<ViewNodeInputField> GetDataset();
 
         public abstract IAutofillIntentBuilder IntentBuilder { get; }
 

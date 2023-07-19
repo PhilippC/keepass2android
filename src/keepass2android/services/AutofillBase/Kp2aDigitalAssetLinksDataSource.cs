@@ -2,11 +2,13 @@
 using System.Linq;
 using Android.Content;
 using Android.Preferences;
+using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
 {
+    
 
-    internal class Kp2aDigitalAssetLinksDataSource
+    internal class Kp2aDigitalAssetLinksDataSource : IKp2aDigitalAssetLinksDataSource
     {
 
         private const string Autofilltrustedapps = "AutoFillTrustedApps";
@@ -35,6 +37,11 @@ namespace keepass2android.services.AutofillBase
             var prefs = PreferenceManager.GetDefaultSharedPreferences(_ctx);
             var trustedLinks = prefs.GetStringSet("AutoFillTrustedLinks", new List<string>()).ToHashSet();
             return trustedLinks.Contains(BuildLink(domain, targetPackage));
+        }
+
+        public bool IsEnabled()
+        {
+            return !PreferenceManager.GetDefaultSharedPreferences(_ctx).GetBoolean(_ctx.GetString(Resource.String.NoDalVerification_key), false);
         }
 
         public void RememberAsTrustedApp(string packageName)

@@ -1,0 +1,119 @@
+﻿{
+  "InputFields": [
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": true,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_bar_root",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_mode_bar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "content",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "username_text_input_layout",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "username",
+      "Hint": "Username",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 97,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "password_text_input_layout",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "password",
+      "Hint": "Password",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [
+        "passwordAuto"
+      ],
+      "IsFocused": false,
+      "InputType": 129,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+
+    },
+    {
+      "IdEntry": "login_button",
+      "Hint": null,
+      "ClassName": "android.widget.Button",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "progressBar",
+      "Hint": null,
+      "ClassName": "android.widget.ProgressBar",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "forgot_password",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    }
+  ],
+  "PackageId": "com.servicenet.mobile",
+  "WebDomain": null
+}

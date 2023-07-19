@@ -20,6 +20,7 @@ using AndroidX.AutoFill.Inline;
 using AndroidX.AutoFill.Inline.V1;
 using Java.Util.Concurrent.Atomic;
 using keepass2android.services.AutofillBase.model;
+using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
 {
@@ -137,7 +138,7 @@ namespace keepass2android.services.AutofillBase
                     return;
                 }
 
-                AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
+                
                 InlineSuggestionsRequest inlineSuggestionsRequest = null;
                 IList<InlinePresentationSpec> inlinePresentationSpecs = null;
                 if (((int) Build.VERSION.SdkInt >= 30)
@@ -149,7 +150,7 @@ namespace keepass2android.services.AutofillBase
                 }
 
 
-                var autofillIds = autofillFields.GetAutofillIds();
+                var autofillIds = parser.AutofillFields.GetAutofillIds();
                 if (autofillIds.Length != 0 && CanAutofill(query, isManual))
                 {
                     var responseBuilder = new FillResponse.Builder();
@@ -255,7 +256,7 @@ namespace keepass2android.services.AutofillBase
                 if (warning == DisplayWarning.None)
                 {
           
-                    FilledAutofillFieldCollection partitionData =
+                    FilledAutofillFieldCollection<ViewNodeInputField> partitionData =
                         AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, parser.AutofillFields.FocusedAutofillCanonicalHints);
 
                     Kp2aLog.Log("AF: Add dataset");
@@ -299,7 +300,7 @@ namespace keepass2android.services.AutofillBase
 
         }
 
-        protected abstract List<FilledAutofillFieldCollection> GetSuggestedEntries(string query);
+        protected abstract List<FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query);
 
         public enum DisplayWarning
         {

@@ -21,7 +21,7 @@
     <!-- Title for Latin keyboard  -->
     <string name="english_ime_name">==  Keepass2Android 键盘 ==</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
-    <string name="english_ime_settings">USB 键盘设置</string>
+    <string name="english_ime_settings">键盘设置</string>
     <!-- Title for Latin keyboard input options dialog -->
     <string name="english_ime_input_options">输入选项</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
@@ -29,23 +29,23 @@
     <!-- Option to play back sound on keypress in soft keyboard -->
     <string name="sound_on_keypress">按键声音</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
-    <string name="popup_on_keypress">按键弹出放大</string>
+    <string name="popup_on_keypress">按键弹出显示</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <string name="hit_correction">智能纠错</string>
     <!-- Description for hit_correction  -->
     <string name="hit_correction_summary">启用输入错误校正</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
-    <string name="hit_correction_land">横屏输入错误</string>
+    <string name="hit_correction_land">横屏输入纠错</string>
     <!-- Description for hit_correction in landscape -->
     <string name="hit_correction_land_summary">启用输入错误校正</string>
     <!-- Option to automatically correct word on hitting space -->
-    <string name="auto_correction">单词联想</string>
+    <string name="auto_correction">输入建议</string>
     <!-- Description for auto_correction -->
     <string name="auto_correction_summary">自动更正前一个单词</string>
     <!-- Option to enable text prediction -->
-    <string name="prediction">单词联想</string>
+    <string name="prediction">输入建议</string>
     <!-- Category title for text prediction -->
-    <string name="prediction_category"> 词语建议设置</string>
+    <string name="prediction_category">输入建议设置</string>
     <!-- Description for text prediction -->
     <string name="prediction_summary">在输入时启用自动补全</string>
     <!-- Dialog title for auto complete choices -->
@@ -91,7 +91,7 @@
     <!-- Option to enable bigram completion -->
     <string name="bigram_suggestion">二元语法分词建议</string>
     <!-- Description for auto completion -->
-    <string name="bigram_suggestion_summary">使用曾经使用过的词语改进建议</string>
+    <string name="bigram_suggestion_summary">使用前一个单词来改进建议</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>无</item>

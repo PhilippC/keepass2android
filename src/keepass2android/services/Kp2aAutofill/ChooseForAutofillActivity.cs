@@ -15,6 +15,7 @@ using keepass2android.services.AutofillBase.model;
 using Keepass2android.Pluginsdk;
 using KeePassLib;
 using KeePassLib.Utility;
+using Kp2aAutofillParser;
 
 namespace keepass2android.services.Kp2aAutofill
 {
@@ -41,7 +42,7 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override Result ExpectedActivityResult => KeePass.ExitCloseAfterTaskComplete;
 
-        protected override FilledAutofillFieldCollection GetDataset()
+        protected override FilledAutofillFieldCollection<ViewNodeInputField> GetDataset()
         {
             if (App.Kp2a.CurrentDb==null || (App.Kp2a.QuickLocked))
                 return null;
@@ -50,11 +51,11 @@ namespace keepass2android.services.Kp2aAutofill
             return GetFilledAutofillFieldCollectionFromEntry(entryOutput, this);
         }
 
-        public static FilledAutofillFieldCollection GetFilledAutofillFieldCollectionFromEntry(PwEntryOutput pwEntryOutput, Context context)
+        public static FilledAutofillFieldCollection<ViewNodeInputField> GetFilledAutofillFieldCollectionFromEntry(PwEntryOutput pwEntryOutput, Context context)
         {
             if (pwEntryOutput == null)
                 return null;
-            FilledAutofillFieldCollection fieldCollection = new FilledAutofillFieldCollection();
+            FilledAutofillFieldCollection<ViewNodeInputField> fieldCollection = new FilledAutofillFieldCollection<ViewNodeInputField>();
             var pwEntry = pwEntryOutput.Entry;
 
             foreach (string key in pwEntryOutput.OutputStrings.GetKeys())

@@ -686,6 +686,12 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Oprava chyby vedúcej k pádom a neočakávaným odhláseniam</item>
+    <item>Prepnutie na novú implementáciu SFTP, s podporou pre moderné algoritmy verejných kľúčov, ako je rsa-sha2-256</item>
+    <item>Označiť heslá ako citlivé údaje pri kopírovaní do schránky (Android 13)</item>
+    <item>Autofill improvements</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Pridaná podpora prehliadania, odstraňovania a obnovovania záloh záznamu</item>
     <item>Implementovaná podpora pre cloudové úložisko MEGA</item>

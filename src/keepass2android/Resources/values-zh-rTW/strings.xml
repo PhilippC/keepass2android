@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">不檢查域名是否符合應用程式包裹</string>
   <string name="InlineSuggestions_title">整合到鍵盤</string>
   <string name="InlineSuggestions_summary">在鍵盤中內嵌自動填入建議選項 (如輸入法支援) </string>
+  <string name="LogAutofillView_title">記錄自動填入畫面</string>
+  <string name="LogAutofillView_summary">記下自動填入畫面的詳情到偵錯日誌（僅啟用時）。自動填入出錯時，可以發送這些詳情給開發者。</string>
   <string name="requires_android11">需要 Android 11 以上版本</string>
   <string name="kp2a_findUrl">查找密碼</string>
   <string name="excludeExpiredEntries">排除過期的項目</string>
@@ -690,6 +692,7 @@
     <item>修正當機和意外登出的錯誤</item>
     <item>切換成新 SFTP 實作，支援現代公鑰演算法，如 rsa-sha2-256</item>
     <item>複製密碼到剪貼簿時設為機密 (Android 13)</item>
+    <item>自動填入改進</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>支援查看、移除和還原項目備份</item>
