@@ -826,7 +826,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 
 							onReceivePathForFileSelect(requestCode, sftpStorage1.buildFullPath(
 									host, port, initialDir, user, pwd, connectTimeout,
-									keyName, keyPassphrase));
+									keyName, keyPassphrase, null));
 						} catch (UnsupportedEncodingException e) {
 							e.printStackTrace();
 						}

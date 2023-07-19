@@ -199,6 +199,11 @@ namespace keepass2android
 		        {
 			        dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text = ci.ConnectTimeoutSec.ToString();
 		        }
+				
+				if (ci.ConfigOpts.Contains(SftpStorage.SshCfgKex))
+				{
+					dlgContents.FindViewById<EditText>(Resource.Id.sftp_kex).Text = ci.ConfigOpts[SftpStorage.SshCfgKex].ToString();
+				}
 
 				if (!string.IsNullOrEmpty(ci.Password))
 				{
@@ -248,9 +253,11 @@ namespace keepass2android
                 {
                     int.TryParse(connectTimeoutText, out connectTimeout);
                 }
+				string kexAlgorithms = dlgContents.FindViewById<EditText>(Resource.Id.sftp_kex).Text;
 
                 string sftpPath = fileStorage.BuildFullPath(
-                    host, port, initialPath, user, password, connectTimeout, keyName, keyPassphrase);
+                    host, port, initialPath, user, password, connectTimeout, keyName, keyPassphrase,
+					kexAlgorithms);
 
                 onStartBrowse(sftpPath);
             });

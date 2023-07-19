@@ -49,14 +49,18 @@ public class SftpStorage extends JavaFileStorageBase {
 	private static final String SFTP_KEYNAME_OPTION_NAME = "key";
 	private static final String SFTP_KEYPASSPHRASE_OPTION_NAME = "phrase";
 
+	public static final String SSH_CFG_KEX = "kex";
+	private static final String[] SSH_CFG_KEYS = new String[] {
+			SSH_CFG_KEX
+	};
+
 	private static final ValueResolver<Integer> cTimeoutResolver = c ->
 			c == null || c == UNSET_SFTP_CONNECT_TIMEOUT ? null : String.valueOf(c);
 
 	private static final ValueResolver<String> nonBlankStringResolver = s ->
 			s == null || s.isBlank() ? null : s;
 
-
-	JSch jsch;
+	private JSch jsch;
 
 	public class ConnectionInfo
 	{
@@ -68,12 +72,14 @@ public class SftpStorage extends JavaFileStorageBase {
 		public String keyPassphrase;
 		public int port;
 		public int connectTimeoutSec = UNSET_SFTP_CONNECT_TIMEOUT;
+		public final Map<String, String> configOpts = new HashMap<>();
 
 
 		public String toString() {
 			return "ConnectionInfo{host=" + host + ",port=" + port + ",user=" + username +
 					",pwd=<hidden>,localPath=" + localPath + ",key=" + keyName +
 					",phrase=<hidden>,connectTimeout=" + connectTimeoutSec +
+					",cfgOpts=" + configOpts +
 					"}";
 		}
 	}
@@ -202,7 +208,8 @@ public class SftpStorage extends JavaFileStorageBase {
 
 			return buildFullPath(cInfo.host, cInfo.port, newPath,
 					cInfo.username, cInfo.password, cInfo.connectTimeoutSec,
-					cInfo.keyName, cInfo.keyPassphrase);
+					cInfo.keyName, cInfo.keyPassphrase,
+					cInfo.configOpts.get(SSH_CFG_KEX));
 		} catch (Exception e) {
 			throw convertException(e);
 		}
@@ -445,6 +452,11 @@ public class SftpStorage extends JavaFileStorageBase {
 
 		session.setConfig("PreferredAuthentications", "publickey,password");
 
+		for (Map.Entry<String, String> e : cInfo.configOpts.entrySet()) {
+			Log.d("KP2AJFS", "Setting SSH config: " + e.getKey() + "=" + e.getValue());
+			session.setConfig(e.getKey(), e.getValue());
+		}
+
 		sessionConnect(session, cInfo);
 
 		Channel channel = session.openChannel("sftp");
@@ -561,6 +573,14 @@ public class SftpStorage extends JavaFileStorageBase {
 		if (options.containsKey(SFTP_KEYPASSPHRASE_OPTION_NAME)) {
 			ci.keyPassphrase = options.get(SFTP_KEYPASSPHRASE_OPTION_NAME);
 		}
+
+		// TODO: Support for prepending/appending config values (instead of complete replacement)?
+		for (String cfgKey : SSH_CFG_KEYS) {
+			if (options.containsKey(cfgKey)) {
+				ci.configOpts.put(cfgKey, options.get(cfgKey));
+			}
+		}
+
 		return ci;
 	}
 
@@ -637,7 +657,8 @@ public class SftpStorage extends JavaFileStorageBase {
 	public String buildFullPath(String host, int port, String localPath,
 										String username, String password,
 										int connectTimeoutSec,
-										String keyName, String keyPassphrase)
+										String keyName, String keyPassphrase,
+										String kexAlgorithms)
 			throws UnsupportedEncodingException {
 
 		StringBuilder uri = new StringBuilder(getProtocolPrefix()).append(encode(username));
@@ -660,7 +681,12 @@ public class SftpStorage extends JavaFileStorageBase {
 				.addOption(SFTP_CONNECT_TIMEOUT_OPTION_NAME, connectTimeoutSec, cTimeoutResolver)
 				.addOption(SFTP_KEYNAME_OPTION_NAME, keyName, nonBlankStringResolver)
 				.addOption(SFTP_KEYPASSPHRASE_OPTION_NAME, keyPassphrase, nonBlankStringResolver)
+				.addOption(SSH_CFG_KEX, kexAlgorithms, nonBlankStringResolver)
 				.build());
+
+		// FIXME: Remove this!
+		Log.d("KP2AJFS", "buildFullPath returns uri: " + uri.toString());
+		// FIXME <end>
 
 		return uri.toString();
 	}

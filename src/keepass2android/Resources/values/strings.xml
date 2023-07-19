@@ -607,6 +607,8 @@
 	<string name="private_key_select">Selected private key</string>
 	<string name="private_key_create_new">[Add New...]</string>
 	<string name="hint_sftp_key_passphrase">Key passphrase (optional)</string>
+	<string name="sftp_kex_title">Key Exchange (KEX) Algorithm(s) (optional)</string>
+	<string name="hint_sftp_kex">"Comma-separated algorithm names</string>
 
   <string name="enter_ftp_login_title">Enter FTP login data:</string>
 
