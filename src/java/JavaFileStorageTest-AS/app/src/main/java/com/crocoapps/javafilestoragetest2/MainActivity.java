@@ -824,9 +824,10 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 							EditText etKeyPassphrase = view.findViewById(R.id.private_key_passphrase);
 							String keyPassphrase = etKeyPassphrase.getText().toString();
 
+							// TODO: Add kex and shk configurability to SFTP dialog
 							onReceivePathForFileSelect(requestCode, sftpStorage1.buildFullPath(
 									host, port, initialDir, user, pwd, connectTimeout,
-									keyName, keyPassphrase, null));
+									keyName, keyPassphrase, null, null));
 						} catch (UnsupportedEncodingException e) {
 							e.printStackTrace();
 						}

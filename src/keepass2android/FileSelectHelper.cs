@@ -204,8 +204,12 @@ namespace keepass2android
 				{
 					dlgContents.FindViewById<EditText>(Resource.Id.sftp_kex).Text = ci.ConfigOpts[SftpStorage.SshCfgKex].ToString();
 				}
+                if (ci.ConfigOpts.Contains(SftpStorage.SshCfgServerHostKey))
+                {
+                    dlgContents.FindViewById<EditText>(Resource.Id.sftp_shk).Text = ci.ConfigOpts[SftpStorage.SshCfgServerHostKey].ToString();
+                }
 
-				if (!string.IsNullOrEmpty(ci.Password))
+                if (!string.IsNullOrEmpty(ci.Password))
 				{
 					authModeSpinner.SetSelection(SftpModeSpinnerPasswd);
 				} else if (!string.IsNullOrEmpty(ci.KeyName))
@@ -254,10 +258,11 @@ namespace keepass2android
                     int.TryParse(connectTimeoutText, out connectTimeout);
                 }
 				string kexAlgorithms = dlgContents.FindViewById<EditText>(Resource.Id.sftp_kex).Text;
+				string shkAlgorithms = dlgContents.FindViewById<EditText>(Resource.Id.sftp_shk).Text;
 
                 string sftpPath = fileStorage.BuildFullPath(
                     host, port, initialPath, user, password, connectTimeout, keyName, keyPassphrase,
-					kexAlgorithms);
+					kexAlgorithms, shkAlgorithms);
 
                 onStartBrowse(sftpPath);
             });

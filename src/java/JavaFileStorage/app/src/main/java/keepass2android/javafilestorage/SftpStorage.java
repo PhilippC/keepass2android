@@ -50,16 +50,16 @@ public class SftpStorage extends JavaFileStorageBase {
 	private static final String SFTP_KEYPASSPHRASE_OPTION_NAME = "phrase";
 
 	public static final String SSH_CFG_KEX = "kex";
-	private static final String[] SSH_CFG_KEYS = new String[] {
-			SSH_CFG_KEX
-	};
-
+	public static final String SSH_CFG_SERVER_HOST_KEY = "server_host_key";
+	private static final Set<String> SSH_CFG_CSV_EXPANDABLE = Set.of(SSH_CFG_KEX, SSH_CFG_SERVER_HOST_KEY);
 	private static final ValueResolver<Integer> cTimeoutResolver = c ->
 			c == null || c == UNSET_SFTP_CONNECT_TIMEOUT ? null : String.valueOf(c);
 
 	private static final ValueResolver<String> nonBlankStringResolver = s ->
 			s == null || s.isBlank() ? null : s;
 
+	private static final String TAG = "KP2AJFS";
+	private static final String THREAD_TAG = TAG + "[thread]";
 	private JSch jsch;
 
 	public class ConnectionInfo
@@ -213,7 +213,8 @@ public class SftpStorage extends JavaFileStorageBase {
 			return buildFullPath(cInfo.host, cInfo.port, newPath,
 					cInfo.username, cInfo.password, cInfo.connectTimeoutSec,
 					cInfo.keyName, cInfo.keyPassphrase,
-					cInfo.configOpts.get(SSH_CFG_KEX));
+					cInfo.configOpts.get(SSH_CFG_KEX),
+					cInfo.configOpts.get(SSH_CFG_SERVER_HOST_KEY));
 		} catch (Exception e) {
 			throw convertException(e);
 		}
@@ -435,7 +436,7 @@ public class SftpStorage extends JavaFileStorageBase {
 	ChannelSftp init(ConnectionInfo cInfo) throws JSchException, UnsupportedEncodingException {
 		jsch = new JSch();
 
-		Log.d("KP2AJFS", "init SFTP");
+		Log.d(TAG, "init SFTP");
 
 		String base_dir = getBaseDir();
 		jsch.setKnownHosts(base_dir + "/known_hosts");
@@ -448,19 +449,10 @@ public class SftpStorage extends JavaFileStorageBase {
 
 		}
 
-		Log.e("KP2AJFS[thread]", "getting session...");
+		Log.e(THREAD_TAG, "getting session...");
 		Session session = jsch.getSession(cInfo.username, cInfo.host, cInfo.port);
-		Log.e("KP2AJFS", "creating SftpUserInfo");
-		UserInfo ui = new SftpUserInfo(cInfo.password, cInfo.keyPassphrase, _appContext);
-		session.setUserInfo(ui);
 
-		session.setConfig("PreferredAuthentications", "publickey,password");
-
-		for (Map.Entry<String, String> e : cInfo.configOpts.entrySet()) {
-			Log.d("KP2AJFS", "Setting SSH config: " + e.getKey() + "=" + e.getValue());
-			session.setConfig(e.getKey(), e.getValue());
-		}
-
+		sessionConfigure(session, cInfo);
 		sessionConnect(session, cInfo);
 
 		Channel channel = session.openChannel("sftp");
@@ -471,11 +463,31 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	}
 
-	private void sessionConnect(Session session, ConnectionInfo ci) throws JSchException {
-		if (ci.connectTimeoutSec != UNSET_SFTP_CONNECT_TIMEOUT) {
-			session.connect(ci.connectTimeoutSec * 1000);
+	private void sessionConnect(Session session, ConnectionInfo cInfo) throws JSchException {
+		if (cInfo.connectTimeoutSec != UNSET_SFTP_CONNECT_TIMEOUT) {
+			session.connect(cInfo.connectTimeoutSec * 1000);
 		} else {
 			session.connect();
+		}
+	}
+
+	private void sessionConfigure(Session session, ConnectionInfo cInfo) {
+		Log.e(TAG, "creating SftpUserInfo");
+		UserInfo ui = new SftpUserInfo(cInfo.password, cInfo.keyPassphrase, _appContext);
+		session.setUserInfo(ui);
+
+		session.setConfig("PreferredAuthentications", "publickey,password");
+
+		for (Map.Entry<String, String> e : cInfo.configOpts.entrySet()) {
+			String cfgKey = e.getKey();
+			String before = session.getConfig(cfgKey);
+			String after = e.getValue();
+
+			if (SSH_CFG_CSV_EXPANDABLE.contains(cfgKey)) {
+				SshConfigCsvValueResolver resolver = new SshConfigCsvValueResolver(cfgKey, after);
+				after = resolver.resolve(before);
+			}
+			session.setConfig(cfgKey, after);
 		}
 	}
 
@@ -529,6 +541,17 @@ public class SftpStorage extends JavaFileStorageBase {
 		return _keyUtils.getValidatedCustomKeyContent(keyContent);
 	}
 
+	/**
+	 * Exposed for testing purposes only.
+	 * @param currentValues
+	 * @param spec
+	 * @return
+	 * @throws Exception
+	 */
+	public String resolveCsvValues(String currentValues, String spec) {
+		return new SshConfigCsvValueResolver("test", spec)
+				.resolve(currentValues);
+	}
 
 	public ConnectionInfo splitStringToConnectionInfo(String filename)
 			throws UnsupportedEncodingException {
@@ -578,8 +601,7 @@ public class SftpStorage extends JavaFileStorageBase {
 			ci.keyPassphrase = options.get(SFTP_KEYPASSPHRASE_OPTION_NAME);
 		}
 
-		// TODO: Support for prepending/appending config values (instead of complete replacement)?
-		for (String cfgKey : SSH_CFG_KEYS) {
+		for (String cfgKey : SSH_CFG_CSV_EXPANDABLE) {
 			if (options.containsKey(cfgKey)) {
 				ci.configOpts.put(cfgKey, options.get(cfgKey));
 			}
@@ -662,7 +684,7 @@ public class SftpStorage extends JavaFileStorageBase {
 										String username, String password,
 										int connectTimeoutSec,
 										String keyName, String keyPassphrase,
-										String kexAlgorithms)
+										String kexAlgorithms, String shkAlgorithms)
 			throws UnsupportedEncodingException {
 
 		StringBuilder uri = new StringBuilder(getProtocolPrefix()).append(encode(username));
@@ -686,10 +708,11 @@ public class SftpStorage extends JavaFileStorageBase {
 				.addOption(SFTP_KEYNAME_OPTION_NAME, keyName, nonBlankStringResolver)
 				.addOption(SFTP_KEYPASSPHRASE_OPTION_NAME, keyPassphrase, nonBlankStringResolver)
 				.addOption(SSH_CFG_KEX, kexAlgorithms, nonBlankStringResolver)
+				.addOption(SSH_CFG_SERVER_HOST_KEY, shkAlgorithms, nonBlankStringResolver)
 				.build());
 
 		// FIXME: Remove this!
-		Log.d("KP2AJFS", "buildFullPath returns uri: " + uri.toString());
+		Log.d(TAG, "buildFullPath returns uri: " + uri);
 		// FIXME <end>
 
 		return uri.toString();
