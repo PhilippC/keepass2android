@@ -88,6 +88,10 @@ public class SftpStorage extends JavaFileStorageBase {
 		OptionMapBuilder b = new OptionMapBuilder()
 				.addOption(SFTP_CONNECT_TIMEOUT_OPTION_NAME, ci.connectTimeoutSec, cTimeoutResolver)
 				.addOption(SFTP_KEYNAME_OPTION_NAME, ci.keyName, nonBlankStringResolver);
+		// Assume all config options are not sensitive and use the same resolver...
+		for (Map.Entry<String, String> entry : ci.configOpts.entrySet()) {
+			b.addOption(entry.getKey(), entry.getValue(), nonBlankStringResolver);
+		}
 		if (includeSensitive) {
 			b.addOption(SFTP_KEYPASSPHRASE_OPTION_NAME, ci.keyPassphrase, nonBlankStringResolver);
 		}
