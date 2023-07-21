@@ -333,7 +333,7 @@
 
 	<string name="hint_sftp_host">host</string>
 	<string name="hint_sftp_port">port</string>
-    <string name="hint_sftp_connect_timeout">connection timeout seconds</string>
+    <string name="hint_sftp_connect_timeout">timeout sec</string>
 
 	<string name="select_storage_type">Select the storage type:</string>
 
@@ -525,6 +525,6 @@ Initial public release
 		<item>Do not accept invalid certificates</item>
 	</string-array>
 	
-	<string name="initial_directory">Initial directory (optional):</string>
+	<string name="initial_directory">Initial dir (optional):</string>
     
 </resources>

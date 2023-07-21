@@ -690,6 +690,13 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		return sb.toString();
 	}
 
+	private void populateCsvMockValues(View view) {
+		EditText etSpecs = view.findViewById(R.id.mock_csv_specs);
+		etSpecs.setText("-bar,+first,-*d*");
+		EditText etCfgs = view.findViewById(R.id.mock_csv_cfg);
+		etCfgs.setText("foo,del1,bar,del2");
+	}
+
 	@Override
 	public void performManualFileSelect(boolean isForSave, final int requestCode,
 			String protocolId)
@@ -698,6 +705,8 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 		{
 			final View view = getLayoutInflater().inflate(R.layout.sftp_credentials, null);
 			final SftpStorage sftpStorage = (SftpStorage)storageToTest;
+
+			populateCsvMockValues(view);
 
 			view.findViewById(R.id.send_public_key).setOnClickListener(v -> {
 				Intent sendIntent = new Intent();
@@ -788,6 +797,21 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 				}
 			});
 
+			view.findViewById(R.id.resolve_mock_csv).setOnClickListener(v -> {
+				EditText etSpecs = view.findViewById(R.id.mock_csv_specs);
+				String specs = etSpecs.getText().toString();
+				EditText etCfg = view.findViewById(R.id.mock_csv_cfg);
+				String cfg = etCfg.getText().toString();
+				if (!specs.isBlank() && !cfg.isBlank()) {
+					String result = sftpStorage.resolveCsvValues(cfg, specs);
+					Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+				}
+			});
+
+			view.findViewById(R.id.reset_mock_csv).setOnClickListener(v -> {
+				populateCsvMockValues(view);
+			});
+
 			new AlertDialog.Builder(this)
 					.setView(view)
 					.setTitle("Enter SFTP credentials")
@@ -823,11 +847,14 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 							String keyName = etKeyName.getText().toString();
 							EditText etKeyPassphrase = view.findViewById(R.id.private_key_passphrase);
 							String keyPassphrase = etKeyPassphrase.getText().toString();
+							EditText etKex = view.findViewById(R.id.kex);
+							String kex = etKex.getText().toString();
+							EditText etShk = view.findViewById(R.id.shk);
+							String shk = etShk.getText().toString();
 
-							// TODO: Add kex and shk configurability to SFTP dialog
 							onReceivePathForFileSelect(requestCode, sftpStorage1.buildFullPath(
 									host, port, initialDir, user, pwd, connectTimeout,
-									keyName, keyPassphrase, null, null));
+									keyName, keyPassphrase, kex, shk));
 						} catch (UnsupportedEncodingException e) {
 							e.printStackTrace();
 						}
