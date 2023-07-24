@@ -16,6 +16,7 @@ import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.KeyPair;
+import com.jcraft.jsch.Logger;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpATTRS;
 import com.jcraft.jsch.SftpException;
@@ -376,11 +377,15 @@ public class SftpStorage extends JavaFileStorageBase {
 	}
 
 	public void setJschLogging(boolean enabled, String logFilename) {
+		Logger impl = null;
 		if (enabled) {
-			JSch.setLogger(new Kp2aJSchLogger(logFilename));
-		} else {
-			JSch.setLogger(null);
+			if (logFilename != null) {
+				impl = Kp2aJSchLogger.createFileLogger(logFilename);
+			} else {
+				impl = Kp2aJSchLogger.createAndroidLogger();
+			}
 		}
+		JSch.setLogger(impl);
 	}
 
 	private String createKeyPair(String key_filename) throws JSchException, IOException {
