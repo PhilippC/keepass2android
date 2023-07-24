@@ -19,6 +19,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Logger;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpATTRS;
 import com.jcraft.jsch.SftpException;
@@ -515,11 +516,15 @@ public class SftpStorage extends JavaFileStorageBase {
 
 	@SuppressWarnings("unused")  // Exposed by JavaFileStorageBindings
 	public void setJschLogging(boolean enabled, String logFilename) {
+		Logger impl = null;
 		if (enabled) {
-			JSch.setLogger(new Kp2aJSchLogger(logFilename));
-		} else {
-			JSch.setLogger(null);
+			if (logFilename != null) {
+				impl = Kp2aJSchLogger.createFileLogger(logFilename);
+			} else {
+				impl = Kp2aJSchLogger.createAndroidLogger();
+			}
 		}
+		JSch.setLogger(impl);
 	}
 
 	/**
@@ -710,10 +715,6 @@ public class SftpStorage extends JavaFileStorageBase {
 				.addOption(SSH_CFG_KEX, kexAlgorithms, nonBlankStringResolver)
 				.addOption(SSH_CFG_SERVER_HOST_KEY, shkAlgorithms, nonBlankStringResolver)
 				.build());
-
-		// FIXME: Remove this!
-		Log.d(TAG, "buildFullPath returns uri: " + uri);
-		// FIXME <end>
 
 		return uri.toString();
 	}
