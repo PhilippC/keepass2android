@@ -16,6 +16,12 @@ public class Kp2aJSchLogger implements Logger {
         void log(String message);
     }
 
+    private interface EntryToLogFactory {
+        ILogger create(LogEntry e);
+    }
+
+    private static final EntryToLogFactory ANDROID_FACTORY = e -> e.logger;
+
     private static final class LogEntry {
         private final String levelTag;
         private final ILogger logger;
@@ -39,10 +45,19 @@ public class Kp2aJSchLogger implements Logger {
     );
 
 
-    private final String logFilename;
+    private final EntryToLogFactory logFactory;
 
-    public Kp2aJSchLogger(String logFilename) {
-        this.logFilename = logFilename;
+    static Kp2aJSchLogger createAndroidLogger() {
+        return new Kp2aJSchLogger(ANDROID_FACTORY);
+    }
+
+    static Kp2aJSchLogger createFileLogger(String logFilename) {
+        final String fName = logFilename;
+        return new Kp2aJSchLogger(e -> createFileLogger(e, fName));
+    }
+
+    private Kp2aJSchLogger(EntryToLogFactory logFactory) {
+        this.logFactory = logFactory;
     }
 
     @Override
@@ -61,19 +76,12 @@ public class Kp2aJSchLogger implements Logger {
         if (entry == null)
             entry = DEFAULT_ENTRY;
 
-        ILogger logger;
-        if (logFilename != null) {
-            logger = createFileLogger(entry);
-        } else {
-            logger = entry.logger;
-        }
-
-        return logger;
+        return logFactory.create(entry);
     }
 
-    private ILogger createFileLogger(LogEntry entry) {
+    private static ILogger createFileLogger(LogEntry entry, String fName) {
         try {
-            final PrintWriter p = new PrintWriter(new FileWriter(logFilename, true));
+            final PrintWriter p = new PrintWriter(new FileWriter(fName, true));
             return msg -> {
                 try {
                     String fullMsg = String.join(" ", entry.levelTag, PREFIX, msg);
