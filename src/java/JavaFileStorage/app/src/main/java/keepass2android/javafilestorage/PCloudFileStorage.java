@@ -22,6 +22,7 @@ import com.pcloud.sdk.ApiError;
 import com.pcloud.sdk.Authenticators;
 import com.pcloud.sdk.AuthorizationActivity;
 import com.pcloud.sdk.AuthorizationData;
+import com.pcloud.sdk.AuthorizationRequest;
 import com.pcloud.sdk.AuthorizationResult;
 import com.pcloud.sdk.Call;
 import com.pcloud.sdk.DataSource;
@@ -228,7 +229,12 @@ public class PCloudFileStorage extends JavaFileStorageBase
             finishActivityWithSuccess(activity);
         } else if (!activity.getState().getBoolean("hasStartedAuth", false)) {
             Activity castedActivity = (Activity)activity;
-            Intent authIntent = AuthorizationActivity.createIntent(castedActivity, this.clientId);
+            AuthorizationRequest req = AuthorizationRequest.create()
+                    .setClientId(this.clientId)
+                    .setType(AuthorizationRequest.Type.TOKEN)
+                    .setForceAccessApproval(true)
+                    .build();
+            Intent authIntent = AuthorizationActivity.createIntent(castedActivity, req);
             castedActivity.startActivityForResult(authIntent, PCLOUD_AUTHORIZATION_REQUEST_CODE);
             activity.getState().putBoolean("hasStartedAuth", true);
         }
