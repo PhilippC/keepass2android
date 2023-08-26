@@ -3,7 +3,7 @@
 <resources>
   <string name="about_feedback">Feedback</string>
   <string name="AboutText">Keepass2Android ist ein Passwortmanager mit Lese- und Schreib-Zugriff auf KeePass 2.x Datenbanken.</string>
-  <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
+  <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von KeePassDroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
   <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
   <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta (Noun Project) erstellt. Das Pinguin-Icon wurde von Adriano Emerick (Noun Project) erstellt. Das Feder-Icon wurde von Jon Testa (Noun Project) erstellt. Das Apfel-Icon wurde von Ava Rowell (Noun Project) erstellt. Das Bild-Icon stammt von https://icons8.com/icon/5570/Picture.</string>
@@ -162,9 +162,9 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="InvalidPassword">Passwort oder Schlüsseldatei ungültig.</string>
   <string name="invalid_algorithm">Ungültiger Algorithmus.</string>
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
-  <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
+  <string name="keyfile_does_not_exist">Schlüsseldatei existiert nicht.</string>
   <string name="no_keyfile_selected">Keine Schlüsseldatei ausgewählt.</string>
-  <string name="keyfile_is_empty">Schlüssel-Datei ist leer.</string>
+  <string name="keyfile_is_empty">Schlüsseldatei ist leer.</string>
   <string name="length">Länge</string>
   <string name="list_size_title">Größe der Gruppenliste</string>
   <string name="list_size_summary">Schriftgröße in der Gruppenliste</string>
@@ -449,7 +449,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="DeletingItems">Elemente werden gelöscht …</string>
   <string name="SettingPassword">Passwort wird gesetzt …</string>
   <string name="UndoingChanges">Änderungen werden zurückgenommen …</string>
-  <string name="TransformingKey">Schlüsseltransformationen wird durchführt …</string>
+  <string name="TransformingKey">Schlüsseltransformationen wird durchgeführt …</string>
   <string name="DecodingDatabase">Datenbank wird entschlüsselt …</string>
   <string name="ParsingDatabase">Lese Datenbank ein…</string>
   <string name="CheckingTargetFileForChanges">Prüfen, ob Zieldatei geändert wurde …</string>
