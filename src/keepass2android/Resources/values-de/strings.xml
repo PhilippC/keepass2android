@@ -451,7 +451,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="DeletingItems">Elemente werden gelöscht …</string>
   <string name="SettingPassword">Passwort wird gesetzt …</string>
   <string name="UndoingChanges">Änderungen werden zurückgenommen …</string>
-  <string name="TransformingKey">Schlüsseltransformationen wird durchführt …</string>
+  <string name="TransformingKey">Schlüsseltransformationen werden durchgeführt…</string>
   <string name="DecodingDatabase">Datenbank wird entschlüsselt …</string>
   <string name="ParsingDatabase">Lese Datenbank ein…</string>
   <string name="CheckingTargetFileForChanges">Prüfen, ob Zieldatei geändert wurde …</string>
