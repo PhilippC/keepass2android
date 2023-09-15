@@ -174,6 +174,7 @@
   <string name="maskpass_summary">Piilota salasanat oletuksena</string>
   <string name="masktotp_title">Peitä TOTP-kenttä</string>
   <string name="masktotp_summary">Piilota TOTP-kenttä oletuksena</string>
+  <string name="NoAutofillDisabling_title">Automaattisen täytön poistaminen käytöstä ei ole mahdollista</string>
   <string name="NoAutofillDisabling_summary">Jos aktivoitu, sovellus ei näytä vaihtoehtoa poistaa automaattista täyttöä tiettyjen merkintöjen osalta.</string>
   <string name="menu_about">Tietoja</string>
   <string name="menu_change_key">Vaihda pääavain</string>
@@ -281,6 +282,7 @@
   <string name="author">Keepass2Androidin on kehittänyt Philipp Crocoll.</string>
   <string name="further_authors">Kiitokset kehitykseen osallistuneille: %1$s.</string>
   <string name="designers">Kiitokset kuvakkeiden ja ohjelman ulkonäön suunnitteluun osallistuneille: %1$s.</string>
+  <string name="supporters">Kiitos taloudellisesta tuesta %1$s.</string>
   <string name="credit_plugin1">Keepass Twofish Cipher -lisäosan on kehittänyt Scott Greenberg ja se sisältyy KP2A:han.</string>
   <string name="credit_android_filechooser">Android-tiedostonvalitsimen on kehittänyt Hai Bison</string>
   <string name="credit_keyboard">KP2A Android -näppäimistö perustuu Gingerbread-näppäimistöön ja Android Open Source Projectin avoimeen lähdekoodiin. Se käyttää Klaus Weidnerin kehittämästä Hacker\'s Keyboardista liitännäisten hallinnointikoodia.</string>
@@ -299,6 +301,8 @@
   <string name="NoDalVerification_summary">Poistaa käytöstä verkkotunnuksen ja sovelluspaketin täsmäämisen tarkistuksen</string>
   <string name="InlineSuggestions_title">Integroi näppäimistön kanssa</string>
   <string name="InlineSuggestions_summary">Näyttää automaattisen täytön ehdotukset näppäimistön sisäkkäisinä valintoina (jos syöte on tuettu)</string>
+  <string name="LogAutofillView_title">Automaattisen täytön näkymä lokiin</string>
+  <string name="LogAutofillView_summary">Kirjoita tiedot automaattisen täytön näkymästä virheenjäljityslokiin (jos virheenjäljitysloki on käytössä). Nämä tiedot voidaan lähettää kehittäjälle, jos automaattinen täyttö ei toimi odotetusti.</string>
   <string name="requires_android11">Vaatii Android 11 tai uudemman</string>
   <string name="kp2a_findUrl">Etsi salasana</string>
   <string name="excludeExpiredEntries">Sivuuta vanhentuneet merkinnät</string>
@@ -328,6 +332,7 @@
   <string name="QuickUnlockHideLength_title">Piilota pika-avauskoodin pituus</string>
   <string name="QuickUnlockHideLength_summary">Jos käytössä, pika-avauskoodin pituutta ei näytetä pika-avausnäytössä.</string>
   <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-avain tietokannan syötteestä</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Jos aktiivinen tietokanta sisältää otsikon QuickUnlock sen juuriryhmässä, tämän merkinnän salasanaa käytetään pika-avauksen koodina.</string>
   <string name="QuickUnlock_fail">Pika-avaus epäonnistui: väärä salasana!</string>
   <string name="SaveAttachmentDialog_title">Tallenna liite</string>
   <string name="SaveAttachmentDialog_text">Valitse liitteen tallennuspaikka.</string>
@@ -348,6 +353,10 @@
   <string name="add_extra_string">Lisää lisärivi</string>
   <string name="configure_totp">Määritä TOTP</string>
   <string name="totp_secret_key">Salainen avain</string>
+  <string name="totp_encoding_rfc6238">Oletusarvoiset RFC6238 token asetukset</string>
+  <string name="totp_encoding_steam">Steamin token asetukset</string>
+  <string name="totp_encoding_custom">Mukautetut tokenin asetukset</string>
+  <string name="totp_time_step">Aikaväli</string>
   <string name="totp_length">Koodin pituus</string>
   <string name="totp_scan">Skannaa QR-koodi</string>
   <string name="delete_extra_string">Poista lisärivi</string>
@@ -413,6 +422,7 @@
   <string name="PreloadDatabaseEnabled_title">Esilataa tietokanta</string>
   <string name="PreloadDatabaseEnabled_summary">Aloita tietokannan lataus taustalla jo salasanaa syötettäessä.</string>
   <string name="SyncAfterQuickUnlock_title">Synkronoi QuickUnlock jälkeen</string>
+  <string name="SyncAfterQuickUnlock_summary">Synkronoi tietokanta etätiedoston kanssa pika-avauksen käyttämisen jälkeen.</string>
   <string name="AskOverwriteBinary">Haluatko korvata nykyisen saman nimisen binääritiedoston?</string>
   <string name="AskOverwriteBinary_title">Haluatko korvata nykyisen binääritiedoston?</string>
   <string name="AskOverwriteBinary_yes">Korvaa</string>
@@ -512,6 +522,7 @@
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_myfiles">Omat tiedostot</string>
+  <string name="filestoragename_onedrive2_appfolder">Keepass2Android-sovelluksen kansio</string>
   <string name="filestoragename_sftp">SFTP (SSH-tiedostonsiirto)</string>
   <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Järjestelmän tiedostonvalitsin</string>
@@ -576,6 +587,7 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Nykyisen merkinnän tiedot</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Liitännäiselle lähetetään kaikki merkinnän tiedot ja se saa luvan tarjota toimintoja ja muuttaa merkinnän näkymää.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Pyydä omia tunnuksia</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Liitännäinen saa pyytää omaan sovelluspakettiinsa liittyviä tunnuksia.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Pyydä tunnuksia</string>
   <string name="get_regular_version">Hanki lisää tallennusmuotoja</string>
   <string name="CertificateWarning">Varoitus: Palvelimen varmenteen vahvistus epäonnistui: %1$s. Asenna tarvittava juurivarmenne laitteeseen tai katso asetukset!</string>
