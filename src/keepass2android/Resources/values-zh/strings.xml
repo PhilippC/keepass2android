@@ -10,7 +10,7 @@
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
   <string name="edit_entry">编辑条目</string>
-  <string name="add_url_entry">添加URL</string>
+  <string name="add_url_entry">为 URL 创建条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
   <string name="edit_group_title">编辑群组</string>
