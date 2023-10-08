@@ -1,17 +1,17 @@
 #if !NoNet
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Reflection;
-using System.Threading;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
 using FluentFTP;
+using FluentFTP.Exceptions;
 using KeePassLib;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+
 
 namespace keepass2android.Io
 {
@@ -138,7 +138,7 @@ namespace keepass2android.Io
 			var settings = ConnectionSettings.FromIoc(ioc);
 			
 			FtpClient client = new FtpClient();
-		    client.RetryAttempts = 3;
+			client.Config.RetryAttempts = 3;
 			if ((settings.Username.Length > 0) || (settings.Password.Length > 0))
 				client.Credentials = new NetworkCredential(settings.Username, settings.Password);
 			else
@@ -154,7 +154,7 @@ namespace keepass2android.Io
 				args.Accept = _app.CertificateValidationCallback(control, args.Certificate, args.Chain, args.PolicyErrors);
 			};
 
-			client.EncryptionMode = settings.EncryptionMode;
+			client.Config.EncryptionMode = settings.EncryptionMode;
 			
 			client.Connect();
 			return client;
@@ -284,42 +284,43 @@ namespace keepass2android.Io
 
         public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
 		{
-			try
+            try
 			{
                 using (var client = GetClient(ioc))
 				{
 					List<FileDescription> files = new List<FileDescription>();
 					foreach (FtpListItem item in client.GetListing(IocToLocalPath(ioc),
-						FtpListOption.Modify | FtpListOption.Size | FtpListOption.DerefLinks))
+						FtpListOption.SizeModify | FtpListOption.AllFiles))
 					{
-
-						switch (item.Type)
+                        switch (item.Type)
 						{
-							case FtpFileSystemObjectType.Directory:
+							case FtpObjectType.Directory:
 								files.Add(new FileDescription()
-								{
-									CanRead = true,
-									CanWrite = true,
-									DisplayName = item.Name,
-									IsDirectory = true,
-									LastModified = item.Modified,
-									Path = IocPathFromUri(ioc, item.FullName)
-								});
-								break;
-							case FtpFileSystemObjectType.File:
+                                {
+                                    CanRead = true,
+                                    CanWrite = true,
+                                    DisplayName = item.Name,
+                                    IsDirectory = true,
+                                    LastModified = item.Modified,
+                                    Path = IocPathFromUri(ioc, item.FullName)
+                                });
+                                break;
+							case FtpObjectType.File:
 								files.Add(new FileDescription()
-								{
-									CanRead = true,
-									CanWrite = true,
-									DisplayName = item.Name,
-									IsDirectory = false,
-									LastModified = item.Modified,
-									Path = IocPathFromUri(ioc, item.FullName),
-									SizeInBytes = item.Size
-								});
+                                {
+                                    CanRead = true,
+                                    CanWrite = true,
+                                    DisplayName = item.Name,
+                                    IsDirectory = false,
+                                    LastModified = item.Modified,
+                                    Path = IocPathFromUri(ioc, item.FullName),
+                                    SizeInBytes = item.Size
+                                });
+                                break;
+							default:
+								Kp2aLog.Log("FTP: ListContents item skipped: " + IocToUri(ioc) + ": " + item.FullName + ", type=" + item.Type);
 								break;
-
-						}
+                        }
 					}
 					return files;
 				}
@@ -329,7 +330,6 @@ namespace keepass2android.Io
 				throw ConvertException(ex);
 			}
 		}
-
 		
 		public FileDescription GetFileDescription(IOConnectionInfo ioc)
 		{
@@ -466,7 +466,9 @@ namespace keepass2android.Io
 
 		public static int GetDefaultPort(FtpEncryptionMode encryption)
 		{
-			return new FtpClient() { EncryptionMode =  encryption}.Port;
+			var client = new FtpClient();
+			client.Config.EncryptionMode = encryption;
+			return client.Port;
 		}
 
 		public string BuildFullPath(string host, int port, string initialPath, string user, string password, FtpEncryptionMode encryption)
@@ -582,5 +584,13 @@ namespace keepass2android.Io
 			_stream.Close();
 		}
 	}
+
+    class Kp2aLogFTPLogger : IFtpLogger
+    {
+        public void Log(FtpLogEntry entry)
+        {
+            Kp2aLog.Log("FluentFTP: " + entry.Message);
+        }
+    }
 }
 #endif
