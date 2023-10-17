@@ -41,10 +41,12 @@ using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Interfaces;
 using System.Collections.Generic;
 
+
 namespace keepass2android
 {
     //http://stackoverflow.com/a/27422401/292233
-        public class SettingsFragment : PreferenceFragment
+#pragma warning disable CS0618 // Type or member is obsolete
+    public class SettingsFragment : PreferenceFragment
     {
 
 
@@ -177,36 +179,8 @@ namespace keepass2android
             FindPreference(GetString(Resource.String.DebugLog_send_key)).PreferenceClick += OnSendDebug;
 
             HashSet<string> supportedLocales = new HashSet<string>() { "en", "af", "ar", "az", "be", "bg", "ca", "cs", "da", "de", "el", "es", "eu", "fa", "fi", "fr", "gl", "he", "hr", "hu", "id", "in", "it", "iw", "ja", "ko", "ml", "nb", "nl", "nn", "no", "pl", "pt", "ro", "ru", "si", "sk", "sl", "sr", "sv", "tr", "uk", "vi", "zh" };
-
-            ListPreference appLanguagePref = (ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key));
-            
-            var localesByCode = new System.Collections.Generic.Dictionary<string, List<Java.Util.Locale>>();
-            foreach (var loc in Java.Util.Locale.GetAvailableLocales())
-            {
-                if (!supportedLocales.Contains(loc.Language))
-                    continue;
-                if (!localesByCode.ContainsKey(loc.Language))
-                {
-                    localesByCode[loc.Language] = new List<Java.Util.Locale>();
-                }
-                localesByCode[loc.Language].Add(loc);
-
-            }
-            var localesByCodeUnique = localesByCode.Select(l => new KeyValuePair<string, Java.Util.Locale>(l.Key, l.Value.First())).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            List<KeyValuePair<string, List<Java.Util.Locale>>> codesWithMultiple = localesByCode.Where(l => l.Value.Count > 1).ToList();
-            List<KeyValuePair<string, Java.Util.Locale>> localesByLanguageList = localesByCodeUnique
-                .OrderBy(kvp => kvp.Value.DisplayLanguage).ToList();
-            appLanguagePref.SetEntries(localesByLanguageList.Select(kvp => kvp.Value.DisplayLanguage).ToArray());
-            appLanguagePref.SetEntryValues(localesByLanguageList.Select(kvp => kvp.Value.Language).ToArray());
-            string languageCode = appLanguagePref.Value;
-            string summary = GetDisplayLanguage(localesByCodeUnique, languageCode);
-            ((ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key))).Summary = summary;
-            appLanguagePref.PreferenceChange += (sender, args) =>
-            {
-                ((ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key))).Summary = GetDisplayLanguage(localesByCodeUnique, (string)args.NewValue);
-                LocaleManager.Language = (string)args.NewValue;
-            };
-
+            var languagePref = (ListPreference)FindPreference(GetString(Resource.String.app_language_pref_key));
+            new AppLanguageManager(this, languagePref, supportedLocales);
 
             UpdateAutofillPref();
 
@@ -345,16 +319,6 @@ namespace keepass2android
             cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
 
 
-        }
-
-        private string GetDisplayLanguage(Dictionary<string, Java.Util.Locale> localesByCode, string languageCode)
-        {
-            return languageCode != null && localesByCode.ContainsKey(languageCode) ? localesByCode[languageCode]?.DisplayLanguage : GetString(Resource.String.SystemLanguage);
-        }
-
-        private void AppLanguagePref_PreferenceChange(object sender, Preference.PreferenceChangeEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void UpdateAutofillPref()
@@ -897,10 +861,102 @@ namespace keepass2android
         
     }
 
-    
     /// <summary>
-	/// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
-	/// </summary>
+    /// <para>
+    /// A helper class that manages language preference display and selection.
+    /// </para>
+    /// <para>
+    /// The idea is to provide a ListPreference with a "System language" item at the top, followed by
+    /// the localized list of supported language names. The items are backed by their corresponding "code".
+    /// For a langauge that's the 2-char lowercase language code, which is exactly the same code that
+    /// LocaleManager.Language expects.
+    /// </para>
+    /// <para>
+    /// "System language" is a special case. LocaleManager.Language expects null, but ListPreference
+    /// does not support null as a valid code. To work around this, LanguageEntry.SYS_LANG_CODE
+    /// is used as the preference code. LanguageEntry.PrefCodeToLanguage(string) is used to convert the
+    /// preference codes to language codes as needed.
+    /// </para>
+    /// </summary>
+    internal class AppLanguageManager
+    {
+        private readonly PreferenceFragment _fragment;
+        private readonly ListPreference _langPref;
+        private readonly Dictionary<string, LanguageEntry> _langEntriesByCodeUnique;
+        
+        public AppLanguageManager(PreferenceFragment fragment, ListPreference langPref, HashSet<string> supportedLocales)
+        {
+            this._fragment = fragment;
+            this._langPref = langPref;
+            this._langEntriesByCodeUnique = CreateCodeToEntryMapping(fragment, supportedLocales);
+
+            ConfigureLanguageList();
+        }
+
+        private static Dictionary<string, LanguageEntry> CreateCodeToEntryMapping(PreferenceFragment fragment, HashSet<string> supportedLocales)
+        {
+            var localesByCode = new Dictionary<string, List<Java.Util.Locale>>();
+            foreach (var loc in Java.Util.Locale.GetAvailableLocales())
+            {
+                if (!supportedLocales.Contains(loc.Language))
+                    continue;
+                if (!localesByCode.ContainsKey(loc.Language))
+                {
+                    localesByCode[loc.Language] = new List<Java.Util.Locale>();
+                }
+                localesByCode[loc.Language].Add(loc);
+            }
+
+            var langEntriesByCodeUnique = localesByCode
+                .Select(l => new KeyValuePair<string, LanguageEntry>(l.Key, LanguageEntry.OfLocale(l.Value.First())))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            var sysLangEntry = LanguageEntry.SystemDefault(fragment.GetString(Resource.String.SystemLanguage));
+            langEntriesByCodeUnique.Add(sysLangEntry.Code, sysLangEntry);
+
+            return langEntriesByCodeUnique;
+        }
+
+        private void ConfigureLanguageList()
+        {
+            List<KeyValuePair<string, LanguageEntry>> langEntriesList = _langEntriesByCodeUnique
+                .OrderByDescending(kvp => kvp.Value.IsSystem)
+                .ThenBy(kvp => kvp.Value.Name)
+                .ToList();
+
+            _langPref.SetEntries(langEntriesList
+                .Select(kvp => kvp.Value.Name)
+                .ToArray());
+            _langPref.SetEntryValues(langEntriesList
+                .Select(kvp => kvp.Value.Code)
+                .ToArray());
+
+            _langPref.Summary = GetDisplayLanguage(LanguageEntry.PrefCodeToLanguage(_langPref.Value));
+            _langPref.PreferenceChange += AppLanguagePrefChange;
+        }
+
+        private string GetDisplayLanguage(string languageCode)
+        {
+            if (languageCode != null && this._langEntriesByCodeUnique.ContainsKey(languageCode))
+                return this._langEntriesByCodeUnique[languageCode]?.Name;
+            else
+                return _fragment.GetString(Resource.String.SystemLanguage);
+        }
+
+        private void AppLanguagePrefChange(object sender, Preference.PreferenceChangeEventArgs args)
+        {
+            string langCode = LanguageEntry.PrefCodeToLanguage((string)args.NewValue);
+            LocaleManager.Language = langCode;
+            _langPref.Summary = GetDisplayLanguage(langCode);
+        }
+    }
+
+#pragma warning restore CS0618 // Type or member is obsolete
+
+
+    /// <summary>
+    /// Activity to configure the application and database settings. The database must be unlocked, and this activity will close if it becomes locked.
+    /// </summary>
     [Activity(Label = "@string/app_name", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class DatabaseSettingsActivity : LockCloseActivity 
 	{
