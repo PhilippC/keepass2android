@@ -98,6 +98,7 @@
 	<string name="TrayTotp_SeedField_key">TrayTotp_SeedField_key</string>
 	<string name="TrayTotp_prefs_key">TrayTotp_prefs_key</string>
   <string name="DebugLog_key">DebugLog_key</string>
+  <string name="JSchDebug_key">JSchDebug_key</string>
   <string name="DebugLog_prefs_key">DebugLog_prefs_key</string>
   <string name="DebugLog_send_key">DebugLog_send</string>
   <string name="AutofillDisabledQueriesPreference_key">AutofillDisabledQueriesPreference_key</string>

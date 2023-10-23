@@ -306,10 +306,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	            String parentPath = getParentPath(path);
 	            
         		
-        		if (parentPath == null)
-	            {
+        		if (parentPath == null) {
         			if (Utils.doLog())
-        				Log.d(CLASSNAME, "parent file is null");
+                        Log.d(CLASSNAME, "parent file is null");
 	                return null;
 	            }
                 FileEntry e;
@@ -501,10 +500,10 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		RowBuilder newRow = matrixCursor.newRow();
 		newRow.add(id);// _ID
 		newRow.add(BaseFile
-		        .genContentIdUriBase(
-		                getAuthority())
-		        .buildUpon().appendPath(f.path)
-		        .build().toString());
+                .genContentIdUriBase(
+                        getAuthority())
+                .buildUpon().appendPath(f.path)
+                .build().toString());
 		newRow.add(f.path);
 		if (f.displayName == null)
 			Log.w("KP2AJ", "displayName is null for " + f.path);
@@ -549,7 +548,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     //puts the file entry in the cache for later reuse with retrieveFileInfo
 	private void updateFileEntryCache(FileEntry f) {
 		if (f != null)
-			fileEntryMap.put(f.path, f);
+            fileEntryMap.put(f.path, f);
 	}
 	//removes the file entry from the cache (if cached). Should be called whenever the file changes
 	private void removeFromCache(String filename, boolean recursive) {
@@ -584,7 +583,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
 	//returns the file entry from the cache if present or queries the concrete provider method to return the file info
     private FileEntry getFileEntryCached(String filename) {
-    	//check if enry is cached:
+    	//check if entry is cached:
     	FileEntry cachedEntry = fileEntryMap.get(filename);
     	if (cachedEntry != null)
     	{
@@ -728,7 +727,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         if (targetParent != null && targetParent.startsWith(source))
         {
         	if (Utils.doLog())
-        		Log.d("KP2A_FC_P", source+" is parent of "+target);
+                Log.d("KP2A_FC_P", source + " is parent of " + target);
             return BaseFileProviderUtils.newClosedCursor();
         }
         if (Utils.doLog())
@@ -768,27 +767,36 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
     private String getParentPath(String path)
     {
-    	path = removeTrailingSlash(path);
-    	if (path.indexOf("://") == -1)
-    	{
-    		Log.d("KP2A_FC_P", "invalid path: " + path);
-    		return null; 
-    	}
-    	String pathWithoutProtocol = path.substring(path.indexOf("://")+3);
-    	int lastSlashPos = path.lastIndexOf("/");
-    	if (pathWithoutProtocol.indexOf("/") == -1)
-    	{
-    		Log.d("KP2A_FC_P", "parent of " + path +" is null");
-    		return null;
-    	}
-    	else
-    	{
-    		String parent = path.substring(0, lastSlashPos)+"/";
-    		Log.d("KP2A_FC_P", "parent of " + path +" is "+parent);
-    		return parent;
-    	}
+        String params = null;
+        int paramsIdx = path.lastIndexOf("?");
+        if (paramsIdx > 0) {
+            params = path.substring(paramsIdx);
+            path = path.substring(0, paramsIdx);
+        }
+
+        path = removeTrailingSlash(path);
+        if (path.indexOf("://") == -1)
+        {
+            Log.d("KP2A_FC_P", "invalid path: " + path);
+            return null;
+        }
+        String pathWithoutProtocol = path.substring(path.indexOf("://") + 3);
+        int lastSlashPos = path.lastIndexOf("/");
+        if (pathWithoutProtocol.indexOf("/") == -1)
+        {
+            Log.d("KP2A_FC_P", "parent of " + path + " is null");
+            return null;
+        }
+        else
+        {
+            String parent = path.substring(0, lastSlashPos) + "/";
+            if (params != null) {
+                parent += params;
+            }
+            Log.d("KP2A_FC_P", "parent of " + path +" is " + parent);
+            return parent;
+        }
     }
-    
     
 
 	protected abstract FileEntry getFileEntry(String path, StringBuilder errorMessageBuilder) throws Exception;
