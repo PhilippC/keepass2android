@@ -996,7 +996,8 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>비밀번호</item>
-    <item>비공개/공개 키</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>인증서 유효성 검사 오류 무시</item>
