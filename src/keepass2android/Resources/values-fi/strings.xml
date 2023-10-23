@@ -968,7 +968,8 @@ Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanha
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Salasana</item>
-    <item>Yksityinen/Julkinen avain</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ohita varmenteiden virheet</item>
