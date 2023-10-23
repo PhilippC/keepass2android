@@ -1070,7 +1070,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
-    <item>秘密鍵/公開鍵</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>証明書の検証エラーを無視</item>
