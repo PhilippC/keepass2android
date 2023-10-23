@@ -459,7 +459,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Pasahitza</item>
-    <item>Private/Public key</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignore certificate validation failures</item>
