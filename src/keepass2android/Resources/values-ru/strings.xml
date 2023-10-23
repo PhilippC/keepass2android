@@ -1054,7 +1054,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
-    <item>Приватный/Публичный ключ</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>
