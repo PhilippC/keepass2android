@@ -1058,7 +1058,8 @@ První veřejné vydání
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
-    <item>Soukromý/Veřejný klíč</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>
