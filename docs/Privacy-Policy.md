@@ -18,6 +18,8 @@ Keepass2Android does not collect personal identifiable information. For debuggin
 * **Internet** (Keepass2Android regular only): Required to allow the user to read/store password databases or key files on remote locations, e.g. Dropbox or via WebDav.
 * **Contacts/Accounts** (Keepass2Android regular only): Required by the Google Drive SDK. If you want to access files on Google Drive, you are prompted to select one of the Google Accounts on your phone to use. The permission is required to query the list of Google accounts on the device. Keepass2Android does not access your personal contacts.
 * **Storage**: Required to allow the user to read/store password databases or key files on the device locally.
-* **Fingerprint**: Required if you want to use fingerprint unlock.
+* **Fingerprint/Biometric**: Required if you want to use biometric unlock.
 * **Vibrate**: Required by the built-in keyboard (vibrate on key press)
+* **Camera**: Required for scanning OTP QR Codes
+* **Foreground service**: Required to keep the app alive for QuickUnlock (so you don't need to enter your full master password repeatedly)
 
