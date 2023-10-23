@@ -949,7 +949,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Adgangskode</item>
-    <item>Privat/Offentlig nøgle</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorér certifikatgodkendelsesfejl</item>
