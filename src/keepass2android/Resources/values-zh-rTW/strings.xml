@@ -1067,7 +1067,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>密碼</item>
-    <item>私鑰 / 公鑰</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略憑證驗證失敗</item>
