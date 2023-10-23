@@ -869,6 +869,15 @@ namespace keepass2android
 						KeyProviderTypes.Add(KeyProviders.KeyFile);
 	                    continue;
 	                }
+			if (type.StartsWith(KeyProviders.ChallengeXC.ToString()+KeyProviders.KeyFile.ToString()))
+        		{
+                            _keyFile = WebUtility.UrlDecode((type.Substring(KeyProviders.ChallengeXC.ToString().Length)).Substring(KeyProviders.KeyFile.ToString().Length));
+                            Kp2aLog.Log("Added XC key file of length " + _keyFile.Length);
+
+                            KeyProviderTypes.Add(KeyProviders.ChallengeXC);
+                            KeyProviderTypes.Add(KeyProviders.KeyFile);
+                            continue;
+                    	}
 	                foreach (KeyProviders providerType in Enum.GetValues(typeof(KeyProviders)))
 	                {
 	                    if (type == providerType.ToString())
@@ -1239,9 +1248,13 @@ namespace keepass2android
 							case 6:
 							    KeyProviderTypes.Add(KeyProviders.ChallengeXC);
 							    break;
-						    case 7:
-						        KeyProviderTypes.Add(KeyProviders.ChallengeXC);
-						        KeyProviderTypes.Add(KeyProviders.KeyFile);
+						        case 7:
+						            //don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
+							    Kp2aLog.Log("key file length before: " + _keyFile?.Length);
+						            _keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
+                                                            Kp2aLog.Log("key file length after: " + _keyFile?.Length);
+						            KeyProviderTypes.Add(KeyProviders.ChallengeXC);
+						            KeyProviderTypes.Add(KeyProviders.KeyFile);
                             break;
 							default:
 								throw new Exception("Unexpected position " + args.Position + " / " +
@@ -1256,7 +1269,6 @@ namespace keepass2android
                                                 RequestCodePrepareOtpAuxFile, false);
 					};
 			}
-			
 		}
 
 		private void RestoreState(Bundle savedInstanceState)
