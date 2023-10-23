@@ -74,7 +74,8 @@
   <string name="DbQuicklockedChannel_name">Cəld Kilid Açma</string>
   <string-array name="sftp_auth_modes">
     <item>Şifrə</item>
-    <item>Private/Public key</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string name="disable_secure_screen_check">Bu mesajı ləğv et</string>
   <string name="switch_ime_text">Keepass2Android klaviaturasını aktivləşdir.</string>
