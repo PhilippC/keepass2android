@@ -97,7 +97,28 @@ public class FileEntry {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder("JavaFileStorage.FileEntry{").append(displayName).append("|")
+				.append("path=").append(path).append(",sz=").append(sizeInBytes)
+				.append(",").append(isDirectory ? "dir" : "file")
+				.append(",lastMod=").append(lastModifiedTime);
+
+		StringBuilder perms = new StringBuilder();
+		if (canRead)
+			perms.append("r");
+		if (canWrite)
+			perms.append("w");
+		if (perms.length() > 0) {
+			s.append(",").append(perms);
+		}
+
+		if (userData != null && userData.length() > 0)
+			s.append(",userData=").append(userData);
+
+		return s.append("}").toString();
+	}
 	
 }
 	
