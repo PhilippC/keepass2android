@@ -1060,7 +1060,8 @@ Začetna javna izdaja
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Geslo</item>
-    <item>Zasebni/Javni ključ</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Prezri spodletela preverjanja veljavnosti potrdil</item>
