@@ -154,6 +154,7 @@
   <string name="hint_keyfile">arquivo chave</string>
   <string name="hint_length">tamanho</string>
   <string name="hint_pass">senha</string>
+  <string name="hint_keyfile_path">Caminho da chave privada SSH</string>
   <string name="hint_login_pass">Senha</string>
   <string name="hint_title">nome</string>
   <string name="hint_url">URL</string>
@@ -503,9 +504,27 @@
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Diretório inicial (opcional):</string>
+  <string name="connect_timeout">Segundos de tempo limite de conexão (opcional):\"</string>
   <string name="enter_sftp_login_title">Insira os dados de login SFTP:</string>
   <string name="sftp_auth_mode">Modo de autenticação</string>
   <string name="send_public_key">Enviar chave pública...</string>
+  <string name="select_private_keyfile">Selecione a chave privada...</string>
+  <string name="hint_sftp_key_name">Novo nome da chave</string>
+  <string name="hint_sftp_key_content">Novo conteúdo da chave</string>
+  <string name="private_key_saved">Chave privada salva</string>
+  <string name="private_key_save_failed">FALHA ao salvar a chave privada: %1$s</string>
+  <string name="private_key_info">Digite o nome da chave e o conteúdo para salvar</string>
+  <string name="private_key_delete">Chave privada excluída: %1$s</string>
+  <string name="private_key_delete_failed">FALHA ao excluir a chave privada: %1$s</string>
+  <string name="save_key">Salvar chave privada</string>
+  <string name="delete_key">Excluir chave privada</string>
+  <string name="private_key_select">Chave privada selecionada</string>
+  <string name="private_key_create_new">[Adicionar Nova...]</string>
+  <string name="hint_sftp_key_passphrase">Senha chave (opcional)</string>
+  <string name="sftp_kex_title">Algoritmo(s) de Troca de Chaves (KEX) (opcional)</string>
+  <string name="hint_sftp_kex">\"Nomes/especificações separados por vírgula</string>
+  <string name="sftp_shk_title">Algoritmo(s) de Chave de Host do Servidor (opcional)</string>
+  <string name="hint_sftp_shk">\"Nomes/especificações separados por vírgula</string>
   <string name="enter_ftp_login_title">Insira os dados de login FTP:</string>
   <string name="enter_mega_login_title">Digite seus dados da conta MEGA:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
@@ -576,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Arquivo de Log para Depuração</string>
   <string name="DebugLog_title">Usar arquivo de log</string>
+  <string name="JSchDebug_title">Registro de depuração SFTP</string>
   <string name="DebugLog_summary">Escrever a saída da App em arquivo de log local</string>
   <string name="DebugLog_send">Enviar log de depuração...</string>
   <string name="loading">Carregando…</string>
@@ -1060,8 +1080,8 @@ Lançamento público inicial
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Senha</item>
-    <item>K2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Chave privada/pública K2A</item>
+    <item>Chave privada personalizada</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar falhas de validação de certificado</item>
