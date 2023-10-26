@@ -152,6 +152,7 @@
   <string name="hint_keyfile">datoteka ključa</string>
   <string name="hint_length">dolžina</string>
   <string name="hint_pass">geslo</string>
+  <string name="hint_keyfile_path">Pot zasebnega ključa SSH</string>
   <string name="hint_login_pass">Geslo</string>
   <string name="hint_title">ime</string>
   <string name="hint_url">URL</string>
@@ -501,9 +502,27 @@
   <string name="hint_sftp_host">gostitelj (npr.: 192.168.0.1)</string>
   <string name="hint_sftp_port">vrata</string>
   <string name="initial_directory">Začetna mapa (izbirno):</string>
+  <string name="connect_timeout">Časovna omejitev povezave v sekundah (neobvezno):\"</string>
   <string name="enter_sftp_login_title">Vnesite podatke za prijavo SFTP:</string>
   <string name="sftp_auth_mode">Način overitve</string>
   <string name="send_public_key">Pošlji javni ključ ...</string>
+  <string name="select_private_keyfile">Izberite zasebni ključ ...</string>
+  <string name="hint_sftp_key_name">Novo ime ključa</string>
+  <string name="hint_sftp_key_content">Nova vsebina ključa</string>
+  <string name="private_key_saved">Zasebni ključ shranjen</string>
+  <string name="private_key_save_failed">Ni uspelo shraniti zasebnega ključa: %1$s</string>
+  <string name="private_key_info">Vnesite ime ključa in vsebino, ki jo želite shraniti</string>
+  <string name="private_key_delete">Izbrisan zasebni ključ: %1$s</string>
+  <string name="private_key_delete_failed">Neuspešno izbrisan zasebni ključ: %1$s</string>
+  <string name="save_key">Shrani zasebni ključ</string>
+  <string name="delete_key">Izbriši zasebni ključ</string>
+  <string name="private_key_select">Izbrani zasebni ključ</string>
+  <string name="private_key_create_new">[Dodaj novo ...]</string>
+  <string name="hint_sftp_key_passphrase">Geslo ključa (neobvezno)</string>
+  <string name="sftp_kex_title">Algoritem(-i) za izmenjavo ključev (KEX) (neobvezno)</string>
+  <string name="hint_sftp_kex">\"Imena/spec, ločena z vejico</string>
+  <string name="sftp_shk_title">Algoritem(-i) ključa gostitelja strežnika (neobvezno)</string>
+  <string name="hint_sftp_shk">\"Imena/spec, ločena z vejico</string>
   <string name="enter_ftp_login_title">Vnesite podatke FTP za prijavo:</string>
   <string name="enter_mega_login_title">Vnesite podatke za prijavo v račun MEGA:</string>
   <string name="select_storage_type">Izberite mesto za shranjevanje:</string>
@@ -574,6 +593,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Dnevnik datoteke za odpravljanje napak</string>
   <string name="DebugLog_title">Uporabi datoteko dnevnika</string>
+  <string name="JSchDebug_title">Dnevnik za odpravljanje napak SFTP</string>
   <string name="DebugLog_summary">Izpišite dogodke aplikacije v lokalno datoteko dnevnika</string>
   <string name="DebugLog_send">Pošlji dnevnik napak ...</string>
   <string name="loading">Nalaganje …</string>
@@ -1060,8 +1080,8 @@ Začetna javna izdaja
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Geslo</item>
-    <item>K2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>K2A Zasebni/javni ključ</item>
+    <item>Zasebni ključ po meri</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Prezri spodletela preverjanja veljavnosti potrdil</item>
