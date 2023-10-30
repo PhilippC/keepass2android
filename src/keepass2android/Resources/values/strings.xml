@@ -1369,6 +1369,12 @@ Initial public release
 
   <string name="enable_fingerprint_hint">Keepass2Android has detected biometric hardware. Do you want to enable Biometric Unlock for this database?</string>
 
+  <string name="post_notifications_dialog_title">Allow notifications</string>
+  <string name="post_notifications_dialog_message">Keepass2Android can show notifications with buttons to copy values like passwords and TOTPs to clipboard, or to bring up the built-in keyboard. This is useful to transfer values into other apps without switching to Keepass2Android repeatedly. Do you want to enable such notifications?</string>
+  <string name="post_notifications_dialog_allow">Allow notifications</string>
+  <string name="post_notifications_dialog_disable">Disable this feature</string>
+  <string name="post_notifications_dialog_notnow">Not now</string>
+
   <string name="understand">I understand</string>
   <string name="dont_show_again">Do not show again</string>
 
