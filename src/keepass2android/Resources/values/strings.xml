@@ -484,6 +484,10 @@
   
   <string name="IconVisibilityInfo_Android8_text">Android 8 has introduced new behavior for notifications. If you want to hide the icon for Keepass2Android\'s notifications, please configure this through the system settings. Set the importance of the notification category to Minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Open settings</string>
+  
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android can display a system notification while your database is not locked. For this to work, please grant permission.</string>
+  
+
   <string name="DontCare">I don\'t care</string>
 
   <string name="DocumentAccessRevoked">The file is no longer accessible to Keepass2Android. Either it was removed or the access permissions have been revoked. Please use re-open the file, e.g. using Change database.</string>
