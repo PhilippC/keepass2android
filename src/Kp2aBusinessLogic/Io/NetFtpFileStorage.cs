@@ -288,8 +288,20 @@ namespace keepass2android.Io
 			{
                 using (var client = GetClient(ioc))
 				{
+                    /*
+					 * For some reason GetListing(path) does not always return the contents of the directory.
+					 * However, calling SetWorkingDirectory(path) followed by GetListing(null, options) to
+					 * list the contents of the working directory does consistently work.
+					 * 
+					 * Similar behavior was confirmed using ncftp client. I suspect this is a strange
+					 * bug/nuance in the server's implementation of the LIST command?
+					 *
+					 * [bug #2423]
+					 */
+                    client.SetWorkingDirectory(IocToLocalPath(ioc));
+
 					List<FileDescription> files = new List<FileDescription>();
-					foreach (FtpListItem item in client.GetListing(IocToLocalPath(ioc),
+					foreach (FtpListItem item in client.GetListing(null,
 						FtpListOption.Modify | FtpListOption.Size | FtpListOption.DerefLinks))
 					{
 
