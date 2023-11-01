@@ -418,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8.0的通知引入了新的行为。若你想隐藏Keepass2Android的通知图标，请前往系统设置，将通知的重要性设为中等。</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">打开设置</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android 可以在您的数据库未被锁定时显示系统通知。要正常显示此通知，请授予权限。</string>
   <string name="DontCare">无所谓</string>
   <string name="DocumentAccessRevoked">Keepass2Android无法访问此文件。文件可能已被删除，或其访问权限受限。请使用“更改数据库”重新打开文件。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
@@ -1101,6 +1102,11 @@ Initial public release
   <string name="autofill_enable_for">对 %1$s 启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
+  <string name="post_notifications_dialog_title">允许通知</string>
+  <string name="post_notifications_dialog_message">Keepass2Android 可以显示带按钮的通知，允许快速复制像密码和 TOTP 这样的值到剪贴板，或者带起内置键盘。 这允许你在不反复切换到 Keepass2Android 的情况下便可将值转移到其他应用。你想要启用这种通知吗？</string>
+  <string name="post_notifications_dialog_allow">允许通知</string>
+  <string name="post_notifications_dialog_disable">禁用此功能</string>
+  <string name="post_notifications_dialog_notnow">暂不</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再显示</string>
   <string name="masterkey_infotext_head">你还记得你的主密码吗？</string>
