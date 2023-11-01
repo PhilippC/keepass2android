@@ -152,6 +152,7 @@
   <string name="hint_keyfile">klíčový soubor</string>
   <string name="hint_length">délka</string>
   <string name="hint_pass">heslo</string>
+  <string name="hint_keyfile_path">Cesta k privátnímu klíči SSH</string>
   <string name="hint_login_pass">Heslo</string>
   <string name="hint_title">název</string>
   <string name="hint_url">Adresa URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Zobrazovat oznamovací ikonu pokud je databáze odemčena.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 přinesl nové chování upozornění. Pokud chcete schovat oznamovací ikonu Keepass2Android můžete tak učinit v nastavení systému. Nastavte kategorii důležitosti upozornění na Minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Otevřít nastavení</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android umožňuje zobrazit systémové oznámení, když databáze není uzamčena. Aby to fungovalo, udělte prosím oprávnění.</string>
   <string name="DontCare">Není třeba</string>
   <string name="DocumentAccessRevoked">Soubor není dále dostupný pro Keepass2Android. Buď byl smazán, nebo bylo zrušeno povolení k přístupu. Prosím otevřete daný soubor znovu pomocí: Změnit databázi.</string>
   <string name="PreloadDatabaseEnabled_title">Přednačítat databázový soubor</string>
@@ -501,9 +503,26 @@
   <string name="hint_sftp_host">počítač (např: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počáteční adresář (nepovinné):</string>
+  <string name="connect_timeout">Časový limit připojení v sekundách (volitelné):\"</string>
   <string name="enter_sftp_login_title">Zadejte přihlašovací údaje k SFTP:</string>
   <string name="sftp_auth_mode">Režim ověření</string>
   <string name="send_public_key">Odeslat veřejný klíč...</string>
+  <string name="select_private_keyfile">Vyberte privátní klíč...</string>
+  <string name="hint_sftp_key_name">Název nového klíče</string>
+  <string name="hint_sftp_key_content">Obsah nového klíče</string>
+  <string name="private_key_saved">Privátní klíč uložen</string>
+  <string name="private_key_save_failed">NEPODAŘILO se uložit privátní klíč: %1$s</string>
+  <string name="private_key_info">Zadejte název klíče a obsah pro uložení</string>
+  <string name="private_key_delete">Odstraněný privátní klíč: %1$s</string>
+  <string name="private_key_delete_failed">NEPODAŘILO se odstranit privátní klíč: %1$s</string>
+  <string name="save_key">Uložit privátní klíč</string>
+  <string name="delete_key">Odstranit privátní klíč</string>
+  <string name="private_key_select">Vybraný privátní klíč</string>
+  <string name="hint_sftp_key_passphrase">Heslo klíče (volitelné)</string>
+  <string name="sftp_kex_title">Algoritmus (algoritmy) pro výměnu klíčů (KEX) (volitelné)</string>
+  <string name="hint_sftp_kex">\"Názvy/spec. oddělené čárkou</string>
+  <string name="sftp_shk_title">Algoritmus (algoritmy) klíče serverového hostitele (volitelné)</string>
+  <string name="hint_sftp_shk">\"Názvy/spec. oddělené čárkou</string>
   <string name="enter_ftp_login_title">Zadejte přihlašovací údaje pro FTP:</string>
   <string name="enter_mega_login_title">Zadejte přihlašovací údaje pro váš účet MEGA</string>
   <string name="select_storage_type">Vyberte typ úložiště:</string>
@@ -574,6 +593,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Logovací soubor pro ladění chyb</string>
   <string name="DebugLog_title">Použít protokolovací soubor</string>
+  <string name="JSchDebug_title">Protokolování ladění SFTP</string>
   <string name="DebugLog_summary">Ulož výstup aplikace do lokálního souboru</string>
   <string name="DebugLog_send">Pošli soubor s ladícími informacemi...</string>
   <string name="loading">Nahrávám…</string>
@@ -1058,8 +1078,8 @@ První veřejné vydání
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
-    <item>K2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>K2A Privátní/veřejný klíč</item>
+    <item>Vlastní privátní klíč</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>
@@ -1077,6 +1097,11 @@ První veřejné vydání
   <string name="autofill_enable_for">Povolit Automatické doplnění pro %1$s</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou biometrickou čtečku. Chcete pro tuto databázi povolit Biometrické odemykáni?</string>
+  <string name="post_notifications_dialog_title">Povolit notifikace</string>
+  <string name="post_notifications_dialog_message">Keepass2Android může zobrazovat notifikace s tlačítky pro kopírování hodnot, jako jsou hesla a TOTP, do schránky nebo pro vyvolání vestavěné klávesnice. To je užitečné pro přenos hodnot do jiných aplikací bez nutnosti opakovaného přepínání do Keepass2Android. Chcete takové notifikace povolit?</string>
+  <string name="post_notifications_dialog_allow">Povolit notifikace</string>
+  <string name="post_notifications_dialog_disable">Vypnout tuto funkci</string>
+  <string name="post_notifications_dialog_notnow">Nyní ne</string>
   <string name="understand">Rozumím</string>
   <string name="dont_show_again">Vícekrát neukazuj</string>
   <string name="masterkey_infotext_head">Pamatujete si Vaše hlavní heslo?</string>
