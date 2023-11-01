@@ -22,6 +22,7 @@ import com.pcloud.sdk.ApiError;
 import com.pcloud.sdk.Authenticators;
 import com.pcloud.sdk.AuthorizationActivity;
 import com.pcloud.sdk.AuthorizationData;
+import com.pcloud.sdk.AuthorizationRequest;
 import com.pcloud.sdk.AuthorizationResult;
 import com.pcloud.sdk.Call;
 import com.pcloud.sdk.DataSource;
@@ -47,11 +48,19 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     private ApiClient apiClient;
     private String clientId;
+    private String protocolId;
 
-    public PCloudFileStorage(Context ctx, String clientId) {
+    ///prefix for SHARED_PREF keys so we can distinguish between different instances
+    private String sharedPrefPrefix;
+
+    public PCloudFileStorage(Context ctx, String clientId, String protocolId, String sharedPrefPrefix) {
         this.ctx = ctx;
         this.clientId = clientId;
+        this.protocolId = protocolId;
+        this.sharedPrefPrefix = sharedPrefPrefix;
+
         this.apiClient = createApiClientFromSharedPrefs();
+        android.util.Log.d("KP2A", "Init pcloud with protocol " + protocolId + ", prefix=" + sharedPrefPrefix + ", clientId=" + clientId);
     }
 
     @Override
@@ -86,7 +95,8 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     @Override
     public String getProtocolId() {
-        return "pcloud";
+
+        return protocolId;
     }
 
     @Override
@@ -228,10 +238,16 @@ public class PCloudFileStorage extends JavaFileStorageBase
             finishActivityWithSuccess(activity);
         } else if (!activity.getState().getBoolean("hasStartedAuth", false)) {
             Activity castedActivity = (Activity)activity;
-            Intent authIntent = AuthorizationActivity.createIntent(castedActivity, this.clientId);
+            AuthorizationRequest req = AuthorizationRequest.create()
+                    .setClientId(this.clientId)
+                    .setType(AuthorizationRequest.Type.TOKEN)
+                    .setForceAccessApproval(true)
+                    .build();
+            Intent authIntent = AuthorizationActivity.createIntent(castedActivity, req);
             castedActivity.startActivityForResult(authIntent, PCLOUD_AUTHORIZATION_REQUEST_CODE);
             activity.getState().putBoolean("hasStartedAuth", true);
         }
+
 
     }
 
@@ -273,7 +289,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
     }
 
     private ApiClient createApiClientFromSharedPrefs() {
-        SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences prefs = this.ctx.getSharedPreferences(sharedPrefPrefix + SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String authToken = prefs.getString(SHARED_PREF_AUTH_TOKEN, null);
         String apiHost = prefs.getString(SHARED_PREF_API_HOST, null);
         return this.createApiClient(authToken, apiHost);

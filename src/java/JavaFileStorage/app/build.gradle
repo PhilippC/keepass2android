@@ -47,8 +47,8 @@ dependencies {
     implementation('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
         transitive = false
     }
-    implementation 'com.pcloud.sdk:java-core:1.2.0'
-    implementation 'com.pcloud.sdk:android:1.2.0'
+    implementation 'com.pcloud.sdk:java-core:1.8.1'
+    implementation 'com.pcloud.sdk:android:1.8.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.microsoft.services.msa:msa-auth:0.8.6'
     implementation 'com.microsoft.aad:adal:1.14.0'
