@@ -48,6 +48,8 @@ using KeePassLib.Serialization;
 using PluginTOTP;
 using File = Java.IO.File;
 using Uri = Android.Net.Uri;
+using keepass2android.fileselect;
+using Boolean = Java.Lang.Boolean;
 
 namespace keepass2android
 {
@@ -554,21 +556,90 @@ namespace keepass2android
 			}
 		}
 
-		
 
-		internal void StartNotificationsService(bool activateKeyboard)
-		{
-			Intent showNotIntent = new Intent(this, typeof (CopyToClipboardService));
-			showNotIntent.SetAction(Intents.ShowNotification);
-			showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
-			AppTask.PopulatePasswordAccessServiceIntent(showNotIntent);
-			showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            if (permissions.Length == 1 && permissions.First() == Android.Manifest.Permission.PostNotifications &&
+                grantResults.First() == Permission.Granted)
+            {
+                StartNotificationsServiceAfterPermissionsCheck(requestCode == 1 /*requestCode is used to transfer this flag*/);
+            }
 
-			StartService(showNotIntent);
-		}
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        internal void StartNotificationsService(bool activateKeyboard)
+        {
+            if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
+                    GetString(Resource.String.CopyToClipboardNotification_key),
+                    Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)) == false
+                && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
+                    GetString(Resource.String.UseKp2aKeyboard_key),
+                    Resources.GetBoolean(Resource.Boolean.UseKp2aKeyboard_default)) == false)
+            {
+				//notifications are disabled
+                return;
+            }
+
+            if ((int)Build.VERSION.SdkInt < 33 || CheckSelfPermission(Android.Manifest.Permission.PostNotifications) ==
+                Permission.Granted)
+			{
+                StartNotificationsServiceAfterPermissionsCheck(activateKeyboard);
+                return;
+            }
+
+            //user has not yet granted Android 13's POST_NOTIFICATONS permission for the app.
+
+			//check if we should ask them to grant:
+            if (!ShouldShowRequestPermissionRationale(Android.Manifest.Permission.PostNotifications) //this menthod returns false if we haven't asked yet or if the user has denied permission too often
+                && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean("RequestedPostNotificationsPermission", false))//use a preference to tell the difference between "haven't asked yet" and "have asked too often"
+            {
+				//user has denied permission before. Do not show the dialog. User must give permission in the Android App settings.
+                return;
+            }
+
+            new AlertDialog.Builder(this)
+                .SetTitle(Resource.String.post_notifications_dialog_title)
+                .SetMessage(Resource.String.post_notifications_dialog_message)
+                .SetNegativeButton(Resource.String.post_notifications_dialog_disable, (sender, args) =>
+                {
+					//disable this dialog for the future by disabling the notification preferences
+                    var edit= PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+                    edit.PutBoolean(GetString(Resource.String.CopyToClipboardNotification_key), false);
+                    edit.PutBoolean(GetString(Resource.String.UseKp2aKeyboard_key), false);
+                    edit.Commit();
+                })
+                .SetPositiveButton(Resource.String.post_notifications_dialog_allow, (sender, args) =>
+                {
+
+                    //remember that we did ask for permission at least once:
+                    var edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+                    edit.PutBoolean("RequestedPostNotificationsPermission", true);
+                    edit.Commit();
+
+                    //request permission. user must grant, we'll show notifications in the OnRequestPermissionResults() callback
+                    Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, activateKeyboard ? 1 : 0 /*use requestCode to transfer the flag*/);
 
 
-		private String getDateTime(DateTime dt)
+                })
+                .SetNeutralButton(Resource.String.post_notifications_dialog_notnow, (sender, args) => {  })
+                .Show();
+
+
+        }
+
+        private void StartNotificationsServiceAfterPermissionsCheck(bool activateKeyboard)
+        {
+            Intent showNotIntent = new Intent(this, typeof(CopyToClipboardService));
+            showNotIntent.SetAction(Intents.ShowNotification);
+            showNotIntent.PutExtra(KeyEntry, new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId);
+            AppTask.PopulatePasswordAccessServiceIntent(showNotIntent);
+            showNotIntent.PutExtra(KeyActivateKeyboard, activateKeyboard);
+
+            StartService(showNotIntent);
+        }
+
+
+        private String getDateTime(DateTime dt)
 		{
 			return dt.ToLocalTime().ToString("g", CultureInfo.CurrentUICulture);
 		}

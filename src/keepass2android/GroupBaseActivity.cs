@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -57,8 +58,9 @@ namespace keepass2android
             { Resource.Id.child_db_infotext, 13 },
             { Resource.Id.fingerprint_infotext, 12 },
             { Resource.Id.autofill_infotext, 11 },
-            { Resource.Id.notification_info_android8_infotext, 10 },
-            { Resource.Id.infotext, 9 },
+            { Resource.Id.notification_permission_infotext, 10 },
+            { Resource.Id.notification_info_android8_infotext, 9 },
+            { Resource.Id.infotext, 8 },
             { Resource.Id.select_other_entry, 20},
             { Resource.Id.add_url_entry, 20},
         };
@@ -273,12 +275,14 @@ namespace keepass2android
             UpdateFingerprintInfo();
             UpdateAutofillInfo();
             UpdateAndroid8NotificationInfo();
+            UpdatePostNotificationsPermissionInfo();
             UpdateInfotexts();
 
             RefreshIfDirty();
 
             SetSearchItemVisibility();
         }
+
 
         private void UpdateInfotexts()
         {
@@ -383,6 +387,31 @@ namespace keepass2android
         {
             base.OnStop();
             hasCalledOtherActivity = false;
+        }
+
+
+        private void UpdatePostNotificationsPermissionInfo(bool hideForever=false)
+        {
+            const string prefsKey = "DidShowNotificationPermissionInfo";
+
+            bool canShowNotificationInfo = ((int)Build.VERSION.SdkInt >= 33) 
+                                           && (!_prefs.GetBoolean(prefsKey, false)
+                                               && (CheckSelfPermission(Android.Manifest.Permission.PostNotifications) !=
+                                                   Permission.Granted)
+                                               && (ShouldShowRequestPermissionRationale(Android.Manifest.Permission.PostNotifications) //this menthod returns false if we haven't asked yet or if the user has denied permission too often
+                                                   || !PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean("RequestedPostNotificationsPermission", false))//use a preference to tell the difference between "haven't asked yet" and "have asked too often"
+                                           );
+            if ((canShowNotificationInfo) && hideForever)
+            {
+                _prefs.Edit().PutBoolean(prefsKey, true).Commit();
+                canShowNotificationInfo = false;
+            }
+            if (canShowNotificationInfo)
+            {
+                RegisterInfoTextDisplay("NotificationPermissionInfo"); //this ensures that we don't show the general info texts too soon
+            }
+            UpdateBottomBarElementVisibility(Resource.Id.notification_permission_infotext, canShowNotificationInfo);
+
         }
 
         private void UpdateAndroid8NotificationInfo(bool hideForever = false)
@@ -602,6 +631,25 @@ namespace keepass2android
                 FindViewById(Resource.Id.ignore_notification_channel).Click += (sender, args) =>
                 {
                     UpdateAndroid8NotificationInfo(true);
+                };
+
+            }
+
+            if (FindViewById(Resource.Id.post_notification_button_allow) != null)
+            {
+                FindViewById(Resource.Id.post_notification_button_allow).Click += (sender, args) =>
+                {
+                    //remember that we did ask for permission at least once:
+                    var edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+                    edit.PutBoolean("RequestedPostNotificationsPermission", true);
+                    edit.Commit();
+
+                    Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, 0);
+                    UpdatePostNotificationsPermissionInfo(true);
+                };
+                FindViewById(Resource.Id.post_notification_button_dont_show_again).Click += (sender, args) =>
+                {
+                    UpdatePostNotificationsPermissionInfo(true);
                 };
 
             }
