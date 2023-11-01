@@ -42,6 +42,12 @@ namespace keepass2android
 	    private readonly string _schemeSeparator = "://";
 	    private bool _tryGetPermanentAccess;
 
+		private const int SftpModeSpinnerPasswd = 0;
+		private const int SftpModeSpinnerPubKey = 1;
+		private const int SftpModeSpinnerCustomKey = 2;
+
+		private const int SftpKeySpinnerCreateNewIdx = 0;
+
 	    public string DefaultExtension { get; set; }
 
 		public FileSelectHelper(Activity activity, bool isForSave, bool tryGetPermanentAccess, int requestCode)
@@ -57,71 +63,210 @@ namespace keepass2android
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.sftpcredentials, null);
+			var ctx = activity.ApplicationContext;
+            var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(ctx);
 
-		    var spinner = dlgContents.FindViewById<Spinner>(Resource.Id.sftp_auth_mode_spinner);
-		    dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Click += (sender, args) =>
-		    {
-		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext);
-		        string pub_filename = fileStorage.CreateKeyPair();
+            LinearLayout addNewBtn = dlgContents.FindViewById<LinearLayout>(Resource.Id.sftp_add_key_group);
+            Button deleteBtn = dlgContents.FindViewById<Button>(Resource.Id.sftp_delete_key_button);
+            EditText keyNameTxt = dlgContents.FindViewById<EditText>(Resource.Id.sftp_key_name);
+            EditText keyContentTxt = dlgContents.FindViewById<EditText>(Resource.Id.sftp_key_content);
 
-		        Intent sendIntent = new Intent();
-                sendIntent.SetAction(Intent.ActionSend);
-		        sendIntent.PutExtra(Intent.ExtraText, System.IO.File.ReadAllText(pub_filename));
+            var keySpinner = dlgContents.FindViewById<Spinner>(Resource.Id.sftp_key_names);
+			var keyNamesAdapter = new ArrayAdapter(ctx, Android.Resource.Layout.SimpleSpinnerDropDownItem, new List<string>());
+			UpdatePrivateKeyNames(keyNamesAdapter, fileStorage, ctx);
+			keyNamesAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			keySpinner.Adapter = keyNamesAdapter;
+			keySpinner.SetSelection(SftpKeySpinnerCreateNewIdx);
 
-		        sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android sftp public key");
-		        sendIntent.SetType("text/plain");
-		        activity.StartActivity(Intent.CreateChooser(sendIntent, "Send public key to..."));
-            };
+			keySpinner.ItemSelected += (sender, args) =>
+			{
+                if (keySpinner.SelectedItemPosition == SftpKeySpinnerCreateNewIdx)
+				{
+					keyNameTxt.Text = "";
+					keyContentTxt.Text = "";
+					addNewBtn.Visibility = ViewStates.Visible;
+					deleteBtn.Visibility = ViewStates.Gone;
+				}
+				else
+				{
+					addNewBtn.Visibility = ViewStates.Gone;
+					deleteBtn.Visibility = ViewStates.Visible;
+				}
+			};
 
+            var authModeSpinner = dlgContents.FindViewById<Spinner>(Resource.Id.sftp_auth_mode_spinner);
+			dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Click += (sender, args) =>
+			{
+                string pub_filename = fileStorage.CreateKeyPair();
 
-            spinner.ItemSelected += (sender, args) =>
-		    {
-		        if (spinner.SelectedItemPosition == 0)
-		        {
-		            dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Visibility = ViewStates.Visible;
-		            dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Visibility = ViewStates.Gone;
+				Intent sendIntent = new Intent();
+				sendIntent.SetAction(Intent.ActionSend);
+				sendIntent.PutExtra(Intent.ExtraText, System.IO.File.ReadAllText(pub_filename));
+
+				sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android sftp public key");
+				sendIntent.SetType("text/plain");
+				activity.StartActivity(Intent.CreateChooser(sendIntent, "Send public key to..."));
+			};
+
+			dlgContents.FindViewById<Button>(Resource.Id.sftp_save_key_button).Click += (sender, args) =>
+			{
+				string keyName = keyNameTxt.Text;
+				string keyContent = keyContentTxt.Text;
+
+				string toastMsg = null;
+                if (!string.IsNullOrEmpty(keyName) && !string.IsNullOrEmpty(keyContent))
+				{
+					try
+					{
+						fileStorage.SavePrivateKeyContent(keyName, keyContent);
+                        keyNameTxt.Text = "";
+						keyContentTxt.Text = "";
+                        toastMsg = ctx.GetString(Resource.String.private_key_saved);
+                    }
+					catch (Exception e)
+					{
+						toastMsg = ctx.GetString(Resource.String.private_key_save_failed,
+							new Java.Lang.Object[] { e.Message });
+					}
+				}
+				else
+				{
+					toastMsg = ctx.GetString(Resource.String.private_key_info);
+				}
+
+				if (toastMsg!= null) {
+                    Toast.MakeText(_activity, toastMsg, ToastLength.Long).Show();
                 }
-		        else
-		        {
-		            dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Visibility = ViewStates.Gone;
-		            dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button).Visibility = ViewStates.Visible;
-                }
+
+				UpdatePrivateKeyNames(keyNamesAdapter, fileStorage, ctx);
+				keySpinner.SetSelection(ResolveKeySpinnerSelection(keyNamesAdapter, keyName));
+			};
+
+			dlgContents.FindViewById<Button>(Resource.Id.sftp_delete_key_button).Click += (sender, args) =>
+			{
+				int selectedKey = dlgContents.FindViewById<Spinner>(Resource.Id.sftp_key_names).SelectedItemPosition;
+				string keyName = ResolveSelectedKeyName(keyNamesAdapter, selectedKey);
+				if (!string.IsNullOrEmpty(keyName))
+				{
+					bool deleted = fileStorage.DeleteCustomKey(keyName);
+
+					int msgId = deleted ? Resource.String.private_key_delete : Resource.String.private_key_delete_failed;
+					string msg = ctx.GetString(msgId, new Java.Lang.Object[] { keyName });
+                    Toast.MakeText(_activity, msg, ToastLength.Long).Show();
+
+					UpdatePrivateKeyNames(keyNamesAdapter, fileStorage, ctx);
+					keySpinner.SetSelection(SftpKeySpinnerCreateNewIdx);
+				}
+			};
+
+			authModeSpinner.ItemSelected += (sender, args) =>
+		    {
+				var passwordBox = dlgContents.FindViewById<EditText>(Resource.Id.sftp_password);
+				var publicKeyButton = dlgContents.FindViewById<Button>(Resource.Id.send_public_key_button);
+				var keyfileGroup = dlgContents.FindViewById<LinearLayout>(Resource.Id.sftp_keyfile_group);
+
+                switch (authModeSpinner.SelectedItemPosition)
+			    {
+				    case SftpModeSpinnerPasswd:
+					    passwordBox.Visibility = ViewStates.Visible;
+					    publicKeyButton.Visibility = ViewStates.Gone;
+					    keyfileGroup.Visibility = ViewStates.Gone;
+					    break;
+				    case SftpModeSpinnerPubKey:
+					    passwordBox.Visibility = ViewStates.Gone;
+					    publicKeyButton.Visibility = ViewStates.Visible;
+					    keyfileGroup.Visibility = ViewStates.Gone;
+					    break;
+				    case SftpModeSpinnerCustomKey:
+					    passwordBox.Visibility = ViewStates.Gone;
+					    publicKeyButton.Visibility = ViewStates.Gone;
+					    keyfileGroup.Visibility = ViewStates.Visible;
+					    break;
+			    }
 		    };
 
             if (!defaultPath.EndsWith(_schemeSeparator))
 		    {
-		        var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext);
                 SftpStorage.ConnectionInfo ci = fileStorage.SplitStringToConnectionInfo(defaultPath);
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text = ci.Host;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text = ci.Port.ToString();
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text = ci.Username;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text = ci.Password;
+				dlgContents.FindViewById<EditText>(Resource.Id.sftp_key_name).Text = ci.KeyName;
+				dlgContents.FindViewById<EditText>(Resource.Id.sftp_key_passphrase).Text = ci.KeyPassphrase;
 		        dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text = ci.LocalPath;
-		        if (string.IsNullOrEmpty(ci.Password))
+		        if (ci.ConnectTimeoutSec != SftpStorage.UnsetSftpConnectTimeout)
 		        {
-		            spinner.SetSelection(1);
+			        dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text = ci.ConnectTimeoutSec.ToString();
 		        }
+				
+				if (ci.ConfigOpts.Contains(SftpStorage.SshCfgKex))
+				{
+					dlgContents.FindViewById<EditText>(Resource.Id.sftp_kex).Text = ci.ConfigOpts[SftpStorage.SshCfgKex].ToString();
+				}
+                if (ci.ConfigOpts.Contains(SftpStorage.SshCfgServerHostKey))
+                {
+                    dlgContents.FindViewById<EditText>(Resource.Id.sftp_shk).Text = ci.ConfigOpts[SftpStorage.SshCfgServerHostKey].ToString();
+                }
+
+                if (!string.IsNullOrEmpty(ci.Password))
+				{
+					authModeSpinner.SetSelection(SftpModeSpinnerPasswd);
+				} else if (!string.IsNullOrEmpty(ci.KeyName))
+				{
+					authModeSpinner.SetSelection(SftpModeSpinnerCustomKey);
+					keySpinner.SetSelection(ResolveKeySpinnerSelection(keyNamesAdapter, ci.KeyName));
+				} else
+				{
+					authModeSpinner.SetSelection(SftpModeSpinnerPubKey);
+				}
+
             }
 
 			builder.SetView(dlgContents);
-			builder.SetPositiveButton(Android.Resource.String.Ok,
-									  (sender, args) =>
-									  {
-										  string host = dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text;
-										  string portText = dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text;
-										  int port = Keepass2android.Javafilestorage.SftpStorage.DefaultSftpPort;
-										  if (!string.IsNullOrEmpty(portText))
-											  int.TryParse(portText, out port);
-										  string user = dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text;
-										  string password = dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text;
-										  string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text;
-									      if (string.IsNullOrEmpty(initialPath))
-									          initialPath = "/";
-                                          string sftpPath = new Keepass2android.Javafilestorage.SftpStorage(activity.ApplicationContext).BuildFullPath(host, port, initialPath, user,
-																										  password);
-										  onStartBrowse(sftpPath);
-									  });
-			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+            builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => {
+				int idx = 0;
+                string host = dlgContents.FindViewById<EditText>(Resource.Id.sftp_host).Text;
+                string portText = dlgContents.FindViewById<EditText>(Resource.Id.sftp_port).Text;
+                int port = SftpStorage.DefaultSftpPort;
+                if (!string.IsNullOrEmpty(portText))
+                    int.TryParse(portText, out port);
+                string user = dlgContents.FindViewById<EditText>(Resource.Id.sftp_user).Text;
+
+                string password = null;
+                string keyName = null, keyPassphrase = null;
+                switch (dlgContents.FindViewById<Spinner>(Resource.Id.sftp_auth_mode_spinner).SelectedItemPosition)
+                {
+                    case SftpModeSpinnerPasswd:
+                        password = dlgContents.FindViewById<EditText>(Resource.Id.sftp_password).Text;
+                        break;
+                    case SftpModeSpinnerPubKey:
+                        break;
+                    case SftpModeSpinnerCustomKey:
+						keyName = ResolveSelectedKeyName(keyNamesAdapter, keySpinner.SelectedItemPosition);
+						keyPassphrase = dlgContents.FindViewById<EditText>(Resource.Id.sftp_key_passphrase).Text;
+                        break;
+                }
+
+                string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.sftp_initial_dir).Text;
+                if (string.IsNullOrEmpty(initialPath))
+                    initialPath = "/";
+                string connectTimeoutText = dlgContents.FindViewById<EditText>(Resource.Id.sftp_connect_timeout).Text;
+                int connectTimeout = SftpStorage.UnsetSftpConnectTimeout;
+                if (!string.IsNullOrEmpty(connectTimeoutText))
+                {
+                    int.TryParse(connectTimeoutText, out connectTimeout);
+                }
+				string kexAlgorithms = dlgContents.FindViewById<EditText>(Resource.Id.sftp_kex).Text;
+				string shkAlgorithms = dlgContents.FindViewById<EditText>(Resource.Id.sftp_shk).Text;
+
+                string sftpPath = fileStorage.BuildFullPath(
+                    host, port, initialPath, user, password, connectTimeout, keyName, keyPassphrase,
+					kexAlgorithms, shkAlgorithms);
+
+                onStartBrowse(sftpPath);
+            });
+            EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
@@ -129,9 +274,41 @@ namespace keepass2android
 
 			dialog.Show();
 #endif
-		}
+        }
 
-		private void ShowHttpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
+        private void UpdatePrivateKeyNames(ArrayAdapter dataView, SftpStorage storage, Context ctx)
+        {
+			dataView.Clear();
+			dataView.Add(ctx.GetString(Resource.String.private_key_create_new));
+			foreach (string keyName in storage.GetCustomKeyNames()) 
+				dataView.Add(keyName);
+        }
+
+        private int ResolveKeySpinnerSelection(ArrayAdapter dataView, string keyName)
+        {
+			int idx = -1;
+			for (int i = 0; i < dataView.Count; i++)
+			{
+				string itemName = dataView.GetItem(i).ToString();
+				if (string.Equals(keyName, itemName)) {
+					idx = i;
+					break;
+				}
+			}
+			return idx < 0 ? SftpKeySpinnerCreateNewIdx : idx;
+        }
+
+        private string ResolveSelectedKeyName(ArrayAdapter dataView, int selectedItem)
+        {
+            if (selectedItem != SftpKeySpinnerCreateNewIdx && selectedItem > 0 && selectedItem < dataView.Count)
+                return dataView.GetItem(selectedItem).ToString();
+            else
+                return null;
+        }
+#endif
+
+        private void ShowHttpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);

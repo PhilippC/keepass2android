@@ -78,8 +78,8 @@ namespace keepass2android
 		{
 			if (!languageLoaded)
             {
-				var language = PreferenceManager.GetDefaultSharedPreferences(c).GetString(c.GetString(Resource.String.app_language_pref_key), null);
-				Language = language;
+				var langPref = PreferenceManager.GetDefaultSharedPreferences(c).GetString(c.GetString(Resource.String.app_language_pref_key), null);
+				Language = LanguageEntry.PrefCodeToLanguage(langPref);
 			}			
 			return Language;
 		}
@@ -109,8 +109,68 @@ namespace keepass2android
 		}
 	}
 
+    /// <summary>
+	/// A small container/wrapper that helps with the building and sorting of the 
+	/// Language Preference list, and interoperability between it and LocaleManager
+	/// </summary>
+	class LanguageEntry
+    {
+		// "System language" preference code; maps to LocaleManager.Language = null
+        private const string SYS_LANG_CODE = "SysLang";
 
-	public class Util {
+		// Preference code (2-char lowercase, or SYS_LANG_CODE)
+        public readonly string Code;
+		// Localized display name
+        public readonly string Name;
+		// True if this LanguageEntry is the "System language", false otherwise
+        public readonly bool IsSystem;
+
+        /// <summary>
+		/// Creates a LanguageEntry from a Locale
+		/// </summary>
+		/// <param name="from"></param>
+		/// <returns></returns>
+		public static LanguageEntry OfLocale(Java.Util.Locale from)
+        {
+            return new LanguageEntry(from.Language, from.DisplayLanguage, false);
+        }
+
+        /// <summary>
+		/// Creates the "System language" LanguageEntry with the given localized display name,
+		/// special preference code, marked as a System entry.
+		/// </summary>
+		/// <param name="displayName"></param>
+		/// <returns></returns>
+		public static LanguageEntry SystemDefault(string displayName)
+        {
+            return new LanguageEntry(SYS_LANG_CODE, displayName, true);
+        }
+
+        private LanguageEntry(string code, string name, bool isSystem)
+        {
+            this.Code = code;
+            this.Name = name;
+            this.IsSystem = isSystem;
+        }
+
+        /// <summary>
+		/// Converts a language preference code to a code that is compatible with LocaleManager.Language
+		/// </summary>
+		/// <param name="code"></param>
+		/// <returns>A converted code, possibly null</returns>
+		public static string PrefCodeToLanguage(string code)
+        {
+            return string.IsNullOrEmpty(code) || SYS_LANG_CODE.Equals(code) ? null : code;
+        }
+
+        public override string ToString()
+        {
+            return "{" + this.Code + ":" + this.Name + "}";
+        }
+    }
+
+
+    public class Util {
 
 		
 		public const String KeyFilename = "fileName";

@@ -167,6 +167,7 @@
   <string name="hint_keyfile">key file</string>
   <string name="hint_length">length</string>
   <string name="hint_pass">password</string>
+  <string name="hint_keyfile_path">SSH private key path</string>
   <string name="hint_login_pass">Password</string>
   <string name="hint_title">name</string>
   <string name="hint_url">URL</string>
@@ -589,9 +590,27 @@
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
 	<string name="hint_sftp_port">port</string>
 	<string name="initial_directory">Initial directory (optional):</string>
+    <string name="connect_timeout">Connection timeout seconds (optional):"</string>
 	<string name="enter_sftp_login_title">Enter SFTP login data:</string>
   <string name="sftp_auth_mode">Authentication mode</string>
   <string name="send_public_key">Send public key...</string>
+  <string name="select_private_keyfile">Select private key...</string>
+	<string name="hint_sftp_key_name">New key name</string>
+	<string name="hint_sftp_key_content">New key content</string>
+	<string name="private_key_saved">Private key saved</string>
+	<string name="private_key_save_failed">FAILED to save private key: %1$s</string>
+	<string name="private_key_info">Enter key name and content to save</string>
+	<string name="private_key_delete">Deleted private key: %1$s</string>
+	<string name="private_key_delete_failed">FAILED to deleted private key: %1$s</string>
+	<string name="save_key">Save Private Key</string>
+	<string name="delete_key">Delete Private Key</string>
+	<string name="private_key_select">Selected private key</string>
+	<string name="private_key_create_new">[Add New...]</string>
+	<string name="hint_sftp_key_passphrase">Key passphrase (optional)</string>
+	<string name="sftp_kex_title">Key Exchange (KEX) Algorithm(s) (optional)</string>
+	<string name="hint_sftp_kex">"Comma-separated names/spec</string>
+	<string name="sftp_shk_title">Server Host Key Algorithm(s) (optional)</string>
+	<string name="hint_sftp_shk">"Comma-separated names/spec</string>
 
   <string name="enter_ftp_login_title">Enter FTP login data:</string>
 
@@ -680,6 +699,7 @@
 	<string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Log-File for Debugging</string>
   <string name="DebugLog_title">Use log file</string>
+  <string name="JSchDebug_title">SFTP debug logging</string>
   <string name="DebugLog_summary">Write app output to a local log file</string>
   <string name="DebugLog_send">Send debug log...</string>
   
@@ -1325,7 +1345,8 @@ Initial public release
 	</string-array>
   <string-array name="sftp_auth_modes">
     <item>Password</item>
-    <item>Private/Public key</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
 	<string-array name="AcceptAllServerCertificates_options">
 		<item>Ignore certificate validation failures</item>

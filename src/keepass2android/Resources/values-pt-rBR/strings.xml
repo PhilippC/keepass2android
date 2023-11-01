@@ -24,7 +24,7 @@
   <string name="app_timeout_summary">Tempo até que o banco de dados seja travado quando o aplicativo estiver inativo.</string>
   <string name="kill_app_label">Encerrar o processo do aplicativo</string>
   <string name="show_kill_app">Botão fechar</string>
-  <string name="show_kill_app_summary">Mostrar um botão no ecrã de palavra-passe para matar o processo de aplicação (para utilizadores paranoicos)</string>
+  <string name="show_kill_app_summary">Mostrar botão de fechar a aplicação na tela de palavra-chave (para utilizadores paranoicos)</string>
   <string name="application">App</string>
   <string name="application_settings">Configurações</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
@@ -32,8 +32,8 @@
   <string name="NavigationToGroupCompleted_message">Grupo de exibição é agora: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Desabilitar Autopreenchimento para os alvos</string>
   <string name="AutofillDisabledQueriesPreference_summary">Visualiza uma lista de aplicativos e sites para os quais o Autopreenchimento foi desativado</string>
-  <string name="OfferSaveCredentials_summary">Se ativado, o Android pergunta se deseja salvar as credenciais após que você inseriu manualmente dados em campos auto-preenchidos.</string>
-  <string name="OfferSaveCredentials_title">Oferecer salvação de credenciais</string>
+  <string name="OfferSaveCredentials_summary">Se ativado, o Android perguntará se deseja salvar as credenciais após você inserir manualmente dados em campos auto-preenchidos.</string>
+  <string name="OfferSaveCredentials_title">Oferecer opção de salvar credenciais</string>
   <string name="ShowGroupInEntry_title">Mostrar nome do grupo na tela de entrada</string>
   <string name="unknown_uri_scheme">O Keepass2Android não pode lidar com a URI %1$s. Entre em contato com o desenvolvedor!</string>
   <string name="Entry_singular">Uma entrada</string>
@@ -47,7 +47,7 @@
   <string name="FileHandling_prefs">Manipulação de arquivos</string>
   <string name="keyboard_prefs">Teclado</string>
   <string name="export_prefs">Exportar banco de dados...</string>
-  <string name="fingerprint_prefs">Debloqueio por impressão digital</string>
+  <string name="fingerprint_prefs">Desbloqueio por impressão digital</string>
   <string name="import_db_prefs">Importar base de dados para pasta interna</string>
   <string name="import_keyfile_prefs">Importar arquivo chave para pasta interna</string>
   <string name="export_keyfile_prefs">Exportar arquivo-chave da pasta interna</string>
@@ -55,7 +55,7 @@
   <string name="OnlyAvailableForLocalFiles">Só disponível para arquivos locais.</string>
   <string name="FileIsInInternalDirectory">Arquivo armazenado no diretório interno.</string>
   <string name="DatabaseFileMoved">Banco de dados copiado para a pasta interna. Clique em OK para abrir o novo local. Nota: Não se esqueça de exportar o banco de dados para um local seguro regularmente!</string>
-  <string name="KeyfileMoved">Arquivo de chaves copiado para a pasta interna. Verifique se que você tem um backup seguro antes de excluir do local atual!</string>
+  <string name="KeyfileMoved">Arquivo de chaves copiado para a pasta interna. Verifique se você tem um backup seguro antes de excluir do local atual!</string>
   <string name="KeyfileMoveRequiresRememberKeyfile">Impossível usar a pasta interna enquanto o local do arquivo de chaves não for memorizado. Modifique as preferências de segurança.</string>
   <string name="unlock_database_button">Desbloquear</string>
   <string name="unlock_database_title">Desbloquear banco de dados</string>
@@ -82,15 +82,15 @@
   <string name="digits">Dígitos</string>
   <string name="disclaimer_formal">Keepass2Android vem com ABSOLUTAMENTE NENHUMA GARANTIA; Este é um software livre, e você está convidado a redistribui-lo sob as condições da GPL versão 2 ou posterior.</string>
   <string name="ellipsis">\u2026</string>
-  <string name="copy_to_clipboard">Copiar para a área de transferencia</string>
+  <string name="copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="SystemLanguage">Idioma do sistema</string>
   <string name="fingerprint_description">Confirme a digital para continuar</string>
   <string name="fingerprint_fatal">Não consigo configurar Desbloqueio por Digital:</string>
-  <string name="fingerprint_not_recognized">Digital não reconhecida. Tente de novo</string>
+  <string name="fingerprint_not_recognized">Digital não reconhecida. Tente novamente</string>
   <string name="fingerprint_success">Digital reconhecida</string>
   <string name="fingerprint_os_error">Desbloqueio por Digital requer Android 6.0 ou posterior.</string>
   <string name="fingerprint_hardware_error">Nenhum leitor de digital detectado.</string>
-  <string name="fingerprint_no_enrolled">Você não tem digitais registradas neste dispositivo. Por favor vá para configurações do sistema primeiro.</string>
+  <string name="fingerprint_no_enrolled">Leitor biométrico não configurado no dispositivo. Por favor vá para configurações do sistema primeiro.</string>
   <string name="disable_fingerprint_unlock">Desabilitar o Desbloqueio Biométrico </string>
   <string name="enable_fingerprint_unlock">Habilitar o Desbloqueio de Biométrico completo</string>
   <string name="enable_fingerprint_quickunlock">Habilitar o Desbloqueio de Biométrico para o QuickUnlock</string>

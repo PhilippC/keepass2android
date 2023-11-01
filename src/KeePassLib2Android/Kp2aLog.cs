@@ -58,12 +58,12 @@ namespace keepass2android
 
 		}
 
-		private static string LogFilename
+		public static string LogFilename
 		{
 			get { return Application.Context.FilesDir.CanonicalPath +"/keepass2android.log"; }
 		}
 
-		private static bool LogToFile
+		public static bool LogToFile
 		{
 			get
 			{
