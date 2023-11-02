@@ -418,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Prikaži ikono obvestila, ko je podatkovna zbirka odklenjena.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 je uvedel novo vedenje za obvestila. Če želite skriti ikono Keepass2Android, preverite in uredite sistemske nastavitve. Nastavite pomembnost kategorije obvestil na najmanj.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Odpri nastavitve</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android lahko prikaže sistemsko obvestilo, ko podatkovna zbirka ni zaklenjena. Da bo to delovalo, prosimo, podelite dovoljenje.</string>
   <string name="DontCare">Me ne zanima</string>
   <string name="DocumentAccessRevoked">Datoteka ni več dostopna za Keepass2Android. Ali je bila preklicana ali so bila dovoljena umaknjena. Ponovno odprite datoteko, npr. z uporabo funkcije Zamenjaj bazo.</string>
   <string name="PreloadDatabaseEnabled_title">Predn. dat. pod. zbirke</string>
@@ -1099,6 +1100,11 @@ Začetna javna izdaja
   <string name="autofill_enable_for">Omogoči samodejno izpolnjevanje za %1$s</string>
   <string name="invalid_link_association">Spletne domene %1$s ni bilo mogoče povezati z aplikacijo %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android je zaznal biometrično strojno opremo. Ali želite omogočiti Biometrično odklepanje za to bazo?</string>
+  <string name="post_notifications_dialog_title">Dovoli obvestila</string>
+  <string name="post_notifications_dialog_message">Keepass2Android lahko prikaže obvestila z gumbi za kopiranje vrednosti, kot so gesla in TOTP, v odložišče ali za priklic vgrajene tipkovnice. To je uporabno za prenos vrednosti v druge aplikacije, ne da bi morali večkrat preklopiti na Keepass2Android. Želite omogočiti takšna obvestila?</string>
+  <string name="post_notifications_dialog_allow">Dovoli obvestila</string>
+  <string name="post_notifications_dialog_disable">Onemogočite to funkcijo</string>
+  <string name="post_notifications_dialog_notnow">Ne zdaj</string>
   <string name="understand">Razumem</string>
   <string name="dont_show_again">Ne prikaži več</string>
   <string name="masterkey_infotext_head">Ali se spomnite vašega glavnega gesla?</string>
