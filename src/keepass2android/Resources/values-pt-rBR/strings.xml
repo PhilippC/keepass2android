@@ -420,6 +420,7 @@
   <string name="ShowUnlockedNotification_summary">Mostra uma notificação permanente enquanto o banco de dados está desbloqueado.</string>
   <string name="IconVisibilityInfo_Android8_text">O android 8 introduziu um novo comportamento para as notificações. Se quiser esconder o ícone de notificação do Keepass2Android, faça através das configurações do sistema. Altere a importância da categoria de notificação para Mínimo.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Abrir as configurações</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android pode exibir uma notificação do sistema enquanto seu banco de dados não está bloqueado. Para que isso funcione, conceda permissão.</string>
   <string name="DontCare">Eu não ligo</string>
   <string name="DocumentAccessRevoked">O arquivo não está mais acessível ao Keepass2Android. Pode ter sido removido ou as permissões de acesso foram revogadas. É necessário reabrir o arquivo, por exemplo usando \"Alterar banco de dados\".</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar arquivo de banco de dados</string>
@@ -1099,6 +1100,11 @@ Lançamento público inicial
   <string name="autofill_enable_for">Habilitar auto-preenchimento para %1$s</string>
   <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android detectou hardware de biométrico. Deseja ativar o Desbloqueio Biométrico para esta base de dados?</string>
+  <string name="post_notifications_dialog_title">Permitir notificações</string>
+  <string name="post_notifications_dialog_message">Keepass2Android pode mostrar notificações com botões para copiar valores como senhas e TOTPs para a área de transferência ou para abrir o teclado integrado. Isso é útil para transferir valores para outros aplicativos sem mudar para Keepass2Android repetidamente. Deseja ativar essas notificações?</string>
+  <string name="post_notifications_dialog_allow">Permitir notificações</string>
+  <string name="post_notifications_dialog_disable">Desabilitar este recurso</string>
+  <string name="post_notifications_dialog_notnow">Não agora</string>
   <string name="understand">Entendido</string>
   <string name="dont_show_again">Não mostrar novamente</string>
   <string name="masterkey_infotext_head">Você se lembra de sua senha mestra?</string>
