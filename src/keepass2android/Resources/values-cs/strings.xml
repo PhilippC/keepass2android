@@ -112,8 +112,8 @@
   <string name="entry_created">Vytvořeno</string>
   <string name="entry_expires">Vyprší</string>
   <string name="entry_group_name">Název skupiny</string>
-  <string name="entry_keyfile">Klíčový soubor (volitelný)</string>
-  <string name="keyfile_heading">Klíčový soubor</string>
+  <string name="entry_keyfile">Soubor klíče (volitelný)</string>
+  <string name="keyfile_heading">Soubor klíče</string>
   <string name="entry_modified">Změněno</string>
   <string name="entry_password">Heslo</string>
   <string name="entry_save">Uložit</string>
@@ -134,7 +134,7 @@
   <string name="error_invalid_db">Chybná databáze.</string>
   <string name="error_invalid_path">Chybná cesta.</string>
   <string name="error_no_name">Je nutné zadat název.</string>
-  <string name="error_nopass">Je potřeba heslo nebo klíčový soubor.</string>
+  <string name="error_nopass">Je vyžadováno heslo nebo soubor klíče.</string>
   <string name="error_pass_gen_type">Minimálně jeden typ generování hesla musí být zvolen</string>
   <string name="error_pass_match">Hesla se neshodují.</string>
   <string name="error_rounds_not_number">Počet opakování musí být číslo.</string>
@@ -149,7 +149,7 @@
   <string name="hint_conf_pass">potvrdit heslo</string>
   <string name="hint_generated_password">vygenerované heslo</string>
   <string name="hint_group_name">Název skupiny</string>
-  <string name="hint_keyfile">klíčový soubor</string>
+  <string name="hint_keyfile">Soubor klíče</string>
   <string name="hint_length">délka</string>
   <string name="hint_pass">heslo</string>
   <string name="hint_keyfile_path">Cesta k privátnímu klíči SSH</string>
@@ -159,12 +159,12 @@
   <string name="hint_override_url">přepsat adresu URL</string>
   <string name="hint_tags">štítek1, štítek2</string>
   <string name="hint_username">uživatelské jméno</string>
-  <string name="InvalidPassword">Chybné heslo nebo klíčový soubor.</string>
+  <string name="InvalidPassword">Chybné heslo nebo soubor klíče.</string>
   <string name="invalid_algorithm">Neplatný algoritmus.</string>
   <string name="invalid_db_sig">Nelze rozpoznat formát databáze.</string>
-  <string name="keyfile_does_not_exist">Klíčový soubor neexistuje.</string>
-  <string name="no_keyfile_selected">Nebyl vybrán žádný klíčový soubor.</string>
-  <string name="keyfile_is_empty">Klíčový soubor je prázdný.</string>
+  <string name="keyfile_does_not_exist">Soubor klíče neexistuje.</string>
+  <string name="no_keyfile_selected">Nebyl vybrán žádný soubor klíče.</string>
+  <string name="keyfile_is_empty">Soubor klíče je prázdný.</string>
   <string name="length">Délka</string>
   <string name="list_size_title">Velikost seznamu skupin</string>
   <string name="list_size_summary">Velikost textu v seznamu skupin</string>
@@ -218,8 +218,8 @@
   <string name="progress_create">Vytvářím novou databázi…</string>
   <string name="create_database">Vytvořit databázi</string>
   <string name="progress_title">Pracuji…</string>
-  <string name="remember_keyfile_summary">Pamatovat si umístění klíčových souborů</string>
-  <string name="remember_keyfile_title">Uložit klíčový soubor</string>
+  <string name="remember_keyfile_summary">Pamatovat si umístění souborů klíčů</string>
+  <string name="remember_keyfile_title">Uložit soubor klíče</string>
   <string name="remove_from_filelist">Odstranit</string>
   <string name="edit">Změnit</string>
   <string name="rijndael">Rijndael (AES)</string>
@@ -518,6 +518,7 @@
   <string name="save_key">Uložit privátní klíč</string>
   <string name="delete_key">Odstranit privátní klíč</string>
   <string name="private_key_select">Vybraný privátní klíč</string>
+  <string name="private_key_create_new">[Přidat nový...]</string>
   <string name="hint_sftp_key_passphrase">Heslo klíče (volitelné)</string>
   <string name="sftp_kex_title">Algoritmus (algoritmy) pro výměnu klíčů (KEX) (volitelné)</string>
   <string name="hint_sftp_kex">\"Názvy/spec. oddělené čárkou</string>
@@ -560,11 +561,11 @@
   <string name="master_password">Hlavní heslo</string>
   <string name="help_master_password">Databáze bude zašifrována heslem, které zde nastavíte. Pro zabezpečení databáze zvolte silné heslo! Tip: Vytvořte jednu nebo dvě věty a použijte první písmena jednotlivých slov jako heslo. Využívejte interpunkční znaménka.</string>
   <string name="hint_master_password">Nastavte hlavní heslo pro ochranu databáze:</string>
-  <string name="key_file">Klíčový soubor</string>
-  <string name="help_key_file">Klíčový soubor je v podstatě heslo uložené v souboru. Klíčové soubory jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet klíčový soubor v tajnosti. Je-li vaše databáze umístěna na vzdáleném úložišti, neukládejte klíčový soubor do stejného místa! Tím by bylo zašifrování souboru zcela zbytečné. Důležité upozornění: Po vytvoření databáze již nelze změnit obsah klíčového souboru!</string>
-  <string name="hint_key_file">Zvolte, pokud chcete použít klíčový soubor spolu s hlavním heslem:</string>
-  <string name="use_key_file">Použít klíčový soubor</string>
-  <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
+  <string name="key_file">Soubor klíče</string>
+  <string name="help_key_file">Soubor klíče je v podstatě heslo uložené v souboru. Soubory klíčů jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet soubor klíče v tajnosti. Je-li vaše databáze umístěna na vzdáleném úložišti, neukládejte soubor klíče do stejného místa! Tím by bylo zašifrování souboru zcela zbytečné. Důležité upozornění: Po vytvoření databáze již nelze změnit obsah souboru klíče!</string>
+  <string name="hint_key_file">Zvolte, pokud chcete použít soubor klíče spolu s hlavním heslem:</string>
+  <string name="use_key_file">Použít soubor klíče</string>
+  <string name="error_adding_keyfile">Chyba při přidávání souboru klíče</string>
   <string name="init_otp">Otevřít pomocný soubor OTP…</string>
   <string name="otp_explanation">Zadejte další jednorázové heslo (OTP). Dotkněte se zad telefonu s Yubikey NEO pro zadání pomocí NFC (vyžaduje aplikaci Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
@@ -748,7 +749,7 @@
     <item>Upgrade pCloud SDK kvůli opravě problému s autentizací</item>
     <item>Update Jsch na verzi 0.1.55</item>
     <item>Přidáno menu na obrazovku volby databáze.</item>
-    <item>Přidána možnost exportu importovaného klíčového souboru</item>
+    <item>Přidána možnost exportu importovaného souboru klíče</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
@@ -1068,13 +1069,13 @@ První veřejné vydání
   </string-array>
   <string-array name="password_modes">
     <item>Pouze heslo</item>
-    <item>Heslo + klíčový soubor</item>
+    <item>Heslo + soubor klíče</item>
     <item>Heslo + OTP</item>
     <item>Heslo + OTP heslo (režim obnovení)</item>
     <item>Heslo + Odpověď výzvy</item>
     <item>Heslo + Odpověď výzvy (režim obnovení)</item>
     <item>Heslo + Výzva-Odpověď pro Keepass XC</item>
-    <item>Heslo + Klíčový soubor + výzva-odpověď (Challenge-response) pro KeePassXC</item>
+    <item>Heslo + Soubor klíče + Výzva-Odpověď (Challenge-Response) pro KeePassXC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
