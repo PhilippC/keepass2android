@@ -514,11 +514,16 @@
   <string name="private_key_save_failed">FALLO al guardar la clave privada: %1$s</string>
   <string name="private_key_info">Introduce el nombre y el contenido de la clave para guardarla</string>
   <string name="private_key_delete">Clave privada eliminada: %1$s</string>
+  <string name="private_key_delete_failed">FALLO al borrar la clave privada: %1$s</string>
   <string name="save_key">Guardar clave privada</string>
   <string name="delete_key">Eliminar clave privada</string>
   <string name="private_key_select">Clave privada seleccionada</string>
   <string name="private_key_create_new">[Añadir nuevo...]</string>
   <string name="hint_sftp_key_passphrase">Frase clave (opcional)</string>
+  <string name="sftp_kex_title">Algoritmo(s) de intercambio de claves (KEX) (opcional)</string>
+  <string name="hint_sftp_kex">\"Nombres/especificaciones separadas por comas</string>
+  <string name="sftp_shk_title">Algoritmo(s) de clave de host del servidor (opcional)</string>
+  <string name="hint_sftp_shk">\"Nombres/especificaciones separadas por comas</string>
   <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
   <string name="enter_mega_login_title">Digite las credenciales de su cuenta en MEGA:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
@@ -589,6 +594,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Fichero registro para Depuración</string>
   <string name="DebugLog_title">Usar el archivo de registro</string>
+  <string name="JSchDebug_title">Registro de depuración SFTP</string>
   <string name="DebugLog_summary">Escribir salida de app a fichero local de log</string>
   <string name="DebugLog_send">Enviar registro de depuración...</string>
   <string name="loading">Cargando…</string>
@@ -702,6 +708,12 @@
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Corrección de fallos y cierres de sesión inesperados</item>
+    <item>Cambiar a una nueva implementación de SFTP, compatible con algoritmos modernos de clave pública como rsa-sha2-256.</item>
+    <item>Marcar contraseñas como sensibles al copiarlas al portapapeles (Android 13)</item>
+    <item>Mejoras en el autorrelleno</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Añadido el soporte para visualizar, remover y restaurar los respaldos de las entradas</item>
     <item>Implementado el soporte para el servicio en la nube de MEGA</item>
@@ -1075,7 +1087,7 @@ Publicación inicial</string>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Contraseña</item>
-    <item>K2A Private/Public key</item>
+    <item>Clave K2A privada/pública</item>
     <item>Clave privada personalizada</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
@@ -1095,6 +1107,7 @@ Publicación inicial</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware biométrico. ¿Desea habilitar el desbloqueo biométrico para esta base de datos?</string>
   <string name="post_notifications_dialog_title">Permitir notificaciones</string>
+  <string name="post_notifications_dialog_message">Keepass2Android puede mostrar notificaciones con botones para copiar valores como contraseñas y TOTPs al portapapeles, o para abrir el teclado integrado. Esto es útil para transferir valores a otras aplicaciones sin cambiar a Keepass2Android repetidamente. ¿Deseas activar estas notificaciones?</string>
   <string name="post_notifications_dialog_allow">Permitir notificaciones</string>
   <string name="post_notifications_dialog_disable">Desactivar esta función</string>
   <string name="post_notifications_dialog_notnow">Ahora no</string>
