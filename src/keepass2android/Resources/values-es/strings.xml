@@ -152,6 +152,7 @@
   <string name="hint_keyfile">archivo de clave</string>
   <string name="hint_length">tamaño</string>
   <string name="hint_pass">contraseña</string>
+  <string name="hint_keyfile_path">Ruta de la clave privada SSH</string>
   <string name="hint_login_pass">Contraseña</string>
   <string name="hint_title">nombre</string>
   <string name="hint_url">URL</string>
@@ -301,6 +302,8 @@
   <string name="NoDalVerification_summary">Deshabilita comprobar si el dominio y el paquete de la aplicación coinciden</string>
   <string name="InlineSuggestions_title">Integrar con el teclado</string>
   <string name="InlineSuggestions_summary">Muestra las sugerencias de autorrelleno como opciones en línea en el teclado (si el método de entrada lo admite)</string>
+  <string name="LogAutofillView_title">Vista de autorrelleno del registro</string>
+  <string name="LogAutofillView_summary">Escribe detalles sobre la vista de autorrelleno en el registro de depuración (si el registro de depuración está activado). Estos detalles se pueden enviar al desarrollador si el autorrelleno no funciona como se esperaba.</string>
   <string name="requires_android11">Requiere Android 11 o posterior</string>
   <string name="kp2a_findUrl">Encuentra una contraseña</string>
   <string name="excludeExpiredEntries">Excluir las entradas caducadas</string>
@@ -415,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Mostrar una notificación en curso mientras la base de datos está desbloqueada.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 ha introducido nuevo comportamiento para notificaciones. Si desea ocultar el icono de notificaciones de Keepass2Android, por favor configúrelo en ajustes del sistema. Establezca la importancia de la categoría de notificación al mínimo.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Abrir ajustes</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android puede mostrar una notificación del sistema mientras su base de datos no está bloqueada. Para que esto funcione, por favor concede permiso.</string>
   <string name="DontCare">No me interesa</string>
   <string name="DocumentAccessRevoked">El archivo ya no es accesible a Keepass2Android. Ha sido eliminado o han sido revocados los permisos de acceso. Por favor use re-abrir el archivo, por ejemplo, con Cambiar base de datos.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar archivo de base de datos</string>
@@ -499,9 +503,22 @@
   <string name="hint_sftp_host">host (ejemplo: 192.168.0.1)</string>
   <string name="hint_sftp_port">Puerto</string>
   <string name="initial_directory">Directorio inicial (opcional):</string>
+  <string name="connect_timeout">Tiempo de espera de la conexión en segundos (opcional):\"</string>
   <string name="enter_sftp_login_title">Introduzca los datos de acceso SFTP:</string>
   <string name="sftp_auth_mode">Modo de autenticación</string>
   <string name="send_public_key">Enviar clave pública...</string>
+  <string name="select_private_keyfile">Seleccionar clave privada...</string>
+  <string name="hint_sftp_key_name">Nuevo nombre de clave</string>
+  <string name="hint_sftp_key_content">Nuevo contenido de clave</string>
+  <string name="private_key_saved">Clave privada guardada</string>
+  <string name="private_key_save_failed">FALLO al guardar la clave privada: %1$s</string>
+  <string name="private_key_info">Introduce el nombre y el contenido de la clave para guardarla</string>
+  <string name="private_key_delete">Clave privada eliminada: %1$s</string>
+  <string name="save_key">Guardar clave privada</string>
+  <string name="delete_key">Eliminar clave privada</string>
+  <string name="private_key_select">Clave privada seleccionada</string>
+  <string name="private_key_create_new">[Añadir nuevo...]</string>
+  <string name="hint_sftp_key_passphrase">Frase clave (opcional)</string>
   <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
   <string name="enter_mega_login_title">Digite las credenciales de su cuenta en MEGA:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
@@ -1059,7 +1076,7 @@ Publicación inicial</string>
   <string-array name="sftp_auth_modes">
     <item>Contraseña</item>
     <item>K2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Clave privada personalizada</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorar errores de validación de certificado</item>
@@ -1077,6 +1094,10 @@ Publicación inicial</string>
   <string name="autofill_enable_for">Activar Autorrelleno para %1$s</string>
   <string name="invalid_link_association">No se pudo asociar el dominio web %1$s con la app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectado hardware biométrico. ¿Desea habilitar el desbloqueo biométrico para esta base de datos?</string>
+  <string name="post_notifications_dialog_title">Permitir notificaciones</string>
+  <string name="post_notifications_dialog_allow">Permitir notificaciones</string>
+  <string name="post_notifications_dialog_disable">Desactivar esta función</string>
+  <string name="post_notifications_dialog_notnow">Ahora no</string>
   <string name="understand">Entiendo</string>
   <string name="dont_show_again">No volver a mostrar</string>
   <string name="masterkey_infotext_head">¿Recuerda su contraseña maestra?</string>
