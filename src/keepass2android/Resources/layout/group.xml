@@ -245,6 +245,50 @@
             style="@style/BottomBarButton" />
         </RelativeLayout>
       </LinearLayout>
+
+        <LinearLayout
+          android:id="@+id/notification_permission_infotext"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:visibility="gone"
+          android:orientation="vertical">
+
+
+          <TextView android:id="@+id/infotext" android:text="@string/PostNotificationsPermissionInfo_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_margin="6dp"
+                    android:layout_marginBottom="2dp"
+          />
+
+          <RelativeLayout
+            android:id="@+id/notification_permissions_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <Button
+              android:id="@+id/post_notification_button_allow"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:paddingTop="4dp"
+              android:text="@string/post_notifications_dialog_allow"
+              style="@style/BottomBarButton" />
+            <Button
+              android:id="@+id/post_notification_button_dont_show_again"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:paddingTop="4dp"
+              android:text="@string/dont_show_again"
+              style="@style/BottomBarButton" />
+          </RelativeLayout>
+        </LinearLayout>
+
+
       <LinearLayout
         android:id="@+id/infotext"
         android:layout_width="match_parent"
