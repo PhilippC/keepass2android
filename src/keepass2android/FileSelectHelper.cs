@@ -391,8 +391,8 @@ namespace keepass2android
 										  string user = dlgContents.FindViewById<EditText>(Resource.Id.ftp_user).Text;
 										  string password = dlgContents.FindViewById<EditText>(Resource.Id.ftp_password).Text;
 										  string initialPath = dlgContents.FindViewById<EditText>(Resource.Id.ftp_initial_dir).Text;
-										  string ftpPath = new NetFtpFileStorage(_activity, App.Kp2a).BuildFullPath(host, port, initialPath, user,
-																										  password, encryption);
+										  string ftpPath = new NetFtpFileStorage(_activity, App.Kp2a, () => false)
+											  .BuildFullPath(host, port, initialPath, user, password, encryption);
 										  onStartBrowse(ftpPath);
 									  });
 			EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());

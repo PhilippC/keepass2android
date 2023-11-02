@@ -75,14 +75,15 @@ namespace keepass2android.Io
 		}
 
 		private readonly ICertificateValidationHandler _app;
+		private readonly Func<bool> _debugLogPrefGetter;
 
 		public MemoryStream traceStream;
 
-		public NetFtpFileStorage(Context context, ICertificateValidationHandler app)
+		public NetFtpFileStorage(Context context, ICertificateValidationHandler app, Func<bool> debugLogPrefGetter)
 		{
             _app = app;
-			traceStream = new MemoryStream();
-			
+            _debugLogPrefGetter = debugLogPrefGetter;
+            traceStream = new MemoryStream();
 		}
 
 		public IEnumerable<string> SupportedProtocols
@@ -155,8 +156,11 @@ namespace keepass2android.Io
 			};
 
 			client.Config.EncryptionMode = settings.EncryptionMode;
-			
-			client.Connect();
+
+			if (_debugLogPrefGetter())
+				client.Logger = new Kp2aLogFTPLogger();
+
+            client.Connect();
 			return client;
 			
 		}
@@ -589,7 +593,7 @@ namespace keepass2android.Io
     {
         public void Log(FtpLogEntry entry)
         {
-            Kp2aLog.Log("FluentFTP: " + entry.Message);
+            Kp2aLog.Log("[FluentFTP] " + entry.Message);
         }
     }
 }

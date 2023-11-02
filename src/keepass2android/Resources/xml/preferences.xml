@@ -677,10 +677,10 @@
                android:key="@string/DebugLog_send_key" />
       <CheckBoxPreference
 							android:enabled="true"
-							  android:persistent="false"
+							  android:persistent="true"
 							  android:defaultValue="false"
-							  android:title="@string/JSchDebug_title"
-							  android:key="@string/JSchDebug_key" />
+							  android:title="@string/FtpDebug_title"
+							  android:key="@string/FtpDebug_key" />
     </PreferenceScreen>
     </PreferenceScreen>
 
