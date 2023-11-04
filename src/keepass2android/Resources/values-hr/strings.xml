@@ -951,7 +951,8 @@ Prvotna javna verzija  </string>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Lozinka</item>
-    <item>Privatni/Javni ključ</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Zanemari pogreške potvrda certifikata</item>

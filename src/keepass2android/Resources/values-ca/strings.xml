@@ -246,6 +246,11 @@
     <item>Passphrase</item>
     <item>Passphrase + Password</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúscules</item>
+    <item>MAJÚSCULES</item>
+    <item>First Character Uppercase</item>
+  </string-array>
   <string name="search_hint">Trobar el que</string>
   <string name="search_results">Resultats de cerca</string>
   <string name="search_in">Cerca a</string>
@@ -943,7 +948,8 @@ Revisió inicial per al públic
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Contrasenya</item>
-    <item>Clau Privada/Pública</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora els errors de validació de certificat</item>

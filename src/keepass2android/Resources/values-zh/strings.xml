@@ -10,7 +10,7 @@
   <string name="deny">拒绝</string>
   <string name="add_entry">添加条目</string>
   <string name="edit_entry">编辑条目</string>
-  <string name="add_url_entry">添加URL</string>
+  <string name="add_url_entry">为 URL 创建条目</string>
   <string name="add_group">添加群组</string>
   <string name="add_group_title">添加群组</string>
   <string name="edit_group_title">编辑群组</string>
@@ -152,6 +152,7 @@
   <string name="hint_keyfile">密钥文件</string>
   <string name="hint_length">长度</string>
   <string name="hint_pass">密码</string>
+  <string name="hint_keyfile_path">SSH 私钥路径</string>
   <string name="hint_login_pass">密码</string>
   <string name="hint_title">名称</string>
   <string name="hint_url">网址：</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">当数据库处于解锁状态栏持续显示通知。</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8.0的通知引入了新的行为。若你想隐藏Keepass2Android的通知图标，请前往系统设置，将通知的重要性设为中等。</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">打开设置</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android 可以在您的数据库未被锁定时显示系统通知。要正常显示此通知，请授予权限。</string>
   <string name="DontCare">无所谓</string>
   <string name="DocumentAccessRevoked">Keepass2Android无法访问此文件。文件可能已被删除，或其访问权限受限。请使用“更改数据库”重新打开文件。</string>
   <string name="PreloadDatabaseEnabled_title">预载入数据库文件</string>
@@ -501,9 +503,27 @@
   <string name="hint_sftp_host">主机（比如: 192.168.0.1）</string>
   <string name="hint_sftp_port">端口</string>
   <string name="initial_directory">初始目录（可选）：</string>
+  <string name="connect_timeout">连接超时秒 (可选)：\"</string>
   <string name="enter_sftp_login_title">输入 SFTP 登录数据：</string>
   <string name="sftp_auth_mode">身份验证模式</string>
   <string name="send_public_key">发送公钥...</string>
+  <string name="select_private_keyfile">选择私钥...</string>
+  <string name="hint_sftp_key_name">新密钥名称</string>
+  <string name="hint_sftp_key_content">新密钥内容</string>
+  <string name="private_key_saved">私钥已保存</string>
+  <string name="private_key_save_failed">未能保存私钥：%1$s</string>
+  <string name="private_key_info">输入要保存的密钥名称和内容</string>
+  <string name="private_key_delete">删除私钥：%1$s</string>
+  <string name="private_key_delete_failed">删除私钥失败：%1$s</string>
+  <string name="save_key">保存私钥</string>
+  <string name="delete_key">删除私钥</string>
+  <string name="private_key_select">选定私钥</string>
+  <string name="private_key_create_new">[新建私钥...]</string>
+  <string name="hint_sftp_key_passphrase">密钥的密码短语 (可选)</string>
+  <string name="sftp_kex_title">密钥交换（KEX）算法 (可选)</string>
+  <string name="hint_sftp_kex">\" 英文逗号分隔的命名/规范</string>
+  <string name="sftp_shk_title">服务器主机密钥算法 (可选)</string>
+  <string name="hint_sftp_shk">\" 英文逗号分隔的命名/规范</string>
   <string name="enter_ftp_login_title">输入 FTP 登录数据:</string>
   <string name="enter_mega_login_title">输入您的 MEGA 帐户登录数据：</string>
   <string name="select_storage_type">选择存储类型：</string>
@@ -574,6 +594,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">调试用日志文件</string>
   <string name="DebugLog_title">使用日志文件</string>
+  <string name="JSchDebug_title">SFTP 调试记录</string>
   <string name="DebugLog_summary">将应用输出写入本地日志文件</string>
   <string name="DebugLog_send">发送调试日志...</string>
   <string name="loading">载入中...</string>
@@ -1062,7 +1083,8 @@ Initial public release
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>密码</item>
-    <item>私钥/公钥</item>
+    <item>K2A 私钥 / 公钥</item>
+    <item>自定义私钥</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>忽略证书验证失败</item>
@@ -1080,6 +1102,11 @@ Initial public release
   <string name="autofill_enable_for">对 %1$s 启用自动填充</string>
   <string name="invalid_link_association">无法关联 Web 域 %1$s 与应用程序 %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android检测到指纹传感器。你想为此数据库启用指纹解锁吗？</string>
+  <string name="post_notifications_dialog_title">允许通知</string>
+  <string name="post_notifications_dialog_message">Keepass2Android 可以显示带按钮的通知，允许快速复制像密码和 TOTP 这样的值到剪贴板，或者带起内置键盘。 这允许你在不反复切换到 Keepass2Android 的情况下便可将值转移到其他应用。你想要启用这种通知吗？</string>
+  <string name="post_notifications_dialog_allow">允许通知</string>
+  <string name="post_notifications_dialog_disable">禁用此功能</string>
+  <string name="post_notifications_dialog_notnow">暂不</string>
   <string name="understand">我明白了</string>
   <string name="dont_show_again">不再显示</string>
   <string name="masterkey_infotext_head">你还记得你的主密码吗？</string>

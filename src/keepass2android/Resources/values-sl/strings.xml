@@ -152,6 +152,7 @@
   <string name="hint_keyfile">datoteka ključa</string>
   <string name="hint_length">dolžina</string>
   <string name="hint_pass">geslo</string>
+  <string name="hint_keyfile_path">Pot zasebnega ključa SSH</string>
   <string name="hint_login_pass">Geslo</string>
   <string name="hint_title">ime</string>
   <string name="hint_url">URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Prikaži ikono obvestila, ko je podatkovna zbirka odklenjena.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 je uvedel novo vedenje za obvestila. Če želite skriti ikono Keepass2Android, preverite in uredite sistemske nastavitve. Nastavite pomembnost kategorije obvestil na najmanj.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Odpri nastavitve</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android lahko prikaže sistemsko obvestilo, ko podatkovna zbirka ni zaklenjena. Da bo to delovalo, prosimo, podelite dovoljenje.</string>
   <string name="DontCare">Me ne zanima</string>
   <string name="DocumentAccessRevoked">Datoteka ni več dostopna za Keepass2Android. Ali je bila preklicana ali so bila dovoljena umaknjena. Ponovno odprite datoteko, npr. z uporabo funkcije Zamenjaj bazo.</string>
   <string name="PreloadDatabaseEnabled_title">Predn. dat. pod. zbirke</string>
@@ -501,9 +503,27 @@
   <string name="hint_sftp_host">gostitelj (npr.: 192.168.0.1)</string>
   <string name="hint_sftp_port">vrata</string>
   <string name="initial_directory">Začetna mapa (izbirno):</string>
+  <string name="connect_timeout">Časovna omejitev povezave v sekundah (neobvezno):\"</string>
   <string name="enter_sftp_login_title">Vnesite podatke za prijavo SFTP:</string>
   <string name="sftp_auth_mode">Način overitve</string>
   <string name="send_public_key">Pošlji javni ključ ...</string>
+  <string name="select_private_keyfile">Izberite zasebni ključ ...</string>
+  <string name="hint_sftp_key_name">Novo ime ključa</string>
+  <string name="hint_sftp_key_content">Nova vsebina ključa</string>
+  <string name="private_key_saved">Zasebni ključ shranjen</string>
+  <string name="private_key_save_failed">Ni uspelo shraniti zasebnega ključa: %1$s</string>
+  <string name="private_key_info">Vnesite ime ključa in vsebino, ki jo želite shraniti</string>
+  <string name="private_key_delete">Izbrisan zasebni ključ: %1$s</string>
+  <string name="private_key_delete_failed">Neuspešno izbrisan zasebni ključ: %1$s</string>
+  <string name="save_key">Shrani zasebni ključ</string>
+  <string name="delete_key">Izbriši zasebni ključ</string>
+  <string name="private_key_select">Izbrani zasebni ključ</string>
+  <string name="private_key_create_new">[Dodaj novo ...]</string>
+  <string name="hint_sftp_key_passphrase">Geslo ključa (neobvezno)</string>
+  <string name="sftp_kex_title">Algoritem(-i) za izmenjavo ključev (KEX) (neobvezno)</string>
+  <string name="hint_sftp_kex">\"Imena/spec, ločena z vejico</string>
+  <string name="sftp_shk_title">Algoritem(-i) ključa gostitelja strežnika (neobvezno)</string>
+  <string name="hint_sftp_shk">\"Imena/spec, ločena z vejico</string>
   <string name="enter_ftp_login_title">Vnesite podatke FTP za prijavo:</string>
   <string name="enter_mega_login_title">Vnesite podatke za prijavo v račun MEGA:</string>
   <string name="select_storage_type">Izberite mesto za shranjevanje:</string>
@@ -574,6 +594,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Dnevnik datoteke za odpravljanje napak</string>
   <string name="DebugLog_title">Uporabi datoteko dnevnika</string>
+  <string name="JSchDebug_title">Dnevnik za odpravljanje napak SFTP</string>
   <string name="DebugLog_summary">Izpišite dogodke aplikacije v lokalno datoteko dnevnika</string>
   <string name="DebugLog_send">Pošlji dnevnik napak ...</string>
   <string name="loading">Nalaganje …</string>
@@ -1060,7 +1081,8 @@ Začetna javna izdaja
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Geslo</item>
-    <item>Zasebni/Javni ključ</item>
+    <item>K2A Zasebni/javni ključ</item>
+    <item>Zasebni ključ po meri</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Prezri spodletela preverjanja veljavnosti potrdil</item>
@@ -1078,6 +1100,11 @@ Začetna javna izdaja
   <string name="autofill_enable_for">Omogoči samodejno izpolnjevanje za %1$s</string>
   <string name="invalid_link_association">Spletne domene %1$s ni bilo mogoče povezati z aplikacijo %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android je zaznal biometrično strojno opremo. Ali želite omogočiti Biometrično odklepanje za to bazo?</string>
+  <string name="post_notifications_dialog_title">Dovoli obvestila</string>
+  <string name="post_notifications_dialog_message">Keepass2Android lahko prikaže obvestila z gumbi za kopiranje vrednosti, kot so gesla in TOTP, v odložišče ali za priklic vgrajene tipkovnice. To je uporabno za prenos vrednosti v druge aplikacije, ne da bi morali večkrat preklopiti na Keepass2Android. Želite omogočiti takšna obvestila?</string>
+  <string name="post_notifications_dialog_allow">Dovoli obvestila</string>
+  <string name="post_notifications_dialog_disable">Onemogočite to funkcijo</string>
+  <string name="post_notifications_dialog_notnow">Ne zdaj</string>
   <string name="understand">Razumem</string>
   <string name="dont_show_again">Ne prikaži več</string>
   <string name="masterkey_infotext_head">Ali se spomnite vašega glavnega gesla?</string>

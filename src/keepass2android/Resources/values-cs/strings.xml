@@ -112,8 +112,8 @@
   <string name="entry_created">Vytvořeno</string>
   <string name="entry_expires">Vyprší</string>
   <string name="entry_group_name">Název skupiny</string>
-  <string name="entry_keyfile">Klíčový soubor (volitelný)</string>
-  <string name="keyfile_heading">Klíčový soubor</string>
+  <string name="entry_keyfile">Soubor klíče (volitelný)</string>
+  <string name="keyfile_heading">Soubor klíče</string>
   <string name="entry_modified">Změněno</string>
   <string name="entry_password">Heslo</string>
   <string name="entry_save">Uložit</string>
@@ -134,7 +134,7 @@
   <string name="error_invalid_db">Chybná databáze.</string>
   <string name="error_invalid_path">Chybná cesta.</string>
   <string name="error_no_name">Je nutné zadat název.</string>
-  <string name="error_nopass">Je potřeba heslo nebo klíčový soubor.</string>
+  <string name="error_nopass">Je vyžadováno heslo nebo soubor klíče.</string>
   <string name="error_pass_gen_type">Minimálně jeden typ generování hesla musí být zvolen</string>
   <string name="error_pass_match">Hesla se neshodují.</string>
   <string name="error_rounds_not_number">Počet opakování musí být číslo.</string>
@@ -149,21 +149,22 @@
   <string name="hint_conf_pass">potvrdit heslo</string>
   <string name="hint_generated_password">vygenerované heslo</string>
   <string name="hint_group_name">Název skupiny</string>
-  <string name="hint_keyfile">klíčový soubor</string>
+  <string name="hint_keyfile">Soubor klíče</string>
   <string name="hint_length">délka</string>
   <string name="hint_pass">heslo</string>
+  <string name="hint_keyfile_path">Cesta k privátnímu klíči SSH</string>
   <string name="hint_login_pass">Heslo</string>
   <string name="hint_title">název</string>
   <string name="hint_url">Adresa URL</string>
   <string name="hint_override_url">přepsat adresu URL</string>
   <string name="hint_tags">štítek1, štítek2</string>
   <string name="hint_username">uživatelské jméno</string>
-  <string name="InvalidPassword">Chybné heslo nebo klíčový soubor.</string>
+  <string name="InvalidPassword">Chybné heslo nebo soubor klíče.</string>
   <string name="invalid_algorithm">Neplatný algoritmus.</string>
   <string name="invalid_db_sig">Nelze rozpoznat formát databáze.</string>
-  <string name="keyfile_does_not_exist">Klíčový soubor neexistuje.</string>
-  <string name="no_keyfile_selected">Nebyl vybrán žádný klíčový soubor.</string>
-  <string name="keyfile_is_empty">Klíčový soubor je prázdný.</string>
+  <string name="keyfile_does_not_exist">Soubor klíče neexistuje.</string>
+  <string name="no_keyfile_selected">Nebyl vybrán žádný soubor klíče.</string>
+  <string name="keyfile_is_empty">Soubor klíče je prázdný.</string>
   <string name="length">Délka</string>
   <string name="list_size_title">Velikost seznamu skupin</string>
   <string name="list_size_summary">Velikost textu v seznamu skupin</string>
@@ -217,8 +218,8 @@
   <string name="progress_create">Vytvářím novou databázi…</string>
   <string name="create_database">Vytvořit databázi</string>
   <string name="progress_title">Pracuji…</string>
-  <string name="remember_keyfile_summary">Pamatovat si umístění klíčových souborů</string>
-  <string name="remember_keyfile_title">Uložit klíčový soubor</string>
+  <string name="remember_keyfile_summary">Pamatovat si umístění souborů klíčů</string>
+  <string name="remember_keyfile_title">Uložit soubor klíče</string>
   <string name="remove_from_filelist">Odstranit</string>
   <string name="edit">Změnit</string>
   <string name="rijndael">Rijndael (AES)</string>
@@ -301,6 +302,8 @@
   <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
   <string name="InlineSuggestions_title">Integrovat s klávesnicí</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického doplňování jako možnosti na klávesnici (pokud je podporováno metodou vstupu)</string>
+  <string name="LogAutofillView_title">Zahrnout obrazovky automatického doplňování do protokolu</string>
+  <string name="LogAutofillView_summary">Zahrne detaily o obrazovkách, kde byly detekovány prostory pro automatické dopňování, do protokolu (pokud je zapnut protokolovací soubor). Tyto detaily mohou být zaslány vývojáři pokud automatické doplňování nefunguje správně.</string>
   <string name="requires_android11">Vyžaduje Android 11 nebo novější</string>
   <string name="kp2a_findUrl">Najít heslo</string>
   <string name="excludeExpiredEntries">Vyloučit expirované položky</string>
@@ -415,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Zobrazovat oznamovací ikonu pokud je databáze odemčena.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 přinesl nové chování upozornění. Pokud chcete schovat oznamovací ikonu Keepass2Android můžete tak učinit v nastavení systému. Nastavte kategorii důležitosti upozornění na Minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Otevřít nastavení</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android umožňuje zobrazit systémové oznámení, když databáze není uzamčena. Aby to fungovalo, udělte prosím oprávnění.</string>
   <string name="DontCare">Není třeba</string>
   <string name="DocumentAccessRevoked">Soubor není dále dostupný pro Keepass2Android. Buď byl smazán, nebo bylo zrušeno povolení k přístupu. Prosím otevřete daný soubor znovu pomocí: Změnit databázi.</string>
   <string name="PreloadDatabaseEnabled_title">Přednačítat databázový soubor</string>
@@ -499,9 +503,27 @@
   <string name="hint_sftp_host">počítač (např: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počáteční adresář (nepovinné):</string>
+  <string name="connect_timeout">Časový limit připojení v sekundách (volitelné):\"</string>
   <string name="enter_sftp_login_title">Zadejte přihlašovací údaje k SFTP:</string>
   <string name="sftp_auth_mode">Režim ověření</string>
   <string name="send_public_key">Odeslat veřejný klíč...</string>
+  <string name="select_private_keyfile">Vyberte privátní klíč...</string>
+  <string name="hint_sftp_key_name">Název nového klíče</string>
+  <string name="hint_sftp_key_content">Obsah nového klíče</string>
+  <string name="private_key_saved">Privátní klíč uložen</string>
+  <string name="private_key_save_failed">NEPODAŘILO se uložit privátní klíč: %1$s</string>
+  <string name="private_key_info">Zadejte název klíče a obsah pro uložení</string>
+  <string name="private_key_delete">Odstraněný privátní klíč: %1$s</string>
+  <string name="private_key_delete_failed">NEPODAŘILO se odstranit privátní klíč: %1$s</string>
+  <string name="save_key">Uložit privátní klíč</string>
+  <string name="delete_key">Odstranit privátní klíč</string>
+  <string name="private_key_select">Vybraný privátní klíč</string>
+  <string name="private_key_create_new">[Přidat nový...]</string>
+  <string name="hint_sftp_key_passphrase">Heslo klíče (volitelné)</string>
+  <string name="sftp_kex_title">Algoritmus (algoritmy) pro výměnu klíčů (KEX) (volitelné)</string>
+  <string name="hint_sftp_kex">\"Názvy/spec. oddělené čárkou</string>
+  <string name="sftp_shk_title">Algoritmus (algoritmy) klíče serverového hostitele (volitelné)</string>
+  <string name="hint_sftp_shk">\"Názvy/spec. oddělené čárkou</string>
   <string name="enter_ftp_login_title">Zadejte přihlašovací údaje pro FTP:</string>
   <string name="enter_mega_login_title">Zadejte přihlašovací údaje pro váš účet MEGA</string>
   <string name="select_storage_type">Vyberte typ úložiště:</string>
@@ -539,11 +561,11 @@
   <string name="master_password">Hlavní heslo</string>
   <string name="help_master_password">Databáze bude zašifrována heslem, které zde nastavíte. Pro zabezpečení databáze zvolte silné heslo! Tip: Vytvořte jednu nebo dvě věty a použijte první písmena jednotlivých slov jako heslo. Využívejte interpunkční znaménka.</string>
   <string name="hint_master_password">Nastavte hlavní heslo pro ochranu databáze:</string>
-  <string name="key_file">Klíčový soubor</string>
-  <string name="help_key_file">Klíčový soubor je v podstatě heslo uložené v souboru. Klíčové soubory jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet klíčový soubor v tajnosti. Je-li vaše databáze umístěna na vzdáleném úložišti, neukládejte klíčový soubor do stejného místa! Tím by bylo zašifrování souboru zcela zbytečné. Důležité upozornění: Po vytvoření databáze již nelze změnit obsah klíčového souboru!</string>
-  <string name="hint_key_file">Zvolte, pokud chcete použít klíčový soubor spolu s hlavním heslem:</string>
-  <string name="use_key_file">Použít klíčový soubor</string>
-  <string name="error_adding_keyfile">Chyba při přidávání klíčového souboru!</string>
+  <string name="key_file">Soubor klíče</string>
+  <string name="help_key_file">Soubor klíče je v podstatě heslo uložené v souboru. Soubory klíčů jsou obvykle silnější než hlavní heslo, protože klíč může být mnohem složitější, nicméně je také těžší držet soubor klíče v tajnosti. Je-li vaše databáze umístěna na vzdáleném úložišti, neukládejte soubor klíče do stejného místa! Tím by bylo zašifrování souboru zcela zbytečné. Důležité upozornění: Po vytvoření databáze již nelze změnit obsah souboru klíče!</string>
+  <string name="hint_key_file">Zvolte, pokud chcete použít soubor klíče spolu s hlavním heslem:</string>
+  <string name="use_key_file">Použít soubor klíče</string>
+  <string name="error_adding_keyfile">Chyba při přidávání souboru klíče</string>
   <string name="init_otp">Otevřít pomocný soubor OTP…</string>
   <string name="otp_explanation">Zadejte další jednorázové heslo (OTP). Dotkněte se zad telefonu s Yubikey NEO pro zadání pomocí NFC (vyžaduje aplikaci Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
@@ -572,6 +594,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Logovací soubor pro ladění chyb</string>
   <string name="DebugLog_title">Použít protokolovací soubor</string>
+  <string name="JSchDebug_title">Protokolování ladění SFTP</string>
   <string name="DebugLog_summary">Ulož výstup aplikace do lokálního souboru</string>
   <string name="DebugLog_send">Pošli soubor s ladícími informacemi...</string>
   <string name="loading">Nahrávám…</string>
@@ -685,6 +708,12 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string-array name="ChangeLog_1_09e">
+    <item>Opravy pádů a nečekaného odhlašování</item>
+    <item>Přepnutí na novou implementaci SFTP, podporující moderní algoritmy pro veřejné klíče jako rsa-sha2-256</item>
+    <item>Označení hesel jako citlivé údaje při kopírování do schránky (Android 13)</item>
+    <item>Vylepšení automatického vyplňování</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Přidaná podpora zobrazování, mazání a obnovování záloh položek</item>
     <item>Přidaná podpora pro cloudové úložiště MEGA </item>
@@ -720,7 +749,7 @@
     <item>Upgrade pCloud SDK kvůli opravě problému s autentizací</item>
     <item>Update Jsch na verzi 0.1.55</item>
     <item>Přidáno menu na obrazovku volby databáze.</item>
-    <item>Přidána možnost exportu importovaného klíčového souboru</item>
+    <item>Přidána možnost exportu importovaného souboru klíče</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Již se neukládají názvy balíčků Android aplikací v poli URL</item>
@@ -1040,17 +1069,18 @@ První veřejné vydání
   </string-array>
   <string-array name="password_modes">
     <item>Pouze heslo</item>
-    <item>Heslo + klíčový soubor</item>
+    <item>Heslo + soubor klíče</item>
     <item>Heslo + OTP</item>
     <item>Heslo + OTP heslo (režim obnovení)</item>
     <item>Heslo + Odpověď výzvy</item>
     <item>Heslo + Odpověď výzvy (režim obnovení)</item>
     <item>Heslo + Výzva-Odpověď pro Keepass XC</item>
-    <item>Heslo + Klíčový soubor + výzva-odpověď (Challenge-response) pro KeePassXC</item>
+    <item>Heslo + Soubor klíče + Výzva-Odpověď (Challenge-Response) pro KeePassXC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
-    <item>Soukromý/Veřejný klíč</item>
+    <item>K2A Privátní/veřejný klíč</item>
+    <item>Vlastní privátní klíč</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovat neúspěšné ověření certifikátu</item>
@@ -1068,6 +1098,11 @@ První veřejné vydání
   <string name="autofill_enable_for">Povolit Automatické doplnění pro %1$s</string>
   <string name="invalid_link_association">Nedaří se spojit doménu %1$s s aplikací %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android nalezl hardwarovou biometrickou čtečku. Chcete pro tuto databázi povolit Biometrické odemykáni?</string>
+  <string name="post_notifications_dialog_title">Povolit notifikace</string>
+  <string name="post_notifications_dialog_message">Keepass2Android může zobrazovat notifikace s tlačítky pro kopírování hodnot, jako jsou hesla a TOTP, do schránky nebo pro vyvolání vestavěné klávesnice. To je užitečné pro přenos hodnot do jiných aplikací bez nutnosti opakovaného přepínání do Keepass2Android. Chcete takové notifikace povolit?</string>
+  <string name="post_notifications_dialog_allow">Povolit notifikace</string>
+  <string name="post_notifications_dialog_disable">Vypnout tuto funkci</string>
+  <string name="post_notifications_dialog_notnow">Nyní ne</string>
   <string name="understand">Rozumím</string>
   <string name="dont_show_again">Vícekrát neukazuj</string>
   <string name="masterkey_infotext_head">Pamatujete si Vaše hlavní heslo?</string>

@@ -1061,7 +1061,8 @@ Prima release pubblica
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Password</item>
-    <item>chiave Privata/Pubblica</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora gli errori di convalida del certificato</item>

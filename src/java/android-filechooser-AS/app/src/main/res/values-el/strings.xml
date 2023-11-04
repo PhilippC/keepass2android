@@ -7,7 +7,7 @@
 -->
 <resources>
     <string name="afc_cmd_advanced_selection_all">Όλα</string>
-    <string name="afc_cmd_advanced_selection_invert">Αντιστροφή επιλογής</string>
+    <string name="afc_cmd_advanced_selection_invert">Αναστροφή επιλογής</string>
     <string name="afc_cmd_advanced_selection_none">Κανένα</string>
     <string name="afc_cmd_grid_view">Προβολή πλέγματος</string>
     <string name="afc_cmd_home">Κεντρική</string>

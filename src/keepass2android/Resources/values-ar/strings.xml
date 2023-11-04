@@ -994,7 +994,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>كلمة السر</item>
-    <item>المفتاح الخاص/العمومي</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>تجاهل فشل التحقق من صحة الشهادة</item>

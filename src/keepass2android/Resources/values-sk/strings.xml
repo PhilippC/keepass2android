@@ -49,7 +49,7 @@
   <string name="export_prefs">Export databázy...</string>
   <string name="fingerprint_prefs">Biometrické odomykanie</string>
   <string name="import_db_prefs">Import DB do interného priečinka</string>
-  <string name="import_keyfile_prefs">Import súbor. kľúča do interného priečinka</string>
+  <string name="import_keyfile_prefs">Importovať súbor s kľúčom do interného priečinka</string>
   <string name="export_keyfile_prefs">Exportovať súbor s kľúčom z interného priečinka</string>
   <string name="keyboardswitch_prefs">Prepínanie klávesnice</string>
   <string name="OnlyAvailableForLocalFiles">Dostupné len pre lokálne súbory.</string>
@@ -152,13 +152,14 @@
   <string name="hint_keyfile">súbor s kľúčom</string>
   <string name="hint_length">dĺžka</string>
   <string name="hint_pass">heslo</string>
+  <string name="hint_keyfile_path">Cesta k súkromnému kľúču SSH</string>
   <string name="hint_login_pass">Heslo</string>
   <string name="hint_title">meno</string>
   <string name="hint_url">Adresa URL</string>
   <string name="hint_override_url">prepísanie URL</string>
   <string name="hint_tags">tag1, tag2</string>
   <string name="hint_username">meno používateľa</string>
-  <string name="InvalidPassword">Chybné heslo, alebo súbor keyfile.</string>
+  <string name="InvalidPassword">Chybné heslo, alebo súbor s kľúčom.</string>
   <string name="invalid_algorithm">Neplatný algoritmus.</string>
   <string name="invalid_db_sig">Formát Databázy nerozpoznaný.</string>
   <string name="keyfile_does_not_exist">Súbor s kľúčom neexistuje.</string>
@@ -301,6 +302,8 @@
   <string name="NoDalVerification_summary">Vypne kontrolu, či sa zhoduje doména a balík aplikácie</string>
   <string name="InlineSuggestions_title">Integrácia s klávesnicou</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického dopĺňania ako vložené možnosti na klávesnici (ak to metóda vstupu podporuje)</string>
+  <string name="LogAutofillView_title">Zobrazenie záznamu pre autom. dopĺňanie</string>
+  <string name="LogAutofillView_summary">Zápis podrobností o zobrazení autom. dopĺňania do záznamu o ladení (ak je ladenie zapnuté). Tie je možné odoslať vývojárovi, ak autom. dopĺňanie nefunguje podľa očakávania.</string>
   <string name="requires_android11">Vyžaduje Android 11 alebo novší</string>
   <string name="kp2a_findUrl">Nájsť heslo</string>
   <string name="excludeExpiredEntries">Vylúčiť expirované záznamy</string>
@@ -415,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Zobraziť prichádzajúcu notifikáciu aj pri odomknutej databáze.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 obsahuje nové postupy pre notifikácie. Ak chcete skryť ikonu pre notifikácie aplikácie Keepass2Android, prosím nakonfigurujte ich cez nastavenia systému. Dôležitosť kategórie notifikácií nastavte na minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Otvoriť nastavenia</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android môže zobrazovať systémovú notifikáciu, pokiaľ nie je vaša databáza uzamknutá. Pre zapnutie tejto funkcie udeľte oprávnenie</string>
   <string name="DontCare">Nezaujíma ma to</string>
   <string name="DocumentAccessRevoked">Súbor už nie je dostupný pre Keepass2Android. Buď bol odstránený alebo boli zrušené prístupové oprávnenia. Prosím znovu otvorte súbor, napríklad príkazom pre zmenu databázy.</string>
   <string name="PreloadDatabaseEnabled_title">Vopred načítať databázu</string>
@@ -499,9 +503,26 @@
   <string name="hint_sftp_host">host (napr: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Počiatočný priečinok (voliteľne):</string>
+  <string name="connect_timeout">Časový limit pripojenia v sek. (voliteľne): \"</string>
   <string name="enter_sftp_login_title">Zadajte SFTP login:</string>
   <string name="sftp_auth_mode">Spôsob autentifikácie</string>
   <string name="send_public_key">Odoslať verejný kľúč...</string>
+  <string name="select_private_keyfile">Vyberte súkromný kľúč...</string>
+  <string name="hint_sftp_key_name">Nový názov kľúča</string>
+  <string name="hint_sftp_key_content">Nový obsah kľúča</string>
+  <string name="private_key_saved">Súkromný kľúč bol uložený</string>
+  <string name="private_key_save_failed">NEPODARILO sa uložiť súkromný kľúč: %1$s</string>
+  <string name="private_key_info">Zadajte názov kľúča a obsah na uloženie</string>
+  <string name="private_key_delete">Vymazaný súkromný kľúč: %1$s</string>
+  <string name="private_key_delete_failed">NEPODARILO sa vymazať súkromný kľúč: %1$s</string>
+  <string name="save_key">Uložiť privátny kľúč</string>
+  <string name="delete_key">Vymazať privátny kľúč</string>
+  <string name="private_key_select">Vybraný súkromný kľúč</string>
+  <string name="private_key_create_new">[Pridať nový...]</string>
+  <string name="sftp_kex_title">Algoritmus pre výmenu kľúča (KEX) (voliteľne)</string>
+  <string name="hint_sftp_kex">\"Mená oddeľované čiarkou/špec.</string>
+  <string name="sftp_shk_title">Algoritmus pre server. host. kľúč (voliteľne)</string>
+  <string name="hint_sftp_shk">\"Mená oddeľované čiarkou/špec.</string>
   <string name="enter_ftp_login_title">Zadajte prihlas. údaje pre FTP:</string>
   <string name="enter_mega_login_title">Zadajte svoje prihlasovacie údaje ku kontu MEGA:</string>
   <string name="select_storage_type">Vyberte spôsob uloženia:</string>
@@ -572,6 +593,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Súbor so záznamami pre ladenie</string>
   <string name="DebugLog_title">Použiť súbor so záznamami</string>
+  <string name="JSchDebug_title">Záznam pre ladenie SFTP</string>
   <string name="DebugLog_summary">Zapísať výstup aplikácie do lokálneho súboru so záznamom</string>
   <string name="DebugLog_send">Odoslať záznam pre ladenie...</string>
   <string name="loading">Načítava sa…</string>
@@ -690,7 +712,7 @@
     <item>Oprava chyby vedúcej k pádom a neočakávaným odhláseniam</item>
     <item>Prepnutie na novú implementáciu SFTP, s podporou pre moderné algoritmy verejných kľúčov, ako je rsa-sha2-256</item>
     <item>Označiť heslá ako citlivé údaje pri kopírovaní do schránky (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>Vylepšenia automatického dopĺňania</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Pridaná podpora prehliadania, odstraňovania a obnovovania záloh záznamu</item>
@@ -1067,7 +1089,8 @@ Prvé verejné vydanie
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Heslo</item>
-    <item>Súkromný/verejný kľúč</item>
+    <item>K2A Súkromný/verejný kľúč</item>
+    <item>Používateľský privátny kľúč</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorovať zlyhania pri overení certifikátu</item>
@@ -1085,6 +1108,11 @@ Prvé verejné vydanie
   <string name="autofill_enable_for">Zapnúť autom. dopĺňanie pre %1$s</string>
   <string name="invalid_link_association">Nemožno asociovať webové doménu %1$s s aplikáciou %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android detegoval biometrický hardvér. Chcete zapnúť biometrické odomykanie pre túto databázu?</string>
+  <string name="post_notifications_dialog_title">Povoliť notifikácie</string>
+  <string name="post_notifications_dialog_message">Keepass2Android dokáže zobrazovať notifikácie s tlačidlami na kopírovanie hodnôt, ako sú napr. heslá a časové jednorazové heslá do schránky, alebo na zobrazenie vstavanej klávesnice. Je to užitočné pri prenášaní hodnôt do iných aplikácií bez neustáleho prepínania na aplikáciu Keepass2Android. Chcete povoliť takéto notifikácie?</string>
+  <string name="post_notifications_dialog_allow">Povoliť notifikácie</string>
+  <string name="post_notifications_dialog_disable">Zablokovať túto funkciu</string>
+  <string name="post_notifications_dialog_notnow">Teraz nie</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Už nezobrazovať</string>
   <string name="masterkey_infotext_head">Pamätáte si svoje primárne heslo?</string>

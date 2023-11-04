@@ -217,7 +217,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>പാസ്സ്‌വേർഡ്‌</item>
-    <item>Private/Public key</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string name="understand">എനിക്ക് മനസിലായി</string>
   <string name="dont_show_again">വീണ്ടും കാണിക്കരുത്</string>

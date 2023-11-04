@@ -175,7 +175,7 @@
   <string name="masktotp_title">Maskér TOTP-felt</string>
   <string name="masktotp_summary">Skjul TOTP-felt som standard</string>
   <string name="NoAutofillDisabling_title">Ingen mulighed for at deaktivere autofyld</string>
-  <string name="NoAutofillDisabling_summary">Hvis aktiveret, vil appen ikke vise muligheden for at deaktivere autofyld for bestemte poster.</string>
+  <string name="NoAutofillDisabling_summary">Hvis aktiveret, vil appen ikke vise muligheden for at deaktivere autoudfyld for bestemte poster.</string>
   <string name="menu_about">Om</string>
   <string name="menu_change_key">Skift hovednøgle</string>
   <string name="menu_copy_pass">Kopiér adgangskode</string>
@@ -301,6 +301,8 @@
   <string name="NoDalVerification_summary">Deaktiverer tjek af om domæne- og app-pakke matcher</string>
   <string name="InlineSuggestions_title">Integrer med tastatur</string>
   <string name="InlineSuggestions_summary">Viser forslag til autofyld som indlejrede muligheder i tastaturet (hvis understøttet af inputmetoden)</string>
+  <string name="LogAutofillView_title">Log autoudfyld-visning</string>
+  <string name="LogAutofillView_summary">Skriv detaljer om autofill-visningen til fejlfindingsloggen (hvis fejlfindingslogning er aktiveret). Disse detaljer kan sendes til udvikleren, hvis autofyld ikke virker som forventet.</string>
   <string name="requires_android11">Kræver Android 11 eller senere.</string>
   <string name="kp2a_findUrl">Find adgangskode</string>
   <string name="excludeExpiredEntries">Udelad udløbne poster</string>
@@ -689,7 +691,7 @@
     <item>Fejlrettelse til nedbrud og uventede log-outs</item>
     <item>Skift til ny SFTP-implementering, som understøtter moderne offentlige nøglealgoritmer såsom rsa-sha2-256</item>
     <item>Markér adgangskoder som følsomme ved kopiering til udklipsholder (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>Forbedringer af autofyld</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Tilføjet understøttelse af visning, fjernelse og gendannelse af sikkerhedskopierede poster</item>
@@ -947,7 +949,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Adgangskode</item>
-    <item>Privat/Offentlig nøgle</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignorér certifikatgodkendelsesfejl</item>
