@@ -111,7 +111,6 @@ namespace keepass2android
 	public class Kp2aApp: IKp2aApp, ICacheSupervisor
 	{
 
-		
 
 		public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
@@ -467,8 +466,11 @@ namespace keepass2android
             }
         }
 
-	    
-	    private void AskForReload(Activity activity, Action<bool> actionOnResult)
+		private readonly HashSet<RealProgressDialog> _activeProgressDialogs = new HashSet<RealProgressDialog>();
+		// Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
+		private bool _isShowingUserInputDialog = false;
+
+        private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
@@ -489,6 +491,8 @@ namespace keepass2android
                         actionOnResult(true);
                         actionOnResult = null;
 					}
+
+					OnUserInputDialogClose();
 				});
 
 			builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
@@ -499,8 +503,9 @@ namespace keepass2android
 					actionOnResult(false);
 					actionOnResult = null;
 				}
-			});
 
+				OnUserInputDialogClose();
+			});
 
 			Dialog dialog = builder.Create();
 
@@ -516,8 +521,11 @@ namespace keepass2android
                     actionOnResult(false);
 					actionOnResult = null;
                 }
+
+				OnUserInputDialogClose();
             }));
 
+			OnUserInputDialogShow();
 			dialog.Show();
 		}
 
@@ -581,35 +589,59 @@ namespace keepass2android
 			EventHandler dismissHandler,
             Context ctx, string messageSuffix = "")
         {
-	        Handler handler = new Handler(Looper.MainLooper);
+			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
 				{
 					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 					builder.SetTitle(GetResourceString(titleKey));
 
-					builder.SetMessage(GetResourceString(messageKey)+(messageSuffix != "" ? " " + messageSuffix: ""));
+					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
 
-					string yesText = GetResourceString(yesString);
-					builder.SetPositiveButton(yesText, yesHandler);
+					// _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
+					// and to show progress dialog after yesNoCancel dialog is closed
+					EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
+					{
+						OnUserInputDialogClose();
+						yesHandler.Invoke(sender, args);
+					};
+                    string yesText = GetResourceString(yesString);
+					builder.SetPositiveButton(yesText, yesHandlerWithShow);
 					string noText = "";
 					if (noHandler != null)
 					{
+                        EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
+                        {
+							OnUserInputDialogClose();
+							noHandler.Invoke(sender, args);
+						};
+
 						noText = GetResourceString(noString);
-						builder.SetNegativeButton(noText, noHandler);
+						builder.SetNegativeButton(noText, noHandlerWithShow);
 					}
 					string cancelText = "";
 					if (cancelHandler != null)
 					{
+						EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
+						{
+							OnUserInputDialogClose();
+							cancelHandler.Invoke(sender, args);
+						};
+
 						cancelText = ctx.GetString(Android.Resource.String.Cancel);
 						builder.SetNeutralButton(cancelText,
-												 cancelHandler);	
+												 cancelHandlerWithShow);
 					}
-
-					
 
 					AlertDialog dialog = builder.Create();
 					if (dismissHandler != null)
-						dialog.SetOnDismissListener(new Util.DismissListener(() => dismissHandler(dialog, EventArgs.Empty)));
+					{
+						dialog.SetOnDismissListener(new Util.DismissListener(() => {
+							OnUserInputDialogClose();
+							dismissHandler(dialog, EventArgs.Empty);
+						}));
+					}
+
+					OnUserInputDialogShow();
 					dialog.Show();
 
 					if (yesText.Length + noText.Length + cancelText.Length >= 20)
@@ -626,12 +658,53 @@ namespace keepass2android
 						}
 	
 					}
-					
 				}
 			);
-        }
+		}
 
-		public Handler UiThreadHandler 
+		/// <summary>
+		/// Shows all non-dismissed progress dialogs.
+		/// If there are multiple progressDialogs active, they all will be showing.
+		/// There probably will never be multiple dialogs at the same time because only one ProgressTask can run at a time.
+		/// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
+		/// because they are just progress indicators.
+		/// </summary>
+		private void ShowAllActiveProgressDialogs()
+		{
+			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+			{
+				progressDialog.Show();
+			}
+		}
+
+		private void HideAllActiveProgressDialogs()
+		{
+			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+			{
+				progressDialog.Hide();
+			}
+		}
+
+		/// <summary>
+		/// Hide progress dialogs whenever a dialog that requires user interaction
+		/// appears so that the progress dialogs cannot cover the user-interaction dialog
+		/// </summary>
+		private void OnUserInputDialogShow()
+		{
+			_isShowingUserInputDialog = true;
+			HideAllActiveProgressDialogs();
+		}
+
+		/// <summary>
+		/// Show previously hidden progress dialogs after user interaction with dialog finished
+		/// </summary>
+		private void OnUserInputDialogClose()
+		{
+			_isShowingUserInputDialog = false;
+			ShowAllActiveProgressDialogs();
+		}
+
+        public Handler UiThreadHandler 
 		{
 			get { return new Handler(); }
 		}
@@ -642,9 +715,11 @@ namespace keepass2android
 		private class RealProgressDialog : IProgressDialog
 		{
 			private readonly ProgressDialog _pd;
+			private readonly Kp2aApp _app;
 
-			public RealProgressDialog(Context ctx)
+			public RealProgressDialog(Context ctx, Kp2aApp app)
 			{
+				_app = app;
 				_pd = new ProgressDialog(ctx);
 				_pd.SetCancelable(false);
 			}
@@ -669,18 +744,28 @@ namespace keepass2android
 				{
 					Kp2aLog.LogUnexpectedError(e);
 				}
-				
+				_app._activeProgressDialogs.Remove(this);
 			}
 
 			public void Show()
 			{
-				_pd.Show();
+				_app._activeProgressDialogs.Add(this);
+				// Only show if asking dialog not also showing
+				if (!_app._isShowingUserInputDialog)
+				{ 
+					_pd.Show();
+				}
+			}
+
+			public void Hide()
+			{
+				_pd.Hide();
 			}
 		}
 
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
-			return new RealProgressDialog(ctx);
+			return new RealProgressDialog(ctx, this);
 		}
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
