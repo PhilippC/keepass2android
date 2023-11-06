@@ -488,7 +488,6 @@
 이미 데이터베이스 파일를 갖고 있다면, 이 옵션을 선택해서 폴더를 생성한 다음, 기존의 데이터베이스 파일을 생성된 폴더에 넣으십시오. (PC나 기타 경로를 통해서)
 그 다음 이 옵션을 다시 선택하여 데이터베이스 파일을 여십시오.</string>
   <string name="filestoragename_gdrive">Google 드라이브</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">원드라이브</string>
   <string name="filestoragename_onedrive2">원드라이브</string>
   <string name="filestoragename_onedrive2_full">모든 파일 및 공유한 파일</string>

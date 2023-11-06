@@ -519,7 +519,6 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A dosyaları)</string>
   <string name="filestoragehelp_gdriveKP2A">KP2A\'ya tam Google Drive\'ınıza erişim izni vermek istemiyorsanız, bu seçeneği belirleyebilirsiniz.  Önce bir veritabanı dosyası oluşturmanız gerektiğini unutmayın, mevcut dosyalar uygulama tarafından görülmez.  Ya veritabanı oluştur ekranından bu seçeneği seçin ya da zaten bir veritabanı açtıysanız, bu seçeneği seçerek veritabanını dışa aktarın.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Bu depolama türü yalnızca pCloud \"Applications/Keepass2Android\" klasörüne erişim talep eder.  pCloud hesabınızdaki mevcut bir veritabanını kullanmak istiyorsanız, lütfen dosyanın bu pCloud klasörüne yerleştirildiğinden emin olun.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>

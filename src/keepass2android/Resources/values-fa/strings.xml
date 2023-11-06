@@ -532,7 +532,6 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">گوگل‌درایو (فایل‌های KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">اگر می‌خواهید گوگل‌درایوتان به‌طور کامل در دسترس KP2A نباشد، این گزینه را انتخاب کنید. توجه نمایید که ابتدا باید یک فایل پایگاه‌داده بسازید. برنامه نمی‌تواند فایل‌های موجود را ببیند. این گزینه را یا از صفحهٔ ساخت پایگاه‌داده انتخاب کنید یا اگر هم‌اکنون یک پایگاه‌داده باز کرده‌اید از طریق صادرکردن پایگاه‌داده و انتخاب این گزینه اقدام کنید.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">همهٔ فایل‌ها و فایل‌های اشتراک‌گذاری‌شده</string>

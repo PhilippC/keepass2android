@@ -521,7 +521,6 @@
   <string name="filestoragename_gdrive">Google Drev</string>
   <string name="filestoragename_gdriveKP2A">Google Drev (KP2A filer)</string>
   <string name="filestoragehelp_gdriveKP2A">Hvis du ikke ønsker at give KP2A adgang til hele dit Google Drev, kan du vælge denne mulighed. Bemærk, at du skal oprette en databasefil først, eksisterende filer er ikke synlige for appen. Du kan enten vælge denne mulighed fra skærmen Opret database eller, hvis du allerede har åbnet en database, ved at vælge muligheden for at eksportere databasen.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Denne lagringstype vil kun anmode om adgang til pCloud-mappen \"Applications/Keepass2Android\". Hvis du vil benytte en eksisterende database fra din pCloud-konto, skal du sørge for, at filen er placeret i denne pCloud-mappe.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>

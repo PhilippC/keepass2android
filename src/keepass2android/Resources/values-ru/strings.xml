@@ -521,7 +521,6 @@
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
   <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>

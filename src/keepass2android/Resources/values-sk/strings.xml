@@ -540,7 +540,6 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (súbory KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Ak nechcete poskytnúť KP2A prístup k celému úložisku Google Drive, môžete vybrať túto možnosť. Pamätajte na to, že najskôr musíte vytvoriť súbor s databázou, existujúce súbory aplikácia neuvidí. Buď vyberte takúto možnosť z obrazovky pre vytvorenie databázy, alebo už otvorenú databázu exportujte vybratím tejto možnosti.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z konta pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>

@@ -515,7 +515,6 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (каталог KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Калі вы хочаце даць KP2A доступ да ўсяго сховішча Dropbox, абярыце гэты параметр. Праграма будзе запытваць доступ толькі да каталога Apps/Keepass2Android. Гэта асабліва пасуе пры стварэнні новай базы даных. Калі ў вас ужо ёсць база даных, абярыце гэты параметр, каб стварыць каталог, перамясціце ў яго файл базы даных, а пасля зноў абярыце гэты параметр, каб адкрыць файл.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Гэты тып сховішча запытвае доступ толькі да каталога pCloud \"Праграмы/Keepass2Android\". Калі вы хочаце выкарыстоўваць наяўную базу даных з акаўнта pCloud, то пераканайцеся, што файл знаходзіцца ў каталозе pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
