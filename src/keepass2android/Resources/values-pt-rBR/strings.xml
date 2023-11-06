@@ -543,7 +543,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (Arquivos KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se você não quiser dar acesso KP2A ao seu Google Drive completo, você pode selecionar esta opção. Observe que você precisa criar um arquivo de banco de dados primeiro, os arquivos existentes não são visíveis para o aplicativo. Escolha esta opção na tela Criar banco de dados ou, se você já abriu um banco de dados, exportando o banco de dados escolhendo esta opção.</string>
+  <string name="filestoragename_pcloud">PCloud (Pasta KP2A)</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só solicitará acesso à pasta pCloud \"Applications/Keepass2Android\". Se você deseja usar um banco de dados existente de sua conta pCloud, certifique-se de que o arquivo está colocado nesta pasta pCloud.</string>
+  <string name="filestoragename_pcloudall">PCloud (Acesso Total)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Todos os arquivos e arquivos compartilhados</string>
@@ -595,7 +597,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Arquivo de Log para Depuração</string>
   <string name="DebugLog_title">Usar arquivo de log</string>
-  <string name="JSchDebug_title">Registro de depuração SFTP</string>
   <string name="DebugLog_summary">Escrever a saída da App em arquivo de log local</string>
   <string name="DebugLog_send">Enviar log de depuração...</string>
   <string name="loading">Carregando…</string>
