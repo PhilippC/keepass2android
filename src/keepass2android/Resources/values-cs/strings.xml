@@ -593,7 +593,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Logovací soubor pro ladění chyb</string>
   <string name="DebugLog_title">Použít protokolovací soubor</string>
-  <string name="JSchDebug_title">Protokolování ladění SFTP</string>
   <string name="DebugLog_summary">Ulož výstup aplikace do lokálního souboru</string>
   <string name="DebugLog_send">Pošli soubor s ladícími informacemi...</string>
   <string name="loading">Nahrávám…</string>
