@@ -519,7 +519,6 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-filer)</string>
   <string name="filestoragehelp_gdriveKP2A">Om du inte vill ge KP2A åtkomst till hela din Google Drive kan du välja det här alternativet. Observera att du måste skapa en databasfil först, befintliga filer är inte synliga för appen. Välj antingen det här alternativet från skärmen Skapa databas eller, om du redan har öppnat en databas, genom att exportera databasen genom att välja det här alternativet.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Denna lagringstyp kommer endast att begära åtkomst till pCloud-mappen \"Applications/Keepass2Android\". Om du vill använda en befintlig databas från ditt pCloud-konto, se till att filen är placerad i den här pCloud-mappen.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
