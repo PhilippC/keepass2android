@@ -593,7 +593,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Fichero registro para Depuración</string>
   <string name="DebugLog_title">Usar el archivo de registro</string>
-  <string name="JSchDebug_title">Registro de depuración SFTP</string>
   <string name="DebugLog_summary">Escribir salida de app a fichero local de log</string>
   <string name="DebugLog_send">Enviar registro de depuración...</string>
   <string name="loading">Cargando…</string>
