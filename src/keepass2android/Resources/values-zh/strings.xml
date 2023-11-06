@@ -593,7 +593,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">调试用日志文件</string>
   <string name="DebugLog_title">使用日志文件</string>
-  <string name="JSchDebug_title">SFTP 调试记录</string>
   <string name="DebugLog_summary">将应用输出写入本地日志文件</string>
   <string name="DebugLog_send">发送调试日志...</string>
   <string name="loading">载入中...</string>
