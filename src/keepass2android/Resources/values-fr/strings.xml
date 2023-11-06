@@ -592,7 +592,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Fichier journal pour le débogage</string>
   <string name="DebugLog_title">Utiliser fichier de journal</string>
-  <string name="JSchDebug_title">Enregistrement de débogage SFTP</string>
   <string name="DebugLog_summary">Écrire la sortie de l’app dans un fichier journal local</string>
   <string name="DebugLog_send">Envoyer le journal de débogage...</string>
   <string name="loading">Chargement en cours…</string>
