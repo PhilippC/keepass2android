@@ -749,7 +749,8 @@ Versiunea publică iniţială
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Parolă</item>
-    <item>Private/Public key</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoră eșecuri de validare a certificatului</item>

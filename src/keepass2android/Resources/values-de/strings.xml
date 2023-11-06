@@ -302,6 +302,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoDalVerification_summary">Deaktiviert die Prüfung, ob Domain und App-Package zueinander passen</string>
   <string name="InlineSuggestions_title">In die Tastatur integrieren</string>
   <string name="InlineSuggestions_summary">Zeigt Vorschläge für automatisches Ausfüllen innerhalb der virtuellen Tastatur (wenn von dieser unterstützt)</string>
+  <string name="LogAutofillView_title">Autofill-Ansicht loggen</string>
+  <string name="LogAutofillView_summary">Schreibt Details über die Autofill-Ansicht in das Fehlerprotokoll (wenn die Fehlerprotokollierung aktiviert ist). Diese Details können an den Entwickler gesendet werden, wenn das automatische Ausfüllen nicht wie erwartet funktioniert.</string>
   <string name="requires_android11">Benötigt Android 11 oder neuer</string>
   <string name="kp2a_findUrl">Passwort finden</string>
   <string name="excludeExpiredEntries">Abgelaufene Einträge ausschließen</string>
@@ -688,7 +690,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
     <item>Fehlerbehebung, um Abstürze und unerwartetes Abmelden zu vermeiden</item>
     <item>Wechsel auf eine neue SFTP-Implementierung, jetzt mit Unterstützung von modernen Public-Key-Algorithmen wie rsa-sha2-256</item>
     <item>Passwörter werden beim Kopieren in die Zwischenablage als vertraulich markiert (Android 13)</item>
-    <item>Autofill improvements</item>
+    <item>Autofill Verbesserungen</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
@@ -1050,7 +1052,8 @@ Erstes öffentliches Release</string>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Passwort</item>
-    <item>Privater/Öffentlicher Schlüssel</item>
+    <item>K2A Private/Public key</item>
+    <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Fehler bei Zertifikatsüberprüfung ignorieren</item>
