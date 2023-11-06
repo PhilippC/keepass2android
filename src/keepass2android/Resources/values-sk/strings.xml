@@ -592,7 +592,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Súbor so záznamami pre ladenie</string>
   <string name="DebugLog_title">Použiť súbor so záznamami</string>
-  <string name="JSchDebug_title">Záznam pre ladenie SFTP</string>
   <string name="DebugLog_summary">Zapísať výstup aplikácie do lokálneho súboru so záznamom</string>
   <string name="DebugLog_send">Odoslať záznam pre ladenie...</string>
   <string name="loading">Načítava sa…</string>
