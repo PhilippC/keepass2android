@@ -146,7 +146,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
         DataSource dataSource = DataSource.create(data);
         String filename = path.substring(path.lastIndexOf("/") + 1);
-        String filePath = path.substring(0, path.lastIndexOf("/") + 1);
+        String filePath = path.substring(0, path.lastIndexOf("/"));
         RemoteFolder remoteFolder = this.getRemoteFolderByPath(filePath);
 
         try {
@@ -175,11 +175,14 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     @Override
     public String createFilePath(String parentPath, String newFileName) throws Exception {
+        String cleanpath = this.cleanPath(parentPath);
+        String filepath = this.getProtocolId() + "://";
+
         return (
-            this.getProtocolId() + "://" +
-            this.cleanPath(parentPath) +
-            ("".equals(newFileName) ? "" : "/") +
-            newFileName
+                filepath
+                +cleanpath
+                +("".equals(newFileName) || "/".equals(cleanpath) ? "" : "/") +newFileName
+
         );
     }
 
@@ -201,7 +204,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
     @Override
     public FileEntry getFileEntry(String path) throws Exception {
         path = this.cleanPath(path);
-
+        //do not call getRemoteFileByPath because path could represent a file or folder, we don't know here
         RemoteEntry remoteEntry = this.getRemoteEntryByPath(path);
 
         return this.convertRemoteEntryToFileEntry(
@@ -214,10 +217,13 @@ public class PCloudFileStorage extends JavaFileStorageBase
     public void delete(String path) throws Exception {
         path = this.cleanPath(path);
 
-        RemoteEntry remoteEntry = this.getRemoteFileByPath(path);
+        RemoteEntry remoteEntry = this.getRemoteEntryByPath(path);
 
         try {
-            this.apiClient.delete(remoteEntry).execute();
+            if (remoteEntry.isFolder())
+                this.apiClient.deleteFolder(remoteEntry.asFolder(), true).execute();
+            else
+                this.apiClient.delete(remoteEntry).execute();
         } catch (ApiError e) {
             throw convertApiError(e);
         }
@@ -289,7 +295,7 @@ public class PCloudFileStorage extends JavaFileStorageBase
     }
 
     private ApiClient createApiClientFromSharedPrefs() {
-        SharedPreferences prefs = this.ctx.getSharedPreferences(sharedPrefPrefix + SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getPrefs();
         String authToken = prefs.getString(SHARED_PREF_AUTH_TOKEN, null);
         String apiHost = prefs.getString(SHARED_PREF_API_HOST, null);
         return this.createApiClient(authToken, apiHost);
@@ -313,15 +319,20 @@ public class PCloudFileStorage extends JavaFileStorageBase
 
     private void clearAuthToken() {
         this.apiClient = null;
-        SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getPrefs();
         SharedPreferences.Editor edit = prefs.edit();
         edit.clear();
         edit.apply();
     }
 
+    private SharedPreferences getPrefs()
+    {
+        return this.ctx.getSharedPreferences(sharedPrefPrefix + SHARED_PREF_NAME, Context.MODE_PRIVATE);
+    }
+
     private void setAuthToken(String authToken, String apiHost) {
         this.apiClient = this.createApiClient(authToken, apiHost);
-        SharedPreferences prefs = this.ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getPrefs();
         SharedPreferences.Editor edit = prefs.edit();
         edit.putString(SHARED_PREF_AUTH_TOKEN, authToken);
         edit.putString(SHARED_PREF_API_HOST, apiHost);
@@ -335,27 +346,47 @@ public class PCloudFileStorage extends JavaFileStorageBase
     }
 
     private RemoteFile getRemoteFileByPath(String path) throws Exception {
-        RemoteEntry remoteEntry = this.getRemoteEntryByPath(path);
+        Call<RemoteFile> call = this.apiClient.loadFile(path);
 
         try {
-            return remoteEntry.asFile();
-        } catch (IllegalStateException e) {
-            throw new FileNotFoundException(e.toString());
+            return call.execute();
+        } catch (ApiError apiError) {
+            throw convertApiError(apiError);
         }
     }
 
     private RemoteFolder getRemoteFolderByPath(String path) throws Exception {
-        RemoteEntry remoteEntry = this.getRemoteEntryByPath(path);
+        Call<RemoteFolder> call;
+        if ("".equals(path))
+             call = this.apiClient.listFolder(RemoteFolder.ROOT_FOLDER_ID, false);
+        else
+             call = this.apiClient.listFolder(path, false);
 
         try {
-            return remoteEntry.asFolder();
-        } catch (IllegalStateException e) {
-            throw new FileNotFoundException(e.toString());
+            return call.execute();
+        } catch (ApiError apiError) {
+            throw convertApiError(apiError);
         }
+
     }
 
     private RemoteEntry getRemoteEntryByPath(String path) throws Exception {
-        Call<RemoteFolder> call = this.apiClient.listFolder(RemoteFolder.ROOT_FOLDER_ID, true);
+        if ("/".equals(path)) {
+            try {
+                return this.apiClient.listFolder(RemoteFolder.ROOT_FOLDER_ID, false).execute();
+            } catch (ApiError apiError) {
+                throw convertApiError(apiError);
+            }
+        }
+
+        String filename = path.substring(path.lastIndexOf("/") + 1);
+        String parentPath = path.substring(0, path.lastIndexOf("/"));
+
+        Call<RemoteFolder> call;
+        if ("".equals(parentPath))
+            call = this.apiClient.listFolder(RemoteFolder.ROOT_FOLDER_ID, false);
+        else
+            call = this.apiClient.listFolder(parentPath, false);
 
         RemoteFolder folder;
         try {
@@ -364,40 +395,12 @@ public class PCloudFileStorage extends JavaFileStorageBase
             throw convertApiError(apiError);
         }
 
-        if ("/".equals(path)) {
-            return folder;
+        for (RemoteEntry remoteEntry : folder.children()) {
+            if (remoteEntry.name() != null && remoteEntry.name().equals(filename))
+                return remoteEntry;
         }
+        throw new FileNotFoundException("did not find " + path);
 
-        String[] fileNames = path.substring(1).split("/");
-        RemoteFolder currentFolder = folder;
-        Iterator<String> fileNamesIterator = Arrays.asList(fileNames).iterator();
-        while (true) {
-            String fileName = fileNamesIterator.next();
-
-            Iterator<RemoteEntry> entryIterator = currentFolder.children().iterator();
-            while (true) {
-                RemoteEntry remoteEntry;
-                try {
-                    remoteEntry = entryIterator.next();
-                } catch (NoSuchElementException e) {
-                    throw new FileNotFoundException(e.toString());
-                }
-
-                if (currentFolder.folderId() == remoteEntry.parentFolderId() && fileName.equals(remoteEntry.name())) {
-                    if (!fileNamesIterator.hasNext()) {
-                        return remoteEntry;
-                    }
-
-                    try {
-                        currentFolder = remoteEntry.asFolder();
-                    } catch (IllegalStateException e) {
-                        throw new FileNotFoundException(e.toString());
-                    }
-
-                    break;
-                }
-            }
-        }
     }
 
     private Exception convertApiError(ApiError e) {

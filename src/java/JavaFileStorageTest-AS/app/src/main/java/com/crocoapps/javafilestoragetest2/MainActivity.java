@@ -148,6 +148,7 @@ import java.util.List;
 import keepass2android.javafilestorage.GoogleDriveAppDataFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
+import keepass2android.javafilestorage.PCloudFileStorage;
 import keepass2android.javafilestorage.SftpStorage;
 import keepass2android.javafilestorage.UserInteractionRequiredException;
 import keepass2android.javafilestorage.WebDavStorage;
@@ -538,8 +539,8 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 	}
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
-		storageToTest = new SftpStorage(ctx.getApplicationContext());
-		//storageToTest = new PCloudFileStorage(ctx, "yCeH59Ffgtm");
+		//storageToTest = new SftpStorage(ctx.getApplicationContext());
+		storageToTest = new PCloudFileStorage(ctx, "FLm22de7bdS", "pcloud", "pcloudtest");
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
