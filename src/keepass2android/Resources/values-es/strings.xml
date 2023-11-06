@@ -541,7 +541,6 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (archivos KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Si no deseas brindarle acceso completo a KP2A para acceder a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta de pCloud \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente de su cuenta pCloud, asegúrese de que el archivo se coloca en dicha carpeta de pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
