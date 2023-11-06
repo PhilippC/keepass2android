@@ -593,7 +593,6 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Dnevnik datoteke za odpravljanje napak</string>
   <string name="DebugLog_title">Uporabi datoteko dnevnika</string>
-  <string name="JSchDebug_title">Dnevnik za odpravljanje napak SFTP</string>
   <string name="DebugLog_summary">Izpišite dogodke aplikacije v lokalno datoteko dnevnika</string>
   <string name="DebugLog_send">Pošlji dnevnik napak ...</string>
   <string name="loading">Nalaganje …</string>
