@@ -854,8 +854,9 @@ namespace keepass2android
             return PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
 				.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.FtpDebug_key), false);
         }
-
-		private IFileStorage CreateSftpFileStorage()
+#if !EXCLUDE_JAVAFILESTORAGE
+#if !NoNet
+        private IFileStorage CreateSftpFileStorage()
 		{
 			Context ctx = LocaleManager.LocalizedAppContext;
             SftpFileStorage fileStorage = new SftpFileStorage(ctx, this);
@@ -876,6 +877,8 @@ namespace keepass2android
 
 			return fileStorage;
 		}
+#endif
+#endif
 
 		public void TriggerReload(Context ctx, Action<bool> actionOnResult)
 		{
