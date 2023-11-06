@@ -541,7 +541,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A datoteke)</string>
   <string name="filestoragehelp_gdriveKP2A">Če KP2A ne želite omogočiti dostopa do celotnega Google Drive, lahko izberete to možnost. Upoštevajte, da morate najprej ustvariti novo datoteko baze podatkov, obstoječe datoteke niso vidne aplikaciji. To možnost izberite na zaslonu Ustvari bazo podatkov ali, če ste že odprli bazo podatkov, izvozite bazo podatkov in izberete to možnost.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A mapa)</string>
   <string name="filestoragehelp_pcloud">Ta vrsta shranjevanja bo zahtevala dostop samo do pCloud mape »Aplikacije/ Keepass2Android«. Če želite uporabiti obstoječo bazo podatkov iz vašega PCloud računa, se prepričajte, da je datoteka v pCloud mapi.</string>
+  <string name="filestoragename_pcloudall">PCloud (Polni dostop)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Moje datoteke in deljene datoteke</string>
@@ -593,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Dnevnik datoteke za odpravljanje napak</string>
   <string name="DebugLog_title">Uporabi datoteko dnevnika</string>
+  <string name="FtpDebug_title">Dnevnik za odpravljanje napak FTP/SFTP</string>
   <string name="DebugLog_summary">Izpišite dogodke aplikacije v lokalno datoteko dnevnika</string>
   <string name="DebugLog_send">Pošlji dnevnik napak ...</string>
   <string name="loading">Nalaganje …</string>
