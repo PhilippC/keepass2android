@@ -521,7 +521,6 @@
   <string name="filestoragename_gdrive">Google ドライブ</string>
   <string name="filestoragename_gdriveKP2A">Google ドライブ (KP2A ファイル)</string>
   <string name="filestoragehelp_gdriveKP2A">Google ドライブ全体へのアクセス権を KP2A に付与したくない場合はこちらを選択してください。このオプションを使用すると既存のファイルはアプリから見えないため、まずデータベースファイルを作成する必要があることに注意してください。新しいデータベースを作成する場合はこのまま続行してください。既存のデータベースをアップロードしたい場合はデータベースのエクスポートからこのオプションを実行してください。</string>
-  <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragehelp_pcloud">このストレージタイプは、pCloud フォルダー「Applications/Keepass2Android」へのアクセスのみを要求します。お使いの pCloud アカウント上の既存のデータベースを利用したい場合は、そのファイルが、この pCloud フォルダー内にあるかどうかを確認してください。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>

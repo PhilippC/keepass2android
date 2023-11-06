@@ -519,7 +519,6 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (ficheiros KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se não quiser fornecer o acesso KP2A ao seu Google Drive, pode selecionar esta opção. Note que tem primeiro criar um ficheiro de base de dados, os ficheiros existentes não são visíveis para a aplicação. Escolha esta opção a partir do ecrã Criar base de dados ou, caso você já tenha aberto uma base de dados, exportando a base de dados escolhendo essa opção.</string>
-  <string name="filestoragename_pcloud">PCloud</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só irá solicitar acesso à pasta pCloud \"Aplicações/Keepass2Android\". Se quiser usar a base de dados existente da sua conta pCloud, por favor certifique-se que o ficheiro é colocado nesta pasta pCloud.</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>

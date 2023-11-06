@@ -521,7 +521,6 @@
   <string name="filestoragename_gdrive">Google 雲端硬碟</string>
   <string name="filestoragename_gdriveKP2A">Google 雲端硬碟 (KP2A 檔案)</string>
   <string name="filestoragehelp_gdriveKP2A">如不想讓 KP2A 存取整個 Google 雲端硬碟，請選此項。請注意此選項會使程式無法存取現有檔案，需要先建立資料庫檔案。請在建立資料庫或匯出已開啟的資料庫時，選擇此選項。</string>
-  <string name="filestoragename_pcloud">pCloud</string>
   <string name="filestoragehelp_pcloud">這個儲存類型只會請求存取 pCloud「Applications/Keepass2Android」資料夾。要使用你 pCloud 賬戶裏現有的資料庫，請確保其檔案置於該 pCloud 資料夾。</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
