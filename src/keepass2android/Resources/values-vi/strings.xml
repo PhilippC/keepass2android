@@ -20,7 +20,11 @@
   <string name="short_app_name">KP2A</string>
   <string name="app_name_nonet">Keepass2Android Ngoại tuyến</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Hết thời gian chờ ứng dụng</string>
+  <string name="app_timeout_summary">Thời gian trước khi khóa cơ sở dữ liệu khi ứng dụng không hoạt động.</string>
   <string name="show_kill_app">Nút đóng</string>
+  <string name="show_kill_app_summary">Hiển thị một nút trong màn hình mật khẩu để tắt tiến trình ứng dụng (dành cho người dùng hoang tưởng)</string>
+  <string name="application">Ứng dụng</string>
   <string name="ShowGroupnameInSearchResult_title">Hiển thị tên nhóm trong kết quả tìm kiếm</string>
   <string name="ShowGroupnameInSearchResult_resume">Hiển thị tên nhóm dưới tiêu đề mục trong kết quả tìm kiếm. Tiện dụng nếu một số mục có cùng tên.</string>
   <string name="NavigationToGroupCompleted_message">Hiển thị nhóm: %1$s</string>
@@ -86,6 +90,8 @@
   <string name="entry_user_name">Tên người dùng</string>
   <string name="entry_extra_strings">Các chuỗi thông tin bổ sung</string>
   <string name="entry_binaries">Các tập tin đính kèm</string>
+  <string name="entry_history">Những phiên bản trước</string>
+  <string name="error_can_not_handle_uri">Keepass2Android không thể xử lý URI này.</string>
   <string name="error_could_not_create_group">Lỗi tạo nhóm.</string>
   <string name="error_could_not_create_parent">Không thể tạo thư mục cha.</string>
   <string name="error_database_exists">Tập tin này đã có rồi.</string>
