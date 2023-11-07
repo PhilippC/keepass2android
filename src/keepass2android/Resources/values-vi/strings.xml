@@ -25,6 +25,7 @@
   <string name="show_kill_app">Nút đóng</string>
   <string name="show_kill_app_summary">Hiển thị một nút trong màn hình mật khẩu để tắt tiến trình ứng dụng (dành cho người dùng hoang tưởng)</string>
   <string name="application">Ứng dụng</string>
+  <string name="application_settings">Thiết đặt ứng dụng</string>
   <string name="ShowGroupnameInSearchResult_title">Hiển thị tên nhóm trong kết quả tìm kiếm</string>
   <string name="ShowGroupnameInSearchResult_resume">Hiển thị tên nhóm dưới tiêu đề mục trong kết quả tìm kiếm. Tiện dụng nếu một số mục có cùng tên.</string>
   <string name="NavigationToGroupCompleted_message">Hiển thị nhóm: %1$s</string>
@@ -70,6 +71,10 @@
   <string name="disclaimer_formal">Keepass2Android HOÀN TOÀN KHÔNG CÓ BẢO HÀNH; Đây là phần mềm miễn phí, và bạn được chào đón để phát hành lại nó theo các điều kiện của Giấy phép GPL phiên bản 2 hoặc mới hơn.</string>
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Sao chép vào clipboard</string>
+  <string name="fingerprint_no_enrolled">Bạn chưa cấu hình xác thực sinh trắc học trên thiết bị này. Vui lòng vào thiết đặt hệ thống trước.</string>
+  <string name="fingerprint_unlock_failed">Mở khóa sinh trắc học không thành công. Khóa giải mã đã bị hệ điều hành Android vô hiệu hóa. Điều này thường xảy ra nếu xác thực sinh trắc học hoặc thiết đặt bảo mật bị thay đổi. </string>
+  <string name="fingerprint_reenable2">Vui lòng mở khóa bằng mật khẩu của bạn rồi bật lại Mở khóa sinh trắc học trong thiết đặt cơ sở dữ liệu.</string>
+  <string name="FingerprintSetupFailed">Không thể mã hóa dữ liệu. Điều này có thể xảy ra nếu bạn thêm hoặc xóa dấu vân tay trong thiết đặt hệ thống trong khi Keepass2Android đang lắng nghe dấu vân tay của bạn.</string>
   <string name="enter_filename">Nhập tên tập tin cơ sở dữ liệu</string>
   <string name="entry_accessed">Đã truy cập</string>
   <string name="entry_cancel">Hủy bỏ</string>
@@ -208,6 +213,7 @@
     <item>Passphrase</item>
     <item>Passphrase + Password</item>
   </string-array>
+  <string name="custom_settings">Thiết đặt tùy chỉnh</string>
   <string name="search_hint">Nội dung tìm kiếm</string>
   <string name="search_results">Kết quả tìm kiếm</string>
   <string name="search_in">Tìm kiếm trong</string>
@@ -278,6 +284,9 @@
   <string name="protection">Mục được bảo vệ</string>
   <string name="add_binary">Thêm tập tin đính kèm…</string>
   <string name="add_extra_string">Thêm chuỗi bổ sung</string>
+  <string name="totp_encoding_rfc6238">Thiết đặt mã thông báo RFC6238 mặc định</string>
+  <string name="totp_encoding_steam">Thiết đặt mã thông báo Steam</string>
+  <string name="totp_encoding_custom">Thiết đặt mã thông báo tùy chỉnh</string>
   <string name="delete_extra_string">Xóa chuỗi bổ sung</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Đã bị khoá. QuickUnlock được kích hoạt.</string>
   <string name="database_loaded_unlocked">%1$s: Đã mở khóa.</string>
