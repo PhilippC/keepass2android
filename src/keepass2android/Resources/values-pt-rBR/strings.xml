@@ -597,6 +597,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Arquivo de Log para Depuração</string>
   <string name="DebugLog_title">Usar arquivo de log</string>
+  <string name="FtpDebug_title">Registro de depuração FTP/SFTP</string>
   <string name="DebugLog_summary">Escrever a saída da App em arquivo de log local</string>
   <string name="DebugLog_send">Enviar log de depuração...</string>
   <string name="loading">Carregando…</string>
