@@ -33,11 +33,11 @@
     <!-- Option to enable using nearby keys when correcting/predicting -->
     <string name="hit_correction">Corregir errores de escritura</string>
     <!-- Description for hit_correction  -->
-    <string name="hit_correction_summary">Habilitar la introducción de corrección de errores</string>
+    <string name="hit_correction_summary">Habilitar corrección de errores de entrada</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
     <string name="hit_correction_land">Errores de introducción de datos en vista horizontal</string>
     <!-- Description for hit_correction in landscape -->
-    <string name="hit_correction_land_summary">Habilitar la introducción de corrección de errores</string>
+    <string name="hit_correction_land_summary">Habilitar corrección de errores de entrada</string>
     <!-- Option to automatically correct word on hitting space -->
     <string name="auto_correction">Sugerencias de palabras</string>
     <!-- Description for auto_correction -->
