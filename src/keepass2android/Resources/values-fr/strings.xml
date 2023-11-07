@@ -522,6 +522,7 @@
   <string name="hint_sftp_key_passphrase">Mot de passe de la clé (facultatif)</string>
   <string name="sftp_kex_title">Algorithme(s) d\'échange de clés (KEX) (facultatif)</string>
   <string name="hint_sftp_kex">\"Nom/spécification séparés par des virgules</string>
+  <string name="sftp_shk_title">Algorithme(s) de clé d\'hôte du serveur (facultatif)</string>
   <string name="hint_sftp_shk">\"Nom/spécification séparés par des virgules</string>
   <string name="enter_ftp_login_title">Saisir les données de connexion FTP :</string>
   <string name="enter_mega_login_title">Entrez les données de connexion de votre compte MEGA :</string>
@@ -592,6 +593,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Fichier journal pour le débogage</string>
   <string name="DebugLog_title">Utiliser fichier de journal</string>
+  <string name="FtpDebug_title">Enregistrement de débogage FTP/SFTP</string>
   <string name="DebugLog_summary">Écrire la sortie de l’app dans un fichier journal local</string>
   <string name="DebugLog_send">Envoyer le journal de débogage...</string>
   <string name="loading">Chargement en cours…</string>
