@@ -122,6 +122,7 @@
   <string name="entry_user_name">Імя карыстальніка</string>
   <string name="entry_extra_strings">Дадатковыя палі</string>
   <string name="entry_binaries">Далучаныя файлы</string>
+  <string name="entry_history">Папярэднія версіі</string>
   <string name="error_can_not_handle_uri">Keepass2Android не можа апрацаваць гэты URI-адрас.</string>
   <string name="error_could_not_create_group">Не атрымалася стварыць групу.</string>
   <string name="error_could_not_create_parent">Не атрымалася стварыць бацькоўскі каталог.</string>
@@ -151,6 +152,7 @@
   <string name="hint_keyfile">Файл ключа</string>
   <string name="hint_length">даўжыня</string>
   <string name="hint_pass">пароль</string>
+  <string name="hint_keyfile_path">Шлях да прыватнага ключа SSH</string>
   <string name="hint_login_pass">Пароль</string>
   <string name="hint_title">назва</string>
   <string name="hint_url">URL</string>
@@ -300,6 +302,8 @@
   <string name="NoDalVerification_summary">Адключае праверку, калі дамен адпавядае праграме</string>
   <string name="InlineSuggestions_title">Інтэграцыя з клавіятурай</string>
   <string name="InlineSuggestions_summary">Паказваць прапановы для аўтазапаўнення як убудаваныя параметры клавіятуры (калі падтрымліваецца метадам уводу)</string>
+  <string name="LogAutofillView_title">Прагляд журнала аўтазапаўнення</string>
+  <string name="LogAutofillView_summary">Запісваць звесткі пра рэжым аўтазапаўненння ў адладачны журнал (калі ўключана вядзенне журнала адладжвання). Гэтыя звесткі можна адправіць распрацоўшчыку, калі аўтазапаўненне не будзе працаваць належным чынам.</string>
   <string name="requires_android11">Патрэбны Android 11 ці навейшая версія</string>
   <string name="kp2a_findUrl">Знайсці пароль</string>
   <string name="excludeExpiredEntries">Выключыць пратэрмінаваныя запісы</string>
@@ -414,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Паказваць значок на панэлі аравяшчэнняў, калі база даных разблакаваная.</string>
   <string name="IconVisibilityInfo_Android8_text">У Android 8 апавяшчэнні працуюць па-іншаму. Калі вы хочаце схаваць значок на панэлі апавяшчэнняў, трэба наладзіць яго ў сістэмных наладах. Абярыце для катэгорыі апавяшчэння важнасць \"Мінімум\".</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Адкрыць налады</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android можа паказваць сістэмныя апавяшчэнні, калі ваша база даных не заблакаваная. Каб гэтая функцыя працавала, дайце дазвол.</string>
   <string name="DontCare">Мне няма розніцы</string>
   <string name="DocumentAccessRevoked">Гэты файл цяпер неадаступны для Keepass2Android. Ён або быў выдалены, або доступ да яго быў адкліканы. Паспрабуйце адкрыць файл нанова.</string>
   <string name="PreloadDatabaseEnabled_title">Папярэдняя загрузка файла базы даных</string>
@@ -498,9 +503,18 @@
   <string name="hint_sftp_host">хост (напрыклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Пачатковы каталог (неабавязкова):</string>
+  <string name="connect_timeout">Час чакання злучэння ў секундах (неабавязкова):\"</string>
   <string name="enter_sftp_login_title">Увядзіце даныя для ўваходу на сервер SFTP:</string>
   <string name="sftp_auth_mode">Рэжым аўтэнтыфікацыі</string>
   <string name="send_public_key">Адправіць публічны ключ…</string>
+  <string name="select_private_keyfile">Абраць прыватны ключ...</string>
+  <string name="hint_sftp_key_name">Новая назва ключа</string>
+  <string name="hint_sftp_key_content">Новае змесціва ключа</string>
+  <string name="private_key_saved">Прыватны ключ захаваны</string>
+  <string name="private_key_save_failed">НЕ ЎДАЛОСЯ захаваць прыватны ключ: %1$s</string>
+  <string name="private_key_info">Каб захаваць, увядзіце назву ключа і змесціва</string>
+  <string name="private_key_delete">Выдаліць прыватны ключ: %1$s</string>
+  <string name="private_key_delete_failed">НЕ ЎДАЛОСЯ выдаліць прыватны ключ: %1$s</string>
   <string name="enter_ftp_login_title">Увядзіце даныя для ўваходу на сервер FTP:</string>
   <string name="select_storage_type">Абярыце тып сховішча:</string>
   <string name="filestoragename_file">Лакальны файл</string>
