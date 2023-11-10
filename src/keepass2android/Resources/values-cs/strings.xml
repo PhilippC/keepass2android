@@ -541,7 +541,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A soubory)</string>
   <string name="filestoragehelp_gdriveKP2A">Nechcete-li dát aplikaci KeePass2Android přístup k celému vašemu Google Drive, použijte tuto možnost. Upozorňujeme, že nejprve musíte vytvořit soubor s databází položek, existující soubory nejsou viditelné pro aplikaci. Toto můžete udělat z obrazovky Vytvořit databázi, nebo exportem právě otevřené databáze, volbou této možnosti</string>
+  <string name="filestoragename_pcloud">PCloud (složka KP2A)</string>
   <string name="filestoragehelp_pcloud">Tento typ úložiště si vyžaduje přístup pouze do pCloudové složky \"Applications/Keepass2Android\". Chcete-li použít existující databázi ze svého pCloud účtu, ujistěte se, že je soubor umístěn v této složce.</string>
+  <string name="filestoragename_pcloudall">PCloud (plný přístup)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Všechny soubory a sdílené soubory</string>
@@ -593,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Logovací soubor pro ladění chyb</string>
   <string name="DebugLog_title">Použít protokolovací soubor</string>
+  <string name="FtpDebug_title">Protokolování ladění FTP/SFTP</string>
   <string name="DebugLog_summary">Ulož výstup aplikace do lokálního souboru</string>
   <string name="DebugLog_send">Pošli soubor s ladícími informacemi...</string>
   <string name="loading">Nahrávám…</string>
