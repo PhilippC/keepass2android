@@ -3,13 +3,13 @@
 Creating a plug-in for Keepass2Android or enabling your app to query credentials from Keepass2Android is pretty simple. Please follow the steps below to get started. In case you have any questions, please contact me.
 
 ## Preparations 
-First check out the source code and import the Keepass2AndroidPluginSDK from [https://keepass2android.codeplex.com/SourceControl/latest#src/java/Keepass2AndroidPluginSDK/](https://keepass2android.codeplex.com/SourceControl/latest#src/java/Keepass2AndroidPluginSDK/) into your workspace. You should be able to build this library project.
+First check out the source code and import the Keepass2AndroidPluginSDK from [https://github.com/PhilippC/keepass2android/tree/master/src/java/Keepass2AndroidPluginSDK2](https://github.com/PhilippC/keepass2android/tree/master/src/java/Keepass2AndroidPluginSDK2/) into your workspace. You should be able to build this library project.
 
 Now add a reference to the PluginSDK library from your existing app or add a new plug-in app and then add the reference. 
 
 ## Authorization
 
-Keepass2Android stores very sensitive user data and therefore implements a plug-in authorization scheme based on broadcasts sent between the plug-in and the host app (=Keepass2Android or Keepass2Android Offline). Before your app/plug-in gets any information from KP2A, the user will have to grant your app/plug-in access to KP2A. As not every app/plug-in requires access to all information, you must specify which scopes are required by your app. The implemented scopes can be found in [https://keepass2android.codeplex.com/SourceControl/latest#src/java/Keepass2AndroidPluginSDK/src/keepass2android/pluginsdk/Strings.java](https://keepass2android.codeplex.com/SourceControl/latest#src/java/Keepass2AndroidPluginSDK/src/keepass2android/pluginsdk/Strings.java).
+Keepass2Android stores very sensitive user data and therefore implements a plug-in authorization scheme based on broadcasts sent between the plug-in and the host app (=Keepass2Android or Keepass2Android Offline). Before your app/plug-in gets any information from KP2A, the user will have to grant your app/plug-in access to KP2A. As not every app/plug-in requires access to all information, you must specify which scopes are required by your app. The implemented scopes can be found in [https://github.com/PhilippC/keepass2android/tree/master/src/java/Keepass2AndroidPluginSDK2/src/keepass2android/pluginsdk/Strings.java](https://github.com/PhilippC/keepass2android/tree/master/src/java/Keepass2AndroidPluginSDK2/src/keepass2android/pluginsdk/Strings.java).
 
 To tell Kp2a that you're a plug-in, you need to add a simple BroadcastReceiver like this:
 
@@ -55,8 +55,8 @@ These strings will be displayed to the user when KP2A asks if access should be g
 
 ## Modifying the entry view
 You can add menu options for the full entry or for individual fields of the entry when displayed to the user. This is done, for example, by the QR plugin ([https://play.google.com/store/apps/details?id=keepass2android.plugin.qr](https://play.google.com/store/apps/details?id=keepass2android.plugin.qr)). 
-In addition, it is even possible to add new fields or modify existing fields. Please see the sample plugin "PluginA" in the KP2A repository for a simple example on how to do this:
-[https://keepass2android.codeplex.com/SourceControl/latest#src/java/PluginA/src/keepass2android/plugina/PluginAActionReceiver.java](https://keepass2android.codeplex.com/SourceControl/latest#src/java/PluginA/src/keepass2android/plugina/PluginAActionReceiver.java)
+In addition, it is even possible to add new fields or modify existing fields. Please see the sample plugin "PluginA" for a simple example on how to do this:
+[https://github.com/PhilippC/keepass2android-sampleplugin/blob/main/src/keepass2android/plugina/PluginAAccessReceiver.java](https://github.com/PhilippC/keepass2android-sampleplugin/blob/main/src/keepass2android/plugina/PluginAAccessReceiver.java)
 
 ## Querying credentials
 KP2A 0.9.4 adds a great opportunity for third party apps: Instead of prompting the user to enter credentials or a passphrase, the app should try to get the data from KP2A if it is installed: If the user grants (or previously granted) access for the app,  KP2A will automatically retrieve the matching entry. User action is only required if the KP2A database is locked (user will usually unlock it with the short QuickUnlock code) or if no matching entry is found (user can then create a new entry or select an existing one. in the latter case KP2A will offer to add entry information so that the entry will be found automatically next time).
