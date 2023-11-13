@@ -832,7 +832,7 @@ namespace keepass2android
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
 						    new OneDrive2AppFolderFileStorage(),
-                            CreateSftpFileStorage(),
+                            new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
 							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
 							new WebDavFileStorage(this),
 							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
@@ -854,33 +854,8 @@ namespace keepass2android
             return PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
 				.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.FtpDebug_key), false);
         }
-#if !EXCLUDE_JAVAFILESTORAGE
-#if !NoNet
-        private IFileStorage CreateSftpFileStorage()
-		{
-			Context ctx = LocaleManager.LocalizedAppContext;
-            SftpFileStorage fileStorage = new SftpFileStorage(ctx, this);
 
-            var storage = new SftpStorage(ctx);
-            if (IsFtpDebugEnabled())
-			{
-                string? logFilename = null;
-                if (Kp2aLog.LogToFile)
-                {
-                    logFilename = Kp2aLog.LogFilename;
-                }
-                storage.SetJschLogging(true, logFilename);
-            } else
-			{
-				storage.SetJschLogging(false, null);
-			}
-
-			return fileStorage;
-		}
-#endif
-#endif
-
-		public void TriggerReload(Context ctx, Action<bool> actionOnResult)
+        public void TriggerReload(Context ctx, Action<bool> actionOnResult)
 		{
 			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
