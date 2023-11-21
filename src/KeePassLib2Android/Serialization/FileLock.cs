@@ -205,8 +205,7 @@ namespace KeePassLib.Serialization
 			if(lfiEx != null)
 			{
 				m_iocLockFile = null; // Otherwise Dispose deletes the existing one
-				throw new FileLockException(UrlUtil.GetFileName(iocBaseFile.Path),
-					lfiEx.GetOwner());
+				throw new FileLockException(UrlUtil.GetFileName(iocBaseFile.Path), lfiEx.GetOwner());
 			}
 
 			LockFileInfo.Create(m_iocLockFile);
