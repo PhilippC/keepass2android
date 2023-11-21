@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Uygulama zaman aşımı</string>
   <string name="app_timeout_summary">Uygulama pasif iken veritabanını otomatik kilitleme zaman aşımı.</string>
-  <string name="kill_app_label">Uygulamayı sonlandır</string>
   <string name="show_kill_app">Kapat düğmesi</string>
+  <string name="kill_app_label">Uygulamayı sonlandır</string>
   <string name="show_kill_app_summary">(Paranoyak kullanıcılar için) Uygulamayı tamamen kapatmak için şifre ekranda bir düğme göster</string>
   <string name="application">Uygulama</string>
   <string name="application_settings">Uygulama ayarları</string>
@@ -725,34 +725,7 @@
     <item>Hata düzeltmeleri</item>
     <item>Hata düzeltmeleri</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Sürüm 0.8.3</b>\n
-* Kayıt listesinde Kullanıcı adı/TAN dizini görüntülenir (ayarlara bakın)\n
-* Tarayıcıdan arama sonuçları dönmezse, kayıtlar oluşturulabilir\n
-* KP2A klavye, geçerli uygulamada kimlik bilgilerini arama olanağı sağlar\n
-* Klavyeden kullanmak için bir kayıt seçildiğinde uygulama otomatik kapanır\n
-* URL için arama yaptıktan sonra klavye seçimi iletişim kutusu otomatik olarak açılır (ayarlara bakın)\n
-* Kayıt alanlarındaki değişkenler kopyalanmadan önce yenilendi (daha fazlası destekleniyor)\n
-* Küçük hata düzeltmeleri
-  </string>
   <string name="ChangeLog_keptDonate">Bir bira veya başka bir bağış için genişletilmiş imkanı</string>
-  <string name="ChangeLog_0_7"><b>Sürüm 0.7</b>\n
-* Artan yükleme hızı: anahtar dönüşümleri artık 10 kat daha hızlı!\n
-* Keepass2Android klavye eklendi: Kimlik bilgilerini girmek için bu klavyeye geçin. Panoya dayalı şifre avcılarından sizi korur (seçeneklerden eski pano bildirimlerini devre dışı bırakın)\n
-* Bir bira ya da başka bir şey bağışlamak için seçenek eklendi (menüye bakın)</string>
-  <string name="ChangeLog"><b>Sürüm 0.6.2</b>\n
-* Google Drive/Dropbox/... entegrasyonu: Resmi Google Drive or Dropbox uygulamalarıyla .kdbx dosyaları açılabilecek.\n
-* Geliştirilmiş Arama İletişim Kutusu\n
-* Alt alan adlarına sahip URL için geliştirilmiş arama sonuçları\n
-* Geri bildirimde bulunmak, uygulamayı derecelendirmek ve çevirmek için seçenekler eklendi\n
-\n
-<b>Sürüm 0.6.1</b>\n
-* Veritabanının arka planda ne zaman değiştiğini algılanması\n
-* Tarayıcıdan gelen URL’lerin aranması iyileştirildi\n
-* Değişiklikler iptal edilirken onay iletişim kutusu eklendi\n
-\n
-<b>Sürüm 0.6</b>\n
-İlk sürüm
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 saniye</item>
     <item>1 dakika</item>
