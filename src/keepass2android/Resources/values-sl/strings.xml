@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Časovna omejitev aplikacije</string>
   <string name="app_timeout_summary">Čas pred zaklenitvijo podatkovne zbirke, ko je aplikacija nedejavna.</string>
-  <string name="kill_app_label">Ustavi proces aplikacije</string>
   <string name="show_kill_app">Gumb Zapri</string>
+  <string name="kill_app_label">Ustavi proces aplikacije</string>
   <string name="show_kill_app_summary">Prikaži gumb za uničenje opravila aplikacije na zaslonu gesla (za uporabnike paranoida)</string>
   <string name="application">Aplikacija</string>
   <string name="application_settings">Nastavitve aplikacije</string>
@@ -756,34 +756,7 @@
     <item>Preklop na BiometricPrompt API za izboljšanje uporabniške izkušnje za odpiranje s prstnim odtisom in omogočitev odklepanja z obrazom, npr. na Pixel 4.</item>
     <item>Popravki hroščev</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Različica 0.8.3</b>\n
-* Kazalo uporabniških imen/TAN-ov prikazano na seznamu vnosov (glejte nastavitve)\n
-* Vnose lahko ustvarite, če iskanje v brskalniku ne vrne rezultatov\n
-* Tipkovnica KP2A ponuja možnost iskanja poveril za trenutni program\n
-* Program se samodejno zapre po izbiri vnosa za uporabo na tipkovnici\n
-* Pogovorno okno izbire tipkovnice se samodejno odpre po iskanju URL-ja (glejte nastavitve)\n
-* Ograde v poljih vnosov se nadomestilo pred kopiranjem (podprta je večina ograd)\n
-* Manjši popravki hroščev
-  </string>
   <string name="ChangeLog_keptDonate">Razširjena možnost darovanja piva ali kaj drugega</string>
-  <string name="ChangeLog_0_7"><b>Različica 0.7</b>\n
-* Višja hitrost nalaganja: preoblikovanje ključa sedaj 10-krat hitrejše!\n
-* Dodana zaslonska tipkovnica Keepass2Android: preklopite na to tipkovnico za vnos poveril. Ščiti vas pred vohljači gesel na odložišču (v možnostih onemogočite stara obvestila odložišča)\n
-* Dodana možnost darovanja piva ali kaj drugega (glejte meni)</string>
-  <string name="ChangeLog"><b>Različica 0.6.2</b>\n
-* Vgradnja storitve Google Drive/Dropbox/ ...: uporabite uradno storitev Google Drive ali program Dropbox in odprite katerokoli datoteko .kdbx. To bo sedaj prikazalo KP2A.\n
-* Izboljšano pogovorno okno za iskanje\n
-* Izboljšani rezultati iskanja za Deli URL s poddomenami\n
-* Dodane možnosti za odziv, oceno in prevod programa v meniju\n
-\n
-<b>Različica 0.6.1</b>\n
-* Zaznavanje sprememb podatkovnih zbirk v ozadju (zaradi nedejavnosti programa za usklajevanje)\n
-* Izboljšano iskanje URL-jev iz brskalnika\n
-* Pogovorno okno za potrditev ob opustitvi sprememb\n
-\n
-<b>Različica 0.6</b>\n
-Začetna javna izdaja
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
