@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A fora de línia</string>
   <string name="app_timeout">Temps límit de resposta de l\'aplicació</string>
   <string name="app_timeout_summary">Temps abans de bloquejar la base de dades quan l\'aplicació està inactiva.</string>
-  <string name="kill_app_label">Matar el procés de l\'aplicació</string>
   <string name="show_kill_app">Botó de tancament</string>
+  <string name="kill_app_label">Matar el procés de l\'aplicació</string>
   <string name="show_kill_app_summary">Mostra un botó a la pantalla de contrasenya per matar el procés de l\'aplicació (per a usuaris paranoics)</string>
   <string name="application">Aplicació</string>
   <string name="application_settings">Configuració de l\'aplicació</string>
@@ -639,34 +639,7 @@
     <item>Correcció d\'errors</item>
     <item>Correcció d\'errors</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes
-  </string>
   <string name="ChangeLog_keptDonate">Estesa possibilitat de donar una cervesa o una altra cosa</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Integració amb Google Drive/Dropbox/... : Compatible amb l\'APP oficial Google Drive o Dropbox i permet obrir el fitxer .kdbx que necessitis. Suport el teclat KP2A.\n
-* Dialeg de cerca millorat \n
-* Resultats de cerca millorats per a poder compartir URLs amb subdominis\n
-* Opcions de feedback afegides per reportar problemes, i valoració i traducció de l\'aplicació al mateix menú\n
-\n
-<b>Version 0.6.1</b>\n
-* Detecta quan la base de dades canvia en segon pla (per exemple degut a l\'activitat de sincronització de l\'aplicació)\n
-* Cerca millorada per a URLs des de l\'explorador d\'internet\n
-* Dialeg de confirmació quan descartes canvis\n
-\n
-<b>Version 0.6</b>\n
-Revisió inicial per al públic
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segons</item>
     <item>1 minut</item>
