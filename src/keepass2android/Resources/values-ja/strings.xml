@@ -641,25 +641,6 @@
   <string name="Continue">続行</string>
   <string name="NoFilenameWarning">入力された URI はファイル名ではないようです。これは本当に有効なファイルですか？</string>
   <string name="FirstInvalidCompositeKeyError">複合マスターキーが無効です！ もう一度やり直してください。</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">複合マスターキーが無効です！ 次の手順を試してデータベースのロックを解除してください:\n
-  
-    &#8226; 正しいパスワードを入力したことを確認してください。目のアイコンを使用すると、入力したパスワードを表示できます。\n
-   &#8226; 正しいパスワードタイプを選択したことを確認してください。データベースを作成するときに使用したタイプと一致することを確認してください。\n
-   &#8226; 正しいデータベースファイルを選択していることを確認してください。
- </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-   &#8226; ヒント: データベースファイルが破損した疑いのある場合、または、変更したマスターキーを忘れてしまった場合は「%1$s」をタップしてローカルバックアップを選択すると、最後に開けたバージョンのファイルを試せます。</string>
-  <string name="HintLocalBackupOtherError">    \n
-    &#8226; ヒント: Keepass2Android は、内部ストレージに最後に開けたバージョンのファイルを保持しています。「%1$s」をタップして、ローカルバックアップを選択すると開けます。
-  </string>
-  <string name="CorruptDatabaseHelp">    ファイルが破損しています。\n
-    問題を診断するのに以下のヒントが役立つかもしれません:\n
-    
-    &#8226; USB ケーブルを接続して (MTP モードで) ファイルをコピーした場合、MyPhoneExplorer のようなツールでもう一度やり直してください。MTP の仕様でファイルが切り捨てられる場合があります。\n
-    &#8226; お使いの PC で同じ場所からファイルを開くことができない場合、ファイルが実際に破損している可能性が高いです。その場合は、データベースのバックアップを使用してください。Keepass2Android が原因でファイルが破損していると思われる場合は、サポートチームにお問い合わせください。\n
-    &#8226; お使いの PC でファイルを開くことができる場合は、サポートチームにお問い合わせください。PC で、(ZIP を解凍するなど) 異なる設定で保存して、Keepass2Android で再度開いてみると問題が解消する場合があります。
-
-  </string>
   <string name="open_other_db">別のデータベースを開く…</string>
   <string name="select_database">データベースを選択</string>
   <string name="configure_child_dbs">子データベースを設定…</string>
@@ -752,235 +733,6 @@
     <item>BiometricPrompt API に変更して、指紋認証のユーザーエクスペリエンスを向上・Pixel 4 などでは顔認証にも対応</item>
     <item>バグ修正</item>
   </string-array>
-  <string name="ChangeLog_1_07b">    Version 1.07b\n
-    * ネイティブ実装を使用して Argon2 のパフォーマンスを向上 (Chih-Hsuan Yen 氏に感謝！)\n
-    * 指紋アイコンをクリックして指紋を無効にできるよう変更 (画面内指紋認証の問題を回避できます。marcoDallas 氏に感謝！)\n
-    * パスワードの表示を切り替えたときにカーソル位置を復元 (DDoSolitary 氏に感謝！)\n
-    * pCloud の実装を改善 (gilbsgilbs 氏に再び感謝！)\n
-    * 自動入力に対応するブラウザーをいくつか追加\n
-    * OneDrive の新しい実装: OneDrive for Business、共有ファイル、選択可能なアクセススコープ、複数のアカウントへの対応と、オフラインアクセスの問題の修正\n
-    * バグ修正
-  </string>
-  <string name="ChangeLog_1_07">    Version 1.07\n
-    * Samsung の Android 9 でのクラッシュを修正\n
-    * 複数のデータベースを開けるように変更 (KeeAutoExec と互換)\n
-    * SFTP: 公開鍵認証を許可、ホスト鍵が変更された場合に確認\n
-    * pCloud に対応 - gilbsgilbs 氏に感謝！\n
-    * Nextcloud に明示的に対応\n
-    * エントリーの添付ファイルの保存と更新を改善\n
-    * 個人設定に動作を適応させるためのオプションを追加\n
-    * SSL: ユーザー証明書の信頼\n
-    * 自動入力を改善 (Firefox での動作、ポップアップの削減オプション)\n
-    * バグ修正\n
-  </string>
-  <string name="ChangeLog_1_06">    Version 1.06\n
-    * Yubikey のチャレンジレスポンス アプリを YubiChallenge から ykDroid に変更\n
-    * KeepassXC 方式のチャレンジレスポンスに対応。注: データベースの形式を KDBX4 にしてください！\n
-    * Google ドライブのゴミ箱のファイルを読み込みを拒否\n
-    * FTPS の TLS 実装を変更し、gssapi-with-mic をサポートするサーバーの JSch バグの回避方法を追加\n
-    * バグ修正\n
-  </string>
-  <string name="ChangeLog_1_05">    Version 1.05\n
-    * Android 8 の通知チャンネルを使用。システム設定で確認・変更できます\n
-    * 通知でエントリーアイコンを表示\n
-    * Android 8 ではアダプティブ アイコン、Android 7 では丸いランチャー アイコンを使用するよう変更\n
-    * ロック解除で検索をアクティブにできる設定を追加 (設定を参照)\n
-    * ストレージ アクセス フレームワークを通じてファイルを書き込む方法を変更し、システムのファイル選択アプリから開いた Google ドライブのファイルを更新する際の問題を修正\n
-    * いくつかの一般的な誤解を避けるために情報テキストを追加\n
-    * データ損失のリスクを軽減するため、正常に開いたデータベースのローカル バックアップを作成\n
-    * JSch を更新して最近の SSH 暗号化に対応\n
-    * WebDav パスワードを変更するときなどに接続設定できるように変更\n
-    * Yubikey Neo の静的パスワードモードに対応\n
-    * 自動入力の提案を無効にできるように変更\n
-    * logcat へのデータ漏洩を修正\n 
-    * バグ修正\n
-  </string>
-  <string name="ChangeLog_1_04b">    Version 1.04b\n
-    * Huawei デバイスで自動入力を有効にしようとするときにクラッシュする問題を解消\n
-  </string>
-  <string name="ChangeLog_1_04">    Version 1.04\n
-    * Android 8.0 以上で自動入力サービスを追加\n
-    * ライブラリー、ビルドツール、ターゲット SDK バージョンをアップグレード\n
-  </string>
-  <string name="ChangeLog_1_03">    Version 1.03\n
-    * Googleからの要請により、自動入力のためのユーザー補助サービスを削除。設定の「パスワードエントリーへのアクセス」から以前の機能を再現するプラグインを確認してください\n
-    * サードパーティのアプリをストレージオプションとして再び追加\n
-    * 添付画像を他のアプリに転送せずに表示する画像ビューアを内蔵\n
-    * OkHttp をアップグレードして接続の問題を修正\n
-    * KeeTrayTOTP エントリーに対応。これによりSteam エントリーにも対応\n
-  </string>
-  <string name="ChangeLog_1_02">    Version 1.02\n
-    * いくつかのセキュリティの向上。jean-baptiste.cayrou@thalesgroup.com 氏と vincent.fargues@thalesgroup.com 氏、彼らのコラボレーションによる、たくさんのセキュリティ レポートに感謝します！\n
-    * KeyboardSwapPlugin に対応 (設定の「パスワードエントリーへのアクセス」から参照): 非 root 化デバイスで、自動的に入力方式を切り替えることができます。これを可能にしてくれた XDA-Developers の Mishaal Rahman 氏に感謝します\n
-    * 最近の Chrome バージョンでユーザー補助サービスの問題を修正\n
-    * 指紋データが不必要にクリアされる事象を修正\n
-    * マイナーなクラッシュを修正\n
-    * Dropbox SDK を更新し、将来の互換性を確保\n
-    * Xamarin Insights 経由のエラー報告を削除\n
-    * ビルドツールを更新\n
-  </string>
-  <string name="ChangeLog_1_01g">    Version 1.01-g\n
-    * オフラインで操作しようとしたときのクラッシュを修正\n
-    * FTP の認証情報の不適切なエンコーディングを修正\n
-    * OneDrive と古いバージョンの Android を使用するときのクラッシュを修正\n
-    * エントリー画面で現地時間として時間を表示\n
-  </string>
-  <string name="ChangeLog_1_01d">    Version 1.01-d\n
-    * OneDrive ファイルの一覧表示を修正\n
-    * ホスト名の検証が失敗したときにも証明書エラーを無視できるように変更 (製品としての利用には推奨しません)\n
-    * QuickUnlock が、正しい解除コードにもかかわらず時々失敗する問題を修正\n
-  </string>
-  <string name="ChangeLog_0_9_8c">    Version 0.9.8c\n
-    * Microsoft Live SDK の SSL 脆弱性を修正 (OneDrive でファイルにアクセスする際に使用)\n
-    * バグ修正: 以前のリリースで 2 つの IME が含まれていた問題 (一方がクラッシュ)\n
-  </string>
-  <string name="ChangeLog_1_01">    Version 1.01\n
-    * 鍵導出アルゴリズムの Argon2 と暗号化方式の ChaCha20 を含む KDBX-4-フォーマット (Keepass 2.35と互換) に対応\n
-    * WebDav ファイルストレージを再実装し、ファイルブラウジングと最新の暗号化方式に対応\n
-    * FTP ファイルストレージを再実装し、ファイルブラウジングと暗号化通信 (FTPS) に対応\n
-    * OneDrive SDK へ変更 (以前に使用していたLive SDK の更新が終了したため)\n
-    * Dropbox SDK バージョン 2 へ更新 (以前に使用していたバージョン 1 SDK は非推奨になったため)\n
-    * OwnCloud に対応\n
-    * ローカルファイルを開く前にストレージのアクセス許可を求めるように変更
-  </string>
-  <string name="ChangeLog_1_0_0e">    Version 1.0.0e\n
-    * Samsung の Android 6 の指紋認証ロック解除の問題を修正\n
-    * x86 デバイスのネイティブ サポートを追加\n 
-    * 指紋のスキャン中にソフトウェアキーボードを非表示にできるよう変更\n
-    * ビルドシステムのアップデート
-  </string>
-  <string name="ChangeLog_1_0_0">    Version 1.0.0\n
-    * 指紋ロック解除 (Android 6.0 以上または Samsung のデバイスが必要)\n
-    * 自動入力サービスを追加 (Android 5.0 以上が必要)\n
-    * エントリーのテンプレートに対応\n
-    * オフラインモードを追加\n
-    * エントリーをコピーできるように変更\n
-    * フィールド名のオートコンプリートモード\n
-    * 最近使用したファイルのリストから項目を削除できるように変更\n
-    * Android 6.0 での実行時にアクセス許可を要求するよう変更\n
-    * バグ修正 (内蔵キーボードでのアイコン選択に関するバグ)\n
-    * エラーレポートを送信するオプションを追加\n
-    * 一部の場所にヘルプメッセージを追加\n
-  </string>
-  <string name="ChangeLog_0_9_9">Version 0.9.9\n
-		* UI 全体を再デザイン。Stefano Pignataro 氏 (http://www.spstudio.at) の協力に感謝！\n
-    * カスタムアイコンを追加できるように変更\n
-    * Samsung 製デバイスのマルチ画面モードに対応\n
-    * データベース作成時のデフォルトの暗号化レベルが増加\n
-    * データ消失を防止するため、追加フィールドのキーが重複していないかの確認を追加\n
-    </string>
-  <string name="ChangeLog_0_9_9c">    Version 0.9.9c\n
-    * ダークテーマが復活\n
-    * 他のアイコンパックのインストールに対応 (過去の Windows 風アイコンを Play ストアで入手できます)\n
-    * データベースの要素をゴミ箱に移動せず、すぐに削除するときの確認画面を追加\n
-    * バグ修正 (OTP 秘密鍵のエンコードが正しく表示されない問題、間違ったアプリアイコンが表示される場所がある問題)\n
-  </string>
-  <string name="ChangeLog_0_9_8b">Version 0.9.8b\n
-		* バグ修正 (一部のデータベースで保存に失敗する問題、ローカルデバイスへのエクスポートが機能しない問題、一部の設定を選択するとクラッシュする問題)\n</string>
-  <string name="ChangeLog_0_9_8">Version 0.9.8\n
-		* ストレージアクセスフレームワークに対応 (KP2A Offline で SD カードと Google ドライブに書き込めるようになります)\n
-		* WebDAV URL を (ファイルの代わりに)入力したときに誤入力を確認する機能を追加\n
-		* パスワードのフォントを変更\n
-		* Dropbox アカウントを変更できる機能を追加\n
-		* バグ修正: OTP を保存できるように修正\n</string>
-  <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
-		* 翻訳を更新\n
-		* バグ修正: 0.9.7 でパスワードのフォントが見つからない問題、グループをタイトル順に並べ替えられない問題\n</string>
-  <string name="ChangeLog_0_9_7">Version 0.9.7\n
-		* Keepass 1 (kdb) データベースの書き込みに対応 (ベータ！)\n
-		* 以前のキーボードに切り替える機能を調整 (非 root デバイスでも動作)\n
-		* 可変長チャレンジで KeeChallenge に対応\n
-		* QuickUnlock とパスワード画面で、スクリーンショットの取得を防止\n
-		* 更新日時での並べ替えの順序を逆に変更 (降順になりました)\n
-		* バグ修正: メモを編集後に画面が正しく更新されるように修正、(うまく行けば) すべてのデバイスでパスワード画面のパスワードが正しく非表示になるよう修正、エントリーを 2 回追加する問題を修正、データベースを修正後も UUID の重複の警告が表示される問題を修正\n</string>
-  <string name="ChangeLog_0_9_6">Version 0.9.6\n
-		* キーファイルとデータベースファイルをアプリの内部ディレクトリーへインポートできるように変更 (設定を参照)\n
-		* 並び替えのオプションを追加\n
-		* キーボード自動切り替えの設定を改良\n
-		* アプリと通知領域のアイコンを更新。アイコンは Stefano Pignataro (http://www.spstudio.at) 氏のデザインです\n
-		* パスワードジェネレーターが最後の設定を保持するよう改良\n
-		* Android 5 のロック画面の通知表示を見やすく変更\n
-		* アプリを切り替えたときに、OK を押さなくても入力中のマスターパスワードがクリアされるように変更\n
-		* 特定のデバイスでキーボード設定の入力言語が表示されない問題を修正\n
-		* root 化済みデバイスの自動キーボード切り替えの問題を修正\n
-		* データベースの破損確認を追加 (UUID の重複)\n
-		* データベースの変更を検出したときの自動リロードで、マスターパスワードがわかってしまうセキュリティ上の問題を解決\n
-		* ポーランド語のスモールキーボードのレイアウトを改良。キーボード設定のテーマを修正 (Wiktor Ławski 氏に感謝)\n</string>
-  <string name="ChangeLog_0_9_5"><b>Version 0.9.5</b>\n
-		* ファイル閲覧の問題を修正 (特に Android 4.4 上で)\n
-		* Android Lollipop の Nexus 5 での .kdb ファイル (Keepass 1) 読み込みの問題を修正\n
-		* 最近使用したアプリ一覧でスクリーン ショットを撮影/アプリを表示できないようにする設定を追加\n
-		* Google ドライブのファイルのストレージの問題を修正 (通常版)\n
-		* 意図的なストレージ タイプにキーファイルを許可 (通常版)\n
-		* 公式のセキュリティ パッチを含む Dropbox SDK の更新 (通常版)\n
-		* ビルドツールを更新 --&gt; apk のサイズが増えました :-(\n
-		さらにいくつかの変更を予定しています。ホットフィックスをできるだけ早く公開したかったので、これらの変更は次のリリースになります - 申し訳ありません。</string>
-  <string name="ChangeLog_0_9_4"><b>Version 0.9.4</b>\n
-		* プラグインに対応: プラグインの入手方法は設定を参照してください！\n
-		*  QR プラグインを公開 (パスワードをスキャン、パスワードを QR コードで表示、エントリーを他の KP2A デバイスに転送)\n
-		*  InputStick プラグインを公開 (bluetooth を経由してアカウント情報を PC に転送 - InputStick USB が必要)\n
-		*  サードパーティーのアプリが KP2A のアカウント情報を照会する機能を簡単に実装できるようになりました。開発者ですか？ ぜひあなたのアプリに追加してください！\n
-		* TOTP に対応 (KeeOTP と TrayTotp に互換)\n
-		* データベースを開いている間はアプリが Android によって終了されないように変更\n
-		* 戻るボタンでアプリを離れたときだけデータベースがロックされるように変更 (設定を参照)\n
-		* 検索結果でグループ名を表示するように変更 (*)\n
-		* 検索結果に \"親へ移動\" オプションを含むコンテキストメニューを追加 (*)\n
-		* エントリー表示にグループ名を表示するオプションを追加 (*)\n
-		* (*) Matthieu 氏によるこれらの機能の実装に感謝！\n
-		* KeeChallenge (Yubikey NEO を使用する) に対応。Ben Rush 氏のコネクターの実装に感謝！\n
-		* ユーザーインターフェイスを改良\n
-		* Google ドライブのインターフェイスのバグを修正\n
-		* 「寄付」オプションを無効にするオプションを追加\n
-		* QuickUnlock アイコンは Android 4.2 以上のデバイスではデフォルトで非表示に変更\n </string>
-  <string name="ChangeLog_0_9_3_r5"><b>Version 0.9.3 r5</b>\n
-		* Xamarin からの修正を組み込み: Keepass2Android は Android 4.4.2 の ART への対応を完了しました！\n
-		* バグ修正: 同期のバグ (表示の更新、http の変更の正しい確認)、Android 2.x デバイスでのバグ、Google ドライブと OneDrive ストレージの実装のバグ、データベースを閉じたときクリップボードをクリアする機能のバグ、添付ファイルを開くときのバグ、キーボードの表示のバグ\n</string>
-  <string name="ChangeLog_0_9_3"><b>Version 0.9.3</b>\n
-		* 多くの改良を含む新しいキーボード。カスタマイズは設定を参照\n
-		* 読み取り専用の kdb (Keepass 1 ファイル) の読み取りに試験的に対応\n
-		* SFTP に対応\n
-		* ART (Android 4.4.2) のバグへの回避策を追加\n
-		* バグ修正\n</string>
-  <string name="ChangeLog_0_9_2"><b>Version 0.9.2</b>\n
-		* OTP に対応 (OtpKeyProv プラグインと互換)\n
-		* NFC を使用する YubiKey NEO からの OTP を統合 \n
-		* いくつか UI を改良\n
-		* Keepass 2.24 ライブラリーを統合\n
-		* アプリのプロセスを終了するオプションを追加 (設定を参照)\n
-		* SSL 証明書の検証を改善\n
-		* バグ修正\n</string>
-  <string name="ChangeLog_0_9_1"><b>Version 0.9.1</b>\n
-		* SkyDrive に対応 (Keepass2Android 通常版のみ)\n
-		* Google ドライブ統合の問題を修正\n
-		* NTLM に対応</string>
-  <string name="ChangeLog_0_9"><b>Version 0.9</b>\n
-		* Dropbox と Google ドライブに対応 (データベースの読み書き; Keepass2Android 通常版のみ)\n
-		* Iカスタムファイルブラウザーを統合 (HBA による android-filechooser がベース)\n
-		* 新しいデータベース作成のユーザーインターフェイスを改良\n
-		* パスワード表示用にカスタムフォント DejaVu Sans Mono を使用\n
-		* バグ修正</string>
-  <string name="ChangeLog_0_8_6"><b>Version 0.8.6</b>\n
-		* Twofish 暗号に対応\n
-		* グループを編集できるように変更\n
-		* グループとエントリーを移動できるように変更\n
-		* QuickUnlock アイコンを透明にできるように変更 (設定を参照)\n
-		* バグ修正</string>
-  <string name="ChangeLog_0_8_5"><b>Version 0.8.5</b>\n
-		* オフラインで使用できるように、リモートファイルをローカルアプリのキャッシュに保存するよう変更 (編集と最後の更新を含む)。設定を参照\n
-		* データベースのロック状況を表示する通知アイコンを追加 (設定を参照)\n
-		* いくつかの状況でロックの決定方法を改良\n
-		* 読み込み速度を改善するため、パスワードの入力中にデータベースファイルをメモリーに読み込む (設定を参照)\n
-		* ルートグループにエントリーを追加できるように変更\n
-		* バグ修正 (参照フィールド、イタリア語と中国語のデバイスのキーボードの問題)</string>
-  <string name="ChangeLog_0_8_4"><b>Version 0.8.4</b>\n
-		* 外部でのデータベースの変更を検知して、保存するときにマージ\n
-		* 読み込みパフォーマンスを改善\n
-		* 検索ツールバーと提案を改良\n
-		* 新しいアプリロゴ！\n
-		* 読み込み/保存の高速化のため .kdbp フォーマットに対応\n
-		* 追加文字列の編集の改良とディスプレイを隠して保護する機能\n
-		Alex Vallat 氏のコード貢献に感謝！\n
-		Niki Hüttner 氏 (www.close-cut.de) の新しいロゴに感謝！\n</string>
   <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
 * エントリー一覧に表示されるユーザー名/TAN インデックス (設定を参照)\n
 * ブラウザーから検索して対応する結果がなかったとき、エントリーを作成できるように変更\n
@@ -990,18 +742,6 @@
 * コピーの前にエントリーフィールドのプレースホルダーを置き換え (ほとんどのプレースホルダーに対応)\n
 * 細かいバグ修正
   </string>
-  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
-* WebDAV のダイジェスト認証に対応\n
-* バグ修正 (OI ファイルマネージャー、URL を開く)</string>
-  <string name="ChangeLog_0_8_1"><b>Version 0.8.1</b>\n
-* オフライン版の KP2A Offline と通常版 (オンライン) を再び同じデバイスにインストールできるように変更\n
-* 新しい翻訳を追加 (すべての貢献者に感謝！)</string>
-  <string name="ChangeLog_0_8"><b>Version 0.8</b>\n
-* Android 4.x のデバイス向けにユーザーインターフェイスを改善\n
-* 既存のファイルを選択するのに任意のファイルマネージャーを使用できるように変更\n
-* 添付ファイルを安全に開く方法を追加 (キャッシュディレクトリー経由)\n
-* 編集アクティビティのバグを修正\n
-* おそらく、新しいバグを追加 :-)</string>
   <string name="ChangeLog_keptDonate">ビールまたは他の何かを寄付する可能性を拡張</string>
   <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
 * 読み込み速度を高速化: 鍵変換が 10 倍速くなりました！\n
@@ -1069,7 +809,7 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>パスワード</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
