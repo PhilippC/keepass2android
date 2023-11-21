@@ -21,8 +21,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Suspendarea aplicației</string>
   <string name="app_timeout_summary">Timp înainte de blocarea bazei de date atunci când aplicația este inactivă.</string>
-  <string name="kill_app_label">Oprește procesul aplicației</string>
   <string name="show_kill_app">Buton de închidere</string>
+  <string name="kill_app_label">Oprește procesul aplicației</string>
   <string name="show_kill_app_summary">Afișează un buton pentru închiderea aplicației în ecranul cu parole (pentru utilizatori paranoici)</string>
   <string name="application">Aplicație</string>
   <string name="application_settings">Setări aplicație</string>
@@ -587,34 +587,7 @@
   <string name="if_device_text">Activează pentru %1$s</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="CloseDbAfterFailedAttempts">Închide baza de date după trei încercări de deblocare biometrică eșuate.</string>
-  <string name="ChangeLog_0_8_3"><b>Versiunea 0.8.3</b>\n
-* Index utilizator/TAN afişat în lista de înregistrări (vezi setări)\n
-* Înregistrările pot fi create dacă o căutare din browser nu găseşte rezultate\n
-* Tastatura KP2A oferă posibilitatea de a căuta date de logare pentru aplicaţia curentă\n
-* Aplicaţia se închide automat după selectarea unei înregistrări de folosit cu tastatura\n
-* Dialogul de selecţie a tastaturii se deschide automat după căutarea după URL (vezi setări)\n
-* Substituenţii din câmpuri sunt înlocuiţi înainte de copiere (majoritatea sunt suportaţi)\n
-* Bug-uri minore rezolvate
-  </string>
   <string name="ChangeLog_keptDonate">Posibilitate extinsă de a dona o bere sau altceva</string>
-  <string name="ChangeLog_0_7"><b>Versiunea 0,7</b>\n
-* a crescut viteza de încărcare: transformarea cheii este acum de 10x mai rapidă!\n
-* adăugat tastatura Keepass2Android: comută la aceasta tastatura pentru a introduce detaliile. Vă protejează de programe ce scanează clipboard-ul după parole (dezactivează vechile notificări clipboard din opţiuni)\n
-* Adăugat opţiunea de a dona o bere sau altceva (vezi meniul)</string>
-  <string name="ChangeLog"><b>Versiunea 0.6.2</b>\n
-* Integrare Google Drive/Dropbox /...: utilizaţi aplicaţiile oficiale Google Drive sau Dropbox şi deschide orice fişier .kdbx. Acest lucru va deschide acum KP2A.\n
-* Dialog de căutare îmbunătăţit \n
-* Îmbunătăţit rezultate căutare pentru URL-uri împreună cu subdomenii\n
-* adăugat în meniu opţiuni pentru a da feedback, evalua sau traduce aplicaţia\n
-\n
-<b>Versiunea 0.6.1</b>\n
-* Detectează dacă baza de date se modifică în fundal (i.e. datorită unei aplicaţii de sincronizare)\n
-* S-a îmbunătăţit căutarea din URL-uri din navigator\n
-* Dialog de confirmare când se renunţă la modificări\n
-\n
-<b>Versiunea 0.6</b>\n
-Versiunea publică iniţială
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 de secunde</item>
     <item>1 minut</item>
