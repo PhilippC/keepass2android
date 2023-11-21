@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Aika-katkaisu</string>
   <string name="app_timeout_summary">Aika, jonka jälkeen tietokanta lukkiutuu automaattisesti jos ohjelmaa ei käytetä.</string>
-  <string name="kill_app_label">Lopeta sovelluksen prosessi</string>
   <string name="show_kill_app">Sulje-painike</string>
+  <string name="kill_app_label">Lopeta sovelluksen prosessi</string>
   <string name="show_kill_app_summary">Näytä \"Lopeta sovelluksen prosessi\" painike (vainoharhaisille käyttäjille)</string>
   <string name="application">Sovellus</string>
   <string name="application_settings">Sovellusasetukset</string>
@@ -683,33 +683,7 @@
     <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
     <item>Bugikorjaukset</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Versio 0.8.3</b> \n 
-* Käyttäjätunnus/TAN hakemiston merkintä luettelossa (Katso asetukset) \n 
-* Merkinnät voidaan luoda, jos haku selaimessa ei tuota tuloksia\n 
-* KP2A näppäimistö antaa mahdollisuuden etsiä tunnistetiedot nykyiselle sovellukselle\n 
-* Sovellus automaattisesti sulkeutuu valittuasi kohteen käytettäväksi näppäimistöltä\n 
-* Näppäimistö-valintaikkuna avautuu automaattisesti haettuasi URL: lia (Katso asetukset) \n 
-* Paikkamerkit korvataan ennen kopiointia (useimpia paikkamerkkejä tuetaan) \n
-* Pieniä bugi korjauksia  </string>
   <string name="ChangeLog_keptDonate">Laajennettu mahdollisuus lahjoittaa olutta tai jotain muuta</string>
-  <string name="ChangeLog_0_7"><b>Versio 0.7</b> \n 
-* Lisätään lastausnopeutta: avain muutokset nyt 10 kertaa nopeampia! \n 
-* Lisätty Keepass2Android soft-näppäimistö: Vaihda tähän näppäimistöön valitaksesi tunnisteet. 
-Suojelee sinua Leikepöytään perustuvalta salasana sniffaukselta (Poista vanhan Leikepöydän ilmoitukset asetuksista) \n 
-* Lisätty mahdollisuus lahjoittaa olutta tai jotain muuta (Katso valikko)</string>
-  <string name="ChangeLog"><b>Versio 0.6.2</b>\n
- * Google Drive/Dropbox/... integraatio: Käytä virallista Google Drive tai Dropbox sovellusta ja avaa mikä tahansa .kdbx-tiedosto. Tämä avaa nyt KP2A:in.\n
- * Paranneltu Hakudialogi \n
- * Paranneltu hakutuloksia Jaa URL aliverkkotunnuksille\n
- * Lisätty Palaute-toiminto, sekä Arvostele ja Käännä sovellus valikkoon\n
- \n
- <b>Versio 0.6.1</b>\n
- * Tunnista tietokannan muutokset taustalla (eli synkronoinnin johdosta)\n
- * Paranneltu URL-haku selaimesta\n
- * Vahvistusdialogi muutoksia peruttaessa\n
- \n
-<b>Versio 0.6</b>\n
- Alustava julkaisu  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekuntia</item>
     <item>1 minuutti</item>
