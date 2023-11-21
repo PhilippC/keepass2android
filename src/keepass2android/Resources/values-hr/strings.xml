@@ -675,32 +675,7 @@
     <item>Switch to BiometricPrompt API to improve user experience with fingerprint unlock and allow to use face unlock, e.g. on Pixel 4.</item>
     <item>Ispravci pogrešaka</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Verzija 0.8.3</b>\n
-* Korisničko ime/TAN indeks prikazan na popisu unosa (vidi postavke)\n
-* Unosi se mogu stvoriti ako pretraživanje iz preglednika ne vrati rezultate\n
-* KP2A tipkovnica pruža mogućnost traženja vjerodajnica za trenutnu aplikaciju\n
-* Aplikacija se automatski zatvori nakon odabira zapisa za upotrebu na tipkovnici\n
-* Dijaloški odabir tipkovnice automatski se otvara nakon traženja URL-a (vidi postavke)\n
-* Znakovi rezervnih polja zamjenjuju se prije kopiranja (podržana je većina rezerviranih mjesta)\n
-* manji popravci bugova  </string>
   <string name="ChangeLog_keptDonate">Proširena mogućnost za doniranje pive ili nešto drugo</string>
-  <string name="ChangeLog_0_7"><b>Verzija 0.7</b>\n
-* Povećana brzina učitavanja: ključne transformacije sada 10x brže!\n
-* Dodana softverska tipkovnica Keepass2Android: prebacite na ovu tipkovnicu za unos vjerodajnica. Štiti Vas od skeniranja zaporki temeljenih na međuspremnicima (onemogućite stare obavijesti međuspremnika u opcijama)\n
-* Dodana je opcija za darivanje piva ili nešto drugo (vidi izbornik)</string>
-  <string name="ChangeLog"><b>Verzija 0.6.2</b>\n
-* Integracija s uslugom Google Drive/Dropbox/...: upotrebljavajte službenu aplikaciju Google Drive ili Dropbox i otvorite bilo koju datoteku .kdbx. Ovo će sada otvoriti KP2A.\n
-* Poboljšan dijalog pretraživanja\n
-* Poboljšani rezultati pretraživanja za dijeljenje URL-a s poddomenama\n
-* Dodane su opcije za davanje povratnih informacija, ocjenjivanja i prevođenje aplikacije u izborniku\n
-\n
-<b>Verzija 0.6.1</b>\n
-* Otkrivanje kada se baza podataka mijenja u pozadini (npr. Zbog aktivnosti sinkronizacijske aplikacije)\n
-* Poboljšano pretraživanje URL-ova iz preglednika\n
-* Dijalog potvrde prilikom odbacivanja promjena\n
-\n
-<b>Verzija 0.6 </b>\n
-Prvotna javna verzija  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekundi</item>
     <item>1 minuta</item>
