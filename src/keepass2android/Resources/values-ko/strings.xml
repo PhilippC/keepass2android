@@ -608,23 +608,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="Continue">계속</string>
   <string name="NoFilenameWarning">입력 한 URI가 파일명이 아닌 것 같습니다. 정말로 올바른 파일이 맞습니까?</string>
   <string name="FirstInvalidCompositeKeyError">복합 키가 잘못 되었습니다! 다시 시도 하십시오.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">복합 키가 잘못 되었습니다!  데이터베이스 잠금을 해제하려면 다음 단계를 수행하십시오:\n
-  
-    • 올바른 암호를 입력했는지 확인하십시오. 눈 아이콘을 사용하여 입력 한 비밀번호를 표시하십시오.\n
-   • 올바른 암호 유형을 선택했는지 확인하십시오. 데이터베이스를 만들 때 사용한 유형과 일치하는지 확인하십시오.\n
-   • 올바른 데이터베이스 파일을 선택했는지 확인하십시오.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-    &#8226; 힌트: 데이터베이스 파일이 손상되었거나 마스터 키를 수정 한 후에 기억하지 못한다면 \"%1$s\"를 클릭하고 내부 백업을 선택하여 마지막으로 성공적으로 연 파일 버전을 시도 할 수 있습니다.</string>
-  <string name="HintLocalBackupOtherError">\n
-    &#8226; 힌트: Keepass2Android는 마지막으로 성공적으로 연 파일 버전을 내부 메모리에 저장했습니다. \"%1$s\" 항목을 탭하고 내부 백업을 선택하여 열 수 있습니다.  </string>
-  <string name="CorruptDatabaseHelp">파일이 손상되었습니다. \n 
-    다음은 문제를 진단하는 데 도움이되는 몇 가지 힌트입니다:\n
-    
-    &#8226; USB (MTP-Mode)로 파일을 복사 한 경우 MyPhoneExplorer와 같은 도구로 다시 시도하십시오. MTP가 파일을 잘라내는 경우가 있습니다.\n
-    &#8226; PC의 동일한 위치에서 파일을 열 수 없으면 파일이 실제로 손상되었을 가능성이 큽니다. 데이터베이스 백업을 사용하십시오. Keepass2Android가 파일을 손상시켰다고 추정되면 지원 팀에 문의해 주십시오.\n
-    &#8226; PC에서 파일을 여는 것이 가능한 경우 지원 팀에 문의해 주십시오. PC에서 다른 설정(예시: 압축이 풀린 상태)으로 저장한 후 Keepass2Android에서 다시 시도해볼 수 있습니다.
-
-  </string>
   <string name="open_other_db">다른 데이터베이스 열기...</string>
   <string name="select_database">데이터베이스 선택</string>
   <string name="configure_child_dbs">하위 데이터베이스 설정...</string>
@@ -678,235 +661,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
     <item>버그 수정</item>
     <item>버그 수정</item>
   </string-array>
-  <string name="ChangeLog_1_07b">버전 1.07b\n
-    * 네이티브 구현을 통해 Argon2 퍼포먼스 향상 (Chih-Hsuan Yen님께 감사드립니다!)\n
-    * 지문 아이콘을 클릭해서 지문 인식 비활성화 허용 (이를 통해 스크린 밑으로 나간 지문 인식 리더 문제를 피할 수 있습니다. marcoDallas님께 감사드립니다!)\n
-    * 암호 표기 토글 시 커서 위치 복구 (DDoSolitary님께 감사드립니다!)\n
-    * pCloud 구현 향상 (gilbsgilbs님께 다시 한번 감사드립니다!)\n
-    * 조금 더 많은 브라우저에서 자동 입력 지원 \n
-    * 새 OneDrive 구현: 비즈니스 용 OneDrive, 공유된 파일, 선택 가능한  액세스 범위, 다중 계정 지원 및 오프라인 접근 수정 포함\n
-    * 버그 수정  
-  </string>
-  <string name="ChangeLog_1_07">버전 1.07\n
-    * 삼성 Android 9 장치에서 발생한 문제를 수정했습니다.\n
-    * 한 개 이상의 데이터베이스 열람을 허용했습니다. KeeAutoExec과 호환됩니다.\n
-    * SFTP: 공개 키 접근을 허용합니다. 호스트 키가 변경되었는지 확인해보세요.\n
-    * pCloud를 지원합니다 - gilbsgilbs님께 감사드립니다!\n
-    * Nextcloud 지원을 명시화했습니다.\n
-    * 항목 첨부의 저장과 업데이트 기능을 향상했습니다.\n
-    * 개인 설정의 작동 조정에 대한 더 많은 설정을 추가했습니다.\n
-    * SSL: 유저 증명서를 신뢰하는 기능을 추가했습니다.\n
-    * 자동입력 기능을 향상했습니다. (이제 Firefox가 지원됩니다. 관련 팝업을 줄일 수 있습니다.)\n
-    * 버그 수정\n  </string>
-  <string name="ChangeLog_1_06">    버전 1.06\n
-    * Yubikey 시도-응답 지원을 위한 앱을 YubiChallenge에서 ykDroid로 교체.\n
-    * KeepassXC-스타일 시도-응답 지원 추가. 노트: 데이터 베이스 포멧은 반드시 KDBX4 이어야 합니다!\n
-    * Google Drive에서 쓰레기 파일이 로드 되는것을 거부\n
-    * FTPS을 위한 TLS 구현을 변경, gssapi-with-mic를 지원하는 서버로 JSch 버그에 대한 해결 방법 추가\n
-    * 버그 수정\n
-  </string>
-  <string name="ChangeLog_1_05">    버전 1.05\n
-    * Android 8의 알림 채널 사용, 시스템 설정을 통한 구성 허용\n
-    * 알림에 항목 아이콘 표시\n
-    * Android 8 용 적응형 아이콘 사용, Android 7 용 원형 런쳐 아이콘 사용\n
-    * 잠금 해제시 검색 활성화 허용 (설정 참조)\n
-    * Storage Access Framework를 통해 파일을 작성 하는 방식을 변경하고 시스템 파일 선택기를 통해 열린 Google 드라이브에서의 파일을 업데이트 할 때 발생하는 문제를 수정했습니다.\n
-    * 몇 가지 일반적인 오해를 피하기 위해 몇 가지 정보 텍스트를 추가했습니다.\n
-    * 성공적으로 열린 데이터베이스의 내부 백업을 생성하여 데이터 손실 위험을 줄입니다.\n
-    * 최신 SSH 암호를 지원하도록 JSch를 업데이트 했습니다.\n
-    * 연결 설정을 수정할 수 있습니다. 예: WebDav 암호가 변경되었을 때\n
-    * Yubikey Neo의 정적 암호 모드 지원 추가\n
-    * 자동 완성 제안을 사용 중지하는걸 허용합니다.\n
-    * logcat에 대한 데이터 유출 문제 수정\n    
-    * 그 밖의 버그 수정\n
-  </string>
-  <string name="ChangeLog_1_04b">    버전 1.04b\n
-    * 화웨이 기기에서 자동 완성을 사용하려 할 때 발생 하는 문제를 수정했습니다.\n
-  </string>
-  <string name="ChangeLog_1_04">    버전 1.04\n
-    * Android 8.0 버전 이상에서 자동 완성 기능이 추가되었습니다.\n
-    * 라이브러리와 빌드 도구, 타겟 SDK 버전을 업그레이드 했습니다.\n
-  </string>
-  <string name="ChangeLog_1_03">    버전 1.03\n
-    * Google의 요청에 따라 자동 완성을위한 접근성 서비스가 삭제되었습니다. 이전 기능과 비슷한 플러그인을 찾으려면 비밀번호 접근 설정을 참조하십시오.\n
-    * 서드 파티 앱을 저장 옵션으로 다시 추가했습니다.\n
-    * 첨부 된 이미지를 다른 앱으로 열지 않고 볼 수있는 통합 이미지 뷰어\n
-    * 일부 연결 문제 해결을 위해 OkHttp를 업그레이드 했습니다.\n
-    * KeeTrayTOTP 항목을 지원하여 Steam 항목이 지원됩니다.\n
-  </string>
-  <string name="ChangeLog_1_02">    버전 1.02\n
-    * 몇 가지 보안 개선 사항. jean-baptiste.cayrou@thalesgroup.com과 vincent.fargues@thalesgroup.com 그리고 그들의 협력을 통한
-보안 리포트 제공에 깊은 감사를 드립니다!\n
-    * 키보드 스왑 플러그인 지원 (암호 접근 옵션을 보세요): 루팅 되지 않은 장치에서 입력 방식을 자동적으로 전환 할 수 있습니다. XDA-Developers의 Mishaal Rahman님께 감사의 말을 전합니다.\n
-    * 최신 크롬 버전에서의 접근성 서비스 문제 수정\n
-    * 지문 데이터를 불필요하게 지우는 문제 수정\n
-    * 사소한 충돌 수정\n
-    * 향후 호환성을 위한 드롭박스 SDK 업데이트\n
-    * Xamarin Insights를 통한 오류 보고 제거\n
-    * 빌드 도구 업데이트\n
-  </string>
-  <string name="ChangeLog_1_01g">    버전 1.01-g\n
-    * 오프라인으로 작업 할 때 충돌 문제 수정\n
-    * FTP(S) 자격 증명의 잘못된 인코딩 수정\n
-    * 원드라이브 및 이전 Android 버전에서 충돌 문제 수정\n
-    * 입력 화면에서 현지 시간으로 시간 표시\n
-  </string>
-  <string name="ChangeLog_1_01d">    버전 1.01-d\n
-    * 원드라이브 파일 목록 수정\n
-    * 호스트 이름 확인이 실패 할 때도 인증서 오류를 무시할 수 있습니다 (일반적인 용도로는 권장되지 않음).\n
-    * 올바른 잠금 해제 코드에도 불구하고 QuickUnlock이 때때로 실패하는 문제 수정\n
-  </string>
-  <string name="ChangeLog_0_9_8c">    버전 0.9.8c\n
-    * Microsoft Live SDK의 SSL 취약성 수정 (원드라이브를 통해 파일에 액세스 할 때 사용)\n
-    * 버그 수정: 이전 버전에서의 중복된 입력 방법 수정 (하나가 충돌)\n
-  </string>
-  <string name="ChangeLog_1_01">    버전 1.01\n
-    * Argon2 키 파생 및 ChaCha20 암호화를 포함한 새로운 KDBX-4 형식 (Keepass 2.35와 호환) 에 대한 지원이 추가되었습니다.\n
-    * WebDav 파일 저장소를 다시 구현하여 파일 찾아보기를 허용하고 최신 암호화를 지원합니다.\n
-    * Reimpleented FTP file storage는 파일 탐색을 지원하고 암호화 (FTPS) 를 지원합니다.\n
-    * OneDrive SDK가 업데이트되었습니다 (이전에 사용한 Live SDK는 더 이상 업데이트되지 않음)\n
-    * Dropbox SDK 버전 2로 업데이트 되었습니다. (이전에 사용 된 버전 1 SDK는 사용되지 않음).\n
-    * OwnCloud 지원 추가.\n
-    * 내부 파일을 열기 전에 저장소 권한 확인
-  </string>
-  <string name="ChangeLog_1_0_0e">    버전 1.0.0e\n
-    * 안드로이드 6을 사용하는 구형 삼성 기기에서 지문인식 잠금해제 관련 수정\n
-    * x86기기에 대한 기본 지원 추가\n
-    * 지문인식하는 동안 소프트키를 숨길수 있게 허용\n
-    * 시스템 업데이트 구축
-  </string>
-  <string name="ChangeLog_1_0_0">    버전 1.0.0\n
-    * 지문 잠금 해제 (Android 6.0+ 혹은 삼성 기기)\n
-    * 자동 입력 서비스 추가 (Android 5.0+ 필요)\n
-    * 항목 서식 지원 추가\n
-    * \"오프라인에서 작업\" 지원 추가\n
-    * 항목 복사 허가\n
-    * 필드 이름에서의 자동 완성 모드\n
-    * 최근 파일 내역에서의 항목 지우기 허가\n
-    * Android 6.0에서 런타임에 권한 요청\n
-    * 버그 수정 (내장 키보드에서의 아이콘을 선택할때)\n
-    * 버그 리포트 보내기 옵션 추가\n
-    * 일부 구간에서의 도움말 추가\n
-  </string>
-  <string name="ChangeLog_0_9_9">버전 0.9.9\n
-		* 완전한 UI 재 설계. Stefano Pignataro (http://www.spstudio.at)의 도움에 감사드립니다!\n
-    * 커스텀 아이콘 추가 허가\n
-    * 삼성 기기에서의 멀티 윈도우 모드 지원\n
-    * 새로운 데이터베이스의 기본 암호화 라운드 수 증가\n
-    * 추가 필드의 중복 키가 있는지 확인하여 데이터 손실을 방지\n
-    </string>
-  <string name="ChangeLog_0_9_9c">    버전 0.9.9c\n
-    * 어두운 테마가 돌아옴\n
-    * 이제 아이콘팩 설치 가능 (플레이 스토어를 통해 예전 윈도우 스타일의 아이콘을 사용 할 수 있습니다.)\n
-    * 휴지통을 통하지 않고 항목을 삭제할때 확인 질문 추가\n
-    * 버그 수정 (OTP 비밀 인코딩을 잘못 출력, 일부 장소에서의 잘못된 앱 아이콘)\n
-  </string>
-  <string name="ChangeLog_0_9_8b">버전 0.9.8b\n
-		* 버그 수정 (일부 데이터 베이스에서의 저장 실패, 내부 기기에서 내보내기 작동 불가, 몇몇 설정 선택시 앱 충돌)\n</string>
-  <string name="ChangeLog_0_9_8">버전 0.9.8\n
-		* 스토리지 액세스 프레임 워크 지원 (KP2A 오프라인에서 SD 카드 및 Google 드라이브에 쓰기 가능)\n
-		* WebDAV URL (파일 대신 디렉토리) 을 입력 할 때 잘못된 사용자 입력을 탐지\n
-		* 비밀번호 글꼴 변경\n
-		* 드롭박스 계정 변경 허가\n
-		* 버그 수정: 이제 OTP 비밀번호가 기억됩니다</string>
-  <string name="ChangeLog_0_9_7b">버전 0.9.7b\n
-		* 번역 업데이트\n
-		* 버그 수정: 0.9.7에서의 비밀번호 글꼴 누락, 이름순으로 그룹 정렬 문제\n</string>
-  <string name="ChangeLog_0_9_7">버전 0.9.7\n
-		* Keepass 1 (kdb) 데이터베이스 지원 (베타!)\n
-		* 이전에 사용하던 키보드로 더 잘 전환 됩니다 (비-루팅 기기에서도 작동 함).\n
-		* 다양한 길이의 시도를 가진 KeeChallenge 지원\n
-		* QuickUnlock 및 암호 화면에서 스크린 샷 방지\n
-		* 수정 날짜 별 정렬의 역순 정렬 순서 (현재 내림차순)\n
-		* 버그 수정: 변경 후 Notes 보기가 올바르게 업데이트되었습니다. 암호 보기는 이제 모든 장치에서 암호를 올바르게 숨깁니다, 항목을 두 번 추가 할 수있는 고정 문제 수정, 데이터베이스 수정 후에도 중복 UUID 경고 표시 문제 해결\n</string>
-  <string name="ChangeLog_0_9_6">버전 0.9.6\n
-		* 키 파일 및/또는 내부 데이터베이스 파일을 앱 내부 디렉토리로 가져올 수 있습니다 (설정 참조).\n
-		* 다양한 정렬 옵션 허용\n
-		* 자동 키보드 전환을 위한 향상된 기본 설정\n
-		* 업데이트 된 응용 프로그램 로고 및 알림 디자인, 디자인 Stefano Pignataro (http://www.spstudio.at)\n
-		* 암호 생성기는 마지막 설정을 기억합니다.\n
-		* Android 5를 위한 잠금 화면 알림 표시 설정\n
-		* 확인을 클릭하지 않고 앱을 종료 해도 마스터 비밀번호 입력란이 삭제됩니다.\n
-		* 일부 장치의 키보드 설정에서 입력 언어 누락 문제 해결\n
-		* 루팅 된 기기의 자동 키보드 전환 문제 해결\n
-		* 손상된 데이터베이스에 대한 검사 추가 (중복 된 UUID)\n
-		* 변경이 감지되면 자동으로 데이터베이스를 다시 로드하고 마스터 비밀번호 공개에 대한 보안 문제를 해결합니다.\n
-		* 폴란드어의 소형 키보드 레이아웃 개선, 키보드 설정의 테마 수정 (Wiktor Ławski에 감사드립니다)\n</string>
-  <string name="ChangeLog_0_9_5"><b>버전 0.9.5</b>\n
-		* 파일 탐색 관련 문제 수정 (특히 안드로이드 4.4버전)\n
-		* Nexus 5의 Android Lollipop에서 .kdb 파일 (Keepass 1)을로드 할 때 발생하는 문제가 해결되었습니다.\n
-		* 최근 앱 목록의 스크린 샷/앱 표시 방지 옵션 추가\n
-		* Google 드라이브 파일 저장 문제 해결 (일반용)\n
-		* 선택한 스토리지 유형에 대한 주요 파일 허용 (일반용)\n
-		* 일반 보안 패치가 포함 된 Dropbox SDK 업데이트 (일반용)\n
-		* 빌드 도구 업데이트 --&gt; apk 크기 증가 :-(\n
-		더 많은 변화를 약속드립니다. 그 변화는 다음 버전과 함께 옵니다. - 죄송합니다. 저는 이 핫 픽스를 가능한 한 빨리 출시하고 싶었습니다.</string>
-  <string name="ChangeLog_0_9_4"><b>버전 0.9.4</b>\n
-		* 추가 된 플러그인 지원: 플러그인을 얻는 방법은 설정을 참조하십시오!\n
-		*  출시 된 QR 플러그인 (암호 스캔, QR 코드로 암호 표시, 다른 KP2A 장치로 항목 전송)\n
-		*  출시 된 InputStick 플러그인 (블루투스를 통해 PC로 인증서 전송 - InputStick USB 스틱 필요)\n
-		*  이제 제3자 앱은 자격 증명에 대한 KP2A 요청을 손쉽게 구현할 수 있습니다. 당신은 개발자입니까? 적합하다면 당신의 앱에 추가하십시오!\n
-		* TOTP 지원 추가 (KeeOTP 및 TrayTotp와 호환)\n
-		* 데이터베이스가 열려있을 때 앱이 더 이상 Android에 의해 종료되지 않습니다.\n
-		* 뒤로 버튼으로 앱을 종료 할 때 데이터베이스가 더 이상 잠겨 있지 않음 (설정 참조)\n
-		* 검색 결과보기에 그룹 이름 표시 (*)\n
-		* \"상위로 탐색\" 옵션을 포함한 검색 결과보기의 상황에 맞는 메뉴 추가 (*)\n
-		* 항목보기에 그룹 이름을 표시하는 추가 옵션 (*)\n
-		* (*) 이러한 기능을 구현해준 Matthieu에게 감사합니다!\n
-		* KeeChallenge (Yubikey NEO로) 를 지원. 커넥터를 구현 한 Ben Rush에게 감사드립니다!\n
-		* 유저 인터페이스 향상\n
-		* 구글 드라이브 통합에서의 버그 수정\n
-		* \"기부\" 버튼 비활성화 옵션 추가\n
-		* 이제 QuickUnlock 아이콘은 기본적으로 Android 4.2 이상의 기기에 표시되지 않습니다.\n </string>
-  <string name="ChangeLog_0_9_3_r5"><b>버전 0.9.3 r5</b>\n
-		* Xamarin의 수정 사항: Keepass2Android가 Android 4.4.2의 ART와 호환됩니다. 드디어!\n
-		* 버그 수정: 동기화 버그 (표시 새로 고침, http 변경 사항 확인), Android 2.x 기기의 버그, Google 드라이브 및 원드라이브 저장소 구현의 버그, 닫기 데이터베이스의 클립 보드 지우기, 첨부 파일 열기 버그, 키보드 문제 표시\n</string>
-  <string name="ChangeLog_0_9_3"><b>버전 0.9.3</b>\n
-		* 수많은 개선사항을 포함한 새 키보드. 맞춤 설정을 참조하십시오.\n
-		* kdb (Keepass 1 파일) 에 대한 읽기 전용 지원. 실험용!\n
-		* SFTP 지원 추가\n
-		* ART (Android 4.4.2) 의 버그에 대한 해결 방법 추가\n
-		* 버그 수정\n</string>
-  <string name="ChangeLog_0_9_2"><b>버전 0.9.2</b>\n
-		* OTP 지원 추가 (OtpKeyProv 플러그인과 호환)\n
-		* YubiKey NEO의 OTP 통합 NFC 지원 \n
-		* 여러 가지 UI 개선\n
-		* Keepass 2.24 라이브러리 통합\n
-		* 앱을 종료하는 옵션이 추가되었습니다 (설정 참조).\n
-		* 향상된 SSL 인증서 유효성 검사\n
-		* 버그 수정\n</string>
-  <string name="ChangeLog_0_9_1"><b>버전 0.9.1</b>\n
-		* 통합된 SkyDrive 지원 (Keepass2Android 일반 버전 전용)\n
-		* Google 드라이브 통합에서의 문제 해결\n
-		* NTLM 지원 추가</string>
-  <string name="ChangeLog_0_9"><b>버전 0.9</b>\n
-		* 통합된 드롭박스 및 Google 드라이브 지원 (읽기/쓰기 데이터베이스, Keepass2Android 일반 에디션 전용)\n
-		* 통합된 커스텀 파일 탐색기 (HBA의 android-filechooser 기반)\n
-		* 새로운 데이터베이스 생성을 위한 향상된 사용자 인터페이스\n
-		* 비밀번호 표시용도의 커스텀 글꼴 DejaVu Sans Mono 추가\n
-		* 버그 수정</string>
-  <string name="ChangeLog_0_8_6"><b>버전 0.8.6</b>\n
-		* Twofish 암호 지원\n
-		* 그룹 수정 허가\n
-		* 그룹과 항목 이동 허가\n
-		* QuickUnlock 아이콘을 투명하게 만들 수 있습니다 (설정 참조).\n
-		* 버그 수정</string>
-  <string name="ChangeLog_0_8_5"><b>버전 0.8.5</b>\n
-		* 원격 파일은 내부 응용 프로그램 캐시에 저장되어 오프라인 사용이 가능합니다 (편집 및 이후 동기화 포함). 설정을 참조하십시오. \n
-		* 데이터베이스의 잠금 상태를 시각화하는 알림 아이콘 (설정 참조)\n
-		* 일부 상황에서 잠금 상태의 개선\n
-		* 로딩 속도를 높이기 위해 암호를 입력하는 동안 데이터베이스 파일이 메모리에 로드됩니다 (설정 참조).\n
-		* 루트 그룹에 항목을 추가 할 수 있습니다.\n
-		* 버그 수정 (참조 필드 중국과 이탈리아 기기의 키보드 문제)</string>
-  <string name="ChangeLog_0_8_4"><b>버전 0.8.4</b>\n
-		* 저장 시 외부 데이터베이스 변경 사항이 감지되고 병합됩니다.\n
-		* 향상된 로딩 성능\n
-		* 검색 도구 모음의 제안 개선\n
-		* 새로운 앱 로고!\n
-		* 빠른 로딩 / 저장 을위한 .kdbp 형식 지원 추가.\n
-		* 추가 문자열 편집 및 보호된 숨겨진 디스플레이 개선\n
-		Alex Vallat에게 코드 제공에 감사드립니다.!\n
-		새로운 로고를 제공해준 Niki Hüttner (www.close-cut.de)에게 감사드립니다!\n</string>
   <string name="ChangeLog_0_8_3"><b>버전 0.8.3</b>\n
 * 항목 목록에 표시되는 사용자 이름 / TAN 색인 (설정 참조)\n
 * 브라우저에서 검색 결과가 반환되지 않아도 항목을 만들 수 있습니다.\n
@@ -916,18 +670,6 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
 * 복사하기 전에 입력 필드의 자리 표시자를 바꿉니다 (대부분의 자리 표시자 지원).\n
 * 사소한 버그 수정
   </string>
-  <string name="ChangeLog_0_8_2"><b>버전 0.8.2</b>\n
-* WebDAV에서 다이제스트 인증 지원\n
-* 버그 수정 (OI 파일 관리자, URL 열기)</string>
-  <string name="ChangeLog_0_8_1"><b>버전 0.8.1</b>\n
-* KP2A 오프라인과 \"온라인\"을 동시에 설치할 수 있습니다\n
-* 새로운 번역 추가 (모든 기여자들에게 감사드립니다!)</string>
-  <string name="ChangeLog_0_8"><b>버전 0.8</b>\n
-* Android 4.x 기기의 사용자 인터페이스 개선\n
-* 기존의 파일을 선택하기 위해 의도적으로 파일 관리자를 사용 할 수 있습니다\n
-* 첨부 파일을 여는 더 안전한 방법을 추가했습니다 (캐시 디렉토리를 통해).\n
-* 수정 작업에서의 버그 수정\n
-* 아마도 새로운 버그 :-)</string>
   <string name="ChangeLog_keptDonate">맥주 또는 다른 것으로 기부가 가능하게 확장되었습니다</string>
   <string name="ChangeLog_0_7"><b>버전 0.7</b>\n
 * 로깅 속도 증가: 키 변환이 지금 10배 더 빠릅니다!\n
@@ -995,7 +737,7 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>비밀번호</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
