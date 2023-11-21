@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A offline</string>
   <string name="app_timeout">Tempo esgotado da aplicação</string>
   <string name="app_timeout_summary">Tempo que demora a bloquear a base de dados quando a aplicação está inativa.</string>
-  <string name="kill_app_label">Matar processo da aplicação</string>
   <string name="show_kill_app">Botão fechar</string>
+  <string name="kill_app_label">Matar processo da aplicação</string>
   <string name="show_kill_app_summary">Mostrar um botão no ecrã de palavra-passe para matar o processo da aplicação (para utilizadores paranoicos)</string>
   <string name="application">Aplicação</string>
   <string name="application_settings">Configurações da aplicação</string>
@@ -725,34 +725,7 @@
     <item>Alterar para a API BiometricPrompt para melhorar a experiência do utilizador com desbloqueio por impressão digital e permitir o uso do desbloqueio facial (ex: no Pixel 4).</item>
     <item>Correções de erros</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Versão 0.8.3</b>\n
-* Índice de utilizador/TAN mostrado na lista de entradas (veja em configurações)\n
-* Entradas podem ser criadas se a pesquisa pelo navegador não retornar resultados\n
-* Teclado KP2A fornece a possibilidade de pesquisar por credenciais na aplicação regular\n
-* Aplicação fecha automaticamente depois de selecionar uma entrada para uso no teclado\n
-* Janela de seleção do teclado abre-se automaticamente depois de pesquisar por uma URL (veja em configurações)\n
-* Espaço reservado para campos de entrada são substituídos depois de copiar (suportado a maioria dos espaços reservados)\n
-* Correção de erros menores
-    </string>
   <string name="ChangeLog_keptDonate">Considere a possibilidade de doar uma cerveja ou outra coisa</string>
-  <string name="ChangeLog_0_7"><b>Versão 0.7</b>\n
-* Aumentada a velocidade de carregamento: principais transformações agora 10x mais rápido!\n
-* Adicionado teclado virtual Keepass2Android: mudar para este teclado para inserir credenciais. Protege-o de \'sniffers\' de palavras passe da área de transferência (desative notificações antigas nas configurações)\n
-* Adicionada opção para doar uma cerveja ou outra coisa (ver menu)</string>
-  <string name="ChangeLog"><b>Versão 0.6.2</b>\n
-* Integração do Google Drive/Dropbox /... : use a aplicação oficial Google Drive ou Dropbox para abrir qualquer ficheiro kdbx.. Isto irá agora abrir no KP2A.\n
-* Janela de pesquisa melhorada\n
-* Resultados de pesquisa melhoradas para URL com subdomínios\n
-* Adicionadas opções para fornecer comentários, avaliação e traduzir a aplicação no menu\n
-\n
-<b>Versão 0.6.1</b>\n
-* Detetar alterações na base de dados em segundo plano (ou seja, devido à atividade de uma aplicação de sincronização)\n
-* Melhorada a pesquisa de URLs a partir do navegador\n
-* Janela de confirmação quando as mudanças forem descartadas\n
-\n
-<b>Versão 0.6</b>\n
-Lançamento público inicial
-    </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>
