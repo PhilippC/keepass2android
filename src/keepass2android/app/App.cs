@@ -832,7 +832,7 @@ namespace keepass2android
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
 						    new OneDrive2AppFolderFileStorage(),
-                            new SftpFileStorage(LocaleManager.LocalizedAppContext, this),
+                            new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
 							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
 							new WebDavFileStorage(this),
 							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
@@ -855,7 +855,7 @@ namespace keepass2android
 				.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.FtpDebug_key), false);
         }
 
-		public void TriggerReload(Context ctx, Action<bool> actionOnResult)
+        public void TriggerReload(Context ctx, Action<bool> actionOnResult)
 		{
 			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>

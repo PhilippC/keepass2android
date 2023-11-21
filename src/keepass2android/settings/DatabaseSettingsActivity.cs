@@ -401,7 +401,11 @@ namespace keepass2android
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
         private void OnJSchDebugChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
-            SetJSchLogging((bool)e.NewValue);
+            bool debugEnabled = (bool)e.NewValue;
+            SetJSchLogging(debugEnabled);
+
+            string prefKey = Application.Context.GetString(Resource.String.FtpDebug_key);
+            PreferenceManager.SharedPreferences.Edit().PutBoolean(prefKey, debugEnabled).Apply();
         }
 
         private void SetJSchLogging(bool enabled)

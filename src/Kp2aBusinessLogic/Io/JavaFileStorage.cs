@@ -25,7 +25,7 @@ namespace keepass2android.Io
 	    public abstract bool UserShouldBackup { get; }
 
 
-	    private readonly IJavaFileStorage _jfs;
+	    protected readonly IJavaFileStorage _jfs;
 		private readonly IKp2aApp _app;
 
 		public JavaFileStorage(IJavaFileStorage jfs, IKp2aApp app)
