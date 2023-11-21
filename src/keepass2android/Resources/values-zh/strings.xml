@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A 离线</string>
   <string name="app_timeout">后台锁定超时</string>
   <string name="app_timeout_summary">当应用进入后台之后，锁定数据库之前等待的时间。</string>
-  <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">关闭按钮</string>
+  <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（强迫症选项）</string>
   <string name="application">应用</string>
   <string name="application_settings">应用设置</string>
@@ -756,33 +756,7 @@
     <item>BUG修复</item>
     <item>Bug 修复</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes</string>
   <string name="ChangeLog_keptDonate">捐出一杯啤酒或别的来支持我们的发展吧。</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Google Drive/Dropbox/... 集成: 使用官方 Google Drive 或者 Dropbox 程序并打开任何 .kdbx-file. 将在将来的版本出现.\n
-* 改善搜索对话框 \n
-* 改善分享URL子域名的搜索结果 \n
-* 在菜单中添加反馈，评分和翻译此程序（哎，作者真讨厌）\n
-\n
-<b>版本 0.6.1</b>\n
-* 检测数据库在后端是否有改动 (例如因为别的程序的同步造成的改动)\n
-* 改善从浏览器搜索URL\n
-* 当丢弃更改时显示确认对话框\n
-\n
-<b>版本 0.6</b>\n
-Initial public release
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
     <item>1分钟</item>
