@@ -21,8 +21,8 @@
   <string name="app_name_nonet">Keepass2Android Offline (גרסה לא מקוונת)</string>
   <string name="short_app_name_nonet">KP2A במצב לא מקוון</string>
   <string name="app_timeout_summary">פרק זמן לפני נעילת מסד הנתונים כאשר היישום אינו פעיל.</string>
-  <string name="kill_app_label">הפסק יישום</string>
   <string name="show_kill_app">לחצן הסגירה</string>
+  <string name="kill_app_label">הפסק יישום</string>
   <string name="show_kill_app_summary">הצגת כפתור במסך הסיסמאות לצורך עצירת היישום (עבור משתמשים פרנואידים)</string>
   <string name="application">יישום</string>
   <string name="application_settings">הגדרות יישום</string>
