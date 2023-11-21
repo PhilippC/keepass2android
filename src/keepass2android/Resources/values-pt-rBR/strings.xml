@@ -794,6 +794,18 @@
     * Nova implementação para OneDrive: inclui suporte para OneDrive for Business, arquivos compartilhados, escopos de acesso selecionáveis, múltiplas contas e corrige problemas com acesso offline\n
     * Correções de bugs
   </string>
+  <string name="ChangeLog_1_07">    Versão1.07\n
+    * Correções para falhas no Android 9 da Samsung\n
+    * Permitir abrir mais de um banco de dados, compatível com KeeAutoExec\n
+    * SFTP: Permitir autenticação de chave pública, verifique se a chave do host foi alterada\n
+    * Introduzido o suporte ao pCloud - graças a gilbsgilbs!\n
+    * Torne explícito o suporte ao Nextcloud\n
+    * Melhorado o salvamento e a atualização de anexos de entrada\n
+    * Mais opções para adaptar o comportamento às preferências pessoais\n
+    * SSL: Confiar em certificados de usuário\n
+    * Melhorarado o preenchimento automático (agora funciona com o Firefox, permite reduzir pop-ups)\n
+    * Correções de bugs\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
