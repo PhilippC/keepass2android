@@ -533,32 +533,7 @@
   <string name="NoFilenameWarning">URI yang Anda masukkan tidak terlihat seperti nama berkas. Apakah Anda yakin ini adalah berkas yang valid?</string>
   <string name="FirstInvalidCompositeKeyError">Kunci komposit tidak lengkap Silahkan coba lagi.</string>
   <string name="DbQuicklockedChannel_name">BukaCepat</string>
-  <string name="ChangeLog_0_8_3"><b>Versi 0.8.3</b>\n
-* Nama pengguna/indeks TAN ditampilkan dalam daftar entri (lihat pengaturan)\n
-* Entri dapat dibuat jika pencarian dari browser tidak mengembalikan hasil\n
-* Keyboard KP2A menyediakan kemungkinan untuk mencari kredensial untuk aplikasi saat ini\n
-* Apl otomatis ditutup setelah memilih entri untuk digunakan di keyboard\n
-* Ikon pemilihan keyboard secara otomatis terbuka setelah mencari URL (lihat pengaturan)\n
-* Placeholders di bidang entri diganti sebelum menyalin (kebanyakan placeholder didukung)\n
-* perbaikan bug kecil  </string>
   <string name="ChangeLog_keptDonate">Diperluas kemungkinan untuk menyumbangkan bir atau sesuatu yang lain</string>
-  <string name="ChangeLog_0_7"><b> Versi 0.7 </b> \n
-* Peningkatan kecepatan pemuatan: transformasi kunci sekarang 10x lebih cepat! \n
-* Ditambahkan Keepass2Android soft-keyboard: Beralih ke keyboard ini untuk memasukkan kredensial. Melindungi Anda dari sniffer sandi clipboard (menonaktifkan notifikasi clipboard lama di opsi) \n
-* Ditambahkan pilihan untuk menyumbangkan bir atau yang lainnya (lihat menu)</string>
-  <string name="ChangeLog"><b>Versi 0.6.2</b>\n
-* Google Drive/Dropbox/... integrasi: Gunakan Aplikasi Google Drive atau Dropbox resmi dan buka file .kdbx. Ini sekarang akan menampilkan KP2A.\n
-* Dialog Pencarian yang Disempurnakan\n
-* Peningkatan hasil pencarian untuk Share URL dengan subdomain\n
-* Ditambahkan pilihan untuk memberi umpan balik, dan menilai dan menerjemahkan aplikasi di menu\n
-\n
-<b>Versi 0.6.1</b>\n
-* Mendeteksi saat perubahan database di latar belakang (yaitu karena aktivitas aplikasi sinkronisasi)\n
-* Peningkatan pencarian URL dari browser\n
-* Konfirmasikan dialog saat membuang perubahan\n
-\n
-<b>Versi 0.6 </b>\n
-Rilis publik awal  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 detik</item>
     <item>1 menit</item>
