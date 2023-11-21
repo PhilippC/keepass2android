@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Limit czasu aplikacji</string>
   <string name="app_timeout_summary">Czas, po którym baza danych zostanie zablokowana, gdy aplikacja jest nieaktywna.</string>
-  <string name="kill_app_label">Zabij proces aplikacji</string>
   <string name="show_kill_app">Przycisk Zamknij</string>
+  <string name="kill_app_label">Zabij proces aplikacji</string>
   <string name="show_kill_app_summary">Pokaż przycisk do zabicia aplikacji na ekranie hasła (dla paranoicznych użytkowników)</string>
   <string name="application">Aplikacja</string>
   <string name="application_settings">Ustawienia aplikacji</string>
@@ -733,18 +733,7 @@
     <item>Poprawki błędów</item>
     <item>Poprawki błędów</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Wersja 0.8.3</b>\n 
-* Nazwa użytkownika/indeks TAN (haseł jednorazowych) są wyświetlane jako pozycja listy (patrz Ustawienia)\n 
-* Wpisy mogą być utworzone, jeśli wyszukiwanie z przeglądarki nie zwraca wyników\n 
-* KP2A klawiatura umożliwia wyszukiwanie danych logowania dla danej aplikacji\n 
-* Aplikacja zamyka się automatycznie po wybraniu wpisu z klawiatury\n 
-* Automatycznie zostanie otwarte okno dialogowe wyboru po wyszukaniu adresu URL (patrz Ustawienia)\n 
-* Zastępcze symbole w polach danych są zamieniane przed kopiowanie (większość symboli zastępczych jest obsługiwana)\n 
-* Drobne poprawki
-  </string>
   <string name="ChangeLog_keptDonate">Rozszerzone możliwości darowania piwa lub czegoś innego</string>
-  <string name="ChangeLog_0_7"><b>Wersji 0.7</b> \n * Zwiększona szybkość ładowania: najważniejsze transformacje teraz 10 x szybciej! \n * Dodana klawiatura Keepass2Android: Przełącz na tą klawiaturę gdy chcesz bezpiecznie wprowadzić danych logowania. Zabezpiecza to przed snifferami haseł ze schowka (wyłącz stary typ powiadomienia o hasłach w schowku w Ustawieniach)\n * Dodano opcję do postawienia mi piwa lub czegoś innego (patrz w menu)</string>
-  <string name="ChangeLog"><b>Wersja 0.6.2</b> \n * Integracja z Google Drive/Dropbox /... Otwieraj bazy z Google Drive lub aplikacji Dropbox (rozszerzenie .kdbx). \n * ulepszone okno dialogowe Szukaj \n * poprawa wyników wyszukiwania z adresu URL z subdomenami \n * dodano opcje, aby przekazywać informacje zwrotne i tłumaczenie aplikacji w menu \n \n \n <b>wersja 0.6.1</b> /n * wykrywanie zmian bazy danych w tle (np. z powodu aktywności aplikacji Synchronizacja) \n * ulepszone wyszukiwanie adresów URL z przegladarki \n * okno potwierdzania niezapisywania zmian \n \n <b>wersja 0.6</b> pierwsze publiczne wydanie   </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
