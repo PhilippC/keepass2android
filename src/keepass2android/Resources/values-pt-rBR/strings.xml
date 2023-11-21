@@ -713,6 +713,13 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_10">
+    <item>Adicionado suporte para permissões de notificação no Android 13+</item>
+    <item>Melhorado a implementação de FTP e SFTP</item>
+    <item>Adicionado acesso ao pCloud completo</item>
+    <item>Permitir selecionar o idioma do sistema na caixa de diálogo de idioma</item>
+    <item>Corrigido problema ao lembrar o tipo de senha Chave de Arquivo + Desafio</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Correção de bugs em falhas e logouts inesperados</item>
     <item>Mudar para nova implementação SFTP, suportando algoritmos de chave pública modernos como rsa-sha2-256</item>
@@ -778,6 +785,15 @@
     <item>Correções de erros</item>
     <item>Correções de erros</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Versão 1.07b\n
+    * Melhorado o desempenho do Argon2 usando implementação nativa (graças a Chih-Hsuan Yen!)\n
+    * Permitir desativar a impressão digital clicando no ícone de impressão digital (evita problemas com leitores de impressão digital sob a tela, graças a Marco Dallas!)\n
+    * Restaurar a posição do cursor ao alternar a visibilidade da senha (graças ao DDoSolitary!)\n
+    * Melhorias na implementação do pCloud (graças ao gilbsgilbs novamente!)\n
+    * Adicionado suporte ao preenchimento automático para vários outros navegadores \n
+    * Nova implementação para OneDrive: inclui suporte para OneDrive for Business, arquivos compartilhados, escopos de acesso selecionáveis, múltiplas contas e corrige problemas com acesso offline\n
+    * Correções de bugs
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
