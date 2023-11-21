@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">アプリのタイムアウト</string>
   <string name="app_timeout_summary">アプリが非アクティブになったあと、データベースをロックするまでの時間</string>
-  <string name="kill_app_label">アプリのプロセスを終了</string>
   <string name="show_kill_app">終了ボタン</string>
+  <string name="kill_app_label">アプリのプロセスを終了</string>
   <string name="show_kill_app_summary">パスワード画面にアプリのプロセスを終了するボタンを表示 (神経質なユーザー向け)</string>
   <string name="application">アプリ</string>
   <string name="application_settings">アプリの設定</string>
@@ -733,34 +733,7 @@
     <item>BiometricPrompt API に変更して、指紋認証のユーザーエクスペリエンスを向上・Pixel 4 などでは顔認証にも対応</item>
     <item>バグ修正</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* エントリー一覧に表示されるユーザー名/TAN インデックス (設定を参照)\n
-* ブラウザーから検索して対応する結果がなかったとき、エントリーを作成できるように変更\n
-* KP2A キーボードで現在のアプリのアカウント情報を検索できるように変更\n
-* キーボードで使用するエントリーを選択したあと、アプリが自動で閉じる\n
-* URL 検索したあと、キーボード選択ダイアログを自動で開く (設定を参照)\n
-* コピーの前にエントリーフィールドのプレースホルダーを置き換え (ほとんどのプレースホルダーに対応)\n
-* 細かいバグ修正
-  </string>
   <string name="ChangeLog_keptDonate">ビールまたは他の何かを寄付する可能性を拡張</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* 読み込み速度を高速化: 鍵変換が 10 倍速くなりました！\n
-* Keepass2Android ソフトウエアキーボード: このキーボードに変更してアカウント情報を入力できます。クリップボードからのパスワード流出を防ぎます (オプションで古いクリップボード通知を無効にできます)\n
-* ビールやその他何かを寄付するオプションを追加 (メニューを参照)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
- * Google ドライブ/Dropbox/... 統合: 公式の Google ドライブや Dropbox のアプリを使用して、.kdbx ファイルを開くと、KP2A を表示するようになりました\n
- * 検索ダイアログの改善\n
- * サブドメインを含む共有 URL の検索結果の改善\n
- * メニューに、フィードバックを送る、評価、およびアプリを翻訳するオプションを追加\n
-\n
-<b>Version 0.6.1</b>\n
- * バックグラウンドでデータベースが変更されたことを検出 (例. 同期アプリのアクティビティにより)\n
- * ブラウザーからの URL 検索を改善\n
- * 変更を破棄するときに確認のダイアログ\n
-\n
-<b>Version 0.6</b>\n
-最初の公開リリース
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 秒</item>
     <item>1 分</item>
