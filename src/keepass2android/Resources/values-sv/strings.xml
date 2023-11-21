@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">App-paus</string>
   <string name="app_timeout_summary">Tid innan databasen låses när programmet är inaktivt.</string>
-  <string name="kill_app_label">Avsluta appens process</string>
   <string name="show_kill_app">Stängknapp</string>
+  <string name="kill_app_label">Avsluta appens process</string>
   <string name="show_kill_app_summary">Visa en knapp i lösenordsskärmen för att avsluta programmet (för paranoida användare)</string>
   <string name="application">App</string>
   <string name="application_settings">Inställningar</string>
@@ -725,10 +725,7 @@
     <item>Buggfixar</item>
     <item>Buggfixar</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b> \n * användarnamn/TAN index visas i postlistan (se inställningar) \n * poster kan skapas om söknings från webbläsare inte returnerar result\n * KP2A tangentbord ger möjlighet att söka efter autentiseringsuppgifter för nuvarande app\n * App stängs automatiskt efter att val av post för användning i tangentbordet\n * tangentbord dialogrutan öppnas automatiskt efter URL-sökningar (se inställningar) \n * platshållare i inmatningsfält ersätts innan kopiering (de flesta platshållare stöds) \n * mindre buggfixar  </string>
   <string name="ChangeLog_keptDonate">Utökade möjligheter att donera en öl eller något annat</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b> \n * Förbättras laddningshastighet: nyckeltransformationer är nu 10 x snabbare! \n * Lagt till Keepass2Android-tangentbord: byt tangentbord för att ange autentiseringsuppgifter. Skyddar dig från urklipps-baserade lösenords-sniffers (inaktivera gamla urklippsnotifieringar i inställningar) \n * Lagt till möjlighet att donera en öl eller något annat (se menyn)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b> \n * Google Drive/Dropbox/...-integration: använd den officiella Google Drive eller Dropbox-appen och öppna en .kdbx fil. Detta visar KP2A.\n * Förbättrad sökdialog \n * Förbättrat sökresultat för delnings-URL med subdomäner\n * Lade till alternativ att ge feedback, betygsätt och översätta appen i menu\n \n <b>Version 0.6.1</b> \n * Upptäck när databasen ändras i bakgrunden (dvs. på grund av sync-app) \n * Förbättrat att söka efter webbadresser från webläsare\n * Bekräfta dialogrutan när ändringar slängs\n \n <b>Version 0.6</b> \n Första offentlig utgåva  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
     <item>1 minut</item>
