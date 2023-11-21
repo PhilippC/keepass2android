@@ -5,7 +5,7 @@ namespace keepass2android.Io
 {
 	public class PCloudFileStorage: JavaFileStorage
 	{
-		private const string ClientId = "CkRWTQXY6Lm";
+		private const string ClientId = "yCeH59Ffgtm";
 
 		public PCloudFileStorage(Context ctx, IKp2aApp app) :
 			base(new Keepass2android.Javafilestorage.PCloudFileStorage(ctx, ClientId, "pcloud", ""), app)
