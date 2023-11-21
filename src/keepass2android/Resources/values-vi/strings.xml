@@ -520,95 +520,7 @@
   <string name="Continue">Tiếp tục</string>
   <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
   <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Khóa hỗn hợp không hợp lệ! Vui lòng thử các bước sau để mở khóa cơ sở dữ liệu của bạn:\n
-  
-    • Đảm bảo bạn đã nhập đúng mật khẩu. Sử dụng biểu tượng mắt để hiển thị mật khẩu đã nhập.\n
-   • Đảm bảo bạn đã chọn đúng loại mật khẩu. Đảm bảo khớp với loại được sử dụng khi tạo tập tin dữ liệu.\n
-   • Đảm bảo bạn đã chọn đúng tệp tập tin dữ liệu.</string>
-  <string name="CorruptDatabaseHelp">    Tập tin bị hỏng. \n
-    Dưới đây là một số gợi ý có thể giúp chẩn đoán vấn đề:\n
-    
-    • Nếu bạn đã sao chép tệp trên USB (Chế độ MTP), vui lòng thử lại với các công cụ như MyPhoneExplorer. MTP cắt  bớt các tập tin trong trường hợp nhất định.\n
-    • Nếu bạn không thể mở tệp từ cùng một vị trí trên máy tính của bạn, rất có thể tệp đó thực sự bị hỏng. Hãy sử dụng một bản sao lưu cơ sở dữ liệu sau đó. Nếu bạn cho rằng Keepass2Android đã làm hỏng tệp, hãy liên hệ với bộ phận hỗ trợ.\n
-    • Nếu bạn vẫn có thể mở tệp trên máy tính của mình, vui lòng liên hệ với bộ phận hỗ trợ. Bạn có thể thử lưu nó bằng các cài đặt khác nhau (ví dụ như chưa giải nén) trên máy tính cá nhân và thử mở lại trong Keepass2Android.
-
-  </string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ChangeLog_1_03">    Phiên bản1.03\n
-    * Đã xóa dịch vụ trợ năng cho Tự động điền theo yêu cầu của Google. Vui lòng xem các cài đặt truy cập mật khẩu để tìm một plugin sao chép các chức năng trước đó.\n
-    * Đã thêm ứng dụng của bên thứ ba làm tuỳ chọn lưu trữ một lần nữa\n
-    * Trình xem ảnh tích hợp để xem các hình ảnh đính kèm mà không chuyển chúng sang các ứng dụng khác\n
-    * Nâng cấp OkHttp để khắc phục sự cố với một số kết nối\n
-    * Hỗ trợ cho các mục KeeTrayTOTP, hiện đang hỗ trợ các mục Steam\n
-  </string>
-  <string name="ChangeLog_1_02">    Phiên bản 1.02\n
-    * Một số cải tiến về bảo mật. Cảm ơn rất nhiều về báo cáo bảo mật của jean-baptiste.cayrou@thalesgroup.com và vincent.fargues@thalesgroup.com và về sự hợp tác của họ!\n
-    * Hỗ trợ KeyboardSwapPlugin (xem các tùy chọn truy cập mật khẩu): cho phép tự động chuyển đổi phương thức nhập vào các thiết bị không được root. Cảm ơn Mishaal Rahman từ XDA-Developers để làm điều này có thể thực hiện được.\n
-    * Khắc phục sự cố với Dịch vụ Truy cập với các phiên bản Chrome gần đây\n
-    * Khắc phục sự xóa dữ liệu vân tay không cần thiết\n
-    * Sửa lỗi nhỏ\n
-    * Cập nhật Dropbox SDK để đảm bảo tính tương thích trong tương lai\n
-    * Xóa báo cáo lỗi thông qua Xamarin Insights\n
-    * Cập nhật Công cụ xây dựng\n
-  </string>
-  <string name="ChangeLog_0_9_4"><b>Phiên bản 0.9.4</b>\n
-		* thêm hỗ trợ cho công cụ gắn rời: Xem cài đặt để biết cách tải các công cụ!\n
-		* chính thức hỗ trợ công cụ QR (quét mật mã, hiển thị mật mã dưới dạng mã QR, truyền tải dữ liệu tới các thiết bị khác chạy KP2A)\n
-		* chính thức hỗ trợ công cụ InputStick (truyền tải các giấy chứng chỉ tới máy PC của bạn qua bluetooth - yêu cầu thẻ USB InputStick)\n
-		* Các ứng dụng của bên thứ ba bây giờ có thể truy vấn KP2A để lấy chứng chỉ đăng nhập. Bạn là nhà phát triển ứng dụng? Vui lòng thêm chức năng này vô ứng dụng của bạn nếu thấy thích hợp!\n
-		* thêm hỗ trợ cho TOTP (tương thích với KeeOTP và TrayTotp)\n
-		* ứng dụng có thể không bao giờ bị tắt bởi Android nữa trong khi cơ sở dữ liệu đang mở\n
-		* cơ sở dữ liệu sẽ không bị khóa nữa khi bạn thoát ứng dụng bằng nút quay lại (xem cài đặt)\n
-		* hiển thị tên nhóm trong kết quả tìm kiếm (*)\n
-		* thêm trình đơn ngữ cảnh trong kết quả tìm kiếm, bao gồm tùy chọn \"Chuyển tới mục cha\" (*)\n
-		* thêm tùy chọn để hiển thị tên nhóm trong khung nhìn dữ liệu (*)\n
-		* (*) cám ơn Matthieu đã phát triển các chức năng này!\n
-		* hỗ trợ KeeChallenge (với Yubikey NEO). Cám ơn Ben Rush đã phát triển bộ kết nối!\n
-		* cải thiện giao diện\n
-		* sửa một lỗi với Google Drive\n
-		* thêm tùy chọn để tắt mục \"quyên góp\"\n
-		* theo mặc định, biểu tượng mở khóa nhanh bây giờ sẽ được giấu trên các thiết bị chạy Android 4.2+\n </string>
-  <string name="ChangeLog_0_9_3_r5">  <b>Phiên bản 0.9.3 r5</b>\n
- * Kết hợp các bản sửa lỗi từ Xamarin: cuối cùng, Keepass2Android đã tương thích với ART trên Android 4.4.2.\n
- * Sửa lỗi: lỗi đồng bộ hóa (làm mới màn hình, kiểm tra chính xác những thay đổi với http), lỗi trên điện thoại Android 2.x, lỗi trong phần triển khai Google Drive và SkyDrive, lỗi lúc xóa bộ nhớ nháp trong khi cơ sở dữ liệu đóng, lỗi mở tập tin đính kèm, lỗi hiển thị bàn phím\n</string>
-  <string name="ChangeLog_0_9_3">  <b>Phiên bản 0.9.3</b> \n
-* Bàn phím mới với nhiều cải tiến. Xem cài đặt để tùy chỉnh.\n
-* Hỗ trợ chỉ-đọc cho kdb (tập tin Keepass 1). Thử nghiệm!\n
-* Thêm hỗ trợ cho SFTP\n
-* Thêm cách giải quyết lỗi trong ART (Android 4.4.2)\n
-* Sửa lỗi\n</string>
-  <string name="ChangeLog_0_9_2">  <b>Phiên bản 0.9.2</b>\n
- * Thêm hỗ trợ cho OTP (tương thích với công cụ OtpKeyProv)\n
- * Tích hợp hỗ trợ NFC cho OTPs từ YubiKey NEO\n
- * Cải thiện giao diện người dùng\n
- * Tích hợp thư viện Keepass 2.24\n
- * Thêm tùy chọn để tắt tiến trình ứng dụng (xem cài đặt)\n
- * Sửa một số lỗi khác\n</string>
-  <string name="ChangeLog_0_9_1">  <b>Phiên bản 0.9.1</b>\n
-* Hỗ trợ SkyDrive (chỉ có trong phiên bản thường của Keepass2Android)\n
-* Sửa lỗi với Google Drive\n
-* Thêm hỗ trợ cho NTLM</string>
-  <string name="ChangeLog_0_9">  <b>Phiên bản 0.9</b>\n
-* Tích hợp hỗ trợ cho Dropbox và Google Drive (đọc/ghi cơ sở dữ liệu; chỉ trong phiên bản chính thức của Keepass2Android)\n
-* Tích hợp trình duyệt tập tin (dựa trên android-filechooser bởi HBA)\n
-* Cải thiện giao diện khi tạo mới cơ sở dữ liệu\n
-* Thêm phông chữ DejaVu Sans Mono để hiển thị mật mã\n
-* Sửa một số lỗi</string>
-  <string name="ChangeLog_0_8_6">  <b>Phiên bản 0.8.6</b>\n
-* Hỗ trợ thuật toán mã hóa Twofish\n
-* Cho phép chỉnh sửa các nhóm\n
-* Cho phép di chuyển các mục và nhóm\n
-* Biểu tượng QuickUnlock có thể làm cho trong suốt (coi cài đặt)\n
-* Sửa một số lỗi</string>
-  <string name="ChangeLog_0_8_4">  <b>Phiên bản 0.8.4</b>\n
-* Phát hiện và trộn các thay đổi cơ sở dữ liệu từ bên ngoài khi lưu\n
-* Cải thiện tốc độ tải\n
-* Cải thiện thanh tìm kiếm với gợi ý\n
-* Biểu tượng ứng dụng mới!\n
-* Thêm hỗ trợ cho định dạng .kdbp cho tốc độ mở/lưu nhanh hơn\n
-* Cải thiện chức năng chỉnh sửa các mục thêm và ẩn hiển thị khi đã bảo vệ\n
-Cám ơn Alex Vallat cho đóng góp mã của anh ấy!\n
-Cám ơn Niki Hüttner (www.close-cut.de) cho biểu tượng mới!\n</string>
   <string name="ChangeLog_0_8_3"><b>Phiên bản 0.8.3</b>\n
 * Hiển thị tên người dùng/chỉ số TAN trong danh sách (xem cài đặt)\n
 * Có thể tạo mới mục nhập nếu tìm kiếm không có kết quả\n
@@ -617,18 +529,6 @@ Cám ơn Niki Hüttner (www.close-cut.de) cho biểu tượng mới!\n</string>
 * Tự động mở hộp thoại chọn bàn phím sau khi tìm kiếm liên kết URL (xem cài đặt)\n
 * Các mục dự phòng được thay thế trước khi sao chép (hỗ trợ gần hết)\n
 * Sửa một số lỗi nhỏ</string>
-  <string name="ChangeLog_0_8_2"><b>Phiên bản 0.8.2</b>\n
-* Hỗ trợ Digest Authentication trong WebDAV\n
-* Sửa một số lỗi (OI File manager, Open URL)</string>
-  <string name="ChangeLog_0_8_1"><b>Phiên bản 0.8.1</b>\n
-* Hai phiên bản KP2A Ngoại tuyến và \"Trực tuyến\" có thể cài đặt chung một lần nữa\n
-* Thêm các ngôn ngữ mới (cám ơn các bạn đã đóng góp!)</string>
-  <string name="ChangeLog_0_8"><b>Phiên bản 0.8</b>\n
-* Cải thiện giao diện, đặc biệt cho thiết bị chạy Android 4.x\n
-* Cho phép lựa chọn ứng dụng bên ngoài để chọn tập tin\n
-* Thêm cách thức an toàn hơn để mở tập tin đính kèm (từ thư mục đệm)\n
-* Sửa lỗi trong màn hình chỉnh sửa\n
-* Có thể giới thiệu lỗi mới :-)</string>
   <string name="ChangeLog_keptDonate">Thêm khả năng mở rộng để tặng một ly bia hoặc một cái gì khác</string>
   <string name="ChangeLog_0_7"><b>Phiên bản 0.7</b>\n
 * Tăng tốc tải: biến đổi khóa bây giờ nhanh hơn 10 lần!\n
@@ -695,7 +595,7 @@ Bản phát hành chính thức đầu tiên</string>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Mật mã</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
