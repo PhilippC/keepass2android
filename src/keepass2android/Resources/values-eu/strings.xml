@@ -19,8 +19,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Aplikazioa denboraz kanpo</string>
   <string name="app_timeout_summary">Aplikazioa inaktibo dagoenean datu-basea blokeatzeko denbora.</string>
-  <string name="kill_app_label">Aplikazioaren prozesua hil</string>
   <string name="show_kill_app">Itxi-botoia</string>
+  <string name="kill_app_label">Aplikazioaren prozesua hil</string>
   <string name="show_kill_app_summary">Erakutsi botoi bat pasahitzaren pantailan aplikazioaren prozesua hiltzeko (erabiltzaile paranoikoentzat)</string>
   <string name="application">Aplikazioa</string>
   <string name="application_settings">Aplikazioaren ezarpenak</string>
