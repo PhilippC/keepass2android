@@ -510,123 +510,12 @@
   <string name="Continue">Fortsett</string>
   <string name="NoFilenameWarning">URIen du tastet inn ser ikke ut som et filnavn. Er du sikker på at dette er en gyldig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ugyldig sammensatt nøkkel! Vennligst prøv igjen.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">&#8226;Ugyldig sammensatt nøkkel! Vennligst forsøk følgende for å låse opp databasen:\n
- 
-  • Kontroller at du har skrevet inn korrekt passord. Benytt øyeikonet for å vise passordet i klartekst.\n
-  • Kontroller at du har valgt korrekt passordtype. Sjekk at denne stemmer overens med typen som ble valgt når databasen ble opprettet.\n
-  • Kontroller at du har valgt korrekt databasefil.</string>
-  <string name="CorruptDatabaseHelp">Filen er korrupt. \n
-Her er noen tips som kan hjelpe med å feilsøke problemet:\n
-
-• Dersom du kopierte filen over USB (MTP-modus), vennligst forsøk på nytt med et verktøy som MyPhoneExplorer. MTP kan forkorte filer under enkelte omstendigheter.\n
-•  Dersom du ikke får åpnet filen fra den samme posisjonen på PCen, er det svært sannsynlig at den faktisk har blitt korrupt. I så fall, benytt en sikkerhetskopi av databasen. Dersom du antar at det er Keepass2Android som har skyld i dette, vennligst kontakt kundestøtte.\n
-• Dersom du fortsatt er i stand til å åpne filen på din PC, vennligst kontakt kundestøtte. Du kan forsøke å lagre den med andre innstillinger (f.eks. upakket) på PCen også forsøke å åpne den på nytt i Keepass2Android.  </string>
   <string name="DbUnlockedChannel_name">Ulåst database</string>
   <string name="DbUnlockedChannel_desc">Varsel om at databasen har blitt låst opp</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="DbQuicklockedChannel_desc">Varsel om at databasen har blitt låst med QuickUnlock</string>
   <string name="EntryChannel_name">Varsel om oppføring</string>
   <string name="EntryChannel_desc">Varsel for å forenkle tilgangen til den valgte oppføringen.</string>
-  <string name="ChangeLog_1_05">Versjon 1.05\n
-* Benytter varslingskanaler på Android 8, slik at oppsett kan gjøres i systeminnstillingene\n
-* Viser varsel for oppføring\n
-* Benytter Adaptive Ikoner på Android 8, benytter rundt oppstartsikon på Android 7\n
-* Mulig å aktivere søk ved opplåsing (se innstillinger)\n
-* Endrer måten filer blir skrevet til gjennom Storage Access Framework, retter problemer med oppdatering av filer på Google Drive når disse ble åpnet med systemfilvelgeren\n
-* Lagt til noen informasjonstekster for å forhindre vanlige misforståelser\n
-* Oppretter lokale sikkerhetskopier av åpnede databaser for å redusere risiko for datatap\n
-* JSch oppdatert for å støtte nyere SSH-siffer\n
-* Mulig å endre tilkoblingsinnstillinger, f.eks. når WebDav-passordet har blitt byttet\n
-* Lagt til støtte for Yubikey Neos statiske passordmodus\n
-* Mulig å slå av forslag til Autofill-funksjonen\n
-* Fikser datalekkasje til logcat\n
-* Feilrettinger\n  </string>
-  <string name="ChangeLog_1_04b">Versjon 1.04b\n
-* Unngå krasj når brukeren velger å benytte Autofill-funksjonen på Huawei-enheter.\n  </string>
-  <string name="ChangeLog_1_04">Versjon 1.04\n
-* Lagt til Autofill-tjeneste for Android 8.0 og senere.\n
-* Oppgradert biblioteker, byggeverktøy og Target SDK-versjon.\n  </string>
-  <string name="ChangeLog_1_03">Versjon 1.03\n
-* Tatt bort tilgjengelighetstjeneste for AutoFill etter anmodning fra Google. Se innstillingene for passordtilgang for å finne et programtillegg som utfyller denne oppgaven.\n
-* Tredjepartsapper kan brukes som lagringsalternativ igjen\n
-* Integrert bildeprogram for å vise vedlagte bilder uten å overføre de til andre apper\n
-* OkHttp oppgradert for å håndtere problemer med enkelte tilkoblinger\n
-* Støtte for KeeTrayTOTP-oppføringer, støtter nå Stream-oppføringer\n  </string>
-  <string name="ChangeLog_1_02">Versjon 1.02\n
-* Flere sikkerhetsforbedringer. Takker så mye for sikkerhetsrapporten til jean-baptiste.cayrou@thalesgroup.com og vincent.fargues@thalesgroup.com og for deres samarbeid!\n
-* Støtte for KeyboardSwapPlugin (se valgene for passordtilgang): Mulig å bytte inntastingsmetode automatisk på enheter uten root-tilgang. Takk til Mishaal Rahman fra XDA-Developers for å gjøre dete mulig.\n
-* Feilretting i Tilgjengelighetstjenesten  for nylighe Chrome-versjoner\n
-* Feilretting for unødvendig tømming av fingeravtrykksdata\n
-* Feilrettinger av mindre krasjer\n
-* Dropbox SDK oppdatert for å sørge for fremtidig kompatibilitet\n
-* Fjernet feilrapportering gjennom Xamarin Insights\n
-* Oppdatert byggeverktøy\n  </string>
-  <string name="ChangeLog_1_01g">Versjon 1.01-g\n
-* Feilretting for krasj når man forsøker å jobbe frakoblet\n
-* Feilretting for feil koding av FTP(S) påloggingsinformasjon\n
-* Feilretting for krasjer når man bruker OneDrive og på eldre Android-versjoner\n
-* Viser tidspunkter som lokal tid på oppføringssider\n  </string>
-  <string name="ChangeLog_1_01d">Versjon 1.01-d\n
-* Feilretting for filopplisting på OneDrive\n
-* Mulig å overse sertifikatfeil også når bekreftelse av vertsnavn feiler (anbefales ikke for bruk i produksjon)\n
-* Feilretting for QuickUnlock, der den feiler til tross for at korrekt kode er angitt\n  </string>
-  <string name="ChangeLog_0_9_8c">Versjon 0.9.8c\n
-* Feilretting for SSL-sikkerhetsproblem i Microsoft Live SDK (brukes for å få tilgang til filer i OneDrive)\n
-* Feilretting: Tidligere utgivelser inneholdt to inntastingsmetoder (der en krasjer)\n  </string>
-  <string name="ChangeLog_1_01">Versjon 1.01\n
-* Lagt til støtte for det nye KDBX-4-formatet (kompatibelt med Keepass 2.35) inkludert Argon 2-nøkkelavledning og ChaCha20-kryptering.\n
-* Omskriving av WebDav fillagring. Mulig å liste filer og støtter moderne kryptering.\n
-* Omskriving av FTP fillagring. Mulig å liste filer og støtter kryptering (FTPS).\n
-* Oppdatert til OneDrive SDK (det tidligere benyttede Live SDK oppdateres ikke lenger)\n
-* Oppdatert til versjon 2 av Dropbox SDK  (det tidligere benyttede versjon 1 er ikke lenger understøttet).\n
-* Støtte for OwnCloud lagt til.\n
-* Spør etter lagringstilgang før åpning av lokale filer  </string>
-  <string name="ChangeLog_1_0_0e">Versjon 1.0.0e\n
-* Feilretting for opplåsing med fingeravtrykk på eldre Samsung-enheter med Android 6\n
-* Støtte for x86-enheter lagt til\n
-* Mulig å skjule skjermtastatur mens man leser fingeravtrykk\n
-* Byggesystem oppdatert  </string>
-  <string name="ChangeLog_1_0_0">Versjon 1.0.0\n
-* Opplåsing vha. fingeravtrykk (krever Anroid 6.0+ eller en Samsung-enhet)\n
-* Tjeneste for Auto-Fill lagt til (krever Android 5.0+)\n
-* Støtte for oppføringsmaler\n
-* \"Arbeid frakoblet\"-modus lagt til\n
-* Mulig å kopiere oppføringer\n
-* Modus for autokomplettering for feltnavn\n
-* Mulig å fjerne element fra liste over siste brukte filer\n
-* Be om tillatelser forløpende ved behov under Android 6.0\n
-* Feilrettinger (i det innebygde tastaturet, når du velger ikoner)\n
-* Inneholder valg for å sende feilrapporter\n
-* Hjelpemeldinger lagt til på flere steder\n  </string>
-  <string name="ChangeLog_0_9_9">Versjon 0.9.9\n
-* Helt nytt design av brukergrensesnitt. Takk så mye til Stefano Pignataro (http://www.spstudio.at) for hans støtte!\n
-* Mulig med egendefinerte ikoner\n
-* Støtte for flervindumodus på Samsung-enheter\n
-* Økt standard antall runder med kryptering for nye databaser\n
-* Sjekk for duplikate nøkler for tilleggsfelter for å unngå tap av data\n</string>
-  <string name="ChangeLog_0_9_9c">Version 0.9.9c\n
-* Mørkt tema er tilbake\n
-* Du kan installere andre ikonpakker (eldgamle Windows-type ikoner er tilgjengelig i Play store)\n
-* Spørsmål om bekreftelse lagt til når elementer slettes uten søppelkurv\n
-* Feilrettinger (feil visning av hemmelig koding av engangspassord, feil appikon noen steder)\n  </string>
-  <string name="ChangeLog_0_9_8b">Versjon 0.9.8b\n
-* Feilrettinger (lagring feilet for enkelte databaser, eksport til lokal enhet virket ikke, valg av enkelte innstillingsalternativer krasjet appen)\n</string>
-  <string name="ChangeLog_0_9_8">Versjon 0.9.8\n
-* Støtte for Storage Access Framework (tillater skriving til SD-kort og Google Drive i KP2A Offline)\n
-* Prøver å oppdage feil ved inntasting av WebDAV URLer (katalog istedet for fil)\n
-* Endret skrifttype for passord\n
-* Mulig å bytte Dropbox-konto\n
-* Feilretting: Husker engangspassord</string>
-  <string name="ChangeLog_0_9_7b">Versjon 0.9.7b\n
-* Oversettelser oppdatert\n
-* Feilrettinger: Skrifttype for passord manglet i 0.9.7, sorter etter navn sorterte ikke grupper\n</string>
-  <string name="ChangeLog_0_9_7">Versjon 0.9.7\n
-* Støtte for skriving av Keepass 1 (kdb)-database (beta!)\n
-* Bedre bytting tilbake til forrige tastatur (virker også på ikke-rootede enheter)\n
-* Støtte for KeyChallenge med variabel lengde\n
-* Forhindre skjermdump av skjermbildene for QuickUnlock og passord\n
-* Revers sorteringsrekkefølge for Sorter etter modifikasjonsdato (nå synkende)\n
-* Feilrettinger: Notatvisning oppdateres nå korrekt etter endringer, Passordvisning skjuler nå passordet korrekt (forhåpentligvis) på alle enheter, fikser problemet som gjorde det mulig å legge til en oppføring to ganger, fikser problemet med visning av advarsel om Duplikat UUID selv etter å ha reparert databasen\n</string>
   <string name="ChangeLog_keptDonate">Utvidet mulighet til å donere en øl, eller noe annet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
@@ -676,7 +565,7 @@ Her er noen tips som kan hjelpe med å feilsøke problemet:\n
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Passord</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
