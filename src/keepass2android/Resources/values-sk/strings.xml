@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Časový limit aplikácie</string>
   <string name="app_timeout_summary">Čas pred uzamknutím databázy, keď je aplikácia neaktívna.</string>
-  <string name="kill_app_label">Ukončiť proces aplikácie</string>
   <string name="show_kill_app">Tlačidlo Zatvoriť</string>
+  <string name="kill_app_label">Ukončiť proces aplikácie</string>
   <string name="show_kill_app_summary">Na obrazovke pre heslo zobraziť tlačidlo na ukončenie procesu aplikácie (pre paranoidných používateľov)</string>
   <string name="application">Apl.</string>
   <string name="application_settings">Nastavenia aplikácie</string>
@@ -752,34 +752,7 @@
     <item>Opravy chýb</item>
     <item>Opravy chýb</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Verzia 0.8.3</b>\n
-* Meno používateľa/TAN index zobrazovaný v zozname záznamov (pozrite si nastavenia)\n
-* Záznamy možno vytvoriť, ak vyhľadávanie v prehliadači nenájde žiadne výsledky\n
-* Klávesnica KP2A poskytuje možnosť vyhľadávania údajov pre aktuálnu aplikáciu\n
-* Aplikácia sa automatický ukončí po vybraný záznamu na použitie v spojitosti s klávesnicou\n
-* Dialóg na výber klávesnice sa automaticky otvorí po hľadaní adresy URL (pozrite si nastavenia)\n
-* Rezervovače miesta v poliach záznamov sú pred kopírovaním nahradené (je podporovaná väčšina rezervovačov)\n
-* Minoritné opravy chýb
-  </string>
   <string name="ChangeLog_keptDonate">Rozšírená možnosť kúpenia piva alebo niečoho iného</string>
-  <string name="ChangeLog_0_7"><b>Verzia 0.7</b>\n
-* Zvýšená rýchlosť načítavania: transformácie kľúča sú teraz 10x rýchlejšie!\n
-* Pridaná softvérová klávesnica Keepass2Android: pri zadávaní prihlasovacích údajov prepnite na túto klávesnicu. Umožní vám zabrániť krádeži hesla sledovacími programami (v nastaveniach vypnite staršie notifikácie schránky)\n
-* Pridaná možnosť kúpenia piva alebo niečoho iného (pozrite si menu)</string>
-  <string name="ChangeLog"><b>Verzia 0.6.2</b>\n
-* Integrácia Google Drive/Dropbox/...: umožňuje použiť oficiálne úložisko Google Drive alebo aplikáciu Dropbox a otvoriť akýkoľvek súbor .kdbx. Túto možnosť teraz prináša aj KP2A.\n
-* Vylepšený dialóg pre vyhľadávanie \n
-* Vylepšené výsledky vyhľadávania o zdieľanie adries URL so subdoménami\n
-* Pridaná možnosť spätnej odozvy, ohodnotenia a preloženia aplikácie, v menu\n
-\n
-<b>Verzia 0.6.1</b>\n
-* Detekcia zmien v databáze na pozadí (napríklad pri aktivite synchronizácie)\n
-* Vylepšené vyhľadávanie pre adresy URL z prehliadača\n
-* Potvrdzovací dialóg pri rušení zmien\n
-\n
-<b>Verzia 0.6</b>\n
-Prvé verejné vydanie
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekúnd</item>
     <item>1 minúta</item>
