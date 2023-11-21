@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A χωρίς σύνδεση</string>
   <string name="app_timeout">Λήξη χρονικού ορίου εφαρμογής</string>
   <string name="app_timeout_summary">Χρόνος πριν το κλείδωμα της βάσης δεδομένων όταν η εφαρμογή είναι ανενεργή.</string>
-  <string name="kill_app_label">Τερματισμός διεργασίας</string>
   <string name="show_kill_app">Κουμπί τερματισμού</string>
+  <string name="kill_app_label">Τερματισμός διεργασίας</string>
   <string name="show_kill_app_summary">Προβάλει κουμπί στην οθόνη συνθηματικού που τερματίζει τη διεργασία της εφαρμογής (για παρανοϊκούς χρήστες)</string>
   <string name="application">Εφαρμογή</string>
   <string name="application_settings">Ρυθμίσεις εφαρμογής</string>
@@ -733,34 +733,7 @@
     <item>Διορθώσεις σφαλμάτων</item>
     <item>Διορθώσεις σφαλμάτων</item>
   </string-array>
-  <string name="ChangeLog_0_8_3">Έκδοση 0.8.3\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes
-  </string>
   <string name="ChangeLog_keptDonate">Εκτεταμένη δυνατότητα προσφοράς μπύρας ή κάτι άλλου</string>
-  <string name="ChangeLog_0_7">Έκδοση 0.7\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
-  <string name="ChangeLog">Έκδοση 0.6.2\n
-* Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
-* Improved Search Dialog \n
-* Improved search results for Share URL with subdomains\n
-* Added options to give feedback, and rate and translate the app in the menu\n
-\n
-<b>Version 0.6.1</b>\n
-* Detect when database changes in the background (i.e. due to activity of a sync app)\n
-* Improved searching for URLs from the browser\n
-* Confirm dialog when discarding changes\n
-\n
-<b>Version 0.6</b>\n
-Initial public release
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 δευτερόλεπτα</item>
     <item>1 λεπτό</item>
