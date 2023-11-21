@@ -521,32 +521,7 @@
   <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
   <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ChangeLog_0_8_3"><b>Phiên bản 0.8.3</b>\n
-* Hiển thị tên người dùng/chỉ số TAN trong danh sách (xem cài đặt)\n
-* Có thể tạo mới mục nhập nếu tìm kiếm không có kết quả\n
-* Bàn phím KP2A cung cấp thêm khả năng tìm kiếm thông tin đăng nhập cho ứng dụng hiện tại\n
-* Tự động thoát ứng dụng sau khi chọn một mục trong bàn phím\n
-* Tự động mở hộp thoại chọn bàn phím sau khi tìm kiếm liên kết URL (xem cài đặt)\n
-* Các mục dự phòng được thay thế trước khi sao chép (hỗ trợ gần hết)\n
-* Sửa một số lỗi nhỏ</string>
   <string name="ChangeLog_keptDonate">Thêm khả năng mở rộng để tặng một ly bia hoặc một cái gì khác</string>
-  <string name="ChangeLog_0_7"><b>Phiên bản 0.7</b>\n
-* Tăng tốc tải: biến đổi khóa bây giờ nhanh hơn 10 lần!\n
-* Thêm bàn phím Keepass2Android: Chuyển sang bàn phím này để nhập thông tin đăng nhập. Bảo vệ bạn khỏi các ứng dụng nghe lén mật mã qua bộ nhớ chung (bạn có thể tắt thông báo bộ nhớ chung trong cài đặt)\n
-* Thêm lựa chọn để tặng một ly bia hay cái gì khác (xem trình đơn)</string>
-  <string name="ChangeLog"><b>Phiên bản 0.6.2</b>\n
-* Tích hợp Google Drive/Dropbox/…: Sử dụng ứng dụng chính thức Google Drive hay Dropbox để mở tập tin .kdbx sẽ mở KP2A.\n
-* Cải thiện hộp thoại tìm kiếm \n
-* Cải thiện kết quả tìm kiếm cho chia sẻ liên kết URL với các tên miền phụ\n
-* Thêm lựa chọn để cung cấp thông tin phản hồi, bình chọn ứng dụng và dịch ngôn ngữ trong trình đơn\n
-\n
-<b>Phiên bản 0.6.1</b>\n
-* Phát hiện khi cơ sở dữ liệu thay đổi ở dịch vụ nền (thí dụ như các hoạt động của một ứng dụng đồng bộ hóa)\n
-* Cải thiện tìm kiếm liên kết URL từ trình duyệt\n
-* Thêm hộp thoại xác nhận khi bỏ qua các thay đổi\n
-\n
-<b>Phiên bản 0.6</b>\n
-Bản phát hành chính thức đầu tiên</string>
   <string-array name="clipboard_timeout_options">
     <item>30 giây</item>
     <item>1 phút</item>
