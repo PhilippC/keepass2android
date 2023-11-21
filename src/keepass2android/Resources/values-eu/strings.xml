@@ -380,36 +380,6 @@
   <string name="Visible_title">Ikusgai</string>
   <string name="database_file_heading">Datu-basearen fitxategia</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="ChangeLog_0_9_7">0.9.7 bertsioa\n
-		* Keepass 1 (kdb) datu-baseak idazteko gaitasuna (beta!)\n
-		* aurreko teklatua itzultze hobetua (root baimenik gabeko telefonoetan ere badabil)\n
-		* luzera ezberdinetako KeeChallenge demetarako euskarria\n
-		* Eragotzi QuickUnlock eta pasahitzen ataletan pantaila-argazkiak egitea\n
-		* aldaketa dataren araberako orden alderantzikatua (orain behera)\n
-		* arazketa: Oharren ikuspoegia ongi eguneratzen da aldaketak eta gero, pasahitzen pantailak ongi ezkutatzen ditu pasahitzak gailu guztietan (espero), sarrera bat bitan sartzea baimentzen zuen arazo bat konponduta, datu-basea konpondu eta gero ere UUID bikoiztu batez ohartarazten zuen arazoa konponduta\n</string>
-  <string name="ChangeLog_0_9_4"><b>0.9.4 bertsioa</b>\n
-		* gehigarrietarako euskarria: Begiratu ezarpenetan nola eskuratu gehigarriak!\n
-		*  QR gehigarria argitaratuta (antzeman pasahitzak, bistaratu pasahitzak QR kode gisa, igorri sarrerak beste KP2A gailuetara)\n
-		*  InputStick gehigarria artitaratuta (igorri egiaztagiriak zure PCra bluetooth bidez - InputStick USB gailua behar da)\n
-		*  Kanpo aplikazioek egiaztagiriak zuzenean KP2Arui eska diezaiekete. Garatzailea zara? Gehitu hau zure aplikazioari egokia ikusten baduzu!\n
-		* TOTP euskarria gehituta (KeeOTP eta TrayTotp sistemekin bateragarria)\n
-		* Androided ez luke orain aplikazioa hil behar datu-basea irekita badago\n
-		* datu-basea ez da blokatzen orain aplikaziotik atzera botoiarekin ateratzean (ikusi ezarpenak)\n
-		* bistaratu taldeen izenak bilaketaren emaitzen ikuspegian (*)\n
-		* laster-menua gehituta bilaketaren emaitzeta, \"jo gurasora\" aukera barne (*)\n
-		* sarrera ikuspegian taldearen izena bistaratzeko aukera gehituta (*)\n
-		* (*) eskerrak Matthieuri ezaugarri hauek garatzeagatik!\n
-		* KeeChallenge euskarria (Yubikey NEOrekin). Eskerrik asko Ben Rush for konektorea inplementatzeagatik!\n
-		* erabiltzailearen interfaze hobetua\n
-		* Google Drive interfazeko errorea konponduta\n
-		* dohaintza egiteko aukera ezkutatzeko aukera gehituta\n
-		* QuickUnlock ikonoa orain lehenetsita ezkutatzen da Android 4.2+ gailuetan\n </string>
-  <string name="ChangeLog_0_8_6"><b>0.8.6 bertsioa</b>\n
-		* Twofish zifratze euskarria\n
-		* Taldeen ediziorako eukera\n
-		* Sarrerak eta taldeak lekuz aldatzeko aukera\n
-		* QuickUnlock ikonoa gardena egin daiteke (ikusi ezarpenak)\n
-		* Arazketa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundo</item>
     <item>minutu 1</item>
@@ -458,7 +428,7 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Pasahitza</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">

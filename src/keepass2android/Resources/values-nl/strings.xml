@@ -641,26 +641,6 @@
   <string name="Continue">Ga verder</string>
   <string name="NoFilenameWarning">De URI die je hebt ingevoerd lijkt niet in een bestandsnaam. Weet je zeker dat dit een geldig bestand is?</string>
   <string name="FirstInvalidCompositeKeyError">Ongeldige sleutelcombinatie! Probeer het opnieuw.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">    Ongeldige sleutelcombinatie! Controleer alsjeblieft de volgende zaken:\n
-
-    • Zorg dat je het correcte wachtwoord hebt ingevuld. Gebruik het oog-pictogram om het ingevoerde wachtwoord te tonen.\n
-    • Zorg dat je het correcte wachtwoordtype hebt gekozen. Dit dient overeen te komen met het type dat je gekozen heeft bij het aanmaken van de database.\n
-    • Zorg dat je het juiste bestand hebt gekozen.
-  </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
-    &#8226; Hint: als je denkt dat je database corrupt kan zijn, of als je het hoofdwachtwoord niet meer weet nadat je hebt gewijzigd, dan kun je proberen de laatst goed geopende versie te openen door \"%1$s\" te klikken en de lokale back-up te kiezen.
-  </string>
-  <string name="HintLocalBackupOtherError">    \n
-    &#8226; Hint: Keepass2Android heeft de laatst goed geopende versie opgeslagen in intern geheugen. Je kunt deze openen door op \"%1$s\" te klikken en de lokale back-up te kiezen.
-  </string>
-  <string name="CorruptDatabaseHelp">    Het bestand is beschadigd. \n
-    Dit zijn enkele aanwijzingen om het probleem te diagnosticeren:\n
-
-    • Als je het bestand via USB (MTP-modus) hebt gekopieerd: probeer je het opnieuw via een programma zoals MyPhoneExplorer. MTP verkort bestanden in sommige gevallen.\n
-    • Als je het bestand ook niet op jouw PC kunt openen dan is het aannemelijk dat het bestand daadwerkelijk beschadigd is. Gebruik in dat geval een back-up van de database. Als je vermoedt dat Keepass2Android het bestand heeft beschadigd neem dan alsjeblieft contact op met het support team.\n
-    • Als je het bestand wel kunt openen op jouw PC, neem dan contact op met het support team. Wellicht kun je het bestand met andere instellingen opslaan op jouw PC (bv niet gezipt) en het daarna openen in Keepass2Android.
-
-  </string>
   <string name="open_other_db">Een andere database openen…</string>
   <string name="select_database">Selecteer database</string>
   <string name="configure_child_dbs">Kind-databases configureren…</string>
@@ -753,233 +733,6 @@
     <item>Bugs opgelost</item>
     <item>Bugs opgelost</item>
   </string-array>
-  <string name="ChangeLog_1_07b">    Versie 1.07b-pre\n
-    * Verbeterde Argon2 prestaties door gebruik van orginele implentatie (Met dank aan Chih-Hsuan Yen!)\n
-    * Sta het uitschakelen van de vingerafdruk toe door het klikken op de vingerafdruk icoon (vermijdt probleem met vingerafdruklezer onder het scherm, met dank aan marcoDallas!)\n
-    * Herstel aanwijzer locatie bij wisselen van de wachtwoordzichtbaarheid (met dank aan DDoSolitary!)\n
-    * Verbeteringen aan pCloud implementatie (met opnieuw dank aan gilbsgilbs!)\n
-    * Toevoegen van AutoFill ondersteuning voor aantal meer browsers\n
-    * Nieuwe implementatie voor OneDrive: Inclusief ondersteuning voor Onedrive voor Bedrijven, gedeelde bestanden, selecteerbare toegang scopes, meerdere accounts en opgeloste problemen met offline toegang\n
-    * Fout verbeteringen
-  </string>
-  <string name="ChangeLog_1_07">    Versie 1.07\n
-    * Oplossing voor crashes op Samsung\'s Android 9\n
-    * Je kunt nu meer dan 1 database openen, compatibel met KeeAutoExec\n
-    * SFTP: public key authenticatie, controle op verandering van server sleutel\n
-    * Introductie van pCloud ondersteuning - dank aan gilbsgilbs!\n
-    * NextCloud ondersteuning expliciet gemaakt\n
-    * Opslaan en veranderen van item bijlagen verbeterd\n
-    * Meer opties voor het aanpassen van app gedrag in persoonlijke voorkeuren\n
-    * SSL: vertrouw gebruiker certicaten\n
-    * Automatisch invullen verbeterd (werkt nu met Firefox, minder popups)\n
-    * Fout oplossingen\n
-  </string>
-  <string name="ChangeLog_1_06">  Versie 1.06\n
-  * Gebruikt ykDroid in plaats van YubiChallenge als app voor Yubikey challenge/response.\n
-  * Ondersteuning voor KeepassXC-stijl challenge/response. Merk op: de database-indeling moet KDBX4 zijn!\n
-  * Weiger verwijderde bestanden te laden van Google Drive\n
-  * Andere TLS implementatie voor FTPS, om een JSch bug heen gewerkt voor servers die gssapi-with-mic ondersteunen\n
-  * problemen opgelost\n
-  </string>
-  <string name="ChangeLog_1_05">    Version 1.05\n
-    * Gebruik melding kanalen op Android 8 met configuratie via systeem instellingen\n
-    * Toon pictogram in melding\n
-    * Gebruik adaptieve pictogrammen op Android 8, gebruik het ronde lanceer pictogram op Android 7\n
-    * Optie om direct te zoeken na openen (see instellingen)\n
-    * De manier waarop files worden geschreven via Storage Access Framework is veranderd, dit lost problemen op met het schrijven van files op Google Drive welke geopend waren via de Systeem bestanden kiezer\n
-    * Informatie teksten toegevoegd om vaak voorkomende misverstanden te voorkomen\n
-    * Maak lokaal een back-up van correct geopende databases om kans op dataverlies te verkleinen\n
-    * JSch geüpdatet om recentere SSH ciphers te ondersteunen\n
-    * Mogelijk gemaakt om verbindingsinstellingen te wijzigen, bijvoorbeeld als het WebDav wachtwoord veranderde\n
-    * Ondersteuning voor Yubikey Neo\'s static password mode toegevoegd\n
-    * Automatisch invullen suggestie kan uitgezet worden\n
-    * Data lek naar logcat opgelost\n    
-    * Diverse bugs opgelost\n
-  
- 
-ChangeLog_1_05  </string>
-  <string name="ChangeLog_1_04b">Version 1.04b\n
-  * Voorkom vastlopen bij automatisch invullen op Huawei apparaten.\n
-  </string>
-  <string name="ChangeLog_1_04">Versie 1.04\n
-   * Automatisch invullen toegevoegd voor Android 8.0 en hoger.\n
-   * Bibliotheken, gereedschap en SDK-versie bijgewerkt.\n
-  </string>
-  <string name="ChangeLog_1_03">Versie 1.03\n
-  * Toegankelijkheid service voor automatisch invullen verwijderd zoals gevraagd door Google. Raadpleeg de wachtwoord toegangsinstellingen om een plugin te vinden die de vorige functionaliteit biedt.\n
-  * Derde partij apps weer toegevoegd als opslag optie\n
-  * Geïntegreerde afbeeldingsweergave van gekoppelde beelden zonder deze over te dragen aan andere apps\n
-  * OkHttp opgewaardeerd om problemen op te lossen met sommige verbindingen\n
-  * Steun voor KeeTrayTOTP items, ondersteund nu Steam items\n
-  </string>
-  <string name="ChangeLog_1_02">Versie 1.02\n
-    * Verschillende beveiligingsverbeteringen. Dank gaat uit naar jean-baptiste.cayrou@thalesgroup.com en vincent.fargues@thalesgroup.com voor hun veiligheidsrapport en samenwerking!\n
-    * Ondersteuning voor KeyboardSwapPlugin (zie verder wachtwoord toegang opties): staat automatisch wisselen van een input methode toe op non-rooted apparaten. Met dank aan Mishaal Rahman van XDA-Developers die dit mogelijk maakte.\n
-    * Fix voor toegankelijkheids service met recente Chrome versies.\n
-    * Fix om onnodig wissen van de vingerafdrukdata te voorkomen\n
-    * Fix voor onbelangrijke chrashes\n
-    * Dropbox SDK bijgewerkt om compabiliteit in de toekomst te garanderen\n
-    * Fout rapporten van Xamarin Insights verwijderd\n
-    * Ontwikkeltools geupdated\n  </string>
-  <string name="ChangeLog_1_01g">  Versie 1.01-g\n
-  * Oplossing voor een crash tijdens offline werken\n
-  * Oplossing voor onjuiste codering van FTP(S) inloggegevens\n
-  * Oplossing voor crashes bij het gebruik van OneDrive op oudere Android versies\n
-  * Tijden weergegeven als lokale tijd in beginscherm\n
-  </string>
-  <string name="ChangeLog_1_01d">  Versie 1.01-d\n
-  * Fix voor OneDrive bestandslijst\n
-  * Sta toe certificaat fouten te negeren, ook wanneer hos tnaam verificatie mislukt (niet aanbevolen voor productiedoeleinden)\n
-  * Correctie voor QuickUnlock welke soms faalde ondanks correcte ontgrendelingscode\n
-  </string>
-  <string name="ChangeLog_0_9_8c">Versie 0.9.8c\n 
- * Oplossing voor het beveiligingslek in SSL in Microsoft Live SDK (gebruikt bij het benaderen van bestanden via OneDrive) \n 
-  * Bug oplossing: vorige release bevatte twee invoermethoden (één crashte) \n  </string>
-  <string name="ChangeLog_1_01">Versie 1.01\n
-* Ondersteuning toegevoegd voor het nieuwe KDBX-4-formaat (combineerbaar met Keepass 2.35) inbegrepen de afleidingen van Argon2-versleuteling en ChaCha20-encryptie.\n
-*Opnieuw geïmplementeerde WebDav-opslag van bestanden; het is nu nu mogelijk om te zoeken in bestanden en ondersteunt moderne encryptie.\n
-*Opnieuw geïmplementeerde FTP-opslag van bestanden; het is nu mogelijk om te zoeken in bestanden en ondersteunt (FTPS) encryptie.\n
-*Geüpdatet naar OneDrive SDK (de voorheen gebruikte Live SDK wordt niet langer geüpdatet).\n
-*Geüpdatet naar Dropbox SDK versie 2 (de voorheen gebruikte versie 1 SDK is verouderd).\n
-*Toegevoegde ondersteuning voor OwnCloud.\n
-*Bevestiging vragen voor OPSLAAN alvorens lokale bestanden te openen  </string>
-  <string name="ChangeLog_1_0_0e">Versie 1.0.0e\
-* fix voor vingerafdruk ontgrendelen op oudere Samsung apparaten met Android 6
-* native ondersteuning voor x86 devices toegevoegd
-* softkeyboard verbergen tijdens vingerafdruk scan
-* systeemupdate bouwen  </string>
-  <string name="ChangeLog_1_0_0">    Versie 1.0.0\n
-    * Ontgrendelen met vingerafdruk (Android 6.0+ of Samsung-apparaat benodigd)\n
-    * Automatisch invullen service toegevoegd (Android 5.0+ benodigd)\n
-    * Ondersteuning voor itemsjablonen\n
-    * Offline werken-modus\n
-    * Items kopiëren\n
-    * Automatisch aanvullen voor veldnamen\n
-    * Bestanden weghalen uit lijst met recente bestanden\n
-    * In Android 6.0 machtigingen pas op het moment dat ze nodig zijn vragen\n
-    * Fouten opgelost (in het ingebouwde toetsenbord, bij het kiezen van pictogrammen)\n
-    * Optie om foutrapporten op te sturen\n
-    * Helpteksten toegevoegd\n
-  </string>
-  <string name="ChangeLog_0_9_9">Versie 0.9.9\n
- * volledige UI herontwerp. Dikke merci voor Stefano Pignataro (-http://www.spstudio.at) voor zijn steun! \n
- * aangepast pictogram toevoegen toestaan\n
- * ondersteuning voor Multi Window mode op de Samsung devices\n
- * verhoogd standaard aantal codering rondes voor nieuwe databases\n
- * controleren op dubbele sleutels van extra velden om het verliezen van gegevens te voorkomen\n</string>
-  <string name="ChangeLog_0_9_9c">    Versie 0.9.9c\n
-    * Het donkere thema is terug\n
-    * Je kunt extra pictogrampakketten installeren (antieke Windows-stijl-pictogrammen zijn beschikbaar in de Play Store)\n
-    * Vraag om bevestiging bij verwijderen van elementen\n
-    * Fouten opgelost (Verkeerde weergave van geheime OTP-codering, verkeerd app-pictogram op sommige plaatsen)\n
-  </string>
-  <string name="ChangeLog_0_9_8b">Versie 0.9.8b\n
- * Bug oplossingen(opslaan mislukte voor sommige databases, exporteren naar lokale apparaat werkt niet, selecteren van bepaalde voorkeursopties crashte de app) \n</string>
-  <string name="ChangeLog_0_9_8">Versie 0.9.8\n 
- * Ondersteuning voor Storage Access Framework (kan nu schrijven naar SD-kaart en Google Drive in KP2A Offline) \n
- * Probeer foutieve gebruikersinvoer te detecteren bij het invoeren van WebDAV URLs (map in plaats van bestand) \n
- * Wachtwoord lettertype gewijzigd\n
- * Toestaan om Dropbox account te veranderen\n
- * Opgeloste fout: herinneren OTP password nu\n</string>
-  <string name="ChangeLog_0_9_7b">Versie 0.9.7b\n
-* bijgewerkte vertaling\n 
-* fout oplossingen: wachtwoord lettertype ontbrak in 0.9.7, sorteren op naam sorteerde de groepen niet\n</string>
-  <string name="ChangeLog_0_9_7">Versie 0.9.7\n
-		* Schrijf ondersteuning voor Keepass 1 (kdb) databases (beta!)\n
-		* Beter terugschakelen naar het vorige toetsenbord (ook voor niet-geroote apparaten)\n
-		* Ondersteuning voor KeeChallenge met variable lengte challenges\n
-		* Voorkomt screenshots van Snel Openen en wachtwoordschermen\n
-		* Omgekeerde sorteervolgorde voor Sorteren op wijzigingsdatum (nu aflopend)\n
-		* Bug fixes: Notitie schermen nu correct vernieuwd na wijzigingen, Wachtwoord schermen verbergen nu het wachtwoord correct op (hopelijk) alle apparaten, probleem opgelost dat het toevoegen van dubbele items toestond, probleem opgelost waarbij de Dubbele UUID melding werd weergegeven na het repareren van de database\n</string>
-  <string name="ChangeLog_0_9_6">    Versie 0.9.6\n
-    * mogelijkheid om sleutelbestand en/of database naar het interne geheugen van de app te kopiëren (zie instellingen)\n
-    * verschillende sorteeropties\n
-    * instellingen voor automatisch toetsenbordwisselen verbeterd\n
-    * applicatielogo en ontwerp van notificaties bijgewerkt, ontworpen door Stefano Pignataro (http://www.spstudio.at)\n
-    * wachtwoordgenerator onthoudt laatste instellingen\n
-    * instellen zichtbaarheid notificaties voor vergrendelscherm van Android 5\n
-    * hoofdwachtwoordveld wordt nu leeggemaakt wanneer de applicatie wordt gesloten zonder op Oké te klikken\n
-    * opgelost: probleem met ontbrekende invoertalen in toetsenbordinstellingen op sommige apparaten\n
-    * opgelost: probleem met automatisch toetsenbordwisselen op geroote apparaten\n
-    * check toegevoegd voor corrupte databases (duplicate UUIDS)\n
-    * automatisch herladen van database wanneer wijzigingen worden gedetecteerd, lost beveiligingsvraagstuk over het lekken van het hoofdwachtwoord op\n
-    * verbeterd van Poolse kleine toetsenbord, verbeterd thema van de toetsenbordinstellingen (dank aan Wiktor Ławski)\n
-  </string>
-  <string name="ChangeLog_0_9_5"><b>Versie 0.9.5</b>\n
-		* Opgelost: problemen met bestanden selecteren (vooral op Android 4.4)\n
-		* Opgelost: probleem met laden van kdb-bestanden (Keepass 1) op Nexus 5 met Android Lollipop\n
-		* Toegevoegd: optie om het nemen van schermafbeeldingen en het tonen van de app in de lijst met recent geopende apps te verhinderen\n
-		* Opgelost: probleem met opslag op Google Drive (gewone versie)\n
-		* Toestaan van sleutelbestanden op speciale opslagtypen (gewone versie)\n
-		* Dropbox SDK opgewaardeerd vanwege een beveiligingslek (gewone versie)\n
-		* Build tools bijgewerkt --&gt; installatiebestand groter geworden :-(\n
-		Ik heb nog meer wijzigingen beloofd. Deze zullen in de volgende versie verschijnen - sorry. De oplossingen voor bovenstaande problemen wou ik zo snel mogelijk uitbrengen.</string>
-  <string name="ChangeLog_0_9_4"><b>Versie 0.9.4</b>\n
-* ondersteuning voor plug-ins toegevoegd: kijk bij de instellingen hoe je plug-ins kunt krijgen!\n
-* QR-plug-in toegevoegd (scan wachtwoorden, toon wachtwoorden als QR-code, stuur items naar andere apparaten)\n
-* InputStick-plug-in toegevoegd (stuur inloggegevens via bluetooth naar de PC - Speciale InputStick USBstick vereist)\n
-* Apps van derden kunnen nu eenvoudig inloggegevens opvragen bij KP2A. Ben je een ontwikkelaar? Voeg dit dan (indien van toepassing) alsjeblieft toe aan jouw app!\n
-* TOTP-ondersteuning toegevoegd (geschikt voor KeeOTP en TrayTotp)\n
-* De app wordt niet langer gesloten door Android wanneer de database geopend is\n
-* De database wordt niet langer vergrendeld wanneer de app via de \'vorige\'-toets verlaten wordt (zie instellingen)\n
-* Toon groepnamen in de zoekresultaten (*)\n
-* Nu een contextmenu in de zoekresultaten met onder andere \"Ga naar bovenliggende map\" (*)\n
-* Optie toegevoegd om de groepnaam te tonen in invoerweergave (*)\n
-* (*) deze opties zijn door Matthieu geïmplementeerd!\n
-* Ondersteuning voor KeeChallenge (met Yubikey NEO). Dank aan Ben Rush voor het implementeren van de connector!\n
-* UI verbeterd\n
-* Fout verholpen in de Google Drive-interface\n
-* Optie om de \"donatie\"-optie uit te schakelen\n
-* Pictogram voor Snel Openen nu verborgen op Android 4.2+\n</string>
-  <string name="ChangeLog_0_9_3_r5"><b>Versie 0.9.3 r5</b>\n
-* Verbeteringen van Xamarin: Keepass2Android is nu te gebruiken met ART op Android 4.4.2. Eindelijk!\n
-* Verbeteringen: fouten in synchronisatie (beeld vernieuwen, correcte controle op wijzigingen bij http), verbeteringen voor Android 2.x, verbeteringen voor integratie Google Drive and Skydrive, klembord wordt geleegd bij sluiten database, verbeteringen in het openen van bijlagen, verbeteringen in de zichtbaarheid van het toetsenbord\n</string>
-  <string name="ChangeLog_0_9_3"><b>Versie 0.9.3</b>\n
-		* Nieuw toetsenbord met veel verbeteringen. Zie instellingen voor aanpassingsmogelijkheden.\n
-		* Alleen lezen ondersteuning voor .kdb (Keepass 1.x files). Experimenteel!\n
-		* SFTP ondersteuning toegevoegd\n
-		* Bug in ART (Android 4.4.2) opgelost\n
-		* Bug reparaties\n</string>
-  <string name="ChangeLog_0_9_2"><b>Versie 0.9.2</b>\n
-		* OTP ondersteuning toegevoegd (compatibel met OtpKeyProv plugin)\n
-		* Geïntegreerde NFC ondersteuning voor OTPs van YubiKey NEO\n
-		* Aantal UI verbeteringen\n
-		* Keepass 2.24 library geïntegreerd\n
-		* Optie om het applicatieproces te beëindigen toegevoegd (zie instellingen)\n
-		* Bug reparaties\n</string>
-  <string name="ChangeLog_0_9_1"><b>Versie 0.9.1</b>\n
-		* Skydrive ondersteuning geïntegreerd (alleen voor Keepass2Android reguliere editie)\n
-		* Problemen met Google Drive ondersteuning opgelost\n
-		* NTLM ondersteuning toegevoegd</string>
-  <string name="ChangeLog_0_9"><b>Versie 0.9</b>\n
-		* Dropbox en Google Drive ondersteuning geïntegreerd (lees/schrijf databases; alleen voor Keepass2Android reguliere editie)\n
-		* Aangepaste bestandszoeker geïntegreerd (gebaseerd op een android-bestandskiezer door HBA)\n
-		* Verbeterde gebruikersinterface voor het aanmaken van nieuwe databases\n
-		* Aangepast lettertype DejaVu Sans Mono toegevoegd om wachtwoorden weer te geven\n
-		* Bug fixes</string>
-  <string name="ChangeLog_0_8_6"><b>Versiie 0.8.6</b>\n
-		* Ondersteuning voor Twofish codering\n
-		* Mogelijkheid om groepen te bewerken\n
-		* Mogelijkheid om items en groepen te veranderen\n
-		* Snel Openen pictogram kan transparant gemaakt worden (zie instellingen)\n
-		* Bug fixes</string>
-  <string name="ChangeLog_0_8_5">    <b>Versie 0.8.5</b>\n
-    * Online bestanden worden bewaard in de lokale appcache om offline gebruik mogelijk te maken (inclusief bewerken en later synchronisatie). Zie instellingen. \n
-    * Meldingsicoon om de vergrendelingsstaat van de database weer te geven. (Zie instellingen)\n
-    * Verbeterde vaststelling van de vergrendelingsstaat in sommige situaties\n
-    * Databasebestanden worden in het geheugen geladen terwijl je jouw wachtwoord intypt voor snellere laadtijd (zie instellingen)\n
-    * Items kunnen worden toegevoegd aan de hoofdgroep\n
-    * Fouten verholpen (opzoeken referentievelden, problemen met toetsenbord op Italiaanse en Chinese apparaten)
-  </string>
-  <string name="ChangeLog_0_8_4">  <b>Version 0.8.4</b>\n
- * Veranderingen in externe database worden herkend en samengevoegd bij opslaan\n
- * Verbeterde opstartsnelheid\n
- * Verbeterde search toolbar met suggesties\n
- * Nieuw App logo!\n
- * Ondersteuning voor .kdbp bestandsformaat voor sneller laden/opslaan\n
- * Verbeterd bewerken van extra tekenreeksen en verborgen scherm indien beschermd\n
- Bedankt aan Alex Vallat voor zijn bijdragen in de code!\n
- Bedankt aan Niki Hüttner (www.close-cut.de) voor het nieuwe logo!\n</string>
   <string name="ChangeLog_0_8_3"><b>Versie 0.8.3</b>\n
 * Gebruikersnaam/TAN index weergegeven in item lijst (zie instellingen)\n
 * Items kunnen gemaakt worden als een zoekopdracht van de browser geen resultaten geeft\n
@@ -989,18 +742,6 @@ ChangeLog_1_05  </string>
 * Plaatsvervangers in item velden worden vervangen vóór het kopiëren (de meeste plaatsvervangers worden ondersteund)\n
 * kleine bug fixes
     </string>
-  <string name="ChangeLog_0_8_2"><b>Version 0.8.2</b>\n
- * Ondersteuning voor Digest Authentication in WebDAV\n
- * Bugfixes (OI File manager, Open URL)</string>
-  <string name="ChangeLog_0_8_1"><b>Versie 0.8.1</b>\n
- * KP2A Offline and \"Online\" kunnen allebei opnieuw geïnstalleerd worden\n
- * Nieuwe vertalingen toegevoegd (met dank aan alle inzenders!)</string>
-  <string name="ChangeLog_0_8"><b>Version 0.8</b>\n
- * Verbeterde gebruikersinterface voor Android 4.x apparaten\n
- * Gebruik van andere file managers voor het selecteren van bestaande bestanden toegestaan\n
- * Veiligere manier voor het openen van bijlagen toegevoegd (via cachemap)\n
- * Bugs opgelost bij bewerkactiviteiten\n
- * Waarschijnlijk nieuwe bugs geïntroduceerd :-)</string>
   <string name="ChangeLog_keptDonate">Uitgelezen kans om biertje te schenken of iets anders</string>
   <string name="ChangeLog_0_7"><b>Versie 0.7</b>\n
 * Verbeterde laadsnelheid: sleuteltransformaties zijn nu 10x sneller!\n
@@ -1068,7 +809,7 @@ Eerste publieke publicatie
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Wachtwoord</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">

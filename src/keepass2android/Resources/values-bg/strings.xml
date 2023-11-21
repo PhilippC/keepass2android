@@ -461,7 +461,7 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Парола</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
 </resources>

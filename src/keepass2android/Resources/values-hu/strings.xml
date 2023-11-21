@@ -642,21 +642,6 @@
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
   <string name="FirstInvalidCompositeKeyError">Az összetett kulcs érvénytelen! Próbálkozzon újra.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">Az összetett kulcs érvénytelen! Az alábbi lépések segíthetnek az adatbázis feloldásában:\n
-  
-    • Ellenőrizze, hogy a helyes jelszót adta-e meg.  A szem ikon megérintésével megjelenítheti a beírt jelszót.\n
-    • Ellenőrizze, hogy a helyes jelszótípust adott-e meg. Ellenőrizze, hogy ez ugyan az a típus-e, mint amit az adatbázis létrehozásakor megadott.\n
-    • Ellenőrizze, hogy a helyes adatbázist választotta-e ki.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
-   &#8226; Tipp: Ha úgy gondolja, hogy az adatbázis fájl sérült, vagy nem emlékszik a főkulcsra (jelszó) miután megváltoztatta, megpróbálhatja megnyitni az utolsó sikeresen megnyitott verziót, a(z) \"%1$s\" opció segítségével, kiválasztva a megfelelő helyi biztonsági másolatot.</string>
-  <string name="HintLocalBackupOtherError">    \n
-    &#8226; Tipp: Keepass2Android eltárolta az utolsó sikeresen megnyitott fájlverziót a belső memóriában. Megnyithatja ezt a verziót a(z) \"%1$s\" opció segítségével, kiválasztva a megfelelő helyi biztonsági másolatot.  </string>
-  <string name="CorruptDatabaseHelp">    A fájl sérült. \n 
-    Néhány javaslat a probléma felderítésére:\n
-    
-    • Ha a fájlt USB kapcsolaton keresztül másolta át (MTP-mód), próbáljon meg egy másik alkalmazást, például a MyPhoneExplorert használni, mert az MTP egyes esetekben a fájlok végét levágja.\n
-    • Ha a fájlt a korábbi helyről asztali számítógépről sem tudja megnyitni, nagyon valószínű, hogy a fájl ténylegesen megsérült.  Próbálja meg az adatbázist mentésből visszaállítani.  Ha úgy gondolja, hogy a fájl sérülését a Keepass2Android okozta, kérjük, értesítse a fejlesztőket.\n
-    •  Ha a fájlt a korábbi helyről asztali számítógépről meg tudja megnyitni, kérjük, értesítse a fejlesztőket.  Átmeneti megoldásként megpróbálhatja az asztali számítógépen a fájlt más formátumban kimenteni (például tömörítés nélkül), hátha talál olyan formátumot, amit a Keepass2Android meg tud nyitni.  </string>
   <string name="open_other_db">Egy másik adatbázis megnyitása…</string>
   <string name="select_database">Adatbázis kiválasztása</string>
   <string name="configure_child_dbs">Csatolt adatbázisok konfigurálása…</string>
@@ -758,7 +743,7 @@ Kezdeti közösségi kiadás</string>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Jelszó</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
