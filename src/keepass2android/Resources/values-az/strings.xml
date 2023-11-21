@@ -74,7 +74,7 @@
   <string name="DbQuicklockedChannel_name">Cəld Kilid Açma</string>
   <string-array name="sftp_auth_modes">
     <item>Şifrə</item>
-    <item>K2A Private/Public key</item>
+    <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
   <string name="disable_secure_screen_check">Bu mesajı ləğv et</string>
