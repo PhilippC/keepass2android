@@ -673,6 +673,17 @@
   <string name="HintLocalBackupInvalidCompositeKey">    \n
     &#8226; 提示：如果你认为数据库文件可能损坏或你更改了主密钥之后却忘记了新的主密钥，你可以试试上次成功打开的文件版本，办法：轻按 \"%1$s\" 并选择本地备份。
   </string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; 提示：Keepass2Android 已经在内部存储保存了上次成功打开的文件版本 。要打开，请轻按\"%1$s\" 并选择本地备份。
+  </string>
+  <string name="CorruptDatabaseHelp">    文件已损坏。\n
+    以下是一些可能有助诊断问题的提示:\n
+
+    &#8226; 如果你通过 USB (MTP-Mode) 复制文件，请使用类似 MyPhoneExplorer 这样的工具重试一次。某些情况下，MTP 会截断文件。\n
+    &#8226;如果你在桌面计算机上同样打不开来自同一位置的文件，那么很有可能这个文件真的坏了。 接下去，请使用数据库备份。如果你假设 Keepass2Android 破坏了文件，请联系支持团队。\n
+    &#8226; 如果你仍可以在桌面计算机上打开文件，请联系支持团队。你可以试着用不同设置在桌面计算机上保存文件 (如，未压缩) 并在 Keepass2Android 试着重新打开它。
+
+  </string>
   <string name="open_other_db">打开另一个数据库…</string>
   <string name="select_database">选择数据库</string>
   <string name="configure_child_dbs">配置子数据库…</string>
