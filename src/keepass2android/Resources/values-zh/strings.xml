@@ -664,6 +664,15 @@
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
   <string name="FirstInvalidCompositeKeyError">复合密钥无效！请重试。</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    无效的数据库密钥! 请尝试以下步骤解锁你的数据库:\n
+
+    &#8226; 确保你输入了正确的密码。 使用眼睛图标揭示输入的密码。\n
+    &#8226; 确保你选择了正确的密码类型。确保此类型匹配创建数据库时所用的类型。\n
+    &#8226; 确保你选择了正确的数据库文件。
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; 提示：如果你认为数据库文件可能损坏或你更改了主密钥之后却忘记了新的主密钥，你可以试试上次成功打开的文件版本，办法：轻按 \"%1$s\" 并选择本地备份。
+  </string>
   <string name="open_other_db">打开另一个数据库…</string>
   <string name="select_database">选择数据库</string>
   <string name="configure_child_dbs">配置子数据库…</string>
