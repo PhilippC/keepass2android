@@ -813,6 +813,24 @@
     * Mudar a implementação de TLS para FTPS, adicionar solução alternativa ao bug JSch com servidores que suportam gssapi-with-mic\n
     * correções de bugs\n
   </string>
+  <string name="ChangeLog_1_05">    Versão 1.05\n
+    * Use canais de notificação para Android 8, permitindo configuração através das configurações do sistema\n
+    * Mostrar ícone de entrada na notificação\n
+    * Use ícones adaptáveis ​​para Android 8, use ícone redondo do iniciador para Android 7\n
+    * Permitir ativar a pesquisa ao desbloquear (ver configurações)\n
+    * Alterada a forma como os arquivos são gravados por meio do Storage Access Framework, corrige problemas com a atualização de arquivos no Google Drive abertos por meio do seletor de arquivos do sistema\n
+    * Adicionados alguns textos informativos para evitar alguns mal-entendidos comuns\n
+    * Crie backups locais de bancos de dados abertos com sucesso para reduzir o risco de perda de dados\n
+    * JSch atualizado para suportar cifras SSH mais recentes\n
+    * Permitir editar as configurações de conexão, por ex. quando a senha do WebDav foi alterada\n
+    * Adicionado suporte para o modo de senha estática do Yubikey Neo\n
+    * Permitir desativar a sugestão de preenchimento automático\n
+    * Corrigido vazamento de dados para logcat\n
+    * correções de bugs\n
+  </string>
+  <string name="ChangeLog_1_04b">    Versão 1.04b\n
+    * Evite travamento quando o usuário tentar ativar o preenchimento automático em dispositivos Huawei.\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
