@@ -806,6 +806,13 @@
     * Melhorarado o preenchimento automático (agora funciona com o Firefox, permite reduzir pop-ups)\n
     * Correções de bugs\n
   </string>
+  <string name="ChangeLog_1_06">    Versão 1.06\n
+    * Trocar para ykDroid ao invés doYubiChallenge como app para Yubikey Challenge-Response.\n
+    * Implementado suporte para KeepassXC-style Challenge-Response. Nota: O formato de banco de dados deve ser o KDBX4!\n
+    * Recuse-se a carregar arquivos da lixeira do Google Drive\n
+    * Mudar a implementação de TLS para FTPS, adicionar solução alternativa ao bug JSch com servidores que suportam gssapi-with-mic\n
+    * correções de bugs\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
