@@ -831,6 +831,17 @@
   <string name="ChangeLog_1_04b">    Versão 1.04b\n
     * Evite travamento quando o usuário tentar ativar o preenchimento automático em dispositivos Huawei.\n
   </string>
+  <string name="ChangeLog_1_04">    Versão 1.04\n
+    * Adicionado serviço de preenchimento automático para Android 8.0 e posterior.\n
+    * Bibliotecas, ferramentas de compilação e versão do SDK do Target atualizadas.\n
+  </string>
+  <string name="ChangeLog_1_03">    Versão 1.03\n
+    * Serviço de acessibilidade removido para preenchimento automático conforme solicitado pelo Google. Consulte as configurações de acesso por senha para encontrar um plugin que reproduza a funcionalidade anterior.\n
+    * Adicionados aplicativos de terceiros como opção de armazenamento novamente\n
+    * Visualizador de imagens integrado para visualizar imagens anexadas sem transferi-las para outros aplicativos\n
+    * OkHttp atualizado para corrigir problemas com algumas conexões\n
+    * Suporte para entradas KeeTrayTOTP, agora com suporte para entradas Steam\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
