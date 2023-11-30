@@ -842,6 +842,16 @@
     * OkHttp atualizado para corrigir problemas com algumas conexões\n
     * Suporte para entradas KeeTrayTOTP, agora com suporte para entradas Steam\n
   </string>
+  <string name="ChangeLog_1_02">    Versão1.02\n
+    * Várias melhorias de segurança. Muito obrigado pelo relatório de segurança de jean-baptiste.cayrou@thalesgroup.com e vincent.fargues@thalesgroup.com e pela colaboração!\n
+    * Suporte para KeyboardSwapPlugin (veja opções de acesso por senha): permite alternar o método de entrada automaticamente em dispositivos sem acesso root. Agradecemos a Mishaal Rahman do XDA-Developers por tornar isso possível.\n
+    * Correção do serviço de acessibilidade com versões recentes do Chrome\n
+    * Correção para limpeza desnecessária de dados de impressão digital\n
+    * Corrigido pequenas falhas\n
+    * SDK do Dropbox atualizado para garantir compatibilidade futura.\n
+    * Relatório de erros removido por meio do Xamarin Insights\n
+    * Ferramentas de compilação atualizadas\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
