@@ -852,6 +852,12 @@
     * Relatório de erros removido por meio do Xamarin Insights\n
     * Ferramentas de compilação atualizadas\n
   </string>
+  <string name="ChangeLog_1_01g">    Versão 1.01-g\n
+    * Correção de falha ao tentar trabalhar offline\n
+    * Correção para codificação incorreta de credenciais de FTP(S)\n
+    * Correção de falhas ao usar o OneDrive e em versões mais antigas do Android\n
+    * Exibir horários como horário local na tela de entrada\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
