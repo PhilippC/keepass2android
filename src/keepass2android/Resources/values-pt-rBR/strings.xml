@@ -858,6 +858,11 @@
     * Correção de falhas ao usar o OneDrive e em versões mais antigas do Android\n
     * Exibir horários como horário local na tela de entrada\n
   </string>
+  <string name="ChangeLog_1_01d">    Versão 1.01-d\n
+    * Correção na listagem de arquivos do OneDrive\n
+    * Permitir ignorar erros de certificado também quando a verificação do nome do host falhar (não recomendado para uso em produção)\n
+    * Correção para QuickUnlock que às vezes falhava apesar do código de desbloqueio correto\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
