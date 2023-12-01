@@ -152,6 +152,7 @@
   <string name="hint_keyfile">αρχείο κλειδιού</string>
   <string name="hint_length">μήκος</string>
   <string name="hint_pass">συνθηματικό</string>
+  <string name="hint_keyfile_path">Διαδρομή ιδιωτικού κλειδιού SSH</string>
   <string name="hint_login_pass">Συνθηματικό</string>
   <string name="hint_title">όνομα</string>
   <string name="hint_url">URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Προβολή εικονιδίου ειδοποίησης, ενόσω η βάση δεδομένων είναι ξεκλείδωτη.</string>
   <string name="IconVisibilityInfo_Android8_text">Το Android 8 εισήγαγε νέα συμπεριφορά για τις ειδοποιήσεις. Απόκρυψη του εικονιδίου των ειδοποιήσεων του Keepass2Android γίνεται από τις ρυθμίσεις συστήματος. Ορίστε τη σημαντικότητα της κατηγορίας ειδοποιήσεων στο Ελάχιστο.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Άνοιγμα ρυθμίσεων</string>
+  <string name="PostNotificationsPermissionInfo_text">Το Keepass2Android μπορεί να εμφανίζει μια ειδοποίηση συστήματος ενόσω η βάση δεδομένων σας παραμένει ξεκλείδωτη. Για να λειτουργήσει αυτό, χορηγήστε την άδεια.</string>
   <string name="DontCare">Δεν με νοιάζει</string>
   <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακηθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανα-ανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
   <string name="PreloadDatabaseEnabled_title">Προ-φόρτωση αρχείου βάσης δεδομένων</string>
@@ -501,9 +503,27 @@
   <string name="hint_sftp_host">κόμβος (πχ 192.168.0.1)</string>
   <string name="hint_sftp_port">θύρα</string>
   <string name="initial_directory">Αρχικός κατάλογος (προαιρετικό):</string>
+  <string name="connect_timeout">Χρονικό όριο σύνδεσης σε δευτερόλεπτα (προαιρετικό)</string>
   <string name="enter_sftp_login_title">Εισάγετε στοιχεία σύνδεσης SFTP:</string>
   <string name="sftp_auth_mode">Τρόπος αυθεντικοποίησης</string>
   <string name="send_public_key">Αποστολή δημόσιου κλειδιού...</string>
+  <string name="select_private_keyfile">Επιλέξτε ιδιωτικό κλειδί...</string>
+  <string name="hint_sftp_key_name">Νέο όνομα κλειδιού</string>
+  <string name="hint_sftp_key_content">Νέο περιεχόμενο κλειδιού</string>
+  <string name="private_key_saved">Το ιδιωτικό κλειδί αποθηκεύτηκε</string>
+  <string name="private_key_save_failed">ΑΠΟΤΥΧΙΑ αποθήκευσης του ιδιωτικού κλειδιού: %1$s</string>
+  <string name="private_key_info">Εισάγετε όνομα και περιεχόμενο του κλειδιού για αποθήκευση</string>
+  <string name="private_key_delete">Διαγράφηκε το ιδιωτικό κλειδί: %1$s</string>
+  <string name="private_key_delete_failed">ΑΠΟΤΥΧΙΑ διαγραφής του ιδιωτικού κλειδιού: %1$s</string>
+  <string name="save_key">Αποθήκευση ιδιωτικού κλειδιού</string>
+  <string name="delete_key">Διαγραφή ιδιωτικού κλειδιού </string>
+  <string name="private_key_select">Επιλέξτε ιδιωτικό κλειδί</string>
+  <string name="private_key_create_new">[Προσθήκη νέου...]</string>
+  <string name="hint_sftp_key_passphrase">Συνθηματικό κλειδιού (προαιρετικό)</string>
+  <string name="sftp_kex_title">Αλγόριθμος ανταλλαγής κλειδιών (προαιρετικά)</string>
+  <string name="hint_sftp_kex">Όνομα / προσδιορισμός διαχωρισμένα με κόμμα</string>
+  <string name="sftp_shk_title">Αλγόριθμος για το κλειδί του διακομιστή (προαιρετικά)</string>
+  <string name="hint_sftp_shk">Όνομα / προσδιορισμός διαχωρισμένα με κόμμα</string>
   <string name="enter_ftp_login_title">Εισαγωγή δεδομένων εισόδου FTP:</string>
   <string name="enter_mega_login_title">Εισάγετε τα δεδομένα εισόδου για το λογαριασμό MEGA:</string>
   <string name="select_storage_type">Επιλέξτε τύπο αποθήκευσης:</string>
@@ -521,7 +541,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (αρχεία KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Αν δεν θέλετε να δώσετε πρόσβαση KP2A πρόσβαση σε όλο το Google Drive σας, μπορείτε να επιλέξετε αυτή την επιλογή. Σημειώστε ότι πρέπει να δημιουργήσετε ένα αρχείο βάσης δεδομένων πρώτα - τα υπάρχοντα αρχεία δεν είναι ορατά στην εφαρμογή. Επιλέξτε αυτή την επιλογή από την οθόνη Δημιουργία βάσης δεδομένων ή, αν έχετε ήδη ανοίξει μια βάση δεδομένων, με την εξαγωγή της βάσης δεδομένων επιλέγοντας αυτή την επιλογή.</string>
+  <string name="filestoragename_pcloud">PCloud (φάκελος KP2A)</string>
   <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση μόνο στον pCloud φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από τον pCloud λογαριασμό σας, βεβαιωθείτε ότι το αρχείο έχει τοποθετηθεί σε αυτόν τον φάκελο.</string>
+  <string name="filestoragename_pcloudall">PCloud (πλήρης πρόσβαση)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Όλα τα αρχεία και τα κοινά αρχεία</string>
@@ -573,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Αρχείο καταγραφών για αποσφαλμάτωση</string>
   <string name="DebugLog_title">Χρήση αρχείου καταγραφών</string>
+  <string name="FtpDebug_title">Καταγραφή σφαλμάτων FTP/SFTP</string>
   <string name="DebugLog_summary">Καταγραφή στοιχείων της εφαρμογής σε τοπικό αρχείο καταγραφών</string>
   <string name="DebugLog_send">Αποστολή αρχείων καταγραφής εκσφαλμάτωσης...</string>
   <string name="loading">Φόρτωση…</string>
@@ -641,6 +664,10 @@
   <string name="Continue">Συνέχεια</string>
   <string name="NoFilenameWarning">Το URI που έχετε εισάγατε δεν μοιάζει με όνομα αρχείου. Είστε βέβαιοι ότι είναι έγκυρο αρχείο;</string>
   <string name="FirstInvalidCompositeKeyError">Μη έγκυρο σύνθετο κλειδί! Παρακαλώ δοκιμάστε ξανά.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Υπόδειξη: Αν νομίζεις ότι η βάση δεδομένων σου έχει καταστραφεί, ή δεν θυμάσαι το κύριο κλειδί μετά την αλλαγή του, μπορείς να δοκιμάσεις την τελευταία έκδοση του αρχείου που άνοιξες με επιτυχία πατώντας \"%1$s\" και επιλέγοντας το τοπικό αντίγραφο.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Υπόδειξη: Το Keepass2Android έχει αποθηκεύσει την τελευταία έκδοση του αρχείου που ανοίχτηκε στην εσωτερική μνήμη. Μπορείς να την ανοίξεις πατώντας \"%1$s\" και επιλέγοντας το τοπικό αντίγραφο.  </string>
   <string name="open_other_db">Ανοίξτε μια άλλη βάση δεδομένων…</string>
   <string name="select_database">Επιλέξτε τη βάση δεδομένων</string>
   <string name="configure_child_dbs">Προσαρμογή παράγωγων βάσεων δεδομένων…</string>
