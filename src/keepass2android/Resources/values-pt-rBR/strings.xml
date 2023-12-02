@@ -867,6 +867,15 @@
     * Correção de vulnerabilidade SSL no Microsoft Live SDK (usado ao acessar arquivos via OneDrive)\n
     * Correção de bug: a versão anterior continha dois métodos de entrada (um com falha)\n
   </string>
+  <string name="ChangeLog_1_01">    Versão 1.01\n
+    * adicionado suporte para o novo formato KDBX-4 (compatível com Keepass 2.35), incluindo derivação de chave Argon2 e criptografia ChaCha20..\n
+    * Armazenamento de arquivos WebDav reimplementado, agora permite a navegação de arquivos e oferece suporte à criptografia moderna.\n
+    * Armazenamento de arquivos FTP reimplementado, agora permite navegação de arquivos e suporta criptografia (FTPS).\n
+    * Atualizado para o SDK do OneDrive (o Live SDK usado anteriormente não é mais atualizado)\n
+    * Atualizado para a versão 2 do SDK do Dropbox (o SDK da versão 1 usado anteriormente está obsoleto).\n
+    * Adicionado suporte para OwnCloud.\n
+    * Solicitar permissão de armazenamento antes de abrir arquivos locais
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
