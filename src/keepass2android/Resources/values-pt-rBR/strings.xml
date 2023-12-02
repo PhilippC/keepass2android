@@ -863,6 +863,10 @@
     * Permitir ignorar erros de certificado também quando a verificação do nome do host falhar (não recomendado para uso em produção)\n
     * Correção para QuickUnlock que às vezes falhava apesar do código de desbloqueio correto\n
   </string>
+  <string name="ChangeLog_0_9_8c">    Versão 0.9.8c\n
+    * Correção de vulnerabilidade SSL no Microsoft Live SDK (usado ao acessar arquivos via OneDrive)\n
+    * Correção de bug: a versão anterior continha dois métodos de entrada (um com falha)\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
