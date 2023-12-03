@@ -876,6 +876,12 @@
     * Adicionado suporte para OwnCloud.\n
     * Solicitar permissão de armazenamento antes de abrir arquivos locais
   </string>
+  <string name="ChangeLog_1_0_0e">    Versão 1.0.0e\n
+    * correção para desbloqueio de impressão digital em dispositivos Samsung mais antigos com Android 6\n
+    * adicionado suporte nativo para dispositivos x86\n
+    * permitir ocultar o teclado virtual durante a digitalização de impressões digitais\n
+    * atualização do sistema de compilação
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
