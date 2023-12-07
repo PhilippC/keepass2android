@@ -882,6 +882,19 @@
     * permitir ocultar o teclado virtual durante a digitalização de impressões digitais\n
     * atualização do sistema de compilação
   </string>
+  <string name="ChangeLog_1_0_0">    Versão 1.0.0\n
+    * Desbloqueio por impressão digital (requer Android 6.0+ ou um dispositivo Samsung)\n
+    * Adicionado serviço de preenchimento automático (requer Android 5.0+)\n
+    * Adicionado suporte para modelos de entrada\n
+    * Adicionado modo \"trabalhar offline\"\n
+    * Permitir copiar entradas\n
+    * Modo de preenchimento automático para nomes de campos\n
+    * Permitir remover itens da lista de arquivos recentes\n
+    * Solicitar permissões em tempo de execução no Android 6.0\n
+    * Correções de bugs (no teclado integrado, ao selecionar ícones)\n
+    * Opção incluída para enviar relatórios de erros\n
+    * Adicionadas mensagens de ajuda em vários pontos\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
