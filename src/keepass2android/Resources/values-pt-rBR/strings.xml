@@ -895,6 +895,33 @@
     * Opção incluída para enviar relatórios de erros\n
     * Adicionadas mensagens de ajuda em vários pontos\n
   </string>
+  <string name="ChangeLog_0_9_9">    Versão 0.9.9\n
+    * Redesenho completo da IU. Muito obrigado a Stefano Pignataro (http://www.spstudio.at) pelo seu apoio!\n
+    * Permitir adicionar ícones personalizados\n
+    * Suporte para modo Multi Janela em dispositivos Samsung\n
+    * Aumento do número padrão de rodadas de criptografia para novos bancos de dados\n
+    * Verifique se há chaves duplicadas de campos adicionais para evitar a perda de dados\n
+  </string>
+  <string name="ChangeLog_0_9_9c">    Versão 0.9.9c\n
+    * O tema escuro está de volta\n
+    * Você pode instalar outros pacotes de ícones (ícones antigos no estilo do Windows estão disponíveis na Play Store)\n
+    * Adicionada pergunta de confirmação ao excluir elementos sem a lixeira\n
+    * Correções de bugs (exibição incorreta de codificação secreta OTP, ícone de aplicativo errado em alguns lugares)\n
+  </string>
+  <string name="ChangeLog_0_9_8b">    Versão 0.9.8b\n
+    * Correções de bugs (o salvamento falhou em alguns bancos de dados, a exportação para o dispositivo local não funcionou, a seleção de algumas opções de preferência travou o aplicativo)\n
+  </string>
+  <string name="ChangeLog_0_9_8">    Versão 0.9.8\n
+    * Suporte para Storage Access Framework (permite gravar no cartão SD e no Google Drive no KP2A offline)\n
+    * Tente detectar entradas erradas do usuário ao inserir URLs WebDAV (diretório em vez de arquivo)\n
+    * Fonte de senha alterada\n
+    * Permitir alterar conta do Dropbox\n
+    * Bug corrigido: agora lembrando a senha OTP
+  </string>
+  <string name="ChangeLog_0_9_7b">    Versão 0.9.7b\n
+    * traduções atualizadas\n
+    * correções de bugs: a fonte da senha estava faltando na versão 0.9.7, a classificação por nome não classificava os grupos\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
