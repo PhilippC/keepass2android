@@ -663,6 +663,25 @@
   <string name="Continue">Kontynuuj</string>
   <string name="NoFilenameWarning">Wprowadzone URI nie wygląda jak nazwa pliku. Jesteś pewien, że to prawidłowy plik?</string>
   <string name="FirstInvalidCompositeKeyError">Błędny klucz zbiorowy! Spróbuj ponownie.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Błędny klucz zbiorowy! Spróbuj następujących kroków, by odblokować swoją bazę danych:\n
+
+&#8226; Upewnij się, że wprowadziłeś poprawne hasło. Użyj ikony oka, by odsłonić wprowadzone hasło.\n
+&#8226;Upewnij się, że wybrałeś właściwy typ hasła. Upewnij się, że pasuje do typu użytego podczas tworzenia bazy danych.\n
+&#8226;Upewnij się, że wybrałeś odpowiedni plik bazy danych.
+ </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Wskazówka: Jeśli sądzisz, że Twoja baza danych mogła zostać uszkodzona lub nie pamiętasz klucza głównego po jego zmodyfikowaniu, możesz spróbować z ostatnio pomyślnie otwartą wersją pliku, klikając \"%1$s\" i wybierając lokalną kopię zapasową.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Wskazówka: Keepass2Android zachował ostatnią poprawnie otwartą wersję pliku w swojej wewnętrznej pamięci. Możesz ją otworzyć, klikając w \"%1$s\" i wybierając lokalną kopię zapasową.
+  </string>
+  <string name="CorruptDatabaseHelp">    Plik jest uszkodzony. \n
+    Tu są wskazówki, które mogą pomóc zdiagnozować problem:\n
+    
+    &#8226;Jeśli skopiowałeś plik przez USB (w trybie MTP), proszę spróbuj ponownie używając narzędzia takiego jak MyPhoneExplorer. MTP obcina pliki w pewnych przypadkach.\n
+    &#8226;Jeśli nie możesz otworzyć pliku z tej samej lokalizacji na swoim PC, to bardzo prawdopodobne, że plik jest rzeczywiście uszkodzony. W takim wypadku użyj kopii zapasowej bazy danych. Jeśli przypuszczasz, że to Keepass2Android uszkodził plik, skontaktuj się z pomocą.\n
+    &#8226;Jeśli możesz otworzyć plik na swoim komputerze, skontaktuj się z pomocą. Możesz spróbować zapisać go z innymi ustawieniami (np. rozpakowany) na komputerze i spróbować ponownie otworzyć w Keepass2Android.
+
+  </string>
   <string name="open_other_db">Otwórz inną bazę danych</string>
   <string name="select_database">Wybierz bazę danych</string>
   <string name="configure_child_dbs">Skonfiguruj podrzędną bazę danych…</string>
@@ -690,6 +709,13 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_10">
+    <item>Dodaj wsparcie dla uprawnień do powiadomień na Androidzie 13+</item>
+    <item>Poprawia wdrażania FTP i SFTP</item>
+    <item>Dodaj dostęp do pełnej chmury</item>
+    <item>Pozwala wybrać język systemu w oknie dialogowym</item>
+    <item>Napraw problem z zapamiętaniem pliku klucza + kwestionowaniem typ hasła</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Naprawa błędów awarii i nieoczekiwanych wylogowań</item>
     <item>Przełącz się na nową implementację SFTP, wspierając nowoczesne algorytmy klucza publicznego, takie jak rsa-sha2-256</item>
@@ -755,6 +781,15 @@
     <item>Poprawki błędów</item>
     <item>Poprawki błędów</item>
   </string-array>
+  <string name="ChangeLog_1_07b">   Wersja 1. 7b\n
+    * Poprawa wydajności Argon2 dzięki natywnej implementacji (Dzięki Chih-Hsuan Yen!)\n
+    * Istnieje możliwość wyłączenie odcisku palca, klikając ikonę odcisku palca (zapobiega problemom z czytnikami odcisków palców pod ekranem, dzięki marcoDallas!)\n
+    * Przywrócenie pozycji kursora podczas przełączania widoczności hasła (dzięki DDoSolitary!)\n
+    * Ulepszenia implementacji pCloud (dzięki gilbsgilb\'om znowu!)\n
+    * Dodano wsparcie autouzupełniania dla większej ilości przeglądarek\n
+    * Nowa implementacja dla OneDrive: zawiera wsparcie dla OneDrive for Business, plików współdzielonych, wybranych zakresów dostępu, wielu kont i naprawia problemy z dostępem offline\n
+    * Poprawki błędów
+  </string>
   <string name="ChangeLog_keptDonate">Rozszerzone możliwości darowania piwa lub czegoś innego</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
