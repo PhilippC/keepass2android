@@ -152,6 +152,7 @@
   <string name="hint_keyfile">plik klucza</string>
   <string name="hint_length">długość</string>
   <string name="hint_pass">hasło</string>
+  <string name="hint_keyfile_path">Ścieżka klucza prywatnego SSH</string>
   <string name="hint_login_pass">Hasło</string>
   <string name="hint_title">Nazwa</string>
   <string name="hint_url">URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Pokazuje powiadomienie gdy baza danych gdy jest odblokowana.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 wprowadził nowe zachowanie dla powiadomień. Jeśli chcesz schować ikonę powiadomień Keepass2Android, skonfiguruj to w ustawieniach systemu. Ustaw ważność kategorii powiadomień na Minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Otwórz ustawienia</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android może wyświetlić powiadomienie systemowe, w sytuacji gdy Twoja baza danych nie jest zablokowana. Aby to zrobić, proszę udzielić uprawnień.</string>
   <string name="DontCare">Nie obchodzi mnie to</string>
   <string name="DocumentAccessRevoked">Plik nie jest już dostępny dla Keepass2Android. Został usunięty lub uprawnienia do niego zostały cofnięte. Użyj opcji ponownego otwarcia pliku, np. przełączając bazę danych.</string>
   <string name="PreloadDatabaseEnabled_title">Wstępnie wczytuj bazę danych</string>
@@ -504,6 +506,23 @@
   <string name="enter_sftp_login_title">Wpisz dane loginu SFTP:</string>
   <string name="sftp_auth_mode">Tryb uwierzytelniania</string>
   <string name="send_public_key">Wyślij klucz publiczny…</string>
+  <string name="select_private_keyfile">Wybierz klucz prywatny...</string>
+  <string name="hint_sftp_key_name">Nazwa nowego klucza</string>
+  <string name="hint_sftp_key_content">Zawartość nowego klucza</string>
+  <string name="private_key_saved">Klucz prywatny zapisany</string>
+  <string name="private_key_save_failed">Nie udało się zapisać klucza prywatnego: %1$s</string>
+  <string name="private_key_info">Wprowadź nazwę klucza i zawartość do zapisania</string>
+  <string name="private_key_delete">Usunięto klucz prywatny: %1$s</string>
+  <string name="private_key_delete_failed">Nie udało się usunąć klucza prywatnego: %1$s</string>
+  <string name="save_key">Zapisz klucz prywatny</string>
+  <string name="delete_key">Usuń klucz prywatny</string>
+  <string name="private_key_select">Wybierz klucz prywatny...</string>
+  <string name="private_key_create_new">[Dodaj nowy...]</string>
+  <string name="hint_sftp_key_passphrase">Hasło klucza (opcjonalne)</string>
+  <string name="sftp_kex_title">Algorytm wymiany klucza (KEX) (opcjonalnie)</string>
+  <string name="hint_sftp_kex">Nazwy oddzielone przecinkami / specyfikacja</string>
+  <string name="sftp_shk_title">Algorytm klucza hosta serwera (opcjonalnie)</string>
+  <string name="hint_sftp_shk">Nazwy oddzielone przecinkami / specyfikacja</string>
   <string name="enter_ftp_login_title">Wpisz dane logowania FTP:</string>
   <string name="enter_mega_login_title">Wprowadź dane logowania do konta MEGA:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
@@ -521,7 +540,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Dysk Google (pliki KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Jeśli nie chcesz dać KP2A dostępu do pełnego Dysku Google, możesz wybrać tę opcję. Pamiętaj, że najpierw musisz utworzyć plik bazy danych, istniejące pliki nie są widoczne dla aplikacji. Wybierz tę opcję z ekranu tworzenia bazy danych lub, jeśli już otworzyłeś bazę danych, eksportując bazę danych wybierając tę opcję.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
   <string name="filestoragehelp_pcloud">Ten typ magazynu będzie wymagał jedynie dostępu do folderu pCloud. \"Applications/Keepass2Android\". Jeżeli chcesz używać istniejącej bazy danych ze swojego konta pCloud, proszę upewnij się, że plik jest umieszczony w tym katalogu pCloud.</string>
+  <string name="filestoragename_pcloudall">PCgłośny (pełny dostęp)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Wszystkie pliki i współdzielone pliki</string>
@@ -573,6 +594,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Plik dziennika do debugowania</string>
   <string name="DebugLog_title">Użyj pliku dziennika</string>
+  <string name="FtpDebug_title">FTP/SFTP debug logging</string>
   <string name="DebugLog_summary">Zapisuj dane wyjściowe aplikacji do lokalnego pliku dziennika</string>
   <string name="DebugLog_send">Wyślij dziennik debugowania...</string>
   <string name="loading">Ładowanie…</string>
