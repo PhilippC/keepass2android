@@ -664,6 +664,24 @@
   <string name="Continue">Pokračovat</string>
   <string name="NoFilenameWarning">Adresa URI, kterou jste zadali, nevypadá jako název souboru. Jste si jistí, že je to platný soubor?</string>
   <string name="FirstInvalidCompositeKeyError">Neplatný složený klíč! Zkuste to znovu.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Neplatný složený klíč! Prosím, vyzkoušejte následující kroky k odemknutí databáze:\n
+  
+    • Ujistěte se, že jste zadali správné heslo. Použitím ikonky s okem odkryjete vložené heslo.\n
+   • Ujistěte se, že jste použili správný typ hesla. Ujistěte se, že tento typ odpovídá typu použitému při vytváření databáze.\n
+   • Ujistěte se, že jste použili správný soubor databáze.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Nápověda: Pokud si myslíte že by soubor databáze mohl být poškozený, nebo si nepamatujete hlavní klíč, můžete zkusit poslední úspěšně otevřenou verzi souboru kliknutím \"%1$s\" a zvolením místní zálohy.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Nápověda: Keepass2Android uložil poslední úspěšně otevřenou verzi souboru do interního úložiště. Můžete ji otevřít klepnutím na \"%1$s\" a výběrem místní zálohy.
+  </string>
+  <string name="CorruptDatabaseHelp">    Soubor je poškozený. \n
+    Zde je několik rad, které vám mohou pomoci zjistit příčinu problému:\n
+    
+    • Pokud jste soubor kopírovali přes USB (v MTP módu), zkuste to, prosím, znovu pomocí nástroje jako například MyPhoneExplorer. MTP v některý případech soubory ořezává.\n
+    • Pokud nemůžete ten samý soubor otevřít ani ve svém PC, je velmi pravděpodobné, že je soubor doopravdy poškozený. V tom případě použijte záložní soubor. Pokud předpokládáte, že soubor byl poškozen v Keepass2Android, kontaktujte, prosím, podporu.\n
+    • Jestliže můžete otevřít soubor na vašem PC, kontaktujte, prosím, podporu. Můžete se pokusit na vašem PC uložit soubor s rozdílným nastavením (např. nezazipovaný) a znovu se jej pokusit otevřít v Keepass2Android.
+
+  </string>
   <string name="open_other_db">Otevřít další databázi…</string>
   <string name="select_database">Vybrat databázi</string>
   <string name="configure_child_dbs">Konfigurace dceřiné databáze…</string>
@@ -691,6 +709,13 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string-array name="ChangeLog_1_10">
+    <item>Přidání podpory oprávnění pro oznámení v systému Android 13+</item>
+    <item>Zlepšení implementace FTP a SFTP</item>
+    <item>Přidání přístupu k plnému pCloudu</item>
+    <item>Povolení výběru jazyka systému v dialogovém okně jazyka</item>
+    <item>Oprava problému se zapamatováním typu souboru klíče + Challenge</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Opravy pádů a nečekaného odhlašování</item>
     <item>Přepnutí na novou implementaci SFTP, podporující moderní algoritmy pro veřejné klíče jako rsa-sha2-256</item>
