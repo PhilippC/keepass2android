@@ -503,6 +503,7 @@
   <string name="hint_sftp_host">host (np: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
+  <string name="connect_timeout">Limit czasu utraty połączenia (opcjonalnie)</string>
   <string name="enter_sftp_login_title">Wpisz dane loginu SFTP:</string>
   <string name="sftp_auth_mode">Tryb uwierzytelniania</string>
   <string name="send_public_key">Wyślij klucz publiczny…</string>
@@ -839,8 +840,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Hasło</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Klucz prywatny/publiczny KP2A</item>
+    <item>Niestandardowy klucz prywatny</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
@@ -858,6 +859,11 @@
   <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android wykrył sprzęt biometryczny. Czy chcesz włączyć odblokowanie biometryczne dla tej bazy danych?</string>
+  <string name="post_notifications_dialog_title">Zezwalaj na powiadomienia</string>
+  <string name="post_notifications_dialog_message">Keepass2Android może pokazywać powiadomienia za pomocą przycisków do kopiowania do schowka wartości takich jak hasła i TOTP lub pokazywać wbudowaną klawiaturę. Jest to przydatne do przenoszenia wartości do innych aplikacji bez wielokrotnego przełączania na Keepass2Android. Czy chcesz włączyć takie powiadomienia?</string>
+  <string name="post_notifications_dialog_allow">Zezwalaj na powiadomienia</string>
+  <string name="post_notifications_dialog_disable">Wyłącz tę funkcję</string>
+  <string name="post_notifications_dialog_notnow">Nie teraz</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Nie pokazuj ponownie</string>
   <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>
