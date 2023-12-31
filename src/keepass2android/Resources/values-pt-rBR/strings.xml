@@ -930,6 +930,20 @@
     * ordem de classificação inversa para classificar por data de modificação (agora decrescente)\n
     * correções de bugs: visualização de notas agora atualizada corretamente após alterações, visualizações de senha agora ocultando a senha corretamente em (espero) todos os dispositivos, problema corrigido que permitia adicionar uma entrada duas vezes, problema corrigido ao mostrar aviso de UUID duplicado mesmo após a correção do banco de dados\n
   </string>
+  <string name="ChangeLog_0_9_6">    Versão 0.9.6\n
+    * permite importar arquivo de chave e/ou arquivo de banco de dados local para o diretório interno do aplicativo (consulte configurações)\n
+    *permitir diferentes opções de classificação\n
+    * preferências aprimoradas para troca automática de teclado\n
+    * logotipo do aplicativo e design de notificação atualizados, desenhados por Stefano Pignataro (http://www.spstudio.at)\n
+    * gerador de senha lembra as últimas configurações\n
+    * definir a visibilidade das notificações na tela de bloqueio do Android 5\n
+    * agora limpando o campo de senha mestra ao sair do aplicativo sem tocar em OK\n
+    * problema corrigido com idiomas de entrada ausentes na configuração do teclado em alguns dispositivos\n
+    * problema corrigido com a troca automática de teclado em dispositivos com acesso root\n
+    * adicionada verificação de bancos de dados corrompidos (UUIDs duplicados)\n
+    * recarrega automaticamente o banco de dados quando uma alteração é detectada, resolve problemas de segurança relacionados à revelação da senha mestra\n
+    * layout de teclado pequeno aprimorado e tema de configurações de teclado fixo (graças a Wiktor Ławski)\n
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
