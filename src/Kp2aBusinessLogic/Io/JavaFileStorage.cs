@@ -348,7 +348,7 @@ namespace keepass2android.Io
 			}
 			catch (Exception e)
 			{
-				throw new Exception("Error finding " + filename + " in " + folderPath.GetDisplayName(), e);
+				throw new Exception("Error finding " + filename + " in " + GetDisplayName(folderPath), e);
 			}
 			
 		}

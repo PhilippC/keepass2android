@@ -129,7 +129,7 @@ namespace OtpKeyProv
 			if(!OtpInfo.Save(auxFileIoc, otpInfo))
 			{
 				MessageService.ShowWarning("Failed to save auxiliary OTP info file:",
-					auxFileIoc.GetDisplayName());
+                    UrlUtil.GetFileName(auxFileIoc.Path));
 				return false;
 			}
 

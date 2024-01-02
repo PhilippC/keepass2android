@@ -185,7 +185,7 @@ namespace KeePassLib.Serialization
 					byte[] pbFile = StrUtil.Utf8.GetBytes(sb.ToString());
 
 					s = IOConnection.OpenWrite(iocLockFile);
-					if(s == null) throw new IOException(iocLockFile.GetDisplayName());
+					if(s == null) throw new IOException(UrlUtil.GetFileName(iocLockFile.Path));
 					s.Write(pbFile, 0, pbFile.Length);
 				}
 				finally { if(s != null) s.Close(); }
@@ -205,8 +205,7 @@ namespace KeePassLib.Serialization
 			if(lfiEx != null)
 			{
 				m_iocLockFile = null; // Otherwise Dispose deletes the existing one
-				throw new FileLockException(iocBaseFile.GetDisplayName(),
-					lfiEx.GetOwner());
+				throw new FileLockException(UrlUtil.GetFileName(iocBaseFile.Path), lfiEx.GetOwner());
 			}
 
 			LockFileInfo.Create(m_iocLockFile);

@@ -28,6 +28,7 @@ using System.Diagnostics;
 
 using KeePassLib.Resources;
 using KeePassLib.Serialization;
+using Android.Webkit;
 
 namespace KeePassLib.Utility
 {
@@ -411,7 +412,7 @@ Clipboard.SetText(ObjectsToMessage(vLines, true));*/
 		public static void ShowLoadWarning(IOConnectionInfo ioConnection, Exception ex)
 		{
 			if (ioConnection != null)
-				ShowLoadWarning(ioConnection.GetDisplayName(), ex, false);
+				ShowLoadWarning(UrlUtil.GetFileName(ioConnection.Path), ex, false);
 			else ShowWarning(ex);
 		}
 
@@ -444,7 +445,7 @@ Clipboard.SetText(ObjectsToMessage(vLines, true));*/
 			bool bCorruptionWarning)
 		{
 			if (ioConnection != null)
-				ShowSaveWarning(ioConnection.GetDisplayName(), ex, bCorruptionWarning);
+				ShowSaveWarning(UrlUtil.GetFileName(ioConnection.Path), ex, bCorruptionWarning);
 			else ShowWarning(ex);
 		}
 
