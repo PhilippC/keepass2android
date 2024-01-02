@@ -80,7 +80,6 @@ namespace keepass2android.view
 		private void PopulateView(View gv, PwGroup pw)
         {
 			_pwGroup = pw;
-            Kp2aLog.Log($"Populating group view {_groupBaseActivity.IsFinishing} {pw.Name}");
 
             if (_groupBaseActivity.IsFinishing)
                 return;
