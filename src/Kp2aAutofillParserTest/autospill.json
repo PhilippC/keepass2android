@@ -1,0 +1,48 @@
+﻿{
+  "InputFields": [
+    {
+      "IdEntry": "native_username",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 1,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": ["username"]
+    },
+    {
+      "IdEntry": "native_password",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 129,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": []
+    },
+    {
+      "IdEntry": "webview_email",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [ "email" ],
+      "IsFocused": true,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": [ "emailAddress" ]
+    },
+    {
+      "IdEntry": "webview_password",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [
+        "password"
+      ],
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": [ "password" ]
+    }
+  ],
+  "PackageId": "com.vivaldi.browser",
+  "WebDomain": "m.facebook.com"
+}        

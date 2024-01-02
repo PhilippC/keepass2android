@@ -72,6 +72,13 @@ namespace Kp2aAutofillParserTest
             RunTestFromAutofillInput(resourceName, "com.expressvpn.vpn", null);
         }
 
+        [Fact]
+        public void HandlesAutospillGracefully()
+        {
+            var resourceName = "Kp2aAutofillParserTest.autospill.json";
+            RunTestFromAutofillInput(resourceName, "com.vivaldi.browser", "m.facebook.com");
+        }
+
         private void RunTestFromAutofillInput(string resourceName, string expectedPackageName = null, string expectedWebDomain = null)
         {
             var assembly = Assembly.GetExecutingAssembly();

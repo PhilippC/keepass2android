@@ -68,8 +68,5 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>
