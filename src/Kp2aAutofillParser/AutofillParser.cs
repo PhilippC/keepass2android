@@ -434,7 +434,7 @@ namespace Kp2aAutofillParser
         public static List<string> ConvertToCanonicalLowerCaseHints(string[] supportedHints)
         {
             List<string> result = new List<string>();
-            foreach (string hint in supportedHints)
+            foreach (string hint in supportedHints.Where(h => h != null))
             {
                 var canonicalHint = ToCanonicalHint(hint);
                 result.Add(canonicalHint.ToLower());
@@ -829,7 +829,7 @@ namespace Kp2aAutofillParser
             // * if there is no such autofill hint, we use IsPassword to 
 
             HashSet<string> autofillHintsOfAllFields = autofillView.InputFields.Where(f => f.AutofillHints != null)
-                .SelectMany(f => f.AutofillHints).Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet();
+                .SelectMany(f => f.AutofillHints).Where(x => x != null).Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet();
             bool hasLoginAutofillHints = autofillHintsOfAllFields.Intersect(_autofillHintsForLogin).Any();
 
             if (hasLoginAutofillHints)
@@ -839,9 +839,9 @@ namespace Kp2aAutofillParser
                     string[] viewHints = viewNode.AutofillHints;
                     if (viewHints == null)
                         continue;
-                    if (viewHints.Select(AutofillHintsHelper.ToCanonicalHint).Intersect(_autofillHintsForLogin).Any())
+                    if (viewHints.Where(h => h != null).Select(AutofillHintsHelper.ToCanonicalHint).Intersect(_autofillHintsForLogin).Any())
                     {
-                        AddFieldToHintMap(viewNode, viewHints.Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet().ToArray());
+                        AddFieldToHintMap(viewNode, viewHints.Where(h => h != null).Select(AutofillHintsHelper.ToCanonicalHint).ToHashSet().ToArray());
                     }
 
                 }
