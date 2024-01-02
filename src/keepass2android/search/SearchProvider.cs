@@ -30,6 +30,7 @@ using KeePassLib;
 using KeePassLib.Utility;
 using System.Threading;
 using System.Collections.Generic;
+using KeePass.Util.Spr;
 
 namespace keepass2android.search
 {
@@ -294,7 +295,10 @@ namespace keepass2android.search
                             return Position.ToString(CultureInfo.InvariantCulture);
                         case 1: // SuggestColumnText1
                             string username = CurrentEntry.Strings.ReadSafe(PwDefs.UserNameField);
-                            return CurrentEntry.Strings.ReadSafe(PwDefs.TitleField) + (string.IsNullOrWhiteSpace(username) ? "" : " ("+username+")");
+							username = SprEngine.Compile(username, new SprContext(CurrentEntry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
+                            var title = CurrentEntry.Strings.ReadSafe(PwDefs.TitleField);
+                            title = SprEngine.Compile(title, new SprContext(CurrentEntry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
+                            return title + (string.IsNullOrWhiteSpace(username) ? "" : " ("+username+")");
                         case 2: // SuggestColumnText2
                                 return Internationalise(_entriesWithContexts[Position].resultContext);
                         case 3: // SuggestColumnIcon1

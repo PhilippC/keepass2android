@@ -125,7 +125,8 @@ namespace keepass2android.view
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);
-			var str = new SpannableString(title);
+            title = SprEngine.Compile(title, new SprContext(_entry, db.KpDatabase, SprCompileFlags.All));
+            var str = new SpannableString(title);
 
 			if (isExpired)
 			{

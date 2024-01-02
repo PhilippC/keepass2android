@@ -937,10 +937,9 @@ namespace keepass2android
 				iv.SetImageDrawable(Resources.GetDrawable(Resource.Drawable.ic00));
 			}
 
-
-
             SupportActionBar.Title = Entry.Strings.ReadSafe(PwDefs.TitleField);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.Title = SprEngine.Compile(SupportActionBar.Title, new SprContext(Entry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
+			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
 			PopulateGroupText (Resource.Id.entry_group_name, Resource.Id.entryfield_group_container, KeyGroupFullPath);
