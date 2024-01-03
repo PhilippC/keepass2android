@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="android14-settings.json" />
     <None Remove="chrome-android10-amazon-it.json" />
     <None Remove="com-expressvpn-vpn-android13.json" />
     <None Remove="com-ifs-banking-fiid3364-android13.json" />
@@ -52,6 +53,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="com-servicenet-mobile-no-focus.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="android14-settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="imdb.json">
