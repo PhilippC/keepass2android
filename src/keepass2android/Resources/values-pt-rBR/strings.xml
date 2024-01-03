@@ -944,6 +944,16 @@
     * recarrega automaticamente o banco de dados quando uma alteração é detectada, resolve problemas de segurança relacionados à revelação da senha mestra\n
     * layout de teclado pequeno aprimorado e tema de configurações de teclado fixo (graças a Wiktor Ławski)\n
   </string>
+  <string name="ChangeLog_0_9_5">    <b>Versão 0.9.5</b>\n
+    * Corrigidos problemas com a navegação de arquivos (especialmente no Android 4.4)\\n
+    * Corrigido problema ao carregar arquivos .kdb (Keepass 1) no Nexus 5 com Android Lollipop\\n
+    * Adicionada opção para evitar capturas de tela/exibição de aplicativos na lista de aplicativos recentes\\n
+    * Corrigido problema com armazenamento de arquivos do Google Drive (edição regular)\\n
+    * Permitir arquivos importantes em tipos de armazenamento deliberados (edição regular)\\n
+    * SDK do Dropbox atualizado para incluir um patch de segurança oficial (edição regular)\\n
+    * Ferramentas de compilação atualizadas --&gt; tamanho do apk aumentado :-(\n
+    Eu prometi mais algumas mudanças. Eles virão no próximo lançamento - desculpe. Eu queria publicar esses hot fixes o mais rápido possível.
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
