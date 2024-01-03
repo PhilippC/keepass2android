@@ -71,6 +71,12 @@ namespace Kp2aAutofillParserTest
             var resourceName = "Kp2aAutofillParserTest.com-expressvpn-vpn-android13.json";
             RunTestFromAutofillInput(resourceName, "com.expressvpn.vpn", null);
         }
+        [Fact]
+        public void TestIgnoresAndroidSettings()
+        {
+            var resourceName = "Kp2aAutofillParserTest.android14-settings.json";
+            RunTestFromAutofillInput(resourceName, "com.android.settings", null);
+        }
 
         private void RunTestFromAutofillInput(string resourceName, string expectedPackageName = null, string expectedWebDomain = null)
         {

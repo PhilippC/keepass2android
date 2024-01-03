@@ -40,6 +40,26 @@ namespace keepass2android.services.AutofillBase
 
     public abstract class AutofillServiceBase: AutofillService
     {
+        private HashSet<string> _internal_blacklistedUris = null;
+
+        public HashSet<string> BlacklistedUris
+        {
+            get
+            {
+                if (_internal_blacklistedUris == null)
+                {
+                    _internal_blacklistedUris = new HashSet<string>()
+                    {
+                        KeePass.AndroidAppScheme + "android",
+                        KeePass.AndroidAppScheme + "com.android.settings",
+                        KeePass.AndroidAppScheme + this.PackageName
+                    };
+                }
+
+                return _internal_blacklistedUris;
+
+            }
+        }
         protected override void AttachBaseContext(Context baseContext)
         {
             base.AttachBaseContext(LocaleManager.setLocale(baseContext));
@@ -386,7 +406,7 @@ namespace keepass2android.services.AutofillBase
 
         private bool CanAutofill(StructureParser.AutofillTargetId query, bool isManual)
         {
-            if (query.PackageNameWithPseudoSchema == KeePass.AndroidAppScheme+"android" || query.PackageNameWithPseudoSchema == KeePass.AndroidAppScheme + this.PackageName)
+            if (BlacklistedUris.Contains(query.PackageNameWithPseudoSchema))
                 return false;
             if (!isManual)
             {
