@@ -68,6 +68,9 @@ Please see the [How to use Keepass2Android with YubiKey NEO](How-to-use-Keepass2
 ## Advanced usage of the Keepass2Android keyboard
 Please see the [Advanced usage of the Keepass2Android keyboard](Advanced-usage-of-the-Keepass2Android-keyboard.md) page.
 
+## Using Keepass2Android like an authenticator app to generate Time-based One-Time-Passwords (TOTPs)
+Please see [Generating TOTPs with Keepass2Android](Generating-TOTPs.md)
+
 # FAQ
 
 ## Should I use the KP2A keyboard for entering passwords?
