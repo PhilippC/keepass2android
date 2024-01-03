@@ -5,6 +5,7 @@ using keepass2android;
 using KeePassLib;
 using KeePassLib.Cryptography;
 using KeePassLib.Utility;
+using KeeTrayTOTP.Libraries;
 
 namespace PluginTOTP
 {
@@ -66,8 +67,8 @@ namespace PluginTOTP
 
                 entryFields.TryGetValue(strPrefix + "Secret-Base32", out str);
                 if (!string.IsNullOrEmpty(str))
-                    return MemUtil.ParseBase32(str);
-
+                    return Base32.Decode(str); 
+                   
                 entryFields.TryGetValue(strPrefix + "Secret-Base64", out str);
                 if (!string.IsNullOrEmpty(str))
                     return Convert.FromBase64String(str);
