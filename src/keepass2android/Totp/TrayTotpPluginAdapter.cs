@@ -31,17 +31,8 @@ namespace PluginTOTP
 				_muteWarnings = muteWarnings;
 			}
 
-			/// <summary>
-			/// Check if specified Entry contains Settings that are not null.
-			/// </summary>
-			internal bool SettingsCheck(IDictionary<string, string> entryFields)
-			{
-				string settings;
-				entryFields.TryGetValue(SettingsFieldName, out settings);
-				return !String.IsNullOrEmpty(settings);
-			}
-
-			internal bool SeedCheck(IDictionary<string, string> entryFields)
+			
+			internal bool HasSeed(IDictionary<string, string> entryFields)
 			{
 				string seed;
 				entryFields.TryGetValue(SeedFieldName, out seed);
@@ -100,15 +91,15 @@ namespace PluginTOTP
 			}
 
 			private string[] SettingsGet(IDictionary<string, string> entryFields)
-			{
-				return entryFields[SettingsFieldName].Split(';');
-			}
+            {
+                return entryFields.TryGetValue(SettingsFieldName, out var settings) ? settings.Split(';') : new[] { "30", "6" };
+            }
 
 			public TotpData GetTotpData(IDictionary<string, string> entryFields)
 			{
 				TotpData res = new TotpData();
 
-				if (SettingsCheck(entryFields) && SeedCheck(entryFields))
+				if (HasSeed(entryFields))
 				{
 					bool ValidInterval; bool ValidLength; bool ValidUrl;
 					if (SettingsValidate(entryFields, out ValidInterval, out ValidLength, out ValidUrl))
