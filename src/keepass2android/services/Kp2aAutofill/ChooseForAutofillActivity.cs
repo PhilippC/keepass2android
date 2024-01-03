@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using KeePass.Util.Spr;
 using keepass2android.services.AutofillBase;
 using keepass2android.services.AutofillBase.model;
 using Keepass2android.Pluginsdk;
@@ -108,6 +109,7 @@ namespace keepass2android.services.Kp2aAutofill
 
 
             fieldCollection.DatasetName = pwEntry.Strings.ReadSafe(PwDefs.TitleField);
+            fieldCollection.DatasetName = SprEngine.Compile(fieldCollection.DatasetName, new SprContext(pwEntry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
 
             return fieldCollection;
         }
