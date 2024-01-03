@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A χωρίς σύνδεση</string>
   <string name="app_timeout">Λήξη χρονικού ορίου εφαρμογής</string>
   <string name="app_timeout_summary">Χρόνος πριν το κλείδωμα της βάσης δεδομένων όταν η εφαρμογή είναι ανενεργή.</string>
-  <string name="kill_app_label">Τερματισμός διεργασίας</string>
   <string name="show_kill_app">Κουμπί τερματισμού</string>
+  <string name="kill_app_label">Τερματισμός διεργασίας</string>
   <string name="show_kill_app_summary">Προβάλει κουμπί στην οθόνη συνθηματικού που τερματίζει τη διεργασία της εφαρμογής (για παρανοϊκούς χρήστες)</string>
   <string name="application">Εφαρμογή</string>
   <string name="application_settings">Ρυθμίσεις εφαρμογής</string>
@@ -152,6 +152,7 @@
   <string name="hint_keyfile">αρχείο κλειδιού</string>
   <string name="hint_length">μήκος</string>
   <string name="hint_pass">συνθηματικό</string>
+  <string name="hint_keyfile_path">Διαδρομή ιδιωτικού κλειδιού SSH</string>
   <string name="hint_login_pass">Συνθηματικό</string>
   <string name="hint_title">όνομα</string>
   <string name="hint_url">URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Προβολή εικονιδίου ειδοποίησης, ενόσω η βάση δεδομένων είναι ξεκλείδωτη.</string>
   <string name="IconVisibilityInfo_Android8_text">Το Android 8 εισήγαγε νέα συμπεριφορά για τις ειδοποιήσεις. Απόκρυψη του εικονιδίου των ειδοποιήσεων του Keepass2Android γίνεται από τις ρυθμίσεις συστήματος. Ορίστε τη σημαντικότητα της κατηγορίας ειδοποιήσεων στο Ελάχιστο.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Άνοιγμα ρυθμίσεων</string>
+  <string name="PostNotificationsPermissionInfo_text">Το Keepass2Android μπορεί να εμφανίζει μια ειδοποίηση συστήματος ενόσω η βάση δεδομένων σας παραμένει ξεκλείδωτη. Για να λειτουργήσει αυτό, χορηγήστε την άδεια.</string>
   <string name="DontCare">Δεν με νοιάζει</string>
   <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακηθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανα-ανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
   <string name="PreloadDatabaseEnabled_title">Προ-φόρτωση αρχείου βάσης δεδομένων</string>
@@ -501,9 +503,27 @@
   <string name="hint_sftp_host">κόμβος (πχ 192.168.0.1)</string>
   <string name="hint_sftp_port">θύρα</string>
   <string name="initial_directory">Αρχικός κατάλογος (προαιρετικό):</string>
+  <string name="connect_timeout">Χρονικό όριο σύνδεσης σε δευτερόλεπτα (προαιρετικό)</string>
   <string name="enter_sftp_login_title">Εισάγετε στοιχεία σύνδεσης SFTP:</string>
   <string name="sftp_auth_mode">Τρόπος αυθεντικοποίησης</string>
   <string name="send_public_key">Αποστολή δημόσιου κλειδιού...</string>
+  <string name="select_private_keyfile">Επιλέξτε ιδιωτικό κλειδί...</string>
+  <string name="hint_sftp_key_name">Νέο όνομα κλειδιού</string>
+  <string name="hint_sftp_key_content">Νέο περιεχόμενο κλειδιού</string>
+  <string name="private_key_saved">Το ιδιωτικό κλειδί αποθηκεύτηκε</string>
+  <string name="private_key_save_failed">ΑΠΟΤΥΧΙΑ αποθήκευσης του ιδιωτικού κλειδιού: %1$s</string>
+  <string name="private_key_info">Εισάγετε όνομα και περιεχόμενο του κλειδιού για αποθήκευση</string>
+  <string name="private_key_delete">Διαγράφηκε το ιδιωτικό κλειδί: %1$s</string>
+  <string name="private_key_delete_failed">ΑΠΟΤΥΧΙΑ διαγραφής του ιδιωτικού κλειδιού: %1$s</string>
+  <string name="save_key">Αποθήκευση ιδιωτικού κλειδιού</string>
+  <string name="delete_key">Διαγραφή ιδιωτικού κλειδιού </string>
+  <string name="private_key_select">Επιλέξτε ιδιωτικό κλειδί</string>
+  <string name="private_key_create_new">[Προσθήκη νέου...]</string>
+  <string name="hint_sftp_key_passphrase">Συνθηματικό κλειδιού (προαιρετικό)</string>
+  <string name="sftp_kex_title">Αλγόριθμος ανταλλαγής κλειδιών (προαιρετικά)</string>
+  <string name="hint_sftp_kex">Όνομα / προσδιορισμός διαχωρισμένα με κόμμα</string>
+  <string name="sftp_shk_title">Αλγόριθμος για το κλειδί του διακομιστή (προαιρετικά)</string>
+  <string name="hint_sftp_shk">Όνομα / προσδιορισμός διαχωρισμένα με κόμμα</string>
   <string name="enter_ftp_login_title">Εισαγωγή δεδομένων εισόδου FTP:</string>
   <string name="enter_mega_login_title">Εισάγετε τα δεδομένα εισόδου για το λογαριασμό MEGA:</string>
   <string name="select_storage_type">Επιλέξτε τύπο αποθήκευσης:</string>
@@ -521,7 +541,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (αρχεία KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Αν δεν θέλετε να δώσετε πρόσβαση KP2A πρόσβαση σε όλο το Google Drive σας, μπορείτε να επιλέξετε αυτή την επιλογή. Σημειώστε ότι πρέπει να δημιουργήσετε ένα αρχείο βάσης δεδομένων πρώτα - τα υπάρχοντα αρχεία δεν είναι ορατά στην εφαρμογή. Επιλέξτε αυτή την επιλογή από την οθόνη Δημιουργία βάσης δεδομένων ή, αν έχετε ήδη ανοίξει μια βάση δεδομένων, με την εξαγωγή της βάσης δεδομένων επιλέγοντας αυτή την επιλογή.</string>
+  <string name="filestoragename_pcloud">PCloud (φάκελος KP2A)</string>
   <string name="filestoragehelp_pcloud">Αυτός ο τύπος αποθήκευσης θα ζητήσει πρόσβαση μόνο στον pCloud φάκελο \"Applications/Keepass2Android\". Αν θέλετε να χρησιμοποιήσετε μια υπάρχουσα βάση δεδομένων από τον pCloud λογαριασμό σας, βεβαιωθείτε ότι το αρχείο έχει τοποθετηθεί σε αυτόν τον φάκελο.</string>
+  <string name="filestoragename_pcloudall">PCloud (πλήρης πρόσβαση)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Όλα τα αρχεία και τα κοινά αρχεία</string>
@@ -573,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Αρχείο καταγραφών για αποσφαλμάτωση</string>
   <string name="DebugLog_title">Χρήση αρχείου καταγραφών</string>
+  <string name="FtpDebug_title">Καταγραφή σφαλμάτων FTP/SFTP</string>
   <string name="DebugLog_summary">Καταγραφή στοιχείων της εφαρμογής σε τοπικό αρχείο καταγραφών</string>
   <string name="DebugLog_send">Αποστολή αρχείων καταγραφής εκσφαλμάτωσης...</string>
   <string name="loading">Φόρτωση…</string>
@@ -641,6 +664,21 @@
   <string name="Continue">Συνέχεια</string>
   <string name="NoFilenameWarning">Το URI που έχετε εισάγατε δεν μοιάζει με όνομα αρχείου. Είστε βέβαιοι ότι είναι έγκυρο αρχείο;</string>
   <string name="FirstInvalidCompositeKeyError">Μη έγκυρο σύνθετο κλειδί! Παρακαλώ δοκιμάστε ξανά.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Μη έγκυρο σύνθετο κλειδί! Δοκιμάστε τα ακόλουθα βήματα για να ξεκλειδώσετε τη βάση δεδομένων: \n
+
+* Βεβαιωθείτε ότι έχετε πληκτρολογήσει το σωστό συνθηματικό. Χρησιμοποιήστε το εικονίδιο \'μάτι\' για να αποκαλυφθεί το συνθηματικό που εισάγατε. \n
+* Βεβαιωθείτε ότι έχετε επιλέξει σωστό τύπο συνθηματικού. Βεβαιωθείτε ότι ταιριάζει με τον τύπο που χρησιμοποιήθηκε κατά τη δημιουργία της βάσης δεδομένων. \n
+* Βεβαιωθείτε ότι έχετε επιλέξει το σωστό αρχείο βάσης δεδομένων.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Υπόδειξη: Αν νομίζεις ότι η βάση δεδομένων σου έχει καταστραφεί, ή δεν θυμάσαι το κύριο κλειδί μετά την αλλαγή του, μπορείς να δοκιμάσεις την τελευταία έκδοση του αρχείου που άνοιξες με επιτυχία πατώντας \"%1$s\" και επιλέγοντας το τοπικό αντίγραφο.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Υπόδειξη: Το Keepass2Android έχει αποθηκεύσει την τελευταία έκδοση του αρχείου που ανοίχτηκε στην εσωτερική μνήμη. Μπορείς να την ανοίξεις πατώντας \"%1$s\" και επιλέγοντας το τοπικό αντίγραφο.  </string>
+  <string name="CorruptDatabaseHelp">Το αρχείο είναι κατεστραμμένο. \n
+Ακολουθούν υποδείξεις για τη διάγνωση του προβλήματος: \n
+
+Αν αντιγράψατε το αρχείο μέσω USB (MTP-Mode), προσπαθήστε ξανά με εργαλεία όπως το MyPhoneExplorer. Το MTP περικόπτει τα αρχεία σε ορισμένες περιπτώσεις. \n
+Αν δεν μπορείτε να ανοίξετε το αρχείο από την ίδια θέση στον υπολογιστή σας, είναι πολύ πιθανό ότι το αρχείο είναι πράγματι κατεστραμμένο. Χρησιμοποιήστε αντίγραφο ασφαλείας της βάσης δεδομένων. Αν πιστεύετε ότι το Keepass2Android καταστρέφει το αρχείο, επικοινωνήστε με την ομάδα υποστήριξης. \n
+Αν μπορείτε να ανοίξετε το αρχείο στον υπολογιστή σας, επικοινωνήστε με την ομάδα υποστήριξης. Μπορείτε να δοκιμάσετε να το αποθηκεύσετε με διαφορετικές ρυθμίσεις (π.χ. unzipped) στο PC και προσπαθήστε ξανά να ανοίξετε στο Keepass2Android.  </string>
   <string name="open_other_db">Ανοίξτε μια άλλη βάση δεδομένων…</string>
   <string name="select_database">Επιλέξτε τη βάση δεδομένων</string>
   <string name="configure_child_dbs">Προσαρμογή παράγωγων βάσεων δεδομένων…</string>
@@ -668,6 +706,13 @@
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα καταχώριση.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με τον κύριο κωδικό πρόσβασης!</string>
+  <string-array name="ChangeLog_1_10">
+    <item>Προσθήκη υποστήριξης για δικαιώματα ειδοποίησης στο Android 13+</item>
+    <item>Βελτίωση της υλοποίησης FTP και SFTP</item>
+    <item>Προσθήκη πρόσβασης σε πλήρες pCloud</item>
+    <item>Επιτρέπει την επιλογή γλώσσας συστήματος στο μενού της γλώσσας</item>
+    <item>Διόρθωση προβλήματος με την απομνημόνευση Keyfile + ερώτηση για τον τύπο του κωδικού πρόσβασης</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Διόρθωση σφάλματος για απότομα κλεισίματα εφαρμογής και μη αναμενόμενες αποσυνδέσεις</item>
     <item>Μετάβαση σε νέα υλοποίηση SFTP, υποστηρίζοντας σύγχρονους αλγόριθμους δημόσιου κλειδιού όπως rsa-sha2-256</item>
@@ -733,34 +778,7 @@
     <item>Διορθώσεις σφαλμάτων</item>
     <item>Διορθώσεις σφαλμάτων</item>
   </string-array>
-  <string name="ChangeLog_0_8_3">Έκδοση 0.8.3\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes
-  </string>
   <string name="ChangeLog_keptDonate">Εκτεταμένη δυνατότητα προσφοράς μπύρας ή κάτι άλλου</string>
-  <string name="ChangeLog_0_7">Έκδοση 0.7\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
-  <string name="ChangeLog">Έκδοση 0.6.2\n
-* Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
-* Improved Search Dialog \n
-* Improved search results for Share URL with subdomains\n
-* Added options to give feedback, and rate and translate the app in the menu\n
-\n
-<b>Version 0.6.1</b>\n
-* Detect when database changes in the background (i.e. due to activity of a sync app)\n
-* Improved searching for URLs from the browser\n
-* Confirm dialog when discarding changes\n
-\n
-<b>Version 0.6</b>\n
-Initial public release
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 δευτερόλεπτα</item>
     <item>1 λεπτό</item>
@@ -828,6 +846,8 @@ Initial public release
   <string name="autofill_enable_for">Ενεργοποίηση AutoFill για %1$s</string>
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
   <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε βιομετρικό εξοπλισμό. Θέλετε να ενεργοποιήσετε βιομετρικό ξεκλείδωμα για αυτή τη βάση δεδομένων;</string>
+  <string name="post_notifications_dialog_disable">Απενεργοποιήστε αυτό το χαρακτηριστικό</string>
+  <string name="post_notifications_dialog_notnow">Όχι τώρα</string>
   <string name="understand">Καταλαβαίνω</string>
   <string name="dont_show_again">Να μην εμφανιστεί ξανά</string>
   <string name="masterkey_infotext_head">Θυμάστε το κύριο συνθηματικό σας;</string>

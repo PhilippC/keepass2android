@@ -23,8 +23,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Zeitsperre für Anwendung</string>
   <string name="app_timeout_summary">Bei inaktiver Anwendung wird die Datenbank nach Ablauf der eingestellten Zeit automatisch gesperrt.</string>
-  <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app">Schließen-Button</string>
+  <string name="kill_app_label">App-Prozess beenden</string>
   <string name="show_kill_app_summary">Eine Schaltfläche auf dem Passwortbildschirm anzeigen, um den App-Prozess zu beenden (für paranoide Benutzer)</string>
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
@@ -757,32 +757,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
     <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z. B. auf Pixel 4.</item>
     <item>Fehlerkorrekturen</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Benutzername/TAN-Index wird in Liste der Einträge angezeigt (s. Einstellungen)\n
-* Einträge können neu angelegt werden, wenn Suche aus Browser kein Ergebnis gebracht hat\n
-* KP2A-Tastatur erlaubt Suche nach Zugangsdaten für die aktive App\n
-* App schließt sich automatisch nach Auswahl eines Eintrags über die Tastatur\n
-* Dialog zur Tastaturauswahl öffnet sich automatisch nach Suche nach einer URL (s. Einstellungen)\n
-* Platzhalter in Eintragsfeldern werden vor dem Kopieren ersetzt (die meisten Platzhalter werden unterstützt)\n
-* kleinere Fehlerkorrekturen</string>
   <string name="ChangeLog_keptDonate">Erweiterte Möglichkeit, ein Bier oder etwas anderes zu spenden</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Erhöhte Ladegeschwindigkeit: Schlüsseltransformationen sind jetzt 10× schneller!\n
-* Neu: Keepass2Android-Software-Tastatur: Zu dieser Tastatur wechseln, um die Zugangsdaten einzugeben. Das schützt vor Zwischenablage-basierten Passwort-Sniffern! (die bisherigen Benachrichtigungen für das Kopieren in die Zwischenablage lassen sich in den Einstellungen deaktivieren)\n
-* Option eingefügt, um mir ein Bier oder was anderes zu spendieren (s. Menü)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Integration für Google Drive/Dropbox/…: Die offizielle App für Google Drive oder Dropbox nutzen und daraus die .kdbx-Datei öffnen. Das startet dann KP2A.\n
-* Verbesserter Suchdialog \n
-* Verbesserte Suche bei „Teilen“ mit Subdomains\n
-* Optionen für Feedback, Bewerten und Übersetzen zum Menü hinzugefügt\n
-\n
-<b>Version 0.6.1</b>\n
-* Erkennung, wenn sich eine Datenbank im Hingrund ändert (z. B. durch eine Sync-App)\n
-* Suche aus dem Browser verbessert\n
-* Bestätigungsdialog, wenn Änderungen verworfen werden sollen\n
-\n
-<b>Version 0.6</b>\n
-Erstes öffentliches Release</string>
   <string-array name="clipboard_timeout_options">
     <item>30 Sekunden</item>
     <item>1 Minute</item>

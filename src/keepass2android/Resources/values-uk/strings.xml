@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Час очікування програми</string>
   <string name="app_timeout_summary">Час блокування бази паролів при неактивній програмі.</string>
-  <string name="kill_app_label">Завершити процес програми</string>
   <string name="show_kill_app">Кнопка закриття</string>
+  <string name="kill_app_label">Завершити процес програми</string>
   <string name="show_kill_app_summary">Показувати на екрані з паролем кнопку завершення процесу програми (для параноїдальних користувачів)</string>
   <string name="application">Програма</string>
   <string name="application_settings">Налаштування програми</string>
@@ -733,34 +733,7 @@
     <item>Перемикання на BiometricPrompt API для вдосконалення роботи за допомогою розблокування відбитком пальця і дозволу використання розблокування обличчям, наприклад, на Pixel 4.</item>
     <item>Виправлення помилок</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes
-  </string>
   <string name="ChangeLog_keptDonate">Розширена можливість зробити внесок на пиво чи щось інше</string>
-  <string name="ChangeLog_0_7"><b>Версія 0.7</b>\n
-* Покращена швидкість завантаження: передавання ключа тепер до 10 разів швидше!\n
-* Додано програмна клавіатура Keepass2Android: Перемикайтесь на цю клавіатуру для введення облікових даних. Захищає від перехоплення введених даних з клавіатури (вимкнення старих сповіщень клавіатури в налаштуваннях)\n
-* Додано опцію для внеску на пиво, чи щось інше (див. меню)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
-* Improved Search Dialog \n
-* Improved search results for Share URL with subdomains\n
-* Added options to give feedback, and rate and translate the app in the menu\n
-\n
-<b>Version 0.6.1</b>\n
-* Detect when database changes in the background (i.e. due to activity of a sync app)\n
-* Improved searching for URLs from the browser\n
-* Confirm dialog when discarding changes\n
-\n
-<b>Version 0.6</b>\n
-Initial public release
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 секунд</item>
     <item>1 хвилина</item>

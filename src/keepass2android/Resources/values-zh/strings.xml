@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A 离线</string>
   <string name="app_timeout">后台锁定超时</string>
   <string name="app_timeout_summary">当应用进入后台之后，锁定数据库之前等待的时间。</string>
-  <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app">关闭按钮</string>
+  <string name="kill_app_label">结束应用进程</string>
   <string name="show_kill_app_summary">在密码屏幕中显示一个按钮以终止应用进程（强迫症选项）</string>
   <string name="application">应用</string>
   <string name="application_settings">应用设置</string>
@@ -664,6 +664,26 @@
   <string name="Continue">继续</string>
   <string name="NoFilenameWarning">您输入的 URI 不像是一个文件名。您确定这是一个有效的文件吗？</string>
   <string name="FirstInvalidCompositeKeyError">复合密钥无效！请重试。</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    无效的数据库密钥! 请尝试以下步骤解锁你的数据库:\n
+
+    &#8226; 确保你输入了正确的密码。 使用眼睛图标揭示输入的密码。\n
+    &#8226; 确保你选择了正确的密码类型。确保此类型匹配创建数据库时所用的类型。\n
+    &#8226; 确保你选择了正确的数据库文件。
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; 提示：如果你认为数据库文件可能损坏或你更改了主密钥之后却忘记了新的主密钥，你可以试试上次成功打开的文件版本，办法：轻按 \"%1$s\" 并选择本地备份。
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; 提示：Keepass2Android 已经在内部存储保存了上次成功打开的文件版本 。要打开，请轻按\"%1$s\" 并选择本地备份。
+  </string>
+  <string name="CorruptDatabaseHelp">    文件已损坏。\n
+    以下是一些可能有助诊断问题的提示:\n
+
+    &#8226; 如果你通过 USB (MTP-Mode) 复制文件，请使用类似 MyPhoneExplorer 这样的工具重试一次。某些情况下，MTP 会截断文件。\n
+    &#8226;如果你在桌面计算机上同样打不开来自同一位置的文件，那么很有可能这个文件真的坏了。 接下去，请使用数据库备份。如果你假设 Keepass2Android 破坏了文件，请联系支持团队。\n
+    &#8226; 如果你仍可以在桌面计算机上打开文件，请联系支持团队。你可以试着用不同设置在桌面计算机上保存文件 (如，未压缩) 并在 Keepass2Android 试着重新打开它。
+
+  </string>
   <string name="open_other_db">打开另一个数据库…</string>
   <string name="select_database">选择数据库</string>
   <string name="configure_child_dbs">配置子数据库…</string>
@@ -756,33 +776,7 @@
     <item>BUG修复</item>
     <item>Bug 修复</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Username/TAN index displayed in entry list (see settings)\n
-* Entries can be created if search from browser doesn\'t return results\n
-* KP2A keyboard provides possibility to search for credentials for current app\n
-* App automatically closes after selecting an entry for use in keyboard\n
-* Keyboard selection dialog automatically opens after search for URL (see settings)\n
-* Placeholders in entry fields are replaced before copying (most placeholders supported)\n
-* minor bug fixes</string>
   <string name="ChangeLog_keptDonate">捐出一杯啤酒或别的来支持我们的发展吧。</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Increased loading speed: key transformations now 10x faster!\n
-* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
-* Added option to donate a beer or something else (see menu)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Google Drive/Dropbox/... 集成: 使用官方 Google Drive 或者 Dropbox 程序并打开任何 .kdbx-file. 将在将来的版本出现.\n
-* 改善搜索对话框 \n
-* 改善分享URL子域名的搜索结果 \n
-* 在菜单中添加反馈，评分和翻译此程序（哎，作者真讨厌）\n
-\n
-<b>版本 0.6.1</b>\n
-* 检测数据库在后端是否有改动 (例如因为别的程序的同步造成的改动)\n
-* 改善从浏览器搜索URL\n
-* 当丢弃更改时显示确认对话框\n
-\n
-<b>版本 0.6</b>\n
-Initial public release
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
     <item>1分钟</item>

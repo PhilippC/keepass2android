@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Limit czasu aplikacji</string>
   <string name="app_timeout_summary">Czas, po którym baza danych zostanie zablokowana, gdy aplikacja jest nieaktywna.</string>
-  <string name="kill_app_label">Zabij proces aplikacji</string>
   <string name="show_kill_app">Przycisk Zamknij</string>
+  <string name="kill_app_label">Zabij proces aplikacji</string>
   <string name="show_kill_app_summary">Pokaż przycisk do zabicia aplikacji na ekranie hasła (dla paranoicznych użytkowników)</string>
   <string name="application">Aplikacja</string>
   <string name="application_settings">Ustawienia aplikacji</string>
@@ -152,6 +152,7 @@
   <string name="hint_keyfile">plik klucza</string>
   <string name="hint_length">długość</string>
   <string name="hint_pass">hasło</string>
+  <string name="hint_keyfile_path">Ścieżka klucza prywatnego SSH</string>
   <string name="hint_login_pass">Hasło</string>
   <string name="hint_title">Nazwa</string>
   <string name="hint_url">URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Pokazuje powiadomienie gdy baza danych gdy jest odblokowana.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 wprowadził nowe zachowanie dla powiadomień. Jeśli chcesz schować ikonę powiadomień Keepass2Android, skonfiguruj to w ustawieniach systemu. Ustaw ważność kategorii powiadomień na Minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Otwórz ustawienia</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android może wyświetlić powiadomienie systemowe, w sytuacji gdy Twoja baza danych nie jest zablokowana. Aby to zrobić, proszę udzielić uprawnień.</string>
   <string name="DontCare">Nie obchodzi mnie to</string>
   <string name="DocumentAccessRevoked">Plik nie jest już dostępny dla Keepass2Android. Został usunięty lub uprawnienia do niego zostały cofnięte. Użyj opcji ponownego otwarcia pliku, np. przełączając bazę danych.</string>
   <string name="PreloadDatabaseEnabled_title">Wstępnie wczytuj bazę danych</string>
@@ -501,9 +503,27 @@
   <string name="hint_sftp_host">host (np: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Katalog początkowy (opcjonalne):</string>
+  <string name="connect_timeout">Limit czasu utraty połączenia (opcjonalnie)</string>
   <string name="enter_sftp_login_title">Wpisz dane loginu SFTP:</string>
   <string name="sftp_auth_mode">Tryb uwierzytelniania</string>
   <string name="send_public_key">Wyślij klucz publiczny…</string>
+  <string name="select_private_keyfile">Wybierz klucz prywatny...</string>
+  <string name="hint_sftp_key_name">Nazwa nowego klucza</string>
+  <string name="hint_sftp_key_content">Zawartość nowego klucza</string>
+  <string name="private_key_saved">Klucz prywatny zapisany</string>
+  <string name="private_key_save_failed">Nie udało się zapisać klucza prywatnego: %1$s</string>
+  <string name="private_key_info">Wprowadź nazwę klucza i zawartość do zapisania</string>
+  <string name="private_key_delete">Usunięto klucz prywatny: %1$s</string>
+  <string name="private_key_delete_failed">Nie udało się usunąć klucza prywatnego: %1$s</string>
+  <string name="save_key">Zapisz klucz prywatny</string>
+  <string name="delete_key">Usuń klucz prywatny</string>
+  <string name="private_key_select">Wybierz klucz prywatny...</string>
+  <string name="private_key_create_new">[Dodaj nowy...]</string>
+  <string name="hint_sftp_key_passphrase">Hasło klucza (opcjonalne)</string>
+  <string name="sftp_kex_title">Algorytm wymiany klucza (KEX) (opcjonalnie)</string>
+  <string name="hint_sftp_kex">Nazwy oddzielone przecinkami / specyfikacja</string>
+  <string name="sftp_shk_title">Algorytm klucza hosta serwera (opcjonalnie)</string>
+  <string name="hint_sftp_shk">Nazwy oddzielone przecinkami / specyfikacja</string>
   <string name="enter_ftp_login_title">Wpisz dane logowania FTP:</string>
   <string name="enter_mega_login_title">Wprowadź dane logowania do konta MEGA:</string>
   <string name="select_storage_type">Wybierz miejsce zapisu:</string>
@@ -521,7 +541,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Dysk Google (pliki KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Jeśli nie chcesz dać KP2A dostępu do pełnego Dysku Google, możesz wybrać tę opcję. Pamiętaj, że najpierw musisz utworzyć plik bazy danych, istniejące pliki nie są widoczne dla aplikacji. Wybierz tę opcję z ekranu tworzenia bazy danych lub, jeśli już otworzyłeś bazę danych, eksportując bazę danych wybierając tę opcję.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
   <string name="filestoragehelp_pcloud">Ten typ magazynu będzie wymagał jedynie dostępu do folderu pCloud. \"Applications/Keepass2Android\". Jeżeli chcesz używać istniejącej bazy danych ze swojego konta pCloud, proszę upewnij się, że plik jest umieszczony w tym katalogu pCloud.</string>
+  <string name="filestoragename_pcloudall">PCgłośny (pełny dostęp)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Wszystkie pliki i współdzielone pliki</string>
@@ -573,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Plik dziennika do debugowania</string>
   <string name="DebugLog_title">Użyj pliku dziennika</string>
+  <string name="FtpDebug_title">FTP/SFTP debug logging</string>
   <string name="DebugLog_summary">Zapisuj dane wyjściowe aplikacji do lokalnego pliku dziennika</string>
   <string name="DebugLog_send">Wyślij dziennik debugowania...</string>
   <string name="loading">Ładowanie…</string>
@@ -641,6 +664,25 @@
   <string name="Continue">Kontynuuj</string>
   <string name="NoFilenameWarning">Wprowadzone URI nie wygląda jak nazwa pliku. Jesteś pewien, że to prawidłowy plik?</string>
   <string name="FirstInvalidCompositeKeyError">Błędny klucz zbiorowy! Spróbuj ponownie.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Błędny klucz zbiorowy! Spróbuj następujących kroków, by odblokować swoją bazę danych:\n
+
+&#8226; Upewnij się, że wprowadziłeś poprawne hasło. Użyj ikony oka, by odsłonić wprowadzone hasło.\n
+&#8226;Upewnij się, że wybrałeś właściwy typ hasła. Upewnij się, że pasuje do typu użytego podczas tworzenia bazy danych.\n
+&#8226;Upewnij się, że wybrałeś odpowiedni plik bazy danych.
+ </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   &#8226; Wskazówka: Jeśli sądzisz, że Twoja baza danych mogła zostać uszkodzona lub nie pamiętasz klucza głównego po jego zmodyfikowaniu, możesz spróbować z ostatnio pomyślnie otwartą wersją pliku, klikając \"%1$s\" i wybierając lokalną kopię zapasową.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Wskazówka: Keepass2Android zachował ostatnią poprawnie otwartą wersję pliku w swojej wewnętrznej pamięci. Możesz ją otworzyć, klikając w \"%1$s\" i wybierając lokalną kopię zapasową.
+  </string>
+  <string name="CorruptDatabaseHelp">    Plik jest uszkodzony. \n
+    Tu są wskazówki, które mogą pomóc zdiagnozować problem:\n
+    
+    &#8226;Jeśli skopiowałeś plik przez USB (w trybie MTP), proszę spróbuj ponownie używając narzędzia takiego jak MyPhoneExplorer. MTP obcina pliki w pewnych przypadkach.\n
+    &#8226;Jeśli nie możesz otworzyć pliku z tej samej lokalizacji na swoim PC, to bardzo prawdopodobne, że plik jest rzeczywiście uszkodzony. W takim wypadku użyj kopii zapasowej bazy danych. Jeśli przypuszczasz, że to Keepass2Android uszkodził plik, skontaktuj się z pomocą.\n
+    &#8226;Jeśli możesz otworzyć plik na swoim komputerze, skontaktuj się z pomocą. Możesz spróbować zapisać go z innymi ustawieniami (np. rozpakowany) na komputerze i spróbować ponownie otworzyć w Keepass2Android.
+
+  </string>
   <string name="open_other_db">Otwórz inną bazę danych</string>
   <string name="select_database">Wybierz bazę danych</string>
   <string name="configure_child_dbs">Skonfiguruj podrzędną bazę danych…</string>
@@ -668,6 +710,13 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_10">
+    <item>Dodaj wsparcie dla uprawnień do powiadomień na Androidzie 13+</item>
+    <item>Poprawia wdrażania FTP i SFTP</item>
+    <item>Dodaj dostęp do pełnej chmury</item>
+    <item>Pozwala wybrać język systemu w oknie dialogowym</item>
+    <item>Napraw problem z zapamiętaniem pliku klucza + kwestionowaniem typ hasła</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Naprawa błędów awarii i nieoczekiwanych wylogowań</item>
     <item>Przełącz się na nową implementację SFTP, wspierając nowoczesne algorytmy klucza publicznego, takie jak rsa-sha2-256</item>
@@ -733,18 +782,16 @@
     <item>Poprawki błędów</item>
     <item>Poprawki błędów</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Wersja 0.8.3</b>\n 
-* Nazwa użytkownika/indeks TAN (haseł jednorazowych) są wyświetlane jako pozycja listy (patrz Ustawienia)\n 
-* Wpisy mogą być utworzone, jeśli wyszukiwanie z przeglądarki nie zwraca wyników\n 
-* KP2A klawiatura umożliwia wyszukiwanie danych logowania dla danej aplikacji\n 
-* Aplikacja zamyka się automatycznie po wybraniu wpisu z klawiatury\n 
-* Automatycznie zostanie otwarte okno dialogowe wyboru po wyszukaniu adresu URL (patrz Ustawienia)\n 
-* Zastępcze symbole w polach danych są zamieniane przed kopiowanie (większość symboli zastępczych jest obsługiwana)\n 
-* Drobne poprawki
-  </string>
+  <string name="ChangeLog_1_07b">   Wersja 1. 7b\n
+    * Poprawa wydajności Argon2 dzięki natywnej implementacji (Dzięki Chih-Hsuan Yen!)\n
+    * Istnieje możliwość wyłączenie odcisku palca, klikając ikonę odcisku palca (zapobiega problemom z czytnikami odcisków palców pod ekranem, dzięki marcoDallas!)\n
+    * Przywrócenie pozycji kursora podczas przełączania widoczności hasła (dzięki DDoSolitary!)\n
+    * Ulepszenia implementacji pCloud (dzięki gilbsgilb\'om znowu!)\n
+    * Dodano wsparcie autouzupełniania dla większej ilości przeglądarek\n
+    * Nowa implementacja dla OneDrive: zawiera wsparcie dla OneDrive for Business, plików współdzielonych, wybranych zakresów dostępu, wielu kont i naprawia problemy z dostępem offline\n
+    * Poprawki błędów
+  </string>
   <string name="ChangeLog_keptDonate">Rozszerzone możliwości darowania piwa lub czegoś innego</string>
-  <string name="ChangeLog_0_7"><b>Wersji 0.7</b> \n * Zwiększona szybkość ładowania: najważniejsze transformacje teraz 10 x szybciej! \n * Dodana klawiatura Keepass2Android: Przełącz na tą klawiaturę gdy chcesz bezpiecznie wprowadzić danych logowania. Zabezpiecza to przed snifferami haseł ze schowka (wyłącz stary typ powiadomienia o hasłach w schowku w Ustawieniach)\n * Dodano opcję do postawienia mi piwa lub czegoś innego (patrz w menu)</string>
-  <string name="ChangeLog"><b>Wersja 0.6.2</b> \n * Integracja z Google Drive/Dropbox /... Otwieraj bazy z Google Drive lub aplikacji Dropbox (rozszerzenie .kdbx). \n * ulepszone okno dialogowe Szukaj \n * poprawa wyników wyszukiwania z adresu URL z subdomenami \n * dodano opcje, aby przekazywać informacje zwrotne i tłumaczenie aplikacji w menu \n \n \n <b>wersja 0.6.1</b> /n * wykrywanie zmian bazy danych w tle (np. z powodu aktywności aplikacji Synchronizacja) \n * ulepszone wyszukiwanie adresów URL z przegladarki \n * okno potwierdzania niezapisywania zmian \n \n <b>wersja 0.6</b> pierwsze publiczne wydanie   </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
@@ -793,8 +840,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Hasło</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Klucz prywatny/publiczny KP2A</item>
+    <item>Niestandardowy klucz prywatny</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignoruj niepowodzenia weryfikacji certyfikatów</item>
@@ -812,6 +859,11 @@
   <string name="autofill_enable_for">Włącz autouzupełnianie dla %1$s</string>
   <string name="invalid_link_association">Nie udało się powiązać domeny %1$s z aplikacją %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android wykrył sprzęt biometryczny. Czy chcesz włączyć odblokowanie biometryczne dla tej bazy danych?</string>
+  <string name="post_notifications_dialog_title">Zezwalaj na powiadomienia</string>
+  <string name="post_notifications_dialog_message">Keepass2Android może pokazywać powiadomienia za pomocą przycisków do kopiowania do schowka wartości takich jak hasła i TOTP lub pokazywać wbudowaną klawiaturę. Jest to przydatne do przenoszenia wartości do innych aplikacji bez wielokrotnego przełączania na Keepass2Android. Czy chcesz włączyć takie powiadomienia?</string>
+  <string name="post_notifications_dialog_allow">Zezwalaj na powiadomienia</string>
+  <string name="post_notifications_dialog_disable">Wyłącz tę funkcję</string>
+  <string name="post_notifications_dialog_notnow">Nie teraz</string>
   <string name="understand">Rozumiem</string>
   <string name="dont_show_again">Nie pokazuj ponownie</string>
   <string name="masterkey_infotext_head">Czy pamiętasz swoje hasło główne?</string>

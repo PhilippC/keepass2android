@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Hors-ligne</string>
   <string name="app_timeout">Délai dépassé</string>
   <string name="app_timeout_summary">Délai avant de verrouiller la base de donnée lorsque l\'application est inactive.</string>
-  <string name="kill_app_label">Tuer le processus d\'application</string>
   <string name="show_kill_app">Fermer</string>
+  <string name="kill_app_label">Tuer le processus d\'application</string>
   <string name="show_kill_app_summary">Afficher un bouton dans l\'écran de mot de passe pour kill le processus de l\'application (pour les utilisateurs paranoïaques)</string>
   <string name="application">Appli</string>
   <string name="application_settings">\"Paramètres de l\'application\"</string>
@@ -756,32 +756,7 @@
     <item>Corrections de bugs</item>
     <item>Corrections de bugs</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Version 0.8.3</b>\n
-* Nom d\'utilisateur/TAN affiché dans la liste des entrées (voir les préférences)\n
-* Les entrées peuvent être créées lorsqu\'elles ne sont pas trouvées\n
-* Le clavier KP2A permet de chercher les identifiants pour l\'application courante\n
-* L\'application se ferme automatiquement après la sélection d\'identifiants via le clavier\n
-* La fenêtre de sélection du clavier s\'ouvre automatiquement après la recherche d\'une URL (voir préférences)\n
-* Les <i>placeholders</i> compris dans les champs sont remplacés avant la copie (un grand nombre de <i>placeholders</i> sont supportés.)\n
-* Résolution de bugs mineurs</string>
   <string name="ChangeLog_keptDonate">Possibilité élargie de faire un don d\'une bière ou autre chose</string>
-  <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
-* Amélioration de la vitesse de démarrage : la transformation des clés est désormais 10x plus rapide !\n
-* Ajout du clavier Keepass2Android : basculez vers celui-ci pour entrer les mots de passe et vous protéger des sniffers de presse-papiers (désactiver les anciennes notifications dans les options)\n
-* Ajout de la possibilité de donner une bière (ou autre... voir le menu)</string>
-  <string name="ChangeLog"><b>Version 0.6.2</b>\n
-* Intégration de Google Drive, Dropbox etc. : utilisez les applications officielles  Google Drive ou Dropbox puis ouvrez n\'importe quel fichier .kdbx. KP2A sera désormais lancé automatiquement ;\n
-* Amélioration de la fenêtre de recherche ;\n
-* Amélioration de la recherche via la fonction \"Partager\" lorsqu\'il y a des sous-domaines ;\n
-* Ajout d\'une entrée de menu pour les rapports de bugs, la notation et la traduction de l\'application.\n
-\n
-<b>Version 0.6.1</b>\n
-* Détection des modifications de la base de donnée en arrière-plan (c\'est à dire dû à une application de synchronisation) ;\n
-* Amélioration de la recherche des URLs depuis le navigateur ;\n
-* Ajout d\'une fenêtre de confirmation si l\'on veut abandonner les changements.\n
-\n
-<b>Version 0.6</b>\n
-Première version publique</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondes</item>
     <item>1 minute</item>

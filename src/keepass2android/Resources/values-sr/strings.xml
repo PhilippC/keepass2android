@@ -21,8 +21,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Временско прекорачење апликације</string>
   <string name="app_timeout_summary">Време пре закључавања базе података када апликација није активна</string>
-  <string name="kill_app_label">Угасите процес апликације</string>
   <string name="show_kill_app">Дугме за излаз</string>
+  <string name="kill_app_label">Угасите процес апликације</string>
   <string name="application">Апликација</string>
   <string name="application_settings">Подешавања апликације</string>
   <string name="ShowGroupnameInSearchResult_title">Прикажи име групе у резултату претраге</string>

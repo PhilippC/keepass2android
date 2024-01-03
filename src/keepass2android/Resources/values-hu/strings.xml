@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Az alkalmazás időkorlátja</string>
   <string name="app_timeout_summary">Beállíthatja, mennyi idő után kerüljön zárolásra az adatbázis, ha nincs használatban.</string>
-  <string name="kill_app_label">Az alkalmazás leállítása</string>
   <string name="show_kill_app">Bezárás gomb</string>
+  <string name="kill_app_label">Az alkalmazás leállítása</string>
   <string name="show_kill_app_summary">Egy gomb elhelyezése a jelszóképernyőn az alkalmazás leállítására (paranoiás felhasználóknak).</string>
   <string name="application">Alkalmazás</string>
   <string name="application_settings">Alkalmazásbeállítások</string>
@@ -682,19 +682,6 @@
     <item>Hibajavítások</item>
   </string-array>
   <string name="ChangeLog_keptDonate">Lehetőségek kiterjesztése, hogy egy sörrel vagy valami mással támogasson</string>
-  <string name="ChangeLog">&lt;b&gt;Version 0.6.2&lt;/&gt;
-* Google Drive/Dropbox/... integráció: Ha a hivatalos Google Drive vagy Dropbox applikációból nyit meg egy .kdbx fájlt, akkor az autómatikusan a KP2A-val kerül megnyitásra.
-* Továbbfejlesztett kereső dialógus
-* Továbbfejlesztett keresési eredmények ha a megosztott URL aldomaint tartalmaz
-* Menüelemek hozzáadása: visszajelzéshez, értékeléshez és fordításhoz
-
-&lt;b&gt;Version 0.6.1&lt;/b&gt;
-* Háttérben történő adatbázis változások érzékelése (pl szinkronizáló alkalmazás hatására)
-* Továbbfejlesztett URL keresés a böngészőből
-* Változások elvetésekor párbeszéd ablak kér megerősítést
-
-&lt;b&gt;Version 0.6&lt;/b&gt;
-Kezdeti közösségi kiadás</string>
   <string-array name="clipboard_timeout_options">
     <item>30 másodperc</item>
     <item>1 perc</item>

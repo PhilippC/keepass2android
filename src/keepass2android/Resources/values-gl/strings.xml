@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">Tempo de espera da app</string>
   <string name="app_timeout_summary">Tempo de espera para bloquear a base de datos cando a App está inactiva.</string>
-  <string name="kill_app_label">Parar o proceso da app</string>
   <string name="show_kill_app">Botón de peche</string>
+  <string name="kill_app_label">Parar o proceso da app</string>
   <string name="show_kill_app_summary">Amosar un botón na pantalla do contrasinal para rematar o proceso da aplicación (para usuarios paranoicos)</string>
   <string name="application">App</string>
   <string name="application_settings">Axustes da aplicación</string>
@@ -559,34 +559,7 @@
   <string name="DbQuicklockedChannel_desc">Notificacións sobre a base de datos están sendo bloqueadas por QuickUnlock</string>
   <string name="EntryChannel_name">Entrada de notificacións</string>
   <string name="EntryChannel_desc">Notificación para simplificar o acceso á entrada seleccionada.</string>
-  <string name="ChangeLog_0_8_3"><b>Versión 0.8.3</b>\n
-* Nome de usurio/índice TAN amosado na lista de entradas (vexa configuración)\n
-* Pódense crear entradas se a lista de resultados non atopou nada\n
-* O teclado KP2A ten a posibilidade de buscar credenciais\n
-* A app péchase automaticamente despois de seleccionar unha entrada para usar no teclado\n
-* A caixa de selección de teclafos ábrese automaticamente despois de buscar unha URL (vexa configuración)\n
-* As pistas dos campos reemprázanse antes de copiar (sopórtanse a maioría das pistas de campo)\n
-* Arranxo de pequenos bugs
-  </string>
   <string name="ChangeLog_keptDonate">Posibilidade extendida de doar unha cervexa ou calquera outra cousa</string>
-  <string name="ChangeLog_0_7"><b>Versión 0.7</b>\n
-* Incremento da velocidade de carga: a tranformación de claves é 10 veces máis rápida!\n
-* Emgadido teclado simple Keepass2Android: cambiar a edte teclado para introducir credemciais. Protexe de rastrexadores de portapapeis (deshabilitda a opción de notificación do portapapeis)\n
-* Emgadida opción de doar cervexa pu outra cousa (ver menú)</string>
-  <string name="ChangeLog"><b>Versión 0.6.2</b>\n
-* Integración con Google Drive/Dropbox/...: utilice a versión oficial de Google Drive ou Dropbox e abra calquera arquivo .kdbx. Isto abrirá automaticamente KP2A.\n
-* Mellora da caixa de busca \n
-* Mellora dos resultados de busca para Share URL con subdominios\n
-* Engadida a opción que permite enviar opinións/suxerencias, valorar e traducir a app no menú\n
-\n
-<b>Versión 0.6.1</b>\n
-* Detecta cambios na base de datos en segundo plano(i.e. debido á actividade dunha app de sincronización)\n
-* Mellora da busca por URLs dende o navegador\n
-* Confirmación da anulación de cambios\n
-\n
-<b>Versión 0.6</b>\n
-Lanzamento público inicial
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

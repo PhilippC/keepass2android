@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">App-timeuot</string>
   <string name="app_timeout_summary">Tidsforløb inden databasen låses, når app\'en er inaktiv.</string>
-  <string name="kill_app_label">Stands app-proces</string>
   <string name="show_kill_app">Luk-knap</string>
+  <string name="kill_app_label">Stands app-proces</string>
   <string name="show_kill_app_summary">Vis en knap på adgangskodeskærmen til standsning af app-processen (til paranoide brugere)</string>
   <string name="application">App</string>
   <string name="application_settings">App-indstillinger</string>

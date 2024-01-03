@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">App timeout</string>
   <string name="app_timeout_summary">Tijd tot het vergrendelen van de database bij inactiviteit van de app.</string>
-  <string name="kill_app_label">App-proces afsluiten</string>
   <string name="show_kill_app">Sluiten-Knop</string>
+  <string name="kill_app_label">App-proces afsluiten</string>
   <string name="show_kill_app_summary">Een knop weergeven in het wachtwoordscherm om de applicatie te beëindigen (voor paranoïde gebruikers)</string>
   <string name="application">App</string>
   <string name="application_settings">App-instellingen</string>
@@ -733,34 +733,7 @@
     <item>Bugs opgelost</item>
     <item>Bugs opgelost</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>Versie 0.8.3</b>\n
-* Gebruikersnaam/TAN index weergegeven in item lijst (zie instellingen)\n
-* Items kunnen gemaakt worden als een zoekopdracht van de browser geen resultaten geeft\n
-* KP2A toetsenbord bied mogelijkheid om inloggegevens te zoeken voor huidige app\n
-* App sluit automatisch na het selecteren van een item voor gebruik in het toetsenbord\n
-* Toetsenbord selectievenster opent automatisch na het zoeken voor een URL (zie instellingen)\n
-* Plaatsvervangers in item velden worden vervangen vóór het kopiëren (de meeste plaatsvervangers worden ondersteund)\n
-* kleine bug fixes
-    </string>
   <string name="ChangeLog_keptDonate">Uitgelezen kans om biertje te schenken of iets anders</string>
-  <string name="ChangeLog_0_7"><b>Versie 0.7</b>\n
-* Verbeterde laadsnelheid: sleuteltransformaties zijn nu 10x sneller!\n
-* Keepass2Android soft-keyboard toegevoegd: Schakel naar dit toetsenbord over voor het invoeren van inloggegevens. Beschermt je tegen klembord gebaseerde wachtwoord afluisterapps (schakel oude klembord meldingen uit in de instellingen)\n
-* Optie toegevoegd om een biertje te doneren of iets anders (Zie menu)</string>
-  <string name="ChangeLog"><b>Versie 0.6.2</b>\n
-* Google Drive/Dropbox/... integratie: Gebruik de officiële Google Drive of Dropbox App en open een .kdbx-file. Dit zal nu KP2A openen.\n
-* Verbeterd zoekvenster \n
-* Verbeterde zoekresultaten voor Deel URL met subdomeinen\n
-* Opties toegevoegd om feedback te geven en het waarderen of vertalen van de app in het menu\n
-\n
-<b>Versie 0.6.1</b>\n
-* Detecteer het als een database wijzigt in de achtergrond (d.w.z. door activiteit van een synchronisatie app)\n
-* Verbeterd zoeken voor URLs van de browser\n
-* Bevestigingsvensters voor het weggooien van wijzigingen\n
-\n
-<b>Versie 0.6</b>\n
-Eerste publieke publicatie
-    </string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconden</item>
     <item>1 minuut</item>

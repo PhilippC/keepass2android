@@ -22,8 +22,8 @@
   <string name="short_app_name_nonet">KP2A 離線</string>
   <string name="app_timeout">應用程式超時</string>
   <string name="app_timeout_summary">應用程式閒置指定時間後鎖定資料庫。</string>
-  <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app">關閉按鈕</string>
+  <string name="kill_app_label">終止應用程式進程</string>
   <string name="show_kill_app_summary">在密碼畫面中顯示中止應用程式進程的按鈕 (供偏執的用戶使用)</string>
   <string name="application">應用程式</string>
   <string name="application_settings">應用程式設定</string>
@@ -733,34 +733,7 @@
     <item>修正錯誤</item>
     <item>錯誤修正</item>
   </string-array>
-  <string name="ChangeLog_0_8_3"><b>版本 0.8.3</b>\n
-* 項目清單中顯示使用者名稱與 TAN 索引 (見設定)\n
-* 若搜尋沒有返回結果，則可直接新建項目 \n
-* KP2A 鍵盤提供了便捷查詢目前程式憑證的入口 \n
-* 點選要用於鍵盤自動鍵入的項目後，程式自動關閉 \n
-* 搜尋網址後會自動打開鍵盤的選擇介面 (見設定)\n
-* 鍵入字段中的佔位符在粘貼前被替換 (支援大部分佔位符)\n
-* 修正了一些小錯誤
-  </string>
   <string name="ChangeLog_keptDonate">為了 KP2A 的未來起見，捐贈任何東西都有助其擴展無限可能</string>
-  <string name="ChangeLog_0_7"><b>版本 0.7</b>\n
-* 提高載入速度：金鑰轉換現在快了十倍！\n
-* 添加 Keepass2Android 虛擬鍵盤：切換到此鍵盤鍵入憑證，避免被監視剪貼簿的程式竊取密碼 (在設定中停用舊的剪貼簿通知) \n
-* 新增捐贈啤酒或其他東西的選項 (見選單)</string>
-  <string name="ChangeLog"><b>版本 0.6.2</b>\n
-* Google Drive/Dropbox/... 整合：使用官方 Google Drive 或 Dropbox 應用程式並開啟任何 .kdbx 檔案，將自動開啟 KP2A。\n
-* 改善搜尋對話方塊 \n
-* 改善帶子域的分享鏈接的搜索結果\n
-* 在選單新增回饋、評價以及翻譯本應用程式的選項\n
-\n
-<b>版本 0.6.1</b>\n
-* 偵測背景的資料庫變更 (i.e. 由應用程式的同步活動所引致的)\n
-* 改善瀏覽器鏈接的搜尋功能\n
-* 確認放棄變更的對話方塊\n
-\n
-<b>版本 0.6</b>\n
-首個公眾發佈版本
-  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 秒</item>
     <item>1 分鐘</item>
