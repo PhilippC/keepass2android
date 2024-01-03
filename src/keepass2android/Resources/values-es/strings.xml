@@ -595,6 +595,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Fichero registro para Depuración</string>
   <string name="DebugLog_title">Usar el archivo de registro</string>
+  <string name="FtpDebug_title">Registro de depuración FTP/SFTP</string>
   <string name="DebugLog_summary">Escribir salida de app a fichero local de log</string>
   <string name="DebugLog_send">Enviar registro de depuración...</string>
   <string name="loading">Cargando…</string>
@@ -663,6 +664,15 @@
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">El URI que ha introducido no parece ser un nombre de archivo. ¿Está seguro que es un archivo válido?</string>
   <string name="FirstInvalidCompositeKeyError">Clave compuesta no válida! Por favor, inténtelo de nuevo.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">¡Clave compuesta incorrecta! Por favor, sigue los siguientes pasos para desbloquear la Base de Datos:\n
+
+    &#8226; Asegúrate de haber puesto la contraseña correcta. Utiliza el icono del ojo para ver la contraseña.\n
+    &#8226; Asegúrate de haber seleccionado el tipo de contraseña correcta. Debe coincidir con el tipo usado al crear la Base de Datos.\n
+    &#8226; Asegúrate de haber seleccionado la Base de Datos correcta.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Sugerencia: Si piensas que la Base de Datos está dañada o no recuerdas la contraseña maestra después de cambiarla, inténtalo con la última versión de la Base de Datos abierta con éxito pulsando en \"%1$s\" y seleccionando la copia local.
+  </string>
   <string name="open_other_db">Abrir otrar base de datos…</string>
   <string name="select_database">Seleccione base de datos</string>
   <string name="configure_child_dbs">Configure bases de datos hijas…</string>
