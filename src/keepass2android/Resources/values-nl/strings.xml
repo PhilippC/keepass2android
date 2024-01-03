@@ -152,6 +152,7 @@
   <string name="hint_keyfile">sleutelbestand</string>
   <string name="hint_length">lengte</string>
   <string name="hint_pass">wachtwoord</string>
+  <string name="hint_keyfile_path">SSH-privésleutel pad</string>
   <string name="hint_login_pass">Wachtwoord</string>
   <string name="hint_title">naam</string>
   <string name="hint_url">URL</string>
@@ -417,6 +418,7 @@
   <string name="ShowUnlockedNotification_summary">Toon doorlopend bericht terwijl de database ontgrendeld is.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 introduceert nieuw gedrag voor meldingen. Als je het pictogram van Keepass2Android\'s meldingen wilt verbergen kunt je dit wijzigen in de systeeminstellingen. Stel de prioriteit van de meldingencategorie op het minimum in.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Instellingen openen</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android kan het systeem een melding laten geven als uw database niet is vergrendeld. U moet voor deze functie toestemming geven.</string>
   <string name="DontCare">Maakt me niet uit</string>
   <string name="DocumentAccessRevoked">Dit bestand is niet meer toegangelijk voor Keepass2Android. Het is verwijderd of de toegangsrechten zijn ingetrokken. Probeer opnieuw te openen, bijv. met \'Wijzig database\'.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-load van databasebestand</string>
