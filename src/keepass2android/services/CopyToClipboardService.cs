@@ -546,6 +546,7 @@ namespace keepass2android
             return hadKeyboardData;
         }
 
+
         bool MakeAccessibleForKeyboard(PwEntryOutput entry, string searchUrl)
         {
 #if EXCLUDE_KEYBOARD
@@ -554,38 +555,41 @@ namespace keepass2android
             bool hasData = false;
             Keepass2android.Kbbridge.KeyboardDataBuilder kbdataBuilder = new Keepass2android.Kbbridge.KeyboardDataBuilder();
 
-            String[] keys = {PwDefs.UserNameField,
+            String[] standardKeys = {PwDefs.UserNameField,
                 PwDefs.PasswordField,
+                Kp2aTotp.TotpKey,
                 PwDefs.UrlField,
                 PwDefs.NotesField,
                 PwDefs.TitleField
             };
             int[] resIds = {Resource.String.entry_user_name,
                 Resource.String.entry_password,
+                0,
                 Resource.String.entry_url,
                 Resource.String.entry_comment,
                 Resource.String.entry_title };
 
             //add standard fields:
             int i = 0;
-            foreach (string key in keys)
+            foreach (string key in standardKeys)
             {
                 String value = entry.OutputStrings.ReadSafe(key);
 
                 if (value.Length > 0)
                 {
-                    kbdataBuilder.AddString(key, GetString(resIds[i]), value);
+                    kbdataBuilder.AddString(key, resIds[i] > 0 ? GetString(resIds[i]) : key, value);
                     hasData = true;
                 }
                 i++;
             }
             //add additional fields:
+            var totpData = new Kp2aTotp().TryGetTotpData(entry);
             foreach (var pair in entry.OutputStrings)
             {
                 var key = pair.Key;
                 var value = pair.Value.ReadString();
 
-                if (!PwDefs.IsStandardField(key))
+                if (!standardKeys.Contains(key) && totpData?.InternalFields.Contains(key) != true)
                 {
                     kbdataBuilder.AddString(pair.Key, pair.Key, value);
                     hasData = true;

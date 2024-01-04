@@ -13,14 +13,18 @@ namespace PluginTOTP
         public TotpData GetTotpData(IDictionary<string, string> entryFields, Context ctx, bool muteWarnings)
         {
             TotpData res = new TotpData();
-            byte[] pbSecret = (GetOtpSecret(entryFields, "TimeOtp-") ?? MemUtil.EmptyByteArray);
+            byte[] pbSecret = (GetOtpSecret(entryFields, "TimeOtp-", out string secretFieldKey) ?? MemUtil.EmptyByteArray);
+
             if (pbSecret.Length == 0)
                 return res;
+
+            res.InternalFields.Add(secretFieldKey);
 
             string strPeriod;
             uint uPeriod = 0;
             if (entryFields.TryGetValue("TimeOtp-Period", out strPeriod))
             {
+                res.InternalFields.Add("TimeOtp-Period");
                 uint.TryParse(strPeriod, out uPeriod);
             }
 
@@ -33,6 +37,7 @@ namespace PluginTOTP
             uint uLength = 0;
             if (entryFields.TryGetValue("TimeOtp-Length", out strLength))
             {
+                res.InternalFields.Add("TimeOtp-Length");
                 uint.TryParse(strLength, out uLength);
             }
             
@@ -41,6 +46,8 @@ namespace PluginTOTP
 
             string strAlg;
             entryFields.TryGetValue("TimeOtp-Algorithm", out strAlg);
+            if (!string.IsNullOrEmpty(strAlg))
+                res.InternalFields.Add("TimeOtp-Algorithm");
 
             res.HashAlgorithm = strAlg;
             res.TotpSecret = pbSecret;
@@ -51,32 +58,37 @@ namespace PluginTOTP
         }
 
 
-        private static byte[] GetOtpSecret(IDictionary<string, string> entryFields, string strPrefix)
+        private static byte[] GetOtpSecret(IDictionary<string, string> entryFields, string strPrefix, out string secretFieldKey)
         {
             try
             {
                 string str;
-                entryFields.TryGetValue(strPrefix + "Secret", out str);
-                if (!string.IsNullOrEmpty(str))
+                secretFieldKey = strPrefix + "Secret";
+                entryFields.TryGetValue(secretFieldKey, out str);
+                if (!string.IsNullOrEmpty(str))    
                     return StrUtil.Utf8.GetBytes(str);
-
-                entryFields.TryGetValue(strPrefix + "Secret-Hex", out str);
+                
+                secretFieldKey = strPrefix + "Secret-Hex";
+                entryFields.TryGetValue(secretFieldKey, out str);
                 if (!string.IsNullOrEmpty(str))
                     return MemUtil.HexStringToByteArray(str);
-
-                entryFields.TryGetValue(strPrefix + "Secret-Base32", out str);
+                
+                secretFieldKey = strPrefix + "Secret-Base32";
+                entryFields.TryGetValue(secretFieldKey, out str);
                 if (!string.IsNullOrEmpty(str))
                     return MemUtil.ParseBase32(str);
 
-                entryFields.TryGetValue(strPrefix + "Secret-Base64", out str);
+                secretFieldKey = strPrefix + "Secret-Base64";
+                entryFields.TryGetValue(secretFieldKey, out str);
                 if (!string.IsNullOrEmpty(str))
                     return Convert.FromBase64String(str);
+                
             }
             catch (Exception e)
             {
                 Kp2aLog.LogUnexpectedError(e);
             }
-
+            secretFieldKey = null;
             return null;
         }
     }

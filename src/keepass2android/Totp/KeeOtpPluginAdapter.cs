@@ -39,11 +39,13 @@ namespace PluginTOTP
 			{
 				TotpData res = new TotpData();
 				string data;
-				if (!_entryFields.TryGetValue("otp", out data))
+                var otpKey = "otp";
+                if (!_entryFields.TryGetValue(otpKey, out data))
 				{
 					return res;
 				}
 				NameValueCollection parameters = ParseQueryString(data);
+				res.InternalFields.Add(otpKey);
 
 				if (parameters[KeyParameter] == null)
 				{
