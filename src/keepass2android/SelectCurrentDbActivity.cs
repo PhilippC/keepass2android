@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -306,7 +307,27 @@ namespace keepass2android
                 }
                 else if (Intent.Action == Intent.ActionSend)
                 {
-                    AppTask = new SearchUrlTask { UrlToSearchFor = Intent.GetStringExtra(Intent.ExtraText) };
+                    ActivationCondition activationCondition = ActivationCondition.Never;
+                    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+                    if (prefs.GetBoolean("kp2a_switch_rooted", false))
+                    {
+                        activationCondition = ActivationCondition.Always;
+                    }
+                    else
+                    {
+                        //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
+                        // automatically bring up the Keyboard selection dialog
+                        if (prefs.GetBoolean(this.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), this.Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
+                        {
+                            activationCondition = ActivationCondition.Always;
+                        }
+                    }
+                    
+                    AppTask = new SearchUrlTask()
+                    {
+                        UrlToSearchFor = Intent.GetStringExtra(Intent.ExtraText),
+                        ActivateKeyboard = activationCondition
+                    };
                 }
             }
 

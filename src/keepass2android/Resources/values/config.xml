@@ -47,6 +47,7 @@
     <string name="oi_filemanager_web">https://openintents.googlecode.com/files/FileManager-2.0.2.apk</string>
   <string name="permission_desc2">KP2A Search</string>
   <string name="permission_desc3">KP2A Choose autofill dataset</string>
+  <string name="AutoFillTotp_prefs_screen_key">AutoFillTotp_prefs_screen_key</string>
   
 
   <!--  Preference settings -->

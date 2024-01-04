@@ -10,6 +10,9 @@ using System.Threading;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
+using KeeTrayTOTP.Libraries;
+using Android.Content.Res;
+using Android.Preferences;
 
 namespace keepass2android
 {
@@ -342,7 +345,15 @@ namespace keepass2android
 
 		public virtual void CompleteOnCreateEntryActivity(EntryActivity activity, Thread notifyPluginsOnOpenThread)
 		{
-			activity.StartNotificationsService(false);
+			//this default implementation is executed when we're opening an entry manually, i.e. without search/autofill.
+			//We only activate the keyboard if this is enabled in "silent mode"
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(activity);
+            bool activateKeyboard = prefs.GetBoolean("kp2a_switch_rooted", false) &&
+                                    !prefs.GetBoolean(
+                                        activity.GetString(Resource.String
+                                            .OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
+
+            activity.StartNotificationsService(activateKeyboard);
 		}
 
 		public virtual void PopulatePasswordAccessServiceIntent(Intent intent)
@@ -354,7 +365,8 @@ namespace keepass2android
         protected static bool GetBoolFromBundle(Bundle b, string key, bool defaultValue)
         {
             bool boolValue;
-            if (!Boolean.TryParse(b.GetString(key), out boolValue))
+            string stringValue = b.GetString(key);
+            if (!Boolean.TryParse(stringValue, out boolValue))
             {
                 boolValue = defaultValue;
             }
@@ -364,7 +376,8 @@ namespace keepass2android
         protected static int GetIntFromBundle(Bundle b, string key, int defaultValue)
         {
             int intValue;
-            if (!Int32.TryParse(b.GetString(key), out intValue))
+            var strValue = b.GetString(key);
+            if (!Int32.TryParse(strValue, out intValue))
             {
                 intValue = defaultValue;
             }
@@ -384,7 +397,7 @@ namespace keepass2android
 	/// User is about to search an entry for a given URL
 	/// </summary>
 	/// Derive from SelectEntryTask. This means that as soon as an Entry is opened, we're returning with
-	/// ExitAfterTaskComplete. This also allows te specify the flag if we need to display the user notifications.
+	/// ExitAfterTaskComplete. This also allows to specify the flag if we need to display the user notifications.
 	public class SearchUrlTask: SelectEntryTask
 	{
 	    public SearchUrlTask()
@@ -393,8 +406,9 @@ namespace keepass2android
 	    }
 
         public const String UrlToSearchKey = "UrlToSearch";
+        public const String AutoReturnFromQueryKey = "AutoReturnFromQuery";
 
-		public string UrlToSearchFor
+        public string UrlToSearchFor
 		{
 			get;
 			set;
@@ -417,7 +431,7 @@ namespace keepass2android
             }
 		}
 
-	    public const String AutoReturnFromQueryKey = "AutoReturnFromQuery";
+	    
 
         public bool AutoReturnFromQuery { get; set; }
 
@@ -425,15 +439,19 @@ namespace keepass2android
 		{
 			if (String.IsNullOrEmpty(UrlToSearchFor))
 			{
-				GroupActivity.Launch(act, new SelectEntryTask() { ShowUserNotifications =  ShowUserNotifications}, new ActivityLaunchModeRequestCode(0));
+				GroupActivity.Launch(act, new SelectEntryTask() { 
+                        ShowUserNotifications =  ShowUserNotifications,
+                        CopyTotpToClipboard = CopyTotpToClipboard,
+                        ActivateKeyboard = ActivateKeyboard
+                }, 
+                    new ActivityLaunchModeRequestCode(0));
 			}
 			else
 			{
 				ShareUrlResults.Launch(act, this, new ActivityLaunchModeRequestCode(0));
 			}
-			
 
-			//removed. this causes an issue in the following workflow:
+            //removed. this causes an issue in the following workflow:
 			//When the user wants to find an entry for a URL but has the wrong database open he needs 
 			//to switch to another database. But the Task is removed already the first time when going through PasswordActivity 
 			// (with the wrong db).
@@ -536,7 +554,7 @@ namespace keepass2android
     }
 
 
-    public enum ShowUserNotificationsMode
+    public enum ActivationCondition
     {
         Never,
         WhenTotp,
@@ -549,29 +567,34 @@ namespace keepass2android
 	{
 		public SelectEntryTask()
 		{
-			ShowUserNotifications = ShowUserNotificationsMode.Always;
+			ShowUserNotifications = ActivationCondition.Always;
 			CloseAfterCreate = true;
-            ActivateKeyboard = true;
+            ActivateKeyboard = ActivationCondition.Never;
+            CopyTotpToClipboard = false;
         }
 
 		public const String ShowUserNotificationsKey = "ShowUserNotifications";
 
 
 
-        public ShowUserNotificationsMode ShowUserNotifications { get; set; }
+        public ActivationCondition ShowUserNotifications { get; set; }
 
 		public const String CloseAfterCreateKey = "CloseAfterCreate";
         public const String ActivateKeyboardKey = "ActivateKeyboard";
+        public const String CopyTotpToClipboardKey = "CopyTotpToClipboard";
 
         public bool CloseAfterCreate { get; set; }
-        public bool ActivateKeyboard { get; set; }
+        public ActivationCondition ActivateKeyboard { get; set; }
+
+        public bool CopyTotpToClipboard { get; set; }
 
 
         public override void Setup(Bundle b)
 		{
-			ShowUserNotifications = (ShowUserNotificationsMode) GetIntFromBundle(b, ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
+			ShowUserNotifications = (ActivationCondition) GetIntFromBundle(b, ShowUserNotificationsKey, (int)ActivationCondition.Always);
 			CloseAfterCreate = GetBoolFromBundle(b, CloseAfterCreateKey, true);
-            ActivateKeyboard = GetBoolFromBundle(b, ActivateKeyboardKey, true);
+            ActivateKeyboard = (ActivationCondition)GetIntFromBundle(b, ActivateKeyboardKey, (int)ActivationCondition.Always);
+            CopyTotpToClipboard = GetBoolFromBundle(b, CopyTotpToClipboardKey, false);
         }
 
 
@@ -581,7 +604,8 @@ namespace keepass2android
 			{
 				yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ((int)ShowUserNotifications).ToString() };
 				yield return new StringExtra { Key = CloseAfterCreateKey, Value = CloseAfterCreate.ToString() };
-                yield return new StringExtra { Key = ActivateKeyboardKey, Value = ActivateKeyboard.ToString() };
+                yield return new StringExtra { Key = ActivateKeyboardKey, Value = ((int)ActivateKeyboard).ToString() };
+                yield return new StringExtra { Key = CopyTotpToClipboardKey, Value = CopyTotpToClipboard.ToString() };
             }
 		}
 
@@ -591,18 +615,43 @@ namespace keepass2android
 		    if (ctx == null)
 		        ctx = LocaleManager.LocalizedAppContext;
 
-			if ((ShowUserNotifications == ShowUserNotificationsMode.Always)
-                || ((ShowUserNotifications == ShowUserNotificationsMode.WhenTotp) && new Kp2aTotp().TryGetAdapter(new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb)) != null))
-			{
-				//show the notifications
-				activity.StartNotificationsService(ActivateKeyboard);
-			}
+            var pwEntryOutput = new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb);
+            var totpPluginAdapter = new Kp2aTotp().TryGetAdapter(pwEntryOutput);
+            bool isTotpEntry = totpPluginAdapter != null;
+			
+            bool activateKeyboard = ActivateKeyboard == ActivationCondition.Always || (ActivateKeyboard == ActivationCondition.WhenTotp && isTotpEntry);
+
+            if ((ShowUserNotifications == ActivationCondition.Always)
+                || ((ShowUserNotifications == ActivationCondition.WhenTotp) && isTotpEntry)
+                || activateKeyboard)
+            {
+                //show the notifications
+                activity.StartNotificationsService(activateKeyboard);
+            }
 			else
 			{
 				//to avoid getting into inconsistent state (LastOpenedEntry and Notifications): clear notifications:
 				CopyToClipboardService.CancelNotifications(activity);
 			}
-			if (CloseAfterCreate)
+
+            if (CopyTotpToClipboard && isTotpEntry)
+            {
+                Dictionary<string, string> entryFields = pwEntryOutput.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
+                var totpData= totpPluginAdapter.GetTotpData(entryFields, activity, true);
+                if (totpData.IsTotpEntry)
+                {
+                    TOTPProvider prov = new TOTPProvider(totpData);
+                    string totp = prov.GenerateByByte(totpData.TotpSecret);
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(activity, totp, true);
+
+                    Toast.MakeText(activity, activity.GetString(Resource.String.TotpCopiedToClipboard),
+                        ToastLength.Long).Show();
+                }
+
+                
+            }
+
+            if (CloseAfterCreate)
             {
 				//give plugins and TOTP time to do their work:
                 notifyPluginsOnOpenThread.Join(TimeSpan.FromSeconds(1));
@@ -671,8 +720,8 @@ namespace keepass2android
 	public class CreateEntryThenCloseTask: AppTask
 	{
 		public CreateEntryThenCloseTask()
-		{
-			ShowUserNotifications = ShowUserNotificationsMode.Always;
+        {
+			ShowUserNotifications = ActivationCondition.Always;
 		}
 
 	    public override bool CanActivateSearchViewOnStart
@@ -712,13 +761,13 @@ namespace keepass2android
 
 		public IList<string> ProtectedFieldsList { get; set; }
 
-		public ShowUserNotificationsMode ShowUserNotifications { get; set; }
+		public ActivationCondition ShowUserNotifications { get; set; }
 
 
 		public override void Setup(Bundle b)
 		{
 			
-			ShowUserNotifications = (ShowUserNotificationsMode)GetIntFromBundle(b,ShowUserNotificationsKey, (int)ShowUserNotificationsMode.Always);
+			ShowUserNotifications = (ActivationCondition)GetIntFromBundle(b,ShowUserNotificationsKey, (int)ActivationCondition.Always);
 			
 			Url = b.GetString(UrlKey);
 			AllFields = b.GetString(AllFieldsKey);
@@ -766,7 +815,7 @@ namespace keepass2android
 		public override void AfterAddNewEntry(EntryEditActivity entryEditActivity, PwEntry newEntry)
 		{
 			EntryActivity.Launch(entryEditActivity, newEntry, -1, 
-				new SelectEntryTask { ShowUserNotifications = this.ShowUserNotifications}, 
+				new SelectEntryTask() { ShowUserNotifications = this.ShowUserNotifications, ActivateKeyboard = ActivationCondition.Never }, 
 				ActivityFlags.ForwardResult);
 			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
 		}

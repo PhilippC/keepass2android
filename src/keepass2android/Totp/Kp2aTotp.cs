@@ -10,8 +10,9 @@ namespace keepass2android
 {
 	class Kp2aTotp
 	{
+        public const string TotpKey = "TOTP";
 
-		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
+        readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
         {
             new TrayTotpPluginAdapter(), 
             new KeeOtpPluginAdapter(), 

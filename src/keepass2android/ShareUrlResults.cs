@@ -82,20 +82,15 @@ namespace keepass2android
 			//if user presses back to leave this activity:
 			SetResult(Result.Canceled);
             
-
 		    UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
 		    UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
 
-
             if (App.Kp2a.DatabaseIsUnlocked)
 			{
-			    
-				Query();	
+                Query();
 			}
             // else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
-
-
-
+            
         }
 
         protected override void OnSaveInstanceState(Bundle outState)
@@ -162,9 +157,17 @@ namespace keepass2android
                 String searchUrl = searchUrlTask.UrlToSearchFor;
                 selectOtherEntry.Visibility =  ViewStates.Visible;
 
-                var newTask = new SearchUrlTask() { AutoReturnFromQuery = false, UrlToSearchFor = searchUrl };
+                SearchUrlTask newTask;
                 if (AppTask is SelectEntryTask currentSelectTask)
+                {
+                    newTask = new SearchUrlTask() { AutoReturnFromQuery = false, UrlToSearchFor = searchUrl, ActivateKeyboard = currentSelectTask.ActivateKeyboard };
                     newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
+                    newTask.ActivateKeyboard = currentSelectTask.ActivateKeyboard;  
+                    newTask.CopyTotpToClipboard = currentSelectTask.CopyTotpToClipboard;
+                }
+                else
+                    newTask = new SearchUrlTask() { AutoReturnFromQuery = false, UrlToSearchFor = searchUrl, ActivateKeyboard = ActivationCondition.Never };
+
 
                 selectOtherEntry.Click += (sender, e) => {
                     GroupActivity.Launch(this, newTask, new ActivityLaunchModeRequestCode(0));
@@ -179,7 +182,7 @@ namespace keepass2android
                     createUrlEntry.Visibility = ViewStates.Visible;
                     createUrlEntry.Click += (sender, e) =>
                     {
-                        GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = searchUrl, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ShowUserNotificationsMode.Always }, new ActivityLaunchModeRequestCode(0));
+                        GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = searchUrl, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ActivationCondition.Always }, new ActivityLaunchModeRequestCode(0));
                         Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
                     };
                 }
