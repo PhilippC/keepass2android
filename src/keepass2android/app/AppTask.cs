@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Widget;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Utility;
@@ -339,7 +340,7 @@ namespace keepass2android
 
 		}
 
-		public virtual void CompleteOnCreateEntryActivity(EntryActivity activity)
+		public virtual void CompleteOnCreateEntryActivity(EntryActivity activity, Thread notifyPluginsOnOpenThread)
 		{
 			activity.StartNotificationsService(false);
 		}
@@ -453,7 +454,7 @@ namespace keepass2android
 			intent.PutExtra(UrlToSearchKey, UrlToSearchFor);
 		}
 
-	    public override void CompleteOnCreateEntryActivity(EntryActivity activity)
+	    public override void CompleteOnCreateEntryActivity(EntryActivity activity, Thread notifyPluginsOnOpenThread)
 	    {
             if (App.Kp2a.LastOpenedEntry != null)
 	            App.Kp2a.LastOpenedEntry.SearchUrl = UrlToSearchFor;
@@ -462,18 +463,18 @@ namespace keepass2android
             //if the database is readonly (or no URL exists), don't offer to modify the URL
             if ((App.Kp2a.CurrentDb.CanWrite == false) || (String.IsNullOrEmpty(UrlToSearchFor) || keepass2android.ShareUrlResults.GetSearchResultsForUrl(UrlToSearchFor).Entries.Any(e => e == activity.Entry) ))
             {
-                base.CompleteOnCreateEntryActivity(activity);
+                base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
                 return;
             }
 
-            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor);
+            AskAddUrlThenCompleteCreate(activity, UrlToSearchFor, notifyPluginsOnOpenThread);
         }
 
 
         /// <summary>
         /// brings up a dialog asking the user whether he wants to add the given URL to the entry for automatic finding
         /// </summary>
-        public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url)
+        public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url, Thread notifyPluginsOnOpenThread)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
@@ -482,17 +483,56 @@ namespace keepass2android
 
             builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
             {
-                activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity));
+                activity.AddUrlToEntry(url, (EntryActivity thenActiveActivity) => base.CompleteOnCreateEntryActivity(thenActiveActivity, notifyPluginsOnOpenThread
+));
             });
 
             builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
             {
-                base.CompleteOnCreateEntryActivity(activity);
+                base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
             });
 
             Dialog dialog = builder.Create();
             dialog.Show();
         }
+    }
+
+    public class OpenSpecificEntryTask : SelectEntryTask
+    {
+        public OpenSpecificEntryTask()
+        {
+        }
+
+        public const String EntryUuidKey = "EntryUuid";
+
+        public string EntryUuid
+        {
+            get;
+            set;
+        }
+
+        public override void Setup(Bundle b)
+        {
+            base.Setup(b);
+            EntryUuid = b.GetString(EntryUuidKey);
+            
+        }
+        public override IEnumerable<IExtra> Extras
+        {
+            get
+            {
+                foreach (IExtra e in base.Extras)
+                    yield return e;
+                
+                yield return new StringExtra { Key = EntryUuidKey, Value = EntryUuid };
+            }
+        }
+
+        public override void LaunchFirstGroupActivity(Activity act)
+        {
+            ShareUrlResults.Launch(act, this, new ActivityLaunchModeRequestCode(0));
+        }
+		
     }
 
 
@@ -545,7 +585,7 @@ namespace keepass2android
             }
 		}
 
-		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
+		public override void CompleteOnCreateEntryActivity(EntryActivity activity, Thread notifyPluginsOnOpenThread)
 		{
 		    Context ctx = activity;
 		    if (ctx == null)
@@ -563,9 +603,11 @@ namespace keepass2android
 				CopyToClipboardService.CancelNotifications(activity);
 			}
 			if (CloseAfterCreate)
-			{
-				//close
-				activity.CloseAfterTaskComplete();	
+            {
+				//give plugins and TOTP time to do their work:
+                notifyPluginsOnOpenThread.Join(TimeSpan.FromSeconds(1));
+                //close
+                activity.CloseAfterTaskComplete();	
 			}
 		}
 	}
@@ -729,10 +771,10 @@ namespace keepass2android
 			//no need to call Finish here, that's done in EntryEditActivity ("closeOrShowError")	
 		}
 		
-		public override void CompleteOnCreateEntryActivity(EntryActivity activity)
+		public override void CompleteOnCreateEntryActivity(EntryActivity activity, Thread notifyPluginsOnOpenThread)
 		{
 			//if the user selects an entry before creating the new one, we're not closing the app
-			base.CompleteOnCreateEntryActivity(activity);
+			base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
 		}
 	}
 

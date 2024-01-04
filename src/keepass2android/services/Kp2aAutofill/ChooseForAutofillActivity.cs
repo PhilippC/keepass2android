@@ -41,6 +41,15 @@ namespace keepass2android.services.Kp2aAutofill
             return i;
         }
 
+        protected override Intent GetOpenEntryIntent(string entryUuid)
+        {
+            Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
+            //don't show user notifications when an entry is opened.
+            var task = new OpenSpecificEntryTask() { EntryUuid = entryUuid, ShowUserNotifications = ShowUserNotificationsMode.WhenTotp, ActivateKeyboard = false};
+            task.ToIntent(i);
+            return i;
+        }
+
         protected override Result ExpectedActivityResult => KeePass.ExitCloseAfterTaskComplete;
 
         protected override FilledAutofillFieldCollection<ViewNodeInputField> GetDataset()

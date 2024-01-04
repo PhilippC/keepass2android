@@ -174,10 +174,17 @@ namespace keepass2android
 			PwGroup group = SearchHelper.SearchForExactUrl(this, url);
 			
 			return group;
-			
-		}
 
-		public PwGroup SearchForHost(String url, bool allowSubdomains) {
+        }
+        public PwGroup SearchForUuid(String uuid)
+        {
+            PwGroup group = SearchHelper.SearchForUuid(this, uuid);
+
+            return group;
+
+        }
+
+        public PwGroup SearchForHost(String url, bool allowSubdomains) {
 			PwGroup group = SearchHelper.SearchForHost(this, url, allowSubdomains);
 			
 			return group;

@@ -488,10 +488,11 @@ namespace keepass2android
 			_pluginFieldReceiver = new PluginFieldReceiver(this);
 			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField));
 
-			new Thread(NotifyPluginsOnOpen).Start();
+            var notifyPluginsOnOpenThread = new Thread(NotifyPluginsOnOpen);
+            notifyPluginsOnOpenThread.Start();
 
 			//the rest of the things to do depends on the current app task:
-			AppTask.CompleteOnCreateEntryActivity(this);
+			AppTask.CompleteOnCreateEntryActivity(this, notifyPluginsOnOpenThread);
 		}
 
         private void RemoveFromHistory()

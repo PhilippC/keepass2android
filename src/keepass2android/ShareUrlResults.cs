@@ -63,6 +63,12 @@ namespace keepass2android
 		    launchMode.Launch(act, i);
 		}
 
+        public static void Launch(Activity act, OpenSpecificEntryTask task, ActivityLaunchMode launchMode)
+        {
+            Intent i = new Intent(act, typeof(ShareUrlResults));
+            task.ToIntent(i);
+            launchMode.Launch(act, i);
+        }
 
         public override bool IsSearchResult
         {
@@ -83,9 +89,8 @@ namespace keepass2android
 
             if (App.Kp2a.DatabaseIsUnlocked)
 			{
-			    var searchUrlTask = ((SearchUrlTask)AppTask);
-			    String searchUrl = searchUrlTask.UrlToSearchFor;
-				Query(searchUrl, searchUrlTask.AutoReturnFromQuery);	
+			    
+				Query();	
 			}
             // else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
 
@@ -99,12 +104,25 @@ namespace keepass2android
 			AppTask.ToBundle(outState);
 		}
 
-		private void Query(string url, bool autoReturnFromQuery)
+		private void Query()
         {
-            
+            bool canAutoReturnFromQuery = true;
+            bool shouldAutoReturnFromQuery = true;
             try
             {
-                Group = GetSearchResultsForUrl(url);
+				if (AppTask is SearchUrlTask searchUrlTask)
+                {
+                    String searchUrl = searchUrlTask.UrlToSearchFor;
+                    canAutoReturnFromQuery = searchUrlTask.AutoReturnFromQuery;
+                    shouldAutoReturnFromQuery = PreferenceManager.GetDefaultSharedPreferences(this)
+                        .GetBoolean(GetString(Resource.String.AutoReturnFromQuery_key), true);
+                    Group = GetSearchResultsForUrl(searchUrl);
+                }
+				else if (AppTask is OpenSpecificEntryTask openEntryTask)
+                {
+                    Group = GetSearchResultsForUuid(openEntryTask.EntryUuid);
+                }
+                
             } catch (Exception e)
 			{
 				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
@@ -114,7 +132,7 @@ namespace keepass2android
 			}
 
 			//if there is exactly one match: open the entry
-			if ((Group.Entries.Count() == 1) && autoReturnFromQuery && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.AutoReturnFromQuery_key),true))
+			if ((Group.Entries.Count() == 1) && canAutoReturnFromQuery && shouldAutoReturnFromQuery)
 			{
 				LaunchActivityForEntry(Group.Entries.Single(),0);
 				return;
@@ -131,32 +149,49 @@ namespace keepass2android
             FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 
 			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
+            View createUrlEntry = FindViewById(Resource.Id.add_url_entry);
 
-            var newTask = new SearchUrlTask() {AutoReturnFromQuery = false, UrlToSearchFor = url};
-		    if (AppTask is SelectEntryTask currentSelectTask)
-		        newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
-            
-            selectOtherEntry.Click += (sender, e) => {
-				GroupActivity.Launch (this, newTask, new ActivityLaunchModeRequestCode(0));
+            if (AppTask is OpenSpecificEntryTask)
+            {
+                selectOtherEntry.Visibility =  ViewStates.Gone;
+                createUrlEntry.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                var searchUrlTask = AppTask as SearchUrlTask;
+                String searchUrl = searchUrlTask.UrlToSearchFor;
+                selectOtherEntry.Visibility =  ViewStates.Visible;
 
-			};
+                var newTask = new SearchUrlTask() { AutoReturnFromQuery = false, UrlToSearchFor = searchUrl };
+                if (AppTask is SelectEntryTask currentSelectTask)
+                    newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
 
-			
-			View createUrlEntry = FindViewById (Resource.Id.add_url_entry);
+                selectOtherEntry.Click += (sender, e) => {
+                    GroupActivity.Launch(this, newTask, new ActivityLaunchModeRequestCode(0));
 
-			if (App.Kp2a.OpenDatabases.Any(db => db.CanWrite))
-			{
-				createUrlEntry.Visibility = ViewStates.Visible;
-				createUrlEntry.Click += (sender, e) =>
-				{
-					GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = url, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ShowUserNotificationsMode.Always }, new ActivityLaunchModeRequestCode(0));
-					Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
-				};
-			}
-			else
-			{
-				createUrlEntry.Visibility = ViewStates.Gone;
-			}
+                };
+
+
+                
+
+                if (App.Kp2a.OpenDatabases.Any(db => db.CanWrite))
+                {
+                    createUrlEntry.Visibility = ViewStates.Visible;
+                    createUrlEntry.Click += (sender, e) =>
+                    {
+                        GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = searchUrl, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ShowUserNotificationsMode.Always }, new ActivityLaunchModeRequestCode(0));
+                        Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
+                    };
+                }
+                else
+                {
+                    createUrlEntry.Visibility = ViewStates.Gone;
+                }
+
+            }
+
+
+
 
 			Util.MoveBottomBarButtons(Resource.Id.select_other_entry, Resource.Id.add_url_entry, Resource.Id.bottom_bar, this);
 		}
@@ -185,6 +220,31 @@ namespace keepass2android
                 if (!resultsForThisDb.Entries.Any())
                     resultsForThisDb = db.SearchForText(UrlUtil.GetHost(url.Trim()));
 
+                if (resultsGroup == null)
+                {
+                    resultsGroup = resultsForThisDb;
+                }
+                else
+                {
+                    foreach (var entry in resultsForThisDb.Entries)
+                    {
+                        resultsGroup.AddEntry(entry, false, false);
+                    }
+                }
+            }
+
+            return resultsGroup;
+        }
+
+
+        public static PwGroup GetSearchResultsForUuid(string uuid)
+        {
+            PwGroup resultsGroup = null;
+            foreach (var db in App.Kp2a.OpenDatabases)
+            {
+                
+                var resultsForThisDb = db.SearchForUuid(uuid);
+                
                 if (resultsGroup == null)
                 {
                     resultsGroup = resultsForThisDb;

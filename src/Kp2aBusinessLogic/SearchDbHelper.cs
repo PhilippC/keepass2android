@@ -91,7 +91,29 @@ namespace keepass2android
 			
 		}
 
-		private static String ExtractHost(String url)
+        public PwGroup SearchForUuid(Database database, string uuid)
+        {
+            SearchParameters sp = SearchParameters.None;
+            sp.SearchInUuids = true;
+            sp.SearchString = uuid;
+
+            if (sp.RegularExpression) // Validate regular expression
+            {
+                new Regex(sp.SearchString);
+            }
+
+            string strGroupName = _app.GetResourceString(UiStringKey.search_results);
+            PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) { IsVirtual = true };
+
+            PwObjectList<PwEntry> listResults = pgResults.Entries;
+
+            database.Root.SearchEntries(sp, listResults, new NullStatusLogger());
+
+            return pgResults;
+
+        }
+
+        private static String ExtractHost(String url)
 		{
 			return UrlUtil.GetHost(url.Trim());
 		}

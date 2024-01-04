@@ -20,6 +20,7 @@ using AndroidX.AutoFill.Inline;
 using AndroidX.AutoFill.Inline.V1;
 using Java.Util.Concurrent.Atomic;
 using keepass2android.services.AutofillBase.model;
+using KeePassLib;
 using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
@@ -29,7 +30,7 @@ namespace keepass2android.services.AutofillBase
         PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage,
             bool isManualRequest, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning);
 
-        PendingIntent GetAuthPendingIntentForWarning(Context context, string query, string queryDomain, string queryPackage, AutofillServiceBase.DisplayWarning warning);
+        PendingIntent GetAuthPendingIntentForWarning(Context context, PwUuid entryUuid, AutofillServiceBase.DisplayWarning warning);
 
         PendingIntent GetDisablePendingIntentForResponse(Context context, string query, 
             bool isManualRequest, bool isDisable);
@@ -262,33 +263,42 @@ namespace keepass2android.services.AutofillBase
         {
             List<Dataset> result = new List<Dataset>();
             Kp2aLog.Log("AF: BuildEntryDatasets");
-            var suggestedEntries = GetSuggestedEntries(query).ToDictionary(e => e.DatasetName, e => e);
+            Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>> suggestedEntries = GetSuggestedEntries(query);
             Kp2aLog.Log("AF: BuildEntryDatasets found " + suggestedEntries.Count + " entries");
+            
             int count = 0;
-            foreach (var filledAutofillFieldCollection in suggestedEntries.Values)
+
+            var totpHelper = new Kp2aTotp();
+
+            foreach (var kvp in suggestedEntries)
             {
+                var filledAutofillFieldCollection = kvp.Value;
+                PwEntryOutput entry = kvp.Key;
 
                 if (filledAutofillFieldCollection == null)
                     continue;
 
                 var inlinePresentationSpec = AutofillHelper.ExtractSpec(inlinePresentationSpecs, count);
 
-                if (warning == DisplayWarning.None)
+                if ((warning == DisplayWarning.None)
+                    && (totpHelper.TryGetAdapter(entry) == null))
                 {
-          
+                    //no special dataset, we can immediately return the field collection
                     FilledAutofillFieldCollection<ViewNodeInputField> partitionData =
                         AutofillHintsHelper.FilterForPartition(filledAutofillFieldCollection, parser.AutofillFields.FocusedAutofillCanonicalHints);
 
                     Kp2aLog.Log("AF: Add dataset");
 
-                    result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder, 
+                    result.Add(AutofillHelper.NewDataset(this, parser.AutofillFields, partitionData, IntentBuilder,
                         inlinePresentationSpec));
                 }
                 else
                 {
-                    //return an "auth" dataset (actually for just warning the user in case domain/package dont match)
+
+                    //return an "auth" dataset (actually for just warning the user in case domain/package dont match and/or to make sure that we open the EntryActivity,
+                    // thus opening the entry notification in case of TOTP)
                     PendingIntent pendingIntent =
-                        IntentBuilder.GetAuthPendingIntentForWarning(this, query, queryDomain, queryPackage, warning);
+                        IntentBuilder.GetAuthPendingIntentForWarning(this, entry.Uuid, warning);
                     var datasetName = filledAutofillFieldCollection.DatasetName;
                     if (datasetName == null)
                     {
@@ -320,7 +330,7 @@ namespace keepass2android.services.AutofillBase
 
         }
 
-        protected abstract List<FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query);
+        protected abstract Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query);
 
         public enum DisplayWarning
         {

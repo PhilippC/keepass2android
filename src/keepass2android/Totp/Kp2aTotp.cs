@@ -46,7 +46,7 @@ namespace keepass2android
                 foreach (ITotpPluginAdapter adapter in _pluginAdapters)
                 {
                     TotpData totpData = adapter.GetTotpData(
-                        App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
+                        entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
                             pair => pair.Value.ReadString()), LocaleManager.LocalizedAppContext, false);
                     if (totpData.IsTotpEntry)
                     {
