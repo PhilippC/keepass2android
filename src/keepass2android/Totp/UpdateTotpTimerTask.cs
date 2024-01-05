@@ -13,7 +13,7 @@ namespace PluginTOTP
 {
 	class UpdateTotpTimerTask: TimerTask
 	{
-		public const string TotpKey = "TOTP";
+		public const string TotpKey = Kp2aTotp.TotpKey;
 		private readonly Context _context;
 		private readonly ITotpPluginAdapter _adapter;
 

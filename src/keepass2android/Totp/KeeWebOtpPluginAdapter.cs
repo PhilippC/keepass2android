@@ -16,6 +16,7 @@ namespace keepass2android
             {
                 return res;
             }
+            res.InternalFields.Add("otp");
 
             string otpUriStart = "otpauth://totp/";
 

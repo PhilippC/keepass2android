@@ -501,24 +501,8 @@ namespace keepass2android
                 if (hasKeyboardDataNow)
                 {
                     notBuilder.AddKeyboardAccess();
-                    if (prefs.GetBoolean("kp2a_switch_rooted", false))
-                    {
-                        //switch rooted
-                        bool onlySwitchOnSearch = prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
-                        if (activateKeyboard || (!onlySwitchOnSearch))
-                        {
-                            ActivateKp2aKeyboard();
-                        }
-                    }
-                    else
-                    {
-                        //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
-                        // automatically bring up the Keyboard selection dialog
-                        if ((activateKeyboard) && prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
-                        {
-                            ActivateKp2aKeyboard();
-                        }
-                    }
+                    if (activateKeyboard)
+                        ActivateKp2aKeyboard();
 
                 }
 
@@ -548,31 +532,6 @@ namespace keepass2android
             
         }
 
-        public void ActivateKeyboardIfAppropriate(bool closeAfterCreate, ISharedPreferences prefs)
-        {
-            if (prefs.GetBoolean("kp2a_switch_rooted", false))
-            {
-                //switch rooted
-                bool onlySwitchOnSearch = prefs.GetBoolean(
-                    GetString(Resource.String.OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
-                if (closeAfterCreate || (!onlySwitchOnSearch))
-                {
-                    ActivateKp2aKeyboard();
-                }
-            }
-            else
-            {
-                //if the app is about to be closed again (e.g. after searching for a URL and returning to the browser:
-                // automatically bring up the Keyboard selection dialog
-                if ((closeAfterCreate) &&
-                    prefs.GetBoolean(GetString(Resource.String.OpenKp2aKeyboardAutomatically_key),
-                        Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
-                {
-                    ActivateKp2aKeyboard();
-                }
-            }
-        }
-
         private bool ClearNotifications()
         {
             // Notification Manager
@@ -587,6 +546,7 @@ namespace keepass2android
             return hadKeyboardData;
         }
 
+
         bool MakeAccessibleForKeyboard(PwEntryOutput entry, string searchUrl)
         {
 #if EXCLUDE_KEYBOARD
@@ -595,38 +555,41 @@ namespace keepass2android
             bool hasData = false;
             Keepass2android.Kbbridge.KeyboardDataBuilder kbdataBuilder = new Keepass2android.Kbbridge.KeyboardDataBuilder();
 
-            String[] keys = {PwDefs.UserNameField,
+            String[] standardKeys = {PwDefs.UserNameField,
                 PwDefs.PasswordField,
+                Kp2aTotp.TotpKey,
                 PwDefs.UrlField,
                 PwDefs.NotesField,
                 PwDefs.TitleField
             };
             int[] resIds = {Resource.String.entry_user_name,
                 Resource.String.entry_password,
+                0,
                 Resource.String.entry_url,
                 Resource.String.entry_comment,
                 Resource.String.entry_title };
 
             //add standard fields:
             int i = 0;
-            foreach (string key in keys)
+            foreach (string key in standardKeys)
             {
                 String value = entry.OutputStrings.ReadSafe(key);
 
                 if (value.Length > 0)
                 {
-                    kbdataBuilder.AddString(key, GetString(resIds[i]), value);
+                    kbdataBuilder.AddString(key, resIds[i] > 0 ? GetString(resIds[i]) : key, value);
                     hasData = true;
                 }
                 i++;
             }
             //add additional fields:
+            var totpData = new Kp2aTotp().TryGetTotpData(entry);
             foreach (var pair in entry.OutputStrings)
             {
                 var key = pair.Key;
                 var value = pair.Value.ReadString();
 
-                if (!PwDefs.IsStandardField(key))
+                if (!standardKeys.Contains(key) && totpData?.InternalFields.Contains(key) != true)
                 {
                     kbdataBuilder.AddString(pair.Key, pair.Key, value);
                     hasData = true;
@@ -865,14 +828,9 @@ namespace keepass2android
                 {
                     //let's bring up the keyboard switching dialog.
                     //Unfortunately this no longer works starting with Android 9 if our app is not in foreground.
-                    bool mustUseHelperActivity = false;
-                    if ((int)Build.VERSION.SdkInt >= 28)
-                    {
-                        ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
-                        ActivityManager.GetMyMemoryState(appProcessInfo);
-                        //at least on Samsung devices, we always need the helper activity
-                        mustUseHelperActivity = (appProcessInfo.Importance != Importance.Foreground) || (Build.Manufacturer != "Google");
-                    }
+                    //first it seemed to be required for Samsung mostly, but there are use cases where it is required for other devices as well.
+                    //Let's be sure and use the helper activity.
+                    bool mustUseHelperActivity = (int)Build.VERSION.SdkInt >= 28;
                     if (mustUseHelperActivity)
                     {
                         try

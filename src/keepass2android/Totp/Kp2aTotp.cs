@@ -10,8 +10,9 @@ namespace keepass2android
 {
 	class Kp2aTotp
 	{
+        public const string TotpKey = "TOTP";
 
-		readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
+        readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
         {
             new TrayTotpPluginAdapter(), 
             new KeeOtpPluginAdapter(), 
@@ -46,7 +47,7 @@ namespace keepass2android
                 foreach (ITotpPluginAdapter adapter in _pluginAdapters)
                 {
                     TotpData totpData = adapter.GetTotpData(
-                        App.Kp2a.LastOpenedEntry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
+                        entry.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key),
                             pair => pair.Value.ReadString()), LocaleManager.LocalizedAppContext, false);
                     if (totpData.IsTotpEntry)
                     {

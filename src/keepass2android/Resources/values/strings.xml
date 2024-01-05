@@ -402,6 +402,16 @@
   <string name="ShowSeparateNotifications_summary">Show separate notifications for copying username and password to clipboard and activating the keyboard.</string>
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
   <string name="AutoFill_prefs">AutoFill Service</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">When autofilling an entry with TOTP, show the entry notification with a Copy TOTP button</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Show entry notification</string>
+  <string name="AutoFillTotp_prefs_title">Autofill for TOTP entries</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copy TOTP to clipboard</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">When autofilling an entry with TOTP, copy the TOTP to the clipboard</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">When autofilling an entry with TOTP, activate the built-in keyboard. The keyboard has a TOTP button.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activate built-in keyboard</string>
+  
+  <string name="TotpCopiedToClipboard">Copied TOTP to clipboard</string>
+
   <string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Switch keyboard</string>
@@ -589,6 +599,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Please use the KeeChallenge plugin in KeePass 2.x (PC) to configure your database for use with challenge-response!</string>
   <string name="ErrorUpdatingChalAuxFile">Error updating OTP auxiliary file!</string>
   <string name="TrayTotp_SeedField_title">TOTP Seed field name</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">If you are using the Keepass 2 plugin "TrayTotp" with non-default settings, enter the field name for the seed field here according to the settings on the PC.</string>
   <string name="TrayTotp_SettingsField_title">TOTP Settings field name</string>
   <string name="TrayTotp_SettingsField_summary">Enter the field name of the settings field for TrayTotp here.</string>

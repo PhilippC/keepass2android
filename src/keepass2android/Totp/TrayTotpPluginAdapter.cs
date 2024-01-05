@@ -106,6 +106,8 @@ namespace PluginTOTP
 					{
 						bool NoTimeCorrection = false;
 						string[] Settings = SettingsGet(entryFields);
+						res.InternalFields.Add(SettingsFieldName);
+						res.InternalFields.Add(SeedFieldName);
 						res.Duration = Settings[0];
 						res.Length = Settings[1];
                         if (res.Length == "S")

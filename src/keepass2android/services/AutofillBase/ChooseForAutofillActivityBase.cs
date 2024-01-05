@@ -24,7 +24,7 @@ namespace keepass2android.services.AutofillBase
     {
         protected Intent ReplyIntent;
 
-
+        public static string ExtraUuidString => "EXTRA_UUID_STRING";
         public static string ExtraQueryString => "EXTRA_QUERY_STRING";
         public static string ExtraQueryPackageString => "EXTRA_QUERY_PACKAGE_STRING";
         public static string ExtraQueryDomainString => "EXTRA_QUERY_DOMAIN_STRING";
@@ -50,9 +50,10 @@ namespace keepass2android.services.AutofillBase
             }
 
             string requestedUrl = Intent.GetStringExtra(ExtraQueryString);
-            if (requestedUrl == null)
+            string requestedUuid = Intent.GetStringExtra(ExtraUuidString);
+            if (requestedUrl == null && requestedUuid == null)
             {
-                Kp2aLog.Log("ChooseForAutofillActivityBase: no requestedUrl ");
+                Kp2aLog.Log("ChooseForAutofillActivityBase: no requestedUrl and no requestedUuid");
                 Toast.MakeText(this, "Cannot execute query for null.", ToastLength.Long).Show();
                 RestartApp();
                 return;
@@ -134,18 +135,30 @@ namespace keepass2android.services.AutofillBase
         private void Proceed()
         {
             string requestedUrl = Intent.GetStringExtra(ExtraQueryString);
+            string requestedUuid = Intent.GetStringExtra(ExtraUuidString);
 
-            var i = GetQueryIntent(requestedUrl, Intent.GetBooleanExtra(ExtraAutoReturnFromQuery, true), Intent.GetBooleanExtra(ExtraUseLastOpenedEntry, false));
-            if (i == null)
+            if (requestedUuid != null)
             {
-                //GetQueryIntent returns null if no query is required
-                ReturnSuccess();
+                var i = GetOpenEntryIntent(requestedUuid);
+                StartActivityForResult(i, RequestCodeQuery);
             }
             else
-                StartActivityForResult(i, RequestCodeQuery);
+            {
+                var i = GetQueryIntent(requestedUrl, Intent.GetBooleanExtra(ExtraAutoReturnFromQuery, true), Intent.GetBooleanExtra(ExtraUseLastOpenedEntry, false));
+                if (i == null)
+                {
+                    //GetQueryIntent returns null if no query is required
+                    ReturnSuccess();
+                }
+                else
+                    StartActivityForResult(i, RequestCodeQuery);
+            }
+
+            
         }
 
         protected abstract Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery, bool useLastOpenedEntry);
+        protected abstract Intent GetOpenEntryIntent(string entryUuid);
 
         protected void RestartApp()
         {

@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Preference;
 using KeePass.Util.Spr;
 using keepass2android.services.AutofillBase;
 using keepass2android.services.AutofillBase.model;
@@ -26,6 +27,32 @@ namespace keepass2android.services.Kp2aAutofill
         Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill")]
     public class ChooseForAutofillActivity : ChooseForAutofillActivityBase
     {
+        public bool ActivateKeyboardWhenTotpPreference
+        {
+            get
+            {
+                return PreferenceManager.GetDefaultSharedPreferences(this)
+                    .GetBoolean("AutoFillTotp_prefs_ActivateKeyboard_key", false);
+            }
+        }
+        public bool CopyTotpToClipboardPreference
+        {
+            get
+            {
+                return PreferenceManager.GetDefaultSharedPreferences(this)
+                    .GetBoolean("AutoFillTotp_prefs_CopyTotpToClipboard_key", true);
+            }
+        }
+
+        public bool ShowNotificationPreference
+        {
+            get
+            {
+                return PreferenceManager.GetDefaultSharedPreferences(this)
+                    .GetBoolean("AutoFillTotp_prefs_ShowNotification_key", true);
+            }
+        }
+
         protected override Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery, bool useLastOpenedEntry)
         {
             if (useLastOpenedEntry && (App.Kp2a.LastOpenedEntry?.SearchUrl == requestedUrl))
@@ -36,7 +63,33 @@ namespace keepass2android.services.Kp2aAutofill
             //will return the results later
             Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
             //don't show user notifications when an entry is opened.
-            var task = new SearchUrlTask() { UrlToSearchFor = requestedUrl, ShowUserNotifications = ShowUserNotificationsMode.WhenTotp, AutoReturnFromQuery = autoReturnFromQuery, ActivateKeyboard = false };
+            var task = new SearchUrlTask()
+            {
+                UrlToSearchFor = requestedUrl,
+                AutoReturnFromQuery = autoReturnFromQuery
+            };
+            SetTotpDependantActionsOnTask(task);
+
+            task.ToIntent(i);
+            return i;
+        }
+
+        private void SetTotpDependantActionsOnTask(SelectEntryTask task)
+        {
+            task.ShowUserNotifications =
+                ShowNotificationPreference ? ActivationCondition.WhenTotp : ActivationCondition.Never;
+            task.CopyTotpToClipboard = CopyTotpToClipboardPreference;
+            task.ActivateKeyboard = ActivateKeyboardWhenTotpPreference
+                ? ActivationCondition.WhenTotp
+                : ActivationCondition.Never;
+        }
+
+        protected override Intent GetOpenEntryIntent(string entryUuid)
+        {
+            Intent i = new Intent(this, typeof(SelectCurrentDbActivity));
+            //don't show user notifications when an entry is opened.
+            var task = new OpenSpecificEntryTask() { EntryUuid = entryUuid };
+            SetTotpDependantActionsOnTask(task);
             task.ToIntent(i);
             return i;
         }
