@@ -32,6 +32,7 @@ using Android.Text.Method;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using Android.Content.PM;
 using Android.Webkit;
 using Android.Graphics;
@@ -49,7 +50,9 @@ using PluginTOTP;
 using File = Java.IO.File;
 using Uri = Android.Net.Uri;
 using keepass2android.fileselect;
+using KeeTrayTOTP.Libraries;
 using Boolean = Java.Lang.Boolean;
+using Android.Util;
 
 namespace keepass2android
 {
@@ -285,6 +288,8 @@ namespace keepass2android
 				var view = CreateExtraSection(key, value, isProtected);
 				extraGroup.AddView(view.View);
 			}
+
+            SetPasswordStyle();
 
 			//update the Entry output in the App database and notify the CopyToClipboard service
 
@@ -665,7 +670,7 @@ namespace keepass2android
 			EditModeBase editMode = new DefaultEdit();
 			if (KpEntryTemplatedEdit.IsTemplated(App.Kp2a.CurrentDb, this.Entry))
 				editMode = new KpEntryTemplatedEdit(App.Kp2a.CurrentDb, this.Entry);
-			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key))))
+			foreach (var key in  editMode.SortExtraFieldKeys(Entry.Strings.GetKeys().Where(key=> !PwDefs.IsStandardField(key) && key != Kp2aTotp.TotpKey)))
 			{
 				if (editMode.IsVisible(key))
 				{
@@ -841,7 +846,7 @@ namespace keepass2android
 		{
             if (!_showPassword.ContainsKey(protectedTextView))
             {
-                _showPassword[protectedTextView] = fieldKey == UpdateTotpTimerTask.TotpKey ? _showTotpDefault : _showPasswordDefault;
+                _showPassword[protectedTextView] = fieldKey == Kp2aTotp.TotpKey ? _showTotpDefault : _showPasswordDefault;
             }
 		    var protectedTextviewGroup = new ProtectedTextviewGroup { ProtectedField = protectedTextView, VisibleProtectedField = visibleTextView};
 		    _protectedTextViews.Add(protectedTextviewGroup);
@@ -947,11 +952,13 @@ namespace keepass2android
 
 			PopulateStandardText(Resource.Id.entry_user_name, Resource.Id.entryfield_container_username, PwDefs.UserNameField);
 			PopulateStandardText(Resource.Id.entry_url, Resource.Id.entryfield_container_url, PwDefs.UrlField);
-			PopulateStandardText(new List<int> { Resource.Id.entry_password, Resource.Id.entry_password_visible}, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
+            PopulateStandardText(new List<int> { Resource.Id.entry_totp, Resource.Id.entry_totp_visible }, Resource.Id.entryfield_container_totp, Kp2aTotp.TotpKey);
+            PopulateStandardText(new List<int> { Resource.Id.entry_password, Resource.Id.entry_password_visible}, Resource.Id.entryfield_container_password, PwDefs.PasswordField);
 		    
             RegisterProtectedTextView(PwDefs.PasswordField, FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
+            RegisterProtectedTextView(Kp2aTotp.TotpKey, FindViewById<TextView>(Resource.Id.entry_totp), FindViewById<TextView>(Resource.Id.entry_totp_visible));
 
-			RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
+            RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
 				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath);
 
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.username_container),
@@ -962,9 +969,11 @@ namespace keepass2android
 				.Add(new GotoUrlMenuItem(this, PwDefs.UrlField));
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.password_container),
 			                  FindViewById(Resource.Id.password_vdots), PwDefs.PasswordField);
+            RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.totp_container),
+                FindViewById(Resource.Id.totp_vdots), Kp2aTotp.TotpKey);
 
 
-			PopulateText(Resource.Id.entry_created, Resource.Id.entryfield_container_created, getDateTime(Entry.CreationTime));
+            PopulateText(Resource.Id.entry_created, Resource.Id.entryfield_container_created, getDateTime(Entry.CreationTime));
 			PopulateText(Resource.Id.entry_modified, Resource.Id.entryfield_container_modified, getDateTime(Entry.LastModificationTime));
 
 			if (Entry.Expires)
@@ -991,6 +1000,40 @@ namespace keepass2android
 
 			SetPasswordStyle();
 		}
+		
+        private async Task UpdateTotpCountdown()
+        {
+            if (App.Kp2a.LastOpenedEntry == null)
+                return;
+            var totpData = new Kp2aTotp().TryGetTotpData(App.Kp2a.LastOpenedEntry);
+
+            if (totpData == null || !totpData.IsTotpEntry)
+                return;
+
+            var totpProvider = new TOTPProvider(totpData);
+
+            var progressBar = FindViewById<ProgressBar>(Resource.Id.TotpCountdownProgressBar);
+
+            int lastSecondsLeft = -1;
+            while (!isPaused && progressBar != null)
+            {
+
+                int secondsLeft = totpProvider.Timer;
+
+                if (secondsLeft != lastSecondsLeft)
+                {
+                    lastSecondsLeft = secondsLeft;
+                    // Update the progress bar on the UI thread
+                    RunOnUiThread(() =>
+                    {
+                        progressBar.Progress = secondsLeft;
+                        progressBar.Max = totpProvider.Duration;
+                    });
+                }
+                
+				await Task.Delay(1000); 
+            }
+        }
 
         private void PopulatePreviousVersions()
         {
@@ -1043,7 +1086,7 @@ namespace keepass2android
 		}
 		private List<IPopupMenuItem> RegisterTextPopup(View container, View anchor, string fieldKey)
 		{
-			return RegisterTextPopup(container, anchor, fieldKey, Entry.Strings.GetSafe(fieldKey).IsProtected);
+			return RegisterTextPopup(container, anchor, fieldKey, Entry.Strings.GetSafe(fieldKey).IsProtected || fieldKey == Kp2aTotp.TotpKey);
 		}
 
 		private List<IPopupMenuItem> RegisterTextPopup(View container, View anchor, string fieldKey, bool isProtected)
@@ -1056,7 +1099,12 @@ namespace keepass2android
 			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey], isProtected));
             if (isProtected)
             {
-                var valueView = container.FindViewById<TextView>(fieldKey == PwDefs.PasswordField ? Resource.Id.entry_password : Resource.Id.entry_extra);
+                var valueView = container.FindViewById<TextView>(fieldKey switch
+                {
+                    PwDefs.PasswordField => Resource.Id.entry_password,
+                    Kp2aTotp.TotpKey => Resource.Id.entry_totp,
+                    _ => Resource.Id.entry_extra
+                });
 				popupItems.Add(new ToggleVisibilityPopupMenuItem(this, valueView));
             }
 
@@ -1283,11 +1331,16 @@ namespace keepass2android
 			return base.OnPrepareOptionsMenu(menu);
 		}
 
-        
+		bool isPaused = false;
 
-		
+        protected override void OnPause()
+        {
+            base.OnPause();
+			isPaused = true;
+        }
 
-		private void UpdateTogglePasswordMenu()
+
+        private void UpdateTogglePasswordMenu()
 		{
 			IMenuItem togglePassword = _menu.FindItem(Resource.Id.menu_toggle_pass);
 			if (_showPassword.Values.All(x => x))
@@ -1324,7 +1377,9 @@ namespace keepass2android
 			ClearCache();
 			base.OnResume();
 			_activityDesign.ReapplyTheme();
-		}
+            isPaused = false;
+            Task.Run(UpdateTotpCountdown);
+        }
 
 		public void ClearCache()
 		{

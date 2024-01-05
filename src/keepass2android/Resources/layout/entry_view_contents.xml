@@ -185,6 +185,68 @@
     </LinearLayout>
   </LinearLayout>
   <LinearLayout
+    android:id="@+id/entryfield_container_totp"
+    style="@style/EntryEditSingleLine_container">
+    <ImageView
+      style="@style/EntryEditSingleLine_ImageView"
+      android:src="@drawable/ic_entry_totp" />
+
+    <LinearLayout
+        
+      android:layout_height="wrap_content"
+      android:layout_width="fill_parent"
+      android:orientation="vertical">
+      <!-- TOTP -->
+      <TextView
+        android:id="@+id/entry_totp_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/TOTP"
+        style="@style/EntryFieldHeader" />
+      <RelativeLayout
+        android:id="@+id/totp_container"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+          android:id="@+id/totp_vdots"
+          android:layout_width="wrap_content"
+          android:layout_height="15dp"
+          android:src="@drawable/vdots"
+          android:gravity="right|bottom"
+          android:layout_alignParentRight="true" />
+        <TextView
+          android:id="@+id/entry_totp"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:password="true"
+          android:typeface="monospace"
+          android:layout_toLeftOf="@id/totp_vdots"
+          style="@style/EntryItem" />
+        <TextView
+          android:id="@+id/entry_totp_visible"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_toLeftOf="@id/totp_vdots"
+          style="@style/EntryItem" />
+      </RelativeLayout>
+
+      
+        <ProgressBar
+          android:id="@+id/TotpCountdownProgressBar"
+          style="?android:attr/progressBarStyleHorizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_alignParentBottom="true"
+          android:layout_marginRight="30dp" />
+
+    </LinearLayout>
+  </LinearLayout>
+
+  <LinearLayout
     android:id="@+id/entryfield_container_comment"
             style="@style/EntryEditSingleLine_container">
     <ImageView
