@@ -402,6 +402,14 @@
   <string name="ShowSeparateNotifications_summary">为复制账户信息和激活键盘分别显示通知</string>
   <string name="AccServiceAutoFill_prefs">自动填充服务（辅助功能）</string>
   <string name="AutoFill_prefs">自动填充服务</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">当用TOTP自动填充条目时，显示带“复制TOTP”按钮的条目通知</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">显示条目通知</string>
+  <string name="AutoFillTotp_prefs_title">自动填充TOTP条目</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">复制TOTP到剪贴板</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">当使用TOTP自动填充条目时，复制TOTP到剪贴板</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">当用TOTP自动填充条目时，激活内置键盘。键盘有一个TOTP按钮。</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">激活内置键盘</string>
+  <string name="TotpCopiedToClipboard">已复制TOTP到剪贴板</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 键盘通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">使整个条目可通过 KP2A 键盘获取（推荐）。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切换键盘</string>
@@ -589,6 +597,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">请在 KeePass 2.x (PC) 中使用 KeeChallenge 插件，以使用挑战—响应配置您的数据库！</string>
   <string name="ErrorUpdatingChalAuxFile">更新一次性密码辅助文件时出错 ！</string>
   <string name="TrayTotp_SeedField_title">一次性密码种子字段名称</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">如果您在使用 Keepass 2 插件 \"TrayTotp\" 为非默认设置，在电脑上输入设置种子字段的字段名称。</string>
   <string name="TrayTotp_SettingsField_title">TOTP 字段名称设置</string>
   <string name="TrayTotp_SettingsField_summary">在这里输入设置字段的字段名称 TrayTotp</string>
