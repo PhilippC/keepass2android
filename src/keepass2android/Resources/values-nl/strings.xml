@@ -675,9 +675,21 @@
   <string name="FirstInvalidCompositeKeyError">Ongeldige sleutelcombinatie! Probeer het opnieuw.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">    Ongeldige samengestelde sleutel! Probeer de volgende stappen om uw database te ontgrendelen:\n
 
-    &#8226; Make sure you have entered the correct password. Use the eye icon to reveal the entered password.\n
-    &#8226; Make sure you have selected the correct password type. Make sure this matches the type used when creating the database.\n
-    &#8226; Make sure you have selected the correct database file.
+    &#8226; Controleer of het juiste wachtwoord is ingevuld. Gebruik het oogsymbool om het ingevoerde wachtwoord te onthullen.\n
+    &#8226; Controleer of het juiste wachtwoordtype is gebruikt. Let erop dat dit overeenkomt met het type dat is gekozen bij het aanmaken van de database.\n
+    &#8226; Controleer of de juiste database is gekozen.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">Tip: Als de database mogelijk corrupt is of na het wijzigen de hoofdsleutel niet meer bekend is, kunt u het proberen met de laatst geopende versie van het bestand door op \"%1$s\" te tikken en de lokale back-up te selecteren.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Tip: Keepass2Android heeft de laatst succesvol geopende bestandsversie opgeslagen op de interne opslag. U kunt deze openen door op \"%1$s\" te tikken en de lokale back-up te selecteren.
+  </string>
+  <string name="CorruptDatabaseHelp">    Bestand is beschadigd. \n
+    Hier zijn enkele tips die kunnen helpen bij het opsporen van het probleem:\n
+
+    &#8226; Als het bestand via USB (MTP-modus) is gekopieerd, probeer het dan opnieuw met een programma zoals MyPhoneExplorer. MTP kort bestanden in bepaalde gevallen in.\n
+    &#8226; Als het bestand niet vanaf dezelfde locatie op je pc kan worden geopend, is het waarschijnlijk beschadigd. Gebruik dan een database back-up. Als je vermoedt dat Keepass2Android het bestand heeft beschadigd, raadpleeg dan het ondersteuningsteam.\n
+    &#8226; Kunt u het bestand nog steeds openen op uw pc, neem dan contact op met het ondersteuningsteam. U kunt proberen het bestand op te slaan met andere instellingen ( bijv. uitgepakt) op de pc en opnieuw proberen te openen in Keepass2Android.
+
   </string>
   <string name="open_other_db">Een andere database openen…</string>
   <string name="select_database">Selecteer database</string>
@@ -706,6 +718,13 @@
   <string name="EntryChannel_desc">Melding voor vereenvoudigde toegang van het nu geselecteerde item.</string>
   <string name="CloseDbAfterFailedAttempts">Sluit de database na drie mislukte biometrische ontgrendelpogingen.</string>
   <string name="WarnFingerprintInvalidated">Waarschuwing! Biometrische authenticatie wordt uitgeschakeld door Android, bijv. na het toevoegen van een nieuwe vingerafdruk in de instellingen van jouw apparaat. Zorg ervoor dat je de database altijd kunt ontgrendelen met het hoofdwachtwoord!</string>
+  <string-array name="ChangeLog_1_10">
+    <item>Machtiging voor meldingen op Android 13+ toevoegen</item>
+    <item>De FTP en SFTP implementatie verbeteren</item>
+    <item>Toegang toevoegen tot volledige pCloud</item>
+    <item>Systeemtaal laten kiezen in het taalvenster</item>
+    <item>Probleem met onthouden van type sleutelbestand + wachtwoord oplossen</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Bug fix op crashes en onverwachte log-outs</item>
     <item>Schakel over naar nieuwe SFTP-implementatie ter ondersteuning van moderne publieke sleutel algoritmen zoals rsa-sha2-256</item>
@@ -771,6 +790,34 @@
     <item>Bugs opgelost</item>
     <item>Bugs opgelost</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Versie 1.07b\n
+    * Verbeter de prestaties van Argon2 door de oorspronkelijke implementatie te gebruiken (Met dank aan Chih-Hsuan Yen!)\n
+    * Toestaan om vingerafdruk uit te schakelen door op het vingerafdrukpictogram te klikken (voorkomt probleem met vingerafdruklezers onder het scherm, met dank aan marcoDallas!)\n
+    * Herstel cursorpositie bij het wisselen van de zichtbaarheid van het wachtwoord (met dank aan DDoSolitary!)\n
+    * Verbeteringen van de pCloud-implementatie (met weer dank aan gilbsgilbs!)\n
+    * Automatisch invullen ondersteunen voor meer browsers\n
+    * Nieuwe implementatie voor OneDrive: Ondersteuning voor OneDrive for Business, gedeelde bestanden, selecteerbare toegangsbereiken, meerdere accounts en oplossing voor problemen met offline toegang.\n
+    * Fout oplossingen
+  </string>
+  <string name="ChangeLog_1_07">    Versie 1.07\n
+    * Oplossing voor crashes op Samsung\'s Android 9\n
+    * Je kunt nu meer dan 1 database openen, compatibel met KeeAutoExec\n
+    * SFTP: public key authenticatie, controle op verandering van server sleutel\n
+    * Introductie van pCloud ondersteuning - dank aan gilbsgilbs!\n
+    * NextCloud ondersteuning expliciet gemaakt\n
+    * Opslaan en bijwerken van invoerbijlagen verbeteren\n
+    * Meer opties voor het aanpassen van app gedrag in persoonlijke voorkeuren\n
+    * SSL: vertrouw gebruiker certicaten\n
+    * Automatisch invullen verbeterd (werkt nu met Firefox, minder popups)\n
+    * Fout oplossingen\n
+  </string>
+  <string name="ChangeLog_1_06">  Versie 1.06\n
+  * Gebruik van ykDroid in plaats van YubiChallenge als app voor Yubikey challenge/response.\n
+  * Ondersteuning voor KeepassXC-stijl challenge/response. Let op: de database-indeling moet KDBX4 zijn!\n
+  * Weiger verwijderde bestanden te laden van Google Drive\n
+  * Andere TLS implementatie voor FTPS, om een JSch bug heen gewerkt voor servers die gssapi-with-mic ondersteunen\n
+  * problemen opgelost\n
+  </string>
   <string name="ChangeLog_keptDonate">Uitgelezen kans om biertje te schenken of iets anders</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconden</item>
