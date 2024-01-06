@@ -560,7 +560,7 @@
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragehelp_mega">Let op: Keepass2Android moet de lijst van alle bestanden in jouw Mega account downloaden om goed te werken. Om deze reden kan het benaderen van accounts met veel bestanden traag zijn.</string>
-  <string name="filestoragename_content">Systeem bestand kiezer</string>
+  <string name="filestoragename_content">Systeem bestandskiezer</string>
   <string name="filestorage_setup_title">Bestandstoegang initaliseren</string>
   <string name="database_location">Database locatie</string>
   <string name="help_database_location">Je kunt jouw database lokaal op je Android toestel of in de cloud opslaan (alleen de niet-Offline versie). Keepass2Android maakt de database beschikbaar, zelfs als je offline bent. Omdat de database veilig is versleuteld met AES 256 bit encryptie, kan niemand toegang krijgen tot jouw wachtwoorden behalve jij. We adviseren Dropbox te kiezen: het is beschikbaar op al je apparaten en voorziet zelfs in back-ups van vorige bestandsversies.</string>
@@ -818,6 +818,52 @@
   * Andere TLS implementatie voor FTPS, om een JSch bug heen gewerkt voor servers die gssapi-with-mic ondersteunen\n
   * problemen opgelost\n
   </string>
+  <string name="ChangeLog_1_05">    Versie 1.05\n
+    * Gebruik melding kanalen op Android 8 met configuratie via systeem instellingen\n
+    * Toon pictogram in melding\n
+    * Gebruik adaptieve pictogrammen voor Android 8, gebruik rond launcherpictogram voor Android 7\n
+    * Optie om direct te zoeken na openen (see instellingen)\n
+    * De manier waarop bestanden worden geschreven via Storage Access Framework is veranderd, dit lost problemen op met het schrijven van bestanden op Google Drive die geopend waren via de Systeem bestandsbeheerder\n
+    * Informatieteksten toegevoegd om vaak voorkomende misverstanden te voorkomen\n
+    * Maak lokaal een back-up van correct geopende databases om kans op dataverlies te verkleinen\n
+    * JSch bijgewerkt om recentere SSH ciphers te ondersteunen\n
+    * Mogelijk gemaakt om verbindingsinstellingen te wijzigen, bijvoorbeeld als het WebDav wachtwoord veranderde\n
+    * Ondersteuning voor Yubikey Neo\'s static password mode toegevoegd\n
+    * Automatisch invullen suggestie kan uitgezet worden\n
+    * Data lek naar logcat opgelost\n    
+    * Diverse bugs opgelost\n
+  
+ 
+ChangeLog_1_05  </string>
+  <string name="ChangeLog_1_04b">Versie 1.04b\n
+  * Voorkom vastlopen bij automatisch invullen op Huawei apparaten.\n
+  </string>
+  <string name="ChangeLog_1_04">Versie 1.04\n
+   * Automatisch invullen toegevoegd voor Android 8.0 en hoger.\n
+   * Bibliotheken, gereedschap en SDK-versie bijgewerkt.\n
+  </string>
+  <string name="ChangeLog_1_03">Versie 1.03\n
+  * Toegankelijkheid service voor automatisch invullen verwijderd zoals gevraagd door Google. Raadpleeg de wachtwoord toegangsinstellingen om een plugin te vinden die de vorige functionaliteit biedt.\n
+  * Derde partij apps weer toegevoegd als opslag optie\n
+  * Geïntegreerde afbeeldingsweergave van gekoppelde beelden zonder deze over te dragen aan andere apps\n
+  * OkHttp opgewaardeerd om problemen op te lossen met sommige verbindingen\n
+  * Steun voor KeeTrayTOTP items, ondersteund nu Steam items\n
+  </string>
+  <string name="ChangeLog_1_02">Versie 1.02\n
+    * Verschillende beveiligingsverbeteringen. Dank gaat uit naar jean-baptiste.cayrou@thalesgroup.com en vincent.fargues@thalesgroup.com voor hun veiligheidsrapport en samenwerking!\n
+    * Ondersteuning voor KeyboardSwapPlugin (zie verder wachtwoord toegang opties): staat automatisch wisselen van een input methode toe op non-rooted apparaten. Met dank aan Mishaal Rahman van XDA-Developers die dit mogelijk maakte.\n
+    * Fix voor toegankelijkheids service met recente Chrome versies.\n
+    * Fix om onnodig wissen van de vingerafdrukdata te voorkomen\n
+    * Fix voor onbelangrijke chrashes\n
+    * Dropbox SDK bijgewerkt om compabiliteit in de toekomst te garanderen\n
+    * Fout rapporten van Xamarin Insights verwijderd\n
+    * Ontwikkeltools geupdated\n  </string>
+  <string name="ChangeLog_1_01g">  Versie 1.01-g\n
+  * Oplossing voor een crash tijdens offline werken\n
+  * Oplossing voor onjuiste codering van FTP(S) inloggegevens\n
+  * Oplossing voor crashes bij het gebruik van OneDrive op oudere Android versies\n
+  * Tijden weergegeven als lokale tijd in beginscherm\n
+  </string>
   <string name="ChangeLog_keptDonate">Uitgelezen kans om biertje te schenken of iets anders</string>
   <string-array name="clipboard_timeout_options">
     <item>30 seconden</item>
@@ -867,8 +913,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Wachtwoord</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>KP2A privé/publieke sleutel</item>
+    <item>Aangepaste privésleutel</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Negeer mislukte certificaat validaties</item>
@@ -886,6 +932,11 @@
   <string name="autofill_enable_for">Automatisch invullen inschakelen voor %1$s</string>
   <string name="invalid_link_association">Kon domein %1$s niet koppelen met app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android heeft biometrische hardware gedetecteerd. Wil je Biometrische ontgrendeling voor deze database inschakelen?</string>
+  <string name="post_notifications_dialog_title">Meldingen toestaan</string>
+  <string name="post_notifications_dialog_message">Keepass2Android kan meldingen weergeven met knoppen om waarden zoals wachtwoorden en TOTP\'s naar het klembord te kopiëren, of om het ingebouwde toetsenbord op te roepen. Dit is handig om waarden over te brengen naar andere apps zonder herhaaldelijk naar Keepass2Android over te schakelen. Wilt u dergelijke meldingen inschakelen?</string>
+  <string name="post_notifications_dialog_allow">Meldingen toestaan</string>
+  <string name="post_notifications_dialog_disable">Schakel deze functie uit</string>
+  <string name="post_notifications_dialog_notnow">Niet nu</string>
   <string name="understand">Ik begrijp het</string>
   <string name="dont_show_again">Niet meer tonen</string>
   <string name="masterkey_infotext_head">Weet je het hoofdwachtwoord nog?</string>
