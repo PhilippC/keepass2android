@@ -407,6 +407,9 @@
   <string name="AutoFillTotp_prefs_title">Automatisch invullen voor TOTP-invoer</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP naar klembord kopiëren</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Kopieer de TOTP naar het klembord bij het automatisch aanvullen met TOTP. </string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Activeer het ingebouwde toetsenbord bij het automatisch invoeren van TOTP. Het toetsenbord heeft een TOTP-toets.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activeer het ingebouwde toetsenbord</string>
+  <string name="TotpCopiedToClipboard">TOTP naar klembord gekopieerd</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A toetsenbordmelding</string>
   <string name="ShowKp2aKeyboardNotification_summary">Maak het volledige item toegankelijk via het toetsenbord van de KP2A (aanbevolen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Wissel toetsenbord</string>
@@ -508,9 +511,27 @@
   <string name="hint_sftp_host">host (bijv: 192.168.0.1)</string>
   <string name="hint_sftp_port">poort</string>
   <string name="initial_directory">Initiële map (optioneel):</string>
+  <string name="connect_timeout">Time-out verbinding in seconden (optie)</string>
   <string name="enter_sftp_login_title">SFTP logingegevens invoeren:</string>
   <string name="sftp_auth_mode">Authenticatiemodus</string>
   <string name="send_public_key">Zend publieke sleutel...</string>
+  <string name="select_private_keyfile">Kies privé sleutel...</string>
+  <string name="hint_sftp_key_name">Nieuwe sleutelnaam</string>
+  <string name="hint_sftp_key_content">Nieuwe sftp-sleutel inhoud</string>
+  <string name="private_key_saved">Privésleutel opgeslagen</string>
+  <string name="private_key_save_failed">GEEN privé-sleutel opgeslagen: %1$s</string>
+  <string name="private_key_info">Sleutelnaam en inhoud voor opslag invoeren</string>
+  <string name="private_key_delete">Privé sleutel verwijderd: %1$s</string>
+  <string name="private_key_delete_failed">GEEN privé-sleutel opgeslagen: %1$s</string>
+  <string name="save_key">Sla persoonlijke sleutel op</string>
+  <string name="delete_key">Wis privésleutel</string>
+  <string name="private_key_select">Kies privésleutel</string>
+  <string name="private_key_create_new">[]Voeg nieuwe toe]</string>
+  <string name="hint_sftp_key_passphrase">Wachtwoordzin voor sleutel (optie)</string>
+  <string name="sftp_kex_title">Sleuteluitwisseling (KEX) algoritme(n) (optie)</string>
+  <string name="hint_sftp_kex">Komma-gescheiden (CSV)namen/spec</string>
+  <string name="sftp_shk_title">Server hostsleutel algoritme(n) (optie)</string>
+  <string name="hint_sftp_shk">Komma-gescheiden (CSV)namen/spec</string>
   <string name="enter_ftp_login_title">SFTP logingegevens invoeren:</string>
   <string name="enter_mega_login_title">Voer je MEGA account login gegevens in:</string>
   <string name="select_storage_type">Selecteer het opslagtype:</string>
@@ -528,7 +549,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A bestanden)</string>
   <string name="filestoragehelp_gdriveKP2A">Als je KP2A geen toegang wilt geven tot je volledige Google Drive, kunt je deze optie selecteren. Merk op dat je eerst een databasebestand moet aanmaken, bestaande bestanden zijn niet zichtbaar voor de app. Kies deze optie uit het database scherm aanmaken, of als je al een database hebt geopend door de database te exporteren die voor deze optie wordt gekozen.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A map)</string>
   <string name="filestoragehelp_pcloud">Dit opslagtype zal alleen toegang vragen tot de pCloud map \"Applications/Keepass2Android\". Als je een bestaande database uit jouw PCloud account wil gebruiken, zorg dan dat het bestand in die pCloud map wordt geplaatst.</string>
+  <string name="filestoragename_pcloudall">PCloud (Full access)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle bestanden en gedeelde bestanden</string>
@@ -574,12 +597,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Gebruik de KeeChallenge plugin in KeePass 2.x (PC) om de database in te stellen voor gebruik met challenge/response!</string>
   <string name="ErrorUpdatingChalAuxFile">Fout bijwerken OTP hulpbestand!</string>
   <string name="TrayTotp_SeedField_title">Veldnaam van TOTP-bron</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Wanneer je met Keepass 2 (PC) de plugin \"TrayTotp\" met afwijkende instellingen gebruikt, geef dan hier de naam van de willekeurige bron.</string>
   <string name="TrayTotp_SettingsField_title">Veldnaam TOTP-instellingen</string>
   <string name="TrayTotp_SettingsField_summary">Geef de veldnaam van het instellingenveld van TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Logboekbestand voor foutopsporing</string>
   <string name="DebugLog_title">Gebruik logboekbestand</string>
+  <string name="FtpDebug_title">FTP/SFTP debug logging</string>
   <string name="DebugLog_summary">App uitvoer naar een lokaal logboekbestand schrijven</string>
   <string name="DebugLog_send">Logboekbestand voor foutopsporing opsturen...</string>
   <string name="loading">Laden…</string>
@@ -648,6 +673,12 @@
   <string name="Continue">Ga verder</string>
   <string name="NoFilenameWarning">De URI die je hebt ingevoerd lijkt niet in een bestandsnaam. Weet je zeker dat dit een geldig bestand is?</string>
   <string name="FirstInvalidCompositeKeyError">Ongeldige sleutelcombinatie! Probeer het opnieuw.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Ongeldige samengestelde sleutel! Probeer de volgende stappen om uw database te ontgrendelen:\n
+
+    &#8226; Make sure you have entered the correct password. Use the eye icon to reveal the entered password.\n
+    &#8226; Make sure you have selected the correct password type. Make sure this matches the type used when creating the database.\n
+    &#8226; Make sure you have selected the correct database file.
+  </string>
   <string name="open_other_db">Een andere database openen…</string>
   <string name="select_database">Selecteer database</string>
   <string name="configure_child_dbs">Kind-databases configureren…</string>
