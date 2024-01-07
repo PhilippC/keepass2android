@@ -93,7 +93,7 @@
   <string name="fingerprint_no_enrolled">Je hebt biometrische authenticatie nog niet geconfigureerd op dit apparaat. Ga eerst naar de systeeminstellingen.</string>
   <string name="disable_fingerprint_unlock">Biometrische ontgrendeling uitschakelen</string>
   <string name="enable_fingerprint_unlock">Volledige Biometrische ontgrendeling inschakelen</string>
-  <string name="enable_fingerprint_quickunlock">Biometrische ontgrendeling voor QuickUnlock inschakelen</string>
+  <string name="enable_fingerprint_quickunlock">Biometrische ontgrendeling voor Snel Openen in te schakelen</string>
   <string name="fingerprint_unlock_failed">Biometrische Ontgrendel is mislukt. Decryptie sleutel is ongeldig gemaakt door Android OS. Dit gebeurt meestal als biometrische authenticatie of veiligheidsinstellingen zijn gewijzigd. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige sleutel. Biometrische ontgrendelen is uitgeschakeld omdat het hoofdwachtwoord niet meer geldig is. </string>
   <string name="fingerprint_reenable">Schakel de Biometrische ontgrendeling opnieuw in voor het nieuwe hoofdwachtwoord.</string>
@@ -101,7 +101,7 @@
   <string name="FingerprintInitFailed">Mislukt om biometrische authenticatie te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
   <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid de database enkel met jouw vingerafdruk te ontgrendelen.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Gebruik biometrische authenticatie in plaats van de QuickUnlock code. Dit slaat geen informatie op die gerelateerd is aan je hoofdwachtwoord.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Maakt het mogelijk om biometrische verificatie te gebruiken in plaats van de SnelOpenen-code. Slaat geen informatie over het hoofdwachtwoord op.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Geopend op</string>
   <string name="entry_cancel">Annuleren</string>
