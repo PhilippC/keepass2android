@@ -21,7 +21,7 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">App time-out</string>
-  <string name="app_timeout_summary">Tijd tot het vergrendelen van de database bij inactiviteit van de app.</string>
+  <string name="app_timeout_summary">Tijd voordat de database wordt vergrendeld als de app inactief is.</string>
   <string name="show_kill_app">Sluiten-Knop</string>
   <string name="kill_app_label">App-proces afsluiten</string>
   <string name="show_kill_app_summary">Toon een knop in het wachtwoordscherm om het app-proces te beëindigen (voor paranoïde gebruikers)</string>
@@ -100,7 +100,7 @@
   <string name="fingerprint_reenable2">Ontgrendel met je wachtwoord en schakel Biometrische ontgrendeling opnieuw in bij de database-instellingen.</string>
   <string name="FingerprintInitFailed">Mislukt om biometrische authenticatie te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
-  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid de database enkel met jouw vingerafdruk te ontgrendelen.</string>
+  <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door verificatie met jouw vingerafdruk. Dit geeft de mogelijkheid de database enkel met jouw vingerafdruk te ontgrendelen.</string>
   <string name="enable_fingerprint_quickunlock_Info">Maakt het mogelijk om biometrische verificatie te gebruiken in plaats van de SnelOpenen-code. Slaat geen informatie over het hoofdwachtwoord op.</string>
   <string name="enter_filename">Voer databasebestandsnaam in</string>
   <string name="entry_accessed">Geopend op</string>
@@ -382,7 +382,7 @@
   <string name="NoDonationReminder_title">Nooit vragen om een donatie</string>
   <string name="NoDonationReminder_summary">Ik geef je nog geen dubbeltje of ik heb al gedoneerd. Niet vragen om een donatie, zelfs niet op de verjaardag van de auteur.</string>
   <string name="UseOfflineCache_title">Database caching</string>
-  <string name="UseOfflineCache_summary">Houd een kopie van de database-bestanden in de cache-map van de app. Dit maakt het mogelijk om databases te gebruiken, zelfs als het database-bestand niet toegankelijk is.</string>
+  <string name="UseOfflineCache_summary">Bewaar een kopie van de databasebestanden in de cache-map van de app. Dit maakt het mogelijk databases te gebruiken, zelfs als het databasebestand niet toegankelijk is.</string>
   <string name="CreateBackups_title">Lokale back-ups</string>
   <string name="CreateBackups_summary">Maak een lokale back-up na het goed openen van een database.</string>
   <string name="UpdatingBackup">Lokale back-up bijwerken...</string>
@@ -513,7 +513,7 @@
   <string name="initial_directory">Initiële map (optioneel):</string>
   <string name="connect_timeout">Time-out verbinding in seconden (optie)</string>
   <string name="enter_sftp_login_title">SFTP logingegevens invoeren:</string>
-  <string name="sftp_auth_mode">Authenticatiemodus</string>
+  <string name="sftp_auth_mode">Verificatiemodus</string>
   <string name="send_public_key">Zend publieke sleutel...</string>
   <string name="select_private_keyfile">Kies privé sleutel...</string>
   <string name="hint_sftp_key_name">Nieuwe sleutelnaam</string>
@@ -625,9 +625,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Gegevens huidige item</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">De plug-in zal alle data van het huidige database item krijgen en kan acties aanbieden en de weergave van het item wijzigen.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Zoek eigen inloggegevens</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">De plug-in wordt toegestaan om te zoeken naar de inloggegevens die gekoppeld zijn met zijn eigen applicatie.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">De plugin mag de logingegevens opvragen die zijn gekoppeld aan zijn eigen app-pakket.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Zoek inloggegevens</string>
-  <string name="SCOPE_QUERY_CREDENTIALS_explanation">De plug-in zal worden toegestaan te zoeken naar inloggegevens voor specifieke websites of programma\'s.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">De plugin mag inloggegevens opvragen voor bewuste websites of apps.</string>
   <string name="get_regular_version">Verkrijg meer opslagmethodes</string>
   <string name="CertificateWarning">Waarschuwing: Server certificaat validatie mislukt: %1$s. Installeer een passend root-certificaat op je apparaat of zie instellingen!</string>
   <string name="CertificateFailure">Fout: Server certificaat validatie mislukt! Installeer een passend root-certificaat op je apparaat of zie instellingen!</string>
@@ -737,7 +737,7 @@
     <item>Ondersteuning voor Google Drive met beperkte scope toegevoegd</item>
   </string-array>
   <string-array name="ChangeLog_1_09c">
-    <item>Google Drive authenticatie opnieuw geïmplementeerd, Google Drive ondersteuning opnieuw ingeschakeld</item>
+    <item>Google Drive verificatie opnieuw geïmplementeerd, Google Drive ondersteuning opnieuw ingeschakeld</item>
   </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Repareer de automatische invulprompt in Firefox</item>
@@ -751,7 +751,7 @@
     <item>Dialoog toegevoegd voor het configureren van TOTP instellingen</item>
     <item>Wachtwoordgenerator verbetert: wachtwoordzinnen toegevoegd, meer opties, profiel- en wachtwoordsterkte inschatting</item>
     <item>Verbeteringen van Autofill (pop-up werd niet weergegeven in Chrome, betere subdomein ondersteuning)</item>
-    <item>Verbeteringen in de OneDrive implementatie: grootte limiet verwijderd, geen overbodige authenticatieverzoeken meer</item>
+    <item>Verbeteringen in de OneDrive implementatie: grootte limiet verwijderd, geen overbodige verificatieverzoeken meer</item>
     <item>Optie toegevoegd om licht/donker ontwerp te selecteren uit systeeminstellingen inclusief nachtplannen, vereist Android 10+</item>
     <item>Update de Dropbox-implementatie om de nieuwe verificatiemethode te ondersteunen.</item>
     <item>Nieuw ingestelde vingerafdrukontgrendeling wordt ongeldig na het toevoegen van een vingerafdruk in systeeminstellingen voor meer veiligheid.</item>
@@ -763,7 +763,7 @@
     <item>Voeg ondersteuning voor Argon2id toe als sleutel afleidingsfunctie</item>
     <item>Verbeterde compatibiliteit voor Autofill met Firefox en Chrome</item>
     <item>Verbeter ondersteuning voor TOTP-items van desktopprogramma\'s</item>
-    <item>Update pCloud SDK om authenticatie probleem op te lossen</item>
+    <item>Update pCloud SDK om verificatie probleem op te lossen</item>
     <item>Jsch bijwerken naar versie 0.1.55</item>
     <item>Menu toevoegen aan database selectiescherm</item>
     <item>Sta exporteren van geïmporteerde sleutelbestanden toe</item>
