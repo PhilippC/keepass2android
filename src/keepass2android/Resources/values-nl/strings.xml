@@ -333,7 +333,7 @@
   <string name="QuickUnlockHideLength_title">Verberg SnelOpenen lengte</string>
   <string name="QuickUnlockHideLength_summary">Indien geactiveerd, wordt de lengte van de SnelOpenen code niet weergegeven op het SnelOpenen scherm.</string>
   <string name="QuickUnlockKeyFromDatabase_title">SnelOpenen sleutel uit database invoer</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Als de actieve database een item bevat met de titel \"Snel openen\" in de hoofdgroep, wordt het wachtwoord van dit item gebruikt als SnelOpenen code.</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Als de actieve database een item bevat met de titel \"SnelOpenen\" in de hoofdgroep, wordt het wachtwoord van dit item gebruikt als SnelOpenen code.</string>
   <string name="QuickUnlock_fail">SnelOpenen is mislukt: wachtwoord onjuist!</string>
   <string name="SaveAttachmentDialog_title">Bijlage opslaan</string>
   <string name="SaveAttachmentDialog_text">Selecteer waar u de bijlage wilt opslaan.</string>
