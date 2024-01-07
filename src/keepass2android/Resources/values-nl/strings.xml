@@ -97,7 +97,7 @@
   <string name="fingerprint_unlock_failed">Biometrische Ontgrendeling is mislukt. Ontcijferingssleutel is ongeldig gemaakt door Android OS. Dit gebeurt meestal als biometrische verificatie of veiligheidsinstellingen werden gewijzigd. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ontgrendelen van de database mislukt: Ongeldige samengestelde sleutel. Biometrische ontgrendeling is uitgeschakeld omdat het opgeslagen hoofdwachtwoord blijkbaar niet langer geldig is.</string>
   <string name="fingerprint_reenable">Schakel de Biometrische ontgrendeling opnieuw in voor het nieuwe hoofdwachtwoord.</string>
-  <string name="fingerprint_reenable2">Ontgrendelen met jouw wachtwoord, schakel daarna de Biometrische ontgrendeling opnieuw in in de instellingen van de database.</string>
+  <string name="fingerprint_reenable2">Ontgrendel met je wachtwoord en schakel Biometrische ontgrendeling opnieuw in bij de database-instellingen.</string>
   <string name="FingerprintInitFailed">Mislukt om biometrische authenticatie te initialiseren. </string>
   <string name="FingerprintSetupFailed">Kan gegevens niet versleutelen. Dit kan gebeuren als je vingerafdrukken toevoegt of verwijdert in de systeeminstellingen terwijl Keepass2Android luistert naar je vingerafdruk.</string>
   <string name="enable_fingerprint_unlock_Info">Dit zal je hoofdwachtwoord op dit apparaat opslaan. Het wordt versleuteld door de Android Keystore en beschermd door authenticatie met jouw vingerafdruk. Dit geeft de mogelijkheid de database enkel met jouw vingerafdruk te ontgrendelen.</string>
