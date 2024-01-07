@@ -56,15 +56,15 @@
     <string name="afc_title_sort_by">Sorteer op…</string>
     <string name="afc_yesterday">Gisteren</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="one">Kies map&#8230;</item>
-        <item quantity="other">Kies mappen&#8230;</item>
+        <item quantity="one">Kies map…</item>
+        <item quantity="other">Kies mappen…</item>
     </plurals>
     <plurals name="afc_title_choose_files">
-        <item quantity="one">Kies bestand&#8230;</item>
-        <item quantity="other">Kies bestanden&#8230;</item>
+        <item quantity="one">Kies bestand…</item>
+        <item quantity="other">Kies bestanden…</item>
     </plurals>
     <plurals name="afc_title_choose_files_directories">
-        <item quantity="one">Kies bestand/ map&#8230;</item>
-        <item quantity="other">Kies bestanden/ mappen&#8230;</item>
+        <item quantity="one">Kies bestand/ map…</item>
+        <item quantity="other">Kies bestanden/ mappen…</item>
     </plurals>
 </resources>
