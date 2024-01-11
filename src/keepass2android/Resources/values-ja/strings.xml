@@ -402,6 +402,14 @@
   <string name="ShowSeparateNotifications_summary">ユーザー名やパスワードをクリップボードへコピーするための通知とキーボード変更のための通知を分割して表示します。</string>
   <string name="AccServiceAutoFill_prefs">自動入力ユーザー補助サービス</string>
   <string name="AutoFill_prefs">自動入力サービス</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">TOTP を含むエントリーを自動入力する場合、TOTP をコピーボタンをエントリーの通知に表示します</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">エントリーの通知を表示</string>
+  <string name="AutoFillTotp_prefs_title">TOTP エントリーの自動入力</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">クリップボードに TOTP をコピー</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">TOTP を含むエントリーを自動入力する場合、 クリップボードに TOTP をコピーします</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">TOTP を含むエントリーを自動入力する場合、TOTP ボタン付きの内蔵キーボードを起動します。</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">内蔵キーボードを起動</string>
+  <string name="TotpCopiedToClipboard">クリップボードに TOTP をコピーしました</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A キーボードの通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">KP2A のキーボードからすべてのエントリーにアクセスできるようにします (推奨)</string>
   <string name="OpenKp2aKeyboardAutomatically_title">キーボード切り替え</string>
@@ -589,6 +597,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">KeePass 2.x (PC) の KeeChallenge プラグインを使用して、チャレンジレスポンスを使うようにデータベースを構成してください！</string>
   <string name="ErrorUpdatingChalAuxFile">OTP 補助ファイルの更新にエラーが発生しました！</string>
   <string name="TrayTotp_SeedField_title">TOTP シード フィールド名</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">デフォルト以外の設定で Keepass 2 プラグイン「TrayTotp」を使用している場合、PC での設定に従ってシード フィールドのフィールド名を入力してください。</string>
   <string name="TrayTotp_SettingsField_title">TOTP 設定フィールド名</string>
   <string name="TrayTotp_SettingsField_summary">ここに TrayTotp の設定フィールドのフィールド名を入力してください。</string>
