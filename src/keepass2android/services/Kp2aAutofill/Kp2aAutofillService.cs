@@ -4,6 +4,7 @@ using System.Linq;
 using Android;
 using Android.App;
 using Android.Content;
+using Android.Preferences;
 using Android.Runtime;
 using keepass2android.services.AutofillBase;
 using keepass2android.services.AutofillBase.model;
@@ -34,24 +35,29 @@ namespace keepass2android.services
         {
         }
 
-        protected override List<FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query)
+        protected override Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query)
         {
             if (!App.Kp2a.DatabaseIsUnlocked)
-                return new List<FilledAutofillFieldCollection<ViewNodeInputField>>();
+                return new Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>>();
             var foundEntries = (ShareUrlResults.GetSearchResultsForUrl(query)?.Entries ?? new PwObjectList<PwEntry>())
-                .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
                 .ToList();
 
             if (App.Kp2a.LastOpenedEntry?.SearchUrl == query)
             {
                 foundEntries.Clear();
-                foundEntries.Add(App.Kp2a.LastOpenedEntry);
+                foundEntries.Add(App.Kp2a.LastOpenedEntry?.Entry);
             }
 
-            //it seems like at least with Firefox we can have at most 3 datasets. Reserve space for the disable/enable dataset and the "fill with KP2A" which allows to select another item
-            //so take only 1:
-            return foundEntries.Take(1).Select(e => ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(e, this))
-                .ToList();
+            int numDisableDatasets = 0;
+            if (!PreferenceManager.GetDefaultSharedPreferences(this)
+                    .GetBoolean(GetString(Resource.String.NoAutofillDisabling_key), false))
+                numDisableDatasets = 1;
+
+                //it seems like at least with Firefox we can have at most 3 datasets. Reserve space for the disable dataset and the "fill with KP2A" which allows to select another item
+                return foundEntries.Take(2-numDisableDatasets)
+                    .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
+                    .ToDictionary(e => e,
+                                e => ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(e, this));
         }
 
         protected override void HandleSaveRequest(StructureParser parser, StructureParser.AutofillTargetId query)

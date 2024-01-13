@@ -461,7 +461,8 @@
           android:defaultValue="false"
           android:title="@string/LogAutofillView_title"
           android:key="@string/LogAutofillView_key" />
-        
+
+    
 
         <CheckBoxPreference
           android:enabled="true"
@@ -476,6 +477,38 @@
 		    android:summary="@string/AutofillDisabledQueriesPreference_summary"
 		    android:persistent="false"
 		    android:key="AutofillDisabledQueriesPreference_key"/>
+
+        <PreferenceScreen
+          android:key="@string/AutoFillTotp_prefs_screen_key"
+          android:title="@string/AutoFillTotp_prefs_title"
+        >
+          <keepass2android.ToolbarPreference
+            android:key="@string/AutoFillTotp_prefs_screen_key"
+            android:title="@string/AutoFillTotp_prefs_title" />
+
+					<CheckBoxPreference android:key="AutoFillTotp_prefs_ShowNotification_key"
+                              android:enabled="true"
+                              android:persistent="true"
+                              android:summary="@string/AutoFillTotp_prefs_ShowNotification_summary"
+                              android:defaultValue="true"
+                              android:title="@string/AutoFillTotp_prefs_ShowNotification_title"
+                              />
+          <CheckBoxPreference android:key="AutoFillTotp_prefs_CopyTotpToClipboard_key"
+                              android:enabled="true"
+                              android:persistent="true"
+                              android:summary="@string/AutoFillTotp_prefs_CopyTotpToClipboard_summary"
+                              android:defaultValue="true"
+                              android:title="@string/AutoFillTotp_prefs_CopyTotpToClipboard_title"
+          />
+          <CheckBoxPreference android:key="AutoFillTotp_prefs_ActivateKeyboard_key"
+                              android:enabled="true"
+                              android:persistent="true"
+                              android:summary="@string/AutoFillTotp_prefs_ActivateKeyboard_summary"
+                              android:defaultValue="false"
+                              android:title="@string/AutoFillTotp_prefs_ActivateKeyboard_title"
+          />
+
+        </PreferenceScreen>
         
       </PreferenceScreen>
 

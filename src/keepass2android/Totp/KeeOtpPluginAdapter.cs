@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Android.Content;
+using keepass2android;
 using KeePassLib.Collections;
 
 namespace PluginTOTP
@@ -39,23 +40,34 @@ namespace PluginTOTP
 			{
 				TotpData res = new TotpData();
 				string data;
-				if (!_entryFields.TryGetValue("otp", out data))
+                var otpKey = "otp";
+                if (!_entryFields.TryGetValue(otpKey, out data))
 				{
 					return res;
 				}
 				NameValueCollection parameters = ParseQueryString(data);
+				res.InternalFields.Add(otpKey);
 
 				if (parameters[KeyParameter] == null)
 				{
 					return res;
 				}
-				res.TotpSeed = parameters[KeyParameter];
 
+                try
+                {
+                    res.TotpSeed = parameters[KeyParameter];
+
+
+                    res.Duration = GetIntOrDefault(parameters, StepParameter, 30).ToString();
+                    res.Length = GetIntOrDefault(parameters, SizeParameter, 6).ToString();
+
+                    res.IsTotpEntry = true;
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.Log("Cannot parse seed");
+                }
 				
-				res.Duration = GetIntOrDefault(parameters, StepParameter, 30).ToString();
-				res.Length = GetIntOrDefault(parameters, SizeParameter, 6).ToString();
-
-				res.IsTotpEntry = true;
 				return res;
 
 			}

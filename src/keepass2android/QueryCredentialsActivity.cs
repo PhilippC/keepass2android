@@ -140,7 +140,7 @@ namespace keepass2android
             //will return the results later
             Intent i = new Intent(this, typeof (SelectCurrentDbActivity));
 			//don't show user notifications when an entry is opened.
-			var task = new SearchUrlTask() {UrlToSearchFor = _requestedUrl, ShowUserNotifications = ShowUserNotificationsMode.WhenTotp};
+			var task = new SearchUrlTask() {UrlToSearchFor = _requestedUrl, ShowUserNotifications = ActivationCondition.WhenTotp, ActivateKeyboard = ActivationCondition.Never };
 			task.ToIntent(i);
 			StartActivityForResult(i, RequestCodeQuery);
 			_startedQuery = true;

@@ -9,6 +9,7 @@ using Android.Views;
 using Android.Widget;
 using keepass2android.services.AutofillBase;
 using keepass2android.services.Kp2aAutofill;
+using KeePassLib;
 
 namespace keepass2android.services
 {
@@ -29,16 +30,14 @@ namespace keepass2android.services
             return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Mutable));
         }
 
-        public PendingIntent GetAuthPendingIntentForWarning(Context context, string query, string queryDomain, string queryPackage,
+        public PendingIntent GetAuthPendingIntentForWarning(Context context,PwUuid entryUuid,
             AutofillServiceBase.DisplayWarning warning)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
-            intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
-            intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryDomainString, queryDomain);
-            intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryPackageString, queryPackage);
+            intent.PutExtra(ChooseForAutofillActivityBase.ExtraUuidString, entryUuid.ToHexString());
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraDisplayWarning, (int)warning);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraUseLastOpenedEntry, true);
-            return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));
+            return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Mutable));
         }
 
         public PendingIntent GetDisablePendingIntentForResponse(Context context, string query,

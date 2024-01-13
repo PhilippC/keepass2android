@@ -31,11 +31,13 @@ namespace PluginTOTP
 		public string TimeCorrectionUrl { get; set; }
 
         public string HashAlgorithm { get; set; }
-
+        
         public bool IsDefaultRfc6238
         {
             get { return Length == "6" && Duration == "30" && (HashAlgorithm == null || HashAlgorithm == HashSha1); }
         }
+
+        public List<string> InternalFields { get; set; } = new List<string>();
 
         public static TotpData MakeDefaultRfc6238()
         {
