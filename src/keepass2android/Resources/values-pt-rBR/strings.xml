@@ -404,6 +404,14 @@
   <string name="ShowSeparateNotifications_summary">Exibir notificações separadas para copiar nome de usuário e senha para área de transferência e ativar o teclado.</string>
   <string name="AccServiceAutoFill_prefs">Serviço de Acessibilidade para Autopreenchimento</string>
   <string name="AutoFill_prefs">Serviço de Autopreenchimento</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Ao preencher automaticamente uma entrada com TOTP, mostre a notificação de entrada com um botão Copiar TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Mostrar notificação da entrada</string>
+  <string name="AutoFillTotp_prefs_title">Preenchimento automático para entradas TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiar TOTP para a área de transferência</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Ao preencher automaticamente uma entrada com TOTP, copie o TOTP para a área de transferência</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Ao preencher automaticamente uma entrada com TOTP, ative o teclado integrado. O teclado possui um botão TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Ativar teclado integrado</string>
+  <string name="TotpCopiedToClipboard">Copiado TOTP para a área de transferência</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar teclado</string>
@@ -591,6 +599,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Por favor, use o plugin KeeChallenge no KeePass 2.x (PC) para configurar seu banco de dados para uso com desafio-resposta!</string>
   <string name="ErrorUpdatingChalAuxFile">Erro ao atualizar o arquivo OTP auxiliar!</string>
   <string name="TrayTotp_SeedField_title">Nome do campo da semente TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Se você estiver usando o plugin Keepass 2 \"TrayTotp\" com configurações não-padrão, digite o nome do campo para o campo de semente aqui de acordo com as configurações no PC.</string>
   <string name="TrayTotp_SettingsField_title">TOTP configurações nome do campo</string>
   <string name="TrayTotp_SettingsField_summary">Digite o nome do campo do campo de configurações para TrayTotp aqui.</string>
@@ -943,6 +952,16 @@
     * adicionada verificação de bancos de dados corrompidos (UUIDs duplicados)\n
     * recarrega automaticamente o banco de dados quando uma alteração é detectada, resolve problemas de segurança relacionados à revelação da senha mestra\n
     * layout de teclado pequeno aprimorado e tema de configurações de teclado fixo (graças a Wiktor Ławski)\n
+  </string>
+  <string name="ChangeLog_0_9_5">    <b>Versão 0.9.5</b>\n
+    * Corrigidos problemas com a navegação de arquivos (especialmente no Android 4.4)\\n
+    * Corrigido problema ao carregar arquivos .kdb (Keepass 1) no Nexus 5 com Android Lollipop\\n
+    * Adicionada opção para evitar capturas de tela/exibição de aplicativos na lista de aplicativos recentes\\n
+    * Corrigido problema com armazenamento de arquivos do Google Drive (edição regular)\\n
+    * Permitir arquivos importantes em tipos de armazenamento deliberados (edição regular)\\n
+    * SDK do Dropbox atualizado para incluir um patch de segurança oficial (edição regular)\\n
+    * Ferramentas de compilação atualizadas --&gt; tamanho do apk aumentado :-(\n
+    Eu prometi mais algumas mudanças. Eles virão no próximo lançamento - desculpe. Eu queria publicar esses hot fixes o mais rápido possível.
   </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string-array name="clipboard_timeout_options">

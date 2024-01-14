@@ -47,15 +47,15 @@
     <!-- Category title for text prediction -->
     <string name="prediction_category">Instellingen voor woordsuggesties</string>
     <!-- Description for text prediction -->
-    <string name="prediction_summary">Automatisch voltooien tijdens typen inschakelen</string>
+    <string name="prediction_summary">Automatisch aanvullen tijdens typen inschakelen</string>
     <!-- Dialog title for auto complete choices -->
-    <string name="auto_complete_dialog_title">Automatisch voltooien</string>
+    <string name="auto_complete_dialog_title">Automatisch aanvullen</string>
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">Tekstveld vergroten</string>
     <!-- Description for text prediction -->
     <string name="prediction_landscape_summary">Woordsuggesties verbergen in liggende weergave</string>
     <!-- Option to enable auto capitalization of sentences -->
-    <string name="auto_cap">Auto-hoofdlettergebruik</string>
+    <string name="auto_cap">Automatisch hoofdlettergebruik</string>
     <!-- Description for auto cap -->
     <string name="auto_cap_summary">Hoofdletter gebruiken aan het begin van een zin</string>
     <!-- Option to enable auto punctuate -->
@@ -64,15 +64,15 @@
     <!-- Option to enable quick fixes -->
     <string name="quick_fixes">Snelle oplossingen</string>
     <!-- Description for quick fixes -->
-    <string name="quick_fixes_summary">Hiermee worden veelvoorkomende typefouten gecorrigeerd</string>
+    <string name="quick_fixes_summary">Corrigeert veelgemaakte typefouten</string>
     <!-- Option to enable showing suggestions -->
     <string name="show_suggestions">Suggesties weergeven</string>
     <!-- Description for show suggestions -->
-    <string name="show_suggestions_summary">Voorgestelde woorden weergeven tijdens typen</string>
+    <string name="show_suggestions_summary">Woordsuggesties tijdens het typen tonen</string>
     <!-- Option to enable auto completion -->
     <string name="auto_complete">Auto-aanvullen</string>
     <!-- Description for auto completion -->
-    <string name="auto_complete_summary">Gemarkeerd woord automatisch invoegen met spatiebalk en interpunctie</string>
+    <string name="auto_complete_summary">Spatiebalk en interpunctie voegen automatisch gemarkeerd woord in</string>
     <!-- Option to show/hide the settings key -->
     <string name="prefs_settings_key">Instellingscode weergeven</string>
     <!-- Array of the settings key mode values -->
