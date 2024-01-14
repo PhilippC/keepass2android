@@ -715,7 +715,7 @@ namespace keepass2android
 			var stringView = new ExtraStringView(layout, valueView, valueViewVisible, keyView);
 
 			_stringViews.Add(key, stringView);
-			RegisterTextPopup(valueViewContainer, valueViewContainer.FindViewById(Resource.Id.extra_vdots), key, isProtected);
+			RegisterTextPopup(valueViewContainer, valueViewContainer.FindViewById(Resource.Id.extra_vdots), key, isProtected, layout);
 
 			return stringView;
 
@@ -725,6 +725,7 @@ namespace keepass2android
 
 		private List<IPopupMenuItem> RegisterPopup(string popupKey, View clickView, View anchorView)
 		{
+			
 			clickView.Click += (sender, args) =>
 				{
 					ShowPopup(anchorView, popupKey);
@@ -951,16 +952,20 @@ namespace keepass2android
             RegisterProtectedTextView(PwDefs.PasswordField, FindViewById<TextView>(Resource.Id.entry_password), FindViewById<TextView>(Resource.Id.entry_password_visible));
 
 			RegisterTextPopup(FindViewById<RelativeLayout> (Resource.Id.groupname_container),
-				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath);
+				              FindViewById (Resource.Id.entry_group_name), KeyGroupFullPath,
+                              FindViewById(Resource.Id.entryfield_group_container));
 
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.username_container),
-			                  FindViewById(Resource.Id.username_vdots), PwDefs.UserNameField);
+			                  FindViewById(Resource.Id.username_vdots), PwDefs.UserNameField,
+                              FindViewById(Resource.Id.entryfield_container_username));
 
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.url_container),
-			                  FindViewById(Resource.Id.url_vdots), PwDefs.UrlField)
+			                  FindViewById(Resource.Id.url_vdots), PwDefs.UrlField,
+                              FindViewById(Resource.Id.entryfield_container_url))
 				.Add(new GotoUrlMenuItem(this, PwDefs.UrlField));
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.password_container),
-			                  FindViewById(Resource.Id.password_vdots), PwDefs.PasswordField);
+			                  FindViewById(Resource.Id.password_vdots), PwDefs.PasswordField,
+                              FindViewById(Resource.Id.entryfield_container_password));
 
 
 			PopulateText(Resource.Id.entry_created, Resource.Id.entryfield_container_created, getDateTime(Entry.CreationTime));
@@ -977,7 +982,8 @@ namespace keepass2android
 			}
 			PopulateStandardText(Resource.Id.entry_comment, Resource.Id.entryfield_container_comment, PwDefs.NotesField);
 			RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.comment_container),
-							  FindViewById(Resource.Id.comment_vdots), PwDefs.NotesField);
+							  FindViewById(Resource.Id.comment_vdots), PwDefs.NotesField,
+                              FindViewById(Resource.Id.entryfield_container_comment));
                               
 			PopulateText(Resource.Id.entry_tags, Resource.Id.entryfield_container_tags, concatTags(Entry.Tags));
 			PopulateText(Resource.Id.entry_override_url, Resource.Id.entryfield_container_overrideurl, Entry.OverrideUrl);
@@ -1040,24 +1046,29 @@ namespace keepass2android
 				SendBroadcast(i);
 			}
 		}
-		private List<IPopupMenuItem> RegisterTextPopup(View container, View anchor, string fieldKey)
+		private List<IPopupMenuItem> RegisterTextPopup(View container, View anchor, string fieldKey, View outerContainer)
 		{
-			return RegisterTextPopup(container, anchor, fieldKey, Entry.Strings.GetSafe(fieldKey).IsProtected);
+			return RegisterTextPopup(container, anchor, fieldKey, Entry.Strings.GetSafe(fieldKey).IsProtected, outerContainer);
 		}
 
-		private List<IPopupMenuItem> RegisterTextPopup(View container, View anchor, string fieldKey, bool isProtected)
+		private List<IPopupMenuItem> RegisterTextPopup(View container, View anchor, string fieldKey, bool isProtected, View outerContainer)
 		{
 			string popupKey = Strings.PrefixString + fieldKey;
 			var popupItems = RegisterPopup(
 				popupKey,
 				container,
 				anchor);
-			popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey], isProtected));
+            popupItems.Add(new CopyToClipboardPopupMenuIcon(this, _stringViews[fieldKey], isProtected));
             if (isProtected)
             {
                 var valueView = container.FindViewById<TextView>(fieldKey == PwDefs.PasswordField ? Resource.Id.entry_password : Resource.Id.entry_extra);
 				popupItems.Add(new ToggleVisibilityPopupMenuItem(this, valueView));
             }
+
+			//copy text to clipboard when the outer container (including the field icon on the left) or the inner container
+			// (containing the textview and the vertical dots for the popup menu) is long-clicked.
+            RegisterCopyOnLongClick(outerContainer, fieldKey, isProtected);
+            RegisterCopyOnLongClick(container, fieldKey, isProtected);
 
             if (fieldKey != PwDefs.UrlField //url already has a go-to-url menu
                 && (_stringViews[fieldKey].Text.StartsWith(KeePass.AndroidAppScheme)
@@ -1069,9 +1080,14 @@ namespace keepass2android
 			return popupItems;
 		}
 
+        private void RegisterCopyOnLongClick(View container, string fieldKey, bool isProtected)
+        {
+            container.LongClick += (sender, args) =>
+                CopyToClipboardService.CopyValueToClipboardWithTimeout(this, _stringViews[fieldKey].Text, isProtected);
+        }
 
 
-		private void ShowPopup(View anchor, string popupKey)
+        private void ShowPopup(View anchor, string popupKey)
 		{
 			//PopupMenu popupMenu = new PopupMenu(this, FindViewById(Resource.Id.entry_user_name));
 			PopupMenu popupMenu = new PopupMenu(this, anchor);
@@ -1121,7 +1137,7 @@ namespace keepass2android
 
 		        }
 		    }
-		}
+        }
 
 	    private void PopulateStandardText(int viewId, int containerViewId, String key)
 	    {
@@ -1135,7 +1151,9 @@ namespace keepass2android
 			value = SprEngine.Compile(value, new SprContext(Entry, App.Kp2a.CurrentDb.KpDatabase, SprCompileFlags.All));
 			PopulateText(viewIds, containerViewId, value);
 			_stringViews.Add(key, new StandardStringView(viewIds, containerViewId, this));
-		}
+            
+
+        }
 
 		private void PopulateGroupText(int viewId, int containerViewId, String key)
 		{
