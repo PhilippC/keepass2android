@@ -24,6 +24,7 @@ namespace keepass2android.services.Kp2aAutofill
     [Activity(Label = "@string/app_name",
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
         Theme = "@style/MyTheme_ActionBar",
+        WindowSoftInputMode = SoftInput.AdjustResize,
         Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill")]
     public class ChooseForAutofillActivity : ChooseForAutofillActivityBase
     {
