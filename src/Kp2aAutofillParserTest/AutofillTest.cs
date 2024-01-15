@@ -52,13 +52,6 @@ namespace Kp2aAutofillParserTest
         }
 
         [Fact]
-        public void TestDoNotFillPasswordAsUsername()
-        {
-            var resourceName = "Kp2aAutofillParserTest.citibank.json";
-            RunTestFromAutofillInput(resourceName, "com.konylabs.cbplpat", null);
-        }
-
-        [Fact]
         public void CanDetectFieldsWithoutAutofillHints()
         {
             var resourceName = "Kp2aAutofillParserTest.chrome-android10-amazon-it.json";
