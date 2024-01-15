@@ -975,7 +975,7 @@ namespace keepass2android
 			                  FindViewById(Resource.Id.password_vdots), PwDefs.PasswordField,
                               FindViewById(Resource.Id.entryfield_container_password));
             RegisterTextPopup(FindViewById<RelativeLayout>(Resource.Id.totp_container),
-                FindViewById(Resource.Id.totp_vdots), Kp2aTotp.TotpKey);
+                FindViewById(Resource.Id.totp_vdots), Kp2aTotp.TotpKey, FindViewById(Resource.Id.entryfield_container_totp));
 
 
             PopulateText(Resource.Id.entry_created, Resource.Id.entryfield_container_created, getDateTime(Entry.CreationTime));
