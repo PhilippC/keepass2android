@@ -6,8 +6,10 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
+using Android.Graphics;
 using Android.Preferences;
 using Android.Runtime;
+using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -30,10 +32,12 @@ namespace keepass2android
             public Dictionary<string, bool> DisabledQueriesValues = new Dictionary<string, bool>();
 
             private readonly AutofillDisabledQueriesPreference _pref;
+            private readonly Context _context;
 
             public DisabledQueryPreferenceScreenAdapter(AutofillDisabledQueriesPreference pref, Context context)
             {
                 _pref = pref;
+                _context = context;
             }
 
 
@@ -41,11 +45,25 @@ namespace keepass2android
             {
                 private TextView text = null;
                 private CheckBox checkbox = null;
-
-                public CustomHolder(View row, int position, AutofillDisabledQueriesPreference pref)
+                
+                public CustomHolder(View row, int position, AutofillDisabledQueriesPreference pref, Context context)
                 {
                     text = (TextView) row.FindViewById(Resource.Id.disabled_query_text);
                     text.Text = pref.DisabledQueries[position].DisplayName;
+                    TypedValue typedValue = new TypedValue();
+
+                    Resources.Theme theme = context.Theme;
+                    if (theme != null)
+                    {
+                        theme.ResolveAttribute(Android.Resource.Attribute.TextColorPrimary, typedValue, true);
+                        using (TypedArray arr = context.ObtainStyledAttributes(typedValue.Data, new int[] { Android.Resource.Attribute.TextColorPrimary }))
+                        {
+                            var primaryColor = arr.GetColorStateList(0);
+                            text.SetTextColor(primaryColor);
+                        }
+                    }
+                    
+                    
 
                     checkbox = (CheckBox) row.FindViewById(Resource.Id.disabled_query_checkbox);
                     checkbox.Id = position;
@@ -79,7 +97,7 @@ namespace keepass2android
                 int p = position;
                 row = LayoutInflater.From(_pref.Context)
                     .Inflate(Resource.Layout.disabled_queries_preference_row, parent, false);
-                holder = new CustomHolder(row, position, _pref);
+                holder = new CustomHolder(row, position, _pref, _context);
 
                 row.Tag = holder;
 
