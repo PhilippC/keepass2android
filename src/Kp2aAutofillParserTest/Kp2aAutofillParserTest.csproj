@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,7 +11,6 @@
   <ItemGroup>
     <None Remove="android14-settings.json" />
     <None Remove="chrome-android10-amazon-it.json" />
-    <None Remove="citibank.json" />
     <None Remove="com-expressvpn-vpn-android13.json" />
     <None Remove="com-ifs-banking-fiid3364-android13.json" />
     <None Remove="com-servicenet-mobile-focused.json" />
@@ -45,9 +44,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="com-ifs-banking-fiid3364-android13.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="citibank.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="firefox-amazon-it.json">
