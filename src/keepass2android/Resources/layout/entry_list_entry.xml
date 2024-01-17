@@ -61,6 +61,28 @@
         android:layout_width="wrap_content"
         android:text="group detail"
         style="@style/GroupDetailInSearchResult" />
+
+    <LinearLayout
+      android:id="@+id/totp_layout"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/totp_text"
+      android:layout_height="match_parent"
+      android:layout_width="wrap_content"
+      android:text=""/>
+
+    <ProgressBar
+      android:id="@+id/TotpCountdownProgressBar"
+      style="?android:attr/progressBarStyleHorizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginRight="30dp" />
+    </LinearLayout>
   </LinearLayout>
 
   <ImageView android:id="@+id/right_arrow"

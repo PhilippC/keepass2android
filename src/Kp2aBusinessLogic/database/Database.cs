@@ -72,8 +72,9 @@ namespace keepass2android
         }
 
 	    private IDatabaseFormat _databaseFormat = new KdbxDatabaseFormat(KdbxFormat.Default);
+        private bool? _hasTotpEntries;
 
-		public bool ReloadRequested { get; set; }
+        public bool ReloadRequested { get; set; }
 
 	    public bool DidOpenFileChange()
 		{
@@ -104,8 +105,9 @@ namespace keepass2android
 		    SearchHelper = new SearchDbHelper(app);
 
 		    _databaseFormat = databaseFormat;
+            _hasTotpEntries = null;
 
-		    CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
+            CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
 		}
 
 		/// <summary>
@@ -200,8 +202,21 @@ namespace keepass2android
 				
 				trans.CommitWrite();
 			}
-			
-		}
+            _hasTotpEntries = null;
+
+        }
+
+        public bool HasTotpEntries
+        {
+            get
+            {
+                if (_hasTotpEntries == null)
+                {
+					_hasTotpEntries = true;
+                }
+                return _hasTotpEntries.Value;
+            }
+        }
 
 		private void PopulateGlobals(PwGroup currentGroup, bool checkForDuplicateUuids )
 		{
