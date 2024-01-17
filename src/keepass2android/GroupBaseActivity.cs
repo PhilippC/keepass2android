@@ -1140,6 +1140,15 @@ namespace keepass2android
 
         public abstract ElementAndDatabaseId FullGroupId { get; }
 
+        public virtual bool MayPreviewTotp
+        {
+            get
+            {
+                return !PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.masktotp_key),
+                    Resources.GetBoolean(Resource.Boolean.masktotp_default));
+            }
+        }
+
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {

@@ -28,7 +28,8 @@ using Android.Preferences;
 using KeePass.Util.Spr;
 using KeeTrayTOTP.Libraries;
 using PluginTOTP;
-using Microsoft.Graph;
+using Android.Content;
+using System.ComponentModel;
 
 
 namespace keepass2android.view
@@ -91,6 +92,13 @@ namespace keepass2android.view
             _totpCountdown = ev.FindViewById<ProgressBar>(Resource.Id.TotpCountdownProgressBar);
             _totpText = ev.FindViewById<TextView>(Resource.Id.totp_text);
             _totpLayout = ev.FindViewById<LinearLayout>(Resource.Id.totp_layout);
+
+            _totpLayout.LongClick += (sender, args) =>
+            {
+                string totp = UpdateTotp();
+                if (!String.IsNullOrEmpty(totp))
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(_groupActivity, totp, true);
+            };
 
             _showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
 				groupActivity.GetString(Resource.String.ShowUsernameInList_key), 
@@ -200,16 +208,7 @@ namespace keepass2android.view
             UpdateTotp();
             
 
-            if (_totpData?.IsTotpEntry == true)
-            {
-                _totpLayout.Visibility = ViewStates.Visible;
-               
-                
-            }
-            else
-            {
-                _totpLayout.Visibility = ViewStates.Gone;
-            }
+           
                 
 
             
@@ -283,14 +282,25 @@ namespace keepass2android.view
 		
         private Database _db;
 
-        public void UpdateTotp()
+        public string UpdateTotp()
         {
-			
-            _totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(_entry, _db));
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_groupActivity);
+            bool showTotpDefault = _groupActivity.MayPreviewTotp;
+                
 
-            if (_totpData == null)
-                return;
-			Kp2aLog.Log("UpdateTotp");
+            if (showTotpDefault)
+                _totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(_entry, _db));
+			else
+			    _totpData = null;
+
+            if (_totpData?.IsTotpEntry != true)
+            {
+                _totpLayout.Visibility = ViewStates.Gone;
+                return null;
+            }
+
+            _totpLayout.Visibility = ViewStates.Visible;
+
             TOTPProvider prov = new TOTPProvider(_totpData);
             string totp = prov.GenerateByByte(_totpData.TotpSecret);
 
@@ -298,6 +308,8 @@ namespace keepass2android.view
             var progressBar = _totpCountdown;
             progressBar.Progress = prov.Timer;
             progressBar.Max = prov.Duration;
+
+            return totp;
         }
     }
 }
