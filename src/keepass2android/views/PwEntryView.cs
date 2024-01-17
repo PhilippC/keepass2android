@@ -26,6 +26,10 @@ using Android.Text;
 using Android.Text.Style;
 using Android.Preferences;
 using KeePass.Util.Spr;
+using KeeTrayTOTP.Libraries;
+using PluginTOTP;
+using Android.Content;
+using System.ComponentModel;
 
 
 namespace keepass2android.view
@@ -37,8 +41,11 @@ namespace keepass2android.view
 		private readonly TextView _textView;
 		private readonly TextView _textviewDetails;
 		private readonly TextView _textgroupFullPath;
+        private readonly ProgressBar _totpCountdown;
+        private readonly TextView _totpText;
+        private readonly LinearLayout _totpLayout;
 
-		private int _pos;
+        private int _pos;
 
 		private int? _defaultTextColor;
 
@@ -82,7 +89,18 @@ namespace keepass2android.view
 			_textgroupFullPath = (TextView)ev.FindViewById(Resource.Id.group_detail);
 			_textgroupFullPath.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
 
-			_showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
+            _totpCountdown = ev.FindViewById<ProgressBar>(Resource.Id.TotpCountdownProgressBar);
+            _totpText = ev.FindViewById<TextView>(Resource.Id.totp_text);
+            _totpLayout = ev.FindViewById<LinearLayout>(Resource.Id.totp_layout);
+
+            _totpLayout.LongClick += (sender, args) =>
+            {
+                string totp = UpdateTotp();
+                if (!String.IsNullOrEmpty(totp))
+                    CopyToClipboardService.CopyValueToClipboardWithTimeout(_groupActivity, totp, true);
+            };
+
+            _showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
 				groupActivity.GetString(Resource.String.ShowUsernameInList_key), 
 				Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
 
@@ -112,20 +130,20 @@ namespace keepass2android.view
 		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
-		    Database db = App.Kp2a.FindDatabaseForElement(_entry);
+		    _db = App.Kp2a.FindDatabaseForElement(_entry);
 
             ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
 			if (isExpired)
 			{
-				db.DrawableFactory.AssignDrawableTo(iv, Context, db.KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
+				_db.DrawableFactory.AssignDrawableTo(iv, Context, _db.KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
 			} else
 			{
-				db.DrawableFactory.AssignDrawableTo(iv, Context, db.KpDatabase, pw.IconId, pw.CustomIconUuid, false);
+				_db.DrawableFactory.AssignDrawableTo(iv, Context, _db.KpDatabase, pw.IconId, pw.CustomIconUuid, false);
 			}
 
 			String title = pw.Strings.ReadSafe(PwDefs.TitleField);
-            title = SprEngine.Compile(title, new SprContext(_entry, db.KpDatabase, SprCompileFlags.All));
+            title = SprEngine.Compile(title, new SprContext(_entry, _db.KpDatabase, SprCompileFlags.All));
             var str = new SpannableString(title);
 
 			if (isExpired)
@@ -146,7 +164,7 @@ namespace keepass2android.view
 				_textView.SetTextColor(new Color((int)_defaultTextColor));
 
 			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
-			detail = SprEngine.Compile(detail, new SprContext(_entry, db.KpDatabase, SprCompileFlags.All));
+			detail = SprEngine.Compile(detail, new SprContext(_entry, _db.KpDatabase, SprCompileFlags.All));
 
 			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
 			{
@@ -173,7 +191,7 @@ namespace keepass2android.view
 				String groupDetail = pw.ParentGroup.GetFullPath();
 			    if (App.Kp2a.OpenDatabases.Count() > 1)
 			    {
-			        groupDetail += "(" + App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc) + ")";
+			        groupDetail += "(" + App.Kp2a.GetFileStorage(_db.Ioc).GetDisplayName(_db.Ioc) + ")";
 			    }
 
 				var strGroupDetail = new SpannableString (groupDetail);
@@ -186,7 +204,16 @@ namespace keepass2android.view
 				_textgroupFullPath.Visibility = ViewStates.Visible;
 			}
 
-		}
+			//try to get totp data
+            UpdateTotp();
+            
+
+           
+                
+
+            
+
+        }
 		
 		public void ConvertView(PwEntry pw, int pos)
 		{
@@ -248,6 +275,42 @@ namespace keepass2android.view
 	    {
 	        LaunchEntry();
 	    }
-	}
+
+        
+        
+        private TotpData _totpData;
+		
+        private Database _db;
+
+        public string UpdateTotp()
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_groupActivity);
+            bool showTotpDefault = _groupActivity.MayPreviewTotp;
+                
+
+            if (showTotpDefault)
+                _totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(_entry, _db));
+			else
+			    _totpData = null;
+
+            if (_totpData?.IsTotpEntry != true)
+            {
+                _totpLayout.Visibility = ViewStates.Gone;
+                return null;
+            }
+
+            _totpLayout.Visibility = ViewStates.Visible;
+
+            TOTPProvider prov = new TOTPProvider(_totpData);
+            string totp = prov.GenerateByByte(_totpData.TotpSecret);
+
+            _totpText.Text = totp;
+            var progressBar = _totpCountdown;
+            progressBar.Progress = prov.Timer;
+            progressBar.Max = prov.Duration;
+
+            return totp;
+        }
+    }
 }
 

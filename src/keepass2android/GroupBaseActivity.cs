@@ -39,6 +39,9 @@ using Android.Support.V4.View;
 using Android.Views.Autofill;
 using CursorAdapter = Android.Support.V4.Widget.CursorAdapter;
 using Object = Java.Lang.Object;
+using Android.Text;
+using keepass2android.search;
+using KeeTrayTOTP.Libraries;
 
 namespace keepass2android
 {
@@ -115,6 +118,8 @@ namespace keepass2android
                 FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
 
                 FindViewById(Resource.Id.fabAddNew).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById(Resource.Id.fabSearch).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById(Resource.Id.fabTotpOverview).Visibility = CanShowTotpFab() ? ViewStates.Visible : ViewStates.Gone;
             }
 
             UpdateBottomBarElementVisibility(Resource.Id.insert_element, false);
@@ -262,6 +267,7 @@ namespace keepass2android
         private bool hasCalledOtherActivity = false;
         private IMenuItem searchItem;
         private IMenuItem searchItemDummy;
+        private bool isPaused;
 
         protected override void OnResume()
         {
@@ -281,8 +287,39 @@ namespace keepass2android
             RefreshIfDirty();
 
             SetSearchItemVisibility();
-        }
 
+            isPaused = false;
+            System.Threading.Tasks.Task.Run(UpdateTotpCountdown);
+        }
+        private async System.Threading.Tasks.Task UpdateTotpCountdown()
+        {
+            
+            while (!isPaused )
+            {
+                RunOnUiThread(() =>
+                {
+                    var listView = FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment)
+                        .ListView;
+                    if (listView != null)
+                    {
+                        int count = listView.Count;
+                        for (int i = 0; i < count; i++)
+                        {
+                            var item = listView.GetChildAt(i);
+                            if (item is PwEntryView)
+                            {
+                                var entryView = (PwEntryView)item;
+                                entryView.UpdateTotp();
+
+                            }
+                        }
+                    }
+                });
+
+
+                await System.Threading.Tasks.Task.Delay(1000);
+            }
+        }
 
         private void UpdateInfotexts()
         {
@@ -387,6 +424,13 @@ namespace keepass2android
         {
             base.OnStop();
             hasCalledOtherActivity = false;
+        }
+
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            isPaused = true;
         }
 
 
@@ -572,6 +616,25 @@ namespace keepass2android
                 };
             }
 
+            if (FindViewById(Resource.Id.fabSearch) != null)
+            {
+                FindViewById(Resource.Id.fabSearch).Click += (sender, args) =>
+                {
+                    if (searchView?.Iconified != false)
+                        ActivateSearchView();
+                    else
+                        searchView.Iconified = true;
+                };
+            }
+
+            if (FindViewById(Resource.Id.fabTotpOverview) != null)
+            {
+                FindViewById(Resource.Id.fabTotpOverview).Click += (sender, args) =>
+                {
+                    SearchTotpResults.Launch(this, this.AppTask);
+                };
+            }
+
             if (FindViewById(Resource.Id.fabCancelAddNew) != null)
             {
                 FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
@@ -580,6 +643,8 @@ namespace keepass2android
                     FindViewById(Resource.Id.fabAddNewGroup).Visibility = AddGroupEnabled ? ViewStates.Visible : ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNewEntry).Visibility = AddEntryEnabled ? ViewStates.Visible : ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
+                    FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
+                    FindViewById(Resource.Id.fabTotpOverview).Visibility = ViewStates.Gone;
                 };
 
                 FindViewById(Resource.Id.fabCancelAddNew).Click += (sender, args) =>
@@ -588,6 +653,8 @@ namespace keepass2android
                     FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.fabTotpOverview).Visibility = CanShowTotpFab() ? ViewStates.Visible : ViewStates.Gone;
                 };
 
 
@@ -667,7 +734,12 @@ namespace keepass2android
 
 
         }
-        
+
+        protected virtual bool CanShowTotpFab()
+        {
+            return App.Kp2a.CurrentDb.HasTotpEntries && Group == App.Kp2a.CurrentDb.Root;
+        }
+
         private bool IsTimeForInfotext(out string lastInfoText)
         {
             DateTime lastDisplayTime = new DateTime(_prefs.GetLong("LastInfoTextTime", 0));
@@ -1028,6 +1100,7 @@ namespace keepass2android
             
                 searchView.Iconified = false;
                 AppTask.CanActivateSearchViewOnStart = false;
+                
             
         }
 
@@ -1066,6 +1139,15 @@ namespace keepass2android
         public abstract bool EntriesBelongToCurrentDatabaseOnly { get; }
 
         public abstract ElementAndDatabaseId FullGroupId { get; }
+
+        public virtual bool MayPreviewTotp
+        {
+            get
+            {
+                return !PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.masktotp_key),
+                    Resources.GetBoolean(Resource.Boolean.masktotp_default));
+            }
+        }
 
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -1267,6 +1349,7 @@ namespace keepass2android
             FindViewById(Resource.Id.fabAddNewGroup).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
+            FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
 
             UpdateBottomBarElementVisibility(Resource.Id.insert_element, true);
             UpdateBottomBarElementVisibility(Resource.Id.cancel_insert_element, true);
@@ -1330,6 +1413,7 @@ namespace keepass2android
             }
 
             ListView.ItemClick += (sender, args) => ((GroupListItemView)args.View).OnClick();
+            
 
             StyleListView();
 
