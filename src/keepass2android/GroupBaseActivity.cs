@@ -40,6 +40,7 @@ using Android.Views.Autofill;
 using CursorAdapter = Android.Support.V4.Widget.CursorAdapter;
 using Object = Java.Lang.Object;
 using Android.Text;
+using keepass2android.search;
 using KeeTrayTOTP.Libraries;
 
 namespace keepass2android
@@ -118,6 +119,7 @@ namespace keepass2android
 
                 FindViewById(Resource.Id.fabAddNew).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
                 FindViewById(Resource.Id.fabSearch).Visibility = (showAddGroup || showAddEntry) ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById(Resource.Id.fabTotpOverview).Visibility = CanShowTotpFab() ? ViewStates.Visible : ViewStates.Gone;
             }
 
             UpdateBottomBarElementVisibility(Resource.Id.insert_element, false);
@@ -625,6 +627,14 @@ namespace keepass2android
                 };
             }
 
+            if (FindViewById(Resource.Id.fabTotpOverview) != null)
+            {
+                FindViewById(Resource.Id.fabTotpOverview).Click += (sender, args) =>
+                {
+                    SearchTotpResults.Launch(this, this.AppTask);
+                };
+            }
+
             if (FindViewById(Resource.Id.fabCancelAddNew) != null)
             {
                 FindViewById(Resource.Id.fabAddNew).Click += (sender, args) =>
@@ -634,6 +644,7 @@ namespace keepass2android
                     FindViewById(Resource.Id.fabAddNewEntry).Visibility = AddEntryEnabled ? ViewStates.Visible : ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
+                    FindViewById(Resource.Id.fabTotpOverview).Visibility = ViewStates.Gone;
                 };
 
                 FindViewById(Resource.Id.fabCancelAddNew).Click += (sender, args) =>
@@ -643,6 +654,7 @@ namespace keepass2android
                     FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Visible;
                     FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Visible;
+                    FindViewById(Resource.Id.fabTotpOverview).Visibility = CanShowTotpFab() ? ViewStates.Visible : ViewStates.Gone;
                 };
 
 
@@ -722,7 +734,12 @@ namespace keepass2android
 
 
         }
-        
+
+        protected virtual bool CanShowTotpFab()
+        {
+            return App.Kp2a.CurrentDb.HasTotpEntries && Group == App.Kp2a.CurrentDb.Root;
+        }
+
         private bool IsTimeForInfotext(out string lastInfoText)
         {
             DateTime lastDisplayTime = new DateTime(_prefs.GetLong("LastInfoTextTime", 0));

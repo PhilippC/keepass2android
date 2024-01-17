@@ -409,5 +409,14 @@
           android:layout_marginRight="16dp"
           android:layout_marginBottom="88dp"
           android:visibility="gone"/>
+        <android.support.design.widget.FloatingActionButton
+          android:id="@+id/fabTotpOverview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end|bottom|right"
+          android:src="@drawable/ic_fab_totp"
+          android:layout_marginRight="16dp"
+          android:layout_marginBottom="160dp"
+          android:visibility="gone"/>
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>
