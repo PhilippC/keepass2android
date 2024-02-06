@@ -727,6 +727,21 @@
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
+
+  <string-array name="ChangeLog_1_11">
+    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Minor improvements</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Update pCloud SDK to provide access to shared folders</item>
+  </string-array>
+
   <string-array name="ChangeLog_1_10">
     <item>Add support for notification permissions on Android 13+</item>
     <item>Improve the FTP and SFTP implementation</item>

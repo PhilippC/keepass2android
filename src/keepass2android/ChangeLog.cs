@@ -27,6 +27,7 @@ namespace keepass2android
 			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
+                BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_11,Resource.Array.ChangeLog_1_11_net}, "1.11"),
                 BuildChangelogString(ctx, Resource.Array.ChangeLog_1_10, "1.10"),
                 BuildChangelogString(ctx, Resource.Array.ChangeLog_1_09e, "1.09e"),
 				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_09d, "1.09d"),
@@ -122,21 +123,32 @@ namespace keepass2android
 		}
 
 	    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
-	    {
-	        string result = "Version " + version + "\n";
+        {
+            return BuildChangelogString(ctx, new List<int>() { changeLogResId }, version);
+
+        }
+
+
+        private static string BuildChangelogString(Context ctx, List<int> changeLogResIds, string version)
+        {
+            string result = "Version " + version + "\n";
             string previous = "";
-	        foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
+            foreach (var changeLogResId in changeLogResIds)
             {
-                if (item == previous) //there was some trouble with crowdin translations, remove duplicates
-                    continue;
-	            result += " * " + item + "\n";
-                previous = item;
+                foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
+                {
+                    if (item == previous) //there was some trouble with crowdin translations, remove duplicates
+                        continue;
+                    result += " * " + item + "\n";
+                    previous = item;
+                }
             }
-	        return result;
+            
+            return result;
 
-	    }
+        }
 
-	    private const string HtmlStart = @"<html>
+        private const string HtmlStart = @"<html>
   <head>
     <style type='text/css'>
       a            { color:#000000 }
