@@ -403,6 +403,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ShowSeparateNotifications_summary">Getrennte Benachrichtigungen zum Kopieren von Benutzername und Passwort in die Zwischenablage und zur Aktivierung der Eingabemethode anzeigen.</string>
   <string name="AccServiceAutoFill_prefs">AutoFill Accessibility-Service</string>
   <string name="AutoFill_prefs">AutoFill-Dienst</string>
+  <string name="AutoFillTotp_prefs_title">Autofill für TOTP-Einträge</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP in Zwischenablage kopieren</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">TOTP in die Zwischenablage kopieren bei Autofill eines Eintrags mit TOTP</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Integrierte Tastatur aktivieren bei Autofill eines Eintrags mit TOTP. Die Tastatur hat einen TOTP-Button.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Integrierte Tastatur aktivieren</string>
+  <string name="TotpCopiedToClipboard">TOTP in Zwischenablage kopiert</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-Tastatur-Benachrichtigung</string>
   <string name="ShowKp2aKeyboardNotification_summary">Kompletten Eintrag über die KP2A-Tastatur bereitstellen (empfohlen).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Tastatur umschalten</string>
@@ -590,6 +596,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="CouldntLoadChalAuxFile_Hint">Bitte das KeeChallenge-Plugin in KeePass 2.x (PC) verwenden, um die Datenbank für die Verwendung von Challenge-Response zu konfigurieren!</string>
   <string name="ErrorUpdatingChalAuxFile">Fehler beim Aktualisieren der OTP-Hilfsdatei!</string>
   <string name="TrayTotp_SeedField_title">TOTP-Seed-Feldname</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Wenn das Keepass2-Plugin „TrayTotp“ nicht mit Standardeinstellungen verwendet wird, den Feldnamen für das Seed-Feld entsprechend der Einstellungen am PC angeben.</string>
   <string name="TrayTotp_SettingsField_title">Feldname für TOTP-Einstellungen</string>
   <string name="TrayTotp_SettingsField_summary">Feldnamen für TOTP-Einstellungen entsprechend den TrayTotp-Einstellungen eingeben.</string>
@@ -665,6 +672,12 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="Continue">Fortfahren</string>
   <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Ist dies wirklich eine gültige Datei?</string>
   <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut probieren.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte folgenden Schritte probieren, um die Datenbank zu entsperren:\n
+  
+    • Sicherstellen, dass das richtige Passwort eingegeben wurde. Das Augensymbol dafür nutzen, um das eingegebene Passwort anzuzeigen.\n
+   • Sicherstellen, dass der richtigen Passworttyp ausgewählt wurde. Er muss mit dem Typ übereinstimmen, der beim Erstellen der Datenbank gewählt wurde.\n
+   • Sicherstellen, dass die richtige Datenbankdatei gewählt wurde.
+ </string>
   <string name="open_other_db">Weitere Datenbank öffnen …</string>
   <string name="select_database">Datenbank auswählen</string>
   <string name="configure_child_dbs">Kinddatenbanken konfigurieren …</string>
@@ -757,6 +770,23 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
     <item>Wechsel zur BiometricPrompt-API, um die Fingerabdruckentsperrung zu verbessern; erlaubt die Verwendung von Face-Unlock z. B. auf Pixel 4.</item>
     <item>Fehlerkorrekturen</item>
   </string-array>
+  <string name="ChangeLog_1_07">Version 1.07\n
+* Abstürze unter Samsung\'s Android 9 behoben\n
+* Zulassen, dass mehrere Datenbanken geöffnet werden können. Kompatibel mit KeeAutoExec\n
+* SFTP: Erlaubt Authentifizierung durch das Public-Key Verfahren. Überprüft, ob sich der Hostschlüssel geändert hat\n
+* Einführung von pCloud-Unterstützung - Danke an gilbsgilbs!\n
+* Direkte Nextcloud-Unterstützung\n
+* Verbessertes Speichern und Aktualisieren von Eintragsanhängen\n
+* Zusätzliche Optionen, um Verhalten an persönliche Vorlieben anzupassen\n
+* SSL: Vertraue Benutzerzertifikaten\n
+* Verbesserung der AutoFill-Funktion (Funktioniert nun mit Firefox, Anzahl an Popups kann reduziert werden, mehr Optionen)\n
+* Fehlerbehebungen\n  </string>
+  <string name="ChangeLog_1_06">Version 1.06\n     
+* Wechsel zu ykDroid statt YubiChallenge als App für Yubikey Challenge-Response.\n     
+* Unterstützung für KeepassXC-style Challenge-Response implementiert. Hinweis: Datenbankformat muss KDBX4 sein!\n     
+* Auf Google Drive gelöschte Dateien werden nicht mehr geladen.\n     
+* TLS-Implementierung für FTPS gewechselt, Workaround wegen eines JSch-Bugs integriert (betrifft Server, die gssapi-with-mic unterstützen)\n     
+* Fehler behoben\n  </string>
   <string name="ChangeLog_keptDonate">Erweiterte Möglichkeit, ein Bier oder etwas anderes zu spenden</string>
   <string-array name="clipboard_timeout_options">
     <item>30 Sekunden</item>
