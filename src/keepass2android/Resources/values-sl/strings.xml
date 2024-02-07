@@ -720,6 +720,19 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Dodani so plavajoči gumbi za iskanje in pregled TOTP (če so prisotni vnosi TOTP).</item>
+    <item>Izboljšanje prikaza polj TOTP z dodajanjem kazalnika časovne omejitve in njegovim vidnejšim prikazom.</item>
+    <item>TOTP je zdaj viden v pogledu skupine.</item>
+    <item>Kopiranje vrednosti besedila v odložišče ob dolgem pritisku v prikazu vnosa.</item>
+    <item>Na vgrajeni tipkovnici omogočen lažji dostop do TOTP.</item>
+    <item>Prikaži obvestilo o vnosu pri samodejnem izpolnjevanju vnosa TOTP. To omogoča kopiranje vnosa TOTP v odložišče. Za nastavitev glejte nastavitve.</item>
+    <item>Posodobljeno izvajanje TOTP za odpravo težav z združljivostjo s KeePass2 in TrayTOTP</item>
+    <item>Manjše izboljšave</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Posodobitev pCloud SDK za zagotavljanje dostopa do map v skupni rabi</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Dodajanje podpore za dovoljenja za obvestila v operacijskem sistemu Android 13+</item>
     <item>Izboljšanje izvajanja FTP in SFTP</item>
