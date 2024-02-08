@@ -722,6 +722,19 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Adicionados botões de ação flutuantes para pesquisa e visão geral do TOTP (se entradas TOTP estiverem presentes).</item>
+    <item>Exibição aprimorada de campos TOTP adicionando um indicador de tempo limite e mostrando-o com mais destaque.</item>
+    <item>O TOTP agora pode ser visto na exibição do grupo.</item>
+    <item>Copie o valor do texto para a área de transferência pressionando longamente na exibição da entrada.</item>
+    <item>Torne o TOTP mais facilmente acessível no teclado integrado.</item>
+    <item>Mostrar notificação de entrada ao preencher automaticamente uma entrada TOTP. Isso permite copiar o TOTP para a área de transferência. Veja as preferências para configurar o comportamento.</item>
+    <item>Implementação TOTP atualizada para resolver problemas de compatibilidade com KeePass2 e TrayTOTP</item>
+    <item>Pequenas melhorias</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Atualizado o pCloud SDK para fornecer acesso a pastas compartilhadas</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Adicionado suporte para permissões de notificação no Android 13+</item>
     <item>Melhorado a implementação de FTP e SFTP</item>
