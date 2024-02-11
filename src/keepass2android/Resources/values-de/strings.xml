@@ -69,7 +69,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="clipboard_timeout">Zeitsperre für Zwischenablage</string>
   <string name="clipboard_timeout_summary">Zeit bis zum Löschen der Zwischenablage nach dem Kopieren von Benutzername oder Passwort</string>
   <string name="copy_username">Benutzername in die Zwischenablage kopieren</string>
-  <string name="copy_password">Kennwort in die Zwischenablage kopieren</string>
+  <string name="copy_password">Passwort in die Zwischenablage kopieren</string>
   <string name="copy_totp">TOTP in die Zwischenablage zu kopieren</string>
   <string name="available_through_keyboard">Eintrag ist über die KP2A-Tastatur verfügbar</string>
   <string name="app_language_pref_title">App Sprache</string>
@@ -135,7 +135,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="error_invalid_db">Ungültige Datenbank.</string>
   <string name="error_invalid_path">Ungültiger Pfad.</string>
   <string name="error_no_name">Ein Name ist erforderlich.</string>
-  <string name="error_nopass">Ein Kennwort oder eine Schlüsseldatei wird benötigt.</string>
+  <string name="error_nopass">Ein Passwort oder eine Schlüsseldatei ist erforderlich.</string>
   <string name="error_pass_gen_type">Mindestens eine Form der Passwort-Generierung muss ausgewählt werden</string>
   <string name="error_pass_match">Die Passwörter stimmen nicht überein.</string>
   <string name="error_rounds_not_number">Anzahl der Wiederholungen muss eine Zahl sein.</string>
@@ -148,7 +148,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="group">Gruppe</string>
   <string name="hint_comment">Notizen</string>
   <string name="hint_conf_pass">Passwort bestätigen</string>
-  <string name="hint_generated_password">Erzeugtes Kennwort</string>
+  <string name="hint_generated_password">Erzeugtes Passwort</string>
   <string name="hint_group_name">Name der Gruppe</string>
   <string name="hint_keyfile">Schlüsseldatei</string>
   <string name="hint_length">Länge</string>
@@ -193,7 +193,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="menu_navigate">Zur übergeordneten Gruppe navigieren</string>
   <string name="menu_donate">Spendiere ein Bier...</string>
   <string name="menu_edit">Bearbeiten</string>
-  <string name="menu_hide_password">Kennwort verstecken</string>
+  <string name="menu_hide_password">Passwort verbergen</string>
   <string name="menu_lock">Datenbank sperren</string>
   <string name="menu_open">Öffnen</string>
   <string name="menu_close">Schließen</string>
@@ -572,7 +572,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="help_master_password">Die eigene Datenbank wird mit dem hier eingegebenen Passwort verschlüsselt. Dazu ein starkes Passwort verwenden, um die Datenbank abzusichern! Tipp: Sich ein oder zwei Sätze ausdenken und die Anfangsbuchstaben als Passwort nutzen. Auch die Satzzeichen mit einschließen.</string>
   <string name="hint_master_password">Wähle ein Master-Passwort, mit dem deine Datenbank geschützt wird:</string>
   <string name="key_file">Schlüsseldatei</string>
-  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Kennwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Kennwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wird die Datenbank in der Cloud gespeichert, sollte die Schlüsseldatei keinesfalls ebenfalls dort abgelegt werden! Das würde sie völlig nutzlos machen! Wichtig: Den Inhalt der Schlüsseldatei nicht mehr ändern, nachdem die Datenbank angelegt wurde!</string>
+  <string name="help_key_file">Eine Schlüsseldatei ist im Grunde ein Passwort, das in einer Datei gespeichert ist. Schlüsseldateien sind üblicherweise stärker als Passwörter, weil sie deutlich komplexer sein können; allerdings ist es schwerer, sie geheim zu halten. Wird die Datenbank in der Cloud gespeichert, sollte die Schlüsseldatei keinesfalls ebenfalls dort abgelegt werden! Das würde sie völlig nutzlos machen! Wichtig: Den Inhalt der Schlüsseldatei nicht mehr ändern, nachdem die Datenbank angelegt wurde!</string>
   <string name="hint_key_file">Wählen, ob eine Schlüsseldatei zusätzlich zum Hauptpasswort verwendet werden soll:</string>
   <string name="use_key_file">Schlüsseldatei verwenden</string>
   <string name="error_adding_keyfile">Fehler beim Hinzufügen der Schlüsseldatei!</string>
@@ -1086,7 +1086,7 @@ Erstes öffentliches Release</string>
     <item>Passwort und Challenge-Response</item>
     <item>Passwort und Challenge-Response-Secret (Recovery-Modus)</item>
     <item>Passwort und Challenge-Response für Keepass XC</item>
-    <item>Kennwort und Schlüsseldatei und Challenge-Response für Keepass XC</item>
+    <item>Passwort und Schlüsseldatei und Challenge-Response für Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Passwort</item>
