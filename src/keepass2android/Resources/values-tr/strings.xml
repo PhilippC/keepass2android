@@ -793,6 +793,7 @@
   <string name="autofill_enable_for">%1$s karşılığında otomatik doldurmayı etkinleştir</string>
   <string name="invalid_link_association">Web alanı ilişkilendirmek Could %1$s uygulaması ile %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android biyometrik donanım tespit etti. Bu veri tabanı için Biyometrik Kilit Açma özelliğini etkinleştirmek ister misiniz?</string>
+  <string name="post_notifications_dialog_notnow">Şimdi değil</string>
   <string name="understand">Anladım</string>
   <string name="dont_show_again">Tekrar gösterme</string>
   <string name="masterkey_infotext_head">Ana parolanızı hatırlıyor musunuz?</string>
