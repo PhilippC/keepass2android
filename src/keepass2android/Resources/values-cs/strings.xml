@@ -402,6 +402,11 @@
   <string name="ShowSeparateNotifications_summary">Zobrazit oddělená upozornění pro kopírování uživatelského jména a hesla do schránky a pro aktivování klávesnice.</string>
   <string name="AccServiceAutoFill_prefs">Služba automatického doplňování</string>
   <string name="AutoFill_prefs">Služba automatického vyplňování</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Při automatickém vyplňování položky pomocí TOTP zobrazit oznámení položky s tlačítkem Kopírovat TOTP.</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Zobrazit oznámení položky</string>
+  <string name="AutoFillTotp_prefs_title">Automatické vyplňování položek TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Zkopírovat TOTP do schránky</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Při automatickém vyplňování položky pomocí TOTP zkopírujte TOTP do schránky.</string>
   <string name="ShowKp2aKeyboardNotification_title">Notifikace klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Zpřístupnit celý záznam pomocí klávesnice KP2A (doporučeno).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Přepnout klávesnici</string>
