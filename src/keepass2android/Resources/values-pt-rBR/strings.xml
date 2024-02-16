@@ -976,6 +976,63 @@
     * Ferramentas de compilação atualizadas --&gt; tamanho do apk aumentado :-(\n
     Eu prometi mais algumas mudanças. Eles virão no próximo lançamento - desculpe. Eu queria publicar esses hot fixes o mais rápido possível.
   </string>
+  <string name="ChangeLog_0_9_4">    <b>Versão 0.9.4</b>\n
+    * suporte a plug-ins adicionado: veja as configurações para obter plugins!\n
+    * plugin QR publicado (digitalizar senhas, exibir senhas como código QR, transferir entradas para outros dispositivos KP2A)\n
+    * plugin InputStick publicado (transfira credenciais para o seu PC via bluetooth - requer pendrive InputStick)\n
+    * Aplicativos de terceiros agora podem simplesmente implementar a consulta de credenciais do KP2A. Você é um desenvolvedor? Adicione isso ao seu aplicativo, se for adequado!\n
+    * adicionado suporte TOTP (compatível com KeeOTP e TrayTotp)\n
+    * o aplicativo não deve mais ser eliminado pelo Android quando o banco de dados estiver aberto\n
+    * o banco de dados não fica mais bloqueado ao sair do aplicativo com o botão Voltar (veja configurações)\n
+    * exibir nomes de grupos na visualização dos resultados da pesquisa (*)\n
+    * menu de contexto adicionado na visualização dos resultados da pesquisa, incluindo a opção \'Navegar até o pai\' (*)\n
+    * adicionada opção para exibir o nome do grupo na visualização de entrada (*)\n
+    * (*) obrigado ao Matthieu por implementar esses recursos!\n
+    * suporte KeeChallenge (com Yubikey NEO). Agradecemos a Ben Rush por implementar o conector!\n
+    * interface de usuário aprimorada\n
+    * corrigido um bug na interface do Google Drive\n
+    * adicionada opção para desativar a opção \'doar\'\n
+    * Ícone QuickUnlock agora oculto em dispositivos Android 4.2+ por padrão\n
+  </string>
+  <string name="ChangeLog_0_9_3_r5">    <b>Versão 0.9.3 r5</b>\n
+    * Correções incorporadas do Xamarin: Keepass2Android agora compatível com ART no Android 4.4.2. Finalmente!\n
+    * Correções de bugs: bugs na sincronização (atualização de exibição, verificação correta de alterações em http), bugs em dispositivos Android 2.x, bugs nas implementações de armazenamento do Google Drive e OneDrive, limpeza da área de transferência no banco de dados próximo, bug na abertura de anexos, problemas de exibição com teclado\n
+  </string>
+  <string name="ChangeLog_0_9_3">    <b>Versão 0.9.3</b>\n
+    * Novo teclado com muitas melhorias. Veja as configurações para personalizar.\n
+    * Suporte somente leitura para kdb (arquivos Keepass 1). Experimental!\n
+    * Adicionado suporte a SFTP\n
+    * Adicionada solução alternativa para bug no ART (Android 4.4.2)\n
+    * Correções de bugs\n
+  </string>
+  <string name="ChangeLog_0_9_2">    <b>Versão 0.9.2</b>\n
+    * Adicionado suporte OTP (compatível com o plugin OtpKeyProv)\n
+    * Suporte NFC integrado para OTPs da YubiKey NEO \n
+    * Várias melhorias na interface do usuário\n
+    * Biblioteca Keepass 2.24 integrada\n
+    * Adicionada opção para encerrar o processo do aplicativo (veja configurações)\n
+    * Validação aprimorada de certificado SSL\n
+    * Correções de bugs\n
+  </string>
+  <string name="ChangeLog_0_9_1">    <b>Versão 0.9.1</b>\n
+    * Suporte integrado ao SkyDrive (somente edição regular do Keepass2Android)\n
+    * Corrigidos problemas com a integração do Google Drive\n
+    * Adicionado suporte NTLM
+  </string>
+  <string name="ChangeLog_0_9">    <b>Versão 0.9</b>\n
+    * Suporte integrado ao Dropbox e ao Google Drive (leitura/gravação de bancos de dados; somente edição regular do Keepass2Android)\n
+    * Navegador de arquivos personalizado integrado (baseado no android-filechooser da HBA)\n
+    * Interface de usuário aprimorada para criação de novos bancos de dados\n
+    * Fonte personalizada DejaVu Sans Mono incluída para exibição de senhas\n
+    * Correções de bugs
+  </string>
+  <string name="ChangeLog_0_8_6">    <b>Versão 0.8.6</b>\n
+    * Suporte para cifra Twofish\n
+    * Permitir edição de grupos\n
+    * Permitir movimentação de entradas e grupos\n
+    * O ícone do QuickUnlock pode ficar transparente (consulte as configurações)\n
+    * Correções de bugs
+  </string>
   <string name="ChangeLog_0_8_5">    <b>Versão 0.8.5</b>\n
     * Os arquivos remotos são armazenados no cache local do aplicativo para permitir o uso offline (incluindo edição e sincronização posterior). Veja configurações. \n
     * Ícone de notificação para visualizar o estado de bloqueio do banco de dados (ver configurações)\n
