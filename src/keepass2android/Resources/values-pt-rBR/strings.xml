@@ -976,6 +976,48 @@
     * Ferramentas de compilação atualizadas --&gt; tamanho do apk aumentado :-(\n
     Eu prometi mais algumas mudanças. Eles virão no próximo lançamento - desculpe. Eu queria publicar esses hot fixes o mais rápido possível.
   </string>
+  <string name="ChangeLog_0_8_5">    <b>Versão 0.8.5</b>\n
+    * Os arquivos remotos são armazenados no cache local do aplicativo para permitir o uso offline (incluindo edição e sincronização posterior). Veja configurações. \n
+    * Ícone de notificação para visualizar o estado de bloqueio do banco de dados (ver configurações)\n
+    * Melhor determinação do estado de bloqueio em algumas situações\n
+    * Os arquivos do banco de dados são carregados na memória enquanto você digita sua senha para aumentar a velocidade de carregamento (consulte as configurações)\n
+    * As entradas podem ser adicionadas ao grupo raiz\n
+    * Correções de bugs (resolvendo campos de referência, problemas com teclado em dispositivos italianos e chineses)
+  </string>
+  <string name="ChangeLog_0_8_4">    <b>Versão 0.8.4</b>\n
+    * Alterações externas no banco de dados são detectadas e mescladas ao salvar\n
+    * Melhor desempenho de carregamento\n
+    * Barra de ferramentas de pesquisa aprimorada com sugestões\n
+    * Novo logotipo do aplicativo!\n
+    * Adicionado suporte ao formato .kdbp para carregamento/salvamento mais rápido\n
+    * Edição aprimorada de campos extras e exibição oculta quando protegida\n
+    Agradecemos a Alex Vallat por suas contribuições de código!\n
+    Obrigado a Niki Hüttner (www.close-cut.de) pelo novo logotipo!\n
+  </string>
+  <string name="ChangeLog_0_8_3">    <b>Versão 0.8.3</b>\n
+    * Nome de usuário/índice TAN exibido na lista de entradas (veja configurações)\n
+    * As entradas poderão ser criadas se a pesquisa no navegador não retornar resultados\n
+    * O teclado KP2A oferece a possibilidade de pesquisar credenciais do aplicativo atual\n
+    * O aplicativo fecha automaticamente após selecionar uma entrada para uso no teclado\n
+    * A caixa de diálogo de seleção do teclado é aberta automaticamente após a pesquisa do URL (consulte as configurações)\n
+    * Os espaços reservados nos campos de entrada são substituídos antes da cópia (a maioria dos espaços reservados é compatível)\n
+    * pequenas correções de bugs
+  </string>
+  <string name="ChangeLog_0_8_2">    <b>Versão 0.8.2</b>\n
+    * Suporte para autenticação Digest em WebDAV\n
+    * Correções de bugs (Gerenciador de arquivos OI, Abrir URL)
+  </string>
+  <string name="ChangeLog_0_8_1">    <b>Versão 0.8.1</b>\n
+    * KP2A Offline e \'Online\' podem ser instalados novamente\n
+    * Adicionadas novas traduções (obrigado a todos os colaboradores!)
+  </string>
+  <string name="ChangeLog_0_8">    <b>Versão 0.8</b>\n
+    * Interface de usuário aprimorada especialmente para dispositivos Android 4.x\n
+    * Permitir o uso de gerenciadores de arquivos deliberados para selecionar arquivos existentes\n
+    * Adicionada uma maneira mais segura de abrir anexos (através do diretório de cache)\n
+    * bugs corrigidos na atividade de edição\n
+    * provavelmente introduziu novos bugs :-)
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
   <string name="ChangeLog_0_7">    <b>Versão 0.7</b>\n
     * Maior velocidade de carregamento: transformações principais agora 10 vezes mais rápidas!\n
