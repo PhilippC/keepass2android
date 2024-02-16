@@ -977,6 +977,25 @@
     Eu prometi mais algumas mudanças. Eles virão no próximo lançamento - desculpe. Eu queria publicar esses hot fixes o mais rápido possível.
   </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
+  <string name="ChangeLog_0_7">    <b>Versão 0.7</b>\n
+    * Maior velocidade de carregamento: transformações principais agora 10 vezes mais rápidas!\n
+    * Adicionado teclado virtual Keepass2Android: mude para este teclado para inserir credenciais. Protege você contra detectores de senha baseados na área de transferência (desative as notificações antigas da área de transferência nas opções)\n
+    * Adicionada opção de doar uma cerveja ou outra coisa (ver o menu)
+  </string>
+  <string name="ChangeLog">    <b>Versão 0.6.2</b>\n
+    * Integração Google Drive/Dropbox/...: Use o aplicativo oficial Google Drive ou Dropbox e abra qualquer arquivo .kdbx. Isso agora abrirá o KP2A.\n
+    * Caixa de diálogo de pesquisa aprimorada \n
+    * Resultados de pesquisa aprimorados para Compartilhar URL com subdomínios\n
+    * Adicionadas opções para dar feedback, avaliar e traduzir o app no ​​menu\n
+    \n
+    <b>Versão 0.6.1</b>\n
+    * Detectar quando o banco de dados for alterado em segundo plano (ou seja, devido à atividade de um aplicativo de sincronização)\n
+    * Pesquisa aprimorada de URLs no navegador\n
+    * Caixa de diálogo de confirmação ao descartar alterações\n
+    \n
+    <b>Versão 0.6</b>\n
+    Lançamento público inicial
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>
