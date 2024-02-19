@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="198" 
-			android:versionName="1.10-pre" 
+			android:versionCode="200" 
+			android:versionName="1.11-r0" 
 			package="keepass2android.keepass2android" 
 			xmlns:tools="http://schemas.android.com/tools"
 			android:installLocation="auto">
