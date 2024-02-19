@@ -36,9 +36,9 @@
     <string name="afc_pmsg_cannot_access_dir">Geen toegang tot \"%1$s\"</string>
     <string name="afc_pmsg_cannot_create_folder">Kan map \"%1$s\" niet maken</string>
     <string name="afc_pmsg_cannot_delete_file">Kan %1$s \"%2$s\" niet verwijderen</string>
-    <string name="afc_pmsg_confirm_delete_file">Weet je zeker dat je deze %1$s wilt verwijderen: \"%2$s\"?</string>
+    <string name="afc_pmsg_confirm_delete_file">Weet je zeker dat je dit wilt verwijderen: %1$s \"%2$s\"?</string>
     <string name="afc_pmsg_confirm_replace_file">Het bestand \"%1$s\" bestaat al.\n\nWilt u het vervangen?</string>
-    <string name="afc_pmsg_deleting_file">%1$s \"%2$s\" verwijderen…</string>
+    <string name="afc_pmsg_deleting_file">Verwijdert %1$s \"%2$s\" …</string>
     <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" is verwijderd</string>
     <string name="afc_pmsg_filename_is_directory">\"%1$s\" is een map</string>
     <string name="afc_pmsg_filename_is_invalid">Bestandsnaam \"%1$s\" is ongeldig</string>

@@ -374,7 +374,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="LockWhenNavigateBack_title">Beim Verlassen der App sperren</string>
   <string name="LockWhenNavigateBack_summary">Datenbank sperren, wenn die App mit dem Zurück-Knopf verlassen wird.</string>
   <string name="UseKp2aKeyboardInKp2a_title">Integrierte Tastatur in Keepass2Android verwenden</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Wenn Sie ihrer Standardtastatur nicht vertrauen, aktivieren Sie diese Option, um die integrierte Tastatur beim Eingeben des Hauptpassworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Wenn du deiner Standardtastatur nicht vertraust, aktiviere diese Option, um die integrierte Tastatur beim Eingeben des Hauptpassworts oder beim Bearbeiten von Einträgen zu benutzen.</string>
   <string name="ActivateSearchViewOnStart_title">Suchfeld beim Start aktivieren</string>
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
@@ -717,6 +717,19 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Buttons für die Suche und eine TOTP-Übersicht hinzugefügt (falls TOTP-Einträge vorhanden sind)</item>
+    <item>Darstellung von TOTP-Feldern verbessert: Timeout-Anzeige hinzugefügt und besser sichtbar gemacht.</item>
+    <item>TOTPs sind nun aus der Gruppenansicht zu sehen.</item>
+    <item>Werte in der Eintrags-Ansicht können mittels langem Antippen in die Zwischenablage kopiert werden.</item>
+    <item>TOTPs einfacher aus der integrierten Tastatur heraus zugänglich gemacht.</item>
+    <item>Eintrags-Benachrichtigung wird angezeigt beim Autofill von TOTP-Einträgen. Dies erlaubt es, die TOTP in die Zwischenablage zu kopieren. Konfiguration des Verhaltens ist in den Einstellungen möglich.</item>
+    <item>TOTP-Implementierung aktualisiert, um Kompatibilitätsprobleme mit KeePass2 und TrayTOTP zu beheben.</item>
+    <item>Kleinere Verbesserungen</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>pCloud-SDK aktualisiert um den Zugriff auf geteilte Ordner zu ermöglichen.</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Unterstützung für Benachrichtigungsrechte für Android 13+ implementiert</item>
     <item>Verbesserung der FTP- und SFTP-Implementierung</item>
