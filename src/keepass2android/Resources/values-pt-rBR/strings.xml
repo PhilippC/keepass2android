@@ -722,6 +722,19 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Adicionados botões de ação flutuantes para pesquisa e visão geral do TOTP (se entradas TOTP estiverem presentes).</item>
+    <item>Exibição aprimorada de campos TOTP adicionando um indicador de tempo limite e mostrando-o com mais destaque.</item>
+    <item>O TOTP agora pode ser visto na exibição do grupo.</item>
+    <item>Copie o valor do texto para a área de transferência pressionando longamente na exibição da entrada.</item>
+    <item>Torne o TOTP mais facilmente acessível no teclado integrado.</item>
+    <item>Mostrar notificação de entrada ao preencher automaticamente uma entrada TOTP. Isso permite copiar o TOTP para a área de transferência. Veja as preferências para configurar o comportamento.</item>
+    <item>Implementação TOTP atualizada para resolver problemas de compatibilidade com KeePass2 e TrayTOTP</item>
+    <item>Pequenas melhorias</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Atualizado o pCloud SDK para fornecer acesso a pastas compartilhadas</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Adicionado suporte para permissões de notificação no Android 13+</item>
     <item>Melhorado a implementação de FTP e SFTP</item>
@@ -963,7 +976,125 @@
     * Ferramentas de compilação atualizadas --&gt; tamanho do apk aumentado :-(\n
     Eu prometi mais algumas mudanças. Eles virão no próximo lançamento - desculpe. Eu queria publicar esses hot fixes o mais rápido possível.
   </string>
+  <string name="ChangeLog_0_9_4">    <b>Versão 0.9.4</b>\n
+    * suporte a plug-ins adicionado: veja as configurações para obter plugins!\n
+    * plugin QR publicado (digitalizar senhas, exibir senhas como código QR, transferir entradas para outros dispositivos KP2A)\n
+    * plugin InputStick publicado (transfira credenciais para o seu PC via bluetooth - requer pendrive InputStick)\n
+    * Aplicativos de terceiros agora podem simplesmente implementar a consulta de credenciais do KP2A. Você é um desenvolvedor? Adicione isso ao seu aplicativo, se for adequado!\n
+    * adicionado suporte TOTP (compatível com KeeOTP e TrayTotp)\n
+    * o aplicativo não deve mais ser eliminado pelo Android quando o banco de dados estiver aberto\n
+    * o banco de dados não fica mais bloqueado ao sair do aplicativo com o botão Voltar (veja configurações)\n
+    * exibir nomes de grupos na visualização dos resultados da pesquisa (*)\n
+    * menu de contexto adicionado na visualização dos resultados da pesquisa, incluindo a opção \'Navegar até o pai\' (*)\n
+    * adicionada opção para exibir o nome do grupo na visualização de entrada (*)\n
+    * (*) obrigado ao Matthieu por implementar esses recursos!\n
+    * suporte KeeChallenge (com Yubikey NEO). Agradecemos a Ben Rush por implementar o conector!\n
+    * interface de usuário aprimorada\n
+    * corrigido um bug na interface do Google Drive\n
+    * adicionada opção para desativar a opção \'doar\'\n
+    * Ícone QuickUnlock agora oculto em dispositivos Android 4.2+ por padrão\n
+  </string>
+  <string name="ChangeLog_0_9_3_r5">    <b>Versão 0.9.3 r5</b>\n
+    * Correções incorporadas do Xamarin: Keepass2Android agora compatível com ART no Android 4.4.2. Finalmente!\n
+    * Correções de bugs: bugs na sincronização (atualização de exibição, verificação correta de alterações em http), bugs em dispositivos Android 2.x, bugs nas implementações de armazenamento do Google Drive e OneDrive, limpeza da área de transferência no banco de dados próximo, bug na abertura de anexos, problemas de exibição com teclado\n
+  </string>
+  <string name="ChangeLog_0_9_3">    <b>Versão 0.9.3</b>\n
+    * Novo teclado com muitas melhorias. Veja as configurações para personalizar.\n
+    * Suporte somente leitura para kdb (arquivos Keepass 1). Experimental!\n
+    * Adicionado suporte a SFTP\n
+    * Adicionada solução alternativa para bug no ART (Android 4.4.2)\n
+    * Correções de bugs\n
+  </string>
+  <string name="ChangeLog_0_9_2">    <b>Versão 0.9.2</b>\n
+    * Adicionado suporte OTP (compatível com o plugin OtpKeyProv)\n
+    * Suporte NFC integrado para OTPs da YubiKey NEO \n
+    * Várias melhorias na interface do usuário\n
+    * Biblioteca Keepass 2.24 integrada\n
+    * Adicionada opção para encerrar o processo do aplicativo (veja configurações)\n
+    * Validação aprimorada de certificado SSL\n
+    * Correções de bugs\n
+  </string>
+  <string name="ChangeLog_0_9_1">    <b>Versão 0.9.1</b>\n
+    * Suporte integrado ao SkyDrive (somente edição regular do Keepass2Android)\n
+    * Corrigidos problemas com a integração do Google Drive\n
+    * Adicionado suporte NTLM
+  </string>
+  <string name="ChangeLog_0_9">    <b>Versão 0.9</b>\n
+    * Suporte integrado ao Dropbox e ao Google Drive (leitura/gravação de bancos de dados; somente edição regular do Keepass2Android)\n
+    * Navegador de arquivos personalizado integrado (baseado no android-filechooser da HBA)\n
+    * Interface de usuário aprimorada para criação de novos bancos de dados\n
+    * Fonte personalizada DejaVu Sans Mono incluída para exibição de senhas\n
+    * Correções de bugs
+  </string>
+  <string name="ChangeLog_0_8_6">    <b>Versão 0.8.6</b>\n
+    * Suporte para cifra Twofish\n
+    * Permitir edição de grupos\n
+    * Permitir movimentação de entradas e grupos\n
+    * O ícone do QuickUnlock pode ficar transparente (consulte as configurações)\n
+    * Correções de bugs
+  </string>
+  <string name="ChangeLog_0_8_5">    <b>Versão 0.8.5</b>\n
+    * Os arquivos remotos são armazenados no cache local do aplicativo para permitir o uso offline (incluindo edição e sincronização posterior). Veja configurações. \n
+    * Ícone de notificação para visualizar o estado de bloqueio do banco de dados (ver configurações)\n
+    * Melhor determinação do estado de bloqueio em algumas situações\n
+    * Os arquivos do banco de dados são carregados na memória enquanto você digita sua senha para aumentar a velocidade de carregamento (consulte as configurações)\n
+    * As entradas podem ser adicionadas ao grupo raiz\n
+    * Correções de bugs (resolvendo campos de referência, problemas com teclado em dispositivos italianos e chineses)
+  </string>
+  <string name="ChangeLog_0_8_4">    <b>Versão 0.8.4</b>\n
+    * Alterações externas no banco de dados são detectadas e mescladas ao salvar\n
+    * Melhor desempenho de carregamento\n
+    * Barra de ferramentas de pesquisa aprimorada com sugestões\n
+    * Novo logotipo do aplicativo!\n
+    * Adicionado suporte ao formato .kdbp para carregamento/salvamento mais rápido\n
+    * Edição aprimorada de campos extras e exibição oculta quando protegida\n
+    Agradecemos a Alex Vallat por suas contribuições de código!\n
+    Obrigado a Niki Hüttner (www.close-cut.de) pelo novo logotipo!\n
+  </string>
+  <string name="ChangeLog_0_8_3">    <b>Versão 0.8.3</b>\n
+    * Nome de usuário/índice TAN exibido na lista de entradas (veja configurações)\n
+    * As entradas poderão ser criadas se a pesquisa no navegador não retornar resultados\n
+    * O teclado KP2A oferece a possibilidade de pesquisar credenciais do aplicativo atual\n
+    * O aplicativo fecha automaticamente após selecionar uma entrada para uso no teclado\n
+    * A caixa de diálogo de seleção do teclado é aberta automaticamente após a pesquisa do URL (consulte as configurações)\n
+    * Os espaços reservados nos campos de entrada são substituídos antes da cópia (a maioria dos espaços reservados é compatível)\n
+    * pequenas correções de bugs
+  </string>
+  <string name="ChangeLog_0_8_2">    <b>Versão 0.8.2</b>\n
+    * Suporte para autenticação Digest em WebDAV\n
+    * Correções de bugs (Gerenciador de arquivos OI, Abrir URL)
+  </string>
+  <string name="ChangeLog_0_8_1">    <b>Versão 0.8.1</b>\n
+    * KP2A Offline e \'Online\' podem ser instalados novamente\n
+    * Adicionadas novas traduções (obrigado a todos os colaboradores!)
+  </string>
+  <string name="ChangeLog_0_8">    <b>Versão 0.8</b>\n
+    * Interface de usuário aprimorada especialmente para dispositivos Android 4.x\n
+    * Permitir o uso de gerenciadores de arquivos deliberados para selecionar arquivos existentes\n
+    * Adicionada uma maneira mais segura de abrir anexos (através do diretório de cache)\n
+    * bugs corrigidos na atividade de edição\n
+    * provavelmente introduziu novos bugs :-)
+  </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
+  <string name="ChangeLog_0_7">    <b>Versão 0.7</b>\n
+    * Maior velocidade de carregamento: transformações principais agora 10 vezes mais rápidas!\n
+    * Adicionado teclado virtual Keepass2Android: mude para este teclado para inserir credenciais. Protege você contra detectores de senha baseados na área de transferência (desative as notificações antigas da área de transferência nas opções)\n
+    * Adicionada opção de doar uma cerveja ou outra coisa (ver o menu)
+  </string>
+  <string name="ChangeLog">    <b>Versão 0.6.2</b>\n
+    * Integração Google Drive/Dropbox/...: Use o aplicativo oficial Google Drive ou Dropbox e abra qualquer arquivo .kdbx. Isso agora abrirá o KP2A.\n
+    * Caixa de diálogo de pesquisa aprimorada \n
+    * Resultados de pesquisa aprimorados para Compartilhar URL com subdomínios\n
+    * Adicionadas opções para dar feedback, avaliar e traduzir o app no ​​menu\n
+    \n
+    <b>Versão 0.6.1</b>\n
+    * Detectar quando o banco de dados for alterado em segundo plano (ou seja, devido à atividade de um aplicativo de sincronização)\n
+    * Pesquisa aprimorada de URLs no navegador\n
+    * Caixa de diálogo de confirmação ao descartar alterações\n
+    \n
+    <b>Versão 0.6</b>\n
+    Lançamento público inicial
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>

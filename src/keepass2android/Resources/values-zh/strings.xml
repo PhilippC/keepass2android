@@ -720,6 +720,13 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_10">
+    <item>在 Android 13+ 上添加对通知权限的支持</item>
+    <item>改善FTP和SFTP的代码实现</item>
+    <item>Add access to full pCloud</item>
+    <item>Allow to select System language in the language dialog</item>
+    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>修复崩溃和意外注销的 bug</item>
     <item>切换到新的 SFTP 实现，支持现代公钥算法，例如 rsa-sha2-256</item>
@@ -785,6 +792,15 @@
     <item>BUG修复</item>
     <item>Bug 修复</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    版本 1.07b\n
+    * 采用原生实现改进 Argon2 性能（感谢 Chih-Hsuan Yen!）\n
+    * 允许点按指纹图标来禁用指纹（避免屏下指纹识别的问题，感谢 marcoDallas!）\n
+    * 切换密码可见性时恢复光标位置（感谢 DDoSolitary!）\n
+    * 改进 pCloud 实现（再次感谢 gilbsgilbs again!）\n
+    * 为更多的数个浏览器增加自动填写支持 \n
+    * 新的 OneDrive 实现：支持 OneDrive for Business、共享文件、可选权限范围、多账户，以及修复离线访问问题\n
+    * 其他问题修复
+  </string>
   <string name="ChangeLog_keptDonate">捐出一杯啤酒或别的来支持我们的发展吧。</string>
   <string-array name="clipboard_timeout_options">
     <item>30秒</item>
