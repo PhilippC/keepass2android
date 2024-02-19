@@ -42,7 +42,7 @@
     <string name="afc_pmsg_file_has_been_deleted">%1$s「%2$s」が削除されました</string>
     <string name="afc_pmsg_filename_is_directory">「%1$s」はフォルダーです</string>
     <string name="afc_pmsg_filename_is_invalid">ファイル名「%1$s」は無効です</string>
-    <string name="afc_pmsg_max_file_count_allowed">ファイルが多すぎます。最大: %1$,d</string>
+    <string name="afc_pmsg_max_file_count_allowed">…のファイルが多すぎます。最大: %1$,d</string>
     <string name="afc_pmsg_unknown_error">不明なエラー: %1$s</string>
     <string name="afc_root">ルート</string>
     <string name="afc_title_advanced_selection">選択…</string>
