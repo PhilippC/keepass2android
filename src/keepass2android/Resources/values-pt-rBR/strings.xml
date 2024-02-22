@@ -24,7 +24,7 @@
   <string name="app_timeout_summary">Tempo até que o banco de dados seja travado quando o aplicativo estiver inativo.</string>
   <string name="show_kill_app">Botão fechar</string>
   <string name="kill_app_label">Encerrar o processo do aplicativo</string>
-  <string name="show_kill_app_summary">Mostrar um botão no ecrã de palavra-passe para matar o processo de aplicação (para utilizadores paranoicos)</string>
+  <string name="show_kill_app_summary">Mostrar um botão na tela de senha para encerrar o processo do aplicativo (para usuários paranóicos)</string>
   <string name="application">App</string>
   <string name="application_settings">Configurações</string>
   <string name="ShowGroupnameInSearchResult_title">Exibir o nome do grupo no resultado da pesquisa</string>
@@ -226,8 +226,8 @@
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Raiz</string>
-  <string name="AutoReturnFromQuery_title">Retroceder automaticamente do ecrã de consulta</string>
-  <string name="AutoReturnFromQuery_summary">Ao procurar uma entrada para uma aplicação ou site: retroceder automaticamente do ecrã de consulta, se existir apenas uma entrada correspondente na base de dados.</string>
+  <string name="AutoReturnFromQuery_title">Retornar automaticamente da tela de consulta</string>
+  <string name="AutoReturnFromQuery_summary">Ao procurar uma entrada para um aplicativo ou site: retorne automaticamente da tela de consulta se houver apenas uma entrada correspondente no banco de dados.</string>
   <string name="KeyDerivFunc">Função chave da derivação</string>
   <string name="rounds">Rodadas de criptografia</string>
   <string name="rounds_explaination">Maior número de rodadas de criptografia adiciona mais proteção contra ataques de força bruta, porém pode tornar o processo de carregar e salvar mais lentos.</string>
