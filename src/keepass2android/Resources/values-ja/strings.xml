@@ -726,8 +726,11 @@
     <item>エントリー表示の長押しでテキスト値をクリップボードにコピーできるよう変更</item>
     <item>内蔵キーボードで、より簡単に TOTP へアクセスできるように変更</item>
     <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
-    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
-    <item>Minor improvements</item>
+    <item>KeePass2 と TrayTOTP との互換性の問題を解決するためにTOTPの実装を更新</item>
+    <item>小さな改善</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>共有フォルダへアクセスできるように pCloud SDK を更新</item>
   </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Android 13 以降での通知権限への対応を追加</item>
