@@ -528,6 +528,10 @@
   <string name="private_key_select">Seleziona chiave privata</string>
   <string name="private_key_create_new">[Aggiungi Nuovo...]</string>
   <string name="hint_sftp_key_passphrase">Passphrase chiave (opzionale)</string>
+  <string name="sftp_kex_title">Algoritmo Di Scambio Di Chiavi (Kex) (Opzionale)</string>
+  <string name="hint_sftp_kex">Nomi separati da virgole</string>
+  <string name="sftp_shk_title">Algoritmo Chiave Host Del Server (Opzionale)</string>
+  <string name="hint_sftp_shk">Nomi separati da virgole</string>
   <string name="enter_ftp_login_title">Inserisci i dati di accesso FTP:</string>
   <string name="enter_mega_login_title">Inserisci i dati di accesso dell\'account MEGA:</string>
   <string name="select_storage_type">Seleziona il tipo di archiviazione:</string>
@@ -545,7 +549,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (file KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se non vuoi dare a KP2A accesso completo al tuo Google Drive completo, puoi selezionare questa opzione. Nota che è necessario prima creare un file di database, i file esistenti non sono visibili per l\'app. Scegli questa opzione dalla schermata Crea database o, se hai già aperto un database, esportando il database scegliendo questa opzione.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
   <string name="filestoragehelp_pcloud">Questo tipo di archiviazione richiederà l\'accesso solo alla cartella pCloud \"Applicazioni/Keepass2Android\". Se desideri utilizzare un database esistente dal tuo account pCloud, assicurati che il file sia posizionato in questa cartella pCloud.</string>
+  <string name="filestoragename_pcloudall">PCloud (accesso completo)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tutti i file e gli elementi condivisi</string>
@@ -591,12 +597,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Usa il plugin KeeChallenge in KeePass 2.x (PC) per configurare il database per l\'utilizzo del protocollo challenge-response!</string>
   <string name="ErrorUpdatingChalAuxFile">Errore nell\'aggiornamento del file OTP ausiliario!</string>
   <string name="TrayTotp_SeedField_title">Nome del campo \"Seed TOTP\"</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Se stai usando il plugin \"TrayTotp\" di Keepass 2 con impostazioni personalizzate, inserisci qui il nome del campo \" campo seed\" in base a quanto impostato sul PC.</string>
   <string name="TrayTotp_SettingsField_title">Nome del campo \"impostazioni TOTP\"</string>
   <string name="TrayTotp_SettingsField_summary">Inserisci qui il nome del campo \"campo impostazioni\" per TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">File di log per il debug</string>
   <string name="DebugLog_title">Usa il file di log</string>
+  <string name="FtpDebug_title">FTP/SFTP debug logging</string>
   <string name="DebugLog_summary">Scrive l\'output dell\'app in un file di log locale</string>
   <string name="DebugLog_send">Invia il log di debug...</string>
   <string name="loading">Caricamento…</string>
@@ -665,6 +673,12 @@
   <string name="Continue">Continua</string>
   <string name="NoFilenameWarning">L\'URI inserito non sembra il nome di un file. Sei sicuro che sia un file valido?</string>
   <string name="FirstInvalidCompositeKeyError">Chiave composita non valida! Riprova.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Chiave composita non valida! Prova i seguenti passaggi per sbloccare il database:\n
+
+    &#8226; Assicurati di aver inserito la password corretta. Usa l\'icona occhio per rivelare la password inserita.\n
+    &#8226; Assicurati di aver selezionato il tipo di password corretto. Assicurarsi che questo corrisponda al tipo usato durante la creazione del database.\n
+    &#8226; Assicurati di aver selezionato il file database corretto.
+  </string>
   <string name="open_other_db">Apri un altro database…</string>
   <string name="select_database">Seleziona il database</string>
   <string name="configure_child_dbs">Configura i database figli…</string>
