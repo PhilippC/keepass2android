@@ -122,6 +122,7 @@
   <string name="entry_user_name">اسم المستخدم</string>
   <string name="entry_extra_strings">حقول النص الإضافية</string>
   <string name="entry_binaries">المرفقات</string>
+  <string name="entry_history"></string>
   <string name="error_can_not_handle_uri">Keepass2Android لا يمكنه التعامل مع هذا الرابط.</string>
   <string name="error_could_not_create_group">خطأ في إنشاء المجموعة.</string>
   <string name="error_could_not_create_parent">تعذر إنشاء المجلد الأصل.</string>
@@ -151,6 +152,7 @@
   <string name="hint_keyfile">ملف المفتاح</string>
   <string name="hint_length">الطول</string>
   <string name="hint_pass">كلمة السر</string>
+  <string name="hint_keyfile_path"></string>
   <string name="hint_login_pass">كلمة السر</string>
   <string name="hint_title">الإسم</string>
   <string name="hint_url">الرابط</string>
