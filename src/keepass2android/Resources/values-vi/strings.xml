@@ -521,7 +521,19 @@
   <string name="private_key_saved">Đã lưu chìa khóa riêng</string>
   <string name="private_key_save_failed">KHÔNG lưu được khóa riêng: %1$s</string>
   <string name="private_key_info">Nhập tên chìa khóa và nội dung cần lưu</string>
+  <string name="private_key_delete">Đã xóa chìa khóa riêng: %1$s</string>
+  <string name="private_key_delete_failed">KHÔNG xóa được khóa riêng: %1$s</string>
+  <string name="save_key">Lưu khóa riêng</string>
+  <string name="delete_key">Xóa khóa riêng</string>
+  <string name="private_key_select">Chọn khóa riêng</string>
+  <string name="private_key_create_new">[Thêm mới...]</string>
+  <string name="hint_sftp_key_passphrase">Cụm mật khẩu chính (tùy chọn)</string>
+  <string name="sftp_kex_title">(Các) Thuật toán trao đổi khóa (KEX) (tùy chọn)</string>
+  <string name="hint_sftp_kex">Tên/thông số được phân tách bằng dấu phẩy</string>
+  <string name="sftp_shk_title">(Các) Thuật toán khóa host máy chủ (tùy chọn)</string>
+  <string name="hint_sftp_shk">Tên/thông số được phân tách bằng dấu phẩy</string>
   <string name="enter_ftp_login_title">Nhập thông tin đăng nhập FTP:</string>
+  <string name="enter_mega_login_title">Nhập dữ liệu đăng nhập tài khoản MEGA của bạn:</string>
   <string name="select_storage_type">Chọn loại lưu trữ:</string>
   <string name="filestoragename_file">Tập tin cục bộ</string>
   <string name="filestoragename_androidget">Chọn từ ứng dụng khác</string>
@@ -533,8 +545,13 @@
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (tệp KP2A)</string>
+  <string name="filestoragename_pcloud">PCloud (thư mục KP2A)</string>
+  <string name="filestoragename_pcloudall">PCloud (Truy cập đầy đủ)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Tất cả các tệp và tệp được chia sẻ</string>
+  <string name="filestoragename_onedrive2_myfiles">Tệp của tôi</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
   <string name="filestoragehelp_mega">Xin lưu ý: Keepass2Android phải tải xuống danh sách tất cả các tệp trong tài khoản Mega của bạn để hoạt động bình thường. Vì lý do này, việc truy cập vào tài khoản có nhiều tệp có thể bị chậm.</string>
   <string name="filestoragename_content">Hộp thoại chọn tập tin của hệ thống</string>
@@ -640,8 +657,10 @@
   <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
   <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
   <string name="open_other_db">Mở cơ sở dữ liệu khác…</string>
+  <string name="select_database">Chọn cơ sở dữ liệu</string>
   <string name="configure_child_dbs">Định cấu hình cơ sở dữ liệu con…</string>
   <string name="child_dbs_title">Cơ sở dữ liệu con</string>
+  <string name="unspecified">không xác định</string>
   <string name="child_db_explanation">Cơ sở dữ liệu con là các cơ sở dữ liệu khác có thể được mở tự động khi bạn mở cơ sở dữ liệu mẹ. Do đó, mật khẩu chính và vị trí tệp của con được lưu trữ trong thư mục mẹ. Tính năng này cho phép chia sẻ một số mật khẩu của bạn với người khác. Việc triển khai tương thích với KeeAutoExec cho PC.</string>
   <string name="child_db_enabled_on_this_device">Đã bật trên thiết bị này</string>
   <string name="child_db_enable_on_this_device">Bật trên thiết bị này</string>
@@ -652,6 +671,11 @@
   <string name="EnableCopyForThisDevice_Info">Điều này sẽ tạo và kích hoạt một bản sao thiết đặt cơ sở dữ liệu con. Sau đó, những thiết đặt đã sao chép này có thể được điều chỉnh cụ thể cho thiết bị này.</string>
   <string name="Visible_title">Dễ thấy</string>
   <string name="child_db_Enabled_title">Tự động mở</string>
+  <string name="database_file_heading">Tệp cơ sở dữ liệu</string>
+  <string name="if_device_text">Bật cho %1$s</string>
+  <string name="restore_history">Khôi phục phiên bản này</string>
+  <string name="remove_history">Xóa phiên bản này</string>
+  <string name="DbUnlockedChannel_name">Đã mở khóa cơ sở dữ liệu</string>
   <string name="DbQuicklockedChannel_name">Mở khóa nhanh</string>
   <string name="DbQuicklockedChannel_desc">Thông báo về việc cơ sở dữ liệu bị khóa bằng Mở khóa nhanh</string>
   <string name="CloseDbAfterFailedAttempts">Đóng cơ sở dữ liệu sau ba lần mở khóa sinh trắc học không thành công.</string>
@@ -668,6 +692,16 @@
     <item>Cải thiện hành vi khóa - không còn hiển thị lời nhắc sinh trắc học ngay sau khi mở khóa</item>
     <item>Update OkHttp to support HTTP/2</item>
     <item>Fix missing translations</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
+    <item>Improve keyboard dialog on Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Cập nhật lên thư viện FTP</item>
+    <item>Fixes to potential crashes of the app</item>
+    <item>Further minor fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
     <item>Add notification button for copying TOTP to clipboard</item>
@@ -699,7 +733,7 @@
   <string-array name="design_options">
     <item>Sáng</item>
     <item>Tối</item>
-    <item>System settings</item>
+    <item>Thiết đặt hệ thống</item>
   </string-array>
   <string name="design_title">Thiết kế</string>
   <string-array name="ftp_encryption_modes">
@@ -719,25 +753,39 @@
     <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
     <item>Mật mã + trả lời-thách thức</item>
     <item>Mật mã + trả lời-thách thức bí mật (chế độ phục hồi)</item>
-    <item>Password + Challenge-Response for Keepass XC</item>
-    <item>Password + Key file + Challenge-Response for Keepass XC</item>
+    <item>Mật khẩu + Thử-thách-Phản-hồi cho Keepass XC</item>
+    <item>Mật khẩu + Tệp khóa + Thử-thách-Phản-hồi cho Keepass XC</item>
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Mật mã</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Khóa riêng/công khai KP2A</item>
+    <item>Khóa riêng tùy chỉnh</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Bỏ qua các thất bại khi xác nhận chứng chỉ</item>
     <item>Cảnh báo khi xác nhận không thành công</item>
     <item>Không chấp nhận các chứng chỉ không hợp lệ</item>
   </string-array>
+  <string name="ClearClipboardWarning">Đảm bảo tính năng này hoạt động trên hệ thống của bạn và cân nhắc sử dụng bàn phím tích hợp nếu không.</string>
   <string name="PluginDescription">Mô tả của phần mở rộng:</string>
   <string name="autofill_hint">Keepass2Android hỗ trợ chức năng Tự động điền của Android nhưng có vẻ bạn chưa bật chức năng này.</string>
   <string name="autofill_enable">Bật Tự động điền</string>
   <string name="show_autofill_help">Xem trợ giúp về Tự động điền</string>
   <string name="autofill_sign_in_prompt">Điền vào với Keepass2Android</string>
+  <string name="autofill_disable">Tắt tính năng Tự động điền cho %1$s</string>
+  <string name="autofill_enable_for">Bật Tự động điền cho %1$s</string>
   <string name="invalid_link_association">Không thể liên kết tên miền trang web %1$s với ứng dụng %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android đã phát hiện phần cứng sinh trắc học. Bạn có muốn bật Mở khóa sinh trắc học cho cơ sở dữ liệu này không?</string>
+  <string name="post_notifications_dialog_title">Cho phép thông báo</string>
+  <string name="post_notifications_dialog_allow">Cho phép thông báo</string>
+  <string name="post_notifications_dialog_disable">Tắt tính năng này</string>
+  <string name="post_notifications_dialog_notnow">Không phải bây giờ</string>
+  <string name="understand">Tôi hiểu</string>
+  <string name="dont_show_again">Không hiển thị nữa</string>
+  <string name="masterkey_infotext_head">Bạn có nhớ mật khẩu chính của mình không?</string>
   <string name="masterkey_infotext_fingerprint_note">Cũng lưu ý rằng Mở khóa sinh trắc học hoạt động bằng cách lưu trữ khóa chính của bạn trong bộ lưu trữ an toàn của Android. Bộ nhớ này có thể bị Android xóa bất cứ lúc nào, ví dụ: nếu bạn thêm dấu vân tay mới vào cài đặt hệ thống. Vì vậy, đừng dựa vào Mở khóa sinh trắc học mà hãy nhớ mật khẩu chính của bạn!</string>
+  <string name="disable_secure_screen_check">Tắt thông báo này</string>
+  <string name="switch_ime_text">Vui lòng kích hoạt bàn phím Keepass2Android.</string>
+  <string name="switch_ime_reopen">Thử lại</string>
+  <string name="AutofillWarning_trustAsBrowser">Luôn chấp nhận trong \"%1$s\"</string>
 </resources>
