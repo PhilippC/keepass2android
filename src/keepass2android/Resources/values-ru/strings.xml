@@ -547,6 +547,7 @@
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
   <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
+  <string name="filestoragename_pcloudall">PCloud (Полный доступ)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Все файлы и общие файлы</string>
@@ -592,6 +593,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Пожалуйста, используйте плагин KeeChallenge в KeePass 2.x (ПК) для настройки базы данных для использования одноразового пароля!</string>
   <string name="ErrorUpdatingChalAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
   <string name="TrayTotp_SeedField_title">Имя поля начального значения TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Если вы используете плагин Keepass 2 \"TrayTotp\" с нестандартными настройками, введите имя поля для поля начального значения в соответствии с настройками на ПК.</string>
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
@@ -666,6 +668,23 @@
   <string name="Continue">Продолжить</string>
   <string name="NoFilenameWarning">URI, который Вы ввели, не похож на имя файла. Вы уверены, что это правильно?</string>
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Неправильный составной ключ! Пожалуйста, попробуйте следующие шаги для разблокировки вашей базы данных:\n
+  
+   • Убедитесь, что вы вводите правильный пароль. Используйте значок \"глаз\" для проверки вводимого пароля.\n
+   • Убедитесь, что вы выбрали правильный тип пароля. Убедитесь, что он совпадает с тем типом, который вы указывали при создании базы данных.\n
+   • Убедитесь, что вы выбрали правильный файл с базой данных.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+ &#8226; подсказка: если вы считаете, что файл базы данных может быть поврежден или не помните главный ключ после его изменения, вы можете попробовать с последней успешно открытой версией файла, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
+  <string name="HintLocalBackupOtherError">    \n
+ &amp;#82Подсказка: Keepass2Android сохранил последнюю успешно открытую версию файла во внутренней памяти. Его можно открыть, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
+  <string name="CorruptDatabaseHelp">    Файл поврежден. \n
+    Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
+    
+    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты \"MyPhoneExplorer\". MTP-режим иногда обрезает файлы.\n
+    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват \"Keepass2Android\", то свяжитесь с нами.\n
+    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в \"Keepass2Android\".
+
+  </string>
   <string name="open_other_db">Открыть другую базу данных…</string>
   <string name="select_database">Выбрать базу данных</string>
   <string name="configure_child_dbs">Настройка дочерних баз данных…</string>
@@ -693,6 +712,19 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Сделать TOTP легко доступным на встроенной клавиатуре.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Незначительные улучшения</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Обновите pCloud SDK, чтобы предоставить доступ к общим папкам</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Исправлены ошибки, приводящие к сбоям и незапланированным выходам</item>
     <item>Смена реализации SFTP на новую, поддерживающую современные алгоритмы открытых ключей, таких как rsa-sha2-256</item>
