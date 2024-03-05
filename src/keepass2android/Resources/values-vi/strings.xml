@@ -544,9 +544,12 @@
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Dropbox đầy đủ của mình, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vào thư mục Apps/Keepass2Android. Điều này đặc biệt phù hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có cơ sở dữ liệu, hãy chọn tùy chọn này để tạo thư mục, sau đó đặt tệp của bạn bên trong thư mục (từ PC của bạn) và sau đó chọn lại tùy chọn này để mở tệp.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (tệp KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Google Drive đầy đủ của mình, bạn có thể chọn tùy chọn này. Lưu ý rằng trước tiên bạn cần tạo tệp cơ sở dữ liệu, các tệp hiện có sẽ không hiển thị với ứng dụng. Chọn tùy chọn này từ màn hình Tạo cơ sở dữ liệu hoặc, nếu bạn đã mở cơ sở dữ liệu, bằng cách xuất cơ sở dữ liệu chọn tùy chọn này.</string>
   <string name="filestoragename_pcloud">PCloud (thư mục KP2A)</string>
+  <string name="filestoragehelp_pcloud">Loại lưu trữ này sẽ chỉ yêu cầu quyền truy cập vào thư mục pCloud \"Applications/Keepass2Android\". Nếu bạn muốn sử dụng cơ sở dữ liệu hiện có từ tài khoản pCloud của mình, vui lòng đảm bảo tệp được đặt trong thư mục pCloud này.</string>
   <string name="filestoragename_pcloudall">PCloud (Truy cập đầy đủ)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
@@ -566,10 +569,12 @@
   <string name="help_master_password">Cơ sở dữ liệu của bạn được mã hóa với mật mã bạn nhập ở đây. Chọn một mật mã mạnh để giữ cho cơ sở dữ liệu an toàn! Mẹo: Nghĩ về một hoặc hai câu và sử dụng các chữ cái đầu tiên của các từ cho mật khẩu. Thêm vô các dấu chấm câu.</string>
   <string name="hint_master_password">Chọn một mật mã chủ để bảo vệ cơ sở dữ liệu của bạn:</string>
   <string name="key_file">Tập tin khóa</string>
+  <string name="help_key_file">Một tệp khóa về cơ bản là một mật khẩu được lưu trữ trong một tệp. Các tệp khóa thường mạnh hơn mật khẩu chính, bởi vì khóa có thể phức tạp hơn rất nhiều; tuy nhiên cũng khó giữ bí mật hơn. Nếu bạn lưu trữ cơ sở dữ liệu của mình trên đám mây, cũng đừng lưu trữ tệp khóa ở đó! Điều này sẽ làm cho nó hoàn toàn vô dụng! Quan trọng: Không thay đổi nội dung của tệp khóa sau khi tạo cơ sở dữ liệu!</string>
   <string name="hint_key_file">Chọn nếu bạn muốn sử dụng một tập tin khóa ngoài mật mã chủ của bạn:</string>
   <string name="use_key_file">Sử dụng tập tin khóa</string>
   <string name="error_adding_keyfile">Lỗi trong khi thêm tập tin khoá!</string>
   <string name="init_otp">Tải tập tin phụ trợ OTP…</string>
+  <string name="otp_explanation">Nhập Mật khẩu một lần (OTP) tiếp theo. Vuốt Yubikey NEO ở phía sau thiết bị của bạn để truy cập qua NFC (yêu cầu ứng dụng Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
   <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
   <string name="CouldntLoadOtpAuxFile_Hint">Xin vui lòng sử dụng công cụ OtpKeyProv trong KeePass 2.x (PC) để cài đặt cấu hình cơ sở dữ liệu của bạn để sử dụng với OTPs!</string>
@@ -665,6 +670,18 @@
   <string name="Continue">Tiếp tục</string>
   <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
   <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Khóa tổng hợp không hợp lệ! Vui lòng thử các bước sau để mở khóa cơ sở dữ liệu của bạn:\n
+
+    &#8226; Hãy chắc chắn rằng bạn đã nhập đúng mật khẩu. Sử dụng biểu tượng con mắt để hiển thị mật khẩu đã nhập.\n
+    &#8226; Hãy chắc chắn rằng bạn đã chọn đúng loại mật khẩu. Hãy đảm bảo rằng loại này khớp với loại được sử dụng khi tạo cơ sở dữ liệu.\n
+    &#8226; Hãy chắc chắn rằng bạn đã chọn đúng tệp cơ sở dữ liệu.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Gợi ý: Nếu bạn cho rằng tệp cơ sở dữ liệu của mình có thể bị hỏng hoặc bạn không nhớ khóa chính sau khi sửa đổi nó, bạn có thể thử với phiên bản tệp được mở thành công gần đây nhất bằng cách nhấn vào \"%1$s\" và chọn bản sao lưu cục bộ.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Gợi ý: Keepass2Android đã lưu trữ phiên bản tệp được mở thành công gần đây nhất trên bộ nhớ trong. Bạn có thể mở nó bằng cách nhấn vào \"%1$s\" và chọn bản sao lưu cục bộ.
+  </string>
   <string name="open_other_db">Mở cơ sở dữ liệu khác…</string>
   <string name="select_database">Chọn cơ sở dữ liệu</string>
   <string name="configure_child_dbs">Định cấu hình cơ sở dữ liệu con…</string>
@@ -698,9 +715,19 @@
     <item>TOTP bây giờ có thể được nhìn thấy từ chế độ xem nhóm.</item>
     <item>Sao chép giá trị văn bản vào clipboard khi nhấn và giữ trong chế độ xem mục nhập.</item>
     <item>Làm cho TOTP dễ truy cập hơn trên bàn phím tích hợp.</item>
-    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
-    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
-    <item>Minor improvements</item>
+    <item>Hiển thị thông báo mục nhập khi tự động điền mục TOTP. Điều này cho phép sao chép TOTP vào clipboard. Xem tùy chọn để định cấu hình hành vi.</item>
+    <item>Đã cập nhật triển khai TOTP để giải quyết các vấn đề tương thích với KeePass2 và TrayTOTP</item>
+    <item>Cải tiến nhỏ</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Cập nhật SDK pCloud để cung cấp quyền truy cập vào các thư mục dùng chung</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Add support for notification permissions on Android 13+</item>
+    <item>Improve the FTP and SFTP implementation</item>
+    <item>Thêm quyền truy cập vào pCloud đầy đủ</item>
+    <item>Allow to select System language in the language dialog</item>
+    <item>Fix issue with remembering Keyfile + Challenge password type</item>
   </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Fix disappearing autofill prompt in Firefox</item>
@@ -713,23 +740,23 @@
     <item>No longer storing package names of Android apps in the URL field</item>
     <item>Cải thiện hành vi khóa - không còn hiển thị lời nhắc sinh trắc học ngay sau khi mở khóa</item>
     <item>Update OkHttp to support HTTP/2</item>
-    <item>Fix missing translations</item>
+    <item>Sửa các bản dịch bị thiếu</item>
   </string-array>
   <string-array name="ChangeLog_1_08b">
-    <item>Force HTTP/1.1 due to issue with HTTP/2 implementation of OkHttp</item>
-    <item>Improve keyboard dialog on Android 9+</item>
+    <item>Buộc HTTP/1.1 do vấn đề với việc triển khai HTTP/2 của OkHttp</item>
+    <item>Cải thiện hộp thoại bàn phím trên Android 9+</item>
     <item>Change file associations of the app to avoid some unnecessary associations</item>
     <item>Make sure password text is not hidden behind eye icon</item>
     <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
     <item>Cập nhật lên thư viện FTP</item>
-    <item>Fixes to potential crashes of the app</item>
-    <item>Further minor fixes</item>
+    <item>Khắc phục các sự cố có thể xảy ra của ứng dụng</item>
+    <item>Sửa lỗi nhỏ khác</item>
   </string-array>
   <string-array name="ChangeLog_1_08">
-    <item>Add notification button for copying TOTP to clipboard</item>
-    <item>Switch to using FluentFTP to provide support for TLS 1.2</item>
+    <item>Thêm nút thông báo sao chép TOTP vào clipboard</item>
+    <item>Chuyển sang sử dụng FluentFTP để hỗ trợ TLS 1.2</item>
     <item>Chuyển sang API BiometricPrompt để cải thiện trải nghiệm người dùng với tính năng mở khóa bằng vân tay và cho phép sử dụng tính năng mở khóa bằng khuôn mặt, ví dụ: trên Pixel 4.</item>
-    <item>Bug fixes</item>
+    <item>Sửa lỗi</item>
   </string-array>
   <string name="ChangeLog_keptDonate">Thêm khả năng mở rộng để tặng một ly bia hoặc một cái gì khác</string>
   <string-array name="clipboard_timeout_options">
@@ -792,6 +819,7 @@
   <string name="PluginDescription">Mô tả của phần mở rộng:</string>
   <string name="autofill_hint">Keepass2Android hỗ trợ chức năng Tự động điền của Android nhưng có vẻ bạn chưa bật chức năng này.</string>
   <string name="autofill_enable">Bật Tự động điền</string>
+  <string name="autofill_enable_failed">Rất tiếc, có vẻ như thiết bị của bạn không hỗ trợ mở thiết đặt từ bên trong ứng dụng. Vui lòng truy cập thủ công vào thiết đặt hệ thống của tính năng Tự động điền để kích hoạt dịch vụ.</string>
   <string name="show_autofill_help">Xem trợ giúp về Tự động điền</string>
   <string name="autofill_sign_in_prompt">Điền vào với Keepass2Android</string>
   <string name="autofill_disable">Tắt tính năng Tự động điền cho %1$s</string>
@@ -805,9 +833,14 @@
   <string name="understand">Tôi hiểu</string>
   <string name="dont_show_again">Không hiển thị nữa</string>
   <string name="masterkey_infotext_head">Bạn có nhớ mật khẩu chính của mình không?</string>
+  <string name="masterkey_infotext_main">Lưu ý rằng bạn sẽ không thể mở cơ sở dữ liệu của mình nếu không có khóa chính. Không có cách nào để \"đặt lại\" mật khẩu chính.</string>
   <string name="masterkey_infotext_fingerprint_note">Cũng lưu ý rằng Mở khóa sinh trắc học hoạt động bằng cách lưu trữ khóa chính của bạn trong bộ lưu trữ an toàn của Android. Bộ nhớ này có thể bị Android xóa bất cứ lúc nào, ví dụ: nếu bạn thêm dấu vân tay mới vào cài đặt hệ thống. Vì vậy, đừng dựa vào Mở khóa sinh trắc học mà hãy nhớ mật khẩu chính của bạn!</string>
+  <string name="backup_infotext_head">Cơ sở dữ liệu của bạn có được sao lưu không?</string>
   <string name="disable_secure_screen_check">Tắt thông báo này</string>
   <string name="switch_ime_text">Vui lòng kích hoạt bàn phím Keepass2Android.</string>
   <string name="switch_ime_reopen">Thử lại</string>
+  <string name="AutofillWarning_title">Cảnh báo bảo mật: Liên kết tên miền/ứng dụng không được công nhận</string>
+  <string name="AutofillWarning_Intro">Bạn sắp chèn thông tin đăng nhập của miền \"%1$s\" vào ứng dụng \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Nếu bạn tin tưởng \"%2$s\" thuộc về \"%1$s\" hoặc bạn tin tưởng ứng dụng \"%2$s\" không sử dụng sai thông tin xác thực (ví dụ: vì đây là ứng dụng trình duyệt đáng tin cậy), bạn có thể tiếp tục. Nếu không, xin vui lòng hủy bỏ.</string>
   <string name="AutofillWarning_trustAsBrowser">Luôn chấp nhận trong \"%1$s\"</string>
 </resources>
