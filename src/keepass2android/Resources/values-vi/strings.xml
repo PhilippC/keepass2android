@@ -682,6 +682,12 @@
   <string name="HintLocalBackupOtherError">    \n
     &#8226; Gợi ý: Keepass2Android đã lưu trữ phiên bản tệp được mở thành công gần đây nhất trên bộ nhớ trong. Bạn có thể mở nó bằng cách nhấn vào \"%1$s\" và chọn bản sao lưu cục bộ.
   </string>
+  <string name="CorruptDatabaseHelp">Tập tin bị hỏng. \N
+    Dưới đây là một số gợi ý có thể giúp chẩn đoán sự cố:\n
+
+    &#8226; Nếu bạn đã sao chép tệp qua USB (Chế độ MTP), vui lòng thử lại bằng công cụ như MyPhoneExplorer. MTP cắt bớt tệp trong một số trường hợp nhất định.\n
+    &#8226; Nếu bạn không thể mở tệp từ cùng một vị trí trên PC, rất có thể tệp đó thực sự bị hỏng. Vui lòng sử dụng bản sao lưu cơ sở dữ liệu sau đó. Nếu bạn cho rằng Keepass2Android đã làm hỏng tệp, vui lòng liên hệ với nhóm hỗ trợ.\n
+    &#8226; Nếu bạn vẫn có thể mở tệp trên PC, vui lòng liên hệ với nhóm hỗ trợ. Bạn có thể thử lưu nó bằng các cài đặt khác (ví dụ: đã giải nén) trên PC và thử mở lại trong Keepass2Android.</string>
   <string name="open_other_db">Mở cơ sở dữ liệu khác…</string>
   <string name="select_database">Chọn cơ sở dữ liệu</string>
   <string name="configure_child_dbs">Định cấu hình cơ sở dữ liệu con…</string>
@@ -723,16 +729,30 @@
     <item>Cập nhật SDK pCloud để cung cấp quyền truy cập vào các thư mục dùng chung</item>
   </string-array>
   <string-array name="ChangeLog_1_10">
-    <item>Add support for notification permissions on Android 13+</item>
-    <item>Improve the FTP and SFTP implementation</item>
+    <item>Thêm hỗ trợ quyền thông báo trên Android 13+</item>
+    <item>Cải thiện việc triển khai FTP và SFTP</item>
     <item>Thêm quyền truy cập vào pCloud đầy đủ</item>
-    <item>Allow to select System language in the language dialog</item>
-    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+    <item>Cho phép chọn ngôn ngữ hệ thống trong hộp thoại ngôn ngữ</item>
+    <item>Khắc phục sự cố ghi nhớ loại mật khẩu Tệp khóa + Thử thách</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09e">
+    <item>Sửa lỗi treo máy và đăng xuất không mong muốn</item>
+    <item>Chuyển sang triển khai SFTP mới, hỗ trợ các thuật toán khóa công khai hiện đại như rsa-sha2-256</item>
+    <item>Đánh dấu mật khẩu là nhạy cảm khi sao chép vào bảng nhớ tạm (Android 13)</item>
+    <item>Cải tiến tự động điền</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09d">
+    <item>Đã thêm hỗ trợ để xem, xóa và khôi phục các bản sao lưu mục nhập</item>
+    <item>Đã triển khai hỗ trợ cho lưu trữ đám mây MEGA</item>
+    <item>Đã thêm hỗ trợ cho Google Drive với phạm vi hạn chế</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Triển khai lại xác thực Google Drive, hỗ trợ Google Drive được kích hoạt lại</item>
   </string-array>
   <string-array name="ChangeLog_1_09b">
-    <item>Fix disappearing autofill prompt in Firefox</item>
+    <item>Sửa lỗi lời nhắc tự động điền biến mất trong Firefox</item>
     <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
-    <item>Allow to change app language in settings</item>
+    <item>Cho phép thay đổi ngôn ngữ ứng dụng trong thiết đặt</item>
     <item>Thêm tùy chọn đồng bộ cơ sở dữ liệu sau khi mở khóa nhanh</item>
     <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
   </string-array>
@@ -827,6 +847,7 @@
   <string name="invalid_link_association">Không thể liên kết tên miền trang web %1$s với ứng dụng %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android đã phát hiện phần cứng sinh trắc học. Bạn có muốn bật Mở khóa sinh trắc học cho cơ sở dữ liệu này không?</string>
   <string name="post_notifications_dialog_title">Cho phép thông báo</string>
+  <string name="post_notifications_dialog_message">Keepass2Android có thể hiển thị thông báo bằng các nút để sao chép các giá trị như mật khẩu và TOTP vào khay nhớ tạm hoặc để hiển thị bàn phím tích hợp. Điều này rất hữu ích để chuyển các giá trị sang các ứng dụng khác mà không cần chuyển sang Keepass2Android nhiều lần. Bạn có muốn kích hoạt các thông báo như vậy không?</string>
   <string name="post_notifications_dialog_allow">Cho phép thông báo</string>
   <string name="post_notifications_dialog_disable">Tắt tính năng này</string>
   <string name="post_notifications_dialog_notnow">Không phải bây giờ</string>
@@ -836,6 +857,11 @@
   <string name="masterkey_infotext_main">Lưu ý rằng bạn sẽ không thể mở cơ sở dữ liệu của mình nếu không có khóa chính. Không có cách nào để \"đặt lại\" mật khẩu chính.</string>
   <string name="masterkey_infotext_fingerprint_note">Cũng lưu ý rằng Mở khóa sinh trắc học hoạt động bằng cách lưu trữ khóa chính của bạn trong bộ lưu trữ an toàn của Android. Bộ nhớ này có thể bị Android xóa bất cứ lúc nào, ví dụ: nếu bạn thêm dấu vân tay mới vào cài đặt hệ thống. Vì vậy, đừng dựa vào Mở khóa sinh trắc học mà hãy nhớ mật khẩu chính của bạn!</string>
   <string name="backup_infotext_head">Cơ sở dữ liệu của bạn có được sao lưu không?</string>
+  <string name="backup_infotext_main">Keepass2Android lưu trữ mật khẩu của bạn trong một tệp ở vị trí bạn chọn. Bạn có chắc chắn rằng bạn vẫn có thể truy cập tệp này khi điện thoại của bạn bị mất hoặc bị đánh cắp hoặc khi tệp bị hủy hoặc bị xóa không? Hãy đảm bảo rằng bạn luôn có bản sao lưu cập nhật ở nơi an toàn!</string>
+  <string name="backup_infotext_note">Để tạo bản sao lưu ngay bây giờ, hãy đi tới %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Bạn đã chuẩn bị cho những trường hợp khẩn cấp chưa?</string>
+  <string name="emergency_infotext_main">Bạn đã bao giờ cân nhắc điều gì sẽ xảy ra nếu bạn không thể truy cập cơ sở dữ liệu mật khẩu của mình nữa chưa? Nếu bạn gặp tai nạn thì sao? Cách tốt nhất là chuyển chìa khóa chính của bạn cho một người đáng tin cậy nào đó trong trường hợp khẩn cấp. Nếu không thì không ai có quyền truy cập vào mật khẩu của bạn.</string>
+  <string name="no_secure_display">Màn hình hiện hợp lệ không được đánh dấu là an toàn. Điều này có nghĩa là ảnh chụp màn hình có thể được chụp bởi các ứng dụng khác. Keepass2Android được định cấu hình để chỉ hiển thị thông tin nhạy cảm trên màn hình an toàn. Vui lòng chuyển sang màn hình an toàn (ví dụ: bằng cách tháo màn hình HDMI) hoặc thay đổi thiết đặt ứng dụng.</string>
   <string name="disable_secure_screen_check">Tắt thông báo này</string>
   <string name="switch_ime_text">Vui lòng kích hoạt bàn phím Keepass2Android.</string>
   <string name="switch_ime_reopen">Thử lại</string>
