@@ -552,6 +552,7 @@
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tất cả các tệp và tệp được chia sẻ</string>
   <string name="filestoragename_onedrive2_myfiles">Tệp của tôi</string>
+  <string name="filestoragename_onedrive2_appfolder">Thư mục ứng dụng Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
   <string name="filestoragehelp_mega">Xin lưu ý: Keepass2Android phải tải xuống danh sách tất cả các tệp trong tài khoản Mega của bạn để hoạt động bình thường. Vì lý do này, việc truy cập vào tài khoản có nhiều tệp có thể bị chậm.</string>
   <string name="filestoragename_content">Hộp thoại chọn tập tin của hệ thống</string>
@@ -581,6 +582,9 @@
   <string name="OtpKeyError">Lỗi khi tạo khóa OTP! Hãy chắc chắn bạn đã nhập đúng OTPs.</string>
   <string name="ErrorUpdatingOtpAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
   <string name="SavingOtpAuxFile">Đang lưu tập tin phụ trợ OTP…</string>
+  <string name="NoChallengeApp">Không thể tìm thấy ứng dụng có thể xử lý thử thách này.</string>
+  <string name="PleaseInstallApp">Vui lòng cài đặt %1$s từ Google Play.</string>
+  <string name="AppOutdated">%1$s không còn được hỗ trợ.</string>
   <string name="bad_resp">Trả lời thách thức không đúng.</string>
   <string name="CouldntLoadChalAuxFile">Không thể tải tập tin hỗ trợ cho thách thức!</string>
   <string name="CouldntLoadChalAuxFile_Hint">Xin vui lòng sử dụng công cụ KeeChallenge trong KeePass 2.x (PC) để cấu hình cơ sở dữ liệu của bạn để sử dụng cho trả lời thách thức!</string>
@@ -592,6 +596,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Tập tin log để debug</string>
   <string name="DebugLog_title">Dùng tập tin log</string>
+  <string name="FtpDebug_title">Ghi nhật ký gỡ lỗi FTP/SFTP</string>
   <string name="DebugLog_summary">Viết đầu ra của ứng dụng vào một tệp nhật ký cục bộ</string>
   <string name="DebugLog_send">Gửi nhật ký gỡ lỗi...</string>
   <string name="loading">Đang tải…</string>
@@ -603,6 +608,7 @@
   <string name="plugin_disabled">không kích hoạt</string>
   <string name="plugin_web">Tìm các công cụ trực tuyến</string>
   <string name="plugin_scopes">Phạm vi</string>
+  <string name="not_enabled">chưa được kích hoạt</string>
   <string name="query_credentials_for_url">%1$s đang yêu cầu thông tin đăng nhập cho %2$s.</string>
   <string name="query_credentials">%1$s đang yêu cầu thông tin đăng nhập. Vui lòng chọn một mục.</string>
   <string name="plugin_enabled_checkbox">Đã kích hoạt</string>
@@ -611,7 +617,9 @@
   <string name="SCOPE_CURRENT_ENTRY_title">Mục dữ liệu hiện tại</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Công cụ sẽ nhận được tất cả dữ liệu của mục dữ liệu hiện tại và sẽ được cho phép thao tác và sửa đổi cách trình bày của nó.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Truy vấn thông tin đăng nhập</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin sẽ được phép truy vấn thông tin đăng nhập được liên kết với gói ứng dụng của chính nó.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_title">Truy vấn thông tin đăng nhập</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin sẽ được phép truy vấn thông tin xác thực của các trang web hoặc ứng dụng có chủ ý.</string>
   <string name="get_regular_version">Nhận thêm các kiểu lưu trữ</string>
   <string name="CertificateWarning">Cảnh báo: Chứng chỉ máy chủ xác nhận thất bại: %1$s. Hãy cài đặt giấy chứng nhận gốc thích hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
   <string name="CertificateFailure">Lỗi: Chứng chỉ máy chủ xác nhận không thành công! Hãy cài đặt chứng chỉ gốc phù hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
@@ -622,6 +630,7 @@
   <string name="FileIsReadOnlyOnKitkat">Tập tin bạn chọn đang ở chế độ chỉ đọc cho Keepass2Android do các giới hạn của hệ điều hành Android 4.4 trở lên.</string>
   <string name="CopyFileRequired">Để sử dụng nó, bạn phải sao chép sang vị trí khác.</string>
   <string name="CopyFileRequiredForEditing">Để sửa nó, bạn phải sao chép sang vị trí khác.</string>
+  <string name="ClickOkToSelectLocation">Nhấn OK để chọn vị trí cần sao chép tệp.</string>
   <string name="FileReadOnlyTitle">Cơ sở dữ liệu chỉ có thể đọc</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android đã mở dữ liệu trong chế độ chỉ đọc.</string>
   <string name="ReadOnlyReason_PreKitKat">Có vẻ như bạn đã mở tệp từ ứng dụng bên ngoài. Bằng cách này không hỗ trợ ghi. Nếu bạn muốn thay đổi cơ sở dữ liệu, vui lòng đóng cơ sở dữ liệu và chọn Thay đổi cơ sở dữ liệu. Sau đó, mở tập tin từ một trong những tuỳ chọn có sẵn nếu có thể.</string>
@@ -676,10 +685,23 @@
   <string name="restore_history">Khôi phục phiên bản này</string>
   <string name="remove_history">Xóa phiên bản này</string>
   <string name="DbUnlockedChannel_name">Đã mở khóa cơ sở dữ liệu</string>
+  <string name="DbUnlockedChannel_desc">Thông báo về cơ sở dữ liệu đang được mở khóa</string>
   <string name="DbQuicklockedChannel_name">Mở khóa nhanh</string>
   <string name="DbQuicklockedChannel_desc">Thông báo về việc cơ sở dữ liệu bị khóa bằng Mở khóa nhanh</string>
+  <string name="EntryChannel_name">Thông báo mục nhập</string>
+  <string name="EntryChannel_desc">Thông báo để đơn giản hóa việc truy cập vào mục hiện được chọn.</string>
   <string name="CloseDbAfterFailedAttempts">Đóng cơ sở dữ liệu sau ba lần mở khóa sinh trắc học không thành công.</string>
   <string name="WarnFingerprintInvalidated">Cảnh báo! Xác thực sinh trắc học có thể bị Android vô hiệu hóa, ví dụ: sau khi thêm dấu vân tay mới vào cài đặt thiết bị của bạn. Hãy chắc chắn rằng bạn luôn biết cách mở khóa bằng mật khẩu chính của mình!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Đã thêm các nút hành động nổi để tìm kiếm và tổng quan về TOTP (nếu có các mục TOTP).</item>
+    <item>Cải thiện hiển thị các trường TOTP bằng cách thêm chỉ báo thời gian chờ và hiển thị nó nổi bật hơn.</item>
+    <item>TOTP bây giờ có thể được nhìn thấy từ chế độ xem nhóm.</item>
+    <item>Sao chép giá trị văn bản vào clipboard khi nhấn và giữ trong chế độ xem mục nhập.</item>
+    <item>Làm cho TOTP dễ truy cập hơn trên bàn phím tích hợp.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Minor improvements</item>
+  </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Fix disappearing autofill prompt in Firefox</item>
     <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
