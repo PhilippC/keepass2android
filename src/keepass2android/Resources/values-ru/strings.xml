@@ -525,6 +525,10 @@
   <string name="private_key_delete_failed">Не удалось сохранить приватный ключ: %1$s</string>
   <string name="save_key">Сохранить приватный ключ</string>
   <string name="delete_key">Сохранить приватный ключ</string>
+  <string name="private_key_select">Выберите закрытый ключ ...</string>
+  <string name="private_key_create_new">[Добавить новый...]</string>
+  <string name="hint_sftp_key_passphrase">Ключевая фраза (опционально)</string>
+  <string name="sftp_kex_title">Обмен ключами (KEX) Алгоритм(ы) (опционально)</string>
   <string name="enter_ftp_login_title">Введите данные входа (FTP):</string>
   <string name="enter_mega_login_title">Введите данные для входа в аккаунт MEGA:</string>
   <string name="select_storage_type">Выберите тип хранилища:</string>
