@@ -542,6 +542,7 @@
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Dropbox đầy đủ của mình, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vào thư mục Apps/Keepass2Android. Điều này đặc biệt phù hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có cơ sở dữ liệu, hãy chọn tùy chọn này để tạo thư mục, sau đó đặt tệp của bạn bên trong thư mục (từ PC của bạn) và sau đó chọn lại tùy chọn này để mở tệp.</string>
@@ -557,6 +558,7 @@
   <string name="filestoragename_onedrive2_myfiles">Tệp của tôi</string>
   <string name="filestoragename_onedrive2_appfolder">Thư mục ứng dụng Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragehelp_mega">Xin lưu ý: Keepass2Android phải tải xuống danh sách tất cả các tệp trong tài khoản Mega của bạn để hoạt động bình thường. Vì lý do này, việc truy cập vào tài khoản có nhiều tệp có thể bị chậm.</string>
   <string name="filestoragename_content">Hộp thoại chọn tập tin của hệ thống</string>
   <string name="filestorage_setup_title">Khởi tạo truy cập tập tin</string>
@@ -595,6 +597,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Xin vui lòng sử dụng công cụ KeeChallenge trong KeePass 2.x (PC) để cấu hình cơ sở dữ liệu của bạn để sử dụng cho trả lời thách thức!</string>
   <string name="ErrorUpdatingChalAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
   <string name="TrayTotp_SeedField_title">Tên của mục gốc TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Nếu bạn đang sử dụng công cụ Keepass 2 \"TrayTotp\" với các cài đặt không như mặc định, nhập tên mục gốc ở đây tương ứng với các cài đặt trên máy PC.</string>
   <string name="TrayTotp_SettingsField_title">Tên cài đặt của mục gốc TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Nhập tên của mục cài đặt cho TrayTotp ở đây.</string>
@@ -751,13 +754,25 @@
   </string-array>
   <string-array name="ChangeLog_1_09b">
     <item>Sửa lỗi lời nhắc tự động điền biến mất trong Firefox</item>
-    <item>Integrate autofill suggestions with keyboard (requires Android 11+)</item>
+    <item>Tích hợp gợi ý tự động điền bằng bàn phím (yêu cầu Android 11+)</item>
     <item>Cho phép thay đổi ngôn ngữ ứng dụng trong thiết đặt</item>
     <item>Thêm tùy chọn đồng bộ cơ sở dữ liệu sau khi mở khóa nhanh</item>
-    <item>Bug fix: Do not make filenames lowercase when saving to Dropbox</item>
+    <item>Sửa lỗi tên file không viết thường khi lưu vào Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>Đã thêm hỗ trợ cho định dạng tệp KDBX 4.1 được giới thiệu trong KeePass 2.48</item>
+    <item>Đã thêm hộp thoại để định cấu hình cài đặt TOTP cho các mục nhập</item>
+    <item>Trình tạo mật khẩu được cải tiến: Đã thêm hỗ trợ cụm mật khẩu, nhiều tùy chọn hơn, cấu hình và ước tính độ mạnh mật khẩu</item>
+    <item>Cải tiến tính năng Tự động điền (sửa lỗi cửa sổ bật lên không hiển thị trong Chrome, hỗ trợ tên miền phụ tốt hơn)</item>
+    <item>Những cải tiến đối với việc triển khai OneDrive: không còn giới hạn kích thước, không còn yêu cầu xác thực thừa</item>
+    <item>Đã thêm tùy chọn để chọn thiết kế sáng/tối từ cài đặt hệ thống, bao gồm cả kế hoạch ban đêm, yêu cầu Android 10+</item>
+    <item>Cập nhật triển khai Dropbox để hỗ trợ phương thức xác thực mới.</item>
+    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Cho phép mở file thông qua bộ chọn file hệ thống, bỏ qua cờ chỉ đọc</item>
+    <item>Cho phép bắt đầu di chuyển các mục từ menu xem mục nhập</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
-    <item>No longer storing package names of Android apps in the URL field</item>
+    <item>Không còn lưu trữ tên gói ứng dụng Android trong trường URL</item>
     <item>Cải thiện hành vi khóa - không còn hiển thị lời nhắc sinh trắc học ngay sau khi mở khóa</item>
     <item>Update OkHttp to support HTTP/2</item>
     <item>Sửa các bản dịch bị thiếu</item>
