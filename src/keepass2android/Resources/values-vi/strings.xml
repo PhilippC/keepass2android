@@ -49,14 +49,14 @@
   <string name="export_prefs">Xuất khẩu cơ sở dữ liệu...</string>
   <string name="fingerprint_prefs">Mở khóa sinh trắc học</string>
   <string name="import_db_prefs">Nhập cơ sở dữ liệu vào thư mục nội bộ</string>
-  <string name="import_keyfile_prefs">Nhập tập tin khóa vào thư mục thuộc bộ nhớ trong</string>
+  <string name="import_keyfile_prefs">Nhập tệp khóa vào thư mục nội bộ</string>
   <string name="export_keyfile_prefs">Xuất tệp khóa từ thư mục nội bộ</string>
   <string name="keyboardswitch_prefs">Đổi bàn phím</string>
   <string name="OnlyAvailableForLocalFiles">Chỉ khả dụng cho các tập tin nội bộ.</string>
   <string name="FileIsInInternalDirectory">Tập tin được lưu trong thư mục nội bộ.</string>
   <string name="DatabaseFileMoved">Tập tin dữ liệu được sao chép vào thư mục thuộc bộ nhớ trong. Nhấn Ok để mở từ vị trí mới. Lưu ý: Đừng quên thường xuyên xuất cơ sở dữ liệu tới ổ lưu trữ an toàn!</string>
-  <string name="KeyfileMoved">Tập tin khoá được sao chép sang thư mục thuộc bộ nhớ trong. Đảm bảo rằng bạn có một bản sao lưu an toàn trước khi xóa từ vị trí hiện tại!</string>
-  <string name="KeyfileMoveRequiresRememberKeyfile">Không thể sử dụng thư mục thuộc bộ nhớ trong khi vị trí phím tập tin khoá không được ghi nhớ. Thay đổi tuỳ chỉnh bảo mật.</string>
+  <string name="KeyfileMoved">Tệp khóa đã được sao chép vào thư mục nội bộ. Đảm bảo bạn có bản sao lưu an toàn trước khi xóa khỏi vị trí hiện tại!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Không thể sử dụng thư mục nội bộ khi vị trí tệp chính không được ghi nhớ. Thay đổi tùy chọn bảo mật.</string>
   <string name="unlock_database_button">Mở khoá</string>
   <string name="unlock_database_title">Mở khoá cơ sở dữ liệu</string>
   <string name="brackets">Dấu ngoặc</string>
@@ -112,8 +112,8 @@
   <string name="entry_created">Đã tạo</string>
   <string name="entry_expires">Hết hạn</string>
   <string name="entry_group_name">Tên nhóm</string>
-  <string name="entry_keyfile">Tập tin khóa (tùy chọn)</string>
-  <string name="keyfile_heading">Tập tin khóa</string>
+  <string name="entry_keyfile">Tệp khóa (tùy chọn)</string>
+  <string name="keyfile_heading">Tệp khóa</string>
   <string name="entry_modified">Đã chỉnh sửa</string>
   <string name="entry_password">Mật mã</string>
   <string name="entry_save">Lưu</string>
@@ -134,7 +134,7 @@
   <string name="error_invalid_db">Cơ sở dữ liệu không hợp lệ.</string>
   <string name="error_invalid_path">Đường dẫn không hợp lệ.</string>
   <string name="error_no_name">Tên là bắt buộc.</string>
-  <string name="error_nopass">Mật mã hoặc tập tin khoá là cần thiết.</string>
+  <string name="error_nopass">Cần có mật khẩu hoặc tệp khóa.</string>
   <string name="error_pass_gen_type">Phải chọn ít nhất một kiểu mật mã</string>
   <string name="error_pass_match">Mật mã không khớp.</string>
   <string name="error_rounds_not_number">Số lần lặp phải là số.</string>
@@ -149,7 +149,7 @@
   <string name="hint_conf_pass">xác nhận mật mã</string>
   <string name="hint_generated_password">đã tạo mật mã</string>
   <string name="hint_group_name">Tên nhóm</string>
-  <string name="hint_keyfile">tập tin khóa</string>
+  <string name="hint_keyfile">tệp khóa</string>
   <string name="hint_length">chiều dài</string>
   <string name="hint_pass">mật mã</string>
   <string name="hint_keyfile_path">Đường dẫn khóa riêng SSH</string>
@@ -162,9 +162,9 @@
   <string name="InvalidPassword">Mật mã hoặc tập tin khóa không hợp lệ.</string>
   <string name="invalid_algorithm">Thuật toán không hợp lệ.</string>
   <string name="invalid_db_sig">Không rõ định dạng của cơ sở dữ liệu.</string>
-  <string name="keyfile_does_not_exist">Tập tin khóa không có.</string>
-  <string name="no_keyfile_selected">Không có tập tin khoá nào được chọn.</string>
-  <string name="keyfile_is_empty">Tập tin khóa không có nội dung.</string>
+  <string name="keyfile_does_not_exist">Tệp khóa không tồn tại.</string>
+  <string name="no_keyfile_selected">Chưa chọn tệp khóa nào</string>
+  <string name="keyfile_is_empty">Tệp khóa rỗng.</string>
   <string name="length">Chiều dài</string>
   <string name="list_size_title">Kích thước danh sách nhóm</string>
   <string name="list_size_summary">Cỡ chữ trong danh sách Nhóm</string>
@@ -218,8 +218,8 @@
   <string name="progress_create">Tạo cơ sở dữ liệu mới…</string>
   <string name="create_database">Tạo cơ sở dữ liệu</string>
   <string name="progress_title">Đang làm việc…</string>
-  <string name="remember_keyfile_summary">Nhớ vị trí của các tập tin khóa</string>
-  <string name="remember_keyfile_title">Lưu tập tin khoá</string>
+  <string name="remember_keyfile_summary">Ghi nhớ vị trí của các tệp khóa</string>
+  <string name="remember_keyfile_title">Lưu tệp khóa</string>
   <string name="remove_from_filelist">Loại bỏ</string>
   <string name="edit">Chỉnh sửa</string>
   <string name="rijndael">Rijndael (AES)</string>
@@ -237,7 +237,7 @@
   <string name="saving_database">Đang lưu cơ sở dữ liệu…</string>
   <string name="exporting_database">Đang xuất khẩu cơ sở dữ liệu…</string>
   <string name="export_database_successful">Cơ sở dữ liệu xuất khẩu thành công!</string>
-  <string name="export_keyfile_successful">Đã xuất thành công tệp khóa!</string>
+  <string name="export_keyfile_successful">Đã xuất tệp khóa thành công!</string>
   <string name="space">Khoảng trắng</string>
   <string name="search_label">Tìm kiếm</string>
   <string name="show_password">Hiển thị mật mã</string>
@@ -570,11 +570,11 @@
   <string name="master_password">Mật mã chủ</string>
   <string name="help_master_password">Cơ sở dữ liệu của bạn được mã hóa với mật mã bạn nhập ở đây. Chọn một mật mã mạnh để giữ cho cơ sở dữ liệu an toàn! Mẹo: Nghĩ về một hoặc hai câu và sử dụng các chữ cái đầu tiên của các từ cho mật khẩu. Thêm vô các dấu chấm câu.</string>
   <string name="hint_master_password">Chọn một mật mã chủ để bảo vệ cơ sở dữ liệu của bạn:</string>
-  <string name="key_file">Tập tin khóa</string>
+  <string name="key_file">Tệp khóa</string>
   <string name="help_key_file">Một tệp khóa về cơ bản là một mật khẩu được lưu trữ trong một tệp. Các tệp khóa thường mạnh hơn mật khẩu chính, bởi vì khóa có thể phức tạp hơn rất nhiều; tuy nhiên cũng khó giữ bí mật hơn. Nếu bạn lưu trữ cơ sở dữ liệu của mình trên đám mây, cũng đừng lưu trữ tệp khóa ở đó! Điều này sẽ làm cho nó hoàn toàn vô dụng! Quan trọng: Không thay đổi nội dung của tệp khóa sau khi tạo cơ sở dữ liệu!</string>
-  <string name="hint_key_file">Chọn nếu bạn muốn sử dụng một tập tin khóa ngoài mật mã chủ của bạn:</string>
-  <string name="use_key_file">Sử dụng tập tin khóa</string>
-  <string name="error_adding_keyfile">Lỗi trong khi thêm tập tin khoá!</string>
+  <string name="hint_key_file">Chọn xem bạn có muốn sử dụng tệp khóa ngoài mật khẩu chính của mình hay không:</string>
+  <string name="use_key_file">Dùng tệp khóa</string>
+  <string name="error_adding_keyfile">Lỗi trong khi thêm tệp khóa!</string>
   <string name="init_otp">Tải tập tin phụ trợ OTP…</string>
   <string name="otp_explanation">Nhập Mật khẩu một lần (OTP) tiếp theo. Vuốt Yubikey NEO ở phía sau thiết bị của bạn để truy cập qua NFC (yêu cầu ứng dụng Yubiclip).</string>
   <string name="otp_hint">OTP %1$d</string>
@@ -832,7 +832,7 @@
   </string-array>
   <string-array name="password_modes">
     <item>Chỉ xài mật mã</item>
-    <item>Mật mã + Tập tin khóa</item>
+    <item>Mật khẩu + Tệp khóa</item>
     <item>Mật mã + OTP</item>
     <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
     <item>Mật mã + trả lời-thách thức</item>
