@@ -110,7 +110,7 @@
   <string name="entry_override_url">URL のオーバーライド</string>
   <string name="entry_confpassword">パスワードを確認</string>
   <string name="entry_created">作成日時</string>
-  <string name="entry_expires">有効期限</string>
+  <string name="entry_expires">使用期限</string>
   <string name="entry_group_name">グループ名</string>
   <string name="entry_keyfile">キーファイル (オプション)</string>
   <string name="keyfile_heading">キーファイル</string>
@@ -306,7 +306,7 @@
   <string name="LogAutofillView_summary">(デバッグログが有効な場合) 自動入力表示に関する詳細をデバッグログに書き込みます。自動入力が予想に反する動作をした場合、これらの詳細を開発者に送信することができます。</string>
   <string name="requires_android11">Android 11 以上が必要</string>
   <string name="kp2a_findUrl">パスワードを探す</string>
-  <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
+  <string name="excludeExpiredEntries">使用期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
   <string name="caseSensitive">大文字と小文字を区別する</string>
   <string name="start_open_file">ファイルを開く...</string>
