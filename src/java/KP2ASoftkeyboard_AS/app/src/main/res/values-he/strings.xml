@@ -21,20 +21,35 @@
     <!-- Title for Latin keyboard  -->
     <string name="english_ime_name">מקלדת של Keepass2Android</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">הגדרות של מקלדת אנדרואיד</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">אפשרויות קלט</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">רטט בזמן לחיצה על כפתור</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">צליל בזמן לחיצה על כפתור</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">אות קופצת בלחיצה על כפתור</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">תקן שגיאות הקלדה</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">אפשר תיקון שגיאות קלט</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">קלט שגוי במצג אופקי</string>
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">אפשר תיקון שגיאות קלט</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">הצעות של מילים</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">תקן את המילה הקודמת אוטומטית</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">הצעות של מילים</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category">הגדרות של הצעות מילים</string>
     <!-- Description for text prediction -->
+    <string name="prediction_summary">אפשר השלמה אוטומטית בזמן הקלדה</string>
     <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">השלמה אוטומטית</string>
     <!-- Option to enable text prediction in landscape -->
     <!-- Description for text prediction -->
     <!-- Option to enable auto capitalization of sentences -->
