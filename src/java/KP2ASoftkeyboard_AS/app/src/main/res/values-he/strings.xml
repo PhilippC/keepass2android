@@ -51,6 +51,7 @@
     <!-- Dialog title for auto complete choices -->
     <string name="auto_complete_dialog_title">השלמה אוטומטית</string>
     <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">הגדל את השדה של הטקסט</string>
     <!-- Description for text prediction -->
     <!-- Option to enable auto capitalization of sentences -->
     <!-- Description for auto cap -->
