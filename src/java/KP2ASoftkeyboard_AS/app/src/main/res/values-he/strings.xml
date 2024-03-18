@@ -53,15 +53,24 @@
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">הגדל את השדה של הטקסט</string>
     <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">אל תציג הצעות מילים במצג לרוחב</string>
     <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">אות ראשית גדולה אוטומטיות</string>
     <!-- Description for auto cap -->
+    <string name="auto_cap_summary">הגדל אוטומטית את האות הראשונה במשפט</string>
     <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">ניקוד אוטומטי</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">תיקונים מהירים</string>
     <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">מתקן טעויות נפוצות בהקלדה</string>
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">הצג הצעות</string>
     <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">הצג מילים מוצעות בזמן הקלדה</string>
     <!-- Option to enable auto completion -->
+    <string name="auto_complete">השלמה אוטומטית</string>
     <!-- Description for auto completion -->
     <!-- Option to show/hide the settings key -->
     <!-- Array of the settings key mode values -->
