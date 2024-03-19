@@ -53,7 +53,7 @@
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">הגדל את השדה של הטקסט</string>
     <!-- Description for text prediction -->
-    <string name="prediction_landscape_summary">אל תציג הצעות מילים במצג לרוחב</string>
+    <string name="prediction_landscape_summary">הסתר הצעות מילים במצג לרוחב</string>
     <!-- Option to enable auto capitalization of sentences -->
     <string name="auto_cap">אות ראשית גדולה אוטומטיות</string>
     <!-- Description for auto cap -->
@@ -72,25 +72,34 @@
     <!-- Option to enable auto completion -->
     <string name="auto_complete">השלמה אוטומטית</string>
     <!-- Description for auto completion -->
+    <string name="auto_complete_summary">מקש רווח או מקש הניקוד אוטומטית מכניסים את המילה המודגשת</string>
     <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">הצג כפתור הגדרות</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">אוטומטי</string>
     <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">הצג תמיד</string>
     <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">הסתר תמיד</string>
     <!-- Array of the settings key modes -->
     <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">הצעות bigram</string>
     <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">תשתמש במילה הקודמת כדי לשפר את ההצעה</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>אף אחד</item>
-        <item>Basic</item>
-        <item>Advanced</item>
+        <item>בסיסי</item>
+        <item>מתקדם</item>
     </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : נשמר</string>
     <!-- Tip to long press on keys -->
+    <string name="tip_long_press">החזק כפתור כדי לראות סימנים מיוחדים (ø, ö, וכו\')</string>
     <!-- Tip to dismiss keyboard -->
     <!-- Tip to press ?123 to access numbers and symbols -->
     <!-- Tip to long press on typed word to add to dictionary -->
