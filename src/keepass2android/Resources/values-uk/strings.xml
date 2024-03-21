@@ -152,6 +152,7 @@
   <string name="hint_keyfile">ключовий файл</string>
   <string name="hint_length">довжина</string>
   <string name="hint_pass">пароль</string>
+  <string name="hint_keyfile_path">Шлях до приватного ключа SSH</string>
   <string name="hint_login_pass">Пароль</string>
   <string name="hint_title">назва</string>
   <string name="hint_url">URL</string>
@@ -401,6 +402,7 @@
   <string name="ShowSeparateNotifications_summary">Показувати окремі сповіщення для копіювання імені користувача й пароля до буфера обміну та активації клавіатури.</string>
   <string name="AccServiceAutoFill_prefs">Служба доступності для автозаповнення</string>
   <string name="AutoFill_prefs">Служба автозаповнення</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Активувати вбудовану клавіатуру</string>
   <string name="ShowKp2aKeyboardNotification_title">Сповіщення клавіатури KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Зробити весь запис доступним через клавіатуру KP2A (рекомендовано).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Перемикати клавіатуру</string>
@@ -417,6 +419,7 @@
   <string name="ShowUnlockedNotification_summary">Показувати піктограму в області сповіщень, коли база даних розблокована.</string>
   <string name="IconVisibilityInfo_Android8_text">В Android 8 з\'явилася нова поведінка для сповіщень. Якщо ви хочете приховати піктограму сповіщень Keepass2Android, налаштуйте це в системних налаштуваннях. Встановіть важливість категорії сповіщень на мінімальний рівень.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Відкрити налаштування</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android може показувати системне сповіщення, поки ваша база даних не заблокована. Для роботи необхідно надати дозвіл.</string>
   <string name="DontCare">Мені байдуже</string>
   <string name="DocumentAccessRevoked">Файл більше не доступний для Keepass2Android. Його було вилучено, або відкликано дозвіл на доступ. Відкрийте файл повторно, наприклад через меню Змінити базу даних.</string>
   <string name="PreloadDatabaseEnabled_title">Попереднє завантаження</string>
@@ -501,9 +504,18 @@
   <string name="hint_sftp_host">хост (наприклад: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Початковий каталог (необов\'язково):</string>
+  <string name="connect_timeout">Час очікування з\'єднання в секундах (необов\'язково)</string>
   <string name="enter_sftp_login_title">Введіть дані входу SFTP:</string>
   <string name="sftp_auth_mode">Режим перевірки</string>
   <string name="send_public_key">Надіслати публічний ключ...</string>
+  <string name="select_private_keyfile">Оберіть приватний ключ...</string>
+  <string name="hint_sftp_key_name">Нове ім\'я ключа</string>
+  <string name="private_key_saved">Приватний ключ збережено</string>
+  <string name="private_key_save_failed">НЕ ВДАЛОСЯ зберегти приватний ключ: %1$s</string>
+  <string name="private_key_info">Введіть назву ключа та його вміст для збереження</string>
+  <string name="private_key_delete">Видалено приватний ключ: %1$s</string>
+  <string name="private_key_delete_failed">НЕ ВДАЛОСЯ видалити приватний ключ: %1$s</string>
+  <string name="save_key">Зберегти приватний ключ</string>
   <string name="enter_ftp_login_title">Введіть дані входу FTP:</string>
   <string name="enter_mega_login_title">Введіть дані входу до облікового запису MEGA:</string>
   <string name="select_storage_type">Виберіть тип сховища:</string>
