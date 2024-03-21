@@ -518,17 +518,20 @@
   <string name="select_private_keyfile">Выберите закрытый ключ ...</string>
   <string name="hint_sftp_key_name">Имя нового ключа</string>
   <string name="hint_sftp_key_content">Новый сетевой контент</string>
-  <string name="private_key_saved">Приватный ключ сохранен</string>
-  <string name="private_key_save_failed">Не удалось сохранить приватный ключ: %1$s</string>
+  <string name="private_key_saved">Закрытый ключ сохранен</string>
+  <string name="private_key_save_failed">Не удалось сохранить закрытый ключ: %1$s</string>
   <string name="private_key_info">Введите имя ключа и содержимое для сохранения</string>
   <string name="private_key_delete">Закрытый ключ удален: %1$s</string>
-  <string name="private_key_delete_failed">Не удалось сохранить приватный ключ: %1$s</string>
-  <string name="save_key">Сохранить приватный ключ</string>
-  <string name="delete_key">Сохранить приватный ключ</string>
+  <string name="private_key_delete_failed">Не удалось удалить закрытый ключ: %1$s</string>
+  <string name="save_key">Сохранить закрытый ключ</string>
+  <string name="delete_key">Удалить закрытый ключ</string>
   <string name="private_key_select">Выберите закрытый ключ ...</string>
   <string name="private_key_create_new">[Добавить новый...]</string>
   <string name="hint_sftp_key_passphrase">Ключевая фраза (опционально)</string>
   <string name="sftp_kex_title">Обмен ключами (KEX) Алгоритм(ы) (опционально)</string>
+  <string name="hint_sftp_kex">Названия/спецификации через запятую</string>
+  <string name="sftp_shk_title">Алгоритм(ы) ключа хоста сервера (опционально)</string>
+  <string name="hint_sftp_shk">Названия/спецификации через запятую</string>
   <string name="enter_ftp_login_title">Введите данные входа (FTP):</string>
   <string name="enter_mega_login_title">Введите данные для входа в аккаунт MEGA:</string>
   <string name="select_storage_type">Выберите тип хранилища:</string>
@@ -546,6 +549,7 @@
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
   <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
   <string name="filestoragename_pcloudall">PCloud (Полный доступ)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
@@ -600,6 +604,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Лог-файл для отладки</string>
   <string name="DebugLog_title">Включить логирование</string>
+  <string name="FtpDebug_title">FTP/SFTP журнал отладки</string>
   <string name="DebugLog_summary">Запись работы приложения в локальный лог-файл</string>
   <string name="DebugLog_send">Отправить логи отладки...</string>
   <string name="loading">Загрузка…</string>
@@ -839,8 +844,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>KP2A Закрытый/Открытый ключ</item>
+    <item>Пользовательский закрытый ключ</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>
