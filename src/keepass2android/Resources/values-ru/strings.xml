@@ -858,6 +858,11 @@
   <string name="autofill_enable_for">Включить автозаполнение для %1$s</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android обнаружил сканер отпечатка пальцев. Использовать разблокирование отпечатком пальца для этой базы данных?</string>
+  <string name="post_notifications_dialog_title">Показывать уведомления</string>
+  <string name="post_notifications_dialog_message">Keepass2Android может показывать уведомления с кнопками для копирования строк, таких как пароли и TOTP, в буфер обмена или для вызова встроенной клавиатуры. Это удобно для ввода данных и паролей в других приложениях без необходимости постоянно переключаться на Keepass2Android. Хотите включить такие уведомления?</string>
+  <string name="post_notifications_dialog_allow">Показывать уведомления</string>
+  <string name="post_notifications_dialog_disable">Отключить эту функцию</string>
+  <string name="post_notifications_dialog_notnow">Не сейчас</string>
   <string name="understand">Я понял</string>
   <string name="dont_show_again">Больше не показывать</string>
   <string name="masterkey_infotext_head">Вы помните Ваш мастер-пароль?</string>
