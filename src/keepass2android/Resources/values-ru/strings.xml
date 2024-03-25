@@ -648,7 +648,7 @@
   <string name="AddCustomIcon">Добавить значок из файла...</string>
   <string name="CopyingFile">Копируем файл...</string>
   <string name="DuplicateTitle">Копировать</string>
-  <string name="DefaultTemplate">Стандартная запись</string>
+  <string name="DefaultTemplate">Логин/Пароль</string>
   <string name="TemplateGroupName">Шаблоны</string>
   <string name="TemplateTitle_IdCard">ID карты</string>
   <string name="TemplateField_IdCard_Name">Имя</string>
@@ -664,7 +664,7 @@
   <string name="TemplateField_CreditCard_PIN">PIN</string>
   <string name="TemplateField_CreditCard_Owner">Владелец карты</string>
   <string name="TemplateTitle_CreditCard">Кредитная карта</string>
-  <string name="TemplateTitle_Membership">Членство</string>
+  <string name="TemplateTitle_Membership">Карта лояльности</string>
   <string name="ChangeLog_title">Список изменений</string>
   <string name="AskAddTemplatesTitle">Добавить шаблоны?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android содержит шаблоны записей для электронной почты, паролей беспроводных сетей, защищенных заметок и многого другого. Вы хотели бы добавить их к вашей базе данных? Если вы выбрали Нет, их можно добавить позже в настройках базы данных.</string>
