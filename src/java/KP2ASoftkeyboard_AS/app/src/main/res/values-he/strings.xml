@@ -19,52 +19,87 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">מקלדת של Keepass2Android</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">הגדרות של מקלדת אנדרואיד</string>
     <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">אפשרויות קלט</string>
     <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">רטט בזמן לחיצה על כפתור</string>
     <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">צליל בזמן לחיצה על כפתור</string>
     <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">אות קופצת בלחיצה על כפתור</string>
     <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">תקן שגיאות הקלדה</string>
     <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">אפשר תיקון שגיאות קלט</string>
     <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">קלט שגוי במצג אופקי</string>
     <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">אפשר תיקון שגיאות קלט</string>
     <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">הצעות של מילים</string>
     <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">תקן את המילה הקודמת אוטומטית</string>
     <!-- Option to enable text prediction -->
+    <string name="prediction">הצעות של מילים</string>
     <!-- Category title for text prediction -->
+    <string name="prediction_category">הגדרות של הצעות מילים</string>
     <!-- Description for text prediction -->
+    <string name="prediction_summary">אפשר השלמה אוטומטית בזמן הקלדה</string>
     <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">השלמה אוטומטית</string>
     <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">הגדל את השדה של הטקסט</string>
     <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">הסתר הצעות מילים במצג לרוחב</string>
     <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">אות ראשית גדולה אוטומטיות</string>
     <!-- Description for auto cap -->
+    <string name="auto_cap_summary">הגדל אוטומטית את האות הראשונה במשפט</string>
     <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">ניקוד אוטומטי</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">תיקונים מהירים</string>
     <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">מתקן טעויות נפוצות בהקלדה</string>
     <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">הצג הצעות</string>
     <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">הצג מילים מוצעות בזמן הקלדה</string>
     <!-- Option to enable auto completion -->
+    <string name="auto_complete">השלמה אוטומטית</string>
     <!-- Description for auto completion -->
+    <string name="auto_complete_summary">מקש רווח או מקש הניקוד אוטומטית מכניסים את המילה המודגשת</string>
     <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">הצג כפתור הגדרות</string>
     <!-- Array of the settings key mode values -->
     <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">אוטומטי</string>
     <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">הצג תמיד</string>
     <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">הסתר תמיד</string>
     <!-- Array of the settings key modes -->
     <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">הצעות bigram</string>
     <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">תשתמש במילה הקודמת כדי לשפר את ההצעה</string>
     <!-- Array of prediction modes -->
     <string-array name="prediction_modes">
         <item>אף אחד</item>
-        <item>Basic</item>
-        <item>Advanced</item>
+        <item>בסיסי</item>
+        <item>מתקדם</item>
     </string-array>
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Don't translate -->
     <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : נשמר</string>
     <!-- Tip to long press on keys -->
+    <string name="tip_long_press">החזק כפתור כדי לראות סימנים מיוחדים (ø, ö, וכו\')</string>
     <!-- Tip to dismiss keyboard -->
     <!-- Tip to press ?123 to access numbers and symbols -->
     <!-- Tip to long press on typed word to add to dictionary -->
