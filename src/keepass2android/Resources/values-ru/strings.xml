@@ -721,10 +721,10 @@
     <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
     <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
     <item>TOTP can now be seen from the group view.</item>
-    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Копирование текстового значения в буфер обмена при длительном нажатии в режиме просмотра записей.</item>
     <item>Сделать TOTP легко доступным на встроенной клавиатуре.</item>
-    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
-    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Показывать уведомление о вводе при автозаполнении записи TOTP. Это позволяет скопировать TOTP в буфер обмена. Настроить поведение можно в настройках.</item>
+    <item>Обновлена реализация TOTP для решения проблем совместимости с KeePass2 и TrayTOTP</item>
     <item>Незначительные улучшения</item>
   </string-array>
   <string-array name="ChangeLog_1_11_net">
