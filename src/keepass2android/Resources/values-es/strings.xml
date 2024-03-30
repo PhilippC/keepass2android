@@ -402,6 +402,7 @@
   <string name="ShowSeparateNotifications_summary">Mostrar notificaciones por separado para copiar el nombre del usuario y palabra clave al portapapeles y para activar el teclado.</string>
   <string name="AccServiceAutoFill_prefs">Servicio de accesibilidad AutoFill</string>
   <string name="AutoFill_prefs">Servicio de autocompletado</string>
+  <string name="TotpCopiedToClipboard">Se ha copiado el TOTP en el portapapeles</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Hacer toda la entrada accesible a través del teclado de KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Cambiar Teclado</string>
@@ -589,6 +590,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Por favor utilice el plugin KeeChallenge en KeePass 2.x (PC) para configurar la base de datos para su uso con el protocolo desafío-respuesta!</string>
   <string name="ErrorUpdatingChalAuxFile">¡Error actualizando el archivo OTP auxiliar!</string>
   <string name="TrayTotp_SeedField_title">Nombre del campo TOTP seed</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si está utilizando el plugin \"TrayTotp\" de Keepass2 con configuración no-predeterminada, escriba el nombre del campo del campo \'seed\' aquí según la configuración en el ordenador de escritorio.</string>
   <string name="TrayTotp_SettingsField_title">Nombre del campo \'TOTP Ajustes\'</string>
   <string name="TrayTotp_SettingsField_summary">Introduzca el nombre del campo del campo de configuración para TrayTotp aquí.</string>
@@ -700,6 +702,23 @@
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Hace que TOTP sea más fácilmente accesible en el teclado incorporado del dispositivo.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Mejoras menores</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Añade el soporte para la notificación de permisos en Android 13+</item>
+    <item>Mejora la implementación FTP y SFTP</item>
+    <item>Add access to full pCloud</item>
+    <item>Permite seleccionar el idioma del sistema en el diálogo de idioma</item>
+    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Corrección de fallos y cierres de sesión inesperados</item>
     <item>Cambiar a una nueva implementación de SFTP, compatible con algoritmos modernos de clave pública como rsa-sha2-256.</item>
