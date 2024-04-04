@@ -720,11 +720,21 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>微小改进</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>在 Android 13+ 上添加对通知权限的支持</item>
     <item>改善FTP和SFTP的代码实现</item>
     <item>Add access to full pCloud</item>
-    <item>Allow to select System language in the language dialog</item>
+    <item>允许在语言对话框中选择系统语言</item>
     <item>Fix issue with remembering Keyfile + Challenge password type</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
