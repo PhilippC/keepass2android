@@ -82,7 +82,8 @@ namespace keepass2android.services.AutofillBase
                 var node = _structure.GetWindowNodeAt(i);
 
                 var view = node.RootViewNode;
-                ParseRecursive(autofillView, view, isManualRequest);
+                var packageName = _structure.ActivityComponent.PackageName;
+                ParseRecursive(autofillView, view, isManualRequest, packageName);
             }
 
             return autofillView;
@@ -90,7 +91,7 @@ namespace keepass2android.services.AutofillBase
         }
 
 
-        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode, bool isManualRequest)
+        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode, bool isManualRequest, string fallbackPackage)
         {
             String webDomain = viewNode.WebDomain;
             if ((autofillView.PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
@@ -99,7 +100,12 @@ namespace keepass2android.services.AutofillBase
                 autofillView.PackageId = viewNode.IdPackage;
             }
 
-            DomainName outDomain;
+            if (autofillView.PackageId == null && fallbackPackage != null)
+            {
+                autofillView.PackageId = fallbackPackage;
+            }
+
+                DomainName outDomain;
             if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
             {
                 webDomain = outDomain.RawDomainName;
@@ -127,7 +133,7 @@ namespace keepass2android.services.AutofillBase
             {
                 for (int i = 0; i < childrenSize; i++)
                 {
-                    ParseRecursive(autofillView, viewNode.GetChildAt(i), isManualRequest);
+                    ParseRecursive(autofillView, viewNode.GetChildAt(i), isManualRequest, fallbackPackage);
                 }
             }
         }
