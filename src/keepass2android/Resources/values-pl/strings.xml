@@ -720,11 +720,11 @@
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
   <string-array name="ChangeLog_1_11">
-    <item>Dodano pływające przyciski szukania I podglądu TOTP (jeśli są wpisy TOTP).</item>
-    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
-    <item>TOTP can now be seen from the group view.</item>
-    <item>Copy text value to clipboard on long-press in entry view.</item>
-    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Dodano pływające przyciski szukania i podglądu TOTP (jeśli są wpisy TOTP).</item>
+    <item>Poprawa wyświetlania pól TOTP na wyraźniejsze i ze wskaźnikiem czasu.</item>
+    <item>TOTP są widoczne teraz w widoku grupy.</item>
+    <item>Skopiuj tekst do schowka po długim naciśnięciu w widoku wpisu.</item>
+    <item>TOTP łatwiej dostępne we wbudowanej klawiaturze.</item>
     <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
     <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
     <item>Małe poprawki</item>
