@@ -719,7 +719,7 @@
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
   <string-array name="ChangeLog_1_11">
     <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
-    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item></item>
     <item>TOTP can now be seen from the group view.</item>
     <item>Копирование текстового значения в буфер обмена при длительном нажатии в режиме просмотра записей.</item>
     <item>Сделать TOTP легко доступным на встроенной клавиатуре.</item>
