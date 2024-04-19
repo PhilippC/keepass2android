@@ -719,6 +719,16 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Dodano pływające przyciski szukania I podglądu TOTP (jeśli są wpisy TOTP).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Małe poprawki</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Dodaj wsparcie dla uprawnień do powiadomień na Androidzie 13+</item>
     <item>Poprawia wdrażania FTP i SFTP</item>
