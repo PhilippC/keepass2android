@@ -402,6 +402,7 @@
   <string name="ShowSeparateNotifications_summary">Показувати окремі сповіщення для копіювання імені користувача й пароля до буфера обміну та активації клавіатури.</string>
   <string name="AccServiceAutoFill_prefs">Служба доступності для автозаповнення</string>
   <string name="AutoFill_prefs">Служба автозаповнення</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Під час автоматичного заповнення запису з TOTP показувати сповіщення про запис з кнопкою Копіювати TOTP</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Активувати вбудовану клавіатуру</string>
   <string name="ShowKp2aKeyboardNotification_title">Сповіщення клавіатури KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Зробити весь запис доступним через клавіатуру KP2A (рекомендовано).</string>
