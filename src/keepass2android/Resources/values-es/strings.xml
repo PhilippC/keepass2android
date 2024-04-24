@@ -402,6 +402,13 @@
   <string name="ShowSeparateNotifications_summary">Mostrar notificaciones por separado para copiar el nombre del usuario y palabra clave al portapapeles y para activar el teclado.</string>
   <string name="AccServiceAutoFill_prefs">Servicio de accesibilidad AutoFill</string>
   <string name="AutoFill_prefs">Servicio de autocompletado</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Al completar automáticamente una entrada con TOTP, muestra la notificación de entrada con un botón \"Copiar TOTP\"</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Mostrar notificación de entrada</string>
+  <string name="AutoFillTotp_prefs_title">Autocompletar para entradas TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiar TOTP en el portapapeles</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Al autorrellenar una entrada con TOTP, copia el TOTP al portapapeles</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Al autorellenar una entrada con TOTP, activa el teclado incorporado. El teclado tiene un botón TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activar el teclado incorporado</string>
   <string name="TotpCopiedToClipboard">Se ha copiado el TOTP en el portapapeles</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificación de teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Hacer toda la entrada accesible a través del teclado de KP2A (recomendado).</string>
@@ -675,6 +682,16 @@
   <string name="HintLocalBackupInvalidCompositeKey">    \n
     &#8226; Sugerencia: Si piensas que la Base de Datos está dañada o no recuerdas la contraseña maestra después de cambiarla, inténtalo con la última versión de la Base de Datos abierta con éxito pulsando en \"%1$s\" y seleccionando la copia local.
   </string>
+  <string name="HintLocalBackupOtherError">\n
+Consejo: Keepass2Android ha guardado la última versión de la base de datos que abriste con éxito en la memoria interna. Puedes abrirlo tocando \"%1$s\" y seleccionando la copia de seguridad local.</string>
+  <string name="CorruptDatabaseHelp">    El Archivo está dañado. \n
+    Estas son algunas sugerencias que pueden ayudarle a diagnosticar el problema:\n
+
+    &#8226; Si usted copió el archivo por medio de USB (Modo MTP), por favor inténtelo de nuevo con herramientas como MyPhoneExplorer. MTP trunca archivos en algunas ocasiones.\n
+    &#8226; Si usted no puede abrir el archivo desde la misma ubicación en su PC, es muy probable que el archivo esté dañado. Por favor use un respaldo de la base de datos. Si usted cree que Keepass2Android ha dañado el archivo, por favor contacte a soporte.\n
+    &#8226; Si usted aún puede abrir el archivo en su PC, por favor contacte a soporte. Intente guardar el archivo con una configuración distinta (por ejemplo, descomprimido) en la PC y vuelva a intentar abrirlo en Keepass2Android.
+
+  </string>
   <string name="open_other_db">Abrir otrar base de datos…</string>
   <string name="select_database">Seleccione base de datos</string>
   <string name="configure_child_dbs">Configure bases de datos hijas…</string>
@@ -703,19 +720,22 @@
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
   <string-array name="ChangeLog_1_11">
-    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
-    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
-    <item>TOTP can now be seen from the group view.</item>
-    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Añadidos botones de acción flotante para la búsqueda y vista general de TOTP (si las entradas TOTP están presentes).</item>
+    <item>Se ha mejorado la visualización de los campos TOTP añadiendo un indicador de tiempo de espera y mostrándolo de forma más destacada.</item>
+    <item>TOTP ahora se puede ver desde la vista de grupo.</item>
+    <item>Copiar el valor de texto al portapapeles en la vista de entrada.</item>
     <item>Hace que TOTP sea más fácilmente accesible en el teclado incorporado del dispositivo.</item>
-    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
-    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Mostrar notificación de entrada al autorrellenar una entrada TOTP. Esto permite copiar el TOTP al portapapeles. Ver preferencias para configurar el comportamiento.</item>
+    <item>Actualizada la implementación de TOTP para resolver problemas de compatibilidad con KeePass2 y TrayTOTP</item>
     <item>Mejoras menores</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Actualizar pCloud SDK para proporcionar acceso a carpetas compartidas</item>
   </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Añade el soporte para la notificación de permisos en Android 13+</item>
     <item>Mejora la implementación FTP y SFTP</item>
-    <item>Add access to full pCloud</item>
+    <item>Añadir acceso a pCloud completo</item>
     <item>Permite seleccionar el idioma del sistema en el diálogo de idioma</item>
     <item>Fix issue with remembering Keyfile + Challenge password type</item>
   </string-array>
