@@ -737,7 +737,7 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     <item>Mejora la implementación FTP y SFTP</item>
     <item>Añadir acceso a pCloud completo</item>
     <item>Permite seleccionar el idioma del sistema en el diálogo de idioma</item>
-    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+    <item>Corregir problema con el recordatorio de Keyfile + Frase de desafío</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Corrección de fallos y cierres de sesión inesperados</item>
@@ -804,6 +804,102 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     <item>Corrección de errores</item>
     <item>Correcciones de errores</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Versión 1.07b\n
+    * Mejoras de rendimiento de Argon2 usando implementación nativa (Gracias a Chih-Hsuan Yen!)\n
+    * Permite inhabilitar huella dactilar pulsando en el icono de huella dactilar (evita el problema con los lectores de huella dactilar bajo la pantalla, gracias a marcoDallas!)\n
+    * Recupera la posición del cursor cuando se alterna la visibilidad de las contraseña (gracias a DDoSolitary!)\n
+    * Mejoras en la implementación de pCloud (gracias a gilbsgilbs otra vez!)\n
+    * Añadido soporte para AutoFill para varios navegadores \n
+    * Nueva implementación para OneDrive: Incluye soporte de OneDrive for Business, archivos compartidos, alcance de acceso seleccionable, múltiples cuentas y arreglos con acceso offline\n
+    * Corrección de errores
+  </string>
+  <string name="ChangeLog_1_07">    Versión 1.07\n
+    * Correcciones para fallos en dispositivos Android 9 de Samsung\n
+    * Permite abrir más de una base de datos, compatible con KeeAutoExec\n
+    * SFTP: Permite autenticación de clave pública, compureba si la clave del anfitrión ha cambiado\n
+    * Introduce soporte para pCloud - gracias a gilbsgilbs!\n
+    * Hacer soporte para Nextcloud explícito\n
+    * Mejora de guardado y actualizado de entradas adjuntas\n
+    * Más opciones para adaptar el comportamiento a preferencias personales\n
+    * SSL: Confiar en certificados del usuario\n
+    * Mejora de autocompletado (ahora funciona con Firefox, permite reducir ventanas emergentes)\n
+    * correción de errores\n
+  </string>
+  <string name="ChangeLog_1_06">    Versión 1.06\n
+    * Cambio a ykDroid en lugar de YubiChallenge como aplicación para Desafio-Respuesta Yubikey.\n
+    * Implementado soporte para Desafio-Respuesta estilo KeepassXC. Nota: Formato de base de datos debe ser KDBX4!\n
+    * Evita cargar ficheros en papelera de Google Drive\n
+    * Cambiada implmementación TLS por FTPS, añadida solución alternativa al error JSch con servidores soportando gssapi-with-mic\n
+    * correción de errores\n
+  </string>
+  <string name="ChangeLog_1_05">Versión 1.05\n
+    * Uso de canales de notificación para Android 8, permitiendo la configuración a través de los ajustes del sistema\n
+    * Mostrar el icono de entrada en notificación\n
+    * Uso de iconos adaptables para Android 8, uso de icono de launcher redondo para Android 7\n
+    * Permitida activar la búsqueda tras desbloquear (ver ajustes)\n
+    * Cambiada la manera en que se escriben los archivos a través del Storage Access Framework, lo que soluciona problemas al actualizar archivos en Google Drive abiertos a través de la selección de archivos del sistema\n
+    * Añadidos algunos textos informativos para evitar algunos malentendidos comunes\n
+    * Crear copias de seguridad locales de las bases de datos abiertas con éxito para reducir el riesgo de pérdida de datos\n
+    * JSch actualizado para soportar cifrado SSH más reciente\n
+    * Permitir editar ajustes de conexión, por ejemplo cuando la contraseña WebDav ha cambiado\n
+    * Añadido soporte para modo de contraseña estática de Yubikey Neo\n
+    * Permitir desactivar sugerencia de Autorrelleno\n
+    * Reparada la filtración de datos a logcat\n    
+    * Arreglo de errores\n
+  </string>
+  <string name="ChangeLog_1_04b">    Versión 1.04b\n
+    * Evitar cierre erróneo cuando el usuario intenta activar Autorrellenado en dispositivos Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">    Versión 1.04\n
+    *Agregado servicio de Autorellenado para Android 8.0 y superiores.\n
+    *Liberías actualizadas, herramientas de construcción y versión de SDK objetivo.\n
+  </string>
+  <string name="ChangeLog_1_03">Version 1.03\n
+     * Eliminado servicio de accesibilidad por Autorellenado, tal y como solicitó Google. Por favor, comprueba la configuración de acceso por clave para encontrasr un plugin que replique la funcionalidad anterior.\n
+     * Añadidas aplicaciones de terceros como opción de almacenamiento otra vez\n
+     * Integrado visor de imágenes  para ver imágenes adjuntadas sin transferirlas a otras apps\n
+     * Actualizado OkHttp para arreglar problemas con algunas conexiones\n
+     * Soporte de entradas KeeTrayTOTP, ahora soporta entradas de Steam\n  </string>
+  <string name="ChangeLog_1_02">Versión 1.02\n 
+  * Mejoras de seguridad. ¡Muchas gracias por los reportes de seguridad de jean-baptiste.cayrou@thalesgroup.com y vincent.fargues@thalesgroup.com y por su colaboración!\n 
+  * KeyboardSwap Plugin (ver opciones de acceso con contraseña): Permite cambiar automáticamente el método de entrada en dispositivos sin acceso Root. Gracias a Mishaal Rahman de XDA-Developers por hacer este posible.\n 
+  * Corrección del servicio de accesibilidad con las nuevas versiones de Chrome.\n 
+  * Corrección de limpiar datos de huella dactilar innecesariamente.\n 
+  * Corrección de inestabilidades menores.\n 
+  * Actualizado el SDK de Dropbox para garantizar la compatibilidad.\n 
+  * Eliminado el sistema de reportes de error a través de Xamarin Insights.\n 
+  * Actualizadas las herramientas de desarrollo.\n   
+
+  </string>
+  <string name="ChangeLog_1_01g">    Versión 1.01-g\n
+    * Corrección para fallo cuando se intentaba trabajar offline\n
+    * Corrección para codificación incorrecta de credenciales de FTP(S)\n
+    * Corrección para fallos cuando se usa OneDrive y en versiones antiguas de Android\n
+    * Mostrar horas como hora local en la pantalla de entrada\n
+  </string>
+  <string name="ChangeLog_1_01d">Version 1.01-d\n
+     * Corrección de listado de archivos para OneDrive\n
+     * Permitir ignorar errores de certificados también cuando la verificación del nombre del anfitrión falla (no recomendado para uso en producción)\n
+     * Corrección de QuickUnlock a veces fallando, a pesar de introducir el código de desbloqueo correcto\n  </string>
+  <string name="ChangeLog_0_9_8c">    Versión 0.9.8c\n
+    * Corrección para vulnerabilidad de SSL en Microsoft Live SDK (usado cuando se accede a archivos via OneDrive)\n
+    * Correccíón de error: Versión anterior contenía dos métodos de entrada (uno fallaba)\n
+  </string>
+  <string name="ChangeLog_1_01">    Versión 1.01\n
+    * Añadido soporte para el nuevo formato KDBX-4 (compatible con Keepass 2.35) incluyendo derivación de clave Argon2 y cifrado ChaCha20. \n
+    * Reimplementado almacenamiento de archivos WebDav, ahora permite navegación de archivos y soporta cifrado moderno. \n
+    * Reimplementado almacenamiento de archivos FTP, ahora permite navegación de archivos y soporta protocolo cifrado (FTPS). \n
+    * Actualizado a SDK de OneDrive (el anteriormente usado SDK Live ya no está actualizado) \n
+    * Actualizado a SDK de Dropbox versión 2 (la anterior versión usada, versión 1, está obsoleta). \n
+    * Añadido soporte para OwnCloud.\n 
+    * Aviso de permisos de almacenamiento antes de abrir archivos locales
+  </string>
+  <string name="ChangeLog_1_0_0e">    Versión 1.0.0e\n
+    * Corrección para desbloqueo por huella en dispositivos Samsung viejos con Android 6\n
+    * Añadido soporte nativo para dispositivos x86\n
+    * Permite ocultar teclado durante la captura de huella digital\n
+    * Actualización del sistema de construcción
+  </string>
   <string name="ChangeLog_keptDonate">Ofrecemos la posibilidad de donarnos una cerveza u otra cosa</string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
