@@ -900,6 +900,34 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Permite ocultar teclado durante la captura de huella digital\n
     * Actualización del sistema de construcción
   </string>
+  <string name="ChangeLog_1_0_0">    Versión 1.0.0\n
+    * Desbloqueo por huella (requiere Android 6.0+ o un dispositivo Samsung)\n
+    * Se agregó soporte para el servicio de Autorellenado (requiere Android 5.0+)\n
+    * Se agregó soporte para plantillas\n
+    * Se agregó modo sin conexión\n
+    * Permite copiar entradas\n
+    * Modo de auto-completar para los campos de nombres\n
+    * Permite quitar elementos de la lista de archivos recientes\n
+    * Solicitud de permisos durante ejecución en Android 6.0\n
+    * Errores corregidos (en teclado incorporado, al seleccionar iconos)\n
+    * Se incluyó una opción para enviar reportes de error\n
+    * Se agregaron mensajes de ayuda en varios puntos\n
+  </string>
+  <string name="ChangeLog_0_9_9">Versión 0.9.9\n
+    * Completo rediseño de interfaz gráfica. Muchas gracias a Stefano Pignataro (http://www.spstudio.at) por su ayuda!\n
+    * Permite agregar íconos personalizados\n
+    * Soporta modo multi ventanas en dispositivos Samsung\n
+    * Se incrementó el número rondas de cifrado por defecto para bases de datos nuevas\n
+    * Verifica claves duplicadas de campos adicionales para evitar perder datos\n
+    </string>
+  <string name="ChangeLog_0_9_9c">Text for Translation
+
+    Versión 0.9.9c\n
+    * Regresó el tema oscuro\n
+    * Puede instalar otros paquetes de íconos (iconos de estilo Windows antiguo están disponible en la Play store)\n
+    * Se agregó confirmación cuando se borran elementos sin papelera de reciclaje\n
+    * Errores corregidos (se mostraba de manera incorrecta la codificación secreta OTP, ícono de applicación incorrecto en algunos lugares)\n
+  </string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
 * Los cambios externos a la base de datos son detectados y añadidos al guardar\n
 * Mejorado el rendimiento de carga\n
