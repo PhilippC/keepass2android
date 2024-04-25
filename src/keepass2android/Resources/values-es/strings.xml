@@ -928,6 +928,25 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Se agregó confirmación cuando se borran elementos sin papelera de reciclaje\n
     * Errores corregidos (se mostraba de manera incorrecta la codificación secreta OTP, ícono de applicación incorrecto en algunos lugares)\n
   </string>
+  <string name="ChangeLog_0_9_8b">    Versión 0.9.8b\n
+    * Corrección de errores (Guardar fallaba en algunas bases de datos, exportar a dispositivo local no funcionaba, seleccionar algunas opciones de ajustes hacía que la aplicación se cerrara)\n
+  </string>
+  <string name="ChangeLog_0_9_8">Versión 0.9.8\n
+		* Soporte para framework acceso a almacenamiento (permite escribir a tarjeta SD y Google Drive en KP2A Offline)\n
+		* Intenta detectar entradas de usuario erróneas cuando se ingresa URLs de WebDAV (directorio en lugar de archivo)\n
+		* Se cambió el tipo de letra de las contraseñas\n
+		* Permite cambiar la cuenta de Dropbox\n
+		* Corregido error: Ahora recuerda contraseñas OTP\n</string>
+  <string name="ChangeLog_0_9_7b">    Versión 0.9.7b\n
+    * Traducciones actualizadas\n
+    * Errores corregidos: Fuente de contraseña no estaba en 0.9.7, ordenar por nombre no ordenaba los grupos\n</string>
+  <string name="ChangeLog_0_9_7">    Versión 0.9.7\n
+    * soporte de escritura para bases de datos Keepass 1 (kdb) (¡beta!).\n
+    * mejor regreso al anterior teclado (tambien funciona en dispositivos no rooteados) \n
+    * soporte para KeeChallenge con longitud variable de retos\n
+    * evitar tomar capturas de la pantalla de QuickUnlock y de las pantallas de la contraseña\n
+    * invertir la forma en la que se ordena por Fecha de Modificación (ahora es descendente)\n
+    * corrección de errores: visualización de notas ahora actualizada correctamente después de cambios, vistas contraseña ahora ocultando la contraseña correctamente en (esperemos) todos los dispositivos, solucionado el problema que permite agregar una entrada dos veces, solucionado el problema que muestra la advertencia de UUID duplicado incluso después de corregir la base de datos\n</string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
 * Los cambios externos a la base de datos son detectados y añadidos al guardar\n
 * Mejorado el rendimiento de carga\n
