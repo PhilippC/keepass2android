@@ -900,7 +900,55 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Permite ocultar teclado durante la captura de huella digital\n
     * Actualización del sistema de construcción
   </string>
+  <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
+* Los cambios externos a la base de datos son detectados y añadidos al guardar\n
+* Mejorado el rendimiento de carga\n
+* Mejorada la barra de búsqueda con sugerencias\n
+* ¡Nuevo logo de la aplicación!\n
+* Añadido soporte para el formato .kdbp para carga/guardado más veloz\n
+* Mejorada la edición de cadenas de texto adicionales y pantalla oculta cuando está protegida\n
+¡Gracias a Alex Vallat por sus contribuciones al código!\n
+¡Gracias a Niki Hüttner (www.close-cut.de) por el nuevo logo!\n</string>
+  <string name="ChangeLog_0_8_3"><b>Versión 0.8.3</b>\n
+* Nombre de usuario/Índice TAN mostrado en la lista de entradas (ver los ajustes)\n
+* Las entradas pueden ser creadas si una búsqueda desde el navegador no devuelve resultados\n
+* El teclado KP2A provee la posibilidad de buscar credenciales para la aplicación actual\n
+* La aplicación se cierra automáticamente después de seleccionar una entrada para usar en el teclado\n
+* El diálogo de selección de teclado se abre automáticamente luego de buscar una URL (Ver la configuración)\n
+* Los marcadores de posición en los campos de entradas son reemplazados antes de copiarlos (la mayor parte de los marcadores de posición son soportados)\n
+* Corrección de errores menores
+  </string>
+  <string name="ChangeLog_0_8_2"><b>Versión 0.8.2</b>\n
+* Soporte para autenticación Digest en WebDAV\n
+* Corrección de errores (OI Gestor de Archivos, Abrir URL)</string>
+  <string name="ChangeLog_0_8_1"><b>Versión 0.8.1</b> \n 
+* KP2A Offline y \"Online\" pueden instalarse ambos de nuevo\n 
+* Nuevas traducciones añadidas (gracias a todos los contribuyentes!) </string>
+  <string name="ChangeLog_0_8">    <b>Versión 0.8</b> \n 
+    *Mejorada la interfaz de usuario, especialmente para dispositivos Android 4.x\n
+    *Permitido el uso deliberado de gestores de archivos para seleccionar archivos existentes\n
+    *Añadida una forma más segura para abrir archivos adjuntos (a través del directorio de caché)\n
+    *Corrección de errores durante la actividad de edición\n
+    *Probablemente se han introducido nuevos errores :-)</string>
   <string name="ChangeLog_keptDonate">Ofrecemos la posibilidad de donarnos una cerveza u otra cosa</string>
+  <string name="ChangeLog_0_7"><b>Versión 0.7</b> \n 
+* Aumentada la velocidad de carga: transformaciones de claves ahora son 10 veces más rápidas! \n 
+* Nuevo teclado Keepass2Android: cambie a este teclado para introducir sus credenciales. Lo protege de sniffers de contraseñas basados en el portapapeles (desactive las notificaciones anteriores del portapapeles en las opciones) \n 
+* Añadida opción de donar una cerveza u otra cosa (ver menú)</string>
+  <string name="ChangeLog"><b>Versión 0.6.2</b> \n 
+    * Integración con Google Drive/Dropbox /... : Utilice las Apps oficiales de Google Drive o Dropbox y abra cualquier archivo .kdbx. Esto ahora abrirá KP2A.\n 
+    * Mejorado diálogo de búsqueda \n 
+    * Mejorados resultados de búsqueda para URLs compartidas con subdominios\n 
+    * Opciones para enviar retroalimentación, calificar y traducir la aplicación en el menú\n 
+\n 
+<b>Versión 0.6.1</b> \n 
+    * Detecta cuando cambia la base de datos en segundo plano (es decir, debido a la actividad de una aplicación de sincronización) \n 
+    * Mejoradas la búsqueda de URLs desde el navegador\n 
+    * Diálogo de confirmación cuando se descarten cambios\n
+ \n 
+<b>Versión 0.6</b> \n 
+    Lanzamiento público inicial
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 segundos</item>
     <item>1 minuto</item>
