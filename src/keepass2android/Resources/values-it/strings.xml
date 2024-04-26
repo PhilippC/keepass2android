@@ -706,6 +706,23 @@
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Reso TOTP più facilmente accessibile dalla tastiera integrata.</item>
+    <item>Mostra le notifiche d\'immissione automatica di una voce TOTP. Questo permette di copiare il TOTP negli appunti. Vedi le preferenze per configurare il comportamento.</item>
+    <item>Implementazione TOTP aggiornata per risolvere problemi di compatibilità con KeePass2 e TrayTOTP</item>
+    <item>Miglioramenti minori</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Add support for notification permissions on Android 13+</item>
+    <item>Improve the FTP and SFTP implementation</item>
+    <item>Aggiunto accesso completo a pCloud</item>
+    <item>Allow to select System language in the language dialog</item>
+    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Correzione bug per crash e logout non previsti</item>
     <item>Passa alla nuova implementazione SFTP, supportando moderni algoritmi a chiave pubblica come rsa-sha2-256</item>
@@ -839,6 +856,7 @@
   <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha rilevato il sensore biometrico. Desideri attivare lo sblocco biometrico per questo database?</string>
+  <string name="post_notifications_dialog_notnow">Non ora</string>
   <string name="understand">Ho capito</string>
   <string name="dont_show_again">Non mostrare più</string>
   <string name="masterkey_infotext_head">Ricordi la tua password principale?</string>
