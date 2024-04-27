@@ -152,6 +152,7 @@
   <string name="hint_keyfile">ficheiro-chave</string>
   <string name="hint_length">tamanho</string>
   <string name="hint_pass">palavra-passe</string>
+  <string name="hint_keyfile_path">Caminho da chave privada SSH</string>
   <string name="hint_login_pass">Palavra-passe</string>
   <string name="hint_title">nome</string>
   <string name="hint_url">URL</string>
@@ -301,6 +302,8 @@
   <string name="NoDalVerification_summary">Desativa a verificação se o domínio e o pacote da aplicação coincidirem</string>
   <string name="InlineSuggestions_title">Integrar com o teclado</string>
   <string name="InlineSuggestions_summary">Mostra as sugestões de preenchimento automático como opções em linha no teclado (se suportado pelo método de entrada)</string>
+  <string name="LogAutofillView_title">Registar visualização de preenchimento automático</string>
+  <string name="LogAutofillView_summary">Escrever detalhes sobre o preenchimento automático para o registo de depuração (se o registo de depuração estiver ativado). Estes detalhes podem ser enviados para o programador se o preenchimento automático não funcionar como esperado.</string>
   <string name="requires_android11">Requer Android 11 ou superior</string>
   <string name="kp2a_findUrl">Encontrar a palavra-passe</string>
   <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
@@ -399,6 +402,14 @@
   <string name="ShowSeparateNotifications_summary">Mostrar notificações separadas para copiar o nome de utilizador e a palavra-passe para área de transferência e ativar o teclado.</string>
   <string name="AccServiceAutoFill_prefs">Serviço de acessibilidade para o preenchimento automático</string>
   <string name="AutoFill_prefs">Serviço de preenchimento automático</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Ao preencher automaticamente uma entrada com TOTP, mostrar a notificação de entrada com um botão \"Copiar TOTP\"</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Mostrar notificação de publicação</string>
+  <string name="AutoFillTotp_prefs_title">Preenchimento automático para entradas TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiar TOTP para a área de transferência</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Ao preencher automaticamente uma entrada com TOTP, copia o TOTP para a área de transferência</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Ao preencher automaticamente uma entrada com TOTP, ativa o teclado embutido. O teclado tem um botão TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Usar o teclado embutido</string>
+  <string name="TotpCopiedToClipboard">TOTP copiado para área de transferência</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Trocar o teclado</string>
@@ -415,6 +426,7 @@
   <string name="ShowUnlockedNotification_summary">Mostrar uma notificação em curso enquanto a base de dados está desbloqueada.</string>
   <string name="IconVisibilityInfo_Android8_text">O Android 8 introduziu um novo comportamento para notificações. Se quiser pode esconder o ícone das notificações do Keepass2Android, por favor configure isto através das configurações do sistema. Defina a importância das notificações para o mínimo.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Abrir configurações</string>
+  <string name="PostNotificationsPermissionInfo_text">O Keepass2Android pode mostrar uma notificação do sistema enquanto a sua base de dados não estiver bloqueada. Para que isso funcione, conceda a permissão.</string>
   <string name="DontCare">Não quero saber</string>
   <string name="DocumentAccessRevoked">O ficheiro já não está acessível pelo Kepass2Android. Ou foi removido ou as permissões de acesso foram revogadas. Por favor torne a abrir o ficheiro, por exemplo altere a base de dados.</string>
   <string name="PreloadDatabaseEnabled_title">Pré-carregar o ficheiro da base de dados</string>
@@ -499,9 +511,27 @@
   <string name="hint_sftp_host">hospedeiro (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">porta</string>
   <string name="initial_directory">Pasta inicial (opcional):</string>
+  <string name="connect_timeout">Tempo limite da conexão (opcional)</string>
   <string name="enter_sftp_login_title">Introduza os dados de acesso SFTP:</string>
   <string name="sftp_auth_mode">Modo de autenticação</string>
   <string name="send_public_key">Enviar chave pública...</string>
+  <string name="select_private_keyfile">Selecionar a chave privada...</string>
+  <string name="hint_sftp_key_name">Novo nome da chave</string>
+  <string name="hint_sftp_key_content">Novo conteúdo da chave</string>
+  <string name="private_key_saved">Chave privada guardada</string>
+  <string name="private_key_save_failed">FALHA ao guardar a chave privada: %1$s</string>
+  <string name="private_key_info">Introduzir o nome da chave e o conteúdo a guardar</string>
+  <string name="private_key_delete">Chave privada eliminada: %1$s</string>
+  <string name="private_key_delete_failed">FALHA na eliminação da chave privada: %1$s</string>
+  <string name="save_key">Guardar chave privada</string>
+  <string name="delete_key">Eliminar chave privada</string>
+  <string name="private_key_select">Selecionar chave privada</string>
+  <string name="private_key_create_new">[Adicionar nova...]</string>
+  <string name="hint_sftp_key_passphrase">Frase-chave (opcional)</string>
+  <string name="sftp_kex_title">Algoritmos de troca de chaves (KEX) (opcional)</string>
+  <string name="hint_sftp_kex">Nomes/especificações separados por vírgulas</string>
+  <string name="sftp_shk_title">Algoritmos de chave do anfitrião do servidor (opcional)</string>
+  <string name="hint_sftp_shk">Nomes/especificações separados por vírgulas</string>
   <string name="enter_ftp_login_title">Introduza os dados de acesso FTP:</string>
   <string name="enter_mega_login_title">Introduza os seus dados de autenticação da conta MEGA:</string>
   <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
@@ -519,7 +549,9 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (ficheiros KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se não quiser fornecer o acesso KP2A ao seu Google Drive, pode selecionar esta opção. Note que tem primeiro criar um ficheiro de base de dados, os ficheiros existentes não são visíveis para a aplicação. Escolha esta opção a partir do ecrã Criar base de dados ou, caso você já tenha aberto uma base de dados, exportando a base de dados escolhendo essa opção.</string>
+  <string name="filestoragename_pcloud">PCloud (pasta KP2A)</string>
   <string name="filestoragehelp_pcloud">Este tipo de armazenamento só irá solicitar acesso à pasta pCloud \"Aplicações/Keepass2Android\". Se quiser usar a base de dados existente da sua conta pCloud, por favor certifique-se que o ficheiro é colocado nesta pasta pCloud.</string>
+  <string name="filestoragename_pcloudall">PCloud (acesso total)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Todos os ficheiros (incluindo partilhados)</string>
@@ -565,12 +597,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Por favor, use a extensão KeeChallenge no KeePass 2.x (PC) para configurar a sua base de dados para uso com desafio-resposta!</string>
   <string name="ErrorUpdatingChalAuxFile">Erro ao atualizar o ficheiro OTP auxiliar!</string>
   <string name="TrayTotp_SeedField_title">Nome do campo da semente TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Se estiver a usar a extensão Keepass 2 \"TrayTotp\" com configurações não padrão, escreva o nome do campo para o campo de semente aqui de acordo com as configurações no PC.</string>
   <string name="TrayTotp_SettingsField_title">Nome do campo das configurações TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Escreva o nome do campo das configurações da extensão TrayTotp aqui.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Ficheiro de registo para depuração</string>
   <string name="DebugLog_title">Usar ficheiro de registo</string>
+  <string name="FtpDebug_title">Registo de depuração FTP/SFTP</string>
   <string name="DebugLog_summary">Guardar a saída da aplicação num ficheiro de registo local</string>
   <string name="DebugLog_send">Enviar registo de depuração...</string>
   <string name="loading">A carregar…</string>
@@ -639,6 +673,26 @@
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">A URI inserida não parece ser um nome de ficheiro. Tem a certeza que este é um ficheiro válido?</string>
   <string name="FirstInvalidCompositeKeyError">Chave composta inválida! Por favor, tente novamente.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Chave composta inválida! Tente os seguintes passos para desbloquear a sua base de dados:\n
+
+    &#8226; Certifique-se que introduziu a palavra-passe correta. Utilize o ícone do olho para ver a palavra-passe introduzida.\n
+    &#8226; Certifique-se que selecionou o tipo de palavra-passe correto. Certifique-se que este corresponde ao tipo utilizado quando criou a base de dados.\n
+    &#8226; Certifique-se que selecionou o ficheiro da base de dados correto.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Dica: se pensa que o ficheiro da base de dados pode estar corrompido ou se não se lembra da chave-mestra depois de o alterar, pode tentar com a última versão do ficheiro aberta com êxito tocando em \"%1$s\" e selecionar a cópia de segurança local.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Sugestão: o Keepass2Android guardou a última versão do ficheiro aberta com êxito no armazenamento interno. Pode abri-la tocando em \"%1$s\" e selecionar a cópia de segurança local.
+  </string>
+  <string name="CorruptDatabaseHelp">    O ficheiro está corrompido. \n
+    Eis algumas sugestões para ajudar a diagnosticar o problema:\n
+
+    &#8226; Se tiver copiado o ficheiro através de USB (modo MTP), tente novamente utilizando uma ferramenta como o MyPhoneExplorer. O MTP trunca os ficheiros em determinados casos.\n
+    &#8226; Se não conseguir abrir o ficheiro a partir da mesma localização no seu PC, é muito provável que o ficheiro esteja realmente corrompido. Por favor, use uma cópia de segurança da base de dados. Se acha que o Keepass2Android corrompeu o ficheiro, entre em contacto com a equipa de suporte.\n
+    &#8226; Se ainda conseguir abrir o ficheiro no seu PC, contacte a equipa de apoio. Pode tentar gurdá-lo com configurações diferentes (por exemplo, descompactado) no PC e tentar abrir novamente no Keepass2Android.
+
+  </string>
   <string name="open_other_db">Abrir outra base de dados…</string>
   <string name="select_database">Escolher a base de dados</string>
   <string name="configure_child_dbs">Configurar bases de dados filhas…</string>
@@ -666,6 +720,26 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar base de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Aviso! A autenticação biométrica pode ser invalidada pelo Android, por exemplo, depois de adicionar uma nova impressão digital nas configurações do seu dispositivo. Certifique-se que sabe como desbloquear com a sua palavra-passe mestra!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Adicionados botões de ação flutuantes para pesquisa e visão geral do TOTP (se existirem entradas TOTP).</item>
+    <item>Melhoria da apresentação dos campos TOTP, adicionando um indicador de tempo limite e mostrando-o de forma mais visível.</item>
+    <item>O TOTP pode agora ser visto a partir da vista de grupo.</item>
+    <item>Copiar valor de texto para a área de transferência ao premir longamente na vista de entrada.</item>
+    <item>Tornado o TOTP mais facilmente acessível no teclado incorporado.</item>
+    <item>Mostrada uma notificação de entrada quando se preenche automaticamente uma entrada TOTP. Isto permite copiar o TOTP para a área de transferência. Veja as preferências para configurar o comportamento.</item>
+    <item>Implementação TOTP atualizada para resolver problemas de compatibilidade com o KeePass2 e o TrayTOTP</item>
+    <item>Pequenos melhoramentos</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Atualizado o pCloud SDK para fornecer acesso a pastas partilhadas</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Adicionado suporte para permissões de notificação no Android 13+</item>
+    <item>Melhorada a implementação de FTP e SFTP</item>
+    <item>Add access to full pCloud</item>
+    <item>Allow to select System language in the language dialog</item>
+    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Adicionado suporte para visualização, remoção e restauração de cópias de segurança de entradas</item>
     <item>Suporte implementado para armazenamento na nuvem MEGA</item>
