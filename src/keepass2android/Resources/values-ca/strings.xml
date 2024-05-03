@@ -175,7 +175,8 @@
   <string name="maskpass_summary">Amaga les contrasenyes per defecte</string>
   <string name="masktotp_title">Màscara  de camp TOTP</string>
   <string name="masktotp_summary">Oculta el camp TOTP, per defecte </string>
-  <string name="NoAutofillDisabling_title">Sense opció per deshabilitar  autocompletar</string>
+  <string name="NoAutofillDisabling_title">Sense opció per deshabilitar  la funció d\'autoomplir</string>
+  <string name="NoAutofillDisabling_summary">Si s\'activa, l\'aplicació no mostrarà l\'opció per deshabilitar autoomplir d\'algunes  entrades específiques.</string>
   <string name="menu_about">Sobre</string>
   <string name="menu_change_key">Canvia Clau Mestra</string>
   <string name="menu_copy_pass">Copia contrasenya</string>
@@ -236,6 +237,7 @@
   <string name="saving_database">Guardant la base de dades…</string>
   <string name="exporting_database">Exportant la base de dades…</string>
   <string name="export_database_successful">Base de dades exportada amb èxit!</string>
+  <string name="export_keyfile_successful">Fitxer contrasenya exportat amb èxit!</string>
   <string name="space">Espai</string>
   <string name="search_label">Cerca</string>
   <string name="show_password">Mostra contrasenya</string>
@@ -245,6 +247,8 @@
   <string name="sort_moddate">Ordenar per data modificació</string>
   <string name="sort_default">Mantenir l\'ordre per defecte</string>
   <string name="special">Especial</string>
+  <string name="special_extended">Afegit especial.</string>
+  <string name="at_least_one_from_each_group">Almenys un de cada grup</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contrasenya</item>
     <item>Passphrase</item>
