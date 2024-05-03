@@ -152,6 +152,7 @@
   <string name="hint_keyfile">arxiu clau</string>
   <string name="hint_length">longitud</string>
   <string name="hint_pass">contrasenya</string>
+  <string name="hint_keyfile_path">Ubicació de Clau privada SSH</string>
   <string name="hint_login_pass">Contrasenya</string>
   <string name="hint_title">nom</string>
   <string name="hint_url">URL</string>
@@ -172,6 +173,9 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Emmascara contrasenya</string>
   <string name="maskpass_summary">Amaga les contrasenyes per defecte</string>
+  <string name="masktotp_title">Màscara  de camp TOTP</string>
+  <string name="masktotp_summary">Oculta el camp TOTP, per defecte </string>
+  <string name="NoAutofillDisabling_title">Sense opció per deshabilitar  autocompletar</string>
   <string name="menu_about">Sobre</string>
   <string name="menu_change_key">Canvia Clau Mestra</string>
   <string name="menu_copy_pass">Copia contrasenya</string>
