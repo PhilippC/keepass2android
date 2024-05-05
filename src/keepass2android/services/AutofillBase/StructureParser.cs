@@ -82,8 +82,12 @@ namespace keepass2android.services.AutofillBase
                 var node = _structure.GetWindowNodeAt(i);
 
                 var view = node.RootViewNode;
-                var packageName = _structure.ActivityComponent.PackageName;
-                ParseRecursive(autofillView, view, isManualRequest, packageName);
+                var fallbackPackage = _structure.ActivityComponent.PackageName;
+                ParseRecursive(autofillView, view, isManualRequest);
+                if (autofillView.PackageId == null && fallbackPackage != null)
+                {
+                    autofillView.PackageId = fallbackPackage;
+                }
             }
 
             return autofillView;
@@ -91,7 +95,7 @@ namespace keepass2android.services.AutofillBase
         }
 
 
-        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode, bool isManualRequest, string fallbackPackage)
+        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode, bool isManualRequest)
         {
             String webDomain = viewNode.WebDomain;
             if ((autofillView.PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
@@ -100,12 +104,7 @@ namespace keepass2android.services.AutofillBase
                 autofillView.PackageId = viewNode.IdPackage;
             }
 
-            if (autofillView.PackageId == null && fallbackPackage != null)
-            {
-                autofillView.PackageId = fallbackPackage;
-            }
-
-                DomainName outDomain;
+            DomainName outDomain;
             if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
             {
                 webDomain = outDomain.RawDomainName;
@@ -133,7 +132,7 @@ namespace keepass2android.services.AutofillBase
             {
                 for (int i = 0; i < childrenSize; i++)
                 {
-                    ParseRecursive(autofillView, viewNode.GetChildAt(i), isManualRequest, fallbackPackage);
+                    ParseRecursive(autofillView, viewNode.GetChildAt(i), isManualRequest);
                 }
             }
         }
