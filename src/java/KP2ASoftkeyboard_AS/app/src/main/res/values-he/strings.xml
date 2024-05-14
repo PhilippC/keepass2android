@@ -110,13 +110,21 @@
     <!-- Instruction to touch the bubble to continue -->
     <string name="touch_to_continue">גע ברמז זה כדי להמשיך »</string>
     <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">גע פה כדי לסגור את הרמז הזה ותתחיל להקליד!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>המקלדת נפתחת בכל רגע שאתה נוגע בשדה עם טקסט</b></string>
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents">&lt;b&gt;גע והחזק מקש כדי לראות סימנים\n(&lt;, &gt;, =, ; וכך הלאה)&lt;/b&gt;</string>
     <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>עבור למספרים וסימנים בעזרת לחיצה על מקש זה</b></string>
     <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>חזור להקליד אותיות בעזרת נגיעה על אותו המקש שוב</b></string>
     <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>גע והחזק מקש זה כדי לשנות את הגדרות המקלדת כגון השלמה אוטומטית</b></string>
     <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>נסה זאת!</b></string>
     <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">המשך</string>
     <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
     <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
     <string name="label_done_key">בוצע</string>
