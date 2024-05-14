@@ -101,9 +101,14 @@
     <!-- Tip to long press on keys -->
     <string name="tip_long_press">החזק כפתור כדי לראות סימנים מיוחדים (ø, ö, וכו\')</string>
     <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">הקש על כפתור חזור \u21B6 כדי לסגור את המקלדת בכל שלב</string>
     <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">קבל גישה למספר ולסימנים</string>
     <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">גע והשאר את המילה הכי שמאלית לחוצה כדי להוסיף אותה למילון
+        </string>
     <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">גע ברמז זה כדי להמשיך »</string>
     <!-- Instruction to touch the bubble to start typing -->
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
     <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
