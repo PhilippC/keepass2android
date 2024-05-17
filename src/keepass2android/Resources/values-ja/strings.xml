@@ -469,10 +469,10 @@
   <string name="SynchronizingDatabase">変更をマージしています…</string>
   <string name="YesSynchronize">はい、マージします</string>
   <string name="NoOverwrite">いいえ、上書きします</string>
-  <string name="UseOfflineMode">内部キャッシュのみで動作</string>
+  <string name="UseOfflineMode">内部キャッシュのみで使用する</string>
   <string name="UseOnlineMode">キャッシュコピーをソースと同期</string>
   <string name="UseOfflineMode_Info">データベースは内部キャッシュから読み込まれます。変更は内部キャッシュのみに保存され、キャッシュコピーをソースと同期を選択した場合のみ同期されます。</string>
-  <string name="InOfflineMode">内部キャッシュのみで動作</string>
+  <string name="InOfflineMode">内部キャッシュのみで動作中</string>
   <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期しています…</string>
   <string name="DownloadingRemoteFile">ソースファイルを読み込んでいます…</string>
   <string name="UploadingFile">ファイルを保存しています…</string>
