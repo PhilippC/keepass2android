@@ -402,6 +402,14 @@
   <string name="ShowSeparateNotifications_summary">Afficher des notifications séparées pour copier le nom d\'utilisateur et le mot de passe dans le presse-papiers et l\'activer le clavier.</string>
   <string name="AccServiceAutoFill_prefs">Service d\'accessibilité pour le remplissage automatique</string>
   <string name="AutoFill_prefs">Service de saisie automatique</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Lors du remplissage automatique d\'une entrée avec TOTP, afficher la notification de l\'entrée avec un bouton Copier TOTP.</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Afficher la notification de saisie</string>
+  <string name="AutoFillTotp_prefs_title">Remplissage automatique des entrées TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copier le TOTP dans le presse-papier</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Lors du remplissage automatique d\'une entrée avec TOTP, copier le TOTP dans le presse-papier.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Lorsque vous remplissez automatiquement une entrée avec TOTP, activez le clavier intégré. Le clavier dispose d\'une touche TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activation du clavier intégré</string>
+  <string name="TotpCopiedToClipboard">Copie du TOTP dans le presse-papier</string>
   <string name="ShowKp2aKeyboardNotification_title">Notification du clavier KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
@@ -589,6 +597,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec défi-réponse!</string>
   <string name="ErrorUpdatingChalAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="TrayTotp_SeedField_title">Nom du champ contenant le \"seed code\" TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si vous utilisez le plug-in Keepass 2 \"TrayTotp\" avec des paramètres personnalisés, entrez ici le nom du champ contenant le \"seed code\" tel que défini dans les paramètres sur PC.</string>
   <string name="TrayTotp_SettingsField_title">Nom du champ contenant les paramètres TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Entrer ici le nom du champ contenant les paramètres pour TrayTotp.</string>
