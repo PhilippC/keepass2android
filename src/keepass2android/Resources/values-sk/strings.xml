@@ -402,6 +402,12 @@
   <string name="ShowSeparateNotifications_summary">Zobraziť oddelené notifikácie pre kopírovanie mena používateľa a hesla do schránky a aktivovanie klávesnice.</string>
   <string name="AccServiceAutoFill_prefs">Automatické dopĺňanie - služba pre prístupnosť</string>
   <string name="AutoFill_prefs">Služba automatického dopĺňania</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Pri autom. dopĺňaní s jednorazovým heslom TOTP, zobraziť notifikáciu s kópiou tlačidla TOTP</string>
+  <string name="AutoFillTotp_prefs_title">Autom. doplnenie pre záznamy TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Kopírovať TOTP do schránky</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Pri autom. dopĺňaní záznamu s TOTP, kopírovať TOTP do schránky</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Pri autom. dopĺňaní záznamu s TOTP, aktivovať vstavanú klávesnicu. Klávesnica má tlačidlo pre TOTP.</string>
+  <string name="TotpCopiedToClipboard">TOTP skopírované do schránky</string>
   <string name="ShowKp2aKeyboardNotification_title">Notifikácia klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A (odporúča sa).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
@@ -586,6 +592,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Prosím použite prídavný modul KeeChallenge v programe KeePass 2.x (PC) pre nakonfigurovanie databázy na použitie s odpoveďou na výzvu!</string>
   <string name="ErrorUpdatingChalAuxFile">Chyba pri aktualizovaní doplnkového súboru pre jednorazové heslá!</string>
   <string name="TrayTotp_SeedField_title">Názov seed poľa TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Ak používate prídavný modul pre Keepass 2 s názvom \"TrayTotp\", nie s predvolenými nastaveniami, zadajte názov pre prvotné (seed) pole, podľa nastavení v PC.</string>
   <string name="TrayTotp_SettingsField_title">Názov poľa pre nastavenia TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Sem zadajte názov poľa s nastaveniami pre TrayTotp.</string>
@@ -687,6 +694,16 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Pridané plávajúce tlačidlá pre vyhľadávanie a prehľad o TOTP (ak sú prítomné záznamy s TOTP).</item>
+    <item>Zlepšené zobrazenie polí pre TOTP, pridaním časového limitu a vyraznejšieho zobrazenia.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Minor improvements</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Oprava chyby vedúcej k pádom a neočakávaným odhláseniam</item>
     <item>Prepnutie na novú implementáciu SFTP, s podporou pre moderné algoritmy verejných kľúčov, ako je rsa-sha2-256</item>
