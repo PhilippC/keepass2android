@@ -805,6 +805,15 @@
     <item>Corrections de bugs</item>
     <item>Corrections de bugs</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Amélioration des performances d\'Argon2 par l\'utilisation de l\'implémentation native (Remerciements à Chih-Hsuan Yen!)\n
+    * Possibilité de désactiver le verrouillage par empreinte digitale en cliquant sur l\'icône empreinte digitale (évite les problèmes avec les lecteurs d\'empreinte digitale placés sous l\'écran, remerciements à marcoDallas!)\n
+    * Rétablissement de la position courante du curseur lors de la bascule entre les modes mot de passe visible / caché (Remerciements à DDoSolitary!)\n
+    * Améliorations de l\'implémentation de pCloud (encore une fois, remerciements à gilbsgilbs)\n
+    * Ajout de la prise en charge de la saisie automatique à plusieurs autres navigateurs\n
+    * Nouvelle implémentation pour OneDrive : inclut la prise en charge de OneDrive Entreprise, des fichiers partagés, des périmètres d\'accès sélectionnables, des comptes multiples et des corrections de problèmes d\'accès en mode hors-ligne\n
+    * Corrections d\'anomalies
+  </string>
   <string name="ChangeLog_keptDonate">Possibilité élargie de faire un don d\'une bière ou autre chose</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondes</item>
