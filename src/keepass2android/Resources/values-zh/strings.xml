@@ -723,11 +723,11 @@
   <string-array name="ChangeLog_1_11">
     <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
     <item>通过添加超时指示器以突出显示TOTP字段并改进显示效果。</item>
-    <item>TOTP can now be seen from the group view.</item>
-    <item>Copy text value to clipboard on long-press in entry view.</item>
-    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
-    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
-    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>TOTP现已展示在组视图中</item>
+    <item>长按输入框内文本以复制</item>
+    <item>使TOTP 更容易在内置键盘上访问。</item>
+    <item>自动填充TOTP时显示通知。这将会允许复制TOTP到剪贴板。请在首选项配置行为。</item>
+    <item>更新TOTP执行以解决与 KeePass2 和 TrayTOTP的兼容性问题</item>
     <item>微小改进</item>
   </string-array>
   <string-array name="ChangeLog_1_10">
