@@ -722,7 +722,7 @@
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
   <string-array name="ChangeLog_1_11">
     <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
-    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>通过添加超时指示器以突出显示TOTP字段并改进显示效果。</item>
     <item>TOTP can now be seen from the group view.</item>
     <item>Copy text value to clipboard on long-press in entry view.</item>
     <item>Make TOTP more easily accessible on the built-in keyboard.</item>
