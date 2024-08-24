@@ -767,9 +767,19 @@
     <item>Những cải tiến đối với việc triển khai OneDrive: không còn giới hạn kích thước, không còn yêu cầu xác thực thừa</item>
     <item>Đã thêm tùy chọn để chọn thiết kế sáng/tối từ cài đặt hệ thống, bao gồm cả kế hoạch ban đêm, yêu cầu Android 10+</item>
     <item>Cập nhật triển khai Dropbox để hỗ trợ phương thức xác thực mới.</item>
-    <item>Newly setup fingerprint unlock will be invalidated after adding a fingerprint in system settings for increased security.</item>
+    <item>Mở khóa bằng vân tay mới thiết lập sẽ bị vô hiệu hóa sau khi thêm dấu vân tay vào cài đặt hệ thống để tăng cường tính bảo mật.</item>
     <item>Cho phép mở file thông qua bộ chọn file hệ thống, bỏ qua cờ chỉ đọc</item>
     <item>Cho phép bắt đầu di chuyển các mục từ menu xem mục nhập</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Thêm hỗ trợ cho định dạng tệp khóa mới được giới thiệu trong Keepass 2.47</item>
+    <item>Add support for Argon2id as key derivation function</item>
+    <item>Improved Autofill compatibility with Firefox and Chrome</item>
+    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
   </string-array>
   <string-array name="ChangeLog_1_08c">
     <item>Không còn lưu trữ tên gói ứng dụng Android trong trường URL</item>
