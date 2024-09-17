@@ -155,6 +155,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="hint_keyfile">فایل کلید</string>
   <string name="hint_length">طول</string>
   <string name="hint_pass">گذرواژه</string>
+  <string name="hint_keyfile_path">مسیر کلید خصوصی SSH</string>
   <string name="hint_login_pass">گذرواژه</string>
   <string name="hint_title">نام</string>
   <string name="hint_url">URL</string>
@@ -494,7 +495,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ErrorOcurred">خطایی رخ داد:</string>
   <string name="DuplicateUuidsError">پایگاه‌داده خراب است: شناسه‌های تکراری پیدا شد. (با Minikeepass ذخیره کردید؟) لطفاً مجدداً با استفاده از نسخهٔ کامپیوتری Keepass 2 آن را در پایگاه‌دادهٔ جدیدی وارد کنید و سپس گزینهٔ «ساخت شناسه‌های جدید» را برگزینید.</string>
   <string name="DuplicateUuidsErrorAdditional">این پیغام خطا از طریق تنظیمات/تنظیمات برنامه/فایل‌گردانی/بررسی UUIDهای تکراری غیرفعال می‌شود. لطفاً توجه کنید که با این کار ممکن است رفتار غیرمنتظره‌ای از برنامه سر بزند. بهتر است مشکل پایگاه‌داده را حل کنید.</string>
-  <string name="synchronize_database_menu">در حال همگام‌سازی پایگاه‌داده…</string>
+  <string name="synchronize_database_menu">همگام‌سازی پایگاه‌داده…</string>
   <string name="CannotMoveGroupHere">نمی‌توان گروه را در این گروه قرار داد.</string>
   <string name="donate_question">از Keepass2Android راضی هستید؟ مرا به یک فنجان قهوه مهمان کنید.</string>
   <string name="donate_bday_question">دهم ماه می؟ امروز تولدم است!
