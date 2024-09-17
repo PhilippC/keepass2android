@@ -420,6 +420,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ShowUnlockedNotification_summary">وقتی قفل پایگاه‌داده باز است یک اعلان نشان بده.</string>
   <string name="IconVisibilityInfo_Android8_text">اندروید ۸ رفتار جدیدی را برای اعلان‌ها ارائه کرده است. اگر می‌خواهید آیکون اعلانات Keepass2Android را مخفی کنید، لطفاً آن را از طریق تنظیمات سیستم پیکربندی کنید. اهمیت دستهٔ اعلان را روی کمترین تنظیم کنید.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">بازکردن تنظیمات</string>
+  <string name="PostNotificationsPermissionInfo_text">زمانی که پایگاه‌دادهٔ شما قفل نیست Keepass2Android می‌تواند یک اعلان سیستمی نشان دهد. برای کارکردن این قابلیت لطفاً درخواست اجازه را تأیید کنید.</string>
   <string name="DontCare">مهم نیست</string>
   <string name="DocumentAccessRevoked">فایل برای Keepass2Android قابل‌دسترسی نیست. یا حذف شده یا اینکه اجازهٔ دسترسی به آن ستانده شده است. لطفاً آن را مجدداً باز کنید؛ مثلاً از «تغییر پایگاه‌داده» استفاده کنید.</string>
   <string name="PreloadDatabaseEnabled_title">پیش‌بارکردن فایل پایگاه‌داده</string>
@@ -513,9 +514,11 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="hint_sftp_host">میزبان (مثال: 192.168.0.1)</string>
   <string name="hint_sftp_port">درگاه</string>
   <string name="initial_directory">پوشهٔ آغازین (اختیاری):</string>
+  <string name="connect_timeout">ثانیه‌های مهلت انتظار (اختیاری)</string>
   <string name="enter_sftp_login_title">اطلاعات ورود به SFTP را وارد کنید:</string>
   <string name="sftp_auth_mode">حالت احراز هویت</string>
   <string name="send_public_key">فرستادن کلید عمومی...</string>
+  <string name="select_private_keyfile">انتخاب کلید خصوصی...</string>
   <string name="enter_ftp_login_title">اطلاعات ورود به FTP را وارد کنید:</string>
   <string name="enter_mega_login_title">اطلاعات ورود حساب MEGAی خود را وارد کنید:</string>
   <string name="select_storage_type">نوع ذخیره‌گاه را مشخص کنید:</string>
