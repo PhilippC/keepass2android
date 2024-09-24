@@ -947,6 +947,20 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * evitar tomar capturas de la pantalla de QuickUnlock y de las pantallas de la contraseña\n
     * invertir la forma en la que se ordena por Fecha de Modificación (ahora es descendente)\n
     * corrección de errores: visualización de notas ahora actualizada correctamente después de cambios, vistas contraseña ahora ocultando la contraseña correctamente en (esperemos) todos los dispositivos, solucionado el problema que permite agregar una entrada dos veces, solucionado el problema que muestra la advertencia de UUID duplicado incluso después de corregir la base de datos\n</string>
+  <string name="ChangeLog_0_9_6">    Versión 0.9.6\n
+    * permite importar archivos clave y/o archivos de bases de datos locales al directorio interno de la aplicación (ver configuración)\n
+    * permite diferentes opciones de ordenación\n
+    * preferencias mejoradas para cambio automático de teclado\n
+    * actualizado el logotipo de la aplicación y el diseño de notificación, diseñado por Stefano Pignataro (http://www.spstudio.at)\n
+    * el generador de contraseñas recuerda la última configuración\n
+    * establece la visibilidad de notificación para la pantalla de bloqueo para Android 5\n
+    * ahora se limpia el campo de contraseña maestra cuando se sale de la aplicación sin pulsar OK\n
+    * arreglado un problema con falta de idiomas de entrada en la configuración de teclado en algunos dispositivos\n
+    * arreglado un problema con cambio de teclado automático en dispositivos rooteados\n
+    * añadida comprobación para bases de datos corruptas (UUIDs duplicadas)\n
+    * recarga la base de datos automáticamente cuando se detectan cambios, resuelve preocupaciones de seguridad sobre revelar la contraseña maestra\n
+    * mejorada la disposición de teclado polaco pequeño, arreglada configuración de tema del teclado (gracias a Wiktor Ławski)\n
+  </string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
 * Los cambios externos a la base de datos son detectados y añadidos al guardar\n
 * Mejorado el rendimiento de carga\n
