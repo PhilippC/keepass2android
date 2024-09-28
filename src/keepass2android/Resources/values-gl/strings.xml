@@ -50,6 +50,7 @@
   <string name="fingerprint_prefs">Desbloqueo biométrico</string>
   <string name="import_db_prefs">Importar base de datos a cartafol interno</string>
   <string name="import_keyfile_prefs">Importar arquivo de chave a cartafol interno</string>
+  <string name="export_keyfile_prefs">Exportar o ficheiro de clave desde o cartafol interno</string>
   <string name="keyboardswitch_prefs">Cambio de teclado</string>
   <string name="OnlyAvailableForLocalFiles">Só dispoñible para arquivos locais.</string>
   <string name="FileIsInInternalDirectory">O arquivo é gardado no directorio interno.</string>
@@ -155,6 +156,7 @@
   <string name="hint_login_pass">Contrasinal</string>
   <string name="hint_title">nome</string>
   <string name="hint_url">URL</string>
+  <string name="hint_override_url">sobreescribir o URL</string>
   <string name="hint_tags">etiqueta1, etiqueta2</string>
   <string name="hint_username">nome de usuario</string>
   <string name="InvalidPassword">Contrasinal ou arquivo chave non válido.</string>
@@ -171,10 +173,15 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Ocultar contrasinal</string>
   <string name="maskpass_summary">Ocultar contrasinais por defecto</string>
+  <string name="masktotp_title">Máscara de campo TOTP</string>
+  <string name="masktotp_summary">Ocultar o campo TOTP por defecto</string>
+  <string name="NoAutofillDisabling_title">Non hai opción para desactivar o enchemento automático</string>
+  <string name="NoAutofillDisabling_summary">Se está activada, a aplicación non mostrará a opción para desactivar o enchido automático para entradas específicas.</string>
   <string name="menu_about">Acerca de</string>
   <string name="menu_change_key">Modificar contrasinal mestre</string>
   <string name="menu_copy_pass">Copiar contrasinal</string>
   <string name="menu_copy_user">Copiar usuario</string>
+  <string name="menu_copy_totp">Copia TOTP</string>
   <string name="menu_create">Crear</string>
   <string name="menu_app_settings">Axustes</string>
   <string name="menu_db_settings">Axustes da base de datos</string>
@@ -201,6 +208,8 @@
   <string name="no">Non</string>
   <string name="no_keys">Non hai entradas da base de datos ou grupo.</string>
   <string name="no_results">Sen resultados na busca</string>
+  <string name="no_url_handler">Non hai controlador para este URL.</string>
+  <string name="open_recent">Abrir base de datos recente (toca para abrir)</string>
   <string name="omitbackup_title">Non buscar en entradas de copias de seguridade nin papeleiras de reciclaxe</string>
   <string name="omitbackup_summary">Omitir os grupos de \'Copia de seguridade\' e papeleira de reciclaxe nos resultados de busca</string>
   <string name="pass_filename">Nome do arquivo da base de datos KeePass</string>
@@ -215,6 +224,8 @@
   <string name="edit">Editar</string>
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Volver automaticamente da pantalla de consulta</string>
+  <string name="AutoReturnFromQuery_summary">Ao buscar unha entrada para unha aplicación ou sitio web: volve automaticamente da pantalla de consulta se só hai unha entrada coincidente na base de datos.</string>
   <string name="KeyDerivFunc">Función de derivación de claves</string>
   <string name="rounds">Series de encriptación</string>
   <string name="rounds_explaination">Maior nivel de encriptación proporciona unha protección adicional contra ataques de forza bruta, pero pode retardar a carga e o gardado.</string>
@@ -226,6 +237,7 @@
   <string name="saving_database">Gardando base de datos…</string>
   <string name="exporting_database">Exportando base de datos…</string>
   <string name="export_database_successful">Base de datos exportada con éxito!</string>
+  <string name="export_keyfile_successful">O ficheiro de chave exportouse correctamente!</string>
   <string name="space">Espazo</string>
   <string name="search_label">Buscar</string>
   <string name="show_password">Mostrar contrasinal</string>
@@ -235,11 +247,25 @@
   <string name="sort_moddate">Ordenar pola data de modificación</string>
   <string name="sort_default">Manter a orde predeterminada</string>
   <string name="special">Especial</string>
+  <string name="special_extended">Especial ampliado</string>
+  <string name="at_least_one_from_each_group">Polo menos un de cada grupo</string>
+  <string name="exclude_lookalike">Excluír caracteres parecidos</string>
+  <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Introduza o nome do perfil para gardar.  Introduza un nome existente para sobrescribir.</string>
+  <string name="hint_wordcount">Contador de palabras de frase de contrasinal</string>
+  <string name="hint_wordseparator">Separador de palabras</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contrasinal</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Frase de contrasinal</item>
+    <item>Contrasinal + Contrasinal</item>
   </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúscula</item>
+    <item>MAIÚSCULAS</item>
+    <item>Primeiro carácter en maiúscula</item>
+  </string-array>
+  <string name="custom_settings">Configuración personalizada</string>
+  <string name="passphrase_capitalization">Frases de paso en maiúsculas</string>
   <string name="search_hint">Atopar o que</string>
   <string name="search_results">Resultados de busca</string>
   <string name="search_in">Buscar en</string>
@@ -249,6 +275,7 @@
   <string name="twofish">Twofish</string>
   <string name="underline">Subliñado</string>
   <string name="unsupported_db_version">Versión de base de datos non soportada.</string>
+  <string name="uppercase">Maiúscula</string>
   <string name="warning_read_only">A súa tarxeta SD é actualmente de só lectura. Polo que non poderá gardar cambios na súa base de datos.</string>
   <string name="warning_unmounted">Non ten ningúnha tarxeta SD montada no dispositivo. Non vai poder cargar ou crear unha base de datos.</string>
   <string name="version_label">Versión</string>
@@ -256,17 +283,27 @@
   <string name="author">Keepass2Android foi desenrolado por Philipp Crocoll.</string>
   <string name="further_authors">Grazas ás contribucións de código de %1$s.</string>
   <string name="designers">Grazas ás contribucións dos deseños de iconas e deseño gráfico de %1$s.</string>
+  <string name="supporters">Grazas ao apoio financeiro de %1$s.</string>
   <string name="credit_plugin1">O plugin de cifrado Twofish foi desenrolado por Scott Greenberg e está incluído en KP2A.</string>
   <string name="credit_android_filechooser">o selector de arquivos para Android foi desenrolado por Hai Bison</string>
   <string name="credit_keyboard">O teclado KP2A está baseado no teclado Gigerbread do proxecto Android Open Source e usa o código Plugin Manager do Hacker\'s Keyboard de Klaus Weidner.</string>
   <string name="please_note">Teña en conta</string>
   <string name="contributors">Colaboradores</string>
   <string name="regular_expression">Expresión regular</string>
+  <string name="AlwaysMergeOnConflict_title">Combina sempre en conflito</string>
+  <string name="AlwaysMergeOnConflict_summary">Cando Keepass2Android detecte que se modificou o ficheiro remoto, combine sempre os cambios locais cos cambios remotos.</string>
+  <string name="TanExpiresOnUse_title">TAN caduca ao usar</string>
   <string name="TanExpiresOnUse_summary">Marcar entradas TAN como expiradas cando usadas</string>
   <string name="ShowUsernameInList_title">Amosar nome de usuario na lista</string>
   <string name="ShowUsernameInList_summary">Amosar nomes de usuario por debaixo dos títulos. Útil se hai varias contas ou TANs.</string>
   <string name="RememberRecentFiles_title">Lembrar bases de datos</string>
   <string name="RememberRecentFiles_summary">Lembrar bases de datos abertas recentemente e amosalas na pantalla de inicio da base de datos.</string>
+  <string name="NoDalVerification_title">Sen verificación DAL</string>
+  <string name="NoDalVerification_summary">Desactiva a verificación de se o dominio e o paquete da aplicación coinciden</string>
+  <string name="InlineSuggestions_title">Integrar co teclado</string>
+  <string name="InlineSuggestions_summary">Mostra as suxestións de enchemento automático como opcións integradas no teclado (se o método de entrada o admite)</string>
+  <string name="LogAutofillView_title">Vista de recheo automático do rexistro</string>
+  <string name="LogAutofillView_summary">Escribe detalles sobre a vista de enchemento automático para o rexistro de depuración (se o rexistro de depuración está activado).  Estes detalles pódense enviar ao programador se o enchemento automático non funciona como se esperaba.</string>
   <string name="excludeExpiredEntries">Exluir entradas expiradas</string>
   <string name="search_options">Opcións</string>
   <string name="caseSensitive">Distinguir maiúsculas de minúsculas</string>
