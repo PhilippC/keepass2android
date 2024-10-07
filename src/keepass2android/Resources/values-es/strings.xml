@@ -948,18 +948,18 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * invertir la forma en la que se ordena por Fecha de Modificación (ahora es descendente)\n
     * corrección de errores: visualización de notas ahora actualizada correctamente después de cambios, vistas contraseña ahora ocultando la contraseña correctamente en (esperemos) todos los dispositivos, solucionado el problema que permite agregar una entrada dos veces, solucionado el problema que muestra la advertencia de UUID duplicado incluso después de corregir la base de datos\n</string>
   <string name="ChangeLog_0_9_6">    Versión 0.9.6\n
-    * permite importar archivos clave y/o archivos de bases de datos locales al directorio interno de la aplicación (ver configuración)\n
-    * permite diferentes opciones de ordenación\n
-    * preferencias mejoradas para cambio automático de teclado\n
-    * actualizado el logotipo de la aplicación y el diseño de notificación, diseñado por Stefano Pignataro (http://www.spstudio.at)\n
-    * el generador de contraseñas recuerda la última configuración\n
-    * establece la visibilidad de notificación para la pantalla de bloqueo para Android 5\n
-    * ahora se limpia el campo de contraseña maestra cuando se sale de la aplicación sin pulsar OK\n
-    * arreglado un problema con falta de idiomas de entrada en la configuración de teclado en algunos dispositivos\n
-    * arreglado un problema con cambio de teclado automático en dispositivos rooteados\n
-    * añadida comprobación para bases de datos corruptas (UUIDs duplicadas)\n
-    * recarga la base de datos automáticamente cuando se detectan cambios, resuelve preocupaciones de seguridad sobre revelar la contraseña maestra\n
-    * mejorada la disposición de teclado polaco pequeño, arreglada configuración de tema del teclado (gracias a Wiktor Ławski)\n
+    * Permite importar archivos clave y/o archivos de bases de datos locales al directorio interno de la app (ver configuración)\n
+    * Permite diferentes opciones de ordenación\n
+    * Preferencias mejoradas para cambio automático de teclado\n
+    * Actualizado el logotipo de la app y el diseño de notificación, diseñado por Stefano Pignataro (http://www.spstudio.at)\n
+    * El generador de contraseñas recuerda la última configuración\n
+    * Establece la visibilidad de notificación para la pantalla de bloqueo para Android 5\n
+    * Ahora se limpia el campo de contraseña maestra cuando se sale de la app sin pulsar OK\n
+    * Arreglado un problema con falta de idiomas de entrada en la configuración de teclado en algunos dispositivos\n
+    * Arreglado un problema con cambio de teclado automático en dispositivos rooteados\n
+    * Añadida comprobación para bases de datos corruptas (UUIDs duplicadas)\n
+    * Recarga la base de datos automáticamente cuando se detectan cambios, resuelve preocupaciones de seguridad sobre revelar la contraseña maestra\n
+    * Mejorada la disposición de teclado polaco pequeño, arreglada configuración de tema del teclado (gracias a Wiktor Ławski)\n
   </string>
   <string name="ChangeLog_0_9_5">    <b>Versión 0.9.5</b>\n
     * Solucionados problemas con la exploración de archivos (especialmente en Android 4.4)\n
@@ -970,6 +970,24 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Actualizado el SDK de Dropbox para incluir un parche de seguridad oficial (edición regular)\n
     * Actualizadas las herramientas de creación --&gt; tamaño de apk incrementado :-(\n
     He prometido algunos cambios más. Vendrán con el próximo lanzamiento - lo siento. Quería publicar estas correcciones lo más pronto posible.
+  </string>
+  <string name="ChangeLog_0_9_4">    <b>Versión 0.9.4</b>\n
+    * Añadido soporte para complementos: ¡Ver configuración para saber cómo obtener complementos!\n
+    * Publicado complemento QR (escanea contraseñas, las muestra como un código QR, transfiere entradas a otros dispositivos KP2A)\n
+    * Publicado complemento InputStick (transfiere credenciales a tu PC a través de bluetooth - requiere una llave USB InputStick)\n
+    * Las apps de terceros ahora pueden simplemente implementar consultas a KP2A para las credenciales. ¿Eres desarrollador? ¡Por favor, añade esto a tu app si lo crees conveniente!\n
+    * Añadido soporte TOTP (compatible con KeeOTP y TrayTotp)\n
+    * La app ya no debería seguir siendo finalizada por Android cuando la base de datos está abierta\n
+    * La base de datos ya no seguirá bloqueada cuando se salga de la app con el botón atrás (ver configuración)\n
+    * Mostrar grupos de nombres en la vista de resultados de búsqueda (*)\n
+    * Añadido menú contextual en la vista de resultados de búsqueda incluyendo la opción \"Navegar a principal\" (*)\n
+    * Añadida opción para mostrar un grupo de nombre en la vista de entrada (*)\n
+    * (*) ¡Gracias a Matthieu por implementar estas características!\n
+    * Soporte para KeeChallenge (con Yubikey NEO). ¡Gracias a Ben Rush por implementar el conector!\n
+    * Mejorada la interfaz de usuario\n
+    * Solucionado un fallo en la interfaz de Google Drive\n
+    * Añadida opción para desactivar la opción \"donar\"\n
+    * Icono QuickUnlock ahora oculto de forma predeterminada en dispositivos Android 4.2+\n
   </string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
 * Los cambios externos a la base de datos son detectados y añadidos al guardar\n
