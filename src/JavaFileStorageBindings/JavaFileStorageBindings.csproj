@@ -213,12 +213,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\msa-auth-0.8.6\classes-msa-auth.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\onedrive-sdk-android-1.2.2\classes-onedrive-sdk.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gdrive\commons-logging-1.1.1.jar" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +284,7 @@
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gdrive\opencensus-api-0.24.0.jar" />
   </ItemGroup>
+  <ItemGroup />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
