@@ -4,11 +4,10 @@ android {
 
     namespace 'keepass2android.javafilestorage'
 
-    compileSdkVersion 33
-
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 33
+        compileSdk 34
     }
     buildTypes {
         release {
@@ -22,6 +21,10 @@ android {
         sourceCompatibility 11
         targetCompatibility 11
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 
 /*
@@ -31,7 +34,7 @@ NOTE: If you change dependencies here, don't forget to update the jar files in J
 dependencies {
 
     implementation 'com.squareup.okhttp3:okhttp:4.10.0-RC1'
-    implementation 'com.burgstaller:okhttp-digest:2.5'
+    implementation 'io.github.rburgst:okhttp-digest:2.5'
 
     implementation 'com.google.http-client:google-http-client-gson:1.20.0'
     implementation('com.google.api-client:google-api-client-android:1.30.5') {
@@ -43,14 +46,8 @@ dependencies {
     implementation 'com.google.api-client:google-api-client-android:1.30.5'
 
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
-    //onedrive:
-    implementation('com.onedrive.sdk:onedrive-sdk-android:1.2.0') {
-        transitive = false
-    }
     implementation 'com.pcloud.sdk:java-core:1.9.1'
     implementation 'com.pcloud.sdk:android:1.9.1'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.microsoft.services.msa:msa-auth:0.8.6'
-    implementation 'com.microsoft.aad:adal:1.14.0'
 
 }
