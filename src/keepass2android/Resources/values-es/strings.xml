@@ -965,9 +965,9 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Solucionados problemas con la exploración de archivos (especialmente en Android 4.4)\n
     * Solucionado un problema con la carga de archivos .kdb (Keepass 1) en Nexus 5 con Android Lollipop\n
     * Añadida opción para evitar tomar capturas de pantalla/mostrar la app en la lista de apps recientes\n
-    * Solucionado un problema con el almacenamiento en Google Drive (edición regular)\n
-    * Se permite los archivos de clave en tipos de almacenamiento deliberados (edición regular)\n
-    * Actualizado el SDK de Dropbox para incluir un parche de seguridad oficial (edición regular)\n
+    * Solucionado un problema con el almacenamiento en Google Drive (edición normal)\n
+    * Se permite los archivos de clave en tipos de almacenamiento deliberados (edición normal)\n
+    * Actualizado el SDK de Dropbox para incluir un parche de seguridad oficial (edición normal)\n
     * Actualizadas las herramientas de creación --&gt; tamaño de apk incrementado :-(\n
     He prometido algunos cambios más. Vendrán con el próximo lanzamiento - lo siento. Quería publicar estas correcciones lo más pronto posible.
   </string>
@@ -988,6 +988,31 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Solucionado un fallo en la interfaz de Google Drive\n
     * Añadida opción para desactivar la opción \"donar\"\n
     * Icono QuickUnlock ahora oculto de forma predeterminada en dispositivos Android 4.2+\n
+  </string>
+  <string name="ChangeLog_0_9_3_r5">    <b>Versión 0.9.3 r5</b>\n
+    * Incorporadas correcciones desde Xamarin: Keepass2Android ahora es compatible con ART en Android 4.4.2. ¡Por fin!\n
+    * Corrección de fallos: fallos en sincronización (actualización de pantalla, revisión correcta de cambios en http), fallos en dispositivos Android 2.x, fallos en las implementaciones de almacenamiento de Google Drive y OneDrive, limpieza del portapapeles al cerrar la base de datos, fallo en la apertura de archivos adjuntos, problemas de visualización con el teclado\n
+  </string>
+  <string name="ChangeLog_0_9_3">    <b>Versión 0.9.3</b>\n
+    * Nuevo teclado con muchas mejoras. Ver la configuración para personalizarlo.\n
+    * Soporte de solo lectura para kdb (archivos Keepass 1). ¡Experimental!\n
+    * Añadido soporte para SFTP\n
+    * Añadida solución para el error en ART (Android 4.4.2)\n
+    * Corrección de errores en general\n
+  </string>
+  <string name="ChangeLog_0_9_2">    <b>Versión 0.9.2</b>\n
+    * Añadido soporte para OTP (compatible con el complemento OtpKeyProv)\n
+    * Integrado soporte NFC para OTPs de YubiKey NEO \n
+    * Varias mejoras en la interfaz de usuario\n
+    * Integrada la biblioteca de Keepass 2.24\n
+    * Añadida opción para finalizar el proceso de la app (ver configuración)\n
+    * Mejorada la validación del certificado SSL\n
+    * Corrección de errores en general\n
+  </string>
+  <string name="ChangeLog_0_9_1">    <b>Versión 0.9.1</b>\n
+    * Integrado soporte para SkyDrive (solo en la edición normal de Keepass2Android)\n
+    * Corregidos problemas con la integración con Google Drive\n
+    * Añadido soporte para NTLM
   </string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
 * Los cambios externos a la base de datos son detectados y añadidos al guardar\n
