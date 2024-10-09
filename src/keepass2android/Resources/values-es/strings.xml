@@ -1014,6 +1014,28 @@ Consejo: Keepass2Android ha guardado la última versión de la base de datos que
     * Corregidos problemas con la integración con Google Drive\n
     * Añadido soporte para NTLM
   </string>
+  <string name="ChangeLog_0_9">    <b>Versión 0.9</b>\n
+    * Integrado soporte para Dropbox y Google Drive (lectura/escritura de bases de datos; solo en la edición normal de Keepass2Android)\n
+    * Integrado navegador de archivos personalizado (basado en el selector de archivos de Android por HBA)\n
+    * Mejorada interfaz de usuario para crear nuevas bases de datos\n
+    * Incluida fuente personalizada DejaVu Sans Mono para visualizar contraseñas\n
+    * Corrección de errores en general
+  </string>
+  <string name="ChangeLog_0_8_6">    <b>Versión 0.8.6</b>\n
+    * Soporte para cifrado Twofish\n
+    * Permite la edición de grupos\n
+    * Permite el desplazamiento de entradas y grupos\n
+    * El icono de QuickUnlock puede hacerse transparente (ver configuración)\n
+    * Corrección de errores en general
+  </string>
+  <string name="ChangeLog_0_8_5">    <b>Versión 0.8.5</b>\n
+    * Los archivos remotos son almacenados en la caché local de la app para permitir su uso sin conexión (incluyendo la edición y la posterior sincronización). Ver configuración. \n
+    * Icono de notificación para visualizar el estado de bloqueo de la base de datos (ver configuración)\n
+    * Mejorada la determinación del estado de bloqueo en algunas situaciones\n
+    * Los archivos de la base de datos son cargados a memoria mientras estás escribiendo tu contraseña para una velocidad de carga incrementada (ver configuración)\n
+    * Las entradas pueden ser añadidas al grupo raíz\n
+    * Corrección de errores (solucionando campos de referencia y problemas con el teclado en dispositivos italianos y chinos)
+  </string>
   <string name="ChangeLog_0_8_4"><b>Versión 0.8.4</b>\
 * Los cambios externos a la base de datos son detectados y añadidos al guardar\n
 * Mejorado el rendimiento de carga\n
