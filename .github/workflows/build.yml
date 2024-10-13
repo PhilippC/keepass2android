@@ -19,7 +19,7 @@ jobs:
   #     uses: gradle/actions/setup-gradle@v4
 
   #   - name: Cache NuGet packages
-  #     uses: actions/cache@v3
+  #     uses: actions/cache@v4
   #     with:
   #       path: ~/.nuget/packages
   #       key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
@@ -139,7 +139,7 @@ jobs:
   #     uses: gradle/actions/setup-gradle@v4
 
   #   - name: Cache NuGet packages
-  #     uses: actions/cache@v3
+  #     uses: actions/cache@v4
   #     with:
   #       path: ~/.nuget/packages
   #       key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
@@ -148,7 +148,7 @@ jobs:
 
   #   - name: Cache Xamarin.Android packages
   #     id: xamarin_cache
-  #     uses: actions/cache@v3
+  #     uses: actions/cache@v4
   #     with:
   #       path: ~/xamarin.android-oss
   #       key: ${{ runner.os }}-xamarin.android-oss-${{ env.xamarin_url }}
@@ -260,7 +260,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v4
 
     - name: Cache NuGet packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
