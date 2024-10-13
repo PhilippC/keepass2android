@@ -81,7 +81,7 @@ jobs:
   #       make apk Flavor=Net
 
   #   - name: Archive production artifacts (net)
-  #     uses: actions/upload-artifact@v3
+  #     uses: actions/upload-artifact@v4
   #     with:
   #       name: signed APK ('net' built on ${{ github.job }})
   #       path: |
@@ -99,7 +99,7 @@ jobs:
   #       make apk Flavor=NoNet
 
   #   - name: Archive production artifacts (nonet)
-  #     uses: actions/upload-artifact@v3
+  #     uses: actions/upload-artifact@v4
   #     with:
   #       name: signed APK ('nonet' built on ${{ github.job }})
   #       path: |
@@ -215,7 +215,7 @@ jobs:
   #       make apk Flavor=Net
 
   #   - name: Archive production artifacts (net)
-  #     uses: actions/upload-artifact@v3
+  #     uses: actions/upload-artifact@v4
   #     with:
   #       name: signed APK ('net' built on ${{ github.job }})
   #       path: |
@@ -233,7 +233,7 @@ jobs:
   #       make apk Flavor=NoNet
 
   #   - name: Archive production artifacts (nonet)
-  #     uses: actions/upload-artifact@v3
+  #     uses: actions/upload-artifact@v4
   #     with:
   #       name: signed APK ('nonet' built on ${{ github.job }})
   #       path: |
@@ -317,7 +317,7 @@ jobs:
         make apk Flavor=Net
 
     - name: Archive production artifacts (net)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
@@ -338,7 +338,7 @@ jobs:
         make apk Flavor=NoNet
 
     - name: Archive production artifacts (nonet)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: signed APK ('nonet' built on ${{ github.job }})
         path: |
