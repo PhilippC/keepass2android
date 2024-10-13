@@ -11,9 +11,8 @@ jobs:
 
   #   steps:
   #   - uses: actions/checkout@v4
-
-  #   - name: Fetch submodules
-  #     run: git submodule init && git submodule update
+  #     with:
+  #       submodules: true
 
   #   - name: Setup Gradle
   #     uses: gradle/actions/setup-gradle@v4
@@ -131,9 +130,8 @@ jobs:
   #       xamarin_url: https://artprodcus3.artifacts.visualstudio.com/Ad0adf05a-e7d7-4b65-96fe-3f3884d42038/6fd3d886-57a5-4e31-8db7-52a1b47c07a8/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL3hhbWFyaW4vcHJvamVjdElkLzZmZDNkODg2LTU3YTUtNGUzMS04ZGI3LTUyYTFiNDdjMDdhOC9idWlsZElkLzU0OTUzL2FydGlmYWN0TmFtZS9pbnN0YWxsZXJzLXVuc2lnbmVkKy0rTGludXg1/content?format=zip
   #   steps:
   #   - uses: actions/checkout@v4
-
-  #   - name: Fetch submodules
-  #     run: git submodule init && git submodule update
+  #     with:
+  #       submodules: true
 
   #   - name: Setup Gradle
   #     uses: gradle/actions/setup-gradle@v4
@@ -255,6 +253,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: true
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
@@ -266,9 +266,6 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/*.csproj', 'src/**/packages.config') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
-
-    - name: Fetch submodules
-      run: git submodule init && git submodule update
 
     # Workaround an issue when building on windows-2022. Error was
     #       D8 : OpenJDK 64-Bit Server VM warning : INFO: os::commit_memory(0x00000000ae400000, 330301440, 0) failed; error='The paging file is too small for this operation to complete' (DOS error/errno=1455) [D:\a\keepass2android\keepass2android\src\keepass2android\keepass2android-app.csproj]
