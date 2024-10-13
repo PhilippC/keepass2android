@@ -51,7 +51,7 @@ jobs:
   #       # $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.2
 
   #   - name: Switch to JDK-11
-  #     uses: actions/setup-java@v3
+  #     uses: actions/setup-java@v4
   #     with:
   #       java-version: '11'
   #       distribution: 'temurin'
@@ -181,7 +181,7 @@ jobs:
   #       echo "$HOME/xamarin.android-oss/bin/Release/bin" >> $GITHUB_PATH
 
   #   - name: Switch to JDK-11
-  #     uses: actions/setup-java@v3
+  #     uses: actions/setup-java@v4
   #     with:
   #       java-version: '11'
   #       distribution: 'temurin'
@@ -281,7 +281,7 @@ jobs:
       #uses: ilammy/msvc-dev-cmd@v1
 
     - name: Switch to JDK-11
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '11'
         distribution: 'temurin'
