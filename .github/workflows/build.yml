@@ -16,7 +16,7 @@ jobs:
   #     run: git submodule init && git submodule update
 
   #   - name: Setup Gradle
-  #     uses: gradle/actions/setup-gradle@v3
+  #     uses: gradle/actions/setup-gradle@v4
 
   #   - name: Cache NuGet packages
   #     uses: actions/cache@v3
@@ -136,7 +136,7 @@ jobs:
   #     run: git submodule init && git submodule update
 
   #   - name: Setup Gradle
-  #     uses: gradle/actions/setup-gradle@v3
+  #     uses: gradle/actions/setup-gradle@v4
 
   #   - name: Cache NuGet packages
   #     uses: actions/cache@v3
@@ -257,7 +257,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+      uses: gradle/actions/setup-gradle@v4
 
     - name: Cache NuGet packages
       uses: actions/cache@v3
