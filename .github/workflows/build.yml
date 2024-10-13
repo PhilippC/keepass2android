@@ -271,7 +271,7 @@ jobs:
     #       D8 : OpenJDK 64-Bit Server VM warning : INFO: os::commit_memory(0x00000000ae400000, 330301440, 0) failed; error='The paging file is too small for this operation to complete' (DOS error/errno=1455) [D:\a\keepass2android\keepass2android\src\keepass2android\keepass2android-app.csproj]
     #       C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Xamarin\Android\Xamarin.Android.D8.targets(81,5): error MSB6006: "java.exe" exited with code 1. [D:\a\keepass2android\keepass2android\src\keepass2android\keepass2android-app.csproj]
     - name: Configure Pagefile
-      uses: al-cheb/configure-pagefile-action@v1.3
+      uses: al-cheb/configure-pagefile-action@v1.4
       with:
         minimum-size: 8GB
 
