@@ -31,7 +31,7 @@ NOTE: If you change dependencies here, don't forget to update the jar files in J
 dependencies {
 
     implementation 'com.squareup.okhttp3:okhttp:4.10.0-RC1'
-    implementation 'com.burgstaller:okhttp-digest:2.5'
+    implementation 'io.github.rburgst:okhttp-digest:2.5'
 
     implementation 'com.google.http-client:google-http-client-gson:1.20.0'
     implementation('com.google.api-client:google-api-client-android:1.30.5') {
