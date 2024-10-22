@@ -145,7 +145,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import keepass2android.javafilestorage.DropboxCloudRailStorage;
+import keepass2android.javafilestorage.DropboxV2Storage;
 import keepass2android.javafilestorage.GoogleDriveAppDataFileStorage;
+import keepass2android.javafilestorage.ICertificateErrorHandler;
 import keepass2android.javafilestorage.JavaFileStorage;
 import keepass2android.javafilestorage.JavaFileStorage.FileEntry;
 import keepass2android.javafilestorage.PCloudFileStorage;
@@ -347,7 +349,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 				fileList = fs.listFiles(path);
 				checkFileList(path, fileList, false, true); //second param indicates the file must be gone
 				
-				Log.d("KP2AJ", "Delete a folder recursive");
+				Log.d("KP2AJ", "xDelete a folder recursive: " + subfolderPath);
 				fs.delete(subfolderPath);
 				
 				Log.d("KP2AJ", "List files again to check if deleting the folder was successful:");
@@ -540,12 +542,12 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 
 	static JavaFileStorage createStorageToTest(Context ctx, Context appContext, boolean simulateRestart) {
 		//storageToTest = new SftpStorage(ctx.getApplicationContext());
-		storageToTest = new PCloudFileStorage(ctx, "FLm22de7bdS", "pcloud", "pcloudtest");
+		//storageToTest = new PCloudFileStorage(ctx, "FLm22de7bdS", "pcloud", "pcloudtest");
 		//storageToTest = new SkyDriveFileStorage("000000004010C234", appContext);
 
 
 		//storageToTest = new GoogleDriveAppDataFileStorage();
-		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
+		storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
 			public boolean onValidationError(String error) {
 				return false;
@@ -555,7 +557,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 			public boolean alwaysFailOnValidationError() {
 				return false;
 			}
-		});*/
+		});
 
 		//storageToTest =  new DropboxV2Storage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
 		//storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
