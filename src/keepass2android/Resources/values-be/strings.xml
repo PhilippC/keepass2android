@@ -44,7 +44,7 @@
   <string name="display_prefs">Адлюстраванне</string>
   <string name="password_access_prefs">Доступ да пароляў</string>
   <string name="QuickUnlock_prefs">Хуткае разблакаванне</string>
-  <string name="FileHandling_prefs">Апрацоўка файлаў</string>
+  <string name="FileHandling_prefs">Апрацоўванне файлаў</string>
   <string name="keyboard_prefs">Клавіятура</string>
   <string name="export_prefs">Экспарт базы даных…</string>
   <string name="fingerprint_prefs">Разблакаванне з дапамогай біяметрычных даных</string>
@@ -217,7 +217,7 @@
   <string name="master_key_type">Абярыце тып галоўнага ключа:</string>
   <string name="progress_create">Стварэнне базы даных…</string>
   <string name="create_database">Стварыць базу даных</string>
-  <string name="progress_title">Апрацоўка…</string>
+  <string name="progress_title">Апрацоўванне…</string>
   <string name="remember_keyfile_summary">Памятаць шлях да файлаў ключоў</string>
   <string name="remember_keyfile_title">Захаванне файла ключа</string>
   <string name="remove_from_filelist">Выдаліць</string>
@@ -486,7 +486,7 @@
   <string name="otp_aux_file">Дапаможны файл OTP (аднаразовых пароляў) </string>
   <string name="ErrorOcurred">Адбылася памылка:</string>
   <string name="DuplicateUuidsError">База даных пашкоджаная: выяўлены паўторныя ідэнтыфікатары. (Вы захавалі базу ў Minikeepass?) Імпартуйце новую базу даных з дапамогай Keepass 2 для ПК і абярыце \"Стварыць новыя ідэнтыфікатары\".</string>
-  <string name="DuplicateUuidsErrorAdditional">Вы можаце адключыць паведамленне пра памылку ў \"Налады / Налады праграмы / Апрацоўка файлаў / Праверка на наяўнасць дублікатаў ідэнтыфікатараў\". Рэкамендуецца выправіць базу даных.</string>
+  <string name="DuplicateUuidsErrorAdditional">Вы можаце адключыць паведамленне пра памылку ў \"Налады / Налады праграмы / Апрацоўванне файлаў / Праверка на наяўнасць дублікатаў ідэнтыфікатараў\". Рэкамендуецца выправіць базу даных.</string>
   <string name="synchronize_database_menu">Сінхранізаваць базу даных…</string>
   <string name="CannotMoveGroupHere">Немагчыма перамясціць групу ў гэтую групу.</string>
   <string name="donate_question">Сёння Актобэрфэст! Калі вам падабаецца Keepass2Android, ці не найлепшы гэта дзень, каб купіць мне піва?</string>
