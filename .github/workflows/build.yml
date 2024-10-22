@@ -280,10 +280,10 @@ jobs:
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
 
-    - name: Switch to JDK-11
+    - name: Switch to JDK-17
       uses: actions/setup-java@v4
       with:
-        java-version: '11'
+        java-version: '17'
         distribution: 'temurin'
 
     - name: Display java version
