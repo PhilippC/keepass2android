@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "keepass2android-app", "keep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kp2aAutofillParser", "Kp2aAutofillParser\Kp2aAutofillParser.csproj", "{39B12571-BAFE-4D3A-AEE2-4D74F14DFD96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kp2aAutofillParserTest", "Kp2aAutofillParserTest\Kp2aAutofillParserTest.csproj", "{3D1560FF-86BB-4CB4-8367-80BA13B81C38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kp2aAutofillParserTest", "Kp2aAutofillParserTest\Kp2aAutofillParserTest.csproj", "{3D1560FF-86BB-4CB4-8367-80BA13B81C38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

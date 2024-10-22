@@ -13,9 +13,6 @@ using keepass2android.services.AutofillBase.model;
 using System.Linq;
 using Android.Content.PM;
 using Kp2aAutofillParser;
-#if !NoNet
-using Com.Dropbox.Core.V2.Teamlog;
-#endif
 using AlertDialog = Android.App.AlertDialog;
 
 namespace keepass2android.services.AutofillBase

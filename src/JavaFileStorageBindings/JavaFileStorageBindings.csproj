@@ -183,6 +183,7 @@
     <LibraryProjectZip Include="..\java\JavaFileStorage\app\build\outputs\aar\JavaFileStorage-debug.aar">
       <Link>Jars\JavaFileStorage-debug.aar</Link>
     </LibraryProjectZip>
+    <None Include="app.config" />
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
     <None Include="packages.config" />
@@ -237,21 +238,6 @@
     <EmbeddedReferenceJar Include="Jars\gdrive\google-http-client-gson-1.16.0-rc.jar" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\jackson-core-2.7.4.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-digest-2.5.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okio-2.9.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-4.10.0-RC1.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedJar Include="Jars\dropbox-core-sdk-4.0.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gson-2.8.6.jar" />
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +270,18 @@
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\gdrive\opencensus-api-0.24.0.jar" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okhttp-4.12.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio-3.6.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio-jvm-3.6.0.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\okhttp-digest-3.1.0.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\dropbox-core-sdk-5.4.6.jar" />
+    <EmbeddedReferenceJar Include="Jars\jackson-core-2.13.5.jar" />
+  </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
