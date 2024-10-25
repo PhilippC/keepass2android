@@ -679,6 +679,12 @@
     &#8226; Assicurati di aver selezionato il tipo di password corretto. Assicurarsi che questo corrisponda al tipo usato durante la creazione del database.\n
     &#8226; Assicurati di aver selezionato il file database corretto.
   </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    &#8226; Dritta: Se pensi che il tuo file di database possa essere danneggiato o non ricordi la chiave principale dopo averla modificata, puoi provare con l\'ultima versione del file aperta correttamente toccando \"%1$s\" e selezionando il backup locale.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    &#8226; Dritta: Keepass2Android ha memorizzato l\'ultima versione del file aperta crrettamente nella memoria interna. Puoi aprirla toccando \"%1$s\" e selezionando il backup locale.
+  </string>
   <string name="open_other_db">Apri un altro database…</string>
   <string name="select_database">Seleziona il database</string>
   <string name="configure_child_dbs">Configura i database figli…</string>
