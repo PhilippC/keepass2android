@@ -685,6 +685,14 @@
   <string name="HintLocalBackupOtherError">    \n
     &#8226; Dritta: Keepass2Android ha memorizzato l\'ultima versione del file aperta crrettamente nella memoria interna. Puoi aprirla toccando \"%1$s\" e selezionando il backup locale.
   </string>
+  <string name="CorruptDatabaseHelp">Il file è danneggiato. \n
+    Ecco alcune dritte che potrebbero aiutare a diagnosticare il problema:\n
+
+    &#8226; Se hai copiato il file su USB (in modo MTP), per favore riprova usando uno strumento come MyPhoneExplorer. MTP in alcuni casi tronca i file.\n
+    &#8226; Se non puoi aprire il file dalla stessa posizione sul tuo PC, è molto probabile che il file sia in realtà danneggiato. Usare un backup del database. Se si assume che Keepass2Android abbia corrotto il file, contattare il gruppo di assistenza.\n
+    &#8226; Se puoi ancora aprire il file sul tuo PC, contatta il gruppo di assistenza. Potresti provare a salvarlo con diverse impostazioni (ad esempio non compresso) sul PC e riprovare ad aprire in Keepass2Android.
+
+  </string>
   <string name="open_other_db">Apri un altro database…</string>
   <string name="select_database">Seleziona il database</string>
   <string name="configure_child_dbs">Configura i database figli…</string>
@@ -713,21 +721,24 @@
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
   <string-array name="ChangeLog_1_11">
-    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
-    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
-    <item>TOTP can now be seen from the group view.</item>
-    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Aggiunti pulsanti di azione fluttuanti per la ricerca e TOTP panoramica (se sono presenti voci TOTP).</item>
+    <item>Vista migliorata dei campi TOTP aggiungendo un indicatore di tempo limite e mostrandolo in modo più evidente.</item>
+    <item>TOTP ora può essere visto dalla vista di gruppo.</item>
+    <item>Copia il valore del testo negli Appunti premendo a lungo nella vista entrate.</item>
     <item>Reso TOTP più facilmente accessibile dalla tastiera integrata.</item>
     <item>Mostra le notifiche d\'immissione automatica di una voce TOTP. Questo permette di copiare il TOTP negli appunti. Vedi le preferenze per configurare il comportamento.</item>
     <item>Implementazione TOTP aggiornata per risolvere problemi di compatibilità con KeePass2 e TrayTOTP</item>
     <item>Miglioramenti minori</item>
   </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Aggiorna pCloud SDK per fornire l\'accesso alle cartelle condivise</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
-    <item>Add support for notification permissions on Android 13+</item>
-    <item>Improve the FTP and SFTP implementation</item>
+    <item>Aggiungi il supporto per le autorizzazioni di notifica su Android 13+</item>
+    <item>Migliora l\'implementazione FTP e SFTP</item>
     <item>Aggiunto accesso completo a pCloud</item>
-    <item>Allow to select System language in the language dialog</item>
-    <item>Fix issue with remembering Keyfile + Challenge password type</item>
+    <item>Consenti di selezionare la lingua di sistema nella finestra di dialogo della lingua</item>
+    <item>Risolvi il problema con memorizzazione del file chiave e tipo di password sfidante</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Correzione bug per crash e logout non previsti</item>
@@ -794,6 +805,56 @@
     <item>Correzioni di bug</item>
     <item>Correzioni di bug</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Versione 1.07b\n
+    * Migliorata la performance di Argon2 usando l\'implementazione nativa (Grazie a Chih-Hsuan Yen!)\n
+    * Consentita la disabilitazione dell\'impronta digitale cliccando sull\'icona dell\'impronta (evita problemi con i lettori d\'impronte sottoschermo, grazie a marcoDallas!)\n
+    * Ripristino della posizione del cursore quando si attiva/disattiva la visibilità della password (grazie a DDoSolitary!)\n
+    * Miglioramenti nell\'implementazione di pCloud (grazie ancora a gilbsgilbs!)\n
+    * Aggiunto il supporto della Compilazione automatica per molti altri browser \n
+    * Nuova implementazione per OneDrive: Include il supporto per OneDrive for Business, elementi condivisi, ambiti d\'accesso selezionabili, account multipli e risolve problemi con l\'accesso offline\n
+    * Correzione d\'errori
+  </string>
+  <string name="ChangeLog_1_07">Versione 1.07\n
+     * Sistema i crash su Android 9 di Samsung\n
+     * Permette di aprire più database, compatibile con KeeAutoExec\n
+     * SFTP: Consente l\'autenticazione con chiave pubblica, controlla se la chiave dell\'host è stata modificata\n
+     * Introduce il supporto a pCloud - grazie a gilbsgilbs!\n
+     * Rende esplicito il supporto per Nextcloud\n
+     * Migliora il salvataggio e l\'aggiornamento degli allegati alle voci\n
+     * Altre opzioni per adattare il comportamento alle preferenze personali\n
+     * SSL: Fiducia ai certificati utente\n
+     * Migliorato autocompletamento (adesso funziona con Firefox, permette di ridurre i popup)\n
+     * Correzioni di bug\n
+  </string>
+  <string name="ChangeLog_1_06">Versione 1.06\n
+* passato a ykDroid al posto di YubiChallenge come app per Yubikey Challenge-Response.\n
+* implementato il supporto per il Challenge-Response di KeepassXC. Nota: Il formato del database deve essere KDBX4!\n
+* blocco al caricamento dei file cestinati da Google Drive\n
+* scambiato implementazioneTLS per FTPS, aggiunto un rimedio al bug JSch con server che supportano gssapi-with-mic\n
+* bugfix\n
+  </string>
+  <string name="ChangeLog_1_05">    Versione 1. 5\n
+    * Usa canali di notifica per Android 8, consentendo la configurazione tramite le impostazioni di sistema\n
+    * Mostra l\'icona di voce nella notificazione\n
+    * Usa le icone adattive per Android 8, utilizzare l\'icona round launcher per Android 7\n
+    * Consenti di attivare la ricerca al momento dello sblocco (vedi impostazioni)\n
+    * Modificato il modo in cui i file sono scritti attraverso il quadro di accesso all\'archiviazione, corregge i problemi con l\'aggiornamento dei file su Google Drive aperti tramite il selettore di file di sistema\n
+    * Aggiunti alcuni testi di informazioni per evitare alcuni malintesi comuni\n
+    * Creare backup locali dei database aperti con successo per ridurre il rischio di perdita di dati\n
+    * Aggiornato JSch per supportare i cifrari SSH più recenti\n
+    * Consenti di modificare le impostazioni di connessione, e. . when WebDav password changed\n
+    * Aggiunto il supporto per la modalità password statica di Yubikey Neo\n
+    * Consente di disabilitare il suggerimento di Autofill\n
+    * Risolto la perdita di dati al logcat\n
+    * correzioni di bug\n
+  </string>
+  <string name="ChangeLog_1_04b">    Versione 1.04b\n 
+    * Evita il crash quando l\'utente tenta di abilitare la Compilazione automatica su dispositivi Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">    Versione 1.04\n
+    * Aggiunto il Servizio di compilazione automatica per Android 8.0 e successivi.\n
+    * Aggiornati librerie e strumenti di compilazione e versione target SDK.\n
+  </string>
   <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondi</item>
