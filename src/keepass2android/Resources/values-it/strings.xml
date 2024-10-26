@@ -855,6 +855,28 @@
     * Aggiunto il Servizio di compilazione automatica per Android 8.0 e successivi.\n
     * Aggiornati librerie e strumenti di compilazione e versione target SDK.\n
   </string>
+  <string name="ChangeLog_1_03">Versione 1.03\n
+    * Rimosso il servizio di Accessibilità per la compilazione automatica come richiesto da Google. Vedi le impostazioni di inserimento password per trovare un plugin con le stesse funzionalità precedenti.\n
+    * Aggiunta di nuovo app di terze parti come opzione di archiviazione\n
+    * Visualizzatore di immagini integrato per la visione delle immagini allegate senza trasferirle ad altre app\n
+    * OkHttp aggiornato per risolvere problemi con alcune connessioni\n
+    * Supporto per le voci KeeTrayTOTP, ora supporta le voci di Steam\n  </string>
+  <string name="ChangeLog_1_02">    Versione 1.02\n
+    * Diversi miglioramenti di sicurezza. Un sincero ringraziamento per i rapporti di sicurezza di jean-baptiste.cayrou@thalesgroup.com e vincent.fargues@thalesgroup.com e per la loro collaborazione!\n
+    * Supporto per KeyboardSwapPlugin (vedi le opzioni di accesso per le password): consente il cambio automatico del metodo di input su dispositivi senza permessi di root. Ringrazio Mishaal Rahman di XDA-Developers per averlo reso possibile.\n
+    * Correzione per il servizio Accessibilità con le versioni recenti di Chrome\n
+    * Correzione per la pulizia non necessaria dei dati delle impronte digitali\n
+    * Risolti problemi di instabilità minori\n
+    * Aggiornamento di Dropbox SDK per assicurare compatibilità futura\n
+    * Rimosso il sistema di segnalazione di errori tramite Xamarin Insights\n
+    * Strumenti di sviluppo aggiornati\n
+  </string>
+  <string name="ChangeLog_1_01g">Versione 1.01-g\n
+    * Risolto l\'arresto dell\'app in modalità offline\n
+    * Correzione della codifica non corretta delle credenziali FTP(S)\n
+    * Correzione degli arresti dell\'app durante l\'utilizzo di OneDrive e su precedenti versioni di Android\n
+    * Ore mostrate come ora locale nella schermata di accesso\n
+  </string>
   <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondi</item>
