@@ -877,6 +877,52 @@
     * Correzione degli arresti dell\'app durante l\'utilizzo di OneDrive e su precedenti versioni di Android\n
     * Ore mostrate come ora locale nella schermata di accesso\n
   </string>
+  <string name="ChangeLog_1_01d">Versione 1.01-d\n
+    * Messa a punto per l\'elenco dei file di OneDrive\n
+    * Consente di ignorare gli errori dei certificati anche quando la verifica del nome host fallisce (non raccomandato per uso produttivo)\n
+    * Messa a punto per QuickUnlock che a volte non funziona nonostante il corretto codice di sblocco\n
+  </string>
+  <string name="ChangeLog_0_9_8c">Versione 0.9.8c\n
+* risolta la vulnerabilità SSL in Microsoft Live SDK (usato per l\'accesso ai file via OneDrive)\n
+* Bug risolto: la precedente versione conteneva due metodi di immissione (uno si bloccava)\n  </string>
+  <string name="ChangeLog_1_01">    Versione 1.01\n
+    * aggiunto il supporto per il nuovo formato  KDBX-4 (compatibile con Keepass 2.35) che include la derivazione di chiavi Argon2 e la crittografia ChaCha20.\n
+    * Riscritta l\'integrazione con l\'archiviazione file WebDav, ora permette di navigare fra i file e supporta crittografia modem.\n
+    * Riscritta l\'integrazione con l\'archiviazione file FTP, ora permette di navigare fra i file e supporta crittografia (FTPS).\n
+    * Aggiornato all\'SDK di  OneDrive (il Live SDK usato in precedenza non è più aggiornato)\n
+    * Aggiornato all\'SDK versione 2 di Dropbox (la versione 1 precedentemente usata è sconsigliata).\n
+    * Aggiunto il supporto a OwnCloud.\n
+    * Chiede i permessi di archiviazione prima di aprire i file locali
+  </string>
+  <string name="ChangeLog_1_0_0e">    Versione 1.0.0e\n
+    * correzione per Sblocco con Impronta su vecchi dispositivi Samsung con Android 6\n
+    * aggiunto supporto nativo per dispositivi x86\n
+    * possibilità di nascondere la tastiera durante la scansione dell\'impronta\n
+    * aggiornato compilatore
+  </string>
+  <string name="ChangeLog_1_0_0">Versione 1.0.0\n
+* sblocco con impronta (richiede Android 6.0+ o un dispositivo Samsung)\n
+* aggiunto servizio Completamento Automatico (richiede Android 5.0+)\n
+* aggiunto supporto per i modelli delle voci\n
+* aggiuntamodalità  \"non in linea\"\n
+* consente di copiare le voci\n
+* completamento automatico per i nomi dei campi\n
+* consente di rimuovere voci dalla lista dei file recenti\n
+* richiede le autorizzazioni in fase di esecuzione in Android 6.0\n
+* bug risolti (nella tastiera incorporata, alla selezione di icone)\n
+* aggiunta opzione per la segnalazione di errori\n
+* aggiunti messaggi di aiuto in vari punti\n  </string>
+  <string name="ChangeLog_0_9_9">Versione 0.9.9\n
+* Interfaccia completamente riprogettata. Grazie mille a Stefano Pignataro (http://www.spstudio.at) per l\'assistenza!\n
+* Consente di aggiungere icone personalizzate\n
+* Supporta la modalità Multi Window sui dispositivi Samsung\n
+* Aumentato il numero predefinito di cicli di cifratura per i nuovi database\n
+* Controlla la presenza di chiavi duplicate tra i campi aggiuntivi per evitare la perdita di dati\n</string>
+  <string name="ChangeLog_0_9_9c">Versione 0.9.9c\n
+* Il tema scuro è tornato\n
+* Puoi installare altri pacchetti di icone (le vecchie icone in stile Windows sono disponibili sul Play Store)\n
+* Aggiunta richiesta di conferma prima di eliminare voci senza passare dal cestino\n
+* Correzione errori (errata visualizzazione dell\'OTP-secret, icona dell\'app errata in certi posti)\n  </string>
   <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondi</item>
