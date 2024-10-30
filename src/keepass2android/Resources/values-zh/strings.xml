@@ -36,7 +36,7 @@
   <string name="OfferSaveCredentials_title">支持保存凭据</string>
   <string name="ShowGroupInEntry_title">在条目视图中显示群组名</string>
   <string name="unknown_uri_scheme">对不起！Keepass2Android 无法处理返回的 URI %1$s。请联系开发者！</string>
-  <string name="Entry_singular">1个项目</string>
+  <string name="Entry_singular">1 个条目</string>
   <string name="Entry_plural">%1$d 个条目</string>
   <string name="IconSet_title">图标集</string>
   <string name="IconSet_install">发现更多...</string>
@@ -118,7 +118,7 @@
   <string name="entry_password">密码</string>
   <string name="entry_save">保存</string>
   <string name="entry_title">名称</string>
-  <string name="entry_url">网址：</string>
+  <string name="entry_url">链接地址</string>
   <string name="entry_user_name">用户名</string>
   <string name="entry_extra_strings">额外的字符串字段</string>
   <string name="entry_binaries">文件附件</string>
@@ -155,7 +155,7 @@
   <string name="hint_keyfile_path">SSH 私钥路径</string>
   <string name="hint_login_pass">密码</string>
   <string name="hint_title">名称</string>
-  <string name="hint_url">网址：</string>
+  <string name="hint_url">链接地址</string>
   <string name="hint_override_url">覆盖 URL</string>
   <string name="hint_tags">标签1, 标签2</string>
   <string name="hint_username">用户名</string>
@@ -199,7 +199,7 @@
   <string name="menu_rename">重命名</string>
   <string name="menu_search">搜索</string>
   <string name="menu_search_advanced">高级搜索</string>
-  <string name="menu_url">转到链接地址</string>
+  <string name="menu_url">跳转网址</string>
   <string name="menu_change_db">更改数据库...</string>
   <string name="menu_show_all">显示所有字段</string>
   <string name="minus">减</string>
@@ -226,7 +226,7 @@
   <string name="root">管理员权限</string>
   <string name="AutoReturnFromQuery_title">从查询屏幕自动返回</string>
   <string name="AutoReturnFromQuery_summary">查找应用程序或网站的条目时：如果数据库中只有一个匹配的条目，则自动从查询屏幕返回。</string>
-  <string name="KeyDerivFunc">密匙派生函数</string>
+  <string name="KeyDerivFunc">密钥派生函数</string>
   <string name="rounds">加密次数</string>
   <string name="rounds_explaination">更高的加密次数能对暴力攻击提供额外保护，但也会增加加载和保存的时间。</string>
   <string name="rounds_hint">次数</string>
@@ -375,7 +375,7 @@
   <string name="UseKp2aKeyboardInKp2a_title">在 Keepass2Android 中使用内置键盘</string>
   <string name="UseKp2aKeyboardInKp2a_summary">如果您不信任您的输入法提供者，请在输入主密码或编辑条目时选中此选项以使用内置键盘。</string>
   <string name="ActivateSearchViewOnStart_title">启动时自动激活搜索区域</string>
-  <string name="ActivateSearchViewOnStart_summary">当进入分组视图或开始搜索条目时自动将焦点转至搜索区域</string>
+  <string name="ActivateSearchViewOnStart_summary">当进入群组视图或开始搜索条目时自动将焦点转至搜索区域</string>
   <string name="NoDonateOption_title">隐藏捐赠选项</string>
   <string name="NoDonateOption_summary">本设置为捐赠者设定。只有当使用 Keepass2Android 一段时间后才可用。</string>
   <string name="NoDonateOption_question">没有捐款，本应用将不复存在，更不会不断改进！ 如果您还没有捐赠的话，现在，请考虑一下吧！</string>
@@ -722,12 +722,12 @@
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
   <string-array name="ChangeLog_1_11">
     <item>添加了用于搜索和概览 TOTP 的浮动按钮（如果存在TOTP条目）</item>
-    <item>通过添加超时指示器以突出显示TOTP字段并改进显示效果。</item>
-    <item>TOTP现已展示在组视图中</item>
-    <item>长按输入框内文本以复制</item>
-    <item>使TOTP 更容易在内置键盘上访问。</item>
-    <item>自动填充TOTP时显示通知。这将会允许复制TOTP到剪贴板。请在首选项配置行为。</item>
-    <item>更新TOTP执行以解决与 KeePass2 和 TrayTOTP的兼容性问题</item>
+    <item>通过添加超时指示器并突出显示，改进 TOTP 字段的显示效果</item>
+    <item>TOTP现已可展示在群组视图中</item>
+    <item>长按条目视图时将文本值复制到剪贴板</item>
+    <item>使 TOTP 更容易在内置键盘上访问</item>
+    <item>自动填充 TOTP 时显示通知。这将会允许复制TOTP到剪贴板。请在首选项配置行为。</item>
+    <item>更新 TOTP 实现以解决与 KeePass2 和 TrayTOTP 的兼容性问题</item>
     <item>微小改进</item>
   </string-array>
   <string-array name="ChangeLog_1_11_net">
@@ -735,10 +735,10 @@
   </string-array>
   <string-array name="ChangeLog_1_10">
     <item>在 Android 13+ 上添加对通知权限的支持</item>
-    <item>改善FTP和SFTP的代码实现</item>
+    <item>改进 FTP 和 SFTP 的代码实现</item>
     <item>添加访问权限到完整的 pCloud</item>
     <item>允许在语言对话框中选择系统语言</item>
-    <item>请记住密钥文件 + 挑战密码类型修复问题</item>
+    <item>修复记住密钥文件 + 挑战密码类型的问题</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>修复崩溃和意外注销的 bug</item>
