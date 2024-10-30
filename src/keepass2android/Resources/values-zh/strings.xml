@@ -100,7 +100,7 @@
   <string name="fingerprint_reenable2">请用密码解锁，然后在数据库设置中重新启用指纹解锁。</string>
   <string name="FingerprintInitFailed">无法初始化指纹认证。</string>
   <string name="FingerprintSetupFailed">无法加密数据。 如果在Keepass2Android正在侦听指纹时在系统设置中添加或删除指纹，则会发生这种情况。</string>
-  <string name="enable_fingerprint_unlock_Info">此选项将会把主密码保存在这台设备上，使用Android密钥库加密，并使用指纹授权进行保护。只有你的指纹才能解锁数据库。</string>
+  <string name="enable_fingerprint_unlock_Info">此选项将会把主密码保存在这台设备上，使用Android密钥库加密，并使用生物特征认证进行保护。只有你的生物特征才能解锁数据库。</string>
   <string name="enable_fingerprint_quickunlock_Info">允许使用指纹认证来代替快速解锁代码。不再需要保存任何与你的主密码关联的信息。</string>
   <string name="enter_filename">输入数据库名：</string>
   <string name="entry_accessed">访问时间</string>
@@ -332,8 +332,8 @@
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
   <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
   <string name="QuickUnlockHideLength_summary">若启用，快速解锁所需的密码长度不会再显示在快速解锁界面上。</string>
-  <string name="QuickUnlockKeyFromDatabase_title">来自数据库条目的 QuickUnlock 密钥</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">如果活动数据库在其根组中包含一个标题为 QuickUnlock 的条目，则该条目的密码将用作 QuickUnlock 代码。</string>
+  <string name="QuickUnlockKeyFromDatabase_title">来自数据库条目的快速解锁密钥</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">如果活动数据库在其根组中包含一个标题为 QuickUnlock 的条目，则该条目的密码将用作快速解锁代码。</string>
   <string name="QuickUnlock_fail">解锁失败：密码错误！</string>
   <string name="SaveAttachmentDialog_title">保存附件</string>
   <string name="SaveAttachmentDialog_text">请选择保存该附件的位置。</string>
@@ -721,7 +721,7 @@
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
   <string-array name="ChangeLog_1_11">
-    <item>添加了用于搜索和TOTP 概览的浮动动动作按钮(如果存在TOTP条目)。</item>
+    <item>添加了用于搜索和概览 TOTP 的浮动按钮（如果存在TOTP条目）</item>
     <item>通过添加超时指示器以突出显示TOTP字段并改进显示效果。</item>
     <item>TOTP现已展示在组视图中</item>
     <item>长按输入框内文本以复制</item>
