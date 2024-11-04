@@ -773,9 +773,9 @@
   </string-array>
   <string-array name="ChangeLog_1_08d">
     <item>Thêm hỗ trợ cho định dạng tệp khóa mới được giới thiệu trong Keepass 2.47</item>
-    <item>Add support for Argon2id as key derivation function</item>
-    <item>Improved Autofill compatibility with Firefox and Chrome</item>
-    <item>Improve support for TOTP entries from desktop programs</item>
+    <item>Thêm hỗ trợ cho Argon2id như hàm phát sinh khóa.</item>
+    <item>Cải thiện khả năng tương thích Autofill với Firefox và Chrome.</item>
+    <item>Cải thiện hỗ trợ cho các mục TOTP từ các chương trình trên máy tính để bàn.</item>
     <item>Update pCloud SDK to fix authentication issue</item>
     <item>Update Jsch to version 0.1.55</item>
     <item>Add menu to database selection screen</item>
