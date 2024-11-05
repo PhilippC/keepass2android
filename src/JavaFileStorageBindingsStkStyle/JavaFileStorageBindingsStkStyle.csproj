@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <AndroidLibrary Include="..\java\JavaFileStorage\app\build\outputs\aar\JavaFileStorage-debug.aar" Link="JavaFileStorage-debug.aar" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidLibrary Bind="False" Update="dropbox-core-sdk-5.4.6.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\commons-logging-1.1.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-api-client-1.30.5.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-api-client-android-1.30.5.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-api-services-drive-v2-rev102-1.16.0-rc.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-http-client-1.32.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-http-client-android-1.32.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-http-client-gson-1.16.0-rc.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-http-client-jackson-1.16.0-rc.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-http-client-jackson2-1.32.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\google-oauth-client-1.30.4.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\grpc-context-1.22.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\httpclient-4.0.3.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\httpcore-4.0.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\httpmime-4.0.3.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\json_simple-1.1.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\jsr305-3.0.2.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\opencensus-api-0.24.0.jar" />
+    <AndroidLibrary Bind="False" Update="gdrive\opencensus-contrib-http-util-0.24.0.jar" />
+    <AndroidLibrary Bind="False" Update="gson-2.8.6.jar" />
+    <AndroidLibrary Bind="False" Update="jackson-core-2.13.5.jar" />
+    <AndroidLibrary Bind="False" Update="okhttp-4.12.0.jar" />
+    <AndroidLibrary Bind="False" Update="okhttp-digest-3.1.0.jar" />
+    <AndroidLibrary Bind="False" Update="okio-3.6.0.jar" />
+    <AndroidLibrary Bind="False" Update="okio-jvm-3.6.0.jar" />
+  </ItemGroup>
+</Project>

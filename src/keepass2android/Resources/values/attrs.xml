@@ -6,7 +6,7 @@
     <attr name="TextColorHeader" format="reference"></attr>
     <attr name="TextColorItem" format="reference"></attr>
     <attr name="CancelDrawable" format="reference"></attr>
-    <attr name="NewGroupDrawable" format="reference"></attr>
+    
     <attr name="AddFieldDrawable" format="reference"></attr>
     <attr name="NewEntryDrawable" format="reference"></attr>
     <attr name="OpenFileDrawable" format="reference"></attr>

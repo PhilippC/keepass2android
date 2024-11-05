@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <!-- h540dp -->
+
+  <dimen name="splash_logo_width">105dp</dimen>
+  <dimen name="splash_logo_height">138dp</dimen>
+  <dimen name="splash_logo_marginTop">32dp</dimen>
+
+</resources>
+

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_activated="true"
+        android:drawable="@drawable/checked_drawable" />
+  <item>
+    <color android:color="#0000" />
+  </item>
+</selector>
+<!--
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@drawable/checked_drawable" />
+  <item android:state_checked="false" android:drawable="@drawable/listitem_unchecked_drawable" />
+  <item android:state_checked="false" android:drawable="@drawable/listitem_unchecked_drawable" /> 
+    
+</selector>
+-->

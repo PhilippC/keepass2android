@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Transforms\EnumFields.xml" />
+    <None Remove="Transforms\EnumMethods.xml" />
+    <None Remove="Transforms\Metadata.xml" />
+  </ItemGroup>
+  <ItemGroup>
+  <AndroidLibrary Include="..\java\android-filechooser-AS\app\build\outputs\aar\android-filechooser-release.aar" Link="android-filechooser-release.aar" />
+  </ItemGroup>
+</Project>

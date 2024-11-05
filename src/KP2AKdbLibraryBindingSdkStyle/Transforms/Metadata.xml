@@ -1,0 +1,32 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  
+  -->
+<remove-node path="/api/package[@name='org.apache.commons.collections']" />
+<remove-node path="/api/package[@name='org.apache.commons.collections.iterators']" />
+<remove-node path="/api/package[@name='org.apache.commons.collections.keyvalue']" />
+<remove-node path="/api/package[@name='org.apache.commons.collections.map']" />
+<remove-node path="/api/package[@name='org.bouncycastle.asn1']" />
+<remove-node path="/api/package[@name='org.bouncycastle.asn1.oiw']" />
+<remove-node path="/api/package[@name='org.bouncycastle.asn1.pkcs']" />
+<remove-node path="/api/package[@name='org.bouncycastle.asn1.util']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.digests']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.engines']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.generators']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.macs']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.modes']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.paddings']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.params']" />
+<remove-node path="/api/package[@name='org.bouncycastle.crypto.util']" />
+<remove-node path="/api/package[@name='org.bouncycastle.jce.interfaces']" />
+<remove-node path="/api/package[@name='org.bouncycastle.jce.provider']" />
+<remove-node path="/api/package[@name='org.bouncycastle.util']" />
+<remove-node path="/api/package[@name='org.bouncycastle.util.encoders']" />
+<remove-node path="/api/package[@name='org.bouncycastle.util.io']" />
+</metadata>

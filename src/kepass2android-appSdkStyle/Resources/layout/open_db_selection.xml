@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:background="@drawable/splash_bg_selector"
+              android:fitsSystemWindows="true"
+              android:layout_height="fill_parent"
+              android:gravity="center_horizontal">
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/mytoolbar"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:titleTextStyle="@style/MyTitleTextStyle"
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:minHeight="?attr/actionBarSize"
+    android:background="#00000000" />
+  <GridView
+    android:id="@+id/gridview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp"
+    android:background="@drawable/storagetype_grid_bg"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="0dp"
+    android:columnWidth="140dp"
+    android:numColumns="auto_fit"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp"
+    android:stretchMode="columnWidth"
+    android:gravity="center" />
+</LinearLayout>
