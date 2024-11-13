@@ -257,12 +257,12 @@
   <string-array name="PasswordGeneratorModes">
     <item>Contrasenya</item>
     <item>Contrasenya</item>
-    <item>Passphrase + Password</item>
+    <item>Frase de contrasenya + Contrasenya</item>
   </string-array>
   <string-array name="PasswordGeneratorCaseModes">
     <item>minúscules</item>
     <item>MAJÚSCULES</item>
-    <item>First Character Uppercase</item>
+    <item>Primer caràcter en majúscules</item>
   </string-array>
   <string name="custom_settings">Configuració personalitzada</string>
   <string name="search_hint">Trobar el que</string>
@@ -346,6 +346,8 @@
   <string name="add_extra_string">Afegir la cadena addicional</string>
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Clau secreta</string>
+  <string name="totp_encoding_custom">Configuració personalitzada del testimoni</string>
+  <string name="totp_length">Longitud del codi</string>
   <string name="totp_scan">Escaneja un codi QR</string>
   <string name="delete_extra_string">Suprimir la corda addicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloquejat. DesbloqueigRàpid activat.</string>
@@ -491,6 +493,9 @@
   <string name="enter_sftp_login_title">Introduir dades de connexió SFTP:</string>
   <string name="sftp_auth_mode">Mode d\'autenticació</string>
   <string name="send_public_key">Enviar clau pública...</string>
+  <string name="save_key">Desa la clau privada</string>
+  <string name="delete_key">Elimina la clau privada</string>
+  <string name="private_key_select">Seleccioneu la clau privada</string>
   <string name="enter_ftp_login_title">Introduir dades de connexió FTP:</string>
   <string name="select_storage_type">Seleccioneu el tipus d\'emmagatzematge:</string>
   <string name="filestoragename_file">Fitxer local</string>
