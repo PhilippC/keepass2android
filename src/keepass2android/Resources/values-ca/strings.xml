@@ -496,6 +496,9 @@
   <string name="save_key">Desa la clau privada</string>
   <string name="delete_key">Elimina la clau privada</string>
   <string name="private_key_select">Seleccioneu la clau privada</string>
+  <string name="private_key_create_new">[Afegeix nova...]</string>
+  <string name="hint_sftp_kex">Noms/Especificacions separats per comes</string>
+  <string name="hint_sftp_shk">Noms/Especificacions separats per comes</string>
   <string name="enter_ftp_login_title">Introduir dades de connexió FTP:</string>
   <string name="select_storage_type">Seleccioneu el tipus d\'emmagatzematge:</string>
   <string name="filestoragename_file">Fitxer local</string>
@@ -510,12 +513,16 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, heu de seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció de nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (Fitxers KP2A)</string>
+  <string name="filestoragename_pcloud">PCloud (Carpeta KP2A)</string>
+  <string name="filestoragename_pcloudall">PCloud (Accés complet)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tots els fitxers i fitxers compartits</string>
   <string name="filestoragename_onedrive2_myfiles">Els meus fitxers</string>
   <string name="filestoragename_onedrive2_appfolder">Carpeta de l\'aplicació Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Selector d\'arxiu de sistema</string>
   <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>
   <string name="database_location">Localització de la base de dades</string>
