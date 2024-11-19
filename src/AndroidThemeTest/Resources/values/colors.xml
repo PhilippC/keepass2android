@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="ic_launcher_background">#2C3E50</color>
+
+  <color name="bgColorLight">#fff</color>
+  <color name="bgColorDark">#0000</color>
+
+  <color name="appPrimaryColor">#8bc34a</color>
+  <color name="appPrimaryDarkColor">#548a2e</color>
+  <color name="appAccentColor">#0277bd</color>
+  <color name="appAccentColorDark">#015080</color>
+
+  <color name="blue_highlight">#0000dd</color>
+  <color name="group">#333333</color>
+  <color name="icon_background">#00555555</color>
+  <color name="icon_text">#000000</color>
+  <color name="light_gray">#a8a8a8</color>
+  <color name="dark_gray">#303030</color>
+
+  <color name="element_being_moved">#a8a8a8</color>
+
+  <color name="emphasis">#31b6e7</color>
+  <color name="emphasis2">#4f7a8a</color>
+
+  <color name="warning_color">#f4511e</color>
+  <color name="hint_color">#42000000</color>
+  <color name="success_color">#009688</color>
+
+</resources>
