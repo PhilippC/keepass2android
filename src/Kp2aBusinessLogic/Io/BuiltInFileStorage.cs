@@ -13,7 +13,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Java.IO;
-using Android.Support.V4;
+
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using File = System.IO.File;

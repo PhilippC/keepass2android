@@ -25,6 +25,7 @@ using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using keepass2android.view;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 
 namespace keepass2android.search

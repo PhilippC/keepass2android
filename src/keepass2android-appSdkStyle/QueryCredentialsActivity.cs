@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Keepass2android.Pluginsdk;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

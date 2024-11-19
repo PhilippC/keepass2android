@@ -16,6 +16,7 @@ using Java.IO;
 using Java.Security.Cert;
 using Java.Util.Concurrent;
 using Javax.Crypto.Spec;
+using keepass2android_appSdkStyle;
 using Exception = System.Exception;
 using File = System.IO.File;
 
@@ -314,7 +315,7 @@ namespace keepass2android
             {
                 throw new RuntimeException(FailedToInitCipher + " (UnrecoverableKeyException)", e);
             }
-            catch (IOException e)
+            catch (Java.IO.IOException e)
             {
                 throw new RuntimeException(FailedToInitCipher + " (IOException)", e);
             }
@@ -395,7 +396,7 @@ namespace keepass2android
             {
                 throw new RuntimeException(e);
             }
-            catch (IOException e)
+            catch (Java.IO.IOException e)
             {
                 throw new RuntimeException(e);
             }
@@ -433,7 +434,7 @@ namespace keepass2android
             {
                 throw new RuntimeException(FailedToInitCipher, e);
             }
-            catch (IOException e)
+            catch (Java.IO.IOException e)
             {
                 throw new RuntimeException(FailedToInitCipher, e);
             }

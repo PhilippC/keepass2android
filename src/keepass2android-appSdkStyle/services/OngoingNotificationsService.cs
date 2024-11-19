@@ -21,7 +21,8 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Preferences;
-using Android.Support.V4.App;
+using AndroidX.Core.App;
+using keepass2android_appSdkStyle;
 using KeePassLib.Utility;
 
 namespace keepass2android

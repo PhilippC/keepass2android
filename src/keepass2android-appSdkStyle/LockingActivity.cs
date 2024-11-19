@@ -21,6 +21,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

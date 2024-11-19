@@ -13,6 +13,7 @@ using KeePassLib.Utility;
 using KeeTrayTOTP.Libraries;
 using Android.Content.Res;
 using Android.Preferences;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

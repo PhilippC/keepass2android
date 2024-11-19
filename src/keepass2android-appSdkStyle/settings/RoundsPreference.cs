@@ -24,6 +24,7 @@ using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
 using Android.Util;
+using keepass2android_appSdkStyle;
 using KeePassLib.Cryptography.KeyDerivation;
 
 namespace keepass2android.settings

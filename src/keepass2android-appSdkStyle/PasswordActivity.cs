@@ -23,7 +23,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-using Android;
+using keepass2android_appSdkStyle;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -38,9 +38,11 @@ using Android.Preferences;
 using Android.Text;
 using Android.Content.PM;
 using Android.Graphics;
-using Android.Support.Design.Widget;
-using Android.Support.V4.Widget;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
+using AndroidX.CoordinatorLayout.Widget;
+using AndroidX.Core.View;
+using AndroidX.DrawerLayout.Widget;
+using Google.Android.Material.AppBar;
 using Java.Lang;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -762,7 +764,7 @@ namespace keepass2android
             var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
 			passwordEdit.Text = _password;
 
-            var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
+			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf"); 
             passwordEdit.Typeface = passwordFont;
 
 
@@ -1586,12 +1588,6 @@ namespace keepass2android
 
 		private MemoryStream PreloadDbFile()
 		{
-			if (KdbxDatabaseFormat.GetFormatToUse(App.Kp2a.GetFileStorage(_ioConnection).GetFileExtension(_ioConnection)) == KdbxFormat.ProtocolBuffers)
-			{
-				Kp2aLog.Log("Preparing kdbp serializer");				
-				KdbpFile.PrepareSerializer();
-			}
-
 			Kp2aLog.Log("Pre-loading database file starting");
 			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
 			var stream = fileStorage.OpenFileForRead(_ioConnection);
@@ -2044,7 +2040,7 @@ namespace keepass2android
 			switch ( item.ItemId ) {
 				
                 case Android.Resource.Id.Home:
-                    _drawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+                    _drawerLayout.OpenDrawer(GravityCompat.Start);
                     return true;
 			}
 			

@@ -1,5 +1,6 @@
 using Android.Content;
 using Android.Graphics.Drawables;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

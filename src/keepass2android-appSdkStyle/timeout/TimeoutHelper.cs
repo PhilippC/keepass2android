@@ -20,6 +20,7 @@ using Android.App;
 using Android.Content;
 using Android.Preferences;
 using Android.Util;
+using keepass2android_appSdkStyle;
 using KeePassLib.Serialization;
 
 namespace keepass2android

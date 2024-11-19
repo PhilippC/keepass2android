@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Java.Lang;
+using keepass2android_appSdkStyle;
 using Exception = System.Exception;
 using Object = Java.Lang.Object;
 

@@ -26,11 +26,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
-using Android.Support.V7.App;
 using Java.IO;
 using KeePassLib.Serialization;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
+using keepass2android_appSdkStyle;
 using Console = System.Console;
 using Environment = Android.OS.Environment;
 
@@ -267,7 +267,7 @@ namespace keepass2android
 	                            {
 	                                try
 	                                {
-	                                    Java.IO.File file = new File(filename);
+	                                    Java.IO.File file = new Java.IO.File(filename);
 	                                    file.Delete();
 	                                }
 	                                catch (Exception exception)

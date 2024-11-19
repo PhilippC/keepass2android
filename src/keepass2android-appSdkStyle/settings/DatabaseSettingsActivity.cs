@@ -40,6 +40,7 @@ using KeePassLib;
 using KeePassLib.Cryptography.KeyDerivation;
 using KeePassLib.Interfaces;
 using System.Collections.Generic;
+using keepass2android_appSdkStyle;
 
 
 namespace keepass2android

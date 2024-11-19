@@ -10,6 +10,7 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using keepass2android_appSdkStyle;
 using KeePassLib.Utility;
 
 namespace keepass2android

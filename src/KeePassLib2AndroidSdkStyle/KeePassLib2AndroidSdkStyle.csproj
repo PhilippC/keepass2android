@@ -12,7 +12,6 @@
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\keepass2android-appSdkStyle\keepass2android-appSdkStyle.csproj" />
     <ProjectReference Include="..\KP2AKdbLibraryBindingSdkStyle\KP2AKdbLibraryBindingSdkStyle.csproj" />
   </ItemGroup>
   <ItemGroup>

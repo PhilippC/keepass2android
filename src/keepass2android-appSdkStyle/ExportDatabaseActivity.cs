@@ -10,6 +10,7 @@ using KeePass.DataExchange.Formats;
 using KeePassLib.Interfaces;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

@@ -307,7 +307,7 @@ namespace keepass2android.Io
 		public void OnResume(IFileStorageSetupActivity activity)
 		{
 #if DEBUG
-			Kp2aLog.Log("JFS/OnResume Ioc.Path=" +activity.Ioc.Path+". Path="+((IJavaFileStorageFileStorageSetupActivity)activity).Path);
+			Kp2aLog.Log("JFS/OnResume Ioc.Path=" +activity.Ioc.Path+". Path="+((IJavaFileStorage.IFileStorageSetupActivity)activity).Path);
 #endif
 			_jfs.OnResume(((IJavaFileStorage.IFileStorageSetupActivity) activity));
 		}

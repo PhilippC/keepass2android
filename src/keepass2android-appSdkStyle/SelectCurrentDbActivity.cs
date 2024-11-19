@@ -12,7 +12,6 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Text;
 using Android.Util;
 using Android.Views;
@@ -21,6 +20,7 @@ using Java.IO;
 using Java.Net;
 using keepass2android.Io;
 using keepass2android.Utils;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -375,7 +375,7 @@ namespace keepass2android
                     return false;
                 }
 
-                File dbFile = new File(ioc.Path);
+                Java.IO.File dbFile = new Java.IO.File(ioc.Path);
                 if (!dbFile.Exists())
                 {
                     // File does not exist

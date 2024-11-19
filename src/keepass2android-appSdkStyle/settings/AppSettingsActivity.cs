@@ -30,8 +30,9 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using keepass2android.Io;
+using keepass2android_appSdkStyle;
 using Object = Java.Lang.Object;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Toolbar = Android.Widget.Toolbar;
 
 namespace keepass2android
 {
@@ -69,7 +70,7 @@ namespace keepass2android
     Toolbar toolbar = (Toolbar) layout.FindViewById<Toolbar>(Resource.Id.mytoolbar);
     toolbar.SetNavigationIcon(Resource.Drawable.ic_arrow_back_white_24dp);
     toolbar.Title = Title;
-            toolbar.NavigationClick += (sender, args) =>
+            toolbar.NavigationOnClick += (sender, args) =>
             {
                 PreferenceScreen prefScreen = (PreferenceScreen) PreferenceManager.FindPreference(Key);
                 if (prefScreen == null)

@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.Res;
 using Android.OS;
 using Android.Preferences;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

@@ -9,8 +9,6 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Support.V4.Content;
-using Android.Support.V7.App;
 using Android.Text;
 using Android.Util;
 using Android.Views;
@@ -19,6 +17,7 @@ using keepass2android.Io;
 using keepass2android.view;
 using AlertDialog = Android.App.AlertDialog;
 using Object = Java.Lang.Object;
+using Resource = keepass2android_appSdkStyle.Resource;
 
 namespace keepass2android
 {

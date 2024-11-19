@@ -2,6 +2,7 @@ using System;
 using Android.App;
 using KeePassLib.Serialization;
 using keepass2android.addons.OtpKeyProv;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

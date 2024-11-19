@@ -8,6 +8,7 @@ using Android.Views;
 using System.Collections.Generic;
 using Android.App;
 using Android.Runtime;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

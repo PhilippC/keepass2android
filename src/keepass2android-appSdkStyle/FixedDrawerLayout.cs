@@ -4,10 +4,11 @@ using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
+using AndroidX.DrawerLayout.Widget;
 
 namespace keepass2android
 {
-	public class FixedDrawerLayout : Android.Support.V4.Widget.DrawerLayout
+	public class FixedDrawerLayout : DrawerLayout
 	{
 		private bool _fitsSystemWindows;
 

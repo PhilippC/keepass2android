@@ -26,6 +26,7 @@ using Android.Text;
 using Android.Text.Method;
 using Java.Lang;
 using Java.Lang.Reflect;
+using keepass2android_appSdkStyle;
 using KeePassLib.Serialization;
 using Exception = System.Exception;
 using String = System.String;

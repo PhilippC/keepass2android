@@ -20,6 +20,7 @@ using Android.Content;
 using Android.OS;
 using Android.Preferences;
 using Android.Widget;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

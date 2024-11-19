@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.AccessibilityServices;
-using Android.Support.V4.App;
+
 using Java.Util;
 
 using Android.App;
@@ -34,7 +34,9 @@ using Android.Views.Accessibility;
 using KeePassLib;
 using KeePassLib.Utility;
 using Android.Views.InputMethods;
+using AndroidX.Core.App;
 using KeePass.Util.Spr;
+using keepass2android_appSdkStyle;
 using KeePassLib.Serialization;
 using PluginTOTP;
 
@@ -641,7 +643,7 @@ namespace keepass2android
 #endif
         }
 
-        private readonly Timer _timer = new Timer();
+        private readonly Java.Util.Timer _timer = new Java.Util.Timer();
 
         internal void TimeoutCopyToClipboard(String text, bool isProtected)
         {

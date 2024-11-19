@@ -17,7 +17,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 
 using System;
 using System.Linq;
-using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -27,8 +26,10 @@ using Android.Content.PM;
 using KeePassLib.Keys;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.Design.Widget;
+
 using Android.Views.InputMethods;
+using Google.Android.Material.AppBar;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Serialization;
 
@@ -79,7 +80,7 @@ namespace keepass2android
 
 			SetSupportActionBar(toolbar);
 
-			var collapsingToolbar = FindViewById<Android.Support.Design.Widget.CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
 
 			if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")

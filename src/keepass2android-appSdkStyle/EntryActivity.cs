@@ -53,6 +53,7 @@ using keepass2android.fileselect;
 using KeeTrayTOTP.Libraries;
 using Boolean = Java.Lang.Boolean;
 using Android.Util;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {
@@ -623,7 +624,7 @@ namespace keepass2android
                     edit.Commit();
 
                     //request permission. user must grant, we'll show notifications in the OnRequestPermissionResults() callback
-                    Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, activateKeyboard ? 1 : 0 /*use requestCode to transfer the flag*/);
+                    AndroidX.Core.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, activateKeyboard ? 1 : 0 /*use requestCode to transfer the flag*/);
 
 
                 })

@@ -15,6 +15,7 @@ using KeePass.Util.Spr;
 using keepass2android.services.AutofillBase;
 using keepass2android.services.AutofillBase.model;
 using Keepass2android.Pluginsdk;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Utility;
 using Kp2aAutofillParser;

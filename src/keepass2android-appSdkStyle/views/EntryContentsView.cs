@@ -22,6 +22,7 @@ using Android.Widget;
 
 using System;
 using Android.Runtime;
+using keepass2android_appSdkStyle;
 
 
 namespace keepass2android.view

@@ -23,6 +23,7 @@ using Android.OS;
 using Android.Widget;
 using KeePassLib;
 using keepass2android.search;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

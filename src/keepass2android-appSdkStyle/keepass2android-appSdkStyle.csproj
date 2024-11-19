@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0-android</TargetFramework>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
@@ -600,7 +600,6 @@
     <None Remove="Resources\layout\preference.axml" />
     <None Remove="Resources\layout\QuickUnlock.xml" />
     <None Remove="Resources\layout\recent_files.xml" />
-    <None Remove="Resources\layout\SaveButton.xml" />
     <None Remove="Resources\layout\search.xml" />
     <None Remove="Resources\layout\searchurlresults.xml" />
     <None Remove="Resources\layout\searchurlresults_empty.xml" />
@@ -732,7 +731,27 @@
     <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.7.0.3" />
     <PackageReference Include="Xamarin.AndroidX.AutoFill" Version="1.1.0.28" />
     <PackageReference Include="Xamarin.AndroidX.Biometric" Version="1.1.0.25" />
+    <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.2.0.17" />
+    <PackageReference Include="Xamarin.AndroidX.CursorAdapter" Version="1.0.0.29" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.8.5.1" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.8.5.1" />
     <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.2.1.10" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AndroidFileChooserBindingSdkStyle\AndroidFileChooserBindingSdkStyle.csproj" />
+    <ProjectReference Include="..\JavaFileStorageBindingsStkStyle\JavaFileStorageBindingsStkStyle.csproj" />
+    <ProjectReference Include="..\Kp2aAutofillParserSdkStyle\Kp2aAutofillParserSdkStyle.csproj" />
+    <ProjectReference Include="..\KP2AKdbLibraryBindingSdkStyle\KP2AKdbLibraryBindingSdkStyle.csproj" />
+    <ProjectReference Include="..\Kp2aKeyboardBindingSdkStyle\Kp2aKeyboardBindingSdkStyle.csproj" />
+    <ProjectReference Include="..\PCloudBindingsSdkStyle\PCloudBindingsSdkStyle.csproj" />
+    <ProjectReference Include="..\PluginSdkBindingSdkStyle\PluginSdkBindingSdkStyle.csproj" />
+    <ProjectReference Include="..\ZlibAndroidSdkStyle\ZlibAndroidSdkStyle.csproj" />
+    <ProjectReference Include="..\TwofishCipherSdkStyle\TwofishCipherSdkStyle.csproj" />
+    <ProjectReference Include="..\KeePassLib2AndroidSdkStyle\KeePassLib2AndroidSdkStyle.csproj" />
+    <ProjectReference Include="..\Kp2aBusinessLogicSdkStyle\Kp2aBusinessLogicSdkStyle.csproj" />
+
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Update="Resources\layout\configure_totp_dialog.xml">

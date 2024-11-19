@@ -4,7 +4,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="?activityBackgroundColor">
+    android:background="?android:attr/colorBackground">
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
@@ -355,7 +355,7 @@
         android:layout_above="@id/bottom_bar"
         android:background="#b8b8b8" />
   
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -367,7 +367,7 @@
             android:id="@+id/list_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancelAddNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -375,14 +375,14 @@
             android:layout_gravity="end|bottom|right"
             android:visibility="gone"
             android:src="@drawable/ic_cross" />
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom|right"
             android:layout_margin="16dp"
             android:src="@drawable/ic_plus" />
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddNewGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -391,7 +391,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="88dp"
             android:visibility="gone"/>
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddNewEntry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -400,7 +400,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="160dp"
             android:visibility="gone"/>
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
           android:id="@+id/fabSearch"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -409,7 +409,7 @@
           android:layout_marginRight="16dp"
           android:layout_marginBottom="88dp"
           android:visibility="gone"/>
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
           android:id="@+id/fabTotpOverview"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -418,5 +418,5 @@
           android:layout_marginRight="16dp"
           android:layout_marginBottom="160dp"
           android:visibility="gone"/>
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

@@ -31,6 +31,7 @@ using KeePassLib.Utility;
 using System.Threading;
 using System.Collections.Generic;
 using KeePass.Util.Spr;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android.search
 {

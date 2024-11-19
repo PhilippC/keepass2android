@@ -16,6 +16,7 @@ using Android.Widget;
 
 using Java.IO;
 using keepass2android.Io;
+using keepass2android_appSdkStyle;
 #if !EXCLUDE_JAVAFILESTORAGE
 using Keepass2android.Javafilestorage;
 #endif
@@ -561,7 +562,7 @@ namespace keepass2android
 		protected void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect)
 		{
 			new AlertDialog.Builder(_activity)
-					.SetPositiveButton(keepass2android.Resource.String.Continue, delegate { onUserWantsToContinue(); })
+					.SetPositiveButton(Resource.String.Continue, delegate { onUserWantsToContinue(); })
 					.SetMessage(Resource.String.NoFilenameWarning)
 					.SetCancelable(false)
 					.SetNegativeButton(Android.Resource.String.Cancel, delegate { onUserWantsToCorrect(); })
@@ -611,11 +612,11 @@ namespace keepass2android
 
 			if (_isForSave && ioc.IsLocalFile())
 			{
-				// Try to create the file
-				File file = new File(filename);
+                // Try to create the file
+                Java.IO.File file = new Java.IO.File(filename);
 				try
 				{
-					File parent = file.ParentFile;
+                    Java.IO.File parent = file.ParentFile;
 
 					if (parent == null || (parent.Exists() && !parent.IsDirectory))
 					{
@@ -640,7 +641,7 @@ namespace keepass2android
 					System.IO.File.Create(filename).Dispose();
 
 				}
-				catch (IOException ex)
+				catch (Java.IO.IOException ex)
 				{
 					Toast.MakeText(
 						_activity,

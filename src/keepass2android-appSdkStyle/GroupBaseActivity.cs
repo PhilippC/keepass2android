@@ -25,7 +25,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
+
 using KeePassLib;
 using Android.Preferences;
 using KeePassLib.Interfaces;
@@ -35,13 +35,14 @@ using keepass2android.database.edit;
 using keepass2android.view;
 using Android.Graphics.Drawables;
 using Android.Provider;
-using Android.Support.V4.View;
 using Android.Views.Autofill;
-using CursorAdapter = Android.Support.V4.Widget.CursorAdapter;
 using Object = Java.Lang.Object;
 using Android.Text;
 using keepass2android.search;
+using keepass2android_appSdkStyle;
 using KeeTrayTOTP.Libraries;
+using AndroidX.AppCompat.Widget;
+using SearchView = AndroidX.AppCompat.Widget.SearchView;
 
 namespace keepass2android
 {
@@ -249,7 +250,7 @@ namespace keepass2android
         private IMenuItem _offlineItem;
         private IMenuItem _onlineItem;
         private IMenuItem _syncItem;
-        private Android.Support.V7.Widget.SearchView searchView;
+        private SearchView searchView;
 
 
         public String UuidGroup
@@ -711,7 +712,7 @@ namespace keepass2android
                     edit.PutBoolean("RequestedPostNotificationsPermission", true);
                     edit.Commit();
 
-                    Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, 0);
+                    AndroidX.Core.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, 0);
                     UpdatePostNotificationsPermissionInfo(true);
                 };
                 FindViewById(Resource.Id.post_notification_button_dont_show_again).Click += (sender, args) =>
@@ -949,14 +950,14 @@ namespace keepass2android
             }
         }
 
-        class SuggestionListener : Java.Lang.Object, SearchView.IOnSuggestionListener, Android.Support.V7.Widget.SearchView.IOnSuggestionListener
+        class SuggestionListener : Java.Lang.Object, AndroidX.AppCompat.Widget.SearchView.IOnSuggestionListener
         {
-            private readonly CursorAdapter _suggestionsAdapter;
+            private readonly AndroidX.CursorAdapter.Widget.CursorAdapter _suggestionsAdapter;
             private readonly GroupBaseActivity _activity;
             private readonly IMenuItem _searchItem;
 
 
-            public SuggestionListener(Android.Support.V4.Widget.CursorAdapter suggestionsAdapter, GroupBaseActivity activity, IMenuItem searchItem)
+            public SuggestionListener(AndroidX.CursorAdapter.Widget.CursorAdapter suggestionsAdapter, GroupBaseActivity activity, IMenuItem searchItem)
             {
                 _suggestionsAdapter = suggestionsAdapter;
                 _activity = activity;
@@ -980,7 +981,7 @@ namespace keepass2android
             }
         }
 
-        class OnQueryTextListener : Java.Lang.Object, Android.Support.V7.Widget.SearchView.IOnQueryTextListener
+        class OnQueryTextListener : Java.Lang.Object, SearchView.IOnQueryTextListener
         {
             private readonly GroupBaseActivity _activity;
 
@@ -1034,7 +1035,7 @@ namespace keepass2android
 
             var view = searchItem.ActionView;
 
-            searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
+            searchView = view.JavaCast<SearchView>();
 
             searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
             searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));

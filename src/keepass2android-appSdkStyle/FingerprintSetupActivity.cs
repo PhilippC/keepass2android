@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Android;
+
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -13,6 +13,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using keepass2android_appSdkStyle;
 using KeePassLib.Keys;
 using KeePassLib.Utility;
 using Enum = System.Enum;

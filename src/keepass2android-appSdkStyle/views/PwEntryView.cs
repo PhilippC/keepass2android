@@ -30,6 +30,7 @@ using KeeTrayTOTP.Libraries;
 using PluginTOTP;
 using Android.Content;
 using System.ComponentModel;
+using keepass2android_appSdkStyle;
 
 
 namespace keepass2android.view

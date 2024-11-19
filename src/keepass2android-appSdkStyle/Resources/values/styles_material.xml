@@ -23,7 +23,8 @@
     <item name="colorPrimary">@color/appPrimaryColor</item>
     <item name="colorPrimaryDark">@color/appPrimaryDarkColor</item>
     <item name="colorAccent">@color/appAccentColor</item>
-    <item name="activityBackgroundColor">@color/bgColorLight</item>
+    
+    <item name="android:colorBackground">@color/bgColorLight</item>
     <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 
     <item name="actionModeBackground">@color/appPrimaryDarkColor</item>
@@ -37,12 +38,8 @@
 
   <style name="MyTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
 
-    <item name="activityBackgroundColor">@color/bgColorLight</item>
-    <item name="CancelDrawable">@drawable/ic_menu_close</item>
-
-    <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
-    <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
-    <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>
+    <item name="android:colorBackground">@color/bgColorLight</item>
+    
 
 
     <item name="android:windowNoTitle">true</item>
@@ -65,7 +62,7 @@
 
 
   <style name="MyTheme" parent="MyTheme.Base">
-    <item name="actionModeBackground">@color/appAccentColor</item>
+    <item name="android:colorBackground">@color/appAccentColor</item>
   </style>
 
   <style name="MyTheme_Blue" parent="MyTheme">
@@ -83,7 +80,7 @@
 
 
   <style name="MyTheme_ActionBar_Dark.Base" parent="Theme.AppCompat">
-    <item name="activityBackgroundColor">@color/bgColorDark</item>
+    <item name="android:colorBackground">@color/bgColorDark</item>
     <item name="android:windowNoTitle">true</item>
     <item name="windowActionBar">true</item>
     <item name="colorPrimary">@color/appPrimaryColor</item>
@@ -102,12 +99,8 @@
   <!-- Base theme applied no matter what API -->
 
   <style name="MyTheme_Dark.Base" parent="Theme.AppCompat.NoActionBar">
-    <item name="activityBackgroundColor">@color/bgColorDark</item>
-    <item name="CancelDrawable">@drawable/ic_menu_close</item>
-
-    <item name="ic_launcher_folder_small">@drawable/ic_launcher_folder_small</item>
-    <item name="ic_action_search_drawable">@drawable/ic_action_search</item>
-    <item name="NavigationAcceptDrawable">@drawable/navigation_accept</item>
+    <item name="android:colorBackground">@color/bgColorDark</item>
+    
 
 
     <item name="android:windowNoTitle">true</item>

@@ -45,13 +45,12 @@ using keepass2android.Io;
 using KeePassLib.Serialization;
 using KeeTrayTOTP.Libraries;
 using PluginTOTP;
-using Xamarin.Essentials;
-using Xamarin.Forms.Platform.Android;
-using ZXing.Mobile;
+
 using Debug = System.Diagnostics.Debug;
 using File = System.IO.File;
 using Object = Java.Lang.Object;
 using Uri = Android.Net.Uri;
+using Resource = keepass2android_appSdkStyle.Resource;
 
 namespace keepass2android
 {
@@ -247,11 +246,6 @@ namespace keepass2android
 				GeneratePasswordActivity.Launch(this);
 			};
 
-
-
-
-			// Save button
-			//SupportActionBar.SetCustomView(Resource.Layout.SaveButton);
 
             if (State.IsNew)
 		    {
@@ -1183,7 +1177,8 @@ namespace keepass2android
 
             dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
             {
-                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+				/*TODO Restore this
+                var scanner = new ZXing..MobileBarcodeScanner();
                 var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
                 options.PossibleFormats = new List<ZXing.BarcodeFormat>() { ZXing.BarcodeFormat.QR_CODE };
 
@@ -1198,8 +1193,11 @@ namespace keepass2android
                 {
                     Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
 				}
+				*/
+                Toast.MakeText(this, "QR Scanner must be restored", ToastLength.Long).Show();
                 
-			};
+
+            };
 
 			//copy values from entry into dialog
 			View ees = (View)sender.Parent;
@@ -1241,8 +1239,6 @@ namespace keepass2android
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 

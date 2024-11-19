@@ -9,11 +9,11 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 using keepass2android.services.AutofillBase;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

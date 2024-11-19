@@ -27,6 +27,7 @@ using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Utility;
 using FileNotFoundException = Java.IO.FileNotFoundException;

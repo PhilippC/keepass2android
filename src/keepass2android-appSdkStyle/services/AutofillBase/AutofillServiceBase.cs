@@ -20,6 +20,7 @@ using AndroidX.AutoFill.Inline;
 using AndroidX.AutoFill.Inline.V1;
 using Java.Util.Concurrent.Atomic;
 using keepass2android.services.AutofillBase.model;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using Kp2aAutofillParser;
 

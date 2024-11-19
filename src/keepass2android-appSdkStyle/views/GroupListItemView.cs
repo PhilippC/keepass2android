@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android.view
 {

@@ -1,0 +1,4 @@
+﻿<metadata>
+
+  <remove-node path="/api/package[@name='com.pcloud.sdk']" />
+</metadata>

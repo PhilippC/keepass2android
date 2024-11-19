@@ -33,8 +33,7 @@ using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
+using AndroidX.Core.Content;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
@@ -42,6 +41,7 @@ using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
 using keepass2android.database.edit;
+using keepass2android_appSdkStyle;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 #if !NoNet
@@ -1343,9 +1343,7 @@ namespace keepass2android
 			intentFilter.AddAction(Intents.CloseDatabase);
             Context.RegisterReceiver(broadcastReceiver, intentFilter);
 
-
-            Xamarin.Essentials.Platform.Init(this);
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            //ZXing.Net.Mobile.Forms.Android.Platform.Init();
 		}
 
 	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();

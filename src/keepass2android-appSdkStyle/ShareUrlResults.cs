@@ -26,6 +26,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Preferences;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Utility;
 

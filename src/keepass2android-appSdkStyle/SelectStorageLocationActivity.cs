@@ -7,6 +7,7 @@ using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using keepass2android.Io;
 using keepass2android.Utils;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

@@ -1,4 +1,5 @@
 using Java.Lang;
+using keepass2android_appSdkStyle;
 using KeePassLib.Cryptography;
 using KeePassLib.Keys;
 using KeePassLib.Security;
@@ -48,7 +49,7 @@ namespace keepass2android
                     });
                 while ((Response == null) && (Error == null))
                 {
-                    Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(50);
                 }
                 if (Error != null)
                 {

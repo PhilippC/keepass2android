@@ -36,6 +36,7 @@ using Android.Hardware.Display;
 using Android.Util;
 using Android.Views.InputMethods;
 using AndroidX.Core.View.InputMethod;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Serialization;

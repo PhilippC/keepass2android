@@ -9,9 +9,9 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

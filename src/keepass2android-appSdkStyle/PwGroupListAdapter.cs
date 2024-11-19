@@ -24,6 +24,7 @@ using Android.Widget;
 using Android.Preferences;
 using KeePassLib;
 using keepass2android.view;
+using keepass2android_appSdkStyle;
 using KeePassLib.Interfaces;
 
 namespace keepass2android

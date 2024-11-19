@@ -21,6 +21,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Utility;
 

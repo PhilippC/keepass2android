@@ -11,6 +11,7 @@ using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

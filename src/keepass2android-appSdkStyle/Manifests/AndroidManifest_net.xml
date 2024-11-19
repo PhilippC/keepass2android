@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-			android:versionCode="200" 
-			android:versionName="1.11-r0" 
-			package="keepass2android.keepass2android" 
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+			android:versionCode="200"
+			android:versionName="1.11-r0"
+			package="keepass2android.keepass2android"
 			xmlns:tools="http://schemas.android.com/tools"
 			android:installLocation="auto">
-			
-			
+
+
   <queries>
     <!-- Specific intents and packages we query for (required since Android 11) -->
     <package android:name="keepass2android.plugin.keyboardswap2" />
     <package android:name="keepass2android.AncientIconSet" />
-	<package android:name="keepass2android.plugin.qr" />
-	<package android:name="it.andreacioni.kp2a.plugin.keelink" />
-	<package android:name="com.inputstick.apps.kp2aplugin" />	
-	<package android:name="com.dropbox.android" />
+    <package android:name="keepass2android.plugin.qr" />
+    <package android:name="it.andreacioni.kp2a.plugin.keelink" />
+    <package android:name="com.inputstick.apps.kp2aplugin" />
+    <package android:name="com.dropbox.android" />
 
     <intent>
-        <action android:name="android.intent.action.OPEN_DOCUMENT" />
-        <data android:mimeType="*/*" />
-      </intent>
-	  
-	  <intent>
+      <action android:name="android.intent.action.OPEN_DOCUMENT" />
+      <data android:mimeType="*/*" />
+    </intent>
+
+    <intent>
       <action android:name="android.intent.action.GET_DOCUMENT" />
       <data android:mimeType="*/*" />
     </intent>
@@ -39,79 +39,80 @@
     </intent>
 
     <intent>
-        <action android:name="android.intent.action.VIEW" />
-	  </intent>
-  </queries>			
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
-			
+      <action android:name="android.intent.action.VIEW" />
+    </intent>
+  </queries>
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
+
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
-  
-	<application android:label="keepass2android" 
+
+  <application android:label="keepass2android"
 	android:icon="@mipmap/ic_launcher_online"
 	android:roundIcon="@mipmap/ic_launcher_online_round"
 	android:networkSecurityConfig="@xml/network_security_config"
 
 	>
-	
-		<uses-library
+
+    <uses-library
             android:name="org.apache.http.legacy"
             android:required="false"/>
-			
-			<activity android:name="microsoft.identity.client.BrowserTabActivity" android:exported="true">
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="msal8374f801-0f55-407d-80cc-9a04fe86d9b2" android:host="auth" />
-			</intent-filter>
-		</activity>
-		<activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard"  android:exported="true">
-			<intent-filter>
-				<data android:scheme="db-i8shu7v1hgh7ynt" />
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-			<intent-filter>
-                <data android:scheme="db-ax0268uydp1ya57" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
 
-		</activity>
+    <activity android:name="microsoft.identity.client.BrowserTabActivity" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="msal8374f801-0f55-407d-80cc-9a04fe86d9b2" android:host="auth" />
+      </intent-filter>
+    </activity>
+    <activity android:name="com.dropbox.core.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard"  android:exported="true">
+      <intent-filter>
+        <data android:scheme="db-i8shu7v1hgh7ynt" />
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+      <intent-filter>
+        <data android:scheme="db-ax0268uydp1ya57" />
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
 
-		<provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android.android-filechooser.localfile" android:exported="false" />
-		<provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android.android-filechooser.history" android:exported="false" />
-		<activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
-		</activity>
+    </activity>
 
-		<service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true">
-			<intent-filter>
-				<action android:name="android.view.InputMethod" />
-			</intent-filter>
-			<meta-data android:name="android.view.im" android:resource="@xml/method" />
-		</service>
-		<activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings" android:exported="true">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="keepass2android.softkeyboard.LatinIMESettings" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-		 <activity android:name="keepass2android.softkeyboard.InputLanguageSelection"
-                android:exported="true">
-                android:label="@string/language_selection_title"
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-		<activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.SelectCurrentDbActivity"  android:windowSoftInputMode="adjustResize" android:exported="true">
+    <provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android.android-filechooser.localfile" android:exported="false" />
+    <provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android.android-filechooser.history" android:exported="false" />
+    <activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
+    </activity>
+
+    <service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true">
+      <intent-filter>
+        <action android:name="android.view.InputMethod" />
+      </intent-filter>
+      <meta-data android:name="android.view.im" android:resource="@xml/method" />
+    </service>
+    <activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="english_ime_settings" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="keepass2android.softkeyboard.LatinIMESettings" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
+    <activity android:name="keepass2android.softkeyboard.InputLanguageSelection"
+              
+               android:exported="true">
+      <!-- android:label="@string/language_selection_title" TODO  -->
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+    </activity>
+    <activity android:configChanges="orientation|keyboard|keyboardHidden" android:label="@string/app_name" android:theme="@style/MyTheme_Blue" android:name="keepass2android.SelectCurrentDbActivity"  android:windowSoftInputMode="adjustResize" android:exported="true">
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -120,8 +121,8 @@
         <data android:mimeType="application/octet-stream" />
         <data android:host="*" />
       </intent-filter>
-	  
-	  <intent-filter>
+
+      <intent-filter>
         <action android:name="kp2a.action.SelectCurrentDbActivity" />
         <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
@@ -134,8 +135,8 @@
 
         <data android:mimeType="application/*" />
       </intent-filter>
-	  
-<!-- intent filter for opening database files 
+
+      <!-- intent filter for opening database files 
 Note that this stopped working nicely with Android 7, see e.g. https://stackoverflow.com/a/26635162/292233
 KP2A was using 
 <data android:scheme="content" />
@@ -149,7 +150,7 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
 -->
 
 
-<!-- This intent filter is for apps which use content with a URI containing the extension but no specific mimeType, e.g. ASTRO file manager -->
+      <!-- This intent filter is for apps which use content with a URI containing the extension but no specific mimeType, e.g. ASTRO file manager -->
 
       <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
@@ -191,7 +192,7 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
       </intent-filter>
 
       <!-- This intent filter is for apps which use content with a URI not containing the extension but at least specify mimeType=application/octet-stream, e.g. GoogleDrive or FolderSync -->
-<intent-filter android:label="@string/app_name">
+      <intent-filter android:label="@string/app_name">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
@@ -242,39 +243,40 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
       </intent-filter>
 
       <intent-filter android:label="@string/kp2a_findUrl">
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<data android:mimeType="text/plain" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="keepass2android.ACTION_START_WITH_TASK" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-			<uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
-		<meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
-		<meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
-		<meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
-		<meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="426.0dip" />
-		<meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="360.0dip" />
-	</application>
-	<uses-permission android:name="android.permission.VIBRATE" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-	<uses-permission android:name="android.permission.USE_CREDENTIALS" android:maxSdkVersion="22" />
-	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" android:maxSdkVersion="22" />
-	<uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="keepass2android.ACTION_START_WITH_TASK" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+      x
+    </activity>
+    <uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
+    <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
+    <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
+    <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
+    <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="426.0dip" />
+    <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="360.0dip" />
+  </application>
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.USE_CREDENTIALS" android:maxSdkVersion="22" />
+  <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" android:maxSdkVersion="22" />
+  <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
   <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" />
-	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" />
   <uses-permission android:name="android.permission.USE_BIOMETRIC" />
   <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-  
-	<uses-feature android:name="android.hardware.camera" android:required="false" />
-  
-	<!-- Samsung Pass permission -->
-	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />	
+
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+  <!-- Samsung Pass permission -->
+  <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
 </manifest>

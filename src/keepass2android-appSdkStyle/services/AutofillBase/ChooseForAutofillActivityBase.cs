@@ -4,7 +4,6 @@ using Android.App.Assist;
 using Android.Content;
 using Android.OS;
 using Android.Service.Autofill;
-using Android.Support.V7.App;
 using Android.Util;
 using Android.Views.Autofill;
 using Android.Widget;
@@ -12,6 +11,7 @@ using Java.Util;
 using keepass2android.services.AutofillBase.model;
 using System.Linq;
 using Android.Content.PM;
+using keepass2android_appSdkStyle;
 using Kp2aAutofillParser;
 using AlertDialog = Android.App.AlertDialog;
 

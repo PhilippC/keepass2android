@@ -23,6 +23,7 @@ using Android.Runtime;
 using Android.Text.Method;
 using Android.Widget;
 using Android.Content.PM;
+using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {

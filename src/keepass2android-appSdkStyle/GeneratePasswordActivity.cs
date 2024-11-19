@@ -29,6 +29,7 @@ using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using Java.Util;
+using keepass2android_appSdkStyle;
 using KeePassLib.Cryptography;
 using Newtonsoft.Json;
 using OtpKeyProv;
