@@ -286,6 +286,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="author">توسعه‌دهندهٔ Keepass2Android فیلیپ کُروکُل است.</string>
   <string name="further_authors">با سپاس از مشارکت %1$s در کدنویسی.</string>
   <string name="designers">با سپاس از مشارکت %1$s در طراحی آیکون و چیدمان.</string>
+  <string name="supporters">با تشکر از حمایت مالی توسط %1$s</string>
   <string name="credit_plugin1">افزونهٔ Twofish Cipher برای KeePass را اِسکات گرینبِرگ ساخته و در KP2A گنجانده شده است.</string>
   <string name="credit_android_filechooser">انتخابگر فایل اندروید را های بایسُون ساخته است</string>
   <string name="credit_keyboard">صفحه‌کلید KP2A بر پایهٔ صفحه‌کلید Gingerbread است که از سوی پروژهٔ متن‌باز اندروید ارائه شده و از کدهای Plugin Manager از صفحه‌کلید Hacker ساختهٔ کِلاوس وایدنر استفاده می‌کند.</string>
@@ -404,6 +405,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ShowSeparateNotifications_summary">برای کپی‌کردن نام کاربری و گذرواژه در بریده‌دان و فعال‌کردن صفحه‌کلید اعلانات جداگانه‌ای نشان بده.</string>
   <string name="AccServiceAutoFill_prefs">سرویس دسترس‌پذیری تکمیل خودکار</string>
   <string name="AutoFill_prefs">سرویس تکمیل خودکار</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">نمایش اعلان ورود</string>
   <string name="ShowKp2aKeyboardNotification_title">اعلان صفحه‌کلید KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">مدخل به‌طور کامل از طریق صفحه‌کلید KP2A در دسترس باشد (توصیه می‌شود).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">تغییر صفحه‌کلید</string>
@@ -519,6 +521,14 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="sftp_auth_mode">حالت احراز هویت</string>
   <string name="send_public_key">فرستادن کلید عمومی...</string>
   <string name="select_private_keyfile">انتخاب کلید خصوصی...</string>
+  <string name="hint_sftp_key_name">نام کلید جدید</string>
+  <string name="hint_sftp_key_content">محتوای کلیدی جدید</string>
+  <string name="private_key_saved">کلید خصوصی ذخیره شد</string>
+  <string name="private_key_delete_failed">حذف کلید خصوصی ناموفق بود: %1$s</string>
+  <string name="save_key">ذخیره کلید خصوصی</string>
+  <string name="delete_key">حذف کلید خصوصی</string>
+  <string name="private_key_select">کلید خصوصی را انتخاب کنید</string>
+  <string name="private_key_create_new"></string>
   <string name="enter_ftp_login_title">اطلاعات ورود به FTP را وارد کنید:</string>
   <string name="enter_mega_login_title">اطلاعات ورود حساب MEGAی خود را وارد کنید:</string>
   <string name="select_storage_type">نوع ذخیره‌گاه را مشخص کنید:</string>
