@@ -21,10 +21,7 @@ namespace keepass2android
 		{
 			if ((_dialog == null) || (_dialog.IsShowing == false))
 			{
-				if (new ActivityDesign(this).UseDarkTheme)
-					_dialog = new AboutDialog(this, Android.Resource.Style.ThemeHoloNoActionBarFullscreen);
-				else
-					_dialog = new AboutDialog(this, Android.Resource.Style.ThemeHoloLightNoActionBarFullscreen);
+				_dialog = new AboutDialog(this);
 				_dialog.SetOnDismissListener(this);
 				_dialog.Show();
 			}

@@ -1,0 +1,101 @@
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/display_prefs_key"
+	android:title="@string/display_prefs"
+>
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/ShowUnlockedNotification_summary"
+		android:defaultValue="@bool/ShowUnlockedNotification_default"
+		android:title="@string/ShowUnlockedNotification_title"
+		android:key="@string/ShowUnlockedNotification_key" />
+	<CheckBoxPreference
+		android:key="@string/maskpass_key"
+		android:title="@string/maskpass_title"
+		android:summary="@string/maskpass_summary"
+		android:defaultValue="@bool/maskpass_default" />
+
+	<CheckBoxPreference
+		android:key="@string/masktotp_key"
+		android:title="@string/masktotp_title"
+		android:summary="@string/masktotp_summary"
+		android:defaultValue="@bool/masktotp_default" />
+
+	<CheckBoxPreference
+		android:key="@string/ShowUsernameInList_key"
+		android:title="@string/ShowUsernameInList_title"
+		android:summary="@string/ShowUsernameInList_summary"
+		android:defaultValue="@bool/ShowUsernameInList_default" />
+
+	<CheckBoxPreference
+		android:key="@string/ShowGroupnameInSearchResult_key"
+		android:title="@string/ShowGroupnameInSearchResult_title"
+		android:summary="@string/ShowGroupnameInSearchResult_resume"
+		android:defaultValue="@bool/ShowGroupnameInSearchResult_default" />
+	<CheckBoxPreference
+		android:key="ShowGroupInEntry"
+		android:title="@string/ShowGroupInEntry_title"
+		android:defaultValue="false" />
+	<ListPreference
+		android:key="@string/list_size_key"
+		android:title="@string/list_size_title"
+		android:summary="@string/list_size_summary"
+		android:entries="@array/list_size_options"
+		android:entryValues="@array/list_size_values"
+		android:dialogTitle="@string/list_size_summary"
+		android:defaultValue="@string/list_size_default" />
+
+	<keepass2android.IconSetPreference
+		android:title="@string/IconSet_title"
+		android:persistent="false"
+		android:key="IconSetKey" />
+
+	<ListPreference
+		android:key="@string/design_key"
+		android:title="@string/design_title"
+		android:entries="@array/design_options"
+		android:entryValues="@array/design_values"
+		android:dialogTitle="@string/design_title"
+		android:defaultValue="@string/design_default" />
+
+	<ListPreference
+		android:key="@string/app_language_pref_key"
+		android:title="@string/app_language_pref_title"
+		android:dialogTitle="@string/app_language_pref_title"
+	/>
+
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/ViewDatabaseSecure_summary"
+		android:defaultValue="true"
+		android:title="@string/ViewDatabaseSecure_title"
+		android:key="@string/ViewDatabaseSecure_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/ActivateSearchViewOnStart_summary"
+		android:defaultValue="false"
+		android:title="@string/ActivateSearchViewOnStart_title"
+		android:key="ActivateSearchView" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/NoDonateOption_summary"
+		android:defaultValue="false"
+		android:title="@string/NoDonateOption_title"
+		android:key="@string/NoDonateOption_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/NoDonationReminder_summary"
+		android:defaultValue="false"
+		android:title="@string/NoDonationReminder_title"
+		android:key="@string/NoDonationReminder_key" />
+</PreferenceScreen>

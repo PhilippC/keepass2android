@@ -7,11 +7,12 @@ using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.Preferences;
+using AndroidX.Preference;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 
 namespace keepass2android
@@ -127,6 +128,8 @@ namespace keepass2android
             }
         }
 
+        public Dialog Dialog { get; set; }
+
 
         List<IconSet> _iconSets = null;
         List<IconSet> IconSets
@@ -183,12 +186,9 @@ namespace keepass2android
 			
         }
 
-
-        protected override void OnPrepareDialogBuilder(AlertDialog.Builder builder)
+        protected override void OnClick()
         {
             _populatorTask.Wait();
-            base.OnPrepareDialogBuilder(builder);
-
 
             var iconListPreferenceAdapter = new IconListPreferenceScreenAdapter(this, Context);
 
@@ -202,13 +202,17 @@ namespace keepass2android
                 }
             }
 
+            var builder = new MaterialAlertDialogBuilder(Context);
+
             builder.SetAdapter(iconListPreferenceAdapter, (sender, args) => { });
             builder.SetNeutralButton(Resource.String.IconSet_install, (sender, args) =>
             {
                 Util.GotoUrl(Context, "market://search?q=keepass2android icon set");
             });
-
+            Dialog = builder.Create();
+            Dialog.Show();
 
         }
+
     }
 }

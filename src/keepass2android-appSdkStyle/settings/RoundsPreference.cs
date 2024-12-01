@@ -21,31 +21,106 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Android.Preferences;
+
 using KeePassLib;
 using Android.Util;
+using AndroidX.Preference;
 using keepass2android_appSdkStyle;
 using KeePassLib.Cryptography.KeyDerivation;
+using Google.Android.Material.Dialog;
 
 namespace keepass2android.settings
 {
-	public abstract class KdfNumberParamPreference: DialogPreference {
+	/*
+	 *
+	   public class KdfNumberDialogPreference : DialogPreference
+	   {
+	       private readonly Context _context;
+	       public KdfNumberDialogPreference(Context context) : base(context)
+	       {
+	           _context = context;
+	       }
+	   
+	       public KdfNumberDialogPreference(Context context, IAttributeSet attrs) : base(context, attrs)
+	       {
+	           _context = context;
+	       }
+	   
+	       public KdfNumberDialogPreference(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
+	       {
+	           _context = context;
+	       }
+	       
+	       public override int DialogLayoutResource => Resource.Layout.activity_main;
+	   
+	   }
+	   
+
+	 */
+	public abstract class KdfNumberDialogPreference : DialogPreference {
 		
-		internal TextView edittext;
-		
-		protected override View OnCreateDialogView() {
-			View view =  base.OnCreateDialogView();
-			
-			edittext = (TextView) view.FindViewById(Resource.Id.rounds);
+        public KdfNumberDialogPreference(Context context) : base(context)
+        {
+            
+        }
 
+        public KdfNumberDialogPreference(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+           
+        }
 
-			ulong numRounds = ParamValue;
-			edittext.Text = numRounds.ToString(CultureInfo.InvariantCulture);
+        public KdfNumberDialogPreference(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
+        {
+           
+        }
 
-			view.FindViewById<TextView>(Resource.Id.rounds_explaination).Text = ExplanationString;
+        public void ShowDialog(PreferenceFragmentCompat containingFragment)
+        {
+            var activity = containingFragment.Activity;
+            MaterialAlertDialogBuilder db = new MaterialAlertDialogBuilder(activity);
 
-			return view;
-		}
+            View dialogView = activity.LayoutInflater.Inflate(Resource.Layout.database_kdf_settings, null);
+            var inputEditText = dialogView.FindViewById<TextView>(Resource.Id.rounds);
+            
+            inputEditText.Text = ParamValue.ToString();
+
+            db.SetView(dialogView);
+            db.SetTitle(Title);
+            db.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
+            {
+                //store the old value for restoring in case of failure
+                ulong paramValue;
+
+                String strRounds = inputEditText.Text;
+                if (!(ulong.TryParse(strRounds, out paramValue)))
+                {
+                    Toast.MakeText(Context, Resource.String.error_param_not_number, ToastLength.Long).Show();
+                    return;
+                }
+
+                if (paramValue < 1)
+                {
+                    paramValue = 1;
+                }
+
+                ulong oldValue = ParamValue;
+
+                if (oldValue == paramValue)
+                {
+                    return;
+                }
+
+                ParamValue = paramValue;
+
+                Handler handler = new Handler();
+                SaveDb save = new SaveDb((Activity)Context, App.Kp2a, App.Kp2a.CurrentDb, new AfterSave((Activity)Context, handler, oldValue, this));
+                ProgressTask pt = new ProgressTask(App.Kp2a, (Activity)Context, save);
+                pt.Run();
+            });
+            db.SetNegativeButton(Android.Resource.String.Cancel, ((sender, args) => { }));
+
+            db.Create().Show();
+        }
 
 		public virtual string ExplanationString
 		{
@@ -53,61 +128,17 @@ namespace keepass2android.settings
 		}
 
 		public abstract ulong ParamValue { get; set; }
-		public KdfNumberParamPreference(Context context, IAttributeSet attrs):base(context, attrs) {
-		}
 
-		public KdfNumberParamPreference(Context context, IAttributeSet attrs, int defStyle)
-			: base(context, attrs, defStyle)
-		{
-		}
-		
-		protected override void OnDialogClosed(bool positiveResult) {
-			base.OnDialogClosed(positiveResult);
-			
-			if ( positiveResult ) {
-				ulong paramValue;
-				
-				String strRounds = edittext.Text; 
-				if (!(ulong.TryParse(strRounds,out paramValue)))
-				{
-					Toast.MakeText(Context, Resource.String.error_param_not_number, ToastLength.Long).Show();
-					return;
-				}
-				
-				if ( paramValue < 1 ) {
-					paramValue = 1;
-				}
-
-				Database db = App.Kp2a.CurrentDb;
-
-				ulong oldValue = ParamValue;
-
-				if (oldValue == paramValue)
-				{
-					return;
-				}
-
-				ParamValue = paramValue;
-
-				Handler handler = new Handler();
-				SaveDb save = new SaveDb((Activity)Context, App.Kp2a, App.Kp2a.CurrentDb, new KdfNumberParamPreference.AfterSave((Activity)Context, handler, oldValue, this));
-				ProgressTask pt = new ProgressTask(App.Kp2a, (Activity)Context, save);
-				pt.Run();
-				
-			}
-			
-		}
-		
 		private class AfterSave : OnFinish {
-			private readonly ulong _oldRounds;
+			private readonly ulong _oldParamValue;
 			private readonly Context _ctx;
-			private readonly KdfNumberParamPreference _pref;
+			private readonly KdfNumberDialogPreference _pref;
 			
-			public AfterSave(Activity ctx, Handler handler, ulong oldRounds, KdfNumberParamPreference pref):base(ctx, handler) {
+			public AfterSave(Activity ctx, Handler handler, ulong oldParamValue, KdfNumberDialogPreference pref):base(ctx, handler) {
 
 				_pref = pref;
 				_ctx = ctx;
-				_oldRounds = oldRounds;
+				_oldParamValue = oldParamValue;
 			}
 			
 			public override void Run() {
@@ -119,8 +150,8 @@ namespace keepass2android.settings
 				} else {
 					DisplayMessage(_ctx);
 
-					App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, _oldRounds);
-				}
+					_pref.ParamValue = _oldParamValue;
+                }
 				
 				base.Run();
 			}
@@ -132,7 +163,8 @@ namespace keepass2android.settings
 	/// <summary>
 	/// Represents the setting for the number of key transformation rounds. Changing this requires to save the database.
 	/// </summary>
-	public class RoundsPreference : KdfNumberParamPreference {
+	public class RoundsPreference : KdfNumberDialogPreference
+    {
 		private readonly Context _context;
 
 

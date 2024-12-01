@@ -551,7 +551,7 @@
     <None Remove="Resources\layout\configure_totp_dialog.xml" />
     <None Remove="Resources\layout\config_child_db.xml" />
     <None Remove="Resources\layout\create_database.xml" />
-    <None Remove="Resources\layout\database_settings.xml" />
+    <None Remove="Resources\layout\database_kdf_settings.xml" />
     <None Remove="Resources\layout\disabled_queries_preference_row.axml" />
     <None Remove="Resources\layout\donate.xml" />
     <None Remove="Resources\layout\donate_bday.xml" />
@@ -695,7 +695,7 @@
     <None Remove="Resources\values-zh-rTW\strings.xml" />
     <None Remove="Resources\values-zh\strings.xml" />
     <None Remove="Resources\values\attrs.xml" />
-    <None Remove="Resources\values\colors.xml" />
+    <None Remove="Resources\values\colors_kp2a.xml" />
     <None Remove="Resources\values\config.xml" />
     <None Remove="Resources\values\dimens.xml" />
     <None Remove="Resources\values\fonts.xml" />
@@ -705,6 +705,9 @@
     <None Remove="Resources\xml\autofillservice.xml" />
     <None Remove="Resources\xml\network_security_config.xml" />
     <None Remove="Resources\xml\preferences.xml" />
+    <None Remove="Resources\xml\pref_app.xml" />
+    <None Remove="Resources\xml\pref_database.xml" />
+    <None Remove="Resources\xml\pref_database_key_deriv_func.xml" />
     <None Remove="Resources\xml\searchable.xml" />
     <None Remove="Resources\xml\searchable_debug.xml" />
     <None Remove="Resources\xml\searchable_mattest.xml" />
