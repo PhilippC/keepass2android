@@ -153,7 +153,7 @@ namespace keepass2android
 
 
         private string mDrawerTitle;
-        private MeasuringRelativeLayout.MeasureArgs _measureArgs;
+        private MeasuringLinearLayout.MeasureArgs _measureArgs;
         private ActivityDesign _activityDesign;
         private BiometricDecryption _biometricDec;
         private PasswordActivityBroadcastReceiver _intentReceiver;
@@ -813,7 +813,7 @@ namespace keepass2android
 
         private void InitializeToolbarCollapsing()
 	    {
-	        var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
+	        var rootview = FindViewById<MeasuringLinearLayout>(Resource.Id.main_layout);
 	        rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
 	        {
 	            Android.Util.Log.Debug("KP2A", "GlobalLayout");

@@ -6,29 +6,29 @@ using Android.Widget;
 
 namespace keepass2android
 {
-	public class MeasuringRelativeLayout : RelativeLayout
+	public class MeasuringLinearLayout : LinearLayout
 	{
-		protected MeasuringRelativeLayout(IntPtr javaReference, JniHandleOwnership transfer)
+		protected MeasuringLinearLayout(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
 		}
 
-		public MeasuringRelativeLayout(Context context)
+		public MeasuringLinearLayout(Context context)
 			: base(context)
 		{
 		}
 
-		public MeasuringRelativeLayout(Context context, IAttributeSet attrs)
+		public MeasuringLinearLayout(Context context, IAttributeSet attrs)
 			: base(context, attrs)
 		{
 		}
 
-		public MeasuringRelativeLayout(Context context, IAttributeSet attrs, int defStyleAttr)
+		public MeasuringLinearLayout(Context context, IAttributeSet attrs, int defStyleAttr)
 			: base(context, attrs, defStyleAttr)
 		{
 		}
 
-		public MeasuringRelativeLayout(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes)
+		public MeasuringLinearLayout(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes)
 			: base(context, attrs, defStyleAttr, defStyleRes)
 		{
 		}
