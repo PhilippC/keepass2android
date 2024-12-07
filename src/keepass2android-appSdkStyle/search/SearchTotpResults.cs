@@ -33,7 +33,7 @@ namespace keepass2android.search
 	/// <summary>
 	/// Activity to show search results
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
 	public class SearchTotpResults : GroupBaseActivity
 	{
 

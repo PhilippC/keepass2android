@@ -63,6 +63,7 @@ using ClipboardManager = Android.Content.ClipboardManager;
 using Enum = System.Enum;
 using Exception = System.Exception;
 using String = System.String;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace keepass2android
 {
@@ -70,7 +71,7 @@ namespace keepass2android
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
-		Theme = "@style/MyTheme_Blue")] 
+		Theme = "@style/Kp2aTheme_BlueNoActionBar")] 
 	public class PasswordActivity : LockingActivity, IBiometricAuthCallback
 	{
 
@@ -1048,9 +1049,7 @@ namespace keepass2android
 
 	    private void InitializeToolbar()
 	    {
-	        var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
-
-	        SetSupportActionBar(toolbar);
+	        
 
             var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
             collapsingToolbar.SetTitle(GetString(Resource.String.unlock_database_title));
@@ -1063,7 +1062,7 @@ namespace keepass2android
 
             _drawerLayout?.SetDrawerListener(mDrawerToggle);
 
-	        	        
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
             mDrawerToggle.SyncState();
@@ -2008,7 +2007,7 @@ namespace keepass2android
             {
                 Kp2aLog.LogUnexpectedError(e);
             }
-			SetEditText(Resource.Id.filename, filenameToShow);
+			//SetEditText(Resource.Id.filename, filenameToShow);
 						
 		}
 

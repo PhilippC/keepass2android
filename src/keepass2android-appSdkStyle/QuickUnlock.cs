@@ -32,6 +32,7 @@ using Google.Android.Material.AppBar;
 using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Serialization;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace keepass2android
 {
@@ -39,7 +40,7 @@ namespace keepass2android
 		ConfigurationChanges = ConfigChanges.Orientation,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		MainLauncher = false,
-        Theme = "@style/MyTheme_Blue")]
+        Theme = "@style/Kp2aTheme_BlueNoActionBar")]
 	public class QuickUnlock : LifecycleAwareActivity, IBiometricAuthCallback
 	{
 		private IOConnectionInfo _ioc;
@@ -76,14 +77,12 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
-			var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
-
-			SetSupportActionBar(toolbar);
 
 			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
-
-			if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            
+            if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
 			{
 				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
 				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name;

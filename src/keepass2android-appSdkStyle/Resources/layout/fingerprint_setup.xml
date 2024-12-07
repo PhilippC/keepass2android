@@ -43,10 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance_Help_Dense"
-                android:textColor="@color/light_gray"
                 app:help_text="@string/enable_fingerprint_quickunlock_Info"
                 app:title_text="@string/enable_fingerprint_quickunlock"
-                android:background="?android:attr/selectableItemBackground" />
+               />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -62,10 +61,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance_Help_Dense"
-                android:textColor="@color/light_gray"
+                
                 app:help_text="@string/enable_fingerprint_unlock_Info"
                 app:title_text="@string/enable_fingerprint_unlock"
-                android:background="?android:attr/selectableItemBackground" />
+                 />
         </LinearLayout>
       <CheckBox
         android:id="@+id/close_database_after_failed"
@@ -116,7 +115,7 @@
             android:layout_toEndOf="@+id/fingerprint_icon"
             android:gravity="center_vertical"
             android:text=""
-            android:textColor="@color/hint_color" />
+            android:textColor="@color/md_theme_primary" />
         <Button
             android:id="@+id/cancel_button"
             android:text="@string/cancel"

@@ -299,7 +299,7 @@ namespace keepass2android
             {
                 RunOnUiThread(() =>
                 {
-                    var listView = FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment)
+                    var listView = FragmentManager?.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment)
                         .ListView;
                     if (listView != null)
                     {
@@ -1351,6 +1351,7 @@ namespace keepass2android
             FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
+            FindViewById(Resource.Id.fabTotpOverview).Visibility = ViewStates.Gone;
 
             UpdateBottomBarElementVisibility(Resource.Id.insert_element, true);
             UpdateBottomBarElementVisibility(Resource.Id.cancel_insert_element, true);
@@ -1500,7 +1501,7 @@ namespace keepass2android
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
                 _statusBarColor = Activity.Window.StatusBarColor;
-                Activity.Window.SetStatusBarColor(Activity.Resources.GetColor(Resource.Color.appAccentColorDark));
+                Activity.Window.SetStatusBarColor(Activity.Resources.GetColor(Resource.Color.md_theme_secondary));
             }
             return true;
         }

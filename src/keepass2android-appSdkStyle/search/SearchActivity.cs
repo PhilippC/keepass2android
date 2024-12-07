@@ -30,7 +30,7 @@ namespace keepass2android
 	/// <summary>
 	/// Activity to display search options
 	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class SearchActivity : LockCloseActivity
 	{
 		bool GetCheckBoxValue(int resId)

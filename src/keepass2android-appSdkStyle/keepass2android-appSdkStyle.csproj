@@ -608,7 +608,6 @@
     <None Remove="Resources\layout\StartScreenButtons.xml" />
     <None Remove="Resources\layout\switch_ime_activity_layout.xml" />
     <None Remove="Resources\layout\text_with_help.xml" />
-    <None Remove="Resources\layout\toolbar.axml" />
     <None Remove="Resources\layout\url_credentials.xml" />
     <None Remove="Resources\menu\entry.xml" />
     <None Remove="Resources\menu\entry_edit.xml" />
@@ -770,9 +769,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Update="Resources\layout\preference.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Update="Resources\layout\toolbar.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

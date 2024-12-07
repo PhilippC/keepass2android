@@ -54,7 +54,7 @@ using Resource = keepass2android_appSdkStyle.Resource;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
 	    
 

@@ -21,7 +21,7 @@ using Resource = keepass2android_appSdkStyle.Resource;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_Blue")]
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_BlueNoActionBar")]
     public class FileStorageSelectionActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private readonly ActivityDesign _design;

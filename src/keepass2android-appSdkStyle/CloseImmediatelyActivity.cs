@@ -14,7 +14,7 @@ using keepass2android_appSdkStyle;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+    [Activity(Label = AppNames.AppName, Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
     public class CloseImmediatelyActivity : AndroidX.AppCompat.App.AppCompatActivity
     {
         protected override void OnResume()

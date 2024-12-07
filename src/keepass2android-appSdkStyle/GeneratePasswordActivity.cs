@@ -36,7 +36,7 @@ using OtpKeyProv;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]		    
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]		    
     public class GeneratePasswordActivity :
 #if DEBUG
         LifecycleAwareActivity

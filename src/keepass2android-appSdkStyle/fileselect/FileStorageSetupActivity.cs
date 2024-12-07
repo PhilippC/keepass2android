@@ -16,7 +16,7 @@ using keepass2android_appSdkStyle;
 
 namespace keepass2android.fileselect
 {
-    [Activity(Label = "@string/filestorage_setup_title", Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation |
+    [Activity(Label = "@string/filestorage_setup_title", Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation |
 	           ConfigChanges.KeyboardHidden)]
 	public class FileStorageSetupActivity : Activity, IFileStorageSetupActivity
 #if !EXCLUDE_JAVAFILESTORAGE

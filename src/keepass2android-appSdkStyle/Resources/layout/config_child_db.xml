@@ -6,17 +6,7 @@
               android:fitsSystemWindows="true"
               android:layout_height="fill_parent"
               android:gravity="center_horizontal">
-  <androidx.appcompat.widget.Toolbar
-    android:id="@+id/mytoolbar"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    android:background="?attr/colorPrimary"
-    app:titleTextStyle="@style/MyTitleTextStyle"
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:minHeight="?attr/actionBarSize"
-    />
-  <TextView android:id="@+id/myinfotext" android:text="@string/child_db_explanation"
+    <TextView android:id="@+id/myinfotext" android:text="@string/child_db_explanation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"

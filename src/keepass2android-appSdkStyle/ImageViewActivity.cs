@@ -295,7 +295,7 @@ namespace keepass2android
 		}
 	}
 	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-		Theme = "@style/MyTheme_ActionBar")]
+		Theme = "@style/Kp2aTheme_ActionBar")]
 	public class ImageViewActivity : LockCloseActivity
 	{
 		private ActivityDesign _activityDesign;

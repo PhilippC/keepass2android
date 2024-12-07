@@ -15,7 +15,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, Theme = "@style/MyTheme_ActionBar")]
+    [Activity(Label = AppNames.AppName, Theme = "@style/Kp2aTheme_ActionBar")]
 	public class DonateReminder : Activity
 	{
 		class Reminder

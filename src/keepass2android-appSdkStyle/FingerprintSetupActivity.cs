@@ -23,7 +23,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-		Theme = "@style/MyTheme_ActionBar", MainLauncher = false, Exported = true)]
+		Theme = "@style/Kp2aTheme_ActionBar", MainLauncher = false, Exported = true)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class BiometricSetupActivity : LockCloseActivity, IBiometricAuthCallback
 	{
@@ -269,7 +269,7 @@ namespace keepass2android
 
 			_fpTextView.RemoveCallbacks(ResetErrorTextRunnable);
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fingerprint_success);
-			_fpTextView.SetTextColor(_fpTextView.Resources.GetColor(Resource.Color.success_color, null));
+			_fpTextView.SetTextColor(_fpTextView.Resources.GetColor(Resource.Color.md_theme_secondary, null));
 			_fpTextView.Text = _fpTextView.Resources.GetString(Resource.String.fingerprint_success);
 			_fpIcon.PostDelayed(() =>
 			{
@@ -292,7 +292,7 @@ namespace keepass2android
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			_fpTextView.Text = error;
 			_fpTextView.SetTextColor(
-				_fpTextView.Resources.GetColor(Resource.Color.warning_color, null));
+				_fpTextView.Resources.GetColor(Resource.Color.md_theme_error, null));
 			_fpTextView.RemoveCallbacks(ResetErrorTextRunnable);
 			_fpTextView.PostDelayed(ResetErrorTextRunnable, ERROR_TIMEOUT_MILLIS);
 		}
@@ -305,7 +305,7 @@ namespace keepass2android
         void ResetErrorTextRunnable()
 		{
 			_fpTextView.SetTextColor(
-				_fpTextView.Resources.GetColor(Resource.Color.hint_color, null));
+				_fpTextView.Resources.GetColor(Resource.Color.md_theme_secondary, null));
 			_fpTextView.Text = "";
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fp_40px);
 		}

@@ -32,7 +32,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar", Exported = true)]
+    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else

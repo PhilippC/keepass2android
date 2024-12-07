@@ -9,9 +9,6 @@
         android:paddingEnd="24dp"
         android:paddingTop="16dp">
 	<androidx.appcompat.widget.Toolbar  android:id="@+id/mytoolbar"
-  app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-  app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-      app:titleTextStyle="@style/MyTitleTextStyle"
       android:layout_height="wrap_content"
       android:layout_width="fill_parent"
       android:minHeight="?attr/actionBarSize"
