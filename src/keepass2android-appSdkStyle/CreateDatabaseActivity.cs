@@ -140,15 +140,13 @@ namespace keepass2android
 				CreateDatabase(Intent.GetBooleanExtra("MakeCurrent",true));
 			};
 
-			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
+            Button btnTogglePassword = (Button)FindViewById(Resource.Id.toggle_password);
 			btnTogglePassword.Click += (sender, e) =>
 			{
 				_showPassword = !_showPassword;
 				MakePasswordMaskedOrVisible();
 			};
-			Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
-			Android.Graphics.Color color = new Android.Graphics.Color (224, 224, 224);
-			btnTogglePassword.SetColorFilter (color, mMode);
+
 
             Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.root));
 

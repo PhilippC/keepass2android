@@ -91,9 +91,6 @@
 	</style>
 
 	<style name="TextAppearance_SubElement">
-		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-		<item name="android:textSize">18sp</item>
-		<item name="android:textColor">?android:attr/textColorPrimary</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_marginRight">12dip</item>

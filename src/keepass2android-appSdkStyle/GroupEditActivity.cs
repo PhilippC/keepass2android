@@ -27,7 +27,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name")]			
+	[Activity(Label = "@string/app_name", Theme= "@style/Kp2aTheme_Dialog")]			
 	public class GroupEditActivity : LifecycleAwareActivity
 	{
 		public const String KeyParent = "parent";

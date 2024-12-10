@@ -107,7 +107,7 @@ namespace keepass2android
 		public void ApplyDialogTheme()
 		{
 			
-			//TODO still needed? _activity.SetTheme(Resource.Style.Base_Dialog);
+			_activity.SetTheme(Resource.Style.Kp2aTheme_Dialog);
 			
 
 		}

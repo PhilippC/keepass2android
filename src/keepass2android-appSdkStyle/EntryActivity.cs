@@ -1211,10 +1211,13 @@ namespace keepass2android
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
 				"ShowGroupInEntry", false))
 			{
-				groupName = Entry.ParentGroup.GetFullPath();
+				groupName = Entry.ParentGroup?.GetFullPath();
 			}
-			PopulateText(viewId, containerViewId, groupName);
-			_stringViews.Add (key, new StandardStringView (new List<int>{viewId}, containerViewId, this));
+
+            PopulateText(viewId, containerViewId, groupName);
+            _stringViews.Add(key, new StandardStringView(new List<int> { viewId }, containerViewId, this));
+        
+			
 		}
 
 		private void RequiresRefresh()

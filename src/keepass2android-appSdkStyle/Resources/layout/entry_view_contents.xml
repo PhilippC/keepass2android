@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/entry_table"
     android:layout_height="wrap_content"
@@ -33,11 +34,13 @@
           android:orientation="horizontal"
           android:clickable="true"
           android:background="?android:attr/selectableItemBackground">
-        <ImageView
+        <Button
+          style="?attr/materialIconButtonStyle"
+          app:icon="@drawable/baseline_more_vert_24"
             android:id="@+id/group_name_vdots"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:src="@drawable/baseline_more_vert_24"
+            
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
         <TextView
@@ -466,9 +469,11 @@
           style="@style/EntryItem" />
 		  
 		<Button android:id="@+id/btn_restore_history" 
+            style="?attr/materialButtonOutlinedStyle"
+            app:icon="@drawable/baseline_history_24"
+                
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:drawableLeft="@drawable/baseline_history_24"
 			android:text="@string/restore_history"
 			
 			/>
@@ -476,7 +481,9 @@
 			<Button android:id="@+id/btn_remove_history" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:drawableLeft="@drawable/baseline_delete_24"
+              style="?attr/materialButtonOutlinedStyle"
+              app:icon="@drawable/baseline_delete_24"
+			
 			android:text="@string/remove_history"
 			
 			/>

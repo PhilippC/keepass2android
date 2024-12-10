@@ -52,6 +52,7 @@ using File = System.IO.File;
 using Object = Java.Lang.Object;
 using Uri = Android.Net.Uri;
 using Resource = keepass2android_appSdkStyle.Resource;
+using Google.Android.Material.TextField;
 
 namespace keepass2android
 {
@@ -260,16 +261,6 @@ namespace keepass2android
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
-			// Respect mask password setting
-			MakePasswordVisibleOrHidden();
-
-			Button btnTogglePassword = (Button)FindViewById(Resource.Id.toggle_password);
-			btnTogglePassword.Click += (sender, e) =>
-			{
-				State.ShowPassword = !State.ShowPassword;
-				MakePasswordVisibleOrHidden();
-			};
-
 
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
 			addButton.Visibility = ViewStates.Visible;
@@ -437,24 +428,7 @@ namespace keepass2android
                 ;
         }
 
-        private void MakePasswordVisibleOrHidden()
-		{
-		    EditText password = (EditText) FindViewById(Resource.Id.entry_password);
-			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
-			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
-			if (State.ShowPassword)
-			{
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-                _passwordFont.ApplyTo(password);
-				confpassword.Visibility = ViewStates.Gone;
-			}
-			else
-			{
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				confpassword.Visibility = ViewStates.Visible;
-			}
-			password.SetSelection(selStart, selEnd);
-		}
+        
 
 		void SaveEntry()
 		{
@@ -1092,11 +1066,12 @@ namespace keepass2android
 				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
                 ees.Tag = pair.Key;
 				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
-				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
+
 				keyView.Text = pair.Key;
-				titleView.Text = title;
+				
 				((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
-				((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
+                ((TextInputLayout)ees.FindViewById(Resource.Id.value_container)).Hint = pair.Key;
+                ((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
                 _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
                 ((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
 				
@@ -1346,10 +1321,15 @@ namespace keepass2android
 			builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
 				{
 					CopyFieldFromExtraDialog(sender, o, Resource.Id.title, Resource.Id.extrakey);
-					CopyFieldFromExtraDialog(sender, o, Resource.Id.title, Resource.Id.title);
-					CopyFieldFromExtraDialog(sender, o, Resource.Id.value, Resource.Id.value);
+					
 					CopyCheckboxFromExtraDialog(sender, o, Resource.Id.protection);
-				});
+                    var sourceFieldTitle = (EditText)((Dialog)o).FindViewById(Resource.Id.title);
+                    var sourceFieldValue = (EditText)((Dialog)o).FindViewById(Resource.Id.value);
+                    var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                    var targetFieldContainer = ((TextInputLayout)((View)sender.Parent).FindViewById(Resource.Id.value_container));
+                    targetField.Text = sourceFieldValue.Text;
+                    targetFieldContainer.Hint = sourceFieldTitle.Text;
+                });
 			Dialog dialog = builder.Create();
 
 			//setup delete button:
@@ -1410,7 +1390,7 @@ namespace keepass2android
 			
 			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
 			PopulateText(Resource.Id.entry_password, password);
-			PopulateText(Resource.Id.entry_confpassword, password);
+
 
             _passwordFont.ApplyTo(FindViewById<EditText>(Resource.Id.entry_password));
 
@@ -1510,17 +1490,6 @@ namespace keepass2android
 				return false;
 			}
 			
-			if (!State.ShowPassword)
-			{
-				// Validate password
-				String pass = Util.GetEditText(this, Resource.Id.entry_password);
-				String conf = Util.GetEditText(this, Resource.Id.entry_confpassword);
-				if (!pass.Equals(conf))
-				{
-					Toast.MakeText(this, Resource.String.error_pass_match, ToastLength.Long).Show();
-					return false;
-				}
-			}
 			
 
 			// Validate expiry date

@@ -722,7 +722,7 @@ namespace keepass2android
 			mDrawerTitle = Title;
 			
 
-            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+            var btn = FindViewById(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
             {
                 if (!string.IsNullOrEmpty((string)btn.Tag))

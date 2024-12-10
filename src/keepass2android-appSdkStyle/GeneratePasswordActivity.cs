@@ -141,6 +141,7 @@ namespace keepass2android
 			
 			SetContentView(Resource.Layout.generate_password);
 			SetResult(KeePass.ExitNormal);
+            
 
 			var prefs = GetPreferences(FileCreationMode.Private);
 
@@ -195,6 +196,7 @@ namespace keepass2android
             _updateDisabled = true;
             PopulateFieldsFromOptions(_profiles.LastUsedSettings);
             _updateDisabled = false;
+            
 
             var profileSpinner = UpdateProfileSpinner();
 
@@ -462,36 +464,51 @@ namespace keepass2android
         {
             if (_updateDisabled)
                 return;
-            String password = GeneratePassword();
 
-            EditText txtPassword = (EditText) FindViewById(Resource.Id.password_edit);
-            txtPassword.Text = password;
-
-            var progressBar = FindViewById<ProgressBar>(Resource.Id.pb_password_strength);
-            var passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
-            progressBar.Progress = (int)passwordBits;
-            progressBar.Max = 128;
-
-            Color color = new Color(196, 63, 49);
-            if (passwordBits > 40)
-            {
-                color = new Color(219, 152, 55);
-            }
-            if (passwordBits > 64)
-            {
-                color = new Color(96, 138, 38);
-            }
-            if (passwordBits > 100)
-            {
-                color = new Color(31, 128, 31);
-            }
-            progressBar.ProgressDrawable.SetColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SrcIn));
-
-            FindViewById<TextView>(Resource.Id.tv_password_strength).Text = " " + passwordBits + " bits";
-
+            String password = "";
+            uint passwordBits = 0;
             
+            Task.Run(() =>
+            {
+                password = GeneratePassword();
+                passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
+                RunOnUiThread(() =>
+                {
+                    EditText txtPassword = (EditText)FindViewById(Resource.Id.password_edit);
+                    txtPassword.Text = password;
 
-            UpdateProfileSpinnerSelection();
+                    var progressBar = FindViewById<ProgressBar>(Resource.Id.pb_password_strength);
+
+                    progressBar.Progress = (int)passwordBits;
+                    progressBar.Max = 128;
+
+                    Color color = new Color(196, 63, 49);
+                    if (passwordBits > 40)
+                    {
+                        color = new Color(219, 152, 55);
+                    }
+
+                    if (passwordBits > 64)
+                    {
+                        color = new Color(96, 138, 38);
+                    }
+
+                    if (passwordBits > 100)
+                    {
+                        color = new Color(31, 128, 31);
+                    }
+
+                    progressBar.ProgressDrawable.SetColorFilter(new PorterDuffColorFilter(color,
+                        PorterDuff.Mode.SrcIn));
+
+                    FindViewById<TextView>(Resource.Id.tv_password_strength).Text = " " + passwordBits + " bits";
+
+
+
+                    UpdateProfileSpinnerSelection();
+                });
+            });
+            
         }
 
         private void UpdateProfileSpinnerSelection()

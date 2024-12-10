@@ -87,18 +87,23 @@ android:layout_height="wrap_content">
 			
 		<Button
 			android:id="@+id/generate_button"
+      style="?attr/materialIconButtonFilledStyle"
+      app:icon="@drawable/add_key"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
-			android:text="@string/ellipsis" />
-			<ImageButton
-        android:id="@+id/toggle_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_visibility_24"
-		android:layout_alignTop="@id/generate_button"
-        android:layout_toLeftOf="@id/generate_button"
-         />
+			 />
+			
+    <Button
+      android:id="@+id/toggle_password"
+      style="?attr/materialIconButtonFilledStyle"
+      app:icon="@drawable/baseline_visibility_24"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignTop="@id/generate_button"
+      android:layout_toLeftOf="@id/generate_button"
+    />
+
 		<EditText
 			android:id="@+id/entry_password"
 			style="@style/TextAppearance_EditEntry_Value"
