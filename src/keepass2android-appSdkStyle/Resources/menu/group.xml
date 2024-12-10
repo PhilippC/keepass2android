@@ -63,7 +63,7 @@
     />
 
   <item android:id="@+id/menu_sort"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/baseline_sort_24"
         android:title="@string/sort_menu"
       app:showAsAction="never"
     />

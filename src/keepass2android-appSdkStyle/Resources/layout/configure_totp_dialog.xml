@@ -64,7 +64,7 @@
             android:id="@+id/totp_length" />
 
         <Button
-          android:drawableLeft="@android:drawable/ic_menu_camera"
+          android:drawableLeft="@drawable/baseline_camera_alt_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
           android:text="@string/totp_scan"

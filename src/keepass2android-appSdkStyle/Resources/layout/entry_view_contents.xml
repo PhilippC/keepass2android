@@ -476,7 +476,7 @@
 			<Button android:id="@+id/btn_remove_history" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:drawableLeft="@android:drawable/ic_menu_delete"
+			android:drawableLeft="@drawable/baseline_delete_24"
 			android:text="@string/remove_history"
 			
 			/>

@@ -1356,7 +1356,7 @@ namespace keepass2android
 
 			//setup delete button:
 			var deleteButton = dlgView.FindViewById<Button>(Resource.Id.delete_extra);
-			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete), null, null, null);
+			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.ic_menu_delete), null, null, null);
 			deleteButton.Click += (o, args) =>
 				{
 					DeleteAdvancedString(sender);
