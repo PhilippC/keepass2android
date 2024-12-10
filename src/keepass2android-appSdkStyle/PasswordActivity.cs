@@ -2007,7 +2007,7 @@ namespace keepass2android
             {
                 Kp2aLog.LogUnexpectedError(e);
             }
-			//SetEditText(Resource.Id.filename, filenameToShow);
+			SetEditText(Resource.Id.filename, filenameToShow);
 						
 		}
 
