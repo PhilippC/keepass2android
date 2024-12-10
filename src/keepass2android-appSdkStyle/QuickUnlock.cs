@@ -1,4 +1,4 @@
-/*
+﻿/*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. 
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -137,7 +137,7 @@ namespace keepass2android
 		    
 
 			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
-			btnLock.Text = btnLock.Text.Replace("�", "ss");
+			btnLock.Text = btnLock.Text.Replace("ß", "ss");
 			btnLock.Click += (object sender, EventArgs e) =>
 				{
 					App.Kp2a.Lock(false);

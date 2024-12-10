@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -234,7 +234,7 @@ namespace keepass2android
 					else
 					{
 						w = w.Replace("\\n", "<br />");
-						if ((w.StartsWith("*") || (w.StartsWith("�"))))
+						if ((w.StartsWith("*") || (w.StartsWith("•"))))
 						{
 							if (!inList)
 							{
