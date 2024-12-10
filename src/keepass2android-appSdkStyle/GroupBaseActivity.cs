@@ -643,6 +643,12 @@ namespace keepass2android
                     FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Visible;
                     FindViewById(Resource.Id.fabAddNewGroup).Visibility = AddGroupEnabled ? ViewStates.Visible : ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNewEntry).Visibility = AddEntryEnabled ? ViewStates.Visible : ViewStates.Gone;
+                    FindViewById<Google.Android.Material.FloatingActionButton.ExtendedFloatingActionButton>(Resource.Id
+                        .fabAddNewEntry).Shrink();
+                    FindViewById<Google.Android.Material.FloatingActionButton.ExtendedFloatingActionButton>(Resource.Id
+                        .fabAddNewGroup).Extended = false;
+                    FindViewById<Google.Android.Material.FloatingActionButton.ExtendedFloatingActionButton>(Resource.Id
+                        .fabAddNewGroup).Extend();
                     FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabTotpOverview).Visibility = ViewStates.Gone;

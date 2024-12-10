@@ -4,4 +4,4 @@
     android:layout_marginTop="-4dp"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:drawableLeft="@android:drawable/ic_menu_delete" />
+    android:drawableLeft="@drawable/baseline_delete_24" />

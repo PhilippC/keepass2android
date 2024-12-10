@@ -29,7 +29,7 @@ namespace keepass2android.EntryActivityClasses
 		{
 			get
 			{
-				 return _entryActivity.Resources.GetDrawable(Resource.Drawable.ic_picture); 
+				 return _entryActivity.Resources.GetDrawable(Resource.Drawable.baseline_image_24); 
 			}
 		}
 

@@ -254,7 +254,7 @@ namespace keepass2android
 	                    AccessManager.PreparePopup(popupMenu);
 	                    int remove = 0;
 	                    int edit = 1;
-	                    popupMenu.Menu.Add(0, remove, 0, context.GetString(Resource.String.remove_from_filelist)).SetIcon(Resource.Drawable.ic_menu_delete_grey);
+	                    popupMenu.Menu.Add(0, remove, 0, context.GetString(Resource.String.remove_from_filelist)).SetIcon(Resource.Drawable.baseline_delete_24);
 
 	                    TextView textView = view.FindViewById<TextView>(Resource.Id.file_filename);
                         
@@ -262,7 +262,7 @@ namespace keepass2android
                         IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
 	                    if (FileSelectHelper.CanEditIoc(ioc))
 	                    {
-	                        popupMenu.Menu.Add(0, edit, 0, context.GetString(Resource.String.edit)).SetIcon(Resource.Drawable.ic_menu_edit_grey);
+	                        popupMenu.Menu.Add(0, edit, 0, context.GetString(Resource.String.edit)).SetIcon(Resource.Drawable.baseline_edit_24);
                         }
 
 

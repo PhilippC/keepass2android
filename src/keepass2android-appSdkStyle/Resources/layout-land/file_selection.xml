@@ -95,12 +95,12 @@
           android:layout_margin="4dp"
           android:text="@string/start_open_file"
           android:layout_weight="0.5"
-          android:drawableLeft="@drawable/opendb" />
+          android:drawableLeft="@drawable/baseline_folder_open_24" />
         <Button
           android:id="@+id/start_create"
           android:text="@string/start_create"
           android:layout_weight="0.5"
-          android:drawableLeft="@drawable/createnewdb"
+          android:drawableLeft="@drawable/baseline_create_new_folder_24"
           android:layout_margin="4dp"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />

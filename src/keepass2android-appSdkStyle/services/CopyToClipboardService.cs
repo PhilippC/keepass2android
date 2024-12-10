@@ -130,15 +130,15 @@ namespace keepass2android
                 //add action buttons to base notification:
 
                 if (_hasUsername)
-                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_username,
+                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.baseline_account_circle_24,
                         _ctx.GetString(Resource.String.menu_copy_user),
                         GetPendingIntent(Intents.CopyUsername, Resource.String.menu_copy_user)));
                 if (_hasPassword)
-                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password,
+                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.baseline_vpn_key_24,
                         _ctx.GetString(Resource.String.menu_copy_pass),
                         GetPendingIntent(Intents.CopyPassword, Resource.String.menu_copy_pass)));
                 if (_hasTotp)
-                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.ic_action_password,
+                    notificationBuilder.AddAction(new NotificationCompat.Action(Resource.Drawable.baseline_vpn_key_24,
                         _ctx.GetString(Resource.String.menu_copy_totp),
                         GetPendingIntent(Intents.CopyTotp, Resource.String.menu_copy_totp)));
 
@@ -163,7 +163,7 @@ namespace keepass2android
                 {
                     // only show notification if password is available
                     Notification password = GetNotification(Intents.CopyPassword, Resource.String.copy_password,
-                                                            Resource.Drawable.ic_action_password, entryName, entryIcon);
+                                                            Resource.Drawable.baseline_vpn_key_24, entryName, entryIcon);
                     numNotifications++;
                     password.DeleteIntent = CreateDeleteIntent(NotifyPassword);
                     _notificationManager.Notify(NotifyPassword, password);
@@ -172,7 +172,7 @@ namespace keepass2android
                 {
                     // only show notification if username is available
                     Notification username = GetNotification(Intents.CopyUsername, Resource.String.copy_username,
-                                                            Resource.Drawable.ic_action_username, entryName, entryIcon);
+                                                            Resource.Drawable.baseline_account_circle_24, entryName, entryIcon);
                     username.DeleteIntent = CreateDeleteIntent(NotifyUsername);
                     _notificationManager.Notify(NotifyUsername, username);
                     numNotifications++;
@@ -181,7 +181,7 @@ namespace keepass2android
                 {
                     // only show notification if totp is available
                     Notification totp = GetNotification(Intents.CopyTotp, Resource.String.copy_totp,
-                        Resource.Drawable.ic_action_password, entryName, entryIcon);
+                        Resource.Drawable.baseline_vpn_key_24, entryName, entryIcon);
                     totp.DeleteIntent = CreateDeleteIntent(NotifyTotp);
                     _notificationManager.Notify(NotifyTotp, totp);
                     numNotifications++;

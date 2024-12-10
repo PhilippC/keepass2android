@@ -19,7 +19,7 @@ namespace keepass2android
 
 		public Drawable Icon
 		{
-			get { return _entryActivity.Resources.GetDrawable(Resource.Drawable.ic_menu_share_grey); }
+			get { return _entryActivity.Resources.GetDrawable(Resource.Drawable.baseline_share_24); }
 		}
 
 		public string Text

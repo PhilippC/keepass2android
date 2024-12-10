@@ -4,4 +4,4 @@
     android:layout_marginTop="-4dp"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:drawableLeft="@drawable/ic_plus_button" />
+    android:drawableLeft="@drawable/baseline_add_circle_outline_24" />

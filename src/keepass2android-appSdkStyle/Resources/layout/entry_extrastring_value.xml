@@ -11,7 +11,7 @@
 		android:id="@+id/extra_vdots"
 		android:layout_width="wrap_content"
 		android:layout_height="15dp"
-			   android:src="@drawable/vdots"
+			   android:src="@drawable/baseline_more_vert_24"
 			   android:gravity="right|bottom"
 			   android:layout_alignParentRight="true"
 				   />

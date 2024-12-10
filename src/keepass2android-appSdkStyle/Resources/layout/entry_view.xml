@@ -22,5 +22,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom|right"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_fab_edit" />
+        android:src="@drawable/baseline_edit_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

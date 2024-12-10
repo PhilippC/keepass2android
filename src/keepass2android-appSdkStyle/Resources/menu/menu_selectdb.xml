@@ -18,22 +18,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:app="http://schemas.android.com/apk/res-auto">
   <item android:id="@+id/menu_search_advanced"
-        android:icon="@drawable/ic_menu_search"
+        android:icon="@drawable/baseline_search_24"
         android:title="@string/menu_search_advanced"
         app:showAsAction="always"
     />
   <item android:id="@+id/menu_lock"
-      android:icon="@drawable/ic_menu_lock"
+      android:icon="@drawable/baseline_lock_24"
       android:title="@string/menu_lock"
       app:showAsAction="ifRoom"
     />
   <item android:id="@+id/menu_donate"
-        android:icon="@drawable/ic_menu_donatebeer"
+        android:icon="@drawable/donate_beer"
       android:title="@string/menu_donate"
       app:showAsAction="ifRoom"
     />
   <item android:id="@+id/menu_app_settings"
-      android:icon="@drawable/ic_menu_settings"
+      android:icon="@drawable/baseline_settings_24"
       android:title="@string/menu_app_settings"
       app:showAsAction="ifRoom"
     />

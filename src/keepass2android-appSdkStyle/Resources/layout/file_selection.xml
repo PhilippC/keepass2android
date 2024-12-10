@@ -54,7 +54,7 @@
                     android:layout_weight="0"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/md_theme_secondary" />
+                     />
 
 
 
@@ -85,17 +85,19 @@
 
 
             <Button
+                style="@style/Widget.Material3.Button.Icon"
                 android:id="@+id/start_open_file"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/start_open_file"
                 android:layout_weight="0"
-                android:drawableLeft="@drawable/opendb" />
+                app:icon="@drawable/baseline_folder_open_24" />
             <Button
+                style="@style/Widget.Material3.Button.Icon"
                 android:id="@+id/start_create"
                 android:text="@string/start_create"
                 android:layout_weight="0"
-                android:drawableLeft="@drawable/createnewdb"
+                app:icon="@drawable/baseline_create_new_folder_24"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
 

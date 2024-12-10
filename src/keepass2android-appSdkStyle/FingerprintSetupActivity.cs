@@ -307,7 +307,7 @@ namespace keepass2android
 			_fpTextView.SetTextColor(
 				_fpTextView.Resources.GetColor(Resource.Color.md_theme_secondary, null));
 			_fpTextView.Text = "";
-			_fpIcon.SetImageResource(Resource.Drawable.ic_fp_40px);
+			_fpIcon.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 		}
 
 		protected override void OnResume()

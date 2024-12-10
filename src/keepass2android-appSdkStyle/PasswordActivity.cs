@@ -953,7 +953,7 @@ namespace keepass2android
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			btn.PostDelayed(() =>
 			{
-				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+				btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
             }, 1300);
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
@@ -1931,7 +1931,7 @@ namespace keepass2android
 
 				if (_biometricDec.Init())
 				{
-					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+					btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 					_biometricDec.StartListening(new BiometricAuthCallbackAdapter(this, this));
 					return true;
 				}

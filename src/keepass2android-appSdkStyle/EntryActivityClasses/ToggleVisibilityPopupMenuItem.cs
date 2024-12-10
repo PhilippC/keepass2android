@@ -24,7 +24,7 @@ namespace keepass2android
 			get
 			{
 				//return new TextDrawable("\uF06E", _activity);
-				return _activity.Resources.GetDrawable(Resource.Drawable.ic_menu_view_grey);
+				return _activity.Resources.GetDrawable(Resource.Drawable.baseline_visibility_24);
 				
 			}
 		}

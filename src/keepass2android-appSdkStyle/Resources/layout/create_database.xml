@@ -95,7 +95,7 @@ android:layout_height="wrap_content">
         android:id="@+id/toggle_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_view"
+        android:src="@drawable/baseline_visibility_24"
 		android:layout_alignTop="@id/generate_button"
         android:layout_toLeftOf="@id/generate_button"
          />

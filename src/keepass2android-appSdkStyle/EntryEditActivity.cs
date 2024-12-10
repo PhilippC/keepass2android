@@ -41,6 +41,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Runtime;
 using Android.Util;
+using Google.Android.Material.Dialog;
 using keepass2android.Io;
 using KeePassLib.Serialization;
 using KeeTrayTOTP.Libraries;
@@ -262,15 +263,12 @@ namespace keepass2android
 			// Respect mask password setting
 			MakePasswordVisibleOrHidden();
 
-			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
+			Button btnTogglePassword = (Button)FindViewById(Resource.Id.toggle_password);
 			btnTogglePassword.Click += (sender, e) =>
 			{
 				State.ShowPassword = !State.ShowPassword;
 				MakePasswordVisibleOrHidden();
 			};
-			PorterDuff.Mode mMode = PorterDuff.Mode.SrcAtop;
-			Color color = new Color (189,189,189);
-			btnTogglePassword.SetColorFilter (color, mMode);
 
 
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
@@ -355,7 +353,7 @@ namespace keepass2android
 
 	        if (State.Entry.Binaries.Get(strItem) != null)
 	        {
-	            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 	            builder.SetTitle(GetString(Resource.String.AskOverwriteBinary_title));
 
 	            builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
@@ -769,7 +767,7 @@ namespace keepass2android
 				base.OnBackPressed();
 			} else
 			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 				builder.SetTitle(GetString(Resource.String.AskDiscardChanges_title));
 				
 				builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
@@ -1132,7 +1130,7 @@ namespace keepass2android
 		
         private void EditTotpString(View sender)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
             View dlgView = LayoutInflater.Inflate(Resource.Layout.
                 configure_totp_dialog, null);
 
@@ -1337,7 +1335,7 @@ namespace keepass2android
 
         private void EditAdvancedString(View sender)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 			View dlgView = LayoutInflater.Inflate(Resource.Layout.
 				edit_extra_string_dialog, null);
 
@@ -1356,7 +1354,7 @@ namespace keepass2android
 
 			//setup delete button:
 			var deleteButton = dlgView.FindViewById<Button>(Resource.Id.delete_extra);
-			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.ic_menu_delete), null, null, null);
+			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.baseline_delete_24), null, null, null);
 			deleteButton.Click += (o, args) =>
 				{
 					DeleteAdvancedString(sender);

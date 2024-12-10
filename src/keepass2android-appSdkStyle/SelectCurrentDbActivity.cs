@@ -141,7 +141,7 @@ namespace keepass2android
                 else if (position < _displayedDatabases.Count + _autoExecItems.Count)
                 {
                     var item = _autoExecItems[position - _displayedDatabases.Count];
-                    drawable = App.Kp2a.GetResourceDrawable("ic_nav_changedb");
+                    drawable = App.Kp2a.GetResourceDrawable("baseline_file_open_24");
                     displayName = item.Entry.Strings.ReadSafe(PwDefs.TitleField);
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg_dark);
                 }
@@ -149,7 +149,7 @@ namespace keepass2android
                 {
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
                     displayName = _context.GetString(Resource.String.start_open_file);
-                    drawable = App.Kp2a.GetResourceDrawable("ic_nav_changedb");
+                    drawable = App.Kp2a.GetResourceDrawable("baseline_file_open_24");
                 }
 
                 var str = new SpannableString(displayName);

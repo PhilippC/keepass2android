@@ -13,7 +13,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_group" />
+        android:src="@drawable/baseline_folder_open_24" />
     <LinearLayout
 
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:id="@+id/group_name_vdots"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:src="@drawable/vdots"
+            android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
         <TextView
@@ -54,7 +54,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_username" />
+        android:src="@drawable/baseline_account_circle_24" />
 
     <LinearLayout
         
@@ -79,7 +79,7 @@
             android:id="@+id/username_vdots"  
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:src="@drawable/vdots"
+            android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
         <TextView
@@ -98,7 +98,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_url" />
+        android:src="@drawable/baseline_link_24" />
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
@@ -121,7 +121,7 @@
             android:id="@+id/url_vdots"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:src="@drawable/vdots"
+            android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
         <TextView
@@ -139,7 +139,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_password" />
+        android:src="@drawable/baseline_password_24" />
 
     <LinearLayout
         
@@ -164,7 +164,7 @@
             android:id="@+id/password_vdots"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:src="@drawable/vdots"
+            android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
         <TextView
@@ -189,7 +189,7 @@
     style="@style/EntryEditSingleLine_container">
     <ImageView
       style="@style/EntryEditSingleLine_ImageView"
-      android:src="@drawable/ic_entry_totp" />
+      android:src="@drawable/baseline_access_time_24" />
 
     <LinearLayout
         
@@ -214,7 +214,7 @@
           android:id="@+id/totp_vdots"
           android:layout_width="wrap_content"
           android:layout_height="15dp"
-          android:src="@drawable/vdots"
+          android:src="@drawable/baseline_more_vert_24"
           android:gravity="right|bottom"
           android:layout_alignParentRight="true" />
         <TextView
@@ -251,7 +251,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_comments" />
+        android:src="@drawable/baseline_comment_24" />
 
     <LinearLayout
         
@@ -276,7 +276,7 @@
                   android:id="@+id/comment_vdots"
                   android:layout_width="wrap_content"
                   android:layout_height="15dp"
-                  android:src="@drawable/vdots"
+                  android:src="@drawable/baseline_more_vert_24"
                   android:gravity="right|bottom"
                   android:layout_alignParentRight="true" />
         <TextView
@@ -294,7 +294,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_extras" />
+        android:src="@drawable/baseline_more_horiz_24" />
 
     <LinearLayout
         android:id="@+id/extra_strings"    
@@ -309,7 +309,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_attachments" />
+        android:src="@drawable/baseline_attachment_24" />
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -336,7 +336,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_tags" />
+        android:src="@drawable/baseline_label_24" />
 
     <LinearLayout
       
@@ -362,7 +362,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_url" />
+        android:src="@drawable/baseline_link_24" />
 
     <LinearLayout
         
@@ -390,7 +390,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_created" />
+        android:src="@drawable/baseline_date_range_24" />
 
     <LinearLayout
         
@@ -417,7 +417,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_expires" />
+        android:src="@drawable/baseline_explicit_24" />
 
     <LinearLayout
         
@@ -445,7 +445,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_modified" />
+        android:src="@drawable/baseline_edit_calendar_24" />
 
     <LinearLayout
         
@@ -468,7 +468,7 @@
 		<Button android:id="@+id/btn_restore_history" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:drawableLeft="@drawable/ic_entry_history"
+			android:drawableLeft="@drawable/baseline_history_24"
 			android:text="@string/restore_history"
 			
 			/>
@@ -488,7 +488,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/ic_entry_history" />
+        android:src="@drawable/baseline_history_24" />
 
     <LinearLayout
         android:layout_height="wrap_content"

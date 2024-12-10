@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/entry_scroll"
     android:background="?android:attr/colorBackground"
     android:layout_width="fill_parent"
@@ -23,13 +24,22 @@
                 android:scaleType="fitCenter"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic00" />
+            <!--
+            <item name="android:layout_width">fill_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1</item>
+            -->
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/EntryEditSingleLine_TextInputLayout"
+                style="?attr/textInputOutlinedDenseStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_title"
+            
                 android:layout_toLeftOf="@id/icon_button">
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/entry_title"
                     style="@style/EntryEditSingleLine_EditText"
-                    android:hint="@string/hint_title"
                     android:singleLine="true"
                     android:capitalize="sentences" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -40,7 +50,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_username" />
+                android:src="@drawable/baseline_account_circle_24" />
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
@@ -57,7 +67,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_password" />
+                android:src="@drawable/baseline_password_24" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +82,6 @@
                             android:id="@+id/entry_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="0dp"
                             android:singleLine="true"
                             android:inputType="textPassword"
                             android:hint="password"
@@ -85,24 +94,25 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical ="true"
                         android:orientation="horizontal">
-                        <ImageButton
+                        <Button
+                            style="?attr/materialIconButtonStyle"
                             android:id="@+id/toggle_password"
                             android:layout_width="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_menu_view"
-                            android:background="?android:selectableItemBackground" />
+                            android:layout_height="fill_parent"
+                            app:icon="@drawable/baseline_visibility_24"
+                            />
                         <ImageButton
                             android:id="@+id/generate_button"
                             android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:src="@drawable/ic_plus_button"
-                            android:background="?android:selectableItemBackground" />
+                            android:src="@drawable/baseline_add_circle_outline_24"
+                             />
                     </LinearLayout>
                 </LinearLayout>
                 <EditText
@@ -122,7 +132,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_url" />
+                android:src="@drawable/baseline_link_24" />
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
@@ -139,7 +149,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_comments" />
+                android:src="@drawable/baseline_comment_24" />
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
@@ -154,7 +164,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_extras" />
+                android:src="@drawable/baseline_more_horiz_24" />
           <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -171,7 +181,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textAllCaps="true"
-    android:drawableLeft="@drawable/ic_plus_button"
+    android:drawableLeft="@drawable/baseline_add_circle_outline_24"
     android:paddingLeft="8dp"
     android:layout_width="match_parent"
     android:layout_weight="1"
@@ -179,16 +189,13 @@
     android:text="@string/add_extra_string"/>
 
             <Button
+              style="?attr/materialButtonOutlinedStyle"
               android:id="@+id/configure_totp"
-              android:background="?android:selectableItemBackground"
-              android:textColor="?android:attr/textColorPrimary"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:textAllCaps="true"
               android:paddingLeft="8dp"
               android:layout_width="match_parent"
               android:layout_weight="1"
               android:layout_height="wrap_content"
-              android:drawableLeft="@drawable/baseline_schedule_white_24"
+              app:icon="@drawable/baseline_access_time_24"
               android:text="@string/configure_totp"/>
                 
             </LinearLayout>
@@ -199,7 +206,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_attachments" />
+                android:src="@drawable/baseline_attachment_24" />
             <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
@@ -223,7 +230,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_tags" />
+                android:src="@drawable/baseline_label_24" />
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
@@ -240,7 +247,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_url" />
+                android:src="@drawable/baseline_link_24" />
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
@@ -257,7 +264,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_expires" />
+                android:src="@drawable/baseline_explicit_24" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
