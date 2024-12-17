@@ -43,6 +43,7 @@ using Preference = AndroidX.Preference.Preference;
 using PreferenceFragment = AndroidX.Preference.PreferenceFragment;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using Android.Views.Autofill;
+using Google.Android.Material.Dialog;
 using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using String = System.String;
 using KeePassLib.Cryptography.Cipher;
@@ -238,7 +239,7 @@ namespace keepass2android
                         var newIoc = IoUtil.ImportFileToInternalDirectory(sourceIoc, Activity, App.Kp2a);
                         return () =>
                         {
-                            var builder = new AlertDialog.Builder(Activity);
+                            var builder = new MaterialAlertDialogBuilder(Activity);
                             builder
                                 .SetMessage(Resource.String.DatabaseFileMoved);
                             builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
@@ -340,7 +341,7 @@ namespace keepass2android
                         return () =>
                         {
                             UpdateImportKeyfilePref();
-                            var builder = new AlertDialog.Builder(Activity);
+                            var builder = new MaterialAlertDialogBuilder(Activity);
                             builder
                                 .SetMessage(Resource.String.KeyfileMoved);
                             builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { });
@@ -494,7 +495,7 @@ namespace keepass2android
                 {
                     if ((bool)args.NewValue)
                     {
-                        new AlertDialog.Builder(ctx)
+                        new MaterialAlertDialogBuilder(ctx)
                             .SetTitle(ctx.GetString(AppNames.AppNameResource))
                             .SetCancelable(false)
                             .SetPositiveButton(Android.Resource.String.Ok, delegate (object o, DialogClickEventArgs eventArgs)
@@ -608,7 +609,7 @@ namespace keepass2android
             {
                 if (!(bool)e.NewValue)
                 {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Activity);
                     builder.SetTitle(GetString(Resource.String.ClearOfflineCache_title));
 
                     builder.SetMessage(GetString(Resource.String.ClearOfflineCache_question));
@@ -934,7 +935,7 @@ namespace keepass2android
                         {
                             //this exception was reported by many Huawei users
                             Kp2aLog.LogUnexpectedError(e);
-                            new AlertDialog.Builder(Context)
+                            new MaterialAlertDialogBuilder(Context)
                                 .SetTitle(Resource.String.autofill_enable)
                                 .SetMessage(Resource.String.autofill_enable_failed)
                                 .SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => { })

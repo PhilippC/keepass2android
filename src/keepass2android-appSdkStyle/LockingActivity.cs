@@ -21,6 +21,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 
 namespace keepass2android
@@ -139,7 +140,7 @@ namespace keepass2android
 	        }
 	        if (promptToInstall)
 	        {
-	            AlertDialog.Builder b = new AlertDialog.Builder(this);
+	            MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
 	            string message = GetString(Resource.String.NoChallengeApp) + " " + GetString(Resource.String.PleaseInstallApp, new Java.Lang.Object[]{"ykDroid"});
 
 	            Intent yubichalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");

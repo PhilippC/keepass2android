@@ -542,7 +542,7 @@ namespace keepass2android
 		            {
                         //this exception was reported by many Huawei users
 		                Kp2aLog.LogUnexpectedError(e);
-		                new AlertDialog.Builder(this)
+		                new MaterialAlertDialogBuilder(this)
 		                    .SetTitle(Resource.String.autofill_enable)
 		                    .SetMessage(Resource.String.autofill_enable_failed)
 		                    .SetPositiveButton(Resource.String.Ok, (o, eventArgs) => { })
@@ -694,7 +694,7 @@ namespace keepass2android
                     }
                     catch (Exception e)
                     {
-                        new AlertDialog.Builder(this)
+                        new MaterialAlertDialogBuilder(this)
                             .SetTitle("Unexpected error")
                             .SetMessage(
                                 "Opening the settings failed. Please report this to crocoapps@gmail.com including information about your device vendor and OS. Please try to configure the notifications by long pressing a KP2A notification. Details: " + e.ToString())
@@ -1248,7 +1248,7 @@ namespace keepass2android
 
             int selectedBefore = sortOrderManager.GetCurrentSortOrderIndex();
 
-            new AlertDialog.Builder(this)
+            new MaterialAlertDialogBuilder(this)
                 .SetSingleChoiceItems(sortOptions.ToArray(), selectedBefore, (sender, args) =>
                     {
                         int selectedAfter = args.Which;

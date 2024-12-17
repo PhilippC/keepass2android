@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.Util;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using KeePass.DataExchange;
 using KeePass.DataExchange.Formats;
 using KeePassLib.Interfaces;
@@ -60,7 +61,7 @@ namespace keepass2android
         protected override void OnCreate(Android.OS.Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 			builder.SetTitle(Resource.String.export_fileformats_title);
 			builder.SetSingleChoiceItems(Resource.Array.export_fileformat_options, _fileFormatIndex,
 				delegate(object sender, DialogClickEventArgs args) { _fileFormatIndex = args.Which; });

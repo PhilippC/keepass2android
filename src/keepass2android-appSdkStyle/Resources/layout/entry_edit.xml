@@ -153,9 +153,8 @@
               <Button
                 android:id="@+id/add_advanced"
                 style="?attr/materialButtonOutlinedStyle"
-                app:icon="@drawable/baseline_add_24"
+                app:icon="@drawable/baseline_add_circle_outline_24"
                     
-    android:paddingLeft="8dp"
     android:layout_width="match_parent"
     android:layout_weight="1"
     android:layout_height="wrap_content"
@@ -164,7 +163,6 @@
             <Button
               style="?attr/materialButtonOutlinedStyle"
               android:id="@+id/configure_totp"
-              android:paddingLeft="8dp"
               android:layout_width="match_parent"
               android:layout_weight="1"
               android:layout_height="wrap_content"

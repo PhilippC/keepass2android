@@ -33,6 +33,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Preferences;
 using Android.Runtime;
+using Google.Android.Material.Dialog;
 using keepass2android.Io;
 using keepass2android_appSdkStyle;
 using KeePassLib.Security;
@@ -267,7 +268,7 @@ namespace keepass2android
 			}
 			if (templates.Count > 1)
 			{
-				new AlertDialog.Builder(this)
+				new MaterialAlertDialogBuilder(this)
 					.SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
 						Android.Resource.Id.Text1, templates),
 						(o, args) => { EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); })

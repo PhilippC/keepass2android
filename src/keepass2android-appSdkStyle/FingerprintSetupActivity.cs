@@ -12,6 +12,7 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using Java.Lang;
 using keepass2android_appSdkStyle;
 using KeePassLib.Keys;
@@ -169,7 +170,7 @@ namespace keepass2android
                 }
 			    catch (Exception e)
 			    {
-			        new AlertDialog.Builder(this)
+			        new MaterialAlertDialogBuilder(this)
 			            .SetTitle(GetString(Resource.String.ErrorOcurred))
 			            .SetMessage(GetString(Resource.String.FingerprintSetupFailed))
                         .SetCancelable(false)

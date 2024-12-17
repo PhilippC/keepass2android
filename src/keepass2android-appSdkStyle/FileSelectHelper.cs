@@ -13,7 +13,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-
+using Google.Android.Material.Dialog;
 using Java.IO;
 using keepass2android.Io;
 using keepass2android_appSdkStyle;
@@ -62,7 +62,7 @@ namespace keepass2android
 		private void ShowSftpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.sftpcredentials, null);
 			var ctx = activity.ApplicationContext;
             var fileStorage = new Keepass2android.Javafilestorage.SftpStorage(ctx);
@@ -312,7 +312,7 @@ namespace keepass2android
         private void ShowHttpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.httpcredentials, null);
 		    if (!defaultPath.EndsWith(_schemeSeparator))
 		    {
@@ -353,7 +353,7 @@ namespace keepass2android
 		private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !NoNet
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.ftpcredentials, null);
 		    if (!defaultPath.EndsWith(_schemeSeparator))
 		    {
@@ -411,7 +411,7 @@ namespace keepass2android
 		{
 #if !NoNet
             var settings = MegaFileStorage.GetAccountSettings(activity);
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.megacredentials, null);
 			if (!defaultPath.EndsWith(_schemeSeparator))
             {
@@ -500,7 +500,7 @@ namespace keepass2android
 		private void ShowOwncloudDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath, string subtype)
 		{
 #if !EXCLUDE_JAVAFILESTORAGE && !NoNet
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.owncloudcredentials, null);
 			builder.SetView(dlgContents);
 
@@ -561,7 +561,7 @@ namespace keepass2android
 
 		protected void ShowFilenameWarning(string fileName, Action onUserWantsToContinue, Action onUserWantsToCorrect)
 		{
-			new AlertDialog.Builder(_activity)
+			new MaterialAlertDialogBuilder(_activity)
 					.SetPositiveButton(Resource.String.Continue, delegate { onUserWantsToContinue(); })
 					.SetMessage(Resource.String.NoFilenameWarning)
 					.SetCancelable(false)

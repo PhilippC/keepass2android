@@ -53,6 +53,7 @@ using keepass2android.fileselect;
 using KeeTrayTOTP.Libraries;
 using Boolean = Java.Lang.Boolean;
 using Android.Util;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 
 namespace keepass2android
@@ -604,7 +605,7 @@ namespace keepass2android
                 return;
             }
 
-            new AlertDialog.Builder(this)
+            new MaterialAlertDialogBuilder(this)
                 .SetTitle(Resource.String.post_notifications_dialog_title)
                 .SetMessage(Resource.String.post_notifications_dialog_message)
                 .SetNegativeButton(Resource.String.post_notifications_dialog_disable, (sender, args) =>
@@ -890,7 +891,7 @@ namespace keepass2android
 				{
 					Button btnSender = (Button)(sender);
 
-					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 					builder.SetTitle(GetString(Resource.String.SaveAttachmentDialog_title));
 					
 					builder.SetMessage(GetString(Resource.String.SaveAttachmentDialog_text));
@@ -1047,11 +1048,9 @@ namespace keepass2android
 			ViewGroup historyGroup = (ViewGroup)FindViewById(Resource.Id.previous_versions);
             int index = 0;
 			foreach (var previousVersion in Entry.History)
-			{
+            {
+                Button btn = (Button)LayoutInflater.Inflate(Resource.Layout.VersionHistoryButton, null);
 				
-
-
-                Button btn = new Button(this);
                 btn.Text = getDateTime(previousVersion.LastModificationTime);
 
 				//copy variable from outer scope for capturing it below.

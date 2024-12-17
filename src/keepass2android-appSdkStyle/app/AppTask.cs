@@ -13,6 +13,7 @@ using KeePassLib.Utility;
 using KeeTrayTOTP.Libraries;
 using Android.Content.Res;
 using Android.Preferences;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 
 namespace keepass2android
@@ -495,7 +496,7 @@ namespace keepass2android
         /// </summary>
         public void AskAddUrlThenCompleteCreate(EntryActivity activity, string url, Thread notifyPluginsOnOpenThread)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
             builder.SetTitle(activity.GetString(Resource.String.AddUrlToEntryDialog_title));
 
             builder.SetMessage(activity.GetString(Resource.String.AddUrlToEntryDialog_text, new Java.Lang.Object[] { url }));

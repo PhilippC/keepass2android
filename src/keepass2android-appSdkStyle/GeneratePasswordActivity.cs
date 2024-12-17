@@ -28,6 +28,7 @@ using Android.OS;
 using Android.Preferences;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using Java.Util;
 using keepass2android_appSdkStyle;
 using KeePassLib.Cryptography;
@@ -278,7 +279,7 @@ namespace keepass2android
                 .Click += (sender, args) =>
             {
                 var editText = new EditText(this);
-                new AlertDialog.Builder(this)
+                new MaterialAlertDialogBuilder(this)
                     .SetMessage(Resource.String.save_password_generation_profile_text)
                     .SetView(editText)
                     .SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) =>

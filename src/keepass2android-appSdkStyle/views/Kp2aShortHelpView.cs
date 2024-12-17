@@ -16,6 +16,7 @@ using Android.Text.Util;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 
 namespace keepass2android.views
@@ -78,7 +79,7 @@ namespace keepass2android.views
 					string title = Context.GetString(AppNames.AppNameResource);
 					if (!string.IsNullOrEmpty(TitleText))
 						title = TitleText;
-					new AlertDialog.Builder(Context)
+					new MaterialAlertDialogBuilder(Context)
 						.SetTitle(title)
 						.SetMessage(_helpText)
 						.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => { })

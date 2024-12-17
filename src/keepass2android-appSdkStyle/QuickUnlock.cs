@@ -29,6 +29,7 @@ using Android.Runtime;
 
 using Android.Views.InputMethods;
 using Google.Android.Material.AppBar;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Serialization;
@@ -409,7 +410,7 @@ namespace keepass2android
                 }
                 else
                 {
-                    AlertDialog.Builder b = new AlertDialog.Builder(this);
+                    MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
                     b.SetTitle(Resource.String.fingerprint_prefs);
                     b.SetMessage(btn.Tag.ToString());
                     b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());

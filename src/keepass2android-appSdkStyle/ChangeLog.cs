@@ -17,6 +17,7 @@ using Android.Text.Util;
 using Android.Views;
 using Android.Webkit;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 
 namespace keepass2android
@@ -25,7 +26,7 @@ namespace keepass2android
 	{
 		public static void ShowChangeLog(Context ctx, Action onDismiss)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(ctx, Android.Resource.Style.ThemeHoloLightDialog));
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
                 BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_11,Resource.Array.ChangeLog_1_11_net}, "1.11"),

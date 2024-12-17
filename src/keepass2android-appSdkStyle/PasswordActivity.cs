@@ -43,6 +43,7 @@ using AndroidX.CoordinatorLayout.Widget;
 using AndroidX.Core.View;
 using AndroidX.DrawerLayout.Widget;
 using Google.Android.Material.AppBar;
+using Google.Android.Material.Dialog;
 using Java.Lang;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -727,7 +728,7 @@ namespace keepass2android
             {
                 if (!string.IsNullOrEmpty((string)btn.Tag))
                 {
-                    AlertDialog.Builder b = new AlertDialog.Builder(this);
+                    MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
                     b.SetTitle(Resource.String.fingerprint_prefs);
                     b.SetMessage(btn.Tag.ToString());
                     b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
@@ -2132,7 +2133,7 @@ namespace keepass2android
 				
 				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
 				{
-					new AlertDialog.Builder(_act).SetMessage(Message)
+					new MaterialAlertDialogBuilder(_act).SetMessage(Message)
 					                             .SetPositiveButton(Android.Resource.String.Ok,
 					                                                (sender, args) =>
 						                                                {

@@ -36,6 +36,7 @@ using Android.Hardware.Display;
 using Android.Util;
 using Android.Views.InputMethods;
 using AndroidX.Core.View.InputMethod;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 using KeePassLib;
 using KeePassLib.Security;
@@ -582,7 +583,7 @@ namespace keepass2android
 
 		public static void ShowFilenameDialog(Activity activity, Func<string, Dialog, bool> onOpen, Func<string, Dialog, bool> onCreate, Action onCancel, bool showBrowseButton, string defaultFilename, string detailsText, int requestCodeBrowse)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			builder.SetView(activity.LayoutInflater.Inflate(Resource.Layout.file_selection_filename, null));
 			
 			if (onCancel != null)
@@ -646,7 +647,7 @@ namespace keepass2android
 		public static void QueryCredentials(IOConnectionInfo ioc, Action<IOConnectionInfo> afterQueryCredentials, Activity activity)
 		{
 			//Build dialog to query credentials:
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			builder.SetTitle(activity.GetString(Resource.String.credentials_dialog_title));
 			builder.SetPositiveButton(activity.GetString(Android.Resource.String.Ok), (dlgSender, dlgEvt) =>
 			{

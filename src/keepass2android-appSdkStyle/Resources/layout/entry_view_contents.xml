@@ -34,15 +34,17 @@
           android:orientation="horizontal"
           android:clickable="true"
           android:background="?android:attr/selectableItemBackground">
-        <Button
-          style="?attr/materialIconButtonStyle"
-          app:icon="@drawable/baseline_more_vert_24"
-            android:id="@+id/group_name_vdots"
-            android:layout_width="wrap_content"
-            android:layout_height="15dp"
-            
-            android:gravity="right|bottom"
-            android:layout_alignParentRight="true" />
+
+        <ImageView
+          android:id="@+id/group_name_vdots"  
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:paddingRight="12dp"
+          android:tint="@color/md_theme_primary"
+          android:src="@drawable/baseline_more_vert_24"
+          android:gravity="right|bottom"
+          android:layout_alignParentRight="true" />
+
         <TextView
             android:id="@+id/entry_group_name"
             android:layout_width="fill_parent"
@@ -81,7 +83,9 @@
         <ImageView
             android:id="@+id/username_vdots"  
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
+            android:paddingRight="12dp"
+            android:tint="@color/md_theme_primary"
             android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
@@ -123,7 +127,9 @@
         <ImageView
             android:id="@+id/url_vdots"
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
+            android:paddingRight="12dp"
+            android:tint="@color/md_theme_primary"
             android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
@@ -166,7 +172,9 @@
         <ImageView
             android:id="@+id/password_vdots"
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
+            android:paddingRight="12dp"
+            android:tint="@color/md_theme_primary"
             android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true" />
@@ -216,7 +224,9 @@
         <ImageView
           android:id="@+id/totp_vdots"
           android:layout_width="wrap_content"
-          android:layout_height="15dp"
+          android:layout_height="20dp"
+          android:paddingRight="12dp"
+          android:tint="@color/md_theme_primary"
           android:src="@drawable/baseline_more_vert_24"
           android:gravity="right|bottom"
           android:layout_alignParentRight="true" />
@@ -278,7 +288,9 @@
         <ImageView
                   android:id="@+id/comment_vdots"
                   android:layout_width="wrap_content"
-                  android:layout_height="15dp"
+                  android:layout_height="20dp"
+                  android:paddingRight="12dp"
+                  android:tint="@color/md_theme_primary"
                   android:src="@drawable/baseline_more_vert_24"
                   android:gravity="right|bottom"
                   android:layout_alignParentRight="true" />
@@ -503,8 +515,7 @@
         android:orientation="vertical">
 
       <!-- previous versions-->
-      <TextView
-        
+      <TextView        
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           android:text="@string/entry_history"

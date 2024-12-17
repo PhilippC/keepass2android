@@ -11,6 +11,7 @@ using Java.Util;
 using keepass2android.services.AutofillBase.model;
 using System.Linq;
 using Android.Content.PM;
+using Google.Android.Material.Dialog;
 using keepass2android_appSdkStyle;
 using Kp2aAutofillParser;
 using AlertDialog = Android.App.AlertDialog;
@@ -64,7 +65,7 @@ namespace keepass2android.services.AutofillBase
                 Kp2aLog.Log("ChooseForAutofillActivityBase: ExtraDisplayWarning = " + warning);
                 if (warning != AutofillServiceBase.DisplayWarning.None)
                 {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
                     builder.SetTitle(this.GetString(Resource.String.AutofillWarning_title));
 
                     string appName = Intent.GetStringExtra(ExtraQueryPackageString);

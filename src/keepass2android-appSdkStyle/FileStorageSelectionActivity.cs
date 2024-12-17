@@ -13,6 +13,7 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android.Io;
 using keepass2android.view;
 using AlertDialog = Android.App.AlertDialog;
@@ -177,7 +178,7 @@ namespace keepass2android
 		    if (protocolId.Contains(","))
 		    {
                 //bring up a selection dialog to select the variant of the file storage
-		        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 		        
 		        builder.SetItems(protocolId.Split(",").Select(singleProtocolId => App.Kp2a.GetStorageDisplayName(singleProtocolId)).ToArray(), 
 		            delegate(object sender, DialogClickEventArgs args)
@@ -200,7 +201,7 @@ namespace keepass2android
 				//set help:
 				string help = GetString((int)field.GetValue(null));
 
-				new AlertDialog.Builder(this)
+				new MaterialAlertDialogBuilder(this)
 					.SetTitle(GetString(Resource.String.app_name))
 					.SetMessage(help)
 					.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ReturnProtocol(protocolId))

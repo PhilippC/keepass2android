@@ -16,6 +16,7 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android.database.edit;
 using KeePass.Util.Spr;
 using keepass2android_appSdkStyle;
@@ -288,7 +289,7 @@ namespace keepass2android
 
             FindViewById<Button>(Resource.Id.add_child_db_button).Click += (sender, args) =>
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
                 builder.SetTitle(Resource.String.add_child_db);
 
                 List<string> items = new List<string>();
@@ -321,7 +322,7 @@ namespace keepass2android
                 
 
                 
-                AlertDialog dialog = builder.Create();
+                var dialog = builder.Create();
                 dialog.Show();
             };
         }

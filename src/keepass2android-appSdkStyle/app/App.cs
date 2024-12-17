@@ -34,6 +34,7 @@ using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
 using AndroidX.Core.Content;
+using Google.Android.Material.Dialog;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
@@ -472,7 +473,7 @@ namespace keepass2android
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
 
 			builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
@@ -592,7 +593,7 @@ namespace keepass2android
 			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
 				{
-					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
 					builder.SetTitle(GetResourceString(titleKey));
 
 					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
@@ -632,7 +633,7 @@ namespace keepass2android
 												 cancelHandlerWithShow);
 					}
 
-					AlertDialog dialog = builder.Create();
+					var dialog = builder.Create();
 					if (dismissHandler != null)
 					{
 						dialog.SetOnDismissListener(new Util.DismissListener(() => {
