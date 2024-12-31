@@ -973,16 +973,16 @@ namespace keepass2android
 			try
 			{
 				var masterPassword = _biometricDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
-				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
-
+				//first mask the password textedit before assigning the password:
                 if (_showPassword)
                 {
                     _showPassword = false;
 					MakePasswordMaskedOrVisible();
 
                 }
+                _password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
 
-			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
+                FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
 
             }
 			catch (Java.Security.GeneralSecurityException ex)
