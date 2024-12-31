@@ -52,6 +52,8 @@ namespace keepass2android
         public const String KeyEntry = "entry";
         public const String KeyMode = "mode";
 
+        private float _currentListTextSize;
+
         public const int RequestCodeActivateRealSearch = 12366;
 
         static readonly Dictionary<int /*resource id*/, int /*prio*/> bottomBarElementsPriority = new Dictionary<int, int>()
@@ -278,6 +280,11 @@ namespace keepass2android
             {
                 //can happen e.g. after theme change
                 return;
+            }
+            if (PrefsUtil.GetListTextSize(this) != _currentListTextSize)
+            {
+               Recreate();
+               return;
             }
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
@@ -514,6 +521,7 @@ namespace keepass2android
         protected override void OnCreate(Bundle savedInstanceState)
         {
             _design.ApplyTheme();
+            _currentListTextSize = PrefsUtil.GetListTextSize(this);
             base.OnCreate(savedInstanceState);
             
             Android.Util.Log.Debug("KP2A", "Creating GBA");
