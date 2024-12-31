@@ -159,11 +159,6 @@ namespace keepass2android
             settingsFragmentManager = new SettingsFragmentManager(this);
         }
 
-        public static void Launch(Context ctx)
-        {
-            ctx.StartActivity(new Intent(ctx, typeof(AppSettingsActivity)));
-        }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             _design.ApplyTheme();

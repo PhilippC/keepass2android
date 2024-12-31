@@ -535,7 +535,12 @@ namespace keepass2android
                 var displayPrefScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key)));
                 PrepareNoDonationReminderPreference(Activity, displayPrefScreen, FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
-                FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) => Activity.Recreate();
+                FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) =>
+                {
+                    //it would be nicer to recreate, but that - for some reason - causes GroupActivity to be twice on the backstack afterwards :-( 
+                    //So better finish here.
+                    Activity.Finish();
+                };
 
 
                 displayPrefScreen.RemovePreference(unlockedNotificationPref);
@@ -1191,6 +1196,8 @@ namespace keepass2android
     public class AppSettingsActivity : LockingActivity, PreferenceFragmentCompat.IOnPreferenceStartFragmentCallback, FragmentManager.IOnBackStackChangedListener
     {
         private ActivityDesign _design;
+
+        public static bool BeingRecreated = false;
 
         public AppSettingsActivity()
         {

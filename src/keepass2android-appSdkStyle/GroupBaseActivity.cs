@@ -42,6 +42,7 @@ using keepass2android.search;
 using keepass2android_appSdkStyle;
 using KeeTrayTOTP.Libraries;
 using AndroidX.AppCompat.Widget;
+using Google.Android.Material.Dialog;
 using SearchView = AndroidX.AppCompat.Widget.SearchView;
 
 namespace keepass2android
@@ -273,7 +274,11 @@ namespace keepass2android
         protected override void OnResume()
         {
             base.OnResume();
-            _design.ReapplyTheme();
+            if (IsFinishing)
+            {
+                //can happen e.g. after theme change
+                return;
+            }
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
 
@@ -300,7 +305,7 @@ namespace keepass2android
                 RunOnUiThread(() =>
                 {
                     var listView = FragmentManager?.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment)
-                        .ListView;
+                        ?.ListView;
                     if (listView != null)
                     {
                         int count = listView.Count;
@@ -510,7 +515,7 @@ namespace keepass2android
         {
             _design.ApplyTheme();
             base.OnCreate(savedInstanceState);
-
+            
             Android.Util.Log.Debug("KP2A", "Creating GBA");
 
             AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);

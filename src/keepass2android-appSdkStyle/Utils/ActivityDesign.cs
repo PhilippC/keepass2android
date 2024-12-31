@@ -47,9 +47,6 @@ namespace keepass2android
 
 		public void ApplyTheme()
 		{
-			
-				
-			
 			_currentThemeId = NightModePreference;
             AppCompatDelegate.DefaultNightMode = _currentThemeId.Value;
             _secureWindow = SecureWindowPref();
@@ -66,7 +63,8 @@ namespace keepass2android
 			if (newTheme != _currentThemeId)
 			{
 				Kp2aLog.Log("recreating due to theme change.");
-				_activity.Recreate();
+                _activity.Recreate();
+                _activity.Finish(); //withouth this, we'll have two GroupActivities on the backstack afterwards
 				return;
 			}	
 		
@@ -76,7 +74,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("recreating due to icon set change.");
 				_activity.Recreate();
-				return;
+                return;
 
 			}
 
@@ -84,7 +82,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("recreating due to secure window change.");
 				_activity.Recreate();
-				return;
+                return;
 			}
 		}
 
