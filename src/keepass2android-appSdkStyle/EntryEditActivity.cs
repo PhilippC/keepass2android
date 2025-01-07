@@ -37,6 +37,7 @@ using System.Net;
 using System.Text;
 using Android.Content.Res;
 using Android.Database;
+using Android.Gms.Tasks;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Runtime;
@@ -53,6 +54,10 @@ using Object = Java.Lang.Object;
 using Uri = Android.Net.Uri;
 using Resource = keepass2android_appSdkStyle.Resource;
 using Google.Android.Material.TextField;
+using Xamarin.Google.MLKit.Vision.Barcode.Common;
+using Xamarin.Google.MLKit.Vision.CodeScanner;
+using Console = System.Console;
+using Task = Android.Gms.Tasks.Task;
 
 namespace keepass2android
 {
@@ -1150,25 +1155,30 @@ namespace keepass2android
 
             dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
             {
-				/*TODO Restore this
-                var scanner = new ZXing..MobileBarcodeScanner();
-                var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
-                options.PossibleFormats = new List<ZXing.BarcodeFormat>() { ZXing.BarcodeFormat.QR_CODE };
-
-                var result = await scanner.Scan(options);
-                if (result?.Text?.StartsWith("otpauth://") == true)
-                {
-                    dialog.Dismiss();
-                    var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
-                    targetField.Text = result.Text;
-                }
-                else
-                {
-                    Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
-				}
-				*/
-                Toast.MakeText(this, "QR Scanner must be restored", ToastLength.Long).Show();
+				GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
+                    .SetBarcodeFormats(Barcode.FormatQrCode)
+                    .Build();
+                var scanner = GmsBarcodeScanning.GetClient(this, options);
                 
+                scanner.StartScan()
+                    .AddOnSuccessListener(new SuccessListener((barcode) =>
+                    {
+                        if (barcode.RawValue?.StartsWith("otpauth://") == true)
+                        {
+                            dialog.Dismiss();
+                            var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                            targetField.Text = barcode.RawValue;
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
+                        }
+                    }))
+                    .AddOnFailureListener(new FailureListener((e) =>
+                    {
+                        Console.WriteLine($"Scan failed: {e.Message}");
+                    }));
+
 
             };
 
@@ -1549,6 +1559,61 @@ namespace keepass2android
 
 		}
 	}
+
+    internal class BarcodeScanningFailureListener : Java.Lang.Object, IOnFailureListener
+    {
+        public BarcodeScanningFailureListener(Activity activity)
+        {
+        
+        }
+
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            Toast.MakeText(Application.Context, "Barcode scanning failed", ToastLength.Long).Show();
+        }
+    }
+
+    internal class BarcodeScanningCancelledListener : Java.Lang.Object, IOnCanceledListener
+    {
+        public BarcodeScanningCancelledListener(Activity activity)
+        {
+            
+        }
+
+        public void OnCanceled()
+        {
+            Toast.MakeText(Application.Context, "Barcode scanning cancelled", ToastLength.Long).Show();
+        }
+    }
+    public class SuccessListener : Object, IOnSuccessListener
+    {
+        private readonly Action<Barcode> _onSuccess;
+
+        public SuccessListener(Action<Barcode> onSuccess)
+        {
+            _onSuccess = onSuccess;
+        }
+
+        public void OnSuccess(Object result)
+        {
+            _onSuccess?.Invoke((Barcode)result);
+        }
+    }
+
+    public class FailureListener : Java.Lang.Object, IOnFailureListener
+    {
+        private readonly Action<Exception> _onFailure;
+
+        public FailureListener(Action<Exception> onFailure)
+        {
+            _onFailure = onFailure;
+        }
+
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            _onFailure?.Invoke(e);
+        }
+    }
 
     public class DefaultEdit : EditModeBase
 	{

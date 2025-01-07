@@ -54,6 +54,10 @@
 
 	>
 
+    <meta-data
+      android:name="com.google.mlkit.vision.DEPENDENCIES"
+      android:value="barcode_ui"/>
+
     <uses-library
             android:name="org.apache.http.legacy"
             android:required="false"/>
@@ -93,7 +97,7 @@
       </intent-filter>
       <meta-data android:name="android.view.im" android:resource="@xml/method" />
     </service>
-    <activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="english_ime_settings" android:exported="true">
+    <activity android:name="keepass2android.softkeyboard.LatinIMESettings" android:label="@string/english_ime_settings" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
       </intent-filter>

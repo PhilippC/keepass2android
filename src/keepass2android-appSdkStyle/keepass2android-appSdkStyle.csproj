@@ -740,6 +740,7 @@
     <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.2.1.10" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
     <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.2" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Code.Scanner" Version="116.1.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBindingSdkStyle\AndroidFileChooserBindingSdkStyle.csproj" />
