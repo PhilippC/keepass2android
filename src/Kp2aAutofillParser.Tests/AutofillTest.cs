@@ -26,65 +26,64 @@ namespace Kp2aAutofillParserTest
         [Fact]
         public void TestNotFocusedPasswordAutoIsNotFilled()
         {
-            var resourceName = "Kp2aAutofillParserTest.com-servicenet-mobile-no-focus.json";
+            var resourceName = "com-servicenet-mobile-no-focus.json";
             RunTestFromAutofillInput(resourceName, "com.servicenet.mobile");
         }
 
         [Fact]
         public void TestCrashRegressionEmptySequence()
         {
-            var resourceName = "Kp2aAutofillParserTest.imdb.json";
+            var resourceName = "imdb.json";
             RunTestFromAutofillInput(resourceName, "com.vivaldi.browser", "m.imdb.com");
         }
 
         [Fact]
         public void TestFocusedPasswordAutoIsFilled()
         {
-            var resourceName = "Kp2aAutofillParserTest.com-servicenet-mobile-focused.json";
+            var resourceName = "com-servicenet-mobile-focused.json";
             RunTestFromAutofillInput(resourceName, "com.servicenet.mobile");
         }
 
         [Fact]
         public void TestMulitpleUnfocusedLoginsIsFilled()
         {
-            var resourceName = "Kp2aAutofillParserTest.firefox-amazon-it.json";
+            var resourceName = "firefox-amazon-it.json";
             RunTestFromAutofillInput(resourceName, "org.mozilla.firefox", "www.amazon.it");
         }
 
         [Fact]
         public void CanDetectFieldsWithoutAutofillHints()
         {
-            var resourceName = "Kp2aAutofillParserTest.chrome-android10-amazon-it.json";
+            var resourceName = "chrome-android10-amazon-it.json";
             RunTestFromAutofillInput(resourceName, "com.android.chrome", "www.amazon.it");
         }
         
         [Fact]
         public void DetectsUsernameFieldDespitePasswordAutoHint()
         {
-            var resourceName = "Kp2aAutofillParserTest.com-ifs-banking-fiid3364-android13.json";
+            var resourceName = "com-ifs-banking-fiid3364-android13.json";
             RunTestFromAutofillInput(resourceName, "com.ifs.banking.fiid3364", null);
         }
 
         [Fact]
         public void DetectsEmailAutofillHint()
         {
-            var resourceName = "Kp2aAutofillParserTest.com-expressvpn-vpn-android13.json";
+            var resourceName = "com-expressvpn-vpn-android13.json";
             RunTestFromAutofillInput(resourceName, "com.expressvpn.vpn", null);
         }
         [Fact]
         public void TestIgnoresAndroidSettings()
         {
-            var resourceName = "Kp2aAutofillParserTest.android14-settings.json";
+            var resourceName = "android14-settings.json";
             RunTestFromAutofillInput(resourceName, "com.android.settings", null);
         }
 
         private void RunTestFromAutofillInput(string resourceName, string expectedPackageName = null, string expectedWebDomain = null)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            
 
             string input;
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (Stream stream = assembly.GetManifestResourceStream(assembly.GetName().Name + "." + resourceName))
             using (StreamReader reader = new StreamReader(stream))
             {
                 input = reader.ReadToEnd();
