@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+  <com.google.android.material.textfield.TextInputLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-
-  <AutoCompleteTextView
+  <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+    style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
         android:id="@+id/title"
         android:singleLine="true"
         android:inputType="text"
@@ -12,23 +18,27 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         />
+        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
     <EditText
         android:id="@+id/value"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
         android:inputType="textMultiLine"
         android:hint="@string/field_value"/>
+        </com.google.android.material.textfield.TextInputLayout>
 	<CheckBox
         android:id="@+id/protection"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/value"
         android:text="@string/protection"/>
     <Button
+      style="?attr/materialButtonOutlinedStyle"
+      app:icon="@drawable/baseline_delete_24"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/protection"
         android:text="@string/delete_extra_string"
         android:id="@+id/delete_extra" />
-</RelativeLayout>
+</LinearLayout>

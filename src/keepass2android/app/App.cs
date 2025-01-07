@@ -33,8 +33,8 @@ using KeePassLib.Cryptography.Cipher;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Android.Preferences;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
+using AndroidX.Core.Content;
+using Google.Android.Material.Dialog;
 #if !EXCLUDE_TWOFISH
 using TwofishCipher;
 #endif
@@ -42,6 +42,7 @@ using Keepass2android.Pluginsdk;
 using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
 using keepass2android.database.edit;
+using keepass2android;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 #if !NoNet
@@ -472,7 +473,7 @@ namespace keepass2android
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
 			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
 
 			builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
@@ -592,7 +593,7 @@ namespace keepass2android
 			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
 				{
-					AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
 					builder.SetTitle(GetResourceString(titleKey));
 
 					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
@@ -632,7 +633,7 @@ namespace keepass2android
 												 cancelHandlerWithShow);
 					}
 
-					AlertDialog dialog = builder.Create();
+					var dialog = builder.Create();
 					if (dismissHandler != null)
 					{
 						dialog.SetOnDismissListener(new Util.DismissListener(() => {
@@ -1343,9 +1344,7 @@ namespace keepass2android
 			intentFilter.AddAction(Intents.CloseDatabase);
             Context.RegisterReceiver(broadcastReceiver, intentFilter);
 
-
-            Xamarin.Essentials.Platform.Init(this);
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            //ZXing.Net.Mobile.Forms.Android.Platform.Init();
 		}
 
 	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();

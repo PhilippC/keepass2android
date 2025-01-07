@@ -21,8 +21,8 @@ using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Preferences;
-using Android.Support.V7.App;
 using Android.Views;
+using AndroidX.AppCompat.App;
 using Java.Lang;
 using keepass2android;
 

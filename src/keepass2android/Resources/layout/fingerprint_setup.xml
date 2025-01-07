@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:background="?activityBackgroundColor"
+    android:background="?android:attr/colorBackground"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:layout_marginBottom="12dip"
@@ -43,10 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance_Help_Dense"
-                android:textColor="@color/light_gray"
                 app:help_text="@string/enable_fingerprint_quickunlock_Info"
                 app:title_text="@string/enable_fingerprint_quickunlock"
-                android:background="?android:attr/selectableItemBackground" />
+               />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -62,10 +61,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance_Help_Dense"
-                android:textColor="@color/light_gray"
+                
                 app:help_text="@string/enable_fingerprint_unlock_Info"
                 app:title_text="@string/enable_fingerprint_unlock"
-                android:background="?android:attr/selectableItemBackground" />
+                 />
         </LinearLayout>
       <CheckBox
         android:id="@+id/close_database_after_failed"
@@ -104,7 +103,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/fingerprint_description"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_fp_40px" />
+            android:src="@drawable/baseline_fingerprint_24" />
         <TextView
             android:id="@+id/fingerprint_status"
             style="@style/TextAppearance.AppCompat.Body1"
@@ -116,7 +115,7 @@
             android:layout_toEndOf="@+id/fingerprint_icon"
             android:gravity="center_vertical"
             android:text=""
-            android:textColor="@color/hint_color" />
+            android:textColor="@color/md_theme_primary" />
         <Button
             android:id="@+id/cancel_button"
             android:text="@string/cancel"

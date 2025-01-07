@@ -20,6 +20,7 @@ using AndroidX.AutoFill.Inline;
 using AndroidX.AutoFill.Inline.V1;
 using Java.Util.Concurrent.Atomic;
 using keepass2android.services.AutofillBase.model;
+using keepass2android;
 using KeePassLib;
 using Kp2aAutofillParser;
 
@@ -399,12 +400,12 @@ namespace keepass2android.services.AutofillBase
 
             string text = GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this) });
             RemoteViews presentation = AutofillHelper.NewRemoteViews(base.PackageName,
-                text, Resource.Drawable.ic_menu_close_grey);
+                text, Resource.Drawable.baseline_close_24);
 
             var datasetBuilder = new Dataset.Builder(presentation);
             datasetBuilder.SetAuthentication(pendingIntent?.IntentSender);
 
-            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.ic_menu_close_grey, null);
+            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.baseline_close_24, null);
 
             foreach (var autofillId in autofillIds)
             {

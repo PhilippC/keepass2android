@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Util;
 using Java.IO;
+using File = Java.IO.File;
 
 namespace keepass2android
 {
@@ -55,7 +56,7 @@ namespace keepass2android
 					
 			}
 			Log.Verbose(logTag, "Unsupported uri: '" + uri + "'.");
-			throw new FileNotFoundException("Unsupported uri: "
+			throw new Java.IO.FileNotFoundException("Unsupported uri: "
 			                                + uri.ToString());
 		}
 		

@@ -687,6 +687,25 @@ namespace KeePassLib.Utility
 			return false;
 		}
 
+		public static string GetTempPath()
+		{
+			string strDir;
+			if (NativeLib.IsUnix())
+				strDir = NativeMethods.GetUserRuntimeDir();
+#if KeePassUAP
+			else strDir = Windows.Storage.ApplicationData.Current.TemporaryFolder.Path;
+#else
+			else strDir = Path.GetTempPath();
+#endif
+
+			try
+			{
+				if (!Directory.Exists(strDir)) Directory.CreateDirectory(strDir);
+			}
+			catch (Exception) { Debug.Assert(false); }
+
+			return strDir;
+		}
 
 #if !KeePassLibSD
 		// Structurally mostly equivalent to UrlUtil.GetFileInfos

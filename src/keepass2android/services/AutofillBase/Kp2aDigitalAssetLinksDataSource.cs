@@ -2,6 +2,7 @@
 using System.Linq;
 using Android.Content;
 using Android.Preferences;
+using keepass2android;
 using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase

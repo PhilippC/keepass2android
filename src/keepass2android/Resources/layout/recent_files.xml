@@ -3,22 +3,22 @@
       android:id="@+id/recent_files"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         
                 >
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        
         android:text="@string/open_recent"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:textColor="#fff" />
-    <ListView
+        />
+    <keepass2android.NonScrollListView
             android:id="@android:id/list"
-            android:layout_weight="1"
+        
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:paddingRight="0dp"
             android:paddingLeft="0dp" />
 
@@ -28,7 +28,6 @@
       android:layout_height="wrap_content"
       android:text="@string/show_local_backups"
       android:checked="false"
-      android:textColor="#fff"
       android:gravity="left"/>
 
   </LinearLayout>

@@ -25,7 +25,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
+
 using KeePassLib;
 using Android.Preferences;
 using KeePassLib.Interfaces;
@@ -35,13 +35,15 @@ using keepass2android.database.edit;
 using keepass2android.view;
 using Android.Graphics.Drawables;
 using Android.Provider;
-using Android.Support.V4.View;
 using Android.Views.Autofill;
-using CursorAdapter = Android.Support.V4.Widget.CursorAdapter;
 using Object = Java.Lang.Object;
 using Android.Text;
 using keepass2android.search;
+using keepass2android;
 using KeeTrayTOTP.Libraries;
+using AndroidX.AppCompat.Widget;
+using Google.Android.Material.Dialog;
+using SearchView = AndroidX.AppCompat.Widget.SearchView;
 
 namespace keepass2android
 {
@@ -49,6 +51,8 @@ namespace keepass2android
     {
         public const String KeyEntry = "entry";
         public const String KeyMode = "mode";
+
+        private float _currentListTextSize;
 
         public const int RequestCodeActivateRealSearch = 12366;
 
@@ -249,7 +253,7 @@ namespace keepass2android
         private IMenuItem _offlineItem;
         private IMenuItem _onlineItem;
         private IMenuItem _syncItem;
-        private Android.Support.V7.Widget.SearchView searchView;
+        private SearchView searchView;
 
 
         public String UuidGroup
@@ -272,7 +276,16 @@ namespace keepass2android
         protected override void OnResume()
         {
             base.OnResume();
-            _design.ReapplyTheme();
+            if (IsFinishing)
+            {
+                //can happen e.g. after theme change
+                return;
+            }
+            if (PrefsUtil.GetListTextSize(this) != _currentListTextSize)
+            {
+               Recreate();
+               return;
+            }
             AppTask.StartInGroupActivity(this);
             AppTask.SetupGroupBaseActivityButtons(this);
 
@@ -298,8 +311,8 @@ namespace keepass2android
             {
                 RunOnUiThread(() =>
                 {
-                    var listView = FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment)
-                        .ListView;
+                    var listView = FragmentManager?.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment)
+                        ?.ListView;
                     if (listView != null)
                     {
                         int count = listView.Count;
@@ -508,8 +521,9 @@ namespace keepass2android
         protected override void OnCreate(Bundle savedInstanceState)
         {
             _design.ApplyTheme();
+            _currentListTextSize = PrefsUtil.GetListTextSize(this);
             base.OnCreate(savedInstanceState);
-
+            
             Android.Util.Log.Debug("KP2A", "Creating GBA");
 
             AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
@@ -541,7 +555,7 @@ namespace keepass2android
 		            {
                         //this exception was reported by many Huawei users
 		                Kp2aLog.LogUnexpectedError(e);
-		                new AlertDialog.Builder(this)
+		                new MaterialAlertDialogBuilder(this)
 		                    .SetTitle(Resource.String.autofill_enable)
 		                    .SetMessage(Resource.String.autofill_enable_failed)
 		                    .SetPositiveButton(Resource.String.Ok, (o, eventArgs) => { })
@@ -642,6 +656,12 @@ namespace keepass2android
                     FindViewById(Resource.Id.fabCancelAddNew).Visibility = ViewStates.Visible;
                     FindViewById(Resource.Id.fabAddNewGroup).Visibility = AddGroupEnabled ? ViewStates.Visible : ViewStates.Gone;
                     FindViewById(Resource.Id.fabAddNewEntry).Visibility = AddEntryEnabled ? ViewStates.Visible : ViewStates.Gone;
+                    FindViewById<Google.Android.Material.FloatingActionButton.ExtendedFloatingActionButton>(Resource.Id
+                        .fabAddNewEntry).Shrink();
+                    FindViewById<Google.Android.Material.FloatingActionButton.ExtendedFloatingActionButton>(Resource.Id
+                        .fabAddNewGroup).Extended = false;
+                    FindViewById<Google.Android.Material.FloatingActionButton.ExtendedFloatingActionButton>(Resource.Id
+                        .fabAddNewGroup).Extend();
                     FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
                     FindViewById(Resource.Id.fabTotpOverview).Visibility = ViewStates.Gone;
@@ -687,7 +707,7 @@ namespace keepass2android
                     }
                     catch (Exception e)
                     {
-                        new AlertDialog.Builder(this)
+                        new MaterialAlertDialogBuilder(this)
                             .SetTitle("Unexpected error")
                             .SetMessage(
                                 "Opening the settings failed. Please report this to crocoapps@gmail.com including information about your device vendor and OS. Please try to configure the notifications by long pressing a KP2A notification. Details: " + e.ToString())
@@ -711,7 +731,7 @@ namespace keepass2android
                     edit.PutBoolean("RequestedPostNotificationsPermission", true);
                     edit.Commit();
 
-                    Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, 0);
+                    AndroidX.Core.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, 0);
                     UpdatePostNotificationsPermissionInfo(true);
                 };
                 FindViewById(Resource.Id.post_notification_button_dont_show_again).Click += (sender, args) =>
@@ -949,14 +969,14 @@ namespace keepass2android
             }
         }
 
-        class SuggestionListener : Java.Lang.Object, SearchView.IOnSuggestionListener, Android.Support.V7.Widget.SearchView.IOnSuggestionListener
+        class SuggestionListener : Java.Lang.Object, AndroidX.AppCompat.Widget.SearchView.IOnSuggestionListener
         {
-            private readonly CursorAdapter _suggestionsAdapter;
+            private readonly AndroidX.CursorAdapter.Widget.CursorAdapter _suggestionsAdapter;
             private readonly GroupBaseActivity _activity;
             private readonly IMenuItem _searchItem;
 
 
-            public SuggestionListener(Android.Support.V4.Widget.CursorAdapter suggestionsAdapter, GroupBaseActivity activity, IMenuItem searchItem)
+            public SuggestionListener(AndroidX.CursorAdapter.Widget.CursorAdapter suggestionsAdapter, GroupBaseActivity activity, IMenuItem searchItem)
             {
                 _suggestionsAdapter = suggestionsAdapter;
                 _activity = activity;
@@ -980,7 +1000,7 @@ namespace keepass2android
             }
         }
 
-        class OnQueryTextListener : Java.Lang.Object, Android.Support.V7.Widget.SearchView.IOnQueryTextListener
+        class OnQueryTextListener : Java.Lang.Object, SearchView.IOnQueryTextListener
         {
             private readonly GroupBaseActivity _activity;
 
@@ -1034,7 +1054,7 @@ namespace keepass2android
 
             var view = searchItem.ActionView;
 
-            searchView = view.JavaCast<Android.Support.V7.Widget.SearchView>();
+            searchView = view.JavaCast<SearchView>();
 
             searchView.SetSearchableInfo(searchManager.GetSearchableInfo(ComponentName));
             searchView.SetOnSuggestionListener(new SuggestionListener(searchView.SuggestionsAdapter, this, searchItem));
@@ -1241,7 +1261,7 @@ namespace keepass2android
 
             int selectedBefore = sortOrderManager.GetCurrentSortOrderIndex();
 
-            new AlertDialog.Builder(this)
+            new MaterialAlertDialogBuilder(this)
                 .SetSingleChoiceItems(sortOptions.ToArray(), selectedBefore, (sender, args) =>
                     {
                         int selectedAfter = args.Which;
@@ -1350,6 +1370,7 @@ namespace keepass2android
             FindViewById(Resource.Id.fabAddNewEntry).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabAddNew).Visibility = ViewStates.Gone;
             FindViewById(Resource.Id.fabSearch).Visibility = ViewStates.Gone;
+            FindViewById(Resource.Id.fabTotpOverview).Visibility = ViewStates.Gone;
 
             UpdateBottomBarElementVisibility(Resource.Id.insert_element, true);
             UpdateBottomBarElementVisibility(Resource.Id.cancel_insert_element, true);
@@ -1499,7 +1520,7 @@ namespace keepass2android
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
                 _statusBarColor = Activity.Window.StatusBarColor;
-                Activity.Window.SetStatusBarColor(Activity.Resources.GetColor(Resource.Color.appAccentColorDark));
+                Activity.Window.SetStatusBarColor(Activity.Resources.GetColor(Resource.Color.md_theme_secondary));
             }
             return true;
         }

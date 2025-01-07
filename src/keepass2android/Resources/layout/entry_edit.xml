@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/entry_scroll"
-    android:background="?activityBackgroundColor"
+    android:background="?android:attr/colorBackground"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <LinearLayout
@@ -23,41 +24,46 @@
                 android:scaleType="fitCenter"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic00" />
-            <android.support.design.widget.TextInputLayout
-                style="@style/EntryEditSingleLine_TextInputLayout"
+            <!--
+            <item name="android:layout_width">fill_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1</item>
+            -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="?attr/textInputOutlinedDenseStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_title"
+            
                 android:layout_toLeftOf="@id/icon_button">
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/entry_title"
                     style="@style/EntryEditSingleLine_EditText"
-                    android:hint="@string/hint_title"
                     android:singleLine="true"
                     android:capitalize="sentences" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </RelativeLayout>
     <!--User-->
         <LinearLayout
           android:id="@+id/user_section"
             style="@style/EntryEditSingleLine_container">
-            <ImageView
-                style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_username" />
-            <android.support.design.widget.TextInputLayout
-                style="@style/EntryEditSingleLine_TextInputLayout">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/EntryEditSingleLine_TextInputLayout"
+                app:startIconDrawable="@drawable/baseline_account_circle_24"
+                >
                 <EditText
                     style="@style/EntryEditSingleLine_EditText"
                     android:id="@+id/entry_user_name"
                     android:hint="@string/hint_username"
                     android:inputType="textEmailAddress"
                     android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     <!-- password-->
       <LinearLayout
         android:id="@+id/password_section"
             style="@style/EntryEditSingleLine_container">
-            <ImageView
-                style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_password" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,65 +71,46 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                       android:layout_weight="1"
+                      app:startIconDrawable="@drawable/baseline_password_24"
+                      app:endIconMode="password_toggle"
                         style="@style/EntryEditSingleLine_TextInputLayout">
                         <EditText
                             android:id="@+id/entry_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="0dp"
                             android:singleLine="true"
                             android:inputType="textPassword"
                             android:hint="password"
                           android:importantForAccessibility="no"/>
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="fill_parent"
                         android:paddingBottom="12dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical ="true"
                         android:orientation="horizontal">
-                        <ImageButton
-                            android:id="@+id/toggle_password"
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:paddingLeft="8dp"
-                            android:paddingRight="8dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_menu_view"
-                            android:background="?android:selectableItemBackground" />
-                        <ImageButton
+                        
+                        <Button
                             android:id="@+id/generate_button"
-                            android:layout_gravity="center_vertical"
+                            style="?attr/materialIconButtonFilledStyle"
+                            app:icon="@drawable/add_key"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="8dp"
-                            android:paddingRight="8dp"
-                            android:src="@drawable/ic_plus_button"
-                            android:background="?android:selectableItemBackground" />
+                             />
                     </LinearLayout>
                 </LinearLayout>
-                <EditText
-                    android:id="@+id/entry_confpassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="0dp"
-                    android:singleLine="true"
-                    android:inputType="textPassword"
-                    android:hint="confirm password"
-                  android:importantForAccessibility="no"/>
+
             </LinearLayout>
         </LinearLayout>
     <!-- URL -->
       <LinearLayout
         android:id="@+id/url_section"
             style="@style/EntryEditSingleLine_container">
-            <ImageView
-                style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_url" />
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_link_24"
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
                     style="@style/EntryEditSingleLine_EditText"
@@ -131,30 +118,28 @@
                     android:hint="@string/hint_url"
                     android:inputType="textUri"
                     android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     <!-- Comments -->
       <LinearLayout
         android:id="@+id/comments_section"
             style="@style/EntryEditSingleLine_container">
-            <ImageView
-                style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_comments" />
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_comment_24"
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
                     style="@style/EntryEditSingleLine_EditText"
                     android:id="@+id/entry_comment"
                     android:hint="@string/hint_comment"
                     android:inputType="textMultiLine" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
       <LinearLayout
             android:id="@+id/entry_extras_container"
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_extras" />
+                android:src="@drawable/baseline_more_horiz_24" />
           <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -167,28 +152,21 @@
                     android:orientation="vertical" />
               <Button
                 android:id="@+id/add_advanced"
-                android:background="?android:selectableItemBackground"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textAllCaps="true"
-    android:drawableLeft="@drawable/ic_plus_button"
-    android:paddingLeft="8dp"
+                style="?attr/materialButtonOutlinedStyle"
+                app:icon="@drawable/baseline_add_circle_outline_24"
+                    
     android:layout_width="match_parent"
     android:layout_weight="1"
     android:layout_height="wrap_content"
     android:text="@string/add_extra_string"/>
 
             <Button
+              style="?attr/materialButtonOutlinedStyle"
               android:id="@+id/configure_totp"
-              android:background="?android:selectableItemBackground"
-              android:textColor="?android:attr/textColorPrimary"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:textAllCaps="true"
-              android:paddingLeft="8dp"
               android:layout_width="match_parent"
               android:layout_weight="1"
               android:layout_height="wrap_content"
-              android:drawableLeft="@drawable/baseline_schedule_white_24"
+              app:icon="@drawable/baseline_access_time_24"
               android:text="@string/configure_totp"/>
                 
             </LinearLayout>
@@ -199,7 +177,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_attachments" />
+                android:src="@drawable/baseline_attachment_24" />
             <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
@@ -221,10 +199,9 @@
       <LinearLayout
         android:id="@+id/tags_section"
             style="@style/EntryEditSingleLine_container">
-            <ImageView
-                style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_tags" />
-            <android.support.design.widget.TextInputLayout
+
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_label_24"
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
                     style="@style/EntryEditSingleLine_EditText"
@@ -232,16 +209,14 @@
                     android:hint="@string/hint_tags"
                     android:inputType="text"
                     android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     <!-- Override URL -->
         <LinearLayout
             android:id="@+id/entry_override_url_container"
             style="@style/EntryEditSingleLine_container">
-            <ImageView
-                style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_url" />
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_link_24"
                 style="@style/EntryEditSingleLine_TextInputLayout">
                 <EditText
                     style="@style/EntryEditSingleLine_EditText"
@@ -249,7 +224,7 @@
                     android:hint="@string/hint_override_url"
                     android:inputType="textUri"
                     android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     <!--expires-->
       <LinearLayout
@@ -257,7 +232,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/ic_entry_expires" />
+                android:src="@drawable/baseline_explicit_24" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

@@ -108,8 +108,12 @@ namespace keepass2android
 
 		public static void SendLog(Context ctx)
 		{
-			if (!File.Exists(LogFilename))
-				return;
+            if (!File.Exists(LogFilename))
+            {
+				Toast.MakeText(ctx, "Debug log is empty.", ToastLength.Long).Show();
+                return;
+            }
+				
 			Intent sendIntent = new Intent();
 			sendIntent.SetAction(Intent.ActionSend);
 			sendIntent.PutExtra(Intent.ExtraText, File.ReadAllText(LogFilename));

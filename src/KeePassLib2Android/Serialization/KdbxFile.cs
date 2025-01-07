@@ -59,6 +59,8 @@ namespace KeePassLib.Serialization
 		/// Use this flag when exporting data to a plain-text XML file.
 		/// </summary>
 		PlainXml,
+
+		//Deprecated
 		ProtocolBuffers
 	}
 

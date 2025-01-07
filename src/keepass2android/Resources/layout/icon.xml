@@ -24,7 +24,7 @@
   android:layout_height="wrap_content"
   android:orientation="vertical"
   android:gravity="center_horizontal" 
-  android:background="@color/icon_background"
+  android:background="@color/md_theme_secondaryContainer"
   android:minWidth="60dp" 
   android:minHeight="60dp"
   android:padding="5dp">
@@ -40,7 +40,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:textColor="@color/icon_text"
+    android:textColor="@color/md_theme_onSecondaryContainer"
     android:text="00">
   </TextView>
 </LinearLayout>

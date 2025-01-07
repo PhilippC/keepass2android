@@ -12,15 +12,16 @@ using Android.Views;
 using Android.Widget;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using keepass2android;
 
 namespace keepass2android.fileselect
 {
-    [Activity(Label = "@string/filestorage_setup_title", Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation |
+    [Activity(Label = "@string/filestorage_setup_title", Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation |
 	           ConfigChanges.KeyboardHidden)]
 	public class FileStorageSetupActivity : Activity, IFileStorageSetupActivity
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
-		,Keepass2android.Javafilestorage.IJavaFileStorageFileStorageSetupActivity
+		,Keepass2android.Javafilestorage.IJavaFileStorage.IFileStorageSetupActivity
 #endif
 #endif
 	{

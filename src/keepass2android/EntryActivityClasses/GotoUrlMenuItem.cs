@@ -1,4 +1,5 @@
 using Android.Graphics.Drawables;
+using keepass2android;
 
 
 namespace keepass2android
@@ -19,7 +20,7 @@ namespace keepass2android
 
 		public Drawable Icon
 		{
-			get { return _ctx.Resources.GetDrawable(Resource.Drawable.ic_menu_upload_grey); }
+			get { return _ctx.Resources.GetDrawable(Resource.Drawable.baseline_upload_24); }
 		}
 
 		public string Text

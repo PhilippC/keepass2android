@@ -11,6 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using keepass2android;
 
 namespace keepass2android.EntryActivityClasses
 {
@@ -28,7 +29,7 @@ namespace keepass2android.EntryActivityClasses
 		{
 			get
 			{
-				 return _entryActivity.Resources.GetDrawable(Resource.Drawable.ic_picture); 
+				 return _entryActivity.Resources.GetDrawable(Resource.Drawable.baseline_image_24); 
 			}
 		}
 

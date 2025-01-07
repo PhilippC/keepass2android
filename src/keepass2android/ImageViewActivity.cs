@@ -13,6 +13,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Utility;
 using Object = Java.Lang.Object;
@@ -294,7 +295,7 @@ namespace keepass2android
 		}
 	}
 	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-		Theme = "@style/MyTheme_ActionBar")]
+		Theme = "@style/Kp2aTheme_ActionBar")]
 	public class ImageViewActivity : LockCloseActivity
 	{
 		private ActivityDesign _activityDesign;

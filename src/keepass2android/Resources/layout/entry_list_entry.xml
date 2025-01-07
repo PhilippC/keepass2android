@@ -29,7 +29,7 @@
           android:layout_width="40dp"
           android:layout_height="40dp"
           android:padding="5dp"
-          android:src="@drawable/checkmark"/>
+          android:src="@drawable/baseline_check_24"/>
 
   </RelativeLayout>
   <LinearLayout
@@ -91,7 +91,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="center_vertical"
         android:layout_weight="0"
-        android:src="@drawable/rightarrow"/>
+        android:src="@drawable/baseline_keyboard_arrow_right_24"/>
 
 
 

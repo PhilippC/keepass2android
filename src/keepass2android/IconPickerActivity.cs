@@ -27,6 +27,7 @@ using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Utility;
 using FileNotFoundException = Java.IO.FileNotFoundException;
@@ -34,7 +35,7 @@ using IOException = Java.IO.IOException;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/MyTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
 	public class IconPickerActivity : LockCloseActivity
 	{
 		public const string KeyIconId = "icon_id";

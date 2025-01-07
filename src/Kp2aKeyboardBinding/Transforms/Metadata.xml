@@ -1,5 +1,4 @@
-<metadata>
-	<remove-node path="/api/package[@name='keepass2android.softkeyboard']/class[@name='KP2AKeyboard']" />
-	<remove-node path="/api/package[@name='keepass2android.softkeyboard']" />
-
+﻿<metadata>
+  <remove-node path="/api/package[@name='keepass2android.softkeyboard']/class[@name='KP2AKeyboard']" />
+  <remove-node path="/api/package[@name='keepass2android.softkeyboard']" />
 </metadata>

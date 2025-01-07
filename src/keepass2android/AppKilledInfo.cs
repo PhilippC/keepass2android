@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
+using keepass2android;
 
 namespace keepass2android
 {
@@ -22,7 +24,8 @@ namespace keepass2android
 			//we don't try to handle this better
 			//But at least explain to the user what happened!
 			((NotificationManager)GetSystemService(Context.NotificationService)).CancelAll();
-			AlertDialog.Builder b = new AlertDialog.Builder(this);
+			
+            MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
 			b.SetMessage(Resource.String.killed_by_os);
 			b.SetPositiveButton(Android.Resource.String.Ok, delegate
 			{

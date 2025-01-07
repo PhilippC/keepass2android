@@ -6,6 +6,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 using Keepass2android.Pluginsdk;
+using keepass2android;
 
 namespace keepass2android
 {

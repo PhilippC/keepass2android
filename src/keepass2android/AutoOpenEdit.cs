@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Serialization;

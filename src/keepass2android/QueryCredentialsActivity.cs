@@ -11,13 +11,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Keepass2android.Pluginsdk;
+using keepass2android;
 
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
 		Exported = true,
-        Theme = "@style/MyTheme_ActionBar")]
+        Theme = "@style/Kp2aTheme_ActionBar")]
 	[IntentFilter(new[] { Strings.ActionQueryCredentials},
 		Categories = new[] { Intent.CategoryDefault })]
 	[IntentFilter(new[] { Strings.ActionQueryCredentialsForOwnPackage },

@@ -8,15 +8,12 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal">
   <androidx.appcompat.widget.Toolbar
-      android:id="@+id/mytoolbar"
-  app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-  app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-      app:titleTextStyle="@style/MyTitleTextStyle"
-      android:layout_height="wrap_content"
-      android:layout_width="fill_parent"
-      android:minHeight="?attr/actionBarSize"
-      android:background="#00000000" />
-  <GridView
+    android:id="@+id/mytoolbar"
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    app:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+    android:minHeight="?attr/actionBarSize" />
+   <GridView
         android:id="@+id/gridview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

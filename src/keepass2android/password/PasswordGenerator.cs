@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ namespace keepass2android
 		private const String UnderlineChars 	= "_";
 		private const String SpaceChars 		= " ";
 		private const String SpecialChars 	= "!\"#$%&'*+,./:;=?@\\^`";
-        private const String ExtendedChars = "§©®¢°±¹²³¼½×÷«âéïñù¡¿»¦Ø";
+        private const String ExtendedChars = "Â§Â©Â®Â¢Â°Â±Â¹Â²Â³Â¼Â½Ã—Ã·Â«Ã¢Ã©Ã¯Ã±Ã¹Â¡Â¿Â»Â¦Ã˜";
 		private const String BracketChars 	= "[]{}()<>";
 		
 		private readonly Context _cxt;

@@ -291,7 +291,7 @@ namespace keepass2android.Io
 
 		public void OnCreate(IFileStorageSetupActivity fileStorageSetupActivity, Bundle savedInstanceState)
 		{
-		    Android.Support.V4.App.ActivityCompat.RequestPermissions(((Activity)fileStorageSetupActivity), new[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
+			AndroidX.Core.App.ActivityCompat.RequestPermissions(((Activity)fileStorageSetupActivity), new[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
 		}
 
 		public void OnResume(IFileStorageSetupActivity activity)

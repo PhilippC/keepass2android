@@ -21,6 +21,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
+using keepass2android;
 
 namespace keepass2android.view
 {

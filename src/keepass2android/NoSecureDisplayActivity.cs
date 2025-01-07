@@ -9,13 +9,13 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using keepass2android;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_Blue",
+    [Activity(Label = AppNames.AppName, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_BlueActionBar",
         LaunchMode = LaunchMode.SingleInstance)]
     public class NoSecureDisplayActivity : AndroidX.AppCompat.App.AppCompatActivity
     {

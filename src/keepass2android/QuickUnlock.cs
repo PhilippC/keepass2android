@@ -1,4 +1,4 @@
-/*
+﻿/*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. 
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 
 using System;
 using System.Linq;
-using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -27,10 +26,14 @@ using Android.Content.PM;
 using KeePassLib.Keys;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.Design.Widget;
+
 using Android.Views.InputMethods;
+using Google.Android.Material.AppBar;
+using Google.Android.Material.Dialog;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Serialization;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace keepass2android
 {
@@ -38,7 +41,7 @@ namespace keepass2android
 		ConfigurationChanges = ConfigChanges.Orientation,
 		WindowSoftInputMode = SoftInput.AdjustResize,
 		MainLauncher = false,
-        Theme = "@style/MyTheme_Blue")]
+        Theme = "@style/Kp2aTheme_BlueNoActionBar")]
 	public class QuickUnlock : LifecycleAwareActivity, IBiometricAuthCallback
 	{
 		private IOConnectionInfo _ioc;
@@ -75,14 +78,12 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
-			var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
 
-			SetSupportActionBar(toolbar);
-
-			var collapsingToolbar = FindViewById<Android.Support.Design.Widget.CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
-
-			if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            
+            if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
 			{
 				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
 				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name;
@@ -137,7 +138,7 @@ namespace keepass2android
 		    
 
 			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
-			btnLock.Text = btnLock.Text.Replace("�", "ss");
+			btnLock.Text = btnLock.Text.Replace("ß", "ss");
 			btnLock.Click += (object sender, EventArgs e) =>
 				{
 					App.Kp2a.Lock(false);
@@ -198,7 +199,7 @@ namespace keepass2android
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			btn.PostDelayed(() =>
 			{
-				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+				btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 				
 			}, 1300);
 			Toast.MakeText(this, message, ToastLength.Long).Show();
@@ -281,7 +282,7 @@ namespace keepass2android
 				if (_biometryIdentifier.Init())
 				{
 					Kp2aLog.Log("successfully initialized fingerprint.");
-					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+					btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 					_biometryIdentifier.StartListening(this);
 					return true;
 				}
@@ -409,7 +410,7 @@ namespace keepass2android
                 }
                 else
                 {
-                    AlertDialog.Builder b = new AlertDialog.Builder(this);
+                    MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
                     b.SetTitle(Resource.String.fingerprint_prefs);
                     b.SetMessage(btn.Tag.ToString());
                     b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());

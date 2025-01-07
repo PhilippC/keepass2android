@@ -12,7 +12,6 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Text;
 using Android.Util;
 using Android.Views;
@@ -21,6 +20,7 @@ using Java.IO;
 using Java.Net;
 using keepass2android.Io;
 using keepass2android.Utils;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -31,7 +31,7 @@ namespace keepass2android
 {
     [Activity(Label = AppNames.AppName, 
         MainLauncher = false, 
-        Theme = "@style/MyTheme_Blue", 
+        Theme = "@style/Kp2aTheme_BlueNoActionBar", 
         Exported = true,
         LaunchMode = LaunchMode.SingleInstance)] //caution, see manifest file
     public class SelectCurrentDbActivity : LifecycleAwareActivity
@@ -141,7 +141,7 @@ namespace keepass2android
                 else if (position < _displayedDatabases.Count + _autoExecItems.Count)
                 {
                     var item = _autoExecItems[position - _displayedDatabases.Count];
-                    drawable = App.Kp2a.GetResourceDrawable("ic_nav_changedb");
+                    drawable = App.Kp2a.GetResourceDrawable("baseline_file_open_24");
                     displayName = item.Entry.Strings.ReadSafe(PwDefs.TitleField);
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg_dark);
                 }
@@ -149,7 +149,7 @@ namespace keepass2android
                 {
                     btn.SetBackgroundResource(Resource.Drawable.storagetype_button_bg);
                     displayName = _context.GetString(Resource.String.start_open_file);
-                    drawable = App.Kp2a.GetResourceDrawable("ic_nav_changedb");
+                    drawable = App.Kp2a.GetResourceDrawable("baseline_file_open_24");
                 }
 
                 var str = new SpannableString(displayName);
@@ -375,7 +375,7 @@ namespace keepass2android
                     return false;
                 }
 
-                File dbFile = new File(ioc.Path);
+                Java.IO.File dbFile = new Java.IO.File(ioc.Path);
                 if (!dbFile.Exists())
                 {
                     // File does not exist

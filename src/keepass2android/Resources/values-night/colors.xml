@@ -1,5 +1,7 @@
 <resources>
-    <color name="md_theme_primary">#ACE668</color>
+  <color name="statusbar_color_green">#4B662C</color>
+
+  <color name="md_theme_primary">#ACE668</color>
     <color name="md_theme_onPrimary">#1E3700</color>
     <color name="md_theme_primaryContainer">#84BB43</color>
     <color name="md_theme_onPrimaryContainer">#132600</color>

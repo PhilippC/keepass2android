@@ -10,6 +10,7 @@ using Android.Widget;
 using Java.Nio.FileNio;
 using KeePass.DataExchange;
 using KeePass.Util.Spr;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Security;

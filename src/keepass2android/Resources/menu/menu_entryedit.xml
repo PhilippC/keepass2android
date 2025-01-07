@@ -6,6 +6,6 @@
         android:id="@+id/action_search"
         android:orderInCategory="100"
         android:title="action_search"
-        myapp:actionViewClass="android.support.v7.widget.SearchView"
+        myapp:actionViewClass="androidx.appcompat.widget.SearchView"
         myapp:showAsAction="always" />
 </menu>

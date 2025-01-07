@@ -4,7 +4,7 @@ using KeePassLib.Cryptography.KeyDerivation;
 
 namespace keepass2android.settings
 {
-	public class Argon2RoundsPreference: KdfNumberParamPreference
+	public class Argon2RoundsPreference: KdfNumberDialogPreference
 	{
 		public Argon2RoundsPreference(Context context, IAttributeSet attrs) : base(context, attrs)
 		{
@@ -34,8 +34,8 @@ namespace keepass2android.settings
 		}
 	}
 
-	public class Argon2ParallelismPreference : KdfNumberParamPreference
-	{
+	public class Argon2ParallelismPreference : KdfNumberDialogPreference
+    {
 		public Argon2ParallelismPreference(Context context, IAttributeSet attrs)
 			: base(context, attrs)
 		{
@@ -66,8 +66,8 @@ namespace keepass2android.settings
 		}
 	}
 
-	public class Argon2MemoryPreference : KdfNumberParamPreference
-	{
+	public class Argon2MemoryPreference : KdfNumberDialogPreference
+    {
 		public Argon2MemoryPreference(Context context, IAttributeSet attrs)
 			: base(context, attrs)
 		{
