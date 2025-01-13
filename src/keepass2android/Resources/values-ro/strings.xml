@@ -5,6 +5,7 @@
   <string name="AboutText">Keepass2Android este un manager de parole ce oferă citire/scriere la baze de date KeePass 2.x pe Android.</string>
   <string name="CreditsText">Interfaţa cu utilizatorul este bazată pe un port al KeepassDroid dezvoltat de Brian Pellin. Codul pentru operaţiunile cu baza de date este bazat pe KeePass de Dominik Reichl. Robotul Android este reprodus sau modificate din materiale create şi împărtăşite de Google şi utilizate în conformitate cu condiţiile descrise de licenţa Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Suportul pentru SFTP este implementat folosind librăria JSch sub licență BDS, creată de JCraft, Inc.</string>
+  <string name="CreditsIcons">Iconița cu un ciocan este creată de John Caserta de la proiectul Noun. Cea cu un pinguin este realizată de Jon Testa de la același proiect. Iconița cu un măr este creată de Ava Rowell de la proiectul Noun fiind și ea. Iconița-imagine este de pe https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accepta</string>
   <string name="deny">Interzice</string>
   <string name="add_entry">Adăugă o înregistrare</string>

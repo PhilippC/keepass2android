@@ -164,7 +164,7 @@
     <!-- Short message to tell the user the system is ready for them to speak. -->
     <string name="voice_listening">Гаварыце</string>
     <!-- Short message shown after the user finishes speaking. -->
-    <string name="voice_working">Апрацоўка</string>
+    <string name="voice_working">Апрацоўванне</string>
     <!-- Short message shown before the user should speak. -->
     <!-- Short message shown when a generic error occurs. -->
     <string name="voice_error">Памылка. Паўтарыце спробу.</string>
