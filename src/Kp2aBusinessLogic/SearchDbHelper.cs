@@ -138,7 +138,8 @@ namespace keepass2android
 				{
 					continue;
 				}
-				if (host.IndexOf(otherHost, StringComparison.InvariantCultureIgnoreCase) > -1)
+				if (string.Equals(host, otherHost, StringComparison.OrdinalIgnoreCase) ||
+					host.EndsWith("." + otherHost, StringComparison.OrdinalIgnoreCase))
 				{
 					pgResults.AddEntry(entry, false);
 				}
