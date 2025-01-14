@@ -330,7 +330,7 @@ jobs:
       run: |
         make msbuild Flavor=NoNet
     - name: Test Autofill
-      working-directory: ./src/Kp2aAutofillParserTest
+      working-directory: ./src/Kp2aAutofillParser.Tests
       run: dotnet test
 
     - name: Build APK (nonet)
