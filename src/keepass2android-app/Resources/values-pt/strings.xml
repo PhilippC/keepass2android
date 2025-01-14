@@ -1,0 +1,816 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="about_feedback">Opinião</string>
+  <string name="AboutText">Keepass2Android é um gestor de palavras-passe, que fornece acesso de leitura/gravação às bases de dados do KeePass 2.x em Android.</string>
+  <string name="CreditsText">A interface do utilizador é baseada numa adaptação da aplicação KeepassDroid desenvolvida por Brian Pellin. O código para as operações da base de dados é baseado no KeePass de Dominik Reichl. O robô Android é reproduzido ou modificado a partir do trabalho criado e partilhado pelo Google, utilizado de acordo com os termos descritos na licença Creative Commons Attribution 3.0.</string>
+  <string name="CreditsTextSFTP">O suporte para SFTP está implementado usando a biblioteca JSch criada pela JCraft, Inc. com licença BSD.</string>
+  <string name="CreditsIcons">O ícone do Martelo foi criado por John Caserta do Noun Project. O ícone do Pinguim foi criado por Adriano Emerick do Noun Project. O ícone da Pena foi criado por Jon Testa do Noun Project. O ícone da Maçã foi criado por Ava Rowell do Noun Project. O ícone da Imagem é de https://icons8.com/icon/5570/Picture.</string>
+  <string name="accept">Aceitar</string>
+  <string name="deny">Recusar</string>
+  <string name="add_entry">Adicionar entrada</string>
+  <string name="edit_entry">Alterar entrada</string>
+  <string name="add_url_entry">Criar entrada por URL</string>
+  <string name="add_group">Adicionar grupo</string>
+  <string name="add_group_title">Adicionar grupo</string>
+  <string name="edit_group_title">Editar grupo</string>
+  <string name="algorithm">Algoritmo</string>
+  <string name="algorithm_colon">Algoritmo</string>
+  <string name="app_name">Keepass2Android</string>
+  <string name="short_app_name">KP2A</string>
+  <string name="app_name_nonet">Keepass2Android Offline</string>
+  <string name="short_app_name_nonet">KP2A offline</string>
+  <string name="app_timeout">Tempo esgotado da aplicação</string>
+  <string name="app_timeout_summary">Tempo que demora a bloquear a base de dados quando a aplicação está inativa.</string>
+  <string name="show_kill_app">Botão fechar</string>
+  <string name="kill_app_label">Matar processo da aplicação</string>
+  <string name="show_kill_app_summary">Mostrar um botão no ecrã de palavra-passe para matar o processo da aplicação (para utilizadores paranoicos)</string>
+  <string name="application">Aplicação</string>
+  <string name="application_settings">Configurações da aplicação</string>
+  <string name="ShowGroupnameInSearchResult_title">Mostrar o nome do grupo no resultado da pesquisa</string>
+  <string name="ShowGroupnameInSearchResult_resume">Mostrar o nome do grupo por baixo dos resultados nas pesquisas. Muito útil se existirem muitos resultados iguais.</string>
+  <string name="NavigationToGroupCompleted_message">O grupo mostrado agora é: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Alvos de auto-preenchimento desativados</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Visualiza uma lista de aplicações e sites para os quais o preenchimento automático foi desativado</string>
+  <string name="OfferSaveCredentials_summary">Se ativado, o Android pergunta se quer guardar as credenciais depois de ter inserido manualmente dados em campos auto-preenchidos.</string>
+  <string name="OfferSaveCredentials_title">Perguntar sobre guardar credenciais</string>
+  <string name="ShowGroupInEntry_title">Mostrar nome do grupo ao ver entradas</string>
+  <string name="unknown_uri_scheme">Desculpe! O Keepass2Android não consegue resolver o URI %1$s retornado. Por favor entre em contacto com o programador!</string>
+  <string name="Entry_singular">Uma entrada</string>
+  <string name="Entry_plural">%1$d entradas</string>
+  <string name="IconSet_title">Conjunto de ícones</string>
+  <string name="IconSet_install">Encontrar mais...</string>
+  <string name="security_prefs">Segurança</string>
+  <string name="display_prefs">Ecrã</string>
+  <string name="password_access_prefs">Métodos de introdução de palavras-passe</string>
+  <string name="QuickUnlock_prefs">Desbloqueio-rápido</string>
+  <string name="FileHandling_prefs">Manipulação de ficheiros</string>
+  <string name="keyboard_prefs">Teclado</string>
+  <string name="export_prefs">Exportar base de dados...</string>
+  <string name="fingerprint_prefs">Desbloqueio biométrico</string>
+  <string name="import_db_prefs">Importar base de dados para uma pasta interna</string>
+  <string name="import_keyfile_prefs">Importar ficheiro-chave para pasta interna</string>
+  <string name="export_keyfile_prefs">Exportar ficheiro-chave da pasta interna</string>
+  <string name="keyboardswitch_prefs">Alterar teclado</string>
+  <string name="OnlyAvailableForLocalFiles">Apenas disponível para ficheiros locais.</string>
+  <string name="FileIsInInternalDirectory">Ficheiro guardado na pasta local.</string>
+  <string name="DatabaseFileMoved">A base de dados foi copiada para a pasta local. Prima OK para abrir a nova localização. Nota: não se esqueça de exportar a sua base de dados para uma localização segura regularmente!</string>
+  <string name="KeyfileMoved">O ficheiro-chave foi copiado para a pasta interna. Verifique se tem uma cópia de segurança válida antes de a eliminar da pasta atual!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Não é possível usar a pasta interna quando a localização do ficheiro-chave não é guardada. Altere as preferências de segurança.</string>
+  <string name="unlock_database_button">Desbloquear</string>
+  <string name="unlock_database_title">Desbloquear base de dados</string>
+  <string name="brackets">Parêntesis</string>
+  <string name="cancel">Cancelar</string>
+  <string name="Ok">Ok</string>
+  <string name="disable_sensor">Desativar sensor</string>
+  <string name="enable_sensor">Ativar sensor</string>
+  <string name="ClearClipboard">Área de transferência limpa.</string>
+  <string name="clipboard_timeout">Tempo limite da área de transferência</string>
+  <string name="clipboard_timeout_summary">Tempo até limpar a área de transferência após copiar o utilizador ou a palavra-passe</string>
+  <string name="copy_username">Selecionar para copiar o utilizador para a área de transferência</string>
+  <string name="copy_password">Selecionar para copiar a palavra-passe para a área de transferência</string>
+  <string name="copy_totp">Selecionar para copiar o TOTP para a área de transferência</string>
+  <string name="available_through_keyboard">A entrada está disponível através do teclado KP2A</string>
+  <string name="app_language_pref_title">Idioma da aplicação</string>
+  <string name="entry_is_available">está disponível</string>
+  <string name="not_possible_im_picker">Não foi possível abrir a caixa de diálogo para selecionar o método de entrada. Por favor, ative o teclado manualmente.</string>
+  <string name="please_activate_keyboard">Por favor ative o teclado Keepass2Android nas definições de sistema.</string>
+  <string name="creating_db_key">A criar a chave da base de dados…</string>
+  <string name="current_group">Grupo atual</string>
+  <string name="current_group_root">Grupo atual: Raiz</string>
+  <string name="database">Base de dados</string>
+  <string name="digits">Dígitos</string>
+  <string name="disclaimer_formal">O Keepass2Android é fornecido ABSOLUTAMENTE SEM GARANTIA; Este programa é gratuito e todos podem distribuí-lo de acordo com as condições da licença GPL versão 2 ou mais recente.</string>
+  <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Copiar para a área de transferência</string>
+  <string name="SystemLanguage">Idioma do sistema</string>
+  <string name="fingerprint_description">Por favor autentique-se para continuar</string>
+  <string name="fingerprint_fatal">Não é possível configurar o desbloquear biométrico:</string>
+  <string name="fingerprint_not_recognized">A autenticação biométrica falhou. Tente novamente</string>
+  <string name="fingerprint_success">Autenticação biométrica bem-sucedida</string>
+  <string name="fingerprint_os_error">O desbloqueio biométrico necessita do Android 6.0 ou posterior.</string>
+  <string name="fingerprint_hardware_error">Nenhum hardware de biometria detetado.</string>
+  <string name="fingerprint_no_enrolled">Não existem impressões digitais registadas neste aparelho. Por favor aceda primeiro à configurações.</string>
+  <string name="disable_fingerprint_unlock">Desativar desbloqueio biométrico</string>
+  <string name="enable_fingerprint_unlock">Ativar desbloquear biométrico total</string>
+  <string name="enable_fingerprint_quickunlock">Permitir utilizar o desbloquear biométrico para o desbloqueio rápido</string>
+  <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: a chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados.</string>
+  <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada já não é válida.</string>
+  <string name="fingerprint_reenable">Por favor, ligue novamente o destrancar através de impressão digital para a nova palavra-passe mestra.</string>
+  <string name="fingerprint_reenable2">Por favor desbloqueie com sua palavra-passe e torne a ativar o desbloqueio por impressão digital nas configurações da base de dados.</string>
+  <string name="FingerprintInitFailed">Falha ao inicializar a autenticação biométrica. </string>
+  <string name="FingerprintSetupFailed">Falha ao encriptar os dados. Isto pode acontecer se adicionar ou remover impressões digitais nas configurações do sistema enquanto o Keepass2Android está à espera da sua impressão digital.</string>
+  <string name="enable_fingerprint_unlock_Info">Esta operação irá guardar a sua palavra-passe mestra neste aparelho, encriptada pela chave do Android e protegida utilizando a autenticação biométrica. Isto irá permitir que desbloqueie a sua base de dados com a sua impressão digital.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite o uso da impressão digital em vez do código de desbloqueio-rápido. Não requer que seja guardada nenhuma informação sobre a sua palavra-passe mestra.</string>
+  <string name="enter_filename">Introduza o nome do ficheiro da base de dados</string>
+  <string name="entry_accessed">Acedido</string>
+  <string name="entry_cancel">Cancelar</string>
+  <string name="entry_comment">Notas</string>
+  <string name="entry_tags">Etiquetas</string>
+  <string name="entry_override_url">Substituir URL</string>
+  <string name="entry_confpassword">Confirmar palavra-passe</string>
+  <string name="entry_created">Criado</string>
+  <string name="entry_expires">Expira</string>
+  <string name="entry_group_name">Nome do grupo</string>
+  <string name="entry_keyfile">Ficheiro-chave (opcional)</string>
+  <string name="keyfile_heading">Ficheiro-chave</string>
+  <string name="entry_modified">Alterado</string>
+  <string name="entry_password">Palavra-passe</string>
+  <string name="entry_save">Guardar</string>
+  <string name="entry_title">Nome</string>
+  <string name="entry_url">URL</string>
+  <string name="entry_user_name">Nome de utilizador</string>
+  <string name="entry_extra_strings">Campos de texto extra</string>
+  <string name="entry_binaries">Anexos do ficheiro</string>
+  <string name="entry_history">Versões anteriores</string>
+  <string name="error_can_not_handle_uri">O Keepass2Android não consegue resolver este URI.</string>
+  <string name="error_could_not_create_group">Erro ao criar o grupo.</string>
+  <string name="error_could_not_create_parent">Não foi possível criar o diretório \'pai\'.</string>
+  <string name="error_database_exists">O ficheiro já existe.</string>
+  <string name="error_database_settinoverrgs">Falha ao determinar as configurações da base de dados.</string>
+  <string name="error_failed_to_launch_link">Falha ao executar a hiperligação.</string>
+  <string name="error_filename_required">É necessário um nome do ficheiro.</string>
+  <string name="error_file_not_create">Não foi possível criar o ficheiro</string>
+  <string name="error_invalid_db">Base de dados inválida.</string>
+  <string name="error_invalid_path">Caminho inválido.</string>
+  <string name="error_no_name">É necessário um nome.</string>
+  <string name="error_nopass">É necessária uma palavra-passe ou um ficheiro-chave.</string>
+  <string name="error_pass_gen_type">Tem de ser selecionado pelo menos um tipo de geração de palavras-passe</string>
+  <string name="error_pass_match">As palavras-passe não coincidem.</string>
+  <string name="error_rounds_not_number">O número de rondas tem de ser um número.</string>
+  <string name="error_param_not_number">O parâmetro tem de ser um número.</string>
+  <string name="error_title_required">É necessário um título.</string>
+  <string name="error_wrong_length">Introduza um número inteiro positivo no campo de tamanho</string>
+  <string name="FileNotFound">Ficheiro não encontrado.</string>
+  <string name="file_browser">Navegador de ficheiros</string>
+  <string name="generate_password">Gerar palavra-passe</string>
+  <string name="group">Grupo</string>
+  <string name="hint_comment">notas</string>
+  <string name="hint_conf_pass">confirmar palavra-passe</string>
+  <string name="hint_generated_password">palavra-passe gerada</string>
+  <string name="hint_group_name">Nome do grupo</string>
+  <string name="hint_keyfile">ficheiro-chave</string>
+  <string name="hint_length">tamanho</string>
+  <string name="hint_pass">palavra-passe</string>
+  <string name="hint_login_pass">Palavra-passe</string>
+  <string name="hint_title">nome</string>
+  <string name="hint_url">URL</string>
+  <string name="hint_override_url">substituir URL</string>
+  <string name="hint_tags">etiqueta1, etiqueta2</string>
+  <string name="hint_username">nome de utilizador</string>
+  <string name="InvalidPassword">Palavra-passe ou ficheiro-chave inválidos.</string>
+  <string name="invalid_algorithm">Algoritmo inválido.</string>
+  <string name="invalid_db_sig">O formato da base de dados não foi reconhecido.</string>
+  <string name="keyfile_does_not_exist">O ficheiro-chave não existe.</string>
+  <string name="no_keyfile_selected">Nenhum ficheiro-chave selecionado.</string>
+  <string name="keyfile_is_empty">Ficheiro-chave está vazio.</string>
+  <string name="length">Tamanho</string>
+  <string name="list_size_title">Tamanho da lista de grupos</string>
+  <string name="list_size_summary">Tamanho do texto na lista de grupos</string>
+  <string name="loading_database">A carregar a base de dados…</string>
+  <string name="lowercase">Letras minúsculas</string>
+  <string name="MaskedPassword">*****</string>
+  <string name="maskpass_title">Esconder palavra-passe</string>
+  <string name="maskpass_summary">Esconder palavra-passe por defeito</string>
+  <string name="masktotp_title">Mascarar campo TOTP</string>
+  <string name="masktotp_summary">Ocultar campo TOTP por padrão</string>
+  <string name="NoAutofillDisabling_title">Nenhuma opção para desativar o preenchimento automático</string>
+  <string name="NoAutofillDisabling_summary">Se ativado, a aplicação não mostrará a opção de desativar o preenchimento automático para entradas específicas.</string>
+  <string name="menu_about">Sobre</string>
+  <string name="menu_change_key">Alterar a chave mestra</string>
+  <string name="menu_copy_pass">Copiar palavra-passe</string>
+  <string name="menu_copy_user">Copiar utilizador</string>
+  <string name="menu_copy_totp">Copiar TOTP</string>
+  <string name="menu_create">Criar</string>
+  <string name="menu_app_settings">Configurações</string>
+  <string name="menu_db_settings">Configurações da base de dados</string>
+  <string name="menu_delete">Eliminar</string>
+  <string name="menu_copy">Criar duplicado</string>
+  <string name="menu_move">Mover para outro grupo</string>
+  <string name="menu_move_light">Mover</string>
+  <string name="menu_navigate">Ir para grupo pai</string>
+  <string name="menu_donate">Doar uma cerveja...</string>
+  <string name="menu_edit">Editar</string>
+  <string name="menu_hide_password">Esconder palavra-passe</string>
+  <string name="menu_lock">Bloquear base de dados</string>
+  <string name="menu_open">Abrir</string>
+  <string name="menu_close">Fechar</string>
+  <string name="menu_rename">Alterar nome</string>
+  <string name="menu_search">Pesquisar</string>
+  <string name="menu_search_advanced">Pesquisa avançada</string>
+  <string name="menu_url">Ir para o URL</string>
+  <string name="menu_change_db">Alterar base de dados</string>
+  <string name="menu_show_all">Mostrar todos os campos</string>
+  <string name="minus">Menos</string>
+  <string name="never">Nunca</string>
+  <string name="yes">Sim</string>
+  <string name="no">Não</string>
+  <string name="no_keys">Não há registos na base de dados ou grupo.</string>
+  <string name="no_results">Não há resultados de pesquisa</string>
+  <string name="no_url_handler">Nenhum programa compatível com esta URL.</string>
+  <string name="open_recent">Abrir base de dados recente (toque para abrir)</string>
+  <string name="omitbackup_title">Não pesquisar registos nas cópias de segurança e na reciclagem</string>
+  <string name="omitbackup_summary">Omitir o grupo \'Cópia de segurança\' e \' Reciclagem\' dos resultados de pesquisa</string>
+  <string name="pass_filename">Nome do ficheiro da base de dados do KeePass</string>
+  <string name="password_title">Introduza a palavra-passe da base de dados</string>
+  <string name="master_key_type">Selecionar o tipo de chave mestra:</string>
+  <string name="progress_create">A criar a nova base de dados…</string>
+  <string name="create_database">Criar base de dados</string>
+  <string name="progress_title">A processar…</string>
+  <string name="remember_keyfile_summary">Lembrar localização dos ficheiros-chave</string>
+  <string name="remember_keyfile_title">Guardar ficheiro-chave</string>
+  <string name="remove_from_filelist">Remover</string>
+  <string name="edit">Editar</string>
+  <string name="rijndael">Rijndael (AES)</string>
+  <string name="root">Root</string>
+  <string name="AutoReturnFromQuery_title">Retroceder automaticamente do ecrã de consulta</string>
+  <string name="AutoReturnFromQuery_summary">Ao procurar uma entrada para uma aplicação ou site: voltar automaticamente do ecrã de consulta, se existir apenas uma entrada correspondente na base de dados.</string>
+  <string name="KeyDerivFunc">Função de derivação de chave</string>
+  <string name="rounds">Ciclos de encriptação</string>
+  <string name="rounds_explaination">Um número maior de ciclos de encriptação fornece uma proteção adicional contra ataques por força bruta, mas pode tornar-se mais lento ao carregar e guardar.</string>
+  <string name="rounds_hint">ciclos</string>
+  <string name="argon2memory">Memória para Argon 2 (bytes)</string>
+  <string name="argon2parallelism">Paralelismo para Argon 2</string>
+  <string name="database_name">Nome da base de dados</string>
+  <string name="default_username">Nome de utilizador por defeito para novas entradas</string>
+  <string name="saving_database">A guardar a base de dados...</string>
+  <string name="exporting_database">A exportar a base de dados…</string>
+  <string name="export_database_successful">Base de dados exportada com sucesso!</string>
+  <string name="export_keyfile_successful">Ficheiro-chave exportado com sucesso!</string>
+  <string name="space">Espaço</string>
+  <string name="search_label">Pesquisar</string>
+  <string name="show_password">Mostrar palavra-passe</string>
+  <string name="sort_menu">Ordenar por...</string>
+  <string name="sort_name">Ordenar por nome</string>
+  <string name="sort_db">Ordenar por data de criação</string>
+  <string name="sort_moddate">Ordenar por data de modificação</string>
+  <string name="sort_default">Manter ordenação predefinida</string>
+  <string name="special">Especial</string>
+  <string name="special_extended">Especial estendido</string>
+  <string name="at_least_one_from_each_group">Pelo menos um de cada grupo</string>
+  <string name="exclude_lookalike">Excluir caracteres parecidos</string>
+  <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Digite o nome do perfil para guardar. Digite um nome existente para o substituir.</string>
+  <string name="hint_wordcount">Contagem de palavras da frase-chave</string>
+  <string name="hint_wordseparator">Separador de palavras</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Palavra-passe</item>
+    <item>Frase-chave</item>
+    <item>Frase-chave + palavra-passe</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>minúsculas</item>
+    <item>MAIÚSCULAS</item>
+    <item>Primeiro caractere em maiúsculas</item>
+  </string-array>
+  <string name="custom_settings">Configurações personalizadas</string>
+  <string name="passphrase_capitalization">Capitalização da frase-chave</string>
+  <string name="search_hint">O que encontrar</string>
+  <string name="search_results">Resultados da pesquisa</string>
+  <string name="search_in">Pesquisar em</string>
+  <string name="select_other_entry">Selecionar outra entrada</string>
+  <string name="select_group_then_add">Abra o grupo desejado e em seguida pressione \"%1$s\"!</string>
+  <string name="insert_element_here">Insira aqui</string>
+  <string name="twofish">Twofish</string>
+  <string name="underline">Sublinhado</string>
+  <string name="unsupported_db_version">Versão da base de dados não suportada.</string>
+  <string name="uppercase">Maiúsculas</string>
+  <string name="warning_read_only">O cartão SD encontra-se no modo de leitura apenas. Talvez não seja possível gravar alterações na base de dados.</string>
+  <string name="warning_unmounted">O cartão SD não se encontra montado no dispositivo neste momento. Não será possível carregar ou criar a base de dados.</string>
+  <string name="version_label">Versão</string>
+  <string name="version_history">Histórico de versões</string>
+  <string name="author">Keepass2Android é desenvolvido por Philipp Crocoll.</string>
+  <string name="further_authors">Agradecimentos a contribuições de código por %1$s.</string>
+  <string name="designers">Agradeço pelo ícone e desenho da aparência executado por %1$s.</string>
+  <string name="supporters">Graças ao apoio financeiro de %1$s.</string>
+  <string name="credit_plugin1">A extensão Twofish Cipher para Keepass foi desenvolvida por Scott Greenberg e está incluída no KP2A.</string>
+  <string name="credit_android_filechooser">android-filechooser foi desenvolvido por Hai Bison</string>
+  <string name="credit_keyboard">O teclado KP2A baseia-se no teclado Gingerbread pelo Android Open Source Project e usa o código do Gestor da Extensões de Hacker\'s Keyboard por Klaus Weidner.</string>
+  <string name="please_note">Note que</string>
+  <string name="contributors">Contribuidores</string>
+  <string name="regular_expression">Expressão regular</string>
+  <string name="AlwaysMergeOnConflict_title">Fundir sempre em caso de conflito</string>
+  <string name="AlwaysMergeOnConflict_summary">Quando Keepass2Android detetar que o ficheiro remoto foi alterado, fundir sempre as alterações locais com as alterações remotas.</string>
+  <string name="TanExpiresOnUse_title">TAN expira ao ser usada</string>
+  <string name="TanExpiresOnUse_summary">Marcar as entradas TAN como expiradas ao usá-las</string>
+  <string name="ShowUsernameInList_title">Mostrar nome de utilizador na lista</string>
+  <string name="ShowUsernameInList_summary">Mostrar nome de utilizador abaixo dos títulos das entradas. Útil para várias contas ou TANs.</string>
+  <string name="RememberRecentFiles_title">Lembrar bases de dados</string>
+  <string name="RememberRecentFiles_summary">Memorizar as bases de dados abertas recentemente e mostrá-las no ecrã \"Abrir bases de dados\".</string>
+  <string name="NoDalVerification_title">Sem verificação DAL</string>
+  <string name="NoDalVerification_summary">Desativa a verificação se o domínio e o pacote da aplicação coincidirem</string>
+  <string name="InlineSuggestions_title">Integrar com o teclado</string>
+  <string name="InlineSuggestions_summary">Mostra as sugestões de preenchimento automático como opções em linha no teclado (se suportado pelo método de entrada)</string>
+  <string name="requires_android11">Requer Android 11 ou superior</string>
+  <string name="kp2a_findUrl">Encontrar a palavra-passe</string>
+  <string name="excludeExpiredEntries">Excluir entradas expiradas</string>
+  <string name="search_options">Opções</string>
+  <string name="caseSensitive">Sensível a maiúsculas e minúsculas</string>
+  <string name="start_open_file">Abrir ficheiro...</string>
+  <string name="start_create">Criar nova base de dados...</string>
+  <string name="start_open_url">Abrir URL...</string>
+  <string name="start_create_import">Importar ficheiro para uma nova base de dados...</string>
+  <string name="enter_filename_details_url">A URL completa tem de ser especificada, incluindo o protocolo, como http://.</string>
+  <string name="enter_filename_details_create_import">O ficheiro a ser importado será selecionado no próximo passo.</string>
+  <string name="enable_quickunlock">Ativar o desbloqueio rápido</string>
+  <string name="QuickUnlock_label">Introduza os últimos %1$d caracteres da sua palavra-passe:</string>
+  <string name="QuickUnlock_label_secure">Introduza o código de desbloqueio rápido:</string>
+  <string name="QuickUnlock_button">Desbloqueio rápido!</string>
+  <string name="QuickUnlock_lockButton">Fechar base de dados</string>
+  <string name="QuickUnlockDefaultEnabled_title">Ativar desbloqueio rápido por defeito</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Define se o desbloqueio rápido está ativado por defeito ou não.</string>
+  <string name="ViewDatabaseSecure_title">Proteger a visualização da base de dados</string>
+  <string name="ViewDatabaseSecure_summary">Se ativado, não são permitidas capturas do ecrã e não será mostrada uma imagem miniatura da aplicação no ecrã de aplicações recentes.</string>
+  <string name="QuickUnlockIconHidden_title">Ocultar o ícone do desbloqueio rápido</string>
+  <string name="QuickUnlockIconHidden_summary">O desbloqueio rápido infelizmente não funciona sem mostrar um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
+  <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do desbloqueio rápido</string>
+  <string name="QuickUnlockIconHidden16_summary">O desbloqueio rápido exige uma notificação para funcionar corretamente. Selecione esta opção para mostrar uma notificação sem um ícone.</string>
+  <string name="QuickUnlockLength_title">Comprimento da chave do desbloqueio rápido</string>
+  <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como palavra-passe de desbloqueio rápido.</string>
+  <string name="QuickUnlockHideLength_title">Esconder o comprimento do código de desbloqueio rápido</string>
+  <string name="QuickUnlockHideLength_summary">Se ativo, o comprimento do código de desbloqueio rápido não será mostrado no ecrã de desbloqueio rápido.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Chave de desbloqueio rápido da entrada da base de dados</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Se a base de dados ativa contém uma entrada com título QuickUnlock no seu grupo raiz, a palavra-passe desta entrada é usada como código do desbloqueio rápido (QuickUnlock).</string>
+  <string name="QuickUnlock_fail">O desbloqueio rápido falhou: palavra-passe incorreta!</string>
+  <string name="SaveAttachmentDialog_title">Guardar anexo</string>
+  <string name="SaveAttachmentDialog_text">Por favor, selecione onde deseja guardar o anexo.</string>
+  <string name="SaveAttachmentDialog_save">Exportar para ficheiro...</string>
+  <string name="SaveAttachmentDialog_open">Guardar para a cache e abrir</string>
+  <string name="ShowAttachedImage">Mostrar com visualizador de imagens interno</string>
+  <string name="SaveAttachment_doneMessage">Ficheiro guardado em %1$s.</string>
+  <string name="SaveAttachment_Failed">Não foi possível guardar o anexo em %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Lembrar texto da procura?</string>
+  <string name="AddUrlToEntryDialog_text">Pretende guardar o texto de pesquisa \"%1$s\" no campo seccionado para o encontrar automaticamente na próxima vez?</string>
+  <string name="error_invalid_expiry_date">Formato de data/hora inválido para a data de validade!</string>
+  <string name="error_string_key">É necessário um nome do campo para cada sequência de caracteres.</string>
+  <string name="error_string_duplicate_key">Um nome de campo não pode ser usado duas vezes (%1$s).</string>
+  <string name="field_name">Nome do campo</string>
+  <string name="field_value">Valor do campo</string>
+  <string name="protection">Campo protegido</string>
+  <string name="add_binary">Anexar anexo de ficheiro</string>
+  <string name="add_extra_string">Adicionar outro texto</string>
+  <string name="configure_totp">Configurar TOTP</string>
+  <string name="totp_secret_key">Chave secreta</string>
+  <string name="totp_encoding_rfc6238">Configurações padrão do token RFC6238</string>
+  <string name="totp_encoding_steam">Configurações do token Steam</string>
+  <string name="totp_encoding_custom">Configurações de token personalizadas</string>
+  <string name="totp_time_step">Intervalo de tempo</string>
+  <string name="totp_length">Comprimento do código</string>
+  <string name="totp_scan">Ler código QR</string>
+  <string name="delete_extra_string">Eliminar texto adicional</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: bloqueado. Desbloqueio rápido ativo.</string>
+  <string name="database_loaded_unlocked">%1$s: desbloqueado.</string>
+  <string name="credentials_dialog_title">Introduza as credenciais do servidor</string>
+  <string name="UseFileTransactions_title">Transação de ficheiros</string>
+  <string name="UseFileTransactions_summary">Utilize transações de ficheiros para escrever em bases de dados</string>
+  <string name="LockWhenScreenOff_title">Bloquear quando o ecrã se desligar</string>
+  <string name="LockWhenScreenOff_summary">Bloquear a base de dados quando o ecrã está desligado.</string>
+  <string name="ClearPasswordOnLeave_title">Limpar a palavra-passe mestra inserida</string>
+  <string name="ClearPasswordOnLeave_summary">Limpe a palavra-passe mestra quando abandonar o ecrã sem desbloquear a base de dados.</string>
+  <string name="LockWhenNavigateBack_title">Bloquear ao sair da aplicação</string>
+  <string name="LockWhenNavigateBack_summary">Bloquear a base de dados ao fechar a aplicação pressionando o botão voltar.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Usar o teclado embutido dentro do Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Se não confiar no fornecedor do seu teclado, marque esta opção para utilizar o teclado embutido quando estiver a inserir a sua palavra-passe mestra ou a editar entradas.</string>
+  <string name="ActivateSearchViewOnStart_title">Ativar campo de pesquisa ao iniciar</string>
+  <string name="ActivateSearchViewOnStart_summary">Ativa o campo de pesquisa na vista de grupo após desbloquear ou quando procura por uma entrada</string>
+  <string name="NoDonateOption_title">Esconder opção para doar</string>
+  <string name="NoDonateOption_summary">Esta configuração é para doadores. Estará disponível após usar o Keepass2Android por algum tempo.</string>
+  <string name="NoDonateOption_question">Sem doações, esta aplicação não existiria e não seria continuamente melhorada! Se ainda não fez um donativo, por favor considere fazê-lo agora</string>
+  <string name="NoDonationReminder_title">Nunca pedir para fazer um donativo</string>
+  <string name="NoDonationReminder_summary">Não vou doar um cêntimo / já doei. Não voltar a pedir um donativo, nem no aniversário do autor.</string>
+  <string name="UseOfflineCache_title">Cache da base de dados</string>
+  <string name="UseOfflineCache_summary">Manter uma cópia dos ficheiros da base de dados no diretório de cache da aplicação. Isto permite o uso das base de dados mesmo quando os ficheiros das base de dados não estão acessíveis.</string>
+  <string name="CreateBackups_title">Cópias de segurança locais</string>
+  <string name="CreateBackups_summary">Cria uma cópia de segurança local após carregar com sucesso a base de dados.</string>
+  <string name="UpdatingBackup">A atualizar a cópia de segurança local...</string>
+  <string name="LocalBackupOf">Cópia de segurança local de %1$s</string>
+  <string name="show_local_backups">Mostrar cópias de segurança locais</string>
+  <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Defina o comportamento quando a validação do certificado falhar. Atenção: pode instalar certificados no seu dispositivo se a validação falhar!</string>
+  <string name="ClearOfflineCache_title">Limpar a cache?</string>
+  <string name="ClearOfflineCache_question">Isto irá eliminar todos os ficheiros das bases de dados em cache. Qualquer alteração feita enquanto não tem acesso à fonte da base de dados e cuja sincronização ainda não tenha sido feita será perdida! Continuar?</string>
+  <string name="CheckForFileChangesOnSave_title">Verificar alterações</string>
+  <string name="CheckForFileChangesOnSave_summary">Verificar se o ficheiro foi modificado externamente antes de guardar as alterações.</string>
+  <string name="CheckForDuplicateUuids_title">Verificação de UUIDs duplicados</string>
+  <string name="CheckForDuplicateUuids_summary">Verificar se o ficheiro da base de dados está corrupto, por ter várias entradas com o mesmo ID. Isto pode causar um comportamento inesperado.</string>
+  <string name="ShowCopyToClipboardNotification_title">Notificações da área de transferência</string>
+  <string name="ShowCopyToClipboardNotification_summary">Permitir acesso ao nome do utilizador e palavra-passe através da barra de notificação e a área de transferência. Cuidado com os \'analisadores de pacotes nas redes (sniffers)\' de palavras-passe!</string>
+  <string name="ShowSeparateNotifications_title">Notificações separadas</string>
+  <string name="ShowSeparateNotifications_summary">Mostrar notificações separadas para copiar o nome de utilizador e a palavra-passe para área de transferência e ativar o teclado.</string>
+  <string name="AccServiceAutoFill_prefs">Serviço de acessibilidade para o preenchimento automático</string>
+  <string name="AutoFill_prefs">Serviço de preenchimento automático</string>
+  <string name="ShowKp2aKeyboardNotification_title">Notificação do teclado KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Tornar toda a entrada disponível através do teclado KP2A (recomendado).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Trocar o teclado</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Abrir o diálogo de seleção de teclado quando pode escrever com o teclado KP2A depois de efetuar uma pesquisa no navegador.</string>
+  <string name="kp2a_switch_rooted">Mudar automaticamente de teclado</string>
+  <string name="kp2a_switch_rooted_summary">Mude automaticamente para o teclado KP2A quando a uma entrada é aberta. Requer que a extensão KeyboardSwap esteja corretamente preparada ou que o dispositivo esteja com acesso root e a aplicação Secure Settings esteja instalada com System+. </string>
+  <string name="get_keyboardswap">Instale a extensão KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Esta extensão permite mudar para o teclado de KP2A sem desbloquear o dispositivo. Requer o ADB. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Mudança automática só depois de pesquisa</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Apenas mudar automaticamente para teclado KP2A após usar a função de Partilhar URL (mas não ao abrir uma entrada de outra forma)</string>
+  <string name="AutoSwitchBackKeyboard_title">Voltar ao teclado</string>
+  <string name="AutoSwitchBackKeyboard_summary">Alternar para teclado anterior se não houver entrada aberta.</string>
+  <string name="ShowUnlockedNotification_title">Ícone de notificação enquanto desbloqueado</string>
+  <string name="ShowUnlockedNotification_summary">Mostrar uma notificação em curso enquanto a base de dados está desbloqueada.</string>
+  <string name="IconVisibilityInfo_Android8_text">O Android 8 introduziu um novo comportamento para notificações. Se quiser pode esconder o ícone das notificações do Keepass2Android, por favor configure isto através das configurações do sistema. Defina a importância das notificações para o mínimo.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Abrir configurações</string>
+  <string name="DontCare">Não quero saber</string>
+  <string name="DocumentAccessRevoked">O ficheiro já não está acessível pelo Kepass2Android. Ou foi removido ou as permissões de acesso foram revogadas. Por favor torne a abrir o ficheiro, por exemplo altere a base de dados.</string>
+  <string name="PreloadDatabaseEnabled_title">Pré-carregar o ficheiro da base de dados</string>
+  <string name="PreloadDatabaseEnabled_summary">Iniciar o carregamento ou transferência em segundo plano do ficheiro da base de dados durante a inserção da palavra-passe.</string>
+  <string name="SyncAfterQuickUnlock_title">Sincronização após o desbloqueio rápido</string>
+  <string name="SyncAfterQuickUnlock_summary">Sincronizar a base de dados com o ficheiro remoto após desbloquear com o desbloqueio rápido.</string>
+  <string name="AskOverwriteBinary">Pretende substituir o binário existente com o mesmo nome?</string>
+  <string name="AskOverwriteBinary_title">Substituir o binário existente?</string>
+  <string name="AskOverwriteBinary_yes">Substituir</string>
+  <string name="AskOverwriteBinary_no">Alterar nome</string>
+  <string name="AttachFailed">Falha ao carregar o anexo.</string>
+  <string name="RecycleBin">Reciclagem</string>
+  <string name="AskDeletePermanentlyEntry">Quer eliminar esta entrada permanentemente? Pressione \"Não\" para enviar para a reciclagem.</string>
+  <string name="AskDeletePermanentlyGroup">Quer eliminar este grupo permanentemente? Pressione \"Não\" para enviar para a reciclagem.</string>
+  <string name="AskDeletePermanentlyItems">Quer eliminar os elementos selecionados permanentemente? Pressione \"Não\" para enviar para a reciclagem.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Quer eliminar esta entrada permanentemente?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Quer eliminar este grupo permanentemente?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Quer eliminar os elementos selecionados permanentemente?</string>
+  <string name="AskDeletePermanently_title">Eliminar permanentemente?</string>
+  <string name="AskReloadFile_title">Recarregar ficheiro?</string>
+  <string name="AskReloadFile">O ficheiro que está atualmente aberto foi alterado por outro programa. Quer recarregá-lo?</string>
+  <string name="AskDiscardChanges">Quer realmente descartar as alterações feitas? (O botão \"Guardar\" está no topo do formulário.)</string>
+  <string name="AskDiscardChanges_title">Descartar alterações?</string>
+  <string name="suggest_improvements">Sugerir ou votar em melhorias</string>
+  <string name="rate_app">Avalie esta aplicação</string>
+  <string name="translate_app">Traduza o KP2A</string>
+  <string name="AddingEntry">A adicionar entrada…</string>
+  <string name="AddingGroup">A adicionar grupo…</string>
+  <string name="DeletingEntry">A eliminar a entrada…</string>
+  <string name="DeletingGroup">A eliminar o grupo…</string>
+  <string name="DeletingItems">A eliminar os elementos…</string>
+  <string name="SettingPassword">A definir a palavra-passe…</string>
+  <string name="UndoingChanges">A desfazer as alterações…</string>
+  <string name="TransformingKey">A transformar a chave mestra…</string>
+  <string name="DecodingDatabase">A descodificar a base de dados…</string>
+  <string name="ParsingDatabase">A processar a base de dados…</string>
+  <string name="CheckingTargetFileForChanges">A verificar o ficheiro de destino para as alterações…</string>
+  <string name="TitleSyncQuestion">Fundir alterações?</string>
+  <string name="MessageSyncQuestion">A base de dados foi alterada externamente. Quer carregar e fundir as alterações antes de guardar? Selecione \"Não\" se quer substituir as alterações feitas externamente.</string>
+  <string name="SynchronizingDatabase">A fundir as alterações…</string>
+  <string name="YesSynchronize">Sim, fundir</string>
+  <string name="NoOverwrite">Não, substituir</string>
+  <string name="UseOfflineMode">Trabalhar apenas com a cache interna</string>
+  <string name="UseOnlineMode">Sincronizar cópia em cache com a fonte</string>
+  <string name="UseOfflineMode_Info">Base de dados carregada a partir da cache interna. As alterações serão guardadas na cache interna apenas e apenas serão sincronizadas quando selecionar \"Sincronizar cópia em cache com a fonte\".</string>
+  <string name="InOfflineMode">A trabalhar apenas com a cache interna.</string>
+  <string name="SynchronizingCachedDatabase">Sincronização da base de dados em cache…</string>
+  <string name="DownloadingRemoteFile">A carregar o ficheiro fonte…</string>
+  <string name="UploadingFile">Guardar ficheiro…</string>
+  <string name="RestoringRemoteFile">A restaurar o ficheiro fonte…</string>
+  <string name="FilesInSync">Os ficheiros estão sincronizados.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Base de dados sincronizada com sucesso!</string>
+  <string name="CheckingDatabaseForChanges">A verificar alterações na base de dados…</string>
+  <string name="CouldNotSaveToRemote">Não foi possível guardar para o ficheiro fonte: %1$s. Guarde novamente ou use o menu de sincronização quando o ficheiro estiver acessível novamente.</string>
+  <string name="CouldNotLoadFromRemote">Não foi possível aceder ao ficheiro fonte: %1$s. Foi carregado o ficheiro a partir da cache interna. Pode fazer alterações à base de dados e sincronizar mais tarde.</string>
+  <string name="UpdatedRemoteFileOnLoad">Ficheiro fonte atualizado.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Foi aberto o ficheiro na cache interna devido a um conflito com alterações no ficheiro fonte. Use o menu sincronização para fundir as alterações.</string>
+  <string name="LoadedFromRemoteInSync">O ficheiro fonte e a cache estão sincronizados.</string>
+  <string name="UpdatedCachedFileOnLoad">Atualizada cópia em cache interna de %1$s.</string>
+  <string name="RemoteDatabaseUnchanged">Nenhuma alteração detetada.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Foi atualizado o ficheiro auxiliar na cache OTP: o contador fonte era mais elevado.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Foi atualizado o ficheiro fonte OTP: o contador local era mais elevado.</string>
+  <string name="SynchronizingOtpAuxFile">A sincronizar o ficheiro auxiliar OTP…</string>
+  <string name="database_file">ficheiro da base de dados</string>
+  <string name="otp_aux_file">Ficheiro auxiliar do OTP</string>
+  <string name="ErrorOcurred">Ocorreu um erro:</string>
+  <string name="DuplicateUuidsError">A base de dados está corrupta: foram encontrado IDs duplicados. (Será que foram gravados com o Minikeepass?) Por favor importe novamente os dados para uma nova base de dados com o Keepass 2 para PC e selecione \"Criar novos IDs\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Desative esta mensagem de erro em \"Definições/Definições do App/Manipular ficheiro/Verificar UUIDs duplicadas\". Note que poderá enfrentar um comportamento inesperado. Corrija a base de dados.</string>
+  <string name="synchronize_database_menu">Sincronizar base de dados…</string>
+  <string name="CannotMoveGroupHere">Não pode mover o grupo para este grupo.</string>
+  <string name="donate_question">Hoje, é a Oktoberfest! Se gosta do Keepass2Android: hoje seria um bom dia para me pagar uma cerveja?</string>
+  <string name="donate_bday_question">10 de Maio? É o meu aniversário! Se gostas desta aplicação, porque não me envias os parabéns e juntas um presente de aniversário? Isso iria fazer-me muito feliz! :-)</string>
+  <string name="donate_missedbday_question">Ah, esqueceu-se do meu aniversário no dia 10 de maio! Se gosta desta aplicação, porque não enviar-me algumas saudações de aniversário e um pequeno presente de aniversário? Ainda não é tarde demais para me fazer feliz! :-)</string>
+  <string name="ok_donate">Conte-me mais!</string>
+  <string name="no_thanks">Não, não me agrada muito</string>
+  <string name="enter_http_login_title">Introduza os dados de acesso do WebDav:</string>
+  <string name="hint_http_url">URL do ficheiro ou pasta (ex: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Introduza os dados de acesso do OwnCloud:</string>
+  <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Introduza os dados de acesso do Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL do Nextcloud (ex: nextcloud.me.com)</string>
+  <string name="hint_sftp_host">hospedeiro (ex: 192.168.0.1)</string>
+  <string name="hint_sftp_port">porta</string>
+  <string name="initial_directory">Pasta inicial (opcional):</string>
+  <string name="enter_sftp_login_title">Introduza os dados de acesso SFTP:</string>
+  <string name="sftp_auth_mode">Modo de autenticação</string>
+  <string name="send_public_key">Enviar chave pública...</string>
+  <string name="enter_ftp_login_title">Introduza os dados de acesso FTP:</string>
+  <string name="enter_mega_login_title">Introduza os seus dados de autenticação da conta MEGA:</string>
+  <string name="select_storage_type">Selecione o tipo de armazenamento:</string>
+  <string name="filestoragename_file">Ficheiro local</string>
+  <string name="filestoragename_androidget">Obter de aplicações de terceiros</string>
+  <string name="filestoragename_androidsend">Enviar para aplicações de terceiros</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Se não quiser dar acesso completo do Dropbox ao KP2A, pode selecionar esta opção. Ele irá solicitar apenas o acesso à pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar uma nova base de dados. Se já tiver uma base de dados, toque nesta opção para criar a pasta, em seguida, coloque o ficheiro dentro da pasta (a partir do seu PC) e em seguida, selecione esta opção novamente para abrir o ficheiro.</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (ficheiros KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Se não quiser fornecer o acesso KP2A ao seu Google Drive, pode selecionar esta opção. Note que tem primeiro criar um ficheiro de base de dados, os ficheiros existentes não são visíveis para a aplicação. Escolha esta opção a partir do ecrã Criar base de dados ou, caso você já tenha aberto uma base de dados, exportando a base de dados escolhendo essa opção.</string>
+  <string name="filestoragehelp_pcloud">Este tipo de armazenamento só irá solicitar acesso à pasta pCloud \"Aplicações/Keepass2Android\". Se quiser usar a base de dados existente da sua conta pCloud, por favor certifique-se que o ficheiro é colocado nesta pasta pCloud.</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Todos os ficheiros (incluindo partilhados)</string>
+  <string name="filestoragename_onedrive2_myfiles">Os meus ficheiros</string>
+  <string name="filestoragename_onedrive2_appfolder">Pasta da aplicação Keepass2Android</string>
+  <string name="filestoragename_sftp">SFTP (transferência de ficheiros por SSH)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Note que o Keepass2Android tem de descarregar a lista de todos os ficheiros na sua conta Mega para funcionar corretamente. Por isso pode ser lento ao aceder a contas com muitos ficheiros.</string>
+  <string name="filestoragename_content">Gestor de ficheiros de sistema</string>
+  <string name="filestorage_setup_title">Arranque de acesso de ficheiro</string>
+  <string name="database_location">Localização da base de dados</string>
+  <string name="help_database_location">Pode armazenar sua base de dados localmente no dispositivo Android ou na nuvem (apenas na versão não offline). O Keepass2Android torna a base de dados disponível, mesmo se estiver offline. Como a base de dados é encriptada com segurança de AES 256 bits de encriptação, ninguém será capaz de aceder às suas palavras-chave, exceto você. Recomendamos selecionar Dropbox: é acessível em todos os seus dispositivos e até fornece cópias de segurança de versões anteriores do ficheiro.</string>
+  <string name="hint_database_location">Selecione onde quer guardar a base de dados:</string>
+  <string name="button_change_location">Alterar o local</string>
+  <string name="help_quickunlock">Se ativado, o Keepass2Android permanece em execução em segundo plano mesmo quando a base de dados está bloqueada. Isto permite desbloquear a base de dados mais tarde apenas com uma pequena parte da palavra-passe mestra.</string>
+  <string name="master_password">Palavra-passe mestra</string>
+  <string name="help_master_password">A sua base de dados é encriptada com a palavra-passe que inserir aqui. Escolha uma palavra-passe forte para manter a sua de dados protegida! Dica: componha uma frase ou duas e use as primeiras letras das palavras como palavra-passe. Inclua marcas de pontuação também.</string>
+  <string name="hint_master_password">Selecione uma palavra-passe mestra para proteger a sua base de dados:</string>
+  <string name="key_file">Ficheiro-chave</string>
+  <string name="help_key_file">Um ficheiro-chave é basicamente uma palavra-passe armazenada num ficheiro. Os ficheiros-chave são tipicamente mais fortes que as palavras-passe mestras, porque a chave pode ser muito mais complexa; contudo também é mais difícil mantê-los em segredo. Se armazenar a sua base de dados na nuvem, não armazene o ficheiro-chave lá também! Isto tornaria-o completamente inútil! Importante: não altere o conteúdo do ficheiro-chave após a criação da base de dados!</string>
+  <string name="hint_key_file">Escolha se quer utilizar um ficheiro-chave para além da sua palavra-passe mestra:</string>
+  <string name="use_key_file">Utilizar ficheiro-chave</string>
+  <string name="error_adding_keyfile">Erro ao adicionar o ficheiro-chave!</string>
+  <string name="init_otp">Carregar o ficheiro auxiliar OTP…</string>
+  <string name="otp_explanation">Introduza as palavras-passe de uso único (OTP) seguintes. Passe o seu Yubikey NEO na parte traseira do seu dispositivo para entrar através de NFC (requer a aplicação Yubiclip).</string>
+  <string name="otp_hint">%1$d OTP</string>
+  <string name="CouldntLoadOtpAuxFile">Não foi possível carregar o ficheiro auxiliar OTP!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Por favor, use a extensão OtpKeyProv no KeePass 2.x (PC) para configurar a sua base de dados para uso com as palavras-passe de uso único (OTPs)!</string>
+  <string name="otp_discarded_because_no_db">Por favor, selecione a base de dados primeiro. A palavra-passe de uso único (OTP) foi descartada por motivos de segurança.</string>
+  <string name="otp_discarded_no_space">Palavra-passe de uso único (OTP) descartada: todas as OTPs já foram inseridas!</string>
+  <string name="otp_discarded_because_db_open">Por favor, feche a base de dados primeiro. A palavra-passe de uso único (OTP) foi descartada.</string>
+  <string name="otps_pending">(Já estão disponíveis uma ou mais palavras-passe de uso único (OTP))</string>
+  <string name="otpsecret_hint">OTP secreta (por exemplo, 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Erro ao analisar a OTP secreto!</string>
+  <string name="OtpKeyError">Falha ao criar a chave OTP! Verifique se que digitou as palavraa-passe de uso único (OTP) corretamente.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Erro ao atualizar o ficheiro OTP auxiliar!</string>
+  <string name="SavingOtpAuxFile">A guardar o ficheiro OTP auxiliar…</string>
+  <string name="NoChallengeApp">Não foi possível encontrar uma aplicação que possa lidar com o desafio.</string>
+  <string name="PleaseInstallApp">Por favor instale %1$s a partir do Google Play.</string>
+  <string name="AppOutdated">%1$s já não é suportado.</string>
+  <string name="bad_resp">A resposta de desafio está incorreta.</string>
+  <string name="CouldntLoadChalAuxFile">Não foi possível carregar o ficheiro de desafio auxiliar!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Por favor, use a extensão KeeChallenge no KeePass 2.x (PC) para configurar a sua base de dados para uso com desafio-resposta!</string>
+  <string name="ErrorUpdatingChalAuxFile">Erro ao atualizar o ficheiro OTP auxiliar!</string>
+  <string name="TrayTotp_SeedField_title">Nome do campo da semente TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Se estiver a usar a extensão Keepass 2 \"TrayTotp\" com configurações não padrão, escreva o nome do campo para o campo de semente aqui de acordo com as configurações no PC.</string>
+  <string name="TrayTotp_SettingsField_title">Nome do campo das configurações TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Escreva o nome do campo das configurações da extensão TrayTotp aqui.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Ficheiro de registo para depuração</string>
+  <string name="DebugLog_title">Usar ficheiro de registo</string>
+  <string name="DebugLog_summary">Guardar a saída da aplicação num ficheiro de registo local</string>
+  <string name="DebugLog_send">Enviar registo de depuração...</string>
+  <string name="loading">A carregar…</string>
+  <string name="plugins">Extensões</string>
+  <string name="plugin_packagename">Nome do pacote:</string>
+  <string name="plugin_description">Descrição (não verificada):</string>
+  <string name="plugin_author">Autor (não verificado):</string>
+  <string name="plugin_enabled">ativado</string>
+  <string name="plugin_disabled">desativado</string>
+  <string name="plugin_web">Encontrar extensões on-line</string>
+  <string name="plugin_scopes">Contextos</string>
+  <string name="not_enabled">desativado</string>
+  <string name="query_credentials_for_url">%1$s está a solicitar credenciais para %2$s.</string>
+  <string name="query_credentials">%1$s está a solicitar credenciais. Por favor, selecione uma entrada.</string>
+  <string name="plugin_enabled_checkbox">Ativado</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Alertas de alteração à base de dados</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">A extensão será notificada quando uma base de dados é aberta, fechada ou guardada.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Dados de entrada atual</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">A extensão receberá todos os dados sobre a entrada da base de dados atual e poderão oferecer ações e alterar a visualização do mesmo.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Consultar as próprias credenciais</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">A extensão terá permissão para consultar as credenciais associadas com o seu próprio pacote da aplicação.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Pedir credenciais</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">A extensão terá permissão para consultar credenciais para web sites ou aplicações deliberados.</string>
+  <string name="get_regular_version">Obter mais tipos de armazenamento</string>
+  <string name="CertificateWarning">Aviso: falha de validação do certificado de servidor: %1$s. Instale o certificado raiz apropriado no seu dispositivo ou consulte as configurações!</string>
+  <string name="CertificateFailure">Erro: falha da validação do certificado do servidor! Instale o certificado raiz apropriado no seu dispositivo ou consulte as configurações!</string>
+  <string name="export_fileformats_title">Selecione o formato do ficheiro</string>
+  <string name="killed_by_os">Desculpe! O Keepass2Android foi terminado pelo sistema operativo Android! Por razões de segurança, o Keepass2Android não mantém as suas credenciais selecionadas no disco, por isso tem de reabrir a base de dados. Nota: isto deve acontecer muito raramente. Se isto acontecer muitas vezes, por favor envie uma mensagem para crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">O ficheiro está apenas temporariamente disponível para Keepass2Android.</string>
+  <string name="FileIsReadOnly">O ficheiro que selecionou é de leitura apenas.</string>
+  <string name="FileIsReadOnlyOnKitkat">O ficheiro selecionado é apenas de leitura para Keepass2Android devido a restrições no Android 4.4+.</string>
+  <string name="CopyFileRequired">Para poder usá-lo, tem de o copiar para outro destino.</string>
+  <string name="CopyFileRequiredForEditing">Para poder alterá-lo, tem de o copiar para outro destino.</string>
+  <string name="ClickOkToSelectLocation">Toque em OK para selecionar o local para onde o ficheiro deve ser copiado.</string>
+  <string name="FileReadOnlyTitle">A base de dados é apenas de leitura</string>
+  <string name="FileReadOnlyMessagePre">O Keepass2Android abriu a base de dados atual em modo de somente leitura.</string>
+  <string name="ReadOnlyReason_PreKitKat">Parece que abriu o ficheiro a partir de uma aplicação externa. Desta forma não oferece suporte para escrita. Se quiser fazer alterações na base de dados, feche a base de dados e selecione \"Alterar base de dados\". De seguida, abra o ficheiro com uma das opções disponíveis, se possível.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Está ativado o indicador de apenas leitura. Remova-o se quiser fazer alterações na base de dados.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Não é possível gravar devido a restrições introduzidas no Android KitKat. Se quiser fazer alterações na base de dados, feche a base de dados e selecione a base de dados de alteração. De seguida, abra o ficheiro usando o seletor de ficheiro do sistema.</string>
+  <string name="ReadOnlyReason_LocalBackup">As cópias de segurança locais não pode ser alteradas. Pode usar as configurações da base de dados \"Exportar base de dados\" para exportar esta cópia de segurança para outra localização a partir da qual pode abri-la. Irá permitir a gravação novamente.</string>
+  <string name="AddCustomIcon">Adicionar ícone a partir de um ficheiro...</string>
+  <string name="CopyingFile">A copiar o ficheiro...</string>
+  <string name="DuplicateTitle">Copiar</string>
+  <string name="DefaultTemplate">Entrada padrão</string>
+  <string name="TemplateGroupName">Modelos</string>
+  <string name="TemplateTitle_IdCard">Cartão de identificação</string>
+  <string name="TemplateField_IdCard_Name">Nome</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Local de emissão</string>
+  <string name="TemplateField_IdCard_IssueDate">Data de emissão</string>
+  <string name="TemplateTitle_EMail">Correio eletrónico</string>
+  <string name="TemplateField_EMail_EMail">Endereço de correio eletrónico</string>
+  <string name="TemplateTitle_WLan">Rede sem fios</string>
+  <string name="TemplateTitle_Notes">Nota segura</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Número</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Titular do cartão</string>
+  <string name="TemplateTitle_CreditCard">Cartão de crédito</string>
+  <string name="TemplateTitle_Membership">Membro</string>
+  <string name="ChangeLog_title">Registo de alterações</string>
+  <string name="AskAddTemplatesTitle">Adicionar modelos?</string>
+  <string name="AskAddTemplatesMessage">O Keepass2Android contém modelos de entrada para contas de e-mail, palavras-passe de rede sem fios, notas seguras e muito mais. Gostaria de adicioná-los à sua base de dados? Se optar por \"Não\", pode adicioná-los mais tarde nas configurações da base de dados.</string>
+  <string name="AddTemplates_pref">Adicionar modelos à base de dados</string>
+  <string name="PreviewWarning">Importante! Esta é uma versão acesso antecipado e pode conter falhas! Se notar *qualquer coisa* inesperada, por favor avise-nos (na comunidade Beta Tester no Google+ ou por email).</string>
+  <string name="Continue">Continuar</string>
+  <string name="NoFilenameWarning">A URI inserida não parece ser um nome de ficheiro. Tem a certeza que este é um ficheiro válido?</string>
+  <string name="FirstInvalidCompositeKeyError">Chave composta inválida! Por favor, tente novamente.</string>
+  <string name="open_other_db">Abrir outra base de dados…</string>
+  <string name="select_database">Escolher a base de dados</string>
+  <string name="configure_child_dbs">Configurar bases de dados filhas…</string>
+  <string name="child_dbs_title">Bases de dados filhas</string>
+  <string name="unspecified">não especificado</string>
+  <string name="child_db_explanation">As bases de dados filhas são outras bases de dados que podem ser abertas automaticamente quando abrir a base de dados pai. Por conseguinte, a palavra-passe mestra da filha e o local do ficheiro são armazenados no pai. Este recurso permite partilhar algumas das suas palavras-passe com outra pessoa. A implementação é compatível com o KeeAutoExec para PC.</string>
+  <string name="child_db_enabled_on_this_device">Ativado neste dispositivo</string>
+  <string name="child_db_enable_on_this_device">Ativar neste dispositivo</string>
+  <string name="child_db_disable_on_this_device">Desativar neste dispositivo</string>
+  <string name="child_db_enable_a_copy_for_this_device">Copiar para este dispositivo</string>
+  <string name="unconfigured_child_dbs">A sua base de dados contém novas bases de dados filhas no grupo \"AutoOpen\". Por favor especifique se estas bases de dados filhas devem ser usadas neste dispositivo.</string>
+  <string name="add_child_db">Adicionar base de dados filha...</string>
+  <string name="EnableCopyForThisDevice_Info">Isto irá criar e aplicar uma cópia das definições da base de dados filha. Estas definições copiadas podem então ser ajustadas especificamente para este dispositivo.</string>
+  <string name="Visible_title">Visível</string>
+  <string name="child_db_Enabled_title">Abrir automaticamente</string>
+  <string name="database_file_heading">Ficheiro da base de dados</string>
+  <string name="if_device_text">Ativar para %1$s</string>
+  <string name="restore_history">Restaurar esta versão</string>
+  <string name="remove_history">Remover esta versão</string>
+  <string name="DbUnlockedChannel_name">Base de dados desbloqueada</string>
+  <string name="DbUnlockedChannel_desc">Notificação sobre a base de dados a ser desbloqueada</string>
+  <string name="DbQuicklockedChannel_name">Desbloqueio-rápido</string>
+  <string name="DbQuicklockedChannel_desc">Notificação sobre a base de dados a ser desbloqueada com desbloqueio rápido</string>
+  <string name="EntryChannel_name">Notificações de entrada</string>
+  <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
+  <string name="CloseDbAfterFailedAttempts">Fechar base de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string name="WarnFingerprintInvalidated">Aviso! A autenticação biométrica pode ser invalidada pelo Android, por exemplo, depois de adicionar uma nova impressão digital nas configurações do seu dispositivo. Certifique-se que sabe como desbloquear com a sua palavra-passe mestra!</string>
+  <string-array name="ChangeLog_1_09d">
+    <item>Adicionado suporte para visualização, remoção e restauração de cópias de segurança de entradas</item>
+    <item>Suporte implementado para armazenamento na nuvem MEGA</item>
+    <item>Adicionado suporte para Google Drive com âmbito restrito</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Autenticação do Google Drive reimplementado, reativado o suporte ao Google Drive</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Corrigido o desaparecimento do prompt de preenchimento automático no Firefox</item>
+    <item>Integradas as sugestões de preenchimento automático com teclado (requer Android 11+)</item>
+    <item>Possibilidade de alterar o idioma da aplicação nas configurações</item>
+    <item>Adicionada opção para sincronizar a base de dados após o desbloqueio rápido</item>
+    <item>Correção de erro: não alterar os nomes dos ficheiros para minúsculas ao guardar no Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>Adicionado suporte para o formato de ficheiro KDBX 4.1 introduzido no KeePass 2.48</item>
+    <item>Adicionado diálogo para configurar o TOTP em entradas</item>
+    <item>Gerador de palavra-passe melhorado: adicionado suporte a frase-chave, mais opções, perfis e estimativa de força da palavra-passe</item>
+    <item>Melhorias no preenchimento automático (popup fixo não mostrado no Chrome, melhor suporte ao subdomínio)</item>
+    <item>Melhorias na implementação do OneDrive: sem limite de tamanho, sem mais solicitações de autenticação supérfluas</item>
+    <item>Adicionada opção para selecionar o tema claro/escuro nas configurações do sistema, incluindo perfis noturnos. Requer Android 10+</item>
+    <item>Atualizada a implementação do Dropbox para suportar o novo método de autenticação.</item>
+    <item>O desbloqueio de nova impressão digital será invalidado após adicionar uma impressão digital nas configurações do sistema para maior segurança.</item>
+    <item>Permitir abrir ficheiros através do gestor de ficheiros do sistema, ignorando a indicação de apenas para leitura</item>
+    <item>Permitir começar a mover as entradas do menu de visualização de entradas</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Adicionado suporte para o novo formato de ficheiro-chave introduzido no Keepass 2.47</item>
+    <item>Adicionado suporte para o Argon2id como função de derivação de chaves</item>
+    <item>Compatibilidade do preenchimento automático no Firefox e Chrome</item>
+    <item>Melhorado o suporte a entradas de palavra-passe de uso único baseada em tempo (TOTP) de programas em computadores de mesa</item>
+    <item>Atualizado o pCloud SDK para corrigir problemas de autenticação</item>
+    <item>Atualizado o Jsch para a versão 0.1.55</item>
+    <item>Adicionado o menu ao ecrã de seleção da base de dados</item>
+    <item>Permite a exportação de ficheiro-chave importados</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Não armazena mais os nomes de pacotes de aplicações Android no campo URL</item>
+    <item>Melhorado o comportamento de bloqueio - sem mostrar o alerta de biometria imediatamente após o desbloqueio</item>
+    <item>Atualizado o OkHttp para suportar HTTP/2</item>
+    <item>Corrigidas as traduções em falta</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Forçar o HTTP/1.1 devido a problemas com a implementação HTTP/2 do OkHttp</item>
+    <item>Melhorada a janela de diálogo do teclado no Android 9+</item>
+    <item>Alteradas as associações de ficheiros da aplicação para evitar associações desnecessárias</item>
+    <item>Verificação que o texto da palavra-passe não está escondido atrás do ícone do olho</item>
+    <item>Alterado o comportamento do preenchimento automático para avisar ao preencher credenciais para um domínio para uma aplicação não reconhecida</item>
+    <item>Atualizada a biblioteca FTP</item>
+    <item>Correções em falhas potenciais da aplicação</item>
+    <item>Mais pequenas correções</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08">
+    <item>Adicionado botão de notificação para copiar a palavra-passe de uso único baseada em tempo (TOTP) para área de transferência</item>
+    <item>Alterar o uso para FluentFTP como suporte para TLS 1.2</item>
+    <item>Alterar para a API BiometricPrompt para melhorar a experiência do utilizador com desbloqueio por impressão digital e permitir o uso do desbloqueio facial (ex: no Pixel 4).</item>
+    <item>Correções de erros</item>
+  </string-array>
+  <string name="ChangeLog_keptDonate">Considere a possibilidade de doar uma cerveja ou outra coisa</string>
+  <string-array name="clipboard_timeout_options">
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>5 minutos</item>
+    <item>10 minutos</item>
+    <item>15 minutos</item>
+    <item>30 minutos</item>
+    <item>1 hora</item>
+    <item>Nunca</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Base de dados KeePass 2 (.kdbx)</item>
+    <item>KeePass 2 XML (sem encriptação) (. xml)</item>
+    <item>KeePass CSV (sem encriptação) (.csv)</item>
+  </string-array>
+  <string-array name="list_size_options">
+    <item>Pequena</item>
+    <item>Média</item>
+    <item>Grande</item>
+  </string-array>
+  <string-array name="design_options">
+    <item>Claro</item>
+    <item>Escuro</item>
+    <item>Configurações do sistema</item>
+  </string-array>
+  <string name="design_title">Design</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Sem encriptação (FTP)</item>
+    <item>Encriptação implícita (FTP sobre TLS, FTPS)</item>
+    <item>Encriptação explícita (FTP sobre TLS, FTPS)</item>
+  </string-array>
+  <string-array name="cred_remember_modes">
+    <item>Não lembrar nome de utilizador e palavra-passe</item>
+    <item>Lembrar apenas nome de utilizador</item>
+    <item>Lembrar nome de utilizador e palavra-passe</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Palavra-passe apenas</item>
+    <item>Palavra-passe + ficheiro-chave</item>
+    <item>Palavra-passe + OTP</item>
+    <item>Palavra-passe + OTP secreto (modo de recuperação)</item>
+    <item>Palavra-passe + desafio-resposta</item>
+    <item>Palavra-passe + desafio-resposta secreto (modo de recuperação)</item>
+    <item>Palavra-passe + desafio-resposta para o Keepass XC</item>
+    <item>Palavra-passe + ficheiro-chave + desafio-resposta para o Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Palavra-passe</item>
+    <item>KP2A Private/Public key</item>
+    <item>Custom Private key</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Ignorar falhas de validação de certificado</item>
+    <item>Avisar quando a validação falhar</item>
+    <item>Não aceitar certificados inválidos</item>
+  </string-array>
+  <string name="ClearClipboardWarning">Certifique-se de que isto funciona no seu sistema e considere usar o teclado embutido se não.</string>
+  <string name="PluginDescription">Descrição fornecida pela extensão:</string>
+  <string name="autofill_hint">Keepass2Android suporta o Auto preenchimento do sistema Android mas parece que ainda não o ativou.</string>
+  <string name="autofill_enable">Ativar o auto preenchimento</string>
+  <string name="autofill_enable_failed">Lamento, parece que o seu dispositivo não suporta abrir as configurações dentro da aplicação. Por favor vá manualmente às configurações do sistema para auto preenchimento para ativar o serviço.</string>
+  <string name="show_autofill_help">Mostrar ajuda para auto preenchimento</string>
+  <string name="autofill_sign_in_prompt">Preencher com Keepass2Android</string>
+  <string name="autofill_disable">Ativar auto-preenchimento para %1$s</string>
+  <string name="autofill_enable_for">Desativar auto-preenchimento para %1$s</string>
+  <string name="invalid_link_association">Não foi possível associar o domínio %1$s com a aplicação %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android detetou hardware de impressões digitais. Deseja ativar a impressão digital para desbloquear a base de dados?</string>
+  <string name="understand">Eu entendo</string>
+  <string name="dont_show_again">Não mostrar novamente</string>
+  <string name="masterkey_infotext_head">Recorda-se da sua chave mestra?</string>
+  <string name="masterkey_infotext_main">Note que não vai conseguir abrir a sua base de dados sem a sua chave mestra.
+Não há forma de fazer \"reset\" à chave mestra.</string>
+  <string name="masterkey_infotext_fingerprint_note">Note que o desbloqueio por impressão digital funciona ao guardar a sua chave mestra no armazenamento seguro do Android. Este armazenamento pode ser apagado pelo Android a qualquer altura, por exemplo se adicionar uma nova impressão digital ao sistema. Portanto não dependa apenas da sua impressão digital, lembre-se sempre da sua chave mestra, por favor!</string>
+  <string name="backup_infotext_head">Fez cópia de segurança da sua base de dados?</string>
+  <string name="backup_infotext_main">Keepass2Android guarda as suas palavras-passe num ficheiro numa localização do seu dispositivo à sua escolha. Tem a certeza que consegue aceder ao ficheiro caso o seu telemóvel seja perdido ou roubado, ou caso o ficheiro seja destruído ou eliminado? Por favor, tenha a certeza que tem uma cópia de segurança atualizada num local seguro!</string>
+  <string name="backup_infotext_note">Para criar uma cópia de segurança agora, por favor ir a %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Está preparado para casos de emergência?</string>
+  <string name="emergency_infotext_main">Já pensou no que acontece caso não consiga aceder à sua base de dados? E se tem um acidente? É uma boa prática dar a sua chave mestra a alguém da sua confiança para situações de emergência. Caso contrário, ninguém irá conseguir aceder às suas palavras-passe.</string>
+  <string name="no_secure_display">O ecrã atual não está marcado como seguro. Isso significa que capturas de ecrã podem ser feitas por outras aplicações. Keepass2Android está configurado para exibir informações confidenciais apenas em ecrãs seguros. Por favor, altere para um ecrã seguro (por exemplo, desconectando um monitor HDMI) ou altere as configurações da aplicação.</string>
+  <string name="disable_secure_screen_check">Desativar esta mensagem</string>
+  <string name="switch_ime_text">Por favor, ative o teclado Keepass2Android.</string>
+  <string name="switch_ime_reopen">Tente novamente</string>
+  <string name="AutofillWarning_title">Alerta de segurança: domínio/link da aplicação desconhecido</string>
+  <string name="AutofillWarning_Intro">Está prestes a inserir credenciais para o domínio \"%1$s\" na aplicação \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Se confia em \"%2$s\" para pertencer a \"%1$s\" ou confia na aplicação \"%2$s\" para que esta não utilize indevidamente as credenciais (por ex. por ser uma aplicação de navegação confiável), pode continuar. Caso contrário cancele.</string>
+  <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
+<string name="english_ime_settings">Configurações de teclado Keepass2Android</string>
+    
+    </resources>

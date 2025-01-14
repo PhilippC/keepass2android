@@ -10,6 +10,12 @@ namespace keepass2android
 	{
 		private readonly KdbxFormat _format;
 
+        public static KdbxFormat GetFormatToUse(string fileExt)
+        {
+            return fileExt.Equals("kdbp", StringComparison.OrdinalIgnoreCase) ? KdbxFormat.ProtocolBuffers :
+                (fileExt.Equals("xml", StringComparison.OrdinalIgnoreCase) ? KdbxFormat.PlainXml : KdbxFormat.Default); 
+        }
+
 		public KdbxDatabaseFormat(KdbxFormat format)
 		{
 			_format = format;

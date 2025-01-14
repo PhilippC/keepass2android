@@ -1,0 +1,75 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="@string/security_prefs_key"
+    android:title="@string/security_prefs"
+>
+
+
+    <ListPreference
+        android:key="@string/clipboard_timeout_key"
+        android:title="@string/clipboard_timeout"
+        android:summary="@string/clipboard_timeout_summary"
+        android:entries="@array/clipboard_timeout_options"
+        android:entryValues="@array/clipboard_timeout_values"
+        android:dialogTitle="@string/clipboard_timeout"
+        android:defaultValue="@string/clipboard_timeout_default" />
+    <ListPreference
+        android:key="@string/app_timeout_key"
+        android:title="@string/app_timeout"
+        android:summary="@string/app_timeout_summary"
+        android:entries="@array/clipboard_timeout_options"
+        android:entryValues="@array/clipboard_timeout_values"
+        android:dialogTitle="@string/app_timeout"
+        android:defaultValue="@string/clipboard_timeout_default" />
+    <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/LockWhenScreenOff_summary"
+        android:defaultValue="false"
+        android:title="@string/LockWhenScreenOff_title"
+        android:key="@string/LockWhenScreenOff_key" />
+
+    <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/LockWhenNavigateBack_summary"
+        android:defaultValue="false"
+        android:title="@string/LockWhenNavigateBack_title"
+        android:key="@string/LockWhenNavigateBack_key" />
+
+    <CheckBoxPreference
+        android:key="@string/RememberRecentFiles_key"
+        android:title="@string/RememberRecentFiles_title"
+        android:summary="@string/RememberRecentFiles_summary"
+        android:defaultValue="@bool/RememberRecentFiles_default" />
+
+    <CheckBoxPreference
+        android:key="@string/keyfile_key"
+        android:title="@string/remember_keyfile_title"
+        android:summary="@string/remember_keyfile_summary"
+        android:defaultValue="@bool/keyfile_default" />
+
+    <CheckBoxPreference
+        android:key="@string/show_kill_app_key"
+        android:title="@string/show_kill_app"
+        android:summary="@string/show_kill_app_summary"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/ClearPasswordOnLeave_summary"
+        android:defaultValue="false"
+        android:title="@string/ClearPasswordOnLeave_title"
+        android:key="@string/ClearPasswordOnLeave_key" />
+
+    <CheckBoxPreference
+        android:enabled="true"
+        android:persistent="true"
+        android:summary="@string/UseKp2aKeyboardInKp2a_summary"
+        android:defaultValue="false"
+        android:title="@string/UseKp2aKeyboardInKp2a_title"
+        android:key="@string/UseKp2aKeyboardInKp2a_key" />
+
+
+</PreferenceScreen>

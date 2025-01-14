@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:paddingTop="1dip"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+  <Button
+    style="?attr/materialIconButtonStyle"
+    app:icon="@drawable/baseline_edit_24"
+      android:id="@+id/edit_extra"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:layout_marginRight="0dip"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentBottom="true"
+                    />
+  <LinearLayout
+    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_toLeftOf="@id/edit_extra">
+
+	
+    <TextView
+          android:id="@+id/extrakey"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="0dip"
+		 android:visibility="gone" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/value_container"
+      style="?attr/textInputOutlinedDenseStyle"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content">
+      <EditText
+          android:id="@+id/value"
+          android:inputType="textMultiLine"
+          style="@style/EntryEditSingleLine_EditText"
+          android:layout_marginRight="0dip" />
+            </com.google.android.material.textfield.TextInputLayout>
+>
+    
+    <CheckBox
+        android:id="@+id/protection"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+		 android:visibility="gone"
+        android:text="@string/protection"/>
+  </LinearLayout>
+</RelativeLayout>

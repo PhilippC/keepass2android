@@ -3,10 +3,12 @@ android {
 
     namespace 'keepass2android.softkeyboard'
 
-    compileSdkVersion 33
+
 
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion 21
+        compileSdk 34
+        targetSdk 34
     }
 
     buildTypes {

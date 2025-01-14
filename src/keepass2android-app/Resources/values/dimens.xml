@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+  <dimen name="detail_backdrop_height">200dp</dimen>
+  <dimen name="fab_margin">16dp</dimen>
+
+  <dimen name="splash_logo_width">79dp</dimen>
+  <dimen name="splash_logo_height">104dp</dimen>
+  <dimen name="splash_logo_marginTop">64dp</dimen>
+
+  <dimen name="splash_fontsize">30dp</dimen>
+  
+
+</resources>

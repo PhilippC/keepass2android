@@ -1,17 +1,16 @@
 <metadata>
-  <!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
+ 
 	<remove-node path="/api/package[@name='com.jcraft.jsch']" />
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jce']" />
 	<remove-node path="/api/package[@name='com.jcraft.jsch.jcraft']" />
 	<remove-node path="/api/package[@name='com.jcraft.jzlib']" />
 
   <remove-node path="/api/package[@name='com.pcloud.sdk']" />
+  <remove-node path="/api/package[@name='io.opencensus.stats']" />
+  <remove-node path="/api/package[@name='io.opencensus']" />
+
+
+  <remove-node path="/api/package[@name='com.dropbox.core']" />
 
   <remove-node path="/api/package[@name='com.dropbox.core']" />
   <remove-node path="/api/package[@name='com.dropbox.core.util']" />

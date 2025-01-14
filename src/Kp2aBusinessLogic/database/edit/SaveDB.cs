@@ -43,7 +43,7 @@ namespace keepass2android
 		/// </summary>
 		private readonly Stream _streamForOrigFile;
 		private readonly Context _ctx;
-		private Thread _workerThread;
+		private Java.Lang.Thread _workerThread;
 
 		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnFinish finish, bool dontSave)
 			: base(ctx, finish)
@@ -213,7 +213,7 @@ namespace keepass2android
 		{
 			try
 			{
-				_workerThread = new Thread(() =>
+				_workerThread = new Java.Lang.Thread(() =>
 					{
 						try
 						{
