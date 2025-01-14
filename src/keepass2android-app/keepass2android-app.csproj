@@ -9,6 +9,7 @@
     <ApplicationId>keepass2android.keepass2android</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\fontawesome-webfont.ttf" />
@@ -713,9 +714,6 @@
     <None Remove="Resources\xml\searchable_offline.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidNativeLibrary Include="..\java\argon2\libs\armeabi-v7a\libargon2.so" Link="libargon2.so" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_storage_kp2a">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -727,6 +725,12 @@
     <Folder Include="Resources\drawable-ldpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidNativeLibrary Include="..\java\argon2\libs\arm64-v8a\libargon2.so" Link="arm64-v8a\libargon2.so" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidNativeLibrary Include="..\java\argon2\libs\armeabi-v7a\libargon2.so" Link="armeabi-v7a\libargon2.so" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.0.3" />
