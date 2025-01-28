@@ -3,7 +3,7 @@ name: Build keepass2android app
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
