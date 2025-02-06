@@ -20,7 +20,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-               Theme = "@style/Kp2aTheme_ActionBar")]
+               Theme = "@style/Kp2aTheme_BlueActionBar")]
 	public class CreateDatabaseActivity : LifecycleAwareActivity
 	{
 		private IOConnectionInfo _ioc;
