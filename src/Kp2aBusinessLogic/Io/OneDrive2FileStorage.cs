@@ -12,14 +12,8 @@ using Microsoft.Graph.Models;
 using Microsoft.Identity.Client;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
+using DriveItemRequestBuilder = Microsoft.Graph.Drives.Item.Items.Item.DriveItemItemRequestBuilder;
 
-//there are several "DriveItemItemRequestBuilder" classes in different namespaces. Unfortunately they do not share a common interface anymore.
-//Prefix the aliases with Kp2a to indicate that they are non-official aliases.
-using Kp2aDriveItemRequestBuilder =    Microsoft.Graph.Drives.Item.Items.Item.DriveItemItemRequestBuilder;
-using Kp2aSharedDriveItemRequestBuilder =  Microsoft.Graph.Shares.Item.Items.Item.DriveItemItemRequestBuilder;
-
-//NOTE: even though CustomDriveItemItemRequestBuilder derives from Kp2aDriveItemRequestBuilder, we cannot use polymorphism here because the methods are declared with "new".
-//If you cast assign an CustomDriveItemItemRequestBuilder object to a variable declared as Kp2aDriveItemRequestBuilder and then call a method on it, it will fail.
 
 using Exception = System.Exception;
 using String = System.String;
@@ -216,14 +210,16 @@ namespace keepass2android.Io
             /// <summary>
             /// Wraps the different DriveItemRequestBuilder classes and allows accessing the different types easily
             /// </summary>
-            public class DriveItemRequests
+            /// NOTE: even though CustomDriveItemItemRequestBuilder derives from Kp2aDriveItemRequestBuilder, we cannot use polymorphism here because the methods are declared with "new".
+            /// If you cast assign an CustomDriveItemItemRequestBuilder object to a variable declared as Kp2aDriveItemRequestBuilder and then call a method on it, it will fail.
+            public class DriveItemRequestBuilderWrapper
             {
 
-                public class DriveItemRequestsResult<T>
+                public class DriveItemRequestBuilderResult<T>
                 {
-                    private readonly DriveItemRequests _req;
+                    private readonly DriveItemRequestBuilderWrapper _req;
 
-                    public DriveItemRequestsResult(DriveItemRequests req)
+                    public DriveItemRequestBuilderResult(DriveItemRequestBuilderWrapper req)
                     {
                         _req = req;
                     }
@@ -231,15 +227,7 @@ namespace keepass2android.Io
                     public Task<T?> Result { get; set; }
 
 
-                    public DriveItemRequestsResult<T> ForSharedDriveItemRequests(Func<Kp2aSharedDriveItemRequestBuilder, Task<T?>> action)
-                    {
-                        if (_req.SharedDriveItemRequestBuilder != null)
-                        {
-                            Result = action(_req.SharedDriveItemRequestBuilder);
-                        }
-                        return this;
-                    }
-                    public DriveItemRequestsResult<T> ForDriveItemRequests(Func<Kp2aDriveItemRequestBuilder, Task<T?>> action)
+                    public DriveItemRequestBuilderResult<T> ForDriveItemRequestBuilder(Func<DriveItemRequestBuilder, Task<T?>> action)
                     {
                         if (_req.DriveItemRequestBuilder != null)
                         {
@@ -248,7 +236,7 @@ namespace keepass2android.Io
                         return this;
                     }
 
-                    public DriveItemRequestsResult<T> ForCustomDriveItemRequests(Func<CustomDriveItemItemRequestBuilder, Task<T?>> action)
+                    public DriveItemRequestBuilderResult<T> ForCustomDriveItemRequestBuilder(Func<CustomDriveItemItemRequestBuilder, Task<T?>> action)
                     {
                         if (_req.CustomDriveItemRequestBuilder != null)
                         {
@@ -261,11 +249,11 @@ namespace keepass2android.Io
 
                 }
 
-                public class DriveItemRequestsAsyncTask
+                public class DriveItemRequestBuilderAsyncTask
                 {
-                    private readonly DriveItemRequests _req;
+                    private readonly DriveItemRequestBuilderWrapper _req;
 
-                    public DriveItemRequestsAsyncTask(DriveItemRequests req)
+                    public DriveItemRequestBuilderAsyncTask(DriveItemRequestBuilderWrapper req)
                     {
                         _req = req;
                         Task = Task.CompletedTask;
@@ -273,15 +261,7 @@ namespace keepass2android.Io
 
                     public Task Task { get; private set; }
 
-                    public DriveItemRequestsAsyncTask ForSharedDriveItemRequests(Func<Kp2aSharedDriveItemRequestBuilder, Task> action)
-                    {
-                        if (_req.SharedDriveItemRequestBuilder != null)
-                        {
-                            Task = action(_req.SharedDriveItemRequestBuilder);
-                        }
-                        return this;
-                    }
-                    public DriveItemRequestsAsyncTask ForDriveItemRequests(Func<Kp2aDriveItemRequestBuilder, Task> action)
+                    public DriveItemRequestBuilderAsyncTask ForDriveItemRequestBuilder(Func<DriveItemRequestBuilder, Task> action)
                     {
                         if (_req.DriveItemRequestBuilder != null)
                         {
@@ -290,7 +270,7 @@ namespace keepass2android.Io
                         return this;
                     }
 
-                    public DriveItemRequestsAsyncTask ForCustomDriveItemRequests(Func<CustomDriveItemItemRequestBuilder, Task> action)
+                    public DriveItemRequestBuilderAsyncTask ForCustomDriveItemRequestBuilder(Func<CustomDriveItemItemRequestBuilder, Task> action)
                     {
                         if (_req.CustomDriveItemRequestBuilder != null)
                         {
@@ -298,66 +278,32 @@ namespace keepass2android.Io
                         }
                         return this;
                     }
-
-
-                    
-                    
-
                 }
 
-                public Kp2aSharedDriveItemRequestBuilder? SharedDriveItemRequestBuilder { get; set; }
 
-                public Kp2aDriveItemRequestBuilder? DriveItemRequestBuilder { get; set; }
+                public DriveItemRequestBuilder? DriveItemRequestBuilder { get; set; }
 
                 public CustomDriveItemItemRequestBuilder? CustomDriveItemRequestBuilder { get; set; }
 
 
-                public DriveItemRequests ForDriveItemRequests(Action<Kp2aDriveItemRequestBuilder> action)
+                public DriveItemRequestBuilderResult<T> ToAsyncResult<T>()
                 {
-                    if (DriveItemRequestBuilder != null)
-                    {
-                        action(DriveItemRequestBuilder);
-                    }
-                    return this;
+                    return new DriveItemRequestBuilderResult<T>(this);
                 }
 
-                public DriveItemRequests ForCustomDriveItemRequests(Action<CustomDriveItemItemRequestBuilder> action)
+                public DriveItemRequestBuilderAsyncTask ToAsyncTask()
                 {
-                    if (CustomDriveItemRequestBuilder != null)
-                    {
-                        action(CustomDriveItemRequestBuilder);
-                    }
-                    return this;
-                }
-
-                
-                public DriveItemRequests ForSharedDriveItemRequests(Action<Kp2aSharedDriveItemRequestBuilder> action)
-                {
-                    if (SharedDriveItemRequestBuilder != null)
-                    {
-                        action(SharedDriveItemRequestBuilder);
-                    }
-                    return this;
-                }
-
-                public DriveItemRequestsResult<T> ToAsyncResult<T>()
-                {
-                    return new DriveItemRequestsResult<T>(this);
-                }
-
-                public DriveItemRequestsAsyncTask ToAsyncTask()
-                {
-                    return new DriveItemRequestsAsyncTask(this);
+                    return new DriveItemRequestBuilderAsyncTask(this);
                 }
             
 
             };
 
 
-            public async Task<DriveItemRequests> BuildPathItemAsync()
+            public async Task<DriveItemRequestBuilderWrapper> BuildPathItemAsync()
             {
                 Kp2aLog.Log("buildPathItem for " + itemLocation.ToString());
-                DriveItemRequests result = new DriveItemRequests();
+                DriveItemRequestBuilderWrapper result = new DriveItemRequestBuilderWrapper();
 
                 if (!hasShare())
                 {
@@ -391,7 +337,7 @@ namespace keepass2android.Io
                     {
                         if (verbose) Kp2aLog.Log("Special folder = " + _specialFolder);
 
-                        Kp2aDriveItemRequestBuilder specialRoot = client.Drives[itemLocation.DriveId].Items[_specialFolder];
+                        DriveItemRequestBuilder specialRoot = client.Drives[itemLocation.DriveId].Items[_specialFolder];
 
                         
                         if (itemLocation.LocalPath.Any())
@@ -410,39 +356,15 @@ namespace keepass2android.Io
                     if (verbose) Kp2aLog.Log("Path share is not me");
                     if (!itemLocation.LocalPath.Any())
                     {
-                        String webUrl = itemLocation.Share.WebUrl;
-                        if (verbose) Kp2aLog.Log("Share WebUrl = " + webUrl);
-                        var encodedShareId = CalculateEncodedShareId(webUrl);
-                        result.SharedDriveItemRequestBuilder = client.Shares[encodedShareId].Items["root"];
+                        result.DriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Items[itemLocation.Share.Id];
                         return result;
                     }
-                    /*String webUrl = itemLocation.Share.WebUrl;
-                    if ("".Equals(itemLocation.LocalPath) == false)
-                    {
-                        if (!webUrl.EndsWith("/")) webUrl += "/";
-                        webUrl += itemLocation.LocalPath;
-                    }
-                    Android.Util.Log.Debug("KP2A","webUrl = " + Encoding.UTF8.GetBytes(webUrl));
-                    //calculate shareid according to https://docs.microsoft.com/en-us/graph/api/shares-get?view=graph-rest-1.0&tabs=java
-                    var encodedShareId = CalculateEncodedShareId(webUrl);
-                    Android.Util.Log.Debug("KP2A", "encodedShareId = " + encodedShareId);
-                    pathItem = client.Shares[encodedShareId].Root;
-                    */
                     if (verbose) Kp2aLog.Log("Using driveId=" + itemLocation.DriveId + " and item id=" + itemLocation.LocalPath.Last().Id);
                     result.DriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Items[itemLocation.LocalPath.Last().Id];
                 }
 
                 return result;
             }
-
-            private static string CalculateEncodedShareId(string webUrl)
-            {
-                String encodedShareId = "u!" + Base64.EncodeToString(Encoding.UTF8.GetBytes(webUrl),
-                                                Base64Flags.NoPadding).Replace('/', '_').Replace('+', '_')
-                                            .Replace("\n", ""); //encodeToString adds a newline character add the end - remove
-                return encodedShareId;
-            }
-
 
             public bool hasShare()
             {
@@ -482,13 +404,10 @@ namespace keepass2android.Io
             public bool RequiresUserInteraction { get; set; }
         }
 
-        protected readonly Dictionary<String /*userid*/, GraphServiceClientWithState> _mClientByUser =
-            new Dictionary<String /*userid*/, GraphServiceClientWithState>();
+        protected readonly Dictionary<String /*userid*/, GraphServiceClientWithState> _mClientByUser = new();
 
         private async Task<GraphServiceClient> TryGetMsGraphClient(String path, bool tryConnect)
         {
-
-
             string userId = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path).User.Id;
 
             logDebug("TryGetMsGraphClient for " + userId);
@@ -544,14 +463,6 @@ namespace keepass2android.Io
 
 
             var authenticationProvider = new BaseBearerTokenAuthenticationProvider(new TokenFromAuthResultProvider() { AuthenticationResult = authenticationResult });
-            /*
-            (requestMessage) =>
-
-            {
-                var access_token = authenticationResult.AccessToken;
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", access_token);
-                return Task.FromResult(0);
-            });*/
 
             GraphServiceClientWithState clientWithState = new GraphServiceClientWithState()
             {
@@ -568,7 +479,6 @@ namespace keepass2android.Io
             logDebug("buildClient ok.");
             return clientWithState.Client;
         }
-
 
 
         private void logDebug(string str)
@@ -635,8 +545,6 @@ namespace keepass2android.Io
             return e;
         }
 
-
-
         public bool UserShouldBackup
         {
             get { return false; }
@@ -650,10 +558,10 @@ namespace keepass2android.Io
                 Task.Run(async () =>
                 {
                     PathItemBuilder pathItemBuilder = await GetPathItemBuilder(ioc.Path);
-                    PathItemBuilder.DriveItemRequests pathItem = await pathItemBuilder.BuildPathItemAsync();
+                    PathItemBuilder.DriveItemRequestBuilderWrapper pathItem = await pathItemBuilder.BuildPathItemAsync();
                     await pathItem.ToAsyncTask()
-                        .ForDriveItemRequests(builder => builder.DeleteAsync())
-                        .ForCustomDriveItemRequests(b => b.DeleteAsync())
+                        .ForDriveItemRequestBuilder(builder => builder.DeleteAsync())
+                        .ForCustomDriveItemRequestBuilder(b => b.DeleteAsync())
                         .Task;
                 }).Wait();
             }
@@ -673,35 +581,6 @@ namespace keepass2android.Io
             return null;
         }
 
-        public Stream OpenFileForReadx(IOConnectionInfo ioc)
-        {
-            try
-            {
-                string filename = ioc.Path;
-
-                Stream? result = Task.Run(async () =>
-                {
-
-                    logDebug("openFileForRead. Path=" + filename);
-                    //var client = await TryGetMsGraphClient(filename, true);
-
-                    PathItemBuilder clientAndPath = await GetPathItemBuilder(filename);
-                    var client = clientAndPath.client;
-                    var itemLocation = clientAndPath.itemLocation;
-
-                    return await client.Drives[itemLocation.DriveId].Root.ItemWithPath(itemLocation.LocalPathString).Content
-                        .GetAsync();
-                    
-                }).Result;
-                logDebug("ok");
-                return result;
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
         public Stream OpenFileForRead(IOConnectionInfo ioc)
         {
             try
@@ -717,9 +596,8 @@ namespace keepass2android.Io
                     PathItemBuilder clientAndPath = await GetPathItemBuilder(path);
                     return await (await clientAndPath.BuildPathItemAsync())
                         .ToAsyncResult<Stream>()
-                        .ForDriveItemRequests((b) => b.Content.GetAsync())
-                        .ForCustomDriveItemRequests(b => b.Content.GetAsync())
-                        .ForSharedDriveItemRequests((b) => b.Content.GetAsync())
+                        .ForDriveItemRequestBuilder((b) => b.Content.GetAsync())
+                        .ForCustomDriveItemRequestBuilder(b => b.Content.GetAsync())
                         .Result;
 
                 }).Result;
@@ -781,9 +659,8 @@ namespace keepass2android.Io
                             (await pathItemBuilder
                                 .BuildPathItemAsync())
                                 .ToAsyncTask()
-                                .ForDriveItemRequests((b) => b.Content.PutAsync(stream))
-                                .ForCustomDriveItemRequests(b => b.Content.PutAsync(stream))
-                                .ForSharedDriveItemRequests(b => b.Content.PutAsync(stream))
+                                .ForDriveItemRequestBuilder((b) => b.Content.PutAsync(stream))
+                                .ForCustomDriveItemRequestBuilder(b => b.Content.PutAsync(stream))
                                 .Task;
                         return;
                     }
@@ -803,9 +680,8 @@ namespace keepass2android.Io
                     var uploadSession = await (await pathItemBuilder
                                 .BuildPathItemAsync())
                                 .ToAsyncResult<UploadSession>()
-                                .ForSharedDriveItemRequests(b => throw new Exception("Graph SDK doesn't seem to support large file uploads on shares.")) //TODO verify
-                                .ForDriveItemRequests(b => b.CreateUploadSession.PostAsync(uploadProps))
-                                .ForCustomDriveItemRequests(b => b.CreateUploadSession.PostAsync(uploadProps))
+                                .ForDriveItemRequestBuilder(b => b.CreateUploadSession.PostAsync(uploadProps))
+                                .ForCustomDriveItemRequestBuilder(b => b.CreateUploadSession.PostAsync(uploadProps))
 
                                 .Result;
 
@@ -871,8 +747,8 @@ namespace keepass2android.Io
 
                     return await (await pathItemBuilder.BuildPathItemAsync())
                         .ToAsyncResult<DriveItem>()
-                        .ForDriveItemRequests(b => b.Children.PostAsync(driveItem))
-                        .ForCustomDriveItemRequests(b => b.Children.PostAsync(driveItem))
+                        .ForDriveItemRequestBuilder(b => b.Children.PostAsync(driveItem))
+                        .ForCustomDriveItemRequestBuilder(b => b.Children.PostAsync(driveItem))
                         .Result;
                 }).Result;
 
@@ -912,9 +788,6 @@ namespace keepass2android.Io
 
             logDebug("listing regular children.");
             List<FileDescription> result = new List<FileDescription>();
-            /*logDebug("parent before:" + parentPath);
-            parentPath = parentPath.substring(getProtocolPrefix().length());
-            logDebug("parent after: " + parentPath);*/
 
             var driveItems = await GetDriveItems(pathItemBuilder);
 
@@ -935,11 +808,8 @@ namespace keepass2android.Io
             var pathItem = await pathItemBuilder.BuildPathItemAsync();
             var response =  await pathItem
                 .ToAsyncResult<DriveItemCollectionResponse>()
-                .ForDriveItemRequests(b => b.Children.GetAsync())
-                .ForCustomDriveItemRequests(b => b.Children.GetAsync())
-                .ForSharedDriveItemRequests(b =>
-                    throw new Java.Lang.Exception("TODO listing share children not implemented"))
-                
+                .ForDriveItemRequestBuilder(b => b.Children.GetAsync())
+                .ForCustomDriveItemRequestBuilder(b => b.Children.GetAsync())
                 .Result;
             return response.Value;
         }
@@ -994,9 +864,8 @@ namespace keepass2android.Io
 
             var driveReq = await pathItemBuilder.BuildPathItemAsync();
             DriveItem? item = await driveReq.ToAsyncResult<DriveItem>()
-                .ForDriveItemRequests(b => b.GetAsync())
-                .ForCustomDriveItemRequests(b => b.GetAsync())
-                .ForSharedDriveItemRequests(b => b.GetAsync())
+                .ForDriveItemRequestBuilder(b => b.GetAsync())
+                .ForCustomDriveItemRequestBuilder(b => b.GetAsync())
                 .Result;
             return GetFileDescription(pathItemBuilder.itemLocation, item);
         }
@@ -1077,7 +946,6 @@ namespace keepass2android.Io
         protected void FinishActivityWithSuccess(
             IFileStorageSetupActivity setupActivity)
         {
-            //Log.d("KP2AJ", "Success with authenticating!");
             Activity activity = (Activity)setupActivity;
 
             if (setupActivity.ProcessName
@@ -1179,8 +1047,6 @@ namespace keepass2android.Io
 
                     logDebug("AcquireTokenSilent ok.");
                     BuildClient(authResult);
-                    /*User me = await graphClient.Me.Request().WithForceRefresh(true).GetAsync();
-                    logDebug("received name " + me.DisplayName);*/
 
                     var rootFolder = BuildRootPathForUser(authResult);
                     logDebug("Found RootPath for user");
@@ -1281,28 +1147,22 @@ namespace keepass2android.Io
                     result.Add(e);
                 });
             }
+
+            string? driveId = parentPath.DriveId;
+            if ((string.IsNullOrEmpty(driveId)) && (drives?.Any() == true))
+            {
+                driveId = drives.First().Id;
+            }
+        
             
             if (!CanListShares)
                 return result;
-/*
-            try
-            {
-                var res = await client.Drives[parentPath.DriveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
-                var x = res.Value;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            //Not working. See https://stackoverflow.com/questions/79374963/list-shared-folders-with-graph-sdk.
-
-            var sharedWithMeResponse = await client.Drives[parentPath.DriveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
-
+            
+            var sharedWithMeResponse = await client.Drives[driveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
 
             foreach (DriveItem i in sharedWithMeResponse?.Value ?? [])
             {
-                var oneDrive2ItemLocation = parentPath.BuildShare(i.Id, i.Name, i.WebUrl, i.ParentReference?.DriveId);
+                var oneDrive2ItemLocation = parentPath.BuildShare(i.RemoteItem.Id, i.RemoteItem.Name, i.RemoteItem.WebUrl, i.RemoteItem.ParentReference.DriveId);
                 FileDescription sharedFileEntry = new FileDescription()
                 {
                     CanWrite = true, CanRead = true, DisplayName = i.Name,
@@ -1311,7 +1171,7 @@ namespace keepass2android.Io
                 };
                 result.Add(sharedFileEntry);
 
-            }*/
+            }
 
             return result;
         }
@@ -1377,9 +1237,8 @@ namespace keepass2android.Io
             var driveItemReq = await targetPathItemBuilder.BuildPathItemAsync();
             DriveItem? res = await driveItemReq
                 .ToAsyncResult<DriveItem>()
-                .ForDriveItemRequests(b => b.Content.PutAsync(emptyStream))
-                .ForCustomDriveItemRequests(b => b.Content.PutAsync(emptyStream))
-                .ForSharedDriveItemRequests(b => b.Content.PutAsync(emptyStream))
+                .ForDriveItemRequestBuilder(b => b.Content.PutAsync(emptyStream))
+                .ForCustomDriveItemRequestBuilder(b => b.Content.PutAsync(emptyStream))
                 .Result;
 
             return pathItemBuilder.itemLocation.BuildLocalChildLocation(res.Name, res.Id, res.ParentReference?.DriveId)
@@ -1446,7 +1305,7 @@ namespace keepass2android.Io
             }
         }
 
-        protected override Task<string?> GetSpecialFolder(
+        protected override async Task<string?> GetSpecialFolder(
             OneDrive2ItemLocation<OneDrive2MyFilesPrefixContainer> itemLocation, GraphServiceClient client)
         {
             return null;
@@ -1505,6 +1364,6 @@ namespace keepass2android.Io
 
 
         public override bool CanListShares { get { return false; } }
-        protected override string MyOneDriveDisplayName { get { return "Keepass2Android App Folder"; } }
+        protected override string MyOneDriveDisplayName => "Keepass2Android App Folder";
     }
 }
