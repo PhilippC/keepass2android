@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Preferences;
@@ -37,7 +38,9 @@ namespace keepass2android
 	/// used by the user. This ensures the database is kept in memory (until Android kills it due to low memory).
 	/// It is important to also have a foreground service also for the "unlocked" state because it's really
 	/// irritating if the db is closed while switching between apps.
-	[Service]
+	[Service(ForegroundServiceType = ForegroundService.TypeSpecialUse )]
+	[MetaData("android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE", Value = " This service is running as foreground service to keep the app alive even when it's not currently used by the user. This ensures the database is kept in memory (until Android kills it due to low memory). It is important to also have a foreground service also for the \"unlocked\" state because it's really irritating if the db is closed while switching between apps.")]
+	
 	public class OngoingNotificationsService : Service
 	{
 		protected override void AttachBaseContext(Context baseContext)
@@ -57,7 +60,7 @@ namespace keepass2android
 			_screenOffReceiver = new ScreenOffReceiver();
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_screenOffReceiver, filter);
+			RegisterReceiver(_screenOffReceiver, filter, ReceiverFlags.Exported);
 		}
 
 

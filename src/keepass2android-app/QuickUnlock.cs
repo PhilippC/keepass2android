@@ -153,7 +153,7 @@ namespace keepass2android
 			_intentReceiver = new QuickUnlockBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
-			RegisterReceiver(_intentReceiver, filter);
+			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
 
             Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.QuickUnlock_password));
 
@@ -503,8 +503,6 @@ namespace keepass2android
 				}
 			}
 		}
-
-
 	}
 }
 

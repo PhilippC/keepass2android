@@ -491,9 +491,9 @@ namespace keepass2android
 			App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
-			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction));
+			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction), ReceiverFlags.Exported);
 			_pluginFieldReceiver = new PluginFieldReceiver(this);
-			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField));
+			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField), ReceiverFlags.Exported);
 
             var notifyPluginsOnOpenThread = new Thread(NotifyPluginsOnOpen);
             notifyPluginsOnOpenThread.Start();
