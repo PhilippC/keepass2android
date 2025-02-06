@@ -1,30 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http.Headers;
+﻿using System.Net;
+using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Util;
-using Java.Net;
 using keepass2android.Io.ItemLocation;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using Microsoft.Graph;
-using Microsoft.Graph.Auth;
+using Microsoft.Graph.Drives.Item.Items.Item.CreateUploadSession;
+using Microsoft.Graph.Models;
 using Microsoft.Identity.Client;
-using Newtonsoft.Json;
+using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions.Authentication;
+using DriveItemRequestBuilder = Microsoft.Graph.Drives.Item.Items.Item.DriveItemItemRequestBuilder;
+
+
 using Exception = System.Exception;
-using File = Microsoft.Graph.File;
 using String = System.String;
 
 namespace keepass2android.Io
 {
-    namespace ItemLocation
+   namespace ItemLocation
     {
         public class User
         {
@@ -45,9 +41,9 @@ namespace keepass2android.Io
 
         }
 
-        public class OneDrive2ItemLocation<OneDrive2PrefixContainerType> where OneDrive2PrefixContainerType: OneDrive2PrefixContainer, new()
+        public class OneDrive2ItemLocation<OneDrive2PrefixContainerType> where OneDrive2PrefixContainerType : OneDrive2PrefixContainer, new()
         {
-            
+
             public User User { get; set; } = new User();
             public Share Share { get; set; } = new Share();
             public string DriveId { get; set; }
@@ -59,7 +55,7 @@ namespace keepass2android.Io
             {
                 get
                 {
-                    OneDrive2ItemLocation< OneDrive2PrefixContainerType> copy = OneDrive2ItemLocation< OneDrive2PrefixContainerType>.FromString(this.ToString());
+                    OneDrive2ItemLocation<OneDrive2PrefixContainerType> copy = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(this.ToString());
                     if (copy.LocalPath.Any())
                     {
                         //pop last:
@@ -177,16 +173,16 @@ namespace keepass2android.Io
 
         }
     }
-   
 
 
-    public abstract class OneDrive2FileStorage<OneDrive2PrefixContainerType> : IFileStorage where OneDrive2PrefixContainerType: OneDrive2PrefixContainer, new()
+
+    public abstract class OneDrive2FileStorage<OneDrive2PrefixContainerType> : IFileStorage where OneDrive2PrefixContainerType : OneDrive2PrefixContainer, new()
     {
 
         public static IPublicClientApplication _publicClientApp = null;
         private string ClientID = "8374f801-0f55-407d-80cc-9a04fe86d9b2";
-        
-        
+
+
         public abstract IEnumerable<string> Scopes
         {
             get;
@@ -201,21 +197,114 @@ namespace keepass2android.Io
 
         class PathItemBuilder
         {
-            private readonly string _specialFolder;
-            public IGraphServiceClient client;
+            private readonly string? _specialFolder;
+            public GraphServiceClient client;
             public OneDrive2ItemLocation<OneDrive2PrefixContainerType> itemLocation;
             public bool verbose;
 
-            public PathItemBuilder(string specialFolder)
+            public PathItemBuilder(string? specialFolder)
             {
                 _specialFolder = specialFolder;
             }
 
-
-            public IDriveItemRequestBuilder getPathItem()
+            /// <summary>
+            /// Wraps the different DriveItemRequestBuilder classes and allows accessing the different types easily
+            /// </summary>
+            /// NOTE: even though CustomDriveItemItemRequestBuilder derives from Kp2aDriveItemRequestBuilder, we cannot use polymorphism here because the methods are declared with "new".
+            /// If you cast assign an CustomDriveItemItemRequestBuilder object to a variable declared as Kp2aDriveItemRequestBuilder and then call a method on it, it will fail.
+            public class DriveItemRequestBuilderWrapper
             {
-                Kp2aLog.Log("getPathItem for " + itemLocation.ToString());
-                IDriveItemRequestBuilder pathItem;
+
+                public class DriveItemRequestBuilderResult<T>
+                {
+                    private readonly DriveItemRequestBuilderWrapper _req;
+
+                    public DriveItemRequestBuilderResult(DriveItemRequestBuilderWrapper req)
+                    {
+                        _req = req;
+                    }
+
+                    public Task<T?> Result { get; set; }
+
+
+                    public DriveItemRequestBuilderResult<T> ForDriveItemRequestBuilder(Func<DriveItemRequestBuilder, Task<T?>> action)
+                    {
+                        if (_req.DriveItemRequestBuilder != null)
+                        {
+                            Result = action(_req.DriveItemRequestBuilder);
+                        }
+                        return this;
+                    }
+
+                    public DriveItemRequestBuilderResult<T> ForCustomDriveItemRequestBuilder(Func<CustomDriveItemItemRequestBuilder, Task<T?>> action)
+                    {
+                        if (_req.CustomDriveItemRequestBuilder != null)
+                        {
+                            Result = action(_req.CustomDriveItemRequestBuilder);
+                        }
+                        return this;
+                    }
+
+                    
+
+                }
+
+                public class DriveItemRequestBuilderAsyncTask
+                {
+                    private readonly DriveItemRequestBuilderWrapper _req;
+
+                    public DriveItemRequestBuilderAsyncTask(DriveItemRequestBuilderWrapper req)
+                    {
+                        _req = req;
+                        Task = Task.CompletedTask;
+                    }
+
+                    public Task Task { get; private set; }
+
+                    public DriveItemRequestBuilderAsyncTask ForDriveItemRequestBuilder(Func<DriveItemRequestBuilder, Task> action)
+                    {
+                        if (_req.DriveItemRequestBuilder != null)
+                        {
+                            Task = action(_req.DriveItemRequestBuilder);
+                        }
+                        return this;
+                    }
+
+                    public DriveItemRequestBuilderAsyncTask ForCustomDriveItemRequestBuilder(Func<CustomDriveItemItemRequestBuilder, Task> action)
+                    {
+                        if (_req.CustomDriveItemRequestBuilder != null)
+                        {
+                            Task = action(_req.CustomDriveItemRequestBuilder);
+                        }
+                        return this;
+                    }
+                }
+
+
+                public DriveItemRequestBuilder? DriveItemRequestBuilder { get; set; }
+
+                public CustomDriveItemItemRequestBuilder? CustomDriveItemRequestBuilder { get; set; }
+
+
+                public DriveItemRequestBuilderResult<T> ToAsyncResult<T>()
+                {
+                    return new DriveItemRequestBuilderResult<T>(this);
+                }
+
+                public DriveItemRequestBuilderAsyncTask ToAsyncTask()
+                {
+                    return new DriveItemRequestBuilderAsyncTask(this);
+                }
+            
+
+            };
+
+
+            public async Task<DriveItemRequestBuilderWrapper> BuildPathItemAsync()
+            {
+                Kp2aLog.Log("buildPathItem for " + itemLocation.ToString());
+                DriveItemRequestBuilderWrapper result = new DriveItemRequestBuilderWrapper();
+
                 if (!hasShare())
                 {
                     throw new Exception("Cannot get path item without share");
@@ -223,61 +312,58 @@ namespace keepass2android.Io
                 if ("me".Equals(itemLocation.Share.Id))
                 {
                     if (verbose) Kp2aLog.Log("Path share is me");
-                    
+
 
                     if (_specialFolder == null)
                     {
                         if (verbose) Kp2aLog.Log("No special folder. Use drive root.");
-                        pathItem = client.Me.Drive.Root;
+
+                        if (itemLocation.LocalPath.Any())
+                        {
+                            if (verbose) Kp2aLog.Log("LocalPath = " + itemLocation.LocalPathString);
+                            result.CustomDriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Root
+                                .ItemWithPath(itemLocation.LocalPathString);
+                        }
+                        else
+                        {
+                            
+                            result.DriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Items["root"];
+                            
+                        }
+
+                        
                     }
                     else
                     {
                         if (verbose) Kp2aLog.Log("Special folder = " + _specialFolder);
-                        pathItem = client.Me.Drive.Special[_specialFolder];
+
+                        DriveItemRequestBuilder specialRoot = client.Drives[itemLocation.DriveId].Items[_specialFolder];
+
+                        
+                        if (itemLocation.LocalPath.Any())
+                        {
+                            result.CustomDriveItemRequestBuilder = specialRoot.ItemWithPath(itemLocation.LocalPathString);
+                        }
+                        else
+                        {
+                            result.DriveItemRequestBuilder = specialRoot;
+                        }
                     }
 
-                    if (itemLocation.LocalPath.Any())
-                    {
-                        if (verbose) Kp2aLog.Log("LocalPath = " + itemLocation.LocalPathString);
-                        pathItem = pathItem.ItemWithPath(itemLocation.LocalPathString);
-                    }
                 }
                 else
                 {
                     if (verbose) Kp2aLog.Log("Path share is not me");
                     if (!itemLocation.LocalPath.Any())
                     {
-                        String webUrl = itemLocation.Share.WebUrl;
-                        if (verbose) Kp2aLog.Log("Share WebUrl = " + webUrl);
-                        var encodedShareId = CalculateEncodedShareId(webUrl);
-                        return client.Shares[encodedShareId].Root;
+                        result.DriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Items[itemLocation.Share.Id];
+                        return result;
                     }
-                    /*String webUrl = itemLocation.Share.WebUrl;
-                    if ("".Equals(itemLocation.LocalPath) == false)
-                    {
-                        if (!webUrl.EndsWith("/")) webUrl += "/";
-                        webUrl += itemLocation.LocalPath;
-                    }
-                    Android.Util.Log.Debug("KP2A","webUrl = " + Encoding.UTF8.GetBytes(webUrl));
-                    //calculate shareid according to https://docs.microsoft.com/en-us/graph/api/shares-get?view=graph-rest-1.0&tabs=java
-                    var encodedShareId = CalculateEncodedShareId(webUrl);
-                    Android.Util.Log.Debug("KP2A", "encodedShareId = " + encodedShareId);
-                    pathItem = client.Shares[encodedShareId].Root;
-                    */
                     if (verbose) Kp2aLog.Log("Using driveId=" + itemLocation.DriveId + " and item id=" + itemLocation.LocalPath.Last().Id);
-                    return client.Drives[itemLocation.DriveId].Items[itemLocation.LocalPath.Last().Id];
+                    result.DriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Items[itemLocation.LocalPath.Last().Id];
                 }
 
-
-                return pathItem;
-            }
-
-            private static string CalculateEncodedShareId(string webUrl)
-            {
-                String encodedShareId = "u!" + Base64.EncodeToString(Encoding.UTF8.GetBytes(webUrl),
-                                                Base64Flags.NoPadding).Replace('/', '_').Replace('+', '_')
-                                            .Replace("\n", ""); //encodeToString adds a newline character add the end - remove
-                return encodedShareId;
+                return result;
             }
 
             public bool hasShare()
@@ -289,6 +375,7 @@ namespace keepass2android.Io
             {
                 return itemLocation.LocalPath.Any();
             }
+
         }
 
         private string protocolId;
@@ -310,26 +397,23 @@ namespace keepass2android.Io
             get { yield return ProtocolId; }
         }
 
-        class GraphServiceClientWithState
+        protected class GraphServiceClientWithState
         {
-            public IGraphServiceClient Client { get; set; }
+            public GraphServiceClient Client { get; set; }
             public DateTime TokenExpiryDate { get; set; }
             public bool RequiresUserInteraction { get; set; }
         }
 
-        readonly Dictionary<String /*userid*/, GraphServiceClientWithState> mClientByUser =
-            new Dictionary<String /*userid*/, GraphServiceClientWithState>();
+        protected readonly Dictionary<String /*userid*/, GraphServiceClientWithState> _mClientByUser = new();
 
-        private async Task<IGraphServiceClient> TryGetMsGraphClient(String path, bool tryConnect)
+        private async Task<GraphServiceClient> TryGetMsGraphClient(String path, bool tryConnect)
         {
-
-            String userId = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path).User.Id;
+            string userId = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path).User.Id;
 
             logDebug("TryGetMsGraphClient for " + userId);
-            if (mClientByUser.ContainsKey(userId))
+            if (_mClientByUser.TryGetValue(userId, out var clientWithState))
             {
                 logDebug("TryGetMsGraphClient found user " + userId);
-                GraphServiceClientWithState clientWithState = mClientByUser[userId];
                 if (!(clientWithState.RequiresUserInteraction || (clientWithState.TokenExpiryDate < DateTime.Now) ||
                       (clientWithState.Client == null)))
                 {
@@ -348,7 +432,7 @@ namespace keepass2android.Io
                 if (await TryLoginSilent(path) != null)
                 {
                     logDebug("trying to connect ok");
-                    return mClientByUser[userId].Client;
+                    return _mClientByUser.GetValueOrDefault(userId, null).Client;
                 }
                 logDebug("trying to connect failed");
             }
@@ -356,73 +440,85 @@ namespace keepass2android.Io
             return null;
         }
 
+        public class TokenFromAuthResultProvider : IAccessTokenProvider
+        {
+            public AuthenticationResult AuthenticationResult
+            {
+                get;
+                set;
+            }
+            public async Task<string> GetAuthorizationTokenAsync(Uri uri, Dictionary<string, object>? additionalAuthenticationContext = null,
+                CancellationToken cancellationToken = new CancellationToken())
+            {
+                return AuthenticationResult.AccessToken;
+            }
 
-        private IGraphServiceClient BuildClient(AuthenticationResult authenticationResult)
+            public AllowedHostsValidator AllowedHostsValidator { get; }
+        }
+
+        private GraphServiceClient BuildClient(AuthenticationResult authenticationResult)
         {
 
             logDebug("buildClient...");
 
 
-            //DeviceCodeProvider authenticationProvider = new DeviceCodeProvider(_publicClientApp, Scopes);
-            var authenticationProvider = new DelegateAuthenticationProvider(
-                (requestMessage) =>
-                {
-                    var access_token = authenticationResult.AccessToken;
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", access_token);
-                    return Task.FromResult(0);
-                });
+            var authenticationProvider = new BaseBearerTokenAuthenticationProvider(new TokenFromAuthResultProvider() { AuthenticationResult = authenticationResult });
 
             GraphServiceClientWithState clientWithState = new GraphServiceClientWithState()
             {
-                Client = new GraphServiceClient(authenticationProvider),
+                Client = new GraphServiceClient(new HttpClient(), authenticationProvider),
                 RequiresUserInteraction = false,
                 TokenExpiryDate = authenticationResult.ExpiresOn.LocalDateTime
             };
-            
+
 
 
             if (authenticationResult.Account == null)
                 throw new Exception("authenticationResult.Account == null!");
-            mClientByUser[authenticationResult.Account.HomeAccountId.Identifier] = clientWithState;
+            _mClientByUser[authenticationResult.Account.HomeAccountId.Identifier] = clientWithState;
             logDebug("buildClient ok.");
             return clientWithState.Client;
         }
 
 
-        
         private void logDebug(string str)
         {
 #if DEBUG
             Log.Debug("KP2A", "OneDrive2: " + str);
 #endif
         }
-        
 
-        protected abstract string SpecialFolder { get; }
+
+        protected abstract Task<string?> GetSpecialFolder(
+            OneDrive2ItemLocation<OneDrive2PrefixContainerType> itemLocation, GraphServiceClient client);
 
         private async Task<PathItemBuilder> GetPathItemBuilder(String path)
         {
-            PathItemBuilder result = new PathItemBuilder(SpecialFolder);
-
+            var itemLocation = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path);
+            var client = await TryGetMsGraphClient(path, true);
             
-            result.itemLocation = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path);
+
+            PathItemBuilder result = new PathItemBuilder(await GetSpecialFolder(itemLocation, client));
+
+
+            result.itemLocation = itemLocation;
             if (string.IsNullOrEmpty(result.itemLocation.User?.Name))
             {
                 throw new Exception("path does not contain user");
             }
-            
-            result.client = await TryGetMsGraphClient(path, true);
 
+            result.client = client;
+            
             if (result.client == null)
                 throw new Exception("Failed to connect or authenticate to OneDrive!");
-            
-            
+
+
             return result;
 
         }
 
 
-        private Exception convertException(ClientException e)
+        private Exception convertException(ServiceException e)
         {
 
             if (e.IsMatch(GraphErrorCode.ItemNotFound.ToString()))
@@ -436,8 +532,8 @@ namespace keepass2android.Io
 
         private Exception convertException(Exception e)
         {
-            if (e is ClientException)
-                return convertException((ClientException)e);
+            if (e is ServiceException)
+                return convertException((ServiceException)e);
             if (e is AggregateException aggregateException)
             {
                 foreach (var inner in aggregateException.InnerExceptions)
@@ -449,8 +545,6 @@ namespace keepass2android.Io
             return e;
         }
 
-
-
         public bool UserShouldBackup
         {
             get { return false; }
@@ -460,13 +554,15 @@ namespace keepass2android.Io
         {
             try
             {
-                
+
                 Task.Run(async () =>
                 {
                     PathItemBuilder pathItemBuilder = await GetPathItemBuilder(ioc.Path);
-                    await pathItemBuilder.getPathItem()
-                        .Request()
-                        .DeleteAsync();
+                    PathItemBuilder.DriveItemRequestBuilderWrapper pathItem = await pathItemBuilder.BuildPathItemAsync();
+                    await pathItem.ToAsyncTask()
+                        .ForDriveItemRequestBuilder(builder => builder.DeleteAsync())
+                        .ForCustomDriveItemRequestBuilder(b => b.DeleteAsync())
+                        .Task;
                 }).Wait();
             }
             catch (Exception e)
@@ -490,17 +586,23 @@ namespace keepass2android.Io
             try
             {
                 string path = ioc.Path;
-                
+
                 logDebug("openFileForRead. Path=" + path);
-                Stream result = Task.Run(async () =>
+                
+                Stream? result = Task.Run(async () =>
                 {
-                    PathItemBuilder clientAndpath = await GetPathItemBuilder(path);
-                    return await clientAndpath
-                        .getPathItem()
-                        .Content
-                        .Request()
-                        .GetAsync();
+                    logDebug("openFileForRead. Path=" + path);
+
+                    PathItemBuilder clientAndPath = await GetPathItemBuilder(path);
+                    return await (await clientAndPath.BuildPathItemAsync())
+                        .ToAsyncResult<Stream>()
+                        .ForDriveItemRequestBuilder((b) => b.Content.GetAsync())
+                        .ForCustomDriveItemRequestBuilder(b => b.Content.GetAsync())
+                        .Result;
+
                 }).Result;
+                if (result == null)
+                    throw new Exception("failed to open stream");
                 logDebug("ok");
                 return result;
 
@@ -551,34 +653,37 @@ namespace keepass2android.Io
                 {
                     PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
                     //for small files <2MB use the direct upload:
-                    if (stream.Length < 2* 1024 * 1024) 
+                    if (stream.Length < 2 * 1024 * 1024)
                     {
-                        return await
-                            pathItemBuilder
-                                .getPathItem()
-                                .Content
-                                .Request()
-                                .PutAsync<DriveItem>(stream);
+                        await
+                            (await pathItemBuilder
+                                .BuildPathItemAsync())
+                                .ToAsyncTask()
+                                .ForDriveItemRequestBuilder((b) => b.Content.PutAsync(stream))
+                                .ForCustomDriveItemRequestBuilder(b => b.Content.PutAsync(stream))
+                                .Task;
+                        return;
                     }
 
                     //for larger files use an upload session. This is required for 4MB and beyond, but as the docs are not very clear about this
                     //limit, let's use it a bit more often to be safe.
 
-                    var uploadProps = new DriveItemUploadableProperties
+                    var uploadProps = new CreateUploadSessionPostRequestBody
                     {
-                        ODataType = null,
                         AdditionalData = new Dictionary<string, object>
                         {
                             { "@microsoft.graph.conflictBehavior", "replace" }
                         }
                     };
-                    
 
-                    var uploadSession = await pathItemBuilder
-                                .getPathItem()
-                        .CreateUploadSession(uploadProps)
-                        .Request()
-                        .PostAsync();
+
+                    var uploadSession = await (await pathItemBuilder
+                                .BuildPathItemAsync())
+                                .ToAsyncResult<UploadSession>()
+                                .ForDriveItemRequestBuilder(b => b.CreateUploadSession.PostAsync(uploadProps))
+                                .ForCustomDriveItemRequestBuilder(b => b.CreateUploadSession.PostAsync(uploadProps))
+
+                                .Result;
 
                     // Max slice size must be a multiple of 320 KiB
                     int maxSliceSize = 320 * 1024;
@@ -590,21 +695,12 @@ namespace keepass2android.Io
                         throw new Exception("Failed to upload data!");
                     }
 
-                    return uploadResult.ItemResponse;
-
-
 
                 }).Wait();
 
             }
             catch (Exception e)
             {
-                Task.Run(async () =>
-                {
-                    PathItemBuilder pathItemBuilder = await GetPathItemBuilder(path);
-                    pathItemBuilder.verbose = true;
-                    pathItemBuilder.getPathItem();
-                }).Wait();
                 throw convertException(e);
             }
         }
@@ -627,7 +723,7 @@ namespace keepass2android.Io
 
         private string GetFilename(string path)
         {
-            string localPath = "/"+OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path).LocalPathString;
+            string localPath = "/" + OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path).LocalPathString;
             return localPath.Substring(localPath.LastIndexOf("/", StringComparison.Ordinal) + 1);
         }
 
@@ -648,11 +744,12 @@ namespace keepass2android.Io
                 {
 
                     PathItemBuilder pathItemBuilder = await GetPathItemBuilder(parentIoc.Path);
-                    
-                    return await pathItemBuilder.getPathItem()
-                        .Children
-                        .Request()
-                        .AddAsync(driveItem);
+
+                    return await (await pathItemBuilder.BuildPathItemAsync())
+                        .ToAsyncResult<DriveItem>()
+                        .ForDriveItemRequestBuilder(b => b.Children.PostAsync(driveItem))
+                        .ForCustomDriveItemRequestBuilder(b => b.Children.PostAsync(driveItem))
+                        .Result;
                 }).Result;
 
 
@@ -681,6 +778,8 @@ namespace keepass2android.Io
             PathItemBuilder pathItemBuilder = await GetPathItemBuilder(ioc.Path);
 
             logDebug("listing files for " + ioc.Path);
+            OneDrive2ItemLocation<OneDrive2PrefixContainerType> itemLocation = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(ioc.Path);
+            var client = await TryGetMsGraphClient(ioc.Path, true);
             if (!pathItemBuilder.hasShare() && !pathItemBuilder.hasOneDrivePath())
             {
                 logDebug("listing shares.");
@@ -689,35 +788,34 @@ namespace keepass2android.Io
 
             logDebug("listing regular children.");
             List<FileDescription> result = new List<FileDescription>();
-            /*logDebug("parent before:" + parentPath);
-            parentPath = parentPath.substring(getProtocolPrefix().length());
-            logDebug("parent after: " + parentPath);*/
 
-            IDriveItemChildrenCollectionPage itemsPage = await pathItemBuilder.getPathItem()
-                .Children
-                .Request()
-                .GetAsync();
-            while (true)
-            {
-                IList<DriveItem> items = itemsPage.CurrentPage;
-                if (!items.Any())
-                    return result;
+            var driveItems = await GetDriveItems(pathItemBuilder);
 
-                foreach (DriveItem i in items)
+            if (driveItems != null)
+                foreach (DriveItem? i in driveItems)
                 {
-                    var e = GetFileDescription(pathItemBuilder.itemLocation.BuildLocalChildLocation(i.Name, i.Id, i.ParentReference?.DriveId), i);
+                    var e = GetFileDescription(itemLocation.BuildLocalChildLocation(i.Name, i.Id, i.ParentReference?.DriveId), i);
                     result.Add(e);
                 }
-                var nextPageReqBuilder = itemsPage.NextPageRequest;
-                if (nextPageReqBuilder == null)
-                    return result;
-                itemsPage = Task.Run(async () => await nextPageReqBuilder.GetAsync()).Result;
 
-            }
+            return result;
+
+        }
+
+        private async Task<List<DriveItem?>> GetDriveItems(
+            PathItemBuilder pathItemBuilder)
+        {
+            var pathItem = await pathItemBuilder.BuildPathItemAsync();
+            var response =  await pathItem
+                .ToAsyncResult<DriveItemCollectionResponse>()
+                .ForDriveItemRequestBuilder(b => b.Children.GetAsync())
+                .ForCustomDriveItemRequestBuilder(b => b.Children.GetAsync())
+                .Result;
+            return response.Value;
         }
 
 
-        private FileDescription GetFileDescription(OneDrive2ItemLocation<OneDrive2PrefixContainerType> path, DriveItem i)
+        private FileDescription GetFileDescription(OneDrive2ItemLocation<OneDrive2PrefixContainerType> path, DriveItem? i)
         {
             FileDescription e = new FileDescription();
             if (i.Size != null)
@@ -740,7 +838,7 @@ namespace keepass2android.Io
         {
             try
             {
-                return Task.Run(async() => await GetFileDescriptionAsync(ioc)).Result;
+                return Task.Run(async () => await GetFileDescriptionAsync(ioc)).Result;
             }
             catch (Exception e)
             {
@@ -764,9 +862,11 @@ namespace keepass2android.Io
                 return rootEntry;
             }
 
-            IDriveItemRequestBuilder pathItem = pathItemBuilder.getPathItem();
-
-            DriveItem item = await pathItem.Request().GetAsync();
+            var driveReq = await pathItemBuilder.BuildPathItemAsync();
+            DriveItem? item = await driveReq.ToAsyncResult<DriveItem>()
+                .ForDriveItemRequestBuilder(b => b.GetAsync())
+                .ForCustomDriveItemRequestBuilder(b => b.GetAsync())
+                .Result;
             return GetFileDescription(pathItemBuilder.itemLocation, item);
         }
 
@@ -783,7 +883,7 @@ namespace keepass2android.Io
         public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode,
             string protocolId)
         {
-            String path = ProtocolId+ "://";
+            String path = ProtocolId + "://";
             activity.StartSelectFileProcess(IOConnectionInfo.FromPath(path), isForSave, requestCode);
         }
 
@@ -827,7 +927,7 @@ namespace keepass2android.Io
 
         public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
         {
-            if (!Task.Run(async() => await IsConnectedAsync(ioc.Path, true)).Result)
+            if (!Task.Run(async () => await IsConnectedAsync(ioc.Path, true)).Result)
             {
                 throw new Exception("MsGraph login required");
             }
@@ -846,7 +946,6 @@ namespace keepass2android.Io
         protected void FinishActivityWithSuccess(
             IFileStorageSetupActivity setupActivity)
         {
-            //Log.d("KP2AJ", "Success with authenticating!");
             Activity activity = (Activity)setupActivity;
 
             if (setupActivity.ProcessName
@@ -919,7 +1018,7 @@ namespace keepass2android.Io
             IAccount account = null;
             try
             {
-                
+
                 if (IsConnected(iocPath))
                 {
                     logDebug("Login Silent ok, connected");
@@ -948,8 +1047,6 @@ namespace keepass2android.Io
 
                     logDebug("AcquireTokenSilent ok.");
                     BuildClient(authResult);
-                    /*User me = await graphClient.Me.Request().WithForceRefresh(true).GetAsync();
-                    logDebug("received name " + me.DisplayName);*/
 
                     var rootFolder = BuildRootPathForUser(authResult);
                     logDebug("Found RootPath for user");
@@ -966,7 +1063,7 @@ namespace keepass2android.Io
                     };
 
 
-                    mClientByUser[account.HomeAccountId.Identifier] = clientWithState;
+                    _mClientByUser[account.HomeAccountId.Identifier] = clientWithState;
                     logDebug("ui required");
                     return null;
                 }
@@ -984,7 +1081,7 @@ namespace keepass2android.Io
             return OneDrive2ItemLocation<OneDrive2PrefixContainerType>.RootForUser(res.Account.Username, res.Account.HomeAccountId.Identifier).ToString();
         }
 
-        
+
         private void FinishActivityWithSuccess(IFileStorageSetupActivity activity, string rootPathForUser)
         {
             activity.State.PutString(FileStorageSetupDefs.ExtraPath, rootPathForUser);
@@ -1002,7 +1099,7 @@ namespace keepass2android.Io
             try
             {
                 var itemLocation = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(ioc.Path);
-                string result = ProtocolId+ "://";
+                string result = ProtocolId + "://";
                 if (!string.IsNullOrEmpty(itemLocation.User?.Id))
                 {
                     result += itemLocation.User?.Name;
@@ -1025,75 +1122,82 @@ namespace keepass2android.Io
                             ". Note that SprEnging expressions like {DB_PATH} are not supported with OneDrive!");
                 return ProtocolId + "://(invalid)";
             }
-            
+
         }
 
 
-        private async Task<List<FileDescription>> ListShares(OneDrive2ItemLocation<OneDrive2PrefixContainerType> parentPath, IGraphServiceClient client)
+        private async Task<List<FileDescription>> ListShares(OneDrive2ItemLocation<OneDrive2PrefixContainerType> parentPath, GraphServiceClient client)
         {
 
-            List<FileDescription> result = new List<FileDescription>();
+            List<FileDescription> result = [];
 
+            var drives = (await client.Me.Drives.GetAsync()).Value;
+            if (drives != null)
+            {
+                drives.ForEach(drive =>
+                {
+                    var e = new FileDescription()
+                    {
+                        DisplayName = GetDriveDisplayName(drive),
+                        IsDirectory = true,
+                        CanRead = true,
+                        CanWrite = true,
+                        Path = parentPath.BuildShare("me","me","me", drive.Id).ToString()
+                    };
+                    result.Add(e);
+                });
+            }
+
+            string? driveId = parentPath.DriveId;
+            if ((string.IsNullOrEmpty(driveId)) && (drives?.Any() == true))
+            {
+                driveId = drives.First().Id;
+            }
+        
             
-            DriveItem root = await client.Me.Drive.Root.Request().GetAsync();
-            FileDescription myEntry = GetFileDescription(parentPath.BuildShare("me","me","me", root.ParentReference?.DriveId), root);
-            myEntry.DisplayName = MyOneDriveDisplayName;
-
-            result.Add(myEntry);
-
             if (!CanListShares)
                 return result;
+            
+            var sharedWithMeResponse = await client.Drives[driveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
 
-
-
-            IDriveSharedWithMeCollectionPage sharedWithMeCollectionPage = await client.Me.Drive.SharedWithMe().Request().GetAsync();
-
-            while (true)
+            foreach (DriveItem i in sharedWithMeResponse?.Value ?? [])
             {
-                IList<DriveItem> sharedWithMeItems = sharedWithMeCollectionPage.CurrentPage;
-                if (!sharedWithMeItems.Any())
-                    break;
-
-                foreach (DriveItem i in sharedWithMeItems)
+                var oneDrive2ItemLocation = parentPath.BuildShare(i.RemoteItem.Id, i.RemoteItem.Name, i.RemoteItem.WebUrl, i.RemoteItem.ParentReference.DriveId);
+                FileDescription sharedFileEntry = new FileDescription()
                 {
-                    FileDescription sharedFileEntry = GetFileDescription(parentPath.BuildShare(i.Id, i.Name, i.WebUrl, i.ParentReference?.DriveId), i);
-                    result.Add(sharedFileEntry);
+                    CanWrite = true, CanRead = true, DisplayName = i.Name,
+                    IsDirectory = true,
+                    Path = oneDrive2ItemLocation.ToString()
+                };
+                result.Add(sharedFileEntry);
 
-                }
-                var b = sharedWithMeCollectionPage.NextPageRequest;
-                if (b == null) break;
-                sharedWithMeCollectionPage = await b.GetAsync();
             }
+
             return result;
+        }
+
+        protected virtual string GetDriveDisplayName(Drive drive)
+        {
+            return drive.Name ?? drive.DriveType ?? "(unnamed drive)";
         }
 
         protected virtual string MyOneDriveDisplayName { get { return "My OneDrive"; } }
 
-        public abstract bool CanListShares { get;  }
+        public abstract bool CanListShares { get; }
 
-        DriveItem TryFindFile(PathItemBuilder parent, string filename)
+        async Task<DriveItem?> TryFindFileAsync(PathItemBuilder parent, string filename)
         {
-            IDriveItemChildrenCollectionPage itemsPage = Task.Run(async () => await parent.getPathItem()
-                .Children
-                .Request()
-                .GetAsync()).Result;
-            while (true)
-            {
-                IList<DriveItem> items = itemsPage.CurrentPage;
-                if (!items.Any())
-                    return null;
 
-                foreach (DriveItem i in items)
+            var driveItems = await GetDriveItems(parent);
+
+            if (driveItems != null)
+                foreach (DriveItem? i in driveItems)
                 {
                     if (i.Name == filename)
                         return i;
                 }
-                var nextPageReqBuilder = itemsPage.NextPageRequest;
-                if (nextPageReqBuilder == null)
-                    return null;
-                itemsPage = Task.Run(async () => await nextPageReqBuilder.GetAsync()).Result;
 
-            }
+            return null;
 
         }
 
@@ -1102,13 +1206,13 @@ namespace keepass2android.Io
         {
             try
             {
-                return Task.Run(async() => await CreateFilePathAsync(parent, newFilename)).Result;
+                return Task.Run(async () => await CreateFilePathAsync(parent, newFilename)).Result;
             }
             catch (Exception e)
             {
                 throw convertException(e);
             }
-            
+
         }
 
         private async Task<string> CreateFilePathAsync(string parent, string newFilename)
@@ -1116,7 +1220,7 @@ namespace keepass2android.Io
             PathItemBuilder pathItemBuilder = await GetPathItemBuilder(parent);
 
             //see if such a file exists already:
-            var item = TryFindFile(pathItemBuilder, newFilename);
+            var item = await TryFindFileAsync(pathItemBuilder, newFilename);
             if (item != null)
             {
                 return pathItemBuilder.itemLocation.BuildLocalChildLocation(item.Name, item.Id, item.ParentReference?.DriveId)
@@ -1124,13 +1228,18 @@ namespace keepass2android.Io
             }
             //doesn't exist. Create:
             logDebug("building request for " + pathItemBuilder.itemLocation);
+            
+            
+            PathItemBuilder targetPathItemBuilder = await GetPathItemBuilder(pathItemBuilder.itemLocation.BuildLocalChildLocation(newFilename, "", pathItemBuilder.itemLocation.DriveId ?? "").ToString());
 
-            DriveItem res = await pathItemBuilder.getPathItem()
 
-                .ItemWithPath(newFilename)
-                .Content
-                .Request()
-                .PutAsync<DriveItem>(new MemoryStream());
+            var emptyStream = new MemoryStream();
+            var driveItemReq = await targetPathItemBuilder.BuildPathItemAsync();
+            DriveItem? res = await driveItemReq
+                .ToAsyncResult<DriveItem>()
+                .ForDriveItemRequestBuilder(b => b.Content.PutAsync(emptyStream))
+                .ForCustomDriveItemRequestBuilder(b => b.Content.PutAsync(emptyStream))
+                .Result;
 
             return pathItemBuilder.itemLocation.BuildLocalChildLocation(res.Name, res.Id, res.ParentReference?.DriveId)
                 .ToString();
@@ -1157,7 +1266,7 @@ namespace keepass2android.Io
         }
     }
 
-    public class OneDrive2FullFileStorage: OneDrive2FileStorage<OneDrive2FullPrefixContainer> 
+    public class OneDrive2FullFileStorage : OneDrive2FileStorage<OneDrive2FullPrefixContainer>
     {
         public override IEnumerable<string> Scopes
         {
@@ -1168,12 +1277,17 @@ namespace keepass2android.Io
                         "https://graph.microsoft.com/Files.ReadWrite",
                         "https://graph.microsoft.com/Files.ReadWrite.All"
                     };
-                
+
             }
         }
 
+        protected override async Task<string?> GetSpecialFolder(
+            OneDrive2ItemLocation<OneDrive2FullPrefixContainer> itemLocation, GraphServiceClient client)
+        {
+            return null;
+        }
+
         public override bool CanListShares { get { return true; } }
-        protected override string SpecialFolder { get { return null; } }
     }
 
 
@@ -1190,8 +1304,14 @@ namespace keepass2android.Io
 
             }
         }
+
+        protected override async Task<string?> GetSpecialFolder(
+            OneDrive2ItemLocation<OneDrive2MyFilesPrefixContainer> itemLocation, GraphServiceClient client)
+        {
+            return null;
+        }
+
         public override bool CanListShares { get { return false; } }
-        protected override string SpecialFolder { get { return null; } }
     }
 
 
@@ -1209,8 +1329,41 @@ namespace keepass2android.Io
             }
         }
 
-        protected override string SpecialFolder { get { return "approot"; } }
+        protected override async Task<string?> GetSpecialFolder(
+            OneDrive2ItemLocation<OneDrive2AppFolderPrefixContainer> itemLocation, GraphServiceClient client)
+        {
+            if (string.IsNullOrEmpty(itemLocation.DriveId))
+                return null; //can happen if we are accessing the root
+            if (!_specialFolderIdByDriveId.ContainsKey(itemLocation.DriveId))
+            {
+                try
+                {
+                    var specialFolder = await client.Drives[itemLocation.DriveId].Special[SpecialFolderName].GetAsync();
+                    _specialFolderIdByDriveId[itemLocation.DriveId] = specialFolder.Id;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                
+
+            }
+            return _specialFolderIdByDriveId[itemLocation.DriveId];
+        }
+
+
+        protected string SpecialFolderName { get { return "approot"; } }
+
+        private readonly Dictionary<string,string> _specialFolderIdByDriveId = new Dictionary<string, string>();
+
+        protected override string GetDriveDisplayName(Drive drive)
+        {
+            return drive.Name ?? MyOneDriveDisplayName;
+        }
+
+
         public override bool CanListShares { get { return false; } }
-        protected override string MyOneDriveDisplayName { get { return "Keepass2Android App Folder"; } }
+        protected override string MyOneDriveDisplayName => "Keepass2Android App Folder";
     }
 }
