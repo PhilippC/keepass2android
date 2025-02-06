@@ -322,7 +322,7 @@ namespace keepass2android
                 _stopOnLockBroadcastReceiver = new StopOnLockBroadcastReceiver(this);
                 IntentFilter filter = new IntentFilter();
                 filter.AddAction(Intents.DatabaseLocked);
-                RegisterReceiver(_stopOnLockBroadcastReceiver, filter);
+                RegisterReceiver(_stopOnLockBroadcastReceiver, filter, ReceiverFlags.Exported);
             }
 
             if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
@@ -529,7 +529,7 @@ namespace keepass2android
                 _notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
                 IntentFilter deletefilter = new IntentFilter();
                 deletefilter.AddAction(ActionNotificationCancelled);
-                RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter);
+                RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter, ReceiverFlags.Exported);
             }
             
         }

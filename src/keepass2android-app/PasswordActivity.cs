@@ -647,7 +647,7 @@ namespace keepass2android
 		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_intentReceiver, filter);
+			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
 
 
             //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps

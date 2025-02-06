@@ -39,7 +39,7 @@ namespace keepass2android
 			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
-			RegisterReceiver(_intentReceiver, filter);
+			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
 		}
 
 		protected override void OnResume() {

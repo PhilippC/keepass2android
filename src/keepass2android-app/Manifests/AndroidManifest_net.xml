@@ -42,7 +42,7 @@
       <action android:name="android.intent.action.VIEW" />
     </intent>
   </queries>
-  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
@@ -270,6 +270,7 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.GET_ACCOUNTS" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
   <uses-permission android:name="android.permission.USE_CREDENTIALS" android:maxSdkVersion="22" />
   <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" android:maxSdkVersion="22" />
   <uses-permission android:name="keepass2android.keepass2android.permission.KP2aInternalFileBrowsing" />
