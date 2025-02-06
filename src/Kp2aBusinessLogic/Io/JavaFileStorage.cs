@@ -207,7 +207,7 @@ namespace keepass2android.Io
 		{
 			try
 			{
-				IList<JavaFileStorageFileEntry> entries = Jfs.ListFiles(IocToPath(ioc));
+				IList<IJavaFileStorage.FileEntry> entries = Jfs.ListFiles(IocToPath(ioc));
 
 				return entries.Select(ConvertToFileDescription);
 
@@ -222,7 +222,7 @@ namespace keepass2android.Io
 			}
 		}
 
-		private FileDescription ConvertToFileDescription(JavaFileStorageFileEntry e)
+		private FileDescription ConvertToFileDescription(IJavaFileStorage.FileEntry e)
 		{
 			return new FileDescription
 				{
@@ -260,14 +260,14 @@ namespace keepass2android.Io
 		public virtual void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
 		{
 			Kp2aLog.Log("StartSelectFile " + protocolId);
-			_jfs.StartSelectFile((IJavaFileStorageFileStorageSetupInitiatorActivity) activity, isForSave, requestCode);
+			_jfs.StartSelectFile((IJavaFileStorage.IFileStorageSetupInitiatorActivity) activity, isForSave, requestCode);
 		}
 
 		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode, Boolean alwaysReturnSuccess)
 		{
 			try
 			{
-				_jfs.PrepareFileUsage((IJavaFileStorageFileStorageSetupInitiatorActivity) activity, IocToPath(ioc), requestCode,
+				_jfs.PrepareFileUsage((IJavaFileStorage.IFileStorageSetupInitiatorActivity) activity, IocToPath(ioc), requestCode,
 				                      alwaysReturnSuccess);
 			}
 			catch (Exception e)
@@ -301,25 +301,25 @@ namespace keepass2android.Io
 
 		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
 		{
-			_jfs.OnCreate(((IJavaFileStorageFileStorageSetupActivity)activity), savedInstanceState);
+			_jfs.OnCreate(((IJavaFileStorage.IFileStorageSetupActivity)activity), savedInstanceState);
 		}
 
 		public void OnResume(IFileStorageSetupActivity activity)
 		{
 #if DEBUG
-			Kp2aLog.Log("JFS/OnResume Ioc.Path=" +activity.Ioc.Path+". Path="+((IJavaFileStorageFileStorageSetupActivity)activity).Path);
+			Kp2aLog.Log("JFS/OnResume Ioc.Path=" +activity.Ioc.Path+". Path="+((IJavaFileStorage.IFileStorageSetupActivity)activity).Path);
 #endif
-			_jfs.OnResume(((IJavaFileStorageFileStorageSetupActivity) activity));
+			_jfs.OnResume(((IJavaFileStorage.IFileStorageSetupActivity) activity));
 		}
 
 		public void OnStart(IFileStorageSetupActivity activity)
 		{
-			_jfs.OnStart(((IJavaFileStorageFileStorageSetupActivity) activity));
+			_jfs.OnStart(((IJavaFileStorage.IFileStorageSetupActivity) activity));
 		}
 
 		public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
 		{
-			_jfs.OnActivityResult(((IJavaFileStorageFileStorageSetupActivity) activity), requestCode, resultCode, data);
+			_jfs.OnActivityResult(((IJavaFileStorage.IFileStorageSetupActivity) activity), requestCode, resultCode, data);
 		}
 
 		public string GetDisplayName(IOConnectionInfo ioc)
@@ -367,7 +367,7 @@ namespace keepass2android.Io
 		public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
 			string[] permissions, Permission[] grantResults)
 		{
-			_jfs.OnRequestPermissionsResult(((IJavaFileStorageFileStorageSetupActivity) fileStorageSetupActivity), requestCode,
+			_jfs.OnRequestPermissionsResult(((IJavaFileStorage.IFileStorageSetupActivity) fileStorageSetupActivity), requestCode,
 				permissions, grantResults.Select(p => (int)p).ToArray());
 		}
 	}

@@ -1,0 +1,52 @@
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/QuickUnlock_prefs_key"
+	android:title="@string/QuickUnlock_prefs"
+>
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/QuickUnlockDefaultEnabled_summary"
+		android:defaultValue="true"
+		android:title="@string/QuickUnlockDefaultEnabled_title"
+		android:key="@string/QuickUnlockDefaultEnabled_key" />
+	<EditTextPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/QuickUnlockLength_summary"
+		android:numeric="integer"
+		android:defaultValue="3"
+		android:title="@string/QuickUnlockLength_title"
+		android:key="@string/QuickUnlockLength_key" />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/QuickUnlockIconHidden_summary"
+		android:defaultValue="false"
+		android:title="@string/QuickUnlockIconHidden_title"
+		android:key="@string/QuickUnlockIconHidden_key" />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/QuickUnlockIconHidden16_summary"
+		android:defaultValue="true"
+		android:title="@string/QuickUnlockIconHidden16_title"
+		android:key="@string/QuickUnlockIconHidden16_key" />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/QuickUnlockHideLength_summary"
+		android:defaultValue="false"
+		android:title="@string/QuickUnlockHideLength_title"
+		android:key="@string/QuickUnlockHideLength_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/QuickUnlockKeyFromDatabase_summary"
+		android:defaultValue="false"
+		android:title="@string/QuickUnlockKeyFromDatabase_title"
+		android:key="@string/QuickUnlockKeyFromDatabase_key" />
+
+</PreferenceScreen>

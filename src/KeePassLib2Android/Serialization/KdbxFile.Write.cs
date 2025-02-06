@@ -210,35 +210,29 @@ namespace KeePassLib.Serialization
 
 				var stopWatch = Stopwatch.StartNew();
 
-				if (m_format == KdbxFormat.ProtocolBuffers)
-				{
-					KdbpFile.WriteDocument(m_pwDatabase, sXml, m_pbInnerRandomStreamKey, m_pbHashOfHeader);
-				}
-				else
-				{
 
 #if KeePassUAP
-					XmlWriterSettings xws = new XmlWriterSettings();
-					xws.Encoding = encNoBom;
-					xws.Indent = true;
-					xws.IndentChars = "\t";
-					xws.NewLineOnAttributes = false;
+				XmlWriterSettings xws = new XmlWriterSettings();
+				xws.Encoding = encNoBom;
+				xws.Indent = true;
+				xws.IndentChars = "\t";
+				xws.NewLineOnAttributes = false;
 
-					XmlWriter xw = XmlWriter.Create(sXml, xws);
+				XmlWriter xw = XmlWriter.Create(sXml, xws);
 #else
-					XmlTextWriter xw = new XmlTextWriter(sXml, encNoBom);
+				XmlTextWriter xw = new XmlTextWriter(sXml, encNoBom);
 
-					xw.Formatting = Formatting.Indented;
-					xw.IndentChar = '\t';
-					xw.Indentation = 1;
+				xw.Formatting = Formatting.Indented;
+				xw.IndentChar = '\t';
+				xw.Indentation = 1;
 #endif
-					m_xmlWriter = xw;
+				m_xmlWriter = xw;
 
 				WriteDocument(pgRoot);
 
-					m_xmlWriter.Flush();
-					m_xmlWriter.Close();
-				}
+				m_xmlWriter.Flush();
+				m_xmlWriter.Close();
+			
 				Kp2aLog.Log(String.Format("{1}: {0}ms", stopWatch.ElapsedMilliseconds, m_format == KdbxFormat.ProtocolBuffers ? "KdbpFile.WriteDocument" : "Xml WriteDocument"));
 			
 			}

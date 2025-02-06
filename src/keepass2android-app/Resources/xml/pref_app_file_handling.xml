@@ -1,0 +1,84 @@
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/FileHandling_prefs_key"
+	android:title="@string/FileHandling_prefs"
+>
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/UseOfflineCache_summary"
+		android:defaultValue="true"
+		android:title="@string/UseOfflineCache_title"
+		android:key="@string/UseOfflineCache_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/CreateBackups_summary"
+		android:defaultValue="true"
+		android:title="@string/CreateBackups_title"
+		android:key="@string/CreateBackups_key" />
+
+	<ListPreference
+		android:key="@string/AcceptAllServerCertificates_key"
+		android:title="@string/AcceptAllServerCertificates_title"
+		android:summary="@string/AcceptAllServerCertificates_summary"
+		android:entries="@array/AcceptAllServerCertificates_options"
+		android:entryValues="@array/AcceptAllServerCertificates_values"
+		android:dialogTitle="@string/AcceptAllServerCertificates_title"
+		android:defaultValue="@string/AcceptAllServerCertificates_default" />
+
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/CheckForFileChangesOnSave_summary"
+		android:defaultValue="true"
+		android:title="@string/CheckForFileChangesOnSave_title"
+		android:key="@string/CheckForFileChangesOnSave_key" />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/UseFileTransactions_summary"
+		android:defaultValue="true"
+		android:title="@string/UseFileTransactions_title"
+		android:key="@string/UseFileTransactions_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/PreloadDatabaseEnabled_summary"
+		android:defaultValue="@bool/PreloadDatabaseEnabled_default"
+		android:title="@string/PreloadDatabaseEnabled_title"
+		android:key="@string/PreloadDatabaseEnabled_key" />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/SyncAfterQuickUnlock_summary"
+		android:defaultValue="false"
+		android:title="@string/SyncAfterQuickUnlock_title"
+		android:key="@string/SyncAfterQuickUnlock_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/AlwaysMergeOnConflict_summary"
+		android:defaultValue="false"
+		android:title="@string/AlwaysMergeOnConflict_title"
+		android:key="@string/AlwaysMergeOnConflict_key" />
+
+	<CheckBoxPreference
+		android:key="@string/TanExpiresOnUse_key"
+		android:title="@string/TanExpiresOnUse_title"
+		android:summary="@string/TanExpiresOnUse_summary"
+		android:defaultValue="@bool/TanExpiresOnUse_default" />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/CheckForDuplicateUuids_summary"
+		android:defaultValue="true"
+		android:title="@string/CheckForDuplicateUuids_title"
+		android:key="@string/CheckForDuplicateUuids_key" />
+
+</PreferenceScreen>

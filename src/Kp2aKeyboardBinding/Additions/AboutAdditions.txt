@@ -11,9 +11,9 @@ this:
 public partial class Rectangle
 {
     public Rectangle (int x, int y, int width, int height)
-	{
-	    // JNI bindings
-	}
+    {
+        // JNI bindings
+    }
 }
 
 Imagine we want to add a constructor to this class that takes a Point and
@@ -23,9 +23,9 @@ with a partial class containing our new method:
 public partial class Rectangle
 {
     public Rectangle (Point location, Size size) :
-	    this (location.X, location.Y, size.Width, size.Height)
-	{
-	}
+        this (location.X, location.Y, size.Width, size.Height)
+    {
+    }
 }
 
 At compile time, the additions class will be added to the generated class
@@ -44,5 +44,5 @@ By adding a Point.cs file with this class, it will end up in the binding library
 public class Point
 {
     public int X { get; set; }
-	public int Y { get; set; }
+    public int Y { get; set; }
 }

@@ -1,315 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="showFlavor">
-<Target Name="showFlavor" AfterTargets="Build">
-        <Message Importance="high" Text="building flavor $(Flavor)"></Message>
-    </Target>
-<Import Project="../build-properties.props"/>
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>keepass2android</RootNamespace>
-    <AssemblyName>Kp2aBusinessLogic</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <Flavor Condition=" '$(Flavor)' != '' ">$(Flavor)</Flavor>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;_EXCLUDE_TWOFISH;_EXCLUDE_KEYBOARD;_EXCLUDE_FILECHOOSER;_EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <JavaMaximumHeapSize>4G</JavaMaximumHeapSize>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-  </PropertyGroup>
-  <Choose>
-    <When Condition=" '$(Flavor)'=='NoNet' ">
-      <PropertyGroup>
-        <DefineConstants>$(DefineConstants);NoNet;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
-      </PropertyGroup>
-    </When>
-  </Choose>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU'">
-    <OutputPath>bin\ReleaseNoNet\</OutputPath>
-    <DefineConstants>TRACE;NoNet;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Security" />
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
-    <Compile Include="Io\DropboxFileStorage.cs" />
-    <Compile Include="Io\DropboxFileStorageKeys.cs" />
-    <Compile Include="Io\GDriveFileStorage.cs" />
-    <Compile Include="Io\JavaFileStorage.cs" />
-    <Compile Include="Io\MegaFileStorage.cs" />
-    <Compile Include="Io\NetFtpFileStorage.cs" />
-    <Compile Include="Io\OneDrive2FileStorage.cs" />
-    <Compile Include="Io\OneDrive2PrefixContainer.cs" />
-    <Compile Include="Io\PCloudFileStorage.cs" />
-    <Compile Include="Io\SftpFileStorage.cs" />
-    <Compile Include="Io\OneDriveFileStorage.cs" />
-    <Compile Include="Io\WebDavFileStorage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="database\CheckDatabaseForChanges.cs" />
-    <Compile Include="database\edit\AddTemplateEntries.cs" />
-    <Compile Include="database\edit\CopyEntry.cs" />
-    <Compile Include="database\edit\DeleteMultipleItemsFromOneDatabase.cs" />
-    <Compile Include="database\edit\EditGroup.cs" />
-    <Compile Include="database\edit\MoveElements.cs" />
-    <Compile Include="database\KdbDatabaseFormat.cs" />
-    <Compile Include="database\KdbxDatabaseFormat.cs" />
-    <Compile Include="database\PwEntryOutput.cs" />
-    <Compile Include="database\SynchronizeCachedDatabase.cs" />
-    <Compile Include="DataExchange\FileFormatProvider.cs" />
-    <Compile Include="DataExchange\Formats\KeePassCsv1x.cs" />
-    <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
-    <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
-    <Compile Include="DataExchange\PwExportInfo.cs" />
-    <Compile Include="ElementAndDatabaseId.cs" />
-    <Compile Include="Io\AndroidContentStorage.cs" />
-    <Compile Include="Io\BuiltInFileStorage.cs" />
-    <Compile Include="Io\CachingFileStorage.cs" />
-    <Compile Include="Io\FileDescription.cs" />
-    <Compile Include="Io\FileStorageSetupActivity.cs" />
-    <Compile Include="Io\FileStorageSetupInitiatorActivity.cs" />
-    <Compile Include="Io\IFileStorage.cs" />
-    <Compile Include="Io\IoUtil.cs" />
-    <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
-    <Compile Include="IProgressDialog.cs" />
-    <Compile Include="PreferenceKey.cs" />
-    <Compile Include="SelectStorageLocationActivityBase.cs" />
-    <Compile Include="UiStringKey.cs" />
-    <Compile Include="database\Database.cs" />
-    <Compile Include="database\edit\ActionOnFinish.cs" />
-    <Compile Include="database\edit\AddEntry.cs" />
-    <Compile Include="database\edit\AddGroup.cs" />
-    <Compile Include="database\edit\CreateDB.cs" />
-    <Compile Include="database\edit\DeleteEntry.cs" />
-    <Compile Include="database\edit\DeleteGroup.cs" />
-    <Compile Include="database\edit\DeleteRunnable.cs" />
-    <Compile Include="database\edit\FileOnFinish.cs" />
-    <Compile Include="database\edit\LoadDB.cs" />
-    <Compile Include="database\edit\OnFinish.cs" />
-    <Compile Include="database\edit\RunnableOnFinish.cs" />
-    <Compile Include="database\edit\SaveDB.cs" />
-    <Compile Include="database\edit\SetPassword.cs" />
-    <Compile Include="database\edit\UpdateEntry.cs" />
-    <Compile Include="IKp2aApp.cs" />
-    <Compile Include="IDrawableFactory.cs" />
-    <Compile Include="KeyFileException.cs" />
-    <Compile Include="ProgressTask.cs" />
-    <Compile Include="PwGroupEqualityFromIdComparer.cs" />
-    <Compile Include="PwUuidEqualityComparer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchDbHelper.cs" />
-    <Compile Include="ProgressDialogStatusLogger.cs" />
-    <Compile Include="Utils\EntryUtil.cs" />
-    <Compile Include="Utils\Spr\SprContext.cs" />
-    <Compile Include="Utils\Spr\SprEncoding.cs" />
-    <Compile Include="Utils\Spr\SprEngine.cs" />
-    <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
-    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj">
-      <Project>{3c0f7fe5-639f-4422-a087-8b26cf862d1b}</Project>
-      <Name>AndroidFileChooserBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj">
-      <Project>{2db80c77-d46f-4970-b967-e9ffa9b2ac2e}</Project>
-      <Name>PCloudBindings</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
-      <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
-      <Name>KeePassLib2Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
-      <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
-      <Name>KP2AKdbLibraryBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
-      <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
-      <Name>TwofishCipher</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Flavor)'!='NoNet' ">
-    <PackageReference Include="FluentFTP">
-      <Version>48.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="MegaApiClient">
-      <Version>1.10.3</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Graph">
-      <Version>1.21.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Graph.Auth">
-      <Version>1.0.0-preview.7</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.49.1</Version>
-    </PackageReference>
+    <PackageReference Include="FluentFTP" Version="51.1.0" />
+    <PackageReference Include="MegaApiClient" Version="1.10.4" />
+    <PackageReference Include="Microsoft.Graph" Version="5.68.0" />
+	<PackageReference Include="Microsoft.Graph.Auth" Version="1.0.0-preview.7" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" />
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Arch.Core.Common">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Arch.Core.Runtime">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Common">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.LiveData">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.LiveData.Core">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Runtime">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.ViewModel">
-      <Version>1.1.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Annotations">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.AsyncLayoutInflater">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Collections">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Compat">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.CoordinaterLayout">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Core.UI">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Core.Utils">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.CursorAdapter">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.CustomTabs">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.CustomView">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.DocumentFile">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.DrawerLayout">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Fragment">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Interpolator">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Loader">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.LocalBroadcastManager">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Media.Compat">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Print">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.SlidingPaneLayout">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.SwipeRefreshLayout">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v13">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v4">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.Vector.Drawable">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.VersionedParcelable">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.ViewPager">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Preference">
-      <Version>1.2.0.3</Version>
-    </PackageReference>
+    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" />
+    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
+    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
+    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+  <None Remove="Io/DropboxFileStorageKeysDummy.cs" />
+  <Compile Remove="Io/DropboxFileStorageKeysDummy.cs" />
+  <Content Remove="Io/DropboxFileStorageKeysDummy.cs" />
+</ItemGroup>
+  
 </Project>

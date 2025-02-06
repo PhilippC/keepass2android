@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
+
+  Keepass2Android is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  (at your option) any later version.
+
+  Keepass2Android is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_search"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" 
+    />
+  <item android:id="@+id/menu_search_dummy"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom"
+  />
+  <item android:id="@+id/menu_search_advanced"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/menu_search_advanced"
+        app:showAsAction="never"
+    />
+    <item android:id="@+id/menu_lock"
+        android:icon="@drawable/baseline_lock_24"
+        android:title="@string/menu_lock"
+        app:showAsAction="ifRoom"
+    />
+    <item android:id="@+id/menu_donate"
+          android:icon="@drawable/donate_beer"
+        android:title="@string/menu_donate"
+        app:showAsAction="ifRoom"
+    />
+    <item android:id="@+id/menu_app_settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/menu_app_settings"
+        app:showAsAction="ifRoom"
+    />
+	<item android:id="@+id/menu_sync"
+		  android:icon="@drawable/baseline_sync_24"
+			android:title="@string/synchronize_database_menu"
+    app:showAsAction="never"
+    />
+  <item android:id="@+id/menu_work_offline"
+		  android:title="@string/UseOfflineMode"
+    app:showAsAction="never"
+    />
+  <item android:id="@+id/menu_work_online"
+		  android:title="@string/UseOnlineMode"
+    app:showAsAction="never"
+    />
+
+  <item android:id="@+id/menu_sort"
+        android:icon="@drawable/baseline_sort_24"
+        android:title="@string/sort_menu"
+      app:showAsAction="never"
+    />
+  <item android:id="@+id/menu_open_other_db"
+        android:title="@string/open_other_db"
+        app:showAsAction="never"
+  />
+
+
+
+</menu>

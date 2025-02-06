@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/entry_scroll"
+    android:background="?android:attr/colorBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+    <!-- Title -->
+        <RelativeLayout
+            android:id="@+id/title_section"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/icon_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:layout_margin="2dp"
+                android:scaleType="fitCenter"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic00" />
+            <!--
+            <item name="android:layout_width">fill_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1</item>
+            -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="?attr/textInputOutlinedDenseStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_title"
+            
+                android:layout_toLeftOf="@id/icon_button">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/entry_title"
+                    style="@style/EntryEditSingleLine_EditText"
+                    android:singleLine="true"
+                    android:capitalize="sentences" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+    <!--User-->
+        <LinearLayout
+          android:id="@+id/user_section"
+            style="@style/EntryEditSingleLine_container">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/EntryEditSingleLine_TextInputLayout"
+                app:startIconDrawable="@drawable/baseline_account_circle_24"
+                >
+                <EditText
+                    style="@style/EntryEditSingleLine_EditText"
+                    android:id="@+id/entry_user_name"
+                    android:hint="@string/hint_username"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    <!-- password-->
+      <LinearLayout
+        android:id="@+id/password_section"
+            style="@style/EntryEditSingleLine_container">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                      android:layout_weight="1"
+                      app:startIconDrawable="@drawable/baseline_password_24"
+                      app:endIconMode="password_toggle"
+                        style="@style/EntryEditSingleLine_TextInputLayout">
+                        <EditText
+                            android:id="@+id/entry_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:inputType="textPassword"
+                            android:hint="@string/hint_pass"
+                          android:importantForAccessibility="no"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:paddingBottom="12dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical ="true"
+                        android:orientation="horizontal">
+                        
+                        <Button
+                            android:id="@+id/generate_button"
+                            style="?attr/materialIconButtonFilledStyle"
+                            app:icon="@drawable/add_key"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                             />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    <!-- URL -->
+      <LinearLayout
+        android:id="@+id/url_section"
+            style="@style/EntryEditSingleLine_container">
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_link_24"
+                style="@style/EntryEditSingleLine_TextInputLayout">
+                <EditText
+                    style="@style/EntryEditSingleLine_EditText"
+                    android:id="@+id/entry_url"
+                    android:hint="@string/hint_url"
+                    android:inputType="textUri"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    <!-- Comments -->
+      <LinearLayout
+        android:id="@+id/comments_section"
+            style="@style/EntryEditSingleLine_container">
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_comment_24"
+                style="@style/EntryEditSingleLine_TextInputLayout">
+                <EditText
+                    style="@style/EntryEditSingleLine_EditText"
+                    android:id="@+id/entry_comment"
+                    android:hint="@string/hint_comment"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+      <LinearLayout
+            android:id="@+id/entry_extras_container"
+            style="@style/EntryEditSingleLine_container">
+            <ImageView
+                style="@style/EntryEditSingleLine_ImageView"
+                android:src="@drawable/baseline_more_horiz_24" />
+          <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <!-- Extra strings -->
+            <LinearLayout
+                    android:id="@+id/advanced_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+              <Button
+                android:id="@+id/add_advanced"
+                style="?attr/materialButtonOutlinedStyle"
+                app:icon="@drawable/baseline_add_circle_outline_24"
+                    
+    android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:text="@string/add_extra_string"/>
+
+            <Button
+              style="?attr/materialButtonOutlinedStyle"
+              android:id="@+id/configure_totp"
+              android:layout_width="match_parent"
+              android:layout_weight="1"
+              android:layout_height="wrap_content"
+              app:icon="@drawable/baseline_access_time_24"
+              android:text="@string/configure_totp"/>
+                
+            </LinearLayout>
+        </LinearLayout>
+    <!-- file attachments -->
+        <LinearLayout
+            android:id="@+id/entry_binaries_container"
+            style="@style/EntryEditSingleLine_container">
+            <ImageView
+                style="@style/EntryEditSingleLine_ImageView"
+                android:src="@drawable/baseline_attachment_24" />
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:orientation="vertical">
+            <!-- file attachments -->
+                <TextView
+                    android:id="@+id/entry_binaries_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_binaries" />
+                <LinearLayout
+                    android:id="@+id/binaries"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    <!-- Tags -->
+      <LinearLayout
+        android:id="@+id/tags_section"
+            style="@style/EntryEditSingleLine_container">
+
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_label_24"
+                style="@style/EntryEditSingleLine_TextInputLayout">
+                <EditText
+                    style="@style/EntryEditSingleLine_EditText"
+                    android:id="@+id/entry_tags"
+                    android:hint="@string/hint_tags"
+                    android:inputType="text"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    <!-- Override URL -->
+        <LinearLayout
+            android:id="@+id/entry_override_url_container"
+            style="@style/EntryEditSingleLine_container">
+            <com.google.android.material.textfield.TextInputLayout
+              app:startIconDrawable="@drawable/baseline_link_24"
+                style="@style/EntryEditSingleLine_TextInputLayout">
+                <EditText
+                    style="@style/EntryEditSingleLine_EditText"
+                    android:id="@+id/entry_override_url"
+                    android:hint="@string/hint_override_url"
+                    android:inputType="textUri"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    <!--expires-->
+      <LinearLayout
+        android:id="@+id/expires_section"
+            style="@style/EntryEditSingleLine_container">
+            <ImageView
+                style="@style/EntryEditSingleLine_ImageView"
+                android:src="@drawable/baseline_explicit_24" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/entry_group_name_label"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_expires"
+                    style="@style/EntryFieldHeader"
+                    android:layout_marginBottom="-4dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/entry_expires_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
+                    <EditText
+                        android:id="@+id/entry_expires"
+                        android:layout_marginLeft="-4dip"
+                        android:layout_marginRight="12dip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

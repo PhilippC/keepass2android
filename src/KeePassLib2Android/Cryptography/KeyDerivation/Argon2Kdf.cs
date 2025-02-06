@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+using Java.Lang;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -179,6 +180,7 @@ namespace KeePassLib.Cryptography.KeyDerivation
                 Marshal.Copy(pbSalt, 0, saltPtr, pbSalt.Length);
 
                 const UInt32 Argon2_d = 0;
+                JavaSystem.LoadLibrary("argon2");
 
                 int ret = argon2_hash(
                     (UInt32)uIt, (UInt32)(uMem / 1024), uPar,
@@ -189,7 +191,7 @@ namespace KeePassLib.Cryptography.KeyDerivation
 
                 if (ret != 0)
                 {
-                    throw new Exception("argon2_hash failed with " + ret);
+                    throw new System.Exception("argon2_hash failed with " + ret);
                 }
 
                 pbRet = new byte[32];
@@ -214,8 +216,9 @@ namespace KeePassLib.Cryptography.KeyDerivation
 			return p;
 		}
 
-		[DllImport("argon2")]
-		static extern int argon2_hash(
+		[LibraryImport("argon2")]
+        [return: MarshalAs(UnmanagedType.I4)]
+		public static partial int argon2_hash(
 				UInt32 t_cost, UInt32 m_cost, UInt32 parallelism,
 				IntPtr pwd, IntPtr pwdlen,
 				IntPtr salt, IntPtr saltlen,

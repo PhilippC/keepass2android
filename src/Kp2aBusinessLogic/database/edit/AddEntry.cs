@@ -90,10 +90,15 @@ namespace keepass2android
 					
 					// Mark parent group dirty
 					_app.DirtyGroups.Add(parent);
-					
+                    // even mark the parent of the parent dirty to update the views showing the number of child entries
+                    if (parent?.ParentGroup != null)
+                    {
+                        _app.DirtyGroups.Add(parent.ParentGroup);
+                    }
 
 
-				} else
+
+                } else
 				{
 					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
 					//TODO test fail

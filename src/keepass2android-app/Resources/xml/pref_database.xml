@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:key="@string/db_key"
+	android:title="@string/database"
+	android:summary="@string/menu_db_settings">
+
+	<PreferenceCategory
+    android:title="Database properties"
+     >
+
+	<EditTextPreference
+		android:title="@string/database_name"
+		android:persistent="false"
+		android:key="@string/database_name_key" />
+		
+  <EditTextPreference
+    android:title="@string/default_username"
+    android:persistent="false"
+    android:key="@string/default_username_key" />
+
+	</PreferenceCategory>
+
+	
+  <PreferenceCategory
+    android:title="Database security"
+  >
+	
+    <Preference android:key="@string/master_pwd_key"
+                android:title="@string/menu_change_key"
+    />
+
+	<ListPreference
+		android:key="@string/algorithm_key"
+		android:title="@string/algorithm"
+		android:dialogTitle="@string/algorithm" />
+	<Preference
+		app:fragment="keepass2android.settings.KeyDerivFuncPreferenceFragment"
+		android:key="@string/kdf_screen_key"
+		android:title="@string/KeyDerivFunc" />
+
+
+
+
+	<Preference
+		android:key="fingerprint_prefs"
+		android:title="@string/fingerprint_prefs"
+	>
+		<intent android:action="kp2a.action.FingerprintSetupActivity" />
+	</Preference>
+
+	</PreferenceCategory>
+
+    <PreferenceCategory
+      android:title="Database setup"
+    >
+
+	<Preference android:key="AddTemplates_pref_key"
+		android:title="@string/AddTemplates_pref"
+	/>
+
+
+	<Preference
+		android:key="configure_child_dbs_prefs"
+		android:title="@string/configure_child_dbs"
+	>
+		<intent android:action="kp2a.action.ConfigureChildDatabasesActivity" />
+	</Preference>
+
+	<PreferenceCategory
+    android:title="Import and export" />
+	
+  <Preference
+    android:key="export_prefs"
+    android:title="@string/export_prefs"
+  >
+    <intent android:action="kp2a.action.ExportDatabaseActivity" />
+  </Preference>
+
+
+	<Preference
+		android:key="import_db_prefs"
+		android:title="@string/import_db_prefs"
+	/>
+
+	<Preference
+		android:key="import_keyfile_prefs"
+		android:title="@string/import_keyfile_prefs"
+	/>
+
+	<Preference
+		android:key="export_keyfile_prefs"
+		android:title="@string/export_keyfile_prefs"
+	/>
+</PreferenceCategory>
+
+
+</PreferenceScreen>
+	

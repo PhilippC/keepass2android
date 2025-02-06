@@ -13,7 +13,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Java.IO;
-using Android.Support.V4;
+
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using File = System.IO.File;
@@ -291,7 +291,7 @@ namespace keepass2android.Io
 
 		public void OnCreate(IFileStorageSetupActivity fileStorageSetupActivity, Bundle savedInstanceState)
 		{
-		    Android.Support.V4.App.ActivityCompat.RequestPermissions(((Activity)fileStorageSetupActivity), new[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
+			AndroidX.Core.App.ActivityCompat.RequestPermissions(((Activity)fileStorageSetupActivity), new[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
 		}
 
 		public void OnResume(IFileStorageSetupActivity activity)
