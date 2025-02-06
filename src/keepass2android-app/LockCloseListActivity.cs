@@ -55,7 +55,7 @@ namespace keepass2android
 
 			filter.AddAction(Intents.DatabaseLocked);
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_intentReceiver, filter);
+			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
 
 		}
 		
