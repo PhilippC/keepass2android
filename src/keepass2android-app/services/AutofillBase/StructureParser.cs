@@ -86,6 +86,8 @@ namespace keepass2android.services.AutofillBase
                 ParseRecursive(autofillView, view, isManualRequest);
             }
 
+            autofillView.PackageId = autofillView.PackageId ?? _structure.ActivityComponent.PackageName;
+
             return autofillView;
 
         }
@@ -122,7 +124,6 @@ namespace keepass2android.services.AutofillBase
             }
 
             autofillView.InputFields.Add(new ViewNodeInputField(viewNode));
-          
             var childrenSize = viewNode.ChildCount;
             if (childrenSize > 0)
             {
