@@ -730,7 +730,7 @@ namespace Kp2aAutofillParser
     {
         public List<TField> InputFields { get; set; } = new List<TField>();
 
-        public string PackageId { get; set; } = null;
+        public string? PackageId { get; set; } = null;
         public string WebDomain { get; set; } = null;
     }
 
