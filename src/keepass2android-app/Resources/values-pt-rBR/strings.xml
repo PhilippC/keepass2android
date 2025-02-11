@@ -1184,5 +1184,7 @@
   <string name="AutofillWarning_Intro">Você esta prestes a inserir credenciais do domínio \"%1$s\" no app \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Se você confia em \"%2$s\" para pertencer \"%1$s\" ou se você confia no app \"%2$s\" a não mal-usar as credenciais (ex. por causa de um app de navegador confiável), é ok para continuar. Se não, por favor cancele.</string>
   <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Voltar quando terminar</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Voltar ao pressionar enviar/ir/concluído</string>
   <string name="english_ime_settings">Configurações do teclado Android</string>
 </resources>
