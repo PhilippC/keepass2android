@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Opinie</string>
   <string name="AboutText">Keepass2Android to menedżer haseł umożliwiający odczyt i zapis baz danych programu KeePass 2.x w systemie Android.</string>
@@ -718,6 +718,16 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Dodano pływające przyciski szukania i podglądu TOTP (jeśli są wpisy TOTP).</item>
+    <item>Poprawa wyświetlania pól TOTP na wyraźniejsze i ze wskaźnikiem czasu.</item>
+    <item>TOTP są widoczne teraz w widoku grupy.</item>
+    <item>Skopiuj tekst do schowka po długim naciśnięciu w widoku wpisu.</item>
+    <item>TOTP łatwiej dostępne we wbudowanej klawiaturze.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Małe poprawki</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Dodaj wsparcie dla uprawnień do powiadomień na Androidzie 13+</item>
     <item>Poprawia wdrażania FTP i SFTP</item>
@@ -890,6 +900,5 @@
   <string name="AutofillWarning_Intro">Zamierzasz wstawić poświadczenia dla domeny \"%1$s\" do aplikacji \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Jeśli ufasz \"%2$s\" należącym do \"%1$s\" lub ufasz aplikacji \"%2$s\", aby nie używać danych logowania (np. ponieważ jest to zaufana aplikacja przeglądarki), jest w porządku, aby kontynuować. Jeśli nie, proszę anulować.</string>
   <string name="AutofillWarning_trustAsBrowser">Akceptuj zawsze w \"%1$s\"</string>
-<string name="english_ime_settings">Ustawienia klawiatury Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">Ustawienia klawiatury Keepass2Android</string>
+</resources>
