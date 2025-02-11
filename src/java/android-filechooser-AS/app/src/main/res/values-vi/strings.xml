@@ -56,12 +56,12 @@
     <string name="afc_title_sort_by">Sắp xếp theo…</string>
     <string name="afc_yesterday">Hôm qua</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="other">Chọn thư mục&#8230;</item>
+        <item quantity="other">Chọn thư mục…</item>
     </plurals>
     <plurals name="afc_title_choose_files">
-        <item quantity="other">Chọn tập tin&#8230;</item>
+        <item quantity="other">Chọn tệp…</item>
     </plurals>
     <plurals name="afc_title_choose_files_directories">
-        <item quantity="other">Chọn tập tin / thư mục&#8230;</item>
+        <item quantity="other">Chọn tệp/thư mục…</item>
     </plurals>
 </resources>
