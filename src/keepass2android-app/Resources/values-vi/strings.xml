@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="about_feedback">Thông tin phản hồi</string>
+  <string name="AboutText">Keepass2Android là một ứng dụng quản lý mật khẩu cung cấp quyền truy cập đọc/ghi vào cơ sở dữ liệu KeePass 2.x trên Android.</string>
+  <string name="CreditsText">Giao diện người dùng dựa trên một bản chuyển thể từ ứng dụng KeepassDroid phát triển bởi Brian Pellin. Mã cho các thao tác cơ sở dữ liệu dựa trên KeePass bởi Dominik Reichl. Các người máy Android được sao chép hoặc sửa đổi từ công việc tạo ra và chia sẻ của Google và được sử dụng theo điều khoản được mô tả trong Giấy phép Creative Commons Attribution 3.0.</string>
+  <string name="CreditsTextSFTP">Hỗ trợ SFTP được thực hiện bằng cách sử dụng thư viện JSch theo giấy phép BSD, tạo ra bởi JCraft, Inc.</string>
+  <string name="CreditsIcons">Biểu tượng búa được tạo ra bởi John Caserta từ dự án Noun. Biểu tượng chim cánh cụt được tạo ra bởi Adriano Emerick từ dự án Noun. Biểu tượng lông vũ được tạo ra bởi Jon Testa từ dự án Noun. Biểu tượng Apple được tạo ra bởi Ava Rowell từ dự án Noun.</string>
+  <string name="accept">Đồng ý</string>
+  <string name="deny">Từ chối</string>
+  <string name="add_entry">Thêm mục nhập</string>
+  <string name="edit_entry">Sửa mục</string>
+  <string name="add_url_entry">Tạo mục cho liên kết URL</string>
+  <string name="add_group">Thêm nhóm</string>
+  <string name="add_group_title">Thêm nhóm</string>
+  <string name="edit_group_title">Sửa nhóm</string>
+  <string name="algorithm">Thuật toán</string>
+  <string name="algorithm_colon">Thuật toán</string>
+  <string name="app_name">Keepass2Android</string>
+  <string name="short_app_name">KP2A</string>
+  <string name="app_name_nonet">Keepass2Android Ngoại tuyến</string>
+  <string name="short_app_name_nonet">KP2A Offline</string>
+  <string name="app_timeout">Hết thời gian chờ ứng dụng</string>
+  <string name="app_timeout_summary">Thời gian trước khi khóa cơ sở dữ liệu khi ứng dụng không hoạt động.</string>
+  <string name="show_kill_app">Nút đóng</string>
+  <string name="kill_app_label">Dừng tiến trình ứng dụng</string>
+  <string name="show_kill_app_summary">Hiển thị một nút trong màn hình mật khẩu để tắt tiến trình ứng dụng (dành cho người dùng hoang tưởng)</string>
+  <string name="application">Ứng dụng</string>
+  <string name="application_settings">Thiết đặt ứng dụng</string>
+  <string name="ShowGroupnameInSearchResult_title">Hiển thị tên nhóm trong kết quả tìm kiếm</string>
+  <string name="ShowGroupnameInSearchResult_resume">Hiển thị tên nhóm dưới tiêu đề mục trong kết quả tìm kiếm. Tiện dụng nếu một số mục có cùng tên.</string>
+  <string name="NavigationToGroupCompleted_message">Hiển thị nhóm: %1$s</string>
+  <string name="AutofillDisabledQueriesPreference_title">Đã tắt các mục tiêu Tự động điền</string>
+  <string name="AutofillDisabledQueriesPreference_summary">Xem danh sách các ứng dụng và trang web mà tính năng Tự động điền đã bị tắt</string>
+  <string name="OfferSaveCredentials_summary">Nếu được bật, Android sẽ hỏi bạn có muốn lưu thông tin xác thực sau khi bạn nhập dữ liệu theo cách thủ công vào các trường có thể tự động điền hay không.</string>
+  <string name="OfferSaveCredentials_title">Đề nghị lưu thông tin xác thực</string>
+  <string name="ShowGroupInEntry_title">Hiển thị tên nhóm trong mục xem</string>
+  <string name="unknown_uri_scheme">Xin lỗi! Keypass2Android không thể xử lý URI %1$s. Hãy liên hệ với người phát triển ứng dụng!</string>
+  <string name="Entry_singular">Một mục</string>
+  <string name="Entry_plural">%1$d mục</string>
+  <string name="IconSet_title">Bộ biểu tượng</string>
+  <string name="IconSet_install">Tìm thêm...</string>
+  <string name="security_prefs">Bảo mật</string>
+  <string name="display_prefs">Hiển thị</string>
+  <string name="password_access_prefs">Mật mã truy cập</string>
+  <string name="QuickUnlock_prefs">Mở khóa nhanh</string>
+  <string name="FileHandling_prefs">Xử lý tập tin</string>
+  <string name="keyboard_prefs">Bàn phím</string>
+  <string name="export_prefs">Xuất khẩu cơ sở dữ liệu...</string>
+  <string name="fingerprint_prefs">Mở khóa sinh trắc học</string>
+  <string name="import_db_prefs">Nhập cơ sở dữ liệu vào thư mục nội bộ</string>
+  <string name="import_keyfile_prefs">Nhập tệp khóa vào thư mục nội bộ</string>
+  <string name="export_keyfile_prefs">Xuất tệp khóa từ thư mục nội bộ</string>
+  <string name="keyboardswitch_prefs">Đổi bàn phím</string>
+  <string name="OnlyAvailableForLocalFiles">Chỉ khả dụng cho các tập tin nội bộ.</string>
+  <string name="FileIsInInternalDirectory">Tập tin được lưu trong thư mục nội bộ.</string>
+  <string name="DatabaseFileMoved">Tập tin dữ liệu được sao chép vào thư mục thuộc bộ nhớ trong. Nhấn Ok để mở từ vị trí mới. Lưu ý: Đừng quên thường xuyên xuất cơ sở dữ liệu tới ổ lưu trữ an toàn!</string>
+  <string name="KeyfileMoved">Tệp khóa đã được sao chép vào thư mục nội bộ. Đảm bảo bạn có bản sao lưu an toàn trước khi xóa khỏi vị trí hiện tại!</string>
+  <string name="KeyfileMoveRequiresRememberKeyfile">Không thể sử dụng thư mục nội bộ khi vị trí tệp chính không được ghi nhớ. Thay đổi tùy chọn bảo mật.</string>
+  <string name="unlock_database_button">Mở khoá</string>
+  <string name="unlock_database_title">Mở khoá cơ sở dữ liệu</string>
+  <string name="brackets">Dấu ngoặc</string>
+  <string name="cancel">Hủy bỏ</string>
+  <string name="Ok">Ok</string>
+  <string name="disable_sensor">Tắt cảm biến</string>
+  <string name="enable_sensor">Bật cảm biến</string>
+  <string name="ClearClipboard">Bộ nhớ đệm đã được xóa.</string>
+  <string name="clipboard_timeout">Hết thời gian xử lý của Bộ nhớ đệm</string>
+  <string name="clipboard_timeout_summary">Thời gian trước khi xóa Bộ nhớ đệm sau khi sao chép tên người dùng hoặc mật mã</string>
+  <string name="copy_username">Chọn để sao chép tên người dùng vô Bộ nhớ đệm</string>
+  <string name="copy_password">Chọn để sao chép mật mã vô Bộ nhớ đệm</string>
+  <string name="copy_totp">Chọn sao chép TOTP vào clipboard</string>
+  <string name="available_through_keyboard">Mục có sẵn ở bàn phím KP2A</string>
+  <string name="app_language_pref_title">Ngôn ngữ ứng dụng</string>
+  <string name="entry_is_available">khả dụng</string>
+  <string name="not_possible_im_picker">Không thể mở hộp thoại để chọn bộ gõ. Xin vui lòng kích hoạt bàn phím theo cách thủ công.</string>
+  <string name="please_activate_keyboard">Vui lòng kích hoạt bàn phím Keepass2Android trong cài đặt hệ thống của bạn.</string>
+  <string name="creating_db_key">Tạo khóa cho cơ sở dữ liệu…</string>
+  <string name="current_group">Nhóm hiện tại</string>
+  <string name="current_group_root">Nhóm hiện tại: Điều hành</string>
+  <string name="database">Cơ sở dữ liệu</string>
+  <string name="digits">Chữ số</string>
+  <string name="disclaimer_formal">Keepass2Android HOÀN TOÀN KHÔNG CÓ BẢO HÀNH; Đây là phần mềm miễn phí, và bạn được chào đón để phát hành lại nó theo các điều kiện của Giấy phép GPL phiên bản 2 hoặc mới hơn.</string>
+  <string name="ellipsis">\u2026</string>
+  <string name="copy_to_clipboard">Sao chép vào clipboard</string>
+  <string name="SystemLanguage">Ngôn ngữ hệ thống</string>
+  <string name="fingerprint_description">Vui lòng xác thực để tiếp tục</string>
+  <string name="fingerprint_fatal">Không thể thiết lập Mở khóa sinh trắc học:</string>
+  <string name="fingerprint_not_recognized">Xác thực sinh trắc học thất bại. Thử lại</string>
+  <string name="fingerprint_success">Xác thực sinh trắc học thành công</string>
+  <string name="fingerprint_os_error">Mở khóa sinh trắc học yêu cầu Android 6.0 trở lên.</string>
+  <string name="fingerprint_hardware_error">Không phát hiện thấy phần cứng sinh trắc học.</string>
+  <string name="fingerprint_no_enrolled">Bạn chưa cấu hình xác thực sinh trắc học trên thiết bị này. Vui lòng vào thiết đặt hệ thống trước.</string>
+  <string name="disable_fingerprint_unlock">Tắt mở khóa sinh trắc học</string>
+  <string name="enable_fingerprint_unlock">Bật Mở khóa sinh trắc học đầy đủ</string>
+  <string name="enable_fingerprint_quickunlock">Bật Mở khóa sinh trắc học để mở khóa nhanh</string>
+  <string name="fingerprint_unlock_failed">Mở khóa sinh trắc học không thành công. Khóa giải mã đã bị hệ điều hành Android vô hiệu hóa. Điều này thường xảy ra nếu xác thực sinh trắc học hoặc thiết đặt bảo mật bị thay đổi. </string>
+  <string name="fingerprint_disabled_wrong_masterkey">Mở khóa cơ sở dữ liệu thất bại: Khóa tổng hợp không hợp lệ. Mở khóa sinh trắc học đã bị tắt vì dường như mật khẩu chính được lưu trữ không còn hợp lệ. </string>
+  <string name="fingerprint_reenable">Vui lòng bật lại Mở khóa sinh trắc học cho mật khẩu chính mới.</string>
+  <string name="fingerprint_reenable2">Vui lòng mở khóa bằng mật khẩu của bạn rồi bật lại Mở khóa sinh trắc học trong thiết đặt cơ sở dữ liệu.</string>
+  <string name="FingerprintInitFailed">Không thể khởi tạo xác thực sinh trắc học. </string>
+  <string name="FingerprintSetupFailed">Không thể mã hóa dữ liệu. Điều này có thể xảy ra nếu bạn thêm hoặc xóa dấu vân tay trong thiết đặt hệ thống trong khi Keepass2Android đang lắng nghe dấu vân tay của bạn.</string>
+  <string name="enable_fingerprint_unlock_Info">Điều này sẽ lưu trữ mật khẩu chính của bạn trên thiết bị này, được mã hóa bằng Kho khóa Android và được bảo vệ bằng xác thực sinh trắc học. Cho phép mở khóa cơ sở dữ liệu của bạn chỉ bằng sinh trắc học.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Cho phép sử dụng xác thực sinh trắc học thay cho mã Mở khóa nhanh. Không lưu trữ bất kỳ thông tin nào liên quan đến mật khẩu chính của bạn.</string>
+  <string name="enter_filename">Nhập tên tập tin cơ sở dữ liệu</string>
+  <string name="entry_accessed">Đã truy cập</string>
+  <string name="entry_cancel">Hủy bỏ</string>
+  <string name="entry_comment">Ghi chú</string>
+  <string name="entry_tags">Thẻ</string>
+  <string name="entry_override_url">Ghi đè liên kết URL</string>
+  <string name="entry_confpassword">Xác nhận mật mã</string>
+  <string name="entry_created">Đã tạo</string>
+  <string name="entry_expires">Hết hạn</string>
+  <string name="entry_group_name">Tên nhóm</string>
+  <string name="entry_keyfile">Tệp khóa (tùy chọn)</string>
+  <string name="keyfile_heading">Tệp khóa</string>
+  <string name="entry_modified">Đã chỉnh sửa</string>
+  <string name="entry_password">Mật mã</string>
+  <string name="entry_save">Lưu</string>
+  <string name="entry_title">Tên</string>
+  <string name="entry_url">Liên kết URL</string>
+  <string name="entry_user_name">Tên người dùng</string>
+  <string name="entry_extra_strings">Các chuỗi thông tin bổ sung</string>
+  <string name="entry_binaries">Các tập tin đính kèm</string>
+  <string name="entry_history">Những phiên bản trước</string>
+  <string name="error_can_not_handle_uri">Keepass2Android không thể xử lý URI này.</string>
+  <string name="error_could_not_create_group">Lỗi tạo nhóm.</string>
+  <string name="error_could_not_create_parent">Không thể tạo thư mục cha.</string>
+  <string name="error_database_exists">Tập tin này đã có rồi.</string>
+  <string name="error_database_settinoverrgs">Thất bại khi xác định các cài đặt của dữ liệu.</string>
+  <string name="error_failed_to_launch_link">Thất bại khi mở liên kết.</string>
+  <string name="error_filename_required">Tên tập tin là cần thiết.</string>
+  <string name="error_file_not_create">Không thể tạo tập tin</string>
+  <string name="error_invalid_db">Cơ sở dữ liệu không hợp lệ.</string>
+  <string name="error_invalid_path">Đường dẫn không hợp lệ.</string>
+  <string name="error_no_name">Tên là bắt buộc.</string>
+  <string name="error_nopass">Cần có mật khẩu hoặc tệp khóa.</string>
+  <string name="error_pass_gen_type">Phải chọn ít nhất một kiểu mật mã</string>
+  <string name="error_pass_match">Mật mã không khớp.</string>
+  <string name="error_rounds_not_number">Số lần lặp phải là số.</string>
+  <string name="error_param_not_number">Tham số phải là một số.</string>
+  <string name="error_title_required">Tiêu đề là cần thiết.</string>
+  <string name="error_wrong_length">Nhập số nguyên dương vào trường độ dài</string>
+  <string name="FileNotFound">Không tìm thấy tập tin.</string>
+  <string name="file_browser">Trình duyệt tập tin</string>
+  <string name="generate_password">Tạo mật mã</string>
+  <string name="group">Nhóm</string>
+  <string name="hint_comment">ghi chú</string>
+  <string name="hint_conf_pass">xác nhận mật mã</string>
+  <string name="hint_generated_password">đã tạo mật mã</string>
+  <string name="hint_group_name">Tên nhóm</string>
+  <string name="hint_keyfile">tệp khóa</string>
+  <string name="hint_length">chiều dài</string>
+  <string name="hint_pass">mật mã</string>
+  <string name="hint_keyfile_path">Đường dẫn khóa riêng SSH</string>
+  <string name="hint_login_pass">Mật mã</string>
+  <string name="hint_title">tên</string>
+  <string name="hint_url">Liên kết URL</string>
+  <string name="hint_override_url">ghi đè URL</string>
+  <string name="hint_tags">thẻ1, thẻ2</string>
+  <string name="hint_username">tên người dùng</string>
+  <string name="InvalidPassword">Mật mã hoặc tập tin khóa không hợp lệ.</string>
+  <string name="invalid_algorithm">Thuật toán không hợp lệ.</string>
+  <string name="invalid_db_sig">Không rõ định dạng của cơ sở dữ liệu.</string>
+  <string name="keyfile_does_not_exist">Tệp khóa không tồn tại.</string>
+  <string name="no_keyfile_selected">Chưa chọn tệp khóa nào</string>
+  <string name="keyfile_is_empty">Tệp khóa rỗng.</string>
+  <string name="length">Chiều dài</string>
+  <string name="list_size_title">Kích thước danh sách nhóm</string>
+  <string name="list_size_summary">Cỡ chữ trong danh sách Nhóm</string>
+  <string name="loading_database">Đang tải cơ sở dữ liệu…</string>
+  <string name="lowercase">Chữ thường</string>
+  <string name="MaskedPassword">*****</string>
+  <string name="maskpass_title">Mật mã mặt nạ</string>
+  <string name="maskpass_summary">Ẩn mật mã theo mặc định</string>
+  <string name="masktotp_title">Che trường TOTP</string>
+  <string name="masktotp_summary">Ẩn trường TOTP theo mặc định</string>
+  <string name="NoAutofillDisabling_title">Không có tùy chọn tắt tính năng tự động điền</string>
+  <string name="NoAutofillDisabling_summary">Nếu được bật, ứng dụng sẽ không hiển thị tùy chọn tắt tính năng tự động điền cho các mục cụ thể.</string>
+  <string name="menu_about">Thông tin về</string>
+  <string name="menu_change_key">Thay đổi Khóa chính</string>
+  <string name="menu_copy_pass">Sao chép Mật mã</string>
+  <string name="menu_copy_user">Sao chép Người dùng</string>
+  <string name="menu_copy_totp">Sao chép TOTP</string>
+  <string name="menu_create">Tạo</string>
+  <string name="menu_app_settings">Cài đặt</string>
+  <string name="menu_db_settings">Cài đặt cơ sở dữ liệu</string>
+  <string name="menu_delete">Xóa</string>
+  <string name="menu_copy">Tạo bản sao</string>
+  <string name="menu_move">Di chuyển đến một nhóm khác</string>
+  <string name="menu_move_light">Di chuyển</string>
+  <string name="menu_navigate">Chuyển tới nhóm cha</string>
+  <string name="menu_donate">Tặng một ly bia…</string>
+  <string name="menu_edit">Chỉnh sửa</string>
+  <string name="menu_hide_password">Ẩn Mật mã</string>
+  <string name="menu_lock">Khóa Cơ sở dữ liệu</string>
+  <string name="menu_open">Mở</string>
+  <string name="menu_close">Đóng</string>
+  <string name="menu_rename">Đổi tên</string>
+  <string name="menu_search">Tìm kiếm</string>
+  <string name="menu_search_advanced">Tìm kiếm Nâng cao</string>
+  <string name="menu_url">Đi tới liên kết URL</string>
+  <string name="menu_change_db">Thay đổi cơ sở dữ liệu…</string>
+  <string name="menu_show_all">Hiện tất cả các trường</string>
+  <string name="minus">Trừ</string>
+  <string name="never">Không bao giờ</string>
+  <string name="yes">Có</string>
+  <string name="no">Không</string>
+  <string name="no_keys">Không có mục nào trong cơ sở dữ liệu hoặc nhóm.</string>
+  <string name="no_results">Không có kết quả tìm kiếm</string>
+  <string name="no_url_handler">Không có trình xử lý nào cho URL này.</string>
+  <string name="open_recent">Mở cơ sở dữ liệu gần đây (nhấn để mở)</string>
+  <string name="omitbackup_title">Không tìm kiếm các mục sao lưu và trong thùng rác</string>
+  <string name="omitbackup_summary">Bỏ qua nhóm \'Dự phòng\' và thùng rác khỏi kết quả tìm kiếm</string>
+  <string name="pass_filename">Tên tập tin cơ sở dữ liệu KeePass</string>
+  <string name="password_title">Nhập mật mã cơ sở dữ liệu</string>
+  <string name="master_key_type">Chọn kiểu của khóa chính:</string>
+  <string name="progress_create">Tạo cơ sở dữ liệu mới…</string>
+  <string name="create_database">Tạo cơ sở dữ liệu</string>
+  <string name="progress_title">Đang làm việc…</string>
+  <string name="remember_keyfile_summary">Ghi nhớ vị trí của các tệp khóa</string>
+  <string name="remember_keyfile_title">Lưu tệp khóa</string>
+  <string name="remove_from_filelist">Loại bỏ</string>
+  <string name="edit">Chỉnh sửa</string>
+  <string name="rijndael">Rijndael (AES)</string>
+  <string name="root">Thư mục gốc</string>
+  <string name="AutoReturnFromQuery_title">Automatically return from query screen</string>
+  <string name="AutoReturnFromQuery_summary">Khi tra cứu một mục nhập cho một ứng dụng hoặc trang web: tự động quay lại từ màn hình truy vấn nếu chỉ có một mục nhập phù hợp trong cơ sở dữ liệu.</string>
+  <string name="KeyDerivFunc">Hàm dẫn xuất khóa</string>
+  <string name="rounds">Số lần lặp mã hóa</string>
+  <string name="rounds_explaination">số lần lặp mã hóa cao cung cấp thêm bảo vệ chống lại cuộc tấn công bạo lực, nhưng có thể làm chậm quá trình tải và lưu.</string>
+  <string name="rounds_hint">số lần lặp</string>
+  <string name="argon2memory">Bộ nhớ cho Argon 2 (bytes)</string>
+  <string name="argon2parallelism">argon2parallelism</string>
+  <string name="database_name">Tên cơ sở dữ liệu</string>
+  <string name="default_username">Tên người dùng mặc định cho các mục mới</string>
+  <string name="saving_database">Đang lưu cơ sở dữ liệu…</string>
+  <string name="exporting_database">Đang xuất khẩu cơ sở dữ liệu…</string>
+  <string name="export_database_successful">Cơ sở dữ liệu xuất khẩu thành công!</string>
+  <string name="export_keyfile_successful">Đã xuất tệp khóa thành công!</string>
+  <string name="space">Khoảng trắng</string>
+  <string name="search_label">Tìm kiếm</string>
+  <string name="show_password">Hiển thị mật mã</string>
+  <string name="sort_menu">Sắp xếp theo...</string>
+  <string name="sort_name">Sắp xếp theo tên</string>
+  <string name="sort_db">Sắp xếp theo ngày tạo</string>
+  <string name="sort_moddate">Sắp xếp theo ngày sửa đổi</string>
+  <string name="sort_default">Giữ thứ tự mặc định</string>
+  <string name="special">Đặc biệt</string>
+  <string name="special_extended">Đặc biệt mở rộng</string>
+  <string name="at_least_one_from_each_group">Ít nhất một từ mỗi nhóm</string>
+  <string name="exclude_lookalike">Loại trừ các ký tự trông giống nhau</string>
+  <string name="password_generation_profile">Hồ sơ</string>
+  <string name="save_password_generation_profile_text">Nhập tên hồ sơ để lưu. Nhập tên hiện có để ghi đè.</string>
+  <string name="hint_wordcount">Số từ của cụm mật khẩu</string>
+  <string name="hint_wordseparator">Dấu phân cách từ</string>
+  <string-array name="PasswordGeneratorModes">
+    <item>Mật mã</item>
+    <item>Cụm mật khẩu</item>
+    <item>Cụm mật khẩu + Mật khẩu</item>
+  </string-array>
+  <string-array name="PasswordGeneratorCaseModes">
+    <item>chữ thường</item>
+    <item>CHỮ HOA</item>
+    <item>Chữ hoa ký tự đầu tiên</item>
+  </string-array>
+  <string name="custom_settings">Thiết đặt tùy chỉnh</string>
+  <string name="passphrase_capitalization">Viết hoa cụm mật khẩu</string>
+  <string name="search_hint">Nội dung tìm kiếm</string>
+  <string name="search_results">Kết quả tìm kiếm</string>
+  <string name="search_in">Tìm kiếm trong</string>
+  <string name="select_other_entry">Chọn mục khác</string>
+  <string name="select_group_then_add">Mở nhóm mong muốn, sau đó bấm \"%1$s\"!</string>
+  <string name="insert_element_here">Chèn vô đây</string>
+  <string name="twofish">Twofish</string>
+  <string name="underline">Gạch dưới</string>
+  <string name="unsupported_db_version">Phiên bản cơ sở dữ liệu không được hỗ trợ.</string>
+  <string name="uppercase">Chữ hoa</string>
+  <string name="warning_read_only">Thẻ nhớ SD của bạn hiện chỉ cho phép đọc. Bạn không thể lưu các thay đổi cơ sở dữ liệu của bạn.</string>
+  <string name="warning_unmounted">Thẻ nhớ SD của bạn hiện không được ánh xạ vô thiết bị. Bạn sẽ không thể mở hoặc tạo cơ sở dữ liệu.</string>
+  <string name="version_label">Phiên bản</string>
+  <string name="version_history">Lịch sử các phiên bản</string>
+  <string name="author">Keepass2Android được phát triển bởi Philipp Crocoll.</string>
+  <string name="further_authors">Cám ơn những đóng góp của %1$s.</string>
+  <string name="designers">Cảm ơn những sự đóp góp biểu tượng và thiết kế bố cục bởi %1$s.</string>
+  <string name="supporters">Cảm ơn sự hỗ trợ tài chính của %1$s.</string>
+  <string name="credit_plugin1">Thư viện mã hóa Twofish cho Keepass được phát triển bởi Scott Greenberg và có sẵn trong KP2A.</string>
+  <string name="credit_android_filechooser">android-filechooser được phát triển bởi Hai Bison</string>
+  <string name="credit_keyboard">Bàn phím KP2A dựa trên bàn phím Gingerbread của Dự án mã nguồn mở Android và sử dụng mã Plugin Manager từ bàn phím của Hacker bởi Klaus Weidner.</string>
+  <string name="please_note">Xin lưu ý</string>
+  <string name="contributors">Những người đóng góp</string>
+  <string name="regular_expression">Biểu thức chính quy</string>
+  <string name="AlwaysMergeOnConflict_title">Luôn hợp nhất khi có xung đột</string>
+  <string name="AlwaysMergeOnConflict_summary">Khi Keepass2Android phát hiện thấy tệp từ xa đã được sửa đổi, hãy luôn hợp nhất các thay đổi cục bộ với các thay đổi từ xa.</string>
+  <string name="TanExpiresOnUse_title">TAN hết hạn sử dụng</string>
+  <string name="TanExpiresOnUse_summary">Đánh dấu các mục TAN là hết hiệu lực khi sử dụng chúng</string>
+  <string name="ShowUsernameInList_title">Hiển thị tên người dùng trong danh sách</string>
+  <string name="ShowUsernameInList_summary">Hiển thị tên người dùng dưới tiêu đề mục. Thuận tiện cho nhiều tài khoản hoặc TANs.</string>
+  <string name="RememberRecentFiles_title">Ghi nhớ các cơ sở dữ liệu</string>
+  <string name="RememberRecentFiles_summary">Ghi nhớ các cơ sở dữ liệu được mở gần đây và hiển thị chúng trong màn hình mở cơ sở dữ liệu.</string>
+  <string name="NoDalVerification_title">Không có xác minh DAL</string>
+  <string name="NoDalVerification_summary">Tắt kiểm tra xem miền và gói ứng dụng có khớp nhau không</string>
+  <string name="InlineSuggestions_title">Tích hợp với bàn phím</string>
+  <string name="InlineSuggestions_summary">Hiển thị các đề xuất tự động điền dưới dạng tùy chọn nội tuyến trong bàn phím (nếu được phương thức nhập này hỗ trợ)</string>
+  <string name="LogAutofillView_title">Nhật ký chế độ xem tự động điền</string>
+  <string name="LogAutofillView_summary">Viết chi tiết về chế độ xem tự động điền vào nhật ký gỡ lỗi (nếu bật tính năng ghi nhật ký gỡ lỗi). Những chi tiết này có thể được gửi tới nhà phát triển nếu tính năng tự động điền không hoạt động như mong đợi.</string>
+  <string name="requires_android11">Yêu cầu Android 11 trở lên</string>
+  <string name="kp2a_findUrl">Tìm mật khẩu</string>
+  <string name="excludeExpiredEntries">Loại trừ các mục đã hết hạn</string>
+  <string name="search_options">Tùy chọn</string>
+  <string name="caseSensitive">Phân biệt chữ hoa-thường</string>
+  <string name="start_open_file">Mở tập tin…</string>
+  <string name="start_create">Tạo cơ sở dữ liệu mới...</string>
+  <string name="start_open_url">Mở liên kết URL...</string>
+  <string name="start_create_import">Nhập tập tin vô cơ sở dữ liệu mới…</string>
+  <string name="enter_filename_details_url">Liên kết URL hoàn chỉnh phải được nhập luôn giao thức, như http://.</string>
+  <string name="enter_filename_details_create_import">Tập tin để nhập sẽ được lựa chọn trong bước tiếp theo.</string>
+  <string name="enable_quickunlock">Bật mở khóa nhanh</string>
+  <string name="QuickUnlock_label">Nhập %1$d ký tự cuối của mật khẩu của bạn:</string>
+  <string name="QuickUnlock_label_secure">Nhập mã Mở khóa nhanh:</string>
+  <string name="QuickUnlock_button">Mở khóa nhanh!</string>
+  <string name="QuickUnlock_lockButton">Đóng cơ sở dữ liệu</string>
+  <string name="QuickUnlockDefaultEnabled_title">Bật Mở khóa nhanh theo mặc định</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Xác định xem Mở khóa nhanh có được bật theo mặc định hay không.</string>
+  <string name="ViewDatabaseSecure_title">Bảo vệ hiển thị tập tin dữ liệu</string>
+  <string name="ViewDatabaseSecure_summary">Khi bật, chụp màn hình sẽ bị vô hiệu hoá và ứng dụng không xuất hiện trong danh sách Ứng dụng gần đây.</string>
+  <string name="QuickUnlockIconHidden_title">Ẩn biểu tượng Mở khóa nhanh</string>
+  <string name="QuickUnlockIconHidden_summary">Rất tiếc, Mở khóa nhanh không hoạt động nếu không hiển thị biểu tượng thông báo. Chọn tùy chọn này để sử dụng biểu tượng trong suốt.</string>
+  <string name="QuickUnlockIconHidden16_title">Ẩn biểu tượng Mở khóa nhanh</string>
+  <string name="QuickUnlockIconHidden16_summary">Mở khóa nhanh yêu cầu một thông báo để hoạt động đúng. Chọn tùy chọn này để hiển thị một thông báo mà không có một biểu tượng đi kèm.</string>
+  <string name="QuickUnlockLength_title">Độ dài của khóa Mở khóa nhanh</string>
+  <string name="QuickUnlockLength_summary">Số ký tự tối đa được sử dụng làm mật khẩu Mở khóa nhanh.</string>
+  <string name="QuickUnlockHideLength_title">Ẩn độ dài mở khóa nhanh</string>
+  <string name="QuickUnlockHideLength_summary">Nếu được bật, độ dài của mã Mở khóa nhanh sẽ không được hiển thị trên màn hình Mở khóa nhanh.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Khóa mở khóa nhanh từ mục nhập cơ sở dữ liệu</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Nếu cơ sở dữ liệu đang hoạt động chứa một mục có tiêu đề Mở khóa nhanh trong nhóm gốc của nó thì mật khẩu của mục này sẽ được sử dụng làm mã Mở khóa nhanh.</string>
+  <string name="QuickUnlock_fail">Mở khóa nhanh thất bại: mật khẩu không chính xác!</string>
+  <string name="SaveAttachmentDialog_title">Lưu tập tin đính kèm</string>
+  <string name="SaveAttachmentDialog_text">Xin vui lòng chọn nơi lưu tập tin đính kèm.</string>
+  <string name="SaveAttachmentDialog_save">Xuất ra tập tin</string>
+  <string name="SaveAttachmentDialog_open">Lưu vô bộ nhớ đệm và mở ra</string>
+  <string name="ShowAttachedImage">Mở bằng trình xem ảnh sẵn có trong ứng dụng</string>
+  <string name="SaveAttachment_doneMessage">Đã lưu tập tin vô %1$s.</string>
+  <string name="SaveAttachment_Failed">Không thể lưu tập tin đính kèm vô %1$s.</string>
+  <string name="AddUrlToEntryDialog_title">Nhớ văn bản tìm kiếm?</string>
+  <string name="AddUrlToEntryDialog_text">Bạn có muốn lưu văn bản tìm kiếm \"%1$s\" trong mục đã chọn để tìm nó tự động trong lần tiếp theo?</string>
+  <string name="error_invalid_expiry_date">Định dạng của ngày/thời gian không hợp lệ cho ngày hết hạn!</string>
+  <string name="error_string_key">Tên mục là yêu cầu cho mỗi chuỗi.</string>
+  <string name="error_string_duplicate_key">Tên trường không thể sử dụng hai lần (%1$s).</string>
+  <string name="field_name">Tên mục</string>
+  <string name="field_value">Giá trị mục</string>
+  <string name="protection">Mục được bảo vệ</string>
+  <string name="add_binary">Thêm tập tin đính kèm…</string>
+  <string name="add_extra_string">Thêm chuỗi bổ sung</string>
+  <string name="configure_totp">Định cấu hình TOTP</string>
+  <string name="totp_secret_key">Chìa khoá bí mật</string>
+  <string name="totp_encoding_rfc6238">Thiết đặt mã thông báo RFC6238 mặc định</string>
+  <string name="totp_encoding_steam">Thiết đặt mã thông báo Steam</string>
+  <string name="totp_encoding_custom">Thiết đặt mã thông báo tùy chỉnh</string>
+  <string name="totp_time_step">Bước thời gian</string>
+  <string name="totp_length">Độ dài mã</string>
+  <string name="totp_scan">Quét mã QR</string>
+  <string name="delete_extra_string">Xóa chuỗi bổ sung</string>
+  <string name="database_loaded_quickunlock_enabled">%1$s: Đã khóa. Đã bật Mở khóa nhanh.</string>
+  <string name="database_loaded_unlocked">%1$s: Đã mở khóa.</string>
+  <string name="credentials_dialog_title">Nhập thông tin đăng nhập máy chủ</string>
+  <string name="UseFileTransactions_title">Giao dịch đồng bộ</string>
+  <string name="UseFileTransactions_summary">Sử dụng giao dịch đồng bộ khi ghi cơ sở dữ liệu</string>
+  <string name="LockWhenScreenOff_title">Khóa khi tắt màn hình</string>
+  <string name="LockWhenScreenOff_summary">Khóa cơ sở dữ liệu khi tắt màn hình.</string>
+  <string name="ClearPasswordOnLeave_title">Xóa mật khẩu chủ đã nhập</string>
+  <string name="ClearPasswordOnLeave_summary">Xóa mật khẩu chủ đã nhập khi rời màn hình mà không mở tập tin dữ liệu.</string>
+  <string name="LockWhenNavigateBack_title">Khóa khi thoát ứng dụng</string>
+  <string name="LockWhenNavigateBack_summary">Khóa cơ sở dữ liệu khi thoát ứng dụng bằng cách nhấn nút quay lại.</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Sử dụng bàn phím tích hợp bên trong Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Nếu bạn không tin tưởng nhà cung cấp bàn phím tiêu chuẩn của mình, hãy chọn tùy chọn này để sử dụng bàn phím tích hợp khi nhập mật khẩu chính hoặc các mục chỉnh sửa.</string>
+  <string name="ActivateSearchViewOnStart_title">ActivateSearchViewOnStart_title</string>
+  <string name="ActivateSearchViewOnStart_summary">ActivateSearchViewOnStart_summary</string>
+  <string name="NoDonateOption_title">Dấu tùy chọn quyên góp</string>
+  <string name="NoDonateOption_summary">Thiết lập này dành cho các nhà tài trợ. Nó được bật lên sau khi sử dụng Keepass2Android trong một thời gian ngắn.</string>
+  <string name="NoDonateOption_question">Nếu không có sự đóng góp, ứng dụng này sẽ không tồn tại và không được cải tiến! Nếu bạn chưa quyên góp, hãy cân nhắc thực hiện ngay bây giờ</string>
+  <string name="NoDonationReminder_title">Không bao giờ yêu cầu quyên góp</string>
+  <string name="NoDonationReminder_summary">Tôi sẽ không cho bạn một xu nào hoặc tôi đã tặng. Đừng yêu cầu đóng góp, ngay cả trong ngày sinh nhật của tác giả.</string>
+  <string name="UseOfflineCache_title">Bộ nhớ đệm cho cơ sở dữ liệu</string>
+  <string name="UseOfflineCache_summary">Giữ một bản sao của các tệp cơ sở dữ liệu trong thư mục bộ đệm của ứng dụng. Điều này cho phép sử dụng cơ sở dữ liệu ngay cả khi không thể truy cập được tệp cơ sở dữ liệu.</string>
+  <string name="CreateBackups_title">CreateBackups_title</string>
+  <string name="CreateBackups_summary">CreateBackups_summary</string>
+  <string name="UpdatingBackup">UpdatingBackup</string>
+  <string name="LocalBackupOf">LocalBackupOf</string>
+  <string name="show_local_backups">show_local_backups</string>
+  <string name="AcceptAllServerCertificates_title">Giấy chứng nhận SSL</string>
+  <string name="AcceptAllServerCertificates_summary">Xác định cách xử lý khi chứng chỉ xác nhận không thành công. Lưu ý: bạn có thể cài đặt chứng chỉ trên điện thoại nếu xác nhận không thành công!</string>
+  <string name="ClearOfflineCache_title">Xóa bộ nhớ đệm?</string>
+  <string name="ClearOfflineCache_question">ClearOfflineCache_question</string>
+  <string name="CheckForFileChangesOnSave_title">Kiểm tra những thay đổi</string>
+  <string name="CheckForFileChangesOnSave_summary">Kiểm tra xem nếu tập tin đã bị thay đổi bởi ứng dụng bên ngoài trước khi lưu thay đổi.</string>
+  <string name="CheckForDuplicateUuids_title">Kiểm tra UUID trùng</string>
+  <string name="CheckForDuplicateUuids_summary">Kiểm tra xem tập tin cơ sở dữ liệu có bị hỏng không, tức là có nhiều mục chung một ID không. Có thể gây ra hành vi không mong muốn.</string>
+  <string name="ShowCopyToClipboardNotification_title">Thông báo của bộ nhớ nháp</string>
+  <string name="ShowCopyToClipboardNotification_summary">Cho phép tên người dùng và mật mã có thể truy cập thông qua thanh thông báo và bộ nhớ nháp. Hãy cẩn thận với kỹ thuật nghe lén mật mã!</string>
+  <string name="ShowSeparateNotifications_title">Thông báo riêng</string>
+  <string name="ShowSeparateNotifications_summary">Hiện thông báo riêng cho việc sao chép tên người dùng và mật khẩu vào clipboard và bật bàn phím.</string>
+  <string name="AccServiceAutoFill_prefs">Dịch vụ Trợ năng tự động điền</string>
+  <string name="AutoFill_prefs">AutoFill_prefs</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Khi tự động điền một mục nhập bằng TOTP, hãy hiển thị thông báo mục nhập bằng nút Sao chép TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Hiển thị thông báo mục nhập</string>
+  <string name="AutoFillTotp_prefs_title">Tự động điền cho các mục TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Sao chép TOTP vào clipboard</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Khi tự động điền một mục nhập bằng TOTP, hãy sao chép TOTP vào clipboard</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Khi tự động điền mục nhập bằng TOTP, hãy kích hoạt bàn phím tích hợp. Bàn phím có nút TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Kích hoạt bàn phím tích hợp</string>
+  <string name="TotpCopiedToClipboard">Đã sao chép TOTP vào clipboard</string>
+  <string name="ShowKp2aKeyboardNotification_title">Thông báo của bàn phím KP2A</string>
+  <string name="ShowKp2aKeyboardNotification_summary">Cho phép các mục nhập có thể truy cập hoàn toàn thông qua bàn phím KP2A (khuyến khích).</string>
+  <string name="OpenKp2aKeyboardAutomatically_title">Chuyển đổi bàn phím</string>
+  <string name="OpenKp2aKeyboardAutomatically_summary">Mở hộp thoại lựa chọn bàn phím khi mục có sẵn thông qua bàn phím KP2A sau khi tìm kiếm từ trình duyệt hoặc từ bàn phím.</string>
+  <string name="kp2a_switch_rooted">Tự động chuyển đổi bàn phím</string>
+  <string name="kp2a_switch_rooted_summary">Chuyển sang bàn phím KP2A một cách tự động khi một tài khoản được chọn. Yêu cầu thiết lập trước KeyboardSwap Plugin một cách chính xác hoặc một thiết bị với quyền root và ứng dụng Secure Settings được thiết lập System+. </string>
+  <string name="get_keyboardswap">Cài đặt KeybaordSwap Plugin</string>
+  <string name="get_keyboardswap_summary">Plugin này cho phép chuyển đổi sang bàn phím KP2A mà không cần quyền root. Yêu cầu cần có ADB. </string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Tự động chuyển chỉ sau khi tìm kiếm</string>
+  <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Chỉ chuyển sang bàn phím KP2A một cách tự động sau khi sử dụng phương pháp Chia sẻ đường link URL (nhưng không chuyển khi xem một mục theo bất kỳ cách nào khác)</string>
+  <string name="AutoSwitchBackKeyboard_title">Chuyển lại bàn phím</string>
+  <string name="AutoSwitchBackKeyboard_summary">Chuyển lại bàn phím trước đó khi không có mục nào được mở.</string>
+  <string name="ShowUnlockedNotification_title">Biểu tượng của thông báo khi mở khóa</string>
+  <string name="ShowUnlockedNotification_summary">Hiển thị một thông báo đang diễn ra trong khi cơ sở dữ liệu được mở khóa.</string>
+  <string name="IconVisibilityInfo_Android8_text">IconVisibilityInfo_Android8_text</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Open Settings</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android có thể hiển thị thông báo hệ thống trong khi cơ sở dữ liệu của bạn không bị khóa. Để làm việc này, vui lòng cấp quyền.</string>
+  <string name="DontCare">Tôi không quan tâm</string>
+  <string name="DocumentAccessRevoked">Keepass2Android không thể truy cập tệp này nữa. Nó đã bị xóa hoặc quyền truy cập đã bị thu hồi. Vui lòng sử dụng mở lại tệp, ví dụ: sử dụng Thay đổi cơ sở dữ liệu.</string>
+  <string name="PreloadDatabaseEnabled_title">Tải tập tin cơ sở dữ liệu trước</string>
+  <string name="PreloadDatabaseEnabled_summary">Khởi động tiến trình xử lý hoặc tải xuống các tập tin cơ sở dữ liệu trong khi nhập mật mã.</string>
+  <string name="SyncAfterQuickUnlock_title">Đồng bộ hóa sau khi mở khóa nhanh</string>
+  <string name="SyncAfterQuickUnlock_summary">Đồng bộ hóa cơ sở dữ liệu với tập tin từ xa sau khi mở khóa bằng Mở khóa nhanh.</string>
+  <string name="AskOverwriteBinary">Bạn có muốn ghi đè lên dữ liệu hiện tại với cùng tên?</string>
+  <string name="AskOverwriteBinary_title">Ghi đè dữ liệu hiện tại?</string>
+  <string name="AskOverwriteBinary_yes">Ghi đè</string>
+  <string name="AskOverwriteBinary_no">Đổi tên</string>
+  <string name="AttachFailed">Thất bại khi đính kèm tập tin.</string>
+  <string name="RecycleBin">Thùng rác</string>
+  <string name="AskDeletePermanentlyEntry">Bạn có muốn xóa mục này vĩnh viễn không? Bấm Không để tái chế.</string>
+  <string name="AskDeletePermanentlyGroup">Bạn có muốn xóa nhóm này vĩnh viễn không? Bấm Không để tái chế.</string>
+  <string name="AskDeletePermanentlyItems">Bạn có muốn xóa những phần tử này vĩnh viễn không? Bấm Không để đưa vào thùng rác.</string>
+  <string name="AskDeletePermanentlyEntryNoRecycle">Bạn có muốn xoá vĩnh viễn mục này không?</string>
+  <string name="AskDeletePermanentlyGroupNoRecycle">Bạn có muốn xoá vĩnh viễn nhóm này không?</string>
+  <string name="AskDeletePermanentlyItemsNoRecycle">Bạn có muốn xoá vĩnh viễn các mục đã chọn không?</string>
+  <string name="AskDeletePermanently_title">Xóa vĩnh viễn?</string>
+  <string name="AskReloadFile_title">Tải lại tập tin?</string>
+  <string name="AskReloadFile">Tập tin đang mở đã được thay đổi bởi một chương trình khác. Bạn có muốn tải lại nó?</string>
+  <string name="AskDiscardChanges">Bạn có thực sự muốn hủy bỏ các thay đổi đã thực hiện? (Nút Lưu nằm ở trên cùng của bảng nhập liệu.)</string>
+  <string name="AskDiscardChanges_title">Hủy bỏ các thay đổi?</string>
+  <string name="suggest_improvements">Đề nghị hoặc bỏ phiếu cho những cải tiến</string>
+  <string name="rate_app">Đánh giá ứng dụng này</string>
+  <string name="translate_app">Dịch KP2A</string>
+  <string name="AddingEntry">Đang thêm mục…</string>
+  <string name="AddingGroup">Đang thêm nhóm…</string>
+  <string name="DeletingEntry">Đang xóa mục…</string>
+  <string name="DeletingGroup">Đang xóa nhóm…</string>
+  <string name="DeletingItems">Đang xoá các mục…</string>
+  <string name="SettingPassword">Đang cài đặt mật mã…</string>
+  <string name="UndoingChanges">Đang quay lại các thay đổi…</string>
+  <string name="TransformingKey">Đang chuyển đổi khóa chính…</string>
+  <string name="DecodingDatabase">Đang giải mã cơ sở dữ liệu…</string>
+  <string name="ParsingDatabase">Đang phân tích cơ sở dữ liệu…</string>
+  <string name="CheckingTargetFileForChanges">Đang kiểm tra tập tin đích cho những thay đổi…</string>
+  <string name="TitleSyncQuestion">Có trộn các thay đổi không?</string>
+  <string name="MessageSyncQuestion">Tập tin cơ sở dữ liệu đã được thay đổi bởi ứng dụng bên ngoài. Bạn có muốn tải và trộn những thay đổi trước khi lưu? Chọn Không nếu bạn muốn ghi đè lên những thay đổi bên ngoài.</string>
+  <string name="SynchronizingDatabase">Đang trộn những thay đổi…</string>
+  <string name="YesSynchronize">Có, trộn</string>
+  <string name="NoOverwrite">Không, ghi đè</string>
+  <string name="UseOfflineMode">Chỉ làm việc trên bộ đệm nội bộ</string>
+  <string name="UseOnlineMode">Đồng bộ hóa bản sao bộ đệm với nguồn</string>
+  <string name="UseOfflineMode_Info">Cơ sở dữ liệu được tải từ bộ đệm nội bộ. Các thay đổi chỉ được lưu trữ trong bộ đệm trong và sẽ chỉ được đồng bộ hóa khi chọn Đồng bộ hóa bản sao bộ đệm với nguồn.</string>
+  <string name="InOfflineMode">Chỉ làm việc trên bộ đệm nội bộ.</string>
+  <string name="SynchronizingCachedDatabase">Đang đồng bộ hóa cơ sở dữ liệu trên bộ nhớ đệm…</string>
+  <string name="DownloadingRemoteFile">Đang tải tệp nguồn…</string>
+  <string name="UploadingFile">Lưu tệp…</string>
+  <string name="RestoringRemoteFile">Đang khôi phục tệp nguồn…</string>
+  <string name="FilesInSync">Các tập tin đang được đồng bộ.</string>
+  <string name="SynchronizedDatabaseSuccessfully">Cơ sở dữ liệu đồng bộ hóa thành công!</string>
+  <string name="CheckingDatabaseForChanges">Đang kiểm tra cơ sở dữ liệu cho các thay đổi…</string>
+  <string name="CouldNotSaveToRemote">Không thể lưu vào tệp nguồn: %1$s. Lưu lại hoặc sử dụng menu đồng bộ hóa khi có thể truy cập lại tệp.</string>
+  <string name="CouldNotLoadFromRemote">Không thể truy cập tệp nguồn: %1$s. Đã tải tệp từ bộ đệm nội bộ. Bạn vẫn có thể thực hiện các thay đổi trong cơ sở dữ liệu và đồng bộ hóa chúng sau này.</string>
+  <string name="UpdatedRemoteFileOnLoad">Đã cập nhật tệp nguồn.</string>
+  <string name="NotifyOpenFromLocalDueToConflict">Đã mở tệp được lưu vào bộ nhớ đệm nội bộ do xung đột với các thay đổi trong tệp nguồn. Sử dụng menu Đồng bộ hóa để hợp nhất.</string>
+  <string name="LoadedFromRemoteInSync">Tệp nguồn và bộ đệm được đồng bộ hóa.</string>
+  <string name="UpdatedCachedFileOnLoad">Đã cập nhật bản sao bộ nhớ đệm nội bộ của %1$s.</string>
+  <string name="RemoteDatabaseUnchanged">Không có thay đổi nào được phát hiện.</string>
+  <string name="ResolvedCacheConflictByUsingRemoteOtpAux">Đã cập nhật tệp phụ trợ OTP được lưu trong bộ nhớ đệm: Bộ đếm nguồn cao hơn.</string>
+  <string name="ResolvedCacheConflictByUsingLocalOtpAux">Cập nhật tệp phụ trợ OTP nguồn: Bộ đếm cục bộ cao hơn.</string>
+  <string name="SynchronizingOtpAuxFile">Đang đồng bộ hóa tập tin phụ trợ OTP…</string>
+  <string name="database_file">tập tin cơ sở dữ liệu</string>
+  <string name="otp_aux_file">Tập tin phụ trợ OTP</string>
+  <string name="ErrorOcurred">Một lỗi đã xảy ra:</string>
+  <string name="DuplicateUuidsError">Cơ sở dữ liệu hỏng: Tìm thấy ID bị trùng. (Có phải bạn đã lưu tập tin bằng Minikeepass?) Hãy nhập lại cơ sở dữ liệu mới bằng Keepass 2 trên máy tính và chọn \"Tạo ID mới\".</string>
+  <string name="DuplicateUuidsErrorAdditional">Bạn có thể tắt thông báo lỗi này trong Thiết đặt/Thiết đặt ứng dụng/Xử lý tệp/Kiểm tra UUID trùng lặp. Xin lưu ý rằng bạn có thể gặp phải hành vi không mong muốn. Nên sửa cơ sở dữ liệu.</string>
+  <string name="synchronize_database_menu">Đang đồng bộ hóa cơ sở dữ liệu…</string>
+  <string name="CannotMoveGroupHere">Không thể di chuyển nhóm tới nhóm này.</string>
+  <string name="donate_question">Hôm nay là Lễ hội tháng Mười ở nước Đức (Oktoberfest)! Nếu bạn thích Keepass2Android: có lẽ hôm nay là một ngày đẹp trời để mua cho tôi một ly bia?</string>
+  <string name="donate_bday_question">10 tháng 5? Nó là ngày sinh nhật của tôi! Nếu bạn thích ứng dụng này, sao không gởi cho tôi vài lời chúc mừng sinh nhật cùng với một món quà sinh nhật nhỏ? Việc đó thật sự sẽ làm cho tôi hạnh phúc! :-)</string>
+  <string name="donate_missedbday_question">Ồ, bạn đã bỏ lỡ ngày sinh nhật của tôi 10 tháng 5! Nếu bạn thích ứng dụng này, sao không gởi cho tôi vài lời chúc mừng và một món quà sinh nhật nhỏ? Chưa phải quá trễ để làm tôi hạnh phúc! :-)</string>
+  <string name="ok_donate">Cho tôi biết thêm!</string>
+  <string name="no_thanks">Không, tôi không thích nó lắm</string>
+  <string name="enter_http_login_title">Nhập thông tin đăng nhập WebDav:</string>
+  <string name="hint_http_url">URL của thư mục hoặc tập tin (ví dụ: mycloud.me.com/webdav/)</string>
+  <string name="enter_owncloud_login_title">Nhập thông tin đăng nhập OwnCloud:</string>
+  <string name="hint_owncloud_url">URL OwnCloud (ví dụ: owncloud.me.com)</string>
+  <string name="enter_nextcloud_login_title">Nhập dữ liệu đăng nhập Nextcloud:</string>
+  <string name="hint_nextcloud_url">URL Nextcloud (ví dụ: nextcloud.me.com)</string>
+  <string name="hint_sftp_host">máy chủ (thí dụ: 192.168.0.1)</string>
+  <string name="hint_sftp_port">cổng</string>
+  <string name="initial_directory">Thư mục khởi động (tùy chọn):</string>
+  <string name="connect_timeout">Số giây hết thời gian kết nối (tùy chọn)</string>
+  <string name="enter_sftp_login_title">Nhập thông tin đăng nhập SFTP:</string>
+  <string name="sftp_auth_mode">Chế độ xác thực</string>
+  <string name="send_public_key">Gửi chìa khóa công khai...</string>
+  <string name="select_private_keyfile">Chọn chìa khóa riêng...</string>
+  <string name="hint_sftp_key_name">Tên chìa khóa mới</string>
+  <string name="hint_sftp_key_content">Nội dung chìa khóa mới</string>
+  <string name="private_key_saved">Đã lưu chìa khóa riêng</string>
+  <string name="private_key_save_failed">KHÔNG lưu được khóa riêng: %1$s</string>
+  <string name="private_key_info">Nhập tên chìa khóa và nội dung cần lưu</string>
+  <string name="private_key_delete">Đã xóa chìa khóa riêng: %1$s</string>
+  <string name="private_key_delete_failed">KHÔNG xóa được khóa riêng: %1$s</string>
+  <string name="save_key">Lưu khóa riêng</string>
+  <string name="delete_key">Xóa khóa riêng</string>
+  <string name="private_key_select">Chọn khóa riêng</string>
+  <string name="private_key_create_new">[Thêm mới...]</string>
+  <string name="hint_sftp_key_passphrase">Cụm mật khẩu chính (tùy chọn)</string>
+  <string name="sftp_kex_title">(Các) Thuật toán trao đổi khóa (KEX) (tùy chọn)</string>
+  <string name="hint_sftp_kex">Tên/thông số được phân tách bằng dấu phẩy</string>
+  <string name="sftp_shk_title">(Các) Thuật toán khóa host máy chủ (tùy chọn)</string>
+  <string name="hint_sftp_shk">Tên/thông số được phân tách bằng dấu phẩy</string>
+  <string name="enter_ftp_login_title">Nhập thông tin đăng nhập FTP:</string>
+  <string name="enter_mega_login_title">Nhập dữ liệu đăng nhập tài khoản MEGA của bạn:</string>
+  <string name="select_storage_type">Chọn loại lưu trữ:</string>
+  <string name="filestoragename_file">Tập tin cục bộ</string>
+  <string name="filestoragename_androidget">Chọn từ ứng dụng khác</string>
+  <string name="filestoragename_androidsend">Gởi tới ứng dụng khác</string>
+  <string name="filestoragename_ftp">FTP</string>
+  <string name="filestoragename_http">HTTP (WebDav)</string>
+  <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_nextcloud">Nextcloud</string>
+  <string name="filestoragename_dropbox">Dropbox</string>
+  <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
+  <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Dropbox đầy đủ của mình, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vào thư mục Apps/Keepass2Android. Điều này đặc biệt phù hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có cơ sở dữ liệu, hãy chọn tùy chọn này để tạo thư mục, sau đó đặt tệp của bạn bên trong thư mục (từ PC của bạn) và sau đó chọn lại tùy chọn này để mở tệp.</string>
+  <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (tệp KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Google Drive đầy đủ của mình, bạn có thể chọn tùy chọn này. Lưu ý rằng trước tiên bạn cần tạo tệp cơ sở dữ liệu, các tệp hiện có sẽ không hiển thị với ứng dụng. Chọn tùy chọn này từ màn hình Tạo cơ sở dữ liệu hoặc, nếu bạn đã mở cơ sở dữ liệu, bằng cách xuất cơ sở dữ liệu chọn tùy chọn này.</string>
+  <string name="filestoragename_pcloud">PCloud (thư mục KP2A)</string>
+  <string name="filestoragehelp_pcloud">Loại lưu trữ này sẽ chỉ yêu cầu quyền truy cập vào thư mục pCloud \"Applications/Keepass2Android\". Nếu bạn muốn sử dụng cơ sở dữ liệu hiện có từ tài khoản pCloud của mình, vui lòng đảm bảo tệp được đặt trong thư mục pCloud này.</string>
+  <string name="filestoragename_pcloudall">PCloud (Truy cập đầy đủ)</string>
+  <string name="filestoragename_onedrive">OneDrive</string>
+  <string name="filestoragename_onedrive2">OneDrive</string>
+  <string name="filestoragename_onedrive2_full">Tất cả các tệp và tệp được chia sẻ</string>
+  <string name="filestoragename_onedrive2_myfiles">Tệp của tôi</string>
+  <string name="filestoragename_onedrive2_appfolder">Thư mục ứng dụng Keepass2Android</string>
+  <string name="filestoragename_sftp">SFTP (bộ chuyển tập tin SSH)</string>
+  <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Xin lưu ý: Keepass2Android phải tải xuống danh sách tất cả các tệp trong tài khoản Mega của bạn để hoạt động bình thường. Vì lý do này, việc truy cập vào tài khoản có nhiều tệp có thể bị chậm.</string>
+  <string name="filestoragename_content">Hộp thoại chọn tập tin của hệ thống</string>
+  <string name="filestorage_setup_title">Khởi tạo truy cập tập tin</string>
+  <string name="database_location">Vị trí cơ sở dữ liệu</string>
+  <string name="help_database_location">Bạn có thể lưu trữ cơ sở dữ liệu trên điện thoại Android của bạn hoặc trong các dịch vụ điện toán đám mây (chỉ hỗ trợ trong phiên bản Trực tuyến). Keepass2Android hỗ trợ tương tác với cơ sở dữ liệu ngay cả khi bạn đang gián tuyến. Các cơ sở dữ liệu được mã hóa một cách an toàn với thuật toán AES 256 bit, sẽ không ai có thể truy cập được các mật mã của bạn trừ bạn. Chúng tôi khuyên bạn nên chọn Dropbox: nó có thể truy cập được từ tất cả các thiết bị của bạn và thậm chí cung cấp bản sao lưu các phiên bản trước của tập tin.</string>
+  <string name="hint_database_location">Chọn nơi bạn muốn lưu cơ sở dữ liệu:</string>
+  <string name="button_change_location">Thay đổi vị trí</string>
+  <string name="help_quickunlock">Khi được bật, Keepass2Android sẽ chạy ngầm ngay cả khi cơ sở dữ liệu đã khoá. Việc này giúp bạn có thể mở khoá cơ sở dữ liệu sau đó chỉ bằng một phần ngắn của mật khẩu chính.</string>
+  <string name="master_password">Mật mã chủ</string>
+  <string name="help_master_password">Cơ sở dữ liệu của bạn được mã hóa với mật mã bạn nhập ở đây. Chọn một mật mã mạnh để giữ cho cơ sở dữ liệu an toàn! Mẹo: Nghĩ về một hoặc hai câu và sử dụng các chữ cái đầu tiên của các từ cho mật khẩu. Thêm vô các dấu chấm câu.</string>
+  <string name="hint_master_password">Chọn một mật mã chủ để bảo vệ cơ sở dữ liệu của bạn:</string>
+  <string name="key_file">Tệp khóa</string>
+  <string name="help_key_file">Một tệp khóa về cơ bản là một mật khẩu được lưu trữ trong một tệp. Các tệp khóa thường mạnh hơn mật khẩu chính, bởi vì khóa có thể phức tạp hơn rất nhiều; tuy nhiên cũng khó giữ bí mật hơn. Nếu bạn lưu trữ cơ sở dữ liệu của mình trên đám mây, cũng đừng lưu trữ tệp khóa ở đó! Điều này sẽ làm cho nó hoàn toàn vô dụng! Quan trọng: Không thay đổi nội dung của tệp khóa sau khi tạo cơ sở dữ liệu!</string>
+  <string name="hint_key_file">Chọn xem bạn có muốn sử dụng tệp khóa ngoài mật khẩu chính của mình hay không:</string>
+  <string name="use_key_file">Dùng tệp khóa</string>
+  <string name="error_adding_keyfile">Lỗi trong khi thêm tệp khóa!</string>
+  <string name="init_otp">Tải tập tin phụ trợ OTP…</string>
+  <string name="otp_explanation">Nhập Mật khẩu một lần (OTP) tiếp theo. Vuốt Yubikey NEO ở phía sau thiết bị của bạn để truy cập qua NFC (yêu cầu ứng dụng Yubiclip).</string>
+  <string name="otp_hint">OTP %1$d</string>
+  <string name="CouldntLoadOtpAuxFile">Không thể tải tập tin phụ trợ OTP!</string>
+  <string name="CouldntLoadOtpAuxFile_Hint">Xin vui lòng sử dụng công cụ OtpKeyProv trong KeePass 2.x (PC) để cài đặt cấu hình cơ sở dữ liệu của bạn để sử dụng với OTPs!</string>
+  <string name="otp_discarded_because_no_db">Xin vui lòng chọn cơ sở dữ liệu trước. OTP bị loại bỏ vì lý do an ninh.</string>
+  <string name="otp_discarded_no_space">OTP đã bị loại bỏ: Tất cả OTPs đã nhập!</string>
+  <string name="otp_discarded_because_db_open">Vui lòng đóng cơ sở dữ liệu trước. OTP bị loại bỏ.</string>
+  <string name="otps_pending">(Vẫn còn một hoặc nhiều OTPs)</string>
+  <string name="otpsecret_hint">Bí mật OTP (thí dụ: 01 23 ab cd…)</string>
+  <string name="CouldntParseOtpSecret">Lỗi khi phân tích OTP bí mật!</string>
+  <string name="OtpKeyError">Lỗi khi tạo khóa OTP! Hãy chắc chắn bạn đã nhập đúng OTPs.</string>
+  <string name="ErrorUpdatingOtpAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
+  <string name="SavingOtpAuxFile">Đang lưu tập tin phụ trợ OTP…</string>
+  <string name="NoChallengeApp">Không thể tìm thấy ứng dụng có thể xử lý thử thách này.</string>
+  <string name="PleaseInstallApp">Vui lòng cài đặt %1$s từ Google Play.</string>
+  <string name="AppOutdated">%1$s không còn được hỗ trợ.</string>
+  <string name="bad_resp">Trả lời thách thức không đúng.</string>
+  <string name="CouldntLoadChalAuxFile">Không thể tải tập tin hỗ trợ cho thách thức!</string>
+  <string name="CouldntLoadChalAuxFile_Hint">Xin vui lòng sử dụng công cụ KeeChallenge trong KeePass 2.x (PC) để cấu hình cơ sở dữ liệu của bạn để sử dụng cho trả lời thách thức!</string>
+  <string name="ErrorUpdatingChalAuxFile">Lỗi khi cập nhật tập tin phụ trợ OTP!</string>
+  <string name="TrayTotp_SeedField_title">Tên của mục gốc TOTP</string>
+  <string name="TOTP">TOTP</string>
+  <string name="TrayTotp_SeedField_summary">Nếu bạn đang sử dụng công cụ Keepass 2 \"TrayTotp\" với các cài đặt không như mặc định, nhập tên mục gốc ở đây tương ứng với các cài đặt trên máy PC.</string>
+  <string name="TrayTotp_SettingsField_title">Tên cài đặt của mục gốc TOTP</string>
+  <string name="TrayTotp_SettingsField_summary">Nhập tên của mục cài đặt cho TrayTotp ở đây.</string>
+  <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="DebugLog_prefs_prefs">Tập tin log để debug</string>
+  <string name="DebugLog_title">Dùng tập tin log</string>
+  <string name="FtpDebug_title">Ghi nhật ký gỡ lỗi FTP/SFTP</string>
+  <string name="DebugLog_summary">Viết đầu ra của ứng dụng vào một tệp nhật ký cục bộ</string>
+  <string name="DebugLog_send">Gửi nhật ký gỡ lỗi...</string>
+  <string name="loading">Đang tải…</string>
+  <string name="plugins">Các tiện ích bổ sung</string>
+  <string name="plugin_packagename">Tên kiện hàng:</string>
+  <string name="plugin_description">Mô tả (chưa xác nhận):</string>
+  <string name="plugin_author">Tác giả (chưa xác nhận):</string>
+  <string name="plugin_enabled">đã kích hoạt</string>
+  <string name="plugin_disabled">không kích hoạt</string>
+  <string name="plugin_web">Tìm các công cụ trực tuyến</string>
+  <string name="plugin_scopes">Phạm vi</string>
+  <string name="not_enabled">chưa được kích hoạt</string>
+  <string name="query_credentials_for_url">%1$s đang yêu cầu thông tin đăng nhập cho %2$s.</string>
+  <string name="query_credentials">%1$s đang yêu cầu thông tin đăng nhập. Vui lòng chọn một mục.</string>
+  <string name="plugin_enabled_checkbox">Đã kích hoạt</string>
+  <string name="SCOPE_DATABASE_ACTIONS_title">Các thông báo của hoạt động của cơ sở dữ liệu</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Công cụ sẽ được thông báo khi một cơ sở dữ liệu được mở, đóng hoặc lưu.</string>
+  <string name="SCOPE_CURRENT_ENTRY_title">Mục dữ liệu hiện tại</string>
+  <string name="SCOPE_CURRENT_ENTRY_explanation">Công cụ sẽ nhận được tất cả dữ liệu của mục dữ liệu hiện tại và sẽ được cho phép thao tác và sửa đổi cách trình bày của nó.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Truy vấn thông tin đăng nhập</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_explanation">Plugin sẽ được phép truy vấn thông tin đăng nhập được liên kết với gói ứng dụng của chính nó.</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_title">Truy vấn thông tin đăng nhập</string>
+  <string name="SCOPE_QUERY_CREDENTIALS_explanation">Plugin sẽ được phép truy vấn thông tin xác thực của các trang web hoặc ứng dụng có chủ ý.</string>
+  <string name="get_regular_version">Nhận thêm các kiểu lưu trữ</string>
+  <string name="CertificateWarning">Cảnh báo: Chứng chỉ máy chủ xác nhận thất bại: %1$s. Hãy cài đặt giấy chứng nhận gốc thích hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
+  <string name="CertificateFailure">Lỗi: Chứng chỉ máy chủ xác nhận không thành công! Hãy cài đặt chứng chỉ gốc phù hợp lên thiết bị của bạn hoặc xem cài đặt!</string>
+  <string name="export_fileformats_title">Chọn định dạng tập tin</string>
+  <string name="killed_by_os">Xin lỗi! Keepass2Android đã bị tắt bởi hệ điều hành Android! Vì lý do an ninh, Keepass2Android đã không lưu thông tin đăng nhập bạn đã chọn trên thiết bị, do đó bạn cần phải mở lại cơ sở dữ liệu của bạn. Lưu ý: Chuyện này rất ít khi xảy ra. Nếu có, xin vui lòng gởi cho tôi một tin nhắn tại crocoapps@gmail.com.</string>
+  <string name="FileIsTemporarilyAvailable">Tập tin này chỉ tạm thời khả dụng cho Keepass2Android.</string>
+  <string name="FileIsReadOnly">Tập tin bạn đã chọn chỉ có thể đọc.</string>
+  <string name="FileIsReadOnlyOnKitkat">Tập tin bạn chọn đang ở chế độ chỉ đọc cho Keepass2Android do các giới hạn của hệ điều hành Android 4.4 trở lên.</string>
+  <string name="CopyFileRequired">Để sử dụng nó, bạn phải sao chép sang vị trí khác.</string>
+  <string name="CopyFileRequiredForEditing">Để sửa nó, bạn phải sao chép sang vị trí khác.</string>
+  <string name="ClickOkToSelectLocation">Nhấn OK để chọn vị trí cần sao chép tệp.</string>
+  <string name="FileReadOnlyTitle">Cơ sở dữ liệu chỉ có thể đọc</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android đã mở dữ liệu trong chế độ chỉ đọc.</string>
+  <string name="ReadOnlyReason_PreKitKat">Có vẻ như bạn đã mở tệp từ ứng dụng bên ngoài. Bằng cách này không hỗ trợ ghi. Nếu bạn muốn thay đổi cơ sở dữ liệu, vui lòng đóng cơ sở dữ liệu và chọn Thay đổi cơ sở dữ liệu. Sau đó, mở tập tin từ một trong những tuỳ chọn có sẵn nếu có thể.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Cờ chỉ đọc được đặt. Xóa cờ này nếu bạn muốn sửa cơ sở dữ liệu.</string>
+  <string name="ReadOnlyReason_ReadOnlyKitKat">Không thể ghi được vì giới hạn được giới thiệu trong Android KitKat. Nếu bạn muốn chỉnh sửa cơ sở dữ liệu, hãy đóng cơ sở dữ liệu và chọn Thay đổi cơ sở dữ liệu. Sau đó, mở tập tin bằng cách sử dụng Lựa chọn tập tin hệ thống.</string>
+  <string name="ReadOnlyReason_LocalBackup">Bản sao lưu cục bộ không thể được sửa đổi. Bạn có thể sử dụng Thiết đặt cơ sở dữ liệu - Xuất cơ sở dữ liệu để xuất bản sao lưu này sang vị trí khác mà bạn có thể mở lại. Sau đó nó sẽ có thể ghi lại được.</string>
+  <string name="AddCustomIcon">Thêm biểu tượng từ tập tin...</string>
+  <string name="CopyingFile">Đang sao chép tập tin...</string>
+  <string name="DuplicateTitle">Bản sao</string>
+  <string name="DefaultTemplate">Mục tiêu chuẩn</string>
+  <string name="TemplateGroupName">Mẫu</string>
+  <string name="TemplateTitle_IdCard">Thẻ căn cước</string>
+  <string name="TemplateField_IdCard_Name">Tên</string>
+  <string name="TemplateField_IdCard_PlaceOfIssue">Nơi cấp</string>
+  <string name="TemplateField_IdCard_IssueDate">Ngày cấp</string>
+  <string name="TemplateTitle_EMail">E-mail</string>
+  <string name="TemplateField_EMail_EMail">Địa chỉ e-mail</string>
+  <string name="TemplateTitle_WLan">Wi-Fi</string>
+  <string name="TemplateTitle_Notes">Ghi chú bảo mật</string>
+  <string name="TemplateField_WLan_SSID">SSID</string>
+  <string name="TemplateField_Number">Số</string>
+  <string name="TemplateField_CreditCard_CVV">CVV</string>
+  <string name="TemplateField_CreditCard_PIN">PIN</string>
+  <string name="TemplateField_CreditCard_Owner">Chủ thẻ</string>
+  <string name="TemplateTitle_CreditCard">Thẻ tín dụng</string>
+  <string name="TemplateTitle_Membership">Thành viên</string>
+  <string name="ChangeLog_title">Nhật ký các thay đổi</string>
+  <string name="AskAddTemplatesTitle">Thêm những mẫu?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android chứa các mẫu nhập cho tài khoản E-Mail, mật khẩu không dây-LAN, ghi chú bảo mật và hơn thế nữa. Bạn có muốn thêm vào tập tin dữ liệu của bạn? Nếu bạn chọn Không, bạn có thể thêm chúng vào cài đặt cơ sở dữ liệu sau.</string>
+  <string name="AddTemplates_pref">Thêm các mẫu vào tập tin dữ liệu</string>
+  <string name="PreviewWarning">Xin lưu ý! Đây là bản phát hành bản xem trước và có thể có một số lỗi! Nếu bạn gặp *bất cứ điều gì* không mong đợi, vui lòng cho tôi biết (trong nhóm thử nghiệm beta trên Google+ hoặc qua email).</string>
+  <string name="Continue">Tiếp tục</string>
+  <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
+  <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
+  <string name="open_other_db">Mở cơ sở dữ liệu khác…</string>
+  <string name="select_database">Chọn cơ sở dữ liệu</string>
+  <string name="configure_child_dbs">Định cấu hình cơ sở dữ liệu con…</string>
+  <string name="child_dbs_title">Cơ sở dữ liệu con</string>
+  <string name="unspecified">không xác định</string>
+  <string name="child_db_explanation">Cơ sở dữ liệu con là các cơ sở dữ liệu khác có thể được mở tự động khi bạn mở cơ sở dữ liệu mẹ. Do đó, mật khẩu chính và vị trí tệp của con được lưu trữ trong thư mục mẹ. Tính năng này cho phép chia sẻ một số mật khẩu của bạn với người khác. Việc triển khai tương thích với KeeAutoExec cho PC.</string>
+  <string name="child_db_enabled_on_this_device">Đã bật trên thiết bị này</string>
+  <string name="child_db_enable_on_this_device">Bật trên thiết bị này</string>
+  <string name="child_db_disable_on_this_device">Tắt trên thiết bị này</string>
+  <string name="child_db_enable_a_copy_for_this_device">Sao chép cho thiết bị này</string>
+  <string name="unconfigured_child_dbs">Cơ sở dữ liệu của bạn chứa cơ sở dữ liệu con mới trong nhóm \"Tự động mở\". Vui lòng chỉ định xem có nên sử dụng các cơ sở dữ liệu con này trên thiết bị này hay không.</string>
+  <string name="add_child_db">Thêm cơ sở dữ liệu con...</string>
+  <string name="EnableCopyForThisDevice_Info">Điều này sẽ tạo và kích hoạt một bản sao thiết đặt cơ sở dữ liệu con. Sau đó, những thiết đặt đã sao chép này có thể được điều chỉnh cụ thể cho thiết bị này.</string>
+  <string name="Visible_title">Dễ thấy</string>
+  <string name="child_db_Enabled_title">Tự động mở</string>
+  <string name="database_file_heading">Tệp cơ sở dữ liệu</string>
+  <string name="if_device_text">Bật cho %1$s</string>
+  <string name="restore_history">Khôi phục phiên bản này</string>
+  <string name="remove_history">Xóa phiên bản này</string>
+  <string name="DbUnlockedChannel_name">Đã mở khóa cơ sở dữ liệu</string>
+  <string name="DbUnlockedChannel_desc">Thông báo về cơ sở dữ liệu đang được mở khóa</string>
+  <string name="DbQuicklockedChannel_name">Mở khóa nhanh</string>
+  <string name="DbQuicklockedChannel_desc">Thông báo về việc cơ sở dữ liệu bị khóa bằng Mở khóa nhanh</string>
+  <string name="EntryChannel_name">Thông báo mục nhập</string>
+  <string name="EntryChannel_desc">Thông báo để đơn giản hóa việc truy cập vào mục hiện được chọn.</string>
+  <string name="CloseDbAfterFailedAttempts">Đóng cơ sở dữ liệu sau ba lần mở khóa sinh trắc học không thành công.</string>
+  <string name="WarnFingerprintInvalidated">Cảnh báo! Xác thực sinh trắc học có thể bị Android vô hiệu hóa, ví dụ: sau khi thêm dấu vân tay mới vào cài đặt thiết bị của bạn. Hãy chắc chắn rằng bạn luôn biết cách mở khóa bằng mật khẩu chính của mình!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Đã thêm các nút hành động nổi để tìm kiếm và tổng quan về TOTP (nếu có các mục TOTP).</item>
+    <item>Cải thiện hiển thị các trường TOTP bằng cách thêm chỉ báo thời gian chờ và hiển thị nó nổi bật hơn.</item>
+    <item>TOTP bây giờ có thể được nhìn thấy từ chế độ xem nhóm.</item>
+    <item>Sao chép giá trị văn bản vào clipboard khi nhấn và giữ trong chế độ xem mục nhập.</item>
+    <item>Làm cho TOTP dễ truy cập hơn trên bàn phím tích hợp.</item>
+    <item>Hiển thị thông báo mục nhập khi tự động điền mục TOTP. Điều này cho phép sao chép TOTP vào clipboard. Xem tùy chọn để định cấu hình hành vi.</item>
+    <item>Đã cập nhật triển khai TOTP để giải quyết các vấn đề tương thích với KeePass2 và TrayTOTP</item>
+    <item>Cải tiến nhỏ</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Cập nhật SDK pCloud để cung cấp quyền truy cập vào các thư mục dùng chung</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Thêm hỗ trợ quyền thông báo trên Android 13+</item>
+    <item>Cải thiện việc triển khai FTP và SFTP</item>
+    <item>Thêm quyền truy cập vào pCloud đầy đủ</item>
+    <item>Cho phép chọn ngôn ngữ hệ thống trong hộp thoại ngôn ngữ</item>
+    <item>Khắc phục sự cố ghi nhớ loại mật khẩu Tệp khóa + Thử thách</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09e">
+    <item>Sửa lỗi treo máy và đăng xuất không mong muốn</item>
+    <item>Chuyển sang triển khai SFTP mới, hỗ trợ các thuật toán khóa công khai hiện đại như rsa-sha2-256</item>
+    <item>Đánh dấu mật khẩu là nhạy cảm khi sao chép vào bảng nhớ tạm (Android 13)</item>
+    <item>Cải tiến tự động điền</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09d">
+    <item>Đã thêm hỗ trợ để xem, xóa và khôi phục các bản sao lưu mục nhập</item>
+    <item>Đã triển khai hỗ trợ cho lưu trữ đám mây MEGA</item>
+    <item>Đã thêm hỗ trợ cho Google Drive với phạm vi hạn chế</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09c">
+    <item>Triển khai lại xác thực Google Drive, hỗ trợ Google Drive được kích hoạt lại</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09b">
+    <item>Sửa lỗi lời nhắc tự động điền biến mất trong Firefox</item>
+    <item>Tích hợp gợi ý tự động điền bằng bàn phím (yêu cầu Android 11+)</item>
+    <item>Cho phép thay đổi ngôn ngữ ứng dụng trong thiết đặt</item>
+    <item>Thêm tùy chọn đồng bộ cơ sở dữ liệu sau khi mở khóa nhanh</item>
+    <item>Sửa lỗi tên file không viết thường khi lưu vào Dropbox</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09a">
+    <item>Đã thêm hỗ trợ cho định dạng tệp KDBX 4.1 được giới thiệu trong KeePass 2.48</item>
+    <item>Đã thêm hộp thoại để định cấu hình cài đặt TOTP cho các mục nhập</item>
+    <item>Trình tạo mật khẩu được cải tiến: Đã thêm hỗ trợ cụm mật khẩu, nhiều tùy chọn hơn, cấu hình và ước tính độ mạnh mật khẩu</item>
+    <item>Cải tiến tính năng Tự động điền (sửa lỗi cửa sổ bật lên không hiển thị trong Chrome, hỗ trợ tên miền phụ tốt hơn)</item>
+    <item>Những cải tiến đối với việc triển khai OneDrive: không còn giới hạn kích thước, không còn yêu cầu xác thực thừa</item>
+    <item>Đã thêm tùy chọn để chọn thiết kế sáng/tối từ cài đặt hệ thống, bao gồm cả kế hoạch ban đêm, yêu cầu Android 10+</item>
+    <item>Cập nhật triển khai Dropbox để hỗ trợ phương thức xác thực mới.</item>
+    <item>Mở khóa bằng vân tay mới thiết lập sẽ bị vô hiệu hóa sau khi thêm dấu vân tay vào cài đặt hệ thống để tăng cường tính bảo mật.</item>
+    <item>Cho phép mở file thông qua bộ chọn file hệ thống, bỏ qua cờ chỉ đọc</item>
+    <item>Cho phép bắt đầu di chuyển các mục từ menu xem mục nhập</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08d">
+    <item>Thêm hỗ trợ cho định dạng tệp khóa mới được giới thiệu trong Keepass 2.47</item>
+    <item>Thêm hỗ trợ cho Argon2id như hàm phát sinh khóa.</item>
+    <item>Cải thiện khả năng tương thích Autofill với Firefox và Chrome.</item>
+    <item>Cải thiện hỗ trợ cho các mục TOTP từ các chương trình trên máy tính để bàn.</item>
+    <item>Update pCloud SDK to fix authentication issue</item>
+    <item>Update Jsch to version 0.1.55</item>
+    <item>Add menu to database selection screen</item>
+    <item>Allow to export imported keyfiles</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08c">
+    <item>Không còn lưu trữ tên gói ứng dụng Android trong trường URL</item>
+    <item>Cải thiện hành vi khóa - không còn hiển thị lời nhắc sinh trắc học ngay sau khi mở khóa</item>
+    <item>Update OkHttp to support HTTP/2</item>
+    <item>Sửa các bản dịch bị thiếu</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08b">
+    <item>Buộc HTTP/1.1 do vấn đề với việc triển khai HTTP/2 của OkHttp</item>
+    <item>Cải thiện hộp thoại bàn phím trên Android 9+</item>
+    <item>Change file associations of the app to avoid some unnecessary associations</item>
+    <item>Make sure password text is not hidden behind eye icon</item>
+    <item>Change autofill behavior to warn when filling credentials for a domain to an unrecognized app</item>
+    <item>Cập nhật lên thư viện FTP</item>
+    <item>Khắc phục các sự cố có thể xảy ra của ứng dụng</item>
+    <item>Sửa lỗi nhỏ khác</item>
+  </string-array>
+  <string-array name="ChangeLog_1_08">
+    <item>Thêm nút thông báo sao chép TOTP vào clipboard</item>
+    <item>Chuyển sang sử dụng FluentFTP để hỗ trợ TLS 1.2</item>
+    <item>Chuyển sang API BiometricPrompt để cải thiện trải nghiệm người dùng với tính năng mở khóa bằng vân tay và cho phép sử dụng tính năng mở khóa bằng khuôn mặt, ví dụ: trên Pixel 4.</item>
+    <item>Sửa lỗi</item>
+  </string-array>
+  <string name="ChangeLog_keptDonate">Thêm khả năng mở rộng để tặng một ly bia hoặc một cái gì khác</string>
+  <string-array name="clipboard_timeout_options">
+    <item>30 giây</item>
+    <item>1 phút</item>
+    <item>5 phút</item>
+    <item>10 phút</item>
+    <item>15 phút</item>
+    <item>30 phút</item>
+    <item>1 tiếng</item>
+    <item>Không bao giờ</item>
+  </string-array>
+  <string-array name="export_fileformat_options">
+    <item>Cơ sở dữ liệu Keepass 2 (.kdbx)</item>
+    <item>Keepass 2 XML (chưa mã hóa) (.xml)</item>
+    <item>Keepass CSV (chưa mã hóa) (.csv)</item>
+  </string-array>
+  <string-array name="list_size_options">
+    <item>Nhỏ</item>
+    <item>Trung bình</item>
+    <item>Lớn</item>
+  </string-array>
+  <string-array name="design_options">
+    <item>Sáng</item>
+    <item>Tối</item>
+    <item>Thiết đặt hệ thống</item>
+  </string-array>
+  <string name="design_title">Thiết kế</string>
+  <string-array name="ftp_encryption_modes">
+    <item>Không mã hoá (FTP)</item>
+    <item>Mã hoá ngầm (FTP qua TLS, FTPS)</item>
+    <item>Mã hoá rõ ràng (FTP qua TLS, FTPS)</item>
+  </string-array>
+  <string-array name="cred_remember_modes">
+    <item>Không nhớ tên người dùng và mật mã</item>
+    <item>Chỉ nhớ tên người dùng thôi</item>
+    <item>Nhớ tên người dùng và mật mã</item>
+  </string-array>
+  <string-array name="password_modes">
+    <item>Chỉ xài mật mã</item>
+    <item>Mật khẩu + Tệp khóa</item>
+    <item>Mật mã + OTP</item>
+    <item>Mật mã + bí mật OTP (chế độ phục hồi)</item>
+    <item>Mật mã + trả lời-thách thức</item>
+    <item>Mật mã + trả lời-thách thức bí mật (chế độ phục hồi)</item>
+    <item>Mật khẩu + Thử-thách-Phản-hồi cho Keepass XC</item>
+    <item>Mật khẩu + Tệp khóa + Thử-thách-Phản-hồi cho Keepass XC</item>
+  </string-array>
+  <string-array name="sftp_auth_modes">
+    <item>Mật mã</item>
+    <item>Khóa riêng/công khai KP2A</item>
+    <item>Khóa riêng tùy chỉnh</item>
+  </string-array>
+  <string-array name="AcceptAllServerCertificates_options">
+    <item>Bỏ qua các thất bại khi xác nhận chứng chỉ</item>
+    <item>Cảnh báo khi xác nhận không thành công</item>
+    <item>Không chấp nhận các chứng chỉ không hợp lệ</item>
+  </string-array>
+  <string name="ClearClipboardWarning">Đảm bảo tính năng này hoạt động trên hệ thống của bạn và cân nhắc sử dụng bàn phím tích hợp nếu không.</string>
+  <string name="PluginDescription">Mô tả của phần mở rộng:</string>
+  <string name="autofill_hint">Keepass2Android hỗ trợ chức năng Tự động điền của Android nhưng có vẻ bạn chưa bật chức năng này.</string>
+  <string name="autofill_enable">Bật Tự động điền</string>
+  <string name="autofill_enable_failed">Rất tiếc, có vẻ như thiết bị của bạn không hỗ trợ mở thiết đặt từ bên trong ứng dụng. Vui lòng truy cập thủ công vào thiết đặt hệ thống của tính năng Tự động điền để kích hoạt dịch vụ.</string>
+  <string name="show_autofill_help">Xem trợ giúp về Tự động điền</string>
+  <string name="autofill_sign_in_prompt">Điền vào với Keepass2Android</string>
+  <string name="autofill_disable">Tắt tính năng Tự động điền cho %1$s</string>
+  <string name="autofill_enable_for">Bật Tự động điền cho %1$s</string>
+  <string name="invalid_link_association">Không thể liên kết tên miền trang web %1$s với ứng dụng %2$s</string>
+  <string name="enable_fingerprint_hint">Keepass2Android đã phát hiện phần cứng sinh trắc học. Bạn có muốn bật Mở khóa sinh trắc học cho cơ sở dữ liệu này không?</string>
+  <string name="post_notifications_dialog_title">Cho phép thông báo</string>
+  <string name="post_notifications_dialog_message">Keepass2Android có thể hiển thị thông báo bằng các nút để sao chép các giá trị như mật khẩu và TOTP vào khay nhớ tạm hoặc để hiển thị bàn phím tích hợp. Điều này rất hữu ích để chuyển các giá trị sang các ứng dụng khác mà không cần chuyển sang Keepass2Android nhiều lần. Bạn có muốn kích hoạt các thông báo như vậy không?</string>
+  <string name="post_notifications_dialog_allow">Cho phép thông báo</string>
+  <string name="post_notifications_dialog_disable">Tắt tính năng này</string>
+  <string name="post_notifications_dialog_notnow">Không phải bây giờ</string>
+  <string name="understand">Tôi hiểu</string>
+  <string name="dont_show_again">Không hiển thị nữa</string>
+  <string name="masterkey_infotext_head">Bạn có nhớ mật khẩu chính của mình không?</string>
+  <string name="masterkey_infotext_main">Lưu ý rằng bạn sẽ không thể mở cơ sở dữ liệu của mình nếu không có khóa chính. Không có cách nào để \"đặt lại\" mật khẩu chính.</string>
+  <string name="masterkey_infotext_fingerprint_note">Cũng lưu ý rằng Mở khóa sinh trắc học hoạt động bằng cách lưu trữ khóa chính của bạn trong bộ lưu trữ an toàn của Android. Bộ nhớ này có thể bị Android xóa bất cứ lúc nào, ví dụ: nếu bạn thêm dấu vân tay mới vào cài đặt hệ thống. Vì vậy, đừng dựa vào Mở khóa sinh trắc học mà hãy nhớ mật khẩu chính của bạn!</string>
+  <string name="backup_infotext_head">Cơ sở dữ liệu của bạn có được sao lưu không?</string>
+  <string name="backup_infotext_main">Keepass2Android lưu trữ mật khẩu của bạn trong một tệp ở vị trí bạn chọn. Bạn có chắc chắn rằng bạn vẫn có thể truy cập tệp này khi điện thoại của bạn bị mất hoặc bị đánh cắp hoặc khi tệp bị hủy hoặc bị xóa không? Hãy đảm bảo rằng bạn luôn có bản sao lưu cập nhật ở nơi an toàn!</string>
+  <string name="backup_infotext_note">Để tạo bản sao lưu ngay bây giờ, hãy đi tới %1$s &gt; %2$s &gt; %3$s.</string>
+  <string name="emergency_infotext_head">Bạn đã chuẩn bị cho những trường hợp khẩn cấp chưa?</string>
+  <string name="emergency_infotext_main">Bạn đã bao giờ cân nhắc điều gì sẽ xảy ra nếu bạn không thể truy cập cơ sở dữ liệu mật khẩu của mình nữa chưa? Nếu bạn gặp tai nạn thì sao? Cách tốt nhất là chuyển chìa khóa chính của bạn cho một người đáng tin cậy nào đó trong trường hợp khẩn cấp. Nếu không thì không ai có quyền truy cập vào mật khẩu của bạn.</string>
+  <string name="no_secure_display">Màn hình hiện hợp lệ không được đánh dấu là an toàn. Điều này có nghĩa là ảnh chụp màn hình có thể được chụp bởi các ứng dụng khác. Keepass2Android được định cấu hình để chỉ hiển thị thông tin nhạy cảm trên màn hình an toàn. Vui lòng chuyển sang màn hình an toàn (ví dụ: bằng cách tháo màn hình HDMI) hoặc thay đổi thiết đặt ứng dụng.</string>
+  <string name="disable_secure_screen_check">Tắt thông báo này</string>
+  <string name="switch_ime_text">Vui lòng kích hoạt bàn phím Keepass2Android.</string>
+  <string name="switch_ime_reopen">Thử lại</string>
+  <string name="AutofillWarning_title">Cảnh báo bảo mật: Liên kết tên miền/ứng dụng không được công nhận</string>
+  <string name="AutofillWarning_Intro">Bạn sắp chèn thông tin đăng nhập của miền \"%1$s\" vào ứng dụng \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Nếu bạn tin tưởng \"%2$s\" thuộc về \"%1$s\" hoặc bạn tin tưởng ứng dụng \"%2$s\" không sử dụng sai thông tin xác thực (ví dụ: vì đây là ứng dụng trình duyệt đáng tin cậy), bạn có thể tiếp tục. Nếu không, xin vui lòng hủy bỏ.</string>
+  <string name="AutofillWarning_trustAsBrowser">Luôn chấp nhận trong \"%1$s\"</string>
+  <string name="english_ime_settings">Cài đặt bàn phím Keepass2Android</string>
+</resources>
