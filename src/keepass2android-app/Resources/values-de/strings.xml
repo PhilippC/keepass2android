@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Feedback</string>
   <string name="AboutText">Keepass2Android ist ein Passwortmanager mit Lese- und Schreib-Zugriff auf KeePass 2.x Datenbanken.</string>
@@ -1144,6 +1144,5 @@ Erstes öffentliches Release</string>
   <string name="AutofillWarning_Intro">Hiermit werden Anmeldeinformationen für die Domäne „%1$s“ in die Anwendung „%2$s“ eingefügt.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn darauf vertraut wird, dass „%2$s“ zu „%1$s“ gehört, oder wenn darauf vertraut wird, dass die App „%2$s“ die Anmeldeinformationen nicht missbraucht (z. B. weil es sich um eine vertrauenswürdige Browser-App handelt), kann fortgefahren werden. Falls nicht, bitte abbrechen.</string>
   <string name="AutofillWarning_trustAsBrowser">Für „%1$s“ immer akzeptieren</string>
-<string name="english_ime_settings">Keepass2Android-Tastatureinstellungen</string>
-    
-    </resources>
+  <string name="english_ime_settings">Android-Tastatureinstellungen</string>
+</resources>
