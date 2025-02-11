@@ -21,6 +21,7 @@ using Android.OS;
 using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
+using AndroidX.Core.Content;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -69,7 +70,7 @@ namespace keepass2android
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
+            ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
 		}
 
 		protected override void OnDestroy()

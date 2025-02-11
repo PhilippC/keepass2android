@@ -26,6 +26,7 @@ using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using Console = System.Console;
 using Object = Java.Lang.Object;
+using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -343,7 +344,7 @@ namespace keepass2android
                 IntentFilter filter = new IntentFilter();
                 filter.AddAction(Intents.DatabaseLocked);
                 filter.AddAction(Intent.ActionScreenOff);
-                RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
+                ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
             }
         }
 

@@ -53,6 +53,7 @@ using keepass2android.fileselect;
 using KeeTrayTOTP.Libraries;
 using Boolean = Java.Lang.Boolean;
 using Android.Util;
+using AndroidX.Core.Content;
 using Google.Android.Material.Dialog;
 using keepass2android;
 
@@ -491,9 +492,9 @@ namespace keepass2android
 			App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
-			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction), ReceiverFlags.Exported);
+			ContextCompat.RegisterReceiver(this, _pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction), (int)ReceiverFlags.Exported);
 			_pluginFieldReceiver = new PluginFieldReceiver(this);
-			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField), ReceiverFlags.Exported);
+            ContextCompat.RegisterReceiver(this, _pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField), (int)ReceiverFlags.Exported);
 
             var notifyPluginsOnOpenThread = new Thread(NotifyPluginsOnOpen);
             notifyPluginsOnOpenThread.Start();
