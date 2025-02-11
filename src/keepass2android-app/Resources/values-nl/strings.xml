@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Terugkoppeling</string>
   <string name="AboutText">Keepass2Android is een wachtwoordbeheerder die lees-/schrijftoegang biedt tot KeePass 2.x-databases op Android.</string>
@@ -977,6 +977,5 @@ ChangeLog_1_05  </string>
   <string name="AutofillWarning_Intro">Je staat op het punt, om inloggegevens voor domein \"%1$s\" in te voegen in de app \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Als je vertrouwt dat \"%2$s\" tot \"%1$s\" behoort, of je vertrouwt dat app \"%2$s\" de inloggegevens niet misbruikt (bijvoorbeeld omdat het een vertrouwde browser-app is), kun je doorgaan. Anders annuleren.</string>
   <string name="AutofillWarning_trustAsBrowser">Altijd accepteren in \"%1$s\"</string>
-<string name="english_ime_settings">Instellingen voor Keepass2Android-toetsenbord</string>
-    
-    </resources>
+  <string name="english_ime_settings">Instellingen voor Keepass2Android-toetsenbord</string>
+</resources>
