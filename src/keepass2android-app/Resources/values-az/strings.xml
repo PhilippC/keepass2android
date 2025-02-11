@@ -1,6 +1,7 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Əks əlaqə</string>
+  <string name="CreditsTextSFTP">SFTP dəstəyi, JCraft, Inc. tərəfindən yaradılmış JSch kitabxanası altında BSD lisenziyası ilə həyata keçirilmişdir.</string>
   <string name="accept">Qəbul et</string>
   <string name="deny">Rədd et</string>
   <string name="add_entry">Qeyd əlavə et</string>
@@ -18,6 +19,7 @@
   <string name="app_timeout">Tətbiq istifadə vaxtı</string>
   <string name="show_kill_app">Bağla düyməsi</string>
   <string name="kill_app_label">Tətbiqi bağla</string>
+  <string name="show_kill_app_summary">Şifrə ekranında tətbiq prosesini öldürmək üçün bir düymə göstərin (paranoid istifadəçilər üçün).</string>
   <string name="application">Tətbiq</string>
   <string name="application_settings">Tətbiq tənzimləmələri</string>
   <string name="ShowGroupnameInSearchResult_title">Qrup adını axtarış nəticələrində göstər</string>
@@ -82,6 +84,5 @@
   <string name="AutofillWarning_title">Təhlükəsizlik xəbərdarlığı: Tanınmayan domen/tətbiq bağlantısı</string>
   <string name="AutofillWarning_Intro">\"%2$s\" tətbiqinə \"%1$s\" domeni üçün kimlik məlumatlarını daxil edirsiniz.</string>
   <string name="AutofillWarning_trustAsBrowser">\"%1$s\" səyyahında həmişə qəbul et</string>
-<string name="english_ime_settings">Android klaviatura tənzimləmələri</string>
-    
-    </resources>
+  <string name="english_ime_settings">Android klaviatura tənzimləmələri</string>
+</resources>
