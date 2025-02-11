@@ -356,7 +356,13 @@ public class KP2AKeyboard extends InputMethodService
         pFilter.addAction("android.intent.action.PACKAGE_ADDED");
         pFilter.addAction("android.intent.action.PACKAGE_REPLACED");
         pFilter.addAction("android.intent.action.PACKAGE_REMOVED");
-        registerReceiver(mPluginManager, pFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mPluginManager, pFilter, RECEIVER_EXPORTED);
+        }
+        else
+        {
+            registerReceiver(mPluginManager, pFilter);
+        }
 
 
         LatinIMEUtil.GCUtils.getInstance().reset();
@@ -375,16 +381,28 @@ public class KP2AKeyboard extends InputMethodService
 
         // register to receive ringer mode changes for silent mode
         IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
-        registerReceiver(mSilentModeReceiver, filter);
-       
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mSilentModeReceiver, filter, RECEIVER_EXPORTED);
+        }
+        else
+        {
+            registerReceiver(mSilentModeReceiver, filter);
+        }
+
         prefs.registerOnSharedPreferenceChangeListener(this);
         
         //check if we have KP2A data available:
-        mHadKp2aData = mShowKp2aKeyboard = keepass2android.kbbridge.KeyboardData.hasData();
+        mHadKp2aData = mShowKp2aKeyboard = KeyboardData.hasData();
         
         mClearKeyboardReceiver = new ClearKeyboardBroadcastReceiver();
-        registerReceiver(mClearKeyboardReceiver, new IntentFilter(get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this)));
-        android.util.Log.d("KP2AK", "registered receiver for clear keyboard broadcast: "+get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mClearKeyboardReceiver, new IntentFilter(get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this)), RECEIVER_EXPORTED);
+        }
+        else
+        {
+            registerReceiver(mClearKeyboardReceiver, new IntentFilter(get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this)));
+        }
+        Log.d("KP2AK", "registered receiver for clear keyboard broadcast: "+get_KEEPASS2ANDROID_KEYBOARD_CLEARED(this));
         
     }
 

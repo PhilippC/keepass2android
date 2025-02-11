@@ -1342,7 +1342,7 @@ namespace keepass2android
 		    intentFilter.AddAction(Intents.LockDatabase);
             intentFilter.AddAction(Intents.LockDatabaseByTimeout);
 			intentFilter.AddAction(Intents.CloseDatabase);
-            Context.RegisterReceiver(broadcastReceiver, intentFilter, ReceiverFlags.Exported);
+			ContextCompat.RegisterReceiver(Context, broadcastReceiver, intentFilter, (int)ReceiverFlags.Exported);
 
             //ZXing.Net.Mobile.Forms.Android.Platform.Init();
 		}

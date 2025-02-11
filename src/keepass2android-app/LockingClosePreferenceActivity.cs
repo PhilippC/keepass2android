@@ -18,6 +18,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.Content;
 using Android.OS;
+using AndroidX.Core.Content;
 using KeePassLib.Serialization;
 
 namespace keepass2android
@@ -39,7 +40,7 @@ namespace keepass2android
 			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
-			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
+            ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
 		}
 
 		protected override void OnResume() {

@@ -23,6 +23,7 @@ using Android.Graphics;
 using Android.OS;
 using Android.Preferences;
 using AndroidX.Core.App;
+using AndroidX.Core.Content;
 using keepass2android;
 using KeePassLib.Utility;
 
@@ -60,8 +61,8 @@ namespace keepass2android
 			_screenOffReceiver = new ScreenOffReceiver();
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_screenOffReceiver, filter, ReceiverFlags.Exported);
-		}
+            ContextCompat.RegisterReceiver(this, _screenOffReceiver, filter, (int)ReceiverFlags.Exported);
+        }
 
 
 		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)

@@ -39,6 +39,7 @@ using KeePass.Util.Spr;
 using keepass2android;
 using KeePassLib.Serialization;
 using PluginTOTP;
+using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -322,7 +323,8 @@ namespace keepass2android
                 _stopOnLockBroadcastReceiver = new StopOnLockBroadcastReceiver(this);
                 IntentFilter filter = new IntentFilter();
                 filter.AddAction(Intents.DatabaseLocked);
-                RegisterReceiver(_stopOnLockBroadcastReceiver, filter, ReceiverFlags.Exported);
+
+                ContextCompat.RegisterReceiver(this, _stopOnLockBroadcastReceiver, filter, (int)ReceiverFlags.Exported);
             }
 
             if ((intent.Action == Intents.ShowNotification) || (intent.Action == Intents.UpdateKeyboard))
@@ -529,7 +531,7 @@ namespace keepass2android
                 _notificationDeletedBroadcastReceiver = new NotificationDeletedBroadcastReceiver(this);
                 IntentFilter deletefilter = new IntentFilter();
                 deletefilter.AddAction(ActionNotificationCancelled);
-                RegisterReceiver(_notificationDeletedBroadcastReceiver, deletefilter, ReceiverFlags.Exported);
+                ContextCompat.RegisterReceiver(this, _notificationDeletedBroadcastReceiver, deletefilter, (int)ReceiverFlags.Exported);
             }
             
         }

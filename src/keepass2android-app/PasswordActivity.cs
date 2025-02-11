@@ -65,6 +65,7 @@ using Enum = System.Enum;
 using Exception = System.Exception;
 using String = System.String;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -647,7 +648,7 @@ namespace keepass2android
 		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
+            ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
 
 
             //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps

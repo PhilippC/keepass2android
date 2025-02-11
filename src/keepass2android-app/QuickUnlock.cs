@@ -34,6 +34,7 @@ using keepass2android;
 using KeePassLib;
 using KeePassLib.Serialization;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -153,7 +154,7 @@ namespace keepass2android
 			_intentReceiver = new QuickUnlockBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
-			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
+            ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
 
             Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.QuickUnlock_password));
 
