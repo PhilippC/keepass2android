@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Оставить отзыв</string>
   <string name="AboutText">Keepass2Android — это менеджер паролей, обеспечивающий полноценную работу с базами KeePass 2.x на Android.</string>
@@ -151,6 +151,7 @@
   <string name="hint_keyfile">файл-ключ</string>
   <string name="hint_length">длина</string>
   <string name="hint_pass">пароль</string>
+  <string name="hint_keyfile_path">SSH путь к закрытому ключу</string>
   <string name="hint_login_pass">Пароль</string>
   <string name="hint_title">имя</string>
   <string name="hint_url">Ссылка</string>
@@ -188,7 +189,7 @@
   <string name="menu_move">Переместить в другую группу</string>
   <string name="menu_move_light">Переместить</string>
   <string name="menu_navigate">Перейти к родительской группе</string>
-  <string name="menu_donate">Пожертвовать на пиво...</string>
+  <string name="menu_donate">Пожертвовать на кофе...</string>
   <string name="menu_edit">Изменить</string>
   <string name="menu_hide_password">Скрыть пароль</string>
   <string name="menu_lock">Блокировка БД</string>
@@ -400,6 +401,14 @@
   <string name="ShowSeparateNotifications_summary">Показывать отдельное уведомление для копирования в буфер обмена имени пользователя и пароля и для активации клавиатуры.</string>
   <string name="AccServiceAutoFill_prefs">Специальная служба автозаполнения</string>
   <string name="AutoFill_prefs">Функция автозаполнения</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">При автозаполнении записи в TOTP, показывать уведомление о записи с кнопкой Копировать TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Показать уведомление записи</string>
+  <string name="AutoFillTotp_prefs_title">Автозаполнение для записей TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Копировать TOTP в буфер обмена</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">При автозаполнении записи с помощью TOTP отображать уведомление о записи с кнопкой Copy TOTP</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">При автозаполнении записи с помощью TOTP активируйте встроенную клавиатуру. На клавиатуре есть кнопка TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Использовать встроенную клавиатуру</string>
+  <string name="TotpCopiedToClipboard">Копировать TOTP в буфер обмена</string>
   <string name="ShowKp2aKeyboardNotification_title">Уведомления клавиатуры KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Сделать всю запись доступной через клавиатуру KP2A (рекомендуется).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
@@ -416,6 +425,7 @@
   <string name="ShowUnlockedNotification_summary">Показывать уведомление, когда база разблокирована.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 представил нововведение для уведомлений. Если Вы хотите скрыть значок уведомлений Keepass2Android, настройте его с помощью системных настроек. Установите значение категории уведомлений как Минимум.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Настройки</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android может отображать системное уведомление, пока ваша база данных не заблокирована. Для этого, пожалуйста, предоставьте разрешение.</string>
   <string name="DontCare">Мне всё равно</string>
   <string name="DocumentAccessRevoked">Файл больше недоступен для Keepass2Android. Либо он был удален, либо разрешения доступа были отменены. Пожалуйста, откройте файл еще раз, например, используя Изменить БД.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
@@ -500,9 +510,27 @@
   <string name="hint_sftp_host">хост (например: 192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
   <string name="initial_directory">Исходный каталог (необязательно):</string>
+  <string name="connect_timeout">Время ожидания соединения секунды (опционально)</string>
   <string name="enter_sftp_login_title">Введите данные SFTP логина:</string>
   <string name="sftp_auth_mode">Режим аутентификации</string>
   <string name="send_public_key">Отправить публичный ключ...</string>
+  <string name="select_private_keyfile">Выберите закрытый ключ ...</string>
+  <string name="hint_sftp_key_name">Имя нового ключа</string>
+  <string name="hint_sftp_key_content">Новый сетевой контент</string>
+  <string name="private_key_saved">Закрытый ключ сохранен</string>
+  <string name="private_key_save_failed">Не удалось сохранить закрытый ключ: %1$s</string>
+  <string name="private_key_info">Введите имя ключа и содержимое для сохранения</string>
+  <string name="private_key_delete">Закрытый ключ удален: %1$s</string>
+  <string name="private_key_delete_failed">Не удалось удалить закрытый ключ: %1$s</string>
+  <string name="save_key">Сохранить закрытый ключ</string>
+  <string name="delete_key">Удалить закрытый ключ</string>
+  <string name="private_key_select">Выберите закрытый ключ ...</string>
+  <string name="private_key_create_new">[Добавить новый...]</string>
+  <string name="hint_sftp_key_passphrase">Ключевая фраза (опционально)</string>
+  <string name="sftp_kex_title">Обмен ключами (KEX) Алгоритм(ы) (опционально)</string>
+  <string name="hint_sftp_kex">Названия/спецификации через запятую</string>
+  <string name="sftp_shk_title">Алгоритм(ы) ключа хоста сервера (опционально)</string>
+  <string name="hint_sftp_shk">Названия/спецификации через запятую</string>
   <string name="enter_ftp_login_title">Введите данные входа (FTP):</string>
   <string name="enter_mega_login_title">Введите данные для входа в аккаунт MEGA:</string>
   <string name="select_storage_type">Выберите тип хранилища:</string>
@@ -520,7 +548,9 @@
   <string name="filestoragename_gdrive">Диск Google</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
   <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
   <string name="filestoragehelp_pcloud">Этот тип хранилища запрашивает доступ только к папке pCloud «Приложения/Keepass2Android». Если вы хотите использовать существующую базу данных из вашей учетной записи pCloud, пожалуйста, убедитесь, что файл размещен в этой папке pCloud.</string>
+  <string name="filestoragename_pcloudall">PCloud (Полный доступ)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Все файлы и общие файлы</string>
@@ -566,12 +596,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Пожалуйста, используйте плагин KeeChallenge в KeePass 2.x (ПК) для настройки базы данных для использования одноразового пароля!</string>
   <string name="ErrorUpdatingChalAuxFile">Ошибка обновления вспомогательного файла одноразовых паролей!</string>
   <string name="TrayTotp_SeedField_title">Имя поля начального значения TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Если вы используете плагин Keepass 2 \"TrayTotp\" с нестандартными настройками, введите имя поля для поля начального значения в соответствии с настройками на ПК.</string>
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Лог-файл для отладки</string>
   <string name="DebugLog_title">Включить логирование</string>
+  <string name="FtpDebug_title">FTP/SFTP журнал отладки</string>
   <string name="DebugLog_summary">Запись работы приложения в локальный лог-файл</string>
   <string name="DebugLog_send">Отправить логи отладки...</string>
   <string name="loading">Загрузка…</string>
@@ -615,7 +647,7 @@
   <string name="AddCustomIcon">Добавить значок из файла...</string>
   <string name="CopyingFile">Копируем файл...</string>
   <string name="DuplicateTitle">Копировать</string>
-  <string name="DefaultTemplate">Стандартная запись</string>
+  <string name="DefaultTemplate">Логин/Пароль</string>
   <string name="TemplateGroupName">Шаблоны</string>
   <string name="TemplateTitle_IdCard">ID карты</string>
   <string name="TemplateField_IdCard_Name">Имя</string>
@@ -631,7 +663,7 @@
   <string name="TemplateField_CreditCard_PIN">PIN</string>
   <string name="TemplateField_CreditCard_Owner">Владелец карты</string>
   <string name="TemplateTitle_CreditCard">Кредитная карта</string>
-  <string name="TemplateTitle_Membership">Членство</string>
+  <string name="TemplateTitle_Membership">Карта лояльности</string>
   <string name="ChangeLog_title">Список изменений</string>
   <string name="AskAddTemplatesTitle">Добавить шаблоны?</string>
   <string name="AskAddTemplatesMessage">Keepass2Android содержит шаблоны записей для электронной почты, паролей беспроводных сетей, защищенных заметок и многого другого. Вы хотели бы добавить их к вашей базе данных? Если вы выбрали Нет, их можно добавить позже в настройках базы данных.</string>
@@ -667,6 +699,19 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
+    <item></item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Копирование текстового значения в буфер обмена при длительном нажатии в режиме просмотра записей.</item>
+    <item>Сделать TOTP легко доступным на встроенной клавиатуре.</item>
+    <item>Показывать уведомление о вводе при автозаполнении записи TOTP. Это позволяет скопировать TOTP в буфер обмена. Настроить поведение можно в настройках.</item>
+    <item>Обновлена реализация TOTP для решения проблем совместимости с KeePass2 и TrayTOTP</item>
+    <item>Незначительные улучшения</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Обновите pCloud SDK, чтобы предоставить доступ к общим папкам</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Исправлены ошибки, приводящие к сбоям и незапланированным выходам</item>
     <item>Смена реализации SFTP на новую, поддерживающую современные алгоритмы открытых ключей, таких как rsa-sha2-256</item>
@@ -781,8 +826,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Пароль</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>KP2A Закрытый/Открытый ключ</item>
+    <item>Пользовательский закрытый ключ</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Игнорировать ошибки проверки сертификата</item>
@@ -800,6 +845,11 @@
   <string name="autofill_enable_for">Включить автозаполнение для %1$s</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android обнаружил сканер отпечатка пальцев. Использовать разблокирование отпечатком пальца для этой базы данных?</string>
+  <string name="post_notifications_dialog_title">Показывать уведомления</string>
+  <string name="post_notifications_dialog_message">Keepass2Android может показывать уведомления с кнопками для копирования строк, таких как пароли и TOTP, в буфер обмена или для вызова встроенной клавиатуры. Это удобно для ввода данных и паролей в других приложениях без необходимости постоянно переключаться на Keepass2Android. Хотите включить такие уведомления?</string>
+  <string name="post_notifications_dialog_allow">Показывать уведомления</string>
+  <string name="post_notifications_dialog_disable">Отключить эту функцию</string>
+  <string name="post_notifications_dialog_notnow">Не сейчас</string>
   <string name="understand">Я понял</string>
   <string name="dont_show_again">Больше не показывать</string>
   <string name="masterkey_infotext_head">Вы помните Ваш мастер-пароль?</string>
@@ -818,6 +868,5 @@
   <string name="AutofillWarning_Intro">Вы собираетесь вставить учётные данные для домена \"%1$s\" в приложение \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Если вы уверены, что \"%2$s\" принадлежит к \"%1$s\" или доверяете приложению \"%2$s\" не злоупотребляйте учётными данными (например, потому что это доверенное приложение браузера), если всё хорошо можно продолжить. Если нет, пожалуйста, отмените.</string>
   <string name="AutofillWarning_trustAsBrowser">Всегда принимать в \"%1$s\"</string>
-<string name="english_ime_settings">Настройки клавиатуры \"Keepass2Android\"</string>
-    
-    </resources>
+  <string name="english_ime_settings">Настройки клавиатуры \"Keepass2Android\"</string>
+</resources>
