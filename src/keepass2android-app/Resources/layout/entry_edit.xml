@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +83,7 @@
                             android:layout_height="wrap_content"
                             android:singleLine="true"
                             android:inputType="textPassword"
-                            android:hint="password"
+                            android:hint="@string/hint_pass"
                           android:importantForAccessibility="no"/>
                     </com.google.android.material.textfield.TextInputLayout>
                     <LinearLayout
@@ -135,6 +136,7 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
       <LinearLayout
+        android:orientation="vertical"
             android:id="@+id/entry_extras_container"
             style="@style/EntryEditSingleLine_container">
             <ImageView
@@ -173,6 +175,7 @@
         </LinearLayout>
     <!-- file attachments -->
         <LinearLayout
+          android:orientation="vertical"
             android:id="@+id/entry_binaries_container"
             style="@style/EntryEditSingleLine_container">
             <ImageView
@@ -228,6 +231,7 @@
         </LinearLayout>
     <!--expires-->
       <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/expires_section"
             style="@style/EntryEditSingleLine_container">
             <ImageView
