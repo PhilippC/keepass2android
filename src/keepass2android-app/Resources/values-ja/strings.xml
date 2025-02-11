@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">フィードバック</string>
   <string name="AboutText">Keepass2Android は Android で KeePass 2.x データベースを読み書きするパスワードマネージャーです。</string>
@@ -109,7 +109,7 @@
   <string name="entry_override_url">URL のオーバーライド</string>
   <string name="entry_confpassword">パスワードを確認</string>
   <string name="entry_created">作成日時</string>
-  <string name="entry_expires">有効期限</string>
+  <string name="entry_expires">使用期限</string>
   <string name="entry_group_name">グループ名</string>
   <string name="entry_keyfile">キーファイル (オプション)</string>
   <string name="keyfile_heading">キーファイル</string>
@@ -305,7 +305,7 @@
   <string name="LogAutofillView_summary">(デバッグログが有効な場合) 自動入力表示に関する詳細をデバッグログに書き込みます。自動入力が予想に反する動作をした場合、これらの詳細を開発者に送信することができます。</string>
   <string name="requires_android11">Android 11 以上が必要</string>
   <string name="kp2a_findUrl">パスワードを探す</string>
-  <string name="excludeExpiredEntries">期限切れのエントリーを除外する</string>
+  <string name="excludeExpiredEntries">使用期限切れのエントリーを除外する</string>
   <string name="search_options">オプション</string>
   <string name="caseSensitive">大文字と小文字を区別する</string>
   <string name="start_open_file">ファイルを開く...</string>
@@ -468,10 +468,10 @@
   <string name="SynchronizingDatabase">変更をマージしています…</string>
   <string name="YesSynchronize">はい、マージします</string>
   <string name="NoOverwrite">いいえ、上書きします</string>
-  <string name="UseOfflineMode">内部キャッシュのみで動作</string>
+  <string name="UseOfflineMode">内部キャッシュのみで使用する</string>
   <string name="UseOnlineMode">キャッシュコピーをソースと同期</string>
   <string name="UseOfflineMode_Info">データベースは内部キャッシュから読み込まれます。変更は内部キャッシュのみに保存され、キャッシュコピーをソースと同期を選択した場合のみ同期されます。</string>
-  <string name="InOfflineMode">内部キャッシュのみで動作</string>
+  <string name="InOfflineMode">内部キャッシュのみで動作中</string>
   <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期しています…</string>
   <string name="DownloadingRemoteFile">ソースファイルを読み込んでいます…</string>
   <string name="UploadingFile">ファイルを保存しています…</string>
@@ -643,7 +643,7 @@
   <string name="ReadOnlyReason_PreKitKat">外部アプリからファイルを開いたようです。ファイルへの書き込みはできません。データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください。対応している場合は、いずれかのオプションからファイルを開くことができます。</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">読み取り専用フラグが設定されます。データベースを編集する場合は、このフラグを削除してください。</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Android KitKat で導入された制限のため、書き込みは不可能です。データベースを編集する場合は、データベースを閉じて「データベースを変更」を選択してください。その後、システムのファイル選択を使用してファイルを開いてください。</string>
-  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません。[データベースの設定] > [データベースをエクスポート] から、この自由に開ける場所へエクスポートしてください。その後、再び書き込み可能になります。</string>
+  <string name="ReadOnlyReason_LocalBackup">ローカルバックアップは変更できません。[データベースの設定] &gt; [データベースをエクスポート] から、この自由に開ける場所へエクスポートしてください。その後、再び書き込み可能になります。</string>
   <string name="AddCustomIcon">ファイルからアイコンを追加...</string>
   <string name="CopyingFile">ファイルをコピーしています...</string>
   <string name="DuplicateTitle">コピー</string>
@@ -718,6 +718,19 @@
   <string name="EntryChannel_desc">選択中のエントリーへ簡単にアクセスするための通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に 3 回失敗すると、データベースを閉じます。</string>
   <string name="WarnFingerprintInvalidated">警告！ 生体認証は、例えば、新たな指紋をデバイスに追加したときなどに Android によって無効にされる可能性があります。常にマスターパスワードによる解除方法を覚えておいてください！</string>
+  <string-array name="ChangeLog_1_11">
+    <item>検索と TOTP 一覧 (TOTP エントリーが存在する場合) のフローティングアクションボタンを追加</item>
+    <item>タイムアウト表示を追加し、より目立つように TOTP フィールドの表示を改善</item>
+    <item>グループ表示から TOTP を確認できるように変更</item>
+    <item>エントリー表示の長押しでテキスト値をクリップボードにコピーできるよう変更</item>
+    <item>内蔵キーボードで、より簡単に TOTP へアクセスできるように変更</item>
+    <item>TOTP エントリーの自動入力時にエントリー通知を表示します。これにより、TOTP をクリップボードにコピーできます。動作は、設定でカスタマイズできます。</item>
+    <item>KeePass2 と TrayTOTP との互換性の問題を解決するためにTOTPの実装を更新</item>
+    <item>小さな改善</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>共有フォルダへアクセスできるように pCloud SDK を更新</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Android 13 以降での通知権限への対応を追加</item>
     <item>FTP と SFTP の実装を改善</item>
@@ -1168,6 +1181,5 @@
   <string name="AutofillWarning_Intro">ドメイン「%1$s」のアカウント情報をアプリ「%2$s」に挿入しようとしています。</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">「%2$s」が信頼できて「%1$s」に属するか、アプリ「%2$s」を信頼していて、アカウント情報の誤用ではない場合 (信頼できるブラウザアプリなど) であれば続行しても問題ありません。そうでない場合はキャンセルしてください。</string>
   <string name="AutofillWarning_trustAsBrowser">常に「%1$s」に同意</string>
-<string name="english_ime_settings">Keepass2Android キーボードの設定</string>
-    
-    </resources>
+  <string name="english_ime_settings">Keepass2Android キーボードの設定</string>
+</resources>
