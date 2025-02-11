@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Suggeriments</string>
   <string name="AboutText">Keepass2Android és una implementació per Android de KeePass password manager.</string>
@@ -151,6 +151,7 @@
   <string name="hint_keyfile">arxiu clau</string>
   <string name="hint_length">longitud</string>
   <string name="hint_pass">contrasenya</string>
+  <string name="hint_keyfile_path">Ubicació de Clau privada SSH</string>
   <string name="hint_login_pass">Contrasenya</string>
   <string name="hint_title">nom</string>
   <string name="hint_url">URL</string>
@@ -171,6 +172,10 @@
   <string name="MaskedPassword">*****</string>
   <string name="maskpass_title">Emmascara contrasenya</string>
   <string name="maskpass_summary">Amaga les contrasenyes per defecte</string>
+  <string name="masktotp_title">Màscara  de camp TOTP</string>
+  <string name="masktotp_summary">Oculta el camp TOTP, per defecte </string>
+  <string name="NoAutofillDisabling_title">Sense opció per deshabilitar  la funció d\'autoomplir</string>
+  <string name="NoAutofillDisabling_summary">Si s\'activa, l\'aplicació no mostrarà l\'opció per deshabilitar autoomplir d\'algunes  entrades específiques.</string>
   <string name="menu_about">Sobre</string>
   <string name="menu_change_key">Canvia Clau Mestra</string>
   <string name="menu_copy_pass">Copia contrasenya</string>
@@ -231,6 +236,7 @@
   <string name="saving_database">Guardant la base de dades…</string>
   <string name="exporting_database">Exportant la base de dades…</string>
   <string name="export_database_successful">Base de dades exportada amb èxit!</string>
+  <string name="export_keyfile_successful">Fitxer contrasenya exportat amb èxit!</string>
   <string name="space">Espai</string>
   <string name="search_label">Cerca</string>
   <string name="show_password">Mostra contrasenya</string>
@@ -240,16 +246,24 @@
   <string name="sort_moddate">Ordenar per data modificació</string>
   <string name="sort_default">Mantenir l\'ordre per defecte</string>
   <string name="special">Especial</string>
+  <string name="special_extended">Afegit especial.</string>
+  <string name="at_least_one_from_each_group">Almenys un de cada grup</string>
+  <string name="exclude_lookalike">Exclou lletres paregudes</string>
+  <string name="password_generation_profile">Perfil</string>
+  <string name="save_password_generation_profile_text">Introdueix el nom del perfil a desar. Introdueix un nom existent per reemplaçar-ho.</string>
+  <string name="hint_wordcount">Comptador de paraules de la contrasenya</string>
+  <string name="hint_wordseparator">Separador de paraules</string>
   <string-array name="PasswordGeneratorModes">
     <item>Contrasenya</item>
-    <item>Passphrase</item>
-    <item>Passphrase + Password</item>
+    <item>Contrasenya</item>
+    <item>Frase de contrasenya + Contrasenya</item>
   </string-array>
   <string-array name="PasswordGeneratorCaseModes">
     <item>minúscules</item>
     <item>MAJÚSCULES</item>
-    <item>First Character Uppercase</item>
+    <item>Primer caràcter en majúscules</item>
   </string-array>
+  <string name="custom_settings">Configuració personalitzada</string>
   <string name="search_hint">Trobar el que</string>
   <string name="search_results">Resultats de cerca</string>
   <string name="search_in">Cerca a</string>
@@ -267,18 +281,23 @@
   <string name="author">Keepass2Android és desenvolupat per Philipp Crocoll.</string>
   <string name="further_authors">Gràcies a les aportacions de codi de %1$s.</string>
   <string name="designers">Gràcies a les aportacions de disseny icona i disseny per %1$s.</string>
+  <string name="supporters">Gràcies al suport financer de %1$s.</string>
   <string name="credit_plugin1">El Plugin de xifratge Twofish per Keepass va ser desenvolupat per Scott Greenberg i està inclòs en KP2A.</string>
   <string name="credit_android_filechooser">androide-filechooser va ser desenvolupat per Hai bisó</string>
   <string name="credit_keyboard">El teclat de l\'KP2A es basa en el teclat de Gingerbread del projecte de font oberta Android i utilitza el codi del Gesto de Conectors del teclat Hacker per Klaus Weidner.</string>
   <string name="please_note">Tingueu en compte</string>
   <string name="contributors">Contribuïdors</string>
   <string name="regular_expression">Expressió regular</string>
+  <string name="AlwaysMergeOnConflict_title">Sempre mescla en cas de conflicte</string>
+  <string name="AlwaysMergeOnConflict_summary">Quan Keepass2Android detecti que el fitxer remot ha sigut modificat, mescla els canvis locals amb els remots.</string>
   <string name="TanExpiresOnUse_title">TAN expira en ús</string>
   <string name="TanExpiresOnUse_summary">Marca entrades TAN caducades quan siguin utilitzades</string>
   <string name="ShowUsernameInList_title">Mostra nom d\'usuari en llista</string>
   <string name="ShowUsernameInList_summary">Mostrar noms d\'usuari sota títols d\'entrada. Útil per a comptes múltiples o TANs.</string>
   <string name="RememberRecentFiles_title">Recordeu les bases de dades</string>
   <string name="RememberRecentFiles_summary">Recordeu les bases de dades recentment obertes i mostrar-les en la pantalla de d\'obrir base de dades.</string>
+  <string name="InlineSuggestions_title">Integra amb el teclat</string>
+  <string name="requires_android11">Requereix Android 11 o superior</string>
   <string name="kp2a_findUrl">Trobar contrasenya</string>
   <string name="excludeExpiredEntries">Excloure les entrades caducats</string>
   <string name="search_options">Opcions</string>
@@ -324,6 +343,11 @@
   <string name="protection">Camp protegit</string>
   <string name="add_binary">Afegir el fitxer adjunt...</string>
   <string name="add_extra_string">Afegir la cadena addicional</string>
+  <string name="configure_totp">Configura TOTP</string>
+  <string name="totp_secret_key">Clau secreta</string>
+  <string name="totp_encoding_custom">Configuració personalitzada del testimoni</string>
+  <string name="totp_length">Longitud del codi</string>
+  <string name="totp_scan">Escaneja un codi QR</string>
   <string name="delete_extra_string">Suprimir la corda addicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloquejat. DesbloqueigRàpid activat.</string>
   <string name="database_loaded_unlocked">%1$s: desbloquejat.</string>
@@ -382,6 +406,7 @@
   <string name="ShowUnlockedNotification_summary">Mostra una icona de notificació mentre la base de dades està desbloquejada.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 ha introduït un nou comportament de les notificacions. Si voleu amagar la icona de les notificacions de Keepass2Android, si us plau, s\'ha de fer a través de la configuració del sistema. Estableix la importància de la categoria de les notificacions al Mínim.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Obrir la configuració</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android pot mostrar una notificació mentre la teva base de dades estigui desbloquejada. Perquè açò funcioni, dona permís.</string>
   <string name="DontCare">No m\'importa</string>
   <string name="DocumentAccessRevoked">L\'arxiu ja no és accessible a Keepass2Android. O ha sigut eliminat o els permisos d\'accés han estat revocats. Si us plau utilitzeu re-obre l\'arxiu, per exemple, utilitzant el canvi de base de dades.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-carregar el fitxer de base de dades</string>
@@ -467,6 +492,12 @@
   <string name="enter_sftp_login_title">Introduir dades de connexió SFTP:</string>
   <string name="sftp_auth_mode">Mode d\'autenticació</string>
   <string name="send_public_key">Enviar clau pública...</string>
+  <string name="save_key">Desa la clau privada</string>
+  <string name="delete_key">Elimina la clau privada</string>
+  <string name="private_key_select">Seleccioneu la clau privada</string>
+  <string name="private_key_create_new">[Afegeix nova...]</string>
+  <string name="hint_sftp_kex">Noms/Especificacions separats per comes</string>
+  <string name="hint_sftp_shk">Noms/Especificacions separats per comes</string>
   <string name="enter_ftp_login_title">Introduir dades de connexió FTP:</string>
   <string name="select_storage_type">Seleccioneu el tipus d\'emmagatzematge:</string>
   <string name="filestoragename_file">Fitxer local</string>
@@ -481,12 +512,16 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, heu de seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció de nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (Fitxers KP2A)</string>
+  <string name="filestoragename_pcloud">PCloud (Carpeta KP2A)</string>
+  <string name="filestoragename_pcloudall">PCloud (Accés complet)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Tots els fitxers i fitxers compartits</string>
   <string name="filestoragename_onedrive2_myfiles">Els meus fitxers</string>
   <string name="filestoragename_onedrive2_appfolder">Carpeta de l\'aplicació Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH Transferència de fitxer)</string>
+  <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragename_content">Selector d\'arxiu de sistema</string>
   <string name="filestorage_setup_title">Inicialització d\'accés a arxiu</string>
   <string name="database_location">Localització de la base de dades</string>
@@ -720,6 +755,5 @@
   <string name="switch_ime_text">Si us plau, activa el teclat Keepass2Android.</string>
   <string name="switch_ime_reopen">Reintenta</string>
   <string name="AutofillWarning_trustAsBrowser">Acceptar sempre en \"%1$s\"</string>
-<string name="english_ime_settings">Configuració del teclat d\'Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">Configuració del teclat d\'Keepass2Android</string>
+</resources>
