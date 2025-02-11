@@ -12,7 +12,6 @@
     <PackageReference Include="FluentFTP" Version="51.1.0" />
     <PackageReference Include="MegaApiClient" Version="1.10.4" />
     <PackageReference Include="Microsoft.Graph" Version="5.68.0" />
-	<PackageReference Include="Microsoft.Graph.Auth" Version="1.0.0-preview.7" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" />
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
