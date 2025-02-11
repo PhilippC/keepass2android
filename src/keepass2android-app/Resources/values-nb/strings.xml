@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Tilbakemelding</string>
   <string name="AboutText">Keepass2Android er en android-utgave av KeePass passordbestyrer.</string>
@@ -589,6 +589,5 @@
   <string name="backup_infotext_note">For å opprette en sikkerhetskopi nå, gå til %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Er du forberedt på nødssituasjoner?</string>
   <string name="emergency_infotext_main">Har du noen gang vurdert hva som skjer dersom du ikke lenger har tilgang til passorddatabasen? Hva om du blir utsatt for en ulykke? Det er god praksis å overlate hovednøkkelen til en person du stoler helt på i tilfelle en nødssituasjon. Ellers vil ingen ha tilgang til dine passord.</string>
-<string name="english_ime_settings">Innstillinger for Keepass2Android tastatur</string>
-    
-    </resources>
+  <string name="english_ime_settings">Innstillinger for Keepass2Android tastatur</string>
+</resources>

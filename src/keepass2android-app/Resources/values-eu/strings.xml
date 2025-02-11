@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Iruzkinak</string>
   <string name="AboutText">Keepass2Android pasahitz kudeatzaile bat da, Androiden KeePass 2.x datu-baseetan irakurketa/idazketa ahalbideratzen duena. </string>
@@ -435,6 +435,5 @@
     <item>Ohartarazi balidazioak huts egitean</item>
     <item>Do not accept invalid certificates</item>
   </string-array>
-<string name="english_ime_settings">Android teklatuaren ezarpenak</string>
-    
-    </resources>
+  <string name="english_ime_settings">Android teklatuaren ezarpenak</string>
+</resources>

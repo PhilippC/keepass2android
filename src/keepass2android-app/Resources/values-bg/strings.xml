@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Отзив</string>
   <string name="AboutText">Keepass2Android е мениджър за пароли който осигурява достъп четене/записване до KeePass 2.x база данни на Android.</string>
@@ -463,6 +463,5 @@
     <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
-<string name="english_ime_settings">Настройки на клавиатурата на Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">Настройки на клавиатурата на Keepass2Android</string>
+</resources>

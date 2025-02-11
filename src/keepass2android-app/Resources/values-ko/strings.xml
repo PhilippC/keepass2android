@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">의견 보내기</string>
   <string name="AboutText">Keepass2Android는 Android에서 KeePass 2.x 데이터베이스에 대한 읽기/쓰기 액세스를 제공하는 암호 관리자입니다.</string>
@@ -745,6 +745,5 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="AutofillWarning_Intro">\"%2$s\" 앱을 통해 \"%1$s\" 도메인에 신용 정보를 입력하려고 합니다</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">\"%1$s\"를 통해서 \"%2$s\"를 사용 하는 것에 대해 신뢰하시거나 \"%2$s\" 앱이 신용 정보를 남용하지 않을 것이라고 신뢰하신다면 (예: 검증된 브라우저 앱의 경우), 계속 하셔도 괜찮습니다. 그렇지 않다면 취소해 주십시오.</string>
   <string name="AutofillWarning_trustAsBrowser">항상 \"%1$s\" 앱을 쓰는 경우를 제외함</string>
-<string name="english_ime_settings">Keepass2Android 키보드 설정</string>
-    
-    </resources>
+  <string name="english_ime_settings">Keepass2Android 키보드 설정</string>
+</resources>

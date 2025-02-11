@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Feedback</string>
-  <string name="AboutText">Keepass2Android ist ein Passwortmanager mit Lese- und Schreib-Zugriff auf KeePass 2.x Datenbanken.</string>
+  <string name="AboutText">Keepass2Android ist ein Passwortmanager, der KeePass 2.x-Datenbanken verwalten kann.</string>
   <string name="CreditsText">Die Benutzeroberfläche basiert auf einem Port von Keepassdroid (entwickelt von Brian Pellin) nach Mono for Android. Der Code für die Datenbank-Operationen nutzt eine angepasste Version einer Bibliothek aus KeePass (entwickelt von Dominik Reichl).
 Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die Google durchgeführt und zur Verfügung gestellt hat; er wird nach den Bedingungen der Creative Commons 3.0 Attribution License genutzt.</string>
-  <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Nutzung der JSch-Bibliothek (BSD-Lizenz), erstellt durch JCraft, Inc.</string>
+  <string name="CreditsTextSFTP">SFTP-Unterstützung ist implementiert unter Verwendung der JSch-Bibliothekvmit BSD-Lizenz der Fa. JCraft Inc.</string>
   <string name="CreditsIcons">Das Hammer-Icon wurde von John Caserta (Noun Project) erstellt. Das Pinguin-Icon wurde von Adriano Emerick (Noun Project) erstellt. Das Feder-Icon wurde von Jon Testa (Noun Project) erstellt. Das Apfel-Icon wurde von Ava Rowell (Noun Project) erstellt. Das Bild-Icon stammt von https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Akzeptieren</string>
   <string name="deny">Verweigern</string>
@@ -28,7 +28,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
-  <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit dem selben Namen gibt.</string>
+  <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit demselben Namen gibt.</string>
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deaktivierte AutoFill-Ziele</string>
   <string name="AutofillDisabledQueriesPreference_summary">Zeigt eine Liste von Apps und Webseiten, für die AutoFill deaktiviert ist.</string>
@@ -123,7 +123,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="entry_extra_strings">Zusätzliche Felder</string>
   <string name="entry_binaries">Datei-Anhänge</string>
   <string name="entry_history">Vorherige Versionen</string>
-  <string name="error_can_not_handle_uri">Keepass2Android kann diese Adresse nicht verarbeiten.</string>
+  <string name="error_can_not_handle_uri">Keepass2Android kann diese URI nicht verarbeiten.</string>
   <string name="error_could_not_create_group">Fehler beim Erstellen der Gruppe.</string>
   <string name="error_could_not_create_parent">Verzeichnis konnte nicht erstellt werden.</string>
   <string name="error_database_exists">Diese Datei existiert bereits.</string>
@@ -1134,8 +1134,8 @@ Erstes öffentliches Release</string>
   <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
   <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, nach %1$s &gt; %2$s &gt; %3$s gehen.</string>
-  <string name="emergency_infotext_head">Ist man auf Notfälle vorbereitet?</string>
-  <string name="emergency_infotext_main">Wurde schon einmal darüber nachgedacht, was passiert, wenn man keinen Zugriff mehr zu seiner Passwortdatenbank hat? Was ist, wenn man einen Unfall hat? Es ist eine vernünftige Maßnahme, den Hauptschlüssel für Notfälle an eine vertrauenswürdige Person weiterzugeben. Andernfalls hat niemand Zugang zu den Passwörtern.</string>
+  <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
+  <string name="emergency_infotext_main">Hast du je darüber nachgedacht, was passiert, wenn du nicht mehr auf deine Passwort-Datenbank zugreifen kannst? Was, wenn du einen Unfall hast? Ein bewährtes Verfahren ist, einer vertrauenswürdigen Person dein Masterpasswort für Notfälle mitzuteilen. Ansonsten wird niemand auf deine Passwörter Zugriff haben.</string>
   <string name="no_secure_display">Der aktuell gültige Bildschirm ist nicht als sicher eingestuft. Das bedeutet, dass Bildschirmfotos von anderen Anwendungen erstellt werden könnten. Keepass2Android ist so konfiguriert, dass sensible Informationen nur auf sicheren Bildschirmen angezeigt werden. Bitte zu einem sicheren Bildschirm wechseln (z. B. durch Abklemmen eines HDMI-Monitors) oder die App-Einstellungen ändern.</string>
   <string name="disable_secure_screen_check">Diese Nachricht deaktivieren</string>
   <string name="switch_ime_text">Bitte die Keepass2Android-Tastatur aktivieren.</string>
@@ -1144,6 +1144,7 @@ Erstes öffentliches Release</string>
   <string name="AutofillWarning_Intro">Hiermit werden Anmeldeinformationen für die Domäne „%1$s“ in die Anwendung „%2$s“ eingefügt.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn darauf vertraut wird, dass „%2$s“ zu „%1$s“ gehört, oder wenn darauf vertraut wird, dass die App „%2$s“ die Anmeldeinformationen nicht missbraucht (z. B. weil es sich um eine vertrauenswürdige Browser-App handelt), kann fortgefahren werden. Falls nicht, bitte abbrechen.</string>
   <string name="AutofillWarning_trustAsBrowser">Für „%1$s“ immer akzeptieren</string>
-<string name="english_ime_settings">Keepass2Android-Tastatureinstellungen</string>
-    
-    </resources>
+  <string name="kp2a_switch_on_sendgodone">Tastatur zurückwechseln wenn fertig</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Beim Drücken von Senden/Los/Fertig zurückschalten</string>
+  <string name="english_ime_settings">Android-Tastatureinstellungen</string>
+</resources>
