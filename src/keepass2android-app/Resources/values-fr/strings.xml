@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Commentaires </string>
   <string name="AboutText">Keepass2Android est un gestionnaire de mot de passe pour Android permettant de lire et écrire des bases de données KeePass 2.x.</string>
@@ -401,6 +401,14 @@
   <string name="ShowSeparateNotifications_summary">Afficher des notifications séparées pour copier le nom d\'utilisateur et le mot de passe dans le presse-papiers et l\'activer le clavier.</string>
   <string name="AccServiceAutoFill_prefs">Service d\'accessibilité pour le remplissage automatique</string>
   <string name="AutoFill_prefs">Service de saisie automatique</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Lors du remplissage automatique d\'une entrée avec TOTP, afficher la notification de l\'entrée avec un bouton Copier TOTP.</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Afficher la notification de saisie</string>
+  <string name="AutoFillTotp_prefs_title">Remplissage automatique des entrées TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copier le TOTP dans le presse-papier</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Lors du remplissage automatique d\'une entrée avec TOTP, copier le TOTP dans le presse-papier.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Lorsque vous remplissez automatiquement une entrée avec TOTP, activez le clavier intégré. Le clavier dispose d\'une touche TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activation du clavier intégré</string>
+  <string name="TotpCopiedToClipboard">Copie du TOTP dans le presse-papier</string>
   <string name="ShowKp2aKeyboardNotification_title">Notification du clavier KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Rendre l\'entrée pleinement accessible via le clavier KP2A (recommandé).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Changer de clavier</string>
@@ -588,6 +596,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Utiliser le plugin KeeChallenge de KeePass 2.x (version PC) pour configurer votre base de données pour une utilisation avec défi-réponse!</string>
   <string name="ErrorUpdatingChalAuxFile">Erreur lors de la mise à jour du fichier OTP auxiliaire !</string>
   <string name="TrayTotp_SeedField_title">Nom du champ contenant le \"seed code\" TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si vous utilisez le plug-in Keepass 2 \"TrayTotp\" avec des paramètres personnalisés, entrez ici le nom du champ contenant le \"seed code\" tel que défini dans les paramètres sur PC.</string>
   <string name="TrayTotp_SettingsField_title">Nom du champ contenant les paramètres TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Entrer ici le nom du champ contenant les paramètres pour TrayTotp.</string>
@@ -690,6 +699,26 @@
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Ajout de boutons d\'action flottants pour la recherche et l\'aperçu TOTP (si des entrées TOTP sont présentes).</item>
+    <item>Amélioration de l\'affichage des champs TOTP en ajoutant un indicateur de dépassement de délai et en le montrant plus en évidence.</item>
+    <item>TOTP peut maintenant être vu à partir de la vue de groupe.</item>
+    <item>Copier la valeur du texte dans le presse-papier lors d\'un appui long dans la vue d\'entrée.</item>
+    <item>Rendre TOTP plus facilement accessible via le clavier intégré.</item>
+    <item>Afficher une notification d\'entrée lors du remplissage automatique d\'une entrée TOTP. Cela permet de copier le TOTP dans le presse-papier. Voir les préférences pour configurer le comportement.</item>
+    <item>Mise à jour de l\'implémentation TOTP pour résoudre les problèmes de compatibilité avec KeePass2 et TrayTOTP</item>
+    <item>Améliorations mineures</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Mise à jour du SDK pCloud pour permettre l\'accès aux dossiers partagés</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Ajout de la prise en charge des autorisations de notification sur Android 13+</item>
+    <item>Amélioration de l\'implémentation de FTP et SFTP</item>
+    <item>Ajouter un accès à pCloud complet</item>
+    <item>Permet de sélectionner la langue du système dans la boîte de dialogue de langue</item>
+    <item>Correction d\'un problème de mémorisation du type de mot de passe Keyfile + Challenge</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Correction de bugs pour les plantages et les déconnexions inattendues</item>
     <item>Passage à une nouvelle implémentation SFTP, prenant en charge les algorithmes à clé publique modernes tels que rsa-sha2-256</item>
@@ -755,6 +784,15 @@
     <item>Corrections de bugs</item>
     <item>Corrections de bugs</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Version 1.07b\n
+    * Amélioration des performances d\'Argon2 par l\'utilisation de l\'implémentation native (Remerciements à Chih-Hsuan Yen!)\n
+    * Possibilité de désactiver le verrouillage par empreinte digitale en cliquant sur l\'icône empreinte digitale (évite les problèmes avec les lecteurs d\'empreinte digitale placés sous l\'écran, remerciements à marcoDallas!)\n
+    * Rétablissement de la position courante du curseur lors de la bascule entre les modes mot de passe visible / caché (Remerciements à DDoSolitary!)\n
+    * Améliorations de l\'implémentation de pCloud (encore une fois, remerciements à gilbsgilbs)\n
+    * Ajout de la prise en charge de la saisie automatique à plusieurs autres navigateurs\n
+    * Nouvelle implémentation pour OneDrive : inclut la prise en charge de OneDrive Entreprise, des fichiers partagés, des périmètres d\'accès sélectionnables, des comptes multiples et des corrections de problèmes d\'accès en mode hors-ligne\n
+    * Corrections d\'anomalies
+  </string>
   <string name="ChangeLog_keptDonate">Possibilité élargie de faire un don d\'une bière ou autre chose</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondes</item>
@@ -846,6 +884,5 @@
   <string name="AutofillWarning_Intro">Vous êtes sur le point d\'insérer des identifiants pour le domaine \"%1$s\" dans l\'application \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Si vous faites confiance à \"%2$s\" pour appartenir à \"%1$s\" ou que vous faites confiance à l\'application \"%2$s\" pour ne pas abuser des identifiants (ex. parce que c\'est une application de navigateur de confiance), il est possible de continuer. Si ce n\'est pas le cas, veuillez annuler.</string>
   <string name="AutofillWarning_trustAsBrowser">Accepter toujours dans \"%1$s\"</string>
-<string name="english_ime_settings">Paramètres du clavier Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">Paramètres du clavier Keepass2Android</string>
+</resources>
