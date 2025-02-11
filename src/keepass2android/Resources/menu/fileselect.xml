@@ -20,17 +20,12 @@
     
     <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/baseline_help_24"
         app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_app_settings"
         android:title="@string/menu_app_settings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        app:showAsAction="ifRoom"
-        
-    />
-    <item android:id="@+id/menu_donate"
-        android:title="@string/menu_donate"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_settings_24"
+        app:showAsAction="ifRoom"  
     />
 </menu>

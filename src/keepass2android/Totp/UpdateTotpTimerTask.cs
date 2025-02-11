@@ -44,7 +44,7 @@ namespace PluginTOTP
 					//update, but that's inexpensive and relatively rare
 					BroadcastNewTotp(totp);
 					//restart timer
-					new Timer().Schedule(new UpdateTotpTimerTask(_context, _adapter), 1000 * prov.Timer);
+					new Java.Util.Timer().Schedule(new UpdateTotpTimerTask(_context, _adapter), 1000 * prov.Timer);
 				}
 			}
 			catch (Exception e)

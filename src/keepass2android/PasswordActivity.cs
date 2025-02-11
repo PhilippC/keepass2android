@@ -23,7 +23,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-using Android;
+using keepass2android;
 using Android.App;
 using Android.Content;
 using Android.Database;
@@ -38,9 +38,12 @@ using Android.Preferences;
 using Android.Text;
 using Android.Content.PM;
 using Android.Graphics;
-using Android.Support.Design.Widget;
-using Android.Support.V4.Widget;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
+using AndroidX.CoordinatorLayout.Widget;
+using AndroidX.Core.View;
+using AndroidX.DrawerLayout.Widget;
+using Google.Android.Material.AppBar;
+using Google.Android.Material.Dialog;
 using Java.Lang;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -61,6 +64,7 @@ using ClipboardManager = Android.Content.ClipboardManager;
 using Enum = System.Enum;
 using Exception = System.Exception;
 using String = System.String;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace keepass2android
 {
@@ -68,7 +72,7 @@ namespace keepass2android
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
 		LaunchMode = LaunchMode.SingleInstance,
 		WindowSoftInputMode = SoftInput.AdjustResize,
-		Theme = "@style/MyTheme_Blue")] 
+		Theme = "@style/Kp2aTheme_BlueNoActionBar")] 
 	public class PasswordActivity : LockingActivity, IBiometricAuthCallback
 	{
 
@@ -150,7 +154,7 @@ namespace keepass2android
 
 
         private string mDrawerTitle;
-        private MeasuringRelativeLayout.MeasureArgs _measureArgs;
+        private MeasuringLinearLayout.MeasureArgs _measureArgs;
         private ActivityDesign _activityDesign;
         private BiometricDecryption _biometricDec;
         private PasswordActivityBroadcastReceiver _intentReceiver;
@@ -643,7 +647,7 @@ namespace keepass2android
 		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_intentReceiver, filter);
+			RegisterReceiver(_intentReceiver, filter, ReceiverFlags.Exported);
 
 
             //use FlagSecure to make sure the last (revealed) character of the master password is not visible in recent apps
@@ -719,12 +723,12 @@ namespace keepass2android
 			mDrawerTitle = Title;
 			
 
-            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+            var btn = FindViewById(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
             {
                 if (!string.IsNullOrEmpty((string)btn.Tag))
                 {
-                    AlertDialog.Builder b = new AlertDialog.Builder(this);
+                    MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
                     b.SetTitle(Resource.String.fingerprint_prefs);
                     b.SetMessage(btn.Tag.ToString());
                     b.SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) => ((Dialog)o).Dismiss());
@@ -762,7 +766,7 @@ namespace keepass2android
             var passwordEdit = FindViewById<EditText>(Resource.Id.password_edit);
 			passwordEdit.Text = _password;
 
-            var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf");
+			var passwordFont = Typeface.CreateFromAsset(Assets, "SourceCodePro-Regular.ttf"); 
             passwordEdit.Typeface = passwordFont;
 
 
@@ -810,7 +814,7 @@ namespace keepass2android
 
         private void InitializeToolbarCollapsing()
 	    {
-	        var rootview = FindViewById<MeasuringRelativeLayout>(Resource.Id.relative_layout);
+	        var rootview = FindViewById<MeasuringLinearLayout>(Resource.Id.main_layout);
 	        rootview.ViewTreeObserver.GlobalLayout += (sender, args2) =>
 	        {
 	            Android.Util.Log.Debug("KP2A", "GlobalLayout");
@@ -950,7 +954,7 @@ namespace keepass2android
 			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			btn.PostDelayed(() =>
 			{
-				btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+				btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
             }, 1300);
 			Toast.MakeText(this, message, ToastLength.Long).Show();
 		}
@@ -969,16 +973,16 @@ namespace keepass2android
 			try
 			{
 				var masterPassword = _biometricDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
-				_password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
-
+				//first mask the password textedit before assigning the password:
                 if (_showPassword)
                 {
                     _showPassword = false;
 					MakePasswordMaskedOrVisible();
 
                 }
+                _password = FindViewById<EditText>(Resource.Id.password_edit).Text = masterPassword;
 
-			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
+                FindViewById<EditText>(Resource.Id.password_edit).Enabled = false; //prevent accidental modification of password
 
             }
 			catch (Java.Security.GeneralSecurityException ex)
@@ -1046,9 +1050,7 @@ namespace keepass2android
 
 	    private void InitializeToolbar()
 	    {
-	        var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
-
-	        SetSupportActionBar(toolbar);
+	        
 
             var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
             collapsingToolbar.SetTitle(GetString(Resource.String.unlock_database_title));
@@ -1061,7 +1063,7 @@ namespace keepass2android
 
             _drawerLayout?.SetDrawerListener(mDrawerToggle);
 
-	        	        
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
             mDrawerToggle.SyncState();
@@ -1586,12 +1588,6 @@ namespace keepass2android
 
 		private MemoryStream PreloadDbFile()
 		{
-			if (KdbpFile.GetFormatToUse(App.Kp2a.GetFileStorage(_ioConnection).GetFileExtension(_ioConnection)) == KdbxFormat.ProtocolBuffers)
-			{
-				Kp2aLog.Log("Preparing kdbp serializer");				
-				KdbpFile.PrepareSerializer();
-			}
-
 			Kp2aLog.Log("Pre-loading database file starting");
 			var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
 			var stream = fileStorage.OpenFileForRead(_ioConnection);
@@ -1936,7 +1932,7 @@ namespace keepass2android
 
 				if (_biometricDec.Init())
 				{
-					btn.SetImageResource(Resource.Drawable.ic_fp_40px);
+					btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 					_biometricDec.StartListening(new BiometricAuthCallbackAdapter(this, this));
 					return true;
 				}
@@ -2044,7 +2040,7 @@ namespace keepass2android
 			switch ( item.ItemId ) {
 				
                 case Android.Resource.Id.Home:
-                    _drawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+                    _drawerLayout.OpenDrawer(GravityCompat.Start);
                     return true;
 			}
 			
@@ -2137,7 +2133,7 @@ namespace keepass2android
 				
 				if ((Message != null) && (Message.Length > 150)) //show long messages as dialog
 				{
-					new AlertDialog.Builder(_act).SetMessage(Message)
+					new MaterialAlertDialogBuilder(_act).SetMessage(Message)
 					                             .SetPositiveButton(Android.Resource.String.Ok,
 					                                                (sender, args) =>
 						                                                {

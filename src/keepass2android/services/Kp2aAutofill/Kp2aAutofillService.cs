@@ -50,7 +50,7 @@ namespace keepass2android.services
 
             int numDisableDatasets = 0;
             if (!PreferenceManager.GetDefaultSharedPreferences(this)
-                    .GetBoolean(GetString(Resource.String.NoAutofillDisabling_key), false))
+                    .GetBoolean(GetString(keepass2android.Resource.String.NoAutofillDisabling_key), false))
                 numDisableDatasets = 1;
 
                 //it seems like at least with Firefox we can have at most 3 datasets. Reserve space for the disable dataset and the "fill with KP2A" which allows to select another item

@@ -21,12 +21,13 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", Theme = "@style/Dialog")]			
+	[Activity(Label = "@string/app_name", Theme= "@style/Kp2aTheme_Dialog")]			
 	public class GroupEditActivity : LifecycleAwareActivity
 	{
 		public const String KeyParent = "parent";

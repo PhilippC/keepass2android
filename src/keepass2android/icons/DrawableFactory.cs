@@ -26,6 +26,7 @@ using Android.Content.Res;
 using KeePassLib;
 using Android.Graphics;
 using Android.Preferences;
+using keepass2android;
 
 namespace keepass2android
 {

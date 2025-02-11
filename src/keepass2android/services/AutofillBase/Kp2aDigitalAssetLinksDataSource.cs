@@ -2,6 +2,7 @@
 using System.Linq;
 using Android.Content;
 using Android.Preferences;
+using keepass2android;
 using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
@@ -70,7 +71,7 @@ namespace keepass2android.services.AutofillBase
         static readonly HashSet<string> _trustedBrowsers = new HashSet<string>
         {
             "org.mozilla.firefox","org.mozilla.firefox_beta","org.mozilla.klar","org.mozilla.focus",
-            "org.mozilla.fenix","org.mozilla.fenix.nightly","org.mozilla.reference.browser",
+            "org.mozilla.fenix","org.mozilla.reference.browser",
             "com.android.browser","com.android.chrome","com.chrome.beta","com.chrome.dev","com.chrome.canary",
             "com.google.android.apps.chrome","com.google.android.apps.chrome_dev",
             "com.opera.browser","com.opera.browser.beta","com.opera.mini.native","com.opera.mini.native.beta","com.opera.touch",

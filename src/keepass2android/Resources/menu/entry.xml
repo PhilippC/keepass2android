@@ -18,22 +18,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_lock"
-        android:icon="@drawable/ic_menu_lock"
+        android:icon="@drawable/baseline_lock_24"
         android:title="@string/menu_lock"
         app:showAsAction="ifRoom"
     />
     <item android:id="@+id/menu_toggle_pass"
         android:title="@string/show_password"
-        android:icon="@drawable/ic_menu_view"
+        android:icon="@drawable/baseline_visibility_24"
         app:showAsAction="ifRoom"
     />
   <item android:id="@+id/menu_delete"
-        android:icon="@drawable/ic_menu_delete"
+        android:icon="@drawable/baseline_delete_24"
         android:title="@string/menu_delete"
         app:showAsAction="ifRoom"
   />
     <item android:id="@+id/menu_move"
-          android:icon="@drawable/ic_menu_cut"
+          android:icon="@drawable/baseline_content_cut_24"
           android:title="@string/menu_move"
           app:showAsAction="ifRoom"
     />

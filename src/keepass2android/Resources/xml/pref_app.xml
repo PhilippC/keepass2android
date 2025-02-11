@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/app_key"
+	android:title="@string/application"
+	android:summary="@string/application_settings"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<Preference
+		android:key="@string/security_prefs_key"
+		android:title="@string/security_prefs"
+		app:fragment="keepass2android.settings.SecurityPreferenceFragment"
+	/>
+
+	<Preference
+		android:key="@string/display_prefs_key"
+		android:title="@string/display_prefs"
+		app:fragment="keepass2android.settings.DisplayPreferenceFragment"
+	/>
+
+	<Preference
+		android:key="@string/password_access_prefs_key"
+		android:title="@string/password_access_prefs"
+		app:fragment="keepass2android.settings.PasswordAccessPreferenceFragment"
+	/>
+
+
+	<Preference
+		android:key="@string/QuickUnlock_prefs_key"
+		android:title="@string/QuickUnlock_prefs"
+		app:fragment="keepass2android.settings.QuickUnlockPreferenceFragment"
+	/>
+	
+	<Preference
+		android:key="@string/FileHandling_prefs_key"
+		android:title="@string/FileHandling_prefs"
+		app:fragment="keepass2android.settings.FileHandlingPreferenceFragment"
+	/>
+	
+	<Preference
+		android:key="keyboard_prefs"
+		android:title="@string/keyboard_prefs"
+	>
+		<intent android:action="keepass2android.softkeyboard.LatinIMESettings" />
+	</Preference>
+
+	<Preference
+		android:key="@string/TrayTotp_prefs_key"
+		android:title="@string/TrayTotp_prefs"
+		app:fragment="keepass2android.settings.TotpPreferenceFragment"
+	/>
+	<Preference
+		android:key="@string/DebugLog_prefs_key"
+		android:title="@string/DebugLog_prefs_prefs"
+		app:fragment="keepass2android.settings.DebugLogPreferenceFragment"
+	/>
+
+</PreferenceScreen>

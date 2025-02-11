@@ -2,6 +2,11 @@ apply plugin: 'com.android.library'
 android {
 
     namespace 'keepass2android.pluginsdk'
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "PluginSDK-${variant.name}.aar"
+        }
+    }
 
     compileSdkVersion 33
 

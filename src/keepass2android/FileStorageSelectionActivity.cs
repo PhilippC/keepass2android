@@ -9,20 +9,20 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
-using Android.Support.V4.Content;
-using Android.Support.V7.App;
 using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android.Io;
 using keepass2android.view;
 using AlertDialog = Android.App.AlertDialog;
 using Object = Java.Lang.Object;
+using Resource = keepass2android.Resource;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_Blue")]
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_BlueNoActionBar")]
     public class FileStorageSelectionActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
@@ -178,7 +178,7 @@ namespace keepass2android
 		    if (protocolId.Contains(","))
 		    {
                 //bring up a selection dialog to select the variant of the file storage
-		        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 		        
 		        builder.SetItems(protocolId.Split(",").Select(singleProtocolId => App.Kp2a.GetStorageDisplayName(singleProtocolId)).ToArray(), 
 		            delegate(object sender, DialogClickEventArgs args)
@@ -201,7 +201,7 @@ namespace keepass2android
 				//set help:
 				string help = GetString((int)field.GetValue(null));
 
-				new AlertDialog.Builder(this)
+				new MaterialAlertDialogBuilder(this)
 					.SetTitle(GetString(Resource.String.app_name))
 					.SetMessage(help)
 					.SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ReturnProtocol(protocolId))

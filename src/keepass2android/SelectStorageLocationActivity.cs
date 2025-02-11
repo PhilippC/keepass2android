@@ -3,10 +3,12 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using keepass2android.Io;
 using keepass2android.Utils;
+using keepass2android;
 
 namespace keepass2android
 {
@@ -155,7 +157,8 @@ namespace keepass2android
 
 		protected override void ShowAlertDialog(string message, EventHandler<DialogClickEventArgs> onOk, EventHandler<DialogClickEventArgs> onCancel)
 		{
-			new AlertDialog.Builder(this)
+			new 
+                    MaterialAlertDialogBuilder(this)
 					.SetPositiveButton(Android.Resource.String.Ok, onOk)
 					.SetMessage(message)
 					.SetCancelable(false)

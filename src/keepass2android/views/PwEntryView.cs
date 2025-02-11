@@ -30,6 +30,7 @@ using KeeTrayTOTP.Libraries;
 using PluginTOTP;
 using Android.Content;
 using System.ComponentModel;
+using keepass2android;
 
 
 namespace keepass2android.view
@@ -157,7 +158,7 @@ namespace keepass2android.view
 
 			if (_groupActivity.IsBeingMoved(_entry.Uuid))
 			{
-				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.element_being_moved);
+				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.md_theme_inversePrimary);
 				_textView.SetTextColor(new Color(elementBeingMoved));
 			}
 			else

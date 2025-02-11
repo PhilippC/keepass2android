@@ -33,16 +33,16 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Preferences;
 using Android.Runtime;
-using Android.Support.V4.View;
-using Android.Support.V7.App;
+using Google.Android.Material.Dialog;
 using keepass2android.Io;
+using keepass2android;
 using KeePassLib.Security;
 using AlertDialog = Android.App.AlertDialog;
 using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar", Exported = true)]
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
 	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
@@ -268,7 +268,7 @@ namespace keepass2android
 			}
 			if (templates.Count > 1)
 			{
-				new AlertDialog.Builder(this)
+				new MaterialAlertDialogBuilder(this)
 					.SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
 						Android.Resource.Id.Text1, templates),
 						(o, args) => { EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); })

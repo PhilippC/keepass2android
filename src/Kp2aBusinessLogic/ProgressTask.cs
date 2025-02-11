@@ -75,7 +75,7 @@ namespace keepass2android
 		private readonly RunnableOnFinish _task;
 		private IProgressDialog _progressDialog;
         private readonly IKp2aApp _app;
-		private Thread _thread;
+        private Java.Lang.Thread _thread;
 	    private Activity _activeActivity, _previouslyActiveActivity;
 	    private ProgressDialogStatusLogger _progressDialogStatusLogger;
 
@@ -127,7 +127,7 @@ namespace keepass2android
 	    public void Run(bool allowOverwriteCurrentTask = false)
 		{
 		    if ((!allowOverwriteCurrentTask) && (_currentTask != null))
-		        throw new Exception("Cannot start another ProgressTask while ProgressTask is already running! " + _task.GetType().Name + "/" + _currentTask._task.GetType().Name);
+		        throw new System.Exception("Cannot start another ProgressTask while ProgressTask is already running! " + _task.GetType().Name + "/" + _currentTask._task.GetType().Name);
 		    _currentTask = this;
 
             // Show process dialog
@@ -135,7 +135,7 @@ namespace keepass2android
 			
 			
 			// Start Thread to Run task
-			_thread = new Thread(_task.Run);
+			_thread = new Java.Lang.Thread(_task.Run);
 			_thread.Start();
 		}
 

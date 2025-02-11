@@ -26,12 +26,13 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Preferences;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar", Exported = true)]
+    [Activity(Label = "@string/kp2a_findUrl", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else

@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Widget.Inline;
 using AndroidX.AutoFill.Inline;
 using AndroidX.AutoFill.Inline.V1;
+using keepass2android;
 using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase

@@ -2,7 +2,6 @@ package keepass2android.pluginsdk;
 
 import java.util.ArrayList;
 
-import android.R.anim;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

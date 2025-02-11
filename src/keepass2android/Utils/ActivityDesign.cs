@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.Res;
 using Android.OS;
 using Android.Preferences;
+using AndroidX.AppCompat.App;
+using keepass2android;
 
 namespace keepass2android
 {
@@ -45,67 +47,34 @@ namespace keepass2android
 
 		public void ApplyTheme()
 		{
-			if (HasThemes())
-			{
-				var dark = UseDarkTheme;
-				int newTheme = dark ? DarkTheme : LightTheme;
-				_activity.SetTheme(newTheme);
-				_currentThemeId = newTheme;
-				_secureWindow = SecureWindowPref();
-			}
+			_currentThemeId = NightModePreference;
+            AppCompatDelegate.DefaultNightMode = _currentThemeId.Value;
+            _secureWindow = SecureWindowPref();
+		
 			_currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)
 				.GetString("IconSetKey", _activity.PackageName);
 		}
 
-		public int DarkTheme
-		{
-			get
-			{
-				if (string.IsNullOrEmpty(_attributeTheme))
-					return Resource.Style.MyTheme_Dark;
-				if (_attributeTheme.Contains("MyTheme_Blue"))
-					return Resource.Style.MyTheme_Blue_Dark;
-				if (_attributeTheme.Contains("MyTheme_ActionBar"))
-					return Resource.Style.MyTheme_ActionBar_Dark;
-				return Resource.Style.MyTheme_Dark;
-			}
-			
-		}
-
-		public int LightTheme
-		{
-			get
-			{
-				if (string.IsNullOrEmpty(_attributeTheme))
-					return Resource.Style.MyTheme;
-				if (_attributeTheme.Contains("MyTheme_Blue"))
-					return Resource.Style.MyTheme_Blue;
-				if (_attributeTheme.Contains("MyTheme_ActionBar"))
-					return Resource.Style.MyTheme_ActionBar;
-				return Resource.Style.MyTheme;
-			}
-
-		}
 
 		public void ReapplyTheme()
 		{
-			if (HasThemes())
+			
+			int newTheme = NightModePreference;
+			if (newTheme != _currentThemeId)
 			{
-				int newTheme = UseDarkTheme ? DarkTheme : LightTheme;
-				if (newTheme != _currentThemeId)
-				{
-					Kp2aLog.Log("recreating due to theme change.");
-					_activity.Recreate();
-					return;
-				}	
-			}
+				Kp2aLog.Log("recreating due to theme change.");
+                _activity.Recreate();
+                _activity.Finish(); //withouth this, we'll have two GroupActivities on the backstack afterwards
+				return;
+			}	
+		
 			
 			if (PreferenceManager.GetDefaultSharedPreferences(_activity)
 				.GetString("IconSetKey", _activity.PackageName) != _currentIconSet)
 			{
 				Kp2aLog.Log("recreating due to icon set change.");
 				_activity.Recreate();
-				return;
+                return;
 
 			}
 
@@ -113,44 +82,34 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("recreating due to secure window change.");
 				_activity.Recreate();
-				return;
+                return;
 			}
 		}
 
-		public bool UseDarkTheme
+		public int NightModePreference
 		{
 			get
 			{
 				var prefs = PreferenceManager.GetDefaultSharedPreferences(_activity);
 				string design = prefs.GetString(_activity.GetString(Resource.String.design_key), _activity.GetString(Resource.String.design_default));
-
-                if ((design == "System") && (int)Build.VERSION.SdkInt>=29 && _activity.Resources.Configuration != null)
+                return design switch
                 {
-                    UiMode nightModeFlags = ((UiMode)((int)_activity.Resources.Configuration.UiMode & (int)Android.Content.Res.UiMode.NightMask));
-
-                    if (nightModeFlags == UiMode.NightYes)
-                        return true;
-                }
-
-				bool dark = (design == "Dark");
-				return dark;
+                    "System" => AppCompatDelegate.ModeNightFollowSystem,
+                    "Light" => AppCompatDelegate.ModeNightNo,
+                    "Dark" => AppCompatDelegate.ModeNightYes,
+                    _ => AppCompatDelegate.ModeNightFollowSystem,
+                };
 			}
 		}
 
 		public void ApplyDialogTheme()
 		{
-			if (HasThemes())
-			{
-				bool dark = UseDarkTheme;
-				_activity.SetTheme(dark ? Resource.Style.Base_Dialog_Dark : Resource.Style.Base_Dialog);
-			}
+			
+			_activity.SetTheme(Resource.Style.Kp2aTheme_Dialog);
+			
 
 		}
 
-		public bool HasThemes()
-		{
-			return ((int)Android.OS.Build.VERSION.SdkInt >= 14);
-		}
 		
 	}
 }

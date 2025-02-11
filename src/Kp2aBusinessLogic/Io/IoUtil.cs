@@ -34,14 +34,14 @@ namespace keepass2android.Io
 			}
 			return false;
 		}
-		public static bool DeleteDir(File dir, bool contentsOnly=false)
+		public static bool DeleteDir(Java.IO.File dir, bool contentsOnly=false)
 		{
 			if (dir != null && dir.IsDirectory)
 			{
 				String[] children = dir.List();
 				for (int i = 0; i < children.Length; i++)
 				{
-					bool success = DeleteDir(new File(dir, children[i]));
+					bool success = DeleteDir(new Java.IO.File(dir, children[i]));
 					if (!success)
 					{
 						return false;
@@ -77,12 +77,12 @@ namespace keepass2android.Io
 		{
 			try
 			{
-				File filesDir = context.FilesDir.CanonicalFile;
-				File noBackupDir = GetInternalDirectory(context).CanonicalFile;
-				File ourFile = new File(path).CanonicalFile;
-				//http://www.java2s.com/Tutorial/Java/0180__File/Checkswhetherthechilddirectoryisasubdirectoryofthebasedirectory.htm
+				Java.IO.File filesDir = context.FilesDir.CanonicalFile;
+                Java.IO.File noBackupDir = GetInternalDirectory(context).CanonicalFile;
+                Java.IO.File ourFile = new Java.IO.File(path).CanonicalFile;
+                //http://www.java2s.com/Tutorial/Java/0180__File/Checkswhetherthechilddirectoryisasubdirectoryofthebasedirectory.htm
 
-				File parentFile = ourFile;
+                Java.IO.File parentFile = ourFile;
 				while (parentFile != null)
 				{
 					if ((filesDir.Equals(parentFile) || noBackupDir.Equals(parentFile)))
@@ -137,7 +137,7 @@ namespace keepass2android.Io
 	        targetPath = targetPath.Trim("|\\?*<\":>+[]/'".ToCharArray());
 	        if (targetPath == "")
 	            targetPath = "internal";
-	        if (new File(internalDirectory, targetPath).Exists())
+	        if (new Java.IO.File(internalDirectory, targetPath).Exists())
 	        {
 	            int c = 1;
 	            var ext = UrlUtil.GetExtension(targetPath);
@@ -148,9 +148,9 @@ namespace keepass2android.Io
 	                targetPath = filenameWithoutExt + c;
 	                if (!String.IsNullOrEmpty(ext))
 	                    targetPath += "." + ext;
-	            } while (new File(internalDirectory, targetPath).Exists());
+	            } while (new Java.IO.File(internalDirectory, targetPath).Exists());
 	        }
-	        return IOConnectionInfo.FromPath(new File(internalDirectory, targetPath).CanonicalPath);
+	        return IOConnectionInfo.FromPath(new Java.IO.File(internalDirectory, targetPath).CanonicalPath);
         }
 
 	    public static IOConnectionInfo ImportFileToInternalDirectory(IOConnectionInfo sourceIoc, Context ctx, IKp2aApp app)

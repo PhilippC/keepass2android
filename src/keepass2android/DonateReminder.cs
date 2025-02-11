@@ -10,11 +10,12 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using keepass2android;
 using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    [Activity(Label = AppNames.AppName, Theme = "@style/MyTheme_ActionBar")]
+    [Activity(Label = AppNames.AppName, Theme = "@style/Kp2aTheme_ActionBar")]
 	public class DonateReminder : Activity
 	{
 		class Reminder

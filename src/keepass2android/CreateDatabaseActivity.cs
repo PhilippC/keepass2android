@@ -5,7 +5,6 @@ using Android.Content.PM;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
-using Android.Support.V7.App;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
@@ -13,6 +12,7 @@ using Java.IO;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using keepass2android;
 using Environment = Android.OS.Environment;
 using IOException = Java.IO.IOException;
 
@@ -20,7 +20,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
-               Theme = "@style/MyTheme_ActionBar")]
+               Theme = "@style/Kp2aTheme_BlueActionBar")]
 	public class CreateDatabaseActivity : LifecycleAwareActivity
 	{
 		private IOConnectionInfo _ioc;
@@ -140,15 +140,13 @@ namespace keepass2android
 				CreateDatabase(Intent.GetBooleanExtra("MakeCurrent",true));
 			};
 
-			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
+            Button btnTogglePassword = (Button)FindViewById(Resource.Id.toggle_password);
 			btnTogglePassword.Click += (sender, e) =>
 			{
 				_showPassword = !_showPassword;
 				MakePasswordMaskedOrVisible();
 			};
-			Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
-			Android.Graphics.Color color = new Android.Graphics.Color (224, 224, 224);
-			btnTogglePassword.SetColorFilter (color, mMode);
+
 
             Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.root));
 
@@ -277,18 +275,18 @@ namespace keepass2android
 
 		private void SetDefaultIoc()
 		{
-			File directory = GetExternalFilesDir(null);
+            Java.IO.File directory = GetExternalFilesDir(null);
 			if (directory == null)
 				directory = FilesDir;
 
 			string strDir = directory.CanonicalPath;
-			if (!strDir.EndsWith(File.Separator))
-				strDir += File.Separator;
+			if (!strDir.EndsWith(Java.IO.File.Separator))
+				strDir += Java.IO.File.Separator;
 
 			string filename = strDir + "keepass.kdbx";
 			filename = FileSelectHelper.ConvertFilenameToIocPath(filename);
 			int count = 2;
-			while (new File(filename).Exists())
+			while (new Java.IO.File(filename).Exists())
 			{
 				filename = FileSelectHelper.ConvertFilenameToIocPath(strDir + "keepass" + count + ".kdbx");
 				count++;

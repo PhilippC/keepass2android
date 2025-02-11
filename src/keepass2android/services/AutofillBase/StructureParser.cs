@@ -6,6 +6,7 @@ using Android.Content;
 using Android.Preferences;
 using Android.Views.Autofill;
 using DomainNameParser;
+using keepass2android;
 using Kp2aAutofillParser;
 using Newtonsoft.Json;
 

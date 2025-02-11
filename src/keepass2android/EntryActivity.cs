@@ -53,6 +53,8 @@ using keepass2android.fileselect;
 using KeeTrayTOTP.Libraries;
 using Boolean = Java.Lang.Boolean;
 using Android.Util;
+using Google.Android.Material.Dialog;
+using keepass2android;
 
 namespace keepass2android
 {
@@ -93,7 +95,7 @@ namespace keepass2android
 
 
 	[Activity (Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-        Theme = "@style/MyTheme_ActionBar")]
+        Theme = "@style/Kp2aTheme_ActionBar")]
 	public class EntryActivity : LockCloseActivity 
 	{
 		public const String KeyEntry = "entry";
@@ -489,9 +491,9 @@ namespace keepass2android
 			App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
 
 			_pluginActionReceiver = new PluginActionReceiver(this);
-			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction));
+			RegisterReceiver(_pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction), ReceiverFlags.Exported);
 			_pluginFieldReceiver = new PluginFieldReceiver(this);
-			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField));
+			RegisterReceiver(_pluginFieldReceiver, new IntentFilter(Strings.ActionSetEntryField), ReceiverFlags.Exported);
 
             var notifyPluginsOnOpenThread = new Thread(NotifyPluginsOnOpen);
             notifyPluginsOnOpenThread.Start();
@@ -603,7 +605,7 @@ namespace keepass2android
                 return;
             }
 
-            new AlertDialog.Builder(this)
+            new MaterialAlertDialogBuilder(this)
                 .SetTitle(Resource.String.post_notifications_dialog_title)
                 .SetMessage(Resource.String.post_notifications_dialog_message)
                 .SetNegativeButton(Resource.String.post_notifications_dialog_disable, (sender, args) =>
@@ -623,7 +625,7 @@ namespace keepass2android
                     edit.Commit();
 
                     //request permission. user must grant, we'll show notifications in the OnRequestPermissionResults() callback
-                    Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, activateKeyboard ? 1 : 0 /*use requestCode to transfer the flag*/);
+                    AndroidX.Core.App.ActivityCompat.RequestPermissions(this, new[] { Android.Manifest.Permission.PostNotifications }, activateKeyboard ? 1 : 0 /*use requestCode to transfer the flag*/);
 
 
                 })
@@ -889,7 +891,7 @@ namespace keepass2android
 				{
 					Button btnSender = (Button)(sender);
 
-					AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 					builder.SetTitle(GetString(Resource.String.SaveAttachmentDialog_title));
 					
 					builder.SetMessage(GetString(Resource.String.SaveAttachmentDialog_text));
@@ -1046,11 +1048,9 @@ namespace keepass2android
 			ViewGroup historyGroup = (ViewGroup)FindViewById(Resource.Id.previous_versions);
             int index = 0;
 			foreach (var previousVersion in Entry.History)
-			{
+            {
+                Button btn = (Button)LayoutInflater.Inflate(Resource.Layout.VersionHistoryButton, null);
 				
-
-
-                Button btn = new Button(this);
                 btn.Text = getDateTime(previousVersion.LastModificationTime);
 
 				//copy variable from outer scope for capturing it below.
@@ -1210,10 +1210,13 @@ namespace keepass2android
 			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
 				"ShowGroupInEntry", false))
 			{
-				groupName = Entry.ParentGroup.GetFullPath();
+				groupName = Entry.ParentGroup?.GetFullPath();
 			}
-			PopulateText(viewId, containerViewId, groupName);
-			_stringViews.Add (key, new StandardStringView (new List<int>{viewId}, containerViewId, this));
+
+            PopulateText(viewId, containerViewId, groupName);
+            _stringViews.Add(key, new StandardStringView(new List<int> { viewId }, containerViewId, this));
+        
+			
 		}
 
 		private void RequiresRefresh()

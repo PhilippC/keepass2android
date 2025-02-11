@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Android;
+
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -12,7 +12,9 @@ using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using Java.Lang;
+using keepass2android;
 using KeePassLib.Keys;
 using KeePassLib.Utility;
 using Enum = System.Enum;
@@ -22,7 +24,7 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name",
 	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
-		Theme = "@style/MyTheme_ActionBar", MainLauncher = false, Exported = true)]
+		Theme = "@style/Kp2aTheme_ActionBar", MainLauncher = false, Exported = true)]
 	[IntentFilter(new[] { "kp2a.action.FingerprintSetupActivity" }, Categories = new[] { Intent.CategoryDefault })]
 	public class BiometricSetupActivity : LockCloseActivity, IBiometricAuthCallback
 	{
@@ -168,7 +170,7 @@ namespace keepass2android
                 }
 			    catch (Exception e)
 			    {
-			        new AlertDialog.Builder(this)
+			        new MaterialAlertDialogBuilder(this)
 			            .SetTitle(GetString(Resource.String.ErrorOcurred))
 			            .SetMessage(GetString(Resource.String.FingerprintSetupFailed))
                         .SetCancelable(false)
@@ -268,7 +270,7 @@ namespace keepass2android
 
 			_fpTextView.RemoveCallbacks(ResetErrorTextRunnable);
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fingerprint_success);
-			_fpTextView.SetTextColor(_fpTextView.Resources.GetColor(Resource.Color.success_color, null));
+			_fpTextView.SetTextColor(_fpTextView.Resources.GetColor(Resource.Color.md_theme_secondary, null));
 			_fpTextView.Text = _fpTextView.Resources.GetString(Resource.String.fingerprint_success);
 			_fpIcon.PostDelayed(() =>
 			{
@@ -291,7 +293,7 @@ namespace keepass2android
 			_fpIcon.SetImageResource(Resource.Drawable.ic_fingerprint_error);
 			_fpTextView.Text = error;
 			_fpTextView.SetTextColor(
-				_fpTextView.Resources.GetColor(Resource.Color.warning_color, null));
+				_fpTextView.Resources.GetColor(Resource.Color.md_theme_error, null));
 			_fpTextView.RemoveCallbacks(ResetErrorTextRunnable);
 			_fpTextView.PostDelayed(ResetErrorTextRunnable, ERROR_TIMEOUT_MILLIS);
 		}
@@ -304,9 +306,9 @@ namespace keepass2android
         void ResetErrorTextRunnable()
 		{
 			_fpTextView.SetTextColor(
-				_fpTextView.Resources.GetColor(Resource.Color.hint_color, null));
+				_fpTextView.Resources.GetColor(Resource.Color.md_theme_secondary, null));
 			_fpTextView.Text = "";
-			_fpIcon.SetImageResource(Resource.Drawable.ic_fp_40px);
+			_fpIcon.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 		}
 
 		protected override void OnResume()

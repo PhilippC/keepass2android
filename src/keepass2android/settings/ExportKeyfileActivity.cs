@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 using keepass2android.Io;
+using keepass2android;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 

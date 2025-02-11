@@ -100,11 +100,10 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           style="@style/TextAppearance_Help_Dense"
-          android:textColor="@color/light_gray"
           app:help_text="@string/EnableCopyForThisDevice_Info"
           app:title_text="@string/child_db_enable_a_copy_for_this_device"
           android:text="@string/EnableCopyForThisDevice_Info"
-          android:background="?android:attr/selectableItemBackground"/>
+          />
       </LinearLayout>
 
     </LinearLayout>

@@ -120,14 +120,38 @@ ifneq ($(Configuration),)
 else
   $(warning Configuration environment variable not set.)
 endif
+
+DELETE_MANIFEST_LINK := 
+CREATE_MANIFEST_LINK := 
+
+MANIFEST_FILE := 
 ifneq ($(Flavor),)
   MSBUILD_PARAM += -p:Flavor="$(Flavor)"
+  ifneq ($(Flavor),)
+		ifeq ($(Flavor),Debug)
+			MANIFEST_FILE := AndroidManifest_debug.xml
+		endif
+		ifeq ($(Flavor),Net) 
+			MANIFEST_FILE := AndroidManifest_net.xml
+		endif
+		ifeq ($(Flavor),NoNet)
+			MANIFEST_FILE := AndroidManifest_nonet.xml
+		endif
+		ifeq ($(detected_OS),Windows)
+			DELETE_MANIFEST_LINK := @cmd /c del src\keepass2android-app\AndroidManifest.xml
+			CREATE_MANIFEST_LINK := @cmd /c mklink /h src\keepass2android-app\AndroidManifest.xml src\keepass2android-app\Manifests\$(MANIFEST_FILE)
+		else
+			DELETE_MANIFEST_LINK := rm -f src/keepass2android-app/AndroidManifest.xml
+			CREATE_MANIFEST_LINK := ln -f src/keepass2android-app/Manifests/$(MANIFEST_FILE) src/keepass2android-app/AndroidManifest.xml
+		endif
+
+	endif
 else
   $(warning Flavor environment variable not set.)
 endif
 
 ifneq ($(KeyStore),)
-  MSBUILD_PARAM += -p:AndroidKeyStore=True -p:AndroidSigningKeyStore="$(KeyStore)" -p:AndroidSigningStorePass=env:MyAndroidSigningStorePass -p:AndroidSigningKeyPass=env:MyAndroidSigningKeyPass
+  MSBUILD_PARAM += -p:AndroidKeyStore=True -p:AndroidSigningKeyStore="$(KeyStore)" -p:AndroidSigningStorePass=env:MyAndroidSigningStorePass -p:AndroidSigningKeyPass=env:MyAndroidSigningKeyPass -p:AndroidSigningKeyAlias="kp2a"
 endif
 
 ifeq ($(detected_OS),Windows)
@@ -281,6 +305,11 @@ endif
 	$(MSBUILD) src/KeePass.sln -t:restore $(MSBUILD_PARAM) -p:RestorePackagesConfig=true
 	@echo "" > stamp.nuget_$(Flavor)
 
+manifestlink:
+	$(info Creating hardlink for manifest of Flavor: $(Flavor))
+	$(DELETE_MANIFEST_LINK)	
+	$(CREATE_MANIFEST_LINK)	
+
 #####
 src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs:
 ifeq ($(detected_OS),Windows)
@@ -289,11 +318,11 @@ else
 	$(CP) src/Kp2aBusinessLogic/Io/DropboxFileStorageKeysDummy.cs $@
 endif
 
-msbuild: native java nuget src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
+msbuild: manifestlink native java nuget src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
 	$(MSBUILD) src/KeePass.sln -target:keepass2android-app -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -p:BuildProjectReferences=true $(MSBUILD_PARAM) -p:Platform="Any CPU" -m
 
-apk: msbuild
-	$(MSBUILD) src/keepass2android/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m 
+apk: msbuild 
+	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m 
 
 build_all: msbuild
 

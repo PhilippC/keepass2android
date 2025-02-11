@@ -18,6 +18,10 @@ android {
             debuggable false
         }
     }
+
+    buildFeatures {
+        buildConfig true
+    }
     compileOptions {
         targetCompatibility 11
         sourceCompatibility 11

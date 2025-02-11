@@ -1,58 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:background="@drawable/splash_bg_selector"
-    android:layout_height="fill_parent"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:gravity="center_horizontal"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-  <ImageView
-      android:id="@+id/splashlogo"
-      android:layout_width="@dimen/splash_logo_width"
-      android:layout_height="@dimen/splash_logo_height"
-      android:layout_weight="0"
-      android:layout_marginTop="@dimen/splash_logo_marginTop"
-      android:src="@drawable/splashlogo" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        >
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginStart="16dp"
+            app:expandedTitleMarginEnd="24dp"
+            app:expandedTitleMarginBottom="20sp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:gravity="center_horizontal"
+                android:fitsSystemWindows="true">
+                <ImageView
+                    android:id="@+id/splashlogo"
+                    android:layout_width="@dimen/splash_logo_width"
+                    android:layout_height="@dimen/splash_logo_height"
+                    android:layout_weight="0"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="@dimen/splash_logo_marginTop"
+                    android:src="@drawable/splashlogo" />
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_weight="0"
-      android:text="Keepass2Android"
-      android:inputType="text"
-      android:textSize="@dimen/splash_fontsize"
-      android:fontFamily="sans-serif-light"
-      android:layout_marginBottom="8dp"
-      android:textColor="#fff" />
-  <View
-      android:id="@+id/dividerTop"
-      android:layout_width="fill_parent"
-      android:layout_height="1dp"
-      android:layout_weight="0"
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="8dp"
-      android:background="#d1e7f6" />
-  <Button
-      android:id="@+id/start_open_file"
-      android:text="@string/start_open_file"
-      android:layout_weight="0"
-      android:drawableLeft="@drawable/opendb"
-      style="@style/SplashScreenButton" />
-  <Button
-      android:id="@+id/start_create"
-      android:text="@string/start_create"
-      android:layout_weight="0"
-      android:drawableLeft="@drawable/createnewdb"
-      style="@style/SplashScreenButton" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Keepass2Android"
+                    android:inputType="text"
+                    android:textSize="@dimen/splash_fontsize"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_marginBottom="8dp"
+          />
+                <View
+                    android:id="@+id/dividerTop"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                     />
 
-  <fragment
-          android:name="keepass2android.RecentFilesFragment"
-          android:id="@+id/recent_files"
-          android:layout_width="match_parent"
-           android:layout_height="fill_parent"
-          android:layout_weight="1"
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
+
+
+            <Button
+                style="@style/Widget.Material3.Button.Icon"
+                android:id="@+id/start_open_file"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_open_file"
+                android:layout_weight="0"
+                app:icon="@drawable/baseline_folder_open_24" />
+            <Button
+                style="@style/Widget.Material3.Button.Icon"
+                android:id="@+id/start_create"
+                android:text="@string/start_create"
+                android:layout_weight="0"
+                app:icon="@drawable/baseline_create_new_folder_24"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <fragment
+                android:name="keepass2android.RecentFilesFragment"
+                android:id="@+id/recent_files"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                
         />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
   
-</LinearLayout>

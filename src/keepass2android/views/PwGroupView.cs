@@ -21,6 +21,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using keepass2android;
 using KeePassLib;
 using Object = Java.Lang.Object;
 
@@ -98,7 +99,7 @@ namespace keepass2android.view
 
 			if (_groupBaseActivity.IsBeingMoved(_pwGroup.Uuid))
 			{
-				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.element_being_moved);
+				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.md_theme_inversePrimary);
 				_textview.SetTextColor(new Color(elementBeingMoved));
 			}
 			else

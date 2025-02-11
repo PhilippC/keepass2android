@@ -12,13 +12,14 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Provider;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 using keepass2android.database.edit;
 using KeePass.Util.Spr;
+using keepass2android;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Security;
@@ -28,7 +29,7 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/child_dbs_title", MainLauncher = false, Theme = "@style/MyTheme_Blue", LaunchMode = LaunchMode.SingleInstance, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
+    [Activity(Label = "@string/child_dbs_title", MainLauncher = false, Theme = "@style/Kp2aTheme_BlueNoActionBar", LaunchMode = LaunchMode.SingleInstance, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
     [IntentFilter(new[] { "kp2a.action.ConfigureChildDatabasesActivity" }, Categories = new[] { Intent.CategoryDefault })]
     public class ConfigureChildDatabasesActivity : LockCloseActivity
     {
@@ -288,7 +289,7 @@ namespace keepass2android
 
             FindViewById<Button>(Resource.Id.add_child_db_button).Click += (sender, args) =>
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
                 builder.SetTitle(Resource.String.add_child_db);
 
                 List<string> items = new List<string>();
@@ -321,7 +322,7 @@ namespace keepass2android
                 
 
                 
-                AlertDialog dialog = builder.Create();
+                var dialog = builder.Create();
                 dialog.Show();
             };
         }

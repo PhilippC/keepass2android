@@ -7,13 +7,14 @@ using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.Graphics;
-using Android.Preferences;
+using AndroidX.Preference;
 using Android.Runtime;
-using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
 using keepass2android.services.AutofillBase;
+using keepass2android;
+using Google.Android.Material.Dialog;
 
 namespace keepass2android
 {
@@ -155,15 +156,16 @@ namespace keepass2android
 
         }
 
-
-        protected override void OnPrepareDialogBuilder(AlertDialog.Builder builder)
+        protected override void OnClick()
         {
             _populatorTask.Wait();
-            base.OnPrepareDialogBuilder(builder);
+
+            var builder = new MaterialAlertDialogBuilder(Context);
+
 
 
             var adapter = new DisabledQueryPreferenceScreenAdapter(this, Context);
-            
+
             builder.SetAdapter(adapter, (sender, args) => { });
             builder.SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
             {
@@ -172,8 +174,10 @@ namespace keepass2android
                 prefs.Edit().PutStringSet("AutoFillDisabledQueries", newList).Commit();
 
             });
-
+            var dialog = builder.Create();
+            dialog.Show();
 
         }
+
     }
 }

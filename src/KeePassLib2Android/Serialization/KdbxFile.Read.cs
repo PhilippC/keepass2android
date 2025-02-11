@@ -107,7 +107,7 @@ namespace KeePassLib.Serialization
             try
             {
                 Stream sXml;
-                if (fmt == KdbxFormat.Default || fmt == KdbxFormat.ProtocolBuffers)
+                if (fmt == KdbxFormat.Default)
                 {
                     BinaryReaderEx br = new BinaryReaderEx(sHashing,
                         encNoBom, KLRes.FileCorrupted);
@@ -229,10 +229,7 @@ namespace KeePassLib.Serialization
 
                 if (fmt == KdbxFormat.ProtocolBuffers)
                 {
-                    KdbpFile.ReadDocument(m_pwDatabase, sXml, m_pbInnerRandomStreamKey, m_pbHashOfHeader);
-
-                    Kp2aLog.Log(String.Format("KdbpFile.ReadDocument: {0}ms", stopWatch.ElapsedMilliseconds));
-
+                    throw new Exception("kdbp is deprecated and was removed to simplify the build process.");
                 }
                 else
                 {

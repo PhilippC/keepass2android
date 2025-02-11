@@ -18,10 +18,12 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Preferences;
-using Android.Support.V4.App;
+using AndroidX.Core.App;
+using keepass2android;
 using KeePassLib.Utility;
 
 namespace keepass2android
@@ -36,7 +38,9 @@ namespace keepass2android
 	/// used by the user. This ensures the database is kept in memory (until Android kills it due to low memory).
 	/// It is important to also have a foreground service also for the "unlocked" state because it's really
 	/// irritating if the db is closed while switching between apps.
-	[Service]
+	[Service(ForegroundServiceType = ForegroundService.TypeSpecialUse )]
+	[MetaData("android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE", Value = " This service is running as foreground service to keep the app alive even when it's not currently used by the user. This ensures the database is kept in memory (until Android kills it due to low memory). It is important to also have a foreground service also for the \"unlocked\" state because it's really irritating if the db is closed while switching between apps.")]
+	
 	public class OngoingNotificationsService : Service
 	{
 		protected override void AttachBaseContext(Context baseContext)
@@ -56,7 +60,7 @@ namespace keepass2android
 			_screenOffReceiver = new ScreenOffReceiver();
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
-			RegisterReceiver(_screenOffReceiver, filter);
+			RegisterReceiver(_screenOffReceiver, filter, ReceiverFlags.Exported);
 		}
 
 
@@ -172,7 +176,7 @@ namespace keepass2android
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
-			builder.AddAction(Android.Resource.Drawable.IcLockLock, GetString(Resource.String.QuickUnlock_lockButton), 
+			builder.AddAction(Resource.Drawable.baseline_lock_24, GetString(Resource.String.QuickUnlock_lockButton), 
 				PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.CloseDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
 			
 
@@ -216,7 +220,7 @@ namespace keepass2android
 			// Default action is to show Kp2A
 			builder.SetContentIntent(GetSwitchToAppPendingIntent());
 			// Additional action to allow locking the database
-			builder.AddAction(Resource.Drawable.ic_action_lock, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
+			builder.AddAction(Resource.Drawable.baseline_lock_24, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
 			
 			return builder.Build();
 		}

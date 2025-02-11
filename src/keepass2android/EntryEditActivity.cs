@@ -37,25 +37,31 @@ using System.Net;
 using System.Text;
 using Android.Content.Res;
 using Android.Database;
+using Android.Gms.Tasks;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Runtime;
 using Android.Util;
+using Google.Android.Material.Dialog;
 using keepass2android.Io;
 using KeePassLib.Serialization;
 using KeeTrayTOTP.Libraries;
 using PluginTOTP;
-using Xamarin.Essentials;
-using Xamarin.Forms.Platform.Android;
-using ZXing.Mobile;
+
 using Debug = System.Diagnostics.Debug;
 using File = System.IO.File;
 using Object = Java.Lang.Object;
 using Uri = Android.Net.Uri;
+using Resource = keepass2android.Resource;
+using Google.Android.Material.TextField;
+using Xamarin.Google.MLKit.Vision.Barcode.Common;
+using Xamarin.Google.MLKit.Vision.CodeScanner;
+using Console = System.Console;
+using Task = Android.Gms.Tasks.Task;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/MyTheme_ActionBar")]			
+	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
 	    
 
@@ -248,11 +254,6 @@ namespace keepass2android
 			};
 
 
-
-
-			// Save button
-			//SupportActionBar.SetCustomView(Resource.Layout.SaveButton);
-
             if (State.IsNew)
 		    {
 		        SupportActionBar.Title = GetString(Resource.String.add_entry);
@@ -264,19 +265,6 @@ namespace keepass2android
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
-
-			// Respect mask password setting
-			MakePasswordVisibleOrHidden();
-
-			ImageButton btnTogglePassword = (ImageButton)FindViewById(Resource.Id.toggle_password);
-			btnTogglePassword.Click += (sender, e) =>
-			{
-				State.ShowPassword = !State.ShowPassword;
-				MakePasswordVisibleOrHidden();
-			};
-			PorterDuff.Mode mMode = PorterDuff.Mode.SrcAtop;
-			Color color = new Color (189,189,189);
-			btnTogglePassword.SetColorFilter (color, mMode);
 
 
 			Button addButton = (Button) FindViewById(Resource.Id.add_advanced);
@@ -361,7 +349,7 @@ namespace keepass2android
 
 	        if (State.Entry.Binaries.Get(strItem) != null)
 	        {
-	            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 	            builder.SetTitle(GetString(Resource.String.AskOverwriteBinary_title));
 
 	            builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
@@ -445,24 +433,7 @@ namespace keepass2android
                 ;
         }
 
-        private void MakePasswordVisibleOrHidden()
-		{
-		    EditText password = (EditText) FindViewById(Resource.Id.entry_password);
-			TextView confpassword = (TextView) FindViewById(Resource.Id.entry_confpassword);
-			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
-			if (State.ShowPassword)
-			{
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-                _passwordFont.ApplyTo(password);
-				confpassword.Visibility = ViewStates.Gone;
-			}
-			else
-			{
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				confpassword.Visibility = ViewStates.Visible;
-			}
-			password.SetSelection(selStart, selEnd);
-		}
+        
 
 		void SaveEntry()
 		{
@@ -775,7 +746,7 @@ namespace keepass2android
 				base.OnBackPressed();
 			} else
 			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 				builder.SetTitle(GetString(Resource.String.AskDiscardChanges_title));
 				
 				builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
@@ -1100,11 +1071,12 @@ namespace keepass2android
 				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
                 ees.Tag = pair.Key;
 				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
-				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
+
 				keyView.Text = pair.Key;
-				titleView.Text = title;
+				
 				((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
-				((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
+                ((TextInputLayout)ees.FindViewById(Resource.Id.value_container)).Hint = pair.Key;
+                ((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
                 _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
                 ((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
 				
@@ -1138,7 +1110,7 @@ namespace keepass2android
 		
         private void EditTotpString(View sender)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
             View dlgView = LayoutInflater.Inflate(Resource.Layout.
                 configure_totp_dialog, null);
 
@@ -1183,23 +1155,32 @@ namespace keepass2android
 
             dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
             {
-                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
-                var options = new ZXing.Mobile.MobileBarcodeScanningOptions();
-                options.PossibleFormats = new List<ZXing.BarcodeFormat>() { ZXing.BarcodeFormat.QR_CODE };
-
-                var result = await scanner.Scan(options);
-                if (result?.Text?.StartsWith("otpauth://") == true)
-                {
-                    dialog.Dismiss();
-                    var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
-                    targetField.Text = result.Text;
-                }
-                else
-                {
-                    Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
-				}
+				GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
+                    .SetBarcodeFormats(Barcode.FormatQrCode)
+                    .Build();
+                var scanner = GmsBarcodeScanning.GetClient(this, options);
                 
-			};
+                scanner.StartScan()
+                    .AddOnSuccessListener(new SuccessListener((barcode) =>
+                    {
+                        if (barcode.RawValue?.StartsWith("otpauth://") == true)
+                        {
+                            dialog.Dismiss();
+                            var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                            targetField.Text = barcode.RawValue;
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
+                        }
+                    }))
+                    .AddOnFailureListener(new FailureListener((e) =>
+                    {
+                        Console.WriteLine($"Scan failed: {e.Message}");
+                    }));
+
+
+            };
 
 			//copy values from entry into dialog
 			View ees = (View)sender.Parent;
@@ -1241,8 +1222,6 @@ namespace keepass2android
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
@@ -1341,7 +1320,7 @@ namespace keepass2android
 
         private void EditAdvancedString(View sender)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
 			View dlgView = LayoutInflater.Inflate(Resource.Layout.
 				edit_extra_string_dialog, null);
 
@@ -1352,15 +1331,20 @@ namespace keepass2android
 			builder.SetPositiveButton(Android.Resource.String.Ok, (o, args) =>
 				{
 					CopyFieldFromExtraDialog(sender, o, Resource.Id.title, Resource.Id.extrakey);
-					CopyFieldFromExtraDialog(sender, o, Resource.Id.title, Resource.Id.title);
-					CopyFieldFromExtraDialog(sender, o, Resource.Id.value, Resource.Id.value);
+					
 					CopyCheckboxFromExtraDialog(sender, o, Resource.Id.protection);
-				});
+                    var sourceFieldTitle = (EditText)((Dialog)o).FindViewById(Resource.Id.title);
+                    var sourceFieldValue = (EditText)((Dialog)o).FindViewById(Resource.Id.value);
+                    var targetField = ((TextView)((View)sender.Parent).FindViewById(Resource.Id.value));
+                    var targetFieldContainer = ((TextInputLayout)((View)sender.Parent).FindViewById(Resource.Id.value_container));
+                    targetField.Text = sourceFieldValue.Text;
+                    targetFieldContainer.Hint = sourceFieldTitle.Text;
+                });
 			Dialog dialog = builder.Create();
 
 			//setup delete button:
 			var deleteButton = dlgView.FindViewById<Button>(Resource.Id.delete_extra);
-			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Android.Resource.Drawable.IcMenuDelete), null, null, null);
+			deleteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.baseline_delete_24), null, null, null);
 			deleteButton.Click += (o, args) =>
 				{
 					DeleteAdvancedString(sender);
@@ -1416,7 +1400,7 @@ namespace keepass2android
 			
 			String password = State.Entry.Strings.ReadSafe(PwDefs.PasswordField);
 			PopulateText(Resource.Id.entry_password, password);
-			PopulateText(Resource.Id.entry_confpassword, password);
+
 
             _passwordFont.ApplyTo(FindViewById<EditText>(Resource.Id.entry_password));
 
@@ -1516,17 +1500,6 @@ namespace keepass2android
 				return false;
 			}
 			
-			if (!State.ShowPassword)
-			{
-				// Validate password
-				String pass = Util.GetEditText(this, Resource.Id.entry_password);
-				String conf = Util.GetEditText(this, Resource.Id.entry_confpassword);
-				if (!pass.Equals(conf))
-				{
-					Toast.MakeText(this, Resource.String.error_pass_match, ToastLength.Long).Show();
-					return false;
-				}
-			}
 			
 
 			// Validate expiry date
@@ -1586,6 +1559,35 @@ namespace keepass2android
 
 		}
 	}
+    public class SuccessListener : Object, IOnSuccessListener
+    {
+        private readonly Action<Barcode> _onSuccess;
+
+        public SuccessListener(Action<Barcode> onSuccess)
+        {
+            _onSuccess = onSuccess;
+        }
+
+        public void OnSuccess(Object result)
+        {
+            _onSuccess?.Invoke((Barcode)result);
+        }
+    }
+
+    public class FailureListener : Java.Lang.Object, IOnFailureListener
+    {
+        private readonly Action<Exception> _onFailure;
+
+        public FailureListener(Action<Exception> onFailure)
+        {
+            _onFailure = onFailure;
+        }
+
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            _onFailure?.Invoke(e);
+        }
+    }
 
     public class DefaultEdit : EditModeBase
 	{

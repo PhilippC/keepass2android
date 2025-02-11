@@ -21,6 +21,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using Google.Android.Material.Dialog;
 
 namespace keepass2android
 {
@@ -132,7 +133,7 @@ namespace keepass2android
 			    {
 			        try
 			        {
-			            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+			            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
 			            
 			            builder.SetMessage(message)
 			                .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())

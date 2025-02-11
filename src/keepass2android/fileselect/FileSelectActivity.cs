@@ -26,13 +26,15 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
-using Android.Support.V7.App;
 using Java.IO;
 using KeePassLib.Serialization;
 using Keepass2android.Pluginsdk;
 using keepass2android.Io;
+using keepass2android;
 using Console = System.Console;
 using Environment = Android.OS.Environment;
+using Google.Android.Material.AppBar;
+using Android.Util;
 
 namespace keepass2android
 {
@@ -44,7 +46,7 @@ namespace keepass2android
 	[Activity (Label = "@string/app_name", 
 	           ConfigurationChanges=ConfigChanges.Orientation|
 	           ConfigChanges.KeyboardHidden,
-               Theme = "@style/MyTheme_Blue")]
+               Theme = "@style/Kp2aTheme_BlueNoActionBar")]
 	public class FileSelectActivity : AndroidX.AppCompat.App.AppCompatActivity
 	{
 		private readonly ActivityDesign _design;
@@ -85,9 +87,14 @@ namespace keepass2android
 
 			_dbHelper = App.Kp2a.FileDbHelper;
             SetContentView(Resource.Layout.file_selection);
-				
 
-			if (ShowRecentFiles())
+            var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+            collapsingToolbar.Title = "";
+            SetSupportActionBar(FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.Title = "";
+
+
+            if (ShowRecentFiles())
 			{
 				_recentMode = true;
 
@@ -247,7 +254,7 @@ namespace keepass2android
 	                    AccessManager.PreparePopup(popupMenu);
 	                    int remove = 0;
 	                    int edit = 1;
-	                    popupMenu.Menu.Add(0, remove, 0, context.GetString(Resource.String.remove_from_filelist)).SetIcon(Resource.Drawable.ic_menu_delete_grey);
+	                    popupMenu.Menu.Add(0, remove, 0, context.GetString(Resource.String.remove_from_filelist)).SetIcon(Resource.Drawable.baseline_delete_24);
 
 	                    TextView textView = view.FindViewById<TextView>(Resource.Id.file_filename);
                         
@@ -255,7 +262,7 @@ namespace keepass2android
                         IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
 	                    if (FileSelectHelper.CanEditIoc(ioc))
 	                    {
-	                        popupMenu.Menu.Add(0, edit, 0, context.GetString(Resource.String.edit)).SetIcon(Resource.Drawable.ic_menu_edit_grey);
+	                        popupMenu.Menu.Add(0, edit, 0, context.GetString(Resource.String.edit)).SetIcon(Resource.Drawable.baseline_edit_24);
                         }
 
 
@@ -267,7 +274,7 @@ namespace keepass2android
 	                            {
 	                                try
 	                                {
-	                                    Java.IO.File file = new File(filename);
+	                                    Java.IO.File file = new Java.IO.File(filename);
 	                                    file.Delete();
 	                                }
 	                                catch (Exception exception)
@@ -294,6 +301,17 @@ namespace keepass2android
 	                    popupMenu.Show();
 	                });
 	            };
+
+                view.FindViewById(Resource.Id.file_filename).Click += (sender, args) =>
+                {
+                    TextView textView = view.FindViewById<TextView>(Resource.Id.file_filename);
+
+                    String filename = (string)textView.Tag;
+                    IOConnectionInfo ioc = new IOConnectionInfo { Path = filename };
+
+                    App.Kp2a.GetFileStorage(ioc)
+                        .PrepareFileUsage(new FileStorageSetupInitiatorActivity(_activity, _activity.OnActivityResult, null), ioc, 0, false);
+                };
 
                 return view;
 	        }
@@ -371,17 +389,6 @@ namespace keepass2android
 			Finish();
 		}
 
-		public void OnListItemClick(ListView l, View v, int position, long id)
-        {
-            ICursor cursor = _dbHelper.FetchFile(id);
-			StartManagingCursor(cursor);
-			
-			IOConnectionInfo ioc = _dbHelper.CursorToIoc(cursor);
-			
-			App.Kp2a.GetFileStorage(ioc)
-					   .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
-		}
-		
         
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
@@ -519,6 +526,36 @@ namespace keepass2android
 		
 	}
 
+
+    public class NonScrollListView : ListView
+    {
+        public NonScrollListView(Context context) : base(context)
+        {
+        }
+
+        public NonScrollListView(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+        }
+
+        public NonScrollListView(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
+        {
+        }
+
+        protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec)
+        {
+            // Custom height measure spec to make ListView non-scrollable
+            int heightMeasureSpecCustom = MeasureSpec.MakeMeasureSpec(int.MaxValue >> 2, MeasureSpecMode.AtMost);
+            base.OnMeasure(widthMeasureSpec, heightMeasureSpecCustom);
+
+            // Set the height of the ListView to the measured height
+            ViewGroup.LayoutParams layoutParams = LayoutParameters;
+            if (layoutParams != null)
+            {
+                layoutParams.Height = MeasuredHeight;
+            }
+        }
+    }
+
     public class RecentFilesFragment : ListFragment
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -538,10 +575,7 @@ namespace keepass2android
         {
 			base.OnActivityCreated(savedInstanceState); 
 			Android.Util.Log.Debug("KP2A", "OnActCreated");
-            ListView.ItemClick += (sender, args) =>
-            {
-                ((FileSelectActivity) Activity).OnListItemClick((ListView) sender, args.View, args.Position, args.Id);
-            };
+            
             RefreshList();
 	        RegisterForContextMenu(ListView);
             
