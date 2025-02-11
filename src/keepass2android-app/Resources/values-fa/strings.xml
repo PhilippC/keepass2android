@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">ﺑﺎﺯﺧﻮﺭﺩ</string>
   <string name="AboutText">برنامهٔ Keepass2Android یک برنامهٔ مدیریت گذرواژه است که دسترسی خواندنی/نوشتنی به پایگاه‌داده‌های KeePass 2.x را در اندروید فراهم می‌کند.</string>
@@ -154,6 +154,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="hint_keyfile">فایل کلید</string>
   <string name="hint_length">طول</string>
   <string name="hint_pass">گذرواژه</string>
+  <string name="hint_keyfile_path">مسیر کلید خصوصی SSH</string>
   <string name="hint_login_pass">گذرواژه</string>
   <string name="hint_title">نام</string>
   <string name="hint_url">URL</string>
@@ -284,6 +285,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="author">توسعه‌دهندهٔ Keepass2Android فیلیپ کُروکُل است.</string>
   <string name="further_authors">با سپاس از مشارکت %1$s در کدنویسی.</string>
   <string name="designers">با سپاس از مشارکت %1$s در طراحی آیکون و چیدمان.</string>
+  <string name="supporters">با تشکر از حمایت مالی توسط %1$s</string>
   <string name="credit_plugin1">افزونهٔ Twofish Cipher برای KeePass را اِسکات گرینبِرگ ساخته و در KP2A گنجانده شده است.</string>
   <string name="credit_android_filechooser">انتخابگر فایل اندروید را های بایسُون ساخته است</string>
   <string name="credit_keyboard">صفحه‌کلید KP2A بر پایهٔ صفحه‌کلید Gingerbread است که از سوی پروژهٔ متن‌باز اندروید ارائه شده و از کدهای Plugin Manager از صفحه‌کلید Hacker ساختهٔ کِلاوس وایدنر استفاده می‌کند.</string>
@@ -402,6 +404,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ShowSeparateNotifications_summary">برای کپی‌کردن نام کاربری و گذرواژه در بریده‌دان و فعال‌کردن صفحه‌کلید اعلانات جداگانه‌ای نشان بده.</string>
   <string name="AccServiceAutoFill_prefs">سرویس دسترس‌پذیری تکمیل خودکار</string>
   <string name="AutoFill_prefs">سرویس تکمیل خودکار</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">نمایش اعلان ورود</string>
   <string name="ShowKp2aKeyboardNotification_title">اعلان صفحه‌کلید KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">مدخل به‌طور کامل از طریق صفحه‌کلید KP2A در دسترس باشد (توصیه می‌شود).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">تغییر صفحه‌کلید</string>
@@ -418,6 +421,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ShowUnlockedNotification_summary">وقتی قفل پایگاه‌داده باز است یک اعلان نشان بده.</string>
   <string name="IconVisibilityInfo_Android8_text">اندروید ۸ رفتار جدیدی را برای اعلان‌ها ارائه کرده است. اگر می‌خواهید آیکون اعلانات Keepass2Android را مخفی کنید، لطفاً آن را از طریق تنظیمات سیستم پیکربندی کنید. اهمیت دستهٔ اعلان را روی کمترین تنظیم کنید.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">بازکردن تنظیمات</string>
+  <string name="PostNotificationsPermissionInfo_text">زمانی که پایگاه‌دادهٔ شما قفل نیست Keepass2Android می‌تواند یک اعلان سیستمی نشان دهد. برای کارکردن این قابلیت لطفاً درخواست اجازه را تأیید کنید.</string>
   <string name="DontCare">مهم نیست</string>
   <string name="DocumentAccessRevoked">فایل برای Keepass2Android قابل‌دسترسی نیست. یا حذف شده یا اینکه اجازهٔ دسترسی به آن ستانده شده است. لطفاً آن را مجدداً باز کنید؛ مثلاً از «تغییر پایگاه‌داده» استفاده کنید.</string>
   <string name="PreloadDatabaseEnabled_title">پیش‌بارکردن فایل پایگاه‌داده</string>
@@ -493,7 +497,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="ErrorOcurred">خطایی رخ داد:</string>
   <string name="DuplicateUuidsError">پایگاه‌داده خراب است: شناسه‌های تکراری پیدا شد. (با Minikeepass ذخیره کردید؟) لطفاً مجدداً با استفاده از نسخهٔ کامپیوتری Keepass 2 آن را در پایگاه‌دادهٔ جدیدی وارد کنید و سپس گزینهٔ «ساخت شناسه‌های جدید» را برگزینید.</string>
   <string name="DuplicateUuidsErrorAdditional">این پیغام خطا از طریق تنظیمات/تنظیمات برنامه/فایل‌گردانی/بررسی UUIDهای تکراری غیرفعال می‌شود. لطفاً توجه کنید که با این کار ممکن است رفتار غیرمنتظره‌ای از برنامه سر بزند. بهتر است مشکل پایگاه‌داده را حل کنید.</string>
-  <string name="synchronize_database_menu">در حال همگام‌سازی پایگاه‌داده…</string>
+  <string name="synchronize_database_menu">همگام‌سازی پایگاه‌داده…</string>
   <string name="CannotMoveGroupHere">نمی‌توان گروه را در این گروه قرار داد.</string>
   <string name="donate_question">از Keepass2Android راضی هستید؟ مرا به یک فنجان قهوه مهمان کنید.</string>
   <string name="donate_bday_question">دهم ماه می؟ امروز تولدم است!
@@ -511,9 +515,19 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="hint_sftp_host">میزبان (مثال: 192.168.0.1)</string>
   <string name="hint_sftp_port">درگاه</string>
   <string name="initial_directory">پوشهٔ آغازین (اختیاری):</string>
+  <string name="connect_timeout">ثانیه‌های مهلت انتظار (اختیاری)</string>
   <string name="enter_sftp_login_title">اطلاعات ورود به SFTP را وارد کنید:</string>
   <string name="sftp_auth_mode">حالت احراز هویت</string>
   <string name="send_public_key">فرستادن کلید عمومی...</string>
+  <string name="select_private_keyfile">انتخاب کلید خصوصی...</string>
+  <string name="hint_sftp_key_name">نام کلید جدید</string>
+  <string name="hint_sftp_key_content">محتوای کلیدی جدید</string>
+  <string name="private_key_saved">کلید خصوصی ذخیره شد</string>
+  <string name="private_key_delete_failed">حذف کلید خصوصی ناموفق بود: %1$s</string>
+  <string name="save_key">ذخیره کلید خصوصی</string>
+  <string name="delete_key">حذف کلید خصوصی</string>
+  <string name="private_key_select">کلید خصوصی را انتخاب کنید</string>
+  <string name="private_key_create_new"></string>
   <string name="enter_ftp_login_title">اطلاعات ورود به FTP را وارد کنید:</string>
   <string name="enter_mega_login_title">اطلاعات ورود حساب MEGAی خود را وارد کنید:</string>
   <string name="select_storage_type">نوع ذخیره‌گاه را مشخص کنید:</string>
@@ -526,17 +540,19 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
-  <string name="filestoragename_dropboxKP2A">Dropbox (پوشه KP2A)</string>
+  <string name="filestoragename_dropboxKP2A">‏ Dropbox (پوشهٔ KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">اگر می‌خواهید DropBoxتان به‌طور کامل در دسترس KP2A نباشد، این گزینه را انتخاب کنید. با این کار فقط دسترسی به پوشهٔ Apps/Keepass2Android را درخواست می‌کند. این گزینه مخصوصاً مناسب زمانی است که پایگاه‌دادهٔ جدیدی می‌سازید. اگر هم‌اکنون یک پایگاه‌داده دارید، این گزینه را انتخاب کنید تا پوشه را بسازید، سپس فایل را درون آن پوشه قرار دهید (با کامپیوترتان) و سپس دوباره این گزینه را انتخاب کنید تا فایل باز شود.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragename_gdriveKP2A">گوگل‌درایو (فایل‌های KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">اگر می‌خواهید گوگل‌درایوتان به‌طور کامل در دسترس KP2A نباشد، این گزینه را انتخاب کنید. توجه نمایید که ابتدا باید یک فایل پایگاه‌داده بسازید. برنامه نمی‌تواند فایل‌های موجود را ببیند. این گزینه را یا از صفحهٔ ساخت پایگاه‌داده انتخاب کنید یا اگر هم‌اکنون یک پایگاه‌داده باز کرده‌اید از طریق صادرکردن پایگاه‌داده و انتخاب این گزینه اقدام کنید.</string>
+  <string name="filestoragename_pcloud">‏ PCloud (پوشهٔ KP2A)</string>
+  <string name="filestoragename_pcloudall">‏ PCloud (دسترسی کامل)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">همهٔ فایل‌ها و فایل‌های اشتراک‌گذاری‌شده</string>
   <string name="filestoragename_onedrive2_myfiles">فایل‌های من</string>
   <string name="filestoragename_onedrive2_appfolder">پوشهٔ برنامهٔ Keepass2Android</string>
-  <string name="filestoragename_sftp">SFTP (انتقال فایل به‌روش SSH)</string>
+  <string name="filestoragename_sftp">‏ SFTP (انتقال فایل به‌روش SSH)</string>
   <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragehelp_mega">لطفاً توجه نمایید: برای اینکه Keepass2Android درست کار کند باید فهرست همهٔ فایل‌های حساب Megaی شما را دانلود کند. در نتیجه دسترسی به حسابی با فایل‌های زیاد ممکن است کند انجام شود.</string>
   <string name="filestoragename_content">گزینشگر فایل سیستم</string>
@@ -772,6 +788,5 @@ mycloud.me.com/webdav/‎ )</string>
   <string name="AutofillWarning_Intro">در حال واردکردن اطلاعات شناسایی برای دامنهٔ «%1$s» در برنامهٔ «%2$s» هستید.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">اگر اعتماد دارید که «%2$s» به «%1$s» تعلق دارد یا اعتماد دارید که برنامهٔ «%2$s» از اطلاعات شناسایی سوءاستفاده نمی‌کند (مثلاً مرورگری قابل‌اعتماد است)، بدون نگرانی ادامه دهید، در غیر این صورت لغو کنید.</string>
   <string name="AutofillWarning_trustAsBrowser">در «%1$s» همیشه بپذیر</string>
-<string name="english_ime_settings">تنظیمات صفحه کلید Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">تنظیمات صفحه کلید Keepass2Android</string>
+</resources>
