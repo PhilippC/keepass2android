@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Povratna informacija</string>
   <string name="AboutText">Keepass2Android je upravitelj lozinki koji pruža pregled i uređivanje KeePass 2.x baza podataka na Android uređajima.</string>
@@ -755,6 +755,5 @@
   <string name="switch_ime_reopen">Pokušaj ponovno</string>
   <string name="AutofillWarning_title">Upozorenje Sigurnosti: Nepoznata domena/veza aplikacije</string>
   <string name="AutofillWarning_trustAsBrowser">Prehvati uvijek u \"%1$s\"</string>
-<string name="english_ime_settings">Postavke tipkovnice za Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">Postavke tipkovnice za Keepass2Android</string>
+</resources>
