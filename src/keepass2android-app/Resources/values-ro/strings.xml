@@ -1,9 +1,10 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Feedback</string>
   <string name="AboutText">Keepass2Android este un manager de parole ce oferă citire/scriere la baze de date KeePass 2.x pe Android.</string>
   <string name="CreditsText">Interfaţa cu utilizatorul este bazată pe un port al KeepassDroid dezvoltat de Brian Pellin. Codul pentru operaţiunile cu baza de date este bazat pe KeePass de Dominik Reichl. Robotul Android este reprodus sau modificate din materiale create şi împărtăşite de Google şi utilizate în conformitate cu condiţiile descrise de licenţa Creative Commons Attribution 3.0.</string>
   <string name="CreditsTextSFTP">Suportul pentru SFTP este implementat folosind librăria JSch sub licență BDS, creată de JCraft, Inc.</string>
+  <string name="CreditsIcons">Iconița cu un ciocan este creată de John Caserta de la proiectul Noun. Cea cu un pinguin este realizată de Jon Testa de la același proiect. Iconița cu un măr este creată de Ava Rowell de la proiectul Noun fiind și ea. Iconița-imagine este de pe https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Accepta</string>
   <string name="deny">Interzice</string>
   <string name="add_entry">Adăugă o înregistrare</string>
@@ -648,6 +649,5 @@
   <string name="AutofillWarning_Intro">Sunteți pe cale de a insera datele de autentificare pentru domeniul \"%1$s\" în aplicația \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Dacă aveți încredere că \"%2$s\" aparține la \"%1$s\" sau dacă aveți încredere în aplicația \"%2$s\" să nu abuzeze de datele de autentificare (de ex. deoarece este o aplicație de încredere pentru browser), este in regulă să continuați. Dacă nu, vă rugăm să anulați.</string>
   <string name="AutofillWarning_trustAsBrowser">Acceptați întotdeauna în \"%1$s\"</string>
-<string name="english_ime_settings">Setările tastaturii Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">Setările tastaturii Keepass2Android</string>
+</resources>
