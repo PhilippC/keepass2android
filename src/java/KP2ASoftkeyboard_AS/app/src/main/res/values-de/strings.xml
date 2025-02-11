@@ -19,7 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Title for Latin keyboard  -->
-    <string name="english_ime_name">KeePass2Android-Tastatur</string>
+    <string name="english_ime_name">Keepass2Android-Tastatur</string>
     <!-- Title for Latin keyboard settings activity / dialog -->
     <string name="english_ime_settings">Android-Tastatureinstellungen</string>
     <!-- Title for Latin keyboard input options dialog -->
@@ -49,7 +49,7 @@
     <!-- Description for text prediction -->
     <string name="prediction_summary">Automatische Vervollständigung während der Eingabe aktivieren</string>
     <!-- Dialog title for auto complete choices -->
-    <string name="auto_complete_dialog_title">Automatische. Vervollständigung </string>
+    <string name="auto_complete_dialog_title">Autovervollständigung</string>
     <!-- Option to enable text prediction in landscape -->
     <string name="prediction_landscape">Textfeld vergrößern</string>
     <!-- Description for text prediction -->
@@ -62,7 +62,7 @@
     <string name="auto_punctuate">Autom. Zeichensetzung</string>
     <!-- Description for auto punctuate -->
     <!-- Option to enable quick fixes -->
-    <string name="quick_fixes">Schnelle Fixierung</string>
+    <string name="quick_fixes">Schnelle Korrektur</string>
     <!-- Description for quick fixes -->
     <string name="quick_fixes_summary">Korrigiert gängige Tippfehler</string>
     <!-- Option to enable showing suggestions -->
@@ -112,7 +112,7 @@
     <!-- Tip to long press on typed word to add to dictionary -->
     <string name="tip_add_to_dictionary">Lange auf das Wort ganz links außen drücken, um es zum Wörterbuch hinzuzufügen</string>
     <!-- Instruction to touch the bubble to continue -->
-    <string name="touch_to_continue">Diesen Hinweis berühren, um fortzufahren.»</string>
+    <string name="touch_to_continue">Diesen Hinweis antippen, um fortzufahren.»</string>
     <!-- Instruction to touch the bubble to start typing -->
     <string name="touch_to_finish">Hier berühren, um diesen Hinweis zu schließen und mit dem Tippen zu beginnen!</string>
     <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
@@ -138,7 +138,7 @@
     <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
     <string name="label_symbol_key">\?123</string>
     <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
-    <string name="label_phone_key">Nummer</string>
+    <string name="label_phone_key">123</string>
     <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
     <string name="label_alpha_key">ABC</string>
     <!-- Label for ALT modifier key.  Must be short to fit on key! -->
@@ -161,7 +161,7 @@
         "Swipe across keyboard to speak"). Also shown when enabling settings. -->
     <string name="voice_hint_dialog_message">Um die Spracheingabe zu verwenden, drücken Sie die Mikrofontaste oder ziehen Sie Ihren Finger über die Bildschirmtastatur.</string>
     <!-- Short message to tell the user the system is ready for them to speak. -->
-    <string name="voice_listening">Sprechen Sie jetzt</string>
+    <string name="voice_listening">Jetzt sprechen</string>
     <!-- Short message shown after the user finishes speaking. -->
     <string name="voice_working">Vorgang läuft</string>
     <!-- Short message shown before the user should speak. -->
@@ -186,7 +186,7 @@
     <!-- Short hint shown in candidate view to explain voice input. -->
     <string name="voice_swipe_hint"><b>„Hinweis:“</b>„ Ziehen Sie zum Sprechen den Finger über die Tastatur.“</string>
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
-    <string name="voice_punctuation_hint"><b>„Hinweis: “</b>„ Versuchen Sie beim nächsten Mal, Satzzeichen wie „Punkt“, „Komma“ oder „Fragezeichen“ per Sprachbefehl einzugeben.“</string>
+    <string name="voice_punctuation_hint"><b>Hinweis: </b>Versuche beim nächsten Mal, Satzzeichen wie „Punkt“, „Komma“ oder „Fragezeichen“ per Sprachbefehl einzugeben.</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
     <string name="cancel">Abbrechen</string>
     <!-- Label on button when an error occurs -->
@@ -216,7 +216,7 @@
     <!-- appears above image showing the user to click on a TextView to show the IME -->
     <string name="open_the_keyboard"><font size="17"><b>„Tastatur öffnen“\n</b></font><font size="3">\n</font>„Berühren Sie ein beliebiges Textfeld.“</string>
     <!-- appears above the image showing the back button used to close the keyboard -->
-    <string name="close_the_keyboard"><font size="17"><b>„Tastatur schließen“\n</b></font><font size="3">\n</font>„Drücken Sie die Zurück-Taste.“</string>
+    <string name="close_the_keyboard"><font size="17"><b>Tastatur schließen\n</b></font><font size="3">\n</font>Drücken die Zurück-Taste.</string>
     <!-- appears above image showing how to use touch and hold -->
     <string name="touch_and_hold"><font size="17"><b>„Für Optionen eine Taste berühren und gedrückt halten“\n</b></font><font size="3">\n</font>„Greifen Sie auf Satzzeichen und Akzente zu.“</string>
     <!-- appears above image showing how to access keyboard settings -->
