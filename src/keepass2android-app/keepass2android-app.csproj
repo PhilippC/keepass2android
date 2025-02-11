@@ -748,6 +748,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
+    <ProjectReference Include="..\DropboxBinding\DropboxBinding.csproj" />
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" />
     <ProjectReference Include="..\Kp2aAutofillParser\Kp2aAutofillParser.csproj" />
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
