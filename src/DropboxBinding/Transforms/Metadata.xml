@@ -1,0 +1,35 @@
+﻿<metadata>
+
+  <remove-node path="/api/package[@name='com.dropbox.core']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.http']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.json']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.oauth']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.sdk.android']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.stone']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.util']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v1']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.account']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.callbacks']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.check']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.seenstate']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.teamcommon']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.secondaryemails']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.async']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.auth']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.common']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.contacts']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.fileproperties']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.filerequests']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.files']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.paper']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.openid']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.sharing']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.team']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.teamlog']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.teampolicies']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.users']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.v2.userscommon']" />
+  <remove-node path="/api/package[@name='com.dropbox.android']" />
+  <remove-node path="/api/package[@name='com.dropbox.core.android']" />
+</metadata>

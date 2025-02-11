@@ -41,7 +41,8 @@ dependencies {
         exclude group: 'com.google.android.google-play-services'
     }
     implementation 'com.google.apis:google-api-services-drive:v2-rev102-1.16.0-rc'
-    implementation 'com.dropbox.core:dropbox-core-sdk:5.4.6'
+    implementation 'com.dropbox.core:dropbox-core-sdk:7.0.0'
+    implementation 'com.dropbox.core:dropbox-android-sdk:7.0.0'
     implementation 'com.google.api-client:google-api-client:1.30.5'
     implementation 'com.google.api-client:google-api-client-android:1.30.5'
 

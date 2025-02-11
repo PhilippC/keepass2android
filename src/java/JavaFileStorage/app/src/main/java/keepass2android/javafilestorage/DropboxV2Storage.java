@@ -7,6 +7,7 @@ import com.dropbox.core.DbxOAuth1Upgrader;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.InvalidAccessTokenException;
 import com.dropbox.core.android.Auth;
+
 import com.dropbox.core.json.JsonReadException;
 import com.dropbox.core.oauth.DbxCredential;
 import com.dropbox.core.v2.DbxClientV2;
@@ -154,7 +155,7 @@ public class DropboxV2Storage extends JavaFileStorageBase
     {
         if ((previousFileVersion == null) || (previousFileVersion.equals("")))
             return false;
-            path = removeProtocol(path);
+        path = removeProtocol(path);
         try {
             Metadata entry = dbxClient.files().getMetadata(path);
             return !String.valueOf(entry.hashCode()) .equals(previousFileVersion);
