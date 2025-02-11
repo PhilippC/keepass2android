@@ -28,7 +28,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="application">Anwendung</string>
   <string name="application_settings">Anwendungseinstellungen</string>
   <string name="ShowGroupnameInSearchResult_title">Gruppennamen im Suchergebnis anzeigen</string>
-  <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragtiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit demselben Namen gibt.</string>
+  <string name="ShowGroupnameInSearchResult_resume">Gruppennamen unter den Eintragstiteln im Suchergebnis anzeigen. Nützlich, wenn es mehrere Einträge mit demselben Namen gibt.</string>
   <string name="NavigationToGroupCompleted_message">Angezeigte Gruppe ist jetzt: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Deaktivierte AutoFill-Ziele</string>
   <string name="AutofillDisabledQueriesPreference_summary">Zeigt eine Liste von Apps und Webseiten, für die AutoFill deaktiviert ist.</string>
