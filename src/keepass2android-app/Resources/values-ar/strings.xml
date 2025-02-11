@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">التعليقات</string>
   <string name="AboutText">Keepass2Android هو مدير كلمات سر يتيح القراءة والكتابة على قواعد بيانات KeePass 2.x على نظام الـAndroid.</string>
@@ -121,6 +121,7 @@
   <string name="entry_user_name">اسم المستخدم</string>
   <string name="entry_extra_strings">حقول النص الإضافية</string>
   <string name="entry_binaries">المرفقات</string>
+  <string name="entry_history"></string>
   <string name="error_can_not_handle_uri">Keepass2Android لا يمكنه التعامل مع هذا الرابط.</string>
   <string name="error_could_not_create_group">خطأ في إنشاء المجموعة.</string>
   <string name="error_could_not_create_parent">تعذر إنشاء المجلد الأصل.</string>
@@ -150,6 +151,7 @@
   <string name="hint_keyfile">ملف المفتاح</string>
   <string name="hint_length">الطول</string>
   <string name="hint_pass">كلمة السر</string>
+  <string name="hint_keyfile_path"></string>
   <string name="hint_login_pass">كلمة السر</string>
   <string name="hint_title">الإسم</string>
   <string name="hint_url">الرابط</string>
@@ -752,6 +754,5 @@
   <string name="AutofillWarning_Intro">أنت على وشك إدراج بيانات اعتماد للنطاق \"%1$s\" في التطبيق \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">إذا كنت تثق في \"%2$s\" بالانتماء إلى \"%1$s\" أو كنت تثق في التطبيق \"%2$s\" لعدم إساءة استخدام بيانات الاعتماد (e. . لأنه تطبيق متصفح موثوق به)، من المفضل المتابعة. إذا لم يكن الأمر كذلك ، يرجى الإلغاء .</string>
   <string name="AutofillWarning_trustAsBrowser">قبول دائمًا في \"%1$s\"</string>
-<string name="english_ime_settings">إعدادات لوحة مفاتيح Keepass2Android</string>
-    
-    </resources>
+  <string name="english_ime_settings">إعدادات لوحة مفاتيح Keepass2Android</string>
+</resources>
