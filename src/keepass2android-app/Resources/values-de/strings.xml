@@ -295,7 +295,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN-Einträge als abgelaufen markieren, wenn sie verwendet werden</string>
   <string name="ShowUsernameInList_title">Benutzernamen in Liste anzeigen</string>
-  <string name="ShowUsernameInList_summary">Zeige Benutzernamen unter den Titeln der Einträge. Hilfreich bei mehreren Accounts für einen Dienst oder bei TANs.</string>
+  <string name="ShowUsernameInList_summary">Benutzernamen unter den Eintragstiteln anzeigen. Nützlich für mehrere Konten bei einem Dienst oder für TANs.</string>
   <string name="RememberRecentFiles_title">Datenbanken merken</string>
   <string name="RememberRecentFiles_summary">Dateinamen der bisher geöffneten Datenbanken speichern und im Bildschirm zum Öffnen der Datenbank anzeigen.</string>
   <string name="NoDalVerification_title">Keine Digital-Asset-Link-Verifikation</string>
