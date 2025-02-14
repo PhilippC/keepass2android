@@ -672,6 +672,18 @@
   <string name="Continue">Pokračovať</string>
   <string name="NoFilenameWarning">Zadaná URI pravdepodobne nie je názvom súboru. Ste si istí, že ide o platný súbor?</string>
   <string name="FirstInvalidCompositeKeyError">Neplatný kompozitný kľúč! Prosím skúste to ešte raz.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Neplatný kompozitný kľúč! Na odomknutie databázy skúste urobiť toto:\n
+
+    • Uistite sa, že ste zadali správne heslo. Na zobrazenie zadaného hesla kliknite na ikonu s okom.\n
+    • Uistite sa, že je vybraný správny typ hesla a že sa zhoduje s typom použitým pri vytváraní databázy.\n
+    • Uistite sa, že ste vybrali správny databázový súbor.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    • Pomôcka: Ak si myslíte, že je súbor s databázou poškodený alebo si nepamätáte primárny kľúč po jeho úprave, môžete skúsiť použiť poslednú úspešne otvorenú verziu súboru (ťuknite na \"%1$s\") a vybrať lokálnu zálohu.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Pomôcka: Keepass2Android uložil poslednú úspešne otvorenú verziu súboru do interného úložiska. Môžete ju otvoriť ťuknutím na \"%1$s\" a výberom lokálnej zálohy.
+  </string>
   <string name="open_other_db">Otvoriť inú databázu…</string>
   <string name="select_database">Vybrať databázu</string>
   <string name="configure_child_dbs">Konfigurovať sekundárne databázy…</string>
