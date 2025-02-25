@@ -14,9 +14,11 @@ using Android.Runtime;
 using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
+using Android.Util;
 using Android.Views;
 using Android.Webkit;
 using Android.Widget;
+using AndroidX.Core.Content;
 using Google.Android.Material.Dialog;
 using keepass2android;
 
@@ -29,7 +31,16 @@ namespace keepass2android
 			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
-                BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_11,Resource.Array.ChangeLog_1_11_net}, "1.11"),
+                BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_12
+#if !NoNet
+					,Resource.Array.ChangeLog_1_12_net
+#endif
+                }, "1.12"),
+                BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_11
+#if !NoNet
+                    ,Resource.Array.ChangeLog_1_11_net
+#endif
+                }, "1.11"),
                 BuildChangelogString(ctx, Resource.Array.ChangeLog_1_10, "1.10"),
                 BuildChangelogString(ctx, Resource.Array.ChangeLog_1_09e, "1.09e"),
 				BuildChangelogString(ctx, Resource.Array.ChangeLog_1_09d, "1.09d"),
@@ -99,32 +110,28 @@ namespace keepass2android
 				warning = ctx.GetString(Resource.String.PreviewWarning);
 			}
 
-			builder.SetPositiveButton(Android.Resource.String.Ok, (dlgSender, dlgEvt) => {((AlertDialog)dlgSender).Dismiss(); });
+			builder.SetPositiveButton(Android.Resource.String.Ok, (dlgSender, dlgEvt) => {((AndroidX.AppCompat.App.AlertDialog)dlgSender).Dismiss(); });
 			builder.SetCancelable(false);
 
 			WebView wv = new WebView(ctx);
 
-			wv.SetBackgroundColor(Color.White);
-			wv.LoadDataWithBaseURL(null, GetLog(changeLog, warning, ctx), "text/html", "UTF-8", null);
+			
+            
+            
 
-
-			//builder.SetMessage("");
 			builder.SetView(wv);
 			Dialog dialog = builder.Create();
-			dialog.DismissEvent += (sender, e) =>
+            dialog.DismissEvent += (sender, e) =>
 			{
 				onDismiss();
 			};
-			dialog.Show();
-			/*TextView message = (TextView)dialog.FindViewById(Android.Resource.Id.Message);
+            wv.SetBackgroundColor(Color.Transparent);
+            wv.LoadDataWithBaseURL(null, GetLog(changeLog, warning, dialog.Context), "text/html", "UTF-8", null);
 
-			
-			message.TextFormatted = Html.FromHtml(ConcatChangeLog(ctx, changeLog.ToArray()));
-			message.AutoLinkMask=MatchOptions.WebUrls;*/
-
+            dialog.Show();
 		}
 
-	    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
+        private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
         {
             return BuildChangelogString(ctx, new List<int>() { changeLogResId }, version);
 
@@ -150,32 +157,44 @@ namespace keepass2android
 
         }
 
-        private const string HtmlStart = @"<html>
+		private const string HtmlEnd = @"</body>
+</html>";
+    
+		private static string GetLog(List<string> changeLog, string warning, Context ctx)
+        {
+            string secondaryColor = "31628D";
+            string onSurfaceColor = "171D1E";
+            if (((int)ctx.Resources.Configuration.UiMode & (int)UiMode.NightMask) == (int)UiMode.NightYes)
+            {
+                secondaryColor = "99CBFF";
+                onSurfaceColor = "E1E4D6";
+            }
+                
+
+            string HtmlStart = @"<html>
   <head>
     <style type='text/css'>
-      a            { color:#000000 }
+      a            { color:#"+ onSurfaceColor + @" }
       div.title    { 
-          color:287AA9; 
+          color:"+ secondaryColor+@"; 
           font-size:1.2em; 
           font-weight:bold; 
           margin-top:1em; 
           margin-bottom:0.5em; 
           text-align:center }
       div.subtitle { 
-          color:287AA9; 
+          color:"+ secondaryColor+@"; 
           font-size:0.8em; 
           margin-bottom:1em; 
           text-align:center }
-      div.freetext { color:#000000 }
-      div.list     { color:#000000 }
+      div.freetext { color:#"+ onSurfaceColor + @" }
+      div.list     { color:#"+ onSurfaceColor + @" }
     </style>
   </head>
   <body>";
-		private const string HtmlEnd = @"</body>
-</html>";
-		private static string GetLog(List<string> changeLog, string warning, Context ctx)
-		{
-			StringBuilder sb = new StringBuilder(HtmlStart);
+
+
+            StringBuilder sb = new StringBuilder(HtmlStart);
 			if (!string.IsNullOrEmpty(warning))
 			{
 				sb.Append(warning);

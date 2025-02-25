@@ -726,6 +726,19 @@
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Upgraded to Target SDK 34</item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Upgraded OneDrive SDK to version 5.68</item>
+    <item>Upgraded Dropbox SDK to version 7.0.0</item>
+    <item>Upgraded Gradle, NewtonsoftJson, FluentFTP, MegaApiClient and okhttp</item>
+  </string-array>
+
 
   <string-array name="ChangeLog_1_11">
     <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
