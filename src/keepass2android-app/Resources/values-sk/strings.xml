@@ -672,6 +672,26 @@
   <string name="Continue">Pokračovať</string>
   <string name="NoFilenameWarning">Zadaná URI pravdepodobne nie je názvom súboru. Ste si istí, že ide o platný súbor?</string>
   <string name="FirstInvalidCompositeKeyError">Neplatný kompozitný kľúč! Prosím skúste to ešte raz.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Neplatný kompozitný kľúč! Na odomknutie databázy skúste urobiť toto:\n
+
+    • Uistite sa, že ste zadali správne heslo. Na zobrazenie zadaného hesla kliknite na ikonu s okom.\n
+    • Uistite sa, že je vybraný správny typ hesla a že sa zhoduje s typom použitým pri vytváraní databázy.\n
+    • Uistite sa, že ste vybrali správny databázový súbor.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    • Pomôcka: Ak si myslíte, že je súbor s databázou poškodený alebo si nepamätáte primárny kľúč po jeho úprave, môžete skúsiť použiť poslednú úspešne otvorenú verziu súboru (ťuknite na \"%1$s\") a vybrať lokálnu zálohu.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Pomôcka: Keepass2Android uložil poslednú úspešne otvorenú verziu súboru do interného úložiska. Môžete ju otvoriť ťuknutím na \"%1$s\" a výberom lokálnej zálohy.
+  </string>
+  <string name="CorruptDatabaseHelp">    Súbor je poškodený. \n
+    Tu je niekoľko tipov, ktoré vám môžu pomôcť odhaliť problém:\n
+
+    • ak ste súbor skopírovali cez USB (režim MTP), skúste to ešte raz s použitím takého nástroja, ako je napr. MyPhoneExplorer. Režim MTP v niektorých prípadoch skracuje súbory.\n
+    • Ak nemôžete otvoriť súbor z rovnakého umiestnenia vo svojom PC, je veľmi pravdepodobné, že je poškodený. V takom prípade použite zálohu databázy. Ak predpokladáte, že súbor porušila aplikácia Keepass2Android, prosím kontaktujte tím podpory.\n
+    • Ak sa dá súbor otvoriť v PC, kontaktujte tím podpory. Môžete tiež skúsiť uložiť ho s odlišnými nastaveniami (napríklad nekomprimovane) na PC a potom ho opäť skúsiť otvoriť v aplikácii Keepass2Android.
+
+  </string>
   <string name="open_other_db">Otvoriť inú databázu…</string>
   <string name="select_database">Vybrať databázu</string>
   <string name="configure_child_dbs">Konfigurovať sekundárne databázy…</string>
@@ -1164,5 +1184,7 @@
   <string name="AutofillWarning_Intro">Chcete vložiť prihlas. údaje pre doménu \"%1$s\" do aplikácie \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Ak dôverujete aplikácii \"%2$s\", že patrí \"%1$s\" alebo ak dôverujete, že aplikácia \"%2$s\" nezneužíva prihlasovacie údaje (ak je to napríklad dôveryhodný prehliadač), môžete pokračovať. Ak nie, prosím zrušte túto akciu.</string>
   <string name="AutofillWarning_trustAsBrowser">Vždy súhlasiť v \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Po dokončení prepnúť späť</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Po stlačení Odoslať/Prejsť/Hotovo prejsť späť</string>
   <string name="english_ime_settings">Nastavenia klávesnice Keepass2Android</string>
 </resources>

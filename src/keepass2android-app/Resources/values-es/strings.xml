@@ -681,6 +681,17 @@
   <string name="HintLocalBackupInvalidCompositeKey">    \n
     &#8226; Sugerencia: Si piensas que la Base de Datos está dañada o no recuerdas la contraseña maestra después de cambiarla, inténtalo con la última versión de la Base de Datos abierta con éxito pulsando en \"%1$s\" y seleccionando la copia local.
   </string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Sugerencia: Keepass2Android ha almacenado la última versión del archivo abierto con éxito en el almacenamiento interno. Puedes abrirlo tocando \"%1$s\" y seleccionando la copia de seguridad local.
+  </string>
+  <string name="CorruptDatabaseHelp">    El archivo está corrupto. \n
+    Aquí hay algunas sugerencias que podrían ayudar a diagnosticar el problema:\n
+
+    • Si copiaste el archivo a través de USB ( modo MTP), por favor inténtalo de nuevo usando una herramienta como MyPhoneExplorer. MTP trunca los archivos en ciertos casos.\n
+    • Si no puedes abrir el archivo desde la misma localización en tu PC, es muy probable que el archivo en realidad esté corrupto. En ese caso, por favor usa una copia de seguridad de la base de datos. Si asumes que Keepass2Android ha corrompido el archivo, por favor contacta con el equipo de soporte.\n
+    • Si aún puedes abrir el archivo en tu PC, por favor contacta con el equipo de soporte. Podrías intentar guardarlo con una configuración diferente (p.ej. descomprimido) en el PC y volver a intentar abrirlo en Keepass2Android.
+
+  </string>
   <string name="open_other_db">Abrir otrar base de datos…</string>
   <string name="select_database">Seleccione base de datos</string>
   <string name="configure_child_dbs">Configure bases de datos hijas…</string>
@@ -1164,5 +1175,7 @@
   <string name="AutofillWarning_Intro">Está a punto de insertar credenciales para el dominio \"%1$s\" en la aplicación \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Si confía en que \"%2$s\" pertenece a \"%1$s\", o confía en que la aplicación \"%2$s\" no utilizará mal las credenciales (p. e. porque es una aplicación de navegador de confianza), está bien continuar. Si no, por favor cancele.</string>
   <string name="AutofillWarning_trustAsBrowser">Aceptar siempre en \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Volver cuando termine</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Volver cuando se presione enviar/ir/finalizado</string>
   <string name="english_ime_settings">Ajustes del teclado de Keepass2Android</string>
 </resources>

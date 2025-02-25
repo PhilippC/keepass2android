@@ -1156,5 +1156,7 @@ Initial public release
   <string name="AutofillWarning_Intro">您将要将域名\"%1$s\"的凭据插入应用“%2$s”。</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">如果你相信“%2$s”属于\"%1$s\"，或者你相信应用“%2$s”不会滥用凭据（例如，它是受信任的浏览器应用），所以可以继续。如果不是，请取消。</string>
   <string name="AutofillWarning_trustAsBrowser">总是在 \"%1$s 中接受</string>
+  <string name="kp2a_switch_on_sendgodone">完成后切换回来</string>
+  <string name="kp2a_switch_on_sendgodone_summary">按下发送/转到/完成时切换回来</string>
   <string name="english_ime_settings">键盘设置</string>
 </resources>
