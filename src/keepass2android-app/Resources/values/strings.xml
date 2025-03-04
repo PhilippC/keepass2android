@@ -737,6 +737,7 @@
     <item>Upgraded OneDrive SDK to version 5.68</item>
     <item>Upgraded Dropbox SDK to version 7.0.0</item>
     <item>Upgraded Gradle, NewtonsoftJson, FluentFTP, MegaApiClient and okhttp</item>
+    <item>Bugfix in WebDav file selection</item>
   </string-array>
 
 
