@@ -1182,5 +1182,7 @@
   <string name="AutofillWarning_Intro">V aplikacijo \"%2$s\" vstavite poverilnice za domeno \"%1$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Če zaupate, da \"%2$s\" pripada \"%1$s\" ali da zaupate aplikaciji \"%2$s\" in ne boste zlorabljali poverilnic (npr. ker gre za zaupanja vredno aplikacijo brskalnika), je v redu, če nadaljujete . V nasprotnem primeru prekličite postopek.</string>
   <string name="AutofillWarning_trustAsBrowser">Sprejmi vedno v \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Preklopi nazaj, ko je končano</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Preklopi nazaj, ko pritisnete gumb za pošiljanje/prehajanje/končano</string>
   <string name="english_ime_settings">Nastavitve tipkovnice Keepass2Android</string>
 </resources>
