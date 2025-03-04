@@ -304,6 +304,11 @@ public class WebDavStorage extends JavaFileStorageBase {
                         //relative path:
                         e.path = buildPathFromHref(parentPath, r.href);
                     }
+                    if ( (parentPath.indexOf("@") != -1) && (e.path.indexOf("@") == -1))
+                    {
+                        //username/password not contained in .href response. Add it back from parentPath:
+                        e.path = parentPath.substring(0, parentPath.indexOf("@")+1) + e.path.substring(e.path.indexOf("://")+3);
+                    }
 
                     if ((depth == 1) && e.isDirectory)
                     {
