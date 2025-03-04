@@ -12,7 +12,7 @@ using keepass2android;
 
 namespace keepass2android
 {
-	[Activity(Label = "")]
+	[Activity(Label = "", Theme = "@style/Kp2aTheme_BlueActionBar")]
 	public class SelectStorageLocationActivity : SelectStorageLocationActivityBase, IDialogInterfaceOnDismissListener
 	{
 		private ActivityDesign _design;
