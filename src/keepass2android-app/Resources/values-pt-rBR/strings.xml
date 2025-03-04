@@ -721,6 +721,18 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Atualizado de Xamarin Android para .NET 8</item>
+    <item>Atualizado para o Target SDK 34</item>
+    <item>Atualizado para a interface de usuário Material 3</item>
+    <item>Melhorado o preenchimento automático para trabalhar com aplicativos Compose</item>
+    <item>Corrigido a correspondência do nome do host em preenchimento automático e pesquisa</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Atualizado o OneDrive SDK para a versão 5.68</item>
+    <item>Dropbox SDK atualizado para a versão 7.0.0</item>
+    <item>Atualizado Gradle, Newtonsoftjson, Fluentftp, Megaapiclient e okhttp</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Adicionados botões de ação flutuantes para pesquisa e visão geral do TOTP (se entradas TOTP estiverem presentes).</item>
     <item>Exibição aprimorada de campos TOTP adicionando um indicador de tempo limite e mostrando-o com mais destaque.</item>
