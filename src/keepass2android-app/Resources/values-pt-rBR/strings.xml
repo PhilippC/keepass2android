@@ -732,6 +732,7 @@
     <item>Atualizado o OneDrive SDK para a versão 5.68</item>
     <item>Dropbox SDK atualizado para a versão 7.0.0</item>
     <item>Atualizado Gradle, Newtonsoftjson, Fluentftp, Megaapiclient e okhttp</item>
+    <item>Bugfix in WebDav file selection</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Adicionados botões de ação flutuantes para pesquisa e visão geral do TOTP (se entradas TOTP estiverem presentes).</item>
