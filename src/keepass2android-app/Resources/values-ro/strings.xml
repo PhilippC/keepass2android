@@ -151,6 +151,7 @@
   <string name="hint_keyfile">fişier cheie</string>
   <string name="hint_length">lungime</string>
   <string name="hint_pass">parola</string>
+  <string name="hint_keyfile_path">Calea cheii private SSH</string>
   <string name="hint_login_pass">Parolă</string>
   <string name="hint_title">nume</string>
   <string name="hint_url">URL</string>
