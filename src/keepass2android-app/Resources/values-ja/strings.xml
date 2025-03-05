@@ -718,6 +718,19 @@
   <string name="EntryChannel_desc">選択中のエントリーへ簡単にアクセスするための通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に 3 回失敗すると、データベースを閉じます。</string>
   <string name="WarnFingerprintInvalidated">警告！ 生体認証は、例えば、新たな指紋をデバイスに追加したときなどに Android によって無効にされる可能性があります。常にマスターパスワードによる解除方法を覚えておいてください！</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Xamarin Android から .net 8 にアップグレード</item>
+    <item>ターゲットを SDK 34 にアップグレード</item>
+    <item>ユーザーインターフェイスを Material 3 にアップグレード</item>
+    <item>Compose アプリでの自動入力機能を改善</item>
+    <item>自動入力と検索でホスト名の一致条件を修正</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>OneDrive SDK をバージョン 5.68 にアップグレード</item>
+    <item>Dropbox SDK をバージョン 7.0.0 にアップグレード</item>
+    <item>Gradle、NewtonsoftJson、FluentFTP、MegaApiClient、okhttp をアップグレード</item>
+    <item>WebDav ファイル選択のバグを修正</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>検索と TOTP 一覧 (TOTP エントリーが存在する場合) のフローティングアクションボタンを追加</item>
     <item>タイムアウト表示を追加し、より目立つように TOTP フィールドの表示を改善</item>
