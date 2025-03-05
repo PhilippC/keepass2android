@@ -719,6 +719,19 @@
   <string name="EntryChannel_desc">Obvestilo o enostavnem dostopu do trenutno izbranega vnosa.</string>
   <string name="CloseDbAfterFailedAttempts">Zaprite bazo podatkov po treh neuspelih poskusih biometričnega odklepanja.</string>
   <string name="WarnFingerprintInvalidated">Opozorilo! Biometrično overjanje lahko Android razveljavi, npr. po dodajanju novega prstnega odtisa v nastavitvah naprave. Poskrbite, da boste vedno vedeli odkleniti z glavnim geslom!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Nadgradnja z Xamarin Android na .net 8</item>
+    <item>Nadgrajeno na SDK 34</item>
+    <item>Nadgrajen na uporabniški vmesnik Material 3</item>
+    <item>Izboljšanje samodejnega izpolnjevanja za delovanje z aplikacijami Compose</item>
+    <item>Popravek ujemanja gostiteljskega imena v samodejnem izpolnjevanju in iskanju</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Nadgradnja OneDrive SDK na različico 5.68</item>
+    <item>Nadgrajen Dropbox SDK na različico 7.0.0</item>
+    <item>Nadgrajeni Gradle, NewtonsoftJson, FluentFTP, MegaApiClient in okhttp</item>
+    <item>Popravek napake pri izbiri datotek WebDav</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Dodani so plavajoči gumbi za iskanje in pregled TOTP (če so prisotni vnosi TOTP).</item>
     <item>Izboljšanje prikaza polj TOTP z dodajanjem kazalnika časovne omejitve in njegovim vidnejšim prikazom.</item>
