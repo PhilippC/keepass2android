@@ -45,6 +45,7 @@ using keepass2android.database.edit;
 using keepass2android;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
+using Kp2aBusinessLogic.Io;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
 using Android.Gms.Common;
@@ -836,7 +837,8 @@ namespace keepass2android
                             new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
 							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
 							new WebDavFileStorage(this),
-							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
+                            new SmbFileStorage(),
+                            new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
                             new PCloudFileStorageAll(LocaleManager.LocalizedAppContext, this),
                             new MegaFileStorage(App.Context),
 							//new LegacyWebDavStorage(this),

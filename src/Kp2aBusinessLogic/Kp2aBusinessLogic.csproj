@@ -13,6 +13,7 @@
     <PackageReference Include="MegaApiClient" Version="1.10.4" />
     <PackageReference Include="Microsoft.Graph" Version="5.68.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" />
+    <PackageReference Include="SMBLibrary" Version="1.5.4" />
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
