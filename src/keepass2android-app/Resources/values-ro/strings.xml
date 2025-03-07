@@ -329,6 +329,8 @@
   <string name="QuickUnlockLength_summary">Numărul maxim de caractere utilizate ca şi parolă QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Ascunde lungimea QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Dacă este activat, lungimea codului QuickUnlock nu este afișat pe ecranul QuickUnlock.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Cheie QuickUnlock din intrarea bazei de date</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Dacă baza de date activă conține o intrare cu titlul QuickUnlock în grupul său rădăcină, parola acestei intrări este utilizată ca cod QuickUnlock.</string>
   <string name="QuickUnlock_fail">QuickUnlock a eşuat: parolă incorectă!</string>
   <string name="SaveAttachmentDialog_title">Salvaţi ataşament</string>
   <string name="SaveAttachmentDialog_text">Selectaţi unde se salvează ataşamentul.</string>
@@ -349,6 +351,9 @@
   <string name="add_extra_string">Adaugă câmp adiţional</string>
   <string name="configure_totp">Configurare TOTP</string>
   <string name="totp_secret_key">Cheie secretă</string>
+  <string name="totp_encoding_rfc6238">Setări implicite pentru jetonul RFC6238</string>
+  <string name="totp_encoding_steam">Setări pentru jetonul Steam</string>
+  <string name="totp_encoding_custom">Setări jeton personalizat</string>
   <string name="totp_time_step">Pas temporal</string>
   <string name="totp_length">Lungime cod</string>
   <string name="totp_scan">Scanare cod QR</string>
@@ -394,6 +399,8 @@
   <string name="ShowSeparateNotifications_summary">Arată notificări separate pentru copierea numelui utilizatorului și a parolei în clipboard și activarea tastaturii.</string>
   <string name="AccServiceAutoFill_prefs">Serviciu de accesibilitate de completare automată</string>
   <string name="AutoFill_prefs">Serviciu de completare automată</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Când se completează automat o înregistrare cu TOTP, afișează notificarea cu un buton Copiere TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Arată notificarea introducerii</string>
   <string name="AutoFillTotp_prefs_title">Autocompletare pentru intrările TOTP</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiază TOTP în clipboard</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Atunci când se completează automat o intrare cu TOTP, se copiază TOTP în clipboard</string>
@@ -406,12 +413,18 @@
   <string name="OpenKp2aKeyboardAutomatically_summary">Deschide fereastra de selecție a tastaturii când o înregistrare este disponibilă prin tastatura KP2A după căutarea din browser.</string>
   <string name="kp2a_switch_rooted">Schimbare automată a tastaturii</string>
   <string name="kp2a_switch_rooted_summary">Comutare automată la tastatura KP2A la deschiderea intrării. Necesită plugin-ul KeyboardSwap corect configurat sau unu dispozitiv cu access la root și a aplicației Secure Settings cu System+.</string>
+  <string name="get_keyboardswap">Instalare Plugin KeyboardSwap</string>
+  <string name="get_keyboardswap_summary">Acest plugin permite comutarea la tastatura KP2A fără root. Necesită ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Comută automat tastatura doar după căutare</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Comută automat la tastatura KP2A doar după utilizarea funcției Share URL (și nu când se deschide o înregistrare în alt fel)</string>
   <string name="AutoSwitchBackKeyboard_title">Comutare înapoi la tastatură</string>
   <string name="AutoSwitchBackKeyboard_summary">Comută la tastatura precedentă când nici o înregistrare este deschisă.</string>
   <string name="ShowUnlockedNotification_title">Notificare cât timp e deblocat</string>
   <string name="ShowUnlockedNotification_summary">Afişează o notificare în timp ce baza de date este deblocată.</string>
+  <string name="IconVisibilityInfo_Android8_text">Android 8 a introdus un nou comportament pentru notificări. Dacă dorești să ascunzi pictograma pentru notificările KeepAss2android, configurează acest lucru în setările sistemului. Setează importanța categoriei de notificări la minimum.</string>
+  <string name="IconVisibilityInfo_Android8_btnSettings">Deschide setările</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android poate afișa o notificare de sistem în timp ce baza ta de date nu este blocată. Pentru ca acest lucru să funcționeze, acordă permisiunea.</string>
+  <string name="DontCare">Nu-mi pasă</string>
   <string name="PreloadDatabaseEnabled_title">Pre-încarcă fişierul bază de date</string>
   <string name="PreloadDatabaseEnabled_summary">Începe încărcarea sau descărcarea în fundal în timp ce se introduce parola.</string>
   <string name="AskOverwriteBinary">Doriţi să suprascrieţi binarul existent folosind acelaşi nume?</string>
