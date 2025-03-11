@@ -405,7 +405,7 @@ namespace keepass2android.services.AutofillBase
             var datasetBuilder = new Dataset.Builder(presentation);
             datasetBuilder.SetAuthentication(pendingIntent?.IntentSender);
 
-            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.baseline_close_24, null);
+            AutofillHelper.AddInlinePresentation(this, inlinePresentationSpec, text, datasetBuilder, Resource.Drawable.baseline_close_24, pendingIntent);
 
             foreach (var autofillId in autofillIds)
             {

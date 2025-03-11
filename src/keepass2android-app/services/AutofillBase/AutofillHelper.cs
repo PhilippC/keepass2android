@@ -30,10 +30,9 @@ namespace keepass2android.services.AutofillBase
             {
                 return null;
             }
-            //make sure we have a pendingIntent always not null
-            pendingIntent ??= PendingIntent.GetService(context, 0, new Intent(),
-                Util.AddMutabilityFlag(PendingIntentFlags.OneShot | PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Mutable));
-            
+            // If the pending intent is null, we need to create a dummy one to avoid a crash
+            pendingIntent ??= PendingIntent.GetActivity(context, 0, new Intent(context, typeof(NullActivity)), PendingIntentFlags.OneShot | PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
+
             var slice = CreateInlinePresentationSlice(
                 inlinePresentationSpec,
                 text,
