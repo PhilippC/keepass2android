@@ -672,6 +672,26 @@
   <string name="Continue">Suivant</string>
   <string name="NoFilenameWarning">L\'URI que vous avez entré ne ressemble pas à un nom de fichier. Etes-vous sûr qu\'il s\'agit d\'un fichier valide ?</string>
   <string name="FirstInvalidCompositeKeyError">Clé composite invalide ! S\'il vous plaît essayez encore.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Clé composite non valide ! Veuillez essayer les étapes suivantes pour déverrouiller votre base de données :\n
+
+    • Assurez-vous que vous avez saisi le bon mot de passe. Utilisez l\'icône en forme d\'œil pour révéler le mot de passe saisi.\n
+    • Assurez-vous que vous avez sélectionné le bon type de mot de passe et qu\'il correspond à celui utilisé lors de la création de la base de données.\n
+    • Assurez-vous que vous avez sélectionné le bon fichier de base de données.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    • Indice : si vous pensez que votre fichier de base de données est corrompu ou que vous ne vous souvenez pas de la clé principale après l\'avoir modifiée, vous pouvez essayer avec la dernière version du fichier ouverte avec succès en appuyant sur « %1$s » et en sélectionnant la sauvegarde locale.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Indice : Keepass2Android a enregistré la dernière version de fichier ouverte avec succès sur le stockage interne. Vous pouvez l\'ouvrir en appuyant sur « %1$s »  et en sélectionnant la sauvegarde locale.
+  </string>
+  <string name="CorruptDatabaseHelp">    Le fichier est corrompu.\n
+    Voici quelques conseils qui pourraient aider à diagnostiquer le problème :\n
+
+    • Si vous avez copié le fichier via USB (mode MTP), essayez à nouveau en utilisant un outil comme MyPhoneExplorer. MTP tronque les fichiers dans certains cas.\n
+    • Si vous ne pouvez pas ouvrir le fichier à partir du même emplacement sur votre PC, il est très probable que le fichier soit corrompu. Veuillez alors utiliser une sauvegarde de la base de données. Si vous pensez que Keepass2Android a corrompu le fichier, veuillez contacter l\'équipe d\'assistance.\n
+    • Si vous pouvez toujours ouvrir le fichier sur votre PC, essayez de l\'enregistrer avec des paramètres différents (par ex. décompressé) sur le PC et réessayer de l\'ouvrir dans Keepass2Android. Sinon,  veuillez contacter l\'équipe d\'assistance.
+
+  </string>
   <string name="open_other_db">Ouvrir une autre base de données…</string>
   <string name="select_database">Sélectionner une base de données</string>
   <string name="configure_child_dbs">Configurer les bases de données filles…</string>
@@ -699,6 +719,13 @@
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Mise à niveau de Xamarin Android vers. net 8</item>
+    <item>Mise à niveau vers Target SDK 34</item>
+    <item>Mise à niveau vers l\'interface utilisateur Material 3</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Ajout de boutons d\'action flottants pour la recherche et l\'aperçu TOTP (si des entrées TOTP sont présentes).</item>
     <item>Amélioration de l\'affichage des champs TOTP en ajoutant un indicateur de dépassement de délai et en le montrant plus en évidence.</item>

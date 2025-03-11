@@ -717,6 +717,19 @@
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Aktualizováno z Xamarin Android na .net 8</item>
+    <item>Aktualizováno na Target SDK 34</item>
+    <item>Aktualizováno na uživatelské rozhraní Material 3</item>
+    <item>Vylepšení automatického vyplňování pro práci s aplikacemi Compose</item>
+    <item>Oprava přiřazování názvů hostitelů v automatickém vyplňování a vyhledávání</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Aktualizováno OneDrive SDK na verzi 5.68</item>
+    <item>Aktualizováno Dropbox SDK na verzi 7.0.0</item>
+    <item>Aktualizován Gradle, NewtonsoftJson, FluentFTP, MegaApiClient a okhttp</item>
+    <item>Oprava chyby ve výběru souborů WebDav</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Přidána plovoucí akční tlačítka pro vyhledávání a přehled TOTP (pokud jsou přítomny položky TOTP).</item>
     <item>Vylepšeno zobrazení polí TOTP přidáním indikátoru časového limitu a jeho výraznějším zobrazením.</item>
@@ -1150,5 +1163,7 @@ První veřejné vydání
   <string name="AutofillWarning_Intro">Chystáte se vložit přihlašovací údaje pro doménu \"%1$s\" do aplikace \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Pokud věříte že \"%2$s\" patří k \"%1$s\", nebo důvěřujete \"%2$s\" že nezneužije přihlašovací údaje (např. pokud se jedná o důvěryhodný prohlížeč), můžete pokračovat. Pokud tomu tak není, zrušte prosím tuto akci.</string>
   <string name="AutofillWarning_trustAsBrowser">Přijmout vždy v \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Přepnout zpět po dokončení</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Přepnout zpět při stisknutí tlačítka odeslat/pokračovat/ukončit</string>
   <string name="english_ime_settings">Nastavení klávesnice Keepass2Android</string>
 </resources>

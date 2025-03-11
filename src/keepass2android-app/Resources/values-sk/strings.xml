@@ -719,6 +719,19 @@
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Aktualizácia z Xamarin Android na .net 8</item>
+    <item>Aktualizované na Target SDK 34</item>
+    <item>Aktualizované na používateľské rozhranie Material 3</item>
+    <item>Vylepšené automatické dopĺňanie kvôli fungovaniu s aplikáciami Compose</item>
+    <item>Oprava zhody mena hostiteľa v automatickom dopĺňaní a vyhľadávaní</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Aktualizované na OneDrive SDK, verziu 5.68</item>
+    <item>Aktualizované SDK na verziu 7.0.0</item>
+    <item>Aktualizácia Gradle, NewtonsoftJson, FluentFTP, MegaApiClient a okhttp</item>
+    <item>Oprava chyby pri výbere súboru vo WebDav</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Pridané plávajúce tlačidlá pre vyhľadávanie a prehľad o TOTP (ak sú prítomné záznamy s TOTP).</item>
     <item>Zlepšené zobrazenie polí pre TOTP, pridaním časového limitu a vyraznejšieho zobrazenia.</item>
