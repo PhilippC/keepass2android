@@ -37,6 +37,7 @@ using System.Net;
 using System.Text;
 using Android.Content.Res;
 using Android.Database;
+using Android.Gms.Common;
 using Android.Gms.Tasks;
 using Android.Graphics;
 using Android.Graphics.Drawables;
@@ -1155,6 +1156,12 @@ namespace keepass2android
 
             dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
             {
+                if (GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this) != ConnectionResult.Success)
+                {
+                    Toast.MakeText(this, Resource.String.qr_scanning_error_no_google_play_services, ToastLength.Long);
+                    return;
+                }
+
 				GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
                     .SetBarcodeFormats(Barcode.FormatQrCode)
                     .Build();
