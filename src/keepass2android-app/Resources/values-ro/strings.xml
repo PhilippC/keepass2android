@@ -746,6 +746,7 @@
   <string name="backup_infotext_note">Pentru a crea o copie de rezervă acum, accesează %1$s &gt; %2$s &gt; %3$s.</string>
   <string name="emergency_infotext_head">Ești pregătit pentru cazuri de urgență?</string>
   <string name="emergency_infotext_main">Te-ai gândit vreodată ce se întâmplă dacă nu mai poți accesa baza de date a parolelor? Ce se întâmplă dacă ai un accident? Este o bună practică să transmiți cheia principală unei persoane de încredere pentru cazuri de urgență. În caz contrar, nimeni nu va avea acces la parole.</string>
+  <string name="no_secure_display">Afișajul valabil în prezent nu este marcat ca fiind sigur. Aceasta înseamnă că capturile de ecran ar putea fi luate de alte aplicații. Keepass2Android este configurat pentru a afișa informații sensibile doar pe afișaje securizate. Schimbă la un afișaj securizat (de exemplu, detașând un monitor HDMI) sau modifică setările aplicației.</string>
   <string name="disable_secure_screen_check">Dezactivează acest mesaj</string>
   <string name="switch_ime_text">Activează tastatura Keepass2Android.</string>
   <string name="switch_ime_reopen">Reîncercați</string>
@@ -755,5 +756,6 @@
   <string name="AutofillWarning_trustAsBrowser">Acceptați întotdeauna în \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Comută înapoi când ai terminat</string>
   <string name="kp2a_switch_on_sendgodone_summary">Comută înapoi după apăsarea trimitere/înainte/terminat</string>
+  <string name="qr_scanning_error_no_google_play_services">Scanarea codului QR necesită servicii Google Play. Instalează sau actualizează serviciile Google Play de pe dispozitiv.</string>
   <string name="english_ime_settings">Setările tastaturii Keepass2Android</string>
 </resources>
