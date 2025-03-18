@@ -35,8 +35,6 @@ namespace KeePassLib.Cryptography
 		{
 			get
 			{
-				Debug.Assert(m_dicts.Count > 0); // Should be initialized
-
 				int iMaxLen = 0;
 				foreach(int iLen in m_dicts.Keys)
 				{
