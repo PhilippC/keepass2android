@@ -500,9 +500,14 @@
   <string name="hint_sftp_host">szerver (pl. 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Kezdőkönyvtár (opcionális):</string>
+  <string name="connect_timeout">Kapcsolódás időkorlátja, másodpercben (opcionális)</string>
   <string name="enter_sftp_login_title">SFTP tárhely adatai:</string>
   <string name="sftp_auth_mode">Hitelesítési mód</string>
   <string name="send_public_key">A nyilvános kulcs küldése...</string>
+  <string name="sftp_kex_title">Kulcscsere (KEX) algoritmus (opcionális)</string>
+  <string name="hint_sftp_kex">Nevek/specifikációk, vesszővel elválasztva</string>
+  <string name="sftp_shk_title">Szerverazonosításhoz használt kulcs algoritmusa(i) (opcionális)</string>
+  <string name="hint_sftp_shk">Nevek/specifikációk, vesszővel elválasztva</string>
   <string name="enter_ftp_login_title">Adja meg az FTP bejelentkezési adatait:</string>
   <string name="enter_mega_login_title">Adja meg a MEGA fiókjának belépési adatait:</string>
   <string name="select_storage_type">Tárolási típus kiválasztása:</string>
