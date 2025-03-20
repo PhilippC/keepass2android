@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Applicazioni/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Nota: Google sta limitando l\'accesso a Google Drive dalle app per un numero sempre maggiore di utenti. Se la funzione integrata di Google Drive non funziona, si prega di utilizzare il selettore di file di sistema e selezionare Google Drive!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (file KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se non vuoi dare a KP2A accesso completo al tuo Google Drive completo, puoi selezionare questa opzione. Nota che è necessario prima creare un file di database, i file esistenti non sono visibili per l\'app. Scegli questa opzione dalla schermata Crea database o, se hai già aperto un database, esportando il database scegliendo questa opzione.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -672,6 +673,22 @@
   <string name="Continue">Continua</string>
   <string name="NoFilenameWarning">L\'URI inserito non sembra il nome di un file. Sei sicuro che sia un file valido?</string>
   <string name="FirstInvalidCompositeKeyError">Chiave composita non valida! Riprova.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Chiave composta non valida! Per favore prova la seguente procedura per sbloccare il database: \n
+
+• assicurati di aver inserito la password corretta. Usa l\'icona che rappresenta un occhio per vedere la password immessa.\n
+• assicurati di aver selezionato il tipo di password corretto. Assicurati che coincida con il tipo usato quando hai creato il database.\n
+• assicurati di aver selezionato il file del database corretto.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n  
+   • Suggerimento: se pensi che il tuo file di database possa essere danneggiato oppure non ricordi la password principale dopo averla modificata, puoi provare con l\'ultima versione di file aperta correttamente facendo clic su \"%1$s\" e selezionando il backup locale.</string>
+  <string name="HintLocalBackupOtherError">     \n
+     • Suggerimento: Keepass2Android ha archiviato l\'ultima versione del file aperta correttamente nella memoria interna. È possibile aprirla facendo clic su \"%1$s\" e selezionando il backup locale.
+  </string>
+  <string name="CorruptDatabaseHelp">Il file è corrotto.\n
+Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\n
+
+• se hai copiato il file tramite USB (MTP-Mode), riprova usando uno strumento come MyPhoneExplorer. (MTP  a volte tronca i file.)\n
+• se non puoi aprire il file dallo stesso percorso sul tuo PC, è molto probabile che il file sia effettivamente danneggiato. Per favore usa un backup del database. Se credi che Keepass2Android abbia corrotto il file, contatta il supporto.\n
+• se puoi ancora aprire il file sul tuo PC, contatta il supporto. Puoi provare a salvarlo con impostazioni differenti (es: non compresso) sul PC e, poi, riprovare ad aprirlo in Keepass2Android.  </string>
   <string name="open_other_db">Apri un altro database…</string>
   <string name="select_database">Seleziona il database</string>
   <string name="configure_child_dbs">Configura i database figli…</string>
@@ -699,6 +716,19 @@
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Aggiornato da Xamarin Android a .net 8</item>
+    <item>Aggiornato a Target SDK 34</item>
+    <item>Aggiornato all\'interfaccia utente Material 3</item>
+    <item>Migliora l\'autofill per funzionare con le app Compose</item>
+    <item>Corretta la corrispondenza con l\' hostname in riempimento automatico e ricerca</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Aggiornato OneDrive SDK alla versione 5.68</item>
+    <item>Aggiornato Dropbox SDK alla versione 7.0.0</item>
+    <item>Aggiornati Gradle , NewtonsoftJson, FluentFTP, MegaApiClient e okhttp</item>
+    <item>Bugfix nella selezione dei file WebDav</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Aggiunti pulsanti di azione fluttuanti per la ricerca e TOTP panoramica (se sono presenti voci TOTP).</item>
     <item>Vista migliorata dei campi TOTP aggiungendo un indicatore di tempo limite e mostrandolo in modo più evidente.</item>
@@ -989,5 +1019,7 @@
   <string name="AutofillWarning_Intro">Stai per inserire le credenziali per il dominio \"%1$s\" nell\'app \"%2$s\"</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Se ti fidi di \"%2$s\" ad appartenere a \"%1$s\" o se ti fidi dell\'app \"%2$s\" a non abusare delle credenziali (es. perché si tratta di un\'applicazione sicura), è possibile continuare. Altrimenti si prega di annullare.</string>
   <string name="AutofillWarning_trustAsBrowser">Accetta sempre in \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Torna indietro quando premi invia/vai/fatto</string>
+  <string name="qr_scanning_error_no_google_play_services">La scansione del codice QR richiede Google Play Services. Installa o aggiorna Google Play Services sul tuo dispositivo.</string>
   <string name="english_ime_settings">Impostazioni tastiera Keepass2Android</string>
 </resources>
