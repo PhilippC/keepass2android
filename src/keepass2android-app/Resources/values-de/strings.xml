@@ -642,7 +642,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android hat die aktuelle Datenbank im schreibgeschützten Modus geöffnet.</string>
   <string name="ReadOnlyReason_PreKitKat">Es scheint, dass die Datei von einer externen Anwendung aus geöffnet wurde. Über diesen Weg ist das Schreiben nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über eine der verfügbaren Optionen öffnen, sofern möglich.</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Diese Attribut entfernen, wenn Änderungen an der Datenbank vorgenommen werden sollen.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Dieses Attribut entfernen, wenn Änderungen an der Datenbank vorgenommen werden sollen.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über die systeminterne Dateiauswahl öffnen.</string>
   <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet werden. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
@@ -716,6 +716,19 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Upgrade auf Target-SDK 34</item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>OneDrive SDK auf Version 5.68 aktualisiert</item>
+    <item>Dropbox SDK auf Version 7.0.0 aktualisiert</item>
+    <item>Gradle, NewtonsoftJson, FluentFTP, MegaApiClient und okhttp aktualisiert</item>
+    <item>Bugfix in WebDav-Dateiauswahl</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Buttons für die Suche und eine TOTP-Übersicht hinzugefügt (falls TOTP-Einträge vorhanden sind)</item>
     <item>Darstellung von TOTP-Feldern verbessert: Timeout-Anzeige hinzugefügt und besser sichtbar gemacht.</item>
@@ -1146,5 +1159,6 @@ Erstes öffentliches Release</string>
   <string name="AutofillWarning_trustAsBrowser">Für „%1$s“ immer akzeptieren</string>
   <string name="kp2a_switch_on_sendgodone">Tastatur zurückwechseln wenn fertig</string>
   <string name="kp2a_switch_on_sendgodone_summary">Beim Drücken von Senden/Los/Fertig zurückschalten</string>
+  <string name="qr_scanning_error_no_google_play_services">QR-Code-Scannen erfordert Google Play-Dienste. Bitte installiere oder aktualisiere Google Play-Dienste auf deinem Gerät.</string>
   <string name="english_ime_settings">Android-Tastatureinstellungen</string>
 </resources>
