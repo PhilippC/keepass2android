@@ -932,6 +932,17 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * Puoi installare altri pacchetti di icone (le vecchie icone in stile Windows sono disponibili sul Play Store)\n
 * Aggiunta richiesta di conferma prima di eliminare voci senza passare dal cestino\n
 * Correzione errori (errata visualizzazione dell\'OTP-secret, icona dell\'app errata in certi posti)\n  </string>
+  <string name="ChangeLog_0_9_8b">Versione 0.9.8b\n
+* correzione di errori (il salvataggio di alcuni database fallisce, l\'esportazione su periferica locale non funziona, la selezione di alcune opzioni manda l\'app in crash)\n</string>
+  <string name="ChangeLog_0_9_8">Versione 0.9.8\n
+* supporto per Storage Access Framework (permette a KP2A Offline di scrivere su scheda SD e Google Drive)\n
+* tenta di rilevare errori dell\'utente nell\'inserimento degli URL di WebDAV (cartella al posto di file)\n
+* cambiato il font della password\n
+* consente di modificare l\'account di Dropbox\n 
+* bugfix: ora ricorda la password OTP</string>
+  <string name="ChangeLog_0_9_7b">Versione 0.9.7b\n
+* aggiornate le traduzioni\n
+* bugfix:  font Password mancante nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
   <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondi</item>
@@ -981,8 +992,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Password</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Chiave privata/pubblica di KP2A</item>
+    <item>Chiave privata personalizzata</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora gli errori di convalida del certificato</item>
@@ -1000,6 +1011,10 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha rilevato il sensore biometrico. Desideri attivare lo sblocco biometrico per questo database?</string>
+  <string name="post_notifications_dialog_title">Consenti le notifiche</string>
+  <string name="post_notifications_dialog_message">Keepass2Android può mostrare le notifiche con i pulsanti per copiare valori come password e TOTP negli appunti, o per far apparire la tastiera integrata. Questo è utile per trasferire i valori in altre applicazioni senza passare a Keepass2Android ripetutamente. Vuoi abilitare tali notifiche?</string>
+  <string name="post_notifications_dialog_allow">Consenti le notifiche</string>
+  <string name="post_notifications_dialog_disable">Disabilita questa funzione</string>
   <string name="post_notifications_dialog_notnow">Non ora</string>
   <string name="understand">Ho capito</string>
   <string name="dont_show_again">Non mostrare più</string>
@@ -1019,6 +1034,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="AutofillWarning_Intro">Stai per inserire le credenziali per il dominio \"%1$s\" nell\'app \"%2$s\"</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Se ti fidi di \"%2$s\" ad appartenere a \"%1$s\" o se ti fidi dell\'app \"%2$s\" a non abusare delle credenziali (es. perché si tratta di un\'applicazione sicura), è possibile continuare. Altrimenti si prega di annullare.</string>
   <string name="AutofillWarning_trustAsBrowser">Accetta sempre in \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Cambia tastiera quando terminato</string>
   <string name="kp2a_switch_on_sendgodone_summary">Torna indietro quando premi invia/vai/fatto</string>
   <string name="qr_scanning_error_no_google_play_services">La scansione del codice QR richiede Google Play Services. Installa o aggiorna Google Play Services sul tuo dispositivo.</string>
   <string name="english_ime_settings">Impostazioni tastiera Keepass2Android</string>
