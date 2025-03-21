@@ -151,6 +151,7 @@
   <string name="hint_keyfile">kulcsfájl</string>
   <string name="hint_length">hosszúság</string>
   <string name="hint_pass">jelszó</string>
+  <string name="hint_keyfile_path">SSH privátkulcs elérési útvonala</string>
   <string name="hint_login_pass">Jelszó</string>
   <string name="hint_title">név</string>
   <string name="hint_url">URL</string>
@@ -400,6 +401,14 @@
   <string name="ShowSeparateNotifications_summary">Külön értesítés jelenjen meg a felhasználónév és a jelszó vágólapra másolásáról és a billentyűzet aktiválásáról.</string>
   <string name="AccServiceAutoFill_prefs">Automatikus kitöltés akadálymentesítési szolgáltatás</string>
   <string name="AutoFill_prefs">Automatikus kitöltés szolgáltatás</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Egy bejegyzés TOTP-vel való kitöltésekor értesítés megjelenítése, TOTP másolása gombbal</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Értesítés megjelenítése</string>
+  <string name="AutoFillTotp_prefs_title">Automatikus kitöltés TOTP bejegyzésekhez</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP másolása a vágólapra</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Egy bejegyzés TOTP-vel való kitöltésekor a TOTP másolása a vágólapra</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Egy bejegyzés TOTP-vel való kitöltésekor aktiválódjon a beépített billentyűzet</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title"> A beépített billentyűzet aktiválása</string>
+  <string name="TotpCopiedToClipboard">TOTP a vágólapra másolva</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A billentyűzet</string>
   <string name="ShowKp2aKeyboardNotification_summary">A teljes bejegyzés elérhetővé tétele a KP2A billentyűzet segítségével (ajánlott).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Billentyűzetváltás</string>
@@ -416,6 +425,7 @@
   <string name="ShowUnlockedNotification_summary">Egy értesítési ikon megjelenítése, amíg az adatbázis hozzáférhető.</string>
   <string name="IconVisibilityInfo_Android8_text">Az Android 8 bevezetett egy új működési módot az értesítésekhez. Ha el akarja rejteni a Keepass2Android értesítési ikonját, kérjük, ezt a rendszerbeállításokban tegye meg. Állítsa az értesítési kategória fontosságát minimumra.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Beállítások megnyitása</string>
+  <string name="PostNotificationsPermissionInfo_text">A Keepass2Android képes rendszerértesítést megjeleníteni, amíg az adatbázis nincs lezárva. Hogy ez működjön, kérjük, adja meg az engedélyt.</string>
   <string name="DontCare">Nem érdekel</string>
   <string name="DocumentAccessRevoked">A fájl már nem elérhető a Keepass2Android által. Vagy el lett távolítva, vagy a hozzáférési jogosultságok vissza lettek vonva. Kérjük használja a Fájl újra megnyitását, pl. az adatbázis-váltást használva.</string>
   <string name="PreloadDatabaseEnabled_title">Adatbázisok előrehozott betöltése</string>
@@ -500,9 +510,27 @@
   <string name="hint_sftp_host">szerver (pl. 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Kezdőkönyvtár (opcionális):</string>
+  <string name="connect_timeout">Kapcsolódás időkorlátja, másodpercben (opcionális)</string>
   <string name="enter_sftp_login_title">SFTP tárhely adatai:</string>
   <string name="sftp_auth_mode">Hitelesítési mód</string>
   <string name="send_public_key">A nyilvános kulcs küldése...</string>
+  <string name="select_private_keyfile">Privátkulcs kiválasztása</string>
+  <string name="hint_sftp_key_name">Új kulcs neve</string>
+  <string name="hint_sftp_key_content">Új kulcs tartalma</string>
+  <string name="private_key_saved">Privátkulcs elmentve</string>
+  <string name="private_key_save_failed">A privátkulcs mentése nem sikerült: %1$s</string>
+  <string name="private_key_info">Adja meg az elmentendő kulcs nevét és tartalmát</string>
+  <string name="private_key_delete">A privát kulcs törölve: %1$s</string>
+  <string name="private_key_delete_failed">A privát kulcs törlése sikertelen: %1$s</string>
+  <string name="save_key">Privát kulcs mentése</string>
+  <string name="delete_key">Privát kulcs törlése</string>
+  <string name="private_key_select">Privát kulcs kiválasztása</string>
+  <string name="private_key_create_new">[Új hozzáadása...]</string>
+  <string name="hint_sftp_key_passphrase">Kulcshoz tartozó jelmondata</string>
+  <string name="sftp_kex_title">Kulcscsere (KEX) algoritmus (opcionális)</string>
+  <string name="hint_sftp_kex">Nevek/specifikációk, vesszővel elválasztva</string>
+  <string name="sftp_shk_title">Szerverazonosításhoz használt kulcs algoritmusa(i) (opcionális)</string>
+  <string name="hint_sftp_shk">Nevek/specifikációk, vesszővel elválasztva</string>
   <string name="enter_ftp_login_title">Adja meg az FTP bejelentkezési adatait:</string>
   <string name="enter_mega_login_title">Adja meg a MEGA fiókjának belépési adatait:</string>
   <string name="select_storage_type">Tárolási típus kiválasztása:</string>
@@ -518,9 +546,12 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KPA2 mappa)</string>
   <string name="filestoragehelp_dropboxKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Dropbox tárhelyhez hozzáférjen. A KP2A csak az Apps/Keepass2Android könyvtárhoz fog hozzáférést igényelni. Ha már meglévő, de máshol tárolt adatbázist kíván ilyen módon elérni, akkor válassza ezt az opciót a könyvtár létrehozásához, majd helyezze át az adatbázisfájlt a létrehozott könyvtárba (például egy PC-ről), majd válassza még egyszer ezt az opciót a fájl megnyitásához.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Figyelem!  A Google egyre több felhasználó számára korlátozza a Google Drive-hoz való hozzáférést az alkalmazásokból. Ha a beépített Google Drive implementáció nem működik, kérjük, használja helyette a Alapértelmezett fájlválasztót és válassza ott a Google Drive-ot!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A fájlok)</string>
   <string name="filestoragehelp_gdriveKP2A">Válassza ezt az opciót, ha nem akarja, hogy a KP2A a teljes Google Drive-hoz hozzáférjen.  Fontos, hogy először egy új adatbázist kell létrehoznia, a korábban létrehozott fájlokat az alkalmazás nem fogja látni.  Vagy válassza ezt az opciót az Új adatbázis létrehozása képernyőn, vagy, ha már létezik az opció, exportálja azt ennek ezzel az opcióval.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
   <string name="filestoragehelp_pcloud">Ez a tárhelytípus csak az \"Applications/Keepass2Android\" mappához igényel hozzáférést. Ahhoz, hogy a PCloud tárhelyed egy meglévő adatbázisát használd, azt ebben az mappában kell elhelyezned.</string>
+  <string name="filestoragename_pcloudall">PCloud (teljes hozzáférés)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Az összes fájl és a megosztott fájlok</string>
@@ -567,12 +598,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Kérjük, konfigurálja az adatbázist hitelesítő kérdés-válasszal való használthoz a KeePass 2.x (PC-s verzió) KeeChallenge beépülő modulja segítségével.</string>
   <string name="ErrorUpdatingChalAuxFile">OTP kiegészítő fájl frissítése közben hiba történt!</string>
   <string name="TrayTotp_SeedField_title">TOTP mezőnév</string>
+  <string name="TOTP">Idő alapú egyszer használatos jelszó (TOTP)</string>
   <string name="TrayTotp_SeedField_summary">Ha a \"TrayTotp\" beépülő-modult nem alapértelmezett beállításokkal használja, adja meg annak a mezőnek a nevét, amit a jelszógenerálásnál használni kell (megegyezően a PC-n használt beállítással).</string>
   <string name="TrayTotp_SettingsField_title">TOTP beállítások mező</string>
   <string name="TrayTotp_SettingsField_summary">Adja meg a TrayTotp beállítások mezőjének nevét.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Naplófájl a hibakereséshez</string>
   <string name="DebugLog_title">Naplófájl használata</string>
+  <string name="FtpDebug_title">FTP/SFTP naplózása</string>
   <string name="DebugLog_summary">Az alkalmazás kimenetének egy helyi naplófájlba írása</string>
   <string name="DebugLog_send">Hibakeresési naplóbejegyzések küldése...</string>
   <string name="loading">Töltés...</string>
@@ -641,6 +674,21 @@
   <string name="Continue">Folytatás</string>
   <string name="NoFilenameWarning">A megadott URI nem tűnik fájlnévnek. Biztos benne, hogy jó URI-t adott meg?</string>
   <string name="FirstInvalidCompositeKeyError">Az összetett kulcs érvénytelen! Próbálkozzon újra.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Az összetett kulcs érvénytelen! Kérjük, próbálja meg a következő lépésekkel feloldani az adatbázisát:\n
+
+    - Győződjön meg róla, hogy helyesen adta meg a jelszót. Használja a szem ikont a beírt jelszó felfedéséhez.\n
+    - Győződjön meg róla, hogy a megfelelő jelszótípust választotta ki. Győződjön meg róla, hogy ez megegyezik az adatbázis létrehozásakor használt típussal.\n
+    - Győződjön meg róla, hogy a megfelelő adatbázisfájlt választotta ki.</string>
+  <string name="HintLocalBackupInvalidCompositeKey"> \n
+    - Tipp: Ha úgy gondolja, hogy az adatbázis-fájlja sérült lehet, vagy nem emlékszik a főkulcsra (jelszó) a módosítás után, akkor a „%1$s” gombra koppintva és a helyi biztonsági mentést kiválasztva próbálkozhat a fájl utolsó sikeresen megnyitott verziójával.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    - Tipp: A Keepass2Android az utolsó sikeresen megnyitott fájlverziót a belső tárhelyen tárolja. Megnyithatja azt a „%1$s” koppintással és a helyi biztonsági mentés kiválasztásával.</string>
+  <string name="CorruptDatabaseHelp">A fájl sérült. \n
+    Néhány tipp, amely segíthet a probléma diagnosztizálásában:\n
+
+    - Ha a fájlt USB-n keresztül másolta (MTP-mód), próbálja meg újra egy olyan eszközzel, mint a MyPhoneExplorer. Az MTP bizonyos esetekben csonkítja a fájlokat.\n
+    - Ha nem tudja megnyitni a fájlt ugyanarról a helyről a számítógépéről sem, akkor nagyon valószínű, hogy a fájl valóban sérült. Kérjük, ekkor használja az adatbázis egy biztonsági mentését. Ha feltételezi, hogy a Keepass2Android okozta a sérülést, kérjük, lépjen kapcsolatba a támogatói csapatot.\n
+    - Ha még meg tudja nyitni a fájlt a számítógépén, kérjük, lépjen kapcsolatba a támogatói csapattal. Megpróbálhatja más beállításokkal elmenteni a számítógépen (például tömörítetlenül), és azt megnyitni a Keepass2Androidban.</string>
   <string name="open_other_db">Egy másik adatbázis megnyitása…</string>
   <string name="select_database">Adatbázis kiválasztása</string>
   <string name="configure_child_dbs">Csatolt adatbázisok konfigurálása…</string>
@@ -729,8 +777,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Jelszó</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>KP2A privát/publikus kulcs</item>
+    <item>Egyedi privát kulcs</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Továbblépés, figyelmeztetés nélkül</item>
@@ -748,6 +796,11 @@
   <string name="autofill_enable_for">Az automatikus kitöltés engedélyezése %1$s esetén</string>
   <string name="invalid_link_association">Nem sikerült összerendelni a %1$s internettartományt a %2$s alkalmazással</string>
   <string name="enable_fingerprint_hint">Biometrikus eszköz detektálva. Szeretné engedélyezni az adatbázis biometrikus feloldását?</string>
+  <string name="post_notifications_dialog_title">Értesítések engedélyezése</string>
+  <string name="post_notifications_dialog_message">A Keepass2Android képes értesítéseket megjeleníteni, ami lehetővé teszi, hogy többször vagy egyszer használatos jelszavakat másoljon a vágólapra, vagy aktiválja a beépített billentyűzetet. Ez hasznos többféle érték más alkalmazásokba történő átviteléhez, úgy, hogy ne kelljen többször is alkalmazást váltani. Szeretné engedélyezni az ilyen értesítéseket?</string>
+  <string name="post_notifications_dialog_allow">Értesítések engedélyezése</string>
+  <string name="post_notifications_dialog_disable">A lehetőség kikapcsolása</string>
+  <string name="post_notifications_dialog_notnow">Ne most</string>
   <string name="understand">Értem</string>
   <string name="dont_show_again">Ne mutassa többet</string>
   <string name="masterkey_infotext_head">Emlékszik a főkulcsra (jelszó)?</string>
@@ -766,5 +819,8 @@
   <string name="AutofillWarning_Intro">A(z) \"%1$s\" tartományhoz tartozó azonosítókat készül a(z) \"%2$s\" alkalmazás számára elérhetővé tenni.</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Ha megbízik abban, hogy a(z) \"%1$s\" tartomány a(z) \"%2$s\" alkalmazáshoz tartozik, vagy megbízik abban, hogy az alkalmazás nem él vissza a titkos adatokkal (mert például egy megbízható böngészőprogram), folytassa.  Ha nem, szakítsa meg a folyamatot.</string>
   <string name="AutofillWarning_trustAsBrowser">Mindig fogadja el itt: \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Visszakapcsolás, ha végzett</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Visszaváltás a Küldés/Ugrás/Kész gombok megnyomásakor</string>
+  <string name="qr_scanning_error_no_google_play_services">A QR-kód beolvasásához szükséges a Google Play Service. Kérjük, telepítse vagy frissítse a szolgáltatást a készülékén.</string>
   <string name="english_ime_settings">Keepass2Android billentyűzetbeállítások</string>
 </resources>

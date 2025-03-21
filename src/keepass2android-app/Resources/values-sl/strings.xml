@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Opomba: Google omejuje dostop do storitve Google Drive iz aplikacij za vse več uporabnikov. Če vgrajena implementacija Googlovega pogona ne deluje, uporabite sistemski izbirnik datotek in tam izberite Googlov pogon!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A datoteke)</string>
   <string name="filestoragehelp_gdriveKP2A">Če KP2A ne želite omogočiti dostopa do celotnega Google Drive, lahko izberete to možnost. Upoštevajte, da morate najprej ustvariti novo datoteko baze podatkov, obstoječe datoteke niso vidne aplikaciji. To možnost izberite na zaslonu Ustvari bazo podatkov ali, če ste že odprli bazo podatkov, izvozite bazo podatkov in izberete to možnost.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A mapa)</string>
@@ -1197,5 +1198,6 @@
   <string name="AutofillWarning_trustAsBrowser">Sprejmi vedno v \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Preklopi nazaj, ko je končano</string>
   <string name="kp2a_switch_on_sendgodone_summary">Preklopi nazaj, ko pritisnete gumb za pošiljanje/prehajanje/končano</string>
+  <string name="qr_scanning_error_no_google_play_services">Za optično branje kode QR so potrebne storitve Google Play. V svojo napravo namestite ali posodobite storitve Google Play.</string>
   <string name="english_ime_settings">Nastavitve tipkovnice Keepass2Android</string>
 </resources>
