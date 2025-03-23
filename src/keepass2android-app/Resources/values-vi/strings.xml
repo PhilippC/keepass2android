@@ -679,6 +679,20 @@
     • Chọn đúng loại mật khẩu. Loại mật khẩu phải giống với loại mật khẩu đã chọn khi tạo cơ sở dữ liệu.\n
     • Chọn đúng tập tin cơ sở dữ liệu.
   </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    • Gợi ý: Nếu bạn nghĩ rằng tập tin cơ sở dữ liệu bị hỏng hoặc bạn đã quên khoá chính sau khi thay đổi nó, bạn có thể nhấn \"%1$s\" và chọn bản sao lưu cục bộ để mở phiên bản tập tin được mở thành công gần đây nhất.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Gợi ý: Keepass2Android đã lưu trữ phiên bản tập tin được mở thành công gần đây nhất trên bộ nhớ trong. Bạn có thể mở nó bằng cách nhấn vào \"%1$s\" và chọn bản sao lưu cục bộ.
+  </string>
+  <string name="CorruptDatabaseHelp">    Tập tin bị hỏng. \n
+    Có một số mẹo giúp chẩn đoán vấn đề như sau:\n
+
+    • Nếu bạn sao chép tập tin qua USB (sử dụng chế độ MTP), hãy thử sao chép lại bằng một phần mềm như MyPhoneExplorer. Trong một số trường hợp, MTP có thể cắt bớt nội dung tập tin.\n
+    • Nếu không mở được tập tin ở cùng một vị trí trên máy tính, rất có thể tập tin đó thực sự bị hỏng. Trong trường hợp này, hãy sử dụng một bản sao lưu cơ sở dữ liệu. Nếu bạn nghi ngờ rằng Keepass2Android làm hỏng tập tin, hãy liên hệ với bộ phận hỗ trợ.\n
+    • Nếu tập tin vẫn mở được bằng máy tính, hãy liên hệ với bộ phận hỗ trợ. Bạn có thể thử lưu lại tập tin trên máy tính với cài đặt khác (ví dụ như không nén) sau đó thử mở lại bằng Keepass2Android.
+
+  </string>
   <string name="open_other_db">Mở cơ sở dữ liệu khác…</string>
   <string name="select_database">Chọn cơ sở dữ liệu</string>
   <string name="configure_child_dbs">Định cấu hình cơ sở dữ liệu con…</string>
