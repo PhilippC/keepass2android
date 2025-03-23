@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (thư mục KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Dropbox đầy đủ của mình, bạn có thể chọn tùy chọn này. Nó sẽ chỉ yêu cầu quyền truy cập vào thư mục Apps/Keepass2Android. Điều này đặc biệt phù hợp khi tạo cơ sở dữ liệu mới. Nếu bạn đã có cơ sở dữ liệu, hãy chọn tùy chọn này để tạo thư mục, sau đó đặt tệp của bạn bên trong thư mục (từ PC của bạn) và sau đó chọn lại tùy chọn này để mở tệp.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Xin lưu ý: Google ngày càng giới hạn quyền truy cập Google Drive của các ứng dụng đối với nhiều người dùng hơn. Nếu mục Google Drive không dùng được, hãy chọn Trình chọn tập tin của hệ thống sau đó chọn mục Google Drive!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (tệp KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Nếu bạn không muốn cấp cho KP2A quyền truy cập vào Google Drive đầy đủ của mình, bạn có thể chọn tùy chọn này. Lưu ý rằng trước tiên bạn cần tạo tệp cơ sở dữ liệu, các tệp hiện có sẽ không hiển thị với ứng dụng. Chọn tùy chọn này từ màn hình Tạo cơ sở dữ liệu hoặc, nếu bạn đã mở cơ sở dữ liệu, bằng cách xuất cơ sở dữ liệu chọn tùy chọn này.</string>
   <string name="filestoragename_pcloud">PCloud (thư mục KP2A)</string>
@@ -672,6 +673,12 @@
   <string name="Continue">Tiếp tục</string>
   <string name="NoFilenameWarning">URI bạn đã nhập không có dạng tên tập tin. Bạn có chắc chắn đây là tập tin hợp lệ không?</string>
   <string name="FirstInvalidCompositeKeyError">Khoá hỗn hợp không hợp lệ. Xin thử lại.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Khoá tổng hợp không hợp lệ! Hãy thử các bước sau để mở khoá cơ sở dữ liệu của bạn:\n
+
+    • Nhập đúng mật khẩu. Ấn vào biểu tượng con mắt để hiện mật khẩu đã nhập.\n
+    • Chọn đúng loại mật khẩu. Loại mật khẩu phải giống với loại mật khẩu đã chọn khi tạo cơ sở dữ liệu.\n
+    • Chọn đúng tập tin cơ sở dữ liệu.
+  </string>
   <string name="open_other_db">Mở cơ sở dữ liệu khác…</string>
   <string name="select_database">Chọn cơ sở dữ liệu</string>
   <string name="configure_child_dbs">Định cấu hình cơ sở dữ liệu con…</string>
