@@ -113,4 +113,15 @@ extends Activity implements JavaFileStorage.FileStorageSetupActivity {
 		return state;
 	}
 
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		MainActivity.storageToTest.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+
+
+
+	}
+
+
 }
