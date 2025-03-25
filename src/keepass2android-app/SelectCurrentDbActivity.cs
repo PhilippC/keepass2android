@@ -27,6 +27,7 @@ using KeePassLib.Serialization;
 using Console = System.Console;
 using Object = Java.Lang.Object;
 using AndroidX.Core.Content;
+using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
@@ -302,9 +303,23 @@ namespace keepass2android
             }
             else
             {
+
                 if (Intent.Action == Intent.ActionView)
                 {
-                    GetIocFromViewIntent(Intent);
+                    if (IsOtpUri(Intent.Data))
+                    {
+                        AppTask = new CreateEntryThenCloseTask()
+                        {
+                            AllFields = Newtonsoft.Json.JsonConvert.SerializeObject(new Dictionary<string, string>()
+                            {
+                                { "otp", Intent.DataString }
+                            })
+                        };
+                    }
+                    else
+                    {
+                        GetIocFromViewIntent(Intent);
+                    }
                 }
                 else if (Intent.Action == Intent.ActionSend)
                 {
@@ -332,6 +347,11 @@ namespace keepass2android
                 }
             }
 
+        }
+
+        private bool IsOtpUri(Uri? uri)
+        {
+            return uri?.Scheme == "otpauth";
         }
 
         protected override void OnStart()
