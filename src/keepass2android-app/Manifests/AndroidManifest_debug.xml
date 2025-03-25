@@ -243,6 +243,15 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
         <action android:name="keepass2android.ACTION_START_WITH_TASK" />
         <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="otpauth"/>
+        <data android:host="totp"/>
+        <data android:host="hotp"/>
+      </intent-filter>
     </activity>
     <uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
     <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
