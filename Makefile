@@ -20,6 +20,7 @@
 #  - nuget: restore NuGet packages
 #  - msbuild: build the project
 #  - apk: same as all
+#  - manifestlink: creates a symlink (to be used in building) to the AndroidManifest corresponding to the selected Flavor
 #
 #  - distclean: run a 'git clean -xdff'. Remove everyhing that is not in the git tree.
 #  - clean: all clean_* targets below
