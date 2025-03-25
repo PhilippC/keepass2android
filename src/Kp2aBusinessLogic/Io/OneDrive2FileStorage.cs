@@ -1148,30 +1148,46 @@ namespace keepass2android.Io
                 });
             }
 
-            string? driveId = parentPath.DriveId;
-            if ((string.IsNullOrEmpty(driveId)) && (drives?.Any() == true))
-            {
-                driveId = drives.First().Id;
-            }
-        
             
             if (!CanListShares)
                 return result;
+
             
-            var sharedWithMeResponse = await client.Drives[driveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
-
-            foreach (DriveItem i in sharedWithMeResponse?.Value ?? [])
+            try
             {
-                var oneDrive2ItemLocation = parentPath.BuildShare(i.RemoteItem.Id, i.RemoteItem.Name, i.RemoteItem.WebUrl, i.RemoteItem.ParentReference.DriveId);
-                FileDescription sharedFileEntry = new FileDescription()
+                string? driveId = parentPath.DriveId;
+                if (string.IsNullOrEmpty(driveId))
                 {
-                    CanWrite = true, CanRead = true, DisplayName = i.Name,
-                    IsDirectory = true,
-                    Path = oneDrive2ItemLocation.ToString()
-                };
-                result.Add(sharedFileEntry);
+                    driveId = (await client.Me.Drive.GetAsync()).Id;
+                }
+                if ((string.IsNullOrEmpty(driveId)) && (drives?.Any() == true))
+                {
+                    driveId = drives.First().Id;
+                }
 
+                var sharedWithMeResponse = await client.Drives[driveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
+
+                foreach (DriveItem i in sharedWithMeResponse?.Value ?? [])
+                {
+                    var oneDrive2ItemLocation = parentPath.BuildShare(i.RemoteItem.Id, i.RemoteItem.Name, i.RemoteItem.WebUrl, i.RemoteItem.ParentReference.DriveId);
+                    FileDescription sharedFileEntry = new FileDescription()
+                    {
+                        CanWrite = true,
+                        CanRead = true,
+                        DisplayName = i.Name,
+                        IsDirectory = (i.Folder != null) || ((i.RemoteItem != null) && (i.RemoteItem.Folder != null)),
+                        Path = oneDrive2ItemLocation.ToString()
+                    };
+                    result.Add(sharedFileEntry);
+
+                }
             }
+            catch (Exception e)
+            {
+                logDebug("Failed to list shares: " + e);
+            }
+
+
 
             return result;
         }
