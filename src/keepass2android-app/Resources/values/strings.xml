@@ -733,6 +733,7 @@
     <item>Upgraded to Material 3 user interface</item>
     <item>Improve autofill to work with Compose apps</item>
     <item>Fix hostname matching in autofill and search</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Upgraded OneDrive SDK to version 5.68</item>
