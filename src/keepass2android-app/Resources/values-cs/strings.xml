@@ -723,6 +723,7 @@
     <item>Aktualizováno na uživatelské rozhraní Material 3</item>
     <item>Vylepšení automatického vyplňování pro práci s aplikacemi Compose</item>
     <item>Oprava přiřazování názvů hostitelů v automatickém vyplňování a vyhledávání</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Aktualizováno OneDrive SDK na verzi 5.68</item>
