@@ -185,48 +185,56 @@ namespace keepass2android
 
 			public override View GetView(int position, View convertView, ViewGroup parent)
 			{
-				View currView;
-				if(convertView == null)
-				{
-					LayoutInflater li = (LayoutInflater) _act.GetSystemService(LayoutInflaterService); 
-					currView = li.Inflate(Resource.Layout.icon, null);
-				}
-				else
-				{
-					currView = convertView;
-				}
-				TextView tv = (TextView) currView.FindViewById(Resource.Id.icon_text);
-				ImageView iv = (ImageView) currView.FindViewById(Resource.Id.icon_image);
-						
-				if (position < (int)PwIcon.Count)
-				{
-					tv.Text = "" + position;
-					var drawable = App.Kp2a.CurrentDb						.DrawableFactory.GetIconDrawable(_act, App.Kp2a.CurrentDb.KpDatabase, (KeePassLib.PwIcon) position, null, false);
-					drawable = new BitmapDrawable(Util.DrawableToBitmap(drawable));
-					iv.SetImageDrawable(drawable);
-					//App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
+                try
+                {
+                    View currView;
+                    if (convertView == null)
+                    {
+                        LayoutInflater li = (LayoutInflater)_act.GetSystemService(LayoutInflaterService);
+                        currView = li.Inflate(Resource.Layout.icon, null);
+                    }
+                    else
+                    {
+                        currView = convertView;
+                    }
+                    TextView tv = (TextView)currView.FindViewById(Resource.Id.icon_text);
+                    ImageView iv = (ImageView)currView.FindViewById(Resource.Id.icon_image);
 
-					if (
-						PreferenceManager.GetDefaultSharedPreferences(currView.Context)
-							.GetString("IconSetKey", currView.Context.PackageName) == currView.Context.PackageName)
-					{
-						Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
-						Color color = new Color(189, 189, 189);
-						iv.SetColorFilter(color, mMode);	
-					}
-					
-				}
-				else
-				{
-					int pos = position - (int)PwIcon.Count;
-					var icon = _db.CustomIcons[pos];
-					tv.Text = pos.ToString();
-					iv.SetColorFilter(null);
-					iv.SetImageBitmap(icon.Image);
-					
-				}
+                    if (position < (int)PwIcon.Count)
+                    {
+                        tv.Text = "" + position;
+                        var drawable = App.Kp2a.CurrentDb.DrawableFactory.GetIconDrawable(_act, App.Kp2a.CurrentDb.KpDatabase, (KeePassLib.PwIcon)position, null, false);
+                        drawable = new BitmapDrawable(Util.DrawableToBitmap(drawable));
+                        iv.SetImageDrawable(drawable);
+                        //App.Kp2a.GetDb().DrawableFactory.AssignDrawableTo(iv, _act, App.Kp2a.GetDb().KpDatabase, (KeePassLib.PwIcon) position, null, false);
 
-				return currView;
+                        if (PreferenceManager.GetDefaultSharedPreferences(currView.Context)
+                                .GetString("IconSetKey", currView.Context.PackageName) == currView.Context.PackageName)
+                        {
+                            Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+                            Color color = new Color(189, 189, 189);
+                            iv.SetColorFilter(color, mMode);
+                        }
+
+                    }
+                    else
+                    {
+                        int pos = position - (int)PwIcon.Count;
+                        var icon = _db.CustomIcons[pos];
+                        tv.Text = pos.ToString();
+                        iv.SetColorFilter(null);
+                        iv.SetImageBitmap(icon.Image);
+
+                    }
+
+                    return currView;
+                }
+                catch (System.Exception e)
+                {
+                    Kp2aLog.LogUnexpectedError(e);
+                    throw;
+                }
+				
 			}
 
 			public bool IsCustomIcon(int position)

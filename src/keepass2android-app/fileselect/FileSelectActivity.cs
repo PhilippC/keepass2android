@@ -448,37 +448,49 @@ namespace keepass2android
 		}
 
 		protected override void OnStart()
-		{
-			base.OnStart();
-			Kp2aLog.Log("FileSelect.OnStart");
+        {
 
-			
-			//if no database is loaded: load the most recent database
-			if ( (Intent.GetBooleanExtra(NoForwardToPasswordActivity, false)==false) &&  _dbHelper.HasRecentFiles() && !App.Kp2a.OpenDatabases.Any())
-			{
-			    var fileStorage = new LocalFileStorage(App.Kp2a);
-                ICursor filesCursor = _dbHelper.FetchAllFiles();
-                filesCursor = new FilteredCursor(filesCursor, cursor => !fileStorage.IsLocalBackup(IOConnectionInfo.FromPath(cursor.GetString(1))));
-		        StartManagingCursor(filesCursor);
-			    if (filesCursor.Count > 0)
-			    {
-                    filesCursor.MoveToFirst();
-			        IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
-			        if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
-			        {
-			            LaunchPasswordActivityForIoc(ioc);
-			        }
-			        else
-			        {
-			            App.Kp2a.GetFileStorage(ioc)
-			                .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc, 0, false);
+            try
+            {
+                base.OnStart();
+			    Kp2aLog.Log("FileSelect.OnStart");
+
+
+                //if no database is loaded: load the most recent database
+                if ((Intent.GetBooleanExtra(NoForwardToPasswordActivity, false) == false) && _dbHelper.HasRecentFiles() &&
+                    !App.Kp2a.OpenDatabases.Any())
+                {
+                    var fileStorage = new LocalFileStorage(App.Kp2a);
+                    ICursor filesCursor = _dbHelper.FetchAllFiles();
+                    filesCursor = new FilteredCursor(filesCursor,
+                        cursor => !fileStorage.IsLocalBackup(IOConnectionInfo.FromPath(cursor.GetString(1))));
+                    StartManagingCursor(filesCursor);
+                    if (filesCursor.Count > 0)
+                    {
+                        filesCursor.MoveToFirst();
+                        IOConnectionInfo ioc = _dbHelper.CursorToIoc(filesCursor);
+                        if (App.Kp2a.GetFileStorage(ioc).RequiresSetup(ioc) == false)
+                        {
+                            LaunchPasswordActivityForIoc(ioc);
+                        }
+                        else
+                        {
+                            App.Kp2a.GetFileStorage(ioc)
+                                .PrepareFileUsage(new FileStorageSetupInitiatorActivity(this, OnActivityResult, null), ioc,
+                                    0, false);
+                        }
                     }
-			    }
-			}
-			
+                }
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+                Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
+                Finish();
+            }
 
-			
-		}
+
+        }
 		public override bool OnCreateOptionsMenu(IMenu menu) {
 			base.OnCreateOptionsMenu(menu);
 			
