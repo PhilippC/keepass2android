@@ -722,6 +722,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
     <item>Upgraded to Material 3 user interface</item>
     <item>Improve autofill to work with Compose apps</item>
     <item>Fix hostname matching in autofill and search</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>OneDrive SDK auf Version 5.68 aktualisiert</item>
