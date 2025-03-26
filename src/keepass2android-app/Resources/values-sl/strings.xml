@@ -726,6 +726,7 @@
     <item>Nadgrajen na uporabniški vmesnik Material 3</item>
     <item>Izboljšanje samodejnega izpolnjevanja za delovanje z aplikacijami Compose</item>
     <item>Popravek ujemanja gostiteljskega imena v samodejnem izpolnjevanju in iskanju</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Nadgradnja OneDrive SDK na različico 5.68</item>
