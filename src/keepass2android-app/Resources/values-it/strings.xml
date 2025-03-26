@@ -722,6 +722,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     <item>Aggiornato all\'interfaccia utente Material 3</item>
     <item>Migliora l\'autofill per funzionare con le app Compose</item>
     <item>Corretta la corrispondenza con l\' hostname in riempimento automatico e ricerca</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Aggiornato OneDrive SDK alla versione 5.68</item>
