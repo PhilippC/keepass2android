@@ -724,6 +724,7 @@
     <item>ユーザーインターフェイスを Material 3 にアップグレード</item>
     <item>Compose アプリでの自動入力機能を改善</item>
     <item>自動入力と検索でホスト名の一致条件を修正</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>OneDrive SDK をバージョン 5.68 にアップグレード</item>
