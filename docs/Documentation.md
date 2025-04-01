@@ -1,1 +1,1 @@
-This page has been moved to the [wiki](https://github.com/PhilippC/keepass2android/wiki/Documentation.md)
+This page has been moved to the [wiki](https://github.com/PhilippC/keepass2android/wiki/Documentation)
