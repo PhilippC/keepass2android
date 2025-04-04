@@ -548,6 +548,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Observação: o Google está restringindo o acesso ao Google Drive a partir de aplicativos para cada vez mais usuários. Se a implementação integrada do Google Drive não funcionar, use o seletor de arquivos do sistema e selecione o Google Drive lá!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (Arquivos KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se você não quiser dar acesso KP2A ao seu Google Drive completo, você pode selecionar esta opção. Observe que você precisa criar um arquivo de banco de dados primeiro, os arquivos existentes não são visíveis para o aplicativo. Escolha esta opção na tela Criar banco de dados ou, se você já abriu um banco de dados, exportando o banco de dados escolhendo esta opção.</string>
   <string name="filestoragename_pcloud">PCloud (Pasta KP2A)</string>
@@ -727,6 +728,7 @@
     <item>Atualizado para a interface de usuário Material 3</item>
     <item>Melhorado o preenchimento automático para trabalhar com aplicativos Compose</item>
     <item>Corrigido a correspondência do nome do host em preenchimento automático e pesquisa</item>
+    <item>Corrigido um problema com gerador de senhas</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Atualizado o OneDrive SDK para a versão 5.68</item>
@@ -1199,5 +1201,6 @@
   <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Voltar quando terminar</string>
   <string name="kp2a_switch_on_sendgodone_summary">Voltar ao pressionar enviar/ir/concluído</string>
+  <string name="qr_scanning_error_no_google_play_services">A leitura de código QR requer o Google Play Services. Instale ou atualize o Google Play Services no seu dispositivo.</string>
   <string name="english_ime_settings">Configurações do teclado Android</string>
 </resources>
