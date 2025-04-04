@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A složka)</string>
   <string name="filestoragehelp_dropboxKP2A">Pokud nechcete, aby měl KP2A plný přístup k vašemu Dropbox účtu, může vybrat tuto možnost. Bude vyžadován pouze přístup ke složce Apps/Keepass2Android. Toto je vhodné zejména při vytváření nové databáze. Pokud již máte databázi, zvolte na tuto možnost pro vytvoření složky, poté umístěte soubor (z PC) do této složky a zvolte tuto možnost znovu pro otevření souboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Upozornění: Společnost Google omezuje přístup k Disku Google z aplikací pro stále více uživatelů. Pokud vestavěná implementace Disku Google nefunguje, použijte místo toho systémový výběr souborů a vyberte Disk Google tam!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A soubory)</string>
   <string name="filestoragehelp_gdriveKP2A">Nechcete-li dát aplikaci KeePass2Android přístup k celému vašemu Google Drive, použijte tuto možnost. Upozorňujeme, že nejprve musíte vytvořit soubor s databází položek, existující soubory nejsou viditelné pro aplikaci. Toto můžete udělat z obrazovky Vytvořit databázi, nebo exportem právě otevřené databáze, volbou této možnosti</string>
   <string name="filestoragename_pcloud">PCloud (složka KP2A)</string>
@@ -723,7 +724,7 @@
     <item>Aktualizováno na uživatelské rozhraní Material 3</item>
     <item>Vylepšení automatického vyplňování pro práci s aplikacemi Compose</item>
     <item>Oprava přiřazování názvů hostitelů v automatickém vyplňování a vyhledávání</item>
-    <item>Fix issue with password generator</item>
+    <item>Oprava problému s generátorem hesel</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Aktualizováno OneDrive SDK na verzi 5.68</item>
@@ -1166,5 +1167,6 @@ První veřejné vydání
   <string name="AutofillWarning_trustAsBrowser">Přijmout vždy v \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Přepnout zpět po dokončení</string>
   <string name="kp2a_switch_on_sendgodone_summary">Přepnout zpět při stisknutí tlačítka odeslat/pokračovat/ukončit</string>
+  <string name="qr_scanning_error_no_google_play_services">Skenování QR kódu vyžaduje služby Google Play. Nainstalujte nebo aktualizujte služby Google Play ve svém zařízení.</string>
   <string name="english_ime_settings">Nastavení klávesnice Keepass2Android</string>
 </resources>
