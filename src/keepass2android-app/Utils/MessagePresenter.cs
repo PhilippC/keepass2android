@@ -78,7 +78,15 @@ namespace keepass2android.Utils
 
                 if (!queuedMessages.Any())
                 {
-                    new Handler().PostDelayed(() => { ShowNextSnackbar(); }, (long)waitDuration.TotalMilliseconds);
+                    if (Looper.MainLooper != null)
+                    {
+                        new Handler(Looper.MainLooper).PostDelayed(ShowNextSnackbar,
+                            (long)waitDuration.TotalMilliseconds);
+                    }
+                    else
+                    {
+                        Kp2aLog.Log("Currently cannot show message");
+                    }
                 }
                 
                 queuedMessages.Add(message);
