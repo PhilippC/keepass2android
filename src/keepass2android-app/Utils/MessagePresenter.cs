@@ -71,16 +71,17 @@ namespace keepass2android.Utils
 
         public void ShowMessage(Message message)
         {
-            if (DateTime.Now < nextSnackbarShowTime)
+            if (DateTime.Now <= nextSnackbarShowTime)
             {
                 var waitDuration = nextSnackbarShowTime - DateTime.Now;
                 nextSnackbarShowTime = nextSnackbarShowTime.Add(chainingTime);
-                
-                new Handler().PostDelayed(() => { ShowNextSnackbar(); }, (long)waitDuration.TotalMilliseconds);
-                if (queuedMessages.Any())
+
+                if (!queuedMessages.Any())
                 {
-                    queuedMessages.Add(message);
+                    new Handler().PostDelayed(() => { ShowNextSnackbar(); }, (long)waitDuration.TotalMilliseconds);
                 }
+                
+                queuedMessages.Add(message);
 
                 return;
             }
