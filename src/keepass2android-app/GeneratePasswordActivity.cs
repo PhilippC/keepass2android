@@ -543,7 +543,7 @@ namespace keepass2android
             }
             catch (Exception e) 
             {
-				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, e.Message,  MessageSeverity.Error);
 			}
 			
 			return password;

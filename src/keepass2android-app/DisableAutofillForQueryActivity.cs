@@ -41,7 +41,7 @@ namespace keepass2android
             string requestedUrl = Intent.GetStringExtra(ChooseForAutofillActivityBase.ExtraQueryString);
             if (requestedUrl == null)
             {
-                Toast.MakeText(this, "Cannot execute query for null.", ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Cannot execute query for null.",  MessageSeverity.Error);
                 RestartApp();
                 return;
             }

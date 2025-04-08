@@ -57,7 +57,7 @@ namespace keepass2android
 				// Verify that passwords match
 				if ( ! pass.Equals(confpass) ) {
 					// Passwords do not match
-					Toast.MakeText(Context, Resource.String.error_pass_match, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(Context, Resource.String.error_pass_match,  MessageSeverity.Error);
 					return;
 				}
 				
@@ -67,7 +67,7 @@ namespace keepass2android
 				
 				// Verify that a password or keyfile is set
 				if ( pass.Length == 0 && keyfile.Length == 0 ) {
-					Toast.MakeText(Context, Resource.String.error_nopass, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(Context, Resource.String.error_nopass,  MessageSeverity.Error);
 					return;
 					
 				}
@@ -114,7 +114,7 @@ namespace keepass2android
 						edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
 						edit.Commit();
 
-						Toast.MakeText(_dlg.Context, Resource.String.fingerprint_reenable, ToastLength.Long).Show();
+						App.Kp2a.ShowMessage(_dlg.Context, Resource.String.fingerprint_reenable,  MessageSeverity.Warning);
 						_dlg.Context.StartActivity(typeof(BiometricSetupActivity));
 					}
 

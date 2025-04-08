@@ -646,8 +646,8 @@ namespace keepass2android
                     string totp = prov.GenerateByByte(totpData.TotpSecret);
                     CopyToClipboardService.CopyValueToClipboardWithTimeout(activity, totp, true);
 
-                    Toast.MakeText(activity, activity.GetString(Resource.String.TotpCopiedToClipboard),
-                        ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(activity, activity.GetString(Resource.String.TotpCopiedToClipboard),
+                         MessageSeverity.Info);
                 }
 
                 
@@ -990,9 +990,9 @@ namespace keepass2android
 
 				if (ToastEnable) {
 					String toastMessage = groupBaseActivity.GetString (Resource.String.NavigationToGroupCompleted_message, new Java.Lang.Object[] { FullGroupName});
-					
-					Toast.MakeText (groupBaseActivity, toastMessage, ToastLength.Long).Show ();
-				}
+
+                    App.Kp2a.ShowMessage(groupBaseActivity, toastMessage, MessageSeverity.Info);
+                }
 				
 				groupBaseActivity.StartTask (TaskToBeLaunchedAfterNavigation);
 				return;

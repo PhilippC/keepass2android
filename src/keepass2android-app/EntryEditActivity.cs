@@ -64,10 +64,10 @@ namespace keepass2android
 {
 	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
-	    
 
-	    
-		public const String KeyEntry = "entry";
+        protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
+
+        public const String KeyEntry = "entry";
 		public const String KeyParent = "parent";
 		public const String KeyTemplateUuid = "KeyTemplateUuid";
 		
@@ -715,7 +715,7 @@ namespace keepass2android
 			}
 			catch(Exception exAttach)
 			{
-				Toast.MakeText(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message,  MessageSeverity.Error);
 			}
 			State.EntryModified = true;
 			PopulateBinaries();
@@ -833,7 +833,7 @@ namespace keepass2android
 						string s = Util.GetFilenameFromInternalFileChooser(data, this);
 						if (s == null)
 						{
-							Toast.MakeText(this, "No URI retrieved.", ToastLength.Short).Show();
+							App.Kp2a.ShowMessage(this, "No URI retrieved.",  MessageSeverity.Error);
 							return;
 						}
 						uri = Uri.Parse(s);
@@ -1139,7 +1139,7 @@ namespace keepass2android
 				}
                 else
                 {
-					Toast.MakeText(this, "did not find target field", ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, "did not find target field",  MessageSeverity.Error);
                 }
                 
 				
@@ -1158,7 +1158,8 @@ namespace keepass2android
             {
                 if (GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this) != ConnectionResult.Success)
                 {
-                    Toast.MakeText(this, Resource.String.qr_scanning_error_no_google_play_services, ToastLength.Long);
+                    App.Kp2a.ShowMessage(this, Resource.String.qr_scanning_error_no_google_play_services,
+                        MessageSeverity.Error);
                     return;
                 }
 
@@ -1178,7 +1179,7 @@ namespace keepass2android
                         }
                         else
                         {
-                            Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(this, "Scanned code should contain an otpauth:// text.",  MessageSeverity.Warning);
                         }
                     }))
                     .AddOnFailureListener(new FailureListener((e) =>
@@ -1503,7 +1504,7 @@ namespace keepass2android
 			// Require title
 			String title = Util.GetEditText(this, Resource.Id.entry_title);
 			if ( title.Length == 0 ) {
-				Toast.MakeText(this, Resource.String.error_title_required, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.error_title_required,  MessageSeverity.Error);
 				return false;
 			}
 			
@@ -1513,7 +1514,7 @@ namespace keepass2android
 			DateTime newExpiry = new DateTime();
 			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.GetEditText(this,Resource.Id.entry_expires), out newExpiry)))
 		    {
-				Toast.MakeText(this, Resource.String.error_invalid_expiry_date, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.error_invalid_expiry_date,  MessageSeverity.Error);
 				return false;
 			}
 			State.Entry.ExpiryTime = newExpiry.ToUniversalTime();
@@ -1527,13 +1528,13 @@ namespace keepass2android
 				string key = keyView.Text;
 				
 				if (String.IsNullOrEmpty(key)) {
-					Toast.MakeText(this, Resource.String.error_string_key, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, Resource.String.error_string_key,  MessageSeverity.Error);
 					return false;
 				}
 
 				if (allKeys.Contains(key))
 				{
-					Toast.MakeText(this, GetString(Resource.String.error_string_duplicate_key, new Object[]{key}), ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, GetString(Resource.String.error_string_duplicate_key, new Object[]{key}),  MessageSeverity.Error);
 					return false;
 				}
 

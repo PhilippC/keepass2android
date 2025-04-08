@@ -161,7 +161,7 @@ namespace PluginTOTP
 					return;
 				try
 				{
-					_uiThreadHandler.Post(() => Toast.MakeText(_ctx, warning, ToastLength.Short).Show());
+					_uiThreadHandler.Post(() => App.Kp2a.ShowMessage(_ctx, warning,  MessageSeverity.Warning));
 				}
 				catch (Exception e)
 				{

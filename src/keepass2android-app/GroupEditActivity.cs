@@ -111,9 +111,10 @@ namespace keepass2android
 					SetResult (Result.Ok, intent);
 					
 					Finish ();
-				} else {
-					Toast.MakeText (this, Resource.String.error_no_name, ToastLength.Long).Show ();
-				}
+				} else
+                {
+                    App.Kp2a.ShowMessage(this, Resource.String.error_no_name, MessageSeverity.Error);
+                }
 			};
 
 			if (Intent.HasExtra(KeyGroupUuid))

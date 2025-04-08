@@ -710,9 +710,9 @@ namespace keepass2android
                 string message = _service.GetString(Resource.String.ClearClipboard) + " "
                                  + _service.GetString(Resource.String.ClearClipboardWarning);
                 Android.Util.Log.Debug("KP2A", message);
-                Toast.MakeText(_service,
+                App.Kp2a.ShowMessage(_service,
                     message,
-                    ToastLength.Long).Show();
+                     MessageSeverity.Error);
             }
         }
 
@@ -781,7 +781,7 @@ namespace keepass2android
                 InputMethodManager imeManager = (InputMethodManager)ApplicationContext.GetSystemService(InputMethodService);
                 if (imeManager == null)
                 {
-                    Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(this, Resource.String.not_possible_im_picker,  MessageSeverity.Error);
                     return;
                 }
                 try
@@ -799,7 +799,7 @@ namespace keepass2android
                     }
                     catch (Exception)
                     {
-                        Toast.MakeText(this, Resource.String.not_possible_im_picker, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(this, Resource.String.not_possible_im_picker,  MessageSeverity.Error);
                     }
                     return;
                 }
@@ -813,7 +813,7 @@ namespace keepass2android
                 if (!IsKp2aInputMethodEnabled)
                 {
                     //must be enabled in settings first
-                    Toast.MakeText(this, Resource.String.please_activate_keyboard, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(this, Resource.String.please_activate_keyboard,  MessageSeverity.Info);
                     Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
                     try
                     {
@@ -824,7 +824,7 @@ namespace keepass2android
                     {
                         //seems like on Huawei devices this call can fail. 
                         Kp2aLog.LogUnexpectedError(e);
-                        Toast.MakeText(this, "Failed to switch keyboard.", ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(this, "Failed to switch keyboard.",  MessageSeverity.Error);
 
                     }
                 }
@@ -847,7 +847,7 @@ namespace keepass2android
                         {
                             //seems like on Huawei devices this call can fail. 
                             Kp2aLog.LogUnexpectedError(e);
-                            Toast.MakeText(this, "Failed to switch keyboard.", ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(this, "Failed to switch keyboard.",  MessageSeverity.Error);
 
                         }
                         
