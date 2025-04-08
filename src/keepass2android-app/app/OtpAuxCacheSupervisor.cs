@@ -28,7 +28,7 @@ namespace keepass2android
 		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
 		{
 			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad,
-			                                             new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.otp_aux_file) }));
+			                                             new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.otp_aux_file) }), MessageSeverity.Info);
 		}
 
 		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
@@ -49,12 +49,12 @@ namespace keepass2android
 
 		public void ResolvedCacheConflictByUsingRemote(IOConnectionInfo ioc)
 		{
-			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingRemoteOtpAux));
+			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingRemoteOtpAux), MessageSeverity.Info);
 		}
 
 		public void ResolvedCacheConflictByUsingLocal(IOConnectionInfo ioc)
 		{
-			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingLocalOtpAux));
+			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingLocalOtpAux), MessageSeverity.Info);
 		}
 	}
 }

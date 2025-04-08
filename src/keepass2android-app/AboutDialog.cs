@@ -59,7 +59,7 @@ namespace keepass2android
 					}
 					catch (ActivityNotFoundException)
 					{
-						Toast.MakeText(Context, Resource.String.no_url_handler, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler, MessageSeverity.Error);
 					}
 
 				};
@@ -71,7 +71,7 @@ namespace keepass2android
 				}
 				catch (ActivityNotFoundException)
 				{
-					Toast.MakeText(Context, Resource.String.no_url_handler, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler,  MessageSeverity.Error);
 				}
 			};
 			FindViewById(Resource.Id.translate).Click += delegate
@@ -82,7 +82,7 @@ namespace keepass2android
 				}
 				catch (ActivityNotFoundException)
 				{
-					Toast.MakeText(Context, Resource.String.no_url_handler, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler,  MessageSeverity.Error);
 				}
 			}; FindViewById(Resource.Id.donate).Click += delegate
 			{

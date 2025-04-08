@@ -66,6 +66,7 @@ using Exception = System.Exception;
 using String = System.String;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using AndroidX.Core.Content;
+using Google.Android.Material.Snackbar;
 
 namespace keepass2android
 {
@@ -309,7 +310,7 @@ namespace keepass2android
 		            catch (Exception e)
 		            {
 		                Kp2aLog.Log(e.ToString());
-		                Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
+		                App.Kp2a.ShowMessage(this, "Error: " + e.Message,  MessageSeverity.Error);
 		                return;
 		            }
 
@@ -328,8 +329,7 @@ namespace keepass2android
 		                            ChallengeInfo temp = _challengeProv.Encrypt(_challengeSecret);
 		                            if (!temp.Save(_otpAuxIoc))
 		                            {
-		                                Toast.MakeText(this, Resource.String.ErrorUpdatingChalAuxFile, ToastLength.Long)
-		                                    .Show();
+		                                App.Kp2a.ShowMessage(this, Resource.String.ErrorUpdatingChalAuxFile, MessageSeverity.Error);
 		                                return false;
 		                            }
 
@@ -348,7 +348,7 @@ namespace keepass2android
 		            }
 		            else
 		            {
-		                Toast.MakeText(this, Resource.String.bad_resp, ToastLength.Long).Show();
+		                App.Kp2a.ShowMessage(this, Resource.String.bad_resp,  MessageSeverity.Error);
 		            }
 		        }
 		    }
@@ -458,7 +458,7 @@ namespace keepass2android
 									}
 									else
 									{
-										Toast.MakeText(Activity,GetErrorMessage(), ToastLength.Long).Show();
+										App.Kp2a.ShowMessage(Activity,GetErrorMessage(),  MessageSeverity.Error);
 									}
 									return;
 
@@ -957,7 +957,7 @@ namespace keepass2android
 			{
 				btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
             }, 1300);
-			Toast.MakeText(this, message, ToastLength.Long).Show();
+			App.Kp2a.ShowMessage(this, message,  MessageSeverity.Error);
 		}
 
         public void OnBiometricAttemptFailed(string message)
@@ -1036,7 +1036,7 @@ namespace keepass2android
 				if (_appnameclickCount == 6)
 				{
 					Kp2aLog.LogUnexpectedError(new Exception("some blabla"));
-					Toast.MakeText(this, "Once again and the app will crash.", ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, "Once again and the app will crash.",  MessageSeverity.Warning);
 				}
 					
 				if (_appnameclickCount == 7)
@@ -1123,7 +1123,7 @@ namespace keepass2android
 				//For security reasons: discard the OTP (otherwise the user might not select a database now and forget 
 				//about the OTP, but it would still be stored in the Intents and later be passed to PasswordActivity again.
 
-				Toast.MakeText(this, GetString(Resource.String.otp_discarded_because_no_db), ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, GetString(Resource.String.otp_discarded_because_no_db),  MessageSeverity.Warning);
 				GoToFileSelectActivity();
 				return false;
 			}
@@ -1400,7 +1400,7 @@ namespace keepass2android
 					                        string errorMessage;
 					                        if (!CreateCompositeKey(out compositeKey, out errorMessage)) return (() =>
 						                        {
-							                        Toast.MakeText(this, errorMessage, ToastLength.Long).Show();
+							                        App.Kp2a.ShowMessage(this, errorMessage,  MessageSeverity.Warning);
 						                            _performingLoad = false;
                                                 });
 											return () => { PerformLoadDatabaseWithCompositeKey(compositeKey); };
@@ -1668,7 +1668,7 @@ namespace keepass2android
                             //did we find a field?
                             if (!foundEmptyField)
                             {
-                                Toast.MakeText(this, GetString(Resource.String.otp_discarded_no_space), ToastLength.Long).Show();
+                                App.Kp2a.ShowMessage(this, GetString(Resource.String.otp_discarded_no_space),  MessageSeverity.Error);
                             }
                         }
 
@@ -1729,80 +1729,128 @@ namespace keepass2android
             UsedFingerprintUnlock = false;
         }
 
+        protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
+
         protected override void OnResume()
-		{
-			base.OnResume();
-			_activityDesign.ReapplyTheme();
+        {
+            base.OnResume();
+            
+            _activityDesign.ReapplyTheme();
 
-			Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " + _performingLoad);
+            Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " +
+                        _performingLoad);
 
-			CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
-			App.Kp2a.OfflineMode = cbOfflineMode.Checked = App.Kp2a.OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
-			LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
-			var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
-			if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
-			{	
-				offlineModeContainer.Visibility = ViewStates.Visible;
-			}
-			else
-			{
-				offlineModeContainer.Visibility = ViewStates.Gone;
-				App.Kp2a.OfflineMode = false;
-			}
-			
+            CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
+            App.Kp2a.OfflineMode =
+                cbOfflineMode.Checked =
+                    App.Kp2a
+                        .OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
+            LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
+            var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
+            if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
+            {
+                offlineModeContainer.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                offlineModeContainer.Visibility = ViewStates.Gone;
+                App.Kp2a.OfflineMode = false;
+            }
 
-			
 
-			View killButton = FindViewById(Resource.Id.kill_app);
-			if (PreferenceManager.GetDefaultSharedPreferences(this)
-								 .GetBoolean(GetString(Resource.String.show_kill_app_key), false))
-			{
-				killButton.Click += (sender, args) =>
-				{
-					_killOnDestroy = true;
+
+
+            View killButton = FindViewById(Resource.Id.kill_app);
+            if (PreferenceManager.GetDefaultSharedPreferences(this)
+                .GetBoolean(GetString(Resource.String.show_kill_app_key), false))
+            {
+                killButton.Click += (sender, args) =>
+                {
+                    _killOnDestroy = true;
                     SetResult(Result.Canceled);
-					Finish();
+                    Finish();
 
-				};
-				killButton.Visibility = ViewStates.Visible;
+                };
+                killButton.Visibility = ViewStates.Visible;
 
-			}
-			else
-			{
-				killButton.Visibility = ViewStates.Gone;
-			}
+            }
+            else
+            {
+                killButton.Visibility = ViewStates.Gone;
+            }
 
-		    TryGetOtpFromClipboard();
+            TryGetOtpFromClipboard();
 
-		    if (!_keepPasswordInOnResume)
-		    {
-		        if (
-                    _lastOnPauseTime < DateTime.Now - TimeSpan.FromSeconds(5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
-                    && 
-		            PreferenceManager.GetDefaultSharedPreferences(this)
-		                .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
-		        {
-		            ClearEnteredPassword();
-		        }
+            if (!_keepPasswordInOnResume)
+            {
+                if (
+                    _lastOnPauseTime <
+                    DateTime.Now -
+                    TimeSpan.FromSeconds(
+                        5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
+                    &&
+                    PreferenceManager.GetDefaultSharedPreferences(this)
+                        .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
+                {
+                    ClearEnteredPassword();
+                }
 
-		    }
+            }
 
 
 
-			_keepPasswordInOnResume = false;
+            _keepPasswordInOnResume = false;
 
-			MakePasswordMaskedOrVisible();
+            MakePasswordMaskedOrVisible();
 
-			UpdateOkButtonState();
+            UpdateOkButtonState();
 
-			if (KeyProviderTypes.Contains(KeyProviders.Challenge))
-			{
-				FindViewById(Resource.Id.otpInitView).Visibility = _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
-			}
+            if (KeyProviderTypes.Contains(KeyProviders.Challenge))
+            {
+                FindViewById(Resource.Id.otpInitView).Visibility =
+                    _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
+            }
+			/*
+            Snackbar snackbar = Snackbar
+                .Make(FindViewById(Resource.Id.main_content),
+                    "snack snack snack snack snack snack snack snack snack snack snack snack snack snack snacksnack snack snacksnack snack snacksnack snack snack snack snack snack snack snack snack snack snack snack snack snack snack snacksnack snack snacksnack snack snacksnack  snack snack snack snack snacksnack snack snack ",
+                    Snackbar.LengthLong);
+            snackbar.SetTextMaxLines(5);
+            snackbar.SetBackgroundTint(GetColor(Resource.Color.md_theme_secondaryContainer));
+            snackbar.SetTextColor(GetColor(Resource.Color.md_theme_onSecondaryContainer));
+            snackbar.SetAction("dismiss",
+                view => snackbar.SetBackgroundTint(GetColor(Resource.Color.md_theme_surfaceContainer)));
 
-			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
-			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
-			if ( !IsFinishing && !_performingLoad)  
+            snackbar.Show();
+
+            new Handler().PostDelayed(() =>
+            {
+
+                Snackbar snackbar2 = Snackbar
+                    .Make(FindViewById(Resource.Id.main_content), "snack snack snack ",
+                        Snackbar.LengthLong);
+                snackbar2.SetTextMaxLines(5);
+                snackbar2.SetBackgroundTint(GetColor(Resource.Color.md_theme_errorContainer));
+                snackbar2.SetTextColor(GetColor(Resource.Color.md_theme_onErrorContainer));
+                snackbar2.Show();
+            }, 1500);
+
+
+            new Handler().PostDelayed(() =>
+            {
+
+                Snackbar snackbar2 = Snackbar
+                    .Make(FindViewById(Resource.Id.main_content), "snack snack warn ",
+                        Snackbar.LengthLong);
+                snackbar2.SetTextMaxLines(5);
+                snackbar2.SetBackgroundTint(GetColor(Resource.Color.md_theme_inverseSurface));
+                snackbar2.SetTextColor(GetColor(Resource.Color.md_theme_inverseOnSurface));
+                snackbar2.Show();
+            }, 2500);*/
+
+            //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
+            //use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
+            if ( !IsFinishing && !_performingLoad)  
 			{
 				
 				
@@ -1954,7 +2002,7 @@ namespace keepass2android
 			    
                 btn.Tag = error;
 
-			    Toast.MakeText(this, Resource.String.fingerprint_reenable2, ToastLength.Long).Show();
+			    App.Kp2a.ShowMessage(this, Resource.String.fingerprint_reenable2,  MessageSeverity.Error);
 
 				_biometricDec = null;
 				return false;
@@ -2024,7 +2072,7 @@ namespace keepass2android
 		/*
 	private void errorMessage(CharSequence text)
 	{
-		Toast.MakeText(this, text, ToastLength.Long).Show();
+		App.Kp2a.ShowMessage(this, text,  MessageSeverity.Error);
 	}
 	*/
 
@@ -2084,7 +2132,9 @@ namespace keepass2android
 			        _act.LoadingErrorCount++;
 			    }
 
-			    if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
+				
+
+                if ((Exception != null) && (Exception.Message == KeePassLib.Resources.KLRes.FileCorrupted))
 			    {
 			        Message = _act.GetString(Resource.String.CorruptDatabaseHelp);
 			    }
@@ -2150,7 +2200,8 @@ namespace keepass2android
 				}
 				else
 				{
-					DisplayMessage(_act);
+                    MessageSeverity severity = Success ? MessageSeverity.Info : MessageSeverity.Error;
+                    App.Kp2a.ShowMessage(_act, Message, severity);
 				    if (Success)
 				    {
 				        _act.LaunchNextActivity();
@@ -2234,7 +2285,7 @@ namespace keepass2android
 
 		    private void ShowError(string message)
 		    {
-		        App.Kp2a.ShowToast(message);
+		        App.Kp2a.ShowToast(message, MessageSeverity.Error);
 		    }
 		}
 		private class PasswordActivityBroadcastReceiver : BroadcastReceiver

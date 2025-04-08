@@ -96,7 +96,7 @@ namespace keepass2android.search
             catch (Exception e)
             {
                 Kp2aLog.LogUnexpectedError(e);
-                Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, e.Message,  MessageSeverity.Error);
                 Finish();
                 return;
             }

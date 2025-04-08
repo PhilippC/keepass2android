@@ -94,7 +94,7 @@ namespace keepass2android.settings
                 String strRounds = inputEditText.Text;
                 if (!(ulong.TryParse(strRounds, out paramValue)))
                 {
-                    Toast.MakeText(Context, Resource.String.error_param_not_number, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(Context, Resource.String.error_param_not_number,  MessageSeverity.Error);
                     return;
                 }
 

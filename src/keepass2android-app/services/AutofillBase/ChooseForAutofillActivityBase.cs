@@ -52,7 +52,7 @@ namespace keepass2android.services.AutofillBase
             if (requestedUrl == null && requestedUuid == null)
             {
                 Kp2aLog.Log("ChooseForAutofillActivityBase: no requestedUrl and no requestedUuid");
-                Toast.MakeText(this, "Cannot execute query for null.", ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Cannot execute query for null.",  MessageSeverity.Error);
                 RestartApp();
                 return;
             }
@@ -255,7 +255,7 @@ namespace keepass2android.services.AutofillBase
         {
             if (dataset == null)
             {
-                Toast.MakeText(this, "Failed to build an autofill dataset.", ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Failed to build an autofill dataset.",  MessageSeverity.Error);
                 return;
             }
             ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, dataset);

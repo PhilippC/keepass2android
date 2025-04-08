@@ -21,8 +21,10 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
+using Android.Views;
 using Google.Android.Material.Dialog;
 using keepass2android;
+using keepass2android.Utils;
 
 namespace keepass2android
 {
@@ -76,19 +78,34 @@ namespace keepass2android
 			base.OnPause();
 			
 			TimeoutHelper.Pause(this);
-		}
+			App.Kp2a.MessagePresenter = new NonePresenter();
+        }
 
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
 			GC.Collect();
 		}
-		
-		protected override void OnResume() {
-			base.OnResume();
-			
-			TimeoutHelper.Resume(this);
-		}
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            TimeoutHelper.Resume(this);
+            var snackbarAnchorView = SnackbarAnchorView;
+            if (snackbarAnchorView != null)
+            {
+                App.Kp2a.MessagePresenter = new ChainedSnackbarPresenter(snackbarAnchorView);
+            }
+            else
+            {
+                App.Kp2a.MessagePresenter = new ToastPresenter();
+            }
+        }
+
+
+        protected virtual View? SnackbarAnchorView => null;
+    
 
 	    public const int RequestCodeChallengeYubikey = 793;
 

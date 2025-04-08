@@ -29,6 +29,14 @@ namespace keepass2android
 
 	}
 
+
+    public enum MessageSeverity
+    {
+        Info,
+        Warning,
+        Error
+    }
+
     /// <summary>
 	/// Interface through which Activities and the logic layer can access some app specific functionalities and Application static data
 	/// </summary>
@@ -102,10 +110,13 @@ namespace keepass2android
 		                    Context ctx,
 		                    string messageSuffix = "");
 
-		/// <summary>
-		/// Returns a Handler object which can run tasks on the UI thread
-		/// </summary>
-		Handler UiThreadHandler { get; }
+        void ShowMessage(Context ctx, int resourceId, MessageSeverity severity);
+        void ShowMessage(Context ctx, string text, MessageSeverity severity);
+
+        /// <summary>
+        /// Returns a Handler object which can run tasks on the UI thread
+        /// </summary>
+        Handler UiThreadHandler { get; }
 
 		IProgressDialog CreateProgressDialog(Context ctx);
 
