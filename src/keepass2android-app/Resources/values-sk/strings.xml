@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (priečinok KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Túto voľbu môžete aktivovať ak udelíte KP2A prístup do celého Dropboxu. Vyžaduje sa prístup iba do priečinka Apps/Keepass2Android. Je to osobitne vhodné pri vytváraní novej databázy. Ak už máte databázu, tak aktivovaním tejto voľby vytvoríte priečinok, potom premiestnite súbor do priečinka (zo svojho PC) a potom znovu aktivujte voľbu, pre otvorenie súboru.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Pamätajte na to, že: Google čoraz viac obmedzuje prístup ku Google Drive z aplikácií. Ak vám nefunguje zabudovaná integrácia s Google Drive, použite výber súboru priamo v systéme a vyberte Google Drive tam!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (súbory KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Ak nechcete poskytnúť KP2A prístup k celému úložisku Google Drive, môžete vybrať túto možnosť. Pamätajte na to, že najskôr musíte vytvoriť súbor s databázou, existujúce súbory aplikácia neuvidí. Buď vyberte takúto možnosť z obrazovky pre vytvorenie databázy, alebo už otvorenú databázu exportujte vybratím tejto možnosti.</string>
   <string name="filestoragename_pcloud">PCloud (priečinok KP2A)</string>
@@ -725,6 +726,7 @@
     <item>Aktualizované na používateľské rozhranie Material 3</item>
     <item>Vylepšené automatické dopĺňanie kvôli fungovaniu s aplikáciami Compose</item>
     <item>Oprava zhody mena hostiteľa v automatickom dopĺňaní a vyhľadávaní</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Aktualizované na OneDrive SDK, verziu 5.68</item>
@@ -1199,5 +1201,6 @@
   <string name="AutofillWarning_trustAsBrowser">Vždy súhlasiť v \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Po dokončení prepnúť späť</string>
   <string name="kp2a_switch_on_sendgodone_summary">Po stlačení Odoslať/Prejsť/Hotovo prejsť späť</string>
+  <string name="qr_scanning_error_no_google_play_services">Na skenovanie QR kódov sú potrebné služby Google Play. Nainštalujte alebo aktualizujte si ich vo vašom zariadení.</string>
   <string name="english_ime_settings">Nastavenia klávesnice Keepass2Android</string>
 </resources>

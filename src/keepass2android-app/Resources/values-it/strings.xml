@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (cartella KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se non vuoi dare a KP2A accesso completo al tuo Dropbox, puoi selezionare questa opzione. Richiederà solo l\'accesso alla cartella Applicazioni/Keepass2Android. Ciò è particolarmente indicato quando si crea un nuovo database. Se hai già un database, fai click su questa opzione per creare la cartella, poi spostaci dentro il file (dal PC), quindi seleziona di nuovo questa opzione per aprire il file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Nota: Google sta limitando l\'accesso a Google Drive dalle app per un numero sempre maggiore di utenti. Se la funzione integrata di Google Drive non funziona, si prega di utilizzare il selettore di file di sistema e selezionare Google Drive!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (file KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se non vuoi dare a KP2A accesso completo al tuo Google Drive completo, puoi selezionare questa opzione. Nota che è necessario prima creare un file di database, i file esistenti non sono visibili per l\'app. Scegli questa opzione dalla schermata Crea database o, se hai già aperto un database, esportando il database scegliendo questa opzione.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -672,6 +673,22 @@
   <string name="Continue">Continua</string>
   <string name="NoFilenameWarning">L\'URI inserito non sembra il nome di un file. Sei sicuro che sia un file valido?</string>
   <string name="FirstInvalidCompositeKeyError">Chiave composita non valida! Riprova.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Chiave composta non valida! Per favore prova la seguente procedura per sbloccare il database: \n
+
+• assicurati di aver inserito la password corretta. Usa l\'icona che rappresenta un occhio per vedere la password immessa.\n
+• assicurati di aver selezionato il tipo di password corretto. Assicurati che coincida con il tipo usato quando hai creato il database.\n
+• assicurati di aver selezionato il file del database corretto.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n  
+   • Suggerimento: se pensi che il tuo file di database possa essere danneggiato oppure non ricordi la password principale dopo averla modificata, puoi provare con l\'ultima versione di file aperta correttamente facendo clic su \"%1$s\" e selezionando il backup locale.</string>
+  <string name="HintLocalBackupOtherError">     \n
+     • Suggerimento: Keepass2Android ha archiviato l\'ultima versione del file aperta correttamente nella memoria interna. È possibile aprirla facendo clic su \"%1$s\" e selezionando il backup locale.
+  </string>
+  <string name="CorruptDatabaseHelp">Il file è corrotto.\n
+Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\n
+
+• se hai copiato il file tramite USB (MTP-Mode), riprova usando uno strumento come MyPhoneExplorer. (MTP  a volte tronca i file.)\n
+• se non puoi aprire il file dallo stesso percorso sul tuo PC, è molto probabile che il file sia effettivamente danneggiato. Per favore usa un backup del database. Se credi che Keepass2Android abbia corrotto il file, contatta il supporto.\n
+• se puoi ancora aprire il file sul tuo PC, contatta il supporto. Puoi provare a salvarlo con impostazioni differenti (es: non compresso) sul PC e, poi, riprovare ad aprirlo in Keepass2Android.  </string>
   <string name="open_other_db">Apri un altro database…</string>
   <string name="select_database">Seleziona il database</string>
   <string name="configure_child_dbs">Configura i database figli…</string>
@@ -699,6 +716,20 @@
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Aggiornato da Xamarin Android a .net 8</item>
+    <item>Aggiornato a Target SDK 34</item>
+    <item>Aggiornato all\'interfaccia utente Material 3</item>
+    <item>Migliora l\'autofill per funzionare con le app Compose</item>
+    <item>Corretta la corrispondenza con l\' hostname in riempimento automatico e ricerca</item>
+    <item>Fix issue with password generator</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Aggiornato OneDrive SDK alla versione 5.68</item>
+    <item>Aggiornato Dropbox SDK alla versione 7.0.0</item>
+    <item>Aggiornati Gradle , NewtonsoftJson, FluentFTP, MegaApiClient e okhttp</item>
+    <item>Bugfix nella selezione dei file WebDav</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Aggiunti pulsanti di azione fluttuanti per la ricerca e TOTP panoramica (se sono presenti voci TOTP).</item>
     <item>Vista migliorata dei campi TOTP aggiungendo un indicatore di tempo limite e mostrandolo in modo più evidente.</item>
@@ -902,6 +933,17 @@
 * Puoi installare altri pacchetti di icone (le vecchie icone in stile Windows sono disponibili sul Play Store)\n
 * Aggiunta richiesta di conferma prima di eliminare voci senza passare dal cestino\n
 * Correzione errori (errata visualizzazione dell\'OTP-secret, icona dell\'app errata in certi posti)\n  </string>
+  <string name="ChangeLog_0_9_8b">Versione 0.9.8b\n
+* correzione di errori (il salvataggio di alcuni database fallisce, l\'esportazione su periferica locale non funziona, la selezione di alcune opzioni manda l\'app in crash)\n</string>
+  <string name="ChangeLog_0_9_8">Versione 0.9.8\n
+* supporto per Storage Access Framework (permette a KP2A Offline di scrivere su scheda SD e Google Drive)\n
+* tenta di rilevare errori dell\'utente nell\'inserimento degli URL di WebDAV (cartella al posto di file)\n
+* cambiato il font della password\n
+* consente di modificare l\'account di Dropbox\n 
+* bugfix: ora ricorda la password OTP</string>
+  <string name="ChangeLog_0_9_7b">Versione 0.9.7b\n
+* aggiornate le traduzioni\n
+* bugfix:  font Password mancante nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
   <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondi</item>
@@ -951,8 +993,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Password</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Chiave privata/pubblica di KP2A</item>
+    <item>Chiave privata personalizzata</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Ignora gli errori di convalida del certificato</item>
@@ -970,6 +1012,10 @@
   <string name="autofill_enable_for">Attiva Compilazione automatica per %1$s</string>
   <string name="invalid_link_association">Non è possibile associare il dominio web %1$s con l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha rilevato il sensore biometrico. Desideri attivare lo sblocco biometrico per questo database?</string>
+  <string name="post_notifications_dialog_title">Consenti le notifiche</string>
+  <string name="post_notifications_dialog_message">Keepass2Android può mostrare le notifiche con i pulsanti per copiare valori come password e TOTP negli appunti, o per far apparire la tastiera integrata. Questo è utile per trasferire i valori in altre applicazioni senza passare a Keepass2Android ripetutamente. Vuoi abilitare tali notifiche?</string>
+  <string name="post_notifications_dialog_allow">Consenti le notifiche</string>
+  <string name="post_notifications_dialog_disable">Disabilita questa funzione</string>
   <string name="post_notifications_dialog_notnow">Non ora</string>
   <string name="understand">Ho capito</string>
   <string name="dont_show_again">Non mostrare più</string>
@@ -989,5 +1035,8 @@
   <string name="AutofillWarning_Intro">Stai per inserire le credenziali per il dominio \"%1$s\" nell\'app \"%2$s\"</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Se ti fidi di \"%2$s\" ad appartenere a \"%1$s\" o se ti fidi dell\'app \"%2$s\" a non abusare delle credenziali (es. perché si tratta di un\'applicazione sicura), è possibile continuare. Altrimenti si prega di annullare.</string>
   <string name="AutofillWarning_trustAsBrowser">Accetta sempre in \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Cambia tastiera quando terminato</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Torna indietro quando premi invia/vai/fatto</string>
+  <string name="qr_scanning_error_no_google_play_services">La scansione del codice QR richiede Google Play Services. Installa o aggiorna Google Play Services sul tuo dispositivo.</string>
   <string name="english_ime_settings">Impostazioni tastiera Keepass2Android</string>
 </resources>
