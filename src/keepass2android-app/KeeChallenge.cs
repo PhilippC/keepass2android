@@ -146,7 +146,20 @@ namespace KeeChallenge
             {
                 using (CryptoStream csDecrypt = (CryptoStream)aes.DecryptStream(msDecrypt, key, inf.IV))
                 {
-                    csDecrypt.Read(secret, 0, secret.Length);
+                    //read the secret from the stream
+                    int totalBytesRead = 0;
+                    byte[] buffer = new byte[secret.Length];
+                    var secretOutputStream = new MemoryStream(secret);
+
+                    int bytesRead = csDecrypt.Read(buffer, totalBytesRead, secret.Length - totalBytesRead);
+                    while (bytesRead > 0 && totalBytesRead < secret.Length)
+                    {
+                        secretOutputStream.Write(buffer, 0, bytesRead);
+                        totalBytesRead += bytesRead;
+                        bytesRead = csDecrypt.Read(buffer, totalBytesRead, secret.Length - totalBytesRead);
+                    }
+                    secretOutputStream.Close();
+
                     csDecrypt.Close();
                 }
                 msDecrypt.Close();
