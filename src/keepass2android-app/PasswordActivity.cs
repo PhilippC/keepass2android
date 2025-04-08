@@ -996,8 +996,12 @@ namespace keepass2android
 			
 			btn.PostDelayed(() =>
 			{
-                //fire
-                OnOk(true);
+                //fire if everything else is ready
+                if (FindViewById(Resource.Id.pass_ok).Enabled)
+                {
+                    OnOk(true);
+                }
+                
 			    FindViewById<EditText>(Resource.Id.password_edit).Enabled = true;
 			}, 500);
 
