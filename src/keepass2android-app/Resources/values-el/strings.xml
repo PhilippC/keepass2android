@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">Σχόλια</string>
-  <string name="AboutText">Το KP2A είναι ένας διαχειριστής συνθηματικών, που παρέχει την δυνατότητα ανάγνωσης/εγγραφής σε βάσεις δεδομένων του KeePass 2.x στο Android.</string>
+  <string name="AboutText">Το KP2A είναι ένας διαχειριστής συνθηματικών, που παρέχει δυνατότητα ανάγνωσης / εγγραφής σε βάσεις δεδομένων του KeePass 2.x στο Android.</string>
   <string name="CreditsText">Το περιβάλλον εργασίας χρήστη βασίζεται σε μια έκδοση του KeepassDroid που αναπτύχθηκε από τον Brian Pellin. Ο κώδικας για τις λειτουργίες της βάσης δεδομένων βασίζεται στο KeePass του Dominik Reichl. Το ρομπότ Android αναπαράγεται ή τροποποιείται από εργασία που δημιουργήθηκε και διαμοιράστηκε από την Google και χρησιμοποιείται σύμφωνα με τους όρους που περιγράφονται στο το Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">Το SFTP υποστηρίζεται με χρήση της βιβλιοθήκης JSch με άδεια BSD που δημιουργήθηκε από τη JCraft, Inc.</string>
   <string name="CreditsIcons">Το εικονίδιο Σφυρί δημιουργήθηκε από τον John Caserta, το εικονίδιο Πιγκουίνος δημιουργήθηκε από τον Adriano Emerick, το εικονίδιο Φτερό δημιουργήθηκε από τον Jon Testa και το εικονίδιο της Apple δημιουργήθηκε από την Ava Rowell. Όλα τα προηγούμενα εικονίδια είναι από το Noun Project. Το εικονίδιο της Εικόνας είναι από το https://icons8.com/icon/5570/Picture.</string>
@@ -883,6 +883,7 @@
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
   <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε βιομετρικό εξοπλισμό. Θέλετε να ενεργοποιήσετε βιομετρικό ξεκλείδωμα για αυτή τη βάση δεδομένων;</string>
   <string name="post_notifications_dialog_title">Να επιτρέπονται οι ειδοποιήσεις</string>
+  <string name="post_notifications_dialog_message">Το Keepass2Android μπορεί να εμφανίσει ειδοποιήσεις με κουμπιά για να αντιγράψετε τιμές, όπως κωδικούς πρόσβασης και TOTP στο πρόχειρο, ή για να εμφανιστεί το ενσωματωμένο πληκτρολόγιο. Αυτό είναι χρήσιμο για να μεταφέρετε τιμές σε άλλες εφαρμογές, χωρίς να μεταβείτε σε Keepass2Android επανειλημμένα. Θέλετε να ενεργοποιήσετε αυτές τις ειδοποιήσεις;</string>
   <string name="post_notifications_dialog_allow">Να επιτρέπονται οι ειδοποιήσεις</string>
   <string name="post_notifications_dialog_disable">Απενεργοποιήστε αυτό το χαρακτηριστικό</string>
   <string name="post_notifications_dialog_notnow">Όχι τώρα</string>
@@ -904,5 +905,8 @@
   <string name="AutofillWarning_Intro">Πρόκειται να εισάγετε διαπιστευτήρια για τον τομέα \"%1$s\" στην εφαρμογή \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Εάν εμπιστεύεστε ότι το \"%2$s\" ανήκει στο \"%1$s\" ή εμπιστεύεστε ότι η εφαρμογή \"%2$s\" δεν καταχράται τα διαπιστευτήρια (πχ. επειδή είναι μια αξιόπιστη εφαρμογή περιήγησης), είναι εντάξει να συνεχίσετε. Αν όχι, ακυρώστε.</string>
   <string name="AutofillWarning_trustAsBrowser">Αποδοχή πάντα στο \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone">Εναλλαγή μετά την ολοκλήρωση</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Εναλλαγή πίσω όταν πατήσετε αποστολή / λήψη / ολοκλήρωση</string>
+  <string name="qr_scanning_error_no_google_play_services">Η σάρωση QR κώδικα απαιτεί Google Play Services. Παρακαλώ εγκαταστήστε ή ενημερώστε τις Google Play Services στη συσκευή σας.</string>
   <string name="english_ime_settings">Ρυθμίσεις πληκτρολογίου Android</string>
 </resources>
