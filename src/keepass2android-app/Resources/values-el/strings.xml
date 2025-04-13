@@ -401,6 +401,14 @@
   <string name="ShowSeparateNotifications_summary">Εμφάνιση χωριστών ειδοποιήσεων για την αντιγραφή του ονόματος χρήστη και του συνθηματικού στο πρόχειρο και ενεργοποίηση του πληκτρολογίου.</string>
   <string name="AccServiceAutoFill_prefs">Αυτόματη συμπλήρωση υπηρεσίας προσβασιμότητας</string>
   <string name="AutoFill_prefs">Λειτουργία αυτόματης συμπλήρωσης</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Κατά την αυτόματη συμπλήρωση μιας καταχώρισης με TOTP, εμφανίστε την ειδοποίηση με ένα κουμπί Αντιγραφή TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Εμφάνιση ειδοποίησης καταχώρισης</string>
+  <string name="AutoFillTotp_prefs_title">Αυτόματη συμπλήρωση για καταχωρίσεις TOTP</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Αντιγραφή TOTP στο πρόχειρο</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Κατά την αυτόματη συμπλήρωση μιας καταχώρισης με TOTP, αντιγράφει το TOTP στο πρόχειρο</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Κατά την αυτόματη συμπλήρωση μιας καταχώρισης με TOTP, ενεργοποιήστε το ενσωματωμένο πληκτρολόγιο. Το πληκτρολόγιο έχει ένα κουμπί TOTP.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Ενεργοποίηση ενσωματωμένου πληκτρολογίου</string>
+  <string name="TotpCopiedToClipboard">Αντιγράφηκε το TOTP στο πρόχειρο</string>
   <string name="ShowKp2aKeyboardNotification_title">Ειδοποίηση πληκτρολογίου KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Κάντε προσβάσιμη την πλήρη καταχώριση μέσω του πληκτρολογίου KP2A (συνιστάται).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Εναλλαγή πληκτρολογίου</string>
@@ -538,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (φάκελος KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Αν δεν θέλεις να δώσεις στο Keepass2Android πλήρη πρόσβαση στο Dropbox, μπορείς να διαλέξεις αυτή την επιλογή. Θα ζητήσει πρόσβαση μόνο στο φάκελο Apps/Keepass2Android. Ταιριάζει ειδικά στη δημιουργία νέας βάσης δεδομένων. Αν ήδη έχεις μια βάση δεδομένων, διάλεξε αυτή την επιλογή για να δημιουργήσεις το φάκελο, μετά τοποθέτησε το αρχείο σου μέσα στο φάκελο (από το PC) και μετά διάλεξε αυτή την επιλογή πάλι για να ανοίξεις το αρχείο.  </string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Παρακαλώ σημειώστε: Η Google περιορίζει την πρόσβαση στο Google Drive από εφαρμογές για όλο και περισσότερους χρήστες. Εάν η ενσωματωμένη υλοποίηση του Google Drive δεν λειτουργεί, χρησιμοποιήστε τον επιλογέα αρχείων συστήματος και επιλέξτε το Google Drive εκεί!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (αρχεία KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Αν δεν θέλετε να δώσετε πρόσβαση KP2A πρόσβαση σε όλο το Google Drive σας, μπορείτε να επιλέξετε αυτή την επιλογή. Σημειώστε ότι πρέπει να δημιουργήσετε ένα αρχείο βάσης δεδομένων πρώτα - τα υπάρχοντα αρχεία δεν είναι ορατά στην εφαρμογή. Επιλέξτε αυτή την επιλογή από την οθόνη Δημιουργία βάσης δεδομένων ή, αν έχετε ήδη ανοίξει μια βάση δεδομένων, με την εξαγωγή της βάσης δεδομένων επιλέγοντας αυτή την επιλογή.</string>
   <string name="filestoragename_pcloud">PCloud (φάκελος KP2A)</string>
@@ -588,6 +597,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Χρησιμοποιήστε το πρόσθετο KeeChallenge σε KeePass 2.x (PC) για να ρυθμίσετε τη βάση δεδομένων για χρήση με Πρόκληση-Απόκριση!</string>
   <string name="ErrorUpdatingChalAuxFile">Σφάλμα ενημέρωσης βοηθητικού αρχείου OTP!</string>
   <string name="TrayTotp_SeedField_title">Όνομα πεδίου για seed του TOTP</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Εάν χρησιμοποιείτε το πρόσθετο \"TrayTotp\" του Keepass 2 με μη προεπιλεγμένες ρυθμίσεις, πληκτρολογήστε το όνομα του πεδίου για το πεδίο seed σύμφωνα με τις ρυθμίσεις στον υπολογιστή.</string>
   <string name="TrayTotp_SettingsField_title">Όνομα πεδίου στις ρυθμίσεις TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Εισάγετε όνομα πεδίου από ρυθμίσεις TrayTotp.</string>
@@ -705,6 +715,33 @@
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα καταχώριση.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με τον κύριο κωδικό πρόσβασης!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Αναβαθμίστηκε από Xamarin Android σε .ΝΕΤ 8</item>
+    <item>Αναβαθμίστηκε στοχεύοντας το SDK 34</item>
+    <item>Αναβαθμίστηκε σε διεπαφή χρήστη Material 3</item>
+    <item>Βελτιώστε την αυτόματη συμπλήρωση για να εργαστείτε με Compose Apps</item>
+    <item>Διόρθωση ονόματος host στην αυτόματη συμπλήρωση και αναζήτηση</item>
+    <item>Διόρθωση προβλήματος με τη γεννήτρια κωδικού πρόσβασης</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Αναβαθμίστηκε το OneDrive SDK στην έκδοση 5.68</item>
+    <item>Αναβαθμίστηκε το Dropbox SDK στην έκδοση 7.0.0</item>
+    <item>Αναβαθμισμένο Gradle, NewtonsoftJson, FluentFTP, MegaApiClient και okhttp</item>
+    <item>Επιδιόρθωση σφαλμάτων στην επιλογή αρχείου WebDav</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11">
+    <item>Προστέθηκαν τα αιωρούμενα κουμπιά ενεργειών για αναζήτηση και επισκόπηση TOTP (αν υπάρχουν καταχωρήσεις TOTP).</item>
+    <item>Βελτιωμένη εμφάνιση των πεδίων TOTP με την προσθήκη ενός δείκτη χρονικού ορίου και πιο εμφανή εμφάνιση.</item>
+    <item>Το TOTP εμφανίζεται από την προβολή ομάδας.</item>
+    <item>Αντιγραφή τιμής κειμένου στο πρόχειρο με παρατεταμένο πάτημα στην προβολή καταχωρίσεων.</item>
+    <item>Κάντε το TOTP πιο εύκολα προσβάσιμο στο ενσωματωμένο πληκτρολόγιο.</item>
+    <item>Εμφάνιση ειδοποίησης καταχώρησης κατά την αυτόματη συμπλήρωση μιας καταχώρισης TOTP. Επιτρέπει την αντιγραφή του TOTP στο πρόχειρο. Δείτε τις προτιμήσεις για τη ρύθμιση της συμπεριφοράς.</item>
+    <item>Ενημερώθηκε η υλοποίηση του TOTP για την επίλυση προβλημάτων συμβατότητας με το KeePass2 και το TrayTOTP</item>
+    <item>Μικρές βελτιώσεις</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Ενημέρωση pCloud SDK για να παρέχει πρόσβαση σε κοινόχρηστους φακέλους</item>
+  </string-array>
   <string-array name="ChangeLog_1_10">
     <item>Προσθήκη υποστήριξης για δικαιώματα ειδοποίησης στο Android 13+</item>
     <item>Βελτίωση της υλοποίησης FTP και SFTP</item>
@@ -826,8 +863,8 @@
   </string-array>
   <string-array name="sftp_auth_modes">
     <item>Συνθηματικό</item>
-    <item>KP2A Private/Public key</item>
-    <item>Custom Private key</item>
+    <item>Ιδιωτικό / Δημόσιο κλειδί KP2A</item>
+    <item>Προσαρμοσμένο ιδιωτικό κλειδί</item>
   </string-array>
   <string-array name="AcceptAllServerCertificates_options">
     <item>Παράβλεψη αποτυχιών επικύρωσης πιστοποιητικού</item>
@@ -845,6 +882,8 @@
   <string name="autofill_enable_for">Ενεργοποίηση AutoFill για %1$s</string>
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
   <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε βιομετρικό εξοπλισμό. Θέλετε να ενεργοποιήσετε βιομετρικό ξεκλείδωμα για αυτή τη βάση δεδομένων;</string>
+  <string name="post_notifications_dialog_title">Να επιτρέπονται οι ειδοποιήσεις</string>
+  <string name="post_notifications_dialog_allow">Να επιτρέπονται οι ειδοποιήσεις</string>
   <string name="post_notifications_dialog_disable">Απενεργοποιήστε αυτό το χαρακτηριστικό</string>
   <string name="post_notifications_dialog_notnow">Όχι τώρα</string>
   <string name="understand">Καταλαβαίνω</string>
