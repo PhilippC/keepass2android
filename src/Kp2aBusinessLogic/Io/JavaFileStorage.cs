@@ -13,6 +13,7 @@ using Keepass2android.Javafilestorage;
 #endif
 using Exception = System.Exception;
 using FileNotFoundException = Java.IO.FileNotFoundException;
+using KeePass.Util;
 
 namespace keepass2android.Io
 {
@@ -42,7 +43,7 @@ namespace keepass2android.Io
 			}
 			catch (FileNotFoundException e)
 			{
-				throw new System.IO.FileNotFoundException(e.Message, e);
+				throw new System.IO.FileNotFoundException(ExceptionUtil.GetErrorMessage(e), e);
 			}
 			catch (Java.Lang.Exception e)
 			{
@@ -195,7 +196,7 @@ namespace keepass2android.Io
 			}
 			catch (FileNotFoundException e)
 			{
-				throw new System.IO.FileNotFoundException(e.Message, e);
+				throw new System.IO.FileNotFoundException(ExceptionUtil.GetErrorMessage(e), e);
 			}
 			catch (Java.Lang.Exception e)
 			{
@@ -214,7 +215,7 @@ namespace keepass2android.Io
 			}
 			catch (FileNotFoundException e)
 			{
-				throw new System.IO.FileNotFoundException(e.Message, e);
+				throw new System.IO.FileNotFoundException(ExceptionUtil.GetErrorMessage(e), e);
 			}
 			catch (Java.Lang.Exception e)
 			{
@@ -244,7 +245,7 @@ namespace keepass2android.Io
 			}
 			catch (FileNotFoundException e)
 			{
-				throw new System.IO.FileNotFoundException(e.Message, e);
+				throw new System.IO.FileNotFoundException(ExceptionUtil.GetErrorMessage(e), e);
 			}
 			catch (Java.Lang.Exception e)
 			{

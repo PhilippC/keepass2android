@@ -128,7 +128,7 @@ namespace keepass2android
 					catch (Exception e)
 					{
 						toastMsg = ctx.GetString(Resource.String.private_key_save_failed,
-							new Java.Lang.Object[] { e.Message });
+							new Java.Lang.Object[] { Util.GetErrorMessage(e)});
                         severity = MessageSeverity.Error;
 
                     }

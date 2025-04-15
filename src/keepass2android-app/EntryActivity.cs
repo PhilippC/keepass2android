@@ -796,7 +796,7 @@ namespace keepass2android
 	            {
 	                App.Kp2a.ShowMessage(this,
 	                    GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] {filename})
-	                    + exWrite.Message,  MessageSeverity.Error);
+	                    + Util.GetErrorMessage(exWrite),  MessageSeverity.Error);
 	                return null;
 	            }
 	            finally
@@ -1305,7 +1305,7 @@ namespace keepass2android
 	            }
 	            catch (Exception ex)
 	            {
-	                Finish(false, ex.Message);
+	                Finish(false, Util.GetErrorMessage(ex));
 	            }
 
 

@@ -261,7 +261,7 @@ namespace keepass2android
                     {
                         return () =>
                         {
-                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message,  MessageSeverity.Error);
+                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e),  MessageSeverity.Error);
                         };
                     }
 
@@ -357,7 +357,7 @@ namespace keepass2android
                     {
                         return () =>
                         {
-                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message,  MessageSeverity.Error);
+                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e),  MessageSeverity.Error);
                         };
                     }
 
@@ -628,7 +628,7 @@ namespace keepass2android
                             catch (Exception ex)
                             {
                                 Kp2aLog.LogUnexpectedError(ex);
-                                App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, ex.Message,  MessageSeverity.Error);
+                                App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, Util.GetErrorMessage(ex),  MessageSeverity.Error);
                             }
                         }
                     );

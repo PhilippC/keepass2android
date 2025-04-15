@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
+using KeePass.Util;
 using keepass2android.database.edit;
 using KeePassLib;
 using KeePassLib.Keys;
@@ -103,10 +104,10 @@ namespace keepass2android
 			}
 			catch (AggregateException e)
 			{
-				string message = e.Message;
+				string message = ExceptionUtil.GetErrorMessage(e);
 				foreach (var innerException in e.InnerExceptions)
 				{
-					message = innerException.Message;
+					message = ExceptionUtil.GetErrorMessage(innerException);
 					// Override the message shown with the last (hopefully most recent) inner exception
 					Kp2aLog.LogUnexpectedError(innerException);
 				}
@@ -116,14 +117,14 @@ namespace keepass2android
 			catch (DuplicateUuidsException e)
 			{
 				Kp2aLog.Log(e.ToString());
-				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), false, Exception);
+				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + ExceptionUtil.GetErrorMessage(e) + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), false, Exception);
 				return;
 			}
 			catch (Exception e)
 			{
 				if (!(e is InvalidCompositeKeyException))
 					Kp2aLog.LogUnexpectedError(e);
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + (e.Message ?? (e is FileNotFoundException ? _app.GetResourceString(UiStringKey.FileNotFound) :  "")), false, Exception);
+				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + (ExceptionUtil.GetErrorMessage(e) ?? (e is FileNotFoundException ? _app.GetResourceString(UiStringKey.FileNotFound) :  "")), false, Exception);
 				return;
 			}
 			

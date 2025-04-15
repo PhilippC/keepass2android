@@ -156,7 +156,7 @@ namespace keepass2android.services.AutofillBase
                 catch (Java.Lang.SecurityException e)
                 {
                     Log.Warn(CommonUtil.Tag, "Security exception handling request");
-                    callback.OnFailure(e.Message);
+                    callback.OnFailure(Util.GetErrorMessage(e));
                     return;
                 }
 
@@ -455,7 +455,7 @@ namespace keepass2android.services.AutofillBase
             }
             catch (Exception e)
             {
-                callback.OnFailure(e.Message);   
+                callback.OnFailure(Util.GetErrorMessage(e));   
             }
             
         }

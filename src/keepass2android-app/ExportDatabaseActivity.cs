@@ -140,7 +140,7 @@ namespace keepass2android
 				}
 				catch (Exception ex)
 				{
-					Finish(false, ex.Message);
+					Finish(false, Util.GetErrorMessage(ex));
 				}
 
 

@@ -487,7 +487,7 @@ namespace keepass2android
             catch (Exception e)
             {
                 Kp2aLog.LogUnexpectedError(e);
-                App.Kp2a.ShowMessage(this, "Error: " + e.Message,  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(this, "Error: " + Util.GetErrorMessage(e),  MessageSeverity.Error);
                 Finish();
             }
 

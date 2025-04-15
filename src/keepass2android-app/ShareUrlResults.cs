@@ -121,7 +121,7 @@ namespace keepass2android
                 
             } catch (Exception e)
 			{
-				App.Kp2a.ShowMessage(this, e.Message,  MessageSeverity.Error);
+				App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
 				SetResult(Result.Canceled);
 				Finish();
 				return;

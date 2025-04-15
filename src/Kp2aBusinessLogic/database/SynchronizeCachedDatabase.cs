@@ -6,6 +6,7 @@ using Android.App;
 using Android.Content;
 using KeePassLib.Serialization;
 using keepass2android.Io;
+using KeePass.Util;
 
 namespace keepass2android
 {
@@ -109,7 +110,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
                 Kp2aLog.LogUnexpectedError(e);
-				Finish(false, e.Message);
+				Finish(false, ExceptionUtil.GetErrorMessage(e));
 			}
 			
 		}
