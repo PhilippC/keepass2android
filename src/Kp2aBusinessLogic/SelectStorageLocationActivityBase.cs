@@ -100,10 +100,7 @@ namespace keepass2android
 
 				if (resultCode == Result.Ok)
 				{
-					Kp2aLog.Log("FileSelection returned "+data.DataString);
-					//TODO: don't try to extract filename if content URI
 					string filename = IntentToFilename(data);
-					Kp2aLog.Log("FileSelection returned filename " + filename);
 					if (filename != null)
 					{
 						if (filename.StartsWith("file://"))
