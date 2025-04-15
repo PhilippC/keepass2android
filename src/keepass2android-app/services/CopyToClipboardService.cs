@@ -878,6 +878,37 @@ namespace keepass2android
         {
             get { return PackageName + "/keepass2android.softkeyboard.KP2AKeyboard"; }
         }
+
+        private static bool IsChannelPermissionGranted(Context context, string channelId)
+        {
+            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+            {
+                if (!string.IsNullOrEmpty(channelId))
+                {
+                    NotificationManager? manager =
+                        (NotificationManager?)context.GetSystemService(Context.NotificationService)!;
+                    NotificationChannel? channel = manager?.GetNotificationChannel(channelId);
+                    return channel?.Importance != Android.App.NotificationImportance.None;
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool HasEntryNotificationPermissions(Context context, bool activateKeyboard)
+        {
+            if (!NotificationManagerCompat.From(context).AreNotificationsEnabled())
+            {
+                return false;
+            }
+
+            return IsChannelPermissionGranted(context, App.NotificationChannelIdEntry);
+        }
+
+
+    
     }
 
     [BroadcastReceiver(Permission = "keepass2android." + AppNames.PackagePart + ".permission.CopyToClipboard")]

@@ -1578,7 +1578,8 @@ namespace keepass2android
 		    if (PreferenceManager.GetDefaultSharedPreferences(this)
 		        .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
 		    {
-		        CopyToClipboardService.ActivateKeyboard(this);
+                Kp2aLog.Log("Activating keyboard in PasswordActivity due to UseKp2aKeyboardInKp2a");
+                CopyToClipboardService.ActivateKeyboard(this);
 		    }
 
             DonateReminder.ShowDonateReminderIfAppropriate(this);
