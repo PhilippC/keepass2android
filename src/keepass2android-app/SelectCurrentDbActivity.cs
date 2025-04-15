@@ -328,6 +328,7 @@ namespace keepass2android
                     if (prefs.GetBoolean("kp2a_switch_rooted", false))
                     {
                         activationCondition = ActivationCondition.Always;
+                        Kp2aLog.Log("Will activate keyboard because SearchUrlTask opened with ActionSend and kp2a_switch_rooted");
                     }
                     else
                     {
@@ -336,6 +337,7 @@ namespace keepass2android
                         if (prefs.GetBoolean(this.GetString(Resource.String.OpenKp2aKeyboardAutomatically_key), this.Resources.GetBoolean(Resource.Boolean.OpenKp2aKeyboardAutomatically_default)))
                         {
                             activationCondition = ActivationCondition.Always;
+                            Kp2aLog.Log("Will activate keyboard because SearchUrlTask opened with ActionSend and OpenKp2aKeyboardAutomatically");
                         }
                     }
                     

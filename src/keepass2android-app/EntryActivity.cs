@@ -56,6 +56,8 @@ using Android.Util;
 using AndroidX.Core.Content;
 using Google.Android.Material.Dialog;
 using keepass2android;
+using AndroidX.Core.App;
+using Google.Android.Material.Snackbar;
 
 namespace keepass2android
 {
@@ -571,13 +573,41 @@ namespace keepass2android
             if (permissions.Length == 1 && permissions.First() == Android.Manifest.Permission.PostNotifications &&
                 grantResults.First() == Permission.Granted)
             {
-                StartNotificationsServiceAfterPermissionsCheck(requestCode == 1 /*requestCode is used to transfer this flag*/);
+                if (!CopyToClipboardService.HasEntryNotificationPermissions(this, false))
+                {
+                    Intent intent = new Intent();
+                    if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+                    {
+                        intent.SetAction(Android.Provider.Settings.ActionAppNotificationSettings);
+                        intent.PutExtra(Android.Provider.Settings.ExtraAppPackage, PackageName);
+                    }
+                    else if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+                    {
+                        intent.SetAction(Android.Provider.Settings.ActionAppNotificationSettings);
+                        intent.PutExtra("app_package", PackageName);
+                        intent.PutExtra("app_uid", ApplicationInfo.Uid);
+                    }
+                    else
+                    {
+                        intent.SetAction(Android.Provider.Settings.ActionApplicationDetailsSettings);
+                        intent.AddCategory(Intent.CategoryDefault);
+                        intent.SetData(Uri.Parse("package:" + PackageName));
+                    }
+                    StartActivity(intent);
+                }
+                else
+                {
+					Kp2aLog.Log($"StartNotificationsServiceAfterPermissionsCheck(activateKeyboard: requestCode == {requestCode}");
+                    StartNotificationsServiceAfterPermissionsCheck(requestCode == 1 /*requestCode is used to transfer this flag*/);
+                }
+                
             }
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
         internal void StartNotificationsService(bool activateKeyboard)
         {
+			Kp2aLog.Log($"StartNotificationsService. ActivateKeyboard={activateKeyboard}");
             if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(
                     GetString(Resource.String.CopyToClipboardNotification_key),
                     Resources.GetBoolean(Resource.Boolean.CopyToClipboardNotification_default)) == false
@@ -585,14 +615,18 @@ namespace keepass2android
                     GetString(Resource.String.UseKp2aKeyboard_key),
                     Resources.GetBoolean(Resource.Boolean.UseKp2aKeyboard_default)) == false)
             {
-				//notifications are disabled
+                //notifications are disabled
+                Kp2aLog.Log($"StartNotificationsService. Notifications disabled. Returning.");
                 return;
             }
 
-            if ((int)Build.VERSION.SdkInt < 33 || CheckSelfPermission(Android.Manifest.Permission.PostNotifications) ==
-                Permission.Granted)
-			{
-                StartNotificationsServiceAfterPermissionsCheck(activateKeyboard);
+            
+
+            if ((int)Build.VERSION.SdkInt < 33 || CopyToClipboardService.HasEntryNotificationPermissions(this, activateKeyboard))
+            {
+                Kp2aLog.Log($"StartNotificationsService. Permissions ok. activateKeyboard={activateKeyboard}");
+
+                StartNotificationsServiceAfterPermissionsCheck(activateKeyboard); 
                 return;
             }
 
@@ -602,16 +636,40 @@ namespace keepass2android
             if (!ShouldShowRequestPermissionRationale(Android.Manifest.Permission.PostNotifications) //this menthod returns false if we haven't asked yet or if the user has denied permission too often
                 && PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean("RequestedPostNotificationsPermission", false))//use a preference to tell the difference between "haven't asked yet" and "have asked too often"
             {
-				//user has denied permission before. Do not show the dialog. User must give permission in the Android App settings.
+                Kp2aLog.Log($"StartNotificationsService. Permissions not granted. Showing snackbar.");
+                //user has denied permission before. Do not show the dialog. User must give permission in the Android App settings.
+                var snackbar = Snackbar
+                    .Make(SnackbarAnchorView, Resource.String.post_notifications_snackbar,
+                        Snackbar.LengthIndefinite);
+                snackbar.SetTextMaxLines(10);
+                if ((int)Build.VERSION.SdkInt >= 23)
+                {
+
+                    snackbar.SetBackgroundTint(App.Context.GetColor(Resource.Color.md_theme_inverseSurface));
+                    snackbar.SetTextColor(App.Context.GetColor(Resource.Color.md_theme_inverseOnSurface));
+                }
+
+                snackbar.SetAction(Resource.String.post_notifications_snackbar_config, view => { ShowNotificationPermissionsDialog(activateKeyboard); });
+
+                snackbar.Show();
+
                 return;
             }
+            
+            ShowNotificationPermissionsDialog(activateKeyboard);
 
+
+        }
+
+        private void ShowNotificationPermissionsDialog(bool activateKeyboard)
+        {
+            Kp2aLog.Log($"ShowNotificationPermissionsDialog");
             new MaterialAlertDialogBuilder(this)
                 .SetTitle(Resource.String.post_notifications_dialog_title)
                 .SetMessage(Resource.String.post_notifications_dialog_message)
                 .SetNegativeButton(Resource.String.post_notifications_dialog_disable, (sender, args) =>
                 {
-					//disable this dialog for the future by disabling the notification preferences
+                    //disable this dialog for the future by disabling the notification preferences
                     var edit= PreferenceManager.GetDefaultSharedPreferences(this).Edit();
                     edit.PutBoolean(GetString(Resource.String.CopyToClipboardNotification_key), false);
                     edit.PutBoolean(GetString(Resource.String.UseKp2aKeyboard_key), false);
@@ -632,8 +690,6 @@ namespace keepass2android
                 })
                 .SetNeutralButton(Resource.String.post_notifications_dialog_notnow, (sender, args) => {  })
                 .Show();
-
-
         }
 
         private void StartNotificationsServiceAfterPermissionsCheck(bool activateKeyboard)

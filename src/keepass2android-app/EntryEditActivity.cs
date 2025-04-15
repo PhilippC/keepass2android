@@ -337,6 +337,7 @@ namespace keepass2android
 	        if (PreferenceManager.GetDefaultSharedPreferences(this)
 	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
 	        {
+				Kp2aLog.Log("Activating keyboard in EntryEditActivity due to UseKp2aKeyboardInKp2a");
 	            CopyToClipboardService.ActivateKeyboard(this);
 	        }
         }

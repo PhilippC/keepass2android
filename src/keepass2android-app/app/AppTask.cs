@@ -355,6 +355,10 @@ namespace keepass2android
                                         activity.GetString(Resource.String
                                             .OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false);
 
+            Kp2aLog.Log($"AppTask.CompleteOnCreateEntryActivity. ActivateKeyboard={activateKeyboard}, kp2a_switch_rooted={prefs.GetBoolean("kp2a_switch_rooted", false)}, OpenKp2aKeyboardAutomaticallyOnlyAfterSearch={prefs.GetBoolean(
+                activity.GetString(Resource.String
+                    .OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_key), false)}");
+
             activity.StartNotificationsService(activateKeyboard);
 		}
 
@@ -622,6 +626,7 @@ namespace keepass2android
             bool isTotpEntry = totpPluginAdapter != null;
 			
             bool activateKeyboard = ActivateKeyboard == ActivationCondition.Always || (ActivateKeyboard == ActivationCondition.WhenTotp && isTotpEntry);
+			Kp2aLog.Log($"activateKeyboard == {activateKeyboard}. Task.Activate=={ActivateKeyboard}, isTotpEntry={isTotpEntry}");
 
             if ((ShowUserNotifications == ActivationCondition.Always)
                 || ((ShowUserNotifications == ActivationCondition.WhenTotp) && isTotpEntry)
