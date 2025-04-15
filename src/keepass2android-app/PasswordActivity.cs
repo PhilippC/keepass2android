@@ -310,7 +310,7 @@ namespace keepass2android
 		            catch (Exception e)
 		            {
 		                Kp2aLog.Log(e.ToString());
-		                App.Kp2a.ShowMessage(this, "Error: " + e.Message,  MessageSeverity.Error);
+		                App.Kp2a.ShowMessage(this, "Error: " + Util.GetErrorMessage(e),  MessageSeverity.Error);
 		                return;
 		            }
 
@@ -1485,7 +1485,7 @@ namespace keepass2android
 				catch (Exception e)
 				{
 					Kp2aLog.LogUnexpectedError(e);
-					errorMessage = e.Message;
+					errorMessage = Util.GetErrorMessage(e);
 					return false;
 				}
 			}
@@ -2273,7 +2273,7 @@ namespace keepass2android
 				{
 					Kp2aLog.LogUnexpectedError(e);
 
-					ShowError( _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + e.Message);
+					ShowError( _act.GetString(Resource.String.ErrorUpdatingOtpAuxFile) + " " + Util.GetErrorMessage(e));
 				}
 
 

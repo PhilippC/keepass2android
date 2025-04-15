@@ -37,10 +37,12 @@ using Android.Util;
 using Android.Views.InputMethods;
 using AndroidX.Core.View.InputMethod;
 using Google.Android.Material.Dialog;
+using KeePass.Util;
 using keepass2android;
 using KeePassLib;
 using KeePassLib.Security;
 using KeePassLib.Serialization;
+using Org.Apache.Http.Util;
 using Uri = Android.Net.Uri;
 
 
@@ -196,6 +198,12 @@ namespace keepass2android
             ioc.UserName = i.GetStringExtra(prefix + KeyServerusername) ?? "";
             ioc.Password = i.GetStringExtra(prefix + KeyServerpassword) ?? "";
             ioc.CredSaveMode = (IOCredSaveMode)i.GetIntExtra(prefix + KeyServercredmode, (int)IOCredSaveMode.NoSave);
+        }
+
+
+        public static string GetErrorMessage(Exception e)
+        {
+            return ExceptionUtil.GetErrorMessage(e);
         }
 
         public static Bitmap DrawableToBitmap(Drawable drawable)
@@ -865,8 +873,6 @@ namespace keepass2android
 
             entry.Strings.Set(prefix + c, new ProtectedString(false, url));
         }
-
-
     }
 }
 

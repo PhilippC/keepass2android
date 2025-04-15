@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text;
 using Android.Content;
 using Android.Util;
+using KeePass.Util;
 using keepass2android.Io.ItemLocation;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -522,10 +523,10 @@ namespace keepass2android.Io
         {
 
             if (e.IsMatch(GraphErrorCode.ItemNotFound.ToString()))
-                return new FileNotFoundException(e.Message);
+                return new FileNotFoundException(ExceptionUtil.GetErrorMessage(e));
             if (e.Message.Contains("\n\n404 : ")
             ) //hacky solution to check for not found. errorCode was null in my tests so I had to find a workaround.
-                return new FileNotFoundException(e.Message);
+                return new FileNotFoundException(ExceptionUtil.GetErrorMessage(e));
             return e;
         }
 

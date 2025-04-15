@@ -28,7 +28,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Finish(false, e.Message);
+				Finish(false, Util.GetErrorMessage(e));
 			}
 
 		}

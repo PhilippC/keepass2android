@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Android.App;
 using Android.Content;
+using KeePass.Util;
 using KeePassLib.Cryptography;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -65,7 +66,7 @@ namespace keepass2android
 			}
 			catch (Exception e)
 			{
-				Finish(false, e.Message);
+				Finish(false, ExceptionUtil.GetErrorMessage(e));
 			}
 
 		}

@@ -836,7 +836,7 @@ namespace keepass2android
 							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
-							new OneDriveFileStorage(),
+							new OneDriveFileStorage(this),
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
 						    new OneDrive2AppFolderFileStorage(),
@@ -1043,9 +1043,9 @@ namespace keepass2android
 		}
 
 		private string GetErrorMessageForFileStorageException(Exception e)
-		{
-			string errorMessage = e.Message;
-			if (e is OfflineModeException)
+        {
+            var errorMessage = Util.GetErrorMessage(e);
+            if (e is OfflineModeException)
 				errorMessage = GetResourceString(UiStringKey.InOfflineMode);
 		    if (e is DocumentAccessRevokedException)
 		        errorMessage = GetResourceString(UiStringKey.DocumentAccessRevoked);
@@ -1054,7 +1054,7 @@ namespace keepass2android
 		}
 
 
-		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
+        public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
 		{
 			var errorMessage = GetErrorMessageForFileStorageException(ex);
 			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage), MessageSeverity.Error);

@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Java.Net;
+using KeePass.Util;
 using KeePassLib.Serialization;
 using keepass2android.Io;
 
@@ -208,7 +209,7 @@ namespace keepass2android
 					{
 						return () =>
 							{
-								ShowErrorToast(_app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message);
+								ShowErrorToast(_app.GetResourceString(UiStringKey.ErrorOcurred) + " " + ExceptionUtil.GetErrorMessage(e));
 								ReturnCancel();
 							};
 					}

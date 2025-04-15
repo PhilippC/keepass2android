@@ -715,7 +715,7 @@ namespace keepass2android
 			}
 			catch(Exception exAttach)
 			{
-				App.Kp2a.ShowMessage(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message,  MessageSeverity.Error);
+				App.Kp2a.ShowMessage(this, GetString(Resource.String.AttachFailed)+" "+ Util.GetErrorMessage(exAttach),  MessageSeverity.Error);
 			}
 			State.EntryModified = true;
 			PopulateBinaries();
@@ -1184,7 +1184,7 @@ namespace keepass2android
                     }))
                     .AddOnFailureListener(new FailureListener((e) =>
                     {
-                        Console.WriteLine($"Scan failed: {e.Message}");
+                        Console.WriteLine($"Scan failed: {Util.GetErrorMessage(e)}");
                     }));
 
 
