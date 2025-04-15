@@ -501,6 +501,7 @@
   <string name="hint_sftp_host">host (ex: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Folder inițial (opțional):</string>
+  <string name="connect_timeout">Secunde expirare conexiune (opțional)</string>
   <string name="enter_sftp_login_title">Introduceţi datele de conectare SFTP:</string>
   <string name="sftp_auth_mode">Mod autentificare</string>
   <string name="send_public_key">Trimite cheia publică...</string>
@@ -531,6 +532,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Dacă nu doriți să dați KP2A acces la Dropbox-ul complet, puteți selecta această opțiune. Va solicita acces doar la directorul Apps/Keepass2Android. Acest lucru este potrivit în special atunci când se creează o bază de date nouă. Dacă aveţi deja o bază de date, selectaţi această opţiune pentru a crea directorul, apoi plasați fișierul în director (de la PC) și apoi selectați din nou această opțiune pentru deschiderea fișierului.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragename_gdriveKP2A">Google Drive (fișiere KP2A)</string>
   <string name="filestoragename_pcloudall">PCloud (Acces complet)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
@@ -606,7 +608,9 @@
   <string name="CopyFileRequired">Pentru a-l folosi, trebuie copiat într-o altă locație.</string>
   <string name="CopyFileRequiredForEditing">Pentru a-l edita, trebuie copiat fișierul într-o altă locație.</string>
   <string name="FileReadOnlyTitle">Baza de date permite doar citirea</string>
+  <string name="FileReadOnlyMessagePre">Keepass2Android a deschis baza de date curentă în modul doar pentru citire.</string>
   <string name="ReadOnlyReason_PreKitKat">Se pare ca ai deschis fişierul dintr-o aplicaţie externă. În acest fel nu se acceptă modificări. Dacă doriţi să faceţi modificări în baza de date, închideţi baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind una dintre opţiunile disponibile.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Steagul doar-în-citire este setat. Elimină-l dacă dorești să faci modificări în baza de date.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Modificarea nu este posibilă din cauza restricţiilor introduse în Android KitKat. Dacă doriţi să faceţi modificări în baza de date, închideți baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind selectorul de fisiere al sistemului.</string>
   <string name="AddCustomIcon">Adaugă pictogramă din file...</string>
   <string name="CopyingFile">Se copiază fișierul...</string>
@@ -630,6 +634,7 @@
   <string name="TemplateTitle_Membership">Apartenenta</string>
   <string name="ChangeLog_title">Jurnal modificări</string>
   <string name="AskAddTemplatesTitle">Adauga template-uri?</string>
+  <string name="AskAddTemplatesMessage">Keepass2Android conține șabloane de intrare pentru conturi de e-mail, parole wireless-LAN, note sigure și multe altele. Dorești să le adaugi în baza de date? Dacă alegi Nu, le poți adăuga mai târziu în setările bazei de date.</string>
   <string name="AddTemplates_pref">Adauga template-uri in baza de date</string>
   <string name="Continue">Continuare</string>
   <string name="NoFilenameWarning">URI introdus nu arata ca un nume de file. Sunteţi sigur că acesta este un file valid?</string>
@@ -646,6 +651,9 @@
   <string name="child_db_Enabled_title">Deschide automat</string>
   <string name="database_file_heading">Fișier bază de date</string>
   <string name="if_device_text">Activează pentru %1$s</string>
+  <string name="restore_history">Restaurează această versiune</string>
+  <string name="remove_history">Elimină această versiune</string>
+  <string name="DbUnlockedChannel_name">Bază de date deblocată</string>
   <string name="DbUnlockedChannel_desc">Notificare despre deblocarea bazei de date</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
   <string name="DbQuicklockedChannel_desc">Notificare despre blocarea bazei de date cu QuickUnlock</string>
@@ -653,6 +661,14 @@
   <string name="EntryChannel_desc">Notificare pentru simplificarea accesului la intrarea selectată în prezent.</string>
   <string name="CloseDbAfterFailedAttempts">Închide baza de date după trei încercări de deblocare biometrică eșuate.</string>
   <string name="WarnFingerprintInvalidated">Avertizare! Autentificarea biometrică poate fi invalidată de Android, de ex. după adăugarea unei amprente noi în setările dispozitivului. Asigură-te că știi întotdeauna cum să deblochezi cu parola principală!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Upgraded to Target SDK 34</item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+    <item>S-a reparat problema cu generatorul de parole</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
     <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
