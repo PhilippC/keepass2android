@@ -200,7 +200,7 @@
     <item>System</item>
 	</string-array>
 	
-	<string name="AcceptAllServerCertificates_default">WARN</string>
+	<string name="AcceptAllServerCertificates_default">ERROR</string>
 	<string-array name="AcceptAllServerCertificates_values">
 		<item>IGNORE</item>
 		<item>WARN</item>

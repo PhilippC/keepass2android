@@ -918,14 +918,16 @@ namespace keepass2android
 		{
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 
-			ValidationMode validationMode = ValidationMode.Warn;
+			ValidationMode validationMode = ValidationMode.Error;
 
 			string strValMode = prefs.GetString(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
 												 LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
 
 			if (strValMode == "IGNORE")
 				validationMode = ValidationMode.Ignore;
-			else if (strValMode == "ERROR")
+            else if (strValMode == "WARN")
+                validationMode = ValidationMode.Warn;
+            else if (strValMode == "ERROR")
 				validationMode = ValidationMode.Error;
 			return validationMode;
 		}
