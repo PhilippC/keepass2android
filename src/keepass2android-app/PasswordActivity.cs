@@ -1570,15 +1570,19 @@ namespace keepass2android
 
             base.OnPause();
 		}
+
+        private bool hasRequestedKeyboardActivation = false;
 		protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
 
 		    if (PreferenceManager.GetDefaultSharedPreferences(this)
-		        .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
-		    {
-		        CopyToClipboardService.ActivateKeyboard(this);
+		        .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false)
+                && !hasRequestedKeyboardActivation)
+            {
+                hasRequestedKeyboardActivation = true;
+                CopyToClipboardService.ActivateKeyboard(this);
 		    }
 
             DonateReminder.ShowDonateReminderIfAppropriate(this);

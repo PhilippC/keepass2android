@@ -331,13 +331,18 @@ namespace keepass2android
 
         }
 
-	    protected override void OnStart()
+        private bool hasRequestedKeyboardActivation = false;
+        protected override void OnStart()
 	    {
 	        base.OnStart();
 	        if (PreferenceManager.GetDefaultSharedPreferences(this)
-	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
+	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false)
+                && (!hasRequestedKeyboardActivation))
 	        {
-	            CopyToClipboardService.ActivateKeyboard(this);
+                //only try this once. if the user clicks cancel, we don't want to ask again
+				// (it may happen that the activity is restarted because of the NewTask flag immediately after the dialog)
+                hasRequestedKeyboardActivation = true;
+                CopyToClipboardService.ActivateKeyboard(this);
 	        }
         }
 
