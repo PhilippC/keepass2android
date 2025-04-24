@@ -1169,4 +1169,8 @@ Initial public release
   <string name="kp2a_switch_on_sendgodone_summary">按下发送/转到/完成时切换回来</string>
   <string name="qr_scanning_error_no_google_play_services">二维码扫描需要 Google Play 服务。请在您的设备上安装或更新 Google Play 服务。</string>
   <string name="english_ime_settings">键盘设置</string>
+  <string name="autoswitch_enabled_but_not_setup">注意：您已启用应用-设置-密码访问-键盘切换-自动切换键盘，但它似乎配置不正确。</string>
+  <string name="switch_keyboard_for_totp_enabled">注意：您已启用应用 - 密码访问-自动填充服务 - TOTP 条目自动填充。 当您打开一条有TOTP的条目时，这会导致此窗口显示。</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">注意：您已经启用了应用 - 安全性 - 使用 Keepass2Android 中的内置键盘。 当您打开应用或编辑条目时，这会导致此窗口显示。</string>
+  <string name="switch_keyboard_on_search_enabled">注意: 您已经启用了应用-安全性-密码访问-键盘切换-切换键盘。当您从浏览器搜索条目时，这会导致此窗口显示。</string>
 </resources>
