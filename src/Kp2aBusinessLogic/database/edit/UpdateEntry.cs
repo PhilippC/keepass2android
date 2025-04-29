@@ -22,7 +22,7 @@ using KeePassLib;
 namespace keepass2android
 {
 
-	public class UpdateEntry : RunnableOnFinish {
+	public class UpdateEntry : OperationWithFinishHandler {
 		private readonly IKp2aApp _app;
 		private readonly Activity _ctx;
 		

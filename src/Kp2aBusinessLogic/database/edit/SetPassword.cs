@@ -22,7 +22,7 @@ using KeePassLib.Keys;
 
 namespace keepass2android
 {
-	public class SetPassword : RunnableOnFinish {
+	public class SetPassword : OperationWithFinishHandler {
 		
 		private readonly String _password;
 		private readonly String _keyfile;

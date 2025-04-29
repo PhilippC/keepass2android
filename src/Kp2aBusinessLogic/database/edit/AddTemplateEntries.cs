@@ -26,7 +26,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	public class AddTemplateEntries : RunnableOnFinish {
+	public class AddTemplateEntries : OperationWithFinishHandler {
 
 		public class TemplateEntry
 		{

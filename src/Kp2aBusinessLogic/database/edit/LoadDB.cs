@@ -29,7 +29,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	public class LoadDb : RunnableOnFinish {
+	public class LoadDb : OperationWithFinishHandler {
 		private readonly IOConnectionInfo _ioc;
 		private readonly Task<MemoryStream> _databaseData;
 		private readonly CompositeKey _compositeKey;

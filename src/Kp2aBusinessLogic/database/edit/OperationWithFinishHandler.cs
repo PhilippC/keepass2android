@@ -17,17 +17,18 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 using System;
 using Android.App;
 using Android.Content;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
 
-	public abstract class RunnableOnFinish  {
+	public abstract class OperationWithFinishHandler  {
 		
 		protected OnOperationFinishedHandler _operationFinishedHandler;
-		public ProgressDialogStatusLogger StatusLogger = new ProgressDialogStatusLogger(); //default: empty but not null
+		public IKp2aStatusLogger StatusLogger = new Kp2aNullStatusLogger(); //default: empty but not null
 	    private Activity _activeActivity;
 
-	    protected RunnableOnFinish(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler)
+	    protected OperationWithFinishHandler(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler)
 	    {
 	        _activeActivity = activeActivity;
 			_operationFinishedHandler = operationFinishedHandler;
@@ -64,12 +65,12 @@ namespace keepass2android
 			}
 		}
 		
-		public void SetStatusLogger(ProgressDialogStatusLogger status) {
+		public void SetStatusLogger(IKp2aStatusLogger statusLogger) {
 			if (operationFinishedHandler != null)
 			{
-				operationFinishedHandler.StatusLogger = status;
+				operationFinishedHandler.StatusLogger = statusLogger;
 			}
-			StatusLogger = status;
+			StatusLogger = statusLogger;
 		}
 		
 		public abstract void Run();

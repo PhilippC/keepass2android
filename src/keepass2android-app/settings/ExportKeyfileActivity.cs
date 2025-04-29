@@ -13,7 +13,7 @@ namespace keepass2android
     public class ExportKeyfileActivity : LockCloseActivity
     {
 
-        public class ExportKeyfile : RunnableOnFinish
+        public class ExportKeyfile : OperationWithFinishHandler
         {
             private readonly IKp2aApp _app;
             private IOConnectionInfo _targetIoc;

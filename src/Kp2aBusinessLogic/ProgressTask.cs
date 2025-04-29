@@ -72,14 +72,14 @@ namespace keepass2android
         }
 
 		private readonly Handler _handler;
-		private readonly RunnableOnFinish _task;
+		private readonly OperationWithFinishHandler _task;
 		private IProgressDialog _progressDialog;
         private readonly IKp2aApp _app;
         private Java.Lang.Thread _thread;
 	    private Activity _activeActivity, _previouslyActiveActivity;
 	    private ProgressDialogStatusLogger _progressDialogStatusLogger;
 
-	    public ProgressTask(IKp2aApp app, Activity activity, RunnableOnFinish task)
+	    public ProgressTask(IKp2aApp app, Activity activity, OperationWithFinishHandler task)
 		{
 		    _activeActivity = activity;
 			_task = task;

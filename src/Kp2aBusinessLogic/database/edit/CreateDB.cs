@@ -26,7 +26,7 @@ using KeePassLib.Keys;
 namespace keepass2android
 {
 	
-	public class CreateDb : RunnableOnFinish {
+	public class CreateDb : OperationWithFinishHandler {
 	    private readonly IOConnectionInfo _ioc;
 		private readonly bool _dontSave;
 		private readonly Activity _ctx;

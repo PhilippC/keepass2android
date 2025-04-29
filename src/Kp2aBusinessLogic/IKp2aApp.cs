@@ -52,7 +52,7 @@ namespace keepass2android
         /// <summary>
         /// Loads the specified data as the currently open database, as unlocked.
         /// </summary>
-        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent);
+        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent);
 
 
 	    HashSet<PwGroup> DirtyGroups { get; }

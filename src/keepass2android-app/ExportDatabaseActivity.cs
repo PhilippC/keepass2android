@@ -93,7 +93,7 @@ namespace keepass2android
 			get { return 0; }
 		}
 
-		public class ExportDb : RunnableOnFinish
+		public class ExportDb : OperationWithFinishHandler
 		{
 			private readonly IKp2aApp _app;
 			private readonly FileFormatProvider _fileFormat;

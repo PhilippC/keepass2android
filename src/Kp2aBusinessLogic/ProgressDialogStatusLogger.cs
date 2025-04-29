@@ -22,12 +22,132 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// StatusLogger implementation which shows the progress in a progress dialog
-	/// </summary>
-	public class ProgressDialogStatusLogger: IStatusLogger {
+    public interface IKp2aStatusLogger : IStatusLogger
+    {
+        void UpdateMessage(UiStringKey stringKey);
+    }
+
+    public class Kp2aNullStatusLogger : IKp2aStatusLogger
+    {
+        public void StartLogging(string strOperation, bool bWriteOperationToLog)
+        {
+            
+        }
+
+        public void EndLogging()
+        {
+        }
+
+        public bool SetProgress(uint uPercent)
+        {
+            return true;
+        }
+
+        public bool SetText(string strNewText, LogStatusType lsType)
+        {
+            return true;
+        }
+
+        public void UpdateMessage(string message)
+        {
+            
+        }
+
+        public void UpdateSubMessage(string submessage)
+        {
+            
+        }
+
+        public bool ContinueWork()
+        {
+            return true;
+        }
+
+        public void UpdateMessage(UiStringKey stringKey)
+        {
+            
+        }
+    }
+
+    public abstract class Kp2aAppStatusLogger : IKp2aStatusLogger
+    {
+        protected IKp2aApp _app;
+
+        public Kp2aAppStatusLogger(IKp2aApp app)
+        {
+            _app = app;
+        }
+
+        #region IStatusLogger implementation
+
+        public void StartLogging(string strOperation, bool bWriteOperationToLog)
+        {
+
+        }
+
+        public void EndLogging()
+        {
+
+        }
+
+        public bool SetProgress(uint uPercent)
+        {
+            return true;
+        }
+
+        public bool SetText(string strNewText, LogStatusType lsType)
+        {
+            if (strNewText.StartsWith("KP2AKEY_"))
+            {
+                UiStringKey key;
+                if (Enum.TryParse(strNewText.Substring("KP2AKEY_".Length), true, out key))
+                {
+                    UpdateMessage(_app.GetResourceString(key), lsType);
+                    return true;
+                }
+            }
+            UpdateMessage(strNewText, lsType);
+
+            return true;
+        }
+
+        public abstract void UpdateMessage(string message);
+        public abstract void UpdateSubMessage(string submessage);
+
+        private void UpdateMessage(string message, LogStatusType lsType)
+        {
+            if (lsType == LogStatusType.AdditionalInfo)
+            {
+                UpdateSubMessage(message);
+            }
+            else
+            {
+                UpdateMessage(message);
+            }
+        }
+
+        public bool ContinueWork()
+        {
+            return true;
+        }
+
+        #endregion
+
+        public void UpdateMessage(UiStringKey stringKey)
+        {
+            if (_app != null)
+                UpdateMessage(_app.GetResourceString(stringKey));
+        }
+
+    }
+
+    /// <summary>
+    /// StatusLogger implementation which shows the progress in a progress dialog
+    /// </summary>
+    public class ProgressDialogStatusLogger: Kp2aAppStatusLogger
+    {
 		private readonly IProgressDialog _progressDialog;
-		readonly IKp2aApp _app;
+		
 		private readonly Handler _handler;
 		private string _message = "";
 	    private string _submessage;
@@ -35,22 +155,15 @@ namespace keepass2android
         public String SubMessage => _submessage;
 	    public String Message => _message;
 
-        public ProgressDialogStatusLogger() {
-			
-		}
 		
-		public ProgressDialogStatusLogger(IKp2aApp app, Handler handler, IProgressDialog pd) {
-			_app = app;
+		public ProgressDialogStatusLogger(IKp2aApp app, Handler handler, IProgressDialog pd)
+        : base(app){
 			_progressDialog = pd;
 			_handler = handler;
 		}
 		
-		public void UpdateMessage(UiStringKey stringKey) {
-			if (_app != null)
-				UpdateMessage(_app.GetResourceString(stringKey));
-		}
-
-		public void UpdateMessage (String message)
+		
+		public override void UpdateMessage (String message)
 		{
 		    Kp2aLog.Log("status message: " + message);
             _message = message;
@@ -59,7 +172,7 @@ namespace keepass2android
 			}
 		}
 
-		public void UpdateSubMessage(String submessage)
+		public override void UpdateSubMessage(String submessage)
 		{
 		    Kp2aLog.Log("status submessage: " + submessage);
 		    _submessage = submessage;
@@ -80,57 +193,6 @@ namespace keepass2android
 			}
 		}
 
-		#region IStatusLogger implementation
-
-		public void StartLogging (string strOperation, bool bWriteOperationToLog)
-		{
-
-		}
-
-		public void EndLogging ()
-		{
-
-		}
-
-		public bool SetProgress (uint uPercent)
-		{
-			return true;
-		}
-
-		public bool SetText (string strNewText, LogStatusType lsType)
-		{
-			if (strNewText.StartsWith("KP2AKEY_"))
-			{
-				UiStringKey key;
-				if (Enum.TryParse(strNewText.Substring("KP2AKEY_".Length), true, out key))
-				{
-					UpdateMessage(_app.GetResourceString(key), lsType);
-					return true;
-				}
-			}
-			UpdateMessage(strNewText, lsType);	
-			
-			return true;
-		}
-
-		private void UpdateMessage(string message, LogStatusType lsType)
-		{
-			if (lsType == LogStatusType.AdditionalInfo)
-			{
-				UpdateSubMessage(message);
-			}
-			else
-			{
-				UpdateMessage(message);
-			}
-		}
-
-		public bool ContinueWork ()
-		{
-			return true;
-		}
-
-		#endregion
 
 	}
 }

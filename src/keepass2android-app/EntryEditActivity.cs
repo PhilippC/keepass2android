@@ -519,7 +519,7 @@ namespace keepass2android
 			SetResult(KeePass.ExitRefreshTitle);
 			//}
 			
-			RunnableOnFinish runnable;
+			OperationWithFinishHandler runnable;
 
 			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, activity) => {
 				if (success)

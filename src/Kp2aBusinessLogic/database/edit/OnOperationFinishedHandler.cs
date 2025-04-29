@@ -22,6 +22,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Google.Android.Material.Dialog;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
@@ -39,11 +40,11 @@ namespace keepass2android
 
         protected OnOperationFinishedHandler NextOnOperationFinishedHandler;
 		protected Handler Handler;
-		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
+		private IKp2aStatusLogger _statusLogger = new Kp2aNullStatusLogger(); //default: no logging but not null -> can be used whenever desired
 	    private Activity _activeActivity, _previouslyActiveActivity;
 
 
-	    public ProgressDialogStatusLogger StatusLogger
+	    public IKp2aStatusLogger StatusLogger
 		{
 			get { return _statusLogger; }
 			set { _statusLogger = value; }

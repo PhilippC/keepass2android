@@ -10,7 +10,7 @@ using KeePass.Util;
 
 namespace keepass2android
 {
-	public class SynchronizeCachedDatabase: RunnableOnFinish 
+	public class SynchronizeCachedDatabase: OperationWithFinishHandler 
 	{
 		private readonly Activity _context;
 		private readonly IKp2aApp _app;

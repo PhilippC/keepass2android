@@ -34,7 +34,7 @@ using KeePass.Util;
 namespace keepass2android
 {
 
-	public class SaveDb : RunnableOnFinish {
+	public class SaveDb : OperationWithFinishHandler {
 		private readonly IKp2aApp _app;
 	    private readonly Database _db;
 	    private readonly bool _dontSave;

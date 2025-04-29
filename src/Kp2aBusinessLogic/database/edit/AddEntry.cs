@@ -21,7 +21,7 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	public class AddEntry : RunnableOnFinish {
+	public class AddEntry : OperationWithFinishHandler {
 		protected Database Db
 		{
 			get { return _app.CurrentDb; }

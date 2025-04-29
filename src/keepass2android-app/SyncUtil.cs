@@ -15,7 +15,7 @@ namespace keepass2android
             _activity = activity;
         }
 
-        public class SyncOtpAuxFile : RunnableOnFinish
+        public class SyncOtpAuxFile : OperationWithFinishHandler
         {
             private readonly IOConnectionInfo _ioc;
 
@@ -52,7 +52,7 @@ namespace keepass2android
         public void SynchronizeDatabase(Action runAfterSuccess)
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
-            RunnableOnFinish task;
+            OperationWithFinishHandler task;
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(_activity, (success, message, activity) =>
             {
                 if (!String.IsNullOrEmpty(message))

@@ -23,7 +23,7 @@ using KeePassLib;
 namespace keepass2android
 {
 
-	public class AddGroup : RunnableOnFinish {
+	public class AddGroup : OperationWithFinishHandler {
 		internal Database Db
 		{
 			get { return _app.CurrentDb; }

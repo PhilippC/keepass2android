@@ -1260,7 +1260,7 @@ namespace keepass2android
 		}
 
 
-	    public class WriteBinaryTask : RunnableOnFinish
+	    public class WriteBinaryTask : OperationWithFinishHandler
 	    {
 	        private readonly IKp2aApp _app;
 	        private readonly ProtectedBinary _data;
@@ -1511,7 +1511,7 @@ namespace keepass2android
 			});
 
 
-			RunnableOnFinish runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
+			OperationWithFinishHandler runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 
 			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
 			pt.Run();

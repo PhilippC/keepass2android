@@ -4,7 +4,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	class CreateNewFilename : RunnableOnFinish
+	class CreateNewFilename : OperationWithFinishHandler
 	{
 		private readonly string _filename;
 

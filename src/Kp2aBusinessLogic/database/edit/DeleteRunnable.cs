@@ -6,7 +6,7 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	public abstract class DeleteRunnable : RunnableOnFinish
+	public abstract class DeleteRunnable : OperationWithFinishHandler
 	{
 		protected DeleteRunnable(Activity activity, OnOperationFinishedHandler operationFinishedHandler, IKp2aApp app)
 			: base(activity, operationFinishedHandler)

@@ -10,7 +10,7 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android.database.edit
 {
-	public class MoveElements: RunnableOnFinish
+	public class MoveElements: OperationWithFinishHandler
 	{
 		private readonly List<IStructureItem> _elementsToMove;
 		private readonly PwGroup _targetGroup;

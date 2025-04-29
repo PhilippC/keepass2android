@@ -202,7 +202,7 @@ namespace keepass2android
                 String strGroupUuid = data.Extras.GetString(GroupEditActivity.KeyGroupUuid);
                 GroupBaseActivity act = this;
                 Handler handler = new Handler();
-                RunnableOnFinish task;
+                OperationWithFinishHandler task;
                 if (strGroupUuid == null)
                 {
                     task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, new RefreshTask(handler, this), false);
