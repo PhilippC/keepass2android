@@ -521,22 +521,22 @@ namespace keepass2android
 			
 			RunnableOnFinish runnable;
 
-			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) => {
+			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, activity) => {
 				if (success)
 				{
                     activity?.Finish();
 				} else
 				{
-				    OnFinish.DisplayMessage(activity, message, true);
+				    OnOperationFinishedHandler.DisplayMessage(activity, message, true);
                     //Re-initialize for editing:
                     State.EditMode.InitializeEntry(State.Entry);
 				}
 			});
-            //make sure we can close the EntryEditActivity activity even if the app went to background till we get to the OnFinish Action
+            //make sure we can close the EntryEditActivity activity even if the app went to background till we get to the OnOperationFinishedHandler Action
 			closeOrShowError.AllowInactiveActivity = true;
 			
 
-			ActionOnFinish afterAddEntry = new ActionOnFinish(this, (success, message, activity) => 
+			ActionOnOperationFinished afterAddEntry = new ActionOnOperationFinished(this, (success, message, activity) => 
 			{
 				if (success && activity is EntryEditActivity entryEditActivity)
 					AppTask.AfterAddNewEntry(entryEditActivity, newEntry);

@@ -53,7 +53,7 @@ namespace keepass2android
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
             RunnableOnFinish task;
-            OnFinish onFinish = new ActionOnFinish(_activity, (success, message, activity) =>
+            OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(_activity, (success, message, activity) =>
             {
                 if (!String.IsNullOrEmpty(message))
                     App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
@@ -65,7 +65,7 @@ namespace keepass2android
                 if (App.Kp2a.CurrentDb?.OtpAuxFileIoc != null)
                 {
                     var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
-                    task2.OnFinishToRun = new ActionOnFinish(_activity, (b, s, activeActivity) =>
+                    task2.operationFinishedHandler = new ActionOnOperationFinished(_activity, (b, s, activeActivity) =>
                     {
                         runAfterSuccess();
                     });
@@ -80,12 +80,12 @@ namespace keepass2android
             if (filestorage is CachingFileStorage)
             {
 
-                task = new SynchronizeCachedDatabase(_activity, App.Kp2a, onFinish);
+                task = new SynchronizeCachedDatabase(_activity, App.Kp2a, onOperationFinishedHandler);
             }
             else
             {
 
-                task = new CheckDatabaseForChanges(_activity, App.Kp2a, onFinish);
+                task = new CheckDatabaseForChanges(_activity, App.Kp2a, onOperationFinishedHandler);
             }
 
 

@@ -781,7 +781,7 @@ namespace keepass2android
 					}
 					else
 					{
-						var task = new CreateNewFilename(activity, new ActionOnFinish(activity, (success, messageOrFilename, newActivity) =>
+						var task = new CreateNewFilename(activity, new ActionOnOperationFinished(activity, (success, messageOrFilename, newActivity) =>
 							{
 								if (!success)
 								{

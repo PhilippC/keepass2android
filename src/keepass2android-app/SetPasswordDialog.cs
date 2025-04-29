@@ -88,21 +88,21 @@ namespace keepass2android
 
 
 		
-		class AfterSave : OnFinish {
-			private readonly FileOnFinish _finish;
+		class AfterSave : OnOperationFinishedHandler {
+			private readonly FileOnFinish _operationFinishedHandler;
 
 			readonly SetPasswordDialog _dlg;
 			
-			public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish finish, Handler handler): base(activity, finish, handler) {
-				_finish = finish;
+			public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish operationFinishedHandler, Handler handler): base(activity, operationFinishedHandler, handler) {
+				_operationFinishedHandler = operationFinishedHandler;
 				_dlg = dlg;
 			}
 			
 			
 			public override void Run() {
 				if ( Success ) {
-					if ( _finish != null ) {
-						_finish.Filename = _dlg.Keyfile;
+					if ( _operationFinishedHandler != null ) {
+						_operationFinishedHandler.Filename = _dlg.Keyfile;
 					}
 					FingerprintUnlockMode um;
 					Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).GetString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, ""), out um);

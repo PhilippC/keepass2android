@@ -33,19 +33,19 @@ namespace keepass2android
 		private readonly Activity _ctx;
 	    private readonly Database _db;
 
-	    public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish, Database db) {
+	    public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler, Database db) {
 
-			return new AddEntry(ctx, db, app, entry, parentGroup, finish);
+			return new AddEntry(ctx, db, app, entry, parentGroup, operationFinishedHandler);
 		}
 		
-		public AddEntry(Activity ctx, Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
+		public AddEntry(Activity ctx, Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler):base(ctx, operationFinishedHandler) {
 			_ctx = ctx;
 		    _db = db;
 		    _parentGroup = parentGroup;
 			_app = app;
 			_entry = entry;
 			
-			_onFinishToRun = new AfterAdd(ctx, app.CurrentDb, entry, app,OnFinishToRun);
+			_operationFinishedHandler = new AfterAdd(ctx, app.CurrentDb, entry, app,operationFinishedHandler);
 		}
 		
 		
@@ -65,17 +65,17 @@ namespace keepass2android
 		    _db.Elements.Add(_entry);
 
             // Commit to disk
-            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
+            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, operationFinishedHandler);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
-		private class AfterAdd : OnFinish {
+		private class AfterAdd : OnOperationFinishedHandler {
 			private readonly Database _db;
 			private readonly PwEntry _entry;
 		    private readonly IKp2aApp _app;
 
-		    public AfterAdd(Activity activity, Database db, PwEntry entry, IKp2aApp app, OnFinish finish):base(activity, finish) {
+		    public AfterAdd(Activity activity, Database db, PwEntry entry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler):base(activity, operationFinishedHandler) {
 				_db = db;
 				_entry = entry;
 		        _app = app;

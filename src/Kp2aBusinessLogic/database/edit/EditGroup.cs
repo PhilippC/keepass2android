@@ -38,8 +38,8 @@ namespace keepass2android
 		internal PwGroup Group;
 		readonly Activity _ctx;
 
-		public EditGroup(Activity ctx, IKp2aApp app, String name, PwIcon iconid, PwUuid customIconId, PwGroup group, OnFinish finish)
-			: base(ctx, finish)
+		public EditGroup(Activity ctx, IKp2aApp app, String name, PwIcon iconid, PwUuid customIconId, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
+			: base(ctx, operationFinishedHandler)
 		{
 			_ctx = ctx;
 			_name = name;
@@ -48,7 +48,7 @@ namespace keepass2android
 			_customIconId = customIconId;
 			_app = app;
 
-			_onFinishToRun = new AfterEdit(ctx, this, OnFinishToRun);
+			_operationFinishedHandler = new AfterEdit(ctx, this, operationFinishedHandler);
 		}
 		
 		
@@ -60,16 +60,16 @@ namespace keepass2android
 			Group.Touch(true);
 
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, Db, OnFinishToRun);
+			SaveDb save = new SaveDb(_ctx, _app, Db, operationFinishedHandler);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
-		private class AfterEdit : OnFinish {
+		private class AfterEdit : OnOperationFinishedHandler {
 			readonly EditGroup _editGroup;
 
-			public AfterEdit(Activity ctx, EditGroup editGroup, OnFinish finish)
-				: base(ctx, finish)
+			public AfterEdit(Activity ctx, EditGroup editGroup, OnOperationFinishedHandler operationFinishedHandler)
+				: base(ctx, operationFinishedHandler)
 			{
 				_editGroup = editGroup;
 			}

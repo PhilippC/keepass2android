@@ -29,7 +29,7 @@ namespace keepass2android
         private readonly PwEntry _entry;
 	    private UiStringKey _statusMessage;
 
-	    public DeleteEntry(Activity activiy, IKp2aApp app, PwEntry entry, OnFinish finish):base(activiy, finish, app) {
+	    public DeleteEntry(Activity activiy, IKp2aApp app, PwEntry entry, OnOperationFinishedHandler operationFinishedHandler):base(activiy, operationFinishedHandler, app) {
 			Ctx = activiy;
 			Db = app.FindDatabaseForElement(entry);
 			_entry = entry;

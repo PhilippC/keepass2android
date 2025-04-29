@@ -21,18 +21,18 @@ using Android.OS;
 
 namespace keepass2android
 {
-	public class ActionOnFinish: OnFinish
+	public class ActionOnOperationFinished: OnOperationFinishedHandler
 	{
 		public delegate void ActionToPerformOnFinsh(bool success, String message, Activity activeActivity);
 
 		readonly ActionToPerformOnFinsh _actionToPerform;
 
-		public ActionOnFinish(Activity activity, ActionToPerformOnFinsh actionToPerform) : base(activity, null, null)
+		public ActionOnOperationFinished(Activity activity, ActionToPerformOnFinsh actionToPerform) : base(activity, null, null)
 		{
 			_actionToPerform = actionToPerform;
 		}
 
-		public ActionOnFinish(Activity activity, ActionToPerformOnFinsh actionToPerform, OnFinish finish) : base(activity, finish)
+		public ActionOnOperationFinished(Activity activity, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(activity, operationFinishedHandler)
 		{
 			_actionToPerform = actionToPerform;
 		}

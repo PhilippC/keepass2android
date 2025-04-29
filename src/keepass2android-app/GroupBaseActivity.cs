@@ -924,7 +924,7 @@ namespace keepass2android
 
 
 
-            var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnFinish(this,
+            var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnOperationFinished(this,
                 (success, message, activity) =>
                 {
                     ((GroupBaseActivity)activity)?.StopMovingElements();
@@ -1293,7 +1293,7 @@ namespace keepass2android
 
         }
 
-        public class RefreshTask : OnFinish
+        public class RefreshTask : OnOperationFinishedHandler
         {
             public RefreshTask(Handler handler, GroupBaseActivity act)
                 : base(act, handler)
@@ -1312,7 +1312,7 @@ namespace keepass2android
                 }
             }
         }
-        public class AfterDeleteGroup : OnFinish
+        public class AfterDeleteGroup : OnOperationFinishedHandler
         {
             public AfterDeleteGroup(Handler handler, GroupBaseActivity act)
                 : base(act, handler)
@@ -1631,7 +1631,7 @@ namespace keepass2android
         }
 
 
-        public void  DeleteMultipleItems(GroupBaseActivity activity, List<IStructureItem> checkedItems, OnFinish onFinish, Kp2aApp app)
+        public void  DeleteMultipleItems(GroupBaseActivity activity, List<IStructureItem> checkedItems, OnOperationFinishedHandler onOperationFinishedHandler, Kp2aApp app)
         {
             if (checkedItems.Any() == false)
                 return;
@@ -1670,22 +1670,22 @@ namespace keepass2android
                     dbIndex++;
                     if (dbIndex == itemsForDatabases.Count)
                     {
-                        onFinish.SetResult(true);
-                        onFinish.Run();
+                        onOperationFinishedHandler.SetResult(true);
+                        onOperationFinishedHandler.Run();
                         return;
                     }
                     new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                        itemsForDatabases[dbIndex].Value, new ActionOnFinish(activeActivity, (b, s, activity1) => action(b, s, activity1)), app)
+                        itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(activeActivity, (b, s, activity1) => action(b, s, activity1)), app)
                         .Start();
                 }
                 else
                 {
-                    onFinish.SetResult(false, message, true, null);
+                    onOperationFinishedHandler.SetResult(false, message, true, null);
                 }
             };
 
             new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                itemsForDatabases[dbIndex].Value, new ActionOnFinish(activity, (b, s, activity1) => action(b, s, activity1)), app)
+                itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(activity, (b, s, activity1) => action(b, s, activity1)), app)
                 .Start();
         }
 

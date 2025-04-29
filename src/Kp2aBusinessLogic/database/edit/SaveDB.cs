@@ -46,8 +46,8 @@ namespace keepass2android
 		private readonly Context _ctx;
 		private Java.Lang.Thread _workerThread;
 
-		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnFinish finish, bool dontSave)
-			: base(ctx, finish)
+		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+			: base(ctx, operationFinishedHandler)
 		{
 		    _db = db;
 			_ctx = ctx;
@@ -60,11 +60,11 @@ namespace keepass2android
 		/// </summary>
 		/// <param name="ctx"></param>
 		/// <param name="app"></param>
-		/// <param name="finish"></param>
+		/// <param name="operationFinishedHandler"></param>
 		/// <param name="dontSave"></param>
 		/// <param name="streamForOrigFile">Stream for reading the data from the (changed) original location</param>
-		public SaveDb(Activity ctx, IKp2aApp app, OnFinish finish, Database db, bool dontSave, Stream streamForOrigFile)
-			: base(ctx, finish)
+		public SaveDb(Activity ctx, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, Database db, bool dontSave, Stream streamForOrigFile)
+			: base(ctx, operationFinishedHandler)
 		{
 		    _db = db;
 			_ctx = ctx;
@@ -73,8 +73,8 @@ namespace keepass2android
 			_streamForOrigFile = streamForOrigFile;
 		}
 
-		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnFinish finish)
-			: base(ctx, finish)
+		public SaveDb(Activity ctx, IKp2aApp app, Database db, OnOperationFinishedHandler operationFinishedHandler)
+			: base(ctx, operationFinishedHandler)
 		{
 			_ctx = ctx;
 			_app = app;

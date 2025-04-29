@@ -38,7 +38,7 @@ namespace keepass2android
 		private readonly bool _rememberKeyfile;
 		IDatabaseFormat _format;
 		
-		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish, bool updateLastUsageTimestamp, bool makeCurrent): base(activity, finish)
+		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, bool updateLastUsageTimestamp, bool makeCurrent): base(activity, operationFinishedHandler)
 		{
 			_app = app;
 			_ioc = ioc;

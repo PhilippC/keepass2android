@@ -75,7 +75,7 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
+            var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnOperationFinished(_activity, (success, message, activity) =>
                 {
                     if (!success)
                         App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
@@ -525,7 +525,7 @@ namespace keepass2android
                 App.Kp2a.DirtyGroups.Add(parent);
             }
 
-			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnFinish(this, (success, message, activity) =>
+			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnOperationFinished(this, (success, message, activity) =>
             {
                 activity.SetResult(KeePass.ExitRefresh);
                 activity.Finish();
@@ -1266,7 +1266,7 @@ namespace keepass2android
 	        private readonly ProtectedBinary _data;
 	        private IOConnectionInfo _targetIoc;
 
-	        public WriteBinaryTask(Activity activity, IKp2aApp app, OnFinish onFinish, ProtectedBinary data, IOConnectionInfo targetIoc) : base(activity, onFinish)
+	        public WriteBinaryTask(Activity activity, IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, ProtectedBinary data, IOConnectionInfo targetIoc) : base(activity, onOperationFinishedHandler)
 	        {
 	            _app = app;
 	            _data = data;
@@ -1441,7 +1441,7 @@ namespace keepass2android
                     return true;
 				case Resource.Id.menu_delete:
                     DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
-                        new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
+                        new ActionOnOperationFinished(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();
                     break;
                 case Resource.Id.menu_toggle_pass:
@@ -1504,9 +1504,9 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) =>
+			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, activity) =>
 			{
-				OnFinish.DisplayMessage(this, message, true);
+				OnOperationFinishedHandler.DisplayMessage(this, message, true);
 			    finishAction((EntryActivity)activity);
 			});
 

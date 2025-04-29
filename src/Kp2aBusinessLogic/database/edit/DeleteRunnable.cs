@@ -8,8 +8,8 @@ namespace keepass2android
 {
 	public abstract class DeleteRunnable : RunnableOnFinish
 	{
-		protected DeleteRunnable(Activity activity, OnFinish finish, IKp2aApp app)
-			: base(activity, finish)
+		protected DeleteRunnable(Activity activity, OnOperationFinishedHandler operationFinishedHandler, IKp2aApp app)
+			: base(activity, operationFinishedHandler)
 		{
 			App = app;
 		}
@@ -215,7 +215,7 @@ namespace keepass2android
 			Android.Util.Log.Debug("KP2A", "Calling PerformDelete..");
 			PerformDelete(touchedGroups, permanentlyDeletedGroups);
 
-			_onFinishToRun = new ActionOnFinish(ActiveActivity,(success, message, activity) =>
+			_operationFinishedHandler = new ActionOnOperationFinished(ActiveActivity,(success, message, activity) =>
 			{
 				if (success)
 				{
@@ -236,10 +236,10 @@ namespace keepass2android
 					// Let's not bother recovering from a failure to save.  It is too much work.
 					App.Lock(false, false);
 				}
-			}, OnFinishToRun);
+			}, operationFinishedHandler);
 
 			// Commit database
-			SaveDb save = new SaveDb(Ctx, App, Db, OnFinishToRun, false);
+			SaveDb save = new SaveDb(Ctx, App, Db, operationFinishedHandler, false);
 		    save.ShowDatabaseIocInStatus = ShowDatabaseIocInStatus;
 
             save.SetStatusLogger(StatusLogger);

@@ -89,7 +89,7 @@ namespace keepass2android
 			SetupProgressDialog(app);
 
 		    // Set code to run when this is finished
-            _task.OnFinishToRun = new AfterTask(activity, task.OnFinishToRun, _handler, this);
+            _task.operationFinishedHandler = new AfterTask(activity, task.operationFinishedHandler, _handler, this);
 		    
 		    _task.SetStatusLogger(_progressDialogStatusLogger);
 			
@@ -144,10 +144,10 @@ namespace keepass2android
 			_thread.Join();
 		}
 		
-		private class AfterTask : OnFinish {
+		private class AfterTask : OnOperationFinishedHandler {
 			readonly ProgressTask _progressTask;
 
-			public AfterTask (Activity activity, OnFinish finish, Handler handler, ProgressTask pt): base(activity, finish, handler)
+			public AfterTask (Activity activity, OnOperationFinishedHandler operationFinishedHandler, Handler handler, ProgressTask pt): base(activity, operationFinishedHandler, handler)
 			{
 				_progressTask = pt;
 			}

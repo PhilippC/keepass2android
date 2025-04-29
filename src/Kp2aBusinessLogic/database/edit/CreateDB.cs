@@ -34,7 +34,7 @@ namespace keepass2android
 		private CompositeKey _key;
 	    private readonly bool _makeCurrent;
 
-	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, bool makeCurrent): base(ctx, finish) {
+	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, bool makeCurrent): base(ctx, operationFinishedHandler) {
 			_ctx = ctx;
 			_ioc = ioc;
 			_dontSave = dontSave;
@@ -42,8 +42,8 @@ namespace keepass2android
 	        _app = app;
 		}
 
-		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnFinish finish, bool dontSave, CompositeKey key, bool makeCurrent)
-			: base(ctx, finish)
+		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, CompositeKey key, bool makeCurrent)
+			: base(ctx, operationFinishedHandler)
 		{
 			_ctx = ctx;
 			_ioc = ioc;
@@ -87,9 +87,9 @@ namespace keepass2android
 			addTemplates.AddTemplates(out addedEntries);
 			
 			// Commit changes
-			SaveDb save = new SaveDb(_ctx, _app, db, OnFinishToRun, _dontSave);
+			SaveDb save = new SaveDb(_ctx, _app, db, operationFinishedHandler, _dontSave);
 			save.SetStatusLogger(StatusLogger);
-			_onFinishToRun = null;
+			_operationFinishedHandler = null;
 			save.Run();
 
 		    db.UpdateGlobals();

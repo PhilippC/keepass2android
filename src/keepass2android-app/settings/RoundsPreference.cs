@@ -129,7 +129,7 @@ namespace keepass2android.settings
 
 		public abstract ulong ParamValue { get; set; }
 
-		private class AfterSave : OnFinish {
+		private class AfterSave : OnOperationFinishedHandler {
 			private readonly ulong _oldParamValue;
 			private readonly Context _ctx;
 			private readonly KdfNumberDialogPreference _pref;

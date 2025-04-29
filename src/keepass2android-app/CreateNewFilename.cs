@@ -8,8 +8,8 @@ namespace keepass2android
 	{
 		private readonly string _filename;
 
-		public CreateNewFilename(Activity activity, OnFinish finish, string filename)
-			: base(activity,finish)
+		public CreateNewFilename(Activity activity, OnOperationFinishedHandler operationFinishedHandler, string filename)
+			: base(activity,operationFinishedHandler)
 		{
 			_filename = filename;
 		}

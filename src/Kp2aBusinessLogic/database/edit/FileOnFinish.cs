@@ -21,10 +21,10 @@ using Android.App;
 namespace keepass2android
 {
 
-	public abstract class FileOnFinish : OnFinish {
+	public abstract class FileOnFinish : OnOperationFinishedHandler {
 		private String _filename = "";
 
-		protected FileOnFinish(Activity activity, FileOnFinish finish):base(activity, finish) {
+		protected FileOnFinish(Activity activity, FileOnFinish operationFinishedHandler):base(activity, operationFinishedHandler) {
 		}
 
 		public string Filename

@@ -30,7 +30,7 @@ namespace keepass2android
 		private readonly bool _dontSave;
 		private readonly Activity _ctx;
 		
-		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish): base(ctx, finish) {
+		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnOperationFinishedHandler operationFinishedHandler): base(ctx, operationFinishedHandler) {
 			_ctx = ctx;
 			_app = app;
 			_password = password;
@@ -38,8 +38,8 @@ namespace keepass2android
 			_dontSave = false;
 		}
 
-		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish, bool dontSave)
-			: base(ctx, finish)
+		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+			: base(ctx, operationFinishedHandler)
 		{
 			_ctx = ctx;
 			_app = app;
@@ -73,18 +73,18 @@ namespace keepass2android
 			pm.MasterKey = newKey;
 
 			// Save Database
-			_onFinishToRun = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
-			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, _dontSave);
+			_operationFinishedHandler = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, operationFinishedHandler);
+			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, operationFinishedHandler, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
-		private class AfterSave : OnFinish {
+		private class AfterSave : OnOperationFinishedHandler {
 			private readonly CompositeKey _backup;
 			private readonly DateTime _previousKeyChanged;
 			private readonly PwDatabase _db;
 			
-			public AfterSave(Activity activity, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(activity, finish) {
+			public AfterSave(Activity activity, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnOperationFinishedHandler operationFinishedHandler): base(activity, operationFinishedHandler) {
 				_previousKeyChanged = previousKeyChanged;
 				_backup = backup;
 				_db = db;

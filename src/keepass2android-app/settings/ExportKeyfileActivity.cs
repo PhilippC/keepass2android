@@ -18,8 +18,8 @@ namespace keepass2android
             private readonly IKp2aApp _app;
             private IOConnectionInfo _targetIoc;
 
-            public ExportKeyfile(Activity activity, IKp2aApp app, OnFinish onFinish, IOConnectionInfo targetIoc) : base(
-                activity, onFinish)
+            public ExportKeyfile(Activity activity, IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, IOConnectionInfo targetIoc) : base(
+                activity, onOperationFinishedHandler)
             {
                 _app = app;
                 _targetIoc = targetIoc;
@@ -70,7 +70,7 @@ namespace keepass2android
 
             protected override void SaveFile(IOConnectionInfo ioc)
             {
-                var exportKeyfile = new ExportKeyfile(_activity, App.Kp2a, new ActionOnFinish(_activity,
+                var exportKeyfile = new ExportKeyfile(_activity, App.Kp2a, new ActionOnOperationFinished(_activity,
                     (success, message, activity) =>
                     {
                         if (!success)

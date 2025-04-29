@@ -12,7 +12,17 @@
 		android:title="@string/UseOfflineCache_title"
 		android:key="@string/UseOfflineCache_key" />
 
-	<CheckBoxPreference
+
+  <CheckBoxPreference
+    android:enabled="true"
+    android:persistent="true"
+    android:summary="@string/SyncOfflineCacheInBackground_summary"
+    android:defaultValue="true"
+    android:title="@string/SyncOfflineCacheInBackground_title"
+    android:key="@string/SyncOfflineCacheInBackground_key" />
+
+
+  <CheckBoxPreference
 		android:enabled="true"
 		android:persistent="true"
 		android:summary="@string/CreateBackups_summary"

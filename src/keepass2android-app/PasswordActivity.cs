@@ -1440,11 +1440,11 @@ namespace keepass2android
 				MakePasswordMaskedOrVisible();
 
 				Handler handler = new Handler();
-				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
+				OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
 				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
-						onFinish, this, true, _makeCurrent)
-					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish,true, _makeCurrent);
+						onOperationFinishedHandler, this, true, _makeCurrent)
+					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
 			    new ProgressTask(App.Kp2a, this, task).Run();
@@ -1891,10 +1891,10 @@ namespace keepass2android
 		        // to retry with typing the full password, but that's intended to avoid showing the password to a 
 		        // a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
 		        Handler handler = new Handler();
-		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
+		        OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
 		        _performingLoad = true;
                 LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
-		            onFinish, false, _makeCurrent);
+		            onOperationFinishedHandler, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
 		        new ProgressTask(App.Kp2a, this, task).Run();
 		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
@@ -2110,7 +2110,7 @@ namespace keepass2android
             Finish();
 		}
 
-		private class AfterLoad : OnFinish {
+		private class AfterLoad : OnOperationFinishedHandler {
 			readonly PasswordActivity _act;
 		    private readonly IOConnectionInfo _ioConnection;
 
@@ -2255,7 +2255,7 @@ namespace keepass2android
 			private readonly PasswordActivity _act;
 
 
-			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish,updateLastUsageTimestamp,makeCurrent)
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, operationFinishedHandler,updateLastUsageTimestamp,makeCurrent)
 			{
 				_act = act;
 			}

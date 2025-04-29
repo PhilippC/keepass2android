@@ -25,7 +25,7 @@ using Google.Android.Material.Dialog;
 
 namespace keepass2android
 {
-	public abstract class OnFinish
+	public abstract class OnOperationFinishedHandler
 	{
 		protected bool Success;
 		protected String Message;
@@ -37,7 +37,7 @@ namespace keepass2android
 	        set;
 	    }
 
-        protected OnFinish BaseOnFinish;
+        protected OnOperationFinishedHandler NextOnOperationFinishedHandler;
 		protected Handler Handler;
 		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
 	    private Activity _activeActivity, _previouslyActiveActivity;
@@ -60,9 +60,9 @@ namespace keepass2android
 
                 }
 				_activeActivity = value;
-	            if (BaseOnFinish != null)
+	            if (NextOnOperationFinishedHandler != null)
 	            {
-	                BaseOnFinish.ActiveActivity = value;
+	                NextOnOperationFinishedHandler.ActiveActivity = value;
 	            }
 	        }
 	    }
@@ -75,25 +75,25 @@ namespace keepass2android
 
 
 
-		protected OnFinish(Activity activeActivity, Handler handler)
+		protected OnOperationFinishedHandler(Activity activeActivity, Handler handler)
 	    {
 	        ActiveActivity = activeActivity;
-			BaseOnFinish = null;
+			NextOnOperationFinishedHandler = null;
 			Handler = handler;
 			
 		}
 
-		protected OnFinish(Activity activeActivity, OnFinish finish, Handler handler)
+		protected OnOperationFinishedHandler(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
 		{
 		    ActiveActivity = activeActivity;
-			BaseOnFinish = finish;
+			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = handler;
 		}
 
-		protected OnFinish(Activity activeActivity, OnFinish finish)
+		protected OnOperationFinishedHandler(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler)
 		{
 		    ActiveActivity = activeActivity;
-			BaseOnFinish = finish;
+			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = null;
 		}
 
@@ -110,14 +110,14 @@ namespace keepass2android
 		}
 		
 		public virtual void Run() {
-			if (BaseOnFinish == null) return;
+			if (NextOnOperationFinishedHandler == null) return;
 			// Pass on result on call finish
-			BaseOnFinish.SetResult(Success, Message, ImportantMessage, Exception);
+			NextOnOperationFinishedHandler.SetResult(Success, Message, ImportantMessage, Exception);
 				
 			if ( Handler != null ) {
-				Handler.Post(BaseOnFinish.Run); 
+				Handler.Post(NextOnOperationFinishedHandler.Run); 
 			} else {
-				BaseOnFinish.Run();
+				NextOnOperationFinishedHandler.Run();
 			}
 		}
 		
@@ -128,7 +128,7 @@ namespace keepass2android
 		public static void DisplayMessage(Context ctx, string message, bool makeDialog)
 		{
 			if ( !String.IsNullOrEmpty(message) ) {
-			    Kp2aLog.Log("OnFinish message: " + message);
+			    Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
                 if (makeDialog && ctx != null)
                 {
                     try

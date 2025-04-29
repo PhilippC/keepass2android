@@ -41,13 +41,13 @@ namespace keepass2android
 		readonly Activity _ctx;
 		
 		
-		public static AddGroup GetInstance(Activity ctx, IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave) {
-			return new AddGroup(ctx, app, name, iconid, groupCustomIconId, parent, finish, dontSave);
+		public static AddGroup GetInstance(Activity ctx, IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnOperationFinishedHandler operationFinishedHandler, bool dontSave) {
+			return new AddGroup(ctx, app, name, iconid, groupCustomIconId, parent, operationFinishedHandler, dontSave);
 		}
 
 
-		private AddGroup(Activity ctx, IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave)
-			: base(ctx, finish)
+		private AddGroup(Activity ctx, IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+			: base(ctx, operationFinishedHandler)
 		{
 			_ctx = ctx;
 			_name = name;
@@ -57,7 +57,7 @@ namespace keepass2android
 			DontSave = dontSave;
 			_app = app;
 
-			_onFinishToRun = new AfterAdd(ctx, this, OnFinishToRun);
+			_operationFinishedHandler = new AfterAdd(ctx, this, operationFinishedHandler);
 		}
 		
 		
@@ -74,15 +74,15 @@ namespace keepass2android
 		    _app.CurrentDb.Elements.Add(Group);
 
             // Commit to disk
-            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, DontSave);
+            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, operationFinishedHandler, DontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
-		private class AfterAdd : OnFinish {
+		private class AfterAdd : OnOperationFinishedHandler {
 			readonly AddGroup _addGroup;
 
-			public AfterAdd(Activity activity, AddGroup addGroup,OnFinish finish): base(activity, finish) {
+			public AfterAdd(Activity activity, AddGroup addGroup,OnOperationFinishedHandler operationFinishedHandler): base(activity, operationFinishedHandler) {
 				_addGroup = addGroup;
 			}
 				

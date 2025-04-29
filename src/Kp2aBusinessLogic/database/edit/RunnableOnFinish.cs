@@ -23,20 +23,20 @@ namespace keepass2android
 
 	public abstract class RunnableOnFinish  {
 		
-		protected OnFinish _onFinishToRun;
+		protected OnOperationFinishedHandler _operationFinishedHandler;
 		public ProgressDialogStatusLogger StatusLogger = new ProgressDialogStatusLogger(); //default: empty but not null
 	    private Activity _activeActivity;
 
-	    protected RunnableOnFinish(Activity activeActivity, OnFinish finish)
+	    protected RunnableOnFinish(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler)
 	    {
 	        _activeActivity = activeActivity;
-			_onFinishToRun = finish;
+			_operationFinishedHandler = operationFinishedHandler;
 		}
 
-		public OnFinish OnFinishToRun
+		public OnOperationFinishedHandler operationFinishedHandler
 		{
-			get { return _onFinishToRun; }
-			set { _onFinishToRun = value; }
+			get { return _operationFinishedHandler; }
+			set { _operationFinishedHandler = value; }
 		}
 
 	    public Activity ActiveActivity
@@ -45,29 +45,29 @@ namespace keepass2android
 	        set
             {
 	            _activeActivity = value;
-	            if (_onFinishToRun != null)
-	                _onFinishToRun.ActiveActivity = _activeActivity;
+	            if (_operationFinishedHandler != null)
+	                _operationFinishedHandler.ActiveActivity = _activeActivity;
 	        }
 	    }
 
         protected void Finish(bool result, String message, bool importantMessage = false, Exception exception = null) {
-			if ( OnFinishToRun != null ) {
-				OnFinishToRun.SetResult(result, message, importantMessage, exception);
-				OnFinishToRun.Run();
+			if ( operationFinishedHandler != null ) {
+				operationFinishedHandler.SetResult(result, message, importantMessage, exception);
+				operationFinishedHandler.Run();
 			}
 		}
 		
 		protected void Finish(bool result) {
-			if ( OnFinishToRun != null ) {
-				OnFinishToRun.SetResult(result);
-				OnFinishToRun.Run();
+			if ( operationFinishedHandler != null ) {
+				operationFinishedHandler.SetResult(result);
+				operationFinishedHandler.Run();
 			}
 		}
 		
 		public void SetStatusLogger(ProgressDialogStatusLogger status) {
-			if (OnFinishToRun != null)
+			if (operationFinishedHandler != null)
 			{
-				OnFinishToRun.StatusLogger = status;
+				operationFinishedHandler.StatusLogger = status;
 			}
 			StatusLogger = status;
 		}

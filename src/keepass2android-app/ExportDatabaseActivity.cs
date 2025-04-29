@@ -26,7 +26,7 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var exportDb = new ExportDatabaseActivity.ExportDb(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
+            var exportDb = new ExportDatabaseActivity.ExportDb(_activity, App.Kp2a, new ActionOnOperationFinished(_activity, (success, message, activity) =>
                 {
                     if (!success)
                         App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
@@ -99,7 +99,7 @@ namespace keepass2android
 			private readonly FileFormatProvider _fileFormat;
 			private IOConnectionInfo _targetIoc;
 
-			public ExportDb(Activity activity, IKp2aApp app, OnFinish onFinish, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(activity, onFinish)
+			public ExportDb(Activity activity, IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(activity, onOperationFinishedHandler)
 			{
 				_app = app;
 				this._fileFormat = fileFormat;

@@ -29,19 +29,19 @@ namespace keepass2android
 		private PwGroup _group;
 		protected bool DontSave;
 
-        public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnFinish finish)
-            : base(activity, finish, app)
+        public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
+            : base(activity, operationFinishedHandler, app)
         {
 			SetMembers(activity, app, group, false);
 		}
         /*
-        public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnFinish finish, bool dontSave)
-            : base(finish)
+        public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+            : base(operationFinishedHandler)
         {
 			SetMembers(ctx, db, group, act, dontSave);
 		}
         
-		public DeleteGroup(Context ctx, Database db, PwGroup group, OnFinish finish, bool dontSave):base(finish) {
+		public DeleteGroup(Context ctx, Database db, PwGroup group, OnOperationFinishedHandler operationFinishedHandler, bool dontSave):base(operationFinishedHandler) {
 			SetMembers(ctx, db, group, null, dontSave);
 		}
         */

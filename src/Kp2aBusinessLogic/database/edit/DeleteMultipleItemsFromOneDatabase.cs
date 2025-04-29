@@ -12,8 +12,8 @@ namespace keepass2android
 		private readonly List<IStructureItem> _elementsToDelete;
 		private readonly bool _canRecycle;
 
-		public DeleteMultipleItemsFromOneDatabase(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnFinish finish, IKp2aApp app)
-			: base(activity, finish, app)
+		public DeleteMultipleItemsFromOneDatabase(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnOperationFinishedHandler operationFinishedHandler, IKp2aApp app)
+			: base(activity, operationFinishedHandler, app)
 		{
 			_elementsToDelete = elementsToDelete;
 			SetMembers(activity, db);
