@@ -673,7 +673,7 @@ namespace keepass2android
 		/// <summary>
 		/// Shows all non-dismissed progress dialogs.
 		/// If there are multiple progressDialogs active, they all will be showing.
-		/// There probably will never be multiple dialogs at the same time because only one ProgressTask can run at a time.
+		/// There probably will never be multiple dialogs at the same time because only one BlockingOperationRunner can run at a time.
 		/// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
 		/// because they are just progress indicators.
 		/// </summary>

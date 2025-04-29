@@ -126,7 +126,7 @@ namespace keepass2android
                                 App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                             }
                         }));
-                        ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
+                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
                         pt.Run();
                     };
                 }
@@ -144,7 +144,7 @@ namespace keepass2android
                 {
                     pref.PreferenceClick += (sender, args) =>
                     {
-                        ProgressTask pt = new ProgressTask(App.Kp2a, Activity,
+                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity,
                                         new AddTemplateEntries(Activity, App.Kp2a, new ActionOnOperationFinished(Activity,
                                             delegate
                                             {
@@ -197,7 +197,7 @@ namespace keepass2android
                                 App.Kp2a.UpdateOngoingNotification();
                             }
                         }));
-                        ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
+                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
                         pt.Run();
                     };
                 }
@@ -421,7 +421,7 @@ namespace keepass2android
                     preferenceChangeEventArgs.Preference.Summary =
                         CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;
                 }));
-                ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
+                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
                 pt.Run();
             }
 
@@ -1082,7 +1082,7 @@ namespace keepass2android
                     UpdateKdfScreen();
 
                 }));
-                ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
+                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
                 pt.Run();
 
             }

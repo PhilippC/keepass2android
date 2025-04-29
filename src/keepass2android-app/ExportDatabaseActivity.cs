@@ -35,7 +35,7 @@ namespace keepass2android
                     activity.Finish();
                 }
             ), _ffp, ioc);
-            ProgressTask pt = new ProgressTask(App.Kp2a, _activity, exportDb);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, exportDb);
             pt.Run();
 
         }

@@ -73,7 +73,7 @@ namespace keepass2android
 				}
 				
 				SetPassword sp = new SetPassword(_activity, App.Kp2a, pass, keyfile, new AfterSave(_activity, this, null, new Handler()));
-				ProgressTask pt = new ProgressTask(App.Kp2a, _activity, sp);
+				BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, sp);
 				pt.Run();
 			};
 				

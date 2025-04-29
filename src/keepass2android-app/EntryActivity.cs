@@ -81,7 +81,7 @@ namespace keepass2android
                         App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                 }
             ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
-            ProgressTask pt = new ProgressTask(App.Kp2a, _activity, task);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, task);
             pt.Run();
 
         }
@@ -482,7 +482,7 @@ namespace keepass2android
 				Entry.Touch(true);
 				RequiresRefresh();
 				UpdateEntry update = new UpdateEntry(this, App.Kp2a, backupEntry, Entry, null);
-				ProgressTask pt = new ProgressTask(App.Kp2a, this, update);
+				BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, update);
 				pt.Run();
 			}
 			FillData();
@@ -531,7 +531,7 @@ namespace keepass2android
                 activity.Finish();
             }));
 
-            ProgressTask pt = new ProgressTask(App.Kp2a, this, saveTask);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, saveTask);
             pt.Run();
 		}
 
@@ -1513,7 +1513,7 @@ namespace keepass2android
 
 			OperationWithFinishHandler runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 
-			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
+			BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, runnable);
 			pt.Run();
 
 		}

@@ -69,7 +69,7 @@ namespace keepass2android
                     {
                         runAfterSuccess();
                     });
-                    new ProgressTask(App.Kp2a, activity, task2).Run(true);
+                    new BlockingOperationRunner(App.Kp2a, activity, task2).Run(true);
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace keepass2android
 
 
 
-            var progressTask = new ProgressTask(App.Kp2a, _activity, task);
+            var progressTask = new BlockingOperationRunner(App.Kp2a, _activity, task);
             progressTask.Run();
 
         }

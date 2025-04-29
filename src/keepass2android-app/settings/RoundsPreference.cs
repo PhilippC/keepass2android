@@ -114,7 +114,7 @@ namespace keepass2android.settings
 
                 Handler handler = new Handler();
                 SaveDb save = new SaveDb((Activity)Context, App.Kp2a, App.Kp2a.CurrentDb, new AfterSave((Activity)Context, handler, oldValue, this));
-                ProgressTask pt = new ProgressTask(App.Kp2a, (Activity)Context, save);
+                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, (Activity)Context, save);
                 pt.Run();
             });
             db.SetNegativeButton(Android.Resource.String.Cancel, ((sender, args) => { }));

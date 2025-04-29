@@ -25,10 +25,10 @@ namespace keepass2android
 	/// <summary>
 	/// Class to run a task while a progress dialog is shown
 	/// </summary>
-	public class ProgressTask
+	public class BlockingOperationRunner
 	{
         //for handling Activity recreation situations, we need access to the currently active task. It must hold that there is no more than one active task.
-	    private static ProgressTask _currentTask = null;
+	    private static BlockingOperationRunner _currentTask = null;
 
 	    public static void SetNewActiveActivity(Activity activeActivity)
 	    {
@@ -79,7 +79,7 @@ namespace keepass2android
 	    private Activity _activeActivity, _previouslyActiveActivity;
 	    private ProgressDialogStatusLogger _progressDialogStatusLogger;
 
-	    public ProgressTask(IKp2aApp app, Activity activity, OperationWithFinishHandler task)
+	    public BlockingOperationRunner(IKp2aApp app, Activity activity, OperationWithFinishHandler task)
 		{
 		    _activeActivity = activity;
 			_task = task;
@@ -127,7 +127,7 @@ namespace keepass2android
 	    public void Run(bool allowOverwriteCurrentTask = false)
 		{
 		    if ((!allowOverwriteCurrentTask) && (_currentTask != null))
-		        throw new System.Exception("Cannot start another ProgressTask while ProgressTask is already running! " + _task.GetType().Name + "/" + _currentTask._task.GetType().Name);
+		        throw new System.Exception("Cannot start another BlockingOperationRunner while BlockingOperationRunner is already running! " + _task.GetType().Name + "/" + _currentTask._task.GetType().Name);
 		    _currentTask = this;
 
             // Show process dialog
@@ -145,11 +145,11 @@ namespace keepass2android
 		}
 		
 		private class AfterTask : OnOperationFinishedHandler {
-			readonly ProgressTask _progressTask;
+			readonly BlockingOperationRunner _blockingOperationRunner;
 
-			public AfterTask (Activity activity, OnOperationFinishedHandler operationFinishedHandler, Handler handler, ProgressTask pt): base(activity, operationFinishedHandler, handler)
+			public AfterTask (Activity activity, OnOperationFinishedHandler operationFinishedHandler, Handler handler, BlockingOperationRunner pt): base(activity, operationFinishedHandler, handler)
 			{
-				_progressTask = pt;
+				_blockingOperationRunner = pt;
 			}
 
 			public override void Run() {
@@ -160,12 +160,12 @@ namespace keepass2android
 					// Remove the progress dialog
 					Handler.Post(delegate
 					{
-					    _progressTask._progressDialog.Dismiss();
+					    _blockingOperationRunner._progressDialog.Dismiss();
 					});
 				}
 				else
 				{
-				    _progressTask._progressDialog.Dismiss();
+				    _blockingOperationRunner._progressDialog.Dismiss();
 				}
 			    _currentTask = null;
 

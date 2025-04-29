@@ -115,7 +115,7 @@ namespace keepass2android
 
                             }), filename);
 
-                            new ProgressTask(App.Kp2a, _activity, task).Run();
+                            new BlockingOperationRunner(App.Kp2a, _activity, task).Run();
                         }
 
                         return true;

@@ -547,7 +547,7 @@ namespace keepass2android
 			} else {
 				runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}
-            ProgressTask pt = new ProgressTask(App.Kp2a, act, runnable);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, act, runnable);
 			pt.Run();
 			
 

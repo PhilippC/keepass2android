@@ -104,7 +104,7 @@ namespace keepass2android
 
         protected override void OnStart()
         {
-            ProgressTask.SetNewActiveActivity(this);
+            BlockingOperationRunner.SetNewActiveActivity(this);
             base.OnStart();
             Kp2aLog.Log(ClassName + ".OnStart" + " " + ID);
         }
@@ -136,7 +136,7 @@ namespace keepass2android
         {
             base.OnStop();
             Kp2aLog.Log(ClassName + ".OnStop" + " " + ID);
-            ProgressTask.RemoveActiveActivity(this);
+            BlockingOperationRunner.RemoveActiveActivity(this);
         }
 
         protected override void OnSaveInstanceState(Bundle outState)

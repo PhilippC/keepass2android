@@ -223,7 +223,7 @@ namespace keepass2android
 							(o, args) =>
 							{
 								//yes
-								ProgressTask pt = new ProgressTask(App.Kp2a, this,
+								BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this,
 									new AddTemplateEntries(this, App.Kp2a, new ActionOnOperationFinished(this,
 									    (success, message, activity) => ((GroupActivity)activity)?.StartAddEntry())));
 								pt.Run();		
