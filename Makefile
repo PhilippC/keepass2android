@@ -62,8 +62,8 @@ $(info )
 
 # On linux use xabuild, on Windows use MSBuild.exe, otherwise (macos?) use msbuild.
 ifeq ($(detected_OS),Linux)
-  MSBUILD_binary := xabuild
-  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary))
+  MSBUILD_binary := dotnet
+  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary)) build
 else ifeq ($(detected_OS),Windows)
   MSBUILD_binary := MSBuild.exe
   MSBUILD := $(shell $(WHICH) $(MSBUILD_binary) 2> nul)
