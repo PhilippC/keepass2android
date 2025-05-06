@@ -57,6 +57,12 @@ private static Drawable _blank;
 			if (draw != null)
 			{
 				draw = draw.Mutate();
+				if (PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean(context.GetString(Resource.String.LowStimulus_key), false))
+				{
+					Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.Multiply;
+					Color color = new Color(220, 220, 220);
+					draw.SetColorFilter(color, mMode);
+				}
 				iv.SetImageDrawable(draw);
 			}
 				

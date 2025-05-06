@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Android.App;
+using Android.Content;
 using Android.Content.Res;
 using Android.OS;
 using Android.Preferences;
@@ -49,6 +50,11 @@ namespace keepass2android
 		{
 			_currentThemeId = NightModePreference;
             AppCompatDelegate.DefaultNightMode = _currentThemeId.Value;
+            if (PreferenceManager.GetDefaultSharedPreferences(_activity).GetBoolean(_activity.GetString(Resource.String.LowStimulus_key), false))
+            {
+                _activity.SetTheme(Resource.Style.OverlayLowStimulation);
+            }
+            
             _secureWindow = SecureWindowPref();
 		
 			_currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)

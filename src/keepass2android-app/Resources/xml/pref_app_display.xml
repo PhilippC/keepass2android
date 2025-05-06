@@ -60,6 +60,15 @@
 		android:dialogTitle="@string/design_title"
 		android:defaultValue="@string/design_default" />
 
+
+  <CheckBoxPreference
+    android:enabled="true"
+    android:persistent="true"
+    android:summary="@string/LowStimulus_summary"
+    android:defaultValue="false"
+    android:title="@string/LowStimulus_title"
+    android:key="@string/LowStimulus_key" />
+
 	<ListPreference
 		android:key="@string/app_language_pref_key"
 		android:title="@string/app_language_pref_title"
