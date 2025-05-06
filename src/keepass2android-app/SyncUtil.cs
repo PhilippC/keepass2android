@@ -49,7 +49,7 @@ namespace keepass2android
         }
 
 
-        public void SynchronizeDatabase(Action runAfterSuccess)
+        public void StartSynchronizeDatabase()
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
             OperationWithFinishHandler task;
@@ -65,16 +65,10 @@ namespace keepass2android
                 if (App.Kp2a.CurrentDb?.OtpAuxFileIoc != null)
                 {
                     var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
-                    task2.operationFinishedHandler = new ActionOnOperationFinished(_activity, (b, s, activeActivity) =>
-                    {
-                        runAfterSuccess();
-                    });
-                    new BlockingOperationRunner(App.Kp2a, activity, task2).Run(true);
+                    
+                    //TODO new BackgroundOperationRunner(App.Kp2a, activity, task2).Run(true);
                 }
-                else
-                {
-                    runAfterSuccess();
-                }
+               
             });
 
             if (filestorage is CachingFileStorage)
@@ -84,15 +78,12 @@ namespace keepass2android
             }
             else
             {
-
+                //TODO do we want this to run in the background?
                 task = new CheckDatabaseForChanges(_activity, App.Kp2a, onOperationFinishedHandler);
             }
 
-
-
-
-            var progressTask = new BlockingOperationRunner(App.Kp2a, _activity, task);
-            progressTask.Run();
+            //TODO var backgroundTaskRunner = new BackgroundOperationRunner(App.Kp2a, _activity, task);
+            //TODO backgroundTaskRunner.Run();
 
         }
     }

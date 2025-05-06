@@ -354,13 +354,37 @@
         android:layout_height="1dp"
         android:layout_above="@id/bottom_bar"
         android:background="#b8b8b8" />
+
+    <LinearLayout
+      android:id="@+id/background_ops_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/md_theme_surfaceVariant"
+      
+      android:layout_below="@id/top"
+      android:orientation="vertical" >
+
+        
+      <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true" />
+        
+
+      <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Synchronisierung läuft..." />
+
+
+        </LinearLayout>
   
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/divider2"
-        android:layout_below="@id/top"
+        android:layout_below="@id/background_ops_container"
         android:fitsSystemWindows="true">
         <fragment
             android:name="keepass2android.GroupListFragment"

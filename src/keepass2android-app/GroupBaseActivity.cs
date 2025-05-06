@@ -1212,7 +1212,7 @@ namespace keepass2android
                     return true;
 
                 case Resource.Id.menu_sync:
-                    new SyncUtil(this).SynchronizeDatabase(() => { });
+                    new SyncUtil(this).StartSynchronizeDatabase();
                     return true;
 
                 case Resource.Id.menu_work_offline:
@@ -1223,7 +1223,7 @@ namespace keepass2android
                 case Resource.Id.menu_work_online:
                     App.Kp2a.OfflineMode = App.Kp2a.OfflineModePreference = false;
                     UpdateOfflineModeMenu();
-                    new SyncUtil(this).SynchronizeDatabase(() => { });
+                    new SyncUtil(this).StartSynchronizeDatabase();
                     return true;
                 case Resource.Id.menu_open_other_db:
                     AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);
