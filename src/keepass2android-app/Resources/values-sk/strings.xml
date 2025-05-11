@@ -1206,4 +1206,5 @@
   <string name="autoswitch_enabled_but_not_setup">Poznámka: aktivovali ste automatické prepínanie klávesnice v sekcii Nastavenia aplikácie - Prístup k záznamu s heslom - Prepínanie klávesnice, ale zdá sa, že táto funkcia nie je správne nakonfigurovaná.</string>
   <string name="switch_keyboard_for_totp_enabled">Poznámka: aktivovali ste automatické dopĺňanie pre záznamy TOTP, v sekcii Apl. - Prístup k záznamu s heslom - Služba automatického dopĺňania. Môže to spôsobiť zobrazenie tohto okna pri otvorení záznamu s TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Poznámka: aktivovali ste použitie klávesnice integrovanej v Keepass2Android, v sekcii Apl. - Zabezpečenie. Môže to spôsobiť zobrazenie tohto okna pri otvorení aplikácie alebo pri úprave záznamu.</string>
+  <string name="switch_keyboard_on_search_enabled">Poznámka: aktivovali ste prepínanie klávesnice v sekcii Apl. - Zabezpečenie - Prístup k záznamu s heslom - Prepínanie klávesnice. Môže to spôsobovať zobrazenie tohto okna pri vyhľadávaní nejakého záznamu z prehliadača.</string>
 </resources>
