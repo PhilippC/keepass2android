@@ -41,6 +41,8 @@ namespace keepass2android
 	    private readonly bool _dontSave;
 		private bool requiresSubsequentSync = false; //if true, we need to sync the file after saving.
 
+        public bool DoNotSetStatusLoggerMessage = false;
+
         /// <summary>
 		/// stream for reading the data from the original file. If this is set to a non-null value, we know we need to sync
 		/// </summary>
@@ -104,9 +106,12 @@ namespace keepass2android
 				    if (ShowDatabaseIocInStatus)
 				        message += " (" + _app.GetFileStorage(_db.Ioc).GetDisplayName(_db.Ioc) + ")";
 
-                    StatusLogger.UpdateMessage(message);
-                    
-					IOConnectionInfo ioc = _db.Ioc;
+                    if (!DoNotSetStatusLoggerMessage)
+                    {
+                        StatusLogger.UpdateMessage(message);
+                    }
+
+                    IOConnectionInfo ioc = _db.Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);
 
                     if (SyncInBackground && fileStorage is IOfflineSwitchable offlineSwitchable)

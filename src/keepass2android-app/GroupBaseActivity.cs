@@ -1305,7 +1305,7 @@ namespace keepass2android
             {
                 if (Success)
                 {
-                    ((GroupBaseActivity)ActiveContext)?.RefreshIfDirty();
+                    (ActiveContext as GroupBaseActivity)?.RefreshIfDirty();
                 }
                 else
                 {
@@ -1325,7 +1325,7 @@ namespace keepass2android
             {
                 if (Success)
                 {
-                    ((GroupBaseActivity)ActiveContext)?.RefreshIfDirty();
+                    (ActiveContext as GroupBaseActivity)?.RefreshIfDirty();
                 }
                 else
                 {

@@ -82,6 +82,8 @@ namespace keepass2android
 								}
 								_saveDb = null;
 							}), _app.CurrentDb, false, remoteData);
+                        _saveDb.SetStatusLogger(StatusLogger);
+                        _saveDb.DoNotSetStatusLoggerMessage = true; //Keep "sync db" as main message
                         _saveDb.SyncInBackground = false;
 						_saveDb.Run();
 

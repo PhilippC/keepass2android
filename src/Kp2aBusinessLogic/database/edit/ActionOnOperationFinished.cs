@@ -38,9 +38,6 @@ namespace keepass2android
 			_actionToPerform = actionToPerform;
 		}
 
-		//if set to true, the previously active active will be passed to ActionToPerformOnFinish instead null if no activity is on foreground
-        public bool AllowInactiveActivity { get; set; }
-
         public override void Run()
 		{
 			if (Message == null)

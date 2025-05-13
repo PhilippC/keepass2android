@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Net.Security;
@@ -46,6 +47,7 @@ using keepass2android;
 using keepass2android.Utils;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
+using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using Message = keepass2android.Utils.Message;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
@@ -480,6 +482,8 @@ namespace keepass2android
 		// Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
 		private bool _isShowingUserInputDialog = false;
         private IMessagePresenter? _messagePresenter;
+        private YesNoCancelQuestion? _currentlyPendingYesNoCancelQuestion = null;
+        private Context _activeContext;
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
@@ -591,92 +595,142 @@ namespace keepass2android
 			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, messageSuffix);
 		}
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+        class YesNoCancelQuestion
+        {
+            private AlertDialog? _dialog;
+            public UiStringKey TitleKey { get; set; }
+            public UiStringKey MessageKey { get; set; }
+            public UiStringKey YesString { get; set; }
+            public UiStringKey NoString { get; set; }
+            public EventHandler<DialogClickEventArgs>? YesHandler { get; set; }
+            public EventHandler<DialogClickEventArgs>? NoHandler { get; set; }
+            public EventHandler<DialogClickEventArgs>? CancelHandler { get; set; }
+            public EventHandler DismissHandler { get; set; }
+            public string MessageSuffix { get; set; }
+
+            public bool TryShow(IKp2aApp app, Action onUserInputDialogClose, Action onUserInputDialogShow)
+            {
+                if (app.ActiveContext is Activity activity)
+                {
+                    Handler handler = new Handler(Looper.MainLooper);
+                    handler.Post(() =>
+                    {
+                        if (_dialog is { IsShowing: true })
+                        {
+							_dialog.Dismiss();
+                            _dialog = null;
+                        }
+
+                        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+                        builder.SetTitle(app.GetResourceString(TitleKey));
+
+                        builder.SetMessage(app.GetResourceString(MessageKey) +
+                                           (MessageSuffix != "" ? " " + MessageSuffix : ""));
+
+                        // _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
+                        // and to show progress dialog after yesNoCancel dialog is closed
+                        EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
+                        {
+                            onUserInputDialogClose();
+                            YesHandler.Invoke(sender, args);
+                        };
+                        string yesText = app.GetResourceString(YesString);
+                        builder.SetPositiveButton(yesText, yesHandlerWithShow);
+                        string noText = "";
+                        if (NoHandler != null)
+                        {
+                            EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
+                            {
+                                onUserInputDialogClose();
+                                NoHandler.Invoke(sender, args);
+                            };
+
+                            noText = app.GetResourceString(NoString);
+                            builder.SetNegativeButton(noText, noHandlerWithShow);
+                        }
+
+                        string cancelText = "";
+                        if (CancelHandler != null)
+                        {
+                            EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
+                            {
+                                onUserInputDialogClose();
+                                CancelHandler.Invoke(sender, args);
+                            };
+
+                            cancelText = App.Context.GetString(Android.Resource.String.Cancel);
+                            builder.SetNeutralButton(cancelText,
+                                cancelHandlerWithShow);
+                        }
+
+                        _dialog = builder.Create();
+                        if (DismissHandler != null)
+                        {
+                            _dialog.SetOnDismissListener(new Util.DismissListener(() =>
+                            {
+                                onUserInputDialogClose();
+                                DismissHandler(_dialog, EventArgs.Empty);
+                            }));
+                        }
+
+                        onUserInputDialogShow();
+                        try
+                        {
+                            _dialog.Show();
+                        }
+                        catch (Exception e)
+                        {
+                            Kp2aLog.LogUnexpectedError(e);
+                        }
+
+
+                        if (yesText.Length + noText.Length + cancelText.Length >= 20)
+                        {
+                            try
+                            {
+                                Button button = _dialog.GetButton((int)DialogButtonType.Positive);
+                                LinearLayout linearLayout = (LinearLayout)button.Parent;
+                                linearLayout.Orientation = Orientation.Vertical;
+                            }
+                            catch (Exception e)
+                            {
+                                Kp2aLog.LogUnexpectedError(e);
+                            }
+
+                        }
+                    });
+                    return true;
+                }
+                else
+                {
+					BackgroundOperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
+                    return false;
+                }
+            }
+        }
+
+        public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
 			UiStringKey yesString, UiStringKey noString,
 			EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
 			EventHandler dismissHandler,string messageSuffix = "")
         {
-			Handler handler = new Handler(Looper.MainLooper);
-			handler.Post(() =>
-				{
-					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ActiveContext);
-					builder.SetTitle(GetResourceString(titleKey));
-
-					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
-
-					// _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
-					// and to show progress dialog after yesNoCancel dialog is closed
-					EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
-					{
-						OnUserInputDialogClose();
-						yesHandler.Invoke(sender, args);
-					};
-                    string yesText = GetResourceString(yesString);
-					builder.SetPositiveButton(yesText, yesHandlerWithShow);
-					string noText = "";
-					if (noHandler != null)
-					{
-                        EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
-                        {
-							OnUserInputDialogClose();
-							noHandler.Invoke(sender, args);
-						};
-
-						noText = GetResourceString(noString);
-						builder.SetNegativeButton(noText, noHandlerWithShow);
-					}
-					string cancelText = "";
-					if (cancelHandler != null)
-					{
-						EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
-						{
-							OnUserInputDialogClose();
-							cancelHandler.Invoke(sender, args);
-						};
-
-						cancelText = App.Context.GetString(Android.Resource.String.Cancel);
-						builder.SetNeutralButton(cancelText,
-												 cancelHandlerWithShow);
-					}
-
-					var dialog = builder.Create();
-					if (dismissHandler != null)
-					{
-						dialog.SetOnDismissListener(new Util.DismissListener(() => {
-							OnUserInputDialogClose();
-							dismissHandler(dialog, EventArgs.Empty);
-						}));
-					}
-
-					OnUserInputDialogShow();
-                    try
-                    {
-                        dialog.Show();
-                    }
-					catch (Exception e)
-                    {
-                        Kp2aLog.LogUnexpectedError(e);
-                    }
-
-
-                    if (yesText.Length + noText.Length + cancelText.Length >= 20)
-					{
-						try
-						{
-							Button button = dialog.GetButton((int)DialogButtonType.Positive);
-							LinearLayout linearLayout = (LinearLayout)button.Parent;
-							linearLayout.Orientation = Orientation.Vertical;
-						}
-						catch (Exception e)
-						{
-							Kp2aLog.LogUnexpectedError(e);
-						}
-	
-					}
-				}
-			);
+            _currentlyPendingYesNoCancelQuestion = new YesNoCancelQuestion()
+            {
+                TitleKey = titleKey,
+                MessageKey = messageKey,
+                YesString = yesString,
+                NoString = noString,
+                YesHandler = yesHandler,
+                NoHandler = noHandler,
+                CancelHandler = cancelHandler,
+                DismissHandler = dismissHandler,
+                MessageSuffix = messageSuffix
+            };
+           
+            _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
+                    
 		}
 
 		/// <summary>
@@ -718,7 +772,9 @@ namespace keepass2android
 		private void OnUserInputDialogClose()
 		{
 			_isShowingUserInputDialog = false;
-			ShowAllActiveProgressDialogs();
+            _currentlyPendingYesNoCancelQuestion = null;
+
+            ShowAllActiveProgressDialogs();
 		}
 
         public Handler UiThreadHandler 
@@ -1369,7 +1425,15 @@ namespace keepass2android
             
         }
 
-        public Context ActiveContext { get; set; }
+        public Context ActiveContext
+        {
+            get => _activeContext;
+            set
+            {
+                _activeContext = value; 
+                _currentlyPendingYesNoCancelQuestion?.TryShow(this, OnUserInputDialogClose, OnUserInputDialogClose);
+            }
+        }
     }
 
 

@@ -45,6 +45,8 @@ namespace keepass2android
             }
         }
 
+        public ProgressUiAsStatusLoggerAdapter StatusLogger => _statusLogger;
+
         private BackgroundOperationRunner()
         {
             //private constructor
@@ -77,7 +79,6 @@ namespace keepass2android
                                 if (!_taskQueue.Any())
                                 {
                                     _thread = null;
-                                    _currentlyRunningTask = null;
                                     _statusLogger.EndLogging();
                                     break;
                                 }
@@ -86,7 +87,18 @@ namespace keepass2android
                                     _currentlyRunningTask = _taskQueue.Dequeue();
                                 }
                             }
+
+                            var originalFinishedHandler = _currentlyRunningTask.operationFinishedHandler;
+                            _currentlyRunningTask.operationFinishedHandler = new ActionOnOperationFinished(app, (
+                                (success, message, context) =>
+                                {
+                                    _currentlyRunningTask = null;
+                                }), originalFinishedHandler);
                             _currentlyRunningTask.Run();
+                            while (_currentlyRunningTask != null)
+                            {
+                                Thread.Sleep(100);
+                            }
                         }
 
                     });
@@ -248,13 +260,7 @@ namespace keepass2android
 	        get { return _activeActivity; }
 	        private set
 	        {
-                if (_activeActivity != null && _activeActivity != _previouslyActiveContext)
-                {
-                    _previouslyActiveContext = _activeActivity;
-
-
-                }
-	            _activeActivity = value;
+                _activeActivity = value;
 	            
 	            if (_activeActivity != null)
 	            {
@@ -264,18 +270,12 @@ namespace keepass2android
 	        }
 	    }
 
-        public Context PreviouslyActiveContext
-        {
-            get { return _previouslyActiveContext; }
-           
-        }
-
-		private readonly Handler _handler;
+        private readonly Handler _handler;
 		private readonly OperationWithFinishHandler _task;
 		private IProgressDialog _progressDialog;
         private readonly IKp2aApp _app;
         private Java.Lang.Thread _thread;
-	    private Context _activeActivity, _previouslyActiveContext;
+	    private Context _activeActivity;
 	    private ProgressDialogStatusLogger _progressDialogStatusLogger;
 
 	    public BlockingOperationRunner(IKp2aApp app, OperationWithFinishHandler task)
