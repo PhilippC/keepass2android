@@ -151,16 +151,13 @@ namespace keepass2android
 					BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionCloseDatabase);
 
                     // Couldn't quick-lock, so unload database(s) instead
-                    
-                    lock (_openDatabasesLock)
-                    {
-                        _openAttempts.Clear();
-                        _openDatabases.Clear();
+                    _openAttempts.Clear();
+                    _openDatabases.Clear();
 
-                        _currentDatabase = null;
-                        LastOpenedEntry = null;
-                        QuickLocked = false;
-                    }
+                    _currentDatabase = null;
+                    LastOpenedEntry = null;
+                    QuickLocked = false;
+                    
 				    
 				}
 			}
@@ -226,32 +223,30 @@ namespace keepass2android
 
 
 
-            lock (_openDatabasesLock)
+            
+            if ((_currentDatabase == null) || makeCurrent) _currentDatabase = newDb;
+
+            bool replacedOpenDatabase = false;
+            for (int i = 0; i < _openDatabases.Count; i++)
             {
-                if ((_currentDatabase == null) || makeCurrent) _currentDatabase = newDb;
-
-                bool replacedOpenDatabase = false;
-                for (int i = 0; i < _openDatabases.Count; i++)
+                if (_openDatabases[i].Ioc.IsSameFileAs(ioConnectionInfo))
                 {
-                    if (_openDatabases[i].Ioc.IsSameFileAs(ioConnectionInfo))
+                    if (_currentDatabase == _openDatabases[i])
                     {
-                        if (_currentDatabase == _openDatabases[i])
-                        {
-                            _currentDatabase = newDb;
-                        }
-
-                        replacedOpenDatabase = true;
-                        _openDatabases[i] = newDb;
-
-                        break;
+                        _currentDatabase = newDb;
                     }
-                }
 
-                if (!replacedOpenDatabase)
+                    replacedOpenDatabase = true;
+                    _openDatabases[i] = newDb;
+
+                    break;
+                }
+            }
+
+            if (!replacedOpenDatabase)
                 {
                     _openDatabases.Add(newDb);
                 }
-            }
 
 
 
@@ -311,26 +306,23 @@ namespace keepass2android
 
 	    public void CloseDatabase(Database db)
 	    {
-            lock (_openDatabasesLock)
+            
+            if (!_openDatabases.Contains(db))
+                throw new Exception("Cannot close database which is not open!");
+            if (_openDatabases.Count == 1)
             {
-				//TODO check that Lock() below works without a deadlock
-                if (!_openDatabases.Contains(db))
-                    throw new Exception("Cannot close database which is not open!");
-                if (_openDatabases.Count == 1)
-                {
-                    Lock(false);
-                    return;
-                }
-
-                if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
-                {
-                    LastOpenedEntry = null;
-                }
-
-                _openDatabases.Remove(db);
-                if (_currentDatabase == db)
-                    _currentDatabase = _openDatabases.First();
+                Lock(false);
+                return;
             }
+
+            if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
+            {
+                LastOpenedEntry = null;
+            }
+
+            _openDatabases.Remove(db);
+            if (_currentDatabase == db)
+                    _currentDatabase = _openDatabases.First();
 
             UpdateOngoingNotification();
             //TODO broadcast event so affected activities can close/update? 
@@ -408,7 +400,7 @@ namespace keepass2android
 
         private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
 	    private readonly List<Database> _openDatabases = new List<Database>();
-		private readonly object _openDatabasesLock = new object();
+		
 	    private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
         private Database _currentDatabase;
 
@@ -416,11 +408,7 @@ namespace keepass2android
 	    {
             get
             {
-                lock (_openDatabasesLock)
-                {
-                    //avoid concurrent access to _openDatabases
-                    return new List<Database>(_openDatabases);
-                }
+                return _openDatabases;
             }
 	    }
 
