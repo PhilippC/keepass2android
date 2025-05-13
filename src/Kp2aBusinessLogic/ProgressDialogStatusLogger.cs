@@ -27,6 +27,20 @@ namespace keepass2android
         void UpdateMessage(UiStringKey stringKey);
     }
 
+    public interface IProgressUi
+    {
+        void Show();
+        void Hide();
+        void UpdateMessage(String message);
+        void UpdateSubMessage(String submessage);
+    }
+
+    public interface IProgressUiProvider
+    {
+        IProgressUi? ProgressUi { get; }
+    }
+
+
     public class Kp2aNullStatusLogger : IKp2aStatusLogger
     {
         public void StartLogging(string strOperation, bool bWriteOperationToLog)

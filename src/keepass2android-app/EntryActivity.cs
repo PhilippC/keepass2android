@@ -56,6 +56,7 @@ using Android.Util;
 using AndroidX.Core.Content;
 using Google.Android.Material.Dialog;
 using keepass2android;
+using keepass2android.views;
 
 namespace keepass2android
 {
@@ -97,7 +98,7 @@ namespace keepass2android
 
 	[Activity (Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
         Theme = "@style/Kp2aTheme_ActionBar")]
-	public class EntryActivity : LockCloseActivity 
+	public class EntryActivity : LockCloseActivity, IProgressUiProvider
 	{
 		public const String KeyEntry = "entry";
         public const String KeyRefreshPos = "refresh_pos";
@@ -1603,5 +1604,7 @@ namespace keepass2android
 			imageViewerIntent.PutExtra("EntryKey", key);
 			StartActivity(imageViewerIntent);
 		}
-	}
+
+        public IProgressUi? ProgressUi => FindViewById<BackgroundOperationContainer>(Resource.Id.background_ops_container);
+    }
 }

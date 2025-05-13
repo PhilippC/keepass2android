@@ -43,11 +43,12 @@ using keepass2android;
 using KeeTrayTOTP.Libraries;
 using AndroidX.AppCompat.Widget;
 using Google.Android.Material.Dialog;
+using keepass2android.views;
 using SearchView = AndroidX.AppCompat.Widget.SearchView;
 
 namespace keepass2android
 {
-    public abstract class GroupBaseActivity : LockCloseActivity
+    public abstract class GroupBaseActivity : LockCloseActivity, IProgressUiProvider
     {
         public const String KeyEntry = "entry";
         public const String KeyMode = "mode";
@@ -1407,6 +1408,14 @@ namespace keepass2android
         public void EditGroup(PwGroup pwGroup)
         {
             GroupEditActivity.Launch(this, pwGroup.ParentGroup, pwGroup);
+        }
+
+        public IProgressUi ProgressUi
+        {
+            get
+            {
+                return FindViewById<BackgroundOperationContainer>(Resource.Id.background_ops_container);
+            }
         }
     }
 

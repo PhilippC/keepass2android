@@ -4,18 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+    
+    
+    
+    
+  <keepass2android.views.BackgroundOperationContainer
+    android:visibility="gone"
+    android:id="@+id/background_ops_container"
+    android:layout_below="@id/top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+  />
+    
     <ScrollView
         android:id="@+id/entry_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="true"
         android:background="?android:attr/colorBackground"
         android:scrollbarStyle="insideOverlay">
+        
         <keepass2android.view.EntryContentsView
             android:id="@+id/entry_contents"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent" />
     </ScrollView>
+    </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/entry_edit"
         android:layout_width="wrap_content"

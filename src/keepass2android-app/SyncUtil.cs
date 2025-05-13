@@ -1,5 +1,6 @@
 using System;
 using Android.App;
+using Android.OS;
 using Android.Widget;
 using keepass2android.Io;
 using KeePassLib.Serialization;
@@ -56,17 +57,17 @@ namespace keepass2android
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(_activity, (success, message, activity) =>
             {
                 if (!String.IsNullOrEmpty(message))
-                    App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                    App.Kp2a.ShowMessage(activity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
 
                 // Tell the adapter to refresh it's list
-                BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter;
-                adapter?.NotifyDataSetChanged();
+                BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter; 
+                new Handler(Looper.MainLooper).Post(() => adapter?.NotifyDataSetChanged());
 
                 if (App.Kp2a.CurrentDb?.OtpAuxFileIoc != null)
                 {
                     var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
-                    
-                    //TODO new BackgroundOperationRunner(App.Kp2a, activity, task2).Run(true);
+
+                    BackgroundOperationRunner.Instance.Run(_activity, App.Kp2a, task2);
                 }
                
             });
@@ -82,8 +83,7 @@ namespace keepass2android
                 task = new CheckDatabaseForChanges(_activity, App.Kp2a, onOperationFinishedHandler);
             }
 
-            //TODO var backgroundTaskRunner = new BackgroundOperationRunner(App.Kp2a, _activity, task);
-            //TODO backgroundTaskRunner.Run();
+            BackgroundOperationRunner.Instance.Run(_activity, App.Kp2a, task);
 
         }
     }
