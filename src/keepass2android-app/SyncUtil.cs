@@ -56,12 +56,16 @@ namespace keepass2android
             OperationWithFinishHandler task;
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(_activity, (success, message, activity) =>
             {
-                if (!String.IsNullOrEmpty(message))
-                    App.Kp2a.ShowMessage(activity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
+                new Handler(Looper.MainLooper).Post(() =>
+                {
+                    if (!String.IsNullOrEmpty(message))
+                        App.Kp2a.ShowMessage(activity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
 
-                // Tell the adapter to refresh it's list
-                BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter; 
-                new Handler(Looper.MainLooper).Post(() => adapter?.NotifyDataSetChanged());
+                    // Tell the adapter to refresh it's list
+                    BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter;
+
+                    adapter?.NotifyDataSetChanged();
+                });
 
                 if (App.Kp2a.CurrentDb?.OtpAuxFileIoc != null)
                 {

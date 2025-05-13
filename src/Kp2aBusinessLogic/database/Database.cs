@@ -194,9 +194,9 @@ namespace keepass2android
 		}
 
 
-		public void SaveData()  {
+		public void SaveData(IFileStorage fileStorage)  {
             
-			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+			using (IWriteTransaction trans = fileStorage.OpenWriteTransaction(Ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 			{
 				DatabaseFormat.Save(KpDatabase, trans.OpenFile());
 				

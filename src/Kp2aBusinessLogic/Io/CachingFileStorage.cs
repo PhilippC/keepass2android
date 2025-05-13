@@ -186,8 +186,11 @@ namespace keepass2android.Io
                 Kp2aLog.Log("couldn't open from remote " + ioc.Path);
 #endif
 				Kp2aLog.Log(ex.ToString());
-
-				_cacheSupervisor.CouldntOpenFromRemote(ioc, ex);
+                if (TriggerWarningWhenFallingBackToCache)
+                {
+                    _cacheSupervisor.CouldntOpenFromRemote(ioc, ex);
+                }
+				
 				return File.OpenRead(cachedFilePath);
 			}
 		}
@@ -327,7 +330,10 @@ namespace keepass2android.Io
 				Kp2aLog.Log("couldn't save to remote " + ioc.Path);
 				Kp2aLog.Log(e.ToString());
 				//notify the supervisor so it might display a warning or schedule a retry
-				_cacheSupervisor.CouldntSaveToRemote(ioc, e);
+                if (TriggerWarningWhenFallingBackToCache)
+                {
+                    _cacheSupervisor.CouldntSaveToRemote(ioc, e); }
+				
 				return false;
 			}
 		}
@@ -632,7 +638,9 @@ namespace keepass2android.Io
 			set { _cachedStorage.IsOffline = value; }
 		}
 
-		public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
+        public bool TriggerWarningWhenFallingBackToCache { get; set; }
+
+        public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
 			string[] permissions, Permission[] grantResults)
 		{
 			_cachedStorage.OnRequestPermissionsResult(fileStorageSetupActivity, requestCode, permissions, grantResults);

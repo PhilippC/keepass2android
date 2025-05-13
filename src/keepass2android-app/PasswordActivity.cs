@@ -1753,17 +1753,10 @@ namespace keepass2android
                 cbOfflineMode.Checked =
                     App.Kp2a
                         .OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
-            LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
-            var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
-            if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
-            {
-                offlineModeContainer.Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                offlineModeContainer.Visibility = ViewStates.Gone;
-                App.Kp2a.OfflineMode = false;
-            }
+
+            CheckBox cbSyncInBackground = (CheckBox)FindViewById(Resource.Id.sync_in_background)!;
+            cbSyncInBackground.Checked = App.Kp2a.SyncInBackgroundPreference;
+            UpdateInternalCacheCheckboxesVisibility();
 
 
 
@@ -2039,10 +2032,38 @@ namespace keepass2android
 			{
 				App.Kp2a.OfflineModePreference = App.Kp2a.OfflineMode = args.IsChecked;
 			};
-			
-		}
-			
-		private String LoadKeyProviderStringForIoc(String filename) {
+
+            CheckBox cbSyncInBackground = (CheckBox)FindViewById(Resource.Id.sync_in_background);
+            cbSyncInBackground.CheckedChange += (sender, args) =>
+            {
+                App.Kp2a.SyncInBackgroundPreference = args.IsChecked;
+                UpdateInternalCacheCheckboxesVisibility();
+
+            };
+
+        }
+
+        private void UpdateInternalCacheCheckboxesVisibility()
+        {
+
+            LinearLayout syncInBackgroundContainer = FindViewById<LinearLayout>(Resource.Id.sync_in_background_container)!;
+
+            LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container)!;
+            var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
+            if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
+            {
+                syncInBackgroundContainer.Visibility = ViewStates.Visible;
+                offlineModeContainer.Visibility =
+                    App.Kp2a.SyncInBackgroundPreference ? ViewStates.Gone : ViewStates.Visible;
+            }
+            else
+            {
+                syncInBackgroundContainer.Visibility = offlineModeContainer.Visibility = ViewStates.Gone;
+                App.Kp2a.OfflineMode = false;
+            }
+        }
+
+        private String LoadKeyProviderStringForIoc(String filename) {
 			if ( _rememberKeyfile ) {
 				string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(filename);
 				if (String.IsNullOrEmpty(keyfile))

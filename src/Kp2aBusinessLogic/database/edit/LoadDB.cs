@@ -21,8 +21,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
+using Android.OS;
 using KeePass.Util;
 using keepass2android.database.edit;
+using keepass2android.Io;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
@@ -47,8 +49,6 @@ namespace keepass2android
 			_keyfileOrProvider = keyfileOrProvider;
 		    _updateLastUsageTimestamp = updateLastUsageTimestamp;
 		    _makeCurrent = makeCurrent;
-
-
 		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
 		}
 
@@ -65,16 +65,31 @@ namespace keepass2android
                     //make sure the file data is stored in the recent files list even if loading fails
 				    SaveFileData(_ioc, _keyfileOrProvider);
 
+                    var fileStorage = _app.GetFileStorage(_ioc);
+
+                    bool requiresSubsequentSync = false;
+
 
                     StatusLogger.UpdateMessage(UiStringKey.loading_database);
 					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
 					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
 					MemoryStream databaseStream;
-					if (preloadedMemoryStream != null)
-						databaseStream = preloadedMemoryStream;
-					else
+                    if (preloadedMemoryStream != null)
+                    {
+						//note: if the stream has been loaded already, we don't need to trigger another sync later on
+                        databaseStream = preloadedMemoryStream;
+                    }
+                    else
 					{
-						using (Stream s = _app.GetFileStorage(_ioc).OpenFileForRead(_ioc))
+                        if (_app.SyncInBackgroundPreference && fileStorage is IOfflineSwitchable offlineSwitchable)
+                        {
+                            offlineSwitchable.IsOffline = true;
+							//no warning. We'll trigger a sync later.
+                            offlineSwitchable.TriggerWarningWhenFallingBackToCache = false;
+                            requiresSubsequentSync = true;
+
+                        }
+                        using (Stream s = fileStorage.OpenFileForRead(_ioc))
 						{
 							databaseStream = new MemoryStream();
 							s.CopyTo(databaseStream);
@@ -83,8 +98,8 @@ namespace keepass2android
 					}
 
 					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-					_format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(_app.GetFileStorage(_ioc).GetFileExtension(_ioc)));
-					TryLoad(databaseStream);
+					_format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(fileStorage.GetFileExtension(_ioc)));
+					TryLoad(databaseStream, requiresSubsequentSync);
 
 
 
@@ -136,7 +151,7 @@ namespace keepass2android
 		/// </summary>
 		public Exception Exception { get; set; }
 
-		Database TryLoad(MemoryStream databaseStream)
+		Database TryLoad(MemoryStream databaseStream, bool requiresSubsequentSync)
 		{
 			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
 			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
@@ -150,7 +165,20 @@ namespace keepass2android
 			try
 			{
                 Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent);
-				Kp2aLog.Log("LoadDB OK");
+                Kp2aLog.Log("LoadDB OK");
+                
+                if (requiresSubsequentSync)
+                {
+                    var syncTask = new SynchronizeCachedDatabase(ActiveActivity, _app, new ActionOnOperationFinished(ActiveActivity,
+                        (success, message, activeActivity) =>
+                        {
+                            if (!String.IsNullOrEmpty(message))
+                                _app.ShowMessage(activeActivity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
+                          
+                        })  
+                    );
+                    BackgroundOperationRunner.Instance.Run(ActiveActivity, _app, syncTask);
+                }
 
                 Finish(true, _format.SuccessMessage);
 			    return newDb;
@@ -158,7 +186,7 @@ namespace keepass2android
 			catch (OldFormatException)
 			{
 				_format = new KdbDatabaseFormat(_app);
-				return TryLoad(databaseStream);
+				return TryLoad(databaseStream, requiresSubsequentSync);
 			}
 			catch (InvalidCompositeKeyException)
 			{
@@ -170,7 +198,7 @@ namespace keepass2android
 					//retry without password:
 					_compositeKey.RemoveUserKey(passwordKey);
 					//retry:
-					return TryLoad(databaseStream);
+					return TryLoad(databaseStream, requiresSubsequentSync);
 				}
 				else throw;
 			}

@@ -38,6 +38,7 @@ namespace keepass2android
 		private readonly IKp2aApp _app;
 	    private readonly Database _db;
 	    private readonly bool _dontSave;
+		private bool requiresSubsequentSync = false; //if true, we need to sync the file after saving.
 
         /// <summary>
 		/// stream for reading the data from the original file. If this is set to a non-null value, we know we need to sync
@@ -108,13 +109,23 @@ namespace keepass2android
 					IOConnectionInfo ioc = _db.Ioc;
 					IFileStorage fileStorage = _app.GetFileStorage(ioc);
 
-					if (_streamForOrigFile == null)
+                    if (_app.SyncInBackgroundPreference && fileStorage is IOfflineSwitchable offlineSwitchable)
+                    {
+                        offlineSwitchable.IsOffline = true;
+                        //no warning. We'll trigger a sync later.
+                        offlineSwitchable.TriggerWarningWhenFallingBackToCache = false;
+                        requiresSubsequentSync = true;
+
+                    }
+
+
+                    if (_streamForOrigFile == null)
 					{
 						if ((!_app.GetBooleanPreference(PreferenceKey.CheckForFileChangesOnSave))
 							|| (_db.KpDatabase.HashOfFileOnDisk == null)) //first time saving
 						{
 							PerformSaveWithoutCheck(fileStorage, ioc);
-							Finish(true);
+							FinishWithSuccess();
 							return;
 						}	
 					}
@@ -123,9 +134,9 @@ namespace keepass2android
                     bool hasStreamForOrigFile = (_streamForOrigFile != null);
                     bool hasChangeFast = hasStreamForOrigFile ||
                                          fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion);  //first try to use the fast change detection;
-                    bool hasHashChanged = hasChangeFast ||
+                    bool hasHashChanged = !requiresSubsequentSync && (hasChangeFast ||
                                           (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) ==
-                                           FileHashChange.Changed); //if that fails, hash the file and compare:
+                                           FileHashChange.Changed)); //if that fails, hash the file and compare:
 
 					if (hasHashChanged)
 					{
@@ -158,7 +169,7 @@ namespace keepass2android
 								RunInWorkerThread(() =>
 									{
 										PerformSaveWithoutCheck(fileStorage, ioc);
-										Finish(true);
+										FinishWithSuccess();
 									});
 							},
 							//cancel 
@@ -174,7 +185,7 @@ namespace keepass2android
 					else
 					{
 						PerformSaveWithoutCheck(fileStorage, ioc);
-						Finish(true);
+						FinishWithSuccess();
 					}
 
 				}
@@ -194,10 +205,27 @@ namespace keepass2android
 			}
 			else
 			{
-				Finish(true);
+				FinishWithSuccess();
 			}
 			
 		}
+
+        private void FinishWithSuccess()
+        {
+            if (requiresSubsequentSync)
+            {
+                var syncTask = new SynchronizeCachedDatabase(ActiveActivity, _app, new ActionOnOperationFinished(ActiveActivity,
+                    (success, message, activeActivity) =>
+                    {
+                        if (!System.String.IsNullOrEmpty(message))
+                            _app.ShowMessage(activeActivity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
+
+                    })
+                );
+                BackgroundOperationRunner.Instance.Run(ActiveActivity, _app, syncTask);
+            }
+            Finish(true);
+        }
 
         private void MergeAndFinish(IFileStorage fileStorage, IOConnectionInfo ioc)
         {
@@ -207,7 +235,7 @@ namespace keepass2android
             MergeIn(fileStorage, ioc);
             PerformSaveWithoutCheck(fileStorage, ioc);
             _db.UpdateGlobals();
-            Finish(true);
+            FinishWithSuccess();
         }
 
         private void RunInWorkerThread(Action runHandler)
@@ -282,7 +310,7 @@ namespace keepass2android
 		private void PerformSaveWithoutCheck(IFileStorage fileStorage, IOConnectionInfo ioc)
 		{
 			StatusLogger.UpdateSubMessage("");
-			_db.SaveData();
+			_db.SaveData(fileStorage);
 			_db.LastFileVersion = fileStorage.GetCurrentFileVersionFast(ioc);
 		}
 

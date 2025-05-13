@@ -798,9 +798,14 @@ namespace keepass2android
 					fileStorage = innerFileStorage;
 				}
 			}
-			if (fileStorage is IOfflineSwitchable)
+			if (fileStorage is IOfflineSwitchable switchable)
 			{
-				((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+				switchable.IsOffline = App.Kp2a.OfflineMode;
+                if (switchable.IsOffline)
+                {
+					//users of the file storage can set this to false, but the default is to show a warning:
+                    switchable.TriggerWarningWhenFallingBackToCache = true;
+                }
 			}
 			return fileStorage;
 		}
@@ -1151,10 +1156,28 @@ namespace keepass2android
 			}
 		}
 
-		/// <summary>
-		/// true if the app is used in offline mode
-		/// </summary>
-		public bool OfflineMode
+
+        public bool SyncInBackgroundPreference
+        {
+            get
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.SyncOfflineCacheInBackground_key), false);
+            }
+            set
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                ISharedPreferencesEditor edit = prefs.Edit();
+                edit.PutBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.SyncOfflineCacheInBackground_key), value);
+                edit.Commit();
+
+            }
+        }
+
+        /// <summary>
+        /// true if the app is used in offline mode
+        /// </summary>
+        public bool OfflineMode
 		{
 			get; set;
 		}
