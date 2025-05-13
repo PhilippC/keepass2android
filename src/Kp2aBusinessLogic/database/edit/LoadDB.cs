@@ -81,11 +81,12 @@ namespace keepass2android
                     }
                     else
 					{
-                        if (_app.SyncInBackgroundPreference && fileStorage is IOfflineSwitchable offlineSwitchable)
+                        if (_app.SyncInBackgroundPreference && fileStorage is CachingFileStorage cachingFileStorage &&
+                            cachingFileStorage.IsCached(_ioc))
                         {
-                            offlineSwitchable.IsOffline = true;
-							//no warning. We'll trigger a sync later.
-                            offlineSwitchable.TriggerWarningWhenFallingBackToCache = false;
+                            cachingFileStorage.IsOffline = true;
+                            //no warning. We'll trigger a sync later.
+                            cachingFileStorage.TriggerWarningWhenFallingBackToCache = false;
                             requiresSubsequentSync = true;
 
                         }
