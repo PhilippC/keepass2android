@@ -213,10 +213,9 @@ namespace keepass2android
 			}
 
 			// Create the new database
-			CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, this), false, newKey, makeCurrent);
+			CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, App.Kp2a, this), false, newKey, makeCurrent);
 			BlockingOperationRunner createTask = new BlockingOperationRunner(
-				App.Kp2a,
-				this, create);
+				App.Kp2a, create);
 			createTask.Run();
 		}
 
@@ -403,14 +402,14 @@ namespace keepass2android
 
 		private class LaunchGroupActivity : FileOnFinish
 		{
-			readonly CreateDatabaseActivity _activity;
 			private readonly IOConnectionInfo _ioc;
+            private readonly CreateDatabaseActivity _activity;
 
-			public LaunchGroupActivity(IOConnectionInfo ioc, CreateDatabaseActivity activity)
-				: base(activity, null)
+            public LaunchGroupActivity(IOConnectionInfo ioc, IKp2aApp app, CreateDatabaseActivity activity)
+				: base(app, null)
 			{
-				_activity = activity;
-				_ioc = ioc;
+                _activity = activity;
+                _ioc = ioc;
 			}
 
 			public override void Run()
@@ -420,7 +419,7 @@ namespace keepass2android
 					// Update the ongoing notification
 					App.Kp2a.UpdateOngoingNotification();
 
-					if (PreferenceManager.GetDefaultSharedPreferences(_activity).GetBoolean(_activity.GetString(Resource.String.RememberRecentFiles_key), _activity.Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default))) 
+					if (PreferenceManager.GetDefaultSharedPreferences(App.Context).GetBoolean(App.Context.GetString(Resource.String.RememberRecentFiles_key), App.Context.Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default))) 
 					{
 						// Add to recent files
 						FileDbHelper dbHelper = App.Kp2a.FileDbHelper;

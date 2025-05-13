@@ -14,14 +14,12 @@ namespace keepass2android.database.edit
 	{
 		private readonly List<IStructureItem> _elementsToMove;
 		private readonly PwGroup _targetGroup;
-		private readonly Activity _ctx;
-		private readonly IKp2aApp _app;
+        private readonly IKp2aApp _app;
 
-		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup, Activity ctx, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(ctx, operationFinishedHandler)
+		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup,IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
 		{
 			_elementsToMove = elementsToMove;
 			_targetGroup = targetGroup;
-			_ctx = ctx;
 			_app = app;
 		}
 
@@ -133,14 +131,14 @@ namespace keepass2android.database.edit
 		            operationFinishedHandler.Run();
 		            return;
 		        }
-		        SaveDb saveDb = new SaveDb(_ctx, _app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(activeActivity, ContinueSave), false);
+		        SaveDb saveDb = new SaveDb( _app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false);
 		        saveDb.SetStatusLogger(StatusLogger);
 		        saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
 		        saveDb.Run();
 		    }
 
 
-		    SaveDb save = new SaveDb(_ctx, _app, allDatabasesToSave[0], new ActionOnOperationFinished(ActiveContext, ContinueSave), false);
+		    SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false);
             save.SetStatusLogger(StatusLogger);
 		    save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
             save.Run();

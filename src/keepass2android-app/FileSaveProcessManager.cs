@@ -103,7 +103,7 @@ namespace keepass2android
                         }
                         else
                         {
-                            var task = new CreateNewFilename(_activity, new ActionOnOperationFinished(_activity, (success, messageOrFilename, activity) =>
+                            var task = new CreateNewFilename(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, messageOrFilename, activity) =>
                             {
                                 if (!success)
                                 {
@@ -115,7 +115,7 @@ namespace keepass2android
 
                             }), filename);
 
-                            new BlockingOperationRunner(App.Kp2a, _activity, task).Run();
+                            new BlockingOperationRunner(App.Kp2a, task).Run();
                         }
 
                         return true;

@@ -30,22 +30,20 @@ namespace keepass2android
 		private readonly IKp2aApp _app;
 		private readonly PwEntry _entry;
 		private readonly PwGroup _parentGroup;
-		private readonly Activity _ctx;
 	    private readonly Database _db;
 
-	    public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler, Database db) {
+	    public static AddEntry GetInstance(IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler, Database db) {
 
-			return new AddEntry(ctx, db, app, entry, parentGroup, operationFinishedHandler);
+			return new AddEntry(db, app, entry, parentGroup, operationFinishedHandler);
 		}
 		
-		public AddEntry(Activity ctx, Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler):base(ctx, operationFinishedHandler) {
-			_ctx = ctx;
+		public AddEntry(Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler):base(app, operationFinishedHandler) {
 		    _db = db;
 		    _parentGroup = parentGroup;
 			_app = app;
 			_entry = entry;
 			
-			_operationFinishedHandler = new AfterAdd(ctx, app.CurrentDb, entry, app,operationFinishedHandler);
+			_operationFinishedHandler = new AfterAdd(app.CurrentDb, entry, app,operationFinishedHandler);
 		}
 		
 		
@@ -65,7 +63,7 @@ namespace keepass2android
 		    _db.Elements.Add(_entry);
 
             // Commit to disk
-            SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, operationFinishedHandler);
+            SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
@@ -75,7 +73,7 @@ namespace keepass2android
 			private readonly PwEntry _entry;
 		    private readonly IKp2aApp _app;
 
-		    public AfterAdd(Activity activity, Database db, PwEntry entry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler):base(activity, operationFinishedHandler) {
+		    public AfterAdd( Database db, PwEntry entry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler):base(app, operationFinishedHandler) {
 				_db = db;
 				_entry = entry;
 		        _app = app;

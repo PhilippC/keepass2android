@@ -76,13 +76,13 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnOperationFinished(_activity, (success, message, activity) =>
+            var task = new EntryActivity.WriteBinaryTask(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
                 {
                     if (!success)
                         App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                 }
             ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, task);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, task);
             pt.Run();
 
         }
@@ -482,8 +482,8 @@ namespace keepass2android
 				Entry.Expires = true;
 				Entry.Touch(true);
 				RequiresRefresh();
-				UpdateEntry update = new UpdateEntry(this, App.Kp2a, backupEntry, Entry, null);
-				BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, update);
+				UpdateEntry update = new UpdateEntry(App.Kp2a, backupEntry, Entry, null);
+				BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, update);
 				pt.Run();
 			}
 			FillData();
@@ -526,7 +526,7 @@ namespace keepass2android
                 App.Kp2a.DirtyGroups.Add(parent);
             }
 
-			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnOperationFinished(this, (success, message, context) =>
+			var saveTask = new SaveDb( App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
             {
 				if (context is Activity activity)
                 {
@@ -536,7 +536,7 @@ namespace keepass2android
                 
             }));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, saveTask);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, saveTask);
             pt.Run();
 		}
 
@@ -1271,7 +1271,7 @@ namespace keepass2android
 	        private readonly ProtectedBinary _data;
 	        private IOConnectionInfo _targetIoc;
 
-	        public WriteBinaryTask(Activity activity, IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, ProtectedBinary data, IOConnectionInfo targetIoc) : base(activity, onOperationFinishedHandler)
+	        public WriteBinaryTask(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, ProtectedBinary data, IOConnectionInfo targetIoc) : base(app, onOperationFinishedHandler)
 	        {
 	            _app = app;
 	            _data = data;
@@ -1445,8 +1445,8 @@ namespace keepass2android
                     Finish();
                     return true;
 				case Resource.Id.menu_delete:
-                    DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
-                        new ActionOnOperationFinished(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
+                    DeleteEntry task = new DeleteEntry(App.Kp2a, Entry,
+                        new ActionOnOperationFinished(App.Kp2a, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();
                     break;
                 case Resource.Id.menu_toggle_pass:
@@ -1509,16 +1509,16 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, activity) =>
+			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
 			{
 				OnOperationFinishedHandler.DisplayMessage(this, message, true);
 			    finishAction((EntryActivity)activity);
 			});
 
 
-			OperationWithFinishHandler runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
+			OperationWithFinishHandler runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, closeOrShowError);
 
-			BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, runnable);
+			BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, runnable);
 			pt.Run();
 
 		}

@@ -41,7 +41,7 @@ namespace keepass2android
 	/// Interface through which Activities and the logic layer can access some app specific functionalities and Application static data
 	/// </summary>
 	/// This also contains methods which are UI specific and should be replacable for testing.
-	public interface IKp2aApp : ICertificateValidationHandler
+	public interface IKp2aApp : ICertificateValidationHandler, IActiveContextProvider
 	{
         /// <summary>
         /// Locks all currently open databases, quicklocking if available (unless false is passed for allowQuickUnlock)
@@ -96,7 +96,6 @@ namespace keepass2android
 		                    EventHandler<DialogClickEventArgs> yesHandler,
 		                    EventHandler<DialogClickEventArgs> noHandler,
 		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    Context ctx,
                             string messageSuffix = "");
 
 		/// <summary>
@@ -107,7 +106,6 @@ namespace keepass2android
 		                    EventHandler<DialogClickEventArgs> yesHandler,
 		                    EventHandler<DialogClickEventArgs> noHandler,
 		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    Context ctx,
 		                    string messageSuffix = "");
 
         void ShowMessage(Context ctx, int resourceId, MessageSeverity severity);

@@ -30,9 +30,9 @@ namespace keepass2android
 		protected bool DontSave;
 
         public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
-            : base(activity, operationFinishedHandler, app)
+            : base(operationFinishedHandler, app)
         {
-			SetMembers(activity, app, group, false);
+			SetMembers(app, group, false);
 		}
         /*
         public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
@@ -45,9 +45,9 @@ namespace keepass2android
 			SetMembers(ctx, db, group, null, dontSave);
 		}
         */
-        private void SetMembers(Activity activity, IKp2aApp app, PwGroup group, bool dontSave)
+        private void SetMembers(IKp2aApp app, PwGroup group, bool dontSave)
         {
-			base.SetMembers(activity, app.FindDatabaseForElement(group));
+			base.SetMembers(app.FindDatabaseForElement(group));
 
 			_group = group;
 	        DontSave = dontSave;

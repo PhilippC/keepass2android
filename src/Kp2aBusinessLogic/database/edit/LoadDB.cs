@@ -40,7 +40,7 @@ namespace keepass2android
 		private readonly bool _rememberKeyfile;
 		IDatabaseFormat _format;
 		
-		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, bool updateLastUsageTimestamp, bool makeCurrent): base(activity, operationFinishedHandler)
+		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, bool updateLastUsageTimestamp, bool makeCurrent): base(app, operationFinishedHandler)
 		{
 			_app = app;
 			_ioc = ioc;
@@ -169,7 +169,7 @@ namespace keepass2android
                 
                 if (requiresSubsequentSync)
                 {
-                    var syncTask = new SynchronizeCachedDatabase(ActiveContext, _app, new ActionOnOperationFinished(ActiveContext,
+                    var syncTask = new SynchronizeCachedDatabase(_app, new ActionOnOperationFinished(_app,
                         (success, message, activeActivity) =>
                         {
                             if (!String.IsNullOrEmpty(message))
@@ -177,7 +177,7 @@ namespace keepass2android
                           
                         })  
                     );
-                    BackgroundOperationRunner.Instance.Run(ActiveContext, _app, syncTask);
+                    BackgroundOperationRunner.Instance.Run(_app, syncTask);
                 }
 
                 Finish(true, _format.SuccessMessage);

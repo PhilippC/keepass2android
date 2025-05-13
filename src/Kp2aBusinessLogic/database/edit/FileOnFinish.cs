@@ -24,7 +24,7 @@ namespace keepass2android
 	public abstract class FileOnFinish : OnOperationFinishedHandler {
 		private String _filename = "";
 
-		protected FileOnFinish(Activity activity, FileOnFinish operationFinishedHandler):base(activity, operationFinishedHandler) {
+		protected FileOnFinish(IKp2aApp app, FileOnFinish operationFinishedHandler):base(app, operationFinishedHandler) {
 		}
 
 		public string Filename

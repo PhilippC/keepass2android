@@ -8,8 +8,8 @@ namespace keepass2android
 {
 	public abstract class DeleteRunnable : OperationWithFinishHandler
 	{
-		protected DeleteRunnable(Activity activity, OnOperationFinishedHandler operationFinishedHandler, IKp2aApp app)
-			: base(activity, operationFinishedHandler)
+		protected DeleteRunnable(OnOperationFinishedHandler operationFinishedHandler, IKp2aApp app)
+			: base(app, operationFinishedHandler)
 		{
 			App = app;
 		}
@@ -18,11 +18,10 @@ namespace keepass2android
 
 		protected Database Db;
 
-		protected Activity Ctx;
+		
 
-		protected void SetMembers(Activity activity, Database db)
+		protected void SetMembers( Database db)
 		{
-			Ctx = activity;
 			Db = db;
 		}
 
@@ -131,18 +130,18 @@ namespace keepass2android
 					(dlgSender, dlgEvt) =>
 					{
 					    DeletePermanently = true;
-					    BlockingOperationRunner pt = new BlockingOperationRunner(App, Ctx, this);
+					    BlockingOperationRunner pt = new BlockingOperationRunner(App, this);
 					    pt.Run();
 
 					},
 				(dlgSender, dlgEvt) =>
 				{
 				    DeletePermanently = false;
-				    BlockingOperationRunner pt = new BlockingOperationRunner(App, Ctx, this);
+				    BlockingOperationRunner pt = new BlockingOperationRunner(App, this);
 				    pt.Run();
 				},
 				(dlgSender, dlgEvt) => { },
-				Ctx, messageSuffix);
+				messageSuffix);
 
 
 
@@ -153,12 +152,12 @@ namespace keepass2android
 					QuestionNoRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
-					    BlockingOperationRunner pt = new BlockingOperationRunner(App, Ctx, this);
+					    BlockingOperationRunner pt = new BlockingOperationRunner(App, this);
 					    pt.Run();
 					},
 				null,
 				(dlgSender, dlgEvt) => { },
-				Ctx, messageSuffix);
+				 messageSuffix);
 
 				
 			}
@@ -215,7 +214,7 @@ namespace keepass2android
 			Android.Util.Log.Debug("KP2A", "Calling PerformDelete..");
 			PerformDelete(touchedGroups, permanentlyDeletedGroups);
 
-			_operationFinishedHandler = new ActionOnOperationFinished(ActiveContext,(success, message, activity) =>
+			_operationFinishedHandler = new ActionOnOperationFinished(App,(success, message, activity) =>
 			{
 				if (success)
 				{
@@ -239,7 +238,7 @@ namespace keepass2android
 			}, operationFinishedHandler);
 
 			// Commit database
-			SaveDb save = new SaveDb(Ctx, App, Db, operationFinishedHandler, false);
+			SaveDb save = new SaveDb( App, Db, operationFinishedHandler, false);
 		    save.ShowDatabaseIocInStatus = ShowDatabaseIocInStatus;
 
             save.SetStatusLogger(StatusLogger);

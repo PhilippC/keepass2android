@@ -223,8 +223,8 @@ namespace keepass2android
 							(o, args) =>
 							{
 								//yes
-								BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this,
-									new AddTemplateEntries(this, App.Kp2a, new ActionOnOperationFinished(this,
+								BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, 
+									new AddTemplateEntries(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
 									    (success, message, activity) => ((GroupActivity)activity)?.StartAddEntry())));
 								pt.Run();		
 							},
@@ -235,7 +235,7 @@ namespace keepass2android
 								edit.Commit();
 								//no 
 								StartAddEntry();
-							},null, this);
+							},null);
 						
 					}
 					else

@@ -228,9 +228,9 @@ namespace keepass2android
             newEntry.SetUuid(new PwUuid(true), true); // Create new UUID
             string strTitle = newEntry.Strings.ReadSafe(PwDefs.TitleField);
             newEntry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, strTitle + " (" + Android.OS.Build.Model + ")"));
-            var addTask = new AddEntry(this, App.Kp2a.CurrentDb, App.Kp2a, newEntry,item.Entry.ParentGroup,new ActionOnOperationFinished(this, (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
+            var addTask = new AddEntry( App.Kp2a.CurrentDb, App.Kp2a, newEntry,item.Entry.ParentGroup,new ActionOnOperationFinished(App.Kp2a,  (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, addTask);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a,  addTask);
             pt.Run();
 
         }
@@ -260,9 +260,9 @@ namespace keepass2android
 
         private void Save(AutoExecItem item)
         {
-            var addTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(item.Entry), new ActionOnOperationFinished(this, (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
+            var addTask = new SaveDb(App.Kp2a, App.Kp2a.FindDatabaseForElement(item.Entry), new ActionOnOperationFinished(App.Kp2a, (success, message, activity) => ((ConfigureChildDatabasesActivity)activity).Update()));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, addTask);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a,  addTask);
             pt.Run();
         }
 
@@ -343,7 +343,7 @@ namespace keepass2android
             }
             if (autoOpenGroup == null)
             {
-                AddGroup addGroupTask = AddGroup.GetInstance(this, App.Kp2a, "AutoOpen", 1, null, rootGroup, null, true);
+                AddGroup addGroupTask = AddGroup.GetInstance(App.Kp2a, "AutoOpen", 1, null, rootGroup, null, true);
                 addGroupTask.Run();
                 autoOpenGroup = addGroupTask.Group;
             }
@@ -367,9 +367,9 @@ namespace keepass2android
                         {KeeAutoExecExt.ThisDeviceId, true}
                     })));
 
-            var addTask = new AddEntry(this, db, App.Kp2a, newEntry, autoOpenGroup, new ActionOnOperationFinished(this, (success, message, activity) => (activity as ConfigureChildDatabasesActivity)?.Update()));
+            var addTask = new AddEntry( db, App.Kp2a, newEntry, autoOpenGroup, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) => (activity as ConfigureChildDatabasesActivity)?.Update()));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, addTask);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, addTask);
             pt.Run();
         }
 

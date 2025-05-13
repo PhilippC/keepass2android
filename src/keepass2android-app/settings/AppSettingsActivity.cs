@@ -117,7 +117,7 @@ namespace keepass2android
                         var previousUsername = db.KpDatabase.DefaultUserName;
                         db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 
-                        SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(Activity, (success, message, activity) =>
+                        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
                         {
                             if (!success)
                             {
@@ -126,7 +126,7 @@ namespace keepass2android
                                 App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                             }
                         }));
-                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
+                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
                         pt.Run();
                     };
                 }
@@ -144,8 +144,8 @@ namespace keepass2android
                 {
                     pref.PreferenceClick += (sender, args) =>
                     {
-                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity,
-                                        new AddTemplateEntries(Activity, App.Kp2a, new ActionOnOperationFinished(Activity,
+                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, 
+                                        new AddTemplateEntries(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
                                             delegate
                                             {
                                                 pref.Enabled = false;
@@ -183,7 +183,7 @@ namespace keepass2android
                         String previousName = db.KpDatabase.Name;
                         db.KpDatabase.Name = e.NewValue.ToString();
 
-                        SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(Activity, (success, message, activity) =>
+                        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
                         {
                             if (!success)
                             {
@@ -197,7 +197,7 @@ namespace keepass2android
                                 App.Kp2a.UpdateOngoingNotification();
                             }
                         }));
-                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
+                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
                         pt.Run();
                     };
                 }
@@ -410,7 +410,7 @@ namespace keepass2android
                 var previousCipher = db.KpDatabase.DataCipherUuid;
                 db.KpDatabase.DataCipherUuid = new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue));
 
-                SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(Activity, (success, message, activity) =>
+                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
                 {
                     if (!success)
                     {
@@ -421,7 +421,7 @@ namespace keepass2android
                     preferenceChangeEventArgs.Preference.Summary =
                         CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;
                 }));
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
+                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
                 pt.Run();
             }
 
@@ -1071,7 +1071,7 @@ namespace keepass2android
 
                 Kp2aLog.Log("--new    kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString());
 
-                SaveDb save = new SaveDb(Activity, App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(Activity, (success, message, activity) =>
+                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
                 {
                     if (!success)
                     {
@@ -1082,7 +1082,7 @@ namespace keepass2android
                     UpdateKdfScreen();
 
                 }));
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, save);
+                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
                 pt.Run();
 
             }

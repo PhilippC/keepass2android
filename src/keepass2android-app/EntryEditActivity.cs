@@ -521,7 +521,7 @@ namespace keepass2android
 			
 			OperationWithFinishHandler runnable;
 
-			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, context) => {
+			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(App.Kp2a, (success, message, context) => {
 				if (success)
 				{
                     (context as Activity)?.Finish();
@@ -536,18 +536,18 @@ namespace keepass2android
 			closeOrShowError.AllowInactiveActivity = true;
 			
 
-			ActionOnOperationFinished afterAddEntry = new ActionOnOperationFinished(this, (success, message, activity) => 
+			ActionOnOperationFinished afterAddEntry = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) => 
 			{
 				if (success && activity is EntryEditActivity entryEditActivity)
 					AppTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 
 			if ( State.IsNew ) {
-				runnable = AddEntry.GetInstance(this, App.Kp2a, newEntry, State.ParentGroup, afterAddEntry, db);
+				runnable = AddEntry.GetInstance(App.Kp2a, newEntry, State.ParentGroup, afterAddEntry, db);
 			} else {
-				runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
+				runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, act, runnable);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, runnable);
 			pt.Run();
 			
 

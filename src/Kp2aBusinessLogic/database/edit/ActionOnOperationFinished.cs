@@ -28,12 +28,12 @@ namespace keepass2android
 
 		readonly ActionToPerformOnFinsh _actionToPerform;
 
-		public ActionOnOperationFinished(Context context, ActionToPerformOnFinsh actionToPerform) : base(context, null, null)
+		public ActionOnOperationFinished(IKp2aApp app, ActionToPerformOnFinsh actionToPerform) : base(app, null, null)
 		{
 			_actionToPerform = actionToPerform;
 		}
 
-		public ActionOnOperationFinished(Context context, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(context, operationFinishedHandler)
+		public ActionOnOperationFinished(IKp2aApp app, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
 		{
 			_actionToPerform = actionToPerform;
 		}
@@ -50,7 +50,7 @@ namespace keepass2android
 				Handler.Post(() => {_actionToPerform(Success, Message, ActiveContext);});
 			}
 			else
-				_actionToPerform(Success, Message, AllowInactiveActivity ? (ActiveContext ?? PreviouslyActiveContext) :  ActiveContext);
+				_actionToPerform(Success, Message, ActiveContext);
 			base.Run();
 		}
 	}

@@ -26,16 +26,16 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var exportDb = new ExportDatabaseActivity.ExportDb(_activity, App.Kp2a, new ActionOnOperationFinished(_activity, (success, message, context) =>
+            var exportDb = new ExportDatabaseActivity.ExportDb(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
                     if (!success)
-                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
                     else
-                        App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_database_successful),  MessageSeverity.Info);
+                        App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_database_successful), MessageSeverity.Info);
                     (context as Activity)?.Finish();
                 }
             ), _ffp, ioc);
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, exportDb);
+            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, exportDb);
             pt.Run();
 
         }
@@ -99,7 +99,7 @@ namespace keepass2android
 			private readonly FileFormatProvider _fileFormat;
 			private IOConnectionInfo _targetIoc;
 
-			public ExportDb(Activity activity, IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(activity, onOperationFinishedHandler)
+			public ExportDb(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(app, onOperationFinishedHandler)
 			{
 				_app = app;
 				this._fileFormat = fileFormat;

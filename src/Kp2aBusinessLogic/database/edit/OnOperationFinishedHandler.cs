@@ -26,6 +26,11 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
+    public interface IActiveContextProvider
+    {
+        Context ActiveContext { get; }
+    }
+
 	public abstract class OnOperationFinishedHandler
 	{
 		protected bool Success;
@@ -38,62 +43,40 @@ namespace keepass2android
 	        set;
 	    }
 
+        protected Context ActiveContext
+        {
+            get
+            {
+                return _activeContextProvider?.ActiveContext;
+            }
+        }
+
         protected OnOperationFinishedHandler NextOnOperationFinishedHandler;
 		protected Handler Handler;
 		private IKp2aStatusLogger _statusLogger = new Kp2aNullStatusLogger(); //default: no logging but not null -> can be used whenever desired
-	    private Context _activeContext, _previouslyActiveContext;
+        private readonly IActiveContextProvider _activeContextProvider;
 
-
-	    public IKp2aStatusLogger StatusLogger
+		public IKp2aStatusLogger StatusLogger
 		{
 			get { return _statusLogger; }
 			set { _statusLogger = value; }
-		}
-
-	    public Context ActiveContext
-	    {
-	        get { return _activeContext; }
-	        set
-	        {
-                if (_activeContext != null && _activeContext != _previouslyActiveContext)
-                {
-                    _previouslyActiveContext = _activeContext;
-
-                }
-				_activeContext = value;
-	            if (NextOnOperationFinishedHandler != null)
-	            {
-	                NextOnOperationFinishedHandler.ActiveContext = value;
-	            }
-	        }
-	    }
-
-        public Context PreviouslyActiveContext
+		}		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, Handler handler)
         {
-            get { return _previouslyActiveContext; }
-
-        }
-
-
-
-		protected OnOperationFinishedHandler(Context activeContext, Handler handler)
-	    {
-	        ActiveContext = activeContext;
+            _activeContextProvider = activeContextProvider;
 			NextOnOperationFinishedHandler = null;
 			Handler = handler;
-			
 		}
 
-		protected OnOperationFinishedHandler(Context activeContext, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
+		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
 		{
-		    ActiveContext = activeContext;
+		    _activeContextProvider = activeContextProvider;
 			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = handler;
 		}
 
-		protected OnOperationFinishedHandler(Context activeContext, OnOperationFinishedHandler operationFinishedHandler)
-		{
-		    ActiveContext = activeContext;
+		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler)
+        {
+            _activeContextProvider = activeContextProvider;
 			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = null;
 		}
@@ -152,4 +135,5 @@ namespace keepass2android
 		}
 	}
 }
+
 

@@ -130,13 +130,11 @@ namespace keepass2android
 		}
 
 		private readonly IKp2aApp _app;
-		private readonly Activity _ctx;
-		
-		public AddTemplateEntries(Activity ctx, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
-			: base(ctx, operationFinishedHandler)
+
+        public AddTemplateEntries(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
+			: base(app, operationFinishedHandler)
 		{
-			_ctx = ctx;
-			_app = app;
+            _app = app;
 			
 			//_operationFinishedHandler = new AfterAdd(this, operationFinishedHandler);
 		}
@@ -313,7 +311,7 @@ namespace keepass2android
 				_app.DirtyGroups.Add(templateGroup);
 
 				// Commit to disk
-				SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, operationFinishedHandler);
+				SaveDb save = new SaveDb( _app, _app.CurrentDb, operationFinishedHandler);
 				save.SetStatusLogger(StatusLogger);
 				save.Run();
 			}
@@ -373,7 +371,7 @@ namespace keepass2android
 			private readonly Database _db;
 			private readonly List<PwEntry> _entries;
 
-			public AfterAdd(Activity activity, Database db, List<PwEntry> entries, OnOperationFinishedHandler operationFinishedHandler):base(activity, operationFinishedHandler) {
+			public AfterAdd(IKp2aApp app, Database db, List<PwEntry> entries, OnOperationFinishedHandler operationFinishedHandler):base(app, operationFinishedHandler) {
 				_db = db;
 				_entries = entries;
 

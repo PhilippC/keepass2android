@@ -51,7 +51,8 @@ namespace keepass2android.services
                 _cts = new CancellationTokenSource();
                 CreateNotificationChannel();
                 StartForeground(NotificationId, BuildNotification());
-                BackgroundOperationRunner.Instance.SetNewActiveContext(this, App.Kp2a);
+                App.Kp2a.ActiveContext = this;
+                BackgroundOperationRunner.Instance.SetNewActiveContext(App.Kp2a);
                 return StartCommandResult.Sticky;
             }
             catch (Exception ex)

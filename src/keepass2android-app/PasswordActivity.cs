@@ -1447,7 +1447,7 @@ namespace keepass2android
 					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
-			    new BlockingOperationRunner(App.Kp2a, this, task).Run();
+			    new BlockingOperationRunner(App.Kp2a, task).Run();
 			}
 			catch (Exception e)
 			{
@@ -1889,7 +1889,7 @@ namespace keepass2android
                 LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
 		            onOperationFinishedHandler, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
-		        new BlockingOperationRunner(App.Kp2a, this, task).Run();
+		        new BlockingOperationRunner(App.Kp2a, task).Run();
 		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
 		    }
@@ -2135,7 +2135,7 @@ namespace keepass2android
 			readonly PasswordActivity _act;
 		    private readonly IOConnectionInfo _ioConnection;
 
-		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(act, handler)
+		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(App.Kp2a, handler)
 		    {
 		        _act = act;
 		        _ioConnection = ioConnection;

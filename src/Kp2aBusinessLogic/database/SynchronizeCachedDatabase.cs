@@ -16,10 +16,9 @@ namespace keepass2android
 		private readonly IKp2aApp _app;
 		private SaveDb _saveDb;
 
-		public SynchronizeCachedDatabase(Context context, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
-			: base(context, operationFinishedHandler)
+		public SynchronizeCachedDatabase(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
+			: base(app, operationFinishedHandler)
 		{
-			_context = context;
 			_app = app;
 		}
 
@@ -39,6 +38,9 @@ namespace keepass2android
 				//download file from remote location and calculate hash:
 				StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.DownloadingRemoteFile));
 				string hash;
+
+				//TODO remove
+                Thread.Sleep(5000);
 				
 				MemoryStream remoteData;
 				try
@@ -58,13 +60,17 @@ namespace keepass2android
 				//check if remote file was modified:
                 var baseVersionHash = cachingFileStorage.GetBaseVersionHash(ioc);
                 Kp2aLog.Log("Checking for file change. baseVersionHash = " + baseVersionHash);
-				if (baseVersionHash != hash)
+				if (baseVersionHash != hash ||
+                    true//TODO remove
+                    )
 				{
 					//remote file is modified
-					if (cachingFileStorage.HasLocalChanges(ioc))
+					if (cachingFileStorage.HasLocalChanges(ioc)
+						|| true //TODO remove
+                        )
 					{
 						//conflict! need to merge
-						_saveDb = new SaveDb(_context, _app, new ActionOnOperationFinished(ActiveContext, (success, result, activity) =>
+						_saveDb = new SaveDb(_app, new ActionOnOperationFinished(_app, (success, result, activity) =>
 							{
 								if (!success)
 								{
@@ -76,6 +82,7 @@ namespace keepass2android
 								}
 								_saveDb = null;
 							}), _app.CurrentDb, false, remoteData);
+                        _saveDb.SyncInBackground = false;
 						_saveDb.Run();
 
                         _app.CurrentDb.UpdateGlobals();

@@ -21,7 +21,7 @@ namespace keepass2android
             private readonly IOConnectionInfo _ioc;
 
             public SyncOtpAuxFile(Activity activity, IOConnectionInfo ioc)
-                : base(activity, null)
+                : base(App.Kp2a, null)
             {
                 _ioc = ioc;
             }
@@ -54,7 +54,7 @@ namespace keepass2android
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
             OperationWithFinishHandler task;
-            OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(_activity, (success, message, activity) =>
+            OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
             {
                 new Handler(Looper.MainLooper).Post(() =>
                 {
@@ -71,7 +71,7 @@ namespace keepass2android
                 {
                     var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
 
-                    BackgroundOperationRunner.Instance.Run(_activity, App.Kp2a, task2);
+                    BackgroundOperationRunner.Instance.Run(App.Kp2a, task2);
                 }
                
             });
@@ -79,15 +79,15 @@ namespace keepass2android
             if (filestorage is CachingFileStorage)
             {
 
-                task = new SynchronizeCachedDatabase(_activity, App.Kp2a, onOperationFinishedHandler);
+                task = new SynchronizeCachedDatabase(App.Kp2a, onOperationFinishedHandler);
             }
             else
             {
                 //TODO do we want this to run in the background?
-                task = new CheckDatabaseForChanges(_activity, App.Kp2a, onOperationFinishedHandler);
+                task = new CheckDatabaseForChanges( App.Kp2a, onOperationFinishedHandler);
             }
 
-            BackgroundOperationRunner.Instance.Run(_activity, App.Kp2a, task);
+            BackgroundOperationRunner.Instance.Run(App.Kp2a, task);
 
         }
     }

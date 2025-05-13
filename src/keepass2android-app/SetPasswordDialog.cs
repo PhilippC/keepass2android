@@ -72,8 +72,8 @@ namespace keepass2android
 					
 				}
 				
-				SetPassword sp = new SetPassword(_activity, App.Kp2a, pass, keyfile, new AfterSave(_activity, this, null, new Handler()));
-				BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, sp);
+				SetPassword sp = new SetPassword(App.Kp2a, pass, keyfile, new AfterSave(_activity, this, null, new Handler()));
+				BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, sp);
 				pt.Run();
 			};
 				
@@ -93,7 +93,7 @@ namespace keepass2android
 
 			readonly SetPasswordDialog _dlg;
 			
-			public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish operationFinishedHandler, Handler handler): base(activity, operationFinishedHandler, handler) {
+			public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish operationFinishedHandler, Handler handler): base(App.Kp2a, operationFinishedHandler, handler) {
 				_operationFinishedHandler = operationFinishedHandler;
 				_dlg = dlg;
 			}

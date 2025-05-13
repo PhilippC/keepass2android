@@ -576,20 +576,19 @@ namespace keepass2android
 			return LocaleManager.LocalizedAppContext.Resources.GetDrawable((int)field.GetValue(null));
 		}
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler, Context ctx, string messageSuffix)
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler,  string messageSuffix)
 		{
 			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
-				yesHandler, noHandler, cancelHandler, ctx, messageSuffix);
+				yesHandler, noHandler, cancelHandler, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
 			UiStringKey yesString, UiStringKey noString,
 			EventHandler<DialogClickEventArgs> yesHandler,
 			EventHandler<DialogClickEventArgs> noHandler,
-			EventHandler<DialogClickEventArgs> cancelHandler,
-			Context ctx, string messageSuffix = "")
+			EventHandler<DialogClickEventArgs> cancelHandler, string messageSuffix = "")
 		{
-			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx, messageSuffix);
+			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
@@ -597,13 +596,12 @@ namespace keepass2android
 			EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
-			EventHandler dismissHandler,
-            Context ctx, string messageSuffix = "")
+			EventHandler dismissHandler,string messageSuffix = "")
         {
 			Handler handler = new Handler(Looper.MainLooper);
 			handler.Post(() =>
 				{
-					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
+					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ActiveContext);
 					builder.SetTitle(GetResourceString(titleKey));
 
 					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
@@ -638,7 +636,7 @@ namespace keepass2android
 							cancelHandler.Invoke(sender, args);
 						};
 
-						cancelText = ctx.GetString(Android.Resource.String.Cancel);
+						cancelText = App.Context.GetString(Android.Resource.String.Cancel);
 						builder.SetNeutralButton(cancelText,
 												 cancelHandlerWithShow);
 					}
@@ -653,9 +651,17 @@ namespace keepass2android
 					}
 
 					OnUserInputDialogShow();
-					dialog.Show();
+                    try
+                    {
+                        dialog.Show();
+                    }
+					catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
 
-					if (yesText.Length + noText.Length + cancelText.Length >= 20)
+
+                    if (yesText.Length + noText.Length + cancelText.Length >= 20)
 					{
 						try
 						{
@@ -1362,6 +1368,8 @@ namespace keepass2android
             }
             
         }
+
+        public Context ActiveContext { get; set; }
     }
 
 
@@ -1432,7 +1440,10 @@ namespace keepass2android
         public void OnAppBackgrounded()
         {
             Kp2aLog.Log("Going to background");
-            BackgroundOperationRunner.Instance.SetNewActiveContext(null, Kp2a);
+            Kp2a.ActiveContext = null;
+            BackgroundOperationRunner.Instance.SetNewActiveContext( Kp2a);
+            
+
         }
 
         [Lifecycle.Event.OnStart]

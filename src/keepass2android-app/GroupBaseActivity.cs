@@ -206,15 +206,15 @@ namespace keepass2android
                 OperationWithFinishHandler task;
                 if (strGroupUuid == null)
                 {
-                    task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, new RefreshTask(handler, this), false);
+                    task = AddGroup.GetInstance(App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, new RefreshTask(handler, this), false);
                 }
                 else
                 {
                     PwUuid groupUuid = new PwUuid(MemUtil.HexStringToByteArray(strGroupUuid));
-                    task = new EditGroup(this, App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
+                    task = new EditGroup(App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
                                          new RefreshTask(handler, this));
                 }
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, act, task);
+                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, task);
                 pt.Run();
             }
 
@@ -925,14 +925,14 @@ namespace keepass2android
 
 
 
-            var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnOperationFinished(this,
+            var moveElement = new MoveElements(elementsToMove.ToList(), Group,  App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
                 (success, message, activity) =>
                 {
                     ((GroupBaseActivity)activity)?.StopMovingElements();
                     if (!String.IsNullOrEmpty(message))
                         App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                 }));
-            var progressTask = new BlockingOperationRunner(App.Kp2a, this, moveElement);
+            var progressTask = new BlockingOperationRunner(App.Kp2a, moveElement);
             progressTask.Run();
 
         }
@@ -1297,7 +1297,7 @@ namespace keepass2android
         public class RefreshTask : OnOperationFinishedHandler
         {
             public RefreshTask(Handler handler, GroupBaseActivity act)
-                : base(act, handler)
+                : base(App.Kp2a, handler)
             {
             }
 
@@ -1316,7 +1316,7 @@ namespace keepass2android
         public class AfterDeleteGroup : OnOperationFinishedHandler
         {
             public AfterDeleteGroup(Handler handler, GroupBaseActivity act)
-                : base(act, handler)
+                : base(App.Kp2a, handler)
             {
             }
 
@@ -1492,10 +1492,10 @@ namespace keepass2android
                     break;
                 case Resource.Id.menu_copy:
 
-                    var copyTask = new CopyEntry((GroupBaseActivity)Activity, App.Kp2a, (PwEntry)checkedItems.First(),
+                    var copyTask = new CopyEntry(App.Kp2a, (PwEntry)checkedItems.First(),
                         new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a.CurrentDb);
 
-                    BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, Activity, copyTask);
+                    BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, copyTask);
                     pt.Run();
                     break;
 
@@ -1684,7 +1684,7 @@ namespace keepass2android
                         return;
                     }
                     new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                        itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(activeActivity, (b, s, activity1) => action(b, s, activity1)), app)
+                        itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, activity1) => action(b, s, activity1)), app)
                         .Start();
                 }
                 else
@@ -1694,7 +1694,7 @@ namespace keepass2android
             };
 
             new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(activity, (b, s, activity1) => action(b, s, activity1)), app)
+                itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, activity1) => action(b, s, activity1)), app)
                 .Start();
         }
 

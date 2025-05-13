@@ -29,24 +29,21 @@ namespace keepass2android
 	public class CreateDb : OperationWithFinishHandler {
 	    private readonly IOConnectionInfo _ioc;
 		private readonly bool _dontSave;
-		private readonly Activity _ctx;
         private readonly IKp2aApp _app;
 		private CompositeKey _key;
 	    private readonly bool _makeCurrent;
 
-	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, bool makeCurrent): base(ctx, operationFinishedHandler) {
-			_ctx = ctx;
-			_ioc = ioc;
+	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, bool makeCurrent): base(app, operationFinishedHandler) {
+            _ioc = ioc;
 			_dontSave = dontSave;
 	        _makeCurrent = makeCurrent;
 	        _app = app;
 		}
 
 		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, CompositeKey key, bool makeCurrent)
-			: base(ctx, operationFinishedHandler)
+			: base(app, operationFinishedHandler)
 		{
-			_ctx = ctx;
-			_ioc = ioc;
+            _ioc = ioc;
 			_dontSave = dontSave;
 			_app = app;
 			_key = key;
@@ -77,17 +74,17 @@ namespace keepass2android
 			db.SearchHelper = new SearchDbHelper(_app);
 
 			// Add a couple default groups
-			AddGroup internet = AddGroup.GetInstance(_ctx, _app, "Internet", 1, null, db.KpDatabase.RootGroup, null, true);
+			AddGroup internet = AddGroup.GetInstance(_app, "Internet", 1, null, db.KpDatabase.RootGroup, null, true);
 			internet.Run();
-			AddGroup email = AddGroup.GetInstance(_ctx, _app, "eMail", 19, null, db.KpDatabase.RootGroup, null, true);
+			AddGroup email = AddGroup.GetInstance(_app, "eMail", 19, null, db.KpDatabase.RootGroup, null, true);
 			email.Run();
 
 			List<PwEntry> addedEntries;
-			AddTemplateEntries addTemplates = new AddTemplateEntries(_ctx, _app, null);
+			AddTemplateEntries addTemplates = new AddTemplateEntries(_app, null);
 			addTemplates.AddTemplates(out addedEntries);
 			
 			// Commit changes
-			SaveDb save = new SaveDb(_ctx, _app, db, operationFinishedHandler, _dontSave);
+			SaveDb save = new SaveDb(_app, db, operationFinishedHandler, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			_operationFinishedHandler = null;
 			save.Run();
