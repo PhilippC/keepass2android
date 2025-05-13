@@ -105,7 +105,7 @@ namespace keepass2android
         protected override void OnStart()
         {
             BlockingOperationRunner.SetNewActiveActivity(this);
-            BackgroundOperationRunner.Instance.SetNewActiveActivity(this, App.Kp2a);
+            BackgroundOperationRunner.Instance.SetNewActiveContext(this, App.Kp2a);
             base.OnStart();
             Kp2aLog.Log(ClassName + ".OnStart" + " " + ID);
         }

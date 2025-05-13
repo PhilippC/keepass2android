@@ -56,6 +56,9 @@ using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileS
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 using static keepass2android.Util;
 using static Android.Provider.Telephony.MmsSms;
+using AndroidX.Lifecycle;
+using Java.Interop;
+using keepass2android.services;
 #endif
 
 #endif
@@ -1174,6 +1177,13 @@ namespace keepass2android
             }
         }
 
+        public void StartBackgroundSyncService()
+        {
+            Intent intent = new Intent(App.Context, typeof(BackgroundSyncService));
+            intent.SetAction(BackgroundSyncService.ActionStart);
+            App.Context.StartService(intent);
+        }
+
         /// <summary>
         /// true if the app is used in offline mode
         /// </summary>
@@ -1365,7 +1375,8 @@ namespace keepass2android
     [Application(Debuggable = true, Label = AppNames.AppName)]
 #endif
 #endif
-	public class App : Application {
+	public class App : Application, ILifecycleObserver
+    {
 
 		public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
 		{
@@ -1398,8 +1409,9 @@ namespace keepass2android
             InitThaiCalendarCrashFix();
 
             base.OnCreate();
+            ProcessLifecycleOwner.Get().Lifecycle.AddObserver(this);
 
-			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
+            Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
 		    CreateNotificationChannels();
 
@@ -1411,12 +1423,32 @@ namespace keepass2android
             intentFilter.AddAction(Intents.LockDatabaseByTimeout);
 			intentFilter.AddAction(Intents.CloseDatabase);
 			ContextCompat.RegisterReceiver(Context, broadcastReceiver, intentFilter, (int)ReceiverFlags.Exported);
-
-            //ZXing.Net.Mobile.Forms.Android.Platform.Init();
 		}
 
 	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
 
+        [Lifecycle.Event.OnStop]
+		[Export]
+        public void OnAppBackgrounded()
+        {
+            Kp2aLog.Log("Going to background");
+            BackgroundOperationRunner.Instance.SetNewActiveContext(null, Kp2a);
+        }
+
+        [Lifecycle.Event.OnStart]
+        [Export]
+        public void OnAppForegrounded()
+        {
+            Kp2aLog.Log("Going to foreground");
+            StopBackgroundSyncService();
+        }
+
+        private void StopBackgroundSyncService()
+        {
+            Intent stopServiceIntent = new Intent(Context, typeof(BackgroundSyncService));
+            stopServiceIntent.SetAction(BackgroundSyncService.ActionStop);
+            Context.StartService(stopServiceIntent);
+        }
 
         private void CreateNotificationChannels()
 	    {

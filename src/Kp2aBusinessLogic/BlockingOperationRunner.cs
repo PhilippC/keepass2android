@@ -23,6 +23,7 @@ using Java.Security;
 using KeePassLib.Interfaces;
 using System.Threading.Tasks;
 using Enum = System.Enum;
+using Thread = Java.Lang.Thread;
 
 namespace keepass2android
 {
@@ -54,12 +55,12 @@ namespace keepass2android
 		private Java.Lang.Thread? _thread = null;
         private ProgressUiAsStatusLoggerAdapter _statusLogger = null;
 
-        public void Run(Activity activity, IKp2aApp app, OperationWithFinishHandler operation)
+        public void Run(Context context, IKp2aApp app, OperationWithFinishHandler operation)
         {
             lock (Instance._taskQueueLock)
             {
                 _taskQueue.Enqueue(operation);
-                SetNewActiveActivity(activity, app);
+                SetNewActiveContext(context, app);
 
                 // Start thread to run the task (unless it's already running)
                 if (_thread == null)
@@ -94,11 +95,18 @@ namespace keepass2android
                
         }
 
-        public void SetNewActiveActivity(Activity? activity, IKp2aApp app)
+        public void SetNewActiveContext(Context? context, IKp2aApp app)
         {
             lock (_taskQueueLock)
             {
-                var progressUi = (activity as IProgressUiProvider)?.ProgressUi;
+                if (context == null && _thread != null)
+                {
+                    //this will register the service as new active context
+                    app.StartBackgroundSyncService();
+                    return;
+                }
+
+                var progressUi = (context as IProgressUiProvider)?.ProgressUi;
                 if (_statusLogger == null)
                 {
                     _statusLogger = new ProgressUiAsStatusLoggerAdapter(progressUi, app);
@@ -110,7 +118,7 @@ namespace keepass2android
 					
                 foreach (var task in _taskQueue)
                 {
-					task.ActiveActivity = activity;
+					task.ActiveContext = context;
 					task.SetStatusLogger(_statusLogger);
                 }
                 
@@ -242,7 +250,7 @@ namespace keepass2android
                 }
 	            _activeActivity = value;
 	            if (_task != null)
-	                _task.ActiveActivity = _activeActivity;
+	                _task.ActiveContext = _activeActivity;
 	            if (_activeActivity != null)
 	            {
 	                SetupProgressDialog(_app);

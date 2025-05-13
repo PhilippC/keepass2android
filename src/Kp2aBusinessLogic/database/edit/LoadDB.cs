@@ -169,7 +169,7 @@ namespace keepass2android
                 
                 if (requiresSubsequentSync)
                 {
-                    var syncTask = new SynchronizeCachedDatabase(ActiveActivity, _app, new ActionOnOperationFinished(ActiveActivity,
+                    var syncTask = new SynchronizeCachedDatabase(ActiveContext, _app, new ActionOnOperationFinished(ActiveContext,
                         (success, message, activeActivity) =>
                         {
                             if (!String.IsNullOrEmpty(message))
@@ -177,7 +177,7 @@ namespace keepass2android
                           
                         })  
                     );
-                    BackgroundOperationRunner.Instance.Run(ActiveActivity, _app, syncTask);
+                    BackgroundOperationRunner.Instance.Run(ActiveContext, _app, syncTask);
                 }
 
                 Finish(true, _format.SuccessMessage);

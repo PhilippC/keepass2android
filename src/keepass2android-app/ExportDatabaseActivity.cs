@@ -26,13 +26,13 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var exportDb = new ExportDatabaseActivity.ExportDb(_activity, App.Kp2a, new ActionOnOperationFinished(_activity, (success, message, activity) =>
+            var exportDb = new ExportDatabaseActivity.ExportDb(_activity, App.Kp2a, new ActionOnOperationFinished(_activity, (success, message, context) =>
                 {
                     if (!success)
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                     else
-                        App.Kp2a.ShowMessage(activity, _activity.GetString(Resource.String.export_database_successful),  MessageSeverity.Info);
-                    activity.Finish();
+                        App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_database_successful),  MessageSeverity.Info);
+                    (context as Activity)?.Finish();
                 }
             ), _ffp, ioc);
             BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, _activity, exportDb);

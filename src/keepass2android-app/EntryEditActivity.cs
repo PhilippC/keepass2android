@@ -521,13 +521,13 @@ namespace keepass2android
 			
 			OperationWithFinishHandler runnable;
 
-			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, activity) => {
+			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(this, (success, message, context) => {
 				if (success)
 				{
-                    activity?.Finish();
+                    (context as Activity)?.Finish();
 				} else
 				{
-				    OnOperationFinishedHandler.DisplayMessage(activity, message, true);
+				    OnOperationFinishedHandler.DisplayMessage(context, message, true);
                     //Re-initialize for editing:
                     State.EditMode.InitializeEntry(State.Entry);
 				}

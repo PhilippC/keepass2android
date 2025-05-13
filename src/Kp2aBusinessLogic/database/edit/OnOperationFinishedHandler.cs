@@ -41,7 +41,7 @@ namespace keepass2android
         protected OnOperationFinishedHandler NextOnOperationFinishedHandler;
 		protected Handler Handler;
 		private IKp2aStatusLogger _statusLogger = new Kp2aNullStatusLogger(); //default: no logging but not null -> can be used whenever desired
-	    private Activity _activeActivity, _previouslyActiveActivity;
+	    private Context _activeContext, _previouslyActiveContext;
 
 
 	    public IKp2aStatusLogger StatusLogger
@@ -50,50 +50,50 @@ namespace keepass2android
 			set { _statusLogger = value; }
 		}
 
-	    public Activity ActiveActivity
+	    public Context ActiveContext
 	    {
-	        get { return _activeActivity; }
+	        get { return _activeContext; }
 	        set
 	        {
-                if (_activeActivity != null && _activeActivity != _previouslyActiveActivity)
+                if (_activeContext != null && _activeContext != _previouslyActiveContext)
                 {
-                    _previouslyActiveActivity = _activeActivity;
+                    _previouslyActiveContext = _activeContext;
 
                 }
-				_activeActivity = value;
+				_activeContext = value;
 	            if (NextOnOperationFinishedHandler != null)
 	            {
-	                NextOnOperationFinishedHandler.ActiveActivity = value;
+	                NextOnOperationFinishedHandler.ActiveContext = value;
 	            }
 	        }
 	    }
 
-        public Activity PreviouslyActiveActivity
+        public Context PreviouslyActiveContext
         {
-            get { return _previouslyActiveActivity; }
+            get { return _previouslyActiveContext; }
 
         }
 
 
 
-		protected OnOperationFinishedHandler(Activity activeActivity, Handler handler)
+		protected OnOperationFinishedHandler(Context activeContext, Handler handler)
 	    {
-	        ActiveActivity = activeActivity;
+	        ActiveContext = activeContext;
 			NextOnOperationFinishedHandler = null;
 			Handler = handler;
 			
 		}
 
-		protected OnOperationFinishedHandler(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
+		protected OnOperationFinishedHandler(Context activeContext, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
 		{
-		    ActiveActivity = activeActivity;
+		    ActiveContext = activeContext;
 			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = handler;
 		}
 
-		protected OnOperationFinishedHandler(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler)
+		protected OnOperationFinishedHandler(Context activeContext, OnOperationFinishedHandler operationFinishedHandler)
 		{
-		    ActiveActivity = activeActivity;
+		    ActiveContext = activeContext;
 			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = null;
 		}

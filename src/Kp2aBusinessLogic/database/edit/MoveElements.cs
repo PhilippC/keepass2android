@@ -123,7 +123,7 @@ namespace keepass2android.database.edit
 
 		    int indexToSave = 0;
 		    bool allSavesSuccess = true;
-		    void ContinueSave(bool success, string message, Activity activeActivity)
+		    void ContinueSave(bool success, string message, Context activeActivity)
 		    {
 		        allSavesSuccess &= success;
                 indexToSave++;
@@ -140,7 +140,7 @@ namespace keepass2android.database.edit
 		    }
 
 
-		    SaveDb save = new SaveDb(_ctx, _app, allDatabasesToSave[0], new ActionOnOperationFinished(ActiveActivity, ContinueSave), false);
+		    SaveDb save = new SaveDb(_ctx, _app, allDatabasesToSave[0], new ActionOnOperationFinished(ActiveContext, ContinueSave), false);
             save.SetStatusLogger(StatusLogger);
 		    save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
             save.Run();

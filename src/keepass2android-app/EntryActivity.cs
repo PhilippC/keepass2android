@@ -526,10 +526,14 @@ namespace keepass2android
                 App.Kp2a.DirtyGroups.Add(parent);
             }
 
-			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnOperationFinished(this, (success, message, activity) =>
+			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnOperationFinished(this, (success, message, context) =>
             {
-                activity.SetResult(KeePass.ExitRefresh);
-                activity.Finish();
+				if (context is Activity activity)
+                {
+                    activity.SetResult(KeePass.ExitRefresh);
+                    activity.Finish();
+                }
+                
             }));
 
             BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, this, saveTask);

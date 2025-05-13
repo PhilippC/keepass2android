@@ -142,7 +142,6 @@ namespace keepass2android
 #endif
 
 		bool SyncInBackgroundPreference { get; set; }
-
-
+		void StartBackgroundSyncService();
     }
 }

@@ -73,7 +73,7 @@ namespace keepass2android
 			pm.MasterKey = newKey;
 
 			// Save Database
-			_operationFinishedHandler = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, operationFinishedHandler);
+			_operationFinishedHandler = new AfterSave(ActiveContext, previousKey, previousMasterKeyChanged, pm, operationFinishedHandler);
 			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, operationFinishedHandler, _dontSave);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
@@ -84,7 +84,7 @@ namespace keepass2android
 			private readonly DateTime _previousKeyChanged;
 			private readonly PwDatabase _db;
 			
-			public AfterSave(Activity activity, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnOperationFinishedHandler operationFinishedHandler): base(activity, operationFinishedHandler) {
+			public AfterSave(Context context, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnOperationFinishedHandler operationFinishedHandler): base(context, operationFinishedHandler) {
 				_previousKeyChanged = previousKeyChanged;
 				_backup = backup;
 				_db = db;

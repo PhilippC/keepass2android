@@ -64,7 +64,7 @@ namespace keepass2android
 		/// <param name="operationFinishedHandler"></param>
 		/// <param name="dontSave"></param>
 		/// <param name="streamForOrigFile">Stream for reading the data from the (changed) original location</param>
-		public SaveDb(Activity ctx, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, Database db, bool dontSave, Stream streamForOrigFile)
+		public SaveDb(Context ctx, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, Database db, bool dontSave, Stream streamForOrigFile)
 			: base(ctx, operationFinishedHandler)
 		{
 		    _db = db;
@@ -214,7 +214,7 @@ namespace keepass2android
         {
             if (requiresSubsequentSync)
             {
-                var syncTask = new SynchronizeCachedDatabase(ActiveActivity, _app, new ActionOnOperationFinished(ActiveActivity,
+                var syncTask = new SynchronizeCachedDatabase(ActiveContext, _app, new ActionOnOperationFinished(ActiveContext,
                     (success, message, activeActivity) =>
                     {
                         if (!System.String.IsNullOrEmpty(message))
@@ -222,7 +222,7 @@ namespace keepass2android
 
                     })
                 );
-                BackgroundOperationRunner.Instance.Run(ActiveActivity, _app, syncTask);
+                BackgroundOperationRunner.Instance.Run(ActiveContext, _app, syncTask);
             }
             Finish(true);
         }

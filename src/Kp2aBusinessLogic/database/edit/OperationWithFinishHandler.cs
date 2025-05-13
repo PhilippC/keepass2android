@@ -26,11 +26,11 @@ namespace keepass2android
 		
 		protected OnOperationFinishedHandler _operationFinishedHandler;
 		public IKp2aStatusLogger StatusLogger = new Kp2aNullStatusLogger(); //default: empty but not null
-	    private Activity _activeActivity;
+	    private Context _activeContext;
 
-	    protected OperationWithFinishHandler(Activity activeActivity, OnOperationFinishedHandler operationFinishedHandler)
+	    protected OperationWithFinishHandler(Context activeContext, OnOperationFinishedHandler operationFinishedHandler)
 	    {
-	        _activeActivity = activeActivity;
+	        _activeContext = activeContext;
 			_operationFinishedHandler = operationFinishedHandler;
 		}
 
@@ -40,14 +40,14 @@ namespace keepass2android
 			set { _operationFinishedHandler = value; }
 		}
 
-	    public Activity ActiveActivity
+	    public Context ActiveContext
 	    {
-	        get { return _activeActivity; }
+	        get { return _activeContext; }
 	        set
             {
-	            _activeActivity = value;
+	            _activeContext = value;
 	            if (_operationFinishedHandler != null)
-	                _operationFinishedHandler.ActiveActivity = _activeActivity;
+	                _operationFinishedHandler.ActiveContext = _activeContext;
 	        }
 	    }
 

@@ -1305,11 +1305,11 @@ namespace keepass2android
             {
                 if (Success)
                 {
-                    ((GroupBaseActivity)ActiveActivity)?.RefreshIfDirty();
+                    ((GroupBaseActivity)ActiveContext)?.RefreshIfDirty();
                 }
                 else
                 {
-                    DisplayMessage(ActiveActivity);
+                    DisplayMessage(ActiveContext);
                 }
             }
         }
@@ -1325,13 +1325,13 @@ namespace keepass2android
             {
                 if (Success)
                 {
-                    ((GroupBaseActivity)ActiveActivity)?.RefreshIfDirty();
+                    ((GroupBaseActivity)ActiveContext)?.RefreshIfDirty();
                 }
                 else
                 {
                     Handler.Post(() =>
                     {
-                        App.Kp2a.ShowMessage(ActiveActivity ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(ActiveContext ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message,  MessageSeverity.Error);
                     });
 
                     App.Kp2a.Lock(false);
@@ -1671,7 +1671,7 @@ namespace keepass2android
             }
 
             int dbIndex = 0;
-            Action<bool, string, Activity> action = null;
+            Action<bool, string, Context> action = null;
             action = (success, message, activeActivity) =>
             {
                 if (success)

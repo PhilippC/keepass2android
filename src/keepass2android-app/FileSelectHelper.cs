@@ -667,10 +667,10 @@ namespace keepass2android
 			return true;
 		}
 
-		private void IocSelected(Activity activity, IOConnectionInfo ioc)
+		private void IocSelected(Context context, IOConnectionInfo ioc)
 		{
 			if (OnOpen != null)
-				OnOpen(activity, ioc);
+				OnOpen(context, ioc);
 		}
 
 		public bool StartFileChooser(string defaultPath)

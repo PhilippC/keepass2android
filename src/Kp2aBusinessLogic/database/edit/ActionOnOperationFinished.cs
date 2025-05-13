@@ -17,22 +17,23 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
 
 using System;
 using Android.App;
+using Android.Content;
 using Android.OS;
 
 namespace keepass2android
 {
 	public class ActionOnOperationFinished: OnOperationFinishedHandler
 	{
-		public delegate void ActionToPerformOnFinsh(bool success, String message, Activity activeActivity);
+		public delegate void ActionToPerformOnFinsh(bool success, String message, Context activeContext);
 
 		readonly ActionToPerformOnFinsh _actionToPerform;
 
-		public ActionOnOperationFinished(Activity activity, ActionToPerformOnFinsh actionToPerform) : base(activity, null, null)
+		public ActionOnOperationFinished(Context context, ActionToPerformOnFinsh actionToPerform) : base(context, null, null)
 		{
 			_actionToPerform = actionToPerform;
 		}
 
-		public ActionOnOperationFinished(Activity activity, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(activity, operationFinishedHandler)
+		public ActionOnOperationFinished(Context context, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(context, operationFinishedHandler)
 		{
 			_actionToPerform = actionToPerform;
 		}
@@ -46,10 +47,10 @@ namespace keepass2android
 				Message = "";
 			if (Handler != null)
 			{
-				Handler.Post(() => {_actionToPerform(Success, Message, ActiveActivity);});
+				Handler.Post(() => {_actionToPerform(Success, Message, ActiveContext);});
 			}
 			else
-				_actionToPerform(Success, Message, AllowInactiveActivity ? (ActiveActivity ?? PreviouslyActiveActivity) :  ActiveActivity);
+				_actionToPerform(Success, Message, AllowInactiveActivity ? (ActiveContext ?? PreviouslyActiveContext) :  ActiveContext);
 			base.Run();
 		}
 	}
