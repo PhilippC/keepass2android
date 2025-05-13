@@ -151,11 +151,17 @@ namespace keepass2android
 					BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionCloseDatabase);
 
                     // Couldn't quick-lock, so unload database(s) instead
-                    _openAttempts.Clear();
-				    _openDatabases.Clear();
-				    _currentDatabase = null;
-				    LastOpenedEntry = null;
-					QuickLocked = false;
+                    
+                    lock (_openDatabasesLock)
+                    {
+                        _openAttempts.Clear();
+                        _openDatabases.Clear();
+
+                        _currentDatabase = null;
+                        LastOpenedEntry = null;
+                        QuickLocked = false;
+                    }
+				    
 				}
 			}
 			else
@@ -193,39 +199,59 @@ namespace keepass2android
 
 	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent)
 	    {
-	        var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
-	        var createBackup = prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key), true)
+           
+
+
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+            var createBackup =
+                prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key),
+                    true)
                 && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
 
-	        MemoryStream backupCopy = new MemoryStream();
-	        if (createBackup)
-	        {
+            MemoryStream backupCopy = new MemoryStream();
+            if (createBackup)
+            {
 
-	            memoryStream.CopyTo(backupCopy);
-	            backupCopy.Seek(0, SeekOrigin.Begin);
-	            //reset stream if we need to reuse it later:
-	            memoryStream.Seek(0, SeekOrigin.Begin);
-	        }
+                memoryStream.CopyTo(backupCopy);
+                backupCopy.Seek(0, SeekOrigin.Begin);
+                //reset stream if we need to reuse it later:
+                memoryStream.Seek(0, SeekOrigin.Begin);
+            }
 
-            foreach (Database openDb in _openDatabases)
-	        {
-	            if (openDb.Ioc.IsSameFileAs(ioConnectionInfo))
-	            {
-                    //TODO check this earlier and simply open the database's root group
-	                throw new Exception("Database already loaded!");
-	            }
-	            
-	        }
 
-	        _openAttempts.Add(ioConnectionInfo);
-	        var newDb = new Database(new DrawableFactory(), this);
+
+            _openAttempts.Add(ioConnectionInfo);
+            var newDb = new Database(new DrawableFactory(), this);
             newDb.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
 
 
-            if ((_currentDatabase == null) || makeCurrent)
-                _currentDatabase = newDb;
-	        _openDatabases.Add(newDb);
+            lock (_openDatabasesLock)
+            {
+                if ((_currentDatabase == null) || makeCurrent) _currentDatabase = newDb;
+
+                bool replacedOpenDatabase = false;
+                for (int i = 0; i < _openDatabases.Count; i++)
+                {
+                    if (_openDatabases[i].Ioc.IsSameFileAs(ioConnectionInfo))
+                    {
+                        if (_currentDatabase == _openDatabases[i])
+                        {
+                            _currentDatabase = newDb;
+                        }
+
+                        replacedOpenDatabase = true;
+                        _openDatabases[i] = newDb;
+
+                        break;
+                    }
+                }
+
+                if (!replacedOpenDatabase)
+                {
+                    _openDatabases.Add(newDb);
+                }
+            }
 
 
 
@@ -285,21 +311,27 @@ namespace keepass2android
 
 	    public void CloseDatabase(Database db)
 	    {
-	        if (!_openDatabases.Contains(db))
-	            throw new Exception("Cannot close database which is not open!");
-	        if (_openDatabases.Count == 1)
-	        {
-	            Lock(false);
-                return;
-	        }
-	        if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
-	        {
-	            LastOpenedEntry = null;
-	        }
-            
-	        _openDatabases.Remove(db);
-	        if (_currentDatabase == db)
-	            _currentDatabase = _openDatabases.First();
+            lock (_openDatabasesLock)
+            {
+				//TODO check that Lock() below works without a deadlock
+                if (!_openDatabases.Contains(db))
+                    throw new Exception("Cannot close database which is not open!");
+                if (_openDatabases.Count == 1)
+                {
+                    Lock(false);
+                    return;
+                }
+
+                if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
+                {
+                    LastOpenedEntry = null;
+                }
+
+                _openDatabases.Remove(db);
+                if (_currentDatabase == db)
+                    _currentDatabase = _openDatabases.First();
+            }
+
             UpdateOngoingNotification();
             //TODO broadcast event so affected activities can close/update? 
 	    }
@@ -376,12 +408,20 @@ namespace keepass2android
 
         private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
 	    private readonly List<Database> _openDatabases = new List<Database>();
+		private readonly object _openDatabasesLock = new object();
 	    private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
         private Database _currentDatabase;
 
 	    public IEnumerable<Database> OpenDatabases
 	    {
-	        get { return _openDatabases; }
+            get
+            {
+                lock (_openDatabasesLock)
+                {
+                    //avoid concurrent access to _openDatabases
+                    return new List<Database>(_openDatabases);
+                }
+            }
 	    }
 
 	    internal ChallengeXCKey _currentlyWaitingXcKey;
@@ -415,8 +455,9 @@ namespace keepass2android
 	            DirtyGroups.Add(group);
 	        }
 
-
-	    }
+            var intent = new Intent(Intents.DataUpdated);
+            App.Context.SendBroadcast(intent);
+        }
 
 
         /// <summary>
@@ -1345,13 +1386,22 @@ namespace keepass2android
 
 	    public Database TryFindDatabaseForElement(IStructureItem element)
 	    {
-            foreach (var db in OpenDatabases)
+            try
             {
-				//we compare UUIDs and not by reference. this is more robust and works with history items as well
-                if (db.Elements.Any(e => e.Uuid?.Equals(element.Uuid) == true))
-                    return db;
+                foreach (var db in OpenDatabases)
+                {
+                    //we compare UUIDs and not by reference. this is more robust and works with history items as well
+                    if (db.Elements.Any(e => e.Uuid?.Equals(element.Uuid) == true))
+                    {
+                        return db;
+                    }
+                }
             }
-	        return null;
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+            return null;
 	    }
 
 	    public void RegisterChildDatabase(IOConnectionInfo ioc)

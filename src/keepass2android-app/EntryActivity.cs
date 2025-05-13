@@ -111,6 +111,45 @@ namespace keepass2android
 
         protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
 
+        public class UpdateEntryActivityBroadcastReceiver : BroadcastReceiver
+        {
+            private readonly EntryActivity _activity;
+
+            public UpdateEntryActivityBroadcastReceiver(EntryActivity activity)
+            {
+                _activity = activity;
+            }
+
+            public override void OnReceive(Context? context, Intent? intent)
+            {
+                if (intent?.Action == Intents.DataUpdated)
+                {
+                    _activity.OnDataUpdated();
+                }
+            }
+        }
+
+        private void OnDataUpdated()
+        {
+            if (Entry == null)
+            {
+                return;
+            }
+
+            var entryUId = Entry.Uuid;
+            if (!App.Kp2a.CurrentDb.EntriesById.ContainsKey(entryUId))
+            {
+                Finish();
+                return;
+            }
+            var newEntry = App.Kp2a.CurrentDb.EntriesById[entryUId];
+            if (!newEntry.EqualsEntry(Entry, PwCompareOptions.None, MemProtCmpMode.Full))
+            {
+                Recreate();
+            }
+            
+        }
+
         public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null, int historyIndex=-1)
 		{
 			Intent i = new Intent(act, typeof(EntryActivity));
@@ -502,7 +541,13 @@ namespace keepass2android
 
 			//the rest of the things to do depends on the current app task:
 			AppTask.CompleteOnCreateEntryActivity(this, notifyPluginsOnOpenThread);
-		}
+
+            _dataUpdatedIntentReceiver = new UpdateEntryActivityBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DataUpdated);
+            ContextCompat.RegisterReceiver(this, _dataUpdatedIntentReceiver, filter, (int)ReceiverFlags.Exported);
+
+        }
 
         private void RemoveFromHistory()
         {
@@ -1083,7 +1128,9 @@ namespace keepass2android
 				UnregisterReceiver(_pluginActionReceiver);
 			if (_pluginFieldReceiver != null)
 				UnregisterReceiver(_pluginFieldReceiver);
-			base.OnDestroy();
+			if (_dataUpdatedIntentReceiver != null)
+                UnregisterReceiver(_dataUpdatedIntentReceiver);
+            base.OnDestroy();
 		}
 
 		private void NotifyPluginsOnClose()
@@ -1359,6 +1406,7 @@ namespace keepass2android
 		}
 
 		bool isPaused = false;
+        private UpdateEntryActivityBroadcastReceiver _dataUpdatedIntentReceiver;
 
         protected override void OnPause()
         {

@@ -45,6 +45,7 @@ using AndroidX.AppCompat.Widget;
 using Google.Android.Material.Dialog;
 using keepass2android.views;
 using SearchView = AndroidX.AppCompat.Widget.SearchView;
+using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -275,6 +276,7 @@ namespace keepass2android
         private IMenuItem searchItem;
         private IMenuItem searchItemDummy;
         private bool isPaused;
+        private UpdateGroupBaseActivityBroadcastReceiver _dataUpdatedIntentReceiver;
 
         protected override void OnResume()
         {
@@ -746,9 +748,10 @@ namespace keepass2android
 
 
 
-
-
-
+            _dataUpdatedIntentReceiver = new UpdateGroupBaseActivityBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DataUpdated);
+            ContextCompat.RegisterReceiver(this, _dataUpdatedIntentReceiver, filter, (int)ReceiverFlags.Exported);
 
             SetResult(KeePass.ExitNormal);
 
@@ -1032,6 +1035,13 @@ namespace keepass2android
 
                 return true;
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            UnregisterReceiver(_dataUpdatedIntentReceiver);
+            base.OnDestroy();
+            
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -1415,6 +1425,50 @@ namespace keepass2android
             get
             {
                 return FindViewById<BackgroundOperationContainer>(Resource.Id.background_ops_container);
+            }
+        }
+
+        public void OnDataUpdated()
+        {
+            if (Group == null || FragmentManager.IsDestroyed)
+            {
+                return;
+            }
+
+            var groupId = Group.Uuid;
+            if (!App.Kp2a.CurrentDb.GroupsById.ContainsKey(groupId))
+            {
+                Finish();
+                return;
+            }
+            Group = App.Kp2a.CurrentDb.GroupsById[groupId];
+            var fragment = FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment);
+            if (fragment == null)
+            {
+                throw new Exception("did not find fragment");
+            }
+            fragment.ListAdapter = new PwGroupListAdapter(this, Group);
+            SetGroupIcon();
+            SetGroupTitle();
+            ListAdapter?.NotifyDataSetChanged();
+
+        }
+    }
+
+    public class UpdateGroupBaseActivityBroadcastReceiver : BroadcastReceiver
+    {
+        private readonly GroupBaseActivity _groupBaseActivity;
+
+        public UpdateGroupBaseActivityBroadcastReceiver(GroupBaseActivity groupBaseActivity)
+        {
+            _groupBaseActivity = groupBaseActivity;
+        }
+
+        public override void OnReceive(Context? context, Intent? intent)
+        {
+            if (intent?.Action == Intents.DataUpdated)
+            {
+                _groupBaseActivity.OnDataUpdated();
             }
         }
     }

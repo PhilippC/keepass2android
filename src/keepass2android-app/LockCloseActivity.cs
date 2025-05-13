@@ -38,7 +38,7 @@ namespace keepass2android
 		protected const string NoLockCheck = "NO_LOCK_CHECK";
 
 		protected IOConnectionInfo _ioc;
-		private BroadcastReceiver _intentReceiver;
+		private BroadcastReceiver _lockCloseIntentReceiver;
 		private ActivityDesign _design;
 
 		public LockCloseActivity()
@@ -66,11 +66,11 @@ namespace keepass2android
 			if (Intent.GetBooleanExtra(NoLockCheck, false))
 				return;
 
-			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
+			_lockCloseIntentReceiver = new LockCloseActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intents.DatabaseLocked);
 			filter.AddAction(Intent.ActionScreenOff);
-            ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
+            ContextCompat.RegisterReceiver(this, _lockCloseIntentReceiver, filter, (int)ReceiverFlags.Exported);
 		}
 
 		protected override void OnDestroy()
@@ -79,7 +79,7 @@ namespace keepass2android
 			{
 				try
 				{
-					UnregisterReceiver(_intentReceiver);
+					UnregisterReceiver(_lockCloseIntentReceiver);
 				}
 				catch (Exception ex)
 				{

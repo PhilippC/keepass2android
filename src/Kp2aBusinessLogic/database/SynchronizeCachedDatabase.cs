@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using KeePassLib.Serialization;
 using keepass2android.Io;
 using KeePass.Util;
@@ -12,9 +13,8 @@ namespace keepass2android
 {
 	public class SynchronizeCachedDatabase: OperationWithFinishHandler 
 	{
-		private readonly Context _context;
 		private readonly IKp2aApp _app;
-		private SaveDb _saveDb;
+		
 
 		public SynchronizeCachedDatabase(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
 			: base(app, operationFinishedHandler)
@@ -70,7 +70,7 @@ namespace keepass2android
                         )
 					{
 						//conflict! need to merge
-						_saveDb = new SaveDb(_app, new ActionOnOperationFinished(_app, (success, result, activity) =>
+						var _saveDb = new SaveDb(_app, new ActionOnOperationFinished(_app, (success, result, activity) =>
 							{
 								if (!success)
 								{
@@ -80,7 +80,6 @@ namespace keepass2android
 								{
 									Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
 								}
-								_saveDb = null;
 							}), _app.CurrentDb, false, remoteData);
                         _saveDb.SetStatusLogger(StatusLogger);
                         _saveDb.DoNotSetStatusLoggerMessage = true; //Keep "sync db" as main message
@@ -93,10 +92,32 @@ namespace keepass2android
 					}
 					else
 					{
-						//only the remote file was modified -> reload database.
-						//note: it's best to lock the database and do a complete reload here (also better for UI consistency in case something goes wrong etc.)
-						_app.TriggerReload(_context, (bool result) => Finish(result));
-					}
+                        //only the remote file was modified -> reload database.
+						var onFinished = new ActionOnOperationFinished(_app, (success, result, activity) =>
+                        {
+                            if (!success)
+                            {
+                                Finish(false, result);
+                            }
+                            else
+                            {
+                                new Handler(Looper.MainLooper).Post(() =>
+                                {
+                                    _app.CurrentDb.UpdateGlobals();
+
+                                    _app.MarkAllGroupsAsDirty();
+                                    Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
+                                });
+
+                            }
+                        });
+                        var _loadDb = new LoadDb(_app, ioc, Task.FromResult(remoteData), _app.CurrentDb.KpDatabase.MasterKey, null, onFinished, true, false);
+                        _loadDb.SetStatusLogger(StatusLogger);
+                        _loadDb.DoNotSetStatusLoggerMessage = true; //Keep "sync db" as main message
+                        _loadDb.SyncInBackground = false;
+                        _loadDb.Run();
+
+                    }
 				}
 				else
 				{
@@ -124,10 +145,5 @@ namespace keepass2android
 			
 		}
 
-		public void JoinWorkerThread()
-		{
-			if (_saveDb != null)
-				_saveDb.JoinWorkerThread();
-		}
 	}
 }

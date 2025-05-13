@@ -35,12 +35,15 @@ namespace keepass2android
 		private readonly IOConnectionInfo _ioc;
 		private readonly Task<MemoryStream> _databaseData;
 		private readonly CompositeKey _compositeKey;
-		private readonly string _keyfileOrProvider;
+		private readonly string? _keyfileOrProvider;
 		private readonly IKp2aApp _app;
 		private readonly bool _rememberKeyfile;
 		IDatabaseFormat _format;
-		
-		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, bool updateLastUsageTimestamp, bool makeCurrent): base(app, operationFinishedHandler)
+
+        public bool DoNotSetStatusLoggerMessage = false;
+        public bool SyncInBackground { get; set; }
+
+        public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, bool updateLastUsageTimestamp, bool makeCurrent): base(app, operationFinishedHandler)
 		{
 			_app = app;
 			_ioc = ioc;
@@ -49,8 +52,9 @@ namespace keepass2android
 			_keyfileOrProvider = keyfileOrProvider;
 		    _updateLastUsageTimestamp = updateLastUsageTimestamp;
 		    _makeCurrent = makeCurrent;
-		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
-		}
+		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile);
+            SyncInBackground = _app.SyncInBackgroundPreference;
+        }
 
 	    protected bool success = false;
 	    private bool _updateLastUsageTimestamp;
@@ -62,15 +66,22 @@ namespace keepass2android
 			{
 				try
 				{
-                    //make sure the file data is stored in the recent files list even if loading fails
-				    SaveFileData(_ioc, _keyfileOrProvider);
+                    if (_keyfileOrProvider != null)
+                    {
+                        //make sure the file data is stored in the recent files list even if loading fails
+                        SaveFileData(_ioc, _keyfileOrProvider);
+                    }
 
                     var fileStorage = _app.GetFileStorage(_ioc);
 
                     bool requiresSubsequentSync = false;
 
 
-                    StatusLogger.UpdateMessage(UiStringKey.loading_database);
+                    if (!DoNotSetStatusLoggerMessage)
+                    {
+                        StatusLogger.UpdateMessage(UiStringKey.loading_database);
+                    }
+                    
 					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
 					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
 					MemoryStream databaseStream;
@@ -167,7 +178,6 @@ namespace keepass2android
 			{
                 Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent);
                 Kp2aLog.Log("LoadDB OK");
-                
                 if (requiresSubsequentSync)
                 {
                     var syncTask = new SynchronizeCachedDatabase(_app, new ActionOnOperationFinished(_app,

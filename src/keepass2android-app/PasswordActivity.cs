@@ -1444,7 +1444,7 @@ namespace keepass2android
 				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
 						onOperationFinishedHandler, this, true, _makeCurrent)
-					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
+					: new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
 			    new BlockingOperationRunner(App.Kp2a, task).Run();
@@ -1886,7 +1886,7 @@ namespace keepass2android
 		        Handler handler = new Handler();
 		        OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
 		        _performingLoad = true;
-                LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+                LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
 		            onOperationFinishedHandler, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
 		        new BlockingOperationRunner(App.Kp2a, task).Run();
@@ -2276,7 +2276,7 @@ namespace keepass2android
 			private readonly PasswordActivity _act;
 
 
-			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, operationFinishedHandler,updateLastUsageTimestamp,makeCurrent)
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(app, ioc, databaseData, compositeKey, keyfileOrProvider, operationFinishedHandler,updateLastUsageTimestamp,makeCurrent)
 			{
 				_act = act;
 			}
