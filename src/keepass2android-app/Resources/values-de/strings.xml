@@ -717,9 +717,9 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string-array name="ChangeLog_1_12">
-    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Von Xamarin Android auf .NET 8 upgegradet</item>
     <item>Upgrade auf Target-SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
+    <item>Auf MUI 3 upgegradet</item>
     <item>Improve autofill to work with Compose apps</item>
     <item>Fix hostname matching in autofill and search</item>
     <item>Fix issue with password generator</item>
