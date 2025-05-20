@@ -131,14 +131,14 @@ namespace keepass2android.database.edit
 		            operationFinishedHandler.Run();
 		            return;
 		        }
-		        SaveDb saveDb = new SaveDb( _app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false);
+		        SaveDb saveDb = new SaveDb( _app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false, null);
 		        saveDb.SetStatusLogger(StatusLogger);
 		        saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
 		        saveDb.Run();
 		    }
 
 
-		    SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false);
+		    SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false, null);
             save.SetStatusLogger(StatusLogger);
 		    save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
             save.Run();

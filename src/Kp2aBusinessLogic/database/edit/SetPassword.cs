@@ -72,7 +72,7 @@ namespace keepass2android
 
 			// Save Database
 			_operationFinishedHandler = new AfterSave(_app, previousKey, previousMasterKeyChanged, pm, operationFinishedHandler);
-			SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, _dontSave);
+			SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, _dontSave, null);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}

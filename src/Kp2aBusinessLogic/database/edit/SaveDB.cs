@@ -34,12 +34,17 @@ using Thread = System.Threading.Thread;
 
 namespace keepass2android
 {
+   
+    /// <summary>
+    /// Save the database. If the file has changed, ask the user if he wants to overwrite or sync.
+    /// </summary>
 
-	public class SaveDb : OperationWithFinishHandler {
+    public class SaveDb : OperationWithFinishHandler {
 		private readonly IKp2aApp _app;
 	    private readonly Database _db;
 	    private readonly bool _dontSave;
-		private bool requiresSubsequentSync = false; //if true, we need to sync the file after saving.
+        private readonly IDatabaseModificationWatcher _modificationWatcher;
+        private bool requiresSubsequentSync = false; //if true, we need to sync the file after saving.
 
         public bool DoNotSetStatusLoggerMessage = false;
 
@@ -50,12 +55,13 @@ namespace keepass2android
 
 		private Java.Lang.Thread _workerThread;
 
-		public SaveDb(IKp2aApp app, Database db, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+		public SaveDb(IKp2aApp app, Database db, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, IDatabaseModificationWatcher modificationWatcher)
 			: base(app, operationFinishedHandler)
 		{
 		    _db = db;
 			_app = app;
 			_dontSave = dontSave;
+            _modificationWatcher = modificationWatcher;
         }
 		
 		/// <summary>
@@ -65,10 +71,11 @@ namespace keepass2android
 		/// <param name="operationFinishedHandler"></param>
 		/// <param name="dontSave"></param>
 		/// <param name="streamForOrigFile">Stream for reading the data from the (changed) original location</param>
-		public SaveDb(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, Database db, bool dontSave, Stream streamForOrigFile)
+		public SaveDb(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, Database db, bool dontSave, Stream streamForOrigFile, IDatabaseModificationWatcher modificationWatcher = null)
 			: base(app, operationFinishedHandler)
 		{
-		    _db = db;
+            _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
+            _db = db;
 			_app = app;
 			_dontSave = dontSave;
 			_streamForOrigFile = streamForOrigFile;
@@ -76,10 +83,12 @@ namespace keepass2android
 
         }
 
-		public SaveDb(IKp2aApp app, Database db, OnOperationFinishedHandler operationFinishedHandler)
+		public SaveDb(IKp2aApp app, Database db, OnOperationFinishedHandler operationFinishedHandler, IDatabaseModificationWatcher modificationWatcher = null)
 			: base(app, operationFinishedHandler)
 		{
-			_app = app;
+            
+            _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
+            _app = app;
 		    _db = db;
 		    _dontSave = false;
             SyncInBackground = _app.SyncInBackgroundPreference;
@@ -135,11 +144,17 @@ namespace keepass2android
 						}	
 					}
 
+                    //TODO remove
+                    Thread.Sleep(5000);
+
 
                     bool hasStreamForOrigFile = (_streamForOrigFile != null);
                     bool hasChangeFast = hasStreamForOrigFile ||
                                          fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion);  //first try to use the fast change detection;
-                    bool hasHashChanged = !requiresSubsequentSync && (hasChangeFast ||
+                    bool hasHashChanged = !requiresSubsequentSync && (
+						//TODO remove
+						true || 
+                        hasChangeFast ||
                                           (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) ==
                                            FileHashChange.Changed)); //if that fails, hash the file and compare:
 
@@ -226,7 +241,7 @@ namespace keepass2android
                         if (!System.String.IsNullOrEmpty(message))
                             _app.ShowMessage(activeActivity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
 
-                    })
+                    }), new BackgroundDatabaseModificationLocker(_app)
                 );
                 BackgroundOperationRunner.Instance.Run(_app, syncTask);
             }
@@ -238,11 +253,37 @@ namespace keepass2android
             //note: when synced, the file might be downloaded once again from the server. Caching the data
             //in the hashing function would solve this but increases complexity. I currently assume the files are 
             //small.
-            MergeIn(fileStorage, ioc);
+
+            try
+            {
+                _modificationWatcher.BeforeModifyDatabases();
+            }
+            catch (Java.Lang.InterruptedException)
+            {
+                // leave without Finish()
+                return;
+            }
+
+
+            try
+            {
+                MergeIn(fileStorage, ioc);
+            }
+            finally
+            {
+                _modificationWatcher.AfterModifyDatabases();
+                
+            }
+
             PerformSaveWithoutCheck(fileStorage, ioc);
-            _db.UpdateGlobals();
+            new Handler(Looper.MainLooper).Post(() =>
+            {
+                _db.UpdateGlobals();
+            });
+
             FinishWithSuccess();
         }
+
 
         private void RunInWorkerThread(Action runHandler)
 		{

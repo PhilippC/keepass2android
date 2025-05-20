@@ -123,7 +123,15 @@ namespace keepass2android
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(savedInstanceState);
+            //we don't want any background thread to update/reload the database while we're in this activity.
+            if (!App.Kp2a.DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
+            {
+                App.Kp2a.ShowMessage(this, GetString(Resource.String.failed_to_access_database), MessageSeverity.Error);
+                Finish();
+                return;
+            }
+
+            base.OnCreate(savedInstanceState);
 			
 			if (LastNonConfigurationInstance != null)
 			{
@@ -331,9 +339,17 @@ namespace keepass2android
 
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            //we don't want any background thread to update/reload the database while we're in this activity.
+            App.Kp2a.DatabasesBackgroundModificationLock.ExitReadLock();
+        }
+
         private bool hasRequestedKeyboardActivation = false;
         protected override void OnStart()
-	    {
+        {
+			
 	        base.OnStart();
 	        if (PreferenceManager.GetDefaultSharedPreferences(this)
 	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false)

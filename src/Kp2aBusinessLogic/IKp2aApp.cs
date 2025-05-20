@@ -52,7 +52,9 @@ namespace keepass2android
         /// <summary>
         /// Loads the specified data as the currently open database, as unlocked.
         /// </summary>
-        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent);
+        Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compKey,
+            IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent,
+            IDatabaseModificationWatcher modificationWatcher);
 
 
 	    HashSet<PwGroup> DirtyGroups { get; }
@@ -134,12 +136,12 @@ namespace keepass2android
 		bool CheckForDuplicateUuids { get; }
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 		ICertificateErrorHandler CertificateErrorHandler { get; }
-	    
-
-
 #endif
 
 		bool SyncInBackgroundPreference { get; set; }
 		void StartBackgroundSyncService();
+
+        ReaderWriterLockSlim DatabasesBackgroundModificationLock { get; }
+        bool CancelBackgroundOperations();
     }
 }

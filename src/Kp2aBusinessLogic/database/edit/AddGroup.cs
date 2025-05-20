@@ -72,7 +72,7 @@ namespace keepass2android
 		    _app.CurrentDb.Elements.Add(Group);
 
             // Commit to disk
-            SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, DontSave);
+            SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, DontSave, null);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}

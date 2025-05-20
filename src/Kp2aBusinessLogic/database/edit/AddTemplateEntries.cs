@@ -311,7 +311,7 @@ namespace keepass2android
 				_app.DirtyGroups.Add(templateGroup);
 
 				// Commit to disk
-				SaveDb save = new SaveDb( _app, _app.CurrentDb, operationFinishedHandler);
+				SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
 				save.SetStatusLogger(StatusLogger);
 				save.Run();
 			}
@@ -335,7 +335,6 @@ namespace keepass2android
 				_app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
 				_app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
 			    _app.CurrentDb.Elements.Add(templateGroup);
-
 			}
 			addedEntries = new List<PwEntry>();
 

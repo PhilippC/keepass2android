@@ -122,4 +122,20 @@ public class BackgroundOperationRunner
 
 
     }
+
+    public void CancelAll()
+    {
+        lock (_taskQueueLock)
+        {
+            if (_thread != null)
+            {
+                _thread.Interrupt();
+                _thread = null;
+                _statusLogger?.EndLogging();
+            }
+
+            _taskQueue.Clear();
+            _currentlyRunningTask = null;
+        }
+    }
 }

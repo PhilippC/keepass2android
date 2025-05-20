@@ -79,7 +79,7 @@ public class ProgressUiAsStatusLoggerAdapter : IKp2aStatusLogger
 
     public bool ContinueWork()
     {
-        return true;
+        return !Java.Lang.Thread.Interrupted();
     }
 
     public void UpdateMessage(UiStringKey stringKey)

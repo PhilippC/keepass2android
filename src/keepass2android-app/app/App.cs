@@ -116,15 +116,12 @@ namespace keepass2android
 #endif
 
 
-
 	/// <summary>
 	/// Main implementation of the IKp2aApp interface for usage in the real app.
 	/// </summary>
 	public class Kp2aApp: IKp2aApp, ICacheSupervisor
-	{
-
-
-		public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
+    {
+        public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
 			if (OpenDatabases.Any())
 			{
@@ -194,7 +191,9 @@ namespace keepass2android
 
 
 
-	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent)
+	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream,
+            CompositeKey compositeKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent,
+            IDatabaseModificationWatcher modificationWatcher)
 	    {
            
 
@@ -215,39 +214,50 @@ namespace keepass2android
                 memoryStream.Seek(0, SeekOrigin.Begin);
             }
 
-
+            if (!statusLogger.ContinueWork())
+            {
+                throw new Java.Lang.InterruptedException();
+            }
 
             _openAttempts.Add(ioConnectionInfo);
             var newDb = new Database(new DrawableFactory(), this);
             newDb.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
+            modificationWatcher.BeforeModifyDatabases();
 
-
-            
-            if ((_currentDatabase == null) || makeCurrent) _currentDatabase = newDb;
-
-            bool replacedOpenDatabase = false;
-            for (int i = 0; i < _openDatabases.Count; i++)
+            try
             {
-                if (_openDatabases[i].Ioc.IsSameFileAs(ioConnectionInfo))
+
+
+
+                if ((_currentDatabase == null) || makeCurrent) _currentDatabase = newDb;
+
+                bool replacedOpenDatabase = false;
+                for (int i = 0; i < _openDatabases.Count; i++)
                 {
-                    if (_currentDatabase == _openDatabases[i])
+                    if (_openDatabases[i].Ioc.IsSameFileAs(ioConnectionInfo))
                     {
-                        _currentDatabase = newDb;
+                        if (_currentDatabase == _openDatabases[i])
+                        {
+                            _currentDatabase = newDb;
+                        }
+
+                        replacedOpenDatabase = true;
+                        _openDatabases[i] = newDb;
+
+                        break;
                     }
-
-                    replacedOpenDatabase = true;
-                    _openDatabases[i] = newDb;
-
-                    break;
                 }
-            }
 
-            if (!replacedOpenDatabase)
+                if (!replacedOpenDatabase)
                 {
                     _openDatabases.Add(newDb);
                 }
-
+            }
+            finally
+            {
+				modificationWatcher.AfterModifyDatabases();
+            }
 
 
             if (createBackup)
@@ -302,9 +312,9 @@ namespace keepass2android
 	        return newDb;
 	    }
 
-	    
+        
 
-	    public void CloseDatabase(Database db)
+        public void CloseDatabase(Database db)
 	    {
             
             if (!_openDatabases.Contains(db))
@@ -745,6 +755,11 @@ namespace keepass2android
             EventHandler<DialogClickEventArgs> cancelHandler,
 			EventHandler dismissHandler,string messageSuffix = "")
         {
+            if (Java.Lang.Thread.Interrupted())
+            {
+                throw new Java.Lang.InterruptedException();
+            }
+
             _currentlyPendingYesNoCancelQuestion = new YesNoCancelQuestion()
             {
                 TitleKey = titleKey,
@@ -1472,10 +1487,38 @@ namespace keepass2android
                 _currentlyPendingYesNoCancelQuestion?.TryShow(this, OnUserInputDialogClose, OnUserInputDialogClose);
             }
         }
+
+        /// <summary>
+        /// If the database is updated from a background operation, that operation needs to acquire a writer lock on this.
+        /// </summary>
+        /// Activities can acquire a reader lock if they want to make sure that no background operation is modifying the database while they are open.
+        public ReaderWriterLockSlim DatabasesBackgroundModificationLock { get; } = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
+
+        public bool CancelBackgroundOperations()
+        {
+            if (!DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
+            {
+                return false;
+            }
+
+            try
+            {
+                BackgroundOperationRunner.Instance.CancelAll();
+				
+            }
+			finally
+            {
+				DatabasesBackgroundModificationLock.ExitReadLock();
+            }
+
+            return true;
+            
+        }
     }
 
 
-	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
+
+    ///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
 #else

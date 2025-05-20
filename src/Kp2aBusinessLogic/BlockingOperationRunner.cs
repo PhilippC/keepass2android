@@ -78,6 +78,9 @@ namespace keepass2android
 			
 			SetupProgressDialog(app);
 
+            app.CancelBackgroundOperations();
+
+
 		    // Set code to run when this is finished
             _task.operationFinishedHandler = new AfterTask(app, task.operationFinishedHandler, _handler, this);
 		    

@@ -43,9 +43,12 @@ namespace keepass2android
         public bool DoNotSetStatusLoggerMessage = false;
         public bool SyncInBackground { get; set; }
 
-        public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, bool updateLastUsageTimestamp, bool makeCurrent): base(app, operationFinishedHandler)
+        public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
+            string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
+            bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null): base(app, operationFinishedHandler)
 		{
-			_app = app;
+            _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
+            _app = app;
 			_ioc = ioc;
 			_databaseData = databaseData;
 			_compositeKey = compositeKey;
@@ -59,8 +62,9 @@ namespace keepass2android
 	    protected bool success = false;
 	    private bool _updateLastUsageTimestamp;
 	    private readonly bool _makeCurrent;
+        private readonly IDatabaseModificationWatcher _modificationWatcher;
 
-	    public override void Run()
+        public override void Run()
 		{
 			try
 			{
@@ -109,6 +113,11 @@ namespace keepass2android
 						}
 					}
 
+                    if (!StatusLogger.ContinueWork())
+                    {
+                        return;
+                    }
+
 					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
 					_format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(fileStorage.GetFileExtension(_ioc)));
 					TryLoad(databaseStream, requiresSubsequentSync);
@@ -147,7 +156,13 @@ namespace keepass2android
 				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + ExceptionUtil.GetErrorMessage(e) + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), false, Exception);
 				return;
 			}
-			catch (Exception e)
+            catch (Java.Lang.InterruptedException)
+            {
+				Kp2aLog.Log("Load interrupted");
+				//close without Finish()
+                return;
+            }
+            catch (Exception e)
 			{
 				if (!(e is InvalidCompositeKeyException))
 					Kp2aLog.LogUnexpectedError(e);
@@ -173,10 +188,16 @@ namespace keepass2android
 			workingCopy.Seek(0, SeekOrigin.Begin);
 			//reset stream if we need to reuse it later:
 			databaseStream.Seek(0, SeekOrigin.Begin);
+            if (!StatusLogger.ContinueWork())
+            {
+                throw new Java.Lang.InterruptedException();
+            }
+			
 			//now let's go:
-			try
-			{
-                Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent);
+            try
+            {
+                Database newDb =
+                    _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent, _modificationWatcher);
                 Kp2aLog.Log("LoadDB OK");
                 if (requiresSubsequentSync)
                 {
@@ -184,16 +205,17 @@ namespace keepass2android
                         (success, message, activeActivity) =>
                         {
                             if (!String.IsNullOrEmpty(message))
-                                _app.ShowMessage(activeActivity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
-                          
-                        })  
+                                _app.ShowMessage(activeActivity, message,
+                                    success ? MessageSeverity.Info : MessageSeverity.Error);
+
+                        }), new BackgroundDatabaseModificationLocker(_app)
                     );
                     BackgroundOperationRunner.Instance.Run(_app, syncTask);
                 }
 
                 Finish(true, _format.SuccessMessage);
-			    return newDb;
-			}
+                return newDb;
+            }
 			catch (OldFormatException)
 			{
 				_format = new KdbDatabaseFormat(_app);

@@ -1256,4 +1256,5 @@
   <string name="switch_keyboard_inside_kp2a_enabled">Note: You have enabled App - Security - Use built-in keyboard inside Keepass2Android. This can cause this window to show when you open the app or edit an entry.</string>
   <string name="switch_keyboard_on_search_enabled">Note: You have enabled App - Security - Password access - Keyboard switching - Switch keyboard. This can cause this window to show when you search for an entry from the browser.</string>
   <string name="user_interaction_required">User interaction required. Please open the app.</string>
+  <string name="failed_to_access_database">Database is currently in use and cannot be accessed.</string>
 </resources>

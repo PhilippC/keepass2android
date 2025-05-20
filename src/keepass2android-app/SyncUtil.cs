@@ -79,7 +79,7 @@ namespace keepass2android
             if (filestorage is CachingFileStorage)
             {
 
-                task = new SynchronizeCachedDatabase(App.Kp2a, onOperationFinishedHandler);
+                task = new SynchronizeCachedDatabase(App.Kp2a, onOperationFinishedHandler, new BackgroundDatabaseModificationLocker(App.Kp2a));
             }
             else
             {

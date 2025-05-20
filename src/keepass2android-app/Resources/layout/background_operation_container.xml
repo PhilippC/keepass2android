@@ -14,8 +14,18 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:indeterminate="true" />
-        
+    <LinearLayout 
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"   
+    >
 
+      <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"   
+      >
     <TextView 
       android:id="@+id/background_ops_message"
         android:layout_width="wrap_content"
@@ -37,6 +47,19 @@
                 android:textSize="12sp"
               android:text="" />
 
+           </LinearLayout>
 
+      <Button
+        android:id="@+id/cancel_background"
+        style="?attr/materialIconButtonStyle"
+        app:icon="@drawable/baseline_close_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dip"
+        android:layout_margin="6dip"
+        android:layout_weight="0" 
+      />
+
+        </LinearLayout>
   </LinearLayout>
 		
