@@ -300,6 +300,7 @@
   <string name="NoDalVerification_summary">Etki alanı ve uygulama paketinin eşleşip eşleşmediğini kontrol etmeyi devre dışı bırakır</string>
   <string name="InlineSuggestions_title">Klavye ile entegre et</string>
   <string name="InlineSuggestions_summary">Otomatik doldurma önerilerini klavyede satır içi seçenekler olarak gösterir (giriş yöntemi tarafından destekleniyorsa)</string>
+  <string name="LogAutofillView_title">Günlük otomatik doldurma görünümü</string>
   <string name="requires_android11">Android 11 veya sonraki bir sürümünü gerektirir</string>
   <string name="kp2a_findUrl">Parola bul</string>
   <string name="excludeExpiredEntries">Hızlı aramalara süresi dolmuş kayıtlar katılmasın</string>
@@ -398,6 +399,8 @@
   <string name="ShowSeparateNotifications_summary">Kullanıcı adıyla parolayı panoya kopyalamak ve klavyeyi etkinleştirmek için bildirimleri göster.</string>
   <string name="AccServiceAutoFill_prefs">Otomatik Doldurma Erişilebilirlik Hizmeti</string>
   <string name="AutoFill_prefs">Otomatik Doldurma Hizmeti</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Giriş bildirimlerini göster</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP \'yi panoya kopyala</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A klavye bildirimi</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tam girişi KP2A klavyesinden erişilebilir yapın (önerilir).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Klavyeyi değiştir</string>
