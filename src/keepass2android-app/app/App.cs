@@ -522,7 +522,7 @@ namespace keepass2android
 		private bool _isShowingUserInputDialog = false;
         private IMessagePresenter? _messagePresenter;
         private YesNoCancelQuestion? _currentlyPendingYesNoCancelQuestion = null;
-        private Context _activeContext;
+        private Context? _activeContext;
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
@@ -882,8 +882,11 @@ namespace keepass2android
 
 		public IProgressDialog CreateProgressDialog(Context ctx)
 		{
-			return new RealProgressDialog(ctx, this);
-		}
+			var pd = new RealProgressDialog(ctx, this);
+            pd.SetTitle(GetResourceString(UiStringKey.progress_title));
+            return pd;
+
+        }
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
@@ -1480,7 +1483,7 @@ namespace keepass2android
 
         public Context ActiveContext
         {
-            get => _activeContext;
+            get => _activeContext ?? Application.Context;
             set
             {
                 _activeContext = value; 
@@ -1513,6 +1516,47 @@ namespace keepass2android
 
             return true;
             
+        }
+
+		private readonly Dictionary<int, List<ActionOnOperationFinished>> _pendingActionsForContextInstances = new();
+		private readonly object _pendingActionsForContextInstancesLock = new();
+        public void RegisterPendingActionForContextInstance(int contextInstanceId,
+            ActionOnOperationFinished actionToPerformWhenContextIsResumed)
+        {
+            lock (_pendingActionsForContextInstancesLock)
+            {
+
+                if (!_pendingActionsForContextInstances.TryGetValue(contextInstanceId, out var actions))
+                {
+                    actions = new List<ActionOnOperationFinished>();
+                    _pendingActionsForContextInstances[contextInstanceId] = actions;
+                }
+
+                actions.Add(actionToPerformWhenContextIsResumed);
+            }
+        }
+
+        public void PerformPendingActions(int instanceId)
+        {
+            lock (_pendingActionsForContextInstancesLock)
+            {
+                if (_pendingActionsForContextInstances.TryGetValue(instanceId, out var actions))
+                {
+                    foreach (var action in actions)
+                    {
+                        try
+                        {
+                            action.Run();
+                        }
+                        catch (Exception e)
+                        {
+                            Kp2aLog.LogUnexpectedError(e);
+                        }
+                    }
+
+                    _pendingActionsForContextInstances.Remove(instanceId);
+                }
+            }
         }
     }
 

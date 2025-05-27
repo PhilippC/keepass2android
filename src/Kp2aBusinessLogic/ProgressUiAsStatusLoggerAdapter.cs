@@ -87,4 +87,7 @@ public class ProgressUiAsStatusLoggerAdapter : IKp2aStatusLogger
         if (_app != null)
             UpdateMessage(_app.GetResourceString(stringKey));
     }
+
+    public string LastMessage { get { return _lastMessage; } }
+    public string LastSubMessage { get { return _lastSubMessage; } }
 }

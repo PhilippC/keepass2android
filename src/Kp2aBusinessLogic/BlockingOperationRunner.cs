@@ -32,46 +32,59 @@ namespace keepass2android
         //for handling Activity recreation situations, we need access to the currently active task. It must hold that there is no more than one active task.
 	    private static BlockingOperationRunner _currentTask = null;
 
-	    public static void SetNewActiveActivity(Activity activeActivity)
+	    public static void SetNewActiveContext(Context activeContext)
 	    {
 	        if (_currentTask != null)
 	        {
-	            _currentTask.ActiveActivity = activeActivity;
+	            _currentTask.ActiveContext = activeContext;
 	        }
 	    }
-	    public static void RemoveActiveActivity(Activity activity)
+	    public static void RemoveActiveContext(Context context)
 	    {
-	        if ((_currentTask != null) && (_currentTask._activeActivity == activity))
-	            _currentTask.ActiveActivity = null;
+	        if ((_currentTask != null) && (_currentTask._activeContext == context))
+	            _currentTask.ActiveContext = null;
 
 	    }
 
-        public Context ActiveActivity
+        public Context ActiveContext
 	    {
-	        get { return _activeActivity; }
+	        get { return _activeContext; }
 	        private set
 	        {
-                _activeActivity = value;
+                _activeContext = value;
 	            
-	            if (_activeActivity != null)
+	            if (_activeContext is Activity)
 	            {
 	                SetupProgressDialog(_app);
 	                _progressDialog.Show();
                 }
-	        }
+				else if (_activeContext is Service and IProgressUiProvider progressUiProvider)
+                {
+                    _statusLogger?.SetNewProgressUi(progressUiProvider.ProgressUi);
+                }
+
+            }
 	    }
+
+        public static bool HasActiveTask
+        {
+            get
+            {
+				return _currentTask != null;
+            }
+        }
 
         private readonly Handler _handler;
 		private readonly OperationWithFinishHandler _task;
 		private IProgressDialog _progressDialog;
         private readonly IKp2aApp _app;
         private Java.Lang.Thread _thread;
-	    private Context _activeActivity;
-	    private ProgressDialogStatusLogger _progressDialogStatusLogger;
+	    private Context _activeContext;
+	    private ProgressUiAsStatusLoggerAdapter _statusLogger;
 
 	    public BlockingOperationRunner(IKp2aApp app, OperationWithFinishHandler task)
 		{
-		    _activeActivity = app.ActiveContext;
+		    _activeContext = app.ActiveContext;
 			_task = task;
 			_handler = app.UiThreadHandler;
             _app = app;
@@ -84,7 +97,7 @@ namespace keepass2android
 		    // Set code to run when this is finished
             _task.operationFinishedHandler = new AfterTask(app, task.operationFinishedHandler, _handler, this);
 		    
-		    _task.SetStatusLogger(_progressDialogStatusLogger);
+		    _task.SetStatusLogger(_statusLogger);
 			
 			
 		}
@@ -94,12 +107,12 @@ namespace keepass2android
 	        string currentMessage = "Initializing...";
 	        string currentSubmessage = "";
 
-	        if (_progressDialogStatusLogger != null)
+	        if (_statusLogger != null)
 	        {
-	            currentMessage = _progressDialogStatusLogger.Message;
-	            currentSubmessage = _progressDialogStatusLogger.SubMessage;
+	            currentMessage = _statusLogger.LastMessage;
+	            currentSubmessage = _statusLogger.LastSubMessage;
 	        }
-
+            
 	        if (_progressDialog != null)
 	        {
 	            var pd = _progressDialog;
@@ -110,11 +123,21 @@ namespace keepass2android
 	        }
 
             // Show process dialog
-            _progressDialog = app.CreateProgressDialog(_activeActivity);
-	        _progressDialog.SetTitle(_app.GetResourceString(UiStringKey.progress_title));
-            _progressDialogStatusLogger = new ProgressDialogStatusLogger(_app, _handler, _progressDialog);
-	        _progressDialogStatusLogger.UpdateMessage(currentMessage);
-	        _progressDialogStatusLogger.UpdateSubMessage(currentSubmessage);
+            _progressDialog = app.CreateProgressDialog(_activeContext);
+
+            var progressUi = new ProgressDialogUi(_app, app.UiThreadHandler, _progressDialog);
+            if (_statusLogger == null)
+            {
+				_statusLogger = new ProgressUiAsStatusLoggerAdapter(progressUi, app);
+            }
+            else
+            {
+                _statusLogger.SetNewProgressUi(progressUi);
+            }
+
+            _statusLogger.StartLogging("", false);
+            _statusLogger.UpdateMessage(currentMessage);
+	        _statusLogger.UpdateSubMessage(currentSubmessage);
 	    }
 
 	    public void Run(bool allowOverwriteCurrentTask = false)

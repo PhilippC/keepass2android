@@ -143,5 +143,10 @@ namespace keepass2android
 
         ReaderWriterLockSlim DatabasesBackgroundModificationLock { get; }
         bool CancelBackgroundOperations();
+
+        /// <summary>
+        /// Registers an action that should be executed when the context instance with the given id has been resumed.
+        /// </summary>
+        void RegisterPendingActionForContextInstance(int contextInstanceId, ActionOnOperationFinished actionToPerformWhenContextIsResumed);
     }
 }

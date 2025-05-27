@@ -551,9 +551,9 @@ namespace keepass2android
             //make sure we can close the EntryEditActivity activity even if the app went to background till we get to the OnOperationFinishedHandler Action
 
 
-            ActionOnOperationFinished afterAddEntry = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) => 
+            ActionOnOperationFinished afterAddEntry = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) => 
 			{
-				if (success && activity is EntryEditActivity entryEditActivity)
+				if (success && context is EntryEditActivity entryEditActivity)
 					AppTask.AfterAddNewEntry(entryEditActivity, newEntry);
 			},closeOrShowError);
 

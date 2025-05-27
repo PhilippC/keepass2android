@@ -19,6 +19,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using keepass2android;
 
 namespace keepass2android
 {
@@ -52,4 +53,31 @@ namespace keepass2android
 		}
 	}
 }
+
+    public class ActionInContextInstanceOnOperationFinished : ActionOnOperationFinished
+    {
+        private readonly int _contextInstanceId;
+        private IKp2aApp _app;
+		
+        public ActionInContextInstanceOnOperationFinished(int contextInstanceId, IKp2aApp app, ActionToPerformOnFinsh actionToPerform) : base(app, actionToPerform)
+        {
+            _contextInstanceId = contextInstanceId;
+            _app = app;
+        }
+        public ActionInContextInstanceOnOperationFinished(int contextInstanceId, IKp2aApp app, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(app, actionToPerform, operationFinishedHandler)
+        {
+            _contextInstanceId = contextInstanceId;
+            _app = app;
+        }
+
+        public override void Run()
+        {
+            if ((ActiveContext as IContextInstanceIdProvider)?.ContextInstanceId != _contextInstanceId)
+            {
+                _app.RegisterPendingActionForContextInstance(_contextInstanceId, this);
+            }
+            else base.Run();
+        }
+
+    }
 

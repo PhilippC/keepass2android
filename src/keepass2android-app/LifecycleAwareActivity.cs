@@ -25,7 +25,7 @@ using Android.Runtime;
 namespace keepass2android
 {
 
-    public abstract class LifecycleAwareActivity : AndroidX.AppCompat.App.AppCompatActivity
+    public abstract class LifecycleAwareActivity : AndroidX.AppCompat.App.AppCompatActivity, IContextInstanceIdProvider
     {
         protected override void AttachBaseContext(Context baseContext)
         {
@@ -84,12 +84,11 @@ namespace keepass2android
             return baseRes;
         }
 
-        public Action? OnResumeListener { get; set; }
 
         protected override void OnResume()
         {
             base.OnResume();
-            OnResumeListener?.Invoke();
+            App.Kp2a.PerformPendingActions(_instanceId);
 
             Kp2aLog.Log(ClassName + ".OnResume " + ID);
             if (App.Kp2a.CurrentDb == null)
@@ -105,28 +104,40 @@ namespace keepass2android
         protected override void OnStart()
         {
             App.Kp2a.ActiveContext = this;
-            BlockingOperationRunner.SetNewActiveActivity(this);
+            BlockingOperationRunner.SetNewActiveContext(this);
             BackgroundOperationRunner.Instance.SetNewActiveContext( App.Kp2a);
             
             base.OnStart();
             Kp2aLog.Log(ClassName + ".OnStart" + " " + ID);
         }
 
+        const string ID_KEY = "kp2a_context_instance_id";
+        const int InvalidId = -1;
+
+        private int _instanceId;
+
         protected override void OnCreate(Bundle bundle)
         {
 
             base.OnCreate(bundle);
+            
+            _instanceId = bundle?.GetInt(ID_KEY, InvalidId) ?? InvalidId;
+            if (_instanceId == InvalidId)
+            {
+                _instanceId = _nextContextInstanceId++;
+            }
 
             OnCreateListener?.Invoke(bundle);
 
-            Kp2aLog.Log(ClassName + ".OnCreate" + " " + ID);
+            Kp2aLog.Log(ClassName + ".OnCreate" + " " + ID + " (instance=" + _instanceId +")");
             Kp2aLog.Log(ClassName + ":apptask=" + Intent.GetStringExtra("KP2A_APP_TASK_TYPE") + " " + ID);
         }
 
+        
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            Kp2aLog.Log(ClassName + ".OnDestroy" + IsFinishing.ToString() + " " + ID);
+            Kp2aLog.Log(ClassName + ".OnDestroy " + IsFinishing.ToString() + " " + ID);
         }
 
         protected override void OnPause()
@@ -139,14 +150,19 @@ namespace keepass2android
         {
             base.OnStop();
             Kp2aLog.Log(ClassName + ".OnStop" + " " + ID);
-            BlockingOperationRunner.RemoveActiveActivity(this);
+            BlockingOperationRunner.RemoveActiveContext(this);
         }
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
+            outState.PutInt(ID_KEY, _instanceId);
             OnSaveInstanceStateListener?.Invoke(outState);
         }
+
+        static int _nextContextInstanceId = 0;
+
+        public int ContextInstanceId => _instanceId;
     }
 }
 
