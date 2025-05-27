@@ -46,7 +46,9 @@ namespace keepass2android
 #endif
 
     {
-		private readonly int[] _buttonLengthButtonIds  = new[]  {Resource.Id.btn_length6,
+        public const string GeneratedPasswordKey = "keepass2android.password.generated_password";
+
+        private readonly int[] _buttonLengthButtonIds  = new[]  {Resource.Id.btn_length6,
             Resource.Id.btn_length8, 
             Resource.Id.btn_length12, 
             Resource.Id.btn_length16,
@@ -259,7 +261,7 @@ namespace keepass2android
 					EditText password = (EditText) FindViewById(Resource.Id.password_edit);
 					
 					Intent intent = new Intent();
-					intent.PutExtra("keepass2android.password.generated_password", password.Text);
+					intent.PutExtra(GeneratedPasswordKey, password.Text);
 					
 					SetResult(KeePass.ResultOkPasswordGenerator, intent);
 					

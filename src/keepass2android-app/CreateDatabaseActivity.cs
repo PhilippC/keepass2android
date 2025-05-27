@@ -316,7 +316,7 @@ namespace keepass2android
 
 			if (resultCode == KeePass.ResultOkPasswordGenerator)
 			{
-				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
+				String generatedPassword = data.GetStringExtra(GeneratePasswordActivity.GeneratedPasswordKey);
 				FindViewById<TextView>(Resource.Id.entry_password).Text = generatedPassword;
 				FindViewById<TextView>(Resource.Id.entry_confpassword).Text = generatedPassword;
 			}
