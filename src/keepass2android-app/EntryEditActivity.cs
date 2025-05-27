@@ -62,7 +62,156 @@ using Task = Android.Gms.Tasks.Task;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]			
+    public abstract class ExtraEditView : RelativeLayout
+    {
+        protected ExtraEditView(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+        }
+
+        public ExtraEditView(Context? context) : base(context)
+        {
+            
+        }
+
+        public Button EditButton => (Button)FindViewById(Resource.Id.edit_extra);
+
+
+        //event which is triggered when the user modifies the extra string
+        public event EventHandler ExtraModified;
+
+        protected void InvokeExtraModifiedHandler()
+        {
+            if (ExtraModified != null)
+			{
+                ExtraModified(this, EventArgs.Empty);
+            }
+            
+        }
+    }
+
+    public sealed class ExtraEditViewString: ExtraEditView
+    {
+        private ExtraEditViewString(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+        }
+		
+        public ExtraEditViewString(Context? context, KeyValuePair<string, ProtectedString> pair, PasswordFont passwordFont) : base(context)
+        {
+            Inflate(context, Resource.Layout.entry_edit_section, this);
+
+            
+            Tag = pair.Key;
+            var keyView = ((TextView)FindViewById(Resource.Id.extrakey))!;
+
+            keyView.Text = pair.Key;
+
+            string stringValue = pair.Value.ReadString();
+            ValueTextView.Text = stringValue;
+            ((TextInputLayout)FindViewById(Resource.Id.value_container)).Hint = pair.Key;
+            ValueTextView.TextChanged +=
+                (sender, e) =>
+                {
+                    //invoke ExtraModified
+                    InvokeExtraModifiedHandler();
+                };
+            passwordFont.ApplyTo(ValueTextView);
+            ((CheckBox)FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
+
+        }
+
+        public TextView ValueTextView => ((TextView)FindViewById(Resource.Id.value));
+
+    }
+
+    public sealed class ExtraEditViewBool : ExtraEditView
+    {
+        public ExtraEditViewBool(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+        }
+
+        public ExtraEditViewBool(Context? context, KeyValuePair<string, ProtectedString> pair, string title) : base(context)
+        {
+            Inflate(context, Resource.Layout.entry_edit_section_bool, this);
+            Tag = pair.Key;
+            var keyView = ((TextView)FindViewById(Resource.Id.extrakey));
+            var checkbox = ((CheckBox)FindViewById(Resource.Id.checkbox));
+            var valueView = ((TextView)FindViewById(Resource.Id.value));
+            keyView.Text = pair.Key;
+            checkbox.Checked = pair.Value.ReadString().Equals("True", StrUtil.CaseIgnoreCmp);
+            checkbox.Text = title;
+            valueView.Text = checkbox.Checked.ToString();
+            checkbox.CheckedChange += (sender, e) =>
+            {
+                valueView.Text = checkbox.Checked.ToString();
+                InvokeExtraModifiedHandler();
+            };
+        }
+
+    }
+
+
+    internal sealed class ExtraEditViewFile : ExtraEditView
+    {
+        public ExtraEditViewFile(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+        }
+        public ExtraEditViewFile(Context context, KeyValuePair<string, ProtectedString> pair, string title)
+		: base(context)
+        {
+            Inflate(context, Resource.Layout.entry_edit_section_file, this);
+            Tag = pair.Key;
+            var keyView = ((TextView)FindViewById(Resource.Id.extrakey));
+            var titleView = ((TextView)FindViewById(Resource.Id.title));
+            keyView.Text = pair.Key;
+            titleView.Text = title;
+            UpdateFileView(pair.Value.ReadString());
+            
+        }
+
+        public Button ChangeLocationButton => (Button)FindViewById(Resource.Id.btn_change_location);
+
+
+        public void UpdateFileView(string newValue)
+        {
+            var valueView = ((TextView)FindViewById(Resource.Id.value));
+            valueView.Text = newValue;
+            IFileStorage fileStorage = null;
+            var ioc = IOConnectionInfo.FromPath(newValue);
+            try
+            {
+                fileStorage = App.Kp2a.GetFileStorage(ioc);
+            }
+            catch (NoFileStorageFoundException ex)
+            {
+                //ignore.
+            }
+            FindViewById(Resource.Id.filestorage_display).Visibility =
+                FindViewById(Resource.Id.filestorage_display).Visibility = (string.IsNullOrEmpty(newValue) && fileStorage != null) ? ViewStates.Gone : ViewStates.Visible;
+            if (fileStorage != null)
+            {
+                int protocolSeparatorPos = ioc.Path.IndexOf("://", StringComparison.Ordinal);
+                string protocolId = protocolSeparatorPos < 0 ?
+                    "file" : ioc.Path.Substring(0, protocolSeparatorPos);
+                Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
+                FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
+
+                String fs_title = App.Kp2a.GetStorageDisplayName(protocolId);
+                FindViewById<TextView>(Resource.Id.filestorage_label).Text = fs_title;
+
+                string displayPath = fileStorage.GetDisplayName(ioc);
+                protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+                FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
+                    displayPath :
+                    displayPath.Substring(protocolSeparatorPos + 3);
+
+            }
+
+        }
+
+    }
+
+
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
 
         protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
@@ -275,14 +424,15 @@ namespace keepass2android
 				LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
 
 				KeyValuePair<string, ProtectedString> pair = new KeyValuePair<string, ProtectedString>("" , new ProtectedString(true, ""));
-                View ees = CreateExtraStringView(pair);
+                ExtraEditView ees = CreateExtraStringEditView(pair);
 				container.AddView(ees);
 
 				State.EntryModified = true;
+                ees.ExtraModified += (o, args) => State.EntryModified = true;
 
-				/*TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
+                /*TextView keyView = (TextView) ees.FindViewById(Resource.Id.title);
 				keyView.RequestFocus();*/
-				EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
+                EditAdvancedString(ees.EditButton);
 			};
 			SetAddExtraStringEnabled();
 			
@@ -300,7 +450,7 @@ namespace keepass2android
 
                     KeyValuePair<string, ProtectedString> pair =
                         new KeyValuePair<string, ProtectedString>("otp", new ProtectedString(true, ""));
-                    ees = CreateExtraStringView(pair);
+                    ees = CreateExtraStringEditView(pair);
                     container.AddView(ees);
                     added = true;
                 }
@@ -812,7 +962,7 @@ namespace keepass2android
 		    {
 		        State.EntryModified = true;
 		        var ees = FindExtraEditSection(State.LastTriggeredFileSelectionProcessKey);
-		        (sender as EntryEditActivity ?? this).UpdateFileView(ees, info.Path);
+                (ees as ExtraEditViewFile)?.UpdateFileView(info.Path);
 		    };
 
 		    if (fileSelectHelper.HandleActivityResult(this, requestCode, resultCode, data))
@@ -1001,109 +1151,37 @@ namespace keepass2android
 			FindViewById(Resource.Id.entry_expires).Enabled = State.Entry.Expires;
 		}
 
-		/*
-		 * TODO required??
-		 * 
-		 * public override Java.Lang.Object OnRetainNonConfigurationInstance()
-		{
-			UpdateEntryFromUi(State.Entry);
-			return this;
-		}*/
-
-		void UpdateFileView(View ees, string newValue)
-		{
-			var valueView = ((TextView)ees.FindViewById(Resource.Id.value));
-			valueView.Text = newValue;
-			IFileStorage fileStorage = null;
-			var ioc = IOConnectionInfo.FromPath(newValue);
-			try{
-				fileStorage = App.Kp2a.GetFileStorage(ioc);
-			}
-			catch (NoFileStorageFoundException ex)
-			{
-				//ignore.
-			}
-			ees.FindViewById(Resource.Id.filestorage_display).Visibility = 
-				ees.FindViewById(Resource.Id.filestorage_display).Visibility = (string.IsNullOrEmpty(newValue) && fileStorage != null) ? ViewStates.Gone : ViewStates.Visible;
-			if (fileStorage != null)
-			{
-				int protocolSeparatorPos = ioc.Path.IndexOf("://", StringComparison.Ordinal);
-				string protocolId = protocolSeparatorPos < 0 ?
-					"file" : ioc.Path.Substring(0, protocolSeparatorPos);
-				Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
-				ees.FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
-
-				String fs_title = App.Kp2a.GetStorageDisplayName(protocolId);
-				ees.FindViewById<TextView>(Resource.Id.filestorage_label).Text = fs_title;
-
-			    string displayPath = fileStorage.GetDisplayName(ioc);
-                protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
-                ees.FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
-					displayPath :
-					displayPath.Substring(protocolSeparatorPos + 3);
-					
-			}
-			
-		}
-		
-        RelativeLayout CreateExtraStringView(KeyValuePair<string, ProtectedString> pair, string title = null, string type = "")
+        ExtraEditView CreateExtraStringEditView(KeyValuePair<string, ProtectedString> pair, string title = null, string type = "")
 		{
 			if (title == null)
 				title = pair.Key;
 			if (type == "bool")
 			{
-				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section_bool, null);
-                ees.Tag = pair.Key;
-				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
-				var checkbox = ((CheckBox)ees.FindViewById(Resource.Id.checkbox));
-			    var valueView = ((TextView)ees.FindViewById(Resource.Id.value));
-                keyView.Text = pair.Key;
-				checkbox.Checked = pair.Value.ReadString().Equals("True", StrUtil.CaseIgnoreCmp);
-				checkbox.Text = title;
-			    valueView.Text = checkbox.Checked.ToString();
-                checkbox.CheckedChange += (sender, e) =>
-				{
-				    valueView.Text = checkbox.Checked.ToString();
-				    State.EntryModified = true;
-				};
-				return ees;
+				var ees = new ExtraEditViewBool(this, pair, title);
+                ees.ExtraModified += (sender, args) =>
+                {
+                    State.EntryModified = true;
+                };
+                return ees;
 			}
 			else if (type == "file")
 			{
-				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section_file, null);
-                ees.Tag = pair.Key;
-				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
-				var titleView = ((TextView)ees.FindViewById(Resource.Id.title));
-				keyView.Text = pair.Key;
-				titleView.Text = title;
-				UpdateFileView(ees, pair.Value.ReadString());
-				ees.FindViewById(Resource.Id.btn_change_location).Click += (sender, e) =>  
-				{
-					State.LastTriggeredFileSelectionProcessKey = pair.Key;
-					Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-					StartActivityForResult(intent, requestCodeSelectFileExtra);
-				};
-				
-				return ees;
+				var ees = new ExtraEditViewFile(this, pair, title);
+				ees.ChangeLocationButton.Click += (sender, e) =>
+                {
+                    State.LastTriggeredFileSelectionProcessKey = pair.Key;
+                    Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+                    StartActivityForResult(intent, requestCodeSelectFileExtra);
+                };
+
+                return ees;
 			}
 			else
-			{
-				RelativeLayout ees = (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_edit_section, null);
-                ees.Tag = pair.Key;
-				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
+            {
+                var ees = new ExtraEditViewString(this, pair, _passwordFont);
+                ees.EditButton.Click += (sender, e) => EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
 
-				keyView.Text = pair.Key;
-
-                string stringValue = pair.Value.ReadString();
-                ((TextView)ees.FindViewById(Resource.Id.value)).Text = stringValue;
-                ((TextInputLayout)ees.FindViewById(Resource.Id.value_container)).Hint = pair.Key;
-                ((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
-                _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
-                ((CheckBox)ees.FindViewById(Resource.Id.protection)).Checked = pair.Value.IsProtected;
-				
-				//ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => DeleteAdvancedString((View)sender);
-				ees.FindViewById(Resource.Id.edit_extra).Click += (sender, e) => EditAdvancedString(ees.FindViewById(Resource.Id.edit_extra));
-				return ees;
+                return ees;
 			}
 		}
 
@@ -1442,7 +1520,7 @@ namespace keepass2android
 			{
 				if (!PwDefs.IsStandardField(key)) 
 				{
-					RelativeLayout ees = CreateExtraStringView(new KeyValuePair<string, ProtectedString>(key, State.Entry.Strings.Get(key)), State.EditMode.GetTitle(key), State.EditMode.GetFieldType(key));
+					RelativeLayout ees = CreateExtraStringEditView(new KeyValuePair<string, ProtectedString>(key, State.Entry.Strings.Get(key)), State.EditMode.GetTitle(key), State.EditMode.GetFieldType(key));
 					var isVisible = State.EditMode.IsVisible(key);
 					ees.Visibility =  isVisible ? ViewStates.Visible : ViewStates.Gone;
 					if (!isVisible)
@@ -1587,6 +1665,7 @@ namespace keepass2android
 
 		}
 	}
+
     public class SuccessListener : Object, IOnSuccessListener
     {
         private readonly Action<Barcode> _onSuccess;
