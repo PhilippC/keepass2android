@@ -132,14 +132,6 @@ namespace keepass2android
             }
 
             base.OnCreate(savedInstanceState);
-			
-			if (LastNonConfigurationInstance != null)
-			{
-				//bug in Mono for Android or whatever: after config change the extra fields are wrong
-				// -> reload:
-				Reload();
-				return;
-			}
 
 			AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
@@ -246,9 +238,9 @@ namespace keepass2android
 			ImageButton iconButton = (ImageButton)FindViewById(Resource.Id.icon_button);
 			
 			if (State.SelectedIcon)
-			{
-				App.Kp2a.CurrentDb.DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.CurrentDb.KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
-			}
+            {
+                UpdateIconButton();
+            }
 			iconButton.Click += (sender, evt) => {
 				UpdateEntryFromUi(State.Entry);
 				IconPickerActivity.Launch(this);
@@ -337,6 +329,12 @@ namespace keepass2android
             
 
 
+        }
+
+        private void UpdateIconButton()
+        {
+			ImageButton iconButton = (ImageButton)FindViewById(Resource.Id.icon_button);
+            App.Kp2a.CurrentDb.DrawableFactory.AssignDrawableTo(iconButton, this, App.Kp2a.CurrentDb.KpDatabase, (PwIcon)State.SelectedIconId, State.SelectedCustomIconId, false);
         }
 
         protected override void OnDestroy()
@@ -830,8 +828,9 @@ namespace keepass2android
 					State.SelectedCustomIconId = new PwUuid(MemUtil.HexStringToByteArray(customIconIdString));
 				State.SelectedIcon = true;
 				State.EntryModified = true;
-				Reload();
-				return;
+                UpdateIconButton();
+
+                return;
 				
 			case KeePass.ResultOkPasswordGenerator:
 				String generatedPassword = data.GetStringExtra("keepass2android.password.generated_password");
@@ -842,8 +841,8 @@ namespace keepass2android
 				MemUtil.ZeroByteArray(password);
 
 				State.EntryModified = true;
-				Reload();
-				return;
+                FillData();
+                    return;
 			case Result.Ok:
 				if (requestCode == Intents.RequestCodeFileBrowseForBinary)
 				{
@@ -862,8 +861,8 @@ namespace keepass2android
 				}
 				return;
 			case Result.Canceled:
-				Reload();
-				return;
+                Recreate(); //TODO needed?
+                    return;
 			}
 			
 		}
@@ -1094,8 +1093,9 @@ namespace keepass2android
 				var keyView = ((TextView)ees.FindViewById(Resource.Id.extrakey));
 
 				keyView.Text = pair.Key;
-				
-				((TextView)ees.FindViewById(Resource.Id.value)).Text = pair.Value.ReadString();
+
+                string stringValue = pair.Value.ReadString();
+                ((TextView)ees.FindViewById(Resource.Id.value)).Text = stringValue;
                 ((TextInputLayout)ees.FindViewById(Resource.Id.value_container)).Hint = pair.Key;
                 ((TextView)ees.FindViewById(Resource.Id.value)).TextChanged += (sender, e) => State.EntryModified = true;
                 _passwordFont.ApplyTo(((TextView)ees.FindViewById(Resource.Id.value)));
@@ -1437,8 +1437,8 @@ namespace keepass2android
 			PopulateText(Resource.Id.entry_comment, State.Entry.Strings.ReadSafe (PwDefs.NotesField));
 
 			LinearLayout container = (LinearLayout) FindViewById(Resource.Id.advanced_container);
-			
-			foreach (var key in State.EditMode.SortExtraFieldKeys(State.Entry.Strings.Select(ps => ps.Key)))
+            container.RemoveAllViews();
+            foreach (var key in State.EditMode.SortExtraFieldKeys(State.Entry.Strings.Select(ps => ps.Key)))
 			{
 				if (!PwDefs.IsStandardField(key)) 
 				{
