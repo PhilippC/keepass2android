@@ -91,11 +91,12 @@ public class BackgroundOperationRunner
     public void SetNewActiveContext(IKp2aApp app)
     {
         Context? context = app.ActiveContext;
+        bool isAppContext = context == null || (context.ApplicationContext == context);
         lock (_taskQueueLock)
         {
-            if (context == null && _thread != null)
+            if (isAppContext && (_thread != null || BlockingOperationRunner.HasActiveTask))
             {
-                //this will register the service as new active context
+                //this will register the service as new active context (see BackgroundSyncService.OnStartCommand())
                 app.StartBackgroundSyncService();
                 return;
             }

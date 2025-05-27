@@ -1630,8 +1630,9 @@ namespace keepass2android
         {
             Kp2aLog.Log("Going to background");
             Kp2a.ActiveContext = null;
-            BackgroundOperationRunner.Instance.SetNewActiveContext( Kp2a);
-            
+			// notify background operation runner that there is currently no active context, i.e. no UI where status can be displayed.
+			// The BackgroundOperationRunner will launch the background sync service if a task (even a blocking one) is running currently.
+            BackgroundOperationRunner.Instance.SetNewActiveContext(Kp2a);
 
         }
 

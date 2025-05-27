@@ -53,6 +53,7 @@ namespace keepass2android.services
                 StartForeground(NotificationId, BuildNotification());
                 App.Kp2a.ActiveContext = this;
                 BackgroundOperationRunner.Instance.SetNewActiveContext(App.Kp2a);
+                BlockingOperationRunner.SetNewActiveContext(this);
                 return StartCommandResult.Sticky;
             }
             catch (Exception ex)
@@ -123,6 +124,7 @@ namespace keepass2android.services
                 _cts.Cancel();
                 _cts.Dispose();
             }
+            BlockingOperationRunner.RemoveActiveContext(this);
         }
 
         public IProgressUi? ProgressUi
