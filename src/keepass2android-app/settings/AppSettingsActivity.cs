@@ -117,13 +117,13 @@ namespace keepass2android
                         var previousUsername = db.KpDatabase.DefaultUserName;
                         db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 
-                        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+                        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                         {
                             if (!success)
                             {
                                 db.KpDatabase.DefaultUserName = previousUsername;
                                 db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
-                                App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                                App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                             }
                         }));
                         BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
@@ -183,13 +183,13 @@ namespace keepass2android
                         String previousName = db.KpDatabase.Name;
                         db.KpDatabase.Name = e.NewValue.ToString();
 
-                        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+                        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                         {
                             if (!success)
                             {
                                 db.KpDatabase.Name = previousName;
                                 db.KpDatabase.NameChanged = previousNameChanged;
-                                App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                                App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                             }
                             else
                             {
@@ -410,12 +410,12 @@ namespace keepass2android
                 var previousCipher = db.KpDatabase.DataCipherUuid;
                 db.KpDatabase.DataCipherUuid = new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue));
 
-                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
                     if (!success)
                     {
                         db.KpDatabase.DataCipherUuid = previousCipher;
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                         return;
                     }
                     preferenceChangeEventArgs.Preference.Summary =
@@ -1071,12 +1071,12 @@ namespace keepass2android
 
                 Kp2aLog.Log("--new    kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString());
 
-                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
                     if (!success)
                     {
                         db.KpDatabase.KdfParameters = previousKdfParams;
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                         return;
                     }
                     UpdateKdfScreen();

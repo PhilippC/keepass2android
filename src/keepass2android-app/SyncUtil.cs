@@ -54,15 +54,15 @@ namespace keepass2android
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
             OperationWithFinishHandler task;
-            OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+            OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
             {
                 new Handler(Looper.MainLooper).Post(() =>
                 {
                     if (!String.IsNullOrEmpty(message))
-                        App.Kp2a.ShowMessage(activity, message, success ? MessageSeverity.Info : MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message, success ? MessageSeverity.Info : MessageSeverity.Error);
 
                     // Tell the adapter to refresh it's list
-                    BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter;
+                    BaseAdapter adapter = (context as GroupBaseActivity)?.ListAdapter;
 
                     adapter?.NotifyDataSetChanged();
                 });

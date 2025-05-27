@@ -76,10 +76,10 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var task = new EntryActivity.WriteBinaryTask(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+            var task = new EntryActivity.WriteBinaryTask(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
                     if (!success)
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                 }
             ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
             BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, task);
@@ -90,6 +90,7 @@ namespace keepass2android
         public override void OnSaveInstanceState(Bundle outState)
         {
             outState.PutString("BinaryToSave", _binaryToSave);
+            base.OnSaveInstanceState(outState);
         }
         
 
@@ -1494,7 +1495,7 @@ namespace keepass2android
                     return true;
 				case Resource.Id.menu_delete:
                     DeleteEntry task = new DeleteEntry(App.Kp2a, Entry,
-                        new ActionOnOperationFinished(App.Kp2a, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
+                        new ActionOnOperationFinished(App.Kp2a, (success, message, context) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();
                     break;
                 case Resource.Id.menu_toggle_pass:
@@ -1557,10 +1558,10 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
 			{
 				OnOperationFinishedHandler.DisplayMessage(this, message, true);
-			    finishAction((EntryActivity)activity);
+			    finishAction(context as EntryActivity);
 			});
 
 

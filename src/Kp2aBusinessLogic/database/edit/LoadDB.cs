@@ -202,10 +202,10 @@ namespace keepass2android
                 if (requiresSubsequentSync)
                 {
                     var syncTask = new SynchronizeCachedDatabase(_app, new ActionOnOperationFinished(_app,
-                        (success, message, activeActivity) =>
+                        (success, message, context) =>
                         {
                             if (!String.IsNullOrEmpty(message))
-                                _app.ShowMessage(activeActivity, message,
+                                _app.ShowMessage(context, message,
                                     success ? MessageSeverity.Info : MessageSeverity.Error);
 
                         }), new BackgroundDatabaseModificationLocker(_app)

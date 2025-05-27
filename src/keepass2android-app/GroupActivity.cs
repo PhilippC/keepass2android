@@ -225,7 +225,7 @@ namespace keepass2android
 								//yes
 								BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, 
 									new AddTemplateEntries(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
-									    (success, message, activity) => ((GroupActivity)activity)?.StartAddEntry())));
+									    (success, message, context) => (context as GroupActivity)?.StartAddEntry())));
 								pt.Run();		
 							},
 							(o, args) =>

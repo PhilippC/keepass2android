@@ -929,11 +929,11 @@ namespace keepass2android
 
 
             var moveElement = new MoveElements(elementsToMove.ToList(), Group,  App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
-                (success, message, activity) =>
+                (success, message, context) =>
                 {
-                    ((GroupBaseActivity)activity)?.StopMovingElements();
+                    (context as GroupBaseActivity)?.StopMovingElements();
                     if (!String.IsNullOrEmpty(message))
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                 }));
             var progressTask = new BlockingOperationRunner(App.Kp2a, moveElement);
             progressTask.Run();
@@ -1726,7 +1726,7 @@ namespace keepass2android
 
             int dbIndex = 0;
             Action<bool, string, Context> action = null;
-            action = (success, message, activeActivity) =>
+            action = (success, message, context) =>
             {
                 if (success)
                 {
