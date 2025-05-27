@@ -12,9 +12,9 @@ namespace keepass2android
     {
 
         protected readonly int _requestCode;
-        protected readonly Activity _activity;
+        protected readonly LifecycleAwareActivity _activity;
 
-        public FileSaveProcessManager(int requestCode, Activity activity)
+        public FileSaveProcessManager(int requestCode, LifecycleAwareActivity activity)
         {
             _requestCode = requestCode;
             _activity = activity;

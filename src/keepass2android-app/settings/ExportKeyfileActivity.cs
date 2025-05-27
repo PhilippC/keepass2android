@@ -63,14 +63,14 @@ namespace keepass2android
 
         public class ExportKeyfileProcessManager : FileSaveProcessManager
         {
-            public ExportKeyfileProcessManager(int requestCode, Activity activity) : base(requestCode, activity)
+            public ExportKeyfileProcessManager(int requestCode, LifecycleAwareActivity activity) : base(requestCode, activity)
             {
 
             }
 
             protected override void SaveFile(IOConnectionInfo ioc)
             {
-                var exportKeyfile = new ExportKeyfile(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
+                var exportKeyfile = new ExportKeyfile(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a,
                     (success, message, context) =>
                     {
                         if (!success)

@@ -9,9 +9,9 @@ namespace keepass2android
 {
     public class SyncUtil
     {
-        private Activity _activity;
+        private LifecycleAwareActivity _activity;
 
-        public SyncUtil(Activity activity)
+        public SyncUtil(LifecycleAwareActivity activity)
         {
             _activity = activity;
         }
@@ -54,7 +54,7 @@ namespace keepass2android
         {
             var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
             OperationWithFinishHandler task;
-            OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+            OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
             {
                 new Handler(Looper.MainLooper).Post(() =>
                 {

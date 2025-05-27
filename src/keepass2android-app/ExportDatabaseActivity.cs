@@ -19,14 +19,14 @@ namespace keepass2android
     {
         private readonly FileFormatProvider _ffp;
 
-        public ExportDbProcessManager(int requestCode, Activity activity, FileFormatProvider ffp) : base(requestCode, activity)
+        public ExportDbProcessManager(int requestCode, LifecycleAwareActivity activity, FileFormatProvider ffp) : base(requestCode, activity)
         {
             _ffp = ffp;
         }
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var exportDb = new ExportDatabaseActivity.ExportDb(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+            var exportDb = new ExportDatabaseActivity.ExportDb(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
                 {
                     if (!success)
                         App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);

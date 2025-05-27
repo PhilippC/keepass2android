@@ -203,17 +203,16 @@ namespace keepass2android
                     new PwUuid(MemUtil.HexStringToByteArray(data.Extras.GetString(GroupEditActivity.KeyCustomIconId)));
                 String strGroupUuid = data.Extras.GetString(GroupEditActivity.KeyGroupUuid);
                 GroupBaseActivity act = this;
-                Handler handler = new Handler();
                 OperationWithFinishHandler task;
                 if (strGroupUuid == null)
                 {
-                    task = AddGroup.GetInstance(App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, new RefreshTask(handler, this), false);
+                    task = AddGroup.GetInstance(App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, CreateRefreshAction(), false);
                 }
                 else
                 {
                     PwUuid groupUuid = new PwUuid(MemUtil.HexStringToByteArray(strGroupUuid));
                     task = new EditGroup(App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
-                                         new RefreshTask(handler, this));
+                                         CreateRefreshAction());
                 }
                 BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, task);
                 pt.Run();
@@ -928,7 +927,7 @@ namespace keepass2android
 
 
 
-            var moveElement = new MoveElements(elementsToMove.ToList(), Group,  App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
+            var moveElement = new MoveElements(elementsToMove.ToList(), Group,  App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
                 (success, message, context) =>
                 {
                     (context as GroupBaseActivity)?.StopMovingElements();
@@ -1304,51 +1303,7 @@ namespace keepass2android
 
         }
 
-        public class RefreshTask : OnOperationFinishedHandler
-        {
-            public RefreshTask(Handler handler, GroupBaseActivity act)
-                : base(App.Kp2a, handler)
-            {
-            }
-
-            public override void Run()
-            {
-                if (Success)
-                {
-                    (ActiveContext as GroupBaseActivity)?.RefreshIfDirty();
-                }
-                else
-                {
-                    DisplayMessage(ActiveContext);
-                }
-            }
-        }
-        public class AfterDeleteGroup : OnOperationFinishedHandler
-        {
-            public AfterDeleteGroup(Handler handler, GroupBaseActivity act)
-                : base(App.Kp2a, handler)
-            {
-            }
-
-
-            public override void Run()
-            {
-                if (Success)
-                {
-                    (ActiveContext as GroupBaseActivity)?.RefreshIfDirty();
-                }
-                else
-                {
-                    Handler.Post(() =>
-                    {
-                        App.Kp2a.ShowMessage(ActiveContext ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message,  MessageSeverity.Error);
-                    });
-
-                    App.Kp2a.Lock(false);
-                }
-            }
-
-        }
+        
 
         public bool IsBeingMoved(PwUuid uuid)
         {
@@ -1453,6 +1408,27 @@ namespace keepass2android
             ListAdapter?.NotifyDataSetChanged();
 
         }
+
+        public OnOperationFinishedHandler CreateRefreshAction()
+        {
+            return new ActionInContextInstanceOnOperationFinished(
+                ContextInstanceId, App.Kp2a,
+                (success, message, context) =>
+                {
+                    if (success)
+                    {
+                        RunOnUiThread(() =>
+                        {
+                            (context as GroupBaseActivity)?.RefreshIfDirty();
+                        });
+                    }
+                    else
+                    {
+                        App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
+                    }
+                }
+            );
+        }
     }
 
     public class UpdateGroupBaseActivityBroadcastReceiver : BroadcastReceiver
@@ -1533,12 +1509,12 @@ namespace keepass2android
             {
                 return false;
             }
-            Handler handler = new Handler();
+            
             switch (item.ItemId)
             {
 
                 case Resource.Id.menu_delete:
-                    DeleteMultipleItems((GroupBaseActivity)Activity, checkedItems, new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a);
+                    DeleteMultipleItems((GroupBaseActivity)Activity, checkedItems, ((GroupBaseActivity)Activity).CreateRefreshAction(), App.Kp2a);
                     break;
                 case Resource.Id.menu_move:
                     var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
@@ -1547,7 +1523,7 @@ namespace keepass2android
                 case Resource.Id.menu_copy:
 
                     var copyTask = new CopyEntry(App.Kp2a, (PwEntry)checkedItems.First(),
-                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a.CurrentDb);
+                        ((GroupBaseActivity)Activity).CreateRefreshAction(), App.Kp2a.CurrentDb);
 
                     BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, copyTask);
                     pt.Run();

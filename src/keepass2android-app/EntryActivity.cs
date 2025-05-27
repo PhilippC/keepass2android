@@ -64,7 +64,7 @@ namespace keepass2android
     {
         private readonly string _binaryToSave;
 
-        public ExportBinaryProcessManager(int requestCode, Activity activity, string key) : base(requestCode, activity)
+        public ExportBinaryProcessManager(int requestCode, LifecycleAwareActivity activity, string key) : base(requestCode, activity)
         {
             _binaryToSave = key;
         }
@@ -572,7 +572,7 @@ namespace keepass2android
                 App.Kp2a.DirtyGroups.Add(parent);
             }
 
-			var saveTask = new SaveDb( App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+			var saveTask = new SaveDb( App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
             {
 				if (context is Activity activity)
                 {
@@ -1558,7 +1558,7 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnOperationFinished closeOrShowError = new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+			ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
 			{
 				OnOperationFinishedHandler.DisplayMessage(this, message, true);
 			    finishAction(context as EntryActivity);

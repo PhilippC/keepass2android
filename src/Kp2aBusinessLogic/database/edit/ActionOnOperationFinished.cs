@@ -54,6 +54,10 @@ namespace keepass2android
 	}
 }
 
+
+
+    //Action which runs when the contextInstanceId is the active context
+    // otherwise it is registered as pending action for the context instance.
     public class ActionInContextInstanceOnOperationFinished : ActionOnOperationFinished
     {
         private readonly int _contextInstanceId;
