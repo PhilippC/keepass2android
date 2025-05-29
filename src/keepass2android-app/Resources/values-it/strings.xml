@@ -1174,4 +1174,7 @@ Prima release pubblica
   <string name="kp2a_switch_on_sendgodone_summary">Torna indietro quando premi invia/vai/fatto</string>
   <string name="qr_scanning_error_no_google_play_services">La scansione del codice QR richiede Google Play Services. Installa o aggiorna Google Play Services sul tuo dispositivo.</string>
   <string name="english_ime_settings">Impostazioni tastiera Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Hai abilitato App - Impostazioni - Accesso password - Cambio di tastiera - Tastiera automatica, ma non sembra essere configurata correttamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: Hai abilitato App - Accesso password - Servizio di autocompilazione - Autocompilazione per le voci TOTP. Questo può causare la visualizzazione di questa finestra quando si apre una voce con un TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Hai abilitato App - Sicurezza - Usa la tastiera integrata all\'interno di Keepass2Android. Questo può causare la visualizzazione di questa finestra quando si apre l\'app o si modifica una voce.</string>
 </resources>
