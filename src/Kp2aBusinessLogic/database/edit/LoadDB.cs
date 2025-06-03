@@ -41,7 +41,7 @@ namespace keepass2android
 		IDatabaseFormat _format;
 
         public bool DoNotSetStatusLoggerMessage = false;
-        public bool SyncInBackground { get; set; }
+        
 
         public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
             string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
@@ -56,7 +56,6 @@ namespace keepass2android
 		    _updateLastUsageTimestamp = updateLastUsageTimestamp;
 		    _makeCurrent = makeCurrent;
 		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile);
-            SyncInBackground = _app.SyncInBackgroundPreference;
         }
 
 	    protected bool success = false;
@@ -76,7 +75,7 @@ namespace keepass2android
 
                     var fileStorage = _app.GetFileStorage(_ioc);
 
-                    bool requiresSubsequentSync = false;
+                    RequiresSubsequentSync = false;
 
 
                     if (!DoNotSetStatusLoggerMessage)
@@ -100,7 +99,7 @@ namespace keepass2android
                             cachingFileStorage.IsOffline = true;
                             //no warning. We'll trigger a sync later.
                             cachingFileStorage.TriggerWarningWhenFallingBackToCache = false;
-                            requiresSubsequentSync = true;
+                            RequiresSubsequentSync = true;
 
                         }
                         using (Stream s = fileStorage.OpenFileForRead(_ioc))
@@ -118,7 +117,7 @@ namespace keepass2android
 
 					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
 					_format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(fileStorage.GetFileExtension(_ioc)));
-					TryLoad(databaseStream, requiresSubsequentSync);
+					TryLoad(databaseStream);
 
 
 
@@ -171,12 +170,14 @@ namespace keepass2android
 			
 		}
 
-		/// <summary>
+        public bool RequiresSubsequentSync { get; set; } = false;
+
+        /// <summary>
 		/// Holds the exception which was thrown during execution (if any)
 		/// </summary>
 		public Exception Exception { get; set; }
 
-		Database TryLoad(MemoryStream databaseStream, bool requiresSubsequentSync)
+		Database TryLoad(MemoryStream databaseStream)
 		{
 			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
 			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
@@ -197,27 +198,14 @@ namespace keepass2android
                 Database newDb =
                     _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent, _modificationWatcher);
                 Kp2aLog.Log("LoadDB OK");
-                if (requiresSubsequentSync)
-                {
-                    var syncTask = new SynchronizeCachedDatabase(_app, new ActionOnOperationFinished(_app,
-                        (success, message, context) =>
-                        {
-                            if (!String.IsNullOrEmpty(message))
-                                _app.ShowMessage(context, message,
-                                    success ? MessageSeverity.Info : MessageSeverity.Error);
-
-                        }), new BackgroundDatabaseModificationLocker(_app)
-                    );
-                    OperationRunner.Instance.Run(_app, syncTask);
-                }
-
+               
                 Finish(true, _format.SuccessMessage);
                 return newDb;
             }
 			catch (OldFormatException)
 			{
 				_format = new KdbDatabaseFormat(_app);
-				return TryLoad(databaseStream, requiresSubsequentSync);
+				return TryLoad(databaseStream);
 			}
 			catch (InvalidCompositeKeyException)
 			{
@@ -229,7 +217,7 @@ namespace keepass2android
 					//retry without password:
 					_compositeKey.RemoveUserKey(passwordKey);
 					//retry:
-					return TryLoad(databaseStream, requiresSubsequentSync);
+					return TryLoad(databaseStream);
 				}
 				else throw;
 			}

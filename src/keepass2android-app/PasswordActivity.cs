@@ -222,6 +222,7 @@ namespace keepass2android
             //StackBaseActivity will launch the next activity
             Intent data = new Intent();
 		    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioConnection));
+            data.PutExtra("requiresSubsequentSync", _lastLoadOperation?.RequiresSubsequentSync == true);
 
 		    SetResult(Result.Ok, data);
 
@@ -1441,14 +1442,21 @@ namespace keepass2android
 
 				Handler handler = new Handler();
 				OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
-				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
+				LoadDb loadOperation = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
 						onOperationFinishedHandler, this, true, _makeCurrent)
 					: new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
-			    new BlockingOperationStarter(App.Kp2a, task).Run();
-			}
+                _lastLoadOperation = loadOperation;
+
+                
+				//Don't use BlockingOperationStarter as that would cancel running operations.
+				//This is bad when used with AutoOpen: we might get here when one database has loaded and is now synced in the background.
+				//We don't want to cancel this.
+                OperationRunner.Instance.Run(App.Kp2a, loadOperation, true);
+
+            }
 			catch (Exception e)
 			{
 				Kp2aLog.LogUnexpectedError(new Exception("cannot load database: "+e + ", c: " + (compositeKey != null) + (_ioConnection != null) + (_keyFile != null), e));
@@ -1572,7 +1580,9 @@ namespace keepass2android
 		}
 
         private bool hasRequestedKeyboardActivation = false;
-		protected override void OnStart()
+        private LoadDb _lastLoadOperation;
+
+        protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
@@ -1886,11 +1896,12 @@ namespace keepass2android
 		        Handler handler = new Handler();
 		        OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
 		        _performingLoad = true;
-                LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+                LoadDb loadOperation = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
 		            onOperationFinishedHandler, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
-		        new BlockingOperationStarter(App.Kp2a, task).Run();
-		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
+                _lastLoadOperation = loadOperation;
+                OperationRunner.Instance.Run(App.Kp2a, loadOperation, true);
+                compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
 		    }
 		    else
@@ -2242,7 +2253,7 @@ namespace keepass2android
                 if (!Success)
                     _act.InitFingerprintUnlock();
 
-
+                _act._lastLoadOperation = null;
                 _act._performingLoad = false;
 
 			}

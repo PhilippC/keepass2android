@@ -235,7 +235,7 @@ namespace keepass2android
         {
             if (requiresSubsequentSync)
             {
-                var syncTask = new SynchronizeCachedDatabase(_app, new ActionOnOperationFinished(_app,
+                var syncTask = new SynchronizeCachedDatabase(_app, _db, new ActionOnOperationFinished(_app,
                     (success, message, context) =>
                     {
                         if (!System.String.IsNullOrEmpty(message))

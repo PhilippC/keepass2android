@@ -50,9 +50,11 @@ namespace keepass2android
         }
 
 
-        public void StartSynchronizeDatabase()
+        public void StartSynchronizeDatabase(IOConnectionInfo ioc)
         {
-            var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
+            var filestorage = App.Kp2a.GetFileStorage(ioc);
+            var databaseForIoc = App.Kp2a.GetDatabase(ioc);
+
             OperationWithFinishHandler task;
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
             {
@@ -67,9 +69,9 @@ namespace keepass2android
                     adapter?.NotifyDataSetChanged();
                 });
 
-                if (App.Kp2a.CurrentDb?.OtpAuxFileIoc != null)
+                if (databaseForIoc?.OtpAuxFileIoc != null)
                 {
-                    var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
+                    var task2 = new SyncOtpAuxFile(_activity, databaseForIoc.OtpAuxFileIoc);
 
                     OperationRunner.Instance.Run(App.Kp2a, task2);
                 }
@@ -79,11 +81,10 @@ namespace keepass2android
             if (filestorage is CachingFileStorage)
             {
 
-                task = new SynchronizeCachedDatabase(App.Kp2a, onOperationFinishedHandler, new BackgroundDatabaseModificationLocker(App.Kp2a));
+                task = new SynchronizeCachedDatabase(App.Kp2a, databaseForIoc, onOperationFinishedHandler, new BackgroundDatabaseModificationLocker(App.Kp2a));
             }
             else
             {
-                //TODO do we want this to run in the background?
                 task = new CheckDatabaseForChanges( App.Kp2a, onOperationFinishedHandler);
             }
 

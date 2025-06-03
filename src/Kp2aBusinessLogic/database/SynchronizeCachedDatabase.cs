@@ -9,6 +9,7 @@ using KeePassLib.Serialization;
 using keepass2android.Io;
 using KeePass.Util;
 using Group.Pals.Android.Lib.UI.Filechooser.Utils;
+using KeePassLib;
 
 namespace keepass2android
 {
@@ -16,12 +17,14 @@ namespace keepass2android
 	{
 		private readonly IKp2aApp _app;
         private IDatabaseModificationWatcher _modificationWatcher;
+        private readonly Database _database;
 
 
-        public SynchronizeCachedDatabase(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, IDatabaseModificationWatcher modificationWatcher)
+        public SynchronizeCachedDatabase(IKp2aApp app, Database database, OnOperationFinishedHandler operationFinishedHandler, IDatabaseModificationWatcher modificationWatcher)
 			: base(app, operationFinishedHandler)
         {
             _app = app;
+            _database = database;
             _modificationWatcher = modificationWatcher;
         }
 
@@ -29,7 +32,7 @@ namespace keepass2android
 		{
             try
             {
-                IOConnectionInfo ioc = _app.CurrentDb.Ioc;
+                IOConnectionInfo ioc = _database.Ioc;
                 IFileStorage fileStorage = _app.GetFileStorage(ioc);
                 if (!(fileStorage is CachingFileStorage))
                 {
@@ -86,13 +89,13 @@ namespace keepass2android
                                 {
                                     Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
                                 }
-                            }), _app.CurrentDb, false, remoteData, _modificationWatcher);
+                            }), _database, false, remoteData, _modificationWatcher);
                         _saveDb.SetStatusLogger(StatusLogger);
                         _saveDb.DoNotSetStatusLoggerMessage = true; //Keep "sync db" as main message
                         _saveDb.SyncInBackground = false;
                         _saveDb.Run();
 
-                        _app.CurrentDb.UpdateGlobals();
+                        _database.UpdateGlobals();
 
                         _app.MarkAllGroupsAsDirty();
                     }
@@ -109,7 +112,7 @@ namespace keepass2android
                             {
                                 new Handler(Looper.MainLooper).Post(() =>
                                 {
-                                    _app.CurrentDb.UpdateGlobals();
+                                    _database.UpdateGlobals();
 
                                     _app.MarkAllGroupsAsDirty();
                                     Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
@@ -118,10 +121,9 @@ namespace keepass2android
                             }
                         });
                         var _loadDb = new LoadDb(_app, ioc, Task.FromResult(remoteData),
-                            _app.CurrentDb.KpDatabase.MasterKey, null, onFinished, true, false, _modificationWatcher);
+                            _database.KpDatabase.MasterKey, null, onFinished, true, false, _modificationWatcher);
                         _loadDb.SetStatusLogger(StatusLogger);
                         _loadDb.DoNotSetStatusLoggerMessage = true; //Keep "sync db" as main message
-                        _loadDb.SyncInBackground = false;
                         _loadDb.Run();
 
                     }

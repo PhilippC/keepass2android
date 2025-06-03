@@ -339,7 +339,7 @@ namespace keepass2android
 			if (PreferenceManager.GetDefaultSharedPreferences(this)
 									 .GetBoolean(GetString(Resource.String.SyncAfterQuickUnlock_key), false))
 			{
-				new SyncUtil(this).StartSynchronizeDatabase();
+				new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb.Ioc);
 			}
 			
 			Finish();
