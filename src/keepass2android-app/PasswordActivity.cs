@@ -1447,7 +1447,7 @@ namespace keepass2android
 					: new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
-			    new BlockingOperationRunner(App.Kp2a, task).Run();
+			    new BlockingOperationStarter(App.Kp2a, task).Run();
 			}
 			catch (Exception e)
 			{
@@ -1889,7 +1889,7 @@ namespace keepass2android
                 LoadDb task = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
 		            onOperationFinishedHandler, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
-		        new BlockingOperationRunner(App.Kp2a, task).Run();
+		        new BlockingOperationStarter(App.Kp2a, task).Run();
 		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
 		    }

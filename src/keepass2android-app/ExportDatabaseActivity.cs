@@ -35,7 +35,7 @@ namespace keepass2android
                     (context as Activity)?.Finish();
                 }
             ), _ffp, ioc);
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, exportDb);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, exportDb);
             pt.Run();
 
         }

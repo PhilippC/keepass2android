@@ -61,7 +61,7 @@ namespace keepass2android
 		    _db = db;
 			_app = app;
 			_dontSave = dontSave;
-            _modificationWatcher = modificationWatcher;
+            _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
         }
 		
 		/// <summary>
@@ -243,7 +243,7 @@ namespace keepass2android
 
                     }), new BackgroundDatabaseModificationLocker(_app)
                 );
-                BackgroundOperationRunner.Instance.Run(_app, syncTask);
+                OperationRunner.Instance.Run(_app, syncTask);
             }
             Finish(true);
         }

@@ -19,6 +19,7 @@ public class ProgressUiAsStatusLoggerAdapter : IKp2aStatusLogger
 
     public void SetNewProgressUi(IProgressUi progressUi)
     {
+        _progressUi?.Hide();
         _progressUi = progressUi;
         if (_isVisible)
         {

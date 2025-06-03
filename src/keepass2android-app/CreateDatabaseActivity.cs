@@ -214,7 +214,7 @@ namespace keepass2android
 
 			// Create the new database
 			CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, App.Kp2a, this), false, newKey, makeCurrent);
-			BlockingOperationRunner createTask = new BlockingOperationRunner(
+			BlockingOperationStarter createTask = new BlockingOperationStarter(
 				App.Kp2a, create);
 			createTask.Run();
 		}

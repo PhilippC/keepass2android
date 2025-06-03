@@ -214,7 +214,7 @@ namespace keepass2android
                     task = new EditGroup(App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
                                          CreateRefreshAction());
                 }
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, task);
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, task);
                 pt.Run();
             }
 
@@ -934,7 +934,7 @@ namespace keepass2android
                     if (!String.IsNullOrEmpty(message))
                         App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                 }));
-            var progressTask = new BlockingOperationRunner(App.Kp2a, moveElement);
+            var progressTask = new BlockingOperationStarter(App.Kp2a, moveElement);
             progressTask.Run();
 
         }
@@ -1525,7 +1525,7 @@ namespace keepass2android
                     var copyTask = new CopyEntry(App.Kp2a, (PwEntry)checkedItems.First(),
                         ((GroupBaseActivity)Activity).CreateRefreshAction(), App.Kp2a.CurrentDb);
 
-                    BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, copyTask);
+                    BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, copyTask);
                     pt.Run();
                     break;
 

@@ -130,14 +130,14 @@ namespace keepass2android
 					(dlgSender, dlgEvt) =>
 					{
 					    DeletePermanently = true;
-					    BlockingOperationRunner pt = new BlockingOperationRunner(App, this);
+					    BlockingOperationStarter pt = new BlockingOperationStarter(App, this);
 					    pt.Run();
 
 					},
 				(dlgSender, dlgEvt) =>
 				{
 				    DeletePermanently = false;
-				    BlockingOperationRunner pt = new BlockingOperationRunner(App, this);
+				    BlockingOperationStarter pt = new BlockingOperationStarter(App, this);
 				    pt.Run();
 				},
 				(dlgSender, dlgEvt) => { },
@@ -152,7 +152,7 @@ namespace keepass2android
 					QuestionNoRecycleResourceId,
 					(dlgSender, dlgEvt) =>
 					{
-					    BlockingOperationRunner pt = new BlockingOperationRunner(App, this);
+					    BlockingOperationStarter pt = new BlockingOperationStarter(App, this);
 					    pt.Run();
 					},
 				null,

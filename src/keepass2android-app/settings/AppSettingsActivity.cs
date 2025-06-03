@@ -126,7 +126,7 @@ namespace keepass2android
                                 App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                             }
                         }));
-                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
+                        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, save);
                         pt.Run();
                     };
                 }
@@ -144,7 +144,7 @@ namespace keepass2android
                 {
                     pref.PreferenceClick += (sender, args) =>
                     {
-                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, 
+                        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, 
                                         new AddTemplateEntries(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
                                             delegate
                                             {
@@ -197,7 +197,7 @@ namespace keepass2android
                                 App.Kp2a.UpdateOngoingNotification();
                             }
                         }));
-                        BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
+                        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, save);
                         pt.Run();
                     };
                 }
@@ -421,7 +421,7 @@ namespace keepass2android
                     preferenceChangeEventArgs.Preference.Summary =
                         CipherPool.GlobalPool.GetCipher(db.KpDatabase.DataCipherUuid).DisplayName;
                 }));
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, save);
                 pt.Run();
             }
 
@@ -1082,7 +1082,7 @@ namespace keepass2android
                     UpdateKdfScreen();
 
                 }));
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, save);
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, save);
                 pt.Run();
 
             }

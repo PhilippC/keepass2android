@@ -70,11 +70,9 @@ namespace keepass2android
 			{
 				try
 				{
-                    if (_keyfileOrProvider != null)
-                    {
-                        //make sure the file data is stored in the recent files list even if loading fails
-                        SaveFileData(_ioc, _keyfileOrProvider);
-                    }
+                    //make sure the file data is stored in the recent files list even if loading fails
+                    SaveFileData(_ioc, _keyfileOrProvider);
+                    
 
                     var fileStorage = _app.GetFileStorage(_ioc);
 
@@ -210,7 +208,7 @@ namespace keepass2android
 
                         }), new BackgroundDatabaseModificationLocker(_app)
                     );
-                    BackgroundOperationRunner.Instance.Run(_app, syncTask);
+                    OperationRunner.Instance.Run(_app, syncTask);
                 }
 
                 Finish(true, _format.SuccessMessage);

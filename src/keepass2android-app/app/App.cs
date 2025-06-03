@@ -742,7 +742,7 @@ namespace keepass2android
                 }
                 else
                 {
-					BackgroundOperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
+					OperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
                     return false;
                 }
             }
@@ -780,7 +780,7 @@ namespace keepass2android
 		/// <summary>
 		/// Shows all non-dismissed progress dialogs.
 		/// If there are multiple progressDialogs active, they all will be showing.
-		/// There probably will never be multiple dialogs at the same time because only one BlockingOperationRunner can run at a time.
+		/// There probably will never be multiple dialogs at the same time because only one BlockingOperationStarter can run at a time.
 		/// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
 		/// because they are just progress indicators.
 		/// </summary>
@@ -821,10 +821,10 @@ namespace keepass2android
             ShowAllActiveProgressDialogs();
 		}
 
-        public Handler UiThreadHandler 
-		{
-			get { return new Handler(); }
-		}
+        public Handler UiThreadHandler
+        {
+            get { return _uiThreadHandler; }
+        }
 
 		/// <summary>
 		/// Simple wrapper around ProgressDialog implementing IProgressDialog
@@ -880,13 +880,29 @@ namespace keepass2android
 			}
 		}
 
-		public IProgressDialog CreateProgressDialog(Context ctx)
-		{
-			var pd = new RealProgressDialog(ctx, this);
-            pd.SetTitle(GetResourceString(UiStringKey.progress_title));
-            return pd;
+        public IProgressDialog CreateProgressDialog(Context ctx)
+        {
+            /*Kp2aLog.Log("ctx is null ? " + (ctx == null));
+            Kp2aLog.Log("ctx is activity ? " + (ctx is Activity));
+            Kp2aLog.Log("ctx is destroyed ? " + (ctx is Activity { IsDestroyed: true }));
+            Kp2aLog.Log("ctx is finishing ? " + (ctx is Activity { IsFinishing: true }));
+            */
+            try
+            {
 
-        }
+
+                var pd = new RealProgressDialog(ctx, this);
+                pd.SetTitle(GetResourceString(UiStringKey.progress_title));
+                return pd;
+            }
+            catch (Exception e)
+            {
+				//may happen if the activity is (being) destroyed
+                return null;
+            }
+
+
+    }
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
@@ -1128,6 +1144,8 @@ namespace keepass2android
         {
             FileDbHelper = new FileDbHelper(app);
             FileDbHelper.Open();
+
+            _uiThreadHandler = new Handler(Looper.MainLooper);
 
 #if DEBUG
             foreach (UiStringKey key in Enum.GetValues(typeof(UiStringKey)))
@@ -1506,7 +1524,7 @@ namespace keepass2android
 
             try
             {
-                BackgroundOperationRunner.Instance.CancelAll();
+                OperationRunner.Instance.CancelAll();
 				
             }
 			finally
@@ -1520,6 +1538,8 @@ namespace keepass2android
 
 		private readonly Dictionary<int, List<ActionOnOperationFinished>> _pendingActionsForContextInstances = new();
 		private readonly object _pendingActionsForContextInstancesLock = new();
+        private Handler _uiThreadHandler;
+
         public void RegisterPendingActionForContextInstance(int contextInstanceId,
             ActionOnOperationFinished actionToPerformWhenContextIsResumed)
         {
@@ -1631,8 +1651,8 @@ namespace keepass2android
             Kp2aLog.Log("Going to background");
             Kp2a.ActiveContext = null;
 			// notify background operation runner that there is currently no active context, i.e. no UI where status can be displayed.
-			// The BackgroundOperationRunner will launch the background sync service if a task (even a blocking one) is running currently.
-            BackgroundOperationRunner.Instance.SetNewActiveContext(Kp2a);
+			// The OperationRunner will launch the background sync service if a task (even a blocking one) is running currently.
+            OperationRunner.Instance.SetNewActiveContext(Kp2a);
 
         }
 

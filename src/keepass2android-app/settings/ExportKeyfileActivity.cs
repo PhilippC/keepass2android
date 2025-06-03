@@ -81,7 +81,7 @@ namespace keepass2android
                         (context as Activity)?.Finish();
                     }
                 ), ioc);
-                BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, exportKeyfile);
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, exportKeyfile);
                 pt.Run();
 
             }

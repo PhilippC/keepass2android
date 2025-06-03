@@ -230,7 +230,7 @@ namespace keepass2android
             newEntry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, strTitle + " (" + Android.OS.Build.Model + ")"));
             var addTask = new AddEntry( App.Kp2a.CurrentDb, App.Kp2a, newEntry,item.Entry.ParentGroup,new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,  (success, message, context) => (context as ConfigureChildDatabasesActivity)?.Update()));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a,  addTask);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a,  addTask);
             pt.Run();
 
         }
@@ -262,7 +262,7 @@ namespace keepass2android
         {
             var addTask = new SaveDb(App.Kp2a, App.Kp2a.FindDatabaseForElement(item.Entry), new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) => (context as ConfigureChildDatabasesActivity)?.Update()));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a,  addTask);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a,  addTask);
             pt.Run();
         }
 
@@ -369,7 +369,7 @@ namespace keepass2android
 
             var addTask = new AddEntry( db, App.Kp2a, newEntry, autoOpenGroup, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) => (context as ConfigureChildDatabasesActivity)?.Update()));
 
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, addTask);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, addTask);
             pt.Run();
         }
 

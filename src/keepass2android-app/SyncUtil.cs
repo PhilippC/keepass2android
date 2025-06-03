@@ -71,7 +71,7 @@ namespace keepass2android
                 {
                     var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
 
-                    BackgroundOperationRunner.Instance.Run(App.Kp2a, task2);
+                    OperationRunner.Instance.Run(App.Kp2a, task2);
                 }
                
             });
@@ -87,7 +87,7 @@ namespace keepass2android
                 task = new CheckDatabaseForChanges( App.Kp2a, onOperationFinishedHandler);
             }
 
-            BackgroundOperationRunner.Instance.Run(App.Kp2a, task);
+            OperationRunner.Instance.Run(App.Kp2a, task);
 
         }
     }

@@ -1079,7 +1079,7 @@ namespace keepass2android
 			} else {
 				runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, closeOrShowError);
 			}
-            BlockingOperationRunner pt = new BlockingOperationRunner(App.Kp2a, runnable);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, runnable);
 			pt.Run();
 			
 

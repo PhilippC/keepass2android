@@ -66,7 +66,7 @@ namespace keepass2android
                 var baseVersionHash = cachingFileStorage.GetBaseVersionHash(ioc);
                 Kp2aLog.Log("Checking for file change. baseVersionHash = " + baseVersionHash);
                 if (baseVersionHash != hash ||
-                    true //TODO remove
+                    false //TODO remove
                    )
                 {
                     //remote file is modified
