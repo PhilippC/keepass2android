@@ -46,9 +46,6 @@ namespace keepass2android
                 StatusLogger.UpdateSubMessage(_app.GetResourceString(UiStringKey.DownloadingRemoteFile));
                 string hash;
 
-                //TODO remove
-                Thread.Sleep(5000);
-
                 MemoryStream remoteData;
                 try
                 {
@@ -68,14 +65,10 @@ namespace keepass2android
                 //check if remote file was modified:
                 var baseVersionHash = cachingFileStorage.GetBaseVersionHash(ioc);
                 Kp2aLog.Log("Checking for file change. baseVersionHash = " + baseVersionHash);
-                if (baseVersionHash != hash ||
-                    true //TODO remove
-                   )
+                if (baseVersionHash != hash)
                 {
                     //remote file is modified
-                    if (cachingFileStorage.HasLocalChanges(ioc)
-                        || true //TODO remove
-                       )
+                    if (cachingFileStorage.HasLocalChanges(ioc))
                     {
                         //conflict! need to merge
                         var _saveDb = new SaveDb(_app, new ActionOnOperationFinished(_app,

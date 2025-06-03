@@ -100,14 +100,17 @@ namespace keepass2android.services
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                //TODO
-                var channelName = "Foreground Service Channel";
-                var channelDescription = "Channel for foreground service";
+                var channelName = GetString(Resource.String.BackgroundSyncChannel_name);
+                var channelDescription = GetString(Resource.String.BackgroundSyncChannel_desc);
                 var channelImportance = NotificationImportance.Default;
                 var channel = new NotificationChannel(ChannelId, channelName, channelImportance)
                 {
                     Description = channelDescription
                 };
+                channel.EnableLights(false);
+                channel.EnableVibration(false);
+                channel.SetSound(null, null);
+                channel.SetShowBadge(false);
 
                 var notificationManager = (NotificationManager)GetSystemService(NotificationService);
                 notificationManager.CreateNotificationChannel(channel);

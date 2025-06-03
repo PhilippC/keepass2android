@@ -143,17 +143,11 @@ namespace keepass2android
 							return;
 						}	
 					}
-
-                    //TODO remove
-                    Thread.Sleep(5000);
-
-
+					
                     bool hasStreamForOrigFile = (_streamForOrigFile != null);
                     bool hasChangeFast = hasStreamForOrigFile ||
                                          fileStorage.CheckForFileChangeFast(ioc, _db.LastFileVersion);  //first try to use the fast change detection;
                     bool hasHashChanged = !requiresSubsequentSync && (
-						//TODO remove
-						true || 
                         hasChangeFast ||
                                           (FileHashChanged(ioc, _db.KpDatabase.HashOfFileOnDisk) ==
                                            FileHashChange.Changed)); //if that fails, hash the file and compare:
@@ -278,7 +272,9 @@ namespace keepass2android
             PerformSaveWithoutCheck(fileStorage, ioc);
             new Handler(Looper.MainLooper).Post(() =>
             {
+                Kp2aLog.Log("OPR: Starting posted UpdateGlobals");
                 _db.UpdateGlobals();
+                Kp2aLog.Log("OPR: Finished posted UpdateGlobals");
             });
 
             FinishWithSuccess();
