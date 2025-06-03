@@ -103,9 +103,7 @@ namespace keepass2android
             if (handler != null ) {
                 handler.Post(() =>
                 {
-                    Kp2aLog.Log("OPR: Starting posted NextOnOperationFinishedHandler");
                     NextOnOperationFinishedHandler.Run();
-                    Kp2aLog.Log("OPR: Finished posted NextOnOperationFinishedHandler");
                 }); 
 			} else {
 				NextOnOperationFinishedHandler.Run();

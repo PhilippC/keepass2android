@@ -47,9 +47,7 @@ namespace keepass2android
 			{
 				Handler.Post(() =>
                 {
-                    Kp2aLog.Log("OPR: Starting posted actionToPerform ");
                     _actionToPerform(Success, Message, ActiveContext);
-                    Kp2aLog.Log("OPR: Finished posted actionToPerform ");
                 });
 			}
             else

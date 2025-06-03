@@ -44,11 +44,9 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
     {
         App.Kp2a.UiThreadHandler.Post(() =>
         {
-            Kp2aLog.Log("OPR: Starting posted Show ");
             Visibility = ViewStates.Visible;
             FindViewById<TextView>(Resource.Id.background_ops_message)!.Visibility = ViewStates.Gone;
             FindViewById<TextView>(Resource.Id.background_ops_submessage)!.Visibility = ViewStates.Gone;
-            Kp2aLog.Log("OPR: Finished posted Show ");
         });
 
     }
@@ -57,11 +55,8 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
     {
         App.Kp2a.UiThreadHandler.Post(() =>
         {
-            Kp2aLog.Log("OPR: Starting posted Hide ");
             String activityType = Context.GetType().FullName;
-            Kp2aLog.Log("Hiding background ops container in" + activityType);
             Visibility = ViewStates.Gone;
-            Kp2aLog.Log("OPR: Finished posted Hide ");
         });
     }
 
@@ -69,7 +64,6 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
     {
         App.Kp2a.UiThreadHandler.Post(() =>
         {
-            Kp2aLog.Log("OPR: Starting posted UpdateMessage ");
             TextView messageTextView = FindViewById<TextView>(Resource.Id.background_ops_message)!;
             if (string.IsNullOrEmpty(message))
             {
@@ -80,7 +74,6 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
                 messageTextView.Visibility = ViewStates.Visible;
                 messageTextView.Text = message;
             }
-            Kp2aLog.Log("OPR: Finished posted UpdateMessage ");
         });
     }
 
@@ -88,7 +81,6 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
     {
         App.Kp2a.UiThreadHandler.Post(() =>
         {
-            Kp2aLog.Log("OPR: Starting posted UpdateSubMessage ");
             TextView subMessageTextView = FindViewById<TextView>(Resource.Id.background_ops_submessage)!;
             if (string.IsNullOrEmpty(submessage))
             {
@@ -99,7 +91,6 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
                 subMessageTextView.Visibility = ViewStates.Visible;
                 subMessageTextView.Text = submessage;
             }
-            Kp2aLog.Log("OPR: Finished posted UpdateSubMessage ");
         });
     }
 }

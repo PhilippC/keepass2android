@@ -121,7 +121,6 @@ namespace keepass2android
             {
                 _handler.Post(() =>
                     {
-                        Kp2aLog.Log("OPR: Starting posted SetMessage");
                         if (!String.IsNullOrEmpty(submessage))
                         {
                             _progressDialog.SetMessage(_message + " (" + submessage + ")");
@@ -130,7 +129,6 @@ namespace keepass2android
                         {
                             _progressDialog.SetMessage(_message);
                         }
-                        Kp2aLog.Log("OPR: Finished posted SetMessage");
                     }
                 );
             }
@@ -140,9 +138,7 @@ namespace keepass2android
         {
             _handler.Post(() =>
             {
-                Kp2aLog.Log("OPR: Starting posted Show");
                 _progressDialog?.Show();
-                Kp2aLog.Log("OPR: Finished posted Show");
 
             });
         }
@@ -151,9 +147,7 @@ namespace keepass2android
         {
             _handler.Post(() =>
             {
-                Kp2aLog.Log("OPR: Starting posted Dismiss");
                 _progressDialog?.Dismiss();
-                Kp2aLog.Log("OPR: Finished posted Dismiss");
 
             });
         }
@@ -166,9 +160,7 @@ namespace keepass2android
             {
                 _handler.Post(() =>
                 {
-                    Kp2aLog.Log("OPR: Starting posted SetMessage");
                     _progressDialog.SetMessage(message);
-                    Kp2aLog.Log("OPR: Finishing posted SetMessage");
                 });
             }
         }

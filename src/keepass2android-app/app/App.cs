@@ -651,8 +651,6 @@ namespace keepass2android
             {
                 if (app.ActiveContext is Activity activity)
                 {
-                    Kp2aLog.Log("OPR: Will show YesNoCancel dialog because active context is an Activity.");
-                
                     if (_dialog is { IsShowing: true })
                     {
                         try
@@ -752,7 +750,6 @@ namespace keepass2android
                 }
                 else
                 {
-                    Kp2aLog.Log("OPR: Cannot show YesNoCancel dialog because active context is not an Activity.");
 					OperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
                     return false;
                 }
@@ -770,8 +767,6 @@ namespace keepass2android
             {
                 throw new Java.Lang.InterruptedException();
             }
-			Kp2aLog.Log("OPR: AskYesNoCancel called with titleKey " + titleKey + ", messageKey " + messageKey);
-
             _currentlyPendingYesNoCancelQuestion = new YesNoCancelQuestion()
             {
                 TitleKey = titleKey,
@@ -787,9 +782,7 @@ namespace keepass2android
             
             UiThreadHandler.Post( () =>
             {
-                Kp2aLog.Log("OPR: Starting posted AskYesNoCancel/TryShow ");
-                _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
-                Kp2aLog.Log("OPR: Finished posted AskYesNoCancel/TryShow ");
+                _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow); 
             });
                     
 		}
@@ -803,20 +796,16 @@ namespace keepass2android
 		/// </summary>
 		private void ShowAllActiveProgressDialogs()
         {
-            Kp2aLog.Log("OPR: ShowAllActiveProgressDialogs");
 			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
 			{
-                Kp2aLog.Log("OPR: ShowAllActiveProgressDialogs: Showing " + progressDialog.GetType().Name);
                 progressDialog.Show();
 			}
 		}
 
 		private void HideAllActiveProgressDialogs()
 		{
-            Kp2aLog.Log("OPR: HideAllActiveProgressDialogs");
             foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
 			{
-                Kp2aLog.Log("OPR: HideAllActiveProgressDialogs: Hiding " + progressDialog.GetType().Name);
                 progressDialog.Hide();
 			}
 		}
@@ -837,7 +826,6 @@ namespace keepass2android
 		private void OnUserInputDialogClose()
 		{
 			_isShowingUserInputDialog = false;
-			Kp2aLog.Log("OPR: OnUserInputDialogClose called, _currentlyPendingYesNoCancelQuestion is " + (_currentlyPendingYesNoCancelQuestion != null ? "not null" : "null") + " Will set to null now.");
             _currentlyPendingYesNoCancelQuestion = null;
 
             ShowAllActiveProgressDialogs();
@@ -892,8 +880,6 @@ namespace keepass2android
 				// Only show if asking dialog not also showing
 				if (!_app._isShowingUserInputDialog)
 				{
-                    Kp2aLog.Log("OPR: Showing progress dialog " + _pd.GetType().Name);
-
                     try
                     {
                         _pd.Show();
@@ -913,12 +899,6 @@ namespace keepass2android
 
         public IProgressDialog CreateProgressDialog(Context ctx)
         {
-            Kp2aLog.Log("OPR: CreateProgressDialog called with ctx " + ctx?.GetType().Name);
-            /*Kp2aLog.Log("ctx is null ? " + (ctx == null));
-            Kp2aLog.Log("ctx is activity ? " + (ctx is Activity));
-            Kp2aLog.Log("ctx is destroyed ? " + (ctx is Activity { IsDestroyed: true }));
-            Kp2aLog.Log("ctx is finishing ? " + (ctx is Activity { IsFinishing: true }));
-            */
             try
             {
 
@@ -930,7 +910,7 @@ namespace keepass2android
             catch (Exception e)
             {
                 //may happen if the activity is (being) destroyed
-                Kp2aLog.Log("OPR: CreateProgressDialog failed with " + e.ToString());
+                Kp2aLog.Log("CreateProgressDialog failed with " + e.ToString());
                 return null;
             }
 
@@ -1339,9 +1319,7 @@ namespace keepass2android
 
         public void StartBackgroundSyncService()
         {
-            Kp2aLog.Log("OPR: StartBackgroundSyncService");
-
-           Intent intent = new Intent(App.Context, typeof(BackgroundSyncService));
+            Intent intent = new Intent(App.Context, typeof(BackgroundSyncService));
             intent.SetAction(BackgroundSyncService.ActionStart);
             App.Context.StartService(intent);
         }
@@ -1541,7 +1519,6 @@ namespace keepass2android
             {
                 _activeContext = value;
                 OperationRunner.Instance.SetNewActiveContext(App.Kp2a);
-                Kp2aLog.Log("OPR: ActiveContext set to " + _activeContext?.GetType().Name + ". Pending question? " +(_currentlyPendingYesNoCancelQuestion != null));
                 _currentlyPendingYesNoCancelQuestion?.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
             }
         }

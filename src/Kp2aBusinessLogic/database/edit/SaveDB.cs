@@ -272,9 +272,7 @@ namespace keepass2android
             PerformSaveWithoutCheck(fileStorage, ioc);
             new Handler(Looper.MainLooper).Post(() =>
             {
-                Kp2aLog.Log("OPR: Starting posted UpdateGlobals");
                 _db.UpdateGlobals();
-                Kp2aLog.Log("OPR: Finished posted UpdateGlobals");
             });
 
             FinishWithSuccess();
