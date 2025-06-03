@@ -52,7 +52,6 @@ namespace keepass2android.services
                 CreateNotificationChannel();
                 StartForeground(NotificationId, BuildNotification());
                 App.Kp2a.ActiveContext = this;
-                OperationRunner.Instance.SetNewActiveContext(App.Kp2a);
                 return StartCommandResult.Sticky;
             }
             catch (Exception ex)

@@ -56,7 +56,7 @@ namespace keepass2android
             OperationWithFinishHandler task;
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
             {
-                new Handler(Looper.MainLooper).Post(() =>
+                App.Kp2a.UiThreadHandler.Post(() =>
                 {
                     if (!String.IsNullOrEmpty(message))
                         App.Kp2a.ShowMessage(context, message, success ? MessageSeverity.Info : MessageSeverity.Error);

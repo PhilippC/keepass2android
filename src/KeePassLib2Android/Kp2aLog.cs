@@ -21,6 +21,7 @@ using System.IO;
 using Android;
 using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Preferences;
 using KeePassLib.Serialization;
 
@@ -34,9 +35,17 @@ namespace keepass2android
 
 		public static void Log(string message)
 		{
-			if (message != null)
-				Android.Util.Log.Debug("KP2A", message);
-			if (LogToFile)
+            if (message != null)
+            {
+                message += Thread.CurrentThread.ManagedThreadId != 0
+                    ? " (Thread ID: " + Thread.CurrentThread.ManagedThreadId + ")"
+                    : "";
+                if (Looper.MainLooper == Looper.MyLooper())
+                    message += " (Main Looper)";
+                Android.Util.Log.Debug("KP2A", message);
+            }
+
+            if (LogToFile)
 			{
 				lock (_fileLocker)
 				{

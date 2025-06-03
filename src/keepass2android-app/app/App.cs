@@ -651,97 +651,108 @@ namespace keepass2android
             {
                 if (app.ActiveContext is Activity activity)
                 {
-                    Handler handler = new Handler(Looper.MainLooper);
-                    handler.Post(() =>
+                    Kp2aLog.Log("OPR: Will show YesNoCancel dialog because active context is an Activity.");
+                
+                    if (_dialog is { IsShowing: true })
                     {
-                        if (_dialog is { IsShowing: true })
-                        {
-							_dialog.Dismiss();
-                            _dialog = null;
-                        }
-
-                        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
-                        builder.SetTitle(app.GetResourceString(TitleKey));
-
-                        builder.SetMessage(app.GetResourceString(MessageKey) +
-                                           (MessageSuffix != "" ? " " + MessageSuffix : ""));
-
-                        // _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
-                        // and to show progress dialog after yesNoCancel dialog is closed
-                        EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
-                        {
-                            onUserInputDialogClose();
-                            YesHandler.Invoke(sender, args);
-                        };
-                        string yesText = app.GetResourceString(YesString);
-                        builder.SetPositiveButton(yesText, yesHandlerWithShow);
-                        string noText = "";
-                        if (NoHandler != null)
-                        {
-                            EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
-                            {
-                                onUserInputDialogClose();
-                                NoHandler.Invoke(sender, args);
-                            };
-
-                            noText = app.GetResourceString(NoString);
-                            builder.SetNegativeButton(noText, noHandlerWithShow);
-                        }
-
-                        string cancelText = "";
-                        if (CancelHandler != null)
-                        {
-                            EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
-                            {
-                                onUserInputDialogClose();
-                                CancelHandler.Invoke(sender, args);
-                            };
-
-                            cancelText = App.Context.GetString(Android.Resource.String.Cancel);
-                            builder.SetNeutralButton(cancelText,
-                                cancelHandlerWithShow);
-                        }
-
-                        _dialog = builder.Create();
-                        if (DismissHandler != null)
-                        {
-                            _dialog.SetOnDismissListener(new Util.DismissListener(() =>
-                            {
-                                onUserInputDialogClose();
-                                DismissHandler(_dialog, EventArgs.Empty);
-                            }));
-                        }
-
-                        onUserInputDialogShow();
                         try
                         {
-                            _dialog.Show();
+                            _dialog.Dismiss();
+                        }
+                        catch (Exception e)
+                        {
+                            Kp2aLog.LogUnexpectedError(e);
+                        }
+                        _dialog = null;
+                    }
+
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+                    builder.SetTitle(app.GetResourceString(TitleKey));
+
+                    builder.SetMessage(app.GetResourceString(MessageKey) +
+                                       (MessageSuffix != "" ? " " + MessageSuffix : ""));
+
+                    // _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
+                    // and to show progress dialog after yesNoCancel dialog is closed
+                    EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
+                    {
+                        onUserInputDialogClose();
+                        YesHandler.Invoke(sender, args);
+                    };
+                    string yesText = app.GetResourceString(YesString);
+                    builder.SetPositiveButton(yesText, yesHandlerWithShow);
+                    string noText = "";
+                    if (NoHandler != null)
+                    {
+                        EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
+                        {
+                            onUserInputDialogClose();
+                            NoHandler.Invoke(sender, args);
+                        };
+
+                        noText = app.GetResourceString(NoString);
+                        builder.SetNegativeButton(noText, noHandlerWithShow);
+                    }
+
+                    string cancelText = "";
+                    if (CancelHandler != null)
+                    {
+                        EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
+                        {
+                            onUserInputDialogClose();
+                            CancelHandler.Invoke(sender, args);
+                        };
+
+                        cancelText = App.Context.GetString(Android.Resource.String.Cancel);
+                        builder.SetNeutralButton(cancelText,
+                            cancelHandlerWithShow);
+                    }
+
+                    _dialog = builder.Create();
+                    if (DismissHandler != null)
+                    {
+                        _dialog.SetOnDismissListener(new Util.DismissListener(() =>
+                        {
+                            onUserInputDialogClose();
+                            DismissHandler(_dialog, EventArgs.Empty);
+                        }));
+                    }
+                    else
+                    {
+                        _dialog.SetCancelable(false);
+                    }
+                    
+
+                    onUserInputDialogShow();
+                    try
+                    {
+                        _dialog.Show();
+                    }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
+
+
+                    if (yesText.Length + noText.Length + cancelText.Length >= 20)
+                    {
+                        try
+                        {
+                            Button button = _dialog.GetButton((int)DialogButtonType.Positive);
+                            LinearLayout linearLayout = (LinearLayout)button.Parent;
+                            linearLayout.Orientation = Orientation.Vertical;
                         }
                         catch (Exception e)
                         {
                             Kp2aLog.LogUnexpectedError(e);
                         }
 
-
-                        if (yesText.Length + noText.Length + cancelText.Length >= 20)
-                        {
-                            try
-                            {
-                                Button button = _dialog.GetButton((int)DialogButtonType.Positive);
-                                LinearLayout linearLayout = (LinearLayout)button.Parent;
-                                linearLayout.Orientation = Orientation.Vertical;
-                            }
-                            catch (Exception e)
-                            {
-                                Kp2aLog.LogUnexpectedError(e);
-                            }
-
-                        }
-                    });
+                    }
                     return true;
                 }
                 else
                 {
+                    Kp2aLog.Log("OPR: Cannot show YesNoCancel dialog because active context is not an Activity.");
 					OperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
                     return false;
                 }
@@ -759,6 +770,7 @@ namespace keepass2android
             {
                 throw new Java.Lang.InterruptedException();
             }
+			Kp2aLog.Log("OPR: AskYesNoCancel called with titleKey " + titleKey + ", messageKey " + messageKey);
 
             _currentlyPendingYesNoCancelQuestion = new YesNoCancelQuestion()
             {
@@ -772,8 +784,13 @@ namespace keepass2android
                 DismissHandler = dismissHandler,
                 MessageSuffix = messageSuffix
             };
-           
-            _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
+            
+            UiThreadHandler.Post( () =>
+            {
+                Kp2aLog.Log("OPR: Starting posted AskYesNoCancel/TryShow ");
+                _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
+                Kp2aLog.Log("OPR: Finished posted AskYesNoCancel/TryShow ");
+            });
                     
 		}
 
@@ -785,18 +802,22 @@ namespace keepass2android
 		/// because they are just progress indicators.
 		/// </summary>
 		private void ShowAllActiveProgressDialogs()
-		{
+        {
+            Kp2aLog.Log("OPR: ShowAllActiveProgressDialogs");
 			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
 			{
-				progressDialog.Show();
+                Kp2aLog.Log("OPR: ShowAllActiveProgressDialogs: Showing " + progressDialog.GetType().Name);
+                progressDialog.Show();
 			}
 		}
 
 		private void HideAllActiveProgressDialogs()
 		{
-			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+            Kp2aLog.Log("OPR: HideAllActiveProgressDialogs");
+            foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
 			{
-				progressDialog.Hide();
+                Kp2aLog.Log("OPR: HideAllActiveProgressDialogs: Hiding " + progressDialog.GetType().Name);
+                progressDialog.Hide();
 			}
 		}
 
@@ -816,6 +837,7 @@ namespace keepass2android
 		private void OnUserInputDialogClose()
 		{
 			_isShowingUserInputDialog = false;
+			Kp2aLog.Log("OPR: OnUserInputDialogClose called, _currentlyPendingYesNoCancelQuestion is " + (_currentlyPendingYesNoCancelQuestion != null ? "not null" : "null") + " Will set to null now.");
             _currentlyPendingYesNoCancelQuestion = null;
 
             ShowAllActiveProgressDialogs();
@@ -869,8 +891,17 @@ namespace keepass2android
 				_app._activeProgressDialogs.Add(this);
 				// Only show if asking dialog not also showing
 				if (!_app._isShowingUserInputDialog)
-				{ 
-					_pd.Show();
+				{
+                    Kp2aLog.Log("OPR: Showing progress dialog " + _pd.GetType().Name);
+
+                    try
+                    {
+                        _pd.Show();
+                    }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
 				}
 			}
 
@@ -882,6 +913,7 @@ namespace keepass2android
 
         public IProgressDialog CreateProgressDialog(Context ctx)
         {
+            Kp2aLog.Log("OPR: CreateProgressDialog called with ctx " + ctx?.GetType().Name);
             /*Kp2aLog.Log("ctx is null ? " + (ctx == null));
             Kp2aLog.Log("ctx is activity ? " + (ctx is Activity));
             Kp2aLog.Log("ctx is destroyed ? " + (ctx is Activity { IsDestroyed: true }));
@@ -897,12 +929,13 @@ namespace keepass2android
             }
             catch (Exception e)
             {
-				//may happen if the activity is (being) destroyed
+                //may happen if the activity is (being) destroyed
+                Kp2aLog.Log("OPR: CreateProgressDialog failed with " + e.ToString());
                 return null;
             }
 
 
-    }
+        }
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
@@ -1306,7 +1339,9 @@ namespace keepass2android
 
         public void StartBackgroundSyncService()
         {
-            Intent intent = new Intent(App.Context, typeof(BackgroundSyncService));
+            Kp2aLog.Log("OPR: StartBackgroundSyncService");
+
+           Intent intent = new Intent(App.Context, typeof(BackgroundSyncService));
             intent.SetAction(BackgroundSyncService.ActionStart);
             App.Context.StartService(intent);
         }
@@ -1504,8 +1539,10 @@ namespace keepass2android
             get => _activeContext ?? Application.Context;
             set
             {
-                _activeContext = value; 
-                _currentlyPendingYesNoCancelQuestion?.TryShow(this, OnUserInputDialogClose, OnUserInputDialogClose);
+                _activeContext = value;
+                OperationRunner.Instance.SetNewActiveContext(App.Kp2a);
+                Kp2aLog.Log("OPR: ActiveContext set to " + _activeContext?.GetType().Name + ". Pending question? " +(_currentlyPendingYesNoCancelQuestion != null));
+                _currentlyPendingYesNoCancelQuestion?.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
             }
         }
 
@@ -1650,9 +1687,6 @@ namespace keepass2android
         {
             Kp2aLog.Log("Going to background");
             Kp2a.ActiveContext = null;
-			// notify background operation runner that there is currently no active context, i.e. no UI where status can be displayed.
-			// The OperationRunner will launch the background sync service if a task (even a blocking one) is running currently.
-            OperationRunner.Instance.SetNewActiveContext(Kp2a);
 
         }
 

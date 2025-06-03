@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using System.Threading.Tasks;
 using Thread = Java.Lang.Thread;
 
 namespace keepass2android;
@@ -59,10 +60,11 @@ public class OperationRunner
 
     public void Run(IKp2aApp app, OperationWithFinishHandler operation, bool runBlocking = false)
     {
+        Kp2aLog.Log("OPR: Run: " + operation.GetType().Name + ", runBlocking: " + runBlocking);
         lock (Instance._taskQueueLock)
         {
             _taskQueue.Enqueue(new OperationWithMetadata(){ Operation = operation, RunBlocking = runBlocking});
-            SetNewActiveContext(app);
+            operation.SetStatusLogger(_statusLogger);
 
             // Start thread to run the task (unless it's already running)
             if (_thread == null)
@@ -79,6 +81,7 @@ public class OperationRunner
                             {
                                 _thread = null;
                                 _statusLogger.EndLogging();
+                                Kp2aLog.Log("OPR: task queue empty. Stopping operation runner thread.");
                                 break;
                             }
                             else
@@ -89,21 +92,38 @@ public class OperationRunner
 
                         if (_currentlyRunningTask.Value.RunBlocking)
                         {
-                            app.UiThreadHandler.Post(() => TrySetupProgressDialog());
+                            Kp2aLog.Log("OPR: Run. Posting to set up progress dialog for blocking task: " + _currentlyRunningTask?.Operation?.GetType()?.Name ?? "null");
+                            app.UiThreadHandler.Post(
+                                () =>
+                                {
+                                    Kp2aLog.Log("OPR: Run. Starting Setting up progress dialog for blocking task: " + _currentlyRunningTask?.Operation?.GetType()?.Name ?? "null");
+                                    TrySetupProgressDialog();
+                                    Kp2aLog.Log("OPR: Run. Finished Setting up progress dialog for blocking task: " + _currentlyRunningTask?.Operation?.GetType()?.Name ?? "null");
+                                });
                         }
 
                         var originalFinishedHandler = _currentlyRunningTask.Value.Operation.operationFinishedHandler;
                         _currentlyRunningTask.Value.Operation.operationFinishedHandler = new ActionOnOperationFinished(app, (
                             (success, message, context) =>
                             {
-                                if (_currentlyRunningTask.Value.RunBlocking)
+                                if (_currentlyRunningTask?.RunBlocking == true)
                                 {
-                                    _progressDialog?.Dismiss();
+                                    Kp2aLog.Log("OPR: Run. Blocking task finished: " + _currentlyRunningTask?.Operation?.GetType()?.Name ?? "null");
+                                    _app.UiThreadHandler.Post(() =>
+                                    {
+                                        Kp2aLog.Log("OPR: Starting Dismissing progress dialog");
+                                        _progressDialog?.Dismiss();
+                                        Kp2aLog.Log("OPR: Finished Dismissing progress dialog");
+                                    }
+                                        );
                                 }
+                                Kp2aLog.Log("OPR: Run. Finished handler called for task: " + _currentlyRunningTask?.Operation?.GetType()?.Name ?? "null");
                                 _currentlyRunningTask = null;
 
                             }), originalFinishedHandler);
+                        Kp2aLog.Log("OPR: starting to run " + _currentlyRunningTask?.Operation?.GetType()?.Name ?? "null");
                         _currentlyRunningTask.Value.Operation.Run();
+                        
                         while (_currentlyRunningTask != null)
                         {
                             try
@@ -115,12 +135,15 @@ public class OperationRunner
                                 Kp2aLog.Log("Thread interrupted.");
                             }
                         }
+                        Kp2aLog.Log("OPR: waiting for next task in queue...");
                     }
 
                 });
                 _thread.Start();
             }
-                
+            else Kp2aLog.Log("OPR: thread already running, only enqueued " + operation.GetType().Name );
+
+
         }
                
     }
@@ -128,6 +151,7 @@ public class OperationRunner
 
     private bool TrySetupProgressDialog()
     {
+        Kp2aLog.Log("OPR: TrySetupProgressDialog");
         string currentMessage = "Initializing...";
         string currentSubmessage = "";
 
@@ -142,7 +166,9 @@ public class OperationRunner
             var pd = _progressDialog;
             _app.UiThreadHandler.Post(() =>
             {
+                Kp2aLog.Log("OPR: Starting TrySetupProgressDialog: Dismissing existing progress dialog");
                 pd.Dismiss();
+                Kp2aLog.Log("OPR: Finished TrySetupProgressDialog: Dismissing existing progress dialog");
             });
         }
 
@@ -150,7 +176,7 @@ public class OperationRunner
         _progressDialog = _app.CreateProgressDialog(_app.ActiveContext);
         if (_progressDialog == null)
         {
-            Kp2aLog.Log("OperationRunner.TrySetupProgressDialog: _progressDialog is null");
+            Kp2aLog.Log("OPR: OperationRunner.TrySetupProgressDialog: _progressDialog is null");
             return false;
         }
     
@@ -164,9 +190,9 @@ public class OperationRunner
         return true;
     }
 
-
     public void SetNewActiveContext(IKp2aApp app)
     {
+        Kp2aLog.Log("OPR: SetNewActiveContext: " + app.ActiveContext?.GetType().Name);
         _app = app;
         Context? context = app.ActiveContext;
         bool isAppContext = context == null || (context.ApplicationContext == context);
@@ -179,9 +205,15 @@ public class OperationRunner
                 return;
             }
 
-            if (_currentlyRunningTask?.RunBlocking == true)
+            if (_currentlyRunningTask?.RunBlocking == true && (context is Activity { IsFinishing: false, IsDestroyed:false}))
             {
-                app.UiThreadHandler.Post(() => TrySetupProgressDialog());
+                Kp2aLog.Log("OPR: SetNewActiveContext: running blocking task, setting up progress dialog");
+                app.UiThreadHandler.Post(() =>
+                {
+                    Kp2aLog.Log("OPR: Starting posted TrySetupProgressDialog");
+                    TrySetupProgressDialog();
+                    Kp2aLog.Log("OPR: Finished posted TrySetupProgressDialog");
+                });
             }
             else
             {

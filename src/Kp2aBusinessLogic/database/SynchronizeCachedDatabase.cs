@@ -66,12 +66,12 @@ namespace keepass2android
                 var baseVersionHash = cachingFileStorage.GetBaseVersionHash(ioc);
                 Kp2aLog.Log("Checking for file change. baseVersionHash = " + baseVersionHash);
                 if (baseVersionHash != hash ||
-                    false //TODO remove
+                    true //TODO remove
                    )
                 {
                     //remote file is modified
                     if (cachingFileStorage.HasLocalChanges(ioc)
-                        || false //TODO remove
+                        || true //TODO remove
                        )
                     {
                         //conflict! need to merge

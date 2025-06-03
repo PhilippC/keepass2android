@@ -45,10 +45,17 @@ namespace keepass2android
 				Message = "";
 			if (Handler != null)
 			{
-				Handler.Post(() => {_actionToPerform(Success, Message, ActiveContext);});
+				Handler.Post(() =>
+                {
+                    Kp2aLog.Log("OPR: Starting posted actionToPerform ");
+                    _actionToPerform(Success, Message, ActiveContext);
+                    Kp2aLog.Log("OPR: Finished posted actionToPerform ");
+                });
 			}
-			else
-				_actionToPerform(Success, Message, ActiveContext);
+            else
+            {
+                _actionToPerform(Success, Message, ActiveContext);
+            }
 			base.Run();
 		}
 	}
@@ -80,7 +87,7 @@ namespace keepass2android
             {
                 _app.RegisterPendingActionForContextInstance(_contextInstanceId, this);
             }
-            else base.Run();
+            else _app.UiThreadHandler.Post(() => base.Run());
         }
 
     }

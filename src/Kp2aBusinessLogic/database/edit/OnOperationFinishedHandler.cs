@@ -97,9 +97,16 @@ namespace keepass2android
 			if (NextOnOperationFinishedHandler == null) return;
 			// Pass on result on call finish
 			NextOnOperationFinishedHandler.SetResult(Success, Message, ImportantMessage, Exception);
-				
-			if ( Handler != null ) {
-				Handler.Post(NextOnOperationFinishedHandler.Run); 
+
+            var handler = Handler ?? NextOnOperationFinishedHandler.Handler ?? null;
+
+            if (handler != null ) {
+                handler.Post(() =>
+                {
+                    Kp2aLog.Log("OPR: Starting posted NextOnOperationFinishedHandler");
+                    NextOnOperationFinishedHandler.Run();
+                    Kp2aLog.Log("OPR: Finished posted NextOnOperationFinishedHandler");
+                }); 
 			} else {
 				NextOnOperationFinishedHandler.Run();
 			}
