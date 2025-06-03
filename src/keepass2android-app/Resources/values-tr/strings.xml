@@ -151,6 +151,7 @@
   <string name="hint_keyfile">Anahtar dosyası</string>
   <string name="hint_length">Uzunluk</string>
   <string name="hint_pass">parola</string>
+  <string name="hint_keyfile_path">SSH özel anahtar yolu</string>
   <string name="hint_login_pass">Parola</string>
   <string name="hint_title">Başlık</string>
   <string name="hint_url">URL</string>
@@ -301,6 +302,7 @@
   <string name="InlineSuggestions_title">Klavye ile entegre et</string>
   <string name="InlineSuggestions_summary">Otomatik doldurma önerilerini klavyede satır içi seçenekler olarak gösterir (giriş yöntemi tarafından destekleniyorsa)</string>
   <string name="LogAutofillView_title">Günlük otomatik doldurma görünümü</string>
+  <string name="LogAutofillView_summary">Otomatik doldurma görünümü hakkında ayrıntıları hata ayıklama günlüğüne yaz (eğer hata ayıklama günlüğü etkinse). Eğer otomatik doldurma beklendiği gibi çalışmıyorsa bu ayrıntılar geliştiriciye gönderilebilir.</string>
   <string name="requires_android11">Android 11 veya sonraki bir sürümünü gerektirir</string>
   <string name="kp2a_findUrl">Parola bul</string>
   <string name="excludeExpiredEntries">Hızlı aramalara süresi dolmuş kayıtlar katılmasın</string>
@@ -399,6 +401,7 @@
   <string name="ShowSeparateNotifications_summary">Kullanıcı adıyla parolayı panoya kopyalamak ve klavyeyi etkinleştirmek için bildirimleri göster.</string>
   <string name="AccServiceAutoFill_prefs">Otomatik Doldurma Erişilebilirlik Hizmeti</string>
   <string name="AutoFill_prefs">Otomatik Doldurma Hizmeti</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Bir girişi TOTP ile otomatik doldururken, giriş bildirimini TOTP Kopyala düğmesiyle göster</string>
   <string name="AutoFillTotp_prefs_ShowNotification_title">Giriş bildirimlerini göster</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP \'yi panoya kopyala</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Yerleşik klavyeyi etkinleştir</string>
