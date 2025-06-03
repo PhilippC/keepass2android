@@ -68,8 +68,14 @@ namespace keepass2android.services
 
         private Notification BuildNotification()
         {
-            
-            Intent notificationIntent = new Intent(this, typeof(FileSelectActivity));
+            Intent notificationIntent = PackageManager.GetLaunchIntentForPackage(PackageName);
+            if (notificationIntent == null)
+            {
+                notificationIntent = new Intent(this, typeof(FileSelectActivity));
+                notificationIntent.SetFlags(ActivityFlags.BroughtToFront | ActivityFlags.SingleTop |
+                                            ActivityFlags.ReorderToFront | ActivityFlags.NewTask);
+            }
+
             PendingIntent pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent,
                 PendingIntentFlags.Immutable);
 
