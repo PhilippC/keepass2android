@@ -733,6 +733,12 @@
     <AndroidNativeLibrary Include="..\java\argon2\libs\armeabi-v7a\libargon2.so" Link="armeabi-v7a\libargon2.so" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidNativeLibrary Include="..\java\argon2\libs\x86\libargon2.so" Link="x86\libargon2.so" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidNativeLibrary Include="..\java\argon2\libs\x86_64\libargon2.so" Link="x86_64\libargon2.so" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.0.5" />
     <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.7.0.5" />
     <PackageReference Include="Xamarin.AndroidX.AutoFill" Version="1.1.0.30" />
