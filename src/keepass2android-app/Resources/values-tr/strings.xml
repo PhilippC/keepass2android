@@ -401,6 +401,8 @@
   <string name="AutoFill_prefs">Otomatik Doldurma Hizmeti</string>
   <string name="AutoFillTotp_prefs_ShowNotification_title">Giriş bildirimlerini göster</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP \'yi panoya kopyala</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Yerleşik klavyeyi etkinleştir</string>
+  <string name="TotpCopiedToClipboard">TOTP panoya kopyalandı</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A klavye bildirimi</string>
   <string name="ShowKp2aKeyboardNotification_summary">Tam girişi KP2A klavyesinden erişilebilir yapın (önerilir).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Klavyeyi değiştir</string>
@@ -417,6 +419,7 @@
   <string name="ShowUnlockedNotification_summary">Veritabanı kilitli değilken devam eden bir bildirim gösterir.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8, bildirimler için yeni davranışlar getirdi. Keepass2Android\'in bildirimleri için simgeyi gizlemek istiyorsanız, lütfen bunu sistem ayarlarından yapılandırın. Bildirim kategorisinin önemini Minimum olarak ayarlayın.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Ayarları aç</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android bilgi bankanız kilitli değilken size bir sistem uyarısı görüntüler. Bunun çalışması için lütfen izin verin.</string>
   <string name="DontCare">Umrumda değil</string>
   <string name="DocumentAccessRevoked">Keepass2Android artık dosyaya erişemiyor. Dosya ya silindi yada erişim izinleri iptal edildi. Lütfen Veritabanını değiştir seçeneğiyle dosyayı yeniden açın.</string>
   <string name="PreloadDatabaseEnabled_title">Veritabanı dosyasını önceden yükleme</string>
@@ -501,9 +504,15 @@
   <string name="hint_sftp_host">sunucu (ör: 192.168.0.1)</string>
   <string name="hint_sftp_port">bağlantı noktası</string>
   <string name="initial_directory">Başlangıç dizini (isteğe bağlı):</string>
+  <string name="connect_timeout">Bağlantı zaman aşımı saniyesi (isteğe bağlı)</string>
   <string name="enter_sftp_login_title">SFTP oturum açma verilerini girin:</string>
   <string name="sftp_auth_mode">Kimlik doğrulama modu</string>
   <string name="send_public_key">Ortak anahtar gönder...</string>
+  <string name="select_private_keyfile">Özel anahtarı seç...</string>
+  <string name="hint_sftp_key_name">Yeni anahtar adı</string>
+  <string name="hint_sftp_key_content">Yeni anahtar içeriği</string>
+  <string name="private_key_saved">Özel anahtar kaydedildi</string>
+  <string name="private_key_save_failed">Özel anahtar kayıt edilemedi: %1$s</string>
   <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
   <string name="enter_mega_login_title">MEGA hesap bilgilerinizi girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
