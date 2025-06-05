@@ -724,7 +724,7 @@
     <item>Mise à niveau de Xamarin Android vers. net 8</item>
     <item>Mise à niveau vers Target SDK 34</item>
     <item>Mise à niveau vers l\'interface utilisateur Material 3</item>
-    <item>Improve autofill to work with Compose apps</item>
+    <item>Amélioration de la saisie automatique pour fonctionner avec les applications Compose</item>
     <item>Fix hostname matching in autofill and search</item>
     <item>Corriger le problème avec le générateur de mot de passe</item>
   </string-array>
@@ -1005,4 +1005,7 @@
   <string name="qr_scanning_error_no_google_play_services">Le scan de QR Code requiert les Services Google Play. Veuillez installer ou mettre à jour les Services Google Play sur votre périphérique.</string>
   <string name="english_ime_settings">Paramètres du clavier Keepass2Android</string>
   <string name="autoswitch_enabled_but_not_setup">Note : Vous avez activé le changement automatique de clavier, mais il ne semble pas être correctement configuré (Paramètres - Appli - Accès aux mots de passe - Changement de clavier).</string>
+  <string name="switch_keyboard_for_totp_enabled">Note : Vous avez activé le remplissage automatique des entrées TOTP. Cela peut entrainer l\'apparition de cette fenêtre lorsque vous ouvrez une entrée avec un TOTP (Paramètres - Appli - Accès aux mots de passe - Service de saisie automatique).</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Note : Vous avez activé le clavier intégré dans Keepass2Android. Cela peut faire apparaitre cette fenêtre quand vous ouvrez l\'application, ou que vous éditez une entrée (Paramètres - Appli - Sécurité).</string>
+  <string name="switch_keyboard_on_search_enabled">Note : Vous avez activé le changement de clavier. Cela peut faire apparaitre cette fenêtre lorsque vous recherchez une entrée depuis le navigateur (Paramètres - Appli - Accès aux mots de passe - Changement de clavier).</string>
 </resources>
