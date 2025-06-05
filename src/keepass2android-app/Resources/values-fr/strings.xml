@@ -1002,5 +1002,7 @@
   <string name="AutofillWarning_Intro">Vous êtes sur le point d\'insérer des identifiants pour le domaine \"%1$s\" dans l\'application \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Si vous faites confiance à \"%2$s\" pour appartenir à \"%1$s\" ou que vous faites confiance à l\'application \"%2$s\" pour ne pas abuser des identifiants (ex. parce que c\'est une application de navigateur de confiance), il est possible de continuer. Si ce n\'est pas le cas, veuillez annuler.</string>
   <string name="AutofillWarning_trustAsBrowser">Accepter toujours dans \"%1$s\"</string>
+  <string name="qr_scanning_error_no_google_play_services">Le scan de QR Code requiert les Services Google Play. Veuillez installer ou mettre à jour les Services Google Play sur votre périphérique.</string>
   <string name="english_ime_settings">Paramètres du clavier Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Note : Vous avez activé le changement automatique de clavier, mais il ne semble pas être correctement configuré (Paramètres - Appli - Accès aux mots de passe - Changement de clavier).</string>
 </resources>
