@@ -27,6 +27,7 @@ jobs:
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
       run: |
+        echo $KeyStore
         echo $KEYSTORE_BASE64 | base64 --decode > ${{ github.workspace }}/kp2a_net.keystore
         echo $MyAndroidSigningStorePass | sha1sum | cut -c 1-5
         echo $MyAndroidSigningKeyPass | sha1sum | cut -c 1-5
