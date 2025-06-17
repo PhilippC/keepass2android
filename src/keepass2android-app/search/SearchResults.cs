@@ -48,7 +48,15 @@ namespace keepass2android.search
 	{
 	    protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
+            //we don't want any background thread to update/reload the database while we're in this activity. We're showing a temporary group, so background updating doesn't work well.
+            if (!App.Kp2a.DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
+            {
+                App.Kp2a.ShowMessage(this, GetString(Resource.String.failed_to_access_database), MessageSeverity.Error);
+                Finish();
+                return;
+            }
+
+            base.OnCreate (bundle);
 			
 			if ( IsFinishing ) {
 				return;
@@ -59,7 +67,13 @@ namespace keepass2android.search
 			ProcessIntent(Intent);
 		}
 
-	    public override bool EntriesBelongToCurrentDatabaseOnly
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+			App.Kp2a.DatabasesBackgroundModificationLock.ExitReadLock();
+        }
+
+        public override bool EntriesBelongToCurrentDatabaseOnly
 	    {
 	        get { return false; }
 	    }

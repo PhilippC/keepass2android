@@ -26,7 +26,7 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	public class AddTemplateEntries : RunnableOnFinish {
+	public class AddTemplateEntries : OperationWithFinishHandler {
 
 		public class TemplateEntry
 		{
@@ -130,15 +130,13 @@ namespace keepass2android
 		}
 
 		private readonly IKp2aApp _app;
-		private readonly Activity _ctx;
-		
-		public AddTemplateEntries(Activity ctx, IKp2aApp app, OnFinish finish)
-			: base(ctx, finish)
+
+        public AddTemplateEntries(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
+			: base(app, operationFinishedHandler)
 		{
-			_ctx = ctx;
-			_app = app;
+            _app = app;
 			
-			//_onFinishToRun = new AfterAdd(this, OnFinishToRun);
+			//_operationFinishedHandler = new AfterAdd(this, operationFinishedHandler);
 		}
 
 		public static readonly List<TemplateEntry> TemplateEntries = new List<TemplateEntry>()
@@ -313,7 +311,7 @@ namespace keepass2android
 				_app.DirtyGroups.Add(templateGroup);
 
 				// Commit to disk
-				SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
+				SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
 				save.SetStatusLogger(StatusLogger);
 				save.Run();
 			}
@@ -337,7 +335,6 @@ namespace keepass2android
 				_app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
 				_app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
 			    _app.CurrentDb.Elements.Add(templateGroup);
-
 			}
 			addedEntries = new List<PwEntry>();
 
@@ -369,11 +366,11 @@ namespace keepass2android
 			return entry;
 		}
 
-		private class AfterAdd : OnFinish {
+		private class AfterAdd : OnOperationFinishedHandler {
 			private readonly Database _db;
 			private readonly List<PwEntry> _entries;
 
-			public AfterAdd(Activity activity, Database db, List<PwEntry> entries, OnFinish finish):base(activity, finish) {
+			public AfterAdd(IKp2aApp app, Database db, List<PwEntry> entries, OnOperationFinishedHandler operationFinishedHandler):base(app, operationFinishedHandler) {
 				_db = db;
 				_entries = entries;
 

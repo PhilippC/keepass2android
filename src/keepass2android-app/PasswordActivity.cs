@@ -222,6 +222,7 @@ namespace keepass2android
             //StackBaseActivity will launch the next activity
             Intent data = new Intent();
 		    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioConnection));
+            data.PutExtra("requiresSubsequentSync", _lastLoadOperation?.RequiresSubsequentSync == true);
 
 		    SetResult(Result.Ok, data);
 
@@ -1440,15 +1441,22 @@ namespace keepass2android
 				MakePasswordMaskedOrVisible();
 
 				Handler handler = new Handler();
-				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
-				LoadDb task = (KeyProviderTypes.Contains(KeyProviders.Otp))
+				OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
+				LoadDb loadOperation = (KeyProviderTypes.Contains(KeyProviders.Otp))
 					? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
-						onFinish, this, true, _makeCurrent)
-					: new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onFinish,true, _makeCurrent);
+						onOperationFinishedHandler, this, true, _makeCurrent)
+					: new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(), onOperationFinishedHandler,true, _makeCurrent);
 				_loadDbFileTask = null; // prevent accidental re-use
 
-			    new ProgressTask(App.Kp2a, this, task).Run();
-			}
+                _lastLoadOperation = loadOperation;
+
+                
+				//Don't use BlockingOperationStarter as that would cancel running operations.
+				//This is bad when used with AutoOpen: we might get here when one database has loaded and is now synced in the background.
+				//We don't want to cancel this.
+                OperationRunner.Instance.Run(App.Kp2a, loadOperation, true);
+
+            }
 			catch (Exception e)
 			{
 				Kp2aLog.LogUnexpectedError(new Exception("cannot load database: "+e + ", c: " + (compositeKey != null) + (_ioConnection != null) + (_keyFile != null), e));
@@ -1572,7 +1580,9 @@ namespace keepass2android
 		}
 
         private bool hasRequestedKeyboardActivation = false;
-		protected override void OnStart()
+        private LoadDb _lastLoadOperation;
+
+        protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
@@ -1753,17 +1763,10 @@ namespace keepass2android
                 cbOfflineMode.Checked =
                     App.Kp2a
                         .OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
-            LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
-            var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
-            if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
-            {
-                offlineModeContainer.Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                offlineModeContainer.Visibility = ViewStates.Gone;
-                App.Kp2a.OfflineMode = false;
-            }
+
+            CheckBox cbSyncInBackground = (CheckBox)FindViewById(Resource.Id.sync_in_background)!;
+            cbSyncInBackground.Checked = App.Kp2a.SyncInBackgroundPreference;
+            UpdateInternalCacheCheckboxesVisibility();
 
 
 
@@ -1891,13 +1894,14 @@ namespace keepass2android
 		        // to retry with typing the full password, but that's intended to avoid showing the password to a 
 		        // a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
 		        Handler handler = new Handler();
-		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
+		        OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
 		        _performingLoad = true;
-                LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
-		            onFinish, false, _makeCurrent);
+                LoadDb loadOperation = new LoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+		            onOperationFinishedHandler, false, _makeCurrent);
 		        _loadDbFileTask = null; // prevent accidental re-use
-		        new ProgressTask(App.Kp2a, this, task).Run();
-		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
+                _lastLoadOperation = loadOperation;
+                OperationRunner.Instance.Run(App.Kp2a, loadOperation, true);
+                compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
 		    }
 		    else
@@ -2039,10 +2043,38 @@ namespace keepass2android
 			{
 				App.Kp2a.OfflineModePreference = App.Kp2a.OfflineMode = args.IsChecked;
 			};
-			
-		}
-			
-		private String LoadKeyProviderStringForIoc(String filename) {
+
+            CheckBox cbSyncInBackground = (CheckBox)FindViewById(Resource.Id.sync_in_background);
+            cbSyncInBackground.CheckedChange += (sender, args) =>
+            {
+                App.Kp2a.SyncInBackgroundPreference = args.IsChecked;
+                UpdateInternalCacheCheckboxesVisibility();
+
+            };
+
+        }
+
+        private void UpdateInternalCacheCheckboxesVisibility()
+        {
+
+            LinearLayout syncInBackgroundContainer = FindViewById<LinearLayout>(Resource.Id.sync_in_background_container)!;
+
+            LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container)!;
+            var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
+            if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
+            {
+                syncInBackgroundContainer.Visibility = ViewStates.Visible;
+                offlineModeContainer.Visibility =
+                    App.Kp2a.SyncInBackgroundPreference ? ViewStates.Gone : ViewStates.Visible;
+            }
+            else
+            {
+                syncInBackgroundContainer.Visibility = offlineModeContainer.Visibility = ViewStates.Gone;
+                App.Kp2a.OfflineMode = false;
+            }
+        }
+
+        private String LoadKeyProviderStringForIoc(String filename) {
 			if ( _rememberKeyfile ) {
 				string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(filename);
 				if (String.IsNullOrEmpty(keyfile))
@@ -2110,11 +2142,11 @@ namespace keepass2android
             Finish();
 		}
 
-		private class AfterLoad : OnFinish {
+		private class AfterLoad : OnOperationFinishedHandler {
 			readonly PasswordActivity _act;
 		    private readonly IOConnectionInfo _ioConnection;
 
-		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(act, handler)
+		    public AfterLoad(Handler handler, PasswordActivity act, IOConnectionInfo ioConnection):base(App.Kp2a, handler)
 		    {
 		        _act = act;
 		        _ioConnection = ioConnection;
@@ -2221,7 +2253,7 @@ namespace keepass2android
                 if (!Success)
                     _act.InitFingerprintUnlock();
 
-
+                _act._lastLoadOperation = null;
                 _act._performingLoad = false;
 
 			}
@@ -2255,7 +2287,7 @@ namespace keepass2android
 			private readonly PasswordActivity _act;
 
 
-			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnFinish finish, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(act, app, ioc, databaseData, compositeKey, keyfileOrProvider, finish,updateLastUsageTimestamp,makeCurrent)
+			public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(app, ioc, databaseData, compositeKey, keyfileOrProvider, operationFinishedHandler,updateLastUsageTimestamp,makeCurrent)
 			{
 				_act = act;
 			}

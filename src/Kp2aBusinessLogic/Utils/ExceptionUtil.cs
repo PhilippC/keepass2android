@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace KeePass.Util
             string errorMessage = e.Message;
             if (e is Java.Lang.Exception javaException)
             {
-                errorMessage = javaException.LocalizedMessage ?? javaException.Message ?? errorMessage;
+                errorMessage = javaException.Message ?? errorMessage;
             }
 
             return errorMessage;

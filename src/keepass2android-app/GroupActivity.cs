@@ -223,9 +223,9 @@ namespace keepass2android
 							(o, args) =>
 							{
 								//yes
-								ProgressTask pt = new ProgressTask(App.Kp2a, this,
-									new AddTemplateEntries(this, App.Kp2a, new ActionOnFinish(this,
-									    (success, message, activity) => ((GroupActivity)activity)?.StartAddEntry())));
+								BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, 
+									new AddTemplateEntries(App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
+									    (success, message, context) => (context as GroupActivity)?.StartAddEntry())));
 								pt.Run();		
 							},
 							(o, args) =>
@@ -235,7 +235,7 @@ namespace keepass2android
 								edit.Commit();
 								//no 
 								StartAddEntry();
-							},null, this);
+							},null);
 						
 					}
 					else

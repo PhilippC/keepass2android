@@ -208,7 +208,7 @@ namespace KeePassLib.Serialization
 						if (!string.IsNullOrEmpty(strHash) && (m_pbHashOfHeader != null) &&
 							!m_bRepairMode)
 						{
-							Debug.Assert(m_uFileVersion < FileVersion32_4);
+						//	Debug.Assert(m_uFileVersion < FileVersion32_4);
 
 							byte[] pbHash = Convert.FromBase64String(strHash);
 							if (!MemUtil.ArraysEqual(pbHash, m_pbHashOfHeader))

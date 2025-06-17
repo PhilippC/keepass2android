@@ -85,7 +85,7 @@ namespace keepass2android
 		/// <summary>
 		/// Do not call this method directly. Call App.Kp2a.LoadDatabase instead.
 		/// </summary>
-		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseFormat databaseFormat)
+		public void LoadData(IKp2aApp app, IOConnectionInfo iocInfo, MemoryStream databaseData, CompositeKey compositeKey, IKp2aStatusLogger status, IDatabaseFormat databaseFormat)
 		{
 			PwDatabase pwDatabase = new PwDatabase();
 
@@ -149,7 +149,7 @@ namespace keepass2android
 			get { return GetFingerprintModePrefKey(Ioc); }
 		}
 
-		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, ProgressDialogStatusLogger status, IDatabaseFormat databaseFormat)
+		protected  virtual void PopulateDatabaseFromStream(PwDatabase pwDatabase, Stream s, IOConnectionInfo iocInfo, CompositeKey compositeKey, IKp2aStatusLogger status, IDatabaseFormat databaseFormat)
 		{
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
 			var filename = fileStorage.GetFilenameWithoutPathAndExt(iocInfo);
@@ -194,9 +194,9 @@ namespace keepass2android
 		}
 
 
-		public void SaveData()  {
+		public void SaveData(IFileStorage fileStorage)  {
             
-			using (IWriteTransaction trans = _app.GetFileStorage(Ioc).OpenWriteTransaction(Ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+			using (IWriteTransaction trans = fileStorage.OpenWriteTransaction(Ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
 			{
 				DatabaseFormat.Save(KpDatabase, trans.OpenFile());
 				

@@ -7,7 +7,6 @@ using Android.App;
 using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
-using Android.OS;
 using Android.Runtime;
 using Android.Text;
 using Android.Text.Method;
@@ -18,6 +17,7 @@ using Android.Views;
 using Android.Widget;
 using Google.Android.Material.Dialog;
 using keepass2android;
+using KeePassLib.Interfaces;
 
 namespace keepass2android.views
 {

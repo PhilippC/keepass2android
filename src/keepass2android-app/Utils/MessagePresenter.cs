@@ -46,7 +46,10 @@ namespace keepass2android.Utils
     {
         public void ShowMessage(Message message)
         {
-            Toast.MakeText(App.Context, message.Text, ToastLength.Long).Show();
+            new Handler(Looper.MainLooper).Post(() =>
+            {
+                Toast.MakeText(App.Context, message.Text, ToastLength.Long).Show();
+            });
         }
 
         public List<Message> PendingMessages => new();

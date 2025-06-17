@@ -62,7 +62,7 @@ namespace keepass2android
 	}
 
     /// <summary>
-    /// Holds the state of the EntrryEditActivity. This is required to be able to keep a partially modified entry in memory
+    /// Holds the state of the EntryEditActivity. This is required to be able to keep a partially modified entry in memory
     /// through the App variable. Serializing this state (especially the Entry/EntryInDatabase) can be a performance problem
     /// when there are big attachements.
     /// </summary>

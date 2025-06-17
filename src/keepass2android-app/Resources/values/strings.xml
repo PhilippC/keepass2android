@@ -382,6 +382,8 @@
   <string name="NoDonationReminder_summary">I won\'t give you a dime or I have already donated. Don\'t ask for a donation, not even at the author\'s birthday.</string>
   <string name="UseOfflineCache_title">Database caching</string>
   <string name="UseOfflineCache_summary">Keep a copy of the database files in the app\'s cache directory. This allows to use databases even while the database file is not accessible.</string>
+  <string name="SyncOfflineCacheInBackground_summary">When saving or loading, use the internal cache. Then synchronize with remote storage in a background process.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synchronize in background</string>
   <string name="CreateBackups_title">Local backups</string>
   <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
   <string name="UpdatingBackup">Updating local backup...</string>
@@ -724,6 +726,9 @@
   <string name="DbQuicklockedChannel_desc">Notification about the database being locked with QuickUnlock</string>
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
+  <string name="BackgroundSyncChannel_name">Synchronization operation</string>
+  <string name="BackgroundSyncChannel_desc">Notification to indicate that a synchronization is performed in the background.</string>
+  
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
@@ -1253,5 +1258,6 @@
   <string name="switch_keyboard_for_totp_enabled">Note: You have enabled App - Password access - Autofill-Service - Autofill for TOTP entries. This can cause this window to show when you open an entry with a TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Note: You have enabled App - Security - Use built-in keyboard inside Keepass2Android. This can cause this window to show when you open the app or edit an entry.</string>
   <string name="switch_keyboard_on_search_enabled">Note: You have enabled App - Security - Password access - Keyboard switching - Switch keyboard. This can cause this window to show when you search for an entry from the browser.</string>
-  
+  <string name="user_interaction_required">User interaction required. Please open the app.</string>
+  <string name="failed_to_access_database">Database is currently in use and cannot be accessed.</string>
 </resources>

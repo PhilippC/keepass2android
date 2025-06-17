@@ -15,23 +15,39 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
 using Android.App;
+using Android.Content;
+using Android.OS;
+using Java.Lang;
+using Java.Security;
+using System.Threading.Tasks;
 
 namespace keepass2android
 {
+    /// <summary>
+    /// Class to run a task while a progress dialog is shown
+    /// </summary>
+    public class BlockingOperationStarter
+	{
 
-	public abstract class FileOnFinish : OnOperationFinishedHandler {
-		private String _filename = "";
+		private readonly OperationWithFinishHandler _task;
+        private readonly IKp2aApp _app;
 
-		protected FileOnFinish(IKp2aApp app, FileOnFinish operationFinishedHandler):base(app, operationFinishedHandler) {
-		}
-
-		public string Filename
+	    public BlockingOperationStarter(IKp2aApp app, OperationWithFinishHandler task)
 		{
-			get { return _filename; }
-			set { _filename = value; }
-		}
+			_task = task;
+            _app = app;
+        }
+
+	    public void Run()
+        {
+            _app.CancelBackgroundOperations();
+            OperationRunner.Instance.Run(_app, _task, true);
+
+
+        }
+
+	    
 	}
 }
 

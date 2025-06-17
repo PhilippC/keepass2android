@@ -1,5 +1,6 @@
 using System;
 using Android.App;
+using Android.OS;
 using Android.Widget;
 using keepass2android.Io;
 using KeePassLib.Serialization;
@@ -8,19 +9,19 @@ namespace keepass2android
 {
     public class SyncUtil
     {
-        private Activity _activity;
+        private LifecycleAwareActivity _activity;
 
-        public SyncUtil(Activity activity)
+        public SyncUtil(LifecycleAwareActivity activity)
         {
             _activity = activity;
         }
 
-        public class SyncOtpAuxFile : RunnableOnFinish
+        public class SyncOtpAuxFile : OperationWithFinishHandler
         {
             private readonly IOConnectionInfo _ioc;
 
             public SyncOtpAuxFile(Activity activity, IOConnectionInfo ioc)
-                : base(activity, null)
+                : base(App.Kp2a, null)
             {
                 _ioc = ioc;
             }
@@ -49,50 +50,45 @@ namespace keepass2android
         }
 
 
-        public void SynchronizeDatabase(Action runAfterSuccess)
+        public void StartSynchronizeDatabase(IOConnectionInfo ioc)
         {
-            var filestorage = App.Kp2a.GetFileStorage(App.Kp2a.CurrentDb.Ioc);
-            RunnableOnFinish task;
-            OnFinish onFinish = new ActionOnFinish(_activity, (success, message, activity) =>
+            var filestorage = App.Kp2a.GetFileStorage(ioc);
+            var databaseForIoc = App.Kp2a.GetDatabase(ioc);
+
+            OperationWithFinishHandler task;
+            OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
             {
-                if (!String.IsNullOrEmpty(message))
-                    App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
-
-                // Tell the adapter to refresh it's list
-                BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter;
-                adapter?.NotifyDataSetChanged();
-
-                if (App.Kp2a.CurrentDb?.OtpAuxFileIoc != null)
+                App.Kp2a.UiThreadHandler.Post(() =>
                 {
-                    var task2 = new SyncOtpAuxFile(_activity, App.Kp2a.CurrentDb.OtpAuxFileIoc);
-                    task2.OnFinishToRun = new ActionOnFinish(_activity, (b, s, activeActivity) =>
-                    {
-                        runAfterSuccess();
-                    });
-                    new ProgressTask(App.Kp2a, activity, task2).Run(true);
-                }
-                else
+                    if (!String.IsNullOrEmpty(message))
+                        App.Kp2a.ShowMessage(context, message, success ? MessageSeverity.Info : MessageSeverity.Error);
+
+                    // Tell the adapter to refresh it's list
+                    BaseAdapter adapter = (context as GroupBaseActivity)?.ListAdapter;
+
+                    adapter?.NotifyDataSetChanged();
+                });
+
+                if (databaseForIoc?.OtpAuxFileIoc != null)
                 {
-                    runAfterSuccess();
+                    var task2 = new SyncOtpAuxFile(_activity, databaseForIoc.OtpAuxFileIoc);
+
+                    OperationRunner.Instance.Run(App.Kp2a, task2);
                 }
+               
             });
 
             if (filestorage is CachingFileStorage)
             {
 
-                task = new SynchronizeCachedDatabase(_activity, App.Kp2a, onFinish);
+                task = new SynchronizeCachedDatabase(App.Kp2a, databaseForIoc, onOperationFinishedHandler, new BackgroundDatabaseModificationLocker(App.Kp2a));
             }
             else
             {
-
-                task = new CheckDatabaseForChanges(_activity, App.Kp2a, onFinish);
+                task = new CheckDatabaseForChanges( App.Kp2a, onOperationFinishedHandler);
             }
 
-
-
-
-            var progressTask = new ProgressTask(App.Kp2a, _activity, task);
-            progressTask.Run();
+            OperationRunner.Instance.Run(App.Kp2a, task);
 
         }
     }

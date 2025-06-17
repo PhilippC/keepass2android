@@ -354,13 +354,22 @@
         android:layout_height="1dp"
         android:layout_above="@id/bottom_bar"
         android:background="#b8b8b8" />
+
+   <keepass2android.views.BackgroundOperationContainer
+        android:visibility="gone"
+     android:id="@+id/background_ops_container"
+     android:layout_below="@id/top"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+
+        />
   
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/divider2"
-        android:layout_below="@id/top"
+        android:layout_below="@id/background_ops_container"
         android:fitsSystemWindows="true">
         <fragment
             android:name="keepass2android.GroupListFragment"

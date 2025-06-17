@@ -37,8 +37,13 @@ namespace keepass2android
 		/// <summary>This intent will be broadcast once the database has been locked. Sensitive information displayed should be hidden and unloaded.</summary>
 		public const String DatabaseLocked = "keepass2android." + AppNames.PackagePart + ".database_locked";
 
-		/// <summary>This intent will be broadcast once the keyboard data has been cleared</summary>
-		public const String KeyboardCleared = "keepass2android." + AppNames.PackagePart + ".keyboard_cleared";
+		/// <summary>
+		/// Signals that the loaded data was updated, e.g. by reloading during sync. All UI elements should be refreshed.
+		/// </summary>
+        public const String DataUpdated = "keepass2android." + AppNames.PackagePart + ".data_updated";
+
+        /// <summary>This intent will be broadcast once the keyboard data has been cleared</summary>
+        public const String KeyboardCleared = "keepass2android." + AppNames.PackagePart + ".keyboard_cleared";
 
 		public const String CopyUsername = "keepass2android.copy_username";
 		public const String CopyPassword = "keepass2android.copy_password";

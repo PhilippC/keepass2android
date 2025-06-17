@@ -86,12 +86,17 @@ namespace KeePassLib.Interfaces
 		/// the current work.</returns>
 		bool SetText(string strNewText, LogStatusType lsType);
 
-		/// <summary>
-		/// Check if the user cancelled the current work.
-		/// </summary>
-		/// <returns>Returns <c>true</c> if the caller should continue
-		/// the current work.</returns>
-		bool ContinueWork();
+        void UpdateMessage(String message);
+
+
+        void UpdateSubMessage(String submessage);
+
+        /// <summary>
+        /// Check if the user cancelled the current work.
+        /// </summary>
+        /// <returns>Returns <c>true</c> if the caller should continue
+        /// the current work.</returns>
+        bool ContinueWork();
 	}
 
 	public sealed class NullStatusLogger : IStatusLogger
@@ -100,6 +105,12 @@ namespace KeePassLib.Interfaces
 		public void EndLogging() { }
 		public bool SetProgress(uint uPercent) { return true; }
 		public bool SetText(string strNewText, LogStatusType lsType) { return true; }
-		public bool ContinueWork() { return true; }
+        public void UpdateMessage(string message){
+        }
+
+        public void UpdateSubMessage(string submessage){
+        }
+
+        public bool ContinueWork() { return true; }
 	}
 }

@@ -13,13 +13,13 @@ namespace keepass2android
     public class ExportKeyfileActivity : LockCloseActivity
     {
 
-        public class ExportKeyfile : RunnableOnFinish
+        public class ExportKeyfile : OperationWithFinishHandler
         {
             private readonly IKp2aApp _app;
             private IOConnectionInfo _targetIoc;
 
-            public ExportKeyfile(Activity activity, IKp2aApp app, OnFinish onFinish, IOConnectionInfo targetIoc) : base(
-                activity, onFinish)
+            public ExportKeyfile(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, IOConnectionInfo targetIoc) : base(
+                App.Kp2a, onOperationFinishedHandler)
             {
                 _app = app;
                 _targetIoc = targetIoc;
@@ -63,25 +63,25 @@ namespace keepass2android
 
         public class ExportKeyfileProcessManager : FileSaveProcessManager
         {
-            public ExportKeyfileProcessManager(int requestCode, Activity activity) : base(requestCode, activity)
+            public ExportKeyfileProcessManager(int requestCode, LifecycleAwareActivity activity) : base(requestCode, activity)
             {
 
             }
 
             protected override void SaveFile(IOConnectionInfo ioc)
             {
-                var exportKeyfile = new ExportKeyfile(_activity, App.Kp2a, new ActionOnFinish(_activity,
-                    (success, message, activity) =>
+                var exportKeyfile = new ExportKeyfile(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a,
+                    (success, message, context) =>
                     {
                         if (!success)
-                            App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                            App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                         else
-                            App.Kp2a.ShowMessage(activity, _activity.GetString(Resource.String.export_keyfile_successful),
+                            App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_keyfile_successful),
                                  MessageSeverity.Info);
-                        activity.Finish();
+                        (context as Activity)?.Finish();
                     }
                 ), ioc);
-                ProgressTask pt = new ProgressTask(App.Kp2a, _activity, exportKeyfile);
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, exportKeyfile);
                 pt.Run();
 
             }

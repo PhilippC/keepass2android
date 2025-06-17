@@ -22,26 +22,24 @@ using KeePassLib.Keys;
 
 namespace keepass2android
 {
-	public class SetPassword : RunnableOnFinish {
+	public class SetPassword : OperationWithFinishHandler {
 		
 		private readonly String _password;
 		private readonly String _keyfile;
 		private readonly IKp2aApp _app;
 		private readonly bool _dontSave;
-		private readonly Activity _ctx;
 		
-		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish): base(ctx, finish) {
-			_ctx = ctx;
+		public SetPassword(IKp2aApp app, String password, String keyfile, OnOperationFinishedHandler operationFinishedHandler): base(app, operationFinishedHandler) {
+			
 			_app = app;
 			_password = password;
 			_keyfile = keyfile;
 			_dontSave = false;
 		}
 
-		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish, bool dontSave)
-			: base(ctx, finish)
+		public SetPassword(IKp2aApp app, String password, String keyfile, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+			: base(app, operationFinishedHandler)
 		{
-			_ctx = ctx;
 			_app = app;
 			_password = password;
 			_keyfile = keyfile;
@@ -73,18 +71,18 @@ namespace keepass2android
 			pm.MasterKey = newKey;
 
 			// Save Database
-			_onFinishToRun = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
-			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun, _dontSave);
+			_operationFinishedHandler = new AfterSave(_app, previousKey, previousMasterKeyChanged, pm, operationFinishedHandler);
+			SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, _dontSave, null);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
-		private class AfterSave : OnFinish {
+		private class AfterSave : OnOperationFinishedHandler {
 			private readonly CompositeKey _backup;
 			private readonly DateTime _previousKeyChanged;
 			private readonly PwDatabase _db;
 			
-			public AfterSave(Activity activity, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(activity, finish) {
+			public AfterSave(IActiveContextProvider activeContextProvider, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnOperationFinishedHandler operationFinishedHandler): base(activeContextProvider, operationFinishedHandler) {
 				_previousKeyChanged = previousKeyChanged;
 				_backup = backup;
 				_db = db;

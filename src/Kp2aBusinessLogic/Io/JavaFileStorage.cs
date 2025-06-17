@@ -111,6 +111,11 @@ namespace keepass2android.Io
 			}
 
 			Java.Lang.Exception exception = e as Java.Lang.Exception;
+
+            if ((exception is Java.Lang.InterruptedException) || (exception is Java.IO.InterruptedIOException))
+            {
+                throw new Java.Lang.InterruptedException(exception.Message);
+            }
 			if (exception != null)
 			{
 				var ex = new Exception(exception.LocalizedMessage ??

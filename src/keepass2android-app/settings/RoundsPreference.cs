@@ -113,8 +113,8 @@ namespace keepass2android.settings
                 ParamValue = paramValue;
 
                 Handler handler = new Handler();
-                SaveDb save = new SaveDb((Activity)Context, App.Kp2a, App.Kp2a.CurrentDb, new AfterSave((Activity)Context, handler, oldValue, this));
-                ProgressTask pt = new ProgressTask(App.Kp2a, (Activity)Context, save);
+                SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new AfterSave(App.Kp2a, handler, oldValue, this));
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, save);
                 pt.Run();
             });
             db.SetNegativeButton(Android.Resource.String.Cancel, ((sender, args) => { }));
@@ -129,15 +129,14 @@ namespace keepass2android.settings
 
 		public abstract ulong ParamValue { get; set; }
 
-		private class AfterSave : OnFinish {
+		private class AfterSave : OnOperationFinishedHandler {
 			private readonly ulong _oldParamValue;
-			private readonly Context _ctx;
-			private readonly KdfNumberDialogPreference _pref;
+            private readonly IKp2aApp _app;
+            private readonly KdfNumberDialogPreference _pref;
 			
-			public AfterSave(Activity ctx, Handler handler, ulong oldParamValue, KdfNumberDialogPreference pref):base(ctx, handler) {
-
-				_pref = pref;
-				_ctx = ctx;
+			public AfterSave(IKp2aApp app, Handler handler, ulong oldParamValue, KdfNumberDialogPreference pref):base(app, handler) {
+                _app = app;
+                _pref = pref;
 				_oldParamValue = oldParamValue;
 			}
 			
@@ -148,7 +147,7 @@ namespace keepass2android.settings
 						_pref.OnPreferenceChangeListener.OnPreferenceChange(_pref, null);
 					}
 				} else {
-					DisplayMessage(_ctx);
+					DisplayMessage(_app.ActiveContext);
 
 					_pref.ParamValue = _oldParamValue;
                 }

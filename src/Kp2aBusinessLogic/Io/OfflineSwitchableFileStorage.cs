@@ -11,7 +11,8 @@ namespace keepass2android.Io
 	public interface IOfflineSwitchable
 	{
 		bool IsOffline { get; set; }
-	}
+        bool TriggerWarningWhenFallingBackToCache { get; set; }
+    }
 
 /// <summary>
 	/// Encapsulates another IFileStorage. Allows to switch to offline mode by throwing
@@ -21,8 +22,9 @@ namespace keepass2android.Io
 	{
 		private readonly IFileStorage _baseStorage;
 		public bool IsOffline { get; set; }
+        public bool TriggerWarningWhenFallingBackToCache { get; set; }
 
-		public OfflineSwitchableFileStorage(IFileStorage baseStorage)
+        public OfflineSwitchableFileStorage(IFileStorage baseStorage)
 		{
 			_baseStorage = baseStorage;
 		}

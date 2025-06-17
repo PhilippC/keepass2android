@@ -12,11 +12,11 @@ namespace keepass2android
 		private readonly List<IStructureItem> _elementsToDelete;
 		private readonly bool _canRecycle;
 
-		public DeleteMultipleItemsFromOneDatabase(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnFinish finish, IKp2aApp app)
-			: base(activity, finish, app)
+		public DeleteMultipleItemsFromOneDatabase(Activity activity, Database db, List<IStructureItem> elementsToDelete, OnOperationFinishedHandler operationFinishedHandler, IKp2aApp app)
+			: base(operationFinishedHandler, app)
 		{
 			_elementsToDelete = elementsToDelete;
-			SetMembers(activity, db);
+			SetMembers(db);
 
 			//determine once. The property is queried for each delete operation, but might return false
 			//after one entry/group is deleted (and thus in recycle bin and thus can't be recycled anymore)

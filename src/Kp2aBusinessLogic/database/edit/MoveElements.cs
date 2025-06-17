@@ -10,18 +10,16 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android.database.edit
 {
-	public class MoveElements: RunnableOnFinish
+	public class MoveElements: OperationWithFinishHandler
 	{
 		private readonly List<IStructureItem> _elementsToMove;
 		private readonly PwGroup _targetGroup;
-		private readonly Activity _ctx;
-		private readonly IKp2aApp _app;
+        private readonly IKp2aApp _app;
 
-		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup, Activity ctx, IKp2aApp app, OnFinish finish) : base(ctx, finish)
+		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup,IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
 		{
 			_elementsToMove = elementsToMove;
 			_targetGroup = targetGroup;
-			_ctx = ctx;
 			_app = app;
 		}
 
@@ -123,24 +121,24 @@ namespace keepass2android.database.edit
 
 		    int indexToSave = 0;
 		    bool allSavesSuccess = true;
-		    void ContinueSave(bool success, string message, Activity activeActivity)
+		    void ContinueSave(bool success, string message, Context activeActivity)
 		    {
 		        allSavesSuccess &= success;
                 indexToSave++;
 		        if (indexToSave == allDatabasesToSave.Count)
 		        {
-		            OnFinishToRun.SetResult(allSavesSuccess);
-		            OnFinishToRun.Run();
+		            operationFinishedHandler.SetResult(allSavesSuccess);
+		            operationFinishedHandler.Run();
 		            return;
 		        }
-		        SaveDb saveDb = new SaveDb(_ctx, _app, allDatabasesToSave[indexToSave], new ActionOnFinish(activeActivity, ContinueSave), false);
+		        SaveDb saveDb = new SaveDb( _app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false, null);
 		        saveDb.SetStatusLogger(StatusLogger);
 		        saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
 		        saveDb.Run();
 		    }
 
 
-		    SaveDb save = new SaveDb(_ctx, _app, allDatabasesToSave[0], new ActionOnFinish(ActiveActivity, ContinueSave), false);
+		    SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false, null);
             save.SetStatusLogger(StatusLogger);
 		    save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
             save.Run();

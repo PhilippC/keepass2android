@@ -13,16 +13,15 @@ using keepass2android.Io;
 
 namespace keepass2android
 {
-	public class CheckDatabaseForChanges: RunnableOnFinish
+	public class CheckDatabaseForChanges: OperationWithFinishHandler
 	{
 		private readonly Context _context;
 		private readonly IKp2aApp _app;
 
 
-		public CheckDatabaseForChanges(Activity context, IKp2aApp app, OnFinish finish)
-			: base(context, finish)
+		public CheckDatabaseForChanges(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
+			: base(app, operationFinishedHandler)
 		{
-			_context = context;
 			_app = app;
 		}
 
