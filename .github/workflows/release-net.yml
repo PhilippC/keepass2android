@@ -46,7 +46,6 @@ jobs:
         echo $MyTestEnv
         echo $MyTestEnv | sha1sum | cut -c 1-5
         echo "Key store checksum: "
-        cat ${{ github.workspace }}/kp2a_net.keystore | sha1sum | cut -c 1-5
         cat $KeyStore |  sha1sum | cut -c 1-5
         
         
