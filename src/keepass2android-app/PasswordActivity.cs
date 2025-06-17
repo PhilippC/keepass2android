@@ -131,7 +131,8 @@ namespace keepass2android
 		ISharedPreferences _prefs;
 
 		private bool _starting;
-		private OtpInfo _otpInfo;
+        private bool _resumeCompleted;
+        private OtpInfo _otpInfo;
 		private IOConnectionInfo _otpAuxIoc;
         private ChallengeInfo _chalInfo;
         private byte[] _challengeSecret;
@@ -1569,7 +1570,9 @@ namespace keepass2android
 		}
 
         private bool hasRequestedKeyboardActivation = false;
-		protected override void OnStart()
+        
+
+        protected override void OnStart()
 		{
 			base.OnStart();
 			_starting = true;
@@ -1644,60 +1647,65 @@ namespace keepass2android
             if (intent != null)
             {
 				if (intent.HasExtra(Intents.OtpExtraKey))
-                {
-                    string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-                    _keepPasswordInOnResume = true;
-                    if (KeyProviderTypes.Contains(KeyProviders.Otp))
+				{
+					string otp = intent.GetStringExtra(Intents.OtpExtraKey);
+					_keepPasswordInOnResume = true;
+					if (KeyProviderTypes.Contains(KeyProviders.Otp))
+					{
+
+						if (_otpInfo == null)
+						{
+							//Entering OTPs not yet initialized:
+							_pendingOtps.Add(otp);
+							UpdateKeyProviderUiState();
+						}
+						else
+						{
+							//Entering OTPs is initialized. Write OTP into first empty field:
+							bool foundEmptyField = false;
+							foreach (int otpId in _otpTextViewIds)
+							{
+								EditText otpEdit = FindViewById<EditText>(otpId);
+								if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
+								{
+									otpEdit.Text = otp;
+									foundEmptyField = true;
+									break;
+								}
+							}
+							//did we find a field?
+							if (!foundEmptyField)
+							{
+								App.Kp2a.ShowMessage(this, GetString(Resource.String.otp_discarded_no_space), MessageSeverity.Error);
+							}
+						}
+
+						Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
+						if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
+						{
+							passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
+						}
+					}
+					else
+					{
+						//assume the key should be used as static password
+						FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
+					}
+				}
+				else
+				{
+                    // if the activity is launched twice and the first initialization hasn't even finished, we cannot 
+                    // reset the state and re-initialize the activity.
+					// This can happen with autofill in some cases (#2869)
+                    if (_resumeCompleted)
                     {
-
-                        if (_otpInfo == null)
-                        {
-                            //Entering OTPs not yet initialized:
-                            _pendingOtps.Add(otp);
-                            UpdateKeyProviderUiState();
-                        }
-                        else
-                        {
-                            //Entering OTPs is initialized. Write OTP into first empty field:
-                            bool foundEmptyField = false;
-                            foreach (int otpId in _otpTextViewIds)
-                            {
-                                EditText otpEdit = FindViewById<EditText>(otpId);
-                                if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
-                                {
-                                    otpEdit.Text = otp;
-                                    foundEmptyField = true;
-                                    break;
-                                }
-                            }
-                            //did we find a field?
-                            if (!foundEmptyField)
-                            {
-                                App.Kp2a.ShowMessage(this, GetString(Resource.String.otp_discarded_no_space),  MessageSeverity.Error);
-                            }
-                        }
-
-                        Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
-                        if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
-                        {
-                            passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
-                        }
+                        ResetState();
+                        GetIocFromLaunchIntent(intent);
+                        InitializeAfterSetIoc();
+                        OnStart();
                     }
-                    else
-                    {
-                        //assume the key should be used as static password
-                        FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
-                    }
-
-
-                }
-                else
-                {
-                    ResetState();
-                    GetIocFromLaunchIntent(intent);
-					InitializeAfterSetIoc();
-                    OnStart();
-                }
+					
+				}
 			}
 	
 		}
@@ -1736,148 +1744,150 @@ namespace keepass2android
 
         protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-            
-            _activityDesign.ReapplyTheme();
+		protected override void OnResume()
+		{
+			base.OnResume();
 
-            Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " +
-                        _performingLoad);
+			_activityDesign.ReapplyTheme();
 
-            CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
-            App.Kp2a.OfflineMode =
-                cbOfflineMode.Checked =
-                    App.Kp2a
-                        .OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
-            LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
-            var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
-            if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
-            {
-                offlineModeContainer.Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                offlineModeContainer.Visibility = ViewStates.Gone;
-                App.Kp2a.OfflineMode = false;
-            }
+			Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " +
+						_performingLoad);
 
-
-
-
-            View killButton = FindViewById(Resource.Id.kill_app);
-            if (PreferenceManager.GetDefaultSharedPreferences(this)
-                .GetBoolean(GetString(Resource.String.show_kill_app_key), false))
-            {
-                killButton.Click += (sender, args) =>
-                {
-                    _killOnDestroy = true;
-                    SetResult(Result.Canceled);
-                    Finish();
-
-                };
-                killButton.Visibility = ViewStates.Visible;
-
-            }
-            else
-            {
-                killButton.Visibility = ViewStates.Gone;
-            }
-
-            TryGetOtpFromClipboard();
-
-            if (!_keepPasswordInOnResume)
-            {
-                if (
-                    _lastOnPauseTime <
-                    DateTime.Now -
-                    TimeSpan.FromSeconds(
-                        5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
-                    &&
-                    PreferenceManager.GetDefaultSharedPreferences(this)
-                        .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
-                {
-                    ClearEnteredPassword();
-                }
-
-            }
-
-
-
-            _keepPasswordInOnResume = false;
-
-            MakePasswordMaskedOrVisible();
-
-            UpdateOkButtonState();
-
-            if (KeyProviderTypes.Contains(KeyProviders.Challenge))
-            {
-                FindViewById(Resource.Id.otpInitView).Visibility =
-                    _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
-            }
-
-            //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
-            //use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
-            if ( !IsFinishing && !_performingLoad)  
+			CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
+			App.Kp2a.OfflineMode =
+				cbOfflineMode.Checked =
+					App.Kp2a
+						.OfflineModePreference; //this won't overwrite new user settings because every change is directly saved in settings
+			LinearLayout offlineModeContainer = FindViewById<LinearLayout>(Resource.Id.work_offline_container);
+			var cachingFileStorage = App.Kp2a.GetFileStorage(_ioConnection) as CachingFileStorage;
+			if ((cachingFileStorage != null) && cachingFileStorage.IsCached(_ioConnection))
 			{
-				
-				
-			    // OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
-				// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-			    if (_starting)
-			    {
+				offlineModeContainer.Visibility = ViewStates.Visible;
+			}
+			else
+			{
+				offlineModeContainer.Visibility = ViewStates.Gone;
+				App.Kp2a.OfflineMode = false;
+			}
 
-			        _starting = false;
 
-			        //database not yet loaded.
 
-			        //check if pre-loading is enabled but wasn't started yet:
-			        if (_loadDbFileTask == null &&
-			            _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
-			        {
-			            // Create task to kick off file loading while the user enters the password
-			            _loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
-			            _loadDbTaskOffline = App.Kp2a.OfflineMode;
-			        }
-			    }
+
+			View killButton = FindViewById(Resource.Id.kill_app);
+			if (PreferenceManager.GetDefaultSharedPreferences(this)
+				.GetBoolean(GetString(Resource.String.show_kill_app_key), false))
+			{
+				killButton.Click += (sender, args) =>
+				{
+					_killOnDestroy = true;
+					SetResult(Result.Canceled);
+					Finish();
+
+				};
+				killButton.Visibility = ViewStates.Visible;
+
+			}
+			else
+			{
+				killButton.Visibility = ViewStates.Gone;
+			}
+
+			TryGetOtpFromClipboard();
+
+			if (!_keepPasswordInOnResume)
+			{
+				if (
+					_lastOnPauseTime <
+					DateTime.Now -
+					TimeSpan.FromSeconds(
+						5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
+					&&
+					PreferenceManager.GetDefaultSharedPreferences(this)
+						.GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
+				{
+					ClearEnteredPassword();
+				}
 
 			}
 
-		    if (compositeKeyForImmediateLoad != null)
-		    {
-		        //reload the database (without most other stuff performed in PerformLoadDatabase.
-		        // We're assuming that the db file (and if appropriate also the key file) are still available 
-		        // and there's no need to re-init the file storage. if it is, loading will fail and the user has 
-		        // to retry with typing the full password, but that's intended to avoid showing the password to a 
-		        // a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
-		        Handler handler = new Handler();
-		        OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
-		        _performingLoad = true;
-                LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
-		            onFinish, false, _makeCurrent);
-		        _loadDbFileTask = null; // prevent accidental re-use
-		        new ProgressTask(App.Kp2a, this, task).Run();
-		        compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
-		    }
-		    else
-		    {
-		        bool showKeyboard = true;
 
-		       
-		        EditText pwd = (EditText) FindViewById(Resource.Id.password_edit);
-		        pwd.PostDelayed(() =>
-		        {
-		            InputMethodManager keyboard = (InputMethodManager) GetSystemService(InputMethodService);
-                    if (showKeyboard)
-                    {
-                        pwd.RequestFocus();
-                        keyboard.ShowSoftInput(pwd, 0);
-                    }
-                    else
-		                keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
-		        }, 50);
-		    }
+			_keepPasswordInOnResume = false;
+
+			MakePasswordMaskedOrVisible();
+
+			UpdateOkButtonState();
+
+			if (KeyProviderTypes.Contains(KeyProviders.Challenge))
+			{
+				FindViewById(Resource.Id.otpInitView).Visibility =
+					_challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
+			}
+
+			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
+			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
+			if (!IsFinishing && !_performingLoad)
+			{
+
+
+				// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
+				// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
+				if (_starting)
+				{
+
+					_starting = false;
+
+					//database not yet loaded.
+
+					//check if pre-loading is enabled but wasn't started yet:
+					if (_loadDbFileTask == null &&
+						_prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+					{
+						// Create task to kick off file loading while the user enters the password
+						_loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
+						_loadDbTaskOffline = App.Kp2a.OfflineMode;
+					}
+				}
+
+			}
+
+			if (compositeKeyForImmediateLoad != null)
+			{
+				//reload the database (without most other stuff performed in PerformLoadDatabase.
+				// We're assuming that the db file (and if appropriate also the key file) are still available 
+				// and there's no need to re-init the file storage. if it is, loading will fail and the user has 
+				// to retry with typing the full password, but that's intended to avoid showing the password to a 
+				// a potentially unauthorized user (feature request https://keepass2android.codeplex.com/workitem/274)
+				Handler handler = new Handler();
+				OnFinish onFinish = new AfterLoad(handler, this, _ioConnection);
+				_performingLoad = true;
+				LoadDb task = new LoadDb(this, App.Kp2a, _ioConnection, _loadDbFileTask, compositeKeyForImmediateLoad, GetKeyProviderString(),
+					onFinish, false, _makeCurrent);
+				_loadDbFileTask = null; // prevent accidental re-use
+				new ProgressTask(App.Kp2a, this, task).Run();
+				compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
+
+			}
+			else
+			{
+				bool showKeyboard = true;
+
+
+				EditText pwd = (EditText)FindViewById(Resource.Id.password_edit);
+				pwd.PostDelayed(() =>
+				{
+					InputMethodManager keyboard = (InputMethodManager)GetSystemService(InputMethodService);
+					if (showKeyboard)
+					{
+						pwd.RequestFocus();
+						keyboard.ShowSoftInput(pwd, 0);
+					}
+					else
+						keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+				}, 50);
+			}
+
+			_resumeCompleted = true;
         }
 
 	    private void TryGetOtpFromClipboard()
