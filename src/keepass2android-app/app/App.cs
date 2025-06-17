@@ -191,8 +191,8 @@ namespace keepass2android
 	        var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 	        var createBackup = prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key), true)
                 && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
-
-	        MemoryStream backupCopy = new MemoryStream();
+            Kp2aLog.Log("LoadDb: Copying database for backup");
+            MemoryStream backupCopy = new MemoryStream();
 	        if (createBackup)
 	        {
 
@@ -201,6 +201,7 @@ namespace keepass2android
 	            //reset stream if we need to reuse it later:
 	            memoryStream.Seek(0, SeekOrigin.Begin);
 	        }
+            Kp2aLog.Log("LoadDb: Checking open databases");
 
             foreach (Database openDb in _openDatabases)
 	        {
