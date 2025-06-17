@@ -104,10 +104,18 @@ jobs:
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
       run: |
         make apk Flavor=Net
+        ls src/keepass2android-app/bin/**/*.*
 
     - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v4
       with:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
-          src/keepass2android-app/bin/*/*-Signed.apk
+          src/keepass2android-app/bin/Release/*-Signed.apk
+    
+    - name: Upload APK to GitHub Release
+      uses: softprops/action-gh-release@v2
+      if: github.ref_type == 'tag'
+      with:
+        files: |
+            src/keepass2android-app/bin/Release/*-Signed.apk
