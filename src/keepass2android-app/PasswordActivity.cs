@@ -420,8 +420,14 @@ namespace keepass2android
 							try
 							{
 								var iocAux = GetDefaultAuxLocation();
-								LoadFile(iocAux);
-							}
+                                LoadFile(iocAux);
+
+                                if (Activity._chalInfo == null)
+                                {
+                                    throw new Java.Lang.Exception("Failed to load challenge aux file");
+                                }
+
+                            }
 							catch (Exception e)
 							{
 								//this can happen e.g. if the file storage does not support GetParentPath
