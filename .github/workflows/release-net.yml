@@ -26,12 +26,22 @@ jobs:
         KeyStore: ${{ github.workspace }}/kp2a_net.keystore
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
+        MyTestEnv: abcd
       run: |
         echo $KeyStore
+        echo ${{ github.workspace }}/kp2a_net.keystore
         echo $KEYSTORE_BASE64 | base64 --decode > ${{ github.workspace }}/kp2a_net.keystore
+        echo "passes: "
         echo $MyAndroidSigningStorePass | sha1sum | cut -c 1-5
         echo $MyAndroidSigningKeyPass | sha1sum | cut -c 1-5
+        echo "Test env"
+        echo $MyTestEnv
+        echo $MyTestEnv | sha1sum | cut -c 1-5
+        echo "Key store checksum: "
+        cat ${{ github.workspace }}/kp2a_net.keystore | sha1sum | cut -c 1-5
         cat $KeyStore |  sha1sum | cut -c 1-5
+        
+        
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
