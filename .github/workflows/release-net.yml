@@ -23,6 +23,7 @@ jobs:
 
     - name: Print name
       run: echo "Hello $NAME. $BUILD. "
+      shell: bash
       env:
         BUILD: 'We are currently testing'
 
@@ -33,6 +34,7 @@ jobs:
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
         MyTestEnv: abcd
+      shell: bash
       run: |
         echo $KeyStore
         echo ${{ github.workspace }}/kp2a_net.keystore
