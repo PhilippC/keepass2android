@@ -803,13 +803,15 @@ namespace keepass2android
                 var hasUnsecureDisplay = HasUnsecureDisplay(context);
                 if (hasUnsecureDisplay)
                 {
+                    Kp2aLog.Log("Display is not secure");
                     var intent = new Intent(context, typeof(NoSecureDisplayActivity));
                     intent.AddFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
                     context.StartActivityForResult(intent, 9999);
                 }
-
+                Kp2aLog.Log("Setting FLAG_SECURE.");
                 context.Window.SetFlags(WindowManagerFlags.Secure, WindowManagerFlags.Secure);
             }
+            else Kp2aLog.Log("Secure display disabled by user preference.");
         }
 
         public static bool SecureDisplayConfigured(Activity context)
