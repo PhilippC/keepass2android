@@ -30,7 +30,7 @@ jobs:
     - name: Extract key store
       env: 
         KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        KeyStore: ${{ github.workspace }}/kp2a_net.keystore
+        KeyStore: "${{ github.workspace }}/kp2a_net.keystore"
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
         MyTestEnv: abcd
@@ -38,7 +38,7 @@ jobs:
       run: |
         echo $KeyStore
         echo ${{ github.workspace }}/kp2a_net.keystore
-        echo $KEYSTORE_BASE64 | base64 --decode > ${{ github.workspace }}/kp2a_net.keystore
+        echo $KEYSTORE_BASE64 | base64 --decode > $KeyStore
         echo "passes: "
         echo $MyAndroidSigningStorePass | sha1sum | cut -c 1-5
         echo $MyAndroidSigningKeyPass | sha1sum | cut -c 1-5
