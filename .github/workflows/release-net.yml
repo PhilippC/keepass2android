@@ -19,6 +19,14 @@ jobs:
       with:
         submodules: true
 
+
+    - name: Extract key store
+      env: 
+        KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      run: |
+        echo $KEYSTORE_BASE64 | base64 --decode > kp2a_net.keystore
+
+
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
@@ -75,10 +83,6 @@ jobs:
       run: |
         make manifestlink Flavor=Net
 
-
-    - name: Extract key store
-      run: |
-        echo ${{ secrets.KEYSTORE_BASE64 }} | base64 --decode > kp2a_net.keystore
 
 
     - name: Build APK (net)
