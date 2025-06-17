@@ -66,7 +66,6 @@ using Exception = System.Exception;
 using String = System.String;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using AndroidX.Core.Content;
-using Google.Android.Material.Snackbar;
 
 namespace keepass2android
 {
@@ -801,8 +800,6 @@ namespace keepass2android
 
             _password = i.GetStringExtra(KeyPassword) ?? "";
             if (!KeyProviderTypes.Any())
-
-
             {
                 SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
             }
@@ -1255,7 +1252,7 @@ namespace keepass2android
 							case 6:
 							    KeyProviderTypes.Add(KeyProviders.ChallengeXC);
 							    break;
-						        case 7:
+                            case 7:
 						            //don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
 							    Kp2aLog.Log("key file length before: " + _keyFile?.Length);
 						            _keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
@@ -1818,43 +1815,6 @@ namespace keepass2android
                 FindViewById(Resource.Id.otpInitView).Visibility =
                     _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
             }
-			/*
-            Snackbar snackbar = Snackbar
-                .Make(FindViewById(Resource.Id.main_content),
-                    "snack snack snack snack snack snack snack snack snack snack snack snack snack snack snacksnack snack snacksnack snack snacksnack snack snack snack snack snack snack snack snack snack snack snack snack snack snack snacksnack snack snacksnack snack snacksnack  snack snack snack snack snacksnack snack snack ",
-                    Snackbar.LengthLong);
-            snackbar.SetTextMaxLines(5);
-            snackbar.SetBackgroundTint(GetColor(Resource.Color.md_theme_secondaryContainer));
-            snackbar.SetTextColor(GetColor(Resource.Color.md_theme_onSecondaryContainer));
-            snackbar.SetAction("dismiss",
-                view => snackbar.SetBackgroundTint(GetColor(Resource.Color.md_theme_surfaceContainer)));
-
-            snackbar.Show();
-
-            new Handler().PostDelayed(() =>
-            {
-
-                Snackbar snackbar2 = Snackbar
-                    .Make(FindViewById(Resource.Id.main_content), "snack snack snack ",
-                        Snackbar.LengthLong);
-                snackbar2.SetTextMaxLines(5);
-                snackbar2.SetBackgroundTint(GetColor(Resource.Color.md_theme_errorContainer));
-                snackbar2.SetTextColor(GetColor(Resource.Color.md_theme_onErrorContainer));
-                snackbar2.Show();
-            }, 1500);
-
-
-            new Handler().PostDelayed(() =>
-            {
-
-                Snackbar snackbar2 = Snackbar
-                    .Make(FindViewById(Resource.Id.main_content), "snack snack warn ",
-                        Snackbar.LengthLong);
-                snackbar2.SetTextMaxLines(5);
-                snackbar2.SetBackgroundTint(GetColor(Resource.Color.md_theme_inverseSurface));
-                snackbar2.SetTextColor(GetColor(Resource.Color.md_theme_inverseOnSurface));
-                snackbar2.Show();
-            }, 2500);*/
 
             //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
             //use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
