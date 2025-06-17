@@ -720,6 +720,14 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item></item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+    <item>Fix issue with password generator</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>添加了用于搜索和概览 TOTP 的浮动按钮（如果存在TOTP条目）</item>
     <item>通过添加超时指示器并突出显示，改进 TOTP 字段的显示效果</item>
@@ -1161,4 +1169,8 @@ Initial public release
   <string name="kp2a_switch_on_sendgodone_summary">按下发送/转到/完成时切换回来</string>
   <string name="qr_scanning_error_no_google_play_services">二维码扫描需要 Google Play 服务。请在您的设备上安装或更新 Google Play 服务。</string>
   <string name="english_ime_settings">键盘设置</string>
+  <string name="autoswitch_enabled_but_not_setup">注意：您已启用应用-设置-密码访问-键盘切换-自动切换键盘，但它似乎配置不正确。</string>
+  <string name="switch_keyboard_for_totp_enabled">注意：您已启用应用 - 密码访问-自动填充服务 - TOTP 条目自动填充。 当您打开一条有TOTP的条目时，这会导致此窗口显示。</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">注意：您已经启用了应用 - 安全性 - 使用 Keepass2Android 中的内置键盘。 当您打开应用或编辑条目时，这会导致此窗口显示。</string>
+  <string name="switch_keyboard_on_search_enabled">注意: 您已经启用了应用-安全性-密码访问-键盘切换-切换键盘。当您从浏览器搜索条目时，这会导致此窗口显示。</string>
 </resources>

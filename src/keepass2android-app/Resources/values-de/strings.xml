@@ -164,7 +164,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
   <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
   <string name="no_keyfile_selected">Keine Schlüsseldatei ausgewählt.</string>
-  <string name="keyfile_is_empty">Schlüssel-Datei ist leer.</string>
+  <string name="keyfile_is_empty">Schlüsseldatei ist leer.</string>
   <string name="length">Länge</string>
   <string name="list_size_title">Größe der Gruppenliste</string>
   <string name="list_size_summary">Schriftgröße in der Gruppenliste</string>
@@ -378,7 +378,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
   <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
-  <string name="NoDonateOption_question">Ohne Spenden gäbe es diese App nicht und sie könnte nicht ständig verbessert werden! Wenn Sie noch nicht gespendet haben, sollten Sie dies jetzt in Betracht ziehen.</string>
+  <string name="NoDonateOption_question">Ohne Spenden würde diese App nicht existieren und ständig verbessert werden! Wenn du noch nicht gespendet hast, erwäge bitte, dies jetzt zu tun</string>
   <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
@@ -717,12 +717,12 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string-array name="ChangeLog_1_12">
-    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Von Xamarin Android auf .NET 8 upgegradet</item>
     <item>Upgrade auf Target-SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
-    <item>Fix issue with password generator</item>
+    <item>Auf MUI 3 upgegradet</item>
+    <item>Verbessertes automatisches Ausfüllen damit Compose-Apps funktionieren</item>
+    <item>Hostnamen-vergleiche im automatischen Ausfüllen und der Suche gefixt</item>
+    <item>Probleme mit dem Passwort Generator behoben</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>OneDrive SDK auf Version 5.68 aktualisiert</item>
@@ -1145,7 +1145,7 @@ Erstes öffentliches Release</string>
   <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
   <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank ohne den Hauptschlüssel nicht öffnen kannst. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
   <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass das Biometrische Entsperren über das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
-  <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
+  <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
   <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, nach %1$s &gt; %2$s &gt; %3$s gehen.</string>
   <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
@@ -1162,4 +1162,5 @@ Erstes öffentliches Release</string>
   <string name="kp2a_switch_on_sendgodone_summary">Beim Drücken von Senden/Los/Fertig zurückschalten</string>
   <string name="qr_scanning_error_no_google_play_services">QR-Code-Scannen erfordert Google Play-Dienste. Bitte installiere oder aktualisiere Google Play-Dienste auf deinem Gerät.</string>
   <string name="english_ime_settings">Android-Tastatureinstellungen</string>
+  <string name="autoswitch_enabled_but_not_setup">Notiz: Du hast Einstellungen - Anwendung - Passwortzugriff - Wechsel der Eingabemethode - Auto-Umschalten der Tastatur eingeschaltet, aber sieht aus als würde es nicht funktionieren</string>
 </resources>
