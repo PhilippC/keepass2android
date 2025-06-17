@@ -1,4 +1,6 @@
 name: Create keepass2android release
+env:
+  NAME: 'ReleaseNet'
 
 on:
   release:
@@ -19,6 +21,10 @@ jobs:
       with:
         submodules: true
 
+    - name: Print name
+      run: echo "Hello $NAME. $BUILD. "
+      env:
+        BUILD: 'We are currently testing'
 
     - name: Extract key store
       env: 
