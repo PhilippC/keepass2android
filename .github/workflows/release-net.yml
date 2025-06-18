@@ -72,12 +72,6 @@ jobs:
     - name: Display java version
       run: java -version
 
-    # Some components of Keepass2Android currently target android API 26 which are not available on the runner
-    - name: Download android-26 API
-      shell: cmd
-      run: |
-        %ANDROID_SDK_ROOT%\cmdline-tools\latest\bin\sdkmanager --install "platforms;android-26"
-
     - name: Build native dependencies
       shell: cmd
       run: |
