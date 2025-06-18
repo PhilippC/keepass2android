@@ -103,7 +103,10 @@ jobs:
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
       run: |
-        make apk Flavor=Net
+        make Configuration=Release Flavor=Net
+
+    - name: List files
+      run: |
         ls src/keepass2android-app/bin/**/*.*
 
     - name: Archive production artifacts (net)
