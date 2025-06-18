@@ -21,16 +21,10 @@ jobs:
       with:
         submodules: true
 
-    - name: Print name
-      run: echo "Hello $NAME. $BUILD. "
-      shell: bash
-      env:
-        BUILD: 'We are currently testing'
-
     - name: Extract key store
       env: 
         KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        KeyStore: "${{ github.workspace }}/kp2a_net.keystore"
+        KeyStore: "${{ github.workspace }}/kp2a.keystore"
         
       shell: bash
       run: |
@@ -93,7 +87,7 @@ jobs:
 
     - name: Build APK (net)
       env:
-        KeyStore: "${{ github.workspace }}/kp2a_net.keystore"
+        KeyStore: "${{ github.workspace }}/kp2a.keystore"
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
       run: |
@@ -117,3 +111,14 @@ jobs:
       with:
         files: |
             src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
+
+    - name: Run checksum action
+      uses: thewh1teagle/checksum@v2
+      with:
+        pre-release: true
+        file-name: 'apk-checksum-sha256.txt'
+        patterns: | 
+          src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
+        algorithm: sha256 
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
