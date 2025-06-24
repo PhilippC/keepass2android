@@ -95,7 +95,7 @@ namespace Kp2aAutofillParserTest
             StructureParserBase<TestInputField> parser =
                 new StructureParserBase<TestInputField>(new TestLogger(), new TestDalSourceTrustAll());
 
-            var result = parser.ParseForFill(false, autofillView);
+            var result = parser.ParseForFill(autofillView);
             if (expectedPackageName != null)
                 Assert.Equal(expectedPackageName, result.PackageName);
             if (expectedWebDomain != null)

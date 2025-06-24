@@ -803,12 +803,12 @@ namespace Kp2aAutofillParser
 
         public AutofillTargetId ParseForFill(bool isManual, AutofillView<FieldT> autofillView)
         {
-            return Parse(true, isManual, autofillView);
+            return Parse(true, autofillView);
         }
 
         public AutofillTargetId ParseForSave(AutofillView<FieldT> autofillView)
         {
-            return Parse(false, true, autofillView);
+            return Parse(false, autofillView);
         }
 
         /// <summary>
@@ -816,8 +816,7 @@ namespace Kp2aAutofillParser
         /// </summary>
         /// <returns>The parse.</returns>
         /// <param name="forFill">If set to <c>true</c> for fill.</param>
-        /// <param name="isManualRequest"></param>
-        protected virtual AutofillTargetId Parse(bool forFill, bool isManualRequest, AutofillView<FieldT> autofillView)
+        protected virtual AutofillTargetId Parse(bool forFill, AutofillView<FieldT> autofillView)
         {
             AutofillTargetId result = new AutofillTargetId()
             {
