@@ -1203,4 +1203,8 @@
   <string name="kp2a_switch_on_sendgodone_summary">Voltar ao pressionar enviar/ir/concluído</string>
   <string name="qr_scanning_error_no_google_play_services">A leitura de código QR requer o Google Play Services. Instale ou atualize o Google Play Services no seu dispositivo.</string>
   <string name="english_ime_settings">Configurações do teclado Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Você ativou o Aplicativo - Configurações - Acesso por senha - Troca de teclado - Troca automática de teclado, mas não parece estar configurado corretamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: você ativou o Aplicativo - Acesso por senha - Serviço de preenchimento automático - Preenchimento automático para entradas TOTP. Isso pode fazer com que essa janela seja exibida quando você abre uma entrada com um TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Você ativou o Aplicativo - Segurança - Usar o teclado embutido dentro do Keepass2Android. Isso pode fazer com que essa janela seja exibida quando você abre o aplicativo ou edita uma entrada.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Você ativou o Aplicativo - Segurança - Acesso por senha - Troca de teclado - Alternar teclado. Isso pode fazer com que essa janela seja exibida quando você pesquisar uma entrada no navegador.</string>
 </resources>

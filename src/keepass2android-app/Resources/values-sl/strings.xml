@@ -1201,4 +1201,8 @@
   <string name="kp2a_switch_on_sendgodone_summary">Preklopi nazaj, ko pritisnete gumb za pošiljanje/prehajanje/končano</string>
   <string name="qr_scanning_error_no_google_play_services">Za optično branje kode QR so potrebne storitve Google Play. V svojo napravo namestite ali posodobite storitve Google Play.</string>
   <string name="english_ime_settings">Nastavitve tipkovnice Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Opomba: Omogočili ste Aplikacije - Nastavitve - Dostop z geslom - Preklop tipkovnice - Samodejni preklop tipkovnice, vendar se zdi, da ta ni pravilno konfigurirana.</string>
+  <string name="switch_keyboard_for_totp_enabled">Opomba: Omogočili ste Aplikacije - Dostop do gesla - Storitev samodejnega izpolnjevanja - Samodejno izpolnjevanje za vnose TOTP. To lahko povzroči, da se to okno prikaže, ko odprete vnos s TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Opomba: Omogočili ste Aplikacije - Varnost - Uporabi vgrajeno tipkovnico znotraj Keepass2Android. To lahko povzroči, da se to okno prikaže, ko odprete aplikacijo ali urejate vnos.</string>
+  <string name="switch_keyboard_on_search_enabled">Opomba: Omogočili ste možnost Aplikacija - Varnost - Dostop z geslom - Preklop tipkovnice - Preklop tipkovnice. To lahko povzroči, da se to okno prikaže, ko iščete vnos v brskalniku.</string>
 </resources>
