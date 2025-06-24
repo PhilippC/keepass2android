@@ -476,8 +476,16 @@ namespace Kp2aAutofillParser
 
             foreach (var field in autofillFields.HintMap.Values.Distinct())
             {
+                if (field == null || field.AutofillHints == null)
+                {
+                    continue;
+                }
                 foreach (var hint in field.AutofillHints)
                 {
+                    if (hint == null)
+                    {
+                        continue;
+                    }
                     if (GetPartitionIndex(hint) == partitionIndex)
                     {
                         filteredCollection.Add(field);

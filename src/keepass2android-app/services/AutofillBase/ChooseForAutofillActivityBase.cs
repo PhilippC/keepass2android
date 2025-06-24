@@ -189,7 +189,7 @@ namespace keepass2android.services.AutofillBase
         {
             var intent = Intent;
             AssistStructure structure = (AssistStructure)intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
-            if (structure == null)
+            if (structure == null || clientFormDataMap == null)
             {
                 SetResult(Result.Canceled);
                 Finish();

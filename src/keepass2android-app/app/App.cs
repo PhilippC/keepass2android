@@ -1245,7 +1245,7 @@ namespace keepass2android
 	    {
 	        var db = TryFindDatabaseForElement(element);
             if (db == null)
-                throw new Exception("Database element not found!");
+                throw new Exception($"Database element {element.Uuid} not found in any of {OpenDatabases.Count()} databases!");
 	        return db;
 	    }
 
