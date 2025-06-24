@@ -560,7 +560,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android-App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eineListe aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
+  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eine Liste aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
@@ -760,7 +760,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
     <item>Unterstützung für MEGA-Cloudspeicher hinzugefügt </item>
-    <item>Unterstützung für Google Drive mit eingeschränktem Anwendungsbereich hinzugefügt</item>
+    <item>Unterstützung für Google Drive mit eingeschränktem Zugriff hinzugefügt</item>
   </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Google-Drive-Authentifizierung erneut implementiert, Google-Drive-Unterstützung wieder aktiviert </item>
