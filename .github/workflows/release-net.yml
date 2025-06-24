@@ -111,14 +111,3 @@ jobs:
       with:
         files: |
             src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
-
-    - name: Run checksum action
-      uses: thewh1teagle/checksum@v2
-      with:
-        pre-release: true
-        file-name: 'apk-checksum-sha256.txt'
-        patterns: | 
-          src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
-        algorithm: sha256 
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
