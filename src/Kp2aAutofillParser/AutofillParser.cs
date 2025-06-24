@@ -883,8 +883,9 @@ namespace Kp2aAutofillParser
                     
                 }
 
-                //for "heuristic determination" we demand that one of the filled fields is focused:
-                if (passwordFields.Concat(usernameFields).Any(f => f.IsFocused))
+                //for "heuristic determination" we demand that there is a password field or one of the username fields is focused:
+                //Note that "IsFocused" might be false even when tapping the field. It might require long-press to autofill.
+                if (passwordFields.Any() || usernameFields.Any(f => f.IsFocused))
                 {
                     foreach (var uf in usernameFields)
                         AddFieldToHintMap(uf, new string[] { AutofillHintsHelper.AutofillHintUsername });
