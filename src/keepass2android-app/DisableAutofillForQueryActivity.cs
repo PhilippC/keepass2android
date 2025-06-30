@@ -19,7 +19,7 @@ using keepass2android.services.AutofillBase;
 
 namespace keepass2android
 {
-    [Activity(Label = "DisableAutofillForQueryActivity")]
+    [Activity(Label = "DisableAutofillForQueryActivity", Theme = "@style/Kp2aTheme_ActionBar")]
     public class DisableAutofillForQueryActivity : Activity
     {
         public IAutofillIntentBuilder IntentBuilder = new Kp2aAutofillIntentBuilder();
