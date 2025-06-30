@@ -801,7 +801,7 @@ namespace Kp2aAutofillParser
             }
         }
 
-        public AutofillTargetId ParseForFill(bool isManual, AutofillView<FieldT> autofillView)
+        public AutofillTargetId ParseForFill(AutofillView<FieldT> autofillView)
         {
             return Parse(true, autofillView);
         }
