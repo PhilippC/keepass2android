@@ -115,11 +115,11 @@ jobs:
     - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v4
       with:
-        name: signed APKs (built on ${{ github.job }})
+        name: signed APK (built on ${{ github.job }})
         path: |
           src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
     
-    - name: Upload APKs to GitHub Release
+    - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       with:
