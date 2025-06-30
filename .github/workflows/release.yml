@@ -1,6 +1,6 @@
 name: Create keepass2android release
 env:
-  NAME: 'ReleaseNet'
+  NAME: 'Release'
 
 on:
   release:
@@ -112,7 +112,7 @@ jobs:
       run: |
         ls src/keepass2android-app/bin/**/*.*
 
-    - name: Archive production artifacts (net)
+    - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
         name: signed APK (built on ${{ github.job }})
