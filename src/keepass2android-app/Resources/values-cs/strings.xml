@@ -1169,4 +1169,8 @@ První veřejné vydání
   <string name="kp2a_switch_on_sendgodone_summary">Přepnout zpět při stisknutí tlačítka odeslat/pokračovat/ukončit</string>
   <string name="qr_scanning_error_no_google_play_services">Skenování QR kódu vyžaduje služby Google Play. Nainstalujte nebo aktualizujte služby Google Play ve svém zařízení.</string>
   <string name="english_ime_settings">Nastavení klávesnice Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Poznámka: Máte povoleno Aplikace - Nastavení - Přístup k heslu - Přepínání klávesnice - Automatické přepínání klávesnice, ale nezdá se, že je správně nakonfigurováno.</string>
+  <string name="switch_keyboard_for_totp_enabled">Poznámka: Máte povoleno Aplikace - Přístup k heslu - Služba automatického vyplňování - Automatické vyplňování pro položky TOTP. To může způsobit, že se toto okno zobrazí, když otevřete položku s TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Poznámka: V aplikaci Keepass2Android jste povolili možnost Aplikace - Zabezpečení - Použít vestavěnou klávesnici. To může způsobit, že se toto okno zobrazí při otevření aplikace nebo úpravě položky.</string>
+  <string name="switch_keyboard_on_search_enabled">Poznámka: Máte povoleno Aplikace - Zabezpečení - Přístup k heslu - Přepínání klávesnice - Přepínání klávesnice. To může způsobit, že se toto okno zobrazí při vyhledávání položky z prohlížeče.</string>
 </resources>

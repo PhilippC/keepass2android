@@ -15,7 +15,14 @@ namespace KeePass.Util
             string errorMessage = e.Message;
             if (e is Java.Lang.Exception javaException)
             {
-                errorMessage = javaException.LocalizedMessage ?? javaException.Message ?? errorMessage;
+                try
+                {
+                    errorMessage = javaException.LocalizedMessage ?? javaException.Message ?? errorMessage;
+                }
+                finally
+                {
+
+                }
             }
 
             return errorMessage;

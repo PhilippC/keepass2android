@@ -17,14 +17,12 @@ namespace keepass2android.services
     {
         private static int _pendingIntentRequestCode = 0;
 
-        public PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage,
-            bool isManualRequest, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning)
+        public PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryDomainString, queryDomain);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryPackageString, queryPackage);
-            intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraAutoReturnFromQuery, autoReturnFromQuery);
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraDisplayWarning, (int)warning);
             return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Mutable));
@@ -40,12 +38,10 @@ namespace keepass2android.services
             return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Mutable));
         }
 
-        public PendingIntent GetDisablePendingIntentForResponse(Context context, string query,
-            bool isManualRequest, bool isDisable)
+        public PendingIntent GetDisablePendingIntentForResponse(Context context, string query, bool isDisable)
         {
             Intent intent = new Intent(context, typeof(DisableAutofillForQueryActivity));
             intent.PutExtra(ChooseForAutofillActivityBase.ExtraQueryString, query);
-            intent.PutExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, isManualRequest);
             intent.PutExtra(DisableAutofillForQueryActivity.ExtraIsDisable, isDisable);
 
             return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));

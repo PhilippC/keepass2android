@@ -333,6 +333,9 @@ jobs:
     - name: Build keepass2android (nonet)
       run: |
         make msbuild Flavor=NoNet
+    - name: Update dotnet workloads
+      run: |
+        dotnet workload update
     - name: Test Autofill
       working-directory: ./src/Kp2aAutofillParser.Tests
       run: dotnet test
