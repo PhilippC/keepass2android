@@ -91,6 +91,20 @@ jobs:
       run: |
         make Configuration=Release Flavor=Net
 
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: signed APK (built on ${{ github.job }})
+        path: |
+          src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
+    
+    - name: Upload APK to GitHub Release
+      uses: softprops/action-gh-release@v2
+      if: github.ref_type == 'tag'
+      with:
+        files: |
+            src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
+
 
     - name: Install NuGet dependencies (nonet)
       run: make nuget Flavor=NoNet
