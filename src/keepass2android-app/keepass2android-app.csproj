@@ -10,6 +10,7 @@
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\fontawesome-webfont.ttf" />
@@ -752,16 +753,16 @@
     <PackageReference Include="Xamarin.Google.Guava" Version="33.4.0.1" />
     <PackageReference Include="Xamarin.GooglePlayServices.Auth" Version="121.3.0.1" />
     <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Code.Scanner" Version="116.1.0.10" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Code.Scanner" Version="116.1.0.10" Condition="'$(Flavor)'!='NoNet'" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
-    <ProjectReference Include="..\DropboxBinding\DropboxBinding.csproj" />
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" />
+    <ProjectReference Include="..\DropboxBinding\DropboxBinding.csproj" Condition="'$(Flavor)'!='NoNet'" />
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="'$(Flavor)'!='NoNet'" />
     <ProjectReference Include="..\Kp2aAutofillParser\Kp2aAutofillParser.csproj" />
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
     <ProjectReference Include="..\Kp2aKeyboardBinding\Kp2aKeyboardBinding.csproj" />
-    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj" />
+    <ProjectReference Include="..\PCloudBindings\PCloudBindings.csproj" Condition="'$(Flavor)'!='NoNet'" />
     <ProjectReference Include="..\PluginSdkBinding\PluginSdkBinding.csproj" />
     <ProjectReference Include="..\ZlibAndroid\ZlibAndroid.csproj" />
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />

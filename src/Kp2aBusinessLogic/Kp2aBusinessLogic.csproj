@@ -4,6 +4,7 @@
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -19,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" />
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="'$(Flavor)'!='NoNet'"  />
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
