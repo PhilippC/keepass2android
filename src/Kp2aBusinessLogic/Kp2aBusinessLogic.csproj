@@ -10,10 +10,10 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentFTP" Version="51.1.0" />
-    <PackageReference Include="MegaApiClient" Version="1.10.4" />
-    <PackageReference Include="Microsoft.Graph" Version="5.68.0" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" />
+    <PackageReference Include="FluentFTP" Version="51.1.0" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="MegaApiClient" Version="1.10.4"  Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="Microsoft.Graph" Version="5.68.0" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" Condition="'$(Flavor)'!='NoNet'"/>
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
@@ -29,6 +29,14 @@
   <None Remove="Io/DropboxFileStorageKeysDummy.cs" />
   <Compile Remove="Io/DropboxFileStorageKeysDummy.cs" />
   <Content Remove="Io/DropboxFileStorageKeysDummy.cs" />
+</ItemGroup>
+<ItemGroup  Condition="'$(Flavor)'=='NoNet'">
+  <None Remove="Io/OneDrive2FileStorage.cs" />
+  <Compile Remove="Io/OneDrive2FileStorage.cs" />
+  <Content Remove="Io/OneDrive2FileStorage.cs" />
+  <None Remove="Io/MegaFileStorage.cs" />
+  <Compile Remove="Io/MegaFileStorage.cs" />
+  <Content Remove="Io/MegaFileStorage.cs" />
 </ItemGroup>
   
 </Project>
