@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję, aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie, aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Uwaga: Google ogranicza dostęp do Dysku Google dla coraz większej liczby użytkowników. Jeśli wbudowana obsługa Dysku Google nie działa, skorzystaj z systemowego wybierania plików i wybierz Dysk Google stamtąd!</string>
   <string name="filestoragename_gdriveKP2A">Dysk Google (pliki KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Jeśli nie chcesz dać KP2A dostępu do pełnego Dysku Google, możesz wybrać tę opcję. Pamiętaj, że najpierw musisz utworzyć plik bazy danych, istniejące pliki nie są widoczne dla aplikacji. Wybierz tę opcję z ekranu tworzenia bazy danych lub, jeśli już otworzyłeś bazę danych, eksportując bazę danych wybierając tę opcję.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -718,6 +719,20 @@
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Zaktualizowano Target SDK do 34</item>
+    <item>Zaktualizowano interfejs użytkownika do Material Design 3</item>
+    <item>Ulepszono autouzupełnianie, aby działało z aplikacjami opartymi na Compose</item>
+    <item>Fix hostname matching in autofill and search</item>
+    <item>Naprawiono problem związany z generatorem haseł</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Zaktualizowano SDK OneDrive do wersji 5.68</item>
+    <item>Zaktualizowano SDK DropBox do wersji 7.0.0</item>
+    <item>Zaktualizowano Gradle, NewtonsoftJson, FluentFTP, MegaApiClient i okhttp</item>
+    <item>Naprawiono błąd w wybieraniu plików WebDAV</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Dodano pływające przyciski szukania i podglądu TOTP (jeśli są wpisy TOTP).</item>
     <item>Poprawa wyświetlania pól TOTP na wyraźniejsze i ze wskaźnikiem czasu.</item>
@@ -810,6 +825,20 @@
     * Poprawki błędów
   </string>
   <string name="ChangeLog_keptDonate">Rozszerzone możliwości darowania piwa lub czegoś innego</string>
+  <string name="ChangeLog">    <b>Wersja 0.6.2</b>\n
+    * Integracja Google Drive/Dropbox/(...): Otworzenie pliku .kdbx w Google Drive lub Dropbox uruchomi teraz KP2A.\n 
+    * Poprawiono okno wyszukiwania \n
+    * Ulepszono wyniki wyszukiwania dla udostępnionych adresów URL z subdomenami\n
+    * Dodano opcje przesyłania opinii, oceniania i tłumaczenia aplikacji w menu\n
+    \n
+    <b>Wersja 0.6.1</b>\n
+    * Wykrywanie zmian w bazie danych w tle (np. spowodowanych działaniem aplikacji synchronizującej)\n
+    * Ulepszone wyszukiwanie adresów URL z przeglądarki\n
+    * Potwierdzenie przed porzuceniem zmian\n
+    \n
+    <b>Wersja 0.6</b>\n
+    Pierwsze publiczne wydanie
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
     <item>1 minuta</item>
