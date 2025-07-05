@@ -102,17 +102,21 @@ jobs:
       run: |
         make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }}
 
+    - name: List files
+      shell: bash
+      run: |
+        ls src/keepass2android-app/bin/**/*.*
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
         name: signed APK (built on ${{ github.job }})
         path: |
-          src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
+          src/keepass2android-app/bin/Release/**/*.apk
     
-    - name: Upload APK to GitHub Release
-      uses: softprops/action-gh-release@v2
-      if: github.ref_type == 'tag'
-      with:
-        files: |
-            src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
+    #- name: Upload APK to GitHub Release
+    #  uses: softprops/action-gh-release@v2
+    #  if: github.ref_type == 'tag'
+    #  with:
+    #    files: |
+    #        src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
