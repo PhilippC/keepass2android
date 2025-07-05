@@ -54,7 +54,7 @@ jobs:
       with:
         minimum-size: 8GB
 
-    - name: Add msbuild to PATH
+    - name: Add msbuild/dotnet to PATH
       uses: microsoft/setup-msbuild@v2
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
