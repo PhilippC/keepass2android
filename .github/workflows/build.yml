@@ -361,5 +361,3 @@ jobs:
         path: |
           src/keepass2android/bin/*/*-Signed.apk
 
-    - name: Perform "make distclean"
-      run: make distclean
