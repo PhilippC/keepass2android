@@ -313,6 +313,10 @@ jobs:
       run: |
         dotnet workload update        
 
+    - name: Select the manifest
+      run: |
+        make manifestlink Flavor=Net
+
     - name: Install NuGet dependencies (net)
       run: make nuget Flavor=Net
 
@@ -330,6 +334,10 @@ jobs:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android/bin/*/*-Signed.apk
+
+    - name: Select the manifest
+      run: |
+        make manifestlink Flavor=NoNet
 
     - name: Install NuGet dependencies (nonet)
       run: make nuget Flavor=NoNet
