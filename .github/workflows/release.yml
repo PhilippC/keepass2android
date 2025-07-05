@@ -108,11 +108,11 @@ jobs:
       with:
         name: signed APK (built on ${{ github.job }})
         path: |
-          src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/**/publish/*.apk
+          src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
     
     - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       with:
         files: |
-            src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/**/publish/*.apk
+            src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
