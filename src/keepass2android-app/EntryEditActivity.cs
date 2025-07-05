@@ -37,8 +37,10 @@ using System.Net;
 using System.Text;
 using Android.Content.Res;
 using Android.Database;
+#if !NO_QR_SCANNER
 using Android.Gms.Common;
 using Android.Gms.Tasks;
+#endif
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Runtime;
@@ -60,7 +62,6 @@ using Xamarin.Google.MLKit.Vision.Barcode.Common;
 using Xamarin.Google.MLKit.Vision.CodeScanner;
 #endif
 using Console = System.Console;
-using Task = Android.Gms.Tasks.Task;
 
 namespace keepass2android
 {

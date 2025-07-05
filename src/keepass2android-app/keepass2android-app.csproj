@@ -751,8 +751,8 @@
     <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.2.1.12" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.12.0.2" />
     <PackageReference Include="Xamarin.Google.Guava" Version="33.4.0.1" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Auth" Version="121.3.0.1" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Auth" Version="121.3.0.1" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" Condition="'$(Flavor)'!='NoNet'" />
     <PackageReference Include="Xamarin.GooglePlayServices.Code.Scanner" Version="116.1.0.10" Condition="'$(Flavor)'!='NoNet'" />
   </ItemGroup>
   <ItemGroup>
