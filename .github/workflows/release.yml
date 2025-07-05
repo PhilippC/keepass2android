@@ -3,10 +3,9 @@ env:
   NAME: 'Release'
 
 on:
-  release:
-    types: [created]
-  workflow_dispatch: # For manual testing
-
+  push:
+    tags:
+      - "v1.*"
 jobs:
 
   build-release:
