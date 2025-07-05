@@ -81,7 +81,7 @@ jobs:
     - name: List apks
       run:  find . -type f -name "*.apk"
       shell: bash
-      
+
     - name: Update dotnet workloads
       run: |
         dotnet workload update        
@@ -128,6 +128,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: keepass2android_${{ matrix.target }}_${{ matrix.flavor }}
+        # the first line is for "apk" target, the second line is for "apk_split" target
         path: |
           src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
           src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk
@@ -136,9 +137,10 @@ jobs:
       run:  find . -type f -name "*.apk"
       shell: bash
       
-    #- name: Upload APK to GitHub Release
-    #  uses: softprops/action-gh-release@v2
-    #  if: github.ref_type == 'tag'
-    #  with:
-    #    files: |
-    #        src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
+    - name: Upload APK to GitHub Release
+      uses: softprops/action-gh-release@v2
+      if: github.ref_type == 'tag'
+      with:
+        files: |
+          src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
+          src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk
