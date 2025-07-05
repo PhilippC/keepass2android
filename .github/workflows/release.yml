@@ -4,7 +4,7 @@ env:
 
 on:
   release:
-    types: [published]  # Trigger when a new GitHub release is published
+    types: [created]
   workflow_dispatch: # For manual testing
 
 jobs:
@@ -13,7 +13,10 @@ jobs:
 
     runs-on: windows-2022
 
-
+    strategy:
+      matrix:
+        flavor: [Net, NoNet]
+        target: [apk, apk_split]
 
     steps:
     
@@ -76,12 +79,12 @@ jobs:
       run: |
         make java
 
-    - name: Install NuGet dependencies (net)
-      run: make nuget Flavor=Net
+    - name: Install NuGet dependencies
+      run: make nuget Flavor=${{ matrix.flavor }}
 
-    - name: Use the _net manifest
+    - name: Select the manifest
       run: |
-        make manifestlink Flavor=Net
+        make manifestlink Flavor=${{ matrix.flavor }}
 
     - name: Build APK (net)
       env:
@@ -94,53 +97,19 @@ jobs:
         DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
 
       run: |
-        make Configuration=Release Flavor=Net
+        make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }}
+
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
         name: signed APK (built on ${{ github.job }})
         path: |
-          src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
+          src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/**/publish/*.apk
     
     - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       with:
         files: |
-            src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
-
-
-    - name: Install NuGet dependencies (nonet)
-      run: make nuget Flavor=NoNet
-
-    - name: Use the _nonet manifest
-      run: |
-        make manifestlink Flavor=NoNet
-
-    - name: Build APK (NoNet)
-      env:
-        KeyStore: "${{ github.workspace }}/kp2a.keystore"
-        MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
-        MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
-      run: |
-        make Configuration=Release Flavor=NoNet        
-
-    - name: List files
-      shell: bash
-      run: |
-        ls src/keepass2android-app/bin/**/*.*
-
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: signed APK (built on ${{ github.job }})
-        path: |
-          src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
-    
-    - name: Upload APK to GitHub Release
-      uses: softprops/action-gh-release@v2
-      if: github.ref_type == 'tag'
-      with:
-        files: |
-            src/keepass2android-app/bin/Release/net8.0-android/*-Signed.apk
+            src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk src/keepass2android-app/bin/Release/**/publish/*.apk

@@ -63,10 +63,10 @@ $(info )
 # On linux use xabuild, on Windows use MSBuild.exe, otherwise (macos?) use msbuild.
 ifeq ($(detected_OS),Linux)
   MSBUILD_binary := dotnet
-  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary)) build
+  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary)) publish
 else ifeq ($(detected_OS),Windows)
-  MSBUILD_binary := MSBuild.exe
-  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary) 2> nul)
+  MSBUILD_binary := dotnet
+  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary) 2> nul) publish
   ifeq ($(MSBUILD),)
     # Additional heuristic to find MSBUILD_BINARY on Windows
     VSWHERE := "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
@@ -318,6 +318,13 @@ msbuild: manifestlink native java nuget
 
 apk: msbuild 
 	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m 
+
+apk_split: msbuild
+	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm
+	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm64
+	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x86
+	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x64
+	src/build-scripts/rename-output-apks.sh src/keepass2android-app/bin/Release/net8.0-android/
 
 build_all: msbuild
 
