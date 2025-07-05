@@ -316,10 +316,10 @@ manifestlink:
 msbuild: manifestlink native java nuget 
 	$(MSBUILD) src/KeePass.sln -target:keepass2android-app -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -p:BuildProjectReferences=true $(MSBUILD_PARAM) -p:Platform="Any CPU" -m
 
-apk: msbuild 
+apk: manifestlink native java nuget  
 	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m 
 
-apk_split: msbuild
+apk_split: manifestlink native java nuget 
 	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm
 	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm64
 	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x86
