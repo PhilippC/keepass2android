@@ -79,6 +79,10 @@ jobs:
       run: |
         make java
 
+    - name: Update dotnet workloads
+      run: |
+        dotnet workload update        
+
     - name: Install NuGet dependencies
       run: make nuget Flavor=${{ matrix.flavor }}
 

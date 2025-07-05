@@ -309,6 +309,10 @@ jobs:
       run: |
         make java
 
+    - name: Update dotnet workloads
+      run: |
+        dotnet workload update        
+
     - name: Install NuGet dependencies (net)
       run: make nuget Flavor=Net
 
@@ -333,9 +337,7 @@ jobs:
     - name: Build keepass2android (nonet)
       run: |
         make msbuild Flavor=NoNet
-    - name: Update dotnet workloads
-      run: |
-        dotnet workload update
+
     - name: Test Autofill
       working-directory: ./src/Kp2aAutofillParser.Tests
       run: dotnet test
