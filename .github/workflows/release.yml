@@ -78,13 +78,27 @@ jobs:
       run: |
         make java
 
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+      shell: bash
+      
     - name: Update dotnet workloads
       run: |
         dotnet workload update        
 
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+      shell: bash
+
+
     - name: Select the manifest
       run: |
         make manifestlink Flavor=${{ matrix.flavor }}
+    
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+      shell: bash
+
 
     - name: Install NuGet dependencies
       run: make nuget Flavor=${{ matrix.flavor }}
