@@ -88,6 +88,11 @@ jobs:
         KeyStore: "${{ github.workspace }}/kp2a.keystore"
         MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
         MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
+        DropboxAppKey: ${{ secrets.DROPBOX_APP_KEY }}
+        DropboxAppSecret: ${{ secrets.DROPBOX_APP_SECRET }}
+        DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
+        DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
+
       run: |
         make Configuration=Release Flavor=Net
 

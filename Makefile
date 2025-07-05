@@ -312,14 +312,8 @@ manifestlink:
 	$(CREATE_MANIFEST_LINK)	
 
 #####
-src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs:
-ifeq ($(detected_OS),Windows)
-	$(CP) src\Kp2aBusinessLogic\Io\DropboxFileStorageKeysDummy.cs src\Kp2aBusinessLogic\Io\DropboxFileStorageKeys.cs
-else
-	$(CP) src/Kp2aBusinessLogic/Io/DropboxFileStorageKeysDummy.cs $@
-endif
 
-msbuild: manifestlink native java nuget src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
+msbuild: manifestlink native java nuget 
 	$(MSBUILD) src/KeePass.sln -target:keepass2android-app -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -p:BuildProjectReferences=true $(MSBUILD_PARAM) -p:Platform="Any CPU" -m
 
 apk: msbuild 

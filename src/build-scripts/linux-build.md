@@ -20,7 +20,6 @@ git clone --recurse-submodules https://github.com/PhilippC/keepass2android.git
 cd keepass2android/src/build-scripts
 ./build-java.sh && ./build-native.sh
 cd ..
-cp Kp2aBusinessLogic/Io/DropboxFileStorageKeysDummy.cs Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
 cd keepass2android-app
 ln -s Manifests/AndroidManifest_debug.xml AndroidManifest.xml
 dotnet workload restore

@@ -26,9 +26,7 @@
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
   </ItemGroup>
   <ItemGroup>
-  <None Remove="Io/DropboxFileStorageKeysDummy.cs" />
-  <Compile Remove="Io/DropboxFileStorageKeysDummy.cs" />
-  <Content Remove="Io/DropboxFileStorageKeysDummy.cs" />
+
 </ItemGroup>
 <ItemGroup  Condition="'$(Flavor)'=='NoNet'">
   <None Remove="Io/OneDrive2FileStorage.cs" />
@@ -38,5 +36,11 @@
   <Compile Remove="Io/MegaFileStorage.cs" />
   <Content Remove="Io/MegaFileStorage.cs" />
 </ItemGroup>
+
+<Import Project="Io/GenerateSecrets.targets" />
+<ItemGroup>
+<Compile Include="Io/DropboxFileStorage.g.cs" />
+</ItemGroup>
+
   
 </Project>
