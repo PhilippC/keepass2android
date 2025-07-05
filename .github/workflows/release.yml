@@ -89,6 +89,9 @@ jobs:
     - name: Install NuGet dependencies
       run: make nuget Flavor=${{ matrix.flavor }}
 
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+
     - name: Build APK (net)
       env:
         KeyStore: "${{ github.workspace }}/kp2a.keystore"
@@ -101,7 +104,10 @@ jobs:
 
       run: |
         make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }}
-
+    
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+    
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
@@ -110,6 +116,9 @@ jobs:
           src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
           src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk
     
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+      
     #- name: Upload APK to GitHub Release
     #  uses: softprops/action-gh-release@v2
     #  if: github.ref_type == 'tag'
