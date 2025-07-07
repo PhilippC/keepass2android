@@ -725,8 +725,14 @@
     <item></item>
     <item>Upgraded to Material 3 user interface</item>
     <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
+    <item>修复在自动填充和搜索时主机名的匹配问题</item>
     <item>Fix issue with password generator</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Upgraded OneDrive SDK to version 5.68</item>
+    <item>Upgraded Dropbox SDK to version 7.0.0</item>
+    <item>Upgraded Gradle, NewtonsoftJson, FluentFTP, MegaApiClient and okhttp</item>
+    <item>修复WebDav中文件选择的错误</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>添加了用于搜索和概览 TOTP 的浮动按钮（如果存在TOTP条目）</item>
