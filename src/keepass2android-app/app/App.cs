@@ -836,8 +836,8 @@ namespace keepass2android
 							new AndroidContentStorage(LocaleManager.LocalizedAppContext),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
-							/*TODO new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
-							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),*/
+							new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
+							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
 							new OneDriveFileStorage(this),
