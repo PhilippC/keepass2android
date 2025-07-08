@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Disable Biometric Unlock</string>
   <string name="enable_fingerprint_unlock">Enable full Biometric Unlock</string>
   <string name="enable_fingerprint_quickunlock">Enable Biometric Unlock for QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Password-based QuickUnlock not available</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock using a part of your password is blocked because screen lock is not activated on your device. This behavior is to protect you in case somebody watched you entering your QuickUnlock key.</string>
   <string name="fingerprint_unlock_failed">Biometric Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a biometric authentication or security settings were changed. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Biometric Unlock was disabled because apparently the stored master password is no longer valid. </string>
   <string name="fingerprint_reenable">Please re-enable Biometric Unlock for the new master password.</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Enter QuickUnlock code:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Close database</string>
+  <string name="enable_screen_lock">Enable screen lock</string>
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
   <string name="ViewDatabaseSecure_title">Protect database display</string>

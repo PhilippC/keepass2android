@@ -25,6 +25,7 @@ using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using Android.Preferences;
+using Android.Provider;
 using Android.Runtime;
 
 using Android.Views.InputMethods;
@@ -161,6 +162,29 @@ namespace keepass2android
 
             if (bundle != null)
                 numFailedAttempts = bundle.GetInt(NumFailedAttemptsKey, 0);
+
+            FindViewById(Resource.Id.QuickUnlock_buttonEnableLock).Click += (object sender, EventArgs e) =>
+            {
+				Intent intent = new Intent(Settings.ActionSecuritySettings);
+                StartActivity(intent);
+
+            };
+
+            FindViewById(Resource.Id.QuickUnlock_buttonCloseDb).Click += (object sender, EventArgs e) =>
+            {
+                App.Kp2a.Lock(false);
+            };
+
+            if (App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase == false)
+            {
+				FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Gone;
+                FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Visible;
+                FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Gone;
+            }
 
 
 

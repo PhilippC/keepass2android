@@ -351,7 +351,10 @@ namespace keepass2android
 			QuickUnlockEnabled = enabled;
 		}
 
-		public bool QuickUnlockEnabled { get; private set; }
+		public bool ScreenLockWasEnabledWhenOpeningDatabase { get; set; }
+
+
+        public bool QuickUnlockEnabled { get; private set; }
 
 		public int QuickUnlockKeyLength { get; private set; }
     
@@ -833,8 +836,8 @@ namespace keepass2android
 							new AndroidContentStorage(LocaleManager.LocalizedAppContext),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
-							new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
-							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
+							/*TODO new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
+							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),*/
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
 							new OneDriveFileStorage(this),
