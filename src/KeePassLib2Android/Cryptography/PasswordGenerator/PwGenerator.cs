@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2016 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2025 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,133 +20,172 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Security.Cryptography;
 using System.Text;
 
+#if !KeePassUAP
+using System.Security.Cryptography;
+#endif
+
+using KeePassLib.Resources;
 using KeePassLib.Security;
 using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography.PasswordGenerator
 {
-	public enum PwgError
-	{
-		Success = 0,
-		Unknown = 1,
-		TooFewCharacters = 2,
-		UnknownAlgorithm = 3
-	}
+    public enum PwgError
+    {
+        Success = 0,
+        Unknown = 1,
+        TooFewCharacters = 2,
+        UnknownAlgorithm = 3,
+        InvalidCharSet = 4,
+        InvalidPattern = 5
+    }
 
-	/// <summary>
-	/// Utility functions for generating random passwords.
-	/// </summary>
-	public static class PwGenerator
-	{
-		public static PwgError Generate(out ProtectedString psOut,
-			PwProfile pwProfile, byte[] pbUserEntropy,
-			CustomPwGeneratorPool pwAlgorithmPool)
-		{
-			Debug.Assert(pwProfile != null);
-			if (pwProfile == null) throw new ArgumentNullException("pwProfile");
+    /// <summary>
+    /// Password generator.
+    /// </summary>
+    public static class PwGenerator
+    {
 
-			CryptoRandomStream crs = CreateCryptoStream(pbUserEntropy);
-			PwgError e = PwgError.Unknown;
+        private static CryptoRandomStream CreateRandomStream(byte[] pbAdditionalEntropy,
+            out byte[] pbKey)
+        {
+            pbKey = CryptoRandom.Instance.GetRandomBytes(128);
 
-			if (pwProfile.GeneratorType == PasswordGeneratorType.CharSet)
-				e = CharSetBasedGenerator.Generate(out psOut, pwProfile, crs);
-			else if (pwProfile.GeneratorType == PasswordGeneratorType.Pattern)
-				e = PatternBasedGenerator.Generate(out psOut, pwProfile, crs);
-			else if (pwProfile.GeneratorType == PasswordGeneratorType.Custom)
-				e = GenerateCustom(out psOut, pwProfile, crs, pwAlgorithmPool);
-			else { Debug.Assert(false); psOut = ProtectedString.Empty; }
+            // Mix in additional entropy
+            Debug.Assert(pbKey.Length >= 64);
+            if ((pbAdditionalEntropy != null) && (pbAdditionalEntropy.Length != 0))
+            {
+                using (SHA512Managed h = new SHA512Managed())
+                {
+                    byte[] pbHash = h.ComputeHash(pbAdditionalEntropy);
+                    MemUtil.XorArray(pbHash, 0, pbKey, 0, pbHash.Length);
+                    MemUtil.ZeroByteArray(pbHash);
+                }
+            }
 
-			return e;
-		}
+            return new CryptoRandomStream(CrsAlgorithm.ChaCha20, pbKey);
+        }
 
-		private static CryptoRandomStream CreateCryptoStream(byte[] pbAdditionalEntropy)
-		{
-			byte[] pbKey = CryptoRandom.Instance.GetRandomBytes(128);
+        internal static char GenerateCharacter(PwCharSet pwCharSet,
+            CryptoRandomStream crsRandomSource)
+        {
+            uint cc = pwCharSet.Size;
+            if (cc == 0) return char.MinValue;
 
-			// Mix in additional entropy
-			Debug.Assert(pbKey.Length >= 64);
-			if ((pbAdditionalEntropy != null) && (pbAdditionalEntropy.Length > 0))
-			{
-				using (SHA512Managed h = new SHA512Managed())
-				{
-					byte[] pbHash = h.ComputeHash(pbAdditionalEntropy);
-					MemUtil.XorArray(pbHash, 0, pbKey, 0, pbHash.Length);
-				}
-			}
+            uint i = (uint)crsRandomSource.GetRandomUInt64(cc);
+            return pwCharSet[i];
+        }
 
-			return new CryptoRandomStream(CrsAlgorithm.ChaCha20, pbKey);
-		}
+        internal static bool PrepareCharSet(PwCharSet pwCharSet, PwProfile pwProfile)
+        {
+            uint cc = pwCharSet.Size;
+            for (uint i = 0; i < cc; ++i)
+            {
+                char ch = pwCharSet[i];
+                if ((ch == char.MinValue) || (ch == '\t') || (ch == '\r') ||
+                    (ch == '\n') || char.IsSurrogate(ch))
+                    return false;
+            }
 
-		internal static char GenerateCharacter(PwProfile pwProfile,
-			PwCharSet pwCharSet, CryptoRandomStream crsRandomSource)
-		{
-			if (pwCharSet.Size == 0) return char.MinValue;
+            if (pwProfile.ExcludeLookAlike) pwCharSet.Remove(PwCharSet.LookAlike);
 
-			ulong uIndex = crsRandomSource.GetRandomUInt64();
-			uIndex %= (ulong)pwCharSet.Size;
+            if (!string.IsNullOrEmpty(pwProfile.ExcludeCharacters))
+                pwCharSet.Remove(pwProfile.ExcludeCharacters);
 
-			char ch = pwCharSet[(uint)uIndex];
+            return true;
+        }
 
-			if (pwProfile.NoRepeatingCharacters)
-				pwCharSet.Remove(ch);
+        internal static void Shuffle(char[] v, CryptoRandomStream crsRandomSource)
+        {
+            if (v == null) { Debug.Assert(false); return; }
+            if (crsRandomSource == null) { Debug.Assert(false); return; }
 
-			return ch;
-		}
+            for (int i = v.Length - 1; i >= 1; --i)
+            {
+                int j = (int)crsRandomSource.GetRandomUInt64((ulong)(i + 1));
 
-		internal static void PrepareCharSet(PwCharSet pwCharSet, PwProfile pwProfile)
-		{
-			pwCharSet.Remove(PwCharSet.Invalid);
+                char t = v[i];
+                v[i] = v[j];
+                v[j] = t;
+            }
+        }
 
-			if (pwProfile.ExcludeLookAlike) pwCharSet.Remove(PwCharSet.LookAlike);
+        private static PwgError GenerateCustom(out ProtectedString psOut,
+            PwProfile pwProfile, CryptoRandomStream crs,
+            CustomPwGeneratorPool pwAlgorithmPool)
+        {
+            psOut = ProtectedString.Empty;
 
-			if (pwProfile.ExcludeCharacters.Length > 0)
-				pwCharSet.Remove(pwProfile.ExcludeCharacters);
-		}
+            Debug.Assert(pwProfile.GeneratorType == PasswordGeneratorType.Custom);
+            if (pwAlgorithmPool == null) return PwgError.UnknownAlgorithm;
 
-		internal static void ShufflePassword(char[] pPassword,
-			CryptoRandomStream crsRandomSource)
-		{
-			Debug.Assert(pPassword != null); if (pPassword == null) return;
-			Debug.Assert(crsRandomSource != null); if (crsRandomSource == null) return;
+            string strID = pwProfile.CustomAlgorithmUuid;
+            if (string.IsNullOrEmpty(strID)) return PwgError.UnknownAlgorithm;
 
-			if (pPassword.Length <= 1) return; // Nothing to shuffle
+            byte[] pbUuid = Convert.FromBase64String(strID);
+            PwUuid uuid = new PwUuid(pbUuid);
+            CustomPwGenerator pwg = pwAlgorithmPool.Find(uuid);
+            if (pwg == null) { Debug.Assert(false); return PwgError.UnknownAlgorithm; }
 
-			for (int nSelect = 0; nSelect < pPassword.Length; ++nSelect)
-			{
-				ulong uRandomIndex = crsRandomSource.GetRandomUInt64();
-				uRandomIndex %= (ulong)(pPassword.Length - nSelect);
+            ProtectedString pwd = pwg.Generate(pwProfile.CloneDeep(), crs);
+            if (pwd == null) return PwgError.Unknown;
 
-				char chTemp = pPassword[nSelect];
-				pPassword[nSelect] = pPassword[nSelect + (int)uRandomIndex];
-				pPassword[nSelect + (int)uRandomIndex] = chTemp;
-			}
-		}
+            psOut = pwd;
+            return PwgError.Success;
+        }
 
-		private static PwgError GenerateCustom(out ProtectedString psOut,
-			PwProfile pwProfile, CryptoRandomStream crs,
-			CustomPwGeneratorPool pwAlgorithmPool)
-		{
-			psOut = ProtectedString.Empty;
+        internal static string ErrorToString(PwgError e, bool bHeader)
+        {
+            if (e == PwgError.Success) { Debug.Assert(false); return string.Empty; }
+            if ((e == PwgError.Unknown) && bHeader) return KLRes.PwGenFailed;
 
-			Debug.Assert(pwProfile.GeneratorType == PasswordGeneratorType.Custom);
-			if (pwAlgorithmPool == null) return PwgError.UnknownAlgorithm;
+            string str = KLRes.UnknownError;
+            switch (e)
+            {
+                // case PwgError.Success:
+                //	break;
 
-			string strID = pwProfile.CustomAlgorithmUuid;
-			if (string.IsNullOrEmpty(strID)) { Debug.Assert(false); return PwgError.UnknownAlgorithm; }
+                case PwgError.Unknown:
+                    break;
 
-			byte[] pbUuid = Convert.FromBase64String(strID);
-			PwUuid uuid = new PwUuid(pbUuid);
-			CustomPwGenerator pwg = pwAlgorithmPool.Find(uuid);
-			if (pwg == null) { Debug.Assert(false); return PwgError.UnknownAlgorithm; }
+                case PwgError.TooFewCharacters:
+                    str = KLRes.CharSetTooFewChars;
+                    break;
 
-			ProtectedString pwd = pwg.Generate(pwProfile.CloneDeep(), crs);
-			if (pwd == null) return PwgError.Unknown;
+                case PwgError.UnknownAlgorithm:
+                    str = KLRes.AlgorithmUnknown;
+                    break;
 
-			psOut = pwd;
-			return PwgError.Success;
-		}
-	}
+                case PwgError.InvalidCharSet:
+                    str = KLRes.CharSetInvalid;
+                    break;
+
+                case PwgError.InvalidPattern:
+                    str = KLRes.PatternInvalid;
+                    break;
+
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
+
+            if (bHeader)
+                str = KLRes.PwGenFailed + MessageService.NewParagraph + str;
+
+            return str;
+        }
+
+        internal static string ErrorToString(Exception ex, bool bHeader)
+        {
+            string str = ((ex == null) ? KLRes.UnknownError :
+                StrUtil.FormatException(ex));
+
+            if (bHeader)
+                str = KLRes.PwGenFailed + MessageService.NewParagraph + str;
+
+            return str;
+        }
+    }
 }

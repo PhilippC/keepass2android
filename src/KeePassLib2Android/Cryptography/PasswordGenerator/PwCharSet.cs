@@ -1,6 +1,6 @@
 /*
   KeePass Password Safe - The Open-Source Password Manager
-  Copyright (C) 2003-2017 Dominik Reichl <dominik.reichl@t-online.de>
+  Copyright (C) 2003-2025 Dominik Reichl <dominik.reichl@t-online.de>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,333 +19,311 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
+using System.Text;
+
+using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography.PasswordGenerator
 {
-	public sealed class PwCharSet
-	{
-		public const string UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		public const string LowerCase = "abcdefghijklmnopqrstuvwxyz";
-		public const string Digits = "0123456789";
+    public sealed class PwCharSet : IEquatable<PwCharSet>
+    {
+        public static readonly string UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public static readonly string LowerCase = "abcdefghijklmnopqrstuvwxyz";
+        public static readonly string Digits = "0123456789";
 
-		public const string UpperConsonants = "BCDFGHJKLMNPQRSTVWXYZ";
-		public const string LowerConsonants = "bcdfghjklmnpqrstvwxyz";
-		public const string UpperVowels = "AEIOU";
-		public const string LowerVowels = "aeiou";
+        public static readonly string UpperConsonants = "BCDFGHJKLMNPQRSTVWXYZ";
+        public static readonly string LowerConsonants = "bcdfghjklmnpqrstvwxyz";
+        public static readonly string UpperVowels = "AEIOU";
+        public static readonly string LowerVowels = "aeiou";
 
-		public const string Punctuation = @",.;:";
-		public const string Brackets = @"[]{}()<>";
+        public static readonly string Punctuation = ",.;:";
+        public static readonly string Brackets = @"[]{}()<>";
 
-		public const string PrintableAsciiSpecial = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+        public static readonly string Special = "!\"#$%&'*+,./:;=?@\\^`|~";
+        public static readonly string PrintableAsciiSpecial = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-		public const string UpperHex = "0123456789ABCDEF";
-		public const string LowerHex = "0123456789abcdef";
+        public static readonly string UpperHex = "0123456789ABCDEF";
+        public static readonly string LowerHex = "0123456789abcdef";
 
-		public const string Invalid = "\t\r\n";
-		public const string LookAlike = @"O0l1I|";
+        public static readonly string LookAlike = "O0Il1|";
 
-		internal const string MenuAccels = PwCharSet.LowerCase + PwCharSet.Digits;
+        /// <summary>
+        /// Latin-1 Supplement except U+00A0 (NBSP) and U+00AD (SHY).
+        /// </summary>
+        public static readonly string Latin1S =
+            "\u00A1\u00A2\u00A3\u00A4\u00A5\u00A6\u00A7" +
+            "\u00A8\u00A9\u00AA\u00AB\u00AC\u00AE\u00AF" +
+            "\u00B0\u00B1\u00B2\u00B3\u00B4\u00B5\u00B6\u00B7" +
+            "\u00B8\u00B9\u00BA\u00BB\u00BC\u00BD\u00BE\u00BF" +
+            "\u00C0\u00C1\u00C2\u00C3\u00C4\u00C5\u00C6\u00C7" +
+            "\u00C8\u00C9\u00CA\u00CB\u00CC\u00CD\u00CE\u00CF" +
+            "\u00D0\u00D1\u00D2\u00D3\u00D4\u00D5\u00D6\u00D7" +
+            "\u00D8\u00D9\u00DA\u00DB\u00DC\u00DD\u00DE\u00DF" +
+            "\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5\u00E6\u00E7" +
+            "\u00E8\u00E9\u00EA\u00EB\u00EC\u00ED\u00EE\u00EF" +
+            "\u00F0\u00F1\u00F2\u00F3\u00F4\u00F5\u00F6\u00F7" +
+            "\u00F8\u00F9\u00FA\u00FB\u00FC\u00FD\u00FE\u00FF";
 
-		private const int CharTabSize = (0x10000 / 8);
+        // internal static readonly string MenuAccels = PwCharSet.LowerCase + PwCharSet.Digits;
 
-		private List<char> m_vChars = new List<char>();
-		private byte[] m_vTab = new byte[CharTabSize];
+        [Obsolete]
+        public static string SpecialChars { get { return PwCharSet.Special; } }
+        [Obsolete]
+        public static string HighAnsiChars { get { return PwCharSet.Latin1S; } }
 
-		private static string m_strHighAnsi = null;
-		public static string HighAnsiChars
-		{
-			get
-			{
-				if(m_strHighAnsi == null) { new PwCharSet(); } // Create string
-				Debug.Assert(m_strHighAnsi != null);
-				return m_strHighAnsi;
-			}
-		}
+        private readonly List<char> m_lChars = new List<char>();
+        private readonly byte[] m_vTab = new byte[0x10000 / 8];
 
-		private static string m_strSpecial = null;
-		public static string SpecialChars
-		{
-			get
-			{
-				if(m_strSpecial == null) { new PwCharSet(); } // Create string
-				Debug.Assert(m_strSpecial != null);
-				return m_strSpecial;
-			}
-		}
+        /// <summary>
+        /// Create a new, empty character set.
+        /// </summary>
+        public PwCharSet()
+        {
+            Debug.Assert(PwCharSet.Latin1S.Length == (16 * 6 - 2));
+        }
 
-		/// <summary>
-		/// Create a new, empty character set collection object.
-		/// </summary>
-		public PwCharSet()
-		{
-			Initialize(true);
-		}
+        public PwCharSet(string strCharSet)
+        {
+            Add(strCharSet);
+        }
 
-		public PwCharSet(string strCharSet)
-		{
-			Initialize(true);
-			Add(strCharSet);
-		}
+        /// <summary>
+        /// Number of characters in this set.
+        /// </summary>
+        public uint Size
+        {
+            get { return (uint)m_lChars.Count; }
+        }
 
-		private PwCharSet(bool bFullInitialize)
-		{
-			Initialize(bFullInitialize);
-		}
+        /// <summary>
+        /// Get a character of the set using an index.
+        /// </summary>
+        /// <param name="uPos">Index of the character to get.</param>
+        /// <returns>Character at the specified position. If the index is invalid,
+        /// an <c>ArgumentOutOfRangeException</c> is thrown.</returns>
+        public char this[uint uPos]
+        {
+            get
+            {
+                if (uPos >= (uint)m_lChars.Count)
+                    throw new ArgumentOutOfRangeException("uPos");
 
-		private void Initialize(bool bFullInitialize)
-		{
-			Clear();
+                return m_lChars[(int)uPos];
+            }
+        }
 
-			if(!bFullInitialize) return;
+        public bool Equals(PwCharSet other)
+        {
+            if (object.ReferenceEquals(other, this)) return true;
+            if (object.ReferenceEquals(other, null)) return false;
 
-			if(m_strHighAnsi == null)
-			{
-				StringBuilder sbHighAnsi = new StringBuilder();
-				// [U+0080, U+009F] are C1 control characters,
-				// U+00A0 is non-breaking space
-				for(char ch = '\u00A1'; ch <= '\u00AC'; ++ch)
-					sbHighAnsi.Append(ch);
-				// U+00AD is soft hyphen (format character)
-				for(char ch = '\u00AE'; ch < '\u00FF'; ++ch)
-					sbHighAnsi.Append(ch);
-				sbHighAnsi.Append('\u00FF');
+            if (m_lChars.Count != other.m_lChars.Count) return false;
 
-				m_strHighAnsi = sbHighAnsi.ToString();
-			}
+            return MemUtil.ArraysEqual(m_vTab, other.m_vTab);
+        }
 
-			if(m_strSpecial == null)
-			{
-				PwCharSet pcs = new PwCharSet(false);
-				pcs.AddRange('!', '/');
-				pcs.AddRange(':', '@');
-				pcs.AddRange('[', '`');
-				pcs.Add(@"|~");
-				pcs.Remove(@"-_ ");
-				pcs.Remove(PwCharSet.Brackets);
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as PwCharSet);
+        }
 
-				m_strSpecial = pcs.ToString();
-			}
-		}
+        public override int GetHashCode()
+        {
+            return (int)MemUtil.Hash32(m_vTab, 0, m_vTab.Length);
+        }
 
-		/// <summary>
-		/// Number of characters in this set.
-		/// </summary>
-		public uint Size
-		{
-			get { return (uint)m_vChars.Count; }
-		}
+        /// <summary>
+        /// Remove all characters from this set.
+        /// </summary>
+        public void Clear()
+        {
+            m_lChars.Clear();
+            Array.Clear(m_vTab, 0, m_vTab.Length);
+        }
 
-		/// <summary>
-		/// Get a character of the set using an index.
-		/// </summary>
-		/// <param name="uPos">Index of the character to get.</param>
-		/// <returns>Character at the specified position. If the index is invalid,
-		/// an <c>ArgumentOutOfRangeException</c> is thrown.</returns>
-		public char this[uint uPos]
-		{
-			get
-			{
-				if(uPos >= (uint)m_vChars.Count)
-					throw new ArgumentOutOfRangeException("uPos");
+        public bool Contains(char ch)
+        {
+            return (((m_vTab[ch / 8] >> (ch % 8)) & 1) != char.MinValue);
+        }
 
-				return m_vChars[(int)uPos];
-			}
-		}
+        public bool Contains(string strCharacters)
+        {
+            Debug.Assert(strCharacters != null);
+            if (strCharacters == null) throw new ArgumentNullException("strCharacters");
 
-		/// <summary>
-		/// Remove all characters from this set.
-		/// </summary>
-		public void Clear()
-		{
-			m_vChars.Clear();
-			Array.Clear(m_vTab, 0, m_vTab.Length);
-		}
+            foreach (char ch in strCharacters)
+            {
+                if (!Contains(ch)) return false;
+            }
 
-		public bool Contains(char ch)
-		{
-			return (((m_vTab[ch / 8] >> (ch % 8)) & 1) != char.MinValue);
-		}
+            return true;
+        }
 
-		public bool Contains(string strCharacters)
-		{
-			Debug.Assert(strCharacters != null);
-			if(strCharacters == null) throw new ArgumentNullException("strCharacters");
+        /// <summary>
+        /// Add characters to the set.
+        /// </summary>
+        /// <param name="ch">Character to add.</param>
+        public void Add(char ch)
+        {
+            if (ch == char.MinValue) { Debug.Assert(false); return; }
 
-			foreach(char ch in strCharacters)
-			{
-				if(!Contains(ch)) return false;
-			}
+            if (!Contains(ch))
+            {
+                m_lChars.Add(ch);
+                m_vTab[ch / 8] |= (byte)(1 << (ch % 8));
+            }
+        }
 
-			return true;
-		}
+        /// <summary>
+        /// Add characters to the set.
+        /// </summary>
+        /// <param name="strCharSet">String containing characters to add.</param>
+        public void Add(string strCharSet)
+        {
+            Debug.Assert(strCharSet != null);
+            if (strCharSet == null) throw new ArgumentNullException("strCharSet");
 
-		/// <summary>
-		/// Add characters to the set.
-		/// </summary>
-		/// <param name="ch">Character to add.</param>
-		public void Add(char ch)
-		{
-			if(ch == char.MinValue) { Debug.Assert(false); return; }
+            foreach (char ch in strCharSet)
+                Add(ch);
+        }
 
-			if(!Contains(ch))
-			{
-				m_vChars.Add(ch);
-				m_vTab[ch / 8] |= (byte)(1 << (ch % 8));
-			}
-		}
+        public void Add(string strCharSet1, string strCharSet2)
+        {
+            Add(strCharSet1);
+            Add(strCharSet2);
+        }
 
-		/// <summary>
-		/// Add characters to the set.
-		/// </summary>
-		/// <param name="strCharSet">String containing characters to add.</param>
-		public void Add(string strCharSet)
-		{
-			Debug.Assert(strCharSet != null);
-			if(strCharSet == null) throw new ArgumentNullException("strCharSet");
+        public void Add(string strCharSet1, string strCharSet2, string strCharSet3)
+        {
+            Add(strCharSet1);
+            Add(strCharSet2);
+            Add(strCharSet3);
+        }
 
-			m_vChars.Capacity = m_vChars.Count + strCharSet.Length;
+        public void AddRange(char chMin, char chMax)
+        {
+            for (char ch = chMin; ch < chMax; ++ch)
+                Add(ch);
 
-			foreach(char ch in strCharSet)
-				Add(ch);
-		}
+            Add(chMax);
+        }
 
-		public void Add(string strCharSet1, string strCharSet2)
-		{
-			Add(strCharSet1);
-			Add(strCharSet2);
-		}
+        public bool AddCharSet(char chCharSetIdentifier)
+        {
+            bool bResult = true;
 
-		public void Add(string strCharSet1, string strCharSet2, string strCharSet3)
-		{
-			Add(strCharSet1);
-			Add(strCharSet2);
-			Add(strCharSet3);
-		}
+            switch (chCharSetIdentifier)
+            {
+                case 'a': Add(PwCharSet.LowerCase, PwCharSet.Digits); break;
+                case 'A':
+                    Add(PwCharSet.LowerCase, PwCharSet.UpperCase,
+                    PwCharSet.Digits); break;
+                case 'U': Add(PwCharSet.UpperCase, PwCharSet.Digits); break;
+                case 'c': Add(PwCharSet.LowerConsonants); break;
+                case 'C':
+                    Add(PwCharSet.LowerConsonants,
+                    PwCharSet.UpperConsonants); break;
+                case 'z': Add(PwCharSet.UpperConsonants); break;
+                case 'd': Add(PwCharSet.Digits); break; // Digit
+                case 'h': Add(PwCharSet.LowerHex); break;
+                case 'H': Add(PwCharSet.UpperHex); break;
+                case 'l': Add(PwCharSet.LowerCase); break;
+                case 'L': Add(PwCharSet.LowerCase, PwCharSet.UpperCase); break;
+                case 'u': Add(PwCharSet.UpperCase); break;
+                case 'p': Add(PwCharSet.Punctuation); break;
+                case 'b': Add(PwCharSet.Brackets); break;
+                case 's': Add(PwCharSet.PrintableAsciiSpecial); break;
+                case 'S':
+                    Add(PwCharSet.UpperCase, PwCharSet.LowerCase);
+                    Add(PwCharSet.Digits, PwCharSet.PrintableAsciiSpecial); break;
+                case 'v': Add(PwCharSet.LowerVowels); break;
+                case 'V': Add(PwCharSet.LowerVowels, PwCharSet.UpperVowels); break;
+                case 'Z': Add(PwCharSet.UpperVowels); break;
+                case 'x': Add(PwCharSet.Latin1S); break;
+                default: bResult = false; break;
+            }
 
-		public void AddRange(char chMin, char chMax)
-		{
-			m_vChars.Capacity = m_vChars.Count + (chMax - chMin) + 1;
+            return bResult;
+        }
 
-			for(char ch = chMin; ch < chMax; ++ch)
-				Add(ch);
+        public bool Remove(char ch)
+        {
+            m_vTab[ch / 8] &= (byte)(~(1 << (ch % 8)));
+            return m_lChars.Remove(ch);
+        }
 
-			Add(chMax);
-		}
+        public bool Remove(string strCharacters)
+        {
+            Debug.Assert(strCharacters != null);
+            if (strCharacters == null) throw new ArgumentNullException("strCharacters");
 
-		public bool AddCharSet(char chCharSetIdentifier)
-		{
-			bool bResult = true;
+            bool bResult = true;
+            foreach (char ch in strCharacters)
+            {
+                if (!Remove(ch)) bResult = false;
+            }
 
-			switch(chCharSetIdentifier)
-			{
-				case 'a': Add(PwCharSet.LowerCase, PwCharSet.Digits); break;
-				case 'A': Add(PwCharSet.LowerCase, PwCharSet.UpperCase,
-					PwCharSet.Digits); break;
-				case 'U': Add(PwCharSet.UpperCase, PwCharSet.Digits); break;
-				case 'c': Add(PwCharSet.LowerConsonants); break;
-				case 'C': Add(PwCharSet.LowerConsonants,
-					PwCharSet.UpperConsonants); break;
-				case 'z': Add(PwCharSet.UpperConsonants); break;
-				case 'd': Add(PwCharSet.Digits); break; // Digit
-				case 'h': Add(PwCharSet.LowerHex); break;
-				case 'H': Add(PwCharSet.UpperHex); break;
-				case 'l': Add(PwCharSet.LowerCase); break;
-				case 'L': Add(PwCharSet.LowerCase, PwCharSet.UpperCase); break;
-				case 'u': Add(PwCharSet.UpperCase); break;
-				case 'p': Add(PwCharSet.Punctuation); break;
-				case 'b': Add(PwCharSet.Brackets); break;
-				case 's': Add(PwCharSet.PrintableAsciiSpecial); break;
-				case 'S': Add(PwCharSet.UpperCase, PwCharSet.LowerCase);
-					Add(PwCharSet.Digits, PwCharSet.PrintableAsciiSpecial); break;
-				case 'v': Add(PwCharSet.LowerVowels); break;
-				case 'V': Add(PwCharSet.LowerVowels, PwCharSet.UpperVowels); break;
-				case 'Z': Add(PwCharSet.UpperVowels); break;
-				case 'x': Add(m_strHighAnsi); break;
-				default: bResult = false; break;
-			}
+            return bResult;
+        }
 
-			return bResult;
-		}
+        public bool RemoveIfAllExist(string strCharacters)
+        {
+            Debug.Assert(strCharacters != null);
+            if (strCharacters == null) throw new ArgumentNullException("strCharacters");
 
-		public bool Remove(char ch)
-		{
-			m_vTab[ch / 8] &= (byte)(~(1 << (ch % 8)));
-			return m_vChars.Remove(ch);
-		}
+            if (!Contains(strCharacters))
+                return false;
 
-		public bool Remove(string strCharacters)
-		{
-			Debug.Assert(strCharacters != null);
-			if(strCharacters == null) throw new ArgumentNullException("strCharacters");
+            return Remove(strCharacters);
+        }
 
-			bool bResult = true;
-			foreach(char ch in strCharacters)
-			{
-				if(!Remove(ch)) bResult = false;
-			}
+        /// <summary>
+        /// Convert the character set to a string containing all its characters.
+        /// </summary>
+        /// <returns>String containing all character set characters.</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder(m_lChars.Count);
+            foreach (char ch in m_lChars)
+                sb.Append(ch);
 
-			return bResult;
-		}
+            return sb.ToString();
+        }
 
-		public bool RemoveIfAllExist(string strCharacters)
-		{
-			Debug.Assert(strCharacters != null);
-			if(strCharacters == null) throw new ArgumentNullException("strCharacters");
+        public string PackAndRemoveCharRanges()
+        {
+            StringBuilder sb = new StringBuilder();
 
-			if(!Contains(strCharacters))
-				return false;
+            sb.Append(RemoveIfAllExist(PwCharSet.UpperCase) ? 'U' : '_');
+            sb.Append(RemoveIfAllExist(PwCharSet.LowerCase) ? 'L' : '_');
+            sb.Append(RemoveIfAllExist(PwCharSet.Digits) ? 'D' : '_');
+            sb.Append(RemoveIfAllExist(PwCharSet.Special) ? 'S' : '_');
+            sb.Append(RemoveIfAllExist(PwCharSet.Punctuation) ? 'P' : '_');
+            sb.Append(RemoveIfAllExist("-") ? 'm' : '_');
+            sb.Append(RemoveIfAllExist("_") ? 'u' : '_');
+            sb.Append(RemoveIfAllExist(" ") ? 's' : '_');
+            sb.Append(RemoveIfAllExist(PwCharSet.Brackets) ? 'B' : '_');
+            sb.Append(RemoveIfAllExist(PwCharSet.Latin1S) ? 'H' : '_');
 
-			return Remove(strCharacters);
-		}
+            return sb.ToString();
+        }
 
-		/// <summary>
-		/// Convert the character set to a string containing all its characters.
-		/// </summary>
-		/// <returns>String containing all character set characters.</returns>
-		public override string ToString()
-		{
-			StringBuilder sb = new StringBuilder();
-			foreach(char ch in m_vChars)
-				sb.Append(ch);
+        public void UnpackCharRanges(string strRanges)
+        {
+            if (strRanges == null) { Debug.Assert(false); return; }
+            if (strRanges.Length < 10) { Debug.Assert(false); return; }
 
-			return sb.ToString();
-		}
-
-		public string PackAndRemoveCharRanges()
-		{
-			StringBuilder sb = new StringBuilder();
-
-			sb.Append(RemoveIfAllExist(PwCharSet.UpperCase) ? 'U' : '_');
-			sb.Append(RemoveIfAllExist(PwCharSet.LowerCase) ? 'L' : '_');
-			sb.Append(RemoveIfAllExist(PwCharSet.Digits) ? 'D' : '_');
-			sb.Append(RemoveIfAllExist(m_strSpecial) ? 'S' : '_');
-			sb.Append(RemoveIfAllExist(PwCharSet.Punctuation) ? 'P' : '_');
-			sb.Append(RemoveIfAllExist(@"-") ? 'm' : '_');
-			sb.Append(RemoveIfAllExist(@"_") ? 'u' : '_');
-			sb.Append(RemoveIfAllExist(@" ") ? 's' : '_');
-			sb.Append(RemoveIfAllExist(PwCharSet.Brackets) ? 'B' : '_');
-			sb.Append(RemoveIfAllExist(m_strHighAnsi) ? 'H' : '_');
-
-			return sb.ToString();
-		}
-
-		public void UnpackCharRanges(string strRanges)
-		{
-			if(strRanges == null) { Debug.Assert(false); return; }
-			if(strRanges.Length < 10) { Debug.Assert(false); return; }
-
-			if(strRanges[0] != '_') Add(PwCharSet.UpperCase);
-			if(strRanges[1] != '_') Add(PwCharSet.LowerCase);
-			if(strRanges[2] != '_') Add(PwCharSet.Digits);
-			if(strRanges[3] != '_') Add(m_strSpecial);
-			if(strRanges[4] != '_') Add(PwCharSet.Punctuation);
-			if(strRanges[5] != '_') Add('-');
-			if(strRanges[6] != '_') Add('_');
-			if(strRanges[7] != '_') Add(' ');
-			if(strRanges[8] != '_') Add(PwCharSet.Brackets);
-			if(strRanges[9] != '_') Add(m_strHighAnsi);
-		}
-	}
+            if (strRanges[0] != '_') Add(PwCharSet.UpperCase);
+            if (strRanges[1] != '_') Add(PwCharSet.LowerCase);
+            if (strRanges[2] != '_') Add(PwCharSet.Digits);
+            if (strRanges[3] != '_') Add(PwCharSet.Special);
+            if (strRanges[4] != '_') Add(PwCharSet.Punctuation);
+            if (strRanges[5] != '_') Add('-');
+            if (strRanges[6] != '_') Add('_');
+            if (strRanges[7] != '_') Add(' ');
+            if (strRanges[8] != '_') Add(PwCharSet.Brackets);
+            if (strRanges[9] != '_') Add(PwCharSet.Latin1S);
+        }
+    }
 }
