@@ -324,6 +324,18 @@ jobs:
       run: |
         make dotnetbuild Flavor=Net
 
+    - name: Extract key store
+      env: 
+        KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        KeyStore: "${{ github.workspace }}/kp2a.keystore"
+        
+      shell: bash
+      run: |
+        echo $KeyStore
+        echo $KEYSTORE_BASE64 | base64 --decode > $KeyStore
+
+            
+
     - name: Build APK (net)
       if: github.ref == 'refs/heads/master'
       env:
