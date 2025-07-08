@@ -354,7 +354,7 @@ jobs:
       with:
         name: signed APK ('net' built on ${{ github.job }})
         path: |
-          src/keepass2android/bin/*/*-Signed.apk
+          src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
 
     - name: Select the manifest
       run: |
@@ -380,5 +380,5 @@ jobs:
       with:
         name: signed APK ('nonet' built on ${{ github.job }})
         path: |
-          src/keepass2android/bin/*/*-Signed.apk
+          src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
 
