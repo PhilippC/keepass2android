@@ -1423,6 +1423,8 @@ namespace keepass2android
 			if (cbQuickUnlock == null)
 				throw new NullPointerException("cpQuickUnlock");
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
+            App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase =
+                (((KeyguardManager)GetSystemService(Context.KeyguardService)!)!).IsDeviceSecure;
 
             if ((_loadDbFileTask != null) &&  (App.Kp2a.OfflineMode != _loadDbTaskOffline))
 			{

@@ -1546,10 +1546,10 @@ namespace keepass2android
             string url = _stringViews[urlFieldKey].Text;
 			if (url == null) return false;
 
-			// Default http:// if no protocol specified
+			// Default https:// if no protocol specified
 			if ((!url.Contains(":") || (url.StartsWith("www."))))
 			{
-				url = "http://" + url;
+				url = "https://" + url;
 			}
 
 			try
