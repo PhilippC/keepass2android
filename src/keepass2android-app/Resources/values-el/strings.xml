@@ -319,6 +319,7 @@
   <string name="QuickUnlock_label_secure">Εισάγετε τον κωδικό QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Κλείσιμο βάσης δεδομένων</string>
+  <string name="enable_screen_lock">Ενεργοποίηση κλειδώματος οθόνης</string>
   <string name="QuickUnlockDefaultEnabled_title">Ενεργοποίηση QuickUnlock εξ ορισμού</string>
   <string name="QuickUnlockDefaultEnabled_summary">Ορίζει αν το QuickUnlock είναι ενεργό εξ ορισμού ή όχι.</string>
   <string name="ViewDatabaseSecure_title">Προστασία προβολής βάσης δεδομένων</string>
