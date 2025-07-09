@@ -727,8 +727,8 @@
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
   <string-array name="ChangeLog_1_13">
     <item>Estimativa aprimorada da qualidade da senha, considerando a maioria das senhas populares.</item>
-    <item>Block password-based QuickUnlock (for security reasons) if the device does not have a screen lock activated.</item>
-    <item>Update network security configuration to disable clear-text transfer.</item>
+    <item>Bloqueia o desbloqueio rápido baseado em senha (por motivos de segurança) se o dispositivo não tiver uma trava de tela ativada.</item>
+    <item>Atualize a configuração de segurança de rede para desativar a transferência de texto não criptografado.</item>
   </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Atualizado de Xamarin Android para .NET 8</item>
