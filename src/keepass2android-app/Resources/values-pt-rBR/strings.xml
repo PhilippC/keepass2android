@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Desabilitar o Desbloqueio Biométrico </string>
   <string name="enable_fingerprint_unlock">Habilitar o Desbloqueio de Biométrico completo</string>
   <string name="enable_fingerprint_quickunlock">Habilitar o Desbloqueio de Biométrico para o QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Desbloqueio rápido baseado em senha não disponível</string>
+  <string name="password_based_quick_unlock_not_available_text">O desbloqueio rápido usando uma parte da sua senha está bloqueado porque o bloqueio da tela não está ativado no seu dispositivo. Esse comportamento é para protegê -lo caso alguém o veja entrando na sua chave de desbloqueio rápido.</string>
   <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: Chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada não é válida. </string>
   <string name="fingerprint_reenable">Por favor, reative o Desbloquear com Impressão Digital para a nova senha mestre.</string>
@@ -321,6 +323,7 @@
   <string name="QuickUnlock_label_secure">Digite o código QuickUnlock:</string>
   <string name="QuickUnlock_button">Desbloqueio Rápido!</string>
   <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
+  <string name="enable_screen_lock">Ativar bloqueio de tela</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueio Rápido por padrão</string>
   <string name="QuickUnlockDefaultEnabled_summary">Define se o Desbloqueio Rápido está habilitado por padrão ou não.</string>
   <string name="ViewDatabaseSecure_title">Proteger a exibição da base de dados</string>
@@ -722,6 +725,11 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_13">
+    <item>Estimativa aprimorada da qualidade da senha, considerando a maioria das senhas populares.</item>
+    <item>Bloqueia o desbloqueio rápido baseado em senha (por motivos de segurança) se o dispositivo não tiver uma trava de tela ativada.</item>
+    <item>Atualize a configuração de segurança de rede para desativar a transferência de texto não criptografado.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Atualizado de Xamarin Android para .NET 8</item>
     <item>Atualizado para o Target SDK 34</item>
