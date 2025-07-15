@@ -46,10 +46,11 @@ using keepass2android;
 using keepass2android.Utils;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
-using Kp2aBusinessLogic.Io;
+
 using Message = keepass2android.Utils.Message;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
+using Kp2aBusinessLogic.Io;
 using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
