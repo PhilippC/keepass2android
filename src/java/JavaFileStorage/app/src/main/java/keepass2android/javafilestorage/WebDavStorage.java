@@ -290,7 +290,10 @@ public class WebDavStorage extends JavaFileStorageBase {
                             e.sizeInBytes = -1;
                         }
                     }
-                    e.isDirectory = r.href.endsWith("/");
+
+                    e.isDirectory = r.href.endsWith("/") || okprop.IsCollection;
+
+
 
                     e.displayName = okprop.DisplayName;
                     if (e.displayName == null)
