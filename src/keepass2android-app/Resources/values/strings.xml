@@ -507,7 +507,12 @@
   <string name="ok_donate">Tell me more!</string>
   <string name="no_thanks">No, I don\'t like it that much</string>
   <string name="enter_http_login_title">Enter WebDav login data:</string>
+  <string name="enter_smb_login_title">Enter Samba login data:</string>
   <string name="hint_http_url">URL of folder or file (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL of folder or file (ex: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Samba user\'s domain</string>
+  <string name="hint_smb_username">Samba username</string>
+  
   <string name="enter_owncloud_login_title">Enter OwnCloud login data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Enter Nextcloud login data:</string>
@@ -545,6 +550,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -728,6 +734,7 @@
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
+  <string name="hint_smb_credentials">If you want to access files from your personal Windows computer, use the computer name or local IP address as host URL; enter the computer name as domain and the Windows login (often the same as your Microsoft account) as username and password.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
   <string name="webdav_chunked_upload_size_title">Chunk size for WebDav upload</string>
   <string name="webdav_chunked_upload_size_summary">Size of chunks when uploading to WebDav servers in bytes. Use 0 to disable chunked upload.</string>
