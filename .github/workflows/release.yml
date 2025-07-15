@@ -6,6 +6,7 @@ on:
   push:
     tags:
       - "v1.*"
+  workflow_dispatch: # Allows manual triggering of the workflow
 jobs:
 
   build-release:
