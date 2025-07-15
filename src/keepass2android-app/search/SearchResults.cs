@@ -94,7 +94,7 @@ namespace keepass2android.search
 			    catch (Exception e)
 			    {
 			        Kp2aLog.Log("Failed to transform " + intent.Data.LastPathSegment + " to an ElementAndDatabaseId object. ");
-			        Toast.MakeText(this, "Bad path passed. Please provide database and element ID.", ToastLength.Long).Show();
+			        App.Kp2a.ShowMessage(this, "Bad path passed. Please provide database and element ID.",  MessageSeverity.Error);
                     Finish();
 			        return;
 			    }
@@ -121,7 +121,7 @@ namespace keepass2android.search
                 edit.PutLong(GetString(Resource.String.UsageCount_key), 1000);
                 edit.PutBoolean("DismissedDonateReminder", true);
                 edit.Commit();
-                Toast.MakeText(this, "Please go to Settings - App - Display to disable donation requests.", ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Please go to Settings - App - Display to disable donation requests.",  MessageSeverity.Error);
             }
         
 
@@ -142,7 +142,7 @@ namespace keepass2android.search
                 }
             } catch (Exception e) {
 				Kp2aLog.LogUnexpectedError(e);
-				Toast.MakeText(this,e.Message, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
 				Finish();
 				return;
 			}

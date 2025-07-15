@@ -35,6 +35,7 @@ using Console = System.Console;
 using Environment = Android.OS.Environment;
 using Google.Android.Material.AppBar;
 using Android.Util;
+using keepass2android.Utils;
 
 namespace keepass2android
 {
@@ -75,7 +76,7 @@ namespace keepass2android
 
         public const string NoForwardToPasswordActivity = "NoForwardToPasswordActivity";
 
-		protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
 		{
 			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
@@ -327,7 +328,7 @@ namespace keepass2android
             }
             catch (NoFileStorageFoundException)
             {
-                Toast.MakeText(this, "Don't know how to handle " + newConnectionInfo.Path, ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Don't know how to handle " + newConnectionInfo.Path,  MessageSeverity.Error);
                 return;
             }
 
@@ -376,7 +377,7 @@ namespace keepass2android
 					Finish();
 				} catch (Java.IO.FileNotFoundException)
 				{
-					Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, Resource.String.FileNotFound,  MessageSeverity.Error);
 				} 
 			}
 		}
@@ -432,8 +433,9 @@ namespace keepass2android
 			base.OnResume();
 			App.Kp2a.OfflineMode = false; //no matter what the preferences are, file selection or db creation is performed offline. PasswordActivity might set this to true.
 			Kp2aLog.Log("FileSelect.OnResume");
+            App.Kp2a.MessagePresenter = new ChainedSnackbarPresenter(FindViewById(Resource.Id.main_content));
 
-			_design.ReapplyTheme();
+            _design.ReapplyTheme();
 
 			// Check to see if we need to change modes
 			if (ShowRecentFiles() != _recentMode)
@@ -485,7 +487,7 @@ namespace keepass2android
             catch (Exception e)
             {
                 Kp2aLog.LogUnexpectedError(e);
-                Toast.MakeText(this, "Error: " + e.Message, ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Error: " + Util.GetErrorMessage(e),  MessageSeverity.Error);
                 Finish();
             }
 
@@ -503,7 +505,8 @@ namespace keepass2android
 		protected override void OnPause()
 		{
 			base.OnPause();
-			Kp2aLog.Log("FileSelect.OnPause");
+            App.Kp2a.MessagePresenter = new NonePresenter();
+            Kp2aLog.Log("FileSelect.OnPause");
 		}
 
 		protected override void OnDestroy()

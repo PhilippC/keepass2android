@@ -115,6 +115,7 @@ namespace keepass2android
 				string keyContent = keyContentTxt.Text;
 
 				string toastMsg = null;
+				MessageSeverity severity = MessageSeverity.Info;
                 if (!string.IsNullOrEmpty(keyName) && !string.IsNullOrEmpty(keyContent))
 				{
 					try
@@ -127,8 +128,10 @@ namespace keepass2android
 					catch (Exception e)
 					{
 						toastMsg = ctx.GetString(Resource.String.private_key_save_failed,
-							new Java.Lang.Object[] { e.Message });
-					}
+							new Java.Lang.Object[] { Util.GetErrorMessage(e)});
+                        severity = MessageSeverity.Error;
+
+                    }
 				}
 				else
 				{
@@ -136,7 +139,7 @@ namespace keepass2android
 				}
 
 				if (toastMsg!= null) {
-                    Toast.MakeText(_activity, toastMsg, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(_activity, toastMsg,  severity);
                 }
 
 				UpdatePrivateKeyNames(keyNamesAdapter, fileStorage, ctx);
@@ -153,7 +156,7 @@ namespace keepass2android
 
 					int msgId = deleted ? Resource.String.private_key_delete : Resource.String.private_key_delete_failed;
 					string msg = ctx.GetString(msgId, new Java.Lang.Object[] { keyName });
-                    Toast.MakeText(_activity, msg, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(_activity, msg,  deleted ? MessageSeverity.Info :MessageSeverity.Error);
 
 					UpdatePrivateKeyNames(keyNamesAdapter, fileStorage, ctx);
 					keySpinner.SetSelection(SftpKeySpinnerCreateNewIdx);
@@ -581,9 +584,9 @@ namespace keepass2android
 			// Make sure file name exists
 			if (filename.Length == 0)
 			{
-				Toast.MakeText(_activity,
+				App.Kp2a.ShowMessage(_activity,
 								Resource.String.error_filename_required,
-								ToastLength.Long).Show();
+								 MessageSeverity.Error);
 				return false;
 			}
 
@@ -604,9 +607,9 @@ namespace keepass2android
 			}
 			catch (NoFileStorageFoundException)
 			{
-				Toast.MakeText(_activity,
+				App.Kp2a.ShowMessage(_activity,
 								"Unexpected scheme in "+filename,
-								ToastLength.Long).Show();
+								 MessageSeverity.Error);
 				return false;
 			}
 
@@ -620,9 +623,9 @@ namespace keepass2android
 
 					if (parent == null || (parent.Exists() && !parent.IsDirectory))
 					{
-						Toast.MakeText(_activity,
+						App.Kp2a.ShowMessage(_activity,
 							            Resource.String.error_invalid_path,
-							            ToastLength.Long).Show();
+							             MessageSeverity.Error);
 						return false;
 					}
 
@@ -631,9 +634,9 @@ namespace keepass2android
 						// Create parent dircetory
 						if (!parent.Mkdirs())
 						{
-							Toast.MakeText(_activity,
+							App.Kp2a.ShowMessage(_activity,
 								            Resource.String.error_could_not_create_parent,
-								            ToastLength.Long).Show();
+								             MessageSeverity.Error);
 							return false;
 
 						}
@@ -643,11 +646,11 @@ namespace keepass2android
 				}
 				catch (Java.IO.IOException ex)
 				{
-					Toast.MakeText(
+					App.Kp2a.ShowMessage(
 						_activity,
 						_activity.GetText(Resource.String.error_file_not_create) + " "
 						+ ex.LocalizedMessage,
-						ToastLength.Long).Show();
+						 MessageSeverity.Error);
 					return false;
 				}
 
@@ -700,7 +703,7 @@ namespace keepass2android
 			_activity.StartActivityForResult(i, _requestCode);
 
 #else
-			Toast.MakeText(LocaleManager.LocalizedAppContext, "File chooser is excluded!", ToastLength.Long).Show();
+			App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, "File chooser is excluded!",  MessageSeverity.Error);
 #endif
 			return true;
 		}
@@ -782,7 +785,7 @@ namespace keepass2android
 							{
 								if (!success)
 								{
-									Toast.MakeText(newActivity, messageOrFilename, ToastLength.Long).Show();
+									App.Kp2a.ShowMessage(newActivity, messageOrFilename,  MessageSeverity.Error);
 									return;
 								}
 								var ioc = new IOConnectionInfo { Path = ConvertFilenameToIocPath(messageOrFilename) };

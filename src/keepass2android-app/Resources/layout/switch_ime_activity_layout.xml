@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     android:id="@+id/main_content"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     android:fitsSystemWindows="true">
 <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
                xmlns:tools="http://schemas.android.com/tools"
                android:orientation="vertical"
@@ -14,6 +19,7 @@
                android:text="@string/switch_ime_text" />
 
     <Button 
+      
       android:id="@+id/btn_reopen"
       android:layout_width="match_parent"
                android:layout_height="wrap_content"
@@ -25,4 +31,51 @@
       android:layout_height="wrap_content"
       android:text="@string/cancel" />
 
+    <LinearLayout android:orientation="vertical"
+            android:paddingTop="64dp"
+            android:id="@+id/settings_notes_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+              android:paddingTop="12dp"
+                android:id="@+id/note_kp2a_switch_rooted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/autoswitch_enabled_but_not_setup"
+                />
+
+            <TextView
+              android:paddingTop="12dp"
+              android:id="@+id/note_AutoFillTotp_prefs_ActivateKeyboard"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/switch_keyboard_for_totp_enabled"
+            />
+
+            <TextView
+              android:paddingTop="12dp"
+              android:id="@+id/note_UseKp2aKeyboardInKp2a"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/switch_keyboard_inside_kp2a_enabled"
+            />
+
+            <TextView
+                android:id="@+id/note_OpenKp2aKeyboardAutomatically"
+              android:paddingTop="12dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/switch_keyboard_on_search_enabled"
+            />
+            
+            <Button 
+              style="?attr/materialButtonOutlinedStyle"
+              android:id="@+id/btn_open_settings"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/IconVisibilityInfo_Android8_btnSettings" />
+
+            </LinearLayout>
+
 </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

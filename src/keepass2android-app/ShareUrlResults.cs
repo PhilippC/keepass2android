@@ -121,7 +121,7 @@ namespace keepass2android
                 
             } catch (Exception e)
 			{
-				Toast.MakeText(this, e.Message, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
 				SetResult(Result.Canceled);
 				Finish();
 				return;
@@ -184,7 +184,7 @@ namespace keepass2android
                     createUrlEntry.Click += (sender, e) =>
                     {
                         GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = searchUrl, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ActivationCondition.Always }, new ActivityLaunchModeRequestCode(0));
-                        Toast.MakeText(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }),  MessageSeverity.Info);
                     };
                 }
                 else

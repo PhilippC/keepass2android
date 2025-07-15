@@ -70,15 +70,15 @@ namespace keepass2android
 
 		protected Bundle State { get; set; }
 
-		protected override void ShowToast(string text)
+		protected override void ShowErrorToast(string text)
 		{
-			Toast.MakeText(this, text, ToastLength.Long).Show();
+			App.Kp2a.ShowMessage(this, text,  MessageSeverity.Error);
 		}
 
 		protected override void ShowInvalidSchemeMessage(string dataString)
 		{
-			Toast.MakeText(this, Resources.GetString(Resource.String.unknown_uri_scheme, new Java.Lang.Object[] { dataString }),
-										   ToastLength.Long).Show();
+			App.Kp2a.ShowMessage(this, Resources.GetString(Resource.String.unknown_uri_scheme, new Java.Lang.Object[] { dataString }),
+										    MessageSeverity.Error);
 		}
 
 		protected override string IntentToFilename(Intent data)
@@ -194,7 +194,7 @@ namespace keepass2android
 
 			StartActivityForResult(intent, requestCode);
 			#else
-			Toast.MakeText(this, "File chooser is excluded!", ToastLength.Long).Show();
+			App.Kp2a.ShowMessage(this, "File chooser is excluded!",  MessageSeverity.Error);
 			#endif
 		}
 

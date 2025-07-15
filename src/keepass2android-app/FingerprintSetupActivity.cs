@@ -251,7 +251,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
 				CheckCurrentRadioButton();
-				Toast.MakeText(this, e.ToString(), ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, e.ToString(),  MessageSeverity.Error);
 				FindViewById(Resource.Id.radio_buttons).Visibility = ViewStates.Visible;
 				FindViewById(Resource.Id.fingerprint_auth_container).Visibility = ViewStates.Gone;
 			}

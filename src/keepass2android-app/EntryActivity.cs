@@ -78,7 +78,7 @@ namespace keepass2android
             var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
                 {
                     if (!success)
-                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                 }
             ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
             ProgressTask pt = new ProgressTask(App.Kp2a, _activity, task);
@@ -107,8 +107,8 @@ namespace keepass2android
 
 	    public const int requestCodeBinaryFilename = 42376;
         public const int requestCodeSelFileStorageForWriteAttachment = 42377;
-	    
 
+        protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
 
         public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null, int historyIndex=-1)
 		{
@@ -767,9 +767,9 @@ namespace keepass2android
 
 	            if (parent == null || (parent.Exists() && !parent.IsDirectory))
 	            {
-	                Toast.MakeText(this,
+	                App.Kp2a.ShowMessage(this,
 	                    Resource.String.error_invalid_path,
-	                    ToastLength.Long).Show();
+	                     MessageSeverity.Error);
 	                return null;
 	            }
 
@@ -778,9 +778,9 @@ namespace keepass2android
 	                // Create parent directory
 	                if (!parent.Mkdirs())
 	                {
-	                    Toast.MakeText(this,
+	                    App.Kp2a.ShowMessage(this,
 	                        Resource.String.error_could_not_create_parent,
-	                        ToastLength.Long).Show();
+	                         MessageSeverity.Error);
 	                    return null;
 
 	                }
@@ -794,18 +794,18 @@ namespace keepass2android
 	            }
 	            catch (Exception exWrite)
 	            {
-	                Toast.MakeText(this,
+	                App.Kp2a.ShowMessage(this,
 	                    GetString(Resource.String.SaveAttachment_Failed, new Java.Lang.Object[] {filename})
-	                    + exWrite.Message, ToastLength.Long).Show();
+	                    + Util.GetErrorMessage(exWrite),  MessageSeverity.Error);
 	                return null;
 	            }
 	            finally
 	            {
 	                MemUtil.ZeroByteArray(pbData);
 	            }
-	            Toast.MakeText(this,
+	            App.Kp2a.ShowMessage(this,
 	                GetString(Resource.String.SaveAttachment_doneMessage, new Java.Lang.Object[] {filename}),
-	                ToastLength.Short).Show();
+	                 MessageSeverity.Info);
 	            return Uri.Parse("content://" + AttachmentContentProvider.Authority + "/"
 	                             + filename);
 	        }
@@ -838,7 +838,7 @@ namespace keepass2android
 				catch (ActivityNotFoundException)
 				{
 					//ignore
-					Toast.MakeText(this, "Couldn't open file", ToastLength.Short).Show();
+					App.Kp2a.ShowMessage(this, "Couldn't open file",  MessageSeverity.Error);
 				}
 			}
 
@@ -1305,7 +1305,7 @@ namespace keepass2android
 	            }
 	            catch (Exception ex)
 	            {
-	                Finish(false, ex.Message);
+	                Finish(false, Util.GetErrorMessage(ex));
 	            }
 
 
@@ -1546,10 +1546,10 @@ namespace keepass2android
             string url = _stringViews[urlFieldKey].Text;
 			if (url == null) return false;
 
-			// Default http:// if no protocol specified
+			// Default https:// if no protocol specified
 			if ((!url.Contains(":") || (url.StartsWith("www."))))
 			{
-				url = "http://" + url;
+				url = "https://" + url;
 			}
 
 			try
@@ -1558,7 +1558,7 @@ namespace keepass2android
 			}
 			catch (ActivityNotFoundException)
 			{
-				Toast.MakeText(this, Resource.String.no_url_handler, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.no_url_handler,  MessageSeverity.Error);
 			}
 			return true;
 		}

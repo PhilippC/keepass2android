@@ -145,7 +145,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
 				Kp2aLog.LogUnexpectedError(e);
-				Toast.MakeText(this, "No Yubikey OTP found!", ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, "No Yubikey OTP found!",  MessageSeverity.Error);
 				Finish();
 				return;
 			}

@@ -476,8 +476,16 @@ namespace Kp2aAutofillParser
 
             foreach (var field in autofillFields.HintMap.Values.Distinct())
             {
+                if (field == null || field.AutofillHints == null)
+                {
+                    continue;
+                }
                 foreach (var hint in field.AutofillHints)
                 {
+                    if (hint == null)
+                    {
+                        continue;
+                    }
                     if (GetPartitionIndex(hint) == partitionIndex)
                     {
                         filteredCollection.Add(field);
@@ -793,14 +801,14 @@ namespace Kp2aAutofillParser
             }
         }
 
-        public AutofillTargetId ParseForFill(bool isManual, AutofillView<FieldT> autofillView)
+        public AutofillTargetId ParseForFill(AutofillView<FieldT> autofillView)
         {
-            return Parse(true, isManual, autofillView);
+            return Parse(true, autofillView);
         }
 
         public AutofillTargetId ParseForSave(AutofillView<FieldT> autofillView)
         {
-            return Parse(false, true, autofillView);
+            return Parse(false, autofillView);
         }
 
         /// <summary>
@@ -808,8 +816,7 @@ namespace Kp2aAutofillParser
         /// </summary>
         /// <returns>The parse.</returns>
         /// <param name="forFill">If set to <c>true</c> for fill.</param>
-        /// <param name="isManualRequest"></param>
-        protected virtual AutofillTargetId Parse(bool forFill, bool isManualRequest, AutofillView<FieldT> autofillView)
+        protected virtual AutofillTargetId Parse(bool forFill, AutofillView<FieldT> autofillView)
         {
             AutofillTargetId result = new AutofillTargetId()
             {
@@ -876,8 +883,9 @@ namespace Kp2aAutofillParser
                     
                 }
 
-                //for "heuristic determination" we demand that one of the filled fields is focused:
-                if (passwordFields.Concat(usernameFields).Any(f => f.IsFocused))
+                //for "heuristic determination" we demand that there is a password field or one of the username fields is focused:
+                //Note that "IsFocused" might be false even when tapping the field. It might require long-press to autofill.
+                if (passwordFields.Any() || usernameFields.Any(f => f.IsFocused))
                 {
                     foreach (var uf in usernameFields)
                         AddFieldToHintMap(uf, new string[] { AutofillHintsHelper.AutofillHintUsername });

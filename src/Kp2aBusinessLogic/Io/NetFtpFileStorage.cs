@@ -9,6 +9,7 @@ using Android.OS;
 using FluentFTP;
 using FluentFTP.Exceptions;
 using FluentFTP.GnuTLS;
+using KeePass.Util;
 using KeePassLib;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -128,7 +129,7 @@ namespace keepass2android.Io
 				var ftpEx = (FtpCommandException) exception;
 
 				if (ftpEx.CompletionCode == "550")
-					throw new FileNotFoundException(exception.Message, exception);
+					throw new FileNotFoundException(ExceptionUtil.GetErrorMessage(exception), exception);
 			}
 
 			return exception;

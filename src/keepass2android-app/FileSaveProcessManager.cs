@@ -107,7 +107,7 @@ namespace keepass2android
                             {
                                 if (!success)
                                 {
-                                    Toast.MakeText(activity, messageOrFilename, ToastLength.Long).Show();
+                                    App.Kp2a.ShowMessage(activity, messageOrFilename,  MessageSeverity.Error);
                                     return;
                                 }
                                 SaveFile(new IOConnectionInfo { Path = FileSelectHelper.ConvertFilenameToIocPath(messageOrFilename) });

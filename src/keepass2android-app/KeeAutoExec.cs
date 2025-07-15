@@ -316,7 +316,7 @@ namespace keepass2android
                 try { ck.AddUserKey(new KcpKeyFile(strAbs)); }
                 catch (InvalidOperationException)
                 {
-                    Toast.MakeText(LocaleManager.LocalizedAppContext,Resource.String.error_adding_keyfile,ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext,Resource.String.error_adding_keyfile, MessageSeverity.Error);
                     return false;
                 }
                 catch (Exception) { throw; }

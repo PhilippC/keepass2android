@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Java.Net;
+using KeePass.Util;
 using KeePassLib.Serialization;
 using keepass2android.Io;
 
@@ -94,15 +95,12 @@ namespace keepass2android
 				}
 				if ((resultCode == Result.Canceled) && (data != null) && (data.HasExtra("EXTRA_ERROR_MESSAGE")))
 				{
-					ShowToast(data.GetStringExtra("EXTRA_ERROR_MESSAGE"));
+					ShowErrorToast(data.GetStringExtra("EXTRA_ERROR_MESSAGE"));
 				}
 
 				if (resultCode == Result.Ok)
 				{
-					Kp2aLog.Log("FileSelection returned "+data.DataString);
-					//TODO: don't try to extract filename if content URI
 					string filename = IntentToFilename(data);
-					Kp2aLog.Log("FileSelection returned filename " + filename);
 					if (filename != null)
 					{
 						if (filename.StartsWith("file://"))
@@ -150,7 +148,7 @@ namespace keepass2android
 
 		protected abstract void StartFileChooser(string path, int requestCode, bool isForSave);
 
-		protected abstract void ShowToast(string text);
+		protected abstract void ShowErrorToast(string text);
 
 		protected abstract void ShowInvalidSchemeMessage(string dataString);
 
@@ -208,7 +206,7 @@ namespace keepass2android
 					{
 						return () =>
 							{
-								ShowToast(_app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message);
+								ShowErrorToast(_app.GetResourceString(UiStringKey.ErrorOcurred) + " " + ExceptionUtil.GetErrorMessage(e));
 								ReturnCancel();
 							};
 					}

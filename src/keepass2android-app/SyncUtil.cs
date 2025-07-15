@@ -40,7 +40,7 @@ namespace keepass2android
                 catch (Exception e)
                 {
 
-                    Finish(false, e.Message);
+                    Finish(false, Util.GetErrorMessage(e));
                 }
 
 
@@ -56,7 +56,7 @@ namespace keepass2android
             OnFinish onFinish = new ActionOnFinish(_activity, (success, message, activity) =>
             {
                 if (!String.IsNullOrEmpty(message))
-                    Toast.MakeText(activity, message, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(activity, message,  success ? MessageSeverity.Info : MessageSeverity.Error);
 
                 // Tell the adapter to refresh it's list
                 BaseAdapter adapter = (activity as GroupBaseActivity)?.ListAdapter;

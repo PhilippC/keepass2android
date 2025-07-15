@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about_feedback">反馈</string>
-  <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的密码管理应用。</string>
+  <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的Android平台的密码管理应用。</string>
   <string name="CreditsText">用户界面基于 Brian Pellin 开发的 KeepassDroid 项目。数据库操作代码基于 Dominik Reichl 开发的 KeePass 项目。Android 机器人图案根据 Google 创建和共享的作品进行复制或修改，并依照知识共享署名 3.0 协议进行使用。</string>
   <string name="CreditsTextSFTP">SFTP 支持由 JCraft, Inc. 创建的 JSch 库（基于 BSD 许可证）实现</string>
   <string name="CreditsIcons">锤子图标是由 John Caserta 通过 Noun Project 创建的。企鹅图标是由 Adriano Emerick 通过 Noun Project 创建的。羽毛图标是由 Jon Testa 通过 Noun Project 创建的。苹果图标是由 Ava Rowell 通过 Noun Project 创建的。图片图标来自 https://icons8.com/icon/5570/Picture 。</string>
@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox（KP2A 文件夹）</string>
   <string name="filestoragehelp_dropboxKP2A">如果您不想让 KP2A 访问整个 Dropbox，您可以选中此选项。它将只有访问 Apps/Keepass2Android 文件夹的权限。特别适合创建一个新的数据库。如果您已经有一个数据库，触击此选项将创建该新文件夹，然后将您在电脑上的数据库文件放在此文件夹内，然后再选该选项，以打开该文件。</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">请注意：谷歌正在限制越来越多的用户从应用程序访问Google Drive。 如果内置的 Google Drive 实现无法正常工作，请使用系统文件选择器并在那里选择 Google Drive ！</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A文件)</string>
   <string name="filestoragehelp_gdriveKP2A">如果您不想给予KP2A对您Google Drive的完整访问权，您可以选择此选项。 请注意，您需要先创建一个数据库文件，现有文件对本应用不可见。 您可以从“创建数据库”屏幕中选择此选项，或者选择此选项导出数据库，前提是您已经打开了一个数据库。</string>
   <string name="filestoragename_pcloud">PCloud (KP2A 文件夹)</string>
@@ -719,6 +720,20 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item></item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>修复在自动填充和搜索时主机名的匹配问题</item>
+    <item>Fix issue with password generator</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Upgraded OneDrive SDK to version 5.68</item>
+    <item>Upgraded Dropbox SDK to version 7.0.0</item>
+    <item>Upgraded Gradle, NewtonsoftJson, FluentFTP, MegaApiClient and okhttp</item>
+    <item>修复WebDav中文件选择的错误</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>添加了用于搜索和概览 TOTP 的浮动按钮（如果存在TOTP条目）</item>
     <item>通过添加超时指示器并突出显示，改进 TOTP 字段的显示效果</item>
@@ -1158,5 +1173,10 @@ Initial public release
   <string name="AutofillWarning_trustAsBrowser">总是在 \"%1$s 中接受</string>
   <string name="kp2a_switch_on_sendgodone">完成后切换回来</string>
   <string name="kp2a_switch_on_sendgodone_summary">按下发送/转到/完成时切换回来</string>
+  <string name="qr_scanning_error_no_google_play_services">二维码扫描需要 Google Play 服务。请在您的设备上安装或更新 Google Play 服务。</string>
   <string name="english_ime_settings">键盘设置</string>
+  <string name="autoswitch_enabled_but_not_setup">注意：您已启用应用-设置-密码访问-键盘切换-自动切换键盘，但它似乎配置不正确。</string>
+  <string name="switch_keyboard_for_totp_enabled">注意：您已启用应用 - 密码访问-自动填充服务 - TOTP 条目自动填充。 当您打开一条有TOTP的条目时，这会导致此窗口显示。</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">注意：您已经启用了应用 - 安全性 - 使用 Keepass2Android 中的内置键盘。 当您打开应用或编辑条目时，这会导致此窗口显示。</string>
+  <string name="switch_keyboard_on_search_enabled">注意: 您已经启用了应用-安全性-密码访问-键盘切换-切换键盘。当您从浏览器搜索条目时，这会导致此窗口显示。</string>
 </resources>

@@ -546,6 +546,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (mapa KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Če dostopa KP2A ne želite dati celemu Dropboxu, lahko izberete to možnost. Zahtevala bo samo dostop do mape Apps/Keepass2Android. To je posebej primerno ob ustvarjanju nove podatkovne zbirke. Če jo že imate, tapnite na to možnost, da ustvarite mapo, v njo vstavite svojo datoteko (iz računalnika) in ponovno izberete to možnost, da datoteko odprete.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Opomba: Google omejuje dostop do storitve Google Drive iz aplikacij za vse več uporabnikov. Če vgrajena implementacija Googlovega pogona ne deluje, uporabite sistemski izbirnik datotek in tam izberite Googlov pogon!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A datoteke)</string>
   <string name="filestoragehelp_gdriveKP2A">Če KP2A ne želite omogočiti dostopa do celotnega Google Drive, lahko izberete to možnost. Upoštevajte, da morate najprej ustvariti novo datoteko baze podatkov, obstoječe datoteke niso vidne aplikaciji. To možnost izberite na zaslonu Ustvari bazo podatkov ali, če ste že odprli bazo podatkov, izvozite bazo podatkov in izberete to možnost.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A mapa)</string>
@@ -725,6 +726,7 @@
     <item>Nadgrajen na uporabniški vmesnik Material 3</item>
     <item>Izboljšanje samodejnega izpolnjevanja za delovanje z aplikacijami Compose</item>
     <item>Popravek ujemanja gostiteljskega imena v samodejnem izpolnjevanju in iskanju</item>
+    <item>Odpravljena težava z generatorjem gesel</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Nadgradnja OneDrive SDK na različico 5.68</item>
@@ -1197,5 +1199,10 @@
   <string name="AutofillWarning_trustAsBrowser">Sprejmi vedno v \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Preklopi nazaj, ko je končano</string>
   <string name="kp2a_switch_on_sendgodone_summary">Preklopi nazaj, ko pritisnete gumb za pošiljanje/prehajanje/končano</string>
+  <string name="qr_scanning_error_no_google_play_services">Za optično branje kode QR so potrebne storitve Google Play. V svojo napravo namestite ali posodobite storitve Google Play.</string>
   <string name="english_ime_settings">Nastavitve tipkovnice Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Opomba: Omogočili ste Aplikacije - Nastavitve - Dostop z geslom - Preklop tipkovnice - Samodejni preklop tipkovnice, vendar se zdi, da ta ni pravilno konfigurirana.</string>
+  <string name="switch_keyboard_for_totp_enabled">Opomba: Omogočili ste Aplikacije - Dostop do gesla - Storitev samodejnega izpolnjevanja - Samodejno izpolnjevanje za vnose TOTP. To lahko povzroči, da se to okno prikaže, ko odprete vnos s TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Opomba: Omogočili ste Aplikacije - Varnost - Uporabi vgrajeno tipkovnico znotraj Keepass2Android. To lahko povzroči, da se to okno prikaže, ko odprete aplikacijo ali urejate vnos.</string>
+  <string name="switch_keyboard_on_search_enabled">Opomba: Omogočili ste možnost Aplikacija - Varnost - Dostop z geslom - Preklop tipkovnice - Preklop tipkovnice. To lahko povzroči, da se to okno prikaže, ko iščete vnos v brskalniku.</string>
 </resources>

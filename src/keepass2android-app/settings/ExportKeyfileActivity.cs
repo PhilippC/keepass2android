@@ -9,7 +9,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    [Activity]
+    [Activity(Theme = "@style/Kp2aTheme_ActionBar")]
     public class ExportKeyfileActivity : LockCloseActivity
     {
 
@@ -53,7 +53,7 @@ namespace keepass2android
                 }
                 catch (Exception ex)
                 {
-                    Finish(false, ex.Message);
+                    Finish(false, Util.GetErrorMessage(ex));
                 }
 
 
@@ -74,10 +74,10 @@ namespace keepass2android
                     (success, message, activity) =>
                     {
                         if (!success)
-                            Toast.MakeText(activity, message, ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                         else
-                            Toast.MakeText(activity, _activity.GetString(Resource.String.export_keyfile_successful),
-                                ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(activity, _activity.GetString(Resource.String.export_keyfile_successful),
+                                 MessageSeverity.Info);
                         activity.Finish();
                     }
                 ), ioc);

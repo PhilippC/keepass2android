@@ -29,9 +29,9 @@ namespace keepass2android
             var exportDb = new ExportDatabaseActivity.ExportDb(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
                 {
                     if (!success)
-                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                     else
-                        Toast.MakeText(activity, _activity.GetString(Resource.String.export_database_successful), ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(activity, _activity.GetString(Resource.String.export_database_successful),  MessageSeverity.Info);
                     activity.Finish();
                 }
             ), _ffp, ioc);
@@ -140,7 +140,7 @@ namespace keepass2android
 				}
 				catch (Exception ex)
 				{
-					Finish(false, ex.Message);
+					Finish(false, Util.GetErrorMessage(ex));
 				}
 
 

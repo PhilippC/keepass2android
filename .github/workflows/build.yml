@@ -78,7 +78,7 @@ jobs:
 
   #   - name: Build keepass2android (net)
   #     run: |
-  #       make msbuild Flavor=Net
+  #       make dotnetbuild Flavor=Net
 
   #   - name: Build APK (net)
   #     run: |
@@ -96,7 +96,7 @@ jobs:
 
   #   - name: Build keepass2android (nonet)
   #     run: |
-  #       make msbuild Flavor=NoNet
+  #       make dotnetbuild Flavor=NoNet
 
   #   - name: Build APK (nonet)
   #     run: |
@@ -212,7 +212,7 @@ jobs:
 
   #   - name: Build keepass2android (net)
   #     run: |
-  #       make msbuild Flavor=Net
+  #       make dotnetbuild Flavor=Net
 
   #   - name: Build APK (net)
   #     run: |
@@ -230,7 +230,7 @@ jobs:
 
   #   - name: Build keepass2android (nonet)
   #     run: |
-  #       make msbuild Flavor=NoNet
+  #       make dotnetbuild Flavor=NoNet
 
   #   - name: Build APK (nonet)
   #     run: |
@@ -279,7 +279,7 @@ jobs:
       with:
         minimum-size: 8GB
 
-    - name: Add msbuild to PATH
+    - name: Add dotnetbuild to PATH
       uses: microsoft/setup-msbuild@v2
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
@@ -309,30 +309,49 @@ jobs:
       run: |
         make java
 
+    - name: Update dotnet workloads
+      run: |
+        dotnet workload update        
+
+    - name: Select the manifest
+      run: |
+        make manifestlink Flavor=Net
+
     - name: Install NuGet dependencies (net)
       run: make nuget Flavor=Net
 
     - name: Build keepass2android (net)
       run: |
-        make msbuild Flavor=Net
+        make dotnetbuild Flavor=Net          
 
     - name: Build APK (net)
+      if: github.ref == 'refs/heads/master'
+      env:
+        DropboxAppKey: ${{ secrets.DROPBOX_APP_KEY }}
+        DropboxAppSecret: ${{ secrets.DROPBOX_APP_SECRET }}
+        DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
+        DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
       run: |
-        make apk Flavor=Net
+        make apk Configuration=Release Flavor=Net
 
     - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v4
       with:
-        name: signed APK ('net' built on ${{ github.job }})
+        name: archive APK ('net' built on ${{ github.job }})
         path: |
-          src/keepass2android/bin/*/*-Signed.apk
+          src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
+
+    - name: Select the manifest
+      run: |
+        make manifestlink Flavor=NoNet
 
     - name: Install NuGet dependencies (nonet)
       run: make nuget Flavor=NoNet
 
     - name: Build keepass2android (nonet)
       run: |
-        make msbuild Flavor=NoNet
+        make dotnetbuild Flavor=NoNet
+
     - name: Test Autofill
       working-directory: ./src/Kp2aAutofillParser.Tests
       run: dotnet test
@@ -344,9 +363,7 @@ jobs:
     - name: Archive production artifacts (nonet)
       uses: actions/upload-artifact@v4
       with:
-        name: signed APK ('nonet' built on ${{ github.job }})
+        name: archive APK ('nonet' built on ${{ github.job }})
         path: |
-          src/keepass2android/bin/*/*-Signed.apk
+          src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
 
-    - name: Perform "make distclean"
-      run: make distclean

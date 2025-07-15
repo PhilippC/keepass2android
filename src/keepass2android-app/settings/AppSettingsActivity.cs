@@ -123,7 +123,7 @@ namespace keepass2android
                             {
                                 db.KpDatabase.DefaultUserName = previousUsername;
                                 db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
-                                Toast.MakeText(activity, message, ToastLength.Long).Show();
+                                App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                             }
                         }));
                         ProgressTask pt = new ProgressTask(App.Kp2a, Activity, save);
@@ -189,7 +189,7 @@ namespace keepass2android
                             {
                                 db.KpDatabase.Name = previousName;
                                 db.KpDatabase.NameChanged = previousNameChanged;
-                                Toast.MakeText(activity, message, ToastLength.Long).Show();
+                                App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                             }
                             else
                             {
@@ -261,7 +261,7 @@ namespace keepass2android
                     {
                         return () =>
                         {
-                            Toast.MakeText(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e),  MessageSeverity.Error);
                         };
                     }
 
@@ -357,7 +357,7 @@ namespace keepass2android
                     {
                         return () =>
                         {
-                            Toast.MakeText(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e),  MessageSeverity.Error);
                         };
                     }
 
@@ -415,7 +415,7 @@ namespace keepass2android
                     if (!success)
                     {
                         db.KpDatabase.DataCipherUuid = previousCipher;
-                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                         return;
                     }
                     preferenceChangeEventArgs.Preference.Summary =
@@ -628,7 +628,7 @@ namespace keepass2android
                             catch (Exception ex)
                             {
                                 Kp2aLog.LogUnexpectedError(ex);
-                                Toast.MakeText(LocaleManager.LocalizedAppContext, ex.Message, ToastLength.Long).Show();
+                                App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, Util.GetErrorMessage(ex),  MessageSeverity.Error);
                             }
                         }
                     );
@@ -1076,7 +1076,7 @@ namespace keepass2android
                     if (!success)
                     {
                         db.KpDatabase.KdfParameters = previousKdfParams;
-                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                         return;
                     }
                     UpdateKdfScreen();

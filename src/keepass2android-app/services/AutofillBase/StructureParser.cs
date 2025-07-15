@@ -72,7 +72,7 @@ namespace keepass2android.services.AutofillBase
             domainSuffixParserCache = new PublicSuffixRuleCache(context);
         }
 
-        public AutofillView<ViewNodeInputField> GetAutofillView(bool isManualRequest)
+        public AutofillView<ViewNodeInputField> GetAutofillView()
         {
             AutofillView<ViewNodeInputField> autofillView = new AutofillView<ViewNodeInputField>();
             
@@ -83,7 +83,7 @@ namespace keepass2android.services.AutofillBase
                 var node = _structure.GetWindowNodeAt(i);
 
                 var view = node.RootViewNode;
-                ParseRecursive(autofillView, view, isManualRequest);
+                ParseRecursive(autofillView, view);
             }
 
             autofillView.PackageId = autofillView.PackageId ?? _structure.ActivityComponent.PackageName;
@@ -93,7 +93,7 @@ namespace keepass2android.services.AutofillBase
         }
 
 
-        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode, bool isManualRequest)
+        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode)
         {
             String webDomain = viewNode.WebDomain;
             if ((autofillView.PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
@@ -129,7 +129,7 @@ namespace keepass2android.services.AutofillBase
             {
                 for (int i = 0; i < childrenSize; i++)
                 {
-                    ParseRecursive(autofillView, viewNode.GetChildAt(i), isManualRequest);
+                    ParseRecursive(autofillView, viewNode.GetChildAt(i));
                 }
             }
         }
@@ -159,11 +159,11 @@ namespace keepass2android.services.AutofillBase
 
         }
 
-        protected override AutofillTargetId Parse(bool forFill, bool isManualRequest, AutofillView<ViewNodeInputField> autofillView)
+        protected override AutofillTargetId Parse(bool forFill, AutofillView<ViewNodeInputField> autofillView)
         {
             if (autofillView == null)
                 Kp2aLog.Log("Received null autofill view!");
-            var result = base.Parse(forFill, isManualRequest, autofillView);
+            var result = base.Parse(forFill, autofillView);
 
             Kp2aLog.Log("Parsing done");
 
@@ -185,14 +185,14 @@ namespace keepass2android.services.AutofillBase
 
         public AutofillTargetId ParseForSave()
         {
-            var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView(true);
-            return Parse(false, true, autofillView);
+            var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView();
+            return Parse(false, autofillView);
         }
 
-        public StructureParserBase<ViewNodeInputField>.AutofillTargetId ParseForFill(bool isManual)
+        public StructureParserBase<ViewNodeInputField>.AutofillTargetId ParseForFill()
         {
-            var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView(isManual);
-            return Parse(true, isManual, autofillView);
+            var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView();
+            return Parse(true, autofillView);
         }
         
 

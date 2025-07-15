@@ -55,4 +55,19 @@
     <string name="afc_title_size">Dimensiune</string>
     <string name="afc_title_sort_by">Sortează după…</string>
     <string name="afc_yesterday">Ieri</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Alege dosarul…</item>
+        <item quantity="few">Alege dosarele…</item>
+        <item quantity="other">Alege dosarele…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Alege fișierul…</item>
+        <item quantity="few">Alege fișierele…</item>
+        <item quantity="other">Alege fișierele…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Alege fișierul/dosarul…</item>
+        <item quantity="few">Alege fișierele/dosarele…</item>
+        <item quantity="other">Alege fișierele/dosarele…</item>
+    </plurals>
 </resources>
