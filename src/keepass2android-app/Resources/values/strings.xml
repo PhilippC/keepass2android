@@ -734,6 +734,7 @@
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
+  <string name="hint_smb_credentials">If you want to access files from your personal Windows computer, use the computer name or local IP address as host URL; enter the computer name as domain and the Windows login (often the same as your Microsoft account) as username and password.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
   <string-array name="ChangeLog_1_13">

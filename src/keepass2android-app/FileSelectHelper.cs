@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 #if !NoNet
 using FluentFTP;
+using static Kp2aBusinessLogic.Io.SmbFileStorage;
 #endif
 using System.Text;
 
@@ -22,7 +23,7 @@ using Keepass2android.Javafilestorage;
 #endif
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
-using static Kp2aBusinessLogic.Io.SmbFileStorage;
+
 
 namespace keepass2android
 {
@@ -384,6 +385,8 @@ namespace keepass2android
                                           string fullPath = SmbConnectionInfo.FromUrlAndCredentials(url, user, password, domain).ToPath();
                                           onStartBrowse(fullPath);
                                       });
+			builder.SetCancelable(false);
+			
             EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
 
             builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);

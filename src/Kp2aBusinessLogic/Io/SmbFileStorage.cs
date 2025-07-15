@@ -8,7 +8,7 @@ using SMBLibrary;
 using FileAttributes = SMBLibrary.FileAttributes;
 using KeePassLib.Utility;
 using Java.Nio.FileNio;
-
+#if !NoNet
 namespace Kp2aBusinessLogic.Io
 {
     public class SmbFileStorage : IFileStorage
@@ -613,3 +613,4 @@ namespace Kp2aBusinessLogic.Io
         }
     }
 }
+#endif
