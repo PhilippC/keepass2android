@@ -10,7 +10,8 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentFTP" Version="51.1.0" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="FluentFTP" Version="52.1.0" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="FluentFTP.GnuTLS" Version="1.0.37" Condition="'$(Flavor)'!='NoNet'"/>
     <PackageReference Include="MegaApiClient" Version="1.10.4"  Condition="'$(Flavor)'!='NoNet'"/>
     <PackageReference Include="Microsoft.Graph" Version="5.68.0" Condition="'$(Flavor)'!='NoNet'"/>
     <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" Condition="'$(Flavor)'!='NoNet'"/>

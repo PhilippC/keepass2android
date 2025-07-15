@@ -548,7 +548,7 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 
 
 		//storageToTest = new GoogleDriveAppDataFileStorage();
-		/*storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
+		storageToTest = new WebDavStorage(new ICertificateErrorHandler() {
 			@Override
 			public boolean onValidationError(String error) {
 				return false;
@@ -558,12 +558,12 @@ public class MainActivity extends Activity implements JavaFileStorage.FileStorag
 			public boolean alwaysFailOnValidationError() {
 				return false;
 			}
-		});
-*/
+		}, 64*1024);
+
 		//storageToTest =  new DropboxV2Storage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
 		//storageToTest =  new DropboxFileStorage(ctx,"4ybka4p4a1027n6", "1z5lv528un9nre8", !simulateRestart);
 		//storageToTest = new DropboxAppFolderFileStorage(ctx,"ax0268uydp1ya57", "3s86datjhkihwyc", true);
-		storageToTest = new GoogleDriveFullFileStorage();
+		// storageToTest = new GoogleDriveFullFileStorage();
 
 
 		return storageToTest;
