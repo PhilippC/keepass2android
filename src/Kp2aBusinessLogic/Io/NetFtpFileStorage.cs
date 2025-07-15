@@ -8,6 +8,7 @@ using Android.Content;
 using Android.OS;
 using FluentFTP;
 using FluentFTP.Exceptions;
+using FluentFTP.GnuTLS;
 using KeePass.Util;
 using KeePassLib;
 using KeePassLib.Serialization;
@@ -140,6 +141,7 @@ namespace keepass2android.Io
 			var settings = ConnectionSettings.FromIoc(ioc);
 			
 			FtpClient client = new FtpClient();
+            client.Config.CustomStream = typeof(GnuTlsStream);
 			client.Config.RetryAttempts = 3;
 			if ((settings.Username.Length > 0) || (settings.Password.Length > 0))
 				client.Credentials = new NetworkCredential(settings.Username, settings.Password);
