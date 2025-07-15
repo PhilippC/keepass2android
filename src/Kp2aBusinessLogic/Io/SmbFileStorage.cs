@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿#if !NoNet
+using System.Net;
 using Android.Content;
 using keepass2android;
 using keepass2android.Io;
@@ -8,7 +9,7 @@ using SMBLibrary;
 using FileAttributes = SMBLibrary.FileAttributes;
 using KeePassLib.Utility;
 using Java.Nio.FileNio;
-#if !NoNet
+
 namespace Kp2aBusinessLogic.Io
 {
     public class SmbFileStorage : IFileStorage
