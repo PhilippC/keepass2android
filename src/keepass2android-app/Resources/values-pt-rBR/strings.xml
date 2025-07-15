@@ -507,7 +507,11 @@
   <string name="ok_donate">Conte-me mais!</string>
   <string name="no_thanks">Não, não me agrada muito</string>
   <string name="enter_http_login_title">Insira os dados de login WebDav:</string>
+  <string name="enter_smb_login_title">Insira os dados de login do Samba:</string>
   <string name="hint_http_url">URL do arquivo ou pasta (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL da pasta ou arquivo (Ex: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Domínio do usuário do samba</string>
+  <string name="hint_smb_username">Nome de usuário do Samba</string>
   <string name="enter_owncloud_login_title">Insira os dados de login do OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Insira os dados de acesso do Nextcloud:</string>
@@ -545,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">Nuvem Própria</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -724,7 +729,15 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string name="hint_smb_credentials">Se você deseja acessar arquivos do seu computador Windows pessoal, use o nome do computador ou o endereço IP local como URL do host; Digite o nome do computador como domínio e o login do Windows (geralmente o mesmo que sua conta da Microsoft) como nome de usuário e senha.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string name="webdav_chunked_upload_size_title">Tamanho do bloco para upload do WebDav</string>
+  <string name="webdav_chunked_upload_size_summary">Tamanho dos blocos ao fazer upload para servidores WebDav em bytes. Use 0 para desativar o upload em blocos.</string>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Melhorias no WebDav: Correção de bug ao listar pastas; Suporte para uploads e transações em blocos</item>
+    <item>Adicionado suporte para compartilhamentos de rede Samba/Windows</item>
+    <item>Atualizado o FluentFTP e habilitado o suporte para o fluxo GnuTLS, suportando o TLS 1.3 e resolvendo outros problemas de FTPS</item>
+  </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Estimativa aprimorada da qualidade da senha, considerando a maioria das senhas populares.</item>
     <item>Bloqueia o desbloqueio rápido baseado em senha (por motivos de segurança) se o dispositivo não tiver uma trava de tela ativada.</item>
