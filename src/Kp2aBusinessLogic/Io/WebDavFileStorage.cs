@@ -6,10 +6,12 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
+
 using Keepass2android.Javafilestorage;
 #endif
 using KeePassLib.Serialization;
@@ -19,9 +21,15 @@ namespace keepass2android.Io
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 	public class WebDavFileStorage: JavaFileStorage
 	{
-		public WebDavFileStorage(IKp2aApp app) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler), app)
-		{
-		}
+        private readonly IKp2aApp _app;
+        private readonly WebDavStorage baseWebdavStorage;
+
+        public WebDavFileStorage(IKp2aApp app, int chunkSize) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler, chunkSize), app)
+        {
+            _app = app;
+            baseWebdavStorage = (WebDavStorage)Jfs;
+
+        }
 
 		public override IEnumerable<string> SupportedProtocols
 		{
@@ -75,6 +83,15 @@ namespace keepass2android.Io
 			}
 			return base.IocToPath(ioc);
 		}
-	}
+
+
+        public override IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
+        {
+            baseWebdavStorage.SetUploadChunkSize(_app.WebDavChunkedUploadSize);
+            return base.OpenWriteTransaction(ioc, useFileTransaction);
+        }
+    }
+
+
 #endif
 }

@@ -15,7 +15,10 @@ import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 
+
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -44,21 +47,31 @@ import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.internal.tls.OkHostnameVerifier;
+import okio.BufferedSink;
 
 public class WebDavStorage extends JavaFileStorageBase {
 
     private final ICertificateErrorHandler mCertificateErrorHandler;
     private Context appContext;
 
-    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler)
+    int chunkSize;
+
+    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler, int chunkSize)
     {
+        this.chunkSize = chunkSize;
 
         mCertificateErrorHandler = certificateErrorHandler;
+    }
+
+    public void setUploadChunkSize(int chunkSize)
+    {
+        this.chunkSize = chunkSize;
     }
 
     public String buildFullPath(String url, String username, String password) throws UnsupportedEncodingException {
@@ -189,10 +202,48 @@ public class WebDavStorage extends JavaFileStorageBase {
         try {
             ConnectionInfo ci = splitStringToConnectionInfo(path);
 
+
+            RequestBody requestBody;
+            if (chunkSize > 0)
+            {
+                // use chunked upload
+                requestBody = new RequestBody() {
+                    @Override
+                    public MediaType contentType() {
+                        return MediaType.parse("application/binary");
+                    }
+
+                    @Override
+                    public void writeTo(BufferedSink sink) throws IOException {
+                        try (InputStream in = new ByteArrayInputStream(data)) {
+                            byte[] buffer = new byte[chunkSize];
+                            int read;
+                            while ((read = in.read(buffer)) != -1) {
+                                sink.write(buffer, 0, read);
+                                sink.flush();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public long contentLength() {
+                        return -1; // use chunked upload
+                    }
+                };
+            }
+            else
+            {
+                requestBody = new MultipartBody.Builder()
+                    .addPart(RequestBody.create(data, MediaType.parse("application/binary")))
+                    .build();
+            }            
+
+
             Request request = new Request.Builder()
                     .url(new URL(ci.URL))
-                    .put(RequestBody.create(MediaType.parse("application/binary"), data))
+                    .put(requestBody)
                     .build();
+
 
             //TODO consider writeTransactional
             //TODO check for error
@@ -522,3 +573,4 @@ public class WebDavStorage extends JavaFileStorageBase {
     }
 
 }
+
