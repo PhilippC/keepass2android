@@ -37,7 +37,10 @@ using System.Net;
 using System.Text;
 using Android.Content.Res;
 using Android.Database;
+#if !NO_QR_SCANNER
+using Android.Gms.Common;
 using Android.Gms.Tasks;
+#endif
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Runtime;
@@ -54,19 +57,20 @@ using Object = Java.Lang.Object;
 using Uri = Android.Net.Uri;
 using Resource = keepass2android.Resource;
 using Google.Android.Material.TextField;
+#if !NO_QR_SCANNER
 using Xamarin.Google.MLKit.Vision.Barcode.Common;
 using Xamarin.Google.MLKit.Vision.CodeScanner;
+#endif
 using Console = System.Console;
-using Task = Android.Gms.Tasks.Task;
 
 namespace keepass2android
 {
 	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]			
 	public class EntryEditActivity : LockCloseActivity {
-	    
 
-	    
-		public const String KeyEntry = "entry";
+        protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
+
+        public const String KeyEntry = "entry";
 		public const String KeyParent = "parent";
 		public const String KeyTemplateUuid = "KeyTemplateUuid";
 		
@@ -330,13 +334,18 @@ namespace keepass2android
 
         }
 
-	    protected override void OnStart()
+        private bool hasRequestedKeyboardActivation = false;
+        protected override void OnStart()
 	    {
 	        base.OnStart();
 	        if (PreferenceManager.GetDefaultSharedPreferences(this)
-	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false))
+	            .GetBoolean(GetString(Resource.String.UseKp2aKeyboardInKp2a_key), false)
+                && (!hasRequestedKeyboardActivation))
 	        {
-	            CopyToClipboardService.ActivateKeyboard(this);
+                //only try this once. if the user clicks cancel, we don't want to ask again
+				// (it may happen that the activity is restarted because of the NewTask flag immediately after the dialog)
+                hasRequestedKeyboardActivation = true;
+                CopyToClipboardService.ActivateKeyboard(this);
 	        }
         }
 
@@ -714,7 +723,7 @@ namespace keepass2android
 			}
 			catch(Exception exAttach)
 			{
-				Toast.MakeText(this, GetString(Resource.String.AttachFailed)+" "+exAttach.Message, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, GetString(Resource.String.AttachFailed)+" "+ Util.GetErrorMessage(exAttach),  MessageSeverity.Error);
 			}
 			State.EntryModified = true;
 			PopulateBinaries();
@@ -832,7 +841,7 @@ namespace keepass2android
 						string s = Util.GetFilenameFromInternalFileChooser(data, this);
 						if (s == null)
 						{
-							Toast.MakeText(this, "No URI retrieved.", ToastLength.Short).Show();
+							App.Kp2a.ShowMessage(this, "No URI retrieved.",  MessageSeverity.Error);
 							return;
 						}
 						uri = Uri.Parse(s);
@@ -1138,7 +1147,7 @@ namespace keepass2android
 				}
                 else
                 {
-					Toast.MakeText(this, "did not find target field", ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, "did not find target field",  MessageSeverity.Error);
                 }
                 
 				
@@ -1152,9 +1161,18 @@ namespace keepass2android
             {
                 dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = args.IsChecked ? ViewStates.Visible : ViewStates.Gone;
             };
-
-            dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
+#if NO_QR_SCANNER
+            dlgView.FindViewById<Button>(Resource.Id.totp_scan).Visibility = ViewStates.Gone;
+#else
+			dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
             {
+                if (GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this) != ConnectionResult.Success)
+                {
+                    App.Kp2a.ShowMessage(this, Resource.String.qr_scanning_error_no_google_play_services,
+                        MessageSeverity.Error);
+                    return;
+                }
+
 				GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
                     .SetBarcodeFormats(Barcode.FormatQrCode)
                     .Build();
@@ -1171,16 +1189,17 @@ namespace keepass2android
                         }
                         else
                         {
-                            Toast.MakeText(this, "Scanned code should contain an otpauth:// text.", ToastLength.Long).Show();
+                            App.Kp2a.ShowMessage(this, "Scanned code should contain an otpauth:// text.",  MessageSeverity.Warning);
                         }
                     }))
                     .AddOnFailureListener(new FailureListener((e) =>
                     {
-                        Console.WriteLine($"Scan failed: {e.Message}");
+                        Console.WriteLine($"Scan failed: {Util.GetErrorMessage(e)}");
                     }));
 
 
             };
+#endif
 
 			//copy values from entry into dialog
 			View ees = (View)sender.Parent;
@@ -1496,7 +1515,7 @@ namespace keepass2android
 			// Require title
 			String title = Util.GetEditText(this, Resource.Id.entry_title);
 			if ( title.Length == 0 ) {
-				Toast.MakeText(this, Resource.String.error_title_required, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.error_title_required,  MessageSeverity.Error);
 				return false;
 			}
 			
@@ -1506,7 +1525,7 @@ namespace keepass2android
 			DateTime newExpiry = new DateTime();
 			if ((State.Entry.Expires) && (!DateTime.TryParse( Util.GetEditText(this,Resource.Id.entry_expires), out newExpiry)))
 		    {
-				Toast.MakeText(this, Resource.String.error_invalid_expiry_date, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.error_invalid_expiry_date,  MessageSeverity.Error);
 				return false;
 			}
 			State.Entry.ExpiryTime = newExpiry.ToUniversalTime();
@@ -1520,13 +1539,13 @@ namespace keepass2android
 				string key = keyView.Text;
 				
 				if (String.IsNullOrEmpty(key)) {
-					Toast.MakeText(this, Resource.String.error_string_key, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, Resource.String.error_string_key,  MessageSeverity.Error);
 					return false;
 				}
 
 				if (allKeys.Contains(key))
 				{
-					Toast.MakeText(this, GetString(Resource.String.error_string_duplicate_key, new Object[]{key}), ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, GetString(Resource.String.error_string_duplicate_key, new Object[]{key}),  MessageSeverity.Error);
 					return false;
 				}
 
@@ -1559,6 +1578,7 @@ namespace keepass2android
 
 		}
 	}
+#if !NO_QR_SCANNER
     public class SuccessListener : Object, IOnSuccessListener
     {
         private readonly Action<Barcode> _onSuccess;
@@ -1588,8 +1608,9 @@ namespace keepass2android
             _onFailure?.Invoke(e);
         }
     }
+#endif
 
-    public class DefaultEdit : EditModeBase
+	public class DefaultEdit : EditModeBase
 	{
 		
 	}

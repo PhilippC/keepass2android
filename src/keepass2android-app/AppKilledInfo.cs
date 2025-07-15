@@ -14,7 +14,7 @@ using keepass2android;
 
 namespace keepass2android
 {
-	[Activity(Label = AppNames.AppName)]
+	[Activity(Label = AppNames.AppName, Theme = "@style/Kp2aTheme_BlueNoActionBar")]
 	public class AppKilledInfo : Activity, IDialogInterfaceOnDismissListener
 	{
 		protected override void OnCreate(Bundle bundle)

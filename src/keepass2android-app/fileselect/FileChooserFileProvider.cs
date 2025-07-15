@@ -71,7 +71,7 @@ namespace keepass2android
 			catch (Exception e)
 			{
 				if (errorMessageBuilder != null)
-					errorMessageBuilder.Append(e.Message);
+					errorMessageBuilder.Append(Util.GetErrorMessage(e));
 				Kp2aLog.Log(e.ToString());
 				return null;
 			}

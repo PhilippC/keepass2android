@@ -43,9 +43,11 @@ using keepass2android.Io;
 using keepass2android.addons.OtpKeyProv;
 using keepass2android.database.edit;
 using keepass2android;
+using keepass2android.Utils;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
 using Kp2aBusinessLogic.Io;
+using Message = keepass2android.Utils.Message;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
 using Android.Gms.Common;
@@ -53,6 +55,8 @@ using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
+using static keepass2android.Util;
+using static Android.Provider.Telephony.MmsSms;
 #endif
 
 #endif
@@ -94,11 +98,13 @@ namespace keepass2android
 #if DEBUG
         public const string PackagePart = "keepass2android_debug";
 		public const string Searchable = "@xml/searchable_debug";
+        public const int LauncherIcon = Resource.Mipmap.ic_launcher_debug;
 #else
 		public const string PackagePart = "keepass2android";
 		public const string Searchable = "@xml/searchable";
+		public const int LauncherIcon = Resource.Mipmap.ic_launcher_online;
 #endif
-        public const int LauncherIcon = Resource.Mipmap.ic_launcher_online;
+
         public const int NotificationLockedIcon = Resource.Drawable.ic_notify_loaded;
         public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
 
@@ -186,8 +192,8 @@ namespace keepass2android
 	        var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 	        var createBackup = prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key), true)
                 && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
-
-	        MemoryStream backupCopy = new MemoryStream();
+            Kp2aLog.Log("LoadDb: Copying database for backup");
+            MemoryStream backupCopy = new MemoryStream();
 	        if (createBackup)
 	        {
 
@@ -196,6 +202,7 @@ namespace keepass2android
 	            //reset stream if we need to reuse it later:
 	            memoryStream.Seek(0, SeekOrigin.Begin);
 	        }
+            Kp2aLog.Log("LoadDb: Checking open databases");
 
             foreach (Database openDb in _openDatabases)
 	        {
@@ -345,7 +352,10 @@ namespace keepass2android
 			QuickUnlockEnabled = enabled;
 		}
 
-		public bool QuickUnlockEnabled { get; private set; }
+		public bool ScreenLockWasEnabledWhenOpeningDatabase { get; set; }
+
+
+        public bool QuickUnlockEnabled { get; private set; }
 
 		public int QuickUnlockKeyLength { get; private set; }
     
@@ -471,6 +481,7 @@ namespace keepass2android
 		private readonly HashSet<RealProgressDialog> _activeProgressDialogs = new HashSet<RealProgressDialog>();
 		// Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
 		private bool _isShowingUserInputDialog = false;
+        private IMessagePresenter? _messagePresenter;
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
@@ -830,7 +841,7 @@ namespace keepass2android
 							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
-							new OneDriveFileStorage(),
+							new OneDriveFileStorage(this),
 						    new OneDrive2FullFileStorage(),
 						    new OneDrive2MyFilesFileStorage(),
 						    new OneDrive2AppFolderFileStorage(),
@@ -913,14 +924,16 @@ namespace keepass2android
 		{
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 
-			ValidationMode validationMode = ValidationMode.Warn;
+			ValidationMode validationMode = ValidationMode.Error;
 
 			string strValMode = prefs.GetString(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
 												 LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
 
 			if (strValMode == "IGNORE")
 				validationMode = ValidationMode.Ignore;
-			else if (strValMode == "ERROR")
+            else if (strValMode == "WARN")
+                validationMode = ValidationMode.Warn;
+            else if (strValMode == "ERROR")
 				validationMode = ValidationMode.Error;
 			return validationMode;
 		}
@@ -977,7 +990,7 @@ namespace keepass2android
 #endif
 		private void ShowValidationWarning(string error)
 		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CertificateWarning, error));
+			App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, LocaleManager.LocalizedAppContext.GetString(Resource.String.CertificateWarning, error), MessageSeverity.Warning);
 		}
 
 
@@ -1026,25 +1039,21 @@ namespace keepass2android
             return newDatabase;
         }
 
-		internal void ShowToast(string message)
+		internal void ShowToast(string message, MessageSeverity severity)
 		{
-			var handler = new Handler(Looper.MainLooper);
-			handler.Post(() => { var toast = Toast.MakeText(LocaleManager.LocalizedAppContext, message, ToastLength.Long);
-				                   toast.SetGravity(GravityFlags.Center, 0, 0);
-									toast.Show(); 
-			});
+			App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, message, severity);
 		}
 
 		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
 		{
 			var errorMessage = GetErrorMessageForFileStorageException(e);
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotSaveToRemote, errorMessage));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotSaveToRemote, errorMessage), MessageSeverity.Error);
 		}
 
 		private string GetErrorMessageForFileStorageException(Exception e)
-		{
-			string errorMessage = e.Message;
-			if (e is OfflineModeException)
+        {
+            var errorMessage = Util.GetErrorMessage(e);
+            if (e is OfflineModeException)
 				errorMessage = GetResourceString(UiStringKey.InOfflineMode);
 		    if (e is DocumentAccessRevokedException)
 		        errorMessage = GetResourceString(UiStringKey.DocumentAccessRevoked);
@@ -1053,31 +1062,31 @@ namespace keepass2android
 		}
 
 
-		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
+        public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
 		{
 			var errorMessage = GetErrorMessageForFileStorageException(ex);
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage), MessageSeverity.Error);
 		}
 
 		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
 		{
 			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad, 
-				new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file) }));
+				new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file) }), MessageSeverity.Info);
 		}
 
 		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
 		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedRemoteFileOnLoad));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedRemoteFileOnLoad), MessageSeverity.Warning);
 		}
 
 		public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
 		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.NotifyOpenFromLocalDueToConflict));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.NotifyOpenFromLocalDueToConflict), MessageSeverity.Info);
 		}
 
 		public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
 		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.LoadedFromRemoteInSync));
+			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.LoadedFromRemoteInSync), MessageSeverity.Info);
 		}
 
 		public void ClearOfflineCache()
@@ -1241,7 +1250,7 @@ namespace keepass2android
 	    {
 	        var db = TryFindDatabaseForElement(element);
             if (db == null)
-                throw new Exception("Database element not found!");
+                throw new Exception($"Database element {element.Uuid} not found in any of {OpenDatabases.Count()} databases!");
 	        return db;
 	    }
 
@@ -1286,7 +1295,47 @@ namespace keepass2android
 	        return GetResourceString("filestoragename_" + protocolId);
 
 	    }
-	}
+
+        public void ShowMessage(Context ctx, int resourceId, MessageSeverity severity)
+        {
+            ShowMessage(ctx, ctx.Resources.GetString(resourceId), severity);
+
+        }
+        public void ShowMessage(Context ctx, string text, MessageSeverity severity)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return;
+            }
+            MessagePresenter.ShowMessage(new Message{Text=text, Severity = severity});
+        }
+
+        public IMessagePresenter MessagePresenter
+        {
+            get => _messagePresenter ?? new ToastPresenter();
+            set
+            {
+                if (value == null)
+                {
+					// Presenter is being reset. Use a NonePresenter to remember pending messages
+                    value = new NonePresenter();
+                }
+                // transfer pending messages to new presenter
+                if (_messagePresenter != null)
+                {
+                    foreach (var message in _messagePresenter.PendingMessages)
+                    {
+                        if (message.ShowOnSubsequentScreens)
+                        {
+                            value.ShowMessage(message);
+                        }
+                    }
+                }
+                _messagePresenter = value;
+            }
+            
+        }
+    }
 
 
 	///Application class for Keepass2Android: Contains static Database variable to be used by all components.

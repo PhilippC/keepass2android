@@ -4,10 +4,10 @@
 # This Makefile can be used on both unix-like (use make) & windows (with GNU make)
 #
 # append the Configuration variable to 'make' call with value to use in '/p:Configuration='
-# of msbuild command.
+# of dotnetbuild command.
 #
 # append the Flavor variable to 'make' call with value to use in '/p:Flavor='
-# of msbuild command.
+# of dotnetbuild command.
 #
 # Example:
 #    make Configuration=Release Flavor=NoNet
@@ -18,15 +18,16 @@
 #  - native: build the native libs
 #  - java: build the java libs
 #  - nuget: restore NuGet packages
-#  - msbuild: build the project
+#  - dotnetbuild: build the project
 #  - apk: same as all
+#  - manifestlink: creates a symlink (to be used in building) to the AndroidManifest corresponding to the selected Flavor
 #
 #  - distclean: run a 'git clean -xdff'. Remove everyhing that is not in the git tree.
 #  - clean: all clean_* targets below
 #  - clean_native: clean native lib
 #  - clean_java: call clean target of java libs
 #  - clean_nuget: cleanup the 'nuget restore'
-#  - clean_msbuild: call clean target of msbuild
+#  - clean_dotnet: call clean target of dotnetbuild
 #
 #
 #
@@ -59,45 +60,23 @@ $(info MAKESHELL: $(MAKESHELL))
 $(info SHELL: $(SHELL))
 $(info )
 
-# On linux use xabuild, on Windows use MSBuild.exe, otherwise (macos?) use msbuild.
 ifeq ($(detected_OS),Linux)
-  MSBUILD_binary := xabuild
-  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary))
+  DOTNET_binary := dotnet
+  DOTNET := $(shell $(WHICH) $(DOTNET_binary))
 else ifeq ($(detected_OS),Windows)
-  MSBUILD_binary := MSBuild.exe
-  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary) 2> nul)
-  ifeq ($(MSBUILD),)
-    # Additional heuristic to find MSBUILD_BINARY on Windows
-    VSWHERE := "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
-    VSWHERE_CHECK := $(shell @echo off & $(VSWHERE) 2> nul || echo VSWHERE_NOT_FOUND)
-    ifneq ($(VSWHERE_CHECK),VSWHERE_NOT_FOUND)
-      MSBUILD := $(shell @echo off & $(VSWHERE) -latest -prerelease -products * -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe)
-      VS_INSTALL_PATH := $(shell @echo off & $(VSWHERE) -property installationPath)
-    endif
-  endif
+  DOTNET_binary := dotnet
+  DOTNET := $(shell $(WHICH) $(DOTNET_binary) 2> nul)
 else
-  MSBUILD_binary := msbuild
-  MSBUILD := $(shell $(WHICH) $(MSBUILD_binary))
+  DOTNET_binary := dotnet
+  DOTNET := $(shell $(WHICH) $(DOTNET_binary))
 endif
 
-ifeq ($(MSBUILD),)
+ifeq ($(DOTNET),)
   $(info )
-  $(info '$(MSBUILD_binary)' binary could not be found. Check it is in your PATH.)
-  ifeq ($(detected_OS),Windows)
-  ifneq ($(VSWHERE_CHECK),VSWHERE_NOT_FOUND)
-    $(info )
-    $(info You may retry after running in the command prompt:)
-    $(info )
-    $(info "$(VS_INSTALL_PATH)\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64)
-    $(info )
-    $(info If this doesn't work, install/find the location of vcvarsall.bat)
-    $(info or install and add msbuild.exe to your PATH)
-    $(info )
-  endif
-  endif
+  $(info '$(DOTNET_binary)' binary could not be found. Check it is in your PATH.)
   $(error )
 endif
-$(info MSBUILD: $(MSBUILD))
+$(info DOTNET: $(DOTNET))
 $(info )
 
 ifeq ($(ANDROID_SDK_ROOT),)
@@ -116,7 +95,7 @@ endif
 $(info ANDROID_NDK_ROOT: $(ANDROID_NDK_ROOT))
 
 ifneq ($(Configuration),)
-  MSBUILD_PARAM = -p:Configuration="$(Configuration)"
+  DOTNET_PARAM = -p:Configuration="$(Configuration)"
 else
   $(warning Configuration environment variable not set.)
 endif
@@ -126,7 +105,7 @@ CREATE_MANIFEST_LINK :=
 
 MANIFEST_FILE := 
 ifneq ($(Flavor),)
-  MSBUILD_PARAM += -p:Flavor="$(Flavor)"
+  DOTNET_PARAM += -p:Flavor="$(Flavor)"
   ifneq ($(Flavor),)
 		ifeq ($(Flavor),Debug)
 			MANIFEST_FILE := AndroidManifest_debug.xml
@@ -151,7 +130,7 @@ else
 endif
 
 ifneq ($(KeyStore),)
-  MSBUILD_PARAM += -p:AndroidKeyStore=True -p:AndroidSigningKeyStore="$(KeyStore)" -p:AndroidSigningStorePass=env:MyAndroidSigningStorePass -p:AndroidSigningKeyPass=env:MyAndroidSigningKeyPass -p:AndroidSigningKeyAlias="kp2a"
+  DOTNET_PARAM += -p:AndroidKeyStore=True -p:AndroidSigningKeyStore="$(KeyStore)" -p:AndroidSigningStorePass=env:MyAndroidSigningStorePass -p:AndroidSigningKeyPass=env:MyAndroidSigningKeyPass -p:AndroidSigningKeyAlias="kp2a"
 endif
 
 ifeq ($(detected_OS),Windows)
@@ -175,7 +154,7 @@ endif
 # Recursive wildcard: https://stackoverflow.com/a/18258352
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
-$(info MSBUILD_PARAM: $(MSBUILD_PARAM))
+$(info DOTNET_PARAM: $(DOTNET_PARAM))
 $(info nuget path: $(shell $(WHICH) nuget))
 $(info )
 
@@ -253,7 +232,7 @@ OUTPUT_PluginQR = src/java/Keepass2AndroidPluginSDK2/app/build/outputs/aar/Keepa
 .PHONY: native $(NATIVE_COMPONENTS) clean_native $(NATIVE_CLEAN_TARGETS) \
 	java $(JAVA_COMPONENTS) clean_java $(JAVA_CLEAN_TARGETS) \
 	nuget clean_nuget \
-	msbuild clean_msbuild \
+	dotnetbuild clean_dotnet \
 	apk all clean
 
 all: apk
@@ -302,7 +281,7 @@ ifeq ($(shell $(WHICH) nuget),)
 endif
 	$(RMFILE) stamp.nuget_*
 	nuget restore src/KeePass.sln
-	$(MSBUILD) src/KeePass.sln -t:restore $(MSBUILD_PARAM) -p:RestorePackagesConfig=true
+	$(DOTNET) restore src/KeePass.sln $(DOTNET_PARAM) -p:RestorePackagesConfig=true
 	@echo "" > stamp.nuget_$(Flavor)
 
 manifestlink:
@@ -311,20 +290,21 @@ manifestlink:
 	$(CREATE_MANIFEST_LINK)	
 
 #####
-src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs:
-ifeq ($(detected_OS),Windows)
-	$(CP) src\Kp2aBusinessLogic\Io\DropboxFileStorageKeysDummy.cs src\Kp2aBusinessLogic\Io\DropboxFileStorageKeys.cs
-else
-	$(CP) src/Kp2aBusinessLogic/Io/DropboxFileStorageKeysDummy.cs $@
-endif
 
-msbuild: manifestlink native java nuget src/Kp2aBusinessLogic/Io/DropboxFileStorageKeys.cs
-	$(MSBUILD) src/KeePass.sln -target:keepass2android-app -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -p:BuildProjectReferences=true $(MSBUILD_PARAM) -p:Platform="Any CPU" -m
+dotnetbuild: manifestlink native java nuget 
+	$(DOTNET) build src/KeePass.sln -target:keepass2android-app -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -p:BuildProjectReferences=true $(DOTNET_PARAM) -p:Platform="Any CPU" -m
 
-apk: msbuild 
-	$(MSBUILD) src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(MSBUILD_PARAM) -p:Platform=AnyCPU -m 
+apk: manifestlink native java nuget  
+	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m 
 
-build_all: msbuild
+apk_split: manifestlink native java nuget 
+	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm
+	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-arm64
+	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x86
+	$(DOTNET) publish src/keepass2android-app/keepass2android-app.csproj -p:AndroidSdkDirectory="$(ANDROID_SDK_ROOT)" -t:SignAndroidPackage $(DOTNET_PARAM) -p:Platform=AnyCPU -m -p:RuntimeIdentifier=android-x64
+	src/build-scripts/rename-output-apks.sh src/keepass2android-app/bin/Release/net8.0-android/
+
+build_all: dotnetbuild
 
 ##### Cleanup targets
 
@@ -368,10 +348,10 @@ else
 endif
 	$(RMFILE) stamp.nuget_*
 
-clean_msbuild:
-	$(MSBUILD) src/KeePass.sln -target:clean $(MSBUILD_PARAM)
+clean_dotnet:
+	$(DOTNET) clean src/KeePass.sln $(DOTNET_PARAM)
 
-clean: clean_native clean_java clean_nuget clean_msbuild
+clean: clean_native clean_java clean_nuget clean_dotnet
 
 distclean: clean
 ifneq ("$(wildcard ./allow_git_clean)","")

@@ -58,7 +58,8 @@
       "IsFocused": false,
       "InputType": 97,
       "HtmlInfoTag": null,
-      "HtmlInfoTypeAttribute": null
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": [ "username" ]
     },
     {
       "IdEntry": "password_text_input_layout",
@@ -81,6 +82,7 @@
       "InputType": 129,
       "HtmlInfoTag": null,
       "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": [ "password" ]
 
     },
     {

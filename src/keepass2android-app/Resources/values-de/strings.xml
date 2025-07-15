@@ -164,7 +164,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
   <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
   <string name="no_keyfile_selected">Keine Schlüsseldatei ausgewählt.</string>
-  <string name="keyfile_is_empty">Schlüssel-Datei ist leer.</string>
+  <string name="keyfile_is_empty">Schlüsseldatei ist leer.</string>
   <string name="length">Länge</string>
   <string name="list_size_title">Größe der Gruppenliste</string>
   <string name="list_size_summary">Schriftgröße in der Gruppenliste</string>
@@ -176,7 +176,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="masktotp_title">TOTP-Feld verdecken</string>
   <string name="masktotp_summary">TOTP-Feld standardmäßig ausblenden</string>
   <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
-  <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
+  <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht angezeigt.
+ </string>
   <string name="menu_about">Über</string>
   <string name="menu_change_key">Hauptschlüssel ändern</string>
   <string name="menu_copy_pass">Passwort kopieren</string>
@@ -290,7 +291,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="please_note">Bitte beachten</string>
   <string name="contributors">Mitwirkende</string>
   <string name="regular_expression">Regulärer Ausdruck</string>
-  <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer vereinigen</string>
+  <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer zusammenführen</string>
   <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN-Einträge als abgelaufen markieren, wenn sie verwendet werden</string>
@@ -332,7 +333,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Passwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Schlüssel aus Datenbankeintrag</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel „QuickUnlock“ in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Passwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
@@ -378,7 +379,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
   <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
-  <string name="NoDonateOption_question">Ohne Spenden gäbe es diese App nicht und sie könnte nicht ständig verbessert werden! Wenn Sie noch nicht gespendet haben, sollten Sie dies jetzt in Betracht ziehen.</string>
+  <string name="NoDonateOption_question">Ohne Spenden würde diese App nicht existieren und ständig verbessert werden! Wenn du noch nicht gespendet hast, erwäge bitte, dies jetzt zu tun</string>
   <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
@@ -559,7 +560,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android-App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eineListe aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
+  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eine Liste aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
@@ -642,7 +643,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="FileReadOnlyTitle">Datenbank ist schreibgeschützt</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android hat die aktuelle Datenbank im schreibgeschützten Modus geöffnet.</string>
   <string name="ReadOnlyReason_PreKitKat">Es scheint, dass die Datei von einer externen Anwendung aus geöffnet wurde. Über diesen Weg ist das Schreiben nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über eine der verfügbaren Optionen öffnen, sofern möglich.</string>
-  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Diese Attribut entfernen, wenn Änderungen an der Datenbank vorgenommen werden sollen.</string>
+  <string name="ReadOnlyReason_ReadOnlyFlag">Datei ist schreibgeschützt. Dieses Attribut entfernen, wenn Änderungen an der Datenbank vorgenommen werden sollen.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Das Speichern ist aufgrund von Einschränkungen, die in Android KitKat eingeführt wurden, nicht möglich. Wenn Änderungen an der Datenbank vorgenommen werden sollen, bitte die Datenbank schließen und „Datenbank wechseln“ wählen. Danach die Datei über die systeminterne Dateiauswahl öffnen.</string>
   <string name="ReadOnlyReason_LocalBackup">Lokale Sicherungskopien können nicht bearbeitet werden. Du kannst über \"Datenbank-Einstellungen\" - \"Datenbank exportieren\" dieses Backup an einen anderen Ort exportieren und dann von dort öffnen. Dann kannst du auch wieder Änderungen vornehmen.</string>
   <string name="AddCustomIcon">Icon aus Datei hinzufügen...</string>
@@ -716,6 +717,20 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Von Xamarin Android auf .NET 8 upgegradet</item>
+    <item>Upgrade auf Target-SDK 34</item>
+    <item>Auf MUI 3 upgegradet</item>
+    <item>Verbessertes automatisches Ausfüllen damit Compose-Apps funktionieren</item>
+    <item>Hostnamen-vergleiche im automatischen Ausfüllen und der Suche gefixt</item>
+    <item>Probleme mit dem Passwort Generator behoben</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>OneDrive SDK auf Version 5.68 aktualisiert</item>
+    <item>Dropbox SDK auf Version 7.0.0 aktualisiert</item>
+    <item>Gradle, NewtonsoftJson, FluentFTP, MegaApiClient und okhttp aktualisiert</item>
+    <item>Bugfix in WebDav-Dateiauswahl</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Buttons für die Suche und eine TOTP-Übersicht hinzugefügt (falls TOTP-Einträge vorhanden sind)</item>
     <item>Darstellung von TOTP-Feldern verbessert: Timeout-Anzeige hinzugefügt und besser sichtbar gemacht.</item>
@@ -745,7 +760,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
     <item>Unterstützung für MEGA-Cloudspeicher hinzugefügt </item>
-    <item>Unterstützung für Google Drive mit eingeschränktem Anwendungsbereich hinzugefügt</item>
+    <item>Unterstützung für Google Drive mit eingeschränktem Zugriff hinzugefügt</item>
   </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Google-Drive-Authentifizierung erneut implementiert, Google-Drive-Unterstützung wieder aktiviert </item>
@@ -1131,7 +1146,7 @@ Erstes öffentliches Release</string>
   <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
   <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank ohne den Hauptschlüssel nicht öffnen kannst. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
   <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass das Biometrische Entsperren über das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
-  <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
+  <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
   <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, nach %1$s &gt; %2$s &gt; %3$s gehen.</string>
   <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
@@ -1146,5 +1161,7 @@ Erstes öffentliches Release</string>
   <string name="AutofillWarning_trustAsBrowser">Für „%1$s“ immer akzeptieren</string>
   <string name="kp2a_switch_on_sendgodone">Tastatur zurückwechseln wenn fertig</string>
   <string name="kp2a_switch_on_sendgodone_summary">Beim Drücken von Senden/Los/Fertig zurückschalten</string>
+  <string name="qr_scanning_error_no_google_play_services">QR-Code-Scannen erfordert Google Play-Dienste. Bitte installiere oder aktualisiere Google Play-Dienste auf deinem Gerät.</string>
   <string name="english_ime_settings">Android-Tastatureinstellungen</string>
+  <string name="autoswitch_enabled_but_not_setup">Notiz: Du hast Einstellungen - Anwendung - Passwortzugriff - Wechsel der Eingabemethode - Auto-Umschalten der Tastatur eingeschaltet, aber sieht aus als würde es nicht funktionieren</string>
 </resources>

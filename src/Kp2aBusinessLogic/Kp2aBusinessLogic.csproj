@@ -4,31 +4,44 @@
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentFTP" Version="51.1.0" />
-    <PackageReference Include="MegaApiClient" Version="1.10.4" />
-    <PackageReference Include="Microsoft.Graph" Version="5.68.0" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" />
-    <PackageReference Include="SMBLibrary" Version="1.5.4" />
+    <PackageReference Include="FluentFTP" Version="51.1.0" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="MegaApiClient" Version="1.10.4"  Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="Microsoft.Graph" Version="5.68.0" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" Condition="'$(Flavor)'!='NoNet'"/>
+    <PackageReference Include="SMBLibrary" Version="1.5.4" Condition="'$(Flavor)'!='NoNet'"/>
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" />
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="'$(Flavor)'!='NoNet'"  />
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
   </ItemGroup>
   <ItemGroup>
-  <None Remove="Io/DropboxFileStorageKeysDummy.cs" />
-  <Compile Remove="Io/DropboxFileStorageKeysDummy.cs" />
-  <Content Remove="Io/DropboxFileStorageKeysDummy.cs" />
+
 </ItemGroup>
+<ItemGroup  Condition="'$(Flavor)'=='NoNet'">
+  <None Remove="Io/OneDrive2FileStorage.cs" />
+  <Compile Remove="Io/OneDrive2FileStorage.cs" />
+  <Content Remove="Io/OneDrive2FileStorage.cs" />
+  <None Remove="Io/MegaFileStorage.cs" />
+  <Compile Remove="Io/MegaFileStorage.cs" />
+  <Content Remove="Io/MegaFileStorage.cs" />
+</ItemGroup>
+
+<Import Project="Io/GenerateSecrets.targets" />
+<ItemGroup>
+<Compile Include="Io/DropboxFileStorage.g.cs" />
+</ItemGroup>
+
   
 </Project>

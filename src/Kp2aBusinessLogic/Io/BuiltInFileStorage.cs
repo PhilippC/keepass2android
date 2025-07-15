@@ -13,7 +13,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Java.IO;
-
+using KeePass.Util;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
 using File = System.IO.File;
@@ -121,7 +121,7 @@ namespace keepass2android.Io
 			var response = ex.Response as HttpWebResponse;
 			if ((response != null) && (response.StatusCode == HttpStatusCode.NotFound))
 			{
-				throw new FileNotFoundException(ex.Message, ioc.Path, ex);
+				throw new FileNotFoundException(ExceptionUtil.GetErrorMessage(ex), ioc.Path, ex);
 			}
 			if (ex.Status == WebExceptionStatus.TrustFailure)
 			{

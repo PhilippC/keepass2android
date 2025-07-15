@@ -25,6 +25,7 @@ using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using Android.Preferences;
+using Android.Provider;
 using Android.Runtime;
 
 using Android.Views.InputMethods;
@@ -35,6 +36,7 @@ using KeePassLib;
 using KeePassLib.Serialization;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 using AndroidX.Core.Content;
+using keepass2android.Utils;
 
 namespace keepass2android
 {
@@ -161,6 +163,29 @@ namespace keepass2android
             if (bundle != null)
                 numFailedAttempts = bundle.GetInt(NumFailedAttemptsKey, 0);
 
+            FindViewById(Resource.Id.QuickUnlock_buttonEnableLock).Click += (object sender, EventArgs e) =>
+            {
+				Intent intent = new Intent(Settings.ActionSecuritySettings);
+                StartActivity(intent);
+
+            };
+
+            FindViewById(Resource.Id.QuickUnlock_buttonCloseDb).Click += (object sender, EventArgs e) =>
+            {
+                App.Kp2a.Lock(false);
+            };
+
+            if (App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase == false)
+            {
+				FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Gone;
+                FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Visible;
+                FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Gone;
+            }
+
 
 
         }
@@ -203,7 +228,7 @@ namespace keepass2android
 				btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
 				
 			}, 1300);
-			Toast.MakeText(this, message, ToastLength.Long).Show();
+			App.Kp2a.ShowMessage(this, message,  MessageSeverity.Error);
 		}
 
         
@@ -325,7 +350,7 @@ namespace keepass2android
 			{
 				Kp2aLog.Log("QuickUnlock not successful!");
 				App.Kp2a.Lock(false);
-				Toast.MakeText(this, GetString(Resource.String.QuickUnlock_fail), ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, GetString(Resource.String.QuickUnlock_fail),  MessageSeverity.Error);
                 Finish();
 			}
 			
@@ -383,8 +408,9 @@ namespace keepass2android
 		{
 			base.OnResume();
 			_design.ReapplyTheme();
-			
-			CheckIfUnloaded();
+            App.Kp2a.MessagePresenter = new ChainedSnackbarPresenter(FindViewById(Resource.Id.main_content));
+
+            CheckIfUnloaded();
 
             InitFingerprintUnlock();
 
@@ -449,7 +475,8 @@ namespace keepass2android
 
 		protected override void OnPause()
 		{
-			if (_biometryIdentifier != null)
+            App.Kp2a.MessagePresenter = new NonePresenter();
+            if (_biometryIdentifier != null)
 			{
 				Kp2aLog.Log("FP: Stop listening");
 				_biometryIdentifier.StopListening();

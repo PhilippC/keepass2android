@@ -27,6 +27,7 @@ using KeePassLib.Serialization;
 using Console = System.Console;
 using Object = Java.Lang.Object;
 using AndroidX.Core.Content;
+using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
@@ -302,9 +303,23 @@ namespace keepass2android
             }
             else
             {
+
                 if (Intent.Action == Intent.ActionView)
                 {
-                    GetIocFromViewIntent(Intent);
+                    if (IsOtpUri(Intent.Data))
+                    {
+                        AppTask = new CreateEntryThenCloseTask()
+                        {
+                            AllFields = Newtonsoft.Json.JsonConvert.SerializeObject(new Dictionary<string, string>()
+                            {
+                                { "otp", Intent.DataString }
+                            })
+                        };
+                    }
+                    else
+                    {
+                        GetIocFromViewIntent(Intent);
+                    }
                 }
                 else if (Intent.Action == Intent.ActionSend)
                 {
@@ -332,6 +347,11 @@ namespace keepass2android
                 }
             }
 
+        }
+
+        private bool IsOtpUri(Uri? uri)
+        {
+            return uri?.Scheme == "otpauth";
         }
 
         protected override void OnStart()
@@ -372,7 +392,7 @@ namespace keepass2android
                 if (ioc.Path.Length == 0)
                 {
                     // No file name
-                    Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(this, Resource.String.FileNotFound,  MessageSeverity.Error);
                     return false;
                 }
 
@@ -380,7 +400,7 @@ namespace keepass2android
                 if (!dbFile.Exists())
                 {
                     // File does not exist
-                    Toast.MakeText(this, Resource.String.FileNotFound, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(this, Resource.String.FileNotFound,  MessageSeverity.Error);
                     return false;
                 }
             }
@@ -388,7 +408,7 @@ namespace keepass2android
             {
                 if (!ioc.Path.StartsWith("content://"))
                 {
-                    Toast.MakeText(this, Resource.String.error_can_not_handle_uri, ToastLength.Long).Show();
+                    App.Kp2a.ShowMessage(this, Resource.String.error_can_not_handle_uri,  MessageSeverity.Error);
                     return false;
                 }
                 IoUtil.TryTakePersistablePermissions(this.ContentResolver, intent.Data);
@@ -448,7 +468,7 @@ namespace keepass2android
                     }
                     catch (Exception e)
                     {
-                        Toast.MakeText(this, "Failed to open child databases",ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(this, "Failed to open child databases", MessageSeverity.Error);
                         Kp2aLog.LogUnexpectedError(e);
                     }
                     

@@ -16,20 +16,32 @@ namespace keepass2android.Io
     /// </summary>
 	public class OneDriveFileStorage: IFileStorage
 	{
-		
-		public IEnumerable<string> SupportedProtocols
+        public OneDriveFileStorage(IKp2aApp app)
+        {
+            _app = app;
+        }
+
+        private readonly IKp2aApp _app;
+
+        public IEnumerable<string> SupportedProtocols
 		{
 			get
 			{
 				yield return "skydrive";
 				yield return "onedrive";
-			}
+            }
 		}
 
-        private Exception GetDeprecatedMessage()
+        string GetDeprecatedMessage()
+        {
+            return
+                "You have opened your file through a deprecated Microsoft API. Please select Change database, Open Database and then select OneDrive again.";
+        }
+
+        private Exception GetDeprecatedException()
         {
             return new Exception(
-                "You have opened your file through a deprecated Microsoft API. Please select Change database, Open Database and then select One Drive again.");
+                GetDeprecatedMessage());
         }
 
 	    public bool UserShouldBackup
@@ -39,133 +51,132 @@ namespace keepass2android.Io
 
         public void Delete(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public string GetCurrentFileVersionFast(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public Stream OpenFileForRead(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public string GetFileExtension(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public bool RequiresCredentials(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            return false;
         }
 
         public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public FileDescription GetFileDescription(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public bool RequiresSetup(IOConnectionInfo ioConnection)
         {
-            throw GetDeprecatedMessage();
+            return false;
         }
 
         public string IocToPath(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
         {
-            throw GetDeprecatedMessage();
+            
         }
 
         public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode,
             bool alwaysReturnSuccess)
         {
-            throw GetDeprecatedMessage();
+            _app.ShowMessage(activity.Activity, GetDeprecatedMessage(), MessageSeverity.Error);
+
         }
 
         public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            
         }
 
         public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
         {
-            throw GetDeprecatedMessage();
+            
         }
 
         public void OnResume(IFileStorageSetupActivity activity)
         {
-            throw GetDeprecatedMessage();
+            
         }
 
         public void OnStart(IFileStorageSetupActivity activity)
         {
-            throw GetDeprecatedMessage();
         }
 
         public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
         {
-            throw GetDeprecatedMessage();
         }
 
         public string GetDisplayName(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            return "File using deprecated Microsoft API. Please update.";
         }
 
         public string CreateFilePath(string parent, string newFilename)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public bool IsPermanentLocation(IOConnectionInfo ioc)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
 
         public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
         {
-            throw GetDeprecatedMessage();
+            throw GetDeprecatedException();
         }
     }
 }

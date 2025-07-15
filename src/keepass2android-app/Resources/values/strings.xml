@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Disable Biometric Unlock</string>
   <string name="enable_fingerprint_unlock">Enable full Biometric Unlock</string>
   <string name="enable_fingerprint_quickunlock">Enable Biometric Unlock for QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Password-based QuickUnlock not available</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock using a part of your password is blocked because screen lock is not activated on your device. This behavior is to protect you in case somebody watched you entering your QuickUnlock key.</string>
   <string name="fingerprint_unlock_failed">Biometric Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a biometric authentication or security settings were changed. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Biometric Unlock was disabled because apparently the stored master password is no longer valid. </string>
   <string name="fingerprint_reenable">Please re-enable Biometric Unlock for the new master password.</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Enter QuickUnlock code:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Close database</string>
+  <string name="enable_screen_lock">Enable screen lock</string>
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
   <string name="ViewDatabaseSecure_title">Protect database display</string>
@@ -554,6 +557,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A folder)</string>
   <string name="filestoragehelp_dropboxKP2A">If you do not want to give KP2A access to your full Dropbox, you may select this option. It will request only access to the folder Apps/Keepass2Android. This is especially suited when creating a new database. If you already have a database, select this option to create the folder, then place your file inside the folder (from your PC) and then select this option again for opening the file.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Please note: Google is restricting access to Google Drive from apps for more and more users. If the built-in Google Drive implementation does not work, please use System file picker instead and select Google Drive there!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A files)</string>
   <string name="filestoragehelp_gdriveKP2A">If you do not want to give KP2A access to your full Google Drive, you may select this option. Note that you need to create a database file first, existing files are not visible to the app. Either choose this option from the Create database screen or, if you already opened a database, by exporting the database choosing this option.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -732,12 +736,20 @@
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
 
+  <string-array name="ChangeLog_1_13">
+    <item>Improved password quality estimation by considering most popular passwords.</item>
+    <item>Block password-based QuickUnlock (for security reasons) if the device does not have a screen lock activated.</item>
+    <item>Update network security configuration to disable clear-text transfer.</item>
+  </string-array>
+
+
   <string-array name="ChangeLog_1_12">
     <item>Upgraded from Xamarin Android to .net 8</item>
     <item>Upgraded to Target SDK 34</item>
     <item>Upgraded to Material 3 user interface</item>
     <item>Improve autofill to work with Compose apps</item>
     <item>Fix hostname matching in autofill and search</item>
+    <item>Fix issue with password generator</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Upgraded OneDrive SDK to version 5.68</item>
@@ -1251,6 +1263,11 @@
   <string name="AutofillWarning_trustAsBrowser">Accept always in "%1$s"</string>
   <string name="kp2a_switch_on_sendgodone">Switch back when done</string>
   <string name="kp2a_switch_on_sendgodone_summary">Switch back when pressing send/go/done</string>
+  <string name="qr_scanning_error_no_google_play_services">QR code scanning requires Google Play Services. Please install or update Google Play Services on your device.</string>
 <string name="english_ime_settings">Android keyboard settings</string>
-    
-    </resources>
+  <string name="autoswitch_enabled_but_not_setup">Note: You have enabled App - Settings - Password access - Keyboard switching - Auto-switch keyboard, but it doesn\'t seem to be configured correctly.</string>
+  <string name="switch_keyboard_for_totp_enabled">Note: You have enabled App - Password access - Autofill-Service - Autofill for TOTP entries. This can cause this window to show when you open an entry with a TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Note: You have enabled App - Security - Use built-in keyboard inside Keepass2Android. This can cause this window to show when you open the app or edit an entry.</string>
+  <string name="switch_keyboard_on_search_enabled">Note: You have enabled App - Security - Password access - Keyboard switching - Switch keyboard. This can cause this window to show when you search for an entry from the browser.</string>
+  
+</resources>

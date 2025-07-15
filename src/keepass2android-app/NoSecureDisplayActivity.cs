@@ -48,11 +48,6 @@ namespace keepass2android
                 Finish();
             };
 
-            var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
-
-            SetSupportActionBar(toolbar);
-
-            SupportActionBar.Title = AppNames.AppName;
         }
 
         protected override void OnResume()

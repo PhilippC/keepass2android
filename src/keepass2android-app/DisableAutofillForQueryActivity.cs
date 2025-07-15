@@ -19,7 +19,7 @@ using keepass2android.services.AutofillBase;
 
 namespace keepass2android
 {
-    [Activity(Label = "DisableAutofillForQueryActivity")]
+    [Activity(Label = "DisableAutofillForQueryActivity", Theme = "@style/Kp2aTheme_ActionBar")]
     public class DisableAutofillForQueryActivity : Activity
     {
         public IAutofillIntentBuilder IntentBuilder = new Kp2aAutofillIntentBuilder();
@@ -41,7 +41,7 @@ namespace keepass2android
             string requestedUrl = Intent.GetStringExtra(ChooseForAutofillActivityBase.ExtraQueryString);
             if (requestedUrl == null)
             {
-                Toast.MakeText(this, "Cannot execute query for null.", ToastLength.Long).Show();
+                App.Kp2a.ShowMessage(this, "Cannot execute query for null.",  MessageSeverity.Error);
                 RestartApp();
                 return;
             }
@@ -63,8 +63,6 @@ namespace keepass2android
 
             prefs.Edit().PutStringSet("AutoFillDisabledQueries", disabledValues).Commit();
 
-            bool isManual = Intent.GetBooleanExtra(ChooseForAutofillActivityBase.ExtraIsManualRequest, false);
-            
             Intent reply = new Intent();
             FillResponse.Builder builder = new FillResponse.Builder();
             AssistStructure structure = (AssistStructure)Intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
@@ -77,7 +75,7 @@ namespace keepass2android
             StructureParser parser = new StructureParser(this, structure);
             try
             {
-                parser.ParseForFill(isManual);
+                parser.ParseForFill();
 
             }
             catch (Java.Lang.SecurityException e)

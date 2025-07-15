@@ -183,7 +183,7 @@ namespace keepass2android
 			// Verify that a password or keyfile is set
 			if (password.Length == 0 && !keyfileCheckbox.Checked)
 			{
-				Toast.MakeText(this, Resource.String.error_nopass, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.error_nopass,  MessageSeverity.Error);
 				return;
 			}
 
@@ -207,7 +207,7 @@ namespace keepass2android
 				}
 				catch (Exception)
 				{
-					Toast.MakeText(this, Resource.String.error_adding_keyfile, ToastLength.Long).Show();
+					App.Kp2a.ShowMessage(this, Resource.String.error_adding_keyfile,  MessageSeverity.Error);
 					return;
 				}
 			}
@@ -235,7 +235,7 @@ namespace keepass2android
 			if (! pass.Equals(confpass))
 			{
 				// Passwords do not match
-				Toast.MakeText(this, Resource.String.error_pass_match, ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, Resource.String.error_pass_match,  MessageSeverity.Error);
 				return false;
 			}
 			return true;

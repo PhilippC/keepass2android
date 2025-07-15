@@ -548,6 +548,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (pasta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Se você não quiser dar acesso KP2A para o seu Dropbox completo, você pode selecionar esta opção. Ele irá solicitar somente acesso para a pasta Apps/Keepass2Android. Isto é especialmente adequado ao criar um novo banco de dados. Se você já tiver um banco de dados, clique nesta opção para criar a pasta, em seguida, colocar o arquivo dentro da pasta (a partir de seu PC) e em seguida, selecione esta opção novamente para abrir o arquivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Observação: o Google está restringindo o acesso ao Google Drive a partir de aplicativos para cada vez mais usuários. Se a implementação integrada do Google Drive não funcionar, use o seletor de arquivos do sistema e selecione o Google Drive lá!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (Arquivos KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Se você não quiser dar acesso KP2A ao seu Google Drive completo, você pode selecionar esta opção. Observe que você precisa criar um arquivo de banco de dados primeiro, os arquivos existentes não são visíveis para o aplicativo. Escolha esta opção na tela Criar banco de dados ou, se você já abriu um banco de dados, exportando o banco de dados escolhendo esta opção.</string>
   <string name="filestoragename_pcloud">PCloud (Pasta KP2A)</string>
@@ -721,6 +722,20 @@
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Atualizado de Xamarin Android para .NET 8</item>
+    <item>Atualizado para o Target SDK 34</item>
+    <item>Atualizado para a interface de usuário Material 3</item>
+    <item>Melhorado o preenchimento automático para trabalhar com aplicativos Compose</item>
+    <item>Corrigido a correspondência do nome do host em preenchimento automático e pesquisa</item>
+    <item>Corrigido um problema com gerador de senhas</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Atualizado o OneDrive SDK para a versão 5.68</item>
+    <item>Dropbox SDK atualizado para a versão 7.0.0</item>
+    <item>Atualizado Gradle, Newtonsoftjson, Fluentftp, Megaapiclient e okhttp</item>
+    <item>Correção na seleção de arquivo WebDav</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Adicionados botões de ação flutuantes para pesquisa e visão geral do TOTP (se entradas TOTP estiverem presentes).</item>
     <item>Exibição aprimorada de campos TOTP adicionando um indicador de tempo limite e mostrando-o com mais destaque.</item>
@@ -1186,5 +1201,10 @@
   <string name="AutofillWarning_trustAsBrowser">Aceitar sempre em \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Voltar quando terminar</string>
   <string name="kp2a_switch_on_sendgodone_summary">Voltar ao pressionar enviar/ir/concluído</string>
+  <string name="qr_scanning_error_no_google_play_services">A leitura de código QR requer o Google Play Services. Instale ou atualize o Google Play Services no seu dispositivo.</string>
   <string name="english_ime_settings">Configurações do teclado Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Você ativou o Aplicativo - Configurações - Acesso por senha - Troca de teclado - Troca automática de teclado, mas não parece estar configurado corretamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: você ativou o Aplicativo - Acesso por senha - Serviço de preenchimento automático - Preenchimento automático para entradas TOTP. Isso pode fazer com que essa janela seja exibida quando você abre uma entrada com um TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Você ativou o Aplicativo - Segurança - Usar o teclado embutido dentro do Keepass2Android. Isso pode fazer com que essa janela seja exibida quando você abre o aplicativo ou edita uma entrada.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Você ativou o Aplicativo - Segurança - Acesso por senha - Troca de teclado - Alternar teclado. Isso pode fazer com que essa janela seja exibida quando você pesquisar uma entrada no navegador.</string>
 </resources>

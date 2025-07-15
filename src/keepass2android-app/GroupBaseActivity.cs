@@ -56,6 +56,8 @@ namespace keepass2android
 
         public const int RequestCodeActivateRealSearch = 12366;
 
+        protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
+
         static readonly Dictionary<int /*resource id*/, int /*prio*/> bottomBarElementsPriority = new Dictionary<int, int>()
         {
             { Resource.Id.cancel_insert_element, 20 },
@@ -892,9 +894,14 @@ namespace keepass2android
                     RegisterInfoTextDisplay(
                         "DbReadOnly"); //this ensures that we don't show the general info texts too soon
 
-                    FindViewById<TextView>(Resource.Id.dbreadonly_infotext_text).Text =
-                    (GetString(Resource.String.FileReadOnlyMessagePre) + " " +
-                     App.Kp2a.GetResourceString(reason.Result));
+                    var infotext_view = FindViewById<TextView>(Resource.Id.dbreadonly_infotext_text);
+                    if (infotext_view != null)
+                    {
+                        infotext_view.Text =
+                            (GetString(Resource.String.FileReadOnlyMessagePre) + " " +
+                             App.Kp2a.GetResourceString(reason.Result));
+                    }
+                    
                 }
             }
             UpdateBottomBarElementVisibility(Resource.Id.dbreadonly_infotext, canShow);
@@ -927,7 +934,7 @@ namespace keepass2android
                 {
                     ((GroupBaseActivity)activity)?.StopMovingElements();
                     if (!String.IsNullOrEmpty(message))
-                        Toast.MakeText(activity, message, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
                 }));
             var progressTask = new ProgressTask(App.Kp2a, this, moveElement);
             progressTask.Run();
@@ -1328,7 +1335,7 @@ namespace keepass2android
                 {
                     Handler.Post(() =>
                     {
-                        Toast.MakeText(ActiveActivity ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message, ToastLength.Long).Show();
+                        App.Kp2a.ShowMessage(ActiveActivity ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message,  MessageSeverity.Error);
                     });
 
                     App.Kp2a.Lock(false);

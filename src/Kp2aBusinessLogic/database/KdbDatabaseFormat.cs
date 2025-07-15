@@ -10,6 +10,7 @@ using Com.Keepassdroid.Database.Exception;
 #endif
 using Com.Keepassdroid.Database.Save;
 using Java.Util;
+using KeePass.Util;
 using KeePassLib;
 using KeePassLib.Cryptography;
 using KeePassLib.Cryptography.Cipher;
@@ -82,15 +83,14 @@ namespace keepass2android
 			catch (Java.IO.FileNotFoundException e)
 			{
 				throw new FileNotFoundException(
-					e.Message, e);
+                    ExceptionUtil.GetErrorMessage(e), e);
 			}  
 			catch (Java.Lang.Exception e)
 			{
 				if (e.Message == "Invalid key!")
 					throw new InvalidCompositeKeyException();
-				throw new Exception(e.LocalizedMessage ??
-				e.Message ??
-				e.GetType().Name, e);
+				throw new Exception(ExceptionUtil.GetErrorMessage(e) ??
+                                                                  e.GetType().Name, e);
 			}
 			
 			HashOfLastStream = hashingStream.Hash;

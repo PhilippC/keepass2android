@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text;
 using Android.Content;
 using Android.Util;
+using KeePass.Util;
 using keepass2android.Io.ItemLocation;
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
@@ -522,10 +523,10 @@ namespace keepass2android.Io
         {
 
             if (e.IsMatch(GraphErrorCode.ItemNotFound.ToString()))
-                return new FileNotFoundException(e.Message);
+                return new FileNotFoundException(ExceptionUtil.GetErrorMessage(e));
             if (e.Message.Contains("\n\n404 : ")
             ) //hacky solution to check for not found. errorCode was null in my tests so I had to find a workaround.
-                return new FileNotFoundException(e.Message);
+                return new FileNotFoundException(ExceptionUtil.GetErrorMessage(e));
             return e;
         }
 
@@ -1148,30 +1149,46 @@ namespace keepass2android.Io
                 });
             }
 
-            string? driveId = parentPath.DriveId;
-            if ((string.IsNullOrEmpty(driveId)) && (drives?.Any() == true))
-            {
-                driveId = drives.First().Id;
-            }
-        
             
             if (!CanListShares)
                 return result;
+
             
-            var sharedWithMeResponse = await client.Drives[driveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
-
-            foreach (DriveItem i in sharedWithMeResponse?.Value ?? [])
+            try
             {
-                var oneDrive2ItemLocation = parentPath.BuildShare(i.RemoteItem.Id, i.RemoteItem.Name, i.RemoteItem.WebUrl, i.RemoteItem.ParentReference.DriveId);
-                FileDescription sharedFileEntry = new FileDescription()
+                string? driveId = parentPath.DriveId;
+                if (string.IsNullOrEmpty(driveId))
                 {
-                    CanWrite = true, CanRead = true, DisplayName = i.Name,
-                    IsDirectory = true,
-                    Path = oneDrive2ItemLocation.ToString()
-                };
-                result.Add(sharedFileEntry);
+                    driveId = (await client.Me.Drive.GetAsync()).Id;
+                }
+                if ((string.IsNullOrEmpty(driveId)) && (drives?.Any() == true))
+                {
+                    driveId = drives.First().Id;
+                }
 
+                var sharedWithMeResponse = await client.Drives[driveId].SharedWithMe.GetAsSharedWithMeGetResponseAsync();
+
+                foreach (DriveItem i in sharedWithMeResponse?.Value ?? [])
+                {
+                    var oneDrive2ItemLocation = parentPath.BuildShare(i.RemoteItem.Id, i.RemoteItem.Name, i.RemoteItem.WebUrl, i.RemoteItem.ParentReference.DriveId);
+                    FileDescription sharedFileEntry = new FileDescription()
+                    {
+                        CanWrite = true,
+                        CanRead = true,
+                        DisplayName = i.Name,
+                        IsDirectory = (i.Folder != null) || ((i.RemoteItem != null) && (i.RemoteItem.Folder != null)),
+                        Path = oneDrive2ItemLocation.ToString()
+                    };
+                    result.Add(sharedFileEntry);
+
+                }
             }
+            catch (Exception e)
+            {
+                logDebug("Failed to list shares: " + e);
+            }
+
+
 
             return result;
         }

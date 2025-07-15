@@ -128,11 +128,11 @@ namespace keepass2android
 				Kp2aLog.LogUnexpectedError(e);
 			}
 			if (String.IsNullOrEmpty(_requestedUrl))
-				Toast.MakeText(this, GetString(Resource.String.query_credentials, new Java.Lang.Object[] {pluginDisplayName}), ToastLength.Long).Show();
+				App.Kp2a.ShowMessage(this, GetString(Resource.String.query_credentials, new Java.Lang.Object[] {pluginDisplayName}),  MessageSeverity.Info);
 			else
-				Toast.MakeText(this,
+				App.Kp2a.ShowMessage(this,
 				               GetString(Resource.String.query_credentials_for_url,
-										 new Java.Lang.Object[] { pluginDisplayName, _requestedUrl }), ToastLength.Long).Show(); ;
+										 new Java.Lang.Object[] { pluginDisplayName, _requestedUrl }),  MessageSeverity.Info); ;
 		}
 
 		private void StartQuery()
