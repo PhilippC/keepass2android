@@ -45,6 +45,14 @@
 		android:title="@string/UseFileTransactions_title"
 		android:key="@string/UseFileTransactions_key" />
 
+  <EditTextPreference
+    android:key="WebDavChunkedUploadSize_str"
+    android:title="@string/webdav_chunked_upload_size_title"
+    android:summary="@string/webdav_chunked_upload_size_title"
+		android:defaultValue="@integer/WebDavChunkedUploadSize_default"
+    android:inputType="number"
+     />
+
 	<CheckBoxPreference
 		android:enabled="true"
 		android:persistent="true"
@@ -80,5 +88,6 @@
 		android:defaultValue="true"
 		android:title="@string/CheckForDuplicateUuids_title"
 		android:key="@string/CheckForDuplicateUuids_key" />
+		
 
 </PreferenceScreen>

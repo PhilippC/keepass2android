@@ -15,7 +15,9 @@ namespace keepass2android.Io
 	    {
 	        get { return false; }
 	    }
-	}
+
+        static public bool IsConfigured => !string.IsNullOrEmpty(AppKey) && !string.IsNullOrEmpty(AppSecret);
+    }
 
 	public partial class DropboxAppFolderFileStorage: JavaFileStorage
 	{
@@ -29,6 +31,7 @@ namespace keepass2android.Io
 	        get { return false; }
 	    }
 
+        static public bool IsConfigured => !string.IsNullOrEmpty(AppKey) && !string.IsNullOrEmpty(AppSecret);
     }
 	
 }
