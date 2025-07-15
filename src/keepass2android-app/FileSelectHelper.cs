@@ -354,12 +354,12 @@ namespace keepass2android
 			dialog.Show();
 #endif
 		}
-
+#if !NoNet
         private static WebDavStorage CreateWebdavStorage(Activity activity)
         {
             return new WebDavStorage(App.Kp2a.CertificateErrorHandler, App.Kp2a.WebDavChunkedUploadSize);
         }
-
+#endif
         private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !NoNet
