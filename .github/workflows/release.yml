@@ -141,6 +141,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       with:
+        draft: true
         files: |
           src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
           src/keepass2android-app/bin/Release/net8.0-android/*/publish/*.apk

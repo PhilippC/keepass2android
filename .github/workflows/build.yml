@@ -322,26 +322,11 @@ jobs:
 
     - name: Build keepass2android (net)
       run: |
-        make dotnetbuild Flavor=Net
-
-    - name: Extract key store
-      env: 
-        KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        KeyStore: "${{ github.workspace }}/kp2a.keystore"
-        
-      shell: bash
-      run: |
-        echo $KeyStore
-        echo $KEYSTORE_BASE64 | base64 --decode > $KeyStore
-
-            
+        make dotnetbuild Flavor=Net          
 
     - name: Build APK (net)
       if: github.ref == 'refs/heads/master'
       env:
-        KeyStore: "${{ github.workspace }}/kp2a.keystore"
-        MyAndroidSigningStorePass: ${{ secrets.KEY_STORE_PASSWORD }}
-        MyAndroidSigningKeyPass: ${{ secrets.KEY_PASSWORD }}
         DropboxAppKey: ${{ secrets.DROPBOX_APP_KEY }}
         DropboxAppSecret: ${{ secrets.DROPBOX_APP_SECRET }}
         DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
@@ -352,7 +337,7 @@ jobs:
     - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v4
       with:
-        name: signed APK ('net' built on ${{ github.job }})
+        name: archive APK ('net' built on ${{ github.job }})
         path: |
           src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
 
@@ -378,7 +363,7 @@ jobs:
     - name: Archive production artifacts (nonet)
       uses: actions/upload-artifact@v4
       with:
-        name: signed APK ('nonet' built on ${{ github.job }})
+        name: archive APK ('nonet' built on ${{ github.job }})
         path: |
           src/keepass2android-app/bin/Release/net8.0-android/publish/*.apk
 
