@@ -505,7 +505,11 @@
   <string name="ok_donate">Chci vědět víc!</string>
   <string name="no_thanks">Ne, tak moc se mi to nelíbí</string>
   <string name="enter_http_login_title">Zadejte přihlašovací údaje pro WebDav:</string>
+  <string name="enter_smb_login_title">Zadejte přihlašovací údaje pro Sambu:</string>
   <string name="hint_http_url">URL nebo adresář se souborem (např. mycloud.me.com/webdaw/)</string>
+  <string name="hint_smb_url">URL složky nebo souboru (např.: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Doména uživatele Samby</string>
+  <string name="hint_smb_username">Uživatelské jméno Samby</string>
   <string name="enter_owncloud_login_title">Zadejte přihlašovací údaje pro OwnCloud:</string>
   <string name="hint_owncloud_url">URL adresa OwnCloud (např. owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Zadejte údaje pro Nextcloud:</string>
@@ -543,6 +547,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -720,7 +725,15 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string name="hint_smb_credentials">Pokud chcete přistupovat k souborům z vašeho osobního počítače se systémem Windows, použijte jako adresu hostitele název počítače nebo místní IP adresu; jako doménu zadejte název počítače a jako uživatelské jméno a heslo zadejte přihlašovací údaje do systému Windows (často stejné jako pro váš účet Microsoft).</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string name="webdav_chunked_upload_size_title">Velikost bloku pro nahrávání přes WebDav</string>
+  <string name="webdav_chunked_upload_size_summary">Velikost bloků při nahrávání na servery WebDav v bajtech. Použijte hodnotu 0 pro deaktivaci nahrávání po blocích.</string>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>
+    <item>Přidána podpora pro Sambu/síťové sdílení Windows</item>
+    <item>Aktualizován FluentFTP a povolena podpora pro GnuTLS stream, podporující TLS 1.3 a řešící další problémy FTPS</item>
+  </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Vylepšené hodnocení kvality hesel založené na nejčastěji používaných heslech.</item>
     <item>Pokud zařízení nemá aktivovaný zámek obrazovky, blokuje se funkce Rychlé odemknutí pomocí hesla (z bezpečnostních důvodů).</item>
