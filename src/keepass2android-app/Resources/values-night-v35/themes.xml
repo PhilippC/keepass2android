@@ -1,0 +1,22 @@
+<resources>
+  <style name="Kp2aTheme_ActionBar" parent="AppTheme.Primary">
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+
+  <style name="Kp2aTheme_BlueActionBar" parent="AppTheme.Secondary">
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+
+  <style name="Kp2aTheme_NoActionBar" parent="AppTheme.Primary.NoActionBar">
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+
+  </style>
+
+  <style name="Kp2aTheme_BlueNoActionBar" parent="AppTheme.Secondary.NoActionBar">
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+</resources>   

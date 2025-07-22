@@ -1217,7 +1217,7 @@ namespace keepass2android
         {
             _design.ApplyTheme();
             base.OnCreate(savedInstanceState);
-
+            new Util.InsetListener(FindViewById(Resource.Id.settings)).Apply();
 
         }
 

@@ -15,6 +15,36 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Database;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Preferences;
+using Android.Runtime;
+using Android.Text;
+using Android.Views;
+using Android.Views.InputMethods;
+using Android.Widget;
+using AndroidX.AppCompat.App;
+using AndroidX.CoordinatorLayout.Widget;
+using AndroidX.Core.Content;
+using AndroidX.Core.View;
+using AndroidX.DrawerLayout.Widget;
+using Google.Android.Material.AppBar;
+using Google.Android.Material.Dialog;
+using Java.Lang;
+using Java.Net;
+using KeeChallenge;
+using keepass2android;
+using keepass2android.Io;
+using keepass2android.Utils;
+using Keepass2android.Pluginsdk;
+using KeePassLib.Keys;
+using KeePassLib.Serialization;
+using OtpKeyProv;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,49 +53,17 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-using keepass2android;
-using Android.App;
-using Android.Content;
-using Android.Database;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Views.InputMethods;
-using Android.Widget;
-using Java.Net;
-using Android.Preferences;
-using Android.Text;
-using Android.Content.PM;
-using Android.Graphics;
-using AndroidX.AppCompat.App;
-using AndroidX.CoordinatorLayout.Widget;
-using AndroidX.Core.View;
-using AndroidX.DrawerLayout.Widget;
-using Google.Android.Material.AppBar;
-using Google.Android.Material.Dialog;
-using Java.Lang;
-using KeePassLib.Keys;
-using KeePassLib.Serialization;
-using Keepass2android.Pluginsdk;
-using OtpKeyProv;
-using keepass2android.Io;
-using keepass2android.Utils;
-
-using File = Java.IO.File;
-using FileNotFoundException = Java.IO.FileNotFoundException;
-
-using Object = Java.Lang.Object;
-using Process = Android.OS.Process;
-
-using KeeChallenge;
+using static Android.Locations.GpsStatus;
 using AlertDialog = Android.App.AlertDialog;
 using ClipboardManager = Android.Content.ClipboardManager;
 using Enum = System.Enum;
 using Exception = System.Exception;
+using File = Java.IO.File;
+using FileNotFoundException = Java.IO.FileNotFoundException;
+using Object = Java.Lang.Object;
+using Process = Android.OS.Process;
 using String = System.String;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
-using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -651,7 +649,7 @@ namespace keepass2android
 			_activityDesign.ApplyTheme();
 			base.OnCreate(savedInstanceState);
 
-		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
+            _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
             ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
@@ -1165,7 +1163,9 @@ namespace keepass2android
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
 			Util.MoveBottomBarButtons(Resource.Id.change_db, Resource.Id.pass_ok, Resource.Id.bottom_bar, this);
-		}
+            Util.InsetListener.ForBottomElement(FindViewById(Resource.Id.bottom_bar)).Apply();
+            Util.InsetListener.ForTopElement(FindViewById(Resource.Id.appbar)).Apply();
+        }
 
 		private void OnOk(bool usedFingerprintUnlock = false)
 		{
