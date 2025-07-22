@@ -81,8 +81,11 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
+            Util.InsetListener.ForBottomElement(FindViewById(Resource.Id.bottom_bar)).Apply();
+            Util.InsetListener.ForTopElement(FindViewById(Resource.Id.appbar)).Apply();
 
-			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+
+            var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             

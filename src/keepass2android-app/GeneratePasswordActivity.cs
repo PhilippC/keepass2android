@@ -145,12 +145,14 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState) {
 			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
-			
+
 			SetContentView(Resource.Layout.generate_password);
 			SetResult(KeePass.ExitNormal);
-            
 
-			var prefs = GetPreferences(FileCreationMode.Private);
+            new Util.InsetListener(FindViewById(Resource.Id.main_container)).Apply();
+
+
+            var prefs = GetPreferences(FileCreationMode.Private);
 
 
             

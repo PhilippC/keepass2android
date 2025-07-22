@@ -35,7 +35,9 @@ using Android.Graphics.Drawables;
 using Android.Hardware.Display;
 using Android.Util;
 using Android.Views.InputMethods;
+using AndroidX.Core.View;
 using AndroidX.Core.View.InputMethod;
+using AndroidX.ViewPager2.Widget;
 using Google.Android.Material.Dialog;
 using KeePass.Util;
 using keepass2android;
@@ -738,7 +740,73 @@ namespace keepass2android
 
 
 
+        public class InsetListener: Java.Lang.Object, IOnApplyWindowInsetsListener
+        {
+            private View _targetView;
+            private readonly int _insetsType;
+            private int _initialPaddingLeft;
+            private int _initialPaddingTop;
+            private int _initialPaddingRight;
+            private int _initialPaddingBottom;
+            
 
+            public bool EnabledPaddingLeft { get; set; } = true;
+            public bool EnablePaddingTop { get; set; } = true;
+            public bool EnablePaddingRight { get; set; } = true;
+            public bool EnablePaddingBottom { get; set; } = true;
+
+            public InsetListener(View targetView, int insetsType)
+            {
+                _targetView = targetView;
+                _insetsType = insetsType;
+                _initialPaddingLeft = targetView.PaddingLeft;
+                _initialPaddingTop = targetView.PaddingTop;
+                _initialPaddingRight = targetView.PaddingRight;
+                _initialPaddingBottom = targetView.PaddingBottom;
+            }
+
+            public InsetListener(View targetView): this(targetView,  WindowInsetsCompat.Type.SystemBars())
+            {
+                
+
+            }
+
+            public WindowInsetsCompat OnApplyWindowInsets(View v, WindowInsetsCompat insets)
+            {
+                var systemBarsInsets = insets.GetInsets(_insetsType);
+
+                _targetView.SetPadding(
+                    _initialPaddingLeft + (EnabledPaddingLeft ? systemBarsInsets.Left : 0),
+                    _initialPaddingTop + (EnablePaddingTop ? systemBarsInsets.Top : 0),
+                    _initialPaddingRight + (EnablePaddingRight ? systemBarsInsets.Right : 0),
+                    _initialPaddingBottom + (EnablePaddingBottom ? systemBarsInsets.Bottom : 0)
+                );
+
+
+                return insets; 
+            }
+
+            public static InsetListener ForBottomElement(View view)
+            {
+                return new InsetListener(view, WindowInsetsCompat.Type.Ime() | WindowInsetsCompat.Type.SystemBars() | WindowInsetsCompat.Type.DisplayCutout())
+                {
+                    EnablePaddingTop = false
+                };
+            }
+            public static InsetListener ForTopElement(View view)
+            {
+                return new InsetListener(view,  WindowInsetsCompat.Type.SystemBars() | WindowInsetsCompat.Type.DisplayCutout())
+                {
+                    EnablePaddingBottom = false
+                };
+            }
+
+            public void Apply()
+            {
+                ViewCompat.SetOnApplyWindowInsetsListener(_targetView, this);
+
+            }
+        }
 
         public static void MoveBottomBarButtons(int btn1Id, int btn2Id, int bottomBarId, Activity context)
         {
