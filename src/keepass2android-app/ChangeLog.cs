@@ -31,6 +31,10 @@ namespace keepass2android
 			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
 			builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
 			List<string> changeLog = new List<string>{
+				#if !NoNet
+				BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_14_net}, "1.14"),
+				#endif
+
                 BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_13}, "1.13"),
 
                 BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_12

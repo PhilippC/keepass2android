@@ -123,7 +123,7 @@ namespace keepass2android.Io
 
 		}
 
-		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
+		public virtual IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
 		{
 			return new JavaFileStorageWriteTransaction(IocToPath(ioc), useFileTransaction, this);
 		}

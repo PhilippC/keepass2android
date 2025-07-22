@@ -57,6 +57,8 @@ public class PropfindXmlParser
                 public String DisplayName;
                 public String LastModified;
                 public String ContentLength;
+
+                public boolean IsCollection;
             }
             public String status;
             public Prop prop;
@@ -191,6 +193,8 @@ public class PropfindXmlParser
                 continue;
             }
             String name = parser.getName();
+            String namespace = parser.getNamespace();
+
 
             android.util.Log.d("PARSE", "4name = " + name);
             if (name.equals("getcontentlength"))
@@ -200,12 +204,46 @@ public class PropfindXmlParser
                 prop.LastModified = readText(parser);
             } else if (name.equals("displayname")) {
                 prop.DisplayName = readText(parser);
+            } else if (name.equals("resourcetype") && namespace.equals(ns)) {
+                // We found the <d:resourcetype> tag
+                prop.IsCollection = readResourceType(parser);
             } else {
                 skip(parser);
             }
         }
 
         return  prop;
+    }
+
+    private boolean readResourceType(XmlPullParser parser) throws IOException, XmlPullParserException {
+        boolean isCollection = false;
+        parser.require(XmlPullParser.START_TAG, ns, "resourcetype");
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            String namespace = parser.getNamespace();
+
+            if (name.equals("collection") && namespace.equals(ns)) {
+                // We found <d:collection/>, so it's a folder
+                isCollection = true;
+                // Since <d:collection/> is usually an empty tag, just consume it.
+                // It might contain text if there's whitespace, so consume text then end tag.
+                if (parser.next() == XmlPullParser.TEXT) {
+                    parser.nextTag(); // Move to the end tag
+                }
+                parser.require(XmlPullParser.END_TAG, ns, "collection");
+            } else {
+                // Skip any other unexpected tags within <d:resourcetype>
+                skip(parser);
+            }
+        }
+        // After reading all children of <d:resourcetype>, ensure we are at its END_TAG
+        parser.require(XmlPullParser.END_TAG, ns, "resourcetype");
+        return isCollection;
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {

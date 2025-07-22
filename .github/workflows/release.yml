@@ -3,10 +3,9 @@ env:
   NAME: 'Release'
 
 on:
-  push:
-    tags:
-      - "v1.*"
-  workflow_dispatch: # Allows manual triggering of the workflow
+  # the workflow is always triggered manually. This allows to test the apks
+  # before publishing the release and not having a broken tag in the repo if that test fails.
+  workflow_dispatch: 
 jobs:
 
   build-release:

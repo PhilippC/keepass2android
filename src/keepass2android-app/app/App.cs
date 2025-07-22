@@ -46,9 +46,11 @@ using keepass2android;
 using keepass2android.Utils;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
+
 using Message = keepass2android.Utils.Message;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
+using Kp2aBusinessLogic.Io;
 using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
@@ -836,8 +838,8 @@ namespace keepass2android
 							new AndroidContentStorage(LocaleManager.LocalizedAppContext),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
-							new DropboxFileStorage(LocaleManager.LocalizedAppContext, this),
-							new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this),
+							DropboxFileStorage.IsConfigured ? new DropboxFileStorage(LocaleManager.LocalizedAppContext, this) : null,
+							DropboxAppFolderFileStorage.IsConfigured ? new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this): null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
 							new OneDriveFileStorage(this),
@@ -846,8 +848,9 @@ namespace keepass2android
 						    new OneDrive2AppFolderFileStorage(),
                             new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
 							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
-							new WebDavFileStorage(this),
-							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
+							new WebDavFileStorage(this, WebDavChunkedUploadSize),
+                            new SmbFileStorage(),
+                            new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
                             new PCloudFileStorageAll(LocaleManager.LocalizedAppContext, this),
                             new MegaFileStorage(App.Context),
 							//new LegacyWebDavStorage(this),
@@ -1333,6 +1336,18 @@ namespace keepass2android
             }
             
         }
+
+
+        public int WebDavChunkedUploadSize
+        {
+            get
+            {
+                return int.Parse(PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
+                    .GetString("WebDavChunkedUploadSize_str",
+                        LocaleManager.LocalizedAppContext.Resources
+                            .GetInteger(Resource.Integer.WebDavChunkedUploadSize_default).ToString()));
+            }
+        }
     }
 
 
@@ -1458,8 +1473,7 @@ namespace keepass2android
 		{
 			Kp2aLog.LogUnexpectedError(e.Exception);
 		}
-
-	}
+    }
 
 }
 

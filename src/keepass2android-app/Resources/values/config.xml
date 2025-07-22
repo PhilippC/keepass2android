@@ -209,6 +209,7 @@
 
 	<string name="ShowUnlockedNotification_key">ShowUnlockedNotification</string>
 	<bool name="ShowUnlockedNotification_default">true</bool>
+	<integer name="WebDavChunkedUploadSize_default">65536</integer>
 
 	<string name="PreloadDatabaseEnabled_key">PreloadDatabaseEnabled</string>
 	<bool name="PreloadDatabaseEnabled_default">true</bool>

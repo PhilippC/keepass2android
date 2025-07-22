@@ -140,6 +140,10 @@ namespace keepass2android
 
 
 #endif
+        int WebDavChunkedUploadSize
+        {
+            get;
+        }
 	    
 	}
 }
