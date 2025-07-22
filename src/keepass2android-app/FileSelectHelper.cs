@@ -278,7 +278,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -351,7 +352,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_http_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -454,7 +456,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_ftp_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -514,7 +517,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_mega_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -579,7 +583,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(subtype == "owncloud" ?  Resource.String.enter_owncloud_login_title : Resource.String.enter_nextcloud_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 		    dlgContents.FindViewById<EditText>(Resource.Id.owncloud_url).SetHint(subtype == "owncloud" ? Resource.String.hint_owncloud_url : Resource.String.hint_nextcloud_url);
             dialog.Show();
 #endif
