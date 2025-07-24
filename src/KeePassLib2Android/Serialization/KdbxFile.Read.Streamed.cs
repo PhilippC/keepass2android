@@ -789,12 +789,19 @@ namespace KeePassLib.Serialization
 
 		private byte[] ReadBase64(XmlReader xr, bool bRaw)
 		{
-			// if(bRaw) return ReadBase64RawInChunks(xr);
-
-			string str = (bRaw ? ReadStringRaw(xr) : ReadString(xr));
-			if (string.IsNullOrEmpty(str)) return MemUtil.EmptyByteArray;
-
-			return Convert.FromBase64String(str);
+			string str = bRaw ? ReadStringRaw(xr) : ReadString(xr);
+			if (string.IsNullOrEmpty(str))
+				return MemUtil.EmptyByteArray;
+			try
+			{
+				return Convert.FromBase64String(str);
+		    	}
+		    	catch (FormatException ex)
+		    	{
+				// Log or handle error appropriately
+				Kp2aLog.Log("Invalid Base64 string encountered: '" + str +"'");
+				return MemUtil.EmptyByteArray;
+		    	}
 		}
 
 		/* private byte[] m_pbBase64ReadBuf = new byte[1024 * 1024 * 3];
