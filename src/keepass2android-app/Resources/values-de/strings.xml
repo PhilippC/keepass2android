@@ -504,7 +504,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt\'s mir dann auch nicht</string>
   <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
+  <string name="enter_smb_login_title">Samba-Logindaten eingeben:</string>
   <string name="hint_http_url">URL des Ordners oder der Datei (z. B. mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL des Ordners oder der Datei (z.B.: 192.168.1.10/Freigabe/Ordner/)</string>
+  <string name="hint_smb_domain">Domain des Samba-Benutzers</string>
+  <string name="hint_smb_username">Samba-Benutzername</string>
   <string name="enter_owncloud_login_title">OwnCloud-Zugangsdaten eingeben:</string>
   <string name="hint_owncloud_url">OwnCloud-URL (z.B. owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Nextcloud Logindaten eingeben:</string>
@@ -542,12 +546,14 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windowsfreigabe)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Bitte beachten Sie: Google beschränkt den Zugriff auf Google Drive von Apps für immer mehr Benutzer. Wenn die eingebaute Google Drive-Implementierung nicht funktioniert, verwenden Sie bitte stattdessen die System-Dateiauswahl und wählen Sie dort Google Drive aus!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-Dateien)</string>
   <string name="filestoragehelp_gdriveKP2A">Wenn KP2A keinen Zugriff auf das komplette eigenen Google Drive erhalten soll, kann diese Option gewählte werden. Bitte beachten, dass zuerst eine Datenbankdatei erstellt werden muss; vorhandene Dateien sind für die App nicht sichtbar. Diese Option entweder auf dem Bildschirm „Datenbank erstellen“ auswählen oder, wenn bereits eine Datenbank geöffnet wurde, indem die Datenbank mit dieser Option exportiert wird.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A-Ordner)</string>
@@ -716,7 +722,15 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string name="hint_smb_credentials">Wenn Sie auf Dateien von Ihrem persönlichen Windows-Computer aus zugreifen möchten, verwenden Sie den Computernamen oder die lokale IP-Adresse als Host-URL; geben Sie den Computernamen als Domäne und das Windows-Login (oft identisch mit Ihrem Microsoft-Konto) als Benutzername und Passwort ein.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
+  <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
+  <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes. Verwenden Sie 0, um den chunked Upload zu deaktivieren.</string>
+  <string-array name="ChangeLog_1_14_net">
+    <item>WebDav-Verbesserungen: Fehlerbehebung für die Ordnerauflistung; Unterstützung für chunked Uploads und Transaktionen</item>
+    <item>Added support for Samba/Windows network shares</item>
+    <item>Updated FluentFTP and enabled support for GnuTLS stream, supporting TLS 1.3 and solving other FTPS issues</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Von Xamarin Android auf .NET 8 upgegradet</item>
     <item>Upgrade auf Target-SDK 34</item>
