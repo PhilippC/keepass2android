@@ -94,6 +94,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="disable_fingerprint_unlock">Biometrisches Entsperren deaktivieren</string>
   <string name="enable_fingerprint_unlock">Komplettes biometrisches Entsperren aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Passwort-basiertes QuickUnlock nicht verfügbar</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock mit einem Teil Ihres Passworts wird blockiert, da die Bildschirmsperre auf Ihrem Gerät nicht aktiviert ist. Dieses Verhalten schützt Sie, wenn jemand gesehen hat, dass Sie den QuickUnlock-Schlüssel eingegeben haben.</string>
   <string name="fingerprint_unlock_failed">Biometrisches Entsperren fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn die Biometrische Authentifizierung oder die Sicherheitseinstellungen geändert wurden. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Biometrisches Entsperren wurde deaktiviert, da das gespeicherte Hauptpasswort nicht länger gültig ist.</string>
   <string name="fingerprint_reenable">Bitte Biometrisches Entsperren für das neue Hauptpasswort erneut aktivieren.</string>
@@ -321,6 +323,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_label_secure">QuickUnlock-Code eingeben:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Datenbank schließen</string>
+  <string name="enable_screen_lock">Bildschirmsperre aktivieren</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
   <string name="ViewDatabaseSecure_title">Datenbankanzeige schützen</string>
@@ -728,8 +731,13 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes. Verwenden Sie 0, um den chunked Upload zu deaktivieren.</string>
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav-Verbesserungen: Fehlerbehebung für die Ordnerauflistung; Unterstützung für chunked Uploads und Transaktionen</item>
-    <item>Added support for Samba/Windows network shares</item>
-    <item>Updated FluentFTP and enabled support for GnuTLS stream, supporting TLS 1.3 and solving other FTPS issues</item>
+    <item>Unterstützung für Samba/Windows-Netzwerkfreigaben hinzugefügt</item>
+    <item>FluentFTP aktualisiert und Unterstützung für GnuTLS Stream aktiviert, TLS 1.3 wird unterstützt und andere FTPS Probleme gelöst</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Verbesserte Einschätzung der Passwortqualität, indem die beliebtesten Passwörter berücksichtigt werden.</item>
+    <item>Blockieren Sie das passwortbasierte QuickUnlock (aus Sicherheitsgründen) wenn das Gerät keine Bildschirmsperre aktiviert hat.</item>
+    <item>Netzwerksicherheitskonfiguration aktualisieren, um die Klartext-Übertragung zu deaktivieren.</item>
   </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Von Xamarin Android auf .NET 8 upgegradet</item>
@@ -1178,4 +1186,7 @@ Erstes öffentliches Release</string>
   <string name="qr_scanning_error_no_google_play_services">QR-Code-Scannen erfordert Google Play-Dienste. Bitte installiere oder aktualisiere Google Play-Dienste auf deinem Gerät.</string>
   <string name="english_ime_settings">Android-Tastatureinstellungen</string>
   <string name="autoswitch_enabled_but_not_setup">Notiz: Du hast Einstellungen - Anwendung - Passwortzugriff - Wechsel der Eingabemethode - Auto-Umschalten der Tastatur eingeschaltet, aber sieht aus als würde es nicht funktionieren</string>
+  <string name="switch_keyboard_for_totp_enabled">Hinweis: Sie haben App - Passwortzugriff - Autofill-Service - Autofill für TOTP-Einträge aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn Sie einen Eintrag mit einem TOTP öffnen.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Hinweis: Sie haben App - Sicherheit - Verwenden der eingebauten Tastatur in Keepass2Android aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn Sie die App öffnen oder einen Eintrag bearbeiten.</string>
+  <string name="switch_keyboard_on_search_enabled">Hinweis: Sie haben App - Sicherheit - Passwortzugriff - Tastaturwechsel - Tastatur wechseln aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn Sie nach einem Eintrag aus dem Browser suchen.</string>
 </resources>
