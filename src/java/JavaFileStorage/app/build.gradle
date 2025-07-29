@@ -51,4 +51,6 @@ dependencies {
     implementation 'com.pcloud.sdk:android:1.9.1'
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    implementation 'com.github.mwiede:jsch:2.27.2'
+
 }

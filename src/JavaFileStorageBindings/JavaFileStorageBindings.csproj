@@ -34,5 +34,6 @@
     <AndroidLibrary Bind="False" Update="okhttp-digest-3.1.0.jar" />
     <AndroidLibrary Bind="False" Update="okio-3.6.0.jar" />
     <AndroidLibrary Bind="False" Update="okio-jvm-3.6.0.jar" />
+    <AndroidLibrary Bind="False" Update="jsch-2.27.2.jar" />
   </ItemGroup>
 </Project>
