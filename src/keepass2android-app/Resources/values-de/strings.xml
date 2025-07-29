@@ -95,7 +95,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="enable_fingerprint_unlock">Komplettes biometrisches Entsperren aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
   <string name="password_based_quick_unlock_not_available">Passwort-basiertes QuickUnlock nicht verfügbar</string>
-  <string name="password_based_quick_unlock_not_available_text">QuickUnlock mit einem Teil Ihres Passworts wird blockiert, da die Bildschirmsperre auf Ihrem Gerät nicht aktiviert ist. Dieses Verhalten schützt Sie, wenn jemand gesehen hat, dass Sie den QuickUnlock-Schlüssel eingegeben haben.</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock mit einem Teil des Passworts wird blockiert, da die Bildschirmsperre auf deinem Gerät nicht aktiviert ist. Dieses Verhalten schützt dich, wenn jemand gesehen hat, wie du den QuickUnlock-Schlüssel eingegeben hast.</string>
   <string name="fingerprint_unlock_failed">Biometrisches Entsperren fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn die Biometrische Authentifizierung oder die Sicherheitseinstellungen geändert wurden. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Biometrisches Entsperren wurde deaktiviert, da das gespeicherte Hauptpasswort nicht länger gültig ist.</string>
   <string name="fingerprint_reenable">Bitte Biometrisches Entsperren für das neue Hauptpasswort erneut aktivieren.</string>
@@ -556,7 +556,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Bitte beachten Sie: Google beschränkt den Zugriff auf Google Drive von Apps für immer mehr Benutzer. Wenn die eingebaute Google Drive-Implementierung nicht funktioniert, verwenden Sie bitte stattdessen die System-Dateiauswahl und wählen Sie dort Google Drive aus!</string>
+  <string name="filestoragehelp_gdrive">Bitte beachte: Google beschränkt den Zugriff auf Google Drive von Apps für immer mehr Benutzer. Wenn die eingebaute Google Drive-Implementierung nicht funktioniert, verwende bitte stattdessen die System-Dateiauswahl und wähle dort Google Drive aus!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-Dateien)</string>
   <string name="filestoragehelp_gdriveKP2A">Wenn KP2A keinen Zugriff auf das komplette eigenen Google Drive erhalten soll, kann diese Option gewählte werden. Bitte beachten, dass zuerst eine Datenbankdatei erstellt werden muss; vorhandene Dateien sind für die App nicht sichtbar. Diese Option entweder auf dem Bildschirm „Datenbank erstellen“ auswählen oder, wenn bereits eine Datenbank geöffnet wurde, indem die Datenbank mit dieser Option exportiert wird.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A-Ordner)</string>
@@ -728,7 +728,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="hint_smb_credentials">Wenn Sie auf Dateien von Ihrem persönlichen Windows-Computer aus zugreifen möchten, verwenden Sie den Computernamen oder die lokale IP-Adresse als Host-URL; geben Sie den Computernamen als Domäne und das Windows-Login (oft identisch mit Ihrem Microsoft-Konto) als Benutzername und Passwort ein.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
-  <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes. Verwenden Sie 0, um den chunked Upload zu deaktivieren.</string>
+  <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes. Verwende 0, um den Upload in Chunks zu deaktivieren.</string>
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav-Verbesserungen: Fehlerbehebung für die Ordnerauflistung; Unterstützung für chunked Uploads und Transaktionen</item>
     <item>Unterstützung für Samba/Windows-Netzwerkfreigaben hinzugefügt</item>
@@ -1186,7 +1186,7 @@ Erstes öffentliches Release</string>
   <string name="qr_scanning_error_no_google_play_services">QR-Code-Scannen erfordert Google Play-Dienste. Bitte installiere oder aktualisiere Google Play-Dienste auf deinem Gerät.</string>
   <string name="english_ime_settings">Android-Tastatureinstellungen</string>
   <string name="autoswitch_enabled_but_not_setup">Notiz: Du hast Einstellungen - Anwendung - Passwortzugriff - Wechsel der Eingabemethode - Auto-Umschalten der Tastatur eingeschaltet, aber sieht aus als würde es nicht funktionieren</string>
-  <string name="switch_keyboard_for_totp_enabled">Hinweis: Sie haben App - Passwortzugriff - Autofill-Service - Autofill für TOTP-Einträge aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn Sie einen Eintrag mit einem TOTP öffnen.</string>
-  <string name="switch_keyboard_inside_kp2a_enabled">Hinweis: Sie haben App - Sicherheit - Verwenden der eingebauten Tastatur in Keepass2Android aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn Sie die App öffnen oder einen Eintrag bearbeiten.</string>
-  <string name="switch_keyboard_on_search_enabled">Hinweis: Sie haben App - Sicherheit - Passwortzugriff - Tastaturwechsel - Tastatur wechseln aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn Sie nach einem Eintrag aus dem Browser suchen.</string>
+  <string name="switch_keyboard_for_totp_enabled">Hinweis: Du hast App - Passwortzugriff - Autofill-Service - Autofill für TOTP-Einträge aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du einen Eintrag mit einem TOTP öffnest.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Hinweis: Du hast App - Sicherheit - Verwenden der eingebauten Tastatur in Keepass2Android aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du die App öffnest oder einen Eintrag bearbeitest.</string>
+  <string name="switch_keyboard_on_search_enabled">Hinweis: Du hast App - Sicherheit - Passwortzugriff - Tastaturwechsel - Tastatur wechseln aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du aus dem Browser nach einem Eintrag suchst.</string>
 </resources>
