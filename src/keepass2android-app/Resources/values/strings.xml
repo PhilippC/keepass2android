@@ -330,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
   <string name="QuickUnlockIconHidden16_title">Hide QuickUnlock icon</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requires a notification to work properly. Select this option to display a notification without an icon.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Block entering the QuickUnlock key if the device is not secured by screen lock. This prevents shoulder surfing attacks. Only disable this option if you understand the risk. Note that QuickUnlock can still be used with biometrics.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Block QuickUnlock when device is not secure</string>
   <string name="QuickUnlockLength_title">Length of QuickUnlock key</string>
   <string name="QuickUnlockLength_summary">Maximum number of characters used as QuickUnlock password.</string>
   <string name="QuickUnlockHideLength_title">Hide QuickUnlock length</string>

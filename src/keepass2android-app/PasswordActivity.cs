@@ -1425,18 +1425,20 @@ namespace keepass2android
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
             App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase =
                 (((KeyguardManager)GetSystemService(Context.KeyguardService)!)!).IsDeviceSecure;
+			App.Kp2a.QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase = PreferenceManager.GetDefaultSharedPreferences(this)
+		        .GetBoolean(GetString(Resource.String.QuickUnlockBlockedWhenDeviceNotSecure_key), true);
 
-            if ((_loadDbFileTask != null) &&  (App.Kp2a.OfflineMode != _loadDbTaskOffline))
+            if ((_loadDbFileTask != null) && (App.Kp2a.OfflineMode != _loadDbTaskOffline))
 			{
-                if (App.Kp2a == null)
+				if (App.Kp2a == null)
 					throw new NullPointerException("App.Kp2a");
 				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
 				if (!App.Kp2a.OfflineMode || !_loadDbFileTask.IsCompleted)
 				{
 					//discard the pre-loading task
-					_loadDbFileTask = null;	
+					_loadDbFileTask = null;
 				}
-				
+
 			}
 
 			//avoid password being visible while loading:
