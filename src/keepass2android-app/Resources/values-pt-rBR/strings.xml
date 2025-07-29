@@ -737,6 +737,7 @@
     <item>Melhorias no WebDav: Correção de bug ao listar pastas; Suporte para uploads e transações em blocos</item>
     <item>Adicionado suporte para compartilhamentos de rede Samba/Windows</item>
     <item>Atualizado o FluentFTP e habilitado o suporte para o fluxo GnuTLS, suportando o TLS 1.3 e resolvendo outros problemas de FTPS</item>
+    <item>Updated JSch to support more modern algorithms in SFTP</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Estimativa aprimorada da qualidade da senha, considerando a maioria das senhas populares.</item>
