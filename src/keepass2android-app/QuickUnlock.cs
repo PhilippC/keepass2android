@@ -178,7 +178,7 @@ namespace keepass2android
                 App.Kp2a.Lock(false);
             };
 
-            if (App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase == false)
+            if (App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase == false && App.Kp2a.QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase)
             {
 				FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Gone;
                 FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Visible;
