@@ -332,6 +332,8 @@
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requer uma notificação para funcionar corretamente. Selecione esta opção para exibir uma notificação sem um ícone.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Bloquear a inserção da chave de Desbloqueio Rápido, se o dispositivo não estiver protegido por bloqueio de tela. Isso previne ataques de shoulder surfing. Desative esta opção apenas se você compreender o risco. Observe que o Desbloqueio Rápido ainda pode ser usado com biometria.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Bloquear Desbloqueio Rápido quando o dispositivo não for seguro.</string>
   <string name="QuickUnlockLength_title">Comprimento da senha do QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como senha do QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Esconder o tamanho do código QuickUnlock</string>
@@ -737,7 +739,7 @@
     <item>Melhorias no WebDav: Correção de bug ao listar pastas; Suporte para uploads e transações em blocos</item>
     <item>Adicionado suporte para compartilhamentos de rede Samba/Windows</item>
     <item>Atualizado o FluentFTP e habilitado o suporte para o fluxo GnuTLS, suportando o TLS 1.3 e resolvendo outros problemas de FTPS</item>
-    <item>Updated JSch to support more modern algorithms in SFTP</item>
+    <item>JSch atualizado para suportar algoritmos mais modernos no SFTP.</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Estimativa aprimorada da qualidade da senha, considerando a maioria das senhas populares.</item>
