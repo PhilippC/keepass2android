@@ -352,6 +352,7 @@ namespace keepass2android
 		}
 
 		public bool ScreenLockWasEnabledWhenOpeningDatabase { get; set; }
+		public bool QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase { get; set; }
 
 
         public bool QuickUnlockEnabled { get; private set; }
