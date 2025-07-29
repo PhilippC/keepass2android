@@ -78,21 +78,27 @@ android:paddingLeft="16dp"
 android:paddingRight="16dp"
           android:paddingTop="16dp">
 
-          <TextView
-          android:id="@+id/QuickUnlock_label"
-          android:text="@string/QuickUnlock_label"
+         
+        <LinearLayout
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:layout_below="@id/filename_label"
-          android:textSize="14sp"
-        />
-        <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
+          android:orientation="vertical"
           android:id="@+id/QuickUnlockForm">
 
-         
+          <TextView
+            android:id="@+id/QuickUnlock_label"
+            android:text="@string/QuickUnlock_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/filename_label"
+            android:textSize="14sp"
+          />
+
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
 
           <EditText
             android:inputType="textPassword"
@@ -117,8 +123,8 @@ android:paddingRight="16dp"
                                     android:src="@drawable/baseline_fingerprint_24"
                                     android:scaleType="fitXY"
                                     android:background="?android:selectableItemBackground" />
-          
-            
+
+          </LinearLayout>
 
         </LinearLayout>
 
