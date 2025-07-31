@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Disabilita lo Sblocco Biometrico</string>
   <string name="enable_fingerprint_unlock">Abilita lo Sblocco Biometrico completo</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo Sblocco Biometrico per QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">QuickUnlock basato su password non disponibile</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock utilizzando una parte della password è bloccato perché il blocco schermo non è attivo sul dispositivo. Questo comportamento è per proteggerti nel caso in cui qualcuno ti stia guardando digitare la chiave di QuickUnlock.</string>
   <string name="fingerprint_unlock_failed">Sblocco biometrico fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Inserisci il codice QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Chiudi il database</string>
+  <string name="enable_screen_lock">Abilita blocco schermo</string>
   <string name="QuickUnlockDefaultEnabled_title">Abilita QuickUnlock come impostazione predefinita</string>
   <string name="QuickUnlockDefaultEnabled_summary">Indica se QuickUnlock è attivato per default o no.</string>
   <string name="ViewDatabaseSecure_title">Proteggi la visibilità dei dati</string>
@@ -327,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock purtroppo non funziona senza visualizzare un\'icona di notifica. Seleziona questa opzione per utilizzare un\'icona trasparente.</string>
   <string name="QuickUnlockIconHidden16_title">Nascondi l\'icona QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock necessita di una notifica per funzionare correttamente. Seleziona questa opzione per visualizzare una notifica senza icona.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Blocca l\'inserimento del testo QuickUnlock se il dispositivo non è protetto dal blocco schermo. In questo modo si evitano gli attacchi di shoulder surfing. Disabilita questa opzione solo se comprendi il rischio. Nota che QuickUnlock può ancora essere usato con la biometrica.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blocca QuickUnlock quando il dispositivo non è sicuro</string>
   <string name="QuickUnlockLength_title">Lunghezza della chiave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numero massimo di caratteri utilizzati come QuickUnlock password.</string>
   <string name="QuickUnlockHideLength_title">Nascondi la lunghezza di QuickUnlock</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">Dimmi di più!</string>
   <string name="no_thanks">No, non mi piace più di tanto</string>
   <string name="enter_http_login_title">Inserisci i dati di accesso WebDav:</string>
+  <string name="enter_smb_login_title">Inserisci i dati di accesso Samba:</string>
   <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL della cartella o del file (es: 192.168.1.10/share/cartella/)</string>
+  <string name="hint_smb_domain">Dominio utente di Samba</string>
+  <string name="hint_smb_username">Nome utente Samba</string>
   <string name="enter_owncloud_login_title">Inserisci i dati di accesso OwnCloud:</string>
   <string name="hint_owncloud_url">URL di OwnCloud (esempio: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Inserisci i dati di accesso Nextcloud:</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
