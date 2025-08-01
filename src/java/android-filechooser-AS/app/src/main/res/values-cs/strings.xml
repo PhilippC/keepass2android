@@ -56,7 +56,7 @@
     <string name="afc_title_sort_by">Řadit podle…</string>
     <string name="afc_yesterday">Včera</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="one">Vybrat složku…</item>
+        <item quantity="one">Vyberte složku…</item>
         <item quantity="few">Vyberte složky…</item>
         <item quantity="many">Vyberte složky…</item>
         <item quantity="other">Vyberte složky…</item>
