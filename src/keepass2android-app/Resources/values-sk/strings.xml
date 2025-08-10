@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Vypnúť biometrické odomykanie</string>
   <string name="enable_fingerprint_unlock">Zapnúť úplné biometrické odomykanie</string>
   <string name="enable_fingerprint_quickunlock">Zapnúť biometrické odomykanie pre rýchle odomknutie</string>
+  <string name="password_based_quick_unlock_not_available">Rýchle odomknutie na základe hesla nie je dostupné</string>
+  <string name="password_based_quick_unlock_not_available_text">Rýchle odomknutie pomocou časti hesla je zablokované, pretože na zariadení nie je aktívne uzamknutie obrazovky. Je to kvôli vašej ochrane v prípade, že by vás niekto sledoval pri zadávaní kľúča na rýchle odomknutie.</string>
   <string name="fingerprint_unlock_failed">Biometrické odomykanie zlyhalo. Systém Android zneplatnil dešifrovací kľúč. Stáva sa to vtedy, keď sa zmenia bezpečnostné nastavenia/biometrická autentifikácia. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Odomknutie databázy bolo neúspešné: neplatný kompozitný kľúč. Biometrické odomykanie sa vyplo, pretože uložené primárne heslo už nie je zrejme platné. </string>
   <string name="fingerprint_reenable">Pre nové primárne heslo opäť zapnite biometrické odomykanie.</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Zadajte kód QuickUnlock:</string>
   <string name="QuickUnlock_button">Rýchle odomknutie!</string>
   <string name="QuickUnlock_lockButton">Zatvoriť databázu</string>
+  <string name="enable_screen_lock">Zapnúť uzamknutie obrazovky</string>
   <string name="QuickUnlockDefaultEnabled_title">Zapnúť rýchle odomknutie</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, či je rýchle odomknutie štandardne zapnuté alebo nie.</string>
   <string name="ViewDatabaseSecure_title">Ochrana zobrazenia databázy</string>
