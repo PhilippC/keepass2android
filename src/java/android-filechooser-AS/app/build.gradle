@@ -4,11 +4,11 @@ android {
 
     namespace 'group.pals.android.lib.ui.filechooser'
 
-    compileSdkVersion 33
+    compileSdkVersion 35
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 33
+        targetSdkVersion 35
     }
 
     buildTypes {
@@ -30,4 +30,5 @@ android {
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "com.google.android.material:material:1.12.0"
 }

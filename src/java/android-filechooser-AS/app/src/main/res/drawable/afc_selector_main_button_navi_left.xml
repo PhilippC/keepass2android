@@ -8,6 +8,9 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/save_icon"/>
-
+    <!-- Disabled -->
+    <item android:state_enabled="false"
+                android:drawable="@drawable/baseline_chevron_left_24_alpha30" />
+    <!-- Default -->
+    <item android:drawable="@drawable/baseline_chevron_left_24" />
 </selector>

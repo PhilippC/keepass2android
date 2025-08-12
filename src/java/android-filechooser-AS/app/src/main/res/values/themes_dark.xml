@@ -16,7 +16,7 @@
     - Actual themes which extend BaseThemeHelpers: contain customizations that are the same for all API levels.
     -->
 
-    <style name="Afc.BaseTheme.Dark" parent="@android:style/Theme"></style>
+    <style name="Afc.BaseTheme.Dark" parent="Theme.Material3.Dark.NoActionBar"></style>
 
     <style name="Afc.BaseThemeHelper.Dark" parent="@style/Afc.BaseTheme.Dark">
         <item name="afc_ic_menu_home">@drawable/afc_ic_menu_home</item>
@@ -39,15 +39,13 @@
         <item name="afc_ic_widget_search_view_action_clear">@drawable/afc_ic_action_clear_dark</item>
     </style>
 
-    <style name="Afc.BaseTheme.Dialog.Dark" parent="@android:style/Theme" />
+    <style name="Afc.BaseTheme.Dialog.Dark" parent="Theme.Material3.Dark.NoActionBar" />
 
     <style name="Afc.BaseThemeHelper.Dialog.Dark" parent="@style/Afc.BaseTheme.Dialog.Dark">
 
-        <!-- AOSP -->
 
         <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/AOSP_DialogWindowTitle</item>
-        <item name="android:windowBackground">@drawable/aosp_dialog_full_holo_dark</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
@@ -81,10 +79,6 @@
 
     <style name="Afc.Theme.Dark" parent="@style/Afc.BaseThemeHelper.Dark">
 
-        <!-- AOSP -->
-
-        <item name="android:windowBackground">@drawable/aosp_background_holo_dark</item>
-
         <!-- android-filechooser -->
 
         <item name="afc_theme_dialog">@style/Afc.Theme.Dialog.Dark</item>
@@ -93,9 +87,9 @@
         <item name="afc_badge_file_provider_localfile">@drawable/afc_badge_file_provider_localfile_light</item>
         <item name="afc_selector_image_button">@drawable/afc_selector_image_button_dark</item>
         <item name="afc_selector_button_location">@drawable/afc_selector_button_location_dark</item>
-        <item name="afc_selector_main_button_navi_left">@drawable/afc_selector_main_button_navi_left_dark</item>
-        <item name="afc_selector_main_button_navi_right">@drawable/afc_selector_main_button_navi_right_dark</item>
-        <item name="afc_selector_button_ok_saveas">@drawable/afc_selector_button_ok_saveas_dark</item>
+        <item name="afc_selector_main_button_navi_left">@drawable/afc_selector_main_button_navi_left</item>
+        <item name="afc_selector_main_button_navi_right">@drawable/afc_selector_main_button_navi_right</item>
+        <item name="afc_selector_button_ok_saveas">@drawable/save_icon</item>
         <item name="afc_selector_action_navi_left_foreground">@drawable/afc_selector_action_navi_left_dark_foreground</item>
         <item name="afc_selector_action_navi_right_foreground">@drawable/afc_selector_action_navi_right_dark_foreground</item>
         <item name="afc_color_listview_cache_hint">@color/afc_listview_cache_hint_dark</item>
@@ -109,8 +103,8 @@
         <item name="afc_badge_file_provider_localfile">@drawable/afc_badge_file_provider_localfile_light</item>
         <item name="afc_selector_image_button">@drawable/afc_selector_image_button_dark</item>
         <item name="afc_selector_button_location">@drawable/afc_selector_button_location_dark</item>
-        <item name="afc_selector_main_button_navi_left">@drawable/afc_selector_main_button_navi_left_dark</item>
-        <item name="afc_selector_main_button_navi_right">@drawable/afc_selector_main_button_navi_right_dark</item>
+        <item name="afc_selector_main_button_navi_left">@drawable/afc_selector_main_button_navi_left</item>
+        <item name="afc_selector_main_button_navi_right">@drawable/afc_selector_main_button_navi_right</item>
         <item name="afc_selector_button_ok_saveas">@drawable/afc_selector_button_ok_saveas_dark</item>
         <item name="afc_selector_action_navi_left_foreground">@drawable/afc_selector_action_navi_left_dark_foreground</item>
         <item name="afc_selector_action_navi_right_foreground">@drawable/afc_selector_action_navi_right_dark_foreground</item>

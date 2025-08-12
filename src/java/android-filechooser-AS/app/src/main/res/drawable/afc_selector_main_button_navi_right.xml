@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Disabled -->
+    <item android:state_enabled="false"
+                android:drawable="@drawable/baseline_chevron_right_24_alpha30" />
+    <!-- Default -->
+    <item android:drawable="@drawable/baseline_chevron_right_24" />
+</selector>
