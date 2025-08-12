@@ -732,7 +732,6 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav-Verbesserungen: Fehlerbehebung für die Ordnerauflistung; Unterstützung für chunked Uploads und Transaktionen</item>
     <item>Unterstützung für Samba/Windows-Netzwerkfreigaben hinzugefügt</item>
-    <item>FluentFTP aktualisiert und Unterstützung für GnuTLS Stream aktiviert, TLS 1.3 wird unterstützt und andere FTPS Probleme gelöst</item>
     <item>Updated JSch to support more modern algorithms in SFTP</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
