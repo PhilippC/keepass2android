@@ -734,8 +734,7 @@
   <string-array name="ChangeLog_1_14_net">
     <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>
     <item>Přidána podpora pro Sambu/síťové sdílení Windows</item>
-    <item>Aktualizován FluentFTP a povolena podpora pro GnuTLS stream, podporující TLS 1.3 a řešící další problémy FTPS</item>
-    <item>Aktualizován JSch pro podporu modernějších algoritmů v SFTP</item>
+    <item>Updated JSch to support more modern algorithms in SFTP</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Vylepšené hodnocení kvality hesel založené na nejčastěji používaných heslech.</item>
