@@ -734,7 +734,7 @@
   <string-array name="ChangeLog_1_14_net">
     <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>
     <item>Přidána podpora pro Sambu/síťové sdílení Windows</item>
-    <item>Updated JSch to support more modern algorithms in SFTP</item>
+    <item>Aktualizován JSch pro podporu modernějších algoritmů v SFTP</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Vylepšené hodnocení kvality hesel založené na nejčastěji používaných heslech.</item>
