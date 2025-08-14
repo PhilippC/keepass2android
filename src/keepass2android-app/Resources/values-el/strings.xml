@@ -247,7 +247,7 @@
   <string name="sort_db">Ταξινόμηση κατά ημερομηνία δημιουργίας</string>
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
-  <string name="special">Ειδικό</string>
+  <string name="special">Ειδικοί χαρακτήρες</string>
   <string name="special_extended">Εκτεταμένοι Ειδικοί</string>
   <string name="at_least_one_from_each_group">Τουλάχιστον ένα από κάθε ομάδα</string>
   <string name="exclude_lookalike">Εξαίρεση παρόμοιων χαρακτήρων</string>
