@@ -330,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock ne fonctionne malheureusement pas sans afficher une icône de notification. Sélectionnez cette option pour utiliser une icône transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Masquer l\'icône QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock nécessite une notification pour travailler correctement. Sélectionnez cette option pour afficher une notification sans icône.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Empêche de renseigner la clé de déverrouillage rapide si l\'appareil n\'est pas protégé par un écran de verrouillage. Cela protège des regards par-dessus l\'épaule. Désactivez cette option seulement si vous en comprenez les risques.  Notez que le déverrouillage rapide peut toujours être utilisé avec la biométrie.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Empêcher le déverrouillage rapide lorsque l\'appareil n\'est pas sécurisé</string>
   <string name="QuickUnlockLength_title">Longueur de la clé QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Nombre maximal de caractères utilisés comme mot de passe QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Masquer la longueur du code QuickUnlock</string>
@@ -734,7 +736,7 @@
   <string-array name="ChangeLog_1_14_net">
     <item>Améliorations de WebDav : Correction d\'un bogue pour l\'énumération des dossiers ; prise en charge des téléchargements et des transactions par morceaux.</item>
     <item>Ajout de la prise en charge des partages réseau Samba/Windows</item>
-    <item>Updated JSch to support more modern algorithms in SFTP</item>
+    <item>Mise à jour de JSch pour supporter des algorithmes plus récents en SFTP</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Estimation de la qualité du mot de passe améliorée en tenant compte des mots de passe les plus populaires.</item>
