@@ -1164,7 +1164,6 @@ namespace keepass2android.Io
                     DriveItem.CreateFromDiscriminatorValue
                 );
 
-                // Use WithUrl() to hit that endpoint
                 var parentId = uploadedItem.ParentReference.Id;
 
                 var parentItemRequest = new DriveItemRequestBuilder(
