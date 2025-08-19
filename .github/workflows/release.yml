@@ -136,7 +136,23 @@ jobs:
     - name: List apks
       run:  find . -type f -name "*.apk"
       shell: bash
-      
+
+    - name: Rename apks
+      # after updating to .net9, the naming scheme of the output apks has changed. rename them to the old scheme
+      # for consistancy with previous releases
+      run: |
+        for apk in src/keepass2android-app/bin/Release/net9.0-android/android-*/publish/*-Signed.apk; do
+          [ -e "$apk" ] || continue # if glob above doesn't return anything, the loop is still executed once 
+          arch=$(basename "$(dirname "$(dirname "$apk")")")  # e.g. "android-arm64"
+          base=$(basename "$apk" .apk)                      # e.g. "keepass2android.keepass2android_nonet-Signed"
+          mv "$apk" "$(dirname "$apk")/${base}-${arch#android-}.apk"
+        done
+      shell: bash
+
+    - name: List apks
+      run:  find . -type f -name "*.apk"
+      shell: bash        
+        
     - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
       with:
