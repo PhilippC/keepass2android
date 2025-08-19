@@ -1125,9 +1125,58 @@ namespace keepass2android.Io
             }
 
         }
+        public static async Task<DriveItem> GetOrCreateAppRootAsync(GraphServiceClient client, string dummyFileName = "welcome_at_kp2a.txt")
+        {
 
 
-        private async Task<List<FileDescription>> ListShares(OneDrive2ItemLocation<OneDrive2PrefixContainerType> parentPath, GraphServiceClient client)
+            try
+            {
+                return await client.RequestAdapter.SendAsync(
+                    new Microsoft.Graph.Drives.Item.Items.Item.DriveItemItemRequestBuilder(
+                        new Dictionary<string, object> {
+                            { "drive%2Did", "me" },
+                            { "driveItem%2Did", "special/approot" }
+                        },
+                        client.RequestAdapter
+                    ).ToGetRequestInformation(),
+                    static (p) => DriveItem.CreateFromDiscriminatorValue(p)
+                );
+            }
+            catch (Microsoft.Kiota.Abstractions.ApiException ex) when (ex.ResponseStatusCode == 404)
+            {
+                // App folder doesn’t exist yet → create it by uploading a dummy file
+                using var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("init"));
+
+                var uploadRequest = new RequestInformation
+                {
+                    HttpMethod = Method.PUT,
+                    UrlTemplate = "{+baseurl}/me/drive/special/approot:/{filename}:/content",
+                    PathParameters = new Dictionary<string, object>
+                    {
+                        { "baseurl", client.RequestAdapter.BaseUrl },
+                        { "filename", dummyFileName }
+                    },
+                    Content = stream
+                };
+
+                var uploadedItem = await client.RequestAdapter.SendAsync<DriveItem>(
+                    uploadRequest,
+                    DriveItem.CreateFromDiscriminatorValue
+                );
+
+                // Use WithUrl() to hit that endpoint
+                var parentId = uploadedItem.ParentReference.Id;
+
+                var parentItemRequest = new DriveItemRequestBuilder(
+                    $"{client.RequestAdapter.BaseUrl}/me/drive/items/{parentId}",
+                    client.RequestAdapter
+                );
+
+                return await parentItemRequest.GetAsync();
+            }
+        }
+
+        protected virtual async Task<List<FileDescription>> ListShares(OneDrive2ItemLocation<OneDrive2PrefixContainerType> parentPath, GraphServiceClient client)
         {
 
             List<FileDescription> result = [];
@@ -1345,6 +1394,8 @@ namespace keepass2android.Io
 
             }
         }
+        
+        
 
         protected override async Task<string?> GetSpecialFolder(
             OneDrive2ItemLocation<OneDrive2AppFolderPrefixContainer> itemLocation, GraphServiceClient client)
@@ -1363,7 +1414,7 @@ namespace keepass2android.Io
                     Console.WriteLine(e);
                     throw;
                 }
-                
+
 
             }
             return _specialFolderIdByDriveId[itemLocation.DriveId];
@@ -1378,7 +1429,54 @@ namespace keepass2android.Io
         {
             return drive.Name ?? MyOneDriveDisplayName;
         }
+        public static async Task GetOrCreateAppRootAsync(GraphServiceClient client, string dummyFileName = "welcome_at_kp2a_app_folder.txt")
+        {
 
+
+            try
+            {
+                await client.RequestAdapter.SendAsync(
+                    new Microsoft.Graph.Drives.Item.Items.Item.DriveItemItemRequestBuilder(
+                        new Dictionary<string, object> {
+                            { "drive%2Did", "me" },
+                            { "driveItem%2Did", "special/approot" }
+                        },
+                        client.RequestAdapter
+                    ).ToGetRequestInformation(),
+                    static (p) => DriveItem.CreateFromDiscriminatorValue(p)
+                );
+                //if this is successful, approot seems to exist
+            }
+            catch (Microsoft.Kiota.Abstractions.ApiException ex) when (ex.ResponseStatusCode == 404)
+            {
+                // App folder doesn’t exist yet → create it by uploading a dummy file
+                using var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("init"));
+
+                var uploadRequest = new RequestInformation
+                {
+                    HttpMethod = Method.PUT,
+                    UrlTemplate = "{+baseurl}/me/drive/special/approot:/{filename}:/content",
+                    PathParameters = new Dictionary<string, object>
+                    {
+                        { "baseurl", client.RequestAdapter.BaseUrl },
+                        { "filename", dummyFileName }
+                    },
+                    Content = stream
+                };
+
+                await client.RequestAdapter.SendAsync<DriveItem>(
+                    uploadRequest,
+                    DriveItem.CreateFromDiscriminatorValue
+                );
+
+            }
+        }
+
+        protected override async Task<List<FileDescription>> ListShares(OneDrive2ItemLocation<OneDrive2AppFolderPrefixContainer> parentPath, GraphServiceClient client)
+        {
+            await GetOrCreateAppRootAsync(client);
+            return await base.ListShares(parentPath, client);
+        }
 
         public override bool CanListShares { get { return false; } }
         protected override string MyOneDriveDisplayName => "Keepass2Android App Folder";
