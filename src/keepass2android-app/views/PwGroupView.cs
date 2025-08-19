@@ -15,14 +15,15 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
-using System;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using keepass2android;
 using KeePassLib;
+using System;
 using Object = Java.Lang.Object;
 
 namespace keepass2android.view
@@ -64,7 +65,20 @@ namespace keepass2android.view
 			_label = (TextView) gv.FindViewById(Resource.Id.group_label);
 			_label.TextSize = size-8;
 
-		    Database db = App.Kp2a.FindDatabaseForElement(pw);
+		    Database db = App.Kp2a.TryFindDatabaseForElement(pw);
+
+            
+            if (db == null)
+            {
+
+                gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = ViewStates.Gone;
+
+                gv.FindViewById(Resource.Id.icon).Visibility = ViewStates.Gone;
+                gv.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+                _textview.Text = "(no data)";
+                _label.Text = "";
+                return;
+            }
 
             gv.FindViewById(Resource.Id.group_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
 

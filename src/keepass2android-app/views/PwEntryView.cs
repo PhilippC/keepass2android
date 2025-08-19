@@ -131,7 +131,15 @@ namespace keepass2android.view
 		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
 		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
-		    _db = App.Kp2a.FindDatabaseForElement(_entry);
+		    _db = App.Kp2a.TryFindDatabaseForElement(_entry);
+            if (_db == null)
+            {
+                ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Gone;
+                _textView.TextFormatted = new SpannableString("(no data)");
+                _textviewDetails.Visibility = ViewStates.Gone;
+                _textgroupFullPath.Visibility = ViewStates.Gone;
+                return;
+            }
 
             ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
 			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
@@ -207,11 +215,6 @@ namespace keepass2android.view
 
 			//try to get totp data
             UpdateTotp();
-            
-
-           
-                
-
             
 
         }
