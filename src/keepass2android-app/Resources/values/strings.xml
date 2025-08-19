@@ -741,6 +741,11 @@
   <string name="webdav_chunked_upload_size_title">Chunk size for WebDav upload</string>
   <string name="webdav_chunked_upload_size_summary">Size of chunks when uploading to WebDav servers in bytes. Use 0 to disable chunked upload.</string>
 
+  <string-array name="ChangeLog_1_14">
+    <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
+    <item>Minor UI improvements</item>
+  </string-array>
+
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav improvements: Bug fix for listing folders; support for chunked uploads and transactions</item>
     <item>Added support for Samba/Windows network shares</item>
