@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">禁用指纹解锁</string>
   <string name="enable_fingerprint_unlock">启用完整的指纹解锁</string>
   <string name="enable_fingerprint_quickunlock">对快速解锁启用指纹解锁</string>
+  <string name="password_based_quick_unlock_not_available">基于密码的快速解锁不可用</string>
+  <string name="password_based_quick_unlock_not_available_text">使用一部分密码的快速解锁被拦截，因为设备未激活屏幕锁。此行为是以防别人偷看到你输入的快速解锁密码。</string>
   <string name="fingerprint_unlock_failed">指纹解锁失败。解密密钥已被 Android 操作系统标记为失效。这通常发生在注册了新的指纹或更改了安全设置后。 </string>
   <string name="fingerprint_disabled_wrong_masterkey">解锁数据库失败：复合密钥无效。由于存储的主密钥不再有效，指纹解锁已被禁用。 </string>
   <string name="fingerprint_reenable">请为这个新的主密码重新启用指纹解锁。</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">输入快速解锁密码：</string>
   <string name="QuickUnlock_button">快速解锁！</string>
   <string name="QuickUnlock_lockButton">关闭数据库</string>
+  <string name="enable_screen_lock">启用屏幕锁</string>
   <string name="QuickUnlockDefaultEnabled_title">默认启用快速解锁</string>
   <string name="QuickUnlockDefaultEnabled_summary">设定是否在默认情况下启用快速解锁</string>
   <string name="ViewDatabaseSecure_title">数据库保护显示</string>
@@ -327,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">不幸无法显示快速解锁的通知图标。选择此选项可使用一个透明的图标。</string>
   <string name="QuickUnlockIconHidden16_title">隐藏快速锁定图标</string>
   <string name="QuickUnlockIconHidden16_summary">快速解锁需要一条通知以能正常运行。选中本选项以显示一条不带图标的通知。</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">如果未使用屏幕锁保护设备则阻止输入快速解锁密码。这防止有人从背后偷看而知晓密码。请仅在您了解风险的情况下停用该选项。注意仍可以通过生物特征使用快速解锁。</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">设备不安全时拦截快速解锁</string>
   <string name="QuickUnlockLength_title">快速解锁密钥的长度</string>
   <string name="QuickUnlockLength_summary">快速解锁密码的最大长度</string>
   <string name="QuickUnlockHideLength_title">隐藏快速解锁密码长度</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">愿闻其详</string>
   <string name="no_thanks">不，我不是那么喜欢。</string>
   <string name="enter_http_login_title">输入 WebDav 登录数据：</string>
+  <string name="enter_smb_login_title">输入 Samba 登录数据：</string>
   <string name="hint_http_url">文件夹或文件 URL（如: mycloud.me.com/webdav/）</string>
+  <string name="hint_smb_url">文件夹或者文件的 URL（例如：192.168.1.10/share/folder/）</string>
+  <string name="hint_smb_domain">Samba 用户的域名</string>
+  <string name="hint_smb_username">Samba 用户名</string>
   <string name="enter_owncloud_login_title">输入 OwnCloud 登录信息:</string>
   <string name="hint_owncloud_url">OwnCloud 地址 (例如: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">输入 Nextcloud 登录信息：</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba （Windows 共享）</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -719,7 +729,9 @@
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
+  <string name="hint_smb_credentials">如果要从个人 Windows 计算机访问文件，请将计算机名或本地 IP 地址用作主机 URL；输入计算机名作为域名，Windows 登录名（经常和微软账户名相同）作为用户名和密码。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string name="webdav_chunked_upload_size_title">WebDav 上传的块大小</string>
   <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器时字节为单位的块大小。0 表示停用分块上传。</string>
   <string-array name="ChangeLog_1_12">
     <item>Upgraded from Xamarin Android to .net 8</item>
