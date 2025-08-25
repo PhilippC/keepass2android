@@ -720,6 +720,7 @@
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
+  <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器时字节为单位的块大小。0 表示停用分块上传。</string>
   <string-array name="ChangeLog_1_12">
     <item>Upgraded from Xamarin Android to .net 8</item>
     <item></item>
