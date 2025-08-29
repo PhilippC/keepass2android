@@ -321,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Angiv Hurtigoplåsningskoden:</string>
   <string name="QuickUnlock_button">Hurtigoplåsning!</string>
   <string name="QuickUnlock_lockButton">Luk database</string>
+  <string name="enable_screen_lock">Aktivér skærmlås</string>
   <string name="QuickUnlockDefaultEnabled_title">Aktivér som standard Hurtigoplåsning</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definerer, om Hurtigoplåsning som standard er aktiv eller ej.</string>
   <string name="ViewDatabaseSecure_title">Beskyt databasevisning</string>
@@ -329,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">Hurtigoplåsning fungerer desværre ikke uden visning af et notificeringsikon. Vælg denne indstilling for at benytte et gennemsigtigt ikon.</string>
   <string name="QuickUnlockIconHidden16_title">Skjul Hurtigoplåsningsikon</string>
   <string name="QuickUnlockIconHidden16_summary">Hurtigoplåsning kræver en notifikationsinstans for at fungere korrekt. Vælg denne indstilling for at vise en notifikation uden ikon.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Blokér indtastning af QuickUnlock-nøglen, hvis enheden ikke er sikret med skærmlås. Dette forhindrer skulder-surfing angreb. Deaktivér kun denne indstilling, hvis man forstår risikoen. Bemærk, at QuickUnlock stadig kan bruges med biometri.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blokér QuickUnlock, når enheden ikke er sikker</string>
   <string name="QuickUnlockLength_title">Længde af Hurtigoplåsningsnøgle</string>
   <string name="QuickUnlockLength_summary">Maks. antal tegn benyttet som adgangskode til Hurtigoplåsning.</string>
   <string name="QuickUnlockHideLength_title">Skjul Hurtigoplåsningskodens længde</string>
@@ -403,6 +406,14 @@
   <string name="ShowSeparateNotifications_summary">Vis separate notifikationer for kopiering af brugernavn og adgangskode til Udklipsholder og tastaturaktivering.</string>
   <string name="AccServiceAutoFill_prefs">AutoUdfyld-tilgængelighedtjeneste</string>
   <string name="AutoFill_prefs">AutoUdfyld-tjeneste</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Når en indtastning autoudfyldes med TOTP, vis indtastningsnotifikationen med en Kopiér TOTP-knap</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Vis indtastningsnotifikation</string>
+  <string name="AutoFillTotp_prefs_title">Autofyld ved TOTP-indtastninger</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Kopiér TOTP til udklipsholder</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Når en indtastning autoudfyldes med TOTP, kopiér TOTP til udklipsholderen</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Når en indtastning autoudfyldes med TOTP, aktivér det indbyggede tastatur. Tastaturet har en TOTP-knap.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Aktivér indbygget tastatur</string>
+  <string name="TotpCopiedToClipboard">TOTP kopieret til udklipsholder</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A-tastaturnotifikation</string>
   <string name="ShowKp2aKeyboardNotification_summary">Gør fuld indtastning tilgængelig via KP2A-tastaturet (anbefalet).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Skift tastatur</string>
@@ -419,6 +430,7 @@
   <string name="ShowUnlockedNotification_summary">Vis et notifikationsikon mens databasen er oplåst.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 introducerer en ny notifikationsadfærd. Vil du skjule ikonet for Keepass2Android-notifikationer, så opsæt dette via systemindstillingerne. Sæt vigtigheden af notifikationskategorien til Minimum.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Åbn indstillinger</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android kan vise en systemnotifikation, mens database ikke er låst. Tildel tilladelse, for at dette kan fungere.</string>
   <string name="DontCare">Jeg er ligeglad</string>
   <string name="DocumentAccessRevoked">Filen er ikke længere tilgængelig for KP2A. Enten er den fjernet eller adgangstilladelserne er tilbagekaldt. Genåbn filen, f.eks. via Skift database.</string>
   <string name="PreloadDatabaseEnabled_title">Præindlæs databasefil</string>
@@ -495,7 +507,11 @@
   <string name="ok_donate">Fortæl mig mere!</string>
   <string name="no_thanks">Nej, så meget synes jeg ikke om den</string>
   <string name="enter_http_login_title">Angiv WebDav-login:</string>
+  <string name="enter_smb_login_title">Angiv SFTP-logindata:</string>
   <string name="hint_http_url">URL til mappe eller fil (f.eks.: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL til mappe eller fil (f.eks. 192.168.1.10/share/mappe/)</string>
+  <string name="hint_smb_domain">Samba-brugers domæne</string>
+  <string name="hint_smb_username">Samba-brugernavn</string>
   <string name="enter_owncloud_login_title">Angiv OwnCloud-login:</string>
   <string name="hint_owncloud_url">OwnCloud-URL (f.eks.: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Angiv NextCloud-login:</string>
@@ -503,9 +519,27 @@
   <string name="hint_sftp_host">vært (f.eks.: 192.168.0.1)</string>
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Startmappe (valgfri):</string>
+  <string name="connect_timeout">Forbindelsestimeout sekunder (valgfrit)</string>
   <string name="enter_sftp_login_title">Angiv SFTP-login:</string>
   <string name="sftp_auth_mode">Godkendelsestilstand</string>
   <string name="send_public_key">Send offentlig nøgle...</string>
+  <string name="select_private_keyfile">Vælg privat nøgle...</string>
+  <string name="hint_sftp_key_name">Nyt nøglenavn</string>
+  <string name="hint_sftp_key_content">Nyt nøgleindhold</string>
+  <string name="private_key_saved">Privat nøgle gemt</string>
+  <string name="private_key_save_failed">MISLYKKEDES for at gemme privat nøgle: %1$s</string>
+  <string name="private_key_info">Angiv nøglenavn og -indhold for at gemme</string>
+  <string name="private_key_delete">Privat nøgle slettet: %1$s</string>
+  <string name="private_key_delete_failed">MISLYKKEDES for at slette privat nøgle: %1$s</string>
+  <string name="save_key">Gem Privat nøgle</string>
+  <string name="delete_key">Slet Privat nøgle</string>
+  <string name="private_key_select">Vælg Privat nøgle</string>
+  <string name="private_key_create_new">[Tilføj ny...]</string>
+  <string name="hint_sftp_key_passphrase">Nøglekodesætning (valgfrit)</string>
+  <string name="sftp_kex_title">Nøgleudveksling (KEX) algoritme(r) (valgfrit)</string>
+  <string name="hint_sftp_kex">Kommaseparerede navne/specifikation</string>
+  <string name="sftp_shk_title">Server Host Key algoritme(r) (valgfrit)</string>
+  <string name="hint_sftp_shk">Kommaseparerede navne/specifikation</string>
   <string name="enter_ftp_login_title">Angiv FTP-login:</string>
   <string name="enter_mega_login_title">Indtast dine login-data til din MEGA-konto:</string>
   <string name="select_storage_type">Vælg lagerpladstype:</string>
@@ -515,15 +549,19 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows-share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-mappe)</string>
   <string name="filestoragehelp_dropboxKP2A">Vil du ikke give KP2A adgang til din fulde Dropbox, kan du vælge denne indstilling. Den vil kun anmode om at tilgå mappen Apps/Keepass2Android. Dette er især egnet til oprettelse af en ny database. Har du allerede en database, så tryk på denne valgmulighed for at oprette mappen, dernæst placere din fil inde i mappen (fra din PC) og så vælge denne muilghed igen for at åbne filen.</string>
   <string name="filestoragename_gdrive">Google Drev</string>
+  <string name="filestoragehelp_gdrive">Bemærk: Google begrænser adgangen til Google Drev via apps for flere og flere brugere. Fungerer den indbyggede implementering af Google Drev ikke, benyt i stedet Systemfilvælgeren og vælg herfra Google Drev!</string>
   <string name="filestoragename_gdriveKP2A">Google Drev (KP2A filer)</string>
   <string name="filestoragehelp_gdriveKP2A">Hvis du ikke ønsker at give KP2A adgang til hele dit Google Drev, kan du vælge denne mulighed. Bemærk, at du skal oprette en databasefil først, eksisterende filer er ikke synlige for appen. Du kan enten vælge denne mulighed fra skærmen Opret database eller, hvis du allerede har åbnet en database, ved at vælge muligheden for at eksportere databasen.</string>
+  <string name="filestoragename_pcloud">PCloud (KP2A-mappe)</string>
   <string name="filestoragehelp_pcloud">Denne lagringstype vil kun anmode om adgang til pCloud-mappen \"Applications/Keepass2Android\". Hvis du vil benytte en eksisterende database fra din pCloud-konto, skal du sørge for, at filen er placeret i denne pCloud-mappe.</string>
+  <string name="filestoragename_pcloudall">PCloud (fuld adgang)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alle filer og delte filer</string>
@@ -569,12 +607,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Benyt KeeChallenge-plugin\'et i KeePass 2.x (PC) for opsætning af din database til brug med udfordringssvar!</string>
   <string name="ErrorUpdatingChalAuxFile">Fejl under opdatering af OTP-hjælpefil!</string>
   <string name="TrayTotp_SeedField_title">TOTP Seed-feltnavn</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Benytter du Keepass 2-plugin\'et \"TrayTotp\" med ikke-standardindstillinger, skal du angive feltnavnet til seed-feltet hér jf. indstillingerne på PC\'en.</string>
   <string name="TrayTotp_SettingsField_title">TOTP-indstillingsfeltnavn</string>
   <string name="TrayTotp_SettingsField_summary">Angiv feltnavnet til indstillingsfeltet for TrayTotp hér.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Logfil til fejlfinding</string>
   <string name="DebugLog_title">Benyt logfil</string>
+  <string name="FtpDebug_title">FTP/SFTP-fejlfindingslogning</string>
   <string name="DebugLog_summary">Skriv app-output til en lokal logfil</string>
   <string name="DebugLog_send">Sender fejlfindingslog...</string>
   <string name="loading">Indlæser…</string>
@@ -643,6 +683,24 @@
   <string name="Continue">Fortsæt</string>
   <string name="NoFilenameWarning">Den angivne URI ligner ikke et filnavn. Sikker på, at dette er en gyldig fil?</string>
   <string name="FirstInvalidCompositeKeyError">Ugyldig kombinøgle! Forsøg igen.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Ugyldig kombinøgle! Prøv flg. trin for at oplåse databasen:\n
+  
+    • Tjek, at den korrekte adgangskode er angivet. Benyt øjeikonet til at vise den angivne adgangskodeord.\n
+    • Tjek, at den korrekte adgangskodetype er valgt. Sørg for, at den modsvarer typen, der blev anvendt ved databaseoprettelsen.\n
+    • Tjek, at den korrekte databasefil er valgt.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">\n
+   • Tip: Mener man, at databasefilen muligvis er ødelagt, eller kan man ikke huske masternøglen, efter at have ændret den, kan man prøve den sidste filversion, det lykkedes at åbne, ved at klikke på \"%1$s\" og vælge den lokale sikkerhedskopi.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Tip: Keepass2Android har gemt den senest filversion, det lykkedes at åbne, på den interne lagerplads. Den kan åbnes ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.
+  </string>
+  <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
+    Her er nogle tip, som muligvis hjælper med problemdiagnosticeringen:\n
+    
+    • Kopierede man filen via USB (MTP-tilstand), forsøg igen med et værktøj såsom MyPhoneExplorer. MTP afkorter i visse tilfælde filer.\n
+    • Kan man ikke åbne filen fra samme placering på sin PC, er det meget sandsynligt, at filen faktisk er beskadiget. Benyt da en databasesikkerhedskopi. Mener man, at Keepass2Android har ødelagt filen, kontakt venligst supporten.\n
+    • Kan man fortsat ikke åbne filen på sin PC, kontakt ved supporten. Man kan evt. forsøge at gemme den med forskellige indstillinger (f.eks. ikke-zippet) på PC\'en og igen forsøg at åbne den i KP2A.
+
+  </string>
   <string name="open_other_db">Åbn en anden database…</string>
   <string name="select_database">Vælg database</string>
   <string name="configure_child_dbs">Opsæt underordnet databases…</string>
@@ -669,7 +727,14 @@
   <string name="EntryChannel_name">Indtastningsnotifikationer</string>
   <string name="EntryChannel_desc">Notificering til forenkelse af adgang til den aktuelt valgte indtastning.</string>
   <string name="CloseDbAfterFailedAttempts">Luk database efter tre mislykkede forsøg med biometrisk oplåsning.</string>
+  <string name="hint_smb_credentials">Ønsker man at tilgå filer fra sin personlige Windows-computer, benyt computerens navn eller lokale IP-adresse som værts-URL; angiv computernavnet som domæne og Windows-login\'et (ofte det samme som Microsoft-kontoen) som brugernavn og adgangskode.</string>
   <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
+  <string name="webdav_chunked_upload_size_title">Chunk-størrelse til WebDAV-upload</string>
+  <string name="webdav_chunked_upload_size_summary">Størrelse på chunks  i bytes ved upload til WebDAV-servere. Brug 0 til at deaktivere chunk-type upload.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Opdatering til .net 9 og Target SDK version 35. Dette kommer med gennemsigtig statusbjælke på Android 15, idet kant-til-kant er nu standard.</item>
+    <item>Minor UI improvements</item>
+  </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Fejlrettelse til nedbrud og uventede log-outs</item>
     <item>Skift til ny SFTP-implementering, som understøtter moderne offentlige nøglealgoritmer såsom rsa-sha2-256</item>
@@ -735,6 +800,13 @@
     <item>Fejlrettelser</item>
     <item>Fejlrettelser</item>
   </string-array>
+  <string name="ChangeLog_0_9_7">Version 0.9.7\n
+* skriveunderstøttelse til Keepass 1-databaser (kdb) (beta!)\n
+* bedre skift tilbage til foregående tastatur (fungerer også på ikke-root enheder)\n
+* understøttelse af KeeChallenge med variabel challenge-længder\n
+* forhindrer optagelse af skærmfotos på QuickUnlock- og adgangskodeskærme\n
+* omvendt sorteringsrækkefølge for Sortér efter ændringsdato (nu faldende)\n
+* fejlrettelser: Notatvisninger opdateres nu korrekt efter ændringer, Adgangskodevisninger skjuler nu adgangskoden korrekt på (forhåbentlig) alle enheder, rettet problem, der muliggjorde at tilføje en post to gange, rettet problem med visning af Dublet UUID-advarsel, selv efter udbedring at databasen\n</string>
   <string name="ChangeLog_keptDonate">Udvidet mulighed for donation af en øl eller noget andet</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekunder</item>
