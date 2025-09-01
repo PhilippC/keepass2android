@@ -733,6 +733,10 @@
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
   <string name="webdav_chunked_upload_size_title">Taille du bloc pour le téléchargement WebDav</string>
   <string name="webdav_chunked_upload_size_summary">Taille des morceaux lors du téléchargement vers les serveurs WebDav, en octets. Utilisez 0 pour désactiver le téléchargement par morceaux.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Mise à jour vers .net 9 et Target SDK version 35. Ceci est livré avec une barre d\'état transparente sur Android 15 car le bord à bord est maintenant la valeur par défaut.</item>
+    <item>Améliorations mineures de l\'interface</item>
+  </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Améliorations de WebDav : Correction d\'un bogue pour l\'énumération des dossiers ; prise en charge des téléchargements et des transactions par morceaux.</item>
     <item>Ajout de la prise en charge des partages réseau Samba/Windows</item>
