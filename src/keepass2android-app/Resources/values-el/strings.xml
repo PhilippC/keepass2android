@@ -728,6 +728,10 @@
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με το κύριο συνθηματικό!</string>
   <string name="webdav_chunked_upload_size_title">Μέγεθος ομάδας για μεταφόρτωση WebDav</string>
   <string name="webdav_chunked_upload_size_summary">Μέγεθος ομάδας κατά τη μεταφόρτωση σε διακομιστές WebDav σε bytes. Χρησιμοποιήστε το 0 για να απενεργοποιήσετε την ομαδική μεταφόρτωση.</string>
+  <string-array name="ChangeLog_1_14">
+    <item></item>
+    <item>Minor UI improvements</item>
+  </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Βελτιώσεις στο WebDav: Διόρθωση σφάλματος στη λίστα φακέλων, υποστήριξη για ομαδικές μεταφορτώσεις και δοσοληψίες</item>
     <item>Προστέθηκε υποστήριξη για δικτυακούς πόρους Samba/Windows</item>
