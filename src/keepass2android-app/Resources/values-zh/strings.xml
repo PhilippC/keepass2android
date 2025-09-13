@@ -737,18 +737,28 @@
     <item>更新至 .net 9 和 Target SDK 版本 35。这在 Android 15 上带有透明状态栏，因为以无边框方式显示现在是默认设置。</item>
     <item>较小的用户界面改进</item>
   </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>WebDav 改进：修复列出文件夹的错误；支持分块上传和事务</item>
+    <item>添加了对 Samba/Windows 网络共享的支持</item>
+    <item>更新了 JSch 以支持 SFTP 中更现代的算法</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>通过考虑最流行的密码，改进了密码质量评估。</item>
+    <item>如果设备未激活屏幕锁，则阻止基于密码的快速解锁（出于安全原因）。</item>
+    <item>更新网络安全配置以禁用明文传输。</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Upgraded from Xamarin Android to .net 8</item>
     <item></item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
+    <item>升级到 Material 3 用户界面</item>
+    <item>改进自动填充以与 Compose 应用配合使用</item>
     <item>修复在自动填充和搜索时主机名的匹配问题</item>
-    <item>Fix issue with password generator</item>
+    <item>修复密码生成器的问题</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
-    <item>Upgraded OneDrive SDK to version 5.68</item>
-    <item>Upgraded Dropbox SDK to version 7.0.0</item>
-    <item>Upgraded Gradle, NewtonsoftJson, FluentFTP, MegaApiClient and okhttp</item>
+    <item>已将 OneDrive SDK 升级到版本 5.68</item>
+    <item>已将 Dropbox SDK 升级到版本 7.0.0</item>
+    <item>升级了 Gradle、NewtonsoftJson、FluentFTP、MegaApiClient 和 okhttp</item>
     <item>修复WebDav中文件选择的错误</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
