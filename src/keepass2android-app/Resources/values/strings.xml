@@ -740,6 +740,8 @@
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
   <string name="webdav_chunked_upload_size_title">Chunk size for WebDav upload</string>
   <string name="webdav_chunked_upload_size_summary">Size of chunks when uploading to WebDav servers in bytes. Use 0 to disable chunked upload.</string>
+  <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
 
   <string-array name="ChangeLog_1_14">
     <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
@@ -752,7 +754,7 @@
     <item>Updated JSch to support more modern algorithms in SFTP</item>
   </string-array>
 
-
+  
   <string-array name="ChangeLog_1_13">
     <item>Improved password quality estimation by considering most popular passwords.</item>
     <item>Block password-based QuickUnlock (for security reasons) if the device does not have a screen lock activated.</item>

@@ -24,7 +24,7 @@ namespace keepass2android.Io
         private readonly IKp2aApp _app;
         private readonly WebDavStorage baseWebdavStorage;
 
-        public WebDavFileStorage(IKp2aApp app, int chunkSize) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler, chunkSize), app)
+        public WebDavFileStorage(IKp2aApp app, int chunkSize, Context appContext) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler, chunkSize, appContext), app)
         {
             _app = app;
             baseWebdavStorage = (WebDavStorage)Jfs;

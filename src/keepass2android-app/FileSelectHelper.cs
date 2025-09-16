@@ -403,7 +403,7 @@ namespace keepass2android
 #if !NoNet
         private static WebDavStorage CreateWebdavStorage(Activity activity)
         {
-            return new WebDavStorage(App.Kp2a.CertificateErrorHandler, App.Kp2a.WebDavChunkedUploadSize);
+            return new WebDavStorage(App.Kp2a.CertificateErrorHandler, App.Kp2a.WebDavChunkedUploadSize, App.Context);
         }
 #endif
         private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)

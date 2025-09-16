@@ -4,7 +4,6 @@ import android.content.Context;
 import java.math.BigInteger;
 import android.content.Intent;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -16,6 +15,9 @@ import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 
+import okhttp3.Interceptor;
+import okhttp3.Response;
+import okhttp3.Request;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -43,7 +45,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import keepass2android.javafilestorage.ConnectionInfo;
 import keepass2android.javafilestorage.webdav.DecoratedHostnameVerifier;
 import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
@@ -51,22 +52,41 @@ import keepass2android.javafilestorage.webdav.WebDavUtil;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.internal.tls.OkHostnameVerifier;
 import okio.BufferedSink;
 
 public class WebDavStorage extends JavaFileStorageBase {
+
+
+    public class CleartextBlockInterceptor implements Interceptor {
+        private final boolean permitCleartext;
+
+        public CleartextBlockInterceptor(Context context) {
+            this.permitCleartext = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("permit_cleartext_traffic", false);
+        }
+
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+
+            if (!permitCleartext && request.url().scheme().equals("http")) {
+                throw new IOException("Cleartext HTTP is disabled by user preference. Go to app settings/File handling if you really want to use HTTP.");
+            }
+
+            return chain.proceed(request);
+        }
+    }
 
     private final ICertificateErrorHandler mCertificateErrorHandler;
     private Context appContext;
 
     int chunkSize;
 
-    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler, int chunkSize)
+    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler, int chunkSize, Context appContext)
     {
         this.chunkSize = chunkSize;
+        this.appContext = appContext;
 
         mCertificateErrorHandler = certificateErrorHandler;
     }
@@ -189,6 +209,7 @@ public class WebDavStorage extends JavaFileStorageBase {
             builder.readTimeout(25, TimeUnit.SECONDS);
             builder.writeTimeout(25, TimeUnit.SECONDS);
         }
+        builder.addInterceptor(new CleartextBlockInterceptor(appContext));
 
         OkHttpClient client =  builder.build();
 
@@ -630,7 +651,6 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     @Override
     public void prepareFileUsage(Context appContext, String path) {
-        this.appContext = appContext;
 
     }
 
