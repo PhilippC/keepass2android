@@ -19,7 +19,7 @@ namespace keepass2android.Io
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 	public class WebDavFileStorage: JavaFileStorage
 	{
-		public WebDavFileStorage(IKp2aApp app) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler), app)
+		public WebDavFileStorage(IKp2aApp app, Context appContext) : base(new Keepass2android.Javafilestorage.WebDavStorage(app.CertificateErrorHandler, appContext), app)
 		{
 		}
 

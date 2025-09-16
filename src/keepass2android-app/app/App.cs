@@ -847,7 +847,7 @@ namespace keepass2android
 						    new OneDrive2AppFolderFileStorage(),
                             new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
 							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
-							new WebDavFileStorage(this),
+							new WebDavFileStorage(this, App.Context),
 							new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
                             new PCloudFileStorageAll(LocaleManager.LocalizedAppContext, this),
                             new MegaFileStorage(App.Context),

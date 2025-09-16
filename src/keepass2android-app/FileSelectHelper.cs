@@ -319,7 +319,7 @@ namespace keepass2android
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.httpcredentials, null);
 		    if (!defaultPath.EndsWith(_schemeSeparator))
 		    {
-		        var webdavStorage = new Keepass2android.Javafilestorage.WebDavStorage(App.Kp2a.CertificateErrorHandler);
+		        var webdavStorage = new Keepass2android.Javafilestorage.WebDavStorage(App.Kp2a.CertificateErrorHandler, App.Context);
 		        var connInfo = webdavStorage.SplitStringToConnectionInfo(defaultPath);
 		        dlgContents.FindViewById<EditText>(Resource.Id.http_url).Text = connInfo.Url;
 		        dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text = connInfo.Username;
@@ -339,7 +339,7 @@ namespace keepass2android
 										  string scheme = defaultPath.Substring(0, defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
 										  if (host.Contains(_schemeSeparator) == false)
 											  host = scheme + _schemeSeparator + host;
-										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(host, user,
+										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null, App.Context).BuildFullPath(host, user,
 																										  password);
 										  onStartBrowse(httpPath);
 									  });
@@ -518,7 +518,7 @@ namespace keepass2android
 										  string scheme = defaultPath.Substring(0,defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
 										  if (host.Contains(_schemeSeparator) == false)
 											  host = scheme + _schemeSeparator + host;
-										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host, subtype == "owncloud" ? WebDavFileStorage.owncloudPrefix : WebDavFileStorage.nextcloudPrefix), user,
+										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null, App.Context).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host, subtype == "owncloud" ? WebDavFileStorage.owncloudPrefix : WebDavFileStorage.nextcloudPrefix), user,
 																										  password);
 										  onStartBrowse(httpPath);
 									  });

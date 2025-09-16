@@ -52,6 +52,14 @@
 		android:defaultValue="@bool/PreloadDatabaseEnabled_default"
 		android:title="@string/PreloadDatabaseEnabled_title"
 		android:key="@string/PreloadDatabaseEnabled_key" />
+
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/cleartextTrafficPermitted_summary"
+		android:defaultValue="false"
+		android:title="@string/cleartextTrafficPermitted_title"
+		android:key="@string/cleartextTrafficPermitted_key" />
 	<CheckBoxPreference
 		android:enabled="true"
 		android:persistent="true"
@@ -80,5 +88,4 @@
 		android:defaultValue="true"
 		android:title="@string/CheckForDuplicateUuids_title"
 		android:key="@string/CheckForDuplicateUuids_key" />
-
 </PreferenceScreen>
