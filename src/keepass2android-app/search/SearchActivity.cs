@@ -54,6 +54,7 @@ namespace keepass2android
 			base.OnCreate(bundle);
 			AppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 			SetContentView(Resource.Layout.search);
+			new Util.InsetListener(FindViewById(Resource.Id.search_container)).Apply();
 			SearchParameters sp = new SearchParameters();
 			PopulateCheckBox(Resource.Id.cbSearchInTitle, sp.SearchInTitles);
 			PopulateCheckBox(Resource.Id.cbSearchInUsername, sp.SearchInUserNames);

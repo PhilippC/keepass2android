@@ -8,7 +8,8 @@
     android:layout_marginBottom="12dip"
     android:layout_marginLeft="12dip"
     android:layout_marginRight="12dip"
-    android:layout_marginTop="12dip">
+    android:layout_marginTop="12dip"
+    android:id="@+id/fingerprint_setup_container">
     <TextView
         android:id="@+id/tvFatalError"
         android:text="@string/fingerprint_os_error"
