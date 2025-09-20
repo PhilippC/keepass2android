@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Disabilita lo Sblocco Biometrico</string>
   <string name="enable_fingerprint_unlock">Abilita lo Sblocco Biometrico completo</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo Sblocco Biometrico per QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">QuickUnlock basato su password non disponibile</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock utilizzando una parte della password è bloccato perché il blocco schermo non è attivo sul dispositivo. Questo comportamento è per proteggerti nel caso in cui qualcuno ti stia guardando digitare la chiave di QuickUnlock.</string>
   <string name="fingerprint_unlock_failed">Sblocco biometrico fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
@@ -255,8 +257,8 @@
   <string name="hint_wordseparator">Separatore parole</string>
   <string-array name="PasswordGeneratorModes">
     <item>Password</item>
-    <item>Frase segreta</item>
-    <item>Frase segreta + Password</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
   </string-array>
   <string-array name="PasswordGeneratorCaseModes">
     <item>minuscolo</item>
@@ -298,11 +300,11 @@
   <string name="RememberRecentFiles_title">Ricorda i database</string>
   <string name="RememberRecentFiles_summary">Ricorda i database aperti di recente e visualizzali nella schermata Apri database.</string>
   <string name="NoDalVerification_title">Nessuna verifica DAL</string>
-  <string name="NoDalVerification_summary">Disabilita il controllo se i pacchetti di dominio e applicazione corrispondono</string>
+  <string name="NoDalVerification_summary">Disabilita il controllo se il dominio e il pacchetto dell\'app corrispondono</string>
   <string name="InlineSuggestions_title">Integra con la tastiera</string>
   <string name="InlineSuggestions_summary">Mostra i suggerimenti di completamento automatico come opzioni in linea sulla tastiera (se supportato dal metodo di inserimento)</string>
-  <string name="LogAutofillView_title">Visualizza log autocompilazione</string>
-  <string name="LogAutofillView_summary">Scrivi i dettagli sulla visualizzazione del riempimento automatico per il log di debug (se il log di debug è abilitato). Questi dettagli possono essere inviati allo sviluppatore se il riempimento automatico non funziona come previsto.</string>
+  <string name="LogAutofillView_title">Log di riempimento automatico</string>
+  <string name="LogAutofillView_summary">Scrive i dettagli sulla visualizzazione del riempimento automatico nel registro di debug (se il registro di debug è abilitato). Questi dettagli possono essere inviati allo sviluppatore se il riempimento automatico non funziona come previsto.</string>
   <string name="requires_android11">Richiede Android 11 o versioni successive</string>
   <string name="kp2a_findUrl">Trova password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Inserisci il codice QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Chiudi il database</string>
+  <string name="enable_screen_lock">Abilita blocco schermo</string>
   <string name="QuickUnlockDefaultEnabled_title">Abilita QuickUnlock come impostazione predefinita</string>
   <string name="QuickUnlockDefaultEnabled_summary">Indica se QuickUnlock è attivato per default o no.</string>
   <string name="ViewDatabaseSecure_title">Proteggi la visibilità dei dati</string>
@@ -327,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock purtroppo non funziona senza visualizzare un\'icona di notifica. Seleziona questa opzione per utilizzare un\'icona trasparente.</string>
   <string name="QuickUnlockIconHidden16_title">Nascondi l\'icona QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock necessita di una notifica per funzionare correttamente. Seleziona questa opzione per visualizzare una notifica senza icona.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Blocca l\'inserimento del testo QuickUnlock se il dispositivo non è protetto dal blocco schermo. In questo modo si evitano gli attacchi di shoulder surfing. Disabilita questa opzione solo se comprendi il rischio. Nota che QuickUnlock può ancora essere usato con la biometrica.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blocca QuickUnlock quando il dispositivo non è sicuro</string>
   <string name="QuickUnlockLength_title">Lunghezza della chiave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numero massimo di caratteri utilizzati come QuickUnlock password.</string>
   <string name="QuickUnlockHideLength_title">Nascondi la lunghezza di QuickUnlock</string>
@@ -353,10 +358,10 @@
   <string name="add_extra_string">Aggiungi campo</string>
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Chiave segreta</string>
-  <string name="totp_encoding_rfc6238">Impostazioni predefinite del gettone RFC6238</string>
+  <string name="totp_encoding_rfc6238">Impostazioni predefinite del token RFC6238</string>
   <string name="totp_encoding_steam">Impostazioni token di Steam</string>
-  <string name="totp_encoding_custom">Impostazioni del gettone personalizzate</string>
-  <string name="totp_time_step">Passo temporale</string>
+  <string name="totp_encoding_custom">Impostazioni token personalizzate</string>
+  <string name="totp_time_step">Intervallo di tempo</string>
   <string name="totp_length">Lunghezza del codice</string>
   <string name="totp_scan">Scansiona codice QR</string>
   <string name="delete_extra_string">Elimina campo</string>
@@ -401,11 +406,11 @@
   <string name="ShowSeparateNotifications_summary">Mostra notifiche separate per la copia di nome utente e password nella clipboard e per l\'attivazione della tastiera.</string>
   <string name="AccServiceAutoFill_prefs">Servizio Accessibilità per Compilazione automatica</string>
   <string name="AutoFill_prefs">Servizio di Compilazione automatica</string>
-  <string name="AutoFillTotp_prefs_ShowNotification_summary">Quando si riempie automaticamente (autofill) una voce con TOTP, mostrare la notifica di immissione con un pulsante Copia TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Quando si riempie automaticamente una voce con TOTP, mostra la notifica della voce con un pulsante Copia TOTP</string>
   <string name="AutoFillTotp_prefs_ShowNotification_title">Mostra notifica voce</string>
   <string name="AutoFillTotp_prefs_title">Riempimento automatico per le voci TOTP</string>
-  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiare TOTP negli Appunti</string>
-  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Quando si completa una voce con TOTP, copiare il TOTP negli appunti</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copia TOTP negli appunti</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Quando si riempie automaticamente una voce con TOTP, copiare il TOTP negli appunti</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Quando si riempie una voce con TOTP, attivare la tastiera integrata. La tastiera ha un pulsante TOTP.</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Attiva tastiera integrata</string>
   <string name="TotpCopiedToClipboard">TOTP copiato negli appunti</string>
@@ -425,7 +430,7 @@
   <string name="ShowUnlockedNotification_summary">Visualizza un\'icona di notifica quando il database è sbloccato.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 ha introdotto un nuovo comportamento per le notifiche. Se vuoi nascondere l\'icona per le notifiche di Keepass2Android, devi configurarlo nelle impostazioni di sistema. Imposta a Minimo l\'importanza della categoria delle notifiche.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Apri le impostazioni</string>
-  <string name="PostNotificationsPermissionInfo_text">Keepass2Android può visualizzare una notifica di sistema mentre il database non è bloccato. Per far si che funzioni devi concedergli il permesso.</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android può visualizzare una notifica di sistema mentre il database non è bloccato. Affinché funzioni, concedi l\'autorizzazione.</string>
   <string name="DontCare">Non mi importa</string>
   <string name="DocumentAccessRevoked">Il file non è più accessibile da Keepass2Android. O è stato rimosso, o sono state revocate le autorizzazioni di accesso. Si prega di riaprire il file, ad esempio utilizzando Cambia database.</string>
   <string name="PreloadDatabaseEnabled_title">Precarica il file di database</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">Dimmi di più!</string>
   <string name="no_thanks">No, non mi piace più di tanto</string>
   <string name="enter_http_login_title">Inserisci i dati di accesso WebDav:</string>
+  <string name="enter_smb_login_title">Inserisci i dati di accesso Samba:</string>
   <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL della cartella o del file (es: 192.168.1.10/share/cartella/)</string>
+  <string name="hint_smb_domain">Dominio utente di Samba</string>
+  <string name="hint_smb_username">Nome utente Samba</string>
   <string name="enter_owncloud_login_title">Inserisci i dati di accesso OwnCloud:</string>
   <string name="hint_owncloud_url">URL di OwnCloud (esempio: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Inserisci i dati di accesso Nextcloud:</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -715,7 +725,24 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
+  <string name="hint_smb_credentials">Se desideri accedere ai file del tuo computer Windows personale, usa il nome del computer o l\'indirizzo IP locale come URL host; digita il nome del computer come dominio e il login di Windows (spesso lo stesso dell\'account Microsoft) come nome utente e password.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string name="webdav_chunked_upload_size_title">Dimensione del blocco per il caricamento WebDav</string>
+  <string name="webdav_chunked_upload_size_summary">Dimensione dei blocchi durante il caricamento sui server WebDav in byte. Utilizzare 0 per disabilitare il caricamento in blocchi.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
+    <item>Miglioramenti minori dell\'interfaccia utente</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Miglioramenti WebDav: correzione di bug per l\'elenco delle cartelle; supporto per caricamenti e transazioni in blocchi</item>
+    <item>Aggiunto il supporto per le condivisioni di rete Samba/Windows</item>
+    <item>JSch aggiornato per supportare algoritmi più moderni in SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Migliorata la stima della qualità delle password prendendo in considerazione le password più diffuse.</item>
+    <item>Blocco di QuickUnlock basato su password (per motivi di sicurezza) se il dispositivo non ha un blocco schermo attivato.</item>
+    <item>Aggiornato la configurazione di sicurezza della rete per disabilitare il trasferimento di testo in chiaro.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Aggiornato da Xamarin Android a .net 8</item>
     <item>Aggiornato a Target SDK 34</item>
@@ -1177,4 +1204,5 @@ Prima release pubblica
   <string name="autoswitch_enabled_but_not_setup">Nota: Hai abilitato App - Impostazioni - Accesso password - Cambio di tastiera - Tastiera automatica, ma non sembra essere configurata correttamente.</string>
   <string name="switch_keyboard_for_totp_enabled">Nota: Hai abilitato App - Accesso password - Servizio di autocompilazione - Autocompilazione per le voci TOTP. Questo può causare la visualizzazione di questa finestra quando si apre una voce con un TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Nota: Hai abilitato App - Sicurezza - Usa la tastiera integrata all\'interno di Keepass2Android. Questo può causare la visualizzazione di questa finestra quando si apre l\'app o si modifica una voce.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: hai abilitato App - Sicurezza - Accesso tramite password - Cambio tastiera - Cambia tastiera. Questa finestra potrebbe essere visualizzata quando cerchi una voce dal browser.</string>
 </resources>

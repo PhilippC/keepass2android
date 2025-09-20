@@ -303,7 +303,7 @@
   <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
   <string name="InlineSuggestions_title">Integrovat s klávesnicí</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického doplňování jako možnosti na klávesnici (pokud je podporováno metodou vstupu)</string>
-  <string name="LogAutofillView_title">Zahrnout obrazovky automatického doplňování do protokolu</string>
+  <string name="LogAutofillView_title">Zobrazit v protokolu Automatické vyplňování</string>
   <string name="LogAutofillView_summary">Zahrne detaily o obrazovkách, kde byly detekovány prostory pro automatické dopňování, do protokolu (pokud je zapnut protokolovací soubor). Tyto detaily mohou být zaslány vývojáři pokud automatické doplňování nefunguje správně.</string>
   <string name="requires_android11">Vyžaduje Android 11 nebo novější</string>
   <string name="kp2a_findUrl">Najít heslo</string>
@@ -330,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">Rychlé odemknutí bohužel nefunguje bez zobrazení ikony upozornění. Vyberte tuto možnost, pokud chcete použít průhlednou ikonu.</string>
   <string name="QuickUnlockIconHidden16_title">Skrýt ikonu Rychlého odemknutí</string>
   <string name="QuickUnlockIconHidden16_summary">Rychlé odemknutí vyžaduje notifikace pro správnou funkčnost. Vyberte tuto možnost, chcete-li zobrazit notifikaci bez ikony.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Zablokujte zadávání klíče pro rychlé odemknutí, pokud zařízení není zabezpečeno zámkem obrazovky. Tím se zabrání útokům typu „shoulder surfing“. Tuto možnost deaktivujte pouze v případě, že rozumíte rizikům. Upozorňujeme, že funkci rychlé odemknutí lze i nadále používat s biometrickými údaji.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blokovat rychlé odemknutí, když zařízení není zabezpečené</string>
   <string name="QuickUnlockLength_title">Délka klíče pro Rychlé odemknutí</string>
   <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro Rychlé odemknutí.</string>
   <string name="QuickUnlockHideLength_title">Schovej délku kódu pro Rychlé odemknutí</string>
@@ -729,9 +731,14 @@
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
   <string name="webdav_chunked_upload_size_title">Velikost bloku pro nahrávání přes WebDav</string>
   <string name="webdav_chunked_upload_size_summary">Velikost bloků při nahrávání na servery WebDav v bajtech. Použijte hodnotu 0 pro deaktivaci nahrávání po blocích.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Aktualizace na .net 9 a cílovou verzi SDK 35. To přináší průhledný stavový řádek v systému Android 15, protože nyní je výchozím nastavením režim od okraje k okraji.</item>
+    <item>Drobná vylepšení uživatelského rozhraní</item>
+  </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>
     <item>Přidána podpora pro Sambu/síťové sdílení Windows</item>
+    <item>Aktualizován JSch pro podporu modernějších algoritmů v SFTP</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Vylepšené hodnocení kvality hesel založené na nejčastěji používaných heslech.</item>
