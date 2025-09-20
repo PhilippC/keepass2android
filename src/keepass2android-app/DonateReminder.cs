@@ -53,126 +53,7 @@ namespace keepass2android
 		static IEnumerable<Reminder> GetReminders()
 		{
 			
-			yield return new Reminder
-			{
-				From = new DateTime(2017, 09, 16),
-				To = new DateTime(2017, 09, 25),
-				Key = "DonationOktoberfest2017b"//b because year was incorrectly set to 2015 in 0.9.8b
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(2017, 09, 25),
-				To = new DateTime(2017, 10, 04),
-				Key = "DonationOktoberfest2017b-2"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(2018, 09, 22),
-				To = new DateTime(2018, 09, 30),
-				Key = "DonationOktoberfest2018b"//b because year was incorrectly set to 2015 in 0.9.8b
-					,ResourceToShow = Resource.Layout.donate
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(2018, 09, 30),
-				To = new DateTime(2018, 10, 08),
-				Key = "DonationOktoberfest2018b-2"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-
-			yield return new Reminder
-			{
-				From = new DateTime(2019, 09, 21),
-				To = new DateTime(2019, 09, 30),
-				Key = "DonationOktoberfest2019"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(2019, 09, 30),
-				To = new DateTime(2019, 10, 07),
-				Key = "DonationOktoberfest2019-2"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-
-			yield return new Reminder
-			{
-				From = new DateTime(2020, 09, 19),
-				To = new DateTime(2020, 09, 26),
-				Key = "DonationOktoberfest2020"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(2020, 09, 26),
-				To = new DateTime(2020, 10, 05),
-				Key = "DonationOktoberfest2020-2"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-
-			yield return new Reminder
-			{
-				From = new DateTime(2021, 09, 18),
-				To = new DateTime(2021, 09, 26),
-				Key = "DonationOktoberfest2021"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(2021, 09, 26),
-				To = new DateTime(2021, 10, 04),
-				Key = "DonationOktoberfest2021-2"
-					,
-				ResourceToShow = Resource.Layout.donate
-			};
-
-            yield return new Reminder
-            {
-                From = new DateTime(2022, 09, 17),
-                To = new DateTime(2022, 09, 25),
-                Key = "DonationOktoberfest2022"
-                ,
-                ResourceToShow = Resource.Layout.donate
-            };
-
-            yield return new Reminder
-            {
-                From = new DateTime(2022, 09, 25),
-                To = new DateTime(2022, 10, 04),
-                Key = "DonationOktoberfest2022-2"
-                ,
-                ResourceToShow = Resource.Layout.donate
-            };
-
-
-            yield return new Reminder
-            {
-                From = new DateTime(2023, 09, 16),
-                To = new DateTime(2023, 09, 25),
-                Key = "DonationOktoberfest2023"
-                ,
-                ResourceToShow = Resource.Layout.donate
-            };
-
-            yield return new Reminder
-            {
-                From = new DateTime(2023, 09, 25),
-                To = new DateTime(2023, 10, 04),
-                Key = "DonationOktoberfest2023-2"
-                ,
-                ResourceToShow = Resource.Layout.donate
-            };
-
+			
             yield return new Reminder
             {
                 From = new DateTime(2024, 09, 21),
@@ -192,10 +73,108 @@ namespace keepass2android
             };
 
 
+            yield return new Reminder
+            {
+                From = new DateTime(2025, 09, 20),
+                To = new DateTime(2025, 09, 28),
+                Key = "DonationOktoberfest2025-1"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2025, 09, 28),
+                To = new DateTime(2025, 10, 07),
+                Key = "DonationOktoberfest2025-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+
+            yield return new Reminder
+            {
+                From = new DateTime(2026, 09, 19),
+                To = new DateTime(2026, 09, 28),
+                Key = "DonationOktoberfest2026-1"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2026, 09, 28),
+                To = new DateTime(2026, 10, 06),
+                Key = "DonationOktoberfest2026-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2027, 09, 18),
+                To = new DateTime(2027, 09, 26),
+                Key = "DonationOktoberfest2027-1"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2027, 09, 26),
+                To = new DateTime(2027, 10, 05),
+                Key = "DonationOktoberfest2027-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+
+            yield return new Reminder
+            {
+                From = new DateTime(2028, 09, 16),
+                To = new DateTime(2028, 09, 26),
+                Key = "DonationOktoberfest2028-1"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            yield return new Reminder
+            {
+                From = new DateTime(2028, 09, 26),
+                To = new DateTime(2028, 10, 05),
+                Key = "DonationOktoberfest2028-2"
+                ,
+                ResourceToShow = Resource.Layout.donate
+            };
+
+            if (DateTime.Now.Year > 2028)
+            {
+                yield return new Reminder
+                {
+                    From = new DateTime(DateTime.Now.Year, 09, 20),
+                    To = new DateTime(DateTime.Now.Year, 09, 26),
+                    Key = $"DonationOktoberfest{DateTime.Now.Year}-1"
+                    ,
+                    ResourceToShow = Resource.Layout.donate
+                };
+
+                yield return new Reminder
+                {
+                    From = new DateTime(DateTime.Now.Year, 09, 26),
+                    To = new DateTime(DateTime.Now.Year, 10, 08),
+                    Key = $"DonationOktoberfest{DateTime.Now.Year}-2"
+                    ,
+                    ResourceToShow = Resource.Layout.donate
+                };
+            }
 
 
 
-			int thisYear = DateTime.Now.Year;
+
+
+
+
+            int thisYear = DateTime.Now.Year;
 			
 			yield return new Reminder
 			{
