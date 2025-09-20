@@ -729,8 +729,10 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
   <string name="webdav_chunked_upload_size_title">Dimensione del blocco per il caricamento WebDav</string>
   <string name="webdav_chunked_upload_size_summary">Dimensione dei blocchi durante il caricamento sui server WebDav in byte. Utilizzare 0 per disabilitare il caricamento in blocchi.</string>
+  <string name="cleartextTrafficPermitted_title">Consenti il traffico di rete in chiaro in WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">Le connessioni HTTP non sono sicure. Abilita questa opzione solo se hai altre misure di sicurezza in atto.</string>
   <string-array name="ChangeLog_1_14">
-    <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
+    <item>Aggiornato a .net 9 e Target SDK versione 35. Su Android 15 è disponibile una barra di stato trasparente, perché la visualizzazione bordo-a-bordo è ora predefinita.</item>
     <item>Miglioramenti minori dell\'interfaccia utente</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
