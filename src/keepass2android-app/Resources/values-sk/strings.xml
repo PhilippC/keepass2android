@@ -733,6 +733,8 @@
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
   <string name="webdav_chunked_upload_size_title">Veľkosť bloku pre upload WebDav</string>
   <string name="webdav_chunked_upload_size_summary">Veľkosť blokov pri odosielaní na servery WebDav, v bajtoch. Ak chcete vypnúť odosielanie blokov, zadajte hodnotu 0.</string>
+  <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
   <string-array name="ChangeLog_1_14">
     <item>Aktualizácia na .net 9 a Target SDK verzie 35. Pribudol priehľadný stavový riadok v systéme Android 15, pretože predvolený režim je edge-to-edge.</item>
     <item>Menšie vylepšenia používateľského rozhrania</item>

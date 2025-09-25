@@ -332,6 +332,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung, um ordnungsgemäß zu funktionieren. Diese Option wählen, um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Die Eingabe des QuickUnlock-Schlüssels blockieren, wenn das Gerät nicht durch eine Bildschirmsperre gesichert ist. Dies verhindert Shoulder-Surfing-Angriffe. Diese Option nur deaktivieren, wenn man sich über das Risiko im Klaren ist. Hinweis: QuickUnlock kann weiterhin mit biometrischen Daten verwendet werden.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">QuickUnlock blockieren, wenn Gerät nicht sicher ist</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Passwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
@@ -729,10 +731,16 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
   <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes. Verwende 0, um den Upload in Chunks zu deaktivieren.</string>
+  <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Aktualisierung auf .NET 9 und Target SDK Version 35. Dies umfasst eine transparente Statusleiste in Android 15, da nun „Edge-to-Edge” die Standardeinstellung ist.</item>
+    <item>Kleinere UI-Verbesserungen</item>
+  </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav-Verbesserungen: Fehlerbehebung für die Ordnerauflistung; Unterstützung für chunked Uploads und Transaktionen</item>
     <item>Unterstützung für Samba/Windows-Netzwerkfreigaben hinzugefügt</item>
-    <item>Updated JSch to support more modern algorithms in SFTP</item>
+    <item>JSch wurde aktualisiert, um aktuellere Algorithmen in SFTP zu unterstützen</item>
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Verbesserte Einschätzung der Passwortqualität, indem die beliebtesten Passwörter berücksichtigt werden.</item>
