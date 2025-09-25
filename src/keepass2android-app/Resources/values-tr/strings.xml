@@ -404,7 +404,10 @@
   <string name="AutoFill_prefs">Otomatik Doldurma Hizmeti</string>
   <string name="AutoFillTotp_prefs_ShowNotification_summary">Bir girişi TOTP ile otomatik doldururken, giriş bildirimini TOTP Kopyala düğmesiyle göster</string>
   <string name="AutoFillTotp_prefs_ShowNotification_title">Giriş bildirimlerini göster</string>
+  <string name="AutoFillTotp_prefs_title">TOTP girişleri için otomatik doldurma</string>
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">TOTP \'yi panoya kopyala</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Bir girişi TOTP ile otomatik olarak doldururken, TOTP\'yi panoya kopyalayın.</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">TOTP ile bir girişi otomatik olarak doldururken, yerleşik klavyeyi etkinleştirin. Klavyede bir TOTP düğmesi vardır.</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Yerleşik klavyeyi etkinleştir</string>
   <string name="TotpCopiedToClipboard">TOTP panoya kopyalandı</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A klavye bildirimi</string>
@@ -500,8 +503,11 @@
   <string name="ok_donate">Daha fazla bilgi ver!</string>
   <string name="no_thanks">Hayır, çok hoşuma gitmiyor</string>
   <string name="enter_http_login_title">WebDav oturum açma verilerini girin:</string>
+  <string name="enter_smb_login_title">Samba oturum açma verilerini girin:</string>
   <string name="hint_http_url">Klasör veya dosyanın URL (örn: mycloud.me.com/webdav/)</string>
   <string name="hint_smb_url">Klasör veya dosyanın URL\'si (örn: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Samba kullanıcısının etki alanı</string>
+  <string name="hint_smb_username">Samba kullanıcı adı</string>
   <string name="enter_owncloud_login_title">OwnCloud oturum açma verilerini girin:</string>
   <string name="hint_owncloud_url">OwnCloud URL (örn: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Nextcloud oturum açma verilerini girin:</string>
@@ -525,6 +531,11 @@
   <string name="delete_key">Özel Anahtarı Sil</string>
   <string name="private_key_select">Özel anahtarı seç</string>
   <string name="private_key_create_new">[Yeni Ekle...]</string>
+  <string name="hint_sftp_key_passphrase">Anahtar parolası (isteğe bağlı)</string>
+  <string name="sftp_kex_title">Anahtar Değişimi (KEX) Algoritması/Algoritmaları (isteğe bağlı)</string>
+  <string name="hint_sftp_kex">Virgülle ayrılmış isimler/özellikler</string>
+  <string name="sftp_shk_title">Sunucu Anahtar Algoritması/Algoritmaları (isteğe bağlı)</string>
+  <string name="hint_sftp_shk">Virgülle ayrılmış isimler/özellikler</string>
   <string name="enter_ftp_login_title">FTP oturum açma verilerini girin:</string>
   <string name="enter_mega_login_title">MEGA hesap bilgilerinizi girin:</string>
   <string name="select_storage_type">Depolama türünü seçin:</string>
@@ -534,12 +545,14 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Paylaşımı)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox(KP2A Klasörü)</string>
   <string name="filestoragehelp_dropboxKP2A">Dropbox heabınıza tam erişim vermek istemiyorsanız, bu seçeneği seçebilirsiniz. Keepass2Android sadece klasör erişimi isteyecek. Özellikle yeni bir veritabanı oluştururken bu uygundur. Bir veritabanınız varsa, klasör oluşturmak için bu seçeneği seçin ve dosyanızı oluşan klasöre taşıyın (bilgisayardan). Dosyayı açmak için bu seçeneği tekrar seçin.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Lütfen dikkat: Google, giderek daha fazla kullanıcı için uygulamalardan Google Drive\'a erişimi kısıtlamaktadır. Yerleşik Google Drive uygulaması çalışmazsa, lütfen bunun yerine Sistem dosya seçiciyi kullanın ve orada Google Drive\'ı seçin!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A dosyaları)</string>
   <string name="filestoragehelp_gdriveKP2A">KP2A\'ya tam Google Drive\'ınıza erişim izni vermek istemiyorsanız, bu seçeneği belirleyebilirsiniz.  Önce bir veritabanı dosyası oluşturmanız gerektiğini unutmayın, mevcut dosyalar uygulama tarafından görülmez.  Ya veritabanı oluştur ekranından bu seçeneği seçin ya da zaten bir veritabanı açtıysanız, bu seçeneği seçerek veritabanını dışa aktarın.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A klasörü)</string>
@@ -597,6 +610,7 @@
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Hata ayıklama günlük dosyası</string>
   <string name="DebugLog_title">Günlük dosyası kullan</string>
+  <string name="FtpDebug_title">FTP/SFTP hata ayıklama günlüğü</string>
   <string name="DebugLog_summary">Uygulama çıktısını yerel bir günlük dosyasına yazın</string>
   <string name="DebugLog_send">Hata ayıklama günlüğü gönder...</string>
   <string name="loading">Yükleniyor…</string>
@@ -665,6 +679,25 @@
   <string name="Continue">Devam Et</string>
   <string name="NoFilenameWarning">Girdiğiniz URI bir dosya adı gibi görünmüyor. Bunun geçerli bir dosya olduğundan emin misin?</string>
   <string name="FirstInvalidCompositeKeyError">Geçersiz anahtar! Lütfen yeniden deneyin.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Geçersiz anahtar! Veri tabanını açmak için lütfen aşağıdaki adımları deneyin:\n
+  
+    • Doğru parola girdiğinizden emin olun. Girilen paroladan emin olmak için göz simgesini kullanın.\n
+   • Doğru parola tipini seçtiğinizden emin olun. Veri tabanı oluşturulurken kullanılan tipe uyduğundan emin olun.\n
+   • Doğru veri tabanı dosyasını seçtiğinizden emin olun.
+ </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+   • İpucu: Veritabanı dosyanız bozulduysa veya ana anahtarınızı değiştirdikten sonra hatırlamıyorsanız, \"%1$s\" dokunarak başarıyla açılan son yerel yedeklemenizi kullanmayı deneyebilirsiniz.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    • İpucu: Keepass2Android başarıyla açılan son dosya sürümünü dahili hafızaya kaydeder.  \"%1$s\" öğesine tıklayıp yerel yedeği seçerek açabilirsiniz.
+  </string>
+  <string name="CorruptDatabaseHelp">    Dosya bozulmuş. \n
+    Sorunu teşhis etmek için size yardımcı olabilecek bazı ipuçları:\n
+    
+    • Dosyayı usb üzerinden (MTP-Modu) yüklediyseniz, MyPhoneExplorer gibi bir araçla yeniden deneyin.\n
+    • Aynı dosyayı bilgisayarınızda da açamıyorsanız, muhtemelen dosya bozulmuştur. Lütfen bir veritabanı yedeğini kullanın. Eğer dosyayı Keepass2Android programının bozduğunu düşünüyorsanız, desteğe başvurun.\n
+    • Aynı dosyayı bilgisayaranızda açabiliyorsanız, desteğe başvurun. Dosyayı farklı ayarlarla (örn. zipden çıkarılmış şekilde) kaydedebilir ve Keepass2Android ile yeniden açmayı deneyebilirsiniz.
+
+  </string>
   <string name="open_other_db">Başka bir veritabanı açın…</string>
   <string name="select_database">Veritabanını seçin</string>
   <string name="configure_child_dbs">Alt veritabanlarını yapılandır…</string>
