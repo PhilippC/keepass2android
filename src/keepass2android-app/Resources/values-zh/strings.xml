@@ -732,7 +732,7 @@
   <string name="hint_smb_credentials">如果要从个人 Windows 计算机访问文件，请将计算机名或本地 IP 地址用作主机 URL；输入计算机名作为域名，Windows 登录名（经常和微软账户名相同）作为用户名和密码。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
   <string name="webdav_chunked_upload_size_title">WebDav 上传的块大小</string>
-  <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器时字节为单位的块大小。0 表示停用分块上传。</string>
+  <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器时字节为单位的块大小。</string>
   <string-array name="ChangeLog_1_14">
     <item>更新至 .net 9 和 Target SDK 版本 35。这在 Android 15 上带有透明状态栏，因为以无边框方式显示现在是默认设置。</item>
     <item>较小的用户界面改进</item>

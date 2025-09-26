@@ -59,25 +59,6 @@ import okio.BufferedSink;
 public class WebDavStorage extends JavaFileStorageBase {
 
 
-    public class CleartextBlockInterceptor implements Interceptor {
-        private final boolean permitCleartext;
-
-        public CleartextBlockInterceptor(Context context) {
-            this.permitCleartext = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("permit_cleartext_traffic", false);
-        }
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-
-            if (!permitCleartext && request.url().scheme().equals("http")) {
-                throw new IOException("Cleartext HTTP is disabled by user preference. Go to app settings/File handling if you really want to use HTTP.");
-            }
-
-            return chain.proceed(request);
-        }
-    }
-
     private final ICertificateErrorHandler mCertificateErrorHandler;
     private Context appContext;
 
@@ -165,7 +146,12 @@ public class WebDavStorage extends JavaFileStorageBase {
     //client to be reused (connection pool/thread pool). We're building a custom client for each ConnectionInfo in getClient for actual usage
     final OkHttpClient baseClient = new OkHttpClient();
 
-    private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
+    private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, IOException {
+
+        if (ci.URL.startsWith("http://") && !PreferenceManager.getDefaultSharedPreferences(appContext).getBoolean("permit_cleartext_traffic", false))
+        {
+            throw new IOException("Cleartext HTTP is disabled by user preference. Go to app settings/File handling if you really want to use HTTP.");
+        }
 
 
         OkHttpClient.Builder builder = baseClient.newBuilder();
@@ -209,7 +195,7 @@ public class WebDavStorage extends JavaFileStorageBase {
             builder.readTimeout(25, TimeUnit.SECONDS);
             builder.writeTimeout(25, TimeUnit.SECONDS);
         }
-        builder.addInterceptor(new CleartextBlockInterceptor(appContext));
+
 
         OkHttpClient client =  builder.build();
 
@@ -318,18 +304,13 @@ public class WebDavStorage extends JavaFileStorageBase {
             }
             else
             {
-                requestBody = new MultipartBody.Builder()
-                    .addPart(RequestBody.create(data, MediaType.parse("application/binary")))
-                    .build();
+                requestBody = RequestBody.create(data, MediaType.parse("application/binary"));
             }            
-
 
             Request request = new Request.Builder()
                     .url(new URL(ci.URL))
                     .put(requestBody)
                     .build();
-
-
 
             Response response = getClient(ci).newCall(request).execute();
             checkStatus(response);
