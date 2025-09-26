@@ -730,7 +730,6 @@
   <string name="hint_smb_credentials">Pokud chcete přistupovat k souborům z vašeho osobního počítače se systémem Windows, použijte jako adresu hostitele název počítače nebo místní IP adresu; jako doménu zadejte název počítače a jako uživatelské jméno a heslo zadejte přihlašovací údaje do systému Windows (často stejné jako pro váš účet Microsoft).</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
   <string name="webdav_chunked_upload_size_title">Velikost bloku pro nahrávání přes WebDav</string>
-  <string name="webdav_chunked_upload_size_summary">Velikost bloků při nahrávání na servery WebDav v bajtech. Použijte hodnotu 0 pro deaktivaci nahrávání po blocích.</string>
   <string-array name="ChangeLog_1_14">
     <item>Aktualizace na .net 9 a cílovou verzi SDK 35. To přináší průhledný stavový řádek v systému Android 15, protože nyní je výchozím nastavením režim od okraje k okraji.</item>
     <item>Drobná vylepšení uživatelského rozhraní</item>
