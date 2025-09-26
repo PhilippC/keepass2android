@@ -732,7 +732,6 @@
   <string name="hint_smb_credentials">Si vous voulez accéder aux fichiers depuis votre ordinateur personnel Windows, utilisez le nom de l\'ordinateur ou l\'adresse IP locale comme URL d\'hôte ; entrez le nom de l\'ordinateur en tant que domaine et la connexion Windows (souvent le même que votre compte Microsoft) que le nom d\'utilisateur et le mot de passe.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
   <string name="webdav_chunked_upload_size_title">Taille du bloc pour le téléchargement WebDav</string>
-  <string name="webdav_chunked_upload_size_summary">Taille des morceaux lors du téléchargement vers les serveurs WebDav, en octets. Utilisez 0 pour désactiver le téléchargement par morceaux.</string>
   <string-array name="ChangeLog_1_14">
     <item>Mise à jour vers .net 9 et Target SDK version 35. Ceci est livré avec une barre d\'état transparente sur Android 15 car le bord à bord est maintenant la valeur par défaut.</item>
     <item>Améliorations mineures de l\'interface</item>
