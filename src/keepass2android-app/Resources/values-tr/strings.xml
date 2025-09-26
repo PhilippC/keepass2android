@@ -731,7 +731,6 @@
   <string name="hint_smb_credentials">Kişisel Windows bilgisayarınızdaki dosyalara erişmek istiyorsanız, bilgisayar adını veya yerel IP adresini ana bilgisayar URL\'si olarak kullanın; bilgisayar adını etki alanı olarak ve Windows oturum açma bilgilerini (genellikle Microsoft hesabınızla aynıdır) kullanıcı adı ve parola olarak girin.</string>
   <string name="WarnFingerprintInvalidated">Uyarı! Örneğin cihaz ayarlarınıza yeni bir parmak izi ekledikten sonra, biyometrik kimlik doğrulama Android tarafından geçersiz kılınabilir. Ana şifrenizle her zaman kilidin nasıl açılacağını bildiğinizden emin olun!</string>
   <string name="webdav_chunked_upload_size_title">WebDav yüklemesi için parça boyutu</string>
-  <string name="webdav_chunked_upload_size_summary">WebDav sunucularına yükleme sırasında parçaların boyutu (bayt cinsinden). Parçalı yüklemeyi devre dışı bırakmak için 0 kullanın.</string>
   <string name="cleartextTrafficPermitted_title">WebDav\'da düz metin ağ trafiğine izin ver</string>
   <string name="cleartextTrafficPermitted_summary">HTTP bağlantıları güvenli değildir. Yalnızca başka güvenlik önlemleri uyguluyorsanız bunu etkinleştirin.</string>
   <string-array name="ChangeLog_1_14">
