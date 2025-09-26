@@ -45,13 +45,20 @@
 		android:title="@string/UseFileTransactions_title"
 		android:key="@string/UseFileTransactions_key" />
 
-  <EditTextPreference
-    android:key="WebDavChunkedUploadSize_str"
-    android:title="@string/webdav_chunked_upload_size_title"
-    android:summary="@string/webdav_chunked_upload_size_title"
-		android:defaultValue="@integer/WebDavChunkedUploadSize_default"
-    android:inputType="number"
-     />
+	<CheckBoxPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/webdav_chunked_upload_enabled_summary"
+		android:defaultValue="false"
+		android:title="@string/webdav_chunked_upload_enabled_title"
+		android:key="WebDavChunkedUploadEnabled" />
+		<EditTextPreference
+			android:key="WebDavChunkedUploadSize_str"
+			android:title="@string/webdav_chunked_upload_size_title"
+			android:summary="@string/webdav_chunked_upload_size_summary"
+			android:defaultValue="@integer/WebDavChunkedUploadSize_default"
+			android:inputType="number"
+			android:dependency="WebDavChunkedUploadEnabled" />
 
 	<CheckBoxPreference
 		android:enabled="true"

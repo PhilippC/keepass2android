@@ -1339,16 +1339,31 @@ namespace keepass2android
         }
 
 
-        public int WebDavChunkedUploadSize
-        {
-            get
-            {
-                return int.Parse(PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
-                    .GetString("WebDavChunkedUploadSize_str",
-                        LocaleManager.LocalizedAppContext.Resources
-                            .GetInteger(Resource.Integer.WebDavChunkedUploadSize_default).ToString()));
-            }
-        }
+		/// <summary>
+		/// Returns the chunk size to be used for WebDav chunked uploads. 0 if chunked uploads are disabled.
+		/// </summary>
+		/// Note that NextCloud implements a non-standard chunked upload mechanism which is not compatible to other WebDav servers.
+		/// This is why this setting is disabled by default.
+		public int WebDavChunkedUploadSize
+		{
+			get
+			{
+				try
+				{
+					if (!PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
+						.GetBoolean("WebDavChunkedUploadEnabled", false))
+						return 0;
+					return int.Parse(PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
+					.GetString("WebDavChunkedUploadSize_str",
+						LocaleManager.LocalizedAppContext.Resources
+							.GetInteger(Resource.Integer.WebDavChunkedUploadSize_default).ToString()));
+				}
+				catch
+				{
+					return 0;
+				}
+			}
+		}
     }
 
 

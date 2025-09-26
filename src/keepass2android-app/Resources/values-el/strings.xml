@@ -727,7 +727,7 @@
   <string name="hint_smb_credentials">Αν θέλετε να αποκτήσετε πρόσβαση σε αρχεία από τον προσωπικό σας υπολογιστή με Windows, χρησιμοποιήστε το όνομα του υπολογιστή ή την τοπική διεύθυνση IP ως URL υποδοχής. Εισάγετε το όνομα υπολογιστή ως domain και τα στοιχεία του Windows login (συχνά ίδια με το λογαριασμό Microsoft) ως όνομα χρήστη και  συνθηματικό.</string>
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με το κύριο συνθηματικό!</string>
   <string name="webdav_chunked_upload_size_title">Μέγεθος ομάδας για μεταφόρτωση WebDav</string>
-  <string name="webdav_chunked_upload_size_summary">Μέγεθος ομάδας κατά τη μεταφόρτωση σε διακομιστές WebDav σε bytes. Χρησιμοποιήστε το 0 για να απενεργοποιήσετε την ομαδική μεταφόρτωση.</string>
+  <string name="webdav_chunked_upload_size_summary">Μέγεθος ομάδας κατά τη μεταφόρτωση σε διακομιστές WebDav σε bytes.</string>
   <string-array name="ChangeLog_1_14">
     <item></item>
     <item>Minor UI improvements</item>

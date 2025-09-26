@@ -730,7 +730,7 @@
   <string name="hint_smb_credentials">Ønsker man at tilgå filer fra sin personlige Windows-computer, benyt computerens navn eller lokale IP-adresse som værts-URL; angiv computernavnet som domæne og Windows-login\'et (ofte det samme som Microsoft-kontoen) som brugernavn og adgangskode.</string>
   <string name="WarnFingerprintInvalidated">Advarsel! Biometrisk godkendelse kan ugyldiggøres af Android, f.eks. efter tilføjelse af et nyt fingeraftryk i dine enhedsindstillinger. Sørg for, at du altid ved, hvordan du låser op med din hovedadgangskode!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-størrelse til WebDAV-upload</string>
-  <string name="webdav_chunked_upload_size_summary">Størrelse på chunks  i bytes ved upload til WebDAV-servere. Brug 0 til at deaktivere chunk-type upload.</string>
+  <string name="webdav_chunked_upload_size_summary">Størrelse på chunks  i bytes ved upload til WebDAV-servere. </string>
   <string-array name="ChangeLog_1_14">
     <item>Opdatering til .net 9 og Target SDK version 35. Dette kommer med gennemsigtig statusbjælke på Android 15, idet kant-til-kant er nu standard.</item>
     <item>Minor UI improvements</item>
