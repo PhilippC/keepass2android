@@ -113,7 +113,7 @@ namespace keepass2android.Io
 			{
 				using (var writeStream = writeTransaction.OpenFile())
 				{
-					sourceStorage.OpenFileForRead(sourceIoc).CopyTo(writeStream);
+                    MemUtil.CopyStream(sourceStorage.OpenFileForRead(sourceIoc), writeStream);
 				}
 				writeTransaction.CommitWrite();
 			}

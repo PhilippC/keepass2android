@@ -303,7 +303,7 @@ namespace keepass2android.Io
 
 				using (HashingStreamEx cachedFile = new HashingStreamEx(File.Create(cachedFilePath), true, new SHA256Managed()))
 				{
-					remoteFile.CopyTo(cachedFile);
+                    MemUtil.CopyStream(remoteFile, cachedFile);
 					cachedFile.Close();
 					fileHash = MemUtil.ByteArrayToHexString(cachedFile.Hash);
 				}
@@ -339,7 +339,7 @@ namespace keepass2android.Io
 				IWriteTransaction remoteTrans = _cachedStorage.OpenWriteTransaction(ioc, useFileTransaction))
 			{
 				Stream remoteStream = remoteTrans.OpenFile();
-				cachedData.CopyTo(remoteStream);
+				MemUtil.CopyStream(cachedData, remoteStream);
 				remoteStream.Close();
 				remoteTrans.CommitWrite();
 			}
