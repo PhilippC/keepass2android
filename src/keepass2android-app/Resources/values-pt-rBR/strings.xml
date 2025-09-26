@@ -734,7 +734,6 @@
   <string name="hint_smb_credentials">Se você deseja acessar arquivos do seu computador Windows pessoal, use o nome do computador ou o endereço IP local como URL do host; Digite o nome do computador como domínio e o login do Windows (geralmente o mesmo que sua conta da Microsoft) como nome de usuário e senha.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
   <string name="webdav_chunked_upload_size_title">Tamanho do bloco para upload do WebDav</string>
-  <string name="webdav_chunked_upload_size_summary">Tamanho dos blocos ao fazer upload para servidores WebDav em bytes. Use 0 para desativar o upload em blocos.</string>
   <string name="cleartextTrafficPermitted_title">Permitir tráfego de rede de texto não criptografado no WebDav</string>
   <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
   <string-array name="ChangeLog_1_14">
