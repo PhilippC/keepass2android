@@ -654,8 +654,11 @@ namespace keepass2android
 
 #if EXCLUDE_JAVAFILESTORAGE || NoNet
                 // hide network related preference in NoNet variant:
-                Preference cleartextPreference = FindPreference(GetString(Resource.String.cleartextTrafficPermitted_key));
-                cleartextPreference.Visible = false;
+                foreach (string key in new List<string>{ "WebDavChunkedUploadEnabled", "WebDavChunkedUploadSize_str", GetString(Resource.String.cleartextTrafficPermitted_key) })
+                {
+                    Preference netPref = FindPreference(key);
+                    netPref.Visible = false;
+                }
 #endif
 
             }
