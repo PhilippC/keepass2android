@@ -732,6 +732,9 @@
   <string name="hint_smb_credentials">如果要从个人 Windows 计算机访问文件，请将计算机名或本地 IP 地址用作主机 URL；输入计算机名作为域名，Windows 登录名（经常和微软账户名相同）作为用户名和密码。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
   <string name="webdav_chunked_upload_size_title">WebDav 上传的块大小</string>
+  <string name="webdav_chunked_upload_enabled_title">启用 WebDav 分块上传</string>
+  <string name="webdav_chunked_upload_enabled_summary">针对不支持以但已请求上传大文件的 WebDav 服务器。启用后，Keepass2Android 使用标准 WebDav 分块，而非 Nextcloud 分块方式。</string>
+  <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器的分块大小，单位为字节。</string>
   <string name="cleartextTrafficPermitted_title">允许 WebDAV 中的明文网络流量</string>
   <string name="cleartextTrafficPermitted_summary">HTTP 连接不安全。只有当您有其他安全措施时才启用它。</string>
   <string-array name="ChangeLog_1_14">
