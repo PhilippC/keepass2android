@@ -20,6 +20,37 @@
     android:defaultValue="true"
     android:title="@string/SyncOfflineCacheInBackground_title"
     android:key="@string/SyncOfflineCacheInBackground_key" />
+	<CheckBoxPreference
+		android:key="BackgroundSyncWifiOnly"
+		android:title="@string/BackgroundSyncWifiOnly_title"
+		android:summary="@string/BackgroundSyncWifiOnly_summary"
+		android:defaultValue="false"
+		android:enabled="true"
+		android:persistent="true"
+		android:dependency="@string/SyncOfflineCacheInBackground_key" />
+
+	<Preference
+		android:key="BackgroundSyncWifiSsidsButton"
+		android:title="@string/BackgroundSyncWifiSsids_title"
+		android:dependency="BackgroundSyncWifiOnly"
+		android:enabled="true"
+		android:persistent="false" />
+
+
+    <CheckBoxPreference
+        android:key="pref_enable_periodic_background_sync"
+        android:title="@string/pref_enable_periodic_background_sync_title"
+        android:summary="@string/pref_enable_periodic_background_sync_summary"
+		android:dependency="@string/SyncOfflineCacheInBackground_key"		
+        android:defaultValue="true" />
+
+    <EditTextPreference
+        android:key="pref_periodic_background_sync_interval"
+        android:title="@string/pref_periodic_background_sync_interval_title"
+        android:summary="@string/pref_periodic_background_sync_interval_summary"
+		android:dependency="pref_enable_periodic_background_sync"		
+        android:inputType="number"
+        android:defaultValue="@string/pref_periodic_background_sync_interval_default" />		
 
 
   <CheckBoxPreference

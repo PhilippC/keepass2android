@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:padding="16dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+  <TextView
+    android:id="@+id/tvExplanation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/ssid_explanation"
+    android:gravity="center"
+    android:padding="8dp" />
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/btnAddCurrentSSID"
+      style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/add_current_ssid" />
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/btnAddSSID"
+      style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/add_ssid" />
+
+  <TextView
+    android:id="@+id/tvNoSSIDs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/no_ssids"
+    android:gravity="center"
+    android:visibility="gone"
+    android:padding="8dp" />
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rvSSIDs"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
+  <Button
+    android:id="@+id/btnSave"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/menu_close"
+    android:layout_marginTop="8dp" />
+</LinearLayout>

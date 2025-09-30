@@ -1297,4 +1297,31 @@
   <string name="switch_keyboard_on_search_enabled">Note: You have enabled App - Security - Password access - Keyboard switching - Switch keyboard. This can cause this window to show when you search for an entry from the browser.</string>
   <string name="user_interaction_required">User interaction required. Please open the app.</string>
   <string name="failed_to_access_database">Database is currently in use and cannot be accessed.</string>
+
+  <string name="configure_ssids">Configure SSIDs</string>
+  <string name="add_current_ssid">Add Current SSID</string>
+  <string name="enter_ssid_hint">Enter SSID</string>
+  <string name="add_ssid">Add other SSID</string>
+  <string name="no_ssids">No SSIDs added. Automatic background synchronization will be performed in any Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID is empty or already in list</string>
+  <string name="location_permission_required">Location permission required to read current SSID</string>
+  <string name="permission_granted">Location permission granted</string>
+  <string name="permission_denied">Permission denied. Cannot read current SSID. Please enable the permission through Android settings.</string>
+  <string name="remove_ssid_title">Remove SSID</string>
+  <string name="ssid_explanation">Define a list of SSIDs. Automatic background synchronization will be performed if you are logged into any of these.</string>
+  <string name="remove_ssid_message">Are you sure you want to remove this SSID?</string>
+  <string name="permission_needed">Permission Required</string>
+  <string name="permission_location_rationale">
+    Location permission is needed to read your current Wi-Fi SSID. This is required if you want to restrict background synchronization to certain SSIDs.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Background synchronization based on Wi-Fi-SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Background synchronization in Wi-Fi only</string>
+  <string name="BackgroundSyncWifiOnly_summary">If selected, background synchronization is only started while you are connected to Wi-Fi.</string>
+      
+  <string name="pref_enable_periodic_background_sync_title">Periodic background synchronization</string>
+  <string name="pref_enable_periodic_background_sync_summary">If enabled, the app will periodically synchronize unlocked databases. This respects network connection settings from above.</string>
+
+  <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
+  <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
+    
 </resources>

@@ -661,6 +661,17 @@ namespace keepass2android
                 }
 #endif
 
+                // Setup BackgroundSyncWifiSsidsButton to launch SsidSelectionActivity
+                Preference ssidButton = FindPreference("BackgroundSyncWifiSsidsButton");
+                if (ssidButton != null)
+                {
+                    ssidButton.PreferenceClick += (sender, args) =>
+                    {
+                        var intent = new Intent(Activity, typeof(SSIDManagerActivity));
+                        Activity.StartActivity(intent);
+                    };
+                }
+            
             }
         }
 

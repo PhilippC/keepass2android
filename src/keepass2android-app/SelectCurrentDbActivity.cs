@@ -618,7 +618,7 @@ namespace keepass2android
                             {
                                 try
                                 {
-                                    new SyncUtil(this).StartSynchronizeDatabase(pendingSyncIoc);
+                                    new SyncUtil(this).StartSynchronizeDatabase(pendingSyncIoc, false);
                                 }
                                 catch (Exception e)
                                 {

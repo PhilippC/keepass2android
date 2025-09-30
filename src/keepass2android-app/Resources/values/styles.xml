@@ -241,6 +241,16 @@
   <style name="GroupDetailInSearchResult">
     <item name="@android:textStyle">italic</item>
   </style>
-	
+
+
+  <!-- Material Dialog Theme for SSID Manager -->
+  <style name="MaterialDialogTheme" parent="Kp2aTheme_Dialog">
+    <item name="android:windowMinWidthMajor">90%</item>
+    <item name="android:windowMinWidthMinor">90%</item>
+
+
+  </style>
+
+
 
 </resources>

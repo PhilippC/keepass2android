@@ -1,9 +1,11 @@
-using System;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using keepass2android.Io;
 using KeePassLib.Serialization;
+using System;
+using AndroidX.Preference;
 
 namespace keepass2android
 {
@@ -50,8 +52,35 @@ namespace keepass2android
         }
 
 
-        public void StartSynchronizeDatabase(IOConnectionInfo ioc)
+        /// <summary>
+        /// Starts the sync process for the database identified by its IOConnectionInfo ioc
+        /// </summary>
+        /// <param name="ioc">database file ioc</param>
+        /// <param name="forceSynchronization">If true, sync is always started. If false, we respect the background sync options from preferences.</param>
+        public void StartSynchronizeDatabase(IOConnectionInfo ioc, bool forceSynchronization)
         {
+            if (!forceSynchronization)
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(App.Context);
+                if (prefs != null &&
+                    prefs.GetBoolean(App.Context.GetString(Resource.String.SyncOfflineCacheInBackground_key), true))
+                {
+                    // background sync is turned on
+
+                    if (prefs.GetBoolean("BackgroundSyncWifiOnly", false) &&
+                        !NetworkUtils.IsAllowedNetwork(App.Context, SSIDManagerActivity.LoadSSIDS(App.Context)))
+                    {
+                        // user only wants to sync when in (specific) wifi but is not
+
+                        //TODO add to list of pending syncs such that we sync when network is back?
+
+                        Kp2aLog.Log("Not synchronizing because of current network connectivity.");
+                        return;
+                    }
+                }
+
+            }
+
             var filestorage = App.Kp2a.GetFileStorage(ioc);
             var databaseForIoc = App.Kp2a.GetDatabase(ioc);
 
