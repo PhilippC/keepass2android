@@ -730,7 +730,6 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="hint_smb_credentials">Wenn Sie auf Dateien von Ihrem persönlichen Windows-Computer aus zugreifen möchten, verwenden Sie den Computernamen oder die lokale IP-Adresse als Host-URL; geben Sie den Computernamen als Domäne und das Windows-Login (oft identisch mit Ihrem Microsoft-Konto) als Benutzername und Passwort ein.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
-  <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes.</string>
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
   <string-array name="ChangeLog_1_14">
