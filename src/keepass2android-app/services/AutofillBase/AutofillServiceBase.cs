@@ -28,13 +28,11 @@ namespace keepass2android.services.AutofillBase
 {
     public interface IAutofillIntentBuilder
     {
-        PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage,
-            bool isManualRequest, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning);
+        PendingIntent GetAuthPendingIntentForResponse(Context context, string query, string queryDomain, string queryPackage, bool autoReturnFromQuery, AutofillServiceBase.DisplayWarning warning);
 
         PendingIntent GetAuthPendingIntentForWarning(Context context, PwUuid entryUuid, AutofillServiceBase.DisplayWarning warning);
 
-        PendingIntent GetDisablePendingIntentForResponse(Context context, string query, 
-            bool isManualRequest, bool isDisable);
+        PendingIntent GetDisablePendingIntentForResponse(Context context, string query, bool isDisable);
         Intent GetRestartAppIntent(Context context);
 
         int AppIconResource { get; }
@@ -150,7 +148,7 @@ namespace keepass2android.services.AutofillBase
                 var parser = new StructureParser(this, structure);
                 try
                 {
-                    query = parser.ParseForFill(isManual);
+                    query = parser.ParseForFill();
 
                 }
                 catch (Java.Lang.SecurityException e)
@@ -213,16 +211,14 @@ namespace keepass2android.services.AutofillBase
                     {
                         if (query.WebDomain != null)
                             AddQueryDataset(query.WebDomain,
-                                query.WebDomain, query.PackageName,
-                                isManual, autofillIds, responseBuilder, !hasEntryDataset,
+                                query.WebDomain, query.PackageName, autofillIds, responseBuilder, !hasEntryDataset,
                                 query.IncompatiblePackageAndDomain
                                     ? DisplayWarning.FillDomainInUntrustedApp
                                     : DisplayWarning.None,
                                 AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
                         else
                             AddQueryDataset(query.PackageNameWithPseudoSchema,
-                                query.WebDomain, query.PackageName,
-                                isManual, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None,
+                                query.WebDomain, query.PackageName, autofillIds, responseBuilder, !hasEntryDataset, DisplayWarning.None,
                                 AutofillHelper.ExtractSpec(inlinePresentationSpecs, entryDatasets.Count));
                     }
 
@@ -340,9 +336,9 @@ namespace keepass2android.services.AutofillBase
             
         }
 
-        private void AddQueryDataset(string query, string queryDomain, string queryPackage, bool isManual, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning, InlinePresentationSpec inlinePresentationSpec)
+        private void AddQueryDataset(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning, InlinePresentationSpec inlinePresentationSpec)
         {
-            PendingIntent pendingIntent = IntentBuilder.GetAuthPendingIntentForResponse(this, query, queryDomain, queryPackage, isManual, autoReturnFromQuery, warning);
+            PendingIntent pendingIntent = IntentBuilder.GetAuthPendingIntentForResponse(this, query, queryDomain, queryPackage, autoReturnFromQuery, warning);
             string text = GetString(Resource.String.autofill_sign_in_prompt);
             RemoteViews overlayPresentation = AutofillHelper.NewRemoteViews(base.PackageName,
                 text, AppNames.LauncherIcon);
@@ -396,7 +392,7 @@ namespace keepass2android.services.AutofillBase
             if (isQueryDisabled && !isManual)
                 return;
             bool isForDisable = !isQueryDisabled;
-            var pendingIntent = IntentBuilder.GetDisablePendingIntentForResponse(this, query, isManual, isForDisable);
+            var pendingIntent = IntentBuilder.GetDisablePendingIntentForResponse(this, query, isForDisable);
 
             string text = GetString(isForDisable ? Resource.String.autofill_disable : Resource.String.autofill_enable_for, new Java.Lang.Object[] { GetDisplayNameForQuery(query, this) });
             RemoteViews presentation = AutofillHelper.NewRemoteViews(base.PackageName,

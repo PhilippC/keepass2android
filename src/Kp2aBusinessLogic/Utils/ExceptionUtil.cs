@@ -13,13 +13,21 @@ namespace KeePass.Util
 
         public static string GetErrorMessage(Exception e)
         {
-            string errorMessage = e.Message;
-            if (e is Java.Lang.Exception javaException)
-            {
-                errorMessage = javaException.Message ?? errorMessage;
-            }
 
-            return errorMessage;
+            try
+            {
+                string errorMessage = e.Message;
+                if (e is Java.Lang.Exception javaException)
+                {
+                    errorMessage = javaException.Message ?? errorMessage;
+                }
+
+                return errorMessage;
+            }
+            catch
+            {
+                return "";
+            }
         }
 
     }

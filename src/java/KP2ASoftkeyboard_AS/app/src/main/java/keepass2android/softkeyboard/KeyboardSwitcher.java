@@ -19,9 +19,12 @@ package keepass2android.softkeyboard;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.InflateException;
+import android.view.View;
+import android.view.WindowInsets;
 
 import java.lang.ref.SoftReference;
 import java.util.Arrays;
@@ -529,6 +532,28 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
                 }
             }
             mInputView.setOnKeyboardActionListener(mInputMethodService);
+            
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mInputView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                    @Override
+                    public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                        // Untere Systembar-Höhe holen
+                        int insetBottom = insets.getSystemWindowInsetBottom();
+
+                        // Padding nur unten anpassen
+                        v.setPadding(
+                                v.getPaddingLeft(),
+                                v.getPaddingTop(),
+                                v.getPaddingRight(),
+                                insetBottom
+                        );
+
+                        // Insets normal weiterreichen
+                        return insets;
+                    }
+                });
+            }
+
             mLayoutId = newLayout;
         }
         mInputMethodService.mHandler.post(new Runnable() {

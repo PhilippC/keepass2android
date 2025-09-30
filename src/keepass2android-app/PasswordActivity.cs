@@ -15,6 +15,36 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Database;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Preferences;
+using Android.Runtime;
+using Android.Text;
+using Android.Views;
+using Android.Views.InputMethods;
+using Android.Widget;
+using AndroidX.AppCompat.App;
+using AndroidX.CoordinatorLayout.Widget;
+using AndroidX.Core.Content;
+using AndroidX.Core.View;
+using AndroidX.DrawerLayout.Widget;
+using Google.Android.Material.AppBar;
+using Google.Android.Material.Dialog;
+using Java.Lang;
+using Java.Net;
+using KeeChallenge;
+using keepass2android;
+using keepass2android.Io;
+using keepass2android.Utils;
+using Keepass2android.Pluginsdk;
+using KeePassLib.Keys;
+using KeePassLib.Serialization;
+using OtpKeyProv;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,50 +53,17 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-using keepass2android;
-using Android.App;
-using Android.Content;
-using Android.Database;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Views.InputMethods;
-using Android.Widget;
-using Java.Net;
-using Android.Preferences;
-using Android.Text;
-using Android.Content.PM;
-using Android.Graphics;
-using AndroidX.AppCompat.App;
-using AndroidX.CoordinatorLayout.Widget;
-using AndroidX.Core.View;
-using AndroidX.DrawerLayout.Widget;
-using Google.Android.Material.AppBar;
-using Google.Android.Material.Dialog;
-using Java.Lang;
-using KeePassLib.Keys;
-using KeePassLib.Serialization;
-using Keepass2android.Pluginsdk;
-using OtpKeyProv;
-using keepass2android.Io;
-using keepass2android.Utils;
-
-using File = Java.IO.File;
-using FileNotFoundException = Java.IO.FileNotFoundException;
-
-using Object = Java.Lang.Object;
-using Process = Android.OS.Process;
-
-using KeeChallenge;
+using static Android.Locations.GpsStatus;
 using AlertDialog = Android.App.AlertDialog;
 using ClipboardManager = Android.Content.ClipboardManager;
 using Enum = System.Enum;
 using Exception = System.Exception;
+using File = Java.IO.File;
+using FileNotFoundException = Java.IO.FileNotFoundException;
+using Object = Java.Lang.Object;
+using Process = Android.OS.Process;
 using String = System.String;
 using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
-using AndroidX.Core.Content;
-using Google.Android.Material.Snackbar;
 
 namespace keepass2android
 {
@@ -132,7 +129,8 @@ namespace keepass2android
 		ISharedPreferences _prefs;
 
 		private bool _starting;
-		private OtpInfo _otpInfo;
+        private bool _resumeCompleted;
+        private OtpInfo _otpInfo;
 		private IOConnectionInfo _otpAuxIoc;
         private ChallengeInfo _chalInfo;
         private byte[] _challengeSecret;
@@ -421,8 +419,14 @@ namespace keepass2android
 							try
 							{
 								var iocAux = GetDefaultAuxLocation();
-								LoadFile(iocAux);
-							}
+                                LoadFile(iocAux);
+
+                                if (Activity._chalInfo == null)
+                                {
+                                    throw new Java.Lang.Exception("Failed to load challenge aux file");
+                                }
+
+                            }
 							catch (Exception e)
 							{
 								//this can happen e.g. if the file storage does not support GetParentPath
@@ -646,7 +650,7 @@ namespace keepass2android
 			_activityDesign.ApplyTheme();
 			base.OnCreate(savedInstanceState);
 
-		    _intentReceiver = new PasswordActivityBroadcastReceiver(this);
+            _intentReceiver = new PasswordActivityBroadcastReceiver(this);
 			IntentFilter filter = new IntentFilter();
 			filter.AddAction(Intent.ActionScreenOff);
             ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
@@ -802,8 +806,6 @@ namespace keepass2android
 
             _password = i.GetStringExtra(KeyPassword) ?? "";
             if (!KeyProviderTypes.Any())
-
-
             {
                 SetKeyProviderFromString(LoadKeyProviderStringForIoc(_ioConnection.Path));
             }
@@ -1162,7 +1164,9 @@ namespace keepass2android
 		    changeDbButton.Click += (sender, args) => GoToFileSelectActivity();
 
 			Util.MoveBottomBarButtons(Resource.Id.change_db, Resource.Id.pass_ok, Resource.Id.bottom_bar, this);
-		}
+            Util.InsetListener.ForBottomElement(FindViewById(Resource.Id.bottom_bar)).Apply();
+            Util.InsetListener.ForTopElement(FindViewById(Resource.Id.appbar)).Apply();
+        }
 
 		private void OnOk(bool usedFingerprintUnlock = false)
 		{
@@ -1256,7 +1260,7 @@ namespace keepass2android
 							case 6:
 							    KeyProviderTypes.Add(KeyProviders.ChallengeXC);
 							    break;
-						        case 7:
+                            case 7:
 						            //don't set to "" to prevent losing the filename. (ItemSelected is also called during recreation!)
 							    Kp2aLog.Log("key file length before: " + _keyFile?.Length);
 						            _keyFile = (FindViewById(Resource.Id.label_keyfilename).Tag ?? "").ToString();
@@ -1420,18 +1424,22 @@ namespace keepass2android
 			if (cbQuickUnlock == null)
 				throw new NullPointerException("cpQuickUnlock");
 			App.Kp2a.SetQuickUnlockEnabled(cbQuickUnlock.Checked);
+            App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase =
+                (((KeyguardManager)GetSystemService(Context.KeyguardService)!)!).IsDeviceSecure;
+			App.Kp2a.QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase = PreferenceManager.GetDefaultSharedPreferences(this)
+		        .GetBoolean(GetString(Resource.String.QuickUnlockBlockedWhenDeviceNotSecure_key), true);
 
-            if ((_loadDbFileTask != null) &&  (App.Kp2a.OfflineMode != _loadDbTaskOffline))
+            if ((_loadDbFileTask != null) && (App.Kp2a.OfflineMode != _loadDbTaskOffline))
 			{
-                if (App.Kp2a == null)
+				if (App.Kp2a == null)
 					throw new NullPointerException("App.Kp2a");
 				//keep the loading result if we loaded in online-mode (now offline) and the task is completed
 				if (!App.Kp2a.OfflineMode || !_loadDbFileTask.IsCompleted)
 				{
 					//discard the pre-loading task
-					_loadDbFileTask = null;	
+					_loadDbFileTask = null;
 				}
-				
+
 			}
 
 			//avoid password being visible while loading:
@@ -1657,60 +1665,65 @@ namespace keepass2android
             if (intent != null)
             {
 				if (intent.HasExtra(Intents.OtpExtraKey))
-                {
-                    string otp = intent.GetStringExtra(Intents.OtpExtraKey);
-                    _keepPasswordInOnResume = true;
-                    if (KeyProviderTypes.Contains(KeyProviders.Otp))
+				{
+					string otp = intent.GetStringExtra(Intents.OtpExtraKey);
+					_keepPasswordInOnResume = true;
+					if (KeyProviderTypes.Contains(KeyProviders.Otp))
+					{
+
+						if (_otpInfo == null)
+						{
+							//Entering OTPs not yet initialized:
+							_pendingOtps.Add(otp);
+							UpdateKeyProviderUiState();
+						}
+						else
+						{
+							//Entering OTPs is initialized. Write OTP into first empty field:
+							bool foundEmptyField = false;
+							foreach (int otpId in _otpTextViewIds)
+							{
+								EditText otpEdit = FindViewById<EditText>(otpId);
+								if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
+								{
+									otpEdit.Text = otp;
+									foundEmptyField = true;
+									break;
+								}
+							}
+							//did we find a field?
+							if (!foundEmptyField)
+							{
+								App.Kp2a.ShowMessage(this, GetString(Resource.String.otp_discarded_no_space), MessageSeverity.Error);
+							}
+						}
+
+						Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
+						if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
+						{
+							passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
+						}
+					}
+					else
+					{
+						//assume the key should be used as static password
+						FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
+					}
+				}
+				else
+				{
+                    // if the activity is launched twice and the first initialization hasn't even finished, we cannot 
+                    // reset the state and re-initialize the activity.
+					// This can happen with autofill in some cases (#2869)
+                    if (_resumeCompleted)
                     {
-
-                        if (_otpInfo == null)
-                        {
-                            //Entering OTPs not yet initialized:
-                            _pendingOtps.Add(otp);
-                            UpdateKeyProviderUiState();
-                        }
-                        else
-                        {
-                            //Entering OTPs is initialized. Write OTP into first empty field:
-                            bool foundEmptyField = false;
-                            foreach (int otpId in _otpTextViewIds)
-                            {
-                                EditText otpEdit = FindViewById<EditText>(otpId);
-                                if ((otpEdit.Visibility == ViewStates.Visible) && String.IsNullOrEmpty(otpEdit.Text))
-                                {
-                                    otpEdit.Text = otp;
-                                    foundEmptyField = true;
-                                    break;
-                                }
-                            }
-                            //did we find a field?
-                            if (!foundEmptyField)
-                            {
-                                App.Kp2a.ShowMessage(this, GetString(Resource.String.otp_discarded_no_space),  MessageSeverity.Error);
-                            }
-                        }
-
-                        Spinner passwordModeSpinner = FindViewById<Spinner>(Resource.Id.password_mode_spinner);
-                        if (passwordModeSpinner.SelectedItemPosition != (int)KeyProviders.Otp)
-                        {
-                            passwordModeSpinner.SetSelection((int)KeyProviders.Otp);
-                        }
+                        ResetState();
+                        GetIocFromLaunchIntent(intent);
+                        InitializeAfterSetIoc();
+                        OnStart();
                     }
-                    else
-                    {
-                        //assume the key should be used as static password
-                        FindViewById<EditText>(Resource.Id.password_edit).Text += otp;
-                    }
-
-
-                }
-                else
-                {
-                    ResetState();
-                    GetIocFromLaunchIntent(intent);
-					InitializeAfterSetIoc();
-                    OnStart();
-                }
+					
+				}
 			}
 	
 		}
@@ -1749,14 +1762,14 @@ namespace keepass2android
 
         protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-            
-            _activityDesign.ReapplyTheme();
+		protected override void OnResume()
+		{
+			base.OnResume();
 
-            Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " +
-                        _performingLoad);
+			_activityDesign.ReapplyTheme();
+
+			Kp2aLog.Log("starting: " + _starting + ", Finishing: " + IsFinishing + ", _performingLoad: " +
+						_performingLoad);
 
             CheckBox cbOfflineMode = (CheckBox)FindViewById(Resource.Id.work_offline);
             App.Kp2a.OfflineMode =
@@ -1771,118 +1784,81 @@ namespace keepass2android
 
 
 
-            View killButton = FindViewById(Resource.Id.kill_app);
-            if (PreferenceManager.GetDefaultSharedPreferences(this)
-                .GetBoolean(GetString(Resource.String.show_kill_app_key), false))
-            {
-                killButton.Click += (sender, args) =>
-                {
-                    _killOnDestroy = true;
-                    SetResult(Result.Canceled);
-                    Finish();
-
-                };
-                killButton.Visibility = ViewStates.Visible;
-
-            }
-            else
-            {
-                killButton.Visibility = ViewStates.Gone;
-            }
-
-            TryGetOtpFromClipboard();
-
-            if (!_keepPasswordInOnResume)
-            {
-                if (
-                    _lastOnPauseTime <
-                    DateTime.Now -
-                    TimeSpan.FromSeconds(
-                        5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
-                    &&
-                    PreferenceManager.GetDefaultSharedPreferences(this)
-                        .GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
-                {
-                    ClearEnteredPassword();
-                }
-
-            }
-
-
-
-            _keepPasswordInOnResume = false;
-
-            MakePasswordMaskedOrVisible();
-
-            UpdateOkButtonState();
-
-            if (KeyProviderTypes.Contains(KeyProviders.Challenge))
-            {
-                FindViewById(Resource.Id.otpInitView).Visibility =
-                    _challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
-            }
-			/*
-            Snackbar snackbar = Snackbar
-                .Make(FindViewById(Resource.Id.main_content),
-                    "snack snack snack snack snack snack snack snack snack snack snack snack snack snack snacksnack snack snacksnack snack snacksnack snack snack snack snack snack snack snack snack snack snack snack snack snack snack snacksnack snack snacksnack snack snacksnack  snack snack snack snack snacksnack snack snack ",
-                    Snackbar.LengthLong);
-            snackbar.SetTextMaxLines(5);
-            snackbar.SetBackgroundTint(GetColor(Resource.Color.md_theme_secondaryContainer));
-            snackbar.SetTextColor(GetColor(Resource.Color.md_theme_onSecondaryContainer));
-            snackbar.SetAction("dismiss",
-                view => snackbar.SetBackgroundTint(GetColor(Resource.Color.md_theme_surfaceContainer)));
-
-            snackbar.Show();
-
-            new Handler().PostDelayed(() =>
-            {
-
-                Snackbar snackbar2 = Snackbar
-                    .Make(FindViewById(Resource.Id.main_content), "snack snack snack ",
-                        Snackbar.LengthLong);
-                snackbar2.SetTextMaxLines(5);
-                snackbar2.SetBackgroundTint(GetColor(Resource.Color.md_theme_errorContainer));
-                snackbar2.SetTextColor(GetColor(Resource.Color.md_theme_onErrorContainer));
-                snackbar2.Show();
-            }, 1500);
-
-
-            new Handler().PostDelayed(() =>
-            {
-
-                Snackbar snackbar2 = Snackbar
-                    .Make(FindViewById(Resource.Id.main_content), "snack snack warn ",
-                        Snackbar.LengthLong);
-                snackbar2.SetTextMaxLines(5);
-                snackbar2.SetBackgroundTint(GetColor(Resource.Color.md_theme_inverseSurface));
-                snackbar2.SetTextColor(GetColor(Resource.Color.md_theme_inverseOnSurface));
-                snackbar2.Show();
-            }, 2500);*/
-
-            //use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
-            //use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
-            if ( !IsFinishing && !_performingLoad)  
+			View killButton = FindViewById(Resource.Id.kill_app);
+			if (PreferenceManager.GetDefaultSharedPreferences(this)
+				.GetBoolean(GetString(Resource.String.show_kill_app_key), false))
 			{
-				
-				
-			    // OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
+				killButton.Click += (sender, args) =>
+				{
+					_killOnDestroy = true;
+					SetResult(Result.Canceled);
+					Finish();
+
+				};
+				killButton.Visibility = ViewStates.Visible;
+
+			}
+			else
+			{
+				killButton.Visibility = ViewStates.Gone;
+			}
+
+			TryGetOtpFromClipboard();
+
+			if (!_keepPasswordInOnResume)
+			{
+				if (
+					_lastOnPauseTime <
+					DateTime.Now -
+					TimeSpan.FromSeconds(
+						5) //only clear when user left the app for more than 5 seconds (allows to use Yubiclip, also allows to switch shortly to another app)
+					&&
+					PreferenceManager.GetDefaultSharedPreferences(this)
+						.GetBoolean(GetString(Resource.String.ClearPasswordOnLeave_key), true))
+				{
+					ClearEnteredPassword();
+				}
+
+			}
+
+
+
+			_keepPasswordInOnResume = false;
+
+			MakePasswordMaskedOrVisible();
+
+			UpdateOkButtonState();
+
+			if (KeyProviderTypes.Contains(KeyProviders.Challenge))
+			{
+				FindViewById(Resource.Id.otpInitView).Visibility =
+					_challengeSecret == null ? ViewStates.Visible : ViewStates.Gone;
+			}
+
+			//use !IsFinishing to make sure we're not starting another activity when we're already finishing (e.g. due to TaskComplete in OnActivityResult)
+			//use !performingLoad to make sure we're not already loading the database (after ActivityResult from File-Prepare-Activity; this would cause _loadDbFileTask to exist when we reload later!)
+			if (!IsFinishing && !_performingLoad)
+			{
+
+
+				// OnResume is run every time the activity comes to the foreground. This code should only run when the activity is started (OnStart), but must
 				// be run in OnResume rather than OnStart so that it always occurrs after OnActivityResult (when re-creating a killed activity, OnStart occurs before OnActivityResult)
-			    if (_starting)
-			    {
+				if (_starting)
+				{
 
-			        _starting = false;
+					_starting = false;
 
-			        //database not yet loaded.
+					//database not yet loaded.
 
-			        //check if pre-loading is enabled but wasn't started yet:
-			        if (_loadDbFileTask == null &&
-			            _prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
-			        {
-			            // Create task to kick off file loading while the user enters the password
-			            _loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
-			            _loadDbTaskOffline = App.Kp2a.OfflineMode;
-			        }
-			    }
+					//check if pre-loading is enabled but wasn't started yet:
+					if (_loadDbFileTask == null &&
+						_prefs.GetBoolean(GetString(Resource.String.PreloadDatabaseEnabled_key), true))
+					{
+						// Create task to kick off file loading while the user enters the password
+						_loadDbFileTask = Task.Factory.StartNew(PreloadDbFile);
+						_loadDbTaskOffline = App.Kp2a.OfflineMode;
+					}
+				}
 
 			}
 
@@ -1903,25 +1879,27 @@ namespace keepass2android
                 OperationRunner.Instance.Run(App.Kp2a, loadOperation, true);
                 compositeKeyForImmediateLoad = null; //don't reuse or keep in memory
 
-		    }
-		    else
-		    {
-		        bool showKeyboard = true;
+			}
+			else
+			{
+				bool showKeyboard = true;
 
-		       
-		        EditText pwd = (EditText) FindViewById(Resource.Id.password_edit);
-		        pwd.PostDelayed(() =>
-		        {
-		            InputMethodManager keyboard = (InputMethodManager) GetSystemService(InputMethodService);
-                    if (showKeyboard)
-                    {
-                        pwd.RequestFocus();
-                        keyboard.ShowSoftInput(pwd, 0);
-                    }
-                    else
-		                keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
-		        }, 50);
-		    }
+
+				EditText pwd = (EditText)FindViewById(Resource.Id.password_edit);
+				pwd.PostDelayed(() =>
+				{
+					InputMethodManager keyboard = (InputMethodManager)GetSystemService(InputMethodService);
+					if (showKeyboard)
+					{
+						pwd.RequestFocus();
+						keyboard.ShowSoftInput(pwd, 0);
+					}
+					else
+						keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+				}, 50);
+			}
+
+			_resumeCompleted = true;
         }
 
 	    private void TryGetOtpFromClipboard()

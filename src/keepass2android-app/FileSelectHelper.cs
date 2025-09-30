@@ -4,12 +4,15 @@ using System.Linq;
 using System.Net;
 #if !NoNet
 using FluentFTP;
+using static Kp2aBusinessLogic.Io.SmbFileStorage;
 #endif
 using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -22,6 +25,7 @@ using Keepass2android.Javafilestorage;
 #endif
 using KeePassLib.Serialization;
 using KeePassLib.Utility;
+
 
 namespace keepass2android
 {
@@ -274,7 +278,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_sftp_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -319,7 +324,7 @@ namespace keepass2android
 			View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.httpcredentials, null);
 		    if (!defaultPath.EndsWith(_schemeSeparator))
 		    {
-		        var webdavStorage = new Keepass2android.Javafilestorage.WebDavStorage(App.Kp2a.CertificateErrorHandler);
+		        var webdavStorage = CreateWebdavStorage(activity);
 		        var connInfo = webdavStorage.SplitStringToConnectionInfo(defaultPath);
 		        dlgContents.FindViewById<EditText>(Resource.Id.http_url).Text = connInfo.Url;
 		        dlgContents.FindViewById<EditText>(Resource.Id.http_user).Text = connInfo.Username;
@@ -339,7 +344,7 @@ namespace keepass2android
 										  string scheme = defaultPath.Substring(0, defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
 										  if (host.Contains(_schemeSeparator) == false)
 											  host = scheme + _schemeSeparator + host;
-										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(host, user,
+										  string httpPath = CreateWebdavStorage(activity).BuildFullPath(host, user,
 																										  password);
 										  onStartBrowse(httpPath);
 									  });
@@ -347,13 +352,61 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_http_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
 		}
 
-		private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+
+        private void ShowSmbDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
+        {
+#if !EXCLUDE_JAVAFILESTORAGE && !NoNet
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+            View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.smbcredentials, null);
+            if (!defaultPath.EndsWith(_schemeSeparator))
+            {
+                SmbConnectionInfo ci = new SmbConnectionInfo(new IOConnectionInfo() { Path = defaultPath });
+                
+                dlgContents.FindViewById<EditText>(Resource.Id.smb_url).Text = ci.GetPathWithoutCredentials();
+                dlgContents.FindViewById<EditText>(Resource.Id.smb_domain).Text = ci.Domain;
+                dlgContents.FindViewById<EditText>(Resource.Id.smb_user).Text = ci.Username;
+                dlgContents.FindViewById<EditText>(Resource.Id.smb_password).Text = ci.Password;
+
+
+            }
+            builder.SetView(dlgContents);
+            builder.SetPositiveButton(Android.Resource.String.Ok,
+                                      (sender, args) =>
+                                      {
+                                          string url = dlgContents.FindViewById<EditText>(Resource.Id.smb_url).Text;
+
+                                          string user = dlgContents.FindViewById<EditText>(Resource.Id.smb_user).Text;
+                                          string password = dlgContents.FindViewById<EditText>(Resource.Id.smb_password).Text;
+                                          string domain = dlgContents.FindViewById<EditText>(Resource.Id.smb_domain).Text;
+
+                                          string fullPath = SmbConnectionInfo.FromUrlAndCredentials(url, user, password, domain).ToPath();
+                                          onStartBrowse(fullPath);
+                                      });
+			builder.SetCancelable(false);
+			
+            EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+
+            builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
+            builder.SetTitle(activity.GetString(Resource.String.enter_smb_login_title));
+            Dialog dialog = builder.Create();
+
+            dialog.Show();
+#endif
+		}
+#if !NoNet
+        private static WebDavStorage CreateWebdavStorage(Activity activity)
+        {
+            return new WebDavStorage(App.Kp2a.CertificateErrorHandler, App.Kp2a.WebDavChunkedUploadSize, App.Context);
+        }
+#endif
+        private void ShowFtpDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
 		{
 #if !NoNet
 			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
@@ -403,7 +456,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_ftp_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -463,7 +517,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(Resource.String.enter_mega_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 
 			dialog.Show();
 #endif
@@ -479,7 +534,9 @@ namespace keepass2android
 				ShowFtpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
 			else if ((defaultPath.StartsWith("http://")) || (defaultPath.StartsWith("https://")))
 				ShowHttpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
-			else if (defaultPath.StartsWith("owncloud://"))
+            else if ((defaultPath.StartsWith("smb://")))
+                ShowSmbDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
+            else if (defaultPath.StartsWith("owncloud://"))
 				ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath, "owncloud");
 			else if (defaultPath.StartsWith("nextcloud://"))
 			    ShowOwncloudDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath, "nextcloud");
@@ -518,7 +575,7 @@ namespace keepass2android
 										  string scheme = defaultPath.Substring(0,defaultPath.IndexOf(_schemeSeparator, StringComparison.Ordinal));
 										  if (host.Contains(_schemeSeparator) == false)
 											  host = scheme + _schemeSeparator + host;
-										  string httpPath = new Keepass2android.Javafilestorage.WebDavStorage(null).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host, subtype == "owncloud" ? WebDavFileStorage.owncloudPrefix : WebDavFileStorage.nextcloudPrefix), user,
+										  string httpPath = CreateWebdavStorage(activity).BuildFullPath(WebDavFileStorage.Owncloud2Webdav(host, subtype == "owncloud" ? WebDavFileStorage.owncloudPrefix : WebDavFileStorage.nextcloudPrefix), user,
 																										  password);
 										  onStartBrowse(httpPath);
 									  });
@@ -526,7 +583,8 @@ namespace keepass2android
 
 			builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
 			builder.SetTitle(activity.GetString(subtype == "owncloud" ?  Resource.String.enter_owncloud_login_title : Resource.String.enter_nextcloud_login_title));
-			Dialog dialog = builder.Create();
+            builder.SetCancelable(false);
+            Dialog dialog = builder.Create();
 		    dlgContents.FindViewById<EditText>(Resource.Id.owncloud_url).SetHint(subtype == "owncloud" ? Resource.String.hint_owncloud_url : Resource.String.hint_nextcloud_url);
             dialog.Show();
 #endif

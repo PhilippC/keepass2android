@@ -125,12 +125,23 @@ namespace keepass2android
 				
 			Intent sendIntent = new Intent();
 			sendIntent.SetAction(Intent.ActionSend);
-			sendIntent.PutExtra(Intent.ExtraText, File.ReadAllText(LogFilename));
+            string logText = File.ReadAllText(LogFilename);
+
+            sendIntent.PutExtra(Intent.ExtraText, logText);
 			sendIntent.PutExtra(Intent.ExtraEmail, "crocoapps@gmail.com");
 			sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android log");
 			sendIntent.SetType("text/plain");
-			ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
-		}
+            try
+            {
+                ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
+            }
+            catch (Exception e)
+            {
+				Toast.MakeText(ctx, $"Error sending log of length {logText.Length} bytes: " + e.Message, ToastLength.Long)?.Show();
+
+            }
+
+        }
 
         public static void LogTask(object task, string activityName)
         {

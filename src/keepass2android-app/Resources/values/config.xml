@@ -123,6 +123,10 @@
 	<string name="QuickUnlockLength_default">3</string>
 	<string name="QuickUnlockIconHidden_key">QuickUnlockIconHidden_key</string>
 	<string name="QuickUnlockIconHidden16_key">QuickUnlockIconHidden16_key</string>
+	<string name="QuickUnlockBlockedWhenDeviceNotSecure_key">QuickUnlockBlockedWhenDeviceNotSecure_key</string>
+	
+	<!-- Note: this key is used in WebDavStorage.java -->
+	<string name="cleartextTrafficPermitted_key">permit_cleartext_traffic</string> 
 	
 	<string name="UsageCount_key">UsageCount</string>
 	<string name="LastInfoVersionCode_key">LastInfoVersion</string>
@@ -210,6 +214,7 @@
 
 	<string name="ShowUnlockedNotification_key">ShowUnlockedNotification</string>
 	<bool name="ShowUnlockedNotification_default">true</bool>
+	<integer name="WebDavChunkedUploadSize_default">65536</integer>
 
 	<string name="PreloadDatabaseEnabled_key">PreloadDatabaseEnabled</string>
 	<bool name="PreloadDatabaseEnabled_default">true</bool>

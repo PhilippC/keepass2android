@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 33
-        compileSdk 34
+        targetSdkVersion 35
+        compileSdk 35
     }
     buildTypes {
         release {
@@ -50,5 +50,7 @@ dependencies {
     implementation 'com.pcloud.sdk:java-core:1.9.1'
     implementation 'com.pcloud.sdk:android:1.9.1'
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'com.github.mwiede:jsch:2.27.2'
 
 }

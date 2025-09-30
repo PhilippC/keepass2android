@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Disabilita lo Sblocco Biometrico</string>
   <string name="enable_fingerprint_unlock">Abilita lo Sblocco Biometrico completo</string>
   <string name="enable_fingerprint_quickunlock">Abilita lo Sblocco Biometrico per QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">QuickUnlock basato su password non disponibile</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock utilizzando una parte della password è bloccato perché il blocco schermo non è attivo sul dispositivo. Questo comportamento è per proteggerti nel caso in cui qualcuno ti stia guardando digitare la chiave di QuickUnlock.</string>
   <string name="fingerprint_unlock_failed">Sblocco biometrico fallito. La chiave di decrittazione è stata invalidata dal sistema. Di solito accade quando l\'autenticazione biometrica o le impostazioni di sicurezza sono state cambiate. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Lo sblocco del database è fallito: chiave composita non valida. Lo sblocco biometrico è stato disabilitato perché sembra che la chiave principale non sia più valida. </string>
   <string name="fingerprint_reenable">Per favore riattiva lo Sblocco Biometrico per la nuova password principale.</string>
@@ -255,8 +257,8 @@
   <string name="hint_wordseparator">Separatore parole</string>
   <string-array name="PasswordGeneratorModes">
     <item>Password</item>
-    <item>Frase segreta</item>
-    <item>Frase segreta + Password</item>
+    <item>Passphrase</item>
+    <item>Passphrase + Password</item>
   </string-array>
   <string-array name="PasswordGeneratorCaseModes">
     <item>minuscolo</item>
@@ -298,11 +300,11 @@
   <string name="RememberRecentFiles_title">Ricorda i database</string>
   <string name="RememberRecentFiles_summary">Ricorda i database aperti di recente e visualizzali nella schermata Apri database.</string>
   <string name="NoDalVerification_title">Nessuna verifica DAL</string>
-  <string name="NoDalVerification_summary">Disabilita il controllo se i pacchetti di dominio e applicazione corrispondono</string>
+  <string name="NoDalVerification_summary">Disabilita il controllo se il dominio e il pacchetto dell\'app corrispondono</string>
   <string name="InlineSuggestions_title">Integra con la tastiera</string>
   <string name="InlineSuggestions_summary">Mostra i suggerimenti di completamento automatico come opzioni in linea sulla tastiera (se supportato dal metodo di inserimento)</string>
-  <string name="LogAutofillView_title">Visualizza log autocompilazione</string>
-  <string name="LogAutofillView_summary">Scrivi i dettagli sulla visualizzazione del riempimento automatico per il log di debug (se il log di debug è abilitato). Questi dettagli possono essere inviati allo sviluppatore se il riempimento automatico non funziona come previsto.</string>
+  <string name="LogAutofillView_title">Log di riempimento automatico</string>
+  <string name="LogAutofillView_summary">Scrive i dettagli sulla visualizzazione del riempimento automatico nel registro di debug (se il registro di debug è abilitato). Questi dettagli possono essere inviati allo sviluppatore se il riempimento automatico non funziona come previsto.</string>
   <string name="requires_android11">Richiede Android 11 o versioni successive</string>
   <string name="kp2a_findUrl">Trova password</string>
   <string name="excludeExpiredEntries">Escludi voci scadute</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Inserisci il codice QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Chiudi il database</string>
+  <string name="enable_screen_lock">Abilita blocco schermo</string>
   <string name="QuickUnlockDefaultEnabled_title">Abilita QuickUnlock come impostazione predefinita</string>
   <string name="QuickUnlockDefaultEnabled_summary">Indica se QuickUnlock è attivato per default o no.</string>
   <string name="ViewDatabaseSecure_title">Proteggi la visibilità dei dati</string>
@@ -327,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock purtroppo non funziona senza visualizzare un\'icona di notifica. Seleziona questa opzione per utilizzare un\'icona trasparente.</string>
   <string name="QuickUnlockIconHidden16_title">Nascondi l\'icona QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock necessita di una notifica per funzionare correttamente. Seleziona questa opzione per visualizzare una notifica senza icona.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Blocca l\'inserimento del testo QuickUnlock se il dispositivo non è protetto dal blocco schermo. In questo modo si evitano gli attacchi di shoulder surfing. Disabilita questa opzione solo se comprendi il rischio. Nota che QuickUnlock può ancora essere usato con la biometrica.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blocca QuickUnlock quando il dispositivo non è sicuro</string>
   <string name="QuickUnlockLength_title">Lunghezza della chiave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Numero massimo di caratteri utilizzati come QuickUnlock password.</string>
   <string name="QuickUnlockHideLength_title">Nascondi la lunghezza di QuickUnlock</string>
@@ -353,10 +358,10 @@
   <string name="add_extra_string">Aggiungi campo</string>
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Chiave segreta</string>
-  <string name="totp_encoding_rfc6238">Impostazioni predefinite del gettone RFC6238</string>
+  <string name="totp_encoding_rfc6238">Impostazioni predefinite del token RFC6238</string>
   <string name="totp_encoding_steam">Impostazioni token di Steam</string>
-  <string name="totp_encoding_custom">Impostazioni del gettone personalizzate</string>
-  <string name="totp_time_step">Passo temporale</string>
+  <string name="totp_encoding_custom">Impostazioni token personalizzate</string>
+  <string name="totp_time_step">Intervallo di tempo</string>
   <string name="totp_length">Lunghezza del codice</string>
   <string name="totp_scan">Scansiona codice QR</string>
   <string name="delete_extra_string">Elimina campo</string>
@@ -401,11 +406,11 @@
   <string name="ShowSeparateNotifications_summary">Mostra notifiche separate per la copia di nome utente e password nella clipboard e per l\'attivazione della tastiera.</string>
   <string name="AccServiceAutoFill_prefs">Servizio Accessibilità per Compilazione automatica</string>
   <string name="AutoFill_prefs">Servizio di Compilazione automatica</string>
-  <string name="AutoFillTotp_prefs_ShowNotification_summary">Quando si riempie automaticamente (autofill) una voce con TOTP, mostrare la notifica di immissione con un pulsante Copia TOTP</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Quando si riempie automaticamente una voce con TOTP, mostra la notifica della voce con un pulsante Copia TOTP</string>
   <string name="AutoFillTotp_prefs_ShowNotification_title">Mostra notifica voce</string>
   <string name="AutoFillTotp_prefs_title">Riempimento automatico per le voci TOTP</string>
-  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiare TOTP negli Appunti</string>
-  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Quando si completa una voce con TOTP, copiare il TOTP negli appunti</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copia TOTP negli appunti</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Quando si riempie automaticamente una voce con TOTP, copiare il TOTP negli appunti</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Quando si riempie una voce con TOTP, attivare la tastiera integrata. La tastiera ha un pulsante TOTP.</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Attiva tastiera integrata</string>
   <string name="TotpCopiedToClipboard">TOTP copiato negli appunti</string>
@@ -425,7 +430,7 @@
   <string name="ShowUnlockedNotification_summary">Visualizza un\'icona di notifica quando il database è sbloccato.</string>
   <string name="IconVisibilityInfo_Android8_text">Android 8 ha introdotto un nuovo comportamento per le notifiche. Se vuoi nascondere l\'icona per le notifiche di Keepass2Android, devi configurarlo nelle impostazioni di sistema. Imposta a Minimo l\'importanza della categoria delle notifiche.</string>
   <string name="IconVisibilityInfo_Android8_btnSettings">Apri le impostazioni</string>
-  <string name="PostNotificationsPermissionInfo_text">Keepass2Android può visualizzare una notifica di sistema mentre il database non è bloccato. Per far si che funzioni devi concedergli il permesso.</string>
+  <string name="PostNotificationsPermissionInfo_text">Keepass2Android può visualizzare una notifica di sistema mentre il database non è bloccato. Affinché funzioni, concedi l\'autorizzazione.</string>
   <string name="DontCare">Non mi importa</string>
   <string name="DocumentAccessRevoked">Il file non è più accessibile da Keepass2Android. O è stato rimosso, o sono state revocate le autorizzazioni di accesso. Si prega di riaprire il file, ad esempio utilizzando Cambia database.</string>
   <string name="PreloadDatabaseEnabled_title">Precarica il file di database</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">Dimmi di più!</string>
   <string name="no_thanks">No, non mi piace più di tanto</string>
   <string name="enter_http_login_title">Inserisci i dati di accesso WebDav:</string>
+  <string name="enter_smb_login_title">Inserisci i dati di accesso Samba:</string>
   <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL della cartella o del file (es: 192.168.1.10/share/cartella/)</string>
+  <string name="hint_smb_domain">Dominio utente di Samba</string>
+  <string name="hint_smb_username">Nome utente Samba</string>
   <string name="enter_owncloud_login_title">Inserisci i dati di accesso OwnCloud:</string>
   <string name="hint_owncloud_url">URL di OwnCloud (esempio: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Inserisci i dati di accesso Nextcloud:</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -715,14 +725,33 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
+  <string name="hint_smb_credentials">Se desideri accedere ai file del tuo computer Windows personale, usa il nome del computer o l\'indirizzo IP locale come URL host; digita il nome del computer come dominio e il login di Windows (spesso lo stesso dell\'account Microsoft) come nome utente e password.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
+  <string name="webdav_chunked_upload_size_title">Dimensione del blocco per il caricamento WebDav</string>
+  <string name="cleartextTrafficPermitted_title">Consenti il traffico di rete in chiaro in WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">Le connessioni HTTP non sono sicure. Abilita questa opzione solo se hai altre misure di sicurezza in atto.</string>
+  <string name="webdav_chunked_upload_size_summary">Dimensione dei blocchi durante il caricamento sui server WebDav in byte.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Aggiornato a .net 9 e Target SDK versione 35. Su Android 15 è disponibile una barra di stato trasparente, perché la visualizzazione bordo-a-bordo è ora predefinita.</item>
+    <item>Miglioramenti minori dell\'interfaccia utente</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Miglioramenti WebDav: correzione di bug per l\'elenco delle cartelle; supporto per caricamenti e transazioni in blocchi</item>
+    <item>Aggiunto il supporto per le condivisioni di rete Samba/Windows</item>
+    <item>JSch aggiornato per supportare algoritmi più moderni in SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Migliorata la stima della qualità delle password prendendo in considerazione le password più diffuse.</item>
+    <item>Blocco di QuickUnlock basato su password (per motivi di sicurezza) se il dispositivo non ha un blocco schermo attivato.</item>
+    <item>Aggiornato la configurazione di sicurezza della rete per disabilitare il trasferimento di testo in chiaro.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Aggiornato da Xamarin Android a .net 8</item>
     <item>Aggiornato a Target SDK 34</item>
     <item>Aggiornato all\'interfaccia utente Material 3</item>
     <item>Migliora l\'autofill per funzionare con le app Compose</item>
     <item>Corretta la corrispondenza con l\' hostname in riempimento automatico e ricerca</item>
-    <item>Fix issue with password generator</item>
+    <item>Corretto problema con il generatore di password</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Aggiornato OneDrive SDK alla versione 5.68</item>
@@ -944,7 +973,142 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ChangeLog_0_9_7b">Versione 0.9.7b\n
 * aggiornate le traduzioni\n
 * bugfix:  font Password mancante nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
+  <string name="ChangeLog_0_9_7">    Versione 0.9.\n
+    * scrivere il supporto per i database di Keepass 1 (kdb) (beta!\n
+    * meglio tornare alla tastiera precedente (funziona anche su dispositivi non rootati)\n
+    * supporto per KeeChallenge con sfide di lunghezza variabile\n
+    * evitare di prendere screenshot dalle schermate di QuickUnlock e password\n
+    * ordine inverso per Ordina per Modifica Data (ora discendente)\n
+    * correzioni di bug: Note ora aggiornate correttamente dopo le modifiche, Viste password ora nascondere correttamente la password su (si spera) tutti i dispositivi, problema fisso che ha permesso di aggiungere una voce due volte, problema fisso con la visualizzazione di un avviso UUID duplicato anche dopo aver risolto il database\n
+  </string>
+  <string name="ChangeLog_0_9_6">    Versione 0.9.\n
+    * consente di importare file chiave e/o file di database locale nella directory interna dell\'app (vedi impostazioni)\n
+    * consente diverse opzioni di ordinamento\n
+    * preferenze migliorate per il cambio automatico della tastiera\n
+    * logo e design di notifica aggiornati, design di Stefano Pignataro (http://www. pstudio. t)\n
+    * generatore di password ricorda le ultime impostazioni\n
+    * imposta visibilità di notifica per Android 5 schermata di blocco\n
+    * ora cancellare il campo password principale quando esce dall\'app senza toccare OK\n
+    * problema fisso con i linguaggi di input mancanti nell\'impostazione della tastiera su alcuni dispositivi\n
+    * problema fisso con l\'accensione automatica della tastiera su dispositivi radicati\n
+    * aggiunto controllo per database corrotti (UUID duplicati)\n
+    * ricaricare automaticamente il database quando è stato rilevato, risolve i timori di sicurezza per la rivelazione della master password\n
+    * migliore lucido piccolo layout della tastiera, tema impostazioni tastiera fissa (grazie a Wiktor Ławski)\n
+  </string>
+  <string name="ChangeLog_0_9_5"><b>Versione 0.9.5</b>\n
+* corregge i problemi con la navigazione delle cartelle (in particolare su Android 4.4)\n
+* risolve il problema con il caricamento dei file .kdb (Keepass 1) su Nexus 5 con Android Lollipop\n
+* aggiunge un\'opzione per impedire la cattura delle schermate e nascondere KP2A dalla lista delle App Recenti\n
+* risolve il problema con l\'archiviazione su Google Drive (edizione normale)\n
+* permette i file chiave sui tipi di storage voluti (edizione normale)\n
+* aggiornato SDK di Dropbox per includere un aggiornamento di sicurezza (edizione normale)\n
+* aggiornati i tool di sviluppo --&gt; aumentata dimensione apk :-(\n
+Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scusate. Ho voluto pubblicare queste correzioni il più presto possibile.</string>
+  <string name="ChangeLog_0_9_4"><b>Versione 0.9.4</b>\n
+* aggiunto supporto ai plug-in: guarda nelle impostazioni per scoprire come ottenerli!\n
+* pubblicato QR plug-in (scansiona password, mostra password come QR-code, trasferisci voci ad altri dispositivi KP2A)\n
+* pubblicato InputStick plug-in (trasferisci credenziali al PC via bluetooth - richiede chiavetta InputStick USB)\n
+* le applicazioni di terze parti ora possono interrogare facilmente KP2A per ottenere le credenziali. Sei uno sviluppatore? Per favore aggiungi il supporto alle tue applicazioni se ti sembra conveniente!\n
+* aggiunto supporto a TOTP (compatibile con KeeOTP e TrayTotp)\n
+* l\'app non dovrebbe più essere chiusa da Android quando il database è aperto\n
+* il database non viene più chiuso quando si abbandona l\'app tramite il pulsante \"indietro\" (vedi impostazioni)\n
+* mostra i nomi dei gruppi nei risultati di ricerca (*)\n
+* aggiungo un menu contestuale nei risultati di ricerca con l\'opzione \"Passa al gruppo superiore\" (*)\n
+* aggiunta un\'opzione per mostrare, nella visualizzazione di una voce, il nome del gruppo a cui la voce appartiene (*)\n
+* (*) un grazie a Matthieu per aver implementato queste funzioni!\n
+* aggiunto supporto a KeeChallenge (con Yubikey NEO). Grazie a Ben Rush per l\'implementazione del connettore!\n
+* migliorata l\'interfaccia utente\n
+* corretto un bug nell\'interfaccia di Google Drive\n
+* aggiunta un\'opzione per disabilitare la funzione \"donazione\"\n
+* l\'icona QuickUnlock ora è nascosta di default su dispositivi Android 4.2+\n</string>
+  <string name="ChangeLog_0_9_3_r5"><b>Versione 0.9.3 r5</b>\n 
+		* Incorporate correzioni da Xamarin: Keepass2Android è ora compatibile con ART su Android 4.4.2. Finalmente!\n 
+		* Correzioni di errori: errori in sincronizzazione (aggiornamento visualizzazione, corretto controllo per modifiche in http), errori su dispositivi Android 2.x, errori nelle implementazioni di archiviazione con Google Drive e OneDrive, pulizia degli appunti alla chiusura del database, errori in apertura allegati, problemi di visualizzazione della tastiera\n</string>
+  <string name="ChangeLog_0_9_3"><b>Versione 0.9.3</b>\n
+* Nuova tastiera con molti miglioramenti. Vedi le Impostazioni.\n
+* Supporto in sola lettura per file kdb (Keepass 1). Sperimentale!\n
+* Aggiunto supporto SFTP\n
+* Aggiunto soluzione temporanea per il bug con ART (Android 4.4.2)\n
+* Bugfix\n</string>
+  <string name="ChangeLog_0_9_2"><b>Versione 0.9.2</b>\n
+* Aggiunto supporto OTP (compatibile con il plugin OtpKeyProv)\n
+* Integrato supporto NFC per le OTP dal NEO YubiKey\n
+* Aggiornata l\'interfaccia utente\n
+* Integrata la libreria di Keepass 2.24\n
+* Aggiunta un\'opzione per terminare il processo dell\'app (vedi le Impostazioni)\n
+* Migliorata la validazione del certificato SSL\n
+* Corretti alcuni errori\n</string>
+  <string name="ChangeLog_0_9_1"><b>Versione 0.9.1</b>\n
+* Aggiunto il supporto per SkyDrive (solo nell\'edizione normale di Keepass2Android)\n
+* Corretti i problemi di integrazione con Google Drive\n
+* Aggiunto supporto NTLM</string>
+  <string name="ChangeLog_0_9"><b>Versione 0.9</b> \n
+* integrato supporto per Dropbox e Google Drive (database in lettura/scrittura; solo per Keepass2Android edizione regolare)\n
+* integrata la selezione dei file (basata su android-filechooser di HBA)\n
+* migliorata l\'interfaccia per la creazione di nuovi database\n
+* incluso il font DejaVu Sans Mono per la visualizzazione passwords\n
+* corretti alcuni errori</string>
+  <string name="ChangeLog_0_8_6"><b>Versione 0.8.6</b>\n
+* Supporto per cifratura Twofish\n
+* Consentita la modifica dei gruppi\n
+* Consentito lo spostamento di voci e gruppi\n
+* L\'icona QuickUnlock può essere resa trasparente (vedi le impostazioni)\n
+* Correzioni di errori</string>
+  <string name="ChangeLog_0_8_5"><b>Versione 0.8.5</b>\n
+* i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi le impostazioni. \n
+* Icona di notifica per visualizzare lo stato del blocco del database (vedi Impostazioni)\n
+* Migliorato il rilevamento dello stato del blocco del database in alcune circostanze \n
+* I file dei database vengono caricati in memoria mentre stai digitando la password per aumentare la velocità di caricamento (vedi Impostazioni) \n
+* Le voci possono essere aggiunte al gruppo principale \n
+* Correzione di errori (risoluzione campi con riferimenti, problemi con la tastiera su dispositivi italiani e cinesi)</string>
+  <string name="ChangeLog_0_8_4"><b>Versione 0.8.4</b>\n
+* Le modifiche al database esterno vengono rilevate ed unite durante il salvataggio\n
+* Migliorate le performance durante il caricamento\n
+* Migliorata la barra di ricerca con suggerimenti\n
+* Nuovo logo dell\'App!\n
+* Aggiunto supporto al formato .kdbp per apertura e salvataggio più veloci\n
+* Migliorata la modifica delle stringhe aggiuntive e la visualizzazione nascosta quando sono protette\n
+Grazie ad Alex Vallat per il suo contributo al codice!\n
+Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
+  <string name="ChangeLog_0_8_3"><b> Versione 0.8.3 </b>\n
+* Le voci nome utente e indice TAN vengono visualizzati nella lista delle voci di immissione (vedi le impostazioni)\n
+* Le voci possono essere create se la ricerca da browser non restituisce alcun risultato\n
+* La tastiera KP2A offre possibilità di ricercare le credenziali per l\'applicazione attuale\n
+* L\'applicazione si chiude automaticamente dopo aver selezionato una voce per l\'uso dalla tastiera\n
+* La finestra di selezione della tastiera si apre automaticamente dopo la ricerca di URL (vedi le impostazioni)\n
+* I segnaposto nei campi di immissione vengono sostituiti prima della copia (la maggior parte dei segnaposto sono supportati)\n
+* Correzioni di errori minori  </string>
+  <string name="ChangeLog_0_8_2"><b>Versione 0.8.2</b>\n
+* Supporto per la Digest Authentication in WebDAV\n
+* Correzione di errori (OI File manager, Open URL)</string>
+  <string name="ChangeLog_0_8_1"><b>Versione 0.8.1</b>\n
+* KP2A Offline e \"Online\" possono di nuovo essere installati insieme\n
+* Aggiunte nuove traduzioni (grazie a tutti i collaboratori!)</string>
+  <string name="ChangeLog_0_8"><b>Versione 0.8</b>\n
+* Migliorata l\'interfaccia utente in particolare per i dispositivi con Android 4.x\n
+* Consentito l\'utilizzo di gestori di file personali per selezionare file esistenti\n
+* Aggiunto un modo più sicuro per l\'apertura degli allegati (tramite cartella di cache)\n
+* sistemati alcuni errori nella finestra di modifica\n
+* probabilmente aggiunti nuovi errori :-)</string>
   <string name="ChangeLog_keptDonate">Estesa la possibilità di donare una birra o qualcos\'altro</string>
+  <string name="ChangeLog_0_7"><b>Versione 0.7</b>\n
+* Aumentata la velocità di caricamento: l\'elaborazione delle chiavi ora è 10 volte più veloce!\n
+* Aggiunta la tastiera virtuale di Keepass2Android: usa questa tastiera quando inserisci le credenziali. Ti metterà al riparo dagli sniffer delle password basati sugli appunti (disabilita le vecchie notifiche degli appunti nelle impostazioni)\n
+* Aggiunta l\'opzione per donare una birra o qualcos\'altro (vedi menu)</string>
+  <string name="ChangeLog"><b>Versione 0.6.2</b>\n
+* Integrazione con Google Drive/Dropbox/... : usa l\'app ufficiale di Google Drive o Dropbox App e apri un qualunque file \".kdbx\". In questo modo si aprirà KP2A.\n
+* Migliorato il dialogo di ricerca\n
+* Migliorati i risultati di ricerca per le URL condivise con sottodomini\n
+* Aggiunte al menu le opzioni per inviare feedback, valutazioni e per tradurre l\'app\n
+\n
+<b>Versione 0.6.1</b>\n
+* Aggiunto il rilevamento di modifiche in background (es.: dovute ad un\'app di sincronizzazione)\n
+* Migliorata la ricerca delle URL dal browser\n
+* Aggiunta una richiesta di conferma prima di annullare le modifiche\n
+\n
+<b>Versione 0.6</b>\n
+Prima release pubblica
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 secondi</item>
     <item>1 minuto</item>
@@ -1039,4 +1203,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="kp2a_switch_on_sendgodone_summary">Torna indietro quando premi invia/vai/fatto</string>
   <string name="qr_scanning_error_no_google_play_services">La scansione del codice QR richiede Google Play Services. Installa o aggiorna Google Play Services sul tuo dispositivo.</string>
   <string name="english_ime_settings">Impostazioni tastiera Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Hai abilitato App - Impostazioni - Accesso password - Cambio di tastiera - Tastiera automatica, ma non sembra essere configurata correttamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: Hai abilitato App - Accesso password - Servizio di autocompilazione - Autocompilazione per le voci TOTP. Questo può causare la visualizzazione di questa finestra quando si apre una voce con un TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Hai abilitato App - Sicurezza - Usa la tastiera integrata all\'interno di Keepass2Android. Questo può causare la visualizzazione di questa finestra quando si apre l\'app o si modifica una voce.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: hai abilitato App - Sicurezza - Accesso tramite password - Cambio tastiera - Cambia tastiera. Questa finestra potrebbe essere visualizzata quando cerchi una voce dal browser.</string>
 </resources>

@@ -1403,7 +1403,16 @@ namespace keepass2android
 		public override bool OnPrepareOptionsMenu(IMenu menu)
 		{
 			Util.PrepareDonateOptionMenu(menu, this);
-			return base.OnPrepareOptionsMenu(menu);
+
+			// hide the move and delete options if we're viewing a history element. It is not clear 
+			// what the option then means.
+			foreach (var id in new List<int>{Resource.Id.menu_move, Resource.Id.menu_delete})
+            {
+                var menuItem = menu.FindItem(id);
+                menuItem?.SetVisible(_historyIndex < 0);
+            }
+
+            return base.OnPrepareOptionsMenu(menu);
 		}
 
 		bool isPaused = false;
@@ -1600,10 +1609,10 @@ namespace keepass2android
             string url = _stringViews[urlFieldKey].Text;
 			if (url == null) return false;
 
-			// Default http:// if no protocol specified
+			// Default https:// if no protocol specified
 			if ((!url.Contains(":") || (url.StartsWith("www."))))
 			{
-				url = "http://" + url;
+				url = "https://" + url;
 			}
 
 			try

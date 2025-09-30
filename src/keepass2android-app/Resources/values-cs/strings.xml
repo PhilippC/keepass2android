@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Zakázat Biometrické odemknutí</string>
   <string name="enable_fingerprint_unlock">Povolit plné Biometrické odemknutí</string>
   <string name="enable_fingerprint_quickunlock">Povolit Biometrické odemknutí pro Rychlé odemknutí</string>
+  <string name="password_based_quick_unlock_not_available">Rychlé odemknutí pomocí hesla není k dispozici</string>
+  <string name="password_based_quick_unlock_not_available_text">Funkce Rychlé odemknutí pomocí části hesla je blokována, protože na vašem zařízení není aktivováno zamykání obrazovky. Toto opatření slouží k vaší ochraně pro případ, že by někdo sledoval zadávání klíče pro Rychlé odemknutí.</string>
   <string name="fingerprint_unlock_failed">Biometrické odemknutí selhalo. Dešifrovací klíč byl zneplatněn systémem Android. To se obvykle stává, pokud došlo ke změně biometrického ověření nebo bylo změněno bezpečnostní nastavení. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Odemknutí databáze se nezdařilo: neplatný složený klíč. Biometrické odemknutí bylo zakázáno z důvodu pravděpodobného vypršení platnosti hlavního hesla. </string>
   <string name="fingerprint_reenable">Prosím, povolte znovu Biometrické odemknutí pro nové hlavní heslo.</string>
@@ -301,7 +303,7 @@
   <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
   <string name="InlineSuggestions_title">Integrovat s klávesnicí</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického doplňování jako možnosti na klávesnici (pokud je podporováno metodou vstupu)</string>
-  <string name="LogAutofillView_title">Zahrnout obrazovky automatického doplňování do protokolu</string>
+  <string name="LogAutofillView_title">Zobrazit v protokolu Automatické vyplňování</string>
   <string name="LogAutofillView_summary">Zahrne detaily o obrazovkách, kde byly detekovány prostory pro automatické dopňování, do protokolu (pokud je zapnut protokolovací soubor). Tyto detaily mohou být zaslány vývojáři pokud automatické doplňování nefunguje správně.</string>
   <string name="requires_android11">Vyžaduje Android 11 nebo novější</string>
   <string name="kp2a_findUrl">Najít heslo</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Vložte kód Rychlého odemknutí:</string>
   <string name="QuickUnlock_button">Rychlé odemknutí</string>
   <string name="QuickUnlock_lockButton">Zavřít databázi</string>
+  <string name="enable_screen_lock">Povolit zámek obrazovky</string>
   <string name="QuickUnlockDefaultEnabled_title">Ve výchozím nastavení povolit Rychlé odemknutí</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, zda je Rychlé odemknutí ve výchozím nastavení povoleno nebo ne.</string>
   <string name="ViewDatabaseSecure_title">Chránit zobrazení databáze</string>
@@ -327,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">Rychlé odemknutí bohužel nefunguje bez zobrazení ikony upozornění. Vyberte tuto možnost, pokud chcete použít průhlednou ikonu.</string>
   <string name="QuickUnlockIconHidden16_title">Skrýt ikonu Rychlého odemknutí</string>
   <string name="QuickUnlockIconHidden16_summary">Rychlé odemknutí vyžaduje notifikace pro správnou funkčnost. Vyberte tuto možnost, chcete-li zobrazit notifikaci bez ikony.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Zablokujte zadávání klíče pro rychlé odemknutí, pokud zařízení není zabezpečeno zámkem obrazovky. Tím se zabrání útokům typu „shoulder surfing“. Tuto možnost deaktivujte pouze v případě, že rozumíte rizikům. Upozorňujeme, že funkci rychlé odemknutí lze i nadále používat s biometrickými údaji.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blokovat rychlé odemknutí, když zařízení není zabezpečené</string>
   <string name="QuickUnlockLength_title">Délka klíče pro Rychlé odemknutí</string>
   <string name="QuickUnlockLength_summary">Maximální počet znaků používaných jako heslo pro Rychlé odemknutí.</string>
   <string name="QuickUnlockHideLength_title">Schovej délku kódu pro Rychlé odemknutí</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">Chci vědět víc!</string>
   <string name="no_thanks">Ne, tak moc se mi to nelíbí</string>
   <string name="enter_http_login_title">Zadejte přihlašovací údaje pro WebDav:</string>
+  <string name="enter_smb_login_title">Zadejte přihlašovací údaje pro Sambu:</string>
   <string name="hint_http_url">URL nebo adresář se souborem (např. mycloud.me.com/webdaw/)</string>
+  <string name="hint_smb_url">URL složky nebo souboru (např.: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Doména uživatele Samby</string>
+  <string name="hint_smb_username">Uživatelské jméno Samby</string>
   <string name="enter_owncloud_login_title">Zadejte přihlašovací údaje pro OwnCloud:</string>
   <string name="hint_owncloud_url">URL adresa OwnCloud (např. owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Zadejte údaje pro Nextcloud:</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -717,7 +727,28 @@
   <string name="EntryChannel_name">Upozornění položky</string>
   <string name="EntryChannel_desc">Upozornění pro usnadnění přístupu k momentálně zvolené položce.</string>
   <string name="CloseDbAfterFailedAttempts">Zavřít databázi po třech neúspěšných pokusech o odemknutí.</string>
+  <string name="hint_smb_credentials">Pokud chcete přistupovat k souborům z vašeho osobního počítače se systémem Windows, použijte jako adresu hostitele název počítače nebo místní IP adresu; jako doménu zadejte název počítače a jako uživatelské jméno a heslo zadejte přihlašovací údaje do systému Windows (často stejné jako pro váš účet Microsoft).</string>
   <string name="WarnFingerprintInvalidated">Varování! Biometrické ověření může být zneplatněno Androidem, např. po přidání nového otisku prstu do nastavení zařízení. Ujistěte se, že vždy víte, jak odemknout pomocí hlavního hesla!</string>
+  <string name="webdav_chunked_upload_size_title">Velikost bloku pro nahrávání přes WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Povolit nahrávání po částech pro WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Pro servery WebDav, které nepodporují nahrávání velkých souborů v jediném požadavku. Pokud je tato funkce povolena, Keepass2Android používá standardní rozdělení WebDav, nikoli metodu rozdělení Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Velikost bloků při nahrávání na servery WebDav v bajtech.</string>
+  <string name="cleartextTrafficPermitted_title">Povolit síťový provoz v otevřeném textu ve WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP připojení nejsou bezpečná. Tuto možnost povolte pouze v případě, že máte zavedena další bezpečnostní opatření.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Aktualizace na .net 9 a cílovou verzi SDK 35. To přináší průhledný stavový řádek v systému Android 15, protože nyní je výchozím nastavením režim od okraje k okraji.</item>
+    <item>Drobná vylepšení uživatelského rozhraní</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>
+    <item>Přidána podpora pro Sambu/síťové sdílení Windows</item>
+    <item>Aktualizován JSch pro podporu modernějších algoritmů v SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Vylepšené hodnocení kvality hesel založené na nejčastěji používaných heslech.</item>
+    <item>Pokud zařízení nemá aktivovaný zámek obrazovky, blokuje se funkce Rychlé odemknutí pomocí hesla (z bezpečnostních důvodů).</item>
+    <item>Aktualizovat konfiguraci zabezpečení sítě pro vypnutí přenosu textu v nešifrované podobě.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Aktualizováno z Xamarin Android na .net 8</item>
     <item>Aktualizováno na Target SDK 34</item>
@@ -1169,4 +1200,8 @@ První veřejné vydání
   <string name="kp2a_switch_on_sendgodone_summary">Přepnout zpět při stisknutí tlačítka odeslat/pokračovat/ukončit</string>
   <string name="qr_scanning_error_no_google_play_services">Skenování QR kódu vyžaduje služby Google Play. Nainstalujte nebo aktualizujte služby Google Play ve svém zařízení.</string>
   <string name="english_ime_settings">Nastavení klávesnice Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Poznámka: Máte povoleno Aplikace - Nastavení - Přístup k heslu - Přepínání klávesnice - Automatické přepínání klávesnice, ale nezdá se, že je správně nakonfigurováno.</string>
+  <string name="switch_keyboard_for_totp_enabled">Poznámka: Máte povoleno Aplikace - Přístup k heslu - Služba automatického vyplňování - Automatické vyplňování pro položky TOTP. To může způsobit, že se toto okno zobrazí, když otevřete položku s TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Poznámka: V aplikaci Keepass2Android jste povolili možnost Aplikace - Zabezpečení - Použít vestavěnou klávesnici. To může způsobit, že se toto okno zobrazí při otevření aplikace nebo úpravě položky.</string>
+  <string name="switch_keyboard_on_search_enabled">Poznámka: Máte povoleno Aplikace - Zabezpečení - Přístup k heslu - Přepínání klávesnice - Přepínání klávesnice. To může způsobit, že se toto okno zobrazí při vyhledávání položky z prohlížeče.</string>
 </resources>

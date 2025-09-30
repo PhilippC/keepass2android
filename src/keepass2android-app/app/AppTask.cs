@@ -15,6 +15,7 @@ using Android.Content.Res;
 using Android.Preferences;
 using Google.Android.Material.Dialog;
 using keepass2android;
+using PluginTOTP;
 
 namespace keepass2android
 {
@@ -638,19 +639,7 @@ namespace keepass2android
 
             if (CopyTotpToClipboard && isTotpEntry)
             {
-                Dictionary<string, string> entryFields = pwEntryOutput.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
-                var totpData= totpPluginAdapter.GetTotpData(entryFields, activity, true);
-                if (totpData.IsTotpEntry)
-                {
-                    TOTPProvider prov = new TOTPProvider(totpData);
-                    string totp = prov.GenerateByByte(totpData.TotpSecret);
-                    CopyToClipboardService.CopyValueToClipboardWithTimeout(activity, totp, true);
-
-                    App.Kp2a.ShowMessage(activity, activity.GetString(Resource.String.TotpCopiedToClipboard),
-                         MessageSeverity.Info);
-                }
-
-                
+                DoCopyTotpToClipboard(activity, pwEntryOutput, totpPluginAdapter);
             }
 
             if (CloseAfterCreate)
@@ -661,7 +650,23 @@ namespace keepass2android
                 activity.CloseAfterTaskComplete();	
 			}
 		}
-	}
+
+        private static void DoCopyTotpToClipboard(EntryActivity activity, PwEntryOutput pwEntryOutput,
+            ITotpPluginAdapter? totpPluginAdapter)
+        {
+            Dictionary<string, string> entryFields = pwEntryOutput.OutputStrings.ToDictionary(pair => StrUtil.SafeXmlString(pair.Key), pair => pair.Value.ReadString());
+            var totpData = totpPluginAdapter.GetTotpData(entryFields, activity, true);
+            if (totpData.IsTotpEntry)
+            {
+                TOTPProvider prov = new TOTPProvider(totpData);
+                string totp = prov.GenerateByByte(totpData.TotpSecret);
+                CopyToClipboardService.CopyValueToClipboardWithTimeout(activity, totp, true);
+
+                App.Kp2a.ShowMessage(activity, activity.GetString(Resource.String.TotpCopiedToClipboard),
+                    MessageSeverity.Info);
+            }
+        }
+    }
 
 
 	/// <summary>

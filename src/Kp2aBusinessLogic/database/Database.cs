@@ -90,9 +90,12 @@ namespace keepass2android
 			PwDatabase pwDatabase = new PwDatabase();
 
 			IFileStorage fileStorage = _app.GetFileStorage(iocInfo);
-			Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
-			var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
-			PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseFormat);
+            Kp2aLog.Log("LoadData: Retrieving stream");
+            Stream s = databaseData ?? fileStorage.OpenFileForRead(iocInfo);
+            Kp2aLog.Log("LoadData: GetCurrentFileVersion");
+            var fileVersion = _app.GetFileStorage(iocInfo).GetCurrentFileVersionFast(iocInfo);
+            Kp2aLog.Log("LoadData: PopulateDatabaseFromStream");
+            PopulateDatabaseFromStream(pwDatabase, s, iocInfo, compositeKey, status, databaseFormat);
 		    LastFileVersion = fileVersion;
 
 		    status.UpdateSubMessage("");

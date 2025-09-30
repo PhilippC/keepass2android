@@ -25,6 +25,7 @@ using Android.Widget;
 using Android.Content.PM;
 using KeePassLib.Keys;
 using Android.Preferences;
+using Android.Provider;
 using Android.Runtime;
 
 using Android.Views.InputMethods;
@@ -80,8 +81,11 @@ namespace keepass2android
 
 			SetContentView(Resource.Layout.QuickUnlock);
 
+            Util.InsetListener.ForBottomElement(FindViewById(Resource.Id.bottom_bar)).Apply();
+            Util.InsetListener.ForTopElement(FindViewById(Resource.Id.appbar)).Apply();
 
-			var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+
+            var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
 			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             
@@ -161,6 +165,29 @@ namespace keepass2android
 
             if (bundle != null)
                 numFailedAttempts = bundle.GetInt(NumFailedAttemptsKey, 0);
+
+            FindViewById(Resource.Id.QuickUnlock_buttonEnableLock).Click += (object sender, EventArgs e) =>
+            {
+				Intent intent = new Intent(Settings.ActionSecuritySettings);
+                StartActivity(intent);
+
+            };
+
+            FindViewById(Resource.Id.QuickUnlock_buttonCloseDb).Click += (object sender, EventArgs e) =>
+            {
+                App.Kp2a.Lock(false);
+            };
+
+            if (App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase == false && App.Kp2a.QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase)
+            {
+				FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Gone;
+                FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Visible;
+                FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Gone;
+            }
 
 
 

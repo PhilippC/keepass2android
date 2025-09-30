@@ -9,7 +9,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    [Activity]
+    [Activity(Theme = "@style/Kp2aTheme_ActionBar")]
     public class ExportKeyfileActivity : LockCloseActivity
     {
 

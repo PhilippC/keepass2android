@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
-android:fitsSystemWindows="true">
+android:fitsSystemWindows="false">
 <keepass2android.MeasuringLinearLayout
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
@@ -17,7 +17,7 @@ android:fitsSystemWindows="true">
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_weight="1"
-          android:fitsSystemWindows="true">
+          android:fitsSystemWindows="false">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@ android:fitsSystemWindows="true">
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           app:layout_scrollFlags="scroll|exitUntilCollapsed"
-          android:fitsSystemWindows="true"
+          android:fitsSystemWindows="false"
           app:expandedTitleMarginStart="16dp"
           app:expandedTitleMarginEnd="24dp"
           app:expandedTitleMarginBottom="20sp">
@@ -78,20 +78,27 @@ android:paddingLeft="16dp"
 android:paddingRight="16dp"
           android:paddingTop="16dp">
 
-
-        <TextView
-                android:id="@+id/QuickUnlock_label"
-                android:text="@string/QuickUnlock_label"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/filename_label"
-                android:textSize="14sp"
-                />
-        
+         
         <LinearLayout
-          android:layout_width="wrap_content"
+          android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:orientation="horizontal">
+          android:orientation="vertical"
+          android:id="@+id/QuickUnlockForm">
+
+          <TextView
+            android:id="@+id/QuickUnlock_label"
+            android:text="@string/QuickUnlock_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/filename_label"
+            android:textSize="14sp"
+          />
+
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
 
           <EditText
             android:inputType="textPassword"
@@ -116,11 +123,65 @@ android:paddingRight="16dp"
                                     android:src="@drawable/baseline_fingerprint_24"
                                     android:scaleType="fitXY"
                                     android:background="?android:selectableItemBackground" />
-          
-            
+
+          </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:background="@color/md_theme_secondaryContainer"
+          android:id="@+id/QuickUnlockBlocked"
+          android:padding="16dp"
+          android:layout_gravity="center">
+
+          <TextView
+            android:id="@+id/quick_unlock_blocked_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_based_quick_unlock_not_available"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="8dp"/>
+
+          <TextView
+            android:id="@+id/alert_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_based_quick_unlock_not_available_text"
+            android:textSize="16sp"
+                            android:paddingBottom="8dp"/>
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button  
+              android:id="@+id/QuickUnlock_buttonEnableLock"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:backgroundTint="@color/md_theme_secondary"
+              android:textColor="@android:color/white"
+              android:text="@string/enable_screen_lock"
+              android:fontFamily="sans-serif-medium"   />
+
+              <Button  
+              android:id="@+id/QuickUnlock_buttonCloseDb"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:backgroundTint="@color/md_theme_secondary"
+              android:textColor="@android:color/white"
+              android:fontFamily="sans-serif-medium"  
+              android:text="@string/QuickUnlock_lockButton" />
+            
+            </LinearLayout>
+            
+
+          </LinearLayout>
       
         <View
         android:id="@+id/spacing"

@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.core.view.WindowCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -242,6 +244,7 @@ public class FileChooserActivity extends FragmentActivity {
                     R.style.Afc_Theme_Dark));
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.afc_activity_filechooser);
         Ui.adjustDialogSizeForLargeScreen(getWindow());
 

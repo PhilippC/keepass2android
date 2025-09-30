@@ -719,6 +719,14 @@
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Actualizado desde Xamarin Android a .net 8</item>
+    <item>Upgraded to Target SDK 34</item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+    <item>Fix issue with password generator</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Añadidos botones de acción flotante para la búsqueda y vista general de TOTP (si las entradas TOTP están presentes).</item>
     <item>Se ha mejorado la visualización de los campos TOTP añadiendo un indicador de tiempo de espera y mostrándolo de forma más destacada.</item>
@@ -1178,4 +1186,5 @@
   <string name="kp2a_switch_on_sendgodone">Volver cuando termine</string>
   <string name="kp2a_switch_on_sendgodone_summary">Volver cuando se presione enviar/ir/finalizado</string>
   <string name="english_ime_settings">Ajustes del teclado de Keepass2Android</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Interruptor de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
 </resources>

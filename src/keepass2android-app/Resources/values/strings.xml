@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Disable Biometric Unlock</string>
   <string name="enable_fingerprint_unlock">Enable full Biometric Unlock</string>
   <string name="enable_fingerprint_quickunlock">Enable Biometric Unlock for QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Password-based QuickUnlock not available</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock using a part of your password is blocked because screen lock is not activated on your device. This behavior is to protect you in case somebody watched you entering your QuickUnlock key.</string>
   <string name="fingerprint_unlock_failed">Biometric Unlock failed. Decryption key was invalidated by Android OS. This usually happens if a biometric authentication or security settings were changed. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Unlocking the database failed: Invalid composite key. Biometric Unlock was disabled because apparently the stored master password is no longer valid. </string>
   <string name="fingerprint_reenable">Please re-enable Biometric Unlock for the new master password.</string>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Enter QuickUnlock code:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Close database</string>
+  <string name="enable_screen_lock">Enable screen lock</string>
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
   <string name="ViewDatabaseSecure_title">Protect database display</string>
@@ -327,6 +330,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
   <string name="QuickUnlockIconHidden16_title">Hide QuickUnlock icon</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requires a notification to work properly. Select this option to display a notification without an icon.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Block entering the QuickUnlock key if the device is not secured by screen lock. This prevents shoulder surfing attacks. Only disable this option if you understand the risk. Note that QuickUnlock can still be used with biometrics.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Block QuickUnlock when device is not secure</string>
   <string name="QuickUnlockLength_title">Length of QuickUnlock key</string>
   <string name="QuickUnlockLength_summary">Maximum number of characters used as QuickUnlock password.</string>
   <string name="QuickUnlockHideLength_title">Hide QuickUnlock length</string>
@@ -506,7 +511,12 @@
   <string name="ok_donate">Tell me more!</string>
   <string name="no_thanks">No, I don\'t like it that much</string>
   <string name="enter_http_login_title">Enter WebDav login data:</string>
+  <string name="enter_smb_login_title">Enter Samba login data:</string>
   <string name="hint_http_url">URL of folder or file (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL of folder or file (ex: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Samba user\'s domain</string>
+  <string name="hint_smb_username">Samba username</string>
+  
   <string name="enter_owncloud_login_title">Enter OwnCloud login data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Enter Nextcloud login data:</string>
@@ -544,6 +554,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -730,7 +741,33 @@
   <string name="BackgroundSyncChannel_desc">Notification to indicate that a synchronization is performed in the background.</string>
   
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
+  <string name="hint_smb_credentials">If you want to access files from your personal Windows computer, use the computer name or local IP address as host URL; enter the computer name as domain and the Windows login (often the same as your Microsoft account) as username and password.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
+  <string name="webdav_chunked_upload_size_title">Chunk size for WebDav upload</string>
+  <string name="webdav_chunked_upload_enabled_title">Enable chunked upload for WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">For WebDav servers that do not support uploading large files in a single request. When enabled, Keepass2Android uses standard WebDav chunking, not the Nextcloud chunking method.</string>
+  <string name="webdav_chunked_upload_size_summary">Size of chunks when uploading to WebDav servers in bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
+
+  <string-array name="ChangeLog_1_14">
+    <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
+    <item>Minor UI improvements</item>
+  </string-array>
+
+  <string-array name="ChangeLog_1_14_net">
+    <item>WebDav improvements: Bug fix for listing folders; support for chunked uploads and transactions</item>
+    <item>Added support for Samba/Windows network shares</item>
+    <item>Updated JSch to support more modern algorithms in SFTP</item>
+  </string-array>
+
+  
+  <string-array name="ChangeLog_1_13">
+    <item>Improved password quality estimation by considering most popular passwords.</item>
+    <item>Block password-based QuickUnlock (for security reasons) if the device does not have a screen lock activated.</item>
+    <item>Update network security configuration to disable clear-text transfer.</item>
+  </string-array>
+
 
   <string-array name="ChangeLog_1_12">
     <item>Upgraded from Xamarin Android to .net 8</item>

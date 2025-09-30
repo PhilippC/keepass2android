@@ -42,9 +42,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="@dimen/afc_2dp"
+        android:layout_marginTop="@dimen/afc_5dp"
+        android:layout_marginBottom="@dimen/afc_5dp"
         android:layout_marginRight="@dimen/afc_5dp"
-        android:layout_marginTop="@dimen/afc_2dp"
         android:layout_weight="0.1"
         android:orientation="vertical" >
 
@@ -55,8 +55,8 @@
             android:ellipsize="middle"
             android:maxLines="3"
             android:singleLine="false"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
 
         <TextView
             android:id="@+id/afc_textview_file_info"
@@ -66,7 +66,8 @@
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
     </LinearLayout>
 
     <CheckBox

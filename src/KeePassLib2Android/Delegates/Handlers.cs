@@ -46,4 +46,12 @@ namespace KeePassLib.Delegates
 	public delegate void VoidDelegate();
 
 	public delegate string StrPwEntryDelegate(string str, PwEntry pe);
+
+    public delegate TResult GFunc<TResult>();
+    public delegate TResult GFunc<T, TResult>(T o);
+    public delegate TResult GFunc<T1, T2, TResult>(T1 o1, T2 o2);
+    public delegate TResult GFunc<T1, T2, T3, TResult>(T1 o1, T2 o2, T3 o3);
+    public delegate TResult GFunc<T1, T2, T3, T4, TResult>(T1 o1, T2 o2, T3 o3, T4 o4);
+    public delegate TResult GFunc<T1, T2, T3, T4, T5, TResult>(T1 o1, T2 o2, T3 o3, T4 o4, T5 o5);
+    public delegate TResult GFunc<T1, T2, T3, T4, T5, T6, TResult>(T1 o1, T2 o2, T3 o3, T4 o4, T5 o5, T6 o6);
 }

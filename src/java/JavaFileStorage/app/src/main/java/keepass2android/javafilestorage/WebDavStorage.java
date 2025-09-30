@@ -1,9 +1,9 @@
 package keepass2android.javafilestorage;
 
 import android.content.Context;
+import java.math.BigInteger;
 import android.content.Intent;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -15,7 +15,13 @@ import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 
+import okhttp3.Interceptor;
+import okhttp3.Response;
+import okhttp3.Request;
+
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -24,6 +30,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -38,27 +45,36 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import keepass2android.javafilestorage.ConnectionInfo;
 import keepass2android.javafilestorage.webdav.DecoratedHostnameVerifier;
 import keepass2android.javafilestorage.webdav.DecoratedTrustManager;
 import keepass2android.javafilestorage.webdav.PropfindXmlParser;
 import keepass2android.javafilestorage.webdav.WebDavUtil;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.internal.tls.OkHostnameVerifier;
+import okio.BufferedSink;
 
 public class WebDavStorage extends JavaFileStorageBase {
+
 
     private final ICertificateErrorHandler mCertificateErrorHandler;
     private Context appContext;
 
-    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler)
+    int chunkSize;
+
+    public WebDavStorage(ICertificateErrorHandler certificateErrorHandler, int chunkSize, Context appContext)
     {
+        this.chunkSize = chunkSize;
+        this.appContext = appContext;
 
         mCertificateErrorHandler = certificateErrorHandler;
+    }
+
+    public void setUploadChunkSize(int chunkSize)
+    {
+        this.chunkSize = chunkSize;
     }
 
     public String buildFullPath(String url, String username, String password) throws UnsupportedEncodingException {
@@ -130,7 +146,12 @@ public class WebDavStorage extends JavaFileStorageBase {
     //client to be reused (connection pool/thread pool). We're building a custom client for each ConnectionInfo in getClient for actual usage
     final OkHttpClient baseClient = new OkHttpClient();
 
-    private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
+    private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, IOException {
+
+        if (ci.URL.startsWith("http://") && !PreferenceManager.getDefaultSharedPreferences(appContext).getBoolean("permit_cleartext_traffic", false))
+        {
+            throw new IOException("Cleartext HTTP is disabled by user preference. Go to app settings/File handling if you really want to use HTTP.");
+        }
 
 
         OkHttpClient.Builder builder = baseClient.newBuilder();
@@ -175,27 +196,121 @@ public class WebDavStorage extends JavaFileStorageBase {
             builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
+
         OkHttpClient client =  builder.build();
 
 
         return client;
     }
 
+    public void renameOrMoveWebDavResource(String sourcePath, String destinationPath, boolean overwrite) throws Exception {
+
+        ConnectionInfo sourceCi = splitStringToConnectionInfo(sourcePath);
+        ConnectionInfo destinationCi = splitStringToConnectionInfo(destinationPath);
+
+        Request.Builder requestBuilder = new Request.Builder()
+                .url(new URL(sourceCi.URL))
+                .method("MOVE", null) // "MOVE" is the HTTP method
+                .header("Destination", destinationCi.URL); // New URI for the resource
+
+        // Add Overwrite header
+        if (overwrite) {
+            requestBuilder.header("Overwrite", "T"); // 'T' for true
+        } else {
+            requestBuilder.header("Overwrite", "F"); // 'F' for false
+        }
+
+        Request request = requestBuilder.build();
+
+        Response response = getClient(sourceCi).newCall(request).execute();
+
+        // Check the status code
+        if (response.isSuccessful()) {
+            // WebDAV MOVE can return 201 (Created) if a new resource was created at dest,
+            // or 204 (No Content) if moved to a pre-existing destination (e.g., just renamed).
+            // A 200 OK might also be returned by some servers, though 201/204 are more common.
+
+        }
+        else
+        {
+            throw new Exception("Rename/Move failed for " + sourceCi.URL + " to " + destinationCi.URL + ": " + response.code() + " " + response.message());
+        }
+    }
+
+    public static String generateRandomHexString(int length) {
+        SecureRandom secureRandom = new SecureRandom();
+        // Generate enough bytes to ensure we can get the desired number of hex characters.
+        // Each byte converts to two hex characters.
+        // For 8 hex characters, we need 4 bytes.
+        int numBytes = (int) Math.ceil(length / 2.0);
+        byte[] randomBytes = new byte[numBytes];
+        secureRandom.nextBytes(randomBytes);
+
+        // Convert the byte array to a hexadecimal string
+        // BigInteger(1, randomBytes) treats the byte array as a positive number.
+        // toString(16) converts it to a hexadecimal string.
+        String hexString = new BigInteger(1, randomBytes).toString(16);
+
+        // Pad with leading zeros if necessary (e.g., if the generated number is small)
+        // and then take the first 'length' characters.
+        // Using String.format to ensure leading zeros if the hexString is shorter.
+        return String.format("%0" + length + "d", new BigInteger(hexString, 16)).substring(0, length);
+    }
 
     @Override
     public void uploadFile(String path, byte[] data, boolean writeTransactional)
             throws Exception {
 
+        if (writeTransactional)
+        {
+            String randomSuffix = ".tmp." + generateRandomHexString(8);
+            uploadFile(path + randomSuffix, data, false);
+            renameOrMoveWebDavResource(path+randomSuffix, path, true);
+            return;
+        }
+
+
         try {
             ConnectionInfo ci = splitStringToConnectionInfo(path);
 
+
+            RequestBody requestBody;
+            if (chunkSize > 0)
+            {
+                // use chunked upload
+                requestBody = new RequestBody() {
+                    @Override
+                    public MediaType contentType() {
+                        return MediaType.parse("application/binary");
+                    }
+
+                    @Override
+                    public void writeTo(BufferedSink sink) throws IOException {
+                        try (InputStream in = new ByteArrayInputStream(data)) {
+                            byte[] buffer = new byte[chunkSize];
+                            int read;
+                            while ((read = in.read(buffer)) != -1) {
+                                sink.write(buffer, 0, read);
+                                sink.flush();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public long contentLength() {
+                        return -1; // use chunked upload
+                    }
+                };
+            }
+            else
+            {
+                requestBody = RequestBody.create(data, MediaType.parse("application/binary"));
+            }            
+
             Request request = new Request.Builder()
                     .url(new URL(ci.URL))
-                    .put(RequestBody.create(MediaType.parse("application/binary"), data))
+                    .put(requestBody)
                     .build();
-
-            //TODO consider writeTransactional
-            //TODO check for error
 
             Response response = getClient(ci).newCall(request).execute();
             checkStatus(response);
@@ -290,7 +405,10 @@ public class WebDavStorage extends JavaFileStorageBase {
                             e.sizeInBytes = -1;
                         }
                     }
-                    e.isDirectory = r.href.endsWith("/");
+
+                    e.isDirectory = r.href.endsWith("/") || okprop.IsCollection;
+
+
 
                     e.displayName = okprop.DisplayName;
                     if (e.displayName == null)
@@ -514,8 +632,8 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     @Override
     public void prepareFileUsage(Context appContext, String path) {
-        this.appContext = appContext;
 
     }
 
 }
+

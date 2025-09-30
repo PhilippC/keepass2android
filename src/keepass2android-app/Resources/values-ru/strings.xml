@@ -699,6 +699,14 @@
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Upgraded to Target SDK 34</item>
+    <item>Upgraded to Material 3 user interface</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+    <item>Исправлена проблема с генератором паролей</item>
+  </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
     <item></item>

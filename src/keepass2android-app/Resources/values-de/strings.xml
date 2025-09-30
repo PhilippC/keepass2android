@@ -94,6 +94,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="disable_fingerprint_unlock">Biometrisches Entsperren deaktivieren</string>
   <string name="enable_fingerprint_unlock">Komplettes biometrisches Entsperren aktivieren</string>
   <string name="enable_fingerprint_quickunlock">Biometrisches Entsperren für QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Passwort-basiertes QuickUnlock nicht verfügbar</string>
+  <string name="password_based_quick_unlock_not_available_text">QuickUnlock mit einem Teil des Passworts wird blockiert, da die Bildschirmsperre auf deinem Gerät nicht aktiviert ist. Dieses Verhalten schützt dich, wenn jemand gesehen hat, wie du den QuickUnlock-Schlüssel eingegeben hast.</string>
   <string name="fingerprint_unlock_failed">Biometrisches Entsperren fehlgeschlagen. Entschlüsselungsschlüssel wurde vom Android-System für ungültig erklärt. Das kommt üblicherweise vor, wenn die Biometrische Authentifizierung oder die Sicherheitseinstellungen geändert wurden. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Entsperren der Datenbank fehlgeschlagen: Ungültiger zusammengesetzter Schlüssel. Biometrisches Entsperren wurde deaktiviert, da das gespeicherte Hauptpasswort nicht länger gültig ist.</string>
   <string name="fingerprint_reenable">Bitte Biometrisches Entsperren für das neue Hauptpasswort erneut aktivieren.</string>
@@ -164,7 +166,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="invalid_db_sig">Datenbank-Format wurde nicht erkannt.</string>
   <string name="keyfile_does_not_exist">Schlüssel-Datei existiert nicht.</string>
   <string name="no_keyfile_selected">Keine Schlüsseldatei ausgewählt.</string>
-  <string name="keyfile_is_empty">Schlüssel-Datei ist leer.</string>
+  <string name="keyfile_is_empty">Schlüsseldatei ist leer.</string>
   <string name="length">Länge</string>
   <string name="list_size_title">Größe der Gruppenliste</string>
   <string name="list_size_summary">Schriftgröße in der Gruppenliste</string>
@@ -176,7 +178,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="masktotp_title">TOTP-Feld verdecken</string>
   <string name="masktotp_summary">TOTP-Feld standardmäßig ausblenden</string>
   <string name="NoAutofillDisabling_title">Keine Option, um Autofill zu deaktivieren</string>
-  <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht anzeigen. </string>
+  <string name="NoAutofillDisabling_summary">Wenn aktiviert, wird die App die Option zum Abschalten von Autofill für bestimmte Einträge nicht angezeigt.
+ </string>
   <string name="menu_about">Über</string>
   <string name="menu_change_key">Hauptschlüssel ändern</string>
   <string name="menu_copy_pass">Passwort kopieren</string>
@@ -290,7 +293,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="please_note">Bitte beachten</string>
   <string name="contributors">Mitwirkende</string>
   <string name="regular_expression">Regulärer Ausdruck</string>
-  <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer vereinigen</string>
+  <string name="AlwaysMergeOnConflict_title">Bei Konflikt immer zusammenführen</string>
   <string name="AlwaysMergeOnConflict_summary">Die lokalen Änderungen immer mit den entfernten Änderungen vereinigen, wenn Keepass2Android erkennt, dass die entfernte Datei verändert wurde.</string>
   <string name="TanExpiresOnUse_title">TAN verfällt bei Verwendung</string>
   <string name="TanExpiresOnUse_summary">TAN-Einträge als abgelaufen markieren, wenn sie verwendet werden</string>
@@ -320,6 +323,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlock_label_secure">QuickUnlock-Code eingeben:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Datenbank schließen</string>
+  <string name="enable_screen_lock">Bildschirmsperre aktivieren</string>
   <string name="QuickUnlockDefaultEnabled_title">QuickUnlock standardmäßig aktiviert</string>
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
   <string name="ViewDatabaseSecure_title">Datenbankanzeige schützen</string>
@@ -328,11 +332,13 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock benötigt eine Benachrichtigung, um ordnungsgemäß zu funktionieren. Diese Option wählen, um eine Benachrichtigung ohne Symbol anzuzeigen.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Die Eingabe des QuickUnlock-Schlüssels blockieren, wenn das Gerät nicht durch eine Bildschirmsperre gesichert ist. Dies verhindert Shoulder-Surfing-Angriffe. Diese Option nur deaktivieren, wenn man sich über das Risiko im Klaren ist. Hinweis: QuickUnlock kann weiterhin mit biometrischen Daten verwendet werden.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">QuickUnlock blockieren, wenn Gerät nicht sicher ist</string>
   <string name="QuickUnlockLength_title">Länge des QuickUnlock-Schlüssels</string>
   <string name="QuickUnlockLength_summary">Maximale Anzahl von Zeichen, die als QuickUnlock-Passwort verwendet werden.</string>
   <string name="QuickUnlockHideLength_title">Länge des QuickUnlock-Codes verstecken</string>
   <string name="QuickUnlockHideLength_summary">Wenn aktiviert, wird die Länge des QuickUnlock-Codes nicht auf dem QuickUnlock-Bildschirm angezeigt.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Taste aus dem Datenbankeintrag.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">QuickUnlock-Schlüssel aus Datenbankeintrag</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Wenn die aktive Datenbank einen Eintrag mit dem Titel „QuickUnlock“ in der Root-Gruppe enthält, wird das Passwort dieses Eintrags als QuickUnlock-Code verwendet.</string>
   <string name="QuickUnlock_fail">QuickUnlock fehlgeschlagen: falsches Passwort!</string>
   <string name="SaveAttachmentDialog_title">Anhang speichern</string>
@@ -378,7 +384,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ActivateSearchViewOnStart_summary">Aktiviert das Suchfeld in der Gruppenansicht nach dem Entsperren oder wenn ein Eintrag gesucht wird.</string>
   <string name="NoDonateOption_title">Spenden-Option ausblenden</string>
   <string name="NoDonateOption_summary">Diese Einstellung ist ein Dankeschön an alle, die gespendet haben. Sie steht erst nach einer gewissen Zeit der Benutzung von Keepass2Android zur Verfügung.</string>
-  <string name="NoDonateOption_question">Ohne Spenden gäbe es diese App nicht und sie könnte nicht ständig verbessert werden! Wenn Sie noch nicht gespendet haben, sollten Sie dies jetzt in Betracht ziehen.</string>
+  <string name="NoDonateOption_question">Ohne Spenden würde diese App nicht existieren und ständig verbessert werden! Wenn du noch nicht gespendet hast, erwäge bitte, dies jetzt zu tun</string>
   <string name="NoDonationReminder_title">Nie um eine Spende bitten</string>
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
@@ -503,7 +509,11 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt\'s mir dann auch nicht</string>
   <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
+  <string name="enter_smb_login_title">Samba-Logindaten eingeben:</string>
   <string name="hint_http_url">URL des Ordners oder der Datei (z. B. mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL des Ordners oder der Datei (z.B.: 192.168.1.10/Freigabe/Ordner/)</string>
+  <string name="hint_smb_domain">Domain des Samba-Benutzers</string>
+  <string name="hint_smb_username">Samba-Benutzername</string>
   <string name="enter_owncloud_login_title">OwnCloud-Zugangsdaten eingeben:</string>
   <string name="hint_owncloud_url">OwnCloud-URL (z.B. owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Nextcloud Logindaten eingeben:</string>
@@ -541,12 +551,14 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windowsfreigabe)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A-Ordner)</string>
   <string name="filestoragehelp_dropboxKP2A">Wenn du Keepass2Android nicht den Zugriff auf die gesamte Dropbox erlauben möchtest, kannst du diese Option wählen. Dann musst du nur Zugriff auf den Ordner Apps/Keepass2Android gewähren. Das ist besonders sinnvoll, wenn du eine neue Datenbank anlegst. Wenn du schon eine Datenbank hast, wähle diese Option aus um den Ordner anzulegen, kopiere die Datei (vom PC aus) in den neuen Ordner und wähle die Option dann erneut zum Laden der Datei.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Bitte beachte: Google beschränkt den Zugriff auf Google Drive von Apps für immer mehr Benutzer. Wenn die eingebaute Google Drive-Implementierung nicht funktioniert, verwende bitte stattdessen die System-Dateiauswahl und wähle dort Google Drive aus!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-Dateien)</string>
   <string name="filestoragehelp_gdriveKP2A">Wenn KP2A keinen Zugriff auf das komplette eigenen Google Drive erhalten soll, kann diese Option gewählte werden. Bitte beachten, dass zuerst eine Datenbankdatei erstellt werden muss; vorhandene Dateien sind für die App nicht sichtbar. Diese Option entweder auf dem Bildschirm „Datenbank erstellen“ auswählen oder, wenn bereits eine Datenbank geöffnet wurde, indem die Datenbank mit dieser Option exportiert wird.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A-Ordner)</string>
@@ -559,7 +571,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="filestoragename_onedrive2_appfolder">Ordner der Keepass2Android-App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eineListe aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
+  <string name="filestoragehelp_mega">Bitte beachte: Keepass2Android muss eine Liste aller Dateien des Mega-Kontos herunterladen, um ordnungsgemäß zu funktionieren. Aus diesem Grund ist der Zugriff auf Konten mit vielen Dateien möglicherweise langsam.</string>
   <string name="filestoragename_content">Android-Dateibrowser</string>
   <string name="filestorage_setup_title">Dateizugriff initialisieren</string>
   <string name="database_location">Speicherort der Datenbank</string>
@@ -715,14 +727,33 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
+  <string name="hint_smb_credentials">Wenn Sie auf Dateien von Ihrem persönlichen Windows-Computer aus zugreifen möchten, verwenden Sie den Computernamen oder die lokale IP-Adresse als Host-URL; geben Sie den Computernamen als Domäne und das Windows-Login (oft identisch mit Ihrem Microsoft-Konto) als Benutzername und Passwort ein.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
+  <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
+  <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Aktualisierung auf .NET 9 und Target SDK Version 35. Dies umfasst eine transparente Statusleiste in Android 15, da nun „Edge-to-Edge” die Standardeinstellung ist.</item>
+    <item>Kleinere UI-Verbesserungen</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>WebDav-Verbesserungen: Fehlerbehebung für die Ordnerauflistung; Unterstützung für chunked Uploads und Transaktionen</item>
+    <item>Unterstützung für Samba/Windows-Netzwerkfreigaben hinzugefügt</item>
+    <item>JSch wurde aktualisiert, um aktuellere Algorithmen in SFTP zu unterstützen</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Verbesserte Einschätzung der Passwortqualität, indem die beliebtesten Passwörter berücksichtigt werden.</item>
+    <item>Blockieren Sie das passwortbasierte QuickUnlock (aus Sicherheitsgründen) wenn das Gerät keine Bildschirmsperre aktiviert hat.</item>
+    <item>Netzwerksicherheitskonfiguration aktualisieren, um die Klartext-Übertragung zu deaktivieren.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
-    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Von Xamarin Android auf .NET 8 upgegradet</item>
     <item>Upgrade auf Target-SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
-    <item>Fix issue with password generator</item>
+    <item>Auf MUI 3 upgegradet</item>
+    <item>Verbessertes automatisches Ausfüllen damit Compose-Apps funktionieren</item>
+    <item>Hostnamen-vergleiche im automatischen Ausfüllen und der Suche gefixt</item>
+    <item>Probleme mit dem Passwort Generator behoben</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>OneDrive SDK auf Version 5.68 aktualisiert</item>
@@ -759,7 +790,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string-array name="ChangeLog_1_09d">
     <item>Unterstützung für das Ansehen, Entfernen und Wiederherstellen von Eintragssicherungen hinzugefügt</item>
     <item>Unterstützung für MEGA-Cloudspeicher hinzugefügt </item>
-    <item>Unterstützung für Google Drive mit eingeschränktem Anwendungsbereich hinzugefügt</item>
+    <item>Unterstützung für Google Drive mit eingeschränktem Zugriff hinzugefügt</item>
   </string-array>
   <string-array name="ChangeLog_1_09c">
     <item>Google-Drive-Authentifizierung erneut implementiert, Google-Drive-Unterstützung wieder aktiviert </item>
@@ -1145,7 +1176,7 @@ Erstes öffentliches Release</string>
   <string name="masterkey_infotext_head">Kennst du dein Master-Passwort?</string>
   <string name="masterkey_infotext_main">Bitte beachte, dass du deine Datenbank ohne den Hauptschlüssel nicht öffnen kannst. Es gibt keine Möglichkeit, das Hauptpasswort „zurückzusetzen“.</string>
   <string name="masterkey_infotext_fingerprint_note">Bitte auch bedenken, dass das Biometrische Entsperren über das Speichern des Hauptschlüssels im sicheren Speicher von Android funktioniert. Dieser Speicher kann von Android jederzeit gelöscht werden, z. B. wenn ein neuer Fingerabdruck in den Systemeinstellungen hinzugefügt wird. Daher sich nicht auf das biometrische Entsperren verlassen, sondern sich bitte das eigene Hauptpasswort merken!</string>
-  <string name="backup_infotext_head">Gibt es eine Sicherung der Datenbank?</string>
+  <string name="backup_infotext_head">Ist deine Datenbank gesichert?</string>
   <string name="backup_infotext_main">Keepass2Android speichert die Passwörter in einer Datei an einem frei wählbarem Speicherort.Ist sichergestellt, dass die Datei auch dann noch verfügbar ist, wenn das Telefon verloren geht oder gestohlen wird, oder wenn die Datei zerstört oder gelöscht wird? Bitte sicherstellen, dass immer eine aktuelle Kopie an einem sichern Ort aufbewahrt wird!</string>
   <string name="backup_infotext_note">Um jetzt eine Sicherung zu erstellen, nach %1$s &gt; %2$s &gt; %3$s gehen.</string>
   <string name="emergency_infotext_head">Hast du für Notfälle vorgesorgt?</string>
@@ -1162,4 +1193,8 @@ Erstes öffentliches Release</string>
   <string name="kp2a_switch_on_sendgodone_summary">Beim Drücken von Senden/Los/Fertig zurückschalten</string>
   <string name="qr_scanning_error_no_google_play_services">QR-Code-Scannen erfordert Google Play-Dienste. Bitte installiere oder aktualisiere Google Play-Dienste auf deinem Gerät.</string>
   <string name="english_ime_settings">Android-Tastatureinstellungen</string>
+  <string name="autoswitch_enabled_but_not_setup">Notiz: Du hast Einstellungen - Anwendung - Passwortzugriff - Wechsel der Eingabemethode - Auto-Umschalten der Tastatur eingeschaltet, aber sieht aus als würde es nicht funktionieren</string>
+  <string name="switch_keyboard_for_totp_enabled">Hinweis: Du hast App - Passwortzugriff - Autofill-Service - Autofill für TOTP-Einträge aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du einen Eintrag mit einem TOTP öffnest.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Hinweis: Du hast App - Sicherheit - Verwenden der eingebauten Tastatur in Keepass2Android aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du die App öffnest oder einen Eintrag bearbeitest.</string>
+  <string name="switch_keyboard_on_search_enabled">Hinweis: Du hast App - Sicherheit - Passwortzugriff - Tastaturwechsel - Tastatur wechseln aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du aus dem Browser nach einem Eintrag suchst.</string>
 </resources>

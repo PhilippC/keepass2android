@@ -64,6 +64,7 @@ namespace keepass2android
 			_activityDesign.ApplyTheme();
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.fingerprint_setup);
+			new Util.InsetListener(FindViewById(Resource.Id.fingerprint_setup_container)).Apply();
 
 			Enum.TryParse(
 				PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, ""),

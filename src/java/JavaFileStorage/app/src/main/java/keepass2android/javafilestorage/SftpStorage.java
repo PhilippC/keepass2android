@@ -505,7 +505,7 @@ public class SftpStorage extends JavaFileStorageBase {
 	}
 
 	@SuppressWarnings("unused")  // Exposed by JavaFileStorageBindings
-	public String createKeyPair() throws IOException, JSchException {
+	public String createKeyPair() throws Exception {
 		return _keyUtils.createKeyPair(jsch);
 	}
 

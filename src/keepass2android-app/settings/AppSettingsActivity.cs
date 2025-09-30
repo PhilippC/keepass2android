@@ -641,8 +641,6 @@ namespace keepass2android
                     builder.SetCancelable(false);
                     Dialog dialog = builder.Create();
                     dialog.Show();
-
-
                 }
             }
 
@@ -654,7 +652,14 @@ namespace keepass2android
                 Preference cachingPreference = FindPreference(GetString(Resource.String.UseOfflineCache_key));
                 cachingPreference.PreferenceChange += OnUseOfflineCacheChanged;
 
-                
+#if EXCLUDE_JAVAFILESTORAGE || NoNet
+                // hide network related preference in NoNet variant:
+                foreach (string key in new List<string>{ "WebDavChunkedUploadEnabled", "WebDavChunkedUploadSize_str", GetString(Resource.String.cleartextTrafficPermitted_key) })
+                {
+                    Preference netPref = FindPreference(key);
+                    netPref.Visible = false;
+                }
+#endif
 
             }
         }
@@ -1217,7 +1222,7 @@ namespace keepass2android
         {
             _design.ApplyTheme();
             base.OnCreate(savedInstanceState);
-
+            new Util.InsetListener(FindViewById(Resource.Id.settings)).Apply();
 
         }
 

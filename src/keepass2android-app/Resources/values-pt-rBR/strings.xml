@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Desabilitar o Desbloqueio Biométrico </string>
   <string name="enable_fingerprint_unlock">Habilitar o Desbloqueio de Biométrico completo</string>
   <string name="enable_fingerprint_quickunlock">Habilitar o Desbloqueio de Biométrico para o QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Desbloqueio rápido baseado em senha não disponível</string>
+  <string name="password_based_quick_unlock_not_available_text">O desbloqueio rápido usando uma parte da sua senha está bloqueado porque o bloqueio da tela não está ativado no seu dispositivo. Esse comportamento é para protegê -lo caso alguém o veja entrando na sua chave de desbloqueio rápido.</string>
   <string name="fingerprint_unlock_failed">Desbloqueio por impressão digital falhou: Chave para desencriptação foi invalidada pelo sistema Android. Isto costuma acontecer se for adicionada uma nova impressão digital ao sistema ou se os parâmetros de segurança forem alterados. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Desbloqueio da base de dados falhado: Chave composta inválida. O desbloqueio por impressão digital foi desativado porque aparentemente a chave mestra arquivada não é válida. </string>
   <string name="fingerprint_reenable">Por favor, reative o Desbloquear com Impressão Digital para a nova senha mestre.</string>
@@ -321,6 +323,7 @@
   <string name="QuickUnlock_label_secure">Digite o código QuickUnlock:</string>
   <string name="QuickUnlock_button">Desbloqueio Rápido!</string>
   <string name="QuickUnlock_lockButton">Fechar banco de dados</string>
+  <string name="enable_screen_lock">Ativar bloqueio de tela</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueio Rápido por padrão</string>
   <string name="QuickUnlockDefaultEnabled_summary">Define se o Desbloqueio Rápido está habilitado por padrão ou não.</string>
   <string name="ViewDatabaseSecure_title">Proteger a exibição da base de dados</string>
@@ -329,6 +332,8 @@
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requer uma notificação para funcionar corretamente. Selecione esta opção para exibir uma notificação sem um ícone.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Bloquear a inserção da chave de Desbloqueio Rápido, se o dispositivo não estiver protegido por bloqueio de tela. Isso previne ataques de shoulder surfing. Desative esta opção apenas se você compreender o risco. Observe que o Desbloqueio Rápido ainda pode ser usado com biometria.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Bloquear Desbloqueio Rápido quando o dispositivo não for seguro.</string>
   <string name="QuickUnlockLength_title">Comprimento da senha do QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres usado como senha do QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Esconder o tamanho do código QuickUnlock</string>
@@ -504,7 +509,11 @@
   <string name="ok_donate">Conte-me mais!</string>
   <string name="no_thanks">Não, não me agrada muito</string>
   <string name="enter_http_login_title">Insira os dados de login WebDav:</string>
+  <string name="enter_smb_login_title">Insira os dados de login do Samba:</string>
   <string name="hint_http_url">URL do arquivo ou pasta (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL da pasta ou arquivo (Ex: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Domínio do usuário do samba</string>
+  <string name="hint_smb_username">Nome de usuário do Samba</string>
   <string name="enter_owncloud_login_title">Insira os dados de login do OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Insira os dados de acesso do Nextcloud:</string>
@@ -542,6 +551,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">Nuvem Própria</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -721,7 +731,28 @@
   <string name="EntryChannel_name">Notificações de entrada</string>
   <string name="EntryChannel_desc">Notificação para simplificar o acesso à entrada selecionada.</string>
   <string name="CloseDbAfterFailedAttempts">Fechar banco de dados após três tentativas de desbloqueio biométrico falhadas.</string>
+  <string name="hint_smb_credentials">Se você deseja acessar arquivos do seu computador Windows pessoal, use o nome do computador ou o endereço IP local como URL do host; Digite o nome do computador como domínio e o login do Windows (geralmente o mesmo que sua conta da Microsoft) como nome de usuário e senha.</string>
   <string name="WarnFingerprintInvalidated">Alerta! Autenticação biométrica pode ser invalidada pelo Android, por exemplo: depois de adicionar uma nova digital nas configurações do seu dispositivo. Esteja certo de sempre saber como desbloquear com sua senha mestra!</string>
+  <string name="webdav_chunked_upload_size_title">Tamanho do bloco para upload do WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Habilitar envio segmentado para WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Para servidores WebDav que não suportam o envio de arquivos grandes em uma única requisição. Quando ativado, o Keepass2Android usa a segmentação WebDav padrão, e não o método de segmentação do Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Tamanho dos blocos quando enviando para servidores WebDav, em bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Permitir tráfego de rede de texto não criptografado no WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Atualização para .NET 9 e Target SDK versão 35. Isso vem com a barra de status transparente no Android 15 porque agora é o padrão.</item>
+    <item>Pequenas melhorias na interface do usuário</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Melhorias no WebDav: Correção de bug ao listar pastas; Suporte para uploads e transações em blocos</item>
+    <item>Adicionado suporte para compartilhamentos de rede Samba/Windows</item>
+    <item>Atualizado o JSch para suportar algoritmos mais modernos no SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Estimativa aprimorada da qualidade da senha, considerando a maioria das senhas populares.</item>
+    <item>Bloqueia o desbloqueio rápido baseado em senha (por motivos de segurança) se o dispositivo não tiver uma trava de tela ativada.</item>
+    <item>Atualize a configuração de segurança de rede para desativar a transferência de texto não criptografado.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Atualizado de Xamarin Android para .NET 8</item>
     <item>Atualizado para o Target SDK 34</item>
@@ -1203,4 +1234,8 @@
   <string name="kp2a_switch_on_sendgodone_summary">Voltar ao pressionar enviar/ir/concluído</string>
   <string name="qr_scanning_error_no_google_play_services">A leitura de código QR requer o Google Play Services. Instale ou atualize o Google Play Services no seu dispositivo.</string>
   <string name="english_ime_settings">Configurações do teclado Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Você ativou o Aplicativo - Configurações - Acesso por senha - Troca de teclado - Troca automática de teclado, mas não parece estar configurado corretamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: você ativou o Aplicativo - Acesso por senha - Serviço de preenchimento automático - Preenchimento automático para entradas TOTP. Isso pode fazer com que essa janela seja exibida quando você abre uma entrada com um TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Você ativou o Aplicativo - Segurança - Usar o teclado embutido dentro do Keepass2Android. Isso pode fazer com que essa janela seja exibida quando você abre o aplicativo ou edita uma entrada.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Você ativou o Aplicativo - Segurança - Acesso por senha - Troca de teclado - Alternar teclado. Isso pode fazer com que essa janela seja exibida quando você pesquisar uma entrada no navegador.</string>
 </resources>

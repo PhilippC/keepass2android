@@ -24,7 +24,7 @@
   <string name="show_kill_app">Tlačidlo Zatvoriť</string>
   <string name="kill_app_label">Ukončiť proces aplikácie</string>
   <string name="show_kill_app_summary">Na obrazovke pre heslo zobraziť tlačidlo na ukončenie procesu aplikácie (pre paranoidných používateľov)</string>
-  <string name="application">Apl.</string>
+  <string name="application">Aplikácia</string>
   <string name="application_settings">Nastavenia aplikácie</string>
   <string name="ShowGroupnameInSearchResult_title">Názov skupiny vo výsledku hľadania</string>
   <string name="ShowGroupnameInSearchResult_resume">Zobraziť názov skupiny pod názvami záznamov vo výsledkoch vyhľadávania. Užitočné v prípade, že viaceré záznamy majú rovnaký názov.</string>
@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Vypnúť biometrické odomykanie</string>
   <string name="enable_fingerprint_unlock">Zapnúť úplné biometrické odomykanie</string>
   <string name="enable_fingerprint_quickunlock">Zapnúť biometrické odomykanie pre rýchle odomknutie</string>
+  <string name="password_based_quick_unlock_not_available">Rýchle odomknutie na základe hesla nie je dostupné</string>
+  <string name="password_based_quick_unlock_not_available_text">Rýchle odomknutie pomocou časti hesla je zablokované, pretože na zariadení nie je aktívne uzamknutie obrazovky. Je to kvôli vašej ochrane v prípade, že by vás niekto sledoval pri zadávaní kľúča na rýchle odomknutie.</string>
   <string name="fingerprint_unlock_failed">Biometrické odomykanie zlyhalo. Systém Android zneplatnil dešifrovací kľúč. Stáva sa to vtedy, keď sa zmenia bezpečnostné nastavenia/biometrická autentifikácia. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Odomknutie databázy bolo neúspešné: neplatný kompozitný kľúč. Biometrické odomykanie sa vyplo, pretože uložené primárne heslo už nie je zrejme platné. </string>
   <string name="fingerprint_reenable">Pre nové primárne heslo opäť zapnite biometrické odomykanie.</string>
@@ -105,11 +107,11 @@
   <string name="entry_accessed">Prístup</string>
   <string name="entry_cancel">Zrušiť</string>
   <string name="entry_comment">Poznámky</string>
-  <string name="entry_tags">Tagy</string>
+  <string name="entry_tags">Značky</string>
   <string name="entry_override_url">Prepísanie URL</string>
   <string name="entry_confpassword">Potvrdiť heslo</string>
   <string name="entry_created">Vytvorené</string>
-  <string name="entry_expires">Expiruje</string>
+  <string name="entry_expires">Platnosť vyprší</string>
   <string name="entry_group_name">Názov skupiny</string>
   <string name="entry_keyfile">Súbor s kľúčom (voliteľne)</string>
   <string name="keyfile_heading">Súbor s kľúčom</string>
@@ -156,7 +158,7 @@
   <string name="hint_title">meno</string>
   <string name="hint_url">Adresa URL</string>
   <string name="hint_override_url">prepísanie URL</string>
-  <string name="hint_tags">tag1, tag2</string>
+  <string name="hint_tags">značka1, značka2</string>
   <string name="hint_username">meno používateľa</string>
   <string name="InvalidPassword">Chybné heslo, alebo súbor s kľúčom.</string>
   <string name="invalid_algorithm">Neplatný algoritmus.</string>
@@ -292,7 +294,7 @@
   <string name="AlwaysMergeOnConflict_title">Pri konflikte vždy zlúčiť</string>
   <string name="AlwaysMergeOnConflict_summary">Ak Keepass2Android zistí, že vzdialený súbor bol upravený, vždy zlúčiť lokálne zmeny so zmenami vzdialeného súboru.</string>
   <string name="TanExpiresOnUse_title">Platnosť TAN skončí po jeho použití</string>
-  <string name="TanExpiresOnUse_summary">Označiť záznamy TAN ako expirované pri ich použití</string>
+  <string name="TanExpiresOnUse_summary">Označiť záznamy TAN ako exspirované pri ich použití</string>
   <string name="ShowUsernameInList_title">Zobraziť meno používateľa v zozname</string>
   <string name="ShowUsernameInList_summary">Zobraziť mená používateľov pod záznamami. Užitočné pri viacnásobných účtoch alebo TAN.</string>
   <string name="RememberRecentFiles_title">Zapamätať si databázy</string>
@@ -305,7 +307,7 @@
   <string name="LogAutofillView_summary">Zápis podrobností o zobrazení autom. dopĺňania do záznamu o ladení (ak je ladenie zapnuté). Tie je možné odoslať vývojárovi, ak autom. dopĺňanie nefunguje podľa očakávania.</string>
   <string name="requires_android11">Vyžaduje Android 11 alebo novší</string>
   <string name="kp2a_findUrl">Nájsť heslo</string>
-  <string name="excludeExpiredEntries">Vylúčiť expirované záznamy</string>
+  <string name="excludeExpiredEntries">Vylúčiť po skončení platnosti</string>
   <string name="search_options">Možnosti</string>
   <string name="caseSensitive">Rozlišovať malé a VEĽKÉ písmená</string>
   <string name="start_open_file">Otvoriť súbor...</string>
@@ -316,21 +318,24 @@
   <string name="enter_filename_details_create_import">Súbor na importovanie bude vybraný v ďalšom kroku.</string>
   <string name="enable_quickunlock">Zapnúť rýchle odomknutie</string>
   <string name="QuickUnlock_label">Zadajte posledných %1$d znakov z hesla:</string>
-  <string name="QuickUnlock_label_secure">Zadajte kód QuickUnlock:</string>
+  <string name="QuickUnlock_label_secure">Zadajte kód rýchleho odomknutia:</string>
   <string name="QuickUnlock_button">Rýchle odomknutie!</string>
   <string name="QuickUnlock_lockButton">Zatvoriť databázu</string>
+  <string name="enable_screen_lock">Zapnúť uzamknutie obrazovky</string>
   <string name="QuickUnlockDefaultEnabled_title">Zapnúť rýchle odomknutie</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, či je rýchle odomknutie štandardne zapnuté alebo nie.</string>
   <string name="ViewDatabaseSecure_title">Ochrana zobrazenia databázy</string>
   <string name="ViewDatabaseSecure_summary">Ak je táto voľba zapnutá, nie je povolené vytváranie snímok obrazovky a aplikácia nie je zobrazená v zozname posledných aplikácií.</string>
-  <string name="QuickUnlockIconHidden_title">Skryť ikonu</string>
+  <string name="QuickUnlockIconHidden_title">Skryť ikonu rýchleho odomknutia</string>
   <string name="QuickUnlockIconHidden_summary">Rýchle odomknutie nemôže fungovať bez zobrazenia notifikačnej ikony. Ak chcete zobraziť priehľadnú ikonu, vyberte túto možnosť.</string>
-  <string name="QuickUnlockIconHidden16_title">Skryť ikonu</string>
+  <string name="QuickUnlockIconHidden16_title">Skryť ikonu rýchleho odomknutia</string>
   <string name="QuickUnlockIconHidden16_summary">Rýchle odomknutie vyžaduje korektné fungovanie notifikácií. Ak chcete zobraziť notifikáciu bez ikony, prosím vyberte túto možnosť.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Zablokovať zadávanie kľúča na rýchle odomknutie, ak nie je aktivované uzamknutie obrazovky. Zabráni sa tak útokom pomocou nazerania cez plece. Túto voľbu vypnite iba ak rozumiete rizikám. Rýchle odomknutie sa dá stále používať s biometrickou ochranou.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Zablokovať rýchle odomknutie ak nie je dané zariadenie bezpečné</string>
   <string name="QuickUnlockLength_title">Dĺžka kľúča na rýchle odomknutie</string>
   <string name="QuickUnlockLength_summary">Max. počet znakov použitých ako heslo na rýchle odomknutie.</string>
-  <string name="QuickUnlockHideLength_title">Skryť dĺžku QuickUnlock</string>
-  <string name="QuickUnlockHideLength_summary">Ak je zapnuté, nezobrazí sa dĺžka kódu QuickUnlick a obrazovke pre funkciu QuickUnlock.</string>
+  <string name="QuickUnlockHideLength_title">Skryť dĺžku rýchleho odomknutia</string>
+  <string name="QuickUnlockHideLength_summary">Ak je zapnuté, nezobrazí sa dĺžka kódu pre rýchle odomknutie na obrazovke pre tejto funkcie.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Tlačidlo rýchleho odomknutia zo záznamu v databáze</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Ak aktívna databáza obsahuje záznam s názvom QuickUnlock (rýchle odomknutie) v hlavnej skupine, heslo záznamu sa použije ako kód pre rýchle odomknutie.</string>
   <string name="QuickUnlock_fail">Rýchle odomknutie zlyhalo: nesprávne heslo!</string>
@@ -343,7 +348,7 @@
   <string name="SaveAttachment_Failed">Prílohu nemožno uložiť do %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Pamätať si hľadaný text?</string>
   <string name="AddUrlToEntryDialog_text">Chcete uložiť hľadaný text \"%1$s\" vo vybranom zázname, aby sa nabudúce dal vyhľadať automaticky?</string>
-  <string name="error_invalid_expiry_date">Neplatný formát dátumu/času expirovania!</string>
+  <string name="error_invalid_expiry_date">Neplatný formát dátumu/času platnosti!</string>
   <string name="error_string_key">Pre každý reťazec je požadovaný názov poľa.</string>
   <string name="error_string_duplicate_key">Názov poľa nemôže byť použitý dvakrát (%1$s).</string>
   <string name="field_name">Názov poľa</string>
@@ -371,7 +376,7 @@
   <string name="ClearPasswordOnLeave_summary">Pri opustení obrazovky bez odomknutia databázy vyčistiť zadané primárne heslo.</string>
   <string name="LockWhenNavigateBack_title">Uzamknúť pri opustení aplikácie</string>
   <string name="LockWhenNavigateBack_summary">Uzamknúť databázu pri opustení aplikácie stlačením tlačidla Späť.</string>
-  <string name="UseKp2aKeyboardInKp2a_title">Použiť klávesnicu integrovanú v Keepass2Android</string>
+  <string name="UseKp2aKeyboardInKp2a_title">Použiť klávesnicu Keepass2Android</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Ak nedôverujete poskytovateľovi štandardnej klávesnice, výberom tejto možnosti si zvolíte použitie integrovanej klávesnice pri zadávaní primárneho hesla alebo úprave záznamov.</string>
   <string name="ActivateSearchViewOnStart_title">Aktivovať vyhľad. pri spustení</string>
   <string name="ActivateSearchViewOnStart_summary">Aktivuje pole pre vyhľadávanie v zobrazení skupiny, hneď po odomknutí alebo pri hľadaní záznamu</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">Povedzte mi viac!</string>
   <string name="no_thanks">Nie, nemám ho rád až natoľko</string>
   <string name="enter_http_login_title">Zadajte prihlas. údaje pre WebDav:</string>
+  <string name="enter_smb_login_title">Zadajte prihlasovacie údaje pre Samba:</string>
   <string name="hint_http_url">URL priečinka alebo súboru (napr.: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL priečinka alebo súboru (napr.: 192.168.1.10/share/priečinok/)</string>
+  <string name="hint_smb_domain">Používateľská doména Samba</string>
+  <string name="hint_smb_username">Meno používateľa Samba</string>
   <string name="enter_owncloud_login_title">Vložte OwnCloud prihlasovacie údaje:</string>
   <string name="hint_owncloud_url">URL pre OwnCloud (napr.: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Zadajte prihlasovacie údaje pre Nextcloud:</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (zdieľanie Windows)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -715,18 +725,36 @@
   <string name="DbUnlockedChannel_name">Databáza odomknutá</string>
   <string name="DbUnlockedChannel_desc">Notifikácia o odomknutí databázy</string>
   <string name="DbQuicklockedChannel_name">Rýchle odomknutie</string>
-  <string name="DbQuicklockedChannel_desc">Notifikácia o uzamknutí databázy pomocou funkcie QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notifikácia o uzamknutí databázy pomocou rýchleho odomknutia</string>
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
+  <string name="hint_smb_credentials">Ak chcete získať prístup k súborom z PC s Windows, použite názov počítača alebo lokálnu IP adresu ako URL hostiteľa; zadajte názov počítača ako doménu a prihlasovacie údaje do Windows (častokrát rovnaké ako v konte Microsoft) ako meno používateľa a heslo.</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
+  <string name="webdav_chunked_upload_size_title">Veľkosť bloku pre upload WebDav</string>
+  <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Aktualizácia na .net 9 a Target SDK verzie 35. Pribudol priehľadný stavový riadok v systéme Android 15, pretože predvolený režim je edge-to-edge.</item>
+    <item>Menšie vylepšenia používateľského rozhrania</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Vylepšenia WebDav: oprava chyby pre zoznamy priečinkov: podpora pre blokové odosielanie a transakcie</item>
+    <item>Pridaná podpora pre Samba/zdieľanie cez sieť Windows</item>
+    <item>Aktualizácia JSch, pre podporu moderných algoritmov v SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Vylepšené odhadovanie kvality hesla, zahrnutím viacerých populárnych hesiel.</item>
+    <item>Blokovanie rýchleho odomknutia na základe hesla (z bezpečnostných dôvodov), ak nie je na zariadení aktívne uzamknutie obrazovky.</item>
+    <item>Aktualizácia konfigurácia zabezpečenia siete, aby sa zabránilo prenosom čistého textu.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Aktualizácia z Xamarin Android na .net 8</item>
     <item>Aktualizované na Target SDK 34</item>
     <item>Aktualizované na používateľské rozhranie Material 3</item>
     <item>Vylepšené automatické dopĺňanie kvôli fungovaniu s aplikáciami Compose</item>
     <item>Oprava zhody mena hostiteľa v automatickom dopĺňaní a vyhľadávaní</item>
-    <item>Fix issue with password generator</item>
+    <item>Oprava problému s generátorom hesiel</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Aktualizované na OneDrive SDK, verziu 5.68</item>
@@ -895,7 +923,7 @@
   <string name="ChangeLog_1_01d">    Verzia 1.01-d\n
     * Oprava pre zoznam súborov OneDrive\n
     * Umožnenie ignorovania chýb certifikátu aj keď zlyhá overenie názvu hostiteľa (neodporúča sa pre produkčné nasadenie)\n
-    * Oprava občasného zlyhania QuickUnlock napriek správnemu kódu pre odomknutie\n
+    * Oprava občasného zlyhania rýchleho odomknutia napriek správnemu kódu pre odomknutie\n
   </string>
   <string name="ChangeLog_0_9_8c">    Verzia 0.9.8c\n
     * Oprava zraniteľnosti SSL v Microsoft Live SDK (používa sa pri prístupe k súborom cez OneDrive)\n
@@ -1004,7 +1032,7 @@
     * vylepšené používateľské rozhranie\n
     * opravená chyba v rozhraní pre Google Drive\n
     * pridaná možnosť zablokovania funkcie „Prispieť“\n
-    * ikona funkcie Rýchle odomknutie je štandardne skrytá pri zariadeniach Android 4.2+\n
+    * ikona funkcie rýchle odomknutie je štandardne skrytá pri zariadeniach Android 4.2+\n
   </string>
   <string name="ChangeLog_0_9_3_r5">    <b>Verzia 0.9.3 r5</b>\n
     * Integrované opravy od používateľa Xamarin: Keepass2Android je teraz kompatibilný s ART on Android 4.4.2. Konečne!\n
@@ -1203,4 +1231,8 @@
   <string name="kp2a_switch_on_sendgodone_summary">Po stlačení Odoslať/Prejsť/Hotovo prejsť späť</string>
   <string name="qr_scanning_error_no_google_play_services">Na skenovanie QR kódov sú potrebné služby Google Play. Nainštalujte alebo aktualizujte si ich vo vašom zariadení.</string>
   <string name="english_ime_settings">Nastavenia klávesnice Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Poznámka: aktivovali ste automatické prepínanie klávesnice v sekcii Nastavenia aplikácie - Prístup k záznamu s heslom - Prepínanie klávesnice, ale zdá sa, že táto funkcia nie je správne nakonfigurovaná.</string>
+  <string name="switch_keyboard_for_totp_enabled">Poznámka: aktivovali ste automatické dopĺňanie pre záznamy TOTP, v sekcii Aplikácia - Prístup k záznamu s heslom - Služba automatického dopĺňania. Môže to spôsobiť zobrazenie tohto okna pri otvorení záznamu s TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Poznámka: aktivovali ste použitie klávesnice integrovanej v Keepass2Android, v sekcii Aplikácia - Zabezpečenie. Môže to spôsobiť zobrazenie tohto okna pri otvorení aplikácie alebo pri úprave záznamu.</string>
+  <string name="switch_keyboard_on_search_enabled">Poznámka: aktivovali ste prepínanie klávesnice v sekcii Aplikácia - Zabezpečenie - Prístup k záznamu s heslom - Prepínanie klávesnice. Môže to spôsobovať zobrazenie tohto okna pri vyhľadávaní nejakého záznamu z prehliadača.</string>
 </resources>

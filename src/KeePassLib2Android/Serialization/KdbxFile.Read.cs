@@ -83,6 +83,7 @@ namespace KeePassLib.Serialization
 			if (m_bUsedOnce)
 				throw new InvalidOperationException("Do not reuse KdbxFile objects!");
 			m_bUsedOnce = true;
+			Kp2aLog.Log("Starting to load KDBX file...");
 
 #if KDBX_BENCHMARK
 			Stopwatch swTime = Stopwatch.StartNew();
@@ -257,7 +258,8 @@ namespace KeePassLib.Serialization
 			MessageService.ShowInfo("Loading KDBX took " +
 				swTime.ElapsedMilliseconds.ToString() + " ms.");
 #endif
-		}
+            Kp2aLog.Log("Finished loading KDBX file.");
+        }
 
 		private void CommonCleanUpRead(List<Stream> lStreams, HashingStreamEx sHashing)
 		{

@@ -137,6 +137,10 @@ namespace keepass2android
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 		ICertificateErrorHandler CertificateErrorHandler { get; }
 #endif
+        int WebDavChunkedUploadSize
+        {
+            get;
+        }
 
 		bool SyncInBackgroundPreference { get; set; }
 		void StartBackgroundSyncService();

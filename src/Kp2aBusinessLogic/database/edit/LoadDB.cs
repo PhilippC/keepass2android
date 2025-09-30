@@ -179,6 +179,7 @@ namespace keepass2android
 
 		Database TryLoad(MemoryStream databaseStream)
 		{
+			Kp2aLog.Log("LoadDb: Copying database in memory");
 			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
 			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
 			//Alternatives would involve increased traffic (if file is on remote) and slower loading times, so this seems to be the best choice.

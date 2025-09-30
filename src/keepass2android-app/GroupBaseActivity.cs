@@ -897,9 +897,14 @@ namespace keepass2android
                     RegisterInfoTextDisplay(
                         "DbReadOnly"); //this ensures that we don't show the general info texts too soon
 
-                    FindViewById<TextView>(Resource.Id.dbreadonly_infotext_text).Text =
-                    (GetString(Resource.String.FileReadOnlyMessagePre) + " " +
-                     App.Kp2a.GetResourceString(reason.Result));
+                    var infotext_view = FindViewById<TextView>(Resource.Id.dbreadonly_infotext_text);
+                    if (infotext_view != null)
+                    {
+                        infotext_view.Text =
+                            (GetString(Resource.String.FileReadOnlyMessagePre) + " " +
+                             App.Kp2a.GetResourceString(reason.Result));
+                    }
+                    
                 }
             }
             UpdateBottomBarElementVisibility(Resource.Id.dbreadonly_infotext, canShow);

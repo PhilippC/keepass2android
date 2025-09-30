@@ -27,7 +27,6 @@ namespace keepass2android.services.AutofillBase
         public static string ExtraQueryPackageString => "EXTRA_QUERY_PACKAGE_STRING";
         public static string ExtraQueryDomainString => "EXTRA_QUERY_DOMAIN_STRING";
         public static string ExtraUseLastOpenedEntry => "EXTRA_USE_LAST_OPENED_ENTRY"; //if set to true, no query UI is displayed. Can be used to just show a warning
-        public static string ExtraIsManualRequest => "EXTRA_IS_MANUAL_REQUEST";
         public static string ExtraAutoReturnFromQuery => "EXTRA_AUTO_RETURN_FROM_QUERY";
         public static string ExtraDisplayWarning => "EXTRA_DISPLAY_WARNING";
 
@@ -185,18 +184,18 @@ namespace keepass2android.services.AutofillBase
             ReplyIntent = null;
         }
 
-        protected void OnSuccess(FilledAutofillFieldCollection<ViewNodeInputField> clientFormDataMap, bool isManual)
+        protected void OnSuccess(FilledAutofillFieldCollection<ViewNodeInputField> clientFormDataMap)
         {
             var intent = Intent;
             AssistStructure structure = (AssistStructure)intent.GetParcelableExtra(AutofillManager.ExtraAssistStructure);
-            if (structure == null)
+            if (structure == null || clientFormDataMap == null)
             {
                 SetResult(Result.Canceled);
                 Finish();
                 return;
             }
             StructureParser parser = new StructureParser(this, structure);
-            parser.ParseForFill(isManual);
+            parser.ParseForFill();
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
             var partitionData = AutofillHintsHelper.FilterForPartition(clientFormDataMap, parser.AutofillFields.FocusedAutofillCanonicalHints);
             
@@ -229,7 +228,7 @@ namespace keepass2android.services.AutofillBase
 
         private void ReturnSuccess()
         {
-            OnSuccess(GetDataset(), Intent.GetBooleanExtra(ExtraIsManualRequest, false));
+            OnSuccess(GetDataset());
             Finish();
         }
 

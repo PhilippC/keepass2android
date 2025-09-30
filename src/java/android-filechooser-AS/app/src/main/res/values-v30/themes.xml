@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Afc.BaseTheme.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Afc.BaseThemeHelper.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+
+    <style name="Afc.BaseThemeHelper.Light" parent="Theme.Material3.Light.NoActionBar">
+    <item name="android:windowLightStatusBar">true</item>
+    </style>
+    
+    <style name="Afc.BaseTheme.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>    

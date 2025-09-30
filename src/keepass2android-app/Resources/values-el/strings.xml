@@ -93,6 +93,8 @@
   <string name="disable_fingerprint_unlock">Απενεργοποίηση βιομετρικού ξεκλειδώματος</string>
   <string name="enable_fingerprint_unlock">Ενεργοποίηση πλήρους βιομετρικού ξεκλειδώματος</string>
   <string name="enable_fingerprint_quickunlock">Ενεργοποίηση βιομετρικού ξεκλειδώματος για QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">Το QuickUnlock βασισμένο σε συνθηματικό δεν είναι διαθέσιμο.</string>
+  <string name="password_based_quick_unlock_not_available_text">Το QuickUnlock που χρησιμοποιεί ένα τμήμα του συνθηματικού έχει αποκλειστεί, επειδή το κλείδωμα οθόνης είναι απενεργοποιημένο στη συσκευή σας. Αυτό σας προστατεύει σε περίπτωση που κάποιος σας παρακολουθεί όταν εισάγετε το QuickUnlock.</string>
   <string name="fingerprint_unlock_failed">Αποτυχία βιομετρικού ξεκλειδώματος. Το κλειδί αποκρυπτογράφησης ακυρώθηκε από το Android. Αυτό συμβαίνει συνήθως αν αλλάξει η βιομετρική αυθεντικοποίηση ή οι ρυθμίσεις ασφάλειας. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Το ξεκλείδωμα της βάσης δεδομένων απέτυχε: άκυρο σύνθετο κλειδί. Το βιομετρικό ξεκλείδωμα απενεργοποιήθηκε επειδή το αποθηκευμένο πρωτεύον συνθηματικό δεν είναι πλέον έγκυρο. </string>
   <string name="fingerprint_reenable">Ενεργοποιήστε ξανά το βιομετρικό ξεκλείδωμα για το νέο πρωτεύον συνθηματικό.</string>
@@ -245,13 +247,13 @@
   <string name="sort_db">Ταξινόμηση κατά ημερομηνία δημιουργίας</string>
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
-  <string name="special">Ειδικό</string>
+  <string name="special">Ειδικοί χαρακτήρες</string>
   <string name="special_extended">Εκτεταμένοι Ειδικοί</string>
   <string name="at_least_one_from_each_group">Τουλάχιστον ένα από κάθε ομάδα</string>
   <string name="exclude_lookalike">Εξαίρεση παρόμοιων χαρακτήρων</string>
   <string name="password_generation_profile">Προφίλ</string>
   <string name="save_password_generation_profile_text">Εισάγετε το όνομα του προφίλ που θα αποθηκευτεί. Εισάγετε ένα υπάρχον όνομα για αντικατάσταση.</string>
-  <string name="hint_wordcount">Αριθμός λέξεων συνθηματικής φράσης</string>
+  <string name="hint_wordcount">Αριθμός λέξεων συνθηματικού</string>
   <string name="hint_wordseparator">Διαχωριστικό λέξεων</string>
   <string-array name="PasswordGeneratorModes">
     <item>Συνθηματικό</item>
@@ -319,6 +321,7 @@
   <string name="QuickUnlock_label_secure">Εισάγετε τον κωδικό QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Κλείσιμο βάσης δεδομένων</string>
+  <string name="enable_screen_lock">Ενεργοποίηση κλειδώματος οθόνης</string>
   <string name="QuickUnlockDefaultEnabled_title">Ενεργοποίηση QuickUnlock εξ ορισμού</string>
   <string name="QuickUnlockDefaultEnabled_summary">Ορίζει αν το QuickUnlock είναι ενεργό εξ ορισμού ή όχι.</string>
   <string name="ViewDatabaseSecure_title">Προστασία προβολής βάσης δεδομένων</string>
@@ -327,12 +330,14 @@
   <string name="QuickUnlockIconHidden_summary">To QuickUnlock δυστυχώς δεν λειτουργεί χωρίς να εμφανίζει εικονίδιο ειδοποίησης. Επιλέξτε αυτήν την επιλογή για να χρησιμοποιήσετε διαφανές εικονίδιο.</string>
   <string name="QuickUnlockIconHidden16_title">Απόκρυψη εικονιδίου QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">Το QuickUnlock απαιτεί μια ειδοποίηση για να λειτουργήσει σωστά. Επιλέξτε αυτήν την επιλογή για να εμφανίσετε ειδοποίηση χωρίς εικονίδιο.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Φραγή εισόδου στο QuickUnlock αν η συσκευή δεν ασφαλίζεται με κλείδωμα οθόνης. Αυτό αποτρέπει επιθέσεις shoulder surfing. Απενεργοποιήστε αυτή την επιλογή μόνον εάν κατανοείτε τον κίνδυνο. Σημειώστε ότι το QuickUnlock μπορεί να χρησιμοποιηθεί με βιομετρικά στοιχεία.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Αποκλεισμός QuickUnlock όταν η συσκευή δεν είναι ασφαλής</string>
   <string name="QuickUnlockLength_title">Μήκος του κλειδιού QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Μέγιστος αριθμός χαρακτήρων που χρησιμοποιούνται στο συνθηματικό QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Απόκρυψη μήκους QuickUnlock</string>
   <string name="QuickUnlockHideLength_summary">Αν ενεργοποιηθεί, αποκρύπτει το μήκος του κωδικού QuickUnlock στη σχετική οθόνη.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Κλειδί QuickUnlock από τη βάση δεδομένων</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Εάν η ενεργή βάση δεδομένων περιέχει μια καταχώριση με τίτλο QuickUnlock στην ομάδα ρίζας της, ο κωδικός πρόσβασης αυτής της καταχώρισης χρησιμοποιείται ως κωδικός QuickUnlock.</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Εάν η ενεργή βάση δεδομένων περιέχει μια καταχώριση με τίτλο QuickUnlock στην ομάδα ρίζας της, το συνθηματικό αυτής της καταχώρισης χρησιμοποιείται ως κωδικός QuickUnlock.</string>
   <string name="QuickUnlock_fail">Αποτυχία QuickUnlock: λανθασμένο συνθηματικό!</string>
   <string name="SaveAttachmentDialog_title">Αποθήκευση συνημμένου</string>
   <string name="SaveAttachmentDialog_text">Επιλέξτε πού θα αποθηκεύσετε το συνημμένο.</string>
@@ -427,7 +432,7 @@
   <string name="IconVisibilityInfo_Android8_btnSettings">Άνοιγμα ρυθμίσεων</string>
   <string name="PostNotificationsPermissionInfo_text">Το Keepass2Android μπορεί να εμφανίζει μια ειδοποίηση συστήματος ενόσω η βάση δεδομένων σας παραμένει ξεκλείδωτη. Για να λειτουργήσει αυτό, χορηγήστε την άδεια.</string>
   <string name="DontCare">Δεν με νοιάζει</string>
-  <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακηθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανα-ανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
+  <string name="DocumentAccessRevoked">Το αρχείο δεν είναι πλέον προσπελάσιμο στο Keepass2Android. Είτε διαγράφτηκε ή ανακλήθηκαν τα δικαιώματα πρόσβασης. Δοκιμάστε να ξανανοίξετε το αρχείο, πχ με Αλλαγή βάσης δεδομένων.</string>
   <string name="PreloadDatabaseEnabled_title">Προ-φόρτωση αρχείου βάσης δεδομένων</string>
   <string name="PreloadDatabaseEnabled_summary">Ξεκίνημα φόρτωσης στο παρασκήνιο ή λήψη του αρχείου της βάσης δεδομένων κατά την εισαγωγή του συνθηματικού.</string>
   <string name="SyncAfterQuickUnlock_title">Συγχρονισμός μετά το QuickUnlock</string>
@@ -502,7 +507,11 @@
   <string name="ok_donate">Πείτε μου περισσότερα!</string>
   <string name="no_thanks">Όχι, δεν το συμπαθώ τόσο πολύ</string>
   <string name="enter_http_login_title">Εισαγωγή δεδομένων WebDav:</string>
+  <string name="enter_smb_login_title">Εισάγετε δεδομένα σύνδεσης Samba:</string>
   <string name="hint_http_url">Διεύθυνση φακέλου ή αρχείο (πχ mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL του φακέλου ή του αρχείου (π.χ. 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Τομέας χρήστη Samba</string>
+  <string name="hint_smb_username">Όνομα χρήστη Samba</string>
   <string name="enter_owncloud_login_title">Σύνδεση με OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (πχ: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Εισάγετε δεδομένα πρόσβασης στο Nextcloud:</string>
@@ -540,6 +549,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (πόρος Windows)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -714,14 +724,31 @@
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα καταχώριση.</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
-  <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με τον κύριο κωδικό πρόσβασης!</string>
+  <string name="hint_smb_credentials">Αν θέλετε να αποκτήσετε πρόσβαση σε αρχεία από τον προσωπικό σας υπολογιστή με Windows, χρησιμοποιήστε το όνομα του υπολογιστή ή την τοπική διεύθυνση IP ως URL υποδοχής. Εισάγετε το όνομα υπολογιστή ως domain και τα στοιχεία του Windows login (συχνά ίδια με το λογαριασμό Microsoft) ως όνομα χρήστη και  συνθηματικό.</string>
+  <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με το κύριο συνθηματικό!</string>
+  <string name="webdav_chunked_upload_size_title">Μέγεθος ομάδας για μεταφόρτωση WebDav</string>
+  <string name="webdav_chunked_upload_size_summary">Μέγεθος ομάδας κατά τη μεταφόρτωση σε διακομιστές WebDav σε bytes.</string>
+  <string-array name="ChangeLog_1_14">
+    <item></item>
+    <item>Minor UI improvements</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Βελτιώσεις στο WebDav: Διόρθωση σφάλματος στη λίστα φακέλων, υποστήριξη για ομαδικές μεταφορτώσεις και δοσοληψίες</item>
+    <item>Προστέθηκε υποστήριξη για δικτυακούς πόρους Samba/Windows</item>
+    <item>Ενημερώθηκε το JSch για να υποστηρίζει πιο σύγχρονους αλγορίθμους στο SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Βελτιωμένη εκτίμηση της ποιότητας του συνθηματικού που λαμβάνει υπόψη τα πιο δημοφιλή συνθηματικά</item>
+    <item>Αποκλεισμός του QuickUnlock βασισμένου στο συνθηματικό (για λόγους ασφαλείας), εάν η συσκευή δεν έχει ενεργοποιημένο το κλείδωμα οθόνης.</item>
+    <item>Ενημερώστε τις ρυθμίσεις ασφαλείας δικτύου για να απενεργοποιήσετε τη μεταφορά ορατού κειμένου.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Αναβαθμίστηκε από Xamarin Android σε .ΝΕΤ 8</item>
     <item>Αναβαθμίστηκε στοχεύοντας το SDK 34</item>
     <item>Αναβαθμίστηκε σε διεπαφή χρήστη Material 3</item>
     <item>Βελτιώστε την αυτόματη συμπλήρωση για να εργαστείτε με Compose Apps</item>
     <item>Διόρθωση ονόματος host στην αυτόματη συμπλήρωση και αναζήτηση</item>
-    <item>Διόρθωση προβλήματος με τη γεννήτρια κωδικού πρόσβασης</item>
+    <item>Διόρθωση προβλήματος με τη γεννήτρια συνθηματικών</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Αναβαθμίστηκε το OneDrive SDK στην έκδοση 5.68</item>
@@ -747,12 +774,12 @@
     <item>Βελτίωση της υλοποίησης FTP και SFTP</item>
     <item>Προσθήκη πρόσβασης σε πλήρες pCloud</item>
     <item>Επιτρέπει την επιλογή γλώσσας συστήματος στο μενού της γλώσσας</item>
-    <item>Διόρθωση προβλήματος με την απομνημόνευση Keyfile + ερώτηση για τον τύπο του κωδικού πρόσβασης</item>
+    <item>Διόρθωση προβλήματος με την απομνημόνευση Keyfile + ερώτηση για το συνθηματικό</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Διόρθωση σφάλματος για απότομα κλεισίματα εφαρμογής και μη αναμενόμενες αποσυνδέσεις</item>
     <item>Μετάβαση σε νέα υλοποίηση SFTP, υποστηρίζοντας σύγχρονους αλγόριθμους δημόσιου κλειδιού όπως rsa-sha2-256</item>
-    <item>Μαρκάρισμα κωδικών πρόσβασης ως ευαίσθητοι κατά την αντιγραφή στο πρόχειρο (Android 13)</item>
+    <item>Μαρκάρισμα των συνθηματικών ως ευαίσθητα κατά την αντιγραφή στο πρόχειρο (Android 13)</item>
     <item>Βελτιώσεις Autofill</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
@@ -773,7 +800,7 @@
   <string-array name="ChangeLog_1_09a">
     <item>Προστέθηκε υποστήριξη για τη μορφή αρχείου KDBX 4.1 που εισήχθη στο KeePass 2.48</item>
     <item>Προστέθηκε ο διάλογος ρύθμισης ρυθμίσεων TOTP για τις καταχωρίσεις</item>
-    <item>Βελτιωμένη γεννήτρια κωδικού πρόσβασης: Προστέθηκε υποστήριξη συνθηματικής φράσης, περισσότερες επιλογές, προφίλ και εκτίμηση ισχύος κωδικού πρόσβασης</item>
+    <item>Βελτιωμένη γεννήτρια συνθηματικών: Προστέθηκε υποστήριξη συνθηματικής φράσης, περισσότερες επιλογές, προφίλ και εκτίμηση ισχύος κωδικού πρόσβασης</item>
     <item>Βελτιώσεις στην αυτόματη συμπλήρωση (σταθερό αναδυόμενο παράθυρο δεν εμφανίζεται στο Chrome, καλύτερη υποστήριξη υποτομέα)</item>
     <item>Βελτιώσεις στην υλοποίηση του OneDrive: δεν υπάρχει πλέον όριο μεγέθους, ούτε περιττές αιτήσεις ελέγχου ταυτότητας</item>
     <item>Προστέθηκε επιλογή για να επιλέξετε το φωτεινό/σκούρο θέμα από τις ρυθμίσεις του συστήματος, συμπεριλαμβανομένων των νυχτερινών πλάνων, απαιτεί Android 10+</item>
@@ -883,7 +910,7 @@
   <string name="invalid_link_association">Δεν σχετίζεται το web domain %1$s με την εφαρμογή %2$s</string>
   <string name="enable_fingerprint_hint">Το Keepass2Android ανίχνευσε βιομετρικό εξοπλισμό. Θέλετε να ενεργοποιήσετε βιομετρικό ξεκλείδωμα για αυτή τη βάση δεδομένων;</string>
   <string name="post_notifications_dialog_title">Να επιτρέπονται οι ειδοποιήσεις</string>
-  <string name="post_notifications_dialog_message">Το Keepass2Android μπορεί να εμφανίσει ειδοποιήσεις με κουμπιά για να αντιγράψετε τιμές, όπως κωδικούς πρόσβασης και TOTP στο πρόχειρο, ή για να εμφανιστεί το ενσωματωμένο πληκτρολόγιο. Αυτό είναι χρήσιμο για να μεταφέρετε τιμές σε άλλες εφαρμογές, χωρίς να μεταβείτε σε Keepass2Android επανειλημμένα. Θέλετε να ενεργοποιήσετε αυτές τις ειδοποιήσεις;</string>
+  <string name="post_notifications_dialog_message">Το Keepass2Android μπορεί να εμφανίσει ειδοποιήσεις με κουμπιά για να αντιγράψετε τιμές, όπως συνθηματικά και TOTP στο πρόχειρο, ή για να εμφανιστεί το ενσωματωμένο πληκτρολόγιο. Αυτό είναι χρήσιμο για να μεταφέρετε τιμές σε άλλες εφαρμογές, χωρίς να μεταβείτε σε Keepass2Android επανειλημμένα. Θέλετε να ενεργοποιήσετε αυτές τις ειδοποιήσεις;</string>
   <string name="post_notifications_dialog_allow">Να επιτρέπονται οι ειδοποιήσεις</string>
   <string name="post_notifications_dialog_disable">Απενεργοποιήστε αυτό το χαρακτηριστικό</string>
   <string name="post_notifications_dialog_notnow">Όχι τώρα</string>
@@ -909,4 +936,8 @@
   <string name="kp2a_switch_on_sendgodone_summary">Εναλλαγή πίσω όταν πατήσετε αποστολή / λήψη / ολοκλήρωση</string>
   <string name="qr_scanning_error_no_google_play_services">Η σάρωση QR κώδικα απαιτεί Google Play Services. Παρακαλώ εγκαταστήστε ή ενημερώστε τις Google Play Services στη συσκευή σας.</string>
   <string name="english_ime_settings">Ρυθμίσεις πληκτρολογίου Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή - Πρόσβαση στα συνθηματικά - Εναλλαγή πληκτρολογίου - Αυτόματη εναλλαγή πληκτρολογίου, αλλά φαίνεται ότι δεν έχει ρυθμιστεί σωστά.</string>
+  <string name="switch_keyboard_for_totp_enabled">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή - Πρόσβαση στα συνθηματικά - Λειτουργία αυτόματης συμπλήρωσης - Αυτόματη συμπλήρωση για καταχωρίσεις TOTP. Αυτό μπορεί να προκαλέσει την εμφάνιση αυτού του παραθύρου όταν ανοίγετε μια καταχώριση με TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή - Ασφάλεια - Χρήση του ενσωματωμένου στο Keepass2Android πληκτρολογίου. Αυτό μπορεί να προκαλέσει την εμφάνιση αυτού του παραθύρου όταν ανοίγετε την εφαρμογή ή επεξεργάζεστε μια καταχώριση.</string>
+  <string name="switch_keyboard_on_search_enabled">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή -  Πρόσβαση στα συνθηματικά - Εναλλαγή πληκτρολογίου - Εναλλαγή πληκτρολογίου. Αυτό μπορεί να προκαλέσει την εμφάνιση αυτού του παραθύρου κατά την αναζήτηση μιας καταχώρισης από το πρόγραμμα περιήγησης.</string>
 </resources>

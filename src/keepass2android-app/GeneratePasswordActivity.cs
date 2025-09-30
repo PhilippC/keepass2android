@@ -23,6 +23,7 @@ using Android.App;
 using Android.App.Admin;
 using Android.Content;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Preferences;
@@ -68,10 +69,15 @@ namespace keepass2android
             Resource.Id.cb_exclude_lookalike
         };
 
+        
+
 		PasswordFont _passwordFont = new PasswordFont();
 
+        private static object _popularPasswordsLock = new object();
+        private static bool _popularPasswordsInitialized = false;
 
-		private ActivityDesign _design;
+
+        private ActivityDesign _design;
 	    public GeneratePasswordActivity()
 	    {
 		    _design = new ActivityDesign(this);
@@ -141,12 +147,14 @@ namespace keepass2android
 		protected override void OnCreate(Bundle savedInstanceState) {
 			_design.ApplyTheme(); 
 			base.OnCreate(savedInstanceState);
-			
+
 			SetContentView(Resource.Layout.generate_password);
 			SetResult(KeePass.ExitNormal);
-            
 
-			var prefs = GetPreferences(FileCreationMode.Private);
+            new Util.InsetListener(FindViewById(Resource.Id.main_container)).Apply();
+
+
+            var prefs = GetPreferences(FileCreationMode.Private);
 
 
             
@@ -304,6 +312,10 @@ namespace keepass2android
 
 
             EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password_edit);
+            txtPasswordToSet.TextChanged += (sender, args) =>
+            {
+                Task.Run(() => UpdatePasswordStrengthEstimate(txtPasswordToSet.Text));
+            };
 
             _passwordFont.ApplyTo(txtPasswordToSet);
 
@@ -469,49 +481,74 @@ namespace keepass2android
                 return;
 
             String password = "";
-            uint passwordBits = 0;
+            
             
             Task.Run(() =>
             {
                 password = GeneratePassword();
-                passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
                 RunOnUiThread(() =>
                 {
                     EditText txtPassword = (EditText)FindViewById(Resource.Id.password_edit);
                     txtPassword.Text = password;
-
-                    var progressBar = FindViewById<ProgressBar>(Resource.Id.pb_password_strength);
-
-                    progressBar.Progress = (int)passwordBits;
-                    progressBar.Max = 128;
-
-                    Color color = new Color(196, 63, 49);
-                    if (passwordBits > 40)
-                    {
-                        color = new Color(219, 152, 55);
-                    }
-
-                    if (passwordBits > 64)
-                    {
-                        color = new Color(96, 138, 38);
-                    }
-
-                    if (passwordBits > 100)
-                    {
-                        color = new Color(31, 128, 31);
-                    }
-
-                    progressBar.ProgressDrawable.SetColorFilter(new PorterDuffColorFilter(color,
-                        PorterDuff.Mode.SrcIn));
-
-                    FindViewById<TextView>(Resource.Id.tv_password_strength).Text = " " + passwordBits + " bits";
-
-
-
                     UpdateProfileSpinnerSelection();
                 });
             });
             
+        }
+
+        private void UpdatePasswordStrengthEstimate(string password)
+        {
+            lock (_popularPasswordsLock)
+            {
+                if (!_popularPasswordsInitialized)
+                {
+
+                    using (StreamReader sr = new StreamReader(Assets.Open("MostPopularPasswords.txt")))
+                    {
+                        var bytes = default(byte[]);
+                        using (var memstream = new MemoryStream())
+                        {
+                            sr.BaseStream.CopyTo(memstream);
+                            bytes = memstream.ToArray();
+                        }
+                        PopularPasswords.Add(bytes, false);
+                    }
+                }
+                    
+            }
+            uint passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
+
+
+
+
+            RunOnUiThread(() =>
+            {
+                var progressBar = FindViewById<ProgressBar>(Resource.Id.pb_password_strength);
+
+                progressBar.Progress = (int)passwordBits;
+                progressBar.Max = 128;
+
+                Color color = new Color(196, 63, 49);
+                if (passwordBits > 40)
+                {
+                    color = new Color(219, 152, 55);
+                }
+
+                if (passwordBits > 64)
+                {
+                    color = new Color(96, 138, 38);
+                }
+
+                if (passwordBits > 100)
+                {
+                    color = new Color(31, 128, 31);
+                }
+
+                progressBar.ProgressDrawable.SetColorFilter(new PorterDuffColorFilter(color,
+                    PorterDuff.Mode.SrcIn));
+
+                FindViewById<TextView>(Resource.Id.tv_password_strength).Text = " " + passwordBits + " bits";
+            });
         }
 
         private void UpdateProfileSpinnerSelection()

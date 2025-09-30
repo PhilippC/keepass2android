@@ -253,12 +253,12 @@
     <item name="android:statusBarColor">@color/statusbar_color_green</item></style>
   <style name="Kp2aTheme_BlueActionBar" parent="AppTheme.Secondary"></style>
 
-  <style name="Kp2aTheme_NoActionBar" parent="AppTheme.Primary.NoActionBar">
+<style name="Kp2aTheme_NoActionBar" parent="AppTheme.Primary.NoActionBar">
     <item name="android:statusBarColor">@color/statusbar_color_green</item>
    </style>
   <style name="Kp2aTheme_BlueNoActionBar" parent="AppTheme.Secondary.NoActionBar">
-    
-  </style>
+
+</style>
 
 
   <style name="Widget.Kp2a.Toolbar" parent="Widget.Material3.Toolbar.OnSurface" />
