@@ -42,7 +42,7 @@
         android:title="@string/pref_enable_periodic_background_sync_title"
         android:summary="@string/pref_enable_periodic_background_sync_summary"
 		android:dependency="@string/SyncOfflineCacheInBackground_key"		
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <EditTextPreference
         android:key="pref_periodic_background_sync_interval"

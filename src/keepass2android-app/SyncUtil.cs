@@ -53,11 +53,11 @@ namespace keepass2android
 
 
         /// <summary>
-        /// Starts the sync process for the database identified by its IOConnectionInfo ioc
+        /// Starts the sync process for the database 
         /// </summary>
-        /// <param name="ioc">database file ioc</param>
+        /// <param name="database">database to sync</param>
         /// <param name="forceSynchronization">If true, sync is always started. If false, we respect the background sync options from preferences.</param>
-        public void StartSynchronizeDatabase(IOConnectionInfo ioc, bool forceSynchronization)
+        public void StartSynchronizeDatabase(Database database, bool forceSynchronization)
         {
             if (!forceSynchronization)
             {
@@ -72,7 +72,8 @@ namespace keepass2android
                     {
                         // user only wants to sync when in (specific) wifi but is not
 
-                        //TODO add to list of pending syncs such that we sync when network is back?
+                        //remember that we should sync as soon as possible (e.g. when wifi is back)
+                        database.SynchronizationPending = true;
 
                         Kp2aLog.Log("Not synchronizing because of current network connectivity.");
                         return;
@@ -81,8 +82,10 @@ namespace keepass2android
 
             }
 
+            var ioc = database.Ioc;
+
             var filestorage = App.Kp2a.GetFileStorage(ioc);
-            var databaseForIoc = App.Kp2a.GetDatabase(ioc);
+            
 
             OperationWithFinishHandler task;
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
@@ -98,9 +101,9 @@ namespace keepass2android
                     adapter?.NotifyDataSetChanged();
                 });
 
-                if (databaseForIoc?.OtpAuxFileIoc != null)
+                if (database?.OtpAuxFileIoc != null)
                 {
-                    var task2 = new SyncOtpAuxFile(_activity, databaseForIoc.OtpAuxFileIoc);
+                    var task2 = new SyncOtpAuxFile(_activity, database.OtpAuxFileIoc);
 
                     OperationRunner.Instance.Run(App.Kp2a, task2);
                 }
@@ -110,7 +113,7 @@ namespace keepass2android
             if (filestorage is CachingFileStorage)
             {
 
-                task = new SynchronizeCachedDatabase(App.Kp2a, databaseForIoc, onOperationFinishedHandler, new BackgroundDatabaseModificationLocker(App.Kp2a));
+                task = new SynchronizeCachedDatabase(App.Kp2a, database, onOperationFinishedHandler, new BackgroundDatabaseModificationLocker(App.Kp2a));
             }
             else
             {
@@ -119,6 +122,36 @@ namespace keepass2android
 
             OperationRunner.Instance.Run(App.Kp2a, task);
 
+        }
+
+        public void TryStartPendingSyncs()
+        {
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(_activity);
+            string periodic_sync_default = _activity.GetString(Resource.String.pref_periodic_background_sync_interval_default);
+            foreach (var db in App.Kp2a.OpenDatabases)
+            {
+                if (db.SynchronizationRunning)
+                {
+                    continue;
+                }
+
+                if (db.SynchronizationPending || (prefs.GetBoolean("pref_enable_periodic_background_sync", false) &&
+                                                  db.LastSyncTime != DateTime.MaxValue && 
+                                                  db.LastSyncTime.AddMinutes(ParseOrDefault(
+                                                      prefs.GetString("pref_periodic_background_sync_interval", periodic_sync_default),
+                                                      int.Parse(periodic_sync_default))) < DateTime.Now))
+                {
+                    Kp2aLog.Log("Triggering sync for " + db.Ioc.GetDisplayName());
+                    StartSynchronizeDatabase(db, false);
+                }
+            }
+        }
+
+        private int ParseOrDefault(string stringToParse, int def)
+        {
+            int result = def;
+            int.TryParse(stringToParse, out result);
+            return result;
         }
     }
 }

@@ -239,6 +239,11 @@ namespace keepass2android
                 );
                 OperationRunner.Instance.Run(_app, syncTask);
             }
+            else
+            {
+                _db.LastSyncTime = DateTime.Now;
+                
+            }
             Finish(true);
         }
 

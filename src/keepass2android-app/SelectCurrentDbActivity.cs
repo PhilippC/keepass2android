@@ -618,7 +618,12 @@ namespace keepass2android
                             {
                                 try
                                 {
-                                    new SyncUtil(this).StartSynchronizeDatabase(pendingSyncIoc, false);
+                                    var dbForIoc = App.Kp2a.TryGetDatabase(pendingSyncIoc);
+                                    if (dbForIoc == null)
+                                    {
+                                        continue;
+                                    }
+                                    new SyncUtil(this).StartSynchronizeDatabase(dbForIoc, false);
                                 }
                                 catch (Exception e)
                                 {

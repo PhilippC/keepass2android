@@ -64,6 +64,31 @@ namespace keepass2android
 
 		readonly IKp2aApp _app;
 
+        /// <summary>
+        /// Time when this database was last loaded/synchronized
+        /// </summary>
+        private DateTime lastSyncTime_ = DateTime.MaxValue;
+        public DateTime LastSyncTime
+        {
+            get => lastSyncTime_;
+            set
+            {
+				lastSyncTime_ = value;
+                SynchronizationPending = false;
+                SynchronizationRunning = false;
+            }
+        } 
+
+		/// <summary>
+		/// If true, background synchronization was requested but not performed e.g. due to network connectivity
+		/// </summary>
+        public bool SynchronizationPending { get; set; } = false;
+
+		/// <summary>
+		/// True while a synchronization is running
+		/// </summary>
+		public bool SynchronizationRunning { get; set; } = false;
+
         public Database(IDrawableFactory drawableFactory, IKp2aApp app)
         {
             DrawableFactory = drawableFactory;

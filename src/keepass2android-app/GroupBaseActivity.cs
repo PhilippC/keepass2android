@@ -15,37 +15,37 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Preferences;
+using Android.Provider;
+using Android.Runtime;
+using Android.Text;
+using Android.Util;
+using Android.Views;
+using Android.Views.Autofill;
+using AndroidX.AppCompat.Widget;
+using AndroidX.Core.Content;
+using Google.Android.Material.Dialog;
+using keepass2android;
+using keepass2android.database.edit;
+using keepass2android.Io;
+using keepass2android.search;
+using keepass2android.view;
+using keepass2android.views;
+using KeePassLib;
+using KeePassLib.Interfaces;
+using KeePassLib.Utility;
+using KeeTrayTOTP.Libraries;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-
-using KeePassLib;
-using Android.Preferences;
-using KeePassLib.Interfaces;
-using KeePassLib.Utility;
-using keepass2android.Io;
-using keepass2android.database.edit;
-using keepass2android.view;
-using Android.Graphics.Drawables;
-using Android.Provider;
-using Android.Views.Autofill;
 using Object = Java.Lang.Object;
-using Android.Text;
-using keepass2android.search;
-using keepass2android;
-using KeeTrayTOTP.Libraries;
-using AndroidX.AppCompat.Widget;
-using Google.Android.Material.Dialog;
-using keepass2android.views;
 using SearchView = AndroidX.AppCompat.Widget.SearchView;
-using AndroidX.Core.Content;
 
 namespace keepass2android
 {
@@ -307,8 +307,10 @@ namespace keepass2android
 
             isPaused = false;
             System.Threading.Tasks.Task.Run(UpdateTotpCountdown);
+            //We currently only trigger background syncs in group activity. This avoids complex situations like triggering syncs while having pending syncs also within SelectCurrentDbActivity etc.
+            System.Threading.Tasks.Task.Run(TriggerBackgroundSyncIfNeeded);
         }
-        private async System.Threading.Tasks.Task UpdateTotpCountdown()
+        private async Task UpdateTotpCountdown()
         {
             
             while (!isPaused )
@@ -334,8 +336,31 @@ namespace keepass2android
                 });
 
 
-                await System.Threading.Tasks.Task.Delay(1000);
+                await Task.Delay(1000);
             }
+        }
+
+        private async Task TriggerBackgroundSyncIfNeeded()
+        {
+            while (!isPaused)
+            {
+                try
+                {
+                    new SyncUtil(this).TryStartPendingSyncs();
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.Log("Failed to run TriggerBackgroundSyncIfNeeded");
+                    Kp2aLog.LogUnexpectedError(e);
+                }
+
+
+                await Task.Delay(20000);
+            }
+
+            Kp2aLog.Log("Quit TriggerBackgroundSyncIfNeeded");
+
+            
         }
 
         private void UpdateInfotexts()
@@ -1227,7 +1252,7 @@ namespace keepass2android
                     return true;
 
                 case Resource.Id.menu_sync:
-                    new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb.Ioc, true);
+                    new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb, true);
                     return true;
 
                 case Resource.Id.menu_work_offline:
@@ -1238,7 +1263,7 @@ namespace keepass2android
                 case Resource.Id.menu_work_online:
                     App.Kp2a.OfflineMode = App.Kp2a.OfflineModePreference = false;
                     UpdateOfflineModeMenu();
-                    new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb.Ioc, true);
+                    new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb, true);
                     return true;
                 case Resource.Id.menu_open_other_db:
                     AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);

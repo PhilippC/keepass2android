@@ -32,6 +32,7 @@ namespace keepass2android
 		{
             try
             {
+                _database.SynchronizationRunning = true;
                 IOConnectionInfo ioc = _database.Ioc;
                 IFileStorage fileStorage = _app.GetFileStorage(ioc);
                 if (!(fileStorage is CachingFileStorage))
@@ -99,6 +100,7 @@ namespace keepass2android
                         {
                             if (!success)
                             {
+                                _database.SynchronizationRunning = false;
                                 Finish(false, result);
                             }
                             else
@@ -110,6 +112,7 @@ namespace keepass2android
                                     _app.MarkAllGroupsAsDirty();
                                     Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
                                 });
+                                _database.LastSyncTime = DateTime.Now;
 
                             }
                         });
@@ -124,6 +127,7 @@ namespace keepass2android
                 else
                 {
                     //remote file is unmodified
+                    
                     if (cachingFileStorage.HasLocalChanges(ioc))
                     {
                         //but we have local changes -> upload:
@@ -131,10 +135,12 @@ namespace keepass2android
                         cachingFileStorage.UpdateRemoteFile(ioc,
                             _app.GetBooleanPreference(PreferenceKey.UseFileTransactions));
                         StatusLogger.UpdateSubMessage("");
+                        _database.LastSyncTime = DateTime.Now;
                         Finish(true, _app.GetResourceString(UiStringKey.SynchronizedDatabaseSuccessfully));
                     }
                     else
                     {
+                        _database.LastSyncTime = DateTime.Now;
                         //files are in sync: just set the result
                         Finish(true, _app.GetResourceString(UiStringKey.FilesInSync));
                     }
@@ -142,16 +148,19 @@ namespace keepass2android
             }
             catch (Java.Lang.InterruptedException e)
             {
+                _database.SynchronizationRunning = false;
                 Kp2aLog.LogUnexpectedError(e);
                 //no Finish()
             }
             catch (Java.IO.InterruptedIOException e)
             {
+                _database.SynchronizationRunning = false;
                 Kp2aLog.LogUnexpectedError(e);
                 //no Finish()
             }
 			catch (Exception e)
 			{
+                _database.SynchronizationRunning = false;
                 Kp2aLog.LogUnexpectedError(e);
 				Finish(false, ExceptionUtil.GetErrorMessage(e));
 			}
