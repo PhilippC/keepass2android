@@ -14,7 +14,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AndroidX.Core.App;
 using Android.Content.PM;
-using Microsoft.Graph.Models;
 
 
 namespace keepass2android.services

@@ -382,8 +382,9 @@ namespace keepass2android
             {
                 dlgView.FindViewById(Resource.Id.totp_custom_settings_group).Visibility = args.IsChecked ? ViewStates.Visible : ViewStates.Gone;
             };
+#if !NO_QR_SCANNER
 
-            dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
+			dlgView.FindViewById<Button>(Resource.Id.totp_scan).Click += async (object o, EventArgs args) =>
             {
                 if (GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(_activity) != ConnectionResult.Success)
                 {
@@ -417,10 +418,12 @@ namespace keepass2android
 
 
             };
+#else
+            dlgView.FindViewById<Button>(Resource.Id.totp_scan).Visibility = ViewStates.Gone;
+#endif
+			//copy values from entry into dialog
 
-            //copy values from entry into dialog
-            
-            TotpData totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(entry, App.Kp2a.CurrentDb));
+			TotpData totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(entry, App.Kp2a.CurrentDb));
             if (totpData != null)
             {
                 dlgView.FindViewById<TextView>(Resource.Id.totp_secret_key).Text = totpData.TotpSeed;

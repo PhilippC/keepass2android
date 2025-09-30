@@ -51,20 +51,23 @@ using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using Message = keepass2android.Utils.Message;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
-using Kp2aBusinessLogic.Io;
+
 using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
+using Kp2aBusinessLogic.Io;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 using static keepass2android.Util;
 using static Android.Provider.Telephony.MmsSms;
-using AndroidX.Lifecycle;
-using Java.Interop;
-using keepass2android.services;
+#endif
 #endif
 
-#endif
+using Java.Interop;
+using AndroidX.Lifecycle;
+using keepass2android.services;
+
+
 namespace keepass2android
 {
 #if NoNet
