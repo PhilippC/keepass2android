@@ -125,11 +125,14 @@ namespace keepass2android.view
 
             if (_groupBaseActivity.IsFinishing)
                 return;
-
             _entry = pw;
-			_pos = pos;
-		    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
-		    ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
+            _pos = pos;
+            try
+            {
+
+                
+                ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
+                ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
 		    _db = App.Kp2a.TryFindDatabaseForElement(_entry);
             if (_db == null)
@@ -141,81 +144,92 @@ namespace keepass2android.view
                 return;
             }
 
-            ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
-			bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
-			if (isExpired)
-			{
-				_db.DrawableFactory.AssignDrawableTo(iv, Context, _db.KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
-			} else
-			{
-				_db.DrawableFactory.AssignDrawableTo(iv, Context, _db.KpDatabase, pw.IconId, pw.CustomIconUuid, false);
-			}
+                ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
+                bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
+                if (isExpired)
+                {
+                    _db.DrawableFactory.AssignDrawableTo(iv, Context, _db.KpDatabase, PwIcon.Expired, PwUuid.Zero, false);
+                }
+                else
+                {
+                    _db.DrawableFactory.AssignDrawableTo(iv, Context, _db.KpDatabase, pw.IconId, pw.CustomIconUuid, false);
+                }
 
-			String title = pw.Strings.ReadSafe(PwDefs.TitleField);
-            title = SprEngine.Compile(title, new SprContext(_entry, _db.KpDatabase, SprCompileFlags.All));
-            var str = new SpannableString(title);
+                String title = pw.Strings.ReadSafe(PwDefs.TitleField);
+                title = SprEngine.Compile(title, new SprContext(_entry, _db.KpDatabase, SprCompileFlags.All));
+                var str = new SpannableString(title);
 
-			if (isExpired)
-			{
-				str.SetSpan(new StrikethroughSpan(), 0, title.Length, SpanTypes.ExclusiveExclusive);
-			}
-			_textView.TextFormatted = str;
+                if (isExpired)
+                {
+                    str.SetSpan(new StrikethroughSpan(), 0, title.Length, SpanTypes.ExclusiveExclusive);
+                }
+                _textView.TextFormatted = str;
 
-			if (_defaultTextColor == null)
-				_defaultTextColor = _textView.TextColors.DefaultColor;
+                if (_defaultTextColor == null)
+                    _defaultTextColor = _textView.TextColors.DefaultColor;
 
-			if (_groupActivity.IsBeingMoved(_entry.Uuid))
-			{
-				int elementBeingMoved = Context.Resources.GetColor(Resource.Color.md_theme_inversePrimary);
-				_textView.SetTextColor(new Color(elementBeingMoved));
-			}
-			else
-				_textView.SetTextColor(new Color((int)_defaultTextColor));
+                if (_groupActivity.IsBeingMoved(_entry.Uuid))
+                {
+                    int elementBeingMoved = Context.Resources.GetColor(Resource.Color.md_theme_inversePrimary);
+                    _textView.SetTextColor(new Color(elementBeingMoved));
+                }
+                else
+                    _textView.SetTextColor(new Color((int)_defaultTextColor));
 
-			String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
-			detail = SprEngine.Compile(detail, new SprContext(_entry, _db.KpDatabase, SprCompileFlags.All));
+                String detail = pw.Strings.ReadSafe(PwDefs.UserNameField);
+                detail = SprEngine.Compile(detail, new SprContext(_entry, _db.KpDatabase, SprCompileFlags.All));
 
-			if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
-			{
-				_textviewDetails.Visibility = ViewStates.Gone;
-			}
-			else
-			{
-				var strDetail = new SpannableString(detail);
-				
-				if (isExpired)
-				{
-					strDetail.SetSpan(new StrikethroughSpan(), 0, detail.Length, SpanTypes.ExclusiveExclusive);
-				}
-				_textviewDetails.TextFormatted = strDetail;
+                if ((_showDetail == false) || (String.IsNullOrEmpty(detail)))
+                {
+                    _textviewDetails.Visibility = ViewStates.Gone;
+                }
+                else
+                {
+                    var strDetail = new SpannableString(detail);
 
-				_textviewDetails.Visibility = ViewStates.Visible;
-			}
-				
-			if ( (!_showGroupFullPath) || (!_isSearchResult) ) {
-				_textgroupFullPath.Visibility = ViewStates.Gone;
-			}
+                    if (isExpired)
+                    {
+                        strDetail.SetSpan(new StrikethroughSpan(), 0, detail.Length, SpanTypes.ExclusiveExclusive);
+                    }
+                    _textviewDetails.TextFormatted = strDetail;
 
-			else {
-				String groupDetail = pw.ParentGroup.GetFullPath();
-			    if (App.Kp2a.OpenDatabases.Count() > 1)
-			    {
-			        groupDetail += "(" + App.Kp2a.GetFileStorage(_db.Ioc).GetDisplayName(_db.Ioc) + ")";
-			    }
+                    _textviewDetails.Visibility = ViewStates.Visible;
+                }
 
-				var strGroupDetail = new SpannableString (groupDetail);
+                if ((!_showGroupFullPath) || (!_isSearchResult))
+                {
+                    _textgroupFullPath.Visibility = ViewStates.Gone;
+                }
 
-				if (isExpired) {
-					strGroupDetail.SetSpan (new StrikethroughSpan (), 0, groupDetail.Length, SpanTypes.ExclusiveExclusive);
-				}
-				_textgroupFullPath.TextFormatted = strGroupDetail;
+                else
+                {
+                    String groupDetail = pw.ParentGroup.GetFullPath();
+                    if (App.Kp2a.OpenDatabases.Count() > 1)
+                    {
+                        groupDetail += "(" + App.Kp2a.GetFileStorage(_db.Ioc).GetDisplayName(_db.Ioc) + ")";
+                    }
 
-				_textgroupFullPath.Visibility = ViewStates.Visible;
-			}
+                    var strGroupDetail = new SpannableString(groupDetail);
 
-			//try to get totp data
-            UpdateTotp();
-            
+                    if (isExpired)
+                    {
+                        strGroupDetail.SetSpan(new StrikethroughSpan(), 0, groupDetail.Length, SpanTypes.ExclusiveExclusive);
+                    }
+                    _textgroupFullPath.TextFormatted = strGroupDetail;
+
+                    _textgroupFullPath.Visibility = ViewStates.Visible;
+                }
+
+                //try to get totp data
+                UpdateTotp();
+
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+
+            }
+
 
         }
 		

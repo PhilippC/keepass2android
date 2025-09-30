@@ -21,60 +21,88 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
+using Android.OS;
 using KeePass.Util;
 using keepass2android.database.edit;
+using keepass2android.Io;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	public class LoadDb : RunnableOnFinish {
+	public class LoadDb : OperationWithFinishHandler {
 		private readonly IOConnectionInfo _ioc;
 		private readonly Task<MemoryStream> _databaseData;
 		private readonly CompositeKey _compositeKey;
-		private readonly string _keyfileOrProvider;
+		private readonly string? _keyfileOrProvider;
 		private readonly IKp2aApp _app;
 		private readonly bool _rememberKeyfile;
 		IDatabaseFormat _format;
-		
-		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish, bool updateLastUsageTimestamp, bool makeCurrent): base(activity, finish)
+
+        public bool DoNotSetStatusLoggerMessage = false;
+        
+
+        public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
+            string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
+            bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null): base(app, operationFinishedHandler)
 		{
-			_app = app;
+            _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
+            _app = app;
 			_ioc = ioc;
 			_databaseData = databaseData;
 			_compositeKey = compositeKey;
 			_keyfileOrProvider = keyfileOrProvider;
 		    _updateLastUsageTimestamp = updateLastUsageTimestamp;
 		    _makeCurrent = makeCurrent;
-
-
-		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
-		}
+		    _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile);
+        }
 
 	    protected bool success = false;
 	    private bool _updateLastUsageTimestamp;
 	    private readonly bool _makeCurrent;
+        private readonly IDatabaseModificationWatcher _modificationWatcher;
 
-	    public override void Run()
+        public override void Run()
 		{
 			try
 			{
 				try
 				{
                     //make sure the file data is stored in the recent files list even if loading fails
-				    SaveFileData(_ioc, _keyfileOrProvider);
+                    SaveFileData(_ioc, _keyfileOrProvider);
+                    
+
+                    var fileStorage = _app.GetFileStorage(_ioc);
+
+                    RequiresSubsequentSync = false;
 
 
-                    StatusLogger.UpdateMessage(UiStringKey.loading_database);
+                    if (!DoNotSetStatusLoggerMessage)
+                    {
+                        StatusLogger.UpdateMessage(UiStringKey.loading_database);
+                    }
+                    
 					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
 					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
 					MemoryStream databaseStream;
-					if (preloadedMemoryStream != null)
-						databaseStream = preloadedMemoryStream;
-					else
+                    if (preloadedMemoryStream != null)
+                    {
+						//note: if the stream has been loaded already, we don't need to trigger another sync later on
+                        databaseStream = preloadedMemoryStream;
+                    }
+                    else
 					{
-						using (Stream s = _app.GetFileStorage(_ioc).OpenFileForRead(_ioc))
+                        if (_app.SyncInBackgroundPreference && fileStorage is CachingFileStorage cachingFileStorage &&
+                            cachingFileStorage.IsCached(_ioc))
+                        {
+                            cachingFileStorage.IsOffline = true;
+                            //no warning. We'll trigger a sync later.
+                            cachingFileStorage.TriggerWarningWhenFallingBackToCache = false;
+                            RequiresSubsequentSync = true;
+
+                        }
+                        using (Stream s = fileStorage.OpenFileForRead(_ioc))
 						{
 							databaseStream = new MemoryStream();
 							s.CopyTo(databaseStream);
@@ -82,8 +110,13 @@ namespace keepass2android
 						}
 					}
 
+                    if (!StatusLogger.ContinueWork())
+                    {
+                        return;
+                    }
+
 					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-					_format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(_app.GetFileStorage(_ioc).GetFileExtension(_ioc)));
+					_format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(fileStorage.GetFileExtension(_ioc)));
 					TryLoad(databaseStream);
 
 
@@ -120,7 +153,13 @@ namespace keepass2android
 				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + ExceptionUtil.GetErrorMessage(e) + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), false, Exception);
 				return;
 			}
-			catch (Exception e)
+            catch (Java.Lang.InterruptedException)
+            {
+				Kp2aLog.Log("Load interrupted");
+				//close without Finish()
+                return;
+            }
+            catch (Exception e)
 			{
 				if (!(e is InvalidCompositeKeyException))
 					Kp2aLog.LogUnexpectedError(e);
@@ -131,7 +170,9 @@ namespace keepass2android
 			
 		}
 
-		/// <summary>
+        public bool RequiresSubsequentSync { get; set; } = false;
+
+        /// <summary>
 		/// Holds the exception which was thrown during execution (if any)
 		/// </summary>
 		public Exception Exception { get; set; }
@@ -147,16 +188,21 @@ namespace keepass2android
 			workingCopy.Seek(0, SeekOrigin.Begin);
 			//reset stream if we need to reuse it later:
 			databaseStream.Seek(0, SeekOrigin.Begin);
-            Kp2aLog.Log("LoadDb: Ready to start loading");
-            //now let's go:
+            if (!StatusLogger.ContinueWork())
+            {
+                throw new Java.Lang.InterruptedException();
+            }
+			
+			//now let's go:
             try
-			{
-                Database newDb = _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent);
-				Kp2aLog.Log("LoadDB OK");
-
+            {
+                Database newDb =
+                    _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent, _modificationWatcher);
+                Kp2aLog.Log("LoadDB OK");
+               
                 Finish(true, _format.SuccessMessage);
-			    return newDb;
-			}
+                return newDb;
+            }
 			catch (OldFormatException)
 			{
 				_format = new KdbDatabaseFormat(_app);

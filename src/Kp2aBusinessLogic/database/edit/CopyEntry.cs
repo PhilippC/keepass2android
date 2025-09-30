@@ -16,8 +16,8 @@ namespace keepass2android.database.edit
 {
 	public class CopyEntry: AddEntry
 	{
-		public CopyEntry(Activity ctx, IKp2aApp app, PwEntry entry, OnFinish finish, Database db)
-			: base(ctx, db, app, CreateCopy(entry, app), entry.ParentGroup, finish)
+		public CopyEntry(IKp2aApp app, PwEntry entry, OnOperationFinishedHandler operationFinishedHandler, Database db)
+			: base(db, app, CreateCopy(entry, app), entry.ParentGroup, operationFinishedHandler)
 		{
 		}
 

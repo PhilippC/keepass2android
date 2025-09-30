@@ -387,6 +387,8 @@
   <string name="NoDonationReminder_summary">I won\'t give you a dime or I have already donated. Don\'t ask for a donation, not even at the author\'s birthday.</string>
   <string name="UseOfflineCache_title">Database caching</string>
   <string name="UseOfflineCache_summary">Keep a copy of the database files in the app\'s cache directory. This allows to use databases even while the database file is not accessible.</string>
+  <string name="SyncOfflineCacheInBackground_summary">When saving or loading, use the internal cache. Then synchronize with remote storage in a background process.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synchronize in background</string>
   <string name="CreateBackups_title">Local backups</string>
   <string name="CreateBackups_summary">Create a local backup copy after successfully loading a database.</string>
   <string name="UpdatingBackup">Updating local backup...</string>
@@ -735,6 +737,9 @@
   <string name="DbQuicklockedChannel_desc">Notification about the database being locked with QuickUnlock</string>
   <string name="EntryChannel_name">Entry notifications</string>
   <string name="EntryChannel_desc">Notification to simplify access to the currently selected entry.</string>
+  <string name="BackgroundSyncChannel_name">Synchronization operation</string>
+  <string name="BackgroundSyncChannel_desc">Notification to indicate that a synchronization is performed in the background.</string>
+  
   <string name="CloseDbAfterFailedAttempts">Close database after three failed biometric unlock attempts.</string>
   <string name="hint_smb_credentials">If you want to access files from your personal Windows computer, use the computer name or local IP address as host URL; enter the computer name as domain and the Windows login (often the same as your Microsoft account) as username and password.</string>
   <string name="WarnFingerprintInvalidated">Warning! Biometric authentication can be invalidated by Android, e.g. after adding a new fingerprint in your device settings. Make sure you always know how to unlock with your master password!</string>
@@ -1290,5 +1295,33 @@
   <string name="switch_keyboard_for_totp_enabled">Note: You have enabled App - Password access - Autofill-Service - Autofill for TOTP entries. This can cause this window to show when you open an entry with a TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Note: You have enabled App - Security - Use built-in keyboard inside Keepass2Android. This can cause this window to show when you open the app or edit an entry.</string>
   <string name="switch_keyboard_on_search_enabled">Note: You have enabled App - Security - Password access - Keyboard switching - Switch keyboard. This can cause this window to show when you search for an entry from the browser.</string>
-  
+  <string name="user_interaction_required">User interaction required. Please open the app.</string>
+  <string name="failed_to_access_database">Database is currently in use and cannot be accessed.</string>
+
+  <string name="configure_ssids">Configure SSIDs</string>
+  <string name="add_current_ssid">Add Current SSID</string>
+  <string name="enter_ssid_hint">Enter SSID</string>
+  <string name="add_ssid">Add other SSID</string>
+  <string name="no_ssids">No SSIDs added. Automatic background synchronization will be performed in any Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID is empty or already in list</string>
+  <string name="location_permission_required">Location permission required to read current SSID</string>
+  <string name="permission_granted">Location permission granted</string>
+  <string name="permission_denied">Permission denied. Cannot read current SSID. Please enable the permission through Android settings.</string>
+  <string name="remove_ssid_title">Remove SSID</string>
+  <string name="ssid_explanation">Define a list of SSIDs. Automatic background synchronization will be performed if you are logged into any of these.</string>
+  <string name="remove_ssid_message">Are you sure you want to remove this SSID?</string>
+  <string name="permission_needed">Permission Required</string>
+  <string name="permission_location_rationale">
+    Location permission is needed to read your current Wi-Fi SSID. This is required if you want to restrict background synchronization to certain SSIDs.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Background synchronization based on Wi-Fi-SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Background synchronization in Wi-Fi only</string>
+  <string name="BackgroundSyncWifiOnly_summary">If selected, background synchronization is only started while you are connected to Wi-Fi.</string>
+      
+  <string name="pref_enable_periodic_background_sync_title">Periodic background synchronization</string>
+  <string name="pref_enable_periodic_background_sync_summary">If enabled, the app will periodically synchronize unlocked databases. This respects network connection settings from above.</string>
+
+  <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
+  <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
+    
 </resources>

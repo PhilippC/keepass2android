@@ -12,9 +12,9 @@ namespace keepass2android
     {
 
         protected readonly int _requestCode;
-        protected readonly Activity _activity;
+        protected readonly LifecycleAwareActivity _activity;
 
-        public FileSaveProcessManager(int requestCode, Activity activity)
+        public FileSaveProcessManager(int requestCode, LifecycleAwareActivity activity)
         {
             _requestCode = requestCode;
             _activity = activity;
@@ -103,7 +103,7 @@ namespace keepass2android
                         }
                         else
                         {
-                            var task = new CreateNewFilename(_activity, new ActionOnFinish(_activity, (success, messageOrFilename, activity) =>
+                            var task = new CreateNewFilename(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, messageOrFilename, activity) =>
                             {
                                 if (!success)
                                 {
@@ -115,7 +115,7 @@ namespace keepass2android
 
                             }), filename);
 
-                            new ProgressTask(App.Kp2a, _activity, task).Run();
+                            new BlockingOperationStarter(App.Kp2a, task).Run();
                         }
 
                         return true;

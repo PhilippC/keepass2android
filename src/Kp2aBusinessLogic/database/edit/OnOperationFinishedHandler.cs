@@ -22,10 +22,16 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Google.Android.Material.Dialog;
+using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
-	public abstract class OnFinish
+    public interface IActiveContextProvider
+    {
+        Context ActiveContext { get; }
+    }
+
+	public abstract class OnOperationFinishedHandler
 	{
 		protected bool Success;
 		protected String Message;
@@ -37,63 +43,41 @@ namespace keepass2android
 	        set;
 	    }
 
-        protected OnFinish BaseOnFinish;
+        protected Context ActiveContext
+        {
+            get
+            {
+                return _activeContextProvider?.ActiveContext;
+            }
+        }
+
+        protected OnOperationFinishedHandler NextOnOperationFinishedHandler;
 		protected Handler Handler;
-		private ProgressDialogStatusLogger _statusLogger = new ProgressDialogStatusLogger(); //default: no logging but not null -> can be used whenever desired
-	    private Activity _activeActivity, _previouslyActiveActivity;
+		private IKp2aStatusLogger _statusLogger = new Kp2aNullStatusLogger(); //default: no logging but not null -> can be used whenever desired
+        private readonly IActiveContextProvider _activeContextProvider;
 
-
-	    public ProgressDialogStatusLogger StatusLogger
+		public IKp2aStatusLogger StatusLogger
 		{
 			get { return _statusLogger; }
 			set { _statusLogger = value; }
-		}
-
-	    public Activity ActiveActivity
-	    {
-	        get { return _activeActivity; }
-	        set
-	        {
-                if (_activeActivity != null && _activeActivity != _previouslyActiveActivity)
-                {
-                    _previouslyActiveActivity = _activeActivity;
-
-                }
-				_activeActivity = value;
-	            if (BaseOnFinish != null)
-	            {
-	                BaseOnFinish.ActiveActivity = value;
-	            }
-	        }
-	    }
-
-        public Activity PreviouslyActiveActivity
+		}		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, Handler handler)
         {
-            get { return _previouslyActiveActivity; }
-
-        }
-
-
-
-		protected OnFinish(Activity activeActivity, Handler handler)
-	    {
-	        ActiveActivity = activeActivity;
-			BaseOnFinish = null;
-			Handler = handler;
-			
-		}
-
-		protected OnFinish(Activity activeActivity, OnFinish finish, Handler handler)
-		{
-		    ActiveActivity = activeActivity;
-			BaseOnFinish = finish;
+            _activeContextProvider = activeContextProvider;
+			NextOnOperationFinishedHandler = null;
 			Handler = handler;
 		}
 
-		protected OnFinish(Activity activeActivity, OnFinish finish)
+		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
 		{
-		    ActiveActivity = activeActivity;
-			BaseOnFinish = finish;
+		    _activeContextProvider = activeContextProvider;
+			NextOnOperationFinishedHandler = operationFinishedHandler;
+			Handler = handler;
+		}
+
+		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler)
+        {
+            _activeContextProvider = activeContextProvider;
+			NextOnOperationFinishedHandler = operationFinishedHandler;
 			Handler = null;
 		}
 
@@ -110,14 +94,19 @@ namespace keepass2android
 		}
 		
 		public virtual void Run() {
-			if (BaseOnFinish == null) return;
+			if (NextOnOperationFinishedHandler == null) return;
 			// Pass on result on call finish
-			BaseOnFinish.SetResult(Success, Message, ImportantMessage, Exception);
-				
-			if ( Handler != null ) {
-				Handler.Post(BaseOnFinish.Run); 
+			NextOnOperationFinishedHandler.SetResult(Success, Message, ImportantMessage, Exception);
+
+            var handler = Handler ?? NextOnOperationFinishedHandler.Handler ?? null;
+
+            if (handler != null ) {
+                handler.Post(() =>
+                {
+                    NextOnOperationFinishedHandler.Run();
+                }); 
 			} else {
-				BaseOnFinish.Run();
+				NextOnOperationFinishedHandler.Run();
 			}
 		}
 		
@@ -128,7 +117,7 @@ namespace keepass2android
 		public static void DisplayMessage(Context ctx, string message, bool makeDialog)
 		{
 			if ( !String.IsNullOrEmpty(message) ) {
-			    Kp2aLog.Log("OnFinish message: " + message);
+			    Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
                 if (makeDialog && ctx != null)
                 {
                     try
@@ -151,4 +140,5 @@ namespace keepass2android
 		}
 	}
 }
+
 

@@ -15,39 +15,41 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Preferences;
+using Android.Provider;
+using Android.Runtime;
+using Android.Text;
+using Android.Util;
+using Android.Views;
+using Android.Views.Autofill;
+using AndroidX.AppCompat.Widget;
+using AndroidX.Core.Content;
+using Google.Android.Material.Dialog;
+using keepass2android;
+using keepass2android.database.edit;
+using keepass2android.Io;
+using keepass2android.search;
+using keepass2android.view;
+using keepass2android.views;
+using KeePassLib;
+using KeePassLib.Interfaces;
+using KeePassLib.Utility;
+using KeeTrayTOTP.Libraries;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-
-using KeePassLib;
-using Android.Preferences;
-using KeePassLib.Interfaces;
-using KeePassLib.Utility;
-using keepass2android.Io;
-using keepass2android.database.edit;
-using keepass2android.view;
-using Android.Graphics.Drawables;
-using Android.Provider;
-using Android.Views.Autofill;
 using Object = Java.Lang.Object;
-using Android.Text;
-using keepass2android.search;
-using keepass2android;
-using KeeTrayTOTP.Libraries;
-using AndroidX.AppCompat.Widget;
-using Google.Android.Material.Dialog;
 using SearchView = AndroidX.AppCompat.Widget.SearchView;
 
 namespace keepass2android
 {
-    public abstract class GroupBaseActivity : LockCloseActivity
+    public abstract class GroupBaseActivity : LockCloseActivity, IProgressUiProvider
     {
         public const String KeyEntry = "entry";
         public const String KeyMode = "mode";
@@ -201,19 +203,18 @@ namespace keepass2android
                     new PwUuid(MemUtil.HexStringToByteArray(data.Extras.GetString(GroupEditActivity.KeyCustomIconId)));
                 String strGroupUuid = data.Extras.GetString(GroupEditActivity.KeyGroupUuid);
                 GroupBaseActivity act = this;
-                Handler handler = new Handler();
-                RunnableOnFinish task;
+                OperationWithFinishHandler task;
                 if (strGroupUuid == null)
                 {
-                    task = AddGroup.GetInstance(this, App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, new RefreshTask(handler, this), false);
+                    task = AddGroup.GetInstance(App.Kp2a, groupName, groupIconId, groupCustomIconId, Group, CreateRefreshAction(), false);
                 }
                 else
                 {
                     PwUuid groupUuid = new PwUuid(MemUtil.HexStringToByteArray(strGroupUuid));
-                    task = new EditGroup(this, App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
-                                         new RefreshTask(handler, this));
+                    task = new EditGroup(App.Kp2a, groupName, (PwIcon)groupIconId, groupCustomIconId, App.Kp2a.FindGroup(groupUuid),
+                                         CreateRefreshAction());
                 }
-                ProgressTask pt = new ProgressTask(App.Kp2a, act, task);
+                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, task);
                 pt.Run();
             }
 
@@ -274,6 +275,7 @@ namespace keepass2android
         private IMenuItem searchItem;
         private IMenuItem searchItemDummy;
         private bool isPaused;
+        private UpdateGroupBaseActivityBroadcastReceiver _dataUpdatedIntentReceiver;
 
         protected override void OnResume()
         {
@@ -305,8 +307,10 @@ namespace keepass2android
 
             isPaused = false;
             System.Threading.Tasks.Task.Run(UpdateTotpCountdown);
+            //We currently only trigger background syncs in group activity. This avoids complex situations like triggering syncs while having pending syncs also within SelectCurrentDbActivity etc.
+            System.Threading.Tasks.Task.Run(TriggerBackgroundSyncIfNeeded);
         }
-        private async System.Threading.Tasks.Task UpdateTotpCountdown()
+        private async Task UpdateTotpCountdown()
         {
             
             while (!isPaused )
@@ -332,8 +336,31 @@ namespace keepass2android
                 });
 
 
-                await System.Threading.Tasks.Task.Delay(1000);
+                await Task.Delay(1000);
             }
+        }
+
+        private async Task TriggerBackgroundSyncIfNeeded()
+        {
+            while (!isPaused)
+            {
+                try
+                {
+                    new SyncUtil(this).TryStartPendingSyncs();
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.Log("Failed to run TriggerBackgroundSyncIfNeeded");
+                    Kp2aLog.LogUnexpectedError(e);
+                }
+
+
+                await Task.Delay(20000);
+            }
+
+            Kp2aLog.Log("Quit TriggerBackgroundSyncIfNeeded");
+
+            
         }
 
         private void UpdateInfotexts()
@@ -745,9 +772,10 @@ namespace keepass2android
 
 
 
-
-
-
+            _dataUpdatedIntentReceiver = new UpdateGroupBaseActivityBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DataUpdated);
+            ContextCompat.RegisterReceiver(this, _dataUpdatedIntentReceiver, filter, (int)ReceiverFlags.Exported);
 
             SetResult(KeePass.ExitNormal);
 
@@ -929,14 +957,14 @@ namespace keepass2android
 
 
 
-            var moveElement = new MoveElements(elementsToMove.ToList(), Group, this, App.Kp2a, new ActionOnFinish(this,
-                (success, message, activity) =>
+            var moveElement = new MoveElements(elementsToMove.ToList(), Group,  App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
+                (success, message, context) =>
                 {
-                    ((GroupBaseActivity)activity)?.StopMovingElements();
+                    (context as GroupBaseActivity)?.StopMovingElements();
                     if (!String.IsNullOrEmpty(message))
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                 }));
-            var progressTask = new ProgressTask(App.Kp2a, this, moveElement);
+            var progressTask = new BlockingOperationStarter(App.Kp2a, moveElement);
             progressTask.Run();
 
         }
@@ -1036,6 +1064,13 @@ namespace keepass2android
 
                 return true;
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            UnregisterReceiver(_dataUpdatedIntentReceiver);
+            base.OnDestroy();
+            
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -1217,7 +1252,7 @@ namespace keepass2android
                     return true;
 
                 case Resource.Id.menu_sync:
-                    new SyncUtil(this).SynchronizeDatabase(() => { });
+                    new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb, true);
                     return true;
 
                 case Resource.Id.menu_work_offline:
@@ -1228,7 +1263,7 @@ namespace keepass2android
                 case Resource.Id.menu_work_online:
                     App.Kp2a.OfflineMode = App.Kp2a.OfflineModePreference = false;
                     UpdateOfflineModeMenu();
-                    new SyncUtil(this).SynchronizeDatabase(() => { });
+                    new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb, true);
                     return true;
                 case Resource.Id.menu_open_other_db:
                     AppTask.SetActivityResult(this, KeePass.ExitLoadAnotherDb);
@@ -1298,51 +1333,7 @@ namespace keepass2android
 
         }
 
-        public class RefreshTask : OnFinish
-        {
-            public RefreshTask(Handler handler, GroupBaseActivity act)
-                : base(act, handler)
-            {
-            }
-
-            public override void Run()
-            {
-                if (Success)
-                {
-                    ((GroupBaseActivity)ActiveActivity)?.RefreshIfDirty();
-                }
-                else
-                {
-                    DisplayMessage(ActiveActivity);
-                }
-            }
-        }
-        public class AfterDeleteGroup : OnFinish
-        {
-            public AfterDeleteGroup(Handler handler, GroupBaseActivity act)
-                : base(act, handler)
-            {
-            }
-
-
-            public override void Run()
-            {
-                if (Success)
-                {
-                    ((GroupBaseActivity)ActiveActivity)?.RefreshIfDirty();
-                }
-                else
-                {
-                    Handler.Post(() =>
-                    {
-                        App.Kp2a.ShowMessage(ActiveActivity ?? LocaleManager.LocalizedAppContext, "Unrecoverable error: " + Message,  MessageSeverity.Error);
-                    });
-
-                    App.Kp2a.Lock(false);
-                }
-            }
-
-        }
+        
 
         public bool IsBeingMoved(PwUuid uuid)
         {
@@ -1413,6 +1404,79 @@ namespace keepass2android
         {
             GroupEditActivity.Launch(this, pwGroup.ParentGroup, pwGroup);
         }
+
+        public IProgressUi ProgressUi
+        {
+            get
+            {
+                return FindViewById<BackgroundOperationContainer>(Resource.Id.background_ops_container);
+            }
+        }
+
+        public void OnDataUpdated()
+        {
+            if (Group == null || FragmentManager.IsDestroyed)
+            {
+                return;
+            }
+
+            var groupId = Group.Uuid;
+            if (!App.Kp2a.CurrentDb.GroupsById.ContainsKey(groupId))
+            {
+                Finish();
+                return;
+            }
+            Group = App.Kp2a.CurrentDb.GroupsById[groupId];
+            var fragment = FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment);
+            if (fragment == null)
+            {
+                throw new Exception("did not find fragment");
+            }
+            fragment.ListAdapter = new PwGroupListAdapter(this, Group);
+            SetGroupIcon();
+            SetGroupTitle();
+            ListAdapter?.NotifyDataSetChanged();
+
+        }
+
+        public OnOperationFinishedHandler CreateRefreshAction()
+        {
+            return new ActionInContextInstanceOnOperationFinished(
+                ContextInstanceId, App.Kp2a,
+                (success, message, context) =>
+                {
+                    if (success)
+                    {
+                        RunOnUiThread(() =>
+                        {
+                            (context as GroupBaseActivity)?.RefreshIfDirty();
+                        });
+                    }
+                    else
+                    {
+                        App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
+                    }
+                }
+            );
+        }
+    }
+
+    public class UpdateGroupBaseActivityBroadcastReceiver : BroadcastReceiver
+    {
+        private readonly GroupBaseActivity _groupBaseActivity;
+
+        public UpdateGroupBaseActivityBroadcastReceiver(GroupBaseActivity groupBaseActivity)
+        {
+            _groupBaseActivity = groupBaseActivity;
+        }
+
+        public override void OnReceive(Context? context, Intent? intent)
+        {
+            if (intent?.Action == Intents.DataUpdated)
+            {
+                _groupBaseActivity.OnDataUpdated();
+            }
+        }
     }
 
     public class GroupListFragment : ListFragment, AbsListView.IMultiChoiceModeListener
@@ -1475,12 +1539,12 @@ namespace keepass2android
             {
                 return false;
             }
-            Handler handler = new Handler();
+            
             switch (item.ItemId)
             {
 
                 case Resource.Id.menu_delete:
-                    DeleteMultipleItems((GroupBaseActivity)Activity, checkedItems, new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a);
+                    DeleteMultipleItems((GroupBaseActivity)Activity, checkedItems, ((GroupBaseActivity)Activity).CreateRefreshAction(), App.Kp2a);
                     break;
                 case Resource.Id.menu_move:
                     var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, checkedItems.First().ParentGroup, checkedItems.Select(i => i.Uuid).ToList(), ((GroupBaseActivity)Activity).IsSearchResult);
@@ -1488,10 +1552,10 @@ namespace keepass2android
                     break;
                 case Resource.Id.menu_copy:
 
-                    var copyTask = new CopyEntry((GroupBaseActivity)Activity, App.Kp2a, (PwEntry)checkedItems.First(),
-                        new GroupBaseActivity.RefreshTask(handler, ((GroupBaseActivity)Activity)), App.Kp2a.CurrentDb);
+                    var copyTask = new CopyEntry(App.Kp2a, (PwEntry)checkedItems.First(),
+                        ((GroupBaseActivity)Activity).CreateRefreshAction(), App.Kp2a.CurrentDb);
 
-                    ProgressTask pt = new ProgressTask(App.Kp2a, Activity, copyTask);
+                    BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, copyTask);
                     pt.Run();
                     break;
 
@@ -1636,7 +1700,7 @@ namespace keepass2android
         }
 
 
-        public void  DeleteMultipleItems(GroupBaseActivity activity, List<IStructureItem> checkedItems, OnFinish onFinish, Kp2aApp app)
+        public void  DeleteMultipleItems(GroupBaseActivity activity, List<IStructureItem> checkedItems, OnOperationFinishedHandler onOperationFinishedHandler, Kp2aApp app)
         {
             if (checkedItems.Any() == false)
                 return;
@@ -1667,30 +1731,30 @@ namespace keepass2android
             }
 
             int dbIndex = 0;
-            Action<bool, string, Activity> action = null;
-            action = (success, message, activeActivity) =>
+            Action<bool, string, Context> action = null;
+            action = (success, message, context) =>
             {
                 if (success)
                 {
                     dbIndex++;
                     if (dbIndex == itemsForDatabases.Count)
                     {
-                        onFinish.SetResult(true);
-                        onFinish.Run();
+                        onOperationFinishedHandler.SetResult(true);
+                        onOperationFinishedHandler.Run();
                         return;
                     }
                     new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                        itemsForDatabases[dbIndex].Value, new ActionOnFinish(activeActivity, (b, s, activity1) => action(b, s, activity1)), app)
+                        itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, activity1) => action(b, s, activity1)), app)
                         .Start();
                 }
                 else
                 {
-                    onFinish.SetResult(false, message, true, null);
+                    onOperationFinishedHandler.SetResult(false, message, true, null);
                 }
             };
 
             new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                itemsForDatabases[dbIndex].Value, new ActionOnFinish(activity, (b, s, activity1) => action(b, s, activity1)), app)
+                itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, activity1) => action(b, s, activity1)), app)
                 .Start();
         }
 

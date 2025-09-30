@@ -396,8 +396,6 @@ namespace keepass2android
 		{
 			PwGroupV3 toGroup = new PwGroupV3();
 			toGroup.Name = fromGroup.Name;
-			//todo remove
-			Android.Util.Log.Debug("KP2A", "save kdb: group " + fromGroup.Name);
 
 			toGroup.TCreation = new PwDate(ConvertTime(fromGroup.CreationTime));
 			toGroup.TLastAccess= new PwDate(ConvertTime(fromGroup.LastAccessTime));

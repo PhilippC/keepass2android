@@ -22,31 +22,29 @@ using KeePassLib;
 namespace keepass2android
 {
 
-	public class UpdateEntry : RunnableOnFinish {
+	public class UpdateEntry : OperationWithFinishHandler {
 		private readonly IKp2aApp _app;
-		private readonly Activity _ctx;
-		
-		public UpdateEntry(Activity ctx, IKp2aApp app, PwEntry oldE, PwEntry newE, OnFinish finish):base(ctx, finish) {
-			_ctx = ctx;
-			_app = app;
 
-			_onFinishToRun = new AfterUpdate(ctx, oldE, newE, app, finish);
+        public UpdateEntry(IKp2aApp app, PwEntry oldE, PwEntry newE, OnOperationFinishedHandler operationFinishedHandler):base(app, operationFinishedHandler) {
+            _app = app;
+
+			_operationFinishedHandler = new AfterUpdate( oldE, newE, app, operationFinishedHandler);
 		}
 		
 		
 		public override void Run() {
 			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, _app.CurrentDb, OnFinishToRun);
+			SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
 			save.SetStatusLogger(StatusLogger);
 			save.Run();
 		}
 		
-		private class AfterUpdate : OnFinish {
+		private class AfterUpdate : OnOperationFinishedHandler {
 			private readonly PwEntry _backup;
 			private readonly PwEntry _updatedEntry;
 			private readonly IKp2aApp _app;
 			
-			public AfterUpdate(Activity activity, PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnFinish finish):base(activity, finish) {
+			public AfterUpdate(PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler):base(app, operationFinishedHandler) {
 				_backup = backup;
 				_updatedEntry = updatedEntry;
 				_app = app;

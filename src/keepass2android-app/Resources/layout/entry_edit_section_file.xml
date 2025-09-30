@@ -75,6 +75,11 @@ android:layout_height="wrap_content">
           android:layout_marginRight="0dip"
 		 android:visibility="gone" 
 		  />
+    <CheckBox
+      android:id="@+id/protection"
+      android:layout_width="0dip"
+      android:layout_height="0dip"
+      android:visibility="gone"/>
 			
 			</LinearLayout>
 </RelativeLayout>

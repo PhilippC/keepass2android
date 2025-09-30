@@ -558,6 +558,7 @@ namespace keepass2android
         private OpenDatabaseAdapter _adapter;
         private MyBroadcastReceiver _intentReceiver;
         private bool _isForeground;
+        private readonly List<IOConnectionInfo> _pendingBackgroundSyncs = new List<IOConnectionInfo>();
 
         public override void OnBackPressed()
         {
@@ -598,11 +599,41 @@ namespace keepass2android
 
                         string iocString = data?.GetStringExtra("ioc");
                         IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
+
+                        //we first store the required sync operation and delay its execution until we loaded all AutoOpen entries (from local file)
+                        //if required
+                        bool requiresSubsequentSync = data?.GetBooleanExtra("requiresSubsequentSync", false) ?? false;
+                        if (requiresSubsequentSync)
+                        {
+                            _pendingBackgroundSyncs.Add(ioc);
+                        }
+                        
                         if (App.Kp2a.TrySelectCurrentDb(ioc))
                         {
                             if (OpenAutoExecEntries(App.Kp2a.CurrentDb)) return;
                             LaunchingOther = true;
                             AppTask.CanActivateSearchViewOnStart = true;
+
+                            foreach (var pendingSyncIoc in _pendingBackgroundSyncs)
+                            {
+                                try
+                                {
+                                    var dbForIoc = App.Kp2a.TryGetDatabase(pendingSyncIoc);
+                                    if (dbForIoc == null)
+                                    {
+                                        continue;
+                                    }
+                                    new SyncUtil(this).StartSynchronizeDatabase(dbForIoc, false);
+                                }
+                                catch (Exception e)
+                                {
+                                    App.Kp2a.ShowMessage(this, "Failed to synchronize database", MessageSeverity.Error);
+                                    Kp2aLog.LogUnexpectedError(e);
+                                }
+                            }
+
+                            _pendingBackgroundSyncs.Clear();
+
                             AppTask.LaunchFirstGroupActivity(this);
                         }
 

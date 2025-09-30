@@ -78,7 +78,15 @@ namespace keepass2android
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(savedInstanceState);
+            //we don't want any background thread to update/reload the database while we're in this activity.
+            if (!App.Kp2a.DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
+            {
+                App.Kp2a.ShowMessage(this, GetString(Resource.String.failed_to_access_database), MessageSeverity.Error);
+                Finish();
+                return;
+            }
+
+            base.OnCreate(savedInstanceState);
 
 			//if user presses back to leave this activity:
 			SetResult(Result.Canceled);
@@ -288,5 +296,12 @@ namespace keepass2android
 	    {
 	        get { return null; }
 	    }
-	}}
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            App.Kp2a.DatabasesBackgroundModificationLock.ExitReadLock();
+        }
+    }
+}
 

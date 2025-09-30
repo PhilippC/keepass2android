@@ -4,12 +4,12 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	class CreateNewFilename : RunnableOnFinish
+	class CreateNewFilename : OperationWithFinishHandler
 	{
 		private readonly string _filename;
 
-		public CreateNewFilename(Activity activity, OnFinish finish, string filename)
-			: base(activity,finish)
+		public CreateNewFilename(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler, string filename)
+			: base(app,operationFinishedHandler)
 		{
 			_filename = filename;
 		}

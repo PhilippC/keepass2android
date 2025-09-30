@@ -56,6 +56,7 @@ using Android.Util;
 using AndroidX.Core.Content;
 using Google.Android.Material.Dialog;
 using keepass2android;
+using keepass2android.views;
 
 namespace keepass2android
 {
@@ -63,7 +64,7 @@ namespace keepass2android
     {
         private readonly string _binaryToSave;
 
-        public ExportBinaryProcessManager(int requestCode, Activity activity, string key) : base(requestCode, activity)
+        public ExportBinaryProcessManager(int requestCode, LifecycleAwareActivity activity, string key) : base(requestCode, activity)
         {
             _binaryToSave = key;
         }
@@ -75,13 +76,13 @@ namespace keepass2android
 
         protected override void SaveFile(IOConnectionInfo ioc)
         {
-            var task = new EntryActivity.WriteBinaryTask(_activity, App.Kp2a, new ActionOnFinish(_activity, (success, message, activity) =>
+            var task = new EntryActivity.WriteBinaryTask(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
                     if (!success)
-                        App.Kp2a.ShowMessage(activity, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
                 }
             ), ((EntryActivity)_activity).Entry.Binaries.Get(_binaryToSave), ioc);
-            ProgressTask pt = new ProgressTask(App.Kp2a, _activity, task);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, task);
             pt.Run();
 
         }
@@ -89,6 +90,7 @@ namespace keepass2android
         public override void OnSaveInstanceState(Bundle outState)
         {
             outState.PutString("BinaryToSave", _binaryToSave);
+            base.OnSaveInstanceState(outState);
         }
         
 
@@ -97,7 +99,7 @@ namespace keepass2android
 
 	[Activity (Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
         Theme = "@style/Kp2aTheme_ActionBar")]
-	public class EntryActivity : LockCloseActivity 
+	public class EntryActivity : LockCloseActivity, IProgressUiProvider
 	{
 		public const String KeyEntry = "entry";
         public const String KeyRefreshPos = "refresh_pos";
@@ -109,6 +111,45 @@ namespace keepass2android
         public const int requestCodeSelFileStorageForWriteAttachment = 42377;
 
         protected override View? SnackbarAnchorView => FindViewById(Resource.Id.main_content);
+
+        public class UpdateEntryActivityBroadcastReceiver : BroadcastReceiver
+        {
+            private readonly EntryActivity _activity;
+
+            public UpdateEntryActivityBroadcastReceiver(EntryActivity activity)
+            {
+                _activity = activity;
+            }
+
+            public override void OnReceive(Context? context, Intent? intent)
+            {
+                if (intent?.Action == Intents.DataUpdated)
+                {
+                    _activity.OnDataUpdated();
+                }
+            }
+        }
+
+        private void OnDataUpdated()
+        {
+            if (Entry == null)
+            {
+                return;
+            }
+
+            var entryUId = Entry.Uuid;
+            if (!App.Kp2a.CurrentDb.EntriesById.ContainsKey(entryUId))
+            {
+                Finish();
+                return;
+            }
+            var newEntry = App.Kp2a.CurrentDb.EntriesById[entryUId];
+            if (!newEntry.EqualsEntry(Entry, PwCompareOptions.None, MemProtCmpMode.Full))
+            {
+                Recreate();
+            }
+            
+        }
 
         public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null, int historyIndex=-1)
 		{
@@ -481,8 +522,8 @@ namespace keepass2android
 				Entry.Expires = true;
 				Entry.Touch(true);
 				RequiresRefresh();
-				UpdateEntry update = new UpdateEntry(this, App.Kp2a, backupEntry, Entry, null);
-				ProgressTask pt = new ProgressTask(App.Kp2a, this, update);
+				UpdateEntry update = new UpdateEntry(App.Kp2a, backupEntry, Entry, null);
+				BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, update);
 				pt.Run();
 			}
 			FillData();
@@ -501,7 +542,13 @@ namespace keepass2android
 
 			//the rest of the things to do depends on the current app task:
 			AppTask.CompleteOnCreateEntryActivity(this, notifyPluginsOnOpenThread);
-		}
+
+            _dataUpdatedIntentReceiver = new UpdateEntryActivityBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DataUpdated);
+            ContextCompat.RegisterReceiver(this, _dataUpdatedIntentReceiver, filter, (int)ReceiverFlags.Exported);
+
+        }
 
         private void RemoveFromHistory()
         {
@@ -525,13 +572,17 @@ namespace keepass2android
                 App.Kp2a.DirtyGroups.Add(parent);
             }
 
-			var saveTask = new SaveDb(this, App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionOnFinish(this, (success, message, activity) =>
+			var saveTask = new SaveDb( App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
             {
-                activity.SetResult(KeePass.ExitRefresh);
-                activity.Finish();
+				if (context is Activity activity)
+                {
+                    activity.SetResult(KeePass.ExitRefresh);
+                    activity.Finish();
+                }
+                
             }));
 
-            ProgressTask pt = new ProgressTask(App.Kp2a, this, saveTask);
+            BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, saveTask);
             pt.Run();
 		}
 
@@ -1078,7 +1129,9 @@ namespace keepass2android
 				UnregisterReceiver(_pluginActionReceiver);
 			if (_pluginFieldReceiver != null)
 				UnregisterReceiver(_pluginFieldReceiver);
-			base.OnDestroy();
+			if (_dataUpdatedIntentReceiver != null)
+                UnregisterReceiver(_dataUpdatedIntentReceiver);
+            base.OnDestroy();
 		}
 
 		private void NotifyPluginsOnClose()
@@ -1260,13 +1313,13 @@ namespace keepass2android
 		}
 
 
-	    public class WriteBinaryTask : RunnableOnFinish
+	    public class WriteBinaryTask : OperationWithFinishHandler
 	    {
 	        private readonly IKp2aApp _app;
 	        private readonly ProtectedBinary _data;
 	        private IOConnectionInfo _targetIoc;
 
-	        public WriteBinaryTask(Activity activity, IKp2aApp app, OnFinish onFinish, ProtectedBinary data, IOConnectionInfo targetIoc) : base(activity, onFinish)
+	        public WriteBinaryTask(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, ProtectedBinary data, IOConnectionInfo targetIoc) : base(app, onOperationFinishedHandler)
 	        {
 	            _app = app;
 	            _data = data;
@@ -1363,6 +1416,7 @@ namespace keepass2android
 		}
 
 		bool isPaused = false;
+        private UpdateEntryActivityBroadcastReceiver _dataUpdatedIntentReceiver;
 
         protected override void OnPause()
         {
@@ -1449,8 +1503,8 @@ namespace keepass2android
                     Finish();
                     return true;
 				case Resource.Id.menu_delete:
-                    DeleteEntry task = new DeleteEntry(this, App.Kp2a, Entry,
-                        new ActionOnFinish(this, (success, message, activity) => { if (success) { RequiresRefresh(); Finish();}}));
+                    DeleteEntry task = new DeleteEntry(App.Kp2a, Entry,
+                        new ActionOnOperationFinished(App.Kp2a, (success, message, context) => { if (success) { RequiresRefresh(); Finish();}}));
                     task.Start();
                     break;
                 case Resource.Id.menu_toggle_pass:
@@ -1513,16 +1567,16 @@ namespace keepass2android
 
 			//save the entry:
 
-			ActionOnFinish closeOrShowError = new ActionOnFinish(this, (success, message, activity) =>
+			ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
 			{
-				OnFinish.DisplayMessage(this, message, true);
-			    finishAction((EntryActivity)activity);
+				OnOperationFinishedHandler.DisplayMessage(this, message, true);
+			    finishAction(context as EntryActivity);
 			});
 
 
-			RunnableOnFinish runnable = new UpdateEntry(this, App.Kp2a, initialEntry, newEntry, closeOrShowError);
+			OperationWithFinishHandler runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, closeOrShowError);
 
-			ProgressTask pt = new ProgressTask(App.Kp2a, this, runnable);
+			BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, runnable);
 			pt.Run();
 
 		}
@@ -1612,5 +1666,7 @@ namespace keepass2android
 			imageViewerIntent.PutExtra("EntryKey", key);
 			StartActivity(imageViewerIntent);
 		}
-	}
+
+        public IProgressUi? ProgressUi => FindViewById<BackgroundOperationContainer>(Resource.Id.background_ops_container);
+    }
 }

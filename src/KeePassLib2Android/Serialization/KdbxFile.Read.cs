@@ -490,7 +490,7 @@ namespace KeePassLib.Serialization
 
 					ProtectedBinary pb = new ProtectedBinary(bProt, pbData,
 						1, pbData.Length - 1);
-					Debug.Assert(m_pbsBinaries.Find(pb) < 0); // No deduplication?
+					//Debug.Assert(m_pbsBinaries.Find(pb) < 0); // No deduplication?
 					m_pbsBinaries.Add(pb);
 
 					if (bProt) MemUtil.ZeroByteArray(pbData);

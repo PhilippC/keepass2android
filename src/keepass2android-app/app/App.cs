@@ -17,6 +17,7 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file 
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Net.Security;
@@ -46,21 +47,27 @@ using keepass2android;
 using keepass2android.Utils;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
-
+using AlertDialog = AndroidX.AppCompat.App.AlertDialog;
 using Message = keepass2android.Utils.Message;
 #if !NoNet
 #if !EXCLUDE_JAVAFILESTORAGE
-using Kp2aBusinessLogic.Io;
+
 using Android.Gms.Common;
 using Keepass2android.Javafilestorage;
+using Kp2aBusinessLogic.Io;
 using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 using static keepass2android.Util;
 using static Android.Provider.Telephony.MmsSms;
 #endif
-
 #endif
+
+using Java.Interop;
+using AndroidX.Lifecycle;
+using keepass2android.services;
+
+
 namespace keepass2android
 {
 #if NoNet
@@ -113,15 +120,12 @@ namespace keepass2android
 #endif
 
 
-
 	/// <summary>
 	/// Main implementation of the IKp2aApp interface for usage in the real app.
 	/// </summary>
 	public class Kp2aApp: IKp2aApp, ICacheSupervisor
-	{
-
-
-		public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
+    {
+        public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
 	    {
 			if (OpenDatabases.Any())
 			{
@@ -149,10 +153,13 @@ namespace keepass2android
 
                     // Couldn't quick-lock, so unload database(s) instead
                     _openAttempts.Clear();
-				    _openDatabases.Clear();
-				    _currentDatabase = null;
-				    LastOpenedEntry = null;
-					QuickLocked = false;
+                    _openDatabases.Clear();
+
+                    _currentDatabase = null;
+                    LastOpenedEntry = null;
+                    QuickLocked = false;
+                    
+				    
 				}
 			}
 			else
@@ -188,43 +195,73 @@ namespace keepass2android
 
 
 
-	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream, CompositeKey compositeKey, ProgressDialogStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent)
+	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream,
+            CompositeKey compositeKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent,
+            IDatabaseModificationWatcher modificationWatcher)
 	    {
-	        var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
-	        var createBackup = prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key), true)
+           
+
+
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+            var createBackup =
+                prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CreateBackups_key),
+                    true)
                 && !(new LocalFileStorage(this).IsLocalBackup(ioConnectionInfo));
-            Kp2aLog.Log("LoadDb: Copying database for backup");
+
             MemoryStream backupCopy = new MemoryStream();
-	        if (createBackup)
-	        {
+            if (createBackup)
+            {
 
-	            memoryStream.CopyTo(backupCopy);
-	            backupCopy.Seek(0, SeekOrigin.Begin);
-	            //reset stream if we need to reuse it later:
-	            memoryStream.Seek(0, SeekOrigin.Begin);
-	        }
-            Kp2aLog.Log("LoadDb: Checking open databases");
+                memoryStream.CopyTo(backupCopy);
+                backupCopy.Seek(0, SeekOrigin.Begin);
+                //reset stream if we need to reuse it later:
+                memoryStream.Seek(0, SeekOrigin.Begin);
+            }
 
-            foreach (Database openDb in _openDatabases)
-	        {
-	            if (openDb.Ioc.IsSameFileAs(ioConnectionInfo))
-	            {
-                    //TODO check this earlier and simply open the database's root group
-	                throw new Exception("Database already loaded!");
-	            }
-	            
-	        }
+            if (!statusLogger.ContinueWork())
+            {
+                throw new Java.Lang.InterruptedException();
+            }
 
-	        _openAttempts.Add(ioConnectionInfo);
-	        var newDb = new Database(new DrawableFactory(), this);
+            _openAttempts.Add(ioConnectionInfo);
+            var newDb = new Database(new DrawableFactory(), this);
             newDb.LoadData(this, ioConnectionInfo, memoryStream, compositeKey, statusLogger, databaseFormat);
 
+            modificationWatcher.BeforeModifyDatabases();
+
+            try
+            {
 
 
-            if ((_currentDatabase == null) || makeCurrent)
-                _currentDatabase = newDb;
-	        _openDatabases.Add(newDb);
 
+                if ((_currentDatabase == null) || makeCurrent) _currentDatabase = newDb;
+
+                bool replacedOpenDatabase = false;
+                for (int i = 0; i < _openDatabases.Count; i++)
+                {
+                    if (_openDatabases[i].Ioc.IsSameFileAs(ioConnectionInfo))
+                    {
+                        if (_currentDatabase == _openDatabases[i])
+                        {
+                            _currentDatabase = newDb;
+                        }
+
+                        replacedOpenDatabase = true;
+                        _openDatabases[i] = newDb;
+
+                        break;
+                    }
+                }
+
+                if (!replacedOpenDatabase)
+                {
+                    _openDatabases.Add(newDb);
+                }
+            }
+            finally
+            {
+				modificationWatcher.AfterModifyDatabases();
+            }
 
 
             if (createBackup)
@@ -279,25 +316,28 @@ namespace keepass2android
 	        return newDb;
 	    }
 
-	    
+        
 
-	    public void CloseDatabase(Database db)
+        public void CloseDatabase(Database db)
 	    {
-	        if (!_openDatabases.Contains(db))
-	            throw new Exception("Cannot close database which is not open!");
-	        if (_openDatabases.Count == 1)
-	        {
-	            Lock(false);
-                return;
-	        }
-	        if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
-	        {
-	            LastOpenedEntry = null;
-	        }
             
-	        _openDatabases.Remove(db);
-	        if (_currentDatabase == db)
-	            _currentDatabase = _openDatabases.First();
+            if (!_openDatabases.Contains(db))
+                throw new Exception("Cannot close database which is not open!");
+            if (_openDatabases.Count == 1)
+            {
+                Lock(false);
+                return;
+            }
+
+            if (LastOpenedEntry != null && db.EntriesById.ContainsKey(LastOpenedEntry.Uuid))
+            {
+                LastOpenedEntry = null;
+            }
+
+            _openDatabases.Remove(db);
+            if (_currentDatabase == db)
+                    _currentDatabase = _openDatabases.First();
+
             UpdateOngoingNotification();
             //TODO broadcast event so affected activities can close/update? 
 	    }
@@ -378,12 +418,16 @@ namespace keepass2android
 
         private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
 	    private readonly List<Database> _openDatabases = new List<Database>();
+		
 	    private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
         private Database _currentDatabase;
 
 	    public IEnumerable<Database> OpenDatabases
 	    {
-	        get { return _openDatabases; }
+            get
+            {
+                return _openDatabases;
+            }
 	    }
 
 	    internal ChallengeXCKey _currentlyWaitingXcKey;
@@ -417,8 +461,9 @@ namespace keepass2android
 	            DirtyGroups.Add(group);
 	        }
 
-
-	    }
+            var intent = new Intent(Intents.DataUpdated);
+            App.Context.SendBroadcast(intent);
+        }
 
 
         /// <summary>
@@ -484,6 +529,8 @@ namespace keepass2android
 		// Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
 		private bool _isShowingUserInputDialog = false;
         private IMessagePresenter? _messagePresenter;
+        private YesNoCancelQuestion? _currentlyPendingYesNoCancelQuestion = null;
+        private Context? _activeContext;
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
 		{
@@ -580,123 +627,194 @@ namespace keepass2android
 			return LocaleManager.LocalizedAppContext.Resources.GetDrawable((int)field.GetValue(null));
 		}
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler, Context ctx, string messageSuffix)
+		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler,  string messageSuffix)
 		{
 			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
-				yesHandler, noHandler, cancelHandler, ctx, messageSuffix);
+				yesHandler, noHandler, cancelHandler, messageSuffix);
 		}
 
 		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
 			UiStringKey yesString, UiStringKey noString,
 			EventHandler<DialogClickEventArgs> yesHandler,
 			EventHandler<DialogClickEventArgs> noHandler,
-			EventHandler<DialogClickEventArgs> cancelHandler,
-			Context ctx, string messageSuffix = "")
+			EventHandler<DialogClickEventArgs> cancelHandler, string messageSuffix = "")
 		{
-			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, ctx, messageSuffix);
+			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, messageSuffix);
 		}
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+        class YesNoCancelQuestion
+        {
+            private AlertDialog? _dialog;
+            public UiStringKey TitleKey { get; set; }
+            public UiStringKey MessageKey { get; set; }
+            public UiStringKey YesString { get; set; }
+            public UiStringKey NoString { get; set; }
+            public EventHandler<DialogClickEventArgs>? YesHandler { get; set; }
+            public EventHandler<DialogClickEventArgs>? NoHandler { get; set; }
+            public EventHandler<DialogClickEventArgs>? CancelHandler { get; set; }
+            public EventHandler DismissHandler { get; set; }
+            public string MessageSuffix { get; set; }
+
+            public bool TryShow(IKp2aApp app, Action onUserInputDialogClose, Action onUserInputDialogShow)
+            {
+                if (app.ActiveContext is Activity activity)
+                {
+                    if (_dialog is { IsShowing: true })
+                    {
+                        try
+                        {
+                            _dialog.Dismiss();
+                        }
+                        catch (Exception e)
+                        {
+                            Kp2aLog.LogUnexpectedError(e);
+                        }
+                        _dialog = null;
+                    }
+
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+                    builder.SetTitle(app.GetResourceString(TitleKey));
+
+                    builder.SetMessage(app.GetResourceString(MessageKey) +
+                                       (MessageSuffix != "" ? " " + MessageSuffix : ""));
+
+                    // _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
+                    // and to show progress dialog after yesNoCancel dialog is closed
+                    EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
+                    {
+                        onUserInputDialogClose();
+                        YesHandler.Invoke(sender, args);
+                    };
+                    string yesText = app.GetResourceString(YesString);
+                    builder.SetPositiveButton(yesText, yesHandlerWithShow);
+                    string noText = "";
+                    if (NoHandler != null)
+                    {
+                        EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
+                        {
+                            onUserInputDialogClose();
+                            NoHandler.Invoke(sender, args);
+                        };
+
+                        noText = app.GetResourceString(NoString);
+                        builder.SetNegativeButton(noText, noHandlerWithShow);
+                    }
+
+                    string cancelText = "";
+                    if (CancelHandler != null)
+                    {
+                        EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
+                        {
+                            onUserInputDialogClose();
+                            CancelHandler.Invoke(sender, args);
+                        };
+
+                        cancelText = App.Context.GetString(Android.Resource.String.Cancel);
+                        builder.SetNeutralButton(cancelText,
+                            cancelHandlerWithShow);
+                    }
+
+                    _dialog = builder.Create();
+                    if (DismissHandler != null)
+                    {
+                        _dialog.SetOnDismissListener(new Util.DismissListener(() =>
+                        {
+                            onUserInputDialogClose();
+                            DismissHandler(_dialog, EventArgs.Empty);
+                        }));
+                    }
+                    else
+                    {
+                        _dialog.SetCancelable(false);
+                    }
+                    
+
+                    onUserInputDialogShow();
+                    try
+                    {
+                        _dialog.Show();
+                    }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
+
+
+                    if (yesText.Length + noText.Length + cancelText.Length >= 20)
+                    {
+                        try
+                        {
+                            Button button = _dialog.GetButton((int)DialogButtonType.Positive);
+                            LinearLayout linearLayout = (LinearLayout)button.Parent;
+                            linearLayout.Orientation = Orientation.Vertical;
+                        }
+                        catch (Exception e)
+                        {
+                            Kp2aLog.LogUnexpectedError(e);
+                        }
+
+                    }
+                    return true;
+                }
+                else
+                {
+					OperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
+                    return false;
+                }
+            }
+        }
+
+        public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
 			UiStringKey yesString, UiStringKey noString,
 			EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
-			EventHandler dismissHandler,
-            Context ctx, string messageSuffix = "")
+			EventHandler dismissHandler,string messageSuffix = "")
         {
-			Handler handler = new Handler(Looper.MainLooper);
-			handler.Post(() =>
-				{
-					MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
-					builder.SetTitle(GetResourceString(titleKey));
-
-					builder.SetMessage(GetResourceString(messageKey) + (messageSuffix != "" ? " " + messageSuffix : ""));
-
-					// _____handlerWithShow are wrappers around given handlers to update _isSHowingYesNoCancelDialog
-					// and to show progress dialog after yesNoCancel dialog is closed
-					EventHandler<DialogClickEventArgs> yesHandlerWithShow = (sender, args) =>
-					{
-						OnUserInputDialogClose();
-						yesHandler.Invoke(sender, args);
-					};
-                    string yesText = GetResourceString(yesString);
-					builder.SetPositiveButton(yesText, yesHandlerWithShow);
-					string noText = "";
-					if (noHandler != null)
-					{
-                        EventHandler<DialogClickEventArgs> noHandlerWithShow = (sender, args) =>
-                        {
-							OnUserInputDialogClose();
-							noHandler.Invoke(sender, args);
-						};
-
-						noText = GetResourceString(noString);
-						builder.SetNegativeButton(noText, noHandlerWithShow);
-					}
-					string cancelText = "";
-					if (cancelHandler != null)
-					{
-						EventHandler<DialogClickEventArgs> cancelHandlerWithShow = (sender, args) =>
-						{
-							OnUserInputDialogClose();
-							cancelHandler.Invoke(sender, args);
-						};
-
-						cancelText = ctx.GetString(Android.Resource.String.Cancel);
-						builder.SetNeutralButton(cancelText,
-												 cancelHandlerWithShow);
-					}
-
-					var dialog = builder.Create();
-					if (dismissHandler != null)
-					{
-						dialog.SetOnDismissListener(new Util.DismissListener(() => {
-							OnUserInputDialogClose();
-							dismissHandler(dialog, EventArgs.Empty);
-						}));
-					}
-
-					OnUserInputDialogShow();
-					dialog.Show();
-
-					if (yesText.Length + noText.Length + cancelText.Length >= 20)
-					{
-						try
-						{
-							Button button = dialog.GetButton((int)DialogButtonType.Positive);
-							LinearLayout linearLayout = (LinearLayout)button.Parent;
-							linearLayout.Orientation = Orientation.Vertical;
-						}
-						catch (Exception e)
-						{
-							Kp2aLog.LogUnexpectedError(e);
-						}
-	
-					}
-				}
-			);
+            if (Java.Lang.Thread.Interrupted())
+            {
+                throw new Java.Lang.InterruptedException();
+            }
+            _currentlyPendingYesNoCancelQuestion = new YesNoCancelQuestion()
+            {
+                TitleKey = titleKey,
+                MessageKey = messageKey,
+                YesString = yesString,
+                NoString = noString,
+                YesHandler = yesHandler,
+                NoHandler = noHandler,
+                CancelHandler = cancelHandler,
+                DismissHandler = dismissHandler,
+                MessageSuffix = messageSuffix
+            };
+            
+            UiThreadHandler.Post( () =>
+            {
+                _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow); 
+            });
+                    
 		}
 
 		/// <summary>
 		/// Shows all non-dismissed progress dialogs.
 		/// If there are multiple progressDialogs active, they all will be showing.
-		/// There probably will never be multiple dialogs at the same time because only one ProgressTask can run at a time.
+		/// There probably will never be multiple dialogs at the same time because only one BlockingOperationStarter can run at a time.
 		/// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
 		/// because they are just progress indicators.
 		/// </summary>
 		private void ShowAllActiveProgressDialogs()
-		{
+        {
 			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
 			{
-				progressDialog.Show();
+                progressDialog.Show();
 			}
 		}
 
 		private void HideAllActiveProgressDialogs()
 		{
-			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+            foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
 			{
-				progressDialog.Hide();
+                progressDialog.Hide();
 			}
 		}
 
@@ -716,13 +834,15 @@ namespace keepass2android
 		private void OnUserInputDialogClose()
 		{
 			_isShowingUserInputDialog = false;
-			ShowAllActiveProgressDialogs();
+            _currentlyPendingYesNoCancelQuestion = null;
+
+            ShowAllActiveProgressDialogs();
 		}
 
-        public Handler UiThreadHandler 
-		{
-			get { return new Handler(); }
-		}
+        public Handler UiThreadHandler
+        {
+            get { return _uiThreadHandler; }
+        }
 
 		/// <summary>
 		/// Simple wrapper around ProgressDialog implementing IProgressDialog
@@ -767,8 +887,15 @@ namespace keepass2android
 				_app._activeProgressDialogs.Add(this);
 				// Only show if asking dialog not also showing
 				if (!_app._isShowingUserInputDialog)
-				{ 
-					_pd.Show();
+				{
+                    try
+                    {
+                        _pd.Show();
+                    }
+                    catch (Exception e)
+                    {
+                        Kp2aLog.LogUnexpectedError(e);
+                    }
 				}
 			}
 
@@ -778,10 +905,25 @@ namespace keepass2android
 			}
 		}
 
-		public IProgressDialog CreateProgressDialog(Context ctx)
-		{
-			return new RealProgressDialog(ctx, this);
-		}
+        public IProgressDialog CreateProgressDialog(Context ctx)
+        {
+            try
+            {
+
+
+                var pd = new RealProgressDialog(ctx, this);
+                pd.SetTitle(GetResourceString(UiStringKey.progress_title));
+                return pd;
+            }
+            catch (Exception e)
+            {
+                //may happen if the activity is (being) destroyed
+                Kp2aLog.Log("CreateProgressDialog failed with " + e.ToString());
+                return null;
+            }
+
+
+        }
 
 		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
 		{
@@ -805,9 +947,14 @@ namespace keepass2android
 					fileStorage = innerFileStorage;
 				}
 			}
-			if (fileStorage is IOfflineSwitchable)
+			if (fileStorage is IOfflineSwitchable switchable)
 			{
-				((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+				switchable.IsOffline = App.Kp2a.OfflineMode;
+                if (switchable.IsOffline)
+                {
+					//users of the file storage can set this to false, but the default is to show a warning:
+                    switchable.TriggerWarningWhenFallingBackToCache = true;
+                }
 			}
 			return fileStorage;
 		}
@@ -1020,6 +1167,8 @@ namespace keepass2android
             FileDbHelper = new FileDbHelper(app);
             FileDbHelper.Open();
 
+            _uiThreadHandler = new Handler(Looper.MainLooper);
+
 #if DEBUG
             foreach (UiStringKey key in Enum.GetValues(typeof(UiStringKey)))
             {
@@ -1159,10 +1308,35 @@ namespace keepass2android
 			}
 		}
 
-		/// <summary>
-		/// true if the app is used in offline mode
-		/// </summary>
-		public bool OfflineMode
+
+        public bool SyncInBackgroundPreference
+        {
+            get
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.SyncOfflineCacheInBackground_key), false);
+            }
+            set
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                ISharedPreferencesEditor edit = prefs.Edit();
+                edit.PutBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.SyncOfflineCacheInBackground_key), value);
+                edit.Commit();
+
+            }
+        }
+
+        public void StartBackgroundSyncService()
+        {
+            Intent intent = new Intent(App.Context, typeof(BackgroundSyncService));
+            intent.SetAction(BackgroundSyncService.ActionStart);
+            App.Context.StartService(intent);
+        }
+
+        /// <summary>
+        /// true if the app is used in offline mode
+        /// </summary>
+        public bool OfflineMode
 		{
 			get; set;
 		}
@@ -1258,13 +1432,22 @@ namespace keepass2android
 
 	    public Database TryFindDatabaseForElement(IStructureItem element)
 	    {
-            foreach (var db in OpenDatabases)
+            try
             {
-				//we compare UUIDs and not by reference. this is more robust and works with history items as well
-                if (db.Elements.Any(e => e.Uuid?.Equals(element.Uuid) == true))
-                    return db;
+                foreach (var db in OpenDatabases)
+                {
+                    //we compare UUIDs and not by reference. this is more robust and works with history items as well
+                    if (db.Elements.Any(e => e.Uuid?.Equals(element.Uuid) == true))
+                    {
+                        return db;
+                    }
+                }
             }
-	        return null;
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
+            return null;
 	    }
 
 	    public void RegisterChildDatabase(IOConnectionInfo ioc)
@@ -1364,10 +1547,92 @@ namespace keepass2android
 				}
 			}
 		}
+
+        public Context ActiveContext
+        {
+            get => _activeContext ?? Application.Context;
+            set
+            {
+                _activeContext = value;
+                OperationRunner.Instance.SetNewActiveContext(App.Kp2a);
+                _currentlyPendingYesNoCancelQuestion?.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
+            }
+        }
+
+        /// <summary>
+        /// If the database is updated from a background operation, that operation needs to acquire a writer lock on this.
+        /// </summary>
+        /// Activities can acquire a reader lock if they want to make sure that no background operation is modifying the database while they are open.
+        public ReaderWriterLockSlim DatabasesBackgroundModificationLock { get; } = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
+
+        public bool CancelBackgroundOperations()
+        {
+            if (!DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
+            {
+                return false;
+            }
+
+            try
+            {
+                OperationRunner.Instance.CancelAll();
+				
+            }
+			finally
+            {
+				DatabasesBackgroundModificationLock.ExitReadLock();
+            }
+
+            return true;
+            
+        }
+
+		private readonly Dictionary<int, List<ActionOnOperationFinished>> _pendingActionsForContextInstances = new();
+		private readonly object _pendingActionsForContextInstancesLock = new();
+        private Handler _uiThreadHandler;
+
+        public void RegisterPendingActionForContextInstance(int contextInstanceId,
+            ActionOnOperationFinished actionToPerformWhenContextIsResumed)
+        {
+            lock (_pendingActionsForContextInstancesLock)
+            {
+
+                if (!_pendingActionsForContextInstances.TryGetValue(contextInstanceId, out var actions))
+                {
+                    actions = new List<ActionOnOperationFinished>();
+                    _pendingActionsForContextInstances[contextInstanceId] = actions;
+                }
+
+                actions.Add(actionToPerformWhenContextIsResumed);
+            }
+        }
+
+        public void PerformPendingActions(int instanceId)
+        {
+            lock (_pendingActionsForContextInstancesLock)
+            {
+                if (_pendingActionsForContextInstances.TryGetValue(instanceId, out var actions))
+                {
+                    foreach (var action in actions)
+                    {
+                        try
+                        {
+                            action.Run();
+                        }
+                        catch (Exception e)
+                        {
+                            Kp2aLog.LogUnexpectedError(e);
+                        }
+                    }
+
+                    _pendingActionsForContextInstances.Remove(instanceId);
+                }
+            }
+        }
     }
 
 
-	///Application class for Keepass2Android: Contains static Database variable to be used by all components.
+
+    ///Application class for Keepass2Android: Contains static Database variable to be used by all components.
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
 #else
@@ -1377,7 +1642,8 @@ namespace keepass2android
     [Application(Debuggable = true, Label = AppNames.AppName)]
 #endif
 #endif
-	public class App : Application {
+	public class App : Application, ILifecycleObserver
+    {
 
 		public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
 		{
@@ -1410,8 +1676,9 @@ namespace keepass2android
             InitThaiCalendarCrashFix();
 
             base.OnCreate();
+            ProcessLifecycleOwner.Get().Lifecycle.AddObserver(this);
 
-			Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
+            Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
 		    CreateNotificationChannels();
 
@@ -1423,12 +1690,33 @@ namespace keepass2android
             intentFilter.AddAction(Intents.LockDatabaseByTimeout);
 			intentFilter.AddAction(Intents.CloseDatabase);
 			ContextCompat.RegisterReceiver(Context, broadcastReceiver, intentFilter, (int)ReceiverFlags.Exported);
-
-            //ZXing.Net.Mobile.Forms.Android.Platform.Init();
 		}
 
 	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
 
+        [Lifecycle.Event.OnStop]
+		[Export]
+        public void OnAppBackgrounded()
+        {
+            Kp2aLog.Log("Going to background");
+            Kp2a.ActiveContext = null;
+
+        }
+
+        [Lifecycle.Event.OnStart]
+        [Export]
+        public void OnAppForegrounded()
+        {
+            Kp2aLog.Log("Going to foreground");
+            StopBackgroundSyncService();
+        }
+
+        private void StopBackgroundSyncService()
+        {
+            Intent stopServiceIntent = new Intent(Context, typeof(BackgroundSyncService));
+            stopServiceIntent.SetAction(BackgroundSyncService.ActionStop);
+            Context.StartService(stopServiceIntent);
+        }
 
         private void CreateNotificationChannels()
 	    {
