@@ -745,7 +745,7 @@
   <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
   <string-array name="ChangeLog_1_15">
     <item>Sincronização em segundo plano implementada: O Keepass2Android agora usa a cópia interna em cache do banco de dados para carregar e salvar, tornando essas operações mais rápidas. Em seguida, a sincronização com o banco de dados remoto é iniciada. </item>
-    <item>Added user preferences to control behavior of background synchronization. You can enable periodic background synchronization and control if synchronization should be performed always or only in Wi-Fi networks.</item>
+    <item>Adicionadas preferências do usuário para controlar o comportamento da sincronização em segundo plano. Você pode habilitar a sincronização periódica em segundo plano e controlar se a sincronização deve ser executada sempre ou apenas em redes Wi-Fi.</item>
   </string-array>
   <string-array name="ChangeLog_1_14">
     <item>Atualização para .NET 9 e Target SDK versão 35. Isso vem com a barra de status transparente no Android 15 porque agora é o padrão.</item>
@@ -1246,4 +1246,28 @@
   <string name="switch_keyboard_for_totp_enabled">Nota: você ativou o Aplicativo - Acesso por senha - Serviço de preenchimento automático - Preenchimento automático para entradas TOTP. Isso pode fazer com que essa janela seja exibida quando você abre uma entrada com um TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Nota: Você ativou o Aplicativo - Segurança - Usar o teclado embutido dentro do Keepass2Android. Isso pode fazer com que essa janela seja exibida quando você abre o aplicativo ou edita uma entrada.</string>
   <string name="switch_keyboard_on_search_enabled">Nota: Você ativou o Aplicativo - Segurança - Acesso por senha - Troca de teclado - Alternar teclado. Isso pode fazer com que essa janela seja exibida quando você pesquisar uma entrada no navegador.</string>
+  <string name="user_interaction_required">Interação do usuário necessária. Por favor, abra o aplicativo.</string>
+  <string name="failed_to_access_database">O banco de dados está atualmente em uso e não pode ser acessado.</string>
+  <string name="configure_ssids">Configurar SSIDs</string>
+  <string name="add_current_ssid">Adicionar SSID atual</string>
+  <string name="enter_ssid_hint">Digite o SSID</string>
+  <string name="add_ssid">Adicionar outro SSID</string>
+  <string name="no_ssids">Nenhum SSIDs adicionado. A sincronização automática em segundo plano será realizada em qualquer Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID está vazio ou já está na lista</string>
+  <string name="location_permission_required">Permissão de localização necessária para ler o SSID atual</string>
+  <string name="permission_granted">Permissão de localização concedida</string>
+  <string name="permission_denied">Permissão negada. Não é possível ler o SSID atual. Ative a permissão nas configurações do Android.</string>
+  <string name="remove_ssid_title">Remover SSID</string>
+  <string name="ssid_explanation">Defina uma lista de SSIDs. A sincronização automática em segundo plano será executada se você estiver conectado a qualquer um deles.</string>
+  <string name="remove_ssid_message">Tem certeza de que deseja remover este SSID?</string>
+  <string name="permission_needed">Permissão Necessária</string>
+  <string name="permission_location_rationale">    A permissão de localização é necessária para ler seu SSID Wi-Fi atual. Isso é necessário se você quiser restringir a sincronização em segundo plano a determinados SSIDs.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Sincronização em segundo plano com base em Wi-Fi-SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Sincronização em segundo plano somente em Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Se selecionado, a sincronização em segundo plano só será iniciada enquanto você estiver conectado ao Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Sincronização periódica em segundo plano</string>
+  <string name="pref_enable_periodic_background_sync_summary">Se ativado, o aplicativo sincronizará periodicamente os bancos de dados desbloqueados. Isso respeita as configurações de conexão de rede acima.</string>
+  <string name="pref_periodic_background_sync_interval_title">Intervalo de tempo de sincronização periódica em segundo plano</string>
+  <string name="pref_periodic_background_sync_interval_summary">Defina o intervalo para sincronização em segundo plano em minutos.</string>
 </resources>
