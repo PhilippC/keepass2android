@@ -750,6 +750,11 @@
   <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
 
+  <string-array name="ChangeLog_1_15">
+    <item>Added background synchronization: Keepass2Android now uses the internal cache copy of the database for loading and saving to make these operations faster. After this, synchronization with the remote database is started. </item>
+    <item>Added user preferences to control behavior of background synchronization. You can enable periodic background synchronization and control if synchronization should be performed always or only in Wi-Fi networks.</item>
+  </string-array>
+
   <string-array name="ChangeLog_1_14">
     <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
     <item>Minor UI improvements</item>
