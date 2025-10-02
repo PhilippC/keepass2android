@@ -739,6 +739,10 @@
   <string name="webdav_chunked_upload_size_summary">Velikost bloků při nahrávání na servery WebDav v bajtech.</string>
   <string name="cleartextTrafficPermitted_title">Povolit síťový provoz v otevřeném textu ve WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP připojení nejsou bezpečná. Tuto možnost povolte pouze v případě, že máte zavedena další bezpečnostní opatření.</string>
+  <string-array name="ChangeLog_1_15">
+    <item>Přidána synchronizace na pozadí: Keepass2Android nyní používá interní kopii databáze v mezipaměti pro načítání a ukládání, aby byly tyto operace rychlejší. Poté se spustí synchronizace se vzdálenou databází. </item>
+    <item>Přidány uživatelské předvolby pro ovládání chování synchronizace na pozadí. Můžete povolit pravidelnou synchronizaci na pozadí a ovládat, zda se synchronizace má provádět vždy, nebo pouze při připojení k síti Wi-Fi.</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item>Aktualizace na .net 9 a cílovou verzi SDK 35. To přináší průhledný stavový řádek v systému Android 15, protože nyní je výchozím nastavením režim od okraje k okraji.</item>
     <item>Drobná vylepšení uživatelského rozhraní</item>
@@ -1208,4 +1212,28 @@ První veřejné vydání
   <string name="switch_keyboard_for_totp_enabled">Poznámka: Máte povoleno Aplikace - Přístup k heslu - Služba automatického vyplňování - Automatické vyplňování pro položky TOTP. To může způsobit, že se toto okno zobrazí, když otevřete položku s TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Poznámka: V aplikaci Keepass2Android jste povolili možnost Aplikace - Zabezpečení - Použít vestavěnou klávesnici. To může způsobit, že se toto okno zobrazí při otevření aplikace nebo úpravě položky.</string>
   <string name="switch_keyboard_on_search_enabled">Poznámka: Máte povoleno Aplikace - Zabezpečení - Přístup k heslu - Přepínání klávesnice - Přepínání klávesnice. To může způsobit, že se toto okno zobrazí při vyhledávání položky z prohlížeče.</string>
+  <string name="user_interaction_required">Je nutná interakce uživatele. Otevřete prosím aplikaci.</string>
+  <string name="failed_to_access_database">Databáze je momentálně používána a nelze k ní přistupovat.</string>
+  <string name="configure_ssids">Konfigurace SSID</string>
+  <string name="add_current_ssid">Přidat aktuální SSID</string>
+  <string name="enter_ssid_hint">Zadat SSID</string>
+  <string name="add_ssid">Přidat další SSID</string>
+  <string name="no_ssids">Nebyly přidány žádné SSID. Automatická synchronizace na pozadí bude prováděna v jakékoli síti Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID je prázdné nebo je již v seznamu</string>
+  <string name="location_permission_required">K načtení aktuálního SSID je vyžadováno povolení k přístupu k poloze.</string>
+  <string name="permission_granted">Povolení k přístupu k poloze uděleno</string>
+  <string name="permission_denied">Přístup odepřen. Nelze přečíst aktuální SSID. Povolte přístup v nastavení systému Android.</string>
+  <string name="remove_ssid_title">Odstranit SSID</string>
+  <string name="ssid_explanation">Definovat seznam SSID. Pokud jste přihlášeni k některé z těchto sítí, bude provedena automatická synchronizace na pozadí.</string>
+  <string name="remove_ssid_message">Opravdu chcete odstranit toto SSID?</string>
+  <string name="permission_needed">Vyžadováno oprávnění</string>
+  <string name="permission_location_rationale">    K načtení aktuálního SSID Wi-Fi je nutné povolit přístup k poloze. To je nutné, pokud chcete omezit synchronizaci na pozadí na určité SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Synchronizace na pozadí pomocí Wi-Fi-SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Synchronizace na pozadí pouze přes Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Pokud je tato možnost vybrána, synchronizace na pozadí se spustí pouze tehdy, když jste připojeni k Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Pravidelná synchronizace na pozadí</string>
+  <string name="pref_enable_periodic_background_sync_summary">Pokud je tato funkce povolena, aplikace bude pravidelně synchronizovat odemčené databáze. Tato funkce respektuje nastavení síťového připojení uvedené výše.</string>
+  <string name="pref_periodic_background_sync_interval_title">Interval pravidelné synchronizace na pozadí</string>
+  <string name="pref_periodic_background_sync_interval_summary">Nastavení intervalu synchronizace na pozadí v minutách.</string>
 </resources>
