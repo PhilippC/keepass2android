@@ -387,6 +387,8 @@
   <string name="NoDonationReminder_summary">Nechcem prispieť ničím alebo som už prispel. Nepýtať sa na príspevok, ani na autorove narodeniny.</string>
   <string name="UseOfflineCache_title">Ukladať do vyr. pamäte</string>
   <string name="UseOfflineCache_summary">Uchovať kópiu databázových súborov v priečinku vyrov. pamäte aplikácie. To umožní používať databázy aj keď nie je databázový súbor prístupný.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Použiť internú vyrovnávaciu pamäť pri ukladaní alebo načítaní. Potom synchronizovať so vzdialeným úložiskom na pozadí.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synchronizovať na pozadí</string>
   <string name="CreateBackups_title">Lokálne zálohy</string>
   <string name="CreateBackups_summary">Po úspešnom načítaní databázy vytvoriť lokálnu záložnú kópiu.</string>
   <string name="UpdatingBackup">Aktualizovanie lokálnej zálohy...</string>
@@ -728,10 +730,15 @@
   <string name="DbQuicklockedChannel_desc">Notifikácia o uzamknutí databázy pomocou rýchleho odomknutia</string>
   <string name="EntryChannel_name">Notifikácie záznamu</string>
   <string name="EntryChannel_desc">Notifikácia na zjednodušenie prístupu k práve vybranému záznamu.</string>
+  <string name="BackgroundSyncChannel_name">Synchronizačná operácia</string>
+  <string name="BackgroundSyncChannel_desc">Notifikácia na indikáciu, že na pozadí prebieha synchronizácia.</string>
   <string name="CloseDbAfterFailedAttempts">Zavrieť databázu po troch neúspešných odomykaniach s biometriou</string>
   <string name="hint_smb_credentials">Ak chcete získať prístup k súborom z PC s Windows, použite názov počítača alebo lokálnu IP adresu ako URL hostiteľa; zadajte názov počítača ako doménu a prihlasovacie údaje do Windows (častokrát rovnaké ako v konte Microsoft) ako meno používateľa a heslo.</string>
   <string name="WarnFingerprintInvalidated">Varovanie! Biometrická autentifikácia môže byť zneplatnená systémom Android, nap. po pridaní nového odtlačku prsta do nastavení zariadenia. Vždy sa uistite, že viete ako odomknúť zariadenia primárnym heslom.</string>
   <string name="webdav_chunked_upload_size_title">Veľkosť bloku pre upload WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Zapnúť blokové odosielanie pre WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Pre servery WebDav nepodporujúce odosielanie veľkých súborov v jednej požiadavke. Ak je zapnuté. Keepass2Androdi používa štandardné rozdelenie na bloky, nie bloky pre Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Veľkosť blokov pri odosielaní na servery WebDav v bajtoch.</string>
   <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
   <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
   <string-array name="ChangeLog_1_14">
@@ -1235,4 +1242,28 @@
   <string name="switch_keyboard_for_totp_enabled">Poznámka: aktivovali ste automatické dopĺňanie pre záznamy TOTP, v sekcii Aplikácia - Prístup k záznamu s heslom - Služba automatického dopĺňania. Môže to spôsobiť zobrazenie tohto okna pri otvorení záznamu s TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Poznámka: aktivovali ste použitie klávesnice integrovanej v Keepass2Android, v sekcii Aplikácia - Zabezpečenie. Môže to spôsobiť zobrazenie tohto okna pri otvorení aplikácie alebo pri úprave záznamu.</string>
   <string name="switch_keyboard_on_search_enabled">Poznámka: aktivovali ste prepínanie klávesnice v sekcii Aplikácia - Zabezpečenie - Prístup k záznamu s heslom - Prepínanie klávesnice. Môže to spôsobovať zobrazenie tohto okna pri vyhľadávaní nejakého záznamu z prehliadača.</string>
+  <string name="user_interaction_required">Vyžaduje sa interakcia používateľa. Prosím otvorte aplikáciu.</string>
+  <string name="failed_to_access_database">Databáza sa práve používa a nie je možný prístup k nej.</string>
+  <string name="configure_ssids">Konfigurovať SSID</string>
+  <string name="add_current_ssid">Pridať aktuálne SSID</string>
+  <string name="enter_ssid_hint">Zadajte SSID</string>
+  <string name="add_ssid">Pridať iné SSID</string>
+  <string name="no_ssids">Neboli pridané žiadne SSID. Automatická synchronizácia na pozadí sa vykonáva v akejkoľvek sieti Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID je prázdne alebo je už v zozname</string>
+  <string name="location_permission_required">Na prečítanie aktuálneho SSID je potrebné oprávnenie pre polohu</string>
+  <string name="permission_granted">Oprávnenie pre získanie polohy bolo udelené</string>
+  <string name="permission_denied">Oprávnenie zamietnuté. Nemožno prečítať aktuálne SSID. Prosím zapnite oprávnenie cez nastavenia systému Android.</string>
+  <string name="remove_ssid_title">Odstrániť SSID</string>
+  <string name="ssid_explanation">Definujte zozname SSID. Ak sa s využitím niektorého z nich prihlásite, prebehne autom. synchronizácia na pozadí.</string>
+  <string name="remove_ssid_message">Naozaj chcete odstrániť toto SSID?</string>
+  <string name="permission_needed">Vyžaduje sa oprávnenie</string>
+  <string name="permission_location_rationale">    Na prečítanie vášho aktuálneho Wi-Fi SSID je potrebné oprávnenie na zistenie polohy. Vyžaduje sa to vtedy, keď chcete obmedziť synchronizáciu na pozadí pre určité SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Synchronizácia na pozadí založená na Wi-Fi SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Synchronizácia na pozadí len v sieti Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Ak je zvolená táto možnosť, synchronizácia na pozadí sa spustí len počas pripojenia k Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Pravidelná synchronizácia na pozadí</string>
+  <string name="pref_enable_periodic_background_sync_summary">Ak je zapnuté, aplikácia pravidelne synchronizuje odomknuté databázy, s použitím nastavení pripojenia uvedených hore.</string>
+  <string name="pref_periodic_background_sync_interval_title">Časový interval pravidelnej synchronizácie na pozadí</string>
+  <string name="pref_periodic_background_sync_interval_summary">Nastavte interval (v minútach) synchronizácie na pozadí.</string>
 </resources>
