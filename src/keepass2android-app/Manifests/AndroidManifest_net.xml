@@ -242,7 +242,14 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
         <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.kdb" />
       </intent-filter>
-
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data
+          android:scheme="https"
+          android:host="my.yubico.com"
+          android:pathPrefix="/neo"/>
+      </intent-filter>
       <intent-filter android:label="@string/kp2a_findUrl">
         <action android:name="android.intent.action.SEND" />
         <category android:name="android.intent.category.DEFAULT" />
