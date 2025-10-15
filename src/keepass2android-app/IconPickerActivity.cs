@@ -52,8 +52,9 @@ namespace keepass2android
 			base.OnCreate(savedInstanceState);
 			
 			SetContentView(Resource.Layout.icon_picker);
-			
-			GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);
+            new Util.InsetListener(FindViewById(Resource.Id.IconGridView)).Apply();
+
+            GridView currIconGridView = (GridView)FindViewById(Resource.Id.IconGridView);
 			currIconGridView.Adapter = new ImageAdapter(this, App.Kp2a.CurrentDb.KpDatabase);
 			
 			currIconGridView.ItemClick += (sender, e) =>
