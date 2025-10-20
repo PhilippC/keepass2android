@@ -387,6 +387,8 @@
   <string name="NoDonationReminder_summary">Je ne donnerai pas un sou, ou j’ai déjà donné. Ne demandez rien, même pas à l’anniversaire de l’auteur.</string>
   <string name="UseOfflineCache_title">Mise en cache de la base de données</string>
   <string name="UseOfflineCache_summary">Garder une copie des fichiers de base de données dans le répertoire de cache de l’application. Ceci permet d’utiliser des bases de données même lorsque le fichier de base de données n’est pas accessible.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Lors de l\'enregistrement ou du chargement, utiliser le cache interne. Puis synchroniser avec le stockage distant dans un processus en arrière-plan.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synchroniser en arrière-plan</string>
   <string name="CreateBackups_title">Sauvegardes locales</string>
   <string name="CreateBackups_summary">Créer une copie de sauvegarde locale après le chargement réussi d’une base de données.</string>
   <string name="UpdatingBackup">Mise à jour de la sauvegarde locale...</string>
@@ -728,10 +730,21 @@
   <string name="DbQuicklockedChannel_desc">Notification à propos de la base de données en cours de verrouillage avec QuickUnlock</string>
   <string name="EntryChannel_name">Notifications d\'entrée</string>
   <string name="EntryChannel_desc">Notification pour simplifier l\'accès à l\'entrée actuellement sélectionnée.</string>
+  <string name="BackgroundSyncChannel_name">Opération de synchronisation</string>
+  <string name="BackgroundSyncChannel_desc">Notification pour indiquer qu\'une synchronisation est effectuée en arrière-plan.</string>
   <string name="CloseDbAfterFailedAttempts">Fermer la base de données après trois tentatives de déverrouillage biométrique échouées.</string>
   <string name="hint_smb_credentials">Si vous voulez accéder aux fichiers depuis votre ordinateur personnel Windows, utilisez le nom de l\'ordinateur ou l\'adresse IP locale comme URL d\'hôte ; entrez le nom de l\'ordinateur en tant que domaine et la connexion Windows (souvent le même que votre compte Microsoft) que le nom d\'utilisateur et le mot de passe.</string>
   <string name="WarnFingerprintInvalidated">Attention ! L\'authentification biométrique peut être invalidée par Android, par ex. après avoir ajouté une nouvelle empreinte digitale dans les paramètres de votre appareil. Assurez-vous de toujours savoir comment déverrouiller avec votre mot de passe maître !</string>
   <string name="webdav_chunked_upload_size_title">Taille du bloc pour le téléchargement WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Activer le téléchargement par morceaux pour WebDAV</string>
+  <string name="webdav_chunked_upload_enabled_summary">Pour les serveurs WebDAV qui ne prennent pas en charge le téléchargement de fichiers volumineux en une seule requête. Lorsque cette option est activée, Keepass2Android utilise le découpage WebDAV standard, et non la méthode de découpage Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Taille des morceaux lors du téléchargement vers des serveurs WebDAV, en octets.</string>
+  <string name="cleartextTrafficPermitted_title">Autoriser le trafic réseau en clair dans WebDAV</string>
+  <string name="cleartextTrafficPermitted_summary">Les connexions HTTP ne sont pas sécurisées. N\'activez ceci que si vous avez d\'autres mesures de sécurité en place.</string>
+  <string-array name="ChangeLog_1_15">
+    <item></item>
+    <item>Ajout de préférences utilisateur pour contrôler le comportement de la synchronisation en arrière-plan. Vous pouvez activer la synchronisation périodique en arrière-plan et contrôler si la synchronisation doit être effectuée en permanence ou uniquement sur les réseaux Wi-Fi.</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item>Mise à jour vers .net 9 et Target SDK version 35. Ceci est livré avec une barre d\'état transparente sur Android 15 car le bord à bord est maintenant la valeur par défaut.</item>
     <item>Améliorations mineures de l\'interface</item>
@@ -1167,4 +1180,28 @@
   <string name="switch_keyboard_for_totp_enabled">Note : Vous avez activé le remplissage automatique des entrées TOTP. Cela peut entrainer l\'apparition de cette fenêtre lorsque vous ouvrez une entrée avec un TOTP (Paramètres - Appli - Accès aux mots de passe - Service de saisie automatique).</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Note : Vous avez activé le clavier intégré dans Keepass2Android. Cela peut faire apparaitre cette fenêtre quand vous ouvrez l\'application, ou que vous éditez une entrée (Paramètres - Appli - Sécurité).</string>
   <string name="switch_keyboard_on_search_enabled">Note : Vous avez activé le changement de clavier. Cela peut faire apparaitre cette fenêtre lorsque vous recherchez une entrée depuis le navigateur (Paramètres - Appli - Accès aux mots de passe - Changement de clavier).</string>
+  <string name="user_interaction_required">Interaction utilisateur requise. Veuillez ouvrir l\'application.</string>
+  <string name="failed_to_access_database">La base de données est actuellement utilisée et n\'est pas accessible.</string>
+  <string name="configure_ssids">Configurer les SSIDs</string>
+  <string name="add_current_ssid">Ajouter le SSID actuel</string>
+  <string name="enter_ssid_hint">Entrer le SSID</string>
+  <string name="add_ssid">Ajouter un autre SSID</string>
+  <string name="no_ssids">Aucun SSID ajouté. La synchronisation automatique en arrière-plan sera effectuée via n\'importe quel Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">Le SSID est vide ou déjà dans la liste</string>
+  <string name="location_permission_required">Autorisation de localisation requise pour lire le SSID actuel</string>
+  <string name="permission_granted">Autorisation de localisation accordée</string>
+  <string name="permission_denied">Autorisation refusée. Impossible de lire le SSID actuel. Veuillez activer l\'autorisation dans les paramètres Android.</string>
+  <string name="remove_ssid_title">Supprimer le SSID</string>
+  <string name="ssid_explanation">Définir une liste de SSIDs. La synchronisation automatique en arrière-plan sera effectuée si vous êtes connecté à l\'un de ceux-ci.</string>
+  <string name="remove_ssid_message">Êtes-vous sûr de vouloir supprimer ce SSID?</string>
+  <string name="permission_needed">Autorisation requise</string>
+  <string name="permission_location_rationale">    L\'autorisation de localisation est nécessaire pour lire votre SSID Wi-Fi actuel. Ceci est requis si vous souhaitez restreindre la synchronisation en arrière-plan à certains SSIDs.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Synchronisation en arrière-plan basée sur le SSID Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_title">Synchronisation en arrière-plan uniquement en Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Si sélectionné, la synchronisation en arrière-plan n\'est démarrée que lorsque vous êtes connecté au Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Synchronisation en arrière-plan périodique</string>
+  <string name="pref_enable_periodic_background_sync_summary">Si activé, l\'application synchronisera périodiquement les bases de données déverrouillées. Cela respecte les paramètres de connexion réseau ci-dessus.</string>
+  <string name="pref_periodic_background_sync_interval_title">Intervalle de temps de synchronisation périodique en arrière-plan</string>
+  <string name="pref_periodic_background_sync_interval_summary">Définir l\'intervalle pour la synchronisation en arrière-plan en minutes.</string>
 </resources>
