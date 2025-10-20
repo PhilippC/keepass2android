@@ -741,6 +741,10 @@
   <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器的分块大小，单位为字节。</string>
   <string name="cleartextTrafficPermitted_title">允许 WebDAV 中的明文网络流量</string>
   <string name="cleartextTrafficPermitted_summary">HTTP 连接不安全。只有当您有其他安全措施时才启用它。</string>
+  <string-array name="ChangeLog_1_15">
+    <item>添加了后台同步：Keepass2Android 现在使用数据库的内部缓存副本进行加载和保存，以使这些操作更快。操作完成后，将启动与远程数据库的同步。</item>
+    <item>添加了用户首选项以控制后台同步的行为。您可以启用定期后台同步并控制是否应始终执行同步或仅在 Wi-Fi 网络中执行同步。</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item>更新至 .net 9 和 Target SDK 版本 35。这在 Android 15 上带有透明状态栏，因为以无边框方式显示现在是默认设置。</item>
     <item>较小的用户界面改进</item>
