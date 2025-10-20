@@ -183,7 +183,7 @@ namespace keepass2android.Io
 					throw;
 
 #if DEBUG
-                Kp2aLog.Log("couldn't open from remote " + ioc.Path);
+                Kp2aLog.Log("couldn't open from remote " + GetDisplayName(ioc));
 #endif
 				Kp2aLog.Log(ex.ToString());
                 if (TriggerWarningWhenFallingBackToCache)
@@ -327,7 +327,7 @@ namespace keepass2android.Io
 			}
 			catch (Exception e)
 			{
-				Kp2aLog.Log("couldn't save to remote " + ioc.Path);
+				Kp2aLog.Log("couldn't save to remote " + GetDisplayName(ioc));
 				Kp2aLog.Log(e.ToString());
 				//notify the supervisor so it might display a warning or schedule a retry
                 if (TriggerWarningWhenFallingBackToCache)
