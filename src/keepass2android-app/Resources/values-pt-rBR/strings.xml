@@ -743,6 +743,9 @@
   <string name="webdav_chunked_upload_size_summary">Tamanho dos blocos quando enviando para servidores WebDav, em bytes.</string>
   <string name="cleartextTrafficPermitted_title">Permitir tráfego de rede de texto não criptografado no WebDav</string>
   <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Melhorias no tratamento de URL para WebDav com caracteres não ASCII</item>
+  </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Sincronização em segundo plano implementada: O Keepass2Android agora usa a cópia interna em cache do banco de dados para carregar e salvar, tornando essas operações mais rápidas. Em seguida, a sincronização com o banco de dados remoto é iniciada. </item>
     <item>Adicionadas preferências do usuário para controlar o comportamento da sincronização em segundo plano. Você pode habilitar a sincronização periódica em segundo plano e controlar se a sincronização deve ser executada sempre ou apenas em redes Wi-Fi.</item>
