@@ -27,100 +27,107 @@ using keepass2android;
 
 namespace keepass2android
 {
-	
-	public class AboutDialog : Dialog {
-		
-		public AboutDialog(Context context):base (context) {
-		}
-		public AboutDialog(Context context, int theme)
-			: base(context, theme)
-		{
-		}
-		
-		public AboutDialog(IntPtr javaRef, JniHandleOwnership transfer) : base(javaRef, transfer)
-		{
-			
-		}
-		
-		
-		protected override void OnCreate(Bundle savedInstanceState) {
-			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.about);
-			SetTitle(Resource.String.app_name);
-			
-			SetVersion();
-			SetContributors();
-			
-			FindViewById(Resource.Id.suggest).Click += delegate
-				{
-					try
-					{
-						Util.GotoUrl(Context, Resource.String.SuggestionsURL);
-					}
-					catch (ActivityNotFoundException)
-					{
+
+    public class AboutDialog : Dialog
+    {
+
+        public AboutDialog(Context context) : base(context)
+        {
+        }
+        public AboutDialog(Context context, int theme)
+            : base(context, theme)
+        {
+        }
+
+        public AboutDialog(IntPtr javaRef, JniHandleOwnership transfer) : base(javaRef, transfer)
+        {
+
+        }
+
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.about);
+            SetTitle(Resource.String.app_name);
+
+            SetVersion();
+            SetContributors();
+
+            FindViewById(Resource.Id.suggest).Click += delegate
+                {
+                    try
+                    {
+                        Util.GotoUrl(Context, Resource.String.SuggestionsURL);
+                    }
+                    catch (ActivityNotFoundException)
+                    {
                         App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler, MessageSeverity.Error);
-					}
+                    }
 
-				};
-			FindViewById(Resource.Id.rate).Click += delegate
-			{
-				try
-				{
-					Util.GotoMarket(Context);
-				}
-				catch (ActivityNotFoundException)
-				{
-					App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler,  MessageSeverity.Error);
-				}
-			};
-			FindViewById(Resource.Id.translate).Click += delegate
-			{
-				try
-				{
-					Util.GotoUrl(Context, Resource.String.TranslationURL);
-				}
-				catch (ActivityNotFoundException)
-				{
-					App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler,  MessageSeverity.Error);
-				}
-			}; FindViewById(Resource.Id.donate).Click += delegate
-			{
-				Util.GotoDonateUrl(Context);
-			};
-		}
+                };
+            FindViewById(Resource.Id.rate).Click += delegate
+            {
+                try
+                {
+                    Util.GotoMarket(Context);
+                }
+                catch (ActivityNotFoundException)
+                {
+                    App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler, MessageSeverity.Error);
+                }
+            };
+            FindViewById(Resource.Id.translate).Click += delegate
+            {
+                try
+                {
+                    Util.GotoUrl(Context, Resource.String.TranslationURL);
+                }
+                catch (ActivityNotFoundException)
+                {
+                    App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler, MessageSeverity.Error);
+                }
+            }; FindViewById(Resource.Id.donate).Click += delegate
+            {
+                Util.GotoDonateUrl(Context);
+            };
+        }
 
-		private void SetContributors()
-		{
-			TextView tv = (TextView)FindViewById(Resource.Id.further_authors);
-			tv.Text = Context.GetString(Resource.String.further_authors, new Java.Lang.Object[] { Context.GetString(Resource.String.further_author_names) });
+        private void SetContributors()
+        {
+            TextView tv = (TextView)FindViewById(Resource.Id.further_authors);
+            tv.Text = Context.GetString(Resource.String.further_authors, new Java.Lang.Object[] { Context.GetString(Resource.String.further_author_names) });
 
-			TextView tvdesigners = (TextView)FindViewById(Resource.Id.designers);
-			tvdesigners.Text = Context.GetString(Resource.String.designers, new Java.Lang.Object[] { Context.GetString(Resource.String.designer_names) });
+            TextView tvdesigners = (TextView)FindViewById(Resource.Id.designers);
+            tvdesigners.Text = Context.GetString(Resource.String.designers, new Java.Lang.Object[] { Context.GetString(Resource.String.designer_names) });
 
             TextView tvsupporters = (TextView)FindViewById(Resource.Id.supporters);
             tvsupporters.Text = Context.GetString(Resource.String.supporters, new Java.Lang.Object[] { Context.GetString(Resource.String.supporter_names) });
-		}
+        }
 
-		private void SetVersion() {
-			Context ctx = Context;
-			
-			String version;
-			try {
-				PackageInfo packageInfo = ctx.PackageManager.GetPackageInfo(ctx.PackageName, 0);
-				version = packageInfo.VersionName;
-				
-			} catch (PackageManager.NameNotFoundException) {
-				version = "";
-			}
-			
-			TextView tv = (TextView) FindViewById(Resource.Id.versionX);
-			tv.Text = version;
+        private void SetVersion()
+        {
+            Context ctx = Context;
 
-			FindViewById(Resource.Id.versionB).Click += (sender, args) => ChangeLog.ShowChangeLog(ctx, () => { });
-		}
-		
-	}
+            String version;
+            try
+            {
+                PackageInfo packageInfo = ctx.PackageManager.GetPackageInfo(ctx.PackageName, 0);
+                version = packageInfo.VersionName;
+
+            }
+            catch (PackageManager.NameNotFoundException)
+            {
+                version = "";
+            }
+
+            TextView tv = (TextView)FindViewById(Resource.Id.versionX);
+            tv.Text = version;
+
+            FindViewById(Resource.Id.versionB).Click += (sender, args) => ChangeLog.ShowChangeLog(ctx, () => { });
+        }
+
+    }
 
 }
 

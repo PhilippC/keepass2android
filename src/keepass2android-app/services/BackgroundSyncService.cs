@@ -18,7 +18,7 @@ using Android.Content.PM;
 
 namespace keepass2android.services
 {
-    [Service(ForegroundServiceType = ForegroundService.TypeDataSync)] 
+    [Service(ForegroundServiceType = ForegroundService.TypeDataSync)]
     public class BackgroundSyncService : Service, IProgressUiProvider, IProgressUi
     {
         private const string ChannelId = "BackgroundSyncServiceChannel";
@@ -77,11 +77,11 @@ namespace keepass2android.services
                 PendingIntentFlags.Immutable);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, ChannelId)
-                .SetSmallIcon(Resource.Drawable.ic_launcher_gray) 
-                .SetPriority(NotificationCompat.PriorityLow) 
+                .SetSmallIcon(Resource.Drawable.ic_launcher_gray)
+                .SetPriority(NotificationCompat.PriorityLow)
                 .SetSilent(true)
                 .SetContentIntent(pendingIntent)
-                .SetProgress(100,0, true)
+                .SetProgress(100, 0, true)
                 .SetOngoing(true);
             if (!string.IsNullOrEmpty(_message))
             {
@@ -143,7 +143,7 @@ namespace keepass2android.services
 
         public void Show()
         {
-            
+
         }
 
         public void Hide()

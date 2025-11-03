@@ -1,0 +1,11 @@
+repos:
+  # --- C# Code formatting ---
+  - repo: local
+    hooks:
+      - id: dotnet-format
+        name: Format C# code
+        entry: dotnet format src/KeePass.sln
+        language: system
+        pass_filenames: false
+        types: [file]
+

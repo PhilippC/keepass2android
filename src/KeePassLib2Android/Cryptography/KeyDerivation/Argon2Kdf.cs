@@ -33,8 +33,8 @@ namespace KeePassLib.Cryptography.KeyDerivation
         ID = 2
     }
     public sealed partial class Argon2Kdf : KdfEngine
-	{
-       
+    {
+
 
         private static readonly PwUuid g_uuidD = new PwUuid(new byte[] {
             0xEF, 0x63, 0x6D, 0xDF, 0x8C, 0x29, 0x44, 0x4B,
@@ -43,29 +43,29 @@ namespace KeePassLib.Cryptography.KeyDerivation
             0x9E, 0x29, 0x8B, 0x19, 0x56, 0xDB, 0x47, 0x73,
             0xB2, 0x3D, 0xFC, 0x3E, 0xC6, 0xF0, 0xA1, 0xE6 });
 
-		public const string ParamSalt = "S"; // Byte[]
-		public const string ParamParallelism = "P"; // UInt32
-		public const string ParamMemory = "M"; // UInt64
-		public const string ParamIterations = "I"; // UInt64
-		public const string ParamVersion = "V"; // UInt32
-		public const string ParamSecretKey = "K"; // Byte[]
-		public const string ParamAssocData = "A"; // Byte[]
+        public const string ParamSalt = "S"; // Byte[]
+        public const string ParamParallelism = "P"; // UInt32
+        public const string ParamMemory = "M"; // UInt64
+        public const string ParamIterations = "I"; // UInt64
+        public const string ParamVersion = "V"; // UInt32
+        public const string ParamSecretKey = "K"; // Byte[]
+        public const string ParamAssocData = "A"; // Byte[]
 
-		private const uint MinVersion = 0x10;
-		private const uint MaxVersion = 0x13;
+        private const uint MinVersion = 0x10;
+        private const uint MaxVersion = 0x13;
 
-		private const int MinSalt = 8;
-		private const int MaxSalt = int.MaxValue; // .NET limit; 2^32 - 1 in spec
+        private const int MinSalt = 8;
+        private const int MaxSalt = int.MaxValue; // .NET limit; 2^32 - 1 in spec
 
-		internal const ulong MinIterations = 1;
-		internal const ulong MaxIterations = uint.MaxValue;
+        internal const ulong MinIterations = 1;
+        internal const ulong MaxIterations = uint.MaxValue;
 
-		internal const ulong MinMemory = 1024 * 8; // For parallelism = 1
-		// internal const ulong MaxMemory = (ulong)uint.MaxValue * 1024UL; // Spec
-		internal const ulong MaxMemory = int.MaxValue; // .NET limit
+        internal const ulong MinMemory = 1024 * 8; // For parallelism = 1
+                                                   // internal const ulong MaxMemory = (ulong)uint.MaxValue * 1024UL; // Spec
+        internal const ulong MaxMemory = int.MaxValue; // .NET limit
 
-		internal const uint MinParallelism = 1;
-		internal const uint MaxParallelism = (1 << 24) - 1;
+        internal const uint MinParallelism = 1;
+        internal const uint MaxParallelism = (1 << 24) - 1;
 
         internal const ulong DefaultIterations = 2;
         internal const ulong DefaultMemory = 64 * 1024 * 1024; // 64 MB
@@ -98,64 +98,64 @@ namespace KeePassLib.Cryptography.KeyDerivation
         { return p.GetByteArray(ParamSalt); }
 
         public override KdfParameters GetDefaultParameters()
-		{
-			KdfParameters p = base.GetDefaultParameters();
+        {
+            KdfParameters p = base.GetDefaultParameters();
 
-			p.SetUInt32(ParamVersion, MaxVersion);
+            p.SetUInt32(ParamVersion, MaxVersion);
 
-			p.SetUInt64(ParamIterations, DefaultIterations);
-			p.SetUInt64(ParamMemory, DefaultMemory);
-			p.SetUInt32(ParamParallelism, DefaultParallelism);
+            p.SetUInt64(ParamIterations, DefaultIterations);
+            p.SetUInt64(ParamMemory, DefaultMemory);
+            p.SetUInt32(ParamParallelism, DefaultParallelism);
 
-			return p;
-		}
+            return p;
+        }
 
-		public override void Randomize(KdfParameters p)
-		{
-			if(p == null) { Debug.Assert(false); return; }
+        public override void Randomize(KdfParameters p)
+        {
+            if (p == null) { Debug.Assert(false); return; }
             Debug.Assert(p.KdfUuid.Equals(this.Uuid));
 
-			byte[] pb = CryptoRandom.Instance.GetRandomBytes(32);
-			p.SetByteArray(ParamSalt, pb);
-		}
+            byte[] pb = CryptoRandom.Instance.GetRandomBytes(32);
+            p.SetByteArray(ParamSalt, pb);
+        }
 
-		public override byte[] Transform(byte[] pbMsg, KdfParameters p)
-		{
-			if(pbMsg == null) throw new ArgumentNullException("pbMsg");
-			if(p == null) throw new ArgumentNullException("p");
+        public override byte[] Transform(byte[] pbMsg, KdfParameters p)
+        {
+            if (pbMsg == null) throw new ArgumentNullException("pbMsg");
+            if (p == null) throw new ArgumentNullException("p");
 
-			byte[] pbSalt = p.GetByteArray(ParamSalt);
-			if(pbSalt == null)
-				throw new ArgumentNullException("p.Salt");
-			if((pbSalt.Length < MinSalt) || (pbSalt.Length > MaxSalt))
-				throw new ArgumentOutOfRangeException("p.Salt");
+            byte[] pbSalt = p.GetByteArray(ParamSalt);
+            if (pbSalt == null)
+                throw new ArgumentNullException("p.Salt");
+            if ((pbSalt.Length < MinSalt) || (pbSalt.Length > MaxSalt))
+                throw new ArgumentOutOfRangeException("p.Salt");
 
-			uint uPar = p.GetUInt32(ParamParallelism, 0);
-			if((uPar < MinParallelism) || (uPar > MaxParallelism))
-				throw new ArgumentOutOfRangeException("p.Parallelism");
+            uint uPar = p.GetUInt32(ParamParallelism, 0);
+            if ((uPar < MinParallelism) || (uPar > MaxParallelism))
+                throw new ArgumentOutOfRangeException("p.Parallelism");
 
-			ulong uMem = p.GetUInt64(ParamMemory, 0);
-			if((uMem < MinMemory) || (uMem > MaxMemory))
-				throw new ArgumentOutOfRangeException("p.Memory");
+            ulong uMem = p.GetUInt64(ParamMemory, 0);
+            if ((uMem < MinMemory) || (uMem > MaxMemory))
+                throw new ArgumentOutOfRangeException("p.Memory");
 
-			ulong uIt = p.GetUInt64(ParamIterations, 0);
-			if((uIt < MinIterations) || (uIt > MaxIterations))
-				throw new ArgumentOutOfRangeException("p.Iterations");
+            ulong uIt = p.GetUInt64(ParamIterations, 0);
+            if ((uIt < MinIterations) || (uIt > MaxIterations))
+                throw new ArgumentOutOfRangeException("p.Iterations");
 
-			uint v = p.GetUInt32(ParamVersion, 0);
-			if((v < MinVersion) || (v > MaxVersion))
-				throw new ArgumentOutOfRangeException("p.Version");
+            uint v = p.GetUInt32(ParamVersion, 0);
+            if ((v < MinVersion) || (v > MaxVersion))
+                throw new ArgumentOutOfRangeException("p.Version");
 
-			byte[] pbSecretKey = p.GetByteArray(ParamSecretKey);
-			byte[] pbAssocData = p.GetByteArray(ParamAssocData);
+            byte[] pbSecretKey = p.GetByteArray(ParamSecretKey);
+            byte[] pbAssocData = p.GetByteArray(ParamAssocData);
 
             byte[] pbRet;
 
-			if (m_t == Argon2Type.ID)
+            if (m_t == Argon2Type.ID)
             {
-                 pbRet = Argon2Transform(pbMsg, pbSalt, uPar, uMem,
-                    uIt, 32, v, pbSecretKey, pbAssocData);
-			}
+                pbRet = Argon2Transform(pbMsg, pbSalt, uPar, uMem,
+                   uIt, 32, v, pbSecretKey, pbAssocData);
+            }
             else
             {
                 if (pbSecretKey != null)
@@ -200,30 +200,30 @@ namespace KeePassLib.Cryptography.KeyDerivation
                 Marshal.FreeHGlobal(msgPtr);
                 Marshal.FreeHGlobal(saltPtr);
                 Marshal.FreeHGlobal(retPtr);
-			}
+            }
 
-            if(uMem > (100UL * 1024UL * 1024UL)) GC.Collect();
-			return pbRet;
-		}
+            if (uMem > (100UL * 1024UL * 1024UL)) GC.Collect();
+            return pbRet;
+        }
 
-		public override KdfParameters GetBestParameters(uint uMilliseconds)
-		{
-			KdfParameters p = GetDefaultParameters();
-			Randomize(p);
+        public override KdfParameters GetBestParameters(uint uMilliseconds)
+        {
+            KdfParameters p = GetDefaultParameters();
+            Randomize(p);
 
-			MaximizeParamUInt64(p, ParamIterations, MinIterations,
-				MaxIterations, uMilliseconds, true);
-			return p;
-		}
+            MaximizeParamUInt64(p, ParamIterations, MinIterations,
+                MaxIterations, uMilliseconds, true);
+            return p;
+        }
 
-		[LibraryImport("argon2")]
+        [LibraryImport("argon2")]
         [return: MarshalAs(UnmanagedType.I4)]
-		public static partial int argon2_hash(
-				UInt32 t_cost, UInt32 m_cost, UInt32 parallelism,
-				IntPtr pwd, IntPtr pwdlen,
-				IntPtr salt, IntPtr saltlen,
-				IntPtr hash, IntPtr hashlen,
-				IntPtr encoded, IntPtr encodedlen,
-				UInt32 type, UInt32 version);
-	}
+        public static partial int argon2_hash(
+                UInt32 t_cost, UInt32 m_cost, UInt32 parallelism,
+                IntPtr pwd, IntPtr pwdlen,
+                IntPtr salt, IntPtr saltlen,
+                IntPtr hash, IntPtr hashlen,
+                IntPtr encoded, IntPtr encodedlen,
+                UInt32 type, UInt32 version);
+    }
 }

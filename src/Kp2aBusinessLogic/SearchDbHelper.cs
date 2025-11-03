@@ -25,71 +25,72 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// Helper class providing methods to search a given database for specific things
-	/// </summary>
-	public class SearchDbHelper
-	{
+    /// <summary>
+    /// Helper class providing methods to search a given database for specific things
+    /// </summary>
+    public class SearchDbHelper
+    {
         private readonly IKp2aApp _app;
 
-		
-		public SearchDbHelper(IKp2aApp app) {
-			_app = app;
-		}
+
+        public SearchDbHelper(IKp2aApp app)
+        {
+            _app = app;
+        }
 
 
-		public PwGroup SearchForText (Database database, string str)
-		{
-			SearchParameters sp = new SearchParameters {SearchString = str};
+        public PwGroup SearchForText(Database database, string str)
+        {
+            SearchParameters sp = new SearchParameters { SearchString = str };
 
-			return Search(database, sp, null);
-		}
-		public PwGroup Search(Database database, SearchParameters sp, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
-		{
-			
-			if(sp.RegularExpression) // Validate regular expression
-			{
-				new Regex(sp.SearchString); 
-			}
-			
-			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
-			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
+            return Search(database, sp, null);
+        }
+        public PwGroup Search(Database database, SearchParameters sp, IDictionary<PwUuid, KeyValuePair<string, string>> resultContexts)
+        {
 
-			PwObjectList<PwEntry> listResults = pgResults.Entries;
-			
-			
-			database.Root.SearchEntries(sp, listResults, resultContexts, new NullStatusLogger());
-			
-			
-			return pgResults;
-			
+            if (sp.RegularExpression) // Validate regular expression
+            {
+                new Regex(sp.SearchString);
+            }
 
-		}
+            string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
+            PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) { IsVirtual = true };
 
-		
-		public PwGroup SearchForExactUrl (Database database, string url)
-		{
-			SearchParameters sp = SearchParameters.None;
-			sp.SearchInUrls = true;
-			sp.SearchString = url;
+            PwObjectList<PwEntry> listResults = pgResults.Entries;
 
-            if(sp.RegularExpression) // Validate regular expression
-			{
-				new Regex(sp.SearchString); 
-			}
-			
-			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
-			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
 
-			PwObjectList<PwEntry> listResults = pgResults.Entries;
-			
-			
-			database.Root.SearchEntries(sp, listResults, new NullStatusLogger());
-			
-			
-			return pgResults;
-			
-		}
+            database.Root.SearchEntries(sp, listResults, resultContexts, new NullStatusLogger());
+
+
+            return pgResults;
+
+
+        }
+
+
+        public PwGroup SearchForExactUrl(Database database, string url)
+        {
+            SearchParameters sp = SearchParameters.None;
+            sp.SearchInUrls = true;
+            sp.SearchString = url;
+
+            if (sp.RegularExpression) // Validate regular expression
+            {
+                new Regex(sp.SearchString);
+            }
+
+            string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + sp.SearchString + "\")";
+            PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) { IsVirtual = true };
+
+            PwObjectList<PwEntry> listResults = pgResults.Entries;
+
+
+            database.Root.SearchEntries(sp, listResults, new NullStatusLogger());
+
+
+            return pgResults;
+
+        }
 
         public PwGroup SearchForUuid(Database database, string uuid)
         {
@@ -114,39 +115,39 @@ namespace keepass2android
         }
 
         private static String ExtractHost(String url)
-		{
-			return UrlUtil.GetHost(url.Trim());
-		}
+        {
+            return UrlUtil.GetHost(url.Trim());
+        }
 
-		public PwGroup SearchForHost(Database database, String url, bool allowSubdomains)
-		{
-			String host = ExtractHost(url);
-			string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + host + "\")";
-			PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) {IsVirtual = true};
-			if (String.IsNullOrWhiteSpace(host))
-				return pgResults;
-			foreach (PwEntry entry in database.EntriesById.Values)
+        public PwGroup SearchForHost(Database database, String url, bool allowSubdomains)
+        {
+            String host = ExtractHost(url);
+            string strGroupName = _app.GetResourceString(UiStringKey.search_results) + " (\"" + host + "\")";
+            PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) { IsVirtual = true };
+            if (String.IsNullOrWhiteSpace(host))
+                return pgResults;
+            foreach (PwEntry entry in database.EntriesById.Values)
             {
                 if (!entry.GetSearchingEnabled())
                     continue;
-				string otherUrl = entry.Strings.ReadSafe(PwDefs.UrlField);
-				otherUrl = SprEngine.Compile(otherUrl, new SprContext(entry, database.KpDatabase, SprCompileFlags.References));
-				String otherHost = ExtractHost(otherUrl);
-				if ((allowSubdomains) && (otherHost.StartsWith("www.")))
-					otherHost = otherHost.Substring(4); //remove "www."
-				if (String.IsNullOrWhiteSpace(otherHost))
-				{
-					continue;
-				}
-				if (string.Equals(host, otherHost, StringComparison.OrdinalIgnoreCase) ||
-					host.EndsWith("." + otherHost, StringComparison.OrdinalIgnoreCase))
-				{
-					pgResults.AddEntry(entry, false);
-				}
-			}
-			return pgResults;
-		}
+                string otherUrl = entry.Strings.ReadSafe(PwDefs.UrlField);
+                otherUrl = SprEngine.Compile(otherUrl, new SprContext(entry, database.KpDatabase, SprCompileFlags.References));
+                String otherHost = ExtractHost(otherUrl);
+                if ((allowSubdomains) && (otherHost.StartsWith("www.")))
+                    otherHost = otherHost.Substring(4); //remove "www."
+                if (String.IsNullOrWhiteSpace(otherHost))
+                {
+                    continue;
+                }
+                if (string.Equals(host, otherHost, StringComparison.OrdinalIgnoreCase) ||
+                    host.EndsWith("." + otherHost, StringComparison.OrdinalIgnoreCase))
+                {
+                    pgResults.AddEntry(entry, false);
+                }
+            }
+            return pgResults;
+        }
 
-	}
+    }
 }
 

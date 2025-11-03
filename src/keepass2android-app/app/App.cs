@@ -88,14 +88,14 @@ namespace keepass2android
 		public const string Searchable = "@xml/searchable_offline";
 	}
 #else
-	/// <summary>
-	/// Static strings containing App names for the Online release
-	/// </summary>
-	public static class AppNames
-	{
+    /// <summary>
+    /// Static strings containing App names for the Online release
+    /// </summary>
+    public static class AppNames
+    {
 #if DEBUG
-		public const string AppName = "@string/app_name_debug";
-	    public const int AppNameResource = Resource.String.app_name_debug;
+        public const string AppName = "@string/app_name_debug";
+        public const int AppNameResource = Resource.String.app_name_debug;
 #else
 		public const string AppName = "@string/app_name";
         public const int AppNameResource = Resource.String.app_name;
@@ -105,7 +105,7 @@ namespace keepass2android
 
 #if DEBUG
         public const string PackagePart = "keepass2android_debug";
-		public const string Searchable = "@xml/searchable_debug";
+        public const string Searchable = "@xml/searchable_debug";
         public const int LauncherIcon = Resource.Mipmap.ic_launcher_debug;
 #else
 		public const string PackagePart = "keepass2android";
@@ -116,40 +116,40 @@ namespace keepass2android
         public const int NotificationLockedIcon = Resource.Drawable.ic_notify_loaded;
         public const int NotificationUnlockedIcon = Resource.Drawable.ic_notify_locked;
 
-	}
+    }
 #endif
 
 
-	/// <summary>
-	/// Main implementation of the IKp2aApp interface for usage in the real app.
-	/// </summary>
-	public class Kp2aApp: IKp2aApp, ICacheSupervisor
+    /// <summary>
+    /// Main implementation of the IKp2aApp interface for usage in the real app.
+    /// </summary>
+    public class Kp2aApp : IKp2aApp, ICacheSupervisor
     {
         public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
-	    {
-			if (OpenDatabases.Any())
-			{
-				if (QuickUnlockEnabled && allowQuickUnlock &&
-					GetDbForQuickUnlock().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
-					!((KcpPassword)App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
-				{
-					if (!QuickLocked)
-					{
-						Kp2aLog.Log("QuickLocking database");
-					    QuickLocked = true;
-					    LastOpenedEntry = null;
+        {
+            if (OpenDatabases.Any())
+            {
+                if (QuickUnlockEnabled && allowQuickUnlock &&
+                    GetDbForQuickUnlock().KpDatabase.MasterKey.ContainsType(typeof(KcpPassword)) &&
+                    !((KcpPassword)App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword))).Password.IsEmpty)
+                {
+                    if (!QuickLocked)
+                    {
+                        Kp2aLog.Log("QuickLocking database");
+                        QuickLocked = true;
+                        LastOpenedEntry = null;
                         BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionLockDatabase);
-					}
-					else
-					{
-						Kp2aLog.Log("Database already QuickLocked");
-					}
-				}
-				else
-				{
-					Kp2aLog.Log("Locking database");
+                    }
+                    else
+                    {
+                        Kp2aLog.Log("Database already QuickLocked");
+                    }
+                }
+                else
+                {
+                    Kp2aLog.Log("Locking database");
 
-					BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionCloseDatabase);
+                    BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionCloseDatabase);
 
                     // Couldn't quick-lock, so unload database(s) instead
                     _openAttempts.Clear();
@@ -158,17 +158,17 @@ namespace keepass2android
                     _currentDatabase = null;
                     LastOpenedEntry = null;
                     QuickLocked = false;
-                    
-				    
-				}
-			}
-			else
-			{
-				Kp2aLog.Log("Database not loaded, couldn't lock");
-			}
-	        _currentlyWaitingXcKey = null;
 
-			UpdateOngoingNotification();
+
+                }
+            }
+            else
+            {
+                Kp2aLog.Log("Database not loaded, couldn't lock");
+            }
+            _currentlyWaitingXcKey = null;
+
+            UpdateOngoingNotification();
             var intent = new Intent(Intents.DatabaseLocked);
             if (lockWasTriggeredByTimeout)
                 intent.PutExtra("ByTimeout", true);
@@ -176,30 +176,30 @@ namespace keepass2android
         }
 
 
-		public void BroadcastDatabaseAction(Context ctx, string action)
-		{
-		    foreach (Database db in OpenDatabases)
-		    {
-		        Intent i = new Intent(action);
+        public void BroadcastDatabaseAction(Context ctx, string action)
+        {
+            foreach (Database db in OpenDatabases)
+            {
+                Intent i = new Intent(action);
 
-		        i.PutExtra(Strings.ExtraDatabaseFileDisplayname, GetFileStorage(db.Ioc).GetDisplayName(db.Ioc));
-		        i.PutExtra(Strings.ExtraDatabaseFilepath, db.Ioc.Path);
-		        foreach (var plugin in new PluginDatabase(ctx).GetPluginsWithAcceptedScope(Strings.ScopeDatabaseActions))
-		        {
-		            i.SetPackage(plugin);
-		            ctx.SendBroadcast(i);
-		        }
+                i.PutExtra(Strings.ExtraDatabaseFileDisplayname, GetFileStorage(db.Ioc).GetDisplayName(db.Ioc));
+                i.PutExtra(Strings.ExtraDatabaseFilepath, db.Ioc.Path);
+                foreach (var plugin in new PluginDatabase(ctx).GetPluginsWithAcceptedScope(Strings.ScopeDatabaseActions))
+                {
+                    i.SetPackage(plugin);
+                    ctx.SendBroadcast(i);
+                }
             }
-			
-		}
+
+        }
 
 
 
-	    public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream,
+        public Database LoadDatabase(IOConnectionInfo ioConnectionInfo, MemoryStream memoryStream,
             CompositeKey compositeKey, IKp2aStatusLogger statusLogger, IDatabaseFormat databaseFormat, bool makeCurrent,
             IDatabaseModificationWatcher modificationWatcher)
-	    {
-           
+        {
+
 
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
@@ -260,40 +260,40 @@ namespace keepass2android
             }
             finally
             {
-				modificationWatcher.AfterModifyDatabases();
+                modificationWatcher.AfterModifyDatabases();
             }
 
 
             if (createBackup)
-            { 
-		        statusLogger.UpdateMessage(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatingBackup));
-		        Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(LocaleManager.LocalizedAppContext);
+            {
+                statusLogger.UpdateMessage(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatingBackup));
+                Java.IO.File internalDirectory = IoUtil.GetInternalDirectory(LocaleManager.LocalizedAppContext);
                 string baseDisplayName = App.Kp2a.GetFileStorage(ioConnectionInfo).GetDisplayName(ioConnectionInfo);
                 string targetPath = baseDisplayName;
-		        var charsToRemove = "|\\?*<\":>+[]/'";
-		        foreach (char c in charsToRemove)
-		        {
-		            targetPath = targetPath.Replace(c.ToString(), string.Empty);
-		        }
+                var charsToRemove = "|\\?*<\":>+[]/'";
+                foreach (char c in charsToRemove)
+                {
+                    targetPath = targetPath.Replace(c.ToString(), string.Empty);
+                }
                 if (targetPath == "")
-		            targetPath = "local_backup";
-		       
-		        var targetIoc = IOConnectionInfo.FromPath(new Java.IO.File(internalDirectory, targetPath).CanonicalPath);
+                    targetPath = "local_backup";
+
+                var targetIoc = IOConnectionInfo.FromPath(new Java.IO.File(internalDirectory, targetPath).CanonicalPath);
 
                 using (var transaction = new LocalFileStorage(App.Kp2a).OpenWriteTransaction(targetIoc, false))
-		        {
-		            using (var file = transaction.OpenFile())
-		            {
-		                backupCopy.CopyTo(file);
-		                transaction.CommitWrite();
+                {
+                    using (var file = transaction.OpenFile())
+                    {
+                        backupCopy.CopyTo(file);
+                        transaction.CommitWrite();
                     }
 
-		        }
+                }
                 Java.Lang.Object baseIocDisplayName = baseDisplayName;
 
                 string keyfile = App.Kp2a.FileDbHelper.GetKeyFileForFile(ioConnectionInfo.Path);
-		        App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, false, LocaleManager.LocalizedAppContext.
-		            GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[]{baseIocDisplayName}));
+                App.Kp2a.StoreOpenedFileAsRecent(targetIoc, keyfile, false, LocaleManager.LocalizedAppContext.
+                    GetString(Resource.String.LocalBackupOf, new Java.Lang.Object[] { baseIocDisplayName }));
 
                 prefs.Edit()
                     .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), true)
@@ -302,25 +302,25 @@ namespace keepass2android
 
 
             }
-		    else
-		    {
-		        prefs.Edit()
-		            .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), false) //there might be an older local backup, but we won't "advertise" this anymore
-		            .Commit();
+            else
+            {
+                prefs.Edit()
+                    .PutBoolean(IoUtil.GetIocPrefKey(ioConnectionInfo, "has_local_backup"), false) //there might be an older local backup, but we won't "advertise" this anymore
+                    .Commit();
             }
 
-			TimeoutHelper.ResumingApp();
+            TimeoutHelper.ResumingApp();
 
             UpdateOngoingNotification();
 
-	        return newDb;
-	    }
+            return newDb;
+        }
 
-        
+
 
         public void CloseDatabase(Database db)
-	    {
-            
+        {
+
             if (!_openDatabases.Contains(db))
                 throw new Exception("Cannot close database which is not open!");
             if (_openDatabases.Count == 1)
@@ -336,77 +336,77 @@ namespace keepass2android
 
             _openDatabases.Remove(db);
             if (_currentDatabase == db)
-                    _currentDatabase = _openDatabases.First();
+                _currentDatabase = _openDatabases.First();
 
             UpdateOngoingNotification();
             //TODO broadcast event so affected activities can close/update? 
-	    }
+        }
 
-	    
+
         internal void UnlockDatabase()
-		{
-			QuickLocked = false;
+        {
+            QuickLocked = false;
 
-			TimeoutHelper.ResumingApp();
+            TimeoutHelper.ResumingApp();
 
-			UpdateOngoingNotification();
+            UpdateOngoingNotification();
 
-			BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionUnlockDatabase);
-		}
+            BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionUnlockDatabase);
+        }
 
-		public void UpdateOngoingNotification()
-		{
-			// Start or update the notification icon service to reflect the current state
-			var ctx = LocaleManager.LocalizedAppContext;
-		    if (DatabaseIsUnlocked || QuickLocked)
-		    {
-		        ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+        public void UpdateOngoingNotification()
+        {
+            // Start or update the notification icon service to reflect the current state
+            var ctx = LocaleManager.LocalizedAppContext;
+            if (DatabaseIsUnlocked || QuickLocked)
+            {
+                ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
             }
-		    else
-		    {
+            else
+            {
                 //Android 8 requires that we call StartForeground() shortly after starting the service with StartForegroundService.
                 //This is not possible when we're closing the service. In this case we don't use the StopSelf in the OngoingNotificationsService.OnStartCommand() anymore but directly stop the service.
 
                 OngoingNotificationsService.CancelNotifications(ctx); //The docs are not 100% clear if OnDestroy() will be called immediately. So make sure the notifications are up to date.
 
-		        ctx.StopService(new Intent(ctx, typeof(OngoingNotificationsService)));
-		    }
-		}
-        
-		public bool DatabaseIsUnlocked
-		{
-			get { return OpenDatabases.Any() && !QuickLocked; }
-		}
+                ctx.StopService(new Intent(ctx, typeof(OngoingNotificationsService)));
+            }
+        }
 
-		#region QuickUnlock
-		public void SetQuickUnlockEnabled(bool enabled)
-		{
-			if (enabled)
-			{
-				//Set KeyLength of QuickUnlock at time of enabling.
-				//This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
+        public bool DatabaseIsUnlocked
+        {
+            get { return OpenDatabases.Any() && !QuickLocked; }
+        }
 
-				var ctx = LocaleManager.LocalizedAppContext;
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
-				QuickUnlockKeyLength = Math.Max(1, int.Parse(prefs.GetString(ctx.GetString(Resource.String.QuickUnlockLength_key), ctx.GetString(Resource.String.QuickUnlockLength_default))));
-			}
-			QuickUnlockEnabled = enabled;
-		}
+        #region QuickUnlock
+        public void SetQuickUnlockEnabled(bool enabled)
+        {
+            if (enabled)
+            {
+                //Set KeyLength of QuickUnlock at time of enabling.
+                //This is important to not allow an attacker to set the length to 1 when QuickUnlock is started already.
 
-		public bool ScreenLockWasEnabledWhenOpeningDatabase { get; set; }
-		public bool QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase { get; set; }
+                var ctx = LocaleManager.LocalizedAppContext;
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+                QuickUnlockKeyLength = Math.Max(1, int.Parse(prefs.GetString(ctx.GetString(Resource.String.QuickUnlockLength_key), ctx.GetString(Resource.String.QuickUnlockLength_default))));
+            }
+            QuickUnlockEnabled = enabled;
+        }
+
+        public bool ScreenLockWasEnabledWhenOpeningDatabase { get; set; }
+        public bool QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase { get; set; }
 
 
         public bool QuickUnlockEnabled { get; private set; }
 
-		public int QuickUnlockKeyLength { get; private set; }
-    
-		/// <summary>
-		/// If true, the database must be regarded as locked and not exposed to the user.
-		/// </summary>
-		public bool QuickLocked { get; private set; }
-		
-		#endregion
+        public int QuickUnlockKeyLength { get; private set; }
+
+        /// <summary>
+        /// If true, the database must be regarded as locked and not exposed to the user.
+        /// </summary>
+        public bool QuickLocked { get; private set; }
+
+        #endregion
 
         /// <summary>
         /// See comments to EntryEditActivityState.
@@ -414,52 +414,52 @@ namespace keepass2android
         internal EntryEditActivityState EntryEditActivityState = null;
 
         public FileDbHelper FileDbHelper;
-		private List<IFileStorage> _fileStorages;
+        private List<IFileStorage> _fileStorages;
 
         private readonly List<IOConnectionInfo> _openAttempts = new List<IOConnectionInfo>(); //stores which files have been attempted to open. Used to avoid that we repeatedly try to load files which failed to load.
-	    private readonly List<Database> _openDatabases = new List<Database>();
-		
-	    private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
+        private readonly List<Database> _openDatabases = new List<Database>();
+
+        private readonly List<IOConnectionInfo> _childDatabases = new List<IOConnectionInfo>(); //list of databases which were opened as child databases
         private Database _currentDatabase;
 
-	    public IEnumerable<Database> OpenDatabases
-	    {
+        public IEnumerable<Database> OpenDatabases
+        {
             get
             {
                 return _openDatabases;
             }
-	    }
+        }
 
-	    internal ChallengeXCKey _currentlyWaitingXcKey;
+        internal ChallengeXCKey _currentlyWaitingXcKey;
 
-	    public readonly HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
-	    
-	    public HashSet<PwGroup> DirtyGroups {  get { return dirty; } }
+        public readonly HashSet<PwGroup> dirty = new HashSet<PwGroup>(new PwGroupEqualityFromIdComparer());
 
-	    public void RegisterOpenAttempt(IOConnectionInfo ioc)
-	    {
-	        _openAttempts.Add(ioc);
-	    }
+        public HashSet<PwGroup> DirtyGroups { get { return dirty; } }
+
+        public void RegisterOpenAttempt(IOConnectionInfo ioc)
+        {
+            _openAttempts.Add(ioc);
+        }
 
 
         public bool AttemptedToOpenBefore(IOConnectionInfo ioc)
-	    {
-	        foreach (var attemptedIoc in _openAttempts)
-	        {
+        {
+            foreach (var attemptedIoc in _openAttempts)
+            {
                 if (attemptedIoc.IsSameFileAs(ioc))
                     return true;
-	        }
-	        return false;
-	    }
+            }
+            return false;
+        }
 
 
         public void MarkAllGroupsAsDirty()
-	    {
+        {
             foreach (var db in OpenDatabases)
-	        foreach (PwGroup group in db.GroupsById.Values)
-	        {
-	            DirtyGroups.Add(group);
-	        }
+                foreach (PwGroup group in db.GroupsById.Values)
+                {
+                    DirtyGroups.Add(group);
+                }
 
             var intent = new Intent(Intents.DataUpdated);
             App.Context.SendBroadcast(intent);
@@ -471,21 +471,21 @@ namespace keepass2android
         /// </summary>
         public PwEntryOutput LastOpenedEntry { get; set; }
 
-	    public Database CurrentDb
-	    {
-	      get { return _currentDatabase; }
-	        set
-	        {
-	            if (!OpenDatabases.Contains(value))
-	                throw new Exception("Cannot set database as current. Not in list of opened databases!");
-	            _currentDatabase = value;
-	        }
-	    } 
+        public Database CurrentDb
+        {
+            get { return _currentDatabase; }
+            set
+            {
+                if (!OpenDatabases.Contains(value))
+                    throw new Exception("Cannot set database as current. Not in list of opened databases!");
+                _currentDatabase = value;
+            }
+        }
 
         public Database GetDbForQuickUnlock()
-	    {
-	        return OpenDatabases.FirstOrDefault();
-	    }
+        {
+            return OpenDatabases.FirstOrDefault();
+        }
 
 
 
@@ -499,8 +499,8 @@ namespace keepass2android
                     return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.keyfile_key), ctx.Resources.GetBoolean(Resource.Boolean.keyfile_default));
                 case PreferenceKey.UseFileTransactions:
                     return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.UseFileTransactions_key), true);
-				case PreferenceKey.CheckForFileChangesOnSave:
-					return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.CheckForFileChangesOnSave_key), true);
+                case PreferenceKey.CheckForFileChangesOnSave:
+                    return prefs.GetBoolean(ctx.Resources.GetString(Resource.String.CheckForFileChangesOnSave_key), true);
                 default:
                     throw new Exception("unexpected key!");
             }
@@ -521,126 +521,126 @@ namespace keepass2android
                 {
                     AskForReload(activity, null);
                 }
-                
+
             }
         }
 
-		private readonly HashSet<RealProgressDialog> _activeProgressDialogs = new HashSet<RealProgressDialog>();
-		// Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
-		private bool _isShowingUserInputDialog = false;
+        private readonly HashSet<RealProgressDialog> _activeProgressDialogs = new HashSet<RealProgressDialog>();
+        // Whether the app is currently showing a dialog that requires user input, like a yesNoCancel dialog
+        private bool _isShowingUserInputDialog = false;
         private IMessagePresenter? _messagePresenter;
         private YesNoCancelQuestion? _currentlyPendingYesNoCancelQuestion = null;
         private Context? _activeContext;
 
         private void AskForReload(Activity activity, Action<bool> actionOnResult)
-		{
-			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
-			builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
+        {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+            builder.SetTitle(activity.GetString(Resource.String.AskReloadFile_title));
 
-			builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
+            builder.SetMessage(activity.GetString(Resource.String.AskReloadFile));
 
             bool buttonPressed = false;
 
             builder.SetPositiveButton(activity.GetString(Android.Resource.String.Yes),
-				(dlgSender, dlgEvt) =>
+                (dlgSender, dlgEvt) =>
                 {
                     buttonPressed = true;
-					CurrentDb.ReloadRequested = true;
-					activity.SetResult(KeePass.ExitReloadDb);
-					activity.Finish();
-					if (actionOnResult != null)
+                    CurrentDb.ReloadRequested = true;
+                    activity.SetResult(KeePass.ExitReloadDb);
+                    activity.Finish();
+                    if (actionOnResult != null)
                     {
                         actionOnResult(true);
                         actionOnResult = null;
-					}
+                    }
 
-					OnUserInputDialogClose();
-				});
+                    OnUserInputDialogClose();
+                });
 
-			builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
+            builder.SetNegativeButton(activity.GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
             {
                 buttonPressed = true;
                 if (actionOnResult != null)
-				{
-					actionOnResult(false);
-					actionOnResult = null;
-				}
+                {
+                    actionOnResult(false);
+                    actionOnResult = null;
+                }
 
-				OnUserInputDialogClose();
-			});
+                OnUserInputDialogClose();
+            });
 
-			Dialog dialog = builder.Create();
+            Dialog dialog = builder.Create();
 
-			dialog.SetOnDismissListener(new Util.DismissListener(() =>
+            dialog.SetOnDismissListener(new Util.DismissListener(() =>
             {
-				//dismiss can be called when we're calling activity.Finish() during button press.
-				//don't do anything then.
+                //dismiss can be called when we're calling activity.Finish() during button press.
+                //don't do anything then.
                 if (buttonPressed)
                     return;
 
                 if (actionOnResult != null)
                 {
                     actionOnResult(false);
-					actionOnResult = null;
+                    actionOnResult = null;
                 }
 
-				OnUserInputDialogClose();
+                OnUserInputDialogClose();
             }));
 
-			OnUserInputDialogShow();
-			dialog.Show();
-		}
+            OnUserInputDialogShow();
+            dialog.Show();
+        }
 
-		public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "")
+        public void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "")
         {
             FileDbHelper.CreateFile(ioc, keyfile, updateTimestamp, displayName);
         }
 
         public string GetResourceString(UiStringKey key)
         {
-	        return GetResourceString(key.ToString());
+            return GetResourceString(key.ToString());
         }
-		public string GetResourceString(string key)
-		{
-			var field = typeof(Resource.String).GetField(key);
-			if (field == null)
-				throw new Exception("Invalid key " + key);
-			return LocaleManager.LocalizedAppContext.GetString((int)field.GetValue(null));
-		}
+        public string GetResourceString(string key)
+        {
+            var field = typeof(Resource.String).GetField(key);
+            if (field == null)
+                throw new Exception("Invalid key " + key);
+            return LocaleManager.LocalizedAppContext.GetString((int)field.GetValue(null));
+        }
 
-	    public Drawable GetStorageIcon(string protocolId)
-	    {
+        public Drawable GetStorageIcon(string protocolId)
+        {
             //storages can provide variants but still use the same icon for all
-	        if (protocolId.Contains("_"))
-	            protocolId = protocolId.Split("_").First();
-	        return GetResourceDrawable("ic_storage_" + protocolId);
-	    }
+            if (protocolId.Contains("_"))
+                protocolId = protocolId.Split("_").First();
+            return GetResourceDrawable("ic_storage_" + protocolId);
+        }
 
 
         public Drawable GetResourceDrawable(string key)
-		{
-			if (key == "ic_storage_skydrive")
-				key = "ic_storage_onedrive"; //resource was renamed. do this to avoid crashes with legacy file entries.
-			var field = typeof(Resource.Drawable).GetField(key);
-			if (field == null)
-				throw new Exception("Invalid key " + key);
-			return LocaleManager.LocalizedAppContext.Resources.GetDrawable((int)field.GetValue(null));
-		}
+        {
+            if (key == "ic_storage_skydrive")
+                key = "ic_storage_onedrive"; //resource was renamed. do this to avoid crashes with legacy file entries.
+            var field = typeof(Resource.Drawable).GetField(key);
+            if (field == null)
+                throw new Exception("Invalid key " + key);
+            return LocaleManager.LocalizedAppContext.Resources.GetDrawable((int)field.GetValue(null));
+        }
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler,  string messageSuffix)
-		{
-			AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
-				yesHandler, noHandler, cancelHandler, messageSuffix);
-		}
+        public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey, EventHandler<DialogClickEventArgs> yesHandler, EventHandler<DialogClickEventArgs> noHandler, EventHandler<DialogClickEventArgs> cancelHandler, string messageSuffix)
+        {
+            AskYesNoCancel(titleKey, messageKey, UiStringKey.yes, UiStringKey.no,
+                yesHandler, noHandler, cancelHandler, messageSuffix);
+        }
 
-		public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-			UiStringKey yesString, UiStringKey noString,
-			EventHandler<DialogClickEventArgs> yesHandler,
-			EventHandler<DialogClickEventArgs> noHandler,
-			EventHandler<DialogClickEventArgs> cancelHandler, string messageSuffix = "")
-		{
-			AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, messageSuffix);
-		}
+        public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+            UiStringKey yesString, UiStringKey noString,
+            EventHandler<DialogClickEventArgs> yesHandler,
+            EventHandler<DialogClickEventArgs> noHandler,
+            EventHandler<DialogClickEventArgs> cancelHandler, string messageSuffix = "")
+        {
+            AskYesNoCancel(titleKey, messageKey, yesString, noString, yesHandler, noHandler, cancelHandler, null, messageSuffix);
+        }
 
         class YesNoCancelQuestion
         {
@@ -727,7 +727,7 @@ namespace keepass2android
                     {
                         _dialog.SetCancelable(false);
                     }
-                    
+
 
                     onUserInputDialogShow();
                     try
@@ -758,18 +758,18 @@ namespace keepass2android
                 }
                 else
                 {
-					OperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
+                    OperationRunner.Instance.StatusLogger?.UpdateSubMessage(App.Context.GetString(Resource.String.user_interaction_required));
                     return false;
                 }
             }
         }
 
         public void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-			UiStringKey yesString, UiStringKey noString,
-			EventHandler<DialogClickEventArgs> yesHandler,
+            UiStringKey yesString, UiStringKey noString,
+            EventHandler<DialogClickEventArgs> yesHandler,
             EventHandler<DialogClickEventArgs> noHandler,
             EventHandler<DialogClickEventArgs> cancelHandler,
-			EventHandler dismissHandler,string messageSuffix = "")
+            EventHandler dismissHandler, string messageSuffix = "")
         {
             if (Java.Lang.Thread.Interrupted())
             {
@@ -787,107 +787,107 @@ namespace keepass2android
                 DismissHandler = dismissHandler,
                 MessageSuffix = messageSuffix
             };
-            
-            UiThreadHandler.Post( () =>
+
+            UiThreadHandler.Post(() =>
             {
-                _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow); 
+                _currentlyPendingYesNoCancelQuestion.TryShow(this, OnUserInputDialogClose, OnUserInputDialogShow);
             });
-                    
-		}
 
-		/// <summary>
-		/// Shows all non-dismissed progress dialogs.
-		/// If there are multiple progressDialogs active, they all will be showing.
-		/// There probably will never be multiple dialogs at the same time because only one BlockingOperationStarter can run at a time.
-		/// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
-		/// because they are just progress indicators.
-		/// </summary>
-		private void ShowAllActiveProgressDialogs()
+        }
+
+        /// <summary>
+        /// Shows all non-dismissed progress dialogs.
+        /// If there are multiple progressDialogs active, they all will be showing.
+        /// There probably will never be multiple dialogs at the same time because only one BlockingOperationStarter can run at a time.
+        /// Even if multiple dialogs show at the same time, it shouldn't be too much of an issue
+        /// because they are just progress indicators.
+        /// </summary>
+        private void ShowAllActiveProgressDialogs()
         {
-			foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
-			{
-                progressDialog.Show();
-			}
-		}
-
-		private void HideAllActiveProgressDialogs()
-		{
             foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
-			{
+            {
+                progressDialog.Show();
+            }
+        }
+
+        private void HideAllActiveProgressDialogs()
+        {
+            foreach (RealProgressDialog progressDialog in _activeProgressDialogs)
+            {
                 progressDialog.Hide();
-			}
-		}
+            }
+        }
 
-		/// <summary>
-		/// Hide progress dialogs whenever a dialog that requires user interaction
-		/// appears so that the progress dialogs cannot cover the user-interaction dialog
-		/// </summary>
-		private void OnUserInputDialogShow()
-		{
-			_isShowingUserInputDialog = true;
-			HideAllActiveProgressDialogs();
-		}
+        /// <summary>
+        /// Hide progress dialogs whenever a dialog that requires user interaction
+        /// appears so that the progress dialogs cannot cover the user-interaction dialog
+        /// </summary>
+        private void OnUserInputDialogShow()
+        {
+            _isShowingUserInputDialog = true;
+            HideAllActiveProgressDialogs();
+        }
 
-		/// <summary>
-		/// Show previously hidden progress dialogs after user interaction with dialog finished
-		/// </summary>
-		private void OnUserInputDialogClose()
-		{
-			_isShowingUserInputDialog = false;
+        /// <summary>
+        /// Show previously hidden progress dialogs after user interaction with dialog finished
+        /// </summary>
+        private void OnUserInputDialogClose()
+        {
+            _isShowingUserInputDialog = false;
             _currentlyPendingYesNoCancelQuestion = null;
 
             ShowAllActiveProgressDialogs();
-		}
+        }
 
         public Handler UiThreadHandler
         {
             get { return _uiThreadHandler; }
         }
 
-		/// <summary>
-		/// Simple wrapper around ProgressDialog implementing IProgressDialog
-		/// </summary>
-		private class RealProgressDialog : IProgressDialog
-		{
-			private readonly ProgressDialog _pd;
-			private readonly Kp2aApp _app;
+        /// <summary>
+        /// Simple wrapper around ProgressDialog implementing IProgressDialog
+        /// </summary>
+        private class RealProgressDialog : IProgressDialog
+        {
+            private readonly ProgressDialog _pd;
+            private readonly Kp2aApp _app;
 
-			public RealProgressDialog(Context ctx, Kp2aApp app)
-			{
-				_app = app;
-				_pd = new ProgressDialog(ctx);
-				_pd.SetCancelable(false);
-			}
+            public RealProgressDialog(Context ctx, Kp2aApp app)
+            {
+                _app = app;
+                _pd = new ProgressDialog(ctx);
+                _pd.SetCancelable(false);
+            }
 
-			public void SetTitle(string title)
-			{
-				_pd.SetTitle(title);
-			}
+            public void SetTitle(string title)
+            {
+                _pd.SetTitle(title);
+            }
 
-			public void SetMessage(string message)
-			{
-				_pd.SetMessage(message);
-			}
+            public void SetMessage(string message)
+            {
+                _pd.SetMessage(message);
+            }
 
-			public void Dismiss()
-			{
-				try
-				{
-					_pd.Dismiss();
-				}
-				catch (Exception e)
-				{
-					Kp2aLog.LogUnexpectedError(e);
-				}
-				_app._activeProgressDialogs.Remove(this);
-			}
+            public void Dismiss()
+            {
+                try
+                {
+                    _pd.Dismiss();
+                }
+                catch (Exception e)
+                {
+                    Kp2aLog.LogUnexpectedError(e);
+                }
+                _app._activeProgressDialogs.Remove(this);
+            }
 
-			public void Show()
-			{
-				_app._activeProgressDialogs.Add(this);
-				// Only show if asking dialog not also showing
-				if (!_app._isShowingUserInputDialog)
-				{
+            public void Show()
+            {
+                _app._activeProgressDialogs.Add(this);
+                // Only show if asking dialog not also showing
+                if (!_app._isShowingUserInputDialog)
+                {
                     try
                     {
                         _pd.Show();
@@ -896,14 +896,14 @@ namespace keepass2android
                     {
                         Kp2aLog.LogUnexpectedError(e);
                     }
-				}
-			}
+                }
+            }
 
-			public void Hide()
-			{
-				_pd.Hide();
-			}
-		}
+            public void Hide()
+            {
+                _pd.Hide();
+            }
+        }
 
         public IProgressDialog CreateProgressDialog(Context ctx)
         {
@@ -925,78 +925,78 @@ namespace keepass2android
 
         }
 
-		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
-		{
-			return GetFileStorage(iocInfo, true);
-		}
-		public IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache)
-		{
-			IFileStorage fileStorage;
-			if (iocInfo.IsLocalFile())
-				fileStorage = new LocalFileStorage(this);
-			else
-			{
-				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
+        public IFileStorage GetFileStorage(IOConnectionInfo iocInfo)
+        {
+            return GetFileStorage(iocInfo, true);
+        }
+        public IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache)
+        {
+            IFileStorage fileStorage;
+            if (iocInfo.IsLocalFile())
+                fileStorage = new LocalFileStorage(this);
+            else
+            {
+                IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
 
-				if (DatabaseCacheEnabled && allowCache)
-				{
-					fileStorage = new CachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, this);
-				}
-				else
-				{
-					fileStorage = innerFileStorage;
-				}
-			}
-			if (fileStorage is IOfflineSwitchable switchable)
-			{
-				switchable.IsOffline = App.Kp2a.OfflineMode;
+                if (DatabaseCacheEnabled && allowCache)
+                {
+                    fileStorage = new CachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, this);
+                }
+                else
+                {
+                    fileStorage = innerFileStorage;
+                }
+            }
+            if (fileStorage is IOfflineSwitchable switchable)
+            {
+                switchable.IsOffline = App.Kp2a.OfflineMode;
                 if (switchable.IsOffline)
                 {
-					//users of the file storage can set this to false, but the default is to show a warning:
+                    //users of the file storage can set this to false, but the default is to show a warning:
                     switchable.TriggerWarningWhenFallingBackToCache = true;
                 }
-			}
-			return fileStorage;
-		}
+            }
+            return fileStorage;
+        }
 
-		private IFileStorage GetCloudFileStorage(IOConnectionInfo iocInfo)
-		{
-			foreach (IFileStorage fs in FileStorages)
-			{
-				foreach (string protocolId in fs.SupportedProtocols)
-				{
-					if (iocInfo.Path.StartsWith(protocolId + "://"))
-						return fs;
-				}
+        private IFileStorage GetCloudFileStorage(IOConnectionInfo iocInfo)
+        {
+            foreach (IFileStorage fs in FileStorages)
+            {
+                foreach (string protocolId in fs.SupportedProtocols)
+                {
+                    if (iocInfo.Path.StartsWith(protocolId + "://"))
+                        return fs;
+                }
 
-			}
-			//TODO: catch!
-			throw new NoFileStorageFoundException("Unknown protocol " + iocInfo.Path);
-		}
+            }
+            //TODO: catch!
+            throw new NoFileStorageFoundException("Unknown protocol " + iocInfo.Path);
+        }
 
-		public IEnumerable<IFileStorage> FileStorages
-		{
-			get
-			{
-				if (_fileStorages == null)
-				{
-					_fileStorages = new List<IFileStorage>
-						{
-							
-							new AndroidContentStorage(LocaleManager.LocalizedAppContext),
+        public IEnumerable<IFileStorage> FileStorages
+        {
+            get
+            {
+                if (_fileStorages == null)
+                {
+                    _fileStorages = new List<IFileStorage>
+                        {
+
+                            new AndroidContentStorage(LocaleManager.LocalizedAppContext),
 #if !EXCLUDE_JAVAFILESTORAGE
 #if !NoNet
 							DropboxFileStorage.IsConfigured ? new DropboxFileStorage(LocaleManager.LocalizedAppContext, this) : null,
-							DropboxAppFolderFileStorage.IsConfigured ? new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this): null,
+                            DropboxAppFolderFileStorage.IsConfigured ? new DropboxAppFolderFileStorage(LocaleManager.LocalizedAppContext, this): null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveFileStorage(LocaleManager.LocalizedAppContext, this) : null,
                             GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(LocaleManager.LocalizedAppContext)==ConnectionResult.Success ? new GoogleDriveAppDataFileStorage(LocaleManager.LocalizedAppContext, this) : null,
-							new OneDriveFileStorage(this),
-						    new OneDrive2FullFileStorage(),
-						    new OneDrive2MyFilesFileStorage(),
-						    new OneDrive2AppFolderFileStorage(),
+                            new OneDriveFileStorage(this),
+                            new OneDrive2FullFileStorage(),
+                            new OneDrive2MyFilesFileStorage(),
+                            new OneDrive2AppFolderFileStorage(),
                             new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
-							new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
-							new WebDavFileStorage(this, WebDavChunkedUploadSize, App.Context),
+                            new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
+                            new WebDavFileStorage(this, WebDavChunkedUploadSize, App.Context),
                             new SmbFileStorage(),
                             new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
                             new PCloudFileStorageAll(LocaleManager.LocalizedAppContext, this),
@@ -1006,155 +1006,155 @@ namespace keepass2android
 #endif
 #endif
 							new LocalFileStorage(this)
-						}.Where(fs => fs != null).ToList();
-				}
-				return _fileStorages;
-			}
-		}
+                        }.Where(fs => fs != null).ToList();
+                }
+                return _fileStorages;
+            }
+        }
 
-		private static bool IsFtpDebugEnabled()
-		{
+        private static bool IsFtpDebugEnabled()
+        {
             return PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
-				.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.FtpDebug_key), false);
+                .GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.FtpDebug_key), false);
         }
 
         public void TriggerReload(Context ctx, Action<bool> actionOnResult)
-		{
-			Handler handler = new Handler(Looper.MainLooper);
-			handler.Post(() =>
-				{
-					AskForReload((Activity) ctx, actionOnResult);
-				});
-		}
+        {
+            Handler handler = new Handler(Looper.MainLooper);
+            handler.Post(() =>
+                {
+                    AskForReload((Activity)ctx, actionOnResult);
+                });
+        }
 
-		public bool AlwaysFailOnValidationError()
-		{
-			return true;
-		}
+        public bool AlwaysFailOnValidationError()
+        {
+            return true;
+        }
 
-		public bool OnValidationError()
-		{
-			return false;
-		}
+        public bool OnValidationError()
+        {
+            return false;
+        }
 
-		public RemoteCertificateValidationCallback CertificateValidationCallback
-		{
-			get
-			{
-				switch (GetValidationMode())
-				{
-					case ValidationMode.Ignore:
-						return (sender, certificate, chain, errors) => true;
-					case ValidationMode.Warn:
-						return (sender, certificate, chain, errors) =>
-						{
-							if (errors != SslPolicyErrors.None)
-								ShowValidationWarning(errors.ToString());
-							return true;
-						};
-						
-					case ValidationMode.Error:
-						return (sender, certificate, chain, errors) =>
-						{
-							if (errors == SslPolicyErrors.None)
-								return true;
-						
-							return false;
-						};;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
+        public RemoteCertificateValidationCallback CertificateValidationCallback
+        {
+            get
+            {
+                switch (GetValidationMode())
+                {
+                    case ValidationMode.Ignore:
+                        return (sender, certificate, chain, errors) => true;
+                    case ValidationMode.Warn:
+                        return (sender, certificate, chain, errors) =>
+                        {
+                            if (errors != SslPolicyErrors.None)
+                                ShowValidationWarning(errors.ToString());
+                            return true;
+                        };
 
-			}
+                    case ValidationMode.Error:
+                        return (sender, certificate, chain, errors) =>
+                        {
+                            if (errors == SslPolicyErrors.None)
+                                return true;
 
-		}
+                            return false;
+                        }; ;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
 
-		private ValidationMode GetValidationMode()
-		{
-			var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+            }
 
-			ValidationMode validationMode = ValidationMode.Error;
+        }
 
-			string strValMode = prefs.GetString(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
-												 LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
+        private ValidationMode GetValidationMode()
+        {
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
 
-			if (strValMode == "IGNORE")
-				validationMode = ValidationMode.Ignore;
+            ValidationMode validationMode = ValidationMode.Error;
+
+            string strValMode = prefs.GetString(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_key),
+                                                 LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.AcceptAllServerCertificates_default));
+
+            if (strValMode == "IGNORE")
+                validationMode = ValidationMode.Ignore;
             else if (strValMode == "WARN")
                 validationMode = ValidationMode.Warn;
             else if (strValMode == "ERROR")
-				validationMode = ValidationMode.Error;
-			return validationMode;
-		}
+                validationMode = ValidationMode.Error;
+            return validationMode;
+        }
 
-		public bool CheckForDuplicateUuids
-		{
-			get
-			{
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
-				return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CheckForDuplicateUuids_key), true);
-			}
-		}
+        public bool CheckForDuplicateUuids
+        {
+            get
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.CheckForDuplicateUuids_key), true);
+            }
+        }
 
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
 
-            public ICertificateErrorHandler CertificateErrorHandler
-		{
-			get { return new CertificateErrorHandlerImpl(this); }
-		}
+        public ICertificateErrorHandler CertificateErrorHandler
+        {
+            get { return new CertificateErrorHandlerImpl(this); }
+        }
 
 
-	    public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
-		{
-			private readonly Kp2aApp _app;
+        public class CertificateErrorHandlerImpl : Java.Lang.Object, Keepass2android.Javafilestorage.ICertificateErrorHandler
+        {
+            private readonly Kp2aApp _app;
 
-			public CertificateErrorHandlerImpl(Kp2aApp app)
-			{
-				_app = app;
-			}
+            public CertificateErrorHandlerImpl(Kp2aApp app)
+            {
+                _app = app;
+            }
 
-			public bool AlwaysFailOnValidationError()
-			{
-				return _app.GetValidationMode() == ValidationMode.Error;
-			}
+            public bool AlwaysFailOnValidationError()
+            {
+                return _app.GetValidationMode() == ValidationMode.Error;
+            }
 
 
-			public bool OnValidationError(string errorMessage)
-			{
-				switch (_app.GetValidationMode())
-				{
-					case ValidationMode.Ignore:
-						return true;
-					case ValidationMode.Warn:
-						_app.ShowValidationWarning(errorMessage);
-						return true;
-					case ValidationMode.Error:
-						return false;
-					default:
-						throw new Exception("Unexpected Validation mode!");
-				}
+            public bool OnValidationError(string errorMessage)
+            {
+                switch (_app.GetValidationMode())
+                {
+                    case ValidationMode.Ignore:
+                        return true;
+                    case ValidationMode.Warn:
+                        _app.ShowValidationWarning(errorMessage);
+                        return true;
+                    case ValidationMode.Error:
+                        return false;
+                    default:
+                        throw new Exception("Unexpected Validation mode!");
+                }
 
-			}
-		}
+            }
+        }
 #endif
-		private void ShowValidationWarning(string error)
-		{
-			App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, LocaleManager.LocalizedAppContext.GetString(Resource.String.CertificateWarning, error), MessageSeverity.Warning);
-		}
+        private void ShowValidationWarning(string error)
+        {
+            App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, LocaleManager.LocalizedAppContext.GetString(Resource.String.CertificateWarning, error), MessageSeverity.Warning);
+        }
 
 
-		public enum ValidationMode
-		{
-			Ignore, Warn, Error
-		}
+        public enum ValidationMode
+        {
+            Ignore, Warn, Error
+        }
 
 
-		internal void OnTerminate()
+        internal void OnTerminate()
         {
 
             _openDatabases.Clear();
             _currentDatabase = null;
-            
+
             if (FileDbHelper != null && FileDbHelper.IsOpen())
             {
                 FileDbHelper.Close();
@@ -1176,11 +1176,11 @@ namespace keepass2android
             }
 #endif
 #if !EXCLUDE_TWOFISH
-			CipherPool.GlobalPool.AddCipher(new TwofishCipherEngine());
+            CipherPool.GlobalPool.AddCipher(new TwofishCipherEngine());
 #endif
         }
 
-        
+
         public Database CreateNewDatabase(bool makeCurrent)
         {
             Database newDatabase = new Database(new DrawableFactory(), this);
@@ -1190,123 +1190,123 @@ namespace keepass2android
             return newDatabase;
         }
 
-		internal void ShowToast(string message, MessageSeverity severity)
-		{
-			App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, message, severity);
-		}
+        internal void ShowToast(string message, MessageSeverity severity)
+        {
+            App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, message, severity);
+        }
 
-		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
-		{
-			var errorMessage = GetErrorMessageForFileStorageException(e);
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotSaveToRemote, errorMessage), MessageSeverity.Error);
-		}
+        public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception e)
+        {
+            var errorMessage = GetErrorMessageForFileStorageException(e);
+            ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotSaveToRemote, errorMessage), MessageSeverity.Error);
+        }
 
-		private string GetErrorMessageForFileStorageException(Exception e)
+        private string GetErrorMessageForFileStorageException(Exception e)
         {
             var errorMessage = Util.GetErrorMessage(e);
             if (e is OfflineModeException)
-				errorMessage = GetResourceString(UiStringKey.InOfflineMode);
-		    if (e is DocumentAccessRevokedException)
-		        errorMessage = GetResourceString(UiStringKey.DocumentAccessRevoked);
+                errorMessage = GetResourceString(UiStringKey.InOfflineMode);
+            if (e is DocumentAccessRevokedException)
+                errorMessage = GetResourceString(UiStringKey.DocumentAccessRevoked);
 
             return errorMessage;
-		}
+        }
 
 
         public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
-		{
-			var errorMessage = GetErrorMessageForFileStorageException(ex);
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage), MessageSeverity.Error);
-		}
+        {
+            var errorMessage = GetErrorMessageForFileStorageException(ex);
+            ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.CouldNotLoadFromRemote, errorMessage), MessageSeverity.Error);
+        }
 
-		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
-		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad, 
-				new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file) }), MessageSeverity.Info);
-		}
+        public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
+        {
+            ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad,
+                new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file) }), MessageSeverity.Info);
+        }
 
-		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
-		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedRemoteFileOnLoad), MessageSeverity.Warning);
-		}
+        public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
+        {
+            ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedRemoteFileOnLoad), MessageSeverity.Warning);
+        }
 
-		public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
-		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.NotifyOpenFromLocalDueToConflict), MessageSeverity.Info);
-		}
+        public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
+        {
+            ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.NotifyOpenFromLocalDueToConflict), MessageSeverity.Info);
+        }
 
-		public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
-		{
-			ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.LoadedFromRemoteInSync), MessageSeverity.Info);
-		}
+        public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
+        {
+            ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.LoadedFromRemoteInSync), MessageSeverity.Info);
+        }
 
-		public void ClearOfflineCache()
-		{
-			new CachingFileStorage(new LocalFileStorage(this), LocaleManager.LocalizedAppContext, this).ClearCache();
-		}
+        public void ClearOfflineCache()
+        {
+            new CachingFileStorage(new LocalFileStorage(this), LocaleManager.LocalizedAppContext, this).ClearCache();
+        }
 
-		public IFileStorage GetFileStorage(string protocolId)
-		{
-			return GetFileStorage(new IOConnectionInfo() {Path = protocolId + "://"});
-		}
+        public IFileStorage GetFileStorage(string protocolId)
+        {
+            return GetFileStorage(new IOConnectionInfo() { Path = protocolId + "://" });
+        }
 
-		/// <summary>
-		/// returns a file storage object to be used when accessing the auxiliary OTP file
-		/// </summary>
-		/// The reason why this requires a different file storage is the different caching behavior.
-		public IFileStorage GetOtpAuxFileStorage(IOConnectionInfo iocInfo)
-		{
+        /// <summary>
+        /// returns a file storage object to be used when accessing the auxiliary OTP file
+        /// </summary>
+        /// The reason why this requires a different file storage is the different caching behavior.
+        public IFileStorage GetOtpAuxFileStorage(IOConnectionInfo iocInfo)
+        {
 
-			if (iocInfo.IsLocalFile())
-				return new LocalFileStorage(this);
-			else
-			{
-				IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
+            if (iocInfo.IsLocalFile())
+                return new LocalFileStorage(this);
+            else
+            {
+                IFileStorage innerFileStorage = GetCloudFileStorage(iocInfo);
 
-				
-				if (DatabaseCacheEnabled)
-				{
-					return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this));
-				}
-				else
-				{
-					return innerFileStorage;
-				}
-			}
-		}
 
-		private static bool DatabaseCacheEnabled
-		{
-			get
-			{
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
-				bool cacheEnabled = prefs.GetBoolean(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.UseOfflineCache_key),
+                if (DatabaseCacheEnabled)
+                {
+                    return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this));
+                }
+                else
+                {
+                    return innerFileStorage;
+                }
+            }
+        }
+
+        private static bool DatabaseCacheEnabled
+        {
+            get
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                bool cacheEnabled = prefs.GetBoolean(LocaleManager.LocalizedAppContext.Resources.GetString(Resource.String.UseOfflineCache_key),
 #if NoNet
 					false
 #else
-					true
+                    true
 #endif
-				    );
-				return cacheEnabled;
-			}
-		}
+                    );
+                return cacheEnabled;
+            }
+        }
 
-		public bool OfflineModePreference
-		{
-			get
-			{
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext); 
-				return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.OfflineMode_key), false);
-			}
-			set
-			{
-				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
-				ISharedPreferencesEditor edit = prefs.Edit();
-				edit.PutBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.OfflineMode_key), value);
-				edit.Commit();
+        public bool OfflineModePreference
+        {
+            get
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                return prefs.GetBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.OfflineMode_key), false);
+            }
+            set
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext);
+                ISharedPreferencesEditor edit = prefs.Edit();
+                edit.PutBoolean(LocaleManager.LocalizedAppContext.GetString(Resource.String.OfflineMode_key), value);
+                edit.Commit();
 
-			}
-		}
+            }
+        }
 
 
         public bool SyncInBackgroundPreference
@@ -1337,101 +1337,101 @@ namespace keepass2android
         /// true if the app is used in offline mode
         /// </summary>
         public bool OfflineMode
-		{
-			get; set;
-		}
+        {
+            get; set;
+        }
 
-		/// <summary>
-		/// When opening an activity after this time, we should close the database as it timed out.
-		/// </summary>
+        /// <summary>
+        /// When opening an activity after this time, we should close the database as it timed out.
+        /// </summary>
         public DateTime TimeoutTime { get; set; }
 
         public void OnScreenOff()
-		{
-			if (PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
-											 .GetBoolean(
-												LocaleManager.LocalizedAppContext.GetString(Resource.String.LockWhenScreenOff_key),
-												false))
-			{
-				App.Kp2a.Lock();
-			}
-		}
+        {
+            if (PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
+                                             .GetBoolean(
+                                                LocaleManager.LocalizedAppContext.GetString(Resource.String.LockWhenScreenOff_key),
+                                                false))
+            {
+                App.Kp2a.Lock();
+            }
+        }
 
-	    public Database TryGetDatabase(IOConnectionInfo dbIoc)
-	    {
-	        foreach (Database db in OpenDatabases)
-	        {
-	            if (db.Ioc.IsSameFileAs(dbIoc))
-	                return db;
-	        }
-	        return null;
-	    }
+        public Database TryGetDatabase(IOConnectionInfo dbIoc)
+        {
+            foreach (Database db in OpenDatabases)
+            {
+                if (db.Ioc.IsSameFileAs(dbIoc))
+                    return db;
+            }
+            return null;
+        }
 
-	    public Database GetDatabase(IOConnectionInfo dbIoc)
-	    {
-	        Database result = TryGetDatabase(dbIoc);
+        public Database GetDatabase(IOConnectionInfo dbIoc)
+        {
+            Database result = TryGetDatabase(dbIoc);
             if (result == null)
-	            throw new Exception("Database not found for dbIoc!");
-	        return result;
-	    }
+                throw new Exception("Database not found for dbIoc!");
+            return result;
+        }
 
-	    public Database GetDatabase(string databaseId)
-	    {
-	        foreach (Database db in OpenDatabases)
-	        {
-	            if (IoUtil.IocAsHexString(db.Ioc) == databaseId)
-	                return db;
-	        }
-	        throw new Exception("Database not found for databaseId " + databaseId + "!");
+        public Database GetDatabase(string databaseId)
+        {
+            foreach (Database db in OpenDatabases)
+            {
+                if (IoUtil.IocAsHexString(db.Ioc) == databaseId)
+                    return db;
+            }
+            throw new Exception("Database not found for databaseId " + databaseId + "!");
         }
 
         public PwGroup FindGroup(PwUuid uuid)
-	    {
-	        foreach (Database db in OpenDatabases)
-	        {
-	            PwGroup result;
-	            if (db.GroupsById.TryGetValue(uuid, out result))
-	                return result;
-	        }
-	        return null;
-	    }
-	    public IStructureItem FindStructureItem(PwUuid uuid)
-	    {
-	        
-	        foreach (Database db in OpenDatabases)
-	        {
-	            PwGroup resultGroup;
-                if (db.GroupsById.TryGetValue(uuid, out resultGroup))
-	                return resultGroup;
-	            PwEntry resultEntry;
-	            if (db.EntriesById.TryGetValue(uuid, out resultEntry))
-	                return resultEntry;
+        {
+            foreach (Database db in OpenDatabases)
+            {
+                PwGroup result;
+                if (db.GroupsById.TryGetValue(uuid, out result))
+                    return result;
             }
-	        return null;
-	    }
+            return null;
+        }
+        public IStructureItem FindStructureItem(PwUuid uuid)
+        {
 
-	    public bool TrySelectCurrentDb(IOConnectionInfo ioConnection)
-	    {
-	        var matchingOpenDb = App.Kp2a.OpenDatabases.FirstOrDefault(db => db.Ioc.IsSameFileAs(ioConnection));
-	        if (matchingOpenDb != null)
-	        {
-	            CurrentDb = matchingOpenDb;
-	            return true;
+            foreach (Database db in OpenDatabases)
+            {
+                PwGroup resultGroup;
+                if (db.GroupsById.TryGetValue(uuid, out resultGroup))
+                    return resultGroup;
+                PwEntry resultEntry;
+                if (db.EntriesById.TryGetValue(uuid, out resultEntry))
+                    return resultEntry;
+            }
+            return null;
+        }
+
+        public bool TrySelectCurrentDb(IOConnectionInfo ioConnection)
+        {
+            var matchingOpenDb = App.Kp2a.OpenDatabases.FirstOrDefault(db => db.Ioc.IsSameFileAs(ioConnection));
+            if (matchingOpenDb != null)
+            {
+                CurrentDb = matchingOpenDb;
+                return true;
             }
             return false;
-	        
-	    }
 
-	    public Database FindDatabaseForElement(IStructureItem element)
-	    {
-	        var db = TryFindDatabaseForElement(element);
+        }
+
+        public Database FindDatabaseForElement(IStructureItem element)
+        {
+            var db = TryFindDatabaseForElement(element);
             if (db == null)
                 throw new Exception($"Database element {element.Uuid} not found in any of {OpenDatabases.Count()} databases!");
-	        return db;
-	    }
+            return db;
+        }
 
-	    public Database TryFindDatabaseForElement(IStructureItem element)
-	    {
+        public Database TryFindDatabaseForElement(IStructureItem element)
+        {
             try
             {
                 foreach (var db in OpenDatabases)
@@ -1448,38 +1448,38 @@ namespace keepass2android
                 Kp2aLog.LogUnexpectedError(e);
             }
             return null;
-	    }
+        }
 
-	    public void RegisterChildDatabase(IOConnectionInfo ioc)
-	    {
-	        _childDatabases.Add(ioc);
-	    }
+        public void RegisterChildDatabase(IOConnectionInfo ioc)
+        {
+            _childDatabases.Add(ioc);
+        }
 
-	    public bool IsChildDatabase(Database db)
-	    {
-	        return _childDatabases.Any(ioc => ioc.IsSameFileAs(db.Ioc));
-	    }
+        public bool IsChildDatabase(Database db)
+        {
+            return _childDatabases.Any(ioc => ioc.IsSameFileAs(db.Ioc));
+        }
 
-	    public string GetStorageMainTypeDisplayName(string protocolId)
-	    {
-	        var parts = protocolId.Split("_");
-	        return GetResourceString("filestoragename_" + parts[0]);
+        public string GetStorageMainTypeDisplayName(string protocolId)
+        {
+            var parts = protocolId.Split("_");
+            return GetResourceString("filestoragename_" + parts[0]);
 
-	    }
+        }
 
-	    public string GetStorageDisplayName(string protocolId)
-	    {
-	        if (protocolId.Contains("_"))
-	        {
-	            var parts = protocolId.Split("_");
-	            return GetResourceString("filestoragename_" + parts[0]) + " (" +
-	                   GetResourceString("filestoragename_" + protocolId) + ")";
+        public string GetStorageDisplayName(string protocolId)
+        {
+            if (protocolId.Contains("_"))
+            {
+                var parts = protocolId.Split("_");
+                return GetResourceString("filestoragename_" + parts[0]) + " (" +
+                       GetResourceString("filestoragename_" + protocolId) + ")";
 
-	        }
+            }
             else
-	        return GetResourceString("filestoragename_" + protocolId);
+                return GetResourceString("filestoragename_" + protocolId);
 
-	    }
+        }
 
         public void ShowMessage(Context ctx, int resourceId, MessageSeverity severity)
         {
@@ -1492,7 +1492,7 @@ namespace keepass2android
             {
                 return;
             }
-            MessagePresenter.ShowMessage(new Message{Text=text, Severity = severity});
+            MessagePresenter.ShowMessage(new Message { Text = text, Severity = severity });
         }
 
         public IMessagePresenter MessagePresenter
@@ -1502,7 +1502,7 @@ namespace keepass2android
             {
                 if (value == null)
                 {
-					// Presenter is being reset. Use a NonePresenter to remember pending messages
+                    // Presenter is being reset. Use a NonePresenter to remember pending messages
                     value = new NonePresenter();
                 }
                 // transfer pending messages to new presenter
@@ -1518,35 +1518,35 @@ namespace keepass2android
                 }
                 _messagePresenter = value;
             }
-            
+
         }
 
 
-		/// <summary>
-		/// Returns the chunk size to be used for WebDav chunked uploads. 0 if chunked uploads are disabled.
-		/// </summary>
-		/// Note that NextCloud implements a non-standard chunked upload mechanism which is not compatible to other WebDav servers.
-		/// This is why this setting is disabled by default.
-		public int WebDavChunkedUploadSize
-		{
-			get
-			{
-				try
-				{
-					if (!PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
-						.GetBoolean("WebDavChunkedUploadEnabled", false))
-						return 0;
-					return int.Parse(PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
-					.GetString("WebDavChunkedUploadSize_str",
-						LocaleManager.LocalizedAppContext.Resources
-							.GetInteger(Resource.Integer.WebDavChunkedUploadSize_default).ToString()));
-				}
-				catch
-				{
-					return 0;
-				}
-			}
-		}
+        /// <summary>
+        /// Returns the chunk size to be used for WebDav chunked uploads. 0 if chunked uploads are disabled.
+        /// </summary>
+        /// Note that NextCloud implements a non-standard chunked upload mechanism which is not compatible to other WebDav servers.
+        /// This is why this setting is disabled by default.
+        public int WebDavChunkedUploadSize
+        {
+            get
+            {
+                try
+                {
+                    if (!PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
+                        .GetBoolean("WebDavChunkedUploadEnabled", false))
+                        return 0;
+                    return int.Parse(PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
+                    .GetString("WebDavChunkedUploadSize_str",
+                        LocaleManager.LocalizedAppContext.Resources
+                            .GetInteger(Resource.Integer.WebDavChunkedUploadSize_default).ToString()));
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
 
         public Context ActiveContext
         {
@@ -1575,19 +1575,19 @@ namespace keepass2android
             try
             {
                 OperationRunner.Instance.CancelAll();
-				
+
             }
-			finally
+            finally
             {
-				DatabasesBackgroundModificationLock.ExitReadLock();
+                DatabasesBackgroundModificationLock.ExitReadLock();
             }
 
             return true;
-            
+
         }
 
-		private readonly Dictionary<int, List<ActionOnOperationFinished>> _pendingActionsForContextInstances = new();
-		private readonly object _pendingActionsForContextInstancesLock = new();
+        private readonly Dictionary<int, List<ActionOnOperationFinished>> _pendingActionsForContextInstances = new();
+        private readonly object _pendingActionsForContextInstancesLock = new();
         private Handler _uiThreadHandler;
 
         public void RegisterPendingActionForContextInstance(int contextInstanceId,
@@ -1636,40 +1636,40 @@ namespace keepass2android
 #if NoNet
 	[Application(Debuggable=false, Label=AppNames.AppName)]
 #else
-#if RELEASE 
+#if RELEASE
 	[Application(Debuggable=false, Label=AppNames.AppName)] 
 #else
     [Application(Debuggable = true, Label = AppNames.AppName)]
 #endif
 #endif
-	public class App : Application, ILifecycleObserver
+    public class App : Application, ILifecycleObserver
     {
 
-		public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
-		{
-			base.OnConfigurationChanged(newConfig);
-			LocaleManager.setLocale(this);
-		}
+        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+            LocaleManager.setLocale(this);
+        }
 
-		public const string NotificationChannelIdUnlocked = "channel_db_unlocked_5";
-	    public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_5";
-	    public const string NotificationChannelIdEntry = "channel_db_entry_5";
+        public const string NotificationChannelIdUnlocked = "channel_db_unlocked_5";
+        public const string NotificationChannelIdQuicklocked = "channel_db_quicklocked_5";
+        public const string NotificationChannelIdEntry = "channel_db_entry_5";
 
-        public App (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-		}
+        public App(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+        }
 
         public static readonly Kp2aApp Kp2a = new Kp2aApp();
 
-	    private static void InitThaiCalendarCrashFix()
-	    {
-	        var localeIdentifier = Java.Util.Locale.Default.ToString();
-	        if (localeIdentifier == "th_TH")
-	        {
-	            new System.Globalization.ThaiBuddhistCalendar();
-	        }
-	    }
+        private static void InitThaiCalendarCrashFix()
+        {
+            var localeIdentifier = Java.Util.Locale.Default.ToString();
+            if (localeIdentifier == "th_TH")
+            {
+                new System.Globalization.ThaiBuddhistCalendar();
+            }
+        }
 
         public override void OnCreate()
         {
@@ -1678,24 +1678,24 @@ namespace keepass2android
             base.OnCreate();
             ProcessLifecycleOwner.Get().Lifecycle.AddObserver(this);
 
-            Kp2aLog.Log("Creating application "+PackageName+". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
+            Kp2aLog.Log("Creating application " + PackageName + ". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 
-		    CreateNotificationChannels();
+            CreateNotificationChannels();
 
             Kp2a.OnCreate(this);
-			AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
+            AndroidEnvironment.UnhandledExceptionRaiser += MyApp_UnhandledExceptionHandler;
 
-		    IntentFilter intentFilter = new IntentFilter();
-		    intentFilter.AddAction(Intents.LockDatabase);
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.AddAction(Intents.LockDatabase);
             intentFilter.AddAction(Intents.LockDatabaseByTimeout);
-			intentFilter.AddAction(Intents.CloseDatabase);
-			ContextCompat.RegisterReceiver(Context, broadcastReceiver, intentFilter, (int)ReceiverFlags.Exported);
-		}
+            intentFilter.AddAction(Intents.CloseDatabase);
+            ContextCompat.RegisterReceiver(Context, broadcastReceiver, intentFilter, (int)ReceiverFlags.Exported);
+        }
 
-	    private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
+        private ApplicationBroadcastReceiver broadcastReceiver = new ApplicationBroadcastReceiver();
 
         [Lifecycle.Event.OnStop]
-		[Export]
+        [Export]
         public void OnAppBackgrounded()
         {
             Kp2aLog.Log("Going to background");
@@ -1719,64 +1719,65 @@ namespace keepass2android
         }
 
         private void CreateNotificationChannels()
-	    {
-	        if ((int)Build.VERSION.SdkInt < 26)
-	            return;
-	        NotificationManager mNotificationManager =
-	            (NotificationManager)GetSystemService(Context.NotificationService);
+        {
+            if ((int)Build.VERSION.SdkInt < 26)
+                return;
+            NotificationManager mNotificationManager =
+                (NotificationManager)GetSystemService(Context.NotificationService);
 
-	        {
-	            string name = GetString(Resource.String.DbUnlockedChannel_name);
-	            string desc = GetString(Resource.String.DbUnlockedChannel_desc);
-	            NotificationChannel mChannel =
-	                new NotificationChannel(NotificationChannelIdUnlocked, name, NotificationImportance.Min);
-	            mChannel.Description = desc;
-	            mChannel.EnableLights(false);
-	            mChannel.EnableVibration(false);
-	            mChannel.SetSound(null, null);
-	            mChannel.SetShowBadge(false);
-	            mNotificationManager.CreateNotificationChannel(mChannel);
-	        }
-
-	        {
-	            string name = GetString(Resource.String.DbQuicklockedChannel_name);
-	            string desc = GetString(Resource.String.DbQuicklockedChannel_desc);
-	            NotificationChannel mChannel =
-	                new NotificationChannel(NotificationChannelIdQuicklocked, name, NotificationImportance.Min);
-	            mChannel.Description = desc;
-	            mChannel.EnableLights(false);
-	            mChannel.EnableVibration(false);
-	            mChannel.SetSound(null, null);
-	            mChannel.SetShowBadge(false);
+            {
+                string name = GetString(Resource.String.DbUnlockedChannel_name);
+                string desc = GetString(Resource.String.DbUnlockedChannel_desc);
+                NotificationChannel mChannel =
+                    new NotificationChannel(NotificationChannelIdUnlocked, name, NotificationImportance.Min);
+                mChannel.Description = desc;
+                mChannel.EnableLights(false);
+                mChannel.EnableVibration(false);
+                mChannel.SetSound(null, null);
+                mChannel.SetShowBadge(false);
                 mNotificationManager.CreateNotificationChannel(mChannel);
-	        }
+            }
 
-	        {
-	            string name = GetString(Resource.String.EntryChannel_name);
-	            string desc = GetString(Resource.String.EntryChannel_desc);
-	            NotificationChannel mChannel =
-	                new NotificationChannel(NotificationChannelIdEntry, name, NotificationImportance.Default);
-	            mChannel.Description = desc;
-	            mChannel.EnableLights(false);
-	            mChannel.EnableVibration(false);
-	            mChannel.SetSound(null, null);
-	            mChannel.SetShowBadge(false);
+            {
+                string name = GetString(Resource.String.DbQuicklockedChannel_name);
+                string desc = GetString(Resource.String.DbQuicklockedChannel_desc);
+                NotificationChannel mChannel =
+                    new NotificationChannel(NotificationChannelIdQuicklocked, name, NotificationImportance.Min);
+                mChannel.Description = desc;
+                mChannel.EnableLights(false);
+                mChannel.EnableVibration(false);
+                mChannel.SetSound(null, null);
+                mChannel.SetShowBadge(false);
                 mNotificationManager.CreateNotificationChannel(mChannel);
-	        }
+            }
+
+            {
+                string name = GetString(Resource.String.EntryChannel_name);
+                string desc = GetString(Resource.String.EntryChannel_desc);
+                NotificationChannel mChannel =
+                    new NotificationChannel(NotificationChannelIdEntry, name, NotificationImportance.Default);
+                mChannel.Description = desc;
+                mChannel.EnableLights(false);
+                mChannel.EnableVibration(false);
+                mChannel.SetSound(null, null);
+                mChannel.SetShowBadge(false);
+                mNotificationManager.CreateNotificationChannel(mChannel);
+            }
         }
 
 
-        public override void OnTerminate() {
-			base.OnTerminate();
-			Kp2aLog.Log("Terminating application");
+        public override void OnTerminate()
+        {
+            base.OnTerminate();
+            Kp2aLog.Log("Terminating application");
             Kp2a.OnTerminate();
             Context.UnregisterReceiver(broadcastReceiver);
-		}
+        }
 
-		private void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
-		{
-			Kp2aLog.LogUnexpectedError(e.Exception);
-		}
+        private void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e)
+        {
+            Kp2aLog.LogUnexpectedError(e.Exception);
+        }
     }
 
 }

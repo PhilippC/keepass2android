@@ -71,7 +71,7 @@ namespace keepass2android
                 {
                     Kp2aLog.Log("ShowIMEPicker");
                     Keepass2android.Kbbridge.ImeSwitcher.SwitchToKeyboard(this, Kp2aInputMethodName, false);
-                    Kp2aLog.Log( "ShowIMEPicker done.");
+                    Kp2aLog.Log("ShowIMEPicker done.");
                 }, 1000);
                 var timeToWait = TimeSpan.FromMilliseconds(500);
                 _timer = new Timer(obj =>

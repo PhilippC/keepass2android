@@ -23,29 +23,29 @@ using System.Text;
 
 namespace KeePassLib.Keys
 {
-	public enum KeyValidationType
-	{
-		MasterPassword = 0
-	}
+    public enum KeyValidationType
+    {
+        MasterPassword = 0
+    }
 
-	public abstract class KeyValidator
-	{
-		/// <summary>
-		/// Name of your key validator (should be unique).
-		/// </summary>
-		public abstract string Name
-		{
-			get;
-		}
+    public abstract class KeyValidator
+    {
+        /// <summary>
+        /// Name of your key validator (should be unique).
+        /// </summary>
+        public abstract string Name
+        {
+            get;
+        }
 
-		/// <summary>
-		/// Validate a key.
-		/// </summary>
-		/// <param name="strKey">Key to validate.</param>
-		/// <param name="t">Type of the validation to perform.</param>
-		/// <returns>Returns <c>null</c>, if the validation is successful.
-		/// If there's a problem with the key, the returned string describes
-		/// the problem.</returns>
-		public abstract string Validate(string strKey, KeyValidationType t);
-	}
+        /// <summary>
+        /// Validate a key.
+        /// </summary>
+        /// <param name="strKey">Key to validate.</param>
+        /// <param name="t">Type of the validation to perform.</param>
+        /// <returns>Returns <c>null</c>, if the validation is successful.
+        /// If there's a problem with the key, the returned string describes
+        /// the problem.</returns>
+        public abstract string Validate(string strKey, KeyValidationType t);
+    }
 }

@@ -111,7 +111,7 @@ namespace KeePassLib
                 // Update counters for a better state guess
                 if (slStatus != null)
                 {
-                    ulong uRemRounds = (ulong) (lTerms.Count - iTerm);
+                    ulong uRemRounds = (ulong)(lTerms.Count - iTerm);
                     uTotalEntries = uCurEntries + (uRemRounds *
                                                    pg.GetEntriesCount(true));
                 }
@@ -200,11 +200,11 @@ namespace KeePassLib
             EntryHandler eh = null;
             if (sp.SearchString.Length <= 0) // Report all
             {
-                eh = delegate(PwEntry pe)
+                eh = delegate (PwEntry pe)
                 {
                     if (slStatus != null)
                     {
-                        if (!slStatus.SetProgress((uint) ((uLocalCurEntries *
+                        if (!slStatus.SetProgress((uint)((uLocalCurEntries *
                                                            100UL) / uTotalEntries))) return false;
                         ++uLocalCurEntries;
                     }
@@ -220,11 +220,11 @@ namespace KeePassLib
             }
             else
             {
-                eh = delegate(PwEntry pe)
+                eh = delegate (PwEntry pe)
                 {
                     if (slStatus != null)
                     {
-                        if (!slStatus.SetProgress((uint) ((uLocalCurEntries *
+                        if (!slStatus.SetProgress((uint)((uLocalCurEntries *
                                                            100UL) / uTotalEntries))) return false;
                         ++uLocalCurEntries;
                     }

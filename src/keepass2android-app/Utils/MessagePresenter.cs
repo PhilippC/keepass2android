@@ -55,12 +55,12 @@ namespace keepass2android.Utils
         public List<Message> PendingMessages => new();
     }
 
-    internal class ChainedSnackbarPresenter: IMessagePresenter
+    internal class ChainedSnackbarPresenter : IMessagePresenter
     {
         internal ChainedSnackbarPresenter(View anchorView)
         {
             this.AnchorView = anchorView;
-            
+
         }
 
         private DateTime nextSnackbarShowTime = DateTime.Now;
@@ -91,7 +91,7 @@ namespace keepass2android.Utils
                         Kp2aLog.Log("Currently cannot show message");
                     }
                 }
-                
+
                 queuedMessages.Add(message);
 
                 return;

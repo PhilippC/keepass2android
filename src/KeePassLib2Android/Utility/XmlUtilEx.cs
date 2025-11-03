@@ -32,183 +32,183 @@ using KeePassLib.Serialization;
 
 namespace KeePassLib.Utility
 {
-	public static class XmlUtilEx
-	{
-		public static XmlDocument CreateXmlDocument()
-		{
-			XmlDocument d = new XmlDocument();
+    public static class XmlUtilEx
+    {
+        public static XmlDocument CreateXmlDocument()
+        {
+            XmlDocument d = new XmlDocument();
 
-			// .NET 4.5.2 and newer do not resolve external XML resources
-			// by default; for older .NET versions, we explicitly
-			// prevent resolving
-			d.XmlResolver = null; // Default in old .NET: XmlUrlResolver object
+            // .NET 4.5.2 and newer do not resolve external XML resources
+            // by default; for older .NET versions, we explicitly
+            // prevent resolving
+            d.XmlResolver = null; // Default in old .NET: XmlUrlResolver object
 
-			return d;
-		}
+            return d;
+        }
 
-		public static XmlReaderSettings CreateXmlReaderSettings()
-		{
-			XmlReaderSettings xrs = new XmlReaderSettings();
+        public static XmlReaderSettings CreateXmlReaderSettings()
+        {
+            XmlReaderSettings xrs = new XmlReaderSettings();
 
-			xrs.CloseInput = false;
-			xrs.IgnoreComments = true;
-			xrs.IgnoreProcessingInstructions = true;
-			xrs.IgnoreWhitespace = true;
+            xrs.CloseInput = false;
+            xrs.IgnoreComments = true;
+            xrs.IgnoreProcessingInstructions = true;
+            xrs.IgnoreWhitespace = true;
 
 #if KeePassUAP
 			xrs.DtdProcessing = DtdProcessing.Prohibit;
 #else
-			// Also see PrepMonoDev.sh script
-			xrs.ProhibitDtd = true; // Obsolete in .NET 4, but still there
-			// xrs.DtdProcessing = DtdProcessing.Prohibit; // .NET 4 only
+            // Also see PrepMonoDev.sh script
+            xrs.ProhibitDtd = true; // Obsolete in .NET 4, but still there
+                                    // xrs.DtdProcessing = DtdProcessing.Prohibit; // .NET 4 only
 #endif
 
-			xrs.ValidationType = ValidationType.None;
-			xrs.XmlResolver = null;
+            xrs.ValidationType = ValidationType.None;
+            xrs.XmlResolver = null;
 
-			return xrs;
-		}
+            return xrs;
+        }
 
-		public static XmlReader CreateXmlReader(Stream s)
-		{
-			if(s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
+        public static XmlReader CreateXmlReader(Stream s)
+        {
+            if (s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
 
-			return XmlReader.Create(s, CreateXmlReaderSettings());
-		}
+            return XmlReader.Create(s, CreateXmlReaderSettings());
+        }
 
-		public static XmlWriterSettings CreateXmlWriterSettings()
-		{
-			XmlWriterSettings xws = new XmlWriterSettings();
+        public static XmlWriterSettings CreateXmlWriterSettings()
+        {
+            XmlWriterSettings xws = new XmlWriterSettings();
 
-			xws.CloseOutput = false;
-			xws.Encoding = StrUtil.Utf8;
-			xws.Indent = true;
-			xws.IndentChars = "\t";
-			xws.NewLineOnAttributes = false;
+            xws.CloseOutput = false;
+            xws.Encoding = StrUtil.Utf8;
+            xws.Indent = true;
+            xws.IndentChars = "\t";
+            xws.NewLineOnAttributes = false;
 
-			return xws;
-		}
+            return xws;
+        }
 
-		public static XmlWriter CreateXmlWriter(Stream s)
-		{
-			if(s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
+        public static XmlWriter CreateXmlWriter(Stream s)
+        {
+            if (s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
 
-			return XmlWriter.Create(s, CreateXmlWriterSettings());
-		}
+            return XmlWriter.Create(s, CreateXmlWriterSettings());
+        }
 
-		public static T Deserialize<T>(Stream s)
-		{
-			if(s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
+        public static T Deserialize<T>(Stream s)
+        {
+            if (s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
 
-			XmlSerializer xs = new XmlSerializer(typeof(T));
+            XmlSerializer xs = new XmlSerializer(typeof(T));
 
-			T t = default(T);
-			using(XmlReader xr = CreateXmlReader(s))
-			{
-				t = (T)xs.Deserialize(xr);
-			}
+            T t = default(T);
+            using (XmlReader xr = CreateXmlReader(s))
+            {
+                t = (T)xs.Deserialize(xr);
+            }
 
-			return t;
-		}
+            return t;
+        }
 
-		public static void Serialize<T>(Stream s, T t)
-		{
-			if(s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
+        public static void Serialize<T>(Stream s, T t)
+        {
+            if (s == null) { Debug.Assert(false); throw new ArgumentNullException("s"); }
 
-			XmlSerializer xs = new XmlSerializer(typeof(T));
-			using(XmlWriter xw = CreateXmlWriter(s))
-			{
-				xs.Serialize(xw, t);
-			}
-		}
+            XmlSerializer xs = new XmlSerializer(typeof(T));
+            using (XmlWriter xw = CreateXmlWriter(s))
+            {
+                xs.Serialize(xw, t);
+            }
+        }
 
-		internal static void Serialize<T>(Stream s, T t, bool bRemoveXsdXsi)
-		{
-			// One way to remove the "xsd" and "xsi" namespace declarations
-			// is to use an XmlSerializerNamespaces object containing only
-			// a ""/"" pair; this seems to work, but Microsoft's
-			// documentation explicitly states that it isn't supported:
-			// https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlserializernamespaces
-			// There are other, more complex ways, but these either rely on
-			// undocumented details or require the type T to be modified.
+        internal static void Serialize<T>(Stream s, T t, bool bRemoveXsdXsi)
+        {
+            // One way to remove the "xsd" and "xsi" namespace declarations
+            // is to use an XmlSerializerNamespaces object containing only
+            // a ""/"" pair; this seems to work, but Microsoft's
+            // documentation explicitly states that it isn't supported:
+            // https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlserializernamespaces
+            // There are other, more complex ways, but these either rely on
+            // undocumented details or require the type T to be modified.
 
-			string str;
-			using(MemoryStream ms = new MemoryStream())
-			{
-				Serialize<T>(ms, t);
+            string str;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Serialize<T>(ms, t);
 
-				str = StrUtil.Utf8.GetString(ms.ToArray());
-			}
+                str = StrUtil.Utf8.GetString(ms.ToArray());
+            }
 
-			Func<string, string, bool> fFindPfx = delegate(string strText, string strSub)
-			{
-				int i = strText.IndexOf(strSub, StringComparison.Ordinal);
-				if(i < 0) return false;
-				if(i == 0) return true;
-				return char.IsWhiteSpace(strText[i - 1]);
-			};
+            Func<string, string, bool> fFindPfx = delegate (string strText, string strSub)
+            {
+                int i = strText.IndexOf(strSub, StringComparison.Ordinal);
+                if (i < 0) return false;
+                if (i == 0) return true;
+                return char.IsWhiteSpace(strText[i - 1]);
+            };
 
-			if(bRemoveXsdXsi)
-			{
-				if(!fFindPfx(str, "xsd:") && !fFindPfx(str, "xsi:"))
-				{
-					Debug.Assert(str.IndexOf("xmlns:xsd") > 0);
-					str = str.Replace(" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"", string.Empty);
-					Debug.Assert(str.IndexOf("xmlns:xsd") < 0);
+            if (bRemoveXsdXsi)
+            {
+                if (!fFindPfx(str, "xsd:") && !fFindPfx(str, "xsi:"))
+                {
+                    Debug.Assert(str.IndexOf("xmlns:xsd") > 0);
+                    str = str.Replace(" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"", string.Empty);
+                    Debug.Assert(str.IndexOf("xmlns:xsd") < 0);
 
-					Debug.Assert(str.IndexOf("xmlns:xsi") > 0);
-					str = str.Replace(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", string.Empty);
-					Debug.Assert(str.IndexOf("xmlns:xsi") < 0);
-				}
-				else { Debug.Assert(false); } // "xsd"/"xsi" decl. may be required
-			}
+                    Debug.Assert(str.IndexOf("xmlns:xsi") > 0);
+                    str = str.Replace(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", string.Empty);
+                    Debug.Assert(str.IndexOf("xmlns:xsi") < 0);
+                }
+                else { Debug.Assert(false); } // "xsd"/"xsi" decl. may be required
+            }
 
-			MemUtil.Write(s, StrUtil.Utf8.GetBytes(str));
-		}
+            MemUtil.Write(s, StrUtil.Utf8.GetBytes(str));
+        }
 
 #if DEBUG
-		internal static void ValidateXml(string strXml, bool bReplaceStdEntities)
-		{
-			if(strXml == null) throw new ArgumentNullException("strXml");
-			if(strXml.Length == 0) { Debug.Assert(false); return; }
+        internal static void ValidateXml(string strXml, bool bReplaceStdEntities)
+        {
+            if (strXml == null) throw new ArgumentNullException("strXml");
+            if (strXml.Length == 0) { Debug.Assert(false); return; }
 
-			string str = strXml;
+            string str = strXml;
 
-			if(bReplaceStdEntities)
-				str = str.Replace("&nbsp;", "&#160;");
+            if (bReplaceStdEntities)
+                str = str.Replace("&nbsp;", "&#160;");
 
-			XmlDocument d = new XmlDocument();
-			d.LoadXml(str);
-		}
+            XmlDocument d = new XmlDocument();
+            d.LoadXml(str);
+        }
 #endif
 
-		internal static XPathNodeIterator FindNodes(PwDatabase pd, string strXPath,
-			IStatusLogger sl, out XmlDocument xd)
-		{
-			if(pd == null) throw new ArgumentNullException("pd");
-			if(strXPath == null) { Debug.Assert(false); strXPath = string.Empty; }
+        internal static XPathNodeIterator FindNodes(PwDatabase pd, string strXPath,
+            IStatusLogger sl, out XmlDocument xd)
+        {
+            if (pd == null) throw new ArgumentNullException("pd");
+            if (strXPath == null) { Debug.Assert(false); strXPath = string.Empty; }
 
-			KdbxFile kdbx = new KdbxFile(pd);
+            KdbxFile kdbx = new KdbxFile(pd);
 
-			byte[] pbXml;
-			using(MemoryStream ms = new MemoryStream())
-			{
-				kdbx.Save(ms, null, KdbxFormat.PlainXml, sl);
-				pbXml = ms.ToArray();
-			}
-			string strXml = StrUtil.Utf8.GetString(pbXml);
+            byte[] pbXml;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                kdbx.Save(ms, null, KdbxFormat.PlainXml, sl);
+                pbXml = ms.ToArray();
+            }
+            string strXml = StrUtil.Utf8.GetString(pbXml);
 
-			xd = CreateXmlDocument();
-			xd.LoadXml(strXml);
+            xd = CreateXmlDocument();
+            xd.LoadXml(strXml);
 
-			XPathNavigator xpNav = xd.CreateNavigator();
-			return xpNav.Select(strXPath);
-			// XPathExpression xpExpr = xpNav.Compile(strXPath);
-			// xpExpr.SetContext(new XuXsltContext());
-			// return xpNav.Select(xpExpr);
-		}
+            XPathNavigator xpNav = xd.CreateNavigator();
+            return xpNav.Select(strXPath);
+            // XPathExpression xpExpr = xpNav.Compile(strXPath);
+            // xpExpr.SetContext(new XuXsltContext());
+            // return xpNav.Select(xpExpr);
+        }
 
-		/* private sealed class XuFnMatches : IXsltContextFunction
+        /* private sealed class XuFnMatches : IXsltContextFunction
 		{
 			private readonly XPathResultType[] m_vArgTypes = new XPathResultType[] {
 				XPathResultType.String, XPathResultType.String, XPathResultType.String
@@ -286,5 +286,5 @@ namespace KeePassLib.Utility
 				return null;
 			}
 		} */
-	}
+    }
 }

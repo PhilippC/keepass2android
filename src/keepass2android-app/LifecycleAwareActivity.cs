@@ -117,7 +117,7 @@ namespace keepass2android
         {
 
             base.OnCreate(bundle);
-            
+
             _instanceId = bundle?.GetInt(ID_KEY, InvalidId) ?? InvalidId;
             if (_instanceId == InvalidId)
             {
@@ -126,11 +126,11 @@ namespace keepass2android
 
             OnCreateListener?.Invoke(bundle);
 
-            Kp2aLog.Log(ClassName + ".OnCreate" + " " + ID + " (instance=" + _instanceId +")");
+            Kp2aLog.Log(ClassName + ".OnCreate" + " " + ID + " (instance=" + _instanceId + ")");
             Kp2aLog.Log(ClassName + ":apptask=" + Intent.GetStringExtra("KP2A_APP_TASK_TYPE") + " " + ID);
         }
 
-        
+
         protected override void OnDestroy()
         {
             base.OnDestroy();

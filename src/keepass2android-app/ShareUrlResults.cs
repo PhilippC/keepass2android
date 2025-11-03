@@ -37,32 +37,32 @@ namespace keepass2android
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else
 #if DEBUG
-	[MetaData("android.app.searchable", Resource = "@xml/searchable_debug")]
+    [MetaData("android.app.searchable", Resource = "@xml/searchable_debug")]
 #else
     [MetaData("android.app.searchable", Resource = "@xml/searchable")]
 #endif
 #endif
-	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
-	[IntentFilter(new[] { Intent.ActionSearch }, Categories = new[] { Intent.CategoryDefault })]
-	public class ShareUrlResults : GroupBaseActivity
-	{
+    [MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
+    [IntentFilter(new[] { Intent.ActionSearch }, Categories = new[] { Intent.CategoryDefault })]
+    public class ShareUrlResults : GroupBaseActivity
+    {
 
-		public ShareUrlResults (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
+        public ShareUrlResults(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
 
-		public ShareUrlResults()
-		{
-		}
+        }
 
-		public static void Launch(Activity act, SearchUrlTask task, ActivityLaunchMode launchMode)
-		{
-			Intent i = new Intent(act, typeof(ShareUrlResults));
-			task.ToIntent(i);
-		    launchMode.Launch(act, i);
-		}
+        public ShareUrlResults()
+        {
+        }
+
+        public static void Launch(Activity act, SearchUrlTask task, ActivityLaunchMode launchMode)
+        {
+            Intent i = new Intent(act, typeof(ShareUrlResults));
+            task.ToIntent(i);
+            launchMode.Launch(act, i);
+        }
 
         public static void Launch(Activity act, OpenSpecificEntryTask task, ActivityLaunchMode launchMode)
         {
@@ -77,7 +77,7 @@ namespace keepass2android
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
-		{
+        {
             //we don't want any background thread to update/reload the database while we're in this activity.
             if (!App.Kp2a.DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
             {
@@ -88,33 +88,33 @@ namespace keepass2android
 
             base.OnCreate(savedInstanceState);
 
-			//if user presses back to leave this activity:
-			SetResult(Result.Canceled);
-            
-		    UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
-		    UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
+            //if user presses back to leave this activity:
+            SetResult(Result.Canceled);
+
+            UpdateBottomBarElementVisibility(Resource.Id.select_other_entry, true);
+            UpdateBottomBarElementVisibility(Resource.Id.add_url_entry, true);
 
             if (App.Kp2a.DatabaseIsUnlocked)
-			{
+            {
                 Query();
-			}
+            }
             // else: LockCloseListActivity.OnResume will trigger a broadcast (LockDatabase) which will cause the activity to be finished.
-            
+
         }
 
         protected override void OnSaveInstanceState(Bundle outState)
-		{
-			base.OnSaveInstanceState(outState);
-			AppTask.ToBundle(outState);
-		}
+        {
+            base.OnSaveInstanceState(outState);
+            AppTask.ToBundle(outState);
+        }
 
-		private void Query()
+        private void Query()
         {
             bool canAutoReturnFromQuery = true;
             bool shouldAutoReturnFromQuery = true;
             try
             {
-				if (AppTask is SearchUrlTask searchUrlTask)
+                if (AppTask is SearchUrlTask searchUrlTask)
                 {
                     String searchUrl = searchUrlTask.UrlToSearchFor;
                     canAutoReturnFromQuery = searchUrlTask.AutoReturnFromQuery;
@@ -122,69 +122,71 @@ namespace keepass2android
                         .GetBoolean(GetString(Resource.String.AutoReturnFromQuery_key), true);
                     Group = GetSearchResultsForUrl(searchUrl);
                 }
-				else if (AppTask is OpenSpecificEntryTask openEntryTask)
+                else if (AppTask is OpenSpecificEntryTask openEntryTask)
                 {
                     Group = GetSearchResultsForUuid(openEntryTask.EntryUuid);
                 }
-                
-            } catch (Exception e)
-			{
-				App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
-				SetResult(Result.Canceled);
-				Finish();
-				return;
-			}
 
-			//if there is exactly one match: open the entry
-			if ((Group.Entries.Count() == 1) && canAutoReturnFromQuery && shouldAutoReturnFromQuery)
-			{
-				LaunchActivityForEntry(Group.Entries.Single(),0);
-				return;
-			}
+            }
+            catch (Exception e)
+            {
+                App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e), MessageSeverity.Error);
+                SetResult(Result.Canceled);
+                Finish();
+                return;
+            }
 
-			//show results:
-			if (Group == null || (!Group.Entries.Any()))
-			{
-				SetContentView(Resource.Layout.searchurlresults_empty);
-			} 
-			
-			SetGroupTitle();
+            //if there is exactly one match: open the entry
+            if ((Group.Entries.Count() == 1) && canAutoReturnFromQuery && shouldAutoReturnFromQuery)
+            {
+                LaunchActivityForEntry(Group.Entries.Single(), 0);
+                return;
+            }
+
+            //show results:
+            if (Group == null || (!Group.Entries.Any()))
+            {
+                SetContentView(Resource.Layout.searchurlresults_empty);
+            }
+
+            SetGroupTitle();
 
             FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
 
-			View selectOtherEntry = FindViewById (Resource.Id.select_other_entry);
+            View selectOtherEntry = FindViewById(Resource.Id.select_other_entry);
             View createUrlEntry = FindViewById(Resource.Id.add_url_entry);
 
             if (AppTask is OpenSpecificEntryTask)
             {
-                selectOtherEntry.Visibility =  ViewStates.Gone;
+                selectOtherEntry.Visibility = ViewStates.Gone;
                 createUrlEntry.Visibility = ViewStates.Gone;
             }
             else
             {
                 var searchUrlTask = AppTask as SearchUrlTask;
                 String searchUrl = searchUrlTask.UrlToSearchFor;
-                selectOtherEntry.Visibility =  ViewStates.Visible;
+                selectOtherEntry.Visibility = ViewStates.Visible;
 
                 SearchUrlTask newTask;
                 if (AppTask is SelectEntryTask currentSelectTask)
                 {
                     newTask = new SearchUrlTask() { AutoReturnFromQuery = false, UrlToSearchFor = searchUrl, ActivateKeyboard = currentSelectTask.ActivateKeyboard };
                     newTask.ShowUserNotifications = currentSelectTask.ShowUserNotifications;
-                    newTask.ActivateKeyboard = currentSelectTask.ActivateKeyboard;  
+                    newTask.ActivateKeyboard = currentSelectTask.ActivateKeyboard;
                     newTask.CopyTotpToClipboard = currentSelectTask.CopyTotpToClipboard;
                 }
                 else
                     newTask = new SearchUrlTask() { AutoReturnFromQuery = false, UrlToSearchFor = searchUrl, ActivateKeyboard = ActivationCondition.Never };
 
 
-                selectOtherEntry.Click += (sender, e) => {
+                selectOtherEntry.Click += (sender, e) =>
+                {
                     GroupActivity.Launch(this, newTask, new ActivityLaunchModeRequestCode(0));
 
                 };
 
 
-                
+
 
                 if (App.Kp2a.OpenDatabases.Any(db => db.CanWrite))
                 {
@@ -192,7 +194,7 @@ namespace keepass2android
                     createUrlEntry.Click += (sender, e) =>
                     {
                         GroupActivity.Launch(this, new CreateEntryThenCloseTask { Url = searchUrl, ShowUserNotifications = (AppTask as SelectEntryTask)?.ShowUserNotifications ?? ActivationCondition.Always }, new ActivityLaunchModeRequestCode(0));
-                        App.Kp2a.ShowMessage(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }),  MessageSeverity.Info);
+                        App.Kp2a.ShowMessage(this, GetString(Resource.String.select_group_then_add, new Java.Lang.Object[] { GetString(Resource.String.add_entry) }), MessageSeverity.Info);
                     };
                 }
                 else
@@ -205,8 +207,8 @@ namespace keepass2android
 
 
 
-			Util.MoveBottomBarButtons(Resource.Id.select_other_entry, Resource.Id.add_url_entry, Resource.Id.bottom_bar, this);
-		}
+            Util.MoveBottomBarButtons(Resource.Id.select_other_entry, Resource.Id.add_url_entry, Resource.Id.bottom_bar, this);
+        }
 
         public static PwGroup GetSearchResultsForUrl(string url)
         {
@@ -254,9 +256,9 @@ namespace keepass2android
             PwGroup resultsGroup = null;
             foreach (var db in App.Kp2a.OpenDatabases)
             {
-                
+
                 var resultsForThisDb = db.SearchForUuid(uuid);
-                
+
                 if (resultsGroup == null)
                 {
                     resultsGroup = resultsForThisDb;
@@ -274,28 +276,28 @@ namespace keepass2android
         }
 
         public override bool OnSearchRequested()
-		{
-			Intent i = new Intent(this, typeof(SearchActivity));
-			this.AppTask.ToIntent(i);
-			i.SetFlags(ActivityFlags.ForwardResult);
-			StartActivity(i);
-			return true;
-		}
+        {
+            Intent i = new Intent(this, typeof(SearchActivity));
+            this.AppTask.ToIntent(i);
+            i.SetFlags(ActivityFlags.ForwardResult);
+            StartActivity(i);
+            return true;
+        }
 
-	    protected override int ContentResourceId
-	    {
-			get { return Resource.Layout.searchurlresults; }
-	    }
+        protected override int ContentResourceId
+        {
+            get { return Resource.Layout.searchurlresults; }
+        }
 
-	    public override bool EntriesBelongToCurrentDatabaseOnly
-	    {
-	        get { return false; }
-	    }
+        public override bool EntriesBelongToCurrentDatabaseOnly
+        {
+            get { return false; }
+        }
 
-	    public override ElementAndDatabaseId FullGroupId
-	    {
-	        get { return null; }
-	    }
+        public override ElementAndDatabaseId FullGroupId
+        {
+            get { return null; }
+        }
 
         protected override void OnDestroy()
         {

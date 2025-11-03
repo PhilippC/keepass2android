@@ -15,7 +15,7 @@ namespace Kp2aAutofillParserTest
             _testOutputHelper = testOutputHelper;
         }
 
-        class TestInputField: InputField
+        class TestInputField : InputField
         {
             public string[] ExpectedAssignedHints { get; set; }
             public override void FillFilledAutofillValue(FilledAutofillField filledField)
@@ -57,7 +57,7 @@ namespace Kp2aAutofillParserTest
             var resourceName = "chrome-android10-amazon-it.json";
             RunTestFromAutofillInput(resourceName, "com.android.chrome", "www.amazon.it");
         }
-        
+
         [Fact]
         public void DetectsUsernameFieldDespitePasswordAutoHint()
         {
@@ -111,11 +111,11 @@ namespace Kp2aAutofillParserTest
                     actualHints = new string[0];
                 if (actualHints.Any() || expectedHints.Any())
                 {
-                    _testOutputHelper.WriteLine($"field = {field.IdEntry} {field.Hint} {string.Join(",", field.AutofillHints ?? new string[]{})}");
+                    _testOutputHelper.WriteLine($"field = {field.IdEntry} {field.Hint} {string.Join(",", field.AutofillHints ?? new string[] { })}");
                     _testOutputHelper.WriteLine("actual Hints = " + string.Join(", ", actualHints));
                     _testOutputHelper.WriteLine("expected Hints = " + string.Join(", ", expectedHints));
                 }
-                
+
                 Assert.Equal(expectedHints.Length, actualHints.Length);
                 Assert.Equal(expectedHints.OrderBy(x => x), actualHints.OrderBy(x => x));
             }

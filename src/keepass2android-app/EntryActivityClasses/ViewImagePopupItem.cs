@@ -15,36 +15,36 @@ using keepass2android;
 
 namespace keepass2android.EntryActivityClasses
 {
-	internal class ViewImagePopupItem:IPopupMenuItem
-	{
-			private readonly string _key;
-		private readonly EntryActivity _entryActivity;
+    internal class ViewImagePopupItem : IPopupMenuItem
+    {
+        private readonly string _key;
+        private readonly EntryActivity _entryActivity;
 
-		public ViewImagePopupItem(string key, EntryActivity entryActivity)
-		{
-			_key = key;
-			_entryActivity = entryActivity;
-		}
-		public Drawable Icon
-		{
-			get
-			{
-				 return _entryActivity.Resources.GetDrawable(Resource.Drawable.baseline_image_24); 
-			}
-		}
+        public ViewImagePopupItem(string key, EntryActivity entryActivity)
+        {
+            _key = key;
+            _entryActivity = entryActivity;
+        }
+        public Drawable Icon
+        {
+            get
+            {
+                return _entryActivity.Resources.GetDrawable(Resource.Drawable.baseline_image_24);
+            }
+        }
 
-		public string Text
-		{
-			get
-			{
-			 return _entryActivity.Resources.GetString(Resource.String.ShowAttachedImage); 
-			}
-		}
+        public string Text
+        {
+            get
+            {
+                return _entryActivity.Resources.GetString(Resource.String.ShowAttachedImage);
+            }
+        }
 
-		public void HandleClick()
-		{
-			_entryActivity.ShowAttachedImage(_key);
+        public void HandleClick()
+        {
+            _entryActivity.ShowAttachedImage(_key);
 
-		}
-	}
+        }
+    }
 }

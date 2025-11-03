@@ -52,7 +52,7 @@ namespace keepass2android
     [Service]
     public class CopyToClipboardService : Service
     {
-        
+
         protected override void AttachBaseContext(Context baseContext)
         {
             base.AttachBaseContext(LocaleManager.setLocale(baseContext));
@@ -257,11 +257,11 @@ namespace keepass2android
                 Intent intent = new Intent(_ctx, typeof(CopyToClipboardBroadcastReceiver));
                 intent.SetAction(intentText);
                 pending = PendingIntent.GetBroadcast(_ctx, descResId, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Immutable));
-                
+
                 return pending;
             }
 
-            
+
         }
 
         public const int NotifyUsername = 1;
@@ -533,7 +533,7 @@ namespace keepass2android
                 deletefilter.AddAction(ActionNotificationCancelled);
                 ContextCompat.RegisterReceiver(this, _notificationDeletedBroadcastReceiver, deletefilter, (int)ReceiverFlags.Exported);
             }
-            
+
         }
 
         private bool ClearNotifications()
@@ -781,7 +781,7 @@ namespace keepass2android
                 InputMethodManager imeManager = (InputMethodManager)ApplicationContext.GetSystemService(InputMethodService);
                 if (imeManager == null)
                 {
-                    App.Kp2a.ShowMessage(this, Resource.String.not_possible_im_picker,  MessageSeverity.Error);
+                    App.Kp2a.ShowMessage(this, Resource.String.not_possible_im_picker, MessageSeverity.Error);
                     return;
                 }
                 try
@@ -799,11 +799,11 @@ namespace keepass2android
                     }
                     catch (Exception)
                     {
-                        App.Kp2a.ShowMessage(this, Resource.String.not_possible_im_picker,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(this, Resource.String.not_possible_im_picker, MessageSeverity.Error);
                     }
                     return;
                 }
-                
+
             }
             else
             {
@@ -813,7 +813,7 @@ namespace keepass2android
                 if (!IsKp2aInputMethodEnabled)
                 {
                     //must be enabled in settings first
-                    App.Kp2a.ShowMessage(this, Resource.String.please_activate_keyboard,  MessageSeverity.Info);
+                    App.Kp2a.ShowMessage(this, Resource.String.please_activate_keyboard, MessageSeverity.Info);
                     Intent settingsIntent = new Intent(Android.Provider.Settings.ActionInputMethodSettings);
                     try
                     {
@@ -824,7 +824,7 @@ namespace keepass2android
                     {
                         //seems like on Huawei devices this call can fail. 
                         Kp2aLog.LogUnexpectedError(e);
-                        App.Kp2a.ShowMessage(this, "Failed to switch keyboard.",  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(this, "Failed to switch keyboard.", MessageSeverity.Error);
 
                     }
                 }
@@ -847,10 +847,10 @@ namespace keepass2android
                         {
                             //seems like on Huawei devices this call can fail. 
                             Kp2aLog.LogUnexpectedError(e);
-                            App.Kp2a.ShowMessage(this, "Failed to switch keyboard.",  MessageSeverity.Error);
+                            App.Kp2a.ShowMessage(this, "Failed to switch keyboard.", MessageSeverity.Error);
 
                         }
-                        
+
                     }
                     else
                     {
@@ -916,7 +916,7 @@ namespace keepass2android
                 }
 
                 CloseNotificationDrawer(context);
-                
+
             }
             else if (action.Equals(Intents.CopyPassword))
             {

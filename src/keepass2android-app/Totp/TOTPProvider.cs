@@ -91,7 +91,7 @@ namespace KeeTrayTOTP.Libraries
             get
             {
                 return this.timeCorrectionError;
-            } 
+            }
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace KeeTrayTOTP.Libraries
                 this.encoder = TOTPEncoder.rfc6238;
             }
 
-            if(data.TimeCorrectionUrl != null)
+            if (data.TimeCorrectionUrl != null)
             {
                 {
                     this.TimeCorrection = TimeSpan.Zero;
@@ -211,7 +211,7 @@ namespace KeeTrayTOTP.Libraries
             return this.GenerateByByte(bkey);
         }
 
-         /// <summary>
+        /// <summary>
         /// Generate a TOTP using provided binary data.
         /// </summary>
         /// <param name="key">Binary data.</param>

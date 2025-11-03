@@ -21,13 +21,13 @@ using System;
 
 namespace KeePassLib.Keys
 {
-	[Flags]
-	public enum UserKeyType
-	{
-		None = 0,
-		Other = 1,
-		Password = 2,
-		KeyFile = 4,
-		UserAccount = 8
-	}
+    [Flags]
+    public enum UserKeyType
+    {
+        None = 0,
+        Other = 1,
+        Password = 2,
+        KeyFile = 4,
+        UserAccount = 8
+    }
 }

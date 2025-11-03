@@ -31,17 +31,17 @@ namespace keepass2android
         Context ActiveContext { get; }
     }
 
-	public abstract class OnOperationFinishedHandler
-	{
-		protected bool Success;
-		protected String Message;
-		protected Exception Exception;
+    public abstract class OnOperationFinishedHandler
+    {
+        protected bool Success;
+        protected String Message;
+        protected Exception Exception;
 
-	    protected bool ImportantMessage
-	    {
-	        get;
-	        set;
-	    }
+        protected bool ImportantMessage
+        {
+            get;
+            set;
+        }
 
         protected Context ActiveContext
         {
@@ -52,72 +52,81 @@ namespace keepass2android
         }
 
         protected OnOperationFinishedHandler NextOnOperationFinishedHandler;
-		protected Handler Handler;
-		private IKp2aStatusLogger _statusLogger = new Kp2aNullStatusLogger(); //default: no logging but not null -> can be used whenever desired
+        protected Handler Handler;
+        private IKp2aStatusLogger _statusLogger = new Kp2aNullStatusLogger(); //default: no logging but not null -> can be used whenever desired
         private readonly IActiveContextProvider _activeContextProvider;
 
-		public IKp2aStatusLogger StatusLogger
-		{
-			get { return _statusLogger; }
-			set { _statusLogger = value; }
-		}		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, Handler handler)
+        public IKp2aStatusLogger StatusLogger
+        {
+            get { return _statusLogger; }
+            set { _statusLogger = value; }
+        }
+        protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, Handler handler)
         {
             _activeContextProvider = activeContextProvider;
-			NextOnOperationFinishedHandler = null;
-			Handler = handler;
-		}
+            NextOnOperationFinishedHandler = null;
+            Handler = handler;
+        }
 
-		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
-		{
-		    _activeContextProvider = activeContextProvider;
-			NextOnOperationFinishedHandler = operationFinishedHandler;
-			Handler = handler;
-		}
-
-		protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler)
+        protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler, Handler handler)
         {
             _activeContextProvider = activeContextProvider;
-			NextOnOperationFinishedHandler = operationFinishedHandler;
-			Handler = null;
-		}
+            NextOnOperationFinishedHandler = operationFinishedHandler;
+            Handler = handler;
+        }
 
-		public void SetResult(bool success, string message, bool importantMessage, Exception exception) {
-			Success = success;
-			Message = message;
-		    ImportantMessage = importantMessage;
-			Exception = exception;
-		}
+        protected OnOperationFinishedHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler)
+        {
+            _activeContextProvider = activeContextProvider;
+            NextOnOperationFinishedHandler = operationFinishedHandler;
+            Handler = null;
+        }
+
+        public void SetResult(bool success, string message, bool importantMessage, Exception exception)
+        {
+            Success = success;
+            Message = message;
+            ImportantMessage = importantMessage;
+            Exception = exception;
+        }
 
 
-	    public void SetResult(bool success) {
-			Success = success;
-		}
-		
-		public virtual void Run() {
-			if (NextOnOperationFinishedHandler == null) return;
-			// Pass on result on call finish
-			NextOnOperationFinishedHandler.SetResult(Success, Message, ImportantMessage, Exception);
+        public void SetResult(bool success)
+        {
+            Success = success;
+        }
+
+        public virtual void Run()
+        {
+            if (NextOnOperationFinishedHandler == null) return;
+            // Pass on result on call finish
+            NextOnOperationFinishedHandler.SetResult(Success, Message, ImportantMessage, Exception);
 
             var handler = Handler ?? NextOnOperationFinishedHandler.Handler ?? null;
 
-            if (handler != null ) {
+            if (handler != null)
+            {
                 handler.Post(() =>
                 {
                     NextOnOperationFinishedHandler.Run();
-                }); 
-			} else {
-				NextOnOperationFinishedHandler.Run();
-			}
-		}
-		
-		protected void DisplayMessage(Context ctx) {
-			DisplayMessage(ctx, Message, ImportantMessage);
-		}
+                });
+            }
+            else
+            {
+                NextOnOperationFinishedHandler.Run();
+            }
+        }
 
-		public static void DisplayMessage(Context ctx, string message, bool makeDialog)
-		{
-			if ( !String.IsNullOrEmpty(message) ) {
-			    Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
+        protected void DisplayMessage(Context ctx)
+        {
+            DisplayMessage(ctx, Message, ImportantMessage);
+        }
+
+        public static void DisplayMessage(Context ctx, string message, bool makeDialog)
+        {
+            if (!String.IsNullOrEmpty(message))
+            {
+                Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
                 if (makeDialog && ctx != null)
                 {
                     try
@@ -137,8 +146,8 @@ namespace keepass2android
                 else
                     Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
             }
-		}
-	}
+        }
+    }
 }
 
 

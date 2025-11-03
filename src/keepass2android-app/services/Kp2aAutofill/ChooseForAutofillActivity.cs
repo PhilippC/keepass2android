@@ -100,7 +100,7 @@ namespace keepass2android.services.Kp2aAutofill
 
         protected override FilledAutofillFieldCollection<ViewNodeInputField> GetDataset()
         {
-            if (App.Kp2a.CurrentDb==null || (App.Kp2a.QuickLocked))
+            if (App.Kp2a.CurrentDb == null || (App.Kp2a.QuickLocked))
                 return null;
             var entryOutput = App.Kp2a.LastOpenedEntry;
 
@@ -116,7 +116,7 @@ namespace keepass2android.services.Kp2aAutofill
 
             foreach (string key in pwEntryOutput.OutputStrings.GetKeys())
             {
-                
+
                 FilledAutofillField field =
                     new FilledAutofillField
                     {
@@ -124,7 +124,7 @@ namespace keepass2android.services.Kp2aAutofill
                         TextValue = pwEntryOutput.OutputStrings.ReadSafe(key)
                     };
                 fieldCollection.Add(field);
-                
+
             }
             if (IsCreditCard(pwEntry, context) && pwEntry.Expires)
             {
@@ -132,15 +132,15 @@ namespace keepass2android.services.Kp2aAutofill
                 FilledAutofillField field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationDate},
-                        DateValue = (long) (1000 * TimeUtil.SerializeUnix(expTime))
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationDate },
+                        DateValue = (long)(1000 * TimeUtil.SerializeUnix(expTime))
                     };
                 fieldCollection.Add(field);
 
                 field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationDay},
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationDay },
                         TextValue = expTime.Day.ToString()
                     };
                 fieldCollection.Add(field);
@@ -148,7 +148,7 @@ namespace keepass2android.services.Kp2aAutofill
                 field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationMonth},
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationMonth },
                         TextValue = expTime.Month.ToString()
                     };
                 fieldCollection.Add(field);
@@ -156,7 +156,7 @@ namespace keepass2android.services.Kp2aAutofill
                 field =
                     new FilledAutofillField
                     {
-                        AutofillHints = new[] {View.AutofillHintCreditCardExpirationYear},
+                        AutofillHints = new[] { View.AutofillHintCreditCardExpirationYear },
                         TextValue = expTime.Year.ToString()
                     };
                 fieldCollection.Add(field);
@@ -209,7 +209,7 @@ namespace keepass2android.services.Kp2aAutofill
 
         private static List<string> GetCanonicalHintsFromKp2aField(string key)
         {
-            List<string> result = new List<string>() {key};
+            List<string> result = new List<string>() { key };
             List<string> hints;
             if (keyToHint.TryGetValue(key, out hints))
                 result = hints;
@@ -221,6 +221,6 @@ namespace keepass2android.services.Kp2aAutofill
         }
 
         public override IAutofillIntentBuilder IntentBuilder => new Kp2aAutofillIntentBuilder();
-     
+
     }
 }

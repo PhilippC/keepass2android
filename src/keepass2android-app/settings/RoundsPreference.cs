@@ -31,7 +31,7 @@ using Google.Android.Material.Dialog;
 
 namespace keepass2android.settings
 {
-	/*
+    /*
 	 *
 	   public class KdfNumberDialogPreference : DialogPreference
 	   {
@@ -57,21 +57,22 @@ namespace keepass2android.settings
 	   
 
 	 */
-	public abstract class KdfNumberDialogPreference : DialogPreference {
-		
+    public abstract class KdfNumberDialogPreference : DialogPreference
+    {
+
         public KdfNumberDialogPreference(Context context) : base(context)
         {
-            
+
         }
 
         public KdfNumberDialogPreference(Context context, IAttributeSet attrs) : base(context, attrs)
         {
-           
+
         }
 
         public KdfNumberDialogPreference(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
         {
-           
+
         }
 
         public void ShowDialog(PreferenceFragmentCompat containingFragment)
@@ -81,7 +82,7 @@ namespace keepass2android.settings
 
             View dialogView = activity.LayoutInflater.Inflate(Resource.Layout.database_kdf_settings, null);
             var inputEditText = dialogView.FindViewById<TextView>(Resource.Id.rounds);
-            
+
             inputEditText.Text = ParamValue.ToString();
 
             db.SetView(dialogView);
@@ -94,7 +95,7 @@ namespace keepass2android.settings
                 String strRounds = inputEditText.Text;
                 if (!(ulong.TryParse(strRounds, out paramValue)))
                 {
-                    App.Kp2a.ShowMessage(Context, Resource.String.error_param_not_number,  MessageSeverity.Error);
+                    App.Kp2a.ShowMessage(Context, Resource.String.error_param_not_number, MessageSeverity.Error);
                     return;
                 }
 
@@ -122,92 +123,99 @@ namespace keepass2android.settings
             db.Create().Show();
         }
 
-		public virtual string ExplanationString
-		{
-			get { return ""; }
-		}
+        public virtual string ExplanationString
+        {
+            get { return ""; }
+        }
 
-		public abstract ulong ParamValue { get; set; }
+        public abstract ulong ParamValue { get; set; }
 
-		private class AfterSave : OnOperationFinishedHandler {
-			private readonly ulong _oldParamValue;
+        private class AfterSave : OnOperationFinishedHandler
+        {
+            private readonly ulong _oldParamValue;
             private readonly IKp2aApp _app;
             private readonly KdfNumberDialogPreference _pref;
-			
-			public AfterSave(IKp2aApp app, Handler handler, ulong oldParamValue, KdfNumberDialogPreference pref):base(app, handler) {
+
+            public AfterSave(IKp2aApp app, Handler handler, ulong oldParamValue, KdfNumberDialogPreference pref) : base(app, handler)
+            {
                 _app = app;
                 _pref = pref;
-				_oldParamValue = oldParamValue;
-			}
-			
-			public override void Run() {
-				if ( Success ) {
+                _oldParamValue = oldParamValue;
+            }
 
-					if ( _pref.OnPreferenceChangeListener != null ) {
-						_pref.OnPreferenceChangeListener.OnPreferenceChange(_pref, null);
-					}
-				} else {
-					DisplayMessage(_app.ActiveContext);
+            public override void Run()
+            {
+                if (Success)
+                {
 
-					_pref.ParamValue = _oldParamValue;
+                    if (_pref.OnPreferenceChangeListener != null)
+                    {
+                        _pref.OnPreferenceChangeListener.OnPreferenceChange(_pref, null);
+                    }
                 }
-				
-				base.Run();
-			}
-			
-		}
-		
-	}
+                else
+                {
+                    DisplayMessage(_app.ActiveContext);
 
-	/// <summary>
-	/// Represents the setting for the number of key transformation rounds. Changing this requires to save the database.
-	/// </summary>
-	public class RoundsPreference : KdfNumberDialogPreference
+                    _pref.ParamValue = _oldParamValue;
+                }
+
+                base.Run();
+            }
+
+        }
+
+    }
+
+    /// <summary>
+    /// Represents the setting for the number of key transformation rounds. Changing this requires to save the database.
+    /// </summary>
+    public class RoundsPreference : KdfNumberDialogPreference
     {
-		private readonly Context _context;
+        private readonly Context _context;
 
 
-		public ulong KeyEncryptionRounds
-		{
-			get
-			{
-				AesKdf kdf = new AesKdf();
-				if (!kdf.Uuid.Equals(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid))
-					return (uint) PwDefs.DefaultKeyEncryptionRounds;
-				else
-				{
-					ulong uRounds = App.Kp2a.CurrentDb.KpDatabase.KdfParameters.GetUInt64(
-						AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
-					uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
+        public ulong KeyEncryptionRounds
+        {
+            get
+            {
+                AesKdf kdf = new AesKdf();
+                if (!kdf.Uuid.Equals(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid))
+                    return (uint)PwDefs.DefaultKeyEncryptionRounds;
+                else
+                {
+                    ulong uRounds = App.Kp2a.CurrentDb.KpDatabase.KdfParameters.GetUInt64(
+                        AesKdf.ParamRounds, PwDefs.DefaultKeyEncryptionRounds);
+                    uRounds = Math.Min(uRounds, 0xFFFFFFFEUL);
 
-					return (uint) uRounds;
-				}
-			}
-			set { App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
-		}
+                    return (uint)uRounds;
+                }
+            }
+            set { App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(AesKdf.ParamRounds, value); }
+        }
 
-		public RoundsPreference(Context context, IAttributeSet attrs):base(context, attrs)
-		{
-			_context = context;
-		}
+        public RoundsPreference(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+            _context = context;
+        }
 
-		public RoundsPreference(Context context, IAttributeSet attrs, int defStyle): base(context, attrs, defStyle)
-		{
-			_context = context;
-		}
+        public RoundsPreference(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
+        {
+            _context = context;
+        }
 
-		public override string ExplanationString
-		{
-			get { return _context.GetString(Resource.String.rounds_explaination); }
-		}
+        public override string ExplanationString
+        {
+            get { return _context.GetString(Resource.String.rounds_explaination); }
+        }
 
-		public override ulong ParamValue
-		{
-			get { return KeyEncryptionRounds; }
-			set { KeyEncryptionRounds = value; }
-		}
-	
-	}
+        public override ulong ParamValue
+        {
+            get { return KeyEncryptionRounds; }
+            set { KeyEncryptionRounds = value; }
+        }
+
+    }
 
 }
 

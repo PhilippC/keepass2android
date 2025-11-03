@@ -23,70 +23,70 @@ using keepass2android;
 
 namespace keepass2android
 {
-	public class ActionOnOperationFinished: OnOperationFinishedHandler
-	{
-		public delegate void ActionToPerformOnFinsh(bool success, String message, Context activeContext);
+    public class ActionOnOperationFinished : OnOperationFinishedHandler
+    {
+        public delegate void ActionToPerformOnFinsh(bool success, String message, Context activeContext);
 
-		readonly ActionToPerformOnFinsh _actionToPerform;
+        readonly ActionToPerformOnFinsh _actionToPerform;
 
-		public ActionOnOperationFinished(IKp2aApp app, ActionToPerformOnFinsh actionToPerform) : base(app, null, null)
-		{
-			_actionToPerform = actionToPerform;
-		}
+        public ActionOnOperationFinished(IKp2aApp app, ActionToPerformOnFinsh actionToPerform) : base(app, null, null)
+        {
+            _actionToPerform = actionToPerform;
+        }
 
-		public ActionOnOperationFinished(IKp2aApp app, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
-		{
-			_actionToPerform = actionToPerform;
-		}
+        public ActionOnOperationFinished(IKp2aApp app, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+        {
+            _actionToPerform = actionToPerform;
+        }
 
         public override void Run()
-		{
-			if (Message == null)
-				Message = "";
-			if (Handler != null)
-			{
-				Handler.Post(() =>
+        {
+            if (Message == null)
+                Message = "";
+            if (Handler != null)
+            {
+                Handler.Post(() =>
                 {
                     _actionToPerform(Success, Message, ActiveContext);
                 });
-			}
+            }
             else
             {
                 _actionToPerform(Success, Message, ActiveContext);
             }
-			base.Run();
-		}
-	}
+            base.Run();
+        }
+    }
 }
 
 
 
-    //Action which runs when the contextInstanceId is the active context
-    // otherwise it is registered as pending action for the context instance.
-    public class ActionInContextInstanceOnOperationFinished : ActionOnOperationFinished
+//Action which runs when the contextInstanceId is the active context
+// otherwise it is registered as pending action for the context instance.
+public class ActionInContextInstanceOnOperationFinished : ActionOnOperationFinished
+{
+    private readonly int _contextInstanceId;
+    private IKp2aApp _app;
+
+    public ActionInContextInstanceOnOperationFinished(int contextInstanceId, IKp2aApp app, ActionToPerformOnFinsh actionToPerform) : base(app, actionToPerform)
     {
-        private readonly int _contextInstanceId;
-        private IKp2aApp _app;
-		
-        public ActionInContextInstanceOnOperationFinished(int contextInstanceId, IKp2aApp app, ActionToPerformOnFinsh actionToPerform) : base(app, actionToPerform)
-        {
-            _contextInstanceId = contextInstanceId;
-            _app = app;
-        }
-        public ActionInContextInstanceOnOperationFinished(int contextInstanceId, IKp2aApp app, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(app, actionToPerform, operationFinishedHandler)
-        {
-            _contextInstanceId = contextInstanceId;
-            _app = app;
-        }
-
-        public override void Run()
-        {
-            if ((ActiveContext as IContextInstanceIdProvider)?.ContextInstanceId != _contextInstanceId)
-            {
-                _app.RegisterPendingActionForContextInstance(_contextInstanceId, this);
-            }
-            else _app.UiThreadHandler.Post(() => base.Run());
-        }
-
+        _contextInstanceId = contextInstanceId;
+        _app = app;
     }
+    public ActionInContextInstanceOnOperationFinished(int contextInstanceId, IKp2aApp app, ActionToPerformOnFinsh actionToPerform, OnOperationFinishedHandler operationFinishedHandler) : base(app, actionToPerform, operationFinishedHandler)
+    {
+        _contextInstanceId = contextInstanceId;
+        _app = app;
+    }
+
+    public override void Run()
+    {
+        if ((ActiveContext as IContextInstanceIdProvider)?.ContextInstanceId != _contextInstanceId)
+        {
+            _app.RegisterPendingActionForContextInstance(_contextInstanceId, this);
+        }
+        else _app.UiThreadHandler.Post(() => base.Run());
+    }
+
+}
 

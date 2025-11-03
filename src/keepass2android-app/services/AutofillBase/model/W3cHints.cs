@@ -2,5 +2,5 @@
 
 namespace keepass2android.services.AutofillBase.model
 {
-   
+
 }

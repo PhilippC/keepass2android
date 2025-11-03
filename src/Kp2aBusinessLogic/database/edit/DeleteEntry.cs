@@ -24,52 +24,54 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
-	public class DeleteEntry : DeleteRunnable {
+    public class DeleteEntry : DeleteRunnable
+    {
 
         private readonly PwEntry _entry;
-	    private UiStringKey _statusMessage;
+        private UiStringKey _statusMessage;
 
-	    public DeleteEntry(IKp2aApp app, PwEntry entry, OnOperationFinishedHandler operationFinishedHandler):base(operationFinishedHandler, app) {
-			
-			Db = app.FindDatabaseForElement(entry);
-			_entry = entry;
-			
-		}
+        public DeleteEntry(IKp2aApp app, PwEntry entry, OnOperationFinishedHandler operationFinishedHandler) : base(operationFinishedHandler, app)
+        {
 
-		public override bool CanRecycle
-		{
-			get
-			{
-				return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_entry.ParentGroup);
-			}
-		}
+            Db = app.FindDatabaseForElement(entry);
+            _entry = entry;
 
-		protected override UiStringKey QuestionRecycleResourceId
-		{
-			get
-			{
-				return UiStringKey.AskDeletePermanentlyEntry;
-			}
-		}
+        }
 
-		protected override UiStringKey QuestionNoRecycleResourceId
-		{
-			get
-			{
-				return UiStringKey.AskDeletePermanentlyEntryNoRecycle;
-			}
-		}
+        public override bool CanRecycle
+        {
+            get
+            {
+                return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_entry.ParentGroup);
+            }
+        }
 
-	    protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
-	    {
-	        DoDeleteEntry(_entry, touchedGroups);
-	    }
+        protected override UiStringKey QuestionRecycleResourceId
+        {
+            get
+            {
+                return UiStringKey.AskDeletePermanentlyEntry;
+            }
+        }
 
-	    public override UiStringKey StatusMessage
-	    {
-	        get { return UiStringKey.DeletingEntry; }
-	    }
-	}
+        protected override UiStringKey QuestionNoRecycleResourceId
+        {
+            get
+            {
+                return UiStringKey.AskDeletePermanentlyEntryNoRecycle;
+            }
+        }
+
+        protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
+        {
+            DoDeleteEntry(_entry, touchedGroups);
+        }
+
+        public override UiStringKey StatusMessage
+        {
+            get { return UiStringKey.DeletingEntry; }
+        }
+    }
 
 }
 

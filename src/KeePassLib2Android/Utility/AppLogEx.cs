@@ -29,17 +29,17 @@ using System.IO.Compression;
 
 namespace KeePassLib.Utility
 {
-	/// <summary>
-	/// Application-wide logging services.
-	/// </summary>
-	public static class AppLogEx
-	{
-		private static StreamWriter m_swOut = null;
+    /// <summary>
+    /// Application-wide logging services.
+    /// </summary>
+    public static class AppLogEx
+    {
+        private static StreamWriter m_swOut = null;
 
-		public static void Open(string strPrefix)
-		{
-			// Logging is not enabled in normal builds of KeePass!
-			/*
+        public static void Open(string strPrefix)
+        {
+            // Logging is not enabled in normal builds of KeePass!
+            /*
 			AppLogEx.Close();
 
 			Debug.Assert(strPrefix != null);
@@ -74,30 +74,30 @@ namespace KeePassLib.Utility
 			}
 			catch(Exception) { Debug.Assert(false); }
 			*/
-		}
+        }
 
-		public static void Close()
-		{
-			if(m_swOut == null) return;
+        public static void Close()
+        {
+            if (m_swOut == null) return;
 
-			m_swOut.Close();
-			m_swOut = null;
-		}
+            m_swOut.Close();
+            m_swOut = null;
+        }
 
-		public static void Log(string strText)
-		{
-			if(m_swOut == null) return;
+        public static void Log(string strText)
+        {
+            if (m_swOut == null) return;
 
-			if(strText == null) m_swOut.WriteLine();
-			else m_swOut.WriteLine(strText);
-		}
+            if (strText == null) m_swOut.WriteLine();
+            else m_swOut.WriteLine(strText);
+        }
 
-		public static void Log(Exception ex)
-		{
-			if(m_swOut == null) return;
+        public static void Log(Exception ex)
+        {
+            if (m_swOut == null) return;
 
-			if(ex == null) m_swOut.WriteLine();
-			else m_swOut.WriteLine(ex.ToString());
-		}
-	}
+            if (ex == null) m_swOut.WriteLine();
+            else m_swOut.WriteLine(ex.ToString());
+        }
+    }
 }

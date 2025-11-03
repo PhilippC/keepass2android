@@ -25,76 +25,79 @@ using KeePassLib.Keys;
 
 namespace keepass2android
 {
-	
-	public class CreateDb : OperationWithFinishHandler {
-	    private readonly IOConnectionInfo _ioc;
-		private readonly bool _dontSave;
+
+    public class CreateDb : OperationWithFinishHandler
+    {
+        private readonly IOConnectionInfo _ioc;
+        private readonly bool _dontSave;
         private readonly IKp2aApp _app;
-		private CompositeKey _key;
-	    private readonly bool _makeCurrent;
+        private CompositeKey _key;
+        private readonly bool _makeCurrent;
 
-	    public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, bool makeCurrent): base(app, operationFinishedHandler) {
+        public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, bool makeCurrent) : base(app, operationFinishedHandler)
+        {
             _ioc = ioc;
-			_dontSave = dontSave;
-	        _makeCurrent = makeCurrent;
-	        _app = app;
-		}
+            _dontSave = dontSave;
+            _makeCurrent = makeCurrent;
+            _app = app;
+        }
 
-		public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, CompositeKey key, bool makeCurrent)
-			: base(app, operationFinishedHandler)
-		{
+        public CreateDb(IKp2aApp app, Activity ctx, IOConnectionInfo ioc, OnOperationFinishedHandler operationFinishedHandler, bool dontSave, CompositeKey key, bool makeCurrent)
+            : base(app, operationFinishedHandler)
+        {
             _ioc = ioc;
-			_dontSave = dontSave;
-			_app = app;
-			_key = key;
-		    _makeCurrent = makeCurrent;
-		}
-		
-
-		public override void Run() {
-			StatusLogger.UpdateMessage(UiStringKey.progress_create);
-			Database db = _app.CreateNewDatabase(_makeCurrent);
-
-			db.KpDatabase = new KeePassLib.PwDatabase();
-			
-			if (_key == null)
-			{
-				_key = new CompositeKey(); //use a temporary key which should be changed after creation
-			}
-			
-			db.KpDatabase.New(_ioc, _key, _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc));
-
-			db.KpDatabase.KdfParameters = (new AesKdf()).GetDefaultParameters();
-			db.KpDatabase.Name = "Keepass2Android Password Database";
-			//re-set the name of the root group because the PwDatabase uses UrlUtil which is not appropriate for all file storages:
-			db.KpDatabase.RootGroup.Name = _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc);
-			
-			// Set Database state
-			db.Root = db.KpDatabase.RootGroup;
-			db.SearchHelper = new SearchDbHelper(_app);
-
-			// Add a couple default groups
-			AddGroup internet = AddGroup.GetInstance(_app, "Internet", 1, null, db.KpDatabase.RootGroup, null, true);
-			internet.Run();
-			AddGroup email = AddGroup.GetInstance(_app, "eMail", 19, null, db.KpDatabase.RootGroup, null, true);
-			email.Run();
-
-			List<PwEntry> addedEntries;
-			AddTemplateEntries addTemplates = new AddTemplateEntries(_app, null);
-			addTemplates.AddTemplates(out addedEntries);
-			
-			// Commit changes
-			SaveDb save = new SaveDb(_app, db, operationFinishedHandler, _dontSave, null);
-			save.SetStatusLogger(StatusLogger);
-			_operationFinishedHandler = null;
-			save.Run();
-
-		    db.UpdateGlobals();
+            _dontSave = dontSave;
+            _app = app;
+            _key = key;
+            _makeCurrent = makeCurrent;
+        }
 
 
-		}
-		
-	}
+        public override void Run()
+        {
+            StatusLogger.UpdateMessage(UiStringKey.progress_create);
+            Database db = _app.CreateNewDatabase(_makeCurrent);
+
+            db.KpDatabase = new KeePassLib.PwDatabase();
+
+            if (_key == null)
+            {
+                _key = new CompositeKey(); //use a temporary key which should be changed after creation
+            }
+
+            db.KpDatabase.New(_ioc, _key, _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc));
+
+            db.KpDatabase.KdfParameters = (new AesKdf()).GetDefaultParameters();
+            db.KpDatabase.Name = "Keepass2Android Password Database";
+            //re-set the name of the root group because the PwDatabase uses UrlUtil which is not appropriate for all file storages:
+            db.KpDatabase.RootGroup.Name = _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc);
+
+            // Set Database state
+            db.Root = db.KpDatabase.RootGroup;
+            db.SearchHelper = new SearchDbHelper(_app);
+
+            // Add a couple default groups
+            AddGroup internet = AddGroup.GetInstance(_app, "Internet", 1, null, db.KpDatabase.RootGroup, null, true);
+            internet.Run();
+            AddGroup email = AddGroup.GetInstance(_app, "eMail", 19, null, db.KpDatabase.RootGroup, null, true);
+            email.Run();
+
+            List<PwEntry> addedEntries;
+            AddTemplateEntries addTemplates = new AddTemplateEntries(_app, null);
+            addTemplates.AddTemplates(out addedEntries);
+
+            // Commit changes
+            SaveDb save = new SaveDb(_app, db, operationFinishedHandler, _dontSave, null);
+            save.SetStatusLogger(StatusLogger);
+            _operationFinishedHandler = null;
+            save.Run();
+
+            db.UpdateGlobals();
+
+
+        }
+
+    }
 
 }
 

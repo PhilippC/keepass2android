@@ -68,7 +68,7 @@ namespace keepass2android
         private readonly PreferenceFragmentCompat _fragment;
         private readonly AndroidX.Preference.ListPreference _langPref;
         private readonly Dictionary<string, LanguageEntry> _langEntriesByCodeUnique;
-        
+
         public AppLanguageManager(PreferenceFragmentCompat fragment, AndroidX.Preference.ListPreference langPref, HashSet<string> supportedLocales)
         {
             this._fragment = fragment;
@@ -146,10 +146,10 @@ namespace keepass2android
     public class DatabaseSettingsActivity : LockCloseActivity, PreferenceFragmentCompat.IOnPreferenceStartFragmentCallback
     {
 
-		public static void Launch(Activity ctx)
-		{
-			ctx.StartActivity(new Intent(ctx, typeof(DatabaseSettingsActivity)));
-		}
+        public static void Launch(Activity ctx)
+        {
+            ctx.StartActivity(new Intent(ctx, typeof(DatabaseSettingsActivity)));
+        }
 
         private ActivityDesign _design;
 

@@ -4,11 +4,11 @@ using Java.Nio.FileNio;
 
 namespace keepass2android.Io
 {
-	public class SftpFileStorage: JavaFileStorage
-	{
-		public SftpFileStorage(Context ctx, IKp2aApp app, bool debugEnabled) :
-			base(new Keepass2android.Javafilestorage.SftpStorage(ctx.ApplicationContext), app)
-		{
+    public class SftpFileStorage : JavaFileStorage
+    {
+        public SftpFileStorage(Context ctx, IKp2aApp app, bool debugEnabled) :
+            base(new Keepass2android.Javafilestorage.SftpStorage(ctx.ApplicationContext), app)
+        {
             var storage = BaseStorage;
             if (debugEnabled)
             {
@@ -34,11 +34,11 @@ namespace keepass2android.Io
         }
 
         public override bool UserShouldBackup
-	    {
-	        get { return true; }
-	    }
-	}
+        {
+            get { return true; }
+        }
+    }
 
-	
+
 }
 #endif

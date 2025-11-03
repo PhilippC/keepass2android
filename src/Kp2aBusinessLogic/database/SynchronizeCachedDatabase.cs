@@ -13,23 +13,23 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	public class SynchronizeCachedDatabase: OperationWithFinishHandler 
-	{
-		private readonly IKp2aApp _app;
+    public class SynchronizeCachedDatabase : OperationWithFinishHandler
+    {
+        private readonly IKp2aApp _app;
         private IDatabaseModificationWatcher _modificationWatcher;
         private readonly Database _database;
 
 
         public SynchronizeCachedDatabase(IKp2aApp app, Database database, OnOperationFinishedHandler operationFinishedHandler, IDatabaseModificationWatcher modificationWatcher)
-			: base(app, operationFinishedHandler)
+            : base(app, operationFinishedHandler)
         {
             _app = app;
             _database = database;
             _modificationWatcher = modificationWatcher;
         }
 
-		public override void Run()
-		{
+        public override void Run()
+        {
             try
             {
                 _database.SynchronizationRunning = true;
@@ -127,7 +127,7 @@ namespace keepass2android
                 else
                 {
                     //remote file is unmodified
-                    
+
                     if (cachingFileStorage.HasLocalChanges(ioc))
                     {
                         //but we have local changes -> upload:
@@ -158,14 +158,14 @@ namespace keepass2android
                 Kp2aLog.LogUnexpectedError(e);
                 //no Finish()
             }
-			catch (Exception e)
-			{
+            catch (Exception e)
+            {
                 _database.SynchronizationRunning = false;
                 Kp2aLog.LogUnexpectedError(e);
-				Finish(false, ExceptionUtil.GetErrorMessage(e));
-			}
-			
-		}
+                Finish(false, ExceptionUtil.GetErrorMessage(e));
+            }
 
-	}
+        }
+
+    }
 }

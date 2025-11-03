@@ -30,12 +30,12 @@ using KeePassLib;
 
 namespace keepass2android.search
 {
-	/// <summary>
-	/// Activity to show search results
-	/// </summary>
+    /// <summary>
+    /// Activity to show search results
+    /// </summary>
     [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-	public class SearchTotpResults : GroupBaseActivity
-	{
+    public class SearchTotpResults : GroupBaseActivity
+    {
 
         public static void Launch(Activity act, AppTask appTask, ActivityFlags? flags = null)
         {
@@ -60,13 +60,14 @@ namespace keepass2android.search
             }
         }
 
-        protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
-			
-			if ( IsFinishing ) {
-				return;
-			}
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+
+            if (IsFinishing)
+            {
+                return;
+            }
 
             SetResult(KeePass.ExitNormal);
 
@@ -87,16 +88,16 @@ namespace keepass2android.search
                     foreach (var entry in db.EntriesById.Values)
                     {
                         var totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(entry, db));
-						if (totpData?.IsTotpEntry == true)
+                        if (totpData?.IsTotpEntry == true)
                             Group.AddEntry(entry, false);
                     }
-                    
+
                 }
             }
             catch (Exception e)
             {
                 Kp2aLog.LogUnexpectedError(e);
-                App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e), MessageSeverity.Error);
                 Finish();
                 return;
             }
@@ -112,52 +113,53 @@ namespace keepass2android.search
 
         }
 
-	    public override bool EntriesBelongToCurrentDatabaseOnly
-	    {
-	        get { return false; }
-	    }
+        public override bool EntriesBelongToCurrentDatabaseOnly
+        {
+            get { return false; }
+        }
 
-	    public override ElementAndDatabaseId FullGroupId
-	    {
-	        get { return null; }
-	    }
-
-		
-
-            
-
-		public override void OnCreateContextMenu(IContextMenu menu, View v,
-			IContextMenuContextMenuInfo  menuInfo) 
-		{
-
-			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
-			ClickView cv = (ClickView) acmi.TargetView;
-			cv.OnCreateMenu(menu, menuInfo);
-		}
-
-		public override bool OnContextItemSelected(IMenuItem item) {
-			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
-			ClickView cv = (ClickView) acmi.TargetView;
-
-			bool result;
-
-			return cv.OnContextItemSelected(item);
-		}
+        public override ElementAndDatabaseId FullGroupId
+        {
+            get { return null; }
+        }
 
 
-		public override bool OnSearchRequested()
-		{
-			Intent i = new Intent(this, typeof(SearchActivity));
-			this.AppTask.ToIntent(i);
-			i.SetFlags(ActivityFlags.ForwardResult);
-			StartActivity(i);
-			return true;
-		}
 
-	    public override bool IsSearchResult
+
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v,
+            IContextMenuContextMenuInfo menuInfo)
+        {
+
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)menuInfo;
+            ClickView cv = (ClickView)acmi.TargetView;
+            cv.OnCreateMenu(menu, menuInfo);
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+            ClickView cv = (ClickView)acmi.TargetView;
+
+            bool result;
+
+            return cv.OnContextItemSelected(item);
+        }
+
+
+        public override bool OnSearchRequested()
+        {
+            Intent i = new Intent(this, typeof(SearchActivity));
+            this.AppTask.ToIntent(i);
+            i.SetFlags(ActivityFlags.ForwardResult);
+            StartActivity(i);
+            return true;
+        }
+
+        public override bool IsSearchResult
         {
             get { return true; }
         }
-	}
+    }
 }
 

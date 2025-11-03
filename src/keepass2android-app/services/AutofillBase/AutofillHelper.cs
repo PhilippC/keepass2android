@@ -17,11 +17,11 @@ using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
 {
-	/// <summary>
-	/// This is a class containing helper methods for building Autofill Datasets and Responses.
-	/// </summary>
-	public class AutofillHelper
-	{
+    /// <summary>
+    /// This is a class containing helper methods for building Autofill Datasets and Responses.
+    /// </summary>
+    public class AutofillHelper
+    {
 
         public static InlinePresentation BuildInlinePresentation(InlinePresentationSpec inlinePresentationSpec,
             string text, string subtext, int iconId, PendingIntent pendingIntent, Context context)
@@ -95,10 +95,10 @@ namespace keepass2android.services.AutofillBase
         /// client View.
         /// </summary>
         public static Dataset NewDataset(Context context,
-				AutofillFieldMetadataCollection autofillFields, 
-				FilledAutofillFieldCollection<ViewNodeInputField> filledAutofillFieldCollection,
-				IAutofillIntentBuilder intentBuilder, 
-				Android.Widget.Inline.InlinePresentationSpec inlinePresentationSpec)
+                AutofillFieldMetadataCollection autofillFields,
+                FilledAutofillFieldCollection<ViewNodeInputField> filledAutofillFieldCollection,
+                IAutofillIntentBuilder intentBuilder,
+                Android.Widget.Inline.InlinePresentationSpec inlinePresentationSpec)
         {
             var datasetName = filledAutofillFieldCollection.DatasetName ?? "[noname]";
 
@@ -225,13 +225,13 @@ namespace keepass2android.services.AutofillBase
             }
         }
 
-        public static RemoteViews NewRemoteViews(string packageName, string remoteViewsText,int drawableId)
-		{
-			RemoteViews presentation = new RemoteViews(packageName, Resource.Layout.autofill_service_list_item);
-			presentation.SetTextViewText(Resource.Id.text, remoteViewsText);
-			presentation.SetImageViewResource(Resource.Id.icon, drawableId);
-			return presentation;
-		}
+        public static RemoteViews NewRemoteViews(string packageName, string remoteViewsText, int drawableId)
+        {
+            RemoteViews presentation = new RemoteViews(packageName, Resource.Layout.autofill_service_list_item);
+            presentation.SetTextViewText(Resource.Id.text, remoteViewsText);
+            presentation.SetImageViewResource(Resource.Id.icon, drawableId);
+            return presentation;
+        }
 
         internal static InlinePresentationSpec ExtractSpec(IList<InlinePresentationSpec> inlinePresentationSpecs, int index)
         {

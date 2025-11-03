@@ -27,16 +27,16 @@ using keepass2android;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// Activity to display search options
-	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]			
-	public class SearchActivity : LockCloseActivity
-	{
-		bool GetCheckBoxValue(int resId)
-		{
-			return ((CheckBox)FindViewById(resId)).Checked;
-		}
+    /// <summary>
+    /// Activity to display search options
+    /// </summary>
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+    public class SearchActivity : LockCloseActivity
+    {
+        bool GetCheckBoxValue(int resId)
+        {
+            return ((CheckBox)FindViewById(resId)).Checked;
+        }
 
         private AppTask _appTask;
         private AppTask AppTask
@@ -49,70 +49,71 @@ namespace keepass2android
             }
         }
 
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
-			AppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
-			SetContentView(Resource.Layout.search);
-			new Util.InsetListener(FindViewById(Resource.Id.search_container)).Apply();
-			SearchParameters sp = new SearchParameters();
-			PopulateCheckBox(Resource.Id.cbSearchInTitle, sp.SearchInTitles);
-			PopulateCheckBox(Resource.Id.cbSearchInUsername, sp.SearchInUserNames);
-			PopulateCheckBox(Resource.Id.cbSearchInNotes, sp.SearchInNotes);
-			PopulateCheckBox(Resource.Id.cbSearchInPassword, sp.SearchInPasswords);
-			PopulateCheckBox(Resource.Id.cbSearchInTags, sp.SearchInTags);
-			PopulateCheckBox(Resource.Id.cbSearchInGroupName, sp.SearchInGroupNames);
-			PopulateCheckBox(Resource.Id.cbSearchInUrl, sp.SearchInUrls);
-			PopulateCheckBox(Resource.Id.cbSearchInOtherStrings, sp.SearchInOther);
-			PopulateCheckBox(Resource.Id.cbRegEx, sp.RegularExpression);
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            AppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
+            SetContentView(Resource.Layout.search);
+            new Util.InsetListener(FindViewById(Resource.Id.search_container)).Apply();
+            SearchParameters sp = new SearchParameters();
+            PopulateCheckBox(Resource.Id.cbSearchInTitle, sp.SearchInTitles);
+            PopulateCheckBox(Resource.Id.cbSearchInUsername, sp.SearchInUserNames);
+            PopulateCheckBox(Resource.Id.cbSearchInNotes, sp.SearchInNotes);
+            PopulateCheckBox(Resource.Id.cbSearchInPassword, sp.SearchInPasswords);
+            PopulateCheckBox(Resource.Id.cbSearchInTags, sp.SearchInTags);
+            PopulateCheckBox(Resource.Id.cbSearchInGroupName, sp.SearchInGroupNames);
+            PopulateCheckBox(Resource.Id.cbSearchInUrl, sp.SearchInUrls);
+            PopulateCheckBox(Resource.Id.cbSearchInOtherStrings, sp.SearchInOther);
+            PopulateCheckBox(Resource.Id.cbRegEx, sp.RegularExpression);
 
-			StringComparison sc = sp.ComparisonMode;
-			bool caseSensitive = ((sc != StringComparison.CurrentCultureIgnoreCase) &&
-			                             (sc != StringComparison.InvariantCultureIgnoreCase) &&
-			                             (sc != StringComparison.OrdinalIgnoreCase));
-			PopulateCheckBox(Resource.Id.cbCaseSensitive, caseSensitive);
-			PopulateCheckBox(Resource.Id.cbExcludeExpiredEntries, sp.ExcludeExpired);
+            StringComparison sc = sp.ComparisonMode;
+            bool caseSensitive = ((sc != StringComparison.CurrentCultureIgnoreCase) &&
+                                         (sc != StringComparison.InvariantCultureIgnoreCase) &&
+                                         (sc != StringComparison.OrdinalIgnoreCase));
+            PopulateCheckBox(Resource.Id.cbCaseSensitive, caseSensitive);
+            PopulateCheckBox(Resource.Id.cbExcludeExpiredEntries, sp.ExcludeExpired);
 
-			ImageButton btnSearch = (ImageButton)FindViewById(Resource.Id.search_button);
+            ImageButton btnSearch = (ImageButton)FindViewById(Resource.Id.search_button);
 
-			btnSearch.Click += (sender, e) => PerformSearch();
+            btnSearch.Click += (sender, e) => PerformSearch();
 
-			FindViewById<EditText>(Resource.Id.searchEditText).EditorAction += (sender, e) => 
-			{
-				if (e.ActionId == Android.Views.InputMethods.ImeAction.Search) {
-					PerformSearch();
-				}
-			};
-		}
-		void PopulateCheckBox(int resId, bool value)
-		{
-			((CheckBox) FindViewById(resId)).Checked = value;
-		}
+            FindViewById<EditText>(Resource.Id.searchEditText).EditorAction += (sender, e) =>
+            {
+                if (e.ActionId == Android.Views.InputMethods.ImeAction.Search)
+                {
+                    PerformSearch();
+                }
+            };
+        }
+        void PopulateCheckBox(int resId, bool value)
+        {
+            ((CheckBox)FindViewById(resId)).Checked = value;
+        }
 
-		void PerformSearch()
-		{
-			String searchString = ((EditText)FindViewById(Resource.Id.searchEditText)).Text;
-			if (String.IsNullOrWhiteSpace(searchString))
-				return;
-			Intent searchIntent = new Intent(this, typeof(SearchResults));
-			searchIntent.PutExtra("SearchInTitles", GetCheckBoxValue(Resource.Id.cbSearchInTitle));
-			searchIntent.PutExtra("SearchInUrls", GetCheckBoxValue(Resource.Id.cbSearchInUrl));
-			searchIntent.PutExtra("SearchInPasswords", GetCheckBoxValue(Resource.Id.cbSearchInPassword));
-			searchIntent.PutExtra("SearchInUserNames", GetCheckBoxValue(Resource.Id.cbSearchInUsername));
-			searchIntent.PutExtra("SearchInNotes", GetCheckBoxValue(Resource.Id.cbSearchInNotes));
-			searchIntent.PutExtra("SearchInGroupNames", GetCheckBoxValue(Resource.Id.cbSearchInGroupName));
-			searchIntent.PutExtra("SearchInOther", GetCheckBoxValue(Resource.Id.cbSearchInOtherStrings));
-			searchIntent.PutExtra("SearchInTags", GetCheckBoxValue(Resource.Id.cbSearchInTags));
-			searchIntent.PutExtra("RegularExpression", GetCheckBoxValue(Resource.Id.cbRegEx));
-			searchIntent.PutExtra("CaseSensitive", GetCheckBoxValue(Resource.Id.cbCaseSensitive));
-			searchIntent.PutExtra("ExcludeExpired", GetCheckBoxValue(Resource.Id.cbExcludeExpiredEntries));
-			searchIntent.PutExtra(SearchManager.Query, searchString);
-			//forward appTask:
-			AppTask.ToIntent(searchIntent);
+        void PerformSearch()
+        {
+            String searchString = ((EditText)FindViewById(Resource.Id.searchEditText)).Text;
+            if (String.IsNullOrWhiteSpace(searchString))
+                return;
+            Intent searchIntent = new Intent(this, typeof(SearchResults));
+            searchIntent.PutExtra("SearchInTitles", GetCheckBoxValue(Resource.Id.cbSearchInTitle));
+            searchIntent.PutExtra("SearchInUrls", GetCheckBoxValue(Resource.Id.cbSearchInUrl));
+            searchIntent.PutExtra("SearchInPasswords", GetCheckBoxValue(Resource.Id.cbSearchInPassword));
+            searchIntent.PutExtra("SearchInUserNames", GetCheckBoxValue(Resource.Id.cbSearchInUsername));
+            searchIntent.PutExtra("SearchInNotes", GetCheckBoxValue(Resource.Id.cbSearchInNotes));
+            searchIntent.PutExtra("SearchInGroupNames", GetCheckBoxValue(Resource.Id.cbSearchInGroupName));
+            searchIntent.PutExtra("SearchInOther", GetCheckBoxValue(Resource.Id.cbSearchInOtherStrings));
+            searchIntent.PutExtra("SearchInTags", GetCheckBoxValue(Resource.Id.cbSearchInTags));
+            searchIntent.PutExtra("RegularExpression", GetCheckBoxValue(Resource.Id.cbRegEx));
+            searchIntent.PutExtra("CaseSensitive", GetCheckBoxValue(Resource.Id.cbCaseSensitive));
+            searchIntent.PutExtra("ExcludeExpired", GetCheckBoxValue(Resource.Id.cbExcludeExpiredEntries));
+            searchIntent.PutExtra(SearchManager.Query, searchString);
+            //forward appTask:
+            AppTask.ToIntent(searchIntent);
 
-			Util.FinishAndForward(this, searchIntent);
+            Util.FinishAndForward(this, searchIntent);
 
-		}
-	}
+        }
+    }
 }
 

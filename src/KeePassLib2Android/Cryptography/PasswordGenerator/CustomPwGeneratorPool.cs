@@ -24,87 +24,87 @@ using System.Text;
 
 namespace KeePassLib.Cryptography.PasswordGenerator
 {
-	public sealed class CustomPwGeneratorPool : IEnumerable<CustomPwGenerator>
-	{
-		private List<CustomPwGenerator> m_vGens = new List<CustomPwGenerator>();
+    public sealed class CustomPwGeneratorPool : IEnumerable<CustomPwGenerator>
+    {
+        private List<CustomPwGenerator> m_vGens = new List<CustomPwGenerator>();
 
-		public int Count
-		{
-			get { return m_vGens.Count; }
-		}
+        public int Count
+        {
+            get { return m_vGens.Count; }
+        }
 
-		public CustomPwGeneratorPool()
-		{
-		}
+        public CustomPwGeneratorPool()
+        {
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return m_vGens.GetEnumerator();
-		}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return m_vGens.GetEnumerator();
+        }
 
-		public IEnumerator<CustomPwGenerator> GetEnumerator()
-		{
-			return m_vGens.GetEnumerator();
-		}
+        public IEnumerator<CustomPwGenerator> GetEnumerator()
+        {
+            return m_vGens.GetEnumerator();
+        }
 
-		public void Add(CustomPwGenerator pwg)
-		{
-			if(pwg == null) throw new ArgumentNullException("pwg");
+        public void Add(CustomPwGenerator pwg)
+        {
+            if (pwg == null) throw new ArgumentNullException("pwg");
 
-			PwUuid uuid = pwg.Uuid;
-			if(uuid == null) throw new ArgumentException();
+            PwUuid uuid = pwg.Uuid;
+            if (uuid == null) throw new ArgumentException();
 
-			int nIndex = FindIndex(uuid);
+            int nIndex = FindIndex(uuid);
 
-			if(nIndex >= 0) m_vGens[nIndex] = pwg; // Replace
-			else m_vGens.Add(pwg);
-		}
+            if (nIndex >= 0) m_vGens[nIndex] = pwg; // Replace
+            else m_vGens.Add(pwg);
+        }
 
-		public CustomPwGenerator Find(PwUuid uuid)
-		{
-			if(uuid == null) throw new ArgumentNullException("uuid");
+        public CustomPwGenerator Find(PwUuid uuid)
+        {
+            if (uuid == null) throw new ArgumentNullException("uuid");
 
-			foreach(CustomPwGenerator pwg in m_vGens)
-			{
-				if(uuid.Equals(pwg.Uuid)) return pwg;
-			}
+            foreach (CustomPwGenerator pwg in m_vGens)
+            {
+                if (uuid.Equals(pwg.Uuid)) return pwg;
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		public CustomPwGenerator Find(string strName)
-		{
-			if(strName == null) throw new ArgumentNullException("strName");
+        public CustomPwGenerator Find(string strName)
+        {
+            if (strName == null) throw new ArgumentNullException("strName");
 
-			foreach(CustomPwGenerator pwg in m_vGens)
-			{
-				if(pwg.Name == strName) return pwg;
-			}
+            foreach (CustomPwGenerator pwg in m_vGens)
+            {
+                if (pwg.Name == strName) return pwg;
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		private int FindIndex(PwUuid uuid)
-		{
-			if(uuid == null) throw new ArgumentNullException("uuid");
+        private int FindIndex(PwUuid uuid)
+        {
+            if (uuid == null) throw new ArgumentNullException("uuid");
 
-			for(int i = 0; i < m_vGens.Count; ++i)
-			{
-				if(uuid.Equals(m_vGens[i].Uuid)) return i;
-			}
+            for (int i = 0; i < m_vGens.Count; ++i)
+            {
+                if (uuid.Equals(m_vGens[i].Uuid)) return i;
+            }
 
-			return -1;
-		}
+            return -1;
+        }
 
-		public bool Remove(PwUuid uuid)
-		{
-			if(uuid == null) throw new ArgumentNullException("uuid");
+        public bool Remove(PwUuid uuid)
+        {
+            if (uuid == null) throw new ArgumentNullException("uuid");
 
-			int nIndex = FindIndex(uuid);
-			if(nIndex < 0) return false;
+            int nIndex = FindIndex(uuid);
+            if (nIndex < 0) return false;
 
-			m_vGens.RemoveAt(nIndex);
-			return true;
-		}
-	}
+            m_vGens.RemoveAt(nIndex);
+            return true;
+        }
+    }
 }

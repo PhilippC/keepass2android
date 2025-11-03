@@ -29,243 +29,243 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// Service for showing ongoing notifications
-	/// 
-	/// Shows database unlocked warning persistent notification
-	/// Shows Quick-Unlock notification
-	/// </summary>
-	/// This service is running as foreground service to keep the app alive even when it's not currently
-	/// used by the user. This ensures the database is kept in memory (until Android kills it due to low memory).
-	/// It is important to also have a foreground service also for the "unlocked" state because it's really
-	/// irritating if the db is closed while switching between apps.
-	[Service(ForegroundServiceType = ForegroundService.TypeSpecialUse )]
-	[MetaData("android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE", Value = " This service is running as foreground service to keep the app alive even when it's not currently used by the user. This ensures the database is kept in memory (until Android kills it due to low memory). It is important to also have a foreground service also for the \"unlocked\" state because it's really irritating if the db is closed while switching between apps.")]
-	
-	public class OngoingNotificationsService : Service
-	{
-		protected override void AttachBaseContext(Context baseContext)
-		{
-			base.AttachBaseContext(LocaleManager.setLocale(baseContext));
-		}
-		private ScreenOffReceiver _screenOffReceiver;
+    /// <summary>
+    /// Service for showing ongoing notifications
+    /// 
+    /// Shows database unlocked warning persistent notification
+    /// Shows Quick-Unlock notification
+    /// </summary>
+    /// This service is running as foreground service to keep the app alive even when it's not currently
+    /// used by the user. This ensures the database is kept in memory (until Android kills it due to low memory).
+    /// It is important to also have a foreground service also for the "unlocked" state because it's really
+    /// irritating if the db is closed while switching between apps.
+    [Service(ForegroundServiceType = ForegroundService.TypeSpecialUse)]
+    [MetaData("android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE", Value = " This service is running as foreground service to keep the app alive even when it's not currently used by the user. This ensures the database is kept in memory (until Android kills it due to low memory). It is important to also have a foreground service also for the \"unlocked\" state because it's really irritating if the db is closed while switching between apps.")]
 
-		#region Service
-		private const int QuickUnlockId = 100;
-		private const int UnlockedWarningId = 200;
+    public class OngoingNotificationsService : Service
+    {
+        protected override void AttachBaseContext(Context baseContext)
+        {
+            base.AttachBaseContext(LocaleManager.setLocale(baseContext));
+        }
+        private ScreenOffReceiver _screenOffReceiver;
 
-		public override void OnCreate()
-		{
-			base.OnCreate();
-		
-			_screenOffReceiver = new ScreenOffReceiver();
-			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intent.ActionScreenOff);
+        #region Service
+        private const int QuickUnlockId = 100;
+        private const int UnlockedWarningId = 200;
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+
+            _screenOffReceiver = new ScreenOffReceiver();
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intent.ActionScreenOff);
             ContextCompat.RegisterReceiver(this, _screenOffReceiver, filter, (int)ReceiverFlags.Exported);
         }
 
 
-		public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
-		{
-			Kp2aLog.Log("Starting/Updating OngoingNotificationsService. Database " + (App.Kp2a.DatabaseIsUnlocked ? "Unlocked" : (App.Kp2a.QuickLocked ? "QuickLocked" : "Locked")));
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
+        {
+            Kp2aLog.Log("Starting/Updating OngoingNotificationsService. Database " + (App.Kp2a.DatabaseIsUnlocked ? "Unlocked" : (App.Kp2a.QuickLocked ? "QuickLocked" : "Locked")));
 
-			var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-					
-			// Set the icon to reflect the current state
-			if (App.Kp2a.DatabaseIsUnlocked)
-			{
+            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+
+            // Set the icon to reflect the current state
+            if (App.Kp2a.DatabaseIsUnlocked)
+            {
                 // Clear QuickUnlock icon
-			    notificationManager.Cancel(QuickUnlockId);
+                notificationManager.Cancel(QuickUnlockId);
 
                 //use foreground again to let the app not be killed too easily.
                 StartForeground(UnlockedWarningId, GetUnlockedNotification());
-			}
-			else 
-			{
-				notificationManager.Cancel(UnlockedWarningId);
+            }
+            else
+            {
+                notificationManager.Cancel(UnlockedWarningId);
 
-				if (App.Kp2a.QuickLocked)
-				{
-					// Show the Quick Unlock notification
-					StartForeground(QuickUnlockId, GetQuickUnlockNotification());
-				}
-				else
-				{
-					// Not showing any notification, database is locked, no point in keeping running
-					StopSelf();
-				}
-			}
+                if (App.Kp2a.QuickLocked)
+                {
+                    // Show the Quick Unlock notification
+                    StartForeground(QuickUnlockId, GetQuickUnlockNotification());
+                }
+                else
+                {
+                    // Not showing any notification, database is locked, no point in keeping running
+                    StopSelf();
+                }
+            }
 
-			return StartCommandResult.NotSticky;
-		}
+            return StartCommandResult.NotSticky;
+        }
 
-		public override void OnTaskRemoved(Intent rootIntent)
-		{
-			base.OnTaskRemoved(rootIntent);
+        public override void OnTaskRemoved(Intent rootIntent)
+        {
+            base.OnTaskRemoved(rootIntent);
 
-			Kp2aLog.Log("OngoingNotificationsService.OnTaskRemoved: " + rootIntent.Action);
+            Kp2aLog.Log("OngoingNotificationsService.OnTaskRemoved: " + rootIntent.Action);
 
-			// If the user has closed the task (probably by swiping it out of the recent apps list) then lock the database
-			App.Kp2a.Lock();
-		}
+            // If the user has closed the task (probably by swiping it out of the recent apps list) then lock the database
+            App.Kp2a.Lock();
+        }
 
-		public override void OnDestroy()
-		{
-			base.OnDestroy();
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
 
-			CancelNotifications(this);
+            CancelNotifications(this);
 
-		    Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
+            Kp2aLog.Log("OngoingNotificationsService.OnDestroy");
 
-			// If the service is killed, then lock the database immediately
-			if (App.Kp2a.DatabaseIsUnlocked)
-			{
-				App.Kp2a.Lock(false);
-			}
+            // If the service is killed, then lock the database immediately
+            if (App.Kp2a.DatabaseIsUnlocked)
+            {
+                App.Kp2a.Lock(false);
+            }
 
-			UnregisterReceiver(_screenOffReceiver);
-		}
+            UnregisterReceiver(_screenOffReceiver);
+        }
 
-	    public static void CancelNotifications(Context ctx)
-	    {
-	        var notificationManager = (NotificationManager) ctx.GetSystemService(NotificationService);
-	        notificationManager.Cancel(UnlockedWarningId);
-	        // Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
+        public static void CancelNotifications(Context ctx)
+        {
+            var notificationManager = (NotificationManager)ctx.GetSystemService(NotificationService);
+            notificationManager.Cancel(UnlockedWarningId);
+            // Quick Unlock notification should be removed automatically by the service (if present), as it was the foreground notification.
 
-	        //also remove any notifications of the app
-	        notificationManager.CancelAll();
-	    }
+            //also remove any notifications of the app
+            notificationManager.CancelAll();
+        }
 
-	    public override IBinder OnBind(Intent intent)
-		{
-			return null;
-		}
+        public override IBinder OnBind(Intent intent)
+        {
+            return null;
+        }
 
-		#endregion
+        #endregion
 
-		#region QuickUnlock
+        #region QuickUnlock
 
-		private Notification GetQuickUnlockNotification()
-		{
-			int grayIconResouceId = Resource.Drawable.ic_launcher_gray;
-			if ((int)Android.OS.Build.VERSION.SdkInt < 16)
-			if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.QuickUnlockIconHidden_key), false))
-			{
-				grayIconResouceId = Resource.Drawable.transparent;
-			}
-			NotificationCompat.Builder builder = 
-				new NotificationCompat.Builder(this, App.NotificationChannelIdQuicklocked)
-					.SetSmallIcon(grayIconResouceId)
-					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationLockedIcon)))
-					.SetVisibility((int)Android.App.NotificationVisibility.Secret)
-					.SetContentTitle(GetString(Resource.String.app_name))
-					.SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
+        private Notification GetQuickUnlockNotification()
+        {
+            int grayIconResouceId = Resource.Drawable.ic_launcher_gray;
+            if ((int)Android.OS.Build.VERSION.SdkInt < 16)
+                if (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.QuickUnlockIconHidden_key), false))
+                {
+                    grayIconResouceId = Resource.Drawable.transparent;
+                }
+            NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this, App.NotificationChannelIdQuicklocked)
+                    .SetSmallIcon(grayIconResouceId)
+                    .SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationLockedIcon)))
+                    .SetVisibility((int)Android.App.NotificationVisibility.Secret)
+                    .SetContentTitle(GetString(Resource.String.app_name))
+                    .SetContentText(GetString(Resource.String.database_loaded_quickunlock_enabled, GetDatabaseName()));
 
-			if ((int)Build.VERSION.SdkInt >= 16)
-			{
-				if (PreferenceManager.GetDefaultSharedPreferences(this)
-								 .GetBoolean(GetString(Resource.String.QuickUnlockIconHidden16_key), true))
-				{
-					builder.SetPriority((int) NotificationPriority.Min);
-				}
-				else
-				{
-					builder.SetPriority((int)NotificationPriority.Default);
-				}
-			}
-			
-			// Default action is to show Kp2A
-			builder.SetContentIntent(GetSwitchToAppPendingIntent());
-			// Additional action to allow locking the database
-			builder.AddAction(Resource.Drawable.baseline_lock_24, GetString(Resource.String.QuickUnlock_lockButton), 
-				PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.CloseDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
-			
+            if ((int)Build.VERSION.SdkInt >= 16)
+            {
+                if (PreferenceManager.GetDefaultSharedPreferences(this)
+                                 .GetBoolean(GetString(Resource.String.QuickUnlockIconHidden16_key), true))
+                {
+                    builder.SetPriority((int)NotificationPriority.Min);
+                }
+                else
+                {
+                    builder.SetPriority((int)NotificationPriority.Default);
+                }
+            }
 
-			return builder.Build();
-		}
+            // Default action is to show Kp2A
+            builder.SetContentIntent(GetSwitchToAppPendingIntent());
+            // Additional action to allow locking the database
+            builder.AddAction(Resource.Drawable.baseline_lock_24, GetString(Resource.String.QuickUnlock_lockButton),
+                PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.CloseDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
 
-		private Bitmap MakeLargeIcon(Bitmap unscaled)
-		{
-		    return Util.MakeLargeIcon(unscaled, this);
-		}
 
-		#endregion
+            return builder.Build();
+        }
 
-		#region Unlocked Warning
+        private Bitmap MakeLargeIcon(Bitmap unscaled)
+        {
+            return Util.MakeLargeIcon(unscaled, this);
+        }
 
-		private Notification GetUnlockedNotification()
-		{
-			NotificationCompat.Builder builder =
-				new NotificationCompat.Builder(this, App.NotificationChannelIdUnlocked)
-					.SetOngoing(true)
-					.SetSmallIcon(Resource.Drawable.ic_notify)
-					.SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationUnlockedIcon)))
-					.SetVisibility((int)Android.App.NotificationVisibility.Public)
-					.SetContentTitle(GetString(Resource.String.app_name))
-					.SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));
+        #endregion
 
-			if ((int)Build.VERSION.SdkInt >= 16)
-			{
-				if (PreferenceManager.GetDefaultSharedPreferences(this)
-								 .GetBoolean(GetString(Resource.String.ShowUnlockedNotification_key),
-											 Resources.GetBoolean(Resource.Boolean.ShowUnlockedNotification_default)))
-				{
-					builder.SetPriority((int)NotificationPriority.Default);
-				}
-				else
-				{
-					builder.SetPriority((int) NotificationPriority.Min);
-				}
-			}
+        #region Unlocked Warning
 
-			// Default action is to show Kp2A
-			builder.SetContentIntent(GetSwitchToAppPendingIntent());
-			// Additional action to allow locking the database
-			builder.AddAction(Resource.Drawable.baseline_lock_24, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
-			
-			return builder.Build();
-		}
+        private Notification GetUnlockedNotification()
+        {
+            NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this, App.NotificationChannelIdUnlocked)
+                    .SetOngoing(true)
+                    .SetSmallIcon(Resource.Drawable.ic_notify)
+                    .SetLargeIcon(MakeLargeIcon(BitmapFactory.DecodeResource(Resources, AppNames.NotificationUnlockedIcon)))
+                    .SetVisibility((int)Android.App.NotificationVisibility.Public)
+                    .SetContentTitle(GetString(Resource.String.app_name))
+                    .SetContentText(GetString(Resource.String.database_loaded_unlocked, GetDatabaseName()));
 
-		private PendingIntent GetSwitchToAppPendingIntent()
-		{
-			var startKp2aIntent = new Intent(this, typeof(KeePass));
-			startKp2aIntent.SetAction(Intent.ActionMain);
-			startKp2aIntent.AddCategory(Intent.CategoryLauncher);
+            if ((int)Build.VERSION.SdkInt >= 16)
+            {
+                if (PreferenceManager.GetDefaultSharedPreferences(this)
+                                 .GetBoolean(GetString(Resource.String.ShowUnlockedNotification_key),
+                                             Resources.GetBoolean(Resource.Boolean.ShowUnlockedNotification_default)))
+                {
+                    builder.SetPriority((int)NotificationPriority.Default);
+                }
+                else
+                {
+                    builder.SetPriority((int)NotificationPriority.Min);
+                }
+            }
 
-			return PendingIntent.GetActivity(this, 0, startKp2aIntent, Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable));
-		}
+            // Default action is to show Kp2A
+            builder.SetContentIntent(GetSwitchToAppPendingIntent());
+            // Additional action to allow locking the database
+            builder.AddAction(Resource.Drawable.baseline_lock_24, GetString(Resource.String.menu_lock), PendingIntent.GetBroadcast(this, 0, new Intent(this, typeof(ApplicationBroadcastReceiver)).SetAction(Intents.LockDatabase), Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable)));
 
-		private static string GetDatabaseName()
-		{
-		    string displayString = "";
-		    foreach (Database db in App.Kp2a.OpenDatabases)
-		    {
-		        var kpDatabase = db.KpDatabase;
-		        var dbname = kpDatabase.Name;
-		        if (String.IsNullOrEmpty(dbname))
-		        {
-		            //if paranoid ("don't remember recent files")return "***"
+            return builder.Build();
+        }
+
+        private PendingIntent GetSwitchToAppPendingIntent()
+        {
+            var startKp2aIntent = new Intent(this, typeof(KeePass));
+            startKp2aIntent.SetAction(Intent.ActionMain);
+            startKp2aIntent.AddCategory(Intent.CategoryLauncher);
+
+            return PendingIntent.GetActivity(this, 0, startKp2aIntent, Util.AddMutabilityFlag(PendingIntentFlags.UpdateCurrent, PendingIntentFlags.Immutable));
+        }
+
+        private static string GetDatabaseName()
+        {
+            string displayString = "";
+            foreach (Database db in App.Kp2a.OpenDatabases)
+            {
+                var kpDatabase = db.KpDatabase;
+                var dbname = kpDatabase.Name;
+                if (String.IsNullOrEmpty(dbname))
+                {
+                    //if paranoid ("don't remember recent files")return "***"
                     if (!App.Kp2a.GetBooleanPreference(PreferenceKey.remember_keyfile))
                         return "***";
-		            dbname = UrlUtil.StripExtension(
+                    dbname = UrlUtil.StripExtension(
                         UrlUtil.GetFileName(App.Kp2a.GetFileStorage(kpDatabase.IOConnectionInfo).GetDisplayName(kpDatabase.IOConnectionInfo)));
-		        }
-		        if (displayString != "")
-		            displayString = displayString + ", ";
-		        displayString += dbname;
-		    }
+                }
+                if (displayString != "")
+                    displayString = displayString + ", ";
+                displayString += dbname;
+            }
 
-		    return displayString;
-		}
-		#endregion
+            return displayString;
+        }
+        #endregion
 
-		class ScreenOffReceiver: BroadcastReceiver
-		{
-			public override void OnReceive(Context context, Intent intent)
-			{
-				App.Kp2a.OnScreenOff();
-			}
-		}
-	}
+        class ScreenOffReceiver : BroadcastReceiver
+        {
+            public override void OnReceive(Context context, Intent intent)
+            {
+                App.Kp2a.OnScreenOff();
+            }
+        }
+    }
 }
 

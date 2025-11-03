@@ -16,44 +16,44 @@ using KeePassLib.Utility;
 namespace keepass2android
 {
     [Activity(Label = AppNames.AppName, Theme = "@style/Kp2aTheme_ActionBar")]
-	public class DonateReminder : Activity
-	{
-		class Reminder
-		{
-			public DateTime From, To;
-			public int ResourceToShow;
-			public string Key;
-		}
+    public class DonateReminder : Activity
+    {
+        class Reminder
+        {
+            public DateTime From, To;
+            public int ResourceToShow;
+            public string Key;
+        }
 
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-			foreach (Reminder r in GetReminders())
-			{
-				if ((DateTime.Now >= r.From)
-				    && (DateTime.Now < r.To))
-				{
-					SetContentView(r.ResourceToShow);
-				}
-			}
+            foreach (Reminder r in GetReminders())
+            {
+                if ((DateTime.Now >= r.From)
+                    && (DateTime.Now < r.To))
+                {
+                    SetContentView(r.ResourceToShow);
+                }
+            }
 
-			FindViewById(Resource.Id.ok_donate).Click += (sender, args) => { Util.GotoDonateUrl(this);Finish(); };
-			FindViewById(Resource.Id.no_donate).Click += (sender, args) =>
-			{
-				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-					
-				ISharedPreferencesEditor edit = prefs.Edit();
-				edit.PutBoolean("DismissedDonateReminder", true);
-				EditorCompat.Apply(edit);
+            FindViewById(Resource.Id.ok_donate).Click += (sender, args) => { Util.GotoDonateUrl(this); Finish(); };
+            FindViewById(Resource.Id.no_donate).Click += (sender, args) =>
+            {
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 
-				Finish();
-			};
-		}
-		static IEnumerable<Reminder> GetReminders()
-		{
-			
-			
+                ISharedPreferencesEditor edit = prefs.Edit();
+                edit.PutBoolean("DismissedDonateReminder", true);
+                EditorCompat.Apply(edit);
+
+                Finish();
+            };
+        }
+        static IEnumerable<Reminder> GetReminders()
+        {
+
+
             yield return new Reminder
             {
                 From = new DateTime(2024, 09, 21),
@@ -175,51 +175,51 @@ namespace keepass2android
 
 
             int thisYear = DateTime.Now.Year;
-			
-			yield return new Reminder
-			{
-				From = new DateTime(thisYear, 05, 10),
-				To = new DateTime(thisYear, 05, 11),
-				Key = "DonationBirthday" + thisYear,
-				ResourceToShow = Resource.Layout.donate_bday
-			};
-			yield return new Reminder
-			{
-				From = new DateTime(thisYear, 05, 11),
-				To = new DateTime(thisYear, 05, 18),
-				Key = "DonationBirthday" + thisYear,
-				ResourceToShow = Resource.Layout.donate_bdaymissed
-			};
-		}
 
-		public static void ShowDonateReminderIfAppropriate(Activity context)
-		{
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(context);
-			if (prefs.GetBoolean(context.GetString(Resource.String.NoDonationReminder_key), false))
-				return;
+            yield return new Reminder
+            {
+                From = new DateTime(thisYear, 05, 10),
+                To = new DateTime(thisYear, 05, 11),
+                Key = "DonationBirthday" + thisYear,
+                ResourceToShow = Resource.Layout.donate_bday
+            };
+            yield return new Reminder
+            {
+                From = new DateTime(thisYear, 05, 11),
+                To = new DateTime(thisYear, 05, 18),
+                Key = "DonationBirthday" + thisYear,
+                ResourceToShow = Resource.Layout.donate_bdaymissed
+            };
+        }
 
-			long usageCount = prefs.GetLong(context.GetString(Resource.String.UsageCount_key), 0);
+        public static void ShowDonateReminderIfAppropriate(Activity context)
+        {
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(context);
+            if (prefs.GetBoolean(context.GetString(Resource.String.NoDonationReminder_key), false))
+                return;
 
-			if (usageCount <= 5)
-				return;
-					
-			foreach (Reminder r in GetReminders())
-			{
-				if ((DateTime.Now >= r.From )
-					&& (DateTime.Now < r.To))
-				{
-					if (prefs.GetBoolean(r.Key, false) == false)
-					{
-						ISharedPreferencesEditor edit = prefs.Edit();
-						edit.PutBoolean(r.Key, true);
-						EditorCompat.Apply(edit);
+            long usageCount = prefs.GetLong(context.GetString(Resource.String.UsageCount_key), 0);
 
-						context.StartActivity(new Intent(context, typeof(DonateReminder)));
-						break;
-					}
-				}
-			}
-			
-		}
-	}
+            if (usageCount <= 5)
+                return;
+
+            foreach (Reminder r in GetReminders())
+            {
+                if ((DateTime.Now >= r.From)
+                    && (DateTime.Now < r.To))
+                {
+                    if (prefs.GetBoolean(r.Key, false) == false)
+                    {
+                        ISharedPreferencesEditor edit = prefs.Edit();
+                        edit.PutBoolean(r.Key, true);
+                        EditorCompat.Apply(edit);
+
+                        context.StartActivity(new Intent(context, typeof(DonateReminder)));
+                        break;
+                    }
+                }
+            }
+
+        }
+    }
 }

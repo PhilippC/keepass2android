@@ -7,7 +7,7 @@ using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase
 {
-    
+
 
     internal class Kp2aDigitalAssetLinksDataSource : IKp2aDigitalAssetLinksDataSource
     {

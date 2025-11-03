@@ -66,9 +66,9 @@ namespace Kp2aBusinessLogic.Io
                 }
 
                 url = url.Replace("\\", "/");
-            
+
                 string fullPath = "smb://" + WebUtility.UrlEncode(userDomain) + ":" + WebUtility.UrlEncode(password) + "@" + url;
-                return new SmbConnectionInfo(new IOConnectionInfo() { Path = fullPath} );
+                return new SmbConnectionInfo(new IOConnectionInfo() { Path = fullPath });
             }
 
 
@@ -109,7 +109,7 @@ namespace Kp2aBusinessLogic.Io
                 {
                     LocalPath = LocalPath.Substring(0, LocalPath.Length - 1);
                 }
-            
+
                 Username = WebUtility.UrlDecode(userAndPwd[0]);
                 if (Username.Contains("\\"))
                 {
@@ -205,7 +205,7 @@ namespace Kp2aBusinessLogic.Io
         }
 
 
-        class SmbConnection: IDisposable
+        class SmbConnection : IDisposable
         {
             public SmbConnection(SmbConnectionInfo info)
             {
@@ -228,7 +228,7 @@ namespace Kp2aBusinessLogic.Io
                 {
                     FileStore = Client.TreeConnect(info.Share, out status);
                 }
-                
+
             }
 
 
@@ -242,7 +242,7 @@ namespace Kp2aBusinessLogic.Io
             public void Dispose()
             {
                 FileStore?.Disconnect();
-                
+
                 if (_isLoggedIn)
                     Client.Logoff();
 
@@ -252,10 +252,10 @@ namespace Kp2aBusinessLogic.Io
 
             }
         }
-    
 
 
-    public Stream OpenFileForRead(IOConnectionInfo ioc)
+
+        public Stream OpenFileForRead(IOConnectionInfo ioc)
         {
 
             SmbConnectionInfo info = new SmbConnectionInfo(ioc);
@@ -321,7 +321,7 @@ namespace Kp2aBusinessLogic.Io
                 {
                     _uploadPath = _path;
                 }
-                
+
 
                 _fileStorage = fileStorage;
                 _memoryStream = null;
@@ -340,7 +340,7 @@ namespace Kp2aBusinessLogic.Io
 
             public void CommitWrite()
             {
-                _fileStorage.UploadData(new MemoryStream(_memoryStream!.ToArray()), new SmbConnectionInfo(new IOConnectionInfo() { Path = _uploadPath}));
+                _fileStorage.UploadData(new MemoryStream(_memoryStream!.ToArray()), new SmbConnectionInfo(new IOConnectionInfo() { Path = _uploadPath }));
                 if (UseFileTransaction)
                 {
                     SmbConnectionInfo uploadPath = new SmbConnectionInfo(new IOConnectionInfo() { Path = _uploadPath });
@@ -360,7 +360,7 @@ namespace Kp2aBusinessLogic.Io
             var status = connection.FileStore!.CreateFile(out var handle, out _, fromPath.GetLocalSmbPath(), AccessMask.MAXIMUM_ALLOWED, 0, ShareAccess.Read, CreateDisposition.FILE_OPEN, CreateOptions.FILE_NON_DIRECTORY_FILE, null);
             if (status != NTStatus.STATUS_SUCCESS)
                 throw new Exception($"Failed to open {fromPath.LocalPath} for renaming!");
-        
+
             FileRenameInformationType2 renameInfo = new FileRenameInformationType2
             {
                 FileName = toPath.GetLocalSmbPath(),
@@ -368,7 +368,7 @@ namespace Kp2aBusinessLogic.Io
             };
             connection.FileStore.SetFileInformation(handle, renameInfo);
             connection.FileStore.CloseFile(handle);
-            
+
         }
 
         private void UploadData(Stream data, SmbConnectionInfo uploadPath)
@@ -491,7 +491,7 @@ namespace Kp2aBusinessLogic.Io
             };
             fileDescription.Path = CreateFilePath(parentIoc.Path, fileDescription.DisplayName);
             fileDescription.LastModified = fileDirectoryInformation.LastWriteTime;
-                        
+
             fileDescription.SizeInBytes = fileDirectoryInformation.EndOfFile;
             return fileDescription;
         }
@@ -504,7 +504,8 @@ namespace Kp2aBusinessLogic.Io
             {
                 return new FileDescription
                 {
-                    CanRead = true, CanWrite = true,
+                    CanRead = true,
+                    CanWrite = true,
                     DisplayName = info.Host,
                     IsDirectory = true,
                     Path = info.ToPath()
@@ -526,7 +527,7 @@ namespace Kp2aBusinessLogic.Io
 
                 return FileDescriptionConvert(ioc, fileDirectoryInformation);
 
-                        
+
             }
             conn.FileStore.CloseFile(directoryHandle);
 
@@ -559,27 +560,27 @@ namespace Kp2aBusinessLogic.Io
 
         public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
         {
-            
+
         }
 
         public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
         {
-            
+
         }
 
         public void OnResume(IFileStorageSetupActivity activity)
         {
-            
+
         }
 
         public void OnStart(IFileStorageSetupActivity activity)
         {
-            
+
         }
 
         public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
         {
-            
+
         }
 
         public string GetDisplayName(IOConnectionInfo ioc)
@@ -589,7 +590,7 @@ namespace Kp2aBusinessLogic.Io
 
         public string CreateFilePath(string parent, string newFilename)
         {
-            return new SmbConnectionInfo(new IOConnectionInfo() { Path = parent}).GetChild(newFilename).ToPath();
+            return new SmbConnectionInfo(new IOConnectionInfo() { Path = parent }).GetChild(newFilename).ToPath();
         }
 
         public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
@@ -600,7 +601,7 @@ namespace Kp2aBusinessLogic.Io
 
         public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
         {
-            return new IOConnectionInfo() { Path = CreateFilePath(folderPath.Path, filename)};
+            return new IOConnectionInfo() { Path = CreateFilePath(folderPath.Path, filename) };
         }
 
         public bool IsPermanentLocation(IOConnectionInfo ioc)

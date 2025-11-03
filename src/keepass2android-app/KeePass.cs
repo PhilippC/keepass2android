@@ -66,32 +66,32 @@ using String = System.String;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// Launcher activity of Keepass2Android. This activity usually forwards to SelectCurrentDb but may show the revision dialog after installation or updates.
-	/// </summary>
-	[Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/Kp2aTheme_BlueActionBar", Exported = true)]
-	[IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "android.intent.category.LAUNCHER", "android.intent.category.MULTIWINDOW_LAUNCHER" })]
-	public class KeePass : LifecycleAwareActivity, IDialogInterfaceOnDismissListener
-	{
-		public const Result ExitNormal = Result.FirstUser;
-		public const Result ExitLock = Result.FirstUser+1;
-		public const Result ExitRefresh = Result.FirstUser+2;
-		public const Result ExitRefreshTitle = Result.FirstUser+3;
-		public const Result ExitCloseAfterTaskComplete = Result.FirstUser+4;
-		public const Result TaskComplete = Result.FirstUser + 5;
-		public const Result ExitReloadDb = Result.FirstUser+6;
-		public const Result ExitClose = Result.FirstUser + 7;
-		public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
-		public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
-	    public const Result ExitLoadAnotherDb = Result.FirstUser + 10;
+    /// <summary>
+    /// Launcher activity of Keepass2Android. This activity usually forwards to SelectCurrentDb but may show the revision dialog after installation or updates.
+    /// </summary>
+    [Activity(Label = AppNames.AppName, MainLauncher = false, Theme = "@style/Kp2aTheme_BlueActionBar", Exported = true)]
+    [IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "android.intent.category.LAUNCHER", "android.intent.category.MULTIWINDOW_LAUNCHER" })]
+    public class KeePass : LifecycleAwareActivity, IDialogInterfaceOnDismissListener
+    {
+        public const Result ExitNormal = Result.FirstUser;
+        public const Result ExitLock = Result.FirstUser + 1;
+        public const Result ExitRefresh = Result.FirstUser + 2;
+        public const Result ExitRefreshTitle = Result.FirstUser + 3;
+        public const Result ExitCloseAfterTaskComplete = Result.FirstUser + 4;
+        public const Result TaskComplete = Result.FirstUser + 5;
+        public const Result ExitReloadDb = Result.FirstUser + 6;
+        public const Result ExitClose = Result.FirstUser + 7;
+        public const Result ExitFileStorageSelectionOk = Result.FirstUser + 8;
+        public const Result ResultOkPasswordGenerator = Result.FirstUser + 9;
+        public const Result ExitLoadAnotherDb = Result.FirstUser + 10;
         public const Result ExitLockByTimeout = Result.FirstUser + 11;
 
         public const string AndroidAppScheme = "androidapp://";
 
 
-		public const string TagsKey = "@tags";
-		public const string OverrideUrlKey = "@override";
-		public const string ExpDateKey = "@exp_date";
+        public const string TagsKey = "@tags";
+        public const string OverrideUrlKey = "@override";
+        public const string ExpDateKey = "@exp_date";
 
         private AppTask _appTask;
         private AppTask AppTask
@@ -105,172 +105,174 @@ namespace keepass2android
         }
 
 
-		private ActivityDesign _design;
+        private ActivityDesign _design;
 
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
-			_design.ApplyTheme();
-			base.OnCreate(savedInstanceState);
-			
-			//see comment to this in PasswordActivity.
-			//Note that this activity is affected even though it's finished when the app is closed because it
-			//seems that the "app launch intent" is re-delivered, so this might end up here.
-			if ((AppTask == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
-			{
-				AppTask = new NullTask();
-			}
-			else
-			{
-				AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
-			}
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            _design.ApplyTheme();
+            base.OnCreate(savedInstanceState);
 
-
-			Kp2aLog.Log("KeePass.OnCreate");
-		}
-
-		protected override void OnResume()
-		{
-			base.OnResume();
-			Kp2aLog.Log("KeePass.OnResume");
-			_design.ReapplyTheme();
-
-		}
+            //see comment to this in PasswordActivity.
+            //Note that this activity is affected even though it's finished when the app is closed because it
+            //seems that the "app launch intent" is re-delivered, so this might end up here.
+            if ((AppTask == null) && (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory)))
+            {
+                AppTask = new NullTask();
+            }
+            else
+            {
+                AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
+            }
 
 
-		protected override void OnStart()
-		{
-			base.OnStart();
-			Kp2aLog.Log("KeePass.OnStart");
+            Kp2aLog.Log("KeePass.OnCreate");
+        }
 
-			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-		
+        protected override void OnResume()
+        {
+            base.OnResume();
+            Kp2aLog.Log("KeePass.OnResume");
+            _design.ReapplyTheme();
 
-			
-			bool showChangeLog = false;
-			try
-			{
-				PackageInfo packageInfo = PackageManager.GetPackageInfo(PackageName, 0);
-				int lastInfoVersionCode = prefs.GetInt(GetString(Resource.String.LastInfoVersionCode_key), 0);
-				if (packageInfo.VersionCode > lastInfoVersionCode)
-				{
-					showChangeLog = true;
+        }
 
-					ISharedPreferencesEditor edit = prefs.Edit();
-					edit.PutInt(GetString(Resource.String.LastInfoVersionCode_key), packageInfo.VersionCode);
-					EditorCompat.Apply(edit);
-				}
 
-			}
-			catch (PackageManager.NameNotFoundException)
-			{
+        protected override void OnStart()
+        {
+            base.OnStart();
+            Kp2aLog.Log("KeePass.OnStart");
 
-			}
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+
+
+
+            bool showChangeLog = false;
+            try
+            {
+                PackageInfo packageInfo = PackageManager.GetPackageInfo(PackageName, 0);
+                int lastInfoVersionCode = prefs.GetInt(GetString(Resource.String.LastInfoVersionCode_key), 0);
+                if (packageInfo.VersionCode > lastInfoVersionCode)
+                {
+                    showChangeLog = true;
+
+                    ISharedPreferencesEditor edit = prefs.Edit();
+                    edit.PutInt(GetString(Resource.String.LastInfoVersionCode_key), packageInfo.VersionCode);
+                    EditorCompat.Apply(edit);
+                }
+
+            }
+            catch (PackageManager.NameNotFoundException)
+            {
+
+            }
 #if DEBUG
-		    showChangeLog = false;
+            showChangeLog = false;
 #endif
 
-			if (showChangeLog)
-			{
-				ChangeLog.ShowChangeLog(this, LaunchNextActivity);
-			}
-			else
-			{
-				LaunchNextActivity();
-			}
+            if (showChangeLog)
+            {
+                ChangeLog.ShowChangeLog(this, LaunchNextActivity);
+            }
+            else
+            {
+                LaunchNextActivity();
+            }
 
-		}
-		private static String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
-		private static String LIB_DALVIK = "libdvm.so";
-		private static String LIB_ART = "libart.so";
-		private static String LIB_ART_D = "libartd.so";
-		public static string StartWithTask = "keepass2android.ACTION_START_WITH_TASK";
+        }
+        private static String SELECT_RUNTIME_PROPERTY = "persist.sys.dalvik.vm.lib";
+        private static String LIB_DALVIK = "libdvm.so";
+        private static String LIB_ART = "libart.so";
+        private static String LIB_ART_D = "libartd.so";
+        public static string StartWithTask = "keepass2android.ACTION_START_WITH_TASK";
 
-		public KeePass()
-		{
-			_design = new ActivityDesign(this);
-		}
+        public KeePass()
+        {
+            _design = new ActivityDesign(this);
+        }
 
-		private String GetCurrentRuntimeValue()
-		{
-			try
-			{
-				Class systemProperties = Class.ForName("android.os.SystemProperties");
-				try
-				{
-					Method get = systemProperties.GetMethod("get",
-					                                        Class.FromType(typeof (Java.Lang.String)),
-					                                        Class.FromType(typeof (Java.Lang.String)));
-					if (get == null)
-					{
-						return "WTF?!";
-					}
-					try
-					{
-						String value = (String) get.Invoke(
-							systemProperties, SELECT_RUNTIME_PROPERTY,
-							/* Assuming default is */"Dalvik");
-						if (LIB_DALVIK.Equals(value))
-						{
-							return "Dalvik";
-						}
-						else if (LIB_ART.Equals(value))
-						{
-							return "ART";
-						}
-						else if (LIB_ART_D.Equals(value))
-						{
-							return "ART debug build";
-						}
+        private String GetCurrentRuntimeValue()
+        {
+            try
+            {
+                Class systemProperties = Class.ForName("android.os.SystemProperties");
+                try
+                {
+                    Method get = systemProperties.GetMethod("get",
+                                                            Class.FromType(typeof(Java.Lang.String)),
+                                                            Class.FromType(typeof(Java.Lang.String)));
+                    if (get == null)
+                    {
+                        return "WTF?!";
+                    }
+                    try
+                    {
+                        String value = (String)get.Invoke(
+                            systemProperties, SELECT_RUNTIME_PROPERTY,
+                            /* Assuming default is */"Dalvik");
+                        if (LIB_DALVIK.Equals(value))
+                        {
+                            return "Dalvik";
+                        }
+                        else if (LIB_ART.Equals(value))
+                        {
+                            return "ART";
+                        }
+                        else if (LIB_ART_D.Equals(value))
+                        {
+                            return "ART debug build";
+                        }
 
-						return value;
-					}
-					catch (IllegalAccessException e)
-					{
-						return "IllegalAccessException";
-					}
-					catch (IllegalArgumentException e)
-					{
-						return "IllegalArgumentException";
-					}
-					catch (InvocationTargetException e)
-					{
-						return "InvocationTargetException";
-					}
-				}
-				catch (NoSuchMethodException e)
-				{
-					return "SystemProperties.get(String key, String def) method is not found";
-				}
-			}
-			catch (ClassNotFoundException e)
-			{
-				return "SystemProperties class is not found";
-			}
-		}
+                        return value;
+                    }
+                    catch (IllegalAccessException e)
+                    {
+                        return "IllegalAccessException";
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        return "IllegalArgumentException";
+                    }
+                    catch (InvocationTargetException e)
+                    {
+                        return "InvocationTargetException";
+                    }
+                }
+                catch (NoSuchMethodException e)
+                {
+                    return "SystemProperties.get(String key, String def) method is not found";
+                }
+            }
+            catch (ClassNotFoundException e)
+            {
+                return "SystemProperties class is not found";
+            }
+        }
 
 
-		private void LaunchNextActivity() {
+        private void LaunchNextActivity()
+        {
 
             Intent intent = new Intent(this, typeof(SelectCurrentDbActivity));
-			AppTask.ToIntent(intent);
-			intent.AddFlags(ActivityFlags.ForwardResult);
-			StartActivity(intent);
-			Finish();
-			
-		}
-		
+            AppTask.ToIntent(intent);
+            intent.AddFlags(ActivityFlags.ForwardResult);
+            StartActivity(intent);
+            Finish();
 
-		protected override void OnDestroy() {
-			Kp2aLog.Log("KeePass.OnDestroy"+IsFinishing.ToString());
-			base.OnDestroy();
-		}
+        }
 
 
-		public void OnDismiss(IDialogInterface dialog)
-		{
-			LaunchNextActivity();
-		}
-	}
+        protected override void OnDestroy()
+        {
+            Kp2aLog.Log("KeePass.OnDestroy" + IsFinishing.ToString());
+            base.OnDestroy();
+        }
+
+
+        public void OnDismiss(IDialogInterface dialog)
+        {
+            LaunchNextActivity();
+        }
+    }
 }
 
 

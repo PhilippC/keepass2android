@@ -41,8 +41,8 @@ namespace PluginTOTP
                 res.InternalFields.Add("TimeOtp-Length");
                 uint.TryParse(strLength, out uLength);
             }
-            
-            
+
+
             if (uLength == 0) uLength = 6;
 
             string strAlg;
@@ -66,24 +66,24 @@ namespace PluginTOTP
                 string str;
                 secretFieldKey = strPrefix + "Secret";
                 entryFields.TryGetValue(secretFieldKey, out str);
-                if (!string.IsNullOrEmpty(str))    
+                if (!string.IsNullOrEmpty(str))
                     return StrUtil.Utf8.GetBytes(str);
-                
+
                 secretFieldKey = strPrefix + "Secret-Hex";
                 entryFields.TryGetValue(secretFieldKey, out str);
                 if (!string.IsNullOrEmpty(str))
                     return MemUtil.HexStringToByteArray(str);
-                
+
                 secretFieldKey = strPrefix + "Secret-Base32";
                 entryFields.TryGetValue(secretFieldKey, out str);
                 if (!string.IsNullOrEmpty(str))
-                    return Base32.Decode(str); 
+                    return Base32.Decode(str);
 
                 secretFieldKey = strPrefix + "Secret-Base64";
                 entryFields.TryGetValue(secretFieldKey, out str);
                 if (!string.IsNullOrEmpty(str))
                     return Convert.FromBase64String(str);
-                
+
             }
             catch (Exception e)
             {

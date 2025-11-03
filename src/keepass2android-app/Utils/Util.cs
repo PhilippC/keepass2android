@@ -50,70 +50,72 @@ using Uri = Android.Net.Uri;
 
 namespace keepass2android
 {
-	public class LocaleManager
-	{
-		public static Context LocalizedAppContext
-		{
-			get
-			{
-				//the standard way of setting locale on the app context is through Application.AttachBaseContext,
-				//but because of https://bugzilla.xamarin.com/11/11182/bug.html this doesn't work
-				return setLocale(Application.Context);
-			}
-		}
-		public static Context setLocale(Context c)
-		{
-			return setNewLocale(c, getLanguage(c));
-		}
-
-		public static Context setNewLocale(Context c, String language)
-		{
-			return updateResources(c, language);
-		}
-
-		static string _language;
-		public static string Language 
-		{			
-			get { return _language; }
-			set { _language = value;languageLoaded = true; 
-			} 
-		}
-		static bool languageLoaded = false;
-
-		public static String getLanguage(Context c)
-		{
-			if (!languageLoaded)
+    public class LocaleManager
+    {
+        public static Context LocalizedAppContext
+        {
+            get
             {
-				var langPref = PreferenceManager.GetDefaultSharedPreferences(c).GetString(c.GetString(Resource.String.app_language_pref_key), null);
-				Language = LanguageEntry.PrefCodeToLanguage(langPref);
-			}			
-			return Language;
-		}
+                //the standard way of setting locale on the app context is through Application.AttachBaseContext,
+                //but because of https://bugzilla.xamarin.com/11/11182/bug.html this doesn't work
+                return setLocale(Application.Context);
+            }
+        }
+        public static Context setLocale(Context c)
+        {
+            return setNewLocale(c, getLanguage(c));
+        }
 
-		private static Context updateResources(Context context, String language)
-		{
-			if (language == null)
-				return context;
-			
-			Java.Util.Locale locale = new Java.Util.Locale(language);
-			Java.Util.Locale.Default = locale;
+        public static Context setNewLocale(Context c, String language)
+        {
+            return updateResources(c, language);
+        }
 
-			Resources res = context.Resources;
-			Configuration config = new Configuration(res.Configuration);
-			if ((int)Build.VERSION.SdkInt >= 17)
-			{
-				config.SetLocale(locale);
-				context = context.CreateConfigurationContext(config);
-			}
-			else
-			{
-				config.Locale = locale;
-				res.UpdateConfiguration(config, res.DisplayMetrics);
-			}
-			return context;
+        static string _language;
+        public static string Language
+        {
+            get { return _language; }
+            set
+            {
+                _language = value; languageLoaded = true;
+            }
+        }
+        static bool languageLoaded = false;
 
-		}
-	}
+        public static String getLanguage(Context c)
+        {
+            if (!languageLoaded)
+            {
+                var langPref = PreferenceManager.GetDefaultSharedPreferences(c).GetString(c.GetString(Resource.String.app_language_pref_key), null);
+                Language = LanguageEntry.PrefCodeToLanguage(langPref);
+            }
+            return Language;
+        }
+
+        private static Context updateResources(Context context, String language)
+        {
+            if (language == null)
+                return context;
+
+            Java.Util.Locale locale = new Java.Util.Locale(language);
+            Java.Util.Locale.Default = locale;
+
+            Resources res = context.Resources;
+            Configuration config = new Configuration(res.Configuration);
+            if ((int)Build.VERSION.SdkInt >= 17)
+            {
+                config.SetLocale(locale);
+                context = context.CreateConfigurationContext(config);
+            }
+            else
+            {
+                config.Locale = locale;
+                res.UpdateConfiguration(config, res.DisplayMetrics);
+            }
+            return context;
+
+        }
+    }
 
     /// <summary>
 	/// A small container/wrapper that helps with the building and sorting of the 
@@ -121,14 +123,14 @@ namespace keepass2android
 	/// </summary>
 	class LanguageEntry
     {
-		// "System language" preference code; maps to LocaleManager.Language = null
+        // "System language" preference code; maps to LocaleManager.Language = null
         private const string SYS_LANG_CODE = "SysLang";
 
-		// Preference code (2-char lowercase, or SYS_LANG_CODE)
+        // Preference code (2-char lowercase, or SYS_LANG_CODE)
         public readonly string Code;
-		// Localized display name
+        // Localized display name
         public readonly string Name;
-		// True if this LanguageEntry is the "System language", false otherwise
+        // True if this LanguageEntry is the "System language", false otherwise
         public readonly bool IsSystem;
 
         /// <summary>
@@ -377,7 +379,7 @@ namespace keepass2android
             }
             catch (ActivityNotFoundException)
             {
-                App.Kp2a.ShowMessage(context, Resource.String.error_failed_to_launch_link,  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(context, Resource.String.error_failed_to_launch_link, MessageSeverity.Error);
                 return false;
             }
 
@@ -740,7 +742,7 @@ namespace keepass2android
 
 
 
-        public class InsetListener: Java.Lang.Object, IOnApplyWindowInsetsListener
+        public class InsetListener : Java.Lang.Object, IOnApplyWindowInsetsListener
         {
             private View _targetView;
             private readonly int _insetsType;
@@ -748,7 +750,7 @@ namespace keepass2android
             private int _initialPaddingTop;
             private int _initialPaddingRight;
             private int _initialPaddingBottom;
-            
+
 
             public bool EnabledPaddingLeft { get; set; } = true;
             public bool EnablePaddingTop { get; set; } = true;
@@ -765,9 +767,9 @@ namespace keepass2android
                 _initialPaddingBottom = targetView.PaddingBottom;
             }
 
-            public InsetListener(View targetView): this(targetView,  WindowInsetsCompat.Type.SystemBars())
+            public InsetListener(View targetView) : this(targetView, WindowInsetsCompat.Type.SystemBars())
             {
-                
+
 
             }
 
@@ -783,7 +785,7 @@ namespace keepass2android
                 );
 
 
-                return insets; 
+                return insets;
             }
 
             public static InsetListener ForBottomElement(View view)
@@ -795,7 +797,7 @@ namespace keepass2android
             }
             public static InsetListener ForTopElement(View view)
             {
-                return new InsetListener(view,  WindowInsetsCompat.Type.SystemBars() | WindowInsetsCompat.Type.DisplayCutout())
+                return new InsetListener(view, WindowInsetsCompat.Type.SystemBars() | WindowInsetsCompat.Type.DisplayCutout())
                 {
                     EnablePaddingBottom = false
                 };

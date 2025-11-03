@@ -6,55 +6,55 @@ using keepass2android;
 
 namespace keepass2android
 {
-	public class OtpAuxCacheSupervisor : OtpAuxCachingFileStorage.IOtpAuxCacheSupervisor
-	{
-		private readonly Kp2aApp _app;
+    public class OtpAuxCacheSupervisor : OtpAuxCachingFileStorage.IOtpAuxCacheSupervisor
+    {
+        private readonly Kp2aApp _app;
 
-		public OtpAuxCacheSupervisor(Kp2aApp app)
-		{
-			_app = app;
-		}
+        public OtpAuxCacheSupervisor(Kp2aApp app)
+        {
+            _app = app;
+        }
 
-		public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception ex)
-		{
-			_app.CouldntSaveToRemote(ioc, ex);
-		}
+        public void CouldntSaveToRemote(IOConnectionInfo ioc, Exception ex)
+        {
+            _app.CouldntSaveToRemote(ioc, ex);
+        }
 
-		public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
-		{
-			_app.CouldntOpenFromRemote(ioc, ex);
-		}
+        public void CouldntOpenFromRemote(IOConnectionInfo ioc, Exception ex)
+        {
+            _app.CouldntOpenFromRemote(ioc, ex);
+        }
 
-		public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
-		{
-			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad,
-			                                             new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.otp_aux_file) }), MessageSeverity.Info);
-		}
+        public void UpdatedCachedFileOnLoad(IOConnectionInfo ioc)
+        {
+            _app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.UpdatedCachedFileOnLoad,
+                                                         new Java.Lang.Object[] { LocaleManager.LocalizedAppContext.GetString(Resource.String.otp_aux_file) }), MessageSeverity.Info);
+        }
 
-		public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
-		{
-			_app.UpdatedRemoteFileOnLoad(ioc);
-		}
+        public void UpdatedRemoteFileOnLoad(IOConnectionInfo ioc)
+        {
+            _app.UpdatedRemoteFileOnLoad(ioc);
+        }
 
-		public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
-		{
-			//must not be called . Conflicts should be resolved.
-			throw new InvalidOperationException();
-		}
+        public void NotifyOpenFromLocalDueToConflict(IOConnectionInfo ioc)
+        {
+            //must not be called . Conflicts should be resolved.
+            throw new InvalidOperationException();
+        }
 
-		public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
-		{
-			_app.LoadedFromRemoteInSync(ioc);
-		}
+        public void LoadedFromRemoteInSync(IOConnectionInfo ioc)
+        {
+            _app.LoadedFromRemoteInSync(ioc);
+        }
 
-		public void ResolvedCacheConflictByUsingRemote(IOConnectionInfo ioc)
-		{
-			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingRemoteOtpAux), MessageSeverity.Info);
-		}
+        public void ResolvedCacheConflictByUsingRemote(IOConnectionInfo ioc)
+        {
+            _app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingRemoteOtpAux), MessageSeverity.Info);
+        }
 
-		public void ResolvedCacheConflictByUsingLocal(IOConnectionInfo ioc)
-		{
-			_app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingLocalOtpAux), MessageSeverity.Info);
-		}
-	}
+        public void ResolvedCacheConflictByUsingLocal(IOConnectionInfo ioc)
+        {
+            _app.ShowToast(LocaleManager.LocalizedAppContext.GetString(Resource.String.ResolvedCacheConflictByUsingLocalOtpAux), MessageSeverity.Info);
+        }
+    }
 }

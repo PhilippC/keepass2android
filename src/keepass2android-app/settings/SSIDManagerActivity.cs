@@ -164,7 +164,7 @@ namespace keepass2android
                 })
                 .SetNegativeButton(Android.Resource.String.Cancel, (s, e) => { Finish(); })
                 .Show();
-            
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

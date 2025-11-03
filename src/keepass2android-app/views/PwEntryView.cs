@@ -35,60 +35,60 @@ using keepass2android;
 
 namespace keepass2android.view
 {
-	public sealed class PwEntryView : GroupListItemView
-	{
-		private readonly GroupBaseActivity _groupActivity;
-		private PwEntry _entry;
-		private readonly TextView _textView;
-		private readonly TextView _textviewDetails;
-		private readonly TextView _textgroupFullPath;
+    public sealed class PwEntryView : GroupListItemView
+    {
+        private readonly GroupBaseActivity _groupActivity;
+        private PwEntry _entry;
+        private readonly TextView _textView;
+        private readonly TextView _textviewDetails;
+        private readonly TextView _textgroupFullPath;
         private readonly ProgressBar _totpCountdown;
         private readonly TextView _totpText;
         private readonly LinearLayout _totpLayout;
 
         private int _pos;
 
-		private int? _defaultTextColor;
+        private int? _defaultTextColor;
 
-		readonly bool _showDetail;
-		readonly bool _showGroupFullPath;
-		readonly bool _isSearchResult;
+        readonly bool _showDetail;
+        readonly bool _showGroupFullPath;
+        readonly bool _isSearchResult;
 
 
-		private const int MenuOpen = Menu.First;
-		private const int MenuDelete = MenuOpen + 1;
-		private const int MenuMove = MenuDelete + 1;
-		private const int MenuNavigate = MenuMove + 1;
-		
-		public static PwEntryView GetInstance(GroupBaseActivity act, PwEntry pw, int pos)
-		{
-			return new PwEntryView(act, pw, pos);
+        private const int MenuOpen = Menu.First;
+        private const int MenuDelete = MenuOpen + 1;
+        private const int MenuMove = MenuDelete + 1;
+        private const int MenuNavigate = MenuMove + 1;
 
-		}
+        public static PwEntryView GetInstance(GroupBaseActivity act, PwEntry pw, int pos)
+        {
+            return new PwEntryView(act, pw, pos);
 
-		public PwEntryView(IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
+        }
 
-		private PwEntryView(GroupBaseActivity groupActivity, PwEntry pw, int pos):base(groupActivity)
-		{
-			_groupActivity = groupActivity;
+        public PwEntryView(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+
+        }
+
+        private PwEntryView(GroupBaseActivity groupActivity, PwEntry pw, int pos) : base(groupActivity)
+        {
+            _groupActivity = groupActivity;
 
             View ev = Inflate(groupActivity, Resource.Layout.entry_list_entry, null);
-			_textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
-			_textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
+            _textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
+            _textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
-		    Database db = App.Kp2a.FindDatabaseForElement(pw);
-			
-			ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ?  ViewStates.Visible : ViewStates.Gone;
+            Database db = App.Kp2a.FindDatabaseForElement(pw);
 
-			_textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
-			_textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
+            ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
 
-			_textgroupFullPath = (TextView)ev.FindViewById(Resource.Id.group_detail);
-			_textgroupFullPath.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
+            _textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
+            _textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
+
+            _textgroupFullPath = (TextView)ev.FindViewById(Resource.Id.group_detail);
+            _textgroupFullPath.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);
 
             _totpCountdown = ev.FindViewById<ProgressBar>(Resource.Id.TotpCountdownProgressBar);
             _totpText = ev.FindViewById<TextView>(Resource.Id.totp_text);
@@ -102,26 +102,26 @@ namespace keepass2android.view
             };
 
             _showDetail = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
-				groupActivity.GetString(Resource.String.ShowUsernameInList_key), 
-				Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
+                groupActivity.GetString(Resource.String.ShowUsernameInList_key),
+                Resources.GetBoolean(Resource.Boolean.ShowUsernameInList_default));
 
-			_showGroupFullPath = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
-				groupActivity.GetString(Resource.String.ShowGroupnameInSearchResult_key), 
-				Resources.GetBoolean(Resource.Boolean.ShowGroupnameInSearchResult_default));
+            _showGroupFullPath = PreferenceManager.GetDefaultSharedPreferences(groupActivity).GetBoolean(
+                groupActivity.GetString(Resource.String.ShowGroupnameInSearchResult_key),
+                Resources.GetBoolean(Resource.Boolean.ShowGroupnameInSearchResult_default));
 
-			_isSearchResult = _groupActivity is keepass2android.search.SearchResults;
+            _isSearchResult = _groupActivity is keepass2android.search.SearchResults;
 
 
-			PopulateView(ev, pw, pos);
-			
-			LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
-			
-			AddView(ev, lp);
-			
-		}
-		
-		private void PopulateView(View ev, PwEntry pw, int pos)
-		{
+            PopulateView(ev, pw, pos);
+
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
+
+            AddView(ev, lp);
+
+        }
+
+        private void PopulateView(View ev, PwEntry pw, int pos)
+        {
 
             if (_groupBaseActivity.IsFinishing)
                 return;
@@ -130,19 +130,19 @@ namespace keepass2android.view
             try
             {
 
-                
+
                 ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Visible;
                 ev.FindViewById(Resource.Id.check_mark).Visibility = ViewStates.Invisible;
 
-		    _db = App.Kp2a.TryFindDatabaseForElement(_entry);
-            if (_db == null)
-            {
-                ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Gone;
-                _textView.TextFormatted = new SpannableString("(no data)");
-                _textviewDetails.Visibility = ViewStates.Gone;
-                _textgroupFullPath.Visibility = ViewStates.Gone;
-                return;
-            }
+                _db = App.Kp2a.TryFindDatabaseForElement(_entry);
+                if (_db == null)
+                {
+                    ev.FindViewById(Resource.Id.icon).Visibility = ViewStates.Gone;
+                    _textView.TextFormatted = new SpannableString("(no data)");
+                    _textviewDetails.Visibility = ViewStates.Gone;
+                    _textgroupFullPath.Visibility = ViewStates.Gone;
+                    return;
+                }
 
                 ImageView iv = (ImageView)ev.FindViewById(Resource.Id.icon);
                 bool isExpired = pw.Expires && pw.ExpiryTime < DateTime.Now;
@@ -232,19 +232,19 @@ namespace keepass2android.view
 
 
         }
-		
-		public void ConvertView(PwEntry pw, int pos)
-		{
-			PopulateView(this, pw, pos);
-		}
 
-		
-		private void LaunchEntry()
-		{
-			_groupActivity.LaunchActivityForEntry(_entry, _pos);
-			//_groupActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
-		}
-		/*
+        public void ConvertView(PwEntry pw, int pos)
+        {
+            PopulateView(this, pw, pos);
+        }
+
+
+        private void LaunchEntry()
+        {
+            _groupActivity.LaunchActivityForEntry(_entry, _pos);
+            //_groupActivity.OverridePendingTransition(Resource.Animation.anim_enter, Resource.Animation.anim_leave);
+        }
+        /*
 		public override void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo)
 		{
 			menu.Add(0, MenuOpen, 0, Resource.String.menu_open);
@@ -289,27 +289,27 @@ namespace keepass2android.view
 		}
 
 		*/
-	    public override void OnClick()
-	    {
-	        LaunchEntry();
-	    }
+        public override void OnClick()
+        {
+            LaunchEntry();
+        }
 
-        
-        
+
+
         private TotpData _totpData;
-		
+
         private Database _db;
 
         public string UpdateTotp()
         {
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_groupActivity);
             bool showTotpDefault = _groupActivity.MayPreviewTotp;
-                
+
 
             if (showTotpDefault)
                 _totpData = new Kp2aTotp().TryGetTotpData(new PwEntryOutput(_entry, _db));
-			else
-			    _totpData = null;
+            else
+                _totpData = null;
 
             if (_totpData?.IsTotpEntry != true)
             {

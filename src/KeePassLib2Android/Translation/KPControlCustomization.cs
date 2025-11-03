@@ -34,91 +34,91 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Translation
 {
-	public class Control
-	{}
+    public class Control
+    { }
 
-	public sealed class KpccLayout
-	{
+    public sealed class KpccLayout
+    {
 
-		public enum LayoutParameterEx
-		{
-			X, Y, Width, Height
-		}
+        public enum LayoutParameterEx
+        {
+            X, Y, Width, Height
+        }
 
-		private const string m_strControlRelative = @"%c";
+        private const string m_strControlRelative = @"%c";
 
-		internal const NumberStyles m_nsParser = (NumberStyles.AllowLeadingSign |
-			NumberStyles.AllowDecimalPoint);
-		internal static readonly CultureInfo m_lclInv = CultureInfo.InvariantCulture;
+        internal const NumberStyles m_nsParser = (NumberStyles.AllowLeadingSign |
+            NumberStyles.AllowDecimalPoint);
+        internal static readonly CultureInfo m_lclInv = CultureInfo.InvariantCulture;
 
-		private string m_strPosX = string.Empty;
-		[XmlAttribute]
-		[DefaultValue("")]
-		public string X
-		{
-			get { return m_strPosX; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strPosX = value;
-			}
-		}
+        private string m_strPosX = string.Empty;
+        [XmlAttribute]
+        [DefaultValue("")]
+        public string X
+        {
+            get { return m_strPosX; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strPosX = value;
+            }
+        }
 
-		private string m_strPosY = string.Empty;
-		[XmlAttribute]
-		[DefaultValue("")]
-		public string Y
-		{
-			get { return m_strPosY; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strPosY = value;
-			}
-		}
+        private string m_strPosY = string.Empty;
+        [XmlAttribute]
+        [DefaultValue("")]
+        public string Y
+        {
+            get { return m_strPosY; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strPosY = value;
+            }
+        }
 
-		private string m_strSizeW = string.Empty;
-		[XmlAttribute]
-		[DefaultValue("")]
-		public string Width
-		{
-			get { return m_strSizeW; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strSizeW = value;
-			}
-		}
+        private string m_strSizeW = string.Empty;
+        [XmlAttribute]
+        [DefaultValue("")]
+        public string Width
+        {
+            get { return m_strSizeW; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strSizeW = value;
+            }
+        }
 
-		private string m_strSizeH = string.Empty;
-		[XmlAttribute]
-		[DefaultValue("")]
-		public string Height
-		{
-			get { return m_strSizeH; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strSizeH = value;
-			}
-		}
+        private string m_strSizeH = string.Empty;
+        [XmlAttribute]
+        [DefaultValue("")]
+        public string Height
+        {
+            get { return m_strSizeH; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strSizeH = value;
+            }
+        }
 
-		public void SetControlRelativeValue(LayoutParameterEx lp, string strValue)
-		{
-			Debug.Assert(strValue != null);
-			if(strValue == null) throw new ArgumentNullException("strValue");
+        public void SetControlRelativeValue(LayoutParameterEx lp, string strValue)
+        {
+            Debug.Assert(strValue != null);
+            if (strValue == null) throw new ArgumentNullException("strValue");
 
-			if(strValue.Length > 0) strValue += m_strControlRelative;
+            if (strValue.Length > 0) strValue += m_strControlRelative;
 
-			if(lp == LayoutParameterEx.X) m_strPosX = strValue;
-			else if(lp == LayoutParameterEx.Y) m_strPosY = strValue;
-			else if(lp == LayoutParameterEx.Width) m_strSizeW = strValue;
-			else if(lp == LayoutParameterEx.Height) m_strSizeH = strValue;
-			else { Debug.Assert(false); }
-		}
+            if (lp == LayoutParameterEx.X) m_strPosX = strValue;
+            else if (lp == LayoutParameterEx.Y) m_strPosY = strValue;
+            else if (lp == LayoutParameterEx.Width) m_strSizeW = strValue;
+            else if (lp == LayoutParameterEx.Height) m_strSizeH = strValue;
+            else { Debug.Assert(false); }
+        }
 
 #if (!KeePassLibSD && !KeePassRT)
-		/*internal void ApplyTo(Control c)
+        /*internal void ApplyTo(Control c)
 		{
 			Debug.Assert(c != null); if(c == null) return;
 
@@ -189,91 +189,91 @@ namespace KeePassLib.Translation
 		}*/
 #endif
 
-		public static string ToControlRelativeString(string strEncoded)
-		{
-			Debug.Assert(strEncoded != null);
-			if(strEncoded == null) throw new ArgumentNullException("strEncoded");
+        public static string ToControlRelativeString(string strEncoded)
+        {
+            Debug.Assert(strEncoded != null);
+            if (strEncoded == null) throw new ArgumentNullException("strEncoded");
 
-			if(strEncoded.Length == 0) return string.Empty;
+            if (strEncoded.Length == 0) return string.Empty;
 
-			if(strEncoded.EndsWith(m_strControlRelative))
-				return strEncoded.Substring(0, strEncoded.Length -
-					m_strControlRelative.Length);
+            if (strEncoded.EndsWith(m_strControlRelative))
+                return strEncoded.Substring(0, strEncoded.Length -
+                    m_strControlRelative.Length);
 
-			Debug.Assert(false);
-			return string.Empty;
-		}
-	}
+            Debug.Assert(false);
+            return string.Empty;
+        }
+    }
 
-	public sealed class KPControlCustomization : IComparable<KPControlCustomization>
-	{
-		private string m_strMemberName = string.Empty;
-		/// <summary>
-		/// Member variable name of the control to be translated.
-		/// </summary>
-		[XmlAttribute]
-		public string Name
-		{
-			get { return m_strMemberName; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strMemberName = value;
-			}
-		}
+    public sealed class KPControlCustomization : IComparable<KPControlCustomization>
+    {
+        private string m_strMemberName = string.Empty;
+        /// <summary>
+        /// Member variable name of the control to be translated.
+        /// </summary>
+        [XmlAttribute]
+        public string Name
+        {
+            get { return m_strMemberName; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strMemberName = value;
+            }
+        }
 
-		private string m_strHash = string.Empty;
-		[XmlAttribute]
-		public string BaseHash
-		{
-			get { return m_strHash; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strHash = value;
-			}
-		}
+        private string m_strHash = string.Empty;
+        [XmlAttribute]
+        public string BaseHash
+        {
+            get { return m_strHash; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strHash = value;
+            }
+        }
 
-		private string m_strText = string.Empty;
-		[DefaultValue("")]
-		public string Text
-		{
-			get { return m_strText; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strText = value;
-			}
-		}
+        private string m_strText = string.Empty;
+        [DefaultValue("")]
+        public string Text
+        {
+            get { return m_strText; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strText = value;
+            }
+        }
 
-		private string m_strEngText = string.Empty;
-		[XmlIgnore]
-		public string TextEnglish
-		{
-			get { return m_strEngText; }
-			set { m_strEngText = value; }
-		}
+        private string m_strEngText = string.Empty;
+        [XmlIgnore]
+        public string TextEnglish
+        {
+            get { return m_strEngText; }
+            set { m_strEngText = value; }
+        }
 
-		private KpccLayout m_layout = new KpccLayout();
-		public KpccLayout Layout
-		{
-			get { return m_layout; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_layout = value;
-			}
-		}
+        private KpccLayout m_layout = new KpccLayout();
+        public KpccLayout Layout
+        {
+            get { return m_layout; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_layout = value;
+            }
+        }
 
-		public int CompareTo(KPControlCustomization kpOther)
-		{
-			if(kpOther == null) { Debug.Assert(false); return 1; }
+        public int CompareTo(KPControlCustomization kpOther)
+        {
+            if (kpOther == null) { Debug.Assert(false); return 1; }
 
-			return m_strMemberName.CompareTo(kpOther.Name);
-		}
+            return m_strMemberName.CompareTo(kpOther.Name);
+        }
 
 #if (!KeePassLibSD && !KeePassRT)
-		/*private static readonly Type[] m_vTextControls = new Type[] {
+        /*private static readonly Type[] m_vTextControls = new Type[] {
 			typeof(MenuStrip), typeof(PictureBox), typeof(ListView),
 			typeof(TreeView), typeof(ToolStrip), typeof(WebBrowser),
 			typeof(Panel), typeof(StatusStrip), typeof(ProgressBar),
@@ -401,5 +401,5 @@ namespace KeePassLib.Translation
 			return (m_strHash == strHash);
 		}*/
 #endif
-	}
+    }
 }

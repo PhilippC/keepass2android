@@ -21,34 +21,45 @@ using System.Reflection;
 
 namespace keepass2android
 {
-	
-	public class EditorCompat {
-		private static MethodInfo applyMethod;
 
-		public static void Apply (ISharedPreferencesEditor edit)
-		{
-			if (applyMethod == null) {
-				try {
-					applyMethod = edit.GetType ().GetMethod("Apply",new Type[]{});
-				} catch (Exception) {
-					// Substitute commit for apply when not available (API level < 9)
-					try {
-						applyMethod = edit.GetType ().GetMethod("Commit",new Type[]{});
-					} catch (Exception) {
-						// Should be impossible, but leave apply null in this case
-					}
-				}
-			}
-			try {
-				applyMethod.Invoke(edit, new Object[]{});
-			} catch (Exception) {
-				// Shouldn't be possible, but call commit directly if this happens
-				edit.Commit();
-			}
-			
-		}
-		
-	}
+    public class EditorCompat
+    {
+        private static MethodInfo applyMethod;
+
+        public static void Apply(ISharedPreferencesEditor edit)
+        {
+            if (applyMethod == null)
+            {
+                try
+                {
+                    applyMethod = edit.GetType().GetMethod("Apply", new Type[] { });
+                }
+                catch (Exception)
+                {
+                    // Substitute commit for apply when not available (API level < 9)
+                    try
+                    {
+                        applyMethod = edit.GetType().GetMethod("Commit", new Type[] { });
+                    }
+                    catch (Exception)
+                    {
+                        // Should be impossible, but leave apply null in this case
+                    }
+                }
+            }
+            try
+            {
+                applyMethod.Invoke(edit, new Object[] { });
+            }
+            catch (Exception)
+            {
+                // Shouldn't be possible, but call commit directly if this happens
+                edit.Commit();
+            }
+
+        }
+
+    }
 
 }
 

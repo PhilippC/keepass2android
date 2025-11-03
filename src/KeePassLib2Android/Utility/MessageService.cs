@@ -32,153 +32,153 @@ using Android.Webkit;
 
 namespace KeePassLib.Utility
 {
-	public enum MessageBoxButtons
-	{
-		OK, OKCancel, AbortRetryIgnore, YesNoCancel, YesNo, RetryCancel
-	}
-	public enum MessageBoxIcon
-	{
-		Information, Warning, Error, Question
-	}
-	public enum MessageBoxDefaultButton
-	{
-		Button1, Button2, Button3
-	}
+    public enum MessageBoxButtons
+    {
+        OK, OKCancel, AbortRetryIgnore, YesNoCancel, YesNo, RetryCancel
+    }
+    public enum MessageBoxIcon
+    {
+        Information, Warning, Error, Question
+    }
+    public enum MessageBoxDefaultButton
+    {
+        Button1, Button2, Button3
+    }
 
-	public enum DialogResult
-	{
-		Yes, No, Cancel, Retry, Abort
-	}
+    public enum DialogResult
+    {
+        Yes, No, Cancel, Retry, Abort
+    }
 
 
-	public sealed class MessageServiceEventArgs : EventArgs
-	{
-		private string m_strTitle = string.Empty;
-		private string m_strText = string.Empty;
-		//private MessageBoxButtons m_msgButtons = MessageBoxButtons.OK;
-		//private MessageBoxIcon m_msgIcon = MessageBoxIcon.None;
+    public sealed class MessageServiceEventArgs : EventArgs
+    {
+        private string m_strTitle = string.Empty;
+        private string m_strText = string.Empty;
+        //private MessageBoxButtons m_msgButtons = MessageBoxButtons.OK;
+        //private MessageBoxIcon m_msgIcon = MessageBoxIcon.None;
 
-		public string Title { get { return m_strTitle; } }
-		public string Text { get { return m_strText; } }
-		//public MessageBoxButtons Buttons { get { return m_msgButtons; } }
-		//public MessageBoxIcon Icon { get { return m_msgIcon; } }
+        public string Title { get { return m_strTitle; } }
+        public string Text { get { return m_strText; } }
+        //public MessageBoxButtons Buttons { get { return m_msgButtons; } }
+        //public MessageBoxIcon Icon { get { return m_msgIcon; } }
 
-		public MessageServiceEventArgs() { }
+        public MessageServiceEventArgs() { }
 
-		public MessageServiceEventArgs(string strTitle, string strText,
-			MessageBoxButtons msgButtons, MessageBoxIcon msgIcon)
-		{
-			m_strTitle = (strTitle ?? string.Empty);
-			m_strText = (strText ?? string.Empty);
+        public MessageServiceEventArgs(string strTitle, string strText,
+            MessageBoxButtons msgButtons, MessageBoxIcon msgIcon)
+        {
+            m_strTitle = (strTitle ?? string.Empty);
+            m_strText = (strText ?? string.Empty);
 
-		}
-	}
+        }
+    }
 
-	public static class MessageService
-	{
-		private static volatile uint m_uCurrentMessageCount = 0;
+    public static class MessageService
+    {
+        private static volatile uint m_uCurrentMessageCount = 0;
 
 #if !KeePassLibSD
-		private const MessageBoxIcon m_mbiInfo = MessageBoxIcon.Information;
-		private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Warning;
-		private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Error;
+        private const MessageBoxIcon m_mbiInfo = MessageBoxIcon.Information;
+        private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Warning;
+        private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Error;
 
 #else
 		private const MessageBoxIcon m_mbiInfo = MessageBoxIcon.Asterisk;
 		private const MessageBoxIcon m_mbiWarning = MessageBoxIcon.Exclamation;
 		private const MessageBoxIcon m_mbiFatal = MessageBoxIcon.Hand;
 #endif
-		//private const MessageBoxIcon m_mbiQuestion = MessageBoxIcon.Question;
+        //private const MessageBoxIcon m_mbiQuestion = MessageBoxIcon.Question;
 
-		public static string NewLine
-		{
+        public static string NewLine
+        {
 #if !KeePassLibSD
-			get { return Environment.NewLine; }
+            get { return Environment.NewLine; }
 #else
 			get { return "\r\n"; }
 #endif
-		}
+        }
 
-		public static string NewParagraph
-		{
+        public static string NewParagraph
+        {
 #if !KeePassLibSD
-			get { return Environment.NewLine + Environment.NewLine; }
+            get { return Environment.NewLine + Environment.NewLine; }
 #else
 			get { return "\r\n\r\n"; }
 #endif
-		}
+        }
 
-		public static uint CurrentMessageCount
-		{
-			get { return m_uCurrentMessageCount; }
-		}
+        public static uint CurrentMessageCount
+        {
+            get { return m_uCurrentMessageCount; }
+        }
 
-		public static event EventHandler<MessageServiceEventArgs> MessageShowing;
+        public static event EventHandler<MessageServiceEventArgs> MessageShowing;
 
-		private static string ObjectsToMessage(object[] vLines)
-		{
-			return ObjectsToMessage(vLines, false);
-		}
+        private static string ObjectsToMessage(object[] vLines)
+        {
+            return ObjectsToMessage(vLines, false);
+        }
 
-		private static string ObjectsToMessage(object[] vLines, bool bFullExceptions)
-		{
-			if (vLines == null) return string.Empty;
+        private static string ObjectsToMessage(object[] vLines, bool bFullExceptions)
+        {
+            if (vLines == null) return string.Empty;
 
-			string strNewPara = MessageService.NewParagraph;
+            string strNewPara = MessageService.NewParagraph;
 
-			StringBuilder sbText = new StringBuilder();
-			bool bSeparator = false;
+            StringBuilder sbText = new StringBuilder();
+            bool bSeparator = false;
 
-			foreach (object obj in vLines)
-			{
-				if (obj == null) continue;
+            foreach (object obj in vLines)
+            {
+                if (obj == null) continue;
 
-				string strAppend = null;
+                string strAppend = null;
 
-				Exception exObj = (obj as Exception);
-				string strObj = (obj as string);
+                Exception exObj = (obj as Exception);
+                string strObj = (obj as string);
 #if (!KeePassLibSD && !KeePassRT)
-				StringCollection scObj = (obj as StringCollection);
+                StringCollection scObj = (obj as StringCollection);
 #endif
 
-				if (exObj != null)
-				{
-					if (bFullExceptions)
-						strAppend = StrUtil.FormatException(exObj);
-					else if ((exObj.Message != null) && (exObj.Message.Length > 0))
-						strAppend = exObj.Message;
-				}
+                if (exObj != null)
+                {
+                    if (bFullExceptions)
+                        strAppend = StrUtil.FormatException(exObj);
+                    else if ((exObj.Message != null) && (exObj.Message.Length > 0))
+                        strAppend = exObj.Message;
+                }
 #if (!KeePassLibSD && !KeePassRT)
-				else if (scObj != null)
-				{
-					StringBuilder sb = new StringBuilder();
-					foreach (string strCollLine in scObj)
-					{
-						if (sb.Length > 0) sb.AppendLine();
-						sb.Append(strCollLine.TrimEnd());
-					}
-					strAppend = sb.ToString();
-				}
+                else if (scObj != null)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (string strCollLine in scObj)
+                    {
+                        if (sb.Length > 0) sb.AppendLine();
+                        sb.Append(strCollLine.TrimEnd());
+                    }
+                    strAppend = sb.ToString();
+                }
 #endif
-				else if (strObj != null)
-					strAppend = strObj;
-				else
-					strAppend = obj.ToString();
+                else if (strObj != null)
+                    strAppend = strObj;
+                else
+                    strAppend = obj.ToString();
 
-				if (!string.IsNullOrEmpty(strAppend))
-				{
-					if (bSeparator) sbText.Append(strNewPara);
-					else bSeparator = true;
+                if (!string.IsNullOrEmpty(strAppend))
+                {
+                    if (bSeparator) sbText.Append(strNewPara);
+                    else bSeparator = true;
 
-					sbText.Append(strAppend);
-				}
-			}
+                    sbText.Append(strAppend);
+                }
+            }
 
-			return sbText.ToString();
-		}
+            return sbText.ToString();
+        }
 
 #if (!KeePassLibSD && !KeePassRT)
-		/*internal static Form GetTopForm()
+        /*internal static Form GetTopForm()
 		{
 			FormCollection fc = Application.OpenForms;
 			if((fc == null) || (fc.Count == 0)) return null;
@@ -187,20 +187,20 @@ namespace KeePassLib.Utility
 		}*/
 #endif
 
-		private static DialogResult SafeShowMessageBox(string strText, string strTitle,
-			MessageBoxButtons mb, MessageBoxIcon mi, MessageBoxDefaultButton mdb)
-		{
+        private static DialogResult SafeShowMessageBox(string strText, string strTitle,
+            MessageBoxButtons mb, MessageBoxIcon mi, MessageBoxDefaultButton mdb)
+        {
 #if (KeePassLibSD || KeePassRT)
 			return MessageBox.Show(strText, strTitle, mb, mi, mdb);
 #else
 
-			if (mb == MessageBoxButtons.OK)
-			{
-				//Android.Widget.Toast toast = ..
-			}
-			//this might help: http://www.gregshackles.com/2011/04/using-background-threads-in-mono-for-android-applications/
-			throw new NotImplementedException();
-			/*IWin32Window wnd = null;
+            if (mb == MessageBoxButtons.OK)
+            {
+                //Android.Widget.Toast toast = ..
+            }
+            //this might help: http://www.gregshackles.com/2011/04/using-background-threads-in-mono-for-android-applications/
+            throw new NotImplementedException();
+            /*IWin32Window wnd = null;
 			try
 			{
 				Form f = GetTopForm();
@@ -231,10 +231,10 @@ namespace KeePassLib.Utility
 			return MessageBox.Show(strText, strTitle, mb, mi, mdb);
 			*/
 #endif
-		}
+        }
 
 #if (!KeePassLibSD && !KeePassRT)
-		/*	internal delegate DialogResult SafeShowMessageBoxInternalDelegate(IWin32Window iParent,
+        /*	internal delegate DialogResult SafeShowMessageBoxInternalDelegate(IWin32Window iParent,
 			string strText, string strTitle, MessageBoxButtons mb, MessageBoxIcon mi,
 			MessageBoxDefaultButton mdb);
 
@@ -248,215 +248,215 @@ namespace KeePassLib.Utility
 		}*/
 #endif
 
-		public static void ShowInfo(params object[] vLines)
-		{
-			ShowInfoEx(null, vLines);
-		}
+        public static void ShowInfo(params object[] vLines)
+        {
+            ShowInfoEx(null, vLines);
+        }
 
-		public static void ShowInfoEx(string strTitle, params object[] vLines)
-		{
-			++m_uCurrentMessageCount;
+        public static void ShowInfoEx(string strTitle, params object[] vLines)
+        {
+            ++m_uCurrentMessageCount;
 
-			strTitle = (strTitle ?? PwDefs.ShortProductName);
-			string strText = ObjectsToMessage(vLines);
+            strTitle = (strTitle ?? PwDefs.ShortProductName);
+            string strText = ObjectsToMessage(vLines);
 
-			if (MessageService.MessageShowing != null)
-				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitle, strText, MessageBoxButtons.OK, m_mbiInfo));
+            if (MessageService.MessageShowing != null)
+                MessageService.MessageShowing(null, new MessageServiceEventArgs(
+                    strTitle, strText, MessageBoxButtons.OK, m_mbiInfo));
 
-			SafeShowMessageBox(strText, strTitle, MessageBoxButtons.OK, m_mbiInfo,
-				MessageBoxDefaultButton.Button1);
+            SafeShowMessageBox(strText, strTitle, MessageBoxButtons.OK, m_mbiInfo,
+                MessageBoxDefaultButton.Button1);
 
-			--m_uCurrentMessageCount;
-		}
+            --m_uCurrentMessageCount;
+        }
 
-		public static void ShowWarning(params object[] vLines)
-		{
-			ShowWarningPriv(vLines, false);
-		}
+        public static void ShowWarning(params object[] vLines)
+        {
+            ShowWarningPriv(vLines, false);
+        }
 
-		internal static void ShowWarningExcp(params object[] vLines)
-		{
-			ShowWarningPriv(vLines, true);
-		}
+        internal static void ShowWarningExcp(params object[] vLines)
+        {
+            ShowWarningPriv(vLines, true);
+        }
 
-		private static void ShowWarningPriv(object[] vLines, bool bFullExceptions)
-		{
-			++m_uCurrentMessageCount;
+        private static void ShowWarningPriv(object[] vLines, bool bFullExceptions)
+        {
+            ++m_uCurrentMessageCount;
 
-			string strTitle = PwDefs.ShortProductName;
-			string strText = ObjectsToMessage(vLines, bFullExceptions);
+            string strTitle = PwDefs.ShortProductName;
+            string strText = ObjectsToMessage(vLines, bFullExceptions);
 
-			if (MessageService.MessageShowing != null)
-				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitle, strText, MessageBoxButtons.OK, m_mbiWarning));
+            if (MessageService.MessageShowing != null)
+                MessageService.MessageShowing(null, new MessageServiceEventArgs(
+                    strTitle, strText, MessageBoxButtons.OK, m_mbiWarning));
 
-			SafeShowMessageBox(strText, strTitle, MessageBoxButtons.OK, m_mbiWarning,
-				MessageBoxDefaultButton.Button1);
+            SafeShowMessageBox(strText, strTitle, MessageBoxButtons.OK, m_mbiWarning,
+                MessageBoxDefaultButton.Button1);
 
-			--m_uCurrentMessageCount;
-		}
+            --m_uCurrentMessageCount;
+        }
 
-		public static void ShowFatal(params object[] vLines)
-		{
-			++m_uCurrentMessageCount;
+        public static void ShowFatal(params object[] vLines)
+        {
+            ++m_uCurrentMessageCount;
 
-			string strTitle = PwDefs.ShortProductName + @" - " + KLRes.FatalError;
-			string strText = KLRes.FatalErrorText + MessageService.NewParagraph +
-				KLRes.ErrorInClipboard + MessageService.NewParagraph +
-				// Please send it to the KeePass developers.
-				// KLRes.ErrorFeedbackRequest + MessageService.NewParagraph +
-				ObjectsToMessage(vLines);
+            string strTitle = PwDefs.ShortProductName + @" - " + KLRes.FatalError;
+            string strText = KLRes.FatalErrorText + MessageService.NewParagraph +
+                KLRes.ErrorInClipboard + MessageService.NewParagraph +
+                // Please send it to the KeePass developers.
+                // KLRes.ErrorFeedbackRequest + MessageService.NewParagraph +
+                ObjectsToMessage(vLines);
 
-			try
-			{
+            try
+            {
 #if !KeePassLibSD
-				/* nicht benoetigt - hoffentlich :-)
+                /* nicht benoetigt - hoffentlich :-)
 Clipboard.Clear();
 Clipboard.SetText(ObjectsToMessage(vLines, true));*/
 #else
 				Clipboard.SetDataObject(ObjectsToMessage(vLines, true));
 #endif
-			}
-			catch (Exception) { Debug.Assert(false); }
+            }
+            catch (Exception) { Debug.Assert(false); }
 
-			if (MessageService.MessageShowing != null)
-				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitle, strText, MessageBoxButtons.OK, m_mbiFatal));
+            if (MessageService.MessageShowing != null)
+                MessageService.MessageShowing(null, new MessageServiceEventArgs(
+                    strTitle, strText, MessageBoxButtons.OK, m_mbiFatal));
 
-			SafeShowMessageBox(strText, strTitle, MessageBoxButtons.OK, m_mbiFatal,
-				MessageBoxDefaultButton.Button1);
+            SafeShowMessageBox(strText, strTitle, MessageBoxButtons.OK, m_mbiFatal,
+                MessageBoxDefaultButton.Button1);
 
-			--m_uCurrentMessageCount;
-		}
+            --m_uCurrentMessageCount;
+        }
 
-		public static DialogResult Ask(string strText, string strTitle,
-			MessageBoxButtons mbb)
-		{
-			++m_uCurrentMessageCount;
+        public static DialogResult Ask(string strText, string strTitle,
+            MessageBoxButtons mbb)
+        {
+            ++m_uCurrentMessageCount;
 
-			string strTextEx = (strText ?? string.Empty);
-			string strTitleEx = (strTitle ?? PwDefs.ShortProductName);
+            string strTextEx = (strText ?? string.Empty);
+            string strTitleEx = (strTitle ?? PwDefs.ShortProductName);
 
-			if (MessageService.MessageShowing != null)
-				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitleEx, strTextEx, mbb, MessageBoxIcon.Question));
+            if (MessageService.MessageShowing != null)
+                MessageService.MessageShowing(null, new MessageServiceEventArgs(
+                    strTitleEx, strTextEx, mbb, MessageBoxIcon.Question));
 
-			DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx, mbb,
-												 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx, mbb,
+                                                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
-			--m_uCurrentMessageCount;
-			return dr;
-		}
+            --m_uCurrentMessageCount;
+            return dr;
+        }
 
-		public static bool AskYesNo(string strText, string strTitle, bool bDefaultToYes,
-			MessageBoxIcon mbi)
-		{
-			++m_uCurrentMessageCount;
+        public static bool AskYesNo(string strText, string strTitle, bool bDefaultToYes,
+            MessageBoxIcon mbi)
+        {
+            ++m_uCurrentMessageCount;
 
-			string strTextEx = (strText ?? string.Empty);
-			string strTitleEx = (strTitle ?? PwDefs.ShortProductName);
+            string strTextEx = (strText ?? string.Empty);
+            string strTitleEx = (strTitle ?? PwDefs.ShortProductName);
 
-			if (MessageService.MessageShowing != null)
-				MessageService.MessageShowing(null, new MessageServiceEventArgs(
-					strTitleEx, strTextEx, MessageBoxButtons.YesNo, MessageBoxIcon.Question));
+            if (MessageService.MessageShowing != null)
+                MessageService.MessageShowing(null, new MessageServiceEventArgs(
+                    strTitleEx, strTextEx, MessageBoxButtons.YesNo, MessageBoxIcon.Question));
 
-			DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx,
-												 MessageBoxButtons.YesNo, MessageBoxIcon.Question, bDefaultToYes ?
-				MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
+            DialogResult dr = SafeShowMessageBox(strTextEx, strTitleEx,
+                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, bDefaultToYes ?
+                MessageBoxDefaultButton.Button1 : MessageBoxDefaultButton.Button2);
 
-			--m_uCurrentMessageCount;
-			return (dr == DialogResult.Yes);
-		}
+            --m_uCurrentMessageCount;
+            return (dr == DialogResult.Yes);
+        }
 
-		public static bool AskYesNo(string strText, string strTitle, bool bDefaultToYes)
-		{
-			return AskYesNo(strText, strTitle, bDefaultToYes, MessageBoxIcon.Question);
-		}
+        public static bool AskYesNo(string strText, string strTitle, bool bDefaultToYes)
+        {
+            return AskYesNo(strText, strTitle, bDefaultToYes, MessageBoxIcon.Question);
+        }
 
-		public static bool AskYesNo(string strText, string strTitle)
-		{
-			return AskYesNo(strText, strTitle, true, MessageBoxIcon.Question);
-		}
+        public static bool AskYesNo(string strText, string strTitle)
+        {
+            return AskYesNo(strText, strTitle, true, MessageBoxIcon.Question);
+        }
 
-		public static bool AskYesNo(string strText)
-		{
-			return AskYesNo(strText, null, true, MessageBoxIcon.Question);
-		}
+        public static bool AskYesNo(string strText)
+        {
+            return AskYesNo(strText, null, true, MessageBoxIcon.Question);
+        }
 
-		public static void ShowLoadWarning(string strFilePath, Exception ex)
-		{
-			ShowLoadWarning(strFilePath, ex, false);
-		}
+        public static void ShowLoadWarning(string strFilePath, Exception ex)
+        {
+            ShowLoadWarning(strFilePath, ex, false);
+        }
 
-		public static void ShowLoadWarning(string strFilePath, Exception ex,
-			bool bFullException)
-		{
-			string str = string.Empty;
+        public static void ShowLoadWarning(string strFilePath, Exception ex,
+            bool bFullException)
+        {
+            string str = string.Empty;
 
-			if ((strFilePath != null) && (strFilePath.Length > 0))
-				str += strFilePath + MessageService.NewParagraph;
+            if ((strFilePath != null) && (strFilePath.Length > 0))
+                str += strFilePath + MessageService.NewParagraph;
 
-			str += KLRes.FileLoadFailed;
+            str += KLRes.FileLoadFailed;
 
-			if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
-			{
-				str += MessageService.NewParagraph;
-				if (!bFullException) str += ex.Message;
-				else str += ObjectsToMessage(new object[] { ex }, true);
-			}
+            if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
+            {
+                str += MessageService.NewParagraph;
+                if (!bFullException) str += ex.Message;
+                else str += ObjectsToMessage(new object[] { ex }, true);
+            }
 
-			ShowWarning(str);
-		}
+            ShowWarning(str);
+        }
 
-		public static void ShowLoadWarning(IOConnectionInfo ioConnection, Exception ex)
-		{
-			if (ioConnection != null)
-				ShowLoadWarning(UrlUtil.GetFileName(ioConnection.Path), ex, false);
-			else ShowWarning(ex);
-		}
+        public static void ShowLoadWarning(IOConnectionInfo ioConnection, Exception ex)
+        {
+            if (ioConnection != null)
+                ShowLoadWarning(UrlUtil.GetFileName(ioConnection.Path), ex, false);
+            else ShowWarning(ex);
+        }
 
-		public static void ShowSaveWarning(string strFilePath, Exception ex,
-			bool bCorruptionWarning)
-		{
-			FileLockException fl = (ex as FileLockException);
-			if (fl != null)
-			{
-				ShowWarning(fl.Message);
-				return;
-			}
+        public static void ShowSaveWarning(string strFilePath, Exception ex,
+            bool bCorruptionWarning)
+        {
+            FileLockException fl = (ex as FileLockException);
+            if (fl != null)
+            {
+                ShowWarning(fl.Message);
+                return;
+            }
 
-			string str = string.Empty;
-			if ((strFilePath != null) && (strFilePath.Length > 0))
-				str += strFilePath + MessageService.NewParagraph;
+            string str = string.Empty;
+            if ((strFilePath != null) && (strFilePath.Length > 0))
+                str += strFilePath + MessageService.NewParagraph;
 
-			str += KLRes.FileSaveFailed2;
+            str += KLRes.FileSaveFailed2;
 
-			if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
-				str += MessageService.NewParagraph + ex.Message;
+            if ((ex != null) && (ex.Message != null) && (ex.Message.Length > 0))
+                str += MessageService.NewParagraph + ex.Message;
 
-			if (bCorruptionWarning)
-				str += MessageService.NewParagraph + KLRes.FileSaveCorruptionWarning;
+            if (bCorruptionWarning)
+                str += MessageService.NewParagraph + KLRes.FileSaveCorruptionWarning;
 
-			ShowWarning(str);
-		}
+            ShowWarning(str);
+        }
 
-		public static void ShowSaveWarning(IOConnectionInfo ioConnection, Exception ex,
-			bool bCorruptionWarning)
-		{
-			if (ioConnection != null)
-				ShowSaveWarning(UrlUtil.GetFileName(ioConnection.Path), ex, bCorruptionWarning);
-			else ShowWarning(ex);
-		}
+        public static void ShowSaveWarning(IOConnectionInfo ioConnection, Exception ex,
+            bool bCorruptionWarning)
+        {
+            if (ioConnection != null)
+                ShowSaveWarning(UrlUtil.GetFileName(ioConnection.Path), ex, bCorruptionWarning);
+            else ShowWarning(ex);
+        }
 
-		public static void ExternalIncrementMessageCount()
-		{
-			++m_uCurrentMessageCount;
-		}
+        public static void ExternalIncrementMessageCount()
+        {
+            ++m_uCurrentMessageCount;
+        }
 
-		public static void ExternalDecrementMessageCount()
-		{
-			--m_uCurrentMessageCount;
-		}
-	}
+        public static void ExternalDecrementMessageCount()
+        {
+            --m_uCurrentMessageCount;
+        }
+    }
 }

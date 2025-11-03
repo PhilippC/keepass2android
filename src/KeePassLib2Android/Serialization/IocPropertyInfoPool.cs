@@ -27,97 +27,97 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Serialization
 {
-	public static class IocKnownProtocols
-	{
-		public const string Http = "HTTP";
-		public const string Https = "HTTPS";
-		public const string WebDav = "WebDAV";
-		public const string Ftp = "FTP";
-	}
+    public static class IocKnownProtocols
+    {
+        public const string Http = "HTTP";
+        public const string Https = "HTTPS";
+        public const string WebDav = "WebDAV";
+        public const string Ftp = "FTP";
+    }
 
-	public static class IocKnownProperties
-	{
-		public const string Timeout = "Timeout";
-		public const string PreAuth = "PreAuth";
+    public static class IocKnownProperties
+    {
+        public const string Timeout = "Timeout";
+        public const string PreAuth = "PreAuth";
 
-		public const string UserAgent = "UserAgent";
-		public const string Expect100Continue = "Expect100Continue";
+        public const string UserAgent = "UserAgent";
+        public const string Expect100Continue = "Expect100Continue";
 
-		public const string Passive = "Passive";
-	}
+        public const string Passive = "Passive";
+    }
 
-	public static class IocPropertyInfoPool
-	{
-		private static List<IocPropertyInfo> m_l = null;
-		public static IEnumerable<IocPropertyInfo> PropertyInfos
-		{
-			get { EnsureInitialized(); return m_l; }
-		}
+    public static class IocPropertyInfoPool
+    {
+        private static List<IocPropertyInfo> m_l = null;
+        public static IEnumerable<IocPropertyInfo> PropertyInfos
+        {
+            get { EnsureInitialized(); return m_l; }
+        }
 
-		private static void EnsureInitialized()
-		{
-			if(m_l != null) return;
+        private static void EnsureInitialized()
+        {
+            if (m_l != null) return;
 
-			string strGen = KLRes.General;
-			string strHttp = IocKnownProtocols.Http;
-			string strHttps = IocKnownProtocols.Https;
-			string strWebDav = IocKnownProtocols.WebDav;
-			string strFtp = IocKnownProtocols.Ftp;
+            string strGen = KLRes.General;
+            string strHttp = IocKnownProtocols.Http;
+            string strHttps = IocKnownProtocols.Https;
+            string strWebDav = IocKnownProtocols.WebDav;
+            string strFtp = IocKnownProtocols.Ftp;
 
-			string[] vGen = new string[] { strGen };
-			string[] vHttp = new string[] { strHttp, strHttps, strWebDav };
-			string[] vFtp = new string[] { strFtp };
+            string[] vGen = new string[] { strGen };
+            string[] vHttp = new string[] { strHttp, strHttps, strWebDav };
+            string[] vFtp = new string[] { strFtp };
 
-			List<IocPropertyInfo> l = new List<IocPropertyInfo>();
+            List<IocPropertyInfo> l = new List<IocPropertyInfo>();
 
-			l.Add(new IocPropertyInfo(IocKnownProperties.Timeout,
-				typeof(long), KLRes.Timeout + " [ms]", vGen));
-			l.Add(new IocPropertyInfo(IocKnownProperties.PreAuth,
-				typeof(bool), KLRes.PreAuth, vGen));
+            l.Add(new IocPropertyInfo(IocKnownProperties.Timeout,
+                typeof(long), KLRes.Timeout + " [ms]", vGen));
+            l.Add(new IocPropertyInfo(IocKnownProperties.PreAuth,
+                typeof(bool), KLRes.PreAuth, vGen));
 
-			l.Add(new IocPropertyInfo(IocKnownProperties.UserAgent,
-				typeof(string), KLRes.UserAgent, vHttp));
-			l.Add(new IocPropertyInfo(IocKnownProperties.Expect100Continue,
-				typeof(bool), KLRes.Expect100Continue, vHttp));
+            l.Add(new IocPropertyInfo(IocKnownProperties.UserAgent,
+                typeof(string), KLRes.UserAgent, vHttp));
+            l.Add(new IocPropertyInfo(IocKnownProperties.Expect100Continue,
+                typeof(bool), KLRes.Expect100Continue, vHttp));
 
-			l.Add(new IocPropertyInfo(IocKnownProperties.Passive,
-				typeof(bool), KLRes.Passive, vFtp));
+            l.Add(new IocPropertyInfo(IocKnownProperties.Passive,
+                typeof(bool), KLRes.Passive, vFtp));
 
-			// l.Add(new IocPropertyInfo("Test", typeof(bool),
-			//	"Long long long long long long long long long long long long long long long long long long long long",
-			//	new string[] { "Proto 1/9", "Proto 2/9", "Proto 3/9", "Proto 4/9", "Proto 5/9",
-			//	"Proto 6/9", "Proto 7/9", "Proto 8/9", "Proto 9/9" }));
+            // l.Add(new IocPropertyInfo("Test", typeof(bool),
+            //	"Long long long long long long long long long long long long long long long long long long long long",
+            //	new string[] { "Proto 1/9", "Proto 2/9", "Proto 3/9", "Proto 4/9", "Proto 5/9",
+            //	"Proto 6/9", "Proto 7/9", "Proto 8/9", "Proto 9/9" }));
 
-			m_l = l;
-		}
+            m_l = l;
+        }
 
-		public static IocPropertyInfo Get(string strName)
-		{
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return null; }
+        public static IocPropertyInfo Get(string strName)
+        {
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return null; }
 
-			EnsureInitialized();
-			foreach(IocPropertyInfo pi in m_l)
-			{
-				if(pi.Name.Equals(strName, StrUtil.CaseIgnoreCmp))
-					return pi;
-			}
+            EnsureInitialized();
+            foreach (IocPropertyInfo pi in m_l)
+            {
+                if (pi.Name.Equals(strName, StrUtil.CaseIgnoreCmp))
+                    return pi;
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		public static bool Add(IocPropertyInfo pi)
-		{
-			if(pi == null) { Debug.Assert(false); return false; }
+        public static bool Add(IocPropertyInfo pi)
+        {
+            if (pi == null) { Debug.Assert(false); return false; }
 
-			// Name must be non-empty
-			string strName = pi.Name;
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return false; }
+            // Name must be non-empty
+            string strName = pi.Name;
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return false; }
 
-			IocPropertyInfo piEx = Get(strName); // Ensures initialized
-			if(piEx != null) { Debug.Assert(false); return false; } // Exists already
+            IocPropertyInfo piEx = Get(strName); // Ensures initialized
+            if (piEx != null) { Debug.Assert(false); return false; } // Exists already
 
-			m_l.Add(pi);
-			return true;
-		}
-	}
+            m_l.Add(pi);
+            return true;
+        }
+    }
 }

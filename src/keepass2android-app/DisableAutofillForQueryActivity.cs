@@ -41,7 +41,7 @@ namespace keepass2android
             string requestedUrl = Intent.GetStringExtra(ChooseForAutofillActivityBase.ExtraQueryString);
             if (requestedUrl == null)
             {
-                App.Kp2a.ShowMessage(this, "Cannot execute query for null.",  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(this, "Cannot execute query for null.", MessageSeverity.Error);
                 RestartApp();
                 return;
             }
@@ -87,7 +87,7 @@ namespace keepass2android
 
             try
             {
-                
+
                 reply.PutExtra(AutofillManager.ExtraAuthenticationResult, (FillResponse)null);
             }
             catch (Exception e)
@@ -97,7 +97,7 @@ namespace keepass2android
             }
 
             SetResult(Result.Ok, reply);
-            
+
 
             Finish();
         }

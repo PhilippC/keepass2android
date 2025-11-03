@@ -10,9 +10,9 @@ namespace keepass2android
     [Activity(Label = AppNames.AppName,
         MainLauncher = false,
         Theme = "@style/Kp2aTheme_BlueNoActionBar",
-        Exported = true)] 
+        Exported = true)]
     ///For autofill, we sometimes need to pass an intent to an inline presentation which never gets fired. We use this as a dummy activity.
-    public class NullActivity: Activity
+    public class NullActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

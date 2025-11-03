@@ -77,7 +77,7 @@ namespace keepass2android
                 {
                     Activity.Title = PreferenceScreen?.Title;
                 }
-             
+
             }
         }
         public class MainPreferenceFragment : PreferenceFragmentWithResource
@@ -88,7 +88,7 @@ namespace keepass2android
 
             public override void OnCreate(Bundle? savedInstanceState)
             {
-                
+
                 base.OnCreate(savedInstanceState);
                 FindPreference(GetString(Resource.String.db_key)).Enabled = (App.Kp2a.CurrentDb != null);
 
@@ -123,7 +123,7 @@ namespace keepass2android
                             {
                                 db.KpDatabase.DefaultUserName = previousUsername;
                                 db.KpDatabase.DefaultUserNameChanged = previousUsernameChanged;
-                                App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
+                                App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
                             }
                         }));
                         BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, save);
@@ -144,7 +144,7 @@ namespace keepass2android
                 {
                     pref.PreferenceClick += (sender, args) =>
                     {
-                        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, 
+                        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a,
                                         new AddTemplateEntries(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
                                             delegate
                                             {
@@ -189,7 +189,7 @@ namespace keepass2android
                             {
                                 db.KpDatabase.Name = previousName;
                                 db.KpDatabase.NameChanged = previousNameChanged;
-                                App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
+                                App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
                             }
                             else
                             {
@@ -261,7 +261,7 @@ namespace keepass2android
                     {
                         return () =>
                         {
-                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e),  MessageSeverity.Error);
+                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e), MessageSeverity.Error);
                         };
                     }
 
@@ -357,7 +357,7 @@ namespace keepass2android
                     {
                         return () =>
                         {
-                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e),  MessageSeverity.Error);
+                            App.Kp2a.ShowMessage(Activity, App.Kp2a.GetResourceString(UiStringKey.ErrorOcurred) + " " + Util.GetErrorMessage(e), MessageSeverity.Error);
                         };
                     }
 
@@ -388,7 +388,7 @@ namespace keepass2android
                     UpdateImportDbPref();
                     UpdateImportKeyfilePref();
                 }
-                
+
 
             }
 
@@ -415,7 +415,7 @@ namespace keepass2android
                     if (!success)
                     {
                         db.KpDatabase.DataCipherUuid = previousCipher;
-                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
                         return;
                     }
                     preferenceChangeEventArgs.Preference.Summary =
@@ -451,7 +451,7 @@ namespace keepass2android
             {
                 base.OnCreate(savedInstanceState);
                 FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
-                
+
 
             }
         }
@@ -555,7 +555,7 @@ namespace keepass2android
                 };
 
 
-                
+
 
             }
         }
@@ -600,7 +600,7 @@ namespace keepass2android
                     Kp2aLog.LogUnexpectedError(ex);
                 }
 
-                
+
 
             }
         }
@@ -628,7 +628,7 @@ namespace keepass2android
                             catch (Exception ex)
                             {
                                 Kp2aLog.LogUnexpectedError(ex);
-                                App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, Util.GetErrorMessage(ex),  MessageSeverity.Error);
+                                App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, Util.GetErrorMessage(ex), MessageSeverity.Error);
                             }
                         }
                     );
@@ -671,7 +671,7 @@ namespace keepass2android
                         Activity.StartActivity(intent);
                     };
                 }
-            
+
             }
         }
 
@@ -849,7 +849,7 @@ namespace keepass2android
             KeyboardSwitchPrefManager _manager;
             public KeyboardSwitchPreferenceFragment() : base(Resource.Xml.pref_app_password_access_keyboard_switch)
             {
-                
+
             }
 
             public override void OnCreate(Bundle? savedInstanceState)
@@ -971,7 +971,7 @@ namespace keepass2android
                 }
 
 
-                
+
 
             }
         }
@@ -1092,7 +1092,7 @@ namespace keepass2android
                     if (!success)
                     {
                         db.KpDatabase.KdfParameters = previousKdfParams;
-                        App.Kp2a.ShowMessage(context, message,  MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
                         return;
                     }
                     UpdateKdfScreen();
@@ -1199,7 +1199,7 @@ namespace keepass2android
 
         public void OnBackStackChanged()
         {
-            
+
         }
     }
 
@@ -1238,7 +1238,7 @@ namespace keepass2android
         }
 
         public SettingsFragmentManager settingsFragmentManager;
-        
+
 
         public bool OnPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref)
         {

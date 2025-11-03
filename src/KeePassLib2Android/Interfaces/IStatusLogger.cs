@@ -22,69 +22,69 @@ using System.Collections.Generic;
 
 namespace KeePassLib.Interfaces
 {
-	/// <summary>
-	/// Status message types.
-	/// </summary>
-	public enum LogStatusType
-	{
-		/// <summary>
-		/// Default type: simple information type.
-		/// </summary>
-		Info = 0,
+    /// <summary>
+    /// Status message types.
+    /// </summary>
+    public enum LogStatusType
+    {
+        /// <summary>
+        /// Default type: simple information type.
+        /// </summary>
+        Info = 0,
 
-		/// <summary>
-		/// Warning message.
-		/// </summary>
-		Warning,
+        /// <summary>
+        /// Warning message.
+        /// </summary>
+        Warning,
 
-		/// <summary>
-		/// Error message.
-		/// </summary>
-		Error,
+        /// <summary>
+        /// Error message.
+        /// </summary>
+        Error,
 
-		/// <summary>
-		/// Additional information. Depends on lines above.
-		/// </summary>
-		AdditionalInfo
-	}
+        /// <summary>
+        /// Additional information. Depends on lines above.
+        /// </summary>
+        AdditionalInfo
+    }
 
-	/// <summary>
-	/// Status logging interface.
-	/// </summary>
-	public interface IStatusLogger
-	{
-		/// <summary>
-		/// Function which needs to be called when logging is started.
-		/// </summary>
-		/// <param name="strOperation">This string should roughly describe
-		/// the operation, of which the status is logged.</param>
-		/// <param name="bWriteOperationToLog">Specifies whether the
-		/// operation is written to the log or not.</param>
-		void StartLogging(string strOperation, bool bWriteOperationToLog);
+    /// <summary>
+    /// Status logging interface.
+    /// </summary>
+    public interface IStatusLogger
+    {
+        /// <summary>
+        /// Function which needs to be called when logging is started.
+        /// </summary>
+        /// <param name="strOperation">This string should roughly describe
+        /// the operation, of which the status is logged.</param>
+        /// <param name="bWriteOperationToLog">Specifies whether the
+        /// operation is written to the log or not.</param>
+        void StartLogging(string strOperation, bool bWriteOperationToLog);
 
-		/// <summary>
-		/// Function which needs to be called when logging is ended
-		/// (i.e. when no more messages will be logged and when the
-		/// percent value won't change any more).
-		/// </summary>
-		void EndLogging();
+        /// <summary>
+        /// Function which needs to be called when logging is ended
+        /// (i.e. when no more messages will be logged and when the
+        /// percent value won't change any more).
+        /// </summary>
+        void EndLogging();
 
-		/// <summary>
-		/// Set the current progress in percent.
-		/// </summary>
-		/// <param name="uPercent">Percent of work finished.</param>
-		/// <returns>Returns <c>true</c> if the caller should continue
-		/// the current work.</returns>
-		bool SetProgress(uint uPercent);
+        /// <summary>
+        /// Set the current progress in percent.
+        /// </summary>
+        /// <param name="uPercent">Percent of work finished.</param>
+        /// <returns>Returns <c>true</c> if the caller should continue
+        /// the current work.</returns>
+        bool SetProgress(uint uPercent);
 
-		/// <summary>
-		/// Set the current status text.
-		/// </summary>
-		/// <param name="strNewText">Status text.</param>
-		/// <param name="lsType">Type of the message.</param>
-		/// <returns>Returns <c>true</c> if the caller should continue
-		/// the current work.</returns>
-		bool SetText(string strNewText, LogStatusType lsType);
+        /// <summary>
+        /// Set the current status text.
+        /// </summary>
+        /// <param name="strNewText">Status text.</param>
+        /// <param name="lsType">Type of the message.</param>
+        /// <returns>Returns <c>true</c> if the caller should continue
+        /// the current work.</returns>
+        bool SetText(string strNewText, LogStatusType lsType);
 
         void UpdateMessage(String message);
 
@@ -97,20 +97,22 @@ namespace KeePassLib.Interfaces
         /// <returns>Returns <c>true</c> if the caller should continue
         /// the current work.</returns>
         bool ContinueWork();
-	}
+    }
 
-	public sealed class NullStatusLogger : IStatusLogger
-	{
-		public void StartLogging(string strOperation, bool bWriteOperationToLog) { }
-		public void EndLogging() { }
-		public bool SetProgress(uint uPercent) { return true; }
-		public bool SetText(string strNewText, LogStatusType lsType) { return true; }
-        public void UpdateMessage(string message){
+    public sealed class NullStatusLogger : IStatusLogger
+    {
+        public void StartLogging(string strOperation, bool bWriteOperationToLog) { }
+        public void EndLogging() { }
+        public bool SetProgress(uint uPercent) { return true; }
+        public bool SetText(string strNewText, LogStatusType lsType) { return true; }
+        public void UpdateMessage(string message)
+        {
         }
 
-        public void UpdateSubMessage(string submessage){
+        public void UpdateSubMessage(string submessage)
+        {
         }
 
         public bool ContinueWork() { return true; }
-	}
+    }
 }

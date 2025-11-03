@@ -26,41 +26,41 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Serialization
 {
-	public sealed class OldFormatException : Exception
-	{
-		private string m_strFormat = string.Empty;
-		private OldFormatType m_type = OldFormatType.Unknown;
+    public sealed class OldFormatException : Exception
+    {
+        private string m_strFormat = string.Empty;
+        private OldFormatType m_type = OldFormatType.Unknown;
 
-		public enum OldFormatType
-		{
-			Unknown = 0,
-			KeePass1x = 1
-		}
+        public enum OldFormatType
+        {
+            Unknown = 0,
+            KeePass1x = 1
+        }
 
-		public override string Message
-		{
-			get
-			{
-				string str = KLRes.OldFormat + ((m_strFormat.Length > 0) ?
-					(@" (" + m_strFormat + @")") : string.Empty) + ".";
+        public override string Message
+        {
+            get
+            {
+                string str = KLRes.OldFormat + ((m_strFormat.Length > 0) ?
+                    (@" (" + m_strFormat + @")") : string.Empty) + ".";
 
-				if(m_type == OldFormatType.KeePass1x)
-					str += MessageService.NewParagraph + KLRes.KeePass1xHint;
+                if (m_type == OldFormatType.KeePass1x)
+                    str += MessageService.NewParagraph + KLRes.KeePass1xHint;
 
-				return str;
-			}
-		}
+                return str;
+            }
+        }
 
-		public OldFormatException(string strFormatName)
-		{
-			if(strFormatName != null) m_strFormat = strFormatName;
-		}
+        public OldFormatException(string strFormatName)
+        {
+            if (strFormatName != null) m_strFormat = strFormatName;
+        }
 
-		public OldFormatException(string strFormatName, OldFormatType t)
-		{
-			if(strFormatName != null) m_strFormat = strFormatName;
+        public OldFormatException(string strFormatName, OldFormatType t)
+        {
+            if (strFormatName != null) m_strFormat = strFormatName;
 
-			m_type = t;
-		}
-	}
+            m_type = t;
+        }
+    }
 }

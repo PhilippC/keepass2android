@@ -26,46 +26,46 @@ using System.Xml.Serialization;
 
 namespace KeePassLib.Translation
 {
-	public sealed class KPStringTable
-	{
-		private string m_strName = string.Empty;
-		[XmlAttribute]
-		public string Name
-		{
-			get { return m_strName; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_strName = value;
-			}
-		}
+    public sealed class KPStringTable
+    {
+        private string m_strName = string.Empty;
+        [XmlAttribute]
+        public string Name
+        {
+            get { return m_strName; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strName = value;
+            }
+        }
 
-		private List<KPStringTableItem> m_vItems = new List<KPStringTableItem>();
+        private List<KPStringTableItem> m_vItems = new List<KPStringTableItem>();
 
-		[XmlArrayItem("Data")]
-		public List<KPStringTableItem> Strings
-		{
-			get { return m_vItems; }
-			set
-			{
-				if(value == null) throw new ArgumentNullException("value");
-				m_vItems = value;
-			}
-		}
+        [XmlArrayItem("Data")]
+        public List<KPStringTableItem> Strings
+        {
+            get { return m_vItems; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_vItems = value;
+            }
+        }
 
-		public Dictionary<string, string> ToDictionary()
-		{
-			Dictionary<string, string> dict = new Dictionary<string, string>();
+        public Dictionary<string, string> ToDictionary()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
 
-			foreach(KPStringTableItem kpstItem in m_vItems)
-			{
-				if(kpstItem.Value.Length > 0)
-					dict[kpstItem.Name] = kpstItem.Value;
-			}
+            foreach (KPStringTableItem kpstItem in m_vItems)
+            {
+                if (kpstItem.Value.Length > 0)
+                    dict[kpstItem.Name] = kpstItem.Value;
+            }
 
-			return dict;
-		}
-		/*
+            return dict;
+        }
+        /*
 #if (!KeePassLibSD && !KeePassUAP)
 		public void ApplyTo(ToolStripItemCollection tsic)
 		{
@@ -95,5 +95,5 @@ namespace KeePassLib.Translation
 			}
 		}
 #endif*/
-	}
+    }
 }

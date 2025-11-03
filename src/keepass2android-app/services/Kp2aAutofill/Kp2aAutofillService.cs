@@ -19,11 +19,11 @@ using AutofillServiceBase = keepass2android.services.AutofillBase.AutofillServic
 
 namespace keepass2android.services
 {
-[Service(Label = AppNames.AppName, Permission=Manifest.Permission.BindAutofillService, Exported = true)]
-    [IntentFilter(new [] {"android.service.autofill.AutofillService"})]
+    [Service(Label = AppNames.AppName, Permission = Manifest.Permission.BindAutofillService, Exported = true)]
+    [IntentFilter(new[] { "android.service.autofill.AutofillService" })]
     [MetaData("android.autofill", Resource = "@xml/autofillservice")]
     [Register("keepass2android.services.Kp2aAutofillService")]
-    public class Kp2aAutofillService: AutofillServiceBase
+    public class Kp2aAutofillService : AutofillServiceBase
     {
         public Kp2aAutofillService()
         {
@@ -53,11 +53,11 @@ namespace keepass2android.services
                     .GetBoolean(GetString(keepass2android.Resource.String.NoAutofillDisabling_key), false))
                 numDisableDatasets = 1;
 
-                //it seems like at least with Firefox we can have at most 3 datasets. Reserve space for the disable dataset and the "fill with KP2A" which allows to select another item
-                return foundEntries.Take(2-numDisableDatasets)
-                    .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
-                    .ToDictionary(e => e,
-                                e => ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(e, this));
+            //it seems like at least with Firefox we can have at most 3 datasets. Reserve space for the disable dataset and the "fill with KP2A" which allows to select another item
+            return foundEntries.Take(2 - numDisableDatasets)
+                .Select(e => new PwEntryOutput(e, App.Kp2a.FindDatabaseForElement(e)))
+                .ToDictionary(e => e,
+                            e => ChooseForAutofillActivity.GetFilledAutofillFieldCollectionFromEntry(e, this));
         }
 
         protected override void HandleSaveRequest(StructureParser parser, StructureParser.AutofillTargetId query)
@@ -81,7 +81,7 @@ namespace keepass2android.services
             intent.PutExtra(Strings.ExtraEntryOutputData, jsonOutputStr);
 
             JSONArray jsonProtectedFields = new JSONArray(
-                (System.Collections.ICollection)new string[]{});
+                (System.Collections.ICollection)new string[] { });
             intent.PutExtra(Strings.ExtraProtectedFieldsList, jsonProtectedFields.ToString());
 
             intent.PutExtra(AppTask.AppTaskKey, "CreateEntryThenCloseTask");

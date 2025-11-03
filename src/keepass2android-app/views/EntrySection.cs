@@ -25,51 +25,58 @@ using keepass2android;
 
 namespace keepass2android.view
 {
-	
-	public class EntrySection : LinearLayout {
-		
-		public EntrySection(Context context): base(context, null) {
-			InflateView (null, null);
-		}
-		
-		public EntrySection(Context context, IAttributeSet attrs): base(context, attrs) {
-			InflateView (null, null);
-		}
-		
-		public EntrySection(Context context, IAttributeSet attrs, String title, String value): base(context, attrs) {
-			
-			InflateView(title, value);
-		}
 
-		public EntrySection (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
-		
-		
-		private void InflateView(String title, String value) {
-			LayoutInflater inflater = (LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
-			inflater.Inflate(Resource.Layout.entry_section, this);
-			
-			SetText(Resource.Id.title, title);
+    public class EntrySection : LinearLayout
+    {
 
-			FindViewById<TextView>(Resource.Id.value).Invalidate();
-			SetText(Resource.Id.value, value);
-			//TODO: this seems to cause a bug when rotating the device (and the activity gets destroyed)
-			//After recreating the activity, the value fields all have the same content.
-			if ((int)Android.OS.Build.VERSION.SdkInt >= 11)
-				FindViewById<TextView>(Resource.Id.value).SetTextIsSelectable(true);
-		}
-		
-		private void SetText(int resId, String str) {
-			if (str != null) {
-				TextView tvTitle = (TextView) FindViewById(resId);
-				tvTitle.Text = str;
-			}
-			
-		}
-	}
+        public EntrySection(Context context) : base(context, null)
+        {
+            InflateView(null, null);
+        }
+
+        public EntrySection(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+            InflateView(null, null);
+        }
+
+        public EntrySection(Context context, IAttributeSet attrs, String title, String value) : base(context, attrs)
+        {
+
+            InflateView(title, value);
+        }
+
+        public EntrySection(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+
+        }
+
+
+        private void InflateView(String title, String value)
+        {
+            LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
+            inflater.Inflate(Resource.Layout.entry_section, this);
+
+            SetText(Resource.Id.title, title);
+
+            FindViewById<TextView>(Resource.Id.value).Invalidate();
+            SetText(Resource.Id.value, value);
+            //TODO: this seems to cause a bug when rotating the device (and the activity gets destroyed)
+            //After recreating the activity, the value fields all have the same content.
+            if ((int)Android.OS.Build.VERSION.SdkInt >= 11)
+                FindViewById<TextView>(Resource.Id.value).SetTextIsSelectable(true);
+        }
+
+        private void SetText(int resId, String str)
+        {
+            if (str != null)
+            {
+                TextView tvTitle = (TextView)FindViewById(resId);
+                tvTitle.Text = str;
+            }
+
+        }
+    }
 
 }
 

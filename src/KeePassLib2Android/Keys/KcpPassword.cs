@@ -27,80 +27,80 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Keys
 {
-	/// <summary>
-	/// Master password / passphrase as provided by the user.
-	/// </summary>
-	public sealed class KcpPassword : IUserKey
-	{
-		private ProtectedString m_psPassword;
-		private ProtectedBinary m_pbKeyData;
+    /// <summary>
+    /// Master password / passphrase as provided by the user.
+    /// </summary>
+    public sealed class KcpPassword : IUserKey
+    {
+        private ProtectedString m_psPassword;
+        private ProtectedBinary m_pbKeyData;
 
-		/// <summary>
-		/// Get the password as protected string.
-		/// </summary>
-		public ProtectedString Password
-		{
-			get { return m_psPassword; }
-		}
+        /// <summary>
+        /// Get the password as protected string.
+        /// </summary>
+        public ProtectedString Password
+        {
+            get { return m_psPassword; }
+        }
 
-		/// <summary>
-		/// Get key data. Querying this property is fast (it returns a
-		/// reference to a cached <c>ProtectedBinary</c> object).
-		/// If no key data is available, <c>null</c> is returned.
-		/// </summary>
-		public ProtectedBinary KeyData
-		{
-			get { return m_pbKeyData; }
-		}
+        /// <summary>
+        /// Get key data. Querying this property is fast (it returns a
+        /// reference to a cached <c>ProtectedBinary</c> object).
+        /// If no key data is available, <c>null</c> is returned.
+        /// </summary>
+        public ProtectedBinary KeyData
+        {
+            get { return m_pbKeyData; }
+        }
 
-	    public uint GetMinKdbxVersion()
-	    {
-	        return 0;
-	    }
+        public uint GetMinKdbxVersion()
+        {
+            return 0;
+        }
 
-	    public KcpPassword(byte[] pbPasswordUtf8)
-		{
-			SetKey(pbPasswordUtf8);
-		}
+        public KcpPassword(byte[] pbPasswordUtf8)
+        {
+            SetKey(pbPasswordUtf8);
+        }
 
-		public KcpPassword(string strPassword)
-		{
-			SetKey(StrUtil.Utf8.GetBytes(strPassword));
-		}
+        public KcpPassword(string strPassword)
+        {
+            SetKey(StrUtil.Utf8.GetBytes(strPassword));
+        }
 
-		private void SetKey(byte[] pbPasswordUtf8)
-		{
-			Debug.Assert(pbPasswordUtf8 != null);
-			if(pbPasswordUtf8 == null) throw new ArgumentNullException("pbPasswordUtf8");
-
-#if (DEBUG && !KeePassLibSD)
-			Debug.Assert(ValidatePassword(pbPasswordUtf8));
-#endif
-
-			byte[] pbRaw = CryptoUtil.HashSha256(pbPasswordUtf8);
-
-			m_psPassword = new ProtectedString(true, pbPasswordUtf8);
-			m_pbKeyData = new ProtectedBinary(true, pbRaw);
-		}
-
-		// public void Clear()
-		// {
-		//	m_psPassword = null;
-		//	m_pbKeyData = null;
-		// }
+        private void SetKey(byte[] pbPasswordUtf8)
+        {
+            Debug.Assert(pbPasswordUtf8 != null);
+            if (pbPasswordUtf8 == null) throw new ArgumentNullException("pbPasswordUtf8");
 
 #if (DEBUG && !KeePassLibSD)
-		private static bool ValidatePassword(byte[] pb)
-		{
-			try
-			{
-				string str = StrUtil.Utf8.GetString(pb);
-				return str.IsNormalized(NormalizationForm.FormC);
-	}
-			catch(Exception) { Debug.Assert(false); }
-
-			return false;
-}
+            Debug.Assert(ValidatePassword(pbPasswordUtf8));
 #endif
-	}
+
+            byte[] pbRaw = CryptoUtil.HashSha256(pbPasswordUtf8);
+
+            m_psPassword = new ProtectedString(true, pbPasswordUtf8);
+            m_pbKeyData = new ProtectedBinary(true, pbRaw);
+        }
+
+        // public void Clear()
+        // {
+        //	m_psPassword = null;
+        //	m_pbKeyData = null;
+        // }
+
+#if (DEBUG && !KeePassLibSD)
+        private static bool ValidatePassword(byte[] pb)
+        {
+            try
+            {
+                string str = StrUtil.Utf8.GetString(pb);
+                return str.IsNormalized(NormalizationForm.FormC);
+            }
+            catch (Exception) { Debug.Assert(false); }
+
+            return false;
+        }
+#endif
+    }
 }

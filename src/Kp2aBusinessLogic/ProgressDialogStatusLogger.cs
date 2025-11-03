@@ -47,7 +47,7 @@ namespace keepass2android
     {
         public void StartLogging(string strOperation, bool bWriteOperationToLog)
         {
-            
+
         }
 
         public void EndLogging()
@@ -83,7 +83,7 @@ namespace keepass2android
 
         public void UpdateMessage(UiStringKey stringKey)
         {
-            
+
         }
 
         public string LastMessage { get { return _lastMessage; } }
@@ -93,25 +93,25 @@ namespace keepass2android
     /// <summary>
     /// StatusLogger implementation which shows the progress in a progress dialog
     /// </summary>
-    public class ProgressDialogUi: IProgressUi
+    public class ProgressDialogUi : IProgressUi
     {
-		private readonly IProgressDialog _progressDialog;
-		
-		private readonly Handler _handler;
-		private string _message = "";
-	    private string _submessage;
+        private readonly IProgressDialog _progressDialog;
+
+        private readonly Handler _handler;
+        private string _message = "";
+        private string _submessage;
         private readonly IKp2aApp _app;
 
         public String LastSubMessage => _submessage;
-	    public String LastMessage => _message;
+        public String LastMessage => _message;
 
-		
-		public ProgressDialogUi(IKp2aApp app, Handler handler, IProgressDialog pd)
+
+        public ProgressDialogUi(IKp2aApp app, Handler handler, IProgressDialog pd)
         {
             _app = app;
-			_progressDialog = pd;
-			_handler = handler;
-		}
+            _progressDialog = pd;
+            _handler = handler;
+        }
 
         public void UpdateSubMessage(String submessage)
         {
@@ -168,6 +168,6 @@ namespace keepass2android
     }
 
 
-	
+
 }
 

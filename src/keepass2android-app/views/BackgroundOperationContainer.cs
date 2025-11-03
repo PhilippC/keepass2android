@@ -34,7 +34,7 @@ public class BackgroundOperationContainer : LinearLayout, IProgressUi
         LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
         inflater.Inflate(Resource.Layout.background_operation_container, this);
 
-        FindViewById(Resource.Id.cancel_background).Click += (obj,args) =>
+        FindViewById(Resource.Id.cancel_background).Click += (obj, args) =>
         {
             App.Kp2a.CancelBackgroundOperations();
         };

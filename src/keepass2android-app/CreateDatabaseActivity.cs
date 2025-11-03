@@ -18,17 +18,17 @@ using IOException = Java.IO.IOException;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name",
-			   ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+    [Activity(Label = "@string/app_name",
+               ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
                Theme = "@style/Kp2aTheme_BlueActionBar")]
-	public class CreateDatabaseActivity : LifecycleAwareActivity
-	{
-		private IOConnectionInfo _ioc;
-		private string _keyfileFilename;
-		private bool _restoringInstanceState;
-		private bool _showPassword;
+    public class CreateDatabaseActivity : LifecycleAwareActivity
+    {
+        private IOConnectionInfo _ioc;
+        private string _keyfileFilename;
+        private bool _restoringInstanceState;
+        private bool _showPassword;
 
-		private readonly ActivityDesign _design;
+        private readonly ActivityDesign _design;
         private AppTask _appTask;
         private AppTask AppTask
         {
@@ -40,428 +40,428 @@ namespace keepass2android
             }
         }
 
-		public CreateDatabaseActivity()
-		{
-			_design = new ActivityDesign(this);
-		}
+        public CreateDatabaseActivity()
+        {
+            _design = new ActivityDesign(this);
+        }
 
 
-		private const int RequestCodeKeyFile = 0;
-		private const int RequestCodeDbFilename = 1;
-		private const string KeyfilefilenameBundleKey = "KeyfileFilename";
+        private const int RequestCodeKeyFile = 0;
+        private const int RequestCodeDbFilename = 1;
+        private const string KeyfilefilenameBundleKey = "KeyfileFilename";
 
-		protected override void OnSaveInstanceState(Bundle outState)
-		{
-			base.OnSaveInstanceState(outState);
-			outState.PutString(Util.KeyFilename, _ioc.Path);
-			outState.PutString(Util.KeyServerusername, _ioc.UserName);
-			outState.PutString(Util.KeyServerpassword, _ioc.Password);
-			outState.PutInt(Util.KeyServercredmode, (int)_ioc.CredSaveMode);
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            outState.PutString(Util.KeyFilename, _ioc.Path);
+            outState.PutString(Util.KeyServerusername, _ioc.UserName);
+            outState.PutString(Util.KeyServerpassword, _ioc.Password);
+            outState.PutInt(Util.KeyServercredmode, (int)_ioc.CredSaveMode);
 
-			if (_keyfileFilename != null)
-				outState.PutString(KeyfilefilenameBundleKey, _keyfileFilename);
-		}
+            if (_keyfileFilename != null)
+                outState.PutString(KeyfilefilenameBundleKey, _keyfileFilename);
+        }
 
-		protected override void OnCreate(Bundle bundle)
-		{
-			_design.ApplyTheme(); 
-			base.OnCreate(bundle);
-			
+        protected override void OnCreate(Bundle bundle)
+        {
+            _design.ApplyTheme();
+            base.OnCreate(bundle);
+
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
-			SetContentView(Resource.Layout.create_database);
-			AppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
+            SetContentView(Resource.Layout.create_database);
+            AppTask = AppTask.GetTaskInOnCreate(bundle, Intent);
 
-			SetDefaultIoc();
+            SetDefaultIoc();
 
-			FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Gone;
-			
-
-			var keyfileCheckbox = FindViewById<CheckBox>(Resource.Id.use_keyfile);
-
-			if (bundle != null)
-			{
-				_keyfileFilename = bundle.GetString(KeyfilefilenameBundleKey, null);
-				if (_keyfileFilename != null)
-				{
-					FindViewById<TextView>(Resource.Id.keyfile_filename).Text = FileSelectHelper.ConvertFilenameToIocPath(_keyfileFilename);
-					FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Visible;
-					keyfileCheckbox.Checked = true;
-				}
-
-				if (bundle.GetString(Util.KeyFilename, null) != null)
-				{
-					_ioc = new IOConnectionInfo
-						{
-							Path = bundle.GetString(Util.KeyFilename),
-							UserName = bundle.GetString(Util.KeyServerusername),
-							Password = bundle.GetString(Util.KeyServerpassword),
-							CredSaveMode = (IOCredSaveMode) bundle.GetInt(Util.KeyServercredmode),
-						};
-				}
-			}
-
-			UpdateIocView();
-
-			keyfileCheckbox.CheckedChange += (sender, args) =>
-				{
-					if (keyfileCheckbox.Checked)
-					{
-						if (_restoringInstanceState)
-							return;
-
-						Util.ShowBrowseDialog(this, RequestCodeKeyFile, false, true);
-
-					}
-					else
-					{
-						FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Gone;
-						_keyfileFilename = null;
-					}
-				};
+            FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Gone;
 
 
-			FindViewById(Resource.Id.btn_change_location).Click += (sender, args) =>
-			{
-				Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-				StartActivityForResult(intent, RequestCodeDbFilename);
-			};
+            var keyfileCheckbox = FindViewById<CheckBox>(Resource.Id.use_keyfile);
 
-			Button generatePassword = (Button)FindViewById(Resource.Id.generate_button);
-			generatePassword.Click += (sender, e) =>
-			{
-				GeneratePasswordActivity.LaunchWithoutLockCheck(this);
-			};
+            if (bundle != null)
+            {
+                _keyfileFilename = bundle.GetString(KeyfilefilenameBundleKey, null);
+                if (_keyfileFilename != null)
+                {
+                    FindViewById<TextView>(Resource.Id.keyfile_filename).Text = FileSelectHelper.ConvertFilenameToIocPath(_keyfileFilename);
+                    FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Visible;
+                    keyfileCheckbox.Checked = true;
+                }
 
-			FindViewById(Resource.Id.btn_create).Click += (sender, evt) => 
-			{
-				CreateDatabase(Intent.GetBooleanExtra("MakeCurrent",true));
-			};
+                if (bundle.GetString(Util.KeyFilename, null) != null)
+                {
+                    _ioc = new IOConnectionInfo
+                    {
+                        Path = bundle.GetString(Util.KeyFilename),
+                        UserName = bundle.GetString(Util.KeyServerusername),
+                        Password = bundle.GetString(Util.KeyServerpassword),
+                        CredSaveMode = (IOCredSaveMode)bundle.GetInt(Util.KeyServercredmode),
+                    };
+                }
+            }
+
+            UpdateIocView();
+
+            keyfileCheckbox.CheckedChange += (sender, args) =>
+                {
+                    if (keyfileCheckbox.Checked)
+                    {
+                        if (_restoringInstanceState)
+                            return;
+
+                        Util.ShowBrowseDialog(this, RequestCodeKeyFile, false, true);
+
+                    }
+                    else
+                    {
+                        FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Gone;
+                        _keyfileFilename = null;
+                    }
+                };
+
+
+            FindViewById(Resource.Id.btn_change_location).Click += (sender, args) =>
+            {
+                Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+                StartActivityForResult(intent, RequestCodeDbFilename);
+            };
+
+            Button generatePassword = (Button)FindViewById(Resource.Id.generate_button);
+            generatePassword.Click += (sender, e) =>
+            {
+                GeneratePasswordActivity.LaunchWithoutLockCheck(this);
+            };
+
+            FindViewById(Resource.Id.btn_create).Click += (sender, evt) =>
+            {
+                CreateDatabase(Intent.GetBooleanExtra("MakeCurrent", true));
+            };
 
             Button btnTogglePassword = (Button)FindViewById(Resource.Id.toggle_password);
-			btnTogglePassword.Click += (sender, e) =>
-			{
-				_showPassword = !_showPassword;
-				MakePasswordMaskedOrVisible();
-			};
+            btnTogglePassword.Click += (sender, e) =>
+            {
+                _showPassword = !_showPassword;
+                MakePasswordMaskedOrVisible();
+            };
 
 
             Util.SetNoPersonalizedLearning(FindViewById(Resource.Id.root));
 
         }
 
-	    readonly PasswordFont _passwordFont = new PasswordFont();
+        readonly PasswordFont _passwordFont = new PasswordFont();
 
-		private void MakePasswordMaskedOrVisible()
-		{
-			EditText password = (EditText)FindViewById(Resource.Id.entry_password);
-		    TextView confpassword = (TextView)FindViewById(Resource.Id.entry_confpassword);
-			int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
-			if (_showPassword)
-			{
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
-			    _passwordFont.ApplyTo(password);
-				confpassword.Visibility = ViewStates.Gone;
-			}
-			else
-			{
-				password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				confpassword.Visibility = ViewStates.Visible;
-			}
-			password.SetSelection(selStart, selEnd);
-		}
+        private void MakePasswordMaskedOrVisible()
+        {
+            EditText password = (EditText)FindViewById(Resource.Id.entry_password);
+            TextView confpassword = (TextView)FindViewById(Resource.Id.entry_confpassword);
+            int selStart = password.SelectionStart, selEnd = password.SelectionEnd;
+            if (_showPassword)
+            {
+                password.InputType = InputTypes.ClassText | InputTypes.TextVariationVisiblePassword;
+                _passwordFont.ApplyTo(password);
+                confpassword.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+                confpassword.Visibility = ViewStates.Visible;
+            }
+            password.SetSelection(selStart, selEnd);
+        }
 
-		private void CreateDatabase(bool makeCurrent)
-		{
-			var keyfileCheckbox = FindViewById<CheckBox>(Resource.Id.use_keyfile);
-			string password;
-			if (!TryGetPassword(out password)) return;
-
-
-			// Verify that a password or keyfile is set
-			if (password.Length == 0 && !keyfileCheckbox.Checked)
-			{
-				App.Kp2a.ShowMessage(this, Resource.String.error_nopass,  MessageSeverity.Error);
-				return;
-			}
-
-			//create the key
-			CompositeKey newKey = new CompositeKey();
-			if (String.IsNullOrEmpty(password) == false)
-			{
-				newKey.AddUserKey(new KcpPassword(password));
-			}
-			if (String.IsNullOrEmpty(_keyfileFilename) == false)
-			{
-				try
-				{
-					var ioc = IOConnectionInfo.FromPath(_keyfileFilename);
-					using (var stream = App.Kp2a.GetFileStorage(ioc).OpenFileForRead(ioc))
-					{
-						byte[] keyfileData =  Util.StreamToMemoryStream(stream).ToArray();
-						newKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
-				}
-
-				}
-				catch (Exception)
-				{
-					App.Kp2a.ShowMessage(this, Resource.String.error_adding_keyfile,  MessageSeverity.Error);
-					return;
-				}
-			}
-
-			// Create the new database
-			CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, App.Kp2a, this), false, newKey, makeCurrent);
-			BlockingOperationStarter createTask = new BlockingOperationStarter(
-				App.Kp2a, create);
-			createTask.Run();
-		}
-
-		private bool TryGetPassword(out string pass)
-		{
-			TextView passView = (TextView)FindViewById(Resource.Id.entry_password);
-			pass = passView.Text;
-
-			if (_showPassword)
-				return true;
-
-			TextView passConfView = (TextView) FindViewById(Resource.Id.entry_confpassword);
-			String confpass = passConfView.Text;
-
-			// Verify that passwords match
-			if (! pass.Equals(confpass))
-			{
-				// Passwords do not match
-				App.Kp2a.ShowMessage(this, Resource.String.error_pass_match,  MessageSeverity.Error);
-				return false;
-			}
-			return true;
-		}
-
-		protected override void OnResume()
-		{
-			base.OnResume();
-			_design.ReapplyTheme();
-		}
-
-		protected override void OnRestoreInstanceState(Bundle savedInstanceState)
-		{
-			_restoringInstanceState = true;
-			base.OnRestoreInstanceState(savedInstanceState);
-			_restoringInstanceState = false;
-		}
+        private void CreateDatabase(bool makeCurrent)
+        {
+            var keyfileCheckbox = FindViewById<CheckBox>(Resource.Id.use_keyfile);
+            string password;
+            if (!TryGetPassword(out password)) return;
 
 
-		private void UpdateIocView()
-		{
-			string displayPath = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
-			int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
-			string protocolId = protocolSeparatorPos < 0 ?
-				"file" : displayPath.Substring(0, protocolSeparatorPos);
-			Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
-			FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
+            // Verify that a password or keyfile is set
+            if (password.Length == 0 && !keyfileCheckbox.Checked)
+            {
+                App.Kp2a.ShowMessage(this, Resource.String.error_nopass, MessageSeverity.Error);
+                return;
+            }
 
-			String title = App.Kp2a.GetStorageDisplayName(protocolId);
-			FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
+            //create the key
+            CompositeKey newKey = new CompositeKey();
+            if (String.IsNullOrEmpty(password) == false)
+            {
+                newKey.AddUserKey(new KcpPassword(password));
+            }
+            if (String.IsNullOrEmpty(_keyfileFilename) == false)
+            {
+                try
+                {
+                    var ioc = IOConnectionInfo.FromPath(_keyfileFilename);
+                    using (var stream = App.Kp2a.GetFileStorage(ioc).OpenFileForRead(ioc))
+                    {
+                        byte[] keyfileData = Util.StreamToMemoryStream(stream).ToArray();
+                        newKey.AddUserKey(new KcpKeyFile(keyfileData, ioc, true));
+                    }
 
-			FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
-				displayPath :
-				displayPath.Substring(protocolSeparatorPos + 3);
+                }
+                catch (Exception)
+                {
+                    App.Kp2a.ShowMessage(this, Resource.String.error_adding_keyfile, MessageSeverity.Error);
+                    return;
+                }
+            }
 
-		}
+            // Create the new database
+            CreateDb create = new CreateDb(App.Kp2a, this, _ioc, new LaunchGroupActivity(_ioc, App.Kp2a, this), false, newKey, makeCurrent);
+            BlockingOperationStarter createTask = new BlockingOperationStarter(
+                App.Kp2a, create);
+            createTask.Run();
+        }
 
-		private void SetDefaultIoc()
-		{
+        private bool TryGetPassword(out string pass)
+        {
+            TextView passView = (TextView)FindViewById(Resource.Id.entry_password);
+            pass = passView.Text;
+
+            if (_showPassword)
+                return true;
+
+            TextView passConfView = (TextView)FindViewById(Resource.Id.entry_confpassword);
+            String confpass = passConfView.Text;
+
+            // Verify that passwords match
+            if (!pass.Equals(confpass))
+            {
+                // Passwords do not match
+                App.Kp2a.ShowMessage(this, Resource.String.error_pass_match, MessageSeverity.Error);
+                return false;
+            }
+            return true;
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _design.ReapplyTheme();
+        }
+
+        protected override void OnRestoreInstanceState(Bundle savedInstanceState)
+        {
+            _restoringInstanceState = true;
+            base.OnRestoreInstanceState(savedInstanceState);
+            _restoringInstanceState = false;
+        }
+
+
+        private void UpdateIocView()
+        {
+            string displayPath = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
+            int protocolSeparatorPos = displayPath.IndexOf("://", StringComparison.Ordinal);
+            string protocolId = protocolSeparatorPos < 0 ?
+                "file" : displayPath.Substring(0, protocolSeparatorPos);
+            Drawable drawable = App.Kp2a.GetStorageIcon(protocolId);
+            FindViewById<ImageView>(Resource.Id.filestorage_logo).SetImageDrawable(drawable);
+
+            String title = App.Kp2a.GetStorageDisplayName(protocolId);
+            FindViewById<TextView>(Resource.Id.filestorage_label).Text = title;
+
+            FindViewById<TextView>(Resource.Id.label_filename).Text = protocolSeparatorPos < 0 ?
+                displayPath :
+                displayPath.Substring(protocolSeparatorPos + 3);
+
+        }
+
+        private void SetDefaultIoc()
+        {
             Java.IO.File directory = GetExternalFilesDir(null);
-			if (directory == null)
-				directory = FilesDir;
+            if (directory == null)
+                directory = FilesDir;
 
-			string strDir = directory.CanonicalPath;
-			if (!strDir.EndsWith(Java.IO.File.Separator))
-				strDir += Java.IO.File.Separator;
+            string strDir = directory.CanonicalPath;
+            if (!strDir.EndsWith(Java.IO.File.Separator))
+                strDir += Java.IO.File.Separator;
 
-			string filename = strDir + "keepass.kdbx";
-			filename = FileSelectHelper.ConvertFilenameToIocPath(filename);
-			int count = 2;
-			while (new Java.IO.File(filename).Exists())
-			{
-				filename = FileSelectHelper.ConvertFilenameToIocPath(strDir + "keepass" + count + ".kdbx");
-				count++;
-			}
-			
-			_ioc = new IOConnectionInfo
-				{
-					Path = filename
-				};
-		}
+            string filename = strDir + "keepass.kdbx";
+            filename = FileSelectHelper.ConvertFilenameToIocPath(filename);
+            int count = 2;
+            while (new Java.IO.File(filename).Exists())
+            {
+                filename = FileSelectHelper.ConvertFilenameToIocPath(strDir + "keepass" + count + ".kdbx");
+                count++;
+            }
 
-		private static string SdDir
-		{
-			get
-			{
-				string sdDir = Environment.ExternalStorageDirectory.AbsolutePath;
-				if (!sdDir.EndsWith("/"))
-					sdDir += "/";
-				if (!sdDir.StartsWith("file://"))
-					sdDir = "file://" + sdDir;
-				return sdDir;
-			}
-		}
+            _ioc = new IOConnectionInfo
+            {
+                Path = filename
+            };
+        }
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
+        private static string SdDir
+        {
+            get
+            {
+                string sdDir = Environment.ExternalStorageDirectory.AbsolutePath;
+                if (!sdDir.EndsWith("/"))
+                    sdDir += "/";
+                if (!sdDir.StartsWith("file://"))
+                    sdDir = "file://" + sdDir;
+                return sdDir;
+            }
+        }
 
-			if (resultCode == KeePass.ResultOkPasswordGenerator)
-			{
-				String generatedPassword = data.GetStringExtra(GeneratePasswordActivity.GeneratedPasswordKey);
-				FindViewById<TextView>(Resource.Id.entry_password).Text = generatedPassword;
-				FindViewById<TextView>(Resource.Id.entry_confpassword).Text = generatedPassword;
-			}
-			
-			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, true, true, RequestCodeDbFilename)
-					{
-						DefaultExtension = "kdbx"
-					};
-			fileSelectHelper.OnOpen += (sender, info) =>
-			{
-				_ioc = info;
-				(sender as CreateDatabaseActivity ?? this).UpdateIocView();
-			};
-			
-			if (fileSelectHelper.HandleActivityResult(this, requestCode, resultCode, data))
-				return;
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
 
+            if (resultCode == KeePass.ResultOkPasswordGenerator)
+            {
+                String generatedPassword = data.GetStringExtra(GeneratePasswordActivity.GeneratedPasswordKey);
+                FindViewById<TextView>(Resource.Id.entry_password).Text = generatedPassword;
+                FindViewById<TextView>(Resource.Id.entry_confpassword).Text = generatedPassword;
+            }
 
-			if (resultCode == Result.Ok)
-			{
-				if (requestCode == RequestCodeKeyFile)
-				{
-					if (data.Data.Scheme == "content")
-					{
-						if ((int)Build.VERSION.SdkInt >= 19)
-						{
-							//try to take persistable permissions
-							try
-							{
-								Kp2aLog.Log("TakePersistableUriPermission");
-								var takeFlags = data.Flags
-										& (ActivityFlags.GrantReadUriPermission
-										| ActivityFlags.GrantWriteUriPermission);
-								this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
-							}
-							catch (Exception e)
-							{
-								Kp2aLog.Log(e.ToString());
-							}
+            FileSelectHelper fileSelectHelper = new FileSelectHelper(this, true, true, RequestCodeDbFilename)
+            {
+                DefaultExtension = "kdbx"
+            };
+            fileSelectHelper.OnOpen += (sender, info) =>
+            {
+                _ioc = info;
+                (sender as CreateDatabaseActivity ?? this).UpdateIocView();
+            };
 
-						}
-					}
-
-					
-					string filename = Util.IntentToFilename(data, this);
-					if (filename == null)
-						filename = data.DataString;
-
-					
-						_keyfileFilename = FileSelectHelper.ConvertFilenameToIocPath(filename);
-						FindViewById<TextView>(Resource.Id.keyfile_filename).Text = _keyfileFilename;
-						FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Visible;
-					
-					}
-				
-				
-			}
-			if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
-			{
-				_ioc = new IOConnectionInfo();
-				Util.SetIoConnectionFromIntent(_ioc, data);
-				UpdateIocView();
-			}
-			if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
-			{
-				IOConnectionInfo ioc = new IOConnectionInfo();
-				Util.SetIoConnectionFromIntent(ioc, data);
-				
-				new FileSelectHelper(this, true, true, RequestCodeDbFilename) { DefaultExtension = "kdbx" }
-					.StartFileChooser(ioc.Path);
-				
-			}
-
-		}
+            if (fileSelectHelper.HandleActivityResult(this, requestCode, resultCode, data))
+                return;
 
 
+            if (resultCode == Result.Ok)
+            {
+                if (requestCode == RequestCodeKeyFile)
+                {
+                    if (data.Data.Scheme == "content")
+                    {
+                        if ((int)Build.VERSION.SdkInt >= 19)
+                        {
+                            //try to take persistable permissions
+                            try
+                            {
+                                Kp2aLog.Log("TakePersistableUriPermission");
+                                var takeFlags = data.Flags
+                                        & (ActivityFlags.GrantReadUriPermission
+                                        | ActivityFlags.GrantWriteUriPermission);
+                                this.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+                            }
+                            catch (Exception e)
+                            {
+                                Kp2aLog.Log(e.ToString());
+                            }
 
-		private void AfterQueryCredentials(IOConnectionInfo ioc)
-		{
-			_ioc = ioc;
-			UpdateIocView();	
-		}
+                        }
+                    }
 
-		private class LaunchGroupActivity : FileOnFinish
-		{
-			private readonly IOConnectionInfo _ioc;
+
+                    string filename = Util.IntentToFilename(data, this);
+                    if (filename == null)
+                        filename = data.DataString;
+
+
+                    _keyfileFilename = FileSelectHelper.ConvertFilenameToIocPath(filename);
+                    FindViewById<TextView>(Resource.Id.keyfile_filename).Text = _keyfileFilename;
+                    FindViewById(Resource.Id.keyfile_filename).Visibility = ViewStates.Visible;
+
+                }
+
+
+            }
+            if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
+            {
+                _ioc = new IOConnectionInfo();
+                Util.SetIoConnectionFromIntent(_ioc, data);
+                UpdateIocView();
+            }
+            if (resultCode == (Result)FileStorageResults.FileChooserPrepared)
+            {
+                IOConnectionInfo ioc = new IOConnectionInfo();
+                Util.SetIoConnectionFromIntent(ioc, data);
+
+                new FileSelectHelper(this, true, true, RequestCodeDbFilename) { DefaultExtension = "kdbx" }
+                    .StartFileChooser(ioc.Path);
+
+            }
+
+        }
+
+
+
+        private void AfterQueryCredentials(IOConnectionInfo ioc)
+        {
+            _ioc = ioc;
+            UpdateIocView();
+        }
+
+        private class LaunchGroupActivity : FileOnFinish
+        {
+            private readonly IOConnectionInfo _ioc;
             private readonly CreateDatabaseActivity _activity;
 
             public LaunchGroupActivity(IOConnectionInfo ioc, IKp2aApp app, CreateDatabaseActivity activity)
-				: base(app, null)
-			{
+                : base(app, null)
+            {
                 _activity = activity;
                 _ioc = ioc;
-			}
+            }
 
-			public override void Run()
-			{
-				if (Success)
-				{
-					// Update the ongoing notification
-					App.Kp2a.UpdateOngoingNotification();
+            public override void Run()
+            {
+                if (Success)
+                {
+                    // Update the ongoing notification
+                    App.Kp2a.UpdateOngoingNotification();
 
-					if (PreferenceManager.GetDefaultSharedPreferences(App.Context).GetBoolean(App.Context.GetString(Resource.String.RememberRecentFiles_key), App.Context.Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default))) 
-					{
-						// Add to recent files
-						FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
+                    if (PreferenceManager.GetDefaultSharedPreferences(App.Context).GetBoolean(App.Context.GetString(Resource.String.RememberRecentFiles_key), App.Context.Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
+                    {
+                        // Add to recent files
+                        FileDbHelper dbHelper = App.Kp2a.FileDbHelper;
 
-						dbHelper.CreateFile(_ioc, Filename, true);
-					}
+                        dbHelper.CreateFile(_ioc, Filename, true);
+                    }
 
-				    Intent data = new Intent();
-				    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioc));
+                    Intent data = new Intent();
+                    data.PutExtra("ioc", IOConnectionInfo.SerializeToString(_ioc));
 
-				    _activity.SetResult(Result.Ok, data);
+                    _activity.SetResult(Result.Ok, data);
 
-				    
+
                     _activity.Finish();
 
-				}
-				else
-				{
-					DisplayMessage(_activity);
-					try
-					{
-						App.Kp2a.GetFileStorage(_ioc).Delete(_ioc);
-					}
-					catch (Exception e)
-					{
-						//not nice, but not a catastrophic failure if we can't delete the file:
-						Kp2aLog.Log("couldn't delete file after failure! " + e);
-					}
-				}
-			}
-		}
+                }
+                else
+                {
+                    DisplayMessage(_activity);
+                    try
+                    {
+                        App.Kp2a.GetFileStorage(_ioc).Delete(_ioc);
+                    }
+                    catch (Exception e)
+                    {
+                        //not nice, but not a catastrophic failure if we can't delete the file:
+                        Kp2aLog.Log("couldn't delete file after failure! " + e);
+                    }
+                }
+            }
+        }
 
-	    
-	    public override bool OnOptionsItemSelected(IMenuItem item)
-	    {
-	        switch (item.ItemId)
-	        {
-	            case Android.Resource.Id.Home:
-	                OnBackPressed();
-	                return true;
-	        }
-	        return false;
-	    }
-	}
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    OnBackPressed();
+                    return true;
+            }
+            return false;
+        }
+    }
 }

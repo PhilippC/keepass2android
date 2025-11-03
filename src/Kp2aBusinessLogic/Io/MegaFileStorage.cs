@@ -434,9 +434,9 @@ namespace keepass2android.Io
                 {
                     throw new Exception("Failed to login to MEGA account. Please check username and password!");
                 }
-                    
+
             }
-            
+
 
             _allAccountData[account] = newAccountData;
             return newAccountData;
@@ -501,6 +501,6 @@ namespace keepass2android.Io
             accountData.Client.Delete(accountData.GetNode(ioc));
         }
 
-        
+
     }
 }

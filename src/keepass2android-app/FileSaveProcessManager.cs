@@ -22,7 +22,7 @@ namespace keepass2android
 
         public bool OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            
+
 
             if (requestCode == _requestCode)
             {
@@ -107,7 +107,7 @@ namespace keepass2android
                             {
                                 if (!success)
                                 {
-                                    App.Kp2a.ShowMessage(activity, messageOrFilename,  MessageSeverity.Error);
+                                    App.Kp2a.ShowMessage(activity, messageOrFilename, MessageSeverity.Error);
                                     return;
                                 }
                                 SaveFile(new IOConnectionInfo { Path = FileSelectHelper.ConvertFilenameToIocPath(messageOrFilename) });
@@ -129,13 +129,13 @@ namespace keepass2android
             }
 
 
-            
+
             return false;
         }
 
         protected virtual void Clear()
         {
-            
+
         }
 
         protected abstract void SaveFile(IOConnectionInfo ioc);
@@ -149,7 +149,7 @@ namespace keepass2android
 
         public virtual void OnSaveInstanceState(Bundle outState)
         {
-            
+
         }
     }
 }

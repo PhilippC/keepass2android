@@ -23,7 +23,7 @@ namespace keepass2android
 
         public AutoOpenEdit(PwEntry entry)
         {
-            
+
         }
 
         public override bool IsVisible(string fieldKey)
@@ -45,13 +45,13 @@ namespace keepass2android
             {
                 if (s == strUiDatabaseFile) return 1;
                 if (s == strEnabled) return 2;
-                
+
                 if (s == strUiKeyFile) return 10000;
-                if (s == strVisible) return   10001;
+                if (s == strVisible) return 10001;
                 return 10;
 
             }).ThenBy(s => s);
-            
+
         }
 
         public override bool ShowAddAttachments
@@ -76,7 +76,7 @@ namespace keepass2android
                 return LocaleManager.LocalizedAppContext.GetString(Resource.String.database_file_heading);
             if (key.StartsWith(strUiIfDevice))
             {
-                return LocaleManager.LocalizedAppContext.GetString(Resource.String.if_device_text,new Object[]{key.Substring(strUiIfDevice.Length)});
+                return LocaleManager.LocalizedAppContext.GetString(Resource.String.if_device_text, new Object[] { key.Substring(strUiIfDevice.Length) });
             }
             return key;
         }
@@ -121,12 +121,12 @@ namespace keepass2android
             }
             catch (NoFileStorageFoundException)
             {
-                
+
             }
-            
+
 
             entry.Strings.Set(strUiDatabaseFile, new ProtectedString(false, path));
-            entry.Strings.Set(strUiKeyFile,new ProtectedString(false,entry.Strings.ReadSafe(PwDefs.UserNameField)));
+            entry.Strings.Set(strUiKeyFile, new ProtectedString(false, entry.Strings.ReadSafe(PwDefs.UserNameField)));
 
             var devices =
                 KeeAutoExecExt.GetIfDevice(KeeAutoExecExt.MakeAutoExecItem(App.Kp2a.CurrentDb.KpDatabase, entry, 0));
@@ -155,7 +155,7 @@ namespace keepass2android
                     devices[device] = entry.Strings.ReadSafe(key).Equals("true", StringComparison.OrdinalIgnoreCase);
                 }
             }
-            entry.Strings.Set(KeeAutoExecExt._ifDevice,new ProtectedString(false,KeeAutoExecExt.BuildIfDevice(devices)));
+            entry.Strings.Set(KeeAutoExecExt._ifDevice, new ProtectedString(false, KeeAutoExecExt.BuildIfDevice(devices)));
             foreach (string device in devices.Keys)
             {
                 entry.Strings.Remove(strUiIfDevice + device);

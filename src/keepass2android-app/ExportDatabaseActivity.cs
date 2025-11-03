@@ -15,7 +15,7 @@ using keepass2android;
 
 namespace keepass2android
 {
-    public class ExportDbProcessManager: FileSaveProcessManager
+    public class ExportDbProcessManager : FileSaveProcessManager
     {
         private readonly FileFormatProvider _ffp;
 
@@ -41,111 +41,112 @@ namespace keepass2android
         }
     }
 
-	[Activity(Label = "@string/app_name",
-	    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
+    [Activity(Label = "@string/app_name",
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
         Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
-	[IntentFilter(new[] {"kp2a.action.ExportDatabaseActivity"}, Categories = new[] {Intent.CategoryDefault})]
-	public class ExportDatabaseActivity : LockCloseActivity
-	{
-		FileFormatProvider[] _ffp = new FileFormatProvider[]
-			{
-				new KeePassKdb2x(),
-				new KeePassXml2x(), 
-				new KeePassCsv1x()
-			};
+    [IntentFilter(new[] { "kp2a.action.ExportDatabaseActivity" }, Categories = new[] { Intent.CategoryDefault })]
+    public class ExportDatabaseActivity : LockCloseActivity
+    {
+        FileFormatProvider[] _ffp = new FileFormatProvider[]
+            {
+                new KeePassKdb2x(),
+                new KeePassXml2x(),
+                new KeePassCsv1x()
+            };
 
-		private int _fileFormatIndex;
+        private int _fileFormatIndex;
 
-	    private ExportDbProcessManager _exportDbProcessManager;
+        private ExportDbProcessManager _exportDbProcessManager;
 
         protected override void OnCreate(Android.OS.Bundle savedInstanceState)
-		{
-			base.OnCreate(savedInstanceState);
-			MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-			builder.SetTitle(Resource.String.export_fileformats_title);
-			builder.SetSingleChoiceItems(Resource.Array.export_fileformat_options, _fileFormatIndex,
-				delegate(object sender, DialogClickEventArgs args) { _fileFormatIndex = args.Which; });
-			builder.SetPositiveButton(Android.Resource.String.Ok, delegate
-			{
-			    _exportDbProcessManager = new ExportDbProcessManager(0, this, _ffp[_fileFormatIndex]);
-			    _exportDbProcessManager.StartProcess();
-			});
-			builder.SetNegativeButton(Resource.String.cancel, delegate {
-					Finish();
-				});
-			builder.Show();
-		}
+        {
+            base.OnCreate(savedInstanceState);
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+            builder.SetTitle(Resource.String.export_fileformats_title);
+            builder.SetSingleChoiceItems(Resource.Array.export_fileformat_options, _fileFormatIndex,
+                delegate (object sender, DialogClickEventArgs args) { _fileFormatIndex = args.Which; });
+            builder.SetPositiveButton(Android.Resource.String.Ok, delegate
+            {
+                _exportDbProcessManager = new ExportDbProcessManager(0, this, _ffp[_fileFormatIndex]);
+                _exportDbProcessManager.StartProcess();
+            });
+            builder.SetNegativeButton(Resource.String.cancel, delegate
+            {
+                Finish();
+            });
+            builder.Show();
+        }
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			base.OnActivityResult(requestCode, resultCode, data);
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
 
-		    if (_exportDbProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
-		        return;
+            if (_exportDbProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
+                return;
 
-			Finish();
+            Finish();
 
-		}
-        
-
-		protected int RequestCodeDbFilename
-		{
-			get { return 0; }
-		}
-
-		public class ExportDb : OperationWithFinishHandler
-		{
-			private readonly IKp2aApp _app;
-			private readonly FileFormatProvider _fileFormat;
-			private IOConnectionInfo _targetIoc;
-
-			public ExportDb(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(app, onOperationFinishedHandler)
-			{
-				_app = app;
-				this._fileFormat = fileFormat;
-				_targetIoc = targetIoc;
-			}
-
-			public override void Run()
-			{
-				StatusLogger.UpdateMessage(UiStringKey.exporting_database);
-				var pd = _app.CurrentDb.KpDatabase;
-				PwExportInfo pwInfo = new PwExportInfo(pd.RootGroup, pd, true);
-				
-				try
-				{
-					var fileStorage = _app.GetFileStorage(_targetIoc);
-					if (fileStorage is IOfflineSwitchable)
-					{
-						((IOfflineSwitchable) fileStorage).IsOffline = false;
-					}
-					using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
-					{
-						Stream sOut = writeTransaction.OpenFile();
-						_fileFormat.Export(pwInfo, sOut, new NullStatusLogger());
-						
-						if (sOut != null) sOut.Close();
-
-						writeTransaction.CommitWrite();
-						
-					}
-					if (fileStorage is IOfflineSwitchable)
-					{
-						((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
-					}
-					
-					Finish(true);
-
-					
-				}
-				catch (Exception ex)
-				{
-					Finish(false, Util.GetErrorMessage(ex));
-				}
+        }
 
 
-			}
-		}
+        protected int RequestCodeDbFilename
+        {
+            get { return 0; }
+        }
 
-	}
+        public class ExportDb : OperationWithFinishHandler
+        {
+            private readonly IKp2aApp _app;
+            private readonly FileFormatProvider _fileFormat;
+            private IOConnectionInfo _targetIoc;
+
+            public ExportDb(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(app, onOperationFinishedHandler)
+            {
+                _app = app;
+                this._fileFormat = fileFormat;
+                _targetIoc = targetIoc;
+            }
+
+            public override void Run()
+            {
+                StatusLogger.UpdateMessage(UiStringKey.exporting_database);
+                var pd = _app.CurrentDb.KpDatabase;
+                PwExportInfo pwInfo = new PwExportInfo(pd.RootGroup, pd, true);
+
+                try
+                {
+                    var fileStorage = _app.GetFileStorage(_targetIoc);
+                    if (fileStorage is IOfflineSwitchable)
+                    {
+                        ((IOfflineSwitchable)fileStorage).IsOffline = false;
+                    }
+                    using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+                    {
+                        Stream sOut = writeTransaction.OpenFile();
+                        _fileFormat.Export(pwInfo, sOut, new NullStatusLogger());
+
+                        if (sOut != null) sOut.Close();
+
+                        writeTransaction.CommitWrite();
+
+                    }
+                    if (fileStorage is IOfflineSwitchable)
+                    {
+                        ((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+                    }
+
+                    Finish(true);
+
+
+                }
+                catch (Exception ex)
+                {
+                    Finish(false, Util.GetErrorMessage(ex));
+                }
+
+
+            }
+        }
+
+    }
 }

@@ -8,14 +8,14 @@ using PluginTOTP;
 
 namespace keepass2android
 {
-	class Kp2aTotp
-	{
+    class Kp2aTotp
+    {
         public const string TotpKey = "TOTP";
 
         readonly ITotpPluginAdapter[] _pluginAdapters = new ITotpPluginAdapter[]
         {
-            new TrayTotpPluginAdapter(), 
-            new KeeOtpPluginAdapter(), 
+            new TrayTotpPluginAdapter(),
+            new KeeOtpPluginAdapter(),
             new KeeWebOtpPluginAdapter(),
             new Keepass2TotpPluginAdapter(),
         };
@@ -59,16 +59,16 @@ namespace keepass2android
             {
                 Kp2aLog.LogUnexpectedError(e);
             }
-            
+
 
             return null;
         }
 
-		public void OnOpenEntry()
+        public void OnOpenEntry()
         {
             var adapter = TryGetAdapter(App.Kp2a.LastOpenedEntry);
             if (adapter != null)
                 new UpdateTotpTimerTask(LocaleManager.LocalizedAppContext, adapter).Run();
         }
-	}
+    }
 }

@@ -29,25 +29,25 @@ using KeePassLib;
 
 namespace keepass2android.search
 {
-	/// <summary>
-	/// Activity to show search results
-	/// </summary>
-    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission="keepass2android."+AppNames.PackagePart+".permission.KP2aInternalSearch", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
+    /// <summary>
+    /// Activity to show search results
+    /// </summary>
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Permission = "keepass2android." + AppNames.PackagePart + ".permission.KP2aInternalSearch", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else
 #if DEBUG
-	[MetaData("android.app.searchable", Resource = "@xml/searchable_debug")]
+    [MetaData("android.app.searchable", Resource = "@xml/searchable_debug")]
 #else
     [MetaData("android.app.searchable", Resource = "@xml/searchable")]
 #endif
 #endif
-	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
-	[IntentFilter(new[]{Intent.ActionSearch}, Categories=new[]{Intent.CategoryDefault})]
-	public class SearchResults : GroupBaseActivity
-	{
-	    protected override void OnCreate (Bundle bundle)
-		{
+    [MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
+    [IntentFilter(new[] { Intent.ActionSearch }, Categories = new[] { Intent.CategoryDefault })]
+    public class SearchResults : GroupBaseActivity
+    {
+        protected override void OnCreate(Bundle bundle)
+        {
             //we don't want any background thread to update/reload the database while we're in this activity. We're showing a temporary group, so background updating doesn't work well.
             if (!App.Kp2a.DatabasesBackgroundModificationLock.TryEnterReadLock(TimeSpan.FromSeconds(5)))
             {
@@ -56,78 +56,79 @@ namespace keepass2android.search
                 return;
             }
 
-            base.OnCreate (bundle);
-			
-			if ( IsFinishing ) {
-				return;
-			}
+            base.OnCreate(bundle);
+
+            if (IsFinishing)
+            {
+                return;
+            }
 
             SetResult(KeePass.ExitNormal);
 
-			ProcessIntent(Intent);
-		}
+            ProcessIntent(Intent);
+        }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-			App.Kp2a.DatabasesBackgroundModificationLock.ExitReadLock();
+            App.Kp2a.DatabasesBackgroundModificationLock.ExitReadLock();
         }
 
         public override bool EntriesBelongToCurrentDatabaseOnly
-	    {
-	        get { return false; }
-	    }
+        {
+            get { return false; }
+        }
 
-	    public override ElementAndDatabaseId FullGroupId
-	    {
-	        get { return null; }
-	    }
+        public override ElementAndDatabaseId FullGroupId
+        {
+            get { return null; }
+        }
 
 
-	    protected override void OnNewIntent(Intent intent)
-		{
-			ProcessIntent(intent);
-		}
+        protected override void OnNewIntent(Intent intent)
+        {
+            ProcessIntent(intent);
+        }
 
-		private void ProcessIntent(Intent intent)
-		{
-			// Likely the app has been killed exit the activity 
-			if (!App.Kp2a.DatabaseIsUnlocked)
-			{
-				Finish();
-			}
+        private void ProcessIntent(Intent intent)
+        {
+            // Likely the app has been killed exit the activity 
+            if (!App.Kp2a.DatabaseIsUnlocked)
+            {
+                Finish();
+            }
 
-			if (intent.Action == Intent.ActionView)
-			{
-				var entryIntent = new Intent(this, typeof(EntryActivity));
-			    ElementAndDatabaseId id;
-			    try
-			    {
-			        id = new ElementAndDatabaseId(intent.Data.LastPathSegment);
+            if (intent.Action == Intent.ActionView)
+            {
+                var entryIntent = new Intent(this, typeof(EntryActivity));
+                ElementAndDatabaseId id;
+                try
+                {
+                    id = new ElementAndDatabaseId(intent.Data.LastPathSegment);
                 }
-			    catch (Exception e)
-			    {
-			        Kp2aLog.Log("Failed to transform " + intent.Data.LastPathSegment + " to an ElementAndDatabaseId object. ");
-			        App.Kp2a.ShowMessage(this, "Bad path passed. Please provide database and element ID.",  MessageSeverity.Error);
+                catch (Exception e)
+                {
+                    Kp2aLog.Log("Failed to transform " + intent.Data.LastPathSegment + " to an ElementAndDatabaseId object. ");
+                    App.Kp2a.ShowMessage(this, "Bad path passed. Please provide database and element ID.", MessageSeverity.Error);
                     Finish();
-			        return;
-			    }
-			    entryIntent.PutExtra(EntryActivity.KeyEntry, id.FullId);
-			    entryIntent.AddFlags(ActivityFlags.ForwardResult);
-			    Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
-			    StartActivity(entryIntent);
+                    return;
+                }
+                entryIntent.PutExtra(EntryActivity.KeyEntry, id.FullId);
+                entryIntent.AddFlags(ActivityFlags.ForwardResult);
+                Finish(); // Close this activity so that the entry activity is navigated to from the main activity, not this one.
+                StartActivity(entryIntent);
 
             }
-			else
-			{
-				// Action may either by ActionSearch (from search widget) or null (if called from SearchActivity directly)
-				Query(getSearch(intent));
-			}
-		}
+            else
+            {
+                // Action may either by ActionSearch (from search widget) or null (if called from SearchActivity directly)
+                Query(getSearch(intent));
+            }
+        }
 
         private void Query(SearchParameters searchParams)
         {
-			//kind of an easter egg: if the user types this exact string into the search, it immediately allows to disable the donation options
+            //kind of an easter egg: if the user types this exact string into the search, it immediately allows to disable the donation options
             if (searchParams.SearchString == "allow disable donation")
             {
                 ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
@@ -135,12 +136,13 @@ namespace keepass2android.search
                 edit.PutLong(GetString(Resource.String.UsageCount_key), 1000);
                 edit.PutBoolean("DismissedDonateReminder", true);
                 edit.Commit();
-                App.Kp2a.ShowMessage(this, "Please go to Settings - App - Display to disable donation requests.",  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(this, "Please go to Settings - App - Display to disable donation requests.", MessageSeverity.Error);
             }
-        
+
 
             Group = null;
-            try {
+            try
+            {
                 foreach (var db in App.Kp2a.OpenDatabases)
                 {
                     PwGroup resultsForThisDb = db.Search(searchParams, null);
@@ -154,76 +156,81 @@ namespace keepass2android.search
                         }
                     }
                 }
-            } catch (Exception e) {
-				Kp2aLog.LogUnexpectedError(e);
-				App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
-				Finish();
-				return;
-			}
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+                App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e), MessageSeverity.Error);
+                Finish();
+                return;
+            }
 
-			if ( Group == null || (!Group.Entries.Any()) ) {
+            if (Group == null || (!Group.Entries.Any()))
+            {
                 SetContentView(Resource.Layout.group_empty);
-			} 
+            }
 
-			SetGroupTitle();
-			
-			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
-		}
+            SetGroupTitle();
 
-		private SearchParameters getSearch(Intent queryIntent) {
-			// get and process search query here
-			SearchParameters sp = new SearchParameters();
-			sp.SearchString = queryIntent.GetStringExtra(SearchManager.Query);
-			sp.SearchInTitles = queryIntent.GetBooleanExtra("SearchInTitles", sp.SearchInTitles);
-			sp.SearchInUrls = queryIntent.GetBooleanExtra("SearchInUrls", sp.SearchInUrls);
-			sp.SearchInPasswords = queryIntent.GetBooleanExtra("SearchInPasswords", sp.SearchInPasswords);
-			sp.SearchInUserNames = queryIntent.GetBooleanExtra("SearchInUserNames", sp.SearchInUserNames);
-			sp.SearchInNotes = queryIntent.GetBooleanExtra("SearchInNotes", sp.SearchInNotes);
-			sp.SearchInGroupNames = queryIntent.GetBooleanExtra("SearchInGroupNames", sp.SearchInGroupNames);
-			sp.SearchInOther = queryIntent.GetBooleanExtra("SearchInOther", sp.SearchInOther);
-			sp.SearchInTags = queryIntent.GetBooleanExtra("SearchInTags", sp.SearchInTags);
-			sp.RegularExpression = queryIntent.GetBooleanExtra("RegularExpression", sp.RegularExpression);
-			sp.ExcludeExpired = queryIntent.GetBooleanExtra("ExcludeExpired", sp.ExcludeExpired);
-			sp.ComparisonMode = queryIntent.GetBooleanExtra("CaseSensitive", false) ?
-				StringComparison.InvariantCulture :
-					StringComparison.InvariantCultureIgnoreCase;
+            FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
+        }
 
-			return sp;
-			
-		}
+        private SearchParameters getSearch(Intent queryIntent)
+        {
+            // get and process search query here
+            SearchParameters sp = new SearchParameters();
+            sp.SearchString = queryIntent.GetStringExtra(SearchManager.Query);
+            sp.SearchInTitles = queryIntent.GetBooleanExtra("SearchInTitles", sp.SearchInTitles);
+            sp.SearchInUrls = queryIntent.GetBooleanExtra("SearchInUrls", sp.SearchInUrls);
+            sp.SearchInPasswords = queryIntent.GetBooleanExtra("SearchInPasswords", sp.SearchInPasswords);
+            sp.SearchInUserNames = queryIntent.GetBooleanExtra("SearchInUserNames", sp.SearchInUserNames);
+            sp.SearchInNotes = queryIntent.GetBooleanExtra("SearchInNotes", sp.SearchInNotes);
+            sp.SearchInGroupNames = queryIntent.GetBooleanExtra("SearchInGroupNames", sp.SearchInGroupNames);
+            sp.SearchInOther = queryIntent.GetBooleanExtra("SearchInOther", sp.SearchInOther);
+            sp.SearchInTags = queryIntent.GetBooleanExtra("SearchInTags", sp.SearchInTags);
+            sp.RegularExpression = queryIntent.GetBooleanExtra("RegularExpression", sp.RegularExpression);
+            sp.ExcludeExpired = queryIntent.GetBooleanExtra("ExcludeExpired", sp.ExcludeExpired);
+            sp.ComparisonMode = queryIntent.GetBooleanExtra("CaseSensitive", false) ?
+                StringComparison.InvariantCulture :
+                    StringComparison.InvariantCultureIgnoreCase;
 
-		public override void OnCreateContextMenu(IContextMenu menu, View v,
-			IContextMenuContextMenuInfo  menuInfo) 
-		{
+            return sp;
 
-			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
-			ClickView cv = (ClickView) acmi.TargetView;
-			cv.OnCreateMenu(menu, menuInfo);
-		}
+        }
 
-		public override bool OnContextItemSelected(IMenuItem item) {
-			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
-			ClickView cv = (ClickView) acmi.TargetView;
+        public override void OnCreateContextMenu(IContextMenu menu, View v,
+            IContextMenuContextMenuInfo menuInfo)
+        {
 
-			bool result;
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)menuInfo;
+            ClickView cv = (ClickView)acmi.TargetView;
+            cv.OnCreateMenu(menu, menuInfo);
+        }
 
-			return cv.OnContextItemSelected(item);
-		}
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+            ClickView cv = (ClickView)acmi.TargetView;
+
+            bool result;
+
+            return cv.OnContextItemSelected(item);
+        }
 
 
-		public override bool OnSearchRequested()
-		{
-			Intent i = new Intent(this, typeof(SearchActivity));
-			this.AppTask.ToIntent(i);
-			i.SetFlags(ActivityFlags.ForwardResult);
-			StartActivity(i);
-			return true;
-		}
+        public override bool OnSearchRequested()
+        {
+            Intent i = new Intent(this, typeof(SearchActivity));
+            this.AppTask.ToIntent(i);
+            i.SetFlags(ActivityFlags.ForwardResult);
+            StartActivity(i);
+            return true;
+        }
 
-	    public override bool IsSearchResult
+        public override bool IsSearchResult
         {
             get { return true; }
         }
-	}
+    }
 }
 

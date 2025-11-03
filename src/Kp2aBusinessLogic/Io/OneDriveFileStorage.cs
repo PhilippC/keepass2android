@@ -14,8 +14,8 @@ namespace keepass2android.Io
     /// file storage within 5 years.
     /// This file should be removed around mid 2025.
     /// </summary>
-	public class OneDriveFileStorage: IFileStorage
-	{
+	public class OneDriveFileStorage : IFileStorage
+    {
         public OneDriveFileStorage(IKp2aApp app)
         {
             _app = app;
@@ -24,13 +24,13 @@ namespace keepass2android.Io
         private readonly IKp2aApp _app;
 
         public IEnumerable<string> SupportedProtocols
-		{
-			get
-			{
-				yield return "skydrive";
-				yield return "onedrive";
+        {
+            get
+            {
+                yield return "skydrive";
+                yield return "onedrive";
             }
-		}
+        }
 
         string GetDeprecatedMessage()
         {
@@ -44,10 +44,10 @@ namespace keepass2android.Io
                 GetDeprecatedMessage());
         }
 
-	    public bool UserShouldBackup
-	    {
-	        get { return false; }
-	    }
+        public bool UserShouldBackup
+        {
+            get { return false; }
+        }
 
         public void Delete(IOConnectionInfo ioc)
         {
@@ -116,7 +116,7 @@ namespace keepass2android.Io
 
         public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
         {
-            
+
         }
 
         public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode,
@@ -128,17 +128,17 @@ namespace keepass2android.Io
 
         public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
         {
-            
+
         }
 
         public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
         {
-            
+
         }
 
         public void OnResume(IFileStorageSetupActivity activity)
         {
-            
+
         }
 
         public void OnStart(IFileStorageSetupActivity activity)

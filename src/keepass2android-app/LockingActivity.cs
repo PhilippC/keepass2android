@@ -28,64 +28,66 @@ using keepass2android.Utils;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// Base class for activities. Notifies the TimeoutHelper whether the app is active or not.
-	/// </summary>
-	public class LockingActivity : LifecycleAwareActivity {
-	
-		public LockingActivity (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
+    /// <summary>
+    /// Base class for activities. Notifies the TimeoutHelper whether the app is active or not.
+    /// </summary>
+    public class LockingActivity : LifecycleAwareActivity
+    {
 
-		public LockingActivity()
-		{
-		}
+        public LockingActivity(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
 
-	    protected override void OnStart()
-	    {
-	        base.OnStart();
+        }
 
-	        var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
-	        if (CurrentlyWaitingKey == null && xcKey != null)
-	        {
-	            CurrentlyWaitingKey = xcKey;
-	        }
-	        if (CurrentlyWaitingKey != null)
-	        {
-	            CurrentlyWaitingKey.Activity = this;
+        public LockingActivity()
+        {
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+            if (CurrentlyWaitingKey == null && xcKey != null)
+            {
+                CurrentlyWaitingKey = xcKey;
+            }
+            if (CurrentlyWaitingKey != null)
+            {
+                CurrentlyWaitingKey.Activity = this;
             }
 
 
 
-	    }
-
-	    protected override void OnStop()
-	    {
-	        base.OnStop();
-	        var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
-	        if (xcKey != null)
-	        {
-	            //don't store a pointer to this activity in the static database object to avoid memory leak
-	            if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
-	                xcKey.Activity = null;
-	        }
-
-	    }
-
-	    protected override void OnPause() {
-			base.OnPause();
-			
-			TimeoutHelper.Pause(this);
-			App.Kp2a.MessagePresenter = new NonePresenter();
         }
 
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-			GC.Collect();
-		}
+        protected override void OnStop()
+        {
+            base.OnStop();
+            var xcKey = App.Kp2a.CurrentDb?.KpDatabase.MasterKey.GetUserKey<ChallengeXCKey>();
+            if (xcKey != null)
+            {
+                //don't store a pointer to this activity in the static database object to avoid memory leak
+                if (xcKey.Activity == this) //don't reset if another activity has come to foreground already
+                    xcKey.Activity = null;
+            }
+
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            TimeoutHelper.Pause(this);
+            App.Kp2a.MessagePresenter = new NonePresenter();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            GC.Collect();
+        }
 
         protected override void OnResume()
         {
@@ -105,75 +107,75 @@ namespace keepass2android
 
 
         protected virtual View? SnackbarAnchorView => null;
-    
 
-	    public const int RequestCodeChallengeYubikey = 793;
+
+        public const int RequestCodeChallengeYubikey = 793;
 
         //need to store this in the App object to make sure it survives activity recreation
-	    protected ChallengeXCKey CurrentlyWaitingKey
-	    {
-	        get { return App.Kp2a._currentlyWaitingXcKey; }
-	        set { App.Kp2a._currentlyWaitingXcKey = value; }
-	    }
+        protected ChallengeXCKey CurrentlyWaitingKey
+        {
+            get { return App.Kp2a._currentlyWaitingXcKey; }
+            set { App.Kp2a._currentlyWaitingXcKey = value; }
+        }
 
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             Kp2aLog.Log("LockingActivity: OnActivityResult " + (requestCode == RequestCodeChallengeYubikey ? "yubichall" : ""));
-	        base.OnActivityResult(requestCode, resultCode, data);
-	        if ((requestCode == RequestCodeChallengeYubikey) && (CurrentlyWaitingKey != null))
-	        {
-	            if (resultCode == Result.Ok)
-	            {
-	                byte[] challengeResponse = data.GetByteArrayExtra("response");
-	                if ((challengeResponse != null) && (challengeResponse.Length > 0))
-	                {
-	                    CurrentlyWaitingKey.Response = challengeResponse;
-	                }
-	                else
-	                    CurrentlyWaitingKey.Error = "Did not receive a valid response.";
-	            }
-	            else
+            base.OnActivityResult(requestCode, resultCode, data);
+            if ((requestCode == RequestCodeChallengeYubikey) && (CurrentlyWaitingKey != null))
+            {
+                if (resultCode == Result.Ok)
+                {
+                    byte[] challengeResponse = data.GetByteArrayExtra("response");
+                    if ((challengeResponse != null) && (challengeResponse.Length > 0))
+                    {
+                        CurrentlyWaitingKey.Response = challengeResponse;
+                    }
+                    else
+                        CurrentlyWaitingKey.Error = "Did not receive a valid response.";
+                }
+                else
                 {
                     CurrentlyWaitingKey.Error = "Cancelled Yubichallenge.";
                 }
-	            
+
             }
 
-	    }
+        }
 
 
 
-	    public Intent TryGetYubichallengeIntentOrPrompt(byte[] challenge, bool promptToInstall)
-	    {
-	        Intent chalIntent = new Intent("net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE");
-	        chalIntent.PutExtra("challenge", challenge);
+        public Intent TryGetYubichallengeIntentOrPrompt(byte[] challenge, bool promptToInstall)
+        {
+            Intent chalIntent = new Intent("net.pp3345.ykdroid.intent.action.CHALLENGE_RESPONSE");
+            chalIntent.PutExtra("challenge", challenge);
 
             IList<ResolveInfo> activities = PackageManager.QueryIntentActivities(chalIntent, 0);
-	        bool isIntentSafe = activities.Count > 0;
-	        if (isIntentSafe)
-	        {
-	            return chalIntent;
-	        }
-	        if (promptToInstall)
-	        {
-	            MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
-	            string message = GetString(Resource.String.NoChallengeApp) + " " + GetString(Resource.String.PleaseInstallApp, new Java.Lang.Object[]{"ykDroid"});
+            bool isIntentSafe = activities.Count > 0;
+            if (isIntentSafe)
+            {
+                return chalIntent;
+            }
+            if (promptToInstall)
+            {
+                MaterialAlertDialogBuilder b = new MaterialAlertDialogBuilder(this);
+                string message = GetString(Resource.String.NoChallengeApp) + " " + GetString(Resource.String.PleaseInstallApp, new Java.Lang.Object[] { "ykDroid" });
 
-	            Intent yubichalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
-	            IList<ResolveInfo> yubichallengeactivities = PackageManager.QueryIntentActivities(yubichalIntent, 0);
-	            bool hasYubichallenge = yubichallengeactivities.Count > 0;
-	            if (hasYubichallenge)
-	                message += " " + GetString(Resource.String.AppOutdated, new Java.Lang.Object[] {"YubiChallenge"});
+                Intent yubichalIntent = new Intent("com.yubichallenge.NFCActivity.CHALLENGE");
+                IList<ResolveInfo> yubichallengeactivities = PackageManager.QueryIntentActivities(yubichalIntent, 0);
+                bool hasYubichallenge = yubichallengeactivities.Count > 0;
+                if (hasYubichallenge)
+                    message += " " + GetString(Resource.String.AppOutdated, new Java.Lang.Object[] { "YubiChallenge" });
 
                 b.SetMessage(message);
-	            b.SetPositiveButton(Android.Resource.String.Ok,
-	                delegate { Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "net.pp3345.ykdroid"); });
-	            b.SetNegativeButton(Resource.String.cancel, delegate { });
-	            b.Create().Show();
-	        }
-	        return null;
-	    }
-	}
+                b.SetPositiveButton(Android.Resource.String.Ok,
+                    delegate { Util.GotoUrl(this, GetString(Resource.String.MarketURL) + "net.pp3345.ykdroid"); });
+                b.SetNegativeButton(Resource.String.cancel, delegate { });
+                b.Create().Show();
+            }
+            return null;
+        }
+    }
 }
 

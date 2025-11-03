@@ -23,22 +23,23 @@ using Android.Widget;
 
 namespace keepass2android.view
 {
-	public abstract class ClickView : LinearLayout {
-		protected ClickView (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
+    public abstract class ClickView : LinearLayout
+    {
+        protected ClickView(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
 
-		protected ClickView(Context context) :base(context)
-		{
-		}
-		
-		abstract public void OnClick();
-		
-		abstract public void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo);
-		
-		abstract public bool OnContextItemSelected(IMenuItem item);
-	}
+        }
+
+        protected ClickView(Context context) : base(context)
+        {
+        }
+
+        abstract public void OnClick();
+
+        abstract public void OnCreateMenu(IContextMenu menu, IContextMenuContextMenuInfo menuInfo);
+
+        abstract public bool OnContextItemSelected(IMenuItem item);
+    }
 }
 

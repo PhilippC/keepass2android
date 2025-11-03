@@ -6,7 +6,7 @@ namespace keepass2android;
 // In that case, we want to be able to register the action such that it is performed when the activity is recreated.
 public interface IContextInstanceIdProvider
 {
-    
+
     int ContextInstanceId { get; }
 
 

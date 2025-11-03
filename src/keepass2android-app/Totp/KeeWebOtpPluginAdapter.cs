@@ -51,7 +51,7 @@ namespace keepass2android
             {
                 return res;
             }
-            
+
             res.IsTotpEntry = true;
             return res;
         }

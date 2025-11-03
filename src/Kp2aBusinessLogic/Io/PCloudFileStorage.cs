@@ -3,22 +3,22 @@ using Android.Content;
 
 namespace keepass2android.Io
 {
-	public class PCloudFileStorage: JavaFileStorage
-	{
-		private const string ClientId = "yCeH59Ffgtm";
+    public class PCloudFileStorage : JavaFileStorage
+    {
+        private const string ClientId = "yCeH59Ffgtm";
 
-		public PCloudFileStorage(Context ctx, IKp2aApp app) :
-			base(new Keepass2android.Javafilestorage.PCloudFileStorage(ctx, ClientId, "pcloud", ""), app)
-		{
+        public PCloudFileStorage(Context ctx, IKp2aApp app) :
+            base(new Keepass2android.Javafilestorage.PCloudFileStorage(ctx, ClientId, "pcloud", ""), app)
+        {
 
         }
 
 
-	    public override bool UserShouldBackup
-	    {
-	        get { return false; }
-	    }
-	}
+        public override bool UserShouldBackup
+        {
+            get { return false; }
+        }
+    }
     public class PCloudFileStorageAll : JavaFileStorage
     {
         private const string ClientId = "FLm22de7bdS";
@@ -26,7 +26,7 @@ namespace keepass2android.Io
         public PCloudFileStorageAll(Context ctx, IKp2aApp app) :
             base(new Keepass2android.Javafilestorage.PCloudFileStorage(ctx, ClientId, "pcloudall", "PCLOUDALL_"), app)
         {
-            
+
 
         }
 

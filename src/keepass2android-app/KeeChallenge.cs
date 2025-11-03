@@ -36,8 +36,8 @@ using keepass2android.Io;
 
 namespace KeeChallenge
 {
-    public sealed class KeeChallengeProv 
-	{
+    public sealed class KeeChallengeProv
+    {
         private const string m_name = "Yubikey challenge-response";
 
         public static string Name { get { return m_name; } }
@@ -57,20 +57,20 @@ namespace KeeChallenge
             set;
         }
 
-	    public KeeChallengeProv()
+        public KeeChallengeProv()
         {
             LT64 = false;
-        }         
+        }
 
         private byte[] GenerateChallenge()
         {
-	        byte[] chal = CryptoRandom.Instance.GetRandomBytes(challengeLenBytes);
+            byte[] chal = CryptoRandom.Instance.GetRandomBytes(challengeLenBytes);
             if (LT64)
             {
                 chal[challengeLenBytes - 2] = (byte)~chal[challengeLenBytes - 1];
             }
 
-            return chal;  
+            return chal;
         }
 
         private byte[] GenerateResponse(byte[] challenge, byte[] key)
@@ -106,8 +106,8 @@ namespace KeeChallenge
             byte[] secretHash = sha.ComputeHash(secret);
 
             StandardAesEngine aes = new StandardAesEngine();
-	        const uint aesIVLenBytes = 16	;
-	        byte[] IV = CryptoRandom.Instance.GetRandomBytes(aesIVLenBytes);            
+            const uint aesIVLenBytes = 16;
+            byte[] IV = CryptoRandom.Instance.GetRandomBytes(aesIVLenBytes);
             byte[] encrypted;
 
             using (MemoryStream msEncrypt = new MemoryStream())
@@ -122,14 +122,14 @@ namespace KeeChallenge
                 msEncrypt.Close();
             }
 
-			ChallengeInfo inf = new ChallengeInfo (encrypted, IV, challenge, secretHash, LT64);
+            ChallengeInfo inf = new ChallengeInfo(encrypted, IV, challenge, secretHash, LT64);
 
-			sha.Clear();
+            sha.Clear();
 
-			return inf;
+            return inf;
         }
-                
-		private bool DecryptSecret(byte[] yubiResp, ChallengeInfo inf, out byte[] secret)
+
+        private bool DecryptSecret(byte[] yubiResp, ChallengeInfo inf, out byte[] secret)
         {
             secret = new byte[keyLenBytes];
 
@@ -142,7 +142,7 @@ namespace KeeChallenge
 
             StandardAesEngine aes = new StandardAesEngine();
 
-			using (MemoryStream msDecrypt = new MemoryStream(inf.EncryptedSecret))
+            using (MemoryStream msDecrypt = new MemoryStream(inf.EncryptedSecret))
             {
                 using (CryptoStream csDecrypt = (CryptoStream)aes.DecryptStream(msDecrypt, key, inf.IV))
                 {
@@ -164,9 +164,9 @@ namespace KeeChallenge
             byte[] secretHash = sha.ComputeHash(secret);
             for (int i = 0; i < secretHash.Length; i++)
             {
-				if (secretHash[i] != inf.Verification[i])
+                if (secretHash[i] != inf.Verification[i])
                 {
-					//wrong response
+                    //wrong response
                     Array.Clear(secret, 0, secret.Length);
                     return false;
                 }
@@ -176,7 +176,7 @@ namespace KeeChallenge
             sha.Clear();
             return true;
         }
-    
+
         /// <summary>
         /// The primary access point for challenge-response utility functions. Accepts a pre-populated ChallengeInfo object
         /// containing at least the IV, EncryptedSecret, and Verification fields. These fields are combined with the Yubikey response
@@ -186,29 +186,29 @@ namespace KeeChallenge
         ///                   This should be populated from the database.xml auxilliary file</param>
         /// <param name="resp"	>The Yubikey's response to the issued challenge</param>
         /// <returns>The common secret, used as a composite key to encrypt a Keepass database</returns>
-		public byte[] GetSecret(ChallengeInfo inf, byte[] resp)
+        public byte[] GetSecret(ChallengeInfo inf, byte[] resp)
         {
-			if (resp.Length != responseLenBytes)
-				return null;
+            if (resp.Length != responseLenBytes)
+                return null;
             if (inf == null)
                 return null;
             if (inf.Challenge == null ||
                 inf.Verification == null)
                 return null;
-            
+
             LT64 = inf.LT64;
 
-			byte[] secret;
-                      
-			if (DecryptSecret(resp, inf, out secret))
-            {				
-                return secret;                
+            byte[] secret;
+
+            if (DecryptSecret(resp, inf, out secret))
+            {
+                return secret;
             }
             else
             {
                 return null;
             }
-        }		      
+        }
 
     }
 }

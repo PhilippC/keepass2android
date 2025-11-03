@@ -56,7 +56,7 @@ namespace keepass2android
 
         private static string _thisDevice = null;
 
-        public static string ThisDeviceId   
+        public static string ThisDeviceId
         {
             get
             {
@@ -64,7 +64,7 @@ namespace keepass2android
                     return _thisDevice;
                 String android_id = Settings.Secure.GetString(LocaleManager.LocalizedAppContext.ContentResolver, Settings.Secure.AndroidId);
 
-                string deviceName = Build.Manufacturer+" "+Build.Model;
+                string deviceName = Build.Manufacturer + " " + Build.Model;
                 _thisDevice = deviceName + " (" + android_id + ")";
 
                 _thisDevice = _thisDevice.Replace("!", "_");
@@ -72,7 +72,7 @@ namespace keepass2android
                 _thisDevice = _thisDevice.Replace(";", "_");
                 return _thisDevice;
             }
-            
+
         }
 
 
@@ -127,7 +127,7 @@ namespace keepass2android
                     result[strFlt] = true;
                 }
             }
-            
+
             return result;
         }
 
@@ -169,8 +169,8 @@ namespace keepass2android
         {
             isExplicit = false;
             var ifDevices = GetIfDevice(a);
-            
-            if (!ifDevices.Any() ||  string.IsNullOrEmpty(strDevice))
+
+            if (!ifDevices.Any() || string.IsNullOrEmpty(strDevice))
                 return true;
 
             bool bHasIncl = false, bHasExcl = false;
@@ -199,7 +199,7 @@ namespace keepass2android
 
 
 
-        public static void SetDeviceEnabled(AutoExecItem a, string strDevice, bool enabled=true)
+        public static void SetDeviceEnabled(AutoExecItem a, string strDevice, bool enabled = true)
         {
             if (string.IsNullOrEmpty(strDevice))
             {
@@ -209,9 +209,9 @@ namespace keepass2android
             var devices = GetIfDevice(a);
 
             devices[strDevice] = enabled;
-            
+
             string result = BuildIfDevice(devices);
-            a.Entry.Strings.Set(_ifDevice, new ProtectedString(false,result));
+            a.Entry.Strings.Set(_ifDevice, new ProtectedString(false, result));
         }
 
 
@@ -232,7 +232,7 @@ namespace keepass2android
             long lPriStd = 0;
             foreach (PwEntry pe in lAutoEntries)
             {
-                
+
                 if (pe.Strings.ReadSafe(PwDefs.UrlField).Length == 0) continue;
 
                 var a = MakeAutoExecItem(pd, pe, lPriStd);
@@ -316,7 +316,7 @@ namespace keepass2android
                 try { ck.AddUserKey(new KcpKeyFile(strAbs)); }
                 catch (InvalidOperationException)
                 {
-                    App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext,Resource.String.error_adding_keyfile, MessageSeverity.Error);
+                    App.Kp2a.ShowMessage(LocaleManager.LocalizedAppContext, Resource.String.error_adding_keyfile, MessageSeverity.Error);
                     return false;
                 }
                 catch (Exception) { throw; }
@@ -332,7 +332,7 @@ namespace keepass2android
             GetString(pe, "Focus", ctxNoEsc, true, out str);
             bool bRestoreFocus = str.Equals("Restore", StrUtil.CaseIgnoreCmp);
 
-            PasswordActivity.Launch(activity,ioc,ck,launchMode, !
+            PasswordActivity.Launch(activity, ioc, ck, launchMode, !
                 bRestoreFocus);
 
             App.Kp2a.RegisterChildDatabase(ioc);

@@ -24,121 +24,121 @@ using System.Text;
 
 namespace KeePassLib.Cryptography.KeyDerivation
 {
-	public abstract class KdfEngine
-	{
-		public abstract PwUuid Uuid
-		{
-			get;
-		}
+    public abstract class KdfEngine
+    {
+        public abstract PwUuid Uuid
+        {
+            get;
+        }
 
-		public abstract string Name
-		{
-			get;
-		}
+        public abstract string Name
+        {
+            get;
+        }
 
         public abstract byte[] GetSeed(KdfParameters p);
 
         public virtual KdfParameters GetDefaultParameters()
-		{
-			return new KdfParameters(this.Uuid);
-		}
+        {
+            return new KdfParameters(this.Uuid);
+        }
 
-		/// <summary>
-		/// Generate random seeds and store them in <paramref name="p" />.
-		/// </summary>
-		public virtual void Randomize(KdfParameters p)
-		{
-			Debug.Assert(p != null);
-			Debug.Assert(p.KdfUuid.Equals(this.Uuid));
-		}
+        /// <summary>
+        /// Generate random seeds and store them in <paramref name="p" />.
+        /// </summary>
+        public virtual void Randomize(KdfParameters p)
+        {
+            Debug.Assert(p != null);
+            Debug.Assert(p.KdfUuid.Equals(this.Uuid));
+        }
 
-		public abstract byte[] Transform(byte[] pbMsg, KdfParameters p);
+        public abstract byte[] Transform(byte[] pbMsg, KdfParameters p);
 
-		public virtual KdfParameters GetBestParameters(uint uMilliseconds)
-		{
-			throw new NotImplementedException();
-		}
+        public virtual KdfParameters GetBestParameters(uint uMilliseconds)
+        {
+            throw new NotImplementedException();
+        }
 
-		protected void MaximizeParamUInt64(KdfParameters p, string strName,
-			ulong uMin, ulong uMax, uint uMilliseconds, bool bInterpSearch)
-		{
-			if(p == null) { Debug.Assert(false); return; }
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return; }
-			if(uMin > uMax) { Debug.Assert(false); return; }
+        protected void MaximizeParamUInt64(KdfParameters p, string strName,
+            ulong uMin, ulong uMax, uint uMilliseconds, bool bInterpSearch)
+        {
+            if (p == null) { Debug.Assert(false); return; }
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return; }
+            if (uMin > uMax) { Debug.Assert(false); return; }
 
-			if(uMax > (ulong.MaxValue >> 1))
-			{
-				Debug.Assert(false);
-				uMax = ulong.MaxValue >> 1;
+            if (uMax > (ulong.MaxValue >> 1))
+            {
+                Debug.Assert(false);
+                uMax = ulong.MaxValue >> 1;
 
-				if(uMin > uMax) { p.SetUInt64(strName, uMin); return; }
-			}
+                if (uMin > uMax) { p.SetUInt64(strName, uMin); return; }
+            }
 
-			byte[] pbMsg = new byte[32];
-			for(int i = 0; i < pbMsg.Length; ++i) pbMsg[i] = (byte)i;
+            byte[] pbMsg = new byte[32];
+            for (int i = 0; i < pbMsg.Length; ++i) pbMsg[i] = (byte)i;
 
-			ulong uLow = uMin;
-			ulong uHigh = uMin + 1UL;
-			long tLow = 0;
-			long tHigh = 0;
-			long tTarget = (long)uMilliseconds;
+            ulong uLow = uMin;
+            ulong uHigh = uMin + 1UL;
+            long tLow = 0;
+            long tHigh = 0;
+            long tTarget = (long)uMilliseconds;
 
-			// Determine range
-			while(uHigh <= uMax)
-			{
-				p.SetUInt64(strName, uHigh);
+            // Determine range
+            while (uHigh <= uMax)
+            {
+                p.SetUInt64(strName, uHigh);
 
-				// GC.Collect();
-				Stopwatch sw = Stopwatch.StartNew();
-				Transform(pbMsg, p);
-				sw.Stop();
+                // GC.Collect();
+                Stopwatch sw = Stopwatch.StartNew();
+                Transform(pbMsg, p);
+                sw.Stop();
 
-				tHigh = sw.ElapsedMilliseconds;
-				if(tHigh > tTarget) break;
+                tHigh = sw.ElapsedMilliseconds;
+                if (tHigh > tTarget) break;
 
-				uLow = uHigh;
-				tLow = tHigh;
-				uHigh <<= 1;
-			}
-			if(uHigh > uMax) { uHigh = uMax; tHigh = 0; }
-			if(uLow > uHigh) uLow = uHigh; // Skips to end
+                uLow = uHigh;
+                tLow = tHigh;
+                uHigh <<= 1;
+            }
+            if (uHigh > uMax) { uHigh = uMax; tHigh = 0; }
+            if (uLow > uHigh) uLow = uHigh; // Skips to end
 
-			// Find optimal number of iterations
-			while((uHigh - uLow) >= 2UL)
-			{
-				ulong u = (uHigh + uLow) >> 1; // Binary search
-				// Interpolation search, if possible
-				if(bInterpSearch && (tLow > 0) && (tHigh > tTarget) &&
-					(tLow <= tTarget))
-				{
-					u = uLow + (((uHigh - uLow) * (ulong)(tTarget - tLow)) /
-						(ulong)(tHigh - tLow));
-					if((u >= uLow) && (u <= uHigh))
-					{
-						u = Math.Max(u, uLow + 1UL);
-						u = Math.Min(u, uHigh - 1UL);
-					}
-					else
-					{
-						Debug.Assert(false);
-						u = (uHigh + uLow) >> 1;
-					}
-				}
+            // Find optimal number of iterations
+            while ((uHigh - uLow) >= 2UL)
+            {
+                ulong u = (uHigh + uLow) >> 1; // Binary search
+                                               // Interpolation search, if possible
+                if (bInterpSearch && (tLow > 0) && (tHigh > tTarget) &&
+                    (tLow <= tTarget))
+                {
+                    u = uLow + (((uHigh - uLow) * (ulong)(tTarget - tLow)) /
+                        (ulong)(tHigh - tLow));
+                    if ((u >= uLow) && (u <= uHigh))
+                    {
+                        u = Math.Max(u, uLow + 1UL);
+                        u = Math.Min(u, uHigh - 1UL);
+                    }
+                    else
+                    {
+                        Debug.Assert(false);
+                        u = (uHigh + uLow) >> 1;
+                    }
+                }
 
-				p.SetUInt64(strName, u);
+                p.SetUInt64(strName, u);
 
-				// GC.Collect();
-				Stopwatch sw = Stopwatch.StartNew();
-				Transform(pbMsg, p);
-				sw.Stop();
+                // GC.Collect();
+                Stopwatch sw = Stopwatch.StartNew();
+                Transform(pbMsg, p);
+                sw.Stop();
 
-				long t = sw.ElapsedMilliseconds;
-				if(t == tTarget) { uLow = u; break; }
-				else if(t > tTarget) { uHigh = u; tHigh = t; }
-				else { uLow = u; tLow = t; }
-			}
+                long t = sw.ElapsedMilliseconds;
+                if (t == tTarget) { uLow = u; break; }
+                else if (t > tTarget) { uHigh = u; tHigh = t; }
+                else { uLow = u; tLow = t; }
+            }
 
-			p.SetUInt64(strName, uLow);
-		}
-	}
+            p.SetUInt64(strName, uLow);
+        }
+    }
 }

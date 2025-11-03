@@ -27,17 +27,17 @@ using KeePassLib.Utility;
 
 namespace KeePass.DataExchange.Formats
 {
-	public sealed class KeePassCsv1x : FileFormatProvider
-	{
-		public override bool SupportsImport { get { return false; } }
-		public override bool SupportsExport { get { return true; } }
+    public sealed class KeePassCsv1x : FileFormatProvider
+    {
+        public override bool SupportsImport { get { return false; } }
+        public override bool SupportsExport { get { return true; } }
 
-		public override string FormatName { get { return "KeePass CSV (1.x)"; } }
-		public override string DefaultExtension { get { return "csv"; } }
+        public override string FormatName { get { return "KeePass CSV (1.x)"; } }
+        public override string DefaultExtension { get { return "csv"; } }
 
-		// public override bool ImportAppendsToRootGroupOnly { get { return true; } }
+        // public override bool ImportAppendsToRootGroupOnly { get { return true; } }
 
-		/* public override void Import(PwDatabase pwStorage, Stream sInput,
+        /* public override void Import(PwDatabase pwStorage, Stream sInput,
 			IStatusLogger slLogger)
 		{
 			StreamReader sr = new StreamReader(sInput, Encoding.UTF8);
@@ -124,60 +124,60 @@ namespace KeePass.DataExchange.Formats
 			return sb.ToString();
 		} */
 
-		public override void Import(PwDatabase pwStorage, Stream sInput, IStatusLogger slLogger)
-		{
-			throw new System.NotImplementedException();
-		}
+        public override void Import(PwDatabase pwStorage, Stream sInput, IStatusLogger slLogger)
+        {
+            throw new System.NotImplementedException();
+        }
 
-		public override bool Export(PwExportInfo pwExportInfo, Stream sOutput,
-			IStatusLogger slLogger)
-		{
-			PwGroup pg = (pwExportInfo.DataGroup ?? ((pwExportInfo.ContextDatabase !=
-				null) ? pwExportInfo.ContextDatabase.RootGroup : null));
+        public override bool Export(PwExportInfo pwExportInfo, Stream sOutput,
+            IStatusLogger slLogger)
+        {
+            PwGroup pg = (pwExportInfo.DataGroup ?? ((pwExportInfo.ContextDatabase !=
+                null) ? pwExportInfo.ContextDatabase.RootGroup : null));
 
-			StreamWriter sw = new StreamWriter(sOutput, StrUtil.Utf8);
-			sw.Write("\"Account\",\"Login Name\",\"Password\",\"Web Site\",\"Comments\"\r\n");
+            StreamWriter sw = new StreamWriter(sOutput, StrUtil.Utf8);
+            sw.Write("\"Account\",\"Login Name\",\"Password\",\"Web Site\",\"Comments\"\r\n");
 
-			EntryHandler eh = delegate(PwEntry pe)
-			{
-				WriteCsvEntry(sw, pe);
-				return true;
-			};
+            EntryHandler eh = delegate (PwEntry pe)
+            {
+                WriteCsvEntry(sw, pe);
+                return true;
+            };
 
-			if(pg != null) pg.TraverseTree(TraversalMethod.PreOrder, null, eh);
+            if (pg != null) pg.TraverseTree(TraversalMethod.PreOrder, null, eh);
 
-			sw.Close();
-			return true;
-		}
+            sw.Close();
+            return true;
+        }
 
-		private static void WriteCsvEntry(StreamWriter sw, PwEntry pe)
-		{
-			if(sw == null) { Debug.Assert(false); return; }
-			if(pe == null) { Debug.Assert(false); return; }
+        private static void WriteCsvEntry(StreamWriter sw, PwEntry pe)
+        {
+            if (sw == null) { Debug.Assert(false); return; }
+            if (pe == null) { Debug.Assert(false); return; }
 
-			const string strSep = "\",\"";
+            const string strSep = "\",\"";
 
-			sw.Write("\"");
-			WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.TitleField), strSep);
-			WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.UserNameField), strSep);
-			WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.PasswordField), strSep);
-			WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.UrlField), strSep);
-			WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.NotesField), "\"\r\n");
-		}
+            sw.Write("\"");
+            WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.TitleField), strSep);
+            WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.UserNameField), strSep);
+            WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.PasswordField), strSep);
+            WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.UrlField), strSep);
+            WriteCsvString(sw, pe.Strings.ReadSafe(PwDefs.NotesField), "\"\r\n");
+        }
 
-		private static void WriteCsvString(StreamWriter sw, string strText,
-			string strAppend)
-		{
-			string str = strText;
-			if(!string.IsNullOrEmpty(str))
-			{
-				str = str.Replace("\\", "\\\\");
-				str = str.Replace("\"", "\\\"");
+        private static void WriteCsvString(StreamWriter sw, string strText,
+            string strAppend)
+        {
+            string str = strText;
+            if (!string.IsNullOrEmpty(str))
+            {
+                str = str.Replace("\\", "\\\\");
+                str = str.Replace("\"", "\\\"");
 
-				sw.Write(str);
-			}
+                sw.Write(str);
+            }
 
-			if(!string.IsNullOrEmpty(strAppend)) sw.Write(strAppend);
-		}
-	}
+            if (!string.IsNullOrEmpty(strAppend)) sw.Write(strAppend);
+        }
+    }
 }

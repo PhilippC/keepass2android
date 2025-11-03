@@ -30,31 +30,31 @@ using KeePassLib.Serialization;
 
 namespace KeePass.DataExchange.Formats
 {
-	public sealed class KeePassKdb2x : FileFormatProvider
-	{
-		public override bool SupportsImport { get { return true; } }
-		public override bool SupportsExport { get { return true; } }
+    public sealed class KeePassKdb2x : FileFormatProvider
+    {
+        public override bool SupportsImport { get { return true; } }
+        public override bool SupportsExport { get { return true; } }
 
-		public override string FormatName { get { return "KeePass KDBX (2.x)"; } }
-		public override string DefaultExtension { get { return "kdbx"; } }
-		
-		public override bool SupportsUuids { get { return true; } }
-		public override bool RequiresKey { get { return true; } }
+        public override string FormatName { get { return "KeePass KDBX (2.x)"; } }
+        public override string DefaultExtension { get { return "kdbx"; } }
+
+        public override bool SupportsUuids { get { return true; } }
+        public override bool RequiresKey { get { return true; } }
 
 
-		public override void Import(PwDatabase pwStorage, Stream sInput,
-			IStatusLogger slLogger)
-		{
-			KdbxFile kdbx = new KdbxFile(pwStorage);
-			kdbx.Load(sInput, KdbxFormat.Default, slLogger);
-		}
+        public override void Import(PwDatabase pwStorage, Stream sInput,
+            IStatusLogger slLogger)
+        {
+            KdbxFile kdbx = new KdbxFile(pwStorage);
+            kdbx.Load(sInput, KdbxFormat.Default, slLogger);
+        }
 
-		public override bool Export(PwExportInfo pwExportInfo, Stream sOutput,
-			IStatusLogger slLogger)
-		{
-			KdbxFile kdbx = new KdbxFile(pwExportInfo.ContextDatabase);
-			kdbx.Save(sOutput, pwExportInfo.DataGroup, KdbxFormat.Default, slLogger);
-			return true;
-		}
-	}
+        public override bool Export(PwExportInfo pwExportInfo, Stream sOutput,
+            IStatusLogger slLogger)
+        {
+            KdbxFile kdbx = new KdbxFile(pwExportInfo.ContextDatabase);
+            kdbx.Save(sOutput, pwExportInfo.DataGroup, KdbxFormat.Default, slLogger);
+            return true;
+        }
+    }
 }

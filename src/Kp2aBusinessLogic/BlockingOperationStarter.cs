@@ -28,18 +28,18 @@ namespace keepass2android
     /// Class to run a task while a progress dialog is shown
     /// </summary>
     public class BlockingOperationStarter
-	{
+    {
 
-		private readonly OperationWithFinishHandler _task;
+        private readonly OperationWithFinishHandler _task;
         private readonly IKp2aApp _app;
 
-	    public BlockingOperationStarter(IKp2aApp app, OperationWithFinishHandler task)
-		{
-			_task = task;
+        public BlockingOperationStarter(IKp2aApp app, OperationWithFinishHandler task)
+        {
+            _task = task;
             _app = app;
         }
 
-	    public void Run()
+        public void Run()
         {
             _app.CancelBackgroundOperations();
             OperationRunner.Instance.Run(_app, _task, true);
@@ -47,7 +47,7 @@ namespace keepass2android
 
         }
 
-	    
-	}
+
+    }
 }
 

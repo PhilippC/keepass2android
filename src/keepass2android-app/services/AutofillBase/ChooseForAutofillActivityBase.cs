@@ -36,7 +36,7 @@ namespace keepass2android.services.AutofillBase
         {
             Kp2aLog.Log("ChooseForAutofillActivityBase.OnCreate");
             base.OnCreate(savedInstanceState);
-            
+
             //if launched from history, don't re-use the task. Proceed to FileSelect instead.
             if (Intent.Flags.HasFlag(ActivityFlags.LaunchedFromHistory))
             {
@@ -51,14 +51,14 @@ namespace keepass2android.services.AutofillBase
             if (requestedUrl == null && requestedUuid == null)
             {
                 Kp2aLog.Log("ChooseForAutofillActivityBase: no requestedUrl and no requestedUuid");
-                App.Kp2a.ShowMessage(this, "Cannot execute query for null.",  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(this, "Cannot execute query for null.", MessageSeverity.Error);
                 RestartApp();
                 return;
             }
-            
+
             if (Intent.HasExtra(ExtraDisplayWarning))
             {
-                
+
                 AutofillServiceBase.DisplayWarning warning =
                     (AutofillServiceBase.DisplayWarning)Intent.GetIntExtra(ExtraDisplayWarning, (int)AutofillServiceBase.DisplayWarning.None);
                 Kp2aLog.Log("ChooseForAutofillActivityBase: ExtraDisplayWarning = " + warning);
@@ -89,8 +89,8 @@ namespace keepass2android.services.AutofillBase
                             GetString(Resource.String.AutofillWarning_Intro, new Java.Lang.Object[]
                             {
                                 Intent.GetStringExtra(ExtraQueryDomainString), appNameWithPackage
-                            }) 
-                            + " " + 
+                            })
+                            + " " +
                             this.GetString(Resource.String.AutofillWarning_FillDomainInUntrustedApp, new Java.Lang.Object[]
                             {
                                 Intent.GetStringExtra(ExtraQueryDomainString), appName
@@ -116,7 +116,7 @@ namespace keepass2android.services.AutofillBase
                     {
                         Finish();
                     });
-                    
+
 
                     Dialog dialog = builder.Create();
                     dialog.Show();
@@ -151,7 +151,7 @@ namespace keepass2android.services.AutofillBase
                     StartActivityForResult(i, RequestCodeQuery);
             }
 
-            
+
         }
 
         protected abstract Intent GetQueryIntent(string requestedUrl, bool autoReturnFromQuery, bool useLastOpenedEntry);
@@ -164,7 +164,7 @@ namespace keepass2android.services.AutofillBase
             Finish();
         }
 
-        
+
         public override void Finish()
         {
             if (ReplyIntent != null)
@@ -198,12 +198,12 @@ namespace keepass2android.services.AutofillBase
             parser.ParseForFill();
             AutofillFieldMetadataCollection autofillFields = parser.AutofillFields;
             var partitionData = AutofillHintsHelper.FilterForPartition(clientFormDataMap, parser.AutofillFields.FocusedAutofillCanonicalHints);
-            
-            
-            
+
+
+
             ReplyIntent = new Intent();
             SetDatasetIntent(AutofillHelper.NewDataset(this, autofillFields, partitionData, IntentBuilder, null /*TODO can we get the inlinePresentationSpec here?*/));
-            
+
             SetResult(Result.Ok, ReplyIntent);
         }
 
@@ -244,7 +244,7 @@ namespace keepass2android.services.AutofillBase
 
         public abstract IAutofillIntentBuilder IntentBuilder { get; }
 
-        
+
         protected void SetResponseIntent(FillResponse fillResponse)
         {
             ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, fillResponse);
@@ -254,7 +254,7 @@ namespace keepass2android.services.AutofillBase
         {
             if (dataset == null)
             {
-                App.Kp2a.ShowMessage(this, "Failed to build an autofill dataset.",  MessageSeverity.Error);
+                App.Kp2a.ShowMessage(this, "Failed to build an autofill dataset.", MessageSeverity.Error);
                 return;
             }
             ReplyIntent.PutExtra(AutofillManager.ExtraAuthenticationResult, dataset);

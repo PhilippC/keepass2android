@@ -21,71 +21,73 @@ using Android.OS;
 using Android.Runtime;
 
 namespace keepass2android
-{	
-	/// <summary>
-	/// Base class for list activities. Notifies the TimeoutHelper whether the app is active or not.
-	/// </summary>
-	public class LockingListActivity : ListActivity {
-
-		
-		public LockingListActivity (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
-		public LockingListActivity ()
-		{
-		}
+{
+    /// <summary>
+    /// Base class for list activities. Notifies the TimeoutHelper whether the app is active or not.
+    /// </summary>
+    public class LockingListActivity : ListActivity
+    {
 
 
-		string _className;
-		string ClassName
-		{
-			get {
-				if (_className == null)
-					_className = GetType().Name;
-				return _className;
-			}
-		}
-		
-		protected override void OnResume()
-		{
-			base.OnResume();
-			TimeoutHelper.Resume(this);
-			Kp2aLog.Log(ClassName+".OnResume");
-		}
-		
-		protected override void OnStart()
-		{
-			base.OnStart();
-			Kp2aLog.Log(ClassName+".OnStart");
-		}
-		
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
-			Kp2aLog.Log(ClassName+".OnCreate");
-		}
-		
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-			GC.Collect();
-			Kp2aLog.Log(ClassName+".OnDestroy"+IsFinishing.ToString());
-		}
-		
-		protected override void OnPause()
-		{
-			base.OnPause();
-			TimeoutHelper.Pause(this);
-			Kp2aLog.Log(ClassName+".OnPause");
-		}
-		
-		protected override void OnStop()
-		{
-			base.OnStop();
-			Kp2aLog.Log(ClassName+".OnStop");
-		}
-	}
+        public LockingListActivity(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+
+        }
+        public LockingListActivity()
+        {
+        }
+
+
+        string _className;
+        string ClassName
+        {
+            get
+            {
+                if (_className == null)
+                    _className = GetType().Name;
+                return _className;
+            }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            TimeoutHelper.Resume(this);
+            Kp2aLog.Log(ClassName + ".OnResume");
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            Kp2aLog.Log(ClassName + ".OnStart");
+        }
+
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            Kp2aLog.Log(ClassName + ".OnCreate");
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            GC.Collect();
+            Kp2aLog.Log(ClassName + ".OnDestroy" + IsFinishing.ToString());
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            TimeoutHelper.Pause(this);
+            Kp2aLog.Log(ClassName + ".OnPause");
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            Kp2aLog.Log(ClassName + ".OnStop");
+        }
+    }
 }
 

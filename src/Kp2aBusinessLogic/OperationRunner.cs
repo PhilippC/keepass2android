@@ -62,7 +62,7 @@ public class OperationRunner
     {
         lock (Instance._taskQueueLock)
         {
-            _taskQueue.Enqueue(new OperationWithMetadata(){ Operation = operation, RunBlocking = runBlocking});
+            _taskQueue.Enqueue(new OperationWithMetadata() { Operation = operation, RunBlocking = runBlocking });
             operation.SetStatusLogger(_statusLogger);
 
             // Start thread to run the task (unless it's already running)
@@ -73,7 +73,7 @@ public class OperationRunner
                 {
                     while (true)
                     {
-                            
+
                         lock (_taskQueueLock)
                         {
                             if (!_taskQueue.Any())
@@ -113,7 +113,7 @@ public class OperationRunner
 
                             }), originalFinishedHandler);
                         _currentlyRunningTask.Value.Operation.Run();
-                        
+
                         while (_currentlyRunningTask != null)
                         {
                             try
@@ -130,11 +130,11 @@ public class OperationRunner
                 });
                 _thread.Start();
             }
-            
+
 
 
         }
-               
+
     }
 
 
@@ -164,7 +164,7 @@ public class OperationRunner
         {
             return false;
         }
-    
+
 
         var progressUi = new ProgressDialogUi(_app, _app.UiThreadHandler, _progressDialog);
         _statusLogger.SetNewProgressUi(progressUi);
@@ -189,7 +189,7 @@ public class OperationRunner
                 return;
             }
 
-            if (_currentlyRunningTask?.RunBlocking == true && (context is Activity { IsFinishing: false, IsDestroyed:false}))
+            if (_currentlyRunningTask?.RunBlocking == true && (context is Activity { IsFinishing: false, IsDestroyed: false }))
             {
                 app.UiThreadHandler.Post(() =>
                 {
@@ -209,13 +209,13 @@ public class OperationRunner
                 }
             }
 
-            foreach (var task in _taskQueue.Concat(_currentlyRunningTask == null ? 
+            foreach (var task in _taskQueue.Concat(_currentlyRunningTask == null ?
                          new List<OperationWithMetadata>() : [_currentlyRunningTask.Value])
                     )
             {
                 task.Operation.SetStatusLogger(_statusLogger);
             }
-                
+
         }
 
 

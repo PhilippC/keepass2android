@@ -37,7 +37,7 @@ namespace keepass2android
 
         public string DatabaseId { get; set; }
         public string ElementIdString { get; set; }
-        public PwUuid ElementId {  get {  return new PwUuid(MemUtil.HexStringToByteArray(ElementIdString));} }
+        public PwUuid ElementId { get { return new PwUuid(MemUtil.HexStringToByteArray(ElementIdString)); } }
 
         public string FullId
         {

@@ -40,125 +40,125 @@ using keepass2android.Utils;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", 
-		ConfigurationChanges = ConfigChanges.Orientation,
-		WindowSoftInputMode = SoftInput.AdjustResize,
-		MainLauncher = false,
+    [Activity(Label = "@string/app_name",
+        ConfigurationChanges = ConfigChanges.Orientation,
+        WindowSoftInputMode = SoftInput.AdjustResize,
+        MainLauncher = false,
         Theme = "@style/Kp2aTheme_BlueNoActionBar")]
-	public class QuickUnlock : LifecycleAwareActivity, IBiometricAuthCallback
-	{
-		private IOConnectionInfo _ioc;
-		private QuickUnlockBroadcastReceiver _intentReceiver;
-		private ActivityDesign _design;
+    public class QuickUnlock : LifecycleAwareActivity, IBiometricAuthCallback
+    {
+        private IOConnectionInfo _ioc;
+        private QuickUnlockBroadcastReceiver _intentReceiver;
+        private ActivityDesign _design;
         private IBiometricIdentifier _biometryIdentifier;
-		private int _quickUnlockLength;
+        private int _quickUnlockLength;
 
         private int numFailedAttempts = 0;
         private int maxNumFailedAttempts = int.MaxValue;
 
         public QuickUnlock()
-		{
-			_design = new ActivityDesign(this);
-		}
+        {
+            _design = new ActivityDesign(this);
+        }
 
-		protected override void OnCreate(Bundle bundle)
-		{
-			_design.ApplyTheme();
-			base.OnCreate(bundle);
-			
-			//use FlagSecure to make sure the last (revealed) character of the password is not visible in recent apps
-		    Util.MakeSecureDisplay(this);
+        protected override void OnCreate(Bundle bundle)
+        {
+            _design.ApplyTheme();
+            base.OnCreate(bundle);
 
-			_ioc = App.Kp2a.GetDbForQuickUnlock()?.Ioc;
+            //use FlagSecure to make sure the last (revealed) character of the password is not visible in recent apps
+            Util.MakeSecureDisplay(this);
+
+            _ioc = App.Kp2a.GetDbForQuickUnlock()?.Ioc;
 
 
 
             if (_ioc == null)
-			{
-				Finish();
-				return;
-			}
+            {
+                Finish();
+                return;
+            }
 
-			SetContentView(Resource.Layout.QuickUnlock);
+            SetContentView(Resource.Layout.QuickUnlock);
 
             Util.InsetListener.ForBottomElement(FindViewById(Resource.Id.bottom_bar)).Apply();
             Util.InsetListener.ForTopElement(FindViewById(Resource.Id.appbar)).Apply();
 
 
             var collapsingToolbar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
-			collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
+            collapsingToolbar.SetTitle(GetString(Resource.String.QuickUnlock_prefs));
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-            
+
             if (App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name != "")
-			{
-				FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
-				((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name;
-			}
-			else
-			{
-				if (
-					PreferenceManager.GetDefaultSharedPreferences(this)
-					                 .GetBoolean(GetString(Resource.String.RememberRecentFiles_key),
-					                             Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
-				{
-					((TextView) FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
-				}
-				else
-				{
-					((TextView) FindViewById(Resource.Id.filename_label)).Text = "*****";
-				}
+            {
+                FindViewById(Resource.Id.filename_label).Visibility = ViewStates.Visible;
+                ((TextView)FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetDbForQuickUnlock().KpDatabase.Name;
+            }
+            else
+            {
+                if (
+                    PreferenceManager.GetDefaultSharedPreferences(this)
+                                     .GetBoolean(GetString(Resource.String.RememberRecentFiles_key),
+                                                 Resources.GetBoolean(Resource.Boolean.RememberRecentFiles_default)))
+                {
+                    ((TextView)FindViewById(Resource.Id.filename_label)).Text = App.Kp2a.GetFileStorage(_ioc).GetDisplayName(_ioc);
+                }
+                else
+                {
+                    ((TextView)FindViewById(Resource.Id.filename_label)).Text = "*****";
+                }
 
-			}
+            }
 
 
-			TextView txtLabel = (TextView) FindViewById(Resource.Id.QuickUnlock_label);
+            TextView txtLabel = (TextView)FindViewById(Resource.Id.QuickUnlock_label);
 
-			_quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
+            _quickUnlockLength = App.Kp2a.QuickUnlockKeyLength;
 
-			bool useUnlockKeyFromDatabase = 
+            bool useUnlockKeyFromDatabase =
                 QuickUnlockFromDatabaseEnabled
-				&& FindQuickUnlockEntry() != null;
-			
+                && FindQuickUnlockEntry() != null;
+
 
             if (useUnlockKeyFromDatabase || PreferenceManager.GetDefaultSharedPreferences(this)
-		        .GetBoolean(GetString(Resource.String.QuickUnlockHideLength_key), false))
-		    {
-		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label_secure);
+                .GetBoolean(GetString(Resource.String.QuickUnlockHideLength_key), false))
+            {
+                txtLabel.Text = GetString(Resource.String.QuickUnlock_label_secure);
             }
-		    else
-		    {
-		        txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[] { _quickUnlockLength });
+            else
+            {
+                txtLabel.Text = GetString(Resource.String.QuickUnlock_label, new Java.Lang.Object[] { _quickUnlockLength });
             }
-			
 
-			EditText pwd = (EditText) FindViewById(Resource.Id.QuickUnlock_password);
-			pwd.SetEms(_quickUnlockLength);
-			Util.MoveBottomBarButtons(Resource.Id.QuickUnlock_buttonLock, Resource.Id.QuickUnlock_button, Resource.Id.bottom_bar, this);
 
-			Button btnUnlock = (Button) FindViewById(Resource.Id.QuickUnlock_button);
-			btnUnlock.Click += (object sender, EventArgs e) =>
-				{
-					OnUnlock(pwd);
-				};
+            EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
+            pwd.SetEms(_quickUnlockLength);
+            Util.MoveBottomBarButtons(Resource.Id.QuickUnlock_buttonLock, Resource.Id.QuickUnlock_button, Resource.Id.bottom_bar, this);
 
-		    
+            Button btnUnlock = (Button)FindViewById(Resource.Id.QuickUnlock_button);
+            btnUnlock.Click += (object sender, EventArgs e) =>
+                {
+                    OnUnlock(pwd);
+                };
 
-			Button btnLock = (Button) FindViewById(Resource.Id.QuickUnlock_buttonLock);
-			btnLock.Text = btnLock.Text.Replace("ß", "ss");
-			btnLock.Click += (object sender, EventArgs e) =>
-				{
-					App.Kp2a.Lock(false);
-					Finish();
-				};
-			pwd.EditorAction += (sender, args) =>
-				{
-					if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
-						OnUnlock(pwd);
-				};
 
-			_intentReceiver = new QuickUnlockBroadcastReceiver(this);
-			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.DatabaseLocked);
+
+            Button btnLock = (Button)FindViewById(Resource.Id.QuickUnlock_buttonLock);
+            btnLock.Text = btnLock.Text.Replace("ß", "ss");
+            btnLock.Click += (object sender, EventArgs e) =>
+                {
+                    App.Kp2a.Lock(false);
+                    Finish();
+                };
+            pwd.EditorAction += (sender, args) =>
+                {
+                    if ((args.ActionId == ImeAction.Done) || ((args.ActionId == ImeAction.ImeNull) && (args.Event.Action == KeyEventActions.Down)))
+                        OnUnlock(pwd);
+                };
+
+            _intentReceiver = new QuickUnlockBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DatabaseLocked);
             ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
 
             Util.SetNoPersonalizedLearning(FindViewById<EditText>(Resource.Id.QuickUnlock_password));
@@ -168,7 +168,7 @@ namespace keepass2android
 
             FindViewById(Resource.Id.QuickUnlock_buttonEnableLock).Click += (object sender, EventArgs e) =>
             {
-				Intent intent = new Intent(Settings.ActionSecuritySettings);
+                Intent intent = new Intent(Settings.ActionSecuritySettings);
                 StartActivity(intent);
 
             };
@@ -180,7 +180,7 @@ namespace keepass2android
 
             if (App.Kp2a.ScreenLockWasEnabledWhenOpeningDatabase == false && App.Kp2a.QuickUnlockBlockedWhenDeviceNotSecureWhenOpeningDatabase)
             {
-				FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Gone;
+                FindViewById(Resource.Id.QuickUnlockForm).Visibility = ViewStates.Gone;
                 FindViewById(Resource.Id.QuickUnlockBlocked).Visibility = ViewStates.Visible;
             }
             else
@@ -208,33 +208,33 @@ namespace keepass2android
         {
             base.OnSaveInstanceState(outState);
             outState.PutInt(NumFailedAttemptsKey, numFailedAttempts);
-            
+
         }
 
         protected override void OnStart()
-		{
-			base.OnStart();
-			DonateReminder.ShowDonateReminderIfAppropriate(this);
-			
-		}
+        {
+            base.OnStart();
+            DonateReminder.ShowDonateReminderIfAppropriate(this);
 
-		
+        }
 
-		public void OnBiometricError(string message)
-		{
-			Kp2aLog.Log("fingerprint error: " + message);
-			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
-			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-			btn.PostDelayed(() =>
-			{
-				btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
-				
-			}, 1300);
-			App.Kp2a.ShowMessage(this, message,  MessageSeverity.Error);
-		}
 
-        
+        public void OnBiometricError(string message)
+        {
+            Kp2aLog.Log("fingerprint error: " + message);
+            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+
+            btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+            btn.PostDelayed(() =>
+            {
+                btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
+
+            }, 1300);
+            App.Kp2a.ShowMessage(this, message, MessageSeverity.Error);
+        }
+
+
         public void OnBiometricAttemptFailed(string message)
         {
             numFailedAttempts++;
@@ -246,46 +246,46 @@ namespace keepass2android
         }
 
         public void OnBiometricAuthSucceeded()
-		{
-			Kp2aLog.Log("OnFingerprintAuthSucceeded");
-			_biometryIdentifier.StopListening();
-			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+        {
+            Kp2aLog.Log("OnFingerprintAuthSucceeded");
+            _biometryIdentifier.StopListening();
+            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
-			btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);
+            btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);
 
-			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
-			pwd.Text = ExpectedPasswordPart;
-			
-			btn.PostDelayed(() =>
+            EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
+            pwd.Text = ExpectedPasswordPart;
+
+            btn.PostDelayed(() =>
             {
-				UnlockAndSyncAndClose();
-			}, 500);
+                UnlockAndSyncAndClose();
+            }, 500);
 
 
-		}
-		private bool InitFingerprintUnlock()
-		{
-			Kp2aLog.Log("InitFingerprintUnlock");
+        }
+        private bool InitFingerprintUnlock()
+        {
+            Kp2aLog.Log("InitFingerprintUnlock");
 
-			if (_biometryIdentifier != null)
-			{
-				Kp2aLog.Log("Already listening for fingerprint!");
-				return true;
-			}
+            if (_biometryIdentifier != null)
+            {
+                Kp2aLog.Log("Already listening for fingerprint!");
+                return true;
+            }
 
 
-			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
-			try
-			{
-				FingerprintUnlockMode um;
-				Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintModePrefKey, ""), out um);
-				btn.Visibility = (um != FingerprintUnlockMode.Disabled) ? ViewStates.Visible : ViewStates.Gone;
+            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+            try
+            {
+                FingerprintUnlockMode um;
+                Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(this).GetString(App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintModePrefKey, ""), out um);
+                btn.Visibility = (um != FingerprintUnlockMode.Disabled) ? ViewStates.Visible : ViewStates.Gone;
 
-				if (um == FingerprintUnlockMode.Disabled)
-				{
-					_biometryIdentifier = null;
-					return false;
-				}
+                if (um == FingerprintUnlockMode.Disabled)
+                {
+                    _biometryIdentifier = null;
+                    return false;
+                }
 
 
 
@@ -295,89 +295,89 @@ namespace keepass2android
                 }
 
                 BiometricModule fpModule = new BiometricModule(this);
-				Kp2aLog.Log("fpModule.IsHardwareAvailable=" + fpModule.IsHardwareAvailable);
-				if (fpModule.IsHardwareAvailable) //see FingerprintSetupActivity
-					_biometryIdentifier = new BiometricDecryption(fpModule, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey, this,
-						App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey);
-				
-				
-			    if (_biometryIdentifier == null)
-			    {
-			        FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
-			        return false;
+                Kp2aLog.Log("fpModule.IsHardwareAvailable=" + fpModule.IsHardwareAvailable);
+                if (fpModule.IsHardwareAvailable) //see FingerprintSetupActivity
+                    _biometryIdentifier = new BiometricDecryption(fpModule, App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey, this,
+                        App.Kp2a.GetDbForQuickUnlock().CurrentFingerprintPrefKey);
+
+
+                if (_biometryIdentifier == null)
+                {
+                    FindViewById<ImageButton>(Resource.Id.fingerprintbtn).Visibility = ViewStates.Gone;
+                    return false;
                 }
-                
 
-				if (_biometryIdentifier.Init())
-				{
-					Kp2aLog.Log("successfully initialized fingerprint.");
-					btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
-					_biometryIdentifier.StartListening(this);
-					return true;
-				}
-				else
-				{
-					Kp2aLog.Log("failed to initialize fingerprint.");
-					HandleFingerprintKeyInvalidated();
-				}
-			}
-			catch (Exception e)
-			{
-				Kp2aLog.Log("Error initializing Fingerprint Unlock: " + e);
-				btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-				btn.Tag = "Error initializing Fingerprint Unlock: " + e;
 
-				_biometryIdentifier = null;
-			}
-			return false;
+                if (_biometryIdentifier.Init())
+                {
+                    Kp2aLog.Log("successfully initialized fingerprint.");
+                    btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
+                    _biometryIdentifier.StartListening(this);
+                    return true;
+                }
+                else
+                {
+                    Kp2aLog.Log("failed to initialize fingerprint.");
+                    HandleFingerprintKeyInvalidated();
+                }
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.Log("Error initializing Fingerprint Unlock: " + e);
+                btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+                btn.Tag = "Error initializing Fingerprint Unlock: " + e;
 
-		}
+                _biometryIdentifier = null;
+            }
+            return false;
 
-		private void HandleFingerprintKeyInvalidated()
-		{
-			var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
-//key invalidated permanently
-			btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
-		    btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
+        }
+
+        private void HandleFingerprintKeyInvalidated()
+        {
+            var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
+            //key invalidated permanently
+            btn.SetImageResource(Resource.Drawable.ic_fingerprint_error);
+            btn.Tag = GetString(Resource.String.fingerprint_unlock_failed) + " " + GetString(Resource.String.fingerprint_reenable2);
             _biometryIdentifier = null;
-		}
+        }
 
-	    private void OnUnlock(EditText pwd)
-		{
-			var expectedPasswordPart = ExpectedPasswordPart;
-			if (pwd.Text == expectedPasswordPart)
+        private void OnUnlock(EditText pwd)
+        {
+            var expectedPasswordPart = ExpectedPasswordPart;
+            if (pwd.Text == expectedPasswordPart)
             {
                 UnlockAndSyncAndClose();
             }
-			else
-			{
-				Kp2aLog.Log("QuickUnlock not successful!");
-				App.Kp2a.Lock(false);
-				App.Kp2a.ShowMessage(this, GetString(Resource.String.QuickUnlock_fail),  MessageSeverity.Error);
+            else
+            {
+                Kp2aLog.Log("QuickUnlock not successful!");
+                App.Kp2a.Lock(false);
+                App.Kp2a.ShowMessage(this, GetString(Resource.String.QuickUnlock_fail), MessageSeverity.Error);
                 Finish();
-			}
-			
-		}
+            }
+
+        }
 
         private void UnlockAndSyncAndClose()
         {
             App.Kp2a.UnlockDatabase();
 
-			if (PreferenceManager.GetDefaultSharedPreferences(this)
-									 .GetBoolean(GetString(Resource.String.SyncAfterQuickUnlock_key), false))
-			{
-				new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb, false);
-			}
-			
-			Finish();
+            if (PreferenceManager.GetDefaultSharedPreferences(this)
+                                     .GetBoolean(GetString(Resource.String.SyncAfterQuickUnlock_key), false))
+            {
+                new SyncUtil(this).StartSynchronizeDatabase(App.Kp2a.CurrentDb, false);
+            }
 
-			
-            
+            Finish();
+
+
+
         }
 
         private string ExpectedPasswordPart
-		{
-			get
+        {
+            get
             {
                 if (QuickUnlockFromDatabaseEnabled)
                 {
@@ -386,31 +386,31 @@ namespace keepass2android
                     {
                         return quickUnlockEntry.Strings.ReadSafe(PwDefs.PasswordField).ToString();
                     }
-				}
+                }
 
-                
-				KcpPassword kcpPassword = (KcpPassword) App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof (KcpPassword));
-				String password = kcpPassword.Password.ReadString();
 
-			    var passwordStringInfo = new System.Globalization.StringInfo(password);
+                KcpPassword kcpPassword = (KcpPassword)App.Kp2a.GetDbForQuickUnlock().KpDatabase.MasterKey.GetUserKey(typeof(KcpPassword));
+                String password = kcpPassword.Password.ReadString();
 
-			    int passwordLength = passwordStringInfo.LengthInTextElements;
-                
+                var passwordStringInfo = new System.Globalization.StringInfo(password);
+
+                int passwordLength = passwordStringInfo.LengthInTextElements;
+
                 String expectedPasswordPart = passwordStringInfo.SubstringByTextElements(Math.Max(0, passwordLength - _quickUnlockLength),
                     Math.Min(passwordLength, _quickUnlockLength));
-				return expectedPasswordPart;
-			}
-		}
+                return expectedPasswordPart;
+            }
+        }
 
-		private void OnLockDatabase()
-		{
-			CheckIfUnloaded();
-		}
+        private void OnLockDatabase()
+        {
+            CheckIfUnloaded();
+        }
 
-		protected override void OnResume()
-		{
-			base.OnResume();
-			_design.ReapplyTheme();
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _design.ReapplyTheme();
             App.Kp2a.MessagePresenter = new ChainedSnackbarPresenter(FindViewById(Resource.Id.main_content));
 
             CheckIfUnloaded();
@@ -419,22 +419,22 @@ namespace keepass2android
 
             bool showKeyboard = true;
 
-			EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
-			pwd.PostDelayed(() =>
+            EditText pwd = (EditText)FindViewById(Resource.Id.QuickUnlock_password);
+            pwd.PostDelayed(() =>
             {
                 pwd.RequestFocus();
-				InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
-				if (showKeyboard)
-					keyboard.ShowSoftInput(pwd, ShowFlags.Implicit);
-				else
-					keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
-			}, 50);
+                InputMethodManager keyboard = (InputMethodManager)GetSystemService(Context.InputMethodService);
+                if (showKeyboard)
+                    keyboard.ShowSoftInput(pwd, ShowFlags.Implicit);
+                else
+                    keyboard.HideSoftInputFromWindow(pwd.WindowToken, HideSoftInputFlags.ImplicitOnly);
+            }, 50);
 
 
             var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
             btn.Click += (sender, args) =>
             {
-                if ((_biometryIdentifier != null) && ((_biometryIdentifier.HasUserInterface)|| string.IsNullOrEmpty((string)btn.Tag) ))
+                if ((_biometryIdentifier != null) && ((_biometryIdentifier.HasUserInterface) || string.IsNullOrEmpty((string)btn.Tag)))
                 {
                     _biometryIdentifier.StartListening(this);
                 }
@@ -463,10 +463,10 @@ namespace keepass2android
                     b.Show();
                 }
 
-                
+
             };
-            
-            
+
+
 
 
 
@@ -474,66 +474,66 @@ namespace keepass2android
 
         }
 
-		
 
-		protected override void OnPause()
-		{
+
+        protected override void OnPause()
+        {
             App.Kp2a.MessagePresenter = new NonePresenter();
             if (_biometryIdentifier != null)
-			{
-				Kp2aLog.Log("FP: Stop listening");
-				_biometryIdentifier.StopListening();
+            {
+                Kp2aLog.Log("FP: Stop listening");
+                _biometryIdentifier.StopListening();
             }
 
-			base.OnPause();
-		}
+            base.OnPause();
+        }
 
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-			try
-			{
-				UnregisterReceiver(_intentReceiver);
-			}
-			catch (Exception e)
-			{
-				Kp2aLog.LogUnexpectedError(e);
-			}
-			
-		}
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            try
+            {
+                UnregisterReceiver(_intentReceiver);
+            }
+            catch (Exception e)
+            {
+                Kp2aLog.LogUnexpectedError(e);
+            }
 
-		private void CheckIfUnloaded()
-		{
-			if (App.Kp2a.OpenDatabases.Any() == false)
-			{
-				Finish();
-			}
-		}
+        }
 
-		public override void OnBackPressed()
-		{
-			SetResult(KeePass.ExitClose);
-			base.OnBackPressed();
-		}
+        private void CheckIfUnloaded()
+        {
+            if (App.Kp2a.OpenDatabases.Any() == false)
+            {
+                Finish();
+            }
+        }
 
-		private class QuickUnlockBroadcastReceiver : BroadcastReceiver
-		{
-			readonly QuickUnlock _activity;
-			public QuickUnlockBroadcastReceiver(QuickUnlock activity)
-			{
-				_activity = activity;
-			}
+        public override void OnBackPressed()
+        {
+            SetResult(KeePass.ExitClose);
+            base.OnBackPressed();
+        }
 
-			public override void OnReceive(Context context, Intent intent)
-			{
-				switch (intent.Action)
-				{
-					case Intents.DatabaseLocked:
-						_activity.OnLockDatabase();
-						break;
-				}
-			}
-		}
-	}
+        private class QuickUnlockBroadcastReceiver : BroadcastReceiver
+        {
+            readonly QuickUnlock _activity;
+            public QuickUnlockBroadcastReceiver(QuickUnlock activity)
+            {
+                _activity = activity;
+            }
+
+            public override void OnReceive(Context context, Intent intent)
+            {
+                switch (intent.Action)
+                {
+                    case Intents.DatabaseLocked:
+                        _activity.OnLockDatabase();
+                        break;
+                }
+            }
+        }
+    }
 }
 

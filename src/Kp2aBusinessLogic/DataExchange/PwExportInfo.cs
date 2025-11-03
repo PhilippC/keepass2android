@@ -25,58 +25,58 @@ using KeePassLib;
 
 namespace KeePass.DataExchange
 {
-	public sealed class PwExportInfo
-	{
-		private PwGroup m_pg;
-		/// <summary>
-		/// This group contains all entries and subgroups that should
-		/// be exported. Is never <c>null</c>.
-		/// </summary>
-		public PwGroup DataGroup
-		{
-			get { return m_pg; }
-		}
+    public sealed class PwExportInfo
+    {
+        private PwGroup m_pg;
+        /// <summary>
+        /// This group contains all entries and subgroups that should
+        /// be exported. Is never <c>null</c>.
+        /// </summary>
+        public PwGroup DataGroup
+        {
+            get { return m_pg; }
+        }
 
-		private PwDatabase m_pd;
-		/// <summary>
-		/// Optional context database reference. May be <c>null</c>.
-		/// </summary>
-		public PwDatabase ContextDatabase
-		{
-			get { return m_pd; }
-		}
+        private PwDatabase m_pd;
+        /// <summary>
+        /// Optional context database reference. May be <c>null</c>.
+        /// </summary>
+        public PwDatabase ContextDatabase
+        {
+            get { return m_pd; }
+        }
 
-		private bool m_bExpDel = true;
-		/// <summary>
-		/// Indicates whether deleted objects should be exported, if
-		/// the data format supports it.
-		/// </summary>
-		public bool ExportDeletedObjects
-		{
-			get { return m_bExpDel; }
-		}
+        private bool m_bExpDel = true;
+        /// <summary>
+        /// Indicates whether deleted objects should be exported, if
+        /// the data format supports it.
+        /// </summary>
+        public bool ExportDeletedObjects
+        {
+            get { return m_bExpDel; }
+        }
 
-		public PwExportInfo(PwGroup pgDataSource, PwDatabase pwContextInfo)
-		{
-			ConstructEx(pgDataSource, pwContextInfo, null);
-		}
+        public PwExportInfo(PwGroup pgDataSource, PwDatabase pwContextInfo)
+        {
+            ConstructEx(pgDataSource, pwContextInfo, null);
+        }
 
-		public PwExportInfo(PwGroup pgDataSource, PwDatabase pwContextInfo,
-			bool bExportDeleted)
-		{
-			ConstructEx(pgDataSource, pwContextInfo, bExportDeleted);
-		}
+        public PwExportInfo(PwGroup pgDataSource, PwDatabase pwContextInfo,
+            bool bExportDeleted)
+        {
+            ConstructEx(pgDataSource, pwContextInfo, bExportDeleted);
+        }
 
-		private void ConstructEx(PwGroup pgDataSource, PwDatabase pwContextInfo,
-			bool? bExportDeleted)
-		{
-			if(pgDataSource == null) throw new ArgumentNullException("pgDataSource");
-			// pwContextInfo may be null.
+        private void ConstructEx(PwGroup pgDataSource, PwDatabase pwContextInfo,
+            bool? bExportDeleted)
+        {
+            if (pgDataSource == null) throw new ArgumentNullException("pgDataSource");
+            // pwContextInfo may be null.
 
-			m_pg = pgDataSource;
-			m_pd = pwContextInfo;
+            m_pg = pgDataSource;
+            m_pd = pwContextInfo;
 
-			if(bExportDeleted.HasValue) m_bExpDel = bExportDeleted.Value;
-		}
-	}
+            if (bExportDeleted.HasValue) m_bExpDel = bExportDeleted.Value;
+        }
+    }
 }

@@ -123,7 +123,7 @@ namespace keepass2android
             {
                 var result = BiometricManager.From(Activity).CanAuthenticate();
                 Kp2aLog.Log("BiometricHardware available = " + result);
-                return result == BiometricManager.BiometricSuccess 
+                return result == BiometricManager.BiometricSuccess
                        || result == BiometricManager.BiometricErrorNoneEnrolled;
             }
         }
@@ -375,7 +375,7 @@ namespace keepass2android
                     // of the key
                     .SetEncryptionPaddings(KeyProperties.EncryptionPaddingPkcs7)
                     .SetUserAuthenticationRequired(true);
-                
+
                 if ((int)Build.VERSION.SdkInt >= 24)
                     builder.SetInvalidatedByBiometricEnrollment(true);
 

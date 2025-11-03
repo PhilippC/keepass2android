@@ -40,66 +40,68 @@ namespace keepass2android
         }
     }
 
-	/// <summary>
-	/// Password generator
-	/// </summary>
-	public class PasswordGenerator {
-		private const String UpperCaseChars	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		private const String LowerCaseChars 	= "abcdefghijklmnopqrstuvwxyz";
-		private const String DigitChars 		= "0123456789";
-		private const String MinusChars 		= "-";
-		private const String UnderlineChars 	= "_";
-		private const String SpaceChars 		= " ";
-		private const String SpecialChars 	= "!\"#$%&'*+,./:;=?@\\^`";
+    /// <summary>
+    /// Password generator
+    /// </summary>
+    public class PasswordGenerator
+    {
+        private const String UpperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const String LowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
+        private const String DigitChars = "0123456789";
+        private const String MinusChars = "-";
+        private const String UnderlineChars = "_";
+        private const String SpaceChars = " ";
+        private const String SpecialChars = "!\"#$%&'*+,./:;=?@\\^`";
         private const String ExtendedChars = "§©®¢°±¹²³¼½×÷«âéïñù¡¿»¦Ø";
-		private const String BracketChars 	= "[]{}()<>";
-		
-		private readonly Context _cxt;
+        private const String BracketChars = "[]{}()<>";
 
-		public sealed class SecureRandom : Random
-		{
+        private readonly Context _cxt;
 
-			private readonly RandomNumberGenerator _rng = new RNGCryptoServiceProvider();
+        public sealed class SecureRandom : Random
+        {
+
+            private readonly RandomNumberGenerator _rng = new RNGCryptoServiceProvider();
 
 
-			public override int Next()
-			{
-				var data = new byte[sizeof(int)];
-				_rng.GetBytes(data);
-				return BitConverter.ToInt32(data, 0) & (Int32.MaxValue - 1);
-			}
+            public override int Next()
+            {
+                var data = new byte[sizeof(int)];
+                _rng.GetBytes(data);
+                return BitConverter.ToInt32(data, 0) & (Int32.MaxValue - 1);
+            }
 
-			public override int Next(int maxValue)
-			{
-				return Next(0, maxValue);
-			}
+            public override int Next(int maxValue)
+            {
+                return Next(0, maxValue);
+            }
 
-			public override int Next(int minValue, int maxValue)
-			{
-				if (minValue > maxValue)
-				{
-					throw new ArgumentOutOfRangeException();
-				}
-				return (int)Math.Floor((minValue + (maxValue - minValue) * NextDouble()));
-			}
+            public override int Next(int minValue, int maxValue)
+            {
+                if (minValue > maxValue)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                return (int)Math.Floor((minValue + (maxValue - minValue) * NextDouble()));
+            }
 
-			public override double NextDouble()
-			{
-				var data = new byte[sizeof(uint)];
-				_rng.GetBytes(data);
-				var randUint = BitConverter.ToUInt32(data, 0);
-				return randUint / (UInt32.MaxValue + 1.0);
-			}
+            public override double NextDouble()
+            {
+                var data = new byte[sizeof(uint)];
+                _rng.GetBytes(data);
+                var randUint = BitConverter.ToUInt32(data, 0);
+                return randUint / (UInt32.MaxValue + 1.0);
+            }
 
-			public override void NextBytes(byte[] data)
-			{
-				_rng.GetBytes(data);
-			}
-		}
-		
-		public PasswordGenerator(Context cxt) {
-			_cxt = cxt;
-		}
+            public override void NextBytes(byte[] data)
+            {
+                _rng.GetBytes(data);
+            }
+        }
+
+        public PasswordGenerator(Context cxt)
+        {
+            _cxt = cxt;
+        }
 
         public class CombinedKeyOptions
         {
@@ -113,7 +115,7 @@ namespace keepass2android
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
                 if (obj.GetType() != this.GetType()) return false;
-                return Equals((CombinedKeyOptions) obj);
+                return Equals((CombinedKeyOptions)obj);
             }
 
             public override int GetHashCode()
@@ -123,7 +125,7 @@ namespace keepass2android
 
             public PassphraseGenerationOptions PassphraseGenerationOptions { get; set; }
             public PasswordGenerationOptions PasswordGenerationOptions { get; set; }
-            
+
         }
 
         public class PasswordGenerationOptions
@@ -138,7 +140,7 @@ namespace keepass2android
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
                 if (obj.GetType() != this.GetType()) return false;
-                return Equals((PasswordGenerationOptions) obj);
+                return Equals((PasswordGenerationOptions)obj);
             }
 
             public override int GetHashCode()
@@ -170,8 +172,8 @@ namespace keepass2android
             public bool SpecialsExtended { get; set; }
             public bool Brackets { get; set; }
 
-			public bool ExcludeLookAlike { get; set; }
-			public bool AtLeastOneFromEachGroup { get; set; }
+            public bool ExcludeLookAlike { get; set; }
+            public bool AtLeastOneFromEachGroup { get; set; }
 
         }
 
@@ -187,12 +189,12 @@ namespace keepass2android
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
                 if (obj.GetType() != this.GetType()) return false;
-                return Equals((PassphraseGenerationOptions) obj);
+                return Equals((PassphraseGenerationOptions)obj);
             }
 
             public override int GetHashCode()
             {
-                return HashCode.Combine((int) CaseMode, Separator, WordCount);
+                return HashCode.Combine((int)CaseMode, Separator, WordCount);
             }
 
             public enum PassphraseCaseMode
@@ -209,9 +211,9 @@ namespace keepass2android
 
 
 
-        public String GeneratePassword(CombinedKeyOptions options) 
+        public String GeneratePassword(CombinedKeyOptions options)
         {
-            if ((options.PassphraseGenerationOptions== null || options.PassphraseGenerationOptions.WordCount == 0)
+            if ((options.PassphraseGenerationOptions == null || options.PassphraseGenerationOptions.WordCount == 0)
                 && (options.PasswordGenerationOptions == null || options.PasswordGenerationOptions.Length == 0))
             {
                 throw new Exception("Bad options");
@@ -229,7 +231,7 @@ namespace keepass2android
                 string passphrase = "";
                 for (int i = 0; i < passphraseOptions.WordCount; i++)
                 {
-                    
+
                     string word = wl.GetWord(random);
 
                     if (passphraseOptions.CaseMode == PassphraseGenerationOptions.PassphraseCaseMode.Uppercase)
@@ -255,7 +257,7 @@ namespace keepass2android
                 key += passphrase;
             }
 
-            
+
             if (passwordOptions != null)
             {
                 var groups = GetCharacterGroups(passwordOptions);
@@ -311,10 +313,10 @@ namespace keepass2android
 
             return key;
         }
-		
-		public string GetCharacterSet(PasswordGenerationOptions options, List<string> groups)
+
+        public string GetCharacterSet(PasswordGenerationOptions options, List<string> groups)
         {
-            var characterSet =  String.Join("", groups);
+            var characterSet = String.Join("", groups);
 
             return characterSet;
 
@@ -351,7 +353,7 @@ namespace keepass2android
             if (options.Brackets)
                 groups.Add(BracketChars);
 
-            
+
             if (options.ExcludeLookAlike)
             {
                 for (int i = 0; i < groups.Count; i++)

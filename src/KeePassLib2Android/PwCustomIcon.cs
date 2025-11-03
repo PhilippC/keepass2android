@@ -29,95 +29,95 @@ using KeePassLib.Utility;
 
 namespace KeePassLib
 {
-	public sealed class PwCustomIcon
-	{
-		// Recommended maximum sizes, not obligatory
-		internal const int MaxWidth = 128;
-		internal const int MaxHeight = 128;
+    public sealed class PwCustomIcon
+    {
+        // Recommended maximum sizes, not obligatory
+        internal const int MaxWidth = 128;
+        internal const int MaxHeight = 128;
 
-		private readonly PwUuid m_uuid;
-		private readonly byte[] m_pbImageDataPng;
+        private readonly PwUuid m_uuid;
+        private readonly byte[] m_pbImageDataPng;
 
-		private string m_strName = string.Empty;
-		private DateTime? m_odtLastMod = null;
+        private string m_strName = string.Empty;
+        private DateTime? m_odtLastMod = null;
 
-		private Dictionary<long, Android.Graphics.Bitmap> m_dImageCache = new Dictionary<long, Android.Graphics.Bitmap>();
+        private Dictionary<long, Android.Graphics.Bitmap> m_dImageCache = new Dictionary<long, Android.Graphics.Bitmap>();
 
-		public PwUuid Uuid
-		{
-			get { return m_uuid; }
-		}
-
-		public byte[] ImageDataPng
-		{
-			get { return m_pbImageDataPng; }
-			// When allowing 'set', do not copy the cache in 'Clone'
-		}
-
-		public string Name
-		{
-			get { return m_strName; }
-			set
-			{
-				if (value == null) throw new ArgumentNullException("value");
-				m_strName = value;
-			}
-		}
-
-		public DateTime? LastModificationTime
-		{
-			get { return m_odtLastMod; }
-			set { m_odtLastMod = value; }
-		}
-
-		[Obsolete("Use GetImage instead.")]
-		public Android.Graphics.Bitmap Image
-		{
-			get { return GetImage(); } // Backward compatibility
+        public PwUuid Uuid
+        {
+            get { return m_uuid; }
         }
 
-		public PwCustomIcon(PwUuid pu, byte[] pbImageDataPng)
-		{
-			if (pu == null) { Debug.Assert(false); throw new ArgumentNullException("pu"); }
-			if (pu.Equals(PwUuid.Zero)) { Debug.Assert(false); throw new ArgumentOutOfRangeException("pu"); }
-			if (pbImageDataPng == null) { Debug.Assert(false); throw new ArgumentNullException("pbImageDataPng"); }
+        public byte[] ImageDataPng
+        {
+            get { return m_pbImageDataPng; }
+            // When allowing 'set', do not copy the cache in 'Clone'
+        }
 
-			m_uuid = pu;
-			m_pbImageDataPng = pbImageDataPng;
-		}
+        public string Name
+        {
+            get { return m_strName; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                m_strName = value;
+            }
+        }
 
-		private static long GetKey(int w, int h)
-		{
-			return (((long)w << 32) ^ (long)h);
-		}
+        public DateTime? LastModificationTime
+        {
+            get { return m_odtLastMod; }
+            set { m_odtLastMod = value; }
+        }
 
-		/// <summary>
-		/// Get the icon as an <c>Image</c> (original size).
-		/// </summary>
-		public Android.Graphics.Bitmap GetImage()
-		{
-			const long lKey = -1;
+        [Obsolete("Use GetImage instead.")]
+        public Android.Graphics.Bitmap Image
+        {
+            get { return GetImage(); } // Backward compatibility
+        }
+
+        public PwCustomIcon(PwUuid pu, byte[] pbImageDataPng)
+        {
+            if (pu == null) { Debug.Assert(false); throw new ArgumentNullException("pu"); }
+            if (pu.Equals(PwUuid.Zero)) { Debug.Assert(false); throw new ArgumentOutOfRangeException("pu"); }
+            if (pbImageDataPng == null) { Debug.Assert(false); throw new ArgumentNullException("pbImageDataPng"); }
+
+            m_uuid = pu;
+            m_pbImageDataPng = pbImageDataPng;
+        }
+
+        private static long GetKey(int w, int h)
+        {
+            return (((long)w << 32) ^ (long)h);
+        }
+
+        /// <summary>
+        /// Get the icon as an <c>Image</c> (original size).
+        /// </summary>
+        public Android.Graphics.Bitmap GetImage()
+        {
+            const long lKey = -1;
 
             Android.Graphics.Bitmap img;
-			if (m_dImageCache.TryGetValue(lKey, out img)) return img;
+            if (m_dImageCache.TryGetValue(lKey, out img)) return img;
 
-			try { img = GfxUtil.LoadImage(m_pbImageDataPng); }
-			catch (Exception) { Debug.Assert(false); }
+            try { img = GfxUtil.LoadImage(m_pbImageDataPng); }
+            catch (Exception) { Debug.Assert(false); }
 
-			m_dImageCache[lKey] = img;
-			return img;
-		}
+            m_dImageCache[lKey] = img;
+            return img;
+        }
 
-		internal PwCustomIcon Clone()
-		{
-			PwCustomIcon ico = new PwCustomIcon(m_uuid, m_pbImageDataPng);
+        internal PwCustomIcon Clone()
+        {
+            PwCustomIcon ico = new PwCustomIcon(m_uuid, m_pbImageDataPng);
 
-			ico.m_strName = m_strName;
-			ico.m_odtLastMod = m_odtLastMod;
+            ico.m_strName = m_strName;
+            ico.m_odtLastMod = m_odtLastMod;
 
-			ico.m_dImageCache = m_dImageCache; // Same image data
+            ico.m_dImageCache = m_dImageCache; // Same image data
 
-			return ico;
-		}
-	}
+            return ico;
+        }
+    }
 }

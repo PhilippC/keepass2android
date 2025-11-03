@@ -14,5 +14,5 @@ using keepass2android.services.AutofillBase.model;
 
 namespace keepass2android.services.AutofillBase
 {
-   
+
 }

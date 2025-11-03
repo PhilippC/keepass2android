@@ -21,7 +21,7 @@ namespace keepass2android
         protected FilteredCursor(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
         }
-        
+
         public FilteredCursor(ICursor cursor, Predicate<ICursor> filter) : base(cursor)
         {
             _filter = filter;
@@ -66,7 +66,7 @@ namespace keepass2android
 
         public override bool Move(int offset)
         {
-            return MoveToPosition(_pos+offset);
+            return MoveToPosition(_pos + offset);
         }
 
         public override bool MoveToFirst()
@@ -76,17 +76,17 @@ namespace keepass2android
 
         public override bool MoveToNext()
         {
-            return MoveToPosition(_pos+1);
+            return MoveToPosition(_pos + 1);
         }
 
         public override bool MoveToLast()
         {
-            return MoveToPosition(Count-1);
+            return MoveToPosition(Count - 1);
         }
 
         public override bool MoveToPrevious()
         {
-            return MoveToPosition(_pos-1);
+            return MoveToPosition(_pos - 1);
         }
 
         public override bool IsAfterLast
@@ -106,7 +106,7 @@ namespace keepass2android
 
         public override bool IsLast
         {
-            get { return _pos == Count-1; }
+            get { return _pos == Count - 1; }
         }
 
         public override int Position

@@ -9,7 +9,7 @@
     //for permissions including all my files and all shared files
     public class OneDrive2FullPrefixContainer : OneDrive2PrefixContainer
     {
-        public override string Onedrive2ProtocolId { get { return "onedrive2_full"; }}
+        public override string Onedrive2ProtocolId { get { return "onedrive2_full"; } }
     }
 
     //for permissions including all my files

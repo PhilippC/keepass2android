@@ -28,388 +28,388 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Collections
 {
-	public class VariantDictionary : ICloneable
-	{
-		private const ushort VdVersion = 0x0100;
-		private const ushort VdmCritical = 0xFF00;
-		private const ushort VdmInfo = 0x00FF;
+    public class VariantDictionary : ICloneable
+    {
+        private const ushort VdVersion = 0x0100;
+        private const ushort VdmCritical = 0xFF00;
+        private const ushort VdmInfo = 0x00FF;
 
-		private Dictionary<string, object> m_d = new Dictionary<string, object>();
+        private Dictionary<string, object> m_d = new Dictionary<string, object>();
 
-		private enum VdType : byte
-		{
-			None = 0,
+        private enum VdType : byte
+        {
+            None = 0,
 
-			// Byte = 0x02,
-			// UInt16 = 0x03,
-			UInt32 = 0x04,
-			UInt64 = 0x05,
+            // Byte = 0x02,
+            // UInt16 = 0x03,
+            UInt32 = 0x04,
+            UInt64 = 0x05,
 
-			// Signed mask: 0x08
-			Bool = 0x08,
-			// SByte = 0x0A,
-			// Int16 = 0x0B,
-			Int32 = 0x0C,
-			Int64 = 0x0D,
+            // Signed mask: 0x08
+            Bool = 0x08,
+            // SByte = 0x0A,
+            // Int16 = 0x0B,
+            Int32 = 0x0C,
+            Int64 = 0x0D,
 
-			// Float = 0x10,
-			// Double = 0x11,
-			// Decimal = 0x12,
+            // Float = 0x10,
+            // Double = 0x11,
+            // Decimal = 0x12,
 
-			// Char = 0x17, // 16-bit Unicode character
-			String = 0x18,
+            // Char = 0x17, // 16-bit Unicode character
+            String = 0x18,
 
-			// Array mask: 0x40
-			ByteArray = 0x42
-		}
+            // Array mask: 0x40
+            ByteArray = 0x42
+        }
 
-		public int Count
-		{
-			get { return m_d.Count; }
-		}
+        public int Count
+        {
+            get { return m_d.Count; }
+        }
 
-		public VariantDictionary()
-		{
-			Debug.Assert((VdmCritical & VdmInfo) == ushort.MinValue);
-			Debug.Assert((VdmCritical | VdmInfo) == ushort.MaxValue);
-		}
+        public VariantDictionary()
+        {
+            Debug.Assert((VdmCritical & VdmInfo) == ushort.MinValue);
+            Debug.Assert((VdmCritical | VdmInfo) == ushort.MaxValue);
+        }
 
-		private bool Get<T>(string strName, out T t)
-		{
-			t = default(T);
+        private bool Get<T>(string strName, out T t)
+        {
+            t = default(T);
 
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return false; }
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return false; }
 
-			object o;
-			if(!m_d.TryGetValue(strName, out o)) return false; // No assert
+            object o;
+            if (!m_d.TryGetValue(strName, out o)) return false; // No assert
 
-			if(o == null) { Debug.Assert(false); return false; }
-			if(o.GetType() != typeof(T)) { Debug.Assert(false); return false; }
+            if (o == null) { Debug.Assert(false); return false; }
+            if (o.GetType() != typeof(T)) { Debug.Assert(false); return false; }
 
-			t = (T)o;
-			return true;
-		}
+            t = (T)o;
+            return true;
+        }
 
-		private void SetStruct<T>(string strName, T t)
-			where T : struct
-		{
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return; }
-
-#if DEBUG
-			T tEx;
-			Get<T>(strName, out tEx); // Assert same type
-#endif
-
-			m_d[strName] = t;
-		}
-
-		private void SetRef<T>(string strName, T t)
-			where T : class
-		{
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return; }
-			if(t == null) { Debug.Assert(false); return; }
+        private void SetStruct<T>(string strName, T t)
+            where T : struct
+        {
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return; }
 
 #if DEBUG
-			T tEx;
-			Get<T>(strName, out tEx); // Assert same type
+            T tEx;
+            Get<T>(strName, out tEx); // Assert same type
 #endif
 
-			m_d[strName] = t;
-		}
+            m_d[strName] = t;
+        }
 
-		public bool Remove(string strName)
-		{
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return false; }
+        private void SetRef<T>(string strName, T t)
+            where T : class
+        {
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return; }
+            if (t == null) { Debug.Assert(false); return; }
 
-			return m_d.Remove(strName);
-		}
+#if DEBUG
+            T tEx;
+            Get<T>(strName, out tEx); // Assert same type
+#endif
 
-		public void CopyTo(VariantDictionary d)
-		{
-			if(d == null) { Debug.Assert(false); return; }
+            m_d[strName] = t;
+        }
 
-			// Do not clear the target
-			foreach(KeyValuePair<string, object> kvp in m_d)
-			{
-				d.m_d[kvp.Key] = kvp.Value;
-			}
-		}
+        public bool Remove(string strName)
+        {
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return false; }
 
-		public Type GetTypeOf(string strName)
-		{
-			if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); return null; }
+            return m_d.Remove(strName);
+        }
 
-			object o;
-			m_d.TryGetValue(strName, out o);
-			if(o == null) return null; // No assert
+        public void CopyTo(VariantDictionary d)
+        {
+            if (d == null) { Debug.Assert(false); return; }
 
-			return o.GetType();
-		}
+            // Do not clear the target
+            foreach (KeyValuePair<string, object> kvp in m_d)
+            {
+                d.m_d[kvp.Key] = kvp.Value;
+            }
+        }
 
-		public uint GetUInt32(string strName, uint uDefault)
-		{
-			uint u;
-			if(Get<uint>(strName, out u)) return u;
-			return uDefault;
-		}
+        public Type GetTypeOf(string strName)
+        {
+            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return null; }
 
-		public void SetUInt32(string strName, uint uValue)
-		{
-			SetStruct<uint>(strName, uValue);
-		}
+            object o;
+            m_d.TryGetValue(strName, out o);
+            if (o == null) return null; // No assert
 
-		public ulong GetUInt64(string strName, ulong uDefault)
-		{
-			ulong u;
-			if(Get<ulong>(strName, out u)) return u;
-			return uDefault;
-		}
+            return o.GetType();
+        }
 
-		public void SetUInt64(string strName, ulong uValue)
-		{
-			SetStruct<ulong>(strName, uValue);
-		}
+        public uint GetUInt32(string strName, uint uDefault)
+        {
+            uint u;
+            if (Get<uint>(strName, out u)) return u;
+            return uDefault;
+        }
 
-		public bool GetBool(string strName, bool bDefault)
-		{
-			bool b;
-			if(Get<bool>(strName, out b)) return b;
-			return bDefault;
-		}
+        public void SetUInt32(string strName, uint uValue)
+        {
+            SetStruct<uint>(strName, uValue);
+        }
 
-		public void SetBool(string strName, bool bValue)
-		{
-			SetStruct<bool>(strName, bValue);
-		}
+        public ulong GetUInt64(string strName, ulong uDefault)
+        {
+            ulong u;
+            if (Get<ulong>(strName, out u)) return u;
+            return uDefault;
+        }
 
-		public int GetInt32(string strName, int iDefault)
-		{
-			int i;
-			if(Get<int>(strName, out i)) return i;
-			return iDefault;
-		}
+        public void SetUInt64(string strName, ulong uValue)
+        {
+            SetStruct<ulong>(strName, uValue);
+        }
 
-		public void SetInt32(string strName, int iValue)
-		{
-			SetStruct<int>(strName, iValue);
-		}
+        public bool GetBool(string strName, bool bDefault)
+        {
+            bool b;
+            if (Get<bool>(strName, out b)) return b;
+            return bDefault;
+        }
 
-		public long GetInt64(string strName, long lDefault)
-		{
-			long l;
-			if(Get<long>(strName, out l)) return l;
-			return lDefault;
-		}
+        public void SetBool(string strName, bool bValue)
+        {
+            SetStruct<bool>(strName, bValue);
+        }
 
-		public void SetInt64(string strName, long lValue)
-		{
-			SetStruct<long>(strName, lValue);
-		}
+        public int GetInt32(string strName, int iDefault)
+        {
+            int i;
+            if (Get<int>(strName, out i)) return i;
+            return iDefault;
+        }
 
-		public string GetString(string strName)
-		{
-			string str;
-			Get<string>(strName, out str);
-			return str;
-		}
+        public void SetInt32(string strName, int iValue)
+        {
+            SetStruct<int>(strName, iValue);
+        }
 
-		public void SetString(string strName, string strValue)
-		{
-			SetRef<string>(strName, strValue);
-		}
+        public long GetInt64(string strName, long lDefault)
+        {
+            long l;
+            if (Get<long>(strName, out l)) return l;
+            return lDefault;
+        }
 
-		public byte[] GetByteArray(string strName)
-		{
-			byte[] pb;
-			Get<byte[]>(strName, out pb);
-			return pb;
-		}
+        public void SetInt64(string strName, long lValue)
+        {
+            SetStruct<long>(strName, lValue);
+        }
 
-		public void SetByteArray(string strName, byte[] pbValue)
-		{
-			SetRef<byte[]>(strName, pbValue);
-		}
+        public string GetString(string strName)
+        {
+            string str;
+            Get<string>(strName, out str);
+            return str;
+        }
 
-		/// <summary>
-		/// Create a deep copy.
-		/// </summary>
-		public virtual object Clone()
-		{
-			VariantDictionary vdNew = new VariantDictionary();
+        public void SetString(string strName, string strValue)
+        {
+            SetRef<string>(strName, strValue);
+        }
 
-			foreach(KeyValuePair<string, object> kvp in m_d)
-			{
-				object o = kvp.Value;
-				if(o == null) { Debug.Assert(false); continue; }
+        public byte[] GetByteArray(string strName)
+        {
+            byte[] pb;
+            Get<byte[]>(strName, out pb);
+            return pb;
+        }
 
-				Type t = o.GetType();
-				if(t == typeof(byte[]))
-				{
-					byte[] p = (byte[])o;
-					byte[] pNew = new byte[p.Length];
-					if(p.Length > 0) Array.Copy(p, pNew, p.Length);
+        public void SetByteArray(string strName, byte[] pbValue)
+        {
+            SetRef<byte[]>(strName, pbValue);
+        }
 
-					o = pNew;
-				}
+        /// <summary>
+        /// Create a deep copy.
+        /// </summary>
+        public virtual object Clone()
+        {
+            VariantDictionary vdNew = new VariantDictionary();
 
-				vdNew.m_d[kvp.Key] = o;
-			}
+            foreach (KeyValuePair<string, object> kvp in m_d)
+            {
+                object o = kvp.Value;
+                if (o == null) { Debug.Assert(false); continue; }
 
-			return vdNew;
-		}
+                Type t = o.GetType();
+                if (t == typeof(byte[]))
+                {
+                    byte[] p = (byte[])o;
+                    byte[] pNew = new byte[p.Length];
+                    if (p.Length > 0) Array.Copy(p, pNew, p.Length);
 
-		public static byte[] Serialize(VariantDictionary p)
-		{
-			if(p == null) { Debug.Assert(false); return null; }
+                    o = pNew;
+                }
 
-			byte[] pbRet;
-			using(MemoryStream ms = new MemoryStream())
-			{
-				MemUtil.Write(ms, MemUtil.UInt16ToBytes(VdVersion));
+                vdNew.m_d[kvp.Key] = o;
+            }
 
-				foreach(KeyValuePair<string, object> kvp in p.m_d)
-				{
-					string strName = kvp.Key;
-					if(string.IsNullOrEmpty(strName)) { Debug.Assert(false); continue; }
-					byte[] pbName = StrUtil.Utf8.GetBytes(strName);
+            return vdNew;
+        }
 
-					object o = kvp.Value;
-					if(o == null) { Debug.Assert(false); continue; }
+        public static byte[] Serialize(VariantDictionary p)
+        {
+            if (p == null) { Debug.Assert(false); return null; }
 
-					Type t = o.GetType();
-					VdType vt = VdType.None;
-					byte[] pbValue = null;
-					if(t == typeof(uint))
-					{
-						vt = VdType.UInt32;
-						pbValue = MemUtil.UInt32ToBytes((uint)o);
-					}
-					else if(t == typeof(ulong))
-					{
-						vt = VdType.UInt64;
-						pbValue = MemUtil.UInt64ToBytes((ulong)o);
-					}
-					else if(t == typeof(bool))
-					{
-						vt = VdType.Bool;
-						pbValue = new byte[1];
-						pbValue[0] = ((bool)o ? (byte)1 : (byte)0);
-					}
-					else if(t == typeof(int))
-					{
-						vt = VdType.Int32;
-						pbValue = MemUtil.Int32ToBytes((int)o);
-					}
-					else if(t == typeof(long))
-					{
-						vt = VdType.Int64;
-						pbValue = MemUtil.Int64ToBytes((long)o);
-					}
-					else if(t == typeof(string))
-					{
-						vt = VdType.String;
-						pbValue = StrUtil.Utf8.GetBytes((string)o);
-					}
-					else if(t == typeof(byte[]))
-					{
-						vt = VdType.ByteArray;
-						pbValue = (byte[])o;
-					}
-					else { Debug.Assert(false); continue; } // Unknown type
+            byte[] pbRet;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                MemUtil.Write(ms, MemUtil.UInt16ToBytes(VdVersion));
 
-					ms.WriteByte((byte)vt);
-					MemUtil.Write(ms, MemUtil.Int32ToBytes(pbName.Length));
-					MemUtil.Write(ms, pbName);
-					MemUtil.Write(ms, MemUtil.Int32ToBytes(pbValue.Length));
-					MemUtil.Write(ms, pbValue);
-				}
+                foreach (KeyValuePair<string, object> kvp in p.m_d)
+                {
+                    string strName = kvp.Key;
+                    if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); continue; }
+                    byte[] pbName = StrUtil.Utf8.GetBytes(strName);
 
-				ms.WriteByte((byte)VdType.None);
-				pbRet = ms.ToArray();
-			}
+                    object o = kvp.Value;
+                    if (o == null) { Debug.Assert(false); continue; }
 
-			return pbRet;
-		}
+                    Type t = o.GetType();
+                    VdType vt = VdType.None;
+                    byte[] pbValue = null;
+                    if (t == typeof(uint))
+                    {
+                        vt = VdType.UInt32;
+                        pbValue = MemUtil.UInt32ToBytes((uint)o);
+                    }
+                    else if (t == typeof(ulong))
+                    {
+                        vt = VdType.UInt64;
+                        pbValue = MemUtil.UInt64ToBytes((ulong)o);
+                    }
+                    else if (t == typeof(bool))
+                    {
+                        vt = VdType.Bool;
+                        pbValue = new byte[1];
+                        pbValue[0] = ((bool)o ? (byte)1 : (byte)0);
+                    }
+                    else if (t == typeof(int))
+                    {
+                        vt = VdType.Int32;
+                        pbValue = MemUtil.Int32ToBytes((int)o);
+                    }
+                    else if (t == typeof(long))
+                    {
+                        vt = VdType.Int64;
+                        pbValue = MemUtil.Int64ToBytes((long)o);
+                    }
+                    else if (t == typeof(string))
+                    {
+                        vt = VdType.String;
+                        pbValue = StrUtil.Utf8.GetBytes((string)o);
+                    }
+                    else if (t == typeof(byte[]))
+                    {
+                        vt = VdType.ByteArray;
+                        pbValue = (byte[])o;
+                    }
+                    else { Debug.Assert(false); continue; } // Unknown type
 
-		public static VariantDictionary Deserialize(byte[] pb)
-		{
-			if(pb == null) { Debug.Assert(false); return null; }
+                    ms.WriteByte((byte)vt);
+                    MemUtil.Write(ms, MemUtil.Int32ToBytes(pbName.Length));
+                    MemUtil.Write(ms, pbName);
+                    MemUtil.Write(ms, MemUtil.Int32ToBytes(pbValue.Length));
+                    MemUtil.Write(ms, pbValue);
+                }
 
-			VariantDictionary d = new VariantDictionary();
-			using(MemoryStream ms = new MemoryStream(pb, false))
-			{
-				ushort uVersion = MemUtil.BytesToUInt16(MemUtil.Read(ms, 2));
-				if((uVersion & VdmCritical) > (VdVersion & VdmCritical))
-					throw new FormatException(KLRes.FileNewVerReq);
+                ms.WriteByte((byte)VdType.None);
+                pbRet = ms.ToArray();
+            }
 
-				while(true)
-				{
-					int iType = ms.ReadByte();
-					if(iType < 0) throw new EndOfStreamException(KLRes.FileCorrupted);
-					byte btType = (byte)iType;
-					if(btType == (byte)VdType.None) break;
+            return pbRet;
+        }
 
-					int cbName = MemUtil.BytesToInt32(MemUtil.Read(ms, 4));
-					byte[] pbName = MemUtil.Read(ms, cbName);
-					if(pbName.Length != cbName)
-						throw new EndOfStreamException(KLRes.FileCorrupted);
-					string strName = StrUtil.Utf8.GetString(pbName);
+        public static VariantDictionary Deserialize(byte[] pb)
+        {
+            if (pb == null) { Debug.Assert(false); return null; }
 
-					int cbValue = MemUtil.BytesToInt32(MemUtil.Read(ms, 4));
-					byte[] pbValue = MemUtil.Read(ms, cbValue);
-					if(pbValue.Length != cbValue)
-						throw new EndOfStreamException(KLRes.FileCorrupted);
+            VariantDictionary d = new VariantDictionary();
+            using (MemoryStream ms = new MemoryStream(pb, false))
+            {
+                ushort uVersion = MemUtil.BytesToUInt16(MemUtil.Read(ms, 2));
+                if ((uVersion & VdmCritical) > (VdVersion & VdmCritical))
+                    throw new FormatException(KLRes.FileNewVerReq);
 
-					switch(btType)
-					{
-						case (byte)VdType.UInt32:
-							if(cbValue == 4)
-								d.SetUInt32(strName, MemUtil.BytesToUInt32(pbValue));
-							else { Debug.Assert(false); }
-							break;
+                while (true)
+                {
+                    int iType = ms.ReadByte();
+                    if (iType < 0) throw new EndOfStreamException(KLRes.FileCorrupted);
+                    byte btType = (byte)iType;
+                    if (btType == (byte)VdType.None) break;
 
-						case (byte)VdType.UInt64:
-							if(cbValue == 8)
-								d.SetUInt64(strName, MemUtil.BytesToUInt64(pbValue));
-							else { Debug.Assert(false); }
-							break;
+                    int cbName = MemUtil.BytesToInt32(MemUtil.Read(ms, 4));
+                    byte[] pbName = MemUtil.Read(ms, cbName);
+                    if (pbName.Length != cbName)
+                        throw new EndOfStreamException(KLRes.FileCorrupted);
+                    string strName = StrUtil.Utf8.GetString(pbName);
 
-						case (byte)VdType.Bool:
-							if(cbValue == 1)
-								d.SetBool(strName, (pbValue[0] != 0));
-							else { Debug.Assert(false); }
-							break;
+                    int cbValue = MemUtil.BytesToInt32(MemUtil.Read(ms, 4));
+                    byte[] pbValue = MemUtil.Read(ms, cbValue);
+                    if (pbValue.Length != cbValue)
+                        throw new EndOfStreamException(KLRes.FileCorrupted);
 
-						case (byte)VdType.Int32:
-							if(cbValue == 4)
-								d.SetInt32(strName, MemUtil.BytesToInt32(pbValue));
-							else { Debug.Assert(false); }
-							break;
+                    switch (btType)
+                    {
+                        case (byte)VdType.UInt32:
+                            if (cbValue == 4)
+                                d.SetUInt32(strName, MemUtil.BytesToUInt32(pbValue));
+                            else { Debug.Assert(false); }
+                            break;
 
-						case (byte)VdType.Int64:
-							if(cbValue == 8)
-								d.SetInt64(strName, MemUtil.BytesToInt64(pbValue));
-							else { Debug.Assert(false); }
-							break;
+                        case (byte)VdType.UInt64:
+                            if (cbValue == 8)
+                                d.SetUInt64(strName, MemUtil.BytesToUInt64(pbValue));
+                            else { Debug.Assert(false); }
+                            break;
 
-						case (byte)VdType.String:
-							d.SetString(strName, StrUtil.Utf8.GetString(pbValue));
-							break;
+                        case (byte)VdType.Bool:
+                            if (cbValue == 1)
+                                d.SetBool(strName, (pbValue[0] != 0));
+                            else { Debug.Assert(false); }
+                            break;
 
-						case (byte)VdType.ByteArray:
-							d.SetByteArray(strName, pbValue);
-							break;
+                        case (byte)VdType.Int32:
+                            if (cbValue == 4)
+                                d.SetInt32(strName, MemUtil.BytesToInt32(pbValue));
+                            else { Debug.Assert(false); }
+                            break;
 
-						default:
-							Debug.Assert(false); // Unknown type
-							break;
-					}
-				}
+                        case (byte)VdType.Int64:
+                            if (cbValue == 8)
+                                d.SetInt64(strName, MemUtil.BytesToInt64(pbValue));
+                            else { Debug.Assert(false); }
+                            break;
 
-				Debug.Assert(ms.ReadByte() < 0);
-			}
+                        case (byte)VdType.String:
+                            d.SetString(strName, StrUtil.Utf8.GetString(pbValue));
+                            break;
 
-			return d;
-		}
-	}
+                        case (byte)VdType.ByteArray:
+                            d.SetByteArray(strName, pbValue);
+                            break;
+
+                        default:
+                            Debug.Assert(false); // Unknown type
+                            break;
+                    }
+                }
+
+                Debug.Assert(ms.ReadByte() < 0);
+            }
+
+            return d;
+        }
+    }
 }

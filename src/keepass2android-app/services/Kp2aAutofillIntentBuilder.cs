@@ -13,7 +13,7 @@ using KeePassLib;
 
 namespace keepass2android.services
 {
-    class Kp2aAutofillIntentBuilder: IAutofillIntentBuilder
+    class Kp2aAutofillIntentBuilder : IAutofillIntentBuilder
     {
         private static int _pendingIntentRequestCode = 0;
 
@@ -28,7 +28,7 @@ namespace keepass2android.services
             return PendingIntent.GetActivity(context, _pendingIntentRequestCode++, intent, Util.AddMutabilityFlag(PendingIntentFlags.CancelCurrent, PendingIntentFlags.Mutable));
         }
 
-        public PendingIntent GetAuthPendingIntentForWarning(Context context,PwUuid entryUuid,
+        public PendingIntent GetAuthPendingIntentForWarning(Context context, PwUuid entryUuid,
             AutofillServiceBase.DisplayWarning warning)
         {
             Intent intent = new Intent(context, typeof(ChooseForAutofillActivity));

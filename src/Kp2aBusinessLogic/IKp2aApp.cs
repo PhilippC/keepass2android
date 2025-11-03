@@ -17,17 +17,17 @@ using Keepass2android.Javafilestorage;
 
 namespace keepass2android
 {
-	public interface ICertificateValidationHandler
-	{
-		/// <summary>
-		/// Handles a failed certificate validation. Returns true if the users wants to continue, false otherwise.
-		/// see http://msdn.microsoft.com/en-us/library/system.net.icertificatepolicy(v=vs.110).aspx
-		/// </summary>
-		//bool OnServerCertificateError(int certificateProblem);
+    public interface ICertificateValidationHandler
+    {
+        /// <summary>
+        /// Handles a failed certificate validation. Returns true if the users wants to continue, false otherwise.
+        /// see http://msdn.microsoft.com/en-us/library/system.net.icertificatepolicy(v=vs.110).aspx
+        /// </summary>
+        //bool OnServerCertificateError(int certificateProblem);
 
-		RemoteCertificateValidationCallback CertificateValidationCallback { get; }
+        RemoteCertificateValidationCallback CertificateValidationCallback { get; }
 
-	}
+    }
 
 
     public enum MessageSeverity
@@ -42,7 +42,7 @@ namespace keepass2android
 	/// </summary>
 	/// This also contains methods which are UI specific and should be replacable for testing.
 	public interface IKp2aApp : ICertificateValidationHandler, IActiveContextProvider
-	{
+    {
         /// <summary>
         /// Locks all currently open databases, quicklocking if available (unless false is passed for allowQuickUnlock)
         /// </summary>
@@ -57,58 +57,58 @@ namespace keepass2android
             IDatabaseModificationWatcher modificationWatcher);
 
 
-	    HashSet<PwGroup> DirtyGroups { get; }
+        HashSet<PwGroup> DirtyGroups { get; }
 
-	    void MarkAllGroupsAsDirty();
+        void MarkAllGroupsAsDirty();
 
         /// <summary>
         /// Returns the current database
         /// </summary>
 	    Database CurrentDb { get; }
 
-	    IEnumerable<Database> OpenDatabases { get; }
-	    void CloseDatabase(Database db);
+        IEnumerable<Database> OpenDatabases { get; }
+        void CloseDatabase(Database db);
 
-	    Database FindDatabaseForElement(IStructureItem element);
-        
+        Database FindDatabaseForElement(IStructureItem element);
+
         /// <summary>
         /// Tell the app that the file from ioc was opened with keyfile.
         /// </summary>
         void StoreOpenedFileAsRecent(IOConnectionInfo ioc, string keyfile, bool updateTimestamp, string displayName = "");
 
-		/// <summary>
-		/// Creates a new database and returns it
-		/// </summary>
-		Database CreateNewDatabase(bool makeCurrent);
+        /// <summary>
+        /// Creates a new database and returns it
+        /// </summary>
+        Database CreateNewDatabase(bool makeCurrent);
 
-		/// <summary>
-		/// Returns the user-displayable string identified by stringKey
-		/// </summary>
-		string GetResourceString(UiStringKey stringKey);
+        /// <summary>
+        /// Returns the user-displayable string identified by stringKey
+        /// </summary>
+        string GetResourceString(UiStringKey stringKey);
 
-		/// <summary>
-		/// Returns the value from the preferences corresponding to key
-		/// </summary>
-		bool GetBooleanPreference(PreferenceKey key);
+        /// <summary>
+        /// Returns the value from the preferences corresponding to key
+        /// </summary>
+        bool GetBooleanPreference(PreferenceKey key);
 
-		/// <summary>
-		/// Asks the user the question "messageKey" with the options Yes/No/Cancel, calls the handler corresponding to the answer.
-		/// </summary>
-		void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-		                    EventHandler<DialogClickEventArgs> yesHandler,
-		                    EventHandler<DialogClickEventArgs> noHandler,
-		                    EventHandler<DialogClickEventArgs> cancelHandler,
+        /// <summary>
+        /// Asks the user the question "messageKey" with the options Yes/No/Cancel, calls the handler corresponding to the answer.
+        /// </summary>
+        void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+                            EventHandler<DialogClickEventArgs> yesHandler,
+                            EventHandler<DialogClickEventArgs> noHandler,
+                            EventHandler<DialogClickEventArgs> cancelHandler,
                             string messageSuffix = "");
 
-		/// <summary>
-		/// Asks the user the question "messageKey" with the options Yes/No/Cancel, but the yes/no strings can be selected freely, calls the handler corresponding to the answer.
-		/// </summary>
-		void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
-		                    UiStringKey yesString, UiStringKey noString,
-		                    EventHandler<DialogClickEventArgs> yesHandler,
-		                    EventHandler<DialogClickEventArgs> noHandler,
-		                    EventHandler<DialogClickEventArgs> cancelHandler,
-		                    string messageSuffix = "");
+        /// <summary>
+        /// Asks the user the question "messageKey" with the options Yes/No/Cancel, but the yes/no strings can be selected freely, calls the handler corresponding to the answer.
+        /// </summary>
+        void AskYesNoCancel(UiStringKey titleKey, UiStringKey messageKey,
+                            UiStringKey yesString, UiStringKey noString,
+                            EventHandler<DialogClickEventArgs> yesHandler,
+                            EventHandler<DialogClickEventArgs> noHandler,
+                            EventHandler<DialogClickEventArgs> cancelHandler,
+                            string messageSuffix = "");
 
         void ShowMessage(Context ctx, int resourceId, MessageSeverity severity);
         void ShowMessage(Context ctx, string text, MessageSeverity severity);
@@ -118,32 +118,32 @@ namespace keepass2android
         /// </summary>
         Handler UiThreadHandler { get; }
 
-		IProgressDialog CreateProgressDialog(Context ctx);
+        IProgressDialog CreateProgressDialog(Context ctx);
 
-		/// <summary>
-		/// returns the file storage for the given ioc. might be a caching file storage
-		/// </summary>
-		IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
+        /// <summary>
+        /// returns the file storage for the given ioc. might be a caching file storage
+        /// </summary>
+        IFileStorage GetFileStorage(IOConnectionInfo iocInfo);
 
-		/// <summary>
-		/// returns the file storage for the given ioc. if allowCache=false, no cached file storage is returned
-		/// </summary>
-		IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache);
+        /// <summary>
+        /// returns the file storage for the given ioc. if allowCache=false, no cached file storage is returned
+        /// </summary>
+        IFileStorage GetFileStorage(IOConnectionInfo iocInfo, bool allowCache);
 
-		void TriggerReload(Context context, Action<bool> actionOnResult /*if not null, called when the user selected yes (true) or no (false)*/);
+        void TriggerReload(Context context, Action<bool> actionOnResult /*if not null, called when the user selected yes (true) or no (false)*/);
 
-		
-		bool CheckForDuplicateUuids { get; }
+
+        bool CheckForDuplicateUuids { get; }
 #if !NoNet && !EXCLUDE_JAVAFILESTORAGE
-		ICertificateErrorHandler CertificateErrorHandler { get; }
+        ICertificateErrorHandler CertificateErrorHandler { get; }
 #endif
         int WebDavChunkedUploadSize
         {
             get;
         }
 
-		bool SyncInBackgroundPreference { get; set; }
-		void StartBackgroundSyncService();
+        bool SyncInBackgroundPreference { get; set; }
+        void StartBackgroundSyncService();
 
         ReaderWriterLockSlim DatabasesBackgroundModificationLock { get; }
         bool CancelBackgroundOperations();

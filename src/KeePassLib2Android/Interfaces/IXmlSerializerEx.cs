@@ -25,9 +25,9 @@ using System.Xml;
 
 namespace KeePassLib.Interfaces
 {
-	public interface IXmlSerializerEx
-	{
-		void Serialize(XmlWriter xmlWriter, object o);
-		object Deserialize(Stream s);
-	}
+    public interface IXmlSerializerEx
+    {
+        void Serialize(XmlWriter xmlWriter, object o);
+        object Deserialize(Stream s);
+    }
 }

@@ -85,7 +85,7 @@ namespace keepass2android
             var ioc = database.Ioc;
 
             var filestorage = App.Kp2a.GetFileStorage(ioc);
-            
+
 
             OperationWithFinishHandler task;
             OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
@@ -107,7 +107,7 @@ namespace keepass2android
 
                     OperationRunner.Instance.Run(App.Kp2a, task2);
                 }
-               
+
             });
 
             if (filestorage is CachingFileStorage)
@@ -117,7 +117,7 @@ namespace keepass2android
             }
             else
             {
-                task = new CheckDatabaseForChanges( App.Kp2a, onOperationFinishedHandler);
+                task = new CheckDatabaseForChanges(App.Kp2a, onOperationFinishedHandler);
             }
 
             OperationRunner.Instance.Run(App.Kp2a, task);
@@ -136,7 +136,7 @@ namespace keepass2android
                 }
 
                 if (db.SynchronizationPending || (prefs.GetBoolean("pref_enable_periodic_background_sync", false) &&
-                                                  db.LastSyncTime != DateTime.MaxValue && 
+                                                  db.LastSyncTime != DateTime.MaxValue &&
                                                   db.LastSyncTime.AddMinutes(ParseOrDefault(
                                                       prefs.GetString("pref_periodic_background_sync_interval", periodic_sync_default),
                                                       int.Parse(periodic_sync_default))) < DateTime.Now))

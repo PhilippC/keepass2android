@@ -10,28 +10,28 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android.database.edit
 {
-	public class MoveElements: OperationWithFinishHandler
-	{
-		private readonly List<IStructureItem> _elementsToMove;
-		private readonly PwGroup _targetGroup;
+    public class MoveElements : OperationWithFinishHandler
+    {
+        private readonly List<IStructureItem> _elementsToMove;
+        private readonly PwGroup _targetGroup;
         private readonly IKp2aApp _app;
 
-		public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup,IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
-		{
-			_elementsToMove = elementsToMove;
-			_targetGroup = targetGroup;
-			_app = app;
-		}
+        public MoveElements(List<IStructureItem> elementsToMove, PwGroup targetGroup, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+        {
+            _elementsToMove = elementsToMove;
+            _targetGroup = targetGroup;
+            _app = app;
+        }
 
-		public override void Run()
-		{
+        public override void Run()
+        {
             //check if we will run into problems. Then finish with error before we start doing anything.
             foreach (var _elementToMove in _elementsToMove)
             {
                 PwGroup pgParent = _elementToMove.ParentGroup;
                 if (pgParent != _targetGroup)
                 {
-                    if (pgParent != null) 
+                    if (pgParent != null)
                     {
                         PwGroup group = _elementToMove as PwGroup;
                         if (group != null)
@@ -41,27 +41,27 @@ namespace keepass2android.database.edit
                                 Finish(false, _app.GetResourceString(UiStringKey.CannotMoveGroupHere));
                                 return;
                             }
-                            
+
                         }
-                            
+
                     }
                 }
 
             }
 
-		    HashSet<Database> removeDatabases = new HashSet<Database>();
+            HashSet<Database> removeDatabases = new HashSet<Database>();
             Database addDatabase = _app.FindDatabaseForElement(_targetGroup);
-		    if (addDatabase == null)
-		    {
-		        Finish(false, "Did not find target database. Did you lock it?");
-		        return;
-		    }
+            if (addDatabase == null)
+            {
+                Finish(false, "Did not find target database. Did you lock it?");
+                return;
+            }
 
-		    foreach (var elementToMove in _elementsToMove)
-		    {
+            foreach (var elementToMove in _elementsToMove)
+            {
 
                 _app.DirtyGroups.Add(elementToMove.ParentGroup);
-                
+
 
                 PwGroup pgParent = elementToMove.ParentGroup;
                 if (pgParent != _targetGroup)
@@ -108,40 +108,40 @@ namespace keepass2android.database.edit
 
                 }
 
-		    }
+            }
 
-		    
-            
-		    
-		    //first save the database where we added the elements
-            var allDatabasesToSave = new List<Database> {addDatabase};
+
+
+
+            //first save the database where we added the elements
+            var allDatabasesToSave = new List<Database> { addDatabase };
             //then all databases where we removed elements:
-		    removeDatabases.RemoveWhere(db => db == addDatabase);
+            removeDatabases.RemoveWhere(db => db == addDatabase);
             allDatabasesToSave.AddRange(removeDatabases);
 
-		    int indexToSave = 0;
-		    bool allSavesSuccess = true;
-		    void ContinueSave(bool success, string message, Context activeActivity)
-		    {
-		        allSavesSuccess &= success;
+            int indexToSave = 0;
+            bool allSavesSuccess = true;
+            void ContinueSave(bool success, string message, Context activeActivity)
+            {
+                allSavesSuccess &= success;
                 indexToSave++;
-		        if (indexToSave == allDatabasesToSave.Count)
-		        {
-		            operationFinishedHandler.SetResult(allSavesSuccess);
-		            operationFinishedHandler.Run();
-		            return;
-		        }
-		        SaveDb saveDb = new SaveDb( _app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false, null);
-		        saveDb.SetStatusLogger(StatusLogger);
-		        saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
-		        saveDb.Run();
-		    }
+                if (indexToSave == allDatabasesToSave.Count)
+                {
+                    operationFinishedHandler.SetResult(allSavesSuccess);
+                    operationFinishedHandler.Run();
+                    return;
+                }
+                SaveDb saveDb = new SaveDb(_app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false, null);
+                saveDb.SetStatusLogger(StatusLogger);
+                saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
+                saveDb.Run();
+            }
 
 
-		    SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false, null);
+            SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false, null);
             save.SetStatusLogger(StatusLogger);
-		    save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
+            save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
             save.Run();
-		}
-	}
+        }
+    }
 }

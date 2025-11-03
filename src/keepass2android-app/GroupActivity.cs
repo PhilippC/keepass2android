@@ -42,8 +42,8 @@ using Object = Java.Lang.Object;
 
 namespace keepass2android
 {
-	[Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
-	[MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
+    [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
+    [MetaData("android.app.default_searchable", Value = "keepass2android.search.SearchResults")]
 #if NoNet
     [MetaData("android.app.searchable", Resource = "@xml/searchable_offline")]
 #else
@@ -53,265 +53,275 @@ namespace keepass2android
     [MetaData("android.app.searchable", Resource = "@xml/searchable")]
 #endif
 #endif
-    [IntentFilter(new string[]{"android.intent.action.SEARCH"})]
-	[MetaData("android.app.searchable",Resource=AppNames.Searchable)]
-	public class GroupActivity : GroupBaseActivity {
-		
-		public const int Uninit = -1;
-		
-		
-		private const String Tag = "Group Activity:";
-		private const string Askaddtemplates = "AskAddTemplates";
+    [IntentFilter(new string[] { "android.intent.action.SEARCH" })]
+    [MetaData("android.app.searchable", Resource = AppNames.Searchable)]
+    public class GroupActivity : GroupBaseActivity
+    {
 
-		public static void Launch(Activity act, AppTask appTask, ActivityLaunchMode launchMode) {
-			Launch(act, null, appTask, launchMode);
-		}
-		
-		public static void Launch (Activity act, PwGroup g, AppTask appTask, ActivityLaunchMode launchMode)
-		{
-			Intent i = new Intent(act, typeof(GroupActivity));
-				
-			if ( g != null ) {
-				i.PutExtra(KeyEntry, g.Uuid.ToHexString());
-			}
-			appTask.ToIntent(i);
+        public const int Uninit = -1;
 
-		    launchMode.Launch(act, i);
-		}
 
-		protected PwUuid RetrieveGroupId(Intent i)
-		{
-			String uuid = i.GetStringExtra(KeyEntry);
-			
-			if ( String.IsNullOrEmpty(uuid) ) {
-				return null;
-			}
-			return new PwUuid(MemUtil.HexStringToByteArray(uuid));
-		}
+        private const String Tag = "Group Activity:";
+        private const string Askaddtemplates = "AskAddTemplates";
 
-		public override void SetupNormalButtons()
-		{
-		    SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
-		}
+        public static void Launch(Activity act, AppTask appTask, ActivityLaunchMode launchMode)
+        {
+            Launch(act, null, appTask, launchMode);
+        }
+
+        public static void Launch(Activity act, PwGroup g, AppTask appTask, ActivityLaunchMode launchMode)
+        {
+            Intent i = new Intent(act, typeof(GroupActivity));
+
+            if (g != null)
+            {
+                i.PutExtra(KeyEntry, g.Uuid.ToHexString());
+            }
+            appTask.ToIntent(i);
+
+            launchMode.Launch(act, i);
+        }
+
+        protected PwUuid RetrieveGroupId(Intent i)
+        {
+            String uuid = i.GetStringExtra(KeyEntry);
+
+            if (String.IsNullOrEmpty(uuid))
+            {
+                return null;
+            }
+            return new PwUuid(MemUtil.HexStringToByteArray(uuid));
+        }
+
+        public override void SetupNormalButtons()
+        {
+            SetNormalButtonVisibility(AddGroupEnabled, AddEntryEnabled);
+        }
 
         protected override bool AddEntryEnabled
-		{
-			get { return App.Kp2a.CurrentDb.CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup); }
-		}
+        {
+            get { return App.Kp2a.CurrentDb.CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup); }
+        }
 
-	    protected override bool AddGroupEnabled
-	    {
-	        get { return App.Kp2a.CurrentDb.CanWrite; }
-	    }
+        protected override bool AddGroupEnabled
+        {
+            get { return App.Kp2a.CurrentDb.CanWrite; }
+        }
 
-	    private class TemplateListAdapter : ArrayAdapter<PwEntry>
-		{
-			public TemplateListAdapter(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
-			{
-			}
-
-			public TemplateListAdapter(Context context, int textViewResourceId) : base(context, textViewResourceId)
-			{
-			}
-
-			public TemplateListAdapter(Context context, int resource, int textViewResourceId) : base(context, resource, textViewResourceId)
-			{
-			}
-
-			public TemplateListAdapter(Context context, int textViewResourceId, PwEntry[] objects) : base(context, textViewResourceId, objects)
-			{
-			}
-
-			public TemplateListAdapter(Context context, int resource, int textViewResourceId, PwEntry[] objects) : base(context, resource, textViewResourceId, objects)
-			{
-			}
-
-			public TemplateListAdapter(Context context, int textViewResourceId, IList<PwEntry> objects) : base(context, textViewResourceId, objects)
-			{
-			}
-
-			public TemplateListAdapter(Context context, int resource, int textViewResourceId, IList<PwEntry> objects) : base(context, resource, textViewResourceId, objects)
-			{
-			}
-
-			public override View GetView(int position, View convertView, ViewGroup parent)
-			{
-				View v = base.GetView(position, convertView, parent);
-
-				TextView tv = (TextView)v.FindViewById(Android.Resource.Id.Text1);
-				tv.SetPadding(tv.PaddingLeft,0,tv.PaddingRight,0);
-
-				PwEntry templateEntry = this.GetItem(position);
-				int size = (int)(Util.convertDpToPixel(Util.convertDpToPixel(20, Context), Context));
-				var bmp =
-					Bitmap.CreateScaledBitmap(
-						Util.DrawableToBitmap(App.Kp2a.CurrentDb						    .DrawableFactory.GetIconDrawable(Context, App.Kp2a.CurrentDb.KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
-						size, size,
-						true);
-				
-				
-				Drawable icon = new BitmapDrawable(bmp);
-
-				if (
-						PreferenceManager.GetDefaultSharedPreferences(Context)
-							.GetString("IconSetKey", Context.PackageName) == Context.PackageName)
-				{
-					Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
-					Color color = new Color(189, 189, 189);
-					icon.SetColorFilter(color, mMode);
-				}
-				
-				//Put the image on the TextView
-				tv.SetCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-				tv.Text = templateEntry.Strings.ReadSafe(PwDefs.TitleField);
-				tv.SetTextSize(ComplexUnitType.Dip, 20);
-				
-				tv.CompoundDrawablePadding = (int)Util.convertDpToPixel(8, Context);
-
-				return v;
-			}
-		};
-
-	    protected override void OnCreate (Bundle savedInstanceState)
-		{
-			base.OnCreate (savedInstanceState);
-			
-			
-			if (IsFinishing) {
-				return;
-			}
-			
-			SetResult (KeePass.ExitNormal);
-			
-			Log.Warn (Tag, "Creating group view");
-			Intent intent = Intent;
-			
-			PwUuid id = RetrieveGroupId (intent);
-			
-			Database db = App.Kp2a.CurrentDb;
-		    if (db != null)
-		    {
-		        Group = id == null ? db.Root : db.GroupsById[id];
-		    }
-
-		    Log.Warn (Tag, "Retrieved group");
-			if (Group == null) {
-				Log.Warn (Tag, "Group was null");
-				return;
-			}
-			
-			
-			if (AddGroupEnabled) {
-				// Add Group button
-				View addGroup = FindViewById (Resource.Id.fabAddNewGroup);
-				addGroup.Click += (sender, e) => {
-					GroupEditActivity.Launch (this, Group);
-				};
-			}
-			
-			
-            if (AddEntryEnabled) 
+        private class TemplateListAdapter : ArrayAdapter<PwEntry>
+        {
+            public TemplateListAdapter(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
             {
-				View addEntry = FindViewById (Resource.Id.fabAddNewEntry);
-				addEntry.Click += (sender, e) =>
-				{
-					if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsTemplates &&
-						!AddTemplateEntries.ContainsAllTemplates(App.Kp2a.CurrentDb) &&
-						PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(Askaddtemplates, true))
-					{
-						App.Kp2a.AskYesNoCancel(UiStringKey.AskAddTemplatesTitle, UiStringKey.AskAddTemplatesMessage,UiStringKey.yes, UiStringKey.no,
-							(o, args) =>
-							{
-								//yes
-								BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, 
-									new AddTemplateEntries(App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
-									    (success, message, context) => (context as GroupActivity)?.StartAddEntry())));
-								pt.Run();		
-							},
-							(o, args) =>
-							{
-								var edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
-								edit.PutBoolean(Askaddtemplates, false);
-								edit.Commit();
-								//no 
-								StartAddEntry();
-							},null);
-						
-					}
-					else
-						StartAddEntry();
-				};
-                 
-			}
-			
-			SetGroupTitle();
-			SetGroupIcon();
+            }
 
-			FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
-			Log.Warn(Tag, "Finished creating group");
+            public TemplateListAdapter(Context context, int textViewResourceId) : base(context, textViewResourceId)
+            {
+            }
 
-			
-		}
+            public TemplateListAdapter(Context context, int resource, int textViewResourceId) : base(context, resource, textViewResourceId)
+            {
+            }
 
-		private void StartAddEntry()
-		{
-			PwEntry defaultTemplate = new PwEntry(false, false);
-			defaultTemplate.IconId = PwIcon.Key;
-			defaultTemplate.Strings.Set(PwDefs.TitleField, new ProtectedString(false, GetString(Resource.String.DefaultTemplate)));
-			List<PwEntry> templates = new List<PwEntry>() {defaultTemplate};
-			if ((!PwUuid.Zero.Equals(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup))
-				&& (App.Kp2a.CurrentDb.KpDatabase.RootGroup.FindGroup(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup, true) != null))
-			{
-				templates.AddRange(
-					App.Kp2a.CurrentDb.GroupsById[App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
-						entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
-			}
-			if (templates.Count > 1)
-			{
-				new MaterialAlertDialogBuilder(this)
-					.SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
-						Android.Resource.Id.Text1, templates),
-						(o, args) => { EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); })
-					.Show();
-			}
-			else
-			{
-				EntryEditActivity.Launch(this, Group, PwUuid.Zero, AppTask);
-			}
-		}
+            public TemplateListAdapter(Context context, int textViewResourceId, PwEntry[] objects) : base(context, textViewResourceId, objects)
+            {
+            }
 
-		public override void OnCreateContextMenu(IContextMenu menu, View v,
-		                                         IContextMenuContextMenuInfo  menuInfo) {
-			
-			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
-			ClickView cv = (ClickView) acmi.TargetView;
-			cv.OnCreateMenu(menu, menuInfo);
-		}
+            public TemplateListAdapter(Context context, int resource, int textViewResourceId, PwEntry[] objects) : base(context, resource, textViewResourceId, objects)
+            {
+            }
 
-	    public override bool EntriesBelongToCurrentDatabaseOnly
-	    {
-	        get { return true; }
-	    }
+            public TemplateListAdapter(Context context, int textViewResourceId, IList<PwEntry> objects) : base(context, textViewResourceId, objects)
+            {
+            }
 
-	    public override ElementAndDatabaseId FullGroupId
-	    {
-	        get  { return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(Group), Group); } 
-	    }
+            public TemplateListAdapter(Context context, int resource, int textViewResourceId, IList<PwEntry> objects) : base(context, resource, textViewResourceId, objects)
+            {
+            }
 
-	    public override void OnBackPressed()
-		{
-			base.OnBackPressed();
-			//if ((Group != null) && (Group.ParentGroup != null))
-				//OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
-		}
-		
-		public override bool OnContextItemSelected(IMenuItem item) {
-			AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
-			ClickView cv = (ClickView) acmi.TargetView;
-			
-			return cv.OnContextItemSelected(item);
-		}
-		
-	}
+            public override View GetView(int position, View convertView, ViewGroup parent)
+            {
+                View v = base.GetView(position, convertView, parent);
+
+                TextView tv = (TextView)v.FindViewById(Android.Resource.Id.Text1);
+                tv.SetPadding(tv.PaddingLeft, 0, tv.PaddingRight, 0);
+
+                PwEntry templateEntry = this.GetItem(position);
+                int size = (int)(Util.convertDpToPixel(Util.convertDpToPixel(20, Context), Context));
+                var bmp =
+                    Bitmap.CreateScaledBitmap(
+                        Util.DrawableToBitmap(App.Kp2a.CurrentDb.DrawableFactory.GetIconDrawable(Context, App.Kp2a.CurrentDb.KpDatabase, templateEntry.IconId, PwUuid.Zero, false)),
+                        size, size,
+                        true);
+
+
+                Drawable icon = new BitmapDrawable(bmp);
+
+                if (
+                        PreferenceManager.GetDefaultSharedPreferences(Context)
+                            .GetString("IconSetKey", Context.PackageName) == Context.PackageName)
+                {
+                    Android.Graphics.PorterDuff.Mode mMode = Android.Graphics.PorterDuff.Mode.SrcAtop;
+                    Color color = new Color(189, 189, 189);
+                    icon.SetColorFilter(color, mMode);
+                }
+
+                //Put the image on the TextView
+                tv.SetCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+                tv.Text = templateEntry.Strings.ReadSafe(PwDefs.TitleField);
+                tv.SetTextSize(ComplexUnitType.Dip, 20);
+
+                tv.CompoundDrawablePadding = (int)Util.convertDpToPixel(8, Context);
+
+                return v;
+            }
+        };
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+
+            if (IsFinishing)
+            {
+                return;
+            }
+
+            SetResult(KeePass.ExitNormal);
+
+            Log.Warn(Tag, "Creating group view");
+            Intent intent = Intent;
+
+            PwUuid id = RetrieveGroupId(intent);
+
+            Database db = App.Kp2a.CurrentDb;
+            if (db != null)
+            {
+                Group = id == null ? db.Root : db.GroupsById[id];
+            }
+
+            Log.Warn(Tag, "Retrieved group");
+            if (Group == null)
+            {
+                Log.Warn(Tag, "Group was null");
+                return;
+            }
+
+
+            if (AddGroupEnabled)
+            {
+                // Add Group button
+                View addGroup = FindViewById(Resource.Id.fabAddNewGroup);
+                addGroup.Click += (sender, e) =>
+                {
+                    GroupEditActivity.Launch(this, Group);
+                };
+            }
+
+
+            if (AddEntryEnabled)
+            {
+                View addEntry = FindViewById(Resource.Id.fabAddNewEntry);
+                addEntry.Click += (sender, e) =>
+                {
+                    if (App.Kp2a.CurrentDb.DatabaseFormat.SupportsTemplates &&
+                        !AddTemplateEntries.ContainsAllTemplates(App.Kp2a.CurrentDb) &&
+                        PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(Askaddtemplates, true))
+                    {
+                        App.Kp2a.AskYesNoCancel(UiStringKey.AskAddTemplatesTitle, UiStringKey.AskAddTemplatesMessage, UiStringKey.yes, UiStringKey.no,
+                            (o, args) =>
+                            {
+                                //yes
+                                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a,
+                                    new AddTemplateEntries(App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
+                                        (success, message, context) => (context as GroupActivity)?.StartAddEntry())));
+                                pt.Run();
+                            },
+                            (o, args) =>
+                            {
+                                var edit = PreferenceManager.GetDefaultSharedPreferences(this).Edit();
+                                edit.PutBoolean(Askaddtemplates, false);
+                                edit.Commit();
+                                //no 
+                                StartAddEntry();
+                            }, null);
+
+                    }
+                    else
+                        StartAddEntry();
+                };
+
+            }
+
+            SetGroupTitle();
+            SetGroupIcon();
+
+            FragmentManager.FindFragmentById<GroupListFragment>(Resource.Id.list_fragment).ListAdapter = new PwGroupListAdapter(this, Group);
+            Log.Warn(Tag, "Finished creating group");
+
+
+        }
+
+        private void StartAddEntry()
+        {
+            PwEntry defaultTemplate = new PwEntry(false, false);
+            defaultTemplate.IconId = PwIcon.Key;
+            defaultTemplate.Strings.Set(PwDefs.TitleField, new ProtectedString(false, GetString(Resource.String.DefaultTemplate)));
+            List<PwEntry> templates = new List<PwEntry>() { defaultTemplate };
+            if ((!PwUuid.Zero.Equals(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup))
+                && (App.Kp2a.CurrentDb.KpDatabase.RootGroup.FindGroup(App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup, true) != null))
+            {
+                templates.AddRange(
+                    App.Kp2a.CurrentDb.GroupsById[App.Kp2a.CurrentDb.KpDatabase.EntryTemplatesGroup].Entries.OrderBy(
+                        entr => entr.Strings.ReadSafe(PwDefs.TitleField)));
+            }
+            if (templates.Count > 1)
+            {
+                new MaterialAlertDialogBuilder(this)
+                    .SetAdapter(new TemplateListAdapter(this, Android.Resource.Layout.SelectDialogItem,
+                        Android.Resource.Id.Text1, templates),
+                        (o, args) => { EntryEditActivity.Launch(this, Group, templates[args.Which].Uuid, AppTask); })
+                    .Show();
+            }
+            else
+            {
+                EntryEditActivity.Launch(this, Group, PwUuid.Zero, AppTask);
+            }
+        }
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v,
+                                                 IContextMenuContextMenuInfo menuInfo)
+        {
+
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)menuInfo;
+            ClickView cv = (ClickView)acmi.TargetView;
+            cv.OnCreateMenu(menu, menuInfo);
+        }
+
+        public override bool EntriesBelongToCurrentDatabaseOnly
+        {
+            get { return true; }
+        }
+
+        public override ElementAndDatabaseId FullGroupId
+        {
+            get { return new ElementAndDatabaseId(App.Kp2a.FindDatabaseForElement(Group), Group); }
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            //if ((Group != null) && (Group.ParentGroup != null))
+            //OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+            ClickView cv = (ClickView)acmi.TargetView;
+
+            return cv.OnContextItemSelected(item);
+        }
+
+    }
 }
 

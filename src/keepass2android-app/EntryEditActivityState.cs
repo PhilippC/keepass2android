@@ -4,19 +4,19 @@ using KeePassLib.Security;
 
 namespace keepass2android
 {
-	public abstract class EditModeBase
-	{
-       
+    public abstract class EditModeBase
+    {
+
 
         public virtual bool IsVisible(string fieldKey)
-	    {
-	        return true;
-	    }
+        {
+            return true;
+        }
 
-	    public virtual IEnumerable<string> SortExtraFieldKeys(IEnumerable<string> keys)
-	    {
-	        return keys;
-	    }
+        public virtual IEnumerable<string> SortExtraFieldKeys(IEnumerable<string> keys)
+        {
+            return keys;
+        }
 
         protected bool? manualShowAddAttachments = null;
 
@@ -25,7 +25,8 @@ namespace keepass2android
             get
             {
                 if (manualShowAddAttachments != null) return (bool)manualShowAddAttachments;
-                return true; }
+                return true;
+            }
             set { manualShowAddAttachments = value; }
         }
 
@@ -36,30 +37,30 @@ namespace keepass2android
         {
             get
             {
-                if (manualShowAddExtras != null) return (bool) manualShowAddExtras; 
+                if (manualShowAddExtras != null) return (bool)manualShowAddExtras;
                 return true;
             }
             set { manualShowAddExtras = value; }
         }
 
         public virtual string GetTitle(string key)
-	    {
-	        return key;
-	    }
-
-	    public virtual string GetFieldType(string key)
-	    {
-	        return "";
-	    }
-
-	    public virtual void InitializeEntry(PwEntry entry)
-	    {
+        {
+            return key;
         }
 
-	    public virtual void PrepareForSaving(PwEntry entry)
-	    {
-	    }
-	}
+        public virtual string GetFieldType(string key)
+        {
+            return "";
+        }
+
+        public virtual void InitializeEntry(PwEntry entry)
+        {
+        }
+
+        public virtual void PrepareForSaving(PwEntry entry)
+        {
+        }
+    }
 
     /// <summary>
     /// Holds the state of the EntryEditActivity. This is required to be able to keep a partially modified entry in memory
@@ -67,22 +68,22 @@ namespace keepass2android
     /// when there are big attachements.
     /// </summary>
     internal class EntryEditActivityState
-	{
-		internal PwEntry Entry, EntryInDatabase;
-		internal bool ShowPassword = false;
-		internal bool IsNew;
-		internal PwIcon SelectedIconId;
-		internal PwUuid SelectedCustomIconId = PwUuid.Zero;
-		internal bool SelectedIcon = false;
-		
-		internal PwGroup ParentGroup;
-		
-		internal bool EntryModified;
+    {
+        internal PwEntry Entry, EntryInDatabase;
+        internal bool ShowPassword = false;
+        internal bool IsNew;
+        internal PwIcon SelectedIconId;
+        internal PwUuid SelectedCustomIconId = PwUuid.Zero;
+        internal bool SelectedIcon = false;
 
-		public EditModeBase EditMode { get; set; }
-		
-		//the key of the extra field to which the last triggered file selection process belongs
-	    public string LastTriggeredFileSelectionProcessKey;
-	}
+        internal PwGroup ParentGroup;
+
+        internal bool EntryModified;
+
+        public EditModeBase EditMode { get; set; }
+
+        //the key of the extra field to which the last triggered file selection process belongs
+        public string LastTriggeredFileSelectionProcessKey;
+    }
 }
 

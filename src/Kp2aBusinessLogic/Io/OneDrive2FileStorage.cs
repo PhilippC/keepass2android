@@ -21,7 +21,7 @@ using String = System.String;
 
 namespace keepass2android.Io
 {
-   namespace ItemLocation
+    namespace ItemLocation
     {
         public class User
         {
@@ -246,7 +246,7 @@ namespace keepass2android.Io
                         return this;
                     }
 
-                    
+
 
                 }
 
@@ -296,7 +296,7 @@ namespace keepass2android.Io
                 {
                     return new DriveItemRequestBuilderAsyncTask(this);
                 }
-            
+
 
             };
 
@@ -327,12 +327,12 @@ namespace keepass2android.Io
                         }
                         else
                         {
-                            
+
                             result.DriveItemRequestBuilder = client.Drives[itemLocation.DriveId].Items["root"];
-                            
+
                         }
 
-                        
+
                     }
                     else
                     {
@@ -340,7 +340,7 @@ namespace keepass2android.Io
 
                         DriveItemRequestBuilder specialRoot = client.Drives[itemLocation.DriveId].Items[_specialFolder];
 
-                        
+
                         if (itemLocation.LocalPath.Any())
                         {
                             result.CustomDriveItemRequestBuilder = specialRoot.ItemWithPath(itemLocation.LocalPathString);
@@ -497,7 +497,7 @@ namespace keepass2android.Io
         {
             var itemLocation = OneDrive2ItemLocation<OneDrive2PrefixContainerType>.FromString(path);
             var client = await TryGetMsGraphClient(path, true);
-            
+
 
             PathItemBuilder result = new PathItemBuilder(await GetSpecialFolder(itemLocation, client));
 
@@ -509,7 +509,7 @@ namespace keepass2android.Io
             }
 
             result.client = client;
-            
+
             if (result.client == null)
                 throw new Exception("Failed to connect or authenticate to OneDrive!");
 
@@ -589,7 +589,7 @@ namespace keepass2android.Io
                 string path = ioc.Path;
 
                 logDebug("openFileForRead. Path=" + path);
-                
+
                 Stream? result = Task.Run(async () =>
                 {
                     logDebug("openFileForRead. Path=" + path);
@@ -807,7 +807,7 @@ namespace keepass2android.Io
             PathItemBuilder pathItemBuilder)
         {
             var pathItem = await pathItemBuilder.BuildPathItemAsync();
-            var response =  await pathItem
+            var response = await pathItem
                 .ToAsyncResult<DriveItemCollectionResponse>()
                 .ForDriveItemRequestBuilder(b => b.Children.GetAsync())
                 .ForCustomDriveItemRequestBuilder(b => b.Children.GetAsync())
@@ -1191,17 +1191,17 @@ namespace keepass2android.Io
                         IsDirectory = true,
                         CanRead = true,
                         CanWrite = true,
-                        Path = parentPath.BuildShare("me","me","me", drive.Id).ToString()
+                        Path = parentPath.BuildShare("me", "me", "me", drive.Id).ToString()
                     };
                     result.Add(e);
                 });
             }
 
-            
+
             if (!CanListShares)
                 return result;
 
-            
+
             try
             {
                 string? driveId = parentPath.DriveId;
@@ -1293,8 +1293,8 @@ namespace keepass2android.Io
             }
             //doesn't exist. Create:
             logDebug("building request for " + pathItemBuilder.itemLocation);
-            
-            
+
+
             PathItemBuilder targetPathItemBuilder = await GetPathItemBuilder(pathItemBuilder.itemLocation.BuildLocalChildLocation(newFilename, "", pathItemBuilder.itemLocation.DriveId ?? "").ToString());
 
 
@@ -1393,8 +1393,8 @@ namespace keepass2android.Io
 
             }
         }
-        
-        
+
+
 
         protected override async Task<string?> GetSpecialFolder(
             OneDrive2ItemLocation<OneDrive2AppFolderPrefixContainer> itemLocation, GraphServiceClient client)
@@ -1422,7 +1422,7 @@ namespace keepass2android.Io
 
         protected string SpecialFolderName { get { return "approot"; } }
 
-        private readonly Dictionary<string,string> _specialFolderIdByDriveId = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _specialFolderIdByDriveId = new Dictionary<string, string>();
 
         protected override string GetDriveDisplayName(Drive drive)
         {

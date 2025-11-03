@@ -6,5 +6,5 @@ using Kp2aAutofillParser;
 
 namespace keepass2android.services.AutofillBase.model
 {
-	
+
 }

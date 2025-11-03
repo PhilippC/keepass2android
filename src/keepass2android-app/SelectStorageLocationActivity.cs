@@ -12,211 +12,211 @@ using keepass2android;
 
 namespace keepass2android
 {
-	[Activity(Label = "", Theme = "@style/Kp2aTheme_BlueActionBar")]
-	public class SelectStorageLocationActivity : SelectStorageLocationActivityBase, IDialogInterfaceOnDismissListener
-	{
-		private ActivityDesign _design;
-		
-		private const string BundleKeySelectedIoc = "BundleKeySelectedIoc";
-		
-		
-		public const string ExtraKeyWritableRequirements = "EXTRA_KEY_WRITABLE_REQUIREMENTS";
+    [Activity(Label = "", Theme = "@style/Kp2aTheme_BlueActionBar")]
+    public class SelectStorageLocationActivity : SelectStorageLocationActivityBase, IDialogInterfaceOnDismissListener
+    {
+        private ActivityDesign _design;
 
-		public SelectStorageLocationActivity() : base(App.Kp2a)
-		{
-			_design = new ActivityDesign(this);
-		}
-
-		protected override void OnCreate(Bundle bundle)
-		{
-			_design.ApplyTheme();
-			base.OnCreate(bundle);
-			
-			
+        private const string BundleKeySelectedIoc = "BundleKeySelectedIoc";
 
 
-			Kp2aLog.Log("SelectStorageLocationActivity.OnCreate");
+        public const string ExtraKeyWritableRequirements = "EXTRA_KEY_WRITABLE_REQUIREMENTS";
 
-			
-			if (IsStorageSelectionForSave)
-			{
-				throw new Exception("save is not yet implemented. In StartSelectFile, no handler for onCreate is passed.");
-			}
+        public SelectStorageLocationActivity() : base(App.Kp2a)
+        {
+            _design = new ActivityDesign(this);
+        }
 
-			bool allowThirdPartyGet = Intent.GetBooleanExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, false);
-			bool allowThirdPartySend = Intent.GetBooleanExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
-
-			bool isRecreated = false;
-			if (bundle == null)
-				State = new Bundle();
-			else
-			{
-				State = (Bundle)bundle.Clone();
-				var selectedIocString = bundle.GetString(BundleKeySelectedIoc, null);
-				if (selectedIocString != null)
-					_selectedIoc = IOConnectionInfo.UnserializeFromString(selectedIocString);
-				isRecreated = true;
-			}
-
-			//todo: handle orientation change while dialog is shown
-
-			if (!isRecreated)
-			{
-				StartFileStorageSelection(RequestCodeFileStorageSelectionForPrimarySelect, allowThirdPartyGet, allowThirdPartySend);
-			}
-				
-
-		}
-
-		protected Bundle State { get; set; }
-
-		protected override void ShowErrorToast(string text)
-		{
-			App.Kp2a.ShowMessage(this, text,  MessageSeverity.Error);
-		}
-
-		protected override void ShowInvalidSchemeMessage(string dataString)
-		{
-			App.Kp2a.ShowMessage(this, Resources.GetString(Resource.String.unknown_uri_scheme, new Java.Lang.Object[] { dataString }),
-										    MessageSeverity.Error);
-		}
-
-		protected override string IntentToFilename(Intent data)
-		{
-			return Util.IntentToFilename(data, this);
-		}
-
-		protected override void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent data)
-		{
-			Util.SetIoConnectionFromIntent(ioc, data);
-		}
-
-		protected override Result ExitFileStorageSelectionOk
-		{
-			get { return KeePass.ExitFileStorageSelectionOk; }
-		}
-
-		protected override void StartSelectFile( bool isForSave, int browseRequestCode, string protocolId)
-		{
-			FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, true, browseRequestCode);
-			fileSelectHelper.OnOpen += (sender, ioc) =>
-			{
-				IocSelected(ioc,browseRequestCode);
-			};
-			fileSelectHelper.OnCancel += (sender, args) =>
-			{
-				ReturnCancel();
-			};
-
-			App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
-																												  OnActivityResult,
-																												  s => fileSelectHelper.PerformManualFileSelect(s)
-																				), isForSave, browseRequestCode, protocolId);
-		}
-
-		protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave, bool tryGetPermanentAccess)
-		{
-			Util.ShowBrowseDialog(this, requestCode, isForSave, tryGetPermanentAccess);
-		}
-
-		protected override bool IsStorageSelectionForSave 
-		{ 
-			get { return Intent.GetBooleanExtra(FileStorageSetupDefs.ExtraIsForSave, false); }
-		}
+        protected override void OnCreate(Bundle bundle)
+        {
+            _design.ApplyTheme();
+            base.OnCreate(bundle);
 
 
-		protected override void OnSaveInstanceState(Bundle outState)
-		{
-			base.OnSaveInstanceState(outState);
-
-			outState.PutAll(State);
-			if (_selectedIoc != null)
-				outState.PutString(BundleKeySelectedIoc, IOConnectionInfo.SerializeToString(_selectedIoc));
-		}
-
-		protected override void OnResume()
-		{
-			base.OnResume();
-			_design.ReapplyTheme();
-		}
 
 
-		protected override void ReturnCancel()
-		{
-			SetResult(Result.Canceled);
-			Finish();
-		}
+            Kp2aLog.Log("SelectStorageLocationActivity.OnCreate");
 
-		protected override void ReturnOk(IOConnectionInfo ioc)
-		{
-			Intent intent = new Intent();
-			Util.PutIoConnectionToIntent(ioc, intent);
-			SetResult(Result.Ok, intent);
-			Finish();
-		}
 
-		protected override void ShowAlertDialog(string message, EventHandler<DialogClickEventArgs> onOk, EventHandler<DialogClickEventArgs> onCancel)
-		{
-			new 
+            if (IsStorageSelectionForSave)
+            {
+                throw new Exception("save is not yet implemented. In StartSelectFile, no handler for onCreate is passed.");
+            }
+
+            bool allowThirdPartyGet = Intent.GetBooleanExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, false);
+            bool allowThirdPartySend = Intent.GetBooleanExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+
+            bool isRecreated = false;
+            if (bundle == null)
+                State = new Bundle();
+            else
+            {
+                State = (Bundle)bundle.Clone();
+                var selectedIocString = bundle.GetString(BundleKeySelectedIoc, null);
+                if (selectedIocString != null)
+                    _selectedIoc = IOConnectionInfo.UnserializeFromString(selectedIocString);
+                isRecreated = true;
+            }
+
+            //todo: handle orientation change while dialog is shown
+
+            if (!isRecreated)
+            {
+                StartFileStorageSelection(RequestCodeFileStorageSelectionForPrimarySelect, allowThirdPartyGet, allowThirdPartySend);
+            }
+
+
+        }
+
+        protected Bundle State { get; set; }
+
+        protected override void ShowErrorToast(string text)
+        {
+            App.Kp2a.ShowMessage(this, text, MessageSeverity.Error);
+        }
+
+        protected override void ShowInvalidSchemeMessage(string dataString)
+        {
+            App.Kp2a.ShowMessage(this, Resources.GetString(Resource.String.unknown_uri_scheme, new Java.Lang.Object[] { dataString }),
+                                            MessageSeverity.Error);
+        }
+
+        protected override string IntentToFilename(Intent data)
+        {
+            return Util.IntentToFilename(data, this);
+        }
+
+        protected override void SetIoConnectionFromIntent(IOConnectionInfo ioc, Intent data)
+        {
+            Util.SetIoConnectionFromIntent(ioc, data);
+        }
+
+        protected override Result ExitFileStorageSelectionOk
+        {
+            get { return KeePass.ExitFileStorageSelectionOk; }
+        }
+
+        protected override void StartSelectFile(bool isForSave, int browseRequestCode, string protocolId)
+        {
+            FileSelectHelper fileSelectHelper = new FileSelectHelper(this, isForSave, true, browseRequestCode);
+            fileSelectHelper.OnOpen += (sender, ioc) =>
+            {
+                IocSelected(ioc, browseRequestCode);
+            };
+            fileSelectHelper.OnCancel += (sender, args) =>
+            {
+                ReturnCancel();
+            };
+
+            App.Kp2a.GetFileStorage(protocolId).StartSelectFile(new FileStorageSetupInitiatorActivity(this,
+                                                                                                                  OnActivityResult,
+                                                                                                                  s => fileSelectHelper.PerformManualFileSelect(s)
+                                                                                ), isForSave, browseRequestCode, protocolId);
+        }
+
+        protected override void ShowAndroidBrowseDialog(int requestCode, bool isForSave, bool tryGetPermanentAccess)
+        {
+            Util.ShowBrowseDialog(this, requestCode, isForSave, tryGetPermanentAccess);
+        }
+
+        protected override bool IsStorageSelectionForSave
+        {
+            get { return Intent.GetBooleanExtra(FileStorageSetupDefs.ExtraIsForSave, false); }
+        }
+
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+
+            outState.PutAll(State);
+            if (_selectedIoc != null)
+                outState.PutString(BundleKeySelectedIoc, IOConnectionInfo.SerializeToString(_selectedIoc));
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _design.ReapplyTheme();
+        }
+
+
+        protected override void ReturnCancel()
+        {
+            SetResult(Result.Canceled);
+            Finish();
+        }
+
+        protected override void ReturnOk(IOConnectionInfo ioc)
+        {
+            Intent intent = new Intent();
+            Util.PutIoConnectionToIntent(ioc, intent);
+            SetResult(Result.Ok, intent);
+            Finish();
+        }
+
+        protected override void ShowAlertDialog(string message, EventHandler<DialogClickEventArgs> onOk, EventHandler<DialogClickEventArgs> onCancel)
+        {
+            new
                     MaterialAlertDialogBuilder(this)
-					.SetPositiveButton(Android.Resource.String.Ok, onOk)
-					.SetMessage(message)
-					.SetCancelable(false)
-					.SetNegativeButton(Android.Resource.String.Cancel, onCancel)
-					.Create()
-					.Show();
-				
-		}
+                    .SetPositiveButton(Android.Resource.String.Ok, onOk)
+                    .SetMessage(message)
+                    .SetCancelable(false)
+                    .SetNegativeButton(Android.Resource.String.Cancel, onCancel)
+                    .Create()
+                    .Show();
 
-		protected override WritableRequirements RequestedWritableRequirements
-		{
-			get { return (WritableRequirements) Intent.GetIntExtra(ExtraKeyWritableRequirements, (int)WritableRequirements.ReadOnly); }
-		}
+        }
 
-		
+        protected override WritableRequirements RequestedWritableRequirements
+        {
+            get { return (WritableRequirements)Intent.GetIntExtra(ExtraKeyWritableRequirements, (int)WritableRequirements.ReadOnly); }
+        }
 
-		protected override void PerformCopy(Func<Action> copyAndReturnPostExecute)
-		{
 
-			new SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
-			                      copyAndReturnPostExecute  
-				).Execute();
-		}
 
-		protected override void StartFileStorageSelection(int requestCode, bool allowThirdPartyGet,
-		                                                  bool allowThirdPartySend)
-		{
-			#if !EXCLUDE_FILECHOOSER
+        protected override void PerformCopy(Func<Action> copyAndReturnPostExecute)
+        {
 
-			Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
-			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, allowThirdPartyGet);
-			intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, allowThirdPartySend);
+            new SimpleLoadingDialog(this, GetString(Resource.String.CopyingFile), false,
+                                  copyAndReturnPostExecute
+                ).Execute();
+        }
 
-			StartActivityForResult(intent, requestCode);
-			#else
+        protected override void StartFileStorageSelection(int requestCode, bool allowThirdPartyGet,
+                                                          bool allowThirdPartySend)
+        {
+#if !EXCLUDE_FILECHOOSER
+
+            Intent intent = new Intent(this, typeof(FileStorageSelectionActivity));
+            intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, allowThirdPartyGet);
+            intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, allowThirdPartySend);
+
+            StartActivityForResult(intent, requestCode);
+#else
 			App.Kp2a.ShowMessage(this, "File chooser is excluded!",  MessageSeverity.Error);
-			#endif
-		}
+#endif
+        }
 
-		protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
-		{
-			new FileSelectHelper(this, forSave, true, requestCode).StartFileChooser(defaultPath);
-		}
+        protected override void StartFileChooser(string defaultPath, int requestCode, bool forSave)
+        {
+            new FileSelectHelper(this, forSave, true, requestCode).StartFileChooser(defaultPath);
+        }
 
 
 
-		public void OnDismiss(IDialogInterface dialog)
-		{
-//			ReturnCancel();
-		}
+        public void OnDismiss(IDialogInterface dialog)
+        {
+            //			ReturnCancel();
+        }
 
-		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-		{
-			Kp2aLog.Log("onAR");
-			base.OnActivityResult(requestCode, resultCode, data);
-		}
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            Kp2aLog.Log("onAR");
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
 
-	}
+    }
 
 
 }

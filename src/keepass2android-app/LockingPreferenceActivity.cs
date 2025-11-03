@@ -29,17 +29,17 @@ using keepass2android;
 namespace keepass2android
 {
 
-    public class AppCompatPreferenceActivity: PreferenceActivity
+    public class AppCompatPreferenceActivity : PreferenceActivity
     {
         public AppCompatPreferenceActivity(IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
+            : base(javaReference, transfer)
+        {
+
+        }
 
         public AppCompatPreferenceActivity()
         {
-            
+
         }
 
         private AppCompatDelegate _appCompatDelegate;
@@ -59,7 +59,7 @@ namespace keepass2android
             Delegate.InstallViewFactory();
             Delegate.OnCreate(savedInstanceState);
             base.OnCreate(savedInstanceState);
-            
+
         }
 
 
@@ -72,27 +72,30 @@ namespace keepass2android
         public override void SetContentView(int layoutResId)
         {
             Delegate.SetContentView(layoutResId);
-            
+
         }
 
-        
-    public override void SetContentView(View view) {
-        Delegate.SetContentView(view);
-    }
-    
-    public override void SetContentView(View view, ViewGroup.LayoutParams @params) {
-        Delegate.SetContentView(view, @params);
-    }
-    
-    public override void AddContentView(View view, ViewGroup.LayoutParams @params) {
-        Delegate.AddContentView(view, @params);
-    }
 
-    protected override void OnPostResume()
-    {
-        base.OnPostResume();
-        Delegate.OnPostResume();
-    }
+        public override void SetContentView(View view)
+        {
+            Delegate.SetContentView(view);
+        }
+
+        public override void SetContentView(View view, ViewGroup.LayoutParams @params)
+        {
+            Delegate.SetContentView(view, @params);
+        }
+
+        public override void AddContentView(View view, ViewGroup.LayoutParams @params)
+        {
+            Delegate.AddContentView(view, @params);
+        }
+
+        protected override void OnPostResume()
+        {
+            base.OnPostResume();
+            Delegate.OnPostResume();
+        }
 
         protected override void OnTitleChanged(ICharSequence title, Color color)
         {
@@ -127,68 +130,70 @@ namespace keepass2android
         }
     }
 
-	
-	public class LockingPreferenceActivity : AppCompatPreferenceActivity {
-		
-		public LockingPreferenceActivity (IntPtr javaReference, JniHandleOwnership transfer)
-			: base(javaReference, transfer)
-		{
-			
-		}
-		public LockingPreferenceActivity ()
-		{
-		}
-		
-		
-		string _className = null;
-		string ClassName
-		{
-			get {
-				if (_className == null)
-					_className = this.GetType().Name;
-				return _className;
-			}
-		}
-		
-		protected override void OnResume()
-		{
-			base.OnResume();
-			TimeoutHelper.Resume(this);
-			Kp2aLog.Log(ClassName+".OnResume");
-		}
-		
-		protected override void OnStart()
-		{
-			base.OnStart();
-			Kp2aLog.Log(ClassName+".OnStart");
-		}
-		
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
-			Kp2aLog.Log(ClassName+".OnCreate");
-		}
-		
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-			GC.Collect();
-			Kp2aLog.Log(ClassName+".OnDestroy"+IsFinishing.ToString());
-		}
-		
-		protected override void OnPause()
-		{
-			base.OnPause();
-			TimeoutHelper.Pause(this);
-			Kp2aLog.Log(ClassName+".OnPause");
-		}
-		
-		protected override void OnStop()
-		{
-			base.OnStop();
-			Kp2aLog.Log(ClassName+".OnStop");
-		}
-	}
+
+    public class LockingPreferenceActivity : AppCompatPreferenceActivity
+    {
+
+        public LockingPreferenceActivity(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
+        {
+
+        }
+        public LockingPreferenceActivity()
+        {
+        }
+
+
+        string _className = null;
+        string ClassName
+        {
+            get
+            {
+                if (_className == null)
+                    _className = this.GetType().Name;
+                return _className;
+            }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            TimeoutHelper.Resume(this);
+            Kp2aLog.Log(ClassName + ".OnResume");
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            Kp2aLog.Log(ClassName + ".OnStart");
+        }
+
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            Kp2aLog.Log(ClassName + ".OnCreate");
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            GC.Collect();
+            Kp2aLog.Log(ClassName + ".OnDestroy" + IsFinishing.ToString());
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            TimeoutHelper.Pause(this);
+            Kp2aLog.Log(ClassName + ".OnPause");
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            Kp2aLog.Log(ClassName + ".OnStop");
+        }
+    }
 
 }
 

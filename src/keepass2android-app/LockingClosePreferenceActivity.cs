@@ -23,50 +23,51 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	
-	public class LockingClosePreferenceActivity : LockingPreferenceActivity, ILockCloseActivity
+
+    public class LockingClosePreferenceActivity : LockingPreferenceActivity, ILockCloseActivity
     {
 
-		
-		IOConnectionInfo _ioc;
-		private BroadcastReceiver _intentReceiver;
-		
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
-			base.OnCreate(savedInstanceState);
-			_ioc = App.Kp2a.CurrentDb.Ioc;
+
+        IOConnectionInfo _ioc;
+        private BroadcastReceiver _intentReceiver;
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            _ioc = App.Kp2a.CurrentDb.Ioc;
 
 
-			_intentReceiver = new LockCloseActivityBroadcastReceiver(this);
-			IntentFilter filter = new IntentFilter();
-			filter.AddAction(Intents.DatabaseLocked);
+            _intentReceiver = new LockCloseActivityBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(Intents.DatabaseLocked);
             ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
-		}
+        }
 
-		protected override void OnResume() {
-			base.OnResume();
+        protected override void OnResume()
+        {
+            base.OnResume();
 
-		    if (TimeoutHelper.CheckDbChanged(this, _ioc))
-		    {
-		        Finish();
-		        return;
-		    }
-		}
+            if (TimeoutHelper.CheckDbChanged(this, _ioc))
+            {
+                Finish();
+                return;
+            }
+        }
 
 
-		protected override void OnDestroy()
-		{
-			try
-			{
-				UnregisterReceiver(_intentReceiver);
-			}
-			catch (Exception ex)
-			{
-				Kp2aLog.LogUnexpectedError(ex);
-			}
+        protected override void OnDestroy()
+        {
+            try
+            {
+                UnregisterReceiver(_intentReceiver);
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.LogUnexpectedError(ex);
+            }
 
-			base.OnDestroy();
-		}
+            base.OnDestroy();
+        }
 
 
         public void OnLockDatabase(bool lockedByTimeout)

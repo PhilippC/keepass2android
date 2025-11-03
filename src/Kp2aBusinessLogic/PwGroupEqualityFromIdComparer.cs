@@ -20,21 +20,21 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	/// <summary>
-	/// EqualityComparer implementation to compare PwGroups based on their Id
-	/// </summary>
-	public class PwGroupEqualityFromIdComparer: IEqualityComparer<PwGroup>
-	{
-		#region IEqualityComparer implementation			
-		public bool Equals (PwGroup x, PwGroup y)
-		{
-			return x.Uuid.Equals(y.Uuid);
-		}			
-		public int GetHashCode (PwGroup obj)
-		{
-			return obj.Uuid.ToHexString().GetHashCode();
-		}			
-#endregion
-	}
+    /// <summary>
+    /// EqualityComparer implementation to compare PwGroups based on their Id
+    /// </summary>
+    public class PwGroupEqualityFromIdComparer : IEqualityComparer<PwGroup>
+    {
+        #region IEqualityComparer implementation			
+        public bool Equals(PwGroup x, PwGroup y)
+        {
+            return x.Uuid.Equals(y.Uuid);
+        }
+        public int GetHashCode(PwGroup obj)
+        {
+            return obj.Uuid.ToHexString().GetHashCode();
+        }
+        #endregion
+    }
 }
 

@@ -7,5 +7,5 @@ using Android.Views.Autofill;
 
 namespace keepass2android.services.AutofillBase.model
 {
-    
+
 }

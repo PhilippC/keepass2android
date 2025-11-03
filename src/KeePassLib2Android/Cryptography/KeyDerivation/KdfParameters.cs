@@ -28,53 +28,53 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography.KeyDerivation
 {
-	public sealed class KdfParameters : VariantDictionary
-	{
-		private const string ParamUuid = @"$UUID";
+    public sealed class KdfParameters : VariantDictionary
+    {
+        private const string ParamUuid = @"$UUID";
 
-		private readonly PwUuid m_puKdf;
-		public PwUuid KdfUuid
-		{
-			get { return m_puKdf; }
-		}
+        private readonly PwUuid m_puKdf;
+        public PwUuid KdfUuid
+        {
+            get { return m_puKdf; }
+        }
 
-		public KdfParameters(PwUuid puKdf)
-		{
-			if(puKdf == null) throw new ArgumentNullException("puKdf");
+        public KdfParameters(PwUuid puKdf)
+        {
+            if (puKdf == null) throw new ArgumentNullException("puKdf");
 
-			m_puKdf = puKdf;
-			SetByteArray(ParamUuid, puKdf.UuidBytes);
-		}
+            m_puKdf = puKdf;
+            SetByteArray(ParamUuid, puKdf.UuidBytes);
+        }
 
-		/// <summary>
-		/// Unsupported.
-		/// </summary>
-		public override object Clone()
-		{
-			throw new NotSupportedException();
-		}
+        /// <summary>
+        /// Unsupported.
+        /// </summary>
+        public override object Clone()
+        {
+            throw new NotSupportedException();
+        }
 
-		public static byte[] SerializeExt(KdfParameters p)
-		{
-			return VariantDictionary.Serialize(p);
-		}
+        public static byte[] SerializeExt(KdfParameters p)
+        {
+            return VariantDictionary.Serialize(p);
+        }
 
-		public static KdfParameters DeserializeExt(byte[] pb)
-		{
-			VariantDictionary d = VariantDictionary.Deserialize(pb);
-			if(d == null) { Debug.Assert(false); return null; }
+        public static KdfParameters DeserializeExt(byte[] pb)
+        {
+            VariantDictionary d = VariantDictionary.Deserialize(pb);
+            if (d == null) { Debug.Assert(false); return null; }
 
-			byte[] pbUuid = d.GetByteArray(ParamUuid);
-			if((pbUuid == null) || (pbUuid.Length != (int)PwUuid.UuidSize))
-			{
-				Debug.Assert(false);
-				return null;
-			}
+            byte[] pbUuid = d.GetByteArray(ParamUuid);
+            if ((pbUuid == null) || (pbUuid.Length != (int)PwUuid.UuidSize))
+            {
+                Debug.Assert(false);
+                return null;
+            }
 
-			PwUuid pu = new PwUuid(pbUuid);
-			KdfParameters p = new KdfParameters(pu);
-			d.CopyTo(p);
-			return p;
-		}
-	}
+            PwUuid pu = new PwUuid(pbUuid);
+            KdfParameters p = new KdfParameters(pu);
+            d.CopyTo(p);
+            return p;
+        }
+    }
 }

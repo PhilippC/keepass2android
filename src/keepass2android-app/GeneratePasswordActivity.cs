@@ -38,7 +38,7 @@ using OtpKeyProv;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]		    
+    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
     public class GeneratePasswordActivity :
 #if DEBUG
         LifecycleAwareActivity
@@ -49,9 +49,9 @@ namespace keepass2android
     {
         public const string GeneratedPasswordKey = "keepass2android.password.generated_password";
 
-        private readonly int[] _buttonLengthButtonIds  = new[]  {Resource.Id.btn_length6,
-            Resource.Id.btn_length8, 
-            Resource.Id.btn_length12, 
+        private readonly int[] _buttonLengthButtonIds = new[]  {Resource.Id.btn_length6,
+            Resource.Id.btn_length8,
+            Resource.Id.btn_length12,
             Resource.Id.btn_length16,
             Resource.Id.btn_length24,
             Resource.Id.btn_length32};
@@ -69,37 +69,38 @@ namespace keepass2android
             Resource.Id.cb_exclude_lookalike
         };
 
-        
 
-		PasswordFont _passwordFont = new PasswordFont();
+
+        PasswordFont _passwordFont = new PasswordFont();
 
         private static object _popularPasswordsLock = new object();
         private static bool _popularPasswordsInitialized = false;
 
 
         private ActivityDesign _design;
-	    public GeneratePasswordActivity()
-	    {
-		    _design = new ActivityDesign(this);
-	    }
+        public GeneratePasswordActivity()
+        {
+            _design = new ActivityDesign(this);
+        }
 
-		public static void Launch(Activity act) {
-			Intent i = new Intent(act, typeof(GeneratePasswordActivity));
-			
-			act.StartActivityForResult(i, 0);
-		}
+        public static void Launch(Activity act)
+        {
+            Intent i = new Intent(act, typeof(GeneratePasswordActivity));
 
-		public static void LaunchWithoutLockCheck(Activity act)
-		{
-			Intent i = new Intent(act, typeof(GeneratePasswordActivity));
+            act.StartActivityForResult(i, 0);
+        }
+
+        public static void LaunchWithoutLockCheck(Activity act)
+        {
+            Intent i = new Intent(act, typeof(GeneratePasswordActivity));
 
 #if DEBUG
 #else
 			i.PutExtra(NoLockCheck, true);
 #endif
 
-			act.StartActivityForResult(i, 0);
-		}
+            act.StartActivityForResult(i, 0);
+        }
 
         private PasswordProfiles _profiles;
 
@@ -113,7 +114,7 @@ namespace keepass2android
 
             public int? TryFindLastUsedProfileIndex()
             {
-                for (int i=0;i<Profiles.Count;i++)
+                for (int i = 0; i < Profiles.Count; i++)
                 {
                     var kvp = Profiles[i];
                     if (kvp.Value.Equals(LastUsedSettings))
@@ -143,13 +144,14 @@ namespace keepass2android
                 Profiles.RemoveAt(profileIndex);
             }
         }
-		
-		protected override void OnCreate(Bundle savedInstanceState) {
-			_design.ApplyTheme(); 
-			base.OnCreate(savedInstanceState);
 
-			SetContentView(Resource.Layout.generate_password);
-			SetResult(KeePass.ExitNormal);
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            _design.ApplyTheme();
+            base.OnCreate(savedInstanceState);
+
+            SetContentView(Resource.Layout.generate_password);
+            SetResult(KeePass.ExitNormal);
 
             new Util.InsetListener(FindViewById(Resource.Id.main_container)).Apply();
 
@@ -157,8 +159,8 @@ namespace keepass2android
             var prefs = GetPreferences(FileCreationMode.Private);
 
 
-            
-			string jsonOptions = prefs.GetString("password_generator_profiles", null);
+
+            string jsonOptions = prefs.GetString("password_generator_profiles", null);
             if (jsonOptions != null)
             {
                 try
@@ -200,14 +202,14 @@ namespace keepass2android
             _profiles.LastUsedSettings ??= new PasswordGenerator.CombinedKeyOptions()
             {
                 PasswordGenerationOptions = new PasswordGenerator.PasswordGenerationOptions()
-                    {Length = 7, UpperCase = true, LowerCase = true, Digits = true}
+                { Length = 7, UpperCase = true, LowerCase = true, Digits = true }
             };
             _profiles.Profiles ??= new List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>>();
 
             _updateDisabled = true;
             PopulateFieldsFromOptions(_profiles.LastUsedSettings);
             _updateDisabled = false;
-            
+
 
             var profileSpinner = UpdateProfileSpinner();
 
@@ -223,16 +225,17 @@ namespace keepass2android
                 }
             };
 
-            foreach (int id in _buttonLengthButtonIds) {
-				Button button = (Button) FindViewById(id);
-				button.Click += (sender, e) => 
-				{
-					Button b = (Button) sender;
-					
-					EditText editText = (EditText) FindViewById(Resource.Id.length);
-					editText.Text = b.Text;
-				};
-			}
+            foreach (int id in _buttonLengthButtonIds)
+            {
+                Button button = (Button)FindViewById(id);
+                button.Click += (sender, e) =>
+                {
+                    Button b = (Button)sender;
+
+                    EditText editText = (EditText)FindViewById(Resource.Id.length);
+                    editText.Text = b.Text;
+                };
+            }
 
             FindViewById<EditText>(Resource.Id.length).TextChanged += (sender, args) => UpdatePassword();
             FindViewById<EditText>(Resource.Id.wordcount).TextChanged += (sender, args) => UpdatePassword();
@@ -242,7 +245,7 @@ namespace keepass2android
             {
                 FindViewById<CheckBox>(id).CheckedChange += (sender, args) => UpdatePassword();
             }
-            
+
             var mode_spinner = FindViewById<Spinner>(Resource.Id.spinner_password_generator_mode);
             mode_spinner.ItemSelected += (sender, args) =>
             {
@@ -259,31 +262,32 @@ namespace keepass2android
                 UpdatePassword();
             };
 
-            Button genPassButton = (Button) FindViewById(Resource.Id.generate_password_button);
-			genPassButton.Click += (sender, e) => { UpdatePassword(); };
+            Button genPassButton = (Button)FindViewById(Resource.Id.generate_password_button);
+            genPassButton.Click += (sender, e) => { UpdatePassword(); };
 
 
 
-			View acceptButton = FindViewById(Resource.Id.accept_button);
-			acceptButton.Click += (sender, e) => {
-					EditText password = (EditText) FindViewById(Resource.Id.password_edit);
-					
-					Intent intent = new Intent();
-					intent.PutExtra(GeneratedPasswordKey, password.Text);
-					
-					SetResult(KeePass.ResultOkPasswordGenerator, intent);
-					
-					Finish();
-			};
+            View acceptButton = FindViewById(Resource.Id.accept_button);
+            acceptButton.Click += (sender, e) =>
+            {
+                EditText password = (EditText)FindViewById(Resource.Id.password_edit);
 
-			
-			View cancelButton = FindViewById(Resource.Id.cancel_button);
-			cancelButton.Click += (sender, e) => 
-			{
-					SetResult(Result.Canceled);
-					
-					Finish();
-			};
+                Intent intent = new Intent();
+                intent.PutExtra(GeneratedPasswordKey, password.Text);
+
+                SetResult(KeePass.ResultOkPasswordGenerator, intent);
+
+                Finish();
+            };
+
+
+            View cancelButton = FindViewById(Resource.Id.cancel_button);
+            cancelButton.Click += (sender, e) =>
+            {
+                SetResult(Result.Canceled);
+
+                Finish();
+            };
 
             FindViewById(Resource.Id.btn_password_generator_profile_save)
                 .Click += (sender, args) =>
@@ -305,13 +309,13 @@ namespace keepass2android
             {
                 if (profileSpinner.SelectedItemPosition > 0)
                 {
-                    _profiles.Remove(profileSpinner.SelectedItemPosition-1);
+                    _profiles.Remove(profileSpinner.SelectedItemPosition - 1);
                     UpdateProfileSpinner();
                 }
             };
 
 
-            EditText txtPasswordToSet = (EditText) FindViewById(Resource.Id.password_edit);
+            EditText txtPasswordToSet = (EditText)FindViewById(Resource.Id.password_edit);
             txtPasswordToSet.TextChanged += (sender, args) =>
             {
                 Task.Run(() => UpdatePasswordStrengthEstimate(txtPasswordToSet.Text));
@@ -321,14 +325,14 @@ namespace keepass2android
 
             UpdatePassword();
 
-			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
-		}
+        }
 
         private Spinner UpdateProfileSpinner()
         {
-            string[] profileNames = new List<string> {GetString(Resource.String.custom_settings)}
+            string[] profileNames = new List<string> { GetString(Resource.String.custom_settings) }
                 .Concat(_profiles.Profiles.Select(p => p.Key))
                 .ToArray();
             ArrayAdapter<String> profileArrayAdapter = new ArrayAdapter<String>(this,
@@ -375,14 +379,14 @@ namespace keepass2android
                         PasswordGenerationOptions
                             = new PasswordGenerator.PasswordGenerationOptions()
                             {
-                                Length = 64, AtLeastOneFromEachGroup = true, 
+                                Length = 64, AtLeastOneFromEachGroup = true,
                                 Digits = true, LowerCase = true, UpperCase = true, ExcludeLookAlike = false,Specials = true,Brackets = true, Minus = true, Space = true, SpecialsExtended = true,Underline = true
                             }
 
                     }
                 ),
                 new KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>(
-                        
+
                     "Passphrase7", new PasswordGenerator.CombinedKeyOptions()
                     {
                         PassphraseGenerationOptions
@@ -414,7 +418,7 @@ namespace keepass2android
                         }
                     }
                 )
-                        
+
             };
         }
 
@@ -459,7 +463,7 @@ namespace keepass2android
             {
                 FindViewById(Resource.Id.passphraseOptions).Visibility = ViewStates.Gone;
             }
-            
+
 
             int mode;
             if (combinedOptions.PasswordGenerationOptions != null &&
@@ -469,7 +473,7 @@ namespace keepass2android
                      combinedOptions.PassphraseGenerationOptions != null)
                 mode = 1;
             else mode = 0;
-            
+
             FindViewById<Spinner>(Resource.Id.spinner_password_generator_mode)
                 .SetSelection(mode);
 
@@ -481,8 +485,8 @@ namespace keepass2android
                 return;
 
             String password = "";
-            
-            
+
+
             Task.Run(() =>
             {
                 password = GeneratePassword();
@@ -493,7 +497,7 @@ namespace keepass2android
                     UpdateProfileSpinnerSelection();
                 });
             });
-            
+
         }
 
         private void UpdatePasswordStrengthEstimate(string password)
@@ -514,7 +518,7 @@ namespace keepass2android
                         PopularPasswords.Add(bytes, false);
                     }
                 }
-                    
+
             }
             uint passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
 
@@ -558,10 +562,11 @@ namespace keepass2android
                 .SetSelection(lastUsedIndex != null ? lastUsedIndex.Value + 1 : 0);
         }
 
-        public String GeneratePassword() {
-			String password = "";
-			
-			try 
+        public String GeneratePassword()
+        {
+            String password = "";
+
+            try
             {
                 PasswordGenerator generator = new PasswordGenerator(this);
 
@@ -578,15 +583,15 @@ namespace keepass2android
 
                 _profiles.LastUsedSettings = options;
 
-				SaveProfiles();
+                SaveProfiles();
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
-				App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e),  MessageSeverity.Error);
-			}
-			
-			return password;
-		}
+                App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e), MessageSeverity.Error);
+            }
+
+            return password;
+        }
 
         private void SaveProfiles()
         {
@@ -619,26 +624,26 @@ namespace keepass2android
             if (FindViewById(Resource.Id.passwordOptions).Visibility == ViewStates.Visible)
             {
                 int length;
-                if (!int.TryParse(((EditText) FindViewById(Resource.Id.length)).Text, out length))
+                if (!int.TryParse(((EditText)FindViewById(Resource.Id.length)).Text, out length))
                 {
                     throw new Exception(GetString(Resource.String.error_wrong_length));
                 }
 
-                options.PasswordGenerationOptions = 
+                options.PasswordGenerationOptions =
                     new PasswordGenerator.PasswordGenerationOptions()
                     {
                         Length = length,
-                        UpperCase = ((CheckBox) FindViewById(Resource.Id.cb_uppercase)).Checked,
-                        LowerCase = ((CheckBox) FindViewById(Resource.Id.cb_lowercase)).Checked,
-                        Digits = ((CheckBox) FindViewById(Resource.Id.cb_digits)).Checked,
-                        Minus = ((CheckBox) FindViewById(Resource.Id.cb_minus)).Checked,
-                        Underline = ((CheckBox) FindViewById(Resource.Id.cb_underline)).Checked,
-                        Space = ((CheckBox) FindViewById(Resource.Id.cb_space)).Checked,
-                        Specials = ((CheckBox) FindViewById(Resource.Id.cb_specials)).Checked,
-                        SpecialsExtended = ((CheckBox) FindViewById(Resource.Id.cb_specials_extended)).Checked,
-                        Brackets = ((CheckBox) FindViewById(Resource.Id.cb_brackets)).Checked,
-                        ExcludeLookAlike = ((CheckBox) FindViewById(Resource.Id.cb_exclude_lookalike)).Checked,
-                        AtLeastOneFromEachGroup = ((CheckBox) FindViewById(Resource.Id.cb_at_least_one_from_each_group))
+                        UpperCase = ((CheckBox)FindViewById(Resource.Id.cb_uppercase)).Checked,
+                        LowerCase = ((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked,
+                        Digits = ((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked,
+                        Minus = ((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked,
+                        Underline = ((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked,
+                        Space = ((CheckBox)FindViewById(Resource.Id.cb_space)).Checked,
+                        Specials = ((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked,
+                        SpecialsExtended = ((CheckBox)FindViewById(Resource.Id.cb_specials_extended)).Checked,
+                        Brackets = ((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked,
+                        ExcludeLookAlike = ((CheckBox)FindViewById(Resource.Id.cb_exclude_lookalike)).Checked,
+                        AtLeastOneFromEachGroup = ((CheckBox)FindViewById(Resource.Id.cb_at_least_one_from_each_group))
                             .Checked
                     };
             }

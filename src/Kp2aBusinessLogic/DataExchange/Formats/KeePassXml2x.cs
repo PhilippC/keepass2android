@@ -31,42 +31,42 @@ using KeePassLib.Serialization;
 
 namespace KeePass.DataExchange.Formats
 {
-	public sealed class KeePassXml2x : FileFormatProvider
-	{
-		public override bool SupportsImport { get { return true; } }
-		public override bool SupportsExport { get { return true; } }
+    public sealed class KeePassXml2x : FileFormatProvider
+    {
+        public override bool SupportsImport { get { return true; } }
+        public override bool SupportsExport { get { return true; } }
 
-		public override string FormatName { get { return "KeePass XML (2.x)"; } }
-		public override string DefaultExtension { get { return "xml"; } }
-		
-		public override bool SupportsUuids { get { return true; } }
+        public override string FormatName { get { return "KeePass XML (2.x)"; } }
+        public override string DefaultExtension { get { return "xml"; } }
 
-		public override void Import(PwDatabase pwStorage, Stream sInput,
-			IStatusLogger slLogger)
-		{
-			KdbxFile kdbx = new KdbxFile(pwStorage);
-			kdbx.Load(sInput, KdbxFormat.PlainXml, slLogger);
-		}
+        public override bool SupportsUuids { get { return true; } }
 
-		public override bool Export(PwExportInfo pwExportInfo, Stream sOutput,
-			IStatusLogger slLogger)
-		{
-			PwDatabase pd = (pwExportInfo.ContextDatabase ?? new PwDatabase());
+        public override void Import(PwDatabase pwStorage, Stream sInput,
+            IStatusLogger slLogger)
+        {
+            KdbxFile kdbx = new KdbxFile(pwStorage);
+            kdbx.Load(sInput, KdbxFormat.PlainXml, slLogger);
+        }
 
-			PwObjectList<PwDeletedObject> vDel = null;
-			if(pwExportInfo.ExportDeletedObjects == false)
-			{
-				vDel = pd.DeletedObjects.CloneShallow();
-				pd.DeletedObjects.Clear();
-			}
+        public override bool Export(PwExportInfo pwExportInfo, Stream sOutput,
+            IStatusLogger slLogger)
+        {
+            PwDatabase pd = (pwExportInfo.ContextDatabase ?? new PwDatabase());
 
-			KdbxFile kdb = new KdbxFile(pd);
-			kdb.Save(sOutput, pwExportInfo.DataGroup, KdbxFormat.PlainXml, slLogger);
+            PwObjectList<PwDeletedObject> vDel = null;
+            if (pwExportInfo.ExportDeletedObjects == false)
+            {
+                vDel = pd.DeletedObjects.CloneShallow();
+                pd.DeletedObjects.Clear();
+            }
 
-			// Restore deleted objects list
-			if(vDel != null) pd.DeletedObjects.Add(vDel);
+            KdbxFile kdb = new KdbxFile(pd);
+            kdb.Save(sOutput, pwExportInfo.DataGroup, KdbxFormat.PlainXml, slLogger);
 
-			return true;
-		}
-	}
+            // Restore deleted objects list
+            if (vDel != null) pd.DeletedObjects.Add(vDel);
+
+            return true;
+        }
+    }
 }

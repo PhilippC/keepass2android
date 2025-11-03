@@ -38,7 +38,7 @@ namespace keepass2android.services.AutofillBase
         int AppIconResource { get; }
     }
 
-    public abstract class AutofillServiceBase: AutofillService
+    public abstract class AutofillServiceBase : AutofillService
     {
         private HashSet<string> _internal_blacklistedUris = null;
 
@@ -74,7 +74,7 @@ namespace keepass2android.services.AutofillBase
 
         public AutofillServiceBase()
         {
-            
+
         }
 
         public AutofillServiceBase(IntPtr javaReference, JniHandleOwnership transfer)
@@ -124,7 +124,7 @@ namespace keepass2android.services.AutofillBase
         public override void OnFillRequest(FillRequest request, CancellationSignal cancellationSignal, FillCallback callback)
         {
             bool isManual = (request.Flags & FillRequest.FlagManualRequest) != 0;
-            CommonUtil.logd( "onFillRequest " + (isManual ? "manual" : "auto"));
+            CommonUtil.logd("onFillRequest " + (isManual ? "manual" : "auto"));
             var structure = request.FillContexts.Last().Structure;
 
 
@@ -158,10 +158,10 @@ namespace keepass2android.services.AutofillBase
                     return;
                 }
 
-                
+
                 InlineSuggestionsRequest inlineSuggestionsRequest = null;
                 IList<InlinePresentationSpec> inlinePresentationSpecs = null;
-                if (((int) Build.VERSION.SdkInt >= 30)
+                if (((int)Build.VERSION.SdkInt >= 30)
                     && (PreferenceManager.GetDefaultSharedPreferences(this).GetBoolean(GetString(Resource.String.InlineSuggestions_key), true)))
                 {
                     inlineSuggestionsRequest = request.InlineSuggestionsRequest;
@@ -205,9 +205,9 @@ namespace keepass2android.services.AutofillBase
                             hasEntryDataset = true;
                         }
                     }
-                   
 
-                    
+
+
                     {
                         if (query.WebDomain != null)
                             AddQueryDataset(query.WebDomain,
@@ -251,9 +251,9 @@ namespace keepass2android.services.AutofillBase
                 Kp2aLog.Log("Ignoring onFillRequest as there is another request going on.");
             }
         }
-        
-        
-        
+
+
+
 
         private List<Dataset> BuildEntryDatasets(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, StructureParser parser,
             DisplayWarning warning, IList<InlinePresentationSpec> inlinePresentationSpecs)
@@ -262,7 +262,7 @@ namespace keepass2android.services.AutofillBase
             Kp2aLog.Log("AF: BuildEntryDatasets");
             Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>> suggestedEntries = GetSuggestedEntries(query);
             Kp2aLog.Log("AF: BuildEntryDatasets found " + suggestedEntries.Count + " entries");
-            
+
             int count = 0;
 
             var totpHelper = new Kp2aTotp();
@@ -333,7 +333,7 @@ namespace keepass2android.services.AutofillBase
         {
             None,
             FillDomainInUntrustedApp, //display a warning that the user is filling credentials for a domain inside an app not marked as trusted browser
-            
+
         }
 
         private void AddQueryDataset(string query, string queryDomain, string queryPackage, AutofillId[] autofillIds, FillResponse.Builder responseBuilder, bool autoReturnFromQuery, DisplayWarning warning, InlinePresentationSpec inlinePresentationSpec)
@@ -382,7 +382,7 @@ namespace keepass2android.services.AutofillBase
             {
                 Kp2aLog.LogUnexpectedError(e);
             }
-           
+
             return displayName;
         }
 
@@ -451,9 +451,9 @@ namespace keepass2android.services.AutofillBase
             }
             catch (Exception e)
             {
-                callback.OnFailure(Util.GetErrorMessage(e));   
+                callback.OnFailure(Util.GetErrorMessage(e));
             }
-            
+
         }
 
         protected abstract void HandleSaveRequest(StructureParser parser, StructureParser.AutofillTargetId query);
@@ -461,16 +461,16 @@ namespace keepass2android.services.AutofillBase
 
         public override void OnConnected()
         {
-            CommonUtil.logd( "onConnected");
+            CommonUtil.logd("onConnected");
         }
 
         public override void OnDisconnected()
         {
 
             _lockTime = DateTime.MinValue;
-            CommonUtil.logd( "onDisconnected");
+            CommonUtil.logd("onDisconnected");
         }
 
-        public abstract IAutofillIntentBuilder IntentBuilder{get;}
+        public abstract IAutofillIntentBuilder IntentBuilder { get; }
     }
 }
