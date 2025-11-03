@@ -330,7 +330,7 @@ namespace keepass2android.Io
 
 		public string GetDisplayName(IOConnectionInfo ioc)
 		{
-			return _jfs.GetDisplayName(ioc.Path);
+			return _jfs.GetDisplayName(IocToPath(ioc));
 		}
 
 		public string CreateFilePath(string parent, string newFilename)
@@ -362,7 +362,6 @@ namespace keepass2android.Io
 		private DateTime JavaTimeToCSharp(long javatime)
 		{
 			return new DateTime(1970, 1, 1).AddMilliseconds(javatime);
-
 		}
 
 		public virtual string IocToPath(IOConnectionInfo ioc)

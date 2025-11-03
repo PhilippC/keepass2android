@@ -81,8 +81,12 @@ namespace keepass2android.Io
 				//legacy support. Some users may have stored IOCs with UserName inside.
 				return ((WebDavStorage)Jfs).BuildFullPath(ioc.Path, ioc.UserName, ioc.Password);
 			}
-			return base.IocToPath(ioc);
-		}
+			string path = base.IocToPath(ioc);
+			//make sure the path is normalized, e.g. spaces and umlauts are percent encoded.
+            string normalized = new Uri(path).AbsoluteUri;
+            return normalized;
+
+        }
 
 
         public override IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
