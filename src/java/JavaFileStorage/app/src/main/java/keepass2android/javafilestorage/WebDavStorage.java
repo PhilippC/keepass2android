@@ -25,7 +25,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -597,7 +599,14 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         try {
             ConnectionInfo ci = splitStringToConnectionInfo(path);
-            return ci.URL;
+            try
+            {
+                return java.net.URLDecoder.decode(ci.URL, StandardCharsets.UTF_8);
+            }
+            catch (Exception e)
+            {
+                return  ci.URL;
+            }
         }
         catch (Exception e)
         {

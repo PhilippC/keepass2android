@@ -1068,7 +1068,12 @@ namespace keepass2android
 
         protected override void OnDestroy()
         {
-            UnregisterReceiver(_dataUpdatedIntentReceiver);
+            if (_dataUpdatedIntentReceiver != null)
+            {
+                UnregisterReceiver(_dataUpdatedIntentReceiver);
+                _dataUpdatedIntentReceiver = null;
+            }
+
             base.OnDestroy();
             
         }
