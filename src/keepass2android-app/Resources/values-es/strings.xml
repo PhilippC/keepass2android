@@ -93,6 +93,7 @@
   <string name="disable_fingerprint_unlock">Deshabilitar desbloqueo biométrico</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo biométrico completo</string>
   <string name="enable_fingerprint_quickunlock">Activar desbloqueo biométrico para QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available_text">El Desbloqueo Rápido usando una parte de su contraseña está bloqueado porque el bloqueo de pantalla no está activado en su dispositivo. Este comportamiento es para protegerte en caso de que alguien te observara introduciendo tu clave de Desbloqueo Rápido.</string>
   <string name="fingerprint_unlock_failed">Desbloqueo biométrico fallido. La clave de descifrado fue invalidada por el SO Android. Esto suele suceder si se ha modificado una configuración de autenticación o seguridad biométrica. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Error al desbloquear la base de datos: clave compuesta no válida. El desbloqueo biométrico se deshabilitó porque aparentemente la contraseña maestra almacenada ya no es válida. </string>
   <string name="fingerprint_reenable">Vuelva a habilitar el desbloqueo biométrico para la nueva contraseña maestra.</string>
@@ -319,6 +320,7 @@
   <string name="QuickUnlock_label_secure">Introduzca el código de QuickUnlock:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Cerrar la base de datos</string>
+  <string name="enable_screen_lock">Activar bloqueo de pantalla</string>
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
   <string name="QuickUnlockDefaultEnabled_summary">Determina si QuickUnlock está habilitado de forma predeterminada o no.</string>
   <string name="ViewDatabaseSecure_title">Evitar visualización de la base de datos</string>
@@ -327,6 +329,8 @@
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden16_summary">QuickUnlock requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Bloquea el ingreso en la tecla de Desbloqueo Rápido si el dispositivo no está asegurado por bloqueo de pantalla. Esto evita ataques de shoulder surfing. Desactive esta opción solo si entiende el riesgo. Tenga en cuenta que Desbloqueo Rápido todavía puede ser usado con biometría.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Bloquear Desbloqueo Rápido cuando el dispositivo no es seguro</string>
   <string name="QuickUnlockLength_title">Longitud de la clave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
   <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
