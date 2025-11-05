@@ -387,6 +387,7 @@
   <string name="NoDonationReminder_summary">Non ti darò un centesimo oppure ho già donato. Non chiedere una donazione, nemmeno al compleanno dell\'autore.</string>
   <string name="UseOfflineCache_title">Cache del database</string>
   <string name="UseOfflineCache_summary">Conserva una copia dei database nella cache dell\'applicazione. Questo consente di utilizzare i database anche quando il file non è accessibile.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Durante il salvataggio o il caricamento, utilizza la cache interna, quindi sincronizza con l\'archiviazione remota tramite processo in background.</string>
   <string name="CreateBackups_title">Backup locali</string>
   <string name="CreateBackups_summary">Creare una copia di backup locale dopo aver caricato correttamente un database.</string>
   <string name="UpdatingBackup">Aggiornamento del backup locale...</string>
