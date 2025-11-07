@@ -799,6 +799,15 @@
     <item>Fejlrettelser</item>
     <item>Fejlrettelser</item>
   </string-array>
+  <string name="ChangeLog_1_07b">    Version 1. 7b\n
+    * Forbedret Argon2-ydeevne vha. intern implementering (Tak til Chih-Hsuan Yen!\n
+    * Tilladt at deaktivere fingeraftryk ved klik på fingeraftryksikonet (undgår problemer med fingeraftrykslæsere under skærmen. Tak til marcoDallas!\n
+    * Gendanne markørposition ved skift af synlighed af adgangskode (tak til DDoSolitary!\n
+    * Forbedringer til pCloud-implementering (tak til gilbsgilbs igen!\n
+    * Tilføjet AutoFyld-understøttelse for flere flere webbrowsere \n
+    * Ny implementering for OneDrive: Inkluderer understøttelse af OneDrive for Business, delte filer, valgbare adgangsområder, flere konti og løser problemer med offline-adgang\n
+    * Fejlrettelser
+  </string>
   <string name="ChangeLog_0_9_7">Version 0.9.7\n
 * skriveunderstøttelse til Keepass 1-databaser (kdb) (beta!)\n
 * bedre skift tilbage til foregående tastatur (fungerer også på ikke-root enheder)\n
