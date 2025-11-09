@@ -373,21 +373,8 @@ public class WebDavStorage extends JavaFileStorageBase {
         if (writeTransactional)
         {
             String randomSuffix = ".tmp." + generateRandomHexString(8);
-            try {
-                // Upload to temporary file first
-                uploadFile(path + randomSuffix, data, false);
-                // Use enhanced move operation with delete-then-rename strategy
-                renameOrMoveWebDavResource(path+randomSuffix, path, true);
-            } catch (Exception e) {
-                // If move fails, try to clean up the temporary file
-                try {
-                    ConnectionInfo tempCi = splitStringToConnectionInfo(path + randomSuffix);
-                    deleteFileIfExists(tempCi);
-                } catch (Exception cleanupException) {
-                    Log.w("WebDavStorage", "Failed to cleanup temporary file after failed transaction: " + cleanupException.getMessage());
-                }
-                throw e;
-            }
+            uploadFile(path + randomSuffix, data, false);
+            renameOrMoveWebDavResource(path+randomSuffix, path, true);
             return;
         }
 
