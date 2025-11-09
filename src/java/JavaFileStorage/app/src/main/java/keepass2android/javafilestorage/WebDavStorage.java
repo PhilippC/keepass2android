@@ -313,15 +313,15 @@ public class WebDavStorage extends JavaFileStorageBase {
         try {
             Request request = new Request.Builder()
                     .url(new URL(ci.URL))
-                    .method("PROPFIND", null)
-                    .header("Depth", "0")
-                    .header("Content-Type", "application/xml")
-                    .body(RequestBody.create("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
+                    .method("PROPFIND", RequestBody.create(MediaType.parse("application/xml"),
+                            "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
                             "<D:propfind xmlns:D=\"DAV:\">\n" +
                             "    <D:prop>\n" +
                             "        <D:resourcetype/>\n" +
                             "    </D:prop>\n" +
-                            "</D:propfind>", MediaType.parse("application/xml")))
+                            "</D:propfind>"))
+                    .header("Depth", "0")
+                    .header("Content-Type", "application/xml")
                     .build();
 
             Response response = getClient(ci).newCall(request).execute();
