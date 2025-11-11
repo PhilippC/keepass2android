@@ -741,6 +741,9 @@
   <string name="webdav_chunked_upload_size_summary">Veľkosť blokov pri odosielaní na servery WebDav v bajtoch.</string>
   <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
   <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Vylepšenie spracovávania URL pre WebDav so znakmi mimo ASCII</item>
+  </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Pridaná synchronizácia na pozadí: Keepass2Android teraz pri načítaní a ukladaní využíva kópiu databázy v internej vyrov. pamäti, kvôli zrýchleniu práce. Potom sa spustí synchronizácia so vzdialenou databázou.</item>
     <item>Pridané používateľské nastavenia na kontrolu synchronizácie na pozadí. Môžete zapnúť pravidelnú synchronizáciu na pozadí a riadiť, či sa má synchronizovať vždy alebo len pri pripojení do sietí Wi-Fi.</item>
